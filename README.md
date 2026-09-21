@@ -2,7 +2,7 @@
 
 Ein mobil spielbarer 6-gegen-6-Fußballmanager als statische Browseranwendung. Die Dateien in `dist/` sind der Quellstand der aktuellen Version. Spielstände liegen lokal im Browser.
 
-Ab Saison 2 gibt es Jugendscouting mit kostenpflichtiger Sichtung und Entwicklung durch Ligaspiele.
+Ab Saison 2 gibt es Jugendscouting mit optionaler kostenpflichtiger Sichtung, sofortiger Verpflichtung auch ohne Scouting und Entwicklung durch Ligaspiele.
 
 Während der Transfertage sind der aktuelle Kader, Spieler mit Ablöse und Kaufangebote für eigene Spieler einklappbar. Kaufangebote für eigene Spieler sind auf zwei pro Saison begrenzt.
 
@@ -31,6 +31,7 @@ node work/test-v32.cjs
 node work/test-v31.cjs
 node work/test-v34.cjs
 node work/test-v35.cjs
+node work/test-v36.cjs
 ```
 
 Weitere Regressionstests liegen als `work/test-*.cjs` vor. `test-v31.cjs` simuliert zwölf vollständige Saisonen.

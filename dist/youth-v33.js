@@ -80,7 +80,7 @@ function youthCandidateHTML(candidate){
 function youthPanelHTML(){
  const youth=ensureYouth(),state=transferState(),signed=activeSave.squad.filter(player=>player.youthPotential&&!player.retired);
  const development=signed.length?'<div class="youth-progress">'+signed.map(player=>{const games=player.seasons?.find(item=>item.number===activeSave.seasonNumber)?.games||0,points=player.youthGrowth?.[activeSave.seasonNumber]?.points||0;return`<div><b>${escapeHTML(player.name)}</b><span>${player.age} Jahre · ${games} Einsätze · ${player.age<24?'+'+points+' Fähigkeitspunkte in dieser Saison':'Entwicklung abgeschlossen'}</span></div>`}).join('')+'</div>':'';
- const selection=state.open?`<p class="help">${YOUTH_POOL_SIZE} Spieler pro Saison. Vor dem Scouting sind keine Stärkewerte bekannt. Scouting kostet ${YOUTH_SCOUT_COST}, eine Verpflichtung weitere ${YOUTH_SIGN_COST} Credits. Es gelten Budget und Kaderlimit.</p><div class="youth-grid">${youth.candidates.map(youthCandidateHTML).join('')}</div>`:'';
+ const selection=state.open?`<p class="help">${YOUTH_POOL_SIZE} Spieler pro Saison. Vor dem Scouting sind keine Stärkewerte bekannt. Scouting ist für ${YOUTH_SCOUT_COST} Credits optional; du kannst auch sofort für ${YOUTH_SIGN_COST} Credits verpflichten. Es gelten Budget und Kaderlimit.</p><div class="youth-grid">${youth.candidates.map(youthCandidateHTML).join('')}</div>`:'';
  return`<section class="panel youth-panel"><div class="section-heading"><h2>Jugendarbeit</h2><span>${state.open?youth.candidates.filter(item=>item.scouted).length+'/'+YOUTH_POOL_SIZE+' gescoutet':signed.length+' im Kader'}</span></div>${development}${selection}</section>`
 }
 const v32RenderCenterV33=renderCenter;
