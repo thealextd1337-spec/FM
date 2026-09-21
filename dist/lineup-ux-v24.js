@@ -9,6 +9,7 @@ v24Style.textContent=`
 `;
 document.head.append(v24Style);
 v24Style.textContent+=`.bench-chip{min-width:270px;grid-template-columns:8px minmax(0,1fr) auto;gap:9px;padding:10px}.bench-select{display:block;min-height:46px;width:100%;text-align:left}.bench-title{display:flex;align-items:center;gap:7px}.bench-title .flag-icon{width:25px;height:17px;flex:none}.bench-select b{font-size:12px;line-height:1.3}.bench-meta{display:block;margin-top:5px;color:#b9ccc6;font-size:11px;line-height:1.35;white-space:normal}.bench-meta strong{color:#f0f6f1}.bench-chip .player-link{min-height:44px;padding:8px 10px;border:1px solid #56716d;border-radius:6px;background:#20383a;color:#f0f6f1;font-size:11px;font-weight:700}@media(max-width:760px){.bench-chip{min-width:255px}}`;
+v24Style.textContent+=`.grid .cell .player-label{display:flex;align-items:center;justify-content:center;gap:3px;max-width:100%;white-space:nowrap}.grid .cell .player-label .flag-icon{width:16px;height:11px;flex:none}.grid .cell .player-label span{min-width:0;overflow:hidden;text-overflow:ellipsis}.keeper .flag-icon{width:16px;height:11px;margin-right:3px}@media(max-width:480px){.grid .cell .player-label .flag-icon{width:13px;height:9px}}`;
 
 function v24FitnessClass(value){return value<52?'tired':value<72?'ready':'fresh'}
 function v24PositionWarning(player){
@@ -57,7 +58,7 @@ function v24SelectedCompact(){
 }
 function v24DecorateGrid(){
  const grid=$('#grid');if(!grid)return;
- grid.querySelectorAll('[data-cell]').forEach(cell=>{const player=players.find(item=>item.cell===+cell.dataset.cell);cell.dataset.dropCell=cell.dataset.cell;if(player){cell.draggable=true;cell.dataset.dragPlayer=player.n;cell.dataset.dragKind='pitch';const dot=document.createElement('i');dot.className=`fitness-dot ${v24FitnessClass(player.fresh)}`;cell.append(dot)}else{cell.draggable=false;delete cell.dataset.dragPlayer;delete cell.dataset.dragKind}});
+ grid.querySelectorAll('[data-cell]').forEach(cell=>{const player=players.find(item=>item.cell===+cell.dataset.cell);cell.dataset.dropCell=cell.dataset.cell;if(player){cell.draggable=true;cell.dataset.dragPlayer=player.n;cell.dataset.dragKind='pitch';cell.setAttribute('aria-label',`${player.name}, ${nationData[player.nation]?.name||player.nation||'Nationalität unbekannt'}, Spielerprofil öffnen, Reihe ${Math.floor(player.cell/5)+1}, Spalte ${player.cell%5+1}`);const label=cell.querySelector('.player-label');if(label&&!label.querySelector('.flag-icon'))label.innerHTML=`${flagSVG(player.nation)}<span>${escapeHTML(player.name.toUpperCase())}</span>`;const dot=document.createElement('i');dot.className=`fitness-dot ${v24FitnessClass(player.fresh)}`;cell.append(dot)}else{cell.draggable=false;delete cell.dataset.dragPlayer;delete cell.dataset.dragKind}});
  const keeper=document.querySelector('#setup-pitch .keeper');if(keeper&&activeSave?.keeper){keeper.innerHTML=`<b>1</b><button class="player-link" data-open-player="${escapeHTML(activeSave.keeper.pid)}">${escapeHTML(activeSave.keeper.name.toUpperCase())} · TW</button><small>${escapeHTML(freshText(activeSave.keeper.fresh))}</small>`;bindPlayerCardLinks(keeper)}
 }
 function renderPreMatchLineup(){
