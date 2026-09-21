@@ -14,6 +14,8 @@ Das Vereinslogo wird während der Auswahl direkt über den Formen angezeigt. Ein
 
 Die Karrierezentrale hat fünf Bereiche: Übersicht, Kader, Transfers, Wettbewerbe und Verein. Auf Mobilgeräten liegt die Navigation am unteren Bildschirmrand. Speichern, Speicheroptionen und rechtliche Hinweise sind über „Menü“ erreichbar. Auf dem Startbildschirm liegen Demo und weitere Optionen unter „Extras & Einstellungen“.
 
+Die Ersatzbank zeigt Flagge, Position und Müdigkeit direkt an. Im laufenden Spiel stehen die Teamkürzel über den Seitenlinien-Statistiken. Nach Abpfiff zeigt ein Spielbericht die Teamwerte sowie die Noten, Tore und Vorlagen beider Aufstellungen. Vorlagen werden bereits im Spiel erfasst.
+
 Nach einem Pokalremis wählst du die sechs Elfmeterschützen in einem Popup und spielst die Schüsse einzeln aus. Die Startseite enthält außerdem eine Elfmeterschießen-Demo mit vier Teams; Demoergebnisse ändern keinen Spielstand.
 
 Impressum, Datenschutz- und Speicherhinweise sind über die Links unter dem Spiel erreichbar. Der Spielcode setzt keine Cookies. Spielstände und die Wahl zur freiwilligen Datenübertragung liegen lokal im Browser; externe Google-Schriftarten werden nicht mehr geladen.
@@ -51,6 +53,7 @@ node work/test-v42.cjs
 node work/test-v43.cjs
 node work/test-v44.cjs
 node work/test-v45.cjs
+node work/test-v47.cjs
 ```
 
 Weitere Regressionstests liegen als `work/test-*.cjs` vor. `test-v31.cjs` simuliert zwölf vollständige Saisonen.

@@ -8,6 +8,7 @@ v24Style.textContent=`
 @media(max-width:760px){.prematch-context{grid-template-columns:repeat(3,1fr);margin-top:-6px}.prematch-context span{padding:8px;font-size:8px}.prematch-tabs{position:sticky;top:6px;z-index:20}.compact-bench{padding:12px}.bench-chip{min-width:164px}.compact-actions{grid-template-columns:repeat(2,1fr)}#start:not([hidden]){position:sticky;bottom:10px;z-index:18;box-shadow:0 10px 35px #071012dd}.workspace{gap:12px}.player-panel-slim{margin-bottom:8px}.pitch{height:440px}}
 `;
 document.head.append(v24Style);
+v24Style.textContent+=`.bench-chip{min-width:270px;grid-template-columns:8px minmax(0,1fr) auto;gap:9px;padding:10px}.bench-select{display:block;min-height:46px;width:100%;text-align:left}.bench-title{display:flex;align-items:center;gap:7px}.bench-title .flag-icon{width:25px;height:17px;flex:none}.bench-select b{font-size:12px;line-height:1.3}.bench-meta{display:block;margin-top:5px;color:#b9ccc6;font-size:11px;line-height:1.35;white-space:normal}.bench-meta strong{color:#f0f6f1}.bench-chip .player-link{min-height:44px;padding:8px 10px;border:1px solid #56716d;border-radius:6px;background:#20383a;color:#f0f6f1;font-size:11px;font-weight:700}@media(max-width:760px){.bench-chip{min-width:255px}}`;
 
 function v24FitnessClass(value){return value<52?'tired':value<72?'ready':'fresh'}
 function v24PositionWarning(player){
@@ -41,8 +42,9 @@ function v24UpdateReadiness(){
  v24SetStatus(errors[0]||'Aufstellung gültig · Änderungen werden automatisch gespeichert.',Boolean(errors.length));
 }
 function v24BenchPlayers(){return activeSave.squad.filter(player=>!player.retired&&!activeSave.lineup.includes(player.n))}
+function v24FatigueText(value){return value>=88?'keine':value>=72?'gering':value>=52?'leicht':value>=32?'müde':'erschöpft'}
 function v24BenchHTML(player){
- return`<article class="bench-chip" draggable="true" data-drag-player="${player.n}" data-drag-kind="bench" data-bank-player="${player.n}"><i class="fitness-dot ${v24FitnessClass(player.fresh)}"></i><button class="bench-select" data-bench-select="${player.n}" aria-label="${escapeHTML(player.name)} einwechseln"><b>#${player.n} ${escapeHTML(player.name)}</b><small>${escapeHTML(transferPosition(player))} · ${escapeHTML(freshText(player.fresh))}</small></button><button class="player-link" data-open-player="${escapeHTML(player.pid)}">Details</button></article>`;
+ return`<article class="bench-chip" draggable="true" data-drag-player="${player.n}" data-drag-kind="bench" data-bank-player="${player.n}"><i class="fitness-dot ${v24FitnessClass(player.fresh)}"></i><button class="bench-select" data-bench-select="${player.n}" aria-label="${escapeHTML(player.name)} einwechseln"><span class="bench-title">${flagSVG(player.nation)}<b>#${player.n} ${escapeHTML(player.name)}</b></span><span class="bench-meta"><strong>${escapeHTML(transferPosition(player))}</strong> · Müdigkeit: ${v24FatigueText(player.fresh)}</span></button><button class="player-link" data-open-player="${escapeHTML(player.pid)}" aria-label="Details zu ${escapeHTML(player.name)} öffnen">Details</button></article>`;
 }
 function v24SelectedCompact(){
  const panel=$('#player-panel'),player=players[selected];if(!panel||!player)return;
