@@ -10,6 +10,10 @@ In der Vereinszentrale öffnet „Awards & Vereinsrekorde“ die Auszeichnungen 
 
 Bei der Vereinsgründung lassen sich Heim- und Auswärtstrikot aus je sechs Mustern sowie Form und Verzierung des Vereinslogos wählen. Dunkle Vereinsfarben erhalten einen lesbaren UI-Akzent. Im Elfmeterschießen trägt der Torwart ein eigenes Trikot.
 
+Das Vereinslogo wird während der Auswahl direkt über den Formen angezeigt. Ein Torwarttrikot lässt sich aus sechs Varianten wählen; bei zu ähnlichen Farben nutzt der Torwart im Match eine kontrastierende Variante.
+
+Die Karrierezentrale hat fünf Bereiche: Übersicht, Kader, Transfers, Wettbewerbe und Verein. Auf Mobilgeräten liegt die Navigation am unteren Bildschirmrand. Speichern, Speicheroptionen und rechtliche Hinweise sind über „Menü“ erreichbar. Auf dem Startbildschirm liegen Demo und weitere Optionen unter „Extras & Einstellungen“.
+
 Nach einem Pokalremis wählst du die sechs Elfmeterschützen in einem Popup und spielst die Schüsse einzeln aus. Die Startseite enthält außerdem eine Elfmeterschießen-Demo mit vier Teams; Demoergebnisse ändern keinen Spielstand.
 
 Impressum, Datenschutz- und Speicherhinweise sind über die Links unter dem Spiel erreichbar. Der Spielcode setzt keine Cookies. Spielstände und die Wahl zur freiwilligen Datenübertragung liegen lokal im Browser; externe Google-Schriftarten werden nicht mehr geladen.
@@ -46,6 +50,7 @@ node work/test-v41.cjs
 node work/test-v42.cjs
 node work/test-v43.cjs
 node work/test-v44.cjs
+node work/test-v45.cjs
 ```
 
 Weitere Regressionstests liegen als `work/test-*.cjs` vor. `test-v31.cjs` simuliert zwölf vollständige Saisonen.

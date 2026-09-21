@@ -10,6 +10,8 @@ Lies dieses Dokument und danach nur die für die Aufgabe relevanten Dateien. Der
 - Spielerleistung wird anhand von Pässen, Schüssen, Toren, Zweikämpfen und Torwartaktionen erfasst. Statistiken sollen für aktuelle Saison, Vorsaison und Karriere nachvollziehbar bleiben.
 - Der Spielablauf soll Fußballregeln erkennbar beachten: Anstoß an der Mittellinie mit Spielern in ihren Hälften und Countdown, klarer Halbzeitpfiff mit neuem Anstoß, Ballbesitz kann verloren gehen und der Ball frei liegen. Torhüter spielen Abstoß kurz; Passabfänge erfordern einen erreichbaren Spieler im tatsächlichen Passweg. Bewahre die bewusst ruhige Spielgeschwindigkeit.
 - Vereinsfarben bestimmen Heim- und Auswärtstrikots. Spieler haben Identität und Nationalitätsflagge. Die Oberfläche muss auf Mobiltelefonen bedienbar bleiben.
+- Bei der Vereinsgründung sind Logoform und Verzierung direkt in einer Vorschau sichtbar. Ein Torwarttrikot wird aus sechs Varianten gewählt und gespeichert; im Match wird bei ähnlichen Farben eine kontrastierende Variante angezeigt.
+- Die Karrierezentrale hat fünf Bereiche: Übersicht, Kader, Transfers, Wettbewerbe und Verein. Auf Mobiltelefonen liegt die Bereichsnavigation unten. Aktives Match und Saisonabschluss bleiben eigene Ansichten.
 
 ## Karriere und Wirtschaft
 
