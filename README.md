@@ -4,6 +4,8 @@ Ein mobil spielbarer 6-gegen-6-Fußballmanager als statische Browseranwendung. D
 
 Ab Saison 2 gibt es Jugendscouting mit optionaler kostenpflichtiger Sichtung, sofortiger Verpflichtung auch ohne Scouting und Entwicklung durch Ligaspiele.
 
+Impressum, Datenschutz- und Speicherhinweise sind über die Links unter dem Spiel erreichbar. Der Spielcode setzt keine Cookies. Spielstände und die Wahl zur freiwilligen Datenübertragung liegen lokal im Browser; externe Google-Schriftarten werden nicht mehr geladen.
+
 Während der Transfertage sind der aktuelle Kader, Spieler mit Ablöse und Kaufangebote für eigene Spieler einklappbar. Die Kaufangebote für eigene Spieler stehen unter den ablösefreien Spielern und sind auf zwei pro Saison begrenzt.
 
 Feste Produktregeln und Hinweise für neue Entwicklungsinstanzen stehen in [AGENTS.md](AGENTS.md).
