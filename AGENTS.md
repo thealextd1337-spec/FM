@@ -29,6 +29,8 @@ Lies dieses Dokument und danach nur die für die Aufgabe relevanten Dateien. Der
 - Im Pokalfinale laufen beide Mannschaften ein und stehen an der Mittellinie bis zum Start. Nach dem Finale erhält der Sieger eine Feier mit Konfetti in seinen Vereinsfarben. Pokalsieger und Saison-Awards erscheinen im Saisonabschluss und in der Awardhistorie.
 - Auf der Startseite gibt es eine isolierte Elfmeterschießen-Demo mit zwei starken und zwei schwächeren Mannschaften. Sie bucht keine Karriereergebnisse, Awards oder Credits.
 - Die Liga vergibt Torschützenkönig und besten Spieler nach Saisonleistung, Formbewertungen über die Ligaspiele und Assists. Jede gewonnene Spielerauszeichnung erscheint als eigene Medaille in der Spielerstatistik. Der Meister trägt einen Pokal in der Abschlusstabelle; der Pokalsieger trägt ein anderes Pokalicon in der folgenden Ligasaison.
+- „Awards & Vereinsrekorde“ ist von der Vereinszentrale erreichbar. Tor- und Einsatzrekorde zählen Liga und Pokal für aktuelle sowie ehemalige Vereinsspieler.
+- Bei der Vereinsgründung werden Heim- und Auswärtstrikot aus sechs Mustern sowie Logoform und Verzierung gewählt. Die Auswahl gehört zum Spielstand. Dunkle Vereinsfarben brauchen lesbare UI-Akzente; Torhüter tragen im Elfmeterschießen eigene Trikots.
 
 ## Code, Prüfung und Veröffentlichung
 
@@ -37,4 +39,6 @@ Lies dieses Dokument und danach nur die für die Aufgabe relevanten Dateien. Der
 - Passende Tests aus `work/test-*.cjs` ausführen. `node work/test-v31.cjs` simuliert zwölf Saisonen; `node work/test-v35.cjs` prüft die Transferansicht und den übernommenen Saisonablauf; `node work/test-v36.cjs` prüft die Jugendverpflichtung mit und ohne Scouting. Bei Änderungen an Finanzen, Transfers oder Saisonwechsel mindestens den Dauertest erneut ausführen.
 - `node work/test-v41.cjs` prüft Pokalspielplan, getrennte Statistiken, Sieger-Award, einmalige Prämie und Elfmeterschützen.
 - `node work/test-v42.cjs` prüft das gespeicherte Elfmeterschießen nach einem Remis und die isolierte Demo.
+- `node work/test-v43.cjs` prüft Vereinsrekorde und Awardhistorie.
+- `node work/test-v44.cjs` prüft Trikot- und Logowahl, Kontrast und Torwarttrikot.
 - GitHub-Repository: `thealextd1337-spec/FM` (öffentlich). Ein GitHub-Commit veröffentlicht **nicht** automatisch auf `https://fussball.cakamper.at/`; die Live-Seite liegt auf World4You. Vor einer Veröffentlichung Build und Live-Version gesondert prüfen. Bestehende Branch-Historie vor Push oder Merge prüfen und nicht mit Force Push überschreiben.

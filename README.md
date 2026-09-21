@@ -6,6 +6,10 @@ Ab Saison 2 gibt es Jugendscouting mit optionaler kostenpflichtiger Sichtung, so
 
 Neue Karrieren enthalten einen KO-Pokal mit Auftaktrunde, Halbfinale und Finale. Bei einem Unentschieden entscheidet ein Elfmeterschießen. Pokalspiele haben eigene Spielerstatistiken. Zum Saisonende werden Torschützenkönig, bester Spieler, Meister und Pokalsieger ausgezeichnet; die Erfolge bleiben in der Awardhistorie sichtbar.
 
+In der Vereinszentrale öffnet „Awards & Vereinsrekorde“ die Auszeichnungen und die Rekordspieler für Tore und Einsätze. Die Rekorde zählen Liga und Pokal sowie ehemalige Spieler des Vereins.
+
+Bei der Vereinsgründung lassen sich Heim- und Auswärtstrikot aus je sechs Mustern sowie Form und Verzierung des Vereinslogos wählen. Dunkle Vereinsfarben erhalten einen lesbaren UI-Akzent. Im Elfmeterschießen trägt der Torwart ein eigenes Trikot.
+
 Nach einem Pokalremis wählst du die sechs Elfmeterschützen in einem Popup und spielst die Schüsse einzeln aus. Die Startseite enthält außerdem eine Elfmeterschießen-Demo mit vier Teams; Demoergebnisse ändern keinen Spielstand.
 
 Impressum, Datenschutz- und Speicherhinweise sind über die Links unter dem Spiel erreichbar. Der Spielcode setzt keine Cookies. Spielstände und die Wahl zur freiwilligen Datenübertragung liegen lokal im Browser; externe Google-Schriftarten werden nicht mehr geladen.
@@ -40,6 +44,8 @@ node work/test-v35.cjs
 node work/test-v36.cjs
 node work/test-v41.cjs
 node work/test-v42.cjs
+node work/test-v43.cjs
+node work/test-v44.cjs
 ```
 
 Weitere Regressionstests liegen als `work/test-*.cjs` vor. `test-v31.cjs` simuliert zwölf vollständige Saisonen.
