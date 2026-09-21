@@ -2,6 +2,8 @@
 
 Ein mobil spielbarer 6-gegen-6-Fußballmanager als statische Browseranwendung. Die Dateien in `dist/` sind der Quellstand der aktuellen Version. Spielstände liegen lokal im Browser.
 
+Feste Produktregeln und Hinweise für neue Entwicklungsinstanzen stehen in [AGENTS.md](AGENTS.md).
+
 ## Lokal starten
 
 ```sh
@@ -26,4 +28,3 @@ node work/test-v31.cjs
 ```
 
 Weitere Regressionstests liegen als `work/test-*.cjs` vor. `test-v31.cjs` simuliert zwölf vollständige Saisonen.
-
