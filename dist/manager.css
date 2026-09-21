@@ -31,3 +31,7 @@
 
 /* Prototype 22: live club history */
 .history-seasons article.current-season{background:color-mix(in srgb,var(--club-primary) 8%,#102126);border-left:3px solid var(--club-primary);padding-left:10px}.history-seasons article.current-season em{font-weight:700}
+
+/* Prototype 33: youth scouting and development */
+.youth-panel{margin-top:16px}.youth-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}.youth-card{display:flex;flex-direction:column;gap:10px;min-width:0;padding:14px;border:1px solid #3b5053;border-radius:9px;background:#102126}.youth-card .market-name{margin:0}.youth-card p{margin:0;color:#aabbb8;font-size:10px;line-height:1.5}.youth-card .menu-action{margin-top:auto}.youth-signed{margin-top:auto;color:var(--club-primary);font-size:10px;font-weight:700}.youth-progress{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}.youth-progress>div{padding:10px;border-radius:7px;background:#102126}.youth-progress b,.youth-progress span{display:block}.youth-progress span{margin-top:4px;color:#9eb0ac;font-size:10px}
+@media(max-width:760px){.youth-grid,.youth-progress{grid-template-columns:1fr}.youth-card{padding:12px}}
