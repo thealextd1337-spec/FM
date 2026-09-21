@@ -4,6 +4,8 @@ Ein mobil spielbarer 6-gegen-6-Fußballmanager als statische Browseranwendung. D
 
 Ab Saison 2 gibt es Jugendscouting mit optionaler kostenpflichtiger Sichtung, sofortiger Verpflichtung auch ohne Scouting und Entwicklung durch Ligaspiele.
 
+Neue Karrieren enthalten einen KO-Pokal mit Auftaktrunde, Halbfinale und Finale. Bei einem Unentschieden entscheidet ein Elfmeterschießen. Pokalspiele haben eigene Spielerstatistiken. Zum Saisonende werden Torschützenkönig, bester Spieler, Meister und Pokalsieger ausgezeichnet; die Erfolge bleiben in der Awardhistorie sichtbar.
+
 Impressum, Datenschutz- und Speicherhinweise sind über die Links unter dem Spiel erreichbar. Der Spielcode setzt keine Cookies. Spielstände und die Wahl zur freiwilligen Datenübertragung liegen lokal im Browser; externe Google-Schriftarten werden nicht mehr geladen.
 
 Während der Transfertage sind der aktuelle Kader, Spieler mit Ablöse und Kaufangebote für eigene Spieler einklappbar. Die Kaufangebote für eigene Spieler stehen unter den ablösefreien Spielern und sind auf zwei pro Saison begrenzt.
@@ -34,6 +36,7 @@ node work/test-v31.cjs
 node work/test-v34.cjs
 node work/test-v35.cjs
 node work/test-v36.cjs
+node work/test-v41.cjs
 ```
 
 Weitere Regressionstests liegen als `work/test-*.cjs` vor. `test-v31.cjs` simuliert zwölf vollständige Saisonen.

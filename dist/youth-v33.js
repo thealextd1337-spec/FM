@@ -63,7 +63,7 @@ finishMatch=function(){
  let changed=false;
  for(const player of players){
   if(!player.youthPotential||player.age>=24)continue;
-  const season=activeSave.seasonNumber,interval=youthGrowthInterval(player.age),games=currentStats(player).games||0,due=Math.floor(games/interval);
+  const season=activeSave.seasonNumber,interval=youthGrowthInterval(player.age),games=(currentStats(player).games||0)+(player.cupSeasons?.find(s=>s.number===season)?.games||0),due=Math.floor(games/interval);
   player.youthGrowth=player.youthGrowth||{};
   const progress=player.youthGrowth[season]||(player.youthGrowth[season]={awards:0,points:0});
   while(progress.awards<due){progress.points+=youthDevelop(player);progress.awards++;changed=true}
