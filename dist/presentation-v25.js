@@ -22,7 +22,7 @@ function v25Prematch(){if(!activeSave||running)return;v25Keeper();v25RoleBar();c
 const v24RenderV25=render;
 render=function(){v24RenderV25();v25Prematch()};
 const v24ShowTacticsV25=showTactics;
-showTactics=function(){v24ShowTacticsV25();v25Prematch();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 25')};
+showTactics=function(){v24ShowTacticsV25();v25Prematch();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39')};
 document.querySelector('#prematch-tabs')?.addEventListener('click',()=>requestAnimationFrame(v25Prematch));
 
 function v25Formation(team){
@@ -48,4 +48,4 @@ updateTeamStats=function(){v24UpdateTeamStatsV25();v25UpdateLiveBoard()};
 const v24StartV25=start;
 start=function(){const result=v24StartV25();if(running)v25UpdateLiveBoard();return result};$('#start').onclick=()=>start();
 
-drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 25');
+drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

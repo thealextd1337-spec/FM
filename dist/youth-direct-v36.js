@@ -25,6 +25,6 @@ youthCandidateHTML=function(candidate){
 const v35RenderCenterV36=renderCenter;
 renderCenter=function(){
  const result=v35RenderCenterV36();
- document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 36');return result
+ document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');return result
 };
-startScreen.querySelector('footer').textContent='SECHSER / PROTOTYP 36';
+startScreen.querySelector('footer').textContent='Doppel 6 / PROTOTYP 39';

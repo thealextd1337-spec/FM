@@ -15,4 +15,4 @@ const v13Step=step;step=function(delta,realDelta){
  v13Step(delta,realDelta);
  if(match.halftime&&!match.halftimeBreakDone){match.elapsed=37.5;if(match.flight)match.halftimePending=true;else beginHalftimeBreak()}
 };
-document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 14');
+document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

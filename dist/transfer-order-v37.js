@@ -14,6 +14,6 @@ function v37PlaceSalesAfterFreeAgents(){
 const v36RenderCenterV37=renderCenter;
 renderCenter=function(){
  const result=v36RenderCenterV37();v37PlaceSalesAfterFreeAgents();
- document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 37');return result
+ document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');return result
 };
-startScreen.querySelector('footer').textContent='SECHSER / PROTOTYP 37';
+startScreen.querySelector('footer').textContent='Doppel 6 / PROTOTYP 39';

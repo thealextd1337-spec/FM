@@ -19,6 +19,6 @@ function openSalePlayerCard(offerId){
 function v30BindSaleProfiles(){clubCenter.querySelectorAll('[data-sale-profile]').forEach(button=>button.onclick=event=>{event.preventDefault();event.stopPropagation();openSalePlayerCard(button.dataset.saleProfile)})}
 
 const v29RenderCenterV30=renderCenter;
-renderCenter=function(){const result=v29RenderCenterV30();v30BindSaleProfiles();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 30');return result};
+renderCenter=function(){const result=v29RenderCenterV30();v30BindSaleProfiles();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');return result};
 
-drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 30');
+drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

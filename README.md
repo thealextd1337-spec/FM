@@ -1,4 +1,4 @@
-# SECHSER – Fußballmanager
+# Doppel 6 – Fußballmanager
 
 Ein mobil spielbarer 6-gegen-6-Fußballmanager als statische Browseranwendung. Die Dateien in `dist/` sind der Quellstand der aktuellen Version. Spielstände liegen lokal im Browser.
 
@@ -24,7 +24,7 @@ Danach `http://127.0.0.1:4173/` öffnen. Mit `SECHSER_PORT` lässt sich ein ande
 node work/build.cjs
 ```
 
-Der Build schreibt `outputs/index.html` und `outputs/Sechser-Fussballmanager.html`. `outputs/` enthält erzeugte Dateien und wird nicht committet. Für die bestehende World4You-Seite wird `outputs/index.html` in das Verzeichnis der Subdomain hochgeladen.
+Der Build schreibt `outputs/index.html` und `outputs/Doppel-6-Fussballmanager.html`. `outputs/` enthält erzeugte Dateien und wird nicht committet. Für die bestehende World4You-Seite wird `outputs/index.html` in das Verzeichnis der Subdomain hochgeladen.
 
 ## Tests
 

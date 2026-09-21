@@ -34,6 +34,6 @@ settleSponsor=function(){
 };
 
 const v25RenderCenterV26=renderCenter;
-renderCenter=function(){if(activeSave&&!activeSave.finance?.gameOver)v26PaySponsorFixed();const result=v25RenderCenterV26();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 26');return result};
+renderCenter=function(){if(activeSave&&!activeSave.finance?.gameOver)v26PaySponsorFixed();const result=v25RenderCenterV26();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');return result};
 
-drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 26');
+drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

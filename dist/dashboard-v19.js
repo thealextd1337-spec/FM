@@ -24,10 +24,10 @@ function decorateTacticsRoster(){
 }
 
 const v18RenderDashboardCenter=renderCenter;
-renderCenter=function(){v18RenderDashboardCenter();removeRedundantCenterPanels();decorateCenterAction();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 19')};
+renderCenter=function(){v18RenderDashboardCenter();removeRedundantCenterPanels();decorateCenterAction();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39')};
 const v18RenderDashboardLineup=renderPreMatchLineup;
 renderPreMatchLineup=function(){v18RenderDashboardLineup();decorateTacticsRoster()};
 const v18ShowDashboardTactics=showTactics;
-showTactics=function(){v18ShowDashboardTactics();decorateTacticsRoster();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 19')};
+showTactics=function(){v18ShowDashboardTactics();decorateTacticsRoster();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39')};
 
-drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 19');
+drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

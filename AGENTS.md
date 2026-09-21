@@ -1,10 +1,10 @@
-# SECHSER: Projektkontext für neue Instanzen
+# Doppel 6: Projektkontext für neue Instanzen
 
 Lies dieses Dokument und danach nur die für die Aufgabe relevanten Dateien. Der Code ist die Quelle für den aktuellen Implementierungsstand; neue Nutzerentscheidungen haben Vorrang vor diesem Dokument. Halte diese Datei kurz und aktualisiere sie, wenn sich eine feste Produktentscheidung ändert.
 
 ## Produkt und feste Regeln
 
-- SECHSER ist ein mobil spielbarer Fußballmanager im Browser: fünf Feldspieler und ein Torwart pro Team, sechs Ligateams, zehn Spieltage je Saison. Ein Match dauert ungefähr 100 reale Sekunden und zeigt zwei Mal 45 Ingame-Minuten.
+- Doppel 6 ist ein mobil spielbarer Fußballmanager im Browser: fünf Feldspieler und ein Torwart pro Team, sechs Ligateams, zehn Spieltage je Saison. Ein Match dauert ungefähr 100 reale Sekunden und zeigt zwei Mal 45 Ingame-Minuten.
 - Aufstellung, Rasterpositionen, offensive/defensive Spielerrolle und Teamtaktik werden **vor** dem Spiel gewählt. Nach Anpfiff gibt es keine Änderungen oder Auswechslungen.
 - Keine Verletzungen und vorerst kein Training. Spieler altern; Form, Tempo und Kondition beeinflussen Leistung und Rotation. Die internen Grundwerte sind Technik, Passspiel, Abschluss, Zweikampf, Stellungsspiel, Geschwindigkeit und Kondition. Scouting beschreibt Fähigkeiten nur ungefähr; exakte Werte gehören nicht in die normale Spieleransicht.
 - Spielerleistung wird anhand von Pässen, Schüssen, Toren, Zweikämpfen und Torwartaktionen erfasst. Statistiken sollen für aktuelle Saison, Vorsaison und Karriere nachvollziehbar bleiben.
@@ -13,8 +13,8 @@ Lies dieses Dokument und danach nur die für die Aufgabe relevanten Dateien. Der
 
 ## Karriere und Wirtschaft
 
-- Spielstände liegen lokal im Browser. Bestehende Spielstände und Karrierestatistiken bei Schemaänderungen erhalten. Freiwillige Spielzusammenfassungen dürfen nur nach ausdrücklichem Opt-in übertragen werden.
-- Impressum, Datenschutz- und Speicherhinweise sind von jedem Spielbildschirm aus erreichbar. SECHSER setzt im Spielcode keine Cookies und lädt keine Schriften von Drittanbietern. Die freiwillige Übertragung von Spielstatistiken bleibt standardmäßig aus und ist jederzeit umstellbar.
+- Spielstände liegen lokal im Browser. Bestehende Spielstände und Karrierestatistiken bei Schemaänderungen erhalten. Die bisherigen `sechser.*`-Speicherschlüssel bleiben für bestehende Spielstände erhalten. Freiwillige Spielzusammenfassungen dürfen nur nach ausdrücklichem Opt-in übertragen werden.
+- Impressum, Datenschutz- und Speicherhinweise sind von jedem Spielbildschirm aus erreichbar. Doppel 6 setzt im Spielcode keine Cookies und lädt keine Schriften von Drittanbietern. Die freiwillige Übertragung von Spielstatistiken bleibt standardmäßig aus und ist jederzeit umstellbar.
 - Nach dem letzten Spieltag folgt ein gespeicherter Ablauf: Saisonbilanz, Karriereenden, Finanzabschluss, nächste Saison. Der aktuelle Kader ist während der Transfertage als einklappbarer Bereich sichtbar. Wiederholtes Öffnen oder Neuladen darf Zufallsentscheidungen und Buchungen nicht duplizieren.
 - Ab 34 Jahren liegt die Chance auf Karriereende bei 50 %, danach steigt sie jährlich um zehn Prozentpunkte bis höchstens 100 %.
 - Zu Saisonbeginn wird einer von drei Hauptsponsoren gewählt. Das Fixum kommt sofort, mögliche Boni zum Saisonende. Sieg und Remis bringen feste Credits. Platzierungsprämien für Rang 1 bis 6: 900, 750, 600, 450, 325, 250 Credits. Sie werden vor den einmal jährlich fälligen Gehältern gebucht. Negativer Schlusskontostand bedeutet Game Over. Die Wirtschaft soll knapp bleiben, damit Transfers echte Entscheidungen sind.

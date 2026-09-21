@@ -23,6 +23,6 @@ function v29TransferActions(){
 }
 
 const v28RenderCenterV29=renderCenter;
-renderCenter=function(){const result=v28RenderCenterV29();v29SimplifyDashboard();v29TransferActions();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 29');return result};
+renderCenter=function(){const result=v28RenderCenterV29();v29SimplifyDashboard();v29TransferActions();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');return result};
 
-drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 29');
+drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

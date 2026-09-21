@@ -65,7 +65,7 @@ function decoratePlayerCards(){
  clubCenter.querySelectorAll('.squad-row').forEach((row,index)=>{const player=own[index],name=row.querySelector('b');if(player&&name&&!name.querySelector('[data-open-player]'))name.innerHTML=`<button class="player-link" data-open-player="${escapeHTML(player.pid)}">#${player.n} ${escapeHTML(player.name)}</button>`});
  clubCenter.querySelectorAll('.player-history').forEach((item,index)=>{const player=own[index],name=item.querySelector('summary b');if(player&&name&&!name.querySelector('[data-open-player]'))name.innerHTML=`<button class="player-link" data-open-player="${escapeHTML(player.pid)}">#${player.n} ${escapeHTML(player.name)}</button>`});
  clubCenter.querySelectorAll('[data-open-player]').forEach(button=>button.onclick=event=>{event.preventDefault();event.stopPropagation();openPlayerCard(button.dataset.openPlayer)});
- document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 18');
+ document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');
 }
 
 const v17RenderPlayerCenter=renderCenter;
@@ -85,6 +85,6 @@ function swapPreMatchPlayer(inNumber){
  if(!activeSave||running||!preMatchReplaceNumber)return false;syncSquadFromLineup();const index=activeSave.lineup.indexOf(preMatchReplaceNumber),out=activeSave.squad.find(player=>player.n===preMatchReplaceNumber),incoming=activeSave.squad.find(player=>player.n===inNumber&&!player.retired);if(index<0||!out||!incoming)return false;incoming.cell=out.cell;incoming.role=out.role;activeSave.lineup[index]=incoming.n;preMatchReplaceNumber=null;syncLineupFromSquad();selected=Math.min(index,players.length-1);saveCurrent();render();renderPreMatchLineup();return true;
 }
 const v17ShowPlayerTactics=showTactics;
-showTactics=function(){preMatchReplaceNumber=null;v17ShowPlayerTactics();renderPreMatchLineup();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 18')};
+showTactics=function(){preMatchReplaceNumber=null;v17ShowPlayerTactics();renderPreMatchLineup();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39')};
 
-drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 18');
+drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

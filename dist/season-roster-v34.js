@@ -32,7 +32,7 @@ function v34SquadHTML(finale){
 const v31RenderFinaleV34=v31RenderFinale;
 v31RenderFinale=function(){
  const finale=v31EnsureFinale();if(!finale||finale.stage!=='squad')return v31RenderFinaleV34();
- clubCenter.innerHTML=`<section class="intro"><div><p class="eyebrow">SAISONABSCHLUSS</p><h1>${escapeHTML(activeSave.club)}</h1></div><p class="center-subtitle">Saison ${finale.season}</p></section><div class="season-flow">${v34SquadHTML(finale)}</div><footer><span>SECHSER / PROTOTYP 34</span><span>Saison ${finale.season}</span></footer>`;
+ clubCenter.innerHTML=`<section class="intro"><div><p class="eyebrow">SAISONABSCHLUSS</p><h1>${escapeHTML(activeSave.club)}</h1></div><p class="center-subtitle">Saison ${finale.season}</p></section><div class="season-flow">${v34SquadHTML(finale)}</div><footer><span>Doppel 6 / PROTOTYP 39</span><span>Saison ${finale.season}</span></footer>`;
  clubCenter.querySelectorAll('[data-finale-stage]').forEach(button=>button.onclick=()=>v31SetStage(button.dataset.finaleStage));
  clubCenter.querySelectorAll('[data-final-player]').forEach(button=>button.onclick=()=>openPlayerCard(button.dataset.finalPlayer));return true
 };
@@ -58,5 +58,5 @@ generateSalesOffers=function(){
 };
 
 const v33RenderCenterV34=renderCenter;
-renderCenter=function(){const result=v33RenderCenterV34();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 34');return result};
-startScreen.querySelector('footer').textContent='SECHSER / PROTOTYP 34';
+renderCenter=function(){const result=v33RenderCenterV34();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');return result};
+startScreen.querySelector('footer').textContent='Doppel 6 / PROTOTYP 39';

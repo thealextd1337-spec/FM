@@ -46,7 +46,7 @@ function renderSeasonPresentation(){
  if(!activeSave)return;const centerGrid=clubCenter.querySelector('.center-grid');if(!centerGrid)return;
  let snapshot=null;if(activeSave.currentRound>=10)snapshot=seasonSnapshot();
  centerGrid.insertAdjacentHTML('afterend',`${snapshot?finaleHTML(snapshot):''}<div class="v13-grid">${scorerTableHTML()}${historyHTML()}</div>`);
- document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 13');
+ document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');
 }
 
 const v12RenderCenter=renderCenter;renderCenter=function(){v12RenderCenter();renderSeasonPresentation()};
@@ -60,4 +60,4 @@ const v12StartNextSeason=startNextSeason;startNextSeason=function(){
  for(const team of activeSave.world.teams)for(const player of team.roster){player.age++;player.fresh=100;player.form=player.form>0?player.form-1:player.form<0?player.form+1:0}
  saveCurrent();renderCenter();
 };
-document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 13');
+document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

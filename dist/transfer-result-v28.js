@@ -24,6 +24,6 @@ advanceTransferDay=function(){
 };
 
 const v27RenderCenterV28=renderCenter;
-renderCenter=function(){const result=v27RenderCenterV28();v28ScrollableMarkets();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 28');return result};
+renderCenter=function(){const result=v27RenderCenterV28();v28ScrollableMarkets();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');return result};
 
-drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 28');
+drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

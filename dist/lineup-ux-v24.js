@@ -111,7 +111,7 @@ function v24DecoratePrematch(){if(!activeSave||running)return;v24DecorateGrid();
 const v23Render=render;
 render=function(){v23Render();v24DecoratePrematch()};
 const v23ShowTactics=showTactics;
-showTactics=function(){v24Tab='lineup';v23ShowTactics();v24DecoratePrematch();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 24')};
+showTactics=function(){v24Tab='lineup';v23ShowTactics();v24DecoratePrematch();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39')};
 const v23Start=start;
 start=function(){const result=v23Start();if(running){$('#prematch-tabs')?.setAttribute('hidden','');$('#prematch-context')?.setAttribute('hidden','');$('#compact-bench')?.setAttribute('hidden','')}return result};$('#start').onclick=()=>start();
 
@@ -126,10 +126,10 @@ function v24SeasonOneMarket(){
  panel.querySelectorAll('[data-free-sign]').forEach(button=>button.onclick=()=>{button.disabled=true;signFreeAgent(button.dataset.freeSign)});bindPlayerCardLinks(panel);
 }
 const v23RenderCenter=renderCenter;
-renderCenter=function(){v24EnsureSeasonOneFreeAgents();v23RenderCenter();v24SeasonOneMarket();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 24')};
+renderCenter=function(){v24EnsureSeasonOneFreeAgents();v23RenderCenter();v24SeasonOneMarket();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39')};
 
 document.querySelector('#grid')?.addEventListener('click',event=>{const cell=event.target.closest('[data-cell]');if(cell&&!players.some(player=>player.cell===+cell.dataset.cell))v24Remember()},true);
 document.querySelector('#roles')?.addEventListener('click',event=>{if(event.target.closest('[data-role]'))v24Remember()},true);
 document.querySelector('#tactics-panel')?.addEventListener('click',event=>{if(event.target.closest('[data-formation]'))v24Remember()},true);
 
-drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 24');
+drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

@@ -95,7 +95,7 @@ renderCenter=function(){
   clubCenter.querySelectorAll('[data-youth-scout]').forEach(button=>button.onclick=()=>scoutYouth(button.dataset.youthScout));
   clubCenter.querySelectorAll('[data-youth-sign]').forEach(button=>button.onclick=()=>signYouth(button.dataset.youthSign))
  }
- document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 33');
+ document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');
  return result
 };
-startScreen.querySelector('footer').textContent='SECHSER / PROTOTYP 33';
+startScreen.querySelector('footer').textContent='Doppel 6 / PROTOTYP 39';

@@ -64,6 +64,6 @@ renderCenter=function(){
  if(activeSave?.currentRound>=10&&activeSave.seasonFinale?.stage==='squad'){activeSave.seasonFinale.stage='finance';saveCurrent()}
  const result=v34RenderCenterV35();
  if(activeSave&&activeSave.currentRound<10&&!activeSave.finance?.gameOver&&transferState().open){v35ShowRoster();v35FoldMarket()}
- document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 35');return result
+ document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');return result
 };
-startScreen.querySelector('footer').textContent='SECHSER / PROTOTYP 35';
+startScreen.querySelector('footer').textContent='Doppel 6 / PROTOTYP 39';

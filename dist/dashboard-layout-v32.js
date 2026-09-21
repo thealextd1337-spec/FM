@@ -17,6 +17,6 @@ function v32CollapseFreeAgents(){
 function v32ArrangeDashboard(){if(!activeSave||activeSave.finance?.gameOver)return;v32PlaceNextMatch();v32CollapseFreeAgents()}
 
 const v31RenderCenterV32=renderCenter;
-renderCenter=function(){const result=v31RenderCenterV32();v32ArrangeDashboard();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 32');return result};
+renderCenter=function(){const result=v31RenderCenterV32();v32ArrangeDashboard();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');return result};
 
-drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 32');
+drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

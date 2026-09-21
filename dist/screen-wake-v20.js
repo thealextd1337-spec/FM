@@ -31,4 +31,4 @@ $('#start').onclick=()=>start();
 const v19FinishWithWakeLock=finishMatch;
 finishMatch=function(){v19FinishWithWakeLock();releaseMatchWakeLock()};
 
-document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 20');
+document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

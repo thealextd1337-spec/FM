@@ -5,6 +5,6 @@ function v27PlaceSquadCheck(){
 }
 
 const v26RenderCenterV27=renderCenter;
-renderCenter=function(){const result=v26RenderCenterV27();v27PlaceSquadCheck();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 27');return result};
+renderCenter=function(){const result=v26RenderCenterV27();v27PlaceSquadCheck();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');return result};
 
-drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 27');
+drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');
