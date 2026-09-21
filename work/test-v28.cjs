@@ -1,0 +1,12 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+let appended=null;const button={onclick:null,focus(){}};
+function element(){return{innerHTML:'',id:'',className:'',onclick:null,setAttribute(){},remove(){},querySelector(){return button}}}
+function grid(label){const classes=[];return{classes,previousElementSibling:{textContent:label},classList:{add(value){classes.push(value)}},setAttribute(name,value){this[name]=value}}}
+const paid=grid('Spieler mit Ablöse'),free=grid('Ablösefreie Spieler');
+const context={document:{head:{append(){}},body:{append(value){appended=value}},createElement:element,querySelector(){return null},querySelectorAll(){return[]}},clubCenter:{querySelectorAll(){return[paid,free]}},advanceTransferDay(){return true},renderCenter(){},drawSlots(){},escapeHTML:value=>String(value),flagSVG:code=>`<svg data-flag="${code}"></svg>`,nationData:{ES:{name:'Spanien'},FR:{name:'Frankreich'}},console,structuredClone};
+vm.createContext(context);vm.runInContext(fs.readFileSync('dist/transfer-result-v28.js','utf8'),context);
+const state={bids:[{id:'a',status:'accepted'},{id:'b',status:'rejected'},{id:'c',status:'counter',counterAmount:810}],offers:[{id:'oa',player:{name:'Álvaro Ruiz',age:24,nation:'ES'}},{id:'ob',player:{name:'Hugo Leroy',age:29,nation:'FR'}},{id:'oc',player:{name:'Marc Vidal',age:21,nation:'ES'}}]};
+const pending=[{bidId:'a',offerId:'oa'},{bidId:'b',offerId:'ob'},{bidId:'c',offerId:'oc'}];
+const results=vm.runInContext(`v28TransferResultData(${JSON.stringify(state)},${JSON.stringify(pending)})`,context);assert.equal(results.length,3);assert.equal(results[0].inTeam,true);assert.equal(results[0].age,24);assert.equal(results[0].nation,'Spanien');assert.equal(results[1].inTeam,false);assert.equal(results[2].counterAmount,810);
+context.results=results;vm.runInContext(`v28ShowTransferResults(results,2);v28ScrollableMarkets()`,context);assert(appended.innerHTML.includes('Álvaro Ruiz'));assert(appended.innerHTML.includes('24 Jahre · Spanien'));assert(appended.innerHTML.includes('👍'));assert(appended.innerHTML.includes('👎'));assert(appended.innerHTML.includes('Gegenangebot 810 Credits'));assert(paid.classes.includes('v28-market-scroll')&&free.classes.includes('v28-market-scroll'));assert.equal(paid['aria-label'],'Spieler mit Ablöse');assert.equal(free['aria-label'],'Ablösefreie Spieler');
+console.log('PASS: Transfer-Popup mit Identität und Teamstatus sowie zwei scrollbare Dreierlisten');

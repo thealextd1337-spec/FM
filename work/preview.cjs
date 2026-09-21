@@ -1,0 +1,1 @@
+const http=require('http'),fs=require('fs');http.createServer((req,res)=>{res.setHeader('Content-Type','text/html; charset=utf-8');res.end(fs.readFileSync('outputs/index.html'))}).listen(4174,'127.0.0.1');

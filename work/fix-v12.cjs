@@ -1,0 +1,10 @@
+const fs=require('fs');
+let game=fs.readFileSync('dist/game.js','utf8');
+game=game.replace("const awayKeeper={n:1,name:'Beck',age:28,keeper:true,line:'gk',gk:77,pas:63,pos:77,spd:49,sta:81,form:0,fresh:100}","const awayKeeper=typeof getAwayKeeper==='function'?getAwayKeeper():{n:1,name:'Beck',age:28,keeper:true,line:'gk',gk:77,pas:63,pos:77,spd:49,sta:81,form:0,fresh:100}");
+fs.writeFileSync('dist/game.js',game);
+let manager=fs.readFileSync('dist/manager-v11.js','utf8');
+manager=manager.replace('activeSave={...activeSave,schema:2,updated:', 'activeSave={...activeSave,schema:activeSave.schema||2,updated:');
+fs.writeFileSync('dist/manager-v11.js',manager);
+let identity=fs.readFileSync('dist/identity-v12.js','utf8');
+identity=identity.replace('const slot=v11EnsureChampionship(raw);if(!slot.world){slot.world=makeWorld',"const slot=v11EnsureChampionship(raw);slot.schema=3;if(!slot.world){for(const player of[slot.keeper,...slot.squad])usedGeneratedNames.add(player.name);slot.world=makeWorld");
+fs.writeFileSync('dist/identity-v12.js',identity);

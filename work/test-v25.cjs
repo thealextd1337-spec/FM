@@ -1,0 +1,17 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const game=fs.readFileSync('dist/game.js','utf8'),ui=fs.readFileSync('dist/presentation-v25.js','utf8'),index=fs.readFileSync('dist/index.html','utf8');
+assert(index.includes('presentation-v25.js'));
+assert(ui.includes("gk:'TOR',def:'VER',mid:'MIT',att:'ANG'"));
+assert(ui.includes('retro-clock'));
+assert(ui.includes('v25Scorers'));
+assert(ui.includes("group.minutes.map(minute=>`${minute}′`).join(', ')"));
+assert(ui.includes('#player-panel{display:none!important}'));
+assert(ui.includes('grid-template-columns:1fr'));
+assert(game.includes('interceptor.interceptTarget=point'));
+assert(game.includes('m.goals.push'));
+const match=game.match(/function passLaneGeometry\(defender,from,to\)\{[^\n]+\}/);assert(match,'passLaneGeometry fehlt');const context={Math};vm.runInNewContext(match[0],context);
+const between=context.passLaneGeometry({x:.5,y:.5},{x:.1,y:.5},{x:.9,y:.5});assert(between&&between.lateral===0&&between.t>.4&&between.t<.6);
+assert.equal(context.passLaneGeometry({x:.95,y:.5},{x:.1,y:.5},{x:.9,y:.5}),null,'Spieler hinter Empfänger darf nicht abfangen');
+assert.equal(context.passLaneGeometry({x:.05,y:.5},{x:.1,y:.5},{x:.9,y:.5}),null,'Spieler hinter Passgeber darf nicht abfangen');
+assert(context.passLaneGeometry({x:.5,y:.7},{x:.1,y:.5},{x:.9,y:.5}).lateral>.19,'Seitlicher Abstand muss geometrisch erhalten bleiben');
+console.log('PASS: vertikale Bank, Positionskürzel, Rollenleiste, Torwartformat, Digitaluhr, Torschützen und geometrische Passabfanglogik');

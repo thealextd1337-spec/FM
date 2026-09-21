@@ -1,0 +1,12 @@
+const fs=require('fs'),assert=require('assert');
+const dashboard=fs.readFileSync('dist/dashboard-v19.js','utf8'),onboarding=fs.readFileSync('dist/qol-v17.js','utf8'),manager=fs.readFileSync('dist/manager-v11.js','utf8'),index=fs.readFileSync('dist/index.html','utf8');
+assert(dashboard.includes("['.squad-list','.player-history']"),'Kader- und Statistikdopplung müssen aus dem Vereinszentrum entfernt werden');
+assert(dashboard.includes("action.innerHTML='Nächstes Spiel"),'Die normale Hauptaktion muss Nächstes Spiel heißen');
+assert(dashboard.includes('Transferphase fortsetzen'),'Die Hauptaktion muss die Transferphase benennen');
+assert(dashboard.includes('Hauptsponsor wählen'),'Die Hauptaktion muss eine offene Sponsorwahl benennen');
+assert(dashboard.includes("heading.textContent='Kader & Aufstellung'"),'Kader und Aufstellung müssen im Taktikbereich gebündelt sein');
+assert(manager.includes("addEventListener('click',centerPrimaryAction)"),'Die Hauptaktion muss phasenabhängig reagieren');
+assert(onboarding.includes('renderOnboarding({preserveScroll:true,focusPid:pid})'),'Die Erstkaderwahl muss ihre Scrollposition behalten');
+assert(onboarding.includes('button type="button" class="candidate-card'),'Kaderkarten dürfen kein Formular absenden');
+assert(index.includes('<script src="dashboard-v19.js"></script>'),'Version 19 muss eingebunden sein');
+console.log('PASS: schlankes Vereinszentrum, phasenabhängige Hauptaktion, Kader in Taktik und stabile Erstkaderwahl');

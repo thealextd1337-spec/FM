@@ -1,0 +1,24 @@
+'use strict';
+
+const v30SaleStyle=document.createElement('style');
+v30SaleStyle.textContent=`
+.sales-offers>article>div:first-child{display:grid;grid-template-columns:25px minmax(0,1fr);column-gap:8px;align-items:center}.sales-offers .flag-icon{grid-row:1/3}.sales-offers .sale-player-link,.sales-offers>article>div:first-child>span{grid-column:2}.sale-player-link{display:block;max-width:100%;padding:0;border:0;background:transparent;color:#edf5f0;font-weight:700;text-align:left;text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--club-primary) 60%,transparent);text-underline-offset:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sale-player-link:hover{color:var(--club-primary)}.sale-card-context{margin:8px 24px 22px;padding:16px!important;border:1px solid #506467;border-radius:9px;background:#102126}.sale-card-context h3{margin-bottom:12px!important}.sale-context-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.sale-context-numbers span{padding:10px;border-radius:7px;background:#17292d;color:#829593;font-size:8px;text-transform:uppercase}.sale-context-numbers b{display:block;margin-top:5px;color:#eff5f1;font-size:12px;text-transform:none}.sale-context-actions{display:grid;grid-template-columns:1fr 1.35fr;gap:8px;margin-top:13px}.sale-context-actions button{min-height:46px;border-radius:8px;font-weight:800}.sale-context-decline{border:1px solid #657779;background:transparent;color:#dce7e3}.sale-context-accept{border:1px solid #df6b62;background:#df6b6218;color:#ffaaa2}.sale-context-accept:disabled{opacity:.45}
+@media(max-width:760px){.sale-card-context{margin:6px 17px 17px;padding:13px!important}.sale-context-numbers{grid-template-columns:1fr}.sale-context-actions{grid-template-columns:1fr}}
+`;
+document.head.append(v30SaleStyle);
+
+function v30SaleOfferHTML(offer,player,canSell){return`<article><div>${player?flagSVG(player.nation):''}<button class="sale-player-link" data-sale-profile="${escapeHTML(offer.id)}">${escapeHTML(offer.name)}</button><span>${player?`${escapeHTML(transferPosition(player))} · ${player.age} Jahre · `:''}${offer.amount} Credits · bis Tag ${offer.expiresDay}</span></div><div><button data-sale-accept="${offer.id}" ${canSell?'':'disabled'}>Annehmen</button><button data-sale-decline="${offer.id}">Ablehnen</button></div></article>`}
+salesOffersHTML=function(){const state=transferState(),offers=state.salesOffers.filter(offer=>offer.status==='active'&&offer.expiresDay>=state.day),canSell=activeOutfield().length>5;if(!state.open||!offers.length)return'';return`<section class="sales-offers"><h3>Angebote für deine Spieler</h3>${offers.map(offer=>v30SaleOfferHTML(offer,activeSave.squad.find(player=>player.pid===offer.pid),canSell)).join('')}</section>`};
+
+function openSalePlayerCard(offerId){
+ const offer=transferState().salesOffers.find(item=>item.id===offerId&&item.status==='active'),player=offer&&activeSave.squad.find(item=>item.pid===offer.pid&&!item.retired);if(!offer||!player||!openPlayerCard(player.pid))return false;
+ [...playerCardDialog.querySelectorAll('section h3')].find(heading=>heading.textContent.trim()==='Saison davor')?.replaceChildren('Letzte Saison');const value=saleValue(player),canSell=activeOutfield().length>5;
+ playerCardDialog.insertAdjacentHTML('beforeend',`<section class="sale-card-context"><h3>Aktuelles Transferangebot</h3><div class="sale-context-numbers"><span>Angebot<b>${offer.amount} Credits</b></span><span>Marktwert ca.<b>${value} Credits</b></span><span>Jahresgehalt<b>${annualSalary(player)} Credits</b></span></div><div class="sale-context-actions"><button class="sale-context-decline" data-sale-modal-decline="${offer.id}">Angebot ablehnen</button><button class="sale-context-accept" data-sale-modal-accept="${offer.id}" ${canSell?'':'disabled'}>Spieler verkaufen · ${offer.amount} Credits</button></div>${canSell?'':'<p class="help">Der Verkauf ist nicht möglich, weil mindestens fünf Feldspieler benötigt werden.</p>'}</section>`);
+ playerCardDialog.querySelector('[data-sale-modal-decline]').onclick=()=>{playerCardDialog.close?.();declineSaleOffer(offer.id)};playerCardDialog.querySelector('[data-sale-modal-accept]').onclick=()=>{playerCardDialog.close?.();acceptSaleOffer(offer.id)};return true
+}
+function v30BindSaleProfiles(){clubCenter.querySelectorAll('[data-sale-profile]').forEach(button=>button.onclick=event=>{event.preventDefault();event.stopPropagation();openSalePlayerCard(button.dataset.saleProfile)})}
+
+const v29RenderCenterV30=renderCenter;
+renderCenter=function(){const result=v29RenderCenterV30();v30BindSaleProfiles();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 30');return result};
+
+drawSlots();document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='SECHSER / PROTOTYP 30');

@@ -1,0 +1,11 @@
+const fs=require('fs'),assert=require('assert');
+const code=fs.readFileSync('dist/lineup-ux-v24.js','utf8'),index=fs.readFileSync('dist/index.html','utf8');
+assert(index.includes('lineup-ux-v24.js'));
+assert(code.includes('data-drag-player'));
+assert(code.includes('pointermove'));
+assert(!['dist/player-card-v18.js','dist/qol-v17.js','dist/lineup-ux-v24.js'].map(file=>fs.readFileSync(file,'utf8')).join('\n').includes('Beste Elf'));
+assert(fs.readFileSync('dist/qol-v17.js','utf8').includes("!['restore','fresh','defensive','offensive'].includes(mode)"));
+assert(code.includes('Ablösefreie Spieler'));
+assert(code.includes("activeSave.seasonNumber!==1"));
+assert(code.includes('Mindestens ein Feldspieler muss defensiv positioniert sein.'));
+console.log('PASS: kompakte Aufstellung, Drag-and-Drop, Tipp-Tausch, Validierung, kein Beste-Elf-Modus und Saison-1-Ablösefreie');

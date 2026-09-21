@@ -1,0 +1,4 @@
+work/*
+!work/*.cjs
+outputs/
+.sites-runtime/

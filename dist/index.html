@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101d21">
+  <meta name="description" content="Dein 6-gegen-6-Fußballmanager. Stelle dein Team auf und erlebe deine Taktik auf dem Platz.">
+  <title>SECHSER · Fußballmanager</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23c7f36b'/%3E%3Ctext x='20' y='29' text-anchor='middle' font-size='30' font-family='Arial' font-weight='bold' fill='%23101d21'%3E6%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="manager.css">
+</head>
+<body>
+<header><a class="brand" href="./"><b>6</b> SECHSER<span>MANAGER</span></a><span class="tag">MEISTERSCHAFT</span></header>
+<main id="game-screen" hidden>
+  <section class="intro"><div><p class="eyebrow">KLEINES FELD. DEINE TAKTIK.</p><h1 id="heading">Dein Plan fürs Spiel.</h1></div><p id="subtitle">Fünf Feldspieler. Ein Torwart. Du bestimmst die Ordnung.</p></section>
+  <div class="workspace">
+    <section class="board">
+      <div class="board-top"><div><span class="team-dot"></span><strong>FC Viertel</strong><span class="muted">Dein Team</span></div><span id="board-label">AUFSTELLUNG</span></div>
+      <div id="setup-pitch" class="pitch">
+        <div class="markings"><div class="center-circle"></div><div class="half-line"></div><div class="box top"></div><div class="box bottom"></div></div>
+        <div class="attack-label">ANGRIFF ↑</div>
+        <div class="zone-label zone-attack">ANGRIFF</div><div class="zone-label zone-build">AUFBAU</div>
+        <div id="grid" class="grid" aria-label="Aufstellungsraster"></div>
+        <div class="keeper"><b>1</b><span>BAUER · TW</span></div>
+      </div>
+      <div id="match-area" hidden>
+        <div class="scoreboard"><span>FC Viertel</span><strong id="score">0 : 0</strong><span>SC Hafen</span></div>
+        <div class="match-meta"><span id="clock">00′</span><span id="match-plan">2-2-1</span><span>LIGASPIEL</span></div>
+        <canvas id="canvas" width="600" height="740" aria-label="Animiertes Fußballspiel"></canvas>
+        <div id="match-overlay" class="match-overlay" hidden><strong id="overlay-title"></strong><span id="overlay-copy"></span></div>
+        <div id="event" role="status">Bereit zum Anpfiff</div>
+      </div>
+      <div class="board-bottom" id="pitch-help"><span>● Spieler wählen</span><span>＋ Freies Feld antippen</span></div>
+    </section>
+    <aside>
+      <section class="panel" id="player-panel">
+        <div class="section-heading"><h2>Deine Mannschaft</h2><span>6 / 6</span></div>
+        <p class="help">Spieler antippen, Position und Ausrichtung festlegen.</p>
+        <div id="roster"></div><div id="selected-player"></div>
+        <p class="duel-help"><b>Scouting:</b> Fähigkeiten werden bewusst nur ungefähr beschrieben. Alter, Form und Frische sind bekannt.</p>
+        <fieldset id="roles"><legend>Ausrichtung</legend><div class="segmented"><button data-role="-1">Defensiv</button><button data-role="0">Balance</button><button data-role="1">Offensiv</button></div><p id="role-help" class="help"></p></fieldset>
+      </section>
+      <section class="panel" id="tactics-panel">
+        <h2>Teamtaktik</h2>
+        <fieldset><legend>Grundordnung</legend><div class="formation-presets"><button data-formation="compact">Kompakt<small>2-1-2</small></button><button data-formation="balanced" class="active">Balance<small>2-2-1</small></button><button data-formation="bold">Mutig<small>1-2-2</small></button></div></fieldset>
+        <fieldset><legend>Pressing</legend><div class="segmented"><button data-press="0" class="active">Abwarten</button><button data-press="1">Früh angreifen</button></div></fieldset>
+        <fieldset><legend>Passspiel</legend><div class="segmented"><button data-pass="0" class="active">Kurze Pässe</button><button data-pass="1">Schnell nach vorne</button></div></fieldset>
+        <div class="plan-card"><span>DEIN MATCHPLAN</span><strong id="plan-title">Ausgewogenes 2-2-1</strong><p id="plan-copy">Stabile Staffelung mit kurzen Passwegen.</p></div>
+      </section>
+      <section class="panel" id="match-info" hidden>
+        <p class="eyebrow">VON DER SEITENLINIE</p><h2 id="match-title">Dein Team spielt.</h2><p class="help" id="live-plan"></p>
+        <div class="stats"><span>Schüsse</span><b id="shots">0 - 0</b></div><div class="stats"><span>Ballbesitz</span><b id="possession">50 % - 50 %</b></div>
+        <div id="player-stats" hidden></div>
+        <h3>Spielverlauf</h3><ol id="log"></ol>
+      </section>
+      <button id="start" class="primary">Ligaspiel starten <span>↗</span></button><p class="footer-note" id="duration">Ca. 100 Sekunden · 2 × 45 Ingame-Minuten · Keine Änderungen nach Anpfiff</p><button id="back" class="primary" hidden>Zurück zur Taktik <span>↗</span></button>
+    </aside>
+  </div>
+  <footer><span>SECHSER / PROTOTYP 18</span><span>Deine Farben. Dein Fußball.</span></footer>
+</main>
+<script src="game.js"></script>
+<script src="manager-v11.js"></script>
+<script src="identity-v12.js"></script>
+<script src="season-v13.js"></script>
+<script src="halftime-v14.js"></script>
+<script src="finance-v15.js"></script>
+<script src="transfer-v16.js"></script>
+<script src="qol-v17.js"></script>
+<script src="player-card-v18.js"></script>
+<script src="dashboard-v19.js"></script>
+<script src="screen-wake-v20.js"></script>
+<script src="match-clock-v21.js"></script>
+<script src="club-history-v22.js"></script>
+<script src="formation-label-v23.js"></script>
+<script src="lineup-ux-v24.js"></script>
+<script src="presentation-v25.js"></script>
+<script src="sponsor-fix-v26.js"></script>
+<script src="dashboard-order-v27.js"></script>
+<script src="transfer-result-v28.js"></script>
+<script src="transfer-actions-v29.js"></script>
+<script src="sale-profile-v30.js"></script>
+<script src="season-finale-v31.js"></script>
+<script src="dashboard-layout-v32.js"></script>
+</body>
+</html>
