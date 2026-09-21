@@ -1,4 +1,6 @@
 work/*
 !work/*.cjs
+!work/deploy_ftps.py
+!work/test_deploy_ftps.py
 outputs/
 .sites-runtime/

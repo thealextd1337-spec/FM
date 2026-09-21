@@ -40,6 +40,21 @@ node work/build.cjs
 
 Der Build schreibt `outputs/index.html` und `outputs/Doppel-6-Fussballmanager.html`. `outputs/` enthält erzeugte Dateien und wird nicht committet. Für die bestehende World4You-Seite wird `outputs/index.html` in das Verzeichnis der Subdomain hochgeladen.
 
+## Automatisches Deployment
+
+Der Workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) prüft bei jedem Push auf `main` die wichtigsten Spieltests, erstellt `outputs/index.html`, lädt ausschließlich diese Datei per verschlüsseltem FTPS hoch und vergleicht anschließend die Live-Datei mit dem Build. Er kann unter **Actions → Doppel 6 deploy → Run workflow** auch manuell gestartet werden. Der Upload verändert keine anderen Dateien im Webspace, insbesondere nicht `api/`.
+
+Im GitHub-Repository unter **Settings → Environments → production → Environment secrets** sind folgende Werte nötig:
+
+| Secret | Inhalt |
+| --- | --- |
+| `W4Y_FTP_HOST` | FTP-Servername aus dem World4You-Kundenbereich, ohne `ftp://` |
+| `W4Y_FTP_USER` | FTP-Benutzername |
+| `W4Y_FTP_PASSWORD` | FTP-Passwort |
+| `W4Y_FTP_REMOTE_DIR` | Verzeichnis der Subdomain, im bisherigen WebFTP `/fussball` |
+
+Der FTP-Zugang muss **explizites FTP über TLS (FTPS)** unterstützen. Der Workflow prüft das Serverzertifikat und verschlüsselt auch die Datenverbindung. Zugangsdaten gehören ausschließlich in GitHub-Secrets, nicht in Dateien oder Commit-Nachrichten. Der erste erfolgreiche Lauf bestätigt den tatsächlichen Servernamen und Zielpfad.
+
 ## Tests
 
 ```sh

@@ -1,0 +1,50 @@
+name: Doppel 6 deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: doppel-6-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://fussball.cakamper.at/
+    steps:
+      - name: Quellcode laden
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Spieltests ausführen
+        run: |
+          node work/test-v24.cjs
+          node work/test-v31.cjs
+          node work/test-v41.cjs
+          node work/test-v42.cjs
+          node work/test-v47.cjs
+          node work/test-v49.cjs
+          python3 work/test_deploy_ftps.py
+
+      - name: Einzeldatei bauen
+        run: node work/build.cjs
+
+      - name: Per FTPS zu World4You hochladen und Live-Datei prüfen
+        env:
+          W4Y_FTP_HOST: ${{ secrets.W4Y_FTP_HOST }}
+          W4Y_FTP_USER: ${{ secrets.W4Y_FTP_USER }}
+          W4Y_FTP_PASSWORD: ${{ secrets.W4Y_FTP_PASSWORD }}
+          W4Y_FTP_REMOTE_DIR: ${{ secrets.W4Y_FTP_REMOTE_DIR }}
+          DEPLOY_SHA: ${{ github.sha }}
+        run: python3 work/deploy_ftps.py
