@@ -1,0 +1,54 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const prelude=fs.readFileSync('work/test-v31.cjs','utf8').split('const context=makeContext();')[0];
+const makeContext=new Function('require',prelude+'return makeContext')(require);
+const context=makeContext();
+for(const file of['youth-v33.js','season-roster-v34.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),context);
+const run=source=>vm.runInContext(source,context);
+const snapshot=source=>JSON.parse(run('JSON.stringify('+source+')'));
+
+run("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');for(const player of[activeSave.keeper,...activeSave.squad,homeKeeper,...players])player.age=18;for(let round=0;round<10;round++){start();match.score=[2,0];finishMatch()}v31SetStage('complete');selectSponsor('safe')");
+assert.equal(run('activeSave.seasonNumber'),2);
+assert.equal(run("transferState().salesOffers.filter(offer=>offer.status==='active').length"),1);
+const firstOfferId=run("transferState().salesOffers[0].id");
+run('renderCenter();renderCenter();generateSalesOffers()');
+assert.equal(run('transferState().salesOffers.length'),1,'Neuladen darf keine weiteren Verkaufsangebote erzeugen');
+run('openSlot(readSlots().find(item=>item.id===activeSave.id))');
+assert.equal(run('transferState().salesOffers[0].id'),firstOfferId,'Angebot bleibt nach Neuladen erhalten');
+
+const youthId=run('ensureYouth().candidates[0].id');
+assert.equal(run(`scoutYouth('${youthId}')`),true);
+assert.equal(run(`signYouth('${youthId}')`),true);
+const youthName=run('activeSave.squad.find(player=>player.youthPotential).name');
+const soldName=run("transferState().salesOffers.find(offer=>offer.status==='active').name");
+const saleId=run("transferState().salesOffers.find(offer=>offer.status==='active').id");
+assert.equal(run(`acceptSaleOffer('${saleId}')`),true);
+assert.equal(run(`activeSave.squad.some(player=>player.name==='${soldName}')`),false);
+run('generateSalesOffers()');
+assert.equal(run('transferState().salesOffers.length'),1,'Nach Verkauf kein sofortiges Ersatzangebot');
+run('advanceTransferDay()');
+assert.equal(run('transferState().salesOffers.length'),1,'Am zweiten Tag noch kein Ersatzangebot');
+run('advanceTransferDay()');
+assert.equal(run('transferState().salesOffers.length'),2);
+assert.equal(run("transferState().salesOffers.filter(offer=>offer.status==='active').length"),1);
+run("declineSaleOffer(transferState().salesOffers.find(offer=>offer.status==='active').id);advanceTransferDay();advanceTransferDay();generateSalesOffers()");
+assert.equal(run('transferState().salesOffers.length'),2,'Höchstens zwei Angebote pro Saison');
+
+run('forceTransferDeadline();saveCurrent();for(let round=0;round<10;round++){start();match.score=[2,0];finishMatch()}');
+assert.equal(run('activeSave.seasonFinale.stage'),'summary');
+run("v31SetStage('retirements');v31SetStage('finance')");
+assert(run('clubCenter.innerHTML').includes('Weiter: Kader'));
+assert.equal(run("v31SetStage('squad')"),true);
+let html=run('clubCenter.innerHTML');
+assert(html.includes(youthName),'Verpflichteter Jugendspieler erscheint im Kader');
+assert(!html.includes(soldName),'Verkaufter Spieler fehlt im Kader');
+assert(html.includes('Jugendspieler'));
+assert(html.includes('Saison 3 beginnen'));
+assert.equal(run('activeSave.seasonFinale.stage'),'squad');
+run('openSlot(readSlots().find(item=>item.id===activeSave.id))');
+html=run('clubCenter.innerHTML');
+assert(html.includes(youthName)&&!html.includes(soldName),'Kaderansicht bleibt nach Neuladen korrekt');
+assert.equal(run("v31SetStage('complete')"),true);
+assert.equal(run('activeSave.seasonNumber'),3);
+assert(snapshot('activeSave.squad.map(player=>player.name)').includes(youthName));
+
+console.log('PASS: gespeicherte Kaderansicht mit Jugendspieler ohne verkauften Spieler, zwei statt fortlaufender Verkaufsangebote');

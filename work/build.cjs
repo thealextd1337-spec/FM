@@ -1,7 +1,7 @@
 const fs=require('fs');
 let html=fs.readFileSync('dist/index.html','utf8');
 for(const file of ['style.css','manager.css'])html=html.replace(`<link rel="stylesheet" href="${file}">`,`<style>${fs.readFileSync('dist/'+file,'utf8')}</style>`);
-for(const file of ['game.js','manager-v11.js','identity-v12.js','season-v13.js','halftime-v14.js','finance-v15.js','transfer-v16.js','qol-v17.js','player-card-v18.js','dashboard-v19.js','screen-wake-v20.js','match-clock-v21.js','club-history-v22.js','formation-label-v23.js','lineup-ux-v24.js','presentation-v25.js','sponsor-fix-v26.js','dashboard-order-v27.js','transfer-result-v28.js','transfer-actions-v29.js','sale-profile-v30.js','season-finale-v31.js','dashboard-layout-v32.js','youth-v33.js'])html=html.replace(`<script src="${file}"></script>`,()=>`<script>${fs.readFileSync('dist/'+file,'utf8')}</script>`);
-for(let version=9;version<=32;version++)html=html.replaceAll(`PROTOTYP ${String(version).padStart(2,'0')}`,'PROTOTYP 33');
+for(const file of ['game.js','manager-v11.js','identity-v12.js','season-v13.js','halftime-v14.js','finance-v15.js','transfer-v16.js','qol-v17.js','player-card-v18.js','dashboard-v19.js','screen-wake-v20.js','match-clock-v21.js','club-history-v22.js','formation-label-v23.js','lineup-ux-v24.js','presentation-v25.js','sponsor-fix-v26.js','dashboard-order-v27.js','transfer-result-v28.js','transfer-actions-v29.js','sale-profile-v30.js','season-finale-v31.js','dashboard-layout-v32.js','youth-v33.js','season-roster-v34.js'])html=html.replace(`<script src="${file}"></script>`,()=>`<script>${fs.readFileSync('dist/'+file,'utf8')}</script>`);
+for(let version=9;version<=33;version++)html=html.replaceAll(`PROTOTYP ${String(version).padStart(2,'0')}`,'PROTOTYP 34');
 fs.mkdirSync('outputs',{recursive:true});
 fs.writeFileSync('outputs/index.html',html);fs.writeFileSync('outputs/Sechser-Fussballmanager.html',html);

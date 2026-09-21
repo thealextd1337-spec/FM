@@ -4,6 +4,8 @@ Ein mobil spielbarer 6-gegen-6-Fußballmanager als statische Browseranwendung. D
 
 Ab Saison 2 gibt es Jugendscouting mit kostenpflichtiger Sichtung und Entwicklung durch Ligaspiele.
 
+Der Saisonabschluss zeigt nach der Finanzbilanz den verbleibenden Kader einschließlich verpflichteter Jugendspieler. Kaufangebote für eigene Spieler sind auf zwei pro Saison begrenzt.
+
 Feste Produktregeln und Hinweise für neue Entwicklungsinstanzen stehen in [AGENTS.md](AGENTS.md).
 
 ## Lokal starten
@@ -27,6 +29,7 @@ Der Build schreibt `outputs/index.html` und `outputs/Sechser-Fussballmanager.htm
 ```sh
 node work/test-v32.cjs
 node work/test-v31.cjs
+node work/test-v34.cjs
 ```
 
 Weitere Regressionstests liegen als `work/test-*.cjs` vor. `test-v31.cjs` simuliert zwölf vollständige Saisonen.
