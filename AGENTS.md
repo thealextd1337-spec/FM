@@ -26,7 +26,3 @@ Lies dieses Dokument und danach nur die für die Aufgabe relevanten Dateien. Der
 - `node work/server.cjs` startet lokal auf Port 4173. `node work/build.cjs` erzeugt die Einzeldatei `outputs/index.html`. `outputs/` und temporäre Dateien bleiben außerhalb von Git.
 - Passende Tests aus `work/test-*.cjs` ausführen. `node work/test-v31.cjs` simuliert zwölf Saisonen; `node work/test-v32.cjs` prüft die aktuelle Vereinszentrale. Bei Änderungen an Finanzen, Transfers oder Saisonwechsel mindestens den Dauertest erneut ausführen.
 - GitHub-Repository: `thealextd1337-spec/FM` (öffentlich). Ein GitHub-Commit veröffentlicht **nicht** automatisch auf `https://fussball.cakamper.at/`; die Live-Seite liegt auf World4You. Vor einer Veröffentlichung Build und Live-Version gesondert prüfen. Bestehende Branch-Historie vor Push oder Merge prüfen und nicht mit Force Push überschreiben.
-
-## Bekannter offener Fehler
-
-`sendMatchSummary()` in `dist/manager-v11.js` sendet Version `0.16`, während `dist/api/match.php` nur `0.10` und `0.11` akzeptiert. Damit werden freiwillig geteilte Spielzusammenfassungen derzeit abgewiesen. Bei Arbeit an Datenerfassung zuerst Sender und Serververtrag abgleichen und den Endpunkt testen.

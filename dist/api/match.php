@@ -9,7 +9,7 @@ if (stripos($_SERVER['CONTENT_TYPE'] ?? '', 'application/json') !== 0) fail(415)
 $raw = file_get_contents('php://input', false, null, 0, 32769);
 if ($raw === false || strlen($raw) > 32768) fail(413);
 $input = json_decode($raw, true);
-if (!is_array($input) || ($input['schema'] ?? null) !== 1 || !in_array(($input['version'] ?? ''), ['0.10','0.11'], true) || !preg_match('/^[a-f0-9-]{36}$/D', $input['id'] ?? '')) fail(400);
+if (!is_array($input) || ($input['schema'] ?? null) !== 1 || !in_array(($input['version'] ?? ''), ['0.10','0.11','0.16'], true) || !preg_match('/^[a-f0-9-]{36}$/D', $input['id'] ?? '')) fail(400);
 if (!in_array($input['formation'] ?? '', ['balanced','bold','compact','custom'], true)) fail(400);
 function number($value, float $min, float $max) { if (!is_numeric($value) || !is_finite((float)$value) || $value < $min || $value > $max) fail(400); return 0 + $value; }
 $record = ['schema'=>1,'version'=>$input['version'],'date'=>gmdate('Y-m-d'),'id'=>$input['id'],'formation'=>$input['formation'],'press'=>number($input['press'] ?? null,0,1),'direct'=>number($input['direct'] ?? null,0,1)];
