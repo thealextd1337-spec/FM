@@ -18,7 +18,7 @@ assert.equal(initial.rounds[0].length,2);assert.equal(initial.rounds[1].length,2
 let cupMatches=0,leagueMatches=0;
 while(vm.runInContext('activeSave.currentRound',context)<10){
  const cup=Boolean(vm.runInContext('Boolean(v41CupGameForUser())',context));
- vm.runInContext(`start();if(!running)throw Error('Match did not start');match.score=[2,0];finishMatch()`,context);
+ vm.runInContext(`start();if(!running)throw Error('Match did not start');match.score=[2,0];finishMatch();renderCenter()`,context);
  if(cup)cupMatches++;else leagueMatches++;
  if(cupMatches+leagueMatches>13)throw Error('Cup or league progression stalled');
 }
@@ -36,3 +36,4 @@ const longPenalty=JSON.parse(JSON.stringify(vm.runInContext("Math.random=()=>0;v
 for(const side of[0,1])assert.equal(new Set(longPenalty.kicks.filter(k=>k.side===side).slice(0,6).map(k=>k.number)).size,6);
 assert.equal(longPenalty.kicks.filter(k=>k.side===0).length,longPenalty.kicks.filter(k=>k.side===1).length);
 console.log('PASS: cup bracket, ten league rounds, separate cup statistics, winner award, single prize, penalty order');
+module.exports={makeContext};

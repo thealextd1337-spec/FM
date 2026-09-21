@@ -25,8 +25,9 @@ Lies dieses Dokument und danach nur die für die Aufgabe relevanten Dateien. Der
 ## Pokal und Auszeichnungen
 
 - Neue Karrieren spielen neben der Liga einen KO-Pokal mit allen sechs Vereinen. Zwei Vereine erhalten ein Freilos; Auftaktrunde, Halbfinale und Finale folgen nach den Ligaspieltagen 2, 5 und 8. Pokalspiele ändern weder Ligatabelle noch Ligaspieltag oder Ligastatistik. Ältere Spielstände erhalten den neuen Pokal nicht nachträglich.
-- Bei Remis gibt es Elfmeterschießen: drei Schützen je Team, danach abwechselnd bis zur Entscheidung. Alle sechs Spieler einschließlich Torwart müssen antreten, bevor jemand ein zweites Mal schießt. Die Reihenfolge des eigenen Teams ist vor dem Spiel einstellbar.
+- Bei Remis gibt es Elfmeterschießen: drei Schützen je Team, danach abwechselnd bis zur Entscheidung. Alle sechs Spieler einschließlich Torwart müssen antreten, bevor jemand ein zweites Mal schießt. Die Reihenfolge des eigenen Teams wird nach den 90 Minuten in einem Popup gewählt; Abschluss, Ruhe und Frische werden ungefähr beschrieben. Jeder Schuss und der offene Ablauf bleiben gespeichert.
 - Im Pokalfinale laufen beide Mannschaften ein und stehen an der Mittellinie bis zum Start. Nach dem Finale erhält der Sieger eine Feier mit Konfetti in seinen Vereinsfarben. Pokalsieger und Saison-Awards erscheinen im Saisonabschluss und in der Awardhistorie.
+- Auf der Startseite gibt es eine isolierte Elfmeterschießen-Demo mit zwei starken und zwei schwächeren Mannschaften. Sie bucht keine Karriereergebnisse, Awards oder Credits.
 - Die Liga vergibt Torschützenkönig und besten Spieler nach Saisonleistung, Formbewertungen über die Ligaspiele und Assists. Jede gewonnene Spielerauszeichnung erscheint als eigene Medaille in der Spielerstatistik. Der Meister trägt einen Pokal in der Abschlusstabelle; der Pokalsieger trägt ein anderes Pokalicon in der folgenden Ligasaison.
 
 ## Code, Prüfung und Veröffentlichung
@@ -35,4 +36,5 @@ Lies dieses Dokument und danach nur die für die Aufgabe relevanten Dateien. Der
 - `node work/server.cjs` startet lokal auf Port 4173. `node work/build.cjs` erzeugt die Einzeldatei `outputs/index.html`. `outputs/` und temporäre Dateien bleiben außerhalb von Git.
 - Passende Tests aus `work/test-*.cjs` ausführen. `node work/test-v31.cjs` simuliert zwölf Saisonen; `node work/test-v35.cjs` prüft die Transferansicht und den übernommenen Saisonablauf; `node work/test-v36.cjs` prüft die Jugendverpflichtung mit und ohne Scouting. Bei Änderungen an Finanzen, Transfers oder Saisonwechsel mindestens den Dauertest erneut ausführen.
 - `node work/test-v41.cjs` prüft Pokalspielplan, getrennte Statistiken, Sieger-Award, einmalige Prämie und Elfmeterschützen.
+- `node work/test-v42.cjs` prüft das gespeicherte Elfmeterschießen nach einem Remis und die isolierte Demo.
 - GitHub-Repository: `thealextd1337-spec/FM` (öffentlich). Ein GitHub-Commit veröffentlicht **nicht** automatisch auf `https://fussball.cakamper.at/`; die Live-Seite liegt auf World4You. Vor einer Veröffentlichung Build und Live-Version gesondert prüfen. Bestehende Branch-Historie vor Push oder Merge prüfen und nicht mit Force Push überschreiben.
