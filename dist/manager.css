@@ -40,12 +40,13 @@
 #setup-pitch .token,#setup-pitch .keeper b{color:#fff;-webkit-text-stroke:1.5px #102126;paint-order:stroke fill;text-shadow:-1px -1px 0 #102126,1px -1px 0 #102126,-1px 1px 0 #102126,1px 1px 0 #102126,0 2px 3px #000b}
 
 /* The live information panel keeps its full report after the final whistle. */
-.match-stat-teams{display:grid;grid-template-columns:repeat(2,minmax(54px,1fr));gap:8px;min-width:138px;text-align:center}.match-stat-teams>span{display:grid;gap:2px}.match-stat-teams small{color:#a9beb6;font-size:9px;font-weight:800;letter-spacing:.7px}.match-stat-teams b{font-size:15px;font-variant-numeric:tabular-nums}
-#match-info:has(#player-stats[hidden]){padding:14px 16px}
+.match-stat-header,#match-info .stats{display:grid;grid-template-columns:minmax(90px,1fr) repeat(2,minmax(82px,1fr));gap:8px;align-items:center}.match-stat-header{padding:10px 0 8px;border-bottom:1px solid #536964;color:#a9beb6;font-size:11px;font-weight:800}.match-stat-header b{overflow-wrap:anywhere;color:#edf5ef;text-align:center}.match-stat-header span{text-transform:uppercase;letter-spacing:.7px}#match-info .stats{padding:11px 0}#match-info .stats b{text-align:center;font-variant-numeric:tabular-nums}
+#match-info:has(#player-stats[hidden]){padding:14px 16px;min-height:620px}
 #match-info:has(#player-stats[hidden]) .eyebrow{display:none}
 #match-info:has(#player-stats[hidden]) h2{font-size:16px}
 #match-info:has(#player-stats[hidden]) #live-plan{margin:4px 0 8px;font-size:11px;line-height:1.4}
-#match-info:has(#player-stats[hidden]) .stats{padding:8px 0;font-size:12px}
+#match-info:has(#player-stats[hidden]) .stats{font-size:12px}
 #match-info:has(#player-stats[hidden]) h3{margin:9px 0 4px;font-size:12px}
-#match-info:has(#player-stats[hidden]) #log{max-height:145px;margin:0}
+#match-info:has(#player-stats[hidden]) #log{max-height:245px;margin:0}
 #match-info:has(#player-stats[hidden]) #log li{padding:6px 0;font-size:11px;line-height:1.4}
+@media(max-width:760px){#match-info:has(#player-stats[hidden]){min-height:0}#match-info:has(#player-stats[hidden]) #log{max-height:180px}.match-stat-header,#match-info .stats{grid-template-columns:minmax(75px,1fr) repeat(2,minmax(68px,1fr))}}
