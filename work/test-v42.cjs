@@ -31,4 +31,12 @@ assert(vm.runInContext('v42PenaltyChance(v42Session.own[0],v42Session.opponent.f
 for(let i=0;i<100&&vm.runInContext("v42Session.phase!=='done'",context);i++)vm.runInContext('v42NextKick()',context);
 assert.equal(vm.runInContext('activeSave.finance.ledger.length',context),oldLedger);
 for(const side of[0,1])assert.equal(new Set(vm.runInContext(`v42Session.kicks.filter(k=>k.side===${side}).slice(0,6).map(k=>k.number)`,context)).size,Math.min(6,vm.runInContext(`v42Session.kicks.filter(k=>k.side===${side}).length`,context)));
-console.log('PASS: post-match penalty choice, persisted kicks, one cup settlement, demo isolation and six unique shooters');
+vm.runInContext("document.querySelector('#v42-demo-start').onclick();v42Session.phase='shooting'",context);
+for(const rolls of[[0,.2],[.99,0,0],[.99,.99,0,.99],[.99,.99,.99,.99]]){
+ context.rolls=rolls;
+ vm.runInContext('Math.random=()=>rolls.shift();v42NextKick()',context);
+}
+assert.equal(vm.runInContext('v42Session.kicks.map(kick=>kick.outcome).join(",")',context),'goal,save,wide,high');
+assert.equal(vm.runInContext('v42Session.kicks.every(kick=>kick.goal===(kick.outcome==="goal"))',context),true);
+assert(vm.runInContext("v42SceneHTML(v42Session).includes('v42-stands')&&v42SceneHTML(v42Session).includes('Trikot Nummer')",context));
+console.log('PASS: post-match penalty choice, persisted kicks, demo isolation, unique shooters and distinct shot outcomes');
