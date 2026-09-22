@@ -54,6 +54,7 @@ v51Style.textContent=`
 .v51-card-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px 12px;min-width:0}.v51-card-head>.v51-status,.v51-keeper-card .v51-card-head>.v51-status{display:inline-flex;justify-content:flex-start;margin:0}.v51-card-title{flex:1 1 auto}.v51-card-title :is(b,a,button){min-width:0;white-space:normal;overflow-wrap:anywhere;font-size:13px;font-weight:800;line-height:1.3}.v51-card-profile,.v51-card-select-name,.v51-card-pick{border:0;padding:0;background:none;color:#eef6f2;text-align:left}.v51-card-profile{text-decoration:underline;text-decoration-color:#8dacaa;text-underline-offset:3px}.v51-card-profile:hover{color:var(--club-primary)}.v51-card-select-name{display:none}.v51-card-pick{display:inline-flex;flex:none;align-items:center}.v51-card-pick .v51-status{display:inline-flex}.v51-card-main:has(.v51-card-pick){cursor:default}@media(hover:none),(pointer:coarse){.v51-card-profile{display:none}.v51-card-select-name{display:inline}}#setup-pitch .keeper{width:min(144px,70%);gap:1px}#setup-pitch .keeper .v51-keeper-position{font-size:9px;line-height:1.1}#setup-pitch .keeper .player-link{display:flex;align-items:center;gap:3px;font-size:9px;line-height:1.1;letter-spacing:.3px}#setup-pitch .keeper .player-link .flag-icon{width:14px;height:10px;flex:none}#setup-pitch .keeper .v51-pitch-face{top:2px}#setup-pitch .keeper .v51-pitch-bar{top:1px;left:calc(50% + 42px);height:30px;width:7px;border:1px solid #b8d6c7;background:#163538}
 @media(max-width:760px){.bench-strip{grid-template-columns:1fr}}
 @media(max-width:480px){.v51-card-profile{display:none}.v51-card-select-name{display:inline}}
+.v51-starter .v51-card-head{justify-content:flex-start}.v51-starter .v51-card-title{flex:0 1 auto}#setup-pitch .keeper .v51-keeper-position{padding-left:17px}
 @media(prefers-reduced-motion:reduce){.v51-face.v51-changed{animation:none}.v51-bar-fill{transition:none}}
 `;
 document.head.append(v51Style);
@@ -69,10 +70,14 @@ function v51LineupCardContent(player,position,selectCell=null){
  return `<span class="v51-card-head"><span class="v51-card-title">${flagSVG(player.nation)}${label}</span>${condition}</span><span class="v51-card-meta"><strong>${escapeHTML(position)}</strong> · Müdigkeit: ${v24FatigueText(player.fresh??100)}</span><span class="v51-card-skills">${escapeHTML(v51TopSkills(player))}</span>`;
 }
 
+function v51OrderedStarters(starters=[...players,homeKeeper]){
+ const order={gk:0,def:1,mid:2,att:3};
+ return [...starters].sort((a,b)=>(order[a.keeper?'gk':a.line]??4)-(order[b.keeper?'gk':b.line]??4));
+}
 function v51StarterPanel(){
  if(!activeSave||running)return;
  let panel=$('#v51-starters');if(!panel){panel=document.createElement('section');panel.id='v51-starters';panel.className='v51-starters';$('#setup-pitch').insertAdjacentElement('afterend',panel)}
- const starters=[...players,homeKeeper];
+ const starters=v51OrderedStarters();
  panel.innerHTML=`<h3>Startaufstellung · Form und Müdigkeit</h3><div class="v51-starter-grid">${starters.map(player=>{
   const position=player.keeper?'Torwart':v25PositionShort[player.line];
   const details=`<button type="button" class="player-link" data-open-player="${escapeHTML(player.pid)}" aria-label="Details zu ${escapeHTML(player.name)} öffnen">Details</button>`;

@@ -1,6 +1,8 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const game=fs.readFileSync('dist/game.js','utf8'),ui=fs.readFileSync('dist/presentation-v25.js','utf8'),index=fs.readFileSync('dist/index.html','utf8');
 assert(index.includes('presentation-v25.js'));
+assert(index.indexOf('<div class="match-meta"')<index.indexOf('<div class="scoreboard"'),'match label precedes clock and score');
+assert(ui.includes('.scoreboard .score-team{max-width:none;width:100%}'),'team columns use the available scoreboard width');
 assert(ui.includes("gk:'TOR',def:'VER',mid:'MIT',att:'ANG'"));
 assert(ui.includes('retro-clock'));
 assert(ui.includes('v25Scorers'));

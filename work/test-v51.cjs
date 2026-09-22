@@ -12,6 +12,7 @@ const pitchBar=vm.runInContext('v51PitchBarHTML({form:2,fresh:25})',context);
 assert.match(pitchBar,/v51-pitch-bar-fill/,'pitch players show a vertical fatigue bar');
 assert.match(pitchBar,/scaleY\(0\.250\)/,'the pitch bar uses the player freshness');
 assert.match(pitchBar,/#9865D6/,'the pitch bar shares the effective smiley color');
+assert.deepEqual(JSON.parse(vm.runInContext("JSON.stringify(v51OrderedStarters([{line:'att',n:9},{line:'mid',n:7},{line:'def',n:2},{keeper:true,line:'gk',n:1},{line:'def',n:4}]).map(player=>player.n))",context)),[1,2,4,7,9],'starter list follows keeper, defenders, midfielders and attackers');
 
 vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');start()",context);
 assert.equal(vm.runInContext('running',context),true);

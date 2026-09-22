@@ -1,6 +1,25 @@
 # Änderungen
 
+## Noch nicht veröffentlicht
+
 ## 2026-09-22
+
+### Vereinsgründung
+
+- Zwischen der Logo-Auswahl und „Weiter zur Kaderwahl“ liegt nun etwas mehr Abstand.
+
+### Spielansicht
+
+- Im laufenden Spiel steht die kleinere Bezeichnung „Ligaspiel“ beziehungsweise „Pokalspiel“ über der Uhr. Der Spielstand ordnet die Teams näher an das Ergebnis; Teamnamen, Formation und Torschützen sind größer und lange Vereinsnamen dürfen umbrechen. Die Startelfliste beginnt mit dem Torwart und folgt dann Verteidigung, Mittelfeld und Angriff. Die Sortierung verändert weder Feldpositionen noch Drag-and-drop. Geprüft mit Match-, Pokal- und Statustests, Build sowie schmaler, mobiler und Desktopansicht.
+
+### Aufstellung
+
+- Die Form- und Frischeanzeige der Startelf steht mit kurzem Abstand direkt neben dem Spielernamen statt am rechten Kartenrand. Beim Torwart beginnt „TOR“ bündig mit dem Namen hinter der Flagge. Geprüft mit Aufstellungs- und Statustests, Build sowie mobiler Ansicht.
+
+### Vereinsübersicht
+
+- Der Kadercheck trägt eine kleinere Überschrift. In der Spielvorschau stehen „Heim“ und „Auswärts“ über den Vereinen mit österreichischen Flaggen statt der Richtungsbeschreibung zur Fünf-Spiele-Form; die Gegnerstärke wird als kurzer Vergleichssatz beschrieben. Ein Tipp auf einen gegnerischen Tabellenplatz öffnet Vereinsdaten, Kader und die zuletzt eingesetzte Startelf. Vor dem ersten Spiel wird ausdrücklich angezeigt, dass noch keine Aufstellung vorliegt. Geprüft mit Vorschau- und Vereinsprofiltest, Build sowie Desktop- und Mobilansicht.
+- Die fünf Form-Ergebnisse beider Teams bleiben auf schmalen Mobilansichten jeweils in einer Reihe und stehen auch bei unterschiedlich langen Vereinsnamen auf gleicher Höhe. Geprüft mit Vorschautest, Build und mobilen Breiten von 320 und 375 Pixeln.
 
 ### Stärkesystem
 
