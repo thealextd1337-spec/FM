@@ -116,8 +116,9 @@ function v50Foul(victim,offender){
 }
 
 const v50BaseAction=action;
+let FOUL_SKILL_FACTOR=.0006;
 function v50FoulChance(tackler,victim){
- return clamp(.045+(tackler.t===0&&press?.01:0)+(match.aggression?.[tackler.t]??0)*.025+(ability(tackler,'tak')-ability(victim,'tec'))*.0006,.015,.13);
+ return clamp(.045+(tackler.t===0&&press?.01:0)+(match.aggression?.[tackler.t]??0)*.025+(ability(tackler,'tak')-ability(victim,'tec'))*FOUL_SKILL_FACTOR,.015,.13);
 }
 action=function(){
  const m=match,p=m?.owner;
@@ -144,7 +145,7 @@ function v50ChaseLooseBall(delta){
  const candidates=[...m.people].sort((a,b)=>distance(a,r)-distance(b,r)).slice(0,3);
  for(const player of candidates){
   const dx=r.x-player.x,dy=r.y-player.y,d=Math.hypot(dx,dy);
-  if(d>.014){const speed=(player.keeper?.17:.07+ability(player,'spd')*.00085)*delta*3.5,portion=Math.min(1,speed/d);player.x+=dx*portion;player.y+=dy*portion}
+  if(d>.014){const speed=(player.keeper?.17:.07+ability(player,'spd')*PLAYER_SPEED_FACTOR)*delta*3.5,portion=Math.min(1,speed/d);player.x+=dx*portion;player.y+=dy*portion}
  }
  const winner=candidates.find(player=>distance(player,r)<.026);
  if(winner){m.rebound=null;m.owner=winner;m.ball={x:winner.x,y:winner.y};m.next=m.elapsed+.55;note(`${winner.name} nimmt den freien Ball auf.`,'duel')}

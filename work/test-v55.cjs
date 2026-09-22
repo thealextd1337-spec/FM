@@ -1,0 +1,79 @@
+const fs=require('node:fs');
+const vm=require('node:vm');
+const assert=require('node:assert/strict');
+const {makeContext}=require('./test-v41.cjs');
+
+const context=makeContext();
+for(const file of ['youth-v33.js','penalties-v42.js','club-records-v43.js','club-identity-v44.js','keeper-logo-v45.js','match-report-v47.js','next-match-v49.js','set-pieces-v50.js','status-icons-v51.js','player-status-v51.js','strength-v55.js','opponent-profile-v54.js'])
+ vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context,{filename:file});
+vm.runInContext('var v24Validation=()=>[];var v25RoleBar=()=>{};var v24Remember=()=>{};var v24FatigueText=()=>"frisch";var v24TopSkills=()=>"Passspiel gut";',context);
+vm.runInContext(fs.readFileSync('dist/pitch-v55.js','utf8'),context,{filename:'pitch-v55.js'});
+vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');",context);
+
+const data=JSON.parse(vm.runInContext("JSON.stringify({schema:activeSave.schema,players:[activeSave.keeper,...activeSave.squad,...activeSave.world.teams.flatMap(team=>team.roster)],slots:readSlots().length})",context));
+assert.equal(data.schema,5);
+assert.equal(data.slots,1);
+assert(data.players.length>50);
+assert.match(vm.runInContext('playerCardHTML(activeSave.squad[0])',context),/Luftspiel/);
+assert.match(vm.runInContext('playerCardHTML(activeSave.squad[0])',context),/Hohe Pässe/);
+assert.match(vm.runInContext("qolOfferCardHTML({...makeOffer('regular','att',72,25),expiresDay:5})",context),/Luftspiel [^<]+<\/span>/);
+assert.match(vm.runInContext("v55ColorSkills('Luftspiel stark',activeSave.squad[0])",context),/style="color:#[0-9a-fA-F]{6}"/);
+assert.match(vm.runInContext("v51LineupCardContent(activeSave.squad[0],'MF',4)",context),/data-v51-select="4"/,'starter card keeps its selection control');
+assert.match(vm.runInContext("v51LineupCardContent(activeSave.squad[0],'MF',4)",context),/data-open-player=/,'starter card keeps its profile link');
+for(const player of data.players){
+ const keys=player.keeper?['gk','pas','pos','spd','sta']:['tec','pas','fin','tak','pos','spd','sta','air'];
+ for(const key of keys)assert(Number.isInteger(player[key])&&player[key]>=1&&player[key]<=20,`${player.name}: ${key}=${player[key]}`);
+}
+assert.equal(vm.runInContext("importSaveObject({save:{schema:4,world:{},squad:[1,2,3,4,5]}})",context),false);
+assert.equal(vm.runInContext("readSlots().length",context),1);
+assert.equal(vm.runInContext("importSaveObject({save:structuredClone(activeSave)})",context),true);
+assert.equal(vm.runInContext("readSlots().length",context),2);
+
+vm.runInContext("document.querySelector('#canvas').parentElement={append(){}};start()",context);
+assert.equal(vm.runInContext('match.defenseLines[0]',context),0);
+assert.equal(vm.runInContext('match.people.filter(player=>!player.keeper).every(player=>player.assignedLine===player.line)',context),true);
+vm.runInContext("match.defenseLines[0]=1;const reshuffled=match.people.find(player=>player.t===0&&player.line==='mid');reshuffled.assignedLine='def';v55PrepareMovement()",context);
+assert.equal(vm.runInContext('reshuffled.by',context),.63,'a midfielder assigned to defense follows the high line');
+assert.match(vm.runInContext('v47ReportHTML(v47Snapshot())',context),/Hohe Pässe/);
+assert.match(vm.runInContext('v47PlayerStatsHTML(v47Snapshot().players.find(player=>!player.keeper),"Team")',context),/Luftduelle gewonnen/);
+assert.equal(vm.runInContext("v55Exit({x:.5,y:.5},{x:-.1,y:.5}).edge",context),'left');
+assert.equal(vm.runInContext("v55Exit({x:.5,y:.5},{x:.5,y:-.1}).edge",context),'top');
+vm.runInContext("v55BeginThrow({edge:'left',x:v55Field.left,y:.5},0)",context);
+assert.equal(vm.runInContext('match.throwIn.team',context),1);
+assert.equal(vm.runInContext('match.ball.x',context),.02);
+assert.equal(vm.runInContext('match.setPiece',context),null);
+const previous=vm.runInContext('match.elapsed',context);
+vm.runInContext('step(.5,.05)',context);
+assert(vm.runInContext('match.elapsed',context)-previous<.2,'throw-in slows the clock');
+vm.runInContext('for(let tick=0;tick<300&&match.throwIn;tick++)step(.1,.05)',context);
+assert.equal(vm.runInContext('match.throwIn',context),null,'thrower eventually reaches the ball');
+assert.equal(vm.runInContext('Boolean(match.flight)',context),true,'ball is visibly thrown back in');
+vm.runInContext("(()=>{const receiver=match.people.find(player=>player.interceptTarget===match.flight.target);if(!receiver)throw Error('throw receiver does not chase the ball');receiver.x=.9;receiver.y=.9;match.flight.done();if(match.owner||!match.rebound)throw Error('missed throw must leave a loose ball');if(receiver.interceptTarget)throw Error('throw chase target was not cleared')})()",context);
+vm.runInContext("match.flight=null;match.owner=match.people.find(player=>player.t===0&&!player.keeper);match.ball={x:.5,y:.5};const attacker=match.people.find(player=>player.t===0&&!player.keeper&&player!==match.owner);attacker.y=.2;const defenders=match.people.filter(player=>player.t===1);defenders.forEach((player,index)=>player.y=.3+index*.02);const snapshot=v55OffsideSnapshot(match.owner);if(!snapshot.offside.has(attacker))throw Error('offside snapshot failed');v55WhistleOffside(snapshot,attacker)",context);
+assert.equal(vm.runInContext('match.setPiece.type',context),'offside');
+assert.equal(vm.runInContext('Boolean(match.offsideVisual)',context),true);
+assert.equal(vm.runInContext('match.ball.y',context),.5,'offside pause shows the pass-time ball');
+assert.equal(vm.runInContext('attacker.y',context),.2,'offside pause keeps the pass-time offender');
+const shotsBefore=vm.runInContext('match.shots.join(",")',context);
+vm.runInContext('v50TakeFreeKick(match.setPiece)',context);
+assert.equal(vm.runInContext('match.shots.join(",")',context),shotsBefore,'offside free kick is a short pass');
+vm.runInContext("(()=>{match.setPiece=null;match.flight=null;match.rebound=null;Math.random=()=>.5;const own=match.people.filter(player=>player.t===0&&!player.keeper),taker=own[0],receiver=own[1];for(const player of match.people){player.x=.9;player.y=.9}taker.x=.5;taker.y=.6;receiver.x=.5;receiver.y=.2;for(const rival of match.people.filter(player=>player.t===1&&!player.keeper))rival.y=.3;match.ball={x:.5,y:.6};v50TakeFreeKick({type:'freeKick',team:0,spot:{x:.5,y:.6},taker});if(!match.flight||match.flight.target.y>.3)throw Error('regular free kick did not use ground pass');match.flight.done();if(match.setPiece?.type!=='offside')throw Error('regular free-kick pass missed offside')})()",context);
+vm.runInContext("(()=>{match.setPiece=null;match.flight=null;match.rebound=null;Math.random=()=>.5;const own=match.people.filter(player=>player.t===0&&!player.keeper),taker=own[0],receiver=own[1];for(const player of match.people){player.x=.9;player.y=.9}taker.x=.5;taker.y=.6;receiver.x=.5;receiver.y=.53;match.ball={x:.5,y:.6};const completed=taker.stats.passComplete;v50TakeFreeKick({type:'freeKick',team:0,spot:{x:.5,y:.6},taker});receiver.x=.9;receiver.y=.9;match.flight.done();if(match.owner||!match.rebound||taker.stats.passComplete!==completed)throw Error('missed regular free kick awarded possession')})()",context);
+vm.runInContext("(()=>{match.setPiece=null;match.flight=null;Math.random=()=>.5;const own=match.people.filter(player=>player.t===0&&!player.keeper),passer=own[0],receiver=own[1];for(const player of match.people)if(player!==receiver){player.x=.9;player.y=.9}receiver.x=.5;receiver.y=.5;receiver.air=10;receiver.tec=1;v55ResolveAir({passer,receiver,end:{x:.5,y:.5},snapshot:{offside:new Set()},cross:false});if(!match.rebound)throw Error('poor trap must release the ball');match.rebound=null;receiver.tec=20;v55ResolveAir({passer,receiver,end:{x:.5,y:.5},snapshot:{offside:new Set()},cross:false});if(match.owner!==receiver)throw Error('good trap must retain possession')})()",context);
+vm.runInContext("(()=>{match.setPiece=null;match.flight=null;Math.random=()=>0;const own=match.people.filter(player=>player.t===0&&!player.keeper),passer=own[0],receiver=own[1];for(const player of match.people)if(player!==receiver){player.x=.9;player.y=.9}receiver.x=.5;receiver.y=.2;receiver.air=20;receiver.tec=1;match.ball={x:.5,y:.2};v55ResolveAir({passer,receiver,end:{x:.5,y:.2},snapshot:{offside:new Set()},cross:true});if(receiver.stats.headers!==1)throw Error('header shot missing')})()",context);
+vm.runInContext("(()=>{match.setPiece=null;match.flight=null;Math.random=()=>0;const own=match.people.filter(player=>player.t===0&&!player.keeper),passer=own[0],receiver=own[1],defender=match.people.find(player=>player.t===1&&!player.keeper);for(const player of match.people){player.x=.9;player.y=.9}passer.x=.5;passer.y=.6;receiver.x=.5;receiver.y=.27;defender.x=.5;defender.y=.31;match.ball={x:.5,y:.6};const snapshot=v55OffsideSnapshot(passer),won=receiver.stats.aerialWon;if(!snapshot.offside.has(receiver))throw Error('aerial offside setup failed');v55ResolveAir({passer,receiver,end:{x:.5,y:.32},snapshot,cross:false});if(match.setPiece?.type!=='offside'||receiver.stats.aerialWon!==won)throw Error('offside duel winner must be whistled before possession or duel credit')})()",context);
+vm.runInContext("(()=>{match.setPiece=null;match.flight=null;match.rebound=null;Math.random=()=>0;const own=match.people.filter(player=>player.t===0&&!player.keeper),passer=own[0],receiver=own[1];for(const player of match.people){player.x=.9;player.y=.9}receiver.x=.5;receiver.y=.2;match.owner=null;v55ResolveAir({passer,receiver,end:{x:.5,y:.32},snapshot:{offside:new Set()},cross:false});if(match.owner||!match.rebound||Math.abs(match.ball.y-.32)>.001)throw Error('distant player touched aerial ball without reaching its landing point')})()",context);
+vm.runInContext("(()=>{match.setPiece=null;match.flight=null;Math.random=()=>0;const own=match.people.filter(player=>player.t===0&&!player.keeper),passer=own[0],receiver=own[1],rivals=match.people.filter(player=>player.t===1&&!player.keeper);for(const player of match.people){player.x=.9;player.y=.9}passer.x=.5;passer.y=.5;passer.pas=20;receiver.x=.5;receiver.y=.2;rivals[0].x=.56;rivals[0].y=.46;match.owner=passer;match.ball={x:.5,y:.5};v55GroundPass(passer,receiver);if(match.flight.target.y>.3)throw Error('unreachable defender intercepted ground pass')})()",context);
+vm.runInContext("(()=>{match.setPiece=null;match.flight=null;match.rebound=null;Math.random=()=>.5;const own=match.people.filter(player=>player.t===0&&!player.keeper),passer=own[0],receiver=own[1];for(const player of match.people){player.x=.9;player.y=.9}passer.x=.5;passer.y=.5;receiver.x=.5;receiver.y=.2;match.owner=passer;match.ball={x:.5,y:.5};const completed=passer.stats.passComplete;v55GroundPass(passer,receiver);if(!receiver.interceptTarget)throw Error('pass receiver does not chase the ball');receiver.x=.9;receiver.y=.9;match.flight.done();if(match.owner||!match.rebound||passer.stats.passComplete!==completed)throw Error('missed pass must not award possession or a completion');if(receiver.interceptTarget)throw Error('pass chase target was not cleared')})()",context);
+console.log('PASS: native 1–20 squads, new saves, assigned positions, touchline stop and running throw-in');
+
+const fullMatch=makeContext();
+for(const file of ['youth-v33.js','penalties-v42.js','club-records-v43.js','club-identity-v44.js','keeper-logo-v45.js','match-report-v47.js','next-match-v49.js','set-pieces-v50.js','status-icons-v51.js','player-status-v51.js','strength-v55.js','opponent-profile-v54.js'])
+ vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),fullMatch,{filename:file});
+vm.runInContext('var v24Validation=()=>[];var v25RoleBar=()=>{};var v24Remember=()=>{};var v24FatigueText=()=>"frisch";var v24TopSkills=()=>"Passspiel gut";',fullMatch);
+vm.runInContext(fs.readFileSync('dist/pitch-v55.js','utf8'),fullMatch,{filename:'pitch-v55.js'});
+vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');document.querySelector('#canvas').parentElement={append(){}};start();for(let tick=0;running&&tick<6000;tick++)step(.05,.05);if(running)throw Error(`match did not end: elapsed=${match.elapsed} throw=${Boolean(match.throwIn)} flight=${Boolean(match.flight)} rebound=${Boolean(match.rebound)} piece=${Boolean(match.setPiece)}`)",fullMatch);
+assert.equal(vm.runInContext('match.finished',fullMatch),true);
+assert.equal(vm.runInContext('activeSave.currentRound',fullMatch),1);
+assert(vm.runInContext('match.people.some(player=>player.stats.highPasses>0)',fullMatch));
+console.log('PASS: complete v55 match and career progression');

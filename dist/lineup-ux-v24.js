@@ -48,7 +48,7 @@ function v24UpdateReadiness(){
 function v24BenchPlayers(){return activeSave.squad.filter(player=>!player.retired&&!activeSave.lineup.includes(player.n))}
 function v24FatigueText(value){return value>=88?'keine':value>=72?'gering':value>=52?'leicht':value>=32?'müde':'erschöpft'}
 function v24TopSkills(player){
- const skills=[['Technik','tec'],['Passspiel','pas'],['Abschluss','fin'],['Zweikampf','tak'],['Stellungsspiel','pos'],['Geschwindigkeit','spd'],['Kondition','sta']];
+ const skills=[['Technik','tec'],['Passspiel','pas'],['Abschluss','fin'],['Zweikampf','tak'],['Stellungsspiel','pos'],['Geschwindigkeit','spd'],['Kondition','sta'],['Luftspiel','air']];
  return skills.map(([label,key],index)=>({label,key,index,value:player[key]??0})).sort((a,b)=>b.value-a.value||a.index-b.index).slice(0,3).map(skill=>`${skill.label} ${scoutingBand(skill.value,player,skill.key)}`).join(' · ');
 }
 function v24BenchHTML(player){
@@ -80,7 +80,7 @@ function renderPreMatchLineup(){
 function v24SwapWithBench(outNumber,inNumber){
  if(!activeSave||running||outNumber===inNumber)return false;syncSquadFromLineup();
  const index=activeSave.lineup.indexOf(outNumber),out=activeSave.squad.find(player=>player.n===outNumber),incoming=activeSave.squad.find(player=>player.n===inNumber&&!player.retired);if(index<0||!out||!incoming)return false;
- v24Remember();incoming.cell=out.cell;incoming.role=out.role;activeSave.lineup[index]=incoming.n;syncLineupFromSquad();selected=index;saveCurrent();render();v24SetStatus(`${incoming.name} ersetzt ${out.name}.`);return true;
+ v24Remember();incoming.cell=out.cell;incoming.role=out.role;incoming.assignedLine=out.assignedLine||out.line;activeSave.lineup[index]=incoming.n;syncLineupFromSquad();selected=index;saveCurrent();render();v24SetStatus(`${incoming.name} ersetzt ${out.name}.`);return true;
 }
 function v24MoveOnPitch(number,targetCell){
  if(!activeSave||running)return false;const source=players.find(player=>player.n===number),target=players.find(player=>player.cell===targetCell);if(!source||source===target)return false;

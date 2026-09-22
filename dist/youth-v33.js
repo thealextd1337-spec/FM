@@ -1,16 +1,16 @@
 'use strict';
 
 const YOUTH_SCOUT_COST=40,YOUTH_SIGN_COST=100,YOUTH_POOL_SIZE=12;
-const youthKeys=['tec','pas','fin','tak','pos','spd','sta'];
-const youthFocus={def:['tak','pos','pas'],mid:['pas','tec','sta'],att:['fin','tec','spd']};
+const youthKeys=['tec','pas','fin','tak','pos','spd','sta','air'];
+const youthFocus={def:['tak','pos','air'],mid:['pas','tec','sta'],att:['fin','tec','air']};
 
 function makeYouthCandidate(index){
  const line=['def','mid','att'][index%3],age=17+Math.floor(Math.random()*3);
  const peak=ensurePlayerId(playerIdentity(line,0,age,68+Math.floor(Math.random()*14)));
- const target=Object.fromEntries(youthKeys.map(key=>[key,peak[key]])),player=structuredClone(peak);
- for(const key of youthKeys){
+ const target=Object.fromEntries(youthKeys.filter(key=>Number.isFinite(peak[key])).map(key=>[key,peak[key]])),player=structuredClone(peak);
+ for(const key of Object.keys(target)){
   const gap=youthFocus[line].includes(key)?2+Math.floor(Math.random()*2):1+Math.floor(Math.random()*2);
-  player[key]=clamp(target[key]-gap,0,20)
+  player[key]=clamp(target[key]-gap,1,20)
  }
  player.salary=annualSalary({...player,...target});
  return{id:crypto.randomUUID(),player,target,scouted:false,signed:false}

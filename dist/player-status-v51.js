@@ -72,14 +72,14 @@ function v51LineupCardContent(player,position,selectCell=null){
 
 function v51OrderedStarters(starters=[...players,homeKeeper]){
  const order={gk:0,def:1,mid:2,att:3};
- return [...starters].sort((a,b)=>(order[a.keeper?'gk':a.line]??4)-(order[b.keeper?'gk':b.line]??4));
+ return [...starters].sort((a,b)=>(order[a.keeper?'gk':a.assignedLine||a.line]??4)-(order[b.keeper?'gk':b.assignedLine||b.line]??4));
 }
 function v51StarterPanel(){
  if(!activeSave||running)return;
  let panel=$('#v51-starters');if(!panel){panel=document.createElement('section');panel.id='v51-starters';panel.className='v51-starters';$('#setup-pitch').insertAdjacentElement('afterend',panel)}
  const starters=v51OrderedStarters();
  panel.innerHTML=`<h3>Startaufstellung · Form und Müdigkeit</h3><div class="v51-starter-grid">${starters.map(player=>{
-  const position=player.keeper?'Torwart':v25PositionShort[player.line];
+  const position=player.keeper?'Torwart':v25PositionShort[player.assignedLine||player.line];
   const details=`<button type="button" class="player-link" data-open-player="${escapeHTML(player.pid)}" aria-label="Details zu ${escapeHTML(player.name)} öffnen">Details</button>`;
   if(player.keeper)return `<article class="v51-starter v51-keeper-card"><div class="v51-card-main">${v51LineupCardContent(player,position)}</div>${details}</article>`;
   return `<article class="v51-starter" draggable="true" data-drag-player="${player.n}" data-drag-kind="pitch" data-drop-cell="${player.cell}"><div class="v51-card-main">${v51LineupCardContent(player,position,player.cell)}</div>${details}</article>`;

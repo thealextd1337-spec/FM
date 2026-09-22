@@ -2,6 +2,19 @@
 
 ## Noch nicht veröffentlicht
 
+### Spielfeld
+
+- Hohe Pässe, Flanken und Ecken fliegen mit sichtbarer Bogenbahn zu einem berechneten Landepunkt. Flanken können zu kurz, zu weit oder ins Aus geraten. Mitspieler nehmen hohe Bälle an, spielen sie per Kopf weiter oder schließen mit Kopfball beziehungsweise Volley ab; Gegner können Luftduelle gewinnen und klären. Spielbericht und Live-Statistik zählen diese Aktionen.
+- Abseits wird beim Abspiel erfasst und bei aktiver Beteiligung gepfiffen. Abseitslinie, Spieler und Banner bleiben kurz sichtbar; der anschließende Freistoß wird kurz gespielt. Direkte Einwürfe, Ecken und Abstöße sind ausgenommen.
+- Beim Einwurf bleibt der Ball sichtbar hinter der Seitenlinie liegen. Einwerfer und übrige Spieler laufen in Position; die Uhr geht bis zum Wurf langsamer, ohne Banner oder harten Szenenstopp.
+- Bodenpässe und Einwürfe geben Ballbesitz erst, wenn der Empfänger den Ball tatsächlich erreicht; verfehlte Zuspiele bleiben frei.
+- Die neue Abwehrlinie Tief/Neutral/Hoch bestimmt die Grundhöhe eingesetzter Verteidiger. Stammposition und Einsatzposition sind getrennt; Fremdeinsätze erhalten einen kleinen situationsbezogenen Malus. Die Wahl bleibt im Spielstand erhalten.
+
+### Werte und Spielstände
+
+- Neue Spieler einschließlich aller Computerkader entstehen direkt mit Fähigkeiten von 1 bis 20 und dem Wert Luftspiel. Match, Scouting, Transfers, Gehälter, Saisonereignisse und Elfmeterschießen verwenden diese Skala ohne 100er-Rückrechnung. Alte Speicherstände und Exporte werden auf Nutzerwunsch nicht übernommen; neue Karrieren verwenden Schema 5 und `sechser.saves.v5`.
+- Produkt- und Entwicklungsdokumentation beschreiben die neuen Regeln. Geprüft mit `node work/test-v55.cjs`, `node work/build.cjs` und einem vollständigen Browser-Match.
+
 ## 2026-09-22 (Update)
 
 ### Gespeicherte Spiele
