@@ -21,8 +21,8 @@ function v56StandingTackle(tackler,victim){
  tackler.stats.duels++;victim.stats.duels++;
  if(random()<v50FoulChance(tackler,victim)*.8){v50Foul(victim,tackler);return true}
  const chance=clamp(.18+(ability(tackler,'tak')-ability(victim,'tec'))*.022+(ability(tackler,'pos')-ability(victim,'spd'))*.006+(m.aggression?.[tackler.t]??0)*.04,.08,.55);
- if(random()<chance){tackler.stats.duelsWon++;victim.stats.passLost++;m.owner=tackler;m.ball={x:tackler.x,y:tackler.y};m.lastPass=null;m.lastTouch=tackler.t;m.next=m.elapsed+.7;note(`${tackler.name} gewinnt den Ball im Zweikampf.`,'duel')}
- else victim.stats.duelsWon++;
+ if(random()<chance){tackler.stats.duelsWon++;victim.stats.passLost++;victim.recoverUntil=m.elapsed+1.5;m.owner=tackler;m.ball={x:tackler.x,y:tackler.y};m.lastPass=null;m.lastTouch=tackler.t;m.next=m.elapsed+.7;note(`${tackler.name} gewinnt den Ball im Zweikampf.`,'duel')}
+ else{victim.stats.duelsWon++;tackler.recoverUntil=m.elapsed+.8;return false}
  return true;
 }
 function v56StartSlide(tackler,victim){
@@ -50,7 +50,7 @@ function v56AdvanceSlide(delta){
  if(ballGap<24){
   m.slide=null;tackler.recoverUntil=m.elapsed+.42;
   const success=clamp(.42+(ability(tackler,'tak')-ability(victim,'tec'))*.025+(ability(tackler,'pos')-ability(victim,'spd'))*.008-(slide.behind?.13:0),.15,.8);
-  if(random()<success){tackler.stats.duelsWon++;tackler.stats.slideWon++;victim.stats.passLost++;m.lastTouch=tackler.t;m.lastPass=null;if(random()<.3){v50LooseBall({x:tackler.x,y:tackler.y},`${tackler.name} grätscht den Ball frei.`)}else{m.owner=tackler;m.ball={x:tackler.x,y:tackler.y};m.next=m.elapsed+.55;note(`${tackler.name} gewinnt den Ball mit einer Grätsche.`,'duel')}}
+  if(random()<success){tackler.stats.duelsWon++;tackler.stats.slideWon++;victim.stats.passLost++;victim.recoverUntil=m.elapsed+1.5;m.lastTouch=tackler.t;m.lastPass=null;if(random()<.3){v50LooseBall({x:tackler.x,y:tackler.y},`${tackler.name} grätscht den Ball frei.`)}else{m.owner=tackler;m.ball={x:tackler.x,y:tackler.y};m.next=m.elapsed+.55;note(`${tackler.name} gewinnt den Ball mit einer Grätsche.`,'duel')}}
   else{victim.stats.duelsWon++;m.next=m.elapsed+.45;note(`${victim.name} behauptet den Ball gegen die Grätsche.`,'duel')}
   return;
  }
@@ -58,7 +58,7 @@ function v56AdvanceSlide(delta){
 }
 function v56MaybeChallenge(victim){
  const m=match;if(!m||m.slide||m.flight||m.setPiece||m.kickoff||victim.keeper)return false;
- const rivals=m.people.filter(player=>player.t!==victim.t&&!player.keeper&&!player.slideActive);
+ const rivals=m.people.filter(player=>player.t!==victim.t&&!player.keeper&&!player.slideActive&&(player.recoverUntil||0)<=m.elapsed);
  const standing=rivals.filter(player=>{const info=v56ApproachInfo(player,victim);return !info.behind&&info.ball<39&&info.body<43}).sort((a,b)=>v56Pixels(a,m.ball)-v56Pixels(b,m.ball))[0];
  if(standing)return v56StandingTackle(standing,victim);
  const slider=rivals.filter(player=>{const info=v56ApproachInfo(player,victim);return info.ball>=25&&info.ball<100&&info.body<105}).sort((a,b)=>v56Pixels(a,m.ball)-v56Pixels(b,m.ball))[0];

@@ -1,6 +1,33 @@
 # Änderungen
 
-## Noch nicht veröffentlicht
+## 2026-09-23 (Spielintelligenz, Spielerinfo und Statistik)
+
+### Spielintelligenz und Pokalergebnisse
+
+- Spieler mit freiem Weg zum Tor behalten den Ball für den Lauf und schießen aus geeigneter Nähe, statt unnötig zurückzupassen. Ein Querpass geht nur an einen freien, nicht im Abseits stehenden Mitläufer in besserer Position. Gegner jagen einem Torwart mit sicherem Ballbesitz nicht mehr nach. Geprüft für beide Spielrichtungen und mit gezielten Szenentests sowie vollständigen Matches.
+- Die Ergebnisübersicht einer abgeschlossenen Pokalrunde zeigt nun alle Partien einschließlich des eigenen Spiels. Der Turnierbaum bleibt erhalten; geprüft mit dem Pokal-Berichtstest.
+- Im Wettbewerb-Reiter entfällt der doppelte, einklappbare Pokalbaum. Liga und „Nationaler Pokal“ sind eigene Abschnitte. Der neue Statistik-Reiter zeigt für Liga und Pokal nur erfasste Spieler pro Kennzahl, maximal die Top 10: Tore, Assists, Zu-null-Spiele der Torhüter, Fouls sowie verwandelte und verschossene Elfmeter. Fouls und reguläre Elfmeter werden während des Matches gespeichert; das Pokal-Elfmeterschießen schreibt Treffer und Fehlschüsse den Schützen zu. Geprüft mit Statistik- und Standardsituationstests.
+- Ein Spiel mit noch offener Abpfiff-Markierung endet jetzt auch dann zuverlässig, wenn unmittelbar davor ein Tor oder eine Standardsituation liegt. Der 108-Match-Balancetest hat den zuvor reproduzierbaren Stillstand bei 74,999 Simulationsminuten abgesichert.
+
+### Live-Spielerinfo und Abschlussdialoge
+
+- Während eines Matches öffnen die Spieler-Icons beider Teams und die eigenen Spielerkarten unter dem Feld eine Live-Info mit Form, Müdigkeit und bisherigen Spielwerten. Für eigene Spieler erscheinen auch die bereits bekannten Scouting-Einschätzungen kompakt; unbekannte gegnerische Fähigkeiten bleiben verborgen. Das Spiel steht samt Uhr und Szenen still, bis die Info geschlossen wird, und läuft dann ohne Zeitsprung weiter. Für Liga und Pokal mit dem neuen Live-Spieler-Test geprüft.
+- Spielbericht und folgende Ergebnisübersicht haben nun dieselbe Größe; der zentrale Weiter-Button steht in beiden an derselben Stelle. Geprüft im Live-Spieler-Test und im lokalen Browser.
+
+### Spielszenen und Torwarttrikots
+
+- Zweikämpfe wechseln nicht mehr minutenlang zwischen denselben beiden Spielern hin und her: Nach einem verlorenen Ball brauchen Spieler kurz zur Erholung, und ein gescheiterter Angriff auf den Ball lässt den Ballführer weiterspielen. Geprüft mit gezielten Zweikampftests und 24 vollständigen Matchsimulationen.
+- Bei Freistößen vom Flügel orientieren sich die Teams zum Tor. Ihre Aufstellung folgt nun den Einsatzpositionen: Angreifer, Mittelfeld und Verteidiger behalten ihre Reihenfolge statt zufällig vor oder hinter dem Ball zu stehen. Geprüft für beide Spielrichtungen und einen tiefen Freistoß.
+- Jeder Computerverein erhält ein eigenes festes Torwarttrikot und ein zweites festes Ausweichtrikot. Das eigene gewählte Trikot bleibt erhalten und erhält ebenfalls eine feste Alternative. Im Match wird nur zwischen den beiden Vereinsvarianten gewechselt, wenn es der Kontrast zu Feldspielern und anderem Torwart verlangt; bestehende Karrieren bekommen die neuen Paare beim Laden. Geprüft mit den Torwarttrikot- und Bestandsspielstandtests.
+- Eine Neuverpflichtung außerhalb der Transferphase trägt im Bestätigungsdialog „Zwischen den Spieltagen“ statt eines falschen Transfertags. Geprüft mit dem Dialogtest.
+- Ein Tor aus einem regulären Elfmeter erscheint im Spielverlauf und im Torbanner ausdrücklich als „ELFMETERTOR!“; normale Tore behalten ihre bisherige Beschriftung. Der Tordatensatz merkt sich die Entstehung. Geprüft mit dem Standardsituationstest; ein direkter Freistoß wurde zusätzlich als mögliches Tor nachgewiesen.
+
+### Karrieremenü und Aufstellung
+
+- Die überflüssige Beschriftung „Dein Team“ neben dem Vereinsnamen über dem Aufstellungsfeld wurde entfernt.
+- Das Drei-Striche-Menü bleibt nun direkt neben dem oberen Fortschrittsbutton sichtbar, auch beim Scrollen. Sein Dropdown liegt über der Navigation und behält die bisherigen Aktionen.
+- In der Startaufstellung steht „TOR“ statt „Torwart“. Das Alter erscheint bei den Spielerkarten direkt neben dem Positionskürzel; die Ersatzbank nutzt dieselbe Altersanzeige.
+- Geprüft mit den Fortschritts- und Aufstellungstests, Build sowie Sichtprüfung im lokalen Browser.
 
 ## 2026-09-22 (Karriereführung und Transfers)
 

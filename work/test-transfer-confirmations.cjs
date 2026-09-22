@@ -8,7 +8,7 @@ function element(tagName='div'){
   showModal(){this.open=true;shown=this},close(){this.open=false},remove(){this.removed=true},
   querySelector(selector){if(!buttons.has(selector))buttons.set(selector,{onclick:null,focus(){}});return buttons.get(selector)}};
 }
-const state={day:2,offers:[{id:'free',player:{name:'Mara Test',age:22,nation:'AT'}}],bids:[],pendingResult:null};
+const state={open:true,day:2,offers:[{id:'free',player:{name:'Mara Test',age:22,nation:'AT'}}],bids:[],pendingResult:null};
 let saved=0;
 const context={activeSave:{},document:{head:{append(){}},body:{append(value){shown=value}},createElement:element,querySelector(selector){return selector==='#transfer-result-modal'&&shown?.open&&!shown.removed?shown:null},querySelectorAll(){return[]}},clubCenter:{querySelectorAll(){return[]}},transferState:()=>state,saveCurrent(){saved++},advanceTransferDay(){return true},signFreeAgent(){return true},acceptCounter(){return false},renderCenter(){},drawSlots(){},escapeHTML:value=>String(value),flagSVG:()=>'',nationData:{AT:{name:'Österreich'}},console,structuredClone};
 vm.createContext(context);
@@ -32,5 +32,10 @@ const original=shown;vm.runInContext('renderCenter()',context);
 assert.equal(shown,original,'Neuzeichnen öffnet keinen zweiten Dialog');
 shown.querySelector('.transfer-result-ok').onclick();
 assert.equal(state.pendingResult,null,'Bestätigung wird erst nach Klick quittiert');
+shown=null;state.open=false;state.day=1;
+vm.runInContext("signFreeAgent('free')",context);
+assert.doesNotMatch(shown.innerHTML,/TRANSFERTAG 1/,'eine Verpflichtung während der Saison darf keinen Transfertag anzeigen');
+assert.match(shown.innerHTML,/ZWISCHEN DEN SPIELTAGEN/,'der Dialog muss die laufende Saison kenntlich machen');
+shown.querySelector('.transfer-result-ok').onclick();
 assert(saved>=2,'Anzeige und Bestätigung werden gespeichert');
 console.log('PASS: Transferergebnis bleibt bis zur ausdrücklichen Bestätigung sichtbar');

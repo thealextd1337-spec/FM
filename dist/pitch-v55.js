@@ -187,11 +187,31 @@ function v55ChooseTarget(p,allies,rivals){
  const offside=v55OffsideSnapshot(p).offside,eligible=allies.filter(other=>!offside.has(other)),options=eligible.length&&random()<.92?eligible:allies;
  return[...options].sort((a,b)=>score(b)-score(a))[random()<.82?0:Math.min(1,options.length-1)];
 }
+function v55BreakawaySquare(p,allies,rivals){
+ const forward=other=>p.t===0?p.y-other.y:other.y-p.y,offside=v55OffsideSnapshot(p).offside;
+ return allies.filter(other=>{
+  const lead=forward(other),closerToCenter=Math.abs(other.x-.5)+.07<Math.abs(p.x-.5);
+  if(offside.has(other)||lead<-.025||lead>.12||distance(p,other)>.32||Math.abs(p.x-other.x)<.06||!closerToCenter&&lead<.045)return false;
+  return rivals.every(rival=>{if(rival.keeper)return true;const lane=passLaneGeometry(rival,p,other);return distance(rival,other)>.13&&(!lane||lane.lateral>.065)});
+ }).sort((a,b)=>(Math.abs(a.x-.5)-Math.abs(b.x-.5))+(forward(b)-forward(a)))[0]||null;
+}
+function v55HasClearRun(p,rivals,progress){
+ if(progress<.55)return false;
+ return !rivals.some(rival=>!rival.keeper&&Math.abs(rival.x-p.x)<.19&&((p.t===0?p.y-rival.y:rival.y-p.y)>.005)&&((p.t===0?p.y-rival.y:rival.y-p.y)<.34));
+}
 action=function(){
  const m=match,p=m?.owner;if(!p||m.setPiece||m.throwIn)return;
  if(p.keeper){const safe=m.people.filter(other=>other.t===p.t&&!other.keeper&&other.assignedLine==='def').sort((a,b)=>distance(a,p)-distance(b,p));if(!safe.length){m.next=m.elapsed+.5;return}note(`Kurzer Abstoß: ${p.name} auf ${safe[0].name}.`,'restart');v55GroundPass(p,safe[0],'pass',true);return}
  const rivals=m.people.filter(other=>other.t!==p.t),near=rivals.filter(other=>!other.keeper&&distance(other,p)<.15).sort((a,b)=>distance(a,p)-distance(b,p));
  const progress=p.t===0?1-p.y:p.y,wide=p.x<.29||p.x>.71,allies=m.people.filter(other=>other.t===p.t&&other!==p&&!other.keeper);
+ if(v55HasClearRun(p,rivals,progress)){
+  const square=v55BreakawaySquare(p,allies,rivals);
+  if(square){v55GroundPass(p,square);return}
+  if(progress>.72){v55Shoot(p);return}
+  if(m.breakawayCarrier!==p){note(`${p.name} läuft frei Richtung Tor.`,'major');m.breakawayCarrier=p}
+  m.next=m.elapsed+.6;return;
+ }
+ m.breakawayCarrier=null;
  const box=allies.filter(other=>(other.t===0?other.y<.34:other.y>.66)&&other.x>.25&&other.x<.75);
  if(progress>.66&&wide&&box.length&&random()<.62){const target=[...box].sort((a,b)=>ability(b,'air')+ability(b,'pos')*.3-ability(a,'air')-ability(a,'pos')*.3)[0];v55HighPass(p,target,{cross:true});return}
  if(progress>.73||(progress>.58&&random()<.17)){v55Shoot(p);return}

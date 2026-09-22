@@ -109,6 +109,7 @@ function v50Foul(victim,offender){
  const m=match,team=victim.t,spot={x:clamp(victim.x,.12,.88),y:clamp(victim.y,.08,.92)};
  const penalty=spot.x>=.25&&spot.x<=.75&&(team===0?spot.y<=.18:spot.y>=.82);
  m.setPieceStats.fouls[offender.t]++;
+ offender.stats.fouls=(offender.stats.fouls||0)+1;
  if(penalty)m.setPieceStats.penalties[team]++;
  else m.setPieceStats.freeKicks[team]++;
  v50Restart(penalty?'penalty':'freeKick',team,penalty?{x:.5,y:team===0?.17:.83}:spot,
@@ -151,15 +152,15 @@ function v50ChaseLooseBall(delta){
  if(winner){m.rebound=null;m.owner=winner;m.ball={x:winner.x,y:winner.y};m.next=m.elapsed+.55;note(`${winner.name} nimmt den freien Ball auf.`,'duel')}
 }
 
-function v50Goal(scorer,keeper){
+function v50Goal(scorer,keeper,penalty=false){
  const m=match;
  scorer.stats.goals++;
  if(m.lastPass?.receiver===scorer&&m.lastPass.passer!==scorer&&m.elapsed-m.lastPass.at<5)m.lastPass.passer.stats.assists++;
  m.lastPass=null;keeper.stats.conceded++;m.score[scorer.t]++;
- m.goals.push({team:scorer.t,name:scorer.name,minute:Math.max(1,displayMatchMinute(m.elapsed))});
- note(`TOR! ${scorer.name} trifft für ${v50Name(scorer.t)}.`,'goal');
+ m.goals.push({team:scorer.t,name:scorer.name,minute:Math.max(1,displayMatchMinute(m.elapsed)),penalty});
+ note(`${penalty?'ELFMETERTOR!':'TOR!'} ${scorer.name} trifft für ${v50Name(scorer.t)}.`,'goal');
  m.owner=null;m.rebound=null;m.goalPause=2;m.pendingKickoff=1-scorer.t;
- showOverlay('TOR!',`${scorer.name} · ${m.score[0]} : ${m.score[1]}`,true);
+ showOverlay(penalty?'ELFMETERTOR!':'TOR!',`${scorer.name} · ${m.score[0]} : ${m.score[1]}`,true);
 }
 function v50GoalKick(keeper,text){
  match.owner=keeper;match.ball={x:keeper.x,y:keeper.y};match.lastPass=null;match.next=match.elapsed+.75;
@@ -281,8 +282,10 @@ function v50FinishPenalty(setPiece){
  const m=match,shooter=setPiece.taker,keeper=v50Keeper(1-setPiece.team),outcome=setPiece.outcome;
  v50ClearPenaltyScene();m.setPiece=null;
  shooter.stats.shots++;m.shots[shooter.t]++;
+ if(outcome==='goal')shooter.stats.penaltiesScored=(shooter.stats.penaltiesScored||0)+1;
+ else shooter.stats.penaltiesMissed=(shooter.stats.penaltiesMissed||0)+1;
  if(outcome==='goal'||outcome==='save'){shooter.stats.onTarget++;keeper.stats.faced++}
- if(outcome==='goal'){v50Goal(shooter,keeper);return}
+ if(outcome==='goal'){v50Goal(shooter,keeper,true);return}
  if(outcome==='save'){
   keeper.stats.saves++;
   if(random()<.3)v50Deflect({x:.5,y:keeper.y},shooter.t,keeper,`Parade von ${keeper.name}`);
@@ -310,6 +313,7 @@ beginKickoff=function(){
 const v50BaseStep=step;
 step=function(delta,realDelta){
  const m=match;
+ if(m?.fulltimePending&&!m.setPiece&&!m.flight&&!m.throwIn&&m.goalPause<=0&&!m.postBanner){m.kickoff=null;finishMatch();return}
  if(m?.postBanner&&!m.finished){
   const pause=m.postBanner;pause.wait=Math.max(0,pause.wait-realDelta);
   if(pause.visible&&pause.wait<=1){hideOverlay();pause.visible=false}

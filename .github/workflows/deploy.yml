@@ -30,6 +30,8 @@ jobs:
       - name: Spieltests ausführen
         run: |
           node work/test-progress-v58.cjs
+          node work/test-live-player-v59.cjs
+          node work/test-progress-menu.cjs
           node work/test-transfer-confirmations.cjs
           node work/test-transfer-deadline-dialog.cjs
           node work/test-tactics-replacement.cjs
@@ -41,6 +43,7 @@ jobs:
           node work/test-v44.cjs
           node work/test-v45.cjs
           node work/test-v47.cjs
+          node work/test-statistics-menu.cjs
           node work/test-v49.cjs
           node work/test-v50.cjs
           node work/test-v50-balance.cjs
@@ -48,6 +51,11 @@ jobs:
           node work/test-v52.cjs
           node work/test-v53.cjs
           node work/test-v54.cjs
+          node work/test-v55.cjs
+          node work/test-breakaway.cjs
+          node work/test-v56.cjs
+          node work/test-duel-streaks.cjs
+          node work/test-v57.cjs
           python3 work/test_deploy_ftps.py
 
       - name: Einzeldatei bauen

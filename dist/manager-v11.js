@@ -9,7 +9,7 @@ const reservePlayers=[
 const leagueOpponents=[{id:'hafen',name:'SC Hafen',strength:69},{id:'nord',name:'SV Nordring',strength:74},{id:'union',name:'Union West',strength:66},{id:'athletik',name:'Athletik 06',strength:77},{id:'vorstadt',name:'Vorstadt FK',strength:71}];
 let activeSave=null,storageFailed=false,replaceNumber=null;
 const escapeHTML=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const statKeys=['passes','passComplete','progressive','passLost','duels','duelsWon','interceptions','shots','onTarget','goals','assists','saves','faced','conceded','cleanSheet'];
+const statKeys=['passes','passComplete','progressive','passLost','duels','duelsWon','interceptions','shots','onTarget','goals','assists','saves','faced','conceded','cleanSheet','fouls','penaltiesScored','penaltiesMissed'];
 function readSlots(){try{const data=JSON.parse(localStorage.getItem(SAVE_KEY)||'[]');if(!Array.isArray(data))throw Error();return data}catch{storageFailed=true;return[]}}
 function persistSlots(slots){try{localStorage.setItem(SAVE_KEY,JSON.stringify(slots));storageFailed=false;return true}catch{storageFailed=true;alert('Speichern fehlgeschlagen. Bitte freien Browserspeicher prüfen. Dein geöffnetes Spiel bleibt erhalten.');return false}}
 function blankStats(number,label=`Saison ${number}`){return{number,label,games:0,ratingTotal:0,ratingCount:0,...Object.fromEntries(statKeys.map(k=>[k,0]))}}

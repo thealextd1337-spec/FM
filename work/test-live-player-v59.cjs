@@ -1,0 +1,64 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const {makeContext}=require('./test-v41.cjs');
+const context=makeContext(),listeners={};
+for(const file of ['penalties-v42.js','club-records-v43.js','club-identity-v44.js','keeper-logo-v45.js','match-report-v47.js','set-pieces-v50.js','status-icons-v51.js','player-status-v51.js','strength-v55.js'])
+ vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),context);
+vm.runInContext('v47PlayerDialog.showModal=function(){this.open=true};v47PlayerDialog.close=function(){this.open=false}',context);
+const area=context.document.querySelector('#match-area'),canvas=context.document.querySelector('#canvas');
+area.addEventListener=(type,handler)=>{listeners.area=handler};
+area.contains=()=>true;
+area.append=panel=>{area.panel=panel};
+canvas.addEventListener=(type,handler)=>{listeners.canvas=handler};
+canvas.width=600;canvas.height=740;canvas.getBoundingClientRect=()=>({left:0,top:0,width:600,height:740});
+vm.runInContext(fs.readFileSync('dist/live-player-v59.js','utf8'),context);
+vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');start()",context);
+area.querySelector=()=>null;
+vm.runInContext('v51LivePanel()',context);
+assert.match(area.panel.innerHTML,/<button type="button" class="v51-live-player"/);
+assert.match(area.panel.innerHTML,/Spielerinformationen anzeigen/);
+const own=vm.runInContext('match.people.find(person=>person.t===0)',context);
+listeners.area({currentTarget:area,target:{closest:()=>({dataset:{v51Number:String(own.n)}})}});
+assert.equal(vm.runInContext('v47PlayerDialog.open',context),true);
+assert.match(vm.runInContext('v47PlayerDialog.innerHTML',context),/Live im Spiel/);
+assert.match(vm.runInContext('v47PlayerDialog.innerHTML',context),/Spiel fortsetzen/);
+assert.match(vm.runInContext('v47PlayerDialog.innerHTML',context),/Bekannte Scoutingwerte/);
+assert.match(vm.runInContext('v47PlayerDialog.innerHTML',context),/Luftspiel/);
+assert.doesNotMatch(vm.runInContext('v47PlayerDialog.innerHTML',context),/\b(?:tec|pas|fin|tak|pos|spd|sta|air)\s*[:=]\s*\d+/,'exact skills remain hidden');
+const before=vm.runInContext('match.countdown',context);
+vm.runInContext('step(.1,.1)',context);
+assert.equal(vm.runInContext('match.countdown',context),before,'the full simulation pauses');
+vm.runInContext('v47PlayerDialog.close();step(.1,.1)',context);
+assert(vm.runInContext('match.countdown',context)<before,'the simulation resumes after closing');
+const away=vm.runInContext('match.people.find(person=>person.t===1)',context);
+listeners.canvas({clientX:away.x*600,clientY:away.y*740});
+assert.equal(vm.runInContext('v47PlayerDialog.open',context),true,'opponent icons are clickable');
+assert(vm.runInContext('v47PlayerDialog.innerHTML',context).includes(away.name));
+assert.doesNotMatch(vm.runInContext('v47PlayerDialog.innerHTML',context),/Bekannte Scoutingwerte/,'unknown opponent skills remain hidden');
+vm.runInContext('v47PlayerDialog.close()',context);
+listeners.canvas({clientX:0,clientY:0});
+assert.equal(vm.runInContext('v47PlayerDialog.open',context),false,'empty pitch does not open a player');
+const css=fs.readFileSync('dist/progress-v58.css','utf8');
+assert.match(css,/:is\(#v47-match-report,#v47-competition\)/,'both post-match dialogs share dimensions');
+assert.match(css,/:is\(\.v47-head,\.v47-competition-head\)/,'both dialogs align their next-step action');
+assert.match(css,/scrollbar-gutter:stable/,'dialog actions must not move sideways when only one dialog scrolls');
+
+const cupContext=makeContext();
+for(const file of ['penalties-v42.js','club-records-v43.js','club-identity-v44.js','keeper-logo-v45.js','match-report-v47.js','set-pieces-v50.js','status-icons-v51.js','player-status-v51.js','strength-v55.js'])
+ vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),cupContext);
+vm.runInContext('v47PlayerDialog.showModal=function(){this.open=true};v47PlayerDialog.close=function(){this.open=false}',cupContext);
+vm.runInContext(fs.readFileSync('dist/live-player-v59.js','utf8'),cupContext);
+vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');v41CupEnsure()",cupContext);
+let rounds=0;
+while(!vm.runInContext('Boolean(v41CupGameForUser())',cupContext)){
+ vm.runInContext('start();match.score=[2,0];finishMatch();renderCenter()',cupContext);
+ if(++rounds>10)throw Error('Pokalspiel nicht erreicht');
+}
+vm.runInContext('start()',cupContext);
+assert(vm.runInContext('Boolean(match.cup)',cupContext),'the test reaches a cup match');
+assert(vm.runInContext('v59OpenLivePlayer(match.people.find(person=>person.t===1))',cupContext));
+const cupClock=vm.runInContext('match.countdown',cupContext);
+vm.runInContext('step(.1,.1)',cupContext);
+assert.equal(vm.runInContext('match.countdown',cupContext),cupClock,'cup simulation pauses too');
+vm.runInContext('v47PlayerDialog.close();step(.1,.1)',cupContext);
+assert(vm.runInContext('match.countdown',cupContext)<cupClock,'cup simulation resumes too');
+console.log('PASS: live player cards and pitch icons, true pause/resume, matched post-match dialogs');

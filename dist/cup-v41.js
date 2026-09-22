@@ -120,6 +120,10 @@ if(typeof v25UpdateLiveBoard==='function'){const v25UpdateLiveBoardV41=v25Update
 
 function v41FinishCupGame(game,shootout){
  const cup=activeSave.cup,result=game.home==='user'?[...match.score]:[match.score[1],match.score[0]];
+ if(shootout)for(const kick of shootout.kicks){
+  const roster=kick.side===0?[...players,homeKeeper]:worldTeam(game.home==='user'?game.away:game.home).roster,source=roster.find(player=>player.n===kick.number);
+  if(source){const stats=v41CupStats(source),key=kick.goal?'penaltiesScored':'penaltiesMissed';stats[key]=(stats[key]||0)+1}
+ }
  game.result=result;game.penalties=shootout?(game.home==='user'?shootout.score:[shootout.score[1],shootout.score[0]]):null;
  game.winner=result[0]>result[1]?game.home:result[1]>result[0]?game.away:shootout.winner===0?'user':game.home==='user'?game.away:game.home;
  v41PlayingCup=false;v41CupAdvance();v41RefreshCupBoard();saveCurrent();

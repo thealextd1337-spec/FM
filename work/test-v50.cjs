@@ -26,6 +26,7 @@ vm.runInContext(`{
 }`,context);
 assert.equal(vm.runInContext('match.setPiece.type',context),'freeKick');
 assert.equal(vm.runInContext('match.setPieceStats.fouls[1]',context),1);
+assert.equal(vm.runInContext('match.people.find(player=>player.t===1&&!player.keeper).stats.fouls',context),1,'foul is credited to the offender');
 assert.equal(vm.runInContext('match.setPieceStats.freeKicks[0]',context),1);
 assert(vm.runInContext('v50Outfield(1).every(player=>distance(player,match.setPiece.spot)>=.129)',context),'defenders keep free-kick distance');
 vm.runInContext('step(0,1)',context);
@@ -88,7 +89,10 @@ vm.runInContext('step(0,.5)',context);
 assert.equal(vm.runInContext('match.setPiece.phase',context),'result');
 vm.runInContext('step(0,2)',context);
 assert.equal(vm.runInContext('match.score[0]',context),1);
+assert.equal(vm.runInContext('match.people.find(player=>player.t===0&&!player.keeper&&player.stats.penaltiesScored>0).stats.penaltiesScored',context),1,'converted penalty is credited to its shooter');
 assert.equal(vm.runInContext('match.setPiece',context),null);
+assert.equal(vm.runInContext('match.goals.at(-1).penalty',context),true,'penalty goal keeps its origin');
+assert.match(vm.runInContext("document.querySelector('#event').textContent",context),/Elfmetertor/i,'live event names the penalty goal');
 assert(vm.runInContext("v47ReportHTML(v47Snapshot('Gegner')).includes('Ecken')",context));
 vm.runInContext('step(0,2)',context);
 assert.equal(vm.runInContext('match.postBanner.kind',context),'goal','goal banner ends before extra pause');

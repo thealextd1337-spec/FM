@@ -6,16 +6,20 @@ function v57PositionFreeKick(realDelta){
  // Keep the frozen offside decision readable briefly before the restart forms.
  if(piece.type==='offside'&&piece.positionElapsed<.45)return;
  const forward=piece.team===0?-1:1,spot=piece.spot;
+ // A wide restart still develops toward the middle of the defended goal.
+ const wide=clamp((Math.abs(spot.x-.5)-.16)/.3,0,1);
+ const laneX=spot.x+(.5-spot.x)*wide*.85;
  const allies=m.people.filter(player=>player.t===piece.team&&!player.keeper&&player!==piece.taker);
  const rivals=m.people.filter(player=>player.t!==piece.team&&!player.keeper);
  const targets=new Map([[piece.taker,spot]]);
+ const line=player=>player.assignedLine||player.line;
  allies.forEach((player,index)=>targets.set(player,{
-  x:clamp(spot.x+[-.18,-.07,.09,.2][index],.08,.92),
-  y:clamp(spot.y+forward*[.08,-.035,.13,-.11][index],.1,.9)
+  x:clamp(laneX+(player.bx-.5)*.65+(index%2?-.012:.012),.08,.92),
+  y:clamp(spot.y+forward*{def:-.24,mid:.015,att:.16}[line(player)],.1,.9)
  }));
  rivals.forEach((player,index)=>targets.set(player,{
-  x:clamp(spot.x+[-.05,.05,-.18,.18,0][index],.08,.92),
-  y:clamp(spot.y+forward*[.14,.14,.23,.23,.3][index],.1,.9)
+  x:clamp(laneX+(player.bx-.5)*.65+(index%2?-.012:.012),.08,.92),
+  y:clamp(spot.y+forward*{def:.24,mid:.12,att:-.09}[line(player)],.1,.9)
  }));
  const fraction=Math.min(1,realDelta*3.4);
  for(const[player,target]of targets){player.x+=(target.x-player.x)*fraction;player.y+=(target.y-player.y)*fraction;player.tx=player.x;player.ty=player.y}

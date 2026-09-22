@@ -5,7 +5,7 @@
 const v58Bar=document.createElement('div');
 v58Bar.id='career-progress';
 v58Bar.hidden=true;
-v58Bar.innerHTML='<div class="career-progress-inner"><div class="career-progress-copy"><small>NÄCHSTER SCHRITT</small><span id="career-progress-context"></span></div><button type="button" id="career-progress-action" class="primary"></button></div>';
+v58Bar.innerHTML='<div class="career-progress-inner"><div class="career-progress-copy"><small>NÄCHSTER SCHRITT</small><span id="career-progress-context"></span></div><div class="career-progress-controls"><button type="button" id="career-progress-action" class="primary"></button></div></div>';
 document.body.querySelector('header').insertAdjacentElement('afterend',v58Bar);
 const v58Button=v58Bar.querySelector('#career-progress-action');
 const v58Context=v58Bar.querySelector('#career-progress-context');
@@ -13,6 +13,13 @@ let v58LastReport=null;
 let v58LastShootout=null;
 let v58FinaleAction=null;
 
+function v58DockMenu(){
+ const slot=v58Bar.querySelector('.career-progress-controls');
+ const current=slot.querySelector('.v46-menu-row');
+ if(clubCenter.hidden||!clubCenter.classList.contains('v46-has-menu')){current?.remove();return}
+ const fresh=clubCenter.querySelector('.intro > .v46-menu-row');
+ if(fresh){current?.remove();slot.append(fresh)}
+}
 function v58ScrollTo(selector,tab){
  if(tab&&typeof v46SetTab==='function')v46SetTab(tab,false);
  const target=clubCenter.querySelector(selector);
@@ -75,7 +82,11 @@ function v58State(){
 }
 function v58PlaceButton(){
  const dialog=v47CompetitionDialog.open?v47CompetitionDialog:v47Dialog.open?v47Dialog:null;
- if(!dialog){v58Bar.querySelector('.career-progress-inner').append(v58Button);return}
+ if(!dialog){
+  const controls=v58Bar.querySelector('.career-progress-controls'),menu=controls.querySelector('.v46-menu-row');
+  if(menu)controls.insertBefore(v58Button,menu);else controls.append(v58Button);
+  return
+ }
  const head=dialog.querySelector('.v47-head,.v47-competition-head');
  if(!head)return;
  let slot=dialog.querySelector('.v58-dialog-action');
@@ -89,6 +100,7 @@ function v58Refresh(){
  v58Bar.hidden=!state;
  document.body.classList.toggle('v58-active',Boolean(state));
  document.body.classList.toggle('v58-penalty-done',state?.action==='penalty-report');
+ v58DockMenu();
  if(!state)return;
  v58PlaceButton();
  v58Context.textContent=state.context;

@@ -17,7 +17,7 @@ function v45KeeperKit(id){const item=v45KeeperOptions.find(option=>option.id===i
 
 const v45KeeperSection=document.createElement('section');
 v45KeeperSection.className='v45-keeper-intro';
-v45KeeperSection.innerHTML='<h3>Torwarttrikot</h3><p>Wähle ein Trikot für deinen Torwart. Es gilt für Heim- und Auswärtsspiele.</p><div class="v45-keeper-preview" id="v45-keeper-preview"></div><div class="v45-keeper-options" id="v45-keeper-options" role="group" aria-label="Torwarttrikot wählen"></div><p>Bei ähnlichen Trikotfarben erhält der Torwart im Match eine kontrastierende Variante.</p>';
+v45KeeperSection.innerHTML='<h3>Torwarttrikot</h3><p>Wähle das erste Trikot für deinen Torwart. Es gilt für Heim- und Auswärtsspiele.</p><div class="v45-keeper-preview" id="v45-keeper-preview"></div><div class="v45-keeper-options" id="v45-keeper-options" role="group" aria-label="Torwarttrikot wählen"></div><p>Dein Verein erhält zusätzlich ein festes zweites Torwarttrikot. Im Match wird bei Bedarf wegen des Kontrasts zwischen beiden gewechselt.</p>';
 v44Section.querySelector('[data-v44-group="away"]').insertAdjacentElement('afterend',v45KeeperSection);
 
 const v45LogoPreview=document.createElement('div');
@@ -37,14 +37,43 @@ $$('[data-colors]').forEach(button=>button.addEventListener('click',v45RenderIde
 v45RenderIdentity();
 
 const v45BaseMakeWorld=makeWorld;
-makeWorld=function(primary,secondary,completeHistory){const world=v45BaseMakeWorld(primary,secondary,completeHistory);world.kits.keeper=v45KeeperKit(v44Choice.keeper);return world};
+const v45OpponentKeeperIds={hafen:'turquoise',nord:'coral',union:'violet',athletik:'silver',vorstadt:'orange'};
+function v45AlternateKeeper(kits){
+ const primary=kits.keeper,field=[kits.home?.main,kits.away?.main].filter(Boolean);
+ return v45KeeperOptions.filter(option=>option.main!==primary.main).map(option=>v45KeeperKit(option.id)).sort((a,b)=>
+  Math.min(colorDistance(b.main,primary.main),...field.map(color=>colorDistance(b.main,color)))-
+  Math.min(colorDistance(a.main,primary.main),...field.map(color=>colorDistance(a.main,color))))[0];
+}
+function v45EnsureKeeperPairs(world){
+ world.kits.keeper=world.kits.keeper||v45KeeperKit('gold');
+ world.kits.keeperAlt=world.kits.keeperAlt||v45AlternateKeeper(world.kits);
+ for(const team of world.teams){
+  if(!team.kits)continue;
+  if(!team.kits.keeperAlt&&(!team.kits.keeper||team.kits.keeper.main===v45KeeperKit('gold').main))team.kits.keeper=v45KeeperKit(v45OpponentKeeperIds[team.id]||'gold');
+  team.kits.keeperAlt=team.kits.keeperAlt||v45AlternateKeeper(team.kits);
+ }
+ return world;
+}
+makeWorld=function(primary,secondary,completeHistory){const world=v45BaseMakeWorld(primary,secondary,completeHistory);world.kits.keeper=v45KeeperKit(v44Choice.keeper);return v45EnsureKeeperPairs(world)};
+const v45BaseEnsure=ensureChampionship;
+ensureChampionship=function(raw){const slot=v45BaseEnsure(raw);if(slot.world)v45EnsureKeeperPairs(slot.world);return slot};
 function v45DistinctKeeper(chosen,first,second){
  if(!chosen)return v45KeeperKit('gold');
  if(colorDistance(chosen.main,first.main)>=100&&colorDistance(chosen.main,second.main)>=100)return chosen;
  return[chosen,...v45KeeperOptions.map(option=>v45KeeperKit(option.id))].sort((a,b)=>Math.min(colorDistance(b.main,first.main),colorDistance(b.main,second.main))-Math.min(colorDistance(a.main,first.main),colorDistance(a.main,second.main)))[0];
 }
 const v45BaseStart=start;
-start=function(){const result=v45BaseStart();if(running&&match?.kits){match.kits.userKeeper=v45DistinctKeeper(currentKits().keeper,match.kits.user,match.kits.opponent);match.kits.opponentKeeper=v45DistinctKeeper(activeOpponent().kits.keeper,match.kits.user,match.kits.opponent)}return result};
+function v45ResolveKeeperPair(user,opponent,userField,opponentField){
+ let best=null;
+ for(const [userIndex,userKeeper]of [user.keeper,user.keeperAlt].entries())for(const [opponentIndex,opponentKeeper]of [opponent.keeper,opponent.keeperAlt].entries()){
+  if(!userKeeper||!opponentKeeper)continue;
+  const contrast=Math.min(...[userKeeper,opponentKeeper].flatMap(kit=>[userField,opponentField].map(field=>colorDistance(kit.main,field.main))),colorDistance(userKeeper.main,opponentKeeper.main));
+  const candidate={user:userKeeper,opponent:opponentKeeper,clear:contrast>=100,swaps:userIndex+opponentIndex,contrast};
+  if(!best||Number(candidate.clear)>Number(best.clear)||candidate.clear===best.clear&&(candidate.clear?(candidate.swaps<best.swaps||candidate.swaps===best.swaps&&candidate.contrast>best.contrast):(candidate.contrast>best.contrast||candidate.contrast===best.contrast&&candidate.swaps<best.swaps)))best=candidate;
+ }
+ return{user:best?.user||user.keeper,opponent:best?.opponent||opponent.keeper};
+}
+start=function(){const result=v45BaseStart();if(running&&match?.kits){const pair=v45ResolveKeeperPair(currentKits(),activeOpponent().kits,match.kits.user,match.kits.opponent);match.kits.userKeeper=pair.user;match.kits.opponentKeeper=pair.opponent}return result};
 const v45BasePending=v42CareerPending;
 v42CareerPending=function(){const pending=v45BasePending();pending.ownKeeperColour=structuredClone(match.kits?.userKeeper||currentKits().keeper);pending.opponentKeeperColour=structuredClone(match.kits?.opponentKeeper||activeOpponent().kits.keeper);return pending};
 const v45BasePenaltyKeeperKit=v44PenaltyKeeperKit;

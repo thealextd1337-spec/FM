@@ -35,6 +35,57 @@ assert.equal(offsidePositions.ball.x,offsidePositions.spot.x);
 assert.equal(offsidePositions.ball.y,offsidePositions.spot.y);
 assert.equal(offsidePositions.visual,true,'offside line remains visible during positioning');
 
+for(const {team,spot,direction} of [
+ {team:0,spot:{x:.07,y:.1},direction:1},
+ {team:1,spot:{x:.93,y:.9},direction:-1},
+ {team:0,spot:{x:.07,y:.88},direction:1}
+]){
+ const wide=newMatch();
+ const shape=JSON.parse(vm.runInContext(`JSON.stringify((()=>{
+  v50Restart('freeKick',${team},${JSON.stringify(spot)},'Wide free kick');
+  for(let tick=0;tick<20;tick++)v57PositionFreeKick(.1);
+  const groups=[0,1].map(side=>match.people.filter(player=>player.t===side&&!player.keeper&&player!==match.setPiece.taker));
+  return groups.map(group=>group.reduce((sum,player)=>sum+player.x,0)/group.length);
+ })())`,wide));
+ for(const mean of shape)assert(direction===1?mean>.25:mean<.75,`wide free kick at ${JSON.stringify(spot)} must draw both teams toward goal, not the corner (${shape})`);
+}
+
+for(const {team,spot} of [
+ {team:0,spot:{x:.14,y:.27}},
+ {team:1,spot:{x:.86,y:.73}},
+ {team:0,spot:{x:.12,y:.84}}
+]){
+ const restart=newMatch();
+ const depths=JSON.parse(vm.runInContext(`JSON.stringify((()=>{
+  v50Restart('freeKick',${team},${JSON.stringify(spot)},'Position-aware free kick');
+  for(let tick=0;tick<20;tick++)v57PositionFreeKick(.1);
+  return [0,1].map(side=>{
+   const groups={def:[],mid:[],att:[]};
+   for(const player of match.people.filter(player=>player.t===side&&!player.keeper&&player!==match.setPiece.taker))
+    groups[player.assignedLine||player.line].push(side===0?-player.y:player.y);
+   return Object.fromEntries(Object.entries(groups).map(([line,values])=>[line,values.reduce((sum,value)=>sum+value,0)/values.length]));
+  });
+ })())`,restart));
+ for(const [side,group] of depths.entries())for(const [front,back] of [['att','mid'],['mid','def']])
+  if(Number.isFinite(group[front])&&Number.isFinite(group[back]))
+   assert(group[front]>group[back],`team ${side} must keep ${front} ahead of ${back} at ${JSON.stringify(spot)}: ${JSON.stringify(group)}`);
+}
+
+const direct=newMatch();
+const directResult=JSON.parse(vm.runInContext(`JSON.stringify((()=>{
+ Math.random=()=>0;
+ v50Restart('freeKick',0,{x:.5,y:.25},'Direct free kick');
+ for(const player of match.people.filter(player=>player.t===1&&!player.keeper)){player.x=.9;player.y=.85}
+ const piece=match.setPiece;match.setPiece=null;
+ v50TakeFreeKick(piece);
+ const shot=piece.taker.stats.shots;
+ step(1,.05);
+ return{shot,score:match.score[0],penalty:match.goals.at(-1)?.penalty};
+})())`,direct));
+assert.equal(directResult.shot,1,'a central free kick near goal can be taken directly');
+assert.equal(directResult.score,1,'a direct free kick can score');
+assert.equal(directResult.penalty,false,'the direct free-kick goal is not a penalty');
+
 const complete=newMatch();
 vm.runInContext('for(let tick=0;running&&tick<6500;tick++)step(.05,.05);if(running)throw Error("match did not finish after restart positioning")',complete);
 assert.equal(vm.runInContext('match.finished',complete),true);

@@ -17,7 +17,21 @@ const behind=newMatch();
 assert.equal(vm.runInContext(`(()=>{const victim=match.people.find(player=>player.t===0&&!player.keeper),tackler=match.people.find(player=>player.t===1&&!player.keeper);victim.x=.5;victim.y=.5;victim.motionX=0;victim.motionY=-1;tackler.x=.5;tackler.y=.56;match.owner=victim;match.ball={x:.516,y:.478};return v56StandingTackle(tackler,victim)})()`,behind),false,'a defender behind the carrier cannot win a standing tackle');
 
 const side=newMatch();
-assert.equal(vm.runInContext(`(()=>{const victim=match.people.find(player=>player.t===0&&!player.keeper),tackler=match.people.find(player=>player.t===1&&!player.keeper);victim.x=.5;victim.y=.5;victim.motionX=0;victim.motionY=-1;tackler.x=.54;tackler.y=.48;match.owner=victim;match.ball={x:.516,y:.478};Math.random=()=>.9;return v56StandingTackle(tackler,victim)})()`,side),true,'a defender beside the ball may challenge');
+const resisted=JSON.parse(vm.runInContext(`JSON.stringify((()=>{const victim=match.people.find(player=>player.t===0&&!player.keeper),tackler=match.people.find(player=>player.t===1&&!player.keeper);victim.x=.5;victim.y=.5;victim.motionX=0;victim.motionY=-1;tackler.x=.54;tackler.y=.48;match.owner=victim;match.ball={x:.516,y:.478};Math.random=()=>.9;return{consumed:v56StandingTackle(tackler,victim),duels:tackler.stats.duels,recovery:tackler.recoverUntil-match.elapsed}})())`,side));
+assert.equal(resisted.duels,1,'a defender beside the ball may challenge');
+assert.equal(resisted.consumed,false,'a resisted standing tackle must not consume the carrier action');
+assert(resisted.recovery>0,'a beaten tackler cannot retry in the next simulation step');
+
+const resistedAction=newMatch();
+const resistedActionResult=JSON.parse(vm.runInContext(`JSON.stringify((()=>{const carrier=match.people.find(player=>player.t===0&&!player.keeper),rival=match.people.find(player=>player.t===1&&!player.keeper);for(const player of match.people){player.x=.9;player.y=.9}carrier.x=.5;carrier.y=.5;carrier.motionX=0;carrier.motionY=-1;rival.x=.54;rival.y=.48;match.owner=carrier;match.ball={x:.516,y:.478};Math.random=()=>.9;action();return{flight:!!match.flight,duels:rival.stats.duels,recovery:rival.recoverUntil-match.elapsed}})())`,resistedAction));
+assert.equal(resistedActionResult.duels,1,'the nearby rival tries to win the ball');
+assert(resistedActionResult.recovery>0,'a failed attempt gives the tackler a short pause');
+assert(resistedActionResult.flight,'the carrier can pass after resisting the challenge');
+
+const recovery=newMatch();
+const recoveryResult=JSON.parse(vm.runInContext(`JSON.stringify((()=>{const carrier=match.people.find(player=>player.t===0&&!player.keeper),rival=match.people.find(player=>player.t===1&&!player.keeper);for(const player of match.people){player.x=.9;player.y=.9}carrier.x=.5;carrier.y=.5;carrier.motionX=0;carrier.motionY=-1;rival.x=.54;rival.y=.48;match.owner=carrier;match.ball={x:.516,y:.478};let draws=[.9,0];Math.random=()=>draws.shift()??0;v56StandingTackle(rival,carrier);const cooldown=carrier.recoverUntil-match.elapsed;action();return{cooldown,owner:match.owner?.name,flight:!!match.flight}})())`,recovery));
+assert(recoveryResult.cooldown>0,'the dispossessed player needs a brief recovery');
+assert(recoveryResult.flight,'the winner gets an actual ball action before the same rival can challenge again');
 
 const slide=newMatch();
 const slideResult=JSON.parse(vm.runInContext(`JSON.stringify((()=>{const victim=match.people.find(player=>player.t===0&&!player.keeper),tackler=match.people.find(player=>player.t===1&&!player.keeper);for(const player of match.people){player.x=.9;player.y=.9}victim.x=.5;victim.y=.5;victim.motionX=0;victim.motionY=-1;tackler.x=.5;tackler.y=.59;match.owner=victim;match.ball={x:.516,y:.478};Math.random=()=>0;v56StartSlide(tackler,victim);let ticks=0;while(match.slide&&ticks++<30)step(.05,.05);return{ticks,card:('yellowCards'in tackler.stats)||('redCards'in tackler.stats),slide:!!match.slide,removed:!match.people.includes(tackler),team:match.people.filter(player=>player.t===1&&!player.keeper).length,piece:match.setPiece?.type}})())`,slide));
@@ -28,9 +42,10 @@ assert.equal(slideResult.team,5,'both teams remain at full strength');
 assert.equal(slideResult.piece,'freeKick');
 
 const cleanSlide=newMatch();
-const cleanResult=JSON.parse(vm.runInContext(`JSON.stringify((()=>{const victim=match.people.find(player=>player.t===0&&!player.keeper),tackler=match.people.find(player=>player.t===1&&!player.keeper);for(const player of match.people){player.x=.9;player.y=.9}victim.x=.5;victim.y=.5;victim.motionX=0;victim.motionY=-1;tackler.x=.63;tackler.y=.478;match.owner=victim;match.ball={x:.516,y:.478};Math.random=()=>0;v56StartSlide(tackler,victim);let ticks=0;while(match.slide&&ticks++<30)step(.05,.05);return{won:tackler.stats.slideWon,foul:tackler.stats.fouls,loose:!!match.rebound,ticks}})())`,cleanSlide));
+const cleanResult=JSON.parse(vm.runInContext(`JSON.stringify((()=>{const victim=match.people.find(player=>player.t===0&&!player.keeper),tackler=match.people.find(player=>player.t===1&&!player.keeper);for(const player of match.people){player.x=.9;player.y=.9}victim.x=.5;victim.y=.5;victim.motionX=0;victim.motionY=-1;tackler.x=.63;tackler.y=.478;match.owner=victim;match.ball={x:.516,y:.478};Math.random=()=>0;v56StartSlide(tackler,victim);let ticks=0;while(match.slide&&ticks++<30)step(.05,.05);return{won:tackler.stats.slideWon,foul:tackler.stats.fouls,loose:!!match.rebound,recovery:victim.recoverUntil-match.elapsed,ticks}})())`,cleanSlide));
 assert.equal(cleanResult.won,1,'a slide that reaches the ball before the player can win it');
 assert.equal(cleanResult.foul,0);
+assert(cleanResult.recovery>0,'a clean sliding win also gives the dispossessed player a brief recovery');
 assert(cleanResult.ticks>1);
 
 assert.equal(slideResult.card,false,'there are no cards');

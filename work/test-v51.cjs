@@ -14,7 +14,13 @@ assert.match(pitchBar,/scaleY\(0\.250\)/,'the pitch bar uses the player freshnes
 assert.match(pitchBar,/#9865D6/,'the pitch bar shares the effective smiley color');
 assert.deepEqual(JSON.parse(vm.runInContext("JSON.stringify(v51OrderedStarters([{line:'att',n:9},{line:'mid',n:7},{line:'def',n:2},{keeper:true,line:'gk',n:1},{line:'def',n:4}]).map(player=>player.n))",context)),[1,2,4,7,9],'starter list follows keeper, defenders, midfielders and attackers');
 
-vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');start()",context);
+vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe')",context);
+vm.runInContext('function v24FatigueText(){return "keine"} function v24TopSkills(){return ""}',context);
+const keeperCard=vm.runInContext('v51LineupCardContent(homeKeeper,"TOR")',context);
+const defenderCard=vm.runInContext('v51LineupCardContent(players.find(player=>player.line==="def"),"VER")',context);
+assert.match(keeperCard,/<strong>TOR<\/strong> · \d+ J\. · Müdigkeit:/,'keeper card uses TOR and shows age');
+assert.match(defenderCard,/<strong>VER<\/strong> · \d+ J\. · Müdigkeit:/,'outfield card shows age beside its position');
+vm.runInContext('start()',context);
 assert.equal(vm.runInContext('running',context),true);
 const progress=JSON.parse(vm.runInContext(`JSON.stringify((()=>{
  const player=match.people.find(person=>person.t===0&&!person.keeper);

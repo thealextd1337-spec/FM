@@ -36,8 +36,11 @@ assert.equal(vm.runInContext('activeSave.cup.pending.phase',cupContext),'choose'
 assert.equal(vm.runInContext('activeSave.cup.pending.report.players.length',cupContext),12);
 assert.equal(vm.runInContext('activeSave.cup.pending.report.score.join(":")',cupContext),'1:1');
 const cupOverview=vm.runInContext('v47CompetitionHTML(activeSave.cup.pending.report)',cupContext);
-for(const label of['Pokal','Weitere Ergebnisse','Turnierbaum','Torschützen','Vorlagen'])assert(cupOverview.includes(label),label);
+for(const label of['Pokal','Alle Ergebnisse','Turnierbaum','Torschützen','Vorlagen'])assert(cupOverview.includes(label),label);
 assert(!cupOverview.includes('Ligatabelle'));
+vm.runInContext("activeSave.cup.rounds[0]=[{home:'user',away:'team-1',result:[2,1],winner:'user'},{home:'team-2',away:'team-3',result:[0,1],winner:'team-3'}]",cupContext);
+const completedCupRound=vm.runInContext("v47CompetitionHTML({...activeSave.cup.pending.report,competition:{type:'cup',stage:0}})",cupContext);
+assert.equal((completedCupRound.match(/class="v47-result"/g)||[]).length,2,'cup round overview shows every completed game, including the user match');
 const cupResult=vm.runInContext("v47OtherResultHTML({home:'team-1',away:'team-2',result:[1,1],winner:'team-2',penalties:[2,3]},'cup')",cupContext);
 assert(cupResult.includes('class="winner"')&&cupResult.includes('Elfmeterschießen 2 : 3'));
 console.log('PASS: compact team codes, both post-match squads, assists and persisted cup report');
