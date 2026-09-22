@@ -1,12 +1,11 @@
 # Änderungen
 
-## Noch nicht veröffentlicht
+## 2026-09-22
 
 ### Spielerstatus
 
+- Die zuvor eingeführten Pixelgesichter wurden durch die gewählte Variante A mit klarer, vollflächiger Mimik ersetzt. Sie erscheinen nun direkt an Feldspielern und Torwart im Aufstellungsraster; die Startelfliste zeigt den Status ohne abgeschnittene Namen. Der Frischebalken sinkt im Match stufenlos und ein Gesichtswechsel wird sanft eingeblendet. Eingesetzte Spieler erhalten zwischen Partien einmalig 16 Frischepunkte zurück, Bankspieler weiterhin 24. Der Bericht zeigt die Frische bei Abpfiff, ältere Spielstände werden ab dem nächsten absolvierten Match nach der neuen Regel behandelt. Geprüft mit `node work/test-v52.cjs`, den bestehenden Spieltests, Build sowie Desktop- und Mobilansicht.
 - Fünf eigene Formgesichter und fünf Müdigkeitsbalken als skalierbare SVG-Grafiken erstellt und zu einer gemeinsamen Statusanzeige verbunden. Die Aufstellung zeigt den Status aller sechs Startspieler mit ihren drei stärksten Fähigkeiten sowie den Status der Ersatzbank. Im Match verändert sich der Status der eigenen Spieler mit der sinkenden Frische. Hohe Form verlangsamt die Ermüdung leicht; geringe Frische begrenzt die wirksame Form und damit auch die Spielleistung. Die bisherige Ergebnisform bleibt gespeichert. Die Vorschau liegt unter `docs/status-icons-preview.svg`; SVG-Dateien, `node work/test-v51.cjs` und Build wurden geprüft.
-
-## 2026-09-22
 
 ### Aufstellung
 
