@@ -37,6 +37,7 @@ jobs:
           node work/test-v49.cjs
           node work/test-v50.cjs
           node work/test-v50-balance.cjs
+          node work/test-v51.cjs
           python3 work/test_deploy_ftps.py
 
       - name: Einzeldatei bauen
