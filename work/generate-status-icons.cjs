@@ -8,11 +8,11 @@ fs.mkdirSync(iconDir,{recursive:true});
 
 // Variante A: ein vollflächiges Gesicht, dessen Mimik und Blick auch ohne Farbe lesbar sind.
 const formStates=[
- {id:'very-good',label:'Sehr gut',color:'#EE6C64',mouth:'M10 22 Q18 29 26 22',pupil:[1,-1],brow:''},
- {id:'good',label:'Gut',color:'#F5A45B',mouth:'M11 23 Q18 27 25 23',pupil:[1,-.5],brow:''},
- {id:'normal',label:'Normal',color:'#86CF99',mouth:'M12 24 H24',pupil:[0,0],brow:''},
- {id:'weak',label:'Schwach',color:'#80B6EC',mouth:'M11 26 Q18 21 25 26',pupil:[1,1],brow:''},
- {id:'very-weak',label:'Sehr schwach',color:'#B3A5C9',mouth:'M10 27 Q18 18 26 27',pupil:[0,1.5],brow:'<path d="M10 11l5 1M21 12l5-1"/>'}
+ {id:'very-good',label:'Sehr gut',color:'#F0525D',mouth:'M10 22 Q18 29 26 22',pupil:[1,-1],brow:''},
+ {id:'good',label:'Gut',color:'#F18B38',mouth:'M11 23 Q18 27 25 23',pupil:[1,-.5],brow:''},
+ {id:'normal',label:'Normal',color:'#49C67D',mouth:'M12 24 H24',pupil:[0,0],brow:''},
+ {id:'weak',label:'Schwach',color:'#4C9DE8',mouth:'M11 26 Q18 21 25 26',pupil:[1,1],brow:''},
+ {id:'very-weak',label:'Sehr schwach',color:'#9865D6',mouth:'M10 27 Q18 18 26 27',pupil:[0,1.5],brow:'<path d="M10 11l5 1M21 12l5-1"/>'}
 ];
 const freshnessStates=[
  {id:'fresh',label:'Frisch',percent:100},

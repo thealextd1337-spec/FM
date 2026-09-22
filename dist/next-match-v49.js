@@ -1,7 +1,7 @@
 'use strict';
 
 const v49Style=document.createElement('style');
-v49Style.textContent=`.v49-match-preview{margin:4px 0 17px;padding:13px;border:1px solid #405955;border-radius:9px;background:#102126}.v49-match-preview>p{margin:0 0 10px;color:#a9beb6;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}.v49-fixture{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:11px;align-items:start}.v49-club{min-width:0}.v49-club>strong{display:block;min-height:35px;color:#edf5ef;font-size:15px;line-height:1.25;overflow-wrap:anywhere}.v49-club>strong small{color:#a9beb6;font-size:12px;white-space:nowrap}.v49-fixture>span{padding-top:2px;color:#92aaa4;font-size:11px}.v49-form{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.v49-form b{display:grid;place-items:center;width:27px;height:27px;border-radius:5px;font-size:12px}.v49-form .win{background:#276344;color:#dcffe0}.v49-form .loss{background:#70343c;color:#ffe2e2}.v49-form .draw{background:#4a5759;color:#eef1f1}.v49-form .empty{border:1px dashed #4a6060;color:#839795}@media(max-width:420px){.v49-fixture{gap:5px}.v49-club>strong{font-size:13px}.v49-form{gap:3px}.v49-form b{width:22px;height:23px;font-size:11px}}`;
+v49Style.textContent=`.v49-match-preview{margin:4px 0 17px;padding:13px;border:1px solid #405955;border-radius:9px;background:#102126}.v49-match-preview>p{margin:0 0 10px;color:#a9beb6;font-size:11px;font-weight:800;letter-spacing:.5px;text-transform:uppercase}.v49-fixture{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:11px;align-items:start}.v49-club{min-width:0}.v49-club>strong{display:block;min-height:35px;color:#edf5ef;font-size:15px;line-height:1.25;overflow-wrap:anywhere}.v49-club>strong small{color:#a9beb6;font-size:12px;white-space:nowrap}.v49-fixture>span{padding-top:2px;color:#92aaa4;font-size:11px}.v49-form{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.v49-form b{display:grid;place-items:center;width:27px;height:27px;border-radius:5px;font-size:12px}.v49-form .win{background:#276344;color:#dcffe0}.v49-form .loss{background:#70343c;color:#ffe2e2}.v49-form .draw{background:#4a5759;color:#eef1f1}.v49-form .empty{border:1px dashed #4a6060;color:#839795}.center-lead>.squad-warnings{margin:0 0 17px;padding:0;border:0;background:transparent}.center-lead>.squad-warnings ul{margin-bottom:0}@media(max-width:420px){.v49-fixture{gap:5px}.v49-club>strong{font-size:13px}.v49-form{gap:3px}.v49-form b{width:22px;height:23px;font-size:11px}}`;
 document.head.append(v49Style);
 
 function v49RecentForm(teamId){
@@ -23,6 +23,8 @@ function v49NextMatchPreview(){
  const lead=clubCenter.querySelector('.center-lead'),html=v49PreviewHTML();if(!lead||!html)return;
  lead.querySelector('.v49-match-preview')?.remove();
  lead.querySelector('#to-lineup')?.insertAdjacentHTML('beforebegin',html);
+ const check=clubCenter.querySelector('.squad-warnings');
+ if(check)lead.querySelector('.v49-match-preview')?.insertAdjacentElement('afterend',check);
 }
 const v49BaseRenderCenter=renderCenter;
 renderCenter=function(){const result=v49BaseRenderCenter();v49NextMatchPreview();document.querySelectorAll('footer span:first-child').forEach(label=>label.textContent='Doppel 6 / PROTOTYP 49');return result};

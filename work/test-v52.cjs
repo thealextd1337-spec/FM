@@ -11,7 +11,13 @@ function setup(){
 
 const context=setup();
 assert.equal(vm.runInContext("v51StatusHTML({form:2,fresh:71}).includes('scaleX(0.710)')",context),true,'bar uses exact freshness rather than one of five fixed images');
-assert.equal(vm.runInContext("decodeURIComponent(v51StatusFaces['very-good']).includes('fill=\"#EE6C64\"')",context),true,'selected face design is bundled');
+assert.equal(vm.runInContext("v51StatusHTML({form:-2,fresh:20}).includes('--v51-status-color:#9865D6')",context),true,'exhausted status bar follows the purple face');
+assert.equal(vm.runInContext("v51StatusHTML({form:2,fresh:100}).includes('--v51-status-color:#F0525D')",context),true,'strong form status bar follows the coral face');
+assert.equal(vm.runInContext("decodeURIComponent(v51StatusFaces['very-good']).includes('fill=\"#F0525D\"')",context),true,'selected face design is bundled');
+for(const [key,color] of Object.entries({'very-weak':'#9865D6',weak:'#4C9DE8',normal:'#49C67D',good:'#F18B38','very-good':'#F0525D'})){
+ assert.equal(vm.runInContext(`v51FormColors['${key}']`,context),color,`${key} bar matches the vivid face palette`);
+ assert(decodeURIComponent(vm.runInContext(`v51StatusFaces['${key}']`,context)).includes(`fill="${color}"`),`${key} face uses the vivid palette`);
+}
 vm.runInContext("activeSave.squad.find(player=>!activeSave.lineup.includes(player.n)).fresh=50;start();match.elapsed=75;finishMatch()",context);
 const whistle=JSON.parse(vm.runInContext(`JSON.stringify({
  starter:activeSave.squad.find(player=>activeSave.lineup.includes(player.n)).fresh,
