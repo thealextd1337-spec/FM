@@ -18,6 +18,11 @@ assert.match(vm.runInContext('playerCardHTML(activeSave.squad[0])',context),/Luf
 assert.match(vm.runInContext('playerCardHTML(activeSave.squad[0])',context),/Hohe Pässe/);
 assert.match(vm.runInContext("qolOfferCardHTML({...makeOffer('regular','att',72,25),expiresDay:5})",context),/Luftspiel [^<]+<\/span>/);
 assert.match(vm.runInContext("v55ColorSkills('Luftspiel stark',activeSave.squad[0])",context),/style="color:#[0-9a-fA-F]{6}"/);
+assert.equal(vm.runInContext('[7,8,11,14,17].map(v55SkillColor).join(",")',context),'#9865D6,#4C9DE8,#49C67D,#F18B38,#F0525D');
+const coloredScouting=vm.runInContext("scoutingTextHTML({...activeSave.squad[0],line:'att',fin:7,tec:8,spd:11,air:17})",context);
+for(const color of ['#9865D6','#4C9DE8','#49C67D','#F0525D'])assert(coloredScouting.includes(`color:${color}`),`scouting text is missing ${color}`);
+assert.match(vm.runInContext("youthPotentialHTML({player:{line:'att'},target:{fin:14,tec:14,air:14}})",context),/color:#F18B38/);
+assert.match(vm.runInContext('v42LevelHTML(17)',context),/color:#F0525D/);
 assert.match(vm.runInContext("v51LineupCardContent(activeSave.squad[0],'MF',4)",context),/data-v51-select="4"/,'starter card keeps its selection control');
 assert.match(vm.runInContext("v51LineupCardContent(activeSave.squad[0],'MF',4)",context),/data-open-player=/,'starter card keeps its profile link');
 for(const player of data.players){

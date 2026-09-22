@@ -25,6 +25,7 @@ function youthPotentialWord(candidate){
  const keys=youthFocus[candidate.player.line],score=keys.reduce((sum,key)=>sum+candidate.target[key],0)/keys.length;
  return scoutWord(score)
 }
+function youthPotentialHTML(candidate){return escapeHTML(youthPotentialWord(candidate))}
 function scoutYouth(id){
  if(!activeSave||activeSave.currentRound>=10||!transferState().open)return false;
  const candidate=ensureYouth().candidates.find(item=>item.id===id),finance=ensureFinance(activeSave);
@@ -73,7 +74,7 @@ finishMatch=function(){
 
 function youthCandidateHTML(candidate){
  const player=candidate.player,finance=ensureFinance(activeSave),available=finance.balance-(finance.reserved||0);
- const details=candidate.scouted?`<p>Aktuell: ${escapeHTML(scoutingText(player))}</p><p>Potenzial: ${escapeHTML(youthPotentialWord(candidate))} · Gehalt: ${annualSalary(player)} Credits/Jahr</p>`:'<p>Fähigkeiten und Potenzial sind noch unbekannt.</p>';
+ const details=candidate.scouted?`<p>Aktuell: ${scoutingTextHTML(player)}</p><p>Potenzial: ${youthPotentialHTML(candidate)} · Gehalt: ${annualSalary(player)} Credits/Jahr</p>`:'<p>Fähigkeiten und Potenzial sind noch unbekannt.</p>';
  const action=candidate.signed?'<span class="youth-signed">Verpflichtet</span>':candidate.scouted?`<button class="menu-action wide" data-youth-sign="${candidate.id}" ${!selectedSponsor()||activeRosterSize()>=12||available<YOUTH_SIGN_COST?'disabled':''}>Für ${YOUTH_SIGN_COST} Credits verpflichten</button>`:`<button class="menu-action wide" data-youth-scout="${candidate.id}" ${available<YOUTH_SCOUT_COST?'disabled':''}>Für ${YOUTH_SCOUT_COST} Credits scouten</button>`;
  return`<article class="youth-card"><div class="market-name">${flagSVG(player.nation)}<div><b>${escapeHTML(player.name)}</b><span>${transferPosition(player)} · ${player.age} Jahre</span></div></div>${details}${action}</article>`
 }

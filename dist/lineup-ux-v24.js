@@ -127,7 +127,7 @@ function v24ApplyTab(){
 }
 function v24OpponentContext(){
  let context=$('#prematch-context');if(!context){context=document.createElement('section');context.id='prematch-context';context.className='prematch-context';document.querySelector('#game-screen .intro').insertAdjacentElement('afterend',context)}
- if(!activeSave)return;const opponent=activeOpponent(),rank=standings().findIndex(team=>team.id===opponent.id)+1,fixture=userFixture(),venue=fixture?.home==='user'?'Heimspiel':'Auswärtsspiel',strength=opponent.strength>=75?'stark':opponent.strength>=70?'ausgeglichen':'machbar';context.innerHTML=`<span>Partie<b>${escapeHTML(venue)}</b></span><span>Gegner<b>${escapeHTML(strength)}</b></span><span>Tabelle<b>Platz ${rank||'-'}</b></span>`;context.hidden=running;
+ if(!activeSave)return;const opponent=activeOpponent(),rank=standings().findIndex(team=>team.id===opponent.id)+1,fixture=userFixture(),venue=fixture?.home==='user'?'Heimspiel':'Auswärtsspiel',strength=opponent.strength>=75?'stark':opponent.strength>=70?'ausgeglichen':'machbar',color=typeof v55SkillColor==='function'?` style="color:${v55SkillColor(Math.round(opponent.strength/5))}"`:'';context.innerHTML=`<span>Partie<b>${escapeHTML(venue)}</b></span><span>Gegner<b${color}>${escapeHTML(strength)}</b></span><span>Tabelle<b>Platz ${rank||'-'}</b></span>`;context.hidden=running;
 }
 function v24DecoratePrematch(){if(!activeSave||running)return;v24DecorateGrid();v24SelectedCompact();renderPreMatchLineup();v24Tabs();v24OpponentContext()}
 

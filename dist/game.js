@@ -27,14 +27,14 @@ const scoutFields=[['Technik','tec'],['Passspiel','pas'],['Abschluss','fin'],['Z
 let selected=0,press=0,direct=0,formation='balanced',running=false,match=null,frame=0;
 
 function quality(v){return v<35?'sehr schwach':v<48?'eher schwach':v<61?'durchschnittlich':v<73?'solide':v<85?'stark':'sehr stark'}
-function estimate(p,key){const seed=[...p.name].reduce((s,c)=>s+c.charCodeAt(0),0)+key.length*11;return quality(clamp(p[key]+seed%13-6,1,100))}
+function estimate(p,key){if(typeof scoutingBand==='function'&&p[key]<=20)return scoutingBand(p[key],p,key);const seed=[...p.name].reduce((s,c)=>s+c.charCodeAt(0),0)+key.length*11;return quality(clamp(p[key]+seed%13-6,1,100))}
 function formText(v){return ['sehr schwach','schwach','normal','gut','sehr gut'][clamp(v+2,0,4)]}
 function freshText(v){return v>=88?'frisch':v>=72?'einsatzbereit':v>=52?'leicht müde':v>=32?'müde':'erschöpft'}
 
 function render(){
  $('#grid').innerHTML=Array.from({length:35},(_,i)=>{const p=players.find(x=>x.cell===i),row=Math.floor(i/5)+1,col=i%5+1;return `<button class="cell ${p===players[selected]?'chosen':''}" data-cell="${i}" aria-label="${p?p.name+', Spielerprofil öffnen, ':''}Reihe ${row}, Spalte ${col}" ${p===players[selected]?'aria-pressed="true"':''}>${p?`<span class="role-mark">${['↓','·','↑'][p.role+1]}</span><span class="token">${p.n}</span><span class="player-label">${p.name.toUpperCase()}</span>`:''}</button>`}).join('');
  $('#roster').innerHTML=players.map((p,i)=>`<button class="roster-player ${i===selected?'active':''}" data-player="${i}" aria-label="${p.name} auswählen" aria-pressed="${i===selected}">${p.n}<small>${p.name}</small></button>`).join('');
- const p=players[selected],ratings=scoutFields.map(([label,key])=>`<div class="rating">${label}<b>${estimate(p,key)}</b></div>`).join('');
+ const p=players[selected],ratings=scoutFields.map(([label,key])=>`<div class="rating">${label}<b${typeof v55SkillColor==='function'&&Number.isFinite(p[key])?` style="color:${v55SkillColor(p[key])}"`:''}>${estimate(p,key)}</b></div>`).join('');
  $('#selected-player').innerHTML=`<div class="selected-head"><strong>${p.name}</strong><span>#${p.n} · ${lineNames[p.line]}</span></div><div class="player-state"><span>${p.age} Jahre</span><span class="${p.form>0?'form-good':''}">Form: ${formText(p.form)}</span><span class="${p.fresh<72?'tired':''}">Frische: ${freshText(p.fresh)}</span></div><div class="ratings">${ratings}</div>`;
  $$('[data-role]').forEach(b=>{b.classList.toggle('active',+b.dataset.role===p.role);b.setAttribute('aria-pressed',+b.dataset.role===p.role)});
  $('#role-help').textContent=roleHelp[p.role+1];updatePlan();

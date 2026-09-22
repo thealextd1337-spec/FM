@@ -2,7 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
-Keine Einträge.
+### Stärkenfarben
+
+- Die fünf Stärkestufen von 1–20 verwenden jetzt an allen sichtbaren Fähigkeitseinschätzungen die Farben der Müdigkeitsanzeige und Smilies: Violett, Blau, Grün, Orange und Rot. Das umfasst Startkader, Spielerprofil, Kader, Aufstellung, Transfers und Vergleich, Jugend samt Potenzial sowie Elfmeterschützen. Auch die Stärkehinweise zum Gegner sind farbig. Die bisherigen Wörter und die verborgenen Zahlen bleiben erhalten.
+- Geprüft mit den Versionsprüfungen bis v55, Build und Sichtprüfung in Kader und Transfermarkt.
 
 ## 2026-09-22 (Freistöße und Abseits)
 

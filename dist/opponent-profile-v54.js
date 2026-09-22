@@ -21,13 +21,19 @@ function v54StrengthSentence(team){
  if(difference>=-8)return`${name} ist uns leicht unterlegen; wir gehen als Favorit ins Spiel.`;
  return`${name} ist uns deutlich unterlegen; wir sind klarer Favorit.`;
 }
+function v54StrengthSentenceHTML(team){
+ const sentence=escapeHTML(v54StrengthSentence(team));
+ if(typeof v55SkillColor!=='function')return sentence;
+ const phrase=/klar überlegen|leicht überlegen|Gegner auf Augenhöhe|leicht unterlegen|deutlich unterlegen/;
+ return sentence.replace(phrase,text=>`<strong style="color:${v55SkillColor(Math.round(team.strength/5))}">${text}</strong>`);
+}
 function v54TeamHTML(team){
  const standing=activeSave.table.find(item=>item.id===team.id),rank=standings().findIndex(item=>item.id===team.id)+1;
  const hasPlayed=v49RecentForm(team.id).length>0,lineup=hasPlayed?aiLineup(team):[],starters=new Set(lineup.map(player=>player.n));
  const groups=[['Angriff','att'],['Mittelfeld','mid'],['Abwehr','def'],['Torwart','gk']];
  const lineupHTML=lineup.length?`<div class="v54-formation">${groups.map(([label,line])=>`<div class="v54-line"><span>${label}</span><div>${lineup.filter(player=>player.line===line).map(player=>`<b>#${player.n} ${escapeHTML(player.name)}</b>`).join('')}</div></div>`).join('')}</div>`:'<p class="v54-empty">Dieser Verein hat noch kein Spiel bestritten.</p>';
  const roster=[...(team.roster||[])].sort((a,b)=>(a.keeper?-1:b.keeper?1:0)||({def:0,mid:1,att:2}[a.line]??3)-({def:0,mid:1,att:2}[b.line]??3)||a.n-b.n);
- return`<div class="v54-body"><div class="v54-head"><div>${flagSVG('AT')}<h2 id="v54-team-name">${escapeHTML(team.name)}</h2></div><button type="button" class="v54-close" aria-label="Vereinsinfo schließen">×</button></div><p class="v54-facts">Saison ${activeSave.seasonNumber} · Platz ${rank} · ${standing?.played??0} Spiele · ${standing?.pts??0} Punkte · Tore ${standing?.gf??0}:${standing?.ga??0}</p><p class="v54-strength">${escapeHTML(v54StrengthSentence(team))}</p><section class="v54-section"><h3>Kader · ${roster.length} Spieler</h3><div class="v54-roster">${roster.map(player=>`<div class="v54-roster-row"><span>${flagSVG(player.nation)}<b>#${player.n} ${escapeHTML(player.name)}</b></span><small>${player.keeper?'Torwart':lineNames[player.line]||player.line} · ${player.age} J.${hasPlayed?` · ${starters.has(player.n)?'Startelf':'Bank'}`:''}</small></div>`).join('')}</div></section><section class="v54-section"><h3>Letzte genutzte Aufstellung · 2–2–1</h3>${lineupHTML}</section></div>`;
+ return`<div class="v54-body"><div class="v54-head"><div>${flagSVG('AT')}<h2 id="v54-team-name">${escapeHTML(team.name)}</h2></div><button type="button" class="v54-close" aria-label="Vereinsinfo schließen">×</button></div><p class="v54-facts">Saison ${activeSave.seasonNumber} · Platz ${rank} · ${standing?.played??0} Spiele · ${standing?.pts??0} Punkte · Tore ${standing?.gf??0}:${standing?.ga??0}</p><p class="v54-strength">${v54StrengthSentenceHTML(team)}</p><section class="v54-section"><h3>Kader · ${roster.length} Spieler</h3><div class="v54-roster">${roster.map(player=>`<div class="v54-roster-row"><span>${flagSVG(player.nation)}<b>#${player.n} ${escapeHTML(player.name)}</b></span><small>${player.keeper?'Torwart':lineNames[player.line]||player.line} · ${player.age} J.${hasPlayed?` · ${starters.has(player.n)?'Startelf':'Bank'}`:''}</small></div>`).join('')}</div></section><section class="v54-section"><h3>Letzte genutzte Aufstellung · 2–2–1</h3>${lineupHTML}</section></div>`;
 }
 function v54OpenTeam(teamId){
  const team=worldTeam(teamId);if(!team)return;
@@ -40,7 +46,7 @@ function v54DecorateCenter(){
  if(!activeSave)return;
  const opponent=activeSave.currentRound<10&&!v41CupGameForUser()?activeOpponent():null;
  const summary=clubCenter.querySelector('.center-lead > .help');
- if(opponent&&summary)summary.textContent=v54StrengthSentence(opponent);
+ if(opponent&&summary)summary.innerHTML=v54StrengthSentenceHTML(opponent);
  const teams=standings();
  clubCenter.querySelectorAll('.center-grid .league-table').forEach(table=>{
   table.querySelectorAll('.table-row:not(.table-head)').forEach((row,index)=>{

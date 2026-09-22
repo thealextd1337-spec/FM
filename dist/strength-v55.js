@@ -75,8 +75,24 @@ const v55LineupCardContent=v51LineupCardContent;
 v51LineupCardContent=function(player,position,selectCell=null){return v55LineupCardContent(player,position,selectCell).replace(/<span class="v51-card-skills">([^<]*)<\/span>/,(whole,content)=>`<span class="v51-card-skills">${v55ColorSkills(content,player)}</span>`)};
 const v55ScoutingText=scoutingText;
 scoutingText=function(player){const original=v55ScoutingText(player);return player.keeper?original:`${original} · Luftspiel ${scoutWord(player.air)}`};
-const v55OfferCardHTML=qolOfferCardHTML;
-qolOfferCardHTML=function(offer,free=false){const player=offer.player,colored=scoutingText(player).split(' · ').map(part=>{const match=part.match(/^(Technik|Passspiel|Abschluss|Zweikampf|Stellungsspiel|Stellung|Tempo|Kondition|Torwartspiel|Luftspiel) (.*)$/);if(!match)return escapeHTML(part);const key={Technik:'tec',Passspiel:'pas',Abschluss:'fin',Zweikampf:'tak',Stellungsspiel:'pos',Stellung:'pos',Tempo:'spd',Kondition:'sta',Torwartspiel:'gk',Luftspiel:'air'}[match[1]];return`<span style="color:${v55SkillColor(player[key])}">${escapeHTML(part)}</span>`}).join(' · ');return v55OfferCardHTML(offer,free).replace(`<p>${escapeHTML(scoutingText(player))}</p>`,`<p>${colored}</p>`)};
+scoutingTextHTML=function(player){
+ const keys={Technik:'tec',Passspiel:'pas',Abschluss:'fin',Zweikampf:'tak',Stellungsspiel:'pos',Stellung:'pos',Tempo:'spd',Geschwindigkeit:'spd',Kondition:'sta',Torwartspiel:'gk',Luftspiel:'air'};
+ return scoutingText(player).split(' · ').map(part=>{
+  const label=Object.keys(keys).find(name=>part.startsWith(`${name} `)),value=player[keys[label]];
+  return Number.isFinite(value)?`<span style="color:${v55SkillColor(value)}">${escapeHTML(part)}</span>`:escapeHTML(part);
+ }).join(' · ');
+};
+youthPotentialHTML=function(candidate){
+ const keys=youthFocus[candidate.player.line],score=keys.reduce((sum,key)=>sum+candidate.target[key],0)/keys.length;
+ return `<strong style="color:${v55SkillColor(score)}">${escapeHTML(youthPotentialWord(candidate))}</strong>`;
+};
+v42LevelHTML=function(value){return `<strong style="color:${v55SkillColor(value)}">${escapeHTML(v42Level(value))}</strong>`};
+for(const id of ['v42-own-team','v42-opp-team']){
+ const select=document.querySelector(`#${id}`);if(!select)continue;
+ const update=()=>{const team=v42Teams.find(item=>item.id===select.value);if(team)select.style.color=v55SkillColor(team.fin)};
+ select.querySelectorAll('option').forEach(option=>{const team=v42Teams.find(item=>item.id===option.value);if(team)option.style.color=v55SkillColor(team.fin)});
+ select.addEventListener('change',update);update();
+}
 const v55BaseStatBlock=statBlock;
 statBlock=function(player,stats){const html=v55BaseStatBlock(player,stats);if(player.keeper)return html;const extra=`<span>Hohe Pässe<b>${stats.highComplete||0} / ${stats.highPasses||0}</b></span><span>Flanken<b>${stats.crossComplete||0} / ${stats.crosses||0}</b></span><span>Kopfbälle<b>${(stats.headers||0)+(stats.headerPasses||0)}</b></span><span>Luftduelle<b>${stats.aerialWon||0} / ${stats.aerialDuels||0}</b></span>`;return html.replace('</div>',`${extra}</div>`)};
 
