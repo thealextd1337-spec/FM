@@ -22,6 +22,19 @@ vm.runInContext(`
  const deleteButton={dataset:{delete:'current-save'},closest(selector){return selector==='[data-delete]'?this:null}};
  document.querySelector('#save-list').onclick({target:deleteButton});
 `,context);
+assert.equal(vm.runInContext('readSlots().length',context),1,'first click must preserve the save');
+assert.match(vm.runInContext("document.querySelector('#save-list').innerHTML",context),/data-confirm-delete="current-save"/,'first click must show an in-page confirmation');
+vm.runInContext(`
+ const cancelButton={dataset:{cancelDelete:'current-save'},closest(selector){return selector==='[data-cancel-delete]'?this:null}};
+ document.querySelector('#save-list').onclick({target:cancelButton});
+`,context);
+assert.equal(vm.runInContext('readSlots().length',context),1,'cancel must preserve the save');
+assert.doesNotMatch(vm.runInContext("document.querySelector('#save-list').innerHTML",context),/data-confirm-delete=/,'cancel must close the confirmation');
+vm.runInContext('document.querySelector("#save-list").onclick({target:deleteButton})',context);
+vm.runInContext(`
+ const confirmButton={dataset:{confirmDelete:'current-save'},closest(selector){return selector==='[data-confirm-delete]'?this:null}};
+ document.querySelector('#save-list').onclick({target:confirmButton});
+`,context);
 assert.equal(vm.runInContext('readSlots().length',context),0,'confirmed deletion must remove the current save');
 assert.doesNotMatch(vm.runInContext("document.querySelector('#save-list').innerHTML",context),/current-save/,'deleted save must disappear immediately');
 console.log('PASS: current saves replace legacy buttons and confirmed deletion updates storage and menu');
