@@ -4,6 +4,10 @@
 
 ## 2026-09-22
 
+### Gespeicherte Spiele
+
+- Die Startseite zeigt nach dem Laden nur noch Spielstände der aktuellen Stärkeskala. Zuvor blieben ältere, nicht mehr ladbare Einträge mit wirkungslosen Knöpfen sichtbar. „Fortsetzen“ und „Exportieren“ arbeiten wieder mit den angezeigten Spielständen; ein bestätigtes „Löschen“ entfernt den Spielstand aus dem Browserspeicher und sofort aus der Liste. Ältere Spielstände werden nicht automatisch gelöscht. Geprüft mit `node work/test-v53-save-menu.cjs` und lokal im Browser.
+
 ### Vereinsgründung
 
 - Zwischen der Logo-Auswahl und „Weiter zur Kaderwahl“ liegt nun etwas mehr Abstand.

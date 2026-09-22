@@ -55,3 +55,7 @@ const v53ScoutingSkillsHTML=scoutingSkillsHTML;
 scoutingSkillsHTML=function(player){const html=v53ScoutingSkillsHTML(player);return html.replace(/<span>([^<]+)<b>([^<]+)<\/b><\/span>/g,(whole,label,word)=>{const keys={Technik:'tec',Passspiel:'pas',Abschluss:'fin',Zweikampf:'tak',Stellungsspiel:'pos',Geschwindigkeit:'spd',Kondition:'sta',Torwartspiel:'gk'};const value=player[keys[label]];return Number.isFinite(value)?`<span>${label}<b style="color:${v53SkillColor(value)}">${word}</b></span>`:whole})};
 const v53LineupCardContent=v51LineupCardContent;
 v51LineupCardContent=function(player,position){const html=v53LineupCardContent(player,position),keys={Technik:'tec',Passspiel:'pas',Abschluss:'fin',Zweikampf:'tak',Stellungsspiel:'pos',Geschwindigkeit:'spd',Kondition:'sta',Torwartspiel:'gk'};return html.replace(/<span class="v51-card-skills">([^<]*)<\/span>/,(whole,content)=>`<span class="v51-card-skills">${content.split(' · ').map(part=>{const label=Object.keys(keys).find(name=>part.startsWith(name+' ')),value=player[keys[label]];return Number.isFinite(value)?`<span style="color:${v53SkillColor(value)}">${part}</span>`:part}).join(' · ')}</span>`)};
+
+// Earlier scripts render the start menu before the v4 save reader is installed.
+// Refresh it now so every visible action refers to a loadable v4 save.
+drawSlots();
