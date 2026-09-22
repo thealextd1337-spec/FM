@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-22 (Update)
+
 ### Gespeicherte Spiele
 
 - „Löschen“ zeigt die Bestätigung jetzt direkt im Spiel. Erst „Endgültig löschen“ entfernt den Spielstand; „Abbrechen“ lässt ihn bestehen. Damit hängt das Löschen nicht mehr vom Browser-Bestätigungsdialog ab. Geprüft mit `node work/test-v53-save-menu.cjs` und Build.
