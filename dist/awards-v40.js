@@ -19,7 +19,7 @@ addSyntheticMatch=function(team,goals){
  if(!activeSave?.cupEnabled)return v13AddSyntheticMatchV40(team,goals);
  const lineup=aiLineup(team),outfield=lineup.filter(player=>!player.keeper),contributions=new Map(lineup.map(player=>[player,{goals:0,assists:0}]));
  for(let goal=0;goal<goals;goal++){
-  const pool=outfield.flatMap(player=>Array(Math.max(1,Math.round((player.fin||45)/18)+(player.line==='att'?3:player.line==='mid'?1:0))).fill(player));
+  const pool=outfield.flatMap(player=>Array(Math.max(1,Math.round(((player.fin??45)*(player.fin<=20?5:1))/18)+(player.line==='att'?3:player.line==='mid'?1:0))).fill(player));
   const scorer=pick(pool),others=outfield.filter(player=>player!==scorer),assister=others.length&&Math.random()<.7?pick(others):null;
   const stats=currentStats(scorer);stats.goals++;stats.shots+=1+Math.floor(Math.random()*2);stats.onTarget++;contributions.get(scorer).goals++;
   if(assister){currentStats(assister).assists++;contributions.get(assister).assists++}

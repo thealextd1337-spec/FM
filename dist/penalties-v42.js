@@ -54,7 +54,7 @@ function v42Celebration(name,colour,ownWin){return`<div class="cup-celebration" 
 function v42NextKick(){
  const session=v42Session;if(!session||session.phase!=='shooting')return;
  const side=session.kicks.length%2,pair=Math.floor(session.kicks.length/2),order=side===0?session.order:session.opponentOrder,roster=side===0?session.own:session.opponent,other=side===0?session.opponent:session.own,player=roster.find(item=>item.n===order[pair%6]),keeper=other.find(item=>item.keeper),goal=Math.random()<v42PenaltyChance(player,keeper);
- const saveChance=clamp(.45+((keeper.gk||70)-60)*.004+(v42Composure(keeper)-60)*.002-((player.fin||60)-60)*.001,.2,.75);
+ const saveChance=clamp(.45+((keeper.gk<=20?(keeper.gk??14)*5:keeper.gk||70)-60)*.004+(v42Composure(keeper)-60)*.002-((player.fin<=20?(player.fin??12)*5:player.fin||60)-60)*.001,.2,.75);
  const outcome=goal?'goal':Math.random()<saveChance?'save':Math.random()<.5?'wide':'high',shotSide=Math.random()<.5?-1:1,diveSide=outcome==='save'?shotSide:-shotSide;
  session.score[side]+=Number(goal);session.last={side,name:player.name,number:player.n,goal,outcome,shotSide,diveSide,score:[...session.score]};session.kicks.push(session.last);
  const pairComplete=side===1,threeOrMore=pair>=2;if(pairComplete&&threeOrMore&&session.score[0]!==session.score[1]){session.winner=session.score[0]>session.score[1]?0:1;session.phase='done';if(session.mode==='career')v42SettleCareer(session)}v42Save();v42RenderScreen();

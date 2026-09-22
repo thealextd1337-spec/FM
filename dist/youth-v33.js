@@ -9,8 +9,8 @@ function makeYouthCandidate(index){
  const peak=ensurePlayerId(playerIdentity(line,0,age,68+Math.floor(Math.random()*14)));
  const target=Object.fromEntries(youthKeys.map(key=>[key,peak[key]])),player=structuredClone(peak);
  for(const key of youthKeys){
-  const gap=youthFocus[line].includes(key)?7+Math.floor(Math.random()*6):2+Math.floor(Math.random()*5);
-  player[key]=clamp(target[key]-gap,20,95)
+  const gap=youthFocus[line].includes(key)?2+Math.floor(Math.random()*2):1+Math.floor(Math.random()*2);
+  player[key]=clamp(target[key]-gap,0,20)
  }
  player.salary=annualSalary({...player,...target});
  return{id:crypto.randomUUID(),player,target,scouted:false,signed:false}

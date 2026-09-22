@@ -9,7 +9,7 @@ function addSyntheticMatch(team,goals){
  const lineup=aiLineup(team),outfield=lineup.filter(player=>!player.keeper);
  for(const player of lineup){const stats=currentStats(player);stats.games++;stats.ratingTotal+=6;stats.ratingCount++}
  for(let goal=0;goal<goals;goal++){
-  const pool=outfield.flatMap(player=>Array(Math.max(1,Math.round((player.fin||45)/18)+(player.line==='att'?3:player.line==='mid'?1:0))).fill(player));
+  const pool=outfield.flatMap(player=>Array(Math.max(1,Math.round(((player.fin??45)*(player.fin<=20?5:1))/18)+(player.line==='att'?3:player.line==='mid'?1:0))).fill(player));
   const scorer=pick(pool),stats=currentStats(scorer);stats.goals++;stats.shots+=1+Math.floor(Math.random()*2);stats.onTarget++;
  }
 }

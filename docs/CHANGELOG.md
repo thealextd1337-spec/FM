@@ -2,6 +2,10 @@
 
 ## 2026-09-22
 
+### Stärkesystem
+
+- Spielerfähigkeiten werden in neuen Karrieren intern als ganze Werte von 0 bis 20 gespeichert. Die ungefähren Fähigkeitsbeschreibungen bleiben bestehen und erhalten fünf Farben entsprechend Formgesichtern und Müdigkeitsbalken: Violett (0–7), Blau (8–10), Grün (11–13), Orange (14–16), Rot (17–20). Alte Spielstände werden wegen des Skalenwechsels nicht mehr geladen oder importiert. Ein importierbarer Spielstand direkt vor einem Pokalfinale liegt unter `outputs/pokalfinale-staerke-0-20.json`. Geprüft mit `node work/test-v53.cjs` und Build.
+
 ### Spielerstatus
 
 - Die zuvor eingeführten Pixelgesichter wurden durch die gewählte Variante A mit klarer, vollflächiger Mimik ersetzt. Sie erscheinen nun direkt an Feldspielern und Torwart im Aufstellungsraster; die Startelfliste zeigt den Status ohne abgeschnittene Namen. Der Frischebalken sinkt im Match stufenlos und ein Gesichtswechsel wird sanft eingeblendet. Eingesetzte Spieler erhalten zwischen Partien einmalig 16 Frischepunkte zurück, Bankspieler weiterhin 24. Der Bericht zeigt die Frische bei Abpfiff, ältere Spielstände werden ab dem nächsten absolvierten Match nach der neuen Regel behandelt. Geprüft mit `node work/test-v52.cjs`, den bestehenden Spieltests, Build sowie Desktop- und Mobilansicht.
