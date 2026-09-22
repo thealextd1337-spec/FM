@@ -7,6 +7,9 @@ const starters=fs.readFileSync('dist/player-status-v51.js','utf8');
 const drag=fs.readFileSync('dist/lineup-ux-v24.js','utf8');
 
 assert.match(starters,/class="v51-starter"[^>]*draggable="true"[^>]*data-drag-player="\$\{player\.n\}"[^>]*data-drag-kind="pitch"[^>]*data-drop-cell="\$\{player\.cell\}"/,'starter cards must be draggable pitch players and drop targets');
+assert.match(starters,/v51LineupCardContent\(player,position\)/,'starters and goalkeeper use the shared card layout');
+assert.match(starters,/v51LineupCardContent\(player,transferPosition\(player\)\)/,'bench players use the shared card layout');
+assert.match(starters,/keeper\.querySelector\('small'\)\?\.remove\(\)/,'keeper fatigue is not repeated beneath the pitch label');
 assert.match(drag,/data-drag-kind="bench"[^>]*data-bank-player="\$\{player\.n\}"/,'bench cards remain draggable drop targets');
 const context=makeContext();
 context.document.addEventListener=()=>{};

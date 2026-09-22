@@ -29,6 +29,10 @@ function v51PitchFaceHTML(player){
  const face=v51FormKeys[v51EffectiveForm(player)+2];
  return `<span class="v51-pitch-face" aria-hidden="true"><img src="${v51StatusFaces[face]}" alt=""></span>`;
 }
+function v51PitchBarHTML(player){
+ const face=v51FormKeys[v51EffectiveForm(player)+2];
+ return `<span class="v51-pitch-bar" aria-hidden="true" style="--v51-status-color:${v51FormColors[face]}"><span class="v51-pitch-bar-fill" style="transform:scaleY(${(clamp(player.fresh??100,0,100)/100).toFixed(3)})"></span></span>`;
+}
 function v51TopSkills(player){
  if(!player.keeper)return v24TopSkills(player);
  return [['Torwartspiel','gk'],['Passspiel','pas'],['Stellungsspiel','pos'],['Geschwindigkeit','spd'],['Kondition','sta']]
@@ -46,14 +50,18 @@ v51Style.textContent=`
 @media(max-width:760px){.v51-live-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.v51-starter-grid{grid-template-columns:1fr}.v51-starter{padding:8px 9px}.grid .cell .position-label,.grid .cell .player-label{padding-left:1px}.keeper .v51-keeper-position{font-size:8px}}
 .bench-strip{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible}.bench-chip{min-width:0;grid-template-columns:minmax(0,1fr) auto;width:100%}.bench-chip>.fitness-dot{display:none}.bench-select>.v51-status{display:flex;width:100%;justify-content:center;margin:7px 0}.bench-select .bench-title,.bench-select .bench-title b,.bench-select .bench-skills{white-space:normal}.v51-keeper-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}.v51-keeper-info{min-width:0}.v51-keeper-card .bench-title{display:flex;align-items:center;gap:7px}.v51-keeper-card .bench-title .flag-icon{width:25px;height:17px;flex:none}.v51-keeper-card .v51-status{display:flex;justify-content:center;margin:7px 0}.v51-keeper-card .bench-meta{display:block;color:#b9ccc6;font-size:11px}.v51-keeper-card small{margin-top:5px}.v51-keeper-card .player-link{min-height:44px;padding:8px 10px;border:1px solid #56716d;border-radius:6px;background:#20383a;color:#f0f6f1;font-size:11px;font-weight:700}
 .v51-starter[draggable=true]{cursor:grab;touch-action:none}.v51-starter.dragging{opacity:.45}.v51-starter.drag-over{border-color:var(--club-primary);background:color-mix(in srgb,var(--club-primary) 14%,#102126)}
+.v51-starter,.bench-chip{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;min-height:0;padding:10px 11px}.v51-card-main{display:grid;grid-template-columns:minmax(0,1fr);justify-items:stretch;gap:5px;min-width:0;width:100%;padding:0;border:0;background:none;color:#eef6f2;text-align:left}.v51-card-title{display:flex;align-items:center;gap:8px;min-width:0;font-size:13px;line-height:1.3}.v51-card-title .flag-icon{width:27px;height:18px;flex:none}.v51-card-title b{min-width:0;white-space:normal;overflow-wrap:anywhere}.v51-card-main>.v51-status{display:flex;justify-self:center;margin:0}.v51-card-meta{color:#c4d3cc;font-size:12px;line-height:1.35}.v51-card-meta strong{color:#f0f6f1}.v51-card-skills{color:#abc4b9;font-size:11px;line-height:1.4}.v51-starter .player-link,.bench-chip .player-link{min-height:44px;padding:8px 10px;border:1px solid #56716d;border-radius:6px;background:#20383a;color:#f0f6f1;font-size:12px;font-weight:700}.v51-keeper-card{align-items:center}.compact-actions button{min-height:44px;padding:8px 10px;font-size:13px;line-height:1.2}.v51-pitch-bar{position:absolute;z-index:2;left:calc(50% + 34px);top:calc(50% - 11px);width:6px;height:24px;overflow:hidden;border-radius:4px;background:#415558;pointer-events:none}.v51-pitch-bar-fill{position:absolute;inset:1px;border-radius:3px;background:var(--v51-status-color);transform-origin:center bottom}.keeper .v51-pitch-bar{top:4px;left:calc(50% + 37px)}.keeper>small{display:none}
 @media(max-width:760px){.bench-strip{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.v51-face.v51-changed{animation:none}.v51-bar-fill{transition:none}}
 `;
 document.head.append(v51Style);
 
 if(typeof v24BenchHTML==='function'){
- const v51BaseBenchHTML=v24BenchHTML;
- v24BenchHTML=function(player){return v51BaseBenchHTML(player).replace('<span class="bench-meta">',`${v51StatusHTML(player)}<span class="bench-meta">`)};
+ v24BenchHTML=function(player){return `<article class="bench-chip" draggable="true" data-drag-player="${player.n}" data-drag-kind="bench" data-bank-player="${player.n}"><button type="button" class="bench-select v51-card-main" data-bench-select="${player.n}" aria-label="${escapeHTML(player.name)} einwechseln">${v51LineupCardContent(player,transferPosition(player))}</button><button type="button" class="player-link" data-open-player="${escapeHTML(player.pid)}" aria-label="Details zu ${escapeHTML(player.name)} öffnen">Details</button></article>`};
+}
+
+function v51LineupCardContent(player,position){
+ return `<span class="v51-card-title">${flagSVG(player.nation)}<b>#${player.n} ${escapeHTML(player.name)}</b></span>${v51StatusHTML(player)}<span class="v51-card-meta"><strong>${escapeHTML(position)}</strong> · Müdigkeit: ${v24FatigueText(player.fresh??100)}</span><span class="v51-card-skills">${escapeHTML(v51TopSkills(player))}</span>`;
 }
 
 function v51StarterPanel(){
@@ -61,10 +69,10 @@ function v51StarterPanel(){
  let panel=$('#v51-starters');if(!panel){panel=document.createElement('section');panel.id='v51-starters';panel.className='v51-starters';$('#setup-pitch').insertAdjacentElement('afterend',panel)}
  const starters=[...players,homeKeeper];
  panel.innerHTML=`<h3>Startaufstellung · Form und Müdigkeit</h3><div class="v51-starter-grid">${starters.map(player=>{
-  const position=player.keeper?'TOR':v25PositionShort[player.line];
-  const action=player.keeper?`data-open-player="${escapeHTML(player.pid)}"`:`data-v51-select="${player.cell}"`;
-  if(player.keeper)return `<article class="v51-starter v51-keeper-card"><div class="v51-keeper-info"><span class="bench-title">${flagSVG(player.nation)}<b>#${player.n} ${escapeHTML(player.name)}</b></span>${v51StatusHTML(player)}<span class="bench-meta"><strong>Torwart</strong> · Müdigkeit: ${v24FatigueText(player.fresh??100)}</span><small>${escapeHTML(v51TopSkills(player))}</small></div><button type="button" class="player-link" ${action} aria-label="Details zu ${escapeHTML(player.name)} öffnen">Details</button></article>`;
-  return `<article class="v51-starter" draggable="true" data-drag-player="${player.n}" data-drag-kind="pitch" data-drop-cell="${player.cell}"><div class="v51-starter-head"><button type="button" ${action}>#${player.n} ${escapeHTML(player.name)} · ${position}</button>${v51StatusHTML(player)}</div><small>${escapeHTML(v51TopSkills(player))}</small></article>`;
+  const position=player.keeper?'Torwart':v25PositionShort[player.line];
+  const details=`<button type="button" class="player-link" data-open-player="${escapeHTML(player.pid)}" aria-label="Details zu ${escapeHTML(player.name)} öffnen">Details</button>`;
+  if(player.keeper)return `<article class="v51-starter v51-keeper-card"><div class="v51-card-main">${v51LineupCardContent(player,position)}</div>${details}</article>`;
+  return `<article class="v51-starter" draggable="true" data-drag-player="${player.n}" data-drag-kind="pitch" data-drop-cell="${player.cell}"><button type="button" class="v51-card-main" data-v51-select="${player.cell}" aria-label="${escapeHTML(player.name)} auf dem Feld auswählen">${v51LineupCardContent(player,position)}</button>${details}</article>`;
  }).join('')}</div>`;
  panel.hidden=v24Tab!=='lineup';
  panel.querySelectorAll('[data-v51-select]').forEach(button=>button.onclick=()=>$('#grid').querySelector(`[data-cell="${button.dataset.v51Select}"]`)?.click());
@@ -76,21 +84,23 @@ function v51PrematchStatus(){
  const player=players[selected],meta=$('#pitch-role-bar .pitch-role-meta');
  if(meta&&player)meta.innerHTML=`${v51StatusHTML(player)}<span>${escapeHTML(formText(v51EffectiveForm(player)))}e Form · ${escapeHTML(freshText(player.fresh??100))}</span>`;
  $('#grid')?.querySelectorAll('.cell[data-cell]').forEach(cell=>{
-  cell.querySelector('.v51-pitch-face')?.remove();
+ cell.querySelector('.v51-pitch-face')?.remove();
+  cell.querySelector('.v51-pitch-bar')?.remove();
   const person=players.find(item=>item.cell===+cell.dataset.cell),token=cell.querySelector('.token');
   if(!person||!token)return;
-  token.insertAdjacentHTML('afterend',v51PitchFaceHTML(person));
+  token.insertAdjacentHTML('afterend',v51PitchFaceHTML(person)+v51PitchBarHTML(person));
   cell.dataset.v51BaseLabel ||= cell.getAttribute('aria-label');
   cell.setAttribute('aria-label',`${cell.dataset.v51BaseLabel}, Form ${formText(v51EffectiveForm(person))}, ${freshText(person.fresh??100)}`);
  });
  const keeper=$('#setup-pitch .keeper');
  if(keeper&&activeSave.keeper){
   keeper.querySelector('.v51-pitch-face')?.remove();
-  keeper.querySelector('b')?.insertAdjacentHTML('afterend',v51PitchFaceHTML(homeKeeper));
+  keeper.querySelector('.v51-pitch-bar')?.remove();
+  keeper.querySelector('b')?.insertAdjacentHTML('afterend',v51PitchFaceHTML(homeKeeper)+v51PitchBarHTML(homeKeeper));
   keeper.querySelector('.v51-keeper-position')?.remove();
   keeper.querySelector('.player-link')?.insertAdjacentHTML('beforebegin','<strong class="v51-keeper-position">TOR</strong>');
   keeper.querySelector('.player-link')?.setAttribute('aria-label',`${homeKeeper.name}, Torwart, Form ${formText(v51EffectiveForm(homeKeeper))}, ${freshText(homeKeeper.fresh??100)}, Spielerprofil öffnen`);
-  const note=keeper.querySelector('small');if(note)note.textContent=freshText(activeSave.keeper.fresh??100);
+  keeper.querySelector('small')?.remove();
  }
 }
 if(typeof v25Prematch==='function'){

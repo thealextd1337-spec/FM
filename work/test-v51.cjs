@@ -8,6 +8,10 @@ const states=JSON.parse(vm.runInContext(`JSON.stringify([100,87,71,51,31].map(fr
 assert.deepEqual(states,[2,1,0,-1,-2],'even excellent recent results must yield to severe fatigue');
 assert(vm.runInContext('v51Workload({form:2,sta:70,age:25})<v51Workload({form:-2,sta:70,age:25})',context),'good form slows exhaustion');
 assert(vm.runInContext('v51StatusHTML({form:2,fresh:100}).includes("v51-face")&&v51StatusHTML({form:2,fresh:100}).includes("v51-bar")',context),'combined badge contains both indicators');
+const pitchBar=vm.runInContext('v51PitchBarHTML({form:2,fresh:25})',context);
+assert.match(pitchBar,/v51-pitch-bar-fill/,'pitch players show a vertical fatigue bar');
+assert.match(pitchBar,/scaleY\(0\.250\)/,'the pitch bar uses the player freshness');
+assert.match(pitchBar,/#9865D6/,'the pitch bar shares the effective smiley color');
 
 vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');start()",context);
 assert.equal(vm.runInContext('running',context),true);
