@@ -18,6 +18,8 @@ assert.equal(initial.rounds[0].length,2);assert.equal(initial.rounds[1].length,2
 let cupMatches=0,leagueMatches=0;
 while(vm.runInContext('activeSave.currentRound',context)<10){
  const cup=Boolean(vm.runInContext('Boolean(v41CupGameForUser())',context));
+ vm.runInContext('showTactics()',context);
+ assert.equal(vm.runInContext("document.querySelector('#start').innerHTML.includes('Pokalspiel starten')",context),cup,'Spielstart-Beschriftung muss zur aktuellen Partie passen');
  vm.runInContext(`start();if(!running)throw Error('Match did not start');match.score=[2,0];finishMatch();renderCenter()`,context);
  if(cup)cupMatches++;else leagueMatches++;
  if(cupMatches+leagueMatches>13)throw Error('Cup or league progression stalled');

@@ -36,6 +36,8 @@ for(const rolls of[[0,.2],[.99,0,0],[.99,.99,0,.99],[.99,.99,.99,.99],[0,.2],[0,
  context.rolls=rolls;
  vm.runInContext('Math.random=()=>rolls.shift();v42NextKick()',context);
  const kick=vm.runInContext('v42Session.last',context),scene=vm.runInContext('v42SceneHTML(v42Session)',context);
+ assert.equal(kick.diveSide,kick.outcome==='save'?kick.shotSide:-kick.shotSide,'keeper dives toward saves and moves on every other outcome');
+ assert(scene.includes(`--dive-x:${kick.diveSide*64}px`),'keeper scene uses recorded dive direction');
  const celebrating=[...scene.matchAll(/class="v42-fan-block( celebrate)?"/g)].map(match=>Boolean(match[1]));
  assert.deepEqual(celebrating,[kick.goal&&kick.side===0,kick.goal&&kick.side===1]);
  assert.equal((scene.match(/class="v42-flag"/g)||[]).length,10);

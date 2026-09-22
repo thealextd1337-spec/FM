@@ -10,6 +10,9 @@ v24Style.textContent=`
 document.head.append(v24Style);
 v24Style.textContent+=`.bench-chip{min-width:270px;grid-template-columns:8px minmax(0,1fr) auto;gap:9px;padding:10px}.bench-select{display:block;min-height:46px;width:100%;text-align:left}.bench-title{display:flex;align-items:center;gap:7px}.bench-title .flag-icon{width:25px;height:17px;flex:none}.bench-select b{font-size:12px;line-height:1.3}.bench-meta{display:block;margin-top:5px;color:#b9ccc6;font-size:11px;line-height:1.35;white-space:normal}.bench-meta strong{color:#f0f6f1}.bench-chip .player-link{min-height:44px;padding:8px 10px;border:1px solid #56716d;border-radius:6px;background:#20383a;color:#f0f6f1;font-size:11px;font-weight:700}@media(max-width:760px){.bench-chip{min-width:255px}}`;
 v24Style.textContent+=`.grid .cell .player-label{display:flex;align-items:center;justify-content:center;gap:3px;max-width:100%;white-space:nowrap}.grid .cell .player-label .flag-icon{width:16px;height:11px;flex:none}.grid .cell .player-label span{min-width:0;overflow:hidden;text-overflow:ellipsis}.keeper .flag-icon{width:16px;height:11px;margin-right:3px}@media(max-width:480px){.grid .cell .player-label .flag-icon{width:13px;height:9px}}`;
+v24Style.textContent+=`.grid .cell .position-label{display:block;margin-top:2px;color:#c7e2d0;font-size:8px;font-weight:700;line-height:1;letter-spacing:.5px}@media(max-width:760px){.grid .cell .position-label{font-size:7px}}`;
+v24Style.textContent+=`.bench-skills{display:block;margin-top:4px;color:#a9c8be;font-size:10px;line-height:1.4;white-space:normal}`;
+v24Style.textContent+=`.cell[draggable=true],.bench-chip[draggable=true]{touch-action:none}`;
 
 function v24FitnessClass(value){return value<52?'tired':value<72?'ready':'fresh'}
 function v24PositionWarning(player){
@@ -44,8 +47,12 @@ function v24UpdateReadiness(){
 }
 function v24BenchPlayers(){return activeSave.squad.filter(player=>!player.retired&&!activeSave.lineup.includes(player.n))}
 function v24FatigueText(value){return value>=88?'keine':value>=72?'gering':value>=52?'leicht':value>=32?'müde':'erschöpft'}
+function v24TopSkills(player){
+ const skills=[['Technik','tec'],['Passspiel','pas'],['Abschluss','fin'],['Zweikampf','tak'],['Stellungsspiel','pos'],['Geschwindigkeit','spd'],['Kondition','sta']];
+ return skills.map(([label,key],index)=>({label,key,index,value:player[key]??0})).sort((a,b)=>b.value-a.value||a.index-b.index).slice(0,3).map(skill=>`${skill.label} ${scoutingBand(skill.value,player,skill.key)}`).join(' · ');
+}
 function v24BenchHTML(player){
- return`<article class="bench-chip" draggable="true" data-drag-player="${player.n}" data-drag-kind="bench" data-bank-player="${player.n}"><i class="fitness-dot ${v24FitnessClass(player.fresh)}"></i><button class="bench-select" data-bench-select="${player.n}" aria-label="${escapeHTML(player.name)} einwechseln"><span class="bench-title">${flagSVG(player.nation)}<b>#${player.n} ${escapeHTML(player.name)}</b></span><span class="bench-meta"><strong>${escapeHTML(transferPosition(player))}</strong> · Müdigkeit: ${v24FatigueText(player.fresh)}</span></button><button class="player-link" data-open-player="${escapeHTML(player.pid)}" aria-label="Details zu ${escapeHTML(player.name)} öffnen">Details</button></article>`;
+ return`<article class="bench-chip" draggable="true" data-drag-player="${player.n}" data-drag-kind="bench" data-bank-player="${player.n}"><i class="fitness-dot ${v24FitnessClass(player.fresh)}"></i><button class="bench-select" data-bench-select="${player.n}" aria-label="${escapeHTML(player.name)} einwechseln"><span class="bench-title">${flagSVG(player.nation)}<b>#${player.n} ${escapeHTML(player.name)}</b></span><span class="bench-meta"><strong>${escapeHTML(transferPosition(player))}</strong> · Müdigkeit: ${v24FatigueText(player.fresh)}</span><span class="bench-skills">${escapeHTML(v24TopSkills(player))}</span></button><button class="player-link" data-open-player="${escapeHTML(player.pid)}" aria-label="Details zu ${escapeHTML(player.name)} öffnen">Details</button></article>`;
 }
 function v24SelectedCompact(){
  const panel=$('#player-panel'),player=players[selected];if(!panel||!player)return;
@@ -58,7 +65,7 @@ function v24SelectedCompact(){
 }
 function v24DecorateGrid(){
  const grid=$('#grid');if(!grid)return;
- grid.querySelectorAll('[data-cell]').forEach(cell=>{const player=players.find(item=>item.cell===+cell.dataset.cell);cell.dataset.dropCell=cell.dataset.cell;if(player){cell.draggable=true;cell.dataset.dragPlayer=player.n;cell.dataset.dragKind='pitch';cell.setAttribute('aria-label',`${player.name}, ${nationData[player.nation]?.name||player.nation||'Nationalität unbekannt'}, Spielerprofil öffnen, Reihe ${Math.floor(player.cell/5)+1}, Spalte ${player.cell%5+1}`);const label=cell.querySelector('.player-label');if(label&&!label.querySelector('.flag-icon'))label.innerHTML=`${flagSVG(player.nation)}<span>${escapeHTML(player.name.toUpperCase())}</span>`;const dot=document.createElement('i');dot.className=`fitness-dot ${v24FitnessClass(player.fresh)}`;cell.append(dot)}else{cell.draggable=false;delete cell.dataset.dragPlayer;delete cell.dataset.dragKind}});
+ grid.querySelectorAll('[data-cell]').forEach(cell=>{const player=players.find(item=>item.cell===+cell.dataset.cell);cell.dataset.dropCell=cell.dataset.cell;if(player){cell.draggable=true;cell.dataset.dragPlayer=player.n;cell.dataset.dragKind='pitch';const position={def:'VER',mid:'MIT',att:'ANG'}[player.line]||'';cell.setAttribute('aria-label',`${player.name}, ${position}, ${nationData[player.nation]?.name||player.nation||'Nationalität unbekannt'}, Spieler auswählen, Reihe ${Math.floor(player.cell/5)+1}, Spalte ${player.cell%5+1}`);const label=cell.querySelector('.player-label');if(label){label.innerHTML=`${flagSVG(player.nation)}<span>${escapeHTML(player.name.toUpperCase())}</span>`;const positionLabel=cell.querySelector('.position-label');if(positionLabel)positionLabel.textContent=position;else label.insertAdjacentHTML('beforebegin',`<span class="position-label">${position}</span>`)}const dot=document.createElement('i');dot.className=`fitness-dot ${v24FitnessClass(player.fresh)}`;cell.append(dot)}else{cell.draggable=false;delete cell.dataset.dragPlayer;delete cell.dataset.dragKind}});
  const keeper=document.querySelector('#setup-pitch .keeper');if(keeper&&activeSave?.keeper){keeper.innerHTML=`<b>1</b><button class="player-link" data-open-player="${escapeHTML(activeSave.keeper.pid)}">${escapeHTML(activeSave.keeper.name.toUpperCase())} · TW</button><small>${escapeHTML(freshText(activeSave.keeper.fresh))}</small>`;bindPlayerCardLinks(keeper)}
 }
 function renderPreMatchLineup(){
@@ -87,23 +94,36 @@ function v24HandleDrop(source,target){
  if(target.closest?.('#compact-bench')&&source.kind==='pitch'){v24SetStatus('Ziehe den Feldspieler direkt auf den gewünschten Bankspieler.',true);return false}
  return false;
 }
-function v24ClearDrag(){document.querySelectorAll('.dragging,.drag-over').forEach(element=>element.classList.remove('dragging','drag-over'));document.querySelector('.drag-ghost')?.remove();v24Drag=null}
-document.addEventListener('dragstart',event=>{const source=event.target.closest?.('[data-drag-player]');if(!source||running)return;v24Drag={number:+source.dataset.dragPlayer,kind:source.dataset.dragKind};source.classList.add('dragging');event.dataTransfer?.setData('text/plain',JSON.stringify(v24Drag));if(event.dataTransfer)event.dataTransfer.effectAllowed='move'});
-document.addEventListener('dragover',event=>{if(!v24Drag)return;const target=event.target.closest?.('[data-drop-cell],[data-bank-player],#compact-bench');if(target){event.preventDefault();document.querySelectorAll('.drag-over').forEach(item=>item.classList.remove('drag-over'));target.classList.add('drag-over')}});
+let v24ScrollFrame=0;
+function v24HighlightDrag(x,y){document.querySelectorAll('.drag-over').forEach(item=>item.classList.remove('drag-over'));document.elementFromPoint(x,y)?.closest?.('[data-drop-cell],[data-bank-player],#compact-bench')?.classList.add('drag-over')}
+function v24ScrollDuringDrag(){
+ v24ScrollFrame=0;if(!v24Drag?.dragging)return;
+ const edge=72,y=v24Drag.clientY,height=window.innerHeight;
+ if(Number.isFinite(y)){
+  const speed=y<edge?-Math.ceil((edge-y)/edge*16):y>height-edge?Math.ceil((y-height+edge)/edge*16):0;
+  if(speed){window.scrollBy(0,speed);v24HighlightDrag(v24Drag.clientX,y)}
+ }
+ v24ScrollFrame=requestAnimationFrame(v24ScrollDuringDrag);
+}
+function v24TrackDrag(x,y){v24Drag.clientX=x;v24Drag.clientY=y;if(!v24ScrollFrame)v24ScrollFrame=requestAnimationFrame(v24ScrollDuringDrag)}
+function v24ClearDrag(){if(v24ScrollFrame)cancelAnimationFrame(v24ScrollFrame);v24ScrollFrame=0;document.querySelectorAll('.dragging,.drag-over').forEach(element=>element.classList.remove('dragging','drag-over'));document.querySelector('.drag-ghost')?.remove();v24Drag=null}
+document.addEventListener('dragstart',event=>{const source=event.target.closest?.('[data-drag-player]');if(!source||running)return;v24Drag={number:+source.dataset.dragPlayer,kind:source.dataset.dragKind,dragging:true};source.classList.add('dragging');event.dataTransfer?.setData('text/plain',JSON.stringify(v24Drag));if(event.dataTransfer)event.dataTransfer.effectAllowed='move'});
+document.addEventListener('dragover',event=>{if(!v24Drag)return;v24TrackDrag(event.clientX,event.clientY);const target=event.target.closest?.('[data-drop-cell],[data-bank-player],#compact-bench');if(target){event.preventDefault();v24HighlightDrag(event.clientX,event.clientY)}});
 document.addEventListener('drop',event=>{if(!v24Drag)return;event.preventDefault();const source=v24Drag;v24ClearDrag();v24HandleDrop(source,event.target)});
 document.addEventListener('dragend',v24ClearDrag);
 document.addEventListener('pointerdown',event=>{const source=event.target.closest?.('[data-drag-player]');if(!source||running||event.pointerType==='mouse')return;v24Drag={number:+source.dataset.dragPlayer,kind:source.dataset.dragKind,pointer:event.pointerId,x:event.clientX,y:event.clientY,dragging:false,source}});
-document.addEventListener('pointermove',event=>{if(!v24Drag||v24Drag.pointer!==event.pointerId)return;const distance=Math.hypot(event.clientX-v24Drag.x,event.clientY-v24Drag.y);if(!v24Drag.dragging&&distance<9)return;if(!v24Drag.dragging){v24Drag.dragging=true;v24Drag.source.classList.add('dragging');const ghost=document.createElement('div');ghost.className='drag-ghost';ghost.textContent=v24Drag.source.querySelector('b,.player-label')?.textContent||'Spieler';document.body.append(ghost)}event.preventDefault();const ghost=document.querySelector('.drag-ghost');if(ghost){ghost.style.left=`${event.clientX}px`;ghost.style.top=`${event.clientY}px`}document.querySelectorAll('.drag-over').forEach(item=>item.classList.remove('drag-over'));document.elementFromPoint(event.clientX,event.clientY)?.closest?.('[data-drop-cell],[data-bank-player],#compact-bench')?.classList.add('drag-over')},{passive:false});
+document.addEventListener('pointermove',event=>{if(!v24Drag||v24Drag.pointer!==event.pointerId)return;const distance=Math.hypot(event.clientX-v24Drag.x,event.clientY-v24Drag.y);if(!v24Drag.dragging&&distance<9)return;if(!v24Drag.dragging){v24Drag.dragging=true;v24Drag.source.classList.add('dragging');const ghost=document.createElement('div');ghost.className='drag-ghost';ghost.textContent=v24Drag.source.querySelector('b,.player-label')?.textContent||'Spieler';document.body.append(ghost)}event.preventDefault();v24TrackDrag(event.clientX,event.clientY);const ghost=document.querySelector('.drag-ghost');if(ghost){ghost.style.left=`${event.clientX}px`;ghost.style.top=`${event.clientY}px`}v24HighlightDrag(event.clientX,event.clientY)},{passive:false});
 document.addEventListener('pointerup',event=>{if(!v24Drag||v24Drag.pointer!==event.pointerId)return;const source={number:v24Drag.number,kind:v24Drag.kind},wasDragging=v24Drag.dragging,target=document.elementFromPoint(event.clientX,event.clientY);v24ClearDrag();if(wasDragging){v24SuppressClickUntil=Date.now()+450;v24HandleDrop(source,target)}});
-document.addEventListener('click',event=>{if(Date.now()<v24SuppressClickUntil&&event.target.closest?.('[data-drag-player]')){event.preventDefault();event.stopImmediatePropagation()}},true);
+document.addEventListener('pointercancel',event=>{if(v24Drag?.pointer===event.pointerId)v24ClearDrag()});
+document.addEventListener('click',event=>{if(Date.now()<v24SuppressClickUntil&&event.target.closest?.('[data-cell],[data-drag-player]')){event.preventDefault();event.stopImmediatePropagation()}},true);
 
 function v24Tabs(){
  let tabs=$('#prematch-tabs');if(!tabs){tabs=document.createElement('nav');tabs.id='prematch-tabs';tabs.className='prematch-tabs';tabs.setAttribute('aria-label','Vor dem Spiel');tabs.innerHTML='<button data-v24-tab="lineup">Aufstellung</button><button data-v24-tab="tactics">Taktik</button>';document.querySelector('#game-screen .workspace').before(tabs);tabs.querySelectorAll('[data-v24-tab]').forEach(button=>button.onclick=()=>{v24Tab=button.dataset.v24Tab;v24ApplyTab()})}v24ApplyTab();
 }
 function v24ApplyTab(){
- const tabs=$('#prematch-tabs'),playerPanel=$('#player-panel'),tacticsPanel=$('#tactics-panel'),bench=$('#compact-bench'),help=$('#pitch-help');if(!tabs)return;
+ const tabs=$('#prematch-tabs'),playerPanel=$('#player-panel'),tacticsPanel=$('#tactics-panel'),bench=$('#compact-bench'),help=$('#pitch-help'),roleBar=$('#pitch-role-bar');if(!tabs)return;
  tabs.hidden=running;tabs.querySelectorAll('[data-v24-tab]').forEach(button=>{const active=button.dataset.v24Tab===v24Tab;button.classList.toggle('active',active);button.setAttribute('aria-pressed',active)});
- if(!running){if(playerPanel)playerPanel.hidden=v24Tab!=='lineup';if(tacticsPanel)tacticsPanel.hidden=v24Tab!=='tactics';if(bench)bench.hidden=v24Tab!=='lineup';if(help)help.hidden=v24Tab!=='lineup'}
+ if(!running){if(playerPanel)playerPanel.hidden=v24Tab!=='lineup';if(tacticsPanel)tacticsPanel.hidden=v24Tab!=='tactics';if(bench)bench.hidden=v24Tab!=='lineup';if(help)help.hidden=v24Tab!=='lineup';if(roleBar)roleBar.hidden=v24Tab!=='lineup'}
 }
 function v24OpponentContext(){
  let context=$('#prematch-context');if(!context){context=document.createElement('section');context.id='prematch-context';context.className='prematch-context';document.querySelector('#game-screen .intro').insertAdjacentElement('afterend',context)}

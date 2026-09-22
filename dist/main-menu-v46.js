@@ -11,7 +11,11 @@ function v46SetTab(tab,scroll=true){
  v46ActiveTab=tab;
  for(const node of clubCenter.querySelectorAll(':scope > [data-v46-view]'))node.hidden=node.dataset.v46View!==tab;
  for(const button of clubCenter.querySelectorAll('.v46-nav button')){if(button.dataset.v46Tab===tab)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current')}
- if(scroll)window.scrollTo(0,0);
+ if(tab==='transfers'){
+  const free=[...clubCenter.querySelectorAll('details.free-agent-dropdown, details.free-agent-market-dropdown, details.season-one-free')].find(node=>node.dataset.v46View==='transfers'||node.closest('[data-v46-view]')?.dataset.v46View==='transfers');
+  if(free){free.open=true;if(scroll)requestAnimationFrame(()=>free.scrollIntoView({block:'start',behavior:'auto'}))}
+  else if(scroll)window.scrollTo(0,0);
+ }else if(scroll)window.scrollTo(0,0);
 }
 function v46ClubIdentityHTML(){const kits=currentKits();return`<section class="panel v46-club-identity"><div class="section-heading"><h2>Vereinsidentität</h2><span>Deine Farben</span></div><div class="v46-identity-row">${crestHTML(activeSave.club,kits)}<div><b>${escapeHTML(activeSave.club)}</b><small>${v44Shapes.find(item=>item[0]===kits.crest?.shape)?.[1]||'Schild'} · ${v44Decorations.find(item=>item[0]===kits.crest?.decoration)?.[1]||'Streifen'}</small></div></div><div class="v46-kit-row"><span>${kitHTML(kits.home,'Heimtrikot')}Heimtrikot</span><span>${kitHTML(kits.away,'Auswärtstrikot')}Auswärtstrikot</span><span>${kitHTML(kits.keeper,'Torwarttrikot')}Torwarttrikot</span></div></section>`}
 function v46SquadHTML(includeRoster){const roster=[activeSave.keeper,...activeSave.squad].filter(Boolean);return`<div class="v46-squad" data-v46-view="squad"><h2 class="v46-view-heading">Kader & Spielerstatistiken</h2>${includeRoster?`<section class="panel"><div class="section-heading"><h2>Aktueller Kader</h2><span>${roster.filter(player=>!player.retired).length}/12 Spieler</span></div>${v35RosterHTML()}</section><section class="panel"><h2>Statistiken</h2><p class="help">Spieler öffnen, um Saison, Vorsaison und Karriere zu vergleichen.</p>${roster.map(playerHistory).join('')}</section>`:''}</div>`}

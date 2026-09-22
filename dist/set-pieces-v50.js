@@ -54,8 +54,8 @@ start=function(){
 };
 $('#start').onclick=()=>start();
 function v50Version(){
- document.querySelectorAll('footer span:first-child').forEach(label=>label.textContent='Doppel 6 / PROTOTYP 50');
- const menuFooter=startScreen?.querySelector('footer');if(menuFooter)menuFooter.textContent='Doppel 6 / PROTOTYP 50';
+ document.querySelectorAll('footer span:first-child').forEach(label=>label.textContent='Doppel 6 / PROTOTYP 51');
+ const menuFooter=startScreen?.querySelector('footer');if(menuFooter)menuFooter.textContent='Doppel 6 / PROTOTYP 51';
 }
 const v50BaseRenderCenter=renderCenter;
 renderCenter=function(){const result=v50BaseRenderCenter();v50Version();return result};
@@ -81,7 +81,7 @@ function v50Restart(type,team,spot,description){
  const m=match;if(!m||m.finished||m.setPiece)return;
  const taker=v50BestTaker(team,type,spot);
  m.owner=null;m.flight=null;m.rebound=null;m.lastPass=null;m.next=Infinity;
- m.ball={...spot};m.setPiece={type,team,spot,taker,phase:'waiting',wait:type==='penalty'?1.1:.8};
+ m.ball={...spot};m.setPiece={type,team,spot,taker,phase:'waiting',wait:type==='penalty'?2.5:type==='corner'?2:1.8};
  if(type==='corner'){
   const allies=v50Outfield(team).filter(player=>player!==taker),opponents=v50Outfield(1-team),goalY=team===0?.1:.9;
   v50Spot(taker,{x:spot.x,y:spot.y===.035?.05:.95});
@@ -96,6 +96,7 @@ function v50Restart(type,team,spot,description){
  }
  note(description,'restart');
  showOverlay(type==='corner'?'ECKBALL':type==='penalty'?'ELFMETER':'FREISTOSS',`${v50Name(team)} · ${taker.name}`);
+ if(type==='penalty')v50PenaltyVisual(m.setPiece,null);
  updateTeamStats();
 }
 
@@ -271,7 +272,8 @@ function v50TakePenalty(setPiece){
  const outcome=goal?'goal':random()<.45?'save':random()<.5?'wide':'high';
  setPiece.phase='result';setPiece.wait=1.15;setPiece.outcome=outcome;
  setPiece.shotSide=random()<.5?-1:1;
- v50PenaltyVisual(setPiece,{side:0,number:shooter.n,name:shooter.name,goal,outcome,shotSide:setPiece.shotSide});
+ setPiece.diveSide=outcome==='save'?setPiece.shotSide:-setPiece.shotSide;
+ v50PenaltyVisual(setPiece,{side:0,number:shooter.n,name:shooter.name,goal,outcome,shotSide:setPiece.shotSide,diveSide:setPiece.diveSide});
  note(`${shooter.name}: ${v42OutcomeText({goal,outcome})}`,'shot');
 }
 function v50FinishPenalty(setPiece){
