@@ -3,9 +3,11 @@
 import hashlib
 import os
 from pathlib import Path
+import posixpath
 import ssl
 import time
-from ftplib import FTP_TLS
+from collections import deque
+from ftplib import FTP_TLS, error_perm
 from urllib.request import Request, urlopen
 
 
@@ -18,6 +20,59 @@ def setting(name: str) -> str:
     if not value:
         raise RuntimeError(f"GitHub environment secret {name} is missing")
     return value
+
+
+def locate_live_directory(ftp) -> str | None:
+    """Find the FTP directory containing the exact page currently served live."""
+    try:
+        request = Request(LIVE_URL, headers={"Cache-Control": "no-cache"})
+        with urlopen(request, timeout=20) as response:
+            live_bytes = response.read()
+        start = ftp.pwd()
+    except OSError:
+        return None
+
+    queue = deque([(start, 0)])
+    visited = set()
+    matches = []
+    attempts = 0
+    while queue and len(visited) < 40 and attempts < 100:
+        path, depth = queue.popleft()
+        attempts += 1
+        try:
+            ftp.cwd(path)
+            current = ftp.pwd()
+        except error_perm:
+            continue
+        if current in visited:
+            continue
+        visited.add(current)
+
+        try:
+            ftp.voidcmd("TYPE I")
+            size = ftp.size("index.html")
+            if size is None or size == len(live_bytes):
+                remote = bytearray()
+                ftp.retrbinary("RETR index.html", remote.extend)
+                if remote == live_bytes:
+                    matches.append(current)
+        except (error_perm, OSError):
+            pass
+
+        if depth >= 2:
+            continue
+        try:
+            names = ftp.nlst()
+        except (error_perm, OSError):
+            continue
+        for name in names:
+            child = posixpath.basename(name.rstrip("/"))
+            if child not in ("", ".", ".."):
+                queue.append((posixpath.join(current, child), depth + 1))
+
+    if len(matches) == 1:
+        return matches[0].replace("\r", "?").replace("\n", "?")
+    return None
 
 
 def publish() -> None:
@@ -43,7 +98,16 @@ def publish() -> None:
             stage = "protect data connection"
             ftp.prot_p()
             stage = "change directory"
-            ftp.cwd(remote_dir)
+            try:
+                ftp.cwd(remote_dir)
+            except error_perm as error:
+                if str(error).startswith("550"):
+                    found = locate_live_directory(ftp)
+                    if found:
+                        raise RuntimeError(
+                            f"FTPS change directory failed (550); current site is at FTP path {found}"
+                        ) from error
+                raise
             stage = "upload"
             with BUILD.open("rb") as source:
                 ftp.storbinary("STOR index.html", source)
