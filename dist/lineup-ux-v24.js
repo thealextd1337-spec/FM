@@ -80,7 +80,7 @@ function renderPreMatchLineup(){
 function v24SwapWithBench(outNumber,inNumber){
  if(!activeSave||running||outNumber===inNumber)return false;syncSquadFromLineup();
  const index=activeSave.lineup.indexOf(outNumber),out=activeSave.squad.find(player=>player.n===outNumber),incoming=activeSave.squad.find(player=>player.n===inNumber&&!player.retired);if(index<0||!out||!incoming)return false;
- v24Remember();incoming.cell=out.cell;incoming.role=out.role;incoming.assignedLine=out.assignedLine||out.line;activeSave.lineup[index]=incoming.n;syncLineupFromSquad();selected=index;saveCurrent();render();v24SetStatus(`${incoming.name} ersetzt ${out.name}.`);return true;
+ v24Remember();incoming.cell=out.cell;incoming.role=out.role;incoming.assignedLine=incoming.line;activeSave.lineup[index]=incoming.n;syncLineupFromSquad();selected=index;saveCurrent();render();v24SetStatus(`${incoming.name} ersetzt ${out.name}.`);return true;
 }
 function v24MoveOnPitch(number,targetCell){
  if(!activeSave||running)return false;const source=players.find(player=>player.n===number),target=players.find(player=>player.cell===targetCell);if(!source||source===target)return false;

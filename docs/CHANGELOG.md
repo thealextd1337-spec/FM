@@ -2,6 +2,20 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-22 (Karriereführung und Transfers)
+
+### Karriereführung
+
+- Eine feste Leitaktion am oberen Rand zeigt je nach Phase den nächsten Schritt: Sponsorwahl, Transfertag, Transferschluss, Aufstellung, Spielstart, Ergebnisse und Saisonabschluss. Während des laufenden Matches zeigt sie nur den Spielstatus. In Spielbericht und Ergebnisübersicht erscheint dieselbe Aktion innerhalb des Dialogs.
+- Doppelte Weiter- und Startbuttons in Karrierezentrale, Match und Saisonabschluss wurden aus der Ansicht entfernt. Die vorzeitige Beendigung der Transferphase bleibt als Nebenaktion im Transferbereich; Entscheidungen und Bestätigungen bleiben eigenständig.
+- Geprüft mit `node work/test-progress-v58.cjs`, den Transfer- und Saisonprüfungen, dem Einzeldatei-Build sowie einem vollständigen Browser-Match von Sponsorwahl über Spielbericht und Ergebnisse bis zum nächsten Spieltag.
+
+### Transfers und Aufstellung
+
+- Transferentscheidungen und direkte Neuverpflichtungen erscheinen in einem reparierten Spieldialog, der ausdrücklich bestätigt werden muss. Offene Ergebnisse erscheinen nach Neuladen erneut. Der Transferschluss verwendet nun einen Dialog im Spieldesign und erklärt, dass die Jahresgehälter erst beim Saisonabschluss nach der Platzierungsprämie bezahlt werden.
+- Beim Ersetzen auf dem Taktikboard behält der eingewechselte Spieler seine eigene Position. Schnellaufstellungen vergeben jedem Startspieler ein eigenes Rasterfeld, damit sich Spieler nicht überlagern.
+- Geprüft mit den neuen Dialog- und Aufstellungstests, den Versionsprüfungen v17, v24, v28, v29, v31, v35, v36 und v55 sowie dem Einzeldatei-Build.
+
 ### Stärkenfarben
 
 - Die fünf Stärkestufen von 1–20 verwenden jetzt an allen sichtbaren Fähigkeitseinschätzungen die Farben der Müdigkeitsanzeige und Smilies: Violett, Blau, Grün, Orange und Rot. Das umfasst Startkader, Spielerprofil, Kader, Aufstellung, Transfers und Vergleich, Jugend samt Potenzial sowie Elfmeterschützen. Auch die Stärkehinweise zum Gegner sind farbig. Die bisherigen Wörter und die verborgenen Zahlen bleiben erhalten.

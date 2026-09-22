@@ -1,6 +1,7 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const prelude=fs.readFileSync('work/test-v31.cjs','utf8').split('const context=makeContext();')[0];
 const makeContext=new Function('require',prelude+'return makeContext')(require),context=makeContext();
+let signingResults=0;context.v28ShowSigningResult=()=>{signingResults++;return true};
 for(const file of['youth-v33.js','season-roster-v34.js','transfer-sections-v35.js','youth-direct-v36.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),context);
 const run=source=>vm.runInContext(source,context);
 
@@ -27,4 +28,5 @@ assert.equal(run(`signYouth('${second}')`),true,'gescouteter Spieler bleibt verp
 assert.equal(run('ensureFinance(activeSave).balance'),initialBalance-240);
 assert.equal(run("ensureFinance(activeSave).ledger.filter(entry=>entry.type==='youth-scout').length"),1);
 assert.equal(run("ensureFinance(activeSave).ledger.filter(entry=>entry.type==='youth-sign').length"),2);
+assert.equal(signingResults,2,'beide Jugendverpflichtungen zeigen eine Bestätigung');
 console.log('PASS: Jugendspieler direkt oder nach Scouting verpflichten, Werte verborgen, Kosten einmalig, Speicherung');

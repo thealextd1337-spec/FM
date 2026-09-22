@@ -11,7 +11,7 @@ function v29SimplifyDashboard(){
 }
 function v29ResolveFinalBids(){
  const state=transferState(),pending=state.bids.filter(bid=>bid.status==='pending'&&bid.resolveDay<=state.day+1).map(bid=>{const offer=state.offers.find(item=>item.id===bid.offerId);return{bidId:bid.id,offerId:bid.offerId,player:offer?.player?structuredClone(offer.player):{name:bid.playerName}}});if(!pending.length)return false;
- v17Busy=true;for(const item of pending){const bid=state.bids.find(entry=>entry.id===item.bidId);if(bid)resolveBid(bid)}recalculateReserved();state.notice='Die letzten Angebote wurden entschieden. Bestätige nun deinen Kader und den Transferschluss.';saveCurrent();v17Busy=false;renderCenter();v28ShowTransferResults(v28TransferResultData(state,pending),state.day);return true
+ v17Busy=true;for(const item of pending){const bid=state.bids.find(entry=>entry.id===item.bidId);if(bid)resolveBid(bid)}recalculateReserved();state.notice='Die letzten Angebote wurden entschieden. Bestätige nun deinen Kader und den Transferschluss.';saveCurrent();v17Busy=false;renderCenter();v28QueueTransferResults(v28TransferResultData(state,pending),state.day);return true
 }
 function v29TransferActions(){
  if(!activeSave||activeSave.finance?.gameOver||activeSave.seasonNumber<2)return;const state=transferState();if(!state?.open)return;

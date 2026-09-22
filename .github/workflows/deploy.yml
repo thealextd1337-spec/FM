@@ -29,6 +29,11 @@ jobs:
 
       - name: Spieltests ausführen
         run: |
+          node work/test-progress-v58.cjs
+          node work/test-transfer-confirmations.cjs
+          node work/test-transfer-deadline-dialog.cjs
+          node work/test-tactics-replacement.cjs
+          node work/test-quick-lineup-cells.cjs
           node work/test-v24.cjs
           node work/test-v31.cjs
           node work/test-v41.cjs

@@ -5,6 +5,8 @@
 - Quellstand: `dist/`. Die versionierten Skripte werden in der Reihenfolge von `dist/index.html` geladen; neuere Dateien überschreiben teils ältere Funktionen. Vor Änderungen die ganze relevante Aufrufkette prüfen.
 - `node work/server.cjs` startet lokal auf Port 4173. `node work/build.cjs` erzeugt die Einzeldatei `outputs/index.html`. `outputs/` und temporäre Dateien bleiben außerhalb von Git.
 - Passende Tests aus `work/test-*.cjs` ausführen. `node work/test-v31.cjs` simuliert zwölf Saisonen; `node work/test-v35.cjs` prüft die Transferansicht und den übernommenen Saisonablauf; `node work/test-v36.cjs` prüft die Jugendverpflichtung mit und ohne Scouting. Bei Änderungen an Finanzen, Transfers oder Saisonwechsel mindestens den Dauertest erneut ausführen.
+- `node work/test-transfer-confirmations.cjs` prüft den bestätigungspflichtigen Ergebnisdialog einschließlich direkter Verpflichtung und gespeichertem Zustand. `node work/test-transfer-deadline-dialog.cjs` prüft die Gehaltsinformation und den bestätigten Transferschluss. `node work/test-tactics-replacement.cjs` und `node work/test-quick-lineup-cells.cjs` sichern Einsatzposition und eindeutige Rasterfelder ab.
+- `node work/test-progress-v58.cjs` prüft die Leitaktion für Sponsor, Transfers, Aufstellung, Match, Bericht, Ergebnisse und Saisonabschluss. `dist/progress-v58.js` bestimmt nur die nächste UI-Aktion; die bestehenden Spielfunktionen bleiben für Regeln, Bestätigungen und Speichern zuständig.
 - `node work/test-v41.cjs` prüft Pokalspielplan, getrennte Statistiken, Sieger-Award, einmalige Prämie und Elfmeterschützen.
 - `node work/test-v42.cjs` prüft das gespeicherte Elfmeterschießen nach einem Remis und die isolierte Demo.
 - `node work/test-v43.cjs` prüft Vereinsrekorde und Awardhistorie.

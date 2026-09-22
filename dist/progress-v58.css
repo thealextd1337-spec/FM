@@ -1,0 +1,18 @@
+body.v58-active>header{position:sticky;top:0;z-index:40;background:#101d21}
+#career-progress{position:sticky;top:88px;z-index:39;border-bottom:1px solid #49635d;background:#14282b;box-shadow:0 9px 22px #071416a8}
+.career-progress-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;width:min(1120px,100%);min-height:66px;margin:auto;padding:9px 24px}
+.career-progress-copy{display:grid;gap:3px;min-width:0}
+.career-progress-copy small{color:#c7f36b;font-size:9px;font-weight:800;letter-spacing:1.5px}
+.career-progress-copy span{color:#e8f0eb;font-size:12px;font-weight:700;overflow-wrap:anywhere}
+#career-progress-action{justify-content:center;gap:14px;width:auto;min-width:235px;min-height:44px;padding:11px 16px;font-size:13px;text-align:center}
+.v58-active .v46-nav{top:154px}
+.v58-active #club-center [data-v46-view],.v58-active #club-center .sponsor-choice,.v58-active #club-center .transfer-panel{scroll-margin-top:225px}
+.v58-active #game-screen #start,.v58-active #game-screen #back,.v58-active #game-screen #cup-final-start,.v58-active #game-screen [data-v25-start]{display:none!important}
+.v58-active .v47-actions,.v58-active .v47-competition-actions{display:none!important}
+.v58-active #penalty-screen #v42-next{display:none!important}
+.v58-active.v58-penalty-done #penalty-screen #v42-exit{display:none!important}
+.v58-dialog-action{position:sticky;top:0;z-index:2;display:flex;justify-content:flex-end;margin:10px 0 0;padding:8px 0;background:#16292df2}
+.v58-dialog-action #career-progress-action{width:min(100%,300px)}
+.qol-market .market-day-actions #deadline-button{width:auto;min-height:44px;margin:0;padding:9px 13px;border:1px solid #a86860;background:transparent;color:#ffb9b0;font-size:12px}
+.qol-market .market-day-actions #deadline-button:hover:not(:disabled){background:#df6b6218}
+@media(max-width:760px){#career-progress{top:68px}.career-progress-inner{min-height:58px;padding:6px 16px;gap:10px}.career-progress-copy small{font-size:8px}.career-progress-copy span{font-size:10px}#career-progress-action{min-width:0;max-width:57%;min-height:44px;padding:8px 10px;font-size:11px;line-height:1.2}.v58-active .v46-nav{top:126px}.v58-active #club-center [data-v46-view],.v58-active #club-center .sponsor-choice,.v58-active #club-center .transfer-panel{scroll-margin-top:195px}.v58-dialog-action #career-progress-action{max-width:none;font-size:12px}}

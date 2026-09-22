@@ -1,9 +1,9 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 let appended=null;const button={onclick:null,focus(){}};
-function element(){return{innerHTML:'',id:'',className:'',onclick:null,setAttribute(){},remove(){},querySelector(){return button}}}
+function element(){return{innerHTML:'',id:'',className:'',onclick:null,setAttribute(){},remove(){},showModal(){},addEventListener(){},querySelector(){return button}}}
 function grid(label){const classes=[];return{classes,previousElementSibling:{textContent:label},classList:{add(value){classes.push(value)}},setAttribute(name,value){this[name]=value}}}
 const paid=grid('Spieler mit Ablöse'),free=grid('Ablösefreie Spieler');
-const context={document:{head:{append(){}},body:{append(value){appended=value}},createElement:element,querySelector(){return null},querySelectorAll(){return[]}},clubCenter:{querySelectorAll(){return[paid,free]}},advanceTransferDay(){return true},renderCenter(){},drawSlots(){},escapeHTML:value=>String(value),flagSVG:code=>`<svg data-flag="${code}"></svg>`,nationData:{ES:{name:'Spanien'},FR:{name:'Frankreich'}},console,structuredClone};
+const context={document:{head:{append(){}},body:{append(value){appended=value}},createElement:element,querySelector(){return null},querySelectorAll(){return[]}},clubCenter:{querySelectorAll(){return[paid,free]}},advanceTransferDay(){return true},signFreeAgent(){return false},acceptCounter(){return false},renderCenter(){},drawSlots(){},escapeHTML:value=>String(value),flagSVG:code=>`<svg data-flag="${code}"></svg>`,nationData:{ES:{name:'Spanien'},FR:{name:'Frankreich'}},console,structuredClone};
 vm.createContext(context);vm.runInContext(fs.readFileSync('dist/transfer-result-v28.js','utf8'),context);
 const state={bids:[{id:'a',status:'accepted'},{id:'b',status:'rejected'},{id:'c',status:'counter',counterAmount:810}],offers:[{id:'oa',player:{name:'Álvaro Ruiz',age:24,nation:'ES'}},{id:'ob',player:{name:'Hugo Leroy',age:29,nation:'FR'}},{id:'oc',player:{name:'Marc Vidal',age:21,nation:'ES'}}]};
 const pending=[{bidId:'a',offerId:'oa'},{bidId:'b',offerId:'ob'},{bidId:'c',offerId:'oc'}];

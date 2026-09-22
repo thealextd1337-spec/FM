@@ -12,7 +12,7 @@ signYouth=function(id){
  const player=structuredClone(candidate.player);player.youthPotential=structuredClone(candidate.target);player.youthGrowth={};player.n=nextSquadNumber();
  activeSave.squad.push(player);candidate.signed=true;currentStats(player);
  addNews('Nachwuchs verpflichtet',`${player.name} kommt aus der Jugendauswahl. Einsätze entwickeln seine Fähigkeiten.`,'success',`youth-news-${activeSave.seasonNumber}-${id}`);
- normalizeLineup();syncLineupFromSquad();saveCurrent();renderCenter();return true
+ normalizeLineup();syncLineupFromSquad();saveCurrent();renderCenter();v28ShowSigningResult(player);return true
 };
 
 youthCandidateHTML=function(candidate){
