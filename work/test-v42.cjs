@@ -18,6 +18,8 @@ assert.equal(vm.runInContext('v42Session.kicks.length',context),1);
 assert.equal(vm.runInContext('activeSave.cup.pending.kicks.length',context),1);
 for(let i=0;i<100&&vm.runInContext("v42Session.phase!=='done'",context);i++)vm.runInContext('v42NextKick()',context);
 assert.equal(vm.runInContext('activeSave.cup.pending',context),null);
+assert(vm.runInContext('v42WinnerBanner(v42Session)',context).includes('ELFMETERSCHIESSEN ENTSCHIEDEN'));
+assert(vm.runInContext('v42WinnerBanner(v42Session)',context).includes('gewinnt!'));
 assert.equal(vm.runInContext('activeSave.cup.stage',context),3);
 assert.equal(vm.runInContext('activeSave.cup.rounds[2][0].result.join(\":\")',context),'1:1');
 assert.equal(vm.runInContext('activeSave.currentRound',context),8);
@@ -30,6 +32,7 @@ assert.equal(vm.runInContext('v42Session.mode',context),'demo');
 assert(vm.runInContext('v42PenaltyChance(v42Session.own[0],v42Session.opponent.find(p=>p.keeper))>v42PenaltyChance(v42Session.opponent[0],v42Session.own.find(p=>p.keeper))',context));
 for(let i=0;i<100&&vm.runInContext("v42Session.phase!=='done'",context);i++)vm.runInContext('v42NextKick()',context);
 assert.equal(vm.runInContext('activeSave.finance.ledger.length',context),oldLedger);
+assert(vm.runInContext('v42WinnerBanner(v42Session)',context).includes('im Elfmeterschießen'));
 for(const side of[0,1])assert.equal(new Set(vm.runInContext(`v42Session.kicks.filter(k=>k.side===${side}).slice(0,6).map(k=>k.number)`,context)).size,Math.min(6,vm.runInContext(`v42Session.kicks.filter(k=>k.side===${side}).length`,context)));
 vm.runInContext("document.querySelector('#v42-demo-start').onclick();v42Session.phase='shooting'",context);
 for(const rolls of[[0,.2],[.99,0,0],[.99,.99,0,.99],[.99,.99,.99,.99],[0,.2],[0,.2]]){

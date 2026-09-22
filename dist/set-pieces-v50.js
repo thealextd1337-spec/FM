@@ -299,13 +299,34 @@ beginHalftimeBreak=function(){
 };
 const v50BaseFinish=finishMatch;
 finishMatch=function(){if(match?.setPiece){match.fulltimePending=true;return}return v50BaseFinish()};
+const v50BaseBeginKickoff=beginKickoff;
+beginKickoff=function(){
+ if(!match?.kickoff)return v50BaseBeginKickoff();
+ match.kickoff.phase='banner';
+ match.postBanner={kind:'kickoff',wait:1.65,visible:true};
+ showOverlay('ANPFIFF','Gleich rollt der Ball');
+};
 const v50BaseStep=step;
 step=function(delta,realDelta){
  const m=match;
+ if(m?.postBanner&&!m.finished){
+  const pause=m.postBanner;pause.wait=Math.max(0,pause.wait-realDelta);
+  if(pause.visible&&pause.wait<=1){hideOverlay();pause.visible=false}
+  if(pause.wait<=0){
+   m.postBanner=null;
+   if(pause.kind==='kickoff'){v50BaseBeginKickoff();hideOverlay();m.overlayTTL=0}
+   else{kickoff(m.pendingKickoff);m.pendingKickoff=null}
+  }
+  updateTeamStats();return;
+ }
+ if(m?.goalPause>0&&m.goalPause<=realDelta){
+  m.goalPause=0;hideOverlay();m.postBanner={kind:'goal',wait:1,visible:false};updateTeamStats();return;
+ }
  if(m?.setPiece&&!m.finished){
   const current=m.setPiece;current.wait=Math.max(0,current.wait-realDelta);
   if(current.wait<=0){
-   if(current.phase==='result')v50FinishPenalty(current);
+   if(current.phase==='waiting'&&current.type!=='penalty'){current.phase='postBanner';current.wait=1;hideOverlay()}
+   else if(current.phase==='result')v50FinishPenalty(current);
    else if(current.type==='penalty'){hideOverlay();v50TakePenalty(current)}
    else{m.setPiece=null;hideOverlay();if(current.type==='corner')v50TakeCorner(current);else v50TakeFreeKick(current)}
   }

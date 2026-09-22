@@ -13,6 +13,12 @@ assert(opponentFoulChances[0]<opponentFoulChances[1]&&opponentFoulChances[1]<opp
 vm.runInContext('match.aggression[1]=1',context);
 assert(vm.runInContext("ability(match.people.find(player=>player.t===1&&!player.keeper),'tak')>v50BaseAbility(match.people.find(player=>player.t===1&&!player.keeper),'tak')",context),'opponent aggression strengthens tackles');
 assert.equal(vm.runInContext('match.setPieceStats.corners.length',context),2);
+vm.runInContext('step(0,2)',context);
+assert.equal(vm.runInContext('match.postBanner.kind',context),'kickoff','kickoff banner appears before play');
+vm.runInContext('step(0,.65)',context);
+assert(Math.abs(vm.runInContext('match.postBanner.wait',context)-1)<.001,'one second remains after kickoff banner');
+vm.runInContext('step(0,1)',context);
+assert(vm.runInContext('Boolean(match.flight)',context),'kickoff resumes after extra pause');
 
 vm.runInContext(`{
  const victim=match.people.find(player=>player.t===0&&!player.keeper),offender=match.people.find(player=>player.t===1&&!player.keeper);
@@ -25,6 +31,8 @@ assert(vm.runInContext('v50Outfield(1).every(player=>distance(player,match.setPi
 vm.runInContext('step(0,1)',context);
 assert.equal(vm.runInContext('match.setPiece.type',context),'freeKick','free kick remains visible before execution');
 vm.runInContext('step(0,.8)',context);
+assert.equal(vm.runInContext('match.setPiece.phase',context),'postBanner','free kick pauses after its banner');
+vm.runInContext('step(0,1)',context);
 assert.equal(vm.runInContext('match.setPiece',context),null);
 assert(vm.runInContext('Boolean(match.flight)',context),'free kick resumes through a pass or shot');
 vm.runInContext('step(2,.05)',context);
@@ -34,6 +42,8 @@ assert.equal(vm.runInContext('match.setPiece.spot.x',context),.035);
 assert.equal(vm.runInContext('match.setPieceStats.corners[0]',context),1);
 vm.runInContext('step(0,1)',context);
 assert.equal(vm.runInContext('match.setPiece.type',context),'corner','corner remains visible before execution');
+vm.runInContext('step(0,1)',context);
+assert.equal(vm.runInContext('match.setPiece.phase',context),'postBanner','corner pauses after its banner');
 vm.runInContext('step(0,1)',context);
 assert(vm.runInContext('Boolean(match.flight)',context),'corner cross is in flight');
 vm.runInContext('step(2,.05)',context);
@@ -60,7 +70,7 @@ vm.runInContext(`{
 vm.runInContext('step(2,.05);step(2,.05)',context);
 assert.equal(vm.runInContext('match.setPiece.type',context),'corner');
 assert.equal(vm.runInContext('match.setPieceStats.corners[0]',context),2);
-vm.runInContext('step(0,2);step(2,.05)',context);
+vm.runInContext('step(0,2);step(0,1);step(2,.05)',context);
 
 vm.runInContext(`{
  const victim=match.people.find(player=>player.t===0&&!player.keeper),offender=match.people.find(player=>player.t===1&&!player.keeper);
@@ -76,6 +86,10 @@ vm.runInContext('step(0,2)',context);
 assert.equal(vm.runInContext('match.score[0]',context),1);
 assert.equal(vm.runInContext('match.setPiece',context),null);
 assert(vm.runInContext("v47ReportHTML(v47Snapshot('Gegner')).includes('Ecken')",context));
+vm.runInContext('step(0,2)',context);
+assert.equal(vm.runInContext('match.postBanner.kind',context),'goal','goal banner ends before extra pause');
+vm.runInContext('step(0,1)',context);
+assert.equal(vm.runInContext('match.kickoff.phase',context),'waiting','kickoff countdown follows goal pause');
 
 vm.runInContext(`{
  match.goalPause=0;match.pendingKickoff=null;
@@ -84,7 +98,7 @@ vm.runInContext(`{
 }`,context);
 assert.equal(vm.runInContext('match.setPiece.type',context),'freeKick');
 assert.equal(vm.runInContext('match.halftimePending',context),true);
-vm.runInContext('step(0,2);step(2,.05);step(.1,.05)',context);
+vm.runInContext('step(0,2);step(0,1);step(2,.05);step(.1,.05)',context);
 assert(vm.runInContext('match.halftimeBreakDone',context), 'halftime follows completed restart');
 vm.runInContext(`{
  match.halftimePause=0;match.halftimePending=false;match.fulltimePending=false;match.elapsed=74.9;
@@ -93,6 +107,7 @@ vm.runInContext(`{
 }`,context);
 assert.equal(vm.runInContext('match.finished',context),false);
 vm.runInContext('step(0,2)',context);
+vm.runInContext('step(0,1)',context);
 for(let i=0;i<10&&!vm.runInContext('match.finished',context);i++)vm.runInContext('step(1,.05)',context);
 assert(vm.runInContext('match.finished',context),'full-time whistle follows completed restart');
 

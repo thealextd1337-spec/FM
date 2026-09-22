@@ -6,6 +6,7 @@ assert(ui.includes('.scoreboard .score-team{max-width:none;width:100%}'),'team c
 assert(ui.includes("gk:'TOR',def:'VER',mid:'MIT',att:'ANG'"));
 assert(ui.includes('retro-clock'));
 assert(ui.includes('v25Scorers'));
+assert(ui.includes('align-items:start!important')&&ui.includes('grid-template-rows:repeat(3,max-content)'),'team names stay aligned and scorers stack in columns of three');
 assert(ui.includes("group.minutes.map(minute=>`${minute}′`).join(', ')"));
 assert(ui.includes('#player-panel{display:none!important}'));
 assert(ui.includes('grid-template-columns:1fr'));

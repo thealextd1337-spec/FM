@@ -55,6 +55,36 @@ applyClubTheme=function(){v44OriginalApplyTheme();if(!activeSave)return;const ac
 const v44OriginalDraw=draw;
 draw=function(){v44OriginalDraw();if(!match?.people?.length)return;const ctx=$('#canvas').getContext('2d');for(const player of match.people){const kit=player.keeper?(player.t===0?match.kits?.userKeeper:match.kits?.opponentKeeper):matchKit(player.t);if(!kit||(kit.style==='solid'||!kit.style)&&!kit.accent)continue;const x=player.x*600,y=player.y*740;ctx.save();ctx.beginPath();ctx.arc(x,y,17,0,Math.PI*2);ctx.clip();ctx.fillStyle=kit.trim;if(kit.style==='stripe')ctx.fillRect(x-7,y-18,14,36);if(kit.style==='hoops')for(const offset of[-10,0,10])ctx.fillRect(x-18,y+offset,36,5);if(kit.style==='halves')ctx.fillRect(x,y-18,18,36);if(kit.style==='diagonal'){ctx.save();ctx.translate(x,y);ctx.rotate(-Math.PI/4);ctx.fillRect(-7,-25,14,50);ctx.restore()}if(kit.style==='pinstripes')for(const offset of[-10,-4,2,8])ctx.fillRect(x+offset,y-18,2,36);if(kit.accent){ctx.fillStyle=kit.accent;ctx.fillRect(x-18,y-15,36,3)}ctx.restore();ctx.fillStyle='#fff';ctx.strokeStyle='#102126';ctx.lineWidth=2;ctx.font='bold 15px Arial';ctx.textAlign='center';ctx.strokeText(String(player.n),x,y+6);ctx.fillText(String(player.n),x,y+6)}};
 
+// Separate markers only while drawing. Match positions and calculations stay intact.
+function v44VisualPositions(people){
+ const points=people.map(player=>({x:player.x*600,y:player.y*740}));
+ for(let pass=0;pass<24;pass++){
+  let changed=false;
+  for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++){
+   const left=points[i],right=points[j];let dx=right.x-left.x,dy=right.y-left.y,dist=Math.hypot(dx,dy);
+   if(dist>=50)continue;
+   if(dist<.001){dx=(j-i)%2?1:-1;dy=0;dist=1}
+   const shift=(50-dist)/2,unitX=dx/dist,unitY=dy/dist;
+   left.x-=unitX*shift;left.y-=unitY*shift;right.x+=unitX*shift;right.y+=unitY*shift;
+   changed=true;
+  }
+  for(const point of points){point.x=clamp(point.x,20,580);point.y=clamp(point.y,20,720)}
+  if(!changed)break;
+ }
+ return points;
+}
+const v44KitDraw=draw;
+draw=function(){
+ if(!match?.people?.length)return v44KitDraw();
+ const people=match.people,original=people.map(player=>({x:player.x,y:player.y})),visual=v44VisualPositions(people),ball={x:match.ball.x,y:match.ball.y};
+ for(let i=0;i<people.length;i++){people[i].x=visual[i].x/600;people[i].y=visual[i].y/740}
+ if(match.owner&&!match.flight){const index=people.indexOf(match.owner);match.ball.x+=(visual[index].x/600-original[index].x);match.ball.y+=(visual[index].y/740-original[index].y)}
+ try{return v44KitDraw()}finally{
+  for(let i=0;i<people.length;i++){people[i].x=original[i].x;people[i].y=original[i].y}
+  match.ball.x=ball.x;match.ball.y=ball.y;
+ }
+};
+
 const v44OriginalScene=v42SceneHTML;
 v42SceneHTML=function(session){let html=v44OriginalScene(session);const next=v42UpcomingShooter(session),last=session.last,side=last?.side??next?.side??0,defending=1-side,defender=(defending===0?session.own:session.opponent).find(player=>player.keeper),defenderKit=v44PenaltyKeeperKit(session,defending),shooter=(side===0?session.own:session.opponent).find(player=>player.n===(last?.number??next?.player?.n));html=html.replace(/<span class="v42-keeper">[^<]*<\/span>/,`<span class="v44-keeper-shirt">${v44ShirtSVG(defender,defenderKit,'Torwarttrikot')}</span>`);if(shooter?.keeper)html=html.replace(/(<div class="v42-shooter">)<svg[\s\S]*?<\/svg>/,`$1${v44ShirtSVG(shooter,v44PenaltyKeeperKit(session,side),'Torwarttrikot')}`);return html};
 function v44PenaltyKeeperKit(session,side){if(session.keeperKits?.[side])return session.keeperKits[side];if(session.mode==='career'){const keeper=side===0?activeSave?.world?.kits?.keeper:activeOpponent()?.kits?.keeper;if(keeper)return keeper}const colour=side===0?session.ownColour:session.opponentColour;return{main:luminance(colour.main)<.45?'#e7b957':'#313d68',trim:'#f5f3e7',style:'stripe'}}

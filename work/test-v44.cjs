@@ -24,9 +24,14 @@ vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();apply
 assert.equal(vm.runInContext('activeSave.world.kits.home.style',context),'hoops');
 assert.equal(vm.runInContext('activeSave.world.kits.away.style',context),'diagonal');
 assert.equal(vm.runInContext('activeSave.world.kits.crest.shape',context),'circle');
+vm.runInContext("selectSponsor('safe');start();var v44Canvas=document.querySelector('#canvas'),v44GetContext=v44Canvas.getContext;v44Canvas.getContext=()=>({...v44GetContext(),strokeText(){}});match.people[0].x=.5;match.people[0].y=.5;match.people[1].x=.5;match.people[1].y=.5;var v44BeforeDraw=JSON.stringify(match.people.map(player=>[player.x,player.y]));draw()",context);
+assert.equal(vm.runInContext('JSON.stringify(match.people.map(player=>[player.x,player.y]))',context),vm.runInContext('v44BeforeDraw',context),'visual separation must not change match positions');
 vm.runInContext("var v44OldSave=structuredClone(activeSave);delete v44OldSave.world.kits.tertiary;delete v44OldSave.world.kits.home.accent;delete v44OldSave.world.kits.away.accent;var v44Restored=ensureChampionship(v44OldSave)",context);
 assert.equal(vm.runInContext('v44Restored.world.kits.tertiary',context),undefined,'older saves remain valid without a third color');
 assert.equal(vm.runInContext('v44Restored.world.kits.away.main===v44OldSave.world.kits.away.main',context),true,'older away colors are not rewritten');
+const visual=JSON.parse(vm.runInContext('JSON.stringify(v44VisualPositions([{x:.5,y:.5},{x:.5,y:.5},{x:.51,y:.5},{x:.5,y:.5}]))',context));
+for(let i=0;i<visual.length;i++)for(let j=i+1;j<visual.length;j++)
+ assert(Math.hypot(visual[i].x-visual[j].x,visual[i].y-visual[j].y)>=49.9,'overlapping player markers separate while drawn');
 
 vm.runInContext(`var v44TeamA=v42Teams[0],v44TeamB=v42Teams[2];var v44SessionTest={mode:'demo',ownName:v44TeamA.name,opponentName:v44TeamB.name,ownColour:v42Colour(v44TeamA.id),opponentColour:v42Colour(v44TeamB.id),own:v42DemoRoster(v44TeamA),opponent:v42DemoRoster(v44TeamB),order:[1,2,4,6,7,9],opponentOrder:[2,4,6,7,9,1],score:[0,0],kicks:[],phase:'shooting'};`,context);
 const scene=vm.runInContext('v42SceneHTML(v44SessionTest)',context);

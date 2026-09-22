@@ -53,6 +53,19 @@ v42DemoRoster=function(team){return v53DemoRoster(team).map(v53Shrink)};
 // Five shared colour steps for the existing approximate scouting words.
 const v53ScoutingSkillsHTML=scoutingSkillsHTML;
 scoutingSkillsHTML=function(player){const html=v53ScoutingSkillsHTML(player);return html.replace(/<span>([^<]+)<b>([^<]+)<\/b><\/span>/g,(whole,label,word)=>{const keys={Technik:'tec',Passspiel:'pas',Abschluss:'fin',Zweikampf:'tak',Stellungsspiel:'pos',Geschwindigkeit:'spd',Kondition:'sta',Torwartspiel:'gk'};const value=player[keys[label]];return Number.isFinite(value)?`<span>${label}<b style="color:${v53SkillColor(value)}">${word}</b></span>`:whole})};
+function v53MarketSkillsHTML(player){
+ const keys={Technik:'tec',Passspiel:'pas',Abschluss:'fin',Zweikampf:'tak',Stellungsspiel:'pos',Kondition:'sta',Tempo:'spd',Torwartspiel:'gk'};
+ return scoutingText(player).split(' · ').map(part=>{
+  const label=Object.keys(keys).find(name=>part.startsWith(name+' ')),value=player[keys[label]];
+  if(!label||!Number.isFinite(value))return escapeHTML(part);
+  return `${escapeHTML(label)} <strong style="color:${v53SkillColor(value)}">${escapeHTML(part.slice(label.length+1))}</strong>`;
+ }).join(' · ');
+}
+const v53OfferCardHTML=qolOfferCardHTML;
+qolOfferCardHTML=function(offer,free=false){
+ const player=offer.player,plain=`<p>${escapeHTML(scoutingText(player))}</p>`;
+ return v53OfferCardHTML(offer,free).replace(plain,`<p>${v53MarketSkillsHTML(player)}</p>`);
+};
 const v53LineupCardContent=v51LineupCardContent;
 v51LineupCardContent=function(player,position){const html=v53LineupCardContent(player,position),keys={Technik:'tec',Passspiel:'pas',Abschluss:'fin',Zweikampf:'tak',Stellungsspiel:'pos',Geschwindigkeit:'spd',Kondition:'sta',Torwartspiel:'gk'};return html.replace(/<span class="v51-card-skills">([^<]*)<\/span>/,(whole,content)=>`<span class="v51-card-skills">${content.split(' · ').map(part=>{const label=Object.keys(keys).find(name=>part.startsWith(name+' ')),value=player[keys[label]];return Number.isFinite(value)?`<span style="color:${v53SkillColor(value)}">${part}</span>`:part}).join(' · ')}</span>`)};
 

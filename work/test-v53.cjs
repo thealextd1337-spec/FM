@@ -10,6 +10,10 @@ assert(skills.length>100&&skills.every(value=>Number.isInteger(value)&&value>=0&
 assert.equal(vm.runInContext("activeSave.schema",context),4);
 assert.equal(vm.runInContext("readSlots().length",context),1);
 assert.equal(vm.runInContext("v53SkillBand(7)+'/'+v53SkillBand(8)+'/'+v53SkillBand(11)+'/'+v53SkillBand(14)+'/'+v53SkillBand(17)",context),'very-weak/weak/normal/good/very-good');
+const regularCard=vm.runInContext("qolOfferCardHTML({...makeOffer('regular','mid',75,24),expiresDay:5})",context);
+const freeCard=vm.runInContext("qolOfferCardHTML({...makeOffer('free','def',65,26),expiresDay:99},true)",context);
+assert.match(regularCard,/<p>[^<]*<strong style="color:#[0-9a-fA-F]{6}">/,'regular transfer shows coloured scouting words');
+assert.match(freeCard,/<p>[^<]*<strong style="color:#[0-9a-fA-F]{6}">/,'free agent shows coloured scouting words');
 assert.equal(vm.runInContext("importSaveObject({save:{schema:3,world:{},squad:[1,2,3,4,5]}})",context),false);
 vm.runInContext("start();match.elapsed=75;match.score=[2,0];finishMatch();renderCenter()",context);
 assert.equal(vm.runInContext("activeSave.currentRound",context),1);

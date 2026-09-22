@@ -6,6 +6,29 @@
 
 - „Löschen“ zeigt die Bestätigung jetzt direkt im Spiel. Erst „Endgültig löschen“ entfernt den Spielstand; „Abbrechen“ lässt ihn bestehen. Damit hängt das Löschen nicht mehr vom Browser-Bestätigungsdialog ab. Geprüft mit `node work/test-v53-save-menu.cjs` und Build.
 
+### Spielansicht
+
+- Vereinsnamen stehen weiter vom Ergebnis entfernt und bleiben auf gleicher Höhe, auch wenn Torschützen hinzukommen. Die Torschützen stehen in Dreiergruppen untereinander; weitere Namen folgen in der nächsten Spalte.
+- Spielermarker werden bei engen Zweikämpfen nur in der Anzeige auseinandergerückt. Die Matchberechnung verwendet weiter ihre tatsächlichen Positionen. Geprüft mit `node work/test-v44.cjs`.
+- Nach Anpfiff-, Tor-, Freistoß- und Eckball-Bannern bleibt das Spiel jeweils eine weitere Sekunde stehen. Geprüft mit `node work/test-v50.cjs`.
+
+### Vereinszentrale
+
+- „Menü“ steht nun rechts in der Kopfzeile mit „Sechserliga“. Header und Karriere-Navigation bleiben beim Scrollen gemeinsam oben sichtbar, auch auf Mobilgeräten. Die fünf Bereiche haben einheitliche gezeichnete Symbole statt gemischter Unicode-Zeichen.
+
+### Transfers
+
+- Ungefähre Fähigkeitsbeschreibungen in regulären und ablösefreien Angeboten zeigen jetzt die Farben der fünf Stärkebereiche. Geprüft mit `node work/test-v53.cjs`.
+
+### Spielbericht
+
+- Spieler beider Mannschaften öffnen per Klick ein Popup mit ihren Statistiken aus diesem Spiel. Geprüft mit `node work/test-v47.cjs`.
+- „Weiter“ öffnet nach dem Spielbericht eine Übersicht: Liga mit weiteren Ergebnissen, hervorgehobenen Siegern und Tabelle; Pokal mit weiteren Ergebnissen und Turnierbaum. Darunter stehen die Torschützen und Vorlagengeber der jeweiligen Wettbewerbssaison nebeneinander. Geprüft mit `node work/test-v47.cjs`.
+
+### Elfmeterschießen
+
+- Der Sieg erscheint nach dem letzten Schuss als großes Banner mit Sieger und Ergebnis. Die Einblendung berücksichtigt reduzierte Bewegung. Geprüft mit `node work/test-v42.cjs`.
+
 ## 2026-09-22
 
 ### Gespeicherte Spiele
