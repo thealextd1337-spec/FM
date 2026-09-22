@@ -326,7 +326,9 @@ step=function(delta,realDelta){
  if(m?.setPiece&&!m.finished){
   const current=m.setPiece;current.wait=Math.max(0,current.wait-realDelta);
   if(current.wait<=0){
-   if(current.phase==='waiting'&&current.type!=='penalty'){current.phase='postBanner';current.wait=1;hideOverlay()}
+   if(current.phase==='waiting'&&(current.type==='freeKick'||current.type==='offside')){current.phase='fading';current.wait=.25;$('#match-overlay').classList.add('fade-out')}
+   else if(current.phase==='fading'){current.phase='postBanner';current.wait=.5;hideOverlay();$('#match-overlay').classList.remove('fade-out')}
+   else if(current.phase==='waiting'&&current.type!=='penalty'){current.phase='postBanner';current.wait=1;hideOverlay()}
    else if(current.phase==='result')v50FinishPenalty(current);
    else if(current.type==='penalty'){hideOverlay();v50TakePenalty(current)}
    else{m.setPiece=null;hideOverlay();if(current.type==='corner')v50TakeCorner(current);else v50TakeFreeKick(current)}

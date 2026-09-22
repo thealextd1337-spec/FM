@@ -4,6 +4,12 @@
 
 Keine Einträge.
 
+## 2026-09-22 (Freistöße und Abseits)
+
+### Freistöße und Abseits
+
+- Beide Teams laufen bei Freistößen und nach Abseits während des Banners in erkennbare Wiederanstoßpositionen. Die Abseitsentscheidung bleibt zunächst eingefroren; nach dem Ausblenden des Banners folgt eine zusätzliche halbe Sekunde Pause. So lassen sich Ort und Fortsetzung leichter verfolgen. Geprüft mit `node work/test-v50.cjs`, `node work/test-v57.cjs` und Build.
+
 ## 2026-09-22 (Zweikämpfe und Spielfeld)
 
 ### Zweikämpfe
