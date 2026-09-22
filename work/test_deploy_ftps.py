@@ -1,6 +1,7 @@
 """Offline checks for the World4You upload command."""
 
 import importlib.util
+from ftplib import error_perm
 import io
 import os
 from pathlib import Path
@@ -77,6 +78,20 @@ class DeployTests(unittest.TestCase):
         with mock.patch.dict(os.environ, {}, clear=True), mock.patch.object(deploy, "FTP_TLS", FakeFTP):
             with self.assertRaisesRegex(RuntimeError, "W4Y_FTP_HOST"):
                 deploy.publish()
+
+    def test_reports_login_stage_without_credentials(self):
+        class RejectedLogin(FakeFTP):
+            def login(self, user, password):
+                raise error_perm("530 Authentication rejected")
+
+        with tempfile.TemporaryDirectory() as directory:
+            build = Path(directory) / "index.html"
+            build.write_bytes(b"test")
+            secrets = {"W4Y_FTP_HOST": "ftp.example.test", "W4Y_FTP_USER": "deploy", "W4Y_FTP_PASSWORD": "hidden", "W4Y_FTP_REMOTE_DIR": "/fussball"}
+            with mock.patch.dict(os.environ, secrets, clear=True), mock.patch.object(deploy, "BUILD", build), mock.patch.object(deploy.ssl, "create_default_context", return_value=object()), mock.patch.object(deploy, "FTP_TLS", RejectedLogin):
+                with self.assertRaisesRegex(RuntimeError, r"FTPS login failed \(530\)") as failure:
+                    deploy.publish()
+        self.assertNotIn("hidden", str(failure.exception))
 
 
 if __name__ == "__main__":

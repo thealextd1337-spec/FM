@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+### Veröffentlichung
+
+- Der FTPS-Workflow meldet bei Fehlschlag jetzt die betroffene Stufe als GitHub-Fehleranmerkung, ohne Zugangsdaten auszugeben. So lässt sich ein Deployment auch ohne private Job-Logs gezielt prüfen. Geprüft mit `work/test_deploy_ftps.py`.
+
 ## 2026-09-22
 
 ### Spielablauf

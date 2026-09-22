@@ -34,17 +34,30 @@ def publish() -> None:
     expected = hashlib.sha256(local_bytes).digest()
     context = ssl.create_default_context()
 
-    with FTP_TLS(context=context, timeout=30) as ftp:
-        ftp.connect(host, 21)
-        ftp.login(user, password)
-        ftp.prot_p()
-        ftp.cwd(remote_dir)
-        with BUILD.open("rb") as source:
-            ftp.storbinary("STOR index.html", source)
-        ftp.voidcmd("TYPE I")
-        remote_size = ftp.size("index.html")
-        if remote_size is not None and remote_size != len(local_bytes):
-            raise RuntimeError("Uploaded index.html has a different size")
+    stage = "connect"
+    try:
+        with FTP_TLS(context=context, timeout=30) as ftp:
+            ftp.connect(host, 21)
+            stage = "login"
+            ftp.login(user, password)
+            stage = "protect data connection"
+            ftp.prot_p()
+            stage = "change directory"
+            ftp.cwd(remote_dir)
+            stage = "upload"
+            with BUILD.open("rb") as source:
+                ftp.storbinary("STOR index.html", source)
+            stage = "check remote size"
+            ftp.voidcmd("TYPE I")
+            remote_size = ftp.size("index.html")
+            if remote_size is not None and remote_size != len(local_bytes):
+                raise RuntimeError("Uploaded index.html has a different size")
+    except RuntimeError:
+        raise
+    except Exception as error:
+        status = str(error).split(" ", 1)[0]
+        code = status if len(status) == 3 and status.isdigit() else type(error).__name__
+        raise RuntimeError(f"FTPS {stage} failed ({code})") from error
 
     sha = os.environ.get("DEPLOY_SHA", "manual")[:12]
     for attempt in range(1, 7):
@@ -62,4 +75,9 @@ def publish() -> None:
 
 
 if __name__ == "__main__":
-    publish()
+    try:
+        publish()
+    except Exception as error:
+        message = str(error) if isinstance(error, RuntimeError) else type(error).__name__
+        print(f"::error title=World4You deploy::{message}")
+        raise
