@@ -52,7 +52,7 @@ draw=function(){v44OriginalDraw();if(!match?.people?.length)return;const ctx=$('
 
 const v44OriginalScene=v42SceneHTML;
 v42SceneHTML=function(session){let html=v44OriginalScene(session);const next=v42UpcomingShooter(session),last=session.last,side=last?.side??next?.side??0,defending=1-side,defender=(defending===0?session.own:session.opponent).find(player=>player.keeper),defenderKit=v44PenaltyKeeperKit(session,defending),shooter=(side===0?session.own:session.opponent).find(player=>player.n===(last?.number??next?.player?.n));html=html.replace(/<span class="v42-keeper">[^<]*<\/span>/,`<span class="v44-keeper-shirt">${v44ShirtSVG(defender,defenderKit,'Torwarttrikot')}</span>`);if(shooter?.keeper)html=html.replace(/(<div class="v42-shooter">)<svg[\s\S]*?<\/svg>/,`$1${v44ShirtSVG(shooter,v44PenaltyKeeperKit(session,side),'Torwarttrikot')}`);return html};
-function v44PenaltyKeeperKit(session,side){if(session.mode==='career'){const keeper=side===0?activeSave?.world?.kits?.keeper:activeOpponent()?.kits?.keeper;if(keeper)return keeper}const colour=side===0?session.ownColour:session.opponentColour;return{main:luminance(colour.main)<.45?'#e7b957':'#313d68',trim:'#f5f3e7',style:'stripe'}}
+function v44PenaltyKeeperKit(session,side){if(session.keeperKits?.[side])return session.keeperKits[side];if(session.mode==='career'){const keeper=side===0?activeSave?.world?.kits?.keeper:activeOpponent()?.kits?.keeper;if(keeper)return keeper}const colour=side===0?session.ownColour:session.opponentColour;return{main:luminance(colour.main)<.45?'#e7b957':'#313d68',trim:'#f5f3e7',style:'stripe'}}
 const v44OriginalShirt=v42Shirt;
 v42Shirt=function(player,colour){return v44ShirtSVG(player,colour,player.keeper?'Torwarttrikot':'Spielertrikot')};
 

@@ -24,6 +24,8 @@ Während der Transfertage sind der aktuelle Kader, Spieler mit Ablöse und Kaufa
 
 Feste Produktregeln und Hinweise für neue Entwicklungsinstanzen stehen in [AGENTS.md](AGENTS.md).
 
+Abgeschlossene Änderungen und neue Features werden unter [docs/](docs/README.md) dokumentiert.
+
 ## Lokal starten
 
 ```sh
