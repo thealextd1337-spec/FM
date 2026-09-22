@@ -191,7 +191,6 @@ action=function(){
  const m=match,p=m?.owner;if(!p||m.setPiece||m.throwIn)return;
  if(p.keeper){const safe=m.people.filter(other=>other.t===p.t&&!other.keeper&&other.assignedLine==='def').sort((a,b)=>distance(a,p)-distance(b,p));if(!safe.length){m.next=m.elapsed+.5;return}note(`Kurzer Abstoß: ${p.name} auf ${safe[0].name}.`,'restart');v55GroundPass(p,safe[0],'pass',true);return}
  const rivals=m.people.filter(other=>other.t!==p.t),near=rivals.filter(other=>!other.keeper&&distance(other,p)<.15).sort((a,b)=>distance(a,p)-distance(b,p));
- if(near.length){const tackler=near[0];if(random()<v50FoulChance(tackler,p)){v50Foul(p,tackler);return}p.stats.duels++;tackler.stats.duels++;const steal=clamp(.18+(ability(tackler,'tak')-ability(p,'tec'))*.027+(near.length-1)*.04,.07,.55);if(random()<steal){tackler.stats.duelsWon++;p.stats.passLost++;m.owner=tackler;m.lastPass=null;m.lastTouch=tackler.t;m.next=m.elapsed+.8;note(`${tackler.name} gewinnt das Duell gegen ${p.name}.`,'duel');return}p.stats.duelsWon++}
  const progress=p.t===0?1-p.y:p.y,wide=p.x<.29||p.x>.71,allies=m.people.filter(other=>other.t===p.t&&other!==p&&!other.keeper);
  const box=allies.filter(other=>(other.t===0?other.y<.34:other.y>.66)&&other.x>.25&&other.x<.75);
  if(progress>.66&&wide&&box.length&&random()<.62){const target=[...box].sort((a,b)=>ability(b,'air')+ability(b,'pos')*.3-ability(a,'air')-ability(a,'pos')*.3)[0];v55HighPass(p,target,{cross:true});return}

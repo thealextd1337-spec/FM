@@ -2,6 +2,14 @@
 
 ## Noch nicht veröffentlicht
 
+Keine Einträge.
+
+## 2026-09-22 (Zweikämpfe und Spielfeld)
+
+### Zweikämpfe
+
+- Stehende Zweikämpfe brauchen nun tatsächliche Nähe zum Ball und eine erreichbare Position zum Ballführer. Grätschen sind auf dem Feld sichtbar und können den Ball gewinnen, ihn frei spielen, verfehlen oder ein Foul mit Freistoß beziehungsweise Elfmeter auslösen. Spieler weichen sich bei engem Kontakt sanfter aus; bei hohen Bällen verteilen sich die nächsten Akteure um den Landepunkt. Es gibt weiterhin keine Karten, Platzverweise oder Unterzahl. Geprüft mit `node work/test-v56.cjs`, 20 vollständigen simulierten Matches und Build.
+
 ### Spielfeld
 
 - Hohe Pässe, Flanken und Ecken fliegen mit sichtbarer Bogenbahn zu einem berechneten Landepunkt. Flanken können zu kurz, zu weit oder ins Aus geraten. Mitspieler nehmen hohe Bälle an, spielen sie per Kopf weiter oder schließen mit Kopfball beziehungsweise Volley ab; Gegner können Luftduelle gewinnen und klären. Spielbericht und Live-Statistik zählen diese Aktionen.
