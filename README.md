@@ -53,7 +53,7 @@ Im GitHub-Repository unter **Settings → Environments → production → Enviro
 | `W4Y_FTP_HOST` | FTP-Servername aus dem World4You-Kundenbereich, ohne `ftp://` |
 | `W4Y_FTP_USER` | FTP-Benutzername |
 | `W4Y_FTP_PASSWORD` | FTP-Passwort |
-| `W4Y_FTP_REMOTE_DIR` | Verzeichnis der Subdomain, im bisherigen WebFTP `/fussball` |
+| `W4Y_FTP_REMOTE_DIR` | Bestätigtes Verzeichnis der Subdomain: `/fussball` |
 
 Der FTP-Zugang muss **explizites FTP über TLS (FTPS)** unterstützen. Der Workflow prüft das Serverzertifikat und verschlüsselt auch die Datenverbindung. Zugangsdaten gehören ausschließlich in GitHub-Secrets, nicht in Dateien oder Commit-Nachrichten. Der erste erfolgreiche Lauf bestätigt den tatsächlichen Servernamen und Zielpfad.
 
