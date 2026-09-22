@@ -7,6 +7,7 @@
 ### Vereinsgründung
 
 - Zwischen der Logo-Auswahl und „Weiter zur Kaderwahl“ liegt nun etwas mehr Abstand.
+- Die drei Vereinsfarben stehen auf Mobilgeräten nebeneinander, und die Vereinsvorschau zeigt Wappen sowie Heim- und Auswärtstrikot kompakter. Die neue Drittfarbe setzt Akzente am Heimtrikot; beim Auswärtstrikot ist die Zweitfarbe Grundfarbe, die Drittfarbe Musterfarbe und die Hauptfarbe Akzent. Ältere Spielstände behalten ihre bisherigen Trikots.
 
 ### Spielansicht
 
@@ -19,6 +20,7 @@
 ### Vereinsübersicht
 
 - Der Kadercheck trägt eine kleinere Überschrift. In der Spielvorschau stehen „Heim“ und „Auswärts“ über den Vereinen mit österreichischen Flaggen statt der Richtungsbeschreibung zur Fünf-Spiele-Form; die Gegnerstärke wird als kurzer Vergleichssatz beschrieben. Ein Tipp auf einen gegnerischen Tabellenplatz öffnet Vereinsdaten, Kader und die zuletzt eingesetzte Startelf. Vor dem ersten Spiel wird ausdrücklich angezeigt, dass noch keine Aufstellung vorliegt. Geprüft mit Vorschau- und Vereinsprofiltest, Build sowie Desktop- und Mobilansicht.
+- Das Vereinsprofil wird auch in die veröffentlichte Einzeldatei eingebunden. Ein zusätzlicher Deployment-Test prüft, dass dafür kein externes Skript benötigt wird.
 - Die fünf Form-Ergebnisse beider Teams bleiben auf schmalen Mobilansichten jeweils in einer Reihe und stehen auch bei unterschiedlich langen Vereinsnamen auf gleicher Höhe. Geprüft mit Vorschautest, Build und mobilen Breiten von 320 und 375 Pixeln.
 
 ### Stärkesystem

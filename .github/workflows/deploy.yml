@@ -33,6 +33,8 @@ jobs:
           node work/test-v31.cjs
           node work/test-v41.cjs
           node work/test-v42.cjs
+          node work/test-v44.cjs
+          node work/test-v45.cjs
           node work/test-v47.cjs
           node work/test-v49.cjs
           node work/test-v50.cjs
@@ -40,6 +42,7 @@ jobs:
           node work/test-v51.cjs
           node work/test-v52.cjs
           node work/test-v53.cjs
+          node work/test-v54.cjs
           python3 work/test_deploy_ftps.py
 
       - name: Einzeldatei bauen

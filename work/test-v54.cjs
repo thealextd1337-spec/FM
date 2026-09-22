@@ -27,4 +27,8 @@ assert.match(played,/Bank/);
 
 assert.match(vm.runInContext("v54StrengthSentence(worldTeam('nord'))",context),/Augenhöhe/);
 assert.match(fs.readFileSync('dist/opponent-profile-v54.js','utf8'),/row\.setAttribute\('role','button'\)/,'table rows are keyboard-operable');
+require('./build.cjs');
+const bundled=fs.readFileSync('outputs/index.html','utf8');
+assert.match(bundled,/function v54TeamHTML\(/,'opponent profile is present in the published single-file build');
+assert.doesNotMatch(bundled,/<script src="opponent-profile-v54\.js"><\/script>/,'published build has no external opponent profile dependency');
 console.log('PASS: fixture captions and flags, opponent squad and last lineup, short strength sentence');

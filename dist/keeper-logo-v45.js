@@ -32,7 +32,7 @@ function v45RenderIdentity(){
 }
 v45KeeperSection.addEventListener('click',event=>{const id=event.target.closest('[data-v45-keeper]')?.dataset.v45Keeper;if(!v45KeeperOptions.some(option=>option.id===id))return;v44Choice.keeper=id;v45RenderIdentity()});
 v44Section.addEventListener('click',event=>{if(event.target.closest('[data-v44-choice]'))v45RenderIdentity()});
-for(const id of['#club-name','#club-primary','#club-secondary'])$(id).addEventListener('input',()=>{updateIdentityPreview();v45RenderIdentity()});
+for(const id of['#club-name','#club-primary','#club-secondary','#club-tertiary'])$(id).addEventListener('input',()=>{updateIdentityPreview();v45RenderIdentity()});
 $$('[data-colors]').forEach(button=>button.addEventListener('click',v45RenderIdentity));
 v45RenderIdentity();
 
