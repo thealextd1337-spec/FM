@@ -28,12 +28,19 @@ vm.runInContext('step(0,.02)',foul);
 assert.equal(vm.runInContext('match.setPiece',foul),null);
 
 const offside=newMatch();
-const offsidePositions=JSON.parse(vm.runInContext(`JSON.stringify((()=>{match.owner=match.people.find(player=>player.t===0&&!player.keeper);match.ball={x:.5,y:.5};const attacker=match.people.find(player=>player.t===0&&!player.keeper&&player!==match.owner);attacker.x=.5;attacker.y=.2;const defenders=match.people.filter(player=>player.t===1);defenders.forEach((player,index)=>{player.x=.7;player.y=.3+index*.02});const snapshot=v55OffsideSnapshot(match.owner);v55WhistleOffside(snapshot,attacker);const taker=match.setPiece.taker,original={x:taker.x,y:taker.y};step(.2,.2);const frozen={x:taker.x,y:taker.y};step(.35,.35);return{original,frozen,moving:{x:taker.x,y:taker.y},spot:match.setPiece.spot,ball:match.ball,visual:!!match.offsideVisual}})())`,offside));
-assert.deepEqual(offsidePositions.frozen,offsidePositions.original,'offside line is readable before players move');
+const offsidePositions=JSON.parse(vm.runInContext(`JSON.stringify((()=>{match.owner=match.people.find(player=>player.t===0&&!player.keeper);match.ball={x:.5,y:.5};const attacker=match.people.find(player=>player.t===0&&!player.keeper&&player!==match.owner);attacker.x=.5;attacker.y=.2;const defenders=match.people.filter(player=>player.t===1);defenders.forEach((player,index)=>{player.x=.7;player.y=.3+index*.02});const snapshot=v55OffsideSnapshot(match.owner);v55WhistleOffside(snapshot,attacker);const taker=match.setPiece.taker,original={x:taker.x,y:taker.y},everyone=match.people.map(person=>({x:person.x,y:person.y})),clock=match.elapsed;step(1.4,1.4);const frozen={x:taker.x,y:taker.y},frozenEveryone=match.people.map(person=>({x:person.x,y:person.y})),visualDuringPause=!!match.offsideVisual;step(.2,.2);return{original,frozen,everyone,frozenEveryone,moving:{x:taker.x,y:taker.y},spot:match.setPiece.spot,ball:match.ball,visualDuringPause,visualWhileMoving:!!match.offsideVisual,clock,clockAfter:match.elapsed,phase:match.setPiece?.phase}})())`,offside));
+assert.deepEqual(offsidePositions.frozen,offsidePositions.original,'offside decision stays frozen for at least 1.4 real seconds');
+assert.deepEqual(offsidePositions.frozenEveryone,offsidePositions.everyone,'all players remain still while the offside line is visible');
 assert.notDeepEqual(offsidePositions.moving,offsidePositions.frozen,'teams reposition for offside free kick');
 assert.equal(offsidePositions.ball.x,offsidePositions.spot.x);
 assert.equal(offsidePositions.ball.y,offsidePositions.spot.y);
-assert.equal(offsidePositions.visual,true,'offside line remains visible during positioning');
+assert.equal(offsidePositions.visualDuringPause,true,'offside line remains visible throughout analysis pause');
+assert.equal(offsidePositions.visualWhileMoving,false,'offside line is hidden before restart positioning');
+assert.equal(offsidePositions.clockAfter,offsidePositions.clock,'match clock remains paused through analysis and positioning');
+assert.equal(offsidePositions.phase,'waiting','the free kick does not start during the analysis pause');
+vm.runInContext('step(0,1.01);step(0,.25);step(0,.5)',offside);
+assert.equal(vm.runInContext('match.setPiece',offside),null,'offside free kick still resumes after the longer pause');
+assert.equal(vm.runInContext('match.elapsed',offside),offsidePositions.clock,'the clock stays paused until the free kick is taken');
 
 for(const {team,spot,direction} of [
  {team:0,spot:{x:.07,y:.1},direction:1},

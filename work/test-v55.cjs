@@ -34,10 +34,10 @@ assert.equal(vm.runInContext("readSlots().length",context),1);
 assert.equal(vm.runInContext("importSaveObject({save:structuredClone(activeSave)})",context),true);
 assert.equal(vm.runInContext("readSlots().length",context),2);
 
-vm.runInContext("const positionProbe=players.find(player=>player.line==='mid');positionProbe.cell=21;saveCurrent();document.querySelector('#canvas').parentElement={append(){}};start()",context);
+vm.runInContext("const positionProbe=players.find(player=>player.line==='mid');positionProbe.cell=27;saveCurrent();document.querySelector('#canvas').parentElement={append(){}};start()",context);
 assert.equal(vm.runInContext('match.defenseLines[0]',context),0);
-assert.equal(vm.runInContext("match.people.some(player=>player.t===0&&player.cell===21&&player.line==='mid'&&player.assignedLine==='def')",context),true,'die Abwehrzone muss als Einsatzposition ins Match übernommen werden');
-assert.equal(vm.runInContext("(()=>{const player=match.people.find(item=>item.t===0&&item.cell===21),assigned=player.assignedLine;player.assignedLine=player.line;const native=ability(player,'pas');player.assignedLine=assigned;return Math.round((native-ability(player,'pas'))*100)/100})()",context),.45,'positionsfremdes Passspiel erhält den Match-Malus');
+assert.equal(vm.runInContext("match.people.some(player=>player.t===0&&player.cell===27&&player.line==='mid'&&player.assignedLine==='def')",context),true,'die Abwehrzone muss als Einsatzposition ins Match übernommen werden');
+assert.equal(vm.runInContext("(()=>{const player=match.people.find(item=>item.t===0&&item.cell===27),assigned=player.assignedLine;player.assignedLine=player.line;const native=ability(player,'pas');player.assignedLine=assigned;return Math.round((native-ability(player,'pas'))*100)/100})()",context),.45,'positionsfremdes Passspiel erhält den Match-Malus');
 vm.runInContext("match.defenseLines[0]=1;const reshuffled=match.people.find(player=>player.t===0&&player.line==='mid');reshuffled.assignedLine='def';v55PrepareMovement()",context);
 assert.equal(vm.runInContext('reshuffled.by',context),.63,'a midfielder assigned to defense follows the high line');
 assert.equal(vm.runInContext("(()=>{const player={...reshuffled,stats:{...emptyStats(),cleanSheet:1}},assigned=player.assignedLine;player.assignedLine=player.line;const native=performanceRating(player);player.assignedLine=assigned;return Math.round((performanceRating(player)-native)*100)/100})()",context),.35,'die Spielnote bewertet die Einsatzposition als Verteidiger');

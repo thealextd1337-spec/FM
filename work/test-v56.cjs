@@ -16,6 +16,30 @@ function newMatch(){
 const behind=newMatch();
 assert.equal(vm.runInContext(`(()=>{const victim=match.people.find(player=>player.t===0&&!player.keeper),tackler=match.people.find(player=>player.t===1&&!player.keeper);victim.x=.5;victim.y=.5;victim.motionX=0;victim.motionY=-1;tackler.x=.5;tackler.y=.56;match.owner=victim;match.ball={x:.516,y:.478};return v56StandingTackle(tackler,victim)})()`,behind),false,'a defender behind the carrier cannot win a standing tackle');
 
+const rearAttempt=newMatch();
+const rearResult=JSON.parse(vm.runInContext(`JSON.stringify((()=>{const victim=match.people.find(player=>player.t===0&&!player.keeper),tackler=match.people.find(player=>player.t===1&&!player.keeper);for(const player of match.people){player.x=.9;player.y=.9}victim.x=.5;victim.y=.5;victim.motionX=0;victim.motionY=-1;tackler.x=.5;tackler.y=.59;match.owner=victim;match.ball={x:.516,y:.478};Math.random=()=>0;const attempted=v56MaybeChallenge(victim);let ticks=0;while(match.slide&&ticks++<30)step(.05,.05);return{attempted,piece:match.setPiece?.type,ticks,fouls:tackler.stats.fouls,cards:('yellowCards'in tackler.stats)||('redCards'in tackler.stats),players:match.people.length}})())`,rearAttempt));
+assert.equal(rearResult.attempted,true,'a reachable defender may attempt a slide from behind');
+assert(rearResult.ticks>1,'a rear slide is animated before the decision');
+assert.equal(rearResult.piece,'freeKick','body contact from behind is a foul');
+assert.equal(rearResult.fouls,1,'one rear foul is recorded once for the tackler');
+assert.equal(rearResult.cards,false,'the rear foul has no personal punishment');
+assert.equal(rearResult.players,12,'both teams remain complete after the rear foul');
+
+const rearPenalty=newMatch();
+const rearPenaltyResult=JSON.parse(vm.runInContext(`JSON.stringify((()=>{const victim=match.people.find(player=>player.t===0&&!player.keeper),tackler=match.people.find(player=>player.t===1&&!player.keeper);for(const player of match.people){player.x=.9;player.y=.9}victim.x=.5;victim.y=.13;victim.motionX=0;victim.motionY=-1;tackler.x=.5;tackler.y=.22;match.owner=victim;match.ball={x:.516,y:.108};Math.random=()=>0;const attempted=v56MaybeChallenge(victim);let ticks=0;while(match.slide&&ticks++<30)step(.05,.05);return{attempted,piece:match.setPiece?.type,ticks,players:match.people.length}})())`,rearPenalty));
+assert.equal(rearPenaltyResult.attempted,true);
+assert(rearPenaltyResult.ticks>1);
+assert.equal(rearPenaltyResult.piece,'penalty','rear body contact in the penalty area awards a penalty');
+assert.equal(rearPenaltyResult.players,12);
+
+const cleanRear=newMatch();
+const cleanRearResult=JSON.parse(vm.runInContext(`JSON.stringify((()=>{const victim=match.people.find(player=>player.t===0&&!player.keeper),tackler=match.people.find(player=>player.t===1&&!player.keeper);for(const player of match.people){player.x=.9;player.y=.9}victim.x=.5;victim.y=.5;victim.motionX=0;victim.motionY=-1;tackler.x=.56;tackler.y=.513;match.owner=victim;match.ball={x:.516,y:.478};Math.random=()=>0;const behind=v56ApproachInfo(tackler,victim).behind,attempted=v56MaybeChallenge(victim);let ticks=0;while(match.slide&&ticks++<30)step(.05,.05);return{behind,attempted,won:tackler.stats.slideWon,fouls:tackler.stats.fouls,ticks}})())`,cleanRear));
+assert.equal(cleanRearResult.behind,true);
+assert.equal(cleanRearResult.attempted,true);
+assert(cleanRearResult.ticks>1);
+assert.equal(cleanRearResult.won,1,'a rear-diagonal slide reaching the ball before the body can be legal');
+assert.equal(cleanRearResult.fouls,0);
+
 const side=newMatch();
 const resisted=JSON.parse(vm.runInContext(`JSON.stringify((()=>{const victim=match.people.find(player=>player.t===0&&!player.keeper),tackler=match.people.find(player=>player.t===1&&!player.keeper);victim.x=.5;victim.y=.5;victim.motionX=0;victim.motionY=-1;tackler.x=.54;tackler.y=.48;match.owner=victim;match.ball={x:.516,y:.478};Math.random=()=>.9;return{consumed:v56StandingTackle(tackler,victim),duels:tackler.stats.duels,recovery:tackler.recoverUntil-match.elapsed}})())`,side));
 assert.equal(resisted.duels,1,'a defender beside the ball may challenge');

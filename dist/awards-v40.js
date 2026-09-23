@@ -15,16 +15,11 @@ function v40AwardPlayer(player,type,season){
 function v40Medals(player){return(player.awards||[]).length?`<span class="honour-medals">${player.awards.map(item=>`<span class="honour-medal ${item.type==='best'?'best':item.type==='cup'?'cup':''}" title="${item.type==='scorer'?'Torschützenkönig':item.type==='best'?'Bester Spieler':'Pokalsieger'} · Saison ${item.season}" aria-label="${item.type==='scorer'?'Torschützenkönig':item.type==='best'?'Bester Spieler':'Pokalsieger'} Saison ${item.season}">${item.type==='scorer'?'⚽':item.type==='best'?'★':'♜'}</span>`).join('')}</span>`:''}
 
 const v13AddSyntheticMatchV40=addSyntheticMatch;
-addSyntheticMatch=function(team,goals){
- if(!activeSave?.cupEnabled)return v13AddSyntheticMatchV40(team,goals);
- const lineup=aiLineup(team),outfield=lineup.filter(player=>!player.keeper),contributions=new Map(lineup.map(player=>[player,{goals:0,assists:0}]));
- for(let goal=0;goal<goals;goal++){
-  const pool=outfield.flatMap(player=>Array(Math.max(1,Math.round((player.fin??9)/3.6)+(player.line==='att'?3:player.line==='mid'?1:0))).fill(player));
-  const scorer=pick(pool),others=outfield.filter(player=>player!==scorer),assister=others.length&&Math.random()<.7?pick(others):null;
-  const stats=currentStats(scorer);stats.goals++;stats.shots+=1+Math.floor(Math.random()*2);stats.onTarget++;contributions.get(scorer).goals++;
-  if(assister){currentStats(assister).assists++;contributions.get(assister).assists++}
- }
- for(const player of lineup){const stats=currentStats(player),impact=contributions.get(player);stats.games++;stats.ratingTotal+=Math.min(9.5,6+(Math.random()-.5)*.8+impact.goals*1.05+impact.assists*.45);stats.ratingCount++}
+addSyntheticMatch=function(team,goals,conceded){
+ if(!activeSave?.cupEnabled)return v13AddSyntheticMatchV40(team,goals,conceded);
+ const lineup=aiLineup(team),before=new Map(lineup.map(player=>{const stats=currentStats(player);return[player,{goals:stats.goals,assists:stats.assists}]}));
+ v13AddSyntheticMatchV40(team,goals,conceded);
+ for(const player of lineup){const stats=currentStats(player),prior=before.get(player);stats.ratingTotal+=Math.min(9.5,6+(Math.random()-.5)*.8+(stats.goals-prior.goals)*1.05+(stats.assists-prior.assists)*.45)-6}
 };
 
 function v40LeagueAwards(snapshot){

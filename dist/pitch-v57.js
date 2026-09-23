@@ -2,9 +2,14 @@
 function v57PositionFreeKick(realDelta){
  const m=match,piece=m?.setPiece;
  if(!piece||!['freeKick','offside'].includes(piece.type)||!['waiting','fading'].includes(piece.phase))return;
- piece.positionElapsed=(piece.positionElapsed||0)+realDelta;
- // Keep the frozen offside decision readable briefly before the restart forms.
- if(piece.type==='offside'&&piece.positionElapsed<.45)return;
+ const previousElapsed=piece.positionElapsed||0;
+ piece.positionElapsed=previousElapsed+realDelta;
+ // Let the full offside snapshot remain still long enough to inspect before players move.
+ if(piece.type==='offside'){
+  if(piece.positionElapsed<v50OffsideFreezeSeconds)return;
+  m.offsideVisual=null;
+  realDelta=Math.max(0,piece.positionElapsed-Math.max(previousElapsed,v50OffsideFreezeSeconds));
+ }
  const forward=piece.team===0?-1:1,spot=piece.spot;
  // A wide restart still develops toward the middle of the defended goal.
  const wide=clamp((Math.abs(spot.x-.5)-.16)/.3,0,1);

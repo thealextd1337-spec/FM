@@ -1,5 +1,16 @@
 # Änderungen
 
+## Noch nicht veröffentlicht
+
+## 2026-09-23 (Spielregeln und Saisonstatistik)
+
+- Für künftige Änderungen ist festgelegt: Gespeicherte Partien und Saisons werden nicht allein für neue Regeln oder Statistiken nachträglich berechnet oder umgerechnet. Altstände bleiben ohne zusätzliche Migrationslogik nutzbar, soweit möglich; Ausnahmen brauchen eine ausdrückliche Entscheidung.
+- Parallel simulierte Ligaspiele der Computervereine erfassen jetzt neben Einsätzen, Toren und Schüssen auch Vorlagen, Torwart-Gegentore und Zu-null-Spiele, Fouls sowie verwandelte und verschossene Elfmeter. Das gilt auch für Karrieren mit Pokal; eine Partie wird nur einmal verbucht. Beim Laden älterer Spielstände werden die aus Ergebnissen sicher rekonstruierbaren Torwartwerte einmalig ergänzt. Frühere Vorlagen, Fouls und Elfmeter können nicht exakt nachgetragen werden. Geprüft mit einem deterministischen Liga-Statistiktest.
+- Nach einem Abseitspfiff friert die Szene mit Linie und markiertem Spieler 1,5 reale Sekunden ein, während die Spieluhr pausiert. Erst anschließend verschwindet die Markierung und die Mannschaften stellen sich zum Freistoß auf. Geprüft mit dem Abseits- und Freistoßtest.
+- Grätschen von hinten sind wieder möglich, werden aber mit geringerer Wahrscheinlichkeit angesetzt. Körperkontakt von hinten ist stets ein Foul mit Freistoß oder Elfmeter; ein schräger, sauberer Ballgewinn bleibt möglich. Fouls werden beim Spieler nur einmal verbucht; Karten und Platzverweise gibt es weiterhin nicht. In 48 deterministischen Matches entstanden 10 reguläre Elfmeter statt zuvor 2 bei vollständigem Ausschluss von Grätschen von hinten. Geprüft mit gezielten Kontakt- und Strafraumszenen, vollständigen Matches und dem Häufigkeitstest.
+- Beim regulären Elfmeter steht nur die Elfmeterszene im Vordergrund; der allgemeine Matchbanner bleibt ausgeblendet. Nach einem Treffer wird erst die Szene geschlossen und dann der Torbanner gezeigt. Geprüft mit einem Regressionstest für alle drei Anzeigephasen.
+- Die Mittelfeldzone im Aufstellungsraster umfasst jetzt die Reihen 3–5. Spieler in Reihe 5 erhalten automatisch die Einsatzposition Mittelfeld; die sichtbare Trennlinie zur Abwehr liegt darunter. Geprüft mit dem Taktiktausch-Test und dem Build.
+
 ## 2026-09-23 (Aufstellung und Statistiken)
 
 - Die Einsatzposition folgt jetzt automatisch der Spielfeldzone. Querlinien trennen Angriff, Mittelfeld und Abwehr; das Positionskürzel am Spielericon aktualisiert sich beim Verschieben. Positionsfremde Spieler sind auf Feld und Startelfliste markiert und erhalten eine Erklärung in der Spielerauswahl. Die manuelle Positionswahl entfällt. Auch Anstoß und Spielnote beachten die Einsatzposition. Bestehende Schema-5-Spielstände übernehmen beim Öffnen die Position ihrer Rasterfelder. Geprüft mit Aufstellungs- und Matchtests, Build und Browseransicht.

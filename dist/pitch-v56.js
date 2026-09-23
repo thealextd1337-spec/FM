@@ -7,12 +7,6 @@ for(const key of ['slideAttempts','slideWon','fouls'])if(!statKeys.includes(key)
 const v56BaseStart=start;
 start=function(){const result=v56BaseStart();if(match&&running){match.slide=null;for(const player of match.people){player.motionX=0;player.motionY=player.t===0?-1:1;player.recoverUntil=0}}return result};
 $('#start').onclick=()=>start();
-const v56BaseFoul=v50Foul;
-v50Foul=function(victim,offender){
- offender.stats.fouls++;
- return v56BaseFoul(victim,offender);
-};
-
 function v56Forward(player){const length=Math.hypot(player.motionX||0,player.motionY||0);return length>.0001?{x:player.motionX/length,y:player.motionY/length}:{x:0,y:player.t===0?-1:1}}
 function v56ApproachInfo(tackler,victim){const forward=v56Forward(victim),relative={x:tackler.x-victim.x,y:tackler.y-victim.y};return{behind:relative.x*forward.x+relative.y*forward.y<-0.012,body:v56Pixels(tackler,victim),ball:v56Pixels(tackler,match.ball)}}
 function v56StandingTackle(tackler,victim){
@@ -26,10 +20,10 @@ function v56StandingTackle(tackler,victim){
  return true;
 }
 function v56StartSlide(tackler,victim){
- const m=match,ball={...m.ball},forward=v56Forward(victim);
+ const m=match,ball={...m.ball},forward=v56Forward(victim),behind=v56ApproachInfo(tackler,victim).behind;
  tackler.stats.slideAttempts++;tackler.stats.duels++;victim.stats.duels++;
- const target={x:clamp(ball.x+forward.x*.016,.06,.94),y:clamp(ball.y+forward.y*.016,.06,.94)};
- m.slide={tackler,victim,from:{x:tackler.x,y:tackler.y},target,progress:0,behind:v56ApproachInfo(tackler,victim).behind};
+ const lead=behind?.04:.016,target={x:clamp(ball.x+forward.x*lead,.06,.94),y:clamp(ball.y+forward.y*lead,.06,.94)};
+ m.slide={tackler,victim,from:{x:tackler.x,y:tackler.y},target,progress:0,behind};
  tackler.slideActive=true;m.next=Infinity;
  note(`${tackler.name} setzt zur Grätsche gegen ${victim.name} an.`,'duel');
 }
@@ -61,9 +55,10 @@ function v56MaybeChallenge(victim){
  const rivals=m.people.filter(player=>player.t!==victim.t&&!player.keeper&&!player.slideActive&&(player.recoverUntil||0)<=m.elapsed);
  const standing=rivals.filter(player=>{const info=v56ApproachInfo(player,victim);return !info.behind&&info.ball<39&&info.body<43}).sort((a,b)=>v56Pixels(a,m.ball)-v56Pixels(b,m.ball))[0];
  if(standing)return v56StandingTackle(standing,victim);
- const slider=rivals.filter(player=>{const info=v56ApproachInfo(player,victim);return info.ball>=25&&info.ball<100&&info.body<105}).sort((a,b)=>v56Pixels(a,m.ball)-v56Pixels(b,m.ball))[0];
+ const slider=rivals.filter(player=>{const info=v56ApproachInfo(player,victim);return info.ball>=25&&info.ball<100&&info.body<105&&(info.behind||info.ball<info.body)}).sort((a,b)=>v56Pixels(a,m.ball)-v56Pixels(b,m.ball))[0];
  if(!slider)return false;
- const chance=clamp(.18+(m.aggression?.[slider.t]??0)*.09+(v56ApproachInfo(slider,victim).behind?.04:0),.08,.35);
+ const behind=v56ApproachInfo(slider,victim).behind;
+ const chance=behind?clamp(.09+(m.aggression?.[slider.t]??0)*.06,.03,.21):clamp(.18+(m.aggression?.[slider.t]??0)*.09,.08,.35);
  if(random()>=chance)return false;
  v56StartSlide(slider,victim);return true;
 }

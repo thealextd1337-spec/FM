@@ -76,12 +76,13 @@ function v50BestTaker(team,type,spot){
 }
 function v50Spot(player,spot){player.x=spot.x;player.y=spot.y;player.tx=spot.x;player.ty=spot.y}
 function v50ClearPenaltyScene(){document.querySelector('#v50-penalty-scene')?.remove()}
+const v50OffsideFreezeSeconds=1.5;
 
 function v50Restart(type,team,spot,description){
  const m=match;if(!m||m.finished||m.setPiece)return;
  const taker=v50BestTaker(team,type,spot);
  m.owner=null;m.flight=null;m.rebound=null;m.lastPass=null;m.next=Infinity;
- m.ball={...spot};m.setPiece={type,team,spot,taker,phase:'waiting',wait:type==='penalty'?2.5:type==='corner'?2:1.8};
+ m.ball={...spot};m.setPiece={type,team,spot,taker,phase:'waiting',wait:type==='penalty'?2.5:type==='corner'?2:type==='offside'?v50OffsideFreezeSeconds+1.1:1.8};
  if(type==='corner'){
   const allies=v50Outfield(team).filter(player=>player!==taker),opponents=v50Outfield(1-team),goalY=team===0?.1:.9;
   v50Spot(taker,{x:spot.x,y:spot.y===.035?.05:.95});
@@ -95,8 +96,8 @@ function v50Restart(type,team,spot,description){
   }
  }
  note(description,'restart');
- showOverlay(type==='corner'?'ECKBALL':type==='penalty'?'ELFMETER':'FREISTOSS',`${v50Name(team)} · ${taker.name}`);
- if(type==='penalty')v50PenaltyVisual(m.setPiece,null);
+ if(type==='penalty'){hideOverlay();v50PenaltyVisual(m.setPiece,null)}
+ else showOverlay(type==='corner'?'ECKBALL':'FREISTOSS',`${v50Name(team)} · ${taker.name}`);
  updateTeamStats();
 }
 
