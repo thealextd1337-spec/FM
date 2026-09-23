@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (Mobiles Scrollen in der Taktik)
+
+- Senkrechtes Wischen auf Spielertoken und Spielerkarten scrollt die Taktikansicht wieder. Drag & Drop beginnt erst bei einer deutlichen waagrechten Bewegung; das Antippen von Spieler und Zielfeld bleibt erhalten. Geprüft mit Touch-Gesten- und Aufstellungstests, Build sowie einer mobilen Browseremulation.
+
 ## 2026-09-23 (Spielerwerte nur als Farbstufen)
 
 - Auch die Kaderübersicht zeigt bekannte Fähigkeiten jetzt ausschließlich als farbige Namen ohne exakte Zahlen; Screenreader nennen nur die Farbstufe. Die Jugendübersicht verrät keine gewonnenen Fähigkeitspunkte mehr. Spielwerte und gespeicherte Karrieren bleiben unverändert. Geprüft mit Fähigkeits-, Kader- und Jugendtests sowie dem Build.
