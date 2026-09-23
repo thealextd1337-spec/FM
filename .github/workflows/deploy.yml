@@ -37,6 +37,7 @@ jobs:
           node work/test-tactics-replacement.cjs
           node work/test-quick-lineup-cells.cjs
           node work/test-v24.cjs
+          node work/test-mobile-drag-scroll.cjs
           node work/test-v31.cjs
           node work/test-v41.cjs
           node work/test-v42.cjs
