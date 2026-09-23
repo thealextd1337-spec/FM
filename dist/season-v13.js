@@ -79,7 +79,10 @@ const v12FinishMatch=finishMatch;finishMatch=function(){
 };
 const v12StartNextSeason=startNextSeason;startNextSeason=function(){
  if(activeSave.currentRound<10)return;seasonSnapshot();v12StartNextSeason();
- for(const team of activeSave.world.teams)for(const player of team.roster){player.age++;player.fresh=100;player.form=player.form>0?player.form-1:player.form<0?player.form+1:0}
+ for(const team of activeSave.world.teams){
+  delete team.pendingPlayedRecovery;
+  for(const player of team.roster){player.age++;player.fresh=100;player.form=player.form>0?player.form-1:player.form<0?player.form+1:0;player.history=(player.history||[]).slice(-2)}
+ }
  saveCurrent();renderCenter();
 };
 document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

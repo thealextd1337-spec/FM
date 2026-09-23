@@ -29,7 +29,7 @@ function v54StrengthSentenceHTML(team){
 }
 function v54TeamHTML(team){
  const standing=activeSave.table.find(item=>item.id===team.id),rank=standings().findIndex(item=>item.id===team.id)+1;
- const hasPlayed=v49RecentForm(team.id).length>0,lineup=hasPlayed?aiLineup(team):[],starters=new Set(lineup.map(player=>player.n));
+ const hasPlayed=v49RecentForm(team.id).length>0,lineup=hasPlayed?(team.lastLineup?.map(number=>team.roster.find(player=>player.n===number)).filter(Boolean)||aiLineup(team)):[],starters=new Set(lineup.map(player=>player.n));
  const groups=[['Angriff','att'],['Mittelfeld','mid'],['Abwehr','def'],['Torwart','gk']];
  const lineupHTML=lineup.length?`<div class="v54-formation">${groups.map(([label,line])=>`<div class="v54-line"><span>${label}</span><div>${lineup.filter(player=>player.line===line).map(player=>`<b>#${player.n} ${escapeHTML(player.name)}</b>`).join('')}</div></div>`).join('')}</div>`:'<p class="v54-empty">Dieser Verein hat noch kein Spiel bestritten.</p>';
  const roster=[...(team.roster||[])].sort((a,b)=>(a.keeper?-1:b.keeper?1:0)||({def:0,mid:1,att:2}[a.line]??3)-({def:0,mid:1,att:2}[b.line]??3)||a.n-b.n);

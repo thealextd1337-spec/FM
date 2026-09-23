@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (KI-Form, Frische und Rotation)
+
+- Computerteams rotieren ihre Startelf nach Position, Stärke, Form und Frische. Auch bei KI-Spielern verändern Liga- und Pokaleinsätze jetzt dauerhaft Form und Frische; parallel simulierte Ergebnisse berücksichtigen den Zustand der eingesetzten Elf. Die letzte tatsächliche Aufstellung bleibt im Vereinsprofil sichtbar. Bereits gespielte Partien werden nicht nachberechnet. Geprüft mit dem neuen KI-Karrieretest über eine ganze Saison, den bisherigen Saison- und Pokaltests sowie dem Build.
+
 ## 2026-09-23 (Trikot-Icons am Spielstand)
 
 - Die Live-Anzeigetafel zeigt neben beiden Teamnamen kleine Shirts in den tatsächlich verwendeten Trikotfarben und Mustern: links vom linken Namen und rechts vom rechten Namen. Geprüft mit Match- und Trikottests, Build sowie mobiler Browseransicht.

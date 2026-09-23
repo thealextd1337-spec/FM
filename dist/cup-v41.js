@@ -33,7 +33,7 @@ function v41Shootout(userPlayers,opponentPlayers,custom){
  return{kicks,score,winner:score[0]>score[1]?0:1};
 }
 function v41SimulateGame(game){
- const home=activeSave.world.teams.find(team=>team.id===game.home),away=activeSave.world.teams.find(team=>team.id===game.away),strength=id=>id==='user'?72:activeSave.world.teams.find(team=>team.id===id)?.strength||70;
+ const home=activeSave.world.teams.find(team=>team.id===game.home),away=activeSave.world.teams.find(team=>team.id===game.away),strength=id=>{const base=id==='user'?72:activeSave.world.teams.find(team=>team.id===id)?.strength||70;return typeof aiTeamStrength==='function'?aiTeamStrength(id,base):base};
  const result=[randomGoals(strength(game.home)+2,strength(game.away)),randomGoals(strength(game.away),strength(game.home))];
  let winner=result[0]>result[1]?game.home:result[1]>result[0]?game.away:null,penalties=null;
  if(!winner){const sides=[home,away].map(team=>aiLineup(team));const shoot=v41Shootout(sides[0],sides[1]);penalties=shoot.score;winner=shoot.winner===0?game.home:game.away}
