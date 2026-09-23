@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (Abseits am Spielfeldrand)
+
+- Beim Abseitspfiff verdeckt kein mittiger Banner mehr die eingefrorene Szene. Ein großer Linienrichter hebt am Spielfeldrand die Fahne, während Linie und betroffener Spieler sichtbar bleiben; danach folgt der kurze Freistoß mit der bisherigen Pause. Geprüft mit Abseits-, Freistoß- und Matchtests, Build sowie mobiler Grafikvorschau.
+
 ## 2026-09-23 (Kompakte Live-Ansicht)
 
 - Während einer Live-Partie nehmen Header und Statusleiste auf Mobilgeräten weniger Höhe ein. Die Retro-Uhr ist schmaler und flacher, damit mehr Spielfeld sichtbar bleibt. Aufstellung und andere Karrierephasen behalten ihre bisherige Größe. Geprüft mit Fortschritts- und Matchtests sowie mobiler Browseransicht.

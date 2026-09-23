@@ -67,7 +67,26 @@ function v55ThrowStep(delta,realDelta){const m=match,throwIn=m.throwIn;if(!throw
 const v55BaseStep=step;
 step=function(delta,realDelta){if(match?.throwIn&&!match.finished){v55ThrowStep(delta,realDelta);return}if(match&&!match.finished)v55PrepareMovement();const result=v55BaseStep(delta,realDelta);if(match?.offsideVisual&&!match.setPiece)match.offsideVisual=null;return result};
 const v55BaseDraw=draw;
-draw=function(){const result=v55BaseDraw();if(!match)return result;const ctx=$('#canvas').getContext('2d');if(match.offsideVisual){const scene=match.offsideVisual;ctx.save();ctx.strokeStyle='#ffda68';ctx.lineWidth=3;ctx.setLineDash([10,7]);ctx.beginPath();ctx.moveTo(28,scene.lineY*740);ctx.lineTo(572,scene.lineY*740);ctx.stroke();ctx.setLineDash([]);ctx.strokeStyle='#ffda68';ctx.lineWidth=4;ctx.beginPath();ctx.arc(scene.x*600,scene.y*740,25,0,Math.PI*2);ctx.stroke();ctx.restore()}const flight=match.flight;if(flight?.aerial){const q=Math.min(1,flight.progress),ball=match.ball,x=ball.x*600,y=ball.y*740,height=Math.sin(Math.PI*q)*54;ctx.save();ctx.fillStyle='#214e43';ctx.beginPath();ctx.arc(x,y,8,0,Math.PI*2);ctx.fill();ctx.fillStyle='#0006';ctx.beginPath();ctx.ellipse(x,y+3,7,4,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.strokeStyle='#17292b';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y-height,6,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.restore()}return result};
+function v55DrawAssistantReferee(ctx,scene){
+ const left=scene.x>.5,direction=left?1:-1,x=left?46:554,y=clamp(scene.lineY*740,135,640);
+ ctx.save();ctx.translate(x,y);ctx.scale(1.3,1.3);ctx.translate(-x,-y);
+ ctx.fillStyle='#081b1c99';ctx.beginPath();ctx.ellipse(x,y+46,24,8,0,0,Math.PI*2);ctx.fill();
+ ctx.strokeStyle='#102327';ctx.lineWidth=13;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x-7,y+14);ctx.lineTo(x-12,y+42);ctx.moveTo(x+7,y+14);ctx.lineTo(x+12,y+42);ctx.stroke();
+ ctx.strokeStyle='#e9f4eb';ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(x-12,y+42);ctx.lineTo(x-18,y+42);ctx.moveTo(x+12,y+42);ctx.lineTo(x+18,y+42);ctx.stroke();
+ ctx.fillStyle='#102327';ctx.fillRect(x-15,y+8,30,15);
+ ctx.fillStyle='#d7f875';ctx.fillRect(x-16,y-16,32,27);
+ ctx.fillStyle='#17292b';ctx.fillRect(x-3,y-16,6,27);
+ ctx.strokeStyle='#d7f875';ctx.lineWidth=10;ctx.beginPath();ctx.moveTo(x-direction*12,y-9);ctx.lineTo(x-direction*19,y+11);ctx.moveTo(x+direction*12,y-9);ctx.lineTo(x+direction*24,y-31);ctx.stroke();
+ ctx.strokeStyle='#e9b890';ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(x+direction*24,y-31);ctx.lineTo(x+direction*29,y-57);ctx.stroke();
+ ctx.fillStyle='#e9b890';ctx.beginPath();ctx.arc(x,y-28,11,0,Math.PI*2);ctx.fill();
+ ctx.fillStyle='#17292b';ctx.beginPath();ctx.arc(x,y-34,11,Math.PI,Math.PI*2);ctx.fill();
+ const poleX=x+direction*29;
+ ctx.strokeStyle='#f4f5e9';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(poleX,y-58);ctx.lineTo(poleX,y-98);ctx.stroke();
+ ctx.fillStyle='#ffba50';ctx.beginPath();ctx.moveTo(poleX,y-96);ctx.lineTo(poleX+direction*33,y-87);ctx.lineTo(poleX,y-78);ctx.fill();
+ ctx.fillStyle='#f46a54';ctx.beginPath();ctx.moveTo(poleX,y-96);ctx.lineTo(poleX+direction*33,y-87);ctx.lineTo(poleX,y-87);ctx.fill();
+ ctx.restore();
+}
+draw=function(){const result=v55BaseDraw();if(!match)return result;const ctx=$('#canvas').getContext('2d');if(match.offsideVisual){const scene=match.offsideVisual;ctx.save();ctx.strokeStyle='#ffda68';ctx.lineWidth=3;ctx.setLineDash([10,7]);ctx.beginPath();ctx.moveTo(28,scene.lineY*740);ctx.lineTo(572,scene.lineY*740);ctx.stroke();ctx.setLineDash([]);ctx.strokeStyle='#ffda68';ctx.lineWidth=4;ctx.beginPath();ctx.arc(scene.x*600,scene.y*740,25,0,Math.PI*2);ctx.stroke();ctx.restore();v55DrawAssistantReferee(ctx,scene)}const flight=match.flight;if(flight?.aerial){const q=Math.min(1,flight.progress),ball=match.ball,x=ball.x*600,y=ball.y*740,height=Math.sin(Math.PI*q)*54;ctx.save();ctx.fillStyle='#214e43';ctx.beginPath();ctx.arc(x,y,8,0,Math.PI*2);ctx.fill();ctx.fillStyle='#0006';ctx.beginPath();ctx.ellipse(x,y+3,7,4,0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.strokeStyle='#17292b';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y-height,6,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.restore()}return result};
 
 const v55Field={left:28/600,right:572/600,top:26/740,bottom:714/740};
 function v55Exit(from,to){
@@ -94,7 +113,7 @@ function v55WhistleOffside(snapshot,player){
  for(const [person,position] of snapshot.positions)v50Spot(person,position);
  match.ball={...snapshot.ball};
  match.offsideVisual={lineY:snapshot.lineY,x:offender.x,y:offender.y};
- showOverlay('ABSEITS',`${player.name} · Freistoß für ${v50Name(team)}`);
+ hideOverlay();match.overlayTTL=0;
  return true;
 }
 function v55BeginThrow(hit,lastTouch){
