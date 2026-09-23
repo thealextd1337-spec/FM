@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (Spielerprofile ohne Fähigkeitszahlen)
+
+- Spielerprofile zeigen weiterhin alle bekannten Fähigkeiten und ihre Farbstufen, aber keine exakten Fähigkeitszahlen mehr – auch nicht in Screenreader-Beschriftungen. Das gilt für die Startkaderwahl und die Live-Spielerinfo. Die Kaderübersicht behält ihre exakten Werte. Geprüft mit Spielerprofil- und Matchtest sowie Build.
+
 ## 2026-09-23 (Abseits am Spielfeldrand)
 
 - Beim Abseitspfiff verdeckt kein mittiger Banner mehr die eingefrorene Szene. Ein großer Linienrichter hebt am Spielfeldrand die Fahne, während Linie und betroffener Spieler sichtbar bleiben; danach folgt der kurze Freistoß mit der bisherigen Pause. Geprüft mit Abseits-, Freistoß- und Matchtests, Build sowie mobiler Grafikvorschau.
