@@ -12,4 +12,6 @@ Lies nur die für die Aufgabe relevanten Dateien:
 
 Für künftige Änderungen gilt: Bestehende Spielstände nicht rückwirkend berechnen oder umrechnen, wenn dafür Zusatzlogik nötig wäre. Details und Ausnahmen stehen in `docs/development.md`.
 
+Spielerfähigkeiten in allen Ansichten einschließlich zugänglicher Beschriftungen nur als Farbstufen zeigen. Exakte Fähigkeitswerte und Entwicklungspunkte bleiben intern; Details stehen in `docs/product.md`.
+
 Halte diese Datei als Wegweiser kurz. Pflege feste Produktentscheidungen in `docs/product.md` und Entwicklungsregeln in `docs/development.md`.
