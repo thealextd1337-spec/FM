@@ -21,7 +21,7 @@ listeners.area({currentTarget:area,target:{closest:()=>({dataset:{v51Number:Stri
 assert.equal(vm.runInContext('v47PlayerDialog.open',context),true);
 assert.match(vm.runInContext('v47PlayerDialog.innerHTML',context),/Live im Spiel/);
 assert.match(vm.runInContext('v47PlayerDialog.innerHTML',context),/Spiel fortsetzen/);
-assert.match(vm.runInContext('v47PlayerDialog.innerHTML',context),/Bekannte Scoutingwerte/);
+assert.match(vm.runInContext('v47PlayerDialog.innerHTML',context),/Bekannte Fähigkeiten/);
 assert.match(vm.runInContext('v47PlayerDialog.innerHTML',context),/Luftspiel/);
 assert.doesNotMatch(vm.runInContext('v47PlayerDialog.innerHTML',context),/\b(?:tec|pas|fin|tak|pos|spd|sta|air)\s*[:=]\s*\d+/,'exact skills remain hidden');
 const before=vm.runInContext('match.countdown',context);
@@ -33,7 +33,7 @@ const away=vm.runInContext('match.people.find(person=>person.t===1)',context);
 listeners.canvas({clientX:away.x*600,clientY:away.y*740});
 assert.equal(vm.runInContext('v47PlayerDialog.open',context),true,'opponent icons are clickable');
 assert(vm.runInContext('v47PlayerDialog.innerHTML',context).includes(away.name));
-assert.doesNotMatch(vm.runInContext('v47PlayerDialog.innerHTML',context),/Bekannte Scoutingwerte/,'unknown opponent skills remain hidden');
+assert.doesNotMatch(vm.runInContext('v47PlayerDialog.innerHTML',context),/Bekannte Fähigkeiten/,'unknown opponent skills remain hidden');
 vm.runInContext('v47PlayerDialog.close()',context);
 listeners.canvas({clientX:0,clientY:0});
 assert.equal(vm.runInContext('v47PlayerDialog.open',context),false,'empty pitch does not open a player');

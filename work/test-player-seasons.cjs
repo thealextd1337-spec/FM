@@ -12,7 +12,7 @@ assert.match(card,/data-season-back[^>]*disabled/);
 assert.match(card,/data-season-next/);
 assert.match(card,/1 von 5/);
 assert.match(card,/Karriere/);
-assert.match(card,/Scoutingbericht/,'profile retains scouting');
+assert.match(card,/Fähigkeiten/,'profile retains skill information');
 
 const controls={};
 function control(){return{disabled:false,listeners:{},addEventListener(type,handler){this.listeners[type]=handler}}}

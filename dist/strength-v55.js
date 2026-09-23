@@ -8,6 +8,25 @@ const v55SaveKey='sechser.saves.v5';
 const v55Skill=value=>clamp(Math.round(Number(value)||1),1,20);
 const v55SkillBand=value=>value<=7?'very-weak':value<=10?'weak':value<=13?'normal':value<=16?'good':'very-good';
 const v55SkillColor=value=>v51FormColors[v55SkillBand(value)];
+const v55SkillBandNames={'very-weak':'sehr schwach',weak:'schwach',normal:'durchschnittlich',good:'gut','very-good':'sehr gut'};
+const v55OutfieldSkills=[['Technik','tec'],['Passspiel','pas'],['Abschluss','fin'],['Zweikampf','tak'],['Stellungsspiel','pos'],['Geschwindigkeit','spd'],['Kondition','sta'],['Luftspiel','air']];
+const v55KeeperSkills=[['Torwartspiel','gk'],['Passspiel','pas'],['Stellungsspiel','pos'],['Geschwindigkeit','spd'],['Kondition','sta']];
+function v55SkillEntries(player){return(player.keeper?v55KeeperSkills:v55OutfieldSkills).map(([label,key],index)=>({label,key,index,value:player[key]})).filter(skill=>Number.isFinite(skill.value))}
+function v55TopSkillsHTML(player){
+ const skills=v55SkillEntries(player).sort((a,b)=>b.value-a.value||a.index-b.index).slice(0,3);
+ return `<span class="v55-skill-list" role="list" aria-label="Beste Fähigkeiten">${skills.map(skill=>`<span role="listitem" aria-label="${skill.label}: ${v55SkillBandNames[v55SkillBand(skill.value)]}" style="color:${v55SkillColor(skill.value)}">${skill.label}</span>`).join('')}</span>`;
+}
+function v55SkillGroupsHTML(player){
+ const groups=player.keeper?[
+  ['Torwart',[['Torwartspiel','gk']]],['Spielaufbau',[['Passspiel','pas']]],['Defensiv',[['Stellungsspiel','pos']]],['Körperlich',[['Geschwindigkeit','spd'],['Kondition','sta']]]
+ ]:[
+  ['Offensiv',v55OutfieldSkills.slice(0,3)],['Defensiv',v55OutfieldSkills.slice(3,5)],['Körperlich',v55OutfieldSkills.slice(5)]
+ ];
+ return `<div class="v55-skill-groups">${groups.map(([title,skills])=>`<div class="v55-skill-group"><h4>${title}</h4><div role="list" aria-label="${title}">${skills.filter(([,key])=>Number.isFinite(player[key])).map(([label,key])=>`<span class="v55-skill-row" role="listitem" aria-label="${label}: ${v55SkillBandNames[v55SkillBand(player[key])]}"><span style="color:${v55SkillColor(player[key])}">${label}</span></span>`).join('')}</div></div>`).join('')}</div><div class="v55-skill-legend" aria-label="Farbstufen">${v51FormKeys.map(key=>`<span><i style="background:${v51FormColors[key]}" aria-hidden="true"></i>${v55SkillBandNames[key]}</span>`).join('')}</div>`;
+}
+const v55SkillStyle=document.createElement('style');
+v55SkillStyle.textContent=`.v55-skill-list{display:grid;gap:3px;line-height:1.35}.v55-skill-list>[role=listitem]{display:block;font-weight:700;white-space:normal;overflow-wrap:anywhere}.v51-card-skills .v55-skill-list{margin-top:2px}.v55-skill-groups{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.v55-skill-group{min-width:0;padding:11px;border:1px solid #34494c;border-radius:8px;background:#102126}.v55-skill-group h4{margin:0 0 8px;color:#c4d3cc;font-size:11px}.v55-skill-row{display:block;padding:5px 0;font-size:12px;font-weight:700}.v55-skill-row+.v55-skill-row{border-top:1px solid #34494c}.v55-skill-legend{display:flex;flex-wrap:wrap;gap:5px 12px;margin-top:10px;color:#b8c9c4;font-size:10px}.v55-skill-legend>span{display:inline-flex;align-items:center;gap:4px}.v55-skill-legend i{width:8px;height:8px;border-radius:50%}.market-card .v55-skill-list,.candidate-card .v55-skill-list{margin-top:3px}.v59-player-scout .v55-skill-groups{gap:6px}.v59-player-scout .v55-skill-group{padding:8px}@media(max-width:520px){.v55-skill-groups{grid-template-columns:1fr}.v55-skill-group{padding:9px}.v55-skill-row{padding:4px 0}}`;
+document.head.append(v55SkillStyle);
 
 readSlots=function(){try{const slots=JSON.parse(localStorage.getItem(v55SaveKey)||'[]');if(!Array.isArray(slots))throw Error();storageFailed=false;return slots.filter(slot=>slot?.schema===5&&slot.world)}catch{storageFailed=true;return[]}};
 persistSlots=function(slots){try{localStorage.setItem(v55SaveKey,JSON.stringify(slots));storageFailed=false;return true}catch{storageFailed=true;alert('Speichern fehlgeschlagen. Bitte freien Browserspeicher prüfen. Dein geöffnetes Spiel bleibt erhalten.');return false}};
@@ -67,21 +86,13 @@ transferQuality=function(player){const keys=player.keeper?['gk','pas','pos','sta
 marketValue=function(player){const quality=transferQuality(player),ageFactor=player.age<=21?1.25:player.age<=25?1.12:player.age<=29?1:player.age<=32?.78:player.age<=35?.5:.3;return clamp(Math.round(((120+Math.max(0,quality-9.6)*70)*ageFactor*(player.keeper?.95:1))/10)*10,80,850)};
 annualSalary=function(player){if(Number.isFinite(player.salary))return player.salary;const quality=transferQuality(player),prime=player.age>=24&&player.age<=30?15:player.age<=21?-10:0;player.salary=clamp(Math.round((92+quality*8.25+prime+(player.keeper?10:0))/10)*10,150,290);return player.salary};
 
-function v55RecolorSkills(html,player){const keys={Technik:'tec',Passspiel:'pas',Abschluss:'fin',Zweikampf:'tak',Stellungsspiel:'pos',Stellung:'pos',Geschwindigkeit:'spd',Tempo:'spd',Kondition:'sta',Torwartspiel:'gk',Luftspiel:'air'};return html.replace(/<span>([^<]+)<b>([^<]+)<\/b><\/span>/g,(whole,label,word)=>Number.isFinite(player[keys[label]])?`<span>${label}<b style="color:${v55SkillColor(player[keys[label]])}">${word}</b></span>`:whole)}
-const v55ScoutingSkillsHTML=scoutingSkillsHTML;
-scoutingSkillsHTML=function(player){const html=v55ScoutingSkillsHTML(player),air=player.keeper?'':`<span>Luftspiel<b>${scoutingBand(player.air,player,'air')}</b></span>`;return v55RecolorSkills(html.replace('</div>',`${air}</div>`),player)};
+scoutingSkillsHTML=v55SkillGroupsHTML;
 function v55ColorSkills(text,player){const keys={Technik:'tec',Passspiel:'pas',Abschluss:'fin',Zweikampf:'tak',Stellungsspiel:'pos',Geschwindigkeit:'spd',Kondition:'sta',Torwartspiel:'gk',Luftspiel:'air'};return text.split(' · ').map(part=>{const label=Object.keys(keys).find(name=>part.startsWith(`${name} `)),value=player[keys[label]];return Number.isFinite(value)?`<span style="color:${v55SkillColor(value)}">${escapeHTML(part)}</span>`:escapeHTML(part)}).join(' · ')}
 const v55LineupCardContent=v51LineupCardContent;
-v51LineupCardContent=function(player,position,selectCell=null){return v55LineupCardContent(player,position,selectCell).replace(/<span class="v51-card-skills">([^<]*)<\/span>/,(whole,content)=>`<span class="v51-card-skills">${v55ColorSkills(content,player)}</span>`)};
+v51LineupCardContent=function(player,position,selectCell=null){return v55LineupCardContent(player,position,selectCell).replace(/<span class="v51-card-skills">[^<]*<\/span>/,`<span class="v51-card-skills">${v55TopSkillsHTML(player)}</span>`)};
 const v55ScoutingText=scoutingText;
 scoutingText=function(player){const original=v55ScoutingText(player);return player.keeper?original:`${original} · Luftspiel ${scoutWord(player.air)}`};
-scoutingTextHTML=function(player){
- const keys={Technik:'tec',Passspiel:'pas',Abschluss:'fin',Zweikampf:'tak',Stellungsspiel:'pos',Stellung:'pos',Tempo:'spd',Geschwindigkeit:'spd',Kondition:'sta',Torwartspiel:'gk',Luftspiel:'air'};
- return scoutingText(player).split(' · ').map(part=>{
-  const label=Object.keys(keys).find(name=>part.startsWith(`${name} `)),value=player[keys[label]];
-  return Number.isFinite(value)?`<span style="color:${v55SkillColor(value)}">${escapeHTML(part)}</span>`:escapeHTML(part);
- }).join(' · ');
-};
+scoutingTextHTML=v55TopSkillsHTML;
 youthPotentialHTML=function(candidate){
  const keys=youthFocus[candidate.player.line],score=keys.reduce((sum,key)=>sum+candidate.target[key],0)/keys.length;
  return `<strong style="color:${v55SkillColor(score)}">${escapeHTML(youthPotentialWord(candidate))}</strong>`;

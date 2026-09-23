@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (Spielerfähigkeiten)
+
+- Kader-, Aufstellungs- und Transferkarten zeigen die drei besten bekannten Fähigkeiten jetzt zeilenweise als farbige Namen ohne zusätzliche Wertungswörter. Spielerprofile ordnen alle vorhandenen Fähigkeiten in Bereiche ein und erklären die Farben mit einer Legende; der doppelte Scoutingtext entfällt. Torhüter erhalten eine passende Aufteilung, ungescoutete Jugendspieler bleiben verborgen. Spielwerte und Spielstände ändern sich nicht. Geprüft mit Kader-, Transfer-, Jugend- und Live-Spielertests sowie dem Build.
+
 ## 2026-09-23 (Spielerfarben)
 
 - Stärke, Form, Frische und Spielnoten verwenden jetzt einheitlich fünf Stufen: Violettgrau, Blaugrau, Gelb, Orange und Pink. Die Farben erscheinen auch beim Scouting, bei ablösefreien Spielern und am Transfermarkt, in Spielerprofilen, im Live-Spiel und im Spielbericht. Formgesichter und Müdigkeitsbalken wurden passend neu erzeugt. Bestehende Spielwerte und Spielstände bleiben unverändert. Geprüft mit Farb- und Matchtests sowie dem Einzeldatei-Build.
