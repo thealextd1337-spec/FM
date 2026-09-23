@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (Spielerprofile im Startkader)
+
+- Bei der Startkaderwahl lässt sich jetzt für jeden Kandidaten ein Spielerprofil öffnen. Es zeigt persönliche Angaben, Gehalt und alle acht beziehungsweise neun Fähigkeitswerte, bevor der Verein gegründet wird. Das Öffnen ändert die Auswahl nicht. Geprüft mit dem Startkader- und Fähigkeitentest sowie der mobilen Browseransicht.
+
 ## 2026-09-23 (Vollständige Spielerwerte)
 
 - Im Kader und Spielerprofil stehen jetzt alle Fähigkeiten mit den exakten Werten von 1 bis 20; die kurzen Transfer- und Aufstellungskarten bleiben übersichtlich. Neue Torhüter erhalten auch Technik, Abschluss, Zweikampf und Luftspiel. Bei bestehenden Torhütern werden nur diese fehlenden Felder mit den bisherigen Match-Ersatzwerten ergänzt, damit alte Spielstände ihre bisherigen Fähigkeiten und Statistiken behalten. Geprüft mit Spieler-, Kader- und Altstandtests sowie dem Build.

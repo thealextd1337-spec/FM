@@ -56,6 +56,28 @@ function openPlayerCard(pid){
 }
 playerCardDialog.addEventListener('click',event=>{if(event.target===playerCardDialog)playerCardDialog.close?.()});
 
+function openCandidateProfile(pid){
+ const player=v17Draft?.candidates.find(candidate=>candidate.pid===pid);if(!player)return false;
+ const position=player.keeper?'Torwart':lineNames[player.line],nation=nationData[player.nation]?.name||player.nation||'Unbekannt';
+ playerCardDialog.innerHTML=`<div class="player-card-head"><div>${flagSVG(player.nation)}<p class="eyebrow">${escapeHTML(nation)} · STARTKADER</p><h2>${escapeHTML(player.name)}</h2><span>${escapeHTML(position)} · ${player.age} Jahre · ${escapeHTML(player.foot||'Rechts')}fuß</span></div><button id="close-player-card" aria-label="Spielerprofil schließen">×</button></div><div class="player-card-facts"><span>Status<b>${v17Draft.selected.includes(pid)?'Ausgewählt':'Verfügbar'}</b></span><span>Form<b>${formText(player.form||0)}</b></span><span>Fitness<b>${freshText(player.fresh??100)}</b></span><span>Gehalt<b>${annualSalary(player)} Credits/Jahr</b></span></div><section><h3>Fähigkeiten</h3>${scoutingSkillsHTML(player)}<small>Alle Fähigkeiten sind von 1 bis 20 bewertet; die Farben zeigen ihre Stufen.</small></section><section><p>Karrierestatistiken sind nach dem ersten Spiel verfügbar.</p></section>`;
+ playerCardDialog.querySelector('#close-player-card').onclick=()=>playerCardDialog.close?.();
+ if(playerCardDialog.showModal)playerCardDialog.showModal();else playerCardDialog.setAttribute('open','');return true;
+}
+
+const v17RenderCandidateCards=renderOnboarding;
+renderOnboarding=function(options={}){
+ v17RenderCandidateCards(options);
+ onboarding.querySelectorAll('.candidate-card').forEach(card=>{
+  const player=v17Draft?.candidates.find(candidate=>candidate.pid===card.dataset.candidate);if(!player)return;
+  const entry=document.createElement('div'),profile=document.createElement('button');
+  entry.className='candidate-entry';profile.type='button';profile.className='candidate-profile';
+  profile.textContent='Profil ansehen';profile.setAttribute('aria-label',`Profil von ${player.name} ansehen`);
+  profile.onclick=()=>openCandidateProfile(player.pid);
+  card.setAttribute('aria-pressed',String(v17Draft.selected.includes(player.pid)));
+  card.replaceWith(entry);entry.append(card,profile);
+ });
+};
+
 const v17OfferCardHTML=qolOfferCardHTML;
 qolOfferCardHTML=function(offer,free=false){const html=v17OfferCardHTML(offer,free),name=escapeHTML(offer.player.name);return html.replace('<article class="market-card ',`<article data-player-pid="${escapeHTML(offer.player.pid)}" class="market-card `).replace(`<b>${name}</b>`,`<button class="player-link" data-open-player="${escapeHTML(offer.player.pid)}">${name}</button>`)};
 

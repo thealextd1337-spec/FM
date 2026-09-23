@@ -8,7 +8,12 @@ for(const file of ['youth-v33.js','penalties-v42.js','club-records-v43.js','club
  vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context,{filename:file});
 vm.runInContext('var v24Validation=()=>[];var v25RoleBar=()=>{};var v24Remember=()=>{};var v24FatigueText=()=>"frisch";var v24TopSkills=()=>"Passspiel gut";',context);
 vm.runInContext(fs.readFileSync('dist/pitch-v55.js','utf8'),context,{filename:'pitch-v55.js'});
-vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');",context);
+vm.runInContext('beginSquadSetup();openCandidateProfile(v17Draft.candidates[0].pid)',context);
+const draftProfile=vm.runInContext('playerCardDialog.innerHTML',context);
+assert.match(draftProfile,/STARTKADER/,'draft profile opens before a save exists');
+assert.equal((draftProfile.match(/class="v55-skill-row"/g)||[]).length,9,'draft goalkeeper profile shows all nine numeric skills');
+assert.equal(vm.runInContext('v17Draft.selected.length',context),0,'opening the profile does not select the candidate');
+vm.runInContext("autoSelectSquad();confirmInitialSquad();selectSponsor('safe');",context);
 
 const data=JSON.parse(vm.runInContext("JSON.stringify({schema:activeSave.schema,players:[activeSave.keeper,...activeSave.squad,...activeSave.world.teams.flatMap(team=>team.roster)],slots:readSlots().length})",context));
 assert.equal(data.schema,5);
