@@ -3,6 +3,9 @@
 const v55LineNames={[-1]:'Tief',0:'Neutral',1:'Hoch'};
 const v55PositionNames={def:'Verteidigung',mid:'Mittelfeld',att:'Angriff'};
 const v55OpponentLines={hafen:0,nord:1,union:-1,athletik:1,vorstadt:-1};
+const v55ZoneStyle=document.createElement('style');
+v55ZoneStyle.textContent=`#setup-pitch .v55-zone-guide{position:absolute;inset:32px 18px 72px;z-index:2;pointer-events:none}.v55-zone-line{position:absolute;left:0;right:0;border-top:2px solid #dcf4d2c9;box-shadow:0 1px 0 #102920}.v55-zone-mid{top:28.5714%}.v55-zone-def{top:57.1429%}.v55-zone-line b{position:absolute;top:2px;right:1px;padding:2px 4px;border-radius:3px;background:#193b31;color:#edf7e8;font:800 8px/1.1 Inter,Arial,sans-serif;letter-spacing:.5px}.grid .cell.v55-foreign-position{outline:2px solid #f0bd64;outline-offset:-2px;background:#f0bd641c}.grid .cell.v55-foreign-position .position-label{color:#ffe4a4}.grid .cell.v55-foreign-position .position-label::after{content:'!';display:inline-grid;place-items:center;width:11px;height:11px;margin-left:3px;border-radius:50%;background:#f0bd64;color:#261c0d;font-size:9px;font-weight:900}.grid .cell.v55-foreign-position .token{border-color:#f0bd64}.v55-position-note{margin:0 0 11px;padding:8px 9px;border:1px solid #9f763b;border-radius:5px;background:#3b3022;color:#ffe4aa;font-size:11px;line-height:1.45}.v55-starter-position-note{display:block;margin-top:4px;color:#f2c77d;font-size:10px;font-weight:700;line-height:1.35}@media(max-width:760px){#setup-pitch .v55-zone-guide{inset:30px 10px 68px}.v55-zone-line b{font-size:7px}.v55-position-note{font-size:11px}}`;
+document.head.append(v55ZoneStyle);
 let defenseLine=0;
 if(typeof v24BenchHTML==='function'){
  const baseBench=v24BenchHTML;
@@ -10,28 +13,31 @@ if(typeof v24BenchHTML==='function'){
 }
 
 $('#tactics-panel .plan-card').insertAdjacentHTML('beforebegin',`<fieldset id="v55-defense-line"><legend>Abwehrlinie</legend><div class="segmented" role="group" aria-label="Abwehrlinie"><button type="button" data-defense-line="-1">Tief</button><button type="button" data-defense-line="0">Neutral</button><button type="button" data-defense-line="1">Hoch</button></div><p class="help">Bestimmt die Grundhöhe aller eingesetzten Verteidiger, unabhängig vom Aufstellungsraster.</p></fieldset>`);
-const v55PositionHTML=`<fieldset id="v55-assigned-position"><legend>Einsatzposition</legend><div class="segmented" role="group" aria-label="Einsatzposition"><button type="button" data-assigned-line="def">Abwehr</button><button type="button" data-assigned-line="mid">Mittelfeld</button><button type="button" data-assigned-line="att">Angriff</button></div><p class="help" id="v55-position-help"></p></fieldset>`;
 $('#shots').insertAdjacentHTML('afterend',`<div class="stats" id="v55-crosses"><span>Flanken</span><b data-stat-value="home">0</b><b data-stat-value="away">0</b></div><div class="stats" id="v55-headers"><span>Kopfballschüsse</span><b data-stat-value="home">0</b><b data-stat-value="away">0</b></div>`);
 
-function v55EnsureAssignments(){for(const player of players)player.assignedLine=['def','mid','att'].includes(player.assignedLine)?player.assignedLine:player.line}
+function v55PositionForCell(cell){const row=Math.floor(cell/5);return row<2?'att':row<4?'mid':'def'}
+function v55EnsureAssignments(){for(const player of players)if(Number.isInteger(player.cell)&&player.cell>=0&&player.cell<35)player.assignedLine=v55PositionForCell(player.cell)}
 function v55SyncTactics(){
  v55EnsureAssignments();
- const bar=$('#pitch-role-bar');if(bar&&!bar.querySelector('#v55-assigned-position'))bar.querySelector('.pitch-role-skills')?.insertAdjacentHTML('afterend',v55PositionHTML);
+ const bar=$('#pitch-role-bar'),player=players[selected];
  if(bar&&typeof v24TopSkills==='function'&&players[selected]){const skills=bar.querySelector('.pitch-role-skills');if(skills)skills.innerHTML=v55ColorSkills(v24TopSkills(players[selected]),players[selected])}
  $$('[data-defense-line]').forEach(button=>{const active=Number(button.dataset.defenseLine)===defenseLine;button.classList.toggle('active',active);button.setAttribute('aria-pressed',active)});
- const player=players[selected];
- $$('[data-assigned-line]').forEach(button=>{const active=button.dataset.assignedLine===player?.assignedLine;button.classList.toggle('active',active);button.setAttribute('aria-pressed',active)});
- const help=$('#v55-position-help');if(help&&player)help.textContent=`Stammposition: ${v55PositionNames[player.line]}. Einsatz: ${v55PositionNames[player.assignedLine]}.${player.line===player.assignedLine?'':' Kleiner Malus auf passende Matchaktionen.'}`;
- for(const cell of $$('#grid .cell[data-cell]')){const person=players.find(item=>item.cell===Number(cell.dataset.cell)),label=cell.querySelector('.position-label');if(person&&label){label.textContent={def:'VER',mid:'MIT',att:'ANG'}[person.assignedLine];cell.setAttribute('aria-label',`${person.name}, Einsatz ${v55PositionNames[person.assignedLine]}, Stammposition ${v55PositionNames[person.line]}, Reihe ${Math.floor(person.cell/5)+1}, Spalte ${person.cell%5+1}`)}}
+ let note=bar?.querySelector('.v55-position-note');
+ if(bar&&player&&player.line!==player.assignedLine){if(!note){bar.querySelector('.pitch-role-skills')?.insertAdjacentHTML('afterend','<p class="v55-position-note"></p>');note=bar.querySelector('.v55-position-note')}if(note)note.textContent=`Positionsfremd eingesetzt: Stammposition ${v55PositionNames[player.line]}, Einsatzposition ${v55PositionNames[player.assignedLine]}. Kleiner Leistungsabschlag im Match.`}
+ else note?.remove();
+ for(const cell of $$('#grid .cell[data-cell]')){const person=players.find(item=>item.cell===Number(cell.dataset.cell)),label=cell.querySelector('.position-label');if(!person||!label)continue;const foreign=person.line!==person.assignedLine;label.textContent={def:'VER',mid:'MIT',att:'ANG'}[person.assignedLine];cell.classList.toggle('v55-foreign-position',foreign);cell.setAttribute('aria-label',`${person.name}, Einsatz ${v55PositionNames[person.assignedLine]}, Stammposition ${v55PositionNames[person.line]}${foreign?', positionsfremd eingesetzt':''}, Reihe ${Math.floor(person.cell/5)+1}, Spalte ${person.cell%5+1}`);cell.title=foreign?`Positionsfremd: ${v55PositionNames[person.line]} als ${v55PositionNames[person.assignedLine]}`:''}
+ for(const card of $$('#v51-starters .v51-starter[data-drag-player]')){const person=players.find(item=>item.n===Number(card.dataset.dragPlayer));if(!person)continue;const foreign=person.line!==person.assignedLine;card.classList.toggle('v55-foreign-position',foreign);let info=card.querySelector('.v55-starter-position-note');if(foreign){if(!info){card.querySelector('.v51-card-main')?.insertAdjacentHTML('beforeend','<span class="v55-starter-position-note"></span>');info=card.querySelector('.v55-starter-position-note')}if(info)info.textContent=`Positionsfremd: ${v55PositionNames[person.line]} als ${v55PositionNames[person.assignedLine]}`}else info?.remove()}
 }
 const v55BaseRoleBar=v25RoleBar;
 v25RoleBar=function(){const result=v55BaseRoleBar();v55SyncTactics();return result};
 const v55BaseRender=render;
-render=function(){const result=v55BaseRender();v55SyncTactics();return result};
+render=function(){v55EnsureAssignments();const result=v55BaseRender();v55SyncTactics();return result};
+const v55BaseShowTactics=showTactics;
+showTactics=function(){const result=v55BaseShowTactics();v55SyncTactics();return result};
 const v55BaseUpdatePlan=updatePlan;
 updatePlan=function(){v55BaseUpdatePlan();$('#plan-copy').textContent+=` Abwehrlinie: ${v55LineNames[defenseLine]}.`};
 const v55BaseSave=saveCurrent;
-saveCurrent=function(){if(activeSave)activeSave.defenseLine=defenseLine;return v55BaseSave()};
+saveCurrent=function(){if(activeSave){v55EnsureAssignments();activeSave.defenseLine=defenseLine}return v55BaseSave()};
 const v55BaseOpen=openSlot;
 openSlot=function(raw){defenseLine=clamp(Number(raw.defenseLine)||0,-1,1);const result=v55BaseOpen(raw);v55EnsureAssignments();v55SyncTactics();return result};
 if(typeof v24Snapshot==='function'){
@@ -39,10 +45,9 @@ if(typeof v24Snapshot==='function'){
  const baseUndo=v24UndoLast;v24UndoLast=function(){const restore=v24Undo?.defenseLine,result=baseUndo();if(result&&restore!==undefined){defenseLine=restore;saveCurrent();render()}return result};
 }
 const v55BaseValidation=v24Validation;
-v24Validation=function(){const errors=v55BaseValidation().filter(error=>!error.includes('defensiv positioniert'));if(!players.some(player=>player.assignedLine==='def'))errors.push('Mindestens ein Feldspieler braucht die Einsatzposition Abwehr.');return errors};
+v24Validation=function(){v55EnsureAssignments();const errors=v55BaseValidation().filter(error=>!error.includes('defensiv positioniert'));if(!players.some(player=>player.assignedLine==='def'))errors.push('Mindestens ein Feldspieler muss in der Abwehrzone stehen.');return errors};
 v24PositionWarning=function(){return''};
 $('#v55-defense-line').addEventListener('click',event=>{const button=event.target.closest('[data-defense-line]');if(!button||running)return;const next=Number(button.dataset.defenseLine);if(next===defenseLine)return;v24Remember();defenseLine=next;saveCurrent();render()});
-$('#game-screen').addEventListener('click',event=>{const button=event.target.closest('[data-assigned-line]');if(!button||running||!players[selected])return;const next=button.dataset.assignedLine;if(next===players[selected].assignedLine)return;v24Remember();players[selected].assignedLine=next;saveCurrent();render()});
 
 const v55BaseEmptyStats=emptyStats;
 emptyStats=function(){return{...v55BaseEmptyStats(),crosses:0,crossComplete:0,highPasses:0,highComplete:0,headers:0,headerPasses:0,volleys:0,aerialDuels:0,aerialWon:0}};

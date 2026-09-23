@@ -23,6 +23,7 @@ vm.runInContext(`(()=>{
 const stats=vm.runInContext('v46StatisticsHTML()',context);
 for(const label of ['Statistik','Ligastatistik','Pokalstatistik','Tore','Assists','Zu null','Fouls','Elfmeter verwandelt','Elfmeter verschossen'])assert(stats.includes(label),`missing ${label}`);
 assert(stats.includes('data-v46-view="statistics"'));
+assert.equal((stats.match(/<details class="v46-stat-category" open>/g)||[]).length,12,'all six league and six cup categories are expanded for scrolling');
 function category(label){const match=stats.match(new RegExp(`<summary><span>${label}<\\/span>[\\s\\S]*?<\\/details>`));assert(match,`missing category ${label}`);return match[0]}
 assert.equal((category('Tore').match(/<tr class="(?:own)?">/g)||[]).length,10,'scorer list is limited to ten');
 assert(!category('Tore').includes(vm.runInContext('activeSave.squad[1].name',context)),'players without a goal stay off the scorer list');

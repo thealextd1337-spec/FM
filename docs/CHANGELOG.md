@@ -1,5 +1,12 @@
 # Änderungen
 
+## 2026-09-23 (Aufstellung und Statistiken)
+
+- Die Einsatzposition folgt jetzt automatisch der Spielfeldzone. Querlinien trennen Angriff, Mittelfeld und Abwehr; das Positionskürzel am Spielericon aktualisiert sich beim Verschieben. Positionsfremde Spieler sind auf Feld und Startelfliste markiert und erhalten eine Erklärung in der Spielerauswahl. Die manuelle Positionswahl entfällt. Auch Anstoß und Spielnote beachten die Einsatzposition. Bestehende Schema-5-Spielstände übernehmen beim Öffnen die Position ihrer Rasterfelder. Geprüft mit Aufstellungs- und Matchtests, Build und Browseransicht.
+- Im Statistik-Reiter sind nun alle sechs Liga- und sechs Pokal-Bestenlisten direkt geöffnet. So lassen sich sämtliche Kategorien ohne Aufklappen durchscrollen. Geprüft mit dem Statistiktest, Build und mobiler Browseransicht.
+- Der redundante Statistikabschnitt unter dem Kader entfällt. Spielerprofile zeigen eine Saison auf einmal; ältere Saisons und die Karriereübersicht lassen sich seitlich wischen oder mit Zurück/Weiter öffnen. Geprüft mit dem Saisonstatistiktest, Browseransichten für Mobilgerät und Desktop sowie Build.
+- In der mobilen Startkaderwahl stehen farbige Fähigkeiten wieder im Fließtext. Die Trennpunkte erscheinen dadurch nicht mehr allein in eigenen Zeilen. Geprüft in der Browseransicht bei 390 und 320 Pixeln sowie mit dem Aufstellungstest und Build.
+
 ## 2026-09-23 (Spielintelligenz, Spielerinfo und Statistik)
 
 ### Spielintelligenz und Pokalergebnisse

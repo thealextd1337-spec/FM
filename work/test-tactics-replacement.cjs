@@ -1,16 +1,31 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 
 const source=fs.readFileSync('dist/lineup-ux-v24.js','utf8');
-const start=source.indexOf('function v24SwapWithBench('),end=source.indexOf('function v24MoveOnPitch(',start);
-assert(start>=0&&end>start,'Taktiktausch muss vorhanden sein');
+const start=source.indexOf('function v24SwapWithBench('),end=source.indexOf('function v24MoveOnPitch(',start),moveEnd=source.indexOf('function v24HandleDrop(',end);
+assert(start>=0&&end>start&&moveEnd>end,'Taktiktausch und Feldverschiebung müssen vorhanden sein');
+const positionSource=fs.readFileSync('dist/pitch-v55.js','utf8');
+const positionStart=positionSource.indexOf('function v55PositionForCell('),positionEnd=positionSource.indexOf('function v55SyncTactics(',positionStart);
+assert(positionStart>=0&&positionEnd>positionStart,'Zonenzuordnung muss vorhanden sein');
 const outgoing={n:7,name:'Mittelfeld',line:'mid',assignedLine:'mid',cell:17,role:0};
 const incoming={n:9,name:'Angreifer',line:'att',assignedLine:'att',cell:7,role:1};
-const context={activeSave:{lineup:[7],squad:[outgoing,incoming]},running:false,selected:0,
- syncSquadFromLineup(){},syncLineupFromSquad(){},v24Remember(){},saveCurrent(){},render(){},v24SetStatus(){}};
-vm.createContext(context);vm.runInContext(source.slice(start,end),context);
+const context={activeSave:{lineup:[7],squad:[outgoing,incoming]},players:[outgoing],running:false,selected:0,
+ syncSquadFromLineup(){},syncLineupFromSquad(){context.players.splice(0,context.players.length,incoming)},v24Remember(){},saveCurrent(){vm.runInContext('v55EnsureAssignments()',context)},render(){},v24SetStatus(){}};
+vm.createContext(context);vm.runInContext(positionSource.slice(positionStart,positionEnd),context);vm.runInContext(source.slice(start,moveEnd),context);
 assert.equal(vm.runInContext('v24SwapWithBench(7,9)',context),true);
 assert.equal(incoming.line,'att','die Stammposition Angreifer bleibt erhalten');
-assert.equal(incoming.assignedLine,'att','der Tausch darf die Einsatzposition nicht stillschweigend ändern');
+assert.equal(incoming.assignedLine,'mid','die Einsatzposition folgt der übernommenen Mittelfeldzone');
 assert.equal(incoming.cell,17,'der neue Spieler übernimmt den Rasterplatz');
 assert.equal(context.activeSave.lineup[0],9);
-console.log('PASS: Taktiktausch erhält die Position des eingewechselten Spielers');
+const defender={n:2,name:'Verteidiger',line:'def',assignedLine:'def',cell:26,role:-1};
+context.players.push(defender);context.activeSave.squad.push(defender);
+assert.equal(vm.runInContext('v24MoveOnPitch(9,26)',context),true);
+assert.equal(incoming.cell,26);assert.equal(incoming.assignedLine,'def','der Angreifer spielt nach dem Feldtausch in der Abwehr');
+assert.equal(defender.cell,17);assert.equal(defender.assignedLine,'mid','auch der getauschte Verteidiger erhält die neue Zone');
+assert.equal(incoming.line,'att');assert.equal(defender.line,'def','Stammpositionen bleiben erhalten');
+assert.equal(vm.runInContext('v55PositionForCell(0)',context),'att');
+assert.equal(vm.runInContext('v55PositionForCell(9)',context),'att');
+assert.equal(vm.runInContext('v55PositionForCell(10)',context),'mid');
+assert.equal(vm.runInContext('v55PositionForCell(19)',context),'mid');
+assert.equal(vm.runInContext('v55PositionForCell(20)',context),'def');
+assert.equal(vm.runInContext('v55PositionForCell(34)',context),'def');
+console.log('PASS: Bankwechsel und Feldtausch übernehmen die zonengerechte Einsatzposition');

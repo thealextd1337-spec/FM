@@ -44,6 +44,7 @@ jobs:
           node work/test-v45.cjs
           node work/test-v47.cjs
           node work/test-statistics-menu.cjs
+          node work/test-player-seasons.cjs
           node work/test-v49.cjs
           node work/test-v50.cjs
           node work/test-v50-balance.cjs
