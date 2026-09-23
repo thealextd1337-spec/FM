@@ -51,9 +51,10 @@ function playerCardHTML(player){
  const position=player.keeper?'Torwart':lineNames[player.line],nation=nationData[player.nation]?.name||player.nation||'Unbekannt',starting=player.keeper||activeSave.lineup?.includes(player.n),status=activeSave.squad?.some(item=>item.pid===player.pid)||activeSave.keeper?.pid===player.pid?(starting?'Startaufstellung':'Ersatzbank'):'Beobachteter Spieler';
  return`<div class="player-card-head"><div>${flagSVG(player.nation)}<p class="eyebrow">${escapeHTML(nation)}</p><h2>${escapeHTML(player.name)}</h2><span>${escapeHTML(position)} · ${player.age} Jahre · ${escapeHTML(player.foot||'Rechts')}fuß</span></div><button id="close-player-card" aria-label="Spielerkarte schließen">×</button></div><div class="player-card-facts"><span>Status<b>${status}</b></span><span>Form<b>${formText(player.form||0)}</b></span><span>Fitness<b>${freshText(player.fresh??100)}</b></span><span>Spielertyp<b>${escapeHTML(player.type||position)}</b></span></div><section><h3>Fähigkeiten</h3>${scoutingSkillsHTML(player)}<small>Die Farben zeigen die Stärke der Fähigkeiten.</small></section><section class="season-stats-section">${seasonStatsPagerHTML(player,'h3')}</section>`;
 }
-function openPlayerCard(pid){
- const player=findPlayerProfile(pid);if(!player)return false;playerCardDialog.innerHTML=playerCardHTML(player);playerCardDialog.querySelector('#close-player-card').onclick=()=>playerCardDialog.close?.();bindSeasonStatPagers(playerCardDialog);if(playerCardDialog.showModal)playerCardDialog.showModal();else playerCardDialog.setAttribute('open','');return true;
+function openPlayerProfile(player){
+ if(!player)return false;playerCardDialog.innerHTML=playerCardHTML(player);playerCardDialog.querySelector('#close-player-card').onclick=()=>playerCardDialog.close?.();bindSeasonStatPagers(playerCardDialog);if(playerCardDialog.showModal)playerCardDialog.showModal();else playerCardDialog.setAttribute('open','');return true;
 }
+function openPlayerCard(pid){return openPlayerProfile(findPlayerProfile(pid))}
 playerCardDialog.addEventListener('click',event=>{if(event.target===playerCardDialog)playerCardDialog.close?.()});
 
 function openCandidateProfile(pid){

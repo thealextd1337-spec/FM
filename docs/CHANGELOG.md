@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (Spielerprofile in Bestenlisten)
+
+- Spielernamen in den Liga- und Pokal-Bestenlisten öffnen jetzt das vorhandene Spielerprofil. Das funktioniert auch für KI-Spieler ohne Profil-ID; die Zuordnung erfolgt direkt zur angezeigten Person. Geprüft mit Statistik- und Profiltests, Build und mobiler Browseransicht.
+
 ## 2026-09-23 (Spielerprofile ohne Fähigkeitszahlen)
 
 - Spielerprofile zeigen weiterhin alle bekannten Fähigkeiten und ihre Farbstufen, aber keine exakten Fähigkeitszahlen mehr – auch nicht in Screenreader-Beschriftungen. Das gilt für die Startkaderwahl und die Live-Spielerinfo. Die Kaderübersicht behält ihre exakten Werte. Geprüft mit Spielerprofil- und Matchtest sowie Build.

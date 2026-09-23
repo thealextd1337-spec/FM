@@ -27,6 +27,9 @@ assert.equal((stats.match(/<details class="v46-stat-category" open>/g)||[]).leng
 function category(label){const match=stats.match(new RegExp(`<summary><span>${label}<\\/span>[\\s\\S]*?<\\/details>`));assert(match,`missing category ${label}`);return match[0]}
 assert.equal((category('Tore').match(/<tr class="(?:own)?">/g)||[]).length,10,'scorer list is limited to ten');
 assert(!category('Tore').includes(vm.runInContext('activeSave.squad[1].name',context)),'players without a goal stay off the scorer list');
+const profileLinks=JSON.parse(vm.runInContext(`JSON.stringify((()=>{const entries=v46StatisticEntries(),scope={contains:()=>true,addEventListener(type,handler){this.handler=handler}};v46BindStatisticProfiles(scope,entries);return[activeSave.squad[0],activeSave.world.teams[0].roster.find(player=>!player.keeper)].map(player=>{const index=entries.find(entry=>entry.player===player).index;scope.handler({target:{closest:()=>({dataset:{statPlayer:String(index)}})}});return{index,visible:playerCardDialog.innerHTML.includes(escapeHTML(player.name))}})})())`,context));
+for(const {index} of profileLinks)assert(category('Assists').includes(`data-stat-player="${index}"`),'own and opposing players link to their profiles');
+assert.deepEqual(profileLinks.map(item=>item.visible),[true,true],'statistic buttons open the correct profiles for both teams');
 assert(category('Zu null').includes(vm.runInContext('activeSave.keeper.name',context)),'keeper clean sheets are listed');
 assert(!category('Zu null').includes(vm.runInContext('activeSave.squad[0].name',context)),'outfield clean sheets are excluded');
 assert(category('Fouls').includes(vm.runInContext('activeSave.squad[0].name',context)));
@@ -58,4 +61,4 @@ const savedShootout=JSON.parse(vm.runInContext(`JSON.stringify((()=>{
  return{own:v41CupStats(own).penaltiesScored,rival:v41CupStats(rival).penaltiesMissed};
 })())`,cupContext));
 assert.deepEqual(savedShootout,{own:1,rival:1},'saved cup shootout records both shooters');
-console.log('PASS: separate statistics tab, clear league/cup headings, and recorded per-player categories');
+console.log('PASS: separate statistics tab, clickable player profiles, and recorded per-player categories');
