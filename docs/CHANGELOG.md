@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (Spielerfarben)
+
+- Stärke, Form, Frische und Spielnoten verwenden jetzt einheitlich fünf Stufen: Violettgrau, Blaugrau, Gelb, Orange und Pink. Die Farben erscheinen auch beim Scouting, bei ablösefreien Spielern und am Transfermarkt, in Spielerprofilen, im Live-Spiel und im Spielbericht. Formgesichter und Müdigkeitsbalken wurden passend neu erzeugt. Bestehende Spielwerte und Spielstände bleiben unverändert. Geprüft mit Farb- und Matchtests sowie dem Einzeldatei-Build.
+
 ## 2026-09-23 (Spielregeln und Saisonstatistik)
 
 - Für künftige Änderungen ist festgelegt: Gespeicherte Partien und Saisons werden nicht allein für neue Regeln oder Statistiken nachträglich berechnet oder umgerechnet. Altstände bleiben ohne zusätzliche Migrationslogik nutzbar, soweit möglich; Ausnahmen brauchen eine ausdrückliche Entscheidung.

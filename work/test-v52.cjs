@@ -11,13 +11,16 @@ function setup(){
 
 const context=setup();
 assert.equal(vm.runInContext("v51StatusHTML({form:2,fresh:71}).includes('scaleX(0.710)')",context),true,'bar uses exact freshness rather than one of five fixed images');
-assert.equal(vm.runInContext("v51StatusHTML({form:-2,fresh:20}).includes('--v51-status-color:#9865D6')",context),true,'exhausted status bar follows the purple face');
-assert.equal(vm.runInContext("v51StatusHTML({form:2,fresh:100}).includes('--v51-status-color:#F0525D')",context),true,'strong form status bar follows the coral face');
-assert.equal(vm.runInContext("decodeURIComponent(v51StatusFaces['very-good']).includes('fill=\"#F0525D\"')",context),true,'selected face design is bundled');
-for(const [key,color] of Object.entries({'very-weak':'#9865D6',weak:'#4C9DE8',normal:'#49C67D',good:'#F18B38','very-good':'#F0525D'})){
- assert.equal(vm.runInContext(`v51FormColors['${key}']`,context),color,`${key} bar matches the vivid face palette`);
- assert(decodeURIComponent(vm.runInContext(`v51StatusFaces['${key}']`,context)).includes(`fill="${color}"`),`${key} face uses the vivid palette`);
+assert.equal(vm.runInContext("v51StatusHTML({form:-2,fresh:20}).includes('--v51-status-color:#A398B8')",context),true,'exhausted status bar follows the violet-gray face');
+assert.equal(vm.runInContext("v51StatusHTML({form:2,fresh:100}).includes('--v51-status-color:#F26BB5')",context),true,'strong form status bar follows the pink face');
+assert.equal(vm.runInContext("decodeURIComponent(v51StatusFaces['very-good']).includes('fill=\"#F26BB5\"')",context),true,'selected face design is bundled');
+for(const [key,color] of Object.entries({'very-weak':'#A398B8',weak:'#91AEC4',normal:'#E9CF59',good:'#F3A14A','very-good':'#F26BB5'})){
+ assert.equal(vm.runInContext(`v51FormColors['${key}']`,context),color,`${key} bar matches the new face palette`);
+ assert(decodeURIComponent(vm.runInContext(`v51StatusFaces['${key}']`,context)).includes(`fill="${color}"`),`${key} face uses the new palette`);
 }
+assert.equal(vm.runInContext('[0,31,32,51,52,71,72,87,88,100].map(v51FreshnessColor).join(",")',context),'#A398B8,#A398B8,#91AEC4,#91AEC4,#E9CF59,#E9CF59,#F3A14A,#F3A14A,#F26BB5,#F26BB5');
+assert.equal(vm.runInContext('[1,4.5,6,7.5,9,10].map(v51RatingColor).join(",")',context),'#A398B8,#91AEC4,#E9CF59,#F3A14A,#F26BB5,#F26BB5');
+assert.equal(vm.runInContext('v51RatingColor(null)',context),null);
 vm.runInContext("activeSave.squad.find(player=>!activeSave.lineup.includes(player.n)).fresh=50;start();match.elapsed=75;finishMatch()",context);
 const whistle=JSON.parse(vm.runInContext(`JSON.stringify({
  starter:activeSave.squad.find(player=>activeSave.lineup.includes(player.n)).fresh,
