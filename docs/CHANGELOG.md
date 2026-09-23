@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (Trikot-Icons am Spielstand)
+
+- Die Live-Anzeigetafel zeigt neben beiden Teamnamen kleine Shirts in den tatsächlich verwendeten Trikotfarben und Mustern: links vom linken Namen und rechts vom rechten Namen. Geprüft mit Match- und Trikottests, Build sowie mobiler Browseransicht.
+
 ## 2026-09-23 (Mobiles Scrollen in der Taktik)
 
 - Senkrechtes Wischen auf Spielertoken und Spielerkarten scrollt die Taktikansicht wieder. Drag & Drop beginnt erst bei einer deutlichen waagrechten Bewegung; das Antippen von Spieler und Zielfeld bleibt erhalten. Geprüft mit Touch-Gesten- und Aufstellungstests, Build sowie einer mobilen Browseremulation.
