@@ -54,6 +54,8 @@ jobs:
           node work/test-v53.cjs
           node work/test-v54.cjs
           node work/test-v55.cjs
+          node work/test-ai-season-stats.cjs
+          node work/test-ai-career-v60.cjs
           node work/test-breakaway.cjs
           node work/test-v56.cjs
           node work/test-duel-streaks.cjs
