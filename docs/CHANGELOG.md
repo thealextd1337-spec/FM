@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (Kompakte Live-Ansicht)
+
+- Während einer Live-Partie nehmen Header und Statusleiste auf Mobilgeräten weniger Höhe ein. Die Retro-Uhr ist schmaler und flacher, damit mehr Spielfeld sichtbar bleibt. Aufstellung und andere Karrierephasen behalten ihre bisherige Größe. Geprüft mit Fortschritts- und Matchtests sowie mobiler Browseransicht.
+
 ## 2026-09-23 (Spielerprofile im Startkader)
 
 - Bei der Startkaderwahl lässt sich jetzt für jeden Kandidaten ein Spielerprofil öffnen. Es zeigt persönliche Angaben, Gehalt und alle acht beziehungsweise neun Fähigkeitswerte, bevor der Verein gegründet wird. Das Öffnen ändert die Auswahl nicht. Geprüft mit dem Startkader- und Fähigkeitentest sowie der mobilen Browseransicht.

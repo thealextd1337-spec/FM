@@ -99,6 +99,7 @@ function v58Refresh(){
  const state=v58State();
  v58Bar.hidden=!state;
  document.body.classList.toggle('v58-active',Boolean(state));
+ document.body.classList.toggle('v58-match-live',Boolean(state&&running&&!$('#game-screen').hidden));
  document.body.classList.toggle('v58-penalty-done',state?.action==='penalty-report');
  v58DockMenu();
  if(!state)return;
