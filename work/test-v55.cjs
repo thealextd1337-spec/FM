@@ -29,8 +29,16 @@ for(const label of ['Offensiv','Defensiv','Körperlich','Luftspiel'])assert(grou
 for(const color of ['#A398B8','#91AEC4','#E9CF59','#F26BB5'])assert(grouped.includes(`color:${color}`),`grouped skills are missing ${color}`);
 assert.doesNotMatch(grouped,/Geistig/,'the profile does not invent a mental attribute');
 const keeperSkills=vm.runInContext('scoutingSkillsHTML(activeSave.keeper)',context);
-assert.match(keeperSkills,/Torwartspiel/);
-assert.doesNotMatch(keeperSkills,/Abschluss|Zweikampf|Luftspiel/,'goalkeepers only show existing skills');
+for(const label of ['Torwartspiel','Technik','Passspiel','Abschluss','Zweikampf','Stellungsspiel','Geschwindigkeit','Kondition','Luftspiel'])assert(keeperSkills.includes(label),`goalkeeper profile is missing ${label}`);
+assert.equal((keeperSkills.match(/class="v55-skill-row"/g)||[]).length,9,'goalkeeper profile shows all nine numeric abilities');
+assert.equal((grouped.match(/class="v55-skill-row"/g)||[]).length,8,'outfield profile shows all eight numeric abilities');
+assert.match(keeperSkills,/Torwartspiel: \d+ von 20/,'profile exposes numeric ability and color name');
+assert.equal((vm.runInContext('v55AllSkillsHTML(activeSave.keeper)',context).match(/role="listitem"/g)||[]).length,9,'squad card shows all goalkeeper values');
+assert.equal((vm.runInContext('v55AllSkillsHTML(activeSave.squad[0])',context).match(/role="listitem"/g)||[]).length,8,'squad card shows all outfield values');
+const legacyKeeper=JSON.parse(vm.runInContext("JSON.stringify((()=>{const save=structuredClone(activeSave);for(const key of ['tec','fin','tak','air'])delete save.keeper[key];for(const team of save.world.teams)for(const player of team.roster)if(player.keeper)for(const key of ['tec','fin','tak','air'])delete player[key];const oldGoalkeeping=save.keeper.gk;const loaded=ensureChampionship(save);return {keeper:loaded.keeper,world:loaded.world.teams[0].roster.find(player=>player.keeper),oldGoalkeeping}})())",context));
+assert.equal(legacyKeeper.keeper.tec,legacyKeeper.oldGoalkeeping,'saved goalkeepers keep their previous technique fallback');
+for(const key of ['fin','tak','air'])assert.equal(legacyKeeper.keeper[key],10,`legacy goalkeeper ${key} keeps the old match fallback`);
+for(const key of ['tec','fin','tak','air'])assert(Number.isInteger(legacyKeeper.world[key]),`opponent goalkeeper is missing ${key}`);
 const lineupSkills=vm.runInContext("v51LineupCardContent(activeSave.squad[0],'MF',4)",context);
 assert.equal((lineupSkills.match(/role="listitem"/g)||[]).length,3,'lineup cards show three compact skill rows');
 assert.match(vm.runInContext("youthPotentialHTML({player:{line:'att'},target:{fin:14,tec:14,air:14}})",context),/color:#F3A14A/);
@@ -38,7 +46,7 @@ assert.match(vm.runInContext('v42LevelHTML(17)',context),/color:#F26BB5/);
 assert.match(vm.runInContext("v51LineupCardContent(activeSave.squad[0],'MF',4)",context),/data-v51-select="4"/,'starter card keeps its selection control');
 assert.match(vm.runInContext("v51LineupCardContent(activeSave.squad[0],'MF',4)",context),/data-open-player=/,'starter card keeps its profile link');
 for(const player of data.players){
- const keys=player.keeper?['gk','pas','pos','spd','sta']:['tec','pas','fin','tak','pos','spd','sta','air'];
+ const keys=player.keeper?['gk','tec','pas','fin','tak','pos','spd','sta','air']:['tec','pas','fin','tak','pos','spd','sta','air'];
  for(const key of keys)assert(Number.isInteger(player[key])&&player[key]>=1&&player[key]<=20,`${player.name}: ${key}=${player[key]}`);
 }
 assert.equal(vm.runInContext("importSaveObject({save:{schema:4,world:{},squad:[1,2,3,4,5]}})",context),false);

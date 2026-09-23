@@ -35,7 +35,7 @@ function v35TransferUi(){const state=transferState();state.ui=state.ui||{rosterO
 function v35TrackFold(details,key){const ui=v35TransferUi();details.open=ui[key]!==false;details.addEventListener('toggle',()=>{if(ui[key]!==details.open){ui[key]=details.open;saveCurrent()}})}
 function v35RosterHTML(){
  const order={gk:0,def:1,mid:2,att:3},roster=[activeSave.keeper,...activeSave.squad].filter(player=>player&&!player.retired).sort((a,b)=>(order[a.line]??4)-(order[b.line]??4)||a.name.localeCompare(b.name));
- return`<div class="v35-fold-body"><div class="v35-roster-grid">${roster.map(player=>`<article class="v35-roster-card"><button class="player-link" data-roster-player="${escapeHTML(player.pid)}">${flagSVG(player.nation)}<b>${escapeHTML(player.name)}</b></button><p>${escapeHTML(transferPosition(player))} · ${player.age} Jahre · ${annualSalary(player)} Credits/Jahr</p><p>${scoutingTextHTML(player)}</p>${player.youthPotential?'<em>Jugendspieler</em>':''}</article>`).join('')}</div></div>`
+ return`<div class="v35-fold-body"><div class="v35-roster-grid">${roster.map(player=>`<article class="v35-roster-card"><button class="player-link" data-roster-player="${escapeHTML(player.pid)}">${flagSVG(player.nation)}<b>${escapeHTML(player.name)}</b></button><p>${escapeHTML(transferPosition(player))} · ${player.age} Jahre · ${annualSalary(player)} Credits/Jahr</p>${typeof v55AllSkillsHTML==='function'?v55AllSkillsHTML(player):`<p>${scoutingTextHTML(player)}</p>`}${player.youthPotential?'<em>Jugendspieler</em>':''}</article>`).join('')}</div></div>`
 }
 function v35ShowRoster(){
  const market=clubCenter.querySelector('.qol-market');if(!market||!transferState().open)return;

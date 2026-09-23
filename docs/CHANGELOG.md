@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (Vollständige Spielerwerte)
+
+- Im Kader und Spielerprofil stehen jetzt alle Fähigkeiten mit den exakten Werten von 1 bis 20; die kurzen Transfer- und Aufstellungskarten bleiben übersichtlich. Neue Torhüter erhalten auch Technik, Abschluss, Zweikampf und Luftspiel. Bei bestehenden Torhütern werden nur diese fehlenden Felder mit den bisherigen Match-Ersatzwerten ergänzt, damit alte Spielstände ihre bisherigen Fähigkeiten und Statistiken behalten. Geprüft mit Spieler-, Kader- und Altstandtests sowie dem Build.
+
 ## 2026-09-23 (Spielerfähigkeiten)
 
 - Kader-, Aufstellungs- und Transferkarten zeigen die drei besten bekannten Fähigkeiten jetzt zeilenweise als farbige Namen ohne zusätzliche Wertungswörter. Spielerprofile ordnen alle vorhandenen Fähigkeiten in Bereiche ein und erklären die Farben mit einer Legende; der doppelte Scoutingtext entfällt. Torhüter erhalten eine passende Aufteilung, ungescoutete Jugendspieler bleiben verborgen. Spielwerte und Spielstände ändern sich nicht. Geprüft mit Kader-, Transfer-, Jugend- und Live-Spielertests sowie dem Build.
