@@ -42,9 +42,12 @@ assert.equal((grouped.match(/class="v55-skill-row"/g)||[]).length,8,'outfield pr
 assert.doesNotMatch(keeperSkills,/von 20|<b[^>]*>\d+<\/b>/,'goalkeeper profile hides exact skills visually and accessibly');
 assert.doesNotMatch(grouped,/von 20|<b[^>]*>\d+<\/b>/,'outfield profile hides exact skills visually and accessibly');
 assert.match(keeperSkills,/Torwartspiel: (?:sehr schwach|schwach|durchschnittlich|gut|sehr gut)/,'profile exposes the skill band to screen readers');
-assert.equal((vm.runInContext('v55AllSkillsHTML(activeSave.keeper)',context).match(/role="listitem"/g)||[]).length,9,'squad card shows all goalkeeper values');
-assert.equal((vm.runInContext('v55AllSkillsHTML(activeSave.squad[0])',context).match(/role="listitem"/g)||[]).length,8,'squad card shows all outfield values');
-assert.match(vm.runInContext('v55AllSkillsHTML(activeSave.keeper)',context),/von 20/,'squad overview keeps the requested exact values');
+const keeperRosterSkills=vm.runInContext('v55AllSkillsHTML(activeSave.keeper)',context);
+const outfieldRosterSkills=vm.runInContext('v55AllSkillsHTML(activeSave.squad[0])',context);
+assert.equal((keeperRosterSkills.match(/role="listitem"/g)||[]).length,9,'squad card shows all goalkeeper abilities');
+assert.equal((outfieldRosterSkills.match(/role="listitem"/g)||[]).length,8,'squad card shows all outfield abilities');
+for(const html of [keeperRosterSkills,outfieldRosterSkills])assert.doesNotMatch(html,/von 20|<b[^>]*>\d+<\/b>|aria-label="[^"]+: \d+"/,'squad overview hides exact skills visually and accessibly');
+assert.match(keeperRosterSkills,/Torwartspiel: (?:sehr schwach|schwach|durchschnittlich|gut|sehr gut)/,'squad overview exposes skill bands to screen readers');
 const legacyKeeper=JSON.parse(vm.runInContext("JSON.stringify((()=>{const save=structuredClone(activeSave);for(const key of ['tec','fin','tak','air'])delete save.keeper[key];for(const team of save.world.teams)for(const player of team.roster)if(player.keeper)for(const key of ['tec','fin','tak','air'])delete player[key];const oldGoalkeeping=save.keeper.gk;const loaded=ensureChampionship(save);return {keeper:loaded.keeper,world:loaded.world.teams[0].roster.find(player=>player.keeper),oldGoalkeeping}})())",context));
 assert.equal(legacyKeeper.keeper.tec,legacyKeeper.oldGoalkeeping,'saved goalkeepers keep their previous technique fallback');
 for(const key of ['fin','tak','air'])assert.equal(legacyKeeper.keeper[key],10,`legacy goalkeeper ${key} keeps the old match fallback`);

@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-23 (Spielerwerte nur als Farbstufen)
+
+- Auch die Kaderübersicht zeigt bekannte Fähigkeiten jetzt ausschließlich als farbige Namen ohne exakte Zahlen; Screenreader nennen nur die Farbstufe. Die Jugendübersicht verrät keine gewonnenen Fähigkeitspunkte mehr. Spielwerte und gespeicherte Karrieren bleiben unverändert. Geprüft mit Fähigkeits-, Kader- und Jugendtests sowie dem Build.
+
 ## 2026-09-23 (Spielerprofile in Bestenlisten)
 
 - Spielernamen in den Liga- und Pokal-Bestenlisten öffnen jetzt das vorhandene Spielerprofil. Das funktioniert auch für KI-Spieler ohne Profil-ID; die Zuordnung erfolgt direkt zur angezeigten Person. Geprüft mit Statistik- und Profiltests, Build und mobiler Browseransicht.
