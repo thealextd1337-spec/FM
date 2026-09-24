@@ -1,0 +1,100 @@
+const assert=require('assert');
+const fs=require('fs');
+const vm=require('vm');
+let nextId=0;
+const context=vm.createContext({crypto:{randomUUID:()=>`test-${++nextId}`}});
+for(const file of ['world-catalog-v61.js','world-competition-v62.js','world-coaches-v63.js','world-match-v64.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
+const foundation=fs.readFileSync('dist/world-foundation-v61.js','utf8');
+vm.runInContext(foundation.slice(0,foundation.indexOf('const v61Panel=')),context);
+for(const file of ['world-economy-v66.js','world-youth-manager-v67.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
+context.escapeHTML=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+context.v66Credits=value=>`${Math.round(value)} Credits`;
+context.v66Own=career=>career.world.clubs.find(club=>club.id===career.manager.managedClubId);
+context.v61FlagSVG=()=>'';
+const ui=fs.readFileSync('dist/world-youth-ui-v67.js','utf8');
+vm.runInContext(ui.slice(0,ui.indexOf('const v67BaseRenderCareer=')),context);
+const call=(name,...args)=>vm.runInContext(name,context)(...args);
+const career=call('v61CreateCareer','GER-2','youth-manager-seed');
+const own=call('v66Club',career,'GER-2');
+assert(career.world.clubs.every(club=>club.youthPool.length>=2&&club.youthPool.length<=4));
+const youthMarkup=call('v67YouthHTML',career);
+assert(youthMarkup.includes('Nachwuchspool')&&youthMarkup.includes('Sortierung')&&youthMarkup.includes(own.youthPool[0].name));
+assert.strictEqual(call('v61ValidateCareer',career),true);
+const youth=own.youthPool[0],fee=call('v67Fee',youth),balance=own.balance;
+call('v67Promote',career,own.id,youth.pid);
+assert.strictEqual(own.balance,balance-fee);
+assert(own.roster.includes(youth));
+assert.strictEqual(call('v66Contract',career,youth.pid).endSeason,2);
+assert.throws(()=>call('v67Promote',career,own.id,youth.pid),/nicht mehr/);
+const skills=['tec','pas','fin','tak','pos','spd','sta','air','gk'],before=skills.reduce((sum,key)=>sum+youth[key],0);
+const fixture={id:'development-proof',competitionId:'S1:GER:LEAGUE',round:'R1',matchRecord:{players:[{pid:youth.pid,minutes:90}]}};
+call('v67AfterFixture',career,fixture);call('v67AfterFixture',career,fixture);
+assert.strictEqual(youth.developmentMinutes,90,'Einsatz wird einmalig verbucht');
+fixture.id='development-proof-2';call('v67AfterFixture',career,fixture);
+assert(skills.reduce((sum,key)=>sum+youth[key],0)>before,'Entwicklung folgt tatsächlichen Profiminuten');
+const poolSkill=own.youthPool[0].tec;assert.strictEqual(own.youthPool[0].tec,poolSkill,'Poolspieler entwickeln sich ohne Einsätze nicht');
+const ai=career.world.clubs.filter(club=>club.id!==own.id).sort((a,b)=>b.balance-a.balance)[0],aiYouth=ai.youthPool[0];
+call('v67Promote',career,ai.id,aiYouth.pid);
+const aiBefore=skills.reduce((sum,key)=>sum+aiYouth[key],0);
+for(const id of ['ai-development-1','ai-development-2'])call('v67AfterFixture',career,{id,competitionId:'S1:EUROPE',round:'R1',matchRecord:{players:[{pid:aiYouth.pid,minutes:90}]}});
+assert(skills.reduce((sum,key)=>sum+aiYouth[key],0)>aiBefore,'KI-Nachwuchs entwickelt sich durch neue Europacup-Minuten');
+call('v66ChooseSponsor',career,own.id,own.sponsors[0].id);
+while(career.world.market.phase==='open')call('v66NextMarketDay',career);
+while(!career.world.seasonFinished)call('v62AdvanceDay',career);
+assert.strictEqual(career.world.transition.fromSeason,1);
+assert.strictEqual(call('v61ValidateCareer',career),true);
+assert(call('v67TransitionHTML',career).includes('Jugendbudget'));
+assert.throws(()=>call('v62NextSeason',career),/Jugendbudget/);
+const insolvent=JSON.parse(JSON.stringify(career));insolvent.world.clubs.find(club=>club.id===insolvent.manager.managedClubId).balance=-100;insolvent.world.transition.choice='stay';
+assert.strictEqual(call('v67SetBudget',insolvent,0),0,'ohne Kontodeckung bleibt Nullbudget möglich');
+const oldClub=career.manager.managedClubId,target=call('v66Club',career,'ESP-1'),coach=career.world.coaches.find(item=>item.id===target.coachId);
+call('v63Dismiss',career,target,coach,224,'Testvakanz');
+assert(career.world.coaches.find(item=>item.id===target.coachId).interim);
+career.world.transition.offers=[target.id];career.world.transition.choice=null;
+assert(call('v67TransitionHTML',career).includes('Stellenangebote'));
+const oldHistory=JSON.stringify(career.world.competitions);
+call('v67ChooseOffer',career,target.id);
+assert.strictEqual(career.manager.managedClubId,target.id);
+assert.strictEqual(JSON.stringify(career.world.competitions),oldHistory,'Wettbewerbshistorie bleibt beim Wechsel erhalten');
+assert.strictEqual(target.coachId,null);
+assert(call('v66Club',career,oldClub).coachId);
+assert.strictEqual(call('v63Validate',career),true);
+call('v67SetBudget',career,Math.min(200,target.balance));
+call('v62NextSeason',career);
+assert.strictEqual(career.world.season,2);
+assert.strictEqual(career.world.transition,null);
+assert.strictEqual(career.manager.stationHistory.length,2);
+assert.strictEqual(call('v61ValidateCareer',career),true);
+assert(target.youthPool.some(player=>player.discoveredSeason===2));
+assert.strictEqual(target.ledger.filter(item=>item.id==='S2:ESP-1:youth-budget').length,1);
+const reloaded=JSON.parse(JSON.stringify(career));
+assert.strictEqual(call('v61ValidateCareer',reloaded),true);
+const finalSeason=Number(process.env.DOPPEL_SEASONS||3);
+let naturalOffers=0;
+for(let season=2;season<=finalSeason;season++){
+ const club=call('v66Club',career,career.manager.managedClubId);
+ call('v66ChooseSponsor',career,club.id,club.sponsors[0].id);
+ let marketGuard=0;
+ while(career.world.market.phase==='open'&&marketGuard++<14){
+  while(club.roster.length<10&&club.youthPool.length){try{call('v67Promote',career,club.id,club.youthPool[0].pid)}catch{break}}
+  const pending=career.world.market.pendingBids.filter(item=>item.buyerId===club.id&&item.status==='pending'),pendingIds=new Set(pending.map(item=>item.pid));
+  const missing=Math.max(0,10-club.roster.length-pending.length,!club.roster.some(item=>item.keeper)&&![...pendingIds].some(pid=>call('v66Player',career,pid)?.keeper)?1:0);
+  for(let index=0;index<missing;index++){
+   const needKeeper=!club.roster.some(item=>item.keeper)&&![...pendingIds].some(pid=>call('v66Player',career,pid)?.keeper);
+   const player=career.world.market.freePlayers.filter(item=>(!needKeeper||item.keeper)&&!pendingIds.has(item.pid)&&!career.world.market.decisions.some(decision=>decision.pid===item.pid&&decision.buyerId===club.id&&['rejected','expired'].includes(decision.status))).sort((a,b)=>call('v66Salary',a)-call('v66Salary',b))[0];
+   assert(player,`Saison ${season}: freier Spieler für Mindestkader`);
+   call('v66MakeBid',career,club.id,player.pid,0,Math.max(100,Math.round(call('v66Salary',player)*1.25/10)*10),2,2);pendingIds.add(player.pid);
+  }
+  try{call('v66NextMarketDay',career)}catch(error){if(!/mindestens zehn Profis/.test(error.message))throw error}
+ }
+ assert.strictEqual(career.world.market.phase,'closed',`Saison ${season}, Kader ${club.roster.length}, Pool ${club.youthPool.length}, Kontostand ${club.balance}, offene Gebote ${career.world.market.pendingBids.filter(item=>item.buyerId===club.id&&item.status==='pending').length}`);
+ while(!career.world.seasonFinished)call('v62AdvanceDay',career);
+ naturalOffers+=career.world.transition.offers.length;
+ assert.strictEqual(call('v61ValidateCareer',career),true);
+ if(season===2)assert(career.world.clubs.every(item=>item.youthPool.every(player=>player.discoveredSeason!==0)),'Startjahrgang läuft nach Saison 2 ab');
+ if(season<finalSeason){if(career.world.transition.choice===null)call('v67ChooseOffer',career,null);call('v67SetBudget',career,Math.min(200,Math.max(0,club.balance)));call('v62NextSeason',career)}
+}
+const bytes=Buffer.byteLength(JSON.stringify(career),'utf8');
+assert(bytes<10_000_000,`Weltspielstand wächst unkontrolliert: ${bytes}`);
+if(finalSeason>=10)assert.strictEqual(career.world.competitions.length,finalSeason*13,'alle Wettbewerbe bleiben über zehn Saisons erhalten');
+console.log(`Nachwuchs und Managerwechsel: Entwicklung, Buchung, Übergang, Wechsel, Neuladen und ${finalSeason} Saisons geprüft (${bytes} Bytes, ${naturalOffers} natürliche Angebote).`);

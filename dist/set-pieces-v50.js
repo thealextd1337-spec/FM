@@ -120,7 +120,7 @@ function v50Foul(victim,offender){
 const v50BaseAction=action;
 let FOUL_SKILL_FACTOR=.0006;
 function v50FoulChance(tackler,victim){
- return clamp(.045+(tackler.t===0&&press?.01:0)+(match.aggression?.[tackler.t]??0)*.025+(ability(tackler,'tak')-ability(victim,'tec'))*FOUL_SKILL_FACTOR,.015,.13);
+ return clamp(.045+((match?.teamPress?.[tackler.t]??(tackler.t===0&&press))?1:0)*.01+(match.aggression?.[tackler.t]??0)*.025+(ability(tackler,'tak')-ability(victim,'tec'))*FOUL_SKILL_FACTOR,.015,.13);
 }
 action=function(){
  const m=match,p=m?.owner;

@@ -60,6 +60,17 @@ jobs:
           node work/test-v56.cjs
           node work/test-duel-streaks.cjs
           node work/test-v57.cjs
+          node work/test-world-foundation-v61.cjs
+          node work/test-world-competition-v62.cjs
+          node work/test-world-coaches-v63.cjs
+          node work/test-world-match-v64.cjs
+          node work/test-world-economy-v66.cjs
+          node work/test-world-youth-manager-v67.cjs
+          node work/test-world-storage-v67.cjs
+          node work/test-world-views-v68.cjs
+          DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs
+          DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs
+          node work/audit-world-balance-v68.cjs
           python3 work/test_deploy_ftps.py
 
       - name: Einzeldatei bauen

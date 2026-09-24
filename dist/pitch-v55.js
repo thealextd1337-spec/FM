@@ -207,7 +207,7 @@ shoot=function(shooter){v55Shoot(shooter)};
 
 function v55ChooseTarget(p,allies,rivals){
  const forward=other=>p.t===0?p.y-other.y:other.y-p.y;
- const score=other=>forward(other)*(p.t===0&&direct?2:1.4)-distance(p,other)*.75-rivals.filter(rival=>!rival.keeper&&distance(rival,other)<.13).length*.35+ability(other,'pos')*.018;
+ const quick=match?.teamDirect?.[p.t]??(p.t===0&&direct),score=other=>forward(other)*(quick?2:1.4)-distance(p,other)*.75-rivals.filter(rival=>!rival.keeper&&distance(rival,other)<.13).length*.35+ability(other,'pos')*.018;
  const offside=v55OffsideSnapshot(p).offside,eligible=allies.filter(other=>!offside.has(other)),options=eligible.length&&random()<.92?eligible:allies;
  return[...options].sort((a,b)=>score(b)-score(a))[random()<.82?0:Math.min(1,options.length-1)];
 }
@@ -239,7 +239,7 @@ action=function(){
  const box=allies.filter(other=>(other.t===0?other.y<.34:other.y>.66)&&other.x>.25&&other.x<.75);
  if(progress>.66&&wide&&box.length&&random()<.62){const target=[...box].sort((a,b)=>ability(b,'air')+ability(b,'pos')*.3-ability(a,'air')-ability(a,'pos')*.3)[0];v55HighPass(p,target,{cross:true});return}
  if(progress>.73||(progress>.58&&random()<.17)){v55Shoot(p);return}
- const target=v55ChooseTarget(p,allies,rivals),high=progress<.72&&random()<(p.t===0&&direct?.28:.13);
+ const target=v55ChooseTarget(p,allies,rivals),quick=match?.teamDirect?.[p.t]??(p.t===0&&direct),high=progress<.72&&random()<(quick?.28:.13);
  if(high)v55HighPass(p,target);else v55GroundPass(p,target);
 };
 

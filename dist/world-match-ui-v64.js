@@ -1,0 +1,180 @@
+'use strict';
+
+// Die neue Welt zeigt ihr Match im vertrauten Spielfeldrahmen, getrennt vom alten Spielstand.
+let v64UiTimer=null,v64UiFrame=null;
+function v64UiCount(value,one,many){return`${value} ${value===1?one:many}`}
+function v64UiStop(){if(v64UiTimer){clearInterval(v64UiTimer);v64UiTimer=null}if(v64UiFrame){cancelAnimationFrame(v64UiFrame);v64UiFrame=null}}
+function v64UiSave(){
+ if(!v61CurrentCareer)return;
+ const careers=v61ReadCareers();
+ return v61SaveCareers(careers.map(career=>career.id===v61CurrentCareer.id?v61CurrentCareer:career));
+}
+function v64UiFixture(){return v61CurrentCareer&&v64ActiveFixture(v61CurrentCareer)}
+function v64UiOwnSide(fixture){return fixture.homeId===v61CurrentCareer.manager.managedClubId?0:1}
+function v64UiName(pid){
+ const fixture=v64UiFixture(),career=v61CurrentCareer;
+ for(const side of [0,1]){const player=v64Side(career,fixture,side).find(item=>item.pid===pid);if(player)return player.name}
+ return pid;
+}
+function v64UiEvent(event){
+ const minute=`${event.minute}′`;
+ if(event.type==='goal')return`<li><b>${minute} Tor für ${v62Name(v61CurrentCareer,event.side===0?v64UiFixture().homeId:v64UiFixture().awayId)}</b> · ${escapeHTML(v64UiName(event.scorerPid))}</li>`;
+ if(event.type==='substitution')return`<li><b>${minute} Wechsel</b> · ${escapeHTML(v64UiName(event.outPid))} → ${escapeHTML(v64UiName(event.inPid))}</li>`;
+ return`<li><b>${minute} Halbzeit</b></li>`;
+}
+function v64UiEvents(state,all=false){return state.events.length?`<ol class="v64-events">${(all?state.events:state.events.slice(-8)).map(v64UiEvent).join('')}</ol>`:'<p class="v62-explainer">Der Spielverlauf erscheint nach Anpfiff.</p>'}
+function v64UiSelect(key,label,values,current){return`<label>${label}<select data-v64-tactic="${key}">${values.map(value=>`<option value="${escapeHTML(value)}" ${current===value?'selected':''}>${escapeHTML(value)}</option>`).join('')}</select></label>`}
+function v64UiTactics(state,side){
+ const tactic=state.tactics[side];
+ return`<div class="v64-tactics">${v64UiSelect('formation','Grundordnung',v64Formations,tactic.formation)}${v64UiSelect('pressing','Pressing',v63Pressing,tactic.pressing)}${v64UiSelect('passing','Passspiel',v63Passing,tactic.passing)}${v64UiSelect('defense','Abwehrlinie',v63Defense,tactic.defense)}${v64UiSelect('aggression','Aggressivität',['Vorsichtig','Normal','Aggressiv'],tactic.aggression)}</div>`;
+}
+function v64UiLineup(fixture,state,side){
+ const plan=side===0?fixture.plan.home:fixture.plan.away,roster=v64Side(v61CurrentCareer,fixture,side);
+ return`<div class="v64-lineup">${plan.starters.map((pid,index)=>{const player=roster.find(item=>item.pid===pid),role=state.roles[pid],choices=[pid,...plan.bench.filter(other=>roster.find(item=>item.pid===other).keeper===player.keeper)];return`<label><span>${v64Roles[role]}</span><select data-v64-slot="${index}">${choices.map(id=>{const item=roster.find(other=>other.pid===id);return`<option value="${escapeHTML(id)}" ${id===pid?'selected':''}>${escapeHTML(item.name)} · ${v64Roles[item.line]}</option>`}).join('')}</select></label>`}).join('')}</div>`;
+}
+function v64UiPending(fixture,state,side){
+ const pending=state.pending[side],active=v64Active(state,side),bench=v64Bench(state,side),roster=v64Side(v61CurrentCareer,fixture,side),used=state.substitutions.filter(item=>item.side===side).length;
+ const remaining=2-used-pending.length;
+ const availableBench=bench.filter(pid=>!pending.some(item=>item.inPid===pid)),eligibleOut=active.filter(pid=>!pending.some(item=>item.outPid===pid)&&availableBench.some(other=>roster.find(item=>item.pid===other).keeper===roster.find(item=>item.pid===pid).keeper)).sort((a,b)=>Number(roster.find(item=>item.pid===a).keeper)-Number(roster.find(item=>item.pid===b).keeper));
+ const initialKeeper=eligibleOut.length?roster.find(item=>item.pid===eligibleOut[0]).keeper:false,eligibleIn=availableBench.filter(pid=>roster.find(item=>item.pid===pid).keeper===initialKeeper);
+ return`<div class="v64-sub-panel"><h3>Spielerwechsel</h3><p>Bis zu zwei Wechsel. Eine Vormerkung wird erst bei der nächsten Spielunterbrechung ausgeführt.</p>${pending.length?`<ul class="v64-pending">${pending.map((item,index)=>`<li>${escapeHTML(v64UiName(item.outPid))} → ${escapeHTML(v64UiName(item.inPid))} <button type="button" class="menu-action" data-v64-cancel="${index}">Entfernen</button></li>`).join('')}</ul>`:''}<p>${remaining} Wechsel noch möglich</p>${remaining>0&&eligibleOut.length?`<div class="v64-sub-choices"><label>Vom Feld<select id="v64-out">${eligibleOut.map(pid=>`<option value="${escapeHTML(pid)}">${escapeHTML(v64UiName(pid))}</option>`).join('')}</select></label><label>Von der Bank<select id="v64-in">${eligibleIn.map(pid=>`<option value="${escapeHTML(pid)}">${escapeHTML(roster.find(item=>item.pid===pid).name)}</option>`).join('')}</select></label><button type="button" class="menu-action" data-v64-queue>Wechsel vormerken</button></div>`:''}</div>`;
+}
+function v64UiResult(fixture,state,side){
+ const record=fixture.matchRecord,own=record.players.filter(item=>item.side===side),other=record.players.filter(item=>item.side!==side),list=items=>`<div class="v64-result-players">${items.map(item=>`<div><strong>${escapeHTML(v64UiName(item.pid))}</strong><span>${item.minutes} Min. · ${v64UiCount(item.goals,'Tor','Tore')} · ${v64UiCount(item.assists,'Vorlage','Vorlagen')}</span></div>`).join('')}</div>`;
+ return`<div class="v64-result"><h2>Abpfiff</h2><p>Die Partie und die übrigen Begegnungen dieses Kalendertags sind gespeichert.</p><h3>Dein Verein</h3>${list(own)}<h3>Gegner</h3>${list(other)}</div>`;
+}
+function v64UiScreenHTML(career,fixture,state){
+ const competition=v62Current(career).find(item=>item.id===fixture.competitionId),label=competition.type==='league'?'Liga':competition.type==='cup'?'Nationaler Pokal':'Europacup',home=career.world.clubs.find(club=>club.id===fixture.homeId),away=career.world.clubs.find(club=>club.id===fixture.awayId),side=v64UiOwnSide(fixture),phase=state.phase;
+ const controls=phase==='prematch'?`<h2>Matchplan</h2><p>Wähle Startelf und Spielidee vor dem Anpfiff. Die Bank umfasst höchstens fünf Profis.</p>${v64UiTactics(state,side)}<h3>Startelf</h3>${v64UiLineup(fixture,state,side)}`:phase==='paused'?`<h2>Spielpause</h2><p>Änderungen der Taktik gelten sofort nach dem Fortsetzen. Wechsel warten auf die nächste natürliche Unterbrechung.</p>${v64UiTactics(state,side)}${v64UiPending(fixture,state,side)}<button type="button" class="primary v64-resume" data-v64-resume>Spiel fortsetzen →</button>`:phase==='live'?`<h2>Live-Spiel</h2><p>Die Partie läuft. Pausiere, um Taktik und Wechsel anzupassen.</p><button type="button" class="menu-action v64-pause" data-v64-pause>Spiel pausieren</button><p id="v64-live-status" class="v62-explainer">Nächste KI-Prüfung nach Tor, zur Halbzeit oder an der 15-Minuten-Marke.</p>`:v64UiResult(fixture,state,side);
+ return`<div class="v64-match-page"><div class="v64-top"><p class="eyebrow">${label} · Saison ${career.world.season} · ${v62Date(fixture.day)}</p><button type="button" class="menu-action" data-v64-exit>Zur Startseite</button></div><div class="v64-board"><div>${v61CrestSVG(home)}<strong>${escapeHTML(home.name)}</strong></div><span id="v64-score" aria-live="polite">${state.score[0]} : ${state.score[1]}</span><div>${v61CrestSVG(away)}<strong>${escapeHTML(away.name)}</strong></div></div><p id="v64-minute" class="v64-minute">${phase==='prematch'?'Vor Anpfiff':`${state.minute}′ · ${phase==='finished'?'Abpfiff':phase==='paused'?'Pause':'Live'}`}</p><div class="v64-layout"><div class="v64-pitch-area"><canvas id="v64-pitch" width="600" height="740" role="img" aria-label="Animiertes Spielfeld ${escapeHTML(home.name)} gegen ${escapeHTML(away.name)}"></canvas><section class="v62-season"><h3>Spielverlauf</h3><div id="v64-events">${v64UiEvents(state,phase==='finished')}</div></section></div><section class="v64-controls">${controls}<p id="v64-message" role="alert" class="v61-error"></p></section></div></div>`;
+}
+function v64UiDraw(career,fixture,state,time){
+ const canvas=v61WorldScreen.querySelector('#v64-pitch');if(!canvas)return;
+ const ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;
+ ctx.clearRect(0,0,w,h);
+ for(let index=0;index<10;index++){ctx.fillStyle=index%2?'#245446':'#214e43';ctx.fillRect(0,index*h/10,w,h/10)}
+ ctx.strokeStyle='#b5d7baaa';ctx.lineWidth=2;ctx.strokeRect(28,26,w-56,h-52);ctx.beginPath();ctx.moveTo(28,h/2);ctx.lineTo(w-28,h/2);ctx.stroke();ctx.beginPath();ctx.arc(w/2,h/2,70,0,Math.PI*2);ctx.stroke();ctx.strokeRect(w*.25,26,w*.5,105);ctx.strokeRect(w*.25,h-131,w*.5,105);ctx.strokeRect(w*.4,10,w*.2,16);ctx.strokeRect(w*.4,h-26,w*.2,16);
+ for(const side of [0,1]){
+  const club=career.world.clubs.find(item=>item.id===(side===0?fixture.homeId:fixture.awayId)),colors=v61ClubColors(club),active=v64Active(state,side),roles=['gk','def','mid','att'];
+  for(const role of roles){
+   const players=active.filter(pid=>state.roles[pid]===role),base=role==='gk'?.91:role==='def'?.74:role==='mid'?.55:.35;
+   players.forEach((pid,index)=>{
+    const player=v64Player(career,fixture,side,pid),x=(players.length===1?.5:.18+index*.64/(players.length-1))+Math.sin(time/950+index*1.7+side*3)*.009,y=(side===0?base:1-base)+Math.sin(time/1100+index*2+side)*.007;
+    ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(x*w,y*h+10,18,9,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=role==='gk'?'#e7b957':colors[0];ctx.strokeStyle=colors[1];ctx.lineWidth=3;ctx.beginPath();ctx.arc(x*w,y*h,16,0,Math.PI*2);ctx.fill();ctx.stroke();
+    ctx.fillStyle='#fff';ctx.textAlign='center';ctx.font='bold 14px Arial';ctx.fillText(String(player.n),x*w,y*h+5);ctx.font='11px Arial';ctx.fillText(player.name.split(' ').at(-1),x*w,y*h+29);
+   });
+  }
+ }
+ const ballX=w*(.5+Math.sin(time/760+state.minute*.7)*.13),ballY=h*(.5+Math.sin(time/1130+state.minute*.41)*.16);
+ ctx.fillStyle='#fff';ctx.strokeStyle='#152725';ctx.lineWidth=2;ctx.beginPath();ctx.arc(ballX,ballY,6,0,Math.PI*2);ctx.fill();ctx.stroke();
+}
+function v64UiAnimate(time){
+ const career=v61CurrentCareer,fixture=career&&v64ActiveFixture(career),state=career?.world.activeMatch?.state;
+ if(!fixture||!state||state.phase!=='live'||v61WorldScreen.hidden){v64UiFrame=null;return}
+ v64UiDraw(career,fixture,state,time);v64UiFrame=requestAnimationFrame(v64UiAnimate);
+}
+function v64UiUpdate(career,fixture,state){
+ const score=v61WorldScreen.querySelector('#v64-score'),minute=v61WorldScreen.querySelector('#v64-minute'),events=v61WorldScreen.querySelector('#v64-events');
+ if(score)score.textContent=`${state.score[0]} : ${state.score[1]}`;
+ if(minute)minute.textContent=`${state.minute}′ · Live`;
+ if(events)events.innerHTML=v64UiEvents(state);
+}
+function v64UiTick(){
+ const career=v61CurrentCareer,fixture=career&&v64ActiveFixture(career),state=career?.world.activeMatch?.state;
+ if(!fixture||state?.phase!=='live'){v64UiStop();return}
+ try{
+  v64Step(career,fixture,state);
+  if(state.phase==='finished'){v64CompleteOwnMatch(career);v64UiSave();v64UiRender(career);return}
+  v64UiSave();v64UiUpdate(career,fixture,state);
+ }catch(error){state.phase='paused';v64UiStop();v64UiRender(career);v64UiError(error)}
+}
+function v64UiStart(){
+ if(!v64UiTimer)v64UiTimer=setInterval(v64UiTick,650);
+ if(!v64UiFrame)v64UiFrame=requestAnimationFrame(v64UiAnimate);
+}
+function v64UiRender(career){
+ v64UiStop();const fixture=v64ActiveFixture(career),state=career.world.activeMatch?.state;
+ if(!fixture||!state)return;
+ startScreen.hidden=true;v61WorldScreen.hidden=false;
+ v61WorldScreen.innerHTML=v64UiScreenHTML(career,fixture,state);
+ v58Refresh();v64UiDraw(career,fixture,state,state.minute*190);
+ if(state.phase==='live')v64UiStart();
+}
+function v64UiError(error){const target=v61WorldScreen.querySelector('#v64-message');if(target)target.textContent=error.message}
+function v64UiChange(event){
+ const career=v61CurrentCareer,fixture=career&&v64ActiveFixture(career),state=career?.world.activeMatch?.state;
+ if(!fixture||!state)return;
+ const side=v64UiOwnSide(fixture),target=event.target;
+ try{
+  if(target.id==='v64-out'){
+   const keeper=v64Player(career,fixture,side,target.value).keeper,bench=v64Bench(state,side).filter(pid=>!state.pending[side].some(item=>item.inPid===pid)&&v64Player(career,fixture,side,pid).keeper===keeper);
+   v61WorldScreen.querySelector('#v64-in').innerHTML=bench.map(pid=>`<option value="${escapeHTML(pid)}">${escapeHTML(v64Player(career,fixture,side,pid).name)}</option>`).join('');return;
+  }
+  if(target.dataset.v64Slot!==undefined)v64SetPrematchSlot(career,fixture,state,side,Number(target.dataset.v64Slot),target.value);
+  else if(target.dataset.v64Tactic){
+   const changes={[target.dataset.v64Tactic]:target.value};
+   if(state.phase==='prematch')v64PrematchTactics(career,fixture,state,side,changes);else if(state.phase==='paused')v64ChangeTactics(career,fixture,state,side,changes);
+  }else return;
+  v64UiSave();v64UiRender(career);
+ }catch(error){v64UiError(error)}
+}
+function v64UiClick(event){
+ const button=event.target.closest('button');if(!button)return;
+ const career=v61CurrentCareer,fixture=career&&v64ActiveFixture(career),state=career?.world.activeMatch?.state;
+ if(!fixture||!state)return;
+ try{
+  if(button.hasAttribute('data-v64-exit')){v61ShowStart();return}
+  if(button.hasAttribute('data-v64-pause')&&state.phase==='live'){state.phase='paused';v64UiSave();v64UiRender(career);return}
+  if(button.hasAttribute('data-v64-resume')&&state.phase==='paused'){state.phase='live';v64UiSave();v64UiRender(career);return}
+  if(button.hasAttribute('data-v64-queue')&&state.phase==='paused'){
+   const out=v61WorldScreen.querySelector('#v64-out')?.value,inPid=v61WorldScreen.querySelector('#v64-in')?.value;
+   v64QueueSubstitution(career,fixture,state,v64UiOwnSide(fixture),out,inPid);v64UiSave();v64UiRender(career);return;
+  }
+  if(button.dataset.v64Cancel!==undefined&&state.phase==='paused'){
+   v64CancelPending(state,v64UiOwnSide(fixture),Number(button.dataset.v64Cancel));v64UiSave();v64UiRender(career);
+  }
+ }catch(error){v64UiError(error)}
+}
+
+const v64BaseRenderCareer=v61RenderCareer;
+v61RenderCareer=function(career){if(career.world.activeMatch)v64UiRender(career);else{v64UiStop();v64BaseRenderCareer(career)}};
+const v64BaseAdvanceCareer=v61AdvanceCareer;
+v61AdvanceCareer=function(){
+ const career=v61CurrentCareer;if(!career)return;
+ try{
+  const active=career.world.activeMatch;
+  if(active){
+   if(active.state.phase==='prematch'){active.state.phase='live';v64UiSave();v64UiRender(career)}
+   else if(active.state.phase==='finished'){delete career.world.activeMatch;v64UiSave();v61RenderCareer(career)}
+   return;
+  }
+  if(career.world.seasonFinished){v64BaseAdvanceCareer();return}
+  v64AdvanceToOwnMatch(career);v64UiSave();v61RenderCareer(career);
+ }catch(error){v64UiError(error);const target=v61WorldScreen.querySelector('.v61-career-nav');if(target)target.insertAdjacentHTML('afterend',`<p class="v61-error" role="alert">${escapeHTML(error.message)}</p>`)}
+};
+const v64BaseShowStart=v61ShowStart;
+v61ShowStart=function(){if(v61CurrentCareer?.world.activeMatch?.state.phase==='live'){v61CurrentCareer.world.activeMatch.state.phase='paused';v64UiSave()}v64UiStop();v64BaseShowStart()};
+const v64BaseProgressState=v58State;
+v58State=function(){
+ const state=v64BaseProgressState(),active=v61CurrentCareer?.world.activeMatch;
+ if(v61WorldScreen.hidden||!v61CurrentCareer)return state;
+ if(active){
+  const fixture=v64ActiveFixture(v61CurrentCareer),phase=active.state.phase;
+  return{context:`${v62Date(fixture.day)} · ${v62Name(v61CurrentCareer,fixture.homeId)} gegen ${v62Name(v61CurrentCareer,fixture.awayId)}`,label:phase==='prematch'?'Match starten':phase==='finished'?'Zur Karriereübersicht':null,action:phase==='prematch'||phase==='finished'?'v61-world':null};
+ }
+ if(state?.action==='v61-world'&&!v61CurrentCareer.world.seasonFinished)state.label='Nächstes Spiel vorbereiten';
+ return state;
+};
+v61WorldScreen.addEventListener('change',v64UiChange);
+v61WorldScreen.addEventListener('click',v64UiClick);
+const v64BaseOpenProfile=v61OpenProfile;
+v61OpenProfile=function(pid,button){
+ v64BaseOpenProfile(pid,button);
+ if(!v61CurrentCareer)return;
+ const player=v61CurrentCareer.world.clubs.find(club=>club.id===v61CurrentCareer.manager.managedClubId)?.roster.find(item=>item.pid===pid),section=v61ProfileDialog.querySelector('section:last-of-type');
+ if(!player||!section)return;
+ const current=player.history.filter(item=>item.season===v61CurrentCareer.world.season),rows=[...(player.seasons||[])];
+ if(current.length)rows.push({season:v61CurrentCareer.world.season,games:current.length,minutes:current.reduce((sum,item)=>sum+item.minutes,0),goals:current.reduce((sum,item)=>sum+item.goals,0),assists:current.reduce((sum,item)=>sum+item.assists,0)});
+ section.innerHTML=`<h3>Spielerstatistik</h3>${rows.length?`<div class="v64-player-seasons">${rows.reverse().map(row=>`<p><strong>Saison ${row.season}</strong><span>${v64UiCount(row.games,'Einsatz','Einsätze')} · ${v64UiCount(row.minutes,'Minute','Minuten')} · ${v64UiCount(row.goals,'Tor','Tore')} · ${v64UiCount(row.assists,'Vorlage','Vorlagen')}</span></p>`).join('')}</div>`:'<p>Noch keine Pflichtspieleinsätze.</p>'}`;
+};
