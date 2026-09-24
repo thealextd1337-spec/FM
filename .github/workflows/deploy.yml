@@ -64,6 +64,7 @@ jobs:
           node work/test-world-competition-v62.cjs
           node work/test-world-coaches-v63.cjs
           node work/test-world-match-v64.cjs
+          node work/test-world-grid-v71.cjs
           node work/test-world-economy-v66.cjs
           node work/test-world-youth-manager-v67.cjs
           node work/test-world-storage-v67.cjs
