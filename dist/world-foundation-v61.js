@@ -2,6 +2,7 @@
 
 // Die Trainerwelt nutzt ein eigenes Format; frühere Weltstände bleiben im Browser erhalten.
 const v61WorldKey='sechser.world.v8';
+const v61MaxCareers=5;
 const v61Countries=[['ENG','England'],['ESP','Spanien'],['ITA','Italien'],['GER','Deutschland'],['FRA','Frankreich'],['POR','Portugal']];
 const v61CountryNames=Object.fromEntries(v61Countries);
 const v61Names={
@@ -74,7 +75,7 @@ function v61CreateCareer(clubId,seed=crypto.randomUUID()){
  return career;
 }
 
-let v61StorageDb=null,v61StorageReady=typeof indexedDB==='undefined',v61StorageCache=[],v61StoragePending=null,v61StorageWriting=false,v61StorageError=null;
+let v61StorageDb=null,v61StorageReady=typeof indexedDB==='undefined',v61StorageCache=[],v61StoragePending=null,v61StorageWriting=false,v61StorageError=null,v61LastWrite=Promise.resolve();
 function v61ReadCareers(){
  if(!v61StorageReady)throw Error(v61StorageError||'Vereinswelten werden geladen.');
  const value=v61StorageDb?v61StorageCache:JSON.parse(localStorage.getItem(v61WorldKey)||'[]');
@@ -100,9 +101,43 @@ function v61SaveCareers(careers){
    v61StoragePending={careers,waiters:[...(previous?.waiters||[]),resolve],failures:[...(previous?.failures||[]),reject]};
    v61FlushStorage();
   });
-  write.catch(()=>{});return write;
+  v61LastWrite=write;write.catch(()=>{});return write;
  }
- localStorage.setItem(v61WorldKey,JSON.stringify(careers));return Promise.resolve();
+ localStorage.setItem(v61WorldKey,JSON.stringify(careers));v61LastWrite=Promise.resolve();return v61LastWrite;
+}
+async function v61StoreNewCareer(career,imported=false){
+ await v61LastWrite;
+ const careers=v61ReadCareers();
+ if(careers.length>=v61MaxCareers)throw Error('Maximal fünf Vereinswelten. Exportiere oder lösche zuerst einen Spielstand.');
+ const copy=imported?JSON.parse(JSON.stringify(career)):career;
+ if(careers.some(item=>item.id===copy.id))copy.id=crypto.randomUUID();
+ if(imported)copy.updated=new Date().toISOString();
+ await v61SaveCareers([...careers,copy]);
+ return copy;
+}
+function v61IsWorldExport(raw){
+ const candidate=raw?.save||raw;
+ return raw?.format==='world'||candidate?.schema===13||candidate?.modelVersion!==undefined;
+}
+async function v61ImportCareerData(raw){
+ const candidate=raw?.save||raw;
+ if(candidate?.schema!==13||candidate?.modelVersion!==9||raw?.format&&raw.format!=='world')throw Error('Diese Vereinswelt-Datei hat ein nicht unterstütztes Format.');
+ let valid=false;
+ try{valid=typeof candidate.id==='string'&&candidate.id.length>0&&v61ValidateCareer(candidate)}catch{}
+ if(!valid)throw Error('Die Vereinswelt-Datei ist unvollständig oder beschädigt.');
+ return v61StoreNewCareer(candidate,true);
+}
+async function v61ExportCareerData(id){
+ await v61LastWrite;
+ const career=v61ReadCareers().find(item=>item.id===id);
+ if(!career)throw Error('Diese Vereinswelt wurde nicht gefunden.');
+ return{game:'Doppel 6',format:'world',schema:13,modelVersion:9,exported:new Date().toISOString(),save:JSON.parse(JSON.stringify(career))};
+}
+async function v61DeleteCareer(id){
+ await v61LastWrite;
+ const careers=v61ReadCareers();
+ if(!careers.some(item=>item.id===id))throw Error('Diese Vereinswelt wurde nicht gefunden.');
+ await v61SaveCareers(careers.filter(item=>item.id!==id));
 }
 function v61InitStorage(){
  if(typeof indexedDB==='undefined')return;
@@ -132,7 +167,7 @@ function v61RosterHTML(roster){return`<div class="v61-roster">${roster.map(playe
 
 const v61Panel=document.createElement('section');
 v61Panel.className='panel v61-start-panel';
-v61Panel.innerHTML='<div class="v61-start-copy"><h2>Deine neue Fußballwelt</h2><p>Sechs Länder. 36 spielbare Ligavereine. Wähle Land und Verein und sieh dir den Kader vor der Entscheidung an.</p><button type="button" class="primary" id="v61-begin">Neues Spiel starten <span>↗</span></button></div><div id="v61-saves"></div><p id="v61-message" role="status" class="help"></p>';
+v61Panel.innerHTML='<div class="v61-start-copy"><h2>Deine neue Fußballwelt</h2><p>Sechs Länder. 36 spielbare Ligavereine. Wähle Land und Verein und sieh dir den Kader vor der Entscheidung an. Bis zu fünf Vereinswelten können gespeichert werden.</p><button type="button" class="primary" id="v61-begin">Neues Spiel starten <span>↗</span></button></div><div id="v61-saves"></div><p id="v61-message" role="status" class="help"></p>';
 startScreen.querySelector('.menu-layout').insertAdjacentElement('beforebegin',v61Panel);
 const v61Legacy=startScreen.querySelector('.menu-layout section:first-child');
 v61Legacy.querySelector('h2').textContent='Bisherige Sechserliga';
@@ -146,11 +181,11 @@ startScreen.before(v61WorldScreen);
 const v61ProfileDialog=document.createElement('dialog');
 v61ProfileDialog.className='player-card-dialog v61-profile-dialog';
 document.body.append(v61ProfileDialog);
-let v61Flow={step:'country',countryId:null,clubId:null,seed:null},v61CurrentCareer=null,v61ProfileReturn=null,v61CareerTab='overview';
+let v61Flow={step:'country',countryId:null,clubId:null,seed:null},v61CurrentCareer=null,v61ProfileReturn=null,v61CareerTab='overview',v61PendingDeleteId=null;
 
 function v61ShowScreen(){startScreen.hidden=true;v61WorldScreen.hidden=false;v58Refresh();window.scrollTo(0,0)}
 function v61ShowStart(){v61WorldScreen.hidden=true;startScreen.hidden=false;v61CurrentCareer=null;v61RenderSaves();v58Refresh();window.scrollTo(0,0)}
-function v61Begin(){v61Flow={step:'country',countryId:null,clubId:null,seed:crypto.randomUUID()};v61CurrentCareer=null;v61RenderFlow();v61ShowScreen()}
+function v61Begin(){if(v61ReadCareers().length>=v61MaxCareers)return;v61Flow={step:'country',countryId:null,clubId:null,seed:crypto.randomUUID()};v61CurrentCareer=null;v61RenderFlow();v61ShowScreen()}
 function v61RenderFlow(){
  const{step,countryId,clubId,seed}=v61Flow;
  const header=`<nav class="v61-steps" aria-label="Spielstart"><span class="${step==='country'?'current':''}">Land</span><span class="${step==='clubs'?'current':''}">Verein</span><span class="${step==='club'?'current':''}">Kader</span></nav>`;
@@ -166,8 +201,8 @@ function v61RenderSaves(){
  const container=v61Panel.querySelector('#v61-saves'),message=v61Panel.querySelector('#v61-message');
  try{
   const careers=v61ReadCareers();
-  container.innerHTML=careers.length?`<h3>Deine Vereinswelten</h3>${careers.map(career=>{const club=career.world.clubs.find(item=>item.id===career.manager.managedClubId);return`<div class="v61-saved"><span>${v61CrestSVG(club)}<span><strong>${escapeHTML(club.name)}</strong><small>${v61FlagSVG(club.countryId)} ${escapeHTML(v61CountryNames[club.countryId])} · Saison ${career.world.season}</small></span></span><button type="button" class="menu-action" data-v61-open="${career.id}">Öffnen</button></div>`}).join('')}`:'';
-  message.textContent='';v61Panel.querySelector('#v61-begin').disabled=false;
+  container.innerHTML=careers.length?`<h3>Deine Vereinswelten · ${careers.length}/${v61MaxCareers}</h3>${careers.map(career=>{const club=career.world.clubs.find(item=>item.id===career.manager.managedClubId),pending=career.id===v61PendingDeleteId;return`<article class="v61-saved"><span class="v61-save-info">${v61CrestSVG(club)}<span><strong>${escapeHTML(club.name)}</strong><small>${v61FlagSVG(club.countryId)} ${escapeHTML(v61CountryNames[club.countryId])} · Saison ${career.world.season}</small></span></span><div class="v61-save-actions"><button type="button" class="menu-action" data-v61-open="${escapeHTML(career.id)}">Öffnen</button><button type="button" class="menu-action" data-v61-export="${escapeHTML(career.id)}">Exportieren</button>${pending?`<button type="button" class="menu-action danger" data-v61-confirm-delete="${escapeHTML(career.id)}">Endgültig löschen</button><button type="button" class="menu-action" data-v61-cancel-delete="${escapeHTML(career.id)}">Abbrechen</button>`:`<button type="button" class="menu-action danger" data-v61-delete="${escapeHTML(career.id)}">Löschen</button>`}</div>${pending?`<p class="v61-delete-prompt" role="status">„${escapeHTML(club.name)}“ und alle Fortschritte dieser Vereinswelt endgültig löschen?</p>`:''}</article>`}).join('')}${careers.length>=v61MaxCareers?'<p class="v61-limit-note">Für eine neue Vereinswelt zuerst einen Spielstand exportieren oder löschen.</p>':''}`:'';
+  message.textContent='';delete message.dataset.status;v61Panel.querySelector('#v61-begin').disabled=careers.length>=v61MaxCareers;
  }catch(error){
   container.innerHTML=v61StorageError?'Gespeicherte Vereinswelten konnten nicht gelesen werden.':'<div class="v67-loading" role="status"><span>Vereinswelten werden geladen …</span><span class="v67-loading-track" role="progressbar" aria-label="Vereinswelten laden"><span></span></span></div>';
   message.textContent=v61StorageError?error.message:'';v61Panel.querySelector('#v61-begin').disabled=true;
@@ -212,7 +247,18 @@ v61ProfileDialog.addEventListener('close',()=>v61ProfileReturn?.focus());
 v61ProfileDialog.addEventListener('click',event=>{if(event.target===v61ProfileDialog)v61ProfileDialog.close()});
 
 v61Panel.querySelector('#v61-begin').onclick=v61Begin;
-v61Panel.querySelector('#v61-saves').onclick=event=>{const button=event.target.closest('[data-v61-open]');if(button)v61OpenCareer(button.dataset.v61Open)};
+v61Panel.querySelector('#v61-saves').onclick=async event=>{
+ const button=event.target.closest('button');if(!button)return;
+ const message=v61Panel.querySelector('#v61-message');
+ if(button.dataset.v61Open){v61OpenCareer(button.dataset.v61Open);return}
+ if(button.dataset.v61Delete){v61PendingDeleteId=button.dataset.v61Delete;v61RenderSaves();return}
+ if(button.dataset.v61CancelDelete){v61PendingDeleteId=null;v61RenderSaves();return}
+ button.disabled=true;
+ try{
+  if(button.dataset.v61ConfirmDelete){await v61DeleteCareer(button.dataset.v61ConfirmDelete);v61PendingDeleteId=null;v61RenderSaves();message.dataset.status='success';message.textContent='Vereinswelt gelöscht.'}
+  if(button.dataset.v61Export){const data=await v61ExportCareerData(button.dataset.v61Export),club=data.save.world.clubs.find(item=>item.id===data.save.manager.managedClubId),blob=new Blob([JSON.stringify(data)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`doppel-6-welt-${club.id.toLowerCase()}-${data.save.id.slice(0,8)}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),60000);message.dataset.status='success';message.textContent='Export der Vereinswelt gestartet.'}
+ }catch(error){delete message.dataset.status;message.textContent=error.message}finally{button.disabled=false}
+};
 v61WorldScreen.onclick=event=>{
  const button=event.target.closest('button');if(!button)return;
  if(button.dataset.v61Tab){v61SetCareerTab(button.dataset.v61Tab);return}
@@ -223,7 +269,7 @@ v61WorldScreen.onclick=event=>{
  if(button.dataset.v61Create){
   const clubId=button.dataset.v61Create;button.disabled=true;
   button.insertAdjacentHTML('afterend','<div class="v67-loading" role="status"><span>Vereinswelt wird aufgebaut …</span><span class="v67-loading-track" role="progressbar" aria-label="Vereinswelt aufbauen"><span></span></span></div>');
-  requestAnimationFrame(()=>setTimeout(async()=>{try{const career=v61CreateCareer(clubId,v61Flow.seed),careers=v61ReadCareers();await v61SaveCareers([...careers,career]);v61CurrentCareer=career;v61CareerTab='overview';v61RenderCareer(career)}catch(error){button.disabled=false;button.nextElementSibling?.remove();button.insertAdjacentHTML('afterend',`<p class="v61-error" role="alert">Vereinswelt konnte nicht gespeichert werden: ${escapeHTML(error.message)}</p>`)}}));
+  requestAnimationFrame(()=>setTimeout(async()=>{try{if(v61ReadCareers().length>=v61MaxCareers)throw Error('Maximal fünf Vereinswelten.');const career=await v61StoreNewCareer(v61CreateCareer(clubId,v61Flow.seed));v61CurrentCareer=career;v61CareerTab='overview';v61RenderCareer(career)}catch(error){button.disabled=false;button.nextElementSibling?.remove();button.insertAdjacentHTML('afterend',`<p class="v61-error" role="alert">Vereinswelt konnte nicht gespeichert werden: ${escapeHTML(error.message)}</p>`)}}));
  }
 };
 v61RenderSaves();

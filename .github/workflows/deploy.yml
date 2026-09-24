@@ -67,6 +67,7 @@ jobs:
           node work/test-world-economy-v66.cjs
           node work/test-world-youth-manager-v67.cjs
           node work/test-world-storage-v67.cjs
+          node work/test-world-save-management-v70.cjs
           node work/test-world-views-v68.cjs
           DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs
           DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs
