@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- Die Aufstellung der neuen Vereinswelt hat wieder ein sichtbares 5×7-Raster. Feldspieler lassen sich per Klick oder Drag-and-Drop auf freie Felder verschieben und untereinander tauschen; Touch-Ziehen nutzt dieselben Ziele. Die Position bleibt auch in der Spielpause und nach einem Neuladen erhalten und bestimmt die Position im Live-Spiel. Geprüft mit Raster- und Weltmatchtests, Build sowie im lokalen Browser vor dem Spiel und in der Pause einschließlich Maus-Drag und Neuladen.
+
 ## 2026-09-24 (Aufstellung in der Spielpause)
 
 - Die Spielpause der neuen Vereinswelt nutzt nun dieselbe Aufstellungs- und Taktikansicht wie die Matchvorbereitung: Spielfeld, Ersatzbank, Spielerprofil und direkte Taktikknöpfe. Positionen können sofort getauscht werden; Bankwechsel werden sichtbar vorgemerkt, lassen sich entfernen und erfolgen erst an der nächsten Unterbrechung. Nach einem Wechsel zeigt auch die Live-Kaderleiste sofort den eingewechselten Spieler. Geprüft mit Weltmatch-, Live-Spieler-, Fortschritts-, Engine- und mobilen Gestentests, Build sowie einem vollständigen Browsermatch mit Pause, Taktikänderung, Wechsel und Ergebnisübergang.

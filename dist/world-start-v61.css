@@ -185,6 +185,21 @@
 @media(max-width:520px){#v61-world-screen{padding:16px 12px 32px}.v61-country-grid{gap:8px}.v61-country-choice{min-height:140px;padding:13px;gap:9px}.v61-club-hero{grid-template-columns:72px 1fr;gap:13px;padding:16px}.v61-club-hero .v61-crest{width:70px;height:83px}.v61-club-hero h1,.v61-club-hero h2{font-size:32px}.v61-club-hero p{font-size:11px}.v61-profile-action{font-size:9px}.v61-flow-head h1 .flag-icon{width:35px;height:24px}.v61-career-head{gap:8px}.v61-career-head>.v61-crest{width:40px;height:47px}.v61-career-head h1{font-size:25px}.v61-career-head .menu-action{padding:8px;min-height:38px;font-size:10px}.v64-board{padding:9px;gap:5px}.v64-board .v61-crest{width:29px;height:34px}.v64-board>div{gap:5px}.v64-board strong{font-size:14px}.v64-board>span{font-size:26px}.v64-controls{padding:14px}.v64-tactics{grid-template-columns:1fr 1fr}.v64-player-seasons p{display:block}.v64-player-seasons span{display:block;margin-top:3px}}
 #v65-controls{margin:10px 0 16px}
 .v64-prematch-field{position:relative;min-height:0;aspect-ratio:600/740;overflow:hidden;border:2px solid #719989;border-radius:9px;background:repeating-linear-gradient(180deg,#214b41 0 10%,#245146 10% 20%)}
+.v64-prematch-field.pitch{height:auto;margin:0;aspect-ratio:600/740}
+.v64-prematch-field .v64-raster{inset:32px 18px 72px;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(7,minmax(0,1fr))}
+.v64-prematch-field .v64-raster .cell{border-color:#cae6c23d;cursor:pointer;touch-action:pan-y}
+.v64-prematch-field .v64-raster .cell[draggable=true]{cursor:grab}
+.v64-prematch-field .v64-raster .cell.v64-drag-over{border-color:#c7f36b;background:#c7f36b38}
+.v64-prematch-field .v64-raster .token{background:var(--v64-shirt,#c7f36b);border-color:var(--v64-shirt-edge,#e5ffb0);color:#fff}
+.v64-prematch-field .v64-raster .position-label{display:block;font-size:9px;color:#d4ebcf}
+.v64-prematch-field .v64-raster .player-label{display:flex;align-items:center;justify-content:center;gap:3px;max-width:100%;font-size:9px}
+.v64-prematch-field .v64-raster .player-label .flag-icon{width:15px;height:10px;flex:none}
+.v64-prematch-field .v64-raster .player-label span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.v64-keeper-choice{display:grid;justify-items:center;gap:5px;padding:0;background:none;border:0;color:#fff;font-size:10px;cursor:pointer}
+.v64-keeper-choice[aria-pressed=true] b{outline:3px solid #c7f36b;outline-offset:3px}
+.v64-keeper-choice b{background:#e5b56a;border:2px solid #f6d6a5;border-radius:50%;width:33px;height:33px;display:grid;place-items:center;color:#33291a}
+.v64-keeper-choice span{font-size:10px;letter-spacing:1px}
+.v71-dragging{opacity:.45}
 .v64-field-lines{position:absolute;inset:4%;border:2px solid #b5d7ba99;pointer-events:none}
 .v64-field-box{position:absolute;top:0;left:25%;width:50%;height:17%;border:2px solid #b5d7ba99;border-top:0}
 .v64-field-half{position:absolute;top:50%;left:0;width:100%;border-top:2px solid #b5d7ba99}

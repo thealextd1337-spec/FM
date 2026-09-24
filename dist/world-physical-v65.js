@@ -8,13 +8,9 @@ function v65Context(){
 }
 function v65Side(physical,ownSide){return physical===0?ownSide:1-ownSide}
 function v65Club(context,physical){const side=v65Side(physical,context.ownSide);return context.career.world.clubs.find(club=>club.id===(side===0?context.fixture.homeId:context.fixture.awayId))}
-function v65Cells(role,count){return({def:{1:[27],2:[26,28],3:[25,27,29]},mid:{1:[17],2:[16,18],3:[15,17,19]},att:{1:[7],2:[6,8],3:[5,7,9]}}[role]||{})[count]||[]}
 function v65LineupPositions(context,physical){
- const side=v65Side(physical,context.ownSide),active=v64Active(context.state,side),positions=new Map();
- for(const role of ['def','mid','att']){
-  const ids=active.filter(pid=>context.state.roles[pid]===role),cells=v65Cells(role,ids.length);
-  ids.forEach((pid,index)=>positions.set(pid,cells[index]));
- }
+ const side=v65Side(physical,context.ownSide),active=v64Active(context.state,side),cells=v64EnsureCells(context.state,side),positions=new Map();
+ for(const pid of active)if(context.state.roles[pid]!=='gk')positions.set(pid,cells[pid]);
  return positions;
 }
 function v65PhysicalPlayer(context,physical,pid){
@@ -168,9 +164,8 @@ function v65PausePitch(context){
 function v65SwapPositions(context,otherSlot,firstSlot=v65SelectedSlot){
  const active=v64Active(context.state,context.ownSide),first=active[firstSlot],second=active[otherSlot];
  if(!first||!second||first===second||v64Player(context.career,context.fixture,context.ownSide,first).keeper!==v64Player(context.career,context.fixture,context.ownSide,second).keeper)throw Error('Diese Positionen können nicht getauscht werden.');
- const roles=context.state.roles;
- if(roles[first]===roles[second])[active[firstSlot],active[otherSlot]]=[second,first];
- else[roles[first],roles[second]]=[roles[second],roles[first]];
+ if(context.state.roles[first]==='gk')return;
+ v64MoveCell(context.career,context.fixture,context.state,context.ownSide,first,v64EnsureCells(context.state,context.ownSide)[second]);
  v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw();
 }
 function v65UpdateControls(context){
@@ -305,6 +300,10 @@ $('#game-screen').addEventListener('click',event=>{
  try{
   if(button.dataset.v65Tab&&context.state.phase==='paused'){v65PauseTab=button.dataset.v65Tab;v65UpdateControls(context);$('#v65-pause-tabs')?.querySelector(`[data-v65-tab="${v65PauseTab}"]`)?.focus();return}
   if(button.dataset.v65PickSlot!==undefined&&context.state.phase==='paused'){v65SelectedSlot=Number(button.dataset.v65PickSlot);v65PauseTab='lineup';v65UpdateControls(context);$('#v65-plan-view')?.querySelector(`[data-v65-pick-slot="${v65SelectedSlot}"]`)?.focus();return}
+  if(button.dataset.v64Cell!==undefined&&context.state.phase==='paused'){
+   const pid=v64Active(context.state,context.ownSide)[v65SelectedSlot];
+   if(v64MoveCell(context.career,context.fixture,context.state,context.ownSide,pid,Number(button.dataset.v64Cell))){v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw()}return;
+  }
   if(button.dataset.v65Profile){v61OpenProfile(button.dataset.v65Profile,button);return}
   if(button.hasAttribute('data-v65-swap')&&context.state.phase==='paused'){v65SwapPositions(context,Number($('#v65-swap-target')?.value));return}
   if(button.dataset.v65Bench&&context.state.phase==='paused'){
@@ -337,10 +336,11 @@ $('#game-screen').addEventListener('change',event=>{
   if(target.dataset.v64Tactic){v64ChangeTactics(context.career,context.fixture,context.state,context.ownSide,{[target.dataset.v64Tactic]:target.value});v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw()}
  }catch(error){const message=$('#v65-error');if(message)message.textContent=error.message}
 });
-function v65DragTarget(event){return event.target.closest?.('[data-v65-pick-slot],[data-v65-bench-card]')}
+function v65DragTarget(event){return event.target.closest?.('[data-v64-cell],[data-v65-pick-slot],[data-v65-bench-card]')}
 function v65CanDrop(target){
  const context=v65Context();if(!v65Drag||!target||context?.state.phase!=='paused'||v65PauseTab!=='lineup'||v65Drag.kind==='bench'&&target.dataset.v65BenchCard)return false;
  const active=v64Active(context.state,context.ownSide),source=v65Drag.kind==='field'?active[v65Drag.slot]:v65Drag.pid,dest=target.dataset.v65PickSlot!==undefined?active[Number(target.dataset.v65PickSlot)]:target.dataset.v65BenchCard;
+ if(target.dataset.v64Cell!==undefined&&!dest)return v65Drag.kind==='field'&&context.state.roles[source]!=='gk';
  if(!source||!dest||source===dest||v64Player(context.career,context.fixture,context.ownSide,source).keeper!==v64Player(context.career,context.fixture,context.ownSide,dest).keeper)return false;
  if(v65Drag.kind==='field'&&target.dataset.v65PickSlot!==undefined)return true;
  const pending=context.state.pending[context.ownSide],outPid=v65Drag.kind==='field'?source:dest,inPid=v65Drag.kind==='bench'?source:dest;
@@ -348,7 +348,7 @@ function v65CanDrop(target){
 }
 $('#game-screen').addEventListener('dragstart',event=>{
  const context=v65Context();if(context?.state.phase!=='paused'||v65PauseTab!=='lineup')return;
- const target=v65DragTarget(event);if(!target)return;
+ const target=v65DragTarget(event);if(!target||target.dataset.v65PickSlot===undefined&&target.dataset.v65BenchCard===undefined)return;
  v65Drag=target.dataset.v65PickSlot!==undefined?{kind:'field',slot:Number(target.dataset.v65PickSlot)}:{kind:'bench',pid:target.dataset.v65BenchCard};
  event.dataTransfer.effectAllowed='move';event.dataTransfer.setData('text/plain','Spieler verschieben');
 });
@@ -356,11 +356,15 @@ $('#game-screen').addEventListener('dragover',event=>{const target=v65DragTarget
 $('#game-screen').addEventListener('dragleave',event=>{const target=v65DragTarget(event);if(target&&!target.contains(event.relatedTarget))target.classList.remove('v64-drag-over')});
 $('#game-screen').addEventListener('drop',event=>{
  const target=v65DragTarget(event);if(!v65CanDrop(target))return;
- event.preventDefault();const context=v65Context(),active=v64Active(context.state,context.ownSide),source=v65Drag;
- try{
-  if(source.kind==='field'&&target.dataset.v65PickSlot!==undefined)v65SwapPositions(context,Number(target.dataset.v65PickSlot),source.slot);
-  else v64QueueSubstitution(context.career,context.fixture,context.state,context.ownSide,source.kind==='field'?active[source.slot]:active[Number(target.dataset.v65PickSlot)],source.kind==='bench'?source.pid:target.dataset.v65BenchCard);
-  if(!(source.kind==='field'&&target.dataset.v65PickSlot!==undefined)){v65Snapshot(context);v65UpdateControls(context)}
- }catch(error){const message=$('#v65-error');if(message)message.textContent=error.message}finally{v65Drag=null}
+ event.preventDefault();v65DropAction(v65Drag,target);
 });
+function v65DropAction(source,target){
+ const context=v65Context(),active=v64Active(context.state,context.ownSide);
+ try{
+  if(source.kind==='field'&&target.dataset.v64Cell!==undefined){v64MoveCell(context.career,context.fixture,context.state,context.ownSide,active[source.slot],Number(target.dataset.v64Cell));v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw()}
+  else if(source.kind==='field'&&target.dataset.v65PickSlot!==undefined)v65SwapPositions(context,Number(target.dataset.v65PickSlot),source.slot);
+  else v64QueueSubstitution(context.career,context.fixture,context.state,context.ownSide,source.kind==='field'?active[source.slot]:active[Number(target.dataset.v65PickSlot)],source.kind==='bench'?source.pid:target.dataset.v65BenchCard);
+  if(!(source.kind==='field'&&(target.dataset.v65PickSlot!==undefined||target.dataset.v64Cell!==undefined))){v65Snapshot(context);v65UpdateControls(context)}
+ }catch(error){const message=$('#v65-error');if(message)message.textContent=error.message}finally{v65Drag=null}
+}
 $('#game-screen').addEventListener('dragend',()=>{v65Drag=null;$('#v65-plan-view')?.querySelectorAll('.v64-drag-over').forEach(item=>item.classList.remove('v64-drag-over'))});

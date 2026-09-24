@@ -56,12 +56,50 @@ function v64Side(career,fixture,side){return v64Players(career,side===0?fixture.
 function v64Active(state,side){return side===0?state.active:state.awayActive}
 function v64Bench(state,side){return side===0?state.bench:state.awayBench}
 function v64Player(career,fixture,side,pid){return v64Side(career,fixture,side).find(player=>player.pid===pid)}
+const v64GridCells={def:{1:[27],2:[26,28],3:[25,27,29]},mid:{1:[17],2:[16,18],3:[15,17,19]},att:{1:[7],2:[6,8],3:[5,7,9]}};
+function v64GridRole(cell){return cell<10?'att':cell<20?'mid':'def'}
+function v64EnsureCells(state,side){
+ state.cells ||= {};
+ const active=v64Active(state,side);
+ for(const role of ['def','mid','att']){
+  const ids=active.filter(pid=>state.roles[pid]===role),defaults=v64GridCells[role][ids.length]||[];
+  ids.forEach((pid,index)=>{if(!Number.isInteger(state.cells[pid]))state.cells[pid]=defaults[index]});
+ }
+ return state.cells;
+}
+function v64ResetCells(state,side){
+ const cells=v64EnsureCells(state,side),active=v64Active(state,side);
+ for(const role of ['def','mid','att']){
+  const ids=active.filter(pid=>state.roles[pid]===role),defaults=v64GridCells[role][ids.length]||[];
+  ids.forEach((pid,index)=>cells[pid]=defaults[index]);
+ }
+}
+function v64MoveCell(career,fixture,state,side,sourcePid,targetCell){
+ if(!Number.isInteger(targetCell)||targetCell<0||targetCell>34)throw Error('Ungültiges Rasterfeld.');
+ const active=v64Active(state,side);
+ if(!active.includes(sourcePid)||state.roles[sourcePid]==='gk')throw Error('Nur Feldspieler können im Raster verschoben werden.');
+ const cells=v64EnsureCells(state,side),previous=cells[sourcePid],otherPid=active.find(pid=>pid!==sourcePid&&cells[pid]===targetCell);
+ if(previous===targetCell)return false;
+ const proposed={...state.roles,[sourcePid]:v64GridRole(targetCell)};
+ if(otherPid)proposed[otherPid]=v64GridRole(previous);
+ const counts=['def','mid','att'].map(role=>active.filter(pid=>proposed[pid]===role).length);
+ if(counts.some(count=>count<1||count>3))throw Error('In Abwehr, Mittelfeld und Angriff muss jeweils mindestens ein Spieler stehen.');
+ cells[sourcePid]=targetCell;if(otherPid)cells[otherPid]=previous;
+ state.roles[sourcePid]=proposed[sourcePid];if(otherPid)state.roles[otherPid]=proposed[otherPid];
+ const formation=counts.join('–');
+ if(state.tactics[side].formation!==formation){state.tactics[side].formation=formation;state.tacticChanges.push({minute:state.minute,side,tactics:{...state.tactics[side]},reason:'Aufstellung im Raster'})}
+ if(state.phase==='prematch'){
+  const plan=side===0?fixture.plan.home:fixture.plan.away;
+  plan.roles=Object.fromEntries(active.map(pid=>[pid,state.roles[pid]]));plan.tactics={...state.tactics[side]};
+ }
+ return true;
+}
 function v64SetFormation(career,fixture,state,side,formation,reason='Nutzerentscheidung'){
  const roles=v64RoleList(formation),active=v64Active(state,side),players=active.map(pid=>v64Player(career,fixture,side,pid));
  if(active.length!==6||players.filter(player=>player.keeper).length!==1)throw Error('Die Mannschaft ist nicht vollständig.');
  const remaining=new Set(active),assign={};
  for(const role of roles){const pid=[...remaining].filter(id=>role==='gk'?v64Player(career,fixture,side,id).keeper:!v64Player(career,fixture,side,id).keeper).sort((a,b)=>v64Rating(v64Player(career,fixture,side,b),role)-v64Rating(v64Player(career,fixture,side,a),role)||a.localeCompare(b))[0];if(!pid)throw Error('Ungültige Feldbesetzung.');remaining.delete(pid);assign[pid]=role}
- Object.assign(state.roles,assign);state.tactics[side].formation=formation;
+ Object.assign(state.roles,assign);state.tactics[side].formation=formation;v64ResetCells(state,side);
  state.tacticChanges.push({minute:state.minute,side,tactics:{...state.tactics[side]},reason});
 }
 function v64ChangeTactics(career,fixture,state,side,changes,reason='Nutzerentscheidung'){
@@ -81,6 +119,7 @@ function v64SetPrematchSlot(career,fixture,state,side,slot,inPid){
  const role=state.roles[outPid],benchIndex=bench.indexOf(inPid);
  plan.starters[slot]=inPid;plan.bench[benchIndex]=outPid;active[slot]=inPid;bench[benchIndex]=outPid;
  delete state.roles[outPid];state.roles[inPid]=role;delete plan.roles[outPid];plan.roles[inPid]=role;
+ if(state.cells&&Number.isInteger(state.cells[outPid])){state.cells[inPid]=state.cells[outPid];delete state.cells[outPid]}
 }
 function v64PrematchTactics(career,fixture,state,side,changes){
  if(state.phase!=='prematch')throw Error('Der Anpfiff ist bereits erfolgt.');
@@ -110,6 +149,7 @@ function v64ExecutePending(career,fixture,state,reason){
   const active=v64Active(state,item.side),bench=v64Bench(state,item.side);
   active[active.indexOf(item.outPid)]=item.inPid;bench.splice(bench.indexOf(item.inPid),1);state.exited.push(item.outPid);
   delete state.roles[item.outPid];state.roles[item.inPid]=item.role;
+  if(state.cells&&Number.isInteger(state.cells[item.outPid])){state.cells[item.inPid]=state.cells[item.outPid];delete state.cells[item.outPid]}
   const record={minute:state.minute,side:item.side,outPid:item.outPid,inPid:item.inPid,reason};state.substitutions.push(record);
   state.events.push({minute:state.minute,type:'substitution',side:item.side,outPid:item.outPid,inPid:item.inPid});
  }

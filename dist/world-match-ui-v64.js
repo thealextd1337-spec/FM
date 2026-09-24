@@ -49,14 +49,15 @@ function v64UiAdboards(clubs){
  return sponsors.length?`<div class="v64-adboards" aria-label="Werbebanner">${sponsors.map(({club,offer})=>`<div class="v64-adboard">${v66SponsorLogoSVG(club.countryId,offer.name)}<span>${escapeHTML(offer.name)}</span></div>`).join('')}</div>`:'';
 }
 function v64UiPrematchPitch(career,fixture,state,side,options={}){
- const plan=side===0?fixture.plan.home:fixture.plan.away,roster=v64Side(career,fixture,side),groups={gk:[],def:[],mid:[],att:[]},starters=options.starters||plan.starters,selected=options.selected??v64SelectedSlot,pickAttribute=options.pickAttribute||'data-v64-pick-slot';
- starters.forEach((pid,slot)=>groups[state.roles[pid]]?.push({pid,slot}));
- const positions={gk:84,def:64,mid:42,att:20};
- const players=Object.entries(groups).flatMap(([role,items])=>items.map(({pid,slot},index)=>{const player=roster.find(item=>item.pid===pid),x=items.length===1?50:items.length===2?28+index*44:20+index*30;
-  return`<button type="button" draggable="${role!=='gk'}" class="v64-field-player ${role==='gk'?'is-keeper':''}" style="left:${x}%;top:${positions[role]}%" ${pickAttribute}="${slot}" aria-label="${escapeHTML(player.name)}, ${v64Roles[role]}, auswählen oder verschieben" aria-pressed="${slot===selected}"><span class="v64-field-shirt">${escapeHTML(player.n)}</span><span class="v64-field-name">${escapeHTML(player.name.split(' ').at(-1))}</span></button>`;
- })).join('');
+ const plan=side===0?fixture.plan.home:fixture.plan.away,roster=v64Side(career,fixture,side),starters=options.starters||plan.starters,selected=options.selected??v64SelectedSlot,pickAttribute=options.pickAttribute||'data-v64-pick-slot',cells=v64EnsureCells(state,side);
+ const byCell=new Map(starters.map((pid,slot)=>[cells[pid],{pid,slot}]).filter(([cell])=>Number.isInteger(cell)));
+ const grid=Array.from({length:35},(_,cell)=>{
+  const entry=byCell.get(cell),player=entry&&roster.find(item=>item.pid===entry.pid),role=player&&state.roles[entry.pid],chosen=entry?.slot===selected;
+  return`<button type="button" class="cell ${chosen?'chosen':''}" data-v64-cell="${cell}" ${entry?`${pickAttribute}="${entry.slot}" draggable="true"`:''} aria-label="${player?`${escapeHTML(player.name)}, ${v64Roles[role]}, `:'Freies Feld, '}Reihe ${Math.floor(cell/5)+1}, Spalte ${cell%5+1}" ${entry?`aria-pressed="${chosen}"`:''}>${player?`<span class="token">${escapeHTML(player.n)}</span><span class="player-label">${v61FlagSVG(player.nation)}<span>${escapeHTML(player.name.split(' ').at(-1))}</span></span><span class="position-label">${v64Roles[role]}</span>`:''}</button>`;
+ }).join('');
+ const keeperSlot=starters.findIndex(pid=>state.roles[pid]==='gk'),keeper=roster.find(item=>item.pid===starters[keeperSlot]);
  const club=career.world.clubs.find(item=>item.id===(side===0?fixture.homeId:fixture.awayId)),colors=v61ClubColors(club);
- return`<div class="v64-prematch-field" style="--v64-shirt:${escapeHTML(colors[0])};--v64-shirt-edge:${escapeHTML(colors[1])}" aria-label="${options.label||'Deine Startelf auf dem Spielfeld'}"><div class="v64-field-lines" aria-hidden="true"><span class="v64-field-box"></span><span class="v64-field-half"></span><span class="v64-field-circle"></span></div><span class="v64-field-direction">ANGRIFF ↑</span>${players}</div>`;
+ return`<div class="pitch v64-prematch-field" style="--v64-shirt:${escapeHTML(colors[0])};--v64-shirt-edge:${escapeHTML(colors[1])}" aria-label="${options.label||'Deine Startelf auf dem Spielfeld'}"><div class="markings" aria-hidden="true"><div class="center-circle"></div><div class="half-line"></div><div class="box top"></div><div class="box bottom"></div></div><div class="attack-label">ANGRIFF ↑</div><div class="grid v64-raster">${grid}</div>${keeper?`<div class="keeper"><button type="button" class="v64-keeper-choice" ${pickAttribute}="${keeperSlot}" aria-label="${escapeHTML(keeper.name)}, Torwart auswählen" aria-pressed="${keeperSlot===selected}"><b>${escapeHTML(keeper.n)}</b><span>${escapeHTML(keeper.name.toUpperCase())} · TW</span></button></div>`:''}</div>`;
 }
 function v64UiPrematchSelection(career,fixture,state,side){
  const plan=side===0?fixture.plan.home:fixture.plan.away,slot=Math.min(v64SelectedSlot,plan.starters.length-1),pid=plan.starters[slot],roster=v64Side(career,fixture,side),player=roster.find(item=>item.pid===pid),role=state.roles[pid],bench=plan.bench.map(id=>roster.find(item=>item.pid===id));
@@ -75,12 +76,11 @@ function v64UiUndoLast(career,fixture){
  v64UiSave();v64UiRender(career);
 }
 function v64UiSwapSlots(career,fixture,state,side,first,second){
- const plan=side===0?fixture.plan.home:fixture.plan.away,active=v64Active(state,side),a=plan.starters[first],b=plan.starters[second];
+ const plan=side===0?fixture.plan.home:fixture.plan.away,a=plan.starters[first],b=plan.starters[second];
  if(!a||!b||a===b)return;
  if(v64Player(career,fixture,side,a).keeper!==v64Player(career,fixture,side,b).keeper)throw Error('Torwart und Feldspieler können ihre Position nicht tauschen.');
- const roleA=state.roles[a],roleB=state.roles[b];
- if(roleA===roleB){[plan.starters[first],plan.starters[second]]=[b,a];[active[first],active[second]]=[b,a]}
- else{state.roles[a]=roleB;state.roles[b]=roleA;plan.roles[a]=roleB;plan.roles[b]=roleA}
+ if(state.roles[a]==='gk')return;
+ v64MoveCell(career,fixture,state,side,a,v64EnsureCells(state,side)[b]);
 }
 function v64UiQuickLineup(career,fixture,state,side,kind){
  const plan=side===0?fixture.plan.home:fixture.plan.away,roster=v64Side(career,fixture,side),formation=kind==='defensive'?'3–1–1':kind==='offensive'?'1–2–2':state.tactics[side].formation;
@@ -98,6 +98,7 @@ function v64UiQuickLineup(career,fixture,state,side,kind){
  for(const pid of [...starters,...bench])if(state.fresh[pid]===undefined){const player=roster.find(item=>item.pid===pid);state.fresh[pid]=player.fresh;state.minutes[pid]=0;state.stats[pid]={goals:0,assists:0,shots:0}}
  if(state.tactics[side].formation!==formation){state.tactics[side].formation=formation;state.tacticChanges.push({minute:0,side,tactics:{...state.tactics[side]},reason:'Schnelle Aufstellung'})}
  plan.tactics={...state.tactics[side]};v64SelectedSlot=0;
+ v64ResetCells(state,side);
 }
 function v64UiScreenHTML(career,fixture,state){
  const competition=v62Current(career).find(item=>item.id===fixture.competitionId),label=competition.type==='league'?v62LeagueLabel(competition.country):competition.type==='cup'?'Nationaler Pokal':'Europacup',home=career.world.clubs.find(club=>club.id===fixture.homeId),away=career.world.clubs.find(club=>club.id===fixture.awayId),side=v64UiOwnSide(fixture),phase=state.phase;
@@ -198,6 +199,10 @@ function v64UiClick(event){
    const target=Number(v61WorldScreen.querySelector('#v64-swap-target')?.value);v64UiRemember(fixture,state);v64UiSwapSlots(career,fixture,state,v64UiOwnSide(fixture),v64SelectedSlot,target);v64UiSave();v64UiRender(career);return;
   }
   if(button.dataset.v64PickSlot!==undefined&&state.phase==='prematch'){v64SelectedSlot=Number(button.dataset.v64PickSlot);v64UiTab='lineup';v64UiRender(career);v61WorldScreen.querySelector(`[data-v64-pick-slot="${v64SelectedSlot}"]`)?.focus();return}
+  if(button.dataset.v64Cell!==undefined&&state.phase==='prematch'){
+   const side=v64UiOwnSide(fixture),pid=(side===0?fixture.plan.home:fixture.plan.away).starters[v64SelectedSlot];
+   v64UiRemember(fixture,state);if(v64MoveCell(career,fixture,state,side,pid,Number(button.dataset.v64Cell))){v64UiSave();v64UiRender(career)}return;
+  }
   if(button.dataset.v64Profile){v61OpenProfile(button.dataset.v64Profile,button);return}
   if(button.dataset.v64Bench&&state.phase==='prematch'){v64UiRemember(fixture,state);v64SetPrematchSlot(career,fixture,state,v64UiOwnSide(fixture),v64SelectedSlot,button.dataset.v64Bench);v64UiSave();v64UiRender(career);return}
   if(button.hasAttribute('data-v64-pause')&&state.phase==='live'){state.phase='paused';v64UiSave();v64UiRender(career);return}
@@ -211,17 +216,18 @@ function v64UiClick(event){
   }
  }catch(error){v64UiError(error)}
 }
-function v64UiDragTarget(event){return event.target.closest?.('[data-v64-pick-slot],[data-v64-bench-card]')}
+function v64UiDragTarget(event){return event.target.closest?.('[data-v64-cell],[data-v64-pick-slot],[data-v64-bench-card]')}
 function v64UiCanDrop(target){
  if(!v64UiDrag||!target)return false;
  const career=v61CurrentCareer,fixture=career&&v64ActiveFixture(career),state=career?.world.activeMatch?.state;if(!fixture||state?.phase!=='prematch')return false;
  const side=v64UiOwnSide(fixture),plan=side===0?fixture.plan.home:fixture.plan.away,source=v64UiDrag.kind==='field'?plan.starters[v64UiDrag.slot]:v64UiDrag.pid,dest=target.dataset.v64PickSlot!==undefined?plan.starters[Number(target.dataset.v64PickSlot)]:target.dataset.v64BenchCard;
+ if(target.dataset.v64Cell!==undefined)return v64UiDrag.kind==='field'?state.roles[source]!=='gk':Boolean(dest&&v64Player(career,fixture,side,source).keeper===v64Player(career,fixture,side,dest).keeper);
  return Boolean(source&&dest&&source!==dest&&v64Player(career,fixture,side,source).keeper===v64Player(career,fixture,side,dest).keeper);
 }
 function v64UiDragStart(event){
  const career=v61CurrentCareer,fixture=career&&v64ActiveFixture(career),state=career?.world.activeMatch?.state;
  if(!fixture||state?.phase!=='prematch')return;
- const target=v64UiDragTarget(event);if(!target)return;
+ const target=v64UiDragTarget(event);if(!target||target.dataset.v64PickSlot===undefined&&target.dataset.v64BenchCard===undefined)return;
  v64UiDrag=target.dataset.v64PickSlot!==undefined?{kind:'field',slot:Number(target.dataset.v64PickSlot)}:{kind:'bench',pid:target.dataset.v64BenchCard};
  event.dataTransfer.effectAllowed='move';event.dataTransfer.setData('text/plain','Spieler verschieben');
 }
@@ -229,11 +235,15 @@ function v64UiDragOver(event){const target=v64UiDragTarget(event);if(!v64UiCanDr
 function v64UiDragLeave(event){const target=v64UiDragTarget(event);if(target&&!target.contains(event.relatedTarget))target.classList.remove('v64-drag-over')}
 function v64UiDrop(event){
  const target=v64UiDragTarget(event);if(!v64UiCanDrop(target))return;
- event.preventDefault();const career=v61CurrentCareer,fixture=v64ActiveFixture(career),state=career.world.activeMatch.state,side=v64UiOwnSide(fixture),source=v64UiDrag;
+ event.preventDefault();v64UiDropAction(v64UiDrag,target);
+}
+function v64UiDropAction(source,target){
+ const career=v61CurrentCareer,fixture=v64ActiveFixture(career),state=career.world.activeMatch.state,side=v64UiOwnSide(fixture),plan=side===0?fixture.plan.home:fixture.plan.away;
  try{
   v64UiRemember(fixture,state);
-  if(source.kind==='field'&&target.dataset.v64PickSlot!==undefined)v64UiSwapSlots(career,fixture,state,side,source.slot,Number(target.dataset.v64PickSlot));
-  else if(source.kind==='bench')v64SetPrematchSlot(career,fixture,state,side,Number(target.dataset.v64PickSlot),source.pid);
+  if(source.kind==='field'&&target.dataset.v64Cell!==undefined)v64MoveCell(career,fixture,state,side,plan.starters[source.slot],Number(target.dataset.v64Cell));
+  else if(source.kind==='field'&&target.dataset.v64PickSlot!==undefined)v64UiSwapSlots(career,fixture,state,side,source.slot,Number(target.dataset.v64PickSlot));
+  else if(source.kind==='bench'&&target.dataset.v64PickSlot!==undefined)v64SetPrematchSlot(career,fixture,state,side,Number(target.dataset.v64PickSlot),source.pid);
   else v64SetPrematchSlot(career,fixture,state,side,source.slot,target.dataset.v64BenchCard);
   v64UiTab='lineup';v64UiSave();v64UiRender(career);
  }catch(error){v64UiError(error)}finally{v64UiDrag=null}
