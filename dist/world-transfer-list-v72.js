@@ -73,7 +73,7 @@ function v72CanCommitSale(career,sellerId,pid){const seller=v66Club(career,selle
 function v72Queue(career,negotiation,kind,message){
  const market=v72Market(career),id=`${negotiation.id}:${kind}`;
  if(market.transferResults.some(item=>item.id===id))return;
- market.transferResults.push({id,negotiationId:negotiation.id,pid:negotiation.pid,buyerId:negotiation.buyerId,sellerId:negotiation.sellerId,kind,price:negotiation.agreedPrice??negotiation.price,message,day:market.day,released:false,seen:false});
+ market.transferResults.push({id,negotiationId:negotiation.id,pid:negotiation.pid,buyerId:negotiation.buyerId,sellerId:negotiation.sellerId,kind,price:negotiation.agreedPrice??negotiation.price,message,day:market.day,released:false,seen:kind!=='completed'});
 }
 function v72ReleaseResults(career){for(const result of v72Market(career).transferResults)result.released=true}
 function v72Reject(career,negotiation,reason){
@@ -106,7 +106,7 @@ function v72SubmitFee(career,id,amount){
  const market=v72Market(career),item=v72Negotiation(career,id),listing=item&&v72Listing(career,item.pid);
  if(!item||item.buyerId!==career.manager.managedClubId||item.stage!=='fee-counter'||!listing||!['open','deadline'].includes(market.phase))throw Error('Dieses Ablöseangebot kann nicht mehr geändert werden.');
  amount=Number(amount);
- if(!Number.isInteger(amount)||amount<=item.price||!v66CanAfford(career,item.buyerId,amount,v66Salary(v66Player(career,item.pid))))throw Error('Das neue Gebot muss höher und finanzierbar sein.');
+ if(!Number.isInteger(amount)||amount<1||!v66CanAfford(career,item.buyerId,amount,v66Salary(v66Player(career,item.pid))))throw Error('Diese Ablöse ist nicht finanzierbar.');
  item.price=amount;item.stage='fee-wait';item.answerDay=market.day;item.lastChange=`Dein neues Ablösegebot: ${amount} Credits.`;
  if(market.phase==='deadline')v72ResolveFee(career,item,true);
  return item;

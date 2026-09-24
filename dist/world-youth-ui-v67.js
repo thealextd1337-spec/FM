@@ -18,6 +18,11 @@ function v67TransitionHTML(career){
  if(openOffers)return`<section class="v62-season v67-transition" id="v67-transition"><p class="eyebrow">Saisonwechsel</p><h2>Stellenangebote</h2><p>Dein Ruf: ${v63Grade(Math.max(1,Math.round(career.manager.reputation)))}. Diese Trainerstellen sind zum Saisonende vorläufig besetzt. Wähle einen Verein oder bleibe bei ${escapeHTML(own.name)}.</p><div class="v67-offers">${transition.offers.map(id=>{const club=v66Club(career,id);return`<article><div class="v67-offer-title">${v61CrestSVG(club)}<span><strong>${escapeHTML(club.name)}</strong><small>${v61FlagSVG(club.countryId)} ${escapeHTML(v61CountryNames[club.countryId])}</small></span></div><p>${escapeHTML(club.historyText)} · ${club.roster.length} Profis · ${v66Credits(club.balance)} Kassenstand</p><button type="button" class="menu-action" data-v67-offer="${escapeHTML(id)}">Verein übernehmen</button></article>`}).join('')}</div><button type="button" class="menu-action" data-v67-stay>Bei ${escapeHTML(own.name)} bleiben</button><p id="v67-transition-error" class="v61-error" role="alert"></p></section>`;
  return`<section class="v62-season v67-transition" id="v67-transition"><p class="eyebrow">Saisonwechsel</p><h2>Jugendbudget für Saison ${career.world.season+1}</h2><p>${transition.offers.length?transition.choice==='stay'?'Du bleibst bei deinem Verein.':`Du übernimmst ${escapeHTML(own.name)}.`:'Diesmal gibt es kein passendes Stellenangebot.'} Das Budget wird einmal zu Saisonbeginn aus dem Kassenstand bezahlt. Mehrjährige Förderung erhöht die Zahl und leicht die Chancen neuer Talente.</p><p>Verfügbar: ${v66Credits(own.balance)}</p><label class="v67-budget-label">Jahresbudget <strong id="v67-budget-value">${v66Credits(Math.min(200,limit))}</strong><input id="v67-budget" type="range" min="0" max="${limit}" step="50" value="${Math.min(200,limit)}"></label><button type="button" class="primary" data-v67-budget>Budget bestätigen und Saison starten</button><p id="v67-transition-error" class="v61-error" role="alert"></p></section>`;
 }
+function v67TransferReviewHTML(career){
+ if(!career.world.seasonFinished)return'';
+ const clubId=career.world.seasonReviewClubId||career.manager.managedClubId,completed=career.world.market.pendingBids.filter(item=>item.status==='completed'),groups=[['Zum Verein gekommen',completed.filter(item=>item.buyerId===clubId),'sellerId','Von'],['Verein verlassen',completed.filter(item=>item.sellerId===clubId),'buyerId','Zu']];
+ return`<section class="v62-season v67-transfer-review"><p class="eyebrow">Saisonrückblick</p><h2>Transfers · Saison ${career.world.season}</h2><div class="v66-deadline-columns">${groups.map(([title,bids,otherKey,preposition])=>`<div><h3>${title} · ${bids.length}</h3>${bids.length?`<ul>${bids.map(bid=>`<li><span><strong>${escapeHTML(v66Player(career,bid.pid)?.name||bid.pid)}</strong><small>${preposition} ${escapeHTML(v66Club(career,bid[otherKey])?.name||'Vereinslos')}</small></span><strong>${bid.price?v66Credits(bid.price):'Ablösefrei'}</strong></li>`).join('')}</ul>`:'<p>Keine Wechsel.</p>'}</div>`).join('')}</div></section>`;
+}
 function v67YouthHTML(career){
  const club=v66Own(career),pool=club.youthPool.filter(player=>v67YouthView.line==='all'||player.line===v67YouthView.line);
  pool.sort((a,b)=>v67YouthView.sort==='age'?a.age-b.age||a.name.localeCompare(b.name):v67YouthView.sort==='value'?v66Value(b)-v66Value(a):a.expiresAfterSeason-b.expiresAfterSeason||a.name.localeCompare(b.name));
@@ -27,7 +32,7 @@ function v67ManagerHistoryHTML(career){return`<section class="v62-season v67-man
 function v67DecorateCareer(career){
  const overview=v61WorldScreen.querySelector('[data-v46-view="overview"]'),squad=v61WorldScreen.querySelector('[data-v46-view="squad"]'),club=v61WorldScreen.querySelector('[data-v46-view="club"]');
  if(!overview||!squad||!club)return;
- overview.insertAdjacentHTML('afterbegin',v67TransitionHTML(career));
+ overview.insertAdjacentHTML('afterbegin',v67TransferReviewHTML(career)+v67TransitionHTML(career));
  squad.insertAdjacentHTML('beforeend',v67YouthHTML(career));
  club.insertAdjacentHTML('beforeend',v67ManagerHistoryHTML(career));
  v58Refresh();

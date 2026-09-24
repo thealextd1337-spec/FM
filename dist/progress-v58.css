@@ -1,4 +1,6 @@
 body.v58-active>header{position:sticky;top:0;z-index:40;background:#101d21}
+body.v65-world-match>header{height:64px;padding-top:0;padding-bottom:0}body.v65-world-match #career-progress{top:64px}body.v65-world-match .career-progress-inner{min-height:54px;padding-top:5px;padding-bottom:5px}body.v65-world-match #game-screen .intro{margin:14px 0 12px}body.v65-world-match #game-screen .intro h1{font-size:32px}body.v65-world-match #game-screen .intro #subtitle{font-size:12px;line-height:1.35}body.v65-world-match #game-screen{padding-top:12px}
+@media(max-width:760px){body.v65-world-match>header{height:52px}body.v65-world-match #career-progress{top:52px}body.v65-world-match #game-screen .intro h1{font-size:27px}}
 #career-progress{position:sticky;top:88px;z-index:41;border-bottom:1px solid #49635d;background:#14282b;box-shadow:0 9px 22px #071416a8}
 .career-progress-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;width:min(1120px,100%);min-height:66px;margin:auto;padding:9px 24px}
 .career-progress-copy{display:grid;gap:3px;min-width:0}

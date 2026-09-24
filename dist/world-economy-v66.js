@@ -269,9 +269,10 @@ function v66Renew(career,pid,annual,years,promise=0){
  if(!Number.isInteger(annual)||annual<60||!Number.isInteger(years)||years<2||years>3||!Number.isInteger(promise)||promise<0||promise>10)throw Error('Das Vertragsangebot ist ungültig.');
  const requested=Math.round(v66Salary(player)*1.04/10)*10;
  contract.renewalOffers++;
- if(annual<requested)return{accepted:false,counter:requested};
+ if(annual<requested){contract.renewalNegotiation={annual,years,promise,counter:requested,day:career.world.calendarCursor};return{accepted:false,counter:requested}}
  const day=Math.max(0,career.world.calendarCursor);v66SettleSection(career,contract,day);
  contract.annual=annual;contract.endSeason=career.world.season+years-1;contract.startsAt=day;contract.promise=promise;contract.lastPromiseCheck=0;contract.promisePenalty=0;
+ delete contract.renewalNegotiation;
  v66Book(career,club.id,`S${career.world.season}:${pid}:renewal:${contract.renewalOffers}`,0,`Vertrag verlängert: ${player.name}`);
  return{accepted:true,contract};
 }
@@ -327,6 +328,7 @@ function v66SponsorMet(career,club,goal){
 }
 function v66SeasonEnd(career){
  const season=career.world.season;if(career.world.economyClosedSeason===season)return;
+ career.world.seasonReviewClubId=career.manager.managedClubId;
  const competitions=v62Current(career);
  for(const club of career.world.clubs){
   const league=club.leagueId&&competitions.find(item=>item.id===`S${season}:${club.countryId}:LEAGUE`),cup=competitions.find(item=>item.id===`S${season}:${club.countryId}:CUP`),europe=competitions.find(item=>item.type==='europe');

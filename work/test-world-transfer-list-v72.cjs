@@ -20,6 +20,12 @@ assert(listed.every(item=>call('v72ListingPressure',career,call('v66Club',career
 const listing=listed.find(item=>call('v72Willingness',career,item.pid,own.id)!=='no'&&item.ask<own.balance&&!market.negotiations.some(entry=>entry.pid===item.pid));
 assert(listing,'ein für den eigenen Verein erreichbares Angebot existiert');
 const publicAsk=listing.ask,playerId=listing.pid,seller=call('v66Club',career,listing.sellerId),sellerBalance=seller.balance,buyerBalance=own.balance;
+const dayTwoProbe=JSON.parse(JSON.stringify(career));
+const dayTwoOffer=call('v72Start',dayTwoProbe,playerId,publicAsk);
+assert.strictEqual(dayTwoOffer.stage,'fee-wait');
+call('v66NextMarketDay',dayTwoProbe);
+assert.strictEqual(dayTwoProbe.world.market.day,2);
+assert.notStrictEqual(dayTwoOffer.stage,'fee-wait','ein Angebot von Tag 1 erhält an Tag 2 eine Vereinsantwort');
 const bid=call('v72Start',career,playerId,Math.max(10,Math.round(publicAsk*.65/10)*10));
 assert.strictEqual(bid.stage,'fee-counter','eine niedrige Ablöse erzeugt sofort eine Gegenforderung');
 assert.strictEqual(listing.ask,publicAsk,'die öffentliche Forderung bleibt bei Verhandlungen fest');

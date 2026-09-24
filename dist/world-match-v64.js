@@ -49,15 +49,27 @@ function v64MakeState(career,fixture){
   const player=career.world.clubs.flatMap(club=>club.roster).find(item=>item.pid===pid);
   fresh[pid]=player.fresh;minutes[pid]=0;stats[pid]={goals:0,assists:0,shots:0};
  }
- return{fixtureId:fixture.id,minute:0,score:[0,0],active:[...plan.home.starters],awayActive:[...plan.away.starters],bench:[...plan.home.bench],awayBench:[...plan.away.bench],roles:{...plan.home.roles,...plan.away.roles},tactics:[{...plan.home.tactics},{...plan.away.tactics}],tacticChanges:[],pending:[[],[]],substitutions:[],exited:[],events:[],fresh,minutes,stats,phase:'prematch',lastAiCheck:[-1,-1],lastAiChange:[-20,-20]};
+ return{fixtureId:fixture.id,minute:0,score:[0,0],active:[...plan.home.starters],awayActive:[...plan.away.starters],bench:[...plan.home.bench],awayBench:[...plan.away.bench],roles:{...plan.home.roles,...plan.away.roles},orientation:{},tactics:[{...plan.home.tactics},{...plan.away.tactics}],tacticChanges:[],pending:[[],[]],substitutions:[],exited:[],events:[],fresh,minutes,stats,phase:'prematch',lastAiCheck:[-1,-1],lastAiChange:[-20,-20]};
 }
+function v64Workload(player,tactic){
+ const early=tactic.pressing==='Früh';
+ if(typeof v51Workload==='function')return v51Workload(player,early);
+ return(player.keeper?9:20+(100-(player.sta||70))*.12+(early?6:0)+(player.age>=33?3:0))*(1-Math.max(-2,Math.min(2,player.form||0))*.05);
+}
+function v64UpdateForm(player,rating){
+ player.formRatings=[...(player.formRatings||[]),rating].slice(-5);
+ const weighted=player.formRatings.reduce((sum,value,index)=>sum+value*(index+1),0),weights=player.formRatings.reduce((sum,_,index)=>sum+index+1,0),average=weighted/weights;
+ player.form=average<5.35?-2:average<5.9?-1:average<6.75?0:average<7.45?1:2;
+}
+function v64Orientation(state,pid){return state.orientation?.[pid]??({def:-1,mid:0,att:1}[state.roles[pid]]??0)}
+function v64SetOrientation(state,pid,value){if(state.roles[pid]==='gk'||![-1,0,1].includes(value))return;state.orientation||={};state.orientation[pid]=value}
 function v64Players(career,side){return career.world.clubs.find(club=>club.id===side.clubId).roster}
 function v64Side(career,fixture,side){return v64Players(career,side===0?fixture.plan.home:fixture.plan.away)}
 function v64Active(state,side){return side===0?state.active:state.awayActive}
 function v64Bench(state,side){return side===0?state.bench:state.awayBench}
 function v64Player(career,fixture,side,pid){return v64Side(career,fixture,side).find(player=>player.pid===pid)}
 const v64GridCells={def:{1:[27],2:[26,28],3:[25,27,29]},mid:{1:[17],2:[16,18],3:[15,17,19]},att:{1:[7],2:[6,8],3:[5,7,9]}};
-function v64GridRole(cell){return cell<10?'att':cell<20?'mid':'def'}
+function v64GridRole(cell){return cell<10?'att':cell<25?'mid':'def'}
 function v64EnsureCells(state,side){
  state.cells ||= {};
  const active=v64Active(state,side);
@@ -119,6 +131,7 @@ function v64SetPrematchSlot(career,fixture,state,side,slot,inPid){
  const role=state.roles[outPid],benchIndex=bench.indexOf(inPid);
  plan.starters[slot]=inPid;plan.bench[benchIndex]=outPid;active[slot]=inPid;bench[benchIndex]=outPid;
  delete state.roles[outPid];state.roles[inPid]=role;delete plan.roles[outPid];plan.roles[inPid]=role;
+ if(state.orientation&&Object.hasOwn(state.orientation,outPid)){state.orientation[inPid]=state.orientation[outPid];delete state.orientation[outPid]}
  if(state.cells&&Number.isInteger(state.cells[outPid])){state.cells[inPid]=state.cells[outPid];delete state.cells[outPid]}
 }
 function v64PrematchTactics(career,fixture,state,side,changes){
@@ -149,6 +162,7 @@ function v64ExecutePending(career,fixture,state,reason){
   const active=v64Active(state,item.side),bench=v64Bench(state,item.side);
   active[active.indexOf(item.outPid)]=item.inPid;bench.splice(bench.indexOf(item.inPid),1);state.exited.push(item.outPid);
   delete state.roles[item.outPid];state.roles[item.inPid]=item.role;
+  if(state.orientation&&Object.hasOwn(state.orientation,item.outPid)){state.orientation[item.inPid]=state.orientation[item.outPid];delete state.orientation[item.outPid]}
   if(state.cells&&Number.isInteger(state.cells[item.outPid])){state.cells[item.inPid]=state.cells[item.outPid];delete state.cells[item.outPid]}
   const record={minute:state.minute,side:item.side,outPid:item.outPid,inPid:item.inPid,reason};state.substitutions.push(record);
   state.events.push({minute:state.minute,type:'substitution',side:item.side,outPid:item.outPid,inPid:item.inPid});
@@ -182,7 +196,7 @@ function v64Step(career,fixture,state){
  state.phase='live';state.minute++;
  for(const side of [0,1])for(const pid of v64Active(state,side)){
   state.minutes[pid]++;
-  const player=v64Player(career,fixture,side,pid),tactic=state.tactics[side],full=player.keeper?10:21+(tactic.pressing==='Früh'?3:0)+(player.age>=33?2:0)+(20-player.sta)*.35;
+  const player=v64Player(career,fixture,side,pid),tactic=state.tactics[side],full=v64Workload(player,tactic);
   state.fresh[pid]=Math.max(0,state.fresh[pid]-full/90);
  }
  let goal=false,stoppage=state.minute===45;
@@ -209,10 +223,11 @@ function v64FinishFixture(career,fixture,state){
  for(const side of [0,1])for(const player of v64Side(career,fixture,side)){
   const minutes=state.minutes[player.pid]||0;if(!minutes)continue;
   const stats=state.stats[player.pid],rating=minutes>=20?(state.ratings?.[player.pid]??Math.max(1,Math.min(10,6+stats.goals*1.2+stats.assists*.6+stats.shots*.1-(state.score[1-side]>state.score[side]?.35:0)))):null;
-  const line={pid:player.pid,side,minutes,goals:stats.goals,assists:stats.assists,shots:stats.shots,rating};record.players.push(line);
+  const extra={fouls:stats.fouls||0,penaltiesScored:stats.penaltiesScored||0,penaltiesMissed:stats.penaltiesMissed||0,cleanSheet:player.keeper&&state.score[1-side]===0?1:0,conceded:player.keeper?state.score[1-side]:0};
+  const line={pid:player.pid,side,minutes,goals:stats.goals,assists:stats.assists,shots:stats.shots,...extra,rating};record.players.push(line);
   player.fresh=Math.round(state.fresh[player.pid]*100)/100;
-  if(rating!==null)player.form=Math.max(-2,Math.min(2,(player.form||0)+(rating>=7.5?1:rating<5?-1:0)));
-  player.history.push({fixtureId:fixture.id,season:career.world.season,competitionId:fixture.competitionId,minutes,goals:stats.goals,assists:stats.assists,shots:stats.shots,rating});
+  if(rating!==null)v64UpdateForm(player,rating);
+  player.history.push({fixtureId:fixture.id,season:career.world.season,competitionId:fixture.competitionId,minutes,goals:stats.goals,assists:stats.assists,shots:stats.shots,...extra,rating});
  }
  fixture.matchRecord=record;
  return record;
@@ -234,8 +249,8 @@ function v64ArchiveSeason(career){
  for(const player of [...career.world.clubs.flatMap(club=>club.roster),...(career.world.market?.freePlayers||[])]){
   const played=player.history.filter(item=>item.season===season);
   if(!played.length)continue;
-  const summary={season,games:played.length,minutes:0,goals:0,assists:0,shots:0};
-  for(const item of played)for(const key of ['minutes','goals','assists','shots'])summary[key]+=item[key];
+  const summary={season,games:played.length,minutes:0,goals:0,assists:0,shots:0,fouls:0,penaltiesScored:0,penaltiesMissed:0,cleanSheet:0,conceded:0};
+  for(const item of played)for(const key of ['minutes','goals','assists','shots','fouls','penaltiesScored','penaltiesMissed','cleanSheet','conceded'])summary[key]+=item[key]||0;
   player.seasons.push(summary);player.history=player.history.filter(item=>item.season!==season);
  }
 }

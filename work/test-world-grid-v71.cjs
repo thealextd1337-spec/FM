@@ -14,7 +14,7 @@ get('v64PrepareFixture')(career,fixture);
 const state=get('v64MakeState')(career,fixture),side=fixture.homeId==='GER-2'?0:1,active=get('v64Active')(state,side),cells=get('v64EnsureCells')(state,side);
 const field=active.filter(pid=>state.roles[pid]!=='gk');
 assert.strictEqual(new Set(field.map(pid=>cells[pid])).size,5,'Startelf belegt fünf verschiedene Rasterfelder');
-const source=field.find(pid=>state.roles[pid]==='def'),oldCell=cells[source],free=20;
+const source=field.find(pid=>state.roles[pid]==='def'),oldCell=cells[source],free=25;
 assert(!field.some(pid=>cells[pid]===free));
 get('v64MoveCell')(career,fixture,state,side,source,free);
 assert.strictEqual(cells[source],free,'freies Feld wird gespeichert');

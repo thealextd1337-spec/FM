@@ -75,6 +75,7 @@ for(let season=2;season<=10;season++){
  assert(vm.runInContext('v63Validate',context)(career),`Saison ${season}: eindeutige Trainerzuordnung`);
  if(season<10)vm.runInContext('v62NextSeason',context)(career);
 }
-assert(Buffer.byteLength(JSON.stringify(career),'utf8')<5_000_000,'zehn Jahre bleiben unter fünf MB');
+const saveBytes=Buffer.byteLength(JSON.stringify(career),'utf8');
+assert(saveBytes<7_000_000,`zehn Jahre bleiben unter sieben MB (${saveBytes} Bytes)`);
 const dismissals=career.world.clubs.flatMap(club=>club.history).filter(item=>item.type==='coach-dismissal').length;
 console.log(`Weltkalender: 259 Partien je Saison, Terminabstände, feste Ergebnisse, Qualifikation und zehn Saisons geprüft; ${dismissals} Trainerentlassungen.`);

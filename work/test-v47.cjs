@@ -10,7 +10,7 @@ const html=vm.runInContext('v47Dialog.innerHTML',context);
 for(const label of['Spielbericht','Teamstatistik','Aufs Tor','Ballbesitz','Passquote','Note','Vorlagen'])assert(html.includes(label),label);
 assert(html.includes('FC Dauertest'));
 assert(html.includes('>1</b>'));
-assert(html.includes('v47-winner')&&html.includes('>Weiter</button>'));
+assert(html.includes('v47-winner')&&html.includes('class="primary v47-menu">Weiter →</button>')&&!html.includes('v47-done'));
 const leagueOverview=vm.runInContext("v47CompetitionHTML(v47Snapshot('Athletik 06'))",context);
 for(const label of['Weitere Ergebnisse','Ligatabelle','Torschützen','Vorlagen','Spieltag 1'])assert(leagueOverview.includes(label),label);
 assert(leagueOverview.includes('class="winner"'),'league winners are highlighted');

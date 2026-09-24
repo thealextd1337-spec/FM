@@ -2,6 +2,29 @@
 
 // Die neue Welt zeigt ihr Match im vertrauten Spielfeldrahmen, getrennt vom alten Spielstand.
 let v64UiTimer=null,v64UiFrame=null,v64SelectedSlot=0,v64UiTab='lineup',v64UiFixtureId=null,v64UiUndo=null,v64UiDrag=null;
+const v64Header=document.body.querySelector('header');
+const v64HeaderActions=document.createElement('div');
+v64HeaderActions.className='v64-header-actions';
+const v64HeaderTag=v64Header.querySelector('.tag');
+v64HeaderTag.replaceWith(v64HeaderActions);
+v64HeaderActions.append(v64HeaderTag);
+const v64MatchMenu=document.createElement('details');
+v64MatchMenu.className='v64-match-menu';
+v64MatchMenu.hidden=true;
+v64MatchMenu.innerHTML='<summary aria-label="Spielmenü" title="Spielmenü"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg></summary><div class="v64-match-menu-panel"><button type="button" data-v64-save-exit>Speichern & beenden</button><p class="v61-error" role="alert"></p></div>';
+v64HeaderActions.append(v64MatchMenu);
+function v64UiMenuVisible(visible){if(visible&&v64MatchMenu.hidden)v64MatchMenu.querySelector('[role="alert"]').textContent='';v64MatchMenu.hidden=!visible;if(!visible)v64MatchMenu.open=false}
+v64MatchMenu.addEventListener('click',async event=>{
+ const button=event.target.closest('[data-v64-save-exit]');if(!button)return;
+ const career=v61CurrentCareer;if(!career)return;
+ button.disabled=true;
+ try{
+  if(career.world.activeMatch?.state.phase==='prematch')await v64UiSave();
+  await v61ShowStart();
+  if(startScreen.hidden)v64MatchMenu.querySelector('[role="alert"]').textContent='Das Spiel wird nach der laufenden Ballaktion gespeichert.';
+ }catch(error){v64MatchMenu.open=true;v64MatchMenu.querySelector('[role="alert"]').textContent=error.message}
+ finally{button.disabled=false}
+});
 function v64UiCount(value,one,many){return`${value} ${value===1?one:many}`}
 function v64UiStop(){if(v64UiTimer){clearInterval(v64UiTimer);v64UiTimer=null}if(v64UiFrame){cancelAnimationFrame(v64UiFrame);v64UiFrame=null}}
 function v64UiSave(){
@@ -50,20 +73,26 @@ function v64UiAdboards(clubs){
 }
 function v64UiPrematchPitch(career,fixture,state,side,options={}){
  const plan=side===0?fixture.plan.home:fixture.plan.away,roster=v64Side(career,fixture,side),starters=options.starters||plan.starters,selected=options.selected??v64SelectedSlot,pickAttribute=options.pickAttribute||'data-v64-pick-slot',cells=v64EnsureCells(state,side);
- const byCell=new Map(starters.map((pid,slot)=>[cells[pid],{pid,slot}]).filter(([cell])=>Number.isInteger(cell)));
+ const byCell=new Map(starters.map((pid,slot)=>[cells[pid],{pid:options.replacements?.[pid]||pid,slot,pending:Boolean(options.replacements?.[pid]),originalPid:pid}]).filter(([cell])=>Number.isInteger(cell)));
  const grid=Array.from({length:35},(_,cell)=>{
-  const entry=byCell.get(cell),player=entry&&roster.find(item=>item.pid===entry.pid),role=player&&state.roles[entry.pid],chosen=entry?.slot===selected;
-  return`<button type="button" class="cell ${chosen?'chosen':''}" data-v64-cell="${cell}" ${entry?`${pickAttribute}="${entry.slot}" draggable="true"`:''} aria-label="${player?`${escapeHTML(player.name)}, ${v64Roles[role]}, `:'Freies Feld, '}Reihe ${Math.floor(cell/5)+1}, Spalte ${cell%5+1}" ${entry?`aria-pressed="${chosen}"`:''}>${player?`<span class="token">${escapeHTML(player.n)}</span><span class="player-label">${v61FlagSVG(player.nation)}<span>${escapeHTML(player.name.split(' ').at(-1))}</span></span><span class="position-label">${v64Roles[role]}</span>`:''}</button>`;
+  const entry=byCell.get(cell),player=entry&&roster.find(item=>item.pid===entry.pid),role=player&&state.roles[entry.originalPid],chosen=entry?.slot===selected;
+  const status=player&&{...player,fresh:state.fresh[entry.pid]??player.fresh},orientation=entry&&v64Orientation(state,entry.originalPid);
+  return`<button type="button" class="cell ${chosen?'chosen':''} ${entry?.pending?'v64-pending-player':''}" data-v64-cell="${cell}" ${entry?`${pickAttribute}="${entry.slot}" draggable="true"`:''} aria-label="${player?`${escapeHTML(player.name)}, ${v64Roles[role]}, Ausrichtung ${['defensiv','ausgewogen','offensiv'][orientation+1]}, Form ${formText(v51EffectiveForm(status))}, ${freshText(status.fresh)}, ${entry.pending?'Wechsel vorgemerkt, ':''}`:'Freies Feld, '}Reihe ${Math.floor(cell/5)+1}, Spalte ${cell%5+1}" ${entry?`aria-pressed="${chosen}"`:''}>${player?`<span class="role-mark" aria-hidden="true">${['↓','·','↑'][orientation+1]}</span><span class="token">${escapeHTML(player.n)}</span>${v51PitchFaceHTML(status)}${v51PitchBarHTML(status)}<span class="position-label">${{def:'VER',mid:'MIT',att:'ANG'}[role]}</span><span class="player-label">${v61FlagSVG(player.nation)}<span>${escapeHTML(player.name.toUpperCase())}</span></span>${entry.pending?'<small class="v64-pending-label">vorgemerkt</small>':''}`:''}</button>`;
  }).join('');
- const keeperSlot=starters.findIndex(pid=>state.roles[pid]==='gk'),keeper=roster.find(item=>item.pid===starters[keeperSlot]);
+ const keeperSlot=starters.findIndex(pid=>state.roles[pid]==='gk'),keeperOriginal=starters[keeperSlot],keeper=roster.find(item=>item.pid===(options.replacements?.[keeperOriginal]||keeperOriginal));
  const club=career.world.clubs.find(item=>item.id===(side===0?fixture.homeId:fixture.awayId)),colors=v61ClubColors(club);
- return`<div class="pitch v64-prematch-field" style="--v64-shirt:${escapeHTML(colors[0])};--v64-shirt-edge:${escapeHTML(colors[1])}" aria-label="${options.label||'Deine Startelf auf dem Spielfeld'}"><div class="markings" aria-hidden="true"><div class="center-circle"></div><div class="half-line"></div><div class="box top"></div><div class="box bottom"></div></div><div class="attack-label">ANGRIFF ↑</div><div class="grid v64-raster">${grid}</div>${keeper?`<div class="keeper"><button type="button" class="v64-keeper-choice" ${pickAttribute}="${keeperSlot}" aria-label="${escapeHTML(keeper.name)}, Torwart auswählen" aria-pressed="${keeperSlot===selected}"><b>${escapeHTML(keeper.n)}</b><span>${escapeHTML(keeper.name.toUpperCase())} · TW</span></button></div>`:''}</div>`;
+ return`<div class="pitch v64-prematch-field" style="--v64-shirt:${escapeHTML(colors[0])};--v64-shirt-edge:${escapeHTML(colors[1])}" aria-label="${options.label||'Deine Startelf auf dem Spielfeld'}"><div class="markings" aria-hidden="true"><div class="center-circle"></div><div class="half-line"></div><div class="box top"></div><div class="box bottom"></div></div><div class="attack-label">ANGRIFF ↑</div><div class="v64-zone-guide" aria-hidden="true"><div class="v64-zone-line v64-zone-mid"><b>MITTELFELD</b></div><div class="v64-zone-line v64-zone-def"><b>VERTEIDIGUNG</b></div></div><div class="grid v64-raster">${grid}</div>${keeper?`<div class="keeper"><button type="button" class="v64-keeper-choice" ${pickAttribute}="${keeperSlot}" aria-label="${escapeHTML(keeper.name)}, Torwart auswählen" aria-pressed="${keeperSlot===selected}"><b>${escapeHTML(keeper.n)}</b><span>${escapeHTML(keeper.name.toUpperCase())} · TW</span></button></div>`:''}</div>`;
+}
+function v64OrientationHTML(state,pid){
+ if(state.roles[pid]==='gk')return'';
+ const selected=v64Orientation(state,pid);
+ return`<fieldset class="v64-orientation"><legend>Individuelle Ausrichtung</legend><div class="segmented">${[[-1,'↓ Defensiver'],[0,'· Ausgewogen'],[1,'↑ Offensiver']].map(([value,label])=>`<button type="button" data-v64-orientation="${value}" aria-pressed="${selected===value}" class="${selected===value?'active':''}">${label}</button>`).join('')}</div></fieldset>`;
 }
 function v64UiPrematchSelection(career,fixture,state,side){
  const plan=side===0?fixture.plan.home:fixture.plan.away,slot=Math.min(v64SelectedSlot,plan.starters.length-1),pid=plan.starters[slot],roster=v64Side(career,fixture,side),player=roster.find(item=>item.pid===pid),role=state.roles[pid],bench=plan.bench.map(id=>roster.find(item=>item.pid===id));
  const choices=[player,...bench.filter(item=>item.keeper===player.keeper)];
  const otherSlots=plan.starters.map((id,index)=>({id,index,other:roster.find(item=>item.pid===id)})).filter(item=>item.index!==slot&&item.other.keeper===player.keeper);
- return`<div class="v64-selection"><p class="eyebrow">Ausgewählter Spieler · ${v64Roles[role]}</p><div class="v64-selection-head"><strong>${v61FlagSVG(player.nation)} ${escapeHTML(player.name)}</strong>${v51StatusHTML(player,player.fresh)}</div><p>${v61PositionNames[player.line]} · ${player.age} Jahre · Nr. ${escapeHTML(player.n)}</p>${v55TopSkillsHTML(player)}<button type="button" class="menu-action" data-v64-profile="${escapeHTML(pid)}">Spielerprofil ansehen</button><label>Startplatz besetzen<select data-v64-slot="${slot}">${choices.map(item=>`<option value="${escapeHTML(item.pid)}" ${item.pid===pid?'selected':''}>${escapeHTML(item.name)} · ${v61PositionNames[item.line]}</option>`).join('')}</select></label>${otherSlots.length?`<label>Position mit Mitspieler tauschen<select id="v64-swap-target">${otherSlots.map(item=>`<option value="${item.index}">${escapeHTML(item.other.name)} · ${v64Roles[state.roles[item.id]]}</option>`).join('')}</select></label><button type="button" class="menu-action" data-v64-swap-selected>Positionen tauschen</button>`:''}</div>`;
+ return`<div class="v64-selection"><p class="eyebrow">Ausgewählter Spieler · ${v64Roles[role]}</p><div class="v64-selection-head"><strong>${v61FlagSVG(player.nation)} ${escapeHTML(player.name)}</strong>${v51StatusHTML(player,player.fresh)}</div><p>${v61PositionNames[player.line]} · ${player.age} Jahre · Nr. ${escapeHTML(player.n)}</p>${v55TopSkillsHTML(player)}${v64OrientationHTML(state,pid)}<button type="button" class="menu-action" data-v64-profile="${escapeHTML(pid)}">Spielerprofil ansehen</button><label>Startplatz besetzen<select data-v64-slot="${slot}">${choices.map(item=>`<option value="${escapeHTML(item.pid)}" ${item.pid===pid?'selected':''}>${escapeHTML(item.name)} · ${v61PositionNames[item.line]}</option>`).join('')}</select></label>${otherSlots.length?`<label>Position mit Mitspieler tauschen<select id="v64-swap-target">${otherSlots.map(item=>`<option value="${item.index}">${escapeHTML(item.other.name)} · ${v64Roles[state.roles[item.id]]}</option>`).join('')}</select></label><button type="button" class="menu-action" data-v64-swap-selected>Positionen tauschen</button>`:''}</div>`;
 }
 function v64UiPrematchBench(career,fixture,state,side){
  const plan=side===0?fixture.plan.home:fixture.plan.away,roster=v64Side(career,fixture,side),selected=roster.find(item=>item.pid===plan.starters[v64SelectedSlot]);
@@ -106,7 +135,7 @@ function v64UiScreenHTML(career,fixture,state){
  const field=phase==='prematch'?v64UiPrematchPitch(career,fixture,state,side):`<canvas id="v64-pitch" width="600" height="740" role="img" aria-label="Animiertes Spielfeld ${escapeHTML(home.name)} gegen ${escapeHTML(away.name)}"></canvas>`;
  const events=phase==='prematch'?'':`<section class="v62-season"><h3>Spielverlauf</h3><div id="v64-events">${v64UiEvents(state,phase==='finished')}</div></section>`;
  const tabs=phase==='prematch'?`<nav class="prematch-tabs v64-prematch-tabs" aria-label="Vor dem Spiel"><button type="button" data-v64-tab="lineup" class="${v64UiTab==='lineup'?'active':''}" aria-pressed="${v64UiTab==='lineup'}">Aufstellung</button><button type="button" data-v64-tab="tactics" class="${v64UiTab==='tactics'?'active':''}" aria-pressed="${v64UiTab==='tactics'}">Taktik</button></nav>`:'';
- return`<div class="v64-match-page"><div class="v64-top"><p class="eyebrow">${label} · Saison ${career.world.season} · ${v62Date(fixture.day)}</p><button type="button" class="menu-action" data-v64-exit>Zur Startseite</button></div><div class="v64-board"><div>${v61CrestSVG(home)}<strong>${escapeHTML(home.name)}</strong></div><span id="v64-score" aria-live="polite">${state.score[0]} : ${state.score[1]}</span><div>${v61CrestSVG(away)}<strong>${escapeHTML(away.name)}</strong></div></div><p id="v64-minute" class="v64-minute">${phase==='prematch'?'Vor Anpfiff':`${state.minute}′ · ${phase==='finished'?'Abpfiff':phase==='paused'?'Pause':'Live'}`}</p>${tabs}<div class="v64-layout"><div class="v64-pitch-area">${v64UiAdboards([home,away])}${field}${phase==='prematch'&&v64UiTab==='lineup'?v64UiPrematchBench(career,fixture,state,side):''}${events}</div><section class="v64-controls">${controls}<p id="v64-message" role="alert" class="v61-error"></p></section></div></div>`;
+ return`<div class="v64-match-page"><div class="v64-top"><p class="eyebrow">${label} · Saison ${career.world.season} · ${v62Date(fixture.day)}</p></div><div class="v64-board"><div>${v61CrestSVG(home)}<strong>${escapeHTML(home.name)}</strong></div><span id="v64-score" aria-live="polite">${state.score[0]} : ${state.score[1]}</span><div>${v61CrestSVG(away)}<strong>${escapeHTML(away.name)}</strong></div></div><p id="v64-minute" class="v64-minute">${phase==='prematch'?'Vor Anpfiff':`${state.minute}′ · ${phase==='finished'?'Abpfiff':phase==='paused'?'Pause':'Live'}`}</p>${tabs}<div class="v64-layout"><div class="v64-pitch-area">${v64UiAdboards([home,away])}${field}${phase==='prematch'&&v64UiTab==='lineup'?v64UiPrematchBench(career,fixture,state,side):''}${events}</div><section class="v64-controls">${controls}<p id="v64-message" role="alert" class="v61-error"></p></section></div></div>`;
 }
 function v64UiDraw(career,fixture,state,time){
  const canvas=v61WorldScreen.querySelector('#v64-pitch');if(!canvas)return;
@@ -159,6 +188,7 @@ function v64UiRender(career){
  if(v64UiFixtureId!==fixture.id){v64UiFixtureId=fixture.id;v64UiTab='lineup';v64SelectedSlot=0;v64UiUndo=null}
  startScreen.hidden=true;v61WorldScreen.hidden=false;
  v61WorldScreen.innerHTML=v64UiScreenHTML(career,fixture,state);
+ v64UiMenuVisible(true);
  v58Refresh();v64UiDraw(career,fixture,state,state.minute*190);
  if(state.phase==='live')v64UiStart();
 }
@@ -187,6 +217,7 @@ function v64UiClick(event){
  try{
   if(button.hasAttribute('data-v64-exit')){v61ShowStart();return}
   if(button.dataset.v64Tab&&state.phase==='prematch'){v64UiTab=button.dataset.v64Tab;v64UiRender(career);v61WorldScreen.querySelector(`[data-v64-tab="${v64UiTab}"]`)?.focus();return}
+  if(button.dataset.v64Orientation!==undefined&&state.phase==='prematch'){const pid=v64Active(state,v64UiOwnSide(fixture))[v64SelectedSlot];v64UiRemember(fixture,state);v64SetOrientation(state,pid,Number(button.dataset.v64Orientation));v64UiSave();v64UiRender(career);return}
   if(button.dataset.v64TacticKey&&state.phase==='prematch'){
    const side=v64UiOwnSide(fixture),key=button.dataset.v64TacticKey,value=button.dataset.v64TacticValue;
    if(state.tactics[side][key]===value)return;
@@ -266,7 +297,7 @@ v61AdvanceCareer=function(){
  }catch(error){v64UiError(error);const target=v61WorldScreen.querySelector('.v61-career-nav');if(target)target.insertAdjacentHTML('afterend',`<p class="v61-error" role="alert">${escapeHTML(error.message)}</p>`)}
 };
 const v64BaseShowStart=v61ShowStart;
-v61ShowStart=function(){if(v61CurrentCareer?.world.activeMatch?.state.phase==='live'){v61CurrentCareer.world.activeMatch.state.phase='paused';v64UiSave()}v64UiStop();v64BaseShowStart()};
+v61ShowStart=function(){if(v61CurrentCareer?.world.activeMatch?.state.phase==='live'){v61CurrentCareer.world.activeMatch.state.phase='paused';v64UiSave()}v64UiStop();v64UiMenuVisible(false);v64BaseShowStart()};
 const v64BaseProgressState=v58State;
 v58State=function(){
  const state=v64BaseProgressState(),active=v61CurrentCareer?.world.activeMatch;

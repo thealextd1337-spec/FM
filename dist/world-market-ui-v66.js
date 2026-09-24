@@ -12,7 +12,15 @@ function v66ContractFactsHTML(contract,season){
 function v66ContractHTML(career,player){
  const contract=v66Contract(career,player.pid);if(!contract)return'';
  const remaining=contract.endSeason-career.world.season+1,canRenew=remaining===1&&contract.renewalOffers<2&&career.world.market.phase!=='sponsor';
- return`<tr class="v66-contract"><td><button type="button" data-v61-player="${escapeHTML(player.pid)}" aria-label="Profil von ${escapeHTML(player.name)} öffnen">${v61FlagSVG(player.nation)} <strong>${escapeHTML(player.name)}</strong></button></td><td>${v61PositionNames[player.line]}</td><td class="v66-number">${v66Credits(contract.annual)}</td><td class="v66-number">${remaining} ${remaining===1?'Saison':'Saisons'}</td><td class="v66-number">${contract.promise?`${contract.promise} ${contract.promise===1?'Einsatz':'Einsätze'}`:'Keine'}</td><td>${canRenew?`<details><summary>Verlängern</summary><div class="v66-fields"><label>Jahresgehalt<input type="number" min="60" step="10" value="${Math.max(contract.annual,v66Salary(player))}" data-v66-renew-salary="${escapeHTML(player.pid)}"></label><label>Laufzeit<select data-v66-renew-years="${escapeHTML(player.pid)}"><option value="2">2 Saisons</option><option value="3">3 Saisons</option></select></label><label>Einsatz-Zusage<select data-v66-renew-promise="${escapeHTML(player.pid)}">${Array.from({length:11},(_,index)=>`<option value="${index}" ${index===contract.promise?'selected':''}>${index} ${index===1?'Einsatz':'Einsätze'}</option>`).join('')}</select></label><button type="button" class="menu-action" data-v66-renew="${escapeHTML(player.pid)}">Angebot machen</button></div></details>`:'–'}</td></tr>`;
+ return`<tr class="v66-contract"><td><button type="button" data-v61-player="${escapeHTML(player.pid)}" aria-label="Profil von ${escapeHTML(player.name)} öffnen">${v61FlagSVG(player.nation)} <strong>${escapeHTML(player.name)}</strong></button></td><td>${v61PositionNames[player.line]}</td><td class="v66-number">${v66Credits(contract.annual)}</td><td class="v66-number">${remaining} ${remaining===1?'Saison':'Saisons'}</td><td class="v66-number">${contract.promise?`${contract.promise} ${contract.promise===1?'Einsatz':'Einsätze'}`:'Keine'}</td><td>${canRenew||contract.renewalNegotiation?`<button type="button" class="menu-action v66-renew-open" data-v66-renew-open="${escapeHTML(player.pid)}">${contract.renewalNegotiation?'Verhandlung öffnen':'Verlängern'}</button>`:'–'}</td></tr>`;
+}
+let v66RenewDialog=null;
+function v66OpenRenewDialog(career,pid){
+ const player=v66Player(career,pid),contract=v66Contract(career,pid);if(!player||!contract)return;
+ if(!v66RenewDialog){v66RenewDialog=document.createElement('dialog');v66RenewDialog.id='v66-renew-dialog';v66RenewDialog.className='v72-transfer-dialog';document.body.append(v66RenewDialog);v66RenewDialog.addEventListener('click',async event=>{const button=event.target.closest('button');if(!button)return;if(button.dataset.v66RenewClose!==undefined){v66RenewDialog.close();return}if(button.dataset.v66RenewSubmit===undefined)return;button.disabled=true;try{v66Renew(v61CurrentCareer,button.dataset.v66RenewSubmit,v66RenewDialog.querySelector('#v66-renew-salary').value,v66RenewDialog.querySelector('#v66-renew-years').value,v66RenewDialog.querySelector('#v66-renew-promise').value);await v64UiSave();v61RenderCareer(v61CurrentCareer);const updated=v66Contract(v61CurrentCareer,button.dataset.v66RenewSubmit);if(updated.renewalNegotiation)v66OpenRenewDialog(v61CurrentCareer,button.dataset.v66RenewSubmit);else v66RenewDialog.close()}catch(error){v66RenewDialog.querySelector('.v72-dialog-error').textContent=error.message}finally{if(button.isConnected)button.disabled=false}})}
+ const offer=contract.renewalNegotiation,canRenew=contract.endSeason===career.world.season&&contract.renewalOffers<2;
+ v66RenewDialog.innerHTML=`<div class="v72-dialog-head"><h2>Vertragsverhandlung</h2><button type="button" data-v66-renew-close aria-label="Dialog schließen">×</button></div><p>${escapeHTML(player.name)} · ${v61PositionNames[player.line]}</p>${offer?`<div class="v72-dialog-facts"><span>Dein abgegebenes Angebot<b>${v66Credits(offer.annual)} / Saison</b></span><span>Gegenforderung<b>${v66Credits(offer.counter)} / Saison</b></span><span>Laufzeit<b>${offer.years} Saisons</b></span><span>Einsatz-Zusage<b>${offer.promise} Einsätze</b></span></div>`:''}${canRenew?`<div class="v66-fields"><label>Jahresgehalt<input id="v66-renew-salary" type="number" min="60" step="10" value="${offer?.counter||Math.max(contract.annual,v66Salary(player))}"></label><label>Laufzeit<select id="v66-renew-years"><option value="2" ${offer?.years===2?'selected':''}>2 Saisons</option><option value="3" ${offer?.years===3?'selected':''}>3 Saisons</option></select></label><label>Einsatz-Zusage<select id="v66-renew-promise">${Array.from({length:11},(_,index)=>`<option value="${index}" ${index===(offer?.promise??contract.promise)?'selected':''}>${index} ${index===1?'Einsatz':'Einsätze'}</option>`).join('')}</select></label></div><button type="button" class="primary" data-v66-renew-submit="${escapeHTML(pid)}">Angebot senden</button>`:'<p>Für diese Saison sind keine weiteren Angebote möglich.</p>'}<p class="v72-dialog-error" role="alert"></p>`;
+ if(!v66RenewDialog.open)v66RenewDialog.showModal();
 }
 function v66ContractsTableHTML(career){
  const roster=[...v66Own(career).roster];
@@ -30,6 +38,11 @@ function v66SponsorHTML(career){
  const goals=offer=>`<ul class="v66-sponsor-goals">${offer.goals.map(goal=>`<li><span>${escapeHTML(goal.label)}</span><strong>+ ${v66Credits(goal.bonus)}</strong></li>`).join('')}</ul>`;
  if(selected)return`<section class="v62-season v66-sponsors"><h3>Sponsor · Saison ${career.world.season}</h3>${brand(selected)}<p>Fixum erhalten: <strong>${v66Credits(selected.fixed)}</strong></p>${goals(selected)}</section>`;
  return`<section class="v62-season v66-sponsors" id="v66-sponsor"><h2>Sponsor für Saison ${career.world.season} wählen</h2><p>Das Fixum wird sofort gebucht. Jedes erreichte Bonusziel wird am Saisonende einzeln bezahlt.</p><div class="sponsor-offers">${club.sponsors.map(offer=>{const possible=offer.goals.reduce((sum,goal)=>sum+goal.bonus,0);return`<button type="button" data-v66-sponsor="${escapeHTML(offer.id)}">${brand(offer)}<span class="v66-sponsor-money"><span><small>Sofortiges Fixum</small><strong>${v66Credits(offer.fixed)}</strong></span><span><small>Mögliche Boni</small><strong>+ ${v66Credits(possible)}</strong></span></span>${goals(offer)}<span class="v66-sponsor-total">Maximal bei allen Zielen <strong>${v66Credits(offer.fixed+possible)}</strong></span></button>`}).join('')}</div></section>`;
+}
+function v66TransferDayNoticeHTML(career){
+ const market=career.world.market;
+ if(market.phase!=='open')return'';
+ return`<section class="v66-transfer-day" role="status"><div><strong>Transfertag ${market.day} von 5 läuft</strong><p>Prüfe Angebote und Verhandlungen im Transfermenü.</p></div><button type="button" class="menu-action" data-v66-go-transfers>Transfers öffnen →</button></section>`;
 }
 function v66MarketPlayers(career){
  const clubs=career.world.clubs.filter(club=>club.id!==career.manager.managedClubId&&(v66Filter.country==='all'||club.countryId===v66Filter.country)&&(v66Filter.club==='all'||club.id===v66Filter.club));
@@ -60,7 +73,7 @@ function v66MarketHTML(career){
 function v66DecorateCareer(career){
  const overview=v61WorldScreen.querySelector('[data-v46-view="overview"]'),squad=v61WorldScreen.querySelector('[data-v46-view="squad"]'),club=v61WorldScreen.querySelector('[data-v46-view="club"]'),competition=v61WorldScreen.querySelector('[data-v46-view="competition"]');
  if(!overview||!squad||!club||!competition)return;
- overview.insertAdjacentHTML('afterbegin',v66SponsorHTML(career));
+ overview.insertAdjacentHTML('afterbegin',v66SponsorHTML(career)+v66TransferDayNoticeHTML(career));
  overview.querySelector('.v62-explainer')?.remove();
  const count=squad.querySelector('.v61-roster-head p');if(count)count.textContent=`${v66Own(career).roster.length} Profis · Verträge und Spielerprofile öffnen.`;
  squad.insertAdjacentHTML('beforeend',`<section class="v62-season v66-contracts"><h3>Profiverträge</h3>${v66ContractsTableHTML(career)}<p id="v66-contract-message" class="v61-error" role="alert"></p></section>`);
@@ -101,9 +114,8 @@ async function v66RunMarketDay(){
   await new Promise(resolve=>requestAnimationFrame(()=>setTimeout(resolve,0)));
   v66NextMarketDay(career);await v64UiSave();
   await new Promise(resolve=>setTimeout(resolve,Math.max(0,420-(Date.now()-started))));
-  if(career.world.market.phase==='closed')v61CareerTab='transfers';
+  v61CareerTab='overview';
   v61RenderCareer(career);
-  if(career.world.market.phase==='closed')v61WorldScreen.querySelector('#v66-deadline')?.scrollIntoView({behavior:'smooth',block:'start'});
  }catch(error){
   await v64UiSave();v61CareerTab='transfers';v61RenderCareer(career);
   const target=v61WorldScreen.querySelector('#v66-message');if(target){target.textContent=error.message;target.scrollIntoView({behavior:'smooth',block:'center'})}
@@ -130,7 +142,9 @@ v61WorldScreen.addEventListener('click',event=>{
  const button=event.target.closest('button');if(!button||!v61CurrentCareer||v61CurrentCareer.world.activeMatch)return;
  const career=v61CurrentCareer;let action=false;
  try{
-  if(button.dataset.v66Sponsor){v66ChooseSponsor(career,career.manager.managedClubId,button.dataset.v66Sponsor);v61CareerTab='transfers';action=true}
+  if(button.dataset.v66Sponsor){v66ChooseSponsor(career,career.manager.managedClubId,button.dataset.v66Sponsor);v61CareerTab='overview';action=true}
+  else if(button.dataset.v66GoTransfers!==undefined){v61SetCareerTab('transfers');return}
+  else if(button.dataset.v66RenewOpen!==undefined){v66OpenRenewDialog(career,button.dataset.v66RenewOpen);return}
   else if(button.dataset.v66ContractSort){const key=button.dataset.v66ContractSort;if(!['name','position','salary','remaining','promise'].includes(key))return;v66ContractSort={key,desc:v66ContractSort.key===key?!v66ContractSort.desc:false};v61RenderCareer(career);v61WorldScreen.querySelector('.v66-contracts')?.scrollIntoView({block:'start'});return}
   else if(button.dataset.v66Select){v66Filter.selected=button.dataset.v66Select;action=true}
   else if(button.dataset.v66Profile){const player=v66Player(career,button.dataset.v66Profile);if(!player)return;const owner=v66Owner(career,player.pid),contract=v66Contract(career,player.pid);v61ProfileReturn=button;v61ProfileDialog.innerHTML=`<div class="player-card-head"><div>${v61FlagSVG(player.nation)}<p class="eyebrow">${escapeHTML(v61CountryNames[player.nation])}</p><h2>${escapeHTML(player.name)}</h2><span>${v61PositionNames[player.line]} · ${player.age} Jahre · ${escapeHTML(owner?.name||'Vereinslos')}</span></div><button type="button" data-v61-close aria-label="Spielerprofil schließen">×</button></div><div class="player-card-facts"><span>Marktwert<b>${v66Credits(v66Value(player))}</b></span>${v66ContractFactsHTML(contract,career.world.season)}</div><section><h3>Fähigkeiten</h3>${v55SkillGroupsHTML(player)}</section>`;v61ProfileDialog.querySelector('[data-v61-close]').onclick=()=>v61ProfileDialog.close();v61ProfileDialog.showModal();return}
