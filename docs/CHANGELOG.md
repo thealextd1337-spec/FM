@@ -2,7 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-24 (Spielstandverwaltung der Vereinswelt)
+
 - Neue Vereinswelten lassen sich auf der Startseite öffnen, als JSON-Datei exportieren und nach einer zweiten Bestätigung löschen. Der vorhandene Importknopf nimmt jetzt auch das gekennzeichnete Weltformat an; ungültige Dateien und doppelte IDs überschreiben keine Karriere. Höchstens fünf neue Vereinswelten können angelegt oder importiert werden; vorhandene darüber hinaus bleiben nutzbar. Während des Imports erscheint eine Ladeanzeige, und ein Export wartet auf abgeschlossene Speichervorgänge. Die bisherige Sechserliga behält ihre Spielstandverwaltung. Geprüft mit Import-/Export-, Speicher- und bisherigen Karrieretests sowie im isolierten Browser-Test.
+
 ## 2026-09-24 (Neue Vereinswelt)
 
 - Vor dem automatischen Live-Upload prüfen nun auch Weltfundament, Kalender, Trainer, Match, Wirtschaft, Nachwuchs, Speicher, Ansichten und der Zehn-Saisons-Audit den Release-Stand; danach erstellt der Workflow den Einzeldatei-Build. Die technische Umsetzungsreferenz und der lokale Abnahmebericht sind dem Release-Stand zugeordnet.
