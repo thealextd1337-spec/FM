@@ -7,6 +7,7 @@ for(const file of ['world-catalog-v61.js','world-competition-v62.js','world-coac
 const foundation=fs.readFileSync('dist/world-foundation-v61.js','utf8');
 vm.runInContext(foundation.slice(0,foundation.indexOf('const v61Panel=')),context);
 vm.runInContext(fs.readFileSync('dist/world-economy-v66.js','utf8'),context);
+if(process.env.DOPPEL_SALES)vm.runInContext(fs.readFileSync('dist/world-transfer-list-v72.js','utf8'),context);
 const call=(name,...args)=>vm.runInContext(name,context)(...args);
 const career=call('v61CreateCareer','GER-2',process.env.DOPPEL_SEED||'economy-seed');
 const own=call('v66Club',career,'GER-2');

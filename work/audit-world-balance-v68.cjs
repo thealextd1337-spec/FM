@@ -8,7 +8,7 @@ const context=vm.createContext({crypto:{randomUUID:()=>`audit-${++nextId}`}});
 for(const file of ['world-catalog-v61.js','world-competition-v62.js','world-coaches-v63.js','world-match-v64.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
 const foundation=fs.readFileSync('dist/world-foundation-v61.js','utf8');
 vm.runInContext(foundation.slice(0,foundation.indexOf('const v61Panel=')),context);
-for(const file of ['world-economy-v66.js','world-youth-manager-v67.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
+for(const file of ['world-economy-v66.js','world-transfer-list-v72.js','world-youth-manager-v67.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
 const call=(name,...args)=>vm.runInContext(name,context)(...args);
 const seedCount=Number(process.env.DOPPEL_BALANCE_SEEDS||6),seasons=Number(process.env.DOPPEL_BALANCE_SEASONS||10),startSeed=Number(process.env.DOPPEL_BALANCE_START_SEED||1);
 assert(Number.isInteger(seedCount)&&seedCount>0&&Number.isInteger(seasons)&&seasons>0&&Number.isInteger(startSeed)&&startSeed>0);

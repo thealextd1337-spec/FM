@@ -198,6 +198,6 @@ v61WorldScreen.addEventListener('click',event=>{
   const owner=v66Owner(v61CurrentCareer,player.pid),contract=v66Contract(v61CurrentCareer,player.pid);
   v61ProfileReturn=button;
   v61ProfileDialog.innerHTML=`<div class="player-card-head"><div>${v61FlagSVG(player.nation)}<p class="eyebrow">${escapeHTML(owner?.name||'Vereinslos')}</p><h2>${escapeHTML(player.name)}</h2><span>${v61PositionNames[player.line]} · ${player.age} Jahre</span></div><button type="button" data-v61-close aria-label="Spielerprofil schließen">×</button></div><div class="player-card-facts"><span>Rückennummer<b>${player.n}</b></span><span>Form<b>${formText(player.form)}</b></span><span>Fitness<b>${freshText(player.fresh)}</b></span>${v66ContractFactsHTML(contract,v61CurrentCareer.world.season)}</div><section><h3>Fähigkeiten</h3>${v55SkillGroupsHTML(player)}</section><section><h3>Spielerstatistik</h3><div class="v64-player-seasons">${v68PlayerRows(player,v61CurrentCareer.world.season)}</div></section>`;
-  v61ProfileDialog.querySelector('[data-v61-close]').onclick=()=>v61ProfileDialog.close();v61ProfileDialog.showModal();
+  v61ProfileDialog.querySelector('[data-v61-close]').onclick=()=>v61ProfileDialog.close();v61ProfileDialog.showModal();if(typeof v72DecorateOwnProfile==='function')v72DecorateOwnProfile(v61CurrentCareer,player.pid);
  }
 });
