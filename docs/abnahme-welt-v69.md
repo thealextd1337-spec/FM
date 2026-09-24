@@ -1,6 +1,6 @@
 # Abnahme der neuen Vereinswelt · Block 8
 
-Stand: 24. September 2026. Der Quellstand in `dist/` ist lokal geprüft; die Änderungen sind noch nicht veröffentlicht.
+Stand: 24. September 2026. Der Quellstand in `dist/` wurde vor der Veröffentlichung lokal geprüft.
 
 ## Ablauf und Prüfumfang
 
@@ -38,4 +38,4 @@ Die häufigsten Meister über alle sechs Welten waren `ESP-1` mit 34 und `GER-1`
 
 Der Langzeitaudit, zehnjährige Wirtschafts- und Nachwuchstests, Speicher-, Welt-, Trainer-, Match- und Ansichtstests sowie der Einzeldatei-Build bestehen. `test-v55.cjs` prüft Fähigkeitsstufen auch in zugänglichen Beschriftungen. Die bisherigen Tests für KI-Karriere, zwölfjährige Saison, Transferansicht, Pokal und Matchregeln bestehen ebenfalls. Der sichtbare Matchlauf wurde einmal vollständig im Browser geprüft; die 15.540 Audit-Partien verwenden den kompakten Welt-Matchlauf. Die Langzeitmessung ist reproduzierbar, ihre gemessenen Schrittzeiten sind kein Geräteleistungsversprechen.
 
-Die neue Vereinswelt ist damit ein lokaler Release-Kandidat. Vor einer Veröffentlichung sind Build und bereitgestellte Live-Version gesondert zu vergleichen.
+Die neue Vereinswelt ist damit ein lokal geprüfter Release-Kandidat. Build und bereitgestellte Live-Version werden im Veröffentlichungsprozess gesondert verglichen.
