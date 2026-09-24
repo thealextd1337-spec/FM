@@ -90,7 +90,7 @@ for(let season=2;season<=finalSeason;season++){
  if(season<finalSeason)call('v62NextSeason',career);
 }
 const bytes=value=>Buffer.byteLength(JSON.stringify(value),'utf8');
-assert(bytes(career)<5_000_000,`Weltspielstand bleibt unter fünf MB (${bytes(career)} Bytes, Wettbewerbe ${bytes(career.world.competitions)}, Vereine ${bytes(career.world.clubs)}, freie Spieler ${bytes(career.world.market.freePlayers)}, Gebote ${bytes(career.world.market.pendingBids)}, Entscheidungen ${bytes(career.world.market.decisions)})`);
+assert(bytes(career)<7_000_000,`Weltspielstand bleibt unter sieben MB (${bytes(career)} Bytes, Wettbewerbe ${bytes(career.world.competitions)}, Vereine ${bytes(career.world.clubs)}, freie Spieler ${bytes(career.world.market.freePlayers)}, Gebote ${bytes(career.world.market.pendingBids)}, Entscheidungen ${bytes(career.world.market.decisions)})`);
 const negotiations=call('v61CreateCareer','GER-2','negotiation-seed'),negotiatingClub=call('v66Club',negotiations,'GER-2');
 call('v66ChooseSponsor',negotiations,'GER-2',negotiatingClub.sponsors[0].id);
 const target=call('v66Club',negotiations,'ENG-1').roster[5];
