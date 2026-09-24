@@ -88,7 +88,7 @@ const v46BaseOpenSlot=openSlot;
 openSlot=function(raw){v46ActiveTab='overview';return v46BaseOpenSlot(raw)};
 
 const v46Extras=document.createElement('details');v46Extras.className='v46-extras';v46Extras.innerHTML='<summary>Extras & Einstellungen</summary>';
-startScreen.querySelector('.menu-layout').insertAdjacentElement('afterend',v46Extras);
+const v46LegacyMenu=startScreen.querySelector('.menu-layout');v46LegacyMenu.insertAdjacentElement('afterend',v46Extras);v46Extras.append(v46LegacyMenu);
 for(const node of[startScreen.querySelector('.v42-demo-card'),startScreen.querySelector('#share-yes')?.closest('.panel'),startScreen.querySelector('.legal-intro'),startScreen.querySelector('.save-tools')])if(node)v46Extras.append(node);
 startScreen.querySelector('footer').textContent='Doppel 6 / PROTOTYP 46';
 const v46BaseShowRecords=v43ShowRecords;

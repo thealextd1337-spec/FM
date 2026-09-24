@@ -57,7 +57,7 @@ function v61ValidateCareer(career){
  if(!managed?.leagueId)return false;
  if(!v63Validate(career))return false;
  const players=clubs.flatMap(club=>club.roster||[]);
- const marketOpen=career.world.seasonFinished||career.world.market?.phase==='sponsor'||career.world.market?.phase==='open';
+ const marketOpen=career.world.seasonFinished||['sponsor','open','deadline'].includes(career.world.market?.phase);
  if(clubs.some(club=>!Array.isArray(club.roster)||club.roster.length>14||!marketOpen&&(club.roster.length<10||club.roster.filter(player=>player.keeper).length<1))||new Set(players.map(player=>player.pid)).size!==players.length)return false;
  if(!v61Countries.every(([id])=>clubs.filter(club=>club.countryId===id&&club.leagueId).length===6&&clubs.filter(club=>club.countryId===id&&!club.leagueId).length===2))return false;
  return (typeof v66Validate!=='function'||v66Validate(career))&&(typeof v67Validate!=='function'||v67Validate(career));
@@ -168,7 +168,7 @@ function v61RosterHTML(roster){return`<div class="v61-roster">${roster.map(playe
 const v61Panel=document.createElement('section');
 v61Panel.className='panel v61-start-panel';
 v61Panel.innerHTML='<div class="v61-start-copy"><h2>Deine neue Fußballwelt</h2><p>Sechs Länder. 36 spielbare Ligavereine. Wähle Land und Verein und sieh dir den Kader vor der Entscheidung an. Bis zu fünf Vereinswelten können gespeichert werden.</p><button type="button" class="primary" id="v61-begin">Neues Spiel starten <span>↗</span></button></div><div id="v61-saves"></div><p id="v61-message" role="status" class="help"></p>';
-startScreen.querySelector('.menu-layout').insertAdjacentElement('beforebegin',v61Panel);
+(startScreen.querySelector('.v46-extras')||startScreen.querySelector('.menu-layout')).insertAdjacentElement('beforebegin',v61Panel);
 const v61Legacy=startScreen.querySelector('.menu-layout section:first-child');
 v61Legacy.querySelector('h2').textContent='Bisherige Sechserliga';
 v61Legacy.querySelector('.help').textContent='Der bisherige Spielmodus bleibt während des Ausbaus der neuen Welt spielbar.';

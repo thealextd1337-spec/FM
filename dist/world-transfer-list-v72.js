@@ -55,7 +55,7 @@ function v72AdvanceDay(career){
   }
   for(const [pid,reason] of picks){
    if(market.saleListings.some(item=>item.pid===pid))continue;
-   const player=club.roster.find(item=>item.pid===pid),value=v66Value(player),factor=reason==='finance'?.98:1.12;
+   const player=club.roster.find(item=>item.pid===pid),value=v66Value(player),strength=v66Skill(player),factor=reason==='finance'?.98:strength>=16?2.2:strength>=15?1.65:1.12;
    market.saleListings.push({id:`S${career.world.season}:L:${player.pid}`,pid:player.pid,sellerId:club.id,ask:Math.max(10,Math.round(value*factor/10)*10),reason,status:'active',createdDay:market.day});
   }
  }
@@ -223,7 +223,14 @@ function v72AiInterest(career,targetPid=null){
  const listings=market.saleListings.filter(item=>item.status==='active'&&(!targetPid||item.pid===targetPid));
  for(const buyer of career.world.clubs.filter(item=>item.id!==career.manager.managedClubId&&item.roster.length<13&&item.roster.some(player=>player.keeper))){
   if(random()>(targetPid ? .18 : .11))continue;
-  const candidates=listings.filter(item=>item.sellerId!==buyer.id&&v72CanCommitSale(career,item.sellerId,item.pid)&&!market.negotiations.some(entry=>entry.pid===item.pid&&entry.buyerId===buyer.id)&&v72Willingness(career,item.pid,buyer.id)!=='no'&&v66CanAfford(career,buyer.id,item.ask,v66Salary(v66Player(career,item.pid))));
+  const candidates=listings.filter(item=>{
+   const player=v66Player(career,item.pid);if(!player)return false;
+   const strength=v66Skill(player),ratio=item.ask/Math.max(1,v66Value(player));
+   const maxRatio=strength>=16?3:strength>=15?2.1:strength>=13?1.5:1.25;
+   const peers=buyer.roster.filter(member=>member.line===player.line);
+   const sportingFit=peers.length<(player.keeper?2:player.line==='att'?3:4)||strength>Math.max(0,...peers.map(v66Skill))+.8;
+   return ratio<=maxRatio&&sportingFit&&item.sellerId!==buyer.id&&v72CanCommitSale(career,item.sellerId,item.pid)&&!market.negotiations.some(entry=>entry.pid===item.pid&&entry.buyerId===buyer.id)&&v72Willingness(career,item.pid,buyer.id)!=='no'&&v66CanAfford(career,buyer.id,item.ask,v66Salary(player));
+  });
   candidates.sort((a,b)=>buyer.roster.filter(player=>player.line===v66Player(career,a.pid).line).length-buyer.roster.filter(player=>player.line===v66Player(career,b.pid).line).length||a.ask-b.ask||a.pid.localeCompare(b.pid));
   const listing=candidates[0];if(!listing)continue;
   const player=v66Player(career,listing.pid),annual=Math.round(v66Salary(player)*1.2/10)*10;

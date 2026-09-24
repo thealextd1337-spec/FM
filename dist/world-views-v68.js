@@ -188,16 +188,21 @@ v61AdvanceCareer=function(){
  });
 };
 
+function v68OpenPlayerProfile(career,pid,button){
+ const player=career.world.clubs.flatMap(club=>club.roster).find(item=>item.pid===pid)||career.world.market.freePlayers.find(item=>item.pid===pid);if(!player)return;
+ const owner=v66Owner(career,player.pid),contract=v66Contract(career,player.pid);
+ v61ProfileReturn=button;
+ v61ProfileDialog.innerHTML=`<div class="player-card-head"><div>${v61FlagSVG(player.nation)}<p class="eyebrow">${escapeHTML(owner?.name||'Vereinslos')}</p><h2>${escapeHTML(player.name)}</h2><span>${v61PositionNames[player.line]} · ${player.age} Jahre</span></div><button type="button" data-v61-close aria-label="Spielerprofil schließen">×</button></div><div class="player-card-facts"><span>Rückennummer<b>${player.n}</b></span><span>Form<b>${formText(player.form)}</b></span><span>Fitness<b>${freshText(player.fresh)}</b></span>${v66ContractFactsHTML(contract,career.world.season)}</div><section><h3>Fähigkeiten</h3>${v55SkillGroupsHTML(player)}</section><section><h3>Spielerstatistik</h3><div class="v64-player-seasons">${v68PlayerRows(player,career.world.season)}</div></section>`;
+ v61ProfileDialog.querySelector('[data-v61-close]').onclick=()=>v61ProfileDialog.close();v61ProfileDialog.showModal();if(typeof v72DecorateOwnProfile==='function')v72DecorateOwnProfile(career,player.pid);
+}
 v61WorldScreen.addEventListener('click',event=>{
  const button=event.target.closest('button');if(!button||!v61CurrentCareer||v61CurrentCareer.world.activeMatch)return;
  if(button.hasAttribute('data-v68-back')){v68CloseDetail();return}
  if(button.dataset.v68Club){v68OpenDetail('club',button.dataset.v68Club,button);return}
  if(button.dataset.v68Coach){v68OpenDetail('coach',button.dataset.v68Coach,button);return}
- if(button.dataset.v68Player){
-  const player=v61CurrentCareer.world.clubs.flatMap(club=>club.roster).find(item=>item.pid===button.dataset.v68Player);if(!player)return;
-  const owner=v66Owner(v61CurrentCareer,player.pid),contract=v66Contract(v61CurrentCareer,player.pid);
-  v61ProfileReturn=button;
-  v61ProfileDialog.innerHTML=`<div class="player-card-head"><div>${v61FlagSVG(player.nation)}<p class="eyebrow">${escapeHTML(owner?.name||'Vereinslos')}</p><h2>${escapeHTML(player.name)}</h2><span>${v61PositionNames[player.line]} · ${player.age} Jahre</span></div><button type="button" data-v61-close aria-label="Spielerprofil schließen">×</button></div><div class="player-card-facts"><span>Rückennummer<b>${player.n}</b></span><span>Form<b>${formText(player.form)}</b></span><span>Fitness<b>${freshText(player.fresh)}</b></span>${v66ContractFactsHTML(contract,v61CurrentCareer.world.season)}</div><section><h3>Fähigkeiten</h3>${v55SkillGroupsHTML(player)}</section><section><h3>Spielerstatistik</h3><div class="v64-player-seasons">${v68PlayerRows(player,v61CurrentCareer.world.season)}</div></section>`;
-  v61ProfileDialog.querySelector('[data-v61-close]').onclick=()=>v61ProfileDialog.close();v61ProfileDialog.showModal();if(typeof v72DecorateOwnProfile==='function')v72DecorateOwnProfile(v61CurrentCareer,player.pid);
- }
+ if(button.dataset.v68Player){v68OpenPlayerProfile(v61CurrentCareer,button.dataset.v68Player,button)}
+});
+v61WorldScreen.addEventListener('change',event=>{
+ const choice=event.target.closest('[data-v62-country-choice]');if(!choice)return;
+ for(const panel of v61WorldScreen.querySelectorAll('[data-v62-country-panel]'))panel.hidden=panel.dataset.v62CountryPanel!==choice.value;
 });

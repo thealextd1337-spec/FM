@@ -15,6 +15,13 @@ const views=fs.readFileSync('dist/world-views-v68.js','utf8');
 vm.runInContext(views.slice(0,views.indexOf('let v68Stack=')),context);
 const call=(name,...args)=>vm.runInContext(name,context)(...args);
 const career=call('v61CreateCareer','GER-2','views-seed'),own=career.world.clubs.find(item=>item.id==='GER-2'),other=career.world.clubs.find(item=>item.id==='ENG-1');
+const overview=call('v62CareerViewsHTML',career).overview;
+assert(overview.includes('Deine Wettbewerbe')&&overview.includes('Liga 1')&&overview.includes('Nationaler Pokal')&&overview.includes('Europacup'),'Saisonüberblick nennt alle eigenen Wettbewerbe');
+assert.strictEqual((overview.match(/class="v49-form"/g)||[]).length,2,'die letzten eigenen Spiele haben keine redundante Formanzeige');
+const historical=JSON.parse(JSON.stringify(career)),nextOwn=call('v62Fixtures',historical).find(item=>item.homeId===own.id||item.awayId===own.id);
+historical.world.competitions.push({season:0,type:'league',fixtures:[{...nextOwn,id:'historical-duel',day:190,result:{homeGoals:2,awayGoals:1}}]});
+assert(call('v62NextOpponentHTML',historical,nextOwn).includes('Letzte Duelle'),'frühere direkte Duelle erscheinen in der Vorschau');
+assert(call('v62FormHTML',historical,own.id).includes('Sieg')||call('v62FormHTML',historical,own.id).includes('Niederlage'),'Vereinsform berücksichtigt frühere Saisons');
 for(const club of career.world.clubs){const html=call('v68ClubDetailHTML',career,club.id);assert(html.includes(club.name),`Vereinsprofil ${club.id}`);assert.strictEqual((html.match(/data-v68-player=/g)||[]).length,club.roster.length)}
 for(const coach of career.world.coaches.filter(item=>item.currentClubId))assert(call('v68CoachDetailHTML',career,coach.id).includes(coach.name));
 context.v61CurrentCareer=career;
