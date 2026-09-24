@@ -24,6 +24,8 @@
 .v68-summary-grid>div{display:grid;align-content:start;gap:5px;min-width:0;padding:11px;border:1px solid #3f5c53;border-radius:7px;background:#14292c}
 .v68-summary-grid span{color:#aac4b4;font-size:11px}
 .v68-summary-grid strong{font-size:13px}
+.v68-summary-grid small{color:#bdd4c3;font-size:11px;line-height:1.4}
+.v68-summary-grid .flag-icon,.v62-competitions summary .flag-icon,#v47-competition-title .flag-icon{width:20px;height:14px;margin-right:4px;vertical-align:-2px}
 .v68-archive{margin-top:14px;border-top:1px solid #3f5c53}
 .v68-archive>summary,.v68-archive details>summary{padding:10px 2px;cursor:pointer;color:#e4f4d8;font-size:12px;font-weight:700}
 .v68-archive details{margin-left:8px;border-top:1px solid #3f5c53}

@@ -17,6 +17,11 @@ vm.runInContext('v51LivePanel()',context);
 assert.match(area.panel.innerHTML,/<button type="button" class="v51-live-player"/);
 assert.match(area.panel.innerHTML,/Spielerinformationen anzeigen/);
 const own=vm.runInContext('match.people.find(person=>person.t===0)',context);
+for(const [line,expected] of [['def','Verteidiger'],['mid','Mittelfeldspieler'],['att','Angreifer']]){
+ const html=vm.runInContext(`v59LivePlayerHTML({...match.people.find(person=>person.t===0&&!person.keeper),assignedLine:'${line}',keeper:false})`,context);
+ assert.match(html,new RegExp(`<span>Einsatzposition</span><b>${expected}</b>`));
+}
+assert.match(vm.runInContext('v59LivePlayerHTML(match.people.find(person=>person.t===0&&person.keeper))',context),/<span>Einsatzposition<\/span><b>Torwart<\/b>/);
 listeners.area({currentTarget:area,target:{closest:()=>({dataset:{v51Number:String(own.n)}})}});
 assert.equal(vm.runInContext('v47PlayerDialog.open',context),true);
 assert.match(vm.runInContext('v47PlayerDialog.innerHTML',context),/Live im Spiel/);

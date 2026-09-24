@@ -34,6 +34,14 @@ const league=call('v62Current',career).find(item=>item.type==='league'&&item.cou
 assert(call('v62TableHTML',career,league).includes('data-v68-club='));
 assert(call('v62ResultHTML',career,league.fixtures[0]).includes('data-v68-club='));
 assert(call('v68CompetitionSummaryHTML',career).includes('Noch keine Ligaspiele'));
+const ownCup=call('v62Current',career).find(item=>item.type==='cup'&&item.country==='GER'),cupQuarter=ownCup.fixtures.find(item=>item.homeId===own.id||item.awayId===own.id);
+assert(call('v68CupStatus',ownCup,own.id).detail.includes('Viertelfinale'));
+cupQuarter.result={winnerId:cupQuarter.homeId===own.id?cupQuarter.awayId:cupQuarter.homeId};
+assert.strictEqual(call('v68CupStatus',ownCup,own.id).title,'Ausgeschieden');
+cupQuarter.result=null;
+const euroStatus=call('v68EuropeStatus',call('v62Current',career).find(item=>item.type==='europe'),own.id);
+assert(euroStatus.detail.includes('Ligaphase'));
+assert.strictEqual(call('v68EuropeStatus',call('v62Current',career).find(item=>item.type==='europe'),'GER-3').title,'Nicht qualifiziert');
 call('v63News',career,own,0,'Trainerwechsel in der Liga.');
 call('v63News',career,other,0,'Trainerwechsel im Ausland.');
 call('v63News',career,career.world.clubs.find(item=>item.id==='GER-C1'),0,'Trainerwechsel im Pokalverein.');

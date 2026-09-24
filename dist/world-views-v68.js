@@ -28,7 +28,7 @@ v62ResultHTML=function(career,fixture){
 };
 v62TableHTML=function(career,competition){
  const ids=competition.type==='europe'?competition.entrants:[...new Set(competition.fixtures.flatMap(fixture=>[fixture.homeId,fixture.awayId]))],rows=v62Table(competition,ids);
- return`<div class="v62-table-wrap" role="region" tabindex="0" aria-label="Tabelle ${competition.type==='europe'?'Europacup':v61CountryNames[competition.country]}"><table class="v62-table"><thead><tr><th scope="col">Pl.</th><th scope="col">Verein</th><th scope="col">Sp.</th><th scope="col">TD</th><th scope="col">Pkt.</th></tr></thead><tbody>${rows.map((row,index)=>`<tr class="${row.clubId===career.manager.managedClubId?'own':''}"><td>${index+1}</td><td>${v68ClubButton(career,row.clubId)}</td><td>${row.played}</td><td>${row.goalsFor-row.goalsAgainst}</td><td>${row.points}</td></tr>`).join('')}</tbody></table></div>`;
+ return`<div class="v62-table-wrap" role="region" tabindex="0" aria-label="Tabelle ${competition.type==='europe'?'Europacup':`${v61CountryNames[competition.country]} Liga 1`}"><table class="v62-table"><thead><tr><th scope="col">Pl.</th><th scope="col">Verein</th><th scope="col">Sp.</th><th scope="col">TD</th><th scope="col">Pkt.</th></tr></thead><tbody>${rows.map((row,index)=>`<tr class="${row.clubId===career.manager.managedClubId?'own':''}"><td>${index+1}</td><td>${v68ClubButton(career,row.clubId)}</td><td>${row.played}</td><td>${row.goalsFor-row.goalsAgainst}</td><td>${row.points}</td></tr>`).join('')}</tbody></table></div>`;
 };
 v63NewsHTML=function(career){
  const news=career.world.eventLog.visibleNews.filter(item=>item.season===career.world.season&&v68RelevantNews(career,item.clubId)).slice(-5).reverse();
@@ -45,7 +45,7 @@ function v68ClubHistory(career,club){
  return events.length?`<ul class="v68-history">${events.map(item=>{if(item.type==='manager-arrival')return`<li>Saison ${item.season} · Du übernimmst den Verein.</li>`;if(item.type==='manager-departure')return`<li>Saison ${item.season} · Deine Station bei diesem Verein endet.</li>`;const coach=v68Coach(career,item.coachId),label=item.type==='coach-arrival'?'übernimmt':item.type==='coach-retirement'?'beendet die Laufbahn':'verlässt den Verein';return`<li>Saison ${item.season} · ${v68CoachButton(coach)} ${label}${item.reason?` · ${escapeHTML(item.reason)}`:''}</li>`}).join('')}</ul>`:'<p>Noch keine Trainer- oder Managerwechsel.</p>';
 }
 function v68RosterHTML(club){
- return`<div class="v61-roster">${club.roster.map(player=>`<button type="button" class="v61-player" data-v68-player="${escapeHTML(player.pid)}"><span class="v61-shirt">${player.n}</span><span class="v61-player-name">${v61FlagSVG(player.nation)}<strong>${escapeHTML(player.name)}</strong><small>${v61PositionNames[player.line]} · ${player.age} Jahre</small></span><span class="v61-profile-action">Profil ansehen</span></button>`).join('')}</div>`;
+ return`<div class="v61-roster">${club.roster.map(player=>`<button type="button" class="v61-player" data-v68-player="${escapeHTML(player.pid)}" aria-label="Profil von ${escapeHTML(player.name)} öffnen"><span class="v61-shirt">${player.n}</span><span class="v61-player-name">${v61FlagSVG(player.nation)}<strong>${escapeHTML(player.name)}</strong><small>${v61PositionNames[player.line]} · ${player.age} Jahre</small></span></button>`).join('')}</div>`;
 }
 function v68ClubDetailHTML(career,id){
  const club=v68Club(career,id);if(!club)return'<p>Verein nicht gefunden.</p>';
@@ -57,12 +57,39 @@ function v68CoachDetailHTML(career,id){
  const status=coach.currentClubId?v68ClubButton(career,coach.currentClubId):coach.retiredSeason?`Laufbahn beendet in Saison ${coach.retiredSeason}`:'Vereinslos';
  return`<section class="v62-season v68-coach-profile"><p class="eyebrow">Trainerprofil</p><h2>${v61FlagSVG(coach.nation)} ${escapeHTML(coach.name)}</h2><p>${coach.age} Jahre · ${coach.interim?'Interimstrainer · ':''}${status}</p><h3>Spielidee</h3><p>Formation ${escapeHTML(coach.style.formation)} · Pressing ${escapeHTML(coach.style.pressing)} · Pässe ${escapeHTML(coach.style.passing)} · Abwehr ${escapeHTML(coach.style.defense)}</p><p>Rotation ${escapeHTML(coach.style.rotation)} · Nachwuchs ${escapeHTML(coach.style.youth)}</p><h3>Fähigkeiten</h3><p>Gegneranpassung ${v63Grade(coach.judgment.adaptation)} · Kaderplanung ${v63Grade(coach.judgment.planning)} · Nachwuchsförderung ${v63Grade(coach.judgment.development)}</p></section><section class="v62-season"><h3>Stationen</h3>${coach.history.length?`<ul class="v68-history">${coach.history.slice().reverse().map(job=>`<li>${v68ClubButton(career,job.clubId)} · ab Saison ${job.fromSeason}${job.toSeason?` bis Saison ${job.toSeason}`:' · aktuell'}${job.endReason?` · ${escapeHTML(job.endReason)}`:''}</li>`).join('')}</ul>`:'<p>Noch keine Vereinsstation.</p>'}</section>`;
 }
+function v68CupStatus(cup,clubId){
+ if(cup.winnerId===clubId)return{title:'Pokalsieger',detail:'Finale gewonnen'};
+ const own=cup.fixtures.filter(item=>item.homeId===clubId||item.awayId===clubId),lost=own.find(item=>item.result?.winnerId&&item.result.winnerId!==clubId),next=own.find(item=>!item.result);
+ const names={QF:'Viertelfinale',SF:'Halbfinale',F:'Finale'};
+ if(lost)return{title:'Ausgeschieden',detail:`Im ${names[lost.round]}`};
+ if(next)return{title:'Noch dabei',detail:`${names[next.round]} · ${v62Date(next.day)}`};
+ return{title:'Noch dabei',detail:'Nächste Runde wird ausgelost'};
+}
+function v68EuropeStatus(europe,clubId){
+ if(!europe.entrants.includes(clubId))return{title:'Nicht qualifiziert',detail:'In dieser Saison nicht vertreten'};
+ if(europe.winnerId===clubId)return{title:'Europacupsieger',detail:'Finale gewonnen'};
+ const own=europe.fixtures.filter(item=>item.homeId===clubId||item.awayId===clubId),lost=own.find(item=>item.result?.winnerId&&item.result.winnerId!==clubId);
+ const names={QF:'Viertelfinale',SF:'Halbfinale',F:'Finale'};
+ if(lost)return{title:'Ausgeschieden',detail:`Im ${names[lost.round]}`};
+ const group=europe.fixtures.filter(item=>/^R[1-4]$/.test(item.round));
+ if(group.every(item=>item.result)){
+  const rank=europe.ranking||v62Table(europe,europe.entrants).map(item=>item.clubId),place=rank.indexOf(clubId)+1;
+  if(place>8)return{title:'Ausgeschieden',detail:`Nach der Ligaphase · Platz ${place} von 12`};
+ }
+ const next=own.filter(item=>!item.result).sort((a,b)=>a.day-b.day)[0];
+ if(next){
+  const detail=next.round.startsWith('R')?`Ligaphase · Spieltag ${next.round.slice(1)} von 4`:`${names[next.round]} · ${next.round==='F'?'Finale':next.leg===1?'Hinspiel':'Rückspiel'}`;
+  return{title:'Noch dabei',detail:`${detail} · ${v62Date(next.day)}`};
+ }
+ return{title:'Noch dabei',detail:'Nächste Runde wird angesetzt'};
+}
 function v68CompetitionSummaryHTML(career){
  const current=v62Current(career),own=v68Club(career,career.manager.managedClubId),league=current.find(item=>item.type==='league'&&item.country===own.countryId),cup=current.find(item=>item.type==='cup'&&item.country===own.countryId),europe=current.find(item=>item.type==='europe');
  const table=v62Table(league,[...new Set(league.fixtures.flatMap(item=>[item.homeId,item.awayId]))]),ownRow=table.find(row=>row.clubId===own.id),rank=ownRow.played?`Platz ${table.findIndex(row=>row.clubId===own.id)+1} von 6`:'Noch keine Ligaspiele';
  const past=[...new Set(career.world.competitions.filter(item=>item.season<career.world.season&&item.winnerId).map(item=>item.season))].sort((a,b)=>b-a);
  const archive=past.map(season=>{const items=career.world.competitions.filter(item=>item.season===season&&item.winnerId);return`<details><summary>Saison ${season} · ${items.length} Sieger</summary><ul class="v68-history">${items.map(item=>`<li>${item.type==='europe'?'Europacup':`${v61CountryNames[item.country]} · ${item.type==='league'?'Liga':'Pokal'}`} · ${v68ClubButton(career,item.winnerId)}</li>`).join('')}</ul></details>`}).join('');
- return`<section class="v62-season v68-competition-summary"><h3>Saison auf einen Blick</h3><div class="v68-summary-grid"><div><span>Deine Liga</span><strong>${rank}</strong></div><div><span>Nationaler Pokal</span><strong>${cup.winnerId?v68ClubButton(career,cup.winnerId):'Läuft'}</strong></div><div><span>Europacup</span><strong>${europe.winnerId?v68ClubButton(career,europe.winnerId):'Läuft'}</strong></div></div>${archive?`<details class="v68-archive"><summary>Bisherige Sieger ansehen</summary>${archive}</details>`:''}</section>`;
+ const cupStatus=v68CupStatus(cup,own.id),europeStatus=v68EuropeStatus(europe,own.id);
+ return`<section class="v62-season v68-competition-summary"><h3>Saison auf einen Blick</h3><div class="v68-summary-grid"><div><span>${v62LeagueLabel(own.countryId)}</span><strong>${rank}</strong></div><div><span>Nationaler Pokal</span><strong>${cupStatus.title}</strong><small>${cupStatus.detail}</small></div><div><span>Europacup</span><strong>${europeStatus.title}</strong><small>${europeStatus.detail}</small></div></div>${archive?`<details class="v68-archive"><summary>Bisherige Sieger ansehen</summary>${archive}</details>`:''}</section>`;
 }
 function v68DigestHTML(career){
  const digest=career.world.lastDigest;if(!digest||digest.season!==career.world.season)return'';
@@ -118,11 +145,10 @@ v61RenderCareer=function(career){
  const digest=v68DigestHTML(career);if(digest)overview.insertAdjacentHTML('afterbegin',digest);
  competition.insertAdjacentHTML('afterbegin',v68CompetitionSummaryHTML(career));
  const own=v68Club(career,career.manager.managedClubId);
- const countryDetails=competition.querySelectorAll('.v62-competitions > details'),ownCountryIndex=v61Countries.findIndex(([id])=>id===own.countryId),ownCup=countryDetails[ownCountryIndex+2];
- if(ownCup){ownCup.querySelector('.v62-table-wrap')?.remove();ownCup.querySelector('h4')?.remove();ownCup.querySelector('summary').textContent=`Nationaler Pokal · ${v61CountryNames[own.countryId]}`}
- clubView.querySelector('.v61-club-hero')?.insertAdjacentHTML('afterend',`<button type="button" class="menu-action v68-own-profile" data-v68-club="${escapeHTML(own.id)}">Vollständiges Vereinsprofil ansehen</button>`);
- const peers=career.world.clubs.filter(item=>item.countryId===own.countryId&&item.leagueId&&item.id!==own.id);
- clubView.querySelectorAll('.v63-coach-list details').forEach((card,index)=>{const peer=peers[index],coach=v68Coach(career,peer.coachId);card.querySelector('.v63-coach-detail')?.insertAdjacentHTML('beforeend',`<div class="v68-coach-actions"><button type="button" class="menu-action" data-v68-club="${escapeHTML(peer.id)}">Vereinsprofil</button><button type="button" class="menu-action" data-v68-coach="${escapeHTML(coach.id)}">Trainerprofil</button></div>`)});
+ const coaches=clubView.querySelector('.v63-coach-list')?.closest('section'),honours=coaches?.nextElementSibling;
+ if(honours?.querySelector('.v61-honours')||honours?.querySelector('h3')?.textContent==='Erfolge dieser Karriere')honours.remove();
+ coaches?.remove();
+ const hero=clubView.querySelector('.v61-club-hero');if(hero)hero.outerHTML=v68ClubDetailHTML(career,own.id);
  clubView.querySelectorAll('.v67-manager li').forEach((item,index)=>{const job=career.manager.stationHistory[index],button=document.createElement('button');button.type='button';button.className='v68-text-link';button.dataset.v68Club=job.clubId;button.textContent='Vereinsprofil';item.append(' · ',button)});
  overview.querySelectorAll('.v67-offers article').forEach((item,index)=>{const id=career.world.transition?.offers[index];if(item&&id)item.querySelector('.v67-offer-title')?.insertAdjacentHTML('afterend',`<button type="button" class="menu-action" data-v68-club="${escapeHTML(id)}">Kader und Vereinsprofil ansehen</button>`)});
  v68DecorateMarket(career);
@@ -171,7 +197,7 @@ v61WorldScreen.addEventListener('click',event=>{
   const player=v61CurrentCareer.world.clubs.flatMap(club=>club.roster).find(item=>item.pid===button.dataset.v68Player);if(!player)return;
   const owner=v66Owner(v61CurrentCareer,player.pid),contract=v66Contract(v61CurrentCareer,player.pid);
   v61ProfileReturn=button;
-  v61ProfileDialog.innerHTML=`<div class="player-card-head"><div>${v61FlagSVG(player.nation)}<p class="eyebrow">${escapeHTML(owner?.name||'Vereinslos')}</p><h2>${escapeHTML(player.name)}</h2><span>${v61PositionNames[player.line]} · ${player.age} Jahre</span></div><button type="button" data-v61-close aria-label="Spielerprofil schließen">×</button></div><div class="player-card-facts"><span>Rückennummer<b>${player.n}</b></span><span>Form<b>${formText(player.form)}</b></span><span>Fitness<b>${freshText(player.fresh)}</b></span>${contract?`<span>Vertrag bis<b>Saison ${contract.endSeason}</b></span>`:''}</div><section><h3>Fähigkeiten</h3>${v55SkillGroupsHTML(player)}</section><section><h3>Spielerstatistik</h3><div class="v64-player-seasons">${v68PlayerRows(player,v61CurrentCareer.world.season)}</div></section>`;
+  v61ProfileDialog.innerHTML=`<div class="player-card-head"><div>${v61FlagSVG(player.nation)}<p class="eyebrow">${escapeHTML(owner?.name||'Vereinslos')}</p><h2>${escapeHTML(player.name)}</h2><span>${v61PositionNames[player.line]} · ${player.age} Jahre</span></div><button type="button" data-v61-close aria-label="Spielerprofil schließen">×</button></div><div class="player-card-facts"><span>Rückennummer<b>${player.n}</b></span><span>Form<b>${formText(player.form)}</b></span><span>Fitness<b>${freshText(player.fresh)}</b></span>${v66ContractFactsHTML(contract,v61CurrentCareer.world.season)}</div><section><h3>Fähigkeiten</h3>${v55SkillGroupsHTML(player)}</section><section><h3>Spielerstatistik</h3><div class="v64-player-seasons">${v68PlayerRows(player,v61CurrentCareer.world.season)}</div></section>`;
   v61ProfileDialog.querySelector('[data-v61-close]').onclick=()=>v61ProfileDialog.close();v61ProfileDialog.showModal();
  }
 });

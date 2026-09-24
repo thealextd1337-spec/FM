@@ -4,6 +4,12 @@
 const v66SeasonDays=v62Days.seasonEnd+1;
 const v66LeaguePrizes=[560,430,330,250,190,140];
 const v66Sponsors=['Stadtwerke','Sportpartner','Reisepartner','Handelspartner','Medienpartner','Regionalpartner'];
+// Fiktive Sponsorzeichen greifen die Farben des Landes auf, ohne Bilddateien im Spielstand abzulegen.
+function v66SponsorLogoSVG(countryId,name){
+ const colors={ENG:['#ffffff','#c8102e','#ffffff'],ESP:['#aa151b','#f1bf00','#aa151b'],ITA:['#008c45','#ffffff','#cd212a'],GER:['#171717','#dd0000','#ffce00'],FRA:['#164a9f','#ffffff','#ed2939'],POR:['#006f42','#e42535','#e42535']}[countryId]||['#c7f36b','#ffffff','#c7f36b'];
+ const initials=String(name||'?').trim().split(/\s+/).map(part=>part[0]).join('').slice(0,2).toUpperCase();
+ return`<svg class="v66-sponsor-logo" viewBox="0 0 64 44" aria-hidden="true" focusable="false"><rect width="64" height="44" rx="7" fill="#f5f5ef"/><path d="M3 3h58v12H3z" fill="${colors[0]}"/><path d="M3 16h58v12H3z" fill="${colors[1]}"/><path d="M3 29h58v12H3z" fill="${colors[2]}"/><rect x="17" y="6" width="30" height="32" rx="5" fill="#102126"/><text x="32" y="29" text-anchor="middle" fill="#fff" font-size="17" font-weight="800" font-family="Arial,sans-serif">${escapeHTML(initials)}</text></svg>`;
+}
 function v66BaseIncome(club){return 1410+club.policy.fans*105+(club.leagueId?0:100)}
 function v66SecureNextIncome(club){return v66BaseIncome(club)+Math.round((250+club.policy.fans*55+club.policy.tradition*25)/10)*10+(club.leagueId?v66LeaguePrizes[5]:0)+40}
 function v66Club(career,id){return career.world.clubs.find(club=>club.id===id)}

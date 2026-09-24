@@ -137,10 +137,11 @@ function v65Finish(){
   state.ratings[pid]=performanceRating(person);
  }
  state.phase='finished';state.score[context.ownSide]=match.score[0];state.score[1-context.ownSide]=match.score[1];
+ state.postMatchReport=v65WorldReport(context,everyone);state.postMatchStep='report';
  delete state.physicalSnapshot;
  v64CompleteOwnMatch(context.career);v64UiSave();
  $('#board-label').textContent='ABPFIFF';$('#match-title').textContent=`Abpfiff · ${v65Club(context,0).name} ${match.score[0]} : ${match.score[1]} ${v65Club(context,1).name}`;
- note('Abpfiff! Die Partie ist beendet.','major');v65RenderReport(context);v65UpdateControls(context);v58Refresh();draw();
+ note('Abpfiff! Die Partie ist beendet.','major');v65RenderReport(context);v65UpdateControls(context);v58Refresh();draw();v65ShowPostMatch(context);
  if(v65PendingExit){v65PendingExit=false;v65Leave(true)}
 }
 function v65RenderReport(context){
@@ -151,21 +152,45 @@ function v65UpdateControls(context){
  let panel=$('#v65-controls');if(!panel){panel=document.createElement('section');panel.id='v65-controls';panel.className='v64-controls';$('#match-info').insertBefore(panel,$('#match-info').querySelector('.match-stat-header'))}
  const {state,fixture,ownSide}=context;
  panel.innerHTML=state.phase==='live'?'<h2>Taktischer Eingriff</h2><p>Das Spiel läuft. Für Änderungen und Wechsel pausieren.</p><button type="button" class="menu-action v64-pause" data-v65-pause>Spiel pausieren</button><button type="button" class="menu-action" data-v65-exit>Zur Startseite</button>':state.phase==='paused'?`<h2>Spielpause · ${state.minute}′</h2><p>Taktikänderungen gelten sofort. Wechsel erfolgen bei der nächsten Unterbrechung.</p>${v64UiTactics(state,ownSide)}${v64UiPending(fixture,state,ownSide)}<button type="button" class="primary v64-resume" data-v65-resume>Spiel fortsetzen →</button><button type="button" class="menu-action" data-v65-exit>Zur Startseite</button><p id="v65-error" role="alert" class="v61-error"></p>`:'<h2>Spiel beendet</h2><button type="button" class="primary" data-v65-continue>Zur Karriereübersicht →</button>';
- v65UpdateQuickButton(context);
 }
-function v65UpdateQuickButton(context){
- let button=$('#v65-quick');if(!button){button=document.createElement('button');button.id='v65-quick';button.type='button';$('#game-screen .board-top').after(button)}
- button.hidden=context.state.phase==='finished';
- button.textContent=context.state.phase==='paused'?'Taktik & Wechsel':'Pause & Taktik';
- button.setAttribute('aria-label',context.state.phase==='paused'?'Taktik und Wechsel ansehen':'Spiel pausieren und Taktik oder Wechsel ändern');
- button.dataset.v65Quick=context.state.phase;
+function v65WorldReport(context,people){
+ const flagCodes={ESP:'ES',ITA:'IT',GER:'DE',FRA:'FR',POR:'PT',ENG:'GB'};
+ return{ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,score:[...match.score],shots:[...match.shots],possession:[...match.possession],setPieceStats:match.setPieceStats?structuredClone(match.setPieceStats):null,players:people.map(person=>({name:person.name,n:person.n,nation:flagCodes[person.nation]||person.nation,keeper:Boolean(person.keeper),team:person.t,stats:{...person.stats,rating:context.state.ratings[person.pid]??0}}))};
+}
+function v65CompetitionResultsHTML(context){
+ const {career,fixture}=context,competition=v62Current(career).find(item=>item.id===fixture.competitionId),type=competition.type,label=type==='league'?v62LeagueLabel(competition.country):type==='cup'?`Nationaler Pokal · ${escapeHTML(v61CountryNames[competition.country])}`:'Europacup';
+ const games=competition.fixtures.filter(item=>item.round===fixture.round&&item.result).sort((a,b)=>a.day-b.day||a.id.localeCompare(b.id));
+ const results=`<section class="v47-competition-section"><h3>${escapeHTML(fixture.round)} · Alle Ergebnisse</h3>${games.map(item=>v62ResultHTML(career,item)).join('')||'<p>In dieser Runde liegen noch keine weiteren Ergebnisse vor.</p>'}</section>`;
+ const table=type==='cup'?'':`<section class="v47-competition-section"><h3>${type==='league'?'Ligatabelle':'Europacup-Tabelle'}</h3>${v62TableHTML(career,competition)}</section>`;
+ return`<div class="v47-competition-body"><div class="v47-competition-head"><div><h2 id="v47-competition-title">${label}</h2><p>Saison ${career.world.season} · ${v62Date(fixture.day)} · Ergebnisse nach deinem Spiel</p></div><button type="button" class="v47-competition-close" aria-label="Ergebnisübersicht schließen">×</button></div><div class="v47-competition-grid ${type==='cup'?'cup':''}">${results}${table}</div><div class="v47-competition-actions"><button type="button" class="v47-competition-done">Zur Vereinszentrale</button></div></div>`;
+}
+function v65ShowPostMatch(context){
+ const {state}=context,report=state.postMatchReport;if(!report||state.postMatchStep==='done')return;
+ document.body.classList.add('v65-world-postmatch');
+ if(state.postMatchStep==='report'){
+  if(v47Dialog.open)return;
+  v47Dialog.innerHTML=v47ReportHTML(report);
+  v47Dialog.onclick=event=>{const row=event.target.closest('[data-report-player]');if(row)v47OpenPlayerStats(report,Number(row.dataset.reportPlayer))};
+  const next=()=>{v47PlayerDialog.close?.();v47Dialog.close?.();state.postMatchStep='competition';v64UiSave();v65ShowPostMatch(context)};
+  v47Dialog.querySelectorAll('.v47-close,.v47-done,.v47-menu').forEach(button=>button.onclick=next);
+  v47Dialog.oncancel=event=>{event.preventDefault();next()};
+  v47Dialog.showModal();v58Refresh();return;
+ }
+ if(v47CompetitionDialog.open)return;
+ v47CompetitionDialog.innerHTML=v65CompetitionResultsHTML(context);
+ const done=()=>{v47CompetitionDialog.close?.();document.body.classList.remove('v65-world-postmatch');state.postMatchStep='done';v64UiSave();v65Leave(false)};
+ v47CompetitionDialog.querySelectorAll('.v47-competition-close,.v47-competition-done').forEach(button=>button.onclick=done);
+ v47CompetitionDialog.oncancel=event=>{event.preventDefault();done()};
+ v47CompetitionDialog.showModal();v58Refresh();
 }
 function v65Show(context){
  const game=$('#game-screen');v61WorldScreen.hidden=true;startScreen.hidden=true;game.hidden=false;
  for(const id of ['#setup-pitch','#pitch-help','#player-panel','#tactics-panel','#start','#duration','#back'])$(id).hidden=true;
  for(const id of ['#match-area','#match-info'])$(id).hidden=false;
  const own=v65Club(context,0),other=v65Club(context,1),competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
- $('#heading').textContent='Dein Spiel läuft.';$('#subtitle').textContent=`${competition.type==='league'?'Liga':competition.type==='cup'?'Pokal':'Europacup'} · ${own.name} gegen ${other.name}`;
+ let adboards=$('#v65-adboards');if(!adboards){adboards=document.createElement('div');adboards.id='v65-adboards';$('#match-area .v42-pitch-stage').before(adboards)}
+ adboards.innerHTML=v64UiAdboards([own,other]);adboards.hidden=!adboards.firstElementChild;
+ $('#heading').textContent='Dein Spiel läuft.';$('#subtitle').textContent=`${competition.type==='league'?`${v61CountryNames[competition.country]} · Liga 1`:competition.type==='cup'?'Pokal':'Europacup'} · ${own.name} gegen ${other.name}`;
  $('#game-screen .board-top strong').textContent=own.name;
  $('#board-label').textContent=context.state.phase==='paused'?'PAUSE':'LIVE';
  const labels=$$('#game-screen .scoreboard span');labels[0].textContent=own.name;labels[1].textContent=other.name;
@@ -191,13 +216,13 @@ function v65StartLoop(){
  };
  v65WorldFrame=setInterval(tick,40);
 }
-function v65Pause(){const context=v65Context();if(!context||context.state.phase!=='live')return false;if(match.flight||match.slide){v65PauseRequested=true;const quick=$('#v65-quick');if(quick)quick.textContent='Pause nach der Ballaktion …';return false}context.state.phase='paused';running=false;clearInterval(v65WorldFrame);$('#board-label').textContent='PAUSE';v65Snapshot(context);v65UpdateControls(context);v58Refresh();$('#v65-controls')?.scrollIntoView({behavior:'smooth',block:'start'});return true}
+function v65Pause(){const context=v65Context();if(!context||context.state.phase!=='live')return false;if(match.flight||match.slide){v65PauseRequested=true;const pause=$('#v65-controls [data-v65-pause]');if(pause){pause.textContent='Pause nach der Ballaktion …';pause.disabled=true}return false}context.state.phase='paused';running=false;clearInterval(v65WorldFrame);$('#board-label').textContent='PAUSE';v65Snapshot(context);v65UpdateControls(context);v58Refresh();$('#v65-controls')?.scrollIntoView({behavior:'smooth',block:'start'});return true}
 function v65Resume(){const context=v65Context();if(!context||context.state.phase!=='paused')return;context.state.phase='live';running=true;$('#board-label').textContent='LIVE';v65Snapshot(context);v65UpdateControls(context);v65StartLoop();v58Refresh()}
 function v65Leave(toStart){
  const context=v65Context();if(!context)return;
  if(context.state.phase==='live'&&!v65Pause()){v65PendingExit=toStart;return}
  if(context.state.phase==='paused')v65Snapshot(context);
- clearInterval(v65WorldFrame);running=false;v65WorldActive=null;match=null;$('#game-screen').hidden=true;menuButton.hidden=false;
+ clearInterval(v65WorldFrame);running=false;v65WorldActive=null;match=null;document.body.classList.remove('v65-world-postmatch');$('#v65-adboards')?.remove();$('#game-screen').hidden=true;menuButton.hidden=false;
  if(toStart)v61ShowStart();else{delete context.career.world.activeMatch;v64UiSave();v61RenderCareer(context.career)}
 }
 const v65BaseFinishMatch=finishMatch;
@@ -234,10 +259,11 @@ v25UpdateLiveBoard=function(){
 const v65BaseLivePlayerHTML=v59LivePlayerHTML;
 v59LivePlayerHTML=function(person){const html=v65BaseLivePlayerHTML(person),context=v65WorldActive&&v65Context(),previous=escapeHTML(activeSave?.club||'FC Viertel');return context&&person.t===0?html.replace(`${previous} · Live im Spiel`,`${escapeHTML(v65Club(context,0).name)} · Live im Spiel`):html};
 const v65BaseRender=v64UiRender;
-v64UiRender=function(career){const context=v65Context();if(context&&context.state.phase!=='prematch'&&context.state.phase!=='finished')return v65Show(context);return v65BaseRender(career)};
+v64UiRender=function(career){const context=v65Context();if(context&&context.state.phase!=='prematch'&&context.state.phase!=='finished')return v65Show(context);const result=v65BaseRender(career);if(context?.state.phase==='finished')v65ShowPostMatch(context);return result};
 const v65BaseProgressState=v58State;
 v58State=function(){
- const context=v65WorldActive&&v65Context();
+ const active=v65Context();if(active?.state.phase==='finished'&&(v47Dialog.open||v47CompetitionDialog.open))return{context:v47Dialog.open?'Spielbericht':'Ergebnisse des Wettbewerbs'};
+ const context=v65WorldActive&&active;
  if(context&&!$('#game-screen').hidden)return{context:context.state.phase==='finished'?'Abpfiff':context.state.phase==='paused'?'Spiel pausiert':'Spiel läuft'};
  return v65BaseProgressState();
 };
@@ -248,7 +274,6 @@ $('#game-screen').addEventListener('click',event=>{
  const button=event.target.closest('button');if(!button)return;
  const context=v65Context();if(!context)return;
  try{
-  if(button.hasAttribute('data-v65-quick')){if(context.state.phase==='live')v65Pause();$('#v65-controls')?.scrollIntoView({behavior:'smooth',block:'start'});return}
   if(button.hasAttribute('data-v65-pause'))return v65Pause();
   if(button.hasAttribute('data-v65-resume'))return v65Resume();
   if(button.hasAttribute('data-v65-exit'))return v65Leave(true);
