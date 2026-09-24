@@ -154,7 +154,14 @@
 .v64-controls h2{margin:0 0 9px;color:#f0f7ef;font:800 29px/1 'Barlow Condensed',Impact,sans-serif}
 .v64-controls h3{margin:20px 0 10px;font-size:13px}
 .v64-controls>p{margin:0 0 15px;color:#b8cbc0;font-size:12px;line-height:1.5}
-.v64-tactics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.v64-tactics{display:block}
+.v64-tactics fieldset{margin:17px 0 0}
+.v64-tactics legend{color:#dce9df;font-size:12px;font-weight:700}
+.v64-tactics .formation-presets{grid-template-columns:repeat(3,minmax(0,1fr))}
+.v64-tactics .formation-presets button{min-height:55px}
+.v64-tactics .segmented button{min-height:46px;line-height:1.25}
+.v64-tactics .plan-card{margin-top:20px}
+.v64-prematch-tabs{max-width:620px;margin:0 0 14px}
 .v64-tactics label,.v64-lineup label,.v64-sub-choices label{display:grid;gap:5px;min-width:0;color:#bfd1c4;font-size:11px;font-weight:700}
 .v64-tactics select,.v64-lineup select,.v64-sub-choices select{width:100%;min-width:0;min-height:38px;padding:6px 8px;border:1px solid #5f7872;border-radius:6px;background:#102629;color:#f0f7ed;font:inherit}
 .v64-lineup{display:grid;gap:8px}
@@ -188,7 +195,13 @@
 .v64-field-player.is-keeper .v64-field-shirt{background:#e2aa45}
 .v64-field-player[aria-pressed="true"] .v64-field-shirt{outline:3px solid #c7f36b;outline-offset:3px}
 .v64-field-player:focus-visible .v64-field-shirt{outline:3px solid #fff;outline-offset:3px}
+.v64-field-player[draggable="true"],.v64-bench-chip{cursor:grab;touch-action:pan-y}
+.v64-field-player.v64-drag-over .v64-field-shirt{outline:3px solid #c7f36b;outline-offset:3px}
 .v64-field-name{max-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.v64-bench-section{margin-top:0;border:1px solid #34494c;border-top:0;border-radius:0 0 9px 9px}
+.v64-bench-chip.v64-drag-over{border-color:#c7f36b;background:#264039}
+.v64-bench-chip .bench-skills .v55-skill-list{display:flex;flex-wrap:wrap;gap:3px 7px;margin-top:6px}
+.v64-bench-chip .bench-skills [role="listitem"]{font-size:9px}
 .v64-selection{display:grid;gap:10px;margin-top:18px;padding:13px;border:1px solid #56706b;border-radius:9px;background:#102629}
 .v64-selection .eyebrow{margin:0;color:#c7f36b;font-size:10px}
 .v64-selection-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
@@ -210,3 +223,4 @@
 #v65-adboards .v64-adboards{margin:4px 0 7px}
 @media(max-width:520px){.v64-field-player{min-width:60px;font-size:10px}.v64-field-shirt{width:36px;height:36px;font-size:13px}.v64-bench-player{grid-template-columns:22px minmax(0,1fr) auto auto}.v64-bench-player .menu-action{padding:5px}}
 .v58-active.v65-world-postmatch .v47-actions,.v58-active.v65-world-postmatch .v47-competition-actions{display:flex!important}
+@media(max-width:520px){.v64-tactics .segmented button{font-size:11px;padding:9px 3px}}

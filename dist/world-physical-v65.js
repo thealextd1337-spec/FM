@@ -274,6 +274,12 @@ $('#game-screen').addEventListener('click',event=>{
  const button=event.target.closest('button');if(!button)return;
  const context=v65Context();if(!context)return;
  try{
+  if(button.dataset.v64TacticKey&&context.state.phase==='paused'){
+   const key=button.dataset.v64TacticKey,value=button.dataset.v64TacticValue;
+   if(context.state.tactics[context.ownSide][key]===value)return;
+   v64ChangeTactics(context.career,context.fixture,context.state,context.ownSide,{[key]:value});v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw();
+   $('#v65-controls')?.querySelector(`[data-v64-tactic-key="${key}"][data-v64-tactic-value="${value}"]`)?.focus();return;
+  }
   if(button.hasAttribute('data-v65-pause'))return v65Pause();
   if(button.hasAttribute('data-v65-resume'))return v65Resume();
   if(button.hasAttribute('data-v65-exit'))return v65Leave(true);
