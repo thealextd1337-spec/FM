@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-24 (Aufstellung in der Spielpause)
+
+- Die Spielpause der neuen Vereinswelt nutzt nun dieselbe Aufstellungs- und Taktikansicht wie die Matchvorbereitung: Spielfeld, Ersatzbank, Spielerprofil und direkte Taktikknöpfe. Positionen können sofort getauscht werden; Bankwechsel werden sichtbar vorgemerkt, lassen sich entfernen und erfolgen erst an der nächsten Unterbrechung. Nach einem Wechsel zeigt auch die Live-Kaderleiste sofort den eingewechselten Spieler. Geprüft mit Weltmatch-, Live-Spieler-, Fortschritts-, Engine- und mobilen Gestentests, Build sowie einem vollständigen Browsermatch mit Pause, Taktikänderung, Wechsel und Ergebnisübergang.
+
 ## 2026-09-24 (Taktikansicht der Vereinswelt)
 
 - Die Matchvorbereitung der neuen Vereinswelt verwendet jetzt die Bedienung der bisherigen Liga: getrennte Reiter für Aufstellung und Taktik, eine kompakte Ersatzbank mit Tausch per Auswahl oder Ziehen, Schnellaufstellungen und Rückgängig. Formation und Spielstil werden über direkte Knöpfe gewählt, auch in der Spielpause. Die bestehende Weltmechanik und gespeicherte Spielstände bleiben erhalten. Geprüft mit Weltmatch-, Engine- und mobilen Gestentests, Build sowie Aufstellung, Wechsel, Taktik und Pause im lokalen Browser.

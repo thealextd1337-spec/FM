@@ -1,7 +1,7 @@
 'use strict';
 
 // Die Weltkarriere nutzt denselben Ball- und Regelablauf wie die bisherige Liga.
-let v65WorldActive=null,v65WorldFrame=0,v65LastFrame=0,v65LastSaved=0,v65ProcessedGoals=0,v65PauseRequested=false,v65PendingExit=false;
+let v65WorldActive=null,v65WorldFrame=0,v65LastFrame=0,v65LastSaved=0,v65ProcessedGoals=0,v65PauseRequested=false,v65PendingExit=false,v65PauseTab='lineup',v65SelectedSlot=0,v65Drag=null;
 function v65Context(){
  const career=v61CurrentCareer,fixture=career&&v64ActiveFixture(career),state=career?.world.activeMatch?.state;
  return fixture&&state?{career,fixture,state,ownSide:v64UiOwnSide(fixture)}:null;
@@ -105,7 +105,7 @@ function v65PhysicalSwap(context,change){
  if(match.lastPass?.passer===out||match.lastPass?.receiver===out)match.lastPass=null;
  if(match.setPiece?.type==='penalty'&&match.setPiece.phase==='waiting')v50PenaltyVisual(match.setPiece,null);
  note(`Wechsel: ${out.name} geht, ${incoming.name} kommt.`, 'major');
- v51LastLiveStep=-1;updateTeamStats();
+ $('#v51-live-status')?.remove();v51LastLiveStep=-1;updateTeamStats();
 }
 function v65Stopped(){return !match.flight&&!match.slide&&(match.goalPause>0||match.halftimePause>0||match.setPiece?.phase==='waiting'||match.throwIn||match.kickoff?.phase==='waiting'||match.postBanner)}
 function v65AfterStep(context){
@@ -148,10 +148,39 @@ function v65RenderReport(context){
  const people=[...match.people,...match.exitedPeople].filter(person=>person.t===0),panel=$('#player-stats');
  panel.innerHTML=`<h3>Spielerstatistik</h3><div class="stat-row stat-head"><span>Spieler</span><span>Leistung</span><span>Werte</span></div>${people.map(person=>`<div class="stat-row"><b>${escapeHTML(person.name)}</b><span>${context.state.minutes[person.pid]>=20?performanceText(context.state.ratings[person.pid]):'ohne Note'}</span><span>${context.state.minutes[person.pid]} Min. · ${v64UiCount(person.stats.goals||0,'Tor','Tore')} · ${v64UiCount(person.stats.assists||0,'Vorlage','Vorlagen')} · ${v64UiCount(person.stats.shots||0,'Schuss','Schüsse')}</span></div>`).join('')}`;panel.hidden=false;
 }
+function v65PauseSelection(context){
+ const {career,fixture,state,ownSide}=context,active=v64Active(state,ownSide),roster=v64Side(career,fixture,ownSide),pid=active[v65SelectedSlot],player=roster.find(item=>item.pid===pid),role=state.roles[pid],fresh=state.fresh[pid]??player.fresh;
+ const otherSlots=active.map((id,index)=>({id,index,player:roster.find(item=>item.pid===id)})).filter(item=>item.index!==v65SelectedSlot&&item.player.keeper===player.keeper);
+ return`<div class="v64-selection"><p class="eyebrow">Ausgewählter Spieler · ${v64Roles[role]}</p><div class="v64-selection-head"><strong>${v61FlagSVG(player.nation)} ${escapeHTML(player.name)}</strong>${v51StatusHTML(player,fresh)}</div><p>${v61PositionNames[player.line]} · ${player.age} Jahre · Nr. ${escapeHTML(player.n)}</p>${v55TopSkillsHTML(player)}<button type="button" class="menu-action" data-v65-profile="${escapeHTML(pid)}">Spielerprofil ansehen</button>${otherSlots.length?`<label>Position mit Mitspieler tauschen<select id="v65-swap-target">${otherSlots.map(item=>`<option value="${item.index}">${escapeHTML(item.player.name)} · ${v64Roles[state.roles[item.id]]}</option>`).join('')}</select></label><button type="button" class="menu-action" data-v65-swap>Positionen tauschen</button>`:''}</div>`;
+}
+function v65PauseBench(context){
+ const {career,fixture,state,ownSide}=context,active=v64Active(state,ownSide),bench=v64Bench(state,ownSide),roster=v64Side(career,fixture,ownSide),selected=roster.find(item=>item.pid===active[v65SelectedSlot]),pending=state.pending[ownSide],used=state.substitutions.filter(item=>item.side===ownSide).length,remaining=2-used-pending.length;
+ return`<section class="v64-bench-section compact-bench"><div class="compact-bench-head"><h3>Ersatzbank</h3><span>${bench.length} / 5 · Wechsel bei der nächsten Unterbrechung</span></div><div class="bench-strip v64-bench-strip">${bench.map(pid=>{const item=roster.find(player=>player.pid===pid),fresh=state.fresh[pid]??item.fresh,disabled=!remaining||item.keeper!==selected.keeper||pending.some(change=>change.outPid===active[v65SelectedSlot]||change.inPid===pid)||state.exited.includes(pid);return`<article class="bench-chip v64-bench-chip"><i class="fitness-dot ${fresh<52?'tired':fresh<72?'ready':'fresh'}"></i><button type="button" class="bench-select" data-v65-bench="${escapeHTML(pid)}" ${disabled?'disabled':''}><span class="bench-title">${v61FlagSVG(item.nation)}<b>#${escapeHTML(item.n)} ${escapeHTML(item.name)}</b></span><span class="bench-meta">${v61PositionNames[item.line]} · ${freshText(fresh)}</span><span class="bench-skills">${v55TopSkillsHTML(item)}</span></button><button type="button" class="player-link" data-v65-profile="${escapeHTML(pid)}">Details</button></article>`}).join('')}</div><p class="lineup-status" role="status">${remaining} Wechsel noch möglich · Spieler auf dem Feld wählen, dann Ersatz antippen.</p></section>`;
+}
+function v65PausePending(context){
+ const {state,ownSide}=context,pending=state.pending[ownSide];
+ return pending.length?`<div class="v64-sub-panel"><h3>Vorgemerkte Wechsel</h3><ul class="v64-pending">${pending.map((item,index)=>`<li>${escapeHTML(v64UiName(item.outPid))} → ${escapeHTML(v64UiName(item.inPid))} <button type="button" class="menu-action" data-v64-cancel="${index}">Entfernen</button></li>`).join('')}</ul></div>`:'';
+}
+function v65PausePitch(context){
+ const {career,fixture,state,ownSide}=context,own=v65Club(context,0),other=v65Club(context,1);
+ return`<div class="v64-board"><div>${v61CrestSVG(own)}<strong>${escapeHTML(own.name)}</strong></div><span aria-live="polite">${state.score[ownSide]} : ${state.score[1-ownSide]}</span><div>${v61CrestSVG(other)}<strong>${escapeHTML(other.name)}</strong></div></div><p class="v64-minute">Spielpause · ${state.minute}′</p>${v64UiPrematchPitch(career,fixture,state,ownSide,{starters:v64Active(state,ownSide),selected:v65SelectedSlot,pickAttribute:'data-v65-pick-slot',label:'Deine Spieler auf dem Spielfeld'})}${v65PauseTab==='lineup'?v65PauseBench(context):''}`;
+}
+function v65SwapPositions(context,otherSlot,firstSlot=v65SelectedSlot){
+ const active=v64Active(context.state,context.ownSide),first=active[firstSlot],second=active[otherSlot];
+ if(!first||!second||first===second||v64Player(context.career,context.fixture,context.ownSide,first).keeper!==v64Player(context.career,context.fixture,context.ownSide,second).keeper)throw Error('Diese Positionen können nicht getauscht werden.');
+ const roles=context.state.roles;
+ if(roles[first]===roles[second])[active[firstSlot],active[otherSlot]]=[second,first];
+ else[roles[first],roles[second]]=[roles[second],roles[first]];
+ v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw();
+}
 function v65UpdateControls(context){
  let panel=$('#v65-controls');if(!panel){panel=document.createElement('section');panel.id='v65-controls';panel.className='v64-controls';$('#match-info').insertBefore(panel,$('#match-info').querySelector('.match-stat-header'))}
  const {state,fixture,ownSide}=context;
- panel.innerHTML=state.phase==='live'?'<h2>Taktischer Eingriff</h2><p>Das Spiel läuft. Für Änderungen und Wechsel pausieren.</p><button type="button" class="menu-action v64-pause" data-v65-pause>Spiel pausieren</button><button type="button" class="menu-action" data-v65-exit>Zur Startseite</button>':state.phase==='paused'?`<h2>Spielpause · ${state.minute}′</h2><p>Taktikänderungen gelten sofort. Wechsel erfolgen bei der nächsten Unterbrechung.</p>${v64UiTactics(state,ownSide)}${v64UiPending(fixture,state,ownSide)}<button type="button" class="primary v64-resume" data-v65-resume>Spiel fortsetzen →</button><button type="button" class="menu-action" data-v65-exit>Zur Startseite</button><p id="v65-error" role="alert" class="v61-error"></p>`:'<h2>Spiel beendet</h2><button type="button" class="primary" data-v65-continue>Zur Karriereübersicht →</button>';
+ let tabs=$('#v65-pause-tabs');if(!tabs){tabs=document.createElement('nav');tabs.id='v65-pause-tabs';tabs.className='prematch-tabs v64-prematch-tabs';tabs.setAttribute('aria-label','Während der Spielpause');$('#game-screen .workspace').before(tabs)}
+ let pitch=$('#v65-plan-view');if(!pitch){pitch=document.createElement('div');pitch.id='v65-plan-view';$('#match-area').before(pitch)}
+ const paused=state.phase==='paused';tabs.hidden=!paused;pitch.hidden=!paused;$('#match-area').hidden=paused;$('#heading').textContent=paused?'Dein Spiel pausiert.':'Dein Spiel läuft.';
+ if(paused){tabs.innerHTML=`<button type="button" data-v65-tab="lineup" class="${v65PauseTab==='lineup'?'active':''}" aria-pressed="${v65PauseTab==='lineup'}">Aufstellung</button><button type="button" data-v65-tab="tactics" class="${v65PauseTab==='tactics'?'active':''}" aria-pressed="${v65PauseTab==='tactics'}">Taktik</button>`;pitch.innerHTML=v65PausePitch(context);pitch.querySelectorAll('.v64-bench-chip').forEach(card=>{card.draggable=true;card.dataset.v65BenchCard=card.querySelector('[data-v65-bench]')?.dataset.v65Bench})}
+ panel.innerHTML=state.phase==='live'?'<h2>Taktischer Eingriff</h2><p>Das Spiel läuft. Für Änderungen und Wechsel pausieren.</p><button type="button" class="menu-action v64-pause" data-v65-pause>Spiel pausieren</button><button type="button" class="menu-action" data-v65-exit>Zur Startseite</button>':paused?(v65PauseTab==='lineup'?`<h2>Aufstellung</h2><p>Spieler auf dem Feld wählen und einen Ersatz von der Bank antippen. Wechsel erfolgen bei der nächsten Unterbrechung.</p>${v65PauseSelection(context)}${v65PausePending(context)}`:`<h2>Teamtaktik</h2><p>Wähle Formation und Spielidee. Die Änderung gilt sofort.</p>${v64UiTactics(state,ownSide)}`)+`<button type="button" class="primary v64-resume" data-v65-resume>Spiel fortsetzen →</button><button type="button" class="menu-action" data-v65-exit>Zur Startseite</button><p id="v65-error" role="alert" class="v61-error"></p>`:'<h2>Spiel beendet</h2><button type="button" class="primary" data-v65-continue>Zur Karriereübersicht →</button>';
 }
 function v65WorldReport(context,people){
  const flagCodes={ESP:'ES',ITA:'IT',GER:'DE',FRA:'FR',POR:'PT',ENG:'GB'};
@@ -216,13 +245,13 @@ function v65StartLoop(){
  };
  v65WorldFrame=setInterval(tick,40);
 }
-function v65Pause(){const context=v65Context();if(!context||context.state.phase!=='live')return false;if(match.flight||match.slide){v65PauseRequested=true;const pause=$('#v65-controls [data-v65-pause]');if(pause){pause.textContent='Pause nach der Ballaktion …';pause.disabled=true}return false}context.state.phase='paused';running=false;clearInterval(v65WorldFrame);$('#board-label').textContent='PAUSE';v65Snapshot(context);v65UpdateControls(context);v58Refresh();$('#v65-controls')?.scrollIntoView({behavior:'smooth',block:'start'});return true}
+function v65Pause(){const context=v65Context();if(!context||context.state.phase!=='live')return false;if(match.flight||match.slide){v65PauseRequested=true;const pause=$('#v65-controls [data-v65-pause]');if(pause){pause.textContent='Pause nach der Ballaktion …';pause.disabled=true}return false}context.state.phase='paused';v65PauseTab='lineup';v65SelectedSlot=0;running=false;clearInterval(v65WorldFrame);$('#board-label').textContent='PAUSE';v65Snapshot(context);v65UpdateControls(context);v58Refresh();$('#v65-pause-tabs')?.scrollIntoView({behavior:'smooth',block:'start'});return true}
 function v65Resume(){const context=v65Context();if(!context||context.state.phase!=='paused')return;context.state.phase='live';running=true;$('#board-label').textContent='LIVE';v65Snapshot(context);v65UpdateControls(context);v65StartLoop();v58Refresh()}
 function v65Leave(toStart){
  const context=v65Context();if(!context)return;
  if(context.state.phase==='live'&&!v65Pause()){v65PendingExit=toStart;return}
  if(context.state.phase==='paused')v65Snapshot(context);
- clearInterval(v65WorldFrame);running=false;v65WorldActive=null;match=null;document.body.classList.remove('v65-world-postmatch');$('#v65-adboards')?.remove();$('#game-screen').hidden=true;menuButton.hidden=false;
+ clearInterval(v65WorldFrame);running=false;v65WorldActive=null;match=null;document.body.classList.remove('v65-world-postmatch');$('#v65-adboards')?.remove();$('#v65-pause-tabs')?.remove();$('#v65-plan-view')?.remove();$('#game-screen').hidden=true;menuButton.hidden=false;
  if(toStart)v61ShowStart();else{delete context.career.world.activeMatch;v64UiSave();v61RenderCareer(context.career)}
 }
 const v65BaseFinishMatch=finishMatch;
@@ -274,6 +303,14 @@ $('#game-screen').addEventListener('click',event=>{
  const button=event.target.closest('button');if(!button)return;
  const context=v65Context();if(!context)return;
  try{
+  if(button.dataset.v65Tab&&context.state.phase==='paused'){v65PauseTab=button.dataset.v65Tab;v65UpdateControls(context);$('#v65-pause-tabs')?.querySelector(`[data-v65-tab="${v65PauseTab}"]`)?.focus();return}
+  if(button.dataset.v65PickSlot!==undefined&&context.state.phase==='paused'){v65SelectedSlot=Number(button.dataset.v65PickSlot);v65PauseTab='lineup';v65UpdateControls(context);$('#v65-plan-view')?.querySelector(`[data-v65-pick-slot="${v65SelectedSlot}"]`)?.focus();return}
+  if(button.dataset.v65Profile){v61OpenProfile(button.dataset.v65Profile,button);return}
+  if(button.hasAttribute('data-v65-swap')&&context.state.phase==='paused'){v65SwapPositions(context,Number($('#v65-swap-target')?.value));return}
+  if(button.dataset.v65Bench&&context.state.phase==='paused'){
+   v64QueueSubstitution(context.career,context.fixture,context.state,context.ownSide,v64Active(context.state,context.ownSide)[v65SelectedSlot],button.dataset.v65Bench);
+   v65Snapshot(context);v65UpdateControls(context);return;
+  }
   if(button.dataset.v64TacticKey&&context.state.phase==='paused'){
    const key=button.dataset.v64TacticKey,value=button.dataset.v64TacticValue;
    if(context.state.tactics[context.ownSide][key]===value)return;
@@ -300,3 +337,30 @@ $('#game-screen').addEventListener('change',event=>{
   if(target.dataset.v64Tactic){v64ChangeTactics(context.career,context.fixture,context.state,context.ownSide,{[target.dataset.v64Tactic]:target.value});v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw()}
  }catch(error){const message=$('#v65-error');if(message)message.textContent=error.message}
 });
+function v65DragTarget(event){return event.target.closest?.('[data-v65-pick-slot],[data-v65-bench-card]')}
+function v65CanDrop(target){
+ const context=v65Context();if(!v65Drag||!target||context?.state.phase!=='paused'||v65PauseTab!=='lineup'||v65Drag.kind==='bench'&&target.dataset.v65BenchCard)return false;
+ const active=v64Active(context.state,context.ownSide),source=v65Drag.kind==='field'?active[v65Drag.slot]:v65Drag.pid,dest=target.dataset.v65PickSlot!==undefined?active[Number(target.dataset.v65PickSlot)]:target.dataset.v65BenchCard;
+ if(!source||!dest||source===dest||v64Player(context.career,context.fixture,context.ownSide,source).keeper!==v64Player(context.career,context.fixture,context.ownSide,dest).keeper)return false;
+ if(v65Drag.kind==='field'&&target.dataset.v65PickSlot!==undefined)return true;
+ const pending=context.state.pending[context.ownSide],outPid=v65Drag.kind==='field'?source:dest,inPid=v65Drag.kind==='bench'?source:dest;
+ return context.state.substitutions.filter(item=>item.side===context.ownSide).length+pending.length<2&&!context.state.exited.includes(inPid)&&!pending.some(item=>item.outPid===outPid||item.inPid===inPid);
+}
+$('#game-screen').addEventListener('dragstart',event=>{
+ const context=v65Context();if(context?.state.phase!=='paused'||v65PauseTab!=='lineup')return;
+ const target=v65DragTarget(event);if(!target)return;
+ v65Drag=target.dataset.v65PickSlot!==undefined?{kind:'field',slot:Number(target.dataset.v65PickSlot)}:{kind:'bench',pid:target.dataset.v65BenchCard};
+ event.dataTransfer.effectAllowed='move';event.dataTransfer.setData('text/plain','Spieler verschieben');
+});
+$('#game-screen').addEventListener('dragover',event=>{const target=v65DragTarget(event);if(!v65CanDrop(target))return;event.preventDefault();event.dataTransfer.dropEffect='move';$('#v65-plan-view')?.querySelectorAll('.v64-drag-over').forEach(item=>item.classList.remove('v64-drag-over'));target.classList.add('v64-drag-over')});
+$('#game-screen').addEventListener('dragleave',event=>{const target=v65DragTarget(event);if(target&&!target.contains(event.relatedTarget))target.classList.remove('v64-drag-over')});
+$('#game-screen').addEventListener('drop',event=>{
+ const target=v65DragTarget(event);if(!v65CanDrop(target))return;
+ event.preventDefault();const context=v65Context(),active=v64Active(context.state,context.ownSide),source=v65Drag;
+ try{
+  if(source.kind==='field'&&target.dataset.v65PickSlot!==undefined)v65SwapPositions(context,Number(target.dataset.v65PickSlot),source.slot);
+  else v64QueueSubstitution(context.career,context.fixture,context.state,context.ownSide,source.kind==='field'?active[source.slot]:active[Number(target.dataset.v65PickSlot)],source.kind==='bench'?source.pid:target.dataset.v65BenchCard);
+  if(!(source.kind==='field'&&target.dataset.v65PickSlot!==undefined)){v65Snapshot(context);v65UpdateControls(context)}
+ }catch(error){const message=$('#v65-error');if(message)message.textContent=error.message}finally{v65Drag=null}
+});
+$('#game-screen').addEventListener('dragend',()=>{v65Drag=null;$('#v65-plan-view')?.querySelectorAll('.v64-drag-over').forEach(item=>item.classList.remove('v64-drag-over'))});

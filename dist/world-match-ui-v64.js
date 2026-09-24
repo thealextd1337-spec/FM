@@ -48,15 +48,15 @@ function v64UiAdboards(clubs){
  const sponsors=clubs.map(club=>({club,offer:club.sponsors?.find(item=>item.id===club.sponsorId)})).filter(item=>item.offer);
  return sponsors.length?`<div class="v64-adboards" aria-label="Werbebanner">${sponsors.map(({club,offer})=>`<div class="v64-adboard">${v66SponsorLogoSVG(club.countryId,offer.name)}<span>${escapeHTML(offer.name)}</span></div>`).join('')}</div>`:'';
 }
-function v64UiPrematchPitch(career,fixture,state,side){
- const plan=side===0?fixture.plan.home:fixture.plan.away,roster=v64Side(career,fixture,side),groups={gk:[],def:[],mid:[],att:[]};
- plan.starters.forEach((pid,slot)=>groups[state.roles[pid]]?.push({pid,slot}));
+function v64UiPrematchPitch(career,fixture,state,side,options={}){
+ const plan=side===0?fixture.plan.home:fixture.plan.away,roster=v64Side(career,fixture,side),groups={gk:[],def:[],mid:[],att:[]},starters=options.starters||plan.starters,selected=options.selected??v64SelectedSlot,pickAttribute=options.pickAttribute||'data-v64-pick-slot';
+ starters.forEach((pid,slot)=>groups[state.roles[pid]]?.push({pid,slot}));
  const positions={gk:84,def:64,mid:42,att:20};
  const players=Object.entries(groups).flatMap(([role,items])=>items.map(({pid,slot},index)=>{const player=roster.find(item=>item.pid===pid),x=items.length===1?50:items.length===2?28+index*44:20+index*30;
-  return`<button type="button" draggable="${role!=='gk'}" class="v64-field-player ${role==='gk'?'is-keeper':''}" style="left:${x}%;top:${positions[role]}%" data-v64-pick-slot="${slot}" aria-label="${escapeHTML(player.name)}, ${v64Roles[role]}, auswählen oder verschieben" aria-pressed="${slot===v64SelectedSlot}"><span class="v64-field-shirt">${escapeHTML(player.n)}</span><span class="v64-field-name">${escapeHTML(player.name.split(' ').at(-1))}</span></button>`;
+  return`<button type="button" draggable="${role!=='gk'}" class="v64-field-player ${role==='gk'?'is-keeper':''}" style="left:${x}%;top:${positions[role]}%" ${pickAttribute}="${slot}" aria-label="${escapeHTML(player.name)}, ${v64Roles[role]}, auswählen oder verschieben" aria-pressed="${slot===selected}"><span class="v64-field-shirt">${escapeHTML(player.n)}</span><span class="v64-field-name">${escapeHTML(player.name.split(' ').at(-1))}</span></button>`;
  })).join('');
  const club=career.world.clubs.find(item=>item.id===(side===0?fixture.homeId:fixture.awayId)),colors=v61ClubColors(club);
- return`<div class="v64-prematch-field" style="--v64-shirt:${escapeHTML(colors[0])};--v64-shirt-edge:${escapeHTML(colors[1])}" aria-label="Deine Startelf auf dem Spielfeld"><div class="v64-field-lines" aria-hidden="true"><span class="v64-field-box"></span><span class="v64-field-half"></span><span class="v64-field-circle"></span></div><span class="v64-field-direction">ANGRIFF ↑</span>${players}</div>`;
+ return`<div class="v64-prematch-field" style="--v64-shirt:${escapeHTML(colors[0])};--v64-shirt-edge:${escapeHTML(colors[1])}" aria-label="${options.label||'Deine Startelf auf dem Spielfeld'}"><div class="v64-field-lines" aria-hidden="true"><span class="v64-field-box"></span><span class="v64-field-half"></span><span class="v64-field-circle"></span></div><span class="v64-field-direction">ANGRIFF ↑</span>${players}</div>`;
 }
 function v64UiPrematchSelection(career,fixture,state,side){
  const plan=side===0?fixture.plan.home:fixture.plan.away,slot=Math.min(v64SelectedSlot,plan.starters.length-1),pid=plan.starters[slot],roster=v64Side(career,fixture,side),player=roster.find(item=>item.pid===pid),role=state.roles[pid],bench=plan.bench.map(id=>roster.find(item=>item.pid===id));
