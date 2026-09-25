@@ -240,7 +240,7 @@ function v72AiInterest(career,targetPid=null){
    const maxRatio=strength>=16?3:strength>=15?2.1:strength>=13?1.5:1.25;
    const peers=buyer.roster.filter(member=>member.line===player.line);
    const sportingFit=peers.length<(player.keeper?2:player.line==='att'?3:4)||strength>Math.max(0,...peers.map(v66Skill))+.8;
-   return ratio<=maxRatio&&sportingFit&&item.sellerId!==buyer.id&&v72CanCommitSale(career,item.sellerId,item.pid)&&!market.negotiations.some(entry=>entry.pid===item.pid&&entry.buyerId===buyer.id)&&v72Willingness(career,item.pid,buyer.id)!=='no'&&v66CanAfford(career,buyer.id,item.ask,v66Salary(player));
+   return ratio<=maxRatio&&sportingFit&&(!player.keeper||buyer.roster.filter(member=>member.keeper).length<3)&&item.sellerId!==buyer.id&&v72CanCommitSale(career,item.sellerId,item.pid)&&!market.negotiations.some(entry=>entry.pid===item.pid&&entry.buyerId===buyer.id)&&v72Willingness(career,item.pid,buyer.id)!=='no'&&v66CanAfford(career,buyer.id,item.ask,v66Salary(player));
   });
   candidates.sort((a,b)=>buyer.roster.filter(player=>player.line===v66Player(career,a.pid).line).length-buyer.roster.filter(player=>player.line===v66Player(career,b.pid).line).length||a.ask-b.ask||a.pid.localeCompare(b.pid));
   const listing=candidates[0];if(!listing)continue;

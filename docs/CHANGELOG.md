@@ -1,6 +1,13 @@
 # Änderungen
 
-## Noch nicht veröffentlicht
+## 2026-09-25 (KI-Kader und Sprachwahl)
+
+- Laufende Partien mit Torereignissen lassen sich nach Neuladen wieder öffnen; die Ereignisanzeige erhält den gespeicherten Matchzustand.
+
+- KI-Vereine halten bei finanzierbaren Vertragsverlängerungen den zehnten Profi und den letzten Torwart mit einer kleineren positiven Folgejahresreserve im Kader. Die Zufallsentscheidung lässt den letzten Torwart nicht mehr ausscheiden. Im Audit über sechs Welten mit je 20 Saisons sanken KI-Kaderlücken am Saisonende von 190 auf 71 und torwartlose KI-Kader von 34 auf 3; Kontostände blieben positiv. Wirtschafts-, Kader- und Nachwuchstests, Build und sichtbarer Saisonwechsel wurden geprüft.
+- KI-Vereine bewerten Jugendspieler intern anhand aktueller Stärke, Entwicklungspotenzial und der Profis auf derselben Position. Nur ausreichend bewertete und finanzierbare Talente werden bevorzugt übernommen; bei weniger als zehn Profis gleichen sie Abwehr, Mittelfeld und Angriff aus. Fehlen passende Talente, nutzt die KI den regulären Markt; ohne bezahlbare Marktoption darf eigener Nachwuchs den Mindestkader sichern. Der menschlich geführte Verein entscheidet selbst über Jugendübernahmen. Frühere Spielstände und Ergebnisse werden nicht neu berechnet. Geprüft mit Kader-, Nachwuchs- und Wirtschaftstests sowie sechs Langläufen über je 20 Saisons.
+- Der Transferschluss verlangt jetzt neben zehn Profis und einem Torwart fünf Feldspieler. KI-Vereine nehmen höchstens drei Torhüter auf; überzählige Torhüter werden beim nächsten Transferschluss mit korrekter Vertrags- und Gehaltsbuchung freigestellt. Betroffene bestehende Spielstände können freie Feldspieler verpflichten und bei vollem Kader zuvor einen Torwart freistellen. Frühere Ergebnisse werden nicht verändert. Geprüft mit Kaderregression, Wirtschafts- und Mehrsaisontests.
+- Die neue Vereinswelt hat eine dauerhaft gespeicherte Sprachwahl für Deutsch und Englisch. Start, Vereinswahl, Karriere-, Transfer-, Wettbewerbs- und Matchansichten sowie zugängliche Beschriftungen nutzen dieselbe Übersetzungsschicht; die ältere Karriereansicht bleibt ausgenommen. Spielstände und Spielregeln ändern sich nicht. Build und Sprachwechsel im Browser geprüft.
 
 ## 2026-09-25 (Saisonrückblick, Transfers und Nachwuchs)
 

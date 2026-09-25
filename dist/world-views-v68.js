@@ -31,8 +31,8 @@ function v68RelevantNews(career,clubId){
  return !!next&&(next.homeId===clubId||next.awayId===clubId);
 }
 const v68BaseMatchEvent=v64UiEvent;
-v64UiEvent=function(event){
- if(event.type!=='substitution')return v68BaseMatchEvent(event);
+v64UiEvent=function(event,state){
+ if(event.type!=='substitution')return v68BaseMatchEvent(event,state);
  const fixture=v64UiFixture(),club=v68Club(v61CurrentCareer,event.side===0?fixture.homeId:fixture.awayId);
  return`<li class="v68-sub-event"><b>${event.minute}′ · Wechsel ${escapeHTML(club.name)}</b><span>Raus: ${escapeHTML(v64UiName(event.outPid))}</span><span>Rein: ${escapeHTML(v64UiName(event.inPid))}</span></li>`;
 };

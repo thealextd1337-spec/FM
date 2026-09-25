@@ -66,12 +66,15 @@ jobs:
           node work/test-world-match-v64.cjs
           node work/test-world-grid-v71.cjs
           node work/test-world-economy-v66.cjs
+          node work/test-world-playable-rosters.cjs
           node work/test-world-transfer-list-v72.cjs
           node work/test-world-human-sale-v73.cjs
           node work/test-world-youth-manager-v67.cjs
           node work/test-world-storage-v67.cjs
           node work/test-world-save-management-v70.cjs
           node work/test-world-views-v68.cjs
+          node work/test-world-honours-v74.cjs
+          node work/test-match-presentation-v74.cjs
           DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs
           DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs
           DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs

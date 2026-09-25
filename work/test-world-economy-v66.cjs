@@ -80,6 +80,29 @@ renewalClub.balance=call('v66SalaryDue',renewalProbe,renewalClub.id)+100;
 while(!renewalProbe.world.seasonFinished)call('v62AdvanceDay',renewalProbe);
 assert(renewalClub.balance>=0,'KI-Verein bleibt am Saisonende zahlungsfähig');
 assert(!renewalClub.roster.some(item=>item.pid===expiringPid),'KI verlängert einen für das Folgejahr unbezahlbaren Vertrag nicht');
+const minimumRenewal=JSON.parse(JSON.stringify(career)),minimumClub=call('v66Club',minimumRenewal,'ENG-2'),displaced=[];
+while(minimumClub.roster.length>10){const player=minimumClub.roster.find(item=>!item.keeper),contract=call('v66Contract',minimumRenewal,player.pid);displaced.push({player,contract});minimumClub.roster=minimumClub.roster.filter(item=>item!==player);minimumRenewal.world.contracts=minimumRenewal.world.contracts.filter(item=>item!==contract);minimumRenewal.world.market.freePlayers.push(player)}
+assert.strictEqual(minimumClub.roster.length,10);
+for(const contract of minimumRenewal.world.contracts.filter(item=>item.clubId===minimumClub.id))contract.endSeason=2;
+const minimumPlayer=minimumClub.roster.find(item=>!item.keeper),minimumContract=call('v66Contract',minimumRenewal,minimumPlayer.pid);
+minimumContract.endSeason=1;
+while(minimumRenewal.world.calendarCursor<214)call('v62AdvanceDay',minimumRenewal);
+assert.strictEqual(minimumRenewal.world.seasonFinished,false);
+const dryRenewal=JSON.parse(JSON.stringify(minimumRenewal));call('v74CloseSeason',dryRenewal);call('v66SeasonEnd',dryRenewal);
+const futureWages=minimumRenewal.world.contracts.filter(item=>item.clubId===minimumClub.id&&item.pid!==minimumPlayer.pid).reduce((sum,item)=>sum+item.annual,0),renewedAnnual=Math.round(Math.max(minimumContract.annual,call('v66Salary',minimumPlayer))*1.035/10)*10;
+const targetBalance=futureWages+renewedAnnual+200-call('v66BaseIncome',minimumClub);
+assert(targetBalance>0,'Testfall hält den KI-Kontostand positiv');
+minimumClub.balance+=targetBalance-call('v66Club',dryRenewal,minimumClub.id).balance;
+const keeperRenewal=JSON.parse(JSON.stringify(minimumRenewal)),keeperClub=call('v66Club',keeperRenewal,minimumClub.id),lastKeeper=keeperClub.roster.find(item=>item.keeper),keeperContract=call('v66Contract',keeperRenewal,lastKeeper.pid);
+keeperContract.endSeason=1;call('v66Contract',keeperRenewal,minimumPlayer.pid).endSeason=2;
+if(displaced.length){const restored=displaced[0];keeperRenewal.world.market.freePlayers=keeperRenewal.world.market.freePlayers.filter(item=>item.pid!==restored.player.pid);keeperClub.roster.push(restored.player);restored.contract.endSeason=2;keeperRenewal.world.contracts.push(restored.contract)}
+for(let index=0;;index++){const seed=`keeper-renewal-${index}`;if(call('v61Random',`${seed}:S1:${lastKeeper.pid}:ai-renewal`)()>.76){keeperRenewal.world.seed=seed;break}}
+keeperClub.balance=10000;
+call('v62AdvanceDay',minimumRenewal);
+assert(minimumClub.roster.some(item=>item.pid===minimumPlayer.pid),'KI hält einen finanzierbaren zehnten Profi bei kleiner Reserve');
+assert(minimumClub.balance>=0);
+call('v62AdvanceDay',keeperRenewal);
+assert(keeperClub.roster.some(item=>item.pid===lastKeeper.pid),'KI behält den einzigen finanzierbaren Torwart auch bei ungünstigem Zufallswert');
 const beforeRepeat=JSON.stringify(career.world.clubs.map(club=>club.ledger));
 call('v66AfterFixture',career,firstFixture);
 assert.strictEqual(JSON.stringify(career.world.clubs.map(club=>club.ledger)),beforeRepeat,'Spielbuchung ist einmalig');

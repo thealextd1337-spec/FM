@@ -10,7 +10,7 @@ for(const file of ['world-economy-v66.js','world-youth-manager-v67.js'])vm.runIn
 context.escapeHTML=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 context.v61FlagSVG=()=>'<svg class="flag-icon"></svg>';
 context.v66Credits=value=>`${Math.round(value)} Credits`;
-context.v64UiEvent=()=>'';
+context.v64UiEvent=(event,state)=>`${state.firstHalfEnd}:${event.type}`;
 const views=fs.readFileSync('dist/world-views-v68.js','utf8');
 vm.runInContext(views.slice(0,views.indexOf('let v68Stack=')),context);
 const call=(name,...args)=>vm.runInContext(name,context)(...args);
@@ -36,6 +36,7 @@ context.v64UiFixture=()=>({homeId:own.id,awayId:other.id});
 context.v64UiName=pid=>pid==='out'?'Abgehender Spieler':'Eingehender Spieler';
 const switchMarkup=call('v64UiEvent',{type:'substitution',minute:63,side:1,outPid:'out',inPid:'in'});
 assert(switchMarkup.includes(other.name)&&switchMarkup.includes('Raus: Abgehender Spieler')&&switchMarkup.includes('Rein: Eingehender Spieler'));
+assert.strictEqual(call('v64UiEvent',{type:'goal',minute:12},{firstHalfEnd:45}),'45:goal','gespeicherte Torereignisse erhalten beim Wiederöffnen den Matchzustand');
 const ownProfile=call('v68ClubDetailHTML',career,own.id),otherProfile=call('v68ClubDetailHTML',career,other.id);
 assert(ownProfile.includes(own.historyText)&&ownProfile.includes('data-v68-player='));
 career.world.transfers.push({id:'history-1',season:1,day:4,pid:other.roster[0].pid,playerName:other.roster[0].name,sellerId:other.id,buyerId:own.id,price:180});

@@ -134,6 +134,7 @@ function v67Promote(career,clubId,pid){
  const club=v66Club(career,clubId),player=club?.youthPool.find(item=>item.pid===pid);
  if(!player||player.expiresAfterSeason<career.world.season)throw Error('Dieser Nachwuchsspieler steht nicht mehr zur Verfügung.');
  if(club.roster.length>=14)throw Error('Der Profikader hat bereits 14 Spieler.');
+ if(clubId!==career.manager.managedClubId&&player.keeper&&club.roster.filter(item=>item.keeper).length>=3)throw Error('Computermannschaften dürfen höchstens drei Torhüter im Kader haben.');
  const fee=v67Fee(player),annual=v66Salary(player);
  if(club.balance<fee)throw Error('Der Verein kann die Ausbildungsentschädigung nicht bezahlen.');
  if(clubId!==career.manager.managedClubId&&club.balance-fee+v66LeaguePrizes[5]-v66SalaryDue(career,clubId)-annual<0)throw Error('Der KI-Verein kann den Vertrag nicht finanzieren.');
@@ -143,6 +144,26 @@ function v67Promote(career,clubId,pid){
  player.n=Math.max(0,...club.roster.map(item=>item.n))+1;club.roster.push(player);
  career.world.contracts.push({id:`S${career.world.season}:${pid}:youth-contract`,pid,clubId,annual,fromSeason:career.world.season,endSeason:career.world.season+1,startsAt:Math.max(0,career.world.calendarCursor),promise:0,promiseHits:0,promisePenalty:0,lastPromiseCheck:0,renewalOffers:0});
  return player;
+}
+function v67AiTalentScore(club,player){
+ const peers=club.roster.filter(item=>item.keeper===player.keeper&&(player.keeper||item.line===player.line));
+ const comparison=peers.length?peers:club.roster.filter(item=>item.keeper===player.keeper);
+ const reference=comparison.length?comparison.reduce((sum,item)=>sum+v66Skill(item),0)/comparison.length:10;
+ const current=v66Skill(player),potential=player.potential?v66Skill({...player,...player.potential}):current;
+ return current*.7+potential*.3-reference+1;
+}
+function v67AiFillOutfieldFromYouth(career,club,allowEmergency=false){
+ if(club.id===career.manager.managedClubId)return 0;
+ let promoted=0;
+ while(club.roster.length<10){
+  const counts=Object.fromEntries(['def','mid','att'].map(line=>[line,club.roster.filter(player=>!player.keeper&&player.line===line).length]));
+  const candidates=club.youthPool.filter(player=>!player.keeper&&Object.hasOwn(counts,player.line)&&(allowEmergency||v67AiTalentScore(club,player)>=-1.5))
+   .sort((a,b)=>counts[a.line]-counts[b.line]||v67AiTalentScore(club,b)-v67AiTalentScore(club,a)||a.pid.localeCompare(b.pid));
+  let signed=false;
+  for(const player of candidates){try{v67Promote(career,club.id,player.pid);promoted++;signed=true;break}catch{}}
+  if(!signed)break;
+ }
+ return promoted;
 }
 function v67StartSeason(career){
  const season=career.world.season,transition=career.world.transition;
@@ -156,8 +177,9 @@ function v67StartSeason(career){
  }
  for(const club of career.world.clubs){
   if(club.id===career.manager.managedClubId||club.roster.length>=12)continue;
-  const candidates=[...club.youthPool].sort((a,b)=>v66Skill(b)-v66Skill(a));
-  for(const player of candidates){if(club.roster.length>=12)break;try{v67Promote(career,club.id,player.pid)}catch{break}}
+  v67AiFillOutfieldFromYouth(career,club);
+  const candidates=[...club.youthPool].sort((a,b)=>v67AiTalentScore(club,b)-v67AiTalentScore(club,a)||a.pid.localeCompare(b.pid));
+  for(const player of candidates){if(club.roster.length>=12)break;if(player.keeper&&club.roster.filter(item=>item.keeper).length>=3||v67AiTalentScore(club,player)<0)continue;try{v67Promote(career,club.id,player.pid)}catch{continue}}
  }
  career.world.transition=null;
 }
