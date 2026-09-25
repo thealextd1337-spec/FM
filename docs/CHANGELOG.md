@@ -4,6 +4,7 @@
 
 ## 2026-09-25 (Saisonrückblick, Transfers und Nachwuchs)
 
+- Die sichtbare Kennzeichnung der veröffentlichten Änderungen wurde auf „Prototyp 75“ angehoben. Spielstand-Schema und Modellversion bleiben unverändert.
 - Der Kaderreiter zeigt belegte Plätze von 14, die Anzahl je Position und Spieler von Torwart bis Angriff. Die doppelte Überschrift entfällt. Entlassene Nachwuchsspieler stehen allen Vereinen in dieser und der nächsten Saison ablösefrei zur Verfügung und beenden danach ohne Vertrag ihre Karriere; neue Jugendjahrgänge unterscheiden sich stärker in ihrer Qualität. Eine Erinnerung nach dem achten Ligaspieltag führt zu auslaufenden Verträgen. Vertragslose Abgänge und Karriereenden erscheinen im Saisonrückblick.
 - Die Transferansicht blendet erledigte Gebote aus den laufenden Listen aus und hält beim schnellen Annehmen oder Ablehnen die Scrollposition. Die Suche zeigt auf Wunsch alle vereinslosen Spieler und filtert sie nach Nationalität. KI-Vereine berücksichtigen für Verkäufe und Vertragsverlängerungen den vorhandenen Kassenstand und feste Grundeinnahmen statt erwarteter Sponsorzahlungen.
 - Ab Saison 2 ergänzen jährlich 18 neue vereinslose Profis den Markt, darunter sechs Torhüter. Damit bleiben Mannschaften auch bei häufigeren KI-Vertragsverlängerungen langfristig spielfähig. Geprüft mit zehn simulierten Saisons einschließlich Verkaufsvariante und Nachwuchs.
