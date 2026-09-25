@@ -22,8 +22,8 @@ function worldContext(){
  await call('v61StoreNewCareer',first);
  const exported=await call('v61ExportCareerData',first.id);
  assert.strictEqual(exported.format,'world');
- assert.strictEqual(exported.schema,13);
- assert.strictEqual(exported.modelVersion,9);
+ assert.strictEqual(exported.schema,14);
+ assert.strictEqual(exported.modelVersion,10);
  assert.strictEqual(exported.save.manager.reputation,3.5);
  assert.strictEqual(JSON.stringify(exported.save.world),JSON.stringify(first.world));
  assert(call('v61IsWorldExport',exported));
@@ -45,7 +45,7 @@ function worldContext(){
  await call('v61DeleteCareer',imported.id);
  const invalid=JSON.parse(JSON.stringify(exported));invalid.save.modelVersion=8;
  await assert.rejects(call('v61ImportCareerData',invalid),/nicht unterstütztes Format/);
- invalid.save.modelVersion=9;invalid.save.world.clubs.pop();
+ invalid.save.modelVersion=10;invalid.save.world.clubs.pop();
  await assert.rejects(call('v61ImportCareerData',invalid),/unvollständig oder beschädigt/);
  assert.strictEqual(call('v61ReadCareers').length,4,'ungültige Importe ändern keinen Spielstand');
 

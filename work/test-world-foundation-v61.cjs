@@ -21,8 +21,8 @@ vm.runInContext(source.slice(0, source.indexOf('const v61Panel=')), context);
 
 const seed = 'testwelt-2026';
 const career = vm.runInContext("v61CreateCareer('GER-2', 'testwelt-2026')", context);
-assert.strictEqual(career.schema, 13);
-assert.strictEqual(career.modelVersion, 9);
+assert.strictEqual(career.schema, 14);
+assert.strictEqual(career.modelVersion, 10);
 assert.strictEqual(career.manager.managedClubId, 'GER-2');
 assert.strictEqual(career.world.clubs.length, 48);
 assert.strictEqual(career.world.coaches.length, 57);

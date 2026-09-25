@@ -7,11 +7,12 @@ function v67Youth(career,club,season,slot,start=false){
  const random=v61Random(`${career.world.seed}:${club.id}:youth:S${season}:${slot}`),line=slot===0&&(start||season%3===club.policy.youth%3)?'gk':['def','mid','att','mid','def'][slot%5];
  const nation=random()<.84?club.countryId:v61Countries[Math.floor(random()*v61Countries.length)][0],names=v61Names[nation],name=`${names[0][Math.floor(random()*names[0].length)]} ${names[1][Math.floor(random()*names[1].length)]}`;
  const smooth=v67Smooth(club);
- const quality=club.policy.startingSquad-3+Math.min(2,smooth/100),age=16+Math.floor(random()*4);
- const player={pid:`${career.world.seed}:${club.id}:Y${season}:${slot}`,n:0,name,nation,age,line,assignedLine:line,keeper:line==='gk',type:v61PositionNames[line],foot:random()<.2?'Links':'Rechts',form:0,fresh:100,history:[],seasons:[],discoveredSeason:season,expiresAfterSeason:start?2:season+2,compensationRate:Math.round((.2+random()*.1)*100)/100,developmentMinutes:0,potential:{}};
+ const investmentBonus=Math.min(5,Math.min(2,smooth/100)+Math.log1p(Math.max(0,smooth-200)/250)*1.5);
+ const quality=club.policy.startingSquad-3+investmentBonus,age=16+Math.floor(random()*4);
+ const player={pid:`${career.world.seed}:${club.id}:Y${season}:${slot}`,n:0,name,nation,age,line,assignedLine:line,keeper:line==='gk',type:v61PositionNames[line],foot:random()<.2?'Links':'Rechts',form:0,fresh:100,history:[],seasons:[],honours:[],discoveredSeason:season,expiresAfterSeason:start?2:season+2,compensationRate:Math.round((.2+random()*.1)*100)/100,developmentMinutes:0,potential:{}};
  for(const[key,base]of Object.entries(v61SkillBases[line])){
   player[key]=Math.max(1,Math.min(20,Math.round(base-2.8+quality*.65+(random()-.5)*4)));
-  player.potential[key]=Math.min(20,player[key]+1+Math.floor(random()*(smooth>250?5:4)));
+  player.potential[key]=Math.min(20,player[key]+1+Math.floor(random()*(smooth>1000?6:smooth>250?5:4)));
  }
  return player;
 }
@@ -67,7 +68,7 @@ function v67SeasonEnd(career){
  manager.assessments=manager.assessments.filter(item=>item.season!==season);
  if(played.length)manager.reputation=Math.max(1,Math.min(5,Math.round((manager.reputation+(actual-expected)/played.length*.32)*100)/100));
  const offers=v67Offers(career);
- career.world.transition={fromSeason:season,offers,choice:offers.length?null:'stay',budget:null};
+ career.world.transition={fromSeason:season,offers,choice:offers.length?null:'stay',budget:null,reviewStep:0};
 }
 function v67ChooseOffer(career,clubId=null){
  const transition=career.world.transition;
@@ -90,9 +91,10 @@ function v67ChooseOffer(career,clubId=null){
  career.updated=new Date().toISOString();
  return transition.choice;
 }
+function v67BudgetLimit(club){return Math.max(0,Math.floor(club.balance/50)*50)}
 function v67SetBudget(career,amount){
  const transition=career.world.transition,club=v66Club(career,career.manager.managedClubId);amount=Number(amount);
- if(!career.world.seasonFinished||!transition||transition.choice===null||transition.budget!==null||!Number.isInteger(amount)||amount<0||amount>500||amount>Math.max(0,club.balance))throw Error('Das Jugendbudget ist nicht verfügbar oder nicht gedeckt.');
+ if(!career.world.seasonFinished||!transition||transition.choice===null||transition.budget!==null||!Number.isInteger(amount)||amount<0||amount>v67BudgetLimit(club))throw Error('Das Jugendbudget ist nicht verfügbar oder nicht gedeckt.');
  transition.budget=amount;career.updated=new Date().toISOString();return amount;
 }
 function v67BeforeNextSeason(career){
@@ -102,8 +104,8 @@ function v67BeforeNextSeason(career){
 }
 function v67AiBudget(career,club){
  const free=Math.max(0,club.balance-v66SalaryDue(career,club.id)-450),profile=club.policy.youth;
- const step=club.leagueId?50:25,cap=club.leagueId?500:profile*15;
- return Math.min(cap,Math.max(0,Math.floor(Math.min(free*.22,profile*75,cap)/step)*step));
+ const step=club.leagueId?50:25,cap=club.leagueId?1500:profile*40;
+ return Math.min(cap,Math.max(0,Math.floor(Math.min(free*.22,profile*170,cap)/step)*step));
 }
 function v67Fee(player){return Math.max(20,Math.round(v66Value(player)*player.compensationRate/10)*10)}
 function v67Promote(career,clubId,pid){

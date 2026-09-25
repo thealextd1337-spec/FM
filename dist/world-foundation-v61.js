@@ -1,7 +1,7 @@
 'use strict';
 
 // Die Trainerwelt nutzt ein eigenes Format; frühere Weltstände bleiben im Browser erhalten.
-const v61WorldKey='sechser.world.v8';
+const v61WorldKey='sechser.world.v9';
 const v61MaxCareers=5;
 const v61Countries=[['ENG','England'],['ESP','Spanien'],['ITA','Italien'],['GER','Deutschland'],['FRA','Frankreich'],['POR','Portugal']];
 const v61CountryNames=Object.fromEntries(v61Countries);
@@ -35,7 +35,7 @@ function v61GenerateRoster(entry,seed){
   let name,attempt=0;
   do{name=`${names[0][Math.floor(random()*names[0].length)]} ${names[1][Math.floor(random()*names[1].length)]}`;attempt++}while(used.has(name)&&attempt<30);
   used.add(name);
-  const player={pid:`${seed}:${entry.id}:${index+1}`,n:index+1,name,nation,age:19+Math.floor(random()*16),line,assignedLine:line,keeper:line==='gk',type:v61PositionNames[line],foot:random()<.2?'Links':'Rechts',form:0,fresh:100,history:[],seasons:[]};
+  const player={pid:`${seed}:${entry.id}:${index+1}`,n:index+1,name,nation,age:19+Math.floor(random()*16),line,assignedLine:line,keeper:line==='gk',type:v61PositionNames[line],foot:random()<.2?'Links':'Rechts',form:0,fresh:100,history:[],seasons:[],honours:[]};
   for(const [key,base]of Object.entries(v61SkillBases[line]))player[key]=Math.max(1,Math.min(20,Math.round(base+(quality-3)*1.1+(random()-.5)*3)));
   return player;
  });
@@ -48,15 +48,17 @@ function v61ClubRecord(entry,seed){
 }
 
 function v61ValidateCareer(career){
- if(career?.schema!==13||career.modelVersion!==9||!career.manager?.id||!career.world?.seed)return false;
+ if(career?.schema!==14||career.modelVersion!==10||!career.manager?.id||!career.world?.seed)return false;
  const clubs=career.world.clubs;
  if(!Array.isArray(clubs)||clubs.length!==48||new Set(clubs.map(club=>club.id)).size!==48)return false;
  if(!Array.isArray(career.world.countries)||career.world.countries.length!==6)return false;
  if(!Array.isArray(career.world.competitions)||v62Current(career).length!==13||!Number.isInteger(career.world.calendarCursor))return false;
+ if(!Array.isArray(career.world.transfers)||new Set(career.world.transfers.map(item=>item.id)).size!==career.world.transfers.length)return false;
  const managed=clubs.find(club=>club.id===career.manager.managedClubId);
  if(!managed?.leagueId)return false;
  if(!v63Validate(career))return false;
  const players=clubs.flatMap(club=>club.roster||[]);
+ if([...players,...(career.world.market?.freePlayers||[])].some(player=>!Array.isArray(player.honours)))return false;
  const marketOpen=career.world.seasonFinished||['sponsor','open','deadline'].includes(career.world.market?.phase);
  if(clubs.some(club=>!Array.isArray(club.roster)||club.roster.length>14||!marketOpen&&(club.roster.length<10||club.roster.filter(player=>player.keeper).length<1))||new Set(players.map(player=>player.pid)).size!==players.length)return false;
  if(!v61Countries.every(([id])=>clubs.filter(club=>club.countryId===id&&club.leagueId).length===6&&clubs.filter(club=>club.countryId===id&&!club.leagueId).length===2))return false;
@@ -66,7 +68,7 @@ function v61ValidateCareer(career){
 function v61CreateCareer(clubId,seed=crypto.randomUUID()){
  if(!v61Catalog.some(club=>club.id===clubId&&!club.id.includes('-C')))throw Error('Nur ein Ligaverein kann übernommen werden.');
  const now=new Date().toISOString();
- const career={schema:13,modelVersion:9,id:crypto.randomUUID(),created:now,updated:now,phase:'world-matches',manager:{id:crypto.randomUUID(),managedClubId:clubId,stationHistory:[{clubId,fromSeason:1}]},world:{season:1,calendarCursor:null,seed,countries:v61Countries.map(([id,name])=>({id,name,leagueId:`${id}-LEAGUE`,cupId:`${id}-CUP`})),clubs:v61Catalog.map(entry=>v61ClubRecord(entry,seed)),coaches:[],contracts:[],competitions:[],market:{freePlayers:[],pendingBids:[]},eventLog:{processedEventIds:[],visibleNews:[]}}};
+ const career={schema:14,modelVersion:10,id:crypto.randomUUID(),created:now,updated:now,phase:'world-matches',manager:{id:crypto.randomUUID(),managedClubId:clubId,stationHistory:[{clubId,fromSeason:1}]},world:{season:1,calendarCursor:null,seed,countries:v61Countries.map(([id,name])=>({id,name,leagueId:`${id}-LEAGUE`,cupId:`${id}-CUP`})),clubs:v61Catalog.map(entry=>v61ClubRecord(entry,seed)),coaches:[],contracts:[],competitions:[],transfers:[],market:{freePlayers:[],pendingBids:[]},eventLog:{processedEventIds:[],visibleNews:[]}}};
  v62PrepareSeason(career);
  v63Init(career);
  if(typeof v66Init==='function')v66Init(career);
@@ -117,11 +119,11 @@ async function v61StoreNewCareer(career,imported=false){
 }
 function v61IsWorldExport(raw){
  const candidate=raw?.save||raw;
- return raw?.format==='world'||candidate?.schema===13||candidate?.modelVersion!==undefined;
+ return raw?.format==='world'||candidate?.schema===14||candidate?.modelVersion!==undefined;
 }
 async function v61ImportCareerData(raw){
  const candidate=raw?.save||raw;
- if(candidate?.schema!==13||candidate?.modelVersion!==9||raw?.format&&raw.format!=='world')throw Error('Diese Vereinswelt-Datei hat ein nicht unterstütztes Format.');
+ if(candidate?.schema!==14||candidate?.modelVersion!==10||raw?.format&&raw.format!=='world')throw Error('Diese Vereinswelt-Datei hat ein nicht unterstütztes Format.');
  let valid=false;
  try{valid=typeof candidate.id==='string'&&candidate.id.length>0&&v61ValidateCareer(candidate)}catch{}
  if(!valid)throw Error('Die Vereinswelt-Datei ist unvollständig oder beschädigt.');
@@ -131,7 +133,7 @@ async function v61ExportCareerData(id){
  await v61LastWrite;
  const career=v61ReadCareers().find(item=>item.id===id);
  if(!career)throw Error('Diese Vereinswelt wurde nicht gefunden.');
- return{game:'Doppel 6',format:'world',schema:13,modelVersion:9,exported:new Date().toISOString(),save:JSON.parse(JSON.stringify(career))};
+ return{game:'Doppel 6',format:'world',schema:14,modelVersion:10,exported:new Date().toISOString(),save:JSON.parse(JSON.stringify(career))};
 }
 async function v61DeleteCareer(id){
  await v61LastWrite;
@@ -141,7 +143,7 @@ async function v61DeleteCareer(id){
 }
 function v61InitStorage(){
  if(typeof indexedDB==='undefined')return;
- const request=indexedDB.open('doppel6-world-v8',1);
+ const request=indexedDB.open('doppel6-world-v9',1);
  request.onupgradeneeded=()=>request.result.createObjectStore('careers');
  request.onerror=()=>{v61StorageError='Der lokale Spielstandspeicher konnte nicht geöffnet werden.';v61RenderSaves()};
  request.onsuccess=()=>{
@@ -209,16 +211,17 @@ function v61RenderSaves(){
  }
 }
 
+const v61CareerTabs=[...v46Tabs.slice(0,4),['calendar',v46Icon('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 4h3m3 0h3m-9 4h3"/>'),'Kalender'],...v46Tabs.slice(4)];
 function v61RenderCareer(career){
  const club=career.world.clubs.find(item=>item.id===career.manager.managedClubId),views=v62CareerViewsHTML(career),honours=career.world.competitions.filter(item=>item.winnerId===club.id).map(item=>`<li>Saison ${item.season} · ${item.type==='league'?'Meister':item.type==='cup'?'Pokalsieger':'Europacupsieger'}</li>`).join('');
  views.overview+=v63NewsHTML(career);
  const hero=`<section class="v61-club-hero">${v61CrestSVG(club)}<div><p>${v61FlagSVG(club.countryId)} ${escapeHTML(v61CountryNames[club.countryId])} · ${escapeHTML(club.city)}</p><h2>${escapeHTML(club.name)}</h2><p>${escapeHTML(club.historyText)}</p><small>Vereinsfarben: ${escapeHTML(club.colors)}</small></div></section>${v63LeagueCoachesHTML(career)}`;
- v61WorldScreen.innerHTML=`<div class="v61-career-head">${v61CrestSVG(club)}<div><p class="eyebrow">Saison ${career.world.season} · ${escapeHTML(v61CountryNames[club.countryId])}</p><h1>${escapeHTML(club.name)}</h1></div><button type="button" class="menu-action" data-v61-back="start">Zur Startseite</button></div><nav class="v46-nav v61-career-nav" aria-label="Karrieremenü">${v46Tabs.map(([key,icon,label])=>`<button type="button" data-v61-tab="${key}" ${key==='transfers'?'disabled aria-label="Transfers, noch nicht verfügbar"':''}><span aria-hidden="true">${icon}</span>${label}</button>`).join('')}</nav><div data-v46-view="overview">${views.overview}</div><div data-v46-view="squad"><h2 class="v46-view-heading">Kader</h2><section class="v61-roster-section"><div class="v61-roster-head"><div><h3>Aktueller Kader</h3><p>Elf fest gespeicherte Profis · Spieler öffnen für das Profil.</p></div></div>${v61RosterHTML(club.roster)}</section></div><div data-v46-view="competition">${views.competition}</div><div data-v46-view="statistics">${views.statistics}</div><div data-v46-view="club"><h2 class="v46-view-heading">Verein</h2>${hero}<section class="v62-season"><h3>Erfolge dieser Karriere</h3>${honours?`<ul class="v61-honours">${honours}</ul>`:'<p>Noch kein Titel gewonnen.</p>'}</section></div>`;
+ v61WorldScreen.innerHTML=`<div class="v61-career-head">${v61CrestSVG(club)}<div><p class="eyebrow">Saison ${career.world.season} · ${escapeHTML(v61CountryNames[club.countryId])}</p><h1>${escapeHTML(club.name)}</h1></div><button type="button" class="menu-action" data-v61-back="start">Zur Startseite</button></div><nav class="v46-nav v61-career-nav" aria-label="Karrieremenü">${v61CareerTabs.map(([key,icon,label])=>`<button type="button" data-v61-tab="${key}" ${key==='transfers'?'disabled aria-label="Transfers, noch nicht verfügbar"':''}><span aria-hidden="true">${icon}</span>${label}</button>`).join('')}</nav><div data-v46-view="overview">${views.overview}</div><div data-v46-view="squad"><h2 class="v46-view-heading">Kader</h2><section class="v61-roster-section"><div class="v61-roster-head"><div><h3>Aktueller Kader</h3><p>Elf fest gespeicherte Profis · Spieler öffnen für das Profil.</p></div></div>${v61RosterHTML(club.roster)}</section></div><div data-v46-view="competition">${views.competition}</div><div data-v46-view="calendar">${views.calendar}</div><div data-v46-view="statistics">${views.statistics}</div><div data-v46-view="club"><h2 class="v46-view-heading">Verein</h2>${hero}<section class="v62-season"><h3>Erfolge dieser Karriere</h3>${honours?`<ul class="v61-honours">${honours}</ul>`:'<p>Noch kein Titel gewonnen.</p>'}</section></div>`;
  v61SetCareerTab(v61CareerTab,false);
  v61ShowScreen();
 }
 function v61SetCareerTab(tab,scroll=true){
- if(tab==='transfers'||!v46Tabs.some(([key])=>key===tab))return;
+ if(tab==='transfers'||!v61CareerTabs.some(([key])=>key===tab))return;
  v61CareerTab=tab;
  for(const view of v61WorldScreen.querySelectorAll(':scope > [data-v46-view]'))view.hidden=view.dataset.v46View!==tab;
  for(const button of v61WorldScreen.querySelectorAll('.v61-career-nav button')){if(button.dataset.v61Tab===tab)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current')}
@@ -279,7 +282,7 @@ v58State=function(){
  if(v61WorldScreen.hidden)return v61BaseProgressState();
  if(!v61CurrentCareer)return null;
  const career=v61CurrentCareer,managed=career.manager.managedClubId,next=v62Fixtures(career).filter(fixture=>!fixture.result&&(fixture.homeId===managed||fixture.awayId===managed)).sort((a,b)=>a.day-b.day)[0];
- return{context:career.world.seasonFinished?`Saison ${career.world.season} abgeschlossen`:next?`${v62Date(next.day)} · ${v62Name(career,next.homeId)} gegen ${v62Name(career,next.awayId)}`:'Alle eigenen Partien gespielt',label:career.world.seasonFinished?'Nächste Saison vorbereiten':next?'Nächstes Spiel simulieren':'Saison abschließen',action:'v61-world'};
+ return{context:career.world.seasonFinished?`Saison ${career.world.season} abgeschlossen`:next?`${v62Date(next.day)} · ${v62Name(career,next.homeId)} gegen ${v62Name(career,next.awayId)}`:`Saison ${career.world.season} · letztes Spiel beendet`,label:career.world.seasonFinished?'Nächste Saison vorbereiten':next?'Nächstes Spiel simulieren':'Saisonende',action:'v61-world'};
 };
 const v61BaseProgressClick=v58Button.onclick;
 v58Button.onclick=function(){if(v58State()?.action==='v61-world'){v61AdvanceCareer();return}v61BaseProgressClick()};

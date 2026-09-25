@@ -153,13 +153,13 @@ function v50ChaseLooseBall(delta){
  if(winner){m.rebound=null;m.owner=winner;m.ball={x:winner.x,y:winner.y};m.next=m.elapsed+.55;note(`${winner.name} nimmt den freien Ball auf.`,'duel')}
 }
 
-function v50Goal(scorer,keeper,penalty=false){
+function v50Goal(scorer,keeper,penalty=false,source=null){
  const m=match;
  scorer.stats.goals++;
  if(m.lastPass?.receiver===scorer&&m.lastPass.passer!==scorer&&m.elapsed-m.lastPass.at<5)m.lastPass.passer.stats.assists++;
  m.lastPass=null;keeper.stats.conceded++;m.score[scorer.t]++;
- m.goals.push({team:scorer.t,name:scorer.name,minute:Math.max(1,displayMatchMinute(m.elapsed)),penalty});
- note(`${penalty?'ELFMETERTOR!':'TOR!'} ${scorer.name} trifft für ${v50Name(scorer.t)}.`,'goal');
+ m.goals.push({team:scorer.t,name:scorer.name,minute:Math.max(1,displayMatchMinute(m.elapsed)),penalty,source});
+ note(`${penalty?'ELFMETERTOR!':'TOR!'} ${scorer.name} trifft ${source==='direct-free-kick'?'per direktem Freistoß ':''}für ${v50Name(scorer.t)}.`,'goal');
  m.owner=null;m.rebound=null;m.goalPause=2;m.pendingKickoff=1-scorer.t;
  showOverlay(penalty?'ELFMETERTOR!':'TOR!',`${scorer.name} · ${m.score[0]} : ${m.score[1]}`,true);
 }

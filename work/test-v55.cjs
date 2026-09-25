@@ -113,8 +113,36 @@ for(const file of ['youth-v33.js','penalties-v42.js','club-records-v43.js','club
  vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),fullMatch,{filename:file});
 vm.runInContext('var v24Validation=()=>[];var v25RoleBar=()=>{};var v24Remember=()=>{};var v24FatigueText=()=>"frisch";var v24TopSkills=()=>"Passspiel gut";',fullMatch);
 vm.runInContext(fs.readFileSync('dist/pitch-v55.js','utf8'),fullMatch,{filename:'pitch-v55.js'});
+vm.runInContext(fs.readFileSync('dist/match-presentation-v74.js','utf8'),fullMatch,{filename:'match-presentation-v74.js'});
 vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');document.querySelector('#canvas').parentElement={append(){}};start();for(let tick=0;running&&tick<6000;tick++)step(.05,.05);if(running)throw Error(`match did not end: elapsed=${match.elapsed} throw=${Boolean(match.throwIn)} flight=${Boolean(match.flight)} rebound=${Boolean(match.rebound)} piece=${Boolean(match.setPiece)}`)",fullMatch);
 assert.equal(vm.runInContext('match.finished',fullMatch),true);
+assert(vm.runInContext('match.addedMinutes.every(value=>value>=0&&value<=5)',fullMatch),'Nachspielzeit bleibt je Halbzeit begrenzt');
+assert(vm.runInContext('match.firstHalfEnd>=37.5&&match.fullTimeEnd>=75',fullMatch),'physischer Matchlauf verlängert beide Halbzeitgrenzen');
 assert.equal(vm.runInContext('activeSave.currentRound',fullMatch),1);
 assert(vm.runInContext('match.people.some(player=>player.stats.highPasses>0)',fullMatch));
 console.log('PASS: complete v55 match and career progression');
+vm.runInContext(`(()=>{
+ const m=match,attacker=m.people.find(player=>player.t===0&&!player.keeper);
+ m.finished=false;running=true;m.elapsed=74.99;m.firstHalfEnd=37.5;m.fullTimeEnd=75;m.addedMinutes=[0,0];m.halftimeBreakDone=true;
+ m.fulltimePending=false;m.whistleAttackUntil=null;m.whistleAttackCarrier=null;m.goalPause=0;m.halftimePause=0;
+ m.flight=null;m.setPiece=null;m.throwIn=null;m.slide=null;m.rebound=null;m.postBanner=null;m.kickoff=null;
+ m.owner=attacker;m.next=Infinity;attacker.x=.5;attacker.y=.38;m.ball={x:.5,y:.36};
+ for(const rival of m.people.filter(player=>player.t===1&&!player.keeper)){rival.x=.9;rival.y=.8}
+ step(.05,.05);
+ if(m.finished||!m.whistleAttackUntil)throw Error('clear run was stopped at the regular final whistle');
+ m.owner=m.people.find(player=>player.t===1&&!player.keeper);step(.05,.05);
+ if(!m.finished)throw Error('final whistle did not follow the end of the clear chance');
+})()`,fullMatch);
+console.log('PASS: clear goal chance continues past full time and ends after possession changes');
+vm.runInContext(`(()=>{
+ const m=match,taker=m.people.find(player=>player.t===0&&!player.keeper);
+ m.finished=false;m.flight=null;m.setPiece=null;m.rebound=null;m.elapsed=10;
+ for(const player of m.people){player.x=.9;player.y=.9}
+ taker.x=.5;taker.y=.2;Math.random=()=>0;
+ v50TakeFreeKick({type:'freeKick',team:0,spot:{x:.5,y:.2},taker});
+ if(!m.flight)throw Error('direct free kick did not create a shot');
+ m.flight.done();
+ if(m.goals.at(-1)?.source!=='direct-free-kick')throw Error('direct free-kick goal lost its source');
+ if(!document.querySelector('#event').textContent.includes('per direktem Freistoß'))throw Error('direct free-kick goal missing log description');
+})()`,fullMatch);
+console.log('PASS: direct free-kick goal is labeled in the match log');

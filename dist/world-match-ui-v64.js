@@ -39,13 +39,13 @@ function v64UiName(pid){
  for(const side of [0,1]){const player=v64Side(career,fixture,side).find(item=>item.pid===pid);if(player)return player.name}
  return pid;
 }
-function v64UiEvent(event){
- const minute=`${event.minute}′`;
- if(event.type==='goal')return`<li><b>${minute} Tor für ${v62Name(v61CurrentCareer,event.side===0?v64UiFixture().homeId:v64UiFixture().awayId)}</b> · ${escapeHTML(v64UiName(event.scorerPid))}</li>`;
+function v64UiEvent(event,state){
+ const minute=`${event.minuteLabel||v64ClockLabel(state,event.minute)}′`;
+ if(event.type==='goal')return`<li><b>${minute} ${event.source==='direct-free-kick'?'Tor per direktem Freistoß':'Tor'} für ${v62Name(v61CurrentCareer,event.side===0?v64UiFixture().homeId:v64UiFixture().awayId)}</b> · ${escapeHTML(v64UiName(event.scorerPid))}</li>`;
  if(event.type==='substitution')return`<li><b>${minute} Wechsel</b> · ${escapeHTML(v64UiName(event.outPid))} → ${escapeHTML(v64UiName(event.inPid))}</li>`;
  return`<li><b>${minute} Halbzeit</b></li>`;
 }
-function v64UiEvents(state,all=false){return state.events.length?`<ol class="v64-events">${(all?state.events:state.events.slice(-8)).map(v64UiEvent).join('')}</ol>`:'<p class="v62-explainer">Der Spielverlauf erscheint nach Anpfiff.</p>'}
+function v64UiEvents(state,all=false){return state.events.length?`<ol class="v64-events">${(all?state.events:state.events.slice(-8)).map(event=>v64UiEvent(event,state)).join('')}</ol>`:'<p class="v62-explainer">Der Spielverlauf erscheint nach Anpfiff.</p>'}
 function v64UiTacticButtons(key,values,current,labels){return`<div class="segmented v64-tactic-options">${values.map(value=>`<button type="button" data-v64-tactic-key="${key}" data-v64-tactic-value="${escapeHTML(value)}" class="${current===value?'active':''}" aria-pressed="${current===value}">${escapeHTML(labels?.[value]||value)}</button>`).join('')}</div>`}
 function v64UiTactics(state,side){
  const tactic=state.tactics[side];
@@ -135,7 +135,7 @@ function v64UiScreenHTML(career,fixture,state){
  const field=phase==='prematch'?v64UiPrematchPitch(career,fixture,state,side):`<canvas id="v64-pitch" width="600" height="740" role="img" aria-label="Animiertes Spielfeld ${escapeHTML(home.name)} gegen ${escapeHTML(away.name)}"></canvas>`;
  const events=phase==='prematch'?'':`<section class="v62-season"><h3>Spielverlauf</h3><div id="v64-events">${v64UiEvents(state,phase==='finished')}</div></section>`;
  const tabs=phase==='prematch'?`<nav class="prematch-tabs v64-prematch-tabs" aria-label="Vor dem Spiel"><button type="button" data-v64-tab="lineup" class="${v64UiTab==='lineup'?'active':''}" aria-pressed="${v64UiTab==='lineup'}">Aufstellung</button><button type="button" data-v64-tab="tactics" class="${v64UiTab==='tactics'?'active':''}" aria-pressed="${v64UiTab==='tactics'}">Taktik</button></nav>`:'';
- return`<div class="v64-match-page"><div class="v64-top"><p class="eyebrow">${label} · Saison ${career.world.season} · ${v62Date(fixture.day)}</p></div><div class="v64-board"><div>${v61CrestSVG(home)}<strong>${escapeHTML(home.name)}</strong></div><span id="v64-score" aria-live="polite">${state.score[0]} : ${state.score[1]}</span><div>${v61CrestSVG(away)}<strong>${escapeHTML(away.name)}</strong></div></div><p id="v64-minute" class="v64-minute">${phase==='prematch'?'Vor Anpfiff':`${state.minute}′ · ${phase==='finished'?'Abpfiff':phase==='paused'?'Pause':'Live'}`}</p>${tabs}<div class="v64-layout"><div class="v64-pitch-area">${v64UiAdboards([home,away])}${field}${phase==='prematch'&&v64UiTab==='lineup'?v64UiPrematchBench(career,fixture,state,side):''}${events}</div><section class="v64-controls">${controls}<p id="v64-message" role="alert" class="v61-error"></p></section></div></div>`;
+ return`<div class="v64-match-page"><div class="v64-top"><p class="eyebrow">${label} · Saison ${career.world.season} · ${v62Date(fixture.day)}</p></div><div class="v64-board"><div>${v61CrestSVG(home)}<strong>${escapeHTML(home.name)}</strong></div><span id="v64-score" aria-live="polite">${state.score[0]} : ${state.score[1]}</span><div>${v61CrestSVG(away)}<strong>${escapeHTML(away.name)}</strong></div></div><p id="v64-minute" class="v64-minute">${phase==='prematch'?'Vor Anpfiff':`${v64ClockLabel(state)}′ · ${phase==='finished'?'Abpfiff':phase==='paused'?'Pause':'Live'}`}</p>${tabs}<div class="v64-layout"><div class="v64-pitch-area">${v64UiAdboards([home,away])}${field}${phase==='prematch'&&v64UiTab==='lineup'?v64UiPrematchBench(career,fixture,state,side):''}${events}</div><section class="v64-controls">${controls}<p id="v64-message" role="alert" class="v61-error"></p></section></div></div>`;
 }
 function v64UiDraw(career,fixture,state,time){
  const canvas=v61WorldScreen.querySelector('#v64-pitch');if(!canvas)return;
@@ -166,7 +166,7 @@ function v64UiAnimate(time){
 function v64UiUpdate(career,fixture,state){
  const score=v61WorldScreen.querySelector('#v64-score'),minute=v61WorldScreen.querySelector('#v64-minute'),events=v61WorldScreen.querySelector('#v64-events');
  if(score)score.textContent=`${state.score[0]} : ${state.score[1]}`;
- if(minute)minute.textContent=`${state.minute}′ · Live`;
+ if(minute)minute.textContent=`${v64ClockLabel(state)}′ · Live`;
  if(events)events.innerHTML=v64UiEvents(state);
 }
 function v64UiTick(){
@@ -308,7 +308,10 @@ v58State=function(){
   const fixture=v64ActiveFixture(v61CurrentCareer),phase=active.state.phase;
   return{context:`${v62Date(fixture.day)} · ${v62Name(v61CurrentCareer,fixture.homeId)} gegen ${v62Name(v61CurrentCareer,fixture.awayId)}`,label:phase==='prematch'?'Match starten':phase==='finished'?'Zur Karriereübersicht':null,action:phase==='prematch'||phase==='finished'?'v61-world':null};
  }
- if(state?.action==='v61-world'&&!v61CurrentCareer.world.seasonFinished)state.label='Nächstes Spiel vorbereiten';
+ if(state?.action==='v61-world'&&!v61CurrentCareer.world.seasonFinished){
+  const managed=v61CurrentCareer.manager.managedClubId,hasNext=v62Fixtures(v61CurrentCareer).some(fixture=>!fixture.result&&(fixture.homeId===managed||fixture.awayId===managed));
+  state.label=hasNext?'Nächstes Spiel vorbereiten':'Saisonende';
+ }
  return state;
 };
 v61WorldScreen.addEventListener('change',v64UiChange);

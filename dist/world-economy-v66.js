@@ -17,7 +17,7 @@ function v66Contract(career,pid){return career.world.contracts.find(contract=>co
 function v66Owner(career,pid){return career.world.clubs.find(club=>club.roster.some(player=>player.pid===pid))||null}
 function v66Player(career,pid){const owner=v66Owner(career,pid);return owner?.roster.find(player=>player.pid===pid)||career.world.market.freePlayers.find(player=>player.pid===pid)}
 function v66Skill(player){return player.keeper?(player.gk*2+player.pos+player.air+player.pas)/5:(player.tec+player.pas+player.fin+player.tak+player.pos+player.spd+player.sta+player.air)/8}
-function v66Salary(player){const strength=v66Skill(player),ageFactor=player.age<22?.88:player.age>31?.91:1;return Math.round((65+Math.pow(Math.max(0,strength-8),2)*5.2)*ageFactor/10)*10}
+function v66Salary(player){const strength=v66Skill(player),ageFactor=player.age<22?.88:player.age>31?.91:1,honours=typeof v74HonourFactor==='function'?v74HonourFactor(player):1;return Math.round((65+Math.pow(Math.max(0,strength-8),2)*5.2)*ageFactor*honours/10)*10}
 function v66BaseValue(player){const ageFactor=player.age<23?1.35:player.age>31?.7:1;return Math.max(100,Math.round(v66Salary(player)*(2+Math.max(0,30-player.age)*.035)*ageFactor/10)*10)}
 function v66Value(player){return player.marketValue||v66BaseValue(player)}
 function v66RefreshMarketValues(career,checkpoint){
@@ -171,6 +171,7 @@ function v66Transfer(career,bid){
  buyer.roster.push(player);
  v66Book(career,buyer.id,`${event}:buy`,-bid.price,seller?`Kauf ${player.name}`:`Verpflichtung ${player.name}`);
  world.contracts.push({id:`${event}:contract`,pid:player.pid,clubId:buyer.id,annual:bid.annual,fromSeason:world.season,endSeason:world.season+bid.years-1,startsAt:day,promise:buyer.leagueId?bid.promise:0,promiseHits:0,promisePenalty:0,lastPromiseCheck:0,renewalOffers:0});
+ world.transfers.push({id:event,season:world.season,day,pid:player.pid,playerName:player.name,sellerId:seller?.id||null,buyerId:buyer.id,price:bid.price});
  v66CloseBid(career,bid,'completed',`${player.name} wechselt zu ${buyer.name}.`);
  if((buyer.id===career.manager.managedClubId||seller?.id===career.manager.managedClubId)&&!market.negotiations?.some(item=>item.id===bid.id))v66QueueLegacyResult(career,bid,'completed',bid.reason);
  for(const other of market.pendingBids.filter(item=>item!==bid&&item.pid===bid.pid&&['pending','counter'].includes(item.status))){

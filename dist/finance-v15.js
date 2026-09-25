@@ -62,9 +62,33 @@ const v14Start=start;start=function(){if(!activeSave||!ensureFinance(activeSave)
 const v14FinishMatch=finishMatch;finishMatch=function(){if(match.finished)return;v14FinishMatch();recordResultCredits();if(activeSave.currentRound>=10)settleAnnualPayroll();saveCurrent();if(ensureFinance(activeSave).gameOver){$('#back').textContent='Finanzabschluss ansehen ↗';$('#back').onclick=showCenter}};
 const v14StartNextSeason=startNextSeason;startNextSeason=function(){const finance=ensureFinance(activeSave);if(finance.gameOver||!finance.payrollSeasons.includes(activeSave.seasonNumber))return;v14StartNextSeason();ensureFinance(activeSave);saveCurrent();renderCenter()};
 
-const v14Step=step;function finishActivePlay(){match.fulltimePending=true;match.next=Infinity;match.elapsed=74.999;if(!match.flight&&match.goalPause<=0)v14Step(.01,0)}step=function(delta,realDelta){
+const v14Step=step;
+function v15ClearChance(m){
+ const carrier=m.owner;if(!carrier||carrier.keeper||m.setPiece||m.throwIn)return false;
+ const progress=carrier.t===0?1-carrier.y:carrier.y;
+ return typeof v55HasClearRun==='function'&&v55HasClearRun(carrier,m.people.filter(player=>player.t!==carrier.t),progress);
+}
+function finishActivePlay(){match.fulltimePending=true;match.next=Infinity;match.elapsed=(match.fullTimeEnd||75)-.001;if(!match.flight&&match.goalPause<=0)v14Step(.01,0)}step=function(delta,realDelta){
  if(!match||match.finished)return v14Step(delta,realDelta);
- if(match.fulltimePending){if(match.goalPause>0){match.goalPause=Math.max(0,match.goalPause-realDelta);if(match.goalPause<=0){hideOverlay();match.pendingKickoff=null}updateTeamStats();if(match.goalPause<=0&&!match.flight)v14Step(.01,0);return}if(match.flight){match.elapsed=74;v14Step(delta,realDelta);if(!match.finished)match.elapsed=74.999;if(!match.flight&&match.goalPause<=0)v14Step(.01,0);return}return v14Step(.01,0)}
- if(match.halftimeBreakDone&&match.elapsed<75&&match.elapsed+delta>=75){match.next=Infinity;const remaining=Math.max(0,74.999-match.elapsed);v14Step(remaining,realDelta);if(!match.finished)finishActivePlay();return}v14Step(delta,realDelta)
+ if(match.fulltimePending){if(match.goalPause>0){match.goalPause=Math.max(0,match.goalPause-realDelta);if(match.goalPause<=0){hideOverlay();match.pendingKickoff=null}updateTeamStats();if(match.goalPause<=0&&!match.flight)v14Step(.01,0);return}if(match.flight){match.elapsed=(match.fullTimeEnd||75)-1;v14Step(delta,realDelta);if(!match.finished)match.elapsed=(match.fullTimeEnd||75)-.001;if(!match.flight&&match.goalPause<=0)v14Step(.01,0);return}return v14Step(.01,0)}
+ if(match.whistleAttackUntil){
+  if(!match.flight&&(match.owner!==match.whistleAttackCarrier||!v15ClearChance(match))){finishActivePlay();return}
+  if(match.elapsed+delta>=match.whistleAttackUntil){finishActivePlay();return}
+  v14Step(delta,realDelta);
+  if(!match.finished&&!match.flight&&(match.owner!==match.whistleAttackCarrier||!v15ClearChance(match)))finishActivePlay();
+  return;
+ }
+ if(match.halftimeBreakDone&&match.elapsed<(match.fullTimeEnd||75)&&match.elapsed+delta>=(match.fullTimeEnd||75)){
+  const deadline=match.fullTimeEnd||75,remaining=Math.max(0,deadline-.001-match.elapsed);
+  v14Step(remaining,realDelta);
+  if(match.finished)return;
+  if(v15ClearChance(match)){
+   match.whistleAttackCarrier=match.owner;
+   match.whistleAttackUntil=deadline+4*75/90;
+   match.fullTimeEnd=match.whistleAttackUntil;
+  }else finishActivePlay();
+  return;
+ }
+ v14Step(delta,realDelta)
 };
 document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

@@ -75,14 +75,13 @@ function v65Restore(context){
 }
 function v65SyncMinute(context,target){
  const state=context.state,fixture=context.fixture;
- while(state.minute<Math.min(90,target)){
+ while(state.minute<target){
   state.minute++;
   for(const physical of [0,1])for(const pid of v64Active(state,v65Side(physical,context.ownSide))){
    state.minutes[pid]++;
    const player=v64Player(context.career,fixture,v65Side(physical,context.ownSide),pid),tactic=state.tactics[v65Side(physical,context.ownSide)],full=v64Workload(player,tactic);
    state.fresh[pid]=Math.max(0,state.fresh[pid]-full/90);
   }
-  if(state.minute===45)state.events.push({minute:45,type:'halftime'});
  }
  state.score[context.ownSide]=match.score[0];state.score[1-context.ownSide]=match.score[1];
 }
@@ -106,14 +105,15 @@ function v65PhysicalSwap(context,change){
 function v65Stopped(){return !match.flight&&!match.slide&&(match.goalPause>0||match.halftimePause>0||match.setPiece?.phase==='waiting'||match.throwIn||match.kickoff?.phase==='waiting'||match.postBanner)}
 function v65AfterStep(context){
  const state=context.state;
- v65SyncMinute(context,displayMatchMinute(match.elapsed));
+ state.addedMinutes=[...(match.addedMinutes||[0,0])];state.firstHalfEnd=45+state.addedMinutes[0];state.fullTimeEnd=90+state.addedMinutes[0]+state.addedMinutes[1];
+ v65SyncMinute(context,Math.floor(match.elapsed/75*90));
  let goal=false;
  while(v65ProcessedGoals<match.goals.length){
   const entry=match.goals[v65ProcessedGoals++],physical=entry.team,person=[...match.people,...match.exitedPeople].find(item=>item.t===physical&&item.name===entry.name);
-  state.events.push({minute:entry.minute,type:'goal',side:v65Side(physical,context.ownSide),scorerPid:person?.pid||null,assistPid:null});goal=true;
+  state.events.push({minute:state.minute,minuteLabel:v74ClockLabel(match).replace('′',''),type:'goal',side:v65Side(physical,context.ownSide),scorerPid:person?.pid||null,assistPid:null,source:entry.source||null});goal=true;
  }
  const halftime=state.minute>=45&&match.halftimePause>0&&!state.halftimeAiDone;
- if(halftime)state.halftimeAiDone=true;
+ if(halftime){state.halftimeAiDone=true;state.events.push({minute:state.minute,type:'halftime'})}
  if(goal||halftime||state.minute>0&&state.minute!==45&&state.minute%15===0)for(const side of [0,1])v64AiAdjust(context.career,context.fixture,state,side,goal?'Tor':halftime?'Halbzeit':'Reguläre Prüfung');
  v65ApplyTactics(context);
  if(v65Stopped()&&state.pending.some(items=>items.length)){
@@ -125,7 +125,7 @@ function v65AfterStep(context){
 }
 function v65Finish(){
  const context=v65Context();if(!context||match.finished)return;
- const state=context.state;v65SyncMinute(context,90);running=false;clearInterval(v65WorldFrame);v65PauseRequested=false;match.finished=true;match.flight=null;hideOverlay();
+ const state=context.state;state.addedMinutes=[...(match.addedMinutes||[0,0])];state.firstHalfEnd=45+state.addedMinutes[0];state.fullTimeEnd=90+state.addedMinutes[0]+state.addedMinutes[1];v65SyncMinute(context,Math.floor(match.elapsed/75*90));running=false;clearInterval(v65WorldFrame);v65PauseRequested=false;match.finished=true;match.flight=null;hideOverlay();
  const everyone=[...match.people,...match.exitedPeople];state.ratings={};
  for(const person of everyone){
   const pid=person.pid;person.stats.cleanSheet=match.score[1-person.t]===0?1:0;
@@ -135,7 +135,7 @@ function v65Finish(){
  state.phase='finished';state.score[context.ownSide]=match.score[0];state.score[1-context.ownSide]=match.score[1];
  state.postMatchReport=v65WorldReport(context,everyone);state.postMatchStep='report';
  delete state.physicalSnapshot;
- v64CompleteOwnMatch(context.career);v64UiSave();
+ v64CompleteOwnMatch(context.career);state.postMatchReport.manOfMatchPid=context.fixture.matchRecord?.manOfMatchPid||null;v64UiSave();
  $('#board-label').textContent='ABPFIFF';$('#match-title').textContent=`Abpfiff · ${v65Club(context,0).name} ${match.score[0]} : ${match.score[1]} ${v65Club(context,1).name}`;
  note('Abpfiff! Die Partie ist beendet.','major');v65RenderReport(context);v65UpdateControls(context);v58Refresh();draw();v65ShowPostMatch(context);
  if(v65PendingExit){v65PendingExit=false;v65Leave(true)}
@@ -151,7 +151,7 @@ function v65PauseSelection(context){
 }
 function v65PauseBench(context){
  const {career,fixture,state,ownSide}=context,active=v64Active(state,ownSide),bench=v64Bench(state,ownSide),roster=v64Side(career,fixture,ownSide),selected=roster.find(item=>item.pid===active[v65SelectedSlot]),pending=state.pending[ownSide],used=state.substitutions.filter(item=>item.side===ownSide).length,remaining=2-used-pending.length;
- return`<section class="v64-bench-section compact-bench"><div class="compact-bench-head"><h3>Ersatzbank</h3><span>${bench.length} / 5 · Für Wechsel auf ein Trikot ziehen</span></div><div class="bench-strip v64-bench-strip">${bench.map(pid=>{const item=roster.find(player=>player.pid===pid),fresh=state.fresh[pid]??item.fresh;return`<article class="bench-chip v64-bench-chip"><i class="fitness-dot ${fresh<52?'tired':fresh<72?'ready':'fresh'}"></i><div class="bench-select" data-v65-bench="${escapeHTML(pid)}"><span class="bench-title">${v61FlagSVG(item.nation)}<b>#${escapeHTML(item.n)} ${escapeHTML(item.name)}</b></span><span class="bench-meta">${v61PositionNames[item.line]} · ${freshText(fresh)}</span>${v51StatusHTML({...item,fresh},fresh)}<span class="bench-skills">${v55TopSkillsHTML(item)}</span></div><button type="button" class="player-link" data-v65-profile="${escapeHTML(pid)}">Details</button></article>`}).join('')}</div><p class="lineup-status" role="status">${remaining} Wechsel noch möglich · Für einen Wechsel den Ersatzspieler auf ein Feldtrikot ziehen.</p></section>`;
+ return`<section class="v64-bench-section compact-bench"><div class="compact-bench-head"><h3>Ersatzbank</h3><span>${remaining>0?`${remaining} Wechsel möglich · Auf ein Trikot ziehen`:pending.length?`${pending.length} Wechsel vorgemerkt · Limit erreicht`:'Wechselkontingent ausgeschöpft'}</span></div><div class="bench-strip v64-bench-strip">${bench.map(pid=>{const item=roster.find(player=>player.pid===pid),fresh=state.fresh[pid]??item.fresh;return`<article class="bench-chip v64-bench-chip"><i class="fitness-dot ${fresh<52?'tired':fresh<72?'ready':'fresh'}"></i><div class="bench-select" data-v65-bench="${escapeHTML(pid)}"><span class="bench-title">${v61FlagSVG(item.nation)}<b>#${escapeHTML(item.n)} ${escapeHTML(item.name)}</b></span><span class="bench-meta">${v61PositionNames[item.line]} · ${freshText(fresh)}</span>${v51StatusHTML({...item,fresh},fresh)}<span class="bench-skills">${v55TopSkillsHTML(item)}</span></div><button type="button" class="player-link" data-v65-profile="${escapeHTML(pid)}">Details</button></article>`}).join('')}</div><p class="lineup-status" role="status">${remaining>0?`${remaining} Wechsel noch möglich · Ersatzspieler auf ein Feldtrikot ziehen.`:pending.length?'Die vorgemerkten Wechsel werden bei der nächsten Spielunterbrechung ausgeführt. Weitere Wechsel sind nicht möglich.':'Zwei Wechsel wurden bereits ausgeführt. Weitere Wechsel sind nicht möglich.'}</p></section>`;
 }
 function v65PausePending(context){
  const {state,ownSide}=context,pending=state.pending[ownSide];
@@ -161,7 +161,7 @@ function v65PausePitch(context){
  const {career,fixture,state,ownSide}=context,own=v65Club(context,0),other=v65Club(context,1);
  const replacements=Object.fromEntries(state.pending[ownSide].map(item=>[item.outPid,item.inPid]));
  const ratings=Object.fromEntries((match?.people||[]).filter(person=>person.t===0).map(person=>[person.pid,performanceRating(person)]));
- return`<div class="v64-board"><div>${v61CrestSVG(own)}<strong>${escapeHTML(own.name)}</strong></div><span aria-live="polite">${state.score[ownSide]} : ${state.score[1-ownSide]}</span><div>${v61CrestSVG(other)}<strong>${escapeHTML(other.name)}</strong></div></div><p class="v64-minute">Spielpause · ${state.minute}′</p>${v64UiPrematchPitch(career,fixture,state,ownSide,{starters:v64Active(state,ownSide),replacements,ratings,selected:v65SelectedSlot,pickAttribute:'data-v65-pick-slot',label:'Deine Spieler auf dem Spielfeld'})}${v65PauseBench(context)}`;
+ return`<div class="v64-board"><div>${v61CrestSVG(own)}<strong>${escapeHTML(own.name)}</strong></div><span aria-live="polite">${state.score[ownSide]} : ${state.score[1-ownSide]}</span><div>${v61CrestSVG(other)}<strong>${escapeHTML(other.name)}</strong></div></div><p class="v64-minute">Spielpause · ${v74ClockLabel(match)}</p>${v64UiPrematchPitch(career,fixture,state,ownSide,{starters:v64Active(state,ownSide),replacements,ratings,selected:v65SelectedSlot,pickAttribute:'data-v65-pick-slot',label:'Deine Spieler auf dem Spielfeld'})}${v65PauseBench(context)}`;
 }
 function v65SwapPositions(context,otherSlot,firstSlot=v65SelectedSlot){
  const active=v64Active(context.state,context.ownSide),first=active[firstSlot],second=active[otherSlot];
@@ -173,7 +173,8 @@ function v65SwapPositions(context,otherSlot,firstSlot=v65SelectedSlot){
 function v65UpdateControls(context){
  let panel=$('#v65-controls');if(!panel){panel=document.createElement('section');panel.id='v65-controls';panel.className='v64-controls';$('#match-info').insertBefore(panel,$('#match-info').querySelector('.match-stat-header'))}
  const {state,fixture,ownSide}=context;
- let quick=$('#v65-quick-nav');if(!quick){quick=document.createElement('nav');quick.id='v65-quick-nav';quick.setAttribute('aria-label','Spielpause öffnen');quick.innerHTML='<button type="button" data-v65-quick="lineup" aria-label="Aufstellung öffnen">Aufstellung</button><button type="button" data-v65-quick="tactics" aria-label="Taktik öffnen">Taktik</button>';v58Bar.querySelector('.career-progress-controls').insertBefore(quick,v58Button)}quick.hidden=state.phase!=='live';
+ let quick=$('#v65-quick-nav');if(!quick){quick=document.createElement('nav');quick.id='v65-quick-nav';quick.setAttribute('aria-label','Spielpause öffnen');quick.innerHTML='<button type="button" data-v65-quick="lineup" aria-label="Aufstellung öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 12h16M9 3v4h6V3M9 21v-4h6v4"/><circle cx="12" cy="12" r="2"/></svg>Aufstellung</button><button type="button" data-v65-quick="tactics" aria-label="Taktik öffnen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="11" cy="18" r="2"/></svg>Taktik</button>';v58Bar.querySelector('.career-progress-controls').insertBefore(quick,v58Button)}quick.hidden=state.phase!=='live';
+ v58Button.classList.toggle('v65-pause-action',state.phase==='live');v58Button.classList.toggle('v65-resume-action',state.phase==='paused');
  let tabs=$('#v65-pause-tabs');if(!tabs){tabs=document.createElement('nav');tabs.id='v65-pause-tabs';tabs.className='prematch-tabs v64-prematch-tabs';tabs.setAttribute('aria-label','Während der Spielpause');$('#game-screen .workspace').before(tabs)}
  let pitch=$('#v65-plan-view');if(!pitch){pitch=document.createElement('div');pitch.id='v65-plan-view';$('#match-area').before(pitch)}
  const paused=state.phase==='paused';tabs.hidden=!paused;pitch.hidden=!paused;$('#match-area').hidden=paused;$('#heading').textContent=paused?'Dein Spiel pausiert.':'Dein Spiel läuft.';
@@ -182,7 +183,7 @@ function v65UpdateControls(context){
 }
 function v65WorldReport(context,people){
  const flagCodes={ESP:'ES',ITA:'IT',GER:'DE',FRA:'FR',POR:'PT',ENG:'GB'};
- return{ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,score:[...match.score],shots:[...match.shots],possession:[...match.possession],setPieceStats:match.setPieceStats?structuredClone(match.setPieceStats):null,players:people.map(person=>{const change=context.state.substitutions.find(item=>item.outPid===person.pid||item.inPid===person.pid);return{name:person.name,n:person.n,nation:flagCodes[person.nation]||person.nation,keeper:Boolean(person.keeper),team:person.t,minutes:context.state.minutes[person.pid]||0,substitution:change?{minute:change.minute,direction:change.inPid===person.pid?'in':'out'}:null,stats:{...person.stats,rating:context.state.ratings[person.pid]??0}}})};
+ return{ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,score:[...match.score],shots:[...match.shots],possession:[...match.possession],setPieceStats:match.setPieceStats?structuredClone(match.setPieceStats):null,players:people.map(person=>{const change=context.state.substitutions.find(item=>item.outPid===person.pid||item.inPid===person.pid);return{pid:person.pid,name:person.name,n:person.n,nation:flagCodes[person.nation]||person.nation,keeper:Boolean(person.keeper),team:person.t,minutes:context.state.minutes[person.pid]||0,substitution:change?{minute:change.minute,direction:change.inPid===person.pid?'in':'out'}:null,stats:{...person.stats,rating:context.state.ratings[person.pid]??0}}})};
 }
 function v65CompetitionResultsHTML(context){
  const {career,fixture}=context,competition=v62Current(career).find(item=>item.id===fixture.competitionId),type=competition.type,label=type==='league'?v62LeagueLabel(competition.country):type==='cup'?`Nationaler Pokal · ${escapeHTML(v61CountryNames[competition.country])}`:'Europacup';
@@ -352,7 +353,7 @@ $('#game-screen').addEventListener('change',event=>{
 });
 function v65DragTarget(event){return event.target.closest?.('[data-v64-cell],[data-v65-pick-slot],[data-v65-bench-card]')}
 function v65CanDrop(target){
- const context=v65Context();if(!v65Drag||!target||context?.state.phase!=='paused'||v65PauseTab!=='lineup'||v65Drag.kind==='bench'&&target.dataset.v65BenchCard)return false;
+ const context=v65Context();if(!v65Drag||!target||context?.state.phase!=='paused'||v65Drag.kind==='bench'&&target.dataset.v65BenchCard)return false;
  const active=v64Active(context.state,context.ownSide),source=v65Drag.kind==='field'?active[v65Drag.slot]:v65Drag.pid,dest=target.dataset.v65PickSlot!==undefined?active[Number(target.dataset.v65PickSlot)]:target.dataset.v65BenchCard;
  if(target.dataset.v64Cell!==undefined&&!dest)return v65Drag.kind==='field'&&context.state.roles[source]!=='gk';
  if(!source||!dest||source===dest||v64Player(context.career,context.fixture,context.ownSide,source).keeper!==v64Player(context.career,context.fixture,context.ownSide,dest).keeper)return false;
@@ -361,17 +362,22 @@ function v65CanDrop(target){
  return context.state.substitutions.filter(item=>item.side===context.ownSide).length+pending.length<2&&!context.state.exited.includes(inPid)&&!pending.some(item=>item.outPid===outPid||item.inPid===inPid);
 }
 $('#game-screen').addEventListener('dragstart',event=>{
- const context=v65Context();if(context?.state.phase!=='paused'||v65PauseTab!=='lineup')return;
+ const context=v65Context();if(context?.state.phase!=='paused')return;
  const target=v65DragTarget(event);if(!target||target.dataset.v65PickSlot===undefined&&target.dataset.v65BenchCard===undefined)return;
  v65Drag=target.dataset.v65PickSlot!==undefined?{kind:'field',slot:Number(target.dataset.v65PickSlot)}:{kind:'bench',pid:target.dataset.v65BenchCard};
  event.dataTransfer.effectAllowed='move';event.dataTransfer.setData('text/plain','Spieler verschieben');
 });
-$('#game-screen').addEventListener('dragover',event=>{const target=v65DragTarget(event);if(!v65CanDrop(target))return;event.preventDefault();event.dataTransfer.dropEffect='move';$('#v65-plan-view')?.querySelectorAll('.v64-drag-over').forEach(item=>item.classList.remove('v64-drag-over'));target.classList.add('v64-drag-over')});
+$('#game-screen').addEventListener('dragover',event=>{const target=v65DragTarget(event);if(!v65Drag||!target||v65Context()?.state.phase!=='paused')return;event.preventDefault();const valid=v65CanDrop(target);event.dataTransfer.dropEffect=valid?'move':'none';$('#v65-plan-view')?.querySelectorAll('.v64-drag-over').forEach(item=>item.classList.remove('v64-drag-over'));if(valid)target.classList.add('v64-drag-over')});
 $('#game-screen').addEventListener('dragleave',event=>{const target=v65DragTarget(event);if(target&&!target.contains(event.relatedTarget))target.classList.remove('v64-drag-over')});
 $('#game-screen').addEventListener('drop',event=>{
- const target=v65DragTarget(event);if(!v65CanDrop(target))return;
- event.preventDefault();v65DropAction(v65Drag,target);
+ const target=v65DragTarget(event);if(!v65Drag||!target)return;
+ event.preventDefault();if(v65CanDrop(target))v65DropAction(v65Drag,target);else v65ReportInvalidDrop();
 });
+function v65ReportInvalidDrop(){
+ const context=v65Context();if(!context)return;
+ const state=context.state,used=state.substitutions.filter(item=>item.side===context.ownSide).length,pending=state.pending[context.ownSide].length;
+ const message=$('#v65-error');if(message)message.textContent=used+pending>=2?'Höchstens zwei Wechsel sind möglich. Vorgemerkte Wechsel kannst du vor der nächsten Unterbrechung entfernen.':'Dieser Wechsel ist nicht möglich. Torhüter können nur mit Torhütern getauscht werden.';
+}
 function v65DropAction(source,target){
  const context=v65Context(),active=v64Active(context.state,context.ownSide);
  try{

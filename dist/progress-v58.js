@@ -6,7 +6,7 @@ const v58Bar=document.createElement('div');
 v58Bar.id='career-progress';
 v58Bar.hidden=true;
 v58Bar.innerHTML='<div class="career-progress-inner"><div class="career-progress-copy"><small>NÄCHSTER SCHRITT</small><span id="career-progress-context"></span></div><div class="career-progress-controls"><button type="button" id="career-progress-action" class="primary"></button></div></div>';
-document.body.querySelector('header').insertAdjacentElement('afterend',v58Bar);
+document.body.querySelector('header .brand').insertAdjacentElement('afterend',v58Bar);
 const v58Button=v58Bar.querySelector('#career-progress-action');
 const v58Context=v58Bar.querySelector('#career-progress-context');
 let v58LastReport=null;
@@ -105,6 +105,7 @@ function v58Refresh(){
  if(!state)return;
  v58PlaceButton();
  v58Context.textContent=state.context;
+ v58Context.title=state.context;
  v58Button.hidden=!state.action;
  if(state.action){v58Button.textContent=state.label+' →';v58Button.disabled=Boolean(state.disabled);v58Button.title=state.reason||'';v58Button.dataset.action=state.action}
 }

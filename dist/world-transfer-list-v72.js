@@ -25,6 +25,17 @@ function v72WithdrawOwn(career,pid){
  for(const item of market.negotiations.filter(item=>item.pid===pid&&!['rejected','completed'].includes(item.stage)))v72Reject(career,item,'Das Verkaufsangebot wurde zurückgezogen.');
  return listing;
 }
+function v72LowerOwnAsk(career,pid,amount){
+ const market=v72Market(career),listing=market.saleListings.find(item=>item.pid===pid&&item.sellerId===career.manager.managedClubId);
+ amount=Number(amount);
+ if(market.phase!=='open'||!listing||!['active','withdrawn'].includes(listing.status))throw Error('Die Forderung kann nur im laufenden Transferfenster gesenkt werden.');
+ if(market.negotiations.some(item=>item.pid===pid)||market.pendingBids.some(item=>item.pid===pid))throw Error('Für diesen Spieler liegt bereits ein Angebot vor oder lag eines vor.');
+ if(!Number.isInteger(amount)||amount<10||amount>=listing.ask)throw Error('Die neue Forderung muss mindestens 10 Credits betragen und niedriger sein als bisher.');
+ if(!v72CanCommitSale(career,listing.sellerId,pid))throw Error('Der Verein muss mindestens zehn Profis und einen Torwart behalten.');
+ listing.ask=amount;listing.status='active';listing.updatedDay=market.day;
+ v72AiInterest(career,pid);
+ return listing;
+}
 function v72OpenMarket(career){v72AdvanceDay(career)}
 function v72ListingPressure(career,club){
  const due=v66SalaryDue(career,club.id),income=v66SecureNextIncome(club);

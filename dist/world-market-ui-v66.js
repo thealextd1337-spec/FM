@@ -1,6 +1,6 @@
 'use strict';
 
-let v66Filter={country:'all',club:'all',line:'all',selected:null};
+let v66Filter={country:'all',club:'all',line:'all',fee:'all',selected:null};
 let v66ContractSort={key:'roster',desc:false};
 function v66Credits(value){return `${Math.round(value).toLocaleString('de-DE')} Credits`}
 function v66Own(career){return v66Club(career,career.manager.managedClubId)}
@@ -12,7 +12,7 @@ function v66ContractFactsHTML(contract,season){
 function v66ContractHTML(career,player){
  const contract=v66Contract(career,player.pid);if(!contract)return'';
  const remaining=contract.endSeason-career.world.season+1,canRenew=remaining===1&&v66RenewalWindow(career,contract).canOffer&&career.world.market.phase!=='sponsor';
- return`<tr class="v66-contract"><td><button type="button" data-v61-player="${escapeHTML(player.pid)}" aria-label="Profil von ${escapeHTML(player.name)} öffnen">${v61FlagSVG(player.nation)} <strong>${escapeHTML(player.name)}</strong></button></td><td>${v61PositionNames[player.line]}</td><td class="v66-number">${v66Credits(contract.annual)}</td><td class="v66-number">${remaining} ${remaining===1?'Saison':'Saisons'}</td><td class="v66-number">${contract.promise?`${contract.promise} ${contract.promise===1?'Einsatz':'Einsätze'}`:'Keine'}</td><td>${canRenew||contract.renewalNegotiation?`<button type="button" class="menu-action v66-renew-open" data-v66-renew-open="${escapeHTML(player.pid)}">${contract.renewalNegotiation?'Verhandlung öffnen':'Verlängern'}</button>`:'–'}</td></tr>`;
+ return`<tr class="v66-contract"><td><button type="button" data-v61-player="${escapeHTML(player.pid)}" aria-label="Profil von ${escapeHTML(player.name)} öffnen">${v61FlagSVG(player.nation)} <strong>${escapeHTML(player.name)}</strong></button></td><td class="v66-number">${player.age}</td><td>${v61PositionNames[player.line]}</td><td class="v66-number">${v66Credits(contract.annual)}</td><td class="v66-number">${remaining} ${remaining===1?'Saison':'Saisons'}</td><td class="v66-number">${contract.promise?`${contract.promise} ${contract.promise===1?'Einsatz':'Einsätze'}`:'Keine'}</td><td>${canRenew||contract.renewalNegotiation?`<button type="button" class="menu-action v66-renew-open" data-v66-renew-open="${escapeHTML(player.pid)}">${contract.renewalNegotiation?'Verhandlung öffnen':'Verlängern'}</button>`:'–'}</td></tr>`;
 }
 let v66RenewDialog=null;
 function v66OpenRenewDialog(career,pid){
@@ -27,9 +27,9 @@ function v66OpenRenewDialog(career,pid){
 }
 function v66ContractsTableHTML(career){
  const roster=[...v66Own(career).roster];
- if(v66ContractSort.key!=='roster')roster.sort((a,b)=>{const first=v66Contract(career,a.pid),second=v66Contract(career,b.pid),key=v66ContractSort.key,values={name:[a.name,b.name],position:[v61PositionNames[a.line],v61PositionNames[b.line]],salary:[first?.annual??0,second?.annual??0],remaining:[(first?.endSeason??0)-career.world.season+1,(second?.endSeason??0)-career.world.season+1],promise:[first?.promise??0,second?.promise??0]}[key],order=typeof values[0]==='string'?values[0].localeCompare(values[1],'de'):values[0]-values[1];return(v66ContractSort.desc?-order:order)||a.name.localeCompare(b.name,'de')});
+ if(v66ContractSort.key!=='roster')roster.sort((a,b)=>{const first=v66Contract(career,a.pid),second=v66Contract(career,b.pid),key=v66ContractSort.key,values={name:[a.name,b.name],age:[a.age,b.age],position:[v61PositionNames[a.line],v61PositionNames[b.line]],salary:[first?.annual??0,second?.annual??0],remaining:[(first?.endSeason??0)-career.world.season+1,(second?.endSeason??0)-career.world.season+1],promise:[first?.promise??0,second?.promise??0]}[key],order=typeof values[0]==='string'?values[0].localeCompare(values[1],'de'):values[0]-values[1];return(v66ContractSort.desc?-order:order)||a.name.localeCompare(b.name,'de')});
  const heading=(key,label)=>`<th scope="col" ${v66ContractSort.key===key?`aria-sort="${v66ContractSort.desc?'descending':'ascending'}"`:''}><button type="button" data-v66-contract-sort="${key}">${label}${v66ContractSort.key===key?` <span aria-hidden="true">${v66ContractSort.desc?'↓':'↑'}</span>`:''}</button></th>`;
- return`<p class="v66-table-hint">Tabelle seitlich scrollen, um alle Spalten zu sehen.</p><div class="v66-contract-wrap" tabindex="0" role="region" aria-label="Profiverträge, seitlich scrollbar"><table class="v66-contract-table"><thead><tr>${heading('name','Spieler')}${heading('position','Position')}${heading('salary','Gehalt / Saison')}${heading('remaining','Restlaufzeit')}${heading('promise','Einsatz-Zusage')}<th scope="col">Aktion</th></tr></thead><tbody>${roster.map(player=>v66ContractHTML(career,player)).join('')}</tbody></table></div>`;
+ return`<p class="v66-table-hint">Tabelle seitlich scrollen, um alle Spalten zu sehen.</p><div class="v66-contract-wrap" tabindex="0" role="region" aria-label="Profiverträge, seitlich scrollbar"><table class="v66-contract-table"><thead><tr>${heading('name','Spieler')}${heading('age','Alter')}${heading('position','Position')}${heading('salary','Gehalt / Saison')}${heading('remaining','Restlaufzeit')}${heading('promise','Einsatz-Zusage')}<th scope="col">Aktion</th></tr></thead><tbody>${roster.map(player=>v66ContractHTML(career,player)).join('')}</tbody></table></div>`;
 }
 function v66FinanceHTML(career){
  const club=v66Own(career),due=v66SalaryDue(career,club.id),recent=[...club.ledger].reverse().slice(0,12);
@@ -50,7 +50,7 @@ function v66TransferDayNoticeHTML(career){
 function v66MarketPlayers(career){
  const clubs=career.world.clubs.filter(club=>club.id!==career.manager.managedClubId&&(v66Filter.country==='all'||club.countryId===v66Filter.country)&&(v66Filter.club==='all'||club.id===v66Filter.club));
  const owned=clubs.flatMap(club=>club.roster.map(player=>({player,club}))),free=career.world.market.freePlayers.filter(player=>(v66Filter.club==='all'||v66Filter.club==='free')&&(v66Filter.country==='all'||player.pid.includes(`:${v66Filter.country}:`))).map(player=>({player,club:null}));
- return[...free,...owned].filter(item=>v66Filter.line==='all'||item.player.line===v66Filter.line).sort((a,b)=>Number(Boolean(a.club))-Number(Boolean(b.club))||v66Value(b.player)-v66Value(a.player)).slice(0,48);
+ return[...free,...owned].filter(item=>(v66Filter.line==='all'||item.player.line===v66Filter.line)&&(v66Filter.fee==='all'||(v66Filter.fee==='free'?!item.club:!!item.club))).sort((a,b)=>Number(Boolean(a.club))-Number(Boolean(b.club))||v66Value(b.player)-v66Value(a.player)).slice(0,48);
 }
 function v66OfferHTML(career){
  const player=v66Player(career,v66Filter.selected);if(!player)return'';
@@ -81,7 +81,9 @@ function v66DecorateCareer(career){
  const count=squad.querySelector('.v61-roster-head p');if(count)count.textContent=`${v66Own(career).roster.length} Profis · Verträge und Spielerprofile öffnen.`;
  squad.insertAdjacentHTML('beforeend',`<section class="v62-season v66-contracts"><h3>Profiverträge</h3>${v66ContractsTableHTML(career)}<p id="v66-contract-message" class="v61-error" role="alert"></p></section>`);
  club.insertAdjacentHTML('beforeend',v66FinanceHTML(career));
- const transfer=document.createElement('div');transfer.dataset.v46View='transfers';transfer.innerHTML=v66MarketHTML(career);competition.before(transfer);
+ const transfer=document.createElement('div');transfer.dataset.v46View='transfers';transfer.innerHTML=v66MarketHTML(career);
+ transfer.querySelector('.v66-filters')?.insertAdjacentHTML('beforeend',`<label>Ablöse<select id="v66-fee"><option value="all">Alle Spieler</option><option value="free" ${v66Filter.fee==='free'?'selected':''}>Nur ablösefreie</option><option value="paid" ${v66Filter.fee==='paid'?'selected':''}>Nur mit Ablöse</option></select></label>`);
+ competition.before(transfer);
  if(career.world.market.phase==='closed')transfer.querySelector('.v62-season-head')?.insertAdjacentHTML('afterend',v66DeadlineHTML(career));
  const nav=v61WorldScreen.querySelector('[data-v61-tab="transfers"]');if(nav){nav.disabled=false;nav.removeAttribute('aria-label')}
  v61SetCareerTab(v61CareerTab,false);
@@ -138,6 +140,7 @@ v61WorldScreen.addEventListener('change',event=>{
  if(target.id==='v66-country'){v66Filter.country=target.value;v66Filter.club='all';v66Filter.selected=null}
  else if(target.id==='v66-club'){v66Filter.club=target.value;v66Filter.selected=null}
  else if(target.id==='v66-line'){v66Filter.line=target.value;v66Filter.selected=null}
+ else if(target.id==='v66-fee'){v66Filter.fee=target.value;v66Filter.selected=null}
  else return;
  v61RenderCareer(v61CurrentCareer);
 });
@@ -148,9 +151,9 @@ v61WorldScreen.addEventListener('click',event=>{
   if(button.dataset.v66Sponsor){v66ChooseSponsor(career,career.manager.managedClubId,button.dataset.v66Sponsor);v61CareerTab='overview';action=true}
   else if(button.dataset.v66GoTransfers!==undefined){v61SetCareerTab('transfers');return}
   else if(button.dataset.v66RenewOpen!==undefined){v66OpenRenewDialog(career,button.dataset.v66RenewOpen);return}
-  else if(button.dataset.v66ContractSort){const key=button.dataset.v66ContractSort;if(!['name','position','salary','remaining','promise'].includes(key))return;v66ContractSort={key,desc:v66ContractSort.key===key?!v66ContractSort.desc:false};v61RenderCareer(career);v61WorldScreen.querySelector('.v66-contracts')?.scrollIntoView({block:'start'});return}
+  else if(button.dataset.v66ContractSort){const key=button.dataset.v66ContractSort;if(!['name','age','position','salary','remaining','promise'].includes(key))return;v66ContractSort={key,desc:v66ContractSort.key===key?!v66ContractSort.desc:false};v61RenderCareer(career);v61WorldScreen.querySelector('.v66-contracts')?.scrollIntoView({block:'start'});return}
   else if(button.dataset.v66Select){v66Filter.selected=button.dataset.v66Select;action=true}
-  else if(button.dataset.v66Profile){const player=v66Player(career,button.dataset.v66Profile);if(!player)return;const owner=v66Owner(career,player.pid),contract=v66Contract(career,player.pid);v61ProfileReturn=button;v61ProfileDialog.innerHTML=`<div class="player-card-head"><div>${v61FlagSVG(player.nation)}<p class="eyebrow">${escapeHTML(v61CountryNames[player.nation])}</p><h2>${escapeHTML(player.name)}</h2><span>${v61PositionNames[player.line]} · ${player.age} Jahre · ${escapeHTML(owner?.name||'Vereinslos')}</span></div><button type="button" data-v61-close aria-label="Spielerprofil schließen">×</button></div><div class="player-card-facts"><span>Marktwert<b>${v66Credits(v66Value(player))}</b></span>${v66ContractFactsHTML(contract,career.world.season)}</div><section><h3>Fähigkeiten</h3>${v55SkillGroupsHTML(player)}</section>`;v61ProfileDialog.querySelector('[data-v61-close]').onclick=()=>v61ProfileDialog.close();v61ProfileDialog.showModal();if(typeof v72DecorateOwnProfile==='function')v72DecorateOwnProfile(career,player.pid);return}
+  else if(button.dataset.v66Profile){if(typeof v68OpenPlayerProfile==='function'){v68OpenPlayerProfile(career,button.dataset.v66Profile,button);return}const player=v66Player(career,button.dataset.v66Profile);if(!player)return;const owner=v66Owner(career,player.pid),contract=v66Contract(career,player.pid);v61ProfileReturn=button;v61ProfileDialog.innerHTML=`<div class="player-card-head"><div>${v61FlagSVG(player.nation)}<p class="eyebrow">${escapeHTML(v61CountryNames[player.nation])}</p><h2>${escapeHTML(player.name)}</h2><span>${v61PositionNames[player.line]} · ${player.age} Jahre · ${escapeHTML(owner?.name||'Vereinslos')}</span></div><button type="button" data-v61-close aria-label="Spielerprofil schließen">×</button></div><div class="player-card-facts"><span>Marktwert<b>${v66Credits(v66Value(player))}</b></span>${v66ContractFactsHTML(contract,career.world.season)}</div><section><h3>Fähigkeiten</h3>${v55SkillGroupsHTML(player)}</section>`;v61ProfileDialog.querySelector('[data-v61-close]').onclick=()=>v61ProfileDialog.close();v61ProfileDialog.showModal();if(typeof v72DecorateOwnProfile==='function')v72DecorateOwnProfile(career,player.pid);return}
   else if(button.dataset.v66Offer){const player=v66Player(career,button.dataset.v66Offer),owner=v66Owner(career,button.dataset.v66Offer),annual=owner?Math.round(v66Salary(player)*1.12/10)*10:v61WorldScreen.querySelector('#v66-salary').value;v66MakeBid(career,career.manager.managedClubId,button.dataset.v66Offer,v61WorldScreen.querySelector('#v66-price').value,annual,owner?2:v61WorldScreen.querySelector('#v66-years').value,owner?3:v61WorldScreen.querySelector('#v66-promise').value);action=true}
   else if(button.dataset.v66Accept){v66RespondBid(career,button.dataset.v66Accept,true);action=true}
   else if(button.dataset.v66Reject){v66RespondBid(career,button.dataset.v66Reject,false);action=true}

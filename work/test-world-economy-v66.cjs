@@ -7,6 +7,7 @@ for(const file of ['world-catalog-v61.js','world-competition-v62.js','world-coac
 const foundation=fs.readFileSync('dist/world-foundation-v61.js','utf8');
 vm.runInContext(foundation.slice(0,foundation.indexOf('const v61Panel=')),context);
 vm.runInContext(fs.readFileSync('dist/world-economy-v66.js','utf8'),context);
+vm.runInContext(fs.readFileSync('dist/world-honours-v74.js','utf8'),context);
 if(process.env.DOPPEL_SALES)vm.runInContext(fs.readFileSync('dist/world-transfer-list-v72.js','utf8'),context);
 const call=(name,...args)=>vm.runInContext(name,context)(...args);
 const career=call('v61CreateCareer','GER-2',process.env.DOPPEL_SEED||'economy-seed');
@@ -40,6 +41,7 @@ assert(!other.roster.some(item=>item.pid===player.pid));
 assert.strictEqual(own.balance,beforeBuyer-price);
 assert.strictEqual(other.balance,beforeSeller+price);
 assert.strictEqual(call('v66Contract',career,player.pid).clubId,own.id);
+assert(career.world.transfers.some(item=>item.id===bid.id&&item.pid===player.pid&&item.sellerId===other.id&&item.buyerId===own.id&&item.price===price),'abgeschlossener Transfer bleibt als Historieneintrag erhalten');
 assert.strictEqual(call('v61ValidateCareer',career),true);
 const snapshot=JSON.parse(JSON.stringify(career));
 assert.strictEqual(call('v61ValidateCareer',snapshot),true,'Transferzustand ist nach Neuladen gültig');

@@ -13,7 +13,7 @@ function v71DragSource(target){
  const pause=target.closest?.('#v65-plan-view [data-v65-pick-slot],#v65-plan-view [data-v65-bench-card]');
  if(pause){
   if(pause.classList.contains('v64-keeper-choice'))return null;
-  const context=v65Context();if(context?.state.phase!=='paused'||v65PauseTab!=='lineup')return null;
+  const context=v65Context();if(context?.state.phase!=='paused')return null;
   return{mode:'pause',source:pause.dataset.v65PickSlot!==undefined?{kind:'field',slot:Number(pause.dataset.v65PickSlot)}:{kind:'bench',pid:pause.dataset.v65BenchCard},element:pause};
  }
  return null;
@@ -65,7 +65,7 @@ document.addEventListener('pointerup',event=>{
  if(dropped){
   v71SuppressClickUntil=Date.now()+450;
   if(drag.mode==='prematch'){v64UiDrag=drag.source;if(v64UiCanDrop(target))v64UiDropAction(drag.source,target);v64UiDrag=null}
-  else{v65Drag=drag.source;if(v65CanDrop(target))v65DropAction(drag.source,target);v65Drag=null}
+  else{v65Drag=drag.source;if(v65CanDrop(target))v65DropAction(drag.source,target);else if(target)v65ReportInvalidDrop();v65Drag=null}
  }
  v71Clear();
 });

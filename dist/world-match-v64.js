@@ -49,7 +49,12 @@ function v64MakeState(career,fixture){
   const player=career.world.clubs.flatMap(club=>club.roster).find(item=>item.pid===pid);
   fresh[pid]=player.fresh;minutes[pid]=0;stats[pid]={goals:0,assists:0,shots:0};
  }
- return{fixtureId:fixture.id,minute:0,score:[0,0],active:[...plan.home.starters],awayActive:[...plan.away.starters],bench:[...plan.home.bench],awayBench:[...plan.away.bench],roles:{...plan.home.roles,...plan.away.roles},orientation:{},tactics:[{...plan.home.tactics},{...plan.away.tactics}],tacticChanges:[],pending:[[],[]],substitutions:[],exited:[],events:[],fresh,minutes,stats,phase:'prematch',lastAiCheck:[-1,-1],lastAiChange:[-20,-20]};
+ return{fixtureId:fixture.id,minute:0,firstHalfEnd:45,fullTimeEnd:90,stoppages:[0,0],addedMinutes:[0,0],score:[0,0],active:[...plan.home.starters],awayActive:[...plan.away.starters],bench:[...plan.home.bench],awayBench:[...plan.away.bench],roles:{...plan.home.roles,...plan.away.roles},orientation:{},tactics:[{...plan.home.tactics},{...plan.away.tactics}],tacticChanges:[],pending:[[],[]],substitutions:[],exited:[],events:[],fresh,minutes,stats,phase:'prematch',lastAiCheck:[-1,-1],lastAiChange:[-20,-20]};
+}
+function v64ClockLabel(state,minute=state.minute){
+ if(minute<=state.firstHalfEnd)return minute>45?`45+${minute-45}`:String(minute);
+ const regular=minute-state.addedMinutes[0];
+ return regular>90?`90+${regular-90}`:String(regular);
 }
 function v64Workload(player,tactic){
  const early=tactic.pressing==='Früh';
@@ -210,14 +215,16 @@ function v64Step(career,fixture,state){
   }
   if(random()<.16)stoppage=true;
  }
- if(state.minute===45)state.events.push({minute:45,type:'halftime'});
- if(goal||state.minute===45||state.minute%15===0)for(const side of [0,1])v64AiAdjust(career,fixture,state,side,goal?'Tor':state.minute===45?'Halbzeit':'Reguläre Prüfung');
- if(stoppage&&state.pending.some(items=>items.length))v64ExecutePending(career,fixture,state,state.minute===45?'Halbzeit':'Spielunterbrechung');
- if(state.minute>=90)state.phase='finished';
+ if(stoppage){const half=state.minute<=state.firstHalfEnd?0:1,baseline=half===0?45:90+state.addedMinutes[0];if(state.minute<=baseline){state.stoppages[half]++;state.addedMinutes[half]=Math.min(5,Math.round(state.stoppages[half]/4));state.firstHalfEnd=45+state.addedMinutes[0];state.fullTimeEnd=90+state.addedMinutes[0]+state.addedMinutes[1]}}
+ const halftime=state.minute===state.firstHalfEnd;
+ if(halftime)state.events.push({minute:state.minute,type:'halftime'});
+ if(goal||halftime||state.minute%15===0)for(const side of [0,1])v64AiAdjust(career,fixture,state,side,goal?'Tor':halftime?'Halbzeit':'Reguläre Prüfung');
+ if(stoppage&&state.pending.some(items=>items.length))v64ExecutePending(career,fixture,state,halftime?'Halbzeit':'Spielunterbrechung');
+ if(state.minute>=state.fullTimeEnd)state.phase='finished';
  return state;
 }
 function v64FinishFixture(career,fixture,state){
- if(state.minute!==90||state.phase!=='finished')throw Error('Die Partie ist noch nicht beendet.');
+ if(state.minute<90||state.phase!=='finished')throw Error('Die Partie ist noch nicht beendet.');
  if(fixture.matchRecord)return fixture.matchRecord;
  const record={score:[...state.score],starters:{home:[...fixture.plan.home.starters],away:[...fixture.plan.away.starters]},tacticChanges:state.tacticChanges,substitutions:state.substitutions,events:state.events,players:[]};
  for(const side of [0,1])for(const player of v64Side(career,fixture,side)){
@@ -227,7 +234,7 @@ function v64FinishFixture(career,fixture,state){
   const line={pid:player.pid,side,minutes,goals:stats.goals,assists:stats.assists,shots:stats.shots,...extra,rating};record.players.push(line);
   player.fresh=Math.round(state.fresh[player.pid]*100)/100;
   if(rating!==null)v64UpdateForm(player,rating);
-  player.history.push({fixtureId:fixture.id,season:career.world.season,competitionId:fixture.competitionId,minutes,goals:stats.goals,assists:stats.assists,shots:stats.shots,...extra,rating});
+  player.history.push({fixtureId:fixture.id,season:career.world.season,clubId:side===0?fixture.homeId:fixture.awayId,competitionId:fixture.competitionId,minutes,goals:stats.goals,assists:stats.assists,shots:stats.shots,...extra,rating});
  }
  fixture.matchRecord=record;
  return record;
@@ -249,9 +256,12 @@ function v64ArchiveSeason(career){
  for(const player of [...career.world.clubs.flatMap(club=>club.roster),...(career.world.market?.freePlayers||[])]){
   const played=player.history.filter(item=>item.season===season);
   if(!played.length)continue;
-  const summary={season,games:played.length,minutes:0,goals:0,assists:0,shots:0,fouls:0,penaltiesScored:0,penaltiesMissed:0,cleanSheet:0,conceded:0};
-  for(const item of played)for(const key of ['minutes','goals','assists','shots','fouls','penaltiesScored','penaltiesMissed','cleanSheet','conceded'])summary[key]+=item[key]||0;
-  player.seasons.push(summary);player.history=player.history.filter(item=>item.season!==season);
+  for(const clubId of [...new Set(played.map(item=>item.clubId))]){
+   const entries=played.filter(item=>item.clubId===clubId),summary={season,clubId,games:entries.length,minutes:0,goals:0,assists:0,shots:0,fouls:0,penaltiesScored:0,penaltiesMissed:0,cleanSheet:0,conceded:0};
+   for(const item of entries)for(const key of ['minutes','goals','assists','shots','fouls','penaltiesScored','penaltiesMissed','cleanSheet','conceded'])summary[key]+=item[key]||0;
+   player.seasons.push(summary);
+  }
+  player.history=player.history.filter(item=>item.season!==season);
  }
 }
 function v64ActiveFixture(career){

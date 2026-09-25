@@ -35,10 +35,12 @@ assert.throws(()=>get('v64QueueSubstitution')(career,fixture,state,ownSide,outgo
 while(state.phase!=='finished')get('v64Step')(career,fixture,state);
 const record=get('v64FinishFixture')(career,fixture,state);
 assert.strictEqual(get('v64FinishFixture')(career,fixture,state),record,'Abpfiff bucht Spieler nur einmal');
-for(const side of [0,1])assert.strictEqual(record.players.filter(item=>item.side===side).reduce((sum,item)=>sum+item.minutes,0),540,'sechs Spieler über 90 Minuten');
+assert(state.addedMinutes.every(value=>value>=0&&value<=5),'beide Halbzeiten erhalten begrenzte Nachspielzeit');
+assert.strictEqual(state.minute,90+state.addedMinutes[0]+state.addedMinutes[1]);
+for(const side of [0,1])assert.strictEqual(record.players.filter(item=>item.side===side).reduce((sum,item)=>sum+item.minutes,0),state.minute*6,'sechs Spieler erhalten auch die Nachspielminuten');
 assert(record.substitutions.filter(item=>item.side===ownSide).length<=2);
 assert(record.players.some(item=>item.pid===incoming&&item.minutes>0));
-assert(record.players.some(item=>item.pid===outgoing&&item.minutes<90));
+assert(record.players.some(item=>item.pid===outgoing&&item.minutes<state.minute));
 assert(record.players.every(item=>item.minutes>=20||item.rating===null));
 for(const goal of state.events.filter(item=>item.type==='goal'))if(goal.assistPid)assert(state.stats[goal.assistPid].assists>0,'Angezeigte Vorlage ist auch als Spielerwert erfasst');
 assert.strictEqual(state.events.filter(item=>item.type==='goal'&&item.assistPid).length,record.players.reduce((sum,item)=>sum+item.assists,0),'Vorlagen im Verlauf und Spielerbericht stimmen überein');
