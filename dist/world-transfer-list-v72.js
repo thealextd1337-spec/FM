@@ -38,8 +38,8 @@ function v72LowerOwnAsk(career,pid,amount){
 }
 function v72OpenMarket(career){v72AdvanceDay(career)}
 function v72ListingPressure(career,club){
- const due=v66SalaryDue(career,club.id),income=v66SecureNextIncome(club);
- return club.restructuring||club.balance+v66LeaguePrizes[5]-due<500||due>income*1.2&&club.balance<due*1.6;
+ const due=v66SalaryDue(career,club.id);
+ return club.restructuring||club.balance+v66LeaguePrizes[5]-due<500;
 }
 function v72AdvanceDay(career){
  const market=v72Market(career),own=career.manager.managedClubId,targets={gk:1,def:3,mid:4,att:3},minimum={gk:1,def:1,mid:1,att:1};
@@ -56,7 +56,7 @@ function v72AdvanceDay(career){
   const room=club.roster.length-10,surplusRoom=Math.max(0,club.roster.length-11),picks=new Map(),remaining={...counts};
   if(pressure){
    const expensive=[...club.roster].filter(player=>remaining[player.line]>minimum[player.line]).sort((a,b)=>(v66Contract(career,b.pid)?.annual||0)-(v66Contract(career,a.pid)?.annual||0)||a.pid.localeCompare(b.pid));
-   let needed=Math.max(200,v66SalaryDue(career,club.id)-v66SecureNextIncome(club),500-(club.balance+v66LeaguePrizes[5]-v66SalaryDue(career,club.id)));
+   let needed=Math.max(200,500-(club.balance+v66LeaguePrizes[5]-v66SalaryDue(career,club.id)));
    for(const player of expensive){if(picks.size>=room||needed<=0)break;if(remaining[player.line]<=minimum[player.line])continue;picks.set(player.pid,'finance');remaining[player.line]--;needed-=v66Value(player)}
   }
   for(const line of ['gk','def','mid','att']){

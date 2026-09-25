@@ -165,7 +165,7 @@ function v61FlagSVG(countryId){
  if(countryId==='ENG')return'<svg class="flag-icon v61-country-flag" viewBox="0 0 24 16" role="img" aria-label="England"><title>England</title><path fill="#fff" d="M0 0h24v16H0z"/><path fill="#c8102e" d="M10 0h4v16h-4zM0 6h24v4H0z"/></svg>';
  return flagSVG({ESP:'ES',ITA:'IT',GER:'DE',FRA:'FR',POR:'PT'}[countryId]||countryId);
 }
-function v61RosterHTML(roster){return`<div class="v61-roster">${roster.map(player=>`<button type="button" class="v61-player" data-v61-player="${escapeHTML(player.pid)}" aria-label="Profil von ${escapeHTML(player.name)} öffnen"><span class="v61-shirt">${player.n}</span><span class="v61-player-name">${v61FlagSVG(player.nation)}<strong>${escapeHTML(player.name)}</strong><small>${v61PositionNames[player.line]} · ${player.age} Jahre</small></span></button>`).join('')}</div>`}
+function v61RosterHTML(roster){const order={gk:0,def:1,mid:2,att:3};return`<div class="v61-roster">${[...roster].sort((a,b)=>(order[a.line]??4)-(order[b.line]??4)||a.name.localeCompare(b.name,'de')).map(player=>`<button type="button" class="v61-player" data-v61-player="${escapeHTML(player.pid)}" aria-label="Profil von ${escapeHTML(player.name)} öffnen"><span class="v61-shirt">${player.n}</span><span class="v61-player-name">${v61FlagSVG(player.nation)}<strong>${escapeHTML(player.name)}</strong><small>${v61PositionNames[player.line]} · ${player.age} Jahre</small></span></button>`).join('')}</div>`}
 
 const v61Panel=document.createElement('section');
 v61Panel.className='panel v61-start-panel';

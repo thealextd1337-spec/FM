@@ -40,7 +40,7 @@ function v72OwnPriceControlHTML(career,listing){
  return`<div class="v72-own-reprice"><label>Neue Forderung<input type="number" min="10" max="${listing.ask-1}" step="10" value="${Math.max(10,Math.min(newAsk,listing.ask-10))}" data-v72-new-ask="${escapeHTML(listing.pid)}"></label><button type="button" class="menu-action" data-v72-lower-ask="${escapeHTML(listing.pid)}">${listing.status==='withdrawn'?'Günstiger erneut anbieten':'Forderung senken'}</button></div>`;
 }
 function v72OwnListingsHTML(career){
- const market=v72Market(career),own=career.manager.managedClubId,listings=market.saleListings.filter(item=>item.sellerId===own);
+ const market=v72Market(career),own=career.manager.managedClubId,listings=market.saleListings.filter(item=>item.sellerId===own&&['active','withdrawn'].includes(item.status)&&v66Owner(career,item.pid)?.id===own);
  if(!listings.length)return`<section class="v72-own-sales" id="v72-own-sales"><h3>Eigene Verkaufsangebote</h3><p>Öffne das Profil eines eigenen Spielers, um ihn zum Verkauf anzubieten.</p></section>`;
  const stages={'seller-offer':'Antwort auf Kaufangebot offen','seller-counter-wait':'Antwort des Käufers ausstehend','contract-wait':'Spielervertrag ausstehend',ready:'Entscheidung beim Tageswechsel'};
  const cards=listings.map(listing=>{
@@ -162,7 +162,7 @@ v61WorldScreen.addEventListener('click',async event=>{
  if(button.dataset.v72Open!==undefined){v72OpenListing(v61CurrentCareer,button.dataset.v72Open);return}
  if(button.dataset.v72Deal!==undefined)v72RenderDeal(v61CurrentCareer,button.dataset.v72Deal);
  if(button.dataset.v72SellerDeal!==undefined)v72RenderSellerDeal(v61CurrentCareer,button.dataset.v72SellerDeal);
- if(button.dataset.v72QuickSeller!==undefined){button.disabled=true;try{v72SellerRespond(v61CurrentCareer,button.dataset.v72QuickSeller,button.dataset.v72Response);await v64UiSave();v61RenderCareer(v61CurrentCareer)}catch(error){const target=v61WorldScreen.querySelector('#v72-own-message');if(target)target.textContent=error.message}finally{if(button.isConnected)button.disabled=false}return}
+ if(button.dataset.v72QuickSeller!==undefined){button.disabled=true;try{const scrollY=window.scrollY;v72SellerRespond(v61CurrentCareer,button.dataset.v72QuickSeller,button.dataset.v72Response);await v64UiSave();v61RenderCareer(v61CurrentCareer);window.scrollTo(0,scrollY)}catch(error){const target=v61WorldScreen.querySelector('#v72-own-message');if(target)target.textContent=error.message}finally{if(button.isConnected)button.disabled=false}return}
  if(button.dataset.v72Withdraw!==undefined){try{v72WithdrawOwn(v61CurrentCareer,button.dataset.v72Withdraw);await v64UiSave();v61RenderCareer(v61CurrentCareer)}catch(error){const target=v61WorldScreen.querySelector('#v72-own-message');if(target)target.textContent=error.message}}
  if(button.dataset.v72LowerAsk!==undefined){button.disabled=true;try{const pid=button.dataset.v72LowerAsk,amount=v61WorldScreen.querySelector(`[data-v72-new-ask="${CSS.escape(pid)}"]`)?.value;v72LowerOwnAsk(v61CurrentCareer,pid,amount);await v64UiSave();v61RenderCareer(v61CurrentCareer)}catch(error){const target=v61WorldScreen.querySelector('#v72-own-message');if(target)target.textContent=error.message}finally{if(button.isConnected)button.disabled=false}return}
 });

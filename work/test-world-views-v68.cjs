@@ -41,7 +41,7 @@ assert(ownProfile.includes(own.historyText)&&ownProfile.includes('data-v68-playe
 career.world.transfers.push({id:'history-1',season:1,day:4,pid:other.roster[0].pid,playerName:other.roster[0].name,sellerId:other.id,buyerId:own.id,price:180});
 career.world.transfers.push({id:'history-2',season:2,day:8,pid:own.roster[0].pid,playerName:own.roster[0].name,sellerId:own.id,buyerId:other.id,price:240});
 const transferHistory=call('v74ClubTransfersHTML',career,own);
-assert(transferHistory.includes('Saison 2')&&transferHistory.includes('Saison 1')&&transferHistory.includes('Zugang')&&transferHistory.includes('Abgang'));
+assert(transferHistory.includes('Saison 2')&&transferHistory.includes('Saison 1')&&transferHistory.includes('Zugänge')&&transferHistory.includes('Abgänge'));
 assert(transferHistory.includes(other.name)&&transferHistory.includes('180 Credits')&&transferHistory.includes('240 Credits'));
 const careerPlayer=own.roster[0];careerPlayer.seasons.push({season:1,clubId:own.id,games:2,minutes:180,goals:1,assists:0});
 careerPlayer.seasons.push({season:2,clubId:other.id,games:3,minutes:270,goals:2,assists:1});
