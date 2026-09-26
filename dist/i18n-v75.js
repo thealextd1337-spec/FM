@@ -396,6 +396,8 @@ Remis	Draws
 Titel	Title
 🏆 Titel	🏆 Title
 Titel gewonnen	Title won
+Herzlichen Glückwunsch!	Congratulations!
+Weiter zum Spielbericht	Continue to match report
 Meisterschaft	Championship
 Mannschaftspokal	Team trophy
 Mannschaftspokale	Team trophies

@@ -36,7 +36,7 @@
 .v68-archive-season>summary small{margin-left:9px;color:#b8ccc1;font-weight:400}
 .v68-archive-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:10px;border-top:1px solid #425c56}
 .v68-archive-grid article{display:grid;align-content:start;gap:5px;min-width:0;padding:9px;border:1px solid #334c48;border-radius:6px;background:#1b3434}
-.v68-archive-competition{display:flex;align-items:center;gap:5px;color:#bdd6c7;font-size:11px}.v68-archive-competition .v62-award-icon{width:22px;height:22px}
+.v68-archive-competition{display:flex;align-items:center;gap:8px;color:#bdd6c7;font-size:11px}.v68-archive-competition .v62-award-icon{width:40px;height:40px}
 .v68-player-honours{padding:0;list-style:none}.v68-player-honours li{display:flex;align-items:center;gap:8px;padding:5px 0}.v68-player-honours .v62-award-icon{width:26px;height:26px}
 .v68-digest .v62-recent{margin-top:10px}
 .v68-market-club,.v68-bid-club{display:block;margin:7px 0 0}

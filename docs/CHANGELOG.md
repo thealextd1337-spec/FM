@@ -2,6 +2,11 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-27 (Trophäen und Siegerfeiern)
+
+- Meisterschaft, nationaler Pokal, Torschützenkönig, Spieler der Saison und „Man of the Match“ zeigen nun je Land eigene 16-Bit-Grafiken mit eingearbeiteter Landesflagge. Europacup und internationale Matchauszeichnungen erhalten eigene Motive. Kleine Tabellenzeichen nutzen vereinfachte 24-Pixel-Versionen; große Ansichten bewahren die Qualität der Bildvorlagen. Die Grafiken erscheinen in Wettbewerben, Matchbericht, Vereins- und Spielerprofilen sowie im Saisonrückblick; das Spielerprofil gruppiert Matchauszeichnungen nach Land. Bestehende Erfolge bleiben unverändert. Motive und Neuerzeugung sind dokumentiert. Geprüft mit Weltansichts-, Award- und Berichttests sowie dem Einzeldatei-Build und einer Kontrolle aller 64 Bilddateien.
+- Nach einem eigenen Pokal- oder Europacupfinalsieg und nach der Meisterschaft am letzten Ligaspieltag öffnet eine bestätigungspflichtige Siegerfeier mit großer Trophäe, Vereinswappen und Saison. Die Bestätigung führt zum Spielbericht; ein offener Dialog bleibt nach dem Neuladen erhalten. Der Saisonrückblick hebt alle eigenen Titel mit großen Trophäen hervor. Bereits abgeschlossene Partien lösen keine Feier nachträglich aus. Geprüft mit Siegerdialog-, Elfmeterschießen-, Saisonrückblick- und Buildtests.
+
 ## 2026-09-26 (Schiedsrichter-Sprites und Matchanzeigen)
 
 - Für jede Partie wird zufällig eines von drei Pixelart-Schiedsrichter-Sets gewählt und beim Speichern beibehalten. Der Linienrichter hebt beim Abseits die Fahne zuerst senkrecht und zeigt dann mit waagerechtem Arm nach vorne; die Szene bleibt drei Sekunden sichtbar. Bei einem regulären Elfmeter zeigt der Schiedsrichter mit Pfeife im Mund auf den Strafstoßpunkt. Geprüft mit Standardsituations-, Abseits-, Match- und Buildtests.

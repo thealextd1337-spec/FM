@@ -17,7 +17,7 @@ function v68ChampionBadges(career){
  const badges=new Map();
  for(const item of latest.values()){
   const label=item.type==='league'?`Amtierender Meister ${v61CountryNames[item.country]}`:item.type==='cup'?`Amtierender Pokalsieger ${v61CountryNames[item.country]}`:'Amtierender Europacupsieger';
-  const badge=`<span class="v68-title-badge" role="img" aria-label="${escapeHTML(label)}" title="${escapeHTML(label)}">${v62AwardIcon(item.country,item.type)}</span>`;
+  const badge=`<span class="v68-title-badge" role="img" aria-label="${escapeHTML(label)}" title="${escapeHTML(label)}">${v62AwardIcon(item.country,item.type,true)}</span>`;
   badges.set(item.winnerId,(badges.get(item.winnerId)||'')+badge);
  }
  return badges;
@@ -219,8 +219,17 @@ v61AdvanceCareer=function(){
 function v74PlayerHonoursHTML(career,player){
  const honours=player.honours||[],titles=honours.filter(item=>item.kind==='title').reverse(),personal=honours.filter(item=>item.kind!=='title'&&item.kind!=='man-of-the-match').reverse(),matches=honours.filter(item=>item.kind==='man-of-the-match');
  const row=item=>{const competition=career.world.competitions.find(entry=>entry.id===item.competitionId),kind=item.kind==='title'?competition?.type:item.kind;return`<li>${v62AwardIcon(competition?.country,kind)}<span>Saison ${item.season} · ${escapeHTML(v74HonourLabel(item))} · ${escapeHTML(v68Club(career,item.clubId)?.name||'Verein')}</span></li>`};
- const matchSeasons=[...new Set(matches.map(item=>item.season))].sort((a,b)=>b-a).map(season=>`Saison ${season}: ${matches.filter(item=>item.season===season).length}`).join(' · ');
- return`<div class="v74-honour-sections"><section><h4>Team Awards</h4>${titles.length?`<ul class="v68-history v68-player-honours">${titles.map(row).join('')}</ul>`:'<p>Noch keine Mannschaftstitel.</p>'}</section><section><h4>Persönliche Awards</h4>${personal.length||matches.length?`<ul class="v68-history v68-player-honours">${personal.map(row).join('')}${matches.length?`<li>${v62AwardIcon(null,'man-of-the-match')}<span><strong>Man of the Match · insgesamt ${matches.length}×</strong><small>${matchSeasons}</small></span></li>`:''}</ul>`:'<p>Noch keine persönlichen Awards.</p>'}</section></div>`;
+ const matchGroups=new Map();
+ for(const item of matches){
+  const competition=career.world.competitions.find(entry=>entry.id===item.competitionId),country=competition?.country||'EU';
+  if(!matchGroups.has(country))matchGroups.set(country,[]);
+  matchGroups.get(country).push(item);
+ }
+ const matchRows=[...matchGroups].map(([country,items])=>{
+  const seasons=[...new Set(items.map(item=>item.season))].sort((a,b)=>b-a).map(season=>`Saison ${season}: ${items.filter(item=>item.season===season).length}`).join(' · ');
+  return`<li>${v62AwardIcon(country,'man-of-the-match')}<span><strong>Man of the Match · insgesamt ${items.length}×</strong><small>${escapeHTML(v61CountryNames[country]||'Europacup')} · ${seasons}</small></span></li>`;
+ }).join('');
+ return`<div class="v74-honour-sections"><section><h4>Team Awards</h4>${titles.length?`<ul class="v68-history v68-player-honours">${titles.map(row).join('')}</ul>`:'<p>Noch keine Mannschaftstitel.</p>'}</section><section><h4>Persönliche Awards</h4>${personal.length||matches.length?`<ul class="v68-history v68-player-honours">${personal.map(row).join('')}${matchRows}</ul>`:'<p>Noch keine persönlichen Awards.</p>'}</section></div>`;
 }
 function v68OpenPlayerProfile(career,pid,button){
  const player=career.world.clubs.flatMap(club=>club.roster).find(item=>item.pid===pid)||career.world.market.freePlayers.find(item=>item.pid===pid);if(!player)return;

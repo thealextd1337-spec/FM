@@ -155,10 +155,36 @@ function v65BookWorldMatch(context){
  const state=context.state;
  v64CompleteOwnMatch(context.career);state.postMatchReport.manOfMatchPid=context.fixture.matchRecord?.manOfMatchPid||null;
  const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
+ if(v65VictoryCompetition(context,competition))state.postMatchStep='celebration';
  if(competition?.type==='europe'&&['QF','SF'].includes(context.fixture.round)){state.postMatchReport.leg=context.fixture.leg;state.postMatchReport.aggregate=[...state.postMatchReport.score]}
  const firstLeg=v64UiFirstLegScore(context.career,context.fixture,context.ownSide===1);
  if(firstLeg){state.postMatchReport.firstLeg=firstLeg;state.postMatchReport.aggregate=[firstLeg[0]+state.postMatchReport.score[0],firstLeg[1]+state.postMatchReport.score[1]]}
  v64UiSave();
+}
+function v65VictoryCompetition(context,competition){
+ if(!competition||competition.winnerId!==context.career.manager.managedClubId)return false;
+ if(competition.type==='league')return context.fixture.day===v62Days.league.at(-1);
+ return(competition.type==='cup'||competition.type==='europe')&&context.fixture.round==='F';
+}
+let v65CelebrationDialog=null;
+function v65ShowCelebration(context){
+ const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
+ if(!v65VictoryCompetition(context,competition))return false;
+ if(!v65CelebrationDialog){
+  v65CelebrationDialog=document.createElement('dialog');v65CelebrationDialog.id='v65-victory-dialog';v65CelebrationDialog.setAttribute('aria-labelledby','v65-victory-title');document.body.append(v65CelebrationDialog);
+  v65CelebrationDialog.addEventListener('cancel',event=>event.preventDefault());
+ }
+ if(v65CelebrationDialog.open)return true;
+ const club=v66Club(context.career,context.career.manager.managedClubId),kind=competition.type,label={league:'Meister',cup:'Pokalsieger',europe:'Europacupsieger'}[kind],name=kind==='league'?'Meisterschaft':kind==='cup'?'Nationaler Pokal':'Europacup',country=kind==='europe'?'':` · ${v61CountryNames[competition.country]}`;
+ v65CelebrationDialog.innerHTML=`<div class="v65-victory-content"><h2 id="v65-victory-title">Herzlichen Glückwunsch!</h2><strong class="v65-victory-title">${label}</strong><p class="v65-victory-context">${name}${country} · Saison ${competition.season}</p>${v62AwardIcon(competition.country,kind)}<div class="v65-victory-club">${v61CrestSVG(club)}<strong>${escapeHTML(club.name)}</strong></div><p class="v61-error" role="alert"></p><button type="button" class="primary" autofocus>Weiter zum Spielbericht</button></div>`;
+ const button=v65CelebrationDialog.querySelector('button');
+ button.onclick=async()=>{
+  if(button.disabled)return;button.disabled=true;
+  context.state.postMatchStep='report';
+  try{await v64UiSave();v65CelebrationDialog.close();v65ShowPostMatch(context)}
+  catch(error){context.state.postMatchStep='celebration';v65CelebrationDialog.querySelector('[role="alert"]').textContent=error.message;button.disabled=false}
+ };
+ v65CelebrationDialog.showModal();v58Refresh();return true;
 }
 function v65ShowWorldPenalties(context){
  v65WorldActive=context;v42Session=context.state.penaltySession;v61WorldScreen.hidden=true;v42RenderScreen(v42Session.phase==='choose');v58Refresh();window.scrollTo(0,0);
@@ -259,7 +285,8 @@ function v65UpdateControls(context){
 }
 function v65WorldReport(context,people){
  const flagCodes={ESP:'ES',ITA:'IT',GER:'DE',FRA:'FR',POR:'PT',ENG:'GB'};
- return{ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,clubIds:[v65Club(context,0).id,v65Club(context,1).id],score:[...match.score],goals:(match.goals||[]).map(goal=>({...goal})),shots:[...match.shots],possession:[...match.possession],setPieceStats:match.setPieceStats?structuredClone(match.setPieceStats):null,players:people.map(person=>{const change=context.state.substitutions.find(item=>item.outPid===person.pid||item.inPid===person.pid);return{pid:person.pid,name:person.name,n:person.n,nation:flagCodes[person.nation]||person.nation,keeper:Boolean(person.keeper),team:person.t,minutes:context.state.minutes[person.pid]||0,substitution:change?{minute:change.minute,direction:change.inPid===person.pid?'in':'out'}:null,stats:{...person.stats,rating:context.state.ratings[person.pid]??0}}})};
+ const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
+ return{ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,clubIds:[v65Club(context,0).id,v65Club(context,1).id],competition:{type:competition?.type,country:competition?.country},score:[...match.score],goals:(match.goals||[]).map(goal=>({...goal})),shots:[...match.shots],possession:[...match.possession],setPieceStats:match.setPieceStats?structuredClone(match.setPieceStats):null,players:people.map(person=>{const change=context.state.substitutions.find(item=>item.outPid===person.pid||item.inPid===person.pid);return{pid:person.pid,name:person.name,n:person.n,nation:flagCodes[person.nation]||person.nation,keeper:Boolean(person.keeper),team:person.t,minutes:context.state.minutes[person.pid]||0,substitution:change?{minute:change.minute,direction:change.inPid===person.pid?'in':'out'}:null,stats:{...person.stats,rating:context.state.ratings[person.pid]??0}}})};
 }
 function v65CompetitionResultsHTML(context){
  const {career,fixture}=context,competition=v62Current(career).find(item=>item.id===fixture.competitionId),type=competition.type,label=type==='league'?v62LeagueLabel(competition.country):type==='cup'?`Nationaler Pokal · ${escapeHTML(v61CountryNames[competition.country])}`:'Europacup';
@@ -272,6 +299,7 @@ function v65CompetitionResultsHTML(context){
 function v65ShowPostMatch(context){
  const {state}=context,report=state.postMatchReport;if(!report||state.postMatchStep==='done')return;
  document.body.classList.add('v65-world-postmatch');
+ if(state.postMatchStep==='celebration'&&v65ShowCelebration(context))return;
  const done=()=>{v47PlayerDialog.close?.();v47Dialog.close?.();v47CompetitionDialog.close?.();document.body.classList.remove('v65-world-postmatch');state.postMatchStep='done';v64UiSave();v65Leave(false).catch(v65ExitError)};
  if(state.postMatchStep==='report'){
   if(v47Dialog.open)return;

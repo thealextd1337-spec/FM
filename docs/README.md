@@ -3,6 +3,7 @@
 ## Inhalt
 
 - [Produktregeln](product.md): feste Entscheidungen zu Spiel, Karriere, Oberfläche und Pokal.
+- [Trophäen-Sprites der Vereinswelt](trophy-sprites-plan.md): Länder- und Awardmotive, Flaggen und Grafikdateien.
 - [KI-Vereine und Trainer – Entwurf](ki-vereine-trainer-entwurf.md): Plan für Computervereine, Trainerkarrieren und taktische Entscheidungen.
 - [Vereinsmodell – Entwurf](vereinsmodell-entwurf.md): Identität, 36 unterschiedliche Startprofile, langsame Entwicklung und Balance der fiktiven Vereine.
 - [Vereinskatalog – Entwurf](vereinskatalog-entwurf.md): 48 redaktionell festgelegte fiktive Namen, Farben und eigenständige Hintergründe für Liga- und Pokalvereine.
