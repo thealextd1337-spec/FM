@@ -1,0 +1,10 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const {makeContext}=require('./test-v41.cjs');
+const context=makeContext();
+for(const file of ['penalties-v42.js','club-records-v43.js','club-identity-v44.js','keeper-logo-v45.js','match-report-v47.js','set-pieces-v50.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
+vm.runInContext(`beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');start();match.kickoff=null;match.postBanner=null;match.owner=null;match.flight=null;match.rebound={x:.5,y:.5,delay:0};match.ball={x:.5,y:.5};match.people.forEach((player,index)=>{player.x=index===0?.1:.9;player.y=index===0?.5:.9});`,context);
+const before=vm.runInContext('match.people.map(player=>({x:player.x,y:player.y,speed:player.keeper?.17:.07+ability(player,"spd")*PLAYER_SPEED_FACTOR}))',context);
+vm.runInContext('step(1,.05)',context);
+const after=vm.runInContext('match.people.map(player=>({x:player.x,y:player.y}))',context);
+for(let i=0;i<before.length;i++)assert(Math.hypot(after[i].x-before[i].x,after[i].y-before[i].y)<=before[i].speed+.00001,`player ${i} exceeds normal speed when chasing a loose ball`);
+console.log('PASS: loose-ball pursuit stays within normal player speed');

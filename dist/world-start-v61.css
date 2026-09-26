@@ -261,3 +261,9 @@
 .v62-next-opponent .v62-duels>div{flex-wrap:nowrap;padding:3px 0}.v62-next-opponent .v62-duels abbr{text-decoration:none}.v62-next-opponent .v62-duels strong{min-width:30px;text-align:right;font-size:12px}.v62-next-opponent .v62-duels .win strong{color:#c7f36b}.v62-next-opponent .v62-duels .loss strong{color:#ffaaa2}.v62-next-opponent .v62-duels .draw strong{color:#dce5db}
 .v66-roster-composition{display:flex;flex-wrap:wrap;gap:5px 13px;margin-top:6px;color:#b7cbc1;font-size:12px}.v66-roster-composition span{white-space:nowrap}.v66-roster-composition b{color:#e6f7d5}
 @media(max-width:760px){.v62-awards-grid{grid-template-columns:1fr}}
+.v64-match-menu-panel .language-control{display:grid;gap:6px;margin:8px 2px 2px;padding:10px 8px 4px;border-top:1px solid #58716d;color:#d3e4d9;font-size:12px}
+.v64-match-menu-panel .language-control select{width:100%;min-height:42px}
+dialog>.v64-match-menu.v64-modal-menu{position:sticky;top:0;width:max-content;margin:0 0 10px auto}
+.v62-calendar-list li{grid-template-columns:max-content minmax(0,1fr) auto}.v62-calendar-list time{white-space:nowrap}
+@media(max-width:600px){.v62-calendar-list li{grid-template-columns:1fr auto}}
+.v64-prematch-field .keeper{width:calc((100% - 36px)/5)}.v64-prematch-field .v64-keeper-choice{width:100%;min-height:0;aspect-ratio:1.24;padding:4px 3px;gap:2px}.v64-prematch-field .v64-keeper-choice .token{width:33px;height:33px}

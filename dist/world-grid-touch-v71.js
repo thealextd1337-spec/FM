@@ -30,8 +30,9 @@ function v71Highlight(){
 }
 function v71Scroll(){
  v71ScrollFrame=0;if(!v71Pointer?.dragging)return;
- const edge=72,y=v71Pointer.y,height=window.innerHeight;
- const speed=y<edge?-Math.ceil((edge-y)/edge*16):y>height-edge?Math.ceil((y-height+edge)/edge*16):0;
+ const y=v71Pointer.y,height=window.innerHeight,headerBottom=document.querySelector('header')?.getBoundingClientRect?.().bottom||0;
+ const topEdge=Math.min(height*.35,Math.max(140,headerBottom+72)),bottomEdge=Math.max(96,Math.min(140,height*.2));
+ const speed=y<topEdge?-Math.ceil((topEdge-y)/topEdge*24):y>height-bottomEdge?Math.ceil((y-height+bottomEdge)/bottomEdge*24):0;
  if(speed){window.scrollBy(0,speed);v71Highlight()}
  v71ScrollFrame=requestAnimationFrame(v71Scroll);
 }

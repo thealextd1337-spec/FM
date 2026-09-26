@@ -21,7 +21,7 @@ assert(vm.runInContext('v47PlayerDialog.innerHTML',context).includes('Statistik 
 assert.equal(vm.runInContext("v47OpenPlayerStats(v47Snapshot('Athletik 06'),6)",context),true);
 assert(vm.runInContext('v47PlayerDialog.innerHTML',context).includes('Athletik 06'));
 assert(!vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),score:[0,0]},null).includes('class=\"v47-winner\"')",context));
-assert(vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),score:[0,0]},{score:[3,2],winner:0}).includes('class=\"v47-winner\"')",context));
+assert(vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),score:[0,0]},{score:[3,2],winner:0}).includes('v47-score-team v47-winner')",context));
 
 const cupContext=makeContext();
 for(const file of['penalties-v42.js','club-records-v43.js','club-identity-v44.js','keeper-logo-v45.js','match-report-v47.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),cupContext);

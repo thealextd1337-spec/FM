@@ -278,11 +278,16 @@ v61WorldScreen.onclick=event=>{
 v61RenderSaves();
 v61InitStorage();
 const v61BaseProgressState=v58State;
+function v61NextFixtureContext(career,fixture){
+ const competition=v62Current(career).find(item=>item.id===fixture.competitionId);
+ const label=competition?.type==='league'?`${v61CountryNames[competition.country]} · Liga 1`:competition?.type==='cup'?`${v61CountryNames[competition.country]} · Nationaler Pokal`:'Europacup';
+ return`${v62Date(fixture.day)} · ${label} · ${v62Name(career,fixture.homeId)} gegen ${v62Name(career,fixture.awayId)}`;
+}
 v58State=function(){
  if(v61WorldScreen.hidden)return v61BaseProgressState();
  if(!v61CurrentCareer)return null;
  const career=v61CurrentCareer,managed=career.manager.managedClubId,next=v62Fixtures(career).filter(fixture=>!fixture.result&&(fixture.homeId===managed||fixture.awayId===managed)).sort((a,b)=>a.day-b.day)[0];
- return{context:career.world.seasonFinished?`Saison ${career.world.season} abgeschlossen`:next?`${v62Date(next.day)} · ${v62Name(career,next.homeId)} gegen ${v62Name(career,next.awayId)}`:`Saison ${career.world.season} · letztes Spiel beendet`,label:career.world.seasonFinished?'Nächste Saison vorbereiten':next?'Nächstes Spiel simulieren':'Saisonende',action:'v61-world'};
+ return{context:career.world.seasonFinished?`Saison ${career.world.season} abgeschlossen`:next?v61NextFixtureContext(career,next):`Saison ${career.world.season} · letztes Spiel beendet`,label:career.world.seasonFinished?'Nächste Saison vorbereiten':next?'Nächstes Spiel simulieren':'Saisonende',action:'v61-world'};
 };
 const v61BaseProgressClick=v58Button.onclick;
 v58Button.onclick=function(){if(v58State()?.action==='v61-world'){v61AdvanceCareer();return}v61BaseProgressClick()};

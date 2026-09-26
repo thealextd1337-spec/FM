@@ -4,6 +4,8 @@ Doppel 6 ist ein mobil spielbarer Fußballmanager im Browser. Der aktuelle Quell
 
 `freekickdemo/` ist ein eigenständiges Projekt. Änderungen und Veröffentlichungen von Doppel 6 beziehen diesen Ordner nicht ein.
 
+Die bisherige Sechserliga wird nicht weiterentwickelt. Neue Produktfunktionen gehören zur Vereinswelt; Details stehen in `docs/product.md`.
+
 Lies nur die für die Aufgabe relevanten Dateien:
 
 - Bei Spielregeln, Karriere, Transfers, Pokal, Auszeichnungen oder UI: `docs/product.md`.

@@ -11,13 +11,13 @@ assert.equal(vm.runInContext('match.addedMinutes[0]',context),1,'echte Unterbrec
 assert(vm.runInContext('match.firstHalfEnd',context)>37.5);
 vm.runInContext('match.elapsed=37.6',context);
 assert.equal(vm.runInContext('v74ClockLabel(match)',context),'45+1′');
-assert.equal(vm.runInContext('v25ClockParts()[0]',context),'45+1','große Spieluhr zeigt die Nachspielzeit');
+assert.equal(vm.runInContext('v25ClockParts().join(":")',context),'45:00:1','große Spieluhr trennt reguläre Zeit und Nachspielzeit');
 vm.runInContext('match.halftimeBreakDone=true;match.elapsed=match.firstHalfEnd+10;for(let i=0;i<60;i++)step(.05,.05)',context);
 assert.equal(vm.runInContext('match.addedMinutes[1]',context),1);
 assert.equal(vm.runInContext('v25ClockParts()[0]',context),'60','zweite Hälfte zählt ohne die Nachspielzeit der ersten Hälfte');
 vm.runInContext('match.elapsed=match.firstHalfEnd+37.6',context);
 assert.equal(vm.runInContext('v74ClockLabel(match)',context),'90+1′');
-assert.equal(vm.runInContext('v25ClockParts()[0]',context),'90+1');
+assert.equal(vm.runInContext('v25ClockParts().join(":")',context),'90:00:1');
 const rendered=vm.runInContext('draw()',context);
 assert(Math.abs(rendered.player[0]-.8)<1e-9&&Math.abs(rendered.player[1]-.2)<1e-9);
 assert(Math.abs(rendered.ball[0]-.7)<1e-9&&Math.abs(rendered.ball[1]-.4)<1e-9);

@@ -140,14 +140,14 @@ function v50LooseBall(point,text){
  m.rebound={x:m.ball.x,y:m.ball.y,delay:.16};
  note(text,'duel');
 }
-function v50ChaseLooseBall(delta){
+function v50ChaseLooseBall(delta,positions){
  const m=match,r=m.rebound;if(!r||m.owner||m.flight||m.kickoff||m.halftimePause||m.finished)return;
  r.delay=Math.max(0,r.delay-delta);
  if(r.delay)return;
  const candidates=[...m.people].sort((a,b)=>distance(a,r)-distance(b,r)).slice(0,3);
  for(const player of candidates){
-  const dx=r.x-player.x,dy=r.y-player.y,d=Math.hypot(dx,dy);
-  if(d>.014){const speed=(player.keeper?.17:.07+ability(player,'spd')*PLAYER_SPEED_FACTOR)*delta*3.5,portion=Math.min(1,speed/d);player.x+=dx*portion;player.y+=dy*portion}
+  const start=positions.get(player),dx=r.x-start.x,dy=r.y-start.y,d=Math.hypot(dx,dy);
+  if(d>.014){const speed=(player.keeper?.17:.07+ability(player,'spd')*PLAYER_SPEED_FACTOR)*delta,portion=Math.min(1,speed/d);player.x=start.x+dx*portion;player.y=start.y+dy*portion}
  }
  const winner=candidates.find(player=>distance(player,r)<.026);
  if(winner){m.rebound=null;m.owner=winner;m.ball={x:winner.x,y:winner.y};m.next=m.elapsed+.55;note(`${winner.name} nimmt den freien Ball auf.`,'duel')}
@@ -314,6 +314,7 @@ beginKickoff=function(){
 const v50BaseStep=step;
 step=function(delta,realDelta){
  const m=match;
+ const chasePositions=m?.rebound?new Map(m.people.map(player=>[player,{x:player.x,y:player.y}])):null;
  if(m?.fulltimePending&&!m.setPiece&&!m.flight&&!m.throwIn&&m.goalPause<=0&&!m.postBanner){m.kickoff=null;finishMatch();return}
  if(m?.postBanner&&!m.finished){
   const pause=m.postBanner;pause.wait=Math.max(0,pause.wait-realDelta);
@@ -342,7 +343,7 @@ step=function(delta,realDelta){
   updateTeamStats();return;
  }
  const result=v50BaseStep(delta,realDelta);
- if(m?.rebound&&!m.finished)v50ChaseLooseBall(delta);
+ if(chasePositions&&m?.rebound&&!m.finished)v50ChaseLooseBall(delta,chasePositions);
  return result;
 };
 

@@ -39,9 +39,29 @@ Kurze Pässe	Short passes
 Schnell nach vorne	Quick forward passes
 DEIN MATCHPLAN	YOUR MATCH PLAN
 Ausgewogenes 2-2-1	Balanced 2-2-1
+Ausgewogenes Pressing	Balanced pressing
+Variables Passspiel	Variable passing
 Stabile Staffelung mit kurzen Passwegen.	Stable shape with short passing lanes.
 VON DER SEITENLINIE	FROM THE SIDELINE
 Dein Team spielt.	Your team is playing.
+Dein Team pausiert.	Your team is paused.
+Halbzeitpfiff. Kurze Pause vor der zweiten Hälfte.	Half-time whistle. A short break before the second half.
+Anpfiff zur zweiten Halbzeit. Der Gegner spielt an.	The second half begins. The opponent kicks off.
+Halbzeit – der Matchplan bleibt unverändert.	Half-time — the match plan remains unchanged.
+Kurze Pause · Der Gegner stößt danach an	Short break · The opponent will kick off
+Kurze Pause vor der zweiten Hälfte	Short break before the second half
+Gleich rollt der Ball	Kickoff is moments away
+FREISTOSS	FREE KICK
+ECKBALL	CORNER
+HALBZEIT	HALF-TIME
+ANPFIFF	KICKOFF
+Abpfiff! Die Partie ist beendet.	Full time! The match is over.
+Ergebnisse nach deinem Spiel	Results after your match
+Alle Ergebnisse	All results
+Ligatorschützenliste	League top scorers
+Liga-Assistliste	League assist leaders
+Ergebnisübersicht schließen	Close results overview
+Wert	Value
 Statistik	Statistics
 Heimteam	Home team
 Gastteam	Away team
@@ -436,11 +456,14 @@ Sponsor wählen	Choose sponsor
 SAISONÜBERBLICK	SEASON OVERVIEW
 Saisonüberblick	Season overview
 NÄCHSTER GEGNER ·	NEXT OPPONENT ·
+NÄCHSTER GEGNER	NEXT OPPONENT
+Form der letzten fünf Spiele	Form in the last five matches
 Nächster Gegner ·	Next opponent ·
 gegen	vs
 Deine letzten fünf Spiele	Your last five matches
 Deine Wettbewerbe	Your competitions
 Ligaphase · Tabelle	League phase · Standings
+Ligaphase	League phase
 K.-o.-Duelle	Knockout ties
 Die K.-o.-Duelle stehen nach der Ligaphase fest.	Knockout ties are set after the league phase.
 Persönliche Awards	Individual awards
@@ -451,6 +474,8 @@ Saison auf einen Blick	Season at a glance
 Noch keine Ligaspiele	No league matches yet
 Viertelfinale	Quarter-final
 Halbfinale	Semi-final
+Paarung folgt nach dem Viertelfinale	Tie determined after the quarter-finals
+Paarung folgt nach dem Halbfinale	Tie determined after the semi-finals
 Finale	Final
 Saison auswählen	Select season
 aktuell	current
@@ -667,6 +692,8 @@ Reihe	Row
 Spalte	Column
 Deine Startelf auf dem Spielfeld	Your starting lineup on the pitch
 Ausgewogen	Balanced
+Variabel	Variable
+Neutral	Neutral
 Nr.	No.
 Auf ein Trikot ziehen	Drag onto a shirt
 Vor dem Spiel	Before the match
@@ -788,8 +815,15 @@ Für einen Verkauf müssen mindestens zehn Profis und ein Torwart im Kader bleib
 Verkaufsangebote sind im Transferfenster möglich.	Sale listings are available during the transfer window.
 Verkaufsangebot	Sale listing
 Ein Angebot ist erst im nächsten Transferfenster möglich.	An offer is possible only in the next transfer window.
+Du bietest dem Verein die Ablöse und dem Spieler Gehalt, Laufzeit und Einsatz-Zusage an. Eine Gegenforderung kannst du anschließend beantworten.	You offer the club a transfer fee and the player a salary, contract length and playing time promise. You can respond to a counteroffer afterwards.
 Neue Forderung	New asking price
 Verhandlung öffnen	Open negotiation
+Spielervertrag ausstehend	Player contract pending
+Antwort auf Kaufangebot offen	Response to purchase offer pending
+Antwort des Käufers ausstehend	Buyer's response pending
+Entscheidung beim Tageswechsel	Decision on the next market day
+Vorherige Runde	Previous round
+Nächste Runde	Next round
 Angebot zurückziehen	Withdraw offer
 Laufende Verhandlungen	Ongoing negotiations
 Dialog öffnen	Open dialog
@@ -924,9 +958,29 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(.+) spielt auf (.+)\.$/,(_,name,target)=>`${name} passes to ${target}.`],
   [/^(.+) köpft zu (.+)\.$/,(_,name,target)=>`${name} heads the ball to ${target}.`],
   [/^(.+) zieht ab!$/,(_,name)=>`${name} shoots!`],
+  [/^(.+) schießt!$/,(_,name)=>`${name} shoots!`],
+  [/^(.+) schießt – (.+) stellt sich in den Weg!$/,(_,name,blocker)=>`${name} shoots — ${blocker} blocks the shot!`],
   [/^(.+) läuft frei Richtung Tor\.$/,(_,name)=>`${name} breaks free towards goal.`],
   [/^(.+) hält den Abschluss\.$/,(_,name)=>`${name} saves the shot.`],
+  [/^(.+) hält den Abschluss fest\.$/,(_,name)=>`${name} holds on to the shot.`],
   [/^(.+) setzt den Ball vorbei\.$/,(_,name)=>`${name} puts the ball wide.`],
+  [/^(.+) setzt den Ball vorbei\. Abstoß(?: für (.+))?\.$/,(_,name,club)=>`${name} puts the ball wide. Goal kick${club?` for ${club}`:''}.`],
+  [/^Kurzer Abstoß: (.+) auf (.+)\.$/,(_,name,target)=>`Short goal kick: ${name} to ${target}.`],
+  [/^Eckball für (.+) nach (.+)\.$/,(_,club,cause)=>`Corner for ${club} after ${translate(cause)}.`],
+  [/^(.+) foult (.+)\. (Elfmeter|Freistoß) für (.+)\.$/,(_,offender,victim,type,club)=>`${offender} fouls ${victim}. ${type==='Elfmeter'?'Penalty':'Free kick'} for ${club}.`],
+  [/^Parade von (.+)$/,(_,name)=>`a save by ${name}`],
+  [/^Block von (.+)$/,(_,name)=>`a block by ${name}`],
+  [/^Der Ball liegt nach (.+) frei\.$/,(_,cause)=>`The ball is loose after ${translate(cause)}.`],
+  [/^(.+) erreicht den Ball nicht mehr\.$/,(_,name)=>`${name} cannot reach the ball.`],
+  [/^(.+) erreicht den Pass nicht\.$/,(_,name)=>`${name} cannot reach the pass.`],
+  [/^(.+) spielt (die Ecke|eine Flanke|einen hohen Ball) auf (.+)\.$/,(_,name,type,target)=>`${name} sends ${type==='die Ecke'?'the corner':type==='eine Flanke'?'a cross':'a high ball'} to ${target}.`],
+  [/^Die Flanke von (.+) gerät (zu kurz|zu weit)\.$/,(_,name,distance)=>`${name}'s cross ${distance==='zu kurz'?'falls short':'goes too long'}.`],
+  [/^(Ecke|Flanke|hohen Ball) von (.+) gerät ins Aus\. Abstoß für (.+)\.$/,(_,type,name,club)=>`${type==='Ecke'?'Corner':type==='Flanke'?'Cross':'High ball'} from ${name} goes out. Goal kick for ${club}.`],
+  [/^Der hohe Ball von (.+) springt frei auf\.$/,(_,name)=>`${name}'s high ball bounces loose.`],
+  [/^(.+) verspringt die Annahme des hohen Balls\.$/,(_,name)=>`${name} miscontrols the high ball.`],
+  [/^Nachspielzeit: \+(\d+) Minuten\.$/,(_,minutes)=>`Stoppage time: +${minutes} minutes.`],
+  [/^Wechsel: (.+) geht, (.+) kommt\.$/,(_,out,incoming)=>`Substitution: ${out} goes off, ${incoming} comes on.`],
+  [/^Form der letzten fünf Spiele: (.+)$/,(_,results)=>`Form in the last five matches: ${results.split(', ').map(translate).join(', ')}`],
   [/^(.+) nimmt den freien Ball auf\.$/,(_,name)=>`${name} collects the loose ball.`],
   [/^(.+) nimmt den hohen Ball an\.$/,(_,name)=>`${name} controls the high ball.`],
   [/^(.+) gewinnt den hohen Ball\.$/,(_,name)=>`${name} wins the high ball.`],
@@ -944,12 +998,18 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^ELFMETERTOR! (.+) trifft für (.+)\.$/,(_,name,club)=>`PENALTY GOAL! ${name} scores for ${club}.`],
   [/^Abpfiff! (.+) (\d+) : (\d+) (.+)\.$/,(_,home,homeGoals,awayGoals,away)=>`Full time! ${home} ${homeGoals} : ${awayGoals} ${away}.`],
   [/^Transferphase · Tag (\d+) von (\d+)$/,(_,day,total)=>`Transfer window · Day ${day} of ${total}`],
+  [/^Aktuelles Gebot (\d+) Credits$/,(_,amount)=>`Current offer ${amount} Credits`],
+  [/^(.+) Ablöse$/,(_,amount)=>`${amount} transfer fee`],
+  [/^(.+) Gehalt$/,(_,amount)=>`${amount} salary`],
+  [/^Transfertag (\d+) von (\d+)$/,(_,day,total)=>`Transfer day ${day} of ${total}`],
+  [/^Aktueller Verein: (.+) · Richtwert (.+)\. Auch Spieler ohne Verkaufsliste können ein Gebot erhalten\.$/,(_,club,value)=>`Current club: ${club} · Guide value ${value}. You can also bid for players who are not listed for sale.`],
+  [/^(\d+) von (\d+)$/,(_,current,total)=>`${current} of ${total}`],
   [/^Transfertag (\d+) wird vorbereitet …$/,(_,day)=>`Preparing transfer day ${day} …`],
   [/^(\d+) Minuten (\d+) Sekunden$/,(_,minutes,seconds)=>`${minutes} minutes ${seconds} seconds`],
   [/^(.+): Spielerinformationen anzeigen$/,(_,name)=>`Show ${name}'s player information`],
   [/^Statistik von (.+) anzeigen$/,(_,name)=>`Show ${name}'s statistics`],
-  [/^↑ Eingewechselt (.+) · (\d+) min$/,(_,minute,duration)=>`↑ Came on ${minute} · ${duration} min`],
-  [/^↓ Ausgewechselt (.+) · (\d+) min$/,(_,minute,duration)=>`↓ Went off ${minute} · ${duration} min`],
+  [/^↑ Eingewechselt (.+) · (\d+) Min\.$/,(_,minute,duration)=>`↑ Came on ${minute} · ${duration} min`],
+  [/^↓ Ausgewechselt (.+) · (\d+) Min\.$/,(_,minute,duration)=>`↓ Went off ${minute} · ${duration} min`],
   [/^(.+) · Note (\d+,\d+)$/,(_,club,rating)=>`${club} · Rating ${rating}`],
   [/^Form: (.+); Frische: (.+) \((\d+) von (\d+)\)$/,(_,form,fitness,value,total)=>`Form: ${translate(form)}; fitness: ${translate(fitness)} (${value} of ${total})`],
   [/^(.+) gegen (.+)$/,(_,home,away)=>`${translate(home)} vs ${translate(away)}`],
@@ -1102,6 +1162,9 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(.+) · (\d+) Jahre · (Links|Rechts)fuß$/,(_,position,age,foot)=>`${translate(position)} · ${age} years · ${foot==='Links'?'left':'right'}-footed`],
   [/^(.+) · (\d+) Jahre$/,(_,position,age)=>`${translate(position)} · ${age} years`],
   [/^(.+): (sehr schwach|eher schwach|schwach|durchschnittlich|solide|stark|sehr stark|normal|gut|sehr gut)$/,(_,ability,level)=>`${translate(ability)}: ${translate(level)}`],
+  [/^(\d+) S · (\d+) U · (\d+) N$/,(_,wins,draws,losses)=>`${wins} W · ${draws} D · ${losses} L`],
+  [/^Tore (\d+):(\d+)$/,(_,forGoals,against)=>`Goals ${forGoals}:${against}`],
+  [/^(\d+) Minuten (\d+) Sekunden plus (\d+) Minuten Nachspielzeit$/,(_,minutes,seconds,added)=>`${minutes} minutes ${seconds} seconds plus ${added} ${Number(added)===1?'minute':'minutes'} of stoppage time`],
   [/^(Spanien|Italien|Deutschland|Frankreich|Portugal|England) · (.+)$/,(_,country,rest)=>`${translate(country)} · ${translate(rest)}`]
  ];
  const countries={Spanien:'Spain',Italien:'Italy',Deutschland:'Germany',Frankreich:'France',Portugal:'Portugal',England:'England'};
@@ -1111,6 +1174,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
  function translate(source){
   if(labels.has(source))return labels.get(source);
   if(source.endsWith(' →'))return `${translate(source.slice(0,-2))} →`;
+  if(source.endsWith(' ↗'))return `${translate(source.slice(0,-2))} ↗`;
   const insensitive=labelsLower.get(source.toLocaleLowerCase('de'));
   if(insensitive){
    if(source===source.toLocaleUpperCase('de'))return insensitive.toLocaleUpperCase('en');
@@ -1135,7 +1199,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   if(!node.parentElement||node.parentElement.closest('script,style,textarea,#language-select option,[contenteditable="true"]')||oldMatch(node.parentElement))return;
   const current=node.nodeValue,last=renderedText.get(node);
   if(!originalText.has(node)||current!==last)originalText.set(node,current);
-  const source=originalText.get(node),match=source.match(/^(\s*)([\s\S]*?)(\s*)$/),next=language==='en'&&/[A-Za-zÄÖÜäöüß]/.test(match[2])?match[1]+translate(match[2])+match[3]:source;
+  const source=originalText.get(node),match=source.match(/^(\s*)([\s\S]*?)(\s*)$/),formMark=node.parentElement.matches('.v49-form b')?{S:'W',U:'D',N:'L'}[match[2]]:null,next=language==='en'&&formMark?match[1]+formMark+match[3]:language==='en'&&/[A-Za-zÄÖÜäöüß]/.test(match[2])?match[1]+translate(match[2])+match[3]:source;
   renderedText.set(node,next);
   if(current!==next)node.nodeValue=next;
  }

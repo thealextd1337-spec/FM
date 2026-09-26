@@ -1,5 +1,15 @@
 # Änderungen
 
+## Noch nicht veröffentlicht
+
+## 2026-09-26 (Issues und Bedienung der Vereinswelt)
+
+- Die bisherige Sechserliga wird nicht weiterentwickelt; neue Produktfunktionen richten sich an die Vereinswelt. Mobile Transferfilter zeigen Dropdowns in voller Breite mit einheitlichem dunklem Stil, damit lange Auswahltexte lesbar bleiben. Im mobilen Browser geprüft.
+- Das Menü ist auf allen Bildschirmen erreichbar. Im Match steht es zwischen „Pause“ und „Taktik & Wechsel“; die Sprachwahl liegt darin. Der Pauseknopf hält die sichtbare Simulation an, während die Hauptaktion die Taktik und Aufstellung öffnet. Die Matchuhr zeigt Nachspielzeit als „45:00 +1“ an. Die Torwartkarte im Taktikmenü hat dieselben Maße wie Feldspielerkarten; eine doppelte Spieleranzeige entfällt. Geprüft mit Match-, Menü-, Uhr- und Buildtests sowie im lokalen Browser.
+- Eigene Direktgebote für Spieler anderer Vereine enthalten jetzt Gehalt, Laufzeit und Einsatz-Zusage; auf Gegenforderungen kann wie bisher geantwortet werden. Beim mobilen Ziehen eines Bankspielers beginnt das automatische Aufwärtsscrollen bereits unterhalb der festen Kopfzeile. Englische Texte für Taktik, Transferstatus, Pokalrunden und Spielereignisse wurden ergänzt. Geprüft mit Transfer-, Wirtschafts-, Gesten- und Sprachtests sowie zwölf Saisons im Langzeittest.
+- In der Kopfzeile nennt der nächste Spieltermin seinen Wettbewerb. Der nationale Pokal zeigt jeweils eine Runde mit vor- und zurückschaltbarer Ansicht und beginnt bei der laufenden Runde. Pokalpaarungen platzieren Wappen und Vereinsnamen ohne großen Zwischenraum. Die Kurzstatistik nennt Siege, Unentschieden, Niederlagen und Tore mit Gegentoren; Kalenderdaten bleiben in einer Zeile. Der Spielbericht zeigt Wappen und Torschützen unter beiden Vereinen. Geprüft mit Wettbewerbs-, Ansichts-, Bericht- und Buildtests.
+- Freie Bälle lösen keine zusätzliche beschleunigte Spielerbewegung mehr aus. Beim verwandelten Elfmeter bewegt sich das Netz erst, wenn der Ball es erreicht. Geprüft mit gezieltem Geschwindigkeitstest, Engine-, Pokal- und Elfmetertests.
+
 ## 2026-09-25 (KI-Kader und Sprachwahl)
 
 - Laufende Partien mit Torereignissen lassen sich nach Neuladen wieder öffnen; die Ereignisanzeige erhält den gespeicherten Matchzustand.

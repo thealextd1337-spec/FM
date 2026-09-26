@@ -35,4 +35,8 @@ vm.runInContext(fs.readFileSync('dist/world-grid-touch-v71.js','utf8'),context,{
 const pauseSource={dataset:{v65BenchCard:'bench-1'},classList:{contains:()=>false}};
 const pauseTarget={closest:selector=>selector.startsWith('#v65-plan-view')?pauseSource:null};
 assert.equal(vm.runInContext('v71DragSource',context)(pauseTarget)?.source.pid,'bench-1','bench dragging remains available when the main action opens the tactics tab');
+let scrolled=0;context.window.innerHeight=956;context.window.scrollBy=(_x,y)=>{scrolled+=y};
+vm.runInContext('v71Pointer={dragging:true,x:400,y:110};v71Scroll()',context);
+assert(scrolled<0,'dragging near the top of the visible page scrolls upward past the sticky header');
+vm.runInContext('v71Clear()',context);
 console.log('PASS: mobile vertical swipes scroll; intentional horizontal drags remain available');
