@@ -16,9 +16,11 @@ function v74ClockLabel(m=match){
 v25ClockParts=function(){
  const m=match;if(!m)return['00','00'];
  const firstEnd=m.firstHalfEnd||37.5,secondBaseline=firstEnd+37.5;
- if(m.halftimePause>0||!m.halftimeBreakDone&&m.elapsed>=37.5&&(m.addedMinutes?.[0]||0)>0||m.halftimeBreakDone&&m.elapsed>=secondBaseline&&(m.addedMinutes?.[1]||0)>0){
-  const added=v74ClockLabel(m).match(/\+(\d+)/)?.[1];
-  return[m.halftimeBreakDone?'90':'45','00',added];
+ if(m.halftimePause>0){
+  return['45','00',String(m.addedMinutes?.[0]||0)];
+ }
+ if(!m.halftimeBreakDone&&m.elapsed>=37.5&&(m.addedMinutes?.[0]||0)>0||m.halftimeBreakDone&&m.elapsed>=secondBaseline&&(m.addedMinutes?.[1]||0)>0){
+  return[m.halftimeBreakDone?'90':'45','00',String(m.addedMinutes[m.halftimeBreakDone?1:0])];
  }
  const playedSeconds=Math.max(0,Math.floor((m.halftimeBreakDone?37.5+Math.max(0,m.elapsed-firstEnd):m.elapsed)*72));
  return[String(Math.min(90,Math.floor(playedSeconds/60))).padStart(2,'0'),String(playedSeconds%60).padStart(2,'0')];

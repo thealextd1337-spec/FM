@@ -1,7 +1,7 @@
 'use strict';
 
 // Touchbedienung für dasselbe Raster vor Anpfiff und in der Spielpause.
-let v71Pointer=null,v71ScrollFrame=0,v71SuppressClickUntil=0;
+let v71Pointer=null,v71NativeDrag=null,v71ScrollFrame=0,v71SuppressClickUntil=0;
 function v71DragSource(target){
  const before=target.closest?.('#v61-world-screen [data-v64-pick-slot],#v61-world-screen [data-v64-bench-card]');
  if(before){
@@ -29,13 +29,30 @@ function v71Highlight(){
  if(target)target.classList.add('v64-drag-over');
 }
 function v71Scroll(){
- v71ScrollFrame=0;if(!v71Pointer?.dragging)return;
- const y=v71Pointer.y,height=window.innerHeight,headerBottom=document.querySelector('header')?.getBoundingClientRect?.().bottom||0;
+ v71ScrollFrame=0;const drag=v71Pointer?.dragging?v71Pointer:v71NativeDrag;if(!drag)return;
+ const y=drag.y,height=window.innerHeight,headerBottom=document.querySelector('header')?.getBoundingClientRect?.().bottom||0;
  const topEdge=Math.min(height*.35,Math.max(140,headerBottom+72)),bottomEdge=Math.max(96,Math.min(140,height*.2));
  const speed=y<topEdge?-Math.ceil((topEdge-y)/topEdge*24):y>height-bottomEdge?Math.ceil((y-height+bottomEdge)/bottomEdge*24):0;
- if(speed){window.scrollBy(0,speed);v71Highlight()}
+ if(speed){window.scrollBy(0,speed);if(v71Pointer?.dragging)v71Highlight()}
  v71ScrollFrame=requestAnimationFrame(v71Scroll);
 }
+function v71StopNativeDrag(){
+ v71NativeDrag=null;
+ if(!v71Pointer&&v71ScrollFrame)cancelAnimationFrame(v71ScrollFrame);
+ if(!v71Pointer)v71ScrollFrame=0;
+}
+document.addEventListener('dragstart',event=>{
+ if(!v64UiDrag&&!v65Drag)return;
+ v71NativeDrag={y:event.clientY};
+ if(!v71ScrollFrame)v71ScrollFrame=requestAnimationFrame(v71Scroll);
+});
+document.addEventListener('dragover',event=>{
+ if(!v71NativeDrag)return;
+ v71NativeDrag.y=event.clientY;
+ event.preventDefault();
+});
+document.addEventListener('drop',v71StopNativeDrag);
+document.addEventListener('dragend',v71StopNativeDrag);
 function v71Clear(){
  if(v71ScrollFrame)cancelAnimationFrame(v71ScrollFrame);v71ScrollFrame=0;
  document.querySelectorAll('.v64-drag-over,.v71-dragging').forEach(element=>element.classList.remove('v64-drag-over','v71-dragging'));

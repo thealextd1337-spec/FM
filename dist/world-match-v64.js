@@ -291,7 +291,7 @@ function v64CompleteOwnMatch(career){
  if(!fixture||!state||state.phase!=='finished')throw Error('Kein beendetes eigenes Spiel vorhanden.');
  if(fixture.result)return fixture;
  const record=v64FinishFixture(career,fixture,state);
- fixture.result={homeGoals:record.score[0],awayGoals:record.score[1],penalties:null,winnerId:null};
+ fixture.result={homeGoals:record.score[0],awayGoals:record.score[1],penalties:state.penaltyShootout||null,winnerId:null};
  const competition=v62Current(career).find(item=>item.id===fixture.competitionId);
  if(competition.type==='league'||competition.type==='europe'&&fixture.round.startsWith('R'))v62ResolveLeague(career,fixture);
  else if(competition.type==='europe'&&fixture.leg===2)v62ResolveSecondLeg(career,fixture,competition);

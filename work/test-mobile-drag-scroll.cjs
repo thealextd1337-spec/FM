@@ -39,4 +39,14 @@ let scrolled=0;context.window.innerHeight=956;context.window.scrollBy=(_x,y)=>{s
 vm.runInContext('v71Pointer={dragging:true,x:400,y:110};v71Scroll()',context);
 assert(scrolled<0,'dragging near the top of the visible page scrolls upward past the sticky header');
 vm.runInContext('v71Clear()',context);
+context.v64UiDrag={kind:'bench',pid:'bench-1'};
+listeners.get('dragstart')({clientY:820});
+let nativePrevented=false;
+listeners.get('dragover')({clientY:110,preventDefault(){nativePrevented=true}});
+scrolled=0;
+vm.runInContext('v71Scroll()',context);
+assert(nativePrevented,'native desktop drag keeps dragover active outside drop targets');
+assert(scrolled<0,'desktop dragging near the sticky header scrolls upward');
+listeners.get('dragend')();
+assert.equal(vm.runInContext('v71NativeDrag',context),null,'desktop auto-scroll stops after drag end');
 console.log('PASS: mobile vertical swipes scroll; intentional horizontal drags remain available');

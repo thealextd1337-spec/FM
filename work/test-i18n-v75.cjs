@@ -25,4 +25,7 @@ assert.equal(translate('Wechsel: Louis Moreau geht, Mathis Petit kommt.'),'Subst
 assert.equal(translate('Halbzeitpfiff. Kurze Pause vor der zweiten Hälfte.'),'Half-time whistle. A short break before the second half.');
 assert.equal(translate('Form der letzten fünf Spiele: Sieg'),'Form in the last five matches: Win');
 assert.equal(translate('NÄCHSTER GEGNER · Europacup · 12. August'),'NEXT OPPONENT · European cup · 12 August');
+assert.equal(translate('Zum Spielbericht'),'To match report');
+assert.equal(translate('EUROPACUP · ELFMETERSCHIESSEN'),'EUROPEAN CUP · PENALTY SHOOTOUT');
+assert.equal(translate('i. E. 4:3'),'penalties 4:3');
 console.log('PASS: transfer buttons, tactics, next match, statistics and cup rounds translate');

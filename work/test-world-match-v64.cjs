@@ -64,4 +64,14 @@ const after=JSON.stringify(managed);
 get('v64CompleteOwnMatch')(managed);
 assert.strictEqual(JSON.stringify(managed),after,'erneutes Öffnen bucht kein zweites Match');
 
+const scoreUi=fs.readFileSync('dist/world-match-ui-v64.js','utf8');
+vm.runInContext(scoreUi.slice(scoreUi.indexOf('function v64UiFirstLegScore'),scoreUi.indexOf('function v64UiScreenHTML')),context);
+const aggregateCareer=get('v61CreateCareer')('GER-2','aggregate-seed');
+const europe=get('v62Current')(aggregateCareer).find(item=>item.type==='europe');
+europe.fixtures.push({pair:99,round:'QF',leg:1,homeId:'FRA-1',awayId:'GER-2',result:{homeGoals:2,awayGoals:1}});
+const returnFixture={competitionId:europe.id,pair:99,round:'QF',leg:2,homeId:'GER-2',awayId:'FRA-1'};
+assert.strictEqual(get('v64UiAggregateText')(aggregateCareer,returnFixture,[3,2]),'(Hinspiel 1 : 2 · Gesamt 4 : 4)');
+assert.strictEqual(get('v64UiAggregateText')(aggregateCareer,returnFixture,[3,2],true),'(Hinspiel 2 : 1 · Gesamt 5 : 3)','away perspective reverses the first leg');
+assert.strictEqual(get('v64UiAggregateText')(aggregateCareer,{...returnFixture,leg:1},[3,2]),'','first leg has no prior result');
+
 console.log('Weltmatch: feste Startelf, Taktik, Pause, natürliche Wechsel, Spielminuten, reproduzierbare Ereignisse und einmalige Verbuchung geprüft.');

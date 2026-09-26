@@ -79,6 +79,21 @@ assert.match(vm.runInContext('v47ReportHTML(v47Snapshot())',context),/Hohe Päss
 assert.match(vm.runInContext('v47PlayerStatsHTML(v47Snapshot().players.find(player=>!player.keeper),"Team")',context),/Luftduelle gewonnen/);
 assert.equal(vm.runInContext("v55Exit({x:.5,y:.5},{x:-.1,y:.5}).edge",context),'left');
 assert.equal(vm.runInContext("v55Exit({x:.5,y:.5},{x:.5,y:-.1}).edge",context),'top');
+vm.runInContext(`(()=>{
+ for(const team of [0,1]){
+  match.setPiece=null;match.flight=null;match.rebound=null;match.throwIn=null;
+  v50Corner(team,.2,'Test');
+  const piece=match.setPiece;
+  if(piece.spot.y<=v55Field.top||piece.spot.y>=v55Field.bottom)throw Error('corner starts outside the touchline');
+  for(const player of v50Outfield(team))if(player!==piece.taker)player.y=team===0?.1:.9;
+  const rolls=[.5,.5,.3];Math.random=()=>rolls.shift()??.5;
+  v50TakeCorner(piece);
+  if(!match.flight||Math.abs(match.flight.target.y-(team===0?.015:.985))>.001)throw Error('long corner cross did not stop beyond the goal line');
+  match.setPiece=null;
+  match.flight.done();match.flight=null;
+  if(match.rebound||match.owner!==v50Keeper(1-team))throw Error('corner behind the goal became playable');
+ }
+})()`,context);
 vm.runInContext("v55BeginThrow({edge:'left',x:v55Field.left,y:.5},0)",context);
 assert.equal(vm.runInContext('match.throwIn.team',context),1);
 assert.equal(vm.runInContext('match.ball.x',context),.02);
@@ -106,6 +121,7 @@ vm.runInContext("(()=>{match.setPiece=null;match.flight=null;Math.random=()=>0;c
 vm.runInContext("(()=>{match.setPiece=null;match.flight=null;match.rebound=null;Math.random=()=>0;const own=match.people.filter(player=>player.t===0&&!player.keeper),passer=own[0],receiver=own[1];for(const player of match.people){player.x=.9;player.y=.9}receiver.x=.5;receiver.y=.2;match.owner=null;v55ResolveAir({passer,receiver,end:{x:.5,y:.32},snapshot:{offside:new Set()},cross:false});if(match.owner||!match.rebound||Math.abs(match.ball.y-.32)>.001)throw Error('distant player touched aerial ball without reaching its landing point')})()",context);
 vm.runInContext("(()=>{match.setPiece=null;match.flight=null;Math.random=()=>0;const own=match.people.filter(player=>player.t===0&&!player.keeper),passer=own[0],receiver=own[1],rivals=match.people.filter(player=>player.t===1&&!player.keeper);for(const player of match.people){player.x=.9;player.y=.9}passer.x=.5;passer.y=.5;passer.pas=20;receiver.x=.5;receiver.y=.2;rivals[0].x=.56;rivals[0].y=.46;match.owner=passer;match.ball={x:.5,y:.5};v55GroundPass(passer,receiver);if(match.flight.target.y>.3)throw Error('unreachable defender intercepted ground pass')})()",context);
 vm.runInContext("(()=>{match.setPiece=null;match.flight=null;match.rebound=null;Math.random=()=>.5;const own=match.people.filter(player=>player.t===0&&!player.keeper),passer=own[0],receiver=own[1];for(const player of match.people){player.x=.9;player.y=.9}passer.x=.5;passer.y=.5;receiver.x=.5;receiver.y=.2;match.owner=passer;match.ball={x:.5,y:.5};const completed=passer.stats.passComplete;v55GroundPass(passer,receiver);if(!receiver.interceptTarget)throw Error('pass receiver does not chase the ball');receiver.x=.9;receiver.y=.9;match.flight.done();if(match.owner||!match.rebound||passer.stats.passComplete!==completed)throw Error('missed pass must not award possession or a completion');if(receiver.interceptTarget)throw Error('pass chase target was not cleared')})()",context);
+vm.runInContext("(()=>{match.setPiece=null;match.flight=null;match.rebound=null;match.throwIn=null;const runner=match.people.find(player=>player.t===0&&!player.keeper);for(const player of match.people){player.x=player.t===0?.1:.9;player.y=.8}runner.x=.5;runner.y=.49;match.owner=runner;match.ball={x:.5,y:.49};Math.random=()=>0;action();if(match.owner!==runner||match.flight)throw Error('unmarked runner just past midfield crossed backward instead of carrying the ball')})()",context);
 console.log('PASS: native 1–20 squads, new saves, assigned positions, touchline stop and running throw-in');
 
 const fullMatch=makeContext();

@@ -85,7 +85,7 @@ function v50Restart(type,team,spot,description){
  m.ball={...spot};m.setPiece={type,team,spot,taker,phase:'waiting',wait:type==='penalty'?2.5:type==='corner'?2:type==='offside'?v50OffsideFreezeSeconds+1.1:1.8};
  if(type==='corner'){
   const allies=v50Outfield(team).filter(player=>player!==taker),opponents=v50Outfield(1-team),goalY=team===0?.1:.9;
-  v50Spot(taker,{x:spot.x,y:spot.y===.035?.05:.95});
+  v50Spot(taker,{x:spot.x,y:team===0?.05:.95});
   allies.forEach((player,index)=>v50Spot(player,{x:[.34,.45,.56,.66][index],y:goalY+(team===0?1:-1)*[.025,.085,.13,.18][index]}));
   opponents.forEach((player,index)=>v50Spot(player,{x:[.32,.43,.54,.65,.76][index],y:goalY+(team===0?1:-1)*[.045,.08,.115,.15,.19][index]}));
  }else{
@@ -103,7 +103,7 @@ function v50Restart(type,team,spot,description){
 
 function v50Corner(team,x,lastTouch){
  match.setPieceStats.corners[team]++;
- v50Restart('corner',team,{x:x<.5?.035:.965,y:team===0?.035:.965},
+ v50Restart('corner',team,{x:x<.5?.049:.951,y:team===0?.036:.964},
   `Eckball für ${v50Name(team)} nach ${lastTouch}.`);
 }
 function v50Foul(victim,offender){
@@ -255,7 +255,7 @@ function v50TakeFreeKick(setPiece){
 }
 
 const v50PenaltyStyle=document.createElement('style');
-v50PenaltyStyle.textContent=`#v50-penalty-scene{position:absolute;z-index:9;inset:0;display:grid;place-items:center;padding:12px;background:#091c20f0}#v50-penalty-scene .v42-goal-scene{width:100%;margin:0;height:min(52vw,310px)}#v50-penalty-scene .v42-next-shooter{position:absolute;top:8px;left:10px;right:10px;text-align:center;color:#fff;font-size:13px;font-weight:800}#v50-penalty-scene .v42-stands{height:96px}@media(max-width:600px){#v50-penalty-scene{padding:6px}#v50-penalty-scene .v42-goal-scene{height:260px}}`;
+v50PenaltyStyle.textContent=`#v50-penalty-scene{position:absolute;z-index:9;inset:0;display:grid;place-items:center;padding:12px;background:#091c20f0}#v50-penalty-scene .v42-goal-scene{width:100%;margin:0;height:min(52vw,310px)}#v50-penalty-scene .v42-next-shooter{position:absolute;top:8px;left:10px;right:10px;text-align:center;color:#fff;font-size:13px;font-weight:800}#v50-penalty-scene .v42-stands{height:96px}#v50-penalty-scene .v42-ball.high{animation-name:v50BallHigh}@keyframes v50BallHigh{to{left:calc(50% + var(--shot-x));bottom:calc(100% - 34px);transform:translateX(-50%) scale(.65)}}@media(max-width:600px){#v50-penalty-scene{padding:6px}#v50-penalty-scene .v42-goal-scene{height:260px}}@media(prefers-reduced-motion:reduce){#v50-penalty-scene .v42-ball.high{animation:none;left:calc(50% + var(--shot-x));bottom:calc(100% - 34px);transform:translateX(-50%) scale(.65)}}`;
 document.head.append(v50PenaltyStyle);
 function v50PenaltyVisual(setPiece,last){
  let scene=document.querySelector('#v50-penalty-scene');
@@ -267,13 +267,13 @@ function v50PenaltyVisual(setPiece,last){
   own:[v42Player(setPiece.taker)],opponent:[v42Player(v50Keeper(defender))],order:[setPiece.taker.n],opponentOrder:[v50Keeper(defender).n],
   score:[0,0],kicks:[],phase:last?'done':'shooting',last};
  scene.innerHTML=v42SceneHTML(session);
- if(last){scene.querySelector('.v42-goal-scene')?.classList.add(last.outcome);scene.querySelector('.v42-ball')?.classList.add(last.outcome)}
+ if(last){const goal=scene.querySelector('.v42-goal-scene');goal?.classList.add(last.outcome);goal?.style.setProperty('--miss-x',`${last.shotSide*41}%`);scene.querySelector('.v42-ball')?.classList.add(last.outcome)}
 }
 function v50TakePenalty(setPiece){
  const keeper=v50Keeper(1-setPiece.team),shooter=setPiece.taker;
  const goal=random()<v42PenaltyChance(v42Player(shooter),v42Player(keeper));
  const outcome=goal?'goal':random()<.45?'save':random()<.5?'wide':'high';
- setPiece.phase='result';setPiece.wait=1.15;setPiece.outcome=outcome;
+ setPiece.phase='result';setPiece.wait=2.15;setPiece.outcome=outcome;
  setPiece.shotSide=random()<.5?-1:1;
  setPiece.diveSide=outcome==='save'?setPiece.shotSide:-setPiece.shotSide;
  v50PenaltyVisual(setPiece,{side:0,number:shooter.n,name:shooter.name,goal,outcome,shotSide:setPiece.shotSide,diveSide:setPiece.diveSide});
@@ -291,7 +291,7 @@ function v50FinishPenalty(setPiece){
   keeper.stats.saves++;
   if(random()<.3)v50Deflect({x:.5,y:keeper.y},shooter.t,keeper,`Parade von ${keeper.name}`);
   else v50GoalKick(keeper,`${keeper.name} hält den Elfmeter fest.`);
- }else v50GoalKick(keeper,`${shooter.name} schießt den Elfmeter vorbei. Abstoß.`);
+ }else v50GoalKick(keeper,`${shooter.name} schießt den Elfmeter ${outcome==='high'?'über das Tor':'vorbei'}. Abstoß.`);
  hideOverlay();
 }
 

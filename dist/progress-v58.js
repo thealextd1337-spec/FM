@@ -82,6 +82,11 @@ function v58State(){
 }
 function v58PlaceButton(){
  const dialog=v47CompetitionDialog.open?v47CompetitionDialog:v47Dialog.open?v47Dialog:null;
+ if(dialog===v47CompetitionDialog&&typeof v61CurrentCareer!=='undefined'&&v61CurrentCareer){
+  v58Bar.querySelector('.career-progress-controls').append(v58Button);
+  dialog.querySelector('.v58-dialog-action')?.remove();
+  return;
+ }
  if(!dialog){
   const controls=v58Bar.querySelector('.career-progress-controls'),menu=controls.querySelector('.v46-menu-row');
   if(menu)controls.insertBefore(v58Button,menu);else controls.append(v58Button);
@@ -94,8 +99,8 @@ function v58PlaceButton(){
  slot.append(v58Button);
 }
 function v58Refresh(){
- document.querySelectorAll('footer span:first-child').forEach(label=>label.textContent='Doppel 6 / PROTOTYP 75');
- const menuFooter=startScreen.querySelector('footer');if(menuFooter)menuFooter.textContent='Doppel 6 / PROTOTYP 75';
+ document.querySelectorAll('footer span:first-child').forEach(label=>label.textContent='Doppel 6 / PROTOTYP 76');
+ const menuFooter=startScreen.querySelector('footer');if(menuFooter)menuFooter.textContent='Doppel 6 / PROTOTYP 76';
  const state=v58State();
  v58Bar.hidden=!state;
  document.body.classList.toggle('v58-active',Boolean(state));
@@ -106,7 +111,7 @@ function v58Refresh(){
  v58PlaceButton();
  v58Context.textContent=state.context;
  v58Context.title=state.context;
- v58Button.hidden=!state.action;
+ v58Button.hidden=!state.action||v47CompetitionDialog.open&&typeof v61CurrentCareer!=='undefined'&&Boolean(v61CurrentCareer);
  if(state.action){v58Button.textContent=state.label+' →';v58Button.disabled=Boolean(state.disabled);v58Button.title=state.reason||'';v58Button.dataset.action=state.action}
 }
 v58Button.onclick=()=>{

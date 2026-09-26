@@ -14,19 +14,28 @@ v64MatchMenu.hidden=true;
 v64MatchMenu.innerHTML='<summary aria-label="Spielmenü" title="Spielmenü"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg></summary><div class="v64-match-menu-panel"><button type="button" data-v64-save-exit>Speichern & beenden</button><p class="v61-error" role="alert"></p></div>';
 v64HeaderActions.append(v64MatchMenu);
 const v64LanguageControl=v64Header.querySelector('.language-control');
+const v64MenuAnchor=document.createElement('span');
+v64MenuAnchor.className='v64-menu-anchor';
 function v64UiMenuVisible(){
  v64MatchMenu.hidden=false;
  const controls=v58Bar.querySelector('.career-progress-controls');
  const dialogs=[...document.querySelectorAll('dialog[open]')];
  const dialog=document.activeElement?.closest?.('dialog[open]')||dialogs.at(-1);
- const actionDialog=v58Button.closest('dialog[open]');
- let parent=v64HeaderActions;
- if(dialog&&dialog===actionDialog)parent=v58Button.parentElement;
- else if(dialog)parent=dialog;
- else if(!v58Bar.hidden&&v58Button.parentElement===controls)parent=controls;
- v64MatchMenu.classList.toggle('v64-modal-menu',parent===dialog&&dialog!==actionDialog);
+ const headerParent=!v58Bar.hidden&&v58Button.parentElement===controls?controls:v64HeaderActions;
+ let parent=headerParent;
+ if(dialog){
+  const anchorParent=!v58Bar.hidden?controls:v64HeaderActions;
+  if(anchorParent===v58Button.parentElement){
+   if(v64MenuAnchor.parentElement!==anchorParent||v64MenuAnchor.nextElementSibling!==v58Button)anchorParent.insertBefore(v64MenuAnchor,v58Button);
+  }else if(v64MenuAnchor.parentElement!==anchorParent)anchorParent.append(v64MenuAnchor);
+  const rect=v64MenuAnchor.getBoundingClientRect();
+  v64MatchMenu.style.setProperty('--v64-modal-left',`${rect.left}px`);
+  v64MatchMenu.style.setProperty('--v64-modal-top',`${rect.top}px`);
+  parent=dialog;
+ }else v64MenuAnchor.remove();
+ v64MatchMenu.classList.toggle('v64-modal-menu',Boolean(dialog));
  if(v64MatchMenu.parentElement!==parent)v64MatchMenu.open=false;
- if(parent===v58Button.parentElement&&(dialog===actionDialog||parent===controls)){
+ if(parent===controls){
   if(v64MatchMenu.parentElement!==parent||v64MatchMenu.nextElementSibling!==v58Button)parent.insertBefore(v64MatchMenu,v58Button);
  }else if(v64MatchMenu.parentElement!==parent){
   if(parent===dialog)parent.prepend(v64MatchMenu);
@@ -45,6 +54,7 @@ new MutationObserver(mutations=>{
  v64MenuRefreshQueued=true;
  queueMicrotask(()=>{v64MenuRefreshQueued=false;v64UiMenuVisible()});
 }).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['open']});
+window.addEventListener('resize',()=>{if(document.querySelector('dialog[open]'))v64UiMenuVisible()});
 v64MatchMenu.addEventListener('click',async event=>{
  const button=event.target.closest('[data-v64-save-exit]');if(!button)return;
  const career=v61CurrentCareer;if(!career)return;
@@ -98,8 +108,8 @@ function v64UiResult(fixture,state,side){
  const record=fixture.matchRecord,own=record.players.filter(item=>item.side===side),other=record.players.filter(item=>item.side!==side),list=items=>`<div class="v64-result-players">${items.map(item=>`<div><strong>${escapeHTML(v64UiName(item.pid))}</strong><span>${item.minutes} Min. · ${v64UiCount(item.goals,'Tor','Tore')} · ${v64UiCount(item.assists,'Vorlage','Vorlagen')}</span></div>`).join('')}</div>`;
  return`<div class="v64-result"><h2>Abpfiff</h2><p>Die Partie und die übrigen Begegnungen dieses Kalendertags sind gespeichert.</p><h3>Dein Verein</h3>${list(own)}<h3>Gegner</h3>${list(other)}</div>`;
 }
-function v64UiAdboards(clubs){
- const sponsors=clubs.map(club=>({club,offer:club.sponsors?.find(item=>item.id===club.sponsorId)})).filter(item=>item.offer);
+function v64UiAdboards(clubs,managedClubId){
+ const sponsors=clubs.filter(club=>club.id===managedClubId).map(club=>({club,offer:club.sponsors?.find(item=>item.id===club.sponsorId)})).filter(item=>item.offer);
  return sponsors.length?`<div class="v64-adboards" aria-label="Werbebanner">${sponsors.map(({club,offer})=>`<div class="v64-adboard">${v66SponsorLogoSVG(club.countryId,offer.name)}<span>${escapeHTML(offer.name)}</span></div>`).join('')}</div>`:'';
 }
 function v64UiPrematchPitch(career,fixture,state,side,options={}){
@@ -158,13 +168,29 @@ function v64UiQuickLineup(career,fixture,state,side,kind){
  plan.tactics={...state.tactics[side]};v64SelectedSlot=0;
  v64ResetCells(state,side);
 }
+function v64UiFirstLegScore(career,fixture,reverse=false){
+ if(fixture.leg!==2)return'';
+ const competition=v62Current(career).find(item=>item.id===fixture.competitionId);
+ if(competition?.type!=='europe')return'';
+ const first=competition.fixtures.find(item=>item.pair===fixture.pair&&item.round===fixture.round&&item.leg===1);
+ if(!first?.result)return'';
+ return reverse?[first.result.homeGoals,first.result.awayGoals]:[first.result.awayGoals,first.result.homeGoals];
+}
+function v64UiAggregateText(career,fixture,score,reverse=false){
+ const prior=v64UiFirstLegScore(career,fixture,reverse);if(!prior)return'';
+ return`(Hinspiel ${prior[0]} : ${prior[1]} · Gesamt ${prior[0]+score[0]} : ${prior[1]+score[1]})`;
+}
 function v64UiScreenHTML(career,fixture,state){
  const competition=v62Current(career).find(item=>item.id===fixture.competitionId),label=competition.type==='league'?v62LeagueLabel(competition.country):competition.type==='cup'?'Nationaler Pokal':'Europacup',home=career.world.clubs.find(club=>club.id===fixture.homeId),away=career.world.clubs.find(club=>club.id===fixture.awayId),side=v64UiOwnSide(fixture),phase=state.phase;
+ const tableIds=competition.type==='cup'?[]:competition.type==='europe'?competition.entrants:[...new Set(competition.fixtures.flatMap(item=>[item.homeId,item.awayId]))];
+ const ranks=new Map(tableIds.length?v62Table(competition,tableIds).map((row,index)=>[row.clubId,index+1]):[]);
+ const boardClub=club=>`${v61CrestSVG(club)}<span class="v64-board-club"><strong>${escapeHTML(club.name)}</strong>${ranks.has(club.id)?`<small>Platz ${ranks.get(club.id)} von ${tableIds.length}</small>`:''}</span>`;
  const controls=phase==='prematch'?(v64UiTab==='tactics'?`<h2>Teamtaktik</h2><p>Wähle Formation und Spielidee. Änderungen sind sofort auf dem Spielfeld sichtbar.</p>${v64UiTactics(state,side)}`:`<h2>Aufstellung</h2><p>Wähle ein Trikot auf dem Feld. Für einen Wechsel ziehe einen Reservespieler auf das Feldtrikot.</p>${v64UiPrematchSelection(career,fixture,state,side)}`):phase==='paused'?`<h2>Spielpause</h2><p>Taktikänderungen gelten sofort. Wechsel erfolgen bei der nächsten Unterbrechung.</p>${v64UiTactics(state,side)}${v64UiPending(fixture,state,side)}<button type="button" class="primary v64-resume" data-v64-resume>Spiel fortsetzen →</button>`:phase==='live'?`<h2>Live-Spiel</h2><p>Die Partie läuft. Pausiere, um Taktik und Wechsel anzupassen.</p><button type="button" class="menu-action v64-pause" data-v64-pause>Spiel pausieren</button><p id="v64-live-status" class="v62-explainer">Nächste KI-Prüfung nach Tor, zur Halbzeit oder an der 15-Minuten-Marke.</p>`:v64UiResult(fixture,state,side);
  const field=phase==='prematch'?v64UiPrematchPitch(career,fixture,state,side):`<canvas id="v64-pitch" width="600" height="740" role="img" aria-label="Animiertes Spielfeld ${escapeHTML(home.name)} gegen ${escapeHTML(away.name)}"></canvas>`;
  const events=phase==='prematch'?'':`<section class="v62-season"><h3>Spielverlauf</h3><div id="v64-events">${v64UiEvents(state,phase==='finished')}</div></section>`;
  const tabs=phase==='prematch'?`<nav class="prematch-tabs v64-prematch-tabs" aria-label="Vor dem Spiel"><button type="button" data-v64-tab="lineup" class="${v64UiTab==='lineup'?'active':''}" aria-pressed="${v64UiTab==='lineup'}">Aufstellung</button><button type="button" data-v64-tab="tactics" class="${v64UiTab==='tactics'?'active':''}" aria-pressed="${v64UiTab==='tactics'}">Taktik</button></nav>`:'';
- return`<div class="v64-match-page"><div class="v64-top"><p class="eyebrow">${label} · Saison ${career.world.season} · ${v62Date(fixture.day)}</p></div><div class="v64-board"><div>${v61CrestSVG(home)}<strong>${escapeHTML(home.name)}</strong></div><span id="v64-score" aria-live="polite">${state.score[0]} : ${state.score[1]}</span><div>${v61CrestSVG(away)}<strong>${escapeHTML(away.name)}</strong></div></div><p id="v64-minute" class="v64-minute">${phase==='prematch'?'Vor Anpfiff':`${v64ClockLabel(state)}′ · ${phase==='finished'?'Abpfiff':phase==='paused'?'Pause':'Live'}`}</p>${tabs}<div class="v64-layout"><div class="v64-pitch-area">${v64UiAdboards([home,away])}${field}${phase==='prematch'&&v64UiTab==='lineup'?v64UiPrematchBench(career,fixture,state,side):''}${events}</div><section class="v64-controls">${controls}<p id="v64-message" role="alert" class="v61-error"></p></section></div></div>`;
+ const aggregate=v64UiAggregateText(career,fixture,state.score);
+ return`<div class="v64-match-page"><div class="v64-top"><p class="eyebrow">${label} · Saison ${career.world.season} · ${v62Date(fixture.day)}</p></div><div class="v64-board"><div>${boardClub(home)}</div><span class="v64-board-score" aria-live="polite"><strong id="v64-score">${state.score[0]} : ${state.score[1]}</strong>${aggregate?`<small id="v64-aggregate">${aggregate}</small>`:''}</span><div>${boardClub(away)}</div></div><p id="v64-minute" class="v64-minute">${phase==='prematch'?'Vor Anpfiff':`${v64ClockLabel(state)}′ · ${phase==='finished'?'Abpfiff':phase==='paused'?'Pause':'Live'}`}</p>${tabs}<div class="v64-layout"><div class="v64-pitch-area">${v64UiAdboards([home,away],career.manager.managedClubId)}${field}${phase==='prematch'&&v64UiTab==='lineup'?v64UiPrematchBench(career,fixture,state,side):''}${events}</div><section class="v64-controls">${controls}<p id="v64-message" role="alert" class="v61-error"></p></section></div></div>`;
 }
 function v64UiDraw(career,fixture,state,time){
  const canvas=v61WorldScreen.querySelector('#v64-pitch');if(!canvas)return;
@@ -195,6 +221,7 @@ function v64UiAnimate(time){
 function v64UiUpdate(career,fixture,state){
  const score=v61WorldScreen.querySelector('#v64-score'),minute=v61WorldScreen.querySelector('#v64-minute'),events=v61WorldScreen.querySelector('#v64-events');
  if(score)score.textContent=`${state.score[0]} : ${state.score[1]}`;
+ const aggregate=v61WorldScreen.querySelector('#v64-aggregate');if(aggregate)aggregate.textContent=v64UiAggregateText(career,fixture,state.score);
  if(minute)minute.textContent=`${v64ClockLabel(state)}′ · Live`;
  if(events)events.innerHTML=v64UiEvents(state);
 }

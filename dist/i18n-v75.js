@@ -233,6 +233,13 @@ Land	Country
 Verein	Club
 Kader	Squad
 Zur Startseite	Back to start
+Position	Position
+Sp.	Apps.
+T	G
+V	A
+Ø-Note	Avg. rating
+Runde:	Round:
+Kader nach	Sort squad by
 Wähle dein Land	Choose your country
 Jedes Land hat sechs Ligavereine und zwei Pokalvereine.	Each country has six league clubs and two cup clubs.
 6 Vereine ansehen	View 6 clubs
@@ -265,6 +272,7 @@ Spielerstatistiken folgen mit den Live-Matches.	Player statistics will appear wi
 Übersicht	Overview
 Transfers	Transfers
 Wettbewerbe	Competitions
+Wettbewerb	Competition
 Kalender	Calendar
 Statistiken	Statistics
 Saison	Season
@@ -277,6 +285,7 @@ Liga	League
 Nationaler Pokal	National cup
 Europacup	European cup
 Ergebnisse	Results
+Ergebnis	Result
 Weiter	Continue
 Zurück	Back
 Pause	Pause
@@ -403,6 +412,9 @@ Nach der Ligaphase	After the league phase
 zuletzt	last match
 gesamt	aggregate
 i. E.	on penalties
+Zum Spielbericht	To match report
+EUROPACUP · ELFMETERSCHIESSEN	EUROPEAN CUP · PENALTY SHOOTOUT
+POKAL · ELFMETERSCHIESSEN	CUP · PENALTY SHOOTOUT
 Keine qualifizierten Spieler.	No eligible players.
 Ruf	Reputation
 Jahresbudget	Annual budget
@@ -663,6 +675,7 @@ Speichern & beenden	Save and exit
 Der Spielverlauf erscheint nach Anpfiff.	Match events appear after kickoff.
 Abwehrlinie	Defensive line
 Zweikämpfe	Challenges
+gewonnene/alle Zweikämpfe	duels won/all duels
 Spielerwechsel	Substitutions
 Spielmenü	Match menu
 Das Spiel wird nach der laufenden Ballaktion gespeichert.	The match will be saved after the current ball action.
@@ -722,6 +735,19 @@ Wähle ein Trikot auf dem Feld. Für einen Wechsel ziehe einen Reservespieler au
 Spielpause	Match paused
 Taktikänderungen gelten sofort. Wechsel erfolgen bei der nächsten Unterbrechung.	Tactical changes take effect immediately. Substitutions happen at the next stoppage.
 Spiel fortsetzen	Resume match
+2. Halbzeit starten	Start second half
+↶ Rückgängig	↶ Undo
+Spielerwechsel	Substitution
+SPIELERWECHSEL	SUBSTITUTION
+Spielbericht schließen	Close match report
+← Spielbericht	← Match report
+Spielerstatistik · dieses Spiel	Player statistics · this match
+Leistung	Performance
+Werte	Stats
+ohne Note	Not rated
+ordentlich	Fair
+enttäuschend	Disappointing
+herausragend	Outstanding
 Live-Spiel	Live match
 Dein Spiel pausiert.	Your match is paused.
 Dein Spiel läuft.	Your match is live.
@@ -945,6 +971,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
 `.trim().split('\n').map(line=>line.split('\t')));
  const labelsLower=new Map([...labels].map(([de,en])=>[de.toLocaleLowerCase('de'),en]));
  const patterns=[
+  [/^i\. E\. (\d+):(\d+)$/,(_,own,other)=>`penalties ${own}:${other}`],
+  [/^Speichern fehlgeschlagen: (.+)$/,(_,reason)=>`Saving failed: ${reason}`],
   [/^Bereit zum Anpfiff\.$/,()=>`Ready for kick-off.`],
   [/^Anstoß: (.+) spielt kurz zurück\.$/,(_,name)=>`Kick-off: ${name} plays a short pass back.`],
   [/^(.+) gewinnt das Duell gegen (.+)\.$/,(_,winner,loser)=>`${winner} wins the duel against ${loser}.`],
@@ -1069,6 +1097,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(\d+) Min\.$/,(_,n)=>`${n} min`],
   [/^(\d+) Tor$/,(_,n)=>`${n} goal`],
   [/^(\d+) Tore$/,(_,n)=>`${n} goals`],
+  [/^(\d+) Tor im Bewerb$/,(_,n)=>`${n} goal in this competition`],
+  [/^(\d+) Tore im Bewerb$/,(_,n)=>`${n} goals in this competition`],
   [/^(\d+) Vorlage$/,(_,n)=>`${n} assist`],
   [/^(\d+) Vorlagen$/,(_,n)=>`${n} assists`],
   [/^Aktuelle Note (.+)$/,(_,rating)=>`Current rating ${rating}`],
@@ -1125,6 +1155,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^Nationaler Pokal: mindestens (\d+) reguläre Tore$/,(_,goals)=>`National cup: at least ${goals} regulation goals`],
   [/^Saison (\d+)$/,(_,n)=>`Season ${n}`],
   [/^Spieltag (\d+)$/,(_,n)=>`Matchday ${n}`],
+  [/^T (\d+) · V (\d+) · S (\d+) · ZK (\d+)\/(\d+)$/,(_,goals,assists,shots,won,total)=>`G ${goals} · A ${assists} · Sh ${shots} · D ${won}/${total}`],
+  [/^(\d+) Tore · (\d+) Vorlagen · (\d+) Schüsse · (\d+) von (\d+) Zweikämpfen gewonnen$/,(_,goals,assists,shots,won,total)=>`${goals} goals · ${assists} assists · ${shots} shots · ${won} of ${total} duels won`],
   [/^(\d+) Spiele$/,(_,n)=>`${n} games`],
   [/^(\d+) Saisons$/,(_,n)=>`${n} seasons`],
   [/^(\d+) Einsätze$/,(_,n)=>`${n} appearances`],
@@ -1152,6 +1184,9 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^Saisonbudget (.+) · Profikader (.+)$/,(_,budget,squad)=>`Season budget ${budget} · Professional squad ${squad}`],
   [/^(Torwart|Abwehr|Mittelfeld|Angriff) · (\d+) Jahre · bis Ende Saison (\d+) Ausbildungsentschädigung (.+) · Gehalt (.+) je Saison · (\d+) freie Kaderplätze$/,(_,position,age,season,fee,salary,spots)=>`${translate(position)} · ${age} years · training compensation ${fee} until end of season ${season} · salary ${salary} per season · ${spots} free squad places`],
   [/^Profil von (.+) öffnen$/,(_,name)=>`Open ${name}'s profile`],
+  [/^Kader nach (.+) sortieren$/,(_,column)=>`Sort squad by ${translate(column)}`],
+  [/^Platz (\d+)$/,(_,rank)=>`Position ${rank}`],
+  [/^Runde: (Viertelfinale|Halbfinale|Finale)$/,(_,round)=>`Round: ${translate(round)}`],
   [/^Vereinslogo (.+)$/,(_,name)=>`${name} club crest`],
   [/^Vereine in (.+)$/,(_,country)=>`Clubs in ${translate(country)}`],
   [/^Deine Vereinswelten · (.+)$/,(_,count)=>`Your club careers · ${count}`],
@@ -1164,6 +1199,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(.+): (sehr schwach|eher schwach|schwach|durchschnittlich|solide|stark|sehr stark|normal|gut|sehr gut)$/,(_,ability,level)=>`${translate(ability)}: ${translate(level)}`],
   [/^(\d+) S · (\d+) U · (\d+) N$/,(_,wins,draws,losses)=>`${wins} W · ${draws} D · ${losses} L`],
   [/^Tore (\d+):(\d+)$/,(_,forGoals,against)=>`Goals ${forGoals}:${against}`],
+  [/^\(Hinspiel (\d+) : (\d+) · Gesamt (\d+) : (\d+)\)$/,(_,a,b,c,d)=>`(First leg ${a} : ${b} · Aggregate ${c} : ${d})`],
+  [/^\(Hinspiel · Gesamt (\d+) : (\d+)\)$/,(_,a,b)=>`(First leg · Aggregate ${a} : ${b})`],
   [/^(\d+) Minuten (\d+) Sekunden plus (\d+) Minuten Nachspielzeit$/,(_,minutes,seconds,added)=>`${minutes} minutes ${seconds} seconds plus ${added} ${Number(added)===1?'minute':'minutes'} of stoppage time`],
   [/^(Spanien|Italien|Deutschland|Frankreich|Portugal|England) · (.+)$/,(_,country,rest)=>`${translate(country)} · ${translate(rest)}`]
  ];

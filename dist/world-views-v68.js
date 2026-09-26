@@ -245,7 +245,7 @@ v61WorldScreen.addEventListener('click',event=>{
   const bracket=button.closest('[data-v62-cup-bracket]'),rounds=[...bracket.querySelectorAll('[data-v62-cup-round]')],index=Math.max(0,Math.min(rounds.length-1,Number(bracket.dataset.v62CupIndex)+Number(button.dataset.v62CupSlide)));
   bracket.dataset.v62CupIndex=index;
   for(const [position,round] of rounds.entries())round.hidden=position!==index;
-  bracket.querySelector('[data-v62-cup-slide-label]').textContent=`${rounds[index].querySelector('h4').textContent} · ${index+1} von ${rounds.length}`;
+  bracket.querySelector('[data-v62-cup-slide-label]').textContent=rounds[index].querySelector('h4').textContent;
   for(const control of bracket.querySelectorAll('[data-v62-cup-slide]'))control.disabled=index+(Number(control.dataset.v62CupSlide))<0||index+Number(control.dataset.v62CupSlide)>=rounds.length;
   return;
  }

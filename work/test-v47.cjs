@@ -13,7 +13,7 @@ assert(html.includes('>1</b>'));
 assert(html.includes('v47-winner')&&html.includes('class="primary v47-menu">Weiter →</button>')&&!html.includes('v47-done'));
 const leagueOverview=vm.runInContext("v47CompetitionHTML(v47Snapshot('Athletik 06'))",context);
 for(const label of['Weitere Ergebnisse','Ligatabelle','Torschützen','Vorlagen','Spieltag 1'])assert(leagueOverview.includes(label),label);
-assert(leagueOverview.includes('class="winner"'),'league winners are highlighted');
+assert(vm.runInContext("v47OtherResultHTML({home:'team-1',away:'team-2',result:[2,1]},'league')",context).includes('class="winner"'),'league winners are highlighted');
 assert(leagueOverview.includes('FC Dauertest'),'own club appears in table');
 assert(html.includes('data-report-player="0"')&&html.includes('data-report-player="6"'),'both teams have clickable player rows');
 assert.equal(vm.runInContext("v47OpenPlayerStats(v47Snapshot('Athletik 06'),0)",context),true);
@@ -22,6 +22,12 @@ assert.equal(vm.runInContext("v47OpenPlayerStats(v47Snapshot('Athletik 06'),6)",
 assert(vm.runInContext('v47PlayerDialog.innerHTML',context).includes('Athletik 06'));
 assert(!vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),score:[0,0]},null).includes('class=\"v47-winner\"')",context));
 assert(vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),score:[0,0]},{score:[3,2],winner:0}).includes('v47-score-team v47-winner')",context));
+const scorerReport=vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),goals:[{team:0,name:'Alex Test',minute:12,competitionGoals:4},{team:0,name:'Alex Test',minute:34,competitionGoals:4}]})",context);
+assert(scorerReport.includes('Alex Test 12′, 34′')&&scorerReport.includes('4 Tore im Bewerb'),'Tore im Bewerb stehen unter dem gebündelten Torschützen');
+const returnLeg=vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),score:[3,2],firstLeg:[1,2],aggregate:[4,4],leg:2})",context);
+assert(returnLeg.includes('(Hinspiel 1 : 2 · Gesamt 4 : 4)'),'Rückspielbericht zeigt Hinspiel und Gesamtergebnis');
+const firstLeg=vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),score:[2,1],aggregate:[2,1],leg:1})",context);
+assert(firstLeg.includes('(Hinspiel · Gesamt 2 : 1)'),'Hinspielbericht kennzeichnet den Zwischenstand');
 
 const cupContext=makeContext();
 for(const file of['penalties-v42.js','club-records-v43.js','club-identity-v44.js','keeper-logo-v45.js','match-report-v47.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),cupContext);
