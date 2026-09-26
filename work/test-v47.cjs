@@ -23,7 +23,7 @@ assert(vm.runInContext('v47PlayerDialog.innerHTML',context).includes('Athletik 0
 assert(!vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),score:[0,0]},null).includes('class=\"v47-winner\"')",context));
 assert(vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),score:[0,0]},{score:[3,2],winner:0}).includes('v47-score-team v47-winner')",context));
 const scorerReport=vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),goals:[{team:0,name:'Alex Test',minute:12,competitionGoals:4},{team:0,name:'Alex Test',minute:34,competitionGoals:4}]})",context);
-assert(scorerReport.includes('Alex Test 12′, 34′')&&scorerReport.includes('4 Tore im Bewerb'),'Tore im Bewerb stehen unter dem gebündelten Torschützen');
+assert(scorerReport.includes('Alex Test 12′, 34′')&&!scorerReport.includes('Tore im Bewerb'),'gebündelte Torschützen zeigen nur die Minuten dieser Partie');
 const returnLeg=vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),score:[3,2],firstLeg:[1,2],aggregate:[4,4],leg:2})",context);
 assert(returnLeg.includes('(Hinspiel 1 : 2 · Gesamt 4 : 4)'),'Rückspielbericht zeigt Hinspiel und Gesamtergebnis');
 const firstLeg=vm.runInContext("v47ReportHTML({...v47Snapshot('Athletik 06'),score:[2,1],aggregate:[2,1],leg:1})",context);

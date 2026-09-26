@@ -76,7 +76,7 @@ function v50BestTaker(team,type,spot){
 }
 function v50Spot(player,spot){player.x=spot.x;player.y=spot.y;player.tx=spot.x;player.ty=spot.y}
 function v50ClearPenaltyScene(){document.querySelector('#v50-penalty-scene')?.remove()}
-const v50OffsideFreezeSeconds=1.5;
+const v50OffsideFreezeSeconds=3;
 
 function v50Restart(type,team,spot,description){
  const m=match;if(!m||m.finished||m.setPiece)return;
@@ -256,6 +256,7 @@ function v50TakeFreeKick(setPiece){
 
 const v50PenaltyStyle=document.createElement('style');
 v50PenaltyStyle.textContent=`#v50-penalty-scene{position:absolute;z-index:9;inset:0;display:grid;place-items:center;padding:12px;background:#091c20f0}#v50-penalty-scene .v42-goal-scene{width:100%;margin:0;height:min(52vw,310px)}#v50-penalty-scene .v42-next-shooter{position:absolute;top:8px;left:10px;right:10px;text-align:center;color:#fff;font-size:13px;font-weight:800}#v50-penalty-scene .v42-stands{height:96px}#v50-penalty-scene .v42-ball.high{animation-name:v50BallHigh}@keyframes v50BallHigh{to{left:calc(50% + var(--shot-x));bottom:calc(100% - 34px);transform:translateX(-50%) scale(.65)}}@media(max-width:600px){#v50-penalty-scene{padding:6px}#v50-penalty-scene .v42-goal-scene{height:260px}}@media(prefers-reduced-motion:reduce){#v50-penalty-scene .v42-ball.high{animation:none;left:calc(50% + var(--shot-x));bottom:calc(100% - 34px);transform:translateX(-50%) scale(.65)}}`;
+v50PenaltyStyle.textContent+=`#v50-penalty-scene .v78-penalty-referee{position:absolute;left:8px;bottom:8px;height:clamp(110px,30%,175px);width:auto;image-rendering:pixelated;pointer-events:none;filter:drop-shadow(0 3px 3px #07191d);animation:v78PenaltySignal 2.25s ease-out both}@keyframes v78PenaltySignal{0%{opacity:0;transform:translateY(10px)}12%,73%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){#v50-penalty-scene .v78-penalty-referee{animation:none;opacity:1}}`;
 document.head.append(v50PenaltyStyle);
 function v50PenaltyVisual(setPiece,last){
  let scene=document.querySelector('#v50-penalty-scene');
@@ -266,7 +267,7 @@ function v50PenaltyVisual(setPiece,last){
   keeperKits:[attacker===0?kit.userKeeper:kit.opponentKeeper,defender===0?kit.userKeeper:kit.opponentKeeper],
   own:[v42Player(setPiece.taker)],opponent:[v42Player(v50Keeper(defender))],order:[setPiece.taker.n],opponentOrder:[v50Keeper(defender).n],
   score:[0,0],kicks:[],phase:last?'done':'shooting',last};
- scene.innerHTML=v42SceneHTML(session);
+ scene.innerHTML=v42SceneHTML(session)+(!last&&typeof v55RefereeAsset==='function'?`<img class="v78-penalty-referee" src="${v55RefereeAsset('penalty')}" alt="Schiedsrichter zeigt auf den Elfmeterpunkt">`:'');
  if(last){const goal=scene.querySelector('.v42-goal-scene');goal?.classList.add(last.outcome);goal?.style.setProperty('--miss-x',`${last.shotSide*41}%`);scene.querySelector('.v42-ball')?.classList.add(last.outcome)}
 }
 function v50TakePenalty(setPiece){

@@ -2,6 +2,11 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-26 (Schiedsrichter-Sprites und Matchanzeigen)
+
+- Für jede Partie wird zufällig eines von drei Pixelart-Schiedsrichter-Sets gewählt und beim Speichern beibehalten. Der Linienrichter hebt beim Abseits die Fahne zuerst senkrecht und zeigt dann mit waagerechtem Arm nach vorne; die Szene bleibt drei Sekunden sichtbar. Bei einem regulären Elfmeter zeigt der Schiedsrichter mit Pfeife im Mund auf den Strafstoßpunkt. Geprüft mit Standardsituations-, Abseits-, Match- und Buildtests.
+- Im Spielbericht stehen unter Torschützen nur noch ihre Tore aus dieser Partie. Die Live-Anzeige ergänzt die Tabellenplätze für Ligaspiele und die Europacup-Ligaphase; in K.-o.-Spielen erscheint kein Tabellenplatz. Geprüft mit Berichts-, Tabellen- und Ansichts-Tests.
+
 ## 2026-09-26 (Vorschau und Europacup-Anzeigen)
 
 - Die Vorschau eines Europacup-Rückspiels zeigt das Hinspielergebnis zwischen den Vereinsnamen. Die Formkästchen nennen bei Mouseover Ergebnis und Gegner. In Matchvorbereitung, Live-Spiel und Pause erscheint der laufende Gesamtstand kompakt in Klammern; die Live-Anzeige nennt auch die aktuelle Europacup-Runde. Die Rückgängig-Aktion steht platzsparend neben der Ersatzbank. Ausgewechselte Spieler erscheinen dort als Karten mit Einsatzminuten und Spielnote und können nicht erneut eingewechselt werden. Geprüft mit Ansichts-, Match-, Pausenbank-, Sprach- und Elfmetertests sowie dem Einzeldatei-Build. Die Seitenversion ist Prototyp 77.

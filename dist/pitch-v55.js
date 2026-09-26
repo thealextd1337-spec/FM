@@ -56,7 +56,7 @@ const v55BaseTeamStats=updateTeamStats;
 updateTeamStats=function(){v55BaseTeamStats();if(!match?.people)return;for(const [id,key] of [['#v55-crosses','crosses'],['#v55-headers','headers']]){const row=$(id);if(!row)continue;for(const [team,side] of [[0,'home'],[1,'away']])row.querySelector(`[data-stat-value="${side}"]`).textContent=match.people.filter(player=>player.t===team).reduce((sum,player)=>sum+(player.stats[key]||0),0)}};
 
 const v55BaseStart=start;
-start=function(){v55EnsureAssignments();const result=v55BaseStart();if(match&&running){match.defenseLines=[defenseLine,v55OpponentLines[activeOpponent()?.id]??0];match.throwIn=null;match.offsideVisual=null;match.lastTouch=null;for(const player of match.people){player.assignedLine=player.assignedLine||player.line;player.initialBy=player.by}$('#live-plan').textContent+=` · Abwehrlinie: ${v55LineNames[defenseLine]} · Gegner: ${v55LineNames[match.defenseLines[1]]}`;$('#duration').textContent='2 × 45 Ingame-Minuten · Sichtbare Einwürfe können das Match verlängern'}return result};
+start=function(){v55EnsureAssignments();const result=v55BaseStart();if(match&&running){if(!Number.isInteger(match.refereeVariant))match.refereeVariant=Math.floor(Math.random()*3);match.defenseLines=[defenseLine,v55OpponentLines[activeOpponent()?.id]??0];match.throwIn=null;match.offsideVisual=null;match.lastTouch=null;for(const player of match.people){player.assignedLine=player.assignedLine||player.line;player.initialBy=player.by}$('#live-plan').textContent+=` · Abwehrlinie: ${v55LineNames[defenseLine]} · Gegner: ${v55LineNames[match.defenseLines[1]]}`;$('#duration').textContent='2 × 45 Ingame-Minuten · Sichtbare Einwürfe können das Match verlängern'}return result};
 $('#start').onclick=()=>start();
 
 function v55DefenderY(team,line){const home={[-1]:.87,0:.75,1:.63}[line];return team===0?home:1-home}
@@ -67,8 +67,34 @@ function v55ThrowStep(delta,realDelta){const m=match,throwIn=m.throwIn;if(!throw
 const v55BaseStep=step;
 step=function(delta,realDelta){if(match?.throwIn&&!match.finished){v55ThrowStep(delta,realDelta);return}if(match&&!match.finished)v55PrepareMovement();const result=v55BaseStep(delta,realDelta);if(match?.offsideVisual&&!match.setPiece)match.offsideVisual=null;return result};
 const v55BaseDraw=draw;
+const v55RefereeFiles=[
+ {raised:'referees/white-raised.png',middle:'referees/white-middle.png',far:'referees/white-far.png',penalty:'referees/white-penalty.png'},
+ {raised:'referees/black-raised.png',middle:'referees/black-middle.png',far:'referees/black-far.png',penalty:'referees/black-penalty.png'},
+ {raised:'referees/asian-raised.png',middle:'referees/asian-middle.png',far:'referees/asian-far.png',penalty:'referees/asian-penalty.png'}
+];
+const v55RefereeImages=new Map();
+function v55RefereeAsset(pose,game=match){return v55RefereeFiles[game?.refereeVariant??0]?.[pose]||v55RefereeFiles[0][pose]}
+function v55RefereeImage(src){
+ if(typeof Image==='undefined')return null;
+ if(!v55RefereeImages.has(src)){const image=new Image();image.src=src;v55RefereeImages.set(src,image)}
+ return v55RefereeImages.get(src);
+}
+function v55OffsideSignal(scene,elapsed){
+ const left=scene.x>.5;
+ // Hold the vertical signal, briefly move the arm, then point horizontally.
+ const pose=elapsed<.9?'raised':elapsed<1.4?'far':'middle';
+ return{left,pose};
+}
 function v55DrawAssistantReferee(ctx,scene){
- const left=scene.x>.5,direction=left?1:-1,x=left?46:554,y=clamp(scene.lineY*740,135,640);
+ const signal=v55OffsideSignal(scene,match?.setPiece?.positionElapsed||0);
+ const sprite=v55RefereeImage(v55RefereeAsset(signal.pose));
+ if(sprite?.complete&&sprite.naturalWidth&&typeof ctx.drawImage==='function'){
+  const x=signal.left?51:549,y=clamp(scene.lineY*740,140,620);
+  ctx.save();ctx.imageSmoothingEnabled=false;
+  ctx.translate(x,y);if(!signal.left)ctx.scale(-1,1);
+  ctx.drawImage(sprite,-(signal.pose==='raised'?35:20),-136,100,150);ctx.restore();return;
+ }
+ const left=signal.left,direction=left?1:-1,x=left?46:554,y=clamp(scene.lineY*740,135,640);
  ctx.save();ctx.translate(x,y);ctx.scale(1.3,1.3);ctx.translate(-x,-y);
  ctx.fillStyle='#081b1c99';ctx.beginPath();ctx.ellipse(x,y+46,24,8,0,0,Math.PI*2);ctx.fill();
  ctx.strokeStyle='#102327';ctx.lineWidth=13;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x-7,y+14);ctx.lineTo(x-12,y+42);ctx.moveTo(x+7,y+14);ctx.lineTo(x+12,y+42);ctx.stroke();

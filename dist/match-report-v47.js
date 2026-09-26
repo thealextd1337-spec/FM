@@ -76,7 +76,7 @@ function v47ShowCompetition(report){
  if(v47CompetitionDialog.open)v47CompetitionDialog.close();
  if(v47CompetitionDialog.showModal)v47CompetitionDialog.showModal();else v47CompetitionDialog.setAttribute('open','');
 }
-v47Style.textContent+=`.v47-score-team{display:grid;justify-items:center;align-content:center;gap:7px;min-width:0}.v47-score-club{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0}.v47-score-club .v61-crest{width:29px;height:34px;flex:none}.v47-score-goals{display:grid;gap:6px;color:#c4d8ce;font-size:11px}.v47-score-goals span{display:grid;gap:2px}.v47-score-goals small{font-size:11px}.v47-score-goals em{color:#a9c1b0;font-size:10px;font-style:normal}html[lang=en] .v47-score .v47-winner::after{content:'WINNER'}@media(max-width:650px){.v47-score-club{flex-wrap:wrap;gap:4px}.v47-score-club .v61-crest{width:23px;height:27px}.v47-score-goals small{font-size:9px}}`;
+v47Style.textContent+=`.v47-score-team{display:grid;justify-items:center;align-content:center;gap:7px;min-width:0}.v47-score-club{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0}.v47-score-club .v61-crest{width:29px;height:34px;flex:none}.v47-score-goals{display:grid;gap:6px;color:#c4d8ce;font-size:11px}.v47-score-goals span{display:grid;gap:2px}.v47-score-goals small{font-size:11px}html[lang=en] .v47-score .v47-winner::after{content:'WINNER'}@media(max-width:650px){.v47-score-club{flex-wrap:wrap;gap:4px}.v47-score-club .v61-crest{width:23px;height:27px}.v47-score-goals small{font-size:9px}}`;
 v47Style.textContent+=`.v47-score{align-items:stretch}.v47-score>strong{align-self:center}.v47-score-team{align-content:start;padding:12px 5px}`;
 v47Style.textContent+=`.v47-score-total small{display:block;margin-top:6px;color:#b7cbc3;font:600 11px/1.4 Arial,sans-serif;white-space:normal}`;
 v47Style.textContent+=`.v47-award-player{padding:0;border:0;background:none;color:#edf5ef;font:inherit;font-weight:800;text-align:left;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.v47-award-player:focus-visible{outline:2px solid #c7f36b;outline-offset:3px}`;
@@ -90,10 +90,10 @@ function v47ReportHTML(report,shootout){
   const club=report.clubIds&&typeof v61CurrentCareer!=='undefined'&&v61CurrentCareer?.world.clubs.find(item=>item.id===report.clubIds[side]);
   const goals=new Map();
   for(const goal of (report.goals||[]).filter(item=>item.team===side)){
-   const entry=goals.get(goal.name)||{name:goal.name,minutes:[],competitionGoals:goal.competitionGoals};
-   entry.minutes.push(`${goal.minute}′`);entry.competitionGoals=goal.competitionGoals??entry.competitionGoals;goals.set(goal.name,entry);
+   const entry=goals.get(goal.name)||{name:goal.name,minutes:[]};
+   entry.minutes.push(`${goal.minute}′`);goals.set(goal.name,entry);
   }
-  return`<div class="v47-score-team ${winner===side?'v47-winner':''}"><div class="v47-score-club">${club?v61CrestSVG(club):''}<span>${escapeHTML(name)}</span></div>${goals.size?`<div class="v47-score-goals">${[...goals.values()].map(goal=>`<span><small>${escapeHTML(goal.name)} ${escapeHTML(goal.minutes.join(', '))}</small>${goal.competitionGoals===undefined?'':`<em>${goal.competitionGoals} ${goal.competitionGoals===1?'Tor':'Tore'} im Bewerb</em>`}</span>`).join('')}</div>`:''}</div>`;
+  return`<div class="v47-score-team ${winner===side?'v47-winner':''}"><div class="v47-score-club">${club?v61CrestSVG(club):''}<span>${escapeHTML(name)}</span></div>${goals.size?`<div class="v47-score-goals">${[...goals.values()].map(goal=>`<span><small>${escapeHTML(goal.name)} ${escapeHTML(goal.minutes.join(', '))}</small></span>`).join('')}</div>`:''}</div>`;
  };
  const rows=[['Schüsse',report.shots[0],report.shots[1]],['Aufs Tor',v47TeamTotal(report,0,'onTarget'),v47TeamTotal(report,1,'onTarget')],['Ballbesitz',`${share} %`,`${100-share} %`],['Passquote',v47Percent(v47TeamTotal(report,0,'passComplete'),v47TeamTotal(report,0,'passes')),v47Percent(v47TeamTotal(report,1,'passComplete'),v47TeamTotal(report,1,'passes'))],['Gewonnene Zweikämpfe',v47TeamTotal(report,0,'duelsWon'),v47TeamTotal(report,1,'duelsWon')]];
  rows.push(...[['Hohe Pässe','highPasses'],['Flanken','crosses'],['Kopfballschüsse','headers'],['Volleyschüsse','volleys']].map(([label,key])=>[label,v47TeamTotal(report,0,key),v47TeamTotal(report,1,key)]));

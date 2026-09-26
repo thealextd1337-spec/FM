@@ -8,6 +8,13 @@ function v65Context(){
 }
 function v65Side(physical,ownSide){return physical===0?ownSide:1-ownSide}
 function v65Club(context,physical){const side=v65Side(physical,context.ownSide);return context.career.world.clubs.find(club=>club.id===(side===0?context.fixture.homeId:context.fixture.awayId))}
+function v65LiveRankLabels(context){
+ const {career,fixture}=context,competition=v62Current(career).find(item=>item.id===fixture.competitionId);
+ if(!competition||competition.type!=='league'&&!(competition.type==='europe'&&/^R\d+$/.test(fixture.round)))return[];
+ const ids=competition.type==='europe'?competition.entrants:[...new Set(competition.fixtures.flatMap(item=>[item.homeId,item.awayId]))];
+ const ranks=new Map(v62Table(competition,ids).map((row,index)=>[row.clubId,index+1]));
+ return[0,1].map(physical=>{const rank=ranks.get(v65Club(context,physical)?.id);return rank?`Platz ${rank} von ${ids.length}`:''});
+}
 function v65LineupPositions(context,physical){
  const side=v65Side(physical,context.ownSide),active=v64Active(context.state,side),cells=v64EnsureCells(context.state,side),positions=new Map();
  for(const pid of active)if(context.state.roles[pid]!=='gk')positions.set(pid,cells[pid]);
@@ -41,7 +48,8 @@ function v65CreateMatch(context){
  const people=[];
  for(const physical of [0,1])for(const pid of v64Active(context.state,v65Side(physical,context.ownSide)))people.push(v65PhysicalPlayer(context,physical,pid));
  const home=v65Club(context,0),away=v65Club(context,1),homeColors=v61ClubColors(home),awayColors=v61ClubColors(away);
- match={people,exitedPeople:[],elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:away.name,kits:{user:{main:homeColors[0],trim:homeColors[1],style:'stripe'},opponent:{main:awayColors[0],trim:awayColors[1],style:'stripe'},userKeeper:{main:'#e7b957',trim:'#ffffff',style:'solid'},opponentKeeper:{main:'#516bb4',trim:'#ffffff',style:'solid'}}};
+ match={people,exitedPeople:[],refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:away.name,kits:{user:{main:homeColors[0],trim:homeColors[1],style:'stripe'},opponent:{main:awayColors[0],trim:awayColors[1],style:'stripe'},userKeeper:{main:'#e7b957',trim:'#ffffff',style:'solid'},opponentKeeper:{main:'#516bb4',trim:'#ffffff',style:'solid'}}};
+ for(const pose of ['raised','far','middle','penalty'])v55RefereeImage(v55RefereeAsset(pose));
  v65ApplyTactics(context);kickoff(0);note('Bereit zum Anpfiff.','restart');
 }
 function v65Snapshot(context){
@@ -150,10 +158,6 @@ function v65BookWorldMatch(context){
  if(competition?.type==='europe'&&['QF','SF'].includes(context.fixture.round)){state.postMatchReport.leg=context.fixture.leg;state.postMatchReport.aggregate=[...state.postMatchReport.score]}
  const firstLeg=v64UiFirstLegScore(context.career,context.fixture,context.ownSide===1);
  if(firstLeg){state.postMatchReport.firstLeg=firstLeg;state.postMatchReport.aggregate=[firstLeg[0]+state.postMatchReport.score[0],firstLeg[1]+state.postMatchReport.score[1]]}
- for(const goal of state.postMatchReport.goals){
-  const clubId=state.postMatchReport.clubIds?.[goal.team],player=context.career.world.clubs.find(club=>club.id===clubId)?.roster.find(item=>item.name===goal.name);
-  if(player)goal.competitionGoals=player.history.filter(item=>item.season===context.career.world.season&&item.competitionId===context.fixture.competitionId).reduce((sum,item)=>sum+(item.goals||0),0);
- }
  v64UiSave();
 }
 function v65ShowWorldPenalties(context){
@@ -368,6 +372,8 @@ v25UpdateLiveBoard=function(){
  const names=$$('#match-area .score-name-text'),formations=$$('#match-area .score-team small');
  if(names[0])names[0].textContent=v65Club(context,0).name;if(names[1])names[1].textContent=v65Club(context,1).name;
  for(const physical of [0,1])if(formations[physical])formations[physical].textContent=context.state.tactics[v65Side(physical,context.ownSide)].formation;
+ const ranks=v65LiveRankLabels(context),teams=$$('#match-area .score-team');
+ for(const physical of [0,1])if(ranks[physical]&&teams[physical]){const label=document.createElement('span');label.className='v65-live-rank';label.textContent=ranks[physical];teams[physical].querySelector('.goal-list')?.before(label)}
  for(const node of $$('#match-info [data-stat-home]'))node.textContent=v65Club(context,0).name;
  for(const node of $$('#match-info [data-stat-away]'))node.textContent=v65Club(context,1).name;
 };

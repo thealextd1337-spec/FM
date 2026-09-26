@@ -3,13 +3,13 @@ const vm=require('node:vm');
 const assert=require('node:assert/strict');
 const {makeContext}=require('./test-v41.cjs');
 
-function newMatch(){
+function newMatch(refereeRandom){
  const context=makeContext();
  for(const file of ['youth-v33.js','penalties-v42.js','club-records-v43.js','club-identity-v44.js','keeper-logo-v45.js','match-report-v47.js','next-match-v49.js','set-pieces-v50.js','status-icons-v51.js','player-status-v51.js','strength-v55.js','opponent-profile-v54.js'])
   vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context,{filename:file});
  vm.runInContext('var v24Validation=()=>[];var v25RoleBar=()=>{};var v24Remember=()=>{};var v24FatigueText=()=>"frisch";var v24TopSkills=()=>"Passspiel gut";',context);
  for(const file of ['pitch-v55.js','pitch-v56.js','pitch-v57.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context,{filename:file});
- vm.runInContext("beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');document.querySelector('#canvas').parentElement={append(){}};start();match.kickoff=null;match.postBanner=null;match.goalPause=0;match.next=Infinity;match.elapsed=10",context);
+ vm.runInContext(`beginSquadSetup();autoSelectSquad();confirmInitialSquad();selectSponsor('safe');document.querySelector('#canvas').parentElement={append(){}};${refereeRandom===undefined?'':`Math.random=()=>${refereeRandom};`}start();match.kickoff=null;match.postBanner=null;match.goalPause=0;match.next=Infinity;match.elapsed=10`,context);
  return context;
 }
 
@@ -28,8 +28,26 @@ vm.runInContext('step(0,.02)',foul);
 assert.equal(vm.runInContext('match.setPiece',foul),null);
 
 const offside=newMatch();
-const offsidePositions=JSON.parse(vm.runInContext(`JSON.stringify((()=>{match.owner=match.people.find(player=>player.t===0&&!player.keeper);match.ball={x:.5,y:.5};const attacker=match.people.find(player=>player.t===0&&!player.keeper&&player!==match.owner);attacker.x=.5;attacker.y=.2;const defenders=match.people.filter(player=>player.t===1);defenders.forEach((player,index)=>{player.x=.7;player.y=.3+index*.02});const snapshot=v55OffsideSnapshot(match.owner);v55WhistleOffside(snapshot,attacker);const bannerHiddenAtWhistle=document.querySelector('#match-overlay').hidden;const taker=match.setPiece.taker,original={x:taker.x,y:taker.y},everyone=match.people.map(person=>({x:person.x,y:person.y})),clock=match.elapsed;step(1.4,1.4);const frozen={x:taker.x,y:taker.y},frozenEveryone=match.people.map(person=>({x:person.x,y:person.y})),visualDuringPause=!!match.offsideVisual,bannerHiddenDuringPause=document.querySelector('#match-overlay').hidden;step(.2,.2);return{original,frozen,everyone,frozenEveryone,moving:{x:taker.x,y:taker.y},spot:match.setPiece.spot,ball:match.ball,visualDuringPause,visualWhileMoving:!!match.offsideVisual,bannerHiddenAtWhistle,bannerHiddenDuringPause,clock,clockAfter:match.elapsed,phase:match.setPiece?.phase}})())`,offside));
-assert.deepEqual(offsidePositions.frozen,offsidePositions.original,'offside decision stays frozen for at least 1.4 real seconds');
+assert(Number.isInteger(vm.runInContext('match.refereeVariant',offside)),'a referee set is selected when a match starts');
+assert.equal(vm.runInContext('match.refereeVariant',newMatch(0)),0);
+assert.equal(vm.runInContext('match.refereeVariant',newMatch(.4)),1);
+assert.equal(vm.runInContext('match.refereeVariant',newMatch(.8)),2);
+for(let variant=0;variant<3;variant++){
+ vm.runInContext(`match.refereeVariant=${variant}`,offside);
+ for(const pose of ['raised','far','middle','penalty']){
+  const asset=vm.runInContext(`v55RefereeAsset('${pose}')`,offside);
+  assert(fs.existsSync(`dist/${asset}`),`referee set ${variant} has its ${pose} sprite`);
+ }
+ const asset=vm.runInContext("v55RefereeAsset('penalty')",offside);
+ vm.runInContext("v50PenaltyVisual({team:0,taker:match.people.find(player=>player.t===0&&!player.keeper)},null)",offside);
+ assert(vm.runInContext("document.querySelector('#v50-penalty-scene').innerHTML",offside).includes(asset),`penalty scene uses referee set ${variant}`);
+}
+assert.equal(vm.runInContext('v55OffsideSignal({x:.75},0).pose',offside),'raised','offside starts with the flag raised');
+assert.equal(vm.runInContext('v55OffsideSignal({x:.75},1).pose',offside),'far','the flag moves toward the horizontal signal');
+assert.equal(vm.runInContext('v55OffsideSignal({x:.75},1.5).pose',offside),'middle','the arm finishes horizontally for the remaining freeze');
+assert.equal(vm.runInContext('v55OffsideSignal({x:.25},1.5).left',offside),false,'the assistant changes touchline with the player position');
+const offsidePositions=JSON.parse(vm.runInContext(`JSON.stringify((()=>{match.owner=match.people.find(player=>player.t===0&&!player.keeper);match.ball={x:.5,y:.5};const attacker=match.people.find(player=>player.t===0&&!player.keeper&&player!==match.owner);attacker.x=.5;attacker.y=.2;const defenders=match.people.filter(player=>player.t===1);defenders.forEach((player,index)=>{player.x=.7;player.y=.3+index*.02});const snapshot=v55OffsideSnapshot(match.owner);v55WhistleOffside(snapshot,attacker);const bannerHiddenAtWhistle=document.querySelector('#match-overlay').hidden;const taker=match.setPiece.taker,original={x:taker.x,y:taker.y},everyone=match.people.map(person=>({x:person.x,y:person.y})),clock=match.elapsed;step(2.9,2.9);const frozen={x:taker.x,y:taker.y},frozenEveryone=match.people.map(person=>({x:person.x,y:person.y})),visualDuringPause=!!match.offsideVisual,bannerHiddenDuringPause=document.querySelector('#match-overlay').hidden;step(.2,.2);return{original,frozen,everyone,frozenEveryone,moving:{x:taker.x,y:taker.y},spot:match.setPiece.spot,ball:match.ball,visualDuringPause,visualWhileMoving:!!match.offsideVisual,bannerHiddenAtWhistle,bannerHiddenDuringPause,clock,clockAfter:match.elapsed,phase:match.setPiece?.phase}})())`,offside));
+assert.deepEqual(offsidePositions.frozen,offsidePositions.original,'offside decision stays frozen for at least 2.9 real seconds');
 assert.deepEqual(offsidePositions.frozenEveryone,offsidePositions.everyone,'all players remain still while the offside line is visible');
 assert.notDeepEqual(offsidePositions.moving,offsidePositions.frozen,'teams reposition for offside free kick');
 assert.equal(offsidePositions.ball.x,offsidePositions.spot.x);
