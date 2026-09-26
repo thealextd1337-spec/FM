@@ -29,6 +29,14 @@ const historical=JSON.parse(JSON.stringify(career)),nextOwn=call('v62Fixtures',h
 historical.world.competitions.push({season:0,type:'league',fixtures:[{...nextOwn,id:'historical-duel',day:190,result:{homeGoals:2,awayGoals:1}}]});
 assert(call('v62NextOpponentHTML',historical,nextOwn).includes('Letzte Duelle'),'frühere direkte Duelle erscheinen in der Vorschau');
 assert(call('v62FormHTML',historical,own.id).includes('Sieg')||call('v62FormHTML',historical,own.id).includes('Niederlage'),'Vereinsform berücksichtigt frühere Saisons');
+const previewEurope=call('v62Current',historical).find(item=>item.type==='europe');
+const firstLeg={id:'preview-first',competitionId:previewEurope.id,round:'SF',pair:99,leg:1,day:120,homeId:other.id,awayId:own.id,result:{homeGoals:1,awayGoals:3}};
+const secondLeg={id:'preview-second',competitionId:previewEurope.id,round:'SF',pair:99,leg:2,day:127,homeId:own.id,awayId:other.id};
+previewEurope.fixtures.push(firstLeg,secondLeg);
+const secondLegPreview=call('v62NextOpponentHTML',historical,secondLeg);
+assert(secondLegPreview.includes('class="v62-first-leg-score"')&&secondLegPreview.includes('<strong>3 : 1</strong>'),'Hinspielstand steht zwischen den Vereinen in der Sicht des aktuellen Heimteams');
+assert(secondLegPreview.includes(`title="Sieg 3:1 gegen ${other.name}"`)&&secondLegPreview.includes(`aria-label="Niederlage 1:3 gegen ${own.name}"`),'Formkästchen nennen Ergebnis und Gegner aus Sicht des jeweiligen Vereins');
+assert(!call('v62NextOpponentHTML',historical,firstLeg).includes('v62-first-leg-score'),'im Hinspiel gibt es noch keinen Hinspielstand');
 for(const club of career.world.clubs){const html=call('v68ClubDetailHTML',career,club.id);assert(html.includes(club.name),`Vereinsprofil ${club.id}`);assert.strictEqual((html.match(/data-v68-player=/g)||[]).length,club.roster.length)}
 for(const coach of career.world.coaches.filter(item=>item.currentClubId))assert(call('v68CoachDetailHTML',career,coach.id).includes(coach.name));
 context.v61CurrentCareer=career;

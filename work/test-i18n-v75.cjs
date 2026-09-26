@@ -24,6 +24,13 @@ assert.equal(translate('↑ Eingewechselt 76′ · 22 Min.'),'↑ Came on 76′ 
 assert.equal(translate('Wechsel: Louis Moreau geht, Mathis Petit kommt.'),'Substitution: Louis Moreau goes off, Mathis Petit comes on.');
 assert.equal(translate('Halbzeitpfiff. Kurze Pause vor der zweiten Hälfte.'),'Half-time whistle. A short break before the second half.');
 assert.equal(translate('Form der letzten fünf Spiele: Sieg'),'Form in the last five matches: Win');
+assert.equal(translate('Sieg 3:1 gegen Milano Ferro FC'),'Win 3:1 vs Milano Ferro FC');
+assert.equal(translate('Hinspiel 3 zu 1'),'First leg 3 to 1');
+assert.equal(translate('↶ Rückgängig'),'↶ Undo');
+assert.equal(translate('EUROPACUP · Halbfinale'),'EUROPEAN CUP · SEMI-FINAL');
+assert.equal(translate('EUROPACUP · Spieltag 4'),'EUROPEAN CUP · Matchday 4');
+assert.equal(translate('Ausgewechselt · 35 Min. · Note 7,2'),'Went off · 35 min · Rating 7,2');
+assert.equal(translate('Ausgewechselt · 12 Min. · ohne Note'),'Went off · 12 min · Not rated');
 assert.equal(translate('NÄCHSTER GEGNER · Europacup · 12. August'),'NEXT OPPONENT · European cup · 12 August');
 assert.equal(translate('Zum Spielbericht'),'To match report');
 assert.equal(translate('EUROPACUP · ELFMETERSCHIESSEN'),'EUROPEAN CUP · PENALTY SHOOTOUT');

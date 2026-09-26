@@ -729,6 +729,8 @@ Frischeste	Fittest
 Defensiver	More defensive
 Offensiver	More attacking
 Letzte Änderung zurücknehmen	Undo last change
+↶ Rückgängig	↶ Undo
+Hinspiel	First leg
 Aufstellung gültig · Änderungen werden automatisch gespeichert.	Valid lineup · Changes are saved automatically.
 Wähle Formation und Spielidee. Änderungen sind sofort auf dem Spielfeld sichtbar.	Choose a formation and playing style. Changes appear on the pitch immediately.
 Wähle ein Trikot auf dem Feld. Für einen Wechsel ziehe einen Reservespieler auf das Feldtrikot.	Select a shirt on the pitch. To make a substitution, drag a reserve player onto the shirt.
@@ -971,6 +973,12 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
 `.trim().split('\n').map(line=>line.split('\t')));
  const labelsLower=new Map([...labels].map(([de,en])=>[de.toLocaleLowerCase('de'),en]));
  const patterns=[
+  [/^(Sieg|Niederlage|Unentschieden) (\d+):(\d+) gegen (.+)$/,(_,result,own,other,opponent)=>`${translate(result)} ${own}:${other} vs ${opponent}`],
+  [/^Hinspiel (\d+) zu (\d+)$/,(_,home,away)=>`First leg ${home} to ${away}`],
+  [/^EUROPACUP · Spieltag (\d+)$/,(_,round)=>`EUROPEAN CUP · Matchday ${round}`],
+  [/^EUROPACUP · (Viertelfinale|Halbfinale|Finale)$/,(_,round)=>`EUROPEAN CUP · ${translate(round).toUpperCase()}`],
+  [/^Ausgewechselt · (\d+) Min\. · Note (\d+,\d+)$/,(_,minutes,rating)=>`Went off · ${minutes} min · Rating ${rating}`],
+  [/^Ausgewechselt · (\d+) Min\. · ohne Note$/,(_,minutes)=>`Went off · ${minutes} min · Not rated`],
   [/^i\. E\. (\d+):(\d+)$/,(_,own,other)=>`penalties ${own}:${other}`],
   [/^Speichern fehlgeschlagen: (.+)$/,(_,reason)=>`Saving failed: ${reason}`],
   [/^Bereit zum Anpfiff\.$/,()=>`Ready for kick-off.`],

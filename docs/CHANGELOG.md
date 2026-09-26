@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-26 (Vorschau und Europacup-Anzeigen)
+
+- Die Vorschau eines Europacup-Rückspiels zeigt das Hinspielergebnis zwischen den Vereinsnamen. Die Formkästchen nennen bei Mouseover Ergebnis und Gegner. In Matchvorbereitung, Live-Spiel und Pause erscheint der laufende Gesamtstand kompakt in Klammern; die Live-Anzeige nennt auch die aktuelle Europacup-Runde. Die Rückgängig-Aktion steht platzsparend neben der Ersatzbank. Ausgewechselte Spieler erscheinen dort als Karten mit Einsatzminuten und Spielnote und können nicht erneut eingewechselt werden. Geprüft mit Ansichts-, Match-, Pausenbank-, Sprach- und Elfmetertests sowie dem Einzeldatei-Build. Die Seitenversion ist Prototyp 77.
+
 ## 2026-09-26 (Issues und Bedienung der Vereinswelt)
 
 - Eigene Pokalspiele und ausgeglichene Europacup-K.-o.-Rückspiele verwenden nach Abpfiff das animierte, unterbrechbare Elfmeterschießen mit Schützenwahl. Erst danach werden Sieger und Statistik verbucht. Der Kalender zeigt neben dem Spielstand auch das Elfmeterschießergebnis; Werbebanden richten sich nach dem tatsächlichen Heimverein. Geprüft mit dem Welt-Elfmetertest, dem vorhandenen Animationsmodultest und im lokalen Browser.
