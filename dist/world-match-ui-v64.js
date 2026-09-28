@@ -11,7 +11,7 @@ v64HeaderActions.append(v64HeaderTag);
 const v64MatchMenu=document.createElement('details');
 v64MatchMenu.className='v64-match-menu';
 v64MatchMenu.hidden=true;
-v64MatchMenu.innerHTML='<summary aria-label="Spielmenü" title="Spielmenü"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg></summary><div class="v64-match-menu-panel"><button type="button" data-v64-save-exit>Speichern & beenden</button><p class="v61-error" role="alert"></p></div>';
+v64MatchMenu.innerHTML='<summary aria-label="Spielmenü" title="Spielmenü"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg></summary><div class="v64-match-menu-panel"><button type="button" data-v64-save-exit>Speichern & Start</button><p class="v61-error" role="alert"></p></div>';
 v64HeaderActions.append(v64MatchMenu);
 const v64LanguageControl=v64Header.querySelector('.language-control');
 const v64MenuAnchor=document.createElement('span');
@@ -41,7 +41,7 @@ function v64UiMenuVisible(){
   if(parent===dialog)parent.prepend(v64MatchMenu);
   else parent.append(v64MatchMenu);
  }
- v64MatchMenu.querySelector('[data-v64-save-exit]').hidden=!v61CurrentCareer||!startScreen.hidden;
+ v64MatchMenu.querySelector('[data-v64-save-exit]').hidden=!v61CurrentCareer;
  const panel=v64MatchMenu.querySelector('.v64-match-menu-panel');
  if(v64LanguageControl.parentElement!==panel)panel.append(v64LanguageControl);
 }
@@ -55,17 +55,26 @@ new MutationObserver(mutations=>{
  queueMicrotask(()=>{v64MenuRefreshQueued=false;v64UiMenuVisible()});
 }).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['open']});
 window.addEventListener('resize',()=>{if(document.querySelector('dialog[open]'))v64UiMenuVisible()});
-v64MatchMenu.addEventListener('click',async event=>{
- const button=event.target.closest('[data-v64-save-exit]');if(!button)return;
+async function v64SaveAndStart(button=null){
  const career=v61CurrentCareer;if(!career)return;
- button.disabled=true;
+ if(button)button.disabled=true;
+ v64MatchMenu.querySelector('[role="alert"]').textContent='';
  try{
-  if(career.world.activeMatch?.state.phase==='prematch')await v64UiSave();
+  if(typeof v65WorldActive==='undefined'||!v65WorldActive)await v64UiSave();
   await v61ShowStart();
   if(startScreen.hidden)v64MatchMenu.querySelector('[role="alert"]').textContent='Das Spiel wird nach der laufenden Ballaktion gespeichert.';
  }catch(error){v64MatchMenu.open=true;v64MatchMenu.querySelector('[role="alert"]').textContent=error.message}
- finally{button.disabled=false}
+ finally{if(button)button.disabled=false}
+}
+v64MatchMenu.addEventListener('click',event=>{
+ const button=event.target.closest('[data-v64-save-exit]');if(button)v64SaveAndStart(button);
 });
+const v64BaseLegacyShowStart=showStartScreen;
+showStartScreen=function(){
+ if(v61CurrentCareer)return v64SaveAndStart();
+ if(!v61WorldScreen.hidden)return v61ShowStart();
+ return v64BaseLegacyShowStart();
+};
 function v64UiCount(value,one,many){return`${value} ${value===1?one:many}`}
 function v64UiStop(){if(v64UiTimer){clearInterval(v64UiTimer);v64UiTimer=null}if(v64UiFrame){cancelAnimationFrame(v64UiFrame);v64UiFrame=null}}
 function v64UiSave(){

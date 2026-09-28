@@ -2,7 +2,25 @@
 
 ## Inhalt
 
+- [Spielstände, Hall of Fame und App-Stores – Plan](speicherstaende-hall-of-fame-store-plan.md): Serverkarrieren, Ausschluss lokaler Titel, Speicherinformationen, Namensmoderation und mobile Veröffentlichung; [offizielle Rechts- und Storequellen](speicherung-store-recherche.md).
+
+- [Spielerreferenz 92](spieler-referenz-v92.md): neues Referenzpaar, Farbprüfung, Bildherkunft und offene visuelle Abnahme vor dem Ausbau des Pools.
 - [Produktregeln](product.md): feste Entscheidungen zu Spiel, Karriere, Oberfläche und Pokal.
+- [Toranimationen, Spieler-Sprites und Trikots – Plan](toranimationen-spielersprites-plan.md): abgestimmte Regeln, Umsetzungsschritte und Abnahme für die Vereinswelt.
+- [Vereinstrikots – Vorschau](vereinstrikots-vorschau.html): Heim-, Auswärts- und Torwarttrikots aller 48 Vereine als kleine Datenvorschau.
+- [Spielerfrisuren – visuelle Beispiele](spielerfrisuren-beispiele.md): zehn Frisuren, frontale Profilansichten und vier Jubelposen als Sprite-Vorlagen.
+- [Spieler-Sprites – Laufzeitvorschau](spieler-sprites-vorschau.html): gerenderte Profil- und Jubelansichten aus gespeicherten Merkmalen und Trikots.
+- [Spieler-Sprites – drei Beispiele](spieler-sprites-beispiele.svg): Profil und Jubelansicht von drei Spielern in Spielgröße.
+- [Vier hochwertige Spielerbildpaare](../dist/player-pair-preview.html): frontales Profil und feste Jubelpose je Motiv mit aktuellen Trikot-, Haut- und Haarfarben; [alle vier Ansichten](spieler-bildpaar-v87.png) sowie Bannerbeispiele für [Arme weit](spieler-bildpaar-banner-b-mobil-v87.png), [Faust vor der Brust](spieler-bildpaar-banner-c-mobil-v87.png) und [zwei Zeigefinger](spieler-bildpaar-banner-d-mobil-v87.png) sind ohne lokalen Server sichtbar.
+- [Erweiterter Spieler-Bildpool](../dist/player-pool-preview-v88.html): acht Bildpaare, je zwei Gesichter für vier Jubelposen, in Profil- und Bannergröße; [Standbild](spieler-bildpool-v88.png).
+- [Spieler-Bildpool mit 16 Paaren](../dist/player-pool-preview-v89.html): acht weitere Frisur- und Jubel-Kombinationen mit zwei Trikot- und Farbvarianten; [vollständiges Standbild](spieler-bildpool-v89.png) und [neues mobiles Torbanner](spieler-bildpaar-banner-e-mobil-v89.png).
+- [Jugendspieler-Demo](../dist/player-creation-demo-v90.html): Verein wählen und per Knopfdruck echte Jugendspieler mit Profil- und Jubelbild ohne gezeichnete Nummer erzeugen; eigenständige HTML-Datei ohne Server. [Mobiles Beispiel](spieler-erstellung-faust-brust-v91.png).
+- [Farbmaskenprüfung](../dist/player-mask-variants-v87.html): vier Bildpaare mit hellem, dunklem und rotem Trikot sowie verschiedenen Haut-, Haar- und Nummernwerten; [Standbild aller zwölf Varianten](spieler-masken-varianten-v87.png).
+- [Torbanner – Laufzeitvorschau](../dist/goal-banner-preview.html): aktueller Banner mit „Faust vor der Brust“, Vereinswappen und fünf Ligatoren; [animiertes Beispiel](torbanner-animation-faust-brust-v91.gif), [Ansicht bei 320 Pixeln](torbanner-faust-brust-schmal-v91.png), [mobile Ansicht](torbanner-faust-brust-mobil-v91.png) und [breite Ansicht](torbanner-faust-brust-breit-v91.png) sind ohne lokalen Server sichtbar.
+
+![Animierter Torbanner mit M. Berger und Faust vor der Brust](torbanner-animation-faust-brust-v91.gif)
+- [Trophäen-Sprites der Vereinswelt](trophy-sprites-plan.md): Länder- und Awardmotive, Flaggen und Grafikdateien.
+- [Nationalitäten und Herkunft – Plan](nationalitaeten-plan.md): Länderpool und Generierung von Spielerherkunft, Namen und Flaggen.
 - [KI-Vereine und Trainer – Entwurf](ki-vereine-trainer-entwurf.md): Plan für Computervereine, Trainerkarrieren und taktische Entscheidungen.
 - [Vereinsmodell – Entwurf](vereinsmodell-entwurf.md): Identität, 36 unterschiedliche Startprofile, langsame Entwicklung und Balance der fiktiven Vereine.
 - [Vereinskatalog – Entwurf](vereinskatalog-entwurf.md): 48 redaktionell festgelegte fiktive Namen, Farben und eigenständige Hintergründe für Liga- und Pokalvereine.

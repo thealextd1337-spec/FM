@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Doppel 6 · Jugendspieler-Demo</title>
+<style>
+*{box-sizing:border-box}
+:root{color-scheme:dark;font:16px system-ui,-apple-system,Segoe UI,sans-serif}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% -10%,#25465c 0,#102533 44%,#081822 100%);color:#f1f5eb}
+main{max-width:1020px;margin:0 auto;padding:24px 18px 52px}
+.eyebrow{margin:0 0 8px;color:#56e7dc;font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+h1{margin:0;font-size:clamp(29px,5vw,45px);line-height:1.05;letter-spacing:-.04em}
+.intro{max-width:680px;margin:14px 0 22px;color:#b9cfd2;line-height:1.5}
+.controls{display:flex;flex-wrap:wrap;align-items:end;gap:12px;padding:16px;border:2px solid #4b7581;background:#142f3c;box-shadow:7px 7px 0 #06131c}
+label{display:grid;gap:6px;color:#d7e8e5;font-size:13px;font-weight:700}
+select,button{min-height:46px;border:2px solid #82acb5;border-radius:0;font:700 15px system-ui}
+select{min-width:min(320px,calc(100vw - 72px));padding:0 12px;background:#0d2431;color:#fff}
+button{padding:0 20px;border-color:#ffe079;background:#ffe079;color:#092332;cursor:pointer;box-shadow:4px 4px 0 #07131d}
+button:hover{background:#fff0ad}
+button:focus-visible,select:focus-visible{outline:3px solid #f753af;outline-offset:3px}
+button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 #07131d}
+.hint{margin:11px 0 0;color:#a9c3c8;font-size:12px}
+.placeholder{display:grid;place-items:center;min-height:420px;margin-top:22px;border:2px dashed #527686;color:#bdd1d2;text-align:center;background:#102633}
+.placeholder span{font-size:34px;color:#ffe079}
+.result{margin-top:22px}
+.identity{display:flex;align-items:center;gap:15px;padding:16px 18px;background:#183746;border:2px solid #5a8d98;border-bottom:0}
+.crest{width:66px;height:72px;display:grid;place-items:center;flex:none}.crest svg{width:60px;height:68px}
+.identity h2{margin:0 0 3px;font-size:clamp(23px,4vw,34px);line-height:1.12}
+.identity p{margin:0;color:#c0d5d6;font-size:13px}.identity .flag-icon{width:24px;height:16px;vertical-align:-3px;margin-right:6px}
+.nation-code{display:inline-block;margin-right:6px;padding:1px 3px;border:1px solid #83a8af;color:#f1f5eb;font-size:10px;font-weight:800;letter-spacing:.04em;vertical-align:1px}
+.serial{margin-left:auto;align-self:start;padding:5px 8px;border:1px solid #6b96a0;color:#bfe6e3;font-size:11px;white-space:nowrap}
+.pictures{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px;background:#0e2734;border:2px solid #5a8d98;border-top:0}
+figure{margin:0;min-width:0;min-height:285px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(180deg,#234252,#142c3b);border:1px solid #456e7b}
+figure svg.v82-sprite{display:block;width:min(100%,260px);height:260px;image-rendering:pixelated}
+figcaption{align-self:stretch;padding:8px 12px;border-top:1px solid #456e7b;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#ffe079;text-align:center}
+.details{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}
+.detail{min-width:0;padding:11px 12px;background:#173340;border:1px solid #466a78}
+.detail small{display:block;margin-bottom:4px;color:#a5c2c6;font-size:11px}.detail strong{font-size:14px;overflow-wrap:anywhere}
+.footnote{margin:12px 0 0;color:#a8c2c8;font-size:12px;line-height:1.4}
+.reference-controls{margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;align-items:end}.reference-controls select{min-width:150px}.reference-intro{color:#b9cfd2;line-height:1.5}.reference-controls button{background:#b7efe5;border-color:#b7efe5}
+[hidden]{display:none!important}
+@media(max-width:600px){main{padding:18px 10px 36px}.controls{display:grid;gap:12px}select,button{width:100%;min-width:0}.identity{gap:10px;padding:12px}.crest{width:46px;height:54px}.crest svg{width:45px;height:52px}.serial{font-size:10px}.pictures{gap:6px;padding:7px}figure{min-height:208px}figure svg.v82-sprite{width:100%;height:auto;aspect-ratio:1}figcaption{font-size:10px;padding:7px 3px}.details{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+<script>
+if(location.pathname.endsWith('/player-creation-demo-v90.template.html')){
+ location.replace('player-creation-demo-v90.html');
+}
+</script>
+</head>
+<body>
+<main>
+ <p class="eyebrow">Doppel 6 · Vereinswelt</p>
+ <h1>Jugendspieler erstellen</h1>
+ <p class="intro">Ein Klick erzeugt einen Jugendspieler mit den Regeln des Spiels: Herkunft, Name, Aussehen und feste Jubelpose. Beide Bilder tragen das aktuelle Vereinstrikot.</p>
+ <div class="controls">
+  <label for="club">Verein <select id="club" aria-label="Verein wählen"></select></label>
+  <button id="create" type="button">Neuen Spieler erstellen</button>
+ </div>
+ <p class="hint">Die Demo speichert keinen Spielstand. Beide Spielerbilder zeigen das Trikot ohne Nummer.</p>
+ <p class="reference-intro">Referenzpaar zur Stilabnahme: gleiche Person, frontal und mit Faust vor der Brust. Die Farbprüfung zeigt zunächst einfarbige Trikots. Vereinsmuster und weitere Frisuren folgen nach der visuellen Abnahme.</p>
+ <div class="reference-controls">
+  <label>Trikotprüfung<select id="reference-kit"><option value="club">Vereinsfarben · einfarbig</option><option value="light">Hell</option><option value="dark">Dunkel</option><option value="red">Rot</option></select></label>
+  <label>Hautton<select id="reference-skin"></select></label>
+  <label>Haarfarbe<select id="reference-hair"></select></label>
+  <button type="button" id="reference-show">Referenzpaar ansehen</button>
+ </div>
+ <div class="placeholder" id="placeholder"><p><span aria-hidden="true">✦</span><br>Wähle einen Verein und erstelle deinen ersten Spieler.</p></div>
+ <section class="result" id="result" aria-live="polite" hidden>
+  <div class="identity"><div class="crest" id="crest"></div><div><h2 id="name"></h2><p id="subtitle"></p></div><span class="serial" id="serial"></span></div>
+  <div class="pictures"><figure><div id="portrait"></div><figcaption>Profilbild</figcaption></figure><figure><div id="goal"></div><figcaption>Feste Jubelpose</figcaption></figure></div>
+  <div class="details" id="details"></div>
+  <p class="footnote" id="note"></p>
+ </section>
+</main>
+<!-- DEMO_RUNTIME -->
+</body>
+</html>

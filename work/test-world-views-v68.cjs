@@ -4,6 +4,7 @@ const vm=require('vm');
 
 const context=vm.createContext({crypto:{randomUUID:()=>`view-${Math.random()}`}});
 for(const file of ['world-catalog-v61.js','world-competition-v62.js','world-coaches-v63.js','world-match-v64.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
+vm.runInContext(fs.readFileSync('dist/world-nationalities-v79.js','utf8'),context);
 const foundation=fs.readFileSync('dist/world-foundation-v61.js','utf8');
 vm.runInContext(foundation.slice(0,foundation.indexOf('const v61Panel=')),context);
 for(const file of ['world-economy-v66.js','world-youth-manager-v67.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
@@ -90,7 +91,10 @@ assert(call('v62TableHTML',career,league).includes('Amtierender Meister Deutschl
 const pastCup=JSON.parse(JSON.stringify(ownCup));pastCup.season=0;pastCup.winnerId=own.id;career.world.competitions.push(pastCup);
 const pastEurope=JSON.parse(JSON.stringify(europe));pastEurope.season=0;pastEurope.winnerId=own.id;career.world.competitions.push(pastEurope);
 const badgeRow=call('v62TableHTML',career,league);
-assert(badgeRow.includes('Amtierender Pokalsieger Deutschland')&&badgeRow.includes('Amtierender Europacupsieger'),'alle drei Titelarten erhalten eigene Symbole');
+assert(badgeRow.includes('Amtierender Pokalsieger Deutschland')&&!badgeRow.includes('Amtierender Europacupsieger'),'nationale Tabellen zeigen nur nationale Titel');
+const europeBadges=call('v68ChampionBadges',career,europe).get(own.id);
+assert(europeBadges.includes('Amtierender Europacupsieger')&&!europeBadges.includes('Amtierender Meister')&&!europeBadges.includes('Amtierender Pokalsieger'),'Europacup zeigt nur internationale Titel');
+assert(call('v68ChampionBadges',career).get(own.id).includes('Amtierender Meister'),'ungefilterte Titelsammlung bleibt vollständig');
 own.roster[0].honours.push({id:'scorer-1',season:1,competitionId:league.id,kind:'top-scorer',clubId:own.id});
 own.roster[1].honours.push({id:'best-1',season:1,competitionId:league.id,kind:'player-of-season',clubId:own.id});
 const awards=call('v62AwardOverviewHTML',career,1);

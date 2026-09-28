@@ -8,6 +8,7 @@ vm.runInContext(fs.readFileSync('dist/world-catalog-v61.js','utf8'),context);
 vm.runInContext(fs.readFileSync('dist/world-competition-v62.js','utf8'),context);
 vm.runInContext(fs.readFileSync('dist/world-coaches-v63.js','utf8'),context);
 vm.runInContext(fs.readFileSync('dist/world-match-v64.js','utf8'),context);
+vm.runInContext(fs.readFileSync('dist/world-nationalities-v79.js','utf8'),context);
 const source=fs.readFileSync('dist/world-foundation-v61.js','utf8');
 vm.runInContext(source.slice(0,source.indexOf('const v61Panel=')),context);
 

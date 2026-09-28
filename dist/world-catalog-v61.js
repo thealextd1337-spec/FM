@@ -5,7 +5,7 @@ const v61Catalog=[
   "id": "ENG-1",
   "city": "London",
   "name": "Regent Vale FC",
-  "colors": "Anthrazit/Kupfer",
+  "colors": "Rot/Weiß",
   "history": "Ehemals landesweit prägender Mitgliederklub mit großer Anhängerschaft; heute hohe Ansprüche und teure Erneuerung.",
   "profile": [
    5,
@@ -20,7 +20,7 @@ const v61Catalog=[
   "id": "ENG-2",
   "city": "Manchester",
   "name": "Irwell FC",
-  "colors": "Petrol/Silber",
+  "colors": "Himmelblau/Weiß",
   "history": "Jüngerer Titelanwärter, gewachsen aus einem städtischen Sportnetzwerk; plant Kaderbreite und internationale Spiele.",
   "profile": [
    2,
@@ -125,7 +125,7 @@ const v61Catalog=[
   "id": "ESP-1",
   "city": "Madrid",
   "name": "Madrid Central CF",
-  "colors": "Indigo/Gold",
+  "colors": "Weiß/Gold",
   "history": "Historischer Spitzenverein mit internationalen Erinnerungen und großem Anspruch, doch ohne Anspruch auf dauernde Titel.",
   "profile": [
    5,
@@ -140,7 +140,7 @@ const v61Catalog=[
   "id": "ESP-2",
   "city": "Barcelona",
   "name": "Barcelona Mar FC",
-  "colors": "Safran/Marineblau",
+  "colors": "Blau/Karmin",
   "history": "Etablierter großer Rivale mit offensiver Spielkultur und wachsamem Blick auf die eigenen Mittel.",
   "profile": [
    4,
@@ -245,7 +245,7 @@ const v61Catalog=[
   "id": "ITA-1",
   "city": "Turin",
   "name": "Torino Centrale FC",
-  "colors": "Smaragd/Elfenbein",
+  "colors": "Schwarz/Weiß",
   "history": "Historisch großer Werksklub mit Ergebnisdruck; vertraut lange auf erfahrene Profis.",
   "profile": [
    5,
@@ -260,7 +260,7 @@ const v61Catalog=[
   "id": "ITA-2",
   "city": "Mailand",
   "name": "Milano Ferro FC",
-  "colors": "Kupfer/Marineblau",
+  "colors": "Blau/Schwarz",
   "history": "Sportlich starker jüngerer Konkurrent mit methodischer Kaderplanung und mittlerem Finanzrisiko.",
   "profile": [
    2,
@@ -365,7 +365,7 @@ const v61Catalog=[
   "id": "GER-1",
   "city": "München",
   "name": "FC München Isar",
-  "colors": "Pflaume/Silber",
+  "colors": "Rot/Weiß",
   "history": "Über viele Jahre erfolgreicher Großverein mit Titelanspruch und eigener Finanzdisziplin.",
   "profile": [
    5,
@@ -380,7 +380,7 @@ const v61Catalog=[
   "id": "GER-2",
   "city": "Bremen",
   "name": "FC Bremen Weser",
-  "colors": "Dunkelblau/Kupfer",
+  "colors": "Grün/Weiß",
   "history": "Verein mit langer Erfolgsgeschichte, der durch junge Profis und eigene Ausbildung wieder an die Spitze will.",
   "profile": [
    4,
@@ -485,7 +485,7 @@ const v61Catalog=[
   "id": "FRA-1",
   "city": "Paris",
   "name": "Paris Central FC",
-  "colors": "Safran/Schwarz",
+  "colors": "Dunkelblau/Rot",
   "history": "Finanzstarker moderner Spitzenklub mit großer Bühne und hohen laufenden Kosten.",
   "profile": [
    2,
@@ -605,7 +605,7 @@ const v61Catalog=[
   "id": "POR-1",
   "city": "Lissabon",
   "name": "Lisboa Central FC",
-  "colors": "Kupfer/Weiß",
+  "colors": "Rot/Weiß",
   "history": "Historischer Spitzenverein mit Titelanspruch, Jugendarbeit und langer Europacupgeschichte.",
   "profile": [
    5,
@@ -620,7 +620,7 @@ const v61Catalog=[
   "id": "POR-2",
   "city": "Porto",
   "name": "Porto Ribeira FC",
-  "colors": "Anthrazit/Gold",
+  "colors": "Blau/Weiß",
   "history": "Zweiter etablierter Titelklub mit konzentrierter Suche nach passenden Profis.",
   "profile": [
    4,

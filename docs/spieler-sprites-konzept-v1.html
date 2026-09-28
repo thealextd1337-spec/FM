@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Doppel 6 – Spielerbildpaare, Konzept v1</title>
+<style>
+  :root{font-family:system-ui,sans-serif;color:#eff9ef;background:#0c2025}
+  *{box-sizing:border-box}
+  body{max-width:1100px;margin:auto;padding:20px}
+  h1{font-size:1.45rem;margin:0 0 8px}
+  p{margin:0 0 16px;color:#bbd8d3;line-height:1.45}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+  article{background:#193438;border:1px solid #597d79;border-radius:8px;padding:14px;min-width:0}
+  h2{font-size:1.1rem;margin:0 0 2px}
+  .pose{font-size:.84rem;color:#b3d5cc;margin-bottom:10px}
+  .pair{display:block;width:100%;background:#142a30;border:1px solid #31585a;margin-bottom:12px}
+  .views{display:flex;align-items:end;gap:14px;flex-wrap:wrap}
+  figure{margin:0}
+  figcaption{font-size:.76rem;text-align:center;color:#c0d4cf;margin-top:4px}
+  .sprite{--size:156px;position:relative;display:block;width:var(--size);height:var(--size);overflow:hidden;background:#243b3d;border:2px solid #729383;image-rendering:pixelated}
+  .sprite img{position:absolute;bottom:0;left:0;width:calc(var(--size) * 2);max-width:none;height:auto;image-rendering:pixelated}
+  .sprite.goal{--size:120px;background:#315563;border-color:#8df4e1}
+  .sprite.goal img,.sprite.mobile img{left:calc(-1 * var(--size))}
+  .sprite.mobile{--size:86px;background:#315563;border-color:#8df4e1}
+  .sample-banner{display:flex;align-items:center;gap:8px;max-width:350px;margin-top:12px;padding:7px;border:2px solid #dbc467;background:#17384c;box-shadow:3px 3px #071719}
+  .sample-banner .sprite{flex:none}
+  .sample-banner strong{font-size:1.35rem;color:#ffef78;display:block}
+  .sample-banner span{display:block;font-size:.8rem}
+  .sample-banner b{color:#ffef78}
+  @media(max-width:410px){body{padding:10px}.grid{grid-template-columns:1fr}article{padding:10px}.sample-banner{max-width:100%}}
+</style>
+<h1>Vier Beispielspieler – zwei Bilder pro Spieler</h1>
+<p>Links frontales Profilbild, rechts die einmal zugeteilte Jubelpose. Die Pose bleibt über die Karriere fest. Ansichten unten zeigen die geplanten Spielgrößen; dies sind Bildentwürfe und noch keine eingebauten Laufzeit-Sprites.</p>
+<main class="grid">
+  <article>
+    <h2>Spieler A · Nummer 14</h2><div class="pose">Beide Fäuste oben</div>
+    <img class="pair" src="spieler-sprites-konzept-v1-fauste.png" alt="Frontalporträt und Jubelpose desselben Spielers im blauen Trikot">
+    <div class="views"><figure><div class="sprite"><img src="spieler-sprites-konzept-v1-fauste.png" alt=""></div><figcaption>Profil 156 px</figcaption></figure><figure><div class="sprite goal"><img src="spieler-sprites-konzept-v1-fauste.png" alt=""></div><figcaption>Torbanner 120 px</figcaption></figure><figure><div class="sprite mobile"><img src="spieler-sprites-konzept-v1-fauste.png" alt=""></div><figcaption>Mobil 86 px</figcaption></figure></div>
+    <div class="sample-banner"><div class="sprite mobile"><img src="spieler-sprites-konzept-v1-fauste.png" alt=""></div><div><strong>TOOOOR!</strong><span>Spieler A</span><b>1 : 0</b><span>5 Tore · Liga 1</span></div></div>
+  </article>
+  <article>
+    <h2>Spieler B · Nummer 7</h2><div class="pose">Arme weit ausgebreitet</div>
+    <img class="pair" src="spieler-sprites-konzept-v1-arme-weit.png" alt="Frontalporträt und Jubelpose desselben Spielers im gelben Trikot">
+    <div class="views"><figure><div class="sprite"><img src="spieler-sprites-konzept-v1-arme-weit.png" alt=""></div><figcaption>Profil 156 px</figcaption></figure><figure><div class="sprite goal"><img src="spieler-sprites-konzept-v1-arme-weit.png" alt=""></div><figcaption>Torbanner 120 px</figcaption></figure><figure><div class="sprite mobile"><img src="spieler-sprites-konzept-v1-arme-weit.png" alt=""></div><figcaption>Mobil 86 px</figcaption></figure></div>
+    <div class="sample-banner"><div class="sprite mobile"><img src="spieler-sprites-konzept-v1-arme-weit.png" alt=""></div><div><strong>TOOOOR!</strong><span>Spieler B</span><b>2 : 1</b><span>2 Tore · Liga 1</span></div></div>
+  </article>
+  <article>
+    <h2>Spieler C · Nummer 11</h2><div class="pose">Faust vor der Brust, anderer Arm zeigt nach außen</div>
+    <img class="pair" src="spieler-sprites-konzept-v1-faust-brust.png" alt="Frontalporträt und Jubelpose desselben Spielers im roten Trikot">
+    <div class="views"><figure><div class="sprite"><img src="spieler-sprites-konzept-v1-faust-brust.png" alt=""></div><figcaption>Profil 156 px</figcaption></figure><figure><div class="sprite goal"><img src="spieler-sprites-konzept-v1-faust-brust.png" alt=""></div><figcaption>Torbanner 120 px</figcaption></figure><figure><div class="sprite mobile"><img src="spieler-sprites-konzept-v1-faust-brust.png" alt=""></div><figcaption>Mobil 86 px</figcaption></figure></div>
+    <div class="sample-banner"><div class="sprite mobile"><img src="spieler-sprites-konzept-v1-faust-brust.png" alt=""></div><div><strong>TOOOOR!</strong><span>Spieler C</span><b>0 : 1</b><span>3 Tore · Pokal</span></div></div>
+  </article>
+  <article>
+    <h2>Spieler D · Nummer 9</h2><div class="pose">Beide Zeigefinger hoch</div>
+    <img class="pair" src="spieler-sprites-konzept-v1-zwei-finger.png" alt="Frontalporträt und Jubelpose desselben Spielers im grünen Trikot">
+    <div class="views"><figure><div class="sprite"><img src="spieler-sprites-konzept-v1-zwei-finger.png" alt=""></div><figcaption>Profil 156 px</figcaption></figure><figure><div class="sprite goal"><img src="spieler-sprites-konzept-v1-zwei-finger.png" alt=""></div><figcaption>Torbanner 120 px</figcaption></figure><figure><div class="sprite mobile"><img src="spieler-sprites-konzept-v1-zwei-finger.png" alt=""></div><figcaption>Mobil 86 px</figcaption></figure></div>
+    <div class="sample-banner"><div class="sprite mobile"><img src="spieler-sprites-konzept-v1-zwei-finger.png" alt=""></div><div><strong>TOOOOR!</strong><span>Spieler D</span><b>2 : 2</b><span>5 Tore · Liga 1</span></div></div>
+  </article>
+</main>
+</html>

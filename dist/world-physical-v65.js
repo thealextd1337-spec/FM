@@ -13,7 +13,7 @@ function v65LiveRankLabels(context){
  if(!competition||competition.type!=='league'&&!(competition.type==='europe'&&/^R\d+$/.test(fixture.round)))return[];
  const ids=competition.type==='europe'?competition.entrants:[...new Set(competition.fixtures.flatMap(item=>[item.homeId,item.awayId]))];
  const ranks=new Map(v62Table(competition,ids).map((row,index)=>[row.clubId,index+1]));
- return[0,1].map(physical=>{const rank=ranks.get(v65Club(context,physical)?.id);return rank?`Platz ${rank} von ${ids.length}`:''});
+ return[0,1].map(physical=>{const rank=ranks.get(v65Club(context,physical)?.id);return rank?`(${rank}.)`:''});
 }
 function v65LineupPositions(context,physical){
  const side=v65Side(physical,context.ownSide),active=v64Active(context.state,side),cells=v64EnsureCells(context.state,side),positions=new Map();
@@ -47,8 +47,8 @@ function v65ApplyTactics(context){
 function v65CreateMatch(context){
  const people=[];
  for(const physical of [0,1])for(const pid of v64Active(context.state,v65Side(physical,context.ownSide)))people.push(v65PhysicalPlayer(context,physical,pid));
- const home=v65Club(context,0),away=v65Club(context,1),homeColors=v61ClubColors(home),awayColors=v61ClubColors(away);
- match={people,exitedPeople:[],refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:away.name,kits:{user:{main:homeColors[0],trim:homeColors[1],style:'stripe'},opponent:{main:awayColors[0],trim:awayColors[1],style:'stripe'},userKeeper:{main:'#e7b957',trim:'#ffffff',style:'solid'},opponentKeeper:{main:'#516bb4',trim:'#ffffff',style:'solid'}}};
+ const own=v65Club(context,0),opponent=v65Club(context,1),kits=v61SelectMatchKits(own,opponent,context.ownSide===0);
+ match={people,exitedPeople:[],refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:opponent.name,kits};
  for(const pose of ['raised','far','middle','penalty'])v55RefereeImage(v55RefereeAsset(pose));
  v65ApplyTactics(context);kickoff(0);note('Bereit zum Anpfiff.','restart');
 }
@@ -110,9 +110,13 @@ function v65PhysicalSwap(context,change){
  note(`Wechsel: ${out.name} geht, ${incoming.name} kommt.`, 'major');
  $('#v51-live-status')?.remove();v51LastLiveStep=-1;updateTeamStats();
 }
+function v65SwapInfoHTML(context,changes){
+ const arrow=direction=>`<svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="${direction==='in'?'M6 14V7H2l6-6 6 6h-4v7z':'M6 2v7H2l6 6 6-6h-4V2z'}"/></svg>`;
+ return`<strong class="v65-swap-title">SPIELERWECHSEL</strong><div class="v65-swap-list">${changes.map(change=>{const club=v65Club(context,change.side===context.ownSide?0:1);return`<div class="v65-swap-change"><div class="v65-swap-club">${v61CrestSVG(club)}<b>${escapeHTML(club.name)}</b><span>${escapeHTML(change.minute)}′</span></div><div class="v65-swap-player v65-swap-out">${arrow('out')}<small>Ausgewechselt</small><b>${escapeHTML(v64UiName(change.outPid))}</b></div><div class="v65-swap-player v65-swap-in">${arrow('in')}<small>Eingewechselt</small><b>${escapeHTML(v64UiName(change.inPid))}</b></div></div>`}).join('')}</div>`;
+}
 function v65ShowSwapInfo(context,changes){
  let banner=$('#v65-swap-info');if(!banner){banner=document.createElement('div');banner.id='v65-swap-info';banner.setAttribute('role','status');banner.setAttribute('aria-live','polite');$('#match-area .v42-pitch-stage').append(banner)}
- banner.innerHTML=`<strong>SPIELERWECHSEL</strong>${changes.map(change=>`<span>${escapeHTML(v65Club(context,change.side===context.ownSide?0:1).name)}: ${escapeHTML(v64UiName(change.outPid))} ↓ · ${escapeHTML(v64UiName(change.inPid))} ↑</span>`).join('')}`;
+ banner.innerHTML=v65SwapInfoHTML(context,changes);
  banner.hidden=false;clearTimeout(v65SwapInfoTimer);v65SwapInfoTimer=setTimeout(()=>{banner.hidden=true;v65SwapInfoTimer=0},4800);
 }
 function v65Stopped(){return !match.flight&&!match.slide&&(match.goalPause>0||match.halftimePause>0||match.setPiece?.phase==='waiting'||match.throwIn||match.kickoff?.phase==='waiting'||match.postBanner)}
@@ -149,16 +153,46 @@ function v65NeedsPenalties(context){
 function v65PenaltySession(context){
  const own=match.people.filter(person=>person.t===0).map(person=>({...v42Player(person,{...person,fresh:context.state.fresh[person.pid]??person.fresh}),pid:person.pid}));
  const opponent=match.people.filter(person=>person.t===1).map(person=>({...v42Player(person,{...person,fresh:context.state.fresh[person.pid]??person.fresh}),pid:person.pid}));
- return{mode:'world',competition:v62Current(context.career).find(item=>item.id===context.fixture.competitionId)?.type,ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,ownColour:match.kits.user,opponentColour:match.kits.opponent,own,opponent,order:v42Sorted(own).map(person=>person.n),opponentOrder:v42Sorted(opponent).map(person=>person.n),score:[0,0],kicks:[],phase:'choose'};
+ return{mode:'world',competition:v62Current(context.career).find(item=>item.id===context.fixture.competitionId)?.type,ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,ownColour:match.kits.user,opponentColour:match.kits.opponent,keeperKits:[match.kits.userKeeper,match.kits.opponentKeeper],own,opponent,order:v42Sorted(own).map(person=>person.n),opponentOrder:v42Sorted(opponent).map(person=>person.n),score:[0,0],kicks:[],phase:'choose'};
 }
 function v65BookWorldMatch(context){
  const state=context.state;
  v64CompleteOwnMatch(context.career);state.postMatchReport.manOfMatchPid=context.fixture.matchRecord?.manOfMatchPid||null;
  const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
+ if(v65VictoryCompetition(context,competition))state.postMatchStep='celebration';
  if(competition?.type==='europe'&&['QF','SF'].includes(context.fixture.round)){state.postMatchReport.leg=context.fixture.leg;state.postMatchReport.aggregate=[...state.postMatchReport.score]}
  const firstLeg=v64UiFirstLegScore(context.career,context.fixture,context.ownSide===1);
  if(firstLeg){state.postMatchReport.firstLeg=firstLeg;state.postMatchReport.aggregate=[firstLeg[0]+state.postMatchReport.score[0],firstLeg[1]+state.postMatchReport.score[1]]}
  v64UiSave();
+}
+function v65VictoryCompetition(context,competition){
+ if(!competition||competition.winnerId!==context.career.manager.managedClubId)return false;
+ if(competition.type==='league')return context.fixture.day===v62Days.league.at(-1);
+ return(competition.type==='cup'||competition.type==='europe')&&context.fixture.round==='F';
+}
+function v65ConfettiHTML(club){
+ const colors=[...new Set([...v61ClubColors(club),club.kits?.colors?.tertiary].filter(color=>/^#[0-9a-f]{6}$/i.test(color)))];
+ return`<div class="v65-victory-confetti" aria-hidden="true">${Array.from({length:60},(_,index)=>`<i style="--confetti-color:${colors[index%colors.length]};--confetti-left:${(index*37)%100}%;--confetti-drift:${(index*29)%121-60}px;--confetti-duration:${4+(index%7)*.35}s;--confetti-delay:${-(index%19)*.31}s;--confetti-turn:${index%2?720:-540}deg"></i>`).join('')}</div>`;
+}
+let v65CelebrationDialog=null;
+function v65ShowCelebration(context){
+ const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
+ if(!v65VictoryCompetition(context,competition))return false;
+ if(!v65CelebrationDialog){
+  v65CelebrationDialog=document.createElement('dialog');v65CelebrationDialog.id='v65-victory-dialog';v65CelebrationDialog.setAttribute('aria-labelledby','v65-victory-title');document.body.append(v65CelebrationDialog);
+  v65CelebrationDialog.addEventListener('cancel',event=>event.preventDefault());
+ }
+ if(v65CelebrationDialog.open)return true;
+ const club=v66Club(context.career,context.career.manager.managedClubId),kind=competition.type,label={league:'Meister',cup:'Pokalsieger',europe:'Europacupsieger'}[kind],name=kind==='league'?'Meisterschaft':kind==='cup'?'Nationaler Pokal':'Europacup',country=kind==='europe'?'':` · ${v61CountryNames[competition.country]}`;
+ v65CelebrationDialog.innerHTML=`${v65ConfettiHTML(club)}<div class="v65-victory-content"><h2 id="v65-victory-title">Herzlichen Glückwunsch!</h2><strong class="v65-victory-title">${label}</strong><p class="v65-victory-context">${name}${country} · Saison ${competition.season}</p>${v62AwardIcon(competition.country,kind)}<div class="v65-victory-club">${v61CrestSVG(club)}<strong>${escapeHTML(club.name)}</strong></div><p class="v61-error" role="alert"></p><button type="button" class="primary" autofocus>Weiter zum Spielbericht</button></div>`;
+ const button=v65CelebrationDialog.querySelector('button');
+ button.onclick=async()=>{
+  if(button.disabled)return;button.disabled=true;
+  context.state.postMatchStep='report';
+  try{await v64UiSave();v65CelebrationDialog.close();v65ShowPostMatch(context)}
+  catch(error){context.state.postMatchStep='celebration';v65CelebrationDialog.querySelector('[role="alert"]').textContent=error.message;button.disabled=false}
+ };
+ v65CelebrationDialog.showModal();v58Refresh();return true;
 }
 function v65ShowWorldPenalties(context){
  v65WorldActive=context;v42Session=context.state.penaltySession;v61WorldScreen.hidden=true;v42RenderScreen(v42Session.phase==='choose');v58Refresh();window.scrollTo(0,0);
@@ -259,7 +293,8 @@ function v65UpdateControls(context){
 }
 function v65WorldReport(context,people){
  const flagCodes={ESP:'ES',ITA:'IT',GER:'DE',FRA:'FR',POR:'PT',ENG:'GB'};
- return{ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,clubIds:[v65Club(context,0).id,v65Club(context,1).id],score:[...match.score],goals:(match.goals||[]).map(goal=>({...goal})),shots:[...match.shots],possession:[...match.possession],setPieceStats:match.setPieceStats?structuredClone(match.setPieceStats):null,players:people.map(person=>{const change=context.state.substitutions.find(item=>item.outPid===person.pid||item.inPid===person.pid);return{pid:person.pid,name:person.name,n:person.n,nation:flagCodes[person.nation]||person.nation,keeper:Boolean(person.keeper),team:person.t,minutes:context.state.minutes[person.pid]||0,substitution:change?{minute:change.minute,direction:change.inPid===person.pid?'in':'out'}:null,stats:{...person.stats,rating:context.state.ratings[person.pid]??0}}})};
+ const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
+ return{ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,clubIds:[v65Club(context,0).id,v65Club(context,1).id],competition:{type:competition?.type,country:competition?.country},score:[...match.score],goals:(match.goals||[]).map(goal=>({...goal})),shots:[...match.shots],possession:[...match.possession],setPieceStats:match.setPieceStats?structuredClone(match.setPieceStats):null,players:people.map(person=>{const change=context.state.substitutions.find(item=>item.outPid===person.pid||item.inPid===person.pid);return{pid:person.pid,name:person.name,n:person.n,nation:flagCodes[person.nation]||person.nation,keeper:Boolean(person.keeper),team:person.t,minutes:context.state.minutes[person.pid]||0,substitution:change?{minute:change.minute,direction:change.inPid===person.pid?'in':'out'}:null,stats:{...person.stats,rating:context.state.ratings[person.pid]??0}}})};
 }
 function v65CompetitionResultsHTML(context){
  const {career,fixture}=context,competition=v62Current(career).find(item=>item.id===fixture.competitionId),type=competition.type,label=type==='league'?v62LeagueLabel(competition.country):type==='cup'?`Nationaler Pokal · ${escapeHTML(v61CountryNames[competition.country])}`:'Europacup';
@@ -272,6 +307,7 @@ function v65CompetitionResultsHTML(context){
 function v65ShowPostMatch(context){
  const {state}=context,report=state.postMatchReport;if(!report||state.postMatchStep==='done')return;
  document.body.classList.add('v65-world-postmatch');
+ if(state.postMatchStep==='celebration'&&v65ShowCelebration(context))return;
  const done=()=>{v47PlayerDialog.close?.();v47Dialog.close?.();v47CompetitionDialog.close?.();document.body.classList.remove('v65-world-postmatch');state.postMatchStep='done';v64UiSave();v65Leave(false).catch(v65ExitError)};
  if(state.postMatchStep==='report'){
   if(v47Dialog.open)return;
@@ -369,11 +405,9 @@ v25UpdateLiveBoard=function(){
  v65BaseLiveBoard();const context=v65WorldActive&&v65Context();if(!context)return;
  const aggregate=v64UiAggregateText(context.career,context.fixture,match.score,context.ownSide===1);
  if(aggregate){const label=document.createElement('small');label.className='v65-aggregate';label.textContent=aggregate;$('#score')?.append(label)}
- const names=$$('#match-area .score-name-text'),formations=$$('#match-area .score-team small');
- if(names[0])names[0].textContent=v65Club(context,0).name;if(names[1])names[1].textContent=v65Club(context,1).name;
+ const names=$$('#match-area .score-name-text'),formations=$$('#match-area .score-team small'),ranks=v65LiveRankLabels(context);
+ for(const physical of [0,1])if(names[physical])names[physical].textContent=`${v65Club(context,physical).name}${ranks[physical]?` ${ranks[physical]}`:''}`;
  for(const physical of [0,1])if(formations[physical])formations[physical].textContent=context.state.tactics[v65Side(physical,context.ownSide)].formation;
- const ranks=v65LiveRankLabels(context),teams=$$('#match-area .score-team');
- for(const physical of [0,1])if(ranks[physical]&&teams[physical]){const label=document.createElement('span');label.className='v65-live-rank';label.textContent=ranks[physical];teams[physical].querySelector('.goal-list')?.before(label)}
  for(const node of $$('#match-info [data-stat-home]'))node.textContent=v65Club(context,0).name;
  for(const node of $$('#match-info [data-stat-away]'))node.textContent=v65Club(context,1).name;
 };

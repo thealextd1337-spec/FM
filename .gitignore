@@ -1,5 +1,8 @@
 work/*
 !work/*.cjs
+!work/generate-world-sprite-pair-v87.py
+!work/generate-world-sprite-mask-qa.py
+!work/test-world-sprite-masks-v87.py
 !work/deploy_ftps.py
 !work/test_deploy_ftps.py
 outputs/

@@ -1,0 +1,37 @@
+# Speicherung und Stores: Quellenprüfung
+
+Stand: 2026-09-28. Planungsgrundlage, keine bereits umgesetzte Funktion. Österreich/EU ist die Arbeitsannahme; Betreiber, Zielmärkte und Zielalter müssen vor Veröffentlichung feststehen. Rechtliche Einordnung hängt vom tatsächlichen Datenfluss ab. Store-Vorgaben vor jeder Einreichung erneut prüfen.
+
+## Lokale Spielstände
+
+- Österreichs § 165 Abs. 3 TKG betrifft auch andere Speicherung auf Endgeräten als Cookies, somit grundsätzlich auch Browserspeicher. Ohne vorherige Einwilligung ist Speicherung zulässig, soweit sie für einen ausdrücklich gewünschten Dienst unbedingt erforderlich ist. Nur bei ausschließlich notwendiger Speicherung braucht es keinen Einwilligungsbanner. [Österreichische Datenschutzbehörde: Datenschutz & Cookies](https://dsb.gv.at/faqs/datenschutz-cookies)
+- **Ableitung für Doppel 6:** Das notwendige Speichern und Fortsetzen einer ausdrücklich gestarteten Karriere kann unter diese Ausnahme fallen. Das ist keine pauschale Freigabe für sämtliche Daten: Telemetrie, Werbung und überflüssige Kennungen separat bewerten. Zweck, Datenumfang und Notwendigkeit dokumentieren. Die Ausnahme ersetzt keine anwendbaren Datenschutzinformationen. [DSB](https://dsb.gv.at/faqs/datenschutz-cookies), [EDPB: Informationsrechte](https://www.edpb.europa.eu/sme/be-compliant/respect-individuals-rights_en)
+- **Empfehlung:** Kurzer Hinweis bei Karrierebeginn und dauerhaft erreichbare Seite „Speicherung & Datenschutz“: Speicherort, automatische Speicherung, Löschfunktion, Export, Verlust bei gelöschten Browserdaten. Lokal und Cloud klar unterscheiden; eine Bestätigung des Hinweises nicht als unnötige Pflicht-Einwilligung darstellen.
+
+## Cloud und öffentliche Hall of Fame
+
+Produktvorgabe: Die zentrale öffentliche Hall of Fame nimmt nur serverseitig geführte beziehungsweise verifizierte Karrieren auf. Lokale Spielstände und Importe sind ausgeschlossen; der bloße Upload eines lokalen Spielstands begründet keine Teilnahmeberechtigung.
+
+- Ein Pseudonym ist für den Betreiber weiterhin personenbezogen, wenn es einem Konto oder einer Person zugeordnet werden kann. „Anonym“ daher nicht allein wegen eines frei gewählten Managernamens behaupten. [EDPB: Pseudonymisierung](https://www.edpb.europa.eu/news/edpb-adopts-pseudonymisation-guidelines-and-paves-the-way-to-improve-cooperation-with_en)
+- Jeder Verarbeitungszweck braucht eine passende Rechtsgrundlage. Vertragserfüllung kommt nur für objektiv notwendige Verarbeitung in Betracht; Einwilligung muss freiwillig und widerrufbar sein. **Empfehlung:** Cloud-Speichern und öffentliche Veröffentlichung getrennt schalten; Hall of Fame freiwillig aktivieren. Das ist eine Produktentscheidung, keine Aussage, dass Ranglisten zwingend immer Einwilligung benötigen. [EDPB: Rechtsgrundlagen](https://www.edpb.europa.eu/sme/be-compliant/process-personal-data-lawfully_en)
+- Personenbezogene Daten nur zweckgebunden so lange aufbewahren, wie erforderlich; keine pauschale unbegrenzte Titelhistorie. **Empfehlung:** Fristen für aktive Konten, Inaktivität, Protokolle und Backups konkret festlegen. Beim Löschen öffentliche Namen und Kontoverknüpfungen entfernen; verbleibende Statistik nur nach wirksamer Anonymisierung. [EDPB: Aufbewahrung](https://www.edpb.europa.eu/sme/find-practical-info/faq_en?page=1&s=), [EDPB: Anonymisierung](https://www.edpb.europa.eu/topics/ai-and-technology/anonymisation-pseudonymisation_en)
+- Datenschutzhinweise vor Datenerhebung bereitstellen; Verantwortlichen, Zwecke/Rechtsgrundlagen, Empfänger, Fristen, etwaige Drittlandtransfers und Rechte abdecken. Auskunft, Berichtigung und anwendbare Löschung/Übertragbarkeit technisch ermöglichen. Auf Betroffenenanfragen grundsätzlich innerhalb eines Monats reagieren; zulässige Verlängerung rechtzeitig begründen. [EDPB: Betroffenenrechte](https://www.edpb.europa.eu/sme/be-compliant/respect-individuals-rights_en)
+- Bei Hosting als Auftragsverarbeitung Vertrag, Unterauftragnehmer, Schutzmaßnahmen und Drittlandtransfers prüfen. Ein EU-Rechenzentrum allein klärt nicht sämtliche Empfänger und Zugriffe. [EDPB: Verantwortliche und Auftragsverarbeiter](https://www.edpb.europa.eu/sme/learn-the-basics/data-controller-or-data-processor_en)
+
+## Öffentliche Namen und Moderation
+
+- Öffentlich sichtbare, selbst vergebene Namen vorsorglich als nutzergenerierte Inhalte planen. Google definiert UGC auch als Inhalte, die nur einem Teil der Nutzer zugänglich sind: Nutzungsregeln vor Veröffentlichung akzeptieren lassen; verbotene Inhalte definieren, Meldung von Inhalt/Nutzer und Blockieren in der App ermöglichen, fortlaufend moderieren. [Google Play: UGC](https://support.google.com/googleplay/android-developer/answer/9876937?hl=en)
+- Apple verlangt bei UGC Filter, Meldefunktion mit zeitnaher Reaktion, Blockieren missbräuchlicher Nutzer und erreichbare Kontaktdaten. Ein Schimpfwortfilter allein reicht dafür nicht. [Apple App Review, 1.2](https://developer.apple.com/app-store/review/guidelines/#user-generated-content)
+- **Empfehlung:** Sofortprüfung im Client, verbindliche Prüfung vor Veröffentlichung auf dem Server; Normalisierung von Unicode, Leerzeichen und üblichen Verschleierungen. Fehlalarme über überprüfbare Freigabe behandeln; Meldungen bearbeiten, Namen ausblenden/ersetzen und Konten sanktionieren können. Private importierte Namen niemals ungeprüft veröffentlichen.
+
+## App Store und Google Play
+
+- Apple bewertet Mehrwert und dauerhaften Spielnutzen; ein bloßes Verpacken der Website garantiert keine Zulassung. Geräteprüfung, vollständige Funktionen und erreichbare Dienste für Review vorsehen. [Apple App Review, 2.1 und 4.2](https://developer.apple.com/app-store/review/guidelines/)
+- Apple erwartet bei Kontoerstellung eine in der App startbare Kontolöschung einschließlich zugehöriger Inhalte, soweit keine gesetzliche Aufbewahrung greift. Deaktivierung allein genügt nicht. [Apple: Account deletion](https://developer.apple.com/support/offering-account-deletion-in-your-app/)
+- Google verlangt bei Kontoerstellung den Löschweg innerhalb der App **und** eine externe Webseite; zugehörige Nutzerdaten mitlöschen, begründete Restaufbewahrung offenlegen. Datenschutzerklärung in App und Console, öffentlich erreichbare URL sowie zutreffende Data-Safety-Angaben sind einzuplanen. [Google Play: User Data](https://support.google.com/googleplay/android-developer/answer/10144311?hl=en)
+- Apple App Privacy muss die tatsächliche Erhebung einschließlich eingebundener Drittanbieter abbilden. SDKs deshalb vor Integration inventarisieren; Store-Angaben und Datenschutzerklärung gemeinsam aktualisieren. [Apple: App Privacy Details](https://developer.apple.com/app-store/app-privacy-details/)
+- Zum Recherchestand benötigen neue reguläre Android-Apps und Updates seit 31.08.2026 Android 16/API 36 oder höher als Ziel-API. Das ist keine Mindestversion für Nutzergeräte. Ziel-API und aktuelle Apple-SDK-Vorgaben unmittelbar vor Umsetzung und Einreichung erneut prüfen. [Google Play: Ziel-API](https://support.google.com/googleplay/android-developer/answer/11926878?hl=de)
+
+## Vor Umsetzung festzulegen
+
+Betreiber/Kontakt und Zielalter; Konto- und Hostingmodell; öffentliche Felder und freiwillige Veröffentlichung; konkrete Lösch- und Backupfristen; Moderationsverantwortung; Zugang zum Konto nach Geräteverlust; Store-Verpackung und unterstützte Geräte. Diese Recherche ersetzt keine fertigen Rechtstexte oder Store-Freigabe.

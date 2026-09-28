@@ -16,6 +16,7 @@ vm.runInContext(fs.readFileSync('dist/world-catalog-v61.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('dist/world-competition-v62.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('dist/world-coaches-v63.js', 'utf8'), context);
 vm.runInContext(fs.readFileSync('dist/world-match-v64.js', 'utf8'), context);
+vm.runInContext(fs.readFileSync('dist/world-nationalities-v79.js','utf8'),context);
 const source = fs.readFileSync('dist/world-foundation-v61.js', 'utf8');
 vm.runInContext(source.slice(0, source.indexOf('const v61Panel=')), context);
 
@@ -39,7 +40,11 @@ const preview = vm.runInContext('v61GenerateRoster', context)(
 );
 assert.strictEqual(JSON.stringify(preview), JSON.stringify(career.world.clubs.find(club => club.id === 'GER-2').roster));
 assert(preview.every(player => player.age >= 19 && player.age <= 34));
-assert(preview.every(player => ['ENG', 'ESP', 'ITA', 'GER', 'FRA', 'POR'].includes(player.nation)));
+const nationCodes = new Set(vm.runInContext('v79Nationalities', context).map(nation => nation.code));
+assert(preview.every(player => nationCodes.has(player.nation)));
+assert(career.world.clubs.flatMap(club => club.roster).some(player => !['ENG', 'ESP', 'ITA', 'GER', 'FRA', 'POR'].includes(player.nation)));
+assert(career.world.clubs.every(club => new Set(club.roster.map(player => player.name)).size === club.roster.length));
+assert(career.world.clubs.every(club => new Set([...club.roster,...club.youthPool].map(player => player.name)).size === club.roster.length + club.youthPool.length));
 assert(preview.every(player => ['tec','pas','fin','tak','pos','spd','sta','air','gk'].every(key => player[key] >= 1 && player[key] <= 20)));
 assert.strictEqual(vm.runInContext('v61ValidateCareer', context)(career), true);
 const incomplete = JSON.parse(JSON.stringify(career));

@@ -209,18 +209,18 @@ function v62ValidateSchedule(competitions,clubs){
 
 function v62Date(day){return new Intl.DateTimeFormat('de-DE',{day:'numeric',month:'long',timeZone:'UTC'}).format(new Date(Date.UTC(2024,7,1+day)))}
 function v62ShortDate(day){return new Intl.DateTimeFormat('de-DE',{day:'numeric',month:'short',timeZone:'UTC'}).format(new Date(Date.UTC(2024,7,1+day)))}
-function v62AwardIcon(country,kind){
- const colors={ENG:['#e7f0f3','#d84651'],ESP:['#ffdb63','#bb263a'],ITA:['#d8f0e4','#269569'],GER:['#ffda68','#d44d42'],FRA:['#dbe8ff','#4b73c7'],POR:['#dcf3de','#328658'],EU:['#d6e4ff','#d8ad54']};
- const [light,accent]=colors[country]||colors.EU;
- const shapes={
-  league:'<path d="M10 21 15 25 22 15 29 25 34 21 31 33H13l-3-12ZM13 36h18"/>',
-  cup:'<path d="M15 13h18v10a9 9 0 0 1-18 0V13ZM15 17H9v5a7 7 0 0 0 7 7m17-12h6v5a7 7 0 0 1-7 7M24 32v5m-8 2h16"/>',
-  'top-scorer':'<circle cx="24" cy="23" r="11"/><path d="m24 17 5 4-2 6h-6l-2-6 5-4Zm-9 1 4 3m-1 10 3-4m12-9-4 3m1 10-3-4"/>',
-  'player-of-season':'<path d="m24 11 3.6 8 8.8 1-6.5 5.9 1.8 8.7-7.7-4.4-7.7 4.4 1.8-8.7-6.5-5.9 8.8-1 3.6-8Z"/>',
-  'man-of-the-match':'<circle cx="24" cy="23" r="12"/><path d="m24 15 2.5 5.5 6 .7-4.4 4 1.2 5.8-5.3-3-5.3 3 1.2-5.8-4.4-4 6-.7 2.5-5.5Z"/>',
-  europe:'<circle cx="24" cy="23" r="11"/><path d="M13 23h22M24 12c-5 5-5 17 0 22 5-5 5-17 0-22M17 15l14 16"/>'
- };
- return`<svg class="v62-award-icon v62-award-icon-${kind}" viewBox="0 0 48 48" aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="44" height="44" rx="11" fill="#132a30" stroke="${accent}" stroke-width="2"/><path d="M5 6h38v5H5z" fill="${accent}"/><path d="M8 40h32" stroke="${accent}" stroke-width="2" stroke-linecap="round"/><g stroke="${light}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${shapes[kind]||shapes.europe}</g></svg>`;
+const v62AwardSprites={
+ ENG:{league:['trophies/eng-league.png','trophies/eng-league-small.png'],cup:['trophies/eng-cup.png','trophies/eng-cup-small.png'],'top-scorer':['trophies/eng-top-scorer.png','trophies/eng-top-scorer-small.png'],'player-of-season':['trophies/eng-player-of-season.png','trophies/eng-player-of-season-small.png'],'man-of-the-match':['trophies/eng-man-of-the-match.png','trophies/eng-man-of-the-match-small.png']},
+ ESP:{league:['trophies/esp-league.png','trophies/esp-league-small.png'],cup:['trophies/esp-cup.png','trophies/esp-cup-small.png'],'top-scorer':['trophies/esp-top-scorer.png','trophies/esp-top-scorer-small.png'],'player-of-season':['trophies/esp-player-of-season.png','trophies/esp-player-of-season-small.png'],'man-of-the-match':['trophies/esp-man-of-the-match.png','trophies/esp-man-of-the-match-small.png']},
+ ITA:{league:['trophies/ita-league.png','trophies/ita-league-small.png'],cup:['trophies/ita-cup.png','trophies/ita-cup-small.png'],'top-scorer':['trophies/ita-top-scorer.png','trophies/ita-top-scorer-small.png'],'player-of-season':['trophies/ita-player-of-season.png','trophies/ita-player-of-season-small.png'],'man-of-the-match':['trophies/ita-man-of-the-match.png','trophies/ita-man-of-the-match-small.png']},
+ GER:{league:['trophies/ger-league.png','trophies/ger-league-small.png'],cup:['trophies/ger-cup.png','trophies/ger-cup-small.png'],'top-scorer':['trophies/ger-top-scorer.png','trophies/ger-top-scorer-small.png'],'player-of-season':['trophies/ger-player-of-season.png','trophies/ger-player-of-season-small.png'],'man-of-the-match':['trophies/ger-man-of-the-match.png','trophies/ger-man-of-the-match-small.png']},
+ FRA:{league:['trophies/fra-league.png','trophies/fra-league-small.png'],cup:['trophies/fra-cup.png','trophies/fra-cup-small.png'],'top-scorer':['trophies/fra-top-scorer.png','trophies/fra-top-scorer-small.png'],'player-of-season':['trophies/fra-player-of-season.png','trophies/fra-player-of-season-small.png'],'man-of-the-match':['trophies/fra-man-of-the-match.png','trophies/fra-man-of-the-match-small.png']},
+ POR:{league:['trophies/por-league.png','trophies/por-league-small.png'],cup:['trophies/por-cup.png','trophies/por-cup-small.png'],'top-scorer':['trophies/por-top-scorer.png','trophies/por-top-scorer-small.png'],'player-of-season':['trophies/por-player-of-season.png','trophies/por-player-of-season-small.png'],'man-of-the-match':['trophies/por-man-of-the-match.png','trophies/por-man-of-the-match-small.png']},
+ EU:{europe:['trophies/eu-europe.png','trophies/eu-europe-small.png'],'man-of-the-match':['trophies/eu-man-of-the-match.png','trophies/eu-man-of-the-match-small.png']}
+};
+function v62AwardIcon(country,kind,compact=false){
+ const sprites=(kind==='europe'?v62AwardSprites.EU:v62AwardSprites[country])?.[kind]||v62AwardSprites.EU['man-of-the-match'];
+ return`<img class="v62-award-icon v62-award-icon-${kind}${compact?' v62-award-icon-small':''}" src="${sprites[compact?1:0]}" width="${compact?24:320}" height="${compact?24:320}" alt="" aria-hidden="true">`;
 }
 function v62LeagueLabel(country){return`${v61FlagSVG(country)} ${escapeHTML(v61CountryNames[country])} · Liga 1`}
 function v62Name(career,id){return escapeHTML(career.world.clubs.find(club=>club.id===id)?.name||id)}

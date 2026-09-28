@@ -5,6 +5,7 @@ const vm=require('vm');
 let nextId=0;
 const context=vm.createContext({crypto:{randomUUID:()=>`match-${++nextId}`}});
 for(const file of ['world-catalog-v61.js','world-competition-v62.js','world-coaches-v63.js','world-match-v64.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
+vm.runInContext(fs.readFileSync('dist/world-nationalities-v79.js','utf8'),context);
 const foundation=fs.readFileSync('dist/world-foundation-v61.js','utf8');
 vm.runInContext(foundation.slice(0,foundation.indexOf('const v61Panel=')),context);
 const get=name=>vm.runInContext(name,context),career=get('v61CreateCareer')('GER-2','match-seed'),fixture=get('v62Fixtures')(career).find(item=>item.homeId==='GER-2'||item.awayId==='GER-2');

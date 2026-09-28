@@ -4,12 +4,14 @@ Status: **redaktionell festgelegter Namens- und Farbkatalog** für neue Karriere
 
 Die Identität jedes Vereins ist eine Entscheidungshilfe für Trainerwahl, Geld, Jugend und Markt. Farben und Hintergrund sind sichtbar, aber verleihen keine versteckten Spieler- oder Torboni. Historische Größe und heutige Stärke sind getrennt: Ein Großklub kann eine schwache Saison erleben; ein kleiner Verein kann wachsen.
 
+Elf Vereine nutzen klassische Kombinationen wie Rot/Weiß, Himmelblau/Weiß, Schwarz/Weiß und Blau/Schwarz. Die dritte Vereinsfarbe ergänzt sie als Akzent und als Grundfarbe des Auswärtstrikots. Die individuellen Vektorwappen folgen den aktuell gespeicherten drei Farben. Neue Katalogfarben gelten nur für neu angelegte Karrieren; vorhandene Spielstände werden nicht umgefärbt.
+
 ## England
 
 | ID | Stadt | Vereinsname | Farben | Eigenständiger Hintergrund |
 | --- | --- | --- | --- | --- |
-| ENG-1 | London | Regent Vale FC | Anthrazit/Kupfer | Ehemals landesweit prägender Mitgliederklub mit großer Anhängerschaft; heute hohe Ansprüche und teure Erneuerung. |
-| ENG-2 | Manchester | Irwell FC | Petrol/Silber | Jüngerer Titelanwärter, gewachsen aus einem städtischen Sportnetzwerk; plant Kaderbreite und internationale Spiele. |
+| ENG-1 | London | Regent Vale FC | Rot/Weiß | Ehemals landesweit prägender Mitgliederklub mit großer Anhängerschaft; heute hohe Ansprüche und teure Erneuerung. |
+| ENG-2 | Manchester | Irwell FC | Himmelblau/Weiß | Jüngerer Titelanwärter, gewachsen aus einem städtischen Sportnetzwerk; plant Kaderbreite und internationale Spiele. |
 | ENG-3 | Liverpool | Mersey Dock FC | Violett/Creme | Alte Hafenvereinigung mit viel Rückhalt; nach wechselhaften Jahren ringt der Vorstand um einen geduldigen Umbau. |
 | ENG-4 | Birmingham | Birmingham Works FC | Gold/Schwarz | Eigentümer aus lokaler Industrie führten den Klub mit nüchterner Kaderanalyse ins obere Mittelfeld. |
 | ENG-5 | Bristol | Bristol Quay FC | Türkis/Bordeaux | Ausbildungsverein am Fluss; verkauft gelegentlich Talente, ohne sein Nachwuchsnetz aufzugeben. |
@@ -21,8 +23,8 @@ Die Identität jedes Vereins ist eine Entscheidungshilfe für Trainerwahl, Geld,
 
 | ID | Stadt | Vereinsname | Farben | Eigenständiger Hintergrund |
 | --- | --- | --- | --- | --- |
-| ESP-1 | Madrid | Madrid Central CF | Indigo/Gold | Historischer Spitzenverein mit internationalen Erinnerungen und großem Anspruch, doch ohne Anspruch auf dauernde Titel. |
-| ESP-2 | Barcelona | Barcelona Mar FC | Safran/Marineblau | Etablierter großer Rivale mit offensiver Spielkultur und wachsamem Blick auf die eigenen Mittel. |
+| ESP-1 | Madrid | Madrid Central CF | Weiß/Gold | Historischer Spitzenverein mit internationalen Erinnerungen und großem Anspruch, doch ohne Anspruch auf dauernde Titel. |
+| ESP-2 | Barcelona | Barcelona Mar FC | Blau/Karmin | Etablierter großer Rivale mit offensiver Spielkultur und wachsamem Blick auf die eigenen Mittel. |
 | ESP-3 | Valencia | Turia CF | Flieder/Silber | Beständiger Herausforderer; bevorzugt einen kompakten Kader und wenige gezielte Käufe. |
 | ESP-4 | Sevilla | Sevilla Union FC | Koralle/Creme | Traditionsreicher Klub nach einer sportlichen Delle; die Anhängerschaft bleibt größer als die aktuelle Kaderqualität. |
 | ESP-5 | Barcelona | Barcelona Delta FC | Tannengrün/Ocker | Jüngerer Stadtverein mit lokaler Talentsuche und ungewöhnlich geduldigem Vorstand. |
@@ -34,8 +36,8 @@ Die Identität jedes Vereins ist eine Entscheidungshilfe für Trainerwahl, Geld,
 
 | ID | Stadt | Vereinsname | Farben | Eigenständiger Hintergrund |
 | --- | --- | --- | --- | --- |
-| ITA-1 | Turin | Torino Centrale FC | Smaragd/Elfenbein | Historisch großer Werksklub mit Ergebnisdruck; vertraut lange auf erfahrene Profis. |
-| ITA-2 | Mailand | Milano Ferro FC | Kupfer/Marineblau | Sportlich starker jüngerer Konkurrent mit methodischer Kaderplanung und mittlerem Finanzrisiko. |
+| ITA-1 | Turin | Torino Centrale FC | Schwarz/Weiß | Historisch großer Werksklub mit Ergebnisdruck; vertraut lange auf erfahrene Profis. |
+| ITA-2 | Mailand | Milano Ferro FC | Blau/Schwarz | Sportlich starker jüngerer Konkurrent mit methodischer Kaderplanung und mittlerem Finanzrisiko. |
 | ITA-3 | Rom | Roma Capitol FC | Flieder/Elfenbein | Großer Stadtverein im Wiederaufbau; Tradition und Anhängerschaft übersteigen die momentane Kaderstärke. |
 | ITA-4 | Bologna | Bologna Collina AC | Oliv/Weiß | Ruhiger Taktikverein, der passende Rollen und Trainer höher bewertet als große Namen. |
 | ITA-5 | Mailand | Navigli FC | Kobaltblau/Bernstein | Nachwuchs- und Marktklub, der gute Spieler zu tragbaren Zeitpunkten verkauft. |
@@ -47,8 +49,8 @@ Die Identität jedes Vereins ist eine Entscheidungshilfe für Trainerwahl, Geld,
 
 | ID | Stadt | Vereinsname | Farben | Eigenständiger Hintergrund |
 | --- | --- | --- | --- | --- |
-| GER-1 | München | FC München Isar | Pflaume/Silber | Über viele Jahre erfolgreicher Großverein mit Titelanspruch und eigener Finanzdisziplin. |
-| GER-2 | Bremen | FC Bremen Weser | Dunkelblau/Kupfer | Verein mit langer Erfolgsgeschichte, der durch junge Profis und eigene Ausbildung wieder an die Spitze will. |
+| GER-1 | München | FC München Isar | Rot/Weiß | Über viele Jahre erfolgreicher Großverein mit Titelanspruch und eigener Finanzdisziplin. |
+| GER-2 | Bremen | FC Bremen Weser | Grün/Weiß | Verein mit langer Erfolgsgeschichte, der durch junge Profis und eigene Ausbildung wieder an die Spitze will. |
 | GER-3 | Hamburg | FC Hamburg Elbe | Dunkelgrün/Creme | Beliebter Traditionsklub; Reichweite bleibt hoch, während Ergebnisse zeitweise schwanken. |
 | GER-4 | Freiburg | SC Freiburg Tal | Bernstein/Waldgrün | Ausbildung und Einsatzminuten für Talente zählen mehr als kurzfristige Größe. |
 | GER-5 | Köln | FC Köln Rhein | Nachtblau/Weiß | Regional verwurzelter Mittelklub mit klarer Kostenkontrolle und Trainerkontinuität. |
@@ -60,7 +62,7 @@ Die Identität jedes Vereins ist eine Entscheidungshilfe für Trainerwahl, Geld,
 
 | ID | Stadt | Vereinsname | Farben | Eigenständiger Hintergrund |
 | --- | --- | --- | --- | --- |
-| FRA-1 | Paris | Paris Central FC | Safran/Schwarz | Finanzstarker moderner Spitzenklub mit großer Bühne und hohen laufenden Kosten. |
+| FRA-1 | Paris | Paris Central FC | Dunkelblau/Rot | Finanzstarker moderner Spitzenklub mit großer Bühne und hohen laufenden Kosten. |
 | FRA-2 | Marseille | Marseille Union | Bordeaux/Creme | Historisch großer Verein mit breiter Jugendbasis; verfolgt längere sportliche Zyklen. |
 | FRA-3 | Lyon | Lyon Rive FC | Grün/Elfenbein | Herausforderer mit guter Suche nach Entwicklungsspielern und begrenztem Spitzenbudget. |
 | FRA-4 | Bordeaux | Bordeaux Atlantic FC | Petrol/Sand | Reichweitenstarker Traditionsklub nach wirtschaftlichen Rückschlägen und vorsichtiger Erneuerung. |
@@ -73,8 +75,8 @@ Die Identität jedes Vereins ist eine Entscheidungshilfe für Trainerwahl, Geld,
 
 | ID | Stadt | Vereinsname | Farben | Eigenständiger Hintergrund |
 | --- | --- | --- | --- | --- |
-| POR-1 | Lissabon | Lisboa Central FC | Kupfer/Weiß | Historischer Spitzenverein mit Titelanspruch, Jugendarbeit und langer Europacupgeschichte. |
-| POR-2 | Porto | Porto Ribeira FC | Anthrazit/Gold | Zweiter etablierter Titelklub mit konzentrierter Suche nach passenden Profis. |
+| POR-1 | Lissabon | Lisboa Central FC | Rot/Weiß | Historischer Spitzenverein mit Titelanspruch, Jugendarbeit und langer Europacupgeschichte. |
+| POR-2 | Porto | Porto Ribeira FC | Blau/Weiß | Zweiter etablierter Titelklub mit konzentrierter Suche nach passenden Profis. |
 | POR-3 | Lissabon | Tejo Union | Seegrün/Karmin | Dritter großer Rivale; Prestige bleibt auch dann bestehen, wenn Trainer und Kader wechseln. |
 | POR-4 | Braga | Braga Norte FC | Indigo/Ocker | Jugend- und Verkaufsklub, der seine Mittel über mehrere Saisons plant. |
 | POR-5 | Coimbra | Coimbra Athletic | Türkis/Silber | Beständiger Regionalverein mit niedrigen Kosten und sorgfältiger Trainerpassung. |

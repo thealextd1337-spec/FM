@@ -87,6 +87,37 @@ Vereinsfarben	Club colours
 Hauptfarbe	Primary colour
 Zweitfarbe	Secondary colour
 Drittfarbe	Third colour
+Optionen	Options
+Einstellungen	Settings
+Einstellungen schließen	Close settings
+Vereinstrikots	Club kits
+Heim, Auswärts und zwei feste Torwarttrikots.	Home, away and two fixed goalkeeper kits.
+Torwart 1	Goalkeeper 1
+Torwart 2	Goalkeeper 2
+Trikotmuster	Kit patterns
+Muster speichern	Save patterns
+Musterwechsel während der fünf Transfertage möglich.	Patterns can be changed during the five transfer days.
+Musterwechsel nur während der fünf Transfertage möglich.	Patterns can only be changed during the five transfer days.
+Trikotfarben ändern	Change kit colours
+Farben speichern	Save colours
+Heim · Vorschau	Home · preview
+Auswärts · Vorschau	Away · preview
+Trikotfarben während der Transferphase ändern	Allow kit colour changes during the transfer window
+Standardmäßig ausgeschaltet. Auch bei aktivierter Einstellung sind Farbänderungen nur an den fünf Transfertagen des eigenen Vereins möglich.	Off by default. Even when enabled, colours can only be changed for your own club during the five transfer days.
+Farben können während der fünf Transfertage geändert werden.	Colours can be changed during the five transfer days.
+Unter Hauptmenü → Optionen → Einstellungen zuerst erlauben.	Enable this first under Main menu → Options → Settings.
+Drei unterschiedliche, abgestimmte Farben und klare Torwartkontraste sind erforderlich.	Three distinct, coordinated colours and clear goalkeeper contrast are required.
+Trikotänderung gespeichert.	Kit change saved.
+Farbänderungen erlaubt.	Colour changes enabled.
+Farbänderungen ausgeschaltet.	Colour changes disabled.
+Einstellung konnte nicht gespeichert werden.	The setting could not be saved.
+Trikotänderungen sind nur während der fünf Transfertage möglich.	Kit changes are only possible during the five transfer days.
+Farbänderungen sind in den Einstellungen ausgeschaltet.	Colour changes are disabled in Settings.
+Diese Trikotkombination ist nicht zulässig.	This kit combination is not allowed.
+Bitte drei unterschiedliche, abgestimmte Farben wählen.	Choose three distinct, coordinated colours.
+Für diese Farben gibt es kein ausreichend klares Torwarttrikotpaar.	These colours do not allow a clear enough goalkeeper kit pair.
+Die Trikotdaten sind ungültig.	The kit data is invalid.
+Für diese Vereinswelt liegen keine neuen Trikotdaten vor.	This career has no new kit data.
 Vereinswappen	Club crest
 Heimtrikot	Home kit
 Auswärtstrikot	Away kit
@@ -385,6 +416,7 @@ Saisonrückblick	Season review
 Rückblick	Review
 Deine Saison	Your season
 Kaderübersicht	Squad overview
+Ø Note	Avg. rating
 Pokale & Awards	Cups & awards
 Saisonübersicht	Season summary
 Zum Saisonwechsel	Continue to season transition
@@ -396,6 +428,8 @@ Remis	Draws
 Titel	Title
 🏆 Titel	🏆 Title
 Titel gewonnen	Title won
+Herzlichen Glückwunsch!	Congratulations!
+Weiter zum Spielbericht	Continue to match report
 Meisterschaft	Championship
 Mannschaftspokal	Team trophy
 Mannschaftspokale	Team trophies
@@ -671,6 +705,7 @@ Ungültiges Rasterfeld.	Invalid grid cell.
 Vereinswelten werden noch geladen.	Club careers are still loading.
 Zuerst Stellenangebote und Jugendbudget entscheiden.	Choose a job offer and youth budget first.
 Verfügbar bis	Available until
+Speichern & Start	Save & Start
 Speichern & beenden	Save and exit
 Der Spielverlauf erscheint nach Anpfiff.	Match events appear after kickoff.
 Abwehrlinie	Defensive line
@@ -733,6 +768,7 @@ Letzte Änderung zurücknehmen	Undo last change
 Hinspiel	First leg
 Aufstellung gültig · Änderungen werden automatisch gespeichert.	Valid lineup · Changes are saved automatically.
 Wähle Formation und Spielidee. Änderungen sind sofort auf dem Spielfeld sichtbar.	Choose a formation and playing style. Changes appear on the pitch immediately.
+Wähle Formation und Spielidee. Die Änderung gilt sofort.	Choose a formation and playing style. The change takes effect immediately.
 Wähle ein Trikot auf dem Feld. Für einen Wechsel ziehe einen Reservespieler auf das Feldtrikot.	Select a shirt on the pitch. To make a substitution, drag a reserve player onto the shirt.
 Spielpause	Match paused
 Taktikänderungen gelten sofort. Wechsel erfolgen bei der nächsten Unterbrechung.	Tactical changes take effect immediately. Substitutions happen at the next stoppage.
@@ -843,6 +879,7 @@ Für einen Verkauf müssen mindestens zehn Profis und ein Torwart im Kader bleib
 Verkaufsangebote sind im Transferfenster möglich.	Sale listings are available during the transfer window.
 Verkaufsangebot	Sale listing
 Ein Angebot ist erst im nächsten Transferfenster möglich.	An offer is possible only in the next transfer window.
+Zuerst verhandelst du die Ablöse mit dem Verein. Nach der Einigung folgen Gehalt, Laufzeit und Einsatz-Zusage mit dem Spieler.	First negotiate the transfer fee with the club. Once agreed, negotiate salary, contract length and playing time with the player.
 Du bietest dem Verein die Ablöse und dem Spieler Gehalt, Laufzeit und Einsatz-Zusage an. Eine Gegenforderung kannst du anschließend beantworten.	You offer the club a transfer fee and the player a salary, contract length and playing time promise. You can respond to a counteroffer afterwards.
 Neue Forderung	New asking price
 Verhandlung öffnen	Open negotiation
@@ -881,6 +918,8 @@ Zielverein	Destination club
 Spieler suchen	Search players
 Vereinsland	Club country
 Alle Länder	All countries
+Nationalität (Vereinslose)	Nationality (free agents)
+Alle Nationalitäten	All nationalities
 Alle Vereine und Freie	All clubs and free agents
 Vereinslos	Free agent
 Ablöse	Transfer fee
@@ -900,7 +939,7 @@ Marktwert und Gehalt sind Richtwerte. Spielerfähigkeiten stehen nur als Farbstu
 Während der Saison sind nur ablösefreie Verpflichtungen möglich.	Only free agents can be signed during the season.
 Die reguläre Transferphase ist geschlossen.	The regular transfer window is closed.
 Die reguläre Transferphase ist geöffnet.	The regular transfer window is open.
-Alle Profis anderer Vereine und vereinslose Spieler sind sichtbar. Das ist keine Verkaufsliste: Du kannst jedem gebundenen Spieler ein Angebot machen. Vereinslose erscheinen zuerst, danach die höchsten Marktwert-Richtwerte; die Liste zeigt bis zu 48 Treffer, bei der Auswahl „Vereinslos“ alle verfügbaren Spieler. Der Länderfilter bezieht sich bei Profis auf den Verein, bei Vereinslosen auf die Nationalität.	You can see professionals at other clubs and free agents. This is not a sale list: you can make an offer for any contracted player. Free agents appear first, followed by the highest estimated market values; the list shows up to 48 results, or all available players when you select “Free agent”. For professionals, the country filter applies to their club; for free agents, it applies to nationality.
+Alle Profis anderer Vereine und vereinslose Spieler sind sichtbar. Das ist keine Verkaufsliste: Du kannst jedem gebundenen Spieler ein Angebot machen. Vereinslose erscheinen zuerst, danach die höchsten Marktwert-Richtwerte; die Liste zeigt bis zu 48 Treffer, bei der Auswahl „Vereinslos“ alle verfügbaren Spieler. Vereinsland filtert gebundene Profis, Nationalität filtert Vereinslose. Beide Filter sind unabhängig.	You can see professionals at other clubs and free agents. This is not a sale list: you can make an offer for any contracted player. Free agents appear first, followed by the highest estimated market values; the list shows up to 48 results, or all available players when you select “Free agent”. Club country filters contracted players, nationality filters free agents. Both filters are independent.
 Keine Einträge	No entries
 Noch kein Spielstand. Dein erster Verein wartet auf dich.	No save yet. Your first club awaits.
 Automatisch gespeichert auf diesem Gerät und in diesem Browser.	Saved automatically on this device and in this browser.
@@ -922,6 +961,14 @@ Letzte Spielzusammenfassung erfolgreich übertragen.	Latest match summary sent s
 Letzte Übertragung nicht möglich. Dein Spielstand ist weiterhin lokal gespeichert.	Latest upload failed. Your save is still stored locally.
 Vereinswelt gelöscht.	Club career deleted.
 Export der Vereinswelt gestartet.	Club career export started.
+Vereinswelt erfolgreich importiert.	Club career imported successfully.
+Vereinslos · keine Ablöse.	Free agent · no transfer fee.
+Der Spieler entscheidet über den Vertrag. Gehälter werden am Saisonende fällig.	The player decides on the contract. Salaries are due at season end.
+Transfer abgeschlossen	Transfer completed
+Gezahlte Ablöse	Transfer fee paid
+Gebotene Ablöse	Transfer fee offered
+Spielerprofil	Player profile
+Noch kein Spiel	No match yet
 Ehemals landesweit prägender Mitgliederklub mit großer Anhängerschaft; heute hohe Ansprüche und teure Erneuerung.	Once a nationally influential members' club with a large following; now facing high expectations and costly renewal.
 Jüngerer Titelanwärter, gewachsen aus einem städtischen Sportnetzwerk; plant Kaderbreite und internationale Spiele.	A newer title contender grown from a city sports network; planning squad depth and European matches.
 Alte Hafenvereinigung mit viel Rückhalt; nach wechselhaften Jahren ringt der Vorstand um einen geduldigen Umbau.	An old port club with strong support; after uneven years, its board is working towards a patient rebuild.
@@ -971,6 +1018,7 @@ Kleiner Nischenklub, der ablösefreie Spieler und ruhige Ziele vorzieht.	A small
 Entwicklungsverein, dessen knappes Budget Verkäufe gelegentlich erzwingt.	A development club whose tight budget sometimes forces sales.
 Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup club with an experienced coach and a tight budget.
 `.trim().split('\n').map(line=>line.split('\t')));
+ if(typeof v79Nationalities!=='undefined')for(const nation of v79Nationalities)labels.set(nation.de,nation.en);
  const labelsLower=new Map([...labels].map(([de,en])=>[de.toLocaleLowerCase('de'),en]));
  const patterns=[
   [/^(Sieg|Niederlage|Unentschieden) (\d+):(\d+) gegen (.+)$/,(_,result,own,other,opponent)=>`${translate(result)} ${own}:${other} vs ${opponent}`],
@@ -1030,10 +1078,15 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(.+) erreicht den Einwurf nicht\.$/,(_,name)=>`${name} cannot reach the throw-in.`],
   [/^Aus! Einwurf für (.+)\. (.+) läuft zur Seitenlinie\.$/,(_,club,name)=>`Out! Throw-in for ${club}. ${name} heads to the touchline.`],
   [/^(.+) hat Anstoß$/,(_,club)=>`${club} kicks off`],
+  [/^(\d+) Tor(?:e)? - (Liga 1|Nationaler Pokal|Europacup)$/,(_,count,competition)=>`${count} ${Number(count)===1?'goal':'goals'} - ${{'Liga 1':'League 1','Nationaler Pokal':'National cup',Europacup:'European cup'}[competition]}`],
+  [/^Spielstand (\d+) zu (\d+)$/,(_,home,away)=>`Score ${home} to ${away}`],
   [/^TOR! (.+) trifft (per direktem Freistoß )?für (.+)\.$/,(_,name,freeKick,club)=>`GOAL! ${name} scores ${freeKick?'directly from a free kick ':''}for ${club}.`],
   [/^ELFMETERTOR! (.+) trifft für (.+)\.$/,(_,name,club)=>`PENALTY GOAL! ${name} scores for ${club}.`],
   [/^Abpfiff! (.+) (\d+) : (\d+) (.+)\.$/,(_,home,homeGoals,awayGoals,away)=>`Full time! ${home} ${homeGoals} : ${awayGoals} ${away}.`],
   [/^Transferphase · Tag (\d+) von (\d+)$/,(_,day,total)=>`Transfer window · Day ${day} of ${total}`],
+  [/^Wechsel von (.+) zu (.+)$/,(_,from,to)=>`Transfer from ${translate(from)} to ${translate(to)}`],
+  [/^(.+) wechselt zu (.+)\.$/,(_,player,club)=>`${player} joins ${club}.`],
+  [/^(\d+) (Einsatz|Einsätze) pro Saison$/,(_,n)=>`${n} ${Number(n)===1?'appearance':'appearances'} per season`],
   [/^Aktuelles Gebot (\d+) Credits$/,(_,amount)=>`Current offer ${amount} Credits`],
   [/^(.+) Ablöse$/,(_,amount)=>`${amount} transfer fee`],
   [/^(.+) Gehalt$/,(_,amount)=>`${amount} salary`],
@@ -1102,6 +1155,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^Ausbildungsentschädigung (.+) · Gehalt (.+) je Saison · (\d+) (freier Kaderplatz|freie Kaderplätze)$/,(_,fee,salary,spots)=>`Training compensation ${fee} · Salary ${salary} per season · ${spots} ${spots==='1'?'free squad place':'free squad places'}`],
   [/^(.+) aus dem Nachwuchspool entlassen\? Er ist diese und die nächste Saison für alle Vereine ablösefrei\. Ohne Vertrag beendet er danach seine Karriere\.$/,(_,name)=>`Release ${name} from the youth pool? He will be a free agent for this season and the next. If he remains unsigned, he will retire afterwards.`],
   [/^(\d+) Wechsel noch möglich$/,(_,n)=>`${n} substitutions remaining`],
+  [/^(\d+) Wechsel möglich · Auf ein Trikot ziehen$/,(_,n)=>`${n} substitutions available · Drag onto a shirt`],
+  [/^(\d+) Wechsel noch möglich · Ersatzspieler auf ein Feldtrikot ziehen\.$/,(_,n)=>`${n} substitutions remaining · Drag a reserve player onto a shirt on the pitch.`],
   [/^(\d+) Min\.$/,(_,n)=>`${n} min`],
   [/^(\d+) Tor$/,(_,n)=>`${n} goal`],
   [/^(\d+) Tore$/,(_,n)=>`${n} goals`],
@@ -1192,6 +1247,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^Saisonbudget (.+) · Profikader (.+)$/,(_,budget,squad)=>`Season budget ${budget} · Professional squad ${squad}`],
   [/^(Torwart|Abwehr|Mittelfeld|Angriff) · (\d+) Jahre · bis Ende Saison (\d+) Ausbildungsentschädigung (.+) · Gehalt (.+) je Saison · (\d+) freie Kaderplätze$/,(_,position,age,season,fee,salary,spots)=>`${translate(position)} · ${age} years · training compensation ${fee} until end of season ${season} · salary ${salary} per season · ${spots} free squad places`],
   [/^Profil von (.+) öffnen$/,(_,name)=>`Open ${name}'s profile`],
+  [/^Porträt von (.+)$/,(_,name)=>`Portrait of ${name}`],
+  [/^Jubelpose von (.+)$/,(_,name)=>`Goal celebration pose of ${name}`],
   [/^Kader nach (.+) sortieren$/,(_,column)=>`Sort squad by ${translate(column)}`],
   [/^Platz (\d+)$/,(_,rank)=>`Position ${rank}`],
   [/^Runde: (Viertelfinale|Halbfinale|Finale)$/,(_,round)=>`Round: ${translate(round)}`],

@@ -1,0 +1,21 @@
+const fs=require('fs');
+const vm=require('vm');
+
+const context=vm.createContext({crypto:{randomUUID:()=> 'portrait-qa'},escapeHTML:value=>String(value).replace(/[&"<>]/g,char=>({'&':'&amp;','"':'&quot;','<':'&lt;','>':'&gt;'}[char]))});
+for(const file of ['world-catalog-v61.js','world-competition-v62.js','world-coaches-v63.js','world-match-v64.js','world-nationalities-v79.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
+const foundation=fs.readFileSync('dist/world-foundation-v61.js','utf8');
+vm.runInContext(foundation.slice(0,foundation.indexOf('const v61Panel=')),context);
+const sprites=fs.readFileSync('dist/world-sprites-v82.js','utf8');
+vm.runInContext(sprites.slice(0,sprites.indexOf('const v82BaseOpenPlayerProfile=')),context);
+vm.runInContext(fs.readFileSync('dist/world-sprites-v85.js','utf8'),context);
+vm.runInContext(fs.readFileSync('dist/world-sprites-v86.js','utf8'),context);
+vm.runInContext(fs.readFileSync('dist/world-sprites-v87.js','utf8'),context);
+const career=vm.runInContext('v61CreateCareer("GER-2","portrait-qa")',context);
+const sprite=vm.runInContext('v82SpriteSVG',context);
+const players=career.world.clubs.flatMap(club=>club.roster).slice(0,120);
+const cards=players.map((player,index)=>`<article><span>${index+1}</span>${sprite({...player,n:9},null)}<small>${context.escapeHTML(player.name)}</small></article>`).join('');
+const html=`<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>120 Spielerporträts · Sichtprüfung</title><style>*{box-sizing:border-box}body{margin:0;padding:16px;background:#15252a;color:#eef7ec;font:12px system-ui}h1{font-size:20px}.grid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:8px}article{position:relative;min-width:0;padding:4px;text-align:center;background:#274047;border:1px solid #53736d}article span{position:absolute;top:3px;left:5px}svg{display:block;width:96px;height:96px;margin:auto;image-rendering:pixelated}small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}@media(max-width:1050px){.grid{grid-template-columns:repeat(7,minmax(0,1fr))}}@media(max-width:620px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}</style></head><body><h1>120 frontale Porträts · einheitliches neutrales Trikot</h1><div class="grid">${cards}</div></body></html>`;
+fs.mkdirSync('outputs',{recursive:true});
+const qaHtml=html.replaceAll('href="sprites/','href="../dist/sprites/').replace('grid-template-columns:repeat(10,minmax(0,1fr))','grid-template-columns:repeat(7,minmax(0,1fr))').replace('width:96px;height:96px','width:156px;height:156px');
+fs.writeFileSync('outputs/sprites-qa.html',qaHtml);
+console.log(`120 Porträts in outputs/sprites-qa.html`);

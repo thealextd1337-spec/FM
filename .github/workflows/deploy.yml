@@ -65,6 +65,14 @@ jobs:
           node work/test-world-coaches-v63.cjs
           node work/test-world-match-v64.cjs
           node work/test-world-penalties-v65.cjs
+          node work/test-world-victory-popup.cjs
+          node work/test-world-nationalities-v79.cjs
+          node work/test-world-direct-transfer.cjs
+          node work/test-world-navigation.cjs
+          node work/test-world-swap-banner.cjs
+          node work/test-world-goal-scene-v83.cjs
+          node work/test-world-goal-banner-v84.cjs
+          node work/test-i18n-v75.cjs
           node work/test-world-live-ranks.cjs
           node work/test-world-grid-v71.cjs
           node work/test-world-economy-v66.cjs

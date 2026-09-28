@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jubelposen – mobile Torbanner-Vorschau</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 20px 12px; background: #141427; color: #f8f3d7; }
+    main { width: min(100%, 375px); margin: auto; }
+    h1 { font-size: 19px; margin: 0 0 8px; }
+    p { font-size: 13px; line-height: 1.45; margin: 0 0 14px; color: #cbd0e0; }
+    .banner { position: relative; display: grid; grid-template-columns: 116px minmax(0, 1fr) 51px; align-items: center; gap: 7px; min-height: 136px; padding: 7px; overflow: hidden; border: 3px solid #f8ca52; background: linear-gradient(130deg, #1e2451, #413c82 62%, #1e2451); box-shadow: 0 5px 0 #090f25; }
+    .sprite { position: relative; width: 116px; height: 116px; overflow: hidden; align-self: end; }
+    .sprite img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
+    .goal { min-width: 0; }
+    .call { padding: 5px 2px; border: 2px solid #f8ca52; background: #ed3d6c; color: #fffbe4; font-size: 18px; font-weight: 1000; line-height: 1; letter-spacing: .5px; text-align: center; text-shadow: 2px 2px #6c173e; }
+    .name { margin-top: 9px; font-size: 15px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tally { margin-top: 3px; font-size: 11px; white-space: nowrap; }
+    .result { display: grid; justify-items: center; gap: 8px; }
+    .crest { display: grid; place-items: center; width: 43px; height: 43px; border: 3px solid #f8ca52; border-radius: 50%; background: #125d46; font-size: 21px; font-weight: 900; }
+    .score { font-size: 13px; font-weight: 800; white-space: nowrap; }
+    .bottom { height: 14px; margin: -4px 54px 16px 0; background: #121633; border: 2px solid #f8ca52; border-top: 0; }
+    .choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    button { min-height: 40px; border: 2px solid #636d9e; border-radius: 4px; background: #22294d; color: inherit; font: inherit; font-size: 12px; cursor: pointer; }
+    button[aria-pressed="true"] { border-color: #f8ca52; background: #484271; }
+    .note { margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Vier feste Jubelposen</h1>
+    <p>375-Pixel-Vorschau zur Formprüfung. Die Spielgrafik und das endgültige Banner sind noch nicht umgesetzt.</p>
+    <div class="banner" aria-label="Beispiel-Torbanner">
+      <div id="sprite" class="sprite" aria-label="Jubelpose: beide Fäuste oben"><img src="jubelpose-beide-faeuste-v2.png" alt=""></div>
+      <div class="goal">
+        <div class="call">TOOOOR!</div>
+        <div class="name">M. Berger</div>
+        <div class="tally">5 Tore - Liga 1</div>
+      </div>
+      <div class="result"><div class="crest" aria-label="Beispielwappen">B</div><div class="score">2 : 1</div></div>
+    </div>
+    <div class="bottom" aria-hidden="true"></div>
+    <div class="choices" aria-label="Jubelpose auswählen">
+      <button type="button" data-pose="double" aria-pressed="true">Beide Fäuste oben</button>
+      <button type="button" data-pose="twofingers" aria-pressed="false">Zwei Zeigefinger hoch</button>
+      <button type="button" data-pose="wide" aria-pressed="false">Arme ausgebreitet</button>
+      <button type="button" data-pose="chest" aria-pressed="false">Faust an der Brust</button>
+    </div>
+    <p class="note">Die Vorlagen zeigen nur eine Beispielperson im Platzhaltertrikot. Im Spiel bleibt die zugeteilte Pose pro Spieler fest; Gesicht, Frisur und aktuelles Trikot werden später aus seinen Daten gerendert.</p>
+  </main>
+  <script>
+    const sprite = document.getElementById('sprite');
+    const poses = {
+      double: ['jubelpose-beide-faeuste-v2.png', 'beide Fäuste oben'],
+      twofingers: ['jubelpose-zwei-zeigefinger-hoch.png', 'zwei Zeigefinger hoch'],
+      wide: ['jubelpose-arme-weit-v2.png', 'Arme ausgebreitet'],
+      chest: ['jubelpose-faust-brust-v2.png', 'Faust an der Brust']
+    };
+    document.querySelectorAll('[data-pose]').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('[data-pose]').forEach(choice => choice.setAttribute('aria-pressed', String(choice === button)));
+        const pose = button.dataset.pose;
+        sprite.className = 'sprite';
+        sprite.replaceChildren();
+        sprite.setAttribute('aria-label', `Jubelpose: ${poses[pose][1]}`);
+        const image = document.createElement('img');
+        image.src = poses[pose][0];
+        image.alt = '';
+        sprite.append(image);
+      });
+    });
+  </script>
+</body>
+</html>

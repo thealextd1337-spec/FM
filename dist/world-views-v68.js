@@ -7,17 +7,17 @@ function v68ClubButton(career,id){
  const club=v68Club(career,id);
  return club?`<button type="button" class="v68-club-link" data-v68-club="${escapeHTML(id)}" aria-label="Vereinsprofil ${escapeHTML(club.name)} öffnen">${v61CrestSVG(club)}<span>${escapeHTML(club.name)}</span></button>`:escapeHTML(id);
 }
-function v68ChampionBadges(career){
+function v68ChampionBadges(career,competition=null){
  const latest=new Map();
  for(const item of career.world.competitions){
-  if(!item.winnerId)continue;
+  if(!item.winnerId||competition&&(competition.type==='europe'?item.type!=='europe':item.type==='europe'))continue;
   const key=`${item.type}:${item.country||'EU'}`,previous=latest.get(key);
   if(!previous||item.season>previous.season)latest.set(key,item);
  }
  const badges=new Map();
  for(const item of latest.values()){
   const label=item.type==='league'?`Amtierender Meister ${v61CountryNames[item.country]}`:item.type==='cup'?`Amtierender Pokalsieger ${v61CountryNames[item.country]}`:'Amtierender Europacupsieger';
-  const badge=`<span class="v68-title-badge" role="img" aria-label="${escapeHTML(label)}" title="${escapeHTML(label)}">${v62AwardIcon(item.country,item.type)}</span>`;
+  const badge=`<span class="v68-title-badge" role="img" aria-label="${escapeHTML(label)}" title="${escapeHTML(label)}">${v62AwardIcon(item.country,item.type,true)}</span>`;
   badges.set(item.winnerId,(badges.get(item.winnerId)||'')+badge);
  }
  return badges;
@@ -42,7 +42,7 @@ v62ResultHTML=function(career,fixture){
  return`<div class="v62-fixture"><span>${v62Date(fixture.day)} · ${escapeHTML(fixture.round)}</span><div class="v68-result">${v68ClubButton(career,fixture.homeId)}<b>${score}</b>${v68ClubButton(career,fixture.awayId)}</div></div>`;
 };
 v62TableHTML=function(career,competition){
- const ids=competition.type==='europe'?competition.entrants:[...new Set(competition.fixtures.flatMap(fixture=>[fixture.homeId,fixture.awayId]))],rows=v62Table(competition,ids),badges=v68ChampionBadges(career);
+ const ids=competition.type==='europe'?competition.entrants:[...new Set(competition.fixtures.flatMap(fixture=>[fixture.homeId,fixture.awayId]))],rows=v62Table(competition,ids),badges=v68ChampionBadges(career,competition);
  return`<div class="v62-table-wrap" role="region" tabindex="0" aria-label="Tabelle ${competition.type==='europe'?'Europacup':`${v61CountryNames[competition.country]} Liga 1`}"><table class="v62-table"><thead><tr><th scope="col">Pl.</th><th scope="col">Verein</th><th scope="col">Sp.</th><th scope="col">TD</th><th scope="col">Pkt.</th></tr></thead><tbody>${rows.map((row,index)=>`<tr class="${row.clubId===career.manager.managedClubId?'own':''}"><td>${index+1}</td><td><span class="v68-table-club">${v68ClubButton(career,row.clubId)}${badges.get(row.clubId)||''}</span></td><td>${row.played}</td><td>${row.goalsFor-row.goalsAgainst}</td><td>${row.points}</td></tr>`).join('')}</tbody></table></div>`;
 };
 v63NewsHTML=function(career){
@@ -76,7 +76,7 @@ function v68RosterHTML(club){
 function v68ClubDetailHTML(career,id){
  const club=v68Club(career,id);if(!club)return'<p>Verein nicht gefunden.</p>';
  const coach=v68Coach(career,club.coachId),titles=career.world.competitions.filter(item=>item.winnerId===id).sort((a,b)=>b.season-a.season);
- return`<section class="v61-club-hero">${v61CrestSVG(club)}<div><p>${v61FlagSVG(club.countryId)} ${escapeHTML(v61CountryNames[club.countryId])} · ${escapeHTML(club.city)}</p><h2>${escapeHTML(club.name)}</h2><p>${escapeHTML(club.historyText)}</p><small>${club.leagueId?'Ligaverein':'Pokalverein'} · Vereinsfarben: ${escapeHTML(club.colors)}</small></div></section><div class="v68-profile-grid"><section class="v62-season"><h3>Verein heute</h3><p>${club.coachId?`Trainer: ${v68CoachButton(coach)}`:club.id===career.manager.managedClubId?'Manager: Du':'Trainerstelle offen'}</p><p>${club.roster.length} Profis · Kontostand ${v66Credits(club.balance)}</p></section><section class="v62-season"><h3>Erfolge</h3>${titles.length?`<ul class="v68-history v74-club-titles">${titles.map(item=>`<li>${v62AwardIcon(item.country,item.type)}<span>Saison ${item.season} · ${item.type==='league'?'Meister':item.type==='cup'?'Pokalsieger':'Europacupsieger'}</span></li>`).join('')}</ul>`:'<p>In dieser Karriere noch kein Titel.</p>'}</section></div>${v74ClubTransfersHTML(career,club)}<section class="v61-roster-section"><div class="v61-roster-head"><div><h3>Kader</h3><p>${club.roster.length} Profis · Spielerprofile öffnen.</p></div></div>${v68RosterHTML(club)}</section><section class="v62-season v74-club-chronicle"><h3>Vereins- und Trainerchronik</h3>${v68ClubHistory(career,club)}</section>`;
+ return`<section class="v61-club-hero">${v61CrestSVG(club)}<div><p>${v61FlagSVG(club.countryId)} ${escapeHTML(v61CountryNames[club.countryId])} · ${escapeHTML(club.city)}</p><h2>${escapeHTML(club.name)}</h2><p>${escapeHTML(club.historyText)}</p><small>${club.leagueId?'Ligaverein':'Pokalverein'} · Vereinsfarben: ${escapeHTML(v61ClubColorLabel(club))}</small></div></section><div class="v68-profile-grid"><section class="v62-season"><h3>Verein heute</h3><p>${club.coachId?`Trainer: ${v68CoachButton(coach)}`:club.id===career.manager.managedClubId?'Manager: Du':'Trainerstelle offen'}</p><p>${club.roster.length} Profis · Kontostand ${v66Credits(club.balance)}</p></section><section class="v62-season"><h3>Erfolge</h3>${titles.length?`<ul class="v68-history v74-club-titles">${titles.map(item=>`<li>${v62AwardIcon(item.country,item.type)}<span>Saison ${item.season} · ${item.type==='league'?'Meister':item.type==='cup'?'Pokalsieger':'Europacupsieger'}</span></li>`).join('')}</ul>`:'<p>In dieser Karriere noch kein Titel.</p>'}</section></div>${v74ClubTransfersHTML(career,club)}<section class="v61-roster-section"><div class="v61-roster-head"><div><h3>Kader</h3><p>${club.roster.length} Profis · Spielerprofile öffnen.</p></div></div>${v68RosterHTML(club)}</section><section class="v62-season v74-club-chronicle"><h3>Vereins- und Trainerchronik</h3>${v68ClubHistory(career,club)}</section>`;
 }
 function v68CoachDetailHTML(career,id){
  const coach=v68Coach(career,id);if(!coach)return'<p>Trainer nicht gefunden.</p>';
@@ -219,14 +219,23 @@ v61AdvanceCareer=function(){
 function v74PlayerHonoursHTML(career,player){
  const honours=player.honours||[],titles=honours.filter(item=>item.kind==='title').reverse(),personal=honours.filter(item=>item.kind!=='title'&&item.kind!=='man-of-the-match').reverse(),matches=honours.filter(item=>item.kind==='man-of-the-match');
  const row=item=>{const competition=career.world.competitions.find(entry=>entry.id===item.competitionId),kind=item.kind==='title'?competition?.type:item.kind;return`<li>${v62AwardIcon(competition?.country,kind)}<span>Saison ${item.season} · ${escapeHTML(v74HonourLabel(item))} · ${escapeHTML(v68Club(career,item.clubId)?.name||'Verein')}</span></li>`};
- const matchSeasons=[...new Set(matches.map(item=>item.season))].sort((a,b)=>b-a).map(season=>`Saison ${season}: ${matches.filter(item=>item.season===season).length}`).join(' · ');
- return`<div class="v74-honour-sections"><section><h4>Team Awards</h4>${titles.length?`<ul class="v68-history v68-player-honours">${titles.map(row).join('')}</ul>`:'<p>Noch keine Mannschaftstitel.</p>'}</section><section><h4>Persönliche Awards</h4>${personal.length||matches.length?`<ul class="v68-history v68-player-honours">${personal.map(row).join('')}${matches.length?`<li>${v62AwardIcon(null,'man-of-the-match')}<span><strong>Man of the Match · insgesamt ${matches.length}×</strong><small>${matchSeasons}</small></span></li>`:''}</ul>`:'<p>Noch keine persönlichen Awards.</p>'}</section></div>`;
+ const matchGroups=new Map();
+ for(const item of matches){
+  const competition=career.world.competitions.find(entry=>entry.id===item.competitionId),country=competition?.country||'EU';
+  if(!matchGroups.has(country))matchGroups.set(country,[]);
+  matchGroups.get(country).push(item);
+ }
+ const matchRows=[...matchGroups].map(([country,items])=>{
+  const seasons=[...new Set(items.map(item=>item.season))].sort((a,b)=>b-a).map(season=>`Saison ${season}: ${items.filter(item=>item.season===season).length}`).join(' · ');
+  return`<li>${v62AwardIcon(country,'man-of-the-match')}<span><strong>Man of the Match · insgesamt ${items.length}×</strong><small>${escapeHTML(v61CountryNames[country]||'Europacup')} · ${seasons}</small></span></li>`;
+ }).join('');
+ return`<div class="v74-honour-sections"><section><h4>Team Awards</h4>${titles.length?`<ul class="v68-history v68-player-honours">${titles.map(row).join('')}</ul>`:'<p>Noch keine Mannschaftstitel.</p>'}</section><section><h4>Persönliche Awards</h4>${personal.length||matches.length?`<ul class="v68-history v68-player-honours">${personal.map(row).join('')}${matchRows}</ul>`:'<p>Noch keine persönlichen Awards.</p>'}</section></div>`;
 }
 function v68OpenPlayerProfile(career,pid,button){
  const player=career.world.clubs.flatMap(club=>club.roster).find(item=>item.pid===pid)||career.world.market.freePlayers.find(item=>item.pid===pid);if(!player)return;
  const owner=v66Owner(career,player.pid),contract=v66Contract(career,player.pid);
  v61ProfileReturn=button;
- v61ProfileDialog.innerHTML=`<div class="player-card-head"><div>${v61FlagSVG(player.nation)}<p class="eyebrow">${escapeHTML(owner?.name||'Vereinslos')}</p><h2>${escapeHTML(player.name)}</h2><span>${v61PositionNames[player.line]} · ${player.age} Jahre</span></div><button type="button" data-v61-close aria-label="Spielerprofil schließen">×</button></div><nav class="v74-profile-tabs" aria-label="Spielerprofil"><button type="button" data-v74-profile-tab="overview" aria-selected="true">Übersicht</button><button type="button" data-v74-profile-tab="career" aria-selected="false">Karriere</button></nav><div data-v74-profile-panel="overview"><div class="player-card-facts"><span>Rückennummer<b>${player.n}</b></span><span>Form<b>${formText(player.form)}</b></span><span>Fitness<b>${freshText(player.fresh)}</b></span><span>Marktwert<b>${v66Credits(v66Value(player))}</b></span>${v66ContractFactsHTML(contract,career.world.season)}</div><section><h3>Fähigkeiten</h3>${v55SkillGroupsHTML(player)}</section></div><div data-v74-profile-panel="career" hidden><section><h3>Leistungen je Verein und Saison</h3><div class="v64-player-seasons">${v68PlayerRows(player,career.world.season,career)}</div></section><section><h3>Awards und Titel</h3>${v74PlayerHonoursHTML(career,player)}</section></div>`;
+ v61ProfileDialog.innerHTML=`<div class="player-card-head"><div>${v61FlagSVG(player.nation)}<p class="eyebrow">${escapeHTML(owner?.name||'Vereinslos')}</p><h2>${escapeHTML(player.name)}</h2><span>${v61PositionNames[player.line]} · ${player.age} Jahre</span></div><button type="button" data-v61-close aria-label="Spielerprofil schließen">×</button></div><nav class="v74-profile-tabs" aria-label="Spielerprofil"><button type="button" data-v74-profile-tab="overview" aria-selected="true">Übersicht</button><button type="button" data-v74-profile-tab="career" aria-selected="false">Karriere</button></nav><div data-v74-profile-panel="overview"><div class="player-card-facts"><span>Nationalität<b>${escapeHTML(v79NationName(player.nation))}</b></span><span>Rückennummer<b>${player.n}</b></span><span>Form<b>${formText(player.form)}</b></span><span>Fitness<b>${freshText(player.fresh)}</b></span><span>Marktwert<b>${v66Credits(v66Value(player))}</b></span>${v66ContractFactsHTML(contract,career.world.season)}</div><section><h3>Fähigkeiten</h3>${v55SkillGroupsHTML(player)}</section></div><div data-v74-profile-panel="career" hidden><section><h3>Leistungen je Verein und Saison</h3><div class="v64-player-seasons">${v68PlayerRows(player,career.world.season,career)}</div></section><section><h3>Awards und Titel</h3>${v74PlayerHonoursHTML(career,player)}</section></div>`;
  v61ProfileDialog.querySelector('[data-v61-close]').onclick=()=>v61ProfileDialog.close();v61ProfileDialog.showModal();if(typeof v72DecorateOwnProfile==='function')v72DecorateOwnProfile(career,player.pid);
 }
 const v74BaseOpenProfile=v61OpenProfile;
