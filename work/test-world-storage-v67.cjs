@@ -5,9 +5,10 @@ const stored=new Map();let nextId=0,renders=0,pauseWrite=false,finishWrite=null;
 const database={
  createObjectStore(){},
  transaction(){
+  const staged=new Map();let scheduled=false;
   const transaction={objectStore:()=>({
    get:key=>{const request={result:stored.get(key)};queueMicrotask(()=>request.onsuccess?.());return request},
-   put:(value,key)=>{const copy=JSON.parse(JSON.stringify(value)),complete=()=>{stored.set(key,copy);transaction.oncomplete?.()};if(pauseWrite)finishWrite=complete;else queueMicrotask(complete)}
+   put:(value,key)=>{staged.set(key,JSON.parse(JSON.stringify(value)));if(scheduled)return;scheduled=true;const complete=()=>{for(const [key,copy]of staged)stored.set(key,copy);transaction.oncomplete?.()};if(pauseWrite)finishWrite=complete;else queueMicrotask(complete)}
   })};return transaction;
  }
 };

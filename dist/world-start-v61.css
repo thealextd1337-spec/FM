@@ -300,6 +300,7 @@
 @media(max-width:760px){.v62-awards-grid{grid-template-columns:1fr}}
 .v64-match-menu-panel .language-control{display:grid;gap:6px;margin:8px 2px 2px;padding:10px 8px 4px;border-top:1px solid #58716d;color:#d3e4d9;font-size:12px}
 .v64-match-menu-panel .language-control select{width:100%;min-height:42px}
+.v64-storage{padding:4px 8px;font-size:12px;line-height:1.5}.v64-storage p{margin:4px 0 8px}.v64-storage button{margin-bottom:6px}.v64-match-menu[data-storage="error"] summary{border-color:#ef998a;color:#ffd3cb}.v64-match-menu-panel{max-width:calc(100vw - 24px);max-height:70vh;overflow:auto}.v64-match-menu[data-storage="pending"] summary{border-color:#f0cb75}
 .v64-menu-anchor{display:block;flex:none;width:42px;height:42px}@media(max-width:760px){.v64-menu-anchor{width:38px;height:38px}}
 dialog>.v64-match-menu.v64-modal-menu{position:fixed;top:var(--v64-modal-top);left:var(--v64-modal-left);width:max-content;margin:0}
 .v64-prematch-field .keeper{width:calc((100% - 36px)/5)}.v64-prematch-field .v64-keeper-choice{width:100%;min-height:0;aspect-ratio:1.24;padding:4px 3px;gap:2px}.v64-prematch-field .v64-keeper-choice .token{width:33px;height:33px}

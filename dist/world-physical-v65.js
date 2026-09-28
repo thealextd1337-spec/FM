@@ -225,7 +225,7 @@ function v65Finish(){
  v65BookWorldMatch(context);
  $('#board-label').textContent='ABPFIFF';$('#match-title').textContent=`Abpfiff · ${v65Club(context,0).name} ${match.score[0]} : ${match.score[1]} ${v65Club(context,1).name}`;
  note('Abpfiff! Die Partie ist beendet.','major');v65RenderReport(context);v65UpdateControls(context);v58Refresh();draw();v65ShowPostMatch(context);
- if(v65PendingExit){v65PendingExit=false;v65Leave(true)}
+ if(v65PendingExit){v65PendingExit=false;v65Leave(true).catch(v65ExitError)}
 }
 function v65RenderReport(context){
  const people=[...match.people,...match.exitedPeople].filter(person=>person.t===0),panel=$('#player-stats');
@@ -372,11 +372,11 @@ async function v65Leave(toStart){
  const context=v65Context();if(!context)return;
  if(context.state.phase==='live'&&!v65Pause()){v65PendingExit=toStart;return}
  if(context.state.phase==='paused')v65Snapshot(context);
- await v61LastWrite;
+ await v61WaitForStorage();
  if(!toStart){const active=context.career.world.activeMatch;delete context.career.world.activeMatch;try{await v64UiSave()}catch(error){context.career.world.activeMatch=active;throw error}}
  clearInterval(v65WorldFrame);clearTimeout(v65SwapInfoTimer);v65SwapInfoTimer=0;running=false;v65WorldActive=null;v65PauseView=false;match=null;document.body.classList.remove('v65-world-postmatch','v65-world-match');$('#v65-adboards')?.remove();$('#v65-swap-info')?.remove();$('#v65-quick-nav')?.remove();$('#v65-pause-tabs')?.remove();$('#v65-plan-view')?.remove();$('#game-screen').hidden=true;menuButton.hidden=false;
  v64UiMenuVisible(false);
- if(toStart)v61ShowStart();else{v61CareerTab='overview';v61RenderCareer(context.career)}
+ if(toStart)return v65BaseShowStart(true);else{v61CareerTab='overview';v61RenderCareer(context.career)}
 }
 const v65BaseFinishMatch=finishMatch;
 finishMatch=function(){return v65WorldActive?v65Finish():v65BaseFinishMatch()};
@@ -431,7 +431,7 @@ const v65BaseProgressClick=v58Button.onclick;
 v58Button.onclick=function(){const action=v58State()?.action;if(action==='v65-tactics'){if(v65Context()?.state.phase==='paused'){v65PauseView=true;v65PauseTab='tactics';v65UpdateControls(v65Context());v58Refresh();$('#v65-pause-tabs')?.scrollIntoView({behavior:'smooth',block:'start'})}else{v65PauseTargetTab='tactics';v65Pause()}return}if(action==='v65-resume'){v65Resume();return}return v65BaseProgressClick()};
 v58Bar.addEventListener('click',event=>{const quick=event.target.closest('[data-v65-quick]');if(!quick||!v65WorldActive)return;if(v65Context()?.state.phase==='paused')v65Resume();else{v65PauseTargetTab=quick.dataset.v65Quick;v65Pause()}});
 const v65BaseShowStart=v61ShowStart;
-v61ShowStart=function(){if(v65WorldActive)return v65Leave(true);return v65BaseShowStart()};
+v61ShowStart=function(saved=false){if(v65WorldActive)return v65Leave(true);return v65BaseShowStart(saved)};
 $('#game-screen').addEventListener('click',event=>{
  if(!v65WorldActive)return;
  const profile=event.target.closest?.('[data-v64-pitch-profile]');if(profile){event.stopPropagation();v61OpenProfile(profile.dataset.v64PitchProfile,profile);return}

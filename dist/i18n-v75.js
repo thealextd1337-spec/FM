@@ -205,6 +205,19 @@ Nachrichten	News
 alles gelesen	all read
 Noch keine Nachrichten.	No news yet.
 Gespeichert	Saved
+Wird gespeichert …	Saving …
+Nicht gespeichert	Not saved
+Die Vereinswelt konnte nicht gespeichert werden.	The club career could not be saved.
+Die gespeicherten Vereinswelten sind ungültig.	The saved club careers are invalid.
+Lokaler Spielstand	Local save
+Erneut speichern	Retry saving
+Rettungskopie exportieren	Export recovery file
+Der aktuelle Stand bleibt geöffnet. Erneut speichern oder eine Rettungskopie exportieren, bevor du die Seite schließt.	Your current progress stays open. Retry saving or export a recovery file before closing the page.
+Eine letzte gültige Wiederherstellungskopie ist verfügbar. Neuere Fortschritte können darin fehlen.	A last valid recovery copy is available. More recent progress may be missing from it.
+Wiederherstellung prüfen	Review recovery
+Wiederherstellung bestätigen	Confirm recovery
+Wiederherstellung abgeschlossen.	Recovery completed.
+Keine gültige Wiederherstellungskopie verfügbar.	No valid recovery copy available.
 Vorstadt FK ist ein	Vorstadt FK is an
 Form der letzten fünf Spiele: Noch keine Spiele	Form in the last five matches: No matches yet
 dein Verein	your club

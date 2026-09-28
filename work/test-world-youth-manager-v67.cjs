@@ -153,6 +153,7 @@ for(let season=2;season<=finalSeason;season++){
  if(season<finalSeason){if(career.world.transition.choice===null)call('v67ChooseOffer',career,null);call('v67SetBudget',career,Math.min(200,Math.max(0,club.balance)));call('v62NextSeason',career)}
 }
 const bytes=Buffer.byteLength(JSON.stringify(career),'utf8');
+console.log(`Karriereprotokoll: ${career.world.careerEvents.events.length} Ereignisse, ${Buffer.byteLength(JSON.stringify(career.world.careerEvents),'utf8')} Bytes.`);
 assert(bytes<10_000_000,`Weltspielstand wächst unkontrolliert: ${bytes}`);
 if(finalSeason>=10)assert.strictEqual(career.world.competitions.length,finalSeason*13,'alle Wettbewerbe bleiben über zehn Saisons erhalten');
 console.log(`Nachwuchs und Managerwechsel: Entwicklung, Buchung, Übergang, Wechsel, Neuladen und ${finalSeason} Saisons geprüft (${bytes} Bytes, ${naturalOffers} natürliche Angebote).`);

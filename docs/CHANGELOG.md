@@ -2,6 +2,14 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-28 (Prototyp 87 · Speicherabsicherung und Karriereprotokoll)
+
+- Vereinswelten zeichnen neue Transfers, angenommene Vertragsverlängerungen, Vertragsenden und Freistellungen aller Vereine strukturiert auf. Ablösefreie Verpflichtungen, vorherige Vereinslosigkeit und Nachwuchsereignisse bleiben unterscheidbar. Interne Abfragen liefern Verlauf, Summen und bekannte Zeiten ohne Verein; die Daten werden zusammen mit der Karriere gesichert und exportiert. Bestehende Karrieren erhalten keine nachträgliche Historie. Geprüft sind Wiederholungen ohne Doppeleinträge, Export/Import und zehn Saisons mit und ohne Verkaufsliste sowie mit Nachwuchs. Das vollständige Protokoll benötigt im Wirtschaftstest rund 1,2 MB zusätzlich; der Nachwuchs-Spielstand bleibt insgesamt unter 10 MB.
+
+- Lokale Vereinswelten melden Speicherung erst nach erfolgreichem Abschluss. Bei vollem Speicher oder Schreibabbrüchen bleibt die Karriere offen; das Spielmenü bietet Wiederholen und einen Rettungsexport an. Laufende Matches pausieren am sicheren Speicherpunkt. Eine atomar gespeicherte Rückfallkopie ermöglicht nach beschädigter Hauptkopie eine bestätigte Wiederherstellung; gelöschte Karrieren werden daraus mit entfernt. „Speichern & Start“ und normale Exporte warten auf ausstehende Schreibvorgänge. Fehlertests prüfen Warteschlangen, unveränderliche Schnappschüsse, Wiederholen, Wiederherstellung und Matchfortsetzung ohne doppelte Ereignisse; Browserprüfung umfasst Sponsorwahl, Speicherfehler, Wiederaufnahme und Deutsch/Englisch. Bestehende Karrieren werden nicht umgerechnet.
+
+- Die Planung für Spielstart, Accounts und Speicherung beschreibt jetzt den Ablauf für lokale und Onlinekarrieren, Startparameter, Karriereplätze und Löschwirkungen, Manageridentität, Zugangswiederherstellung, Gerätewechsel sowie Regelupdates. Empfehlungen und offene Entscheidungen sind gekennzeichnet; konkrete Abnahmefälle ergänzen die Umsetzungsschritte. Die Dokumentation wurde mit den bestehenden Produkt- und Spielstandsregeln abgeglichen. Noch keine Umsetzung oder Veröffentlichung.
+
 ## 2026-09-28 (Prototyp 86 · Sofortige Transferantworten am letzten Tag)
 
 - Am fünften Transfertag antworten Vereine und Spieler sofort auf Angebote. Beide Seiten können jeweils einmal gegenfordern; danach folgt ohne weiteren Tageswechsel Annahme oder Ablehnung. Das gilt auch für ablösefreie Verträge und Kaufangebote an den eigenen Verein. Bereits offene Angebote werden beim Öffnen ihrer Verhandlung bewertet. Gezielte Tests prüfen Abschluss, Ablehnung und die Grenze von einer Gegenforderung.

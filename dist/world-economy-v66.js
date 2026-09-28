@@ -15,6 +15,75 @@ function v66Club(career,id){return career.world.clubs.find(club=>club.id===id)}
 function v66Contract(career,pid){return career.world.contracts.find(contract=>contract.pid===pid)}
 function v66Owner(career,pid){return career.world.clubs.find(club=>club.roster.some(player=>player.pid===pid))||null}
 function v66Player(career,pid){const owner=v66Owner(career,pid);return owner?.roster.find(player=>player.pid===pid)||career.world.market.freePlayers.find(player=>player.pid===pid)}
+// Additive Aufzeichnung: alte Spielstände erhalten erst beim nächsten Ereignis ein Teilprotokoll.
+function v66EventPoint(career,day=Math.max(0,career.world.calendarCursor)){
+ return{season:career.world.season,day,transferDay:['sponsor','open','deadline'].includes(career.world.market?.phase)?career.world.market.day:null};
+}
+function v66InitCareerEvents(career,fromStart=false){
+ return career.world.careerEvents??={version:1,coverage:{fromStart,...v66EventPoint(career)},events:[]};
+}
+function v66RecordCareerEvent(career,id,type,player,details={},point=v66EventPoint(career)){
+ const log=v66InitCareerEvents(career),existing=log.events.find(event=>event.id===id);
+ if(existing)return existing;
+ const event={id,sequence:log.events.length+1,type,pid:player.pid,playerName:player.name,...point,currency:'credits',...JSON.parse(JSON.stringify(details))};
+ log.events.push(event);return event;
+}
+function v66ContractSnapshot(contract){
+ const {id,fromSeason,endSeason,annual,promise,startsAt}=contract;return{id,fromSeason,endSeason,annual,promise,startsAt};
+}
+function v66RecordRenewal(career,player,contract,before,effectiveFrom){
+ return v66RecordCareerEvent(career,`${contract.id}:renewal:${before.endSeason}:${contract.endSeason}`,'renewal',player,{clubId:contract.clubId,before,after:v66ContractSnapshot(contract),effectiveFrom});
+}
+function v66CareerHistory(career,filters={}){
+ const log=career.world.careerEvents,all=log?.events||[];
+ const matches=event=>(filters.season===undefined||event.season===filters.season)&&(!filters.pid||event.pid===filters.pid)&&(!filters.clubId||[event.clubId,event.fromClubId,event.toClubId].includes(filters.clubId))&&(!filters.type||event.type===filters.type);
+ const events=all.filter(matches),summary={transfers:0,transferFees:0,incoming:0,outgoing:0,income:0,expense:0,renewals:0,contractExpirations:0,youthCompensation:0};
+ for(const event of events){
+  if(event.type==='transfer'){
+   summary.transfers++;summary.transferFees+=event.fee;
+   if(!filters.clubId||event.toClubId===filters.clubId){summary.incoming++;summary.expense+=event.fee}
+   if(event.fromClubId&&(!filters.clubId||event.fromClubId===filters.clubId)){summary.outgoing++;summary.income+=event.fee}
+  }
+  if(event.type==='renewal')summary.renewals++;
+  if(event.type==='free-agent') {summary.outgoing++;if(event.reason==='contract-expiry')summary.contractExpirations++}
+  if(event.type==='youth-promotion'){summary.incoming++;summary.youthCompensation+=event.compensation}
+ }
+ const open=new Map(),freePeriods=[];
+ const period=(start,end)=>{
+  const point=event=>event?{season:event.season,day:event.day,transferDay:event.transferDay}:null;
+  const until=end||v66EventPoint(career),duration=start?(until.season-start.season)*v66SeasonDays+until.day-start.day:null;
+  // Filter bezieht sich auf Beginn oder Ende, nicht auf jeden überlappten Kalendertag.
+  if((start&&matches(start))||(end&&matches(end)))freePeriods.push({pid:(start||end).pid,from:point(start),to:point(end),startEventId:start?.id||null,endEventId:end?.id||null,durationSimulationDays:duration===null?null:Math.max(0,duration),status:start?(end?'closed':'open'):'start-not-recorded'});
+ };
+ for(const event of all){
+  if(['free-agent-entry','free-agent','youth-release'].includes(event.type))open.set(event.pid,event);
+  else if((event.type==='transfer'&&event.previouslyFree)||['retirement','pool-exit'].includes(event.type)){
+   const start=open.get(event.pid);if(start||event.type==='transfer')period(start,event);open.delete(event.pid);
+  }
+ }
+ for(const start of open.values())period(start,null);
+ return JSON.parse(JSON.stringify({coverage:log?{status:log.coverage.fromStart?'complete':'partial',...log.coverage}:{status:'not-recorded'},events,summary,freePeriods}));
+}
+function v66ValidateCareerEvents(career){
+ const log=career.world.careerEvents;if(log===undefined)return true;
+ const point=value=>value&&Number.isInteger(value.season)&&value.season>=1&&value.season<=career.world.season&&Number.isInteger(value.day)&&value.day>=0&&value.day<=v62Days.seasonEnd&&(value.transferDay===null||Number.isInteger(value.transferDay)&&value.transferDay>=1&&value.transferDay<=5);
+ const contract=value=>value&&typeof value.id==='string'&&Number.isInteger(value.fromSeason)&&value.fromSeason>=1&&Number.isInteger(value.endSeason)&&value.endSeason>=value.fromSeason&&Number.isInteger(value.annual)&&value.annual>=60&&Number.isInteger(value.promise)&&value.promise>=0&&value.promise<=10&&Number.isInteger(value.startsAt)&&value.startsAt>=0&&value.startsAt<=v62Days.seasonEnd;
+ const club=id=>typeof id==='string'&&career.world.clubs.some(item=>item.id===id),money=value=>Number.isInteger(value)&&value>=0;
+ if(!log||log.version!==1||!point(log.coverage)||typeof log.coverage.fromStart!=='boolean'||!Array.isArray(log.events))return false;
+ const ids=new Set();
+ return log.events.every((event,index)=>{
+  if(!event||typeof event.id!=='string'||!event.id||ids.has(event.id)||event.sequence!==index+1||typeof event.pid!=='string'||!event.pid||typeof event.playerName!=='string'||!point(event)||event.currency!=='credits')return false;
+  ids.add(event.id);
+  if(event.type==='transfer')return club(event.toClubId)&&(event.fromClubId===null||club(event.fromClubId))&&money(event.fee)&&event.previouslyFree===(event.fromClubId===null)&&event.kind===(event.previouslyFree?'free-agent-signing':event.fee===0?'zero-fee-transfer':'paid-transfer')&&contract(event.contract);
+  if(event.type==='renewal')return club(event.clubId)&&contract(event.before)&&contract(event.after)&&event.after.endSeason>event.before.endSeason&&event.effectiveFrom&&Number.isInteger(event.effectiveFrom.season)&&event.effectiveFrom.season>=event.season&&event.effectiveFrom.season<=event.season+1&&Number.isInteger(event.effectiveFrom.day)&&event.effectiveFrom.day>=0&&event.effectiveFrom.day<=v62Days.seasonEnd;
+  if(event.type==='free-agent')return club(event.fromClubId)&&['contract-expiry','release'].includes(event.reason);
+  if(event.type==='youth-release')return club(event.fromClubId);
+  if(event.type==='youth-promotion')return club(event.clubId)&&money(event.compensation)&&contract(event.contract);
+  if(event.type==='retirement')return club(event.clubId)&&event.reason==='released-youth-unplaced';
+  if(event.type==='youth-expiry')return club(event.clubId);
+  return event.type==='free-agent-entry'||event.type==='pool-exit'&&event.reason==='free-agent-pool-expired';
+ });
+}
 function v66Skill(player){return player.keeper?(player.gk*2+player.pos+player.air+player.pas)/5:(player.tec+player.pas+player.fin+player.tak+player.pos+player.spd+player.sta+player.air)/8}
 function v66Salary(player){const strength=v66Skill(player),ageFactor=player.age<22?.88:player.age>31?.91:1,honours=typeof v74HonourFactor==='function'?v74HonourFactor(player):1;return Math.round((65+Math.pow(Math.max(0,strength-8),2)*5.2)*ageFactor*honours/10)*10}
 function v66BaseValue(player){const ageFactor=player.age<23?1.35:player.age>31?.7:1;return Math.max(100,Math.round(v66Salary(player)*(2+Math.max(0,30-player.age)*.035)*ageFactor/10)*10)}
@@ -74,7 +143,10 @@ function v66CompactLedger(club,season){
 function v66StartSeason(career){
  const world=career.world,season=world.season;
  world.economyProcessedFixtures=[];
- world.market={phase:'sponsor',day:1,freePlayers:[...(world.market?.freePlayers||[]).filter(player=>!player.freeSinceSeason||season-player.freeSinceSeason<(player.youthReleasedSeason?2:4)),...v66NewFreeAgents(career)],pendingBids:[],decisions:[],nextBid:1,saleListings:[],negotiations:[],transferResults:[],nextNegotiation:1};
+ for(const player of world.market?.freePlayers||[])if(player.freeSinceSeason&&season-player.freeSinceSeason>=(player.youthReleasedSeason?2:4))v66RecordCareerEvent(career,`${player.pid}:pool-exit`,'pool-exit',player,{reason:'free-agent-pool-expired'},{season,day:0,transferDay:1});
+ const newFreePlayers=v66NewFreeAgents(career);
+ world.market={phase:'sponsor',day:1,freePlayers:[...(world.market?.freePlayers||[]).filter(player=>!player.freeSinceSeason||season-player.freeSinceSeason<(player.youthReleasedSeason?2:4)),...newFreePlayers],pendingBids:[],decisions:[],nextBid:1,saleListings:[],negotiations:[],transferResults:[],nextNegotiation:1};
+ for(const player of newFreePlayers)v66RecordCareerEvent(career,`${player.pid}:free-entry`,'free-agent-entry',player,{}, {season,day:0,transferDay:1});
  v66RefreshMarketValues(career,'start');
  for(const club of world.clubs){
   v66CompactLedger(club,season);
@@ -92,6 +164,7 @@ function v66StartSeason(career){
 }
 function v66Init(career){
  const world=career.world;world.contracts=[];
+ v66InitCareerEvents(career,true);
  for(const club of world.clubs){
   const random=v61Random(`${world.seed}:${club.id}:finance`);
   club.balance=Math.round((1150+club.policy.fans*175+club.policy.tradition*100+(random()-.5)*260)/10)*10;
@@ -171,6 +244,7 @@ function v66Consent(career,bid){
 }
 function v66BidAppeal(career,bid){const club=v66Club(career,bid.buyerId);return bid.annual+bid.years*12+bid.promise*4+club.policy.tradition*5}
 function v66Transfer(career,bid){
+ if(career.world.transfers.some(event=>event.id===bid.id))return v66Player(career,bid.pid);
  const world=career.world,market=world.market,buyer=v66Club(career,bid.buyerId),seller=bid.sellerId&&v66Club(career,bid.sellerId),player=v66Player(career,bid.pid),old=v66Contract(career,bid.pid);
  if(!player||buyer.roster.length>=14||buyer.id!==career.manager.managedClubId&&player.keeper&&buyer.roster.filter(item=>item.keeper).length>=3||seller&&!seller.roster.some(item=>item.pid===bid.pid)||!v66CanAfford(career,buyer.id,bid.price,bid.annual,player))throw Error('Das Angebot ist inzwischen nicht mehr ausführbar.');
  const day=market.phase==='closed'?bid.placedDay+1:Math.max(0,world.calendarCursor),event=bid.id;
@@ -182,6 +256,7 @@ function v66Transfer(career,bid){
  v66Book(career,buyer.id,`${event}:buy`,-bid.price,seller?`Kauf ${player.name}`:`Verpflichtung ${player.name}`);
  world.contracts.push({id:`${event}:contract`,pid:player.pid,clubId:buyer.id,annual:bid.annual,fromSeason:world.season,endSeason:world.season+bid.years-1,startsAt:day,promise:buyer.leagueId?bid.promise:0,promiseHits:0,promisePenalty:0,lastPromiseCheck:0,renewalOffers:0});
  world.transfers.push({id:event,season:world.season,day,pid:player.pid,playerName:player.name,sellerId:seller?.id||null,buyerId:buyer.id,price:bid.price});
+ v66RecordCareerEvent(career,event,'transfer',player,{fromClubId:seller?.id||null,toClubId:buyer.id,fee:bid.price,previouslyFree:!seller,kind:!seller?'free-agent-signing':bid.price===0?'zero-fee-transfer':'paid-transfer',contract:v66ContractSnapshot(v66Contract(career,player.pid))},v66EventPoint(career,day));
  v66CloseBid(career,bid,'completed',`${player.name} wechselt zu ${buyer.name}.`);
  if((buyer.id===career.manager.managedClubId||seller?.id===career.manager.managedClubId)&&!market.negotiations?.some(item=>item.id===bid.id))v66QueueLegacyResult(career,bid,'completed',bid.reason);
  for(const other of market.pendingBids.filter(item=>item!==bid&&item.pid===bid.pid&&['pending','counter'].includes(item.status))){
@@ -271,11 +346,13 @@ function v66ResolveDay(career){
 }
 function v66PlayableRoster(club){return club.roster.length>=10&&club.roster.length<=14&&club.roster.some(player=>player.keeper)&&club.roster.filter(player=>!player.keeper).length>=5}
 function v66ReleaseKeeper(career,club,player){
+ if(!club.roster.some(item=>item.pid===player.pid))return;
  const world=career.world,contract=v66Contract(career,player.pid),day=Math.max(0,world.calendarCursor),serial=world.transfers.filter(item=>item.season===world.season&&item.pid===player.pid&&item.reason==='Vertragsauflösung').length+1,id=`S${world.season}:${player.pid}:keeper-release:${serial}`;
  if(contract){v66SettleSection(career,contract,day);world.contracts=world.contracts.filter(item=>item!==contract)}
  club.roster=club.roster.filter(item=>item.pid!==player.pid);
  player.freeSinceSeason=world.season;world.market.freePlayers.push(player);
  world.transfers.push({id,season:world.season,day,pid:player.pid,playerName:player.name,sellerId:club.id,buyerId:null,price:0,reason:'Vertragsauflösung'});
+ v66RecordCareerEvent(career,id,'free-agent',player,{fromClubId:club.id,reason:'release'});
  v66Book(career,club.id,id,0,`Vertrag aufgelöst: ${player.name}`);
 }
 function v66ReleaseSurplusKeeper(career,clubId,pid){
@@ -351,11 +428,12 @@ function v66Renew(career,pid,annual,years,promise=0){
   if(contract.renewalOffers===2&&contract.renewalRound!==1){const available=v62Days.seasonEnd-1-day;if(available>=60){const random=v61Random(`${career.world.seed}:S${career.world.season}:${pid}:renewal-window`);contract.renewalNextDay=day+60+Math.floor(random()*(Math.min(90,available)-60+1))}}
   return{accepted:false,counter:requested};
  }
- const day=Math.max(0,career.world.calendarCursor);v66SettleSection(career,contract,day);
+ const before=v66ContractSnapshot(contract),day=Math.max(0,career.world.calendarCursor);v66SettleSection(career,contract,day);
  contract.annual=annual;contract.endSeason=career.world.season+years-1;contract.startsAt=day;contract.promise=promise;contract.lastPromiseCheck=0;contract.promisePenalty=0;
  delete contract.renewalNegotiation;
  delete contract.renewalNextDay;
  v66Book(career,club.id,`S${career.world.season}:${pid}:renewal:${contract.renewalOffers}`,0,`Vertrag verlängert: ${player.name}`);
+ v66RecordRenewal(career,player,contract,before,{season:career.world.season,day});
  return{accepted:true,contract};
 }
 function v66PromiseCredits(career,player,season,fromDay=0){
@@ -438,13 +516,16 @@ function v66SeasonEnd(career){
   const affordable=club.balance+v66BaseIncome(club)-futureWages>=(essential?100:450);
   const willing=shortRoster||random()<.76;
   if(club.id!==career.manager.managedClubId&&affordable&&(essential||willing)){
+   const before=v66ContractSnapshot(contract);
    contract.endSeason=season+2;contract.fromSeason=season+1;contract.annual=renewedAnnual;contract.renewalOffers=0;
+   v66RecordRenewal(career,player,contract,before,{season:season+1,day:0});
    v66Book(career,club.id,`S${season}:${contract.pid}:ai-renewal`,0,`Vertrag verlängert: ${player.name}`);
-  }else{club.roster=club.roster.filter(item=>item.pid!==contract.pid);player.freeSinceSeason=season;market.freePlayers.push(player);career.world.contracts=career.world.contracts.filter(item=>item!==contract);const id=`S${season}:${contract.pid}:expiry`;career.world.transfers.push({id,season,day:career.world.calendarCursor,pid:player.pid,playerName:player.name,sellerId:club.id,buyerId:null,price:0,reason:'Vertragsende'});v66Book(career,club.id,id,0,`Vertragsende: ${player.name}`)}
+  }else{club.roster=club.roster.filter(item=>item.pid!==contract.pid);player.freeSinceSeason=season;market.freePlayers.push(player);career.world.contracts=career.world.contracts.filter(item=>item!==contract);const id=`S${season}:${contract.pid}:expiry`;career.world.transfers.push({id,season,day:career.world.calendarCursor,pid:player.pid,playerName:player.name,sellerId:club.id,buyerId:null,price:0,reason:'Vertragsende'});v66Book(career,club.id,id,0,`Vertragsende: ${player.name}`);v66RecordCareerEvent(career,id,'free-agent',player,{fromClubId:club.id,reason:'contract-expiry'})}
  }
  career.world.economyClosedSeason=season;
 }
 function v66Validate(career){
+ if(!v66ValidateCareerEvents(career))return false;
  const world=career.world,market=world.market;if(!market||!['sponsor','open','deadline','closed'].includes(market.phase)||!Array.isArray(world.contracts)||!Array.isArray(market.freePlayers))return false;
  const roster=world.clubs.flatMap(club=>club.roster),all=[...roster,...market.freePlayers],ids=all.map(player=>player.pid),contractIds=world.contracts.map(item=>item.pid);
  if(new Set(ids).size!==ids.length||new Set(contractIds).size!==contractIds.length||contractIds.length!==roster.length)return false;

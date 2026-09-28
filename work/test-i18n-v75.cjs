@@ -57,5 +57,11 @@ assert.equal(translate('Erbol Sydykov wechselt zu FC München Isar.'),'Erbol Syd
 assert.equal(translate('3 Einsätze pro Saison'),'3 appearances per season');
 assert.equal(translate('Spielstand 1 zu 0'),'Score 1 to 0');
 assert.equal(translate('Speichern & Start'),'Save & Start');
+assert.equal(translate('Wird gespeichert …'),'Saving …');
+assert.equal(translate('Nicht gespeichert'),'Not saved');
+assert.equal(translate('Erneut speichern'),'Retry saving');
+assert.equal(translate('Rettungskopie exportieren · FC Bremen Weser'),'Export recovery file · FC Bremen Weser');
+assert.equal(translate('Die Vereinswelt konnte nicht gespeichert werden.'),'The club career could not be saved.');
+assert.equal(translate('Wiederherstellung bestätigen'),'Confirm recovery');
 assert.equal(translate('Zuerst verhandelst du die Ablöse mit dem Verein. Nach der Einigung folgen Gehalt, Laufzeit und Einsatz-Zusage mit dem Spieler.'),'First negotiate the transfer fee with the club. Once agreed, negotiate salary, contract length and playing time with the player.');
 console.log('PASS: transfer buttons, tactics, next match, statistics and cup rounds translate');

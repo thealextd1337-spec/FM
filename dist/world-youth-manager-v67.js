@@ -73,12 +73,12 @@ function v67SeasonEnd(career){
  const retirees=career.world.market.freePlayers.filter(player=>player.youthReleasedSeason&&season-player.youthReleasedSeason>=1);
  if(retirees.length){
   career.world.retirements??=[];
-  for(const player of retirees)career.world.retirements.push({season,pid:player.pid,name:player.name,clubId:player.youthReleasedClubId,reason:'Nachwuchsspieler ohne Verein'});
+  for(const player of retirees){career.world.retirements.push({season,pid:player.pid,name:player.name,clubId:player.youthReleasedClubId,reason:'Nachwuchsspieler ohne Verein'});v66RecordCareerEvent(career,`${player.pid}:retirement`,'retirement',player,{clubId:player.youthReleasedClubId,reason:'released-youth-unplaced'})}
   const ids=new Set(retirees.map(player=>player.pid));career.world.market.freePlayers=career.world.market.freePlayers.filter(player=>!ids.has(player.pid));
  }
  for(const club of career.world.clubs){
   const expired=club.youthPool.filter(player=>player.expiresAfterSeason<=season);
-  if(expired.length){career.world.retirements??=[];for(const player of expired)career.world.retirements.push({season,pid:player.pid,name:player.name,clubId:club.id,reason:'Nachwuchspool abgelaufen'})}
+  if(expired.length){career.world.retirements??=[];for(const player of expired){career.world.retirements.push({season,pid:player.pid,name:player.name,clubId:club.id,reason:'Nachwuchspool abgelaufen'});v66RecordCareerEvent(career,`${player.pid}:youth-expiry`,'youth-expiry',player,{clubId:club.id})}}
   club.youthPool=club.youthPool.filter(player=>player.expiresAfterSeason>season);
  }
  const manager=career.manager,played=manager.assessments.filter(item=>item.season===season),expected=played.reduce((sum,item)=>sum+item.expected,0),actual=played.reduce((sum,item)=>sum+item.actual,0);
@@ -134,6 +134,7 @@ function v67ReleaseYouth(career,clubId,pid){
  player.freeSinceSeason=career.world.season;player.youthReleasedSeason=career.world.season;player.youthReleasedClubId=clubId;
  career.world.market.freePlayers.push(player);
  career.world.transfers.push({id:`S${career.world.season}:${pid}:youth-release`,season:career.world.season,day:career.world.calendarCursor,pid,playerName:player.name,sellerId:clubId,buyerId:null,price:0,reason:'Jugendfreigabe'});
+ v66RecordCareerEvent(career,`S${career.world.season}:${pid}:youth-release`,'youth-release',player,{fromClubId:clubId});
  return player;
 }
 function v67Promote(career,clubId,pid){
@@ -149,6 +150,7 @@ function v67Promote(career,clubId,pid){
  club.youthPool=club.youthPool.filter(item=>item.pid!==pid);
  player.n=Math.max(0,...club.roster.map(item=>item.n))+1;club.roster.push(player);
  career.world.contracts.push({id:`S${career.world.season}:${pid}:youth-contract`,pid,clubId,annual,fromSeason:career.world.season,endSeason:career.world.season+1,startsAt:Math.max(0,career.world.calendarCursor),promise:0,promiseHits:0,promisePenalty:0,lastPromiseCheck:0,renewalOffers:0});
+ v66RecordCareerEvent(career,`S${career.world.season}:${pid}:youth-promotion`,'youth-promotion',player,{clubId,compensation:fee,contract:v66ContractSnapshot(v66Contract(career,pid))});
  return player;
 }
 function v67AiTalentScore(club,player){

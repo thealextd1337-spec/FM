@@ -152,7 +152,11 @@ for(let season=2;season<=finalSeason;season++){
  if(season<finalSeason)call('v62NextSeason',career);
 }
 const bytes=value=>Buffer.byteLength(JSON.stringify(value),'utf8');
-assert(bytes(career)<7_000_000,`Weltspielstand bleibt unter sieben MB (${bytes(career)} Bytes, Wettbewerbe ${bytes(career.world.competitions)}, Vereine ${bytes(career.world.clubs)}, freie Spieler ${bytes(career.world.market.freePlayers)}, Gebote ${bytes(career.world.market.pendingBids)}, Entscheidungen ${bytes(career.world.market.decisions)})`);
+console.log(`Karriereprotokoll nach ${finalSeason} Saisons: ${career.world.careerEvents.events.length} Ereignisse, ${bytes(career.world.careerEvents)} Bytes; Spielstand ${bytes(career)} Bytes.`);
+// Preserve the previous budget for simulation data; complete history has its own bounded ten-season budget.
+assert(bytes(career)-bytes(career.world.careerEvents)<7_000_000,`Simulationsdaten überschreiten sieben MB (${bytes(career)} Bytes einschließlich Protokoll)`);
+assert(bytes(career.world.careerEvents)<2_000_000,`Karriereprotokoll überschreitet zwei MB (${bytes(career.world.careerEvents)} Bytes)`);
+assert(career.world.careerEvents.events.some(event=>event.season===1),'erste Saison bleibt vollständig im Protokoll');
 const negotiations=call('v61CreateCareer','GER-2','negotiation-seed'),negotiatingClub=call('v66Club',negotiations,'GER-2');
 call('v66ChooseSponsor',negotiations,'GER-2',negotiatingClub.sponsors[0].id);
 const target=call('v66Club',negotiations,'ENG-1').roster[5];

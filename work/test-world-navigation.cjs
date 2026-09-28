@@ -40,5 +40,14 @@ vm.runInContext(source.slice(source.indexOf('const v64BaseLegacyShowStart'),sour
  assert.deepEqual(calls,['physical-save-and-leave'],'laufende Partie nutzt den vorhandenen Snapshot- und Pausenablauf');
  assert(error.textContent.includes('laufenden Ballaktion'));
  assert(source.includes('>Speichern & Start</button>'));
+ // Exercise the actual exit wrapper with a delayed/failed write, not just a mocked exit.
+ let finish,rejectWrite,closed=0,stopped=0;
+ const exit=vm.createContext({v61CurrentCareer:{world:{activeMatch:{state:{phase:'live'}}}},v64UiStop(){stopped++},
+  v64UiSave:()=>new Promise((resolve,reject)=>{finish=resolve;rejectWrite=reject}),v61WaitForStorage:async()=>{},
+  v61ShowStart(){closed++},v64MatchMenu:{},v64UiMenuVisible(){},document:{querySelectorAll:()=>[]}});
+ const wrapperStart=source.indexOf('const v64BaseShowStart='),wrapper=source.slice(wrapperStart,source.indexOf('const v64BaseProgressState=',wrapperStart));vm.runInContext(wrapper,exit);
+ const failedExit=exit.v61ShowStart();assert.equal(closed,0);assert.equal(stopped,1);rejectWrite(Error('Speicher voll'));
+ await assert.rejects(failedExit,/Speicher voll/);assert.equal(closed,0,'Fehlgeschlagener Schreibabschluss erhält die Karriere');
+ const delayedExit=exit.v61ShowStart();assert.equal(closed,0);finish();await delayedExit;assert.equal(closed,1,'Erst der bestätigte Schreibabschluss öffnet die Startseite');
  console.log('Navigation: Menü, Logo, Speichern vor Start, Fehlerfall und Übergabe laufender Partien geprüft.');
 })().catch(error=>{console.error(error);process.exitCode=1});

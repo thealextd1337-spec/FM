@@ -166,37 +166,81 @@ function v61CreateCareer(clubId,seed=crypto.randomUUID()){
 }
 
 let v61StorageDb=null,v61StorageReady=typeof indexedDB==='undefined',v61StorageCache=[],v61StoragePending=null,v61StorageWriting=false,v61StorageError=null,v61LastWrite=Promise.resolve();
+let v61StorageConfirmed=null,v61StorageBackup=null,v61StorageSavedAt=null,v61StorageLoadError=false;
+function v61StorageClone(value){return JSON.parse(JSON.stringify(value))}
+function v61ValidCareers(value){try{return Array.isArray(value)&&new Set(value.map(career=>career.id)).size===value.length&&value.every(career=>typeof career.id==='string'&&career.id&&v61ValidateCareer(career))}catch{return false}}
+function v61StorageNotify(){if(typeof v64UiStorageStatus==='function')v64UiStorageStatus()}
+function v61LoadStorageValues(worlds,backup,savedAt){
+ v61StorageBackup=v61ValidCareers(backup)?backup:null;
+ v61StorageSavedAt=savedAt||null;
+ if(!v61ValidCareers(worlds)){v61StorageLoadError=true;v61StorageError='Die gespeicherten Vereinswelten sind ungültig.';return}
+ v61StorageCache=worlds;v61StorageConfirmed=v61StorageClone(worlds);v61StorageLoadError=false;v61StorageError=null;
+}
 function v61ReadCareers(){
  if(!v61StorageReady)throw Error(v61StorageError||'Vereinswelten werden geladen.');
- const value=v61StorageDb?v61StorageCache:JSON.parse(localStorage.getItem(v61WorldKey)||'[]');
- if(!Array.isArray(value)||value.some(career=>!v61ValidateCareer(career)))throw Error('Die gespeicherten Vereinswelten sind ungültig.');
- return value;
+ if(!v61StorageDb&&v61StorageConfirmed===null&&!v61StorageLoadError){
+  try{const raw=JSON.parse(localStorage.getItem(v61WorldKey)||'[]');v61LoadStorageValues(Array.isArray(raw)?raw:raw.worlds,raw.backup,raw.savedAt)}
+  catch{v61StorageLoadError=true;v61StorageError='Die gespeicherten Vereinswelten sind ungültig.'}
+ }
+ if(v61StorageLoadError)throw Error(v61StorageError);
+ if(!v61ValidCareers(v61StorageCache))throw Error('Die gespeicherten Vereinswelten sind ungültig.');
+ return v61StorageCache;
 }
 function v61FlushStorage(){
  if(!v61StorageDb||v61StorageWriting||!v61StoragePending)return;
  const pending=v61StoragePending;v61StoragePending=null;v61StorageWriting=true;
+ const previous=v61StorageConfirmed||v61StorageBackup||[],backup=pending.careers.map(career=>previous.find(item=>item.id===career.id)||career);
+ const savedAt=new Date().toISOString();let settled=false;
+ const fail=()=>{
+  if(settled)return;settled=true;v61StorageWriting=false;v61StorageError='Die Vereinswelt konnte nicht gespeichert werden.';
+  const queued=v61StoragePending;v61StoragePending=null;
+  for(const job of [pending,queued])job?.failures.forEach(reject=>reject(Error(v61StorageError)));
+  v61StorageNotify();
+ };
  try{
-  const transaction=v61StorageDb.transaction('careers','readwrite');transaction.objectStore('careers').put(pending.careers,'worlds');
-  transaction.oncomplete=()=>{v61StorageWriting=false;pending.waiters.forEach(resolve=>resolve());v61FlushStorage()};
-  transaction.onerror=()=>{v61StorageWriting=false;v61StorageError='Die Vereinswelt konnte nicht gespeichert werden.';pending.waiters.forEach((_,index)=>pending.failures[index](Error(v61StorageError)));console.error(transaction.error)};
- }catch(error){v61StorageWriting=false;v61StorageError='Die Vereinswelt konnte nicht gespeichert werden.';pending.failures.forEach(reject=>reject(error))}
+  const transaction=v61StorageDb.transaction('careers','readwrite'),store=transaction.objectStore('careers');
+  transaction.onabort=fail;transaction.onerror=()=>{try{transaction.abort()}catch{fail()}};
+  transaction.oncomplete=()=>{
+   if(settled)return;settled=true;v61StorageWriting=false;v61StorageConfirmed=pending.careers;v61StorageBackup=backup;v61StorageSavedAt=savedAt;v61StorageError=null;v61StorageLoadError=false;
+   pending.waiters.forEach(resolve=>resolve());v61FlushStorage();v61StorageNotify();
+  };
+  try{store.put(backup,'worlds-backup');store.put(savedAt,'saved-at');store.put(pending.careers,'worlds')}catch(error){try{transaction.abort()}catch{}fail()}
+ }catch{fail()}
 }
 function v61SaveCareers(careers){
- if(v61StorageError)throw Error(v61StorageError);
  if(!v61StorageReady)throw Error('Vereinswelten werden noch geladen.');
+ if(v61StorageLoadError)throw Error(v61StorageError);
+ // Snapshot before queueing: match and market objects continue changing in memory.
+ const snapshot=v61StorageClone(careers);
+ if(!v61ValidCareers(snapshot))throw Error('Die gespeicherten Vereinswelten sind ungültig.');
+ if(!v61StorageDb&&v61StorageConfirmed===null)v61ReadCareers();
+ v61StorageCache=careers;
  if(v61StorageDb){
-  v61StorageCache=careers;
   const write=new Promise((resolve,reject)=>{
    const previous=v61StoragePending;
-   v61StoragePending={careers,waiters:[...(previous?.waiters||[]),resolve],failures:[...(previous?.failures||[]),reject]};
+   v61StoragePending={careers:snapshot,waiters:[...(previous?.waiters||[]),resolve],failures:[...(previous?.failures||[]),reject]};
    v61FlushStorage();
   });
-  v61LastWrite=write;write.catch(()=>{});return write;
+  v61LastWrite=write;write.catch(()=>{});v61StorageNotify();return write;
  }
- localStorage.setItem(v61WorldKey,JSON.stringify(careers));v61LastWrite=Promise.resolve();return v61LastWrite;
+ try{
+  const backup=snapshot.map(career=>(v61StorageConfirmed||[]).find(item=>item.id===career.id)||career),savedAt=new Date().toISOString();
+  localStorage.setItem(v61WorldKey,JSON.stringify({worlds:snapshot,backup,savedAt}));
+  v61StorageConfirmed=snapshot;v61StorageBackup=backup;v61StorageSavedAt=savedAt;v61StorageError=null;v61LastWrite=Promise.resolve();
+ }catch{v61StorageError='Die Vereinswelt konnte nicht gespeichert werden.';v61LastWrite=Promise.reject(Error(v61StorageError));v61LastWrite.catch(()=>{})}
+ v61StorageNotify();return v61LastWrite;
+}
+async function v61WaitForStorage(){
+ let pending;do{pending=v61LastWrite;await pending}while(pending!==v61LastWrite);
+ if(v61StorageError)throw Error(v61StorageError);
+}
+async function v61RestoreStorage(){
+ if(!v61StorageLoadError||!v61StorageBackup?.length)throw Error('Keine gültige Wiederherstellungskopie verfügbar.');
+ const backup=v61StorageClone(v61StorageBackup);v61StorageLoadError=false;v61StorageConfirmed=v61StorageClone(backup);
+ try{await v61SaveCareers(backup);v61RenderSaves()}catch(error){v61StorageLoadError=true;v61StorageNotify();throw error}
 }
 async function v61StoreNewCareer(career,imported=false){
- await v61LastWrite;
+ await v61WaitForStorage();
  const careers=v61ReadCareers();
  if(careers.length>=v61MaxCareers)throw Error('Maximal fünf Vereinswelten. Exportiere oder lösche zuerst einen Spielstand.');
  const copy=imported?JSON.parse(JSON.stringify(career)):career;
@@ -218,13 +262,19 @@ async function v61ImportCareerData(raw){
  return v61StoreNewCareer(candidate,true);
 }
 async function v61ExportCareerData(id){
- await v61LastWrite;
- const career=v61ReadCareers().find(item=>item.id===id);
+ await v61WaitForStorage();
+ v61ReadCareers();
+ const career=v61StorageConfirmed.find(item=>item.id===id);
  if(!career)throw Error('Diese Vereinswelt wurde nicht gefunden.');
  return{game:'Doppel 6',format:'world',schema:14,modelVersion:10,exported:new Date().toISOString(),save:JSON.parse(JSON.stringify(career))};
 }
+function v61RescueCareerData(id){
+ const career=v61StorageCache.find(item=>item.id===id);
+ if(!career||!v61ValidCareers([career]))throw Error('Die Vereinswelt-Datei ist unvollständig oder beschädigt.');
+ return{game:'Doppel 6',format:'world',schema:14,modelVersion:10,rescue:true,exported:new Date().toISOString(),save:v61StorageClone(career)};
+}
 async function v61DeleteCareer(id){
- await v61LastWrite;
+ await v61WaitForStorage();
  const careers=v61ReadCareers();
  if(!careers.some(item=>item.id===id))throw Error('Diese Vereinswelt wurde nicht gefunden.');
  await v61SaveCareers(careers.filter(item=>item.id!==id));
@@ -233,12 +283,16 @@ function v61InitStorage(){
  if(typeof indexedDB==='undefined')return;
  const request=indexedDB.open('doppel6-world-v9',1);
  request.onupgradeneeded=()=>request.result.createObjectStore('careers');
- request.onerror=()=>{v61StorageError='Der lokale Spielstandspeicher konnte nicht geöffnet werden.';v61RenderSaves()};
+ request.onerror=()=>{v61StorageError='Der lokale Spielstandspeicher konnte nicht geöffnet werden.';v61RenderSaves();v61StorageNotify()};
  request.onsuccess=()=>{
   v61StorageDb=request.result;
-  const read=v61StorageDb.transaction('careers','readonly').objectStore('careers').get('worlds');
-  read.onerror=()=>{v61StorageError='Gespeicherte Vereinswelten konnten nicht gelesen werden.';v61RenderSaves()};
-  read.onsuccess=()=>{v61StorageCache=read.result||[];v61StorageReady=true;v61RenderSaves()};
+  const transaction=v61StorageDb.transaction('careers','readonly'),store=transaction.objectStore('careers'),values={};let remaining=3,failed=false;
+  const fail=()=>{failed=true;v61StorageReady=false;v61StorageLoadError=true;v61StorageError='Gespeicherte Vereinswelten konnten nicht gelesen werden.';v61RenderSaves();v61StorageNotify()};
+  transaction.onabort=fail;transaction.onerror=fail;
+  for(const key of ['worlds','worlds-backup','saved-at']){
+   const read=store.get(key);read.onerror=fail;
+   read.onsuccess=()=>{values[key]=read.result;if(--remaining||failed)return;v61LoadStorageValues(values.worlds===undefined?(values['worlds-backup']?.length?null:[]):values.worlds,values['worlds-backup'],values['saved-at']);v61StorageReady=true;v61RenderSaves();v61StorageNotify()};
+  }
  };
 }
 
@@ -441,6 +495,7 @@ function v61RenderSaves(){
   message.textContent='';delete message.dataset.status;v61Panel.querySelector('#v61-begin').disabled=careers.length>=v61MaxCareers;
  }catch(error){
   container.innerHTML=v61StorageError?'Gespeicherte Vereinswelten konnten nicht gelesen werden.':'<div class="v67-loading" role="status"><span>Vereinswelten werden geladen …</span><span class="v67-loading-track" role="progressbar" aria-label="Vereinswelten laden"><span></span></span></div>';
+  if(v61StorageLoadError&&v61StorageBackup?.length)container.insertAdjacentHTML('beforeend','<p>Eine letzte gültige Wiederherstellungskopie ist verfügbar. Neuere Fortschritte können darin fehlen.</p><button type="button" class="menu-action" data-v61-restore>Wiederherstellung prüfen</button>');
   message.textContent=v61StorageError?error.message:'';v61Panel.querySelector('#v61-begin').disabled=true;
  }
 }
@@ -487,11 +542,14 @@ v61Panel.querySelector('#v61-begin').onclick=v61Begin;
 v61Panel.querySelector('#v61-saves').onclick=async event=>{
  const button=event.target.closest('button');if(!button)return;
  const message=v61Panel.querySelector('#v61-message');
+ if(button.hasAttribute('data-v61-restore')){button.textContent='Wiederherstellung bestätigen';button.removeAttribute('data-v61-restore');button.setAttribute('data-v61-confirm-restore','');button.insertAdjacentHTML('afterend','<button type="button" class="menu-action" data-v61-cancel-restore>Abbrechen</button>');return}
+ if(button.hasAttribute('data-v61-cancel-restore')){v61RenderSaves();return}
  if(button.dataset.v61Open){v61OpenCareer(button.dataset.v61Open);return}
  if(button.dataset.v61Delete){v61PendingDeleteId=button.dataset.v61Delete;v61RenderSaves();return}
  if(button.dataset.v61CancelDelete){v61PendingDeleteId=null;v61RenderSaves();return}
  button.disabled=true;
  try{
+  if(button.hasAttribute('data-v61-confirm-restore')){await v61RestoreStorage();message.dataset.status='success';message.textContent='Wiederherstellung abgeschlossen.'}
   if(button.dataset.v61ConfirmDelete){await v61DeleteCareer(button.dataset.v61ConfirmDelete);v61PendingDeleteId=null;v61RenderSaves();message.dataset.status='success';message.textContent='Vereinswelt gelöscht.'}
   if(button.dataset.v61Export){const data=await v61ExportCareerData(button.dataset.v61Export),club=data.save.world.clubs.find(item=>item.id===data.save.manager.managedClubId),blob=new Blob([JSON.stringify(data)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`doppel-6-welt-${club.id.toLowerCase()}-${data.save.id.slice(0,8)}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),60000);message.dataset.status='success';message.textContent='Export der Vereinswelt gestartet.'}
  }catch(error){delete message.dataset.status;message.textContent=error.message}finally{button.disabled=false}

@@ -2,7 +2,7 @@
 
 ## Inhalt
 
-- [Spielstände, Hall of Fame und App-Stores – Plan](speicherstaende-hall-of-fame-store-plan.md): Serverkarrieren, Ausschluss lokaler Titel, Speicherinformationen, Namensmoderation und mobile Veröffentlichung; [offizielle Rechts- und Storequellen](speicherung-store-recherche.md).
+- [Spielstart, Accounts, Spielstände, Hall of Fame und App-Stores – Plan](speicherstaende-hall-of-fame-store-plan.md): Startablauf und Parametermatrix, Karriereverwaltung, Accountwiederherstellung, Serverkarrieren, Gerätewechsel, offene Entscheidungen und Abnahme; [offizielle Rechts- und Storequellen](speicherung-store-recherche.md).
 
 - [Spielerreferenz 92](spieler-referenz-v92.md): neues Referenzpaar, Farbprüfung, Bildherkunft und offene visuelle Abnahme vor dem Ausbau des Pools.
 - [Produktregeln](product.md): feste Entscheidungen zu Spiel, Karriere, Oberfläche und Pokal.

@@ -12,6 +12,7 @@ const v64MatchMenu=document.createElement('details');
 v64MatchMenu.className='v64-match-menu';
 v64MatchMenu.hidden=true;
 v64MatchMenu.innerHTML='<summary aria-label="Spielmenü" title="Spielmenü"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg></summary><div class="v64-match-menu-panel"><button type="button" data-v64-save-exit>Speichern & Start</button><p class="v61-error" role="alert"></p></div>';
+v64MatchMenu.querySelector('.v64-match-menu-panel').insertAdjacentHTML('afterbegin','<div class="v64-storage"><p data-v64-storage-status role="status" aria-live="polite"></p><p data-v64-storage-help hidden>Der aktuelle Stand bleibt geöffnet. Erneut speichern oder eine Rettungskopie exportieren, bevor du die Seite schließt.</p><button type="button" data-v64-storage-retry hidden>Erneut speichern</button><div data-v64-storage-rescue hidden></div></div>');
 v64HeaderActions.append(v64MatchMenu);
 const v64LanguageControl=v64Header.querySelector('.language-control');
 const v64MenuAnchor=document.createElement('span');
@@ -60,14 +61,43 @@ async function v64SaveAndStart(button=null){
  if(button)button.disabled=true;
  v64MatchMenu.querySelector('[role="alert"]').textContent='';
  try{
-  if(typeof v65WorldActive==='undefined'||!v65WorldActive)await v64UiSave();
-  await v61ShowStart();
+  const physical=typeof v65WorldActive!=='undefined'&&v65WorldActive;
+  if(!physical)await v64UiSave();
+  await v61ShowStart(!physical);
   if(startScreen.hidden)v64MatchMenu.querySelector('[role="alert"]').textContent='Das Spiel wird nach der laufenden Ballaktion gespeichert.';
  }catch(error){v64MatchMenu.open=true;v64MatchMenu.querySelector('[role="alert"]').textContent=error.message}
  finally{if(button)button.disabled=false}
 }
+function v64UiStorageStatus(){
+ const busy=v61StorageWriting||Boolean(v61StoragePending),failed=Boolean(v61StorageError),status=v64MatchMenu.querySelector('[data-v64-storage-status]');
+ status.textContent=busy?'Wird gespeichert …':failed?'Nicht gespeichert':v61StorageSavedAt?'Gespeichert':'Lokaler Spielstand';
+ if(!busy&&!failed&&v61StorageSavedAt){const time=document.createElement('time');time.dateTime=v61StorageSavedAt;time.textContent=` · ${new Date(v61StorageSavedAt).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`;status.append(time)}
+ v64MatchMenu.dataset.storage=busy?'pending':failed?'error':'saved';
+ v64MatchMenu.querySelector('[data-v64-storage-help]').hidden=!failed||v61StorageLoadError||!v61StorageReady;
+ const retry=v64MatchMenu.querySelector('[data-v64-storage-retry]');retry.hidden=!failed||v61StorageLoadError||!v61StorageReady;retry.disabled=busy;
+ const rescue=v64MatchMenu.querySelector('[data-v64-storage-rescue]');rescue.hidden=!failed||v61StorageLoadError;
+ rescue.innerHTML=failed&&!v61StorageLoadError?v61StorageCache.map(career=>`<button type="button" data-v64-rescue="${escapeHTML(career.id)}">Rettungskopie exportieren · ${escapeHTML(career.world.clubs.find(club=>club.id===career.manager.managedClubId)?.name||'')}</button>`).join(''):'';
+ if(failed){
+  v64MatchMenu.open=true;
+  if(typeof v65WorldActive!=='undefined'&&v65WorldActive?.state.phase==='live')v65Pause();
+  else if(v61CurrentCareer?.world.activeMatch?.state.phase==='live'){v61CurrentCareer.world.activeMatch.state.phase='paused';v64UiStop()}
+ }
+}
+function v64DownloadRescue(id){
+ const data=v61RescueCareerData(id),blob=new Blob([JSON.stringify(data)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');
+ link.href=url;link.download=`doppel-6-rettung-${id.slice(0,8)}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),60000);
+}
 v64MatchMenu.addEventListener('click',event=>{
  const button=event.target.closest('[data-v64-save-exit]');if(button)v64SaveAndStart(button);
+ const retry=event.target.closest('[data-v64-storage-retry]');
+ if(retry){
+  try{
+   if(typeof v65WorldActive!=='undefined'&&v65WorldActive)v65Snapshot(v65WorldActive);
+   const write=v61CurrentCareer?v64UiSave():v61SaveCareers(v61StorageCache);
+   Promise.resolve(write).then(()=>{v64MatchMenu.querySelector('[role="alert"]').textContent='';if(!startScreen.hidden)v61RenderSaves()}).catch(()=>{});
+  }catch(error){v64MatchMenu.querySelector('[role="alert"]').textContent=error.message}
+ }
+ const rescue=event.target.closest('[data-v64-rescue]');if(rescue){try{v64DownloadRescue(rescue.dataset.v64Rescue)}catch(error){v64MatchMenu.querySelector('[role="alert"]').textContent=error.message}}
 });
 const v64BaseLegacyShowStart=showStartScreen;
 showStartScreen=function(){
@@ -79,8 +109,10 @@ function v64UiCount(value,one,many){return`${value} ${value===1?one:many}`}
 function v64UiStop(){if(v64UiTimer){clearInterval(v64UiTimer);v64UiTimer=null}if(v64UiFrame){cancelAnimationFrame(v64UiFrame);v64UiFrame=null}}
 function v64UiSave(){
  if(!v61CurrentCareer)return;
- const careers=v61ReadCareers();
- return v61SaveCareers(careers.map(career=>career.id===v61CurrentCareer.id?v61CurrentCareer:career));
+ try{
+  const careers=v61ReadCareers();
+  return v61SaveCareers(careers.map(career=>career.id===v61CurrentCareer.id?v61CurrentCareer:career));
+ }catch(error){v61StorageError=error.message;const failed=Promise.reject(error);failed.catch(()=>{});v61LastWrite=failed;v61StorageNotify();return failed}
 }
 function v64UiFixture(){return v61CurrentCareer&&v64ActiveFixture(v61CurrentCareer)}
 function v64UiOwnSide(fixture){return fixture.homeId===v61CurrentCareer.manager.managedClubId?0:1}
@@ -282,7 +314,7 @@ function v64UiClick(event){
  const career=v61CurrentCareer,fixture=career&&v64ActiveFixture(career),state=career?.world.activeMatch?.state;
  if(!fixture||!state)return;
  try{
-  if(button.hasAttribute('data-v64-exit')){v61ShowStart();return}
+  if(button.hasAttribute('data-v64-exit')){v64SaveAndStart(button);return}
   if(button.dataset.v64Tab&&state.phase==='prematch'){v64UiTab=button.dataset.v64Tab;v64UiRender(career);v61WorldScreen.querySelector(`[data-v64-tab="${v64UiTab}"]`)?.focus();return}
   if(button.dataset.v64Orientation!==undefined&&state.phase==='prematch'){const pid=v64Active(state,v64UiOwnSide(fixture))[v64SelectedSlot];v64UiRemember(fixture,state);v64SetOrientation(state,pid,Number(button.dataset.v64Orientation));v64UiSave();v64UiRender(career);return}
   if(button.dataset.v64TacticKey&&state.phase==='prematch'){
@@ -364,7 +396,7 @@ v61AdvanceCareer=function(){
  }catch(error){v64UiError(error);const target=v61WorldScreen.querySelector('.v61-career-nav');if(target)target.insertAdjacentHTML('afterend',`<p class="v61-error" role="alert">${escapeHTML(error.message)}</p>`)}
 };
 const v64BaseShowStart=v61ShowStart;
-v61ShowStart=function(){if(v61CurrentCareer?.world.activeMatch?.state.phase==='live'){v61CurrentCareer.world.activeMatch.state.phase='paused';v64UiSave()}v64UiStop();for(const dialog of document.querySelectorAll('dialog[open]'))dialog.close();v64MatchMenu.open=false;v64UiMenuVisible();v64BaseShowStart()};
+v61ShowStart=async function(saved=false){if(v61CurrentCareer){const live=v61CurrentCareer.world.activeMatch?.state.phase==='live';if(live)v61CurrentCareer.world.activeMatch.state.phase='paused';v64UiStop();if(!saved||live)await v64UiSave();await v61WaitForStorage()}for(const dialog of document.querySelectorAll('dialog[open]'))dialog.close();v64MatchMenu.open=false;v64UiMenuVisible();v64BaseShowStart()};
 const v64BaseProgressState=v58State;
 v58State=function(){
  const state=v64BaseProgressState(),active=v61CurrentCareer?.world.activeMatch;
