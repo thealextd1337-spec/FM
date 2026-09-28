@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-28 (Prototyp 84 · Transferhistorie)
+
+- Die Transferhistorie lässt ab Saison 2 auch Saison 1 auswählen, selbst wenn in der ersten Saison keine Wechsel erfasst wurden. Spieler und Gegenvereine in Zu- und Abgängen öffnen ihr Profil; nicht mehr verfügbare Spieler bleiben als Text sichtbar.
+
 ## 2026-09-28 (Prototyp 83 · Vereinsprofile und Torbanner)
 
 - Der Torbanner sitzt mittig auf dem Spielfeld, zeigt zuerst den Spielstand und darunter Torschütze samt Rückennummer. Die Zentrierung bleibt auch mobil und während der Animation erhalten.
