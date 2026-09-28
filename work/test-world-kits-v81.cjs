@@ -70,7 +70,7 @@ assert.strictEqual(edited.home.style,'solid');
 const crest=call('v61CrestSVG',{...bremen,kits:edited});
 const crestDesigns=vm.runInContext('v61CrestDesigns',context);
 assert.strictEqual(Object.keys(crestDesigns).length,48,'jeder Verein hat ein eigenes Wappendesign');
-assert.deepStrictEqual(Object.keys(crestDesigns).sort(),all.map(club=>club.id).sort(),'Wappendesigns decken den gesamten Vereinskatalog ab');
+assert.strictEqual(Object.keys(crestDesigns).sort().join('|'),all.map(club=>club.id).sort().join('|'),'Wappendesigns decken den gesamten Vereinskatalog ab');
 assert.strictEqual(new Set(Object.values(crestDesigns).map(design=>design.join('/'))).size,48,'Wappen unterscheiden sich in Form, Motiv und Streifen');
 assert(crest.includes('shape-rendering="geometricPrecision"')&&crest.includes('Vereinslogo '+bremen.name),'Vereinswappen bleiben scharf und zugänglich beschriftet');
 assert([edited.colors.primary,edited.colors.secondary,edited.colors.tertiary].every(color=>crest.includes(color)),'Wappen übernimmt alle drei aktuellen Vereinsfarben');
