@@ -63,10 +63,16 @@ v66OfferHTML=function(career){
  const previous=[...market.pendingBids].reverse().find(item=>item.pid===pid&&item.buyerId===own&&item.sellerId);
  if(previous)return`<section class="v66-offer" id="v66-offer"><h3>Angebot für ${escapeHTML(v66Player(career,pid)?.name||pid)}</h3>${v66BidHTML(career,previous,'outgoing')}</section>`;
  const listing=v72TransferTerms(career,v66Filter.selected);
- if(!listing)return v72BaseOfferHTML(career);
+ if(!listing)return v66Owner(career,pid)?v72BaseOfferHTML(career):'';
  const player=v66Player(career,listing.pid),club=v66Club(career,listing.sellerId),blocked=v72Market(career).decisions.some(item=>item.pid===listing.pid&&item.buyerId===career.manager.managedClubId&&item.season===career.world.season&&['rejected','expired'].includes(item.status));
  if(listing.reason==='direct')return`<section class="v66-offer" id="v66-offer"><h3>Angebot für ${escapeHTML(player.name)}</h3><p>Aktueller Verein: ${escapeHTML(club.name)} · Richtwert ${v66Credits(listing.ask)}. Auch Spieler ohne Verkaufsliste können ein Gebot erhalten.</p><p>${v61FlagSVG(player.nation)} ${v61PositionNames[player.line]}, ${player.age} Jahre</p><button type="button" class="menu-action" data-v66-profile="${escapeHTML(player.pid)}">Spielerprofil ansehen</button><button type="button" class="primary" data-v72-open="${escapeHTML(player.pid)}" ${v72Market(career).phase==='open'&&!blocked?'':'disabled'}>Ablöse verhandeln</button><p class="v66-note">Zuerst verhandelst du die Ablöse mit dem Verein. Nach der Einigung folgen Gehalt, Laufzeit und Einsatz-Zusage mit dem Spieler.</p></section>`;
  return`<section class="v66-offer" id="v66-offer"><h3>${escapeHTML(player.name)} steht zum Verkauf</h3><p>${escapeHTML(club.name)} · Verhandelbare Ablöse ${v66Credits(listing.ask)} · Marktwert ${v66Credits(v66Value(player))}</p><button type="button" class="menu-action" data-v72-open="${escapeHTML(player.pid)}" ${v72Market(career).phase==='open'&&!blocked?'':'disabled'}>Ablöse verhandeln</button></section>`;
+};
+const v72BaseBidHTML=v66BidHTML;
+v66BidHTML=function(career,bid,kind){
+ if(kind!=='outgoing'||bid.sellerId)return v72BaseBidHTML(career,bid,kind);
+ const player=v66Player(career,bid.pid),status={pending:'Spielerantwort ausstehend',counter:'Gegenforderung des Spielers',completed:'Abgeschlossen',rejected:'Abgelehnt',expired:'Abgelaufen'}[bid.status]||bid.status;
+ return`<article class="v66-bid"><div><strong>${escapeHTML(player?.name||bid.pid)}</strong><span>Vereinslos · ${v66Credits(bid.annual)} Gehalt · ${bid.years} ${bid.years===1?'Saison':'Saisons'}</span><small>${status}${bid.reason?` · ${escapeHTML(bid.reason)}`:''}</small></div><button type="button" class="menu-action" data-v72-free-open="${escapeHTML(bid.pid)}">Dialog öffnen</button></article>`;
 };
 const v72BaseMarketHTML=v66MarketHTML;
 v66MarketHTML=function(career){return v72BaseMarketHTML(career).replace('<h3>Spieler suchen</h3>',`${v72NegotiationsHTML(career)}${v72OwnListingsHTML(career)}${v72ListingsHTML(career)}<h3>Spieler suchen</h3>`)};
@@ -88,8 +94,10 @@ function v72EnsureDialog(){
   if(button.dataset.v72ClubProfile!==undefined){v72Dialog.close();v68OpenDetail('club',button.dataset.v72ClubProfile,v61WorldScreen.querySelector('[data-v61-tab="transfers"]'));return}
   v72DialogBusy=true;button.disabled=true;
   try{
-   if(button.dataset.v72Close!==undefined){v72Dialog.close();return}
+   if(button.dataset.v72Close!==undefined){v72Dialog.close();v72ShowResults();return}
    if(button.dataset.v72Result!==undefined){const result=v72Market(career).transferResults.find(item=>item.id===button.dataset.v72Result);if(result)result.seen=true;await v64UiSave();v72Dialog.close();v72ShowResults();return}
+   if(button.dataset.v72FreeOffer!==undefined){const pid=button.dataset.v72FreeOffer;v66MakeBid(career,career.manager.managedClubId,pid,0,v72Dialog.querySelector('#v72-salary')?.value,v72Dialog.querySelector('#v72-years')?.value,v72Dialog.querySelector('#v72-promise')?.value);await v64UiSave();v61RenderCareer(career);v72OpenFreeAgent(career,pid);return}
+   if(button.dataset.v72FreeImprove!==undefined){const bid=v66ImproveBid(career,button.dataset.v72FreeImprove,v72Dialog.querySelector('#v72-salary')?.value);await v64UiSave();v61RenderCareer(career);v72OpenFreeAgent(career,bid.pid);return}
    if(button.dataset.v72Start!==undefined){const item=v72Start(career,button.dataset.v72Start,v72Dialog.querySelector('#v72-fee')?.value);v72CurrentId=item.id;await v64UiSave();v61RenderCareer(career);v72RenderDeal(career,item.id);return}
    if(button.dataset.v72Fee!==undefined){v72SubmitFee(career,button.dataset.v72Fee,v72Dialog.querySelector('#v72-fee')?.value);await v64UiSave();v61RenderCareer(career);v72RenderDeal(career,button.dataset.v72Fee);return}
    if(button.dataset.v72Contract!==undefined){v72SubmitContract(career,button.dataset.v72Contract,v72Dialog.querySelector('#v72-salary')?.value,v72Dialog.querySelector('#v72-years')?.value,v72Dialog.querySelector('#v72-promise')?.value);await v64UiSave();v61RenderCareer(career);v72RenderDeal(career,button.dataset.v72Contract);return}
@@ -115,6 +123,21 @@ function v72ConfirmCancel(career,id){
  v72Dialog.querySelector('[data-v72-cancel-back]')?.focus();
 }
 function v72NumberField(id,value,min=1){return`<span class="v72-number"><button type="button" data-v72-adjust="-1" data-v72-input="${id}" aria-label="Wert verringern">−</button><input id="${id}" type="number" min="${min}" step="10" value="${value}"><button type="button" data-v72-adjust="1" data-v72-input="${id}" aria-label="Wert erhöhen">+</button></span>`}
+function v72OpenFreeAgent(career,pid){
+ const player=v66Player(career,pid),owner=v66Owner(career,pid),own=career.manager.managedClubId;
+ if(!player||owner&&owner.id!==own)return;
+ const bid=[...career.world.market.pendingBids].reverse().find(item=>item.pid===pid&&item.buyerId===own&&!item.sellerId);
+ const active=bid&&['pending','counter','completed'].includes(bid.status),canOffer=!active&&!owner&&v66Own(career).roster.length<14&&!career.world.seasonFinished&&['open','closed'].includes(career.world.market.phase);
+ let action='';
+ if(bid?.status==='counter')action=`<p class="v72-stage">Gegenforderung des Spielers</p><p>${escapeHTML(bid.reason)}</p><label>Neues Jahresgehalt${v72NumberField('v72-salary',bid.counter,60)}</label><button type="button" class="primary" data-v72-free-improve="${escapeHTML(bid.id)}">Vertragsangebot senden</button>`;
+ else if(active)action=`<p class="v72-stage">${bid.status==='completed'?'Wechsel abgeschlossen':'Spielerantwort ausstehend'}</p><p>${escapeHTML(bid.reason||'Der Spieler entscheidet über den Vertrag.')}</p>`;
+ else{
+  const annual=Math.round(v66Salary(player)*1.12/10)*10;
+  action=`${bid?.reason?`<p class="v72-last-change">${escapeHTML(bid.reason)}</p>`:''}<div class="v66-fields"><label>Jahresgehalt${v72NumberField('v72-salary',annual,60)}</label><label>Laufzeit<select id="v72-years">${[1,2,3].map(year=>`<option value="${year}" ${year===2?'selected':''}>${year} ${year===1?'Saison':'Saisons'}</option>`).join('')}</select></label><label>Einsatz-Zusage<select id="v72-promise">${Array.from({length:11},(_,value)=>`<option value="${value}" ${value===3?'selected':''}>${value} ${value===1?'Einsatz':'Einsätze'}</option>`).join('')}</select></label></div><button type="button" class="primary" data-v72-free-offer="${escapeHTML(pid)}" ${canOffer?'':'disabled'}>Vertragsangebot senden</button>${canOffer?'':`<p>${v66Own(career).roster.length>=14?'Der Kader hat bereits 14 Profis.':'Dieses Angebot ist außerhalb der Transferphase nicht möglich.'}</p>`}`;
+ }
+ const body=`${v72DealProfiles(career,pid,own)}<div class="v72-dialog-facts"><span>Bisheriger Verein<b>Vereinslos</b></span><span>Ablöse<b>Ablösefrei</b></span></div>${action}`;
+ const dialog=v72EnsureDialog();v72DialogMode='free';v72CurrentId=bid?.id||null;dialog.innerHTML=v72DialogShell('Spielervertrag',body);if(!dialog.open)dialog.showModal();
+}
 function v72OpenListing(career,pid){
  const existing=v72Market(career).negotiations.find(item=>item.pid===pid&&item.buyerId===career.manager.managedClubId&&!['completed','rejected'].includes(item.stage));
  if(existing){v72RenderDeal(career,existing.id);return}
@@ -164,6 +187,7 @@ v61WorldScreen.addEventListener('change',event=>{
 });
 v61WorldScreen.addEventListener('click',async event=>{
  const button=event.target.closest('button');if(!button||!v61CurrentCareer)return;
+ if(button.dataset.v72FreeOpen!==undefined){v72OpenFreeAgent(v61CurrentCareer,button.dataset.v72FreeOpen);return}
  if(button.dataset.v72Open!==undefined){v72OpenListing(v61CurrentCareer,button.dataset.v72Open);return}
  if(button.dataset.v72Deal!==undefined)v72RenderDeal(v61CurrentCareer,button.dataset.v72Deal);
  if(button.dataset.v72SellerDeal!==undefined)v72RenderSellerDeal(v61CurrentCareer,button.dataset.v72SellerDeal);
@@ -173,7 +197,7 @@ v61WorldScreen.addEventListener('click',async event=>{
 });
 v61ProfileDialog.addEventListener('click',async event=>{
  const button=event.target.closest('button');if(!button||!v61CurrentCareer)return;
- if(button.dataset.v72ProfileOffer!==undefined){v66Filter.selected=button.dataset.v72ProfileOffer;v61ProfileDialog.close();v61CareerTab='transfers';v61RenderCareer(v61CurrentCareer);v61WorldScreen.querySelector('#v66-offer')?.scrollIntoView({behavior:'smooth',block:'start'});return}
+ if(button.dataset.v72ProfileOffer!==undefined){const pid=button.dataset.v72ProfileOffer;v61ProfileDialog.close();v61SetCareerTab('transfers');if(!v66Owner(v61CurrentCareer,pid)){v72OpenFreeAgent(v61CurrentCareer,pid);return}v66Filter.selected=pid;v61RenderCareer(v61CurrentCareer);v61WorldScreen.querySelector('#v66-offer')?.scrollIntoView({behavior:'smooth',block:'start'});return}
  if(button.dataset.v72GoSale!==undefined){v61ProfileDialog.close();v61SetCareerTab('transfers');v61WorldScreen.querySelector('#v72-own-sales')?.scrollIntoView({behavior:'smooth',block:'start'});return}
  if(button.dataset.v72ListOwn!==undefined){
   button.disabled=true;

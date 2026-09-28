@@ -22,6 +22,22 @@ Die Entwicklungsdokumentation beschreibt bereits IndexedDB, höchstens fünf neu
 
 Serverkarrieren verwenden authentifizierte Zugriffe, Transportverschlüsselung, serverseitige Zugriffskontrolle, begrenzte Backups und einen dokumentierten Löschprozess. Jede Aktion nennt die erwartete Revision; veraltete und wiederholte Aktionen dürfen den Stand nicht überschreiben oder Erfolge doppelt erzeugen. Für gewertete Karrieren wird zunächst eine Onlineverbindung für Fortschritt vorausgesetzt. Bei Verbindungsabbruch wird der letzte bestätigte Serverstand wieder aufgenommen; es gibt keine frei wählbaren Rücksetzungen oder importierten Fortschritte. Browser, Android-App und iOS-App greifen über dasselbe Konto auf diese Karriere zu. Eine optionale Sicherung privater lokaler Karrieren wäre ein eigener, weiterhin ungewerteter Dienst.
 
+### Auswertbare Hintergrundstatistik im Spielstand
+
+Jede Karriere soll spätere Abfragen über alle Vereine und Saisons erlauben, auch wenn eine Information gerade nicht in der Oberfläche angezeigt wird. Dazu bleiben bestätigte Markt- und Vertragsereignisse im jeweiligen Spielstand erhalten. Diese internen Karrieredaten werden nicht automatisch in der öffentlichen Hall of Fame veröffentlicht. Für Serverkarrieren führt der Server das verbindliche Protokoll; private lokale Karrieren behalten ein eigenes, nicht gewertetes Protokoll.
+
+Der Quellstand speichert bereits Vereinswechsel und einige Abgänge in `world.transfers`. Eine erfolgreiche Verlängerung ändert derzeit vor allem den aktuellen Vertrag; ein Buchungstext allein ist kein verlässlicher Datensatz für spätere Statistik. Die Ergänzung soll deshalb ein strukturiertes Ereignisprotokoll verwenden. Bestehende Transfereinträge können weitergelesen werden, ohne alte Spielstände zu rekonstruieren.
+
+- **Transfer:** Spielerkennung, Saison, Spieltag, abgebender und aufnehmender Verein, gezahlte Ablöse, Art des Wechsels und eindeutige Ereigniskennung. Bezahlter Wechsel, ablösefreie Verpflichtung, Jugendübernahme und sonstige Kaderbewegung bleiben unterscheidbar. Es zählen alle Vereine, auch KI-Vereine.
+- **Vertragsverlängerung:** Spieler, Verein, Saison und Spieltag, alte und neue Laufzeit, altes und neues Jahresgehalt sowie alte und neue Einsatz-Zusage. Nur angenommene Verlängerungen sind Ereignisse; abgelehnte Angebote sind kein Vertragsabschluss. Menschliche und KI-Vereine werden gleich erfasst.
+- **Vereinslos geworden:** Spieler, bisheriger Verein, Saison und Spieltag, Grund wie Vertragsende oder Freistellung. Dieser Zustandswechsel ist kein Transfer zu einem anderen Verein. Eine spätere Verpflichtung wird als separates Ereignis erfasst und kann so als ablösefreie Verpflichtung ausgewertet werden.
+- **Weitere Abgänge:** Karriereende und Jugendfreigabe getrennt erfassen. Ein Spieler ohne Verein und ein Spieler mit beendeter Karriere dürfen in Auswertungen nicht verwechselt werden.
+- **Bedeutung von „ablösefrei“:** `Ablöse = 0` beschreibt die Zahlung, `vorher vereinslos` den Status. Beides separat speichern. Ein kostenloser Wechsel direkt zwischen zwei Vereinen und eine Verpflichtung eines Vereinslosen sind unterschiedliche Fälle.
+
+Abfragen sollen pro Karriere, Saison, Verein und Spieler alle Ereignisse samt Reihenfolge liefern: Transfersumme, Zugänge/Abgänge, Zahl der Verlängerungen, Spieler mit ausgelaufenem Vertrag, Dauer der Vereinslosigkeit und spätere ablösefreie Verpflichtungen. Eine spätere Oberfläche oder ein Export darf daraus Kennzahlen berechnen, ohne den Simulationsstand zu verändern. Namen sind nur Anzeige-Schnappschüsse; Verknüpfungen verwenden stabile Kennungen. Geldwerte tragen ihre Einheit und niemals nur einen formatierten Text.
+
+Jedes bestätigte Ereignis wird genau einmal mit dem Spielstand geschrieben. Wiederholtes Speichern, Laden, Saisonabschluss oder ein Netzwerkversuch darf es nicht duplizieren. Protokoll und aktueller Vertrags-/Kaderzustand müssen nach jedem Abschluss zusammenpassen. Speichergröße über zehn und mehr Saisons messen; bei Bedarf alte Detailereignisse verlustfrei archivieren, statt sie still zu verwerfen. Altdaten ohne vollständige Ereignisse bleiben in Analysen als „nicht erfasst“ gekennzeichnet. Aus Buchungstexten werden keine scheinbar vollständigen Vergangenheitsdaten erzeugt.
+
 ## 2. Übergeordnete Hall of Fame
 
 Ein eigener Einstieg im Hauptmenü öffnet die Hall of Fame unabhängig von einer geladenen Karriere. Sie zeigt pro Manager den moderierten Anzeigenamen und Titel getrennt nach Meisterschaft, nationalem Pokal und Europacup. Eine Detailansicht nennt Saison, Wettbewerb, Land und Verein. Persönliche Managerauszeichnungen werden getrennt von Mannschaftstiteln aufgeführt. Ein künstlicher Gesamtpunktwert ist zunächst nicht vorgesehen.
@@ -71,7 +87,7 @@ Die Browserfassung bleibt Grundlage. Als technischer Kandidat wird eine gemeinsa
 
 ## 6. Reihenfolge und Abnahme
 
-1. Speicherabläufe und Dateninventar prüfen; lokale Wiederherstellung, Fehleranzeigen und Speichertexte umsetzen. Abnahme: Schreibabbruch, voller Speicher, beschädigter Import, Export/Import-Rundlauf und Wiederaufnahme ohne doppelte Ereignisse.
+1. Speicherabläufe und Dateninventar prüfen; lokale Wiederherstellung, Fehleranzeigen, Speichertexte und strukturiertes Ereignisprotokoll umsetzen. Abnahme: Schreibabbruch, voller Speicher, beschädigter Import, Export/Import-Rundlauf, Transfers aller Vereine, Vertragsverlängerungen und Vereinslosigkeit sowie Wiederaufnahme ohne doppelte Ereignisse.
 2. Konten, Hosting und verbindliche Serverberechnung konkretisieren und Serverkarrieren bauen. Abnahme: Manipulation von Ergebnissen, wiederholte Aktionen, veraltete Revisionen, Verbindungsabbruch, parallele Geräte sowie abgewiesene lokale Importe. Alte Titel werden nicht übernommen.
 3. Namensfilter integrieren. Abnahme: legitime Namen mit Akzenten, harmlose Teilwörter, Umgehungsversuche, Umbenennung und Import; bei öffentlichem Betrieb zusätzlich direkte API-Aufrufe und Meldungsbearbeitung.
 4. Die zentrale Hall of Fame aus bestätigten Serverereignissen aufbauen. Abnahme: zwei Karrieren eines Managers, gleiche Namen verschiedener Manager, Titel nach Vereinswechsel, keine doppelte Vergabe, keine lokalen Titel, keine fremden Zugriffe sowie Opt-out und vollständiger Löschablauf.

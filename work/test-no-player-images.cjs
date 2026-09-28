@@ -13,5 +13,6 @@ for(const marker of ['function v82SpriteSVG','player-atlas-a.png','player-atlas-
 assert(html.includes('function v67Youth('),'existing youth gameplay must remain');
 assert(html.includes('function v83StartGoalScene('),'goal scene must remain');
 assert(html.includes('function v84BannerHTML('),'text and crest goal banner must remain');
-assert(index.includes('PROTOTYP 84')&&html.includes('PROTOTYP 84'),'source and build version must match');
+const sourceVersion=index.match(/PROTOTYP (\d+)/)?.[1];
+assert(sourceVersion&&html.includes(`PROTOTYP ${sourceVersion}`),'source and build version must match');
 console.log('Release: no player portrait or celebration renderer; youth, goal scene and banner remain.');

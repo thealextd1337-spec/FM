@@ -904,6 +904,15 @@ Dein letztes Gebot	Your last offer
 Neues Ablösegebot	New transfer fee offer
 Antwort senden	Send response
 Vertragsangebot senden	Send contract offer
+Spielervertrag	Player contract
+Neues Jahresgehalt	New annual salary
+Spielerantwort ausstehend	Awaiting player's response
+Gegenforderung des Spielers	Player's counteroffer
+Wechsel abgeschlossen	Transfer completed
+Der Spieler entscheidet über den Vertrag.	The player decides on the contract.
+Dialog schließen	Close dialog
+Wert verringern	Decrease value
+Wert erhöhen	Increase value
 Verhandlung beenden	End negotiation
 Öffentliche Forderung	Public asking price
 Deine Ablöse	Your transfer fee
@@ -1087,6 +1096,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^ELFMETERTOR! (.+) trifft für (.+)\.$/,(_,name,club)=>`PENALTY GOAL! ${name} scores for ${club}.`],
   [/^Abpfiff! (.+) (\d+) : (\d+) (.+)\.$/,(_,home,homeGoals,awayGoals,away)=>`Full time! ${home} ${homeGoals} : ${awayGoals} ${away}.`],
   [/^Transferphase · Tag (\d+) von (\d+)$/,(_,day,total)=>`Transfer window · Day ${day} of ${total}`],
+  [/^Spielerprofil (.+) öffnen$/,(_,name)=>`Open ${name}'s player profile`],
   [/^Wechsel von (.+) zu (.+)$/,(_,from,to)=>`Transfer from ${translate(from)} to ${translate(to)}`],
   [/^(.+) wechselt zu (.+)\.$/,(_,player,club)=>`${player} joins ${club}.`],
   [/^(\d+) (Einsatz|Einsätze) pro Saison$/,(_,n)=>`${n} ${Number(n)===1?'appearance':'appearances'} per season`],

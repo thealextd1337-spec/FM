@@ -84,9 +84,20 @@ const protectedDeal=call('v72Start',protectedCareer,keeper.pid,call('v66Value',k
 call('v66NextMarketDay',protectedCareer);
 assert.equal(protectedDeal.stage,'rejected');
 assert(call('v66OfferHTML',protectedCareer).includes(protectedDeal.lastChange));
-// Vereinslose verhandeln weiterhin sofort den Vertrag.
-filter.selected=market.freePlayers[0].pid;
-assert(call('v66OfferHTML',career).includes('id="v66-salary"'));
+// Vereinslose verhandeln den Vertrag im Dialog statt im Transferformular.
+const freePlayer=market.freePlayers[0];filter.selected=freePlayer.pid;
+assert(!call('v66OfferHTML',career).includes('id="v66-salary"'));
+call('v72OpenFreeAgent',career,freePlayer.pid);
+for(const id of ['v72-salary','v72-years','v72-promise'])assert(dialog.innerHTML.includes(`id="${id}"`));
+assert(dialog.innerHTML.includes('data-v72-free-offer='));
+const freeBid=call('v66MakeBid',career,own.id,freePlayer.pid,0,60,2,3);
+call('v72OpenFreeAgent',career,freePlayer.pid);
+assert(dialog.innerHTML.includes('Spielerantwort ausstehend'));
+assert(!dialog.innerHTML.includes('data-v72-free-offer='),'laufendes Angebot kann nicht doppelt gesendet werden');
+call('v66NextMarketDay',career);
+assert.equal(freeBid.status,'counter');
+call('v72OpenFreeAgent',career,freePlayer.pid);
+assert(dialog.innerHTML.includes('data-v72-free-improve='),'Gegenforderung bleibt im Dialog bearbeitbar');
 console.log('Direkttransfer: getrennte Ablöse/Vertrag, Tageswechsel, Speichern/Fortsetzen, Abschluss, Torwartschutz und sichtbare Ablehnung geprüft.');
 
 const reportCareer=JSON.parse(JSON.stringify(initial));

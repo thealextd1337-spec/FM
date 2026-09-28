@@ -2,6 +2,13 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-28 (Prototyp 85 · Trikotmenü, Vertragsdialog und Spielstandsplanung)
+
+- Die Spielstandsplanung erfasst künftig auswertbare Transfer- und Vertragsereignisse aller Vereine, einschließlich erfolgreicher Verlängerungen und Spielern, die vereinslos werden oder später ablösefrei wechseln. Ablösehöhe und vorheriger Vereinsstatus bleiben unterscheidbar. Bestehende Karrieren werden nicht rückwirkend ergänzt; bisher ist dies nur dokumentiert, nicht implementiert.
+
+- Im Vereinsreiter stehen die Trikots jetzt unter den Vereinsdaten. Eine schmale Vorschau zeigt alle vier Trikots; Muster und Farben werden durch Aufklappen bearbeitet. Die gespeicherten Trikots bleiben unverändert. Vereinsansicht und Trikotregeln wurden im Browser und mit bestehenden Tests geprüft.
+- Angebote an vereinslose Spieler öffnen den Vertragsdialog mit Gehalt, Laufzeit und Einsatz-Zusage. Offene Angebote und Gegenforderungen lassen sich dort erneut öffnen und bearbeiten; die Transferregeln bleiben unverändert. Dialog, Tageswechsel und Build wurden geprüft.
+
 ## 2026-09-28 (Prototyp 84 · Transferhistorie)
 
 - Die Transferhistorie lässt ab Saison 2 auch Saison 1 auswählen, selbst wenn in der ersten Saison keine Wechsel erfasst wurden. Spieler und Gegenvereine in Zu- und Abgängen öffnen ihr Profil; nicht mehr verfügbare Spieler bleiben als Text sichtbar.
