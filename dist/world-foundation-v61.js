@@ -4,7 +4,7 @@
 const v61WorldKey='sechser.world.v9';
 const v61MaxCareers=5;
 const v61Countries=[['ENG','England'],['ESP','Spanien'],['ITA','Italien'],['GER','Deutschland'],['FRA','Frankreich'],['POR','Portugal']];
-const v61CountryNames=Object.fromEntries(v61Countries);
+const v61CountryNames=Object.fromEntries(v79Nationalities.map(nation=>[nation.code,nation.de]));
 const v61Names={
  ENG:[['Oliver','Jack','George','Harry','Noah','Leo','Oscar','Ethan','Lucas','Alfie','William','James'],['Smith','Walker','Turner','Bennett','Carter','Hughes','Morris','Clarke','Cooper','Bailey','Foster','Ward']],
  ESP:[['Alejandro','Daniel','Pablo','Álvaro','Diego','Javier','Sergio','Hugo','Marcos','Adrián','Iker','Iván'],['García','Martínez','López','Sánchez','Rodríguez','Fernández','Pérez','Gómez','Díaz','Moreno','Ruiz','Navarro']],
@@ -28,15 +28,101 @@ function v61Random(seed){
  return()=>{state+=0x6D2B79F5;let value=state;value=Math.imul(value^value>>>15,value|1);value^=value+Math.imul(value^value>>>7,value|61);return((value^value>>>14)>>>0)/4294967296};
 }
 
+const v61SkinTones=['fair','light','warm','medium','brown','deep'];
+const v61HairColors=['black','dark-brown','brown','light-brown','blond','auburn','gray'];
+const v61Hairstyles=['buzz','side_part','medium_waves','round_afro','cornrows','textured_crop','tight_curls','short_locs','long_tied','bald'];
+const v61FaceShapes=['oval','round','square','long','angular'];
+const v61EyeBrows=['soft','straight','arched','wide-set','close-set'];
+const v61Noses=['narrow','straight','rounded','broad'];
+const v61Mouths=['narrow','soft','wide','full'];
+const v61FacialHair=['none','stubble','moustache','short-beard','goatee'];
+const v61JubelPoses=['fist_chest'];
+const v61StoredJubelPoses=['double_fists','arms_wide','fist_chest','two_fingers_up'];
+// Complete face signatures represented by the authored portrait/celebration pairs.
+// Their colours remain independent and are drawn from the nationality weights.
+const v61AuthoredFaces={
+ a:{hairstyle:'tight_curls',pose:'double_fists',faceShape:'oval',eyeBrows:'straight',nose:'straight',mouth:'soft',facialHair:'none'},
+ a2:{hairstyle:'buzz',pose:'double_fists',faceShape:'round',eyeBrows:'soft',nose:'straight',mouth:'soft',facialHair:'none'},
+ b:{hairstyle:'short_locs',pose:'arms_wide',faceShape:'oval',eyeBrows:'straight',nose:'straight',mouth:'soft',facialHair:'none'},
+ b2:{hairstyle:'short_locs',pose:'arms_wide',faceShape:'square',eyeBrows:'arched',nose:'broad',mouth:'narrow',facialHair:'short-beard'},
+ c:{hairstyle:'medium_waves',pose:'fist_chest',faceShape:'oval',eyeBrows:'straight',nose:'straight',mouth:'soft',facialHair:'none'},
+ c2:{hairstyle:'textured_crop',pose:'fist_chest',faceShape:'square',eyeBrows:'arched',nose:'straight',mouth:'narrow',facialHair:'stubble'},
+ d:{hairstyle:'cornrows',pose:'two_fingers_up',faceShape:'angular',eyeBrows:'straight',nose:'straight',mouth:'soft',facialHair:'goatee'},
+ d2:{hairstyle:'cornrows',pose:'two_fingers_up',faceShape:'round',eyeBrows:'soft',nose:'rounded',mouth:'full',facialHair:'none'},
+ e:{hairstyle:'textured_crop',pose:'double_fists',faceShape:'angular',eyeBrows:'arched',nose:'narrow',mouth:'soft',facialHair:'none'},
+ f:{hairstyle:'textured_crop',pose:'two_fingers_up',faceShape:'oval',eyeBrows:'wide-set',nose:'rounded',mouth:'full',facialHair:'none'},
+ g:{hairstyle:'textured_crop',pose:'arms_wide',faceShape:'square',eyeBrows:'straight',nose:'broad',mouth:'wide',facialHair:'stubble'},
+ h:{hairstyle:'tight_curls',pose:'two_fingers_up',faceShape:'round',eyeBrows:'arched',nose:'rounded',mouth:'soft',facialHair:'none'},
+ i:{hairstyle:'tight_curls',pose:'arms_wide',faceShape:'long',eyeBrows:'close-set',nose:'narrow',mouth:'narrow',facialHair:'none'},
+ j:{hairstyle:'tight_curls',pose:'fist_chest',faceShape:'angular',eyeBrows:'soft',nose:'straight',mouth:'full',facialHair:'none'},
+ k:{hairstyle:'buzz',pose:'arms_wide',faceShape:'oval',eyeBrows:'arched',nose:'narrow',mouth:'wide',facialHair:'none'},
+ l:{hairstyle:'buzz',pose:'two_fingers_up',faceShape:'square',eyeBrows:'wide-set',nose:'broad',mouth:'narrow',facialHair:'none'}
+};
+// Broad editorial weights, not measured skin-tone shares. Every tone remains possible.
+const v61SkinProfiles={
+ uefa:[25,31,24,13,6,1],north:[16,27,25,18,10,4],south:[8,20,28,26,14,4],
+ asia:[7,19,37,26,9,2],oceania:[24,31,24,13,6,2],central:[4,15,29,31,16,5],africa:[2,6,14,24,30,24]
+};
+const v61SkinOverrides={
+ ENG:[20,26,22,15,11,6],FRA:[17,23,22,17,13,8],POR:[17,25,26,19,10,3],
+ ESP:[18,28,29,16,7,2],ITA:[18,28,29,16,7,2],
+ BRA:[9,18,25,22,18,8],ARG:[25,30,23,14,6,2],URU:[25,30,23,14,6,2],
+ USA:[18,26,23,17,11,5],CAN:[23,29,22,14,9,3],MEX:[5,15,31,31,14,4],
+ JPN:[12,30,40,14,3,1],KOR:[12,30,40,14,3,1],CHN:[12,30,40,14,3,1],
+ IND:[2,9,25,38,21,5],THA:[4,16,42,30,7,1],IRN:[4,15,35,30,13,3],SAU:[4,15,35,30,13,3],
+ MAR:[3,12,30,32,17,6],ALG:[3,12,30,32,17,6],TUN:[3,12,30,32,17,6],EGY:[3,12,30,32,17,6],
+ RSA:[8,10,13,23,28,18],CPV:[5,8,17,30,27,13]
+};
+const v61HairColorWeights=[
+ [16,25,22,15,13,7,2],[22,28,22,13,9,5,1],[30,30,21,10,5,3,1],
+ [38,31,19,7,2,2,1],[48,31,14,3,1,2,1],[57,29,9,2,1,1,1]
+];
+const v61HairStyleWeights=[
+ [13,13,11,4,3,18,11,5,15,7],[13,12,10,5,4,17,13,6,13,7],
+ [13,10,9,7,6,16,15,8,10,6],[12,8,7,9,8,15,17,10,8,6],
+ [11,6,5,12,10,14,18,12,6,6],[10,4,3,14,11,12,19,14,6,7]
+];
+function v61WeightedChoice(values,weights,random){
+ let choice=random()*weights.reduce((sum,weight)=>sum+weight,0);
+ for(let index=0;index<values.length;index++){choice-=weights[index];if(choice<0)return values[index]}
+ return values.at(-1);
+}
+function v61AppearanceSignature(appearance){
+ return [appearance.hairstyle,appearance.faceShape,appearance.eyeBrows,appearance.nose,appearance.mouth,appearance.facialHair].join(':');
+}
+function v61GenerateAppearance(pid,nation,age,peers=[]){
+ const group=v79NationByCode[nation]?.group,skinWeights=v61SkinOverrides[nation]||v61SkinProfiles[group];
+ if(!skinWeights)throw Error(`Unbekannte Spielernationalität: ${nation}`);
+ const used=new Set(peers.map(player=>player.appearance).filter(Boolean).map(v61AppearanceSignature));
+ const pose=v61JubelPoses[0];
+ for(let attempt=0;attempt<64;attempt++){
+  const random=v61Random(`${pid}:appearance:${attempt}`);
+  const skinTone=v61WeightedChoice(v61SkinTones,skinWeights,random),skinIndex=v61SkinTones.indexOf(skinTone);
+  const hairWeights=[...v61HairColorWeights[skinIndex]];if(age>=30)hairWeights[6]*=3;
+  const styleWeights=[...v61HairStyleWeights[skinIndex]];if(age>=30)styleWeights[9]*=2;
+  const appearance={skinTone,hairColor:v61WeightedChoice(v61HairColors,hairWeights,random),hairstyle:v61WeightedChoice(v61Hairstyles,styleWeights,random),faceShape:v61FaceShapes[Math.floor(random()*v61FaceShapes.length)],eyeBrows:v61EyeBrows[Math.floor(random()*v61EyeBrows.length)],nose:v61Noses[Math.floor(random()*v61Noses.length)],mouth:v61Mouths[Math.floor(random()*v61Mouths.length)],facialHair:v61WeightedChoice(v61FacialHair,age<18?[90,5,2,2,1]:[62,17,7,11,3],random),pose};
+  const authored=Object.values(v61AuthoredFaces).filter(face=>face.hairstyle===appearance.hairstyle&&face.pose===pose&&(age>=18||face.facialHair==='none'));
+  if(authored.length)Object.assign(appearance,authored[Math.floor(random()*authored.length)]);
+  if(!used.has(v61AppearanceSignature(appearance)))return appearance;
+ }
+ throw Error(`Keine freie Spielersignatur für ${pid}`);
+}
+function v61ValidAppearance(appearance){
+ return !!appearance&&v61SkinTones.includes(appearance.skinTone)&&v61HairColors.includes(appearance.hairColor)&&v61Hairstyles.includes(appearance.hairstyle)&&v61FaceShapes.includes(appearance.faceShape)&&v61EyeBrows.includes(appearance.eyeBrows)&&v61Noses.includes(appearance.nose)&&v61Mouths.includes(appearance.mouth)&&v61FacialHair.includes(appearance.facialHair)&&v61StoredJubelPoses.includes(appearance.pose);
+}
+
 function v61GenerateRoster(entry,seed){
- const random=v61Random(`${seed}:${entry.id}`),home=entry.id.slice(0,3),quality=entry.profile[5]-(entry.id.includes('-C')?1:0),used=new Set();
+ const random=v61Random(`${seed}:${entry.id}`),home=entry.id.slice(0,3),quality=entry.profile[5]-(entry.id.includes('-C')?1:0),used=new Set(),legacyUsed=new Set(),roster=[];
  return v61Layout.map((line,index)=>{
-  const nation=random()<.79?home:v61Countries[Math.floor(random()*v61Countries.length)][0],names=v61Names[nation];
-  let name,attempt=0;
-  do{name=`${names[0][Math.floor(random()*names[0].length)]} ${names[1][Math.floor(random()*names[1].length)]}`;attempt++}while(used.has(name)&&attempt<30);
+  const legacyNation=random()<.79?home:v61Countries[Math.floor(random()*v61Countries.length)][0],names=v61Names[legacyNation];
+  let legacyName,attempt=0;
+  do{legacyName=`${names[0][Math.floor(random()*names[0].length)]} ${names[1][Math.floor(random()*names[1].length)]}`;attempt++}while(legacyUsed.has(legacyName)&&attempt<30);
+  legacyUsed.add(legacyName);
+  const pid=`${seed}:${entry.id}:${index+1}`,nation=v79ProfessionalNation(home,pid),name=v79PlayerName(nation,pid,used);
   used.add(name);
-  const player={pid:`${seed}:${entry.id}:${index+1}`,n:index+1,name,nation,age:19+Math.floor(random()*16),line,assignedLine:line,keeper:line==='gk',type:v61PositionNames[line],foot:random()<.2?'Links':'Rechts',form:0,fresh:100,history:[],seasons:[],honours:[]};
+  const player={pid,n:index+1,name,nation,age:19+Math.floor(random()*16),line,assignedLine:line,keeper:line==='gk',type:v61PositionNames[line],foot:random()<.2?'Links':'Rechts',form:0,fresh:100,history:[],seasons:[],honours:[]};
   for(const [key,base]of Object.entries(v61SkillBases[line]))player[key]=Math.max(1,Math.min(20,Math.round(base+(quality-3)*1.1+(random()-.5)*3)));
+  player.appearance=v61GenerateAppearance(pid,nation,player.age,roster);roster.push(player);
   return player;
  });
 }
@@ -44,7 +130,7 @@ function v61GenerateRoster(entry,seed){
 function v61ClubRecord(entry,seed){
  const countryId=entry.id.slice(0,3),cupOnly=entry.id.includes('-C');
  const[tradition,fans,youth,risk,patience,startingSquad]=entry.profile;
- return{id:entry.id,countryId,leagueId:cupOnly?null:`${countryId}-LEAGUE`,cupId:`${countryId}-CUP`,name:entry.name,city:entry.city,colors:entry.colors,historyText:entry.history,policy:{tradition,fans,youth,risk,patience,startingSquad},roster:v61GenerateRoster(entry,seed),youthPool:[],balance:null,ledger:[],coachId:null,history:[]};
+ return{id:entry.id,countryId,leagueId:cupOnly?null:`${countryId}-LEAGUE`,cupId:`${countryId}-CUP`,name:entry.name,city:entry.city,colors:entry.colors,kits:v61BuildClubKits(entry),historyText:entry.history,policy:{tradition,fans,youth,risk,patience,startingSquad},roster:v61GenerateRoster(entry,seed),youthPool:[],balance:null,ledger:[],coachId:null,history:[]};
 }
 
 function v61ValidateCareer(career){
@@ -57,8 +143,10 @@ function v61ValidateCareer(career){
  const managed=clubs.find(club=>club.id===career.manager.managedClubId);
  if(!managed?.leagueId)return false;
  if(!v63Validate(career))return false;
+ if(clubs.some(club=>club.kits!==undefined&&!v61ValidClubKits(club.kits)))return false;
  const players=clubs.flatMap(club=>club.roster||[]);
  if([...players,...(career.world.market?.freePlayers||[])].some(player=>!Array.isArray(player.honours)))return false;
+ if([...players,...clubs.flatMap(club=>club.youthPool||[]),...(career.world.market?.freePlayers||[])].some(player=>player.appearance&&!v61ValidAppearance(player.appearance)))return false;
  const marketOpen=career.world.seasonFinished||['sponsor','open','deadline'].includes(career.world.market?.phase);
  if(clubs.some(club=>!Array.isArray(club.roster)||club.roster.length>14||!marketOpen&&(club.roster.length<10||club.roster.filter(player=>player.keeper).length<1))||new Set(players.map(player=>player.pid)).size!==players.length)return false;
  if(!v61Countries.every(([id])=>clubs.filter(club=>club.countryId===id&&club.leagueId).length===6&&clubs.filter(club=>club.countryId===id&&!club.leagueId).length===2))return false;
@@ -154,16 +242,111 @@ function v61InitStorage(){
  };
 }
 
-const v61Colors={Anthrazit:'#283039',Bernstein:'#dc9a32',Bordeaux:'#732e49',Braun:'#76543b',Creme:'#f1e5cc',Dunkelblau:'#193653',Dunkelgrün:'#204938',Eisblau:'#9ccbd9',Elfenbein:'#f3edda',Flieder:'#a98bbb',Gold:'#d9ab45',Grau:'#8b979b',Grün:'#398b5b',Hellgrau:'#c7d0d0',Himmelblau:'#68b8d9',Indigo:'#3b477f',Jade:'#4ba68b',Karmin:'#a43e50',Kobaltblau:'#3267b0',Koralle:'#df7770',Kupfer:'#b8794a',Marineblau:'#24385b',Mint:'#85d0bd',Moosgrün:'#526948',Nachtblau:'#1c3045',Ocker:'#bd904a',Oliv:'#727b47',Orange:'#df8a3b',Petrol:'#2d777c',Pflaume:'#694766',Purpur:'#74468d',Rostrot:'#a85240',Safran:'#d6a238',Sand:'#d9c6a5',Schiefer:'#586b79',Schwarz:'#1d2329',Seegrün:'#318579',Silber:'#bec8cb',Smaragd:'#24775a',Tannengrün:'#275744',Terrakotta:'#ba674d',Türkis:'#3caaa8',Ultramarin:'#415caf',Violett:'#7750a0',Waldgrün:'#315b42',Weinrot:'#823b52',Weiß:'#f3f5f2',Ziegelrot:'#b94d43'};
-function v61ClubColors(club){const[a,b]=club.colors.split('/');return[v61Colors[a]||'#c7f36b',v61Colors[b]||'#142629']}
+const v61Colors={Anthrazit:'#283039',Bernstein:'#dc9a32',Blau:'#326db7',Bordeaux:'#732e49',Braun:'#76543b',Creme:'#f1e5cc',Dunkelblau:'#193653',Dunkelgrün:'#204938',Eisblau:'#9ccbd9',Elfenbein:'#f3edda',Flieder:'#a98bbb',Gold:'#d9ab45',Grau:'#8b979b',Grün:'#398b5b',Hellgrau:'#c7d0d0',Himmelblau:'#68b8d9',Indigo:'#3b477f',Jade:'#4ba68b',Karmin:'#a43e50',Kobaltblau:'#3267b0',Koralle:'#df7770',Kupfer:'#b8794a',Marineblau:'#24385b',Mint:'#85d0bd',Moosgrün:'#526948',Nachtblau:'#1c3045',Ocker:'#bd904a',Oliv:'#727b47',Orange:'#df8a3b',Petrol:'#2d777c',Pflaume:'#694766',Purpur:'#74468d',Rostrot:'#a85240',Rot:'#c43743',Safran:'#d6a238',Sand:'#d9c6a5',Schiefer:'#586b79',Schwarz:'#1d2329',Seegrün:'#318579',Silber:'#bec8cb',Smaragd:'#24775a',Tannengrün:'#275744',Terrakotta:'#ba674d',Türkis:'#3caaa8',Ultramarin:'#415caf',Violett:'#7750a0',Waldgrün:'#315b42',Weinrot:'#823b52',Weiß:'#f3f5f2',Ziegelrot:'#b94d43'};
+const v61KitStyles=['solid','stripe','hoops','halves','diagonal','pinstripes'];
+// Curated third colors preserve each club's existing primary and secondary identity.
+const v61KitTertiary={
+ 'ENG-1':'Schwarz','ENG-2':'Marineblau','ENG-3':'Gold','ENG-4':'Weiß','ENG-5':'Creme','ENG-6':'Gold','ENG-C1':'Nachtblau','ENG-C2':'Creme',
+ 'ESP-1':'Marineblau','ESP-2':'Gold','ESP-3':'Bordeaux','ESP-4':'Marineblau','ESP-5':'Elfenbein','ESP-6':'Bernstein','ESP-C1':'Elfenbein','ESP-C2':'Gold',
+ 'ITA-1':'Gold','ITA-2':'Weiß','ITA-3':'Bordeaux','ITA-4':'Marineblau','ITA-5':'Creme','ITA-6':'Elfenbein','ITA-C1':'Kobaltblau','ITA-C2':'Bernstein',
+ 'GER-1':'Schwarz','GER-2':'Gold','GER-3':'Gold','GER-4':'Creme','GER-5':'Gold','GER-6':'Marineblau','GER-C1':'Gold','GER-C2':'Creme',
+ 'FRA-1':'Weiß','FRA-2':'Gold','FRA-3':'Koralle','FRA-4':'Bordeaux','FRA-5':'Gold','FRA-6':'Koralle','FRA-C1':'Marineblau','FRA-C2':'Creme',
+ 'POR-1':'Gold','POR-2':'Schwarz','POR-3':'Creme','POR-4':'Creme','POR-5':'Bordeaux','POR-6':'Gold','POR-C1':'Creme','POR-C2':'Marineblau'
+};
+const v61KeeperPalette=[
+ {id:'gold',main:'#e5b56a',style:'solid'},{id:'turquoise',main:'#54d3ce',style:'solid'},
+ {id:'coral',main:'#f37b72',style:'solid'},{id:'violet',main:'#b89af0',style:'solid'},
+ {id:'silver',main:'#e3e9e5',style:'solid'},{id:'orange',main:'#f2a75a',style:'solid'},
+ {id:'lime',main:'#d8ed68',style:'solid'},{id:'pink',main:'#ed6fc1',style:'solid'},
+ {id:'blue',main:'#6a88df',style:'solid'},{id:'green',main:'#76d479',style:'solid'},
+ {id:'magenta',main:'#ed53b7',style:'solid'},{id:'charcoal',main:'#121820',style:'solid'}
+];
+function v61KitColorDistance(first,second){
+ const rgb=color=>[1,3,5].map(index=>parseInt(color.slice(index,index+2),16));
+ const a=rgb(first),b=rgb(second);return Math.hypot(...a.map((value,index)=>value-b[index]));
+}
+function v61KitHue(color){
+ const [r,g,b]=[1,3,5].map(index=>parseInt(color.slice(index,index+2),16)),max=Math.max(r,g,b),min=Math.min(r,g,b),delta=max-min;
+ if(!max||delta/max<.35)return null;
+ const hue=max===r?(g-b)/delta:max===g?(b-r)/delta+2:(r-g)/delta+4;
+ return (hue*60+360)%360;
+}
+function v61HarmoniousKitColors({primary,secondary,tertiary}){
+ const colors=[primary,secondary,tertiary];
+ if(colors.some(color=>typeof color!=='string'||!/^#[0-9a-f]{6}$/i.test(color))||new Set(colors.map(color=>color.toLowerCase())).size!==3)return false;
+ if(v61KitColorDistance(primary,secondary)<60||Math.min(v61KitColorDistance(primary,tertiary),v61KitColorDistance(secondary,tertiary))<100)return false;
+ const hues=colors.map(v61KitHue).filter(hue=>hue!==null);
+ return hues.length<3||hues.some((hue,index)=>hues.some((other,otherIndex)=>otherIndex>index&&Math.min(Math.abs(hue-other),360-Math.abs(hue-other))<=65));
+}
+function v61KeeperTrim(main){
+ const rgb=[1,3,5].map(index=>parseInt(main.slice(index,index+2),16));
+ return (rgb[0]*.299+rgb[1]*.587+rgb[2]*.114)<145?'#f3f5f2':'#1d2329';
+}
+function v61BuildClubKits(entry,chosenColors=null,chosenStyles=null){
+ const [primaryName,secondaryName]=entry.colors.split('/'),tertiaryName=v61KitTertiary[entry.id];
+ const primary=chosenColors?.primary||v61Colors[primaryName],secondary=chosenColors?.secondary||v61Colors[secondaryName],tertiary=chosenColors?.tertiary||v61Colors[tertiaryName];
+ if(!v61HarmoniousKitColors({primary,secondary,tertiary}))throw Error(`Ungültige Trikotfarben für ${entry.id}`);
+ const index=v61Catalog.findIndex(club=>club.id===entry.id);
+ const home={main:primary,pattern:secondary,accent:tertiary,style:chosenStyles?.home||v61KitStyles[index%v61KitStyles.length]};
+ const away={main:tertiary,pattern:secondary,accent:primary,style:chosenStyles?.away||v61KitStyles[(index+3)%v61KitStyles.length]};
+ let best=null;
+ for(let first=0;first<v61KeeperPalette.length;first++)for(let second=first+1;second<v61KeeperPalette.length;second++){
+  const a=v61KeeperPalette[first],b=v61KeeperPalette[second];
+  const contrast=Math.min(v61KitColorDistance(a.main,b.main),...[a,b].flatMap(keeper=>[primary,secondary,tertiary].map(field=>v61KitColorDistance(keeper.main,field))));
+  if(!best||contrast>best.contrast)best={first:a,second:b,contrast};
+ }
+ if(best.contrast<100)throw Error(`Kein klares Torwarttrikotpaar für ${entry.id}`);
+ const keepers=[best.first,best.second].map(({id,main,style})=>({id,main,trim:v61KeeperTrim(main),style}));
+ return{colors:{primary,secondary,tertiary},home,away,keepers};
+}
+function v61ValidClubKits(kits){
+ if(!kits?.colors||!kits.home||!kits.away||!Array.isArray(kits.keepers)||kits.keepers.length!==2)return false;
+ const {primary,secondary,tertiary}=kits.colors;
+ if(!v61HarmoniousKitColors({primary,secondary,tertiary}))return false;
+ if(kits.home.main!==primary||kits.home.pattern!==secondary||kits.home.accent!==tertiary||kits.away.main!==tertiary||kits.away.pattern!==secondary||kits.away.accent!==primary)return false;
+ if(!v61KitStyles.includes(kits.home.style)||!v61KitStyles.includes(kits.away.style))return false;
+ if(kits.keepers.some(kit=>!kit||!v61KeeperPalette.some(option=>option.id===kit.id&&option.main===kit.main&&option.style===kit.style)||kit.trim!==v61KeeperTrim(kit.main)))return false;
+ return kits.keepers[0].id!==kits.keepers[1].id&&Math.min(v61KitColorDistance(kits.keepers[0].main,kits.keepers[1].main),...kits.keepers.flatMap(kit=>[primary,secondary,tertiary].map(field=>v61KitColorDistance(kit.main,field))))>=100;
+}
+function v61MatchFieldKit(club,home){
+ const kit=club.kits?.[home?'home':'away'];
+ if(kit)return{...kit,trim:kit.pattern};
+ const colors=v61ClubColors(club);return{main:colors[home?0:1],trim:colors[home?1:0],style:'stripe'};
+}
+function v61SelectMatchKits(own,opponent,ownIsHome){
+ const desired=[ownIsHome?0:1,ownIsHome?1:0],choices=[own,opponent].map(club=>[v61MatchFieldKit(club,true),v61MatchFieldKit(club,false)]);
+ const keeperChoices=[own,opponent].map((club,index)=>club.kits?.keepers?.length===2?club.kits.keepers:[{main:index?'#516bb4':'#e7b957',trim:'#ffffff',style:'solid'}]);
+ const candidates=[];
+ for(let first=0;first<2;first++)for(let second=0;second<2;second++)for(const userKeeper of keeperChoices[0])for(const opponentKeeper of keeperChoices[1]){
+  const user=choices[0][first],opponentKit=choices[1][second];
+  const colors=[user.main,opponentKit.main,userKeeper.main,opponentKeeper.main];
+  const contrast=Math.min(...colors.flatMap((color,index)=>colors.slice(index+1).map(other=>v61KitColorDistance(color,other))));
+  candidates.push({user,opponent:opponentKit,userKeeper,opponentKeeper,contrast,swaps:Number(first!==desired[0])+Number(second!==desired[1])});
+ }
+ const clear=candidates.filter(candidate=>candidate.contrast>=100);
+ const selected=(clear.length?clear.sort((a,b)=>a.swaps-b.swaps||b.contrast-a.contrast):candidates.sort((a,b)=>b.contrast-a.contrast||a.swaps-b.swaps))[0];
+ return{user:selected.user,opponent:selected.opponent,userKeeper:{...selected.userKeeper},opponentKeeper:{...selected.opponentKeeper}};
+}
+function v61ClubColors(club){if(club.kits?.colors)return[club.kits.colors.primary,club.kits.colors.secondary];const[a,b]=club.colors.split('/');return[v61Colors[a]||'#c7f36b',v61Colors[b]||'#142629']}
+function v61ClubColorLabel(club){
+ if(!club.kits?.colors)return club.colors;
+ const name=color=>Object.entries(v61Colors).find(([,value])=>value.toLowerCase()===color.toLowerCase())?.[0]||color.toUpperCase();
+ const {primary,secondary,tertiary}=club.kits.colors;
+ return [primary,secondary,tertiary].map(name).join('/');
+}
+const v61CrestGlyphs={
+ A:[14,17,17,31,17,17,17],B:[30,17,17,30,17,17,30],C:[15,16,16,16,16,16,15],D:[30,17,17,17,17,17,30],E:[31,16,16,30,16,16,31],F:[31,16,16,30,16,16,16],G:[15,16,16,23,17,17,15],H:[17,17,17,31,17,17,17],I:[14,4,4,4,4,4,14],J:[7,2,2,2,18,18,12],K:[17,18,20,24,20,18,17],L:[16,16,16,16,16,16,31],M:[17,27,21,21,17,17,17],N:[17,25,21,19,17,17,17],O:[14,17,17,17,17,17,14],P:[30,17,17,30,16,16,16],Q:[14,17,17,17,21,18,13],R:[30,17,17,30,20,18,17],S:[15,16,16,14,1,1,30],T:[31,4,4,4,4,4,4],U:[17,17,17,17,17,17,14],V:[17,17,17,17,17,10,4],W:[17,17,17,21,21,21,10],X:[17,17,10,4,10,17,17],Y:[17,17,10,4,4,4,4],Z:[31,1,2,4,8,16,31]
+};
 function v61CrestSVG(club){
- const[main,trim]=v61ClubColors(club),variant=v61Catalog.findIndex(entry=>entry.id===club.id)%4,initials=club.name.split(/\s+/).filter(word=>!['FC','SC','SV','AC','AFC','CF'].includes(word)).slice(0,2).map(word=>word[0]).join('').toUpperCase();
- const mark=[`<path d="M14 45h44" stroke="${trim}" stroke-width="9"/>`,`<path d="M23 14v48M49 14v48" stroke="${trim}" stroke-width="7"/>`,`<path d="M16 58 56 18" stroke="${trim}" stroke-width="11"/>`,`<path d="M15 28h42M15 49h42" stroke="${trim}" stroke-width="7"/>`][variant];
- return`<svg class="v61-crest" viewBox="0 0 72 84" role="img" aria-label="Vereinslogo ${escapeHTML(club.name)}"><title>Vereinslogo ${escapeHTML(club.name)}</title><path d="M8 7h56v39c0 16-11 27-28 32C19 73 8 62 8 46Z" fill="${main}" stroke="${trim}" stroke-width="5"/><path d="M12 10h48v35c0 14-9 23-24 28-15-5-24-14-24-28Z" fill="none" stroke="#ffffff55" stroke-width="1.5"/>${mark}<rect x="16" y="31" width="40" height="25" rx="4" fill="#102126e8"/><text x="36" y="49" text-anchor="middle" fill="#fff" font-size="17" font-family="Barlow Condensed,Arial,sans-serif" font-weight="800">${escapeHTML(initials)}</text></svg>`;
+ const[main,trim]=v61ClubColors(club),accent=club.kits?.colors?.tertiary||'#f1e5cc',variant=v61Catalog.findIndex(entry=>entry.id===club.id)%4;
+ const initials=club.name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').split(/\s+/).filter(word=>!['FC','SC','SV','AC','AFC','CF'].includes(word)).slice(0,2).map(word=>word[0]).join('').toUpperCase();
+ const mark=[`<rect x="32" y="18" width="8" height="48" fill="${trim}"/>`,`<rect x="20" y="18" width="6" height="48" fill="${trim}"/><rect x="46" y="18" width="6" height="48" fill="${trim}"/>`,`<path d="M14 54h8v-8h8v-8h8v-8h8v-8h8v8h-8v8h-8v8h-8v8h-8v8h-8Z" fill="${trim}"/>`,`<rect x="14" y="22" width="44" height="6" fill="${trim}"/><rect x="14" y="54" width="44" height="6" fill="${trim}"/>`][variant];
+ const letters=initials.split('').slice(0,2),letterWidth=letters.length*17-2,startX=Math.round((72-letterWidth)/2),ink=v61KeeperTrim(trim);
+ const glyphs=letters.map((letter,index)=>(v61CrestGlyphs[letter]||v61CrestGlyphs.C).map((bits,row)=>[16,8,4,2,1].map((bit,col)=>bits&bit?`<rect x="${startX+index*17+col*3}" y="${34+row*3}" width="3" height="3"/>`:'').join('')).join('')).join('');
+ return`<svg class="v61-crest" viewBox="0 0 72 84" role="img" aria-label="Vereinslogo ${escapeHTML(club.name)}" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><title>Vereinslogo ${escapeHTML(club.name)}</title><path d="M8 4h56v8h4v42h-4v10h-4v4h-4v4h-8v4H40v4h-8v-4h-8v-4h-8v-4h-4v-4H8V54H4V12h4Z" fill="#101820"/><path d="M10 8h52v6h2v38h-2v10h-4v4h-4v4h-8v4H26v-4h-8v-4h-4v-4h-4V52H8V14h2Z" fill="${trim}"/><path d="M14 14h44v40h-4v10h-4v4H22v-4h-4V54h-4Z" fill="${main}"/><rect x="14" y="14" width="44" height="4" fill="${accent}"/>${mark}<rect x="16" y="30" width="40" height="28" fill="${accent}"/><rect x="18" y="32" width="36" height="24" fill="${trim}"/><g fill="${ink}">${glyphs}</g><rect x="28" y="64" width="16" height="4" fill="${accent}"/></svg>`;
 }
 function v61FlagSVG(countryId){
- if(countryId==='ENG')return'<svg class="flag-icon v61-country-flag" viewBox="0 0 24 16" role="img" aria-label="England"><title>England</title><path fill="#fff" d="M0 0h24v16H0z"/><path fill="#c8102e" d="M10 0h4v16h-4zM0 6h24v4H0z"/></svg>';
- return flagSVG({ESP:'ES',ITA:'IT',GER:'DE',FRA:'FR',POR:'PT'}[countryId]||countryId);
+ return v79FlagSVG(countryId);
 }
 function v61RosterHTML(roster){const order={gk:0,def:1,mid:2,att:3};return`<div class="v61-roster">${[...roster].sort((a,b)=>(order[a.line]??4)-(order[b.line]??4)||a.name.localeCompare(b.name,'de')).map(player=>`<button type="button" class="v61-player" data-v61-player="${escapeHTML(player.pid)}" aria-label="Profil von ${escapeHTML(player.name)} öffnen"><span class="v61-shirt">${player.n}</span><span class="v61-player-name">${v61FlagSVG(player.nation)}<strong>${escapeHTML(player.name)}</strong><small>${v61PositionNames[player.line]} · ${player.age} Jahre</small></span></button>`).join('')}</div>`}
 function v61SeasonRosterHTML(career,roster){
@@ -200,7 +383,7 @@ function v61RenderFlow(){
  if(step==='clubs')v61WorldScreen.innerHTML=`${header}<div class="v61-flow-head"><button class="menu-action" data-v61-back="country">Alle Länder</button><h1>${v61FlagSVG(countryId)} ${v61CountryNames[countryId]}</h1><p>Tippe auf einen Verein, um Geschichte und Kader anzusehen.</p></div><div class="v61-club-grid">${v61Catalog.filter(club=>club.id.startsWith(`${countryId}-`)&&!club.id.includes('-C')).map(club=>`<button type="button" class="v61-club-choice" data-v61-club="${club.id}">${v61CrestSVG(club)}<span><strong>${escapeHTML(club.name)}</strong><small>${escapeHTML(club.city)}</small><em>${escapeHTML(club.history)}</em></span><b aria-hidden="true">↗</b></button>`).join('')}</div>`;
  if(step==='club'){
   const club=v61Catalog.find(entry=>entry.id===clubId),roster=v61GenerateRoster(club,seed);
-  v61WorldScreen.innerHTML=`${header}<div class="v61-flow-head"><button class="menu-action" data-v61-back="clubs">Vereine in ${v61CountryNames[countryId]}</button></div><section class="v61-club-hero">${v61CrestSVG(club)}<div><p>${v61FlagSVG(countryId)} ${escapeHTML(v61CountryNames[countryId])} · ${escapeHTML(club.city)}</p><h1>${escapeHTML(club.name)}</h1><p>${escapeHTML(club.history)}</p><small>Vereinsfarben: ${escapeHTML(club.colors)}</small></div></section><section class="v61-roster-section"><div class="v61-roster-head"><div><h2>Startkader</h2><p>Elf Profis · Spieler öffnen für das vollständige Profil.</p></div><button type="button" class="primary" data-v61-create="${club.id}">Verein übernehmen <span>↗</span></button></div>${v61RosterHTML(roster)}</section>`;
+  v61WorldScreen.innerHTML=`${header}<div class="v61-flow-head"><button class="menu-action" data-v61-back="clubs">Vereine in ${v61CountryNames[countryId]}</button></div><section class="v61-club-hero">${v61CrestSVG(club)}<div><p>${v61FlagSVG(countryId)} ${escapeHTML(v61CountryNames[countryId])} · ${escapeHTML(club.city)}</p><h1>${escapeHTML(club.name)}</h1><p>${escapeHTML(club.history)}</p><small>Vereinsfarben: ${escapeHTML(v61ClubColorLabel(club))}</small></div></section><section class="v61-roster-section"><div class="v61-roster-head"><div><h2>Startkader</h2><p>Elf Profis · Spieler öffnen für das vollständige Profil.</p></div><button type="button" class="primary" data-v61-create="${club.id}">Verein übernehmen <span>↗</span></button></div>${v61RosterHTML(roster)}</section>`;
  }
 }
 
@@ -220,7 +403,7 @@ const v61CareerTabs=[...v46Tabs.slice(0,4),['calendar',v46Icon('<rect x="3" y="5
 function v61RenderCareer(career){
  const club=career.world.clubs.find(item=>item.id===career.manager.managedClubId),views=v62CareerViewsHTML(career),honours=career.world.competitions.filter(item=>item.winnerId===club.id).map(item=>`<li>Saison ${item.season} · ${item.type==='league'?'Meister':item.type==='cup'?'Pokalsieger':'Europacupsieger'}</li>`).join('');
  views.overview+=v63NewsHTML(career);
- const hero=`<section class="v61-club-hero">${v61CrestSVG(club)}<div><p>${v61FlagSVG(club.countryId)} ${escapeHTML(v61CountryNames[club.countryId])} · ${escapeHTML(club.city)}</p><h2>${escapeHTML(club.name)}</h2><p>${escapeHTML(club.historyText)}</p><small>Vereinsfarben: ${escapeHTML(club.colors)}</small></div></section>${v63LeagueCoachesHTML(career)}`;
+ const hero=`<section class="v61-club-hero">${v61CrestSVG(club)}<div><p>${v61FlagSVG(club.countryId)} ${escapeHTML(v61CountryNames[club.countryId])} · ${escapeHTML(club.city)}</p><h2>${escapeHTML(club.name)}</h2><p>${escapeHTML(club.historyText)}</p><small>Vereinsfarben: ${escapeHTML(v61ClubColorLabel(club))}</small></div></section>${v63LeagueCoachesHTML(career)}`;
  v61WorldScreen.innerHTML=`<div class="v61-career-head">${v61CrestSVG(club)}<div><p class="eyebrow">Saison ${career.world.season} · ${escapeHTML(v61CountryNames[club.countryId])}</p><h1>${escapeHTML(club.name)}</h1></div></div><nav class="v46-nav v61-career-nav" aria-label="Karrieremenü">${v61CareerTabs.map(([key,icon,label])=>`<button type="button" data-v61-tab="${key}" ${key==='transfers'?'disabled aria-label="Transfers, noch nicht verfügbar"':''}><span aria-hidden="true">${icon}</span>${label}</button>`).join('')}</nav><div data-v46-view="overview">${views.overview}</div><div data-v46-view="squad"><h2 class="v46-view-heading">Kader</h2><section class="v61-roster-section"><div class="v61-roster-head"><div><h3>Aktueller Kader</h3><p>Elf fest gespeicherte Profis · Spieler öffnen für das Profil.</p></div></div>${v61SeasonRosterHTML(career,club.roster)}</section></div><div data-v46-view="competition">${views.competition}</div><div data-v46-view="calendar">${views.calendar}</div><div data-v46-view="statistics">${views.statistics}</div><div data-v46-view="club"><h2 class="v46-view-heading">Verein</h2>${hero}<section class="v62-season"><h3>Erfolge dieser Karriere</h3>${honours?`<ul class="v61-honours">${honours}</ul>`:'<p>Noch kein Titel gewonnen.</p>'}</section></div>`;
  v61SetCareerTab(v61CareerTab,false);
  v61ShowScreen();

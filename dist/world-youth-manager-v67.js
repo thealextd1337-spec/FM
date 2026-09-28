@@ -5,23 +5,29 @@ const v67SkillKeys=['tec','pas','fin','tak','pos','spd','sta','air','gk'];
 function v67Smooth(club){const history=club.youthInvestmentHistory||[];return(history.at(-1)?.amount||0)*.45+(history.at(-2)?.amount||0)*.35+(history.at(-3)?.amount||0)*.2}
 function v67Youth(career,club,season,slot,start=false){
  const random=v61Random(`${career.world.seed}:${club.id}:youth:S${season}:${slot}`),line=slot===0&&(start||season%3===club.policy.youth%3)?'gk':['def','mid','att','mid','def'][slot%5];
- const nation=random()<.84?club.countryId:v61Countries[Math.floor(random()*v61Countries.length)][0],names=v61Names[nation],name=`${names[0][Math.floor(random()*names[0].length)]} ${names[1][Math.floor(random()*names[1].length)]}`;
+ const pid=`${career.world.seed}:${club.id}:Y${season}:${slot}`;
+ const nation=v79YouthNation(club.countryId,pid),usedNames=new Set([...(club.roster||[]),...(club.youthPool||[])].map(player=>player.name)),name=v79PlayerName(nation,pid,usedNames);
+ // Keep the former identity draws consumed so the same seed retains its talent rolls.
+ if(random()>=.84)random();
+ random();random();
  const smooth=v67Smooth(club);
  const investmentBonus=Math.min(5,Math.min(2,smooth/100)+Math.log1p(Math.max(0,smooth-200)/250)*1.5);
  const talentRoll=Math.pow(random(),Math.max(.75,2.4-smooth/900));
  const talent=talentRoll<.7?-2.2+talentRoll/.7*1.2:talentRoll<.94?-1+(talentRoll-.7)/.24*2.2:1.2+(talentRoll-.94)/.06*2.8;
  const quality=(club.policy.startingSquad-3)*.65+investmentBonus*.3+talent*1.15,age=16+Math.floor(random()*4);
- const player={pid:`${career.world.seed}:${club.id}:Y${season}:${slot}`,n:0,name,nation,age,line,assignedLine:line,keeper:line==='gk',type:v61PositionNames[line],foot:random()<.2?'Links':'Rechts',form:0,fresh:100,history:[],seasons:[],honours:[],discoveredSeason:season,expiresAfterSeason:start?2:season+2,compensationRate:Math.round((.2+random()*.1)*100)/100,developmentMinutes:0,potential:{}};
+ const player={pid,n:0,name,nation,age,line,assignedLine:line,keeper:line==='gk',type:v61PositionNames[line],foot:random()<.2?'Links':'Rechts',form:0,fresh:100,history:[],seasons:[],honours:[],discoveredSeason:season,expiresAfterSeason:start?2:season+2,compensationRate:Math.round((.2+random()*.1)*100)/100,developmentMinutes:0,potential:{}};
  for(const[key,base]of Object.entries(v61SkillBases[line])){
   player[key]=Math.max(1,Math.min(20,Math.round(base-2.8+quality+(random()-.5)*3)));
   player.potential[key]=Math.min(20,player[key]+1+Math.floor(random()*(smooth>1000?6:smooth>250?5:4)));
  }
+ player.appearance=v61GenerateAppearance(pid,nation,player.age,[...(club.roster||[]),...(club.youthPool||[])]);
  return player;
 }
 function v67Init(career){
  for(const club of career.world.clubs){
   const random=v61Random(`${career.world.seed}:${club.id}:starting-youth`),count=2+Math.floor(random()*3);
-  club.youthPool=Array.from({length:count},(_,slot)=>v67Youth(career,club,0,slot,true));
+  club.youthPool=[];
+  for(let slot=0;slot<count;slot++)club.youthPool.push(v67Youth(career,club,0,slot,true));
   club.youthBudget=0;club.youthInvestmentHistory=[];
  }
  career.manager.reputation=2.5;career.manager.assessments=[];career.manager.seasonResults=[];

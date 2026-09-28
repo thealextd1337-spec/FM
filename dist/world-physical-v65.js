@@ -47,8 +47,8 @@ function v65ApplyTactics(context){
 function v65CreateMatch(context){
  const people=[];
  for(const physical of [0,1])for(const pid of v64Active(context.state,v65Side(physical,context.ownSide)))people.push(v65PhysicalPlayer(context,physical,pid));
- const home=v65Club(context,0),away=v65Club(context,1),homeColors=v61ClubColors(home),awayColors=v61ClubColors(away);
- match={people,exitedPeople:[],refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:away.name,kits:{user:{main:homeColors[0],trim:homeColors[1],style:'stripe'},opponent:{main:awayColors[0],trim:awayColors[1],style:'stripe'},userKeeper:{main:'#e7b957',trim:'#ffffff',style:'solid'},opponentKeeper:{main:'#516bb4',trim:'#ffffff',style:'solid'}}};
+ const own=v65Club(context,0),opponent=v65Club(context,1),kits=v61SelectMatchKits(own,opponent,context.ownSide===0);
+ match={people,exitedPeople:[],refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:opponent.name,kits};
  for(const pose of ['raised','far','middle','penalty'])v55RefereeImage(v55RefereeAsset(pose));
  v65ApplyTactics(context);kickoff(0);note('Bereit zum Anpfiff.','restart');
 }
@@ -149,7 +149,7 @@ function v65NeedsPenalties(context){
 function v65PenaltySession(context){
  const own=match.people.filter(person=>person.t===0).map(person=>({...v42Player(person,{...person,fresh:context.state.fresh[person.pid]??person.fresh}),pid:person.pid}));
  const opponent=match.people.filter(person=>person.t===1).map(person=>({...v42Player(person,{...person,fresh:context.state.fresh[person.pid]??person.fresh}),pid:person.pid}));
- return{mode:'world',competition:v62Current(context.career).find(item=>item.id===context.fixture.competitionId)?.type,ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,ownColour:match.kits.user,opponentColour:match.kits.opponent,own,opponent,order:v42Sorted(own).map(person=>person.n),opponentOrder:v42Sorted(opponent).map(person=>person.n),score:[0,0],kicks:[],phase:'choose'};
+ return{mode:'world',competition:v62Current(context.career).find(item=>item.id===context.fixture.competitionId)?.type,ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,ownColour:match.kits.user,opponentColour:match.kits.opponent,keeperKits:[match.kits.userKeeper,match.kits.opponentKeeper],own,opponent,order:v42Sorted(own).map(person=>person.n),opponentOrder:v42Sorted(opponent).map(person=>person.n),score:[0,0],kicks:[],phase:'choose'};
 }
 function v65BookWorldMatch(context){
  const state=context.state;

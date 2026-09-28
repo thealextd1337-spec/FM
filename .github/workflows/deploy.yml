@@ -60,6 +60,11 @@ jobs:
           node work/test-v56.cjs
           node work/test-duel-streaks.cjs
           node work/test-v57.cjs
+          node work/test-world-nationalities-v79.cjs
+          node work/test-world-market-nationalities-v79.cjs
+          node work/test-world-kits-v81.cjs
+          node work/test-world-goal-scene-v83.cjs
+          node work/test-world-goal-banner-v84.cjs
           node work/test-world-foundation-v61.cjs
           node work/test-world-competition-v62.cjs
           node work/test-world-coaches-v63.cjs
@@ -85,7 +90,9 @@ jobs:
           python3 work/test_deploy_ftps.py
 
       - name: Einzeldatei bauen
-        run: node work/build.cjs
+        run: |
+          node work/build.cjs
+          node work/test-no-player-images.cjs
 
       - name: Per FTPS zu World4You hochladen und Live-Datei prüfen
         env:

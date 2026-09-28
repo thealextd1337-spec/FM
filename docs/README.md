@@ -3,6 +3,8 @@
 ## Inhalt
 
 - [Produktregeln](product.md): feste Entscheidungen zu Spiel, Karriere, Oberfläche und Pokal.
+- [Vereinstrikots und Wappen](vereinstrikots-vorschau.html): Farben, Muster und Wappen aller 48 Vereine.
+- [Nationalitäten und Herkunft](nationalitaeten-plan.md): neuer Länderpool für Profis, Jugend und freie Spieler.
 - [Trophäen-Sprites der Vereinswelt](trophy-sprites-plan.md): Länder- und Awardmotive, Flaggen und Grafikdateien.
 - [KI-Vereine und Trainer – Entwurf](ki-vereine-trainer-entwurf.md): Plan für Computervereine, Trainerkarrieren und taktische Entscheidungen.
 - [Vereinsmodell – Entwurf](vereinsmodell-entwurf.md): Identität, 36 unterschiedliche Startprofile, langsame Entwicklung und Balance der fiktiven Vereine.

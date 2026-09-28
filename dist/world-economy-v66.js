@@ -53,10 +53,17 @@ function v66MakeSponsors(career,club){
 function v66NewFreeAgents(career){
  const season=career.world.season;
  const slotsByCountry=season===1?[[0,2],[4,8],[1,5],[0,9],[2],[6]]:[[0,2,7],[0,4,8],[0,1,5],[0,3,9],[0,2,6],[0,1,6]];
+ const usedNames=new Set(career.world.market?.freePlayers?.map(player=>player.name)||[]),generated=[];
  return v61Countries.flatMap(([country],countryIndex)=>{
   const random=v61Random(`${career.world.seed}:S${season}:${country}:free-agents`),quality=2+Math.floor(random()*3),entry={id:`${country}-FREE-S${season}`,profile:[0,0,0,0,0,quality]};
   const roster=v61GenerateRoster(entry,career.world.seed);
-  return slotsByCountry[countryIndex].map((index,slot)=>{const player=roster[index];player.pid=`${career.world.seed}:S${season}:${country}:FREE${slot+1}`;player.freeSinceSeason=season;return player});
+  return slotsByCountry[countryIndex].map((index,slot)=>{
+   const player=roster[index];player.pid=`${career.world.seed}:S${season}:${country}:FREE${slot+1}`;
+   player.nation=v79ProfessionalNation(country,player.pid,'free');
+   player.name=v79PlayerName(player.nation,player.pid,usedNames);usedNames.add(player.name);
+   player.appearance=v61GenerateAppearance(player.pid,player.nation,player.age,[...(career.world.market?.freePlayers||[]),...generated]);generated.push(player);
+   player.freeSinceSeason=season;return player;
+  });
  });
 }
 function v66CompactLedger(club,season){

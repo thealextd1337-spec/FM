@@ -2,6 +2,12 @@
 
 ## Noch nicht veröffentlicht
 
+- Spielerprofile und Toranzeigen enthalten bis zur Überarbeitung der Bildqualität keine Spielerporträts oder Jubelbilder. Das gilt auch für Nachwuchsspieler. Die übrige Jugendspieler-Erzeugung und die gespeicherten Spielstände bleiben erhalten.
+- Neue Vereinswelten erhalten abgestimmte Heim-, Auswärts- und Torwarttrikots, editierbare Muster und Wappen in Vereinsfarben. Match und Elfmeterschießen verwenden die gespeicherte Trikotauswahl.
+- Der Pool umfasst 101 Spielernationalitäten mit ligaabhängigen Herkunftsgewichten für Startprofis, Jugend und freie Spieler. Marktfilter unterscheiden Vereinsland und Nationalität.
+- Im Vereinswelt-Match animieren Netz und Ball nach Toren den Weg hinter der Linie. Der Torbanner zeigt Torschützenname, Ergebnis, Vereinswappen und Wettbewerbstore ohne Spielerbild.
+
+
 ## 2026-09-27 (Trophäen und Siegerfeiern)
 
 - Meisterschaft, nationaler Pokal, Torschützenkönig, Spieler der Saison und „Man of the Match“ zeigen nun je Land eigene 16-Bit-Grafiken mit eingearbeiteter Landesflagge. Europacup und internationale Matchauszeichnungen erhalten eigene Motive. Kleine Tabellenzeichen nutzen vereinfachte 24-Pixel-Versionen; große Ansichten bewahren die Qualität der Bildvorlagen. Die Grafiken erscheinen in Wettbewerben, Matchbericht, Vereins- und Spielerprofilen sowie im Saisonrückblick; das Spielerprofil gruppiert Matchauszeichnungen nach Land. Bestehende Erfolge bleiben unverändert. Motive und Neuerzeugung sind dokumentiert. Geprüft mit Weltansichts-, Award- und Berichttests sowie dem Einzeldatei-Build und einer Kontrolle aller 64 Bilddateien.
