@@ -168,3 +168,5 @@ Diese Regeln gelten für neue Karrieren ab Spielstandschema 5.
 - Weitere Vorschläge zu Vereinscharakteren, Kaderplanung, Transfers, Nachwuchs, Finanzen und Trainerkarrieren stehen in [KI-Vereine und Trainer – Entwurf](ki-vereine-trainer-entwurf.md), [Vereinsmodell – Entwurf](vereinsmodell-entwurf.md) und [Spielerverträge – Entwurf](spielervertraege-entwurf.md). Die 48 fiktiven Vereinsnamen und Farben sind im [Vereinskatalog](vereinskatalog-entwurf.md) redaktionell festgelegt; Zahlenwerte bleiben zu kalibrieren.
 
 - Veröffentlichungsstand ab Prototyp 80/81: Spielerporträts und Jubelbilder bleiben bis zur Überarbeitung der Bildqualität deaktiviert. Die lokalen Sprite-Entwürfe sind keine Freigabe für den Live-Build; Jugendgenerierung, Flaggen, Wappen und Torbanner ohne Spielerbild bleiben aktiv.
+
+- Eigene Ablösegebote bleiben im aktuellen Transferfenster samt Ergebnissen oben im Transfermarkt sichtbar. Neue Ablehnungen erscheinen nach dem Tageswechsel als bestätigungspflichtiger Transferdialog mit Klubwappen und Grund; bestätigte Meldungen werden nicht wiederholt.

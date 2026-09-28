@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-28 (Prototyp 82 · Sichtbare Transferantworten)
+
+- Eigene Ablösegebote bleiben einschließlich abgelehnter und abgeschlossener Verhandlungen oben im Transfermarkt unter „Deine Angebote & Ergebnisse“ sichtbar. Jede Zeile nennt Status und letzte Antwort. Neue Absagen werden nach dem Tageswechsel mit Spieler, beiden Klubwappen und Ablehnungsgrund zur Bestätigung angezeigt; sie werden nicht mehr automatisch als gelesen verworfen. Alte bestätigte Meldungen werden nicht rückwirkend geöffnet. Regressionstests prüfen zwei gleichzeitige Gebote sowie Zeitpunkt und einmalige Bestätigung der Absage.
+
 ## 2026-09-28 (Prototyp 81 · Flaggen, Transfers und Saisonrückblick)
 
 - Veröffentlicht werden alle aktuellen Vereinswelt-Korrekturen: 101 SVG-Flaggen, getrennte Transferverhandlungen mit sichtbarem Status, dauerhafte Tornetze, kompakte Tabellenplätze, neuer Wechselbanner, Speichern & Start, korrigierte Startseiten-Navigation, Titelkonfetti, überarbeiteter Saisonrückblick mit Awards und Durchschnittsnoten sowie anklickbare Sieger und wettbewerbsspezifische Titelzeichen. Auch die 48 individuellen Vereinswappen sind enthalten.

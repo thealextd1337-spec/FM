@@ -890,6 +890,8 @@ Entscheidung beim Tageswechsel	Decision on the next market day
 Vorherige Runde	Previous round
 Nächste Runde	Next round
 Angebot zurückziehen	Withdraw offer
+Deine Angebote & Ergebnisse	Your offers & results
+Transfer abgelehnt	Transfer rejected
 Laufende Verhandlungen	Ongoing negotiations
 Dialog öffnen	Open dialog
 Ablöse verhandeln	Negotiate transfer fee

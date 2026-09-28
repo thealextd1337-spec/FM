@@ -90,7 +90,7 @@ function v72CanCommitSale(career,sellerId,pid){const seller=v66Club(career,selle
 function v72Queue(career,negotiation,kind,message){
  const market=v72Market(career),id=`${negotiation.id}:${kind}`;
  if(market.transferResults.some(item=>item.id===id))return;
- market.transferResults.push({id,negotiationId:negotiation.id,pid:negotiation.pid,buyerId:negotiation.buyerId,sellerId:negotiation.sellerId,kind,price:negotiation.agreedPrice??negotiation.price,message,day:market.day,released:false,seen:kind!=='completed'});
+ market.transferResults.push({id,negotiationId:negotiation.id,pid:negotiation.pid,buyerId:negotiation.buyerId,sellerId:negotiation.sellerId,kind,price:negotiation.agreedPrice??negotiation.price,message,day:market.day,released:false,seen:false});
 }
 function v72ReleaseResults(career){for(const result of v72Market(career).transferResults)result.released=true}
 function v72Reject(career,negotiation,reason){

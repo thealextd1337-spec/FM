@@ -50,10 +50,10 @@ function v72OwnListingsHTML(career){
  }).join('');
  return`<section class="v72-own-sales" id="v72-own-sales"><h3>Eigene Verkaufsangebote</h3><p>Ohne Kaufangebot kannst du die öffentliche Forderung während des Transferfensters senken. Gebote und Gegenforderungen gelten nur für den jeweiligen Käufer.</p>${cards}<p id="v72-own-message" class="v61-error" role="alert"></p></section>`;
 }function v72NegotiationsHTML(career){
- const own=career.manager.managedClubId,items=v72Market(career).negotiations.filter(item=>item.buyerId===own&&!['completed','rejected'].includes(item.stage));
+ const own=career.manager.managedClubId,items=[...v72Market(career).negotiations].filter(item=>item.buyerId===own).reverse();
  if(!items.length)return'';
- const label={"refusal-wait":'Entscheidung beim Tageswechsel',"fee-wait":'Vereinsantwort ausstehend',"fee-counter":'Gegenforderung des Vereins',contract:'Spielervertrag anbieten',"contract-wait":'Spielerantwort ausstehend',"contract-counter":'Gegenforderung des Spielers',ready:'Entscheidung beim Tageswechsel'};
- return`<section class="v72-open-deals"><h3>Laufende Verhandlungen</h3>${items.map(item=>`<div><span><button type="button" class="v72-player-name" data-v68-player="${escapeHTML(item.pid)}">${escapeHTML(v66Player(career,item.pid)?.name||item.pid)}</button><small>${label[item.stage]||item.stage} · ${escapeHTML(v66Club(career,item.sellerId)?.name||'Verein')}</small></span><button type="button" data-v72-deal="${escapeHTML(item.id)}">Dialog öffnen</button></div>`).join('')}</section>`;
+ const label={completed:'Transfer abgeschlossen',rejected:'Transfer abgelehnt',"refusal-wait":'Entscheidung beim Tageswechsel',"fee-wait":'Vereinsantwort ausstehend',"fee-counter":'Gegenforderung des Vereins',contract:'Spielervertrag anbieten',"contract-wait":'Spielerantwort ausstehend',"contract-counter":'Gegenforderung des Spielers',ready:'Entscheidung beim Tageswechsel'};
+ return`<section class="v72-open-deals"><h3>Deine Angebote & Ergebnisse</h3>${items.map(item=>`<div><span><button type="button" class="v72-player-name" data-v68-player="${escapeHTML(item.pid)}">${escapeHTML(v66Player(career,item.pid)?.name||item.pid)}</button><small>${label[item.stage]||item.stage} · ${escapeHTML(v66Club(career,item.sellerId)?.name||'Verein')}</small><small>${escapeHTML(item.lastChange||'')}</small></span><button type="button" data-v72-deal="${escapeHTML(item.id)}">Dialog öffnen</button></div>`).join('')}</section>`;
 }
 const v72BaseOfferHTML=v66OfferHTML;
 v66OfferHTML=function(career){
@@ -69,7 +69,7 @@ v66OfferHTML=function(career){
  return`<section class="v66-offer" id="v66-offer"><h3>${escapeHTML(player.name)} steht zum Verkauf</h3><p>${escapeHTML(club.name)} · Verhandelbare Ablöse ${v66Credits(listing.ask)} · Marktwert ${v66Credits(v66Value(player))}</p><button type="button" class="menu-action" data-v72-open="${escapeHTML(player.pid)}" ${v72Market(career).phase==='open'&&!blocked?'':'disabled'}>Ablöse verhandeln</button></section>`;
 };
 const v72BaseMarketHTML=v66MarketHTML;
-v66MarketHTML=function(career){return v72BaseMarketHTML(career).replace('<h3>Spieler suchen</h3>',`${v72OwnListingsHTML(career)}${v72NegotiationsHTML(career)}${v72ListingsHTML(career)}<h3>Spieler suchen</h3>`)};
+v66MarketHTML=function(career){return v72BaseMarketHTML(career).replace('<h3>Spieler suchen</h3>',`${v72NegotiationsHTML(career)}${v72OwnListingsHTML(career)}${v72ListingsHTML(career)}<h3>Spieler suchen</h3>`)};
 const v72BaseProgressState=v58State;
 v58State=function(){
  const career=v61CurrentCareer;
@@ -146,11 +146,10 @@ function v72RenderSellerDeal(career,id){
 }
 function v72ShowResults(){
  if(!v61CurrentCareer||v72Dialog?.open)return;
- const career=v61CurrentCareer,market=v72Market(career),silent=market.transferResults.filter(item=>!item.seen&&!['completed','lost'].includes(item.kind));
- if(silent.length){for(const item of silent)item.seen=true;v64UiSave()}
- const result=market.transferResults.find(item=>['completed','lost'].includes(item.kind)&&!item.seen&&(item.released||market.day>item.day));if(!result)return;
- const player=v66Player(career,result.pid),seller=v66Club(career,result.sellerId),buyer=v66Club(career,result.buyerId),title=result.kind==='lost'?'Spieler wechselt zu anderem Verein':'Transfer abgeschlossen';
- const route=`<div class="v72-transfer-route" aria-label="Wechsel von ${escapeHTML(seller?.name||'Vereinslos')} zu ${escapeHTML(buyer?.name||'Verein')}"><div>${seller?v61CrestSVG(seller):'<span class="v72-free-agent-mark" aria-label="Ablösefrei">Frei</span>'}<small>Von</small><strong>${escapeHTML(seller?.name||'Vereinslos')}</strong></div><span class="v72-transfer-arrow" aria-hidden="true">→</span><div>${buyer?v61CrestSVG(buyer):'<span class="v72-free-agent-mark">Frei</span>'}<small>Zu</small><strong>${escapeHTML(buyer?.name||'Verein')}</strong></div></div>`;
+ const career=v61CurrentCareer,market=v72Market(career);
+ const result=market.transferResults.find(item=>['completed','lost','rejected'].includes(item.kind)&&!item.seen&&(item.released||market.day>item.day));if(!result)return;
+ const player=v66Player(career,result.pid),seller=v66Club(career,result.sellerId),buyer=v66Club(career,result.buyerId),title=result.kind==='rejected'?'Transfer abgelehnt':result.kind==='lost'?'Spieler wechselt zu anderem Verein':'Transfer abgeschlossen';
+ const route=`<div class="v72-transfer-route" aria-label="Wechsel von ${escapeHTML(seller?.name||'Vereinslos')} zu ${escapeHTML(buyer?.name||'Verein')}"><div>${seller?v61CrestSVG(seller):'<span class="v72-free-agent-mark" aria-label="Ablösefrei">Frei</span>'}<small>Von</small><strong>${escapeHTML(seller?.name||'Vereinslos')}</strong></div><span class="v72-transfer-arrow" aria-hidden="true">${result.kind==='rejected'?'×':'→'}</span><div>${buyer?v61CrestSVG(buyer):'<span class="v72-free-agent-mark">Frei</span>'}<small>Zu</small><strong>${escapeHTML(buyer?.name||'Verein')}</strong></div></div>`;
  const body=`${route}<div class="v72-dialog-facts"><span>Spieler<b>${escapeHTML(player?.name||result.pid)}</b></span><span>Bisheriger Verein<b>${escapeHTML(seller?.name||'Vereinslos')}</b></span><span>Zielverein<b>${escapeHTML(buyer?.name||'Verein')}</b></span><span>${result.kind==='completed'?'Gezahlte Ablöse':'Gebotene Ablöse'}<b>${result.price?v66Credits(result.price):'Ablösefrei'}</b></span></div><p>${escapeHTML(result.message)}</p><button type="button" class="primary" data-v72-result="${escapeHTML(result.id)}">Weiter</button>`;
  const dialog=v72EnsureDialog();v72DialogMode='result';v72CurrentId=null;dialog.innerHTML=v72DialogShell(title,body,false);dialog.showModal();
 }
