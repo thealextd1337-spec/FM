@@ -308,23 +308,23 @@ function v65ShowPostMatch(context){
  const {state}=context,report=state.postMatchReport;if(!report||state.postMatchStep==='done')return;
  document.body.classList.add('v65-world-postmatch');
  if(state.postMatchStep==='celebration'&&v65ShowCelebration(context))return;
- const done=()=>{v47PlayerDialog.close?.();v47Dialog.close?.();v47CompetitionDialog.close?.();document.body.classList.remove('v65-world-postmatch');state.postMatchStep='done';v64UiSave();v65Leave(false).catch(v65ExitError)};
+ const done=()=>{v47PlayerDialog.close?.();v47Dialog.close?.();v47CompetitionDialog.close?.();document.body.classList.remove('v65-world-postmatch');state.postMatchStep='done';v64UiSave();return v65Leave(false)};
  if(state.postMatchStep==='report'){
   if(v47Dialog.open)return;
   v47Dialog.innerHTML=v47ReportHTML(report,report.penaltyShootout);
   v47Dialog.onclick=event=>{const profile=event.target.closest('[data-v47-award-profile]');if(profile){v61OpenProfile(profile.dataset.v47AwardProfile,profile);return}const row=event.target.closest('[data-report-player]');if(row)v47OpenPlayerStats(report,Number(row.dataset.reportPlayer))};
   const next=()=>{v47PlayerDialog.close?.();v47Dialog.close?.();state.postMatchStep='competition';v64UiSave();v65ShowPostMatch(context)};
   v47Dialog.querySelectorAll('.v47-close,.v47-done,.v47-menu').forEach(button=>button.onclick=next);
-  v47Dialog.querySelector('.v47-report-close').onclick=done;
+  v47Dialog.querySelector('.v47-report-close').onclick=()=>done().catch(v65ExitError);
   v47Dialog.oncancel=event=>{event.preventDefault();next()};
   v47Dialog.showModal();v58Refresh();return;
  }
  if(v47CompetitionDialog.open)return;
  v47CompetitionDialog.innerHTML=v65CompetitionResultsHTML(context);
- v47CompetitionDialog.onclick=event=>{const profile=event.target.closest('[data-v47-leader-profile]');if(profile)v61OpenProfile(profile.dataset.v47LeaderProfile,profile)};
+ v47CompetitionDialog.onclick=async event=>{const club=event.target.closest('[data-v68-club]');if(club){event.preventDefault();try{await done();v61SetCareerTab('competitions',false);v68OpenDetail('club',club.dataset.v68Club,null)}catch(error){v65ExitError(error)}return}const profile=event.target.closest('[data-v47-leader-profile]');if(profile)v61OpenProfile(profile.dataset.v47LeaderProfile,profile)};
  v47CompetitionDialog.querySelector('.v47-competition-back').onclick=()=>{v47CompetitionDialog.close?.();state.postMatchStep='report';v64UiSave();v65ShowPostMatch(context)};
- v47CompetitionDialog.querySelectorAll('.v47-competition-close,.v47-competition-done').forEach(button=>button.onclick=done);
- v47CompetitionDialog.oncancel=event=>{event.preventDefault();done()};
+ v47CompetitionDialog.querySelectorAll('.v47-competition-close,.v47-competition-done').forEach(button=>button.onclick=()=>done().catch(v65ExitError));
+ v47CompetitionDialog.oncancel=event=>{event.preventDefault();done().catch(v65ExitError)};
  v47CompetitionDialog.showModal();v58Refresh();
 }
 function v65Show(context){

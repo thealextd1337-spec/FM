@@ -16,7 +16,7 @@ const career={world:{season:3,competitions:[
  {id:'league-3',type:'league'},{id:'cup-3',type:'cup'},{id:'europe-3',type:'europe'}
 ]}};
 const fixture={id:'current',competitionId:'league-3'};
-const player={pid:'p7',name:'M. Berger',history:[
+const player={pid:'p7',n:7,name:'M. Berger',history:[
  {season:3,competitionId:'league-3',fixtureId:'old-1',goals:2},
  {season:3,competitionId:'league-3',fixtureId:'old-2',goals:1},
  {season:3,competitionId:'cup-3',fixtureId:'old-cup',goals:4},
@@ -46,6 +46,8 @@ assert.strictEqual(title.innerHTML,'<span class="v84-goal-word">TOOOOR!</span>')
 assert(overlay.html.includes('M. Berger')&&overlay.html.includes('5 Tore - Liga 1'));
 assert(overlay.html.includes('2:1')&&overlay.html.includes('Vereinslogo SC Beispiel'));
 assert(overlay.html.includes('v84-goal-decor')&&overlay.html.includes('v84-goal-strips'),'Vorlagenornamente erscheinen im Banner');
+assert(overlay.html.indexOf('class="v84-score')<overlay.html.indexOf('class="v84-scorer'),'Ergebnis vor Name');
+assert(overlay.html.includes('Rückennummer 7')&&overlay.html.includes('#7'),'Rückennummer sichtbar');
 assert.strictEqual(overlay.attributes.role,'status');
 assert.strictEqual(overlay.parentElement,stage,'Banner liegt am Spielfeld');
 overlay.sprite=false;
@@ -62,6 +64,8 @@ assert(!classes.has('v84-goal-banner')&&!overlay.html&&!overlay.attributes.role,
 assert.strictEqual(overlay.parentElement,matchArea,'andere Hinweise nutzen wieder den normalen Matchbereich');
 assert(source.includes('prefers-reduced-motion:reduce')&&source.includes('v84GoalRun')&&source.includes('v84GoalBlink'));
 const css=vm.runInContext('v84Style.textContent',context);
+assert(css.includes('top:50%;bottom:auto;left:50%')&&css.includes('transform:translate(-50%,-50%)'),'Spielfeldmitte');
+assert(!css.includes('bottom:-9px')&&css.includes('translate(-50%,-50%) scale(1)'),'Zentrierung mobil und animiert');
 assert(css.includes('--v84-sprite-size:260px')&&css.includes('clamp(116px,40vw,150px)'),'Jubelgrafik erhält mehr Platz und wächst mobil');
 assert(css.includes('grid-template-columns:var(--v84-sprite-size) minmax(0,1fr) 62px'),'mobiles Raster hält Spieler, Ergebnis und Wappen getrennt');
 assert(css.includes('data-v86-pose="arms_wide"')&&css.includes('data-v86-pose="two_fingers_up"'),'breite Posen füllen den Bildbereich vertikal');

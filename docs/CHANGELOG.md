@@ -2,6 +2,12 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-28 (Prototyp 83 · Vereinsprofile und Torbanner)
+
+- Der Torbanner sitzt mittig auf dem Spielfeld, zeigt zuerst den Spielstand und darunter Torschütze samt Rückennummer. Die Zentrierung bleibt auch mobil und während der Animation erhalten.
+- Vereinslinks in der Ergebnisübersicht nach dem Spiel öffnen jetzt das Vereinsprofil nach dem gespeicherten Matchabschluss; die Rücknavigation führt zu den Wettbewerben.
+- Profile anderer Vereine zeigen unter dem Vereinskopf ihre gespeicherten Heim-, Auswärts- und beiden Torwarttrikots. Dafür wird dieselbe Darstellung wie beim eigenen Verein verwendet; fremde Trikots sind nicht editierbar. Ältere Spielstände ohne Trikotdaten werden nicht nachberechnet. Vereinsprofil- und Trikottests prüfen die Anzeige.
+
 ## 2026-09-28 (Prototyp 82 · Sichtbare Transferantworten)
 
 - Eigene Ablösegebote bleiben einschließlich abgelehnter und abgeschlossener Verhandlungen oben im Transfermarkt unter „Deine Angebote & Ergebnisse“ sichtbar. Jede Zeile nennt Status und letzte Antwort. Neue Absagen werden nach dem Tageswechsel mit Spieler, beiden Klubwappen und Ablehnungsgrund zur Bestätigung angezeigt; sie werden nicht mehr automatisch als gelesen verworfen. Alte bestätigte Meldungen werden nicht rückwirkend geöffnet. Regressionstests prüfen zwei gleichzeitige Gebote sowie Zeitpunkt und einmalige Bestätigung der Absage.

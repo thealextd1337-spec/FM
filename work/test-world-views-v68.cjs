@@ -120,3 +120,44 @@ call('v62AdvanceDay',digestCareer);call('v68CaptureDigest',digestCareer,before,n
 assert(digestCareer.world.lastDigest.fixtureIds.length>0&&call('v68DigestHTML',digestCareer).includes('Seit deinem letzten Fortschritt'));
 assert(call('v68DigestHTML',JSON.parse(JSON.stringify(digestCareer))).includes('Seit deinem letzten Fortschritt'),'Weltüberblick übersteht Neuladen');
 console.log('Weltansichten: 48-Vereine-Zugriff, Trainerstationen, Kaderprofile, Ergebnislinks, Nachrichtenfilter, Fortschritt und Siegerarchiv geprüft.');
+
+// Club profiles show the visited club's saved kits without owner-only controls.
+context.v44ShirtSVG=(_,kit,label)=>'<svg aria-label="'+label+'" data-main="'+kit.main+'"></svg>';
+const kitsUI=fs.readFileSync('dist/world-kits-ui-v81.js','utf8');
+vm.runInContext(kitsUI.slice(0,kitsUI.indexOf('const v81BaseRenderCareer=')),context);
+const foreignProfile=call('v68ClubDetailHTML',career,other.id);
+assert(foreignProfile.includes('Vereinstrikots')&&foreignProfile.includes('data-main="'+other.kits.home.main+'"'));
+for(const label of ['Heim','Auswärts','Torwart 1','Torwart 2'])assert(foreignProfile.includes('aria-label="'+label+'"'));
+assert(!foreignProfile.includes('data-v81-save-')&&!foreignProfile.includes('data-v81-pattern'),'fremde Trikots sind nur lesbar');
+const oldProfileCareer=JSON.parse(JSON.stringify(career));delete oldProfileCareer.world.clubs.find(club=>club.id===other.id).kits;
+assert(!call('v68ClubDetailHTML',oldProfileCareer,other.id).includes('Vereinstrikots'),'fehlende Altstanddaten werden nicht erfunden');
+console.log('Fremde Vereinsprofile: gespeicherte Trikots ohne Bearbeitungsfelder geprüft.');
+
+(async()=>{
+ const calls=[],buttons={};
+ const dialog=()=>({open:false,close(){this.open=false},showModal(){this.open=true},querySelector(key){return buttons[key]||=( {})},querySelectorAll(){return[]}});
+ const results=dialog(),state={postMatchReport:{},postMatchStep:'competition'};
+ let release,fail=false;
+ const sandbox=vm.createContext({
+  document:{body:{classList:{add(){},remove(){}}}},
+  v47PlayerDialog:dialog(),v47Dialog:dialog(),v47CompetitionDialog:results,
+  v65CompetitionResultsHTML:()=>'<button data-v68-club="ENG-1">Club</button>',
+  v64UiSave:()=>calls.push('save'),v58Refresh(){},
+  v65Leave:()=>new Promise((resolve,reject)=>{release=()=>fail?reject(Error('save failed')):resolve()}),
+  v61SetCareerTab:tab=>calls.push(tab),v68OpenDetail:(type,id)=>calls.push(type+':'+id),
+  v65ExitError:error=>calls.push(error.message),v61OpenProfile:id=>calls.push('player:'+id)
+ });
+ const physical=fs.readFileSync('dist/world-physical-v65.js','utf8');
+ vm.runInContext(physical.slice(physical.indexOf('function v65ShowPostMatch('),physical.indexOf('function v65Show(context)')),sandbox);
+ sandbox.v65ShowPostMatch({state});
+ const click=results.onclick({preventDefault(){},target:{closest:selector=>selector==='[data-v68-club]'?{dataset:{v68Club:'ENG-1'}}:null}});
+ assert(!calls.includes('club:ENG-1'),'Vereinsprofil wartet auf Speicherung und Matchabschluss');
+ release();await click;
+ assert.deepStrictEqual(calls,['save','competitions','club:ENG-1']);
+ assert(!results.open&&state.postMatchStep==='done');
+ state.postMatchStep='competition';fail=true;calls.length=0;sandbox.v65ShowPostMatch({state});
+ const failed=results.onclick({preventDefault(){},target:{closest:()=>({dataset:{v68Club:'ENG-1'}})}});
+ release();await failed;
+ assert.deepStrictEqual(calls,['save','save failed'],'Bei Speicherfehler keine Profilnavigation');
+ console.log('Ergebnisfenster: Vereinslink, gespeicherter Abschluss, Rückreiter und Fehlerfall geprüft.');
+})().catch(error=>{console.error(error);process.exitCode=1});

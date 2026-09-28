@@ -1081,6 +1081,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^Aus! Einwurf für (.+)\. (.+) läuft zur Seitenlinie\.$/,(_,club,name)=>`Out! Throw-in for ${club}. ${name} heads to the touchline.`],
   [/^(.+) hat Anstoß$/,(_,club)=>`${club} kicks off`],
   [/^(\d+) Tor(?:e)? - (Liga 1|Nationaler Pokal|Europacup)$/,(_,count,competition)=>`${count} ${Number(count)===1?'goal':'goals'} - ${{'Liga 1':'League 1','Nationaler Pokal':'National cup',Europacup:'European cup'}[competition]}`],
+  [/^Rückennummer (\d+)$/,(_,number)=>`Shirt number ${number}`],
   [/^Spielstand (\d+) zu (\d+)$/,(_,home,away)=>`Score ${home} to ${away}`],
   [/^TOR! (.+) trifft (per direktem Freistoß )?für (.+)\.$/,(_,name,freeKick,club)=>`GOAL! ${name} scores ${freeKick?'directly from a free kick ':''}for ${club}.`],
   [/^ELFMETERTOR! (.+) trifft für (.+)\.$/,(_,name,club)=>`PENALTY GOAL! ${name} scores for ${club}.`],
