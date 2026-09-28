@@ -62,7 +62,15 @@ assert.equal(restored.world.transfers.filter(item=>item.pid===player.pid).length
 assert(call('v61ValidateCareer',restored));
 // Ein am fünften Tag begonnenes Direktgebot bleibt im Transferschluss fortsetzbar.
 initial.world.market.day=5;
+const finalFreeCareer=JSON.parse(JSON.stringify(initial));
+const finalFree=finalFreeCareer.world.market.freePlayers.find(item=>call('v66Consent',finalFreeCareer,{pid:item.pid,buyerId:own.id,sellerId:null,annual:60,years:2,promise:3}).minimum>60);
+assert(finalFree,'ein vereinsloser Spieler mit höherer Gehaltsforderung ist verfügbar');
+const finalFreeBid=call('v66MakeBid',finalFreeCareer,own.id,finalFree.pid,0,60,2,3);
+assert.equal(finalFreeBid.status,'counter','der vereinslose Spieler antwortet an Tag 5 sofort');
+call('v66ImproveBid',finalFreeCareer,finalFreeBid.id,finalFreeBid.counter);
+assert.equal(finalFreeBid.status,'completed','nach einer Gegenforderung wird sofort entschieden');
 const finalDayDeal=call('v72Start',initial,player.pid,value);
+assert.equal(finalDayDeal.stage,'contract','ein ausreichendes Ablösegebot wird an Tag 5 sofort bewertet');
 call('v66NextMarketDay',initial);
 assert.equal(initial.world.market.phase,'deadline');
 assert.equal(finalDayDeal.stage,'contract');

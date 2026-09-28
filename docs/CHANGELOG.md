@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-28 (Prototyp 86 · Sofortige Transferantworten am letzten Tag)
+
+- Am fünften Transfertag antworten Vereine und Spieler sofort auf Angebote. Beide Seiten können jeweils einmal gegenfordern; danach folgt ohne weiteren Tageswechsel Annahme oder Ablehnung. Das gilt auch für ablösefreie Verträge und Kaufangebote an den eigenen Verein. Bereits offene Angebote werden beim Öffnen ihrer Verhandlung bewertet. Gezielte Tests prüfen Abschluss, Ablehnung und die Grenze von einer Gegenforderung.
+
 ## 2026-09-28 (Prototyp 85 · Trikotmenü, Vertragsdialog und Spielstandsplanung)
 
 - Die Spielstandsplanung erfasst künftig auswertbare Transfer- und Vertragsereignisse aller Vereine, einschließlich erfolgreicher Verlängerungen und Spielern, die vereinslos werden oder später ablösefrei wechseln. Ablösehöhe und vorheriger Vereinsstatus bleiben unterscheidbar. Bestehende Karrieren werden nicht rückwirkend ergänzt; bisher ist dies nur dokumentiert, nicht implementiert.

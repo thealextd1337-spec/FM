@@ -44,6 +44,17 @@ const expiring=start('own-expire-seed'),expiringPlayer=expiring.club.roster.find
 call('v72ListOwn',expiring.career,expiringPlayer.pid,200);
 for(let day=1;day<5;day++)call('v66NextMarketDay',expiring.career);
 assert(expiring.career.world.market.negotiations.some(item=>item.pid===expiringPlayer.pid&&item.stage==='seller-offer'));
+const lastDaySale=JSON.parse(JSON.stringify(expiring.career));
+const lastDayOffer=lastDaySale.world.market.negotiations.find(item=>item.pid===expiringPlayer.pid&&item.stage==='seller-offer');
+const lastDayListing=call('v72Listing',lastDaySale,expiringPlayer.pid);
+call('v66Club',lastDaySale,lastDayOffer.buyerId).balance=100000;
+const lastDayCeiling=Math.max(lastDayOffer.price,Math.round(lastDayListing.ask*1.08/10)*10);
+assert(lastDayCeiling+10<=Math.round(lastDayCeiling*1.15));
+call('v72SellerRespond',lastDaySale,lastDayOffer.id,'counter',lastDayCeiling+10);
+assert.strictEqual(lastDayOffer.stage,'seller-offer','der KI-Käufer antwortet an Tag 5 sofort mit seinem letzten Gebot');
+assert.throws(()=>call('v72SellerRespond',lastDaySale,lastDayOffer.id,'counter',lastDayCeiling+20),/zweite Gegenforderung/);
+call('v72SellerRespond',lastDaySale,lastDayOffer.id,'accept');
+assert.strictEqual(lastDayOffer.stage,'completed','nach dem letzten Käufergebot wird der Spieler sofort bewertet');
 call('v66NextMarketDay',expiring.career);
 assert.strictEqual(expiring.career.world.market.phase,'deadline');
 assert.strictEqual(call('v61ValidateCareer',expiring.career),true,'laufende Verhandlungen am Transferschluss bleiben ein gültiger gespeicherter Spielstand');

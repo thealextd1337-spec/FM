@@ -910,6 +910,11 @@ Spielerantwort ausstehend	Awaiting player's response
 Gegenforderung des Spielers	Player's counteroffer
 Wechsel abgeschlossen	Transfer completed
 Der Spieler entscheidet über den Vertrag.	The player decides on the contract.
+Der Spieler hat dem Vertrag zugestimmt.	The player accepted the contract.
+Der Spieler hat das Vertragsangebot abgelehnt.	The player rejected the contract offer.
+Der Verein hat das Ablösegebot abgelehnt.	The club rejected the transfer fee offer.
+Eine zweite Gegenforderung ist am letzten Transfertag nicht möglich.	A second counteroffer is not possible on the final transfer day.
+Eine neue Anfrage ist erst nach einem weiteren Matchtag möglich.	You can ask again after another matchday.
 Dialog schließen	Close dialog
 Wert verringern	Decrease value
 Wert erhöhen	Increase value

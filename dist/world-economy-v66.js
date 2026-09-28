@@ -146,7 +146,9 @@ function v66MakeBid(career,buyerId,pid,price,annual,years,promise=0,offerDay=nul
  if(market.decisions.some(item=>item.buyerId===buyerId&&item.pid===pid&&item.season===career.world.season&&['rejected','expired'].includes(item.status)&&(seller||played<=item.atPlayed)))throw Error(seller?'Nach einer Ablehnung ist ein neues Angebot erst nächste Saison möglich.':'Eine neue Anfrage ist erst nach einem weiteren Matchtag möglich.');
  const placedDay=market.phase==='open'?market.day:offerDay??Math.max(0,career.world.calendarCursor);
  const bid={id:`S${career.world.season}:B${market.nextBid++}`,pid,buyerId,sellerId:seller?.id||null,price,annual,years,promise,placedDay,expiresDay:market.phase==='open'?Math.min(5,market.day+1):placedDay+1,status:'pending',improved:false};
- market.pendingBids.push(bid);return bid;
+ market.pendingBids.push(bid);
+ if(market.day===5&&market.phase==='open'&&buyerId===career.manager.managedClubId&&!seller){v66TryBid(career,bid);if(typeof v72ReleaseResults==='function')v72ReleaseResults(career)}
+ return bid;
 }
 function v66ResolveFreeDecisions(career,day){
  const bids=career.world.market.pendingBids.filter(item=>item.status==='pending'&&!item.sellerId&&item.placedDay<day),groups=new Map();
@@ -215,7 +217,9 @@ function v66ImproveBid(career,id,annual){
  const bid=career.world.market.pendingBids.find(item=>item.id===id&&item.buyerId===career.manager.managedClubId&&item.status==='counter');
  if(!bid||career.world.seasonFinished||bid.sellerId&&career.world.market.phase!=='open'||bid.improved||!Number.isInteger(Number(annual))||Number(annual)<bid.counter)throw Error('Dieses Folgeangebot ist nicht gültig.');
  bid.annual=Number(annual);bid.improved=true;bid.status='pending';bid.reason='';
- v66TryBid(career,bid);return bid;
+ v66TryBid(career,bid);
+ if(career.world.market.day===5&&typeof v72ReleaseResults==='function')v72ReleaseResults(career);
+ return bid;
 }
 function v66RespondBid(career,id,accept){
  const bid=career.world.market.pendingBids.find(item=>item.id===id&&item.sellerId===career.manager.managedClubId&&item.status==='pending');

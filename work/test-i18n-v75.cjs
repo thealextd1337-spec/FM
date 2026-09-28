@@ -47,6 +47,8 @@ assert.equal(translate('2 Wechsel noch möglich · Ersatzspieler auf ein Feldtri
 assert.equal(translate('Vereinslos · keine Ablöse.'),'Free agent · no transfer fee.');
 assert.equal(translate('Spielervertrag'),'Player contract');
 assert.equal(translate('Der Spieler entscheidet über den Vertrag.'),'The player decides on the contract.');
+assert.equal(translate('Der Spieler hat das Vertragsangebot abgelehnt.'),'The player rejected the contract offer.');
+assert.equal(translate('Eine zweite Gegenforderung ist am letzten Transfertag nicht möglich.'),'A second counteroffer is not possible on the final transfer day.');
 assert.equal(translate('Spielerprofil Noah Bailey öffnen'),"Open Noah Bailey's player profile");
 assert.equal(translate('Transfer abgeschlossen'),'Transfer completed');
 assert.equal(translate('Wechsel von Vereinslos zu FC München Isar'),'Transfer from Free agent to FC München Isar');
