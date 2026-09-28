@@ -61,6 +61,7 @@ jobs:
           node work/test-duel-streaks.cjs
           node work/test-v57.cjs
           node work/test-world-foundation-v61.cjs
+          node work/test-world-local-start.cjs
           node work/test-world-competition-v62.cjs
           node work/test-world-coaches-v63.cjs
           node work/test-world-match-v64.cjs

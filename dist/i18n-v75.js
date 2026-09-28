@@ -273,6 +273,32 @@ Bisherige Sechserliga	Original six-team league
 Der bisherige Spielmodus bleibt während des Ausbaus der neuen Welt spielbar.	The original game mode remains playable while the new world grows.
 Bisherige Liga starten	Start original league
 Spielstart	New game setup
+Manager	Manager
+Zusammenfassung	Summary
+Lokale Karriere starten	Start a local career
+Diese Karriere wird auf diesem Gerät im Browser gespeichert. Zum Öffnen der Webseite brauchst du Internet; die geöffnete Karriere kannst du ohne Konto spielen. Sichere deinen Spielstand regelmäßig per Exportdatei.	This career is saved in the browser on this device. You need internet to open the website; you can play the open career without an account. Export your save regularly as a backup file.
+Managername	Manager name
+2 bis 32 Zeichen. Dieser Name gehört nur zu dieser Karriere.	2 to 32 characters. This name belongs to this career only.
+Der Managername muss 2 bis 32 Zeichen enthalten.	The manager name must contain 2 to 32 characters.
+Weiter zur Länderauswahl	Continue to country selection
+Managername ändern	Change manager name
+Zur Zusammenfassung	Go to summary
+Zurück zum Kader	Back to squad
+Deine Karriere prüfen	Review your career
+Prüfe deine Auswahl. Erst nach erfolgreicher Speicherung beginnt die Karriere.	Review your choices. The career begins only after it has been saved successfully.
+Speicherart	Save location
+Auf diesem Gerät	On this device
+Startverein	Starting club
+Elf fest erzeugte Profis	Eleven fixed starting professionals
+Regeln	Rules
+Standardregelsatz · Modellversion 10	Standard rules · Model version 10
+Öffentliche Teilnahme	Public participation
+Ausgeschaltet	Off
+Der Spielstand bleibt in diesem Browser. Eine Exportdatei ist deine unabhängige Sicherung.	The save remains in this browser. An exported file is your independent backup.
+Karriere starten	Start career
+Dein Startkader	Your starting squad
+Vereinswelt wird gespeichert …	Saving club career …
+Vereinswelt speichern	Save club career
 Land	Country
 Verein	Club
 Kader	Squad

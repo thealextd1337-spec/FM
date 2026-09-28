@@ -1,6 +1,6 @@
 # Spielstart, Accounts, Spielstände, Hall of Fame und App-Stores
 
-Stand: 28. September 2026. Produktplanung für die Vereinswelt; die lokale Speicherabsicherung und das strukturierte Karriereprotokoll werden mit Prototyp 87 veröffentlicht. Die übrigen Teile sind weiterhin Planung. Die Sechserliga und `freekickdemo/` gehören nicht zum Umfang.
+Stand: 28. September 2026. Produktplanung für die Vereinswelt; die lokale Speicherabsicherung und das strukturierte Karriereprotokoll sind seit Prototyp 87 veröffentlicht. Der lokale Spielstart ist seit Prototyp 88 veröffentlicht. Die übrigen Teile sind weiterhin Planung. Die Sechserliga und `freekickdemo/` gehören nicht zum Umfang.
 
 ## Umsetzungsstand: lokale Speicherabsicherung
 
@@ -17,6 +17,8 @@ Die Hall of Fame wird zentral, öffentlich und geräteübergreifend geplant. Lok
 Die Ergänzung vom 28. September konkretisiert Spielstart, Startparameter, Karriereverwaltung und Accounts. Bestehende Produktregeln bleiben maßgeblich. Mit **Vorschlag** bezeichnete Regeln sind die empfohlene Planungsgrundlage, noch keine bestätigten Produktentscheidungen. Abschnitt 7 bündelt die Entscheidungen, die vor der jeweiligen Umsetzung feststehen müssen. Diese Planung führt weder Accounts noch neue Spielregeln ein.
 
 ## 0. Spielstart und Startparameter
+
+Der lokale Teil des vorgeschlagenen Startablaufs ist seit Prototyp 88 veröffentlicht: Managername, Land und Verein, stabile Kadervorschau, Zusammenfassung, bestätigtes Speichern vor dem Öffnen und Wiederholung nach Speicherfehler. Die Oberfläche zeigt nur die lokale Speicherart und eine ausgeschaltete öffentliche Teilnahme. Onlineanmeldung, Serverentwürfe und ihre Einmaligkeit bei verlorenen Antworten sind weiterhin offen.
 
 ### Einstieg und Abschluss der Anlage
 
@@ -227,4 +229,4 @@ Die Planung ist vollständig als Arbeitsgrundlage beschrieben; die folgenden Vor
 | Betrieb und Finanzierung | Kostenobergrenze, Lastannahmen, Entwurfsfristen, Ratenlimits, Backups und Wiederherstellungsziele noch offen | Vor öffentlichem Onlinebetrieb |
 | Öffentlichkeit und Datenschutz | Betreiber, Zielaltersgruppe, Zielländer, Löschfristen und Moderationsverantwortung noch offen; Quellen vor Freigabe aktualisieren | Vor Registrierung beziehungsweise öffentlicher Teilnahme |
 
-Die ursprüngliche Planung allein änderte keinen Code. Der inzwischen umgesetzte lokale Speicherblock ist oben gesondert ausgewiesen; dafür wurde noch keine Veröffentlichung oder Versionsanhebung vorgenommen. Bei späterer Veröffentlichung gelten die bestehenden Regeln für Quellcode, Build, Seitenfuß und Live-Prüfung.
+Die lokalen Speicher- und Karriereprotokollblöcke wurden mit Prototyp 87 veröffentlicht, der lokale Startblock mit Prototyp 88. Für weitere Blöcke gelten die bestehenden Regeln für Quellcode, Build, Seitenfuß und Live-Prüfung.

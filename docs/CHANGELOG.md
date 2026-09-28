@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-28 (Prototyp 88 · Lokaler Spielstart)
+
+- Der lokale Spielstart fragt einen Managernamen ab und zeigt vor dem Start eine Zusammenfassung mit Speicherort, Verein, festem Startkader, Regelstand und ausgeschalteter öffentlicher Teilnahme. Rücknavigation behält die Vorschau; ein Speicherfehler lässt die Auswahl stehen und ermöglicht einen erneuten Versuch. Ein Doppelklick erzeugt nur eine Karriere. Alte Spielstände ohne Managernamen bleiben lesbar. Gezielte Tests und Browserprüfung umfassen Speicherfehler, Wiederholung, Deutsch/Englisch und mobile Breite.
+
 ## 2026-09-28 (Prototyp 87 · Speicherabsicherung und Karriereprotokoll)
 
 - Vereinswelten zeichnen neue Transfers, angenommene Vertragsverlängerungen, Vertragsenden und Freistellungen aller Vereine strukturiert auf. Ablösefreie Verpflichtungen, vorherige Vereinslosigkeit und Nachwuchsereignisse bleiben unterscheidbar. Interne Abfragen liefern Verlauf, Summen und bekannte Zeiten ohne Verein; die Daten werden zusammen mit der Karriere gesichert und exportiert. Bestehende Karrieren erhalten keine nachträgliche Historie. Geprüft sind Wiederholungen ohne Doppeleinträge, Export/Import und zehn Saisons mit und ohne Verkaufsliste sowie mit Nachwuchs. Das vollständige Protokoll benötigt im Wirtschaftstest rund 1,2 MB zusätzlich; der Nachwuchs-Spielstand bleibt insgesamt unter 10 MB.

@@ -133,8 +133,11 @@ function v61ClubRecord(entry,seed){
  return{id:entry.id,countryId,leagueId:cupOnly?null:`${countryId}-LEAGUE`,cupId:`${countryId}-CUP`,name:entry.name,city:entry.city,colors:entry.colors,kits:v61BuildClubKits(entry),historyText:entry.history,policy:{tradition,fans,youth,risk,patience,startingSquad},roster:v61GenerateRoster(entry,seed),youthPool:[],balance:null,ledger:[],coachId:null,history:[]};
 }
 
+function v61ManagerName(value){return typeof value==='string'?value.replace(/\s+/g,' ').trim():''}
+function v61ValidManagerName(value){return typeof value==='string'&&value===v61ManagerName(value)&&value.length>=2&&value.length<=32&&!/[\u0000-\u001f\u007f]/.test(value)}
 function v61ValidateCareer(career){
  if(career?.schema!==14||career.modelVersion!==10||!career.manager?.id||!career.world?.seed)return false;
+ if(career.manager.name!==undefined&&!v61ValidManagerName(career.manager.name))return false;
  const clubs=career.world.clubs;
  if(!Array.isArray(clubs)||clubs.length!==48||new Set(clubs.map(club=>club.id)).size!==48)return false;
  if(!Array.isArray(career.world.countries)||career.world.countries.length!==6)return false;
@@ -153,10 +156,12 @@ function v61ValidateCareer(career){
  return (typeof v66Validate!=='function'||v66Validate(career))&&(typeof v67Validate!=='function'||v67Validate(career));
 }
 
-function v61CreateCareer(clubId,seed=crypto.randomUUID()){
+function v61CreateCareer(clubId,seed=crypto.randomUUID(),managerName=null){
  if(!v61Catalog.some(club=>club.id===clubId&&!club.id.includes('-C')))throw Error('Nur ein Ligaverein kann übernommen werden.');
+ const name=managerName===null?null:v61ManagerName(managerName);
+ if(name!==null&&!v61ValidManagerName(name))throw Error('Der Managername muss 2 bis 32 Zeichen enthalten.');
  const now=new Date().toISOString();
- const career={schema:14,modelVersion:10,id:crypto.randomUUID(),created:now,updated:now,phase:'world-matches',manager:{id:crypto.randomUUID(),managedClubId:clubId,stationHistory:[{clubId,fromSeason:1}]},world:{season:1,calendarCursor:null,seed,countries:v61Countries.map(([id,name])=>({id,name,leagueId:`${id}-LEAGUE`,cupId:`${id}-CUP`})),clubs:v61Catalog.map(entry=>v61ClubRecord(entry,seed)),coaches:[],contracts:[],competitions:[],transfers:[],market:{freePlayers:[],pendingBids:[]},eventLog:{processedEventIds:[],visibleNews:[]}}};
+ const career={schema:14,modelVersion:10,id:crypto.randomUUID(),created:now,updated:now,phase:'world-matches',manager:{id:crypto.randomUUID(),...(name===null?{}:{name}),managedClubId:clubId,stationHistory:[{clubId,fromSeason:1}]},world:{season:1,calendarCursor:null,seed,countries:v61Countries.map(([id,name])=>({id,name,leagueId:`${id}-LEAGUE`,cupId:`${id}-CUP`})),clubs:v61Catalog.map(entry=>v61ClubRecord(entry,seed)),coaches:[],contracts:[],competitions:[],transfers:[],market:{freePlayers:[],pendingBids:[]},eventLog:{processedEventIds:[],visibleNews:[]}}};
  v62PrepareSeason(career);
  v63Init(career);
  if(typeof v66Init==='function')v66Init(career);
@@ -240,8 +245,9 @@ async function v61RestoreStorage(){
  try{await v61SaveCareers(backup);v61RenderSaves()}catch(error){v61StorageLoadError=true;v61StorageNotify();throw error}
 }
 async function v61StoreNewCareer(career,imported=false){
- await v61WaitForStorage();
- const careers=v61ReadCareers();
+ try{await v61WaitForStorage()}catch(error){if(v61StorageLoadError)throw error}
+ // A failed first write may remain in the working cache; only confirmed saves occupy slots.
+ const careers=v61StorageError&&v61StorageConfirmed?v61StorageClone(v61StorageConfirmed):v61ReadCareers();
  if(careers.length>=v61MaxCareers)throw Error('Maximal fünf Vereinswelten. Exportiere oder lösche zuerst einen Spielstand.');
  const copy=imported?JSON.parse(JSON.stringify(career)):career;
  if(careers.some(item=>item.id===copy.id))copy.id=crypto.randomUUID();
@@ -471,19 +477,25 @@ startScreen.before(v61WorldScreen);
 const v61ProfileDialog=document.createElement('dialog');
 v61ProfileDialog.className='player-card-dialog v61-profile-dialog';
 document.body.append(v61ProfileDialog);
-let v61Flow={step:'country',countryId:null,clubId:null,seed:null},v61CurrentCareer=null,v61ProfileReturn=null,v61CareerTab='overview',v61PendingDeleteId=null;
+let v61Flow={step:'manager',managerName:'',countryId:null,clubId:null,seed:null,starting:false},v61CurrentCareer=null,v61ProfileReturn=null,v61CareerTab='overview',v61PendingDeleteId=null;
 
 function v61ShowScreen(){startScreen.hidden=true;v61WorldScreen.hidden=false;v58Refresh();window.scrollTo(0,0)}
 function v61ShowStart(){v61WorldScreen.hidden=true;startScreen.hidden=false;v61CurrentCareer=null;v61RenderSaves();v58Refresh();window.scrollTo(0,0)}
-function v61Begin(){if(v61ReadCareers().length>=v61MaxCareers)return;v61Flow={step:'country',countryId:null,clubId:null,seed:crypto.randomUUID()};v61CurrentCareer=null;v61RenderFlow();v61ShowScreen()}
+function v61Begin(){if(v61ReadCareers().length>=v61MaxCareers)return;v61Flow={step:'manager',managerName:'',countryId:null,clubId:null,seed:crypto.randomUUID(),starting:false};v61CurrentCareer=null;v61RenderFlow();v61ShowScreen()}
 function v61RenderFlow(){
- const{step,countryId,clubId,seed}=v61Flow;
- const header=`<nav class="v61-steps" aria-label="Spielstart"><span class="${step==='country'?'current':''}">Land</span><span class="${step==='clubs'?'current':''}">Verein</span><span class="${step==='club'?'current':''}">Kader</span></nav>`;
- if(step==='country')v61WorldScreen.innerHTML=`${header}<div class="v61-flow-head"><button class="menu-action" data-v61-back="start">Zur Startseite</button><h1>Wähle dein Land</h1><p>Jedes Land hat sechs Ligavereine und zwei Pokalvereine.</p></div><div class="v61-country-grid">${v61Countries.map(([id,name])=>`<button type="button" class="v61-country-choice" data-v61-country="${id}">${v61FlagSVG(id)}<strong>${name}</strong><span>6 Vereine ansehen <b>↗</b></span></button>`).join('')}</div>`;
+ const{step,countryId,clubId,seed,managerName}=v61Flow;
+ const stepLabel=(key,label)=>`<span class="${step===key?'current':''}" ${step===key?'aria-current="step"':''}>${label}</span>`;
+ const header=`<nav class="v61-steps" aria-label="Spielstart">${stepLabel('manager','Manager')}${stepLabel('country','Land')}${stepLabel('clubs','Verein')}${stepLabel('club','Kader')}${stepLabel('summary','Zusammenfassung')}</nav>`;
+ if(step==='manager')v61WorldScreen.innerHTML=`${header}<div class="v61-flow-head"><button class="menu-action" data-v61-back="start">Zur Startseite</button><h1>Lokale Karriere starten</h1><p>Diese Karriere wird auf diesem Gerät im Browser gespeichert. Zum Öffnen der Webseite brauchst du Internet; die geöffnete Karriere kannst du ohne Konto spielen. Sichere deinen Spielstand regelmäßig per Exportdatei.</p></div><div class="v61-manager-step"><label for="v61-manager-name">Managername</label><input id="v61-manager-name" type="text" maxlength="32" autocomplete="off" value="${escapeHTML(managerName)}" aria-describedby="v61-manager-help"><p id="v61-manager-help">2 bis 32 Zeichen. Dieser Name gehört nur zu dieser Karriere.</p><p class="v61-error" role="alert" data-v61-name-error hidden></p><button type="button" class="primary" data-v61-manager-next>Weiter zur Länderauswahl <span>↗</span></button></div>`;
+ if(step==='country')v61WorldScreen.innerHTML=`${header}<div class="v61-flow-head"><button class="menu-action" data-v61-back="manager">Managername ändern</button><h1>Wähle dein Land</h1><p>Jedes Land hat sechs Ligavereine und zwei Pokalvereine.</p></div><div class="v61-country-grid">${v61Countries.map(([id,name])=>`<button type="button" class="v61-country-choice" data-v61-country="${id}">${v61FlagSVG(id)}<strong>${name}</strong><span>6 Vereine ansehen <b>↗</b></span></button>`).join('')}</div>`;
  if(step==='clubs')v61WorldScreen.innerHTML=`${header}<div class="v61-flow-head"><button class="menu-action" data-v61-back="country">Alle Länder</button><h1>${v61FlagSVG(countryId)} ${v61CountryNames[countryId]}</h1><p>Tippe auf einen Verein, um Geschichte und Kader anzusehen.</p></div><div class="v61-club-grid">${v61Catalog.filter(club=>club.id.startsWith(`${countryId}-`)&&!club.id.includes('-C')).map(club=>`<button type="button" class="v61-club-choice" data-v61-club="${club.id}">${v61CrestSVG(club)}<span><strong>${escapeHTML(club.name)}</strong><small>${escapeHTML(club.city)}</small><em>${escapeHTML(club.history)}</em></span><b aria-hidden="true">↗</b></button>`).join('')}</div>`;
  if(step==='club'){
   const club=v61Catalog.find(entry=>entry.id===clubId),roster=v61GenerateRoster(club,seed);
-  v61WorldScreen.innerHTML=`${header}<div class="v61-flow-head"><button class="menu-action" data-v61-back="clubs">Vereine in ${v61CountryNames[countryId]}</button></div><section class="v61-club-hero">${v61CrestSVG(club)}<div><p>${v61FlagSVG(countryId)} ${escapeHTML(v61CountryNames[countryId])} · ${escapeHTML(club.city)}</p><h1>${escapeHTML(club.name)}</h1><p>${escapeHTML(club.history)}</p><small>Vereinsfarben: ${escapeHTML(v61ClubColorLabel(club))}</small></div></section><section class="v61-roster-section"><div class="v61-roster-head"><div><h2>Startkader</h2><p>Elf Profis · Spieler öffnen für das vollständige Profil.</p></div><button type="button" class="primary" data-v61-create="${club.id}">Verein übernehmen <span>↗</span></button></div>${v61RosterHTML(roster)}</section>`;
+  v61WorldScreen.innerHTML=`${header}<div class="v61-flow-head"><button class="menu-action" data-v61-back="clubs">Vereine in ${v61CountryNames[countryId]}</button></div><section class="v61-club-hero">${v61CrestSVG(club)}<div><p>${v61FlagSVG(countryId)} ${escapeHTML(v61CountryNames[countryId])} · ${escapeHTML(club.city)}</p><h1>${escapeHTML(club.name)}</h1><p>${escapeHTML(club.history)}</p><small>Vereinsfarben: ${escapeHTML(v61ClubColorLabel(club))}</small></div></section><section class="v61-roster-section"><div class="v61-roster-head"><div><h2>Startkader</h2><p>Elf Profis · Spieler öffnen für das vollständige Profil.</p></div><button type="button" class="primary" data-v61-review>Zur Zusammenfassung <span>↗</span></button></div>${v61RosterHTML(roster)}</section>`;
+ }
+ if(step==='summary'){
+  const club=v61Catalog.find(entry=>entry.id===clubId),roster=v61GenerateRoster(club,seed);
+  v61WorldScreen.innerHTML=`${header}<div class="v61-flow-head"><button class="menu-action" data-v61-back="club">Zurück zum Kader</button><h1>Deine Karriere prüfen</h1><p>Prüfe deine Auswahl. Erst nach erfolgreicher Speicherung beginnt die Karriere.</p></div><section class="v61-summary"><h2>Zusammenfassung</h2><dl><div><dt>Speicherart</dt><dd>Auf diesem Gerät</dd></div><div><dt>Managername</dt><dd>${escapeHTML(managerName)}</dd></div><div><dt>Startverein</dt><dd>${v61CrestSVG(club)} ${escapeHTML(club.name)} · ${escapeHTML(v61CountryNames[countryId])}</dd></div><div><dt>Startkader</dt><dd>Elf fest erzeugte Profis</dd></div><div><dt>Regeln</dt><dd>Standardregelsatz · Modellversion 10</dd></div><div><dt>Öffentliche Teilnahme</dt><dd>Ausgeschaltet</dd></div></dl><p>Der Spielstand bleibt in diesem Browser. Eine Exportdatei ist deine unabhängige Sicherung.</p><button type="button" class="primary" data-v61-create="${club.id}">Karriere starten <span>↗</span></button></section><section class="v61-roster-section"><h2>Dein Startkader</h2>${v61RosterHTML(roster)}</section>`;
  }
 }
 
@@ -491,7 +503,7 @@ function v61RenderSaves(){
  const container=v61Panel.querySelector('#v61-saves'),message=v61Panel.querySelector('#v61-message');
  try{
   const careers=v61ReadCareers();
-  container.innerHTML=careers.length?`<h3>Deine Vereinswelten · ${careers.length}/${v61MaxCareers}</h3>${careers.map(career=>{const club=career.world.clubs.find(item=>item.id===career.manager.managedClubId),pending=career.id===v61PendingDeleteId;return`<article class="v61-saved"><span class="v61-save-info">${v61CrestSVG(club)}<span><strong>${escapeHTML(club.name)}</strong><small>${v61FlagSVG(club.countryId)} ${escapeHTML(v61CountryNames[club.countryId])} · Saison ${career.world.season}</small></span></span><div class="v61-save-actions"><button type="button" class="menu-action" data-v61-open="${escapeHTML(career.id)}">Öffnen</button><button type="button" class="menu-action" data-v61-export="${escapeHTML(career.id)}">Exportieren</button>${pending?`<button type="button" class="menu-action danger" data-v61-confirm-delete="${escapeHTML(career.id)}">Endgültig löschen</button><button type="button" class="menu-action" data-v61-cancel-delete="${escapeHTML(career.id)}">Abbrechen</button>`:`<button type="button" class="menu-action danger" data-v61-delete="${escapeHTML(career.id)}">Löschen</button>`}</div>${pending?`<p class="v61-delete-prompt" role="status">„${escapeHTML(club.name)}“ und alle Fortschritte dieser Vereinswelt endgültig löschen?</p>`:''}</article>`}).join('')}${careers.length>=v61MaxCareers?'<p class="v61-limit-note">Für eine neue Vereinswelt zuerst einen Spielstand exportieren oder löschen.</p>':''}`:'';
+  container.innerHTML=careers.length?`<h3>Deine Vereinswelten · ${careers.length}/${v61MaxCareers}</h3>${careers.map(career=>{const club=career.world.clubs.find(item=>item.id===career.manager.managedClubId),pending=career.id===v61PendingDeleteId;return`<article class="v61-saved"><span class="v61-save-info">${v61CrestSVG(club)}<span><strong>${escapeHTML(club.name)}</strong><small>${v61FlagSVG(club.countryId)} ${escapeHTML(v61CountryNames[club.countryId])} · Saison ${career.world.season}</small>${career.manager.name?`<small>Manager: ${escapeHTML(career.manager.name)}</small>`:''}</span></span><div class="v61-save-actions"><button type="button" class="menu-action" data-v61-open="${escapeHTML(career.id)}">Öffnen</button><button type="button" class="menu-action" data-v61-export="${escapeHTML(career.id)}">Exportieren</button>${pending?`<button type="button" class="menu-action danger" data-v61-confirm-delete="${escapeHTML(career.id)}">Endgültig löschen</button><button type="button" class="menu-action" data-v61-cancel-delete="${escapeHTML(career.id)}">Abbrechen</button>`:`<button type="button" class="menu-action danger" data-v61-delete="${escapeHTML(career.id)}">Löschen</button>`}</div>${pending?`<p class="v61-delete-prompt" role="status">„${escapeHTML(club.name)}“ und alle Fortschritte dieser Vereinswelt endgültig löschen?</p>`:''}</article>`}).join('')}${careers.length>=v61MaxCareers?'<p class="v61-limit-note">Für eine neue Vereinswelt zuerst einen Spielstand exportieren oder löschen.</p>':''}`:'';
   message.textContent='';delete message.dataset.status;v61Panel.querySelector('#v61-begin').disabled=careers.length>=v61MaxCareers;
  }catch(error){
   container.innerHTML=v61StorageError?'Gespeicherte Vereinswelten konnten nicht gelesen werden.':'<div class="v67-loading" role="status"><span>Vereinswelten werden geladen …</span><span class="v67-loading-track" role="progressbar" aria-label="Vereinswelten laden"><span></span></span></div>';
@@ -556,16 +568,19 @@ v61Panel.querySelector('#v61-saves').onclick=async event=>{
 };
 v61WorldScreen.onclick=event=>{
  const button=event.target.closest('button');if(!button)return;
+ if(v61Flow.starting)return;
  if(button.dataset.v61RosterSort){const table=button.closest('table'),key=button.dataset.v61RosterSort,head=button.closest('th'),descending=head.getAttribute('aria-sort')==='ascending',body=table.tBodies[0];for(const cell of table.tHead.querySelectorAll('th')){cell.removeAttribute('aria-sort');cell.querySelector('span').textContent=''}head.setAttribute('aria-sort',descending?'descending':'ascending');button.querySelector('span').textContent=descending?' ▼':' ▲';const rows=[...body.rows],numeric=!['name'].includes(key);rows.sort((a,b)=>{const left=a.dataset[key],right=b.dataset[key],difference=numeric?Number(left)-Number(right):left.localeCompare(right,'de');return(descending?-1:1)*(difference||a.dataset.name.localeCompare(b.dataset.name,'de'))});body.append(...rows);return}
  if(button.dataset.v61Tab){v61SetCareerTab(button.dataset.v61Tab);return}
  if(button.dataset.v61Back){if(button.dataset.v61Back==='start')v61ShowStart();else{v61Flow.step=button.dataset.v61Back;v61RenderFlow();window.scrollTo(0,0)}return}
+ if(button.hasAttribute('data-v61-manager-next')){const input=v61WorldScreen.querySelector('#v61-manager-name'),name=v61ManagerName(input.value);if(!v61ValidManagerName(name)){const error=v61WorldScreen.querySelector('[data-v61-name-error]');error.hidden=false;error.textContent='Der Managername muss 2 bis 32 Zeichen enthalten.';input.focus();return}v61Flow.managerName=name;v61Flow.step='country';v61RenderFlow();window.scrollTo(0,0);return}
  if(button.dataset.v61Country){v61Flow.countryId=button.dataset.v61Country;v61Flow.step='clubs';v61RenderFlow();window.scrollTo(0,0);return}
  if(button.dataset.v61Club){v61Flow.clubId=button.dataset.v61Club;v61Flow.step='club';v61RenderFlow();window.scrollTo(0,0);return}
  if(button.dataset.v61Player){v61OpenProfile(button.dataset.v61Player,button);return}
+ if(button.hasAttribute('data-v61-review')){v61Flow.step='summary';v61RenderFlow();window.scrollTo(0,0);return}
  if(button.dataset.v61Create){
-  const clubId=button.dataset.v61Create;button.disabled=true;
-  button.insertAdjacentHTML('afterend','<div class="v67-loading" role="status"><span>Vereinswelt wird aufgebaut …</span><span class="v67-loading-track" role="progressbar" aria-label="Vereinswelt aufbauen"><span></span></span></div>');
-  requestAnimationFrame(()=>setTimeout(async()=>{try{if(v61ReadCareers().length>=v61MaxCareers)throw Error('Maximal fünf Vereinswelten.');const career=await v61StoreNewCareer(v61CreateCareer(clubId,v61Flow.seed));v61CurrentCareer=career;v61CareerTab='overview';v61RenderCareer(career)}catch(error){button.disabled=false;button.nextElementSibling?.remove();button.insertAdjacentHTML('afterend',`<p class="v61-error" role="alert">Vereinswelt konnte nicht gespeichert werden: ${escapeHTML(error.message)}</p>`)}}));
+  const clubId=button.dataset.v61Create;v61Flow.starting=true;button.disabled=true;
+  button.insertAdjacentHTML('afterend','<div class="v67-loading" role="status"><span>Vereinswelt wird gespeichert …</span><span class="v67-loading-track" role="progressbar" aria-label="Vereinswelt speichern"><span></span></span></div>');
+  requestAnimationFrame(()=>setTimeout(async()=>{try{const career=await v61StoreNewCareer(v61CreateCareer(clubId,v61Flow.seed,v61Flow.managerName));v61Flow.starting=false;v61CurrentCareer=career;v61CareerTab='overview';v61RenderCareer(career)}catch(error){v61Flow.starting=false;button.disabled=false;button.nextElementSibling?.remove();v61WorldScreen.querySelector('[data-v61-start-error]')?.remove();button.insertAdjacentHTML('afterend',`<p class="v61-error" role="alert" data-v61-start-error>Vereinswelt konnte nicht gespeichert werden: ${escapeHTML(error.message)}</p>`)}}));
  }
 };
 v61RenderSaves();

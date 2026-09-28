@@ -57,6 +57,12 @@ assert.equal(translate('Erbol Sydykov wechselt zu FC München Isar.'),'Erbol Syd
 assert.equal(translate('3 Einsätze pro Saison'),'3 appearances per season');
 assert.equal(translate('Spielstand 1 zu 0'),'Score 1 to 0');
 assert.equal(translate('Speichern & Start'),'Save & Start');
+assert.equal(translate('Lokale Karriere starten'),'Start a local career');
+assert.equal(translate('Diese Karriere wird auf diesem Gerät im Browser gespeichert. Zum Öffnen der Webseite brauchst du Internet; die geöffnete Karriere kannst du ohne Konto spielen. Sichere deinen Spielstand regelmäßig per Exportdatei.'),'This career is saved in the browser on this device. You need internet to open the website; you can play the open career without an account. Export your save regularly as a backup file.');
+assert.equal(translate('Managername'),'Manager name');
+assert.equal(translate('Karriere starten'),'Start career');
+assert.equal(translate('Öffentliche Teilnahme'),'Public participation');
+assert.equal(translate('Vereinswelt wird gespeichert …'),'Saving club career …');
 assert.equal(translate('Wird gespeichert …'),'Saving …');
 assert.equal(translate('Nicht gespeichert'),'Not saved');
 assert.equal(translate('Erneut speichern'),'Retry saving');
