@@ -67,6 +67,8 @@ jobs:
           node work/test-world-penalties-v65.cjs
           node work/test-world-victory-popup.cjs
           node work/test-world-nationalities-v79.cjs
+          node work/test-world-market-nationalities-v79.cjs
+          node work/test-world-kits-v81.cjs
           node work/test-world-direct-transfer.cjs
           node work/test-world-navigation.cjs
           node work/test-world-swap-banner.cjs
@@ -92,7 +94,9 @@ jobs:
           python3 work/test_deploy_ftps.py
 
       - name: Einzeldatei bauen
-        run: node work/build.cjs
+        run: |
+          node work/build.cjs
+          node work/test-no-player-images.cjs
 
       - name: Per FTPS zu World4You hochladen und Live-Datei prüfen
         env:

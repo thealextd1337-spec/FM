@@ -4,6 +4,11 @@
 
 ## 2026-09-28 (Prototyp 81 · Flaggen, Transfers und Saisonrückblick)
 
+- Veröffentlicht werden alle aktuellen Vereinswelt-Korrekturen: 101 SVG-Flaggen, getrennte Transferverhandlungen mit sichtbarem Status, dauerhafte Tornetze, kompakte Tabellenplätze, neuer Wechselbanner, Speichern & Start, korrigierte Startseiten-Navigation, Titelkonfetti, überarbeiteter Saisonrückblick mit Awards und Durchschnittsnoten sowie anklickbare Sieger und wettbewerbsspezifische Titelzeichen. Auch die 48 individuellen Vereinswappen sind enthalten.
+- Die bereits veröffentlichte Entscheidung aus Prototyp 80 bleibt bestehen: Spielerporträts und Jubelbilder werden bis zur Überarbeitung der Bildqualität nicht geladen. Die Entwürfe bleiben im Quellverzeichnis.
+
+## Entwicklungsprotokoll und lokale Entwürfe
+
 - Alle 101 Spielernationalitäten verwenden jetzt eingebettete SVG-Flaggen statt Flaggen-Emojis. Damit erscheinen Herkunftsflaggen auch unter Windows in Kader, Spielerprofil, Transfermarkt und Saisonrückblick. Die Grafiken benötigen keine externen Abrufe; Spielstände bleiben unverändert. Der vollständige Flaggenkatalog, Sprachumschaltung und Einzeldatei-Build sind geprüft.
 
 - Jeder der 48 Vereine erhält eine eigene Kombination aus Wappenform, Streifenführung und einem zum Namen passenden Zeichen, etwa Krone, Anker, Fluss oder Schmiede. Die scharfen SVG-Wappen verwenden weiterhin die aktuellen Vereinsfarben und ändern sich bei einer erlaubten Farbwahl sofort mit. Wappenvielfalt, Farbwechsel, Trikottests und Einzeldatei-Build sind geprüft; Spielstände benötigen keine Umrechnung.
