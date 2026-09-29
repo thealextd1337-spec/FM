@@ -442,7 +442,649 @@ const v61CrestDesigns={
  'FRA-1':['hex','star','sash'],'FRA-2':['round','union','vertical'],'FRA-3':['shield','waves','pin'],'FRA-4':['pennant','sail','diagonal'],'FRA-5':['arch','union','hoops'],'FRA-6':['diamond','v','vertical'],'FRA-C1':['oct','river','sash'],'FRA-C2':['shield','compass','pin'],
  'POR-1':['arch','star','vertical'],'POR-2':['hex','bridge','hoops'],'POR-3':['shield','union','diagonal'],'POR-4':['diamond','compass','sash'],'POR-5':['round','laurel','pin'],'POR-6':['pennant','sail','vertical'],'POR-C1':['oct','tower','diagonal'],'POR-C2':['arch','sun','hoops']
 };
+// BEGIN AUTHORED CREST ASSETS
+const v61CrestAssets={
+ "ENG-1": {
+  "palette": [
+   "#c43743",
+   "#f3f5f2",
+   "#1d2329"
+  ],
+  "image": "crests/eng-1.png",
+  "masks": [
+   "crests/eng-1-0.png",
+   "crests/eng-1-1.png",
+   "crests/eng-1-2.png"
+  ]
+ },
+ "ENG-2": {
+  "palette": [
+   "#68b8d9",
+   "#f3f5f2",
+   "#24385b"
+  ],
+  "image": "crests/eng-2.png",
+  "masks": [
+   "crests/eng-2-0.png",
+   "crests/eng-2-1.png",
+   "crests/eng-2-2.png"
+  ]
+ },
+ "ENG-3": {
+  "palette": [
+   "#7750a0",
+   "#f1e5cc",
+   "#d9ab45"
+  ],
+  "image": "crests/eng-3.png",
+  "masks": [
+   "crests/eng-3-0.png",
+   "crests/eng-3-1.png",
+   "crests/eng-3-2.png"
+  ]
+ },
+ "ENG-4": {
+  "palette": [
+   "#d9ab45",
+   "#1d2329",
+   "#f3f5f2"
+  ],
+  "image": "crests/eng-4.png",
+  "masks": [
+   "crests/eng-4-0.png",
+   "crests/eng-4-1.png",
+   "crests/eng-4-2.png"
+  ]
+ },
+ "ENG-5": {
+  "palette": [
+   "#3caaa8",
+   "#732e49",
+   "#f1e5cc"
+  ],
+  "image": "crests/eng-5.png",
+  "masks": [
+   "crests/eng-5-0.png",
+   "crests/eng-5-1.png",
+   "crests/eng-5-2.png"
+  ]
+ },
+ "ENG-6": {
+  "palette": [
+   "#315b42",
+   "#f3f5f2",
+   "#d9ab45"
+  ],
+  "image": "crests/eng-6.png",
+  "masks": [
+   "crests/eng-6-0.png",
+   "crests/eng-6-1.png",
+   "crests/eng-6-2.png"
+  ]
+ },
+ "ENG-C1": {
+  "palette": [
+   "#a85240",
+   "#f3edda",
+   "#1c3045"
+  ],
+  "image": "crests/eng-c1.png",
+  "masks": [
+   "crests/eng-c1-0.png",
+   "crests/eng-c1-1.png",
+   "crests/eng-c1-2.png"
+  ]
+ },
+ "ENG-C2": {
+  "palette": [
+   "#24385b",
+   "#df8a3b",
+   "#f1e5cc"
+  ],
+  "image": "crests/eng-c2.png",
+  "masks": [
+   "crests/eng-c2-0.png",
+   "crests/eng-c2-1.png",
+   "crests/eng-c2-2.png"
+  ]
+ },
+ "ESP-1": {
+  "palette": [
+   "#f3f5f2",
+   "#d9ab45",
+   "#24385b"
+  ],
+  "image": "crests/esp-1.png",
+  "masks": [
+   "crests/esp-1-0.png",
+   "crests/esp-1-1.png",
+   "crests/esp-1-2.png"
+  ]
+ },
+ "ESP-2": {
+  "palette": [
+   "#326db7",
+   "#a43e50",
+   "#d9ab45"
+  ],
+  "image": "crests/esp-2.png",
+  "masks": [
+   "crests/esp-2-0.png",
+   "crests/esp-2-1.png",
+   "crests/esp-2-2.png"
+  ]
+ },
+ "ESP-3": {
+  "palette": [
+   "#a98bbb",
+   "#bec8cb",
+   "#732e49"
+  ],
+  "image": "crests/esp-3.png",
+  "masks": [
+   "crests/esp-3-0.png",
+   "crests/esp-3-1.png",
+   "crests/esp-3-2.png"
+  ]
+ },
+ "ESP-4": {
+  "palette": [
+   "#df7770",
+   "#f1e5cc",
+   "#24385b"
+  ],
+  "image": "crests/esp-4.png",
+  "masks": [
+   "crests/esp-4-0.png",
+   "crests/esp-4-1.png",
+   "crests/esp-4-2.png"
+  ]
+ },
+ "ESP-5": {
+  "palette": [
+   "#275744",
+   "#bd904a",
+   "#f3edda"
+  ],
+  "image": "crests/esp-5.png",
+  "masks": [
+   "crests/esp-5-0.png",
+   "crests/esp-5-1.png",
+   "crests/esp-5-2.png"
+  ]
+ },
+ "ESP-6": {
+  "palette": [
+   "#586b79",
+   "#f3f5f2",
+   "#dc9a32"
+  ],
+  "image": "crests/esp-6.png",
+  "masks": [
+   "crests/esp-6-0.png",
+   "crests/esp-6-1.png",
+   "crests/esp-6-2.png"
+  ]
+ },
+ "ESP-C1": {
+  "palette": [
+   "#727b47",
+   "#823b52",
+   "#f3edda"
+  ],
+  "image": "crests/esp-c1.png",
+  "masks": [
+   "crests/esp-c1-0.png",
+   "crests/esp-c1-1.png",
+   "crests/esp-c1-2.png"
+  ]
+ },
+ "ESP-C2": {
+  "palette": [
+   "#9ccbd9",
+   "#76543b",
+   "#d9ab45"
+  ],
+  "image": "crests/esp-c2.png",
+  "masks": [
+   "crests/esp-c2-0.png",
+   "crests/esp-c2-1.png",
+   "crests/esp-c2-2.png"
+  ]
+ },
+ "ITA-1": {
+  "palette": [
+   "#1d2329",
+   "#f3f5f2",
+   "#d9ab45"
+  ],
+  "image": "crests/ita-1.png",
+  "masks": [
+   "crests/ita-1-0.png",
+   "crests/ita-1-1.png",
+   "crests/ita-1-2.png"
+  ]
+ },
+ "ITA-2": {
+  "palette": [
+   "#326db7",
+   "#1d2329",
+   "#f3f5f2"
+  ],
+  "image": "crests/ita-2.png",
+  "masks": [
+   "crests/ita-2-0.png",
+   "crests/ita-2-1.png",
+   "crests/ita-2-2.png"
+  ]
+ },
+ "ITA-3": {
+  "palette": [
+   "#a98bbb",
+   "#f3edda",
+   "#732e49"
+  ],
+  "image": "crests/ita-3.png",
+  "masks": [
+   "crests/ita-3-0.png",
+   "crests/ita-3-1.png",
+   "crests/ita-3-2.png"
+  ]
+ },
+ "ITA-4": {
+  "palette": [
+   "#727b47",
+   "#f3f5f2",
+   "#24385b"
+  ],
+  "image": "crests/ita-4.png",
+  "masks": [
+   "crests/ita-4-0.png",
+   "crests/ita-4-1.png",
+   "crests/ita-4-2.png"
+  ]
+ },
+ "ITA-5": {
+  "palette": [
+   "#3267b0",
+   "#dc9a32",
+   "#f1e5cc"
+  ],
+  "image": "crests/ita-5.png",
+  "masks": [
+   "crests/ita-5-0.png",
+   "crests/ita-5-1.png",
+   "crests/ita-5-2.png"
+  ]
+ },
+ "ITA-6": {
+  "palette": [
+   "#ba674d",
+   "#1d2329",
+   "#f3edda"
+  ],
+  "image": "crests/ita-6.png",
+  "masks": [
+   "crests/ita-6-0.png",
+   "crests/ita-6-1.png",
+   "crests/ita-6-2.png"
+  ]
+ },
+ "ITA-C1": {
+  "palette": [
+   "#526948",
+   "#d9c6a5",
+   "#3267b0"
+  ],
+  "image": "crests/ita-c1.png",
+  "masks": [
+   "crests/ita-c1-0.png",
+   "crests/ita-c1-1.png",
+   "crests/ita-c1-2.png"
+  ]
+ },
+ "ITA-C2": {
+  "palette": [
+   "#d9c6a5",
+   "#415caf",
+   "#dc9a32"
+  ],
+  "image": "crests/ita-c2.png",
+  "masks": [
+   "crests/ita-c2-0.png",
+   "crests/ita-c2-1.png",
+   "crests/ita-c2-2.png"
+  ]
+ },
+ "GER-1": {
+  "palette": [
+   "#c43743",
+   "#f3f5f2",
+   "#1d2329"
+  ],
+  "image": "crests/ger-1.png",
+  "masks": [
+   "crests/ger-1-0.png",
+   "crests/ger-1-1.png",
+   "crests/ger-1-2.png"
+  ]
+ },
+ "GER-2": {
+  "palette": [
+   "#398b5b",
+   "#f3f5f2",
+   "#d9ab45"
+  ],
+  "image": "crests/ger-2.png",
+  "masks": [
+   "crests/ger-2-0.png",
+   "crests/ger-2-1.png",
+   "crests/ger-2-2.png"
+  ]
+ },
+ "GER-3": {
+  "palette": [
+   "#204938",
+   "#f1e5cc",
+   "#d9ab45"
+  ],
+  "image": "crests/ger-3.png",
+  "masks": [
+   "crests/ger-3-0.png",
+   "crests/ger-3-1.png",
+   "crests/ger-3-2.png"
+  ]
+ },
+ "GER-4": {
+  "palette": [
+   "#dc9a32",
+   "#315b42",
+   "#f1e5cc"
+  ],
+  "image": "crests/ger-4.png",
+  "masks": [
+   "crests/ger-4-0.png",
+   "crests/ger-4-1.png",
+   "crests/ger-4-2.png"
+  ]
+ },
+ "GER-5": {
+  "palette": [
+   "#1c3045",
+   "#f3f5f2",
+   "#d9ab45"
+  ],
+  "image": "crests/ger-5.png",
+  "masks": [
+   "crests/ger-5-0.png",
+   "crests/ger-5-1.png",
+   "crests/ger-5-2.png"
+  ]
+ },
+ "GER-6": {
+  "palette": [
+   "#4ba68b",
+   "#bd904a",
+   "#24385b"
+  ],
+  "image": "crests/ger-6.png",
+  "masks": [
+   "crests/ger-6-0.png",
+   "crests/ger-6-1.png",
+   "crests/ger-6-2.png"
+  ]
+ },
+ "GER-C1": {
+  "palette": [
+   "#74468d",
+   "#c7d0d0",
+   "#d9ab45"
+  ],
+  "image": "crests/ger-c1.png",
+  "masks": [
+   "crests/ger-c1-0.png",
+   "crests/ger-c1-1.png",
+   "crests/ger-c1-2.png"
+  ]
+ },
+ "GER-C2": {
+  "palette": [
+   "#b94d43",
+   "#24385b",
+   "#f1e5cc"
+  ],
+  "image": "crests/ger-c2.png",
+  "masks": [
+   "crests/ger-c2-0.png",
+   "crests/ger-c2-1.png",
+   "crests/ger-c2-2.png"
+  ]
+ },
+ "FRA-1": {
+  "palette": [
+   "#193653",
+   "#c43743",
+   "#f3f5f2"
+  ],
+  "image": "crests/fra-1.png",
+  "masks": [
+   "crests/fra-1-0.png",
+   "crests/fra-1-1.png",
+   "crests/fra-1-2.png"
+  ]
+ },
+ "FRA-2": {
+  "palette": [
+   "#732e49",
+   "#f1e5cc",
+   "#d9ab45"
+  ],
+  "image": "crests/fra-2.png",
+  "masks": [
+   "crests/fra-2-0.png",
+   "crests/fra-2-1.png",
+   "crests/fra-2-2.png"
+  ]
+ },
+ "FRA-3": {
+  "palette": [
+   "#398b5b",
+   "#f3edda",
+   "#df7770"
+  ],
+  "image": "crests/fra-3.png",
+  "masks": [
+   "crests/fra-3-0.png",
+   "crests/fra-3-1.png",
+   "crests/fra-3-2.png"
+  ]
+ },
+ "FRA-4": {
+  "palette": [
+   "#2d777c",
+   "#d9c6a5",
+   "#732e49"
+  ],
+  "image": "crests/fra-4.png",
+  "masks": [
+   "crests/fra-4-0.png",
+   "crests/fra-4-1.png",
+   "crests/fra-4-2.png"
+  ]
+ },
+ "FRA-5": {
+  "palette": [
+   "#7750a0",
+   "#8b979b",
+   "#d9ab45"
+  ],
+  "image": "crests/fra-5.png",
+  "masks": [
+   "crests/fra-5-0.png",
+   "crests/fra-5-1.png",
+   "crests/fra-5-2.png"
+  ]
+ },
+ "FRA-6": {
+  "palette": [
+   "#85d0bd",
+   "#283039",
+   "#df7770"
+  ],
+  "image": "crests/fra-6.png",
+  "masks": [
+   "crests/fra-6-0.png",
+   "crests/fra-6-1.png",
+   "crests/fra-6-2.png"
+  ]
+ },
+ "FRA-C1": {
+  "palette": [
+   "#b8794a",
+   "#3caaa8",
+   "#24385b"
+  ],
+  "image": "crests/fra-c1.png",
+  "masks": [
+   "crests/fra-c1-0.png",
+   "crests/fra-c1-1.png",
+   "crests/fra-c1-2.png"
+  ]
+ },
+ "FRA-C2": {
+  "palette": [
+   "#bd904a",
+   "#204938",
+   "#f1e5cc"
+  ],
+  "image": "crests/fra-c2.png",
+  "masks": [
+   "crests/fra-c2-0.png",
+   "crests/fra-c2-1.png",
+   "crests/fra-c2-2.png"
+  ]
+ },
+ "POR-1": {
+  "palette": [
+   "#c43743",
+   "#f3f5f2",
+   "#d9ab45"
+  ],
+  "image": "crests/por-1.png",
+  "masks": [
+   "crests/por-1-0.png",
+   "crests/por-1-1.png",
+   "crests/por-1-2.png"
+  ]
+ },
+ "POR-2": {
+  "palette": [
+   "#326db7",
+   "#f3f5f2",
+   "#1d2329"
+  ],
+  "image": "crests/por-2.png",
+  "masks": [
+   "crests/por-2-0.png",
+   "crests/por-2-1.png",
+   "crests/por-2-2.png"
+  ]
+ },
+ "POR-3": {
+  "palette": [
+   "#318579",
+   "#a43e50",
+   "#f1e5cc"
+  ],
+  "image": "crests/por-3.png",
+  "masks": [
+   "crests/por-3-0.png",
+   "crests/por-3-1.png",
+   "crests/por-3-2.png"
+  ]
+ },
+ "POR-4": {
+  "palette": [
+   "#3b477f",
+   "#bd904a",
+   "#f1e5cc"
+  ],
+  "image": "crests/por-4.png",
+  "masks": [
+   "crests/por-4-0.png",
+   "crests/por-4-1.png",
+   "crests/por-4-2.png"
+  ]
+ },
+ "POR-5": {
+  "palette": [
+   "#3caaa8",
+   "#bec8cb",
+   "#732e49"
+  ],
+  "image": "crests/por-5.png",
+  "masks": [
+   "crests/por-5-0.png",
+   "crests/por-5-1.png",
+   "crests/por-5-2.png"
+  ]
+ },
+ "POR-6": {
+  "palette": [
+   "#694766",
+   "#f1e5cc",
+   "#d9ab45"
+  ],
+  "image": "crests/por-6.png",
+  "masks": [
+   "crests/por-6-0.png",
+   "crests/por-6-1.png",
+   "crests/por-6-2.png"
+  ]
+ },
+ "POR-C1": {
+  "palette": [
+   "#727b47",
+   "#b8794a",
+   "#f1e5cc"
+  ],
+  "image": "crests/por-c1.png",
+  "masks": [
+   "crests/por-c1-0.png",
+   "crests/por-c1-1.png",
+   "crests/por-c1-2.png"
+  ]
+ },
+ "POR-C2": {
+  "palette": [
+   "#68b8d9",
+   "#ba674d",
+   "#24385b"
+  ],
+  "image": "crests/por-c2.png",
+  "masks": [
+   "crests/por-c2-0.png",
+   "crests/por-c2-1.png",
+   "crests/por-c2-2.png"
+  ]
+ }
+};
+let v61CrestInstance=0;
+// END AUTHORED CREST ASSETS
 function v61CrestSVG(club){
+ const asset=v61CrestAssets[club.id];
+ if(asset){
+  const colors=club.kits?.colors?['primary','secondary','tertiary'].map(key=>club.kits.colors[key]):[...v61ClubColors(club),v61Colors[v61KitTertiary[club.id]]];
+  const palette=colors.map((color,index)=>/^#[0-9a-f]{6}$/i.test(color)?color:asset.palette[index]);
+  const name=escapeHTML(club.name);
+  let artwork;
+  if(palette.every((color,index)=>color.toLowerCase()===asset.palette[index].toLowerCase()))artwork=`<image href="${asset.image}" width="336" height="336"/>`;
+  else{
+   const prefix=`v61-crest-${++v61CrestInstance}`;
+   artwork='<defs>'+asset.masks.map((src,index)=>`<mask id="${prefix}-${index}" maskUnits="userSpaceOnUse" x="0" y="0" width="336" height="336" style="mask-type:alpha"><image href="${src}" width="336" height="336"/></mask>`).join('')+'</defs>'+palette.map((color,index)=>`<rect width="336" height="336" fill="${color}" mask="url(#${prefix}-${index})"/>`).join('');
+  }
+  return `<svg class="v61-crest" viewBox="0 0 336 336" role="img" aria-label="Vereinslogo ${name}" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"><title>Vereinslogo ${name}</title>${artwork}</svg>`;
+ }
  const [main,trim]=v61ClubColors(club),accent=club.kits?.colors?.tertiary||'#f1e5cc';
  const [shapeId,motifId,patternId]=v61CrestDesigns[club.id]||['shield','star','vertical'];
  const shape=v61CrestShapes[shapeId],pattern=v61CrestPatterns[patternId],ink=v61KeeperTrim(main),name=escapeHTML(club.name);

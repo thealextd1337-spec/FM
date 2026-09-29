@@ -2,6 +2,8 @@
 
 ## Inhalt
 
+- [Vereinswappen – 48 neue Entwürfe](wappen-entwuerfe/README.md): sechs Ländertafeln mit unterschiedlichen Bildzeichen, Formen und Schriftstilen; Gestaltungsvorschläge vor der technischen Übernahme.
+
 - [Spielstart, Accounts, Spielstände, Hall of Fame und App-Stores – Plan](speicherstaende-hall-of-fame-store-plan.md): Startablauf und Parametermatrix, Karriereverwaltung, Accountwiederherstellung, Serverkarrieren, Gerätewechsel, offene Entscheidungen und Abnahme; [offizielle Rechts- und Storequellen](speicherung-store-recherche.md).
 
 - [Spielerreferenz 92](spieler-referenz-v92.md): neues Referenzpaar, Farbprüfung, Bildherkunft und offene visuelle Abnahme vor dem Ausbau des Pools.

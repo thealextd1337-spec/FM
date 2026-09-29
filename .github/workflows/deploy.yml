@@ -78,6 +78,9 @@ jobs:
           node work/test-i18n-v75.cjs
           node work/test-world-live-ranks.cjs
           node work/test-world-grid-v71.cjs
+          node work/test-world-player-instructions.cjs
+          node work/test-world-physical-instructions.cjs
+          node work/test-world-career-plan.cjs
           node work/test-world-economy-v66.cjs
           node work/test-world-career-events.cjs
           node work/test-world-playable-rosters.cjs
@@ -99,6 +102,7 @@ jobs:
       - name: Einzeldatei bauen
         run: |
           node work/build.cjs
+          node work/test-club-crests.cjs
           node work/test-no-player-images.cjs
 
       - name: Per FTPS zu World4You hochladen und Live-Datei prüfen

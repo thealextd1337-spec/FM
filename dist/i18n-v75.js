@@ -28,6 +28,35 @@ Defensiv	Defensive
 Balance	Balanced
 Offensiv	Attacking
 Teamtaktik	Team tactics
+Matchplan	Match plan
+Aufstellung & Taktik	Lineup & tactics
+Dieser Matchplan gilt für dein nächstes Spiel. Änderungen werden gespeichert.	This match plan applies to your next game. Changes are saved.
+Dauerhafter Matchplan	Saved match plan
+Dauerhafter Matchplan auf dem Spielfeld	Saved match plan on the pitch
+Ersatzbank	Bench
+Gespeicherte Matchpläne	Saved match plans
+Eine Vorlage enthält Startelf, Feldpositionen, Einzelanweisungen und Teamtaktik. Fehlende Spieler werden beim Laden ersetzt.	A preset includes the starting lineup, pitch positions, player instructions and team tactics. Missing players are replaced when loaded.
+Name der Vorlage	Preset name
+Vorlage speichern	Save preset
+Zum Beispiel: Flügelspiel	For example: Wing play
+Laden	Load
+Entfernen	Remove
+Noch keine Vorlage gespeichert.	No preset saved yet.
+Für den Matchplan fehlen Profis.	Not enough senior players for a match plan.
+Der Vorlagenname muss 2 bis 32 Zeichen haben.	The preset name must be 2 to 32 characters long.
+Spielanweisung	Player instruction
+Spielanweisungen	Player instructions
+Angriffsfokus	Attacking focus
+Standard	Standard
+Mitte	Centre
+Außen	Wings
+Außenbahn & Flanken	Stay wide and cross
+Anspielbar bleiben	Offer short passes
+Tiefenlauf	Run in behind
+Abschluss suchen	Look for shots
+Für die Abwehr bleibt Standard aktiv.	Defenders use the standard instruction.
+Gilt, wenn die Spielsituation passt.	Applies when the situation allows it.
+Mehrere Anweisungen kombinierbar. Sie gelten, wenn die Spielsituation passt.	Combine multiple instructions. They apply when the situation allows it.
 Grundordnung	Formation
 Kompakt	Compact
 Mutig	Bold
@@ -802,6 +831,9 @@ Details	Details
 Frischeste	Fittest
 Defensiver	More defensive
 Offensiver	More attacking
+↓ Defensiver	↓ More defensive
+· Ausgewogen	· Balanced
+↑ Offensiver	↑ More attacking
 Letzte Änderung zurücknehmen	Undo last change
 ↶ Rückgängig	↶ Undo
 Hinspiel	First leg
@@ -1275,6 +1307,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^Nationaler Pokal: mindestens (\d+) reguläre Tore$/,(_,goals)=>`National cup: at least ${goals} regulation goals`],
   [/^Saison (\d+)$/,(_,n)=>`Season ${n}`],
   [/^Spieltag (\d+)$/,(_,n)=>`Matchday ${n}`],
+  [/^Vorlage (.+) entfernen$/,(_,name)=>`Remove preset ${name}`],
+  [/^Vorlage „(.+)“ entfernen\?$/,(_,name)=>`Remove preset “${name}”?`],
   [/^T (\d+) · V (\d+) · S (\d+) · ZK (\d+)\/(\d+)$/,(_,goals,assists,shots,won,total)=>`G ${goals} · A ${assists} · Sh ${shots} · D ${won}/${total}`],
   [/^(\d+) Tore · (\d+) Vorlagen · (\d+) Schüsse · (\d+) von (\d+) Zweikämpfen gewonnen$/,(_,goals,assists,shots,won,total)=>`${goals} goals · ${assists} assists · ${shots} shots · ${won} of ${total} duels won`],
   [/^(\d+) Spiele$/,(_,n)=>`${n} games`],
@@ -1355,7 +1389,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
  const attributes=['aria-label','title','placeholder','alt'];
  function oldMatch(element){return element.closest('#game-screen')&&!document.body.classList.contains('v65-world-match')}
  function applyText(node){
-  if(!node.parentElement||node.parentElement.closest('script,style,textarea,#language-select option,[contenteditable="true"]')||oldMatch(node.parentElement))return;
+  if(!node.parentElement||node.parentElement.closest('script,style,textarea,#language-select option,[contenteditable="true"],[translate="no"]')||oldMatch(node.parentElement))return;
   const current=node.nodeValue,last=renderedText.get(node);
   if(!originalText.has(node)||current!==last)originalText.set(node,current);
   const source=originalText.get(node),match=source.match(/^(\s*)([\s\S]*?)(\s*)$/),formMark=node.parentElement.matches('.v49-form b')?{S:'W',U:'D',N:'L'}[match[2]]:null,next=language==='en'&&formMark?match[1]+formMark+match[3]:language==='en'&&/[A-Za-zÄÖÜäöüß]/.test(match[2])?match[1]+translate(match[2])+match[3]:source;

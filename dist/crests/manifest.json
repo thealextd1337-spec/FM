@@ -1,0 +1,674 @@
+{
+  "ENG-1": {
+    "source": "england.png",
+    "box": [
+      0,
+      0,
+      384,
+      437
+    ],
+    "palette": [
+      "#c43743",
+      "#f3f5f2",
+      "#1d2329"
+    ]
+  },
+  "ENG-2": {
+    "source": "england.png",
+    "box": [
+      384,
+      0,
+      768,
+      437
+    ],
+    "palette": [
+      "#68b8d9",
+      "#f3f5f2",
+      "#24385b"
+    ]
+  },
+  "ENG-3": {
+    "source": "england.png",
+    "box": [
+      768,
+      0,
+      1152,
+      437
+    ],
+    "palette": [
+      "#7750a0",
+      "#f1e5cc",
+      "#d9ab45"
+    ]
+  },
+  "ENG-4": {
+    "source": "england.png",
+    "box": [
+      1152,
+      0,
+      1536,
+      437
+    ],
+    "palette": [
+      "#d9ab45",
+      "#1d2329",
+      "#f3f5f2"
+    ]
+  },
+  "ENG-5": {
+    "source": "england.png",
+    "box": [
+      0,
+      512,
+      384,
+      895
+    ],
+    "palette": [
+      "#3caaa8",
+      "#732e49",
+      "#f1e5cc"
+    ]
+  },
+  "ENG-6": {
+    "source": "england.png",
+    "box": [
+      384,
+      512,
+      768,
+      895
+    ],
+    "palette": [
+      "#315b42",
+      "#f3f5f2",
+      "#d9ab45"
+    ]
+  },
+  "ENG-C1": {
+    "source": "england.png",
+    "box": [
+      768,
+      512,
+      1152,
+      895
+    ],
+    "palette": [
+      "#a85240",
+      "#f3edda",
+      "#1c3045"
+    ]
+  },
+  "ENG-C2": {
+    "source": "england.png",
+    "box": [
+      1152,
+      512,
+      1536,
+      895
+    ],
+    "palette": [
+      "#24385b",
+      "#df8a3b",
+      "#f1e5cc"
+    ]
+  },
+  "ESP-1": {
+    "source": "spanien.png",
+    "box": [
+      0,
+      0,
+      384,
+      437
+    ],
+    "palette": [
+      "#f3f5f2",
+      "#d9ab45",
+      "#24385b"
+    ]
+  },
+  "ESP-2": {
+    "source": "spanien.png",
+    "box": [
+      384,
+      0,
+      768,
+      437
+    ],
+    "palette": [
+      "#326db7",
+      "#a43e50",
+      "#d9ab45"
+    ]
+  },
+  "ESP-3": {
+    "source": "spanien.png",
+    "box": [
+      768,
+      0,
+      1152,
+      437
+    ],
+    "palette": [
+      "#a98bbb",
+      "#bec8cb",
+      "#732e49"
+    ]
+  },
+  "ESP-4": {
+    "source": "spanien.png",
+    "box": [
+      1152,
+      0,
+      1536,
+      437
+    ],
+    "palette": [
+      "#df7770",
+      "#f1e5cc",
+      "#24385b"
+    ]
+  },
+  "ESP-5": {
+    "source": "spanien.png",
+    "box": [
+      0,
+      512,
+      384,
+      895
+    ],
+    "palette": [
+      "#275744",
+      "#bd904a",
+      "#f3edda"
+    ]
+  },
+  "ESP-6": {
+    "source": "spanien.png",
+    "box": [
+      384,
+      512,
+      768,
+      895
+    ],
+    "palette": [
+      "#586b79",
+      "#f3f5f2",
+      "#dc9a32"
+    ]
+  },
+  "ESP-C1": {
+    "source": "spanien.png",
+    "box": [
+      768,
+      512,
+      1152,
+      895
+    ],
+    "palette": [
+      "#727b47",
+      "#823b52",
+      "#f3edda"
+    ]
+  },
+  "ESP-C2": {
+    "source": "spanien.png",
+    "box": [
+      1152,
+      512,
+      1536,
+      895
+    ],
+    "palette": [
+      "#9ccbd9",
+      "#76543b",
+      "#d9ab45"
+    ]
+  },
+  "ITA-1": {
+    "source": "italien.png",
+    "box": [
+      0,
+      0,
+      410,
+      437
+    ],
+    "palette": [
+      "#1d2329",
+      "#f3f5f2",
+      "#d9ab45"
+    ]
+  },
+  "ITA-2": {
+    "source": "italien.png",
+    "box": [
+      414,
+      0,
+      768,
+      437
+    ],
+    "palette": [
+      "#326db7",
+      "#1d2329",
+      "#f3f5f2"
+    ]
+  },
+  "ITA-3": {
+    "source": "italien.png",
+    "box": [
+      768,
+      0,
+      1152,
+      437
+    ],
+    "palette": [
+      "#a98bbb",
+      "#f3edda",
+      "#732e49"
+    ]
+  },
+  "ITA-4": {
+    "source": "italien.png",
+    "box": [
+      1152,
+      0,
+      1536,
+      437
+    ],
+    "palette": [
+      "#727b47",
+      "#f3f5f2",
+      "#24385b"
+    ]
+  },
+  "ITA-5": {
+    "source": "italien.png",
+    "box": [
+      0,
+      512,
+      384,
+      895
+    ],
+    "palette": [
+      "#3267b0",
+      "#dc9a32",
+      "#f1e5cc"
+    ]
+  },
+  "ITA-6": {
+    "source": "italien.png",
+    "box": [
+      384,
+      512,
+      768,
+      895
+    ],
+    "palette": [
+      "#ba674d",
+      "#1d2329",
+      "#f3edda"
+    ]
+  },
+  "ITA-C1": {
+    "source": "italien.png",
+    "box": [
+      768,
+      512,
+      1152,
+      895
+    ],
+    "palette": [
+      "#526948",
+      "#d9c6a5",
+      "#3267b0"
+    ]
+  },
+  "ITA-C2": {
+    "source": "italien.png",
+    "box": [
+      1152,
+      512,
+      1536,
+      895
+    ],
+    "palette": [
+      "#d9c6a5",
+      "#415caf",
+      "#dc9a32"
+    ]
+  },
+  "GER-1": {
+    "source": "vier-vereine-v2.png",
+    "box": [
+      0,
+      512,
+      768,
+      924
+    ],
+    "palette": [
+      "#c43743",
+      "#f3f5f2",
+      "#1d2329"
+    ]
+  },
+  "GER-2": {
+    "source": "deutschland.png",
+    "box": [
+      384,
+      0,
+      768,
+      437
+    ],
+    "palette": [
+      "#398b5b",
+      "#f3f5f2",
+      "#d9ab45"
+    ]
+  },
+  "GER-3": {
+    "source": "deutschland.png",
+    "box": [
+      768,
+      0,
+      1152,
+      437
+    ],
+    "palette": [
+      "#204938",
+      "#f1e5cc",
+      "#d9ab45"
+    ]
+  },
+  "GER-4": {
+    "source": "deutschland.png",
+    "box": [
+      1152,
+      0,
+      1536,
+      437
+    ],
+    "palette": [
+      "#dc9a32",
+      "#315b42",
+      "#f1e5cc"
+    ]
+  },
+  "GER-5": {
+    "source": "deutschland.png",
+    "box": [
+      0,
+      512,
+      384,
+      895
+    ],
+    "palette": [
+      "#1c3045",
+      "#f3f5f2",
+      "#d9ab45"
+    ]
+  },
+  "GER-6": {
+    "source": "deutschland.png",
+    "box": [
+      384,
+      512,
+      768,
+      895
+    ],
+    "palette": [
+      "#4ba68b",
+      "#bd904a",
+      "#24385b"
+    ]
+  },
+  "GER-C1": {
+    "source": "vier-vereine-v2.png",
+    "box": [
+      768,
+      512,
+      1536,
+      924
+    ],
+    "palette": [
+      "#74468d",
+      "#c7d0d0",
+      "#d9ab45"
+    ]
+  },
+  "GER-C2": {
+    "source": "deutschland.png",
+    "box": [
+      1152,
+      512,
+      1536,
+      895
+    ],
+    "palette": [
+      "#b94d43",
+      "#24385b",
+      "#f1e5cc"
+    ]
+  },
+  "FRA-1": {
+    "source": "vier-vereine-v2.png",
+    "box": [
+      0,
+      0,
+      768,
+      469
+    ],
+    "palette": [
+      "#193653",
+      "#c43743",
+      "#f3f5f2"
+    ]
+  },
+  "FRA-2": {
+    "source": "frankreich.png",
+    "box": [
+      384,
+      0,
+      768,
+      437
+    ],
+    "palette": [
+      "#732e49",
+      "#f1e5cc",
+      "#d9ab45"
+    ]
+  },
+  "FRA-3": {
+    "source": "frankreich.png",
+    "box": [
+      768,
+      0,
+      1152,
+      437
+    ],
+    "palette": [
+      "#398b5b",
+      "#f3edda",
+      "#df7770"
+    ]
+  },
+  "FRA-4": {
+    "source": "frankreich.png",
+    "box": [
+      1152,
+      0,
+      1536,
+      437
+    ],
+    "palette": [
+      "#2d777c",
+      "#d9c6a5",
+      "#732e49"
+    ]
+  },
+  "FRA-5": {
+    "source": "frankreich.png",
+    "box": [
+      0,
+      512,
+      384,
+      895
+    ],
+    "palette": [
+      "#7750a0",
+      "#8b979b",
+      "#d9ab45"
+    ]
+  },
+  "FRA-6": {
+    "source": "frankreich.png",
+    "box": [
+      384,
+      512,
+      768,
+      895
+    ],
+    "palette": [
+      "#85d0bd",
+      "#283039",
+      "#df7770"
+    ]
+  },
+  "FRA-C1": {
+    "source": "vier-vereine-v2.png",
+    "box": [
+      768,
+      0,
+      1536,
+      469
+    ],
+    "palette": [
+      "#b8794a",
+      "#3caaa8",
+      "#24385b"
+    ]
+  },
+  "FRA-C2": {
+    "source": "frankreich.png",
+    "box": [
+      1152,
+      512,
+      1536,
+      895
+    ],
+    "palette": [
+      "#bd904a",
+      "#204938",
+      "#f1e5cc"
+    ]
+  },
+  "POR-1": {
+    "source": "portugal.png",
+    "box": [
+      0,
+      0,
+      384,
+      437
+    ],
+    "palette": [
+      "#c43743",
+      "#f3f5f2",
+      "#d9ab45"
+    ]
+  },
+  "POR-2": {
+    "source": "portugal.png",
+    "box": [
+      384,
+      0,
+      768,
+      437
+    ],
+    "palette": [
+      "#326db7",
+      "#f3f5f2",
+      "#1d2329"
+    ]
+  },
+  "POR-3": {
+    "source": "portugal.png",
+    "box": [
+      768,
+      0,
+      1152,
+      437
+    ],
+    "palette": [
+      "#318579",
+      "#a43e50",
+      "#f1e5cc"
+    ]
+  },
+  "POR-4": {
+    "source": "portugal.png",
+    "box": [
+      1152,
+      0,
+      1536,
+      437
+    ],
+    "palette": [
+      "#3b477f",
+      "#bd904a",
+      "#f1e5cc"
+    ]
+  },
+  "POR-5": {
+    "source": "portugal.png",
+    "box": [
+      0,
+      512,
+      384,
+      895
+    ],
+    "palette": [
+      "#3caaa8",
+      "#bec8cb",
+      "#732e49"
+    ]
+  },
+  "POR-6": {
+    "source": "portugal.png",
+    "box": [
+      384,
+      512,
+      768,
+      895
+    ],
+    "palette": [
+      "#694766",
+      "#f1e5cc",
+      "#d9ab45"
+    ]
+  },
+  "POR-C1": {
+    "source": "portugal.png",
+    "box": [
+      768,
+      512,
+      1152,
+      895
+    ],
+    "palette": [
+      "#727b47",
+      "#b8794a",
+      "#f1e5cc"
+    ]
+  },
+  "POR-C2": {
+    "source": "portugal.png",
+    "box": [
+      1152,
+      512,
+      1536,
+      895
+    ],
+    "palette": [
+      "#68b8d9",
+      "#ba674d",
+      "#24385b"
+    ]
+  }
+}

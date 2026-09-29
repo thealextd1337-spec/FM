@@ -132,7 +132,7 @@ function v64UiTacticButtons(key,values,current,labels){return`<div class="segmen
 function v64UiTactics(state,side){
  const tactic=state.tactics[side];
  const names={'1–1–3':'Sturm','1–2–2':'Offensiv','1–3–1':'Zentrum','2–1–2':'Kompakt','2–2–1':'Balance','3–1–1':'Defensiv'};
- return`<div class="v64-tactics"><fieldset><legend>Grundordnung</legend><div class="formation-presets">${v64Formations.map(value=>`<button type="button" data-v64-tactic-key="formation" data-v64-tactic-value="${value}" class="${tactic.formation===value?'active':''}" aria-pressed="${tactic.formation===value}">${names[value]}<small>${value}</small></button>`).join('')}</div></fieldset><fieldset><legend>Pressing</legend>${v64UiTacticButtons('pressing',v63Pressing,tactic.pressing,{Abwartend:'Abwarten',Früh:'Früh angreifen'})}</fieldset><fieldset><legend>Passspiel</legend>${v64UiTacticButtons('passing',v63Passing,tactic.passing,{Kurz:'Kurze Pässe',Direkt:'Schnell nach vorne'})}</fieldset><fieldset><legend>Abwehrlinie</legend>${v64UiTacticButtons('defense',v63Defense,tactic.defense)}</fieldset><fieldset><legend>Zweikämpfe</legend>${v64UiTacticButtons('aggression',['Vorsichtig','Normal','Aggressiv'],tactic.aggression)}</fieldset><div class="plan-card"><span>DEIN MATCHPLAN</span><strong>${names[tactic.formation]} · ${tactic.formation}</strong><p>Pressing: ${tactic.pressing} · Passspiel: ${tactic.passing} · Abwehrlinie: ${tactic.defense} · Zweikämpfe: ${tactic.aggression}</p></div></div>`;
+ return`<div class="v64-tactics"><fieldset><legend>Grundordnung</legend><div class="formation-presets">${v64Formations.map(value=>`<button type="button" data-v64-tactic-key="formation" data-v64-tactic-value="${value}" class="${tactic.formation===value?'active':''}" aria-pressed="${tactic.formation===value}">${names[value]}<small>${value}</small></button>`).join('')}</div></fieldset><fieldset><legend>Pressing</legend>${v64UiTacticButtons('pressing',v63Pressing,tactic.pressing,{Abwartend:'Abwarten',Früh:'Früh angreifen'})}</fieldset><fieldset><legend>Passspiel</legend>${v64UiTacticButtons('passing',v63Passing,tactic.passing,{Kurz:'Kurze Pässe',Direkt:'Schnell nach vorne'})}</fieldset><fieldset><legend>Angriffsfokus</legend>${v64UiTacticButtons('focus',v64FocusOptions,tactic.focus||'Variabel')}</fieldset><fieldset><legend>Abwehrlinie</legend>${v64UiTacticButtons('defense',v63Defense,tactic.defense)}</fieldset><fieldset><legend>Zweikämpfe</legend>${v64UiTacticButtons('aggression',['Vorsichtig','Normal','Aggressiv'],tactic.aggression)}</fieldset><div class="plan-card"><span>DEIN MATCHPLAN</span><strong>${names[tactic.formation]} · ${tactic.formation}</strong><p>Pressing: ${tactic.pressing} · Passspiel: ${tactic.passing} · Angriffsfokus: ${tactic.focus||'Variabel'} · Abwehrlinie: ${tactic.defense} · Zweikämpfe: ${tactic.aggression}</p></div></div>`;
 }
 function v64UiLineup(fixture,state,side){
  const plan=side===0?fixture.plan.home:fixture.plan.away,roster=v64Side(v61CurrentCareer,fixture,side);
@@ -159,7 +159,7 @@ function v64UiPrematchPitch(career,fixture,state,side,options={}){
  const grid=Array.from({length:35},(_,cell)=>{
   const entry=byCell.get(cell),player=entry&&roster.find(item=>item.pid===entry.pid),role=player&&state.roles[entry.originalPid],chosen=entry?.slot===selected;
   const status=player&&{...player,fresh:state.fresh[entry.pid]??player.fresh},orientation=entry&&v64Orientation(state,entry.originalPid),rating=player&&options.ratings?.[player.pid];
-  return`<button type="button" class="cell ${chosen?'chosen':''} ${entry?.pending?'v64-pending-player':''} ${player&&role!==player.line?'v64-out-of-position':''}" data-v64-cell="${cell}" ${entry?`${pickAttribute}="${entry.slot}" draggable="true"`:''} aria-label="${player?`${escapeHTML(player.name)}, ${v64Roles[role]}${role!==player.line?', Fremdposition: Stammposition '+v61PositionNames[player.line]:''}, Ausrichtung ${['defensiv','ausgewogen','offensiv'][orientation+1]}, Form ${formText(v51EffectiveForm(status))}, ${freshText(status.fresh)}, ${entry.pending?'Wechsel vorgemerkt, ':''}`:'Freies Feld, '}Reihe ${Math.floor(cell/5)+1}, Spalte ${cell%5+1}" ${entry?`aria-pressed="${chosen}"`:''}>${player?`<span class="role-mark" aria-hidden="true">${['↓','·','↑'][orientation+1]}</span><span class="token">${escapeHTML(player.n)}</span>${v51PitchFaceHTML(status)}${v51PitchBarHTML(status)}<span class="position-label">${{def:'VER',mid:'MIT',att:'ANG'}[role]}</span><span class="player-label" data-v64-pitch-profile="${escapeHTML(player.pid)}" role="link" tabindex="0" aria-label="Profil von ${escapeHTML(player.name)} öffnen">${v61FlagSVG(player.nation)}<span>${escapeHTML(player.name.toUpperCase())}${role!==player.line?' ⚠':''}</span></span>${Number.isFinite(rating)?`<span class="v64-live-rating" aria-label="Aktuelle Note ${rating.toFixed(1).replace('.',',')}">${rating.toFixed(1).replace('.',',')}</span>`:''}${entry.pending?'<small class="v64-pending-label">vorgemerkt</small>':''}`:''}</button>`;
+  return`<button type="button" class="cell ${chosen?'chosen':''} ${entry?.pending?'v64-pending-player':''} ${player&&role!==player.line?'v64-out-of-position':''}" data-v64-cell="${cell}" ${entry?`${pickAttribute}="${entry.slot}" draggable="true"`:''} aria-label="${player?`${escapeHTML(player.name)}, ${v64Roles[role]}${role!==player.line?', Fremdposition: Stammposition '+v61PositionNames[player.line]:''}, Ausrichtung ${['defensiv','ausgewogen','offensiv'][orientation+1]}, Spielanweisungen: ${v64InstructionLabel(state,entry.originalPid)}, Form ${formText(v51EffectiveForm(status))}, ${freshText(status.fresh)}, ${entry.pending?'Wechsel vorgemerkt, ':''}`:'Freies Feld, '}Reihe ${Math.floor(cell/5)+1}, Spalte ${cell%5+1}" ${entry?`aria-pressed="${chosen}"`:''}>${player?`<span class="role-mark" aria-hidden="true">${['↓','·','↑'][orientation+1]}</span><span class="token">${escapeHTML(player.n)}</span>${v51PitchFaceHTML(status)}${v51PitchBarHTML(status)}<span class="position-label">${{def:'VER',mid:'MIT',att:'ANG'}[role]}</span><span class="player-label" data-v64-pitch-profile="${escapeHTML(player.pid)}" role="link" tabindex="0" aria-label="Profil von ${escapeHTML(player.name)} öffnen">${v61FlagSVG(player.nation)}<span>${escapeHTML(player.name.toUpperCase())}${role!==player.line?' ⚠':''}</span></span>${Number.isFinite(rating)?`<span class="v64-live-rating" aria-label="Aktuelle Note ${rating.toFixed(1).replace('.',',')}">${rating.toFixed(1).replace('.',',')}</span>`:''}${entry.pending?'<small class="v64-pending-label">vorgemerkt</small>':''}`:''}</button>`;
  }).join('');
  const keeperSlot=starters.findIndex(pid=>state.roles[pid]==='gk'),keeperOriginal=starters[keeperSlot],keeper=roster.find(item=>item.pid===(options.replacements?.[keeperOriginal]||keeperOriginal));
  const club=career.world.clubs.find(item=>item.id===(side===0?fixture.homeId:fixture.awayId)),colors=v61ClubColors(club),keeperRating=keeper&&options.ratings?.[keeper.pid];
@@ -170,9 +170,14 @@ function v64OrientationHTML(state,pid){
  const selected=v64Orientation(state,pid);
  return`<fieldset class="v64-orientation"><legend>Individuelle Ausrichtung</legend><div class="segmented">${[[-1,'↓ Defensiver'],[0,'· Ausgewogen'],[1,'↑ Offensiver']].map(([value,label])=>`<button type="button" data-v64-orientation="${value}" aria-pressed="${selected===value}" class="${selected===value?'active':''}">${label}</button>`).join('')}</div></fieldset>`;
 }
+function v64InstructionHTML(state,pid){
+ const role=state.roles[pid];if(role==='gk')return'';
+ const selected=v64PlayerInstructions(state,pid),values=v64Instructions[role];
+ return`<fieldset class="v64-instructions"><legend>Spielanweisungen · ${v64Roles[role]}</legend><div class="segmented v64-tactic-options">${['standard',...values].map(value=>{const active=value==='standard'?!selected.length:selected.includes(value);return`<button type="button" data-v64-instruction="${value}" aria-pressed="${active}" class="${active?'active':''}">${v64InstructionNames[value]}</button>`}).join('')}</div>${values.length?'<p class="help">Mehrere Anweisungen kombinierbar. Sie gelten, wenn die Spielsituation passt.</p>':'<p class="help">Für die Abwehr bleibt Standard aktiv.</p>'}</fieldset>`;
+}
 function v64UiPrematchSelection(career,fixture,state,side){
  const plan=side===0?fixture.plan.home:fixture.plan.away,pid=plan.starters[Math.min(v64SelectedSlot,plan.starters.length-1)];
- return v64OrientationHTML(state,pid);
+ return v64OrientationHTML(state,pid)+v64InstructionHTML(state,pid);
 }
 function v64UiPrematchBench(career,fixture,state,side){
  const plan=side===0?fixture.plan.home:fixture.plan.away,roster=v64Side(career,fixture,side),selected=roster.find(item=>item.pid===plan.starters[v64SelectedSlot]);
@@ -203,11 +208,14 @@ function v64UiQuickLineup(career,fixture,state,side,kind){
  const bench=roster.filter(player=>remaining.has(player.pid)).sort((a,b)=>v64Rating(b,b.line)-v64Rating(a,a.line)).slice(0,5).map(player=>player.pid);
  for(const player of roster)delete state.roles[player.pid];
  Object.assign(state.roles,assigned);plan.roles={...assigned};plan.starters=starters;plan.bench=bench;
+ for(const player of roster)if(!starters.includes(player.pid)&&state.instructions)delete state.instructions[player.pid];
+ for(const pid of starters)v64NormalizeInstructions(state,pid);
  if(side===0){state.active=[...starters];state.bench=[...bench]}else{state.awayActive=[...starters];state.awayBench=[...bench]}
  for(const pid of [...starters,...bench])if(state.fresh[pid]===undefined){const player=roster.find(item=>item.pid===pid);state.fresh[pid]=player.fresh;state.minutes[pid]=0;state.stats[pid]={goals:0,assists:0,shots:0}}
  if(state.tactics[side].formation!==formation){state.tactics[side].formation=formation;state.tacticChanges.push({minute:0,side,tactics:{...state.tactics[side]},reason:'Schnelle Aufstellung'})}
  plan.tactics={...state.tactics[side]};v64SelectedSlot=0;
  v64ResetCells(state,side);
+ v64RefreshAiInstructions(career,fixture,state,side);
 }
 function v64UiFirstLegScore(career,fixture,reverse=false){
  if(fixture.leg!==2)return'';
@@ -317,6 +325,7 @@ function v64UiClick(event){
   if(button.hasAttribute('data-v64-exit')){v64SaveAndStart(button);return}
   if(button.dataset.v64Tab&&state.phase==='prematch'){v64UiTab=button.dataset.v64Tab;v64UiRender(career);v61WorldScreen.querySelector(`[data-v64-tab="${v64UiTab}"]`)?.focus();return}
   if(button.dataset.v64Orientation!==undefined&&state.phase==='prematch'){const pid=v64Active(state,v64UiOwnSide(fixture))[v64SelectedSlot];v64UiRemember(fixture,state);v64SetOrientation(state,pid,Number(button.dataset.v64Orientation));v64UiSave();v64UiRender(career);return}
+  if(button.dataset.v64Instruction&&state.phase==='prematch'){const pid=v64Active(state,v64UiOwnSide(fixture))[v64SelectedSlot];if(button.dataset.v64Instruction==='standard'&&!v64PlayerInstructions(state,pid).length)return;v64UiRemember(fixture,state);v64ToggleInstruction(state,pid,button.dataset.v64Instruction);v64UiSave();v64UiRender(career);return}
   if(button.dataset.v64TacticKey&&state.phase==='prematch'){
    const side=v64UiOwnSide(fixture),key=button.dataset.v64TacticKey,value=button.dataset.v64TacticValue;
    if(state.tactics[side][key]===value)return;

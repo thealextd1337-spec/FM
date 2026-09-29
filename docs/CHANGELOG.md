@@ -2,6 +2,18 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-29 (Prototyp 89 · Matchplan, Einzelanweisungen und Vereinswappen)
+
+- Alle 48 freigegebenen Wappen sind in die Vereinswelt eingebunden, einschließlich der vier überarbeiteten Motive für Paris Central, Toulouse, München Isar und Jena Süd. Die Einzelbilder sind transparent freigestellt und erscheinen über den gemeinsamen Renderer in Vereinswahl, Profilen, Tabellen und Matchanzeigen. Erlaubte Farbänderungen verwenden feste Bildmasken; Spielstände bleiben unverändert. Wappen-, Trikot- und Weltansichtstests sowie Build und Browserprüfung von Vereinswahl und Farbwechsel erfolgreich.
+
+- Vier Wappenentwürfe wurden ersetzt: Paris Central erhält eine Laterne, Toulouse Garonne eine Blüte, München Isar eine Brücke und Jena Süd eine Sternwarte. Die neue Tafel steht am Anfang der Wappenübersicht; die erste Serie bleibt als Vergleich erhalten.
+
+- Der neue Reiter „Matchplan“ macht Aufstellung und Taktik an spielfreien Tagen bearbeitbar. Der automatisch gespeicherte Plan wird beim nächsten eigenen Spiel übernommen. Mehrere benannte Vorlagen enthalten die komplette Startelf samt Positionen, Einzelanweisungen und Teamtaktik; fehlende Spieler werden nach Kaderänderungen passend ersetzt. Tests prüfen Vorlagen, Kaderabgleich und Matchübernahme. Im Browser wurden Rasterposition, Startelf, Einzelanweisungen, Teamtaktik, zwei Vorlagen, Laden, Aktualisieren, Neuladen und die Übernahme beim nächsten Spieltag geprüft.
+
+- Für alle 48 Vereine liegen die gestalterischen Vorlagen auf sechs Ländertafeln vor. Bildwappen, Schriftlogos, Siegel und freie Symbole sorgen für mehr Vielfalt als wiederholte Initialenpaare und Wellenmuster. Die Namen und die vollständige Vereinsabdeckung wurden visuell geprüft; die freigestellten Motive sind im Spiel eingebunden.
+
+- In der Vereinswelt erhalten Feldspieler vor dem Spiel und in Spielpausen alle zur Einsatzzone passenden Spielanweisungen in frei kombinierbarer Auswahl: Außenbahn und Flanken, kurze Anspielbarkeit, Tiefenlauf oder früherer Abschluss. Die neue Teamtaktik „Angriffsfokus“ gewichtet Pässe durch die Mitte oder über außen. KI-Spieler nutzen dieselben Lauf- und Ballentscheidungen. Bei Zonenwechseln bleiben passende Anweisungen erhalten; Ersatzspieler übernehmen alle Anweisungen ihres Startplatzes. Bestehende Matchstände ohne Anweisungen verwenden Standard und variablen Angriffsfokus; einzelne gespeicherte Anweisungen bleiben gültig, abgeschlossene Partien unverändert. Gezielte Tests prüfen Zonengrenzen, Wechsel, Speicherung und Matchwirkung. Build, deutsche und englische Oberfläche, ein vollständiges Browsermatch sowie die kombinierte Auswahl vor dem Spiel, nach Neuladen und in der Spielpause wurden geprüft.
+
 ## 2026-09-28 (Prototyp 88 · Lokaler Spielstart)
 
 - Der lokale Spielstart fragt einen Managernamen ab und zeigt vor dem Start eine Zusammenfassung mit Speicherort, Verein, festem Startkader, Regelstand und ausgeschalteter öffentlicher Teilnahme. Rücknavigation behält die Vorschau; ein Speicherfehler lässt die Auswahl stehen und ermöglicht einen erneuten Versuch. Ein Doppelklick erzeugt nur eine Karriere. Alte Spielstände ohne Managernamen bleiben lesbar. Gezielte Tests und Browserprüfung umfassen Speicherfehler, Wiederholung, Deutsch/Englisch und mobile Breite.

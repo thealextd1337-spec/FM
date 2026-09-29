@@ -22,7 +22,7 @@ function v65LineupPositions(context,physical){
 }
 function v65PhysicalPlayer(context,physical,pid){
  const side=v65Side(physical,context.ownSide),source=v64Player(context.career,context.fixture,side,pid),role=context.state.roles[pid],positions=v65LineupPositions(context,physical);
- const copy={...source,cell:positions.get(pid),assignedLine:role,role:v64Orientation(context.state,pid),matchEntryElapsed:0};
+ const copy={...source,cell:positions.get(pid),assignedLine:role,role:v64Orientation(context.state,pid),instructions:v64PlayerInstructions(context.state,pid),matchEntryElapsed:0};
  const person=source.keeper?goalkeeper(copy,physical):team(copy,physical);
  person.initialBy=person.by;person.motionX=0;person.motionY=physical===0?-1:1;person.recoverUntil=0;
  return person;
@@ -33,15 +33,16 @@ function v65ApplyTactics(context){
  match.teamDirect=[0,1].map(physical=>context.state.tactics[v65Side(physical,context.ownSide)].passing==='Direkt'?1:0);
  match.defenseLines=[0,1].map(physical=>({Tief:-1,Neutral:0,Hoch:1}[context.state.tactics[v65Side(physical,context.ownSide)].defense]||0));
  match.aggression=[0,1].map(physical=>({Vorsichtig:-1,Normal:0,Aggressiv:1}[context.state.tactics[v65Side(physical,context.ownSide)].aggression]||0));
+ match.teamFocus=[0,1].map(physical=>context.state.tactics[v65Side(physical,context.ownSide)].focus||'Variabel');
  for(const physical of [0,1]){
   const positions=v65LineupPositions(context,physical),side=v65Side(physical,context.ownSide);
   for(const person of match.people.filter(item=>item.t===physical&&!item.keeper)){
    const cell=positions.get(person.pid),role=context.state.roles[person.pid],point=team({...person,cell},physical);
-   person.cell=cell;person.assignedLine=role;person.role=v64Orientation(context.state,person.pid);person.bx=point.bx;person.by=point.by;person.initialBy=point.by;
+   person.cell=cell;person.assignedLine=role;person.role=v64Orientation(context.state,person.pid);person.instructions=v64PlayerInstructions(context.state,person.pid);person.bx=point.bx;person.by=point.by;person.initialBy=point.by;
   }
  }
  const own=context.state.tactics[context.ownSide],pressLabel={Abwartend:'Abwartendes',Ausgewogen:'Ausgewogenes',Früh:'Frühes'}[own.pressing],passLabel={Kurz:'Kurzes',Variabel:'Variables',Direkt:'Direktes'}[own.passing];
- $('#live-plan').textContent=`${own.formation} · ${pressLabel} Pressing · ${passLabel} Passspiel · Abwehrlinie: ${own.defense} · Zweikämpfe: ${own.aggression}`;
+ $('#live-plan').textContent=`${own.formation} · ${pressLabel} Pressing · ${passLabel} Passspiel · Angriffsfokus: ${own.focus||'Variabel'} · Abwehrlinie: ${own.defense} · Zweikämpfe: ${own.aggression}`;
  $('#match-plan').textContent=own.formation;
 }
 function v65CreateMatch(context){
@@ -236,7 +237,7 @@ function v65RenderReport(context){
 function v65PauseSelection(context){
  const {career,fixture,state,ownSide}=context,active=v64Active(state,ownSide),roster=v64Side(career,fixture,ownSide),pid=active[v65SelectedSlot],player=roster.find(item=>item.pid===pid);
  const otherSlots=active.map((id,index)=>({id,index,player:roster.find(item=>item.pid===id)})).filter(item=>item.index!==v65SelectedSlot&&item.player.keeper===player.keeper);
- const controls=`${v64OrientationHTML(state,pid)}${otherSlots.length?`<label>Position mit Mitspieler tauschen<select id="v65-swap-target">${otherSlots.map(item=>`<option value="${item.index}">${escapeHTML(item.player.name)} · ${v64Roles[state.roles[item.id]]}</option>`).join('')}</select></label><button type="button" class="menu-action" data-v65-swap>Positionen tauschen</button>`:''}`;
+ const controls=`${v64OrientationHTML(state,pid)}${v64InstructionHTML(state,pid)}${otherSlots.length?`<label>Position mit Mitspieler tauschen<select id="v65-swap-target">${otherSlots.map(item=>`<option value="${item.index}">${escapeHTML(item.player.name)} · ${v64Roles[state.roles[item.id]]}</option>`).join('')}</select></label><button type="button" class="menu-action" data-v65-swap>Positionen tauschen</button>`:''}`;
  return controls?`<div class="v64-selection v65-selection-actions">${controls}</div>`:'';
 }
 function v65PauseBench(context){
@@ -259,12 +260,12 @@ function v65PausePitch(context){
 }
 function v65UndoSnapshot(context){
  const {state,ownSide}=context;
- return{tactics:{...state.tactics[ownSide]},roles:{...state.roles},cells:structuredClone(state.cells),orientation:structuredClone(state.orientation),pending:structuredClone(state.pending[ownSide]),tacticChangesLength:state.tacticChanges.length,substitutionCount:state.substitutions.length,selectedSlot:v65SelectedSlot};
+ return{tactics:{...state.tactics[ownSide]},roles:{...state.roles},cells:structuredClone(state.cells),orientation:structuredClone(state.orientation),instructions:structuredClone(state.instructions||{}),pending:structuredClone(state.pending[ownSide]),tacticChangesLength:state.tacticChanges.length,substitutionCount:state.substitutions.length,selectedSlot:v65SelectedSlot};
 }
 function v65UndoLast(context){
  const {state,ownSide}=context,undo=state.pauseUndo;
  if(state.phase!=='paused'||!undo||state.substitutions.length!==undo.substitutionCount)return;
- state.tactics[ownSide]=undo.tactics;state.roles=undo.roles;state.cells=undo.cells;state.orientation=undo.orientation;state.pending[ownSide]=undo.pending;state.tacticChanges.length=undo.tacticChangesLength;v65SelectedSlot=undo.selectedSlot;
+ state.tactics[ownSide]=undo.tactics;state.roles=undo.roles;state.cells=undo.cells;state.orientation=undo.orientation;state.instructions=undo.instructions;state.pending[ownSide]=undo.pending;state.tacticChanges.length=undo.tacticChangesLength;v65SelectedSlot=undo.selectedSlot;
  delete state.pauseUndo;v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw();
 }
 function v65SwapPositions(context,otherSlot,firstSlot=v65SelectedSlot){
@@ -442,6 +443,7 @@ $('#game-screen').addEventListener('click',event=>{
   if(button.hasAttribute('data-v65-undo')){v65UndoLast(context);return}
   if(button.dataset.v65PickSlot!==undefined&&context.state.phase==='paused'){v65SelectedSlot=Number(button.dataset.v65PickSlot);v65PauseTab='lineup';v65UpdateControls(context);$('#v65-plan-view')?.querySelector(`[data-v65-pick-slot="${v65SelectedSlot}"]`)?.focus();return}
   if(button.dataset.v64Orientation!==undefined&&context.state.phase==='paused'){const pid=v64Active(context.state,context.ownSide)[v65SelectedSlot],value=Number(button.dataset.v64Orientation);if(v64Orientation(context.state,pid)===value)return;const undo=v65UndoSnapshot(context);v64SetOrientation(context.state,pid,value);context.state.pauseUndo=undo;v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw();return}
+  if(button.dataset.v64Instruction&&context.state.phase==='paused'){const pid=v64Active(context.state,context.ownSide)[v65SelectedSlot];if(button.dataset.v64Instruction==='standard'&&!v64PlayerInstructions(context.state,pid).length)return;const undo=v65UndoSnapshot(context);v64ToggleInstruction(context.state,pid,button.dataset.v64Instruction);context.state.pauseUndo=undo;v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw();return}
   if(button.dataset.v64Cell!==undefined&&context.state.phase==='paused'){
    const pid=v64Active(context.state,context.ownSide)[v65SelectedSlot],undo=v65UndoSnapshot(context);
    if(v64MoveCell(context.career,context.fixture,context.state,context.ownSide,pid,Number(button.dataset.v64Cell))){context.state.pauseUndo=undo;v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw()}return;
