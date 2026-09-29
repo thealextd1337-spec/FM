@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-29 (Prototyp 94 · Fremdposition auf Mobilgeräten)
+
+- Auf schmalen Bildschirmen wird die Fremdposition als gelbes Warnsymbol am Feldtrikot angezeigt. So bleibt Platz für den Spielernamen; die vollständige Erklärung steht weiterhin in der Spielerauswahl. Desktop- und Mobilansicht im lokalen Browser geprüft, zusätzlich Positions- und Übersetzungstest sowie Build. Spielstände bleiben unverändert.
+
 ## 2026-09-29 (Prototyp 93 · Deutliche Fremdposition)
 
 - Spieler auf einer fremden Position zeigen ihre Stammposition jetzt als gut lesbares, gelbes Schild direkt auf dem Feldtrikot. In der Spielerauswahl erklärt ein Hinweis zusätzlich Stamm- und Einsatzposition. Die Kennzeichnung gilt im Matchplan und vor dem Spiel; Screenreader erhalten weiterhin die vollständige Positionsangabe. Positions- und Übersetzungstest, Matchplantest sowie Build geprüft; Spielstände bleiben unverändert.
