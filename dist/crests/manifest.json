@@ -11,7 +11,9 @@
       "#c43743",
       "#f3f5f2",
       "#1d2329"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ENG-2": {
     "source": "england.png",
@@ -25,7 +27,9 @@
       "#68b8d9",
       "#f3f5f2",
       "#24385b"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ENG-3": {
     "source": "england.png",
@@ -39,7 +43,9 @@
       "#7750a0",
       "#f1e5cc",
       "#d9ab45"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ENG-4": {
     "source": "england.png",
@@ -53,7 +59,9 @@
       "#d9ab45",
       "#1d2329",
       "#f3f5f2"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ENG-5": {
     "source": "england.png",
@@ -67,7 +75,9 @@
       "#3caaa8",
       "#732e49",
       "#f1e5cc"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ENG-6": {
     "source": "england.png",
@@ -81,7 +91,9 @@
       "#315b42",
       "#f3f5f2",
       "#d9ab45"
-    ]
+    ],
+    "frame": "plaque",
+    "neutralForeground": 0
   },
   "ENG-C1": {
     "source": "england.png",
@@ -95,7 +107,9 @@
       "#a85240",
       "#f3edda",
       "#1c3045"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ENG-C2": {
     "source": "england.png",
@@ -109,7 +123,9 @@
       "#24385b",
       "#df8a3b",
       "#f1e5cc"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ESP-1": {
     "source": "spanien.png",
@@ -123,7 +139,9 @@
       "#f3f5f2",
       "#d9ab45",
       "#24385b"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ESP-2": {
     "source": "spanien.png",
@@ -137,7 +155,9 @@
       "#326db7",
       "#a43e50",
       "#d9ab45"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ESP-3": {
     "source": "spanien.png",
@@ -151,7 +171,9 @@
       "#a98bbb",
       "#bec8cb",
       "#732e49"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ESP-4": {
     "source": "spanien.png",
@@ -165,7 +187,9 @@
       "#df7770",
       "#f1e5cc",
       "#24385b"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ESP-5": {
     "source": "spanien.png",
@@ -179,7 +203,9 @@
       "#275744",
       "#bd904a",
       "#f3edda"
-    ]
+    ],
+    "frame": "shield",
+    "neutralForeground": 0
   },
   "ESP-6": {
     "source": "spanien.png",
@@ -193,7 +219,9 @@
       "#586b79",
       "#f3f5f2",
       "#dc9a32"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ESP-C1": {
     "source": "spanien.png",
@@ -207,7 +235,9 @@
       "#727b47",
       "#823b52",
       "#f3edda"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ESP-C2": {
     "source": "spanien.png",
@@ -221,7 +251,9 @@
       "#9ccbd9",
       "#76543b",
       "#d9ab45"
-    ]
+    ],
+    "frame": "hex",
+    "neutralForeground": 1
   },
   "ITA-1": {
     "source": "italien.png",
@@ -235,7 +267,9 @@
       "#1d2329",
       "#f3f5f2",
       "#d9ab45"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ITA-2": {
     "source": "italien.png",
@@ -249,7 +283,9 @@
       "#326db7",
       "#1d2329",
       "#f3f5f2"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ITA-3": {
     "source": "italien.png",
@@ -263,7 +299,9 @@
       "#a98bbb",
       "#f3edda",
       "#732e49"
-    ]
+    ],
+    "frame": "round",
+    "neutralForeground": 2
   },
   "ITA-4": {
     "source": "italien.png",
@@ -277,7 +315,9 @@
       "#727b47",
       "#f3f5f2",
       "#24385b"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ITA-5": {
     "source": "italien.png",
@@ -291,7 +331,9 @@
       "#3267b0",
       "#dc9a32",
       "#f1e5cc"
-    ]
+    ],
+    "frame": "round",
+    "neutralForeground": 0
   },
   "ITA-6": {
     "source": "italien.png",
@@ -305,7 +347,9 @@
       "#ba674d",
       "#1d2329",
       "#f3edda"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ITA-C1": {
     "source": "italien.png",
@@ -319,7 +363,9 @@
       "#526948",
       "#d9c6a5",
       "#3267b0"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "ITA-C2": {
     "source": "italien.png",
@@ -333,7 +379,9 @@
       "#d9c6a5",
       "#415caf",
       "#dc9a32"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "GER-1": {
     "source": "vier-vereine-v2.png",
@@ -347,7 +395,9 @@
       "#c43743",
       "#f3f5f2",
       "#1d2329"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "GER-2": {
     "source": "deutschland.png",
@@ -361,7 +411,9 @@
       "#398b5b",
       "#f3f5f2",
       "#d9ab45"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "GER-3": {
     "source": "deutschland.png",
@@ -375,7 +427,9 @@
       "#204938",
       "#f1e5cc",
       "#d9ab45"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "GER-4": {
     "source": "deutschland.png",
@@ -389,7 +443,9 @@
       "#dc9a32",
       "#315b42",
       "#f1e5cc"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "GER-5": {
     "source": "deutschland.png",
@@ -403,7 +459,9 @@
       "#1c3045",
       "#f3f5f2",
       "#d9ab45"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "GER-6": {
     "source": "deutschland.png",
@@ -417,7 +475,9 @@
       "#4ba68b",
       "#bd904a",
       "#24385b"
-    ]
+    ],
+    "frame": "hex",
+    "neutralForeground": 0
   },
   "GER-C1": {
     "source": "vier-vereine-v2.png",
@@ -431,7 +491,9 @@
       "#74468d",
       "#c7d0d0",
       "#d9ab45"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "GER-C2": {
     "source": "deutschland.png",
@@ -445,7 +507,9 @@
       "#b94d43",
       "#24385b",
       "#f1e5cc"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "FRA-1": {
     "source": "vier-vereine-v2.png",
@@ -459,7 +523,9 @@
       "#193653",
       "#c43743",
       "#f3f5f2"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "FRA-2": {
     "source": "frankreich.png",
@@ -473,7 +539,9 @@
       "#732e49",
       "#f1e5cc",
       "#d9ab45"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "FRA-3": {
     "source": "frankreich.png",
@@ -487,7 +555,9 @@
       "#398b5b",
       "#f3edda",
       "#df7770"
-    ]
+    ],
+    "frame": "shield",
+    "neutralForeground": 0
   },
   "FRA-4": {
     "source": "frankreich.png",
@@ -501,7 +571,9 @@
       "#2d777c",
       "#d9c6a5",
       "#732e49"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "FRA-5": {
     "source": "frankreich.png",
@@ -515,7 +587,9 @@
       "#7750a0",
       "#8b979b",
       "#d9ab45"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "FRA-6": {
     "source": "frankreich.png",
@@ -529,7 +603,9 @@
       "#85d0bd",
       "#283039",
       "#df7770"
-    ]
+    ],
+    "frame": "round",
+    "neutralForeground": 1
   },
   "FRA-C1": {
     "source": "vier-vereine-v2.png",
@@ -543,7 +619,9 @@
       "#b8794a",
       "#3caaa8",
       "#24385b"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "FRA-C2": {
     "source": "frankreich.png",
@@ -557,7 +635,9 @@
       "#bd904a",
       "#204938",
       "#f1e5cc"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "POR-1": {
     "source": "portugal.png",
@@ -571,7 +651,9 @@
       "#c43743",
       "#f3f5f2",
       "#d9ab45"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "POR-2": {
     "source": "portugal.png",
@@ -585,7 +667,9 @@
       "#326db7",
       "#f3f5f2",
       "#1d2329"
-    ]
+    ],
+    "frame": "shield",
+    "neutralForeground": 0
   },
   "POR-3": {
     "source": "portugal.png",
@@ -599,7 +683,9 @@
       "#318579",
       "#a43e50",
       "#f1e5cc"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "POR-4": {
     "source": "portugal.png",
@@ -613,7 +699,9 @@
       "#3b477f",
       "#bd904a",
       "#f1e5cc"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "POR-5": {
     "source": "portugal.png",
@@ -627,7 +715,9 @@
       "#3caaa8",
       "#bec8cb",
       "#732e49"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "POR-6": {
     "source": "portugal.png",
@@ -641,7 +731,9 @@
       "#694766",
       "#f1e5cc",
       "#d9ab45"
-    ]
+    ],
+    "frame": "plaque",
+    "neutralForeground": 0
   },
   "POR-C1": {
     "source": "portugal.png",
@@ -655,7 +747,9 @@
       "#727b47",
       "#b8794a",
       "#f1e5cc"
-    ]
+    ],
+    "frame": null,
+    "neutralForeground": null
   },
   "POR-C2": {
     "source": "portugal.png",
@@ -669,6 +763,8 @@
       "#68b8d9",
       "#ba674d",
       "#24385b"
-    ]
+    ],
+    "frame": "shield",
+    "neutralForeground": 2
   }
 }

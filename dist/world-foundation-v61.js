@@ -450,6 +450,7 @@ const v61CrestAssets={
    "#f3f5f2",
    "#1d2329"
   ],
+  "neutralForeground": null,
   "image": "crests/eng-1.png",
   "edge": "crests/eng-1-edge.png",
   "detail": "crests/eng-1-detail.png",
@@ -465,6 +466,7 @@ const v61CrestAssets={
    "#f3f5f2",
    "#24385b"
   ],
+  "neutralForeground": null,
   "image": "crests/eng-2.png",
   "edge": "crests/eng-2-edge.png",
   "detail": "crests/eng-2-detail.png",
@@ -480,6 +482,7 @@ const v61CrestAssets={
    "#f1e5cc",
    "#d9ab45"
   ],
+  "neutralForeground": null,
   "image": "crests/eng-3.png",
   "edge": "crests/eng-3-edge.png",
   "detail": "crests/eng-3-detail.png",
@@ -495,6 +498,7 @@ const v61CrestAssets={
    "#1d2329",
    "#f3f5f2"
   ],
+  "neutralForeground": null,
   "image": "crests/eng-4.png",
   "edge": "crests/eng-4-edge.png",
   "detail": "crests/eng-4-detail.png",
@@ -510,6 +514,7 @@ const v61CrestAssets={
    "#732e49",
    "#f1e5cc"
   ],
+  "neutralForeground": null,
   "image": "crests/eng-5.png",
   "edge": "crests/eng-5-edge.png",
   "detail": "crests/eng-5-detail.png",
@@ -525,6 +530,7 @@ const v61CrestAssets={
    "#f3f5f2",
    "#d9ab45"
   ],
+  "neutralForeground": 0,
   "image": "crests/eng-6.png",
   "edge": "crests/eng-6-edge.png",
   "detail": "crests/eng-6-detail.png",
@@ -540,6 +546,7 @@ const v61CrestAssets={
    "#f3edda",
    "#1c3045"
   ],
+  "neutralForeground": null,
   "image": "crests/eng-c1.png",
   "edge": "crests/eng-c1-edge.png",
   "detail": "crests/eng-c1-detail.png",
@@ -555,6 +562,7 @@ const v61CrestAssets={
    "#df8a3b",
    "#f1e5cc"
   ],
+  "neutralForeground": null,
   "image": "crests/eng-c2.png",
   "edge": "crests/eng-c2-edge.png",
   "detail": "crests/eng-c2-detail.png",
@@ -570,6 +578,7 @@ const v61CrestAssets={
    "#d9ab45",
    "#24385b"
   ],
+  "neutralForeground": null,
   "image": "crests/esp-1.png",
   "edge": "crests/esp-1-edge.png",
   "detail": "crests/esp-1-detail.png",
@@ -585,6 +594,7 @@ const v61CrestAssets={
    "#a43e50",
    "#d9ab45"
   ],
+  "neutralForeground": null,
   "image": "crests/esp-2.png",
   "edge": "crests/esp-2-edge.png",
   "detail": "crests/esp-2-detail.png",
@@ -600,6 +610,7 @@ const v61CrestAssets={
    "#bec8cb",
    "#732e49"
   ],
+  "neutralForeground": null,
   "image": "crests/esp-3.png",
   "edge": "crests/esp-3-edge.png",
   "detail": "crests/esp-3-detail.png",
@@ -615,6 +626,7 @@ const v61CrestAssets={
    "#f1e5cc",
    "#24385b"
   ],
+  "neutralForeground": null,
   "image": "crests/esp-4.png",
   "edge": "crests/esp-4-edge.png",
   "detail": "crests/esp-4-detail.png",
@@ -630,6 +642,7 @@ const v61CrestAssets={
    "#bd904a",
    "#f3edda"
   ],
+  "neutralForeground": 0,
   "image": "crests/esp-5.png",
   "edge": "crests/esp-5-edge.png",
   "detail": "crests/esp-5-detail.png",
@@ -645,6 +658,7 @@ const v61CrestAssets={
    "#f3f5f2",
    "#dc9a32"
   ],
+  "neutralForeground": null,
   "image": "crests/esp-6.png",
   "edge": "crests/esp-6-edge.png",
   "detail": "crests/esp-6-detail.png",
@@ -660,6 +674,7 @@ const v61CrestAssets={
    "#823b52",
    "#f3edda"
   ],
+  "neutralForeground": null,
   "image": "crests/esp-c1.png",
   "edge": "crests/esp-c1-edge.png",
   "detail": "crests/esp-c1-detail.png",
@@ -675,6 +690,7 @@ const v61CrestAssets={
    "#76543b",
    "#d9ab45"
   ],
+  "neutralForeground": 1,
   "image": "crests/esp-c2.png",
   "edge": "crests/esp-c2-edge.png",
   "detail": "crests/esp-c2-detail.png",
@@ -690,6 +706,7 @@ const v61CrestAssets={
    "#f3f5f2",
    "#d9ab45"
   ],
+  "neutralForeground": null,
   "image": "crests/ita-1.png",
   "edge": "crests/ita-1-edge.png",
   "detail": "crests/ita-1-detail.png",
@@ -705,6 +722,7 @@ const v61CrestAssets={
    "#1d2329",
    "#f3f5f2"
   ],
+  "neutralForeground": null,
   "image": "crests/ita-2.png",
   "edge": "crests/ita-2-edge.png",
   "detail": "crests/ita-2-detail.png",
@@ -720,6 +738,7 @@ const v61CrestAssets={
    "#f3edda",
    "#732e49"
   ],
+  "neutralForeground": 2,
   "image": "crests/ita-3.png",
   "edge": "crests/ita-3-edge.png",
   "detail": "crests/ita-3-detail.png",
@@ -735,6 +754,7 @@ const v61CrestAssets={
    "#f3f5f2",
    "#24385b"
   ],
+  "neutralForeground": null,
   "image": "crests/ita-4.png",
   "edge": "crests/ita-4-edge.png",
   "detail": "crests/ita-4-detail.png",
@@ -750,6 +770,7 @@ const v61CrestAssets={
    "#dc9a32",
    "#f1e5cc"
   ],
+  "neutralForeground": 0,
   "image": "crests/ita-5.png",
   "edge": "crests/ita-5-edge.png",
   "detail": "crests/ita-5-detail.png",
@@ -765,6 +786,7 @@ const v61CrestAssets={
    "#1d2329",
    "#f3edda"
   ],
+  "neutralForeground": null,
   "image": "crests/ita-6.png",
   "edge": "crests/ita-6-edge.png",
   "detail": "crests/ita-6-detail.png",
@@ -780,6 +802,7 @@ const v61CrestAssets={
    "#d9c6a5",
    "#3267b0"
   ],
+  "neutralForeground": null,
   "image": "crests/ita-c1.png",
   "edge": "crests/ita-c1-edge.png",
   "detail": "crests/ita-c1-detail.png",
@@ -795,6 +818,7 @@ const v61CrestAssets={
    "#415caf",
    "#dc9a32"
   ],
+  "neutralForeground": null,
   "image": "crests/ita-c2.png",
   "edge": "crests/ita-c2-edge.png",
   "detail": "crests/ita-c2-detail.png",
@@ -810,6 +834,7 @@ const v61CrestAssets={
    "#f3f5f2",
    "#1d2329"
   ],
+  "neutralForeground": null,
   "image": "crests/ger-1.png",
   "edge": "crests/ger-1-edge.png",
   "detail": "crests/ger-1-detail.png",
@@ -825,6 +850,7 @@ const v61CrestAssets={
    "#f3f5f2",
    "#d9ab45"
   ],
+  "neutralForeground": null,
   "image": "crests/ger-2.png",
   "edge": "crests/ger-2-edge.png",
   "detail": "crests/ger-2-detail.png",
@@ -840,6 +866,7 @@ const v61CrestAssets={
    "#f1e5cc",
    "#d9ab45"
   ],
+  "neutralForeground": null,
   "image": "crests/ger-3.png",
   "edge": "crests/ger-3-edge.png",
   "detail": "crests/ger-3-detail.png",
@@ -855,6 +882,7 @@ const v61CrestAssets={
    "#315b42",
    "#f1e5cc"
   ],
+  "neutralForeground": null,
   "image": "crests/ger-4.png",
   "edge": "crests/ger-4-edge.png",
   "detail": "crests/ger-4-detail.png",
@@ -870,6 +898,7 @@ const v61CrestAssets={
    "#f3f5f2",
    "#d9ab45"
   ],
+  "neutralForeground": null,
   "image": "crests/ger-5.png",
   "edge": "crests/ger-5-edge.png",
   "detail": "crests/ger-5-detail.png",
@@ -885,6 +914,7 @@ const v61CrestAssets={
    "#bd904a",
    "#24385b"
   ],
+  "neutralForeground": 0,
   "image": "crests/ger-6.png",
   "edge": "crests/ger-6-edge.png",
   "detail": "crests/ger-6-detail.png",
@@ -900,6 +930,7 @@ const v61CrestAssets={
    "#c7d0d0",
    "#d9ab45"
   ],
+  "neutralForeground": null,
   "image": "crests/ger-c1.png",
   "edge": "crests/ger-c1-edge.png",
   "detail": "crests/ger-c1-detail.png",
@@ -915,6 +946,7 @@ const v61CrestAssets={
    "#24385b",
    "#f1e5cc"
   ],
+  "neutralForeground": null,
   "image": "crests/ger-c2.png",
   "edge": "crests/ger-c2-edge.png",
   "detail": "crests/ger-c2-detail.png",
@@ -930,6 +962,7 @@ const v61CrestAssets={
    "#c43743",
    "#f3f5f2"
   ],
+  "neutralForeground": null,
   "image": "crests/fra-1.png",
   "edge": "crests/fra-1-edge.png",
   "detail": "crests/fra-1-detail.png",
@@ -945,6 +978,7 @@ const v61CrestAssets={
    "#f1e5cc",
    "#d9ab45"
   ],
+  "neutralForeground": null,
   "image": "crests/fra-2.png",
   "edge": "crests/fra-2-edge.png",
   "detail": "crests/fra-2-detail.png",
@@ -960,6 +994,7 @@ const v61CrestAssets={
    "#f3edda",
    "#df7770"
   ],
+  "neutralForeground": 0,
   "image": "crests/fra-3.png",
   "edge": "crests/fra-3-edge.png",
   "detail": "crests/fra-3-detail.png",
@@ -975,6 +1010,7 @@ const v61CrestAssets={
    "#d9c6a5",
    "#732e49"
   ],
+  "neutralForeground": null,
   "image": "crests/fra-4.png",
   "edge": "crests/fra-4-edge.png",
   "detail": "crests/fra-4-detail.png",
@@ -990,6 +1026,7 @@ const v61CrestAssets={
    "#8b979b",
    "#d9ab45"
   ],
+  "neutralForeground": null,
   "image": "crests/fra-5.png",
   "edge": "crests/fra-5-edge.png",
   "detail": "crests/fra-5-detail.png",
@@ -1005,6 +1042,7 @@ const v61CrestAssets={
    "#283039",
    "#df7770"
   ],
+  "neutralForeground": 1,
   "image": "crests/fra-6.png",
   "edge": "crests/fra-6-edge.png",
   "detail": "crests/fra-6-detail.png",
@@ -1020,6 +1058,7 @@ const v61CrestAssets={
    "#3caaa8",
    "#24385b"
   ],
+  "neutralForeground": null,
   "image": "crests/fra-c1.png",
   "edge": "crests/fra-c1-edge.png",
   "detail": "crests/fra-c1-detail.png",
@@ -1035,6 +1074,7 @@ const v61CrestAssets={
    "#204938",
    "#f1e5cc"
   ],
+  "neutralForeground": null,
   "image": "crests/fra-c2.png",
   "edge": "crests/fra-c2-edge.png",
   "detail": "crests/fra-c2-detail.png",
@@ -1050,6 +1090,7 @@ const v61CrestAssets={
    "#f3f5f2",
    "#d9ab45"
   ],
+  "neutralForeground": null,
   "image": "crests/por-1.png",
   "edge": "crests/por-1-edge.png",
   "detail": "crests/por-1-detail.png",
@@ -1065,6 +1106,7 @@ const v61CrestAssets={
    "#f3f5f2",
    "#1d2329"
   ],
+  "neutralForeground": 0,
   "image": "crests/por-2.png",
   "edge": "crests/por-2-edge.png",
   "detail": "crests/por-2-detail.png",
@@ -1080,6 +1122,7 @@ const v61CrestAssets={
    "#a43e50",
    "#f1e5cc"
   ],
+  "neutralForeground": null,
   "image": "crests/por-3.png",
   "edge": "crests/por-3-edge.png",
   "detail": "crests/por-3-detail.png",
@@ -1095,6 +1138,7 @@ const v61CrestAssets={
    "#bd904a",
    "#f1e5cc"
   ],
+  "neutralForeground": null,
   "image": "crests/por-4.png",
   "edge": "crests/por-4-edge.png",
   "detail": "crests/por-4-detail.png",
@@ -1110,6 +1154,7 @@ const v61CrestAssets={
    "#bec8cb",
    "#732e49"
   ],
+  "neutralForeground": null,
   "image": "crests/por-5.png",
   "edge": "crests/por-5-edge.png",
   "detail": "crests/por-5-detail.png",
@@ -1125,6 +1170,7 @@ const v61CrestAssets={
    "#f1e5cc",
    "#d9ab45"
   ],
+  "neutralForeground": 0,
   "image": "crests/por-6.png",
   "edge": "crests/por-6-edge.png",
   "detail": "crests/por-6-detail.png",
@@ -1140,6 +1186,7 @@ const v61CrestAssets={
    "#b8794a",
    "#f1e5cc"
   ],
+  "neutralForeground": null,
   "image": "crests/por-c1.png",
   "edge": "crests/por-c1-edge.png",
   "detail": "crests/por-c1-detail.png",
@@ -1155,6 +1202,7 @@ const v61CrestAssets={
    "#ba674d",
    "#24385b"
   ],
+  "neutralForeground": 2,
   "image": "crests/por-c2.png",
   "edge": "crests/por-c2-edge.png",
   "detail": "crests/por-c2-detail.png",
@@ -1180,6 +1228,14 @@ function v61CrestSVG(club){
    // Offset the original color regions: texture survives instead of becoming flat fills.
    const offsets=palette.map((color,index)=>[1,3,5].map(at=>(parseInt(color.slice(at,at+2),16)-parseInt(asset.palette[index].slice(at,at+2),16))/255));
    artwork='<defs>'+asset.masks.map((src,index)=>`<mask id="${prefix}-${index}" maskUnits="userSpaceOnUse" x="0" y="0" width="336" height="336" style="mask-type:alpha"><image href="${src}" width="336" height="336"/></mask><filter id="${prefix}-tint-${index}" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 ${offsets[index][0]} 0 1 0 0 ${offsets[index][1]} 0 0 1 0 ${offsets[index][2]} 0 0 0 1 0"/></filter>`).join('')+'</defs>'+palette.map((color,index)=>`<image href="${asset.image}" width="336" height="336" data-color="${color}" mask="url(#${prefix}-${index})" filter="url(#${prefix}-tint-${index})"/>`).join('')+`<image href="${asset.detail}" width="336" height="336"/>`;
+   if(asset.neutralForeground!==null){
+    const foreground=palette[asset.neutralForeground];
+    const brightness=[1,3,5].reduce((sum,at,index)=>sum+parseInt(foreground.slice(at,at+2),16)*[.2126,.7152,.0722][index],0);
+    if(brightness>170){
+     // A neutral field switches to dark ink when a saved palette makes its motif light.
+     artwork=`<defs><filter id="${prefix}-field" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 .082 0 0 0 0 .137 0 0 0 0 .176 0 0 0 1 0"/></filter></defs>`+artwork.replace(`href="${asset.detail}"`,`href="${asset.detail}" filter="url(#${prefix}-field)"`);
+    }
+   }
   }
   return `<svg class="v61-crest" viewBox="0 0 336 336" role="img" aria-label="Vereinslogo ${name}" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"><title>Vereinslogo ${name}</title><image href="${asset.edge}" width="336" height="336"/>${artwork}</svg>`;
  }

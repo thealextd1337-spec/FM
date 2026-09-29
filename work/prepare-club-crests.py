@@ -9,12 +9,44 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'docs/wappen-entwuerfe'
 DEST = ROOT / 'dist/crests'
 DEST.mkdir(exist_ok=True)
+def save_png(picture, path):
+    # Replace complete files atomically while the preview server reads assets.
+    temporary=path.with_suffix('.tmp.png')
+    picture.save(temporary,optimize=True)
+    temporary.replace(path)
 palette_file = ROOT / 'outputs/crest-palettes.json'
 catalog = json.loads(palette_file.read_text(encoding='utf-8')) if palette_file.exists() else [dict(id=ident,palette=data['palette']) for ident,data in json.loads((DEST/'manifest.json').read_text(encoding='utf-8')).items()]
 countries = dict(ENG='england', ESP='spanien', ITA='italien', GER='deutschland', FRA='frankreich', POR='portugal')
 overrides = {'FRA-1': (0, 0), 'FRA-C1': (1, 0), 'GER-1': (0, 1), 'GER-C1': (1, 1)}
 # Free-standing artwork needs a slightly stronger silhouette on dark game surfaces.
 open_marks = {'ENG-2','ENG-4','ENG-6','ENG-C1','ESP-2','ESP-3','ESP-5','ESP-C1','ESP-C2','ITA-1','ITA-5','ITA-6','ITA-C2','GER-6','GER-C1','FRA-1','FRA-3','FRA-6','POR-2','POR-3','POR-6','POR-C1','POR-C2'}
+frames = {'ENG-6':'plaque','ESP-5':'shield','ITA-5':'round','GER-6':'hex','FRA-3':'shield','FRA-6':'round','POR-2':'shield','POR-6':'plaque','ESP-C2':'hex','ITA-3':'round','POR-C2':'shield'}
+
+def badge(art, colors, shape):
+    """Three club-color rims and a quiet field; artwork keeps its own silhouette."""
+    size=1008
+    result=Image.new('RGBA',(size,size))
+    draw=ImageDraw.Draw(result)
+    def layer(inset,color):
+        a=inset*3; b=size-a
+        if shape=='round': draw.ellipse((a,a,b,b),fill=color)
+        elif shape=='plaque': draw.rounded_rectangle((a,186+a*.42,b,822-a*.42),radius=65,fill=color)
+        elif shape=='hex': draw.polygon([(size/2,a),(b,a+(b-a)*.25),(b,b-(b-a)*.25),(size/2,b),(a,b-(b-a)*.25),(a,a+(b-a)*.25)],fill=color)
+        else: draw.polygon([(a,a),(b,a),(b,a+(b-a)*.63),(a+(b-a)*.84,a+(b-a)*.82),(size/2,b),(a+(b-a)*.16,a+(b-a)*.82),(a,a+(b-a)*.63)],fill=color)
+    neutral_colors=[c for c in colors if min(int(c[i:i+2],16) for i in (1,3,5))>145 and max(int(c[i:i+2],16) for i in (1,3,5))-min(int(c[i:i+2],16) for i in (1,3,5))<60]
+    field=neutral_colors[0] if neutral_colors else '#fff8e8'
+    for inset,color in zip((8,14,18,22),(*colors,field)): layer(inset,color)
+    result=result.resize((336,336),Image.Resampling.LANCZOS)
+    field_image=Image.new('RGBA',(size,size)); draw=ImageDraw.Draw(field_image)
+    layer(22,'white')
+    field_image=field_image.resize((336,336),Image.Resampling.LANCZOS)
+    motif=art.crop(art.getbbox())
+    motif.thumbnail((268,160) if shape=='plaque' else ((208,210) if shape in ('shield','hex') else (240,238)),Image.Resampling.LANCZOS)
+    position=((336-motif.width)//2,(326-motif.height)//2)
+    result.alpha_composite(motif,position)
+    motif_mask=Image.new('L',(336,336)); motif_mask.paste(motif.getchannel('A'),position)
+    field_mask=np.array(field_image.getchannel('A')).astype(float)*(1-np.array(motif_mask)/255)
+    return result,field_mask>254
 previews = []
 manifest = {}
 for club in catalog:
@@ -96,25 +128,72 @@ for club in catalog:
     picture = Image.fromarray(rgba).convert('RGBA')
     picture.thumbnail((320,320),Image.Resampling.LANCZOS)
     canvas = Image.new('RGBA',(336,336)); canvas.alpha_composite(picture,((336-picture.width)//2,(336-picture.height)//2))
-    canvas.save(DEST / (ident.lower()+'.png'), optimize=True)
-    # A narrow ivory silhouette keeps dark artwork legible without a generic tile.
-    outline = Image.new('RGBA',(336,336),'#fff5db')
-    outline.putalpha(canvas.getchannel('A').filter(ImageFilter.MaxFilter(7 if ident in open_marks else 3)))
-    outline.save(DEST / f'{ident.lower()}-edge.png',optimize=True)
-    # Keep neutral light engraving and letters separate from kit-color changes.
+    # Normalize the *actual* source pigments to the authoritative club palette.
+    # Previously the default PNG bypassed this step entirely, and recoloring used
+    # catalog values as if they were the source pigments, producing wrong colors.
     pixels = np.array(canvas)
     palette = np.array([[int(c[i:i+2],16) for i in (1,3,5)] for c in club['palette']], dtype=float)
-    distances = ((pixels[:,:,:3,None].astype(float)-palette.T)**2 * np.array([.3,.59,.11])[None,None,:,None]).sum(axis=2)
-    choices = distances.argmin(axis=2)
+    # Hue identifies green fabric even when the board painted it much darker
+    # than the catalog mint. RGB distance alone incorrectly classified it as navy.
+    hsv=np.array(canvas.convert('RGB').convert('HSV')).astype(float)/255
+    palette_hsv=np.array(Image.fromarray(palette.astype('uint8')[None,:,:]).convert('HSV'))[0].astype(float)/255
+    hue=np.abs(hsv[:,:,0,None]-palette_hsv[:,0]); hue=np.minimum(hue,1-hue)
+    distances=4*hue**2 + .25*(hsv[:,:,1,None]-palette_hsv[:,1])**2 + .12*(hsv[:,:,2,None]-palette_hsv[:,2])**2
+    rgb_distances=((pixels[:,:,:3,None].astype(float)-palette.T)**2).sum(axis=2)/255**2
+    distances=np.where((hsv[:,:,1,None]<.18),rgb_distances,distances)
+    choices=distances.argmin(axis=2)
+    # Valmy's dark teal lettering is the charcoal secondary color; mint belongs
+    # to its frame. Its textured source crosses several hue bins, not regions.
+    if ident=='FRA-6': choices[(hsv[:,:,0]>.22)&(hsv[:,:,0]<.70)&(hsv[:,:,2]<.75)]=1
     neutral = (pixels[:,:,:3].min(axis=2) > 180) & (np.ptp(pixels[:,:,:3].astype(int),axis=2) < 48)
+    # White/cream is a club color when the palette supplies it; otherwise retain
+    # it as a neutral engraving color. It must not consume the closest dark hue.
+    lights=(palette.min(axis=1)>145) & (np.ptp(palette,axis=1)<60)
+    lightest=int(np.argmax(np.where(lights,palette @ np.array([.2126,.7152,.0722]),-1)))
+    if lights.any():
+        choices[neutral]=lightest
+        neutral[:]=False
+    dark_neutral=(pixels[:,:,:3].max(axis=2)<75) & (np.ptp(pixels[:,:,:3].astype(int),axis=2)<30)
+    if np.min(palette @ np.array([.2126,.7152,.0722]))>75: neutral |= dark_neutral
+    for channel in range(3):
+        selected=(choices==channel) & ~neutral & (pixels[:,:,3]>0)
+        solid=selected & (pixels[:,:,3]>240)
+        if not solid.any(): continue
+        pigment=np.median(pixels[:,:,:3][solid],axis=0)
+        shading=np.clip((pixels[:,:,:3].astype(float)-pigment)*.25,-8,8)
+        pixels[:,:,:3][selected]=np.clip(palette[channel]+shading[selected],0,255).astype('uint8')
+    canvas=Image.fromarray(pixels)
+    frame=frames.get(ident)
+    field_mask=np.zeros((336,336),dtype=bool)
+    if frame: canvas,field_mask=badge(canvas,club['palette'],frame)
+    else:
+        # Some reference drawings omit one of the club's colors. Give that color
+        # a narrow trim following the existing crest instead of inventing a motif.
+        for channel in range(3):
+            if np.count_nonzero((choices==channel)&~neutral&(pixels[:,:,3]>240))>=300: continue
+            trim=Image.new('RGBA',(336,336),club['palette'][channel])
+            trim.putalpha(canvas.getchannel('A').filter(ImageFilter.MaxFilter(5)))
+            trim.alpha_composite(canvas); canvas=trim
+    pixels=np.array(canvas)
+    distances=((pixels[:,:,:3,None].astype(float)-palette.T)**2).sum(axis=2)
+    choices=distances.argmin(axis=2)
+    # The quiet ivory field is neutral when absent from the club's own palette.
+    neutral=(pixels[:,:,:3].min(axis=2)>180) & (np.ptp(pixels[:,:,:3].astype(int),axis=2)<48) if not lights.any() else np.zeros((336,336),dtype=bool)
+    if np.min(palette @ np.array([.2126,.7152,.0722]))>75:
+        neutral |= (pixels[:,:,:3].max(axis=2)<75) & (np.ptp(pixels[:,:,:3].astype(int),axis=2)<30)
+    neutral |= field_mask
+    save_png(canvas,DEST / (ident.lower()+'.png'))
+    outline=Image.new('RGBA',(336,336),'#fff8e8')
+    outline.putalpha(canvas.getchannel('A').filter(ImageFilter.MaxFilter(3)))
+    save_png(outline,DEST / f'{ident.lower()}-edge.png')
     details = pixels.copy(); details[:,:,3] = np.where(neutral,pixels[:,:,3],0)
-    Image.fromarray(details).save(DEST / f'{ident.lower()}-detail.png',optimize=True)
+    save_png(Image.fromarray(details),DEST / f'{ident.lower()}-detail.png')
     for channel in range(3):
         mask = np.full_like(pixels,255)
         # Source artwork supplies its own alpha; masks only select a color region.
         mask[:,:,3] = np.where((choices == channel) & ~neutral & (pixels[:,:,3] > 0),255,0)
-        Image.fromarray(mask).save(DEST / f'{ident.lower()}-{channel}.png',optimize=True)
-    manifest[ident] = {'source': 'vier-vereine-v2.png' if ident in overrides else countries[ident[:3]]+'.png', 'box':box, 'palette':club['palette']}
+        save_png(Image.fromarray(mask),DEST / f'{ident.lower()}-{channel}.png')
+    manifest[ident] = {'source': 'vier-vereine-v2.png' if ident in overrides else countries[ident[:3]]+'.png', 'box':box, 'palette':club['palette'],'frame':frame,'neutralForeground':({'FRA-6':1,'ESP-C2':1,'ITA-3':2,'POR-C2':2}.get(ident,0) if frame else None)}
     outline.alpha_composite(canvas)
     previews.append((club,outline))
 (DEST / 'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')

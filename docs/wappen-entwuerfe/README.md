@@ -44,8 +44,8 @@ Diese Gestaltungstafeln sind die Rastervorlagen der eingebundenen Wappen. Bei un
 
 ## Qualitätskorrektur · Prototyp 91
 
-Alle 48 Motive auf dunklem Spielgrund und bei Farbwechsel geprüft. Freistellung, helle Details, Kanten und Kontrast überarbeitet. Die freigegebenen Motive bleiben erhalten.
+Alle 48 Motive auf die drei hinterlegten Vereinsfarben abgestimmt, einschließlich Standarddarstellung. Elf erhalten passende Rahmen für mehr Kontrast. Schattierungen bleiben dezent, neutrale Schwarz-/Elfenbeindetails sind zulässig. Pixelprüfungen und Browservergleich mit gespeicherten Farbänderungen erfolgreich.
 
-![Fünf beanstandete Wappen: bisher und überarbeitet](qualitaetsvergleich.png)
+![Fünf beanstandete Wappen: bisher und mit Vereinsfarben und Rahmen](qualitaetsvergleich.png)
 
 [Alle 48 Wappen auf dunklem Grund](alle-wappen-dunkel.png)

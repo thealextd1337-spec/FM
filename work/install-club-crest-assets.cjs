@@ -1,7 +1,7 @@
 // Register generated paths explicitly so the single-file build can embed every asset.
 const fs=require('fs');
 const manifest=JSON.parse(fs.readFileSync('dist/crests/manifest.json','utf8'));
-const assets=Object.fromEntries(Object.entries(manifest).map(([id,{palette}])=>[id,{palette,image:`crests/${id.toLowerCase()}.png`,edge:`crests/${id.toLowerCase()}-edge.png`,detail:`crests/${id.toLowerCase()}-detail.png`,masks:[0,1,2].map(i=>`crests/${id.toLowerCase()}-${i}.png`)}]));
+const assets=Object.fromEntries(Object.entries(manifest).map(([id,{palette,neutralForeground}])=>[id,{palette,neutralForeground,image:`crests/${id.toLowerCase()}.png`,edge:`crests/${id.toLowerCase()}-edge.png`,detail:`crests/${id.toLowerCase()}-detail.png`,masks:[0,1,2].map(i=>`crests/${id.toLowerCase()}-${i}.png`)}]));
 const path='dist/world-foundation-v61.js';
 let source=fs.readFileSync(path,'utf8');
 const start='// BEGIN AUTHORED CREST ASSETS',end='// END AUTHORED CREST ASSETS';

@@ -8,6 +8,7 @@ assert.strictEqual(Object.keys(assets).sort().join('|'),clubs.map(c=>c.id).sort(
 const ids=new Set();let preview='';
 for(const club of clubs){
  const kits=build(club),record={...club,kits},before=JSON.stringify(record);
+ assert.strictEqual(JSON.stringify(assets[club.id].palette),JSON.stringify(['primary','secondary','tertiary'].map(key=>kits.colors[key])),'image palette must match actual club kits');
  const original=render(record);
  assert(original.includes(assets[club.id].image));
  assert(original.includes('Vereinslogo '+club.name));
@@ -23,9 +24,10 @@ for(const club of clubs){
  for(const id of changed.matchAll(/id="([^"]+)"/g)){assert(!ids.has(id[1]));ids.add(id[1]);}
  for(const color of ['#b7255d','#dbe9f2','#215798'])assert(changed.includes(color));
  assert(changed.includes(assets[club.id].image)&&changed.includes(assets[club.id].detail),'color changes retain source shading and neutral engraving');
- assert.strictEqual((changed.match(/<feColorMatrix /g)||[]).length,3);
+ assert.strictEqual((changed.match(/<feColorMatrix /g)||[]).length,assets[club.id].neutralForeground===1?4:3);
+ if(club.id==='FRA-6')assert(changed.includes('-field)'),'light Valmy lettering gets a dark neutral field');
  assert(changed.includes('color-interpolation-filters="sRGB"'));
- preview+=`<section><h2>${club.name}</h2><div class="pair">${original}${changed}</div><div class="small">${original}${changed}</div></section>`;
+ preview+=`<section><h2>${club.name}</h2><div class="pair">${original}${changed}</div><div class="small">${original}${changed}</div><p>${assets[club.id].palette.map(color=>`<span style="display:inline-block;width:26px;height:8px;background:${color}" title="${color}"></span>`).join(' ')}</p></section>`;
 }
 const manifest=JSON.parse(fs.readFileSync('dist/crests/manifest.json','utf8'));
 for(const id of ['FRA-1','FRA-C1','GER-1','GER-C1'])assert.strictEqual(manifest[id].source,'vier-vereine-v2.png');

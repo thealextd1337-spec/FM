@@ -2,9 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
-## 2026-09-29 (Prototyp 91 · Wappenqualität)
+## 2026-09-29 (Prototyp 91 · Wappenqualität und Vereinsfarben)
 
-- Alle 48 Wappen gegen die freigegebenen Motive geprüft und neu freigestellt. Helle Details bleiben erhalten; saubere Kanten und schmale elfenbeinfarbene Konturen verbessern die Erkennung auf dunklem Grund, besonders bei Lyon Rive, Paris Valmy, Wandle Town, München Au und Porto Ribeira. Farbänderungen erhalten die Schattierungen des Originals und helle Gravuren. Spielstände bleiben unverändert. Pixelprüfung, Wappen-, Trikot-, Weltansichts- und Torbannertests sowie Build und Browservergleich aller 48 Originale/Farbvarianten erfolgreich. Vergleichstafel unter `docs/wappen-entwuerfe/qualitaetsvergleich.png`.
+- Alle 48 Wappen verwenden jetzt auch in der Standarddarstellung die drei hinterlegten Vereinsfarben. Die Pigmente der Referenzbilder werden vor dem Einbau auf die Katalogpalette abgestimmt; kleine Schattierungen bleiben erhalten. Fehlende Akzentfarben erscheinen als schmale Kontur. Lyon Rive, Paris Valmy, Wandle Town, München Au, Porto Ribeira und sechs weitere Motive erhalten passende Schild-, Rund-, Sechseck- oder Plakettenrahmen für bessere Erkennung. Neutrale Schwarz- und Elfenbeindetails bleiben möglich. Bei gespeicherten Farbänderungen wechseln auch die Rahmenfarben; helle Motive erhalten bei Bedarf ein dunkles neutrales Feld. Spielstände bleiben unverändert.
+- Pixelprüfung aller 48 Bilder: alle drei Vereinsfarben sichtbar, Farbflächen korrekt, keine beschnittenen Konturen und vollständige Farbmasken. Wappen-, Trikot-, Weltansichts- und Torbannertests, Build sowie Browservergleich aller Originale und Farbvarianten erfolgreich. Vergleichstafel: `docs/wappen-entwuerfe/qualitaetsvergleich.png`. Der erste Deploymentlauf wurde vor dem Upload abgebrochen und durch diese Farbkorrektur ersetzt.
 
 ## 2026-09-29 (Prototyp 90 · Matchplan und Saisonübersicht)
 
