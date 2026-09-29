@@ -228,6 +228,9 @@
 .v64-prematch-field .v64-raster .player-label{display:flex;align-items:center;justify-content:center;gap:3px;max-width:100%;font-size:9px}
 .v64-prematch-field .v64-raster .player-label .flag-icon{width:15px;height:10px;flex:none}
 .v64-prematch-field .v64-raster .player-label span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.v64-prematch-field .v64-raster .v64-origin-position{display:block;box-sizing:border-box;max-width:100%;padding:2px 5px;border-radius:3px;background:#f0b65d;color:#17251f;font-size:9px;font-weight:900;line-height:1.15;text-align:center;white-space:normal}
+@media(max-width:520px){.v64-prematch-field .v64-raster .v64-origin-position{padding:1px 2px;font-size:7px;line-height:1}}
+.v64-controls .v64-position-warning{margin:0 0 14px;padding:10px 12px;border:1px solid #f0b65d;border-radius:6px;background:#6b471f66;color:#ffe2aa;font-size:13px;font-weight:700;line-height:1.4}
 .v64-keeper-choice{display:grid;justify-items:center;gap:5px;padding:0;background:none;border:0;color:#fff;font-size:10px;cursor:pointer}
 .v64-keeper-choice[aria-pressed=true] b{outline:3px solid #c7f36b;outline-offset:3px}
 .v64-keeper-choice b{background:#e5b56a;border:2px solid #f6d6a5;border-radius:50%;width:33px;height:33px;display:grid;place-items:center;color:#33291a}

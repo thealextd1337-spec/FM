@@ -44,6 +44,8 @@ assert.equal(translate('2 Tore - Europacup'),'2 goals - European cup');
 assert.equal(translate('Wähle Formation und Spielidee. Die Änderung gilt sofort.'),'Choose a formation and playing style. The change takes effect immediately.');
 assert.equal(translate('Aufstellung & Taktik'),'Lineup & tactics');
 assert.equal(translate('Gespeicherte Matchpläne'),'Saved match plans');
+assert.equal(translate('Stamm: Angriff'),'Natural: Attack');
+assert.equal(translate('⚠ Fremdposition: Stammposition Angriff, Einsatzposition Abwehr.'),'⚠ Out of position: natural position Attack, playing position Defence.');
 assert.equal(translate('Gabriel Thomas auf ein Feldtrikot ziehen'),'Drag Gabriel Thomas onto a shirt on the pitch');
 assert.equal(translate('Vorlage Zentrum entfernen'),'Remove preset Zentrum');
 assert.equal(translate('Vorlage „Zentrum“ entfernen?'),'Remove preset “Zentrum”?');

@@ -65,6 +65,7 @@ vm.runInContext(`
  function v64UiTactics(){return 'TACTICS'}
  function v64OrientationHTML(){return 'ORIENTATION'}
  function v64InstructionHTML(){return 'INSTRUCTIONS'}
+ function v64PositionWarningHTML(){return ''}
  function v51StatusHTML(){return 'STATUS'}
  function v55TopSkillsHTML(){return 'SKILLS'}
  function freshText(){return 'FRISCHE'}

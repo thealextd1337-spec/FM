@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-29 (Prototyp 93 · Deutliche Fremdposition)
+
+- Spieler auf einer fremden Position zeigen ihre Stammposition jetzt als gut lesbares, gelbes Schild direkt auf dem Feldtrikot. In der Spielerauswahl erklärt ein Hinweis zusätzlich Stamm- und Einsatzposition. Die Kennzeichnung gilt im Matchplan und vor dem Spiel; Screenreader erhalten weiterhin die vollständige Positionsangabe. Positions- und Übersetzungstest, Matchplantest sowie Build geprüft; Spielstände bleiben unverändert.
+
 ## 2026-09-29 (Prototyp 92 · Kompakte Ersatzbank)
 
 - Im Matchplan erfolgen Bankwechsel nur noch durch Ziehen auf ein Feldtrikot. Die Ersatzbankkarten stehen kompakter in bis zu zwei Spalten; Form, Frische, farbige Fähigkeiten und Profilaufruf bleiben sichtbar. Matchplan-, Touch- und Übersetzungstests sowie Browserprüfung von Klicksperre und Layout erfolgreich; Spielstände bleiben unverändert.

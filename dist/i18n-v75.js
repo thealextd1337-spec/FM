@@ -1238,6 +1238,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(\d+(?:\+\d+)?′) Wechsel$/,(_,minute)=>`${minute} Substitution`],
   [/^(\d+(?:\+\d+)?′) Halbzeit$/,(_,minute)=>`${minute} Half-time`],
   [/^⚠ Fremdposition: Stammposition (.+), Einsatzposition (.+)\.$/,(_,natural,playing)=>`⚠ Out of position: natural position ${translate(natural)}, playing position ${translate(playing)}.`],
+  [/^Stamm: (.+)$/,(_,natural)=>`Natural: ${translate(natural)}`],
   [/^(.+) · (\d+) Jahre · Nr\. (\d+)$/,(_,position,age,number)=>`${translate(position)} · ${age} years · No. ${number}`],
   [/^(\d+) (Kandidat|Kandidaten) · Saisonbudget (.+) · Profikader (\d+) \/ (\d+)$/,(_,n,candidate,budget,count,limit)=>`${n} ${n==='1'?'candidate':'candidates'} · Season budget ${budget} · Professional squad ${count} / ${limit}`],
   [/^(.+) · (\d+) Jahre · bis Ende Saison (\d+)$/,(_,position,age,season)=>`${translate(position)} · ${age} years · until end of season ${season}`],
