@@ -2,6 +2,12 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-29 (Prototyp 90 · Matchplan und Saisonübersicht)
+
+- Der Matchplan zeigt die Ersatzbank wie die Spielvorbereitung unter dem Spielfeld: mit Form, Frische, Farbstufen der Fähigkeiten, Profilaufruf und Wechsel per Auswahl oder Ziehen mit Maus und Touch. Gespeicherte Matchpläne brauchen durch kleinere Abstände und eine gemeinsame Formularzeile weniger Platz. Matchplan- und Übersetzungstests, Build und Browserprüfung auf Desktop und Mobil einschließlich Einsetzen erfolgreich; Spielstände bleiben unverändert.
+
+- Im Saisonüberblick entfällt die doppelte Zeile zum nächsten Spiel. Termin und Gegner stehen weiterhin in der Karte „Nächster Gegner“. Anzeige, Build und Browseransicht sind geprüft; Spielstände bleiben unverändert.
+
 ## 2026-09-29 (Prototyp 89 · Matchplan, Einzelanweisungen und Vereinswappen)
 
 - Alle 48 freigegebenen Wappen sind in die Vereinswelt eingebunden, einschließlich der vier überarbeiteten Motive für Paris Central, Toulouse, München Isar und Jena Süd. Die Einzelbilder sind transparent freigestellt und erscheinen über den gemeinsamen Renderer in Vereinswahl, Profilen, Tabellen und Matchanzeigen. Erlaubte Farbänderungen verwenden feste Bildmasken; Spielstände bleiben unverändert. Wappen-, Trikot- und Weltansichtstests sowie Build und Browserprüfung von Vereinswahl und Farbwechsel erfolgreich.

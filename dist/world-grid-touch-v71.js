@@ -3,6 +3,8 @@
 // Touchbedienung für dasselbe Raster vor Anpfiff und in der Spielpause.
 let v71Pointer=null,v71NativeDrag=null,v71ScrollFrame=0,v71SuppressClickUntil=0;
 function v71DragSource(target){
+ const career=target.closest?.('#v61-world-screen [data-v64-career-bench-card]');
+ if(career&&!v61CurrentCareer?.world.activeMatch&&v64CareerPlanTab==='lineup')return{mode:'career',source:{pid:career.dataset.v64CareerBenchCard,keeper:career.dataset.v64CareerKeeper==='true'},element:career};
  const before=target.closest?.('#v61-world-screen [data-v64-pick-slot],#v61-world-screen [data-v64-bench-card]');
  if(before){
   if(before.classList.contains('v64-keeper-choice'))return null;
@@ -20,7 +22,7 @@ function v71DragSource(target){
 }
 function v71Target(x,y){
  const element=document.elementFromPoint(x,y);
- return element?.closest?.('[data-v64-cell],[data-v64-pick-slot],[data-v64-bench-card],[data-v65-pick-slot],[data-v65-bench-card]')||null;
+ return element?.closest?.('[data-v64-career-slot],[data-v64-cell],[data-v64-pick-slot],[data-v64-bench-card],[data-v65-pick-slot],[data-v65-bench-card]')||null;
 }
 function v71Highlight(){
  document.querySelectorAll('.v64-drag-over').forEach(element=>element.classList.remove('v64-drag-over'));
@@ -42,7 +44,7 @@ function v71StopNativeDrag(){
  if(!v71Pointer)v71ScrollFrame=0;
 }
 document.addEventListener('dragstart',event=>{
- if(!v64UiDrag&&!v65Drag)return;
+ if(!v64UiDrag&&!v65Drag&&!v64CareerDraggedBench)return;
  v71NativeDrag={y:event.clientY};
  if(!v71ScrollFrame)v71ScrollFrame=requestAnimationFrame(v71Scroll);
 });
@@ -59,7 +61,7 @@ function v71Clear(){
  document.querySelector('#v71-ghost')?.remove();v71Pointer=null;
 }
 document.addEventListener('pointerdown',event=>{
- if(event.pointerType==='mouse'||event.target.closest?.('[data-v64-profile],[data-v65-profile]'))return;
+ if(event.pointerType==='mouse'||event.target.closest?.('[data-v64-profile],[data-v65-profile],[data-v64-career-profile]'))return;
  const drag=v71DragSource(event.target);if(!drag)return;
  v71Pointer={...drag,id:event.pointerId,startX:event.clientX,startY:event.clientY,x:event.clientX,y:event.clientY,dragging:false};
 });
@@ -83,11 +85,12 @@ document.addEventListener('pointerup',event=>{
  if(dropped){
   v71SuppressClickUntil=Date.now()+450;
   if(drag.mode==='prematch'){v64UiDrag=drag.source;if(v64UiCanDrop(target))v64UiDropAction(drag.source,target);v64UiDrag=null}
+  else if(drag.mode==='career'){if(v64CareerCanDrop(drag.source,target))v64CareerDropAction(drag.source,target)}
   else{v65Drag=drag.source;if(v65CanDrop(target))v65DropAction(drag.source,target);else if(target)v65ReportInvalidDrop();v65Drag=null}
  }
  v71Clear();
 });
 document.addEventListener('pointercancel',event=>{if(v71Pointer?.id===event.pointerId)v71Clear()});
 document.addEventListener('click',event=>{
- if(Date.now()<v71SuppressClickUntil&&event.target.closest?.('[data-v64-cell],[data-v64-bench-card],[data-v65-bench-card]')){event.preventDefault();event.stopImmediatePropagation()}
+ if(Date.now()<v71SuppressClickUntil&&event.target.closest?.('[data-v64-career-slot],[data-v64-career-bench-card],[data-v64-cell],[data-v64-bench-card],[data-v65-bench-card]')){event.preventDefault();event.stopImmediatePropagation()}
 },true);

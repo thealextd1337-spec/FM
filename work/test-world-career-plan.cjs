@@ -65,10 +65,18 @@ vm.runInContext(`
  function v64UiTactics(){return 'TACTICS'}
  function v64OrientationHTML(){return 'ORIENTATION'}
  function v64InstructionHTML(){return 'INSTRUCTIONS'}
+ function v51StatusHTML(){return 'STATUS'}
+ function v55TopSkillsHTML(){return 'SKILLS'}
+ function freshText(){return 'FRISCHE'}
  function v61FlagSVG(){return ''}
  function escapeHTML(value){return String(value)}
 `,context);
 assert.match(get('v64CareerPlanHTML(career)'),/Gespeicherte Matchpläne/);
 assert.match(get('v64CareerPlanHTML(career)'),/Flügelspiel/);
 assert.match(get('v64CareerPlanHTML(career)'),/data-v64-career-save/);
+assert.match(get('v64CareerPlanHTML(career)'),/class="v64-pitch-area">PITCH<section class="v64-bench-section compact-bench v64-career-bench"/,'career bench sits below the pitch');
+assert.match(get('v64CareerPlanHTML(career)'),/data-v64-career-bench-card=/,'career bench uses match bench cards');
+vm.runInContext('var v61CurrentCareer=career;',context);
+assert.equal(get('v64CareerCanDrop({keeper:false},{dataset:{v64CareerSlot:"1"},classList:{contains:()=>false}})'),true,'field reserve can reach a field shirt');
+assert.equal(get('v64CareerCanDrop({keeper:false},{dataset:{v64CareerSlot:"0"},classList:{contains:()=>true}})'),false,'field reserve cannot replace goalkeeper');
 console.log('PASS: saved full plans, squad reconciliation, match application and career controls');
