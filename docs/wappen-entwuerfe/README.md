@@ -41,3 +41,11 @@ Diese Gestaltungstafeln sind die Rastervorlagen der eingebundenen Wappen. Bei un
 ## Portugal
 
 ![Portugal: Lisboa Central, Porto Ribeira, Tejo Union, Braga Norte, Coimbra Athletic, Aveiro Costa, Évora Central und Faro Sul](portugal.png)
+
+## Qualitätskorrektur · Prototyp 91
+
+Alle 48 Motive auf dunklem Spielgrund und bei Farbwechsel geprüft. Freistellung, helle Details, Kanten und Kontrast überarbeitet. Die freigegebenen Motive bleiben erhalten.
+
+![Fünf beanstandete Wappen: bisher und überarbeitet](qualitaetsvergleich.png)
+
+[Alle 48 Wappen auf dunklem Grund](alle-wappen-dunkel.png)

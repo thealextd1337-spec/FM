@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-29 (Prototyp 91 · Wappenqualität)
+
+- Alle 48 Wappen gegen die freigegebenen Motive geprüft und neu freigestellt. Helle Details bleiben erhalten; saubere Kanten und schmale elfenbeinfarbene Konturen verbessern die Erkennung auf dunklem Grund, besonders bei Lyon Rive, Paris Valmy, Wandle Town, München Au und Porto Ribeira. Farbänderungen erhalten die Schattierungen des Originals und helle Gravuren. Spielstände bleiben unverändert. Pixelprüfung, Wappen-, Trikot-, Weltansichts- und Torbannertests sowie Build und Browservergleich aller 48 Originale/Farbvarianten erfolgreich. Vergleichstafel unter `docs/wappen-entwuerfe/qualitaetsvergleich.png`.
+
 ## 2026-09-29 (Prototyp 90 · Matchplan und Saisonübersicht)
 
 - Der Matchplan zeigt die Ersatzbank wie die Spielvorbereitung unter dem Spielfeld: mit Form, Frische, Farbstufen der Fähigkeiten, Profilaufruf und Wechsel per Auswahl oder Ziehen mit Maus und Touch. Gespeicherte Matchpläne brauchen durch kleinere Abstände und eine gemeinsame Formularzeile weniger Platz. Matchplan- und Übersetzungstests, Build und Browserprüfung auf Desktop und Mobil einschließlich Einsetzen erfolgreich; Spielstände bleiben unverändert.

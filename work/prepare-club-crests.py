@@ -3,7 +3,7 @@ from pathlib import Path
 from collections import deque
 import json
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'docs/wappen-entwuerfe'
@@ -13,8 +13,8 @@ palette_file = ROOT / 'outputs/crest-palettes.json'
 catalog = json.loads(palette_file.read_text(encoding='utf-8')) if palette_file.exists() else [dict(id=ident,palette=data['palette']) for ident,data in json.loads((DEST/'manifest.json').read_text(encoding='utf-8')).items()]
 countries = dict(ENG='england', ESP='spanien', ITA='italien', GER='deutschland', FRA='frankreich', POR='portugal')
 overrides = {'FRA-1': (0, 0), 'FRA-C1': (1, 0), 'GER-1': (0, 1), 'GER-C1': (1, 1)}
-# These open marks contain background counters rather than white heraldic fields.
-open_marks = {'ENG-6', 'ESP-3', 'ESP-5', 'ITA-5', 'ITA-6', 'GER-6', 'GER-C1', 'FRA-3', 'FRA-6', 'POR-3', 'POR-6', 'POR-C1'}
+# Free-standing artwork needs a slightly stronger silhouette on dark game surfaces.
+open_marks = {'ENG-2','ENG-4','ENG-6','ENG-C1','ESP-2','ESP-3','ESP-5','ESP-C1','ESP-C2','ITA-1','ITA-5','ITA-6','ITA-C2','GER-6','GER-C1','FRA-1','FRA-3','FRA-6','POR-2','POR-3','POR-6','POR-C1','POR-C2'}
 previews = []
 manifest = {}
 for club in catalog:
@@ -48,7 +48,9 @@ for club in catalog:
         for yy,xx in ((y-1,x),(y+1,x),(y,x-1),(y,x+1)):
             if 0 <= yy < h and 0 <= xx < w and light[yy,xx] and not outside[yy,xx]:
                 outside[yy,xx] = True; queue.append((yy,xx))
-    alpha = np.where(light if ident in open_marks else outside, 0, 255).astype('uint8')
+    # Keep enclosed ivory details (eyes, lettering and negative-space counters).
+    # Removing every light pixel erased these details in the first extraction.
+    alpha = np.where(outside, 0, 255).astype('uint8')
     # Discard tiny fragments from neighboring artwork crossing the sheet's cell edge.
     seen = np.zeros((h,w),dtype=bool)
     for edge_y in range(h):
@@ -62,6 +64,32 @@ for club in catalog:
                         seen[ny,nx]=True; pending.append((ny,nx))
             if len(component) < np.count_nonzero(alpha)*.08:
                 for yy,xx in component: alpha[yy,xx]=0
+    # Unmat the one-pixel fringe against the board's ivory ground. Recover a local
+    # foreground estimate from the opaque interior, then solve coverage instead
+    # of retaining pale background-contaminated pixels as fully opaque artwork.
+    ground = np.median(rgb[outside],axis=0).astype(float)
+    inner = np.array(Image.fromarray(alpha).filter(ImageFilter.MinFilter(5))) > 0
+    known = inner.copy(); estimate = rgb.astype(float).copy()
+    for step in range(3):
+        total = np.zeros_like(estimate); count = np.zeros((h,w))
+        for dy,dx in ((-1,0),(1,0),(0,-1),(0,1)):
+            valid = np.roll(known,(dy,dx),(0,1))
+            if dy == -1: valid[-1,:] = False
+            if dy == 1: valid[0,:] = False
+            if dx == -1: valid[:,-1] = False
+            if dx == 1: valid[:,0] = False
+            total += np.roll(estimate,(dy,dx),(0,1))*valid[:,:,None]
+            count += valid
+        newly = (~known) & (count > 0) & (alpha > 0)
+        estimate[newly] = total[newly]/count[newly,None]
+        known |= newly
+    edge = (alpha > 0) & ~inner & known
+    direction = estimate-ground
+    coverage = np.clip(((rgb-ground)*direction).sum(axis=2)/np.maximum((direction**2).sum(axis=2),1),0,1)
+    # Only modify edges with clear evidence of ivory contamination.
+    edge &= (coverage < .98) & (np.linalg.norm(direction,axis=2) > 80)
+    alpha[edge] = np.rint(coverage[edge]*255).astype('uint8')
+    rgb[edge] = np.clip(estimate[edge],0,255).astype('uint8')
     coords = np.argwhere(alpha > 0)
     y0,x0 = coords.min(axis=0); y1,x1 = coords.max(axis=0)+1
     rgba = np.dstack((rgb,alpha))[y0:y1,x0:x1]
@@ -69,18 +97,26 @@ for club in catalog:
     picture.thumbnail((320,320),Image.Resampling.LANCZOS)
     canvas = Image.new('RGBA',(336,336)); canvas.alpha_composite(picture,((336-picture.width)//2,(336-picture.height)//2))
     canvas.save(DEST / (ident.lower()+'.png'), optimize=True)
-    # Masks share the exact same geometry as the approved artwork. Assign every
-    # opaque pixel to the closest of the three canonical colors in weighted RGB.
+    # A narrow ivory silhouette keeps dark artwork legible without a generic tile.
+    outline = Image.new('RGBA',(336,336),'#fff5db')
+    outline.putalpha(canvas.getchannel('A').filter(ImageFilter.MaxFilter(7 if ident in open_marks else 3)))
+    outline.save(DEST / f'{ident.lower()}-edge.png',optimize=True)
+    # Keep neutral light engraving and letters separate from kit-color changes.
     pixels = np.array(canvas)
     palette = np.array([[int(c[i:i+2],16) for i in (1,3,5)] for c in club['palette']], dtype=float)
     distances = ((pixels[:,:,:3,None].astype(float)-palette.T)**2 * np.array([.3,.59,.11])[None,None,:,None]).sum(axis=2)
     choices = distances.argmin(axis=2)
+    neutral = (pixels[:,:,:3].min(axis=2) > 180) & (np.ptp(pixels[:,:,:3].astype(int),axis=2) < 48)
+    details = pixels.copy(); details[:,:,3] = np.where(neutral,pixels[:,:,3],0)
+    Image.fromarray(details).save(DEST / f'{ident.lower()}-detail.png',optimize=True)
     for channel in range(3):
         mask = np.full_like(pixels,255)
-        mask[:,:,3] = np.where(choices == channel,pixels[:,:,3],0)
+        # Source artwork supplies its own alpha; masks only select a color region.
+        mask[:,:,3] = np.where((choices == channel) & ~neutral & (pixels[:,:,3] > 0),255,0)
         Image.fromarray(mask).save(DEST / f'{ident.lower()}-{channel}.png',optimize=True)
     manifest[ident] = {'source': 'vier-vereine-v2.png' if ident in overrides else countries[ident[:3]]+'.png', 'box':box, 'palette':club['palette']}
-    previews.append((club,canvas))
+    outline.alpha_composite(canvas)
+    previews.append((club,outline))
 (DEST / 'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
 contact = Image.new('RGB',(1200,1440),'#183039'); draw=ImageDraw.Draw(contact)
 for i,(club,crest) in enumerate(previews):
