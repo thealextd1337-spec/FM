@@ -35,7 +35,6 @@ Dauerhafter Matchplan	Saved match plan
 Dauerhafter Matchplan auf dem Spielfeld	Saved match plan on the pitch
 Ersatzbank	Bench
 Gespeicherte Matchpläne	Saved match plans
-Einsetzen	Bring on
 Eine Vorlage enthält Startelf, Feldpositionen, Einzelanweisungen und Teamtaktik. Fehlende Spieler werden beim Laden ersetzt.	A preset includes the starting lineup, pitch positions, player instructions and team tactics. Missing players are replaced when loaded.
 Name der Vorlage	Preset name
 Vorlage speichern	Save preset
@@ -1309,7 +1308,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^Saison (\d+)$/,(_,n)=>`Season ${n}`],
   [/^Spieltag (\d+)$/,(_,n)=>`Matchday ${n}`],
   [/^Vorlage (.+) entfernen$/,(_,name)=>`Remove preset ${name}`],
-  [/^(.+) für (.+) einsetzen$/,(_,replacement,starter)=>`Bring on ${replacement} for ${starter}`],
+  [/^(.+) auf ein Feldtrikot ziehen$/,(_,player)=>`Drag ${player} onto a shirt on the pitch`],
   [/^Vorlage „(.+)“ entfernen\?$/,(_,name)=>`Remove preset “${name}”?`],
   [/^T (\d+) · V (\d+) · S (\d+) · ZK (\d+)\/(\d+)$/,(_,goals,assists,shots,won,total)=>`G ${goals} · A ${assists} · Sh ${shots} · D ${won}/${total}`],
   [/^(\d+) Tore · (\d+) Vorlagen · (\d+) Schüsse · (\d+) von (\d+) Zweikämpfen gewonnen$/,(_,goals,assists,shots,won,total)=>`${goals} goals · ${assists} assists · ${shots} shots · ${won} of ${total} duels won`],

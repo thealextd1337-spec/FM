@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-29 (Prototyp 92 · Kompakte Ersatzbank)
+
+- Im Matchplan erfolgen Bankwechsel nur noch durch Ziehen auf ein Feldtrikot. Die Ersatzbankkarten stehen kompakter in bis zu zwei Spalten; Form, Frische, farbige Fähigkeiten und Profilaufruf bleiben sichtbar. Matchplan-, Touch- und Übersetzungstests sowie Browserprüfung von Klicksperre und Layout erfolgreich; Spielstände bleiben unverändert.
+
 ## 2026-09-29 (Prototyp 91 · Wappenqualität und Vereinsfarben)
 
 - Alle 48 Wappen verwenden jetzt auch in der Standarddarstellung die drei hinterlegten Vereinsfarben. Die Pigmente der Referenzbilder werden vor dem Einbau auf die Katalogpalette abgestimmt; kleine Schattierungen bleiben erhalten. Fehlende Akzentfarben erscheinen als schmale Kontur. Lyon Rive, Paris Valmy, Wandle Town, München Au, Porto Ribeira und sechs weitere Motive erhalten passende Schild-, Rund-, Sechseck- oder Plakettenrahmen für bessere Erkennung. Neutrale Schwarz- und Elfenbeindetails bleiben möglich. Bei gespeicherten Farbänderungen wechseln auch die Rahmenfarben; helle Motive erhalten bei Bedarf ein dunkles neutrales Feld. Spielstände bleiben unverändert.
