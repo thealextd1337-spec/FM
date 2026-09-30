@@ -1,0 +1,40 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
+const {chromium}=require(process.env.D6_PLAYWRIGHT||'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const source=fs.readFileSync('work/check-world-pitch3d-browser.cjs','utf8');
+const setup=vm.runInNewContext(source.slice(source.indexOf('async function setup('),source.indexOf('async function complete('))+';setup',{url:process.env.D6_TEST_URL||'http://127.0.0.1:4195/'});
+(async()=>{
+ const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true,args:['--enable-webgl','--use-angle=swiftshader','--enable-unsafe-swiftshader']});
+ try{
+  const page=await browser.newPage({viewport:{width:1440,height:950}}),errors=[];page.on('pageerror',e=>errors.push(e.message));await setup(page);
+  const stage=page.locator('#match-area .v42-pitch-stage'),toggle=page.locator('#v100-pitch-toggle');
+  assert.equal(await toggle.getAttribute('aria-expanded'),'false');assert(!(await page.locator('#v100-pitch-panel').isVisible()));
+  const collapsed=await page.locator('#v98-view-controls').evaluate(el=>({height:el.getBoundingClientRect().height,width:el.getBoundingClientRect().width,inside:el.parentElement.classList.contains('v42-pitch-stage')}));assert(collapsed.inside&&collapsed.height<=44&&collapsed.width<=44);
+  await stage.screenshot({path:'outputs/pitch-menu-closed100.png'});
+  const before=await page.evaluate(()=>JSON.stringify(match));await toggle.click();assert(await page.locator('#v100-pitch-panel').isVisible());
+  await page.locator('#v98-camera').selectOption('wide');assert.equal(await page.evaluate(()=>d6Pitch3D.getState().camera.mode),'wide');
+  await page.locator('[data-v98-view="2d"]').click();assert.equal(await page.evaluate(()=>d6Pitch3D.getState().view),'2d');
+  await page.locator('[data-v98-view="3d"]').click();assert.equal(await page.evaluate(()=>d6Pitch3D.getState().view),'3d');assert.equal(await page.evaluate(()=>JSON.stringify(match)),before);
+  await stage.screenshot({path:'outputs/pitch-menu-open100.png'});await page.keyboard.press('Escape');assert.equal(await toggle.getAttribute('aria-expanded'),'false');assert(await toggle.evaluate(el=>el===document.activeElement));
+  await page.keyboard.press('Enter');assert(await page.locator('#v100-pitch-panel').isVisible());await page.locator('#match-area .scoreboard').click();assert(!(await page.locator('#v100-pitch-panel').isVisible()));
+  await page.evaluate(()=>{hideOverlay();Object.assign(match,{kickoff:null,postBanner:null,throwIn:null,setPiece:null,flight:null,goalPause:0,goalScene:null,rebound:null,elapsed:10});const k=match.people.find(p=>p.t===0&&p.keeper);v50GoalKick(k,'Abstoß');});
+  const buildUp=await page.evaluate(()=>{const k=match.owner,positions=match.people.map(p=>({pid:p.pid,x:p.x,y:p.y}));for(let i=0;i<30;i++)step(.05*MATCH_SPEED,.05);draw();return {held:match.owner===k&&!match.flight,moved:positions.some(a=>{const p=match.people.find(p=>p.pid===a.pid);return !p.keeper&&Math.hypot(p.x-a.x,p.y-a.y)>.01}),remaining:(match.next-match.elapsed)/MATCH_SPEED};});assert(buildUp.held&&buildUp.moved&&buildUp.remaining>.8);
+  const geometry=await page.evaluate(()=>{let top=0;v98Scene.scene.traverse(obj=>{if(!obj.isMesh||obj.material?.color?.getHexString()!=='faf7e9')return;const p=obj.geometry.attributes.position;for(let i=0;i<p.count;i++){const v=new THREE.Vector3().fromBufferAttribute(p,i).applyMatrix4(obj.matrixWorld);if(Math.abs(v.x-34)<.2&&Math.abs(v.z)<7)top=Math.max(top,v.y)}});return {top,width:44*.2/(v55Field.right-v55Field.left)};});assert(Math.abs(geometry.top-geometry.width/3-.095)<.02,'actual crossbar geometry uses 3:1 goal proportions');
+  await page.evaluate(()=>{match.flight=null;match.setPiece=null;match.owner=null;const s=match.people.find(p=>p.t===0&&!p.keeper);v50Restart('penalty',0,{x:.5,y:.15},'Elfmeter nach Foul');draw();});
+  assert(await page.locator('.v100-penalty-award h2').isVisible());assert(await page.locator('.v100-penalty-award img').isVisible());await stage.screenshot({path:'outputs/penalty-award100.png'});
+  await page.evaluate(()=>{for(let i=0;i<39;i++)step(.05*MATCH_SPEED,.05);draw();});assert.equal(await page.evaluate(()=>match.setPiece.phase),'waiting');
+  await page.evaluate(()=>{const original=Math.random,values=[.99,.99,.01,.99];Math.random=()=>values.shift()??.99;step(.051*MATCH_SPEED,.051);Math.random=original;draw();});assert.equal(await page.evaluate(()=>match.setPiece.outcome),'wide');assert(!(await page.locator('.v100-penalty-award').count()));
+  await page.evaluate(()=>{for(let i=0;i<12;i++)step(.05*MATCH_SPEED,.05);draw();});
+  const wide=await page.locator('#v50-penalty-scene .v42-ball').evaluate(el=>{const ball=el.getBoundingClientRect(),scene=el.closest('.v42-goal-scene'),goal=scene.querySelector('.v42-goal').getBoundingClientRect();return {outside:ball.left>goal.right,ball:ball.left,post:goal.right,animation:getComputedStyle(el).animationName,scene:scene.getBoundingClientRect().toJSON(),style:el.getAttribute('style'),transform:getComputedStyle(scene).transform,ballTransform:getComputedStyle(el).transform};});await stage.screenshot({path:'outputs/penalty-wide100.png'});assert(wide.outside);assert.equal(wide.animation,'none');
+  await page.evaluate(()=>{v50ClearPenaltyScene();match.setPiece=null;match.flight=null;match.postBanner=null;match.slide=null;match.halftimePause=2;match.halftimeBreakDone=true;match.goalPause=0;match.goalScene=null;v65PauseTargetTab='tactics';v65Pause();v65PauseView=true;v65UpdateControls(v65Context());window.scrollTo(0,document.body.scrollHeight);});
+  await page.locator('[data-v65-quick]').click();await page.evaluate(()=>clearInterval(v65WorldFrame));await page.waitForTimeout(900);
+  const resumed=await stage.evaluate(el=>({top:el.getBoundingClientRect().top,bottom:el.getBoundingClientRect().bottom,hidden:el.closest('#match-area').hidden}));assert(!resumed.hidden&&resumed.top>=0&&resumed.top<350,'resume from halftime brings field into view');
+  await page.evaluate(()=>{match.goalPause=0;match.postBanner=null;match.kickoff=null;hideOverlay();v50Goal(match.people.find(p=>p.t===0&&!p.keeper),match.people.find(p=>p.t===1&&p.keeper));step(.5*MATCH_SPEED,.5);draw();});
+  assert(await page.locator('.v84-goal-banner').isVisible());await page.evaluate(()=>{for(let i=0;i<62;i++)step(.05*MATCH_SPEED,.05);draw();});assert(await page.locator('.v84-goal-banner').isVisible(),'goal still visible after previous duration');
+  await page.evaluate(()=>{for(let i=0;i<12;i++)step(.05*MATCH_SPEED,.05);draw();});assert(!(await page.locator('.v84-goal-banner').isVisible()));
+  await page.evaluate(()=>{doppel6Language.set('en');draw();});assert.equal(await toggle.getAttribute('aria-label'),'View and sound');
+  const mobile=await browser.newPage({viewport:{width:844,height:390},isMobile:true,hasTouch:true,deviceScaleFactor:2});mobile.on('pageerror',e=>errors.push(e.message));await setup(mobile);
+  assert.equal(await mobile.locator('#v100-pitch-toggle').evaluate(el=>el.getBoundingClientRect().width),44);await mobile.locator('#v100-pitch-toggle').click();
+  const fits=await mobile.locator('#v100-pitch-panel').evaluate(el=>{const r=el.getBoundingClientRect(),pitch=el.closest('.v42-pitch-stage').getBoundingClientRect();return r.left>=pitch.left&&r.right<=pitch.right&&r.bottom<=pitch.bottom});assert(fits,'mobile menu fits inside pitch');await mobile.locator('#match-area .v42-pitch-stage').screenshot({path:'outputs/pitch-menu-mobile100.png'});
+  assert.deepEqual(errors,[]);console.log(JSON.stringify({collapsed,buildUp,geometry,wide,resumed,errors}));
+ }finally{await browser.close()}
+})().catch(error=>{console.error(error);process.exitCode=1});

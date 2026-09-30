@@ -14,7 +14,7 @@ const setup=vm.runInNewContext(source.slice(source.indexOf('async function setup
  await page.evaluate(async()=>{hideOverlay();match.owner=null;match.flight=null;match.kickoff=null;match.postBanner=null;match.ball={x:.5,y:.5-25*(v55Field.bottom-v55Field.top)/68};for(let i=0;i<90;i++)await new Promise(resolve=>requestAnimationFrame(()=>{draw();resolve();}));});
  await page.locator('#match-area .v42-pitch-stage').screenshot({path:'outputs/camera-near-half.png'});
  const close=await page.evaluate(()=>window.d6Pitch3D.getState().camera);assert.equal(close.mode,'follow');assert(close.target.x>close.position.x+10);
- await page.locator('#v98-camera').selectOption('wide');await page.evaluate(async()=>{for(let i=0;i<90;i++)await new Promise(resolve=>requestAnimationFrame(()=>{draw();resolve();}));});
+ await page.evaluate(()=>v100PitchMenu(true));await page.locator('#v98-camera').selectOption('wide');await page.evaluate(async()=>{for(let i=0;i<90;i++)await new Promise(resolve=>requestAnimationFrame(()=>{draw();resolve();}));});
  await page.locator('#match-area .v42-pitch-stage').screenshot({path:'outputs/camera-wide-half.png'});
  const wide=await page.evaluate(()=>window.d6Pitch3D.getState().camera);assert.equal(wide.mode,'wide');assert(wide.position.y>close.position.y+5);
  await page.setViewportSize({width:844,height:390});await page.locator('#v98-camera').selectOption('follow');await page.evaluate(async()=>{for(let i=0;i<90;i++)await new Promise(resolve=>requestAnimationFrame(()=>{draw();resolve();}));});await page.locator('#match-area .v42-pitch-stage').screenshot({path:'outputs/camera-near-mobile.png'});

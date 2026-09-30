@@ -1,6 +1,6 @@
 'use strict';
 
-const v83GoalSceneDuration=3.05;
+const v83GoalSceneDuration=4.05;
 function v83GoalLine(team){return team===0?v55Field.top:v55Field.bottom}
 function v83GoalPosition(scene){
  const time=Math.max(0,Math.min(scene.elapsed,2.45)),direction=scene.team===0?-1:1;

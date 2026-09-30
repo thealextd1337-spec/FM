@@ -67,7 +67,7 @@ window.D6PitchScene={create(canvas,{goalWidth=7.6,advertising}={}){
  }
  // Open wire nets make the ball visible behind the physical goal line.
  function goal(end){
-  const x=end*34,back=x+end*2.2,h=2.6,w=goalWidth;
+  const x=end*34,back=x+end*2.2,h=goalWidth/3,w=goalWidth;
   const tube=(a,b)=>{const av=new THREE.Vector3(...a),bv=new THREE.Vector3(...b);const m=mesh(new THREE.CylinderGeometry(.095,.095,av.distanceTo(bv),8),steel);m.position.copy(av).add(bv).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),bv.sub(av).normalize());m.castShadow=true;};
   tube([x,0,-w/2],[x,h,-w/2]);tube([x,0,w/2],[x,h,w/2]);tube([x,h,-w/2],[x,h,w/2]);
   tube([back,0,-w/2],[back,h-.15,-w/2]);tube([back,0,w/2],[back,h-.15,w/2]);tube([back,h-.15,-w/2],[back,h-.15,w/2]);

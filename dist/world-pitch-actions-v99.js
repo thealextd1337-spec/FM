@@ -4,6 +4,19 @@
 const v99Flights=new WeakMap(),v99Actions=new WeakMap();
 let v99Release=null;
 let v99SwapQueue=null;
+const v100BaseGoalKick=v50GoalKick;
+v50GoalKick=function(...args){
+ const result=v100BaseGoalKick(...args);
+ // The existing movement step forms the build-up while the keeper waits.
+ if(v65WorldActive)match.next=match.elapsed+2.4*MATCH_SPEED;
+ return result;
+};
+const v100BaseRestart=v50Restart;
+v50Restart=function(type,...args){
+ const previous=match?.setPiece,result=v100BaseRestart(type,...args);
+ if(v65WorldActive&&type==='penalty'&&match?.setPiece&&match.setPiece!==previous)match.setPiece.wait=2;
+ return result;
+};
 const v99BaseSwapInfo=v65ShowSwapInfo;
 v65ShowSwapInfo=function(context,changes){
  if(match?.goalPause>0){
@@ -33,6 +46,13 @@ function v99FlushSwaps(){
 function v99ActionState(current){
  let state=v99Actions.get(current);if(!state){state={keepers:new Map(),throws:new Map(),goalHeight:0,miss:null};v99Actions.set(current,state)}return state;
 }
+function v100ShotOutcome(flight,goal){
+ const release=flight&&v99Flights.get(flight);if(release)release.goal=goal;
+}
+function v100PenaltyWidePoint(progress,side,width,height){
+ const q=Math.max(0,Math.min(1,progress)),goalWidth=Math.min(width*.72,360);
+ return {left:width/2+side*(goalWidth/2+24)*q/.65,bottom:26+(height-195)*q/.65+8*Math.sin(Math.PI*q),scale:1-.55*q};
+}
 const v99BaseShoot=v55Shoot;
 v55Shoot=function(shooter,...args){
  const previous=v99Release;v99Release={kind:'shot',shooter,onTarget:shooter.stats.onTarget||0};
@@ -46,7 +66,7 @@ v55ThrowStep=function(...args){
 const v99BaseFly=fly;
 fly=function(target,duration,done){
  const current=match,release=v99Release&&v65WorldActive?{...v99Release}:null;
- if(!release)return v99BaseFly(target,duration,done);
+ if(!release){const previous=v99Actions.get(current);if(previous)previous.miss=null;return v99BaseFly(target,duration,done)}
  const state=v99ActionState(current);
  if(release.kind==='shot'){
   const shooter=release.shooter,keeper=current.people.find(p=>p.keeper&&p.t!==shooter.t);
@@ -56,7 +76,7 @@ fly=function(target,duration,done){
   const variant=((shooter.stats.shots||0)+shooter.n)%3;
   const displayTarget={...target};if(onTarget&&!blocked)displayTarget.x=Math.max(.41,Math.min(.59,target.x+(variant===0?-.018:variant===1?.018:0)));
   Object.assign(release,{keeper,onTarget,blocked,over:!onTarget&&!blocked&&variant!==0,displayTarget,
-   endHeight:blocked?.45:onTarget?[.35,1.15,2.05][variant]:variant===0?.29:3.4+variant*.45,
+   endHeight:blocked?.45:onTarget?[.35,1.35,2.7][variant]:variant===0?.29:3.4+variant*.45,
    startHeight:.29,target:{...target},age:0,saved:false});
   if(keeper&&!blocked&&(onTarget||!release.over))state.keepers.set(keeper.pid,release);
  }else{
@@ -84,16 +104,19 @@ step=function(delta,realDelta){
    if(pose.completed){pose.age+=dt;if(pose.age>(pose.kind==='throw'?.32:.95))poses.delete(id)}
    else if(current.flight!==pose.flight)poses.delete(id);
   }
-  if(state.miss){state.miss.age+=dt;if(state.miss.age>.65)state.miss=null}
+  if(state.miss){state.miss.age+=dt;if(state.miss.age>1.5)state.miss=null}
  }
  const result=v99BaseStep(delta,realDelta);v99FlushSwaps();return result;
 };
 function v99BallView(current){
  if(current.finished)return null;
  const state=v99Actions.get(current),release=current.flight&&v99Flights.get(current.flight);
- if(current.goalScene&&current.goalPause>0&&state?.goalHeight){
-  const raw=v83GoalPosition(current.goalScene);
-  return {...raw,x:raw.x+(state.goalLateral||0)*Math.max(0,1-current.goalScene.elapsed/1.15),height:undefined,elevation:state.goalHeight*Math.max(0,1-current.goalScene.elapsed/1.15)};
+ if(current.goalScene&&current.goalPause>0){
+  const scene=current.goalScene,time=Math.max(0,scene.elapsed),direction=scene.team===0?-1:1;
+  const impact=.12,depth=time<impact?1.9*time/impact:1.9-.52*(1-Math.exp(-(time-impact)*7));
+  const startHeight=state?.goalHeight||.35,fall=Math.max(0,time-impact);
+  return {x:scene.x+(state?.goalLateral||0),y:(scene.team===0?v55Field.top:v55Field.bottom)+direction*depth*(v55Field.bottom-v55Field.top)/68,
+   elevation:Math.max(.29,startHeight-5*fall*fall)};
  }
  if(current.throwIn?.taker&&current.throwIn.ready>0)return {...current.throwIn.taker,elevation:2.62};
  if(release){
@@ -102,8 +125,12 @@ function v99BallView(current){
   return {x:start.x+(end.x-start.x)*q,y:start.y+(end.y-start.y)*q,
    elevation:release.startHeight*(1-q)+release.endHeight*q+Math.sin(Math.PI*q)*(release.kind==='throw'?1.35:release.blocked?.25:.75)};
  }
- if(state?.miss){const pose=state.miss,q=Math.min(1,pose.age/.65),direction=pose.shooter.t===0?-1:1;
-  return {x:.5+(pose.shooter.n%2?-.045:.045),y:pose.target.y+direction*.065*q,elevation:pose.endHeight*(1-q)};
+ if(state?.miss){const pose=state.miss,time=pose.age,seconds=pose.flight.duration/(typeof MATCH_SPEED==='number'?MATCH_SPEED:.78);
+  const startY=pose.flight.y,velocityY=(pose.target.y-startY)/seconds;
+  // Continue the incoming forward/upward velocity instead of reflecting at the bar.
+  const velocityHeight=(pose.endHeight-pose.startHeight-Math.PI*.75)/seconds;
+  return {x:.5+(pose.shooter.n%2?-.045:.045),y:pose.target.y+velocityY*time,
+   elevation:Math.max(.29,pose.endHeight+velocityHeight*time-4.9*time*time)};
  }
  return null;
 }
@@ -114,5 +141,5 @@ function v99PlayerAction(current,person){
  if(throwPose)return {kind:'throw',progress:throwPose.completed?1:Math.min(1,(current.flight?.progress||0)*4),holding:false,target:throwPose.target};
  const keeper=state?.keepers.get(person.pid);if(!keeper)return null;
  return {kind:'save',progress:keeper.completed?1:Math.min(1,(current.flight?.progress||0)/.85),recovery:keeper.completed?Math.min(1,keeper.age/.95):0,
-  target:keeper.displayTarget||keeper.target,height:keeper.endHeight,saved:keeper.saved};
+  target:keeper.displayTarget||keeper.target,height:keeper.endHeight,saved:keeper.saved,goal:Boolean(keeper.goal)};
 }

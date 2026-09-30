@@ -4,7 +4,7 @@ const {pathToFileURL}=require('url');
 const {chromium}=require(process.env.D6_PLAYWRIGHT||'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const url=process.env.D6_TEST_URL||'http://127.0.0.1:4190/';
 async function setup(page,view='3d',sourceUrl=url,fixtureSide=null){
- await page.goto(sourceUrl);await page.waitForFunction(()=>window.d6Pitch3D&&document.querySelector('footer span:first-child')?.textContent.includes('PROTOTYP 99'));
+ await page.goto(sourceUrl);await page.waitForFunction(()=>window.d6Pitch3D&&document.querySelector('footer span:first-child')?.textContent.includes('PROTOTYP 100'));
  await page.evaluate(({view,fixtureSide})=>{
   let seed=12345;Math.random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
   const career=v61CreateCareer('GER-2','world3d-parity'),club=career.world.clubs.find(item=>item.id==='GER-2');
@@ -57,7 +57,7 @@ async function complete(page,view){
   await page.evaluate(()=>{step(.011*MATCH_SPEED,.011);draw();});assert(await page.locator('.v84-goal-banner').isVisible());const goalText=await page.locator('.v84-goal-details').textContent();
   await stage.screenshot({path:'outputs/world3d-goal.png'});
   const goalPause=await page.evaluate(()=>{const elapsed=match.elapsed;step(.05*MATCH_SPEED,.05);draw();return {frozen:elapsed===match.elapsed,ball:window.d6Pitch3D.getState().frame.ball};});assert(goalPause.frozen);
-  await page.locator('[data-v98-view="2d"]').click();assert.equal(await page.locator('.v84-goal-details').textContent(),goalText);await page.locator('[data-v98-view="3d"]').click();
+  await page.evaluate(()=>v100PitchMenu(true));await page.locator('[data-v98-view="2d"]').click();assert.equal(await page.locator('.v84-goal-details').textContent(),goalText);await page.evaluate(()=>v100PitchMenu(true));await page.locator('[data-v98-view="3d"]').click();
   await page.evaluate(()=>{hideOverlay();match.goalScene=null;match.goalPause=0;match.flight=null;match.slide=null;match.kickoff=null;v65PauseView=true;v65PauseTab='lineup';v65Pause();v65PauseView=true;v65UpdateControls(v65Context());});
   await page.setViewportSize({width:1440,height:1300});
   const selected=await page.evaluate(()=>{const c=v65Context();v65SelectedSlot=v64Active(c.state,c.ownSide).findIndex(pid=>c.state.roles[pid]==='att');v65UpdateControls(c);return {outPid:v64Active(c.state,c.ownSide)[v65SelectedSlot],slot:v65SelectedSlot};});
@@ -86,7 +86,7 @@ async function complete(page,view){
   await page.setViewportSize({width:844,height:390});await page.waitForFunction(()=>window.d6Pitch3D.getState().view==='3d');
   await page.evaluate(()=>{v98Scene.renderer.domElement.dispatchEvent(new Event('webglcontextlost',{cancelable:true}));});assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().view),'2d');
   assert(await page.locator('#v98-status').textContent());
-  await page.locator('[data-v98-view="3d"]').click();assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().view),'3d');
+  await page.evaluate(()=>v100PitchMenu(true));await page.locator('[data-v98-view="3d"]').click();assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().view),'3d');
   console.log('Orientation and context-loss recovery passed.');
   console.log('Checking leave and storage.');await page.evaluate(async()=>{await Promise.race([v65Leave(true),new Promise((_,reject)=>setTimeout(()=>reject(Error(JSON.stringify({writing:v61StorageWriting,pending:Boolean(v61StoragePending),ready:v61StorageReady,error:v61StorageError,world:Boolean(v65WorldActive)}))),10000))])});assert.equal(await page.locator('#v98-canvas').count(),0);console.log('Leave passed.');
   await setup(page,'3d',url,'home');await page.waitForFunction(()=>v98Scene.advertisingState.ready);
@@ -95,12 +95,12 @@ async function complete(page,view){
   // Offline artifact uses embedded vendor, shared scene and all SC samples.
   console.log('Checking embedded offline build.');await setup(page,'3d',pathToFileURL(path.resolve('outputs/Doppel-6-Fussballmanager.html')).href);assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().view),'3d');console.log('Offline setup passed.');
   assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().camera.mode),'follow');
-  await page.locator('#v98-camera').selectOption('wide');assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().camera.mode),'wide');
+  await page.evaluate(()=>v100PitchMenu(true));await page.locator('#v98-camera').selectOption('wide');assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().camera.mode),'wide');
   await page.locator('#v98-camera').selectOption('follow');assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().camera.mode),'follow');
   await page.waitForFunction(()=>v98Scene.advertisingState.ready);
   assert(await page.evaluate(()=>v98Scene.advertisingState.name===v98HomeSponsor(v65Context()).name),'offline sponsor logo loaded with correct home contract');
   assert(await page.evaluate(()=>window.D6_AUDIO&&Object.keys(window.D6_AUDIO).length===6));
-  await page.locator('#v98-sound').click();await page.waitForFunction(()=>window.d6Pitch3D.getState().audioLoaded);assert(await page.evaluate(()=>window.d6Pitch3D.getState().ambient));
+  await page.evaluate(()=>v100PitchMenu(true));await page.locator('#v98-sound').click();await page.waitForFunction(()=>window.d6Pitch3D.getState().audioLoaded);assert(await page.evaluate(()=>window.d6Pitch3D.getState().ambient));
   fs.writeFileSync('outputs/world3d-parity.json',JSON.stringify({matched:true,twoD,goalPause,offside,turned,errors,warnings},null,2));
   assert.deepEqual(errors,[]);assert.deepEqual(warnings,[]);console.log('Browser gates: real play, goal/banner/pause, offside, substitutions, penalties, halftime, fulltime, tablet orientation, context-loss fallback, disposal and embedded offline audio passed.');
  }finally{await browser.close();}

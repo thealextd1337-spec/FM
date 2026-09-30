@@ -4,6 +4,10 @@ Die getrennte Vorschau zeigt echte Partien der Vereinswelt im Querformat mit ein
 
 Die Kameraauswahl bietet „TV nah · Mitfahrt“ als Startansicht und „TV weit · Übersicht“. Die nahe Kamera steht tiefer und näher am Feld, fährt seitlich nur leicht mit und richtet ihren Blick auf die Mitte der aktuellen Spielhälfte und die Ballseite. Ab der Halbmitte schwenkt sie stärker zum Tor. Beide Hälften gehen beim Überqueren der Mittellinie fließend ineinander über. Seitliche Fahrt und Blickrichtung werden getrennt gedämpft; dadurch bleibt die Kamera ruhig und reagiert trotzdem auf Pässe. Die weite Kamera bleibt zum Vergleich verfügbar. Die Auswahl verändert keine Karriere- oder Matchdaten.
 
+Version 100 bündelt Darstellung, Kamera und Ton in einem kleinen aufklappbaren Menü oben rechts am Feld. Escape schließt es und setzt den Tastaturfokus zurück; ein Klick außerhalb schließt ebenfalls. Nach dem Halbzeitfortsetzen scrollt die Ansicht zum Feld und richtet die Kamera neu aus. Die Torszene dauert jetzt 4,05 Sekunden; das Torbanner erscheint nach 0,5 Sekunden und bleibt dadurch 3,55 Sekunden sichtbar. Wechselanzeigen folgen weiterhin danach.
+
+Vor einem kurzen Torwartabspiel warten Torhüter 2,4 Sekunden, während Mitspieler in Position laufen. Ein erfolgreiches Tor gelangt schnell ins Netz; die erfolglose Parade zieht den Torwart nicht künstlich in die Schussbahn. Die Tore sind höher mit dem Verhältnis 3:1. Hohe Fehlschüsse setzen ihre Flugrichtung hinter dem Tor fort und fallen erst dort herunter. Bei Elfmeterfouls zeigt ein großer Schiedsrichter die Entscheidung zwei Sekunden lang, danach folgt die Ausführung. Seitliche Elfmeterfehlschüsse passieren den Außenpfosten und fliegen weiter hinter das Tor. Die längeren Standardtimer gelten für neue Ereignisse in 2D und 3D; Chancen, historische Ergebnisse und Spielstände werden nicht umgerechnet.
+
 3D liest den bestehenden physischen Matchzustand. Regeln, Zufallsentscheidungen, Spielzeit, Ereignisse, Statistik, Ergebnis und Speicherung bleiben in der bisherigen Engine. Taktik, Formation, Rollen, Spieleranweisungen, Angriffsfokus, Pausen, Positions- und Bankwechsel, Rückgängig und Live-Spielerinfo verwenden die gemeinsame Oberfläche. Auch Tor- und Wechselbanner, Standards, Abseits, Halbzeit, Abpfiff und Elfmeterszenen bleiben an die tatsächlichen Ereignisse gebunden.
 
 Die kompakteren Namensfelder verwenden 8-Pixel-Schrift. Bei ununterbrochenem Ballbesitz wird ausschließlich der sichtbare Ball auf 0,65 Szenenmeter Abstand zum Spieler gesetzt; Ballflug, Standards und die physischen Koordinaten bleiben erhalten. Zwölf 3D-Banden außerhalb der beiden Längsseiten zeigen wiederholte Wortmarken des bestehenden Heimsponsors, unabhängig vom eigenen Heim- oder Auswärtsstatus. Die alten 2D-Banden bleiben für 2D und zugänglichen Text erhalten. Der gemeinsame Torbanner wartet 0,5 Sekunden laufender Spielzeit; Pause und Spielerinfo halten diese Wartezeit an. Ein neuer Hinweis oder Ausblenden verwirft eine ausstehende Einblendung. Wechselbanner lassen eine unbekannte Minute aus.
@@ -44,6 +48,8 @@ Die gezielten Prüfungen lassen sich aus dem Projektverzeichnis wiederholen. Der
 
 ```powershell
 node work/test-world-pitch3d-v98.cjs
+node work/test-world-pitch-actions-v99.cjs
+& 'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' work/check-world-pitch-ui-v100.cjs
 & 'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' work/check-world-pitch3d-camera.cjs
 & 'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' work/check-world-pitch3d-browser.cjs
 ```
@@ -51,6 +57,8 @@ node work/test-world-pitch3d-v98.cjs
 Der Browserdurchgang wurde mit der gebündelten Node-Laufzeit 24.19.0 und Edge ausgeführt; das normale `node` auf diesem Rechner ist 18.14.2. Auf anderen Rechnern lassen sich Playwright-Modul, Browserpfad und Testadresse über `D6_PLAYWRIGHT`, `D6_BROWSER` und `D6_TEST_URL` setzen. Dafür eine mit dem verwendeten Playwright kompatible Node-Laufzeit verwenden.
 
 Der erste Test prüft Projektion, Seitenwechsel, Ballflug, Tor und Abseits sowie unveränderten Matchzustand und unabhängigen Grafikzufall. Der vollständige Vergleich einer wiederholbaren Partie mit und ohne 3D ergab identische Zeitleiste, Ereignisse, Tore, Wechsel, Statistiken und verbuchtes Ergebnis. Das belegt diese Fixture; es ist keine umfassende Prüfung aller möglichen Partien.
+
+Der zusätzliche Browserlauf `work/check-world-pitch-ui-v100.cjs` verwendet standardmäßig Port 4195 oder `D6_TEST_URL`. Er prüft das Menü samt Escape, Enter und Außenklick, tatsächliche Spielerbewegung vor dem Torwartabspiel, die Torproportionen, zwei Sekunden Schiedsrichteranzeige, den seitlichen Elfmeterball außerhalb des Pfostens, Halbzeitfokus und verlängertes Torbanner. Desktop und mobiles Querformat sowie englische Beschriftungen wurden ohne Browserfehler geprüft. Der vollständige Vergleich für Version 100 ergibt in beiden Ansichten 2.591 Schritte und 1:0 mit identischem verbuchtem Ergebnis; auch der Offline-Build samt SuperCollider-Audio wurde geprüft.
 
 Der Kameratest verwendet standardmäßig Port 4173 (`D6_TEST_URL` kann die Adresse ersetzen). Er prüft die Ballprojektion an 15 Feldpositionen und bei einem schnellen langen Pass, die nahe/weite Auswahl, mobile Breite und englische Beschriftungen. Vergleichsbilder liegen in `outputs/camera-near-half.png`, `outputs/camera-wide-half.png` und `outputs/camera-near-mobile.png`.
 

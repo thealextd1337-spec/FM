@@ -229,6 +229,7 @@ function v55Shoot(shooter,kind='shot'){
  const goal=onTarget&&random()<clamp(.13+fin*.022+tech*.004-ability(keeper,'gk')*.011-pressure*.002,.1,.62);
  const end={x:goal?goalPoint.x:onTarget?clamp(keeper.x,.37,.63):random()<.5?.2:.8,y:team===0?v55Field.top:v55Field.bottom};
  fly(end,.48,()=>{if(goal){v50Goal(shooter,keeper,false,kind==='direct-free-kick'?'direct-free-kick':null);return}if(!onTarget){v50GoalKick(keeper,`${shooter.name} setzt den Ball vorbei. Abstoß.`);return}keeper.stats.saves++;if(random()<.27)v50Deflect(end,team,keeper,`Parade von ${keeper.name}`);else v50GoalKick(keeper,`${keeper.name} hält den Abschluss fest.`)});
+ if(typeof v100ShotOutcome==='function')v100ShotOutcome(m.flight,goal);
 }
 shoot=function(shooter){v55Shoot(shooter)};
 
