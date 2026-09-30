@@ -2,6 +2,10 @@
 
 ## Inhalt
 
+- [3D-Darstellung echter Vereinswelt-Partien](3d-spieldarstellung.md): lokale Anbindung an die bestehende Match-Engine, gemeinsame Steuerung, Offline-Build und Reichweite der Abnahme.
+
+- [3D-Kameraprototyp im Querformat](kameraprototyp-3d.md): eigenständige lokale TV-Kamera mit synthetischem Spielablauf, SuperCollider-Sounds und vollständig eingebetteter Offline-Datei.
+
 - [Sponsoren – sechs nationale Kataloge](sponsoren-entwuerfe/README.md): 36 eigene Namen und SVG-Logos, kompakte Bildzeichen und interaktive Angebotskarten mit Länderwechsel und Werbebandenvorschau.
 
 - [Vereinswappen – 48 neue Entwürfe](wappen-entwuerfe/README.md): sechs Ländertafeln mit unterschiedlichen Bildzeichen, Formen und Schriftstilen; Gestaltungsvorschläge vor der technischen Übernahme.

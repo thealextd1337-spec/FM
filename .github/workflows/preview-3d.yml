@@ -1,0 +1,46 @@
+name: Doppel 6 3D preview
+on:
+  push:
+    branches: [codex/3d-preview]
+permissions:
+  contents: read
+concurrency:
+  group: doppel-6-preview-3d
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://fussball.cakamper.at/3d/
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Match, Kamera, Banner, Sponsoren und Speicherung prüfen
+        run: |
+          node work/test-world-pitch3d-v98.cjs
+          node work/test-world-match-v64.cjs
+          node work/test-world-player-instructions.cjs
+          node work/test-world-physical-instructions.cjs
+          node work/test-world-grid-v71.cjs
+          node work/test-world-swap-banner.cjs
+          node work/test-world-goal-scene-v83.cjs
+          node work/test-world-goal-banner-v84.cjs
+          node work/test-live-player-v59.cjs
+          node work/test-i18n-v75.cjs
+          node work/test-world-sponsors-v97.cjs
+          node work/test-world-storage-v67.cjs
+          python3 work/test_deploy_preview_ftps.py
+      - name: Offline-Spiel bauen
+        run: |
+          node work/build.cjs
+          node work/test-club-crests.cjs
+      - name: Nur den getrennten 3D-Bereich veröffentlichen
+        env:
+          W4Y_FTP_HOST: ${{ secrets.W4Y_FTP_HOST }}
+          W4Y_FTP_USER: ${{ secrets.W4Y_FTP_USER }}
+          W4Y_FTP_PASSWORD: ${{ secrets.W4Y_FTP_PASSWORD }}
+          W4Y_FTP_REMOTE_DIR: ${{ secrets.W4Y_FTP_REMOTE_DIR }}
+        run: python3 work/deploy_preview_ftps.py

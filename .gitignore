@@ -5,5 +5,7 @@ work/*
 !work/test-world-sprite-masks-v87.py
 !work/deploy_ftps.py
 !work/test_deploy_ftps.py
+!work/deploy_preview_ftps.py
+!work/test_deploy_preview_ftps.py
 outputs/
 .sites-runtime/

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101d21">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23c7f36b'/%3E%3Ctext x='20' y='27' text-anchor='middle' font-size='19' font-family='Arial' font-weight='bold' fill='%23101d21'%3ED6%3C/text%3E%3C/svg%3E">
+  <title>Doppel 6 · 3D-Kameraprototyp</title>
+  <link rel="stylesheet" href="camera.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Doppel 6 Kameraprototyp"><b>6·6</b><span>Doppel 6</span></a>
+    <h1>3D-Kameraprototyp</h1>
+    <button id="language" type="button" aria-label="Switch to English">EN</button>
+  </header>
+  <main>
+    <div class="portrait-note" role="status">
+      <svg viewBox="0 0 72 56" aria-hidden="true"><rect x="7" y="12" width="58" height="32" rx="5"/><path d="M15 6h28m0 0-6-5m6 5-6 5M57 50H29m0 0 6-5m-6 5 6 5"/></svg>
+      <h2 data-i18n="rotateTitle">Bitte ins Querformat drehen</h2>
+      <p data-i18n="rotateCopy">Die 3D-TV-Kamera ist für das Querformat gedacht. Die Demo wartet hier auf dich.</p>
+    </div>
+    <section class="broadcast" aria-label="3D TV-Kamera Demo">
+      <div id="stage">
+        <canvas id="pitch" aria-label="Stilisierte 3D-Fußballdemo mit zwölf Spielern und einer TV-Kamera"></canvas>
+        <div class="scorebug" aria-label="Illustrativer Spielstand">
+          <span class="team home">D6</span><strong id="score">0 : 0</strong><span class="team away">TV</span><time id="clock">12:00</time>
+        </div>
+        <span class="demo-tag" data-i18n="demo">DEMO · 6 GEGEN 6</span>
+        <div id="goal" hidden><strong data-i18n="goal">TOOOR!</strong><span data-i18n="goalCopy">Ballweg und Kamera im Torraum</span></div>
+        <div class="field-caption"><span id="scene-name">Spielaufbau</span><span id="camera-name">TV-Kamera · weit</span></div>
+        <div id="loading" role="status"><strong data-i18n="loading">Das Stadion wird aufgebaut …</strong></div>
+      </div>
+      <div class="transport">
+        <button id="play" class="primary" type="button" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path id="play-icon" d="M6 4v12M14 4v12"/></svg><span data-i18n="pause">Pause</span></button>
+        <button id="restart" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 8a7 7 0 1 1 0 5M4 3v5h5"/></svg><span data-i18n="restart">Neu starten</span></button>
+        <label class="scrubber"><span class="sr-only" data-i18n="timeline">Demo-Zeitpunkt</span><input id="timeline" type="range" min="0" max="28" step="0.05" value="0"><output id="elapsed" for="timeline">0:00 / 0:28</output></label>
+        <button id="sound" type="button" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 8h3l4-4v12l-4-4H3zM14 7l4 6M18 7l-4 6"/></svg><span data-i18n="soundOn">Ton einschalten</span></button>
+        <button id="fullscreen" class="icon-button" type="button" aria-label="Vollbild"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4"/></svg></button>
+      </div>
+    </section>
+    <section class="adjustments" aria-label="Kamera einstellen">
+      <div class="preset-group" role="group" aria-label="Kameraperspektive">
+        <button type="button" data-preset="tv" aria-pressed="true" data-i18n="tv">TV-Kamera</button>
+        <button type="button" data-preset="overview" aria-pressed="false" data-i18n="overview">Ganzes Feld</button>
+        <button type="button" data-preset="close" aria-pressed="false" data-i18n="close">Näher dran</button>
+      </div>
+      <label class="adjust"><span data-i18n="height">Kamerahöhe</span><input id="height" type="range" min="22" max="46" step="1" value="32"><output id="height-value">32 m</output></label>
+      <label class="adjust"><span data-i18n="width">Bildweite</span><input id="width" type="range" min="36" max="58" step="1" value="46"><output id="width-value">46°</output></label>
+      <label class="adjust volume"><span data-i18n="volume">Lautstärke</span><input id="volume" type="range" min="0" max="100" step="1" value="45"><output id="volume-value">45 %</output></label>
+    </section>
+    <nav class="scenes" aria-label="Demo-Szenen">
+      <span data-i18n="scenes">Szenen ansehen</span>
+      <button type="button" data-time="0" data-i18n="buildUp">Spielaufbau</button>
+      <button type="button" data-time="10" data-i18n="wing">Außenbahn</button>
+      <button type="button" data-time="16" data-i18n="cross">Flanke</button>
+      <button type="button" data-time="19" data-i18n="finish">Abschluss</button>
+    </nav>
+    <p class="explanation" data-i18n="description">Erhöhte Seitenlinienkamera mit sanfter Ballverfolgung. Wiederholbare Beispielszenen, keine echte Partie und keine Speicherung. Sounds mit SuperCollider erzeugt.</p>
+  </main>
+  <script src="vendor/three-r160.min.js"></script>
+  <script src="../pitch-scene-v98.js"></script>
+<script src="camera.js"></script>
+</body>
+</html>
