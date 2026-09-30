@@ -59,7 +59,7 @@ v98Style.textContent=`
 .v100-view-row{display:flex;gap:6px}.v100-view-row button{flex:1}.v100-camera-label{display:grid;gap:5px;color:#c6d9d4;font-size:11px;text-align:left}#v98-camera{width:100%}#v98-sound{width:100%}
 .v98-view-controls button[aria-pressed="true"]{background:#c7f36b;color:#142629;border-color:#c7f36b}
 .v98-view-controls small{color:#bad0cc;font-size:11px;line-height:1.4;text-align:left}.v98-view-controls small:empty{display:none}
-.v65-world-match #match-area{scroll-margin-top:80px}
+.v65-world-match #match-area .v42-pitch-stage{scroll-margin-top:80px}
 .v65-world-match #v50-penalty-scene.v100-penalty-award{grid-template-columns:minmax(90px,.4fr) minmax(0,1fr);gap:24px;padding:clamp(16px,4vw,36px);background:#112b30f7}
 .v100-penalty-award img{height:min(70%,280px);max-width:100%;width:auto;justify-self:center;align-self:center;image-rendering:pixelated}
 .v100-penalty-award h2{margin:0 0 10px;color:#c7f36b;font:900 clamp(36px,7vw,72px)/1 'Barlow Condensed',Impact,sans-serif}
@@ -204,6 +204,14 @@ function v98RenderScene(){
      for(const i of [0,2])visual.limbs[i].rotation.x=0;
      for(const i of [1,3])visual.limbs[i].rotation.x=action.holding?-Math.PI+.28:-Math.PI+.28+action.progress*1.9;
      visual.limbs[1].rotation.z=-.33;visual.limbs[3].rotation.z=.33;
+    }else if(action.kind==='goalKick'){
+     visual.root.rotation.y=heading;visual.body.position.set(0,0,0);visual.body.rotation.z=0;
+     const follow=action.phase==='follow',strike=Math.max(0,(action.progress-.6)/.4),blend=(1-Math.cos(Math.PI*strike))/2;
+     const swing=follow?-1.05*(1-action.progress):action.progress<=.6?.55*Math.sin(action.progress/.6*Math.PI/2):.55-1.6*blend;
+     visual.body.rotation.x=follow?.14*(1-action.progress):action.progress<=.6?-.08*action.progress/.6:-.08+.22*blend;
+     visual.limbs[0].rotation.x=follow?.16*(1-action.progress):0;visual.limbs[2].rotation.x=swing;
+     visual.limbs[1].rotation.x=-swing*.3;visual.limbs[3].rotation.x=swing*.3;
+     visual.limbs[1].rotation.z=-.18;visual.limbs[3].rotation.z=.18;
     }else{
      const attack=(person.team===0?1:-1)*(frame.turned?-1:1);
      visual.root.rotation.y=attack*Math.PI/2;
@@ -313,10 +321,10 @@ const v100PreviousDraw=draw;
 draw=function(){const result=v100PreviousDraw();v100SyncPenaltyBall();return result};
 const v100BaseResume=v65Resume;
 v65Resume=function(...args){
- const half=match?.halftimePause>0,result=v100BaseResume(...args);
- if(half&&v65Context()?.state.phase==='live'){
+ const returnToPitch=v65Context()?.state.phase==='paused'&&(v65PauseView||match?.halftimePause>0),result=v100BaseResume(...args);
+ if(returnToPitch&&v65Context()?.state.phase==='live'){
   v98CameraPose=null;v100PitchMenu(false);
-  requestAnimationFrame(()=>{if(v98IsWorld()){$('#match-area').scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});draw()}});
+  requestAnimationFrame(()=>{if(v98IsWorld()){$('#match-area .v42-pitch-stage').scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'instant':'smooth'});draw()}});
  }
  return result;
 };

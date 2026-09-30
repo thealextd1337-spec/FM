@@ -17,15 +17,15 @@ MARKER = b'<meta name="doppel6-preview" content="3d">'
 
 def payloads():
     content = BUILD.read_bytes()
-    if MARKER not in content or b"PROTOTYP 100" not in content:
-        raise RuntimeError("Expected marked prototype 100 build")
+    if MARKER not in content or b"PROTOTYP 101" not in content:
+        raise RuntimeError("Expected marked prototype 101 build")
     archive = io.BytesIO()
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as bundle:
         bundle.writestr("doppel6.html", content)
     download = ('<!doctype html><html lang="de"><meta charset="utf-8">'
                 '<meta name="viewport" content="width=device-width"><title>Doppel 6 Downloads</title>'
                 '<body style="font:18px system-ui;padding:30px;background:#142b2c;color:#f3f8ed">'
-                '<h1>Doppel 6 · 3D-Version 100</h1><p><a style="color:#c7f36b" href="./">Spiel öffnen / Play</a></p>'
+                '<h1>Doppel 6 · 3D-Version 101</h1><p><a style="color:#c7f36b" href="./">Spiel öffnen / Play</a></p>'
                 '<p><a style="color:#c7f36b" href="doppel6.zip" download>ZIP herunterladen / Download ZIP</a></p>'
                 '<p><a style="color:#c7f36b" href="index.html" download="doppel6.html">HTML herunterladen / Download HTML</a></p>'
                 '<p>ZIP entpacken und doppel6.html im Browser öffnen.<br>Extract ZIP and open doppel6.html in your browser.</p></body></html>').encode()
