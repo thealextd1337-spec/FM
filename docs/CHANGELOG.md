@@ -2,16 +2,20 @@
 
 ## Noch nicht veröffentlicht
 
-- Abstoß: Der Tormann bleibt kurz stehen, während Mitspieler in Position laufen, holt aus und spielt den Ball mit einer sichtbaren Schussbewegung ab. Ball und Bein folgen dem tatsächlichen Kurzpass; bei der Annahme startet die Animation nicht erneut. Die vorhandene Wartezeit bleibt erhalten.
-- Nach „Resume Match“ im Taktikscreen scrollt die Ansicht wieder zum Spielfeld, auch außerhalb der Halbzeit. Die gewählte 2D-/3D-Darstellung bleibt erhalten.
-- Kurze Abschlüsse fliegen schneller und druckvoller zum Tor. Flugkurve, Position und Geschwindigkeit gehen an der Torlinie durchgehend in die Torszene über; erst am Rück-, Seiten- oder Dachnetz wird der Ball gebremst und prallt kurz zurück. Schusswahrscheinlichkeiten bleiben gleich; neue Flugzeiten wirken auf künftige Aktionen und verändern keine historischen Ergebnisse oder Speicherformate.
-- Aktions-, Match-, Taktik-, Raster-, Banner-, Sprach-, Sponsor-, Speicher- und Deploymenttests erfolgreich. Der vollständige reproduzierbare 2D/3D-Vergleich ergibt identische 2.543 Schritte und 0:0 mit gleichem verbuchtem Ergebnis. Browserprüfungen bestätigen Stillstand und Mitspieleraufbau, Ausholen, Fußkontakt, einmaliges Ausschwingen, Desktop-/Handy-Rückkehr aus Taktik, bewusste 2D-Auswahl und kontinuierliche Torlinie in beiden Richtungen und Halbzeiten. Paraden, Würfe, hohe Fehlschüsse, Elfmeter, Bannerfolge, Vergrößerung und Offline-Audio bleiben geprüft.
-
 - Beide Tore der 3D-Kamerademo haben jetzt vollständige Seitennetze: Senkrechte Fäden verbinden die vorhandenen Querfäden mit dem geneigten Netzdach. Alle vier Seiten geometrisch geprüft, Offline-Datei neu gebaut und auf Desktop sowie im mobilen Querformat ohne Browserfehler angesehen.
 
 - Die 3D-Kamerademo zeigt einen texturierten Rasen, eine überdachte Haupttribüne, detailliertere Zuschauer und klarere Spielertrikots mit Stutzen, Schuhen und Torwarthandschuhen. Die kameranahe Tribüne bleibt für freie Sicht ohne Dach. Geometrie wird gebündelt und Zuschauer verwenden Instanzen. Die erste Demo wurde von der nutzenden Person auf einem Mobiltelefon als funktionsfähig bestätigt. Für eine spätere Anbindung ist jetzt verbindlich dokumentiert, dass sämtliche 2D-Taktikbefehle, Pausen, Wechsel, Live-Spielerinfos, Banner und Standards erhalten bleiben und dieselben bestehenden Funktionen verwenden. Acht gezielte Tests des bisherigen Match- und UI-Verhaltens erfolgreich; echte Partien sind weiterhin nicht an die Demo angeschlossen.
 
 - Ein eigenständiger lokaler 3D-Kameraprototyp erprobt eine erhöhte TV-Sicht mit sanfter Ballverfolgung, zwei weiteren Kamerasichten und stilisierten Spielern. Eine wiederholbare 28-Sekunden-Sequenz zeigt Passspiel, Flanke und Tor; SuperCollider liefert sechs Sounds. Kamera, Zeitleiste, Pause, Vollbild und Deutsch/Englisch sind bedienbar. Hochformat zeigt unabhängig von der Bildschirmbreite einen Drehhinweis und hält Zeit und Audio an. Die vollständig eingebettete Offline-Datei und Desktop-, Handy- und Tablet-Bildschirmgrößen wurden im Browser geprüft. Leistung auf echten Mobilgeräten und Hörprüfung bleiben offen. Der Prototyp berechnet keine echten Partien, verändert keine Spielstände und ist nicht in die Vereinswelt eingebunden oder veröffentlicht. Start, Build und Prüfbelege stehen in [kameraprototyp-3d.md](kameraprototyp-3d.md).
+
+## 2026-09-30 (Prototyp 101 · Integrierter Abstoß und druckvollere Schüsse)
+
+- Abstoß: Der Tormann bleibt kurz stehen, während Mitspieler in Position laufen, holt aus und spielt den Ball mit einer sichtbaren Schussbewegung ab. Ball und Bein folgen dem tatsächlichen Kurzpass; bei der Annahme startet die Animation nicht erneut. Die vorhandene Wartezeit bleibt erhalten.
+- Nach „Resume Match“ im Taktikscreen scrollt die Ansicht wieder zum Spielfeld, auch außerhalb der Halbzeit. Die gewählte 2D-/3D-Darstellung bleibt erhalten.
+- Kurze Abschlüsse fliegen schneller und druckvoller zum Tor. Flugkurve, Position und Geschwindigkeit gehen an der Torlinie durchgehend in die Torszene über; erst am Rück-, Seiten- oder Dachnetz wird der Ball gebremst und prallt kurz zurück. Schusswahrscheinlichkeiten bleiben gleich; neue Flugzeiten wirken auf künftige Aktionen und verändern keine historischen Ergebnisse oder Speicherformate.
+- Aktions-, Match-, Taktik-, Raster-, Banner-, Sprach-, Sponsor-, Speicher- und Deploymenttests erfolgreich. Der vollständige reproduzierbare 2D/3D-Vergleich ergibt identische 2.543 Schritte und 0:0 mit gleichem verbuchtem Ergebnis. Browserprüfungen bestätigen Stillstand und Mitspieleraufbau, Ausholen, Fußkontakt, einmaliges Ausschwingen, Desktop-/Handy-Rückkehr aus Taktik, bewusste 2D-Auswahl und kontinuierliche Torlinie in beiden Richtungen und Halbzeiten. Paraden, Würfe, hohe Fehlschüsse, Elfmeter, Bannerfolge, Vergrößerung und Offline-Audio bleiben geprüft.
+
+- Ausschließlich unter /3d/ veröffentlicht und im Live-Browser ohne Fehler abgenommen. Quellbuild und öffentliche Datei stimmen bytegenau überein; ZIP-Download liefert HTTP 200. Das Hauptspiel bleibt bytegleich.
 
 ## 2026-09-30 (Prototyp 100 · Spielfeldmenü und verbesserte Torabläufe)
 
