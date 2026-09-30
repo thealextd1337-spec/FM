@@ -2,6 +2,8 @@
 
 ## Inhalt
 
+- [Sponsoren – sechs nationale Kataloge](sponsoren-entwuerfe/README.md): 36 eigene Namen und SVG-Logos, kompakte Bildzeichen und interaktive Angebotskarten mit Länderwechsel und Werbebandenvorschau.
+
 - [Vereinswappen – 48 neue Entwürfe](wappen-entwuerfe/README.md): sechs Ländertafeln mit unterschiedlichen Bildzeichen, Formen und Schriftstilen; Gestaltungsvorschläge vor der technischen Übernahme.
 
 - [Spielstart, Accounts, Spielstände, Hall of Fame und App-Stores – Plan](speicherstaende-hall-of-fame-store-plan.md): Startablauf und Parametermatrix, Karriereverwaltung, Accountwiederherstellung, Serverkarrieren, Gerätewechsel, offene Entscheidungen und Abnahme; [offizielle Rechts- und Storequellen](speicherung-store-recherche.md).

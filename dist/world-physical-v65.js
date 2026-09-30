@@ -338,7 +338,7 @@ function v65Show(context){
  const own=v65Club(context,0),other=v65Club(context,1),competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
  let adboards=$('#v65-adboards');if(!adboards){adboards=document.createElement('div');adboards.id='v65-adboards';$('#match-area .v42-pitch-stage').append(adboards)}
  const home=v66Club(context.career,context.fixture.homeId),sponsor=home.sponsors?.find(item=>item.id===home.sponsorId);
- adboards.innerHTML=sponsor?['top-left','top-right','bottom-left','bottom-right'].map(position=>`<div class="v65-adboard ${position}">${v66SponsorLogoSVG(home.countryId,sponsor.name)}<span>${escapeHTML(sponsor.name)}</span></div>`).join(''):'';adboards.hidden=!sponsor;
+ adboards.innerHTML=sponsor?['top-left','top-right','bottom-left','bottom-right'].map(position=>`<div class="v65-adboard ${position}">${v66SponsorLogoSVG(home.countryId,sponsor,true)}<span translate="no">${escapeHTML(sponsor.name)}</span></div>`).join(''):'';adboards.hidden=!sponsor;
  $('#heading').textContent='Dein Spiel läuft.';$('#subtitle').textContent=`${competition.type==='league'?`${v61CountryNames[competition.country]} · Liga 1`:competition.type==='cup'?'Pokal':'Europacup'} · ${own.name} gegen ${other.name}`;
  $('#game-screen .board-top strong').textContent=own.name;
  $('#board-label').textContent=context.state.phase==='paused'?'PAUSE':'LIVE';

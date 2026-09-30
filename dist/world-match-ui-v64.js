@@ -151,7 +151,7 @@ function v64UiResult(fixture,state,side){
 }
 function v64UiAdboards(clubs,managedClubId){
  const sponsors=clubs.filter(club=>club.id===managedClubId).map(club=>({club,offer:club.sponsors?.find(item=>item.id===club.sponsorId)})).filter(item=>item.offer);
- return sponsors.length?`<div class="v64-adboards" aria-label="Werbebanner">${sponsors.map(({club,offer})=>`<div class="v64-adboard">${v66SponsorLogoSVG(club.countryId,offer.name)}<span>${escapeHTML(offer.name)}</span></div>`).join('')}</div>`:'';
+ return sponsors.length?`<div class="v64-adboards" aria-label="Werbebanner">${sponsors.map(({club,offer})=>`<div class="v64-adboard">${v66SponsorLogoSVG(club.countryId,offer,true)}<span translate="no">${escapeHTML(offer.name)}</span></div>`).join('')}</div>`:'';
 }
 function v64UiPrematchPitch(career,fixture,state,side,options={}){
  const plan=side===0?fixture.plan.home:fixture.plan.away,roster=v64Side(career,fixture,side),starters=options.starters||plan.starters,selected=options.selected??v64SelectedSlot,pickAttribute=options.pickAttribute||'data-v64-pick-slot',cells=v64EnsureCells(state,side);

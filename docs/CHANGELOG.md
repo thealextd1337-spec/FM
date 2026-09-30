@@ -2,6 +2,15 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-30 (Prototyp 97 · Nationale Sponsoren)
+
+- Die Vereinswelt verwendet 36 fiktive Sponsormarken mit eigenen Namen, Wortmarken und Bildzeichen: sechs je Land. Neue Saisonangebote wählen drei Marken aus dem jeweiligen nationalen Katalog. Angebotskarten und der gewählte Vertrag zeigen die Wortmarke; Spielvorbereitung und die vier Werbebanden des Heimvereins verwenden das kompakte Bildzeichen mit Namen. Marken bleiben bei einem Sprachwechsel unverändert. Ligatorziele heißen schlicht „mindestens … Tore“.
+- Laufende Angebote und Verträge behalten Namen, Beträge und Ziele. Neue Marken gelten ab der nächsten regulären Sponsorwahl; bestehende generische Sponsoren behalten ihre bisherigen Zeichen. Der Finanzvergleich über 48 Vereine und drei Saisonstände bestätigt unveränderte Fixbeträge und Bonusbedingungen. Sponsor-, Match-, Speicher-, Navigations- und Übersetzungstests sowie zehn Wirtschaftssaisons und zwölf bisherige Karrieresaisons erfolgreich. Im isolierten Browser wurden alle sechs Länder, DE/EN, mobile Karten, einmalige Fixumzahlung, Neuladen und echte deutsche und spanische Partien mit Heimvereinsbanden geprüft. Einzeldatei-Build und eingebettete Assets geprüft.
+
+- Ligatorziele in der Sponsorvorschau heißen jetzt schlicht „Liga: mindestens 16 Tore“ beziehungsweise „League: at least 16 goals“. Der unnötige Zusatz „reguläre“ entfällt bei allen Ländern und beiden Torzielen; Zielwerte und Boni bleiben gleich. Deutsche und englische Anzeige im Browser geprüft.
+
+- Die Sponsorvorschau zeigt sechs nationale Kataloge mit insgesamt 36 eigenen Markennamen und Logoformen. Der Vereinslandwechsel ersetzt Namen und Motive; die Oberflächensprache übersetzt Bedingungen und Beschriftungen, ohne Marken umzubenennen. Wortmarken und kompakte Bildzeichen liegen als 72 SVG-Dateien vor. Ein Klick oder Tipp auf das Logo wählt die Werbebande; die zusätzlichen Textbuttons unter den Karten entfallen. Fixum, Einzelboni und Höchstsumme bleiben getrennt und sind noch illustrative Beispiele. Alle Länder bei 1360, 390 und 320 Pixeln Breite, Logoauswahl, Tastatur, Deutsch/Englisch, Angebotsberechnungen, SVG-Texte und XML-Exporte wurden geprüft. Die separate Vorschau verändert keine Spielstände.
+
 ## 2026-09-30 (Prototyp 96 · Schutz des letzten Torwarts)
 
 - Der letzte Torwart kann nicht mehr als ausführbares Verkaufsangebot erscheinen oder eine neue Ablöseverhandlung auslösen. Schon zugesagte Torwartabgänge zählen beim Kaderschutz mit. Veraltete Angebote werden ausgeblendet und beim nächsten Transfertag zurückgezogen; auch der endgültige Transfer prüft die Sperre. Ein Hinweis nennt den Torwart- oder Mindestkadergrund auf Deutsch und Englisch. Tests für Direktgebote, parallele Zusagen, veraltete Angebote und den Abschluss sowie angrenzende Transfer-, Kader- und Übersetzungstests und zehn Wirtschaftssaisons erfolgreich. Im isolierten Browser wurden die früh sichtbare Torwartsperre sowie Sponsorwahl, alle Transfertage und Spielvorbereitung geprüft. Bestehende Transferergebnisse werden nicht rückwirkend verändert.
