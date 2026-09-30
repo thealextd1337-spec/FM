@@ -1,6 +1,6 @@
 # 3D-Darstellung echter Vereinswelt-Partien
 
-Der lokale Arbeitsstand zeigt echte Partien der Vereinswelt im Querformat mit einer erhöhten TV-Kamera. Im Hochformat bleibt die 2D-Darstellung aktiv; im Querformat kann die spielende Person zwischen „3D · TV“ und „2D“ wechseln. Bei fehlender WebGL-Unterstützung oder verlorenem Grafikkontext fällt die Ansicht auf 2D zurück. Der Arbeitsstand ist noch nicht veröffentlicht.
+Die getrennte Vorschau zeigt echte Partien der Vereinswelt im Querformat mit einer erhöhten TV-Kamera. Im Hochformat bleibt die 2D-Darstellung aktiv; im Querformat kann die spielende Person zwischen „3D · TV“ und „2D“ wechseln. Bei fehlender WebGL-Unterstützung oder verlorenem Grafikkontext fällt die Ansicht auf 2D zurück. Version 98 ist unter [Spiel öffnen](https://fussball.cakamper.at/3d/) veröffentlicht. Die kommende Version 99 ergänzt Paraden, Würfe und hohe Schüsse. [ZIP herunterladen](https://fussball.cakamper.at/3d/doppel6.zip) und [Downloadseite](https://fussball.cakamper.at/3d/download.html) liegen im gleichen getrennten Bereich. Eine eigene Subdomain ist noch nicht eingerichtet.
 
 Die Kameraauswahl bietet „TV nah · Mitfahrt“ als Startansicht und „TV weit · Übersicht“. Die nahe Kamera steht tiefer und näher am Feld, fährt seitlich nur leicht mit und richtet ihren Blick auf die Mitte der aktuellen Spielhälfte und die Ballseite. Ab der Halbmitte schwenkt sie stärker zum Tor. Beide Hälften gehen beim Überqueren der Mittellinie fließend ineinander über. Seitliche Fahrt und Blickrichtung werden getrennt gedämpft; dadurch bleibt die Kamera ruhig und reagiert trotzdem auf Pässe. Die weite Kamera bleibt zum Vergleich verfügbar. Die Auswahl verändert keine Karriere- oder Matchdaten.
 
@@ -10,10 +10,13 @@ Die kompakteren Namensfelder verwenden 8-Pixel-Schrift. Bei ununterbrochenem Bal
 
 Der [isolierte Kameraprototyp](kameraprototyp-3d.md) zeigt weiterhin eine synthetische 28-Sekunden-Sequenz. Seine Szenenknöpfe steuern keine echte Partie. Demo und Vereinswelt verwenden jetzt dieselbe 3D-Szene; ihre Abläufe bleiben getrennt.
 
+Der Eckbutton unten rechts schaltet eine größere Spielfläche ein und aus. Werbebanden mit hochaufgelösten Sponsorwortmarken stehen nur an beiden Längsseiten. Torbanner werden vor Wechselbannern gezeigt, ohne die Ausführung der Wechsel zu verschieben. Hohe Schüsse und Schüsse über die Latte sind visuelle Varianten der vorhandenen Tor-/Fehlschussentscheidung; die Engine bleibt maßgeblich.
+
 ## Aufbau
 
 - [dist/pitch-scene-v98.js](../dist/pitch-scene-v98.js) baut Spielfeld, Rasen, Tribünen, Tore und Spieler für Demo und echte Partien auf. Die Kameraseite bleibt ohne Dach, damit die Übersicht frei bleibt.
 - [dist/world-pitch3d-v98.js](../dist/world-pitch3d-v98.js) projiziert den vorhandenen Matchzustand in die Szene, einschließlich Seitenwechsel, hoher Bälle, Torszene und Abseits. Grafikzufall verbraucht keine Zufallswerte der Simulation; die Darstellung verändert den Matchzustand nicht.
+- `dist/world-pitch-actions-v99.js` ergänzt Wurf- und Paradeposen und Flugkurven aus bestehenden Ereignissen. Flüchtige Daten werden nicht gespeichert; Pausen halten die Erholung an.
 - Three.js r160 und seine MIT-Lizenz liegen unter `dist/camera-prototype/vendor/`. Die sechs optionalen SuperCollider-Sounds stammen aus `dist/camera-prototype/audio/`; Erzeugung und Format sind im Kameraprototyp dokumentiert. Ton wird durch eine Nutzeraktion eingeschaltet.
 
 ## Lokal starten und offline bauen

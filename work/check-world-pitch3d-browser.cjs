@@ -4,7 +4,7 @@ const {pathToFileURL}=require('url');
 const {chromium}=require(process.env.D6_PLAYWRIGHT||'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const url=process.env.D6_TEST_URL||'http://127.0.0.1:4190/';
 async function setup(page,view='3d',sourceUrl=url,fixtureSide=null){
- await page.goto(sourceUrl);await page.waitForFunction(()=>window.d6Pitch3D);
+ await page.goto(sourceUrl);await page.waitForFunction(()=>window.d6Pitch3D&&document.querySelector('footer span:first-child')?.textContent.includes('PROTOTYP 99'));
  await page.evaluate(({view,fixtureSide})=>{
   let seed=12345;Math.random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
   const career=v61CreateCareer('GER-2','world3d-parity'),club=career.world.clubs.find(item=>item.id==='GER-2');
@@ -88,12 +88,12 @@ async function complete(page,view){
   assert(await page.locator('#v98-status').textContent());
   await page.locator('[data-v98-view="3d"]').click();assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().view),'3d');
   console.log('Orientation and context-loss recovery passed.');
-  await page.evaluate(async()=>{await v65Leave(true)});assert.equal(await page.locator('#v98-canvas').count(),0);
+  console.log('Checking leave and storage.');await page.evaluate(async()=>{await Promise.race([v65Leave(true),new Promise((_,reject)=>setTimeout(()=>reject(Error(JSON.stringify({writing:v61StorageWriting,pending:Boolean(v61StoragePending),ready:v61StorageReady,error:v61StorageError,world:Boolean(v65WorldActive)}))),10000))])});assert.equal(await page.locator('#v98-canvas').count(),0);console.log('Leave passed.');
   await setup(page,'3d',url,'home');await page.waitForFunction(()=>v98Scene.advertisingState.ready);
   assert(await page.evaluate(()=>{const c=v65Context(),home=v66Club(c.career,c.fixture.homeId);return c.ownSide===0&&v98Scene.advertisingState.name===home.sponsors.find(item=>item.id===home.sponsorId).name;}),'home fixture uses its own home sponsor');
   await stage.screenshot({path:'outputs/world3d-home-sponsor.png'});
   // Offline artifact uses embedded vendor, shared scene and all SC samples.
-  await setup(page,'3d',pathToFileURL(path.resolve('outputs/Doppel-6-Fussballmanager.html')).href);assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().view),'3d');
+  console.log('Checking embedded offline build.');await setup(page,'3d',pathToFileURL(path.resolve('outputs/Doppel-6-Fussballmanager.html')).href);assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().view),'3d');console.log('Offline setup passed.');
   assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().camera.mode),'follow');
   await page.locator('#v98-camera').selectOption('wide');assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().camera.mode),'wide');
   await page.locator('#v98-camera').selectOption('follow');assert.equal(await page.evaluate(()=>window.d6Pitch3D.getState().camera.mode),'follow');

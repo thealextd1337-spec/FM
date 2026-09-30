@@ -2,7 +2,7 @@
 // Shared visual scene only. The prototype and real match adapter own their inputs.
 window.D6PitchScene={create(canvas,{goalWidth=7.6,advertising}={}){
  let disposed=false,advertImage=null;
- const advertisingState={name:advertising?.name||null,ready:false};
+ const advertisingState={name:advertising?.name||null,ready:false,boards:[]};
  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),mix=(a,b,q)=>a+(b-a)*q;
  const height=32,fov=46;
  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
@@ -121,20 +121,28 @@ window.D6PitchScene={create(canvas,{goalWidth=7.6,advertising}={}){
    const sign=mesh(new THREE.PlaneGeometry(11.65,1.16),new THREE.MeshBasicMaterial({map:textTexture(...a)}));sign.position.set(-30+i*12,.7,side*25.65);if(side===1)sign.rotation.y=Math.PI;
   }
  }else if(advertising){
-  // One shared texture, four boards beside the home stadium's two goals.
-  const texture=textTexture(advertising.name,'#f7f4e9','#202725'),ctx=texture.image.getContext('2d');
+  // Repeated full sponsor wordmark on the two long touchlines only.
+  const texture=textTexture(advertising.name,'#f7f4e9','#202725',2048),ctx=texture.image.getContext('2d');
+  texture.image.height=512;texture.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
+  const paintFallback=()=>{ctx.fillStyle='#f7f4e9';ctx.fillRect(0,0,2048,512);ctx.fillStyle='#202725';ctx.font='bold 112px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(advertising.name,1024,256,1920);};paintFallback();
   const material=new THREE.MeshBasicMaterial({map:texture,side:THREE.DoubleSide,toneMapped:false});
-  for(const end of [-1,1])for(const side of [-1,1]){
-   const x=end*37.1,z=side*9,angle=Math.atan2(-x,49-z);
-   const backing=box(8.2,2.05,.25,dark,x,1.04,z);backing.rotation.y=angle;
-   const sign=mesh(new THREE.PlaneGeometry(8,1.94),material);sign.position.set(x+Math.sin(angle)*.14,1.04,z+Math.cos(angle)*.14);sign.rotation.y=angle;
+  for(const side of [-1,1])for(const x of [-27,-16.2,-5.4,5.4,16.2,27]){
+   const z=side*25.5;advertisingState.boards.push({x,z,width:10.4,height:1.32});
+   box(10.6,1.5,.24,dark,x,.77,z);box(10.7,.07,.3,steel,x,1.53,z);
+   for(const support of [-4.5,4.5])box(.12,.4,.4,dark,x+support,.2,z);
+   // Broad wordmarks keep their aspect ratio; both faces stay readable on pans.
+   const sign=mesh(new THREE.PlaneGeometry(10.4,1.32),material);sign.position.set(x,.81,z-side*.14);if(side===1)sign.rotation.y=Math.PI;
   }
   advertImage=new Image();advertImage.onload=()=>{
    if(disposed)return;
-   ctx.clearRect(0,0,1024,128);ctx.fillStyle='#f7f4e9';ctx.fillRect(0,0,1024,128);
-   ctx.drawImage(advertImage,20,10,108,108);ctx.fillStyle='#202725';ctx.font='bold 54px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(advertising.name,576,66,840);texture.needsUpdate=true;advertisingState.ready=true;
+   ctx.clearRect(0,0,2048,512);ctx.fillStyle='#f7f4e9';ctx.fillRect(0,0,2048,512);
+   // Texture and physical board proportions differ: fit using world dimensions.
+   const ratio=advertImage.naturalWidth/advertImage.naturalHeight,worldHeight=Math.min(1.2,4.7/ratio),worldWidth=worldHeight*ratio;
+   const w=worldWidth/10.4*2048,h=worldHeight/1.32*512;
+   for(const centre of [512,1536])ctx.drawImage(advertImage,centre-w/2,(512-h)/2,w,h);texture.needsUpdate=true;advertisingState.ready=true;
   };
-  advertImage.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(advertising.svg.replace('<svg','<svg xmlns="http://www.w3.org/2000/svg"'));
+  const dimensions=/viewBox="[^"]*?([\d.]+) ([\d.]+)"/.exec(advertising.svg);
+  advertImage.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(advertising.svg.replace('<svg',`<svg xmlns="http://www.w3.org/2000/svg" width="${dimensions?.[1]||340}" height="${dimensions?.[2]||110}"`));
  }
  // Batch the static stadium by material, leaving every animated object separate.
  scene.updateMatrixWorld(true);
