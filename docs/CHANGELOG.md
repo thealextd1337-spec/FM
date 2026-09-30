@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-30 (Prototyp 96 · Schutz des letzten Torwarts)
+
+- Der letzte Torwart kann nicht mehr als ausführbares Verkaufsangebot erscheinen oder eine neue Ablöseverhandlung auslösen. Schon zugesagte Torwartabgänge zählen beim Kaderschutz mit. Veraltete Angebote werden ausgeblendet und beim nächsten Transfertag zurückgezogen; auch der endgültige Transfer prüft die Sperre. Ein Hinweis nennt den Torwart- oder Mindestkadergrund auf Deutsch und Englisch. Tests für Direktgebote, parallele Zusagen, veraltete Angebote und den Abschluss sowie angrenzende Transfer-, Kader- und Übersetzungstests und zehn Wirtschaftssaisons erfolgreich. Im isolierten Browser wurden die früh sichtbare Torwartsperre sowie Sponsorwahl, alle Transfertage und Spielvorbereitung geprüft. Bestehende Transferergebnisse werden nicht rückwirkend verändert.
+
 ## 2026-09-30 (Prototyp 95 · Spielfeld im Querformat)
 
 - Das Spielfeld der Vereinswelt läuft bei breitem Browserfenster und mobilem Querformat waagerecht. Matchplan, Spielvorbereitung und Pausenaufstellung richten die Spielerkarten aufrecht von links nach rechts aus; im Live-Spiel bleiben Namen und Auswahl auf der gedrehten Leinwand lesbar und bedienbar. Das Feld ist mittig auf maximal 760 Pixel Breite begrenzt, im kurzen mobilen Querformat auf 580 Pixel. Uhr, Spielstand und Torschützen stehen auch während der Taktikpause über dem Feld. Taktik und Statistik folgen darunter im Seitenscroll. Gerätewechsel und bestehende Spielstände ändern keine Matchdaten. Gezielte Raster-, Matchplan- und Matchtests, Browserprüfung in breitem Fenster sowie mobilem Hoch- und Querformat und Einzeldatei-Build erfolgreich.

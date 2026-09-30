@@ -51,7 +51,7 @@ function v72AdvanceDay(career){
  const market=v72Market(career),own=career.manager.managedClubId,targets={gk:1,def:3,mid:4,att:3},minimum={gk:1,def:1,mid:1,att:1};
  for(const listing of market.saleListings.filter(item=>item.status==='active')){
   const club=v66Club(career,listing.sellerId),agreed=market.negotiations.some(item=>item.pid===listing.pid&&['contract','contract-wait','contract-counter','ready'].includes(item.stage));
-  if(club?.roster.some(player=>player.pid===listing.pid)&&club.roster.length>10&&(listing.reason!=='finance'||v72ListingPressure(career,club)||agreed))continue;
+  if(v72CanCommitSale(career,listing.sellerId,listing.pid)&&(listing.reason!=='finance'||v72ListingPressure(career,club)||agreed))continue;
   if(agreed)continue;
   listing.status='withdrawn';
   for(const negotiation of market.negotiations.filter(item=>item.pid===listing.pid&&['fee-wait','fee-counter','seller-offer','seller-counter-wait'].includes(item.stage))){v72Reject(career,negotiation,'Der Verein hat den Spieler von der Verkaufsliste genommen.');const result=market.transferResults.find(item=>item.negotiationId===negotiation.id&&item.kind==='rejected');if(result)result.day=Math.max(0,market.day-1)}
@@ -71,7 +71,7 @@ function v72AdvanceDay(career){
    for(const player of candidates.slice(0,extra)){if(picks.size>=surplusRoom)break;if(!picks.has(player.pid)&&remaining[player.line]>minimum[player.line]){picks.set(player.pid,'surplus');remaining[player.line]--}}
   }
   for(const [pid,reason] of picks){
-   if(market.saleListings.some(item=>item.pid===pid))continue;
+   if(market.saleListings.some(item=>item.pid===pid)||!v72CanCommitSale(career,club.id,pid))continue;
    const player=club.roster.find(item=>item.pid===pid),value=v66Value(player),strength=v66Skill(player),factor=reason==='finance'?.98:strength>=16?2.2:strength>=15?1.65:1.12;
    market.saleListings.push({id:`S${career.world.season}:L:${player.pid}`,pid:player.pid,sellerId:club.id,ask:Math.max(10,Math.round(value*factor/10)*10),reason,status:'active',createdDay:market.day});
   }
@@ -86,7 +86,15 @@ function v72Willingness(career,pid,buyerId){
  return gap<-.8?'unsure':'open';
 }
 function v72CommittedPids(career,sellerId){return new Set(v72Market(career).negotiations.filter(item=>item.sellerId===sellerId&&['contract','contract-wait','contract-counter','ready'].includes(item.stage)).map(item=>item.pid))}
-function v72CanCommitSale(career,sellerId,pid){const seller=v66Club(career,sellerId),player=seller?.roster.find(item=>item.pid===pid),committed=v72CommittedPids(career,sellerId);return !!(player&&seller.roster.length-(committed.has(pid)?committed.size:committed.size+1)>=10&&(!player.keeper||seller.roster.filter(item=>item.keeper).length>1))}
+function v72SaleBlockReason(career,sellerId,pid){
+ const seller=v66Club(career,sellerId),player=seller?.roster.find(item=>item.pid===pid);
+ if(!player)return 'Der Verein kann diesen Spieler nicht mehr abgeben.';
+ const committed=v72CommittedPids(career,sellerId),remaining=seller.roster.filter(item=>item.pid!==pid&&!committed.has(item.pid));
+ if(!remaining.some(item=>item.keeper))return 'Der Verein muss seinen letzten Torwart behalten.';
+ if(remaining.length<10)return 'Der Verein muss mindestens zehn Profis behalten.';
+ return '';
+}
+function v72CanCommitSale(career,sellerId,pid){return !v72SaleBlockReason(career,sellerId,pid)}
 function v72Queue(career,negotiation,kind,message){
  const market=v72Market(career),id=`${negotiation.id}:${kind}`;
  if(market.transferResults.some(item=>item.id===id))return;
@@ -110,6 +118,7 @@ function v72Start(career,pid,amount){
  if(market.negotiations.some(item=>item.pid===pid&&item.buyerId===buyerId&&!['rejected','completed'].includes(item.stage)))throw Error('Für diesen Spieler läuft bereits eine Verhandlung.');
  if(market.pendingBids.some(item=>item.pid===pid&&item.buyerId===buyerId&&['pending','counter'].includes(item.status)))throw Error('Für diesen Spieler besteht bereits ein Angebot.');
  if(market.decisions.some(item=>item.pid===pid&&item.buyerId===buyerId&&item.season===career.world.season&&['rejected','expired'].includes(item.status)))throw Error('Ein neues Gebot ist erst im nächsten Transferfenster möglich.');
+ const blocked=v72SaleBlockReason(career,listing.sellerId,pid);if(blocked)throw Error(blocked);
  const negotiation={id:`S${career.world.season}:N${market.nextNegotiation++}`,pid,buyerId,sellerId:listing.sellerId,price:amount,annual:0,years:2,promise:3,stage:'fee-wait',createdDay:market.day,answerDay:market.day,lastChange:`Ablösegebot: ${amount} Credits.`};
  if(listing.reason==='direct')negotiation.directAsk=listing.ask;
  market.negotiations.push(negotiation);
@@ -134,7 +143,8 @@ function v72SubmitFee(career,id,amount){
 function v72ResolveFee(career,item,deadline=false){
  const listing=v72FeeTerms(career,item),seller=v66Club(career,item.sellerId);
  if(item.stage==='refusal-wait'){v72Reject(career,item,'Der Spieler hat den Wechsel abgelehnt.');return}
- if(!listing||!seller?.roster.some(player=>player.pid===item.pid)||!v72CanCommitSale(career,item.sellerId,item.pid)){v72Reject(career,item,'Der Verein kann diesen Spieler nicht mehr abgeben.');return}
+ const blocked=v72SaleBlockReason(career,item.sellerId,item.pid);
+ if(!listing||blocked){v72Reject(career,item,blocked||'Der Verein kann diesen Spieler nicht mehr abgeben.');return}
  if(item.price>=v72Floor(listing)){
   item.stage='contract';item.agreedPrice=item.price;item.lastChange=`${seller.name} stimmt ${item.price} Credits Ablöse zu. Jetzt folgt der Spielervertrag.`;
   if(item.buyerId===career.manager.managedClubId)v72Queue(career,item,'fee-agreed',item.lastChange);
@@ -241,6 +251,7 @@ function v72Finalize(career){
   const ready=agreed.sort((a,b)=>v66BidAppeal(career,b)-v66BidAppeal(career,a)||a.id.localeCompare(b.id));
   let winner=null;
   for(const item of ready){
+   const blocked=v72SaleBlockReason(career,item.sellerId,item.pid);if(blocked){v72Reject(career,item,blocked);continue}
    if(v66Owner(career,item.pid)?.id!==item.sellerId||v66Club(career,item.sellerId).roster.length<=10||!v66CanAfford(career,item.buyerId,item.agreedPrice,item.annual)){v72Reject(career,item,'Der Wechsel ist nicht mehr möglich.');continue}
    const bid={id:item.id,pid:item.pid,buyerId:item.buyerId,sellerId:item.sellerId,price:item.agreedPrice,annual:item.annual,years:item.years,promise:item.promise,status:'pending'};
    market.pendingBids.push(bid);

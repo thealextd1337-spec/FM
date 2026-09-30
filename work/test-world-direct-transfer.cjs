@@ -86,12 +86,16 @@ assert.equal(keeperBid.status,'rejected');
 assert(keeperBid.reason.includes('benötigt diesen Spieler'));
 assert(call('v66OfferHTML',blocked).includes(keeperBid.reason),'Ablehnung bestehender Gebote bleibt sichtbar');
 assert(!call('v66OfferHTML',blocked).includes('data-v72-open='));
-// Auch eine neue direkte Verhandlung endet nachvollziehbar bei Kader-/Torwartschutz.
-const protectedCareer=JSON.parse(JSON.stringify(career));
-const protectedDeal=call('v72Start',protectedCareer,keeper.pid,call('v66Value',keeper));
-call('v66NextMarketDay',protectedCareer);
-assert.equal(protectedDeal.stage,'rejected');
-assert(call('v66OfferHTML',protectedCareer).includes(protectedDeal.lastChange));
+// Ein unmöglicher Torwartverkauf eröffnet keine neue Verhandlung.
+const protectedCareer=JSON.parse(JSON.stringify(career)),beforeProtected=JSON.stringify(protectedCareer);
+assert.throws(()=>call('v72Start',protectedCareer,keeper.pid,call('v66Value',keeper)),/letzten Torwart/);
+assert.strictEqual(JSON.stringify(protectedCareer),beforeProtected,'das gesperrte Gebot verändert weder Verhandlungen noch Geld');
+assert(call('v66OfferHTML',protectedCareer).includes('letzten Torwart'));
+assert(!call('v66OfferHTML',protectedCareer).includes('data-v72-open='),'kein Verhandlungsknopf für den letzten Torwart');
+call('v72OpenListing',protectedCareer,keeper.pid);
+assert(dialog.innerHTML.includes('letzten Torwart')&&!dialog.innerHTML.includes('id="v72-fee"'),'veraltete Knöpfe öffnen keinen Ablösedialog');
+protectedCareer.world.market.saleListings.push({id:'stale-ui',pid:keeper.pid,sellerId:seller.id,ask:100,reason:'surplus',status:'active'});
+assert(!call('v72ListedPlayers',protectedCareer).some(item=>item.player.pid===keeper.pid),'veraltetes Angebot wird auch vor dem nächsten Tageswechsel ausgeblendet');
 // Vereinslose verhandeln den Vertrag im Dialog statt im Transferformular.
 const freePlayer=market.freePlayers[0];filter.selected=freePlayer.pid;
 assert(!call('v66OfferHTML',career).includes('id="v66-salary"'));

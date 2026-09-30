@@ -692,6 +692,9 @@ Diese Torwartfreistellung ist nicht möglich.	This goalkeeper cannot be released
 Der Spieler gehört bereits einem Profikader an.	The player is already in a professional squad.
 Der Verein kann die Ausbildungsentschädigung nicht bezahlen.	The club cannot pay the training compensation.
 Der Verein kann dieses Angebot nicht finanzieren.	The club cannot afford this offer.
+Der Verein muss seinen letzten Torwart behalten.	The club must keep its last goalkeeper.
+Der Verein muss mindestens zehn Profis behalten.	The club must keep at least ten professionals.
+Der Verein kann diesen Spieler nicht mehr abgeben.	The club can no longer release this player.
 Der Verein muss mindestens zehn Profis und einen Torwart behalten.	The club must keep at least ten professionals and one goalkeeper.
 Der Vertrag ist ungültig oder nicht finanzierbar.	The contract is invalid or unaffordable.
 Der Wechsel ist inzwischen nicht mehr möglich.	The transfer is no longer possible.
