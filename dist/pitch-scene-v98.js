@@ -176,26 +176,31 @@ window.D6PitchScene={create(canvas,{goalWidth=7.6,advertising}={}){
    const shirt=new THREE.MeshStandardMaterial({map:kitTexture(kitSpec),roughness:.9,side:THREE.DoubleSide});
    for(const face of [-1,1]){const panel=mesh(new THREE.PlaneGeometry(.54,.67),shirt,body);panel.position.set(0,1.35,face*.258);if(face===-1)panel.rotation.y=Math.PI;}
   }else{box(.13,.7,.03,accent,-.19,1.36,.253,body);box(.13,.7,.03,accent,.19,1.36,.253,body);}
-  cylinder(.16,.13,accent,0,1.72,0,body);cylinder(.11,.13,tone,0,1.81,0,body);
+  cylinder(.16,.13,accent,0,1.72,0,body);
+  const neck=new THREE.Group();neck.position.y=1.78;body.add(neck);cylinder(.11,.13,tone,0,.03,0,neck);
   box(.64,.27,.44,dark,0,.87,0,body);
-  const head=mesh(new THREE.SphereGeometry(.255,14,10),tone,body);head.position.set(0,2.04,.02);head.scale.z=.92;head.castShadow=true;
-  const hair=mesh(new THREE.SphereGeometry(.264,12,8,0,Math.PI*2,0,Math.PI*(number%3===0?.47:.36)),mat(number%3?'#30291f':'#8b6b49'),body);hair.position.set(0,2.05,.01);
-  for(const side of [-1,1]){const ear=mesh(new THREE.SphereGeometry(.055,6,4),tone,body);ear.position.set(side*.255,2.02,.015);const eye=mesh(new THREE.SphereGeometry(.018,5,4),dark,body);eye.position.set(side*.085,2.06,.236);}
-  const limbs=[];
+  const head=mesh(new THREE.SphereGeometry(.255,14,10),tone,neck);head.position.set(0,.26,.02);head.scale.z=.92;head.castShadow=true;
+  const hair=mesh(new THREE.SphereGeometry(.264,12,8,0,Math.PI*2,0,Math.PI*(number%3===0?.47:.36)),mat(number%3?'#30291f':'#8b6b49'),neck);hair.position.set(0,.27,.01);
+  for(const side of [-1,1]){const ear=mesh(new THREE.SphereGeometry(.055,6,4),tone,neck);ear.position.set(side*.255,.24,.015);const eye=mesh(new THREE.SphereGeometry(.018,5,4),dark,neck);eye.position.set(side*.085,.28,.236);}
+  const limbs=[],knees=[],feet=[],elbows=[];
   for(const side of [-1,1]){
    const leg=new THREE.Group();leg.position.set(side*.19,.89,0);body.add(leg);
-   cylinder(.105,.37,tone,0,-.22,0,leg);cylinder(.12,.25,kit,0,-.50,0,leg);cylinder(.125,.045,accent,0,-.4,0,leg);
-   box(.22,.13,.39,dark,0,-.66,.10,leg);box(.23,.035,.4,number%2?white:lime,0,-.72,.10,leg);limbs.push(leg);
+   cylinder(.105,.37,tone,0,-.22,0,leg);
+   const knee=new THREE.Group();knee.position.y=-.4;leg.add(knee);knees.push(knee);
+   cylinder(.12,.25,kit,0,-.10,0,knee);cylinder(.125,.045,accent,0,0,0,knee);
+   const foot=new THREE.Group();foot.position.y=-.26;knee.add(foot);feet.push(foot);
+   box(.22,.13,.39,dark,0,0,.10,foot);box(.23,.035,.4,number%2?white:lime,0,-.06,.10,foot);limbs.push(leg);
    const arm=new THREE.Group();arm.position.set(side*.43,1.67,0);body.add(arm);
-   cylinder(.135,.25,kit,0,-.14,0,arm);cylinder(.10,.27,tone,0,-.40,0,arm);
-   const hand=mesh(new THREE.SphereGeometry(keeper?.12:.095,6,5),keeper?white:tone,arm);hand.position.set(0,-.56,0);limbs.push(arm);
+   cylinder(.135,.25,kit,0,-.14,0,arm);
+   const elbow=new THREE.Group();elbow.position.y=-.27;arm.add(elbow);elbows.push(elbow);cylinder(.10,.27,tone,0,-.13,0,elbow);
+   const hand=mesh(new THREE.SphereGeometry(keeper?.12:.095,6,5),keeper?white:tone,elbow);hand.position.set(0,-.29,0);limbs.push(arm);
   }
   const numMaterial=new THREE.MeshBasicMaterial({map:numberTexture(number),transparent:true,depthWrite:false,side:THREE.DoubleSide});
   const num=mesh(new THREE.PlaneGeometry(.34,.34),numMaterial,body);num.position.set(0,1.41,-.27);num.rotation.y=Math.PI;
   box(.085,.11,.03,white,.085,1.55,.265,body);
-  batchPlayerParts(body);for(const limb of limbs)batchPlayerParts(limb);
+  for(const group of [body,neck,...limbs,...knees,...feet,...elbows])batchPlayerParts(group);
   const shadow=mesh(new THREE.CircleGeometry(.57,20),new THREE.MeshBasicMaterial({color:'#142b1c',transparent:true,opacity:.22,depthWrite:false}),root);shadow.rotation.x=-Math.PI/2;shadow.position.y=.10;
-  const p={root,body,limbs,team,number,keeper,base:{x,z},previous:{x,z},heading:team===0?Math.PI/2:-Math.PI/2};people.push(p);return p;
+  const p={root,body,limbs,knees,feet,elbows,neck,team,number,keeper,base:{x,z},previous:{x,z},heading:team===0?Math.PI/2:-Math.PI/2};people.push(p);return p;
  }
  const ballRoot=new THREE.Group();scene.add(ballRoot);
  const ball=mesh(new THREE.IcosahedronGeometry(.28,2),mat('#fcfbec'),ballRoot);ball.castShadow=true;

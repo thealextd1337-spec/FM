@@ -22,6 +22,7 @@ jobs:
         run: |
           node work/test-world-pitch3d-v98.cjs
           node work/test-world-pitch-actions-v99.cjs
+          node work/test-pitch-motion-v102.cjs
           node work/test-world-match-v64.cjs
           node work/test-world-player-instructions.cjs
           node work/test-world-physical-instructions.cjs

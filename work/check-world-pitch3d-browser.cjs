@@ -3,16 +3,19 @@ const fs=require('fs'),assert=require('node:assert/strict'),path=require('path')
 const {pathToFileURL}=require('url');
 const {chromium}=require(process.env.D6_PLAYWRIGHT||'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const url=process.env.D6_TEST_URL||'http://127.0.0.1:4190/';
-async function setup(page,view='3d',sourceUrl=url,fixtureSide=null){
- await page.goto(sourceUrl);await page.waitForFunction(()=>window.d6Pitch3D&&document.querySelector('footer span:first-child')?.textContent.includes('PROTOTYP 101'));
- await page.evaluate(({view,fixtureSide})=>{
+async function setup(page,view='3d',sourceUrl=url,fixtureSide=null,graphicsAtTick=true){
+ await page.goto(sourceUrl);await page.waitForFunction(()=>window.d6Pitch3D&&document.querySelector('footer span:first-child')?.textContent.includes('PROTOTYP 102'));
+ await page.evaluate(({view,fixtureSide,graphicsAtTick})=>{
   let seed=12345;Math.random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
   const career=v61CreateCareer('GER-2','world3d-parity'),club=career.world.clubs.find(item=>item.id==='GER-2');
   v66ChooseSponsor(career,club.id,club.sponsors[0].id);while(career.world.market.phase==='open')v66NextMarketDay(career);
   const fixture=v62Fixtures(career).find(item=>!item.result&&(fixtureSide==='home'?item.homeId==='GER-2':item.homeId==='GER-2'||item.awayId==='GER-2'));
   career.world.activeMatch={fixtureId:fixture.id,state:v64MakeState(career,fixture)};v61CurrentCareer=career;v98View=view;
   career.world.activeMatch.state.phase='live';v65Show(v65Context());clearInterval(v65WorldFrame);
- },{view,fixtureSide});
+  // Older fixtures sample exact simulation boundaries. The motion acceptance
+  // opts out and exercises the real buffered requestAnimationFrame path.
+  if(graphicsAtTick){const atTickDraw=draw;draw=function(){const result=atTickDraw();if(v102Frames){v102Frames.at-=1000;v98Render()}return result}}
+ },{view,fixtureSide,graphicsAtTick});
 }
 async function complete(page,view){
  await setup(page,view);

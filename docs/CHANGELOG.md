@@ -8,6 +8,10 @@
 
 - Ein eigenständiger lokaler 3D-Kameraprototyp erprobt eine erhöhte TV-Sicht mit sanfter Ballverfolgung, zwei weiteren Kamerasichten und stilisierten Spielern. Eine wiederholbare 28-Sekunden-Sequenz zeigt Passspiel, Flanke und Tor; SuperCollider liefert sechs Sounds. Kamera, Zeitleiste, Pause, Vollbild und Deutsch/Englisch sind bedienbar. Hochformat zeigt unabhängig von der Bildschirmbreite einen Drehhinweis und hält Zeit und Audio an. Die vollständig eingebettete Offline-Datei und Desktop-, Handy- und Tablet-Bildschirmgrößen wurden im Browser geprüft. Leistung auf echten Mobilgeräten und Hörprüfung bleiben offen. Der Prototyp berechnet keine echten Partien, verändert keine Spielstände und ist nicht in die Vereinswelt eingebunden oder veröffentlicht. Start, Build und Prüfbelege stehen in [kameraprototyp-3d.md](kameraprototyp-3d.md).
 
+## 2026-09-30 (Prototyp 102 · Flüssigere Spielerbewegungen)
+
+- Die 3D-Spieler laufen flüssiger: Ein unabhängiger Zeichentakt verbindet die bisherigen Simulationsschritte; Schrittphasen folgen der Laufstrecke, Geschwindigkeit und Drehungen gehen weich über. Neue Knie-, Fuß-, Ellenbogen- und Halsgelenke ermöglichen eigene Pass-, Flanken-, Schuss-, Freistoß-, Volley- und Kopfballbewegungen mit Ausschwingen und Landung. Bestätigte Luftduelle liefern Kontakt und Gewinner; Kopfballklärungen und Ballannahmen erhalten passende Höhenübergänge. Die bestehenden Taktikbefehle, Banner, Paraden, Würfe und Abstoßabläufe bleiben erhalten. Die Spielberechnung und gespeicherten Spielstände werden nicht geändert. Vollständige 2D/3D-Matchparität, 28 Aktions- und 20 Luftduellfälle sowie die bisherigen Steuerungs-/Bannertests bestanden. Prüfungen und Grenzen der Mobil-Leistungsmessung stehen in [3D-Spieleranimationen](3d-spieleranimationen-plan.md).
+
 ## 2026-09-30 (Prototyp 101 · Integrierter Abstoß und druckvollere Schüsse)
 
 - Abstoß: Der Tormann bleibt kurz stehen, während Mitspieler in Position laufen, holt aus und spielt den Ball mit einer sichtbaren Schussbewegung ab. Ball und Bein folgen dem tatsächlichen Kurzpass; bei der Annahme startet die Animation nicht erneut. Die vorhandene Wartezeit bleibt erhalten.

@@ -199,8 +199,9 @@ function v55ResolveAir({passer,receiver,end,snapshot,cross}){
  let winner=attackReach?attacker:defender;
  if(attackReach&&defendReach){const attackChance=clamp(.5+(ability(attacker,'air')-ability(defender,'air'))*.024+(ability(attacker,'pos')-ability(defender,'pos'))*.008,.2,.8);winner=random()<attackChance?attacker:defender}
  if(winner.t===passer.t&&snapshot.offside.has(winner)){v55WhistleOffside(snapshot,winner);return}
+ if(typeof v102AirContact==='function')v102AirContact(winner,end);
  if(attackReach&&defendReach){attacker.stats.aerialDuels++;defender.stats.aerialDuels++;attacker.stats.duels++;defender.stats.duels++;winner.stats.aerialWon++;winner.stats.duelsWon++}
- if(winner.t!==passer.t){passer.stats.passLost++;defender.stats.interceptions++;m.lastPass=null;m.lastTouch=defender.t;if(random()<.4){const cleared={x:clamp(end.x+(random()-.5)*.25,.07,.93),y:clamp(end.y+(defender.t===0?-.14:.14),.07,.93)};v50LooseBall(cleared,`${defender.name} köpft den hohen Ball weg.`)}else{m.owner=defender;m.ball={x:defender.x,y:defender.y};m.next=m.elapsed+.55;note(`${defender.name} gewinnt den hohen Ball.`,'duel')}return}
+ if(winner.t!==passer.t){passer.stats.passLost++;defender.stats.interceptions++;m.lastPass=null;m.lastTouch=defender.t;if(random()<.4){const cleared={x:clamp(end.x+(random()-.5)*.25,.07,.93),y:clamp(end.y+(defender.t===0?-.14:.14),.07,.93)};if(typeof v102AirClear==='function')v102AirClear(defender,end,cleared);v50LooseBall(cleared,`${defender.name} köpft den hohen Ball weg.`)}else{m.owner=defender;m.ball={x:defender.x,y:defender.y};m.next=m.elapsed+.55;note(`${defender.name} gewinnt den hohen Ball.`,'duel')}return}
  const progress=winner.t===0?1-winner.y:winner.y,nearGoal=progress>.70,marked=defendReach&&distance(defender,winner)<.11;
  const credit=()=>{passer.stats.passComplete++;passer.stats.highComplete++;if(cross)passer.stats.crossComplete++;m.lastPass={passer,receiver:winner,at:m.elapsed}};
  m.lastTouch=winner.t;m.ball={x:winner.x,y:winner.y};

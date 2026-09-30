@@ -18,8 +18,8 @@ function v98PitchFrame(current){
   ball.x=owner.x+(gap>0?dx/gap:direction)*.65;ball.z=owner.z+(gap>0?dz/gap:0)*.65;
  }
  return {
-  elapsed:current.elapsed,turned,
-  players:current.people.map(person=>({id:person.pid,person,team:person.t,number:person.n,keeper:person.keeper,...v98PitchPoint(person,turned)})),
+  elapsed:current.elapsed,clock:typeof v102Clock==='function'?v102Clock(current):0,turned,
+  players:current.people.map(person=>({id:person.pid,person,team:person.t,number:person.n,keeper:person.keeper,slideActive:Boolean(person.slideActive),action:typeof v102PlayerAction==='function'?v102PlayerAction(current,person):null,...v98PitchPoint(person,turned)})),
   ball:{...ball,height:.29+Math.max(0,height)},
   owner:current.owner?.pid||null,
   offside:current.offsideVisual?{...v98PitchPoint(current.offsideVisual,turned),lineX:v98PitchPoint({x:.5,y:current.offsideVisual.lineY},turned).x,signal:v55OffsideSignal(turned?{...current.offsideVisual,x:1-current.offsideVisual.x}:current.offsideVisual,current.setPiece?.positionElapsed||0)}:null
@@ -87,6 +87,33 @@ const v98Orientation=window.matchMedia('(orientation:landscape)');
 let v98View='3d',v98CameraMode='follow',v98CameraPose=null,v98Scene=null,v98Match=null,v98Failed=false,v98LastTime=0,v98Frame=null;
 let v99Expanded=false;
 const v98Players=new Map();
+let v102Loop=0,v102Painting=false,v102Frames=null,v102PaintCount=0;
+function v102StopPaint(){if(v102Loop)cancelAnimationFrame(v102Loop);v102Loop=0;}
+function v102Capture(frame,now,live){
+ const key=JSON.stringify([frame.turned,frame.elapsed,frame.ball,frame.players.map(p=>[p.id,p.x,p.z,p.action,p.slideActive]),frame.offside]);
+ const old=v102Frames;
+ if(old&&old.live===live&&frame.clock===old.latest.clock&&key===old.key)return;
+ const span=old?frame.clock-old.latest.clock:0;
+ const reset=!old||!live||!old.live||span<=0||span>.2||old.latest.turned!==frame.turned;
+ v102Frames={previous:reset?frame:old.latest,latest:frame,at:now,span:reset?0:span,key,live};
+ if(!reset){
+  const latest=new Map(frame.players.map(p=>[p.id,p]));
+  v102Frames.previous={...v102Frames.previous,players:v102Frames.previous.players.map(p=>{
+   const next=latest.get(p.id)?.action;
+   return next&&typeof next.id==='number'&&next.id!==p.action?.id?{...p,action:{...next,progress:-Math.min(.08,span)/next.duration}}:p;
+  })};
+ }
+ // Resolve the last part of an incoming air ball against the confirmed contact.
+ const incoming=old?.latest.flightVisual;
+ if(!reset&&incoming?.meta.high&&incoming.meta.flight!==match.flight&&incoming.meta.endHeight!==incoming.height){
+  const point=v102FlightBall(incoming.meta,incoming.progress),projected=v98PitchPoint(point,frame.turned);
+  v102Frames.previous={...v102Frames.previous,ball:{...projected,height:point.elevation}};
+ }
+}
+function v102PaintNext(){
+ if(v102Loop||document.hidden||!running||v47PlayerDialog.open||!contextPhaseLive())return;
+ v102Loop=requestAnimationFrame(()=>{v102Loop=0;v102Painting=true;try{v98Render()}finally{v102Painting=false}});
+}
 let v98Offside=null,v98Offender=null,v98Assistant=null,v98Flag=null;
 const v98Audio={enabled:false,context:null,buffers:null,ambient:null,active:new Set(),loading:null,match:null,last:null};
 let v100MenuMatch=null;
@@ -133,6 +160,7 @@ function v98Toolbar(){
  return toolbar;
 }
 function v98Dispose(){
+ v102StopPaint();v102Frames=null;
  v98Scene?.dispose();v98Scene=null;v98Match=null;v98Players.clear();v98Frame=null;v98CameraPose=null;
  $('#v98-canvas')?.remove();$('#v98-player-labels')?.remove();
  $('#v99-expand')?.remove();if(document.body.classList.contains('v99-expanded'))document.body.classList.remove('v99-expanded');
@@ -167,17 +195,23 @@ function v98RenderScene(){
  const world=v98IsWorld();
  if(!world){v98Dispose();if($('#v98-view-controls'))$('#v98-view-controls').hidden=true;v98SyncAudio(false);return;}
  const active=v98View==='3d'&&v98Orientation.matches&&!v98Failed;
- if(!active){document.body.classList.remove('v98-pitch3d');if($('#v98-canvas'))$('#v98-canvas').hidden=true;if($('#v98-player-labels'))$('#v98-player-labels').hidden=true;v98Toolbar();v98SyncAudio();return;}
+ if(!active){v102StopPaint();v102Frames=null;document.body.classList.remove('v98-pitch3d');if($('#v98-canvas'))$('#v98-canvas').hidden=true;if($('#v98-player-labels'))$('#v98-player-labels').hidden=true;v98Toolbar();v98SyncAudio();return;}
  try{
   if(v98Match!==match){v98Dispose();v98Create();}
-  document.body.classList.add('v98-pitch3d');$('#v98-canvas').hidden=false;$('#v98-player-labels').hidden=false;
-  document.body.classList.toggle('v99-expanded',v99Expanded);
+  if(!v102Painting){document.body.classList.add('v98-pitch3d');$('#v98-canvas').hidden=false;$('#v98-player-labels').hidden=false;document.body.classList.toggle('v99-expanded',v99Expanded);}
   const {renderer,camera,ballRoot,ball,ballShadow,ownerRing}=v98Scene,canvas=$('#v98-canvas'),rect=canvas.parentElement.getBoundingClientRect();
-  if(!rect.width||!rect.height){v98Toolbar();v98SyncAudio();return;}
+  if(!rect.width||!rect.height||document.hidden){v102StopPaint();v102Frames=null;if(!v102Painting){v98Toolbar();v98SyncAudio();}return;}
   const width=Math.round(rect.width),height=Math.round(rect.height);if(renderer.domElement.width!==Math.round(width*renderer.getPixelRatio())||renderer.domElement.height!==Math.round(height*renderer.getPixelRatio()))renderer.setSize(width,height,false);
   camera.aspect=width/height;
   const now=performance.now(),dt=Math.min(.1,Math.max(0,(now-v98LastTime)/1000));v98LastTime=now;
-  const frame=v98PitchFrame(match),live=running&&!v47PlayerDialog.open&&contextPhaseLive();
+  const live=running&&!v47PlayerDialog.open&&contextPhaseLive();
+  if(!v102Painting){
+   const raw=v98PitchFrame(match),meta=match.flight&&v102Flights.get(match.flight);
+   if(meta?.high)raw.flightVisual={meta,progress:match.flight.progress,height:meta.endHeight};
+   v98Frame=raw;v102Capture(raw,now,live);
+  }
+  const buffer=v102Frames;if(!buffer)return;
+  const frame=v102Interpolate(buffer.previous,buffer.latest,buffer.span?Math.min(1,(now-buffer.at)/1000/buffer.span):1);
   const ids=new Set(frame.players.map(person=>person.id));
   for(const [id,visual]of v98Players)if(!ids.has(id)){v98Scene.removePlayer(visual);visual.label.remove();v98Players.delete(id);}
   for(const person of frame.players){
@@ -186,15 +220,14 @@ function v98RenderScene(){
     visual=v98Scene.player(person.team,person.number,person.x,person.z,person.keeper,v98Kit(person.person));
     const label=document.createElement('button');label.type='button';label.dataset.v98Player=person.id;label.textContent=`${person.number} ${person.person.name.split(' ').at(-1)}`;label.setAttribute('aria-label',`${person.person.name} · ${v98Text('Live-Spielerinfo','Live player information')}`);$('#v98-player-labels').append(label);visual.label=label;v98Players.set(person.id,visual);
    }
-   const dx=person.x-visual.previous.x,dz=person.z-visual.previous.z,speed=live?Math.min(8,Math.hypot(dx,dz)/Math.max(dt,.001)):0;
+   if(visual.turned!==frame.turned||Math.hypot(person.x-visual.previous.x,person.z-visual.previous.z)>4){
+    visual.heading=(person.team===0?1:-1)*(frame.turned?-1:1)*Math.PI/2;visual.turned=frame.turned;visual.previous={x:person.x,z:person.z};visual.runSpeed=0;
+   }
+   const dx=person.x-visual.previous.x,dz=person.z-visual.previous.z,speed=v102RunPose(visual,person,dt,live);
    if(speed>.1){const target=Math.atan2(dx,dz);visual.heading+=Math.atan2(Math.sin(target-visual.heading),Math.cos(target-visual.heading))*Math.min(1,dt*9);}
-   else if(!v98Frame||v98Frame.turned!==frame.turned)visual.heading=(person.team===0?1:-1)*(frame.turned?-1:1)*Math.PI/2;
    visual.root.position.set(person.x,0,person.z);visual.root.rotation.y=visual.heading;
-   if(live){const stride=Math.sin(frame.elapsed*12+person.number)*.52*Math.min(1,speed/2.6);visual.limbs[0].rotation.x=stride;visual.limbs[2].rotation.x=-stride;visual.limbs[1].rotation.x=-stride*.7;visual.limbs[3].rotation.x=stride*.7;visual.body.position.y=Math.abs(stride)*.12;}
-   visual.body.rotation.z=person.person.slideActive?1.1:0;visual.previous={x:person.x,z:person.z};
-   visual.body.rotation.x=0;visual.body.position.x=visual.body.position.z=0;
-   for(const limb of visual.limbs){limb.rotation.y=0;limb.rotation.z=0;}
-   const action=v99PlayerAction(match,person.person);
+   visual.previous={x:person.x,z:person.z};
+   const action=person.action;
    if(action){
     const target=v98PitchPoint(action.target,frame.turned),heading=Math.atan2(target.x-person.x,target.z-person.z);
     if(action.kind==='throw'){
@@ -212,7 +245,7 @@ function v98RenderScene(){
      visual.limbs[0].rotation.x=follow?.16*(1-action.progress):0;visual.limbs[2].rotation.x=swing;
      visual.limbs[1].rotation.x=-swing*.3;visual.limbs[3].rotation.x=swing*.3;
      visual.limbs[1].rotation.z=-.18;visual.limbs[3].rotation.z=.18;
-    }else{
+    }else if(action.kind==='save'){
      const attack=(person.team===0?1:-1)*(frame.turned?-1:1);
      visual.root.rotation.y=attack*Math.PI/2;
      const direction=Math.sign(target.z-person.z)||((person.number%2)?1:-1),reach=action.progress*(1-action.recovery)*(action.goal?.4:1);
@@ -226,12 +259,13 @@ function v98RenderScene(){
      visual.limbs[1].rotation.x=visual.limbs[3].rotation.x=-(high?2.8:1.7)*reach;
      visual.limbs[1].rotation.z=-.35*reach;visual.limbs[3].rotation.z=.35*reach;
      visual.limbs[0].rotation.x=.35*reach;visual.limbs[2].rotation.x=-.45*reach;
-    }
+    }else v102ActionPose(visual,action,person,frame.turned);
+    if(['throw','goalKick','save'].includes(action.kind))for(const group of [...visual.knees,...visual.feet,...visual.elbows])group.rotation.set(0,0,0);
    }
    visual.label.disabled=!live;
    const label=`${person.person.name} · ${v98Text('Live-Spielerinfo','Live player information')}`;if(visual.label.getAttribute('aria-label')!==label)visual.label.setAttribute('aria-label',label);
   }
-  const catchPose=match.owner?.keeper&&v99PlayerAction(match,match.owner),catcher=catchPose?.saved&&v98Players.get(match.owner.pid);
+  const catchPose=frame.players.find(p=>p.id===frame.owner)?.action,catcher=catchPose?.saved&&v98Players.get(frame.owner);
   if(catcher&&catchPose.recovery<1){
    catcher.root.updateMatrixWorld(true);
    const hand=catcher.limbs[1].localToWorld(new THREE.Vector3(0,-.56,0)),blend=Math.min(1,catchPose.recovery*1.5);
@@ -254,7 +288,8 @@ function v98RenderScene(){
   camera.position.set(pose.position.x,pose.position.y,pose.position.z);camera.fov=pose.fov;camera.updateProjectionMatrix();camera.lookAt(pose.target.x,pose.target.y,pose.target.z);
   renderer.render(v98Scene.scene,camera);
   for(const visual of v98Players.values()){const point=new THREE.Vector3(visual.root.position.x,.25,visual.root.position.z).project(camera);visual.label.hidden=point.z>1||Math.abs(point.x)>1||Math.abs(point.y)>1;visual.label.style.left=`${(point.x+1)*50}%`;visual.label.style.top=`${(1-point.y)*50+1.8}%`;}
-  v98Frame=frame;v98Toolbar();v98SyncAudio();
+  v102PaintCount++;if(!v102Painting){v98Toolbar();v98SyncAudio();}
+  if(live)v102PaintNext();else v102StopPaint();
  }catch(error){console.warn('3D pitch unavailable',error);v98Failed=true;v98Dispose();v98Toolbar();v98SyncAudio();}
 }
 function contextPhaseLive(){return v65Context()?.state.phase==='live'}
@@ -301,7 +336,7 @@ v98Orientation.addEventListener('change',()=>{if(v98IsWorld())draw();});
 new ResizeObserver(()=>{if(v98IsWorld())draw();}).observe($('#match-area .v42-pitch-stage'));
 new MutationObserver(()=>{if(!v98IsWorld()){v98Dispose();v98SyncAudio(false);if($('#v98-view-controls'))$('#v98-view-controls').hidden=true;}}).observe(document.body,{attributes:true,attributeFilter:['class']});
 new MutationObserver(()=>{if(!v98IsWorld()){v98Dispose();v98SyncAudio(false);if($('#v98-view-controls'))$('#v98-view-controls').hidden=true;}}).observe($('#game-screen'),{attributes:true,attributeFilter:['hidden']});
-document.addEventListener('visibilitychange',()=>v98SyncAudio());
+document.addEventListener('visibilitychange',()=>{v98SyncAudio();if(document.hidden)v102StopPaint();else if(v98IsWorld())draw()});
 v47PlayerDialog.addEventListener('close',()=>v98SyncAudio());
 new MutationObserver(()=>v98SyncAudio()).observe(v47PlayerDialog,{attributes:true,attributeFilter:['open']});
 const v100BasePenaltyVisual=v50PenaltyVisual;

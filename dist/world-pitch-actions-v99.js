@@ -67,10 +67,10 @@ function v101ShotDuration(from,to,duration){
  return Math.max(.14,Math.min(duration,metres/34*MATCH_SPEED));
 }
 function v101ShotPoint(release,q){
- const flight=release.flight,seconds=flight.duration/MATCH_SPEED,time=q*seconds;
+ const flight=release.flight,start=release.visualStart||flight,seconds=flight.duration/MATCH_SPEED,time=q*seconds;
  const end=release.over?{x:.5+(release.shooter.n%2?-.045:.045),y:release.target.y}:release.displayTarget||release.target;
  const velocityHeight=(release.endHeight-release.startHeight)/seconds+4.9*seconds;
- return {x:flight.x+(end.x-flight.x)*q,y:flight.y+(end.y-flight.y)*q,elevation:Math.max(.29,release.startHeight+velocityHeight*time-4.9*time*time),vx:(end.x-flight.x)/seconds,vy:(end.y-flight.y)/seconds,vh:velocityHeight-9.8*time};
+ return {x:start.x+(end.x-start.x)*q,y:start.y+(end.y-start.y)*q,elevation:Math.max(.29,release.startHeight+velocityHeight*time-4.9*time*time),vx:(end.x-start.x)/seconds,vy:(end.y-start.y)/seconds,vh:velocityHeight-9.8*time};
 }
 function v101GoalTravel(release){
  const end=v101ShotPoint(release,1),direction=release.shooter.t===0?-1:1;

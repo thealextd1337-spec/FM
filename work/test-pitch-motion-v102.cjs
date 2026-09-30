@@ -1,0 +1,38 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
+function harness(load=true){
+ const person={pid:'a',t:0,n:4,x:.4,y:.7,stats:{}},receiver={pid:'b',t:0,n:6,x:.5,y:.4,stats:{}};
+ const match={people:[person,receiver],ball:{x:.4,y:.7},owner:person,elapsed:0},calls=[];
+ const context=vm.createContext({match,running:true,v65WorldActive:true,MATCH_SPEED:.78,v47PlayerDialog:{open:false},v99Actions:new WeakMap(),v99Flights:new WeakMap(),
+  v101KickPoint:(p,t)=>({x:p.x+.001,y:p.y-.009}),v99BallView:()=>null,v99PlayerAction:()=>null,
+  step(_d,dt){match.elapsed+=dt;calls.push('step')},
+  fly(target,duration,done){match.flight={x:match.ball.x,y:match.ball.y,target,duration,progress:0,done};match.owner=null;calls.push('fly')},
+  v55GroundPass(p,r,kind){context.fly(r,.32,()=>{match.owner=r;match.flight=null});calls.push(kind||'pass')},
+  v55HighPass(p,r){context.fly(r,.8,()=>context.v55ResolveAir({passer:p,receiver:r,end:r}));match.flight.aerial=true},
+  v55Shoot(p,kind){context.fly({x:.5,y:.035},.4,()=>{});calls.push(kind||'shot')},
+  v55ResolveAir(info){if(load)context.v102AirContact(info.receiver,info.end);context.v55GroundPass(info.receiver,person,'header')},
+  v98PitchPoint:p=>({x:p.x,z:p.y})});
+ if(load)vm.runInContext(fs.readFileSync('dist/pitch-motion-v102.js','utf8'),context);
+ return {context,person,receiver,match,calls,read:code=>vm.runInContext(code,context)};
+}
+const h=harness(),{context:c,person:p,receiver:r,match:m}=h;
+c.v55GroundPass(p,r);assert.equal(c.v102PlayerAction(m,p).kind,'pass');assert(c.v99BallView(m).y<p.y,'pass begins at the foot');
+const saved=JSON.stringify(m);c.v99BallView(m);c.v102PlayerAction(m,p);assert.equal(JSON.stringify(m),saved,'render metadata never changes the saved match');
+c.step(.04,.04);assert(c.v102PlayerAction(m,p).progress>0);c.running=false;const clock=c.v102Clock(m);c.step(.04,.04);assert.equal(c.v102Clock(m),clock,'pause freezes the gesture clock');c.running=true;
+for(const [fn,kind,args]of [['v55HighPass','cross',[{cross:true}]],['v55Shoot','shot',[]],['v55Shoot','freeKick',['direct-free-kick']],['v55Shoot','volley',['volley']]]){
+ c[fn](p,...(fn==='v55HighPass'?[r,...args]:args));assert.equal(c.v102PlayerAction(m,p).kind,kind);
+}
+c.v55HighPass(p,r);const incoming=m.flight;incoming.progress=1;assert(Math.abs(c.v99BallView(m).elevation-2.65)<1e-9);incoming.done();
+assert.equal(c.v102PlayerAction(m,r).kind,'header');assert.equal(c.v99BallView(m).elevation,2.65,'header starts continuously at incoming head height');
+assert.equal(c.v102PlayerAction(m,r).contact.x,r.x);
+c.v102AirClear(r,{x:.51,y:.4},{x:.6,y:.25});m.flight=null;m.owner=null;assert.equal(c.v99BallView(m).elevation,2.65);c.step(.04,.15);assert(c.v99BallView(m).elevation>1);c.step(.04,.2);assert.equal(c.v99BallView(m),null,'clearance expires without changing engine waits');
+const a={clock:1,elapsed:3,turned:false,owner:'a',ball:{x:0,z:0,height:.29},players:[{id:'a',x:0,z:0,action:{id:1,kind:'pass',progress:0}}]},b={clock:1.04,elapsed:3.04,turned:false,owner:null,ball:{x:4,z:2,height:2},players:[{id:'a',x:.4,z:.2,action:{id:1,kind:'pass',progress:.2}}]};
+const original=JSON.stringify([a,b]),frame=c.v102Interpolate(a,b,.5);assert.equal(frame.ball.x,2);assert.equal(frame.players[0].x,.2);assert.equal(frame.players[0].action.progress,.1);assert.equal(frame.clock,1.02);assert.equal(JSON.stringify([a,b]),original);
+function group(){return {rotation:{x:0,y:0,z:0,set(x,y,z){Object.assign(this,{x,y,z})}},position:{x:0,y:0,z:0,set(x,y,z){Object.assign(this,{x,y,z})}}}}
+function runner(hz){const v={root:group(),previous:{x:0,z:0},body:group(),limbs:Array.from({length:4},group),knees:[group(),group()],feet:[group(),group()],elbows:[group(),group()],neck:group()};for(let i=1;i<=hz;i++){const person={x:i/hz*3,z:0,number:4};c.v102RunPose(v,person,1/hz,true);v.previous={x:person.x,z:0}}return v}
+const v30=runner(30),v60=runner(60),v120=runner(120);assert(Math.abs(v30.runPhase-v120.runPhase)<1e-8,'gait phase follows distance at any graphics rate');assert(Math.abs(v30.limbs[0].rotation.x-v60.limbs[0].rotation.x)<.01);
+const phase=v60.runPhase,speed=v60.runSpeed;c.v102RunPose(v60,{x:3,z:0,number:4},.001,true);assert(v60.runSpeed>speed*.98,'extra drawing cannot collapse run amplitude');c.v102RunPose(v60,{x:3,z:0,number:4},.1,false);assert.equal(v60.runPhase,phase,'paused drawing cannot advance steps');
+for(const kind of ['pass','shot','cross','header','volley','control','airReady']){c.v102ActionPose(v60,{kind,progress:.2,target:{x:4,y:1},contact:{x:3,y:0},duration:.5},{x:3,z:0},false);assert(Number.isFinite(v60.limbs[2].rotation.x));assert(Number.isFinite(v60.neck.rotation.x));}
+const bare=harness(false),decorated=harness(true);for(const x of [bare,decorated]){x.context.v55GroundPass(x.person,x.receiver);x.context.step(.04,.04);x.context.v55Shoot(x.person,'volley')}
+assert.deepEqual(decorated.calls,bare.calls,'presentation wraps the same engine calls exactly once');assert.equal(JSON.stringify(decorated.match),JSON.stringify(bare.match),'same physical state with and without graphics metadata');
+console.log('Motion 102: action kinds, head contact/clearance, pause, immutable state, shared interpolation and distance-driven gait at 30/60/120 Hz passed.');
+
