@@ -2,16 +2,20 @@
 
 ## Noch nicht veröffentlicht
 
-- Die Spielfeldsteuerung liegt in einem kleinen Menü oben rechts: 2D/3D, Kamera und Ton sind per Klick, Touch und Tastatur erreichbar. Nach dem Fortsetzen in der Halbzeit scrollt die Ansicht zurück zum Feld und richtet die Kamera neu aus. Das Torbanner bleibt eine Sekunde länger sichtbar; Wechselbanner folgen weiterhin danach.
-- Torhüter warten vor dem kurzen Abspiel 2,4 Sekunden, während Mitspieler in Position laufen. Erfolgreiche Abschlüsse gelangen schnell direkt ins Netz; eine misslungene Parade zieht den Torwart nicht mehr künstlich an den Ball. Die 3D-Tore sind höher und behalten das Breiten-/Höhenverhältnis 3:1. Hohe Fehlschüsse fliegen mit fortgesetzter Geschwindigkeit weiter hinter das Tor und fallen dort herunter.
-- Bei einem Elfmeterfoul zeigt eine große Schiedsrichteranzeige zwei Sekunden lang die Entscheidung, anschließend folgt die Ausführung. Seitliche Elfmeterfehlschüsse passieren sichtbar den Außenpfosten und fliegen weiter hinter das Tor; eine zu breite Ballbox wurde korrigiert. Die neue Wartezeit gilt für künftige Standards; gespeicherte Ereignisse, Chancen und Ergebnisse werden nicht umgerechnet.
-- Aktions-, Banner-, Match-, Taktik-, Raster-, Sprach-, Sponsor-, Speicher- und Deploymenttests erfolgreich. Gezielte Browserprüfung auf Desktop und im mobilen Querformat bestätigt Menübedienung, Abstoßaufbau, Elfmeterfolge und Flugbahn, längeres Torbanner und Halbzeitfokus ohne Browserfehler.
-
 - Beide Tore der 3D-Kamerademo haben jetzt vollständige Seitennetze: Senkrechte Fäden verbinden die vorhandenen Querfäden mit dem geneigten Netzdach. Alle vier Seiten geometrisch geprüft, Offline-Datei neu gebaut und auf Desktop sowie im mobilen Querformat ohne Browserfehler angesehen.
 
 - Die 3D-Kamerademo zeigt einen texturierten Rasen, eine überdachte Haupttribüne, detailliertere Zuschauer und klarere Spielertrikots mit Stutzen, Schuhen und Torwarthandschuhen. Die kameranahe Tribüne bleibt für freie Sicht ohne Dach. Geometrie wird gebündelt und Zuschauer verwenden Instanzen. Die erste Demo wurde von der nutzenden Person auf einem Mobiltelefon als funktionsfähig bestätigt. Für eine spätere Anbindung ist jetzt verbindlich dokumentiert, dass sämtliche 2D-Taktikbefehle, Pausen, Wechsel, Live-Spielerinfos, Banner und Standards erhalten bleiben und dieselben bestehenden Funktionen verwenden. Acht gezielte Tests des bisherigen Match- und UI-Verhaltens erfolgreich; echte Partien sind weiterhin nicht an die Demo angeschlossen.
 
 - Ein eigenständiger lokaler 3D-Kameraprototyp erprobt eine erhöhte TV-Sicht mit sanfter Ballverfolgung, zwei weiteren Kamerasichten und stilisierten Spielern. Eine wiederholbare 28-Sekunden-Sequenz zeigt Passspiel, Flanke und Tor; SuperCollider liefert sechs Sounds. Kamera, Zeitleiste, Pause, Vollbild und Deutsch/Englisch sind bedienbar. Hochformat zeigt unabhängig von der Bildschirmbreite einen Drehhinweis und hält Zeit und Audio an. Die vollständig eingebettete Offline-Datei und Desktop-, Handy- und Tablet-Bildschirmgrößen wurden im Browser geprüft. Leistung auf echten Mobilgeräten und Hörprüfung bleiben offen. Der Prototyp berechnet keine echten Partien, verändert keine Spielstände und ist nicht in die Vereinswelt eingebunden oder veröffentlicht. Start, Build und Prüfbelege stehen in [kameraprototyp-3d.md](kameraprototyp-3d.md).
+
+## 2026-09-30 (Prototyp 100 · Spielfeldmenü und verbesserte Torabläufe)
+
+- Die Spielfeldsteuerung liegt in einem kleinen Menü oben rechts: 2D/3D, Kamera und Ton sind per Klick, Touch und Tastatur erreichbar. Nach dem Fortsetzen in der Halbzeit scrollt die Ansicht zurück zum Feld und richtet die Kamera neu aus. Das Torbanner bleibt eine Sekunde länger sichtbar; Wechselbanner folgen weiterhin danach.
+- Torhüter warten vor dem kurzen Abspiel 2,4 Sekunden, während Mitspieler in Position laufen. Erfolgreiche Abschlüsse gelangen schnell direkt ins Netz; eine misslungene Parade zieht den Torwart nicht mehr künstlich an den Ball. Die 3D-Tore sind höher und behalten das Breiten-/Höhenverhältnis 3:1. Hohe Fehlschüsse fliegen mit fortgesetzter Geschwindigkeit weiter hinter das Tor und fallen dort herunter.
+- Bei einem Elfmeterfoul zeigt eine große Schiedsrichteranzeige zwei Sekunden lang die Entscheidung, anschließend folgt die Ausführung. Seitliche Elfmeterfehlschüsse passieren sichtbar den Außenpfosten und fliegen weiter hinter das Tor; eine zu breite Ballbox wurde korrigiert. Die neue Wartezeit gilt für künftige Standards; gespeicherte Ereignisse, Chancen und Ergebnisse werden nicht umgerechnet.
+- Aktions-, Banner-, Match-, Taktik-, Raster-, Sprach-, Sponsor-, Speicher- und Deploymenttests erfolgreich. Gezielte Browserprüfung auf Desktop und im mobilen Querformat bestätigt Menübedienung, Abstoßaufbau, Elfmeterfolge und Flugbahn, längeres Torbanner und Halbzeitfokus ohne Browserfehler.
+
+- Ausschließlich unter /3d/ veröffentlicht. Lokaler Build und Live-Datei stimmen bytegenau überein (SHA-256); ZIP-Download HTTP 200. Die gezielte Live-Prüfung bestätigt die neuen Abläufe ohne Browserfehler, das Hauptspiel bleibt bytegleich.
 
 ## 2026-09-30 (Prototyp 99 · Paraden, Würfe und hohe Schüsse)
 
