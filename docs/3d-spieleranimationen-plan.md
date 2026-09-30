@@ -14,6 +14,11 @@ Stand: 30. September 2026. Umgesetzt als Prototyp 102 auf Grundlage der Vorschau
 
 Die Taktmessung mit Software-WebGL verwendet reduzierte Rasterauflösung ohne Schatten, um Zeichentakt und Simulation getrennt zu prüfen. Sie ist keine Leistungszusage für Mobiltelefone. Ansicht und Bedienung werden zusätzlich in normaler Auflösung sowie in Handy-Bildschirmgrößen geprüft. Eine Laufzeitmessung auf echter Mobilhardware bleibt offen.
 
+Ein zusätzlicher Paarvergleich (`work/measure-pitch-motion-v102.cjs`, Baseline-Commit `445457d`, gleiche Kamera, DPR 1, Schatten, 840×473 und 760×428) misst 284 statt 276 Zeichenaufrufe und 322 statt 311 Geometrien. Zwölf Software-WebGL-Zeitproben nach Aufwärmen schwanken deutlich: Median 1,0–1,9 ms, einzelne langsame Probe bis 61,6 ms. Diese kleine Messreihe eignet sich zum Vergleich der Geometriekosten, nicht zur Zusicherung stabiler Geräte-FPS. Das Skript benötigt den Baseline-Commit in der lokalen Git-Historie.
+
+Veröffentlichung: [3D-Version 102](https://fussball.cakamper.at/3d/) und ZIP sind live geprüft. Gleicher Quell-/Build-/Live-Stand; 28 Aktions- und 20 Luftduellfälle auch im veröffentlichten Einzeldatei-Build ohne Browserfehler bestanden.
+
+
 ## Ziel
 
 Pässe, Schüsse und Kopfbälle sollen an der Körperbewegung eindeutig erkennbar sein. Der Ball muss den sichtbaren Fuß beziehungsweise Kopf beim tatsächlichen Kontakt verlassen. Mehr Detail entsteht durch Gelenke, Gewichtsverlagerung und abgestimmte Bewegungsphasen; eine bloße Erhöhung der Polygonzahl genügt nicht.

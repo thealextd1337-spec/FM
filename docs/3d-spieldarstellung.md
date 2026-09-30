@@ -1,8 +1,10 @@
 # 3D-Darstellung echter Vereinswelt-Partien
 
-Die getrennte Vorschau zeigt echte Partien der Vereinswelt im Querformat mit einer erhöhten TV-Kamera. Im Hochformat bleibt die 2D-Darstellung aktiv; im Querformat kann die spielende Person zwischen „3D · TV“ und „2D“ wechseln. Bei fehlender WebGL-Unterstützung oder verlorenem Grafikkontext fällt die Ansicht auf 2D zurück. Version 101 ist unter [Spiel öffnen](https://fussball.cakamper.at/3d/) veröffentlicht. Version 101 verbessert Abstoß, Rückkehr aus Taktik und Schuss-/Torflug. [ZIP herunterladen](https://fussball.cakamper.at/3d/doppel6.zip) und [Downloadseite](https://fussball.cakamper.at/3d/download.html) liegen im gleichen getrennten Bereich. Eine eigene Subdomain ist noch nicht eingerichtet.
+Die getrennte Vorschau zeigt echte Partien der Vereinswelt im Querformat mit einer erhöhten TV-Kamera. Im Hochformat bleibt die 2D-Darstellung aktiv; im Querformat kann die spielende Person zwischen „3D · TV“ und „2D“ wechseln. Bei fehlender WebGL-Unterstützung oder verlorenem Grafikkontext fällt die Ansicht auf 2D zurück. Version 102 ist unter [Spiel öffnen](https://fussball.cakamper.at/3d/) veröffentlicht. Version 102 ergänzt flüssigere Laufbewegungen sowie Pass-, Flanken-, Schuss-, Volley- und Kopfballanimationen. [ZIP herunterladen](https://fussball.cakamper.at/3d/doppel6.zip) und [Downloadseite](https://fussball.cakamper.at/3d/download.html) liegen im gleichen getrennten Bereich. Eine eigene Subdomain ist noch nicht eingerichtet.
 
 Die Kameraauswahl bietet „TV nah · Mitfahrt“ als Startansicht und „TV weit · Übersicht“. Die nahe Kamera steht tiefer und näher am Feld, fährt seitlich nur leicht mit und richtet ihren Blick auf die Mitte der aktuellen Spielhälfte und die Ballseite. Ab der Halbmitte schwenkt sie stärker zum Tor. Beide Hälften gehen beim Überqueren der Mittellinie fließend ineinander über. Seitliche Fahrt und Blickrichtung werden getrennt gedämpft; dadurch bleibt die Kamera ruhig und reagiert trotzdem auf Pässe. Die weite Kamera bleibt zum Vergleich verfügbar. Die Auswahl verändert keine Karriere- oder Matchdaten.
+
+Version 102 zeichnet Spieler, Ball, Aktionsphasen und Kamera unabhängig vom unveränderten 40-ms-Simulationstakt. Ein gemeinsamer Bildpuffer interpoliert Zwischenpositionen; Strecke, Knie, Füße, Ellenbogen und Hals bestimmen die Lauf- und Aktionsbewegung. Pass, Flanke, Schuss, direkter Freistoß, Volley und Kopfball sind durch unterschiedliche Gesten erkennbar. Die bestehende Engine entscheidet Luftduelle und liefert bestätigte Kontakte für Kopfballpass, Kopfballschuss, Klärung oder Annahme. Pause, Spielerinfo, 2D, Hochformat, verborgenes Tab, unsichtbares Matchfeld und Kontextverlust stoppen die Grafikschleife. Umsetzung und ursprüngliche Planung stehen unter [3D-Spieleranimationen](3d-spieleranimationen-plan.md).
 
 Version 100 bündelt Darstellung, Kamera und Ton in einem kleinen aufklappbaren Menü oben rechts am Feld. Escape schließt es und setzt den Tastaturfokus zurück; ein Klick außerhalb schließt ebenfalls. Nach dem Halbzeitfortsetzen scrollt die Ansicht zum Feld und richtet die Kamera neu aus. Die Torszene dauert jetzt 4,05 Sekunden; das Torbanner erscheint nach 0,5 Sekunden und bleibt dadurch 3,55 Sekunden sichtbar. Wechselanzeigen folgen weiterhin danach.
 
@@ -18,13 +20,15 @@ Der [isolierte Kameraprototyp](kameraprototyp-3d.md) zeigt weiterhin eine synthe
 
 Der Eckbutton unten rechts schaltet eine größere Spielfläche ein und aus. Werbebanden mit hochaufgelösten Sponsorwortmarken stehen nur an beiden Längsseiten. Torbanner werden vor Wechselbannern gezeigt, ohne die Ausführung der Wechsel zu verschieben. Hohe Schüsse und Schüsse über die Latte sind visuelle Varianten der vorhandenen Tor-/Fehlschussentscheidung; die Engine bleibt maßgeblich.
 
-Die Veröffentlichung von Version 101 ist geprüft: Windows-Quellbuild und öffentliche Live-Datei haben denselben SHA-256 `dc99c5fecd8658079a8dde30e4b399f77bd436a74439057a60b5fff08cd3ba37`. Das ZIP liefert HTTP 200 mit 12.434.046 Bytes. Das Hauptspiel bleibt bytegleich mit seinem vorherigen Stand. Der gezielte Live-Browserlauf für Version 101 bestätigt Stillstand und Mitspielerbewegung beim Abstoß, Ausholen und Fußkontakt, einmaliges Ausschwingen, Desktop-/Handy-Rückkehr aus Taktik und kontinuierlichen Torballflug in beiden Richtungen und Halbzeiten ohne Browserfehler. Die bestehenden Elfmeter- und Bannerabläufe wurden zusätzlich lokal geprüft. Der zusätzliche Aktionsbrowserlauf bestätigt zwölf Banden an den Längsseiten, Paraden, Würfe, hohe Fehlschüsse, Tor-vor-Wechsel, 840/1280-Pixel-Vergrößerung, mobiles Querformat und Englisch ohne Browserfehler.
+Die Veröffentlichung von Version 102 ist geprüft: Quellbuild, öffentliche Live-Datei und HTML im ZIP haben denselben SHA-256 `b97eaedf333f12a917af6ed70559138b5676845e7063590c74658e925a74f56b`. Das ZIP liefert HTTP 200 mit 12.438.002 Bytes; Downloadseite und Seitenfuß zeigen 102. Workflow [36779413338](https://github.com/thealextd1337-spec/FM/actions/runs/36779413338) veröffentlichte Runtime-Commit `1791724` erfolgreich ausschließlich im getrennten 3D-Bereich. Das Hauptspiel blieb bytegleich. Die Live-Abnahme prüfte 28 Aktionsfälle und 20 entschiedene Luftduelle in beiden Richtungen und Halbzeiten sowie Pause, Orientierungswechsel, 2D-Umschaltung, Tab-Sichtbarkeit und WebGL-Ausfall ohne Browserfehler. Lokale vollständige 2D/3D-Matchparität, Offline-Build samt SuperCollider-Sounds sowie die vorhandenen Aktions-, Standard-, Banner- und Taktikprüfungen bestanden.
+
 
 ## Aufbau
 
 - [dist/pitch-scene-v98.js](../dist/pitch-scene-v98.js) baut Spielfeld, Rasen, Tribünen, Tore und Spieler für Demo und echte Partien auf. Die Kameraseite bleibt ohne Dach, damit die Übersicht frei bleibt.
 - [dist/world-pitch3d-v98.js](../dist/world-pitch3d-v98.js) projiziert den vorhandenen Matchzustand in die Szene, einschließlich Seitenwechsel, hoher Bälle, Torszene und Abseits. Grafikzufall verbraucht keine Zufallswerte der Simulation; die Darstellung verändert den Matchzustand nicht.
 - `dist/world-pitch-actions-v99.js` ergänzt Wurf- und Paradeposen und Flugkurven aus bestehenden Ereignissen. Flüchtige Daten werden nicht gespeichert; Pausen halten die Erholung an.
+- `dist/pitch-motion-v102.js` bindet bestätigte Feldspieleraktionen und Luftduellkontakte an flüchtige Posen und Ballhöhen. Es enthält auch die reine Interpolation und Gelenkbewegung; Daten werden nicht gespeichert.
 - Three.js r160 und seine MIT-Lizenz liegen unter `dist/camera-prototype/vendor/`. Die sechs optionalen SuperCollider-Sounds stammen aus `dist/camera-prototype/audio/`; Erzeugung und Format sind im Kameraprototyp dokumentiert. Ton wird durch eine Nutzeraktion eingeschaltet.
 
 ## Lokal starten und offline bauen
@@ -51,6 +55,9 @@ Die gezielten Prüfungen lassen sich aus dem Projektverzeichnis wiederholen. Der
 ```powershell
 node work/test-world-pitch3d-v98.cjs
 node work/test-world-pitch-actions-v99.cjs
+node work/test-pitch-motion-v102.cjs
+$env:D6_TEST_URL = 'http://127.0.0.1:4190/'
+& 'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' work/check-pitch-motion-v102.cjs
 & 'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' work/check-world-pitch-ui-v100.cjs
 & 'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' work/check-world-pitch-restarts-v101.cjs
 & 'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' work/check-world-pitch3d-camera.cjs
