@@ -11,6 +11,7 @@ Dein Plan fürs Spiel.	Your game plan.
 Fünf Feldspieler. Ein Torwart. Du bestimmst die Ordnung.	Five outfield players. One goalkeeper. You choose the formation.
 AUFSTELLUNG	LINEUP
 ANGRIFF ↑	ATTACK ↑
+ANGRIFF	ATTACK
 Aufstellungsraster	Lineup grid
 MITTELFELD	MIDFIELD
 ABWEHR	DEFENCE

@@ -252,11 +252,13 @@ function v65PausePending(context){
  return pending.length?`<div class="v64-sub-panel"><h3>Vorgemerkte Wechsel</h3><ul class="v64-pending">${pending.map((item,index)=>`<li>${escapeHTML(v64UiName(item.outPid))} → ${escapeHTML(v64UiName(item.inPid))} <button type="button" class="menu-action" data-v64-cancel="${index}">Entfernen</button></li>`).join('')}</ul></div>`:'';
 }
 function v65PausePitch(context){
- const {career,fixture,state,ownSide}=context,own=v65Club(context,0),other=v65Club(context,1);
+ const {career,fixture,state,ownSide}=context;
  const replacements=Object.fromEntries(state.pending[ownSide].map(item=>[item.outPid,item.inPid]));
  const ratings=Object.fromEntries((match?.people||[]).filter(person=>person.t===0).map(person=>[person.pid,performanceRating(person)]));
- const score=[state.score[ownSide],state.score[1-ownSide]],aggregate=v64UiAggregateText(career,fixture,score,ownSide===1);
- return`<div class="v64-board"><div>${v61CrestSVG(own)}<strong>${escapeHTML(own.name)}</strong></div><span class="v64-board-score" aria-live="polite"><strong>${score[0]} : ${score[1]}</strong>${aggregate?`<small>${aggregate}</small>`:''}</span><div>${v61CrestSVG(other)}<strong>${escapeHTML(other.name)}</strong></div></div><p class="v64-minute">Spielpause · ${v74ClockLabel(match)}</p>${v64UiPrematchPitch(career,fixture,state,ownSide,{starters:v64Active(state,ownSide),replacements,ratings,selected:v65SelectedSlot,pickAttribute:'data-v65-pick-slot',label:'Deine Spieler auf dem Spielfeld'})}${v65PauseBench(context)}`;
+ const meta=$('#match-area .match-meta').cloneNode(true),clock=$('#match-area #retro-clock')?.cloneNode(true),scoreboard=$('#match-area .scoreboard').cloneNode(true);
+ meta.querySelector('#clock')?.remove();meta.querySelector('#match-plan')?.remove();
+ for(const node of [meta,clock,scoreboard])if(node){node.removeAttribute('id');node.querySelectorAll('[id]').forEach(child=>child.removeAttribute('id'))}
+ return`<div class="v65-pause-display">${meta.outerHTML}${clock?.outerHTML||''}${scoreboard.outerHTML}</div><p class="v64-minute">Spielpause</p>${v64UiPrematchPitch(career,fixture,state,ownSide,{starters:v64Active(state,ownSide),replacements,ratings,selected:v65SelectedSlot,pickAttribute:'data-v65-pick-slot',label:'Deine Spieler auf dem Spielfeld'})}${v65PauseBench(context)}`;
 }
 function v65UndoSnapshot(context){
  const {state,ownSide}=context;
@@ -286,7 +288,7 @@ function v65UpdateControls(context){
  quick.hidden=state.phase!=='live'&&state.phase!=='paused';
  const halfTime=state.phase==='paused'&&match.halftimePause>0,pauseButton=quick.querySelector('button');pauseButton.disabled=v65PauseRequested;pauseButton.setAttribute('aria-label',state.phase==='paused'?(halfTime?'2. Halbzeit starten':'Spiel fortsetzen'):'Spiel pausieren');pauseButton.querySelector('span').textContent=v65PauseRequested?'Pause folgt …':state.phase==='paused'?(halfTime?'2. Halbzeit starten':'Fortsetzen'):'Pause';
  v58Button.classList.toggle('v65-resume-action',state.phase==='paused'&&v65PauseView);
- let tabs=$('#v65-pause-tabs');if(!tabs){tabs=document.createElement('nav');tabs.id='v65-pause-tabs';tabs.className='prematch-tabs v64-prematch-tabs';tabs.setAttribute('aria-label','Während der Spielpause');$('#game-screen .workspace').before(tabs)}
+ let tabs=$('#v65-pause-tabs');if(!tabs){tabs=document.createElement('nav');tabs.id='v65-pause-tabs';tabs.className='prematch-tabs v64-prematch-tabs';tabs.setAttribute('aria-label','Während der Spielpause');$('#game-screen .workspace aside').prepend(tabs)}
  let pitch=$('#v65-plan-view');if(!pitch){pitch=document.createElement('div');pitch.id='v65-plan-view';$('#match-area').before(pitch)}
  const paused=state.phase==='paused',editing=paused&&v65PauseView;tabs.hidden=!editing;pitch.hidden=!editing;$('#match-area').hidden=editing;$('#heading').textContent=paused?'Dein Spiel pausiert.':'Dein Spiel läuft.';$('#match-title').textContent=paused?'Dein Team pausiert.':'Dein Team spielt.';
  if(editing){tabs.innerHTML=`<button type="button" data-v65-tab="lineup" class="${v65PauseTab==='lineup'?'active':''}" aria-pressed="${v65PauseTab==='lineup'}">Aufstellung</button><button type="button" data-v65-tab="tactics" class="${v65PauseTab==='tactics'?'active':''}" aria-pressed="${v65PauseTab==='tactics'}">Taktik</button><button type="button" class="v65-undo" data-v65-undo ${state.pauseUndo&&state.substitutions.length===state.pauseUndo.substitutionCount?'':'disabled'}>↶ Rückgängig</button>`;pitch.innerHTML=v65PausePitch(context);pitch.querySelectorAll('.v64-bench-chip').forEach(card=>{const selectable=card.querySelector('[data-v65-bench]');if(selectable){card.draggable=true;card.dataset.v65BenchCard=selectable.dataset.v65Bench}})}

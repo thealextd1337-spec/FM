@@ -2,6 +2,13 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-09-30 (Prototyp 95 · Spielfeld im Querformat)
+
+- Das Spielfeld der Vereinswelt läuft bei breitem Browserfenster und mobilem Querformat waagerecht. Matchplan, Spielvorbereitung und Pausenaufstellung richten die Spielerkarten aufrecht von links nach rechts aus; im Live-Spiel bleiben Namen und Auswahl auf der gedrehten Leinwand lesbar und bedienbar. Das Feld ist mittig auf maximal 760 Pixel Breite begrenzt, im kurzen mobilen Querformat auf 580 Pixel. Uhr, Spielstand und Torschützen stehen auch während der Taktikpause über dem Feld. Taktik und Statistik folgen darunter im Seitenscroll. Gerätewechsel und bestehende Spielstände ändern keine Matchdaten. Gezielte Raster-, Matchplan- und Matchtests, Browserprüfung in breitem Fenster sowie mobilem Hoch- und Querformat und Einzeldatei-Build erfolgreich.
+- Eine vollständig eingebettete Offline-Datei liegt unter `outputs/Doppel-6-Fussballmanager.html`. Sie enthält die neue Spielfeldansicht, Skripte, Styles und Bilddateien; der Build wurde auf fehlende externe Skript-, Stylesheet- und Bildpfade geprüft.
+- Spielername und Trikot bilden auf dem Matchplan sowie in Spielvorbereitung und Pause eine Einheit; die Positionsangabe folgt darunter. Im waagerechten Live-Spiel bleiben Spielfiguren und Trikotmuster wie im Hochformat aufrecht, die Nummern zentriert und die Namen mit kleinem Abstand darunter. Die Namensbreite ist gegen Überlappung begrenzt. Desktop sowie mobiles Hoch- und Querformat wurden im Browser geprüft; die Offline-Datei wurde neu gebaut.
+- Die Live-Leinwand passt ihre Zeichenauflösung an Feldgröße und Pixeldichte an. Im Querformat erhält das Feld rundum zusätzlichen Platz; Sponsorenbanner liegen außerhalb der Spielfläche. Auch im Hochformat wächst der Rand. Feldgröße, Bannerabstand und Canvas-Auflösung wurden im Browser auf Desktop sowie in mobilem Hoch- und Querformat geprüft; die Offline-Datei wurde neu gebaut.
+
 ## 2026-09-29 (Prototyp 94 · Fremdposition auf Mobilgeräten)
 
 - Auf schmalen Bildschirmen wird die Fremdposition als gelbes Warnsymbol am Feldtrikot angezeigt. So bleibt Platz für den Spielernamen; die vollständige Erklärung steht weiterhin in der Spielerauswahl. Desktop- und Mobilansicht im lokalen Browser geprüft, zusätzlich Positions- und Übersetzungstest sowie Build. Spielstände bleiben unverändert.
