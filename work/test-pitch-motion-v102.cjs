@@ -32,6 +32,26 @@ function runner(hz){const v={root:group(),previous:{x:0,z:0},body:group(),limbs:
 const v30=runner(30),v60=runner(60),v120=runner(120);assert(Math.abs(v30.runPhase-v120.runPhase)<1e-8,'gait phase follows distance at any graphics rate');assert(Math.abs(v30.limbs[0].rotation.x-v60.limbs[0].rotation.x)<.01);
 const phase=v60.runPhase,speed=v60.runSpeed;c.v102RunPose(v60,{x:3,z:0,number:4},.001,true);assert(v60.runSpeed>speed*.98,'extra drawing cannot collapse run amplitude');c.v102RunPose(v60,{x:3,z:0,number:4},.1,false);assert.equal(v60.runPhase,phase,'paused drawing cannot advance steps');
 for(const kind of ['pass','shot','cross','header','volley','control','airReady']){c.v102ActionPose(v60,{kind,progress:.2,target:{x:4,y:1},contact:{x:3,y:0},duration:.5},{x:3,z:0},false);assert(Number.isFinite(v60.limbs[2].rotation.x));assert(Number.isFinite(v60.neck.rotation.x));}
+
+// Two-bone gait: planted sole stays at turf level, swing foot clears it.
+let planted=0,raised=0;
+for(let i=0;i<240;i++){
+ const v=runner(60);v.runPhase=i/240*Math.PI*2;v.runSpeed=3;
+ c.v102RunPose(v,{x:3,z:0,number:4},0,false);
+ for(let leg=0;leg<2;leg++){
+  const hip=v.limbs[leg*2].rotation.x,knee=v.knees[leg].rotation.x,lean=v.body.rotation.x;
+  const ankle=v.body.position.y+.89*Math.cos(lean)-.4*Math.cos(lean+hip)-.26*Math.cos(lean+hip+knee);
+  const sole=ankle-.0775,cycle=((v.runPhase/(2*Math.PI)+leg*.5)%1+1)%1;
+  if(cycle<.6){assert(Math.abs(sole-.1525)<.016,'planted foot does not slide vertically');planted++;}
+  else if(cycle>.72&&cycle<.88){assert(sole>.24,'returning foot lifts clear of turf');raised++;}
+  assert(Math.abs(lean+hip+knee+v.feet[leg].rotation.x)<1e-9,'ankle counter-rotates the boot');
+ }
+}
+assert(planted>250&&raised>50);
+const entry=runner(60),neutral=entry.limbs[2].rotation.x;
+c.v102ActionPose(entry,{kind:'shot',progress:-.08/.48,duration:.48,target:{x:4,y:1}},{x:3,z:0},false);
+assert(Math.abs(entry.limbs[2].rotation.x-neutral)<1e-8,'windup enters without a pose jump');
+
 const bare=harness(false),decorated=harness(true);for(const x of [bare,decorated]){x.context.v55GroundPass(x.person,x.receiver);x.context.step(.04,.04);x.context.v55Shoot(x.person,'volley')}
 assert.deepEqual(decorated.calls,bare.calls,'presentation wraps the same engine calls exactly once');assert.equal(JSON.stringify(decorated.match),JSON.stringify(bare.match),'same physical state with and without graphics metadata');
 console.log('Motion 102: action kinds, head contact/clearance, pause, immutable state, shared interpolation and distance-driven gait at 30/60/120 Hz passed.');

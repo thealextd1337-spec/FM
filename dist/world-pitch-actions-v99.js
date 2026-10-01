@@ -17,7 +17,7 @@ v50GoalKick=function(...args){
 const v100BaseRestart=v50Restart;
 v50Restart=function(type,...args){
  const previous=match?.setPiece,result=v100BaseRestart(type,...args);
- if(v65WorldActive&&type==='penalty'&&match?.setPiece&&match.setPiece!==previous)match.setPiece.wait=2;
+ if(v65WorldActive&&type==='penalty'&&match?.setPiece&&match.setPiece!==previous)match.setPiece.wait=4;
  return result;
 };
 const v99BaseSwapInfo=v65ShowSwapInfo;

@@ -42,7 +42,7 @@ const setup=vm.runInNewContext(source.slice(source.indexOf('async function setup
    const c=v65Context(),active=v64Active(c.state,c.ownSide);v65ShowSwapInfo(c,[{side:c.ownSide,outPid:active[0],inPid:active[1],minute:23}]);draw();
   });assert(!(await page.locator('#v65-swap-info').isVisible()));
   await page.evaluate(()=>{step(.78*.51,.51);draw();});assert(await page.locator('.v84-goal-banner').isVisible());assert(!(await page.locator('#v65-swap-info').isVisible()));
-  await page.evaluate(()=>{for(let i=0;i<90;i++)step(.78*.05,.05);draw();});assert(await page.locator('#v65-swap-info').isVisible());assert(!(await page.locator('.v84-goal-banner').isVisible()));
+  await page.evaluate(()=>{for(let i=0;i<90;i++)step(.78*.05,.05);if(v103ReplayState(match).active){v103EndReplay();step(.78*.05,.05)}draw();});assert(await page.locator('#v65-swap-info').isVisible());assert(!(await page.locator('.v84-goal-banner').isVisible()));
   await page.setViewportSize({width:844,height:390});await page.locator('#v99-expand').click();assert(await page.locator('#v99-expand').isVisible());await page.locator('#match-area .v42-pitch-stage').screenshot({path:'outputs/world3d-expanded-mobile99.png'});
   await page.evaluate(()=>{window.doppel6Language.set('en');draw();});assert.equal(await page.locator('#v99-expand').getAttribute('aria-label'),'Shrink pitch');
   await page.setViewportSize({width:390,height:844});await page.waitForFunction(()=>window.d6Pitch3D.getState().view==='2d');assert(!(await page.locator('#v99-expand').isVisible()),'portrait remains 2D');assert.deepEqual(errors,[]);

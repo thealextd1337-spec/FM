@@ -34,7 +34,7 @@ context.v50Goal();context.v65ShowSwapInfo({},['old']);context.match={people:[],g
 console.log('3D actions: save/recovery/pause, overhead throws, high/wide shots, immutable projection, goal-before-swaps and lifecycle passed.');
 context.match=current;current.goalPause=0;
 context.v50GoalKick(keeper,'restart');assert(Math.abs(current.next-current.elapsed-2.4*.78)<1e-9,'world keeper waits 2.4 playback seconds');
-context.v50Restart('penalty');assert.equal(current.setPiece.wait,2,'penalty award lasts two playback seconds');
+context.v50Restart('penalty');assert.equal(current.setPiece.wait,4,'penalty award lasts four playback seconds before the shot');
 context.v50Restart('corner');assert.equal(current.setPiece.wait,2.5,'other restarts keep their duration');
 context.onTarget=true;context.goal=true;current.ball={x:.5,y:.3};shooter.stats.shots=2;context.v55Shoot(shooter);vm.runInContext('v100ShotOutcome(match.flight,true)',context);assert.equal(pose(current,keeper).goal,true,'successful shot is distinct from save before arrival');
 current.flight.progress=1;const crossing=ballView(current);current.flight.done();current.goalScene={team:0,x:.5,elapsed:0};
@@ -52,7 +52,7 @@ context.step(0,.2);assert((.035-ballView(current).y)*68/(.965-.035)>5,'miss cont
 const wide=vm.runInContext('v100PenaltyWidePoint',context),centre=wide(0,1,600,310),cross=wide(.65,1,600,310),far=wide(1,1,600,310);
 assert.equal(centre.left,300);assert(cross.left>480,'penalty crosses outside right post');assert(far.left>cross.left&&far.bottom>cross.bottom,'wide penalty continues behind goal');
 assert.equal(wide(1,-1,600,310).left,600-far.left,'left/right penalty misses are mirrored');
-console.log('Restart delay, two-second penalty award, direct net impact, continuous high miss and penalty-wide perspective passed.');
+console.log('Restart delay, four-second penalty award, direct net impact, continuous high miss and penalty-wide perspective passed.');
 current.flight=null;current.setPiece=null;current.throwIn=null;current.goalPause=0;current.goalScene=null;current.ball={x:keeper.x,y:keeper.y};
 context.step(0,1.6);context.v50GoalKick(keeper,'restart');const still=pose(current,keeper);assert.equal(still.kind,'goalKick');assert.equal(still.progress,0);
 const waiting=vm.runInContext('v101KeeperWaiting',context);assert(waiting(current,keeper));

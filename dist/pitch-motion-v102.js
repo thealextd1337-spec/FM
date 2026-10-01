@@ -110,20 +110,30 @@ function v102Interpolate(a,b,q){
 }
 function v102RunPose(visual,person,dt,live){
  const distance=Math.hypot(person.x-visual.previous.x,person.z-visual.previous.z),speed=live?Math.min(8,distance/Math.max(.001,dt)):0;
- if(live){visual.runSpeed=(visual.runSpeed||0)+(speed-(visual.runSpeed||0))*(1-Math.exp(-dt*10));visual.runPhase=(visual.runPhase||person.number)+distance*3.3;}
+ if(live){visual.runSpeed=(visual.runSpeed||0)+(speed-(visual.runSpeed||0))*(1-Math.exp(-dt*10));visual.runPhase=(visual.runPhase||person.number)+distance*6.2;}
  const amplitude=Math.min(1,(visual.runSpeed||0)/2.6),phase=visual.runPhase||person.number,stride=Math.sin(phase)*.55*amplitude;
  for(const group of [visual.body,...visual.limbs,...visual.knees,...visual.feet,...visual.elbows,visual.neck])group.rotation.set(0,0,0);
- visual.body.position.set(0,Math.abs(Math.sin(phase))*amplitude*.055,0);
- visual.limbs[0].rotation.x=stride;visual.limbs[2].rotation.x=-stride;
+ visual.body.position.set(0,-.075*amplitude+(1-Math.cos(phase*2))*amplitude*.008,0);
  visual.limbs[1].rotation.x=-stride*.7;visual.limbs[3].rotation.x=stride*.7;
- for(let i=0;i<2;i++){const wave=phase+i*Math.PI;visual.knees[i].rotation.x=Math.max(0,-Math.sin(wave))*.95*amplitude;visual.feet[i].rotation.x=-visual.knees[i].rotation.x*.45;visual.elbows[i].rotation.x=-.25-.5*amplitude;}
- visual.body.rotation.x=amplitude*.09;visual.body.rotation.z=person.slideActive?1.1:Math.sin(phase)*amplitude*.025;
+ // A low planted phase and a raised return phase; solve the two leg segments.
+ for(let i=0;i<2;i++){
+  const cycle=((phase/(2*Math.PI)+i*.5)%1+1)%1,planted=cycle<.6,q=planted?cycle/.6:(cycle-.6)/.4;
+  const reach=(planted?1-2*q:-Math.cos(Math.PI*q))*.28*amplitude,lift=planted?0:Math.pow(Math.sin(Math.PI*q),2)*.18*amplitude,lean=amplitude*.04;
+  const deltaY=.23+lift-visual.body.position.y-.89*Math.cos(lean),y=deltaY*Math.cos(lean)+reach*Math.sin(lean),z=-deltaY*Math.sin(lean)+reach*Math.cos(lean),r=Math.min(.6599,Math.hypot(y,z));
+  const hip=Math.atan2(-z,-y)-Math.acos(Math.max(-1,Math.min(1,(.16+r*r-.0676)/(.8*r))));
+  const knee=Math.PI-Math.acos(Math.max(-1,Math.min(1,(.16+.0676-r*r)/.208)));
+  visual.limbs[i*2].rotation.x=hip;visual.knees[i].rotation.x=knee;
+  visual.feet[i].rotation.x=-hip-knee-lean;visual.elbows[i].rotation.x=-.25-.5*amplitude;
+ }
+ visual.body.rotation.x=amplitude*.04;visual.body.rotation.z=person.slideActive?1.1:Math.sin(phase)*amplitude*.015;
  return speed;
 }
 function v102ActionPose(visual,action,person,turned){
  const p=action.progress,ease=(1+Math.cos(Math.PI*p))/2,header=action.kind==='header',ready=action.kind==='airReady',control=action.kind==='control';
+ const recovery=Math.min(1,Math.max(0,(1-p)/.3)),entry=p<0?Math.max(0,1+p*action.duration/.08):1,blend=entry<1?entry:recovery,weight=ready?1:blend*blend*(3-2*blend);
  const groups=[visual.body,...visual.limbs,...visual.knees,...visual.feet,...visual.elbows,visual.neck],rotations=groups.map(g=>({x:g.rotation.x,y:g.rotation.y,z:g.rotation.z})),bodyY=visual.body.position.y;
- const target=v98PitchPoint(action.target,turned);visual.root.rotation.y=Math.atan2(target.x-person.x,target.z-person.z);
+ const target=v98PitchPoint(action.target,turned),heading=Math.atan2(target.x-person.x,target.z-person.z),baseHeading=visual.heading??visual.root.rotation.y;
+ visual.root.rotation.y=baseHeading+Math.atan2(Math.sin(heading-baseHeading),Math.cos(heading-baseHeading))*weight;
  if(header||ready||control){
   const contact=v98PitchPoint(action.contact||action.target,turned),reach=ready?p:Math.min(1,Math.pow(1-p,2));
   // Leave room for the head and the radius of the ball at forehead contact.
@@ -141,8 +151,9 @@ function v102ActionPose(visual,action,person,turned){
   if(volley&&action.contact){const contact=v98PitchPoint(action.contact,turned),facing=visual.root.rotation.y;visual.root.position.x+=(contact.x-Math.sin(facing)*.67-person.x)*ease;visual.root.position.z+=(contact.z-Math.cos(facing)*.67-person.z)*ease;}
   visual.limbs[0].rotation.x=.16*ease;visual.knees[0].rotation.x=.16*ease;
   visual.limbs[2].rotation.x=-(volley?1.75:strong?1.05:high?.9:.65)*ease;
-  if(p<0){const wind=Math.min(1,-p*action.duration/.08);visual.limbs[2].rotation.x+=(strong?1.6:1.1)*wind;visual.knees[1].rotation.x=.7*wind;}
-  visual.knees[1].rotation.x=.12*ease;visual.feet[1].rotation.y=(strong?0:.35)*ease;
+  const wind=p<0?Math.min(1,-p*action.duration/.08):0;
+  visual.limbs[2].rotation.x+=(strong?1.6:1.1)*wind;
+  visual.knees[1].rotation.x=.12*ease+.7*wind;visual.feet[1].rotation.y=(strong?0:.35)*ease;
   visual.body.rotation.x=(strong?.2:high?-.08:.08)*ease;visual.body.rotation.y=(strong?.22:.08)*Math.sin(Math.PI*p);
   visual.limbs[1].rotation.x=.35*ease;visual.limbs[3].rotation.x=-.3*ease;
   visual.limbs[1].rotation.z=-.35*ease;visual.limbs[3].rotation.z=.45*ease;
@@ -150,7 +161,6 @@ function v102ActionPose(visual,action,person,turned){
   visual.body.position.y=0;
  }
  // Release the gesture gradually into the current distance-driven run pose.
- const weight=ready?1:Math.min(1,Math.max(0,(1-p)/.3));
  groups.forEach((group,i)=>{for(const axis of ['x','y','z'])group.rotation[axis]=rotations[i][axis]+(group.rotation[axis]-rotations[i][axis])*weight});
  visual.body.position.y=bodyY+(visual.body.position.y-bodyY)*weight;
 }

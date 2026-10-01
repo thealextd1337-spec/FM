@@ -40,7 +40,7 @@ class PreviewTests(unittest.TestCase):
     def setUp(self):
         self.directory=tempfile.TemporaryDirectory()
         self.build=Path(self.directory.name)/"index.html"
-        self.content=deploy.MARKER+b" PROTOTYP 102 real game"
+        self.content=deploy.MARKER+b" PROTOTYP 103 real game"
         self.build.write_bytes(self.content)
         self.settings={"W4Y_FTP_HOST":"example.test","W4Y_FTP_USER":"test","W4Y_FTP_PASSWORD":"hidden","W4Y_FTP_REMOTE_DIR":"/fussball"}
         self.patches=[mock.patch.object(deploy,"BUILD",self.build),mock.patch.dict(os.environ,self.settings,clear=True),mock.patch.object(deploy,"FTP_TLS",FakeFTP),mock.patch.object(deploy.ssl,"create_default_context",return_value=object()),mock.patch.object(deploy.time,"sleep",lambda _seconds:None)]
@@ -75,9 +75,9 @@ class PreviewTests(unittest.TestCase):
                 with self.assertRaisesRegex(RuntimeError,"directory"): deploy.publish()
                 ftp.assert_not_called()
     def test_rejects_unmarked_or_wrong_version_build(self):
-        for content in [b"PROTOTYP 102",deploy.MARKER+b"PROTOTYP 97"]:
+        for content in [b"PROTOTYP 103",deploy.MARKER+b"PROTOTYP 97"]:
             self.build.write_bytes(content)
-            with self.assertRaisesRegex(RuntimeError,"prototype 102"): deploy.payloads()
+            with self.assertRaisesRegex(RuntimeError,"prototype 103"): deploy.payloads()
     def test_live_mismatch_is_reported(self):
         with mock.patch.object(deploy,"urlopen",side_effect=lambda *_args,**_kwargs:io.BytesIO(b"wrong")):
             with self.assertRaisesRegex(RuntimeError,"Live verification failed"): deploy.publish()
