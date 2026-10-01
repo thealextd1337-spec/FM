@@ -119,9 +119,9 @@ function v102RunPose(visual,person,dt,live){
  for(let i=0;i<2;i++){
   const cycle=((phase/(2*Math.PI)+i*.5)%1+1)%1,planted=cycle<.6,q=planted?cycle/.6:(cycle-.6)/.4;
   const reach=(planted?1-2*q:-Math.cos(Math.PI*q))*.28*amplitude,lift=planted?0:Math.pow(Math.sin(Math.PI*q),2)*.18*amplitude,lean=amplitude*.04;
-  const deltaY=.23+lift-visual.body.position.y-.89*Math.cos(lean),y=deltaY*Math.cos(lean)+reach*Math.sin(lean),z=-deltaY*Math.sin(lean)+reach*Math.cos(lean),r=Math.min(.6599,Math.hypot(y,z));
-  const hip=Math.atan2(-z,-y)-Math.acos(Math.max(-1,Math.min(1,(.16+r*r-.0676)/(.8*r))));
-  const knee=Math.PI-Math.acos(Math.max(-1,Math.min(1,(.16+.0676-r*r)/.208)));
+  const deltaY=.11+lift-visual.body.position.y-.89*Math.cos(lean),y=deltaY*Math.cos(lean)+reach*Math.sin(lean),z=-deltaY*Math.sin(lean)+reach*Math.cos(lean),r=Math.min(.7799,Math.hypot(y,z));
+  const hip=Math.atan2(-z,-y)-Math.acos(Math.max(-1,Math.min(1,(.16+r*r-.1444)/(.8*r))));
+  const knee=Math.PI-Math.acos(Math.max(-1,Math.min(1,(.16+.1444-r*r)/.304)));
   visual.limbs[i*2].rotation.x=hip;visual.knees[i].rotation.x=knee;
   visual.feet[i].rotation.x=-hip-knee-lean;visual.elbows[i].rotation.x=-.25-.5*amplitude;
  }

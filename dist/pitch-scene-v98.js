@@ -187,8 +187,8 @@ window.D6PitchScene={create(canvas,{goalWidth=7.6,advertising}={}){
    const leg=new THREE.Group();leg.position.set(side*.19,.89,0);body.add(leg);
    cylinder(.105,.37,tone,0,-.22,0,leg);
    const knee=new THREE.Group();knee.position.y=-.4;leg.add(knee);knees.push(knee);
-   cylinder(.12,.25,kit,0,-.10,0,knee);cylinder(.125,.045,accent,0,0,0,knee);
-   const foot=new THREE.Group();foot.position.y=-.26;knee.add(foot);feet.push(foot);
+   cylinder(.12,.37,kit,0,-.16,0,knee);cylinder(.125,.045,accent,0,0,0,knee);
+   const foot=new THREE.Group();foot.position.y=-.38;knee.add(foot);feet.push(foot);
    box(.22,.13,.39,dark,0,0,.10,foot);box(.23,.035,.4,number%2?white:lime,0,-.06,.10,foot);limbs.push(leg);
    const arm=new THREE.Group();arm.position.set(side*.43,1.67,0);body.add(arm);
    cylinder(.135,.25,kit,0,-.14,0,arm);

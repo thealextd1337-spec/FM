@@ -40,10 +40,10 @@ for(let i=0;i<240;i++){
  c.v102RunPose(v,{x:3,z:0,number:4},0,false);
  for(let leg=0;leg<2;leg++){
   const hip=v.limbs[leg*2].rotation.x,knee=v.knees[leg].rotation.x,lean=v.body.rotation.x;
-  const ankle=v.body.position.y+.89*Math.cos(lean)-.4*Math.cos(lean+hip)-.26*Math.cos(lean+hip+knee);
+  const ankle=v.body.position.y+.89*Math.cos(lean)-.4*Math.cos(lean+hip)-.38*Math.cos(lean+hip+knee);
   const sole=ankle-.0775,cycle=((v.runPhase/(2*Math.PI)+leg*.5)%1+1)%1;
-  if(cycle<.6){assert(Math.abs(sole-.1525)<.016,'planted foot does not slide vertically');planted++;}
-  else if(cycle>.72&&cycle<.88){assert(sole>.24,'returning foot lifts clear of turf');raised++;}
+  if(cycle<.6){assert(Math.abs(sole-.0325)<.016,'planted foot does not slide vertically');planted++;}
+  else if(cycle>.72&&cycle<.88){assert(sole>.12,'returning foot lifts clear of turf');raised++;}
   assert(Math.abs(lean+hip+knee+v.feet[leg].rotation.x)<1e-9,'ankle counter-rotates the boot');
  }
 }

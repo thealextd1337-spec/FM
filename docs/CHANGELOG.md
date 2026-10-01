@@ -8,6 +8,10 @@
 
 - Ein eigenständiger lokaler 3D-Kameraprototyp erprobt eine erhöhte TV-Sicht mit sanfter Ballverfolgung, zwei weiteren Kamerasichten und stilisierten Spielern. Eine wiederholbare 28-Sekunden-Sequenz zeigt Passspiel, Flanke und Tor; SuperCollider liefert sechs Sounds. Kamera, Zeitleiste, Pause, Vollbild und Deutsch/Englisch sind bedienbar. Hochformat zeigt unabhängig von der Bildschirmbreite einen Drehhinweis und hält Zeit und Audio an. Die vollständig eingebettete Offline-Datei und Desktop-, Handy- und Tablet-Bildschirmgrößen wurden im Browser geprüft. Leistung auf echten Mobilgeräten und Hörprüfung bleiben offen. Der Prototyp berechnet keine echten Partien, verändert keine Spielstände und ist nicht in die Vereinswelt eingebunden oder veröffentlicht. Start, Build und Prüfbelege stehen in [kameraprototyp-3d.md](kameraprototyp-3d.md).
 
+## 2026-10-01 (Prototyp 104 · Schuhkontakt am Rasen)
+
+- Längere Unterschenkel und eine passend abgestimmte Beinberechnung setzen die Sohle der Standphase auf die tatsächliche Rasenhöhe. Kopf, Rumpf und Ballkontakte behalten ihre Höhe; Geometrieanzahl bleibt gleich. Gelenk-, Aktions- und Wiederholungsprüfungen erneut bestanden.
+
 ## 2026-10-01 (Prototyp 103 · Laufkontakt und Torwiederholung)
 
 - 3D-Laufen erhält klarere Stand- und Schwungphasen, bodennähere Schuhe und weichere Übergänge zwischen Lauf, Ausholen und Ausschwingen. Nach dem Torbanner zeigt die Querformat-3D-Ansicht den echten aufgezeichneten Treffer als überspringbare Wiederholung; Spielzeit und Berechnung stehen währenddessen, Wechselbanner folgen danach. Die Schiedsrichteranzeige bei Elfmeter dauert vier Sekunden vor dem Schuss. Bestehende SuperCollider-Sounds erhalten im Browser mehr Bass, kräftigere Schuss-/Jubelpegel und einen einmaligen Schussimpuls zur Elfmeter-Ausführung. Neue Sounderzeugung wurde auf Nutzerwunsch zurückgestellt. Spielregeln und Spielstände bleiben unverändert.

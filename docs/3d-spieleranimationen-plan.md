@@ -1,10 +1,10 @@
 # Detailliertere Spieleranimationen in der 3D-Ansicht
 
-Stand: 1. Oktober 2026. Grundblöcke als Prototyp 102 und die nächste Ausbaustufe als Prototyp 103 umgesetzt. Die ursprüngliche Planung ist unten als Referenz erhalten. Die Erweiterung betrifft die 3D-Spieldarstellung der Vereinswelt im Querformat. Der bestehende stilisierte Look und die nahe TV-Kamera bleiben Grundlage.
+Stand: 1. Oktober 2026. Grundblöcke als Prototyp 102 und die nächste Ausbaustufe als Prototyp 103/104 umgesetzt. Die ursprüngliche Planung ist unten als Referenz erhalten. Die Erweiterung betrifft die 3D-Spieldarstellung der Vereinswelt im Querformat. Der bestehende stilisierte Look und die nahe TV-Kamera bleiben Grundlage.
 
 ## Nächster Block: Laufkontakt und Übergänge (103)
 
-Auf Nutzerwunsch umgesetzt: Der Laufzyklus erhält eine längere Standphase mit bodennahem Schuh und eine angehobene Rückführphase. Hüfte und Knie lösen die gewünschte Fußbahn gemeinsam; das Fußgelenk gleicht die Beindrehung aus. Schrittlänge und Strecke bleiben gekoppelt, der Rumpf federt dezent mit. Geschwindigkeit, Pause und Seitenwechsel verwenden weiterhin die bestehende Präsentationslogik.
+Auf Nutzerwunsch umgesetzt: Der Laufzyklus erhält eine längere Standphase mit bodennahem Schuh und eine angehobene Rückführphase. Hüfte und Knie lösen die gewünschte Fußbahn gemeinsam; Version 104 stimmt die Unterschenkellänge und die Zielhöhe auf die tatsächliche Rasenoberkante ab; das Fußgelenk gleicht die Beindrehung aus. Schrittlänge und Strecke bleiben gekoppelt, der Rumpf federt dezent mit. Geschwindigkeit, Pause und Seitenwechsel verwenden weiterhin die bestehende Präsentationslogik.
 
 Pass- und Schussbewegungen blenden aus der Laufpose ein. Ausholen erhält Kniebeugung; Ausschwingen und die Richtung des Körpers gehen mit einer glatten Kurve in die aktuelle Laufrichtung zurück. Kopf-/Ballkontakt und tatsächliche Aktionen bleiben synchron; Berechnung, Zufall, Taktik und Spielstände sind unverändert. Die vorhandene Geometrie wird verwendet, ohne zusätzliche Spieler-Polygone.
 
