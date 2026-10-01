@@ -1,6 +1,6 @@
 # Detailliertere Spieleranimationen in der 3D-Ansicht
 
-Stand: 1. Oktober 2026. Grundblöcke als Prototyp 102 und Laufkontakt/Übergänge als Prototyp 103/104 umgesetzt. Natürlichere Spielermodelle sind lokal als Prototyp 105 umgesetzt, noch nicht veröffentlicht. Die ursprüngliche Planung ist unten als historische Referenz erhalten; ihre Ausgangslage beschreibt den Stand vor 102. Die Erweiterung betrifft die 3D-Spieldarstellung der Vereinswelt im Querformat. Die nahe TV-Kamera bleibt Grundlage.
+Stand: 1. Oktober 2026. Grundblöcke als Prototyp 102 und Laufkontakt/Übergänge als Prototyp 103/104 umgesetzt. Natürlichere Spielermodelle sind als Prototyp 105 umgesetzt und in der getrennten 3D-Vorschau veröffentlicht. Die ursprüngliche Planung ist unten als historische Referenz erhalten; ihre Ausgangslage beschreibt den Stand vor 102. Die Erweiterung betrifft die 3D-Spieldarstellung der Vereinswelt im Querformat. Die nahe TV-Kamera bleibt Grundlage.
 
 ## Aktuelle Priorität: Modellqualität vor weiteren Zweikämpfen (105)
 

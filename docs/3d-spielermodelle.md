@@ -1,6 +1,6 @@
 # Natürlichere 3D-Spielermodelle
 
-Stand: 1. Oktober 2026. Prototyp 105 ist lokal umgesetzt, noch nicht veröffentlicht. Live-Stand der getrennten 3D-Vorschau ist weiterhin 104. Auf Nutzerwunsch hat die Modellqualität Vorrang vor zusätzlichen Zweikampf- und Grätschenanimationen.
+Stand: 1. Oktober 2026. Prototyp 105 ist in der getrennten [3D-Vorschau](https://fussball.cakamper.at/3d/?v=105) veröffentlicht. Auf Nutzerwunsch hat die Modellqualität Vorrang vor zusätzlichen Zweikampf- und Grätschenanimationen.
 
 ## Richtung und Umfang
 
@@ -29,7 +29,7 @@ Der vergleichbare Anfangsbildaufbau derselben Szene liefert:
 
 Eine spätere Aufnahme im Match liefert 210 Zeichenaufrufe, 212 Geometrien und 62.650 Dreiecke. Sie gehört zu einem anderen Bildzeitpunkt und darf nicht als direkter Vergleich zum Anfangsbildaufbau verwendet werden. Die Messwerte beschreiben Grafikkosten unter Software-WebGL. Sie belegen keine stabilen FPS auf einem echten Mobiltelefon.
 
-## Lokale Prüfung und verbleibende Abnahme
+## Prüfung und verbleibende Abnahme
 
 `work/test-player-model-v105.cjs` prüft zwölf Modellfälle, darunter zehn Frisuren, deterministische Geometrie, unverändertes gespeichertes Aussehen, endliche Geometriedaten, äußere Rumpfnormalen, erhaltene Gelenkpunkte und das Geometriebudget. `work/check-player-model-v105.cjs` prüft die Zuordnung gespeicherter Identität, Desktop-TV, mobiles Querformat, Hochformat-Rückfall auf 2D und eine Nahansicht ohne Browserfehler.
 
@@ -37,4 +37,4 @@ Die lokale visuelle Prüfung akzeptiert vier Ansichten und bestätigt Verbesseru
 
 Die abschließenden Prüfungen bestehen: 17 JavaScript-Testdateien und sechs Deploymentfälle, identischer vollständiger 2D/3D-Spielverlauf über 2543 Schritte, 28 Aktions- und 20 Luftduellfälle, Torwiederholungen beider Teams und Halbzeiten, Überspringen und natürlicher Abschluss, Standards, Banner, Taktik, Gerätewechsel und Kontextverlust. Die Sohlenprüfung misst maximal 0,004802 Szeneneinheiten Kontaktabweichung bei 289 Kontakten. Einzeldatei und eigenständiger Kameraprototyp starten ohne Browserfehler. Bestehende Abnahmebedingungen stehen im [3D-Leitfaden](3d-spieldarstellung.md) und im [Animationsplan](3d-spieleranimationen-plan.md).
 
-Offen bleiben die Laufzeitprüfung auf echter Mobilhardware und die subjektive visuelle Freigabe. Für eine Veröffentlichung gelten weiterhin Versionsabgleich von Quelle, Build und Live-Seite sowie die getrennte Freigabe nach `/3d/`.
+Offen bleiben die Laufzeitprüfung auf echter Mobilhardware und die subjektive visuelle Freigabe. Quelle, Einzeldatei-Build, Live-HTML und ZIP stimmen für Version 105 überein. Die bestehende Hauptseite ist per SHA-256 unverändert. Live-Prüfungen bestätigen zwölf gespeicherte Identitäten, Desktop, mobiles Querformat, Hochformat-2D sowie 28 Aktionsfälle, 20 Luftduellfälle und 289 Sohlenkontakte ohne Browserfehler. Veröffentlichung: Commit `ca752646aba9581e61e4b9cfe94e1b100e6a70eb`, erfolgreicher [Workflow 36890266494](https://github.com/thealextd1337-spec/FM/actions/runs/36890266494). HTML-SHA-256: `d33f6e1343652ca2e177b403aa30cda85ff0fc2f718e8baf50b07e0c1eb97897`; ZIP: 12.442.563 Bytes. Lokaler Beleg: `outputs/release105-proof.json`.
