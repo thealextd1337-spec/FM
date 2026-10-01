@@ -3,7 +3,8 @@
 ## Inhalt
 
 - [3D-Darstellung echter Vereinswelt-Partien](3d-spieldarstellung.md): veröffentlichte getrennte Vorschau mit Anbindung an die bestehende Match-Engine, gemeinsame Steuerung, Offline-Build und Reichweite der Abnahme.
-- [Detailliertere 3D-Spieleranimationen – Umsetzung 102–104](3d-spieleranimationen-plan.md): flüssiges Laufen, Gelenkmodell, Pass-, Schuss- und Kopfballbewegungen mit Ballkontakt, Umsetzungsblöcken und Abnahmebedingungen.
+- [3D-Spielermodelle – Umsetzung 105](3d-spielermodelle.md): natürlichere Sportspielfiguren, gespeichertes Aussehen, mobile Geometriebudgets und lokale Abnahme; Veröffentlichung und Nutzerfreigabe stehen noch aus.
+- [Detailliertere 3D-Spieleranimationen – Umsetzung 102–105](3d-spieleranimationen-plan.md): flüssiges Laufen, Gelenkmodell, Pass-, Schuss- und Kopfballbewegungen mit Ballkontakt; die Modellqualität hat vor weiteren Zweikampf- und Grätschenanimationen Vorrang.
 
 - [3D-Kameraprototyp im Querformat](kameraprototyp-3d.md): eigenständige lokale TV-Kamera mit synthetischem Spielablauf, SuperCollider-Sounds und vollständig eingebetteter Offline-Datei.
 

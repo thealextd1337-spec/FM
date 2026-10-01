@@ -4,7 +4,7 @@ const {pathToFileURL}=require('url');
 const {chromium}=require(process.env.D6_PLAYWRIGHT||'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const url=process.env.D6_TEST_URL||'http://127.0.0.1:4190/';
 async function setup(page,view='3d',sourceUrl=url,fixtureSide=null,graphicsAtTick=true){
- await page.goto(sourceUrl);await page.waitForFunction(()=>window.d6Pitch3D&&document.querySelector('footer span:first-child')?.textContent.includes('PROTOTYP 104'));
+ await page.goto(sourceUrl);await page.waitForFunction(()=>window.d6Pitch3D&&document.querySelector('footer span:first-child')?.textContent.includes('PROTOTYP 105'));
  await page.evaluate(({view,fixtureSide,graphicsAtTick})=>{
   let seed=12345;Math.random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
   const career=v61CreateCareer('GER-2','world3d-parity'),club=career.world.clubs.find(item=>item.id==='GER-2');

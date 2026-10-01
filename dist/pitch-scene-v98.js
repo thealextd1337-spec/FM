@@ -31,21 +31,11 @@ window.D6PitchScene={create(canvas,{goalWidth=7.6,advertising}={}){
  const grassTexture=new THREE.CanvasTexture(grassCanvas);grassTexture.colorSpace=THREE.SRGBColorSpace;grassTexture.wrapS=grassTexture.wrapT=THREE.RepeatWrapping;grassTexture.repeat.set(2,14);grassTexture.anisotropy=Math.min(4,renderer.capabilities.getMaxAnisotropy());
  const turf=[mat('#579450',{map:grassTexture}),mat('#4b8447',{map:grassTexture})], white=mat('#f4f3dc');
  const concrete=mat('#7b8c8c'),darkConcrete=mat('#31474c'), trim=mat('#e0e2d4');
- const ground=mat('#53694e'),steel=mat('#faf7e9',{roughness:.5}),skin=[mat('#e5b08a'),mat('#995f43'),mat('#ca916b')];
+ const ground=mat('#53694e'),steel=mat('#faf7e9',{roughness:.5});
  const dark=mat('#172b37'),lime=mat('#c7f36b'),blue=mat('#65b9f0');
  function mesh(geometry,material,parent=scene){const m=new THREE.Mesh(geometry,material);parent.add(m);return m;}
  function box(w,h,d,material,x,y,z,parent=scene){const m=mesh(new THREE.BoxGeometry(w,h,d),material,parent);m.position.set(x,y,z);m.receiveShadow=true;return m;}
  function cylinder(radius,h,material,x,y,z,parent=scene){const m=mesh(new THREE.CylinderGeometry(radius,radius,h,10),material,parent);m.position.set(x,y,z);m.castShadow=true;return m;}
- function batchPlayerParts(parent){
-  const groups=new Map();
-  for(const object of [...parent.children]){
-   if(!object.isMesh||object.material.transparent)continue;
-   object.updateMatrix();const geo=object.geometry.index?object.geometry.toNonIndexed():object.geometry.clone();geo.applyMatrix4(object.matrix);
-   const group=groups.get(object.material.id)||{material:object.material,positions:[],normals:[],uvs:[]};
-   group.positions.push(...geo.attributes.position.array);group.normals.push(...geo.attributes.normal.array);group.uvs.push(...geo.attributes.uv.array);groups.set(object.material.id,group);parent.remove(object);object.geometry.dispose();geo.dispose();
-  }
-  for(const group of groups.values()){const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(group.positions,3));geo.setAttribute('normal',new THREE.Float32BufferAttribute(group.normals,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(group.uvs,2));mesh(geo,group.material,parent).castShadow=true;}
- }
  function line(points,color='#e8f0dd',parent=scene){const geometry=new THREE.BufferGeometry().setFromPoints(points.map(p=>new THREE.Vector3(...p)));const m=new THREE.Line(geometry,new THREE.LineBasicMaterial({color}));parent.add(m);return m;}
  function turfLine(x1,z1,x2,z2,width=.14){const dx=x2-x1,dz=z2-z1;const m=box(Math.hypot(dx,dz),.035,width,white,(x1+x2)/2,.055,(z1+z2)/2);m.rotation.y=-Math.atan2(dz,dx);return m;}
  function rectangle(x1,z1,x2,z2){turfLine(x1,z1,x2,z1);turfLine(x2,z1,x2,z2);turfLine(x2,z2,x1,z2);turfLine(x1,z2,x1,z1);}
@@ -154,53 +144,10 @@ window.D6PitchScene={create(canvas,{goalWidth=7.6,advertising}={}){
  for(const group of staticMeshes.values()){const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(group.positions,3));geo.setAttribute('normal',new THREE.Float32BufferAttribute(group.normals,3));geo.setAttribute('uv',new THREE.Float32BufferAttribute(group.uvs,2));const object=mesh(geo,group.material);object.castShadow=group.cast;object.receiveShadow=true;}
  for(const [color,points]of staticLines){const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(points,3));scene.add(new THREE.LineSegments(geo,new THREE.LineBasicMaterial({color})));}
  const numberTexture=n=>{const c=document.createElement('canvas');c.width=128;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='#142735';ctx.font='bold 100px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String(n),64,70);const texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;return texture;};
- function kitTexture(spec){
-  const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d');ctx.fillStyle=spec.main;ctx.fillRect(0,0,128,128);ctx.fillStyle=spec.trim;
-  if(spec.style==='stripe')ctx.fillRect(48,0,32,128);
-  if(spec.style==='hoops')for(const y of [20,55,90])ctx.fillRect(0,y,128,14);
-  if(spec.style==='halves')ctx.fillRect(64,0,64,128);
-  if(spec.style==='pinstripes')for(const x of [16,40,64,88,112])ctx.fillRect(x,0,4,128);
-  if(spec.style==='diagonal'){ctx.beginPath();ctx.moveTo(0,92);ctx.lineTo(92,0);ctx.lineTo(120,0);ctx.lineTo(0,120);ctx.fill();}
-  if(spec.accent){ctx.fillStyle=spec.accent;ctx.fillRect(0,8,128,6);}
-  const texture=new THREE.CanvasTexture(c);texture.colorSpace=THREE.SRGBColorSpace;return texture;
- }
  // Six players per team. Limb pivots animate the run rather than sliding discs.
  const people=[];
- function player(team,number,x,z,keeper=false,kitSpec=null){
-  const root=new THREE.Group();scene.add(root);root.position.set(x,0,z);root.scale.setScalar(1.12);
-  const kit=kitSpec?mat(kitSpec.main):keeper?mat(team===0?'#e9ac69':'#eacbe2'):team===0?lime:blue;
-  const body=new THREE.Group();root.add(body);
-  const tone=skin[(number+team)%skin.length],accent=kitSpec?mat(kitSpec.trim):team===0?dark:white;
-  const torso=mesh(new THREE.CylinderGeometry(.39,.28,.75,8),kit,body);torso.position.set(0,1.34,0);torso.scale.z=.66;torso.castShadow=true;
-  if(kitSpec){
-   const shirt=new THREE.MeshStandardMaterial({map:kitTexture(kitSpec),roughness:.9,side:THREE.DoubleSide});
-   for(const face of [-1,1]){const panel=mesh(new THREE.PlaneGeometry(.54,.67),shirt,body);panel.position.set(0,1.35,face*.258);if(face===-1)panel.rotation.y=Math.PI;}
-  }else{box(.13,.7,.03,accent,-.19,1.36,.253,body);box(.13,.7,.03,accent,.19,1.36,.253,body);}
-  cylinder(.16,.13,accent,0,1.72,0,body);
-  const neck=new THREE.Group();neck.position.y=1.78;body.add(neck);cylinder(.11,.13,tone,0,.03,0,neck);
-  box(.64,.27,.44,dark,0,.87,0,body);
-  const head=mesh(new THREE.SphereGeometry(.255,14,10),tone,neck);head.position.set(0,.26,.02);head.scale.z=.92;head.castShadow=true;
-  const hair=mesh(new THREE.SphereGeometry(.264,12,8,0,Math.PI*2,0,Math.PI*(number%3===0?.47:.36)),mat(number%3?'#30291f':'#8b6b49'),neck);hair.position.set(0,.27,.01);
-  for(const side of [-1,1]){const ear=mesh(new THREE.SphereGeometry(.055,6,4),tone,neck);ear.position.set(side*.255,.24,.015);const eye=mesh(new THREE.SphereGeometry(.018,5,4),dark,neck);eye.position.set(side*.085,.28,.236);}
-  const limbs=[],knees=[],feet=[],elbows=[];
-  for(const side of [-1,1]){
-   const leg=new THREE.Group();leg.position.set(side*.19,.89,0);body.add(leg);
-   cylinder(.105,.37,tone,0,-.22,0,leg);
-   const knee=new THREE.Group();knee.position.y=-.4;leg.add(knee);knees.push(knee);
-   cylinder(.12,.37,kit,0,-.16,0,knee);cylinder(.125,.045,accent,0,0,0,knee);
-   const foot=new THREE.Group();foot.position.y=-.38;knee.add(foot);feet.push(foot);
-   box(.22,.13,.39,dark,0,0,.10,foot);box(.23,.035,.4,number%2?white:lime,0,-.06,.10,foot);limbs.push(leg);
-   const arm=new THREE.Group();arm.position.set(side*.43,1.67,0);body.add(arm);
-   cylinder(.135,.25,kit,0,-.14,0,arm);
-   const elbow=new THREE.Group();elbow.position.y=-.27;arm.add(elbow);elbows.push(elbow);cylinder(.10,.27,tone,0,-.13,0,elbow);
-   const hand=mesh(new THREE.SphereGeometry(keeper?.12:.095,6,5),keeper?white:tone,elbow);hand.position.set(0,-.29,0);limbs.push(arm);
-  }
-  const numMaterial=new THREE.MeshBasicMaterial({map:numberTexture(number),transparent:true,depthWrite:false,side:THREE.DoubleSide});
-  const num=mesh(new THREE.PlaneGeometry(.34,.34),numMaterial,body);num.position.set(0,1.41,-.27);num.rotation.y=Math.PI;
-  box(.085,.11,.03,white,.085,1.55,.265,body);
-  for(const group of [body,neck,...limbs,...knees,...feet,...elbows])batchPlayerParts(group);
-  const shadow=mesh(new THREE.CircleGeometry(.57,20),new THREE.MeshBasicMaterial({color:'#142b1c',transparent:true,opacity:.22,depthWrite:false}),root);shadow.rotation.x=-Math.PI/2;shadow.position.y=.10;
-  const p={root,body,limbs,knees,feet,elbows,neck,team,number,keeper,base:{x,z},previous:{x,z},heading:team===0?Math.PI/2:-Math.PI/2};people.push(p);return p;
+ function player(team,number,x,z,keeper=false,kitSpec=null,appearance=null){
+  const p=D6PlayerModel.create({THREE,team,number,x,z,keeper,kit:kitSpec,appearance,numberTexture});scene.add(p.root);people.push(p);return p;
  }
  const ballRoot=new THREE.Group();scene.add(ballRoot);
  const ball=mesh(new THREE.IcosahedronGeometry(.28,2),mat('#fcfbec'),ballRoot);ball.castShadow=true;

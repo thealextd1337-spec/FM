@@ -217,7 +217,7 @@ function v98RenderScene(){
   for(const person of frame.players){
    let visual=v98Players.get(person.id);
    if(!visual){
-    visual=v98Scene.player(person.team,person.number,person.x,person.z,person.keeper,v98Kit(person.person));
+    visual=v98Scene.player(person.team,person.number,person.x,person.z,person.keeper,v98Kit(person.person),person.person.appearance);
     const label=document.createElement('button');label.type='button';label.dataset.v98Player=person.id;label.textContent=`${person.number} ${person.person.name.split(' ').at(-1)}`;label.setAttribute('aria-label',`${person.person.name} · ${v98Text('Live-Spielerinfo','Live player information')}`);$('#v98-player-labels').append(label);visual.label=label;v98Players.set(person.id,visual);
    }
    if(visual.turned!==frame.turned||Math.hypot(person.x-visual.previous.x,person.z-visual.previous.z)>4){

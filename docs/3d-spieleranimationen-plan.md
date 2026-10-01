@@ -1,8 +1,14 @@
 # Detailliertere Spieleranimationen in der 3D-Ansicht
 
-Stand: 1. Oktober 2026. Grundblöcke als Prototyp 102 und die nächste Ausbaustufe als Prototyp 103/104 umgesetzt. Die ursprüngliche Planung ist unten als Referenz erhalten. Die Erweiterung betrifft die 3D-Spieldarstellung der Vereinswelt im Querformat. Der bestehende stilisierte Look und die nahe TV-Kamera bleiben Grundlage.
+Stand: 1. Oktober 2026. Grundblöcke als Prototyp 102 und Laufkontakt/Übergänge als Prototyp 103/104 umgesetzt. Natürlichere Spielermodelle sind lokal als Prototyp 105 umgesetzt, noch nicht veröffentlicht. Die ursprüngliche Planung ist unten als historische Referenz erhalten; ihre Ausgangslage beschreibt den Stand vor 102. Die Erweiterung betrifft die 3D-Spieldarstellung der Vereinswelt im Querformat. Die nahe TV-Kamera bleibt Grundlage.
 
-## Nächster Block: Laufkontakt und Übergänge (103)
+## Aktuelle Priorität: Modellqualität vor weiteren Zweikämpfen (105)
+
+Auf Nutzerwunsch haben natürlichere Sportspielermodelle Vorrang vor den vorgeschlagenen zusätzlichen Zweikampf- und Grätschenanimationen. Körperproportionen, Silhouette, Gesicht, Hände und Schuhe sollen auch in der nahen TV-Kamera überzeugender wirken. Der Ausbau bleibt für Mobilgeräte begrenzt und verwendet die bestehende Gelenk- und Aktionsstruktur.
+
+Version 105 ersetzt die kantigeren Körperformen durch organische Konturen und setzt vorhandene Haut-, Haar- und Gesichtsmerkmale im 3D-Modell um. Die Figuren bleiben stilisiert. Die lokale visuelle Prüfung bestätigt die verbesserte Silhouette sowie Gesichter und Schuhe; die subjektive Freigabe durch den Nutzer und die Laufzeitprüfung auf echter Mobilhardware stehen aus. Umsetzung, Budgets und Belege stehen unter [3D-Spielermodelle](3d-spielermodelle.md). Weitere Zweikampf- und Grätschenanimationen folgen erst nach dieser Modellpriorität und erhalten einen eigenen Umfang.
+
+## Umgesetzt: Laufkontakt und Übergänge (103/104)
 
 Auf Nutzerwunsch umgesetzt: Der Laufzyklus erhält eine längere Standphase mit bodennahem Schuh und eine angehobene Rückführphase. Hüfte und Knie lösen die gewünschte Fußbahn gemeinsam; Version 104 stimmt die Unterschenkellänge und die Zielhöhe auf die tatsächliche Rasenoberkante ab; das Fußgelenk gleicht die Beindrehung aus. Schrittlänge und Strecke bleiben gekoppelt, der Rumpf federt dezent mit. Geschwindigkeit, Pause und Seitenwechsel verwenden weiterhin die bestehende Präsentationslogik.
 
