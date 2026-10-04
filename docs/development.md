@@ -8,6 +8,8 @@ Für die Expansion auf sechs Länder müssen bisherige Spielstände nicht kompat
 
 ## Code, Prüfung und Veröffentlichung
 
+- Am 5. Oktober 2026 als [Prototyp 106 live veröffentlicht](https://fussball.cakamper.at/). [Deployment und alle automatischen Spieltests](https://github.com/thealextd1337-spec/FM/actions/runs/37238139947) erfolgreich. Quellseite, Build und Live-Seite zeigen Version 106; die Live-Datei entspricht dem geprüften Build (SHA-256 `2b121e2deccf1efc5118fa853f209d304e74fd5b448ccb2c2eb61991c303fc8e`). Zwölf Simulationsteams ohne Vereinswirtschaft, 36 Ligavereine, Budgetfolge und DE/EN wurden zusätzlich direkt live mit isoliertem Testspielstand geprüft.
+
 - `work/verify-finance-live-v106.cjs` prüft nach dem Deployment die exakte SHA-256-Gleichheit der Live-Datei mit dem lokalen Build, Versionsnummer 106, zwölf Simulationsteams ohne Buchungen, 36 Ligavereine, Budgetfolge und DE/EN in einem isolierten Browserprofil.
 
 - Finanzveröffentlichung 106: Hauptzweig auf Grundlage von Prototyp 97, ausschließlich Finanz-/Pokalvereinsregeln und ihre Dokumentation. Der separate 3D-Vorschauzweig bleibt eigenständig. Neue Zahlungen und Simulationsteams gelten nur für neu angelegte Welten.

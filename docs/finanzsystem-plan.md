@@ -1,6 +1,6 @@
 # Finanzsystem: Zahlungsplan für die Vereinswelt
 
-Stand: 4. Oktober 2026. Die Zahlungstermine sind bestätigt und für Prototyp 106 umgesetzt. Der neue Ablauf gilt nur für neu gestartete Karrieren; bestehende Karrieren bleiben unverändert. Der [Zehn-Saisonen-Test mit grafischem Finanzbericht](finanzsystem-test-v124.md) dokumentiert Ergebnisse und Grenzen.
+Stand: 5. Oktober 2026. Die Zahlungstermine sind bestätigt und als Prototyp 106 live veröffentlicht. Der neue Ablauf gilt nur für neu gestartete Karrieren; bestehende Karrieren bleiben unverändert. Der [Zehn-Saisonen-Test mit grafischem Finanzbericht](finanzsystem-test-v124.md) dokumentiert Ergebnisse und Grenzen.
 
 ## Bestätigte Entscheidungen
 

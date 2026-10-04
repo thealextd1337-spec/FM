@@ -1,8 +1,10 @@
 # Vereinsfinanzen über zehn Saisonen
 
-Stand: 4. Oktober 2026. Veröffentlichungsprüfung für Prototyp 106 mit dem bestätigten Zahlungsplan und reinen Pokal-Simulationsteams. Dieser erneute vollständige Lauf ersetzt die vorherige Auswertung mit wirtschaftenden Pokalvereinen.
+Stand: 5. Oktober 2026. Der bestätigte Zahlungsplan und die reinen Pokal-Simulationsteams sind als Prototyp 106 veröffentlicht. Dieser vollständige Lauf ersetzt die vorherige Auswertung mit wirtschaftenden Pokalvereinen.
 
 ## Ergebnis
+
+Am 5. Oktober 2026 als [Prototyp 106 live veröffentlicht](https://fussball.cakamper.at/). [Deployment und alle automatischen Spieltests](https://github.com/thealextd1337-spec/FM/actions/runs/37238139947) erfolgreich. Quellseite, Build und Live-Seite zeigen Version 106; die Live-Datei entspricht dem geprüften Build (SHA-256 `2b121e2deccf1efc5118fa853f209d304e74fd5b448ccb2c2eb61991c303fc8e`). Zwölf Simulationsteams ohne Vereinswirtschaft, 36 Ligavereine, Budgetfolge und DE/EN wurden zusätzlich direkt live mit isoliertem Testspielstand geprüft.
 
 Der neue Zahlungsplan ist umgesetzt. Er gilt ausschließlich für neu gestartete Karrieren. Gehälter bleiben am Saisonende fällig. Bestehende Karrieren behalten ihre bisherigen Zahlungstermine und werden nicht nachberechnet.
 
