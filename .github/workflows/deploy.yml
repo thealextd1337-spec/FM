@@ -81,6 +81,7 @@ jobs:
           node work/test-world-player-instructions.cjs
           node work/test-world-physical-instructions.cjs
           node work/test-world-career-plan.cjs
+          node work/test-world-payments-v124.cjs
           node work/test-world-economy-v66.cjs
           node work/test-world-sponsors-v97.cjs
           node work/test-world-career-events.cjs

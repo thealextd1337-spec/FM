@@ -452,6 +452,33 @@ Gehalt	Salary
 Vertrag	Contract
 Verträge	Contracts
 Finanzen	Finances
+Simulationsteam	Simulation team
+Simulationsteam ohne Vereinswirtschaft	Simulation team without club finances
+Karriere beendet	Career ended
+Karriereenden	Retirements
+Profis von Ligavereinen und vereinslose Spieler sind sichtbar. Reine Simulationsteams nehmen nicht am Transfermarkt teil.	Professionals from league clubs and free agents are shown. Simulation teams do not participate in the transfer market.
+Sichere Schlussprognose	Guaranteed closing forecast
+Mit möglichen Sponsorboni	With possible sponsor bonuses
+Nächste Zahlung	Next payment
+Jugendbudget festlegen	Set youth budget
+Budget bezahlen und Transfers öffnen	Pay youth budget and open transfers
+Grundbetrag und Sponsorfixum sind eingegangen. Das Jugendbudget wird jetzt vollständig bezahlt. Danach beginnt die Transferphase.	The base income and sponsor payment have arrived. The full youth budget is paid now. The transfer window opens next.
+Die Gehälter bleiben am Saisonende fällig. Mögliche Erfolgsprämien sind noch nicht verdient.	Salaries remain due at season end. Possible performance bonuses have not been earned yet.
+In der neuen Saison erhält dein Verein zuerst den Grundbetrag. Nach der Sponsorwahl legst du das Jugendbudget fest.	In the new season, your club receives its base income first. You set the youth budget after choosing a sponsor.
+Die Prognose berücksichtigt noch unbezahlte sichere Einnahmen und vereinbarte Gehälter. Weitere sportliche Erfolge und künftige Transfers sind nicht enthalten.	The forecast includes unpaid guaranteed income and agreed salaries. Further sporting success and future transfers are not included.
+Kontostand danach	Balance after payment
+noch ungewiss	still uncertain
+Sponsorfixum · mindestens	Sponsor payment · minimum
+Ligaprämie · mindestens Platz 6	League prize · at least sixth place
+Nationaler Pokal · Viertelfinale	National cup · quarter-final
+Nationaler Pokal · Halbfinale erreicht	National cup · semi-final reached
+Nationaler Pokal · Finale erreicht	National cup · final reached
+Nationaler Pokal · Pokalsieg	National cup · title
+Europacup · Spielprämie	European cup · match payment
+Europacup · Titelbonus	European cup · title bonus
+Zuerst Sponsor, Jugendbudget und Transfers abschließen.	Complete the sponsor choice, youth budget and transfers first.
+Das Jugendbudget wurde bereits gebucht.	The youth budget has already been paid.
+Jugendbudget wird gespeichert …	Saving youth budget …
 Kontostand	Balance
 Sponsoren	Sponsors
 Nachwuchs	Youth players
@@ -1324,6 +1351,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(\d+) angezeigt$/,(_,n)=>`${n} shown`],
   [/^Sponsor für Saison (\d+) wählen$/,(_,n)=>`Choose sponsor for season ${n}`],
   [/^Jugendbudget für Saison (\d+)$/,(_,n)=>`Youth budget for season ${n}`],
+  [/^Saison (\d+) vorbereiten$/,(_,n)=>`Prepare season ${n}`],
   [/^Ende Saison (\d+)$/,(_,n)=>`End of season ${n}`],
   [/^Transfertag (\d+) von (\d+) läuft$/,(_,day,total)=>`Transfer day ${day} of ${total} is in progress`],
   [/^Angebot für (?!.* planen$)(.+)$/,(_,name)=>`Offer for ${name}`],

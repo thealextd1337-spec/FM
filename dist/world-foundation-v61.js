@@ -150,7 +150,7 @@ function v61ValidateCareer(career){
  const players=clubs.flatMap(club=>club.roster||[]);
  if([...players,...(career.world.market?.freePlayers||[])].some(player=>!Array.isArray(player.honours)))return false;
  if([...players,...clubs.flatMap(club=>club.youthPool||[]),...(career.world.market?.freePlayers||[])].some(player=>player.appearance&&!v61ValidAppearance(player.appearance)))return false;
- const marketOpen=career.world.seasonFinished||['sponsor','open','deadline'].includes(career.world.market?.phase);
+ const marketOpen=career.world.seasonFinished||['sponsor','open','deadline',...(career.world.paymentSchedule===1?['budget']:[])].includes(career.world.market?.phase);
  if(clubs.some(club=>!Array.isArray(club.roster)||club.roster.length>14||!marketOpen&&(club.roster.length<10||club.roster.filter(player=>player.keeper).length<1))||new Set(players.map(player=>player.pid)).size!==players.length)return false;
  if(!v61Countries.every(([id])=>clubs.filter(club=>club.countryId===id&&club.leagueId).length===6&&clubs.filter(club=>club.countryId===id&&!club.leagueId).length===2))return false;
  return (typeof v66Validate!=='function'||v66Validate(career))&&(typeof v67Validate!=='function'||v67Validate(career));

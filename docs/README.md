@@ -2,6 +2,9 @@
 
 ## Inhalt
 
+- [Finanzsystem – Zahlungsplan](finanzsystem-plan.md): bestätigte Zahlungstermine und reine Pokal-Simulationsteams; neue Karrieren ab Prototyp 106.
+- [Vereinsfinanzen über zehn Saisonen](finanzsystem-test-v124.md): interaktive Kontostände, Einnahmen und Ausgaben je Ligaverein; Schwerpunkt ohne Europacup.
+
 - [Sponsoren – sechs nationale Kataloge](sponsoren-entwuerfe/README.md): 36 eigene Namen und SVG-Logos, kompakte Bildzeichen und interaktive Angebotskarten mit Länderwechsel und Werbebandenvorschau.
 
 - [Vereinswappen – 48 neue Entwürfe](wappen-entwuerfe/README.md): sechs Ländertafeln mit unterschiedlichen Bildzeichen, Formen und Schriftstilen; Gestaltungsvorschläge vor der technischen Übernahme.

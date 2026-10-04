@@ -31,7 +31,7 @@ function v66BaseIncome(club){return 1410+club.policy.fans*105+(club.leagueId?0:1
 function v66Club(career,id){return career.world.clubs.find(club=>club.id===id)}
 function v66Contract(career,pid){return career.world.contracts.find(contract=>contract.pid===pid)}
 function v66Owner(career,pid){return career.world.clubs.find(club=>club.roster.some(player=>player.pid===pid))||null}
-function v66Player(career,pid){const owner=v66Owner(career,pid);return owner?.roster.find(player=>player.pid===pid)||career.world.market.freePlayers.find(player=>player.pid===pid)}
+function v66Player(career,pid){const owner=v66Owner(career,pid);return owner?.roster.find(player=>player.pid===pid)||career.world.market.freePlayers.find(player=>player.pid===pid)||career.world.clubs.flatMap(club=>club.retiredPlayers||[]).find(player=>player.pid===pid)}
 // Additive Aufzeichnung: alte Spielstände erhalten erst beim nächsten Ereignis ein Teilprotokoll.
 function v66EventPoint(career,day=Math.max(0,career.world.calendarCursor)){
  return{season:career.world.season,day,transferDay:['sponsor','open','deadline'].includes(career.world.market?.phase)?career.world.market.day:null};
@@ -118,10 +118,11 @@ function v66RefreshMarketValues(career,checkpoint){
 }
 function v66Book(career,clubId,id,amount,label){
  const club=v66Club(career,clubId);if(!club)throw Error('Verein nicht gefunden.');
+ if(club.simulationOnly)return false;
  if(club.ledger.some(item=>item.id===id))return false;
  if(!Number.isFinite(amount))throw Error('Ungültiger Geldbetrag.');
  amount=Math.round(amount);club.balance+=amount;
- club.ledger.push({id,season:career.world.season,day:career.world.calendarCursor,amount,label});
+ club.ledger.push({id,season:career.world.season,day:career.world.paymentSchedule===1?Math.max(0,career.world.calendarCursor):career.world.calendarCursor,amount,label,...(career.world.paymentSchedule===1?{balanceAfter:club.balance}:{})});
  return true;
 }
 function v66MakeSponsors(career,club){
@@ -169,6 +170,7 @@ function v66StartSeason(career){
   v66CompactLedger(club,season);
   club.salaryDue=0;club.sponsors=v66MakeSponsors(career,club);club.sponsorId=null;
   for(const contract of world.contracts.filter(item=>item.clubId===club.id)){
+   if(club.simulationOnly)contract.endSeason=season+1;
    contract.startsAt=0;contract.promiseHits=0;contract.promisePenalty=0;contract.lastPromiseCheck=0;
   }
   v66Book(career,club.id,`S${season}:${club.id}:base`,v66BaseIncome(club),'Jahresgrundbetrag');
@@ -184,11 +186,12 @@ function v66Init(career){
  v66InitCareerEvents(career,true);
  for(const club of world.clubs){
   const random=v61Random(`${world.seed}:${club.id}:finance`);
-  club.balance=Math.round((1150+club.policy.fans*175+club.policy.tradition*100+(random()-.5)*260)/10)*10;
+  club.balance=club.simulationOnly?0:Math.round((1150+club.policy.fans*175+club.policy.tradition*100+(random()-.5)*260)/10)*10;
   club.salaryDue=0;club.restructuring=false;
   club.ledger=[];
   club.roster.forEach((player,index)=>{
    const years=index===7?1:[1,4,9].includes(index)?2:3;
+   if(club.simulationOnly){world.contracts.push(v124SimulationContract(career,club,player));return}
    world.contracts.push({id:`S1:${player.pid}:initial`,pid:player.pid,clubId:club.id,annual:v66Salary(player),fromSeason:1,endSeason:years,startsAt:0,promise:club.leagueId?Math.min(6,2+Math.round(v66Skill(player)/5)):0,promiseHits:0,promisePenalty:0,lastPromiseCheck:0,renewalOffers:0});
   });
  }
@@ -213,17 +216,18 @@ function v66SettleSection(career,contract,day){
 }
 function v66CanAfford(career,clubId,price,annual,player=null){
  const club=v66Club(career,clubId),own=clubId===career.manager.managedClubId;
- if(!club||price>0&&(club.balance<price||club.restructuring))return false;
+ if(!club||club.simulationOnly||price>0&&(club.balance<price||club.restructuring))return false;
  if(club.restructuring&&price===0){
   if((club.roster.length>=10&&!(player&&!player.keeper&&club.roster.filter(item=>!item.keeper).length<5))||annual>220)return false;
   if(own)return true;
  }
  if(own)return true;
- const projected=club.balance-price+v66LeaguePrizes[5]-(v66SalaryDue(career,clubId)+annual);
+ const projected=club.balance-price+(career.world.paymentSchedule===1?v124LeagueRemaining(career,club):v66LeaguePrizes[5])-(v66SalaryDue(career,clubId)+annual);
  return projected>=0;
 }
 function v66MakeBid(career,buyerId,pid,price,annual,years,promise=0,offerDay=null){
  const market=career.world.market,buyer=v66Club(career,buyerId),seller=v66Owner(career,pid),player=v66Player(career,pid);
+ if(buyer?.simulationOnly||seller?.simulationOnly||player?.retiredSeason)throw Error('Simulationsteams und ausgeschiedene Spieler nehmen nicht am Transfermarkt teil.');
  if(!(market.phase==='open'||market.phase==='closed'&&!seller&&!career.world.seasonFinished)||!player||!buyer||seller?.id===buyerId)throw Error('Dieses Angebot ist außerhalb der Transferphase nicht möglich.');
  if(buyer.roster.length>=14)throw Error('Der Kader hat bereits 14 Profis.');
  if(buyerId!==career.manager.managedClubId&&player.keeper&&buyer.roster.filter(item=>item.keeper).length>=3)throw Error('Computermannschaften dürfen höchstens drei Torhüter im Kader haben.');
@@ -263,6 +267,7 @@ function v66BidAppeal(career,bid){const club=v66Club(career,bid.buyerId);return 
 function v66Transfer(career,bid){
  if(career.world.transfers.some(event=>event.id===bid.id))return v66Player(career,bid.pid);
  const world=career.world,market=world.market,buyer=v66Club(career,bid.buyerId),seller=bid.sellerId&&v66Club(career,bid.sellerId),player=v66Player(career,bid.pid),old=v66Contract(career,bid.pid);
+ if(buyer?.simulationOnly||seller?.simulationOnly||player?.retiredSeason)throw Error('Simulationsteams und ausgeschiedene Spieler nehmen nicht am Transfermarkt teil.');
  if(!player||buyer.roster.length>=14||buyer.id!==career.manager.managedClubId&&player.keeper&&buyer.roster.filter(item=>item.keeper).length>=3||seller&&!seller.roster.some(item=>item.pid===bid.pid)||!v66CanAfford(career,buyer.id,bid.price,bid.annual,player))throw Error('Das Angebot ist inzwischen nicht mehr ausführbar.');
  const day=market.phase==='closed'?bid.placedDay+1:Math.max(0,world.calendarCursor),event=bid.id;
  if(seller){v66SettleSection(career,old,day);seller.roster=seller.roster.filter(item=>item.pid!==bid.pid);v66Book(career,seller.id,`${event}:sale`,bid.price,`Verkauf ${player.name}`)}
@@ -322,13 +327,13 @@ function v66RespondBid(career,id,accept){
 function v66AiPropose(career){
  const market=career.world.market;if(market.phase!=='open')return;
  const random=v61Random(`${career.world.seed}:S${career.world.season}:D${market.day}:ai-market`);
- const clubs=v62Shuffle(career.world.clubs.filter(club=>club.id!==career.manager.managedClubId),`${career.world.seed}:S${career.world.season}:D${market.day}:buyers`);
+ const clubs=v62Shuffle(career.world.clubs.filter(club=>!club.simulationOnly&&club.id!==career.manager.managedClubId),`${career.world.seed}:S${career.world.season}:D${market.day}:buyers`);
  for(const buyer of clubs){
   const needKeeper=!buyer.roster.some(player=>player.keeper);
   if(buyer.roster.length>=14||!needKeeper&&buyer.roster.length>=10&&random()>.12)continue;
   const lines=buyer.roster.filter(player=>player.keeper).length>=3||buyer.roster.filter(player=>!player.keeper).length<5?['def','mid','att']:['gk','def','mid','att'];
   const desired=needKeeper?'gk':lines.sort((a,b)=>buyer.roster.filter(item=>item.line===a).length-buyer.roster.filter(item=>item.line===b).length)[0];
-  const free=market.freePlayers.filter(player=>player.line===desired),sellers=career.world.clubs.filter(club=>club.id!==buyer.id&&club.roster.length>10).flatMap(club=>club.roster.filter(player=>player.line===desired&&!market.saleListings?.some(listing=>listing.pid===player.pid&&listing.status==='active')).map(player=>({player,club})));
+  const free=market.freePlayers.filter(player=>player.line===desired),sellers=career.world.clubs.filter(club=>!club.simulationOnly&&club.id!==buyer.id&&club.roster.length>10).flatMap(club=>club.roster.filter(player=>player.line===desired&&!market.saleListings?.some(listing=>listing.pid===player.pid&&listing.status==='active')).map(player=>({player,club})));
   const candidates=[...free.map(player=>({player,club:null})),...sellers];if(!candidates.length)continue;
   // Ligavereine suchen im stärkeren Teil des Markts und halten für die Saison Kostenreserve.
   const shortlist=buyer.leagueId?[...candidates].sort((a,b)=>v66Skill(b.player)-v66Skill(a.player)||a.player.pid.localeCompare(b.player.pid)).slice(0,Math.max(6,Math.ceil(candidates.length/3))):candidates;
@@ -385,7 +390,7 @@ function v66NextMarketDay(career){
   if(typeof v72HasPending==='function'&&v72HasPending(career)){if(market.phase==='deadline')throw Error('Bitte öffne die laufenden Verhandlungen und schließe sie ab.');market.phase='deadline';if(typeof v72ReleaseResults==='function')v72ReleaseResults(career);return}
   const own=v66Club(career,career.manager.managedClubId);
   if(!v66PlayableRoster(own))throw Error('Für den Saisonstart brauchst du mindestens zehn Profis, einen Torwart und fünf Feldspieler. Der letzte Transfertag bleibt offen.');
-  for(const club of career.world.clubs.filter(item=>item.id!==own.id)){
+  for(const club of career.world.clubs.filter(item=>!item.simulationOnly&&item.id!==own.id)){
    while(club.roster.filter(player=>player.keeper).length>3){const keeper=club.roster.filter(player=>player.keeper).sort((a,b)=>v66Skill(a)-v66Skill(b)||a.pid.localeCompare(b.pid))[0];v66ReleaseKeeper(career,club,keeper)}
    if(club.roster.length<10&&typeof v67AiFillOutfieldFromYouth==='function')v67AiFillOutfieldFromYouth(career,club);
    if(!v66PlayableRoster(club))try{v66EmergencySign(career,club)}catch(error){
@@ -405,6 +410,7 @@ function v66NextMarketDay(career){
  if(typeof v72ReleaseResults==='function')v72ReleaseResults(career);
 }
 function v66EmergencySign(career,club){
+ if(club.simulationOnly)return;
  const market=career.world.market;
  while(!v66PlayableRoster(club)){
   const needKeeper=!club.roster.some(player=>player.keeper),needField=club.roster.filter(player=>!player.keeper).length<5,candidates=market.freePlayers.filter(player=>needKeeper?player.keeper:needField?!player.keeper:!player.keeper||club.roster.filter(item=>item.keeper).length<3).sort((a,b)=>v66Salary(a)-v66Salary(b));
@@ -480,7 +486,7 @@ function v66AfterFixture(career,fixture){
 }
 function v66AiSeasonOffer(career,clubId,day,fixtureId){
  const club=v66Club(career,clubId),market=career.world.market;
- if(market.phase!=='closed'||clubId===career.manager.managedClubId||club.roster.length>=12||day>=v62Days.seasonEnd-1)return;
+ if(club.simulationOnly||market.phase!=='closed'||clubId===career.manager.managedClubId||club.roster.length>=12||day>=v62Days.seasonEnd-1)return;
  const random=v61Random(`${career.world.seed}:${fixtureId}:${clubId}:free-offer`);
  if(club.roster.length>=10&&random()>.075)return;
  const lines=club.roster.filter(player=>player.keeper).length>=3||club.roster.filter(player=>!player.keeper).length<5?['def','mid','att']:['gk','def','mid','att'];
@@ -509,12 +515,13 @@ function v66SeasonEnd(career){
  career.world.seasonReviewClubId=career.manager.managedClubId;
  const competitions=v62Current(career);
  for(const club of career.world.clubs){
+  if(club.simulationOnly)continue;
   const league=club.leagueId&&competitions.find(item=>item.id===`S${season}:${club.countryId}:LEAGUE`),cup=competitions.find(item=>item.id===`S${season}:${club.countryId}:CUP`),europe=competitions.find(item=>item.type==='europe');
   if(league){const ids=career.world.clubs.filter(item=>item.leagueId===club.leagueId).map(item=>item.id),rank=v62Table(league,ids).findIndex(row=>row.clubId===club.id);v66Book(career,club.id,`S${season}:${club.id}:league-prize`,v66LeaguePrizes[rank],`Ligaprämie · Platz ${rank+1}`)}
   const rounds=cup.fixtures.filter(item=>item.homeId===club.id||item.awayId===club.id).map(item=>item.round),cupPrize=rounds.includes('F')?(cup.winnerId===club.id?270:150):rounds.includes('SF')?90:40;
-  v66Book(career,club.id,`S${season}:${club.id}:cup-prize`,cupPrize,'Nationale Pokalprämie');
+  if(career.world.paymentSchedule!==1)v66Book(career,club.id,`S${season}:${club.id}:cup-prize`,cupPrize,'Nationale Pokalprämie');
   const european=europe.fixtures.filter(item=>item.result&&(item.homeId===club.id||item.awayId===club.id));
-  if(european.length)v66Book(career,club.id,`S${season}:${club.id}:europe-prize`,european.length*42+(europe.winnerId===club.id?350:0),'Europacup-Prämie');
+  if(career.world.paymentSchedule!==1&&european.length)v66Book(career,club.id,`S${season}:${club.id}:europe-prize`,european.length*42+(europe.winnerId===club.id?350:0),'Europacup-Prämie');
   const sponsor=club.sponsors.find(item=>item.id===club.sponsorId);
   for(let index=0;index<sponsor.goals.length;index++)if(v66SponsorMet(career,club,sponsor.goals[index]))v66Book(career,club.id,`${sponsor.id}:bonus:${index}`,sponsor.goals[index].bonus,`Sponsorbonus: ${sponsor.goals[index].label}`);
   const salary=v66SalaryDue(career,club.id);v66Book(career,club.id,`S${season}:${club.id}:salary`,-salary,'Jahresgehälter');club.salaryDue=0;
@@ -522,7 +529,7 @@ function v66SeasonEnd(career){
   else if(club.balance<0&&!club.restructuring)throw Error(`KI-Verein ${club.name} ist zahlungsunfähig.`);
  }
  const market=career.world.market;
- for(const contract of [...career.world.contracts].filter(item=>item.endSeason===season)){
+ for(const contract of [...career.world.contracts].filter(item=>!item.simulationOnly&&item.endSeason===season)){
   const club=v66Club(career,contract.clubId),player=club.roster.find(item=>item.pid===contract.pid),random=v61Random(`${career.world.seed}:S${season}:${contract.pid}:ai-renewal`);
   const renewedAnnual=Math.round(Math.max(contract.annual,v66Salary(player))*1.035/10)*10;
   const futureWages=career.world.contracts.filter(item=>item.clubId===club.id&&item.pid!==contract.pid&&item.endSeason>season).reduce((sum,item)=>sum+item.annual,renewedAnnual);
@@ -543,10 +550,17 @@ function v66SeasonEnd(career){
 }
 function v66Validate(career){
  if(!v66ValidateCareerEvents(career))return false;
- const world=career.world,market=world.market;if(!market||!['sponsor','open','deadline','closed'].includes(market.phase)||!Array.isArray(world.contracts)||!Array.isArray(market.freePlayers))return false;
+ const world=career.world,market=world.market;if(!market||!['sponsor','open','deadline','closed',...(world.paymentSchedule===1?['budget']:[])].includes(market.phase)||!Array.isArray(world.contracts)||!Array.isArray(market.freePlayers))return false;
+ if(world.paymentSchedule!==undefined&&world.paymentSchedule!==1)return false;
+ if(world.paymentSchedule===1&&(typeof world.youthBudgetPending!=='boolean'||market.phase==='budget'&&(!world.youthBudgetPending||!v66Club(career,career.manager.managedClubId)?.sponsorId)))return false;
+ if(world.paymentSchedule===1&&world.youthBudgetPending!==['sponsor','budget'].includes(market.phase))return false;
  const roster=world.clubs.flatMap(club=>club.roster),all=[...roster,...market.freePlayers],ids=all.map(player=>player.pid),contractIds=world.contracts.map(item=>item.pid);
  if(new Set(ids).size!==ids.length||new Set(contractIds).size!==contractIds.length||contractIds.length!==roster.length)return false;
  if(world.clubs.some(club=>!Number.isFinite(club.balance)||!Number.isFinite(club.salaryDue)||!Array.isArray(club.ledger)||!Array.isArray(club.sponsors)||club.sponsors.length!==3))return false;
- if(world.contracts.some(item=>!v66Owner(career,item.pid)||v66Owner(career,item.pid).id!==item.clubId||item.endSeason<world.season||item.annual<60))return false;
+ if(world.contracts.some(item=>!v66Owner(career,item.pid)||v66Owner(career,item.pid).id!==item.clubId||item.endSeason<world.season||(v66Club(career,item.clubId).simulationOnly?item.annual!==0||!item.simulationOnly:item.annual<60||item.simulationOnly)))return false;
+ if(world.clubs.some(club=>club.simulationOnly&&(world.paymentSchedule!==1||club.leagueId||club.balance!==0||club.salaryDue!==0||club.ledger.length||!Array.isArray(club.retiredPlayers)||club.youthPool.length||club.youthBudget!==0||club.youthInvestmentHistory.length)))return false;
+ const retired=world.clubs.flatMap(club=>club.retiredPlayers||[]),retiredIds=retired.map(player=>player.pid);
+ if(new Set(retiredIds).size!==retiredIds.length||retiredIds.some(pid=>ids.includes(pid))||retired.some(player=>!Number.isInteger(player.retiredSeason)||player.retiredSeason<1||player.retiredSeason>world.season))return false;
+ if(world.clubs.some(club=>club.simulationOnly&&[...club.roster,...club.retiredPlayers].some(player=>!Number.isInteger(player.retirementAge)||player.retirementAge<33||player.retirementAge>38)))return false;
  return market.freePlayers.every(player=>!world.contracts.some(item=>item.pid===player.pid));
 }

@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-10-04 (Prototyp 106 · Finanzsystem und reine Pokalvereine)
+
+- Finanzsystem v124: Neue Karrieren zahlen nationale Pokalprämien bei Teilnahme und erreichtem Erfolg, Europacupprämien nach jeder Partie und Ligaprämien nach Ligaabschluss. Nach dem Sponsorfixum wird das Jugendbudget festgelegt und bezahlt, auch in Saison 1; Gehälter und Sponsorboni bleiben am Saisonende fällig. Die Finanzansicht zeigt Buchungsdatum, Kontostand nach Zahlung und Prognosen mit sicheren Einnahmen beziehungsweise noch erreichbaren Sponsorboni. Die zwölf reinen Pokalvereine sind in neuen Karrieren Simulationsteams ohne Einnahmen, Ausgaben, Gehälter oder Transfers. Kader und Statistiken bleiben erhalten; Karriereenden zwischen 33 und 38 Jahren werden kostenlos ersetzt, ausgeschiedene Spieler bleiben im Vereinsprofil abrufbar. Bestehende Karrieren behalten ihren Ablauf ohne Nachberechnung. Der erneute Test mit sechs Seeds über je zehn Saisonen für bisherigen/neuen Ablauf ergab 5.760 geprüfte Vereinsjahre und 31.080 Partien ohne neue KI-Schulden oder doppelte Prämien; 720 Pokalvereinsjahre ohne Buchungen und 425 automatische Karriereersetzungen geprüft. [Grafischer Finanzbericht und Ergebnisse](finanzsystem-test-v124.md) zeigen Kontostände und Einnahmen/Ausgaben je Ligaverein: ohne Europacup in Saison 10 durchschnittlich 2.427 Credits Rücklagen, aber 14 von 20 Vereinsfällen mit Jahresverlust. Zahlungs-, Karriere-, Transfer-, Speicher-, Match-, Mobil-, DE/EN- und Offlineprüfungen bestanden; Veröffentlichungsstand Prototyp 106.
+
 ## 2026-09-30 (Prototyp 97 · Nationale Sponsoren)
 
 - Die Vereinswelt verwendet 36 fiktive Sponsormarken mit eigenen Namen, Wortmarken und Bildzeichen: sechs je Land. Neue Saisonangebote wählen drei Marken aus dem jeweiligen nationalen Katalog. Angebotskarten und der gewählte Vertrag zeigen die Wortmarke; Spielvorbereitung und die vier Werbebanden des Heimvereins verwenden das kompakte Bildzeichen mit Namen. Marken bleiben bei einem Sprachwechsel unverändert. Ligatorziele heißen schlicht „mindestens … Tore“.
