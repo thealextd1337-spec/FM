@@ -100,7 +100,7 @@ draw=function(){
  const result=v103BaseDraw();v103ReplayUI();v131ReviewUI();return result;
 };
 const v103BaseDispose=v98Dispose;
-v98Dispose=function(){v132StopReview();if(v98Match)v103EndReplay(v98Match);return v103BaseDispose()};
+v98Dispose=function(){v132StopReview();if(!v98IsWorld()||v132HalfFullscreenMatch!==match)v132HalfFullscreenMatch=null;if(v98Match)v103EndReplay(v98Match);return v103BaseDispose()};
 document.addEventListener('visibilitychange',()=>{if(document.hidden)v132StopReview();if(match&&v103Replays.get(match)?.active)v103ReplayUI();v131ReviewUI()});
 const v103BaseControls=v65UpdateControls;
 v65UpdateControls=function(...args){const result=v103BaseControls(...args);v103ReplayUI();v131ReviewUI();return result};
@@ -177,6 +177,26 @@ function v131ReviewUI(){
 new MutationObserver(()=>{if(match&&v103Replays.get(match)?.active)v103ReplayUI()}).observe(v47PlayerDialog,{attributes:true,attributeFilter:['open']});
 // Broadcast snapshots travel with pictures, never with a second match simulation.
 let v132ScreenMatch=null,v132ScreenScroll=0,v132NativeScreen=false,v132ControlsTimer=0;
+let v132HalfFullscreenMatch=null;
+const v136BasePause=v65Pause;
+v65Pause=function(...args){
+ // Leave before the tactics layout hides the native fullscreen element.
+ if(v65Context()?.state.phase==='live'&&match?.halftimePause>0&&!match.flight&&!match.slide&&(document.body.classList.contains('v132-fullscreen')||document.fullscreenElement===$('#match-area'))){
+  v132HalfFullscreenMatch=match;v132LeaveFullscreen();
+ }
+ return v136BasePause(...args);
+};
+const v136BaseResume=v65Resume;
+v65Resume=function(...args){
+ const current=match,restore=current&&v132HalfFullscreenMatch===current&&current.halftimePause>0&&v65Context()?.state.phase==='paused';
+ const result=v136BaseResume(...args);
+ if(restore&&match===current&&v65Context()?.state.phase==='live'){
+  v132HalfFullscreenMatch=null;
+  // The start button's gesture also authorizes the native fullscreen request.
+  if(!document.body.classList.contains('v132-fullscreen'))v132ToggleFullscreen();
+ }
+ return result;
+};
 function v132RevealControls(stage=$('#match-area .v42-pitch-stage')){
  if(!stage)return;clearTimeout(v132ControlsTimer);stage.classList.add('v132-show-controls');v132ControlsTimer=setTimeout(()=>stage.classList.remove('v132-show-controls'),2500);
 }

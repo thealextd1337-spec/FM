@@ -1,6 +1,6 @@
 # Doppel 6's 3D system
 
-System state: match fixes v133 and mobile rendering v135, game version 108. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
+System state: match fixes v133, mobile rendering v135 and halftime fullscreen v136, game version 109. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
 
 ## Shared simulation and presentation
 
@@ -73,3 +73,5 @@ Reproducible scenarios cover both team directions. Native pose tests include 30,
 The v133 acceptance includes 24 new keeper-facing sequences, related Meshy, foul and slide checks, and two full matches with 15,972 rendered frames without new visible warps. 2D/3D/offline parity confirms identical events, statistics and results. Earlier v131/v132 evidence covers goalkeeper chains, first-time actions, aerial balls, review and mobile fullscreen. These tests do not prove universal correctness or performance on physical mobile devices.
 
 Register new modules in dist/index.html, work/build.cjs and work/server.cjs. Source serving and offline embedding must use the same assets. Before release, compare the footer version, source, build and live bytes. Exclude freekickdemo and do not retrospectively recalculate old saves or historical statistics.
+
+A match viewed in fullscreen exits fullscreen at halftime and opens the tactics screen. Starting the second half restores fullscreen; browsers without native support use the viewport fallback.

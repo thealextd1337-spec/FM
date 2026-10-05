@@ -2,6 +2,8 @@
 
 ## Inhalt
 
+- [Veröffentlichung 109](release-109.md): Halbzeit aus dem Vollbild in die Taktikansicht, Rückkehr beim Start der zweiten Hälfte und Release-Prüfungen.
+
 - [3D-System](3d-system.md) und [englische Fassung](3d-system-en.md): Simulation, Meshy-Rig, Animationen, Kontakte, Torwartkette, Kamera, Rückschau und Wartung; im Spiel unter „3D-Hilfe“ eingebunden.
 - [Veröffentlichung 107](release-107.md): aktueller 3D-Stand im Hauptspiel, Dokumentationsintegration und Release-Prüfungen.
 

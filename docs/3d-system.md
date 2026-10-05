@@ -1,6 +1,6 @@
 # Das 3D-System von Doppel 6
 
-Systemstand: Matchkorrekturen v133 und mobile Darstellung v135, Spielversion 108. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
+Systemstand: Matchkorrekturen v133, mobile Darstellung v135 und Halbzeit-Vollbild v136, Spielversion 109. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
 
 ## Gemeinsame Simulation und Darstellung
 
@@ -79,3 +79,5 @@ Neue Regeln werden zuerst in reproduzierbaren Szenen mit beiden Teamrichtungen g
 Die v133-Abnahme enthält 24 neue Torwart-Ausrichtungssequenzen, angrenzende Meshy-/Foul-/Grätschenprüfungen und zwei vollständige Partien mit 15.972 Renderbildern ohne neue sichtbare Warps. Der 2D-/3D-/Offlinevergleich bestätigt identische Ereignisse, Statistiken und Ergebnisse. Die früheren v131/v132-Prüfberichte decken Torwartketten, direkte Aktionen, Luftbälle, Rückschau und mobiles Vollbild ab. Szenenprüfungen belegen weder universelle Fehlerfreiheit noch Leistung auf echter Mobilhardware.
 
 Neue Module müssen in dist/index.html, work/build.cjs und work/server.cjs eingebunden werden. Für Assets müssen Quellserver und Einzeldatei-Build dieselbe Grundlage liefern. Vor Veröffentlichung werden Footer-Version, Quellseite, Build und Live-Datei verglichen; freekickdemo bleibt ausgeschlossen. Vorhandene Spielstände und historische Werte werden nicht rückwirkend neu berechnet.
+
+Ein im Vollbild angesehenes Match verlässt zur Halbzeit das Vollbild und öffnet die Taktikansicht. Der Start der zweiten Hälfte stellt das vorherige Vollbild wieder her; Browser ohne native Unterstützung verwenden den Viewport-Fallback.
