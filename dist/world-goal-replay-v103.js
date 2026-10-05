@@ -149,7 +149,9 @@ function v132ReviewTick(now){
  if(!v103CanReplay()||document.hidden||v47PlayerDialog.open){v132StopReview();v131ReviewUI();return;}
  review.time=Math.min(state.timeline.at(-1).clock,review.time+clamp((now-review.at)/1000,0,.1));review.at=now;
  if(review.time>=state.timeline.at(-1).clock)review.playing=false;
- v98Render();v131ReviewUI();if(review.playing)v132ReviewLoop=requestAnimationFrame(v132ReviewTick);
+ const maxFps=v98Scene?.quality?.maxFps||0;
+ if(!review.playing||!maxFps||now-v98LastTime>=1000/maxFps-.5)v98Render();
+ v131ReviewUI();if(review.playing)v132ReviewLoop=requestAnimationFrame(v132ReviewTick);
 }
 function v132ToggleReview(){
  const state=match&&v103ReplayState(match);if(!state||state.timeline.length<2)return;

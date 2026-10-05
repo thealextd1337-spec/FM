@@ -91,6 +91,7 @@ jobs:
           node work/test-finance-close-v130.cjs
           node work/test-world-payments-v124.cjs
           node work/test-3d-documentation-v134.cjs
+          node work/test-mobile-performance-v135.cjs
           node work/test-world-storage-v67.cjs
           node work/test-world-storage-recovery.cjs
           node work/test-world-save-management-v70.cjs

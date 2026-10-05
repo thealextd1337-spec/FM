@@ -1,12 +1,14 @@
 # Doppel 6's 3D system
 
-System state: match fixes v133, game version 107. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
+System state: match fixes v133 and mobile rendering v135, game version 108. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
 
 ## Shared simulation and presentation
 
 2D and 3D display the same physical club-world match. The simulation decides goals, contact, possession, offside, restarts, abilities, statistics and career bookings. Rendering must not change the match or consume simulation random numbers. Parallel AI fixtures use the compact match simulation and are not recorded 3D matches.
 
 world-physical-v65.js advances the match approximately every 40 milliseconds, limiting each elapsed real-time slice to 0.05 seconds. MATCH_SPEED converts real time to internal simulation time; the displayed match clock converts that time to football minutes. Pausing must not produce a later time jump.
+
+On devices with a primary touch pointer, 3D uses one render pixel per CSS pixel, without additional antialiasing or dynamic shadows. Existing contact shadows and complete player models remain visible. Match ticks supply fresh snapshots to the screen animation loop instead of drawing additional 3D pictures. Mobile live play and review draw at most 60 pictures per second; actual performance depends on the device. Simulation and review time remain independent of this limit.
 
 Physical positions are normalised field coordinates. Club-world contact tests convert them to metres using a 44-metre width and 68-metre length inside the field boundaries. world-pitch3d-v98.js projects these coordinates to X/Z, turns the presentation after half-time and adds ball height. The simulation coordinates themselves remain unchanged.
 

@@ -20,6 +20,6 @@ for(const asset of [...new Set(html.match(/(?:referees|trophies|sprites|crests)\
  const data=fs.readFileSync('dist/'+asset).toString('base64');
  html=html.replaceAll(asset,`data:image/png;base64,${data}`);
 }
-html=html.replace(/PROTOTYP \d+\b/g,'PROTOTYP 107');
+html=html.replace(/PROTOTYP \d+\b/g,'PROTOTYP 108');
 fs.mkdirSync('outputs',{recursive:true});
 fs.writeFileSync('outputs/index.html',html);fs.writeFileSync('outputs/Doppel-6-Fussballmanager.html',html);

@@ -1,12 +1,14 @@
 # Das 3D-System von Doppel 6
 
-Systemstand: Matchkorrekturen v133, Spielversion 107. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
+Systemstand: Matchkorrekturen v133 und mobile Darstellung v135, Spielversion 108. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
 
 ## Gemeinsame Simulation und Darstellung
 
 2D und 3D zeigen dieselbe physische Vereinswelt-Partie. Tore, Kontakte, Besitz, Abseits, Standards, Fähigkeiten, Statistik und Karrierebuchungen werden in der Simulation entschieden. Der Renderer liest diesen Zustand und darf ihn weder verändern noch zusätzliche Simulationszufallszahlen verbrauchen. Parallel gespielte KI-Partien verwenden den kompakten Matchlauf und sind keine aufgezeichneten 3D-Partien.
 
 Der Lauf in world-physical-v65.js ruft die Simulation ungefähr alle 40 Millisekunden auf. Er begrenzt das tatsächlich vergangene Zeitstück auf 0,05 Sekunden. MATCH_SPEED ist der interne Faktor für die Simulationszeit; die sichtbare Matchuhr rechnet diese in die dargestellten Fußballminuten um. Pausen dürfen keine nachträglichen Zeitsprünge erzeugen.
+
+Auf Geräten mit primärer Touchbedienung rendert die 3D-Ansicht mit einfacher Bildschirmauflösung, ohne zusätzliche Kantenglättung oder dynamische Schatten. Die vorhandenen Bodenschatten und vollständigen Spielermodelle bleiben sichtbar. Der Matchtakt liefert neue Zustände an die Bildschirm-Bildschleife, statt zusätzliche 3D-Bilder zu zeichnen. Live-Ansicht und Rückschau zeichnen mobil höchstens 60 Bilder pro Sekunde; die tatsächliche Leistung hängt vom Gerät ab. Simulation und Rückschauzeit bleiben davon unabhängig.
 
 Die physischen Positionen sind normalisierte Feldkoordinaten. Weltkontakte werden für die Vereinswelt in Meter umgerechnet: 44 Meter Breite und 68 Meter Länge innerhalb der definierten Feldgrenzen. world-pitch3d-v98.js projiziert sie auf X/Z, dreht die Ansicht nach dem Halbzeitwechsel und ergänzt die Ballhöhe. Die eigentlichen Simulationskoordinaten werden dafür nicht gedreht.
 

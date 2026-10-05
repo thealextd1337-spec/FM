@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 2026-10-05 (Prototyp 108 · Mobile 3D-Performance)
+
+- Mobile 3D-Performance v135: Touchgeräte zeichnen in einfacher Bildschirmauflösung ohne zusätzliche Kantenglättung oder dynamische Schatten; die bisherigen Bodenschatten und vollständigen Spielermodelle bleiben sichtbar. Der Spieltakt liefert Zustände an die Bildschleife, statt zusätzliche 3D-Bilder zu zeichnen. Live-Ansicht und Rückschau sind mobil auf höchstens 60 Bilder/s begrenzt. Mobile Emulation, synthetische 120-Hz-Prüfung, Pause/Fortsetzen, Vollbild, Ansichtswechsel und vollständiger 2D-/3D-/Offlinevergleich bestanden. Keine Änderung an Simulation oder Spielständen; auf echter Pixel-Hardware noch nicht geprüft. [Messungen und Grenzen](mobile-3d-performance-v135.md).
+
 ## 2026-10-05 (Prototyp 107 · Meshy-3D und Systemdokumentation)
 
 [Live-Spiel](https://fussball.cakamper.at/) und [3D-Hilfe](https://fussball.cakamper.at/?help=3d) veröffentlicht. [Deployment](https://github.com/thealextd1337-spec/FM/actions/runs/37333982255) erfolgreich; Quellseite, Build und Live-Version 107 sowie identische Dateibytes direkt bestätigt.

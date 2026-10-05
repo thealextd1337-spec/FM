@@ -193,7 +193,7 @@ function v98Create(){
  v98Match=match;v98LastTime=performance.now();
 }
 function v98Kit(person){return person.keeper?(person.t===0?match.kits?.userKeeper:match.kits?.opponentKeeper):(person.t===0?match.kits?.user:match.kits?.opponent)}
-function v98RenderScene(){
+function v98RenderScene(captureOnly=false){
  const world=v98IsWorld();
  if(!world){v98Dispose();if($('#v98-view-controls'))$('#v98-view-controls').hidden=true;v98SyncAudio(false);return;}
  const active=v98View==='3d'&&v98Orientation.matches&&!v98Failed;
@@ -205,13 +205,19 @@ function v98RenderScene(){
   if(!rect.width||!rect.height||document.hidden){v102StopPaint();v102Frames=null;if(!v102Painting){v98Toolbar();v98SyncAudio();}return;}
   const width=Math.round(rect.width),height=Math.round(rect.height);if(renderer.domElement.width!==Math.round(width*renderer.getPixelRatio())||renderer.domElement.height!==Math.round(height*renderer.getPixelRatio()))renderer.setSize(width,height,false);
   camera.aspect=width/height;
-  const now=performance.now(),dt=Math.min(.1,Math.max(0,(now-v98LastTime)/1000));v98LastTime=now;
+  const now=performance.now();
   const live=running&&!v47PlayerDialog.open&&contextPhaseLive();
   if(!v102Painting){
    const raw=v98PitchFrame(match),meta=match.flight&&v102Flights.get(match.flight);
    if(meta?.high)raw.flightVisual={meta,progress:match.flight.progress,height:meta.endHeight};
    v98Frame=raw;v102Capture(raw,now,live);
   }
+  // The match timer supplies new snapshots; the pending screen callback paints.
+  // Pause, direct scene checks and the first picture still draw synchronously.
+  if(captureOnly&&live&&v102Loop){v98Toolbar();v98SyncAudio();return;}
+  const minFrameMs=v98Scene.quality?.maxFps?1000/v98Scene.quality.maxFps:0;
+  if(v102Painting&&live&&now-v98LastTime<minFrameMs-.5){v102PaintNext();return;}
+  const dt=Math.min(.1,Math.max(0,(now-v98LastTime)/1000));v98LastTime=now;
   const buffer=v102Frames;if(!buffer)return;
   const frame=(typeof v103ReplayFrame==='function'&&v103ReplayFrame(now,live))||v102Interpolate(buffer.previous,buffer.latest,buffer.span?Math.min(1,(now-buffer.at)/1000/buffer.span):1);
   const ids=new Set(frame.players.map(person=>person.id));
@@ -318,10 +324,10 @@ function contextPhaseLive(){return v65Context()?.state.phase==='live'}
 // Three.js allocates random UUIDs. Give graphics a separate stream so creating
 // or switching a view cannot consume the simulation's next random decision.
 let v98VisualSeed=98;
-function v98Render(){
+function v98Render(captureOnly=false){
  const simulationRandom=Math.random;
  Math.random=()=>{v98VisualSeed=(v98VisualSeed*1664525+1013904223)>>>0;return v98VisualSeed/4294967296;};
- try{return v98RenderScene();}finally{Math.random=simulationRandom;}
+ try{return v98RenderScene(captureOnly);}finally{Math.random=simulationRandom;}
 }
 
 // Optional SuperCollider samples, triggered only by existing match events.
@@ -355,9 +361,9 @@ function v98SyncAudio(allow=true){
  v98Audio.match=match;v98Audio.last=stats;
 }
 const v98PreviousDraw=draw;
-draw=function(){const result=v98PreviousDraw();v98Render();return result;};
+draw=function(){const result=v98PreviousDraw();v98Render(true);return result;};
 const v98PreviousControls=v65UpdateControls;
-v65UpdateControls=function(context){const result=v98PreviousControls(context);v98Render();return result;};
+v65UpdateControls=function(context){const result=v98PreviousControls(context);v98Render(true);return result;};
 v98Orientation.addEventListener('change',()=>{if(v98IsWorld())draw();});
 new ResizeObserver(()=>{if(v98IsWorld())draw();}).observe($('#match-area .v42-pitch-stage'));
 new MutationObserver(()=>{if(!v98IsWorld()){v98Dispose();v98SyncAudio(false);if($('#v98-view-controls'))$('#v98-view-controls').hidden=true;}}).observe(document.body,{attributes:true,attributeFilter:['class']});
