@@ -2385,5 +2385,1367 @@
       "turnFrames": 0,
       "paused": true
     }
-  ]
+  ],
+  "releaseCommit": "4e618d2bada14bffc12b93c779312950834435ea",
+  "live": {
+    "version": 110,
+    "url": "https://fussball.cakamper.at/?release=110",
+    "bytes": 50201782,
+    "sha256": "7ed1c1e98a7c66dbcb2a4d77b4e2acffd3a7964c4de5256366b36428e715274b",
+    "sourceBuildLiveMatch": true,
+    "rows": [
+      {
+        "command": "work/check-match-play-button-v137.cjs",
+        "exit": 0,
+        "seconds": 12.974,
+        "report": "outputs/match-play-button-v137-live.json"
+      },
+      {
+        "command": "work/run-match-gates-v139.cjs work/check-halftime-fullscreen-v136.cjs",
+        "exit": 0,
+        "seconds": 13.642,
+        "report": "outputs/halftime-fullscreen-v139-live.json"
+      },
+      {
+        "command": "work/check-zones-v139.cjs",
+        "exit": 0,
+        "seconds": 50.784,
+        "report": "outputs/zones-v139-live.json"
+      },
+      {
+        "command": "work/check-prematch-presets-v140.cjs",
+        "exit": 0,
+        "seconds": 153.137,
+        "report": "outputs/prematch-presets-v140-live.json"
+      }
+    ]
+  },
+  "deployment": {
+    "head_sha": "4e618d2bada14bffc12b93c779312950834435ea",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/thealextd1337-spec/FM/actions/runs/37367809301",
+    "run_attempt": 2,
+    "completed_at": "2026-10-05T20:59:27Z"
+  },
+  "match-play-button-v137-live": {
+    "baseline": false,
+    "liveUrl": "https://fussball.cakamper.at/?release=110",
+    "cases": [
+      {
+        "language": "de",
+        "paused": {
+          "running": false,
+          "phase": "paused",
+          "elapsed": 12,
+          "review": null,
+          "paint": 0,
+          "reviewLoop": 0,
+          "label": "Spiel fortsetzen",
+          "disabled": false,
+          "icon": "▶"
+        },
+        "resumedWithoutReview": true,
+        "selectedReviewPreserved": true,
+        "endReturnsLive": true,
+        "noFramesCanPause": true,
+        "finishedCannotResume": true
+      },
+      {
+        "language": "en",
+        "paused": {
+          "running": false,
+          "phase": "paused",
+          "elapsed": 12,
+          "review": null,
+          "paint": 0,
+          "reviewLoop": 0,
+          "label": "Resume match",
+          "disabled": false,
+          "icon": "▶"
+        },
+        "resumedWithoutReview": true,
+        "selectedReviewPreserved": true,
+        "endReturnsLive": true,
+        "noFramesCanPause": true,
+        "finishedCannotResume": true
+      }
+    ],
+    "errors": []
+  },
+  "halftime-fullscreen-v139-live": {
+    "baseline": false,
+    "liveUrl": "https://fussball.cakamper.at/?release=110",
+    "cases": [
+      {
+        "scenario": {
+          "native": true,
+          "fullscreen": true,
+          "language": "de",
+          "portrait": false
+        },
+        "half": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "paused",
+          "running": false,
+          "half": 2,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": true,
+          "tab": "tactics",
+          "view": "3d"
+        },
+        "resumed": {
+          "fullscreen": true,
+          "native": true,
+          "phase": "live",
+          "running": true,
+          "half": 0,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": false,
+          "tab": "tactics",
+          "view": "3d"
+        }
+      },
+      {
+        "scenario": {
+          "native": false,
+          "fullscreen": true,
+          "language": "en",
+          "portrait": false
+        },
+        "half": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "paused",
+          "running": false,
+          "half": 2,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": true,
+          "tab": "tactics",
+          "view": "3d"
+        },
+        "resumed": {
+          "fullscreen": true,
+          "native": false,
+          "phase": "live",
+          "running": true,
+          "half": 0,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": false,
+          "tab": "tactics",
+          "view": "3d"
+        }
+      },
+      {
+        "scenario": {
+          "native": false,
+          "fullscreen": true,
+          "language": "de",
+          "portrait": true
+        },
+        "half": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "paused",
+          "running": false,
+          "half": 2,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": true,
+          "tab": "tactics",
+          "view": "2d"
+        },
+        "resumed": {
+          "fullscreen": true,
+          "native": false,
+          "phase": "live",
+          "running": true,
+          "half": 0,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": false,
+          "tab": "tactics",
+          "view": "2d"
+        }
+      },
+      {
+        "scenario": {
+          "native": true,
+          "fullscreen": false,
+          "language": "de",
+          "portrait": false
+        },
+        "half": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "paused",
+          "running": false,
+          "half": 2,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": true,
+          "tab": "tactics",
+          "view": "3d"
+        },
+        "resumed": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "live",
+          "running": true,
+          "half": 0,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": false,
+          "tab": "tactics",
+          "view": "3d"
+        }
+      },
+      {
+        "scenario": {
+          "native": false,
+          "fullscreen": true,
+          "exitBeforeHalf": true,
+          "language": "en",
+          "portrait": false
+        },
+        "half": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "paused",
+          "running": false,
+          "half": 2,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": true,
+          "tab": "tactics",
+          "view": "3d"
+        },
+        "resumed": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "live",
+          "running": true,
+          "half": 0,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": false,
+          "tab": "tactics",
+          "view": "3d"
+        }
+      }
+    ],
+    "cleanup": true,
+    "errors": []
+  },
+  "zones-v139-live": {
+    "rows": [
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "de",
+        "context": "preparation",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.8571328988184448,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.49998257293227844,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.14283224704611203,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "de",
+        "context": "career",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.8571328988184448,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.49998257293227844,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.14283224704611203,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "de",
+        "context": "pause",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.857129229203765,
+            "y": 0.006425487768146983,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.5,
+            "y": 0.006425487768146983,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.1428389722716866,
+            "y": 0.006425487768146983,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "en",
+        "context": "preparation",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.8571328988184448,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.49998257293227844,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.14283224704611203,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "en",
+        "context": "career",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.8571328988184448,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.49998257293227844,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.14283224704611203,
+            "y": 0.00694494682775085,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "en",
+        "context": "pause",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.857129229203765,
+            "y": 0.006425487768146983,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.5,
+            "y": 0.006425487768146983,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.1428389722716866,
+            "y": 0.006425487768146983,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "lang": "de",
+        "context": "preparation",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.8571188152137328,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.5,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.14283911141029956,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "lang": "de",
+        "context": "career",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.8571188152137328,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.5,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.14283911141029956,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "lang": "de",
+        "context": "pause",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.8571061863609138,
+            "y": 0.008227983715448896,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.5,
+            "y": 0.008227983715448896,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.14285103106015232,
+            "y": 0.008227983715448896,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "lang": "en",
+        "context": "preparation",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.8571188152137328,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.5,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.14283911141029956,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "lang": "en",
+        "context": "career",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.8571188152137328,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.5,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.14283911141029956,
+            "y": 0.008117020377103238,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "lang": "en",
+        "context": "pause",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.8571061863609138,
+            "y": 0.008227983715448896,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.5,
+            "y": 0.008227983715448896,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.14285103106015232,
+            "y": 0.008227983715448896,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "de",
+        "context": "preparation",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.8570816370259268,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.4999642882651239,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.14284693950432112,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "de",
+        "context": "career",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.8570816370259268,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.4999642882651239,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.14284693950432112,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "de",
+        "context": "pause",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.8571328229261783,
+            "y": 0.012055757880195906,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.49996488024162394,
+            "y": 0.012055757880195906,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.1427969375570696,
+            "y": 0.012055757880195906,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "en",
+        "context": "preparation",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.8570816370259268,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.4999642882651239,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.14284693950432112,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "en",
+        "context": "career",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.8570816370259268,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.4999642882651239,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.14284693950432112,
+            "y": 0.012202097235462344,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "en",
+        "context": "pause",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.8571328229261783,
+            "y": 0.012055757880195906,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.49996488024162394,
+            "y": 0.012055757880195906,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.1427969375570696,
+            "y": 0.012055757880195906,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "de",
+        "context": "preparation",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.5,
+            "y": 0.008736406242890295,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.5,
+            "y": 0.294444191654912,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.5,
+            "y": 0.7229831187150203,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "de",
+        "context": "career",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.5,
+            "y": 0.008736406242890295,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.5,
+            "y": 0.294444191654912,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.5,
+            "y": 0.7229831187150203,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "de",
+        "context": "pause",
+        "names": [
+          {
+            "text": "ANGRIFF",
+            "x": 0.5,
+            "y": 0.009061733056447046,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MITTELFELD",
+            "x": 0.5,
+            "y": 0.2947423069662073,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "VERTEIDIGUNG",
+            "x": 0.5,
+            "y": 0.7233339626203511,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "en",
+        "context": "preparation",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.5,
+            "y": 0.008736406242890295,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.5,
+            "y": 0.294444191654912,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.5,
+            "y": 0.7229831187150203,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "en",
+        "context": "career",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.5,
+            "y": 0.008736406242890295,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.5,
+            "y": 0.294444191654912,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.5,
+            "y": 0.7229831187150203,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "en",
+        "context": "pause",
+        "names": [
+          {
+            "text": "ATTACK",
+            "x": 0.5,
+            "y": 0.009061733056447046,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "MIDFIELD",
+            "x": 0.5,
+            "y": 0.2947423069662073,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          },
+          {
+            "text": "DEFENCE",
+            "x": 0.5,
+            "y": 0.7233339626203511,
+            "font": 10,
+            "inside": true,
+            "accessible": true
+          }
+        ],
+        "overflow": false
+      }
+    ],
+    "errors": []
+  },
+  "prematch-presets-v140-live": {
+    "rows": [
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "side": 0,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 377.703125,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "side": 0,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 377.703125,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "side": 1,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 377.703125,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "side": 1,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 377.703125,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "side": 0,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 329.625,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "side": 0,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 329.625,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "side": 1,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 329.625,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "side": 1,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 329.625,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "side": 0,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 234.234375,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "side": 0,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 234.234375,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "side": 1,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 234.234375,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "side": 1,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 234.234375,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "side": 0,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 366,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "side": 0,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 366,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "side": 1,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 366,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "side": 1,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 366,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      }
+    ],
+    "errors": [],
+    "persisted": true,
+    "storageFailureRollback": true
+  }
 }

@@ -10,7 +10,7 @@ Drei eigene Zonenbezeichnungen ersetzen die alten Grenzbeschriftungen: Verteidig
 
 Meshy-Verbindung und öffentlicher Katalog erfolgreich geprüft: Idle Turn Left (576), Idle Turn Right (586); bestehende Clips weiterverwendet. CLI meldete nach erfolgreichem JSON-Ergebnis einen Windows-Shutdown-Fehler; keine neue Generierung oder Credits.
 
-Für Veröffentlichung 110 vorbereitet.
+Als [Prototyp 110 live veröffentlicht](release-110.md). Vollständige automatische Release-Abnahme bestanden; Quellseite, Build und Live-Datei identisch.
 
 ## Ergänzungen v140–149
 
