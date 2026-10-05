@@ -360,7 +360,7 @@ body.v65-world-match #match-area .v42-pitch-stage{width:min(100%,520px);margin-i
 #v61-world-screen .v64-prematch-field .position-label,
 body.v65-world-match #v65-plan-view .v64-prematch-field .position-label{order:2}
 #v61-world-screen .v64-prematch-field .player-label,
-body.v65-world-match #v65-plan-view .v64-prematch-field .player-label{order:1;margin-top:0}
+body.v65-world-match #v65-plan-view .v64-prematch-field .player-label{order:1;margin-top:4px}
 #v61-world-screen .v64-prematch-field .v64-origin-position,
 body.v65-world-match #v65-plan-view .v64-prematch-field .v64-origin-position{order:3}
 #v61-world-screen .v64-prematch-field .v64-pending-label,
@@ -416,3 +416,21 @@ body.v65-world-match #v65-plan-view .v64-keeper-choice .position-label{align-sel
  .v65-pause-controls .v64-orientation .segmented,.v129-plan-controls .v64-orientation .segmented{display:grid;grid-template-columns:minmax(0,1fr)}
 }
 .v64-prematch-field .v64-keeper-choice .token{background:var(--v64-keeper-shirt,#e5b56a);color:var(--v64-keeper-number,#102126);text-shadow:none}
+
+/* Names belong inside their zone, separately from the zone boundaries. */
+.v64-zone-name{position:absolute;left:50%;transform:translateX(-50%);padding:3px 5px;border-radius:3px;background:#15352fe6;color:#fff;font-size:10px;font-weight:800;letter-spacing:.35px;line-height:1.2;white-space:nowrap}
+.v64-zone-attack{top:3px}.v64-zone-midfield{top:calc(28.5714% + 3px)}.v64-zone-defence{top:calc(71.4286% + 3px)}
+@media (min-width:900px),(min-width:600px) and (orientation:landscape){.v64-zone-name{top:3px}.v64-zone-defence{left:14.2857%}.v64-zone-midfield{left:50%}.v64-zone-attack{left:85.7143%}}
+@media (min-width:900px),(min-width:600px) and (orientation:landscape){.v64-zone-name{max-width:calc(28.5714% - 6px);white-space:normal;overflow-wrap:anywhere;text-align:center;box-sizing:border-box}.v64-zone-midfield{max-width:calc(42.8572% - 6px)}}
+
+.v140-match-presets{margin-top:10px;padding:10px;border:1px solid #436560;border-radius:8px;background:#172d31}.v140-match-presets h3{font-size:12px;margin:0 0 7px}.v140-match-presets>div{display:flex;gap:6px;margin-top:6px}.v140-match-presets input,.v140-match-presets select{min-width:0;flex:1;width:100%;padding:7px;font-size:11px}.v140-match-presets button{flex:none;padding:7px 8px;font-size:11px}.v140-match-presets .v61-error:empty{display:none}.v140-match-presets .v61-error{font-size:11px;margin:6px 0 0}
+.v140-match-presets .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.v140-match-presets input,.v140-match-presets select,.v140-match-presets button{min-height:36px}@media(pointer:coarse){.v140-match-presets input,.v140-match-presets select,.v140-match-presets button{min-height:44px}}
+
+.v64-prematch-field .v64-raster .player-label,.v64-prematch-field .v64-keeper-choice .player-label{margin-top:4px}
+#penalty-screen .v146-shoot{width:auto;position:absolute;z-index:6;right:4%;bottom:10px;min-height:44px;padding:10px 12px;font-size:12px}
+
+.v68-result .v144-own-club{display:inline-flex;align-items:center;min-width:0;padding:4px 5px;border-radius:4px;background:#2b453a;color:#e0f9b5}.v144-own-club .v68-club-link{color:inherit}
+
+.v61-career-head h1{display:flex;align-items:center;flex-wrap:wrap;gap:10px}.v149-current-titles{display:inline-flex;align-items:center;gap:6px}.v149-current-titles .v62-award-icon-small{width:32px;height:32px}.v149-sponsor-compact{margin:10px 0 16px;padding:10px 12px;border-radius:8px;background:#142b2e}.v149-sponsor-compact .v66-sponsor-main{gap:12px}.v149-sponsor-compact h3{font-size:10px;margin:0 0 4px}.v149-sponsor-compact .v66-sponsor-brand strong{font-size:15px}.v149-sponsor-compact .v66-sponsor-brand svg,.v149-sponsor-compact .v66-sponsor-brand img{width:32px;height:28px}.v149-sponsor-compact .v66-sponsor-brand small{display:none}.v149-sponsor-compact .v66-sponsor-main p{padding:6px 8px;margin:0;font-size:12px}.v149-sponsor-compact .v66-sponsor-bonuses{margin-top:8px;padding-top:8px}.v149-sponsor-compact .v66-sponsor-bonuses h4{margin:0 0 4px;font-size:10px}.v149-sponsor-compact .v66-sponsor-goals{margin:0;gap:5px}.v149-sponsor-compact .v66-sponsor-goals li{padding:5px 6px;font-size:10px}
+
+.v149-sponsor-compact .v66-sponsor-brand{display:flex;align-items:center;gap:8px}

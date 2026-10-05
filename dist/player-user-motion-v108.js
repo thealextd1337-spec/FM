@@ -31,13 +31,14 @@ window.D6UserLocomotion={create(v,mesh,skeleton,calibration){
    idleHeading=null;for(const name of Object.keys(weights))if(name.startsWith('back_'))weights[name]=0;
    if(delta&&!teleport&&speed>.10&&distance>.0001){v.heading=direction+clamp(angle(direction,v.heading??direction),-Math.PI/3,Math.PI/3);v.root.rotation.y=v.heading;}
   }
+  const restartFacing=person.movement?.mode==='restart';if(restartFacing){idleHeading=null;if(state.transition?.name.startsWith('turn_'))state.transition=null;}
   state.carrying=carrying;
   if(delta){
    state.stopping=false;
    const beforeStill=state.stationary;state.stationary=speed<.10?state.stationary+delta:0;if(speed>=.10)state.stopSpeed=speed;
    state.clock+=delta;state.cooldown=Math.max(0,state.cooldown-delta);
    if(special||celebrating){state.transition=null;idleHeading=null;release()}
-   else if(!person.keeper&&!teleport&&!backward){
+   else if(!person.keeper&&!teleport&&!backward&&!restartFacing){
     const stopDelay=carrying?.18:.06;
     state.stopping=beforeStill<stopDelay&&state.stationary>=stopDelay&&state.stopSpeed>.22;
     if(state.stopping&&state.stopSpeed>2.2)start('brake_meshy');
@@ -53,6 +54,8 @@ window.D6UserLocomotion={create(v,mesh,skeleton,calibration){
    state.previousSpeed=speed;
    if(distance>.0001)state.direction=direction;
   }
+  // Let feet settle into fresh contacts while the hips turn in place.
+  state.idleTurning=!person.keeper&&!special&&!celebrating&&!carrying&&speed<.25&&(idleHeading!==null||restartFacing&&Math.abs(angle(state.facingHeading??v.heading,v.heading))>.001);state.facingHeading=v.heading;
   // Preserve the displayed idle turn when playback is paused.
   if(!special&&!celebrating&&m.idle>.8)v.root.rotation.y=v.heading||0;
   const fast=clamp((filtered-3.2)/1.6,0,1),sprint=clamp((filtered-5.5)/1.3,0,1),gaitRun=clamp((filtered-1.9)/1.3,0,1)*(1-m.idle),gaitWalk=1-m.idle-gaitRun,target={[idleClip]:m.idle,walking:gaitWalk,run_fast6:gaitRun*(1-fast),run_fast4:gaitRun*fast*(1-sprint),sprint_forward:gaitRun*fast*sprint};
@@ -97,8 +100,10 @@ window.D6UserLocomotion={create(v,mesh,skeleton,calibration){
   const raw=feet.map(measure),minimum=Math.min(...raw.map(p=>p.y));
   // Correct small rig-height errors without moving the engine root or flattening flight.
   const lift=minimum<ground?clamp(ground-minimum,0,.13):0;if(lift){for(const b of bones)b.matrixWorld.elements[13]+=lift;skeleton.update()}
+  const freeStride=state.carrying&&state.previousSpeed>.25;
+  if(state.idleTurning||freeStride)for(const f of feet){f.locked=false;f.blocked=false;f.age=0;if(freeStride)f.strength=0}
   let pelvis=0;
-  feet.forEach((f,i)=>{const measured=measure(f);if(!f.locked&&(confidence(i)<.5||measured.y>ground+.12||f.blocked))return;const h=position(f.hip),k=position(f.knee),a=position(f.foot),scale=new T.Vector3(),q=new T.Quaternion(),p=new T.Vector3();bones[f.foot].matrixWorld.decompose(p,q,scale);const normal=new T.Vector3().fromArray(f.sole.normal).applyQuaternion(q).normalize(),orientation=f.locked?f.orientation:new T.Quaternion().setFromUnitVectors(normal,new T.Vector3(0,1,0)).multiply(q),anchor=f.locked?f.anchor:measured.marker.clone().setY(ground+.01),target=anchor.clone().sub(new T.Vector3().fromArray(f.sole.center).multiply(scale).applyQuaternion(orientation)),horizontal=Math.hypot(target.x-h.x,target.z-h.z),reach=h.distanceTo(k)+k.distanceTo(a)-.025;if(horizontal<reach)pelvis=Math.max(pelvis,h.y-target.y-Math.sqrt(reach*reach-horizontal*horizontal))});
+  feet.forEach((f,i)=>{const measured=measure(f);if(state.idleTurning||freeStride||!f.locked&&(confidence(i)<.5||measured.y>ground+.12||f.blocked))return;const h=position(f.hip),k=position(f.knee),a=position(f.foot),scale=new T.Vector3(),q=new T.Quaternion(),p=new T.Vector3();bones[f.foot].matrixWorld.decompose(p,q,scale);const normal=new T.Vector3().fromArray(f.sole.normal).applyQuaternion(q).normalize(),orientation=f.locked?f.orientation:new T.Quaternion().setFromUnitVectors(normal,new T.Vector3(0,1,0)).multiply(q),anchor=f.locked?f.anchor:measured.marker.clone().setY(ground+.01),target=anchor.clone().sub(new T.Vector3().fromArray(f.sole.center).multiply(scale).applyQuaternion(orientation)),horizontal=Math.hypot(target.x-h.x,target.z-h.z),reach=h.distanceTo(k)+k.distanceTo(a)-.025;if(horizontal<reach)pelvis=Math.max(pelvis,h.y-target.y-Math.sqrt(reach*reach-horizontal*horizontal))});
   state.pelvis=smooth(state.pelvis,clamp(pelvis,0,.28),delta,25);if(state.pelvis){for(const b of bones)b.matrixWorld.elements[13]-=state.pelvis;skeleton.update()}
   feet.forEach((f,i)=>{
    const contact=confidence(i);
@@ -106,7 +111,7 @@ window.D6UserLocomotion={create(v,mesh,skeleton,calibration){
    if(contact<.25)f.blocked=false;
    if(f.locked&&(contact<.25||f.anchor.distanceTo(measured.marker)>.65)){f.locked=false;f.blocked=contact>=.25}
    const footP=new T.Vector3(),footQ=new T.Quaternion(),footS=new T.Vector3();bones[f.foot].matrixWorld.decompose(footP,footQ,footS);
-   if(!f.locked&&!f.blocked&&want&&(!live||delta)){f.anchor.copy(measured.marker);f.anchor.y=ground+.01;const normal=new T.Vector3().fromArray(f.sole.normal).applyQuaternion(footQ).normalize();f.orientation.copy(new T.Quaternion().setFromUnitVectors(normal,new T.Vector3(0,1,0)).multiply(footQ));f.locked=true;if(person.keeper)f.strength=1;f.age=0}
+   if(!state.idleTurning&&!freeStride&&!f.locked&&!f.blocked&&want&&(!live||delta)){f.anchor.copy(measured.marker);f.anchor.y=ground+.01;const normal=new T.Vector3().fromArray(f.sole.normal).applyQuaternion(footQ).normalize();f.orientation.copy(new T.Quaternion().setFromUnitVectors(normal,new T.Vector3(0,1,0)).multiply(footQ));f.locked=true;if(person.keeper)f.strength=1;f.age=0}
    if(f.locked)f.age+=delta;if(person.keeper){if(!f.locked)f.strength=smooth(f.strength,0,delta,35);}else f.strength=smooth(f.strength,f.locked?1:0,delta,f.locked?28:22);
    const marker=measured.marker.clone(),targetMarker=marker.clone();if(f.strength>.001)targetMarker.lerp(f.anchor,f.strength);else if(measured.y<ground)targetMarker.y+=ground-measured.y;
    const correction=targetMarker.clone().sub(marker);state.maxCorrection=Math.max(state.maxCorrection,correction.length());

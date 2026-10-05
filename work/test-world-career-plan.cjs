@@ -74,7 +74,7 @@ vm.runInContext(`
 `,context);
 assert.match(get('v64CareerPlanHTML(career)'),/Gespeicherte Matchpläne/);
 assert.match(get('v64CareerPlanHTML(career)'),/Flügelspiel/);
-assert.match(get('v64CareerPlanHTML(career)'),/data-v64-career-save/);
+assert.match(get('v64CareerPlanHTML(career)'),/data-v140-save/);
 assert.match(get('v64CareerPlanHTML(career)'),/class="v64-pitch-area">PITCH<section class="v64-bench-section compact-bench v64-career-bench"/,'career bench sits below the pitch');
 assert.match(get('v64CareerPlanHTML(career)'),/data-v64-career-bench-card=/,'career bench uses match bench cards');
 assert.doesNotMatch(get('v64CareerPlanHTML(career)'),/data-v64-career-bench=/,'career bench cannot swap by click');

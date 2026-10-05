@@ -148,7 +148,7 @@ function v102RunPose(visual,person,dt,live,focus=null){
   m.state=m.state==='idle'?(speed>.22?'walk':'idle'):speed<.10?'idle':m.state==='run'?(speed<1.65?'walk':'run'):speed>2.05?'run':'walk';
   const moving=Math.min(1,Math.max(0,(visual.runSpeed-.04)/.4)),run=Math.min(1,Math.max(0,(visual.runSpeed-1.35)/1.25))*moving;
   m.idle=1-moving;m.walk=moving-run;m.run=run;
-  if(speed>.10||person.keeper&&focus){const face=person.keeper?focus:person.movement?.mode==='backpedal'?person.movement.facing:null,target=face?Math.atan2(face.x-person.x,face.z-person.z):Math.atan2(dx,dz),turn=v106Angle(visual.heading??target,target),advance=turn*(1-Math.exp(-dt*(Math.abs(turn)>1.8?11:8)));
+  if(speed>.10||person.keeper&&focus||person.movement?.mode==='restart'){const face=person.keeper?focus:['backpedal','restart'].includes(person.movement?.mode)?person.movement.facing:null,target=face?Math.atan2(face.x-person.x,face.z-person.z):Math.atan2(dx,dz),turn=v106Angle(visual.heading??target,target),advance=turn*(1-Math.exp(-dt*(Math.abs(turn)>1.8?11:8)));
    if(!person.keeper&&!person.action&&!face){if(distance>4)m.headingVelocity=0;m.headingVelocity=v106Smooth(m.headingVelocity||0,advance/dt,dt,24);const step=m.headingVelocity*dt;visual.heading=(visual.heading??target)+(Math.sign(step)===Math.sign(turn)?Math.sign(turn)*Math.min(Math.abs(turn),Math.abs(step)):step);}
    else{m.headingVelocity=0;visual.heading=(visual.heading??target)+advance;}
    m.turn=v106Smooth(m.turn,turn,dt,10);

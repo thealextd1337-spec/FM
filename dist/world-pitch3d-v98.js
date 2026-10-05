@@ -11,6 +11,8 @@ function v98PitchFrame(current){
  const rawBall=actionBall||(scene?v83GoalPosition(scene):current.ball);
  const height=actionBall?Math.max(0,actionBall.elevation-.29):scene?rawBall.height*68/688:current.flight?.aerial?Math.sin(Math.PI*Math.min(1,current.flight.progress))*5.34:0;
  const ball=v98PitchPoint(rawBall,turned);
+ const restartFacing=Boolean(current.throwIn||current.setPiece?.type==='corner'||current.owner?.keeper&&v99Actions.get(current)?.kicks.get(current.owner.pid)?.phase==='waiting');
+ const restartTaker=current.throwIn?.taker||current.setPiece?.taker||current.owner;
  // The engine's offset fits its large 2D disks. Keep possession at the 3D feet.
  if(current.owner&&!actionBall&&!scene&&!current.flight&&!current.rebound&&!current.setPiece&&!current.throwIn&&!current.kickoff&&!current.postBanner&&!current.halftimePause&&!current.finished&&!(typeof v123OwnedBall==='function'&&v123OwnedBall(current))){
   const owner=v98PitchPoint(current.owner,turned),dx=ball.x-owner.x,dz=ball.z-owner.z,gap=Math.hypot(dx,dz);
@@ -20,7 +22,7 @@ function v98PitchFrame(current){
  return {
   elapsed:current.elapsed,clock:typeof v102Clock==='function'?v102Clock(current):0,turned,broadcast:typeof v132Broadcast==='function'?v132Broadcast(current):null,
   celebration:scene?{id:current.goals.length,team:scene.team,time:Math.max(0,v83GoalSceneDuration-current.goalPause)}:null,
-  players:current.people.map(person=>{const mode=typeof v108MovementMode==='function'?v108MovementMode(current,person):null;return {id:person.pid,person,team:person.t,number:person.n,keeper:person.keeper,slideActive:Boolean(person.slideActive),action:typeof v102PlayerAction==='function'?v102PlayerAction(current,person):null,movement:mode?{...mode,facing:v98PitchPoint(mode.facing,turned)}:null,...v98PitchPoint(person,turned)}}),
+  players:current.people.map(person=>{const mode=restartFacing&&person!==restartTaker?{mode:'restart',facing:rawBall}:typeof v108MovementMode==='function'?v108MovementMode(current,person):null;return {id:person.pid,person,team:person.t,number:person.n,keeper:person.keeper,slideActive:Boolean(person.slideActive),action:typeof v102PlayerAction==='function'?v102PlayerAction(current,person):null,movement:mode?{...mode,facing:v98PitchPoint(mode.facing,turned)}:null,...v98PitchPoint(person,turned)}}),
   ball:{...ball,height:.29+Math.max(0,height),opacity:actionBall?.opacity??1},
   owner:current.owner?.pid||null,ballInFlight:Boolean(current.flight),carrying:Boolean(current.owner&&!scene&&!current.flight&&!current.rebound&&!current.setPiece&&!current.throwIn&&!current.kickoff&&!current.postBanner&&!current.halftimePause&&!current.finished),
   outOfPlayBall:Boolean(v99Actions.get(current)?.miss&&v99Actions.get(current).miss.age<1.15||v99Actions.get(current)?.outBall&&v102Clock(current)-v99Actions.get(current).outBall.at<1.15),
@@ -374,8 +376,9 @@ new MutationObserver(()=>v98SyncAudio()).observe(v47PlayerDialog,{attributes:tru
 const v100BasePenaltyVisual=v50PenaltyVisual;
 v50PenaltyVisual=function(setPiece,last){
  const result=v100BasePenaltyVisual(setPiece,last),scene=$('#v50-penalty-scene');if(!v65WorldActive||!scene)return result;
- scene.classList.toggle('v100-penalty-award',!last);
- if(!last)scene.innerHTML=`<img src="${v55RefereeAsset('penalty')}" alt="${v98Text('Schiedsrichter zeigt auf den Elfmeterpunkt','Referee points to the penalty spot')}"><div><h2>${v98Text('ELFMETER!','PENALTY!')}</h2><p>${escapeHTML(v50Name(setPiece.team))}<br>${escapeHTML(setPiece.taker.name)}</p></div>`;
+ scene.classList.toggle('v100-penalty-award',!last&&!setPiece.penaltyReady);
+ if(!last&&setPiece.penaltyReady)scene.querySelector('.v78-penalty-referee')?.remove();
+ if(!last&&!setPiece.penaltyReady)scene.innerHTML=`<img src="${v55RefereeAsset('penalty')}" alt="${v98Text('Schiedsrichter zeigt auf den Elfmeterpunkt','Referee points to the penalty spot')}"><div><h2>${v98Text('ELFMETER!','PENALTY!')}</h2><p>${escapeHTML(v50Name(setPiece.team))}<br>${escapeHTML(setPiece.taker.name)}</p></div>`;
  return result;
 };
 function v100SyncPenaltyBall(){

@@ -2,7 +2,11 @@
 
 ## Inhalt
 
+- [Veröffentlichung 110](release-110.md): Matchbedienung, Animationen, gemeinsame Taktikvorlagen, Elfmeter, Distanzschüsse und Vereinsübersicht.
+
 - [Veröffentlichung 109](release-109.md): Halbzeit aus dem Vollbild in die Taktikansicht, Rückkehr beim Start der zweiten Hälfte und Release-Prüfungen.
+
+- [Offene Match-/3D-Themen](3d-offene-themen.md): Balleffet und eigenständige Pässe in freien Raum, Spielerwerte, Kontakte und Abnahmeszenen; außerdem Mobilhardware und Animationsqualität.
 
 - [3D-System](3d-system.md) und [englische Fassung](3d-system-en.md): Simulation, Meshy-Rig, Animationen, Kontakte, Torwartkette, Kamera, Rückschau und Wartung; im Spiel unter „3D-Hilfe“ eingebunden.
 - [Veröffentlichung 107](release-107.md): aktueller 3D-Stand im Hauptspiel, Dokumentationsintegration und Release-Prüfungen.

@@ -1,6 +1,6 @@
 # Das 3D-System von Doppel 6
 
-Systemstand: Matchkorrekturen v133, mobile Darstellung v135 und Halbzeit-Vollbild v136, Spielversion 109. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
+Systemstand: Matchkorrekturen v133, mobile Darstellung v135 und Halbzeit-Vollbild v136, Spielversion 110. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
 
 ## Gemeinsame Simulation und Darstellung
 
@@ -81,3 +81,7 @@ Die v133-Abnahme enthält 24 neue Torwart-Ausrichtungssequenzen, angrenzende Mes
 Neue Module müssen in dist/index.html, work/build.cjs und work/server.cjs eingebunden werden. Für Assets müssen Quellserver und Einzeldatei-Build dieselbe Grundlage liefern. Vor Veröffentlichung werden Footer-Version, Quellseite, Build und Live-Datei verglichen; freekickdemo bleibt ausgeschlossen. Vorhandene Spielstände und historische Werte werden nicht rückwirkend neu berechnet.
 
 Ein im Vollbild angesehenes Match verlässt zur Halbzeit das Vollbild und öffnet die Taktikansicht. Der Start der zweiten Hälfte stellt das vorherige Vollbild wieder her; Browser ohne native Unterstützung verwenden den Viewport-Fallback.
+
+Der Knopf unter dem Live-Spielfeld pausiert die Partie und setzt sie an derselben Stelle fort. Nach bewusster Auswahl einer früheren Szene spielt er die Rückschau. An deren Endposition kehrt er zum Live-Match zurück. Bei Standdrehungen lösen Feldspieler die alte Fußbindung sanft und setzen danach neu auf.
+
+Spielstand 110: Standards richten wartende Spieler zum Ball aus. Laufende Ballführer behalten die native Schrittfolge mit Bodenkorrektur, ohne horizontale Weltfußanker. Die gemeinsame Simulation gewichtet Distanzschüsse nach Entfernung, Winkel und freiem Schussweg. Reguläre Elfmeter zeigen nach der Entscheidung eine zusätzliche zweisekündige Toransicht.

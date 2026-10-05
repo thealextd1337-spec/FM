@@ -123,11 +123,15 @@ function v131ReviewPose(v,id,review){
  if(v.meshy&&a.bones&&b.bones){for(const [i,bone]of v.meshy.skeleton.bones.entries()){const x=new T.Matrix4().fromArray(a.bones,i*16),y=new T.Matrix4().fromArray(b.bones,i*16),p=new T.Vector3(),r=new T.Quaternion(),s=new T.Vector3(),p2=new T.Vector3(),r2=new T.Quaternion(),s2=new T.Vector3();x.decompose(p,r,s);y.decompose(p2,r2,s2);bone.matrixWorld.copy(v.root.matrixWorld).multiply(x.compose(p.lerp(p2,q),r.slerp(r2,q),s.lerp(s2,q)));}v.meshy.skeleton.update();}
  v.label.disabled=true;return true;
 }
+function v131PauseMatch(){
+ const context=v65Context();if(!context||context.state.phase!=='live')return;
+ context.state.phase='paused';running=false;clearInterval(v65WorldFrame);v65PauseRequested=false;v65PauseView=false;$('#board-label').textContent='PAUSE';v65Snapshot(context);v65UpdateControls(context);v58Refresh();
+}
 function v131Seek(time){
  const context=v65Context(),state=match&&v103ReplayState(match);if(!context||!state?.timeline.length)return;
  v132StopReview();
  v103EndReplay();state.review={time:clamp(Number(time),state.timeline[0].clock,state.timeline.at(-1).clock)};
- if(context.state.phase==='live'){context.state.phase='paused';running=false;clearInterval(v65WorldFrame);v65PauseRequested=false;v65PauseView=false;$('#board-label').textContent='PAUSE';v65Snapshot(context);v65UpdateControls(context);v58Refresh();}
+ v131PauseMatch();
  v98CameraPose=null;draw();
 }
 function v131ReturnLive(resume=true){
@@ -154,9 +158,14 @@ function v132ReviewTick(now){
  v131ReviewUI();if(review.playing)v132ReviewLoop=requestAnimationFrame(v132ReviewTick);
 }
 function v132ToggleReview(){
- const state=match&&v103ReplayState(match);if(!state||state.timeline.length<2)return;
+ const state=match&&v103ReplayState(match);if(!state)return;
+ if(!state.review||state.review.time>=state.timeline.at(-1)?.clock){
+  if(match.finished)return;
+  if(state.review)v131ReturnLive();else if(running)v131PauseMatch();else v65Resume();
+  draw();return;
+ }
+ if(state.timeline.length<2)return;
  if(state.review?.playing){v132StopReview();v131ReviewUI();return;}
- if(!state.review||state.review.time>=state.timeline.at(-1).clock)v131Seek(state.timeline[0].clock);
  state.review.playing=true;state.review.at=performance.now();v131ReviewUI();v132ReviewLoop=requestAnimationFrame(v132ReviewTick);
 }
 function v132MarkerUI(panel,state,frames){
@@ -172,7 +181,7 @@ function v131ReviewUI(){
  if(!panel){panel=document.createElement('div');panel.id='v131-review';panel.innerHTML='<label><span></span><span class="v132-track"><input type="range" min="0" max="0" step="0.01"><span class="v132-markers" aria-hidden="true"></span></span></label><output></output><button type="button" data-v132-play></button><button type="button" data-v132-live></button><nav class="v132-events"></nav>';stage.append(panel);v132RevealControls(stage);panel.querySelector('input').addEventListener('input',e=>v131Seek(e.target.value));panel.querySelector('[data-v132-live]').addEventListener('click',()=>v131ReturnLive());panel.querySelector('[data-v132-play]').addEventListener('click',v132ToggleReview);}
  const frames=state?.timeline||[],slider=panel.querySelector('input'),review=state?.review;panel.querySelector('span').textContent=v98Text('Rückschau','Match review');slider.setAttribute('aria-label',v98Text('Spielszene zurück- und vorspulen','Seek recorded match'));slider.min=frames[0]?.clock||0;slider.max=frames.at(-1)?.clock||0;slider.disabled=frames.length<2;slider.value=review?.time??slider.max;
  const sample=frames.length?v103ReplaySample(frames,Number(slider.value)):null,info=sample?.broadcast||v132Broadcast(match);panel.querySelector('output').textContent=(review?.playing?'▶ · ':review?'Ⅱ · ':'LIVE · ')+v132Clock(info);panel.querySelector('[data-v132-live]').disabled=!review;
- const play=panel.querySelector('[data-v132-play]'),playLabel=review?.playing?v98Text('Rückschau pausieren','Pause review'):v98Text('Rückschau abspielen','Play review');play.textContent=review?.playing?'Ⅱ':'▶';play.title=playLabel;play.setAttribute('aria-label',playLabel);play.setAttribute('aria-pressed',String(Boolean(review?.playing)));play.disabled=frames.length<2;const live=panel.querySelector('[data-v132-live]');live.title=v98Text('Zurück zu Live','Return to live');live.setAttribute('aria-label',live.title);live.textContent='● Live';v132MarkerUI(panel,state,frames);stage.style.setProperty('--v132-review-height',panel.offsetHeight+'px');
+ const play=panel.querySelector('[data-v132-play]'),historical=review&&review.time<Number(slider.max),playing=historical?review.playing:running,requested=!historical&&running&&v65PauseRequested,playLabel=historical?(playing?v98Text('Rückschau pausieren','Pause review'):v98Text('Rückschau abspielen','Play review')):playing?(requested?v98Text('Pause angefordert','Pause requested'):v98Text('Spiel pausieren','Pause match')):match.halftimePause>0?v98Text('2. Halbzeit starten','Start second half'):v98Text('Spiel fortsetzen','Resume match');play.textContent=requested?'…':playing?'Ⅱ':'▶';play.title=playLabel;play.setAttribute('aria-label',playLabel);play.setAttribute('aria-pressed',String(Boolean(playing)));play.disabled=historical?frames.length<2:match.finished;const live=panel.querySelector('[data-v132-live]');live.title=v98Text('Zurück zu Live','Return to live');live.setAttribute('aria-label',live.title);live.textContent='● Live';v132MarkerUI(panel,state,frames);stage.style.setProperty('--v132-review-height',panel.offsetHeight+'px');
 }
 new MutationObserver(()=>{if(match&&v103Replays.get(match)?.active)v103ReplayUI()}).observe(v47PlayerDialog,{attributes:true,attributeFilter:['open']});
 // Broadcast snapshots travel with pictures, never with a second match simulation.
@@ -205,20 +214,21 @@ function v132Broadcast(current){
  const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId),firstEnd=current.firstHalfEnd||37.5,period=current.halftimeBreakDone?1:0;
  const added=current.halftimePause>0?current.addedMinutes?.[0]||0:current.elapsed>=(period?firstEnd+37.5:37.5)?current.addedMinutes?.[period]||0:0;
  const seconds=current.halftimePause>0?2700:added?(period?5400:2700):Math.max(0,(period?37.5+Math.max(0,current.elapsed-firstEnd):current.elapsed)*72);
- return {score:[...current.score],seconds,added,period,type:competition?.type||'league',round:context.fixture.round,names:[0,1].map(t=>v65Club(context,t)?.name||''),colours:[current.kits?.user?.main||'#c7f36b',current.kits?.opponent?.main||'#8cc4ec']};
+ return {score:[...current.score],aggregate:v64UiAggregateText(context.career,context.fixture,current.score,context.ownSide===1),seconds,added,period,type:competition?.type||'league',round:context.fixture.round,names:[0,1].map(t=>v65Club(context,t)?.name||''),colours:[current.kits?.user?.main||'#c7f36b',current.kits?.opponent?.main||'#8cc4ec']};
 }
 function v132Clock(info){const seconds=Math.floor(info?.seconds||0);return String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0')+(info?.added?' +'+info.added:'');}
 function v132BroadcastUI(frame){
  const stage=$('#match-area .v42-pitch-stage');if(!stage||!v98IsWorld()){$('#v132-tv')?.remove();return;}
- let tv=$('#v132-tv');if(!tv){tv=document.createElement('aside');tv.id='v132-tv';tv.innerHTML='<div class="v132-tv-kind"></div><div class="v132-tv-board"><span data-tv-team="0"></span><strong></strong><span data-tv-team="1"></span><time></time></div><small></small>';stage.append(tv);}
+ let tv=$('#v132-tv');if(!tv){tv=document.createElement('aside');tv.id='v132-tv';tv.innerHTML='<div class="v132-tv-kind"></div><div class="v132-tv-board"><span data-tv-team="0"></span><div class="v141-tv-score"><strong></strong><span class="v141-tv-aggregate" hidden></span></div><span data-tv-team="1"></span><time></time></div><small></small>';stage.append(tv);}
  const state=v103Replays.get(match),sample=frame||(!state?.review&&!state?.active?v98PitchFrame(match):v103ReplayFrame(performance.now(),false)),info=sample?.broadcast||v132Broadcast(match);if(!info)return;
- const round=/^R(\d+)$/.exec(info.round),roundLabel=round?v98Text('Spieltag ','Matchday ')+round[1]:({QF:v98Text('Viertelfinale','Quarter-final'),SF:v98Text('Halbfinale','Semi-final'),F:v98Text('Finale','Final')})[info.round];
+ const round=/^(?:R)?(\d+)$/.exec(info.round),roundLabel=round?v98Text('Spieltag ','Matchday ')+round[1]:({QF:v98Text('Viertelfinale','Quarter-final'),SF:v98Text('Halbfinale','Semi-final'),F:v98Text('Finale','Final')})[info.round];
  const kind=info.type==='league'?v98Text('Ligaspiel','League match'):info.type==='cup'?v98Text('Pokalspiel','Cup match'):v98Text('Europacup','European cup');
- const caption=kind+(info.type!=='league'&&roundLabel?' · '+roundLabel:'');tv.querySelector('.v132-tv-kind').textContent=caption;
+ const caption=kind+(roundLabel?' · '+roundLabel:'');tv.querySelector('.v132-tv-kind').textContent=caption;
  for(const t of [0,1]){const node=tv.querySelector(`[data-tv-team="${t}"]`);node.textContent=info.names[t].replace(/^(?:FC|CF|AC|SC|SV|AS)\s+/i,'').slice(0,3).toLocaleUpperCase();node.title=info.names[t];node.style.setProperty('--kit',info.colours[t]);}
  tv.querySelector('strong').textContent=info.score.join(' : ');
+ const aggregate=tv.querySelector('.v141-tv-aggregate');aggregate.hidden=!info.aggregate;aggregate.textContent=info.aggregate||'';aggregate.setAttribute('aria-label',v98Text('Gesamt','Aggregate')+' '+(info.aggregate||''));
  const clock=v132Clock(info);tv.querySelector('time').textContent=clock;
- const status=state?.review?v98Text('Rückschau','Match review'):state?.active?v98Text('Wiederholung','Replay'):match.finished?v98Text('Abpfiff','Full time'):match.halftimePause>0?v98Text('Halbzeit','Half time'):running?'LIVE':v98Text('Pause','Paused');tv.querySelector('small').textContent=status;tv.setAttribute('aria-label',`${caption} · ${info.names[0]} ${info.score[0]} : ${info.score[1]} ${info.names[1]} · ${clock} · ${status}`);
+ const status=state?.review?v98Text('Rückschau','Match review'):state?.active?v98Text('Wiederholung','Replay'):match.finished?v98Text('Abpfiff','Full time'):match.halftimePause>0?v98Text('Halbzeit','Half time'):running?'LIVE':v98Text('Pause','Paused');tv.querySelector('small').textContent=status;tv.setAttribute('aria-label',`${caption} · ${info.names[0]} ${info.score[0]} : ${info.score[1]} ${info.names[1]}${info.aggregate?' · '+v98Text('Gesamt','Aggregate')+' '+info.aggregate:''} · ${clock} · ${status}`);
 }
 function v132ScreenState(active){
  if(active&&!document.body.classList.contains('v132-fullscreen'))v132ScreenScroll=window.scrollY;
@@ -265,6 +275,7 @@ v132ScreenStyle.textContent=`
 #v132-tv .v132-tv-kind{display:table;padding:5px 10px;background:#143237f2;font-size:10px;text-transform:uppercase;letter-spacing:.8px;border-left:3px solid #c7f36b}
 #v132-tv .v132-tv-board{display:flex;align-items:stretch;background:#142b30f5;overflow:hidden;border-radius:0 4px 4px 0}
 #v132-tv [data-tv-team]{display:flex;align-items:center;max-width:170px;padding:9px 10px;border-bottom:4px solid var(--kit);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#v132-tv .v141-tv-score{display:flex;flex-direction:column;justify-content:center;background:#f0f6e9;color:#142b30}#v132-tv .v141-tv-aggregate{font-size:9px;line-height:12px;text-align:center;padding:0 4px 3px;font-variant-numeric:tabular-nums}
 #v132-tv strong{display:grid;place-items:center;min-width:58px;padding:5px 9px;background:#f0f6e9;color:#142b30;font-size:19px;font-variant-numeric:tabular-nums;white-space:nowrap}
 #v132-tv time{display:flex;align-items:center;white-space:nowrap;background:#c7f36b;color:#142b30;padding:5px 10px;font-size:15px;font-variant-numeric:tabular-nums}
 #v132-tv small{display:table;background:#143237e8;padding:3px 8px;font-size:9px;letter-spacing:1px;text-transform:uppercase}

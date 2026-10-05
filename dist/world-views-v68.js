@@ -37,9 +37,18 @@ v64UiEvent=function(event,state){
  return`<li class="v68-sub-event"><b>${event.minute}′ · Wechsel ${escapeHTML(club.name)}</b><span>Raus: ${escapeHTML(v64UiName(event.outPid))}</span><span>Rein: ${escapeHTML(v64UiName(event.inPid))}</span></li>`;
 };
 
+function v144StillInCompetition(career,competition,clubId){
+ if(!competition||competition.season!==career.world.season||!['cup','europe'].includes(competition.type)||competition.winnerId)return false;
+ const own=competition.fixtures.filter(f=>f.homeId===clubId||f.awayId===clubId).sort((a,b)=>a.day-b.day);
+ if(own.some(f=>!f.result))return true;
+ const resolved=own.filter(f=>['QF','SF','F'].includes(f.round)&&f.leg!==1&&f.result),last=resolved.at(-1);
+ if(last){const r=last.result,winner=r.winnerId||(r.homeGoals>r.awayGoals?last.homeId:r.awayGoals>r.homeGoals?last.awayId:r.penalties?r.penalties[0]>r.penalties[1]?last.homeId:last.awayId:null);return winner===clubId&&last.round!=='F';}
+ return competition.type==='europe'&&competition.entrants.includes(clubId)&&v62Table(competition,competition.entrants).slice(0,8).some(r=>r.clubId===clubId);
+}
 v62ResultHTML=function(career,fixture){
+ const competition=career.world.competitions.find(c=>c.id===fixture.competitionId),managed=career.manager.managedClubId,highlight=v144StillInCompetition(career,competition,managed),club=id=>highlight&&id===managed?`<span class="v144-own-club">${v68ClubButton(career,id)}</span>`:v68ClubButton(career,id);
  const result=fixture.result,score=result?`${result.homeGoals}:${result.awayGoals}${result.penalties?` <small>i. E. ${result.penalties.join(':')}</small>`:''}`:'–';
- return`<div class="v62-fixture"><span>${v62Date(fixture.day)} · ${escapeHTML(fixture.round)}</span><div class="v68-result">${v68ClubButton(career,fixture.homeId)}<b>${score}</b>${v68ClubButton(career,fixture.awayId)}</div></div>`;
+ return`<div class="v62-fixture"><span>${v62Date(fixture.day)} · ${escapeHTML(fixture.round)}</span><div class="v68-result">${club(fixture.homeId)}<b>${score}</b>${club(fixture.awayId)}</div></div>`;
 };
 v62TableHTML=function(career,competition){
  const ids=competition.type==='europe'?competition.entrants:[...new Set(competition.fixtures.flatMap(fixture=>[fixture.homeId,fixture.awayId]))],rows=v62Table(competition,ids),badges=v68ChampionBadges(career,competition);
@@ -175,6 +184,7 @@ v61RenderCareer=function(career){
  const coaches=clubView.querySelector('.v63-coach-list')?.closest('section'),honours=coaches?.nextElementSibling;
  if(honours?.querySelector('.v61-honours')||honours?.querySelector('h3')?.textContent==='Erfolge dieser Karriere')honours.remove();
  coaches?.remove();
+ const title=v61WorldScreen.querySelector('.v61-career-head h1'),badges=v68ChampionBadges(career).get(own.id);if(title&&badges)title.insertAdjacentHTML('beforeend',`<span class="v149-current-titles">${badges}</span>`);
  const hero=clubView.querySelector('.v61-club-hero');if(hero)hero.outerHTML=v68ClubDetailHTML(career,own.id);
  clubView.querySelectorAll('.v67-manager li').forEach((item,index)=>{const job=career.manager.stationHistory[index],button=document.createElement('button');button.type='button';button.className='v68-text-link';button.dataset.v68Club=job.clubId;button.textContent='Vereinsprofil';item.append(' · ',button)});
  overview.querySelectorAll('.v67-offers article').forEach((item,index)=>{const id=career.world.transition?.offers[index];if(item&&id)item.querySelector('.v67-offer-title')?.insertAdjacentHTML('afterend',`<button type="button" class="menu-action" data-v68-club="${escapeHTML(id)}">Kader und Vereinsprofil ansehen</button>`)});

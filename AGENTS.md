@@ -19,3 +19,5 @@ Für künftige Änderungen gilt: Bestehende Spielstände nicht rückwirkend bere
 Spielerfähigkeiten in allen Ansichten einschließlich zugänglicher Beschriftungen nur als Farbstufen zeigen. Exakte Fähigkeitswerte und Entwicklungspunkte bleiben intern; Details stehen in `docs/product.md`.
 
 Halte diese Datei als Wegweiser kurz. Pflege feste Produktentscheidungen in `docs/product.md` und Entwicklungsregeln in `docs/development.md`.
+
+Für 3D-Modellierung, Texturen, Rigging und Animationen darfst du den vollen verfügbaren Funktionsumfang von meshy.ai nutzen, einschließlich Beratung, Generierung und Bearbeitung. Nutze dafür den Meshy-Plugin-Skill; projektspezifische Abläufe stehen in `docs/meshy-workflow.md`.

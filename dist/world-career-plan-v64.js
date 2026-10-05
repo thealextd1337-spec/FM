@@ -46,22 +46,52 @@ function v64CareerPlanSnapshot(context){
  const {fixture,state}=context,starters=[...fixture.plan.home.starters],bench=[...fixture.plan.home.bench];
  return{starters,bench,roles:Object.fromEntries(starters.map(pid=>[pid,state.roles[pid]])),cells:Object.fromEntries(starters.filter(pid=>Number.isInteger(state.cells[pid])).map(pid=>[pid,state.cells[pid]])),orientation:Object.fromEntries(starters.filter(pid=>state.orientation[pid]!==undefined).map(pid=>[pid,state.orientation[pid]])),instructions:Object.fromEntries(starters.filter(pid=>v64PlayerInstructions(state,pid).length).map(pid=>[pid,v64PlayerInstructions(state,pid)])),tactics:{...state.tactics[0]}};
 }
-function v64ApplyCareerPlan(career,fixture,state){
- if(!career.manager.matchPlan)return;
+function v64ApplyCareerPlan(career,fixture,state,savedPlan=career.manager.matchPlan){
+ if(!savedPlan)return;
  const club=v64CareerClub(career),side=fixture.homeId===club.id?0:fixture.awayId===club.id?1:-1;if(side<0)return;
- const saved=v64CareerPlanNormalize(career,career.manager.matchPlan),target=side===0?fixture.plan.home:fixture.plan.away,old=[...target.starters,...target.bench];
+ const saved=v64CareerPlanNormalize(career,savedPlan),target=side===0?fixture.plan.home:fixture.plan.away,old=[...target.starters,...target.bench];
  target.starters=[...saved.starters];target.bench=[...saved.bench];target.roles={...saved.roles};target.tactics={...saved.tactics};
  if(side===0){state.active=[...saved.starters];state.bench=[...saved.bench]}else{state.awayActive=[...saved.starters];state.awayBench=[...saved.bench]}
  for(const pid of old){delete state.roles[pid];delete state.cells?.[pid];delete state.orientation?.[pid];delete state.instructions?.[pid]}
  Object.assign(state.roles,saved.roles);state.cells||={};Object.assign(state.cells,saved.cells);state.orientation||={};Object.assign(state.orientation,saved.orientation);state.instructions||={};Object.assign(state.instructions,structuredClone(saved.instructions));state.tactics[side]={...saved.tactics};
  for(const pid of [...saved.starters,...saved.bench])if(state.fresh[pid]===undefined){const player=club.roster.find(item=>item.pid===pid);state.fresh[pid]=player.fresh;state.minutes[pid]=0;state.stats[pid]={goals:0,assists:0,shots:0}}
 }
+let v140MatchPresetName='',v140MatchPresetId='';
+function v140MatchPresetPlan(career,fixture,state,side){
+ const target={starters:[...v64Active(state,side)],bench:[...v64Bench(state,side)]};
+ return v64CareerPlanNormalize(career,v64CareerPlanSnapshot({fixture:{plan:{home:target}},state:{...state,tactics:[state.tactics[side]]}}));
+}
+function v140MatchPresetsHTML(career,mode='prematch'){
+ const presets=career.manager.tacticPresets||[],selected=presets.find(p=>p.id===v140MatchPresetId)||presets[0];
+ return `<section class="v140-match-presets" data-v140-mode="${mode}" aria-label="Gespeicherte Matchpläne"><h3>Gespeicherte Matchpläne</h3><div><label class="sr-only" for="v140-${mode}-name">Name der Vorlage</label><input data-v140-name id="v140-${mode}-name" maxlength="32" value="${escapeHTML(v140MatchPresetName)}" placeholder="Name der Vorlage"><button type="button" data-v140-save>Vorlage speichern</button></div><div><label class="sr-only" for="v140-${mode}-select">Gespeicherte Matchpläne</label><select data-v140-select id="v140-${mode}-select" ${presets.length?'':'disabled'}>${presets.length?presets.map(p=>`<option value="${escapeHTML(p.id)}" translate="no" ${p.id===v140MatchPresetId?'selected':''}>${escapeHTML(p.name)}</option>`).join(''):'<option>Noch keine Vorlage gespeichert.</option>'}</select><button type="button" data-v140-load ${presets.length?'':'disabled'}>Laden</button><button type="button" data-v140-delete aria-label="${selected?`Vorlage ${escapeHTML(selected.name)} entfernen`:'Entfernen'}" title="Entfernen" ${presets.length?'':'disabled'}>×</button></div><p data-v140-error id="v140-${mode}-error" class="v61-error" role="alert"></p></section>`;
+}
+async function v140SaveMatchPreset(career,fixture,state,side,name){
+ if(!['prematch','paused'].includes(state.phase))return false;
+ name=name.trim().replace(/\s+/g,' ');if(name.length<2||name.length>32)throw Error('Der Vorlagenname muss 2 bis 32 Zeichen haben.');
+ const previous=career.manager.tacticPresets,entries=structuredClone(previous||[]),existing=entries.find(p=>p.name.toLocaleLowerCase()===name.toLocaleLowerCase()),plan=v140MatchPresetPlan(career,fixture,state,side),preset=existing||{id:crypto.randomUUID(),name,plan};
+ preset.name=name;preset.plan=plan;if(!existing)entries.push(preset);career.manager.tacticPresets=entries;
+ try{await v64UiSave();v140MatchPresetName=name;v140MatchPresetId=preset.id;return true}catch(error){career.manager.tacticPresets=previous;throw error}
+}
+async function v140LoadMatchPreset(career,fixture,state,id){
+ if(!['prematch','paused'].includes(state.phase))return false;
+ const preset=(career.manager.tacticPresets||[]).find(p=>p.id===id);if(!preset)return false;
+ const previousPlan=structuredClone(fixture.plan),previousState=structuredClone(state),previousPermanent=career.manager.matchPlan;
+ try{if(fixture.id==='career-plan')career.manager.matchPlan=v64CareerPlanNormalize(career,preset.plan);else if(state.phase==='paused'){const undo=v65UndoSnapshot({state,ownSide:v64UiOwnSide(fixture)});v140ApplyPausedPreset(career,fixture,state,preset.plan);state.pauseUndo=undo;}else v64ApplyCareerPlan(career,fixture,state,preset.plan);await v64UiSave();v140MatchPresetName=preset.name;v140MatchPresetId=id;return true}catch(error){fixture.plan=previousPlan;for(const key of Object.keys(state))if(!(key in previousState))delete state[key];Object.assign(state,previousState);career.manager.matchPlan=previousPermanent;throw error}
+}
+function v140ApplyPausedPreset(career,fixture,state,source){
+ const side=v64UiOwnSide(fixture),plan=v64CareerPlanNormalize(career,source),active=v64Active(state,side),outgoing=active.filter(pid=>!plan.starters.includes(pid)),incoming=plan.starters.filter(pid=>!active.includes(pid)),mapping=new Map(active.filter(pid=>plan.starters.includes(pid)).map(pid=>[pid,pid]));
+ state.pending[side]=[];
+ for(const inPid of incoming){const keeper=v64Player(career,fixture,side,inPid).keeper,index=outgoing.findIndex(pid=>v64Player(career,fixture,side,pid).keeper===keeper);if(index<0)throw Error('Dieser Wechsel ist nicht zulässig.');const outPid=outgoing.splice(index,1)[0];v64QueueSubstitution(career,fixture,state,side,outPid,inPid);mapping.set(outPid,inPid);}
+ v64ChangeTactics(career,fixture,state,side,plan.tactics,'Matchplan');
+ for(const [pid,target]of mapping){state.roles[pid]=plan.roles[target];delete state.cells[pid];delete state.orientation[pid];delete state.instructions[pid];if(Number.isInteger(plan.cells[target]))state.cells[pid]=plan.cells[target];if(plan.orientation[target]!==undefined)state.orientation[pid]=plan.orientation[target];if(plan.instructions[target])state.instructions[pid]=[...plan.instructions[target]];}
+}
+function v140TacticsHTML(state,side){return '<h2>Teamtaktik</h2>'+v64UiTactics(state,side);}
 function v64CareerPlanHTML(career){
  const {fixture,state}=v64CareerPlanContext(career),club=v64CareerClub(career),slot=Math.min(v64CareerSelectedSlot,5),pid=fixture.plan.home.starters[slot],player=club.roster.find(item=>item.pid===pid),presets=career.manager.tacticPresets||[];
  const bench=fixture.plan.home.bench.map(id=>{const item=club.roster.find(entry=>entry.pid===id);return`<article class="bench-chip v64-bench-chip v64-career-bench-chip" draggable="true" data-v64-career-bench-card="${escapeHTML(id)}" data-v64-career-keeper="${item.keeper}" aria-label="${escapeHTML(item.name)} auf ein Feldtrikot ziehen"><div class="bench-select"><span class="bench-title">${v61FlagSVG(item.nation)}<b>#${escapeHTML(item.n)} ${escapeHTML(item.name)}</b></span><span class="bench-meta">${v61PositionNames[item.line]} · ${freshText(item.fresh)}</span>${v51StatusHTML(item,item.fresh)}<span class="bench-skills">${v55TopSkillsHTML(item)}</span></div><button type="button" class="player-link" data-v64-career-profile="${escapeHTML(id)}" aria-label="Profil von ${escapeHTML(item.name)} ansehen">Details</button></article>`}).join('');
  const benchPanel=`<section class="v64-bench-section compact-bench v64-career-bench"><div class="compact-bench-head"><h3>Ersatzbank</h3><span>${fixture.plan.home.bench.length} / 5 · Auf ein Trikot ziehen</span></div><div class="bench-strip v64-bench-strip">${bench||'<p>Keine Feldspieler auf der Bank.</p>'}</div></section>`;
- const controls=v64CareerPlanTab==='tactics'?v64UiTactics(state,0):`<h3>${escapeHTML(player.name)} · ${v64Roles[state.roles[pid]]}</h3>${v64PositionWarningHTML(player,state.roles[pid])}${v64OrientationHTML(state,pid)}${v64InstructionHTML(state,pid)}`;
- return`<div class="v64-career-plan"><h2>Aufstellung & Taktik</h2><p>Dieser Matchplan gilt für dein nächstes Spiel. Änderungen werden gespeichert.</p><div class="v64-layout v129-plan-layout"><div class="v64-pitch-area">${v64UiPrematchPitch(career,fixture,state,0,{selected:slot,pickAttribute:'data-v64-career-slot',label:'Dauerhafter Matchplan auf dem Spielfeld'})}${benchPanel}</div><div class="v129-plan-controls"><nav class="prematch-tabs v64-prematch-tabs" aria-label="Dauerhafter Matchplan"><button type="button" data-v64-career-tab="lineup" aria-pressed="${v64CareerPlanTab==='lineup'}" class="${v64CareerPlanTab==='lineup'?'active':''}">Aufstellung</button><button type="button" data-v64-career-tab="tactics" aria-pressed="${v64CareerPlanTab==='tactics'}" class="${v64CareerPlanTab==='tactics'?'active':''}">Taktik</button></nav><section class="v64-controls">${controls}</section></div></div><section class="v62-season v64-career-presets"><h3>Gespeicherte Matchpläne</h3><p>Eine Vorlage enthält Startelf, Feldpositionen, Einzelanweisungen und Teamtaktik. Fehlende Spieler werden beim Laden ersetzt.</p><div class="v64-career-save"><label for="v64-career-name">Name der Vorlage</label><input id="v64-career-name" maxlength="32" value="${escapeHTML(v64CareerPresetName)}" placeholder="Zum Beispiel: Flügelspiel"><button type="button" data-v64-career-save>Vorlage speichern</button></div>${presets.length?`<div class="v64-career-preset-list">${presets.map(preset=>`<div><strong translate="no">${escapeHTML(preset.name)}</strong><button type="button" data-v64-career-load="${escapeHTML(preset.id)}">Laden</button><button type="button" data-v64-career-delete="${escapeHTML(preset.id)}" aria-label="Vorlage ${escapeHTML(preset.name)} entfernen">Entfernen</button></div>`).join('')}</div>`:'<p>Noch keine Vorlage gespeichert.</p>'}</section><p class="v61-error" role="alert" id="v64-career-error"></p></div>`;
+ const controls=v64CareerPlanTab==='tactics'?v140TacticsHTML(state,0):`<h3>${escapeHTML(player.name)} · ${v64Roles[state.roles[pid]]}</h3>${v64PositionWarningHTML(player,state.roles[pid])}${v64OrientationHTML(state,pid)}${v64InstructionHTML(state,pid)}`;
+ return`<div class="v64-career-plan"><h2>Aufstellung & Taktik</h2><p>Dieser Matchplan gilt für dein nächstes Spiel. Änderungen werden gespeichert.</p><div class="v64-layout v129-plan-layout"><div class="v64-pitch-area">${v64UiPrematchPitch(career,fixture,state,0,{selected:slot,pickAttribute:'data-v64-career-slot',label:'Dauerhafter Matchplan auf dem Spielfeld'})}${benchPanel}</div><div class="v129-plan-controls"><nav class="prematch-tabs v64-prematch-tabs" aria-label="Dauerhafter Matchplan"><button type="button" data-v64-career-tab="lineup" aria-pressed="${v64CareerPlanTab==='lineup'}" class="${v64CareerPlanTab==='lineup'?'active':''}">Aufstellung</button><button type="button" data-v64-career-tab="tactics" aria-pressed="${v64CareerPlanTab==='tactics'}" class="${v64CareerPlanTab==='tactics'?'active':''}">Taktik</button></nav><section class="v64-controls">${controls}</section>${v140MatchPresetsHTML(career,'career')}</div></div><p class="v61-error" role="alert" id="v64-career-error"></p></div>`;
 }
 function v64CareerRenderView(career){const view=v61WorldScreen.querySelector('[data-v46-view="matchplan"]');if(!view)return;try{view.innerHTML=v64CareerPlanHTML(career)}catch(error){view.innerHTML=`<h2>Aufstellung & Taktik</h2><p class="v61-error" role="alert">${escapeHTML(error.message)}</p>`}}
 async function v64CareerCommit(career,mutate){
@@ -128,4 +158,19 @@ v61WorldScreen.addEventListener('drop',event=>{
 });
 v61WorldScreen.addEventListener('dragend',()=>{
  v64CareerDraggedBench=null;v61WorldScreen.querySelectorAll('[data-v64-career-slot].v64-drag-over').forEach(item=>item.classList.remove('v64-drag-over'));
+});
+
+function v140PresetContext(panel){
+ const career=v61CurrentCareer;if(!career)return null;
+ if(panel.dataset.v140Mode==='career'){if(career.world.activeMatch)return null;return {career,...v64CareerPlanContext(career),side:0};}
+ const fixture=v64ActiveFixture(career),state=career.world.activeMatch?.state;if(!fixture||!['prematch','paused'].includes(state?.phase))return null;return {career,fixture,state,side:v64UiOwnSide(fixture)};
+}
+function v140PresetRender(context,mode){if(mode==='career')v64CareerRenderView(context.career);else if(mode==='paused'){const physical=v65Context();v65ApplyTactics(physical);v65Snapshot(physical);v65UpdateControls(physical);draw();}else v64UiRender(context.career);}
+document.addEventListener('input',event=>{if(event.target.matches('[data-v140-name]'))v140MatchPresetName=event.target.value;});
+document.addEventListener('change',event=>{if(event.target.matches('[data-v140-select]'))v140MatchPresetId=event.target.value;});
+document.addEventListener('click',async event=>{
+ const button=event.target.closest('[data-v140-save],[data-v140-load],[data-v140-delete]');if(!button||button.disabled)return;
+ const panel=button.closest('.v140-match-presets'),context=v140PresetContext(panel);if(!context)return;const {career,fixture,state,side}=context;button.disabled=true;
+ try{if(button.hasAttribute('data-v140-save'))await v140SaveMatchPreset(career,fixture,state,side,panel.querySelector('[data-v140-name]').value);else if(button.hasAttribute('data-v140-delete')){const id=panel.querySelector('[data-v140-select]').value,preset=(career.manager.tacticPresets||[]).find(p=>p.id===id),question=`Vorlage „${preset.name}“ entfernen?`;if(!window.confirm(window.doppel6Language?.localize(question)||question)){button.disabled=false;return;}const previous=career.manager.tacticPresets;try{career.manager.tacticPresets=previous.filter(p=>p.id!==id);await v64UiSave();}catch(error){career.manager.tacticPresets=previous;throw error;}}else await v140LoadMatchPreset(career,fixture,state,panel.querySelector('[data-v140-select]').value);v140PresetRender(context,panel.dataset.v140Mode);}
+ catch(error){panel.querySelector('[data-v140-error]').textContent=error.message;button.disabled=false;}
 });

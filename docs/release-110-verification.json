@@ -1,0 +1,2389 @@
+{
+  "preflight": {
+    "version": 110,
+    "rows": [
+      {
+        "command": "work/build.cjs",
+        "exit": 0,
+        "seconds": 7.09
+      },
+      {
+        "command": "work/check-release-tests-v108.cjs",
+        "exit": 0,
+        "seconds": 244.221
+      },
+      {
+        "command": "work/generate-user-meshy-match.cjs",
+        "exit": 0,
+        "seconds": 0.47
+      },
+      {
+        "command": "work/check-match-play-button-v137.cjs",
+        "exit": 0,
+        "seconds": 7.905
+      },
+      {
+        "command": "work/check-idle-turn-v138.cjs",
+        "exit": 0,
+        "seconds": 5.544
+      },
+      {
+        "command": "work/check-zones-v139.cjs",
+        "exit": 0,
+        "seconds": 14.219
+      },
+      {
+        "command": "work/check-prematch-presets-v140.cjs",
+        "exit": 0,
+        "seconds": 25.234
+      },
+      {
+        "command": "work/check-shared-tactics-v140.cjs",
+        "exit": 0,
+        "seconds": 11.965
+      },
+      {
+        "command": "work/check-penalty-ready-v143.cjs",
+        "exit": 0,
+        "seconds": 6.331
+      },
+      {
+        "command": "work/check-match-additions-v148.cjs",
+        "exit": 0,
+        "seconds": 6.236
+      },
+      {
+        "command": "work/check-longshots-v145.cjs",
+        "exit": 0,
+        "seconds": 17.975
+      },
+      {
+        "command": "work/diagnose-dribble-v147.cjs",
+        "exit": 0,
+        "seconds": 6.63
+      },
+      {
+        "command": "work/run-match-gates-v139.cjs work/check-review-events-v132.cjs",
+        "exit": 0,
+        "seconds": 16.025
+      },
+      {
+        "command": "work/run-match-gates-v139.cjs work/run-fullscreen-regression-v136.cjs",
+        "exit": 0,
+        "seconds": 10.603
+      },
+      {
+        "command": "work/run-match-gates-v139.cjs work/check-halftime-fullscreen-v136.cjs",
+        "exit": 0,
+        "seconds": 8.096
+      },
+      {
+        "command": "work/run-regression-v134.cjs work/check-live-warping-v121.cjs",
+        "exit": 0,
+        "seconds": 90.94
+      },
+      {
+        "command": "work/run-regression-v134.cjs work/check-keeper-visual-v120.cjs",
+        "exit": 0,
+        "seconds": 16.195
+      },
+      {
+        "command": "work/run-match-gates-v139.cjs work/run-halftime-parity-v136.cjs",
+        "exit": 0,
+        "seconds": 51.921
+      }
+    ],
+    "bytes": 50201782,
+    "sha256": "7ed1c1e98a7c66dbcb2a4d77b4e2acffd3a7964c4de5256366b36428e715274b",
+    "sourceBuildMatch": true
+  },
+  "releaseTests": {
+    "rows": [
+      {
+        "command": "node work/test-progress-v58.cjs",
+        "exit": 0,
+        "seconds": 0.053,
+        "log": "outputs\\release-108-tests\\test-progress-v58.cjs.log"
+      },
+      {
+        "command": "node work/test-live-player-v59.cjs",
+        "exit": 0,
+        "seconds": 0.196,
+        "log": "outputs\\release-108-tests\\test-live-player-v59.cjs.log"
+      },
+      {
+        "command": "node work/test-progress-menu.cjs",
+        "exit": 0,
+        "seconds": 0.052,
+        "log": "outputs\\release-108-tests\\test-progress-menu.cjs.log"
+      },
+      {
+        "command": "node work/test-transfer-confirmations.cjs",
+        "exit": 0,
+        "seconds": 0.055,
+        "log": "outputs\\release-108-tests\\test-transfer-confirmations.cjs.log"
+      },
+      {
+        "command": "node work/test-transfer-deadline-dialog.cjs",
+        "exit": 0,
+        "seconds": 0.051,
+        "log": "outputs\\release-108-tests\\test-transfer-deadline-dialog.cjs.log"
+      },
+      {
+        "command": "node work/test-tactics-replacement.cjs",
+        "exit": 0,
+        "seconds": 0.051,
+        "log": "outputs\\release-108-tests\\test-tactics-replacement.cjs.log"
+      },
+      {
+        "command": "node work/test-quick-lineup-cells.cjs",
+        "exit": 0,
+        "seconds": 0.054,
+        "log": "outputs\\release-108-tests\\test-quick-lineup-cells.cjs.log"
+      },
+      {
+        "command": "node work/test-v24.cjs",
+        "exit": 0,
+        "seconds": 0.052,
+        "log": "outputs\\release-108-tests\\test-v24.cjs.log"
+      },
+      {
+        "command": "node work/test-mobile-drag-scroll.cjs",
+        "exit": 0,
+        "seconds": 0.16,
+        "log": "outputs\\release-108-tests\\test-mobile-drag-scroll.cjs.log"
+      },
+      {
+        "command": "node work/test-v31.cjs",
+        "exit": 0,
+        "seconds": 1.554,
+        "log": "outputs\\release-108-tests\\test-v31.cjs.log"
+      },
+      {
+        "command": "node work/test-v41.cjs",
+        "exit": 0,
+        "seconds": 0.152,
+        "log": "outputs\\release-108-tests\\test-v41.cjs.log"
+      },
+      {
+        "command": "node work/test-v42.cjs",
+        "exit": 0,
+        "seconds": 0.222,
+        "log": "outputs\\release-108-tests\\test-v42.cjs.log"
+      },
+      {
+        "command": "node work/test-v44.cjs",
+        "exit": 0,
+        "seconds": 0.164,
+        "log": "outputs\\release-108-tests\\test-v44.cjs.log"
+      },
+      {
+        "command": "node work/test-v45.cjs",
+        "exit": 0,
+        "seconds": 0.166,
+        "log": "outputs\\release-108-tests\\test-v45.cjs.log"
+      },
+      {
+        "command": "node work/test-v47.cjs",
+        "exit": 0,
+        "seconds": 0.191,
+        "log": "outputs\\release-108-tests\\test-v47.cjs.log"
+      },
+      {
+        "command": "node work/test-statistics-menu.cjs",
+        "exit": 0,
+        "seconds": 0.175,
+        "log": "outputs\\release-108-tests\\test-statistics-menu.cjs.log"
+      },
+      {
+        "command": "node work/test-player-seasons.cjs",
+        "exit": 0,
+        "seconds": 0.155,
+        "log": "outputs\\release-108-tests\\test-player-seasons.cjs.log"
+      },
+      {
+        "command": "node work/test-v49.cjs",
+        "exit": 0,
+        "seconds": 0.162,
+        "log": "outputs\\release-108-tests\\test-v49.cjs.log"
+      },
+      {
+        "command": "node work/test-v50.cjs",
+        "exit": 0,
+        "seconds": 0.415,
+        "log": "outputs\\release-108-tests\\test-v50.cjs.log"
+      },
+      {
+        "command": "node work/test-v50-balance.cjs",
+        "exit": 0,
+        "seconds": 20.178,
+        "log": "outputs\\release-108-tests\\test-v50-balance.cjs.log"
+      },
+      {
+        "command": "node work/test-v51.cjs",
+        "exit": 0,
+        "seconds": 0.489,
+        "log": "outputs\\release-108-tests\\test-v51.cjs.log"
+      },
+      {
+        "command": "node work/test-v52.cjs",
+        "exit": 0,
+        "seconds": 0.198,
+        "log": "outputs\\release-108-tests\\test-v52.cjs.log"
+      },
+      {
+        "command": "node work/test-v53.cjs",
+        "exit": 0,
+        "seconds": 0.19,
+        "log": "outputs\\release-108-tests\\test-v53.cjs.log"
+      },
+      {
+        "command": "node work/test-v54.cjs",
+        "exit": 0,
+        "seconds": 8.254,
+        "log": "outputs\\release-108-tests\\test-v54.cjs.log"
+      },
+      {
+        "command": "node work/test-v55.cjs",
+        "exit": 0,
+        "seconds": 0.483,
+        "log": "outputs\\release-108-tests\\test-v55.cjs.log"
+      },
+      {
+        "command": "node work/test-ai-season-stats.cjs",
+        "exit": 0,
+        "seconds": 0.17,
+        "log": "outputs\\release-108-tests\\test-ai-season-stats.cjs.log"
+      },
+      {
+        "command": "node work/test-ai-career-v60.cjs",
+        "exit": 0,
+        "seconds": 0.718,
+        "log": "outputs\\release-108-tests\\test-ai-career-v60.cjs.log"
+      },
+      {
+        "command": "node work/test-breakaway.cjs",
+        "exit": 0,
+        "seconds": 0.174,
+        "log": "outputs\\release-108-tests\\test-breakaway.cjs.log"
+      },
+      {
+        "command": "node work/test-v56.cjs",
+        "exit": 0,
+        "seconds": 4.786,
+        "log": "outputs\\release-108-tests\\test-v56.cjs.log"
+      },
+      {
+        "command": "node work/test-duel-streaks.cjs",
+        "exit": 0,
+        "seconds": 0.493,
+        "log": "outputs\\release-108-tests\\test-duel-streaks.cjs.log"
+      },
+      {
+        "command": "node work/test-v57.cjs",
+        "exit": 0,
+        "seconds": 0.555,
+        "log": "outputs\\release-108-tests\\test-v57.cjs.log"
+      },
+      {
+        "command": "node work/test-world-foundation-v61.cjs",
+        "exit": 0,
+        "seconds": 0.139,
+        "log": "outputs\\release-108-tests\\test-world-foundation-v61.cjs.log"
+      },
+      {
+        "command": "node work/test-world-local-start.cjs",
+        "exit": 0,
+        "seconds": 0.966,
+        "log": "outputs\\release-108-tests\\test-world-local-start.cjs.log"
+      },
+      {
+        "command": "node work/test-world-competition-v62.cjs",
+        "exit": 0,
+        "seconds": 12.23,
+        "log": "outputs\\release-108-tests\\test-world-competition-v62.cjs.log"
+      },
+      {
+        "command": "node work/test-world-coaches-v63.cjs",
+        "exit": 0,
+        "seconds": 1.426,
+        "log": "outputs\\release-108-tests\\test-world-coaches-v63.cjs.log"
+      },
+      {
+        "command": "node work/test-world-match-v64.cjs",
+        "exit": 0,
+        "seconds": 0.391,
+        "log": "outputs\\release-108-tests\\test-world-match-v64.cjs.log"
+      },
+      {
+        "command": "node work/test-world-penalties-v65.cjs",
+        "exit": 0,
+        "seconds": 0.052,
+        "log": "outputs\\release-108-tests\\test-world-penalties-v65.cjs.log"
+      },
+      {
+        "command": "node work/test-world-victory-popup.cjs",
+        "exit": 0,
+        "seconds": 0.05,
+        "log": "outputs\\release-108-tests\\test-world-victory-popup.cjs.log"
+      },
+      {
+        "command": "node work/test-world-nationalities-v79.cjs",
+        "exit": 0,
+        "seconds": 2.802,
+        "log": "outputs\\release-108-tests\\test-world-nationalities-v79.cjs.log"
+      },
+      {
+        "command": "node work/test-world-market-nationalities-v79.cjs",
+        "exit": 0,
+        "seconds": 0.15,
+        "log": "outputs\\release-108-tests\\test-world-market-nationalities-v79.cjs.log"
+      },
+      {
+        "command": "node work/test-world-kits-v81.cjs",
+        "exit": 0,
+        "seconds": 2.227,
+        "log": "outputs\\release-108-tests\\test-world-kits-v81.cjs.log"
+      },
+      {
+        "command": "node work/test-world-direct-transfer.cjs",
+        "exit": 0,
+        "seconds": 0.196,
+        "log": "outputs\\release-108-tests\\test-world-direct-transfer.cjs.log"
+      },
+      {
+        "command": "node work/test-world-navigation.cjs",
+        "exit": 0,
+        "seconds": 0.052,
+        "log": "outputs\\release-108-tests\\test-world-navigation.cjs.log"
+      },
+      {
+        "command": "node work/test-world-swap-banner.cjs",
+        "exit": 0,
+        "seconds": 0.05,
+        "log": "outputs\\release-108-tests\\test-world-swap-banner.cjs.log"
+      },
+      {
+        "command": "node work/test-world-goal-scene-v83.cjs",
+        "exit": 0,
+        "seconds": 0.053,
+        "log": "outputs\\release-108-tests\\test-world-goal-scene-v83.cjs.log"
+      },
+      {
+        "command": "node work/test-world-goal-banner-v84.cjs",
+        "exit": 0,
+        "seconds": 0.053,
+        "log": "outputs\\release-108-tests\\test-world-goal-banner-v84.cjs.log"
+      },
+      {
+        "command": "node work/test-i18n-v75.cjs",
+        "exit": 0,
+        "seconds": 0.063,
+        "log": "outputs\\release-108-tests\\test-i18n-v75.cjs.log"
+      },
+      {
+        "command": "node work/test-world-live-ranks.cjs",
+        "exit": 0,
+        "seconds": 0.053,
+        "log": "outputs\\release-108-tests\\test-world-live-ranks.cjs.log"
+      },
+      {
+        "command": "node work/test-world-grid-v71.cjs",
+        "exit": 0,
+        "seconds": 0.129,
+        "log": "outputs\\release-108-tests\\test-world-grid-v71.cjs.log"
+      },
+      {
+        "command": "node work/test-world-player-instructions.cjs",
+        "exit": 0,
+        "seconds": 0.134,
+        "log": "outputs\\release-108-tests\\test-world-player-instructions.cjs.log"
+      },
+      {
+        "command": "node work/test-world-physical-instructions.cjs",
+        "exit": 0,
+        "seconds": 0.167,
+        "log": "outputs\\release-108-tests\\test-world-physical-instructions.cjs.log"
+      },
+      {
+        "command": "node work/test-world-career-plan.cjs",
+        "exit": 0,
+        "seconds": 0.139,
+        "log": "outputs\\release-108-tests\\test-world-career-plan.cjs.log"
+      },
+      {
+        "command": "node work/test-world-economy-v66.cjs",
+        "exit": 0,
+        "seconds": 9.003,
+        "log": "outputs\\release-108-tests\\test-world-economy-v66.cjs.log"
+      },
+      {
+        "command": "node work/test-world-sponsors-v97.cjs",
+        "exit": 0,
+        "seconds": 0.283,
+        "log": "outputs\\release-108-tests\\test-world-sponsors-v97.cjs.log"
+      },
+      {
+        "command": "node work/test-world-career-events.cjs",
+        "exit": 0,
+        "seconds": 2.36,
+        "log": "outputs\\release-108-tests\\test-world-career-events.cjs.log"
+      },
+      {
+        "command": "node work/test-world-playable-rosters.cjs",
+        "exit": 0,
+        "seconds": 0.382,
+        "log": "outputs\\release-108-tests\\test-world-playable-rosters.cjs.log"
+      },
+      {
+        "command": "node work/test-world-transfer-list-v72.cjs",
+        "exit": 0,
+        "seconds": 1.012,
+        "log": "outputs\\release-108-tests\\test-world-transfer-list-v72.cjs.log"
+      },
+      {
+        "command": "node work/test-world-human-sale-v73.cjs",
+        "exit": 0,
+        "seconds": 0.91,
+        "log": "outputs\\release-108-tests\\test-world-human-sale-v73.cjs.log"
+      },
+      {
+        "command": "node work/test-world-youth-manager-v67.cjs",
+        "exit": 0,
+        "seconds": 9.704,
+        "log": "outputs\\release-108-tests\\test-world-youth-manager-v67.cjs.log"
+      },
+      {
+        "command": "node work/test-finance-close-v130.cjs",
+        "exit": 0,
+        "seconds": 1.746,
+        "log": "outputs\\release-108-tests\\test-finance-close-v130.cjs.log"
+      },
+      {
+        "command": "node work/test-world-payments-v124.cjs",
+        "exit": 0,
+        "seconds": 8.212,
+        "log": "outputs\\release-108-tests\\test-world-payments-v124.cjs.log"
+      },
+      {
+        "command": "node work/test-3d-documentation-v134.cjs",
+        "exit": 0,
+        "seconds": 0.171,
+        "log": "outputs\\release-108-tests\\test-3d-documentation-v134.cjs.log"
+      },
+      {
+        "command": "node work/test-mobile-performance-v135.cjs",
+        "exit": 0,
+        "seconds": 0.204,
+        "log": "outputs\\release-108-tests\\test-mobile-performance-v135.cjs.log"
+      },
+      {
+        "command": "node work/test-world-storage-v67.cjs",
+        "exit": 0,
+        "seconds": 0.678,
+        "log": "outputs\\release-108-tests\\test-world-storage-v67.cjs.log"
+      },
+      {
+        "command": "node work/test-world-storage-recovery.cjs",
+        "exit": 0,
+        "seconds": 2.006,
+        "log": "outputs\\release-108-tests\\test-world-storage-recovery.cjs.log"
+      },
+      {
+        "command": "node work/test-world-save-management-v70.cjs",
+        "exit": 0,
+        "seconds": 3.123,
+        "log": "outputs\\release-108-tests\\test-world-save-management-v70.cjs.log"
+      },
+      {
+        "command": "node work/test-world-views-v68.cjs",
+        "exit": 0,
+        "seconds": 0.866,
+        "log": "outputs\\release-108-tests\\test-world-views-v68.cjs.log"
+      },
+      {
+        "command": "node work/test-world-honours-v74.cjs",
+        "exit": 0,
+        "seconds": 0.285,
+        "log": "outputs\\release-108-tests\\test-world-honours-v74.cjs.log"
+      },
+      {
+        "command": "node work/test-match-presentation-v74.cjs",
+        "exit": 0,
+        "seconds": 0.332,
+        "log": "outputs\\release-108-tests\\test-match-presentation-v74.cjs.log"
+      },
+      {
+        "command": "DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+        "exit": 0,
+        "seconds": 25.712,
+        "log": "outputs\\release-108-tests\\test-world-economy-v66.cjs.log"
+      },
+      {
+        "command": "DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+        "exit": 0,
+        "seconds": 18.263,
+        "log": "outputs\\release-108-tests\\test-world-economy-v66.cjs.log"
+      },
+      {
+        "command": "DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs",
+        "exit": 0,
+        "seconds": 13.365,
+        "log": "outputs\\release-108-tests\\test-world-youth-manager-v67.cjs.log"
+      },
+      {
+        "command": "node work/audit-world-balance-v68.cjs",
+        "exit": 0,
+        "seconds": 82.641,
+        "log": "outputs\\release-108-tests\\audit-world-balance-v68.cjs.log"
+      },
+      {
+        "command": "python3 work/test_deploy_ftps.py",
+        "exit": 0,
+        "seconds": 0.222,
+        "log": "outputs\\release-108-tests\\test_deploy_ftps.py.log"
+      },
+      {
+        "command": "node work/test-club-crests.cjs",
+        "exit": 0,
+        "seconds": 0.212,
+        "log": "outputs\\release-108-tests\\test-club-crests.cjs.log"
+      },
+      {
+        "command": "node work/test-no-player-images.cjs",
+        "exit": 0,
+        "seconds": 0.174,
+        "log": "outputs\\release-108-tests\\test-no-player-images.cjs.log"
+      }
+    ],
+    "passed": true
+  },
+  "matchButton": {
+    "baseline": false,
+    "cases": [
+      {
+        "language": "de",
+        "paused": {
+          "running": false,
+          "phase": "paused",
+          "elapsed": 12,
+          "review": null,
+          "paint": 0,
+          "reviewLoop": 0,
+          "label": "Spiel fortsetzen",
+          "disabled": false,
+          "icon": "▶"
+        },
+        "resumedWithoutReview": true,
+        "selectedReviewPreserved": true,
+        "endReturnsLive": true,
+        "noFramesCanPause": true,
+        "finishedCannotResume": true
+      },
+      {
+        "language": "en",
+        "paused": {
+          "running": false,
+          "phase": "paused",
+          "elapsed": 12,
+          "review": null,
+          "paint": 0,
+          "reviewLoop": 0,
+          "label": "Resume match",
+          "disabled": false,
+          "icon": "▶"
+        },
+        "resumedWithoutReview": true,
+        "selectedReviewPreserved": true,
+        "endReturnsLive": true,
+        "noFramesCanPause": true,
+        "finishedCannotResume": true
+      }
+    ],
+    "errors": []
+  },
+  "sharedTactics": {
+    "rows": [
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "de",
+        "mode": "career",
+        "width": 377.703125,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Profil von Adama Ouédraogo öffnen",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Profil von Leon Hoffmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Profil von Tomáš Novák öffnen",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Profil von Max Hartmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Profil von Hugo Laurent öffnen",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Profil von Paul Wolf öffnen",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "de",
+        "mode": "prematch",
+        "width": 377.703125,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Profil von Adama Ouédraogo öffnen",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Profil von Leon Hoffmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Profil von Tomáš Novák öffnen",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Profil von Max Hartmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Profil von Hugo Laurent öffnen",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Profil von Paul Wolf öffnen",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "de",
+        "mode": "paused",
+        "width": 404.625,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Profil von Adama Ouédraogo öffnen",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Profil von Leon Hoffmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Profil von Tomáš Novák öffnen",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Profil von Max Hartmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Profil von Hugo Laurent öffnen",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Profil von Paul Wolf öffnen",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "en",
+        "mode": "career",
+        "width": 377.703125,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Open Adama Ouédraogo's profile",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Open Leon Hoffmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Open Tomáš Novák's profile",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Open Max Hartmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Open Hugo Laurent's profile",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Open Paul Wolf's profile",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "en",
+        "mode": "prematch",
+        "width": 377.703125,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Open Adama Ouédraogo's profile",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Open Leon Hoffmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Open Tomáš Novák's profile",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Open Max Hartmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Open Hugo Laurent's profile",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Open Paul Wolf's profile",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "lang": "en",
+        "mode": "paused",
+        "width": 404.625,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Open Adama Ouédraogo's profile",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Open Leon Hoffmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Open Tomáš Novák's profile",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Open Max Hartmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Open Hugo Laurent's profile",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Open Paul Wolf's profile",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "de",
+        "mode": "career",
+        "width": 234.234375,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Profil von Adama Ouédraogo öffnen",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Profil von Leon Hoffmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Profil von Tomáš Novák öffnen",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Profil von Max Hartmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Profil von Hugo Laurent öffnen",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Profil von Paul Wolf öffnen",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "de",
+        "mode": "prematch",
+        "width": 234.234375,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Profil von Adama Ouédraogo öffnen",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Profil von Leon Hoffmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Profil von Tomáš Novák öffnen",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Profil von Max Hartmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Profil von Hugo Laurent öffnen",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Profil von Paul Wolf öffnen",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "de",
+        "mode": "paused",
+        "width": 236.546875,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Profil von Adama Ouédraogo öffnen",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Profil von Leon Hoffmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Profil von Tomáš Novák öffnen",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Profil von Max Hartmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Profil von Hugo Laurent öffnen",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Profil von Paul Wolf öffnen",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "en",
+        "mode": "career",
+        "width": 234.234375,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Open Adama Ouédraogo's profile",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Open Leon Hoffmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Open Tomáš Novák's profile",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Open Max Hartmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Open Hugo Laurent's profile",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Open Paul Wolf's profile",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "en",
+        "mode": "prematch",
+        "width": 234.234375,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Open Adama Ouédraogo's profile",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Open Leon Hoffmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Open Tomáš Novák's profile",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Open Max Hartmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Open Hugo Laurent's profile",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Open Paul Wolf's profile",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "lang": "en",
+        "mode": "paused",
+        "width": 236.546875,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Open Adama Ouédraogo's profile",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Open Leon Hoffmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Open Tomáš Novák's profile",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Open Max Hartmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Open Hugo Laurent's profile",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Open Paul Wolf's profile",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "de",
+        "mode": "career",
+        "width": 366,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Profil von Adama Ouédraogo öffnen",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Profil von Leon Hoffmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Profil von Tomáš Novák öffnen",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Profil von Max Hartmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Profil von Hugo Laurent öffnen",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Profil von Paul Wolf öffnen",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "de",
+        "mode": "prematch",
+        "width": 366,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Profil von Adama Ouédraogo öffnen",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Profil von Leon Hoffmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Profil von Tomáš Novák öffnen",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Profil von Max Hartmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Profil von Hugo Laurent öffnen",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Profil von Paul Wolf öffnen",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "de",
+        "mode": "paused",
+        "width": 356,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Profil von Adama Ouédraogo öffnen",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Profil von Leon Hoffmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Profil von Tomáš Novák öffnen",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Profil von Max Hartmann öffnen",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Profil von Hugo Laurent öffnen",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Profil von Paul Wolf öffnen",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "en",
+        "mode": "career",
+        "width": 366,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Open Adama Ouédraogo's profile",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Open Leon Hoffmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Open Tomáš Novák's profile",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Open Max Hartmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Open Hugo Laurent's profile",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Open Paul Wolf's profile",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "en",
+        "mode": "prematch",
+        "width": 366,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Open Adama Ouédraogo's profile",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Open Leon Hoffmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Open Tomáš Novák's profile",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Open Max Hartmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Open Hugo Laurent's profile",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Open Paul Wolf's profile",
+            "margin": 4
+          }
+        ]
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "lang": "en",
+        "mode": "paused",
+        "width": 356,
+        "overflow": false,
+        "font": "11px",
+        "names": [
+          {
+            "name": "A. Ouédraogo",
+            "full": "Open Adama Ouédraogo's profile",
+            "margin": 4
+          },
+          {
+            "name": "L. Hoffmann",
+            "full": "Open Leon Hoffmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "T. Novák",
+            "full": "Open Tomáš Novák's profile",
+            "margin": 4
+          },
+          {
+            "name": "M. Hartmann",
+            "full": "Open Max Hartmann's profile",
+            "margin": 4
+          },
+          {
+            "name": "H. Laurent",
+            "full": "Open Hugo Laurent's profile",
+            "margin": 4
+          },
+          {
+            "name": "P. Wolf",
+            "full": "Open Paul Wolf's profile",
+            "margin": 4
+          }
+        ]
+      }
+    ],
+    "substitutions": {
+      "activeStillOld": true,
+      "pending": [
+        {
+          "outPid": "user-meshy-local-match:GER-2:2",
+          "inPid": "user-meshy-local-match:GER-2:10"
+        }
+      ],
+      "clockUnchanged": true,
+      "out": "user-meshy-local-match:GER-2:2",
+      "incoming": "user-meshy-local-match:GER-2:10"
+    },
+    "undo": {
+      "cleared": true,
+      "rejected": true,
+      "restored": true
+    },
+    "errors": []
+  },
+  "prematchPresets": {
+    "rows": [
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "side": 0,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 377.703125,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "side": 0,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 377.703125,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "side": 1,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 377.703125,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 1528,
+          "height": 956
+        },
+        "side": 1,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 377.703125,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "side": 0,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 329.625,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "side": 0,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 329.625,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "side": 1,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 329.625,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 915,
+          "height": 412
+        },
+        "side": 1,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 329.625,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "side": 0,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 234.234375,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "side": 0,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 234.234375,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "side": 1,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 234.234375,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 667,
+          "height": 375
+        },
+        "side": 1,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 234.234375,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "side": 0,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 366,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "side": 0,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 366,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "side": 1,
+        "lang": "de",
+        "inside": true,
+        "overflow": false,
+        "width": 366,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      },
+      {
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "side": 1,
+        "lang": "en",
+        "inside": true,
+        "overflow": false,
+        "width": 366,
+        "save": true,
+        "load": true,
+        "sharedPresets": true
+      }
+    ],
+    "errors": [],
+    "persisted": true,
+    "storageFailureRollback": true
+  },
+  "penalty": {
+    "rows": [
+      {
+        "mode": "3d",
+        "team": 0,
+        "decisionSeconds": 4,
+        "readySeconds": 2,
+        "pausedStable": true
+      },
+      {
+        "mode": "3d",
+        "team": 1,
+        "decisionSeconds": 4,
+        "readySeconds": 2,
+        "pausedStable": true
+      },
+      {
+        "mode": "2d",
+        "team": 0,
+        "decisionSeconds": 4,
+        "readySeconds": 2,
+        "pausedStable": true
+      },
+      {
+        "mode": "2d",
+        "team": 1,
+        "decisionSeconds": 4,
+        "readySeconds": 2,
+        "pausedStable": true
+      }
+    ],
+    "errors": []
+  },
+  "ui": {
+    "rules": {
+      "active": true,
+      "eliminated": true,
+      "advancing": true,
+      "finished": true,
+      "historic": true,
+      "recentRemoved": true,
+      "nextOpponentKept": true
+    },
+    "facing": [
+      {
+        "kind": "throw",
+        "turned": false,
+        "error": 2.2679837785588577e-7
+      },
+      {
+        "kind": "corner",
+        "turned": false,
+        "error": 2.2679837785588577e-7
+      },
+      {
+        "kind": "goalKick",
+        "turned": false,
+        "error": 1.750881548634453e-7
+      },
+      {
+        "kind": "throw",
+        "turned": true,
+        "error": 1.0288870644359349e-7
+      },
+      {
+        "kind": "corner",
+        "turned": true,
+        "error": 1.0288870644359349e-7
+      },
+      {
+        "kind": "goalKick",
+        "turned": true,
+        "error": 1.7845152355810964e-7
+      }
+    ],
+    "rows": [
+      {
+        "lang": "de",
+        "matchday": true,
+        "aggregate": "(3:0)"
+      },
+      {
+        "lang": "en",
+        "matchday": true,
+        "aggregate": "(3:0)"
+      },
+      {
+        "width": 1470,
+        "lang": "de",
+        "shootButton": true,
+        "height": 44,
+        "inside": true,
+        "accessible": true,
+        "button": {
+          "x": 912.71875,
+          "y": 619,
+          "width": 84.484375,
+          "height": 44
+        },
+        "scene": {
+          "x": 450,
+          "y": 373,
+          "width": 570,
+          "height": 300
+        },
+        "position": "absolute"
+      },
+      {
+        "width": 1470,
+        "lang": "en",
+        "shootButton": true,
+        "height": 44,
+        "inside": true,
+        "accessible": true,
+        "button": {
+          "x": 935.1875,
+          "y": 619,
+          "width": 62.015625,
+          "height": 44
+        },
+        "scene": {
+          "x": 450,
+          "y": 373,
+          "width": 570,
+          "height": 300
+        },
+        "position": "absolute"
+      },
+      {
+        "width": 390,
+        "lang": "de",
+        "shootButton": true,
+        "height": 44,
+        "inside": true,
+        "accessible": true,
+        "button": {
+          "x": 263.25,
+          "y": 570.78125,
+          "width": 84.484375,
+          "height": 44
+        },
+        "scene": {
+          "x": 29,
+          "y": 354.78125,
+          "width": 332,
+          "height": 270
+        },
+        "position": "absolute"
+      },
+      {
+        "width": 390,
+        "lang": "en",
+        "shootButton": true,
+        "height": 44,
+        "inside": true,
+        "accessible": true,
+        "button": {
+          "x": 285.71875,
+          "y": 570.78125,
+          "width": 62.015625,
+          "height": 44
+        },
+        "scene": {
+          "x": 29,
+          "y": 354.78125,
+          "width": 332,
+          "height": 270
+        },
+        "position": "absolute"
+      }
+    ],
+    "errors": []
+  },
+  "longshots": {
+    "before": 12,
+    "after": 1,
+    "report": [
+      {
+        "mode": "before",
+        "seed": 12457,
+        "frames": 2208,
+        "shots": 8,
+        "long": 3,
+        "score": [
+          0,
+          0
+        ],
+        "samples": [
+          {
+            "range": 9.350616514250339,
+            "kind": "shot"
+          },
+          {
+            "range": 20.721288804922622,
+            "kind": "shot"
+          },
+          {
+            "range": 22.63737553179405,
+            "kind": "shot"
+          },
+          {
+            "range": 17.252418639659098,
+            "kind": "shot"
+          },
+          {
+            "range": 16.041728606879296,
+            "kind": "shot"
+          },
+          {
+            "range": 27.729317721459463,
+            "kind": "shot"
+          },
+          {
+            "range": 19.691503073696254,
+            "kind": "shot"
+          },
+          {
+            "range": 9.25718664348834,
+            "kind": "shot"
+          }
+        ]
+      },
+      {
+        "mode": "before",
+        "seed": 77491,
+        "frames": 2431,
+        "shots": 5,
+        "long": 3,
+        "score": [
+          0,
+          0
+        ],
+        "samples": [
+          {
+            "range": 20.71568643158865,
+            "kind": "shot"
+          },
+          {
+            "range": 21.76614493970929,
+            "kind": "shot"
+          },
+          {
+            "range": 16.7059353368986,
+            "kind": "shot"
+          },
+          {
+            "range": 24.76368985768398,
+            "kind": "shot"
+          },
+          {
+            "range": 19.33458603698056,
+            "kind": "shot"
+          }
+        ]
+      },
+      {
+        "mode": "before",
+        "seed": 90123,
+        "frames": 2809,
+        "shots": 5,
+        "long": 2,
+        "score": [
+          1,
+          0
+        ],
+        "samples": [
+          {
+            "range": 20.645791355648463,
+            "kind": "shot"
+          },
+          {
+            "range": 11.948376095998444,
+            "kind": "shot"
+          },
+          {
+            "range": 15.930050491453029,
+            "kind": "shot"
+          },
+          {
+            "range": 12.701943854738753,
+            "kind": "shot"
+          },
+          {
+            "range": 23.528722290060035,
+            "kind": "shot"
+          }
+        ]
+      },
+      {
+        "mode": "before",
+        "seed": 234567,
+        "frames": 2329,
+        "shots": 7,
+        "long": 4,
+        "score": [
+          0,
+          0
+        ],
+        "samples": [
+          {
+            "range": 11.587339108994092,
+            "kind": "shot"
+          },
+          {
+            "range": 28.94314068449069,
+            "kind": "shot"
+          },
+          {
+            "range": 20.28630469454279,
+            "kind": "shot"
+          },
+          {
+            "range": 9.225748136864883,
+            "kind": "shot"
+          },
+          {
+            "range": 23.680782500340428,
+            "kind": "shot"
+          },
+          {
+            "range": 18.979437545381206,
+            "kind": "shot"
+          },
+          {
+            "range": 25.113588495941205,
+            "kind": "shot"
+          }
+        ]
+      },
+      {
+        "mode": "after",
+        "seed": 12457,
+        "frames": 2904,
+        "shots": 4,
+        "long": 0,
+        "score": [
+          1,
+          1
+        ],
+        "samples": [
+          {
+            "range": 16.84057859994414,
+            "kind": "shot"
+          },
+          {
+            "range": 15.602280769707397,
+            "kind": "shot"
+          },
+          {
+            "range": 11.923918597384443,
+            "kind": "shot"
+          },
+          {
+            "range": 13.722617640654502,
+            "kind": "shot"
+          }
+        ]
+      },
+      {
+        "mode": "after",
+        "seed": 77491,
+        "frames": 2842,
+        "shots": 3,
+        "long": 1,
+        "score": [
+          1,
+          0
+        ],
+        "samples": [
+          {
+            "range": 16.859022951751825,
+            "kind": "shot"
+          },
+          {
+            "range": 22.62168731402413,
+            "kind": "shot"
+          },
+          {
+            "range": 9.389169682626816,
+            "kind": "shot"
+          }
+        ]
+      },
+      {
+        "mode": "after",
+        "seed": 90123,
+        "frames": 2217,
+        "shots": 5,
+        "long": 0,
+        "score": [
+          0,
+          0
+        ],
+        "samples": [
+          {
+            "range": 10.84282547622903,
+            "kind": "shot"
+          },
+          {
+            "range": 16.408214839415972,
+            "kind": "shot"
+          },
+          {
+            "range": 15.660799854354904,
+            "kind": "shot"
+          },
+          {
+            "range": 7.841056759737784,
+            "kind": "shot"
+          },
+          {
+            "range": 9.980746296559778,
+            "kind": "shot"
+          }
+        ]
+      },
+      {
+        "mode": "after",
+        "seed": 234567,
+        "frames": 2661,
+        "shots": 7,
+        "long": 0,
+        "score": [
+          0,
+          0
+        ],
+        "samples": [
+          {
+            "range": 9.038566822256346,
+            "kind": "shot"
+          },
+          {
+            "range": 14.952046416047681,
+            "kind": "shot"
+          },
+          {
+            "range": 10.588217218148364,
+            "kind": "shot"
+          },
+          {
+            "range": 12.62653271002336,
+            "kind": "shot"
+          },
+          {
+            "range": 19.511304947538523,
+            "kind": "shot"
+          },
+          {
+            "range": 10.869048963186303,
+            "kind": "header"
+          },
+          {
+            "range": 19.6202198142266,
+            "kind": "shot"
+          }
+        ]
+      }
+    ]
+  },
+  "idleTurn": [
+    {
+      "variant": "original",
+      "fps": 30,
+      "target": 1.5707963267948966,
+      "maxCorrectionAngle": 0.2744270569957663,
+      "maxCorrection": 0.053062600564587684,
+      "minFootSeparation": 0.551803728943304,
+      "crossFrames": 0,
+      "maxStep": 0.11290911156535104,
+      "maxHipsStep": 0.02477549201160259,
+      "maxRootDelta": 0.28473706722598324,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 30,
+      "target": -1.5707963267948966,
+      "maxCorrectionAngle": 0.2755463762033257,
+      "maxCorrection": 0.056777746995533555,
+      "minFootSeparation": 0.45188468044506924,
+      "crossFrames": 0,
+      "maxStep": 0.10441225655729923,
+      "maxHipsStep": 0.026551252314936845,
+      "maxRootDelta": 0.28473706722598324,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 30,
+      "target": 3.041592653589793,
+      "maxCorrectionAngle": 0.2998441174678375,
+      "maxCorrection": 0.10727362963620454,
+      "minFootSeparation": 0.5518037289432982,
+      "crossFrames": 0,
+      "maxStep": 0.21071339056417845,
+      "maxHipsStep": 0.04752710736753626,
+      "maxRootDelta": 0.5513472097597646,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 30,
+      "target": -3.041592653589793,
+      "maxCorrectionAngle": 0.28273365191799776,
+      "maxCorrection": 0.10965722575214351,
+      "minFootSeparation": 0.4518846804451593,
+      "crossFrames": 0,
+      "maxStep": 0.19513350017278822,
+      "maxHipsStep": 0.04847648852585171,
+      "maxRootDelta": 0.5513472097597646,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 60,
+      "target": 1.5707963267948966,
+      "maxCorrectionAngle": 0.27451431605100063,
+      "maxCorrection": 0.05448756513186546,
+      "minFootSeparation": 0.5506646022572247,
+      "crossFrames": 0,
+      "maxStep": 0.0656858064361,
+      "maxHipsStep": 0.013093819159672185,
+      "maxRootDelta": 0.14948103419743305,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 60,
+      "target": -1.5707963267948966,
+      "maxCorrectionAngle": 0.27596815794669965,
+      "maxCorrection": 0.057330146154174005,
+      "minFootSeparation": 0.451986520300492,
+      "crossFrames": 0,
+      "maxStep": 0.06557828462179725,
+      "maxHipsStep": 0.013616533118341049,
+      "maxRootDelta": 0.14948103419743305,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 60,
+      "target": 3.041592653589793,
+      "maxCorrectionAngle": 0.29712366913957283,
+      "maxCorrection": 0.10885793083296998,
+      "minFootSeparation": 0.5506646022572086,
+      "crossFrames": 0,
+      "maxStep": 0.10795006035620494,
+      "maxHipsStep": 0.025210150755031316,
+      "maxRootDelta": 0.28944581019846205,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 60,
+      "target": -3.041592653589793,
+      "maxCorrectionAngle": 0.2849671765871784,
+      "maxCorrection": 0.11073144666362413,
+      "minFootSeparation": 0.451986520300582,
+      "crossFrames": 0,
+      "maxStep": 0.10376741298078276,
+      "maxHipsStep": 0.02548555626084254,
+      "maxRootDelta": 0.28944581019846205,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 120,
+      "target": 1.5707963267948966,
+      "maxCorrectionAngle": 0.2745587606491688,
+      "maxCorrection": 0.0552874806862875,
+      "minFootSeparation": 0.5506938824996426,
+      "crossFrames": 0,
+      "maxStep": 0.06502415279228504,
+      "maxHipsStep": 0.006744949158606154,
+      "maxRootDelta": 0.0766086408499516,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 120,
+      "target": -1.5707963267948966,
+      "maxCorrectionAngle": 0.2762074929251625,
+      "maxCorrection": 0.0577254614645953,
+      "minFootSeparation": 0.45204650804095253,
+      "crossFrames": 0,
+      "maxStep": 0.06516239298354116,
+      "maxHipsStep": 0.006882555050934327,
+      "maxRootDelta": 0.0766086408499516,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 120,
+      "target": 3.041592653589793,
+      "maxCorrectionAngle": 0.295631352603738,
+      "maxCorrection": 0.10978692746588584,
+      "minFootSeparation": 0.5506938824996266,
+      "crossFrames": 0,
+      "maxStep": 0.06511136456442813,
+      "maxHipsStep": 0.012968877304304328,
+      "maxRootDelta": 0.1483402241499746,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 120,
+      "target": -3.041592653589793,
+      "maxCorrectionAngle": 0.28619778333466456,
+      "maxCorrection": 0.11134754144764367,
+      "minFootSeparation": 0.45204650804104246,
+      "crossFrames": 0,
+      "maxStep": 0.0654261801006975,
+      "maxHipsStep": 0.01304097404801433,
+      "maxRootDelta": 0.1483402241499746,
+      "paused": true
+    }
+  ],
+  "zonesCases": 24,
+  "parity": {
+    "matched": true,
+    "errors": [],
+    "warnings": []
+  },
+  "dribble": [
+    {
+      "variant": "original",
+      "fps": 60,
+      "kind": "run-3.5",
+      "maxFootStep": 0.14658675444450533,
+      "maxHipsStep": 0.06184781895995929,
+      "maxFootAcceleration": 171.18149187432925,
+      "meanFootAcceleration": 46.93830914705909,
+      "turnFrames": 0,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 60,
+      "kind": "run-4.5",
+      "maxFootStep": 0.17567778001595766,
+      "maxHipsStep": 0.07580750653529034,
+      "maxFootAcceleration": 232.74968204111798,
+      "meanFootAcceleration": 65.06000221757087,
+      "turnFrames": 0,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 60,
+      "kind": "curve-left",
+      "maxFootStep": 0.16143980902072017,
+      "maxHipsStep": 0.06912243389841576,
+      "maxFootAcceleration": 207.37919606899177,
+      "meanFootAcceleration": 54.989721786313375,
+      "turnFrames": 0,
+      "paused": true
+    },
+    {
+      "variant": "original",
+      "fps": 60,
+      "kind": "start-stop",
+      "maxFootStep": 0.16041463638992956,
+      "maxHipsStep": 0.06887277980576216,
+      "maxFootAcceleration": 238.94716460271306,
+      "meanFootAcceleration": 33.477775863377346,
+      "turnFrames": 0,
+      "paused": true
+    },
+    {
+      "variant": "no-touch",
+      "fps": 60,
+      "kind": "run-3.5",
+      "maxFootStep": 0.14658675444450533,
+      "maxHipsStep": 0.06184781895995929,
+      "maxFootAcceleration": 173.4311331000603,
+      "meanFootAcceleration": 45.32057933926821,
+      "turnFrames": 0,
+      "paused": true
+    },
+    {
+      "variant": "no-touch",
+      "fps": 60,
+      "kind": "run-4.5",
+      "maxFootStep": 0.17567778001595766,
+      "maxHipsStep": 0.07580750653529034,
+      "maxFootAcceleration": 232.74968204111798,
+      "meanFootAcceleration": 62.55965308110355,
+      "turnFrames": 0,
+      "paused": true
+    },
+    {
+      "variant": "no-touch",
+      "fps": 60,
+      "kind": "curve-left",
+      "maxFootStep": 0.16143980902072017,
+      "maxHipsStep": 0.06912243389841576,
+      "maxFootAcceleration": 211.11710791768127,
+      "meanFootAcceleration": 53.550668019167354,
+      "turnFrames": 0,
+      "paused": true
+    },
+    {
+      "variant": "no-touch",
+      "fps": 60,
+      "kind": "start-stop",
+      "maxFootStep": 0.16041463638992956,
+      "maxHipsStep": 0.06887277980576216,
+      "maxFootAcceleration": 238.94716460271306,
+      "meanFootAcceleration": 32.535899818808524,
+      "turnFrames": 0,
+      "paused": true
+    },
+    {
+      "variant": "no-ik",
+      "fps": 60,
+      "kind": "run-3.5",
+      "maxFootStep": 0.14658675444450533,
+      "maxHipsStep": 0.059547605938575277,
+      "maxFootAcceleration": 171.18149187432925,
+      "meanFootAcceleration": 46.793012440431895,
+      "turnFrames": 0,
+      "paused": true
+    },
+    {
+      "variant": "no-ik",
+      "fps": 60,
+      "kind": "run-4.5",
+      "maxFootStep": 0.17567778001595766,
+      "maxHipsStep": 0.07580750653529034,
+      "maxFootAcceleration": 232.74968204111798,
+      "meanFootAcceleration": 64.98434343335298,
+      "turnFrames": 0,
+      "paused": true
+    },
+    {
+      "variant": "no-ik",
+      "fps": 60,
+      "kind": "curve-left",
+      "maxFootStep": 0.16143980902072017,
+      "maxHipsStep": 0.0676421896028091,
+      "maxFootAcceleration": 207.37919606899177,
+      "meanFootAcceleration": 54.84620820489354,
+      "turnFrames": 0,
+      "paused": true
+    },
+    {
+      "variant": "no-ik",
+      "fps": 60,
+      "kind": "start-stop",
+      "maxFootStep": 0.16041463638992956,
+      "maxHipsStep": 0.06764218626168342,
+      "maxFootAcceleration": 194.37831095748956,
+      "meanFootAcceleration": 32.193200666523595,
+      "turnFrames": 0,
+      "paused": true
+    }
+  ]
+}

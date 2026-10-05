@@ -1,6 +1,6 @@
 # Doppel 6's 3D system
 
-System state: match fixes v133, mobile rendering v135 and halftime fullscreen v136, game version 109. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
+System state: match fixes v133, mobile rendering v135 and halftime fullscreen v136, game version 110. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
 
 ## Shared simulation and presentation
 
@@ -75,3 +75,7 @@ The v133 acceptance includes 24 new keeper-facing sequences, related Meshy, foul
 Register new modules in dist/index.html, work/build.cjs and work/server.cjs. Source serving and offline embedding must use the same assets. Before release, compare the footer version, source, build and live bytes. Exclude freekickdemo and do not retrospectively recalculate old saves or historical statistics.
 
 A match viewed in fullscreen exits fullscreen at halftime and opens the tactics screen. Starting the second half restores fullscreen; browsers without native support use the viewport fallback.
+
+The button below the live pitch pauses the match and resumes from the same position. After deliberately selecting an earlier scene, it plays the review. At its end position it returns to the live match. During standing turns, outfield players release old foot anchors smoothly and establish fresh contacts afterwards.
+
+Game version 110: Waiting players face the ball during throw-ins, corners and goal kicks. Moving ball carriers keep native strides and floor correction without horizontal world foot anchors. The shared simulation weighs long shots by distance, angle and an unblocked lane. Regular penalties add a two-second goal view after the decision.

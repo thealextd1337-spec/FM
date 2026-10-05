@@ -423,6 +423,16 @@ function v55HasClearRun(p,rivals,progress){
  if(progress<.5)return false;
  return !rivals.some(rival=>!rival.keeper&&Math.abs(rival.x-p.x)<.19&&((p.t===0?p.y-rival.y:rival.y-p.y)>.005)&&((p.t===0?p.y-rival.y:rival.y-p.y)<.34));
 }
+// Ordinary open-play shots favour a useful angle and an unblocked lane.
+// Breakaways, open goals, headers and set pieces keep their separate decisions.
+function v145ShotChance(p,rivals){
+ const range=v115GoalDistance(p);if(range>30)return 0;
+ const lateral=Math.abs(p.x-.5)*44/(v55Field.right-v55Field.left),depth=Math.abs(p.y-(p.t===0?v55Field.top:v55Field.bottom))*68/(v55Field.bottom-v55Field.top);
+ if(depth<1||lateral>depth*.9+3)return 0;
+ const goal={x:.5,y:p.t===0?v55Field.top:v55Field.bottom},blocked=rivals.some(r=>{if(r.keeper)return false;const lane=passLaneGeometry(r,p,goal);return lane&&v122Metres(r,lane)<1.25;});
+ const base=range<=14?.75:range<=20?.75-(range-14)*.085:range<=25?.10-(range-20)*.014:.03-(range-25)*.005;
+ return clamp(base*(hasInstruction(p,'shoot')?1.5:1)*(.65+(ability(p,'fin')+ability(p,'tec'))/40*.55)*(blocked?.3:1),0,.9);
+}
 function v123KeeperOutlet(p,m=match){const rivals=m.people.filter(q=>q.t!==p.t&&!q.keeper),allies=m.people.filter(q=>q.t===p.t&&!q.keeper),safe=q=>rivals.every(r=>{const g=passLaneGeometry(r,p,q);return v122Metres(r,q)>2&&(!g||v122Metres(r,g)>1.25+(ability(r,'spd')/20)*.65);});const short=allies.filter(q=>(q.assignedLine||q.line)==='def'&&v122Metres(p,q)<23&&safe(q)).sort((a,b)=>v122Metres(p,a)-v122Metres(p,b))[0];if(short)return {person:short,high:false};const free=allies.filter(safe).sort((a,b)=>v122Metres(p,a)-v122Metres(p,b))[0];return free?{person:free,high:v122Metres(p,free)>23}:null;}
 action=function(){
  const m=match,p=m?.owner;if(!p||m.setPiece||m.throwIn)return;
@@ -441,7 +451,7 @@ action=function(){
  m.breakawayCarrier=null;
  const box=allies.filter(other=>(other.t===0?other.y<.34:other.y>.66)&&other.x>.25&&other.x<.75);
  if(progress>.66&&wide&&box.length&&random()<v115DecisionChance(p,'cross',hasInstruction(p,'wing')?.85:.62)){const target=[...box].sort((a,b)=>ability(b,'air')+ability(b,'pos')*.3-ability(a,'air')-ability(a,'pos')*.3)[0];v55HighPass(p,target,{cross:true});return}
- if(progress>(hasInstruction(p,'shoot')?.67:.73)||(progress>.58&&random()<v115DecisionChance(p,'shot',hasInstruction(p,'shoot')?.28:.17))){v55Shoot(p);return}
+ if(world?random()<v145ShotChance(p,rivals):progress>(hasInstruction(p,'shoot')?.67:.73)||(progress>.58&&random()<v115DecisionChance(p,'shot',hasInstruction(p,'shoot')?.28:.17))){v55Shoot(p);return}
  const target=v55ChooseTarget(p,allies,rivals),quick=match?.teamDirect?.[p.t]??(p.t===0&&direct),high=progress<.72&&random()<v115DecisionChance(p,'highPass',quick?.28:.13);
  if(high)v55HighPass(p,target);else v55GroundPass(p,target);
 };

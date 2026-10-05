@@ -242,3 +242,10 @@ function v99PlayerAction(current,person){
  return {kind:'save',progress:keeper.completed?1:clamp(((current.flight?.progress||0)-from)/Math.max(.1,q-from),0,1),recovery:keeper.completed?Math.min(1,keeper.age/(native?1.55:.95)):0,
   target:{x:contact.x,y:contact.y},origin:keeper.keeperStart,height:contact.elevation,available:keeper.flight.duration/MATCH_SPEED,saved:keeper.saved,parry:Boolean(keeper.parry),goal:Boolean(keeper.goal)};
 }
+
+// Keep the goal view visible before resolving a regular world-match penalty.
+const v143BaseTakePenalty=v50TakePenalty;
+v50TakePenalty=function(setPiece){
+ if(v65WorldActive&&setPiece.phase==='waiting'&&!setPiece.penaltyReady){setPiece.penaltyReady=true;setPiece.wait=2;v50PenaltyVisual(setPiece,null);return;}
+ return v143BaseTakePenalty(setPiece);
+};

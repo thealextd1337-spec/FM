@@ -2,6 +2,12 @@
 
 ## Noch nicht veröffentlicht
 
+- Offene Match-/3D-Themen zentral dokumentiert: Balleffet mit tatsächlicher Flugbahnkrümmung und Pässe auf freie Raumziele mit Wettlauf, Abseits und realem Kontakt. Spielerwerte, bestehender Pass-Vorhalt, geplante mentale Fähigkeiten und konkrete Abnahmeszenen abgegrenzt. Reine Planung; [offene Themen](3d-offene-themen.md).
+
+## 2026-10-05 (Prototyp 110 · Matchkorrekturen und Vereinsübersicht)
+
+- Match und Vereinsübersicht v139–149: Live-Pause ohne Sprung zum Rückschaubeginn, gerade Beine bei Standdrehungen und ruhigere Schritte beim Dribbling; Blick zum Ball bei Einwurf, Ecke und Abstoß. Gemeinsame Taktikfelder und kompakte Vorlagenleiste in Karriereplan, Spielvorbereitung und Pause, mit legal vorgemerkten Wechseln und Rückgängig. Drei klar benannte Zonen und abgekürzte Vornamen. TV-Anzeige mit Spieltag und Rückspiel-Gesamtergebnis, Spieltag im Ergebnisdialog. Reguläre Elfmeter warten nach der Schiedsrichteranzeige zusätzlich zwei Sekunden in der Toransicht; zusätzlicher Schussbutton beim Elfmeterschießen. Weniger unüberlegte Distanzschüsse durch Entfernung, Winkel und geblockte Wege. Die Übersicht zeigt Titelverteidiger-Pokale, den Sponsor kompakt unter dem nächsten Gegner und aktive eigene Pokalvereine; die Liste der letzten fünf Spiele entfällt. Vertragsverlängerung auf Englisch übersetzt, Statistikspalten konkret benannt. Meshy-Freigabe in AGENTS.md ergänzt. Neue Regeln gelten für künftige Spielaktionen; keine rückwirkende Spielstandberechnung. [Umsetzung und Prüfungen](match-corrections-v139.md).
+
 ## 2026-10-05 (Prototyp 109 · Halbzeit und Vollbild)
 
 Am 5. Oktober 2026 als [Prototyp 109 live veröffentlicht](https://fussball.cakamper.at/). [Deployment](https://github.com/thealextd1337-spec/FM/actions/runs/37353724518) erfolgreich. Quellseite, Build und Live-Seite zeigen Version 109; die Live-Datei stimmt bytegenau mit dem geprüften Build überein: SHA-256 `bc787921bf355ebb39d22968018b2e62840e78a8fb0f8958cd81b957e2c09210`. Halbzeit-Taktikansicht und Vollbildrückkehr direkt live in einem isolierten Testspielstand geprüft. [Nachweise](release-109-verification.json).

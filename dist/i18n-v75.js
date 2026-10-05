@@ -1043,6 +1043,7 @@ Zuerst verhandelst du die Ablöse mit dem Verein. Nach der Einigung folgen Gehal
 Du bietest dem Verein die Ablöse und dem Spieler Gehalt, Laufzeit und Einsatz-Zusage an. Eine Gegenforderung kannst du anschließend beantworten.	You offer the club a transfer fee and the player a salary, contract length and playing time promise. You can respond to a counteroffer afterwards.
 Neue Forderung	New asking price
 Verhandlung öffnen	Open negotiation
+Verlängern	Renew contract
 Spielervertrag ausstehend	Player contract pending
 Antwort auf Kaufangebot offen	Response to purchase offer pending
 Antwort des Käufers ausstehend	Buyer's response pending

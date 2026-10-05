@@ -86,6 +86,7 @@ function v66DecorateCareer(career){
  const overview=v61WorldScreen.querySelector('[data-v46-view="overview"]'),squad=v61WorldScreen.querySelector('[data-v46-view="squad"]'),club=v61WorldScreen.querySelector('[data-v46-view="club"]'),competition=v61WorldScreen.querySelector('[data-v46-view="competition"]');
  if(!overview||!squad||!club||!competition)return;
  overview.insertAdjacentHTML('afterbegin',v66TransferDayNoticeHTML(career)+v66SponsorHTML(career));
+ const sponsor=overview.querySelector('.v66-sponsor-selected'),next=overview.querySelector('.v62-next-opponent');if(sponsor&&next){sponsor.classList.add('v149-sponsor-compact');next.insertAdjacentElement('afterend',sponsor);}
  overview.querySelector('.v62-explainer')?.remove();
  const ownRoster=v66Own(career).roster,count=squad.querySelector('.v61-roster-head p');if(count){count.textContent=`${ownRoster.length} / 14 Profis · Verträge und Spielerprofile öffnen.`;count.insertAdjacentHTML('afterend',`<p class="v66-roster-composition">${[['gk','Torhüter'],['def','Abwehr'],['mid','Mittelfeld'],['att','Angriff']].map(([line,label])=>`<span>${label} <b>${ownRoster.filter(player=>player.line===line).length}</b></span>`).join('')}</p>`)}
  squad.insertAdjacentHTML('beforeend',`<section class="v62-season v66-contracts"><h3>Profiverträge</h3>${v66ContractsTableHTML(career)}<p id="v66-contract-message" class="v61-error" role="alert"></p></section>`);
