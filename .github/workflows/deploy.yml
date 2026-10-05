@@ -81,7 +81,6 @@ jobs:
           node work/test-world-player-instructions.cjs
           node work/test-world-physical-instructions.cjs
           node work/test-world-career-plan.cjs
-          node work/test-world-payments-v124.cjs
           node work/test-world-economy-v66.cjs
           node work/test-world-sponsors-v97.cjs
           node work/test-world-career-events.cjs
@@ -89,6 +88,9 @@ jobs:
           node work/test-world-transfer-list-v72.cjs
           node work/test-world-human-sale-v73.cjs
           node work/test-world-youth-manager-v67.cjs
+          node work/test-finance-close-v130.cjs
+          node work/test-world-payments-v124.cjs
+          node work/test-3d-documentation-v134.cjs
           node work/test-world-storage-v67.cjs
           node work/test-world-storage-recovery.cjs
           node work/test-world-save-management-v70.cjs

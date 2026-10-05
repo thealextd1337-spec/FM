@@ -9,6 +9,8 @@ const context=vm.createContext({
  v62Table:()=>[{clubId:'away'},{clubId:'home'}]
 });
 vm.runInContext(code,context);
+const competitionSource=fs.readFileSync('dist/world-competition-v62.js','utf8');
+vm.runInContext(competitionSource.slice(competitionSource.indexOf('function v62FixtureRankLabels'),competitionSource.indexOf('function v62NextOpponentHTML')),context);
 const labels=vm.runInContext('v65LiveRankLabels',context);
 const clubs=[{id:'home'},{id:'away'}];
 const fixture={competitionId:'league',round:'R3',homeId:'home',awayId:'away'};
@@ -17,6 +19,6 @@ const view=(competitionId,round,ownSide=0)=>Array.from(labels({career,fixture:{.
 assert.deepEqual(view('league','R3'),['(2.)','(1.)']);
 assert.deepEqual(view('league','R3',1),['(1.)','(2.)'],'Auswärtsteam wird aus seiner eigenen Sicht korrekt zugeordnet');
 assert.deepEqual(view('europe','R4'),['(2.)','(1.)']);
-assert.deepEqual(view('europe','SF'),[],'in der K.-o.-Phase steht kein Ligaplatz');
-assert.deepEqual(view('cup','SF'),[],'im nationalen Pokal steht kein Ligaplatz');
+assert.deepEqual(view('europe','SF'),['',''],'in der K.-o.-Phase steht kein Ligaplatz');
+assert.deepEqual(view('cup','SF'),['',''],'im nationalen Pokal steht kein Ligaplatz');
 console.log('Live-Tabelle: Plätze in Liga und Ligaphase, Heim- und Auswärtssicht sowie K.-o.-Ausnahmen geprüft.');

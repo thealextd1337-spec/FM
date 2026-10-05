@@ -35,7 +35,7 @@ for(const team of [0,1]){
 }
 assert(position({team:0,x:.53,elapsed:.6}).bulge>position({team:0,x:.53,elapsed:1.3}).bulge,'Netz beult sich aus und entspannt');
 context.v50Goal({pid:'scorer',t:0});
-assert.strictEqual(context.match.goalPause,3.05,'Tor hält Spiel lange genug für vollständige Szene an');
+assert.strictEqual(context.match.goalPause,4.05,'Tor hält Spiel lange genug für vollständige Szene an');
 context.step(1,.6);
 assert.strictEqual(context.match.elapsed,47,'Matchzeit steht während Netzbewegung');
 assert(context.match.ball.y<26/740,'Ball ist hinter der Linie');
@@ -52,7 +52,7 @@ assert(drawn.every(call=>call.slice(1).every(value=>typeof value!=='number'||Num
 drawn.length=0;context.match.halftimeBreakDone=true;context.draw();
 assert(drawn.some(call=>call[0]==='lineTo'&&call[1]===360&&Math.abs(call[2]-714)<.001),'Seitenwechsel spiegelt Netz und Ball zum unteren Tor');
 context.match.halftimeBreakDone=false;
-for(let index=0;index<50&&context.match.goalPause>0;index++)context.step(1,.05);
+for(let index=0;index<82&&context.match.goalPause>0;index++)context.step(1,.05);
 assert.strictEqual(context.match.elapsed,47,'Matchzeit steht bis zum Wiederanstoß');
 assert.strictEqual(context.match.goalScene,null,'Anstoß entfernt die Torszene');
 assert.strictEqual(context.match.ball.x,.5,'Ball liegt wieder am Anstoßpunkt');
@@ -61,7 +61,7 @@ context.match={ball:{x:.53,y:714/740},elapsed:74,goalPause:0,goals:[],fulltimePe
 context.v50Goal({pid:'last-minute',t:1});
 context.draw();
 assert(drawn.some(call=>call[0]==='lineTo'&&call[1]===360&&Math.abs(call[2]-714)<.001),'untere Torpfosten stehen auf der Torlinie');
-for(let index=0;index<62&&context.match.goalPause>0;index++)context.step(1,.05);
+for(let index=0;index<82&&context.match.goalPause>0;index++)context.step(1,.05);
 assert.strictEqual(context.match.elapsed,74,'spätes Tor stoppt die Matchzeit bis zum Abpfiff');
 assert.strictEqual(context.match.goalScene,null,'Torszene endet auch ohne weiteren Anstoß');
 context.v65WorldActive=null;

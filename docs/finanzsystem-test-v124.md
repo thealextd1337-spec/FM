@@ -4,6 +4,8 @@ Stand: 5. Oktober 2026. Der bestätigte Zahlungsplan und die reinen Pokal-Simula
 
 ## Ergebnis
 
+Die lokale Auswertung wurde um eine separate Jahrestabelle für Jugendübernahmen und Transfers ergänzt: tatsächliche Anzahl der Jugendübernahmen, Ausbildungsentschädigungen, Transfereinnahmen, Transferausgaben und Transfersaldo. CSV/JSON enthalten die Übernahmeanzahl zusätzlich zu den Geldbeträgen. Beim Durchschnitt mehrerer Welten werden diese Anzahlen gemittelt. Die neue Abrechnungsansicht im Spiel ist in [Finanzabschluss v130](finanzabschluss-v130.md) dokumentiert.
+
 Am 5. Oktober 2026 als [Prototyp 106 live veröffentlicht](https://fussball.cakamper.at/). [Deployment und alle automatischen Spieltests](https://github.com/thealextd1337-spec/FM/actions/runs/37238139947) erfolgreich. Quellseite, Build und Live-Seite zeigen Version 106; die Live-Datei entspricht dem geprüften Build (SHA-256 `2b121e2deccf1efc5118fa853f209d304e74fd5b448ccb2c2eb61991c303fc8e`). Zwölf Simulationsteams ohne Vereinswirtschaft, 36 Ligavereine, Budgetfolge und DE/EN wurden zusätzlich direkt live mit isoliertem Testspielstand geprüft.
 
 Der neue Zahlungsplan ist umgesetzt. Er gilt ausschließlich für neu gestartete Karrieren. Gehälter bleiben am Saisonende fällig. Bestehende Karrieren behalten ihre bisherigen Zahlungstermine und werden nicht nachberechnet.

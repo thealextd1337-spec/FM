@@ -51,7 +51,8 @@ for(const own of all)for(const opponent of all){
   const desiredOwn=own.kits[ownIsHome?'home':'away'],desiredOpponent=opponent.kits[ownIsHome?'away':'home'];
   const preferredCanSeparate=own.kits.keepers.some(userKeeper=>opponent.kits.keepers.some(opponentKeeper=>{
    const colors=[desiredOwn.main,desiredOpponent.main,userKeeper.main,opponentKeeper.main];
-   return colors.every((color,index)=>colors.slice(index+1).every(other=>call('v61KitColorDistance',color,other)>=100));
+   const shirts=[desiredOwn,desiredOpponent,userKeeper,opponentKeeper];
+   return colors.every((color,index)=>colors.slice(index+1).every(other=>call('v61KitColorDistance',color,other)>=100))&&shirts.every((shirt,index)=>shirts.slice(index+1).every(other=>call('v61KitAppearanceDistance',shirt,other)>=24));
   }));
   if(preferredCanSeparate){
    assert.strictEqual(match.user.style,desiredOwn.style,'ohne Farbkonflikt bleibt das vorgesehene Trikot');

@@ -91,8 +91,8 @@ function v47ReportHTML(report,shootout){
   const club=report.clubIds&&typeof v61CurrentCareer!=='undefined'&&v61CurrentCareer?.world.clubs.find(item=>item.id===report.clubIds[side]);
   const goals=new Map();
   for(const goal of (report.goals||[]).filter(item=>item.team===side)){
-   const entry=goals.get(goal.name)||{name:goal.name,minutes:[]};
-   entry.minutes.push(`${goal.minute}′`);goals.set(goal.name,entry);
+   const name=goal.name+(goal.ownGoal?' (E.)':''),entry=goals.get(name)||{name,minutes:[]};
+   entry.minutes.push(`${goal.minute}′`);goals.set(name,entry);
   }
   return`<div class="v47-score-team ${winner===side?'v47-winner':''}"><div class="v47-score-club">${club?v61CrestSVG(club):''}<span>${escapeHTML(name)}</span></div>${goals.size?`<div class="v47-score-goals">${[...goals.values()].map(goal=>`<span><small>${escapeHTML(goal.name)} ${escapeHTML(goal.minutes.join(', '))}</small></span>`).join('')}</div>`:''}</div>`;
  };

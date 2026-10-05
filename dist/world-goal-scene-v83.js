@@ -1,6 +1,6 @@
 'use strict';
 
-const v83GoalSceneDuration=3.05;
+const v83GoalSceneDuration=4.05;
 function v83GoalLine(team){return team===0?v55Field.top:v55Field.bottom}
 function v83GoalPosition(scene){
  const time=Math.max(0,Math.min(scene.elapsed,2.45)),direction=scene.team===0?-1:1;
@@ -45,7 +45,7 @@ function v83DrawGoalScene(ctx,scene,turned=false){
  ctx.save();
  const x=point.x*600,y=point.y*740;
  ctx.fillStyle='#071d1b88';ctx.beginPath();ctx.ellipse(x+2,y+3,7,4,0,0,Math.PI*2);ctx.fill();
- ctx.fillStyle='#fffdf2';ctx.strokeStyle='#17292b';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y-point.height,6,0,Math.PI*2);ctx.fill();ctx.stroke();
+ ctx.fillStyle='#fffdf2';ctx.strokeStyle='#17292b';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y-point.height,3.78,0,Math.PI*2);ctx.fill();ctx.stroke();
  ctx.restore();
 }
 const v83BaseGoal=v50Goal;

@@ -223,7 +223,7 @@
 .v64-prematch-field .v64-raster .cell{border-color:#cae6c23d;cursor:pointer;touch-action:pan-y}
 .v64-prematch-field .v64-raster .cell[draggable=true]{cursor:grab}
 .v64-prematch-field .v64-raster .cell.v64-drag-over{border-color:#c7f36b;background:#c7f36b38}
-.v64-prematch-field .v64-raster .token{background:var(--v64-shirt,#c7f36b);border-color:var(--v64-shirt-edge,#e5ffb0);color:#fff}
+.v64-prematch-field .v64-raster .token{background:var(--v64-shirt,#c7f36b);border-color:var(--v64-shirt-edge,#e5ffb0);color:var(--v64-number,#102126);font-weight:800;text-shadow:none}
 .v64-prematch-field .v64-raster .position-label{display:block;font-size:9px;color:#d4ebcf}
 .v64-prematch-field .v64-raster .player-label{display:flex;align-items:center;justify-content:center;gap:3px;max-width:100%;font-size:9px}
 .v64-prematch-field .v64-raster .player-label .flag-icon{width:15px;height:10px;flex:none}
@@ -315,7 +315,7 @@
 @media(max-width:760px){.v62-awards-grid{grid-template-columns:1fr}}
 .v64-match-menu-panel .language-control{display:grid;gap:6px;margin:8px 2px 2px;padding:10px 8px 4px;border-top:1px solid #58716d;color:#d3e4d9;font-size:12px}
 .v64-match-menu-panel .language-control select{width:100%;min-height:42px}
-.v64-storage{padding:4px 8px;font-size:12px;line-height:1.5}.v64-storage p{margin:4px 0 8px}.v64-storage button{margin-bottom:6px}.v64-match-menu[data-storage="error"] summary{border-color:#ef998a;color:#ffd3cb}.v64-match-menu-panel{max-width:calc(100vw - 24px);max-height:70vh;overflow:auto}.v64-match-menu[data-storage="pending"] summary{border-color:#f0cb75}
+.v64-storage{padding:4px 8px;font-size:12px;line-height:1.5}.v64-storage p{margin:4px 0 8px}.v64-storage button{margin-bottom:6px}.v64-match-menu[data-storage="error"] summary{border-color:#ef998a;color:#ffd3cb}.v64-match-menu-panel{max-width:calc(100vw - 24px);max-height:70vh;overflow:auto}
 .v64-menu-anchor{display:block;flex:none;width:42px;height:42px}@media(max-width:760px){.v64-menu-anchor{width:38px;height:38px}}
 dialog>.v64-match-menu.v64-modal-menu{position:fixed;top:var(--v64-modal-top);left:var(--v64-modal-left);width:max-content;margin:0}
 .v64-prematch-field .keeper{width:calc((100% - 36px)/5)}.v64-prematch-field .v64-keeper-choice{width:100%;min-height:0;aspect-ratio:1.24;padding:4px 3px;gap:2px}.v64-prematch-field .v64-keeper-choice .token{width:33px;height:33px}
@@ -340,13 +340,20 @@ dialog>.v64-match-menu.v64-modal-menu{position:fixed;top:var(--v64-modal-top);le
 @media(max-width:760px){#v61-world-screen .v61-career-nav{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:600px){#v61-world-screen .v61-career-nav button{font-size:11px}}
 
-/* Feld zuerst, Taktik und Spielstatistik folgen im normalen Seitenscroll. */
+/* Feld und Spielstatistik bleiben im normalen Seitenscroll. */
 #v61-world-screen .v64-layout,
 body.v65-world-match #game-screen .workspace{grid-template-columns:minmax(0,1fr)}
 #v61-world-screen .v64-pitch-area{grid-row:1}
 #v61-world-screen .v64-controls{grid-row:2}
 body.v65-world-match #game-screen .workspace aside{min-width:0}
 body.v65-world-match #v65-pause-tabs{margin:0 0 12px}
+.v65-pause-layout,#v61-world-screen .v129-plan-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
+.v65-pause-pitch,.v65-pause-controls,.v129-plan-controls{min-width:0}
+.v129-plan-controls .v64-prematch-tabs{max-width:none;margin:0 0 12px}
+.v129-final-trophy{display:grid;place-items:center;margin:8px 0 14px}
+.v129-final-trophy .v62-award-icon{width:180px;height:180px;image-rendering:pixelated}
+@media(max-width:520px){.v129-final-trophy .v62-award-icon{width:140px;height:140px}}
+body.v65-world-match .v65-pause-controls #v65-controls{margin:0}
 #v61-world-screen .v64-prematch-field,
 body.v65-world-match #v65-plan-view .v64-prematch-field,
 body.v65-world-match #match-area .v42-pitch-stage{width:min(100%,520px);margin-inline:auto}
@@ -362,6 +369,16 @@ body.v65-world-match #v65-plan-view .v64-prematch-field .v64-pending-label{order
 body.v65-world-match #v65-plan-view .v64-keeper-choice .position-label{align-self:center;text-align:center}
 
 @media (min-width:900px), (min-width:600px) and (orientation:landscape){
+ .v65-pause-layout,#v61-world-screen .v129-plan-layout{grid-template-columns:minmax(0,1.6fr) minmax(210px,1fr)}
+ #v61-world-screen .v129-plan-layout>.v64-pitch-area,#v61-world-screen .v129-plan-layout>.v129-plan-controls{grid-row:1}
+ .v129-plan-controls .v64-controls{padding:14px}
+ .v129-plan-controls .v64-selection{margin-top:12px;padding:10px}
+ .v129-plan-controls .v64-orientation .segmented button{font-size:11px;padding-inline:3px}
+ .v65-pause-controls #v65-pause-tabs{gap:4px}
+ .v65-pause-controls #v65-pause-tabs .v65-undo{min-width:0;font-size:11px}
+ .v65-pause-controls #v65-controls{padding:14px}
+ .v65-pause-controls .v64-selection{margin-top:12px;padding:10px}
+ .v65-pause-controls .v64-orientation .segmented button{font-size:11px;padding-inline:3px}
  #v61-world-screen .v64-prematch-field,
  body.v65-world-match #v65-plan-view .v64-prematch-field{width:min(100%,760px)}
  body.v65-world-match #match-area .v42-pitch-stage{width:min(100%,840px)}
@@ -389,3 +406,13 @@ body.v65-world-match #v65-plan-view .v64-keeper-choice .position-label{align-sel
  body.v65-world-match #v65-plan-view .v64-prematch-field{width:min(100%,580px)}
  body.v65-world-match #match-area .v42-pitch-stage{width:min(100%,660px)}
 }
+@media (min-width:600px) and (max-width:899px) and (orientation:landscape){
+ .v65-pause-controls .v64-tactics,.v129-plan-controls .v64-tactics{grid-template-columns:minmax(0,1fr)}
+ .v65-pause-controls .segmented button,.v129-plan-controls .segmented button{min-width:0;overflow-wrap:anywhere}
+ .v65-pause-controls #v65-pause-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v65-pause-controls #v65-pause-tabs .v65-undo{grid-column:1/-1}
+}
+@media (min-width:600px) and (max-width:700px) and (orientation:landscape){
+ .v65-pause-controls .v64-orientation .segmented,.v129-plan-controls .v64-orientation .segmented{display:grid;grid-template-columns:minmax(0,1fr)}
+}
+.v64-prematch-field .v64-keeper-choice .token{background:var(--v64-keeper-shirt,#e5b56a);color:var(--v64-keeper-number,#102126);text-shadow:none}

@@ -260,6 +260,7 @@ Nur lokal spielen	Play locally only
 Speichern & zum Startscreen	Save and return to start
 Extras & Einstellungen	Extras & settings
 Einstellungen & Speicher	Settings & saves
+3D-Hilfe	3D help
 Impressum	Legal notice
 Datenschutz	Privacy
 Rechtliche Hinweise	Legal information
@@ -461,6 +462,53 @@ Sichere Schlussprognose	Guaranteed closing forecast
 Mit möglichen Sponsorboni	With possible sponsor bonuses
 Nächste Zahlung	Next payment
 Jugendbudget festlegen	Set youth budget
+Finanzabschluss	Financial statement
+Startkapital	Starting balance
+Gewählter Sponsor	Selected sponsor
+Ligaprämien	League prizes
+Nationale Pokalprämien	Domestic cup prizes
+Europacupprämien	European cup prizes
+Finanzabschluss und Jugendförderung	Financial statement and youth funding
+Jahresabrechnung	Annual accounts
+Karrierestart	Career start
+Für deinen Verein liegt noch keine abgeschlossene Saisonabrechnung vor.	Your club has not completed a season yet.
+Kontostand zu Saisonbeginn	Balance at season start
+Alle Einnahmen	All income
+Alle Ausgaben	All expenses
+Jahresbilanz	Annual result
+Angefallene Gehälter	Salary costs incurred
+Transfereinnahmen	Transfer income
+Transferausgaben	Transfer spending
+Jugendförderung	Youth funding
+Jugendspielerübernahmen	Youth player promotions
+Weitere Einnahmen	Other income
+Weitere Ausgaben	Other expenses
+Gehälter der abgelaufenen Saison vollständig bezahlt.	Last season's salaries have been paid in full.
+Für diese Saison liegt keine Gehaltsbuchung vor.	No salary payment is recorded for this season.
+Übertrag aus der abgelaufenen Saison	Balance carried over from last season
+Neue Saison	New season
+Übertrag	Balance carried over
+Grundbetrag bereits eingegangen	Base income already received
+Sponsorfixum bereits eingegangen	Sponsor payment already received
+Weitere Buchungen der neuen Saison	Other entries for the new season
+Aktueller Kontostand	Current balance
+Jugendförderung wählen	Choose youth funding
+Förderstufe	Funding level
+Förderpause	Funding pause
+Basisförderung	Basic funding
+Intensive Förderung	Intensive funding
+Nicht finanzierbar	Insufficient funds
+Keine zusätzliche Investition in die Jugendarbeit.	No additional investment in youth development.
+Regelmäßige Förderung des vereinseigenen Nachwuchses.	Regular funding for your club's youth development.
+Mehrjährige Förderung verbessert die Talentchancen. Starke Spieler sind nicht garantiert.	Funding over several years improves talent prospects. Strong players are not guaranteed.
+Die Jugendförderung wird jetzt vollständig bezahlt. Ausbildungsentschädigungen und spätere Profigehälter werden separat bezahlt.	Youth funding is paid in full now. Training compensation and future professional salaries are paid separately.
+Kontostand zum Transferstart	Balance at transfer window opening
+Projizierte Gehaltskosten	Projected salary costs
+Vereinbarte Gehälter der neuen Saison	Agreed salaries for the new season
+Diese Gehälter werden erst am Ende der neuen Saison bezahlt. Neue Verträge und Transfers verändern den Betrag.	These salaries are paid at the end of the new season. New contracts and transfers change the amount.
+Rest nach vereinbarten Gehältern	Balance after agreed salaries
+Weitere Einnahmen, Sichtungen und Transfers der neuen Saison sind noch nicht enthalten. Mögliche Sponsorboni sind noch nicht verdient.	Further income, scouting and transfers for the new season are not included. Potential sponsor bonuses have not been earned yet.
+Jugendförderung bezahlen und Transfers öffnen	Pay youth funding and open transfers
 Budget bezahlen und Transfers öffnen	Pay youth budget and open transfers
 Grundbetrag und Sponsorfixum sind eingegangen. Das Jugendbudget wird jetzt vollständig bezahlt. Danach beginnt die Transferphase.	The base income and sponsor payment have arrived. The full youth budget is paid now. The transfer window opens next.
 Die Gehälter bleiben am Saisonende fällig. Mögliche Erfolgsprämien sind noch nicht verdient.	Salaries remain due at season end. Possible performance bonuses have not been earned yet.
@@ -543,6 +591,7 @@ zuletzt	last match
 gesamt	aggregate
 i. E.	on penalties
 Zum Spielbericht	To match report
+Schießen	Shoot
 EUROPACUP · ELFMETERSCHIESSEN	EUROPEAN CUP · PENALTY SHOOTOUT
 POKAL · ELFMETERSCHIESSEN	CUP · PENALTY SHOOTOUT
 Keine qualifizierten Spieler.	No eligible players.
@@ -824,6 +873,7 @@ Aggressiv	Aggressive
 Hoch	High
 Tief	Deep
 Normal	Normal
+Eigentor	Own goal
 Tor per direktem Freistoß	Goal from a direct free kick
 Wechsel noch möglich	substitutions remaining
 Vorlage	Assist
@@ -956,6 +1006,14 @@ Aktion	Action
 Torhüter	Goalkeepers
 Profis	Professionals
 Einsätze	Appearances
+Tacklingquote	Tackle success rate
+Einsatzstatistik	Appearance statistics
+Minuten	Minutes
+Alle abgeschlossenen Pflichtspiele.	All completed competitive matches.
+Schüsse nur aus erfassten Partien.	Shots include recorded matches only.
+Gewonnene Tacklings im Stand und per Grätsche / alle Versuche.	Successful standing and sliding tackles / all attempts.
+Tacklingquote nur aus erfassten Partien.	Tackle success rate includes recorded matches only.
+Noch keine erfassten Tacklingversuche.	No recorded tackle attempts yet.
 Nachwuchspool	Youth pool
 VEREINSEIGENER NACHWUCHS	CLUB YOUTH PLAYERS
 Fähigkeiten sind im Profil als Farbstufen sichtbar. Entwicklung beginnt erst nach einer Übernahme durch tatsächliche Pflichtspieleinsätze.	Abilities are visible as colour levels in profiles. Development begins after promotion through competitive match appearances.
@@ -1199,6 +1257,9 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(\d+) Tor(?:e)? - (Liga 1|Nationaler Pokal|Europacup)$/,(_,count,competition)=>`${count} ${Number(count)===1?'goal':'goals'} - ${{'Liga 1':'League 1','Nationaler Pokal':'National cup',Europacup:'European cup'}[competition]}`],
   [/^Rückennummer (\d+)$/,(_,number)=>`Shirt number ${number}`],
   [/^Spielstand (\d+) zu (\d+)$/,(_,home,away)=>`Score ${home} to ${away}`],
+  [/^(.+) \(Eigentor\)$/,(_,name)=>`${name} (Own goal)`],
+  [/^(.+) \(E\.\)$/,(_,name)=>`${name} (OG)`],
+  [/^Eigentor - (.+)$/,(_,competition)=>`Own goal - ${translate(competition)}`],
   [/^TOR! (.+) trifft (per direktem Freistoß )?für (.+)\.$/,(_,name,freeKick,club)=>`GOAL! ${name} scores ${freeKick?'directly from a free kick ':''}for ${club}.`],
   [/^ELFMETERTOR! (.+) trifft für (.+)\.$/,(_,name,club)=>`PENALTY GOAL! ${name} scores for ${club}.`],
   [/^Abpfiff! (.+) (\d+) : (\d+) (.+)\.$/,(_,home,homeGoals,awayGoals,away)=>`Full time! ${home} ${homeGoals} : ${awayGoals} ${away}.`],
@@ -1381,6 +1442,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^Vereine in (.+)$/,(_,country)=>`Clubs in ${translate(country)}`],
   [/^Deine Vereinswelten · (.+)$/,(_,count)=>`Your club careers · ${count}`],
   [/^(.+) · Saison (\d+)$/,(_,country,season)=>`${translate(country)} · Season ${season}`],
+  [/^(.+) spielt direkt auf (.+)\.$/,(_,name,target)=>`${name} plays a first-time pass to ${target}.`],
+  [/^(.+) schießt direkt!$/,(_,name)=>`${name} shoots first time!`],
   [/^Saison (\d+) · (.+)$/,(_,season,country)=>`Season ${season} · ${translate(country)}`],
   [/^(.+) und alle Fortschritte dieser Vereinswelt endgültig löschen\?$/,(_,name)=>`Permanently delete ${name} and all progress in this club career?`],
   [/^(.+) Spiele · (.+)$/,(_,games,date)=>`${games} games · ${date}`],

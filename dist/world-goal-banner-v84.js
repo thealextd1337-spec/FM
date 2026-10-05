@@ -7,37 +7,58 @@ function v84SeasonGoals(player,career,fixture,physical){
  const completed=(player.history||[]).filter(entry=>entry.season===career.world.season&&entry.competitionId===fixture.competitionId&&entry.fixtureId!==fixture.id).reduce((total,entry)=>total+(entry.goals||0),0);
  return completed+(physical.goals||[]).filter(goal=>goal.pid===player.pid).length;
 }
-function v84BannerHTML(player,club,competition,count,score){
- const goals=`${count} ${count===1?'Tor':'Tore'} - ${v84CompetitionLabel(competition)}`;
+function v84BannerHTML(player,club,competition,count,score,ownGoal=false){
+ const goals=ownGoal?`Eigentor - ${v84CompetitionLabel(competition)}`:`${count} ${count===1?'Tor':'Tore'} - ${v84CompetitionLabel(competition)}`;
  const number=Number.isInteger(player.n)&&player.n>0?`<b class="v84-shirt-number" aria-label="Rückennummer ${player.n}">#${player.n}</b> `: "";
  const scoreClass=score.some(value=>value>9)?' v84-score-long':'';
- return `<div class="v84-goal-decor" aria-hidden="true"><i class="v84-pattern v84-pattern-tl"></i><i class="v84-pattern v84-pattern-tr"></i><i class="v84-pattern v84-pattern-br"></i><i class="v84-accent v84-accent-left"></i><i class="v84-accent v84-accent-right"></i><i class="v84-corner v84-corner-tl"></i><i class="v84-corner v84-corner-tr"></i><i class="v84-corner v84-corner-bl"></i><i class="v84-corner v84-corner-br"></i></div><div class="v84-goal-details"><span class="v84-score${scoreClass}" aria-label="Spielstand ${score[0]} zu ${score[1]}">${score[0]}:${score[1]}</span><span class="v84-scorer">${number}${escapeHTML(player.name)}</span><span class="v84-goals">${escapeHTML(goals)}</span></div><div class="v84-goal-logo">${v61CrestSVG(club)}</div><div class="v84-goal-strips" aria-hidden="true"><i></i><b></b><i></i></div>`;
+ return `<div class="v84-goal-decor" aria-hidden="true"><i class="v84-pattern v84-pattern-tl"></i><i class="v84-pattern v84-pattern-tr"></i><i class="v84-pattern v84-pattern-br"></i><i class="v84-accent v84-accent-left"></i><i class="v84-accent v84-accent-right"></i><i class="v84-corner v84-corner-tl"></i><i class="v84-corner v84-corner-tr"></i><i class="v84-corner v84-corner-bl"></i><i class="v84-corner v84-corner-br"></i></div><div class="v84-goal-details"><span class="v84-score${scoreClass}" aria-label="Spielstand ${score[0]} zu ${score[1]}">${score[0]}:${score[1]}</span><span class="v84-scorer">${number}${escapeHTML(player.name)}${ownGoal?' (Eigentor)':''}</span><span class="v84-goals">${escapeHTML(goals)}</span></div><div class="v84-goal-logo">${v61CrestSVG(club)}</div><div class="v84-goal-strips" aria-hidden="true"><i></i><b></b><i></i></div>`;
 }
 
+let v84PendingGoal=null;
+function v84CancelGoalDelay(){v84PendingGoal=null;$('#match-overlay').classList.remove('v84-goal-wait')}
 const v84BaseShowOverlay=showOverlay;
 showOverlay=function(title,copy,...rest){
+ v84CancelGoalDelay();
  const result=v84BaseShowOverlay(title,copy,...rest),overlay=$('#match-overlay');
  overlay.querySelectorAll('.v84-goal-decor,.v84-goal-details,.v84-goal-logo,.v84-goal-strips').forEach(node=>node.remove());
  overlay.classList.remove('v84-goal-banner','v84-no-sprite');
  overlay.removeAttribute('role');
  const context=v65WorldActive&&v65Context(),goal=rest[0]&&context&&match?.goalPause>0&&match.goals.at(-1);
- if(!goal?.pid){if(overlay.parentElement?.classList.contains('v42-pitch-stage'))$('#match-area').insertBefore(overlay,$('#event'));return result}
- const player=v66Player(context.career,goal.pid),club=v65Club(context,goal.team);
+ if(!goal?.pid&&!goal?.ownGoalPid){if(overlay.parentElement?.classList.contains('v42-pitch-stage'))$('#match-area').insertBefore(overlay,$('#event'));return result}
+ const player=v66Player(context.career,goal.pid||goal.ownGoalPid),club=v65Club(context,goal.team);
  const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
  if(!player||!club||!competition)return result;
  $('#match-area .v42-pitch-stage').append(overlay);
  const count=v84SeasonGoals(player,context.career,context.fixture,match);
  $('#overlay-title').innerHTML='<span class="v84-goal-word">TOOOOR!</span>';
- $('#overlay-copy').textContent=`${player.name} · ${match.score[0]} : ${match.score[1]}`;
- overlay.insertAdjacentHTML('beforeend',v84BannerHTML(player,club,competition,count,match.score));
+ $('#overlay-copy').textContent=`${player.name}${goal.ownGoal?' (Eigentor)':''} · ${match.score[0]} : ${match.score[1]}`;
+ overlay.insertAdjacentHTML('beforeend',v84BannerHTML(player,club,competition,count,match.score,goal.ownGoal));
  overlay.classList.add('v84-goal-banner');
  if(!overlay.querySelector('.v82-goal-sprite'))overlay.classList.add('v84-no-sprite');
  overlay.setAttribute('role','status');
+ v84PendingGoal={match,goal,remaining:.5};overlay.classList.add('v84-goal-wait');
+ return result;
+};
+const v84BaseHideOverlay=hideOverlay;
+hideOverlay=function(...args){v84CancelGoalDelay();return v84BaseHideOverlay(...args)};
+const v84BaseStep=step;
+step=function(delta,realDelta){
+ const pending=v84PendingGoal,playing=running&&!(typeof v47PlayerDialog!=='undefined'&&v47PlayerDialog.open);
+ const result=v84BaseStep(delta,realDelta);
+ if(pending&&pending===v84PendingGoal&&pending.match===match&&playing)pending.remaining-=Math.max(0,realDelta);
+ return result;
+};
+const v84BaseDraw=draw;
+draw=function(...args){
+ const result=v84BaseDraw(...args),pending=v84PendingGoal;
+ if(pending&&(pending.match!==match||pending.goal!==match?.goals.at(-1)||match?.goalPause<=0||$('#match-overlay').hidden||pending.remaining<=0))v84CancelGoalDelay();
  return result;
 };
 
 const v84Style=document.createElement('style');
 v84Style.textContent=`
+ .v65-world-match #match-area .v84-goal-banner.v84-goal-wait{visibility:hidden;pointer-events:none;animation:none!important}
+ .v65-world-match #match-area .v84-goal-banner.v84-goal-wait *{animation:none!important}
  .v65-world-match #match-area .match-overlay.goal.v84-goal-banner{--v84-sprite-size:260px;top:50%;bottom:auto;left:50%;display:grid;grid-template-columns:var(--v84-sprite-size) minmax(0,1fr) 140px;grid-template-rows:190px 5px;gap:5px 8px;width:min(98%,720px);min-height:0;padding:18px 12px 7px;transform:translate(-50%,-50%);border:3px solid #ffe06e;border-radius:0;background:radial-gradient(ellipse at 50% 45%,#0c2c69 0,#071c43 62%,#04112c 100%);box-shadow:0 0 0 4px #051125,0 8px 0 #041329,0 18px 30px #000b;text-align:left;overflow:visible;animation:v84BannerIn .28s ease-out both}
  .v65-world-match #match-area .match-overlay.goal.v84-goal-banner.fade-out{animation:v84BannerOut .25s ease-in forwards}
  .v84-goal-banner #overlay-title{position:absolute;top:-19px;left:50%;z-index:4;width:210px;height:49px;margin:0;overflow:hidden;transform:translateX(-50%);border:3px solid #0b1535;border-radius:0;background:linear-gradient(#e93499df,#e93499df),repeating-conic-gradient(#f048a8 0 25%,#c8207e 0 50%) 0 0/8px 8px;color:#fffdf2!important;box-shadow:inset 0 0 0 3px #fd55b4,0 0 0 2px #ed379c,4px 5px 0 #050e25;font:900 36px/43px Impact,'Barlow Condensed',sans-serif!important;letter-spacing:1px;text-align:center;white-space:nowrap;text-shadow:3px 3px 0 #06132d}

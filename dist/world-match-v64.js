@@ -278,10 +278,12 @@ function v64FinishFixture(career,fixture,state){
  if(state.minute<90||state.phase!=='finished')throw Error('Die Partie ist noch nicht beendet.');
  if(fixture.matchRecord)return fixture.matchRecord;
  const record={score:[...state.score],starters:{home:[...fixture.plan.home.starters],away:[...fixture.plan.away.starters]},tacticChanges:state.tacticChanges,substitutions:state.substitutions,events:state.events,players:[]};
+ if(state.postMatchReport?.ballAccounting)record.ballAccounting=structuredClone(state.postMatchReport.ballAccounting);
  for(const side of [0,1])for(const player of v64Side(career,fixture,side)){
   const minutes=state.minutes[player.pid]||0;if(!minutes)continue;
   const stats=state.stats[player.pid],rating=minutes>=20?(state.ratings?.[player.pid]??Math.max(1,Math.min(10,6+stats.goals*1.2+stats.assists*.6+stats.shots*.1-(state.score[1-side]>state.score[side]?.35:0)))):null;
   const extra={fouls:stats.fouls||0,penaltiesScored:stats.penaltiesScored||0,penaltiesMissed:stats.penaltiesMissed||0,cleanSheet:player.keeper&&state.score[1-side]===0?1:0,conceded:player.keeper?state.score[1-side]:0};
+  if(Number.isFinite(stats.tackleAttempts)&&Number.isFinite(stats.tacklesWon)){extra.tackleAttempts=stats.tackleAttempts;extra.tacklesWon=stats.tacklesWon;}
   const line={pid:player.pid,side,minutes,goals:stats.goals,assists:stats.assists,shots:stats.shots,...extra,rating};record.players.push(line);
   player.fresh=Math.round(state.fresh[player.pid]*100)/100;
   if(rating!==null)v64UpdateForm(player,rating);

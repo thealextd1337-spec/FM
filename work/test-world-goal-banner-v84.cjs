@@ -5,7 +5,7 @@ const vm=require('vm');
 const classes=new Set(),overlay={html:'',attributes:{},sprite:true};
 const stage={classList:{contains:value=>value==='v42-pitch-stage'},append:node=>{node.parentElement=stage}};
 const matchArea={insertBefore:node=>{node.parentElement=matchArea}};
-overlay.classList={add:value=>classes.add(value),remove:value=>classes.delete(value)};
+overlay.classList={add:(...values)=>values.forEach(value=>classes.add(value)),remove:(...values)=>values.forEach(value=>classes.delete(value))};
 overlay.querySelectorAll=()=>overlay.html?[{remove:()=>{overlay.html=''}}]:[];
 overlay.querySelector=selector=>selector==='.v82-goal-sprite'&&overlay.sprite?{}:null;
 overlay.insertAdjacentHTML=(_position,html)=>{overlay.html=html};
@@ -34,6 +34,7 @@ const context=vm.createContext({
  escapeHTML:value=>String(value).replace(/[&"<>]/g,char=>({'&':'&amp;','"':'&quot;','<':'&lt;','>':'&gt;'}[char])),
  $:selector=>({'#match-overlay':overlay,'#overlay-title':title,'#overlay-copy':copy,'#match-area .v42-pitch-stage':stage,'#match-area':matchArea,'#event':{}})[selector],
  showOverlay:(heading,description)=>{title.textContent=heading;copy.textContent=description},
+ hideOverlay:()=>{overlay.hidden=true},draw:()=>{},step:()=>{},running:true,v47PlayerDialog:{open:false},
  document:{createElement:()=>({textContent:''}),head:{append:()=>{}}}
 });
 const source=fs.readFileSync('dist/world-goal-banner-v84.js','utf8');
@@ -50,6 +51,11 @@ assert(overlay.html.indexOf('class="v84-score')<overlay.html.indexOf('class="v84
 assert(overlay.html.includes('Rückennummer 7')&&overlay.html.includes('#7'),'Rückennummer sichtbar');
 assert.strictEqual(overlay.attributes.role,'status');
 assert.strictEqual(overlay.parentElement,stage,'Banner liegt am Spielfeld');
+assert(classes.has('v84-goal-wait'),'banner starts hidden for half a second');
+context.step(0,.49);context.draw();assert(classes.has('v84-goal-wait'),'not visible at 490ms');
+context.running=false;context.step(0,1);context.draw();assert(classes.has('v84-goal-wait'),'pause freezes the delay');
+context.running=true;context.v47PlayerDialog.open=true;context.step(0,1);context.draw();assert(classes.has('v84-goal-wait'),'player dialog freezes the delay');
+context.v47PlayerDialog.open=false;context.step(0,.011);context.draw();assert(!classes.has('v84-goal-wait'),'visible after 500ms of playback');
 overlay.sprite=false;
 fixture.competitionId='cup-3';
 physical.goals=[{pid:'p7',team:0}];
@@ -60,8 +66,10 @@ assert.strictEqual(goals(player,career,fixture,physical),1,'Europacupzählung bl
 assert(vm.runInContext('v84BannerHTML',context)(player,club,career.world.competitions[2],1,[1,0]).includes('1 Tor - Europacup'),'ein Tor nutzt die Einzahl');
 assert(vm.runInContext('v84BannerHTML',context)(player,club,career.world.competitions[0],1,[12,10]).includes('v84-score v84-score-long'),'zweistellige Ergebnisse erhalten kompakte Schrift');
 context.showOverlay('ANPFIFF','Neustart',false);
+assert(!classes.has('v84-goal-wait'),'new non-goal message cancels delay');
 assert(!classes.has('v84-goal-banner')&&!overlay.html&&!overlay.attributes.role,'andere Hinweise räumen den Banner ab');
 assert.strictEqual(overlay.parentElement,matchArea,'andere Hinweise nutzen wieder den normalen Matchbereich');
+context.showOverlay('TOR!','Treffer',true);context.hideOverlay();context.step(0,1);context.draw();assert(overlay.hidden&&!classes.has('v84-goal-wait'),'hidden goal cannot reappear from old delay');
 assert(source.includes('prefers-reduced-motion:reduce')&&source.includes('v84GoalRun')&&source.includes('v84GoalBlink'));
 const css=vm.runInContext('v84Style.textContent',context);
 assert(css.includes('top:50%;bottom:auto;left:50%')&&css.includes('transform:translate(-50%,-50%)'),'Spielfeldmitte');

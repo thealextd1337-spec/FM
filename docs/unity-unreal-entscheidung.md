@@ -1,0 +1,29 @@
+# Unity oder Unreal für Doppel 6?
+
+Recherche vom 2. Oktober 2026 anhand offizieller Unity- und Epic-Dokumentation. Dies ist eine Empfehlung für den nächsten Prototyp, noch keine umgesetzte oder endgültig beschlossene Engineumstellung.
+
+## Empfehlung
+
+**Für den weiterhin mobil spielbaren Browsermanager empfehle ich Unity 6 als erste Engineprobe.** Unity bietet einen Web-Build, der auf dem Endgerät läuft, und eine dokumentierte Verbindung zu JavaScript. Unreal bietet mit Pixel Streaming einen dokumentierten Browserweg, bei dem eine laufende Unreal-Anwendung die Bilder auf einem Rechner oder Server erzeugt. Daraus folgt für unsere Ziele: Unity passt besser zu lokal berechneten Partien und einer späteren Offline-Lösung; Unreal wäre vor allem bei einer ausdrücklich gewünschten Server-Streaming-Architektur neu zu bewerten. [Unity: Browserunterstützung](https://docs.unity3d.com/6000.3/Documentation/Manual/webgl-browsercompatibility.html), [Unity: JavaScript-Kommunikation](https://docs.unity3d.com/6000.3/Documentation/Manual/webgl-interactingwithbrowserscripting.html), [Epic: Pixel Streaming](https://dev.epicgames.com/documentation/en-us/unreal-engine/pixel-streaming-in-unreal-engine).
+
+## Belegte Unterschiede
+
+| Thema | Unity 6.3 LTS | Unreal / Pixel Streaming |
+| --- | --- | --- |
+| Desktop-Browser | Chrome, Firefox, Edge und Safari; WebGL 2, WebAssembly und ein 64-Bit-Browser sind Voraussetzungen. | Ein moderner WebRTC-Browser empfängt Bild und Ton und sendet Eingaben zurück. |
+| Mobilbrowser | Unity nennt iOS Safari ab 15 und Android Chrome ab 58; aktuelle Browser werden empfohlen. | Epic nennt unter anderem Chrome, Firefox und Safari auf mobilen Geräten. Das Rendering erfolgt auf dem entfernten Rechner. |
+| Betrieb | Web-Build-Dateien werden an den Browser ausgeliefert. | Laufende Unreal-Anwendung plus Signalling-/Web-Infrastruktur; der ausführende Rechner benötigt unterstützte Grafik-/Encoding-Hardware. |
+
+Quellen: [Unity: Web browser compatibility](https://docs.unity3d.com/6000.3/Documentation/Manual/webgl-browsercompatibility.html), [Unity: Web Build folder](https://docs.unity.com/en-us/engine/6000.0/manual/platform-specific/webgl/building-distribution/building), [Epic: Pixel Streaming Overview](https://dev.epicgames.com/documentation/unreal-engine/overview-of-pixel-streaming-in-unreal-engine?lang=en-US), [Epic: Pixel Streaming Reference](https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-pixel-streaming-reference).
+
+**Offline-Grenze:** Unity erzeugt normalerweise mehrere Dateien, darunter Loader-JavaScript, WebAssembly und Assetdaten. Unity weist auf mögliche Browserblockaden beim direkten Öffnen lokaler Dateien hin; Webhosting erfordert passende HTTP-Header. Der bisherige Doppel-6-Einzeldatei-Build ist deshalb kein automatisch übernehmbarer Unity-Build. Eine spätere Offline-Verpackung muss separat gebaut und geprüft werden. Aus der beschriebenen Pixel-Streaming-Architektur folgt: Ohne erreichbare laufende Unreal-Instanz ist dieser Browserweg nicht offline spielbar. Eine lokal installierte Unreal-Anwendung wäre ein anderes Auslieferungsmodell. [Unity: Web Build folder](https://docs.unity.com/en-us/engine/6000.0/manual/platform-specific/webgl/building-distribution/building), [Unity: Deploy a Web application](https://docs.unity3d.com/6000.3/Documentation/Manual/webgl-deploying.html), [Epic: Pixel Streaming Overview](https://dev.epicgames.com/documentation/unreal-engine/overview-of-pixel-streaming-in-unreal-engine?lang=en-US).
+
+## Blender-Figur und bestehende Spiellogik
+
+Unity kann Blender-Dateien über FBX einschließlich Knochen, Skinning und Animationen importieren. Für die Probe ist ein expliziter FBX-Export mit Figur, Deformationsskelett und gebackenen Lauf-/Passclips sinnvoll. Im Unity-Importer wird ein menschliches Skelett auf einen Humanoid-Avatar abgebildet; Bone-Mapping und Animationen müssen geprüft werden. Ein Test-Rig ist damit noch kein bestätigtes Humanoid-Rig. [Unity: Blender-Import](https://docs.unity3d.com/6000.3/Documentation/Manual/HOWTO-ImportObjectsFrom3DApps.html#Blender), [Unity: Importing a model with humanoid animations](https://docs.unity3d.com/6000.3/Documentation/Manual/ConfiguringtheAvatar.html).
+
+Die vorhandene JavaScript-Matchengine und HTML-Bedienung können nicht durch den bloßen Modellimport in Unity übernommen werden. Unity dokumentiert JavaScript → C# über `SendMessage` sowie C# → JavaScript über Plug-ins. `SendMessage` kann eine GameObject-Methode ohne Argument oder mit genau einer Zahl beziehungsweise Zeichenkette aufrufen. **Architekturvorschlag:** Zunächst nur die 3D-Darstellung als Unity-Web-Probe bauen und Positions-/Aktionsdaten der weiterhin maßgeblichen JavaScript-Simulation über eine definierte Schnittstelle übergeben. Eine vollständige Portierung der Matchengine nach C# wäre ein gesondertes Projekt mit Paritätsprüfung. [Unity: JavaScript → C#](https://docs.unity.com/en-us/engine/6000.3/manual/platform-specific/webgl/develop/interactingwithbrowserscripting/web-interacting-browser-unity-to-js), [Unity: C# → JavaScript](https://docs.unity.com/en-us/engine/6000.3/manual/platform-specific/webgl/develop/interactingwithbrowserscripting/web-interacting-browser-js-to-unity).
+
+## Nächste Abnahme
+
+Die Blender-Lauf-/Passprobe kann bereits die exportierbare Assetbasis vorbereiten. Vor einer Spielintegration sollte ein kleiner Unity-Web-Prototyp Figur, Laufzyklus, Passkontakt und Übergang zwischen beiden Clips zeigen. Danach auf einem echten iPhone und einem Android-Gerät Startzeit, Speicher, Bildrate, Touchbedienung und Rückkehr nach Tabwechsel messen; Browserfreigabe allein beweist keine ausreichende Leistung für eine vollständige Partie. Offline-Verpackung und Anbindung an die vorhandene Matchengine sind eigene Abnahmepunkte. Installation, Unity-Projekt und Enginewechsel sind durch diese Recherche noch nicht erfolgt.

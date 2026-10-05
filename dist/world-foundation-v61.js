@@ -373,6 +373,28 @@ function v61MatchFieldKit(club,home){
  if(kit)return{...kit,trim:kit.pattern};
  const colors=v61ClubColors(club);return{main:colors[home?0:1],trim:colors[home?1:0],style:'stripe'};
 }
+// Compare the visible shirt, including broad patterns, in perceptual color space.
+// Main RGB alone accepts white/gold halves against gold/white stripes.
+function v61KitAppearance(kit){
+ const lab=color=>{
+  const [r,g,b]=[1,3,5].map(i=>{const c=parseInt(color.slice(i,i+2),16)/255;return c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4)});
+  const f=n=>n>.008856?Math.cbrt(n):7.787*n+16/116;
+  const x=f((.4124564*r+.3575761*g+.1804375*b)/.95047),y=f(.2126729*r+.7151522*g+.072175*b),z=f((.0193339*r+.119192*g+.9503041*b)/1.08883);
+  // At TV-camera size, lightness is more reliable than small hue differences.
+  return[116*y-16,250*(x-y),100*(y-z)];
+ };
+ const coverage={stripe:.28,stripes:.45,hoops:.28,halves:.5,diagonal:.2,pinstripes:.12}[kit.style]||0;
+ const main=lab(kit.main),pattern=lab(kit.pattern||kit.trim||kit.main);
+ return main.map((n,i)=>n*(1-coverage)+pattern[i]*coverage);
+}
+function v61KitAppearanceDistance(first,second){
+ const a=v61KitAppearance(first),b=v61KitAppearance(second);return Math.hypot(...a.map((n,i)=>n-b[i]));
+}
+function v61KitNumberColor(background){
+ const rgb=[1,3,5].map(i=>{const c=parseInt(background.slice(i,i+2),16)/255;return c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4)}),l=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;
+ // Choose the larger actual text/background contrast, including mid-tone kits.
+ return (l+.05)/.064>1.05/(l+.05)?'#102126':'#ffffff';
+}
 function v61SelectMatchKits(own,opponent,ownIsHome){
  const desired=[ownIsHome?0:1,ownIsHome?1:0],choices=[own,opponent].map(club=>[v61MatchFieldKit(club,true),v61MatchFieldKit(club,false)]);
  const keeperChoices=[own,opponent].map((club,index)=>club.kits?.keepers?.length===2?club.kits.keepers:[{main:index?'#516bb4':'#e7b957',trim:'#ffffff',style:'solid'}]);
@@ -381,10 +403,14 @@ function v61SelectMatchKits(own,opponent,ownIsHome){
   const user=choices[0][first],opponentKit=choices[1][second];
   const colors=[user.main,opponentKit.main,userKeeper.main,opponentKeeper.main];
   const contrast=Math.min(...colors.flatMap((color,index)=>colors.slice(index+1).map(other=>v61KitColorDistance(color,other))));
-  candidates.push({user,opponent:opponentKit,userKeeper,opponentKeeper,contrast,swaps:Number(first!==desired[0])+Number(second!==desired[1])});
+  const shirts=[user,opponentKit,userKeeper,opponentKeeper],appearance=shirts.map(v61KitAppearance);
+  const visibleContrast=Math.min(...appearance.flatMap((color,index)=>appearance.slice(index+1).map(other=>Math.hypot(...color.map((n,i)=>n-other[i])))));
+  const order=ownIsHome?[first,second,userKeeper.main,opponentKeeper.main]:[second,first,opponentKeeper.main,userKeeper.main];
+  candidates.push({user,opponent:opponentKit,userKeeper,opponentKeeper,contrast:Math.round(contrast*1e6)/1e6,visibleContrast:Math.round(visibleContrast*1e6)/1e6,order:order.join('/'),homeSwap:Number((ownIsHome?first:second)!==0),swaps:Number(first!==desired[0])+Number(second!==desired[1])});
  }
- const clear=candidates.filter(candidate=>candidate.contrast>=100);
- const selected=(clear.length?clear.sort((a,b)=>a.swaps-b.swaps||b.contrast-a.contrast):candidates.sort((a,b)=>b.contrast-a.contrast||a.swaps-b.swaps))[0];
+ const clear=candidates.filter(candidate=>candidate.contrast>=100&&candidate.visibleContrast>=24),safe=candidates.filter(candidate=>candidate.contrast>=85);
+ const selected=(clear.length?clear.sort((a,b)=>a.homeSwap-b.homeSwap||a.swaps-b.swaps||b.visibleContrast-a.visibleContrast||a.order.localeCompare(b.order)):
+  (safe.length?safe:candidates).sort((a,b)=>b.visibleContrast-a.visibleContrast||b.contrast-a.contrast||a.homeSwap-b.homeSwap||a.swaps-b.swaps||a.order.localeCompare(b.order)))[0];
  return{user:selected.user,opponent:selected.opponent,userKeeper:{...selected.userKeeper},opponentKeeper:{...selected.opponentKeeper}};
 }
 function v61ClubColors(club){if(club.kits?.colors)return[club.kits.colors.primary,club.kits.colors.secondary];const[a,b]=club.colors.split('/');return[v61Colors[a]||'#c7f36b',v61Colors[b]||'#142629']}
