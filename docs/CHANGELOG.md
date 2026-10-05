@@ -4,7 +4,9 @@
 
 ## 2026-10-05 (Prototyp 107 · Meshy-3D und Systemdokumentation)
 
-- Der aktuelle 3D-Spielstand mit Meshy-Rig und 34 Clips, Matchbewegungen, Torwartkette und Rückschau wird in das reguläre Hauptspiel integriert. Deutsch-/englische 3D-Hilfe im Spielmenü und Seitenfuß mit aufklappbarer technischer Systemdokumentation; beim Lesen pausiert die Partie und setzt danach ohne Zeitsprung fort. Generator-/UI-/Zeitgeber-/Asset-/Paritäts- und bestehende Release-Prüfungen. [Dokumentation](3d-system.md), [Veröffentlichungsnachweise](release-107.md). Die folgenden Einträge beschreiben die Entwicklung dieses Release-Standes; frühere Lokalhinweise bleiben historische Angaben.
+[Live-Spiel](https://fussball.cakamper.at/) und [3D-Hilfe](https://fussball.cakamper.at/?help=3d) veröffentlicht. [Deployment](https://github.com/thealextd1337-spec/FM/actions/runs/37333982255) erfolgreich; Quellseite, Build und Live-Version 107 sowie identische Dateibytes direkt bestätigt.
+
+- Der aktuelle 3D-Spielstand mit Meshy-Rig und 34 Clips, Matchbewegungen, Torwartkette und Rückschau ist im regulären Hauptspiel verfügbar. Deutsch-/englische 3D-Hilfe im Spielmenü und Seitenfuß mit aufklappbarer technischer Systemdokumentation; beim Lesen pausiert die Partie und setzt danach ohne Zeitsprung fort. Generator-/UI-/Zeitgeber-/Asset-/Paritäts- und bestehende Release-Prüfungen. [Dokumentation](3d-system.md), [Veröffentlichungsnachweise](release-107.md). Die folgenden Einträge beschreiben die Entwicklung dieses Release-Standes; frühere Lokalhinweise bleiben historische Angaben.
 
 - Matchkorrekturen v133: zusätzlicher Lupenknopf für größere Bildfläche innerhalb der Seite, getrennt vom Vollbild. Grätschenziel in Metern statt Feldanteilen für rechtzeitige Kontakt-/Foulentscheidungen. Torwart behält auch bei Ecken offene Bereitschaftshände; allgemeine Feldspieler-Drehclips überlagern seine Ballausrichtung nicht mehr. Native Szenen, zwei vollständige Partien und 2D-/3D-/Offlinevergleich; bestehendes Meshy-Rig. [Änderungen und Belege](spieler-nutzer-rig/changes-v133.md).
 

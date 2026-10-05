@@ -1289,5 +1289,36 @@
     "turned": true,
     "errors": [],
     "warnings": []
+  },
+  "live": {
+    "url": "https://fussball.cakamper.at/?release=107&help=3d",
+    "sha256": "d337567b10edf67a36662b01e8cb2f88e9fad613ba2d131178048538b5fee6ea",
+    "bytes": 50181559,
+    "version": 107,
+    "rows": [
+      {
+        "language": "de",
+        "sourceSha256": "39cb8e6432b0c38923f4c6ad558a3355955094d52f5e088bf17b503024e4b577"
+      },
+      {
+        "language": "en",
+        "sourceSha256": "4e04d2913e949527a4bd7bbec77e244f0b129d5ffe4d1bec60a06ace4879d3db"
+      }
+    ],
+    "model": {
+      "status": "ready",
+      "players": 12,
+      "keepers": 2,
+      "footer": "Doppel 6 / PROTOTYP 107"
+    },
+    "helpPausesMatch": true,
+    "liveResumes": true,
+    "errors": []
+  },
+  "deployment": {
+    "commit": "324b2ce40c8343f60047cefb3596a5f7f0bcb3d2",
+    "runId": 37333982255,
+    "url": "https://github.com/thealextd1337-spec/FM/actions/runs/37333982255",
+    "conclusion": "success"
   }
 }

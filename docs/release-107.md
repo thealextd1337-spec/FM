@@ -21,4 +21,8 @@ Prüfberichte: `outputs/3d-documentation-qa-v134.json`, `docs/spieler-nutzer-rig
 
 ## Veröffentlichung
 
-Ziel: [reguläres Hauptspiel](https://fussball.cakamper.at/) als Prototyp 107. Commit, Deployment und Live-Datei werden nach dem Upload unten dokumentiert.
+Am 5. Oktober 2026 im [regulären Hauptspiel](https://fussball.cakamper.at/) als Prototyp 107 veröffentlicht. [Hilfe direkt öffnen](https://fussball.cakamper.at/?help=3d).
+
+[Release-Commit](https://github.com/thealextd1337-spec/FM/commit/324b2ce40c8343f60047cefb3596a5f7f0bcb3d2) und [Deployment](https://github.com/thealextd1337-spec/FM/actions/runs/37333982255): alle automatischen Spieltests, Build, FTPS-Upload und HTTP-Verifikation erfolgreich.
+
+Quellseite, Offline-Build und Live-Seite zeigen Version 107. Die Live-Datei umfasst 50.181.559 Bytes und entspricht bytegenau dem geprüften Build: SHA-256 `d337567b10edf67a36662b01e8cb2f88e9fad613ba2d131178048538b5fee6ea`. Direkt live im isolierten Browser geprüft: deutsche/englische Hilfe mit identischen Dokumentationshashes, zwölf Meshy-Modelle einschließlich beider Torhüter, keine Browserfehler, angehaltene Partie beim Lesen und korrekte Fortsetzung einschließlich Anstoß-Countdown. [Maschinenlesbare Nachweise](release-107-verification.json).
