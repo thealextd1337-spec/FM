@@ -1,6 +1,6 @@
 # Mobile 3D-Performance v135
 
-Anlass: starkes Ruckeln der 3D-Ansicht auf einem Pixel 9 Pro XL. Am 5. Oktober 2026 für die Veröffentlichung als Prototyp 108 vorbereitet.
+Anlass: starkes Ruckeln der 3D-Ansicht auf einem Pixel 9 Pro XL. Am 5. Oktober 2026 als Prototyp 108 veröffentlicht.
 
 ## Ursache und Änderung
 
@@ -35,3 +35,7 @@ Die Pixelzahl sinkt um ungefähr 67 %. Die letzten Renderzahlen belegen die geä
 - Regulärer Einzeldatei-Build erzeugt und im Browser geprüft. Quellseite und Build zeigen Version 108.
 
 JSON-/Bildnachweise liegen unter `outputs/mobile-performance-v135-{before,after}.*`, `outputs/world3d-parity-v135.json` und `outputs/fullscreen-tv-qa-v135.json`. `outputs/` bleibt außerhalb von Git. Die tatsächliche Flüssigkeit, Erwärmung und längere Laufzeit auf einem Pixel 9 Pro XL sind noch am Gerät zu prüfen.
+
+## Veröffentlichung
+
+Am 5. Oktober 2026 als [Prototyp 108 live veröffentlicht](https://fussball.cakamper.at/). [Deployment](https://github.com/thealextd1337-spec/FM/actions/runs/37348446605) erfolgreich. Quellseite, Build und Live-Seite zeigen Version 108; die Live-Datei stimmt bytegenau mit dem geprüften Build überein: SHA-256 `7c1ef8675e071f0a4ef0df6591670c84eebf24e562eb9a5928e45e4588f4c804`. Mobile Darstellung und deutsche/englische 3D-Hilfe direkt live mit isoliertem Testspielstand geprüft. [Nachweise](release-108-verification.json).
