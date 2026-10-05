@@ -4,6 +4,8 @@
 
 ## 2026-10-05 (Prototyp 109 · Halbzeit und Vollbild)
 
+Am 5. Oktober 2026 als [Prototyp 109 live veröffentlicht](https://fussball.cakamper.at/). [Deployment](https://github.com/thealextd1337-spec/FM/actions/runs/37353724518) erfolgreich. Quellseite, Build und Live-Seite zeigen Version 109; die Live-Datei stimmt bytegenau mit dem geprüften Build überein: SHA-256 `bc787921bf355ebb39d22968018b2e62840e78a8fb0f8958cd81b957e2c09210`. Halbzeit-Taktikansicht und Vollbildrückkehr direkt live in einem isolierten Testspielstand geprüft. [Nachweise](release-109-verification.json).
+
 - Vollbild und Halbzeit v136: Beim Halbzeitpfiff verlässt die Partie das Vollbild und öffnet den Taktikscreen. „2. Halbzeit starten“ stellt das vorherige Vollbild wieder her, einschließlich mobilem Viewport-Fallback. Ohne vorheriges Vollbild bleibt die normale Ansicht erhalten. Native Browserfunktion, 2D/3D, Hoch-/Querformat, DE/EN, beide Startaktionen, Verlassen der Partie und bestehende Vollbild/Rückschau geprüft; Zeit und Spielstand bleiben in der Taktikpause stehen. [Umsetzung und Prüfungen](halftime-fullscreen-v136.md).
 
 ## 2026-10-05 (Prototyp 108 · Mobile 3D-Performance)
