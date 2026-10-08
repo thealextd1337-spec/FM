@@ -1,0 +1,150 @@
+{
+  "samples": [
+    {
+      "id": "idle",
+      "time": 0.7814000000000001,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "shot",
+      "time": 0.797400000000001,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "start-stop",
+      "time": 0.797400000000001,
+      "phase": 1.0042079234433081,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "turn-left",
+      "time": 0.7974000000000001,
+      "phase": 1.8894638582311716,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "reverse",
+      "time": 0.7987000000000012,
+      "phase": 1.9067487849798668,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "back-walk",
+      "time": 0.7814000000000019,
+      "phase": 1.7327668653814352,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "back-left",
+      "time": 0.7820000000000005,
+      "phase": 1.5546589159297663,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "back-right",
+      "time": 0.7972999999999996,
+      "phase": 1.6848745315307352,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "keeper-look",
+      "time": 0.7980000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "dribble",
+      "time": 0.7972999999999997,
+      "phase": 1.6464409747925621,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "dribble-turn",
+      "time": 2.0885999999999996,
+      "phase": 2.894769114811742,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "pass",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "cross",
+      "time": 0.7972999999999997,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "receive",
+      "time": 0.7980000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "keeper-low",
+      "time": 0.798599999999999,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "keeper-high",
+      "time": 0.797299999999996,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "keeper-left",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "keeper-right",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "foul-victim",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "foul-offender",
+      "time": 0.798599999999999,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    }
+  ],
+  "downloadByteEqual": true,
+  "mobile": {
+    "width": 844,
+    "scroll": 844
+  },
+  "errors": []
+}

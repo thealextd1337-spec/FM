@@ -1,0 +1,1 @@
+const fs=require('node:fs'),path=require('node:path');const root='F:/Neuer Ordner (2)/ChatGPT/Fussballmanager',target='C:/Users/alex/.codex/worktrees/match-controls-110/Fussballmanager';for(const file of ['dist/world-goal-replay-v103.js','dist/world-start-v61.css','work/check-zones-v139.cjs'])fs.copyFileSync(path.join(root,file),path.join(target,file));

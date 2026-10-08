@@ -3,6 +3,165 @@
  'use strict';
  const key='doppel6.language';
  const labels=new Map(`
+Ungefährer Wirkungsraum. Die Rolle und Ausrichtung lenken Laufangebote. Spieler reagieren frei auf die Spielsituation.	Approximate operating area. The role and orientation guide runs. Players react freely to the match.
+Empfohlene Rollen	Recommended roles
+Linientormann	Line goalkeeper
+Mitspielender Tormann	Sweeper keeper
+Ausputzer	Cover defender
+Stopper	Stopper
+Ballspielender Verteidiger	Ball-playing defender
+Spielmacher	Playmaker
+Abräumer	Ball winner
+Box-to-Box	Box-to-Box
+Flügelspieler	Winger
+Torjäger	Poacher
+Stoßstürmer	Striker
+Zielspieler	Target player
+Dribbler	Dribbler
+Rolle	Role
+Rolleneignung	Role suitability
+Beste Empfehlung	Best recommendation
+Wichtige Fähigkeiten	Important abilities
+Markierte Fähigkeiten sind für diese Rolle wichtig.	Marked abilities are important for this role.
+Ungefährer Wirkungsraum	Approximate operating area
+Die Rolle und Ausrichtung lenken Laufangebote. Spieler reagieren frei auf die Spielsituation.	The role and orientation guide runs. Players react freely to the match.
+Ungefährer Wirkungsraum · Spieler reagieren frei auf die Spielsituation.	Approximate operating area · Players react freely to the match.
+Spieler und Rollen · lokale Prüfkarriere. Neue Karrieren verwenden den Balancekandidaten; vorhandene Spielstände bleiben unverändert.	Players and roles · local test career. New careers use candidate settings; existing saves remain unchanged.
+
+Ruhe	Composure
+Antizipation	Anticipation
+Entscheidungen	Decisions
+Körperkraft	Strength
+Spielverständnis	Game awareness
+Größe	Height
+Bevorzugter Fuß	Preferred foot
+Beidfüßig	Either foot
+Formzeitraum nicht erfasst	Form rating period not recorded
+Spiele im Formzeitraum	Matches in the form rating period
+Durchschnittsnote der aktuellen Saison	Average rating for the current season
+neuestes Spiel	most recent match
+ältestes Spiel	oldest match
+ältestes → neuestes	oldest → most recent
+Transferverhandlung	Transfer negotiation
+Entscheidung am Tageswechsel	Decision at the end of the transfer day
+Dein Transferwunsch wird beim Tageswechsel entschieden.	Your transfer request will be decided at the end of the transfer day.
+Frische	Freshness
+Vereinskennzahlen	Club key figures
+Im Vereinsbüro	At the club office
+Ansehen	View
+Aktuell keine offenen Aufgaben.	No open tasks at the moment.
+Fristen und offene Entscheidungen bleiben hier sichtbar.	Deadlines and open decisions remain visible here.
+Dein finanzieller Spielraum	Your financial room
+Ligaplatz	League position
+Ligapunkte	League points
+Profikader	Professional squad
+von	of
+Auslaufende Verträge	Expiring contracts
+Angebote ansehen	View offers
+Nachwuchs ansehen	View youth players
+Noch sichere Einnahmen	Remaining guaranteed income
+Vereinsbereiche	Club sections
+Noch kein Sponsor gewählt.	No sponsor selected yet.
+Sponsor auswählen	Choose a sponsor
+Vereinsfinanzen nicht verfügbar.	Club finances unavailable.
+Managerlaufbahn nicht verfügbar.	Manager career unavailable.
+Transfertag	Transfer day
+Transfertag wird abgeschlossen …	Completing transfer day …
+Spiel wird vorbereitet …	Preparing match …
+Kaderbereiche	Squad sections
+Spielersuche	Player search
+Eigene Transferliste	Your transfer list
+Angebote & Verhandlungen	Offers & negotiations
+Wettbewerbsbereiche	Competition sections
+Keine laufenden Angebote oder Verhandlungen.	No ongoing offers or negotiations.
+Transferbilanz nicht erfasst.	Transfer summary not recorded.
+Noch keine Titel archiviert.	No titles archived yet.
+Bereich nicht verfügbar.	Section unavailable.
+Alle Wettbewerbe	All competitions
+Zeitraum	Period
+Alle Termine	All dates
+Anstehend	Upcoming
+Abgeschlossen	Completed
+Keine Termine in dieser Auswahl.	No dates in this selection.
+Bestenliste	Leaderboard
+Alle Kategorien	All categories
+Doppel 6	Doppel 6
+Menü schließen	Close menu
+Nächste Begegnung	Next fixture
+Hauptsponsor	Main sponsor
+Vertrag ansehen	View contract
+Letzte Ligaspiele	Recent league matches
+Noch keine Ligaspiele erfasst	No league matches recorded yet
+Ältestes Ergebnis zuerst	Oldest result first
+Aktuell auf Kurs	Currently on track
+Endgültig erreicht	Achieved
+Ziel offen	Target open
+Noch nicht bezahlt	Not paid yet
+Bereits bezahlt	Already paid
+Status nicht erfasst	Status not recorded
+Zahlungsstatus nicht erfasst	Payment status not recorded
+Erreichte Sponsorboni werden am Saisonende bezahlt.	Achieved sponsor bonuses are paid at the end of the season.
+Keine Ereignisse	No events
+Keine Wechsel	No substitutions
+Aufstellungen	Line-ups
+Spielereignisse	Match events
+Keine Aufstellung erfasst	No line-up recorded
+Keine Spielerwerte erfasst	No player statistics recorded
+Keine Auszeichnungen	No awards
+S	W
+U	D
+N	L
+Erfasste Vereinswerte. Fehlende frühere Statistiken und nicht mehr gespeicherte Spieler werden nicht ergänzt.	Recorded club statistics. Missing earlier statistics and players no longer stored are not reconstructed.
+Zweikampfversuche	Tackle attempts
+Spielerprofil öffnen	Open player profile
+Spieler nicht mehr verfügbar	Player no longer available
+Chronik & Erfolge	History & honours
+Ewige Top 10	All-time top 10
+Tore für den Verein	Goals for the club
+Einsätze für den Verein	Appearances for the club
+Erfasste Vereinswerte; ältere oder entfernte Spieler können fehlen.	Recorded club statistics; older or removed players may be missing.
+Noch keine erfassten Vereinswerte.	No recorded club statistics yet.
+Letzte aufgezeichnete Aufstellung	Last recorded line-up
+Letzte Aufstellung nicht erfasst.	Last line-up not recorded.
+Neuere Aufstellung nicht erfasst.	More recent line-up not recorded.
+Gegen	Against
+Deine Darstellung, Sprache und lokalen Spielstände.	Your appearance, language and local saves.
+Darstellung	Appearance
+Standardmäßig folgt das Farbschema deinem Gerät. Ein Wechsel erhält deine geöffneten Ansichten und Eingaben.	The colour scheme follows your device by default. Switching preserves your open views and inputs.
+Farbschema	Colour scheme
+Geräteeinstellung	Device setting
+Hell	Light
+Dunkel	Dark
+Wähle die Sprache für Menüs, Beschriftungen und Hilfe.	Choose the language for menus, labels and help.
+Karrieren & Spielstände	Careers & saves
+Speichere die aktuelle Karriere und öffne die Startseite. Dort kannst du Karrieren fortsetzen, exportieren, importieren oder verwalten.	Save your current career and open the start page. There you can continue, export, import or manage careers.
+Speichern & Karriereverwaltung	Save & manage careers
+Sichere wichtige Spielstände regelmäßig als Exportdatei. Browserdaten bleiben auf diesem Gerät.	Back up important saves regularly by exporting them. Browser data stays on this device.
+Hilfe	Help
+Öffne Spielerprofile für Vertragsdaten, Leistungen und Karriere. Fähigkeiten erscheinen als Farbstufen; Form und Frische werden getrennt angezeigt.	Open player profiles for contract details, performances and career history. Skills use colour bands; form and freshness are displayed separately.
+3D-Hilfe öffnen	Open 3D help
+Die vollständige Hilfe erklärt Kameras, Vollbild, Rückschau und Spielbedienung.	The full help explains cameras, fullscreen, review and match controls.
+Rechtliches & Speicher	Legal & storage
+Hier findest du die rechtlichen Hinweise und die bestehende Auswahl zur freiwilligen Übertragung von Spielstatistiken.	Find legal information and the existing choice about voluntarily sharing match statistics.
+Die Aktion konnte nicht abgeschlossen werden. Bitte versuche es erneut.	The action could not be completed. Please try again.
+Hilfe & Einstellungen	Help & settings
+Zum Hauptinhalt	Skip to main content
+Heimspiel	Home match
+Auswärtsspiel	Away match
+Name oder Nationalität	Name or nationality
+Alle Fähigkeiten	All abilities
+Keine bekannten Fähigkeiten.	No known abilities.
+Violettgrau	Violet grey
+Blaugrau	Blue grey
+Gelb	Yellow
+Pink	Pink
+Nicht bekannt	Unknown
+Nicht erfasst	Not recorded
+Frische nicht erfasst	Freshness not recorded
+Einwechslungen nicht erfasst	Substitute appearances not recorded
+Einsätze insgesamt, davon als Einwechselspieler	Total appearances, including substitute appearances
+Transferbereiche	Transfer sections
+Angebote & Ergebnisse	Offers & results
 Sprache	Language
 Deutsch	German
 MEISTERSCHAFT	CHAMPIONSHIP
@@ -24,7 +183,7 @@ Deine Mannschaft	Your team
 Spieler antippen, Position und Ausrichtung festlegen.	Tap a player to set position and role.
 Scouting:	Scouting:
 Fähigkeiten werden bewusst nur ungefähr beschrieben. Alter, Form und Frische sind bekannt.	Abilities are shown as colour levels. Age, form and fitness are known.
-Ausrichtung	Player role
+Ausrichtung	Orientation
 Defensiv	Defensive
 Balance	Balanced
 Offensiv	Attacking
@@ -32,6 +191,7 @@ Teamtaktik	Team tactics
 Matchplan	Match plan
 Aufstellung & Taktik	Lineup & tactics
 Dieser Matchplan gilt für dein nächstes Spiel. Änderungen werden gespeichert.	This match plan applies to your next game. Changes are saved.
+Dieser Matchplan gilt für dein nächstes Spiel. Änderungen werden gespeichert. Spieler im Feld ziehen oder mit Alt + Pfeiltasten verschieben.	This match plan applies to your next game. Changes are saved. Drag players on the pitch or move them with Alt + arrow keys.
 Dauerhafter Matchplan	Saved match plan
 Dauerhafter Matchplan auf dem Spielfeld	Saved match plan on the pitch
 Ersatzbank	Bench
@@ -260,6 +420,7 @@ Nur lokal spielen	Play locally only
 Speichern & zum Startscreen	Save and return to start
 Extras & Einstellungen	Extras & settings
 Einstellungen & Speicher	Settings & saves
+3D-Hilfe	3D help
 Impressum	Legal notice
 Datenschutz	Privacy
 Rechtliche Hinweise	Legal information
@@ -452,6 +613,80 @@ Gehalt	Salary
 Vertrag	Contract
 Verträge	Contracts
 Finanzen	Finances
+Simulationsteam	Simulation team
+Simulationsteam ohne Vereinswirtschaft	Simulation team without club finances
+Karriere beendet	Career ended
+Karriereenden	Retirements
+Profis von Ligavereinen und vereinslose Spieler sind sichtbar. Reine Simulationsteams nehmen nicht am Transfermarkt teil.	Professionals from league clubs and free agents are shown. Simulation teams do not participate in the transfer market.
+Sichere Schlussprognose	Guaranteed closing forecast
+Mit möglichen Sponsorboni	With possible sponsor bonuses
+Nächste Zahlung	Next payment
+Jugendbudget festlegen	Set youth budget
+Finanzabschluss	Financial statement
+Startkapital	Starting balance
+Gewählter Sponsor	Selected sponsor
+Ligaprämien	League prizes
+Nationale Pokalprämien	Domestic cup prizes
+Europacupprämien	European cup prizes
+Finanzabschluss und Jugendförderung	Financial statement and youth funding
+Jahresabrechnung	Annual accounts
+Karrierestart	Career start
+Für deinen Verein liegt noch keine abgeschlossene Saisonabrechnung vor.	Your club has not completed a season yet.
+Kontostand zu Saisonbeginn	Balance at season start
+Alle Einnahmen	All income
+Alle Ausgaben	All expenses
+Jahresbilanz	Annual result
+Angefallene Gehälter	Salary costs incurred
+Transfereinnahmen	Transfer income
+Transferausgaben	Transfer spending
+Jugendförderung	Youth funding
+Jugendspielerübernahmen	Youth player promotions
+Weitere Einnahmen	Other income
+Weitere Ausgaben	Other expenses
+Gehälter der abgelaufenen Saison vollständig bezahlt.	Last season's salaries have been paid in full.
+Für diese Saison liegt keine Gehaltsbuchung vor.	No salary payment is recorded for this season.
+Übertrag aus der abgelaufenen Saison	Balance carried over from last season
+Neue Saison	New season
+Übertrag	Balance carried over
+Grundbetrag bereits eingegangen	Base income already received
+Sponsorfixum bereits eingegangen	Sponsor payment already received
+Weitere Buchungen der neuen Saison	Other entries for the new season
+Aktueller Kontostand	Current balance
+Jugendförderung wählen	Choose youth funding
+Förderstufe	Funding level
+Förderpause	Funding pause
+Basisförderung	Basic funding
+Intensive Förderung	Intensive funding
+Nicht finanzierbar	Insufficient funds
+Keine zusätzliche Investition in die Jugendarbeit.	No additional investment in youth development.
+Regelmäßige Förderung des vereinseigenen Nachwuchses.	Regular funding for your club's youth development.
+Mehrjährige Förderung verbessert die Talentchancen. Starke Spieler sind nicht garantiert.	Funding over several years improves talent prospects. Strong players are not guaranteed.
+Die Jugendförderung wird jetzt vollständig bezahlt. Ausbildungsentschädigungen und spätere Profigehälter werden separat bezahlt.	Youth funding is paid in full now. Training compensation and future professional salaries are paid separately.
+Kontostand zum Transferstart	Balance at transfer window opening
+Projizierte Gehaltskosten	Projected salary costs
+Vereinbarte Gehälter der neuen Saison	Agreed salaries for the new season
+Diese Gehälter werden erst am Ende der neuen Saison bezahlt. Neue Verträge und Transfers verändern den Betrag.	These salaries are paid at the end of the new season. New contracts and transfers change the amount.
+Rest nach vereinbarten Gehältern	Balance after agreed salaries
+Weitere Einnahmen, Sichtungen und Transfers der neuen Saison sind noch nicht enthalten. Mögliche Sponsorboni sind noch nicht verdient.	Further income, scouting and transfers for the new season are not included. Potential sponsor bonuses have not been earned yet.
+Jugendförderung bezahlen und Transfers öffnen	Pay youth funding and open transfers
+Budget bezahlen und Transfers öffnen	Pay youth budget and open transfers
+Grundbetrag und Sponsorfixum sind eingegangen. Das Jugendbudget wird jetzt vollständig bezahlt. Danach beginnt die Transferphase.	The base income and sponsor payment have arrived. The full youth budget is paid now. The transfer window opens next.
+Die Gehälter bleiben am Saisonende fällig. Mögliche Erfolgsprämien sind noch nicht verdient.	Salaries remain due at season end. Possible performance bonuses have not been earned yet.
+In der neuen Saison erhält dein Verein zuerst den Grundbetrag. Nach der Sponsorwahl legst du das Jugendbudget fest.	In the new season, your club receives its base income first. You set the youth budget after choosing a sponsor.
+Die Prognose berücksichtigt noch unbezahlte sichere Einnahmen und vereinbarte Gehälter. Weitere sportliche Erfolge und künftige Transfers sind nicht enthalten.	The forecast includes unpaid guaranteed income and agreed salaries. Further sporting success and future transfers are not included.
+Kontostand danach	Balance after payment
+noch ungewiss	still uncertain
+Sponsorfixum · mindestens	Sponsor payment · minimum
+Ligaprämie · mindestens Platz 6	League prize · at least sixth place
+Nationaler Pokal · Viertelfinale	National cup · quarter-final
+Nationaler Pokal · Halbfinale erreicht	National cup · semi-final reached
+Nationaler Pokal · Finale erreicht	National cup · final reached
+Nationaler Pokal · Pokalsieg	National cup · title
+Europacup · Spielprämie	European cup · match payment
+Europacup · Titelbonus	European cup · title bonus
+Zuerst Sponsor, Jugendbudget und Transfers abschließen.	Complete the sponsor choice, youth budget and transfers first.
+Das Jugendbudget wurde bereits gebucht.	The youth budget has already been paid.
+Jugendbudget wird gespeichert …	Saving youth budget …
 Kontostand	Balance
 Sponsoren	Sponsors
 Nachwuchs	Youth players
@@ -462,7 +697,25 @@ Chronik	History
 Erfolge	Honours
 Auszeichnungen	Awards
 Mannschaft	Team
+Letzte 5 Spiele	Last 5 matches
+Noch keine Spiele erfasst	No matches recorded yet
+Elfmeterschießen	Penalty shootout
+Statistik dieses Spiels	Statistics for this match
+Spielerstatistik schließen	Close player statistics
+Paraden	Saves
+Schüsse aufs Tor	Shots on target
+Davon aufs Tor	Of those on target
+Pässe	Passes
+Kopfballpässe	Headed passes
+Luftduelle gewonnen	Aerial duels won
+Zweikämpfe gewonnen	Duels won
+Ballabfänge	Interceptions
+Ja	Yes
+Nein	No
 Spielbericht	Match report
+Aktueller Tabellenplatz	Current table position
+Tabellenplätze entsprechen dem aktuellen Stand.	Table positions reflect the current standings.
+Spielerstatistik öffnen	Open player statistics
 Ergebnisse und Saisonstatistik	Results and season statistics
 Turnierbaum	Tournament bracket
 Zur Vereinszentrale	Back to club centre
@@ -516,6 +769,7 @@ zuletzt	last match
 gesamt	aggregate
 i. E.	on penalties
 Zum Spielbericht	To match report
+Schießen	Shoot
 EUROPACUP · ELFMETERSCHIESSEN	EUROPEAN CUP · PENALTY SHOOTOUT
 POKAL · ELFMETERSCHIESSEN	CUP · PENALTY SHOOTOUT
 Keine qualifizierten Spieler.	No eligible players.
@@ -797,6 +1051,7 @@ Aggressiv	Aggressive
 Hoch	High
 Tief	Deep
 Normal	Normal
+Eigentor	Own goal
 Tor per direktem Freistoß	Goal from a direct free kick
 Wechsel noch möglich	substitutions remaining
 Vorlage	Assist
@@ -828,7 +1083,7 @@ Die Partie und die übrigen Begegnungen dieses Kalendertags sind gespeichert.	Th
 Dein Verein	Your club
 vorgemerkt	planned
 VERTEIDIGUNG	DEFENCE
-Individuelle Ausrichtung	Individual role
+Individuelle Ausrichtung	Individual orientation
 Ausgewählter Spieler	Selected player
 Ersatzbank	Bench
 Details	Details
@@ -929,6 +1184,14 @@ Aktion	Action
 Torhüter	Goalkeepers
 Profis	Professionals
 Einsätze	Appearances
+Tacklingquote	Tackle success rate
+Einsatzstatistik	Appearance statistics
+Minuten	Minutes
+Alle abgeschlossenen Pflichtspiele.	All completed competitive matches.
+Schüsse nur aus erfassten Partien.	Shots include recorded matches only.
+Gewonnene Tacklings im Stand und per Grätsche / alle Versuche.	Successful standing and sliding tackles / all attempts.
+Tacklingquote nur aus erfassten Partien.	Tackle success rate includes recorded matches only.
+Noch keine erfassten Tacklingversuche.	No recorded tackle attempts yet.
 Nachwuchspool	Youth pool
 VEREINSEIGENER NACHWUCHS	CLUB YOUTH PLAYERS
 Fähigkeiten sind im Profil als Farbstufen sichtbar. Entwicklung beginnt erst nach einer Übernahme durch tatsächliche Pflichtspieleinsätze.	Abilities are visible as colour levels in profiles. Development begins after promotion through competitive match appearances.
@@ -958,6 +1221,7 @@ Zuerst verhandelst du die Ablöse mit dem Verein. Nach der Einigung folgen Gehal
 Du bietest dem Verein die Ablöse und dem Spieler Gehalt, Laufzeit und Einsatz-Zusage an. Eine Gegenforderung kannst du anschließend beantworten.	You offer the club a transfer fee and the player a salary, contract length and playing time promise. You can respond to a counteroffer afterwards.
 Neue Forderung	New asking price
 Verhandlung öffnen	Open negotiation
+Verlängern	Renew contract
 Spielervertrag ausstehend	Player contract pending
 Antwort auf Kaufangebot offen	Response to purchase offer pending
 Antwort des Käufers ausstehend	Buyer's response pending
@@ -1112,10 +1376,13 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
  if(typeof v79Nationalities!=='undefined')for(const nation of v79Nationalities)labels.set(nation.de,nation.en);
  const labelsLower=new Map([...labels].map(([de,en])=>[de.toLocaleLowerCase('de'),en]));
  const patterns=[
+  [/^Rolle: (.+)\. Rolleneignung: (.+)$/,(_,role,color)=>`Role: ${translate(role)}. Role suitability: ${translate(color)}`],
   [/^(Sieg|Niederlage|Unentschieden) (\d+):(\d+) gegen (.+)$/,(_,result,own,other,opponent)=>`${translate(result)} ${own}:${other} vs ${opponent}`],
   [/^Hinspiel (\d+) zu (\d+)$/,(_,home,away)=>`First leg ${home} to ${away}`],
   [/^EUROPACUP · Spieltag (\d+)$/,(_,round)=>`EUROPEAN CUP · Matchday ${round}`],
   [/^EUROPACUP · (Viertelfinale|Halbfinale|Finale)$/,(_,round)=>`EUROPEAN CUP · ${translate(round).toUpperCase()}`],
+  [/^Aktueller Tabellenplatz (\d+)$/,(_,rank)=>`Current table position ${rank}`],
+  [/^([^·]+) gewinnt$/,(_,name)=>`${name} wins`],
   [/^Ausgewechselt · (\d+) Min\. · Note (\d+,\d+)$/,(_,minutes,rating)=>`Went off · ${minutes} min · Rating ${rating}`],
   [/^Ausgewechselt · (\d+) Min\. · ohne Note$/,(_,minutes)=>`Went off · ${minutes} min · Not rated`],
   [/^i\. E\. (\d+):(\d+)$/,(_,own,other)=>`penalties ${own}:${other}`],
@@ -1130,6 +1397,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(.+) behauptet den Ball gegen die Grätsche\.$/,(_,name)=>`${name} keeps the ball despite the sliding tackle.`],
   [/^(.+) rutscht am Ball vorbei\.$/,(_,name)=>`${name} slides past the ball.`],
   [/^(.+) fängt (den Pass|den Passweg|den Freistoß) ab\.$/,(_,name,what)=>`${name} intercepts ${what==='den Freistoß'?'the free kick':'the pass'}.`],
+  [/^(.+) spielt in den freien Raum\.$/,(_,name)=>`${name} passes into space.`],
+  [/^Der Raumpass bleibt frei\.$/,()=>`The pass into space remains loose.`],
   [/^(.+) spielt auf (.+)\.$/,(_,name,target)=>`${name} passes to ${target}.`],
   [/^(.+) köpft zu (.+)\.$/,(_,name,target)=>`${name} heads the ball to ${target}.`],
   [/^(.+) zieht ab!$/,(_,name)=>`${name} shoots!`],
@@ -1172,6 +1441,9 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(\d+) Tor(?:e)? - (Liga 1|Nationaler Pokal|Europacup)$/,(_,count,competition)=>`${count} ${Number(count)===1?'goal':'goals'} - ${{'Liga 1':'League 1','Nationaler Pokal':'National cup',Europacup:'European cup'}[competition]}`],
   [/^Rückennummer (\d+)$/,(_,number)=>`Shirt number ${number}`],
   [/^Spielstand (\d+) zu (\d+)$/,(_,home,away)=>`Score ${home} to ${away}`],
+  [/^(.+) \(Eigentor\)$/,(_,name)=>`${name} (Own goal)`],
+  [/^(.+) \(E\.\)$/,(_,name)=>`${name} (OG)`],
+  [/^Eigentor - (.+)$/,(_,competition)=>`Own goal - ${translate(competition)}`],
   [/^TOR! (.+) trifft (per direktem Freistoß )?für (.+)\.$/,(_,name,freeKick,club)=>`GOAL! ${name} scores ${freeKick?'directly from a free kick ':''}for ${club}.`],
   [/^ELFMETERTOR! (.+) trifft für (.+)\.$/,(_,name,club)=>`PENALTY GOAL! ${name} scores for ${club}.`],
   [/^Abpfiff! (.+) (\d+) : (\d+) (.+)\.$/,(_,home,homeGoals,awayGoals,away)=>`Full time! ${home} ${homeGoals} : ${awayGoals} ${away}.`],
@@ -1324,6 +1596,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(\d+) angezeigt$/,(_,n)=>`${n} shown`],
   [/^Sponsor für Saison (\d+) wählen$/,(_,n)=>`Choose sponsor for season ${n}`],
   [/^Jugendbudget für Saison (\d+)$/,(_,n)=>`Youth budget for season ${n}`],
+  [/^Saison (\d+) vorbereiten$/,(_,n)=>`Prepare season ${n}`],
   [/^Ende Saison (\d+)$/,(_,n)=>`End of season ${n}`],
   [/^Transfertag (\d+) von (\d+) läuft$/,(_,day,total)=>`Transfer day ${day} of ${total} is in progress`],
   [/^Angebot für (?!.* planen$)(.+)$/,(_,name)=>`Offer for ${name}`],
@@ -1353,6 +1626,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^Vereine in (.+)$/,(_,country)=>`Clubs in ${translate(country)}`],
   [/^Deine Vereinswelten · (.+)$/,(_,count)=>`Your club careers · ${count}`],
   [/^(.+) · Saison (\d+)$/,(_,country,season)=>`${translate(country)} · Season ${season}`],
+  [/^(.+) spielt direkt auf (.+)\.$/,(_,name,target)=>`${name} plays a first-time pass to ${target}.`],
+  [/^(.+) schießt direkt!$/,(_,name)=>`${name} shoots first time!`],
   [/^Saison (\d+) · (.+)$/,(_,season,country)=>`Season ${season} · ${translate(country)}`],
   [/^(.+) und alle Fortschritte dieser Vereinswelt endgültig löschen\?$/,(_,name)=>`Permanently delete ${name} and all progress in this club career?`],
   [/^(.+) Spiele · (.+)$/,(_,games,date)=>`${games} games · ${date}`],
@@ -1398,7 +1673,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   if(!node.parentElement||node.parentElement.closest('script,style,textarea,#language-select option,[contenteditable="true"],[translate="no"]')||oldMatch(node.parentElement))return;
   const current=node.nodeValue,last=renderedText.get(node);
   if(!originalText.has(node)||current!==last)originalText.set(node,current);
-  const source=originalText.get(node),match=source.match(/^(\s*)([\s\S]*?)(\s*)$/),formMark=node.parentElement.matches('.v49-form b')?{S:'W',U:'D',N:'L'}[match[2]]:null,next=language==='en'&&formMark?match[1]+formMark+match[3]:language==='en'&&/[A-Za-zÄÖÜäöüß]/.test(match[2])?match[1]+translate(match[2])+match[3]:source;
+  const source=originalText.get(node),match=source.match(/^(\s*)([\s\S]*?)(\s*)$/),formMark=node.parentElement.matches('.v49-form b,.fl-result > span')?{S:'W',U:'D',N:'L'}[match[2]]:null,next=language==='en'&&formMark?match[1]+formMark+match[3]:language==='en'&&/[A-Za-zÄÖÜäöüß]/.test(match[2])?match[1]+translate(match[2])+match[3]:source;
   renderedText.set(node,next);
   if(current!==next)node.nodeValue=next;
  }

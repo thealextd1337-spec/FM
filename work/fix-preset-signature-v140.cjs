@@ -1,0 +1,1 @@
+const fs=require('fs');const file='dist/world-career-plan-v64.js';let s=fs.readFileSync(file,'utf8').replace('function v64ApplyCareerPlan(career,fixture,state){','function v64ApplyCareerPlan(career,fixture,state,savedPlan=career.manager.matchPlan){').replace(' if(!career.manager.matchPlan)return;',' if(!savedPlan)return;');fs.writeFileSync(file,s);

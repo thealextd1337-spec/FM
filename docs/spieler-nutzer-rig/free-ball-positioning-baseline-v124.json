@@ -1,0 +1,284 @@
+{
+  "rows": [
+    {
+      "team": 0,
+      "phase": "controlled",
+      "controlled": {
+        "by": 0.464681592770932,
+        "target": 0.3545605951000358,
+        "limit": 0.3286741898149623
+      },
+      "first": {
+        "by": 0.46467418981496234,
+        "target": 0.3546021251154674,
+        "limit": 0.32830775590025196,
+        "line": 0.3009193203189472,
+        "retreat": 0.003478172557441095,
+        "targetBehindLine": 0.05368280479652021,
+        "team": 0
+      },
+      "maxStep": 0.27600000000000197,
+      "receiverTarget": null
+    },
+    {
+      "team": 0,
+      "phase": "ground-flight",
+      "controlled": {
+        "by": 0.464681592770932,
+        "target": 0.3545605951000358,
+        "limit": 0.3286741898149623
+      },
+      "first": {
+        "by": 0.26,
+        "target": 0.14992793530050508,
+        "line": 0.3009193203189472,
+        "retreat": -0.0035486348722814642,
+        "targetBehindLine": -0.15099138501844211,
+        "team": 0
+      },
+      "maxStep": 0.2760000000000012,
+      "receiverTarget": {
+        "desired": {
+          "x": 0.7,
+          "y": 0.4
+        },
+        "actual": {
+          "x": 0.7,
+          "y": 0.4
+        }
+      }
+    },
+    {
+      "team": 0,
+      "phase": "aerial-flight",
+      "controlled": {
+        "by": 0.464681592770932,
+        "target": 0.3545605951000358,
+        "limit": 0.3286741898149623
+      },
+      "first": {
+        "by": 0.26,
+        "target": 0.14992793530050508,
+        "line": 0.3009193203189472,
+        "retreat": -0.0035486348722814642,
+        "targetBehindLine": -0.15099138501844211,
+        "team": 0
+      },
+      "maxStep": 0.2760000000000012,
+      "receiverTarget": {
+        "desired": {
+          "x": 0.7,
+          "y": 0.4
+        },
+        "actual": {
+          "x": 0.7,
+          "y": 0.4
+        }
+      }
+    },
+    {
+      "team": 0,
+      "phase": "loose",
+      "controlled": {
+        "by": 0.464681592770932,
+        "target": 0.3545605951000358,
+        "limit": 0.3286741898149623
+      },
+      "first": {
+        "by": 0.26,
+        "target": 0.14992793530050508,
+        "line": 0.3009193203189472,
+        "retreat": -0.0035486348722814642,
+        "targetBehindLine": -0.15099138501844211,
+        "team": 0
+      },
+      "maxStep": 0.2760000000000015,
+      "receiverTarget": null
+    },
+    {
+      "team": 0,
+      "phase": "keeper-parry",
+      "controlled": {
+        "by": 0.464681592770932,
+        "target": 0.3545605951000358,
+        "limit": 0.3286741898149623
+      },
+      "first": {
+        "by": 0.26,
+        "target": 0.14992793530050508,
+        "line": 0.3009193203189472,
+        "retreat": -0.0035486348722814642,
+        "targetBehindLine": -0.15099138501844211,
+        "team": 0
+      },
+      "maxStep": 0.2760000000000015,
+      "receiverTarget": null
+    },
+    {
+      "team": 1,
+      "phase": "controlled",
+      "controlled": {
+        "by": 0.5353184072290679,
+        "target": 0.6711974095581716,
+        "limit": 0.6713258101850376
+      },
+      "first": {
+        "by": 0.5353258101850376,
+        "target": 0.6712537454855426,
+        "limit": 0.6716922440997479,
+        "line": 0.6990806796810527,
+        "retreat": 0.0032655614022305546,
+        "targetBehindLine": 0.027826934195510078,
+        "team": 1
+      },
+      "maxStep": 0.2760000000000034,
+      "receiverTarget": null
+    },
+    {
+      "team": 1,
+      "phase": "ground-flight",
+      "controlled": {
+        "by": 0.5353184072290679,
+        "target": 0.6711974095581716,
+        "limit": 0.6713258101850376
+      },
+      "first": {
+        "by": 0.74,
+        "target": 0.87,
+        "line": 0.6990806796810527,
+        "retreat": -0.0036082067722159605,
+        "targetBehindLine": -0.1709193203189473,
+        "team": 1
+      },
+      "maxStep": 0.2760000000000041,
+      "receiverTarget": {
+        "desired": {
+          "x": 0.7,
+          "y": 0.6
+        },
+        "actual": {
+          "x": 0.7,
+          "y": 0.6
+        }
+      }
+    },
+    {
+      "team": 1,
+      "phase": "aerial-flight",
+      "controlled": {
+        "by": 0.5353184072290679,
+        "target": 0.6711974095581716,
+        "limit": 0.6713258101850376
+      },
+      "first": {
+        "by": 0.74,
+        "target": 0.87,
+        "line": 0.6990806796810527,
+        "retreat": -0.0036082067722159605,
+        "targetBehindLine": -0.1709193203189473,
+        "team": 1
+      },
+      "maxStep": 0.2760000000000041,
+      "receiverTarget": {
+        "desired": {
+          "x": 0.7,
+          "y": 0.6
+        },
+        "actual": {
+          "x": 0.7,
+          "y": 0.6
+        }
+      }
+    },
+    {
+      "team": 1,
+      "phase": "loose",
+      "controlled": {
+        "by": 0.5353184072290679,
+        "target": 0.6711974095581716,
+        "limit": 0.6713258101850376
+      },
+      "first": {
+        "by": 0.74,
+        "target": 0.87,
+        "line": 0.6990806796810527,
+        "retreat": -0.0036082067722159605,
+        "targetBehindLine": -0.1709193203189473,
+        "team": 1
+      },
+      "maxStep": 0.2760000000000039,
+      "receiverTarget": null
+    },
+    {
+      "team": 1,
+      "phase": "keeper-parry",
+      "controlled": {
+        "by": 0.5353184072290679,
+        "target": 0.6711974095581716,
+        "limit": 0.6713258101850376
+      },
+      "first": {
+        "by": 0.74,
+        "target": 0.87,
+        "line": 0.6990806796810527,
+        "retreat": -0.0036082067722159605,
+        "targetBehindLine": -0.1709193203189473,
+        "team": 1
+      },
+      "maxStep": 0.2760000000000039,
+      "receiverTarget": null
+    }
+  ],
+  "legal": [
+    {
+      "team": 0,
+      "legalAtRelease": true,
+      "target": 0.24,
+      "contact": 0.24
+    },
+    {
+      "team": 1,
+      "legalAtRelease": true,
+      "target": 0.76,
+      "contact": 0.76
+    }
+  ],
+  "stopped": [
+    {
+      "key": "kickoff",
+      "target": 0.22,
+      "plans": 0
+    },
+    {
+      "key": "setPiece",
+      "target": 0.22,
+      "plans": 0
+    },
+    {
+      "key": "throwIn",
+      "target": 0.22,
+      "plans": 0
+    },
+    {
+      "key": "postBanner",
+      "target": 0.22,
+      "plans": 0
+    },
+    {
+      "key": "goalPause",
+      "target": 0.22,
+      "plans": 0
+    },
+    {
+      "key": "halftimePause",
+      "target": 0.22,
+      "plans": 0
+    },
+    {
+      "key": "finished",
+      "target": 0.22,
+      "plans": 0
+    }
+  ],
+  "errors": []
+}

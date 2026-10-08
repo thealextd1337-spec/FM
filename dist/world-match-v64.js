@@ -7,11 +7,12 @@ const v64Instructions={def:[],mid:['wing','support'],att:['wing','deep','shoot']
 const v64InstructionNames={standard:'Standard',wing:'Außenbahn & Flanken',support:'Anspielbar bleiben',deep:'Tiefenlauf',shoot:'Abschluss suchen'};
 const v64FocusOptions=['Variabel','Mitte','Außen'];
 function v64PlayerInstructions(state,pid){
+ if(state.roleAssignments)return [];
  const stored=state.instructions?.[pid],values=Array.isArray(stored)?stored:stored?[stored]:[];
  return v64Instructions[state.roles[pid]]?.filter(value=>values.includes(value))||[];
 }
 function v64InstructionLabel(state,pid){return v64PlayerInstructions(state,pid).map(value=>v64InstructionNames[value]).join(', ')||v64InstructionNames.standard}
-function v64HasInstruction(state,pid,value){return v64PlayerInstructions(state,pid).includes(value)}
+function v64HasInstruction(state,pid,value){return state.roleAssignments?v154RoleIntent({tacticalRole:state.roleAssignments[pid]?.roleId},value):v64PlayerInstructions(state,pid).includes(value)}
 function v64SetInstructions(state,pid,values){
  if(state.phase==='finished'||!Array.isArray(values)||values.some(value=>!v64Instructions[state.roles[pid]]?.includes(value)))throw Error('Diese Spielanweisung passt nicht zur Einsatzzone.');
  state.instructions||={};const selected=v64Instructions[state.roles[pid]].filter(value=>values.includes(value));
@@ -35,13 +36,14 @@ function v64AiInstruction(player,role,cell){
  return[];
 }
 function v64RefreshAiInstructions(career,fixture,state,side){
- const plan=side===0?fixture.plan.home:fixture.plan.away;if(!plan.coachId)return;
+ const plan=side===0?fixture.plan.home:fixture.plan.away;if(!plan.coachId||typeof v154Active==='function'&&v154Active(career))return;
  const cells=v64EnsureCells(state,side);
  for(const pid of v64Active(state,side))if(state.roles[pid]!=='gk')v64SetInstructions(state,pid,v64AiInstruction(v64Player(career,fixture,side,pid),state.roles[pid],cells[pid]));
  state.tactics[side].focus=v64Active(state,side).some(pid=>v64HasInstruction(state,pid,'wing'))?'Außen':'Mitte';
 }
 function v64AbsoluteDay(career,day){return(career.world.season-1)*v62Days.seasonEnd+day}
 function v64RecoverClub(career,club,day){
+ if(typeof v158RecoverWorld==='function'&&v158RecoverWorld(career,day)){club.lastRecoveredDay=v64AbsoluteDay(career,day);return;}
  const absolute=v64AbsoluteDay(career,day),last=club.lastRecoveredDay;
  if(Number.isInteger(last)&&absolute>last){const gain=Math.min(100,(absolute-last)*4);for(const player of club.roster)player.fresh=Math.min(100,player.fresh+gain)}
  club.lastRecoveredDay=absolute;
@@ -70,6 +72,7 @@ function v64CoachTactics(coach){
  return{formation:v64Formations.includes(coach?.style.formation)?coach.style.formation:'2–2–1',pressing:coach?.style.pressing||'Ausgewogen',passing:coach?.style.passing||'Variabel',defense:coach?.style.defense||'Neutral',aggression:coach?.style.risk>=4?'Aggressiv':'Normal',focus:'Variabel'};
 }
 function v64PrepareFixture(career,fixture){
+ if(typeof v158RecoverWorld==='function')v158RecoverWorld(career,fixture.day);
  if(fixture.plan)return fixture.plan;
  const clubs=career.world.clubs,home=clubs.find(club=>club.id===fixture.homeId),away=clubs.find(club=>club.id===fixture.awayId);
  for(const club of [home,away])v64RecoverClub(career,club,fixture.day);
@@ -89,6 +92,9 @@ function v64MakeState(career,fixture){
  const state={fixtureId:fixture.id,minute:0,firstHalfEnd:45,fullTimeEnd:90,stoppages:[0,0],addedMinutes:[0,0],score:[0,0],active:[...plan.home.starters],awayActive:[...plan.away.starters],bench:[...plan.home.bench],awayBench:[...plan.away.bench],roles:{...plan.home.roles,...plan.away.roles},orientation:{},instructions:{},tactics:[{...plan.home.tactics},{...plan.away.tactics}],tacticChanges:[],pending:[[],[]],substitutions:[],exited:[],events:[],fresh,minutes,stats,phase:'prematch',lastAiCheck:[-1,-1],lastAiChange:[-20,-20]};
  for(const side of [0,1])v64RefreshAiInstructions(career,fixture,state,side);
  if(typeof v64ApplyCareerPlan==='function')v64ApplyCareerPlan(career,fixture,state);
+ if(typeof v154Initialize==='function')v154Initialize(career,fixture,state);
+ if(typeof v155Initialize==='function')v155Initialize(career,state);
+ if(typeof v158Initialize==='function')v158Initialize(career,fixture,state);
  return state;
 }
 function v64ClockLabel(state,minute=state.minute){
@@ -106,8 +112,8 @@ function v64UpdateForm(player,rating){
  const weighted=player.formRatings.reduce((sum,value,index)=>sum+value*(index+1),0),weights=player.formRatings.reduce((sum,_,index)=>sum+index+1,0),average=weighted/weights;
  player.form=average<5.35?-2:average<5.9?-1:average<6.75?0:average<7.45?1:2;
 }
-function v64Orientation(state,pid){return state.orientation?.[pid]??({def:-1,mid:0,att:1}[state.roles[pid]]??0)}
-function v64SetOrientation(state,pid,value){if(state.roles[pid]==='gk'||![-1,0,1].includes(value))return;state.orientation||={};state.orientation[pid]=value}
+function v64Orientation(state,pid){return state.roleAssignments?.[pid]?.orientation??state.orientation?.[pid]??({def:-1,mid:0,att:1}[state.roles[pid]]??0)}
+function v64SetOrientation(state,pid,value){if(state.roles[pid]==='gk'||![-1,0,1].includes(value))return;state.orientation||={};if(state.playerPerformance)v155SyncPhases(state);state.orientation[pid]=value;if(state.roleAssignments?.[pid])state.roleAssignments[pid].orientation=value;if(state.playerPerformance)v155SyncPhases(state)}
 function v64Players(career,side){return career.world.clubs.find(club=>club.id===side.clubId).roster}
 function v64Side(career,fixture,side){return v64Players(career,side===0?fixture.plan.home:fixture.plan.away)}
 function v64Active(state,side){return side===0?state.active:state.awayActive}
@@ -137,12 +143,17 @@ function v64MoveCell(career,fixture,state,side,sourcePid,targetCell){
  if(!active.includes(sourcePid)||state.roles[sourcePid]==='gk')throw Error('Nur Feldspieler können im Raster verschoben werden.');
  const cells=v64EnsureCells(state,side),previous=cells[sourcePid],otherPid=active.find(pid=>pid!==sourcePid&&cells[pid]===targetCell);
  if(previous===targetCell)return false;
- const proposed={...state.roles,[sourcePid]:v64GridRole(targetCell)};
- if(otherPid)proposed[otherPid]=v64GridRole(previous);
+ const group=cell=>state.roleAssignments?(1-(Math.floor(cell/5)+.5)/7<.3?'def':1-(Math.floor(cell/5)+.5)/7<.7?'mid':'att'):v64GridRole(cell);
+ const proposed={...state.roles,[sourcePid]:group(targetCell)};
+ if(otherPid)proposed[otherPid]=group(previous);
  const counts=['def','mid','att'].map(role=>active.filter(pid=>proposed[pid]===role).length);
  if(counts.some(count=>count<1||count>3))throw Error('In Abwehr, Mittelfeld und Angriff muss jeweils mindestens ein Spieler stehen.');
+ if(state.playerPerformance)v155SyncPhases(state);
+ if(state.roleAssignments){state.roleMoveSequence=(state.roleMoveSequence||0)+1;}
+ if(state.roleAssignments)v154Transition(state,otherPid?{type:'swap',playerId:sourcePid,otherPlayerId:otherPid}:{type:'free-move',playerId:sourcePid,toCell:targetCell},v61Random(`${career.world.seed}:${fixture.id}:role-move:${state.minute}:${state.roleMoveSequence}:${sourcePid}:${targetCell}`));
  cells[sourcePid]=targetCell;if(otherPid)cells[otherPid]=previous;
  state.roles[sourcePid]=proposed[sourcePid];if(otherPid)state.roles[otherPid]=proposed[otherPid];
+ if(state.playerPerformance)v155SyncPhases(state);
  v64NormalizeInstructions(state,sourcePid);if(otherPid)v64NormalizeInstructions(state,otherPid);
  v64RefreshAiInstructions(career,fixture,state,side);
  const formation=counts.join('–');
@@ -159,6 +170,7 @@ function v64SetFormation(career,fixture,state,side,formation,reason='Nutzerentsc
  const remaining=new Set(active),assign={};
  for(const role of roles){const pid=[...remaining].filter(id=>role==='gk'?v64Player(career,fixture,side,id).keeper:!v64Player(career,fixture,side,id).keeper).sort((a,b)=>v64Rating(v64Player(career,fixture,side,b),role)-v64Rating(v64Player(career,fixture,side,a),role)||a.localeCompare(b))[0];if(!pid)throw Error('Ungültige Feldbesetzung.');remaining.delete(pid);assign[pid]=role}
  Object.assign(state.roles,assign);state.tactics[side].formation=formation;v64ResetCells(state,side);
+ if(state.roleAssignments)v154Initialize(career,fixture,state);
  for(const pid of active)v64NormalizeInstructions(state,pid);
  v64RefreshAiInstructions(career,fixture,state,side);
  state.tacticChanges.push({minute:state.minute,side,tactics:{...state.tactics[side]},reason});
@@ -178,11 +190,14 @@ function v64SetPrematchSlot(career,fixture,state,side,slot,inPid){
  const out=v64Player(career,fixture,side,outPid),incoming=v64Player(career,fixture,side,inPid);
  if(!out||!incoming||!bench.includes(inPid)||out.keeper!==incoming.keeper)throw Error('Dieser Startelftausch ist nicht zulässig.');
  const role=state.roles[outPid],benchIndex=bench.indexOf(inPid);
+ if(state.playerPerformance)v155SyncPhases(state);
  plan.starters[slot]=inPid;plan.bench[benchIndex]=outPid;active[slot]=inPid;bench[benchIndex]=outPid;
+ if(state.roleAssignments)v154Transition(state,{type:'substitution',outPlayerId:outPid,inPlayerId:inPid});
  v64TransferInstructions(state,outPid,inPid);
  delete state.roles[outPid];state.roles[inPid]=role;delete plan.roles[outPid];plan.roles[inPid]=role;
  if(state.orientation&&Object.hasOwn(state.orientation,outPid)){state.orientation[inPid]=state.orientation[outPid];delete state.orientation[outPid]}
  if(state.cells&&Number.isInteger(state.cells[outPid])){state.cells[inPid]=state.cells[outPid];delete state.cells[outPid]}
+ if(state.playerPerformance)v155SyncPhases(state);
 }
 function v64PrematchTactics(career,fixture,state,side,changes){
  if(state.phase!=='prematch')throw Error('Der Anpfiff ist bereits erfolgt.');
@@ -198,6 +213,7 @@ function v64QueueSubstitution(career,fixture,state,side,outPid,inPid){
 }
 function v64CancelPending(state,side,index){state.pending[side].splice(index,1)}
 function v64ExecutePending(career,fixture,state,reason){
+ if(state.playerPerformance)v155SyncPhases(state);
  const changes=[];
  for(const side of [0,1]){
   const active=v64Active(state,side),bench=v64Bench(state,side),pending=state.pending[side];
@@ -211,6 +227,7 @@ function v64ExecutePending(career,fixture,state,reason){
  for(const item of changes){
   const active=v64Active(state,item.side),bench=v64Bench(state,item.side);
   active[active.indexOf(item.outPid)]=item.inPid;bench.splice(bench.indexOf(item.inPid),1);state.exited.push(item.outPid);
+  if(state.roleAssignments)v154Transition(state,{type:'substitution',outPlayerId:item.outPid,inPlayerId:item.inPid});
   v64TransferInstructions(state,item.outPid,item.inPid);
   delete state.roles[item.outPid];state.roles[item.inPid]=item.role;
   if(state.orientation&&Object.hasOwn(state.orientation,item.outPid)){state.orientation[item.inPid]=state.orientation[item.outPid];delete state.orientation[item.outPid]}
@@ -219,11 +236,12 @@ function v64ExecutePending(career,fixture,state,reason){
   state.events.push({minute:state.minute,type:'substitution',side:item.side,outPid:item.outPid,inPid:item.inPid});
  }
  state.pending=[[],[]];
+ if(state.playerPerformance)v155SyncPhases(state);
  return changes;
 }
 function v64TeamStrength(career,fixture,state,side){
  const active=v64Active(state,side),field=active.filter(pid=>state.roles[pid]!=='gk'),tactic=state.tactics[side];
- const attack=field.reduce((sum,pid)=>sum+v64Rating(v64Player(career,fixture,side,pid),state.roles[pid])*(state.fresh[pid]/100),0)/5;
+ const attack=field.reduce((sum,pid)=>{const p=v64Player(career,fixture,side,pid),role=state.roles[pid];if(!state.playerLoad)return sum+v64Rating(p,role)*(state.fresh[pid]/100);const a=v158Effective(p,state,false);return sum+(role==='def'?(a.tak+a.pos+a.air)/3:role==='mid'?(a.tec+a.pas+a.sta)/3:(a.fin+a.tec+a.spd)/3)+(p.line===role?1.3:-1.3);},0)/5;
  return attack+(tactic.pressing==='Früh'?.55:tactic.pressing==='Abwartend'?-.25:0)+(tactic.passing==='Direkt'?.2:0)+(tactic.aggression==='Aggressiv'?.2:0);
 }
 function v64PickAttacker(ids,weight,random){
@@ -252,38 +270,44 @@ function v64Step(career,fixture,state){
  state.phase='live';state.minute++;
  for(const side of [0,1])for(const pid of v64Active(state,side)){
   state.minutes[pid]++;
-  const player=v64Player(career,fixture,side,pid),tactic=state.tactics[side],full=v64Workload(player,tactic);
-  state.fresh[pid]=Math.max(0,state.fresh[pid]-full/90);
+  if(!state.playerLoad){const player=v64Player(career,fixture,side,pid),tactic=state.tactics[side],full=v64Workload(player,tactic);state.fresh[pid]=Math.max(0,state.fresh[pid]-full/90);}
  }
+ if(state.playerLoad)v158CompactMinute(career,fixture,state);
+ if(state.playerPerformance)v155SyncPhases(state);
  let goal=false,stoppage=state.minute===45;
  for(const side of [0,1]){
   const random=v61Random(`${career.world.seed}:${fixture.id}:minute:${state.minute}:side:${side}`),strength=v64TeamStrength(career,fixture,state,side),opponent=v64TeamStrength(career,fixture,state,1-side),ownTactics=state.tactics[side],otherTactics=state.tactics[1-side];
   const lineEffect=(ownTactics.defense==='Hoch'?.0015:ownTactics.defense==='Tief'?-.001:0)+(otherTactics.defense==='Tief'?-.002:otherTactics.defense==='Hoch'?(ownTactics.passing==='Direkt'?.003:.001):0);
   const riskEffect=otherTactics.aggression==='Aggressiv'?.001:0;
   const chance=Math.max(.003,Math.min(.045,.014+(strength-opponent)*.002+(side===0?.002:0)+lineEffect+riskEffect));
-  if(random()<.12){const attackers=v64Active(state,side).filter(pid=>state.roles[pid]!=='gk'),scorer=v64PickAttacker(attackers,pid=>1+(v64HasInstruction(state,pid,'shoot')?.55:0)+(v64HasInstruction(state,pid,'deep')?.2:0),random);state.stats[scorer].shots++;
+  if(state.playerPerformance){if(v155CompactActions(career,fixture,state,side,random)){goal=true;stoppage=true;}}else if(random()<.12){const attackers=v64Active(state,side).filter(pid=>state.roles[pid]!=='gk'),scorer=v64PickAttacker(attackers,pid=>1+(v64HasInstruction(state,pid,'shoot')?.55:0)+(v64HasInstruction(state,pid,'deep')?.2:0),random);state.stats[scorer].shots++;
    if(random()<chance/.12){state.score[side]++;state.stats[scorer].goals++;const helpers=attackers.filter(pid=>pid!==scorer),helper=v64PickAttacker(helpers,pid=>{const focus=ownTactics.focus||'Variabel';return 1+(v64HasInstruction(state,pid,'support')?.2:0)+(v64HasInstruction(state,pid,'wing')?(focus==='Außen'?.55:.25):0)},random),assist=helper&&random()<.68?helper:null;if(assist)state.stats[assist].assists++;state.events.push({minute:state.minute,type:'goal',side,scorerPid:scorer,assistPid:assist});goal=true;stoppage=true;}
   }
   if(random()<.16)stoppage=true;
  }
  if(stoppage){const half=state.minute<=state.firstHalfEnd?0:1,baseline=half===0?45:90+state.addedMinutes[0];if(state.minute<=baseline){state.stoppages[half]++;state.addedMinutes[half]=Math.min(5,Math.round(state.stoppages[half]/4));state.firstHalfEnd=45+state.addedMinutes[0];state.fullTimeEnd=90+state.addedMinutes[0]+state.addedMinutes[1]}}
  const halftime=state.minute===state.firstHalfEnd;
+ if(state.playerLoad){v158Commit({career,fixture,state});if(halftime)v158RecoverMatch(career,fixture,state,'halftime');}
  if(halftime)state.events.push({minute:state.minute,type:'halftime'});
  if(goal||halftime||state.minute%15===0)for(const side of [0,1])v64AiAdjust(career,fixture,state,side,goal?'Tor':halftime?'Halbzeit':'Reguläre Prüfung');
  if(stoppage&&state.pending.some(items=>items.length))v64ExecutePending(career,fixture,state,halftime?'Halbzeit':'Spielunterbrechung');
- if(state.minute>=state.fullTimeEnd)state.phase='finished';
+ if(state.minute>=state.fullTimeEnd){if(state.playerLoad)v158RecoverMatch(career,fixture,state,'final-whistle');state.phase='finished';}
  return state;
 }
 function v64FinishFixture(career,fixture,state){
  if(state.minute<90||state.phase!=='finished')throw Error('Die Partie ist noch nicht beendet.');
  if(fixture.matchRecord)return fixture.matchRecord;
+ if(state.playerLoad)v158PersistMatch(career,fixture,state);
  const record={score:[...state.score],starters:{home:[...fixture.plan.home.starters],away:[...fixture.plan.away.starters]},tacticChanges:state.tacticChanges,substitutions:state.substitutions,events:state.events,players:[]};
+ if(state.postMatchReport?.ballAccounting)record.ballAccounting=structuredClone(state.postMatchReport.ballAccounting);
  for(const side of [0,1])for(const player of v64Side(career,fixture,side)){
   const minutes=state.minutes[player.pid]||0;if(!minutes)continue;
-  const stats=state.stats[player.pid],rating=minutes>=20?(state.ratings?.[player.pid]??Math.max(1,Math.min(10,6+stats.goals*1.2+stats.assists*.6+stats.shots*.1-(state.score[1-side]>state.score[side]?.35:0)))):null;
+  const rated=state.playerPerformance?v155Book(career,fixture,state,player):null;
+  const stats=state.stats[player.pid],rating=rated?rated.visibleRating:minutes>=20?(state.ratings?.[player.pid]??Math.max(1,Math.min(10,6+stats.goals*1.2+stats.assists*.6+stats.shots*.1-(state.score[1-side]>state.score[side]?.35:0)))):null;
   const extra={fouls:stats.fouls||0,penaltiesScored:stats.penaltiesScored||0,penaltiesMissed:stats.penaltiesMissed||0,cleanSheet:player.keeper&&state.score[1-side]===0?1:0,conceded:player.keeper?state.score[1-side]:0};
-  const line={pid:player.pid,side,minutes,goals:stats.goals,assists:stats.assists,shots:stats.shots,...extra,rating};record.players.push(line);
-  player.fresh=Math.round(state.fresh[player.pid]*100)/100;
+  if(Number.isFinite(stats.tackleAttempts)&&Number.isFinite(stats.tacklesWon)){extra.tackleAttempts=stats.tackleAttempts;extra.tacklesWon=stats.tacklesWon;}
+  const line={pid:player.pid,side,minutes,goals:stats.goals,assists:stats.assists,shots:stats.shots,...extra,rating};if(rated)line.roleRating={version:155,appearanceId:rated.id,phases:structuredClone(state.playerPerformance.phases[player.pid])};record.players.push(line);
+  player.fresh=state.playerLoad?state.fresh[player.pid]:Math.round(state.fresh[player.pid]*100)/100;
   if(rating!==null)v64UpdateForm(player,rating);
   player.history.push({fixtureId:fixture.id,season:career.world.season,clubId:side===0?fixture.homeId:fixture.awayId,competitionId:fixture.competitionId,minutes,goals:stats.goals,assists:stats.assists,shots:stats.shots,...extra,rating});
  }

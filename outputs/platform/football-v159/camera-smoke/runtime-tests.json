@@ -1,0 +1,535 @@
+{
+  "checks": [
+    "New role candidate uses saved parameters and shared live phases",
+    "Unity loaded the real fixture",
+    "Unity receives measured freshness for all actual P02 actors",
+    "Old picture contract omits missing freshness without changing frame data",
+    "Unity displays exactly the actual starting players",
+    "Visible labels identify real players",
+    "Rendering a paused match does not advance its clock or ball",
+    "Camera menu escapes pitch clipping using top-layer popover",
+    "follow camera proximity changes actual Unity camera distance",
+    "wide camera proximity changes actual Unity camera distance",
+    "sideline camera proximity changes actual Unity camera distance",
+    "diagonal camera proximity changes actual Unity camera distance",
+    "goal camera proximity changes actual Unity camera distance",
+    "Escape closes options and restores focus",
+    "Camera controls never alter native match or P02 workload",
+    "Touch test uses an uncovered part of the actual Unity iframe",
+    "Touching the actual Unity iframe reveals its pitch controls",
+    "Open touch camera options remain interactive after overlay timeout",
+    "Touch camera menu fits inside the landscape viewport",
+    "Chosen camera and proximity survive a page reload"
+  ],
+  "errors": [],
+  "parity": null,
+  "roleCandidate": true,
+  "offenseCandidate": true,
+  "freshnessCandidate": true,
+  "builtDocumentProtocol": "http:",
+  "sourceHashes": {
+    "dist/world-unity-v151.js": "7f3ba8e9640509576e157a9bf9369891a4d10f067965ef35611820c19bb6de29",
+    "dist/world-offensive-quality-v157.js": "c9cd0f58d87c9ed7821da9e8639c8e4c695c97cd58da3c33c7d5e73f87ba4bac",
+    "dist/pitch-v56.js": "aebc493b12c86647bc33e74aa1499cbf03d71263d1ccef1710585d986febe7c4",
+    "dist/world-pitch3d-v98.js": "0ff4f5d169e2f858f83b0e71e4453b0e85c1ac01a3da1f191e5fec0705fcab18",
+    "dist/pitch-motion-v102.js": "20bbb87fc6c22a71ef61dac855c4a4aed777015f280d596f5b3c8f6fda4d89b4",
+    "dist/unity-match/runtime.js": "ee10dde678e548fc3ccede93c5884a96d02bbdedfaa3e8e0db0c8f2b133ad9a7",
+    "dist/game.js": "e980ee060746296b9cd987145791b3034932387ce04fc3cae2395d8054fe6e9f",
+    "dist/pitch-v55.js": "5d71cc121652bfe5fb365742487f75e7c85951233f75887be6ed2ba2a58b88dc",
+    "dist/world-match-v64.js": "2dc27431393c63b61277403efcc5080e3fa8ad7b0cc059e4750becda2889a9d3",
+    "dist/world-physical-v65.js": "e0c653082eeb5386e8dc2167d02615a0248d49559842f5d3977ca4adef55dd2f",
+    "dist/world-player-roles-v154.js": "863d0198042972b7ceb9c899fe98e99a675edb85514b1875e29d1812db712af1",
+    "dist/world-player-performance-v155.js": "078e0c2e2d240946dadfaf32671c49bbd95c47edc6a7bb2c9cf3e424edd00f53",
+    "outputs/index.html": "a90df2c07be992de63ac8e882bb0f26b2097ce0de6e0a5146335dfd80f935521",
+    "dist/world-football-flow-v159.js": "250465285cc05497cd9a8aba9f4e45d3815572118a2a137f43842218e5922ac7",
+    "dist/match-shot-choice-v159.js": "b7cca665b0bff539b2d57324be9e71a21cb000e892330e16aa07696868172111",
+    "dist/world-pitch-actions-v99.js": "9d8b43f33172dc99484605903b4f0bfed00673447e8e4a3459b2ac1d01061fb3",
+    "dist/ui-flutlicht/match.css": "031714371e2bc8fb71f9ee66844c0c8d1c9944b71e52355a4989c10f50d5bde0",
+    "dist/player-load-candidate-v158.js": "76a605c8e047b45f84dd5510347791bb1205a68f2793c8cc90435424cdf6dad7",
+    "dist/world-player-load-v158.js": "a5d6b4b13e9838842de20856f9c98228f44d1913df7b86d92761adda48e14f13",
+    "dist/player-freshness.js": "0ed90ab51932f747f4f386921efd03b7fd8ac18f32ebe02ea75221a062a8cb79",
+    "dist/player-effective-abilities.js": "659e6c9a40c0a9acfc4342c579b616a9ff3984fad65e1654018d480380cccb45",
+    "dist/player-status-v51.js": "410d514c8c5851f46ea1e0c533e5b400d09dcb13f17c253c8345a47edd8cf794",
+    "outputs/platform/unity-web/probe-build.json": "3ecd7e26e2e77dd910b54b2feb3dc3e2af9b790f71b1cad2a803daab49208ce6",
+    "outputs/platform/unity-web/Build/unity-web.data": "d1332caaaf307e7a073347c7c0997ba88aa95933e20b1897ab73cdc966b0e5a8",
+    "outputs/platform/unity-web/Build/unity-web.framework.js": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+    "outputs/platform/unity-web/Build/unity-web.loader.js": "7c82adafe827c9dd284496c75b6aae9b82958bc9a7bd25904367c8446717c8ef",
+    "outputs/platform/unity-web/Build/unity-web.wasm": "5ce1d16b72ee2679591a7f6fe3c924c66a686c0df2dc65ea6f6b44f4809520b5"
+  },
+  "cameraHitTest": {
+    "rect": {
+      "x": 1092,
+      "y": 454.484375,
+      "width": 40,
+      "height": 40,
+      "top": 454.484375,
+      "right": 1132,
+      "bottom": 494.484375,
+      "left": 1092
+    },
+    "stack": [
+      {
+        "tag": "BUTTON",
+        "id": "v100-pitch-toggle",
+        "className": "",
+        "position": "relative",
+        "zIndex": "auto",
+        "pointerEvents": "auto",
+        "transform": "none",
+        "opacity": "1",
+        "rect": {
+          "x": 1092,
+          "y": 454.484375,
+          "width": 40,
+          "height": 40,
+          "top": 454.484375,
+          "right": 1132,
+          "bottom": 494.484375,
+          "left": 1092
+        }
+      },
+      {
+        "tag": "NAV",
+        "id": "v98-view-controls",
+        "className": "v98-view-controls",
+        "position": "absolute",
+        "zIndex": "7",
+        "pointerEvents": "auto",
+        "transform": "none",
+        "opacity": "1",
+        "rect": {
+          "x": 1092,
+          "y": 454.484375,
+          "width": 40,
+          "height": 40,
+          "top": 454.484375,
+          "right": 1132,
+          "bottom": 494.484375,
+          "left": 1092
+        }
+      },
+      {
+        "tag": "DIV",
+        "id": "",
+        "className": "v42-pitch-stage",
+        "position": "relative",
+        "zIndex": "auto",
+        "pointerEvents": "auto",
+        "transform": "none",
+        "opacity": "1",
+        "rect": {
+          "x": 300,
+          "y": 446.484375,
+          "width": 840,
+          "height": 472.5,
+          "top": 446.484375,
+          "right": 1140,
+          "bottom": 918.984375,
+          "left": 300
+        }
+      },
+      {
+        "tag": "DIV",
+        "id": "match-area",
+        "className": "",
+        "position": "relative",
+        "zIndex": "auto",
+        "pointerEvents": "auto",
+        "transform": "none",
+        "opacity": "1",
+        "rect": {
+          "x": 101,
+          "y": 284.890625,
+          "width": 1238,
+          "height": 691.09375,
+          "top": 284.890625,
+          "right": 1339,
+          "bottom": 975.984375,
+          "left": 101
+        }
+      },
+      {
+        "tag": "SECTION",
+        "id": "",
+        "className": "board",
+        "position": "static",
+        "zIndex": "auto",
+        "pointerEvents": "auto",
+        "transform": "none",
+        "opacity": "1",
+        "rect": {
+          "x": 100,
+          "y": 222.890625,
+          "width": 1240,
+          "height": 754.09375,
+          "top": 222.890625,
+          "right": 1340,
+          "bottom": 976.984375,
+          "left": 100
+        }
+      },
+      {
+        "tag": "DIV",
+        "id": "",
+        "className": "workspace",
+        "position": "static",
+        "zIndex": "auto",
+        "pointerEvents": "auto",
+        "transform": "none",
+        "opacity": "1",
+        "rect": {
+          "x": 100,
+          "y": 222.890625,
+          "width": 1240,
+          "height": 1751.578125,
+          "top": 222.890625,
+          "right": 1340,
+          "bottom": 1974.46875,
+          "left": 100
+        }
+      },
+      {
+        "tag": "MAIN",
+        "id": "game-screen",
+        "className": "fl-match",
+        "position": "static",
+        "zIndex": "auto",
+        "pointerEvents": "auto",
+        "transform": "none",
+        "opacity": "1",
+        "rect": {
+          "x": 76,
+          "y": 119.5,
+          "width": 1288,
+          "height": 1991.96875,
+          "top": 119.5,
+          "right": 1364,
+          "bottom": 2111.46875,
+          "left": 76
+        }
+      },
+      {
+        "tag": "BODY",
+        "id": "",
+        "className": "v65-world-match v98-pitch3d fl-match-active fl-match v58-active",
+        "position": "static",
+        "zIndex": "auto",
+        "pointerEvents": "auto",
+        "transform": "none",
+        "opacity": "1",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 2199.46875,
+          "top": 0,
+          "right": 1440,
+          "bottom": 2199.46875,
+          "left": 0
+        }
+      },
+      {
+        "tag": "HTML",
+        "id": "",
+        "className": "",
+        "position": "static",
+        "zIndex": "auto",
+        "pointerEvents": "auto",
+        "transform": "none",
+        "opacity": "1",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 2199.46875,
+          "top": 0,
+          "right": 1440,
+          "bottom": 2199.46875,
+          "left": 0
+        }
+      }
+    ],
+    "hits": [
+      {
+        "tag": "svg",
+        "id": "",
+        "className": {}
+      },
+      {
+        "tag": "BUTTON",
+        "id": "v100-pitch-toggle",
+        "className": ""
+      },
+      {
+        "tag": "NAV",
+        "id": "v98-view-controls",
+        "className": "v98-view-controls"
+      },
+      {
+        "tag": "IFRAME",
+        "id": "",
+        "className": ""
+      },
+      {
+        "tag": "DIV",
+        "id": "d6-unity-host",
+        "className": ""
+      },
+      {
+        "tag": "DIV",
+        "id": "",
+        "className": "v42-pitch-stage"
+      },
+      {
+        "tag": "DIV",
+        "id": "match-area",
+        "className": ""
+      },
+      {
+        "tag": "SECTION",
+        "id": "",
+        "className": "board"
+      },
+      {
+        "tag": "DIV",
+        "id": "",
+        "className": "workspace"
+      },
+      {
+        "tag": "MAIN",
+        "id": "game-screen",
+        "className": "fl-match"
+      },
+      {
+        "tag": "BODY",
+        "id": "",
+        "className": "v65-world-match v98-pitch3d fl-match-active fl-match v58-active"
+      },
+      {
+        "tag": "HTML",
+        "id": "",
+        "className": ""
+      }
+    ]
+  },
+  "cameraViews": [
+    {
+      "mode": "follow",
+      "far": {
+        "position": [
+          0,
+          29.82,
+          44.019999999999996
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 42
+      },
+      "near": {
+        "position": [
+          0,
+          15.119999999999997,
+          22.319999999999997
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 42
+      }
+    },
+    {
+      "mode": "wide",
+      "far": {
+        "position": [
+          0,
+          45.44,
+          70.42
+        ],
+        "target": [
+          0,
+          0,
+          -2
+        ],
+        "fov": 46
+      },
+      "near": {
+        "position": [
+          0,
+          23.039999999999996,
+          34.71999999999999
+        ],
+        "target": [
+          0,
+          0,
+          -2
+        ],
+        "fov": 46
+      }
+    },
+    {
+      "mode": "sideline",
+      "far": {
+        "position": [
+          0,
+          18.46,
+          44.019999999999996
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 42
+      },
+      "near": {
+        "position": [
+          0,
+          9.359999999999998,
+          22.319999999999997
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 42
+      }
+    },
+    {
+      "mode": "diagonal",
+      "far": {
+        "position": [
+          -31.24,
+          32.66,
+          45.44
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 42
+      },
+      "near": {
+        "position": [
+          -15.839999999999996,
+          16.559999999999995,
+          23.039999999999996
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 42
+      }
+    },
+    {
+      "mode": "goal",
+      "far": {
+        "position": [
+          -69.58,
+          26.979999999999997,
+          12.78
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 42
+      },
+      "near": {
+        "position": [
+          -35.279999999999994,
+          13.679999999999998,
+          6.479999999999999
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 42
+      }
+    }
+  ],
+  "touchHitTest": {
+    "stage": {
+      "x": 30,
+      "y": 80.484375,
+      "width": 840,
+      "height": 472.5
+    },
+    "iframe": {
+      "counts": {
+        "capture": 1,
+        "bubble": 1
+      }
+    },
+    "parent": {
+      "messages": [
+        {
+          "kind": "interaction",
+          "session": "S1:GER:LEAGUE:R5:GER-2-GER-6:1:fb7d62f0-ce85-45e7-aa0d-b2708c8c378b"
+        }
+      ],
+      "session": "S1:GER:LEAGUE:R5:GER-2-GER-6:1:fb7d62f0-ce85-45e7-aa0d-b2708c8c378b",
+      "hits": [
+        {
+          "tag": "IFRAME",
+          "id": ""
+        },
+        {
+          "tag": "DIV",
+          "id": "d6-unity-host"
+        },
+        {
+          "tag": "DIV",
+          "id": ""
+        },
+        {
+          "tag": "DIV",
+          "id": "match-area"
+        },
+        {
+          "tag": "SECTION",
+          "id": ""
+        },
+        {
+          "tag": "DIV",
+          "id": ""
+        },
+        {
+          "tag": "MAIN",
+          "id": "game-screen"
+        },
+        {
+          "tag": "BODY",
+          "id": ""
+        },
+        {
+          "tag": "HTML",
+          "id": ""
+        }
+      ],
+      "stageClass": "v42-pitch-stage v132-show-controls"
+    }
+  },
+  "touchMenu": {
+    "x": 614,
+    "y": 138.484375,
+    "width": 248,
+    "height": 338.890625,
+    "top": 138.484375,
+    "right": 862,
+    "bottom": 477.375,
+    "left": 614
+  },
+  "pass": true
+}

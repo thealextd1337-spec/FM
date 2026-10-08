@@ -1,0 +1,112 @@
+{
+  "status": "completed",
+  "buildId": "build_ba3b5ffa6fa7",
+  "result": "Succeeded",
+  "platform": "WebGL",
+  "outputPath": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web",
+  "totalSizeBytes": 83342458,
+  "buildTimeMs": 80745,
+  "totalWarnings": 3,
+  "totalErrors": 0,
+  "warnings": [
+    {
+      "message": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+    },
+    {
+      "message": "warning CS0618: 'RenderPipelineManager.endFrameRendering' is obsolete: 'endFrameRendering is deprecated. Use endContextRendering instead. #from 2023.3'",
+      "file": "Assets\\Doppel6EngineProbe\\Runtime\\ProbeBridge.cs"
+    },
+    {
+      "message": "warning CS0618: 'RenderPipelineManager.endFrameRendering' is obsolete: 'endFrameRendering is deprecated. Use endContextRendering instead. #from 2023.3'",
+      "file": "Assets\\Doppel6EngineProbe\\Runtime\\ProbeBridge.cs"
+    }
+  ],
+  "errors": [],
+  "files": [
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/Build/unity-web.framework.js",
+      "role": "js",
+      "sizeBytes": 300906
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/Build/unity-web.wasm",
+      "role": "wasm",
+      "sizeBytes": 34870594
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/Build/unity-web.data",
+      "role": "data",
+      "sizeBytes": 48122542
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/Build/unity-web.loader.js",
+      "role": "js",
+      "sizeBytes": 27914
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/index.html",
+      "role": "html",
+      "sizeBytes": 6388
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/favicon.ico",
+      "role": "ico",
+      "sizeBytes": 2305
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/fullscreen-button.png",
+      "role": "png",
+      "sizeBytes": 175
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/MemoryProfiler.png",
+      "role": "png",
+      "sizeBytes": 665
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/progress-bar-empty-dark.png",
+      "role": "png",
+      "sizeBytes": 96
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/progress-bar-empty-light.png",
+      "role": "png",
+      "sizeBytes": 109
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/progress-bar-full-dark.png",
+      "role": "png",
+      "sizeBytes": 74
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/progress-bar-full-light.png",
+      "role": "png",
+      "sizeBytes": 84
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/style.css",
+      "role": "css",
+      "sizeBytes": 1666
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/unity-logo-dark.png",
+      "role": "png",
+      "sizeBytes": 3042
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/unity-logo-light.png",
+      "role": "png",
+      "sizeBytes": 3077
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/unity-logo-title-footer.png",
+      "role": "png",
+      "sizeBytes": 1151
+    },
+    {
+      "path": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web/TemplateData/webmemd-icon.png",
+      "role": "png",
+      "sizeBytes": 1670
+    }
+  ]
+}

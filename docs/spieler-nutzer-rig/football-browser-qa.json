@@ -1,0 +1,174 @@
+{
+  "joints": 28,
+  "vertices": 9725,
+  "textureSize": [
+    2048,
+    2048
+  ],
+  "poses": [
+    {
+      "name": "gesture",
+      "duration": 2.7083332538604736,
+      "samples": 33,
+      "finite": true,
+      "movement": 1.2062770501650621,
+      "minY": -0.01276791439057383,
+      "maxY": 2.2024579107851365,
+      "maxSpan": 1.301778178046348,
+      "loopSeamVertexDistance": 0.0000016880539723348324,
+      "restError": 0
+    },
+    {
+      "name": "walking",
+      "duration": 1.0333333015441895,
+      "samples": 33,
+      "finite": true,
+      "movement": 1.0829236186594713,
+      "minY": 0.012129137297501705,
+      "maxY": 1.8298418648543784,
+      "maxSpan": 0.7067203277051886,
+      "loopSeamVertexDistance": 0.0000044692164435370985,
+      "restError": 0
+    },
+    {
+      "name": "running",
+      "duration": 0.6333333253860474,
+      "samples": 33,
+      "finite": true,
+      "movement": 1.215711650607515,
+      "minY": 0.005160956830050875,
+      "maxY": 1.8103402487724223,
+      "maxSpan": 0.7635695489661283,
+      "loopSeamVertexDistance": 0.00000819104478274364,
+      "restError": 0
+    },
+    {
+      "name": "run_fast4",
+      "duration": 0.6666666865348816,
+      "samples": 33,
+      "finite": true,
+      "movement": 1.1378461047847368,
+      "minY": 0.0031764535895895136,
+      "maxY": 1.7792667124894883,
+      "maxSpan": 1.0816376973741637,
+      "loopSeamVertexDistance": 0.00011160208386579765,
+      "restError": 0
+    },
+    {
+      "name": "run_fast6",
+      "duration": 0.8333333134651184,
+      "samples": 33,
+      "finite": true,
+      "movement": 1.1211851765509828,
+      "minY": 0.0037356084506056366,
+      "maxY": 1.8133160967840192,
+      "maxSpan": 0.7585262224154847,
+      "loopSeamVertexDistance": 0.000010812732810668383,
+      "restError": 0
+    },
+    {
+      "name": "sprint_forward",
+      "duration": 0.5666666626930237,
+      "samples": 33,
+      "finite": true,
+      "movement": 1.169142506486947,
+      "minY": 0.003176455055426685,
+      "maxY": 1.7170452017595628,
+      "maxSpan": 0.8498681518908229,
+      "loopSeamVertexDistance": 0.000002455290759446646,
+      "restError": 0
+    },
+    {
+      "name": "celebrate_fist",
+      "duration": 1.5,
+      "samples": 33,
+      "finite": true,
+      "movement": 0.9650367711849192,
+      "minY": 0.0033422600333080864,
+      "maxY": 1.8094404229600691,
+      "maxSpan": 0.9208500399389682,
+      "loopSeamVertexDistance": 0.00528317890440322,
+      "restError": 0
+    },
+    {
+      "name": "celebrate_arms",
+      "duration": 1.8333333730697632,
+      "samples": 33,
+      "finite": true,
+      "movement": 1.1233603512902934,
+      "minY": 0.003201249789952052,
+      "maxY": 2.2513043584495884,
+      "maxSpan": 1.1381261810989658,
+      "loopSeamVertexDistance": 0.02594359030724513,
+      "restError": 0
+    },
+    {
+      "name": "celebrate_victory",
+      "duration": 9.333333015441895,
+      "samples": 33,
+      "finite": true,
+      "movement": 1.4031116562046675,
+      "minY": 0.006438379516429021,
+      "maxY": 2.227015107086926,
+      "maxSpan": 1.2699752915923959,
+      "loopSeamVertexDistance": 0.00004810006145530255,
+      "restError": 0
+    }
+  ],
+  "playback": [
+    {
+      "name": "run_fast4",
+      "duration": 0.6666666865348816,
+      "time": 0.20000000596046452,
+      "paused": false,
+      "loop": 2201,
+      "clamp": false
+    },
+    {
+      "name": "run_fast6",
+      "duration": 0.8333333134651184,
+      "time": 0.24999999403953566,
+      "paused": false,
+      "loop": 2201,
+      "clamp": false
+    },
+    {
+      "name": "sprint_forward",
+      "duration": 0.5666666626930237,
+      "time": 0.16999999880790717,
+      "paused": false,
+      "loop": 2201,
+      "clamp": false
+    },
+    {
+      "name": "celebrate_fist",
+      "duration": 1.5,
+      "time": 1.5,
+      "paused": true,
+      "loop": 2200,
+      "clamp": true
+    },
+    {
+      "name": "celebrate_arms",
+      "duration": 1.8333333730697632,
+      "time": 1.8333333730697632,
+      "paused": true,
+      "loop": 2200,
+      "clamp": true
+    },
+    {
+      "name": "celebrate_victory",
+      "duration": 9.333333015441895,
+      "time": 9.333333015441895,
+      "paused": true,
+      "loop": 2200,
+      "clamp": true
+    }
+  ],
+  "defaultDownloadByteEqual": true,
+  "coloredExportRigClipsBinaryPreserved": true,
+  "errors": [],
+  "bindingWarnings": [],
+  "remoteRequests": 0,
+  "limits": "Software WebGL preview, no match integration or foot-contact/transition acceptance"
+}

@@ -1,0 +1,30 @@
+{
+  "buildSha256": "E8A0C09EA016007346D3E5CB6866BB5BDD0ED6E85949CC9B492E41AF821FECF8",
+  "sourceModelSha256": "7749D79B227135C44F4B7826607EFE7FBD174F978D68096FDCA65D4D3183FD48",
+  "footer": "PROTOTYP 105",
+  "limits": [
+    "Slow walk still needs artistic polish",
+    "Gloves retain simple geometry",
+    "No performance measurement on real mobile hardware"
+  ],
+  "published": false,
+  "localBuild": "outputs/Doppel-6-Fussballmanager.html",
+  "checkedAt": "2026-10-03T23:25:05.9862062Z",
+  "passed": [
+    "Complete 2D/3D match parity",
+    "Goal/penalty replay and audio",
+    "Actual source server, offline and missing asset fallback",
+    "12 carrier scenarios at 30/60/120 Hz and 3600 match frames",
+    "28 foot actions and 20 aerial actions",
+    "Four headed clearances and two aerial corner exits",
+    "Eight corner callbacks",
+    "Both native hands touching the overhead throw-in ball",
+    "Keeper contacts, catch/hold/release and recovery",
+    "Locomotion, planted feet and pause",
+    "Desktop/mobile pitch resume and deliberate 2D choice",
+    "Menu, orientation, context loss and resource disposal",
+    "Meaningful motion/projection/action/backpedal/local-start unit checks",
+    "JavaScript syntax and git diff whitespace check"
+  ],
+  "additionalMeshyCredits": 0
+}

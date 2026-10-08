@@ -1,0 +1,111 @@
+{
+  "choices": {
+    "cross": {
+      "1": 205,
+      "20": 388
+    },
+    "highPass": {
+      "1": 205,
+      "20": 388
+    },
+    "shot": {
+      "1": 205,
+      "20": 388
+    },
+    "header": {
+      "1": 205,
+      "20": 388
+    }
+  },
+  "squares": {
+    "1": 210,
+    "10": 591,
+    "20": 970
+  },
+  "actualSquare": {
+    "kind": "pass",
+    "target": "mate"
+  },
+  "longHeader": {
+    "kind": "header",
+    "target": "mate"
+  },
+  "margins": {
+    "1": {
+      "minimum": -0.03999730029675528,
+      "mistimed": 80
+    },
+    "10": {
+      "minimum": -0.006553569082697858,
+      "mistimed": 43
+    },
+    "20": {
+      "minimum": 0.03133947969978449,
+      "mistimed": 0
+    }
+  },
+  "misses": {
+    "1": {
+      "extreme": 10,
+      "normalMaximum": 0.043198875,
+      "mean": 0.03047886874999952
+    },
+    "20": {
+      "extreme": 10,
+      "normalMaximum": 0.015195167445000018,
+      "mean": 0.013112263975250256
+    }
+  },
+  "parry": {
+    "weak": 0.6857710799999999,
+    "strong": 0.43877108
+  },
+  "chase": null,
+  "pursuitTarget": 0.8436455999999999,
+  "goals": [
+    {
+      "x": 0.5,
+      "height": 0.29,
+      "lastTouch": 0,
+      "score": 1,
+      "own": false,
+      "goalPause": 4.05
+    },
+    {
+      "x": 0.62,
+      "height": 0.29,
+      "lastTouch": 0,
+      "score": 0,
+      "own": false,
+      "goalPause": 0,
+      "abstoss": true
+    },
+    {
+      "x": 0.5,
+      "height": 4,
+      "lastTouch": 0,
+      "score": 0,
+      "own": false,
+      "goalPause": 0,
+      "abstoss": true
+    },
+    {
+      "x": 0.5,
+      "height": 0.29,
+      "lastTouch": 1,
+      "score": 1,
+      "own": true,
+      "goalPause": 2
+    }
+  ],
+  "rush": {
+    "challenge": true,
+    "caught": true,
+    "closest": 1.3974788583509221,
+    "owner": "rushKeeper",
+    "pose": true,
+    "depth": 5.540893234672335,
+    "outsideBoxChallenge": false
+  },
+  "errors": []
+}

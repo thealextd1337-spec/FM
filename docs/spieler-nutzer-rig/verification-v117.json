@@ -1,0 +1,80 @@
+{
+  "verifiedAt": "2026-10-04T16:49:07.590Z",
+  "published": false,
+  "footer": "PROTOTYP 105",
+  "credits": 0,
+  "modelUnchanged": true,
+  "modelSha256": "39eee0c85c05a93496d1679330c0fcd81a9f5f87d8ad13876c61d29cb3a09cb2",
+  "offline": {
+    "bytes": 49891537,
+    "sha256": "7e33ed70f32040eee8b63f02f56e4aa4e4f25704e32faa01283bcacefe2b48db",
+    "indexIdentical": true,
+    "embeddedAccountingMatches": true
+  },
+  "sourceHashes": {
+    "game.js": "e35387c3b86930aab1aed9d845de933c72ad5fcf3b1d58f4cc9ad1815a4ce86f",
+    "set-pieces-v50.js": "5b3030498c52c3cb365e232ed2e07d4f25d27d0be98de10debe255e26ba8d3fe",
+    "pitch-v55.js": "9131c4990afd6c18d13cf5b5c5b95b1ac6698253fc2941125bee19a7342d1f24",
+    "pitch-v57.js": "fc843e3dbf2ca0df7200eef118f2403ef084aaf7c18146b6ffa6d691884b1368",
+    "world-backpedal-v108.js": "17dd41f18ba2121abff3ad6d6ddb7873b967d4d61bb627fe6d347e9b93680ef5",
+    "world-ball-motion-v110.js": "74592ce456f42c5cabdfcced5386b0c79457c3b210979fc513a6c82a89a67823",
+    "match-ball-events-v117.js": "280ed36447e244d57e7db090b4e26369bccad86501d9c2e6b66b369db73c4713",
+    "world-match-v64.js": "3949c0b5eeafd5803d9990d3273ce95ee6253884c1407cb637fc09fd479fc816",
+    "world-physical-v65.js": "8b0c35220a8b2739e069c8797e8b337c517dd3bb82e17eefdf94cad443f3d8e0"
+  },
+  "evidenceHashes": {
+    "match-study-v115.json": "2ee0a6d016b64054008a1636bba1d2d9087b78ece9967de4b5f4758c9e56bee6",
+    "accounting-baseline-v117.json": "b4dbb4fb32e62904b9ee4337dba83d7470cab210e080d5073a8e5dcdcc28b1e9",
+    "shot-accounting-90-v117.json": "0318c7966e4a0402e64cac3a5ecba4ce7822a450d94d86c04a134215a9f34f3f",
+    "shot-accounting-five-v117.json": "91ecf8f7622c0baefa7a0f10e2b5fe131b172812259eae08f525b1032e62af05",
+    "shot-accounting-focused-v117.json": "cbd7170b5b75dd609ecff5202334f87dc9383d145a92fc24e760e08392e83dd0",
+    "shot-accounting-native-v117.json": "2b504671205e490adc896b79176b06927750249de1d6e135a10e8a5bf2a2b930",
+    "player-value-impact-qa-v117.json": "5e1422ee4b39e7d0dd08acdda080f26ef2ee9d56347fc4f109f9fb5f9b9b14c7"
+  },
+  "summary": {
+    "good-good": {
+      "shots": 308,
+      "onTarget": 191,
+      "goals": 65,
+      "saves": 126,
+      "savesCaught": 63,
+      "savesParried": 63,
+      "shotConceded": 65,
+      "nonShotConceded": 0,
+      "shotsInterrupted": 1
+    },
+    "good-weak": {
+      "shots": 278,
+      "onTarget": 184,
+      "goals": 81,
+      "saves": 104,
+      "savesCaught": 40,
+      "savesParried": 64,
+      "shotConceded": 80,
+      "nonShotConceded": 1,
+      "shotsInterrupted": 1
+    },
+    "weak-weak": {
+      "shots": 187,
+      "onTarget": 95,
+      "goals": 25,
+      "saves": 73,
+      "savesCaught": 35,
+      "savesParried": 38,
+      "shotConceded": 22,
+      "nonShotConceded": 3,
+      "shotsInterrupted": 0
+    }
+  },
+  "gates": {
+    "liveMatches": 90,
+    "originalAnomalies": 5,
+    "focusedCases": 21,
+    "nativeCases": 5,
+    "integrationVariants": 3,
+    "full2d3dParity": true,
+    "goalReplayCases": 4,
+    "playerValueCriteria": 7
+  },
+  "scope": "New physical live world matches only; existing matches not reconstructed. Same 90 scores, random draw counts and timing; target accounting corrections may affect final performance ratings. Event ledger retained in current-season match report/record, not permanent season archives."
+}

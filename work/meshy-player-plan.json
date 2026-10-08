@@ -1,0 +1,12 @@
+{
+  "name": "Doppel 6 soccer player",
+  "prompt": "Association football SOCCER player, young adult male athlete, lean natural athletic anatomy and realistic sports game proportions. Bare head with short brown hair. Plain fitted green soccer jersey, white short shorts, knee-high green socks, soccer cleats. Full body upright neutral A-pose, arms straight and separated, hands open palms down, feet apart. No helmet, no shoulder pads, no protective gear, no American football, no ball, no props, no logos. Clean game character suitable for skeletal animation.",
+  "workspace": "meshy_output",
+  "targetFormat": "glb",
+  "mobileTriangleTarget": 3500,
+  "pipeline": ["text-to-3d preview", "text-to-3d refine"],
+  "estimatedCredits": 30,
+  "estimateDate": "2026-10-02",
+  "estimateSource": "meshy-cli 0.4.0 make --dry-run",
+  "integration": "Inspect and retarget in Blender before importing into the match. Rigging and remeshing are additional stages."
+}

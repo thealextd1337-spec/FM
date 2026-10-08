@@ -1,0 +1,9 @@
+{
+  "ai_model": "meshy-7.1",
+  "should_remesh": true,
+  "target_polycount": 30000,
+  "topology": "triangle",
+  "save_pre_remeshed_model": true,
+  "pose_mode": "a-pose",
+  "image_enhancement": false
+}

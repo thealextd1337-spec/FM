@@ -1,0 +1,32 @@
+{
+  "output": "meshy_output/user-character-2026-10-03/character-head-textured-football.glb",
+  "stage": "head-retexture-v2",
+  "previousModel": "meshy_output/user-character-2026-10-03/character-football-animations.glb",
+  "headTextureTaskId": "01a1016f-a96e-742c-ba15-eb33c6e8080c",
+  "resource": "retexture",
+  "project": "meshy_output/20261003_123727_nutzercharakter-fussball-beweg_01a10156",
+  "consumedCredits": 10,
+  "totalHeadIterationCredits": 20,
+  "vertices": 9725,
+  "maxUVError": 0,
+  "maxPositionError": 6.686834719271673e-8,
+  "normalization": [
+    {
+      "scale": 1.1764704001696202,
+      "translation": 0.001132853847091626
+    },
+    {
+      "scale": 1.1764704000979782,
+      "translation": -1.0000000095327168
+    },
+    {
+      "scale": 1.176470398282978,
+      "translation": 0.002192477870505305
+    }
+  ],
+  "originalGeometryRigClipsMaterialsBinaryPreserved": true,
+  "baseColorImage": 0,
+  "headMask": "head-retexture-v2/head-mask.png",
+  "sourceSha256": "c69a15d052dea2e77d4fdc167a447335d23f158ec9b0fea184a76840dd2cc8f3",
+  "outputBytes": 20213148
+}

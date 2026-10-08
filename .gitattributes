@@ -1,0 +1,5 @@
+# These files carry byte-based build identities and acceptance hashes.
+# Preserve their actual bytes on Windows and on other systems.
+dist/** -text
+prototypes/match-engine-unity/** -text
+outputs/** -text

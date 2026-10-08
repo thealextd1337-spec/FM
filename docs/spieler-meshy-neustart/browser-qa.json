@@ -1,0 +1,26 @@
+{
+  "home": {
+    "D6_skin": "ffffff",
+    "D6_shirt": "315e46",
+    "D6_shorts": "202c47",
+    "D6_socks": "ffffff",
+    "D6_boots": "ffffff",
+    "D6_hair": "ffffff"
+  },
+  "away": {
+    "D6_skin": "ffffff",
+    "D6_shirt": "eae3d1",
+    "D6_shorts": "742c3e",
+    "D6_socks": "ffffff",
+    "D6_boots": "ffffff",
+    "D6_hair": "ffffff"
+  },
+  "finite": true,
+  "weightError": 3.969762474298477e-8,
+  "samples": 99,
+  "meshes": 6,
+  "bones": 24,
+  "errors": [],
+  "remoteRequests": 0,
+  "hardware": "Headless Edge / software WebGL; no physical mobile performance claim"
+}

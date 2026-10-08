@@ -1,0 +1,17 @@
+{
+    "dataPath": "G:/unity/My project/Assets",
+    "version": "6000.6.4f1",
+    "scene": "Assets/Scenes/SampleScene.unity",
+    "graphics": "",
+    "target": "StandaloneWindows64",
+    "group": "Standalone",
+    "compression": "Brotli",
+    "dirty": false,
+    "playing": false,
+    "background": false,
+    "quality": 1,
+    "pipelines": [
+        "Assets/Settings/Mobile_RPAsset.asset",
+        "Assets/Settings/PC_RPAsset.asset"
+    ]
+}

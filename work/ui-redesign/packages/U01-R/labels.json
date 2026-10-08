@@ -1,0 +1,16 @@
+{
+  "brand": {"de": "Doppel 6", "en": "Doppel 6"},
+  "menu": {"de": "Menü", "en": "Menu"},
+  "close": {"de": "Menü schließen", "en": "Close menu"},
+  "skip": {"de": "Zum Hauptinhalt", "en": "Skip to main content"},
+  "navigation": {"de": "Karrieremenü", "en": "Career navigation"},
+  "theme": {"de": "Darstellung", "en": "Appearance"},
+  "themeSystem": {"de": "Geräteeinstellung", "en": "Device setting"},
+  "themeLight": {"de": "Hell", "en": "Light"},
+  "themeDark": {"de": "Dunkel", "en": "Dark"},
+  "violetgray": {"de": "Violettgrau", "en": "Violet grey"},
+  "bluegray": {"de": "Blaugrau", "en": "Blue grey"},
+  "yellow": {"de": "Gelb", "en": "Yellow"},
+  "orange": {"de": "Orange", "en": "Orange"},
+  "pink": {"de": "Pink", "en": "Pink"}
+}

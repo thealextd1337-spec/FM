@@ -1,0 +1,2864 @@
+{
+  "cases": [
+    {
+      "name": "parry-left",
+      "frames": 255,
+      "maxBallStep": 0.4117297802899335,
+      "maxHipsStep": 0.4243278590377607,
+      "maxKeeperStep": 0.16900000000000215,
+      "minSkin": 0.0823608266436011,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "contacts": [
+        {
+          "tick": 5,
+          "sub": 0,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.4915233166284883,
+          "gloveGap": 0.6770686841493828,
+          "held": false,
+          "ball": [
+            28.70791752634337,
+            0.6025861888917163,
+            0.7776710238611652
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 1,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.4569576653166302,
+          "gloveGap": 0.45652638299441517,
+          "held": false,
+          "ball": [
+            28.917681451670774,
+            0.6017241259278109,
+            0.8017806825741097
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 2,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.4267280983910837,
+          "gloveGap": 0.24194887042978086,
+          "held": false,
+          "ball": [
+            29.127445376998175,
+            0.6008620629639055,
+            0.8258903412870539
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 0,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.4041742448626526,
+          "gloveGap": 0.06269914523091599,
+          "held": false,
+          "ball": [
+            29.33720930232558,
+            0.6000000000000001,
+            0.8499999999999984
+          ],
+          "keeper": {
+            "x": 0.5034824242424243,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.014549010109158505,
+          "gloveGap": 0.1673607667732295,
+          "held": false,
+          "ball": [
+            29.114362281976742,
+            0.5948781494010504,
+            1.0274356617647047
+          ],
+          "keeper": {
+            "x": 0.5034824242424243,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.17579679034237874,
+          "gloveGap": 0.34079951433191524,
+          "held": false,
+          "ball": [
+            28.891515261627905,
+            0.5897562988021008,
+            1.2048713235294084
+          ],
+          "keeper": {
+            "x": 0.5034824242424243,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.3796192866900538,
+          "gloveGap": 0.5689427771632714,
+          "held": false,
+          "ball": [
+            28.668668241279068,
+            0.5846344482031511,
+            1.3823069852941146
+          ],
+          "keeper": {
+            "x": 0.5069648484848486,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.5584561720804742,
+          "gloveGap": 0.8886324442437169,
+          "held": false,
+          "ball": [
+            28.44582122093023,
+            0.5784305460530135,
+            1.5597426470588207
+          ],
+          "keeper": {
+            "x": 0.5069648484848486,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.6743211683459126,
+          "gloveGap": 1.2486010801247112,
+          "held": false,
+          "ball": [
+            28.222974200581394,
+            0.5722266439028759,
+            1.7371783088235246
+          ],
+          "keeper": {
+            "x": 0.5069648484848486,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.7519042478144268,
+          "gloveGap": 1.6176682904585158,
+          "held": false,
+          "ball": [
+            28.000127180232557,
+            0.5660227417527383,
+            1.9146139705882308
+          ],
+          "keeper": {
+            "x": 0.5104472727272729,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.8279582208380127,
+          "gloveGap": 1.9700396424780835,
+          "held": false,
+          "ball": [
+            27.77728015988372,
+            0.5578114350177749,
+            2.0920496323529387
+          ],
+          "keeper": {
+            "x": 0.5104472727272729,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.9128168538177849,
+          "gloveGap": 2.2737272160707938,
+          "held": false,
+          "ball": [
+            27.554433139534883,
+            0.5496001282828115,
+            2.2694852941176444
+          ],
+          "keeper": {
+            "x": 0.5104472727272729,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.9894307492541126,
+          "gloveGap": 2.5450110374662134,
+          "held": false,
+          "ball": [
+            27.331586119186046,
+            0.5413888215478481,
+            2.4469209558823524
+          ],
+          "keeper": {
+            "x": 0.5139296969696971,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 1.0507917521577574,
+          "gloveGap": 2.8056706770284916,
+          "held": false,
+          "ball": [
+            27.108739098837212,
+            0.5305354617567133,
+            2.6243566176470563
+          ],
+          "keeper": {
+            "x": 0.5139296969696971,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 1.0883917817655926,
+          "gloveGap": 3.053192111414715,
+          "held": false,
+          "ball": [
+            26.885892078488368,
+            0.5196821019655782,
+            2.8017922794117647
+          ],
+          "keeper": {
+            "x": 0.5139296969696971,
+            "y": 0.09
+          }
+        }
+      ],
+      "topJumps": [],
+      "topHips": [],
+      "secondShot": false,
+      "pauseStable": true,
+      "events": [
+        {
+          "id": 1,
+          "parentId": null,
+          "kind": "shot",
+          "actorPid": "v120-shooter",
+          "team": 0,
+          "at": 10,
+          "result": "parried",
+          "start": {
+            "x": 0.5,
+            "y": 0.2
+          },
+          "target": {
+            "x": 0.5175151515151515,
+            "y": 0.09888712241653418
+          },
+          "duration": 0.21504995305608227,
+          "shot": true,
+          "keeperPid": "v120-keeper",
+          "plannedOnTarget": true,
+          "expectedBlock": false,
+          "parried": true,
+          "endAt": 10.233999999999998
+        },
+        {
+          "id": 2,
+          "parentId": 1,
+          "kind": "block",
+          "actorPid": "v120-keeper",
+          "team": 1,
+          "at": 10.233999999999998,
+          "result": "loose",
+          "start": {
+            "x": 0.5175151515151515,
+            "y": 0.09888712241653418
+          },
+          "target": {
+            "x": 0.6075151515151515,
+            "y": 0.17388712241653417
+          },
+          "duration": 0.32,
+          "endAt": 10.584999999999996
+        },
+        {
+          "id": 3,
+          "parentId": 2,
+          "kind": "loose-ball",
+          "actorPid": null,
+          "team": null,
+          "at": 10.584999999999996,
+          "result": "rolling"
+        }
+      ],
+      "keeperStats": {
+        "passes": 0,
+        "passComplete": 0,
+        "progressive": 0,
+        "passLost": 0,
+        "duels": 0,
+        "duelsWon": 0,
+        "interceptions": 0,
+        "shots": 0,
+        "onTarget": 0,
+        "goals": 0,
+        "assists": 0,
+        "saves": 1,
+        "faced": 1,
+        "conceded": 0,
+        "cleanSheet": 0,
+        "fouls": 0,
+        "penaltiesScored": 0,
+        "penaltiesMissed": 0,
+        "rating": 6,
+        "crosses": 0,
+        "crossComplete": 0,
+        "highPasses": 0,
+        "highComplete": 0,
+        "headers": 0,
+        "headerPasses": 0,
+        "volleys": 0,
+        "aerialDuels": 0,
+        "aerialWon": 0,
+        "slideAttempts": 0,
+        "slideWon": 0,
+        "shotGoals": 0,
+        "nonShotGoals": 0,
+        "shotConceded": 0,
+        "nonShotConceded": 0,
+        "shotsInterrupted": 0,
+        "savesCaught": 0,
+        "savesParried": 1
+      },
+      "score": [
+        0,
+        0
+      ],
+      "owner": "v120-shooter"
+    },
+    {
+      "name": "parry-right-high",
+      "frames": 255,
+      "maxBallStep": 0.4393192636308458,
+      "maxHipsStep": 0.200107998387456,
+      "maxKeeperStep": 0.16900000000000118,
+      "minSkin": 0.08622496060287467,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "contacts": [
+        {
+          "tick": 5,
+          "sub": 0,
+          "motion": "keeper_parry_left",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.1184782743065766,
+          "gloveGap": 0.6687031833702207,
+          "held": false,
+          "ball": [
+            28.70791752634337,
+            2.5067949282128907,
+            -0.7776710238611652
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 1,
+          "motion": "keeper_parry_left",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.05992124435353672,
+          "gloveGap": 0.4022041859625623,
+          "held": false,
+          "ball": [
+            28.917681451670777,
+            2.571196618808595,
+            -0.801780682574111
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 2,
+          "motion": "keeper_parry_left",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.01088132728815627,
+          "gloveGap": 0.14768017777696602,
+          "held": false,
+          "ball": [
+            29.12744537699817,
+            2.635598309404296,
+            -0.8258903412870553
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 0,
+          "motion": "keeper_parry_left",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 1.1102230246251565e-16,
+          "gloveGap": 0.019246563812256957,
+          "held": false,
+          "ball": [
+            29.33720930232558,
+            2.7,
+            -0.8500000000000011
+          ],
+          "keeper": {
+            "x": 0.49651757575757577,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 1.1102230246251565e-16,
+          "gloveGap": 0.13210416927817084,
+          "held": false,
+          "ball": [
+            29.11436228197674,
+            2.609565649401049,
+            -1.0274356617647107
+          ],
+          "keeper": {
+            "x": 0.49651757575757577,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 5.551115123125783e-16,
+          "gloveGap": 0.33449689472235317,
+          "held": false,
+          "ball": [
+            28.89151526162791,
+            2.5191312988021024,
+            -1.2048713235294106
+          ],
+          "keeper": {
+            "x": 0.49651757575757577,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.0042437594742864605,
+          "gloveGap": 0.6012338535680312,
+          "held": false,
+          "ball": [
+            28.668668241279068,
+            2.428696948203151,
+            -1.38230698529412
+          ],
+          "keeper": {
+            "x": 0.49303515151515154,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.02621163754189344,
+          "gloveGap": 0.9172390334936723,
+          "held": false,
+          "ball": [
+            28.445821220930227,
+            2.3371805460530117,
+            -1.5597426470588287
+          ],
+          "keeper": {
+            "x": 0.49303515151515154,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.03202736082260996,
+          "gloveGap": 1.209619865364825,
+          "held": false,
+          "ball": [
+            28.222974200581397,
+            2.2456641439028777,
+            -1.7371783088235278
+          ],
+          "keeper": {
+            "x": 0.49303515151515154,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.12176646209589345,
+          "gloveGap": 1.5719403718321443,
+          "held": false,
+          "ball": [
+            28.000127180232557,
+            2.1541477417527384,
+            -1.9146139705882363
+          ],
+          "keeper": {
+            "x": 0.4895527272727273,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.20585766465440236,
+          "gloveGap": 1.9394441408073966,
+          "held": false,
+          "ball": [
+            27.777280159883716,
+            2.060623935017773,
+            -2.092049632352946
+          ],
+          "keeper": {
+            "x": 0.4895527272727273,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.2868117202152067,
+          "gloveGap": 2.3092317770373296,
+          "held": false,
+          "ball": [
+            27.554433139534886,
+            1.967100128282813,
+            -2.2694852941176458
+          ],
+          "keeper": {
+            "x": 0.4895527272727273,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.35470173275892347,
+          "gloveGap": 2.6668916826746583,
+          "held": false,
+          "ball": [
+            27.331586119186046,
+            1.873576321547848,
+            -2.446920955882355
+          ],
+          "keeper": {
+            "x": 0.4860703030303031,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.40504992827354475,
+          "gloveGap": 3.0040852971378103,
+          "held": false,
+          "ball": [
+            27.108739098837205,
+            1.7774104617567115,
+            -2.624356617647064
+          ],
+          "keeper": {
+            "x": 0.4860703030303031,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "left",
+          "handContact": 0.42705884361848634,
+          "gloveGap": 3.3151732011624704,
+          "held": false,
+          "ball": [
+            26.885892078488375,
+            1.68124460196558,
+            -2.801792279411763
+          ],
+          "keeper": {
+            "x": 0.4860703030303031,
+            "y": 0.09
+          }
+        }
+      ],
+      "topJumps": [],
+      "topHips": [],
+      "secondShot": false,
+      "pauseStable": true,
+      "events": [
+        {
+          "id": 1,
+          "parentId": null,
+          "kind": "shot",
+          "actorPid": "v120-shooter",
+          "team": 0,
+          "at": 10,
+          "result": "parried",
+          "start": {
+            "x": 0.5,
+            "y": 0.2
+          },
+          "target": {
+            "x": 0.48248484848484846,
+            "y": 0.09888712241653418
+          },
+          "duration": 0.21504995305608227,
+          "shot": true,
+          "keeperPid": "v120-keeper",
+          "plannedOnTarget": true,
+          "expectedBlock": false,
+          "parried": true,
+          "endAt": 10.233999999999998
+        },
+        {
+          "id": 2,
+          "parentId": 1,
+          "kind": "block",
+          "actorPid": "v120-keeper",
+          "team": 1,
+          "at": 10.233999999999998,
+          "result": "loose",
+          "start": {
+            "x": 0.48248484848484846,
+            "y": 0.09888712241653418
+          },
+          "target": {
+            "x": 0.39248484848484844,
+            "y": 0.17388712241653417
+          },
+          "duration": 0.32,
+          "endAt": 10.584999999999996
+        },
+        {
+          "id": 3,
+          "parentId": 2,
+          "kind": "loose-ball",
+          "actorPid": null,
+          "team": null,
+          "at": 10.584999999999996,
+          "result": "rolling"
+        }
+      ],
+      "keeperStats": {
+        "passes": 0,
+        "passComplete": 0,
+        "progressive": 0,
+        "passLost": 0,
+        "duels": 0,
+        "duelsWon": 0,
+        "interceptions": 0,
+        "shots": 0,
+        "onTarget": 0,
+        "goals": 0,
+        "assists": 0,
+        "saves": 1,
+        "faced": 1,
+        "conceded": 0,
+        "cleanSheet": 0,
+        "fouls": 0,
+        "penaltiesScored": 0,
+        "penaltiesMissed": 0,
+        "rating": 6,
+        "crosses": 0,
+        "crossComplete": 0,
+        "highPasses": 0,
+        "highComplete": 0,
+        "headers": 0,
+        "headerPasses": 0,
+        "volleys": 0,
+        "aerialDuels": 0,
+        "aerialWon": 0,
+        "slideAttempts": 0,
+        "slideWon": 0,
+        "shotGoals": 0,
+        "nonShotGoals": 0,
+        "shotConceded": 0,
+        "nonShotConceded": 0,
+        "shotsInterrupted": 0,
+        "savesCaught": 0,
+        "savesParried": 1
+      },
+      "score": [
+        0,
+        0
+      ],
+      "owner": "v120-second"
+    },
+    {
+      "name": "catch-low",
+      "frames": 255,
+      "maxBallStep": 0.41151443847372093,
+      "maxHipsStep": 0.17219955827037023,
+      "maxKeeperStep": 0,
+      "minSkin": 0.1049999999999999,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "contacts": [
+        {
+          "tick": 5,
+          "sub": 0,
+          "motion": "keeper_catch_low",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.24927083360733784,
+          "gloveGap": 0.510204081217295,
+          "held": false,
+          "ball": [
+            28.74163450169061,
+            0.6022870375485152,
+            0.32181320519007656
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 1,
+          "motion": "keeper_catch_low",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.23630244695396535,
+          "gloveGap": 0.313850000225705,
+          "held": false,
+          "ball": [
+            28.940159435235593,
+            0.6015246916990101,
+            0.3312088034600509
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 2,
+          "motion": "keeper_catch_low",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.22623996427091608,
+          "gloveGap": 0.11891016825294663,
+          "held": false,
+          "ball": [
+            29.138684368780595,
+            0.6007623458495049,
+            0.34060440173002626
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 0,
+          "motion": "keeper_catch_low",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.21817560879928835,
+          "gloveGap": 0.0364879272175105,
+          "held": true,
+          "ball": [
+            29.22262600428384,
+            0.6884203502007021,
+            0.3327381931274349
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.2404716762244473,
+          "gloveGap": 0.03728737229735339,
+          "held": true,
+          "ball": [
+            29.32627062239242,
+            0.7006152554057895,
+            0.3414701832418526
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.30984666157713125,
+          "gloveGap": 0.02718443233449139,
+          "held": true,
+          "ball": [
+            29.3210785214965,
+            0.7447227265849634,
+            0.33740339581387846
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.38601576106092034,
+          "gloveGap": 0.04148929594714624,
+          "held": true,
+          "ball": [
+            29.314923645848555,
+            0.7913407890718123,
+            0.3318277685876637
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.4106556228058324,
+          "gloveGap": 0.04464760030377795,
+          "held": true,
+          "ball": [
+            29.311602992065353,
+            0.8110192591307379,
+            0.3270169035548978
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.35580719838277475,
+          "gloveGap": 0.057852368297084296,
+          "held": true,
+          "ball": [
+            29.315228198631118,
+            0.7899384050235355,
+            0.32576787821862063
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.26419551565651317,
+          "gloveGap": 0.03778975922422945,
+          "held": true,
+          "ball": [
+            29.323728064322225,
+            0.7485661999354005,
+            0.3264327829087852
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.19506278880948907,
+          "gloveGap": 0.04296522449132005,
+          "held": true,
+          "ball": [
+            29.33383662467147,
+            0.715226761994361,
+            0.32715425505139906
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.17452765553386765,
+          "gloveGap": 0.03554989133222794,
+          "held": true,
+          "ball": [
+            29.33989128566261,
+            0.7112470793721873,
+            0.32503519979191775
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.1685576244492084,
+          "gloveGap": 0.02801114065987587,
+          "held": true,
+          "ball": [
+            29.34416895376843,
+            0.7196756225033265,
+            0.32162850694507983
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.16263564975589695,
+          "gloveGap": 0.017587906028189108,
+          "held": true,
+          "ball": [
+            29.348919777731638,
+            0.7288008051777157,
+            0.3179576657940235
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.157782335437539,
+          "gloveGap": 0.008344548950787787,
+          "held": true,
+          "ball": [
+            29.353832123628543,
+            0.7397086958717404,
+            0.313798524334696
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        }
+      ],
+      "topJumps": [],
+      "topHips": [],
+      "secondShot": false,
+      "pauseStable": true,
+      "events": [
+        {
+          "id": 1,
+          "parentId": null,
+          "kind": "shot",
+          "actorPid": "v120-shooter",
+          "team": 0,
+          "at": 10,
+          "result": "caught",
+          "start": {
+            "x": 0.5,
+            "y": 0.2
+          },
+          "target": {
+            "x": 0.5072121212121212,
+            "y": 0.09888712241653418
+          },
+          "duration": 0.2138825415238057,
+          "shot": true,
+          "keeperPid": "v120-keeper",
+          "plannedOnTarget": true,
+          "expectedBlock": false,
+          "endAt": 10.233999999999998,
+          "receiverPid": "v120-keeper"
+        }
+      ],
+      "keeperStats": {
+        "passes": 0,
+        "passComplete": 0,
+        "progressive": 0,
+        "passLost": 0,
+        "duels": 0,
+        "duelsWon": 0,
+        "interceptions": 0,
+        "shots": 0,
+        "onTarget": 0,
+        "goals": 0,
+        "assists": 0,
+        "saves": 1,
+        "faced": 1,
+        "conceded": 0,
+        "cleanSheet": 0,
+        "fouls": 0,
+        "penaltiesScored": 0,
+        "penaltiesMissed": 0,
+        "rating": 6,
+        "crosses": 0,
+        "crossComplete": 0,
+        "highPasses": 0,
+        "highComplete": 0,
+        "headers": 0,
+        "headerPasses": 0,
+        "volleys": 0,
+        "aerialDuels": 0,
+        "aerialWon": 0,
+        "slideAttempts": 0,
+        "slideWon": 0,
+        "shotGoals": 0,
+        "nonShotGoals": 0,
+        "shotConceded": 0,
+        "nonShotConceded": 0,
+        "shotsInterrupted": 0,
+        "savesCaught": 1,
+        "savesParried": 0
+      },
+      "score": [
+        0,
+        0
+      ],
+      "owner": "v120-keeper"
+    },
+    {
+      "name": "catch-high",
+      "frames": 255,
+      "maxBallStep": 0.43935822034892397,
+      "maxHipsStep": 0.2810956642618339,
+      "maxKeeperStep": 0,
+      "minSkin": 0.1049999999999999,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "contacts": [
+        {
+          "tick": 5,
+          "sub": 0,
+          "motion": "keeper_catch_high",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.15000000000000013,
+          "gloveGap": 0.35069422594264105,
+          "held": false,
+          "ball": [
+            28.74163450169061,
+            2.516889309816828,
+            -0.32181320519007384
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 1,
+          "motion": "keeper_catch_high",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.15000000000000008,
+          "gloveGap": 0.14252408929152247,
+          "held": false,
+          "ball": [
+            28.940159435235593,
+            2.57792620654455,
+            -0.3312088034600491
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 2,
+          "motion": "keeper_catch_high",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.1500000000000001,
+          "gloveGap": 0.016142779411016373,
+          "held": false,
+          "ball": [
+            29.138684368780595,
+            2.6389631032722782,
+            -0.3406044017300254
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 0,
+          "motion": "keeper_catch_high",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.14999999999999997,
+          "gloveGap": 0.02664971752470742,
+          "held": true,
+          "ball": [
+            29.234171070012017,
+            2.668320684800508,
+            -0.34512350504302214
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.14999999999999997,
+          "gloveGap": 0.018100994281273698,
+          "held": true,
+          "ball": [
+            29.329703023204747,
+            2.6975373397067792,
+            -0.34959932846102915
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.1499999999999999,
+          "gloveGap": 0.01786060697849555,
+          "held": true,
+          "ball": [
+            29.336041386490628,
+            2.69895745544373,
+            -0.3496286122550581
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.1500000000000004,
+          "gloveGap": 0.029061874056121317,
+          "held": true,
+          "ball": [
+            29.33552219844006,
+            2.6978066006546397,
+            -0.34883218390573795
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.1499999999999999,
+          "gloveGap": 0.053109713776982,
+          "held": true,
+          "ball": [
+            29.336064326314215,
+            2.6962180426925544,
+            -0.3472650909005315
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.14999999999999927,
+          "gloveGap": 0.024047069794624187,
+          "held": true,
+          "ball": [
+            29.33821446433349,
+            2.6938994295475336,
+            -0.3447360340464825
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.15000000000000052,
+          "gloveGap": 0.029583237185779578,
+          "held": true,
+          "ball": [
+            29.34199904722111,
+            2.6903324764418795,
+            -0.34124879140895936
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.14999999999999997,
+          "gloveGap": 0.029316580943913467,
+          "held": true,
+          "ball": [
+            29.346659859511284,
+            2.685068066587053,
+            -0.33710135463026963
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.1500000000000009,
+          "gloveGap": 0.021663234431027224,
+          "held": true,
+          "ball": [
+            29.350484311375524,
+            2.6777162125827223,
+            -0.3329495689528938
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.15000000000000047,
+          "gloveGap": 0.017000161009297857,
+          "held": true,
+          "ball": [
+            29.35380726601935,
+            2.668341261194442,
+            -0.32868156364953693
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.1499999999999998,
+          "gloveGap": 0.013608592006269052,
+          "held": true,
+          "ball": [
+            29.35744972708941,
+            2.656412040219472,
+            -0.324003184065517
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": false,
+          "hand": null,
+          "handContact": 0.14999999999999972,
+          "gloveGap": 0.019365050694200043,
+          "held": true,
+          "ball": [
+            29.361396641279416,
+            2.641934284926154,
+            -0.3189337646781315
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        }
+      ],
+      "topJumps": [],
+      "topHips": [],
+      "secondShot": false,
+      "pauseStable": true,
+      "events": [
+        {
+          "id": 1,
+          "parentId": null,
+          "kind": "shot",
+          "actorPid": "v120-shooter",
+          "team": 0,
+          "at": 10,
+          "result": "caught",
+          "start": {
+            "x": 0.5,
+            "y": 0.2
+          },
+          "target": {
+            "x": 0.4927878787878788,
+            "y": 0.09888712241653418
+          },
+          "duration": 0.2138825415238057,
+          "shot": true,
+          "keeperPid": "v120-keeper",
+          "plannedOnTarget": true,
+          "expectedBlock": false,
+          "endAt": 10.233999999999998,
+          "receiverPid": "v120-keeper"
+        }
+      ],
+      "keeperStats": {
+        "passes": 0,
+        "passComplete": 0,
+        "progressive": 0,
+        "passLost": 0,
+        "duels": 0,
+        "duelsWon": 0,
+        "interceptions": 0,
+        "shots": 0,
+        "onTarget": 0,
+        "goals": 0,
+        "assists": 0,
+        "saves": 1,
+        "faced": 1,
+        "conceded": 0,
+        "cleanSheet": 0,
+        "fouls": 0,
+        "penaltiesScored": 0,
+        "penaltiesMissed": 0,
+        "rating": 6,
+        "crosses": 0,
+        "crossComplete": 0,
+        "highPasses": 0,
+        "highComplete": 0,
+        "headers": 0,
+        "headerPasses": 0,
+        "volleys": 0,
+        "aerialDuels": 0,
+        "aerialWon": 0,
+        "slideAttempts": 0,
+        "slideWon": 0,
+        "shotGoals": 0,
+        "nonShotGoals": 0,
+        "shotConceded": 0,
+        "nonShotConceded": 0,
+        "shotsInterrupted": 0,
+        "savesCaught": 1,
+        "savesParried": 0
+      },
+      "score": [
+        0,
+        0
+      ],
+      "owner": "v120-keeper"
+    },
+    {
+      "name": "smother",
+      "frames": 255,
+      "maxBallStep": 0.33701972172808636,
+      "maxHipsStep": 0.36542017095408186,
+      "maxKeeperStep": 0.16900000000000287,
+      "minSkin": 0.0841939917539814,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "contacts": [
+        {
+          "tick": 21,
+          "sub": 0,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.4533527744725368,
+          "gloveGap": 0.13251569288221637,
+          "held": false,
+          "ball": [
+            -26.496142193596043,
+            0.29,
+            0.14734444863780483
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 21,
+          "sub": 1,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.4384038574681713,
+          "gloveGap": 0.11435063141096556,
+          "held": false,
+          "ball": [
+            -26.496142193596043,
+            0.29,
+            0.14734444863780483
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 21,
+          "sub": 2,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.42471903451365234,
+          "gloveGap": 0.09780304879429391,
+          "held": false,
+          "ball": [
+            -26.496142193596043,
+            0.29,
+            0.14734444863780483
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 22,
+          "sub": 0,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.3945867103733995,
+          "gloveGap": 0.02474934334425761,
+          "held": true,
+          "ball": [
+            -26.673826115807746,
+            0.5749364202594645,
+            0.17601417188139853
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 22,
+          "sub": 1,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.37742690832207093,
+          "gloveGap": 0.020801137815231185,
+          "held": true,
+          "ball": [
+            -26.74921243343671,
+            0.5607965670956593,
+            0.16178447770264298
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 22,
+          "sub": 2,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.36394051549750916,
+          "gloveGap": 0.016729649357657035,
+          "held": true,
+          "ball": [
+            -26.827896267011937,
+            0.5487844181514645,
+            0.14767307712462488
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 23,
+          "sub": 0,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.35404231806482717,
+          "gloveGap": 0.016508401212961578,
+          "held": true,
+          "ball": [
+            -26.909383691191266,
+            0.5392201351845193,
+            0.13376954357332735
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 23,
+          "sub": 1,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.34733094507240037,
+          "gloveGap": 0.019543556436427613,
+          "held": true,
+          "ball": [
+            -26.993116885368515,
+            0.5320216861943516,
+            0.12009222716612544
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 23,
+          "sub": 2,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.3435816337692225,
+          "gloveGap": 0.018823603791896515,
+          "held": true,
+          "ball": [
+            -27.07859911738311,
+            0.5272110826177945,
+            0.10665379504507774
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 24,
+          "sub": 0,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.3425780982878949,
+          "gloveGap": 0.003957707304106107,
+          "held": true,
+          "ball": [
+            -27.165396142968827,
+            0.524761418490986,
+            0.09343497841021109
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 24,
+          "sub": 1,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.34398969711258176,
+          "gloveGap": 0.013380128334013681,
+          "held": true,
+          "ball": [
+            -27.253186830980074,
+            0.5244939244819005,
+            0.08035906776645074
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 24,
+          "sub": 2,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.3386645766782066,
+          "gloveGap": 0.01642729468412092,
+          "held": true,
+          "ball": [
+            -27.349918177289883,
+            0.5224695262164112,
+            0.06715944043735225
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 25,
+          "sub": 0,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.33032223976275826,
+          "gloveGap": 0.01511734853715236,
+          "held": true,
+          "ball": [
+            -27.44976280766013,
+            0.5192583884785071,
+            0.05387656033897191
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 25,
+          "sub": 1,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.32642600732115756,
+          "gloveGap": 0.0150055719284446,
+          "held": true,
+          "ball": [
+            -27.54960742369418,
+            0.5206170078197478,
+            0.041143171848513654
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 25,
+          "sub": 2,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.31889946195486546,
+          "gloveGap": 0.015038449418546079,
+          "held": true,
+          "ball": [
+            -27.649505846904873,
+            0.5222063447083287,
+            0.027775550440965358
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 26,
+          "sub": 0,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.3098225742776746,
+          "gloveGap": 0.015211376173693647,
+          "held": true,
+          "ball": [
+            -27.67930027931662,
+            0.5238404332449318,
+            0.022673354502442067
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 26,
+          "sub": 1,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.3003956844815024,
+          "gloveGap": 0.015127958160703319,
+          "held": true,
+          "ball": [
+            -27.682330505284504,
+            0.5255919169401182,
+            0.02080978066949852
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 26,
+          "sub": 2,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.2883957544805286,
+          "gloveGap": 0.01455602182029011,
+          "held": true,
+          "ball": [
+            -27.686151035409388,
+            0.5275669353727346,
+            0.01837532937041679
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 27,
+          "sub": 0,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.2740423700973318,
+          "gloveGap": 0.0038072754054631675,
+          "held": true,
+          "ball": [
+            -27.69069121224134,
+            0.5336768937816257,
+            0.016331799252733883
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 27,
+          "sub": 1,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.25756894279042897,
+          "gloveGap": 0.011289469066711523,
+          "held": true,
+          "ball": [
+            -27.695910510305055,
+            0.5457719882722118,
+            0.015203435535772608
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        },
+        {
+          "tick": 27,
+          "sub": 2,
+          "motion": "keeper_smother",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.2397180582716098,
+          "gloveGap": 0.02021236603369977,
+          "held": true,
+          "ball": [
+            -27.70180927655816,
+            0.5594414311583953,
+            0.013940454574013418
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.8870629859806326
+          }
+        }
+      ],
+      "topJumps": [],
+      "topHips": [],
+      "secondShot": false,
+      "pauseStable": true,
+      "events": [],
+      "keeperStats": {
+        "passes": 0,
+        "passComplete": 0,
+        "progressive": 0,
+        "passLost": 0,
+        "duels": 0,
+        "duelsWon": 0,
+        "interceptions": 1,
+        "shots": 0,
+        "onTarget": 0,
+        "goals": 0,
+        "assists": 0,
+        "saves": 0,
+        "faced": 0,
+        "conceded": 0,
+        "cleanSheet": 0,
+        "fouls": 0,
+        "penaltiesScored": 0,
+        "penaltiesMissed": 0,
+        "rating": 6,
+        "crosses": 0,
+        "crossComplete": 0,
+        "highPasses": 0,
+        "highComplete": 0,
+        "headers": 0,
+        "headerPasses": 0,
+        "volleys": 0,
+        "aerialDuels": 0,
+        "aerialWon": 0,
+        "slideAttempts": 0,
+        "slideWon": 0,
+        "shotGoals": 0,
+        "nonShotGoals": 0,
+        "shotConceded": 0,
+        "nonShotConceded": 0,
+        "shotsInterrupted": 0,
+        "savesCaught": 0,
+        "savesParried": 0
+      },
+      "score": [
+        0,
+        0
+      ],
+      "owner": "v120-keeper",
+      "challenge": {
+        "caught": true,
+        "pickup": false
+      }
+    },
+    {
+      "name": "pickup",
+      "frames": 255,
+      "maxBallStep": 0.3371186990861475,
+      "maxHipsStep": 0.3211608268772538,
+      "maxKeeperStep": 0.16900000000000287,
+      "minSkin": 0.09972975263568205,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "contacts": [
+        {
+          "tick": 4,
+          "sub": 0,
+          "motion": "walking",
+          "saved": true,
+          "gloveGap": 1.1929657310731447,
+          "held": false,
+          "ball": [
+            -20.441860465116278,
+            0.29,
+            0
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 4,
+          "sub": 1,
+          "motion": "walking",
+          "saved": true,
+          "gloveGap": 1.2688484657442913,
+          "held": false,
+          "ball": [
+            -20.44352713178294,
+            0.29,
+            0
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 4,
+          "sub": 2,
+          "motion": "walking",
+          "saved": true,
+          "gloveGap": 1.3172844505845507,
+          "held": false,
+          "ball": [
+            -20.4451937984496,
+            0.29,
+            0
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 0,
+          "motion": "keeper_catch_low",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.4943014742358366,
+          "gloveGap": 0.0410822540237564,
+          "held": true,
+          "ball": [
+            -20.402300899574122,
+            0.6210169816898513,
+            0.04729666301690847
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.5231987350022412,
+          "gloveGap": 0.04916502611974497,
+          "held": true,
+          "ball": [
+            -20.423813091344023,
+            0.6317289961643773,
+            0.026173882066100246
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.6059903728071071,
+          "gloveGap": 0.06574279201629328,
+          "held": true,
+          "ball": [
+            -20.41730564604002,
+            0.6797150597186803,
+            0.031616619158033835
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.6914148401391192,
+          "gloveGap": 0.055965454651018424,
+          "held": true,
+          "ball": [
+            -20.408852711177587,
+            0.7292108666999845,
+            0.038927345091606655
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.717796615130675,
+          "gloveGap": 0.05576813939007508,
+          "held": true,
+          "ball": [
+            -20.4026571256987,
+            0.7472422272578798,
+            0.04487927282545394
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.6550514072114015,
+          "gloveGap": 0.043831619493650824,
+          "held": true,
+          "ball": [
+            -20.4027893423837,
+            0.7189721874522514,
+            0.04619963541323813
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.5463438080865569,
+          "gloveGap": 0.05842849016795377,
+          "held": true,
+          "ball": [
+            -20.40870144046945,
+            0.6667003842412653,
+            0.04308383836587833
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.452444338920999,
+          "gloveGap": 0.05289613945030761,
+          "held": true,
+          "ball": [
+            -20.416655094079665,
+            0.6225712690593757,
+            0.03836164062019697
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.4157665587212565,
+          "gloveGap": 0.04574740874056598,
+          "held": true,
+          "ball": [
+            -20.422327149556097,
+            0.6117925864611586,
+            0.03555025946373671
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.4012710722381555,
+          "gloveGap": 0.04612280063529376,
+          "held": true,
+          "ball": [
+            -20.42697698748728,
+            0.6145127153554539,
+            0.03341949089464348
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.38524908135631764,
+          "gloveGap": 0.04624610376177433,
+          "held": true,
+          "ball": [
+            -20.43212320499042,
+            0.6172912918965285,
+            0.030950137549884085
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "hand": null,
+          "handContact": 0.36928950875703787,
+          "gloveGap": 0.04650057238115517,
+          "held": true,
+          "ball": [
+            -20.437624346639858,
+            0.6219809276513253,
+            0.028426447049581645
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.7884467408585054
+          }
+        }
+      ],
+      "topJumps": [],
+      "topHips": [],
+      "secondShot": false,
+      "pauseStable": true,
+      "events": [],
+      "keeperStats": {
+        "passes": 0,
+        "passComplete": 0,
+        "progressive": 0,
+        "passLost": 0,
+        "duels": 0,
+        "duelsWon": 0,
+        "interceptions": 0,
+        "shots": 0,
+        "onTarget": 0,
+        "goals": 0,
+        "assists": 0,
+        "saves": 0,
+        "faced": 0,
+        "conceded": 0,
+        "cleanSheet": 0,
+        "fouls": 0,
+        "penaltiesScored": 0,
+        "penaltiesMissed": 0,
+        "rating": 6,
+        "crosses": 0,
+        "crossComplete": 0,
+        "highPasses": 0,
+        "highComplete": 0,
+        "headers": 0,
+        "headerPasses": 0,
+        "volleys": 0,
+        "aerialDuels": 0,
+        "aerialWon": 0,
+        "slideAttempts": 0,
+        "slideWon": 0,
+        "shotGoals": 0,
+        "nonShotGoals": 0,
+        "shotConceded": 0,
+        "nonShotConceded": 0,
+        "shotsInterrupted": 0,
+        "savesCaught": 0,
+        "savesParried": 0
+      },
+      "score": [
+        0,
+        0
+      ],
+      "owner": "v120-keeper",
+      "challenge": {
+        "caught": true,
+        "pickup": true
+      }
+    },
+    {
+      "name": "second-shot",
+      "frames": 255,
+      "maxBallStep": 0.4288839789132104,
+      "maxHipsStep": 0.424327859037758,
+      "maxKeeperStep": 0.16900000000000215,
+      "minSkin": 0.08236082664360081,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "contacts": [
+        {
+          "tick": 5,
+          "sub": 0,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.4915233166284883,
+          "gloveGap": 0.6770686841493828,
+          "held": false,
+          "ball": [
+            28.70791752634337,
+            0.6025861888917163,
+            0.7776710238611652
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 1,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.4569576653166262,
+          "gloveGap": 0.45652638299440024,
+          "held": false,
+          "ball": [
+            28.917681451670788,
+            0.6017241259278109,
+            0.8017806825741114
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 2,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.4267280983910859,
+          "gloveGap": 0.24194887042979404,
+          "held": false,
+          "ball": [
+            29.12744537699816,
+            0.6008620629639055,
+            0.8258903412870523
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 0,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.4041742448626526,
+          "gloveGap": 0.06269914523091599,
+          "held": false,
+          "ball": [
+            29.33720930232558,
+            0.6000000000000001,
+            0.8499999999999984
+          ],
+          "keeper": {
+            "x": 0.5034824242424243,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.014549010109166392,
+          "gloveGap": 0.16736076677324774,
+          "held": false,
+          "ball": [
+            29.114362281976724,
+            0.5948781494010501,
+            1.0274356617647167
+          ],
+          "keeper": {
+            "x": 0.5034824242424243,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.17579679034236684,
+          "gloveGap": 0.3407995143319031,
+          "held": false,
+          "ball": [
+            28.891515261627923,
+            0.5897562988021011,
+            1.2048713235293964
+          ],
+          "keeper": {
+            "x": 0.5034824242424243,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.3796192866900538,
+          "gloveGap": 0.5689427771632714,
+          "held": false,
+          "ball": [
+            28.668668241279068,
+            0.5846344482031511,
+            1.3823069852941146
+          ],
+          "keeper": {
+            "x": 0.5069648484848486,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.5584561720804825,
+          "gloveGap": 0.8886324442437445,
+          "held": false,
+          "ball": [
+            28.445821220930213,
+            0.578430546053013,
+            1.559742647058833
+          ],
+          "keeper": {
+            "x": 0.5069648484848486,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.6743211683459059,
+          "gloveGap": 1.2486010801246843,
+          "held": false,
+          "ball": [
+            28.22297420058141,
+            0.5722266439028764,
+            1.7371783088235127
+          ],
+          "keeper": {
+            "x": 0.5069648484848486,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.7519042478144268,
+          "gloveGap": 1.6176682904585158,
+          "held": false,
+          "ball": [
+            28.000127180232557,
+            0.5660227417527383,
+            1.9146139705882308
+          ],
+          "keeper": {
+            "x": 0.5104472727272729,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.8279582208380205,
+          "gloveGap": 1.9700396424781175,
+          "held": false,
+          "ball": [
+            27.777280159883702,
+            0.5578114350177743,
+            2.0920496323529507
+          ],
+          "keeper": {
+            "x": 0.5104472727272729,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.9128168538177824,
+          "gloveGap": 2.2737272160707707,
+          "held": false,
+          "ball": [
+            27.5544331395349,
+            0.549600128282812,
+            2.2694852941176324
+          ],
+          "keeper": {
+            "x": 0.5104472727272729,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.9894307492541126,
+          "gloveGap": 2.5450110374662134,
+          "held": false,
+          "ball": [
+            27.331586119186046,
+            0.5413888215478481,
+            2.4469209558823524
+          ],
+          "keeper": {
+            "x": 0.5139296969696971,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 1.05079175215776,
+          "gloveGap": 2.8056706770285125,
+          "held": false,
+          "ball": [
+            27.10873909883719,
+            0.5305354617567124,
+            2.624356617647071
+          ],
+          "keeper": {
+            "x": 0.5139296969696971,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 1.0883917817655926,
+          "gloveGap": 3.0531921114146905,
+          "held": false,
+          "ball": [
+            26.88589207848839,
+            0.5196821019655791,
+            2.8017922794117505
+          ],
+          "keeper": {
+            "x": 0.5139296969696971,
+            "y": 0.09
+          }
+        }
+      ],
+      "topJumps": [],
+      "topHips": [],
+      "secondShot": true,
+      "pauseStable": true,
+      "events": [
+        {
+          "id": 1,
+          "parentId": null,
+          "kind": "shot",
+          "actorPid": "v120-shooter",
+          "team": 0,
+          "at": 10,
+          "result": "parried",
+          "start": {
+            "x": 0.5,
+            "y": 0.2
+          },
+          "target": {
+            "x": 0.5175151515151515,
+            "y": 0.09888712241653418
+          },
+          "duration": 0.21504995305608227,
+          "shot": true,
+          "keeperPid": "v120-keeper",
+          "plannedOnTarget": true,
+          "expectedBlock": false,
+          "parried": true,
+          "endAt": 10.233999999999998
+        },
+        {
+          "id": 2,
+          "parentId": 1,
+          "kind": "block",
+          "actorPid": "v120-keeper",
+          "team": 1,
+          "at": 10.233999999999998,
+          "result": "loose",
+          "start": {
+            "x": 0.5175151515151515,
+            "y": 0.09888712241653418
+          },
+          "target": {
+            "x": 0.6075151515151515,
+            "y": 0.17388712241653417
+          },
+          "duration": 0.32,
+          "endAt": 10.584999999999996
+        },
+        {
+          "id": 3,
+          "parentId": 2,
+          "kind": "loose-ball",
+          "actorPid": null,
+          "team": null,
+          "at": 10.584999999999996,
+          "result": "rolling"
+        },
+        {
+          "id": 4,
+          "parentId": 3,
+          "kind": "shot",
+          "actorPid": "v120-shooter",
+          "team": 0,
+          "at": 12.339999999999982,
+          "result": "goal",
+          "start": {
+            "x": 0.7077981719584209,
+            "y": 0.22714687738976588
+          },
+          "target": {
+            "x": 0.5,
+            "y": 0.03513513513513514
+          },
+          "duration": 0.4994668025660877,
+          "shot": true,
+          "keeperPid": "v120-keeper",
+          "plannedOnTarget": true,
+          "expectedBlock": false,
+          "goal": true,
+          "endAt": 12.846999999999978
+        },
+        {
+          "id": 5,
+          "parentId": 4,
+          "kind": "goal",
+          "actorPid": "v120-shooter",
+          "team": 0,
+          "at": 12.846999999999978,
+          "result": "shot-goal",
+          "source": null,
+          "keeperPid": "v120-keeper"
+        }
+      ],
+      "keeperStats": {
+        "passes": 0,
+        "passComplete": 0,
+        "progressive": 0,
+        "passLost": 0,
+        "duels": 0,
+        "duelsWon": 0,
+        "interceptions": 0,
+        "shots": 0,
+        "onTarget": 0,
+        "goals": 0,
+        "assists": 0,
+        "saves": 1,
+        "faced": 2,
+        "conceded": 1,
+        "cleanSheet": 0,
+        "fouls": 0,
+        "penaltiesScored": 0,
+        "penaltiesMissed": 0,
+        "rating": 6,
+        "crosses": 0,
+        "crossComplete": 0,
+        "highPasses": 0,
+        "highComplete": 0,
+        "headers": 0,
+        "headerPasses": 0,
+        "volleys": 0,
+        "aerialDuels": 0,
+        "aerialWon": 0,
+        "slideAttempts": 0,
+        "slideWon": 0,
+        "shotGoals": 0,
+        "nonShotGoals": 0,
+        "shotConceded": 1,
+        "nonShotConceded": 0,
+        "shotsInterrupted": 0,
+        "savesCaught": 0,
+        "savesParried": 1
+      },
+      "score": [
+        1,
+        0
+      ]
+    }
+  ],
+  "errors": [],
+  "physicsHz": 20,
+  "renderHz": 60,
+  "gpuDrawSkippedDuringMeasurements": true
+}

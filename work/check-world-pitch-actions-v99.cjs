@@ -20,15 +20,20 @@ const setup=vm.runInNewContext(source.slice(source.indexOf('async function setup
    const original=Math.random,values=[.5,.01,.99];Math.random=()=>values.shift()??.99;v55Shoot(shooter);Math.random=original;
    if(!match.flight)throw Error('shot missing');match.flight.progress=.8;match.ball={x:match.flight.x+(match.flight.target.x-match.flight.x)*.8,y:match.flight.y+(match.flight.target.y-match.flight.y)*.8};
    v98CameraPose=null;draw();const before=JSON.stringify(match),visual=v98Players.get(keeper.pid);
-   return {unchanged:before===JSON.stringify(match),height:v98Frame.ball.height,lean:visual.body.rotation.z,keeper:keeper.pid,saves:keeper.stats.saves};
-  });assert(save.height>.7);assert(Math.abs(save.lean)>.3,'goalkeeper dives toward shot');
+   const point=v98PitchPoint(keeper,match.halftimeBreakDone),hip=visual.meshy?.skeleton.bones.find(b=>b.name.endsWith('Hips')).matrixWorld;
+   return {unchanged:before===JSON.stringify(match),height:v98Frame.ball.height,lean:visual.body.rotation.z,keeper:keeper.pid,saves:keeper.stats.saves,action:v99PlayerAction(match,keeper)?.kind,skinOffset:hip?Math.hypot(hip.elements[12]-point.x,hip.elements[14]-point.z):0};
+  });assert(save.height>.7);assert.equal(save.action,'save');assert(save.skinOffset<1.25,'keeper reacts near his starting position');
   await page.locator('#match-area .v42-pitch-stage').screenshot({path:'outputs/world3d-save99.png'});
   const caught=await page.evaluate(()=>{const f=match.flight;match.flight=null;f.done();draw();const k=match.people.find(p=>p.t===1&&p.keeper);return {saves:k.stats.saves,saved:v99PlayerAction(match,k).saved,height:v98Frame.ball.height};});assert.equal(caught.saves,save.saves+1);assert(caught.saved);
   await page.evaluate(()=>{step(.78*.5,.5);draw();});
   const overhead=await page.evaluate(()=>{
+   // Independent throw fixture: a preceding parry may already have produced a corner.
+   hideOverlay();Object.assign(match,{setPiece:null,flight:null,rebound:null,kickoff:null,goalPause:0,goalScene:null});
    const taker=match.people.find(p=>p.t===0&&!p.keeper);taker.x=v55Field.left;taker.y=.4;match.owner=null;match.ball={x:taker.x,y:taker.y};match.throwIn={team:0,taker,spot:{x:taker.x,y:taker.y},ready:.3};draw();
-   return {height:v98Frame.ball.height,arms:v98Players.get(taker.pid).limbs[1].rotation.x};
-  });assert(overhead.height>2.5);assert(overhead.arms<-2.5);
+   v102Frames.at-=1000;v98Render();const visual=v98Players.get(taker.pid),point=v98PitchPoint(taker,match.halftimeBreakDone),center=new THREE.Vector3(point.x,2.62,point.z),hands=[];
+   if(visual.meshy){visual.root.updateMatrixWorld(true);const mesh=visual.meshy.meshes[0],skin=mesh.geometry.attributes.skinIndex,weights=mesh.geometry.attributes.skinWeight,vertex=new THREE.Vector3();for(const side of ['Left','Right']){let gap=Infinity;const joints=new Set(visual.meshy.skeleton.bones.map((b,i)=>b.name.includes(side+'Hand')?i:-1).filter(i=>i>=0));for(let i=0;i<skin.count;i++)if([0,1,2,3].some(k=>joints.has(skin.array[i*4+k])&&weights.array[i*4+k]>.2)){mesh.getVertexPosition(i,vertex).applyMatrix4(mesh.matrixWorld);gap=Math.min(gap,vertex.distanceTo(center))}hands.push(gap)}}
+   return {height:v98Frame.ball.height,arms:visual.limbs[1].rotation.x,hands};
+  });assert(overhead.height>2.5,JSON.stringify(overhead));assert(overhead.arms<-2.5,JSON.stringify(overhead));assert(overhead.hands.every(gap=>gap<.1764),'Both hands touch the throw-in ball '+JSON.stringify(overhead));
   await page.locator('#match-area .v42-pitch-stage').screenshot({path:'outputs/world3d-throw-ready99.png'});
   const thrown=await page.evaluate(()=>{v55ThrowStep(.78*.3,.3);if(!match.flight)throw Error('Throw did not release');match.flight.progress=.45;draw();return {height:v98Frame.ball.height,kind:v99Flights.get(match.flight).kind};});assert.equal(thrown.kind,'throw');assert(thrown.height>2);
   await page.locator('#match-area .v42-pitch-stage').screenshot({path:'outputs/world3d-throw-flight99.png'});

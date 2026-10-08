@@ -1,0 +1,192 @@
+{
+  "version": 122,
+  "baseline": true,
+  "date": "2026-10-04T19:05:49.159Z",
+  "remote": [
+    {
+      "axis": "x",
+      "gap": 2.0000000000000018,
+      "owner": "v122-remote",
+      "pose": "control",
+      "free": false
+    },
+    {
+      "axis": "y",
+      "gap": 1.9999999999999976,
+      "owner": "v122-remote",
+      "pose": "control",
+      "free": false
+    }
+  ],
+  "masked": {
+    "owner": null,
+    "nearPose": false,
+    "farPose": false,
+    "free": true
+  },
+  "duels": [
+    {
+      "key": "air",
+      "value": 6,
+      "trials": 400,
+      "won": 143,
+      "attempts": 400
+    },
+    {
+      "key": "air",
+      "value": 18,
+      "trials": 400,
+      "won": 258,
+      "attempts": 400
+    },
+    {
+      "key": "pos",
+      "value": 6,
+      "trials": 400,
+      "won": 180,
+      "attempts": 400
+    },
+    {
+      "key": "pos",
+      "value": 18,
+      "trials": 400,
+      "won": 221,
+      "attempts": 400
+    }
+  ],
+  "clears": [
+    {
+      "team": 0,
+      "value": 6,
+      "speed": 18,
+      "duration": 0.3,
+      "start": {
+        "x": 0.5,
+        "y": 0.5,
+        "elevation": 2.65
+      },
+      "gap": 0
+    },
+    {
+      "team": 0,
+      "value": 18,
+      "speed": 18,
+      "duration": 0.3,
+      "start": {
+        "x": 0.5,
+        "y": 0.5,
+        "elevation": 2.65
+      },
+      "gap": 0
+    },
+    {
+      "team": 1,
+      "value": 6,
+      "speed": 18.000000000000004,
+      "duration": 0.3,
+      "start": {
+        "x": 0.5,
+        "y": 0.5,
+        "elevation": 2.65
+      },
+      "gap": 0
+    },
+    {
+      "team": 1,
+      "value": 18,
+      "speed": 18.000000000000004,
+      "duration": 0.3,
+      "start": {
+        "x": 0.5,
+        "y": 0.5,
+        "elevation": 2.65
+      },
+      "gap": 0
+    }
+  ],
+  "headers": [
+    {
+      "team": 0,
+      "value": 6,
+      "shots": 1,
+      "speed": 14,
+      "height": 2.65,
+      "flightKind": "header"
+    },
+    {
+      "team": 0,
+      "value": 18,
+      "shots": 1,
+      "speed": 13.999999999999998,
+      "height": 2.65,
+      "flightKind": "header"
+    },
+    {
+      "team": 1,
+      "value": 6,
+      "shots": 1,
+      "speed": 13.999999999999996,
+      "height": 2.65,
+      "flightKind": "header"
+    },
+    {
+      "team": 1,
+      "value": 18,
+      "shots": 1,
+      "speed": 13.999999999999996,
+      "height": 2.65,
+      "flightKind": "header"
+    }
+  ],
+  "range": [
+    {
+      "team": 0,
+      "shots": 0,
+      "headerPasses": 1,
+      "kind": "header"
+    },
+    {
+      "team": 1,
+      "shots": 0,
+      "headerPasses": 1,
+      "kind": "header"
+    }
+  ],
+  "plans": [
+    {
+      "team": 0,
+      "target": {
+        "x": 0.5113642666666667,
+        "y": 0.2913642666666667
+      },
+      "assigned": [
+        "v122-cross-attacker",
+        "v122-cross-defender"
+      ],
+      "ready": [
+        "v122-cross-attacker",
+        "v122-cross-defender"
+      ],
+      "seconds": 0.9921354759424005,
+      "height": 2.65
+    },
+    {
+      "team": 1,
+      "target": {
+        "x": 0.5113642666666667,
+        "y": 0.7313642666666667
+      },
+      "assigned": [
+        "v122-cross-attacker",
+        "v122-cross-defender"
+      ],
+      "ready": [
+        "v122-cross-attacker",
+        "v122-cross-defender"
+      ],
+      "seconds": 1.0573906607879593,
+      "height": 2.65
+    }
+  ],
+  "errors": []
+}

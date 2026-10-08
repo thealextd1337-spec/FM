@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-05T13:43:42.937Z",
+  "published": false,
+  "newMeshyCredits": 0,
+  "modelSha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+  "buildSha256": "b20fedc4947806a99c6270a367cb6a32bd5ebc2b55e39e818fcb02740bb5ab11",
+  "sources": {
+    "world-foundation-v61.js": "4b437905c2ec94579a666d86f97bae939182bfc191d7304a4b75a74dc534ddcd",
+    "world-match-ui-v64.js": "d5d383d838994d42a31929029cfa529cb4c934e2eba4eb70615aa6536a71608a",
+    "world-start-v61.css": "87e52c41629d5a037866f76ffaeb481c1a886b546ccd71e1a32448b0d54f7985",
+    "world-physical-v65.js": "80f8002b9ccdcbc243752ea8284b1c88fdbd5dadb7ec0beaaf7e174ff6bdeda8",
+    "pitch-v55.js": "f6c883da1352ac47763da069656a132c06d431f3d3361737b43a163391404e55",
+    "set-pieces-v50.js": "8807a21f65f2b3f5166237611a30318660787caecbf9f543d6bd0bb7731d6d21",
+    "finance-v15.js": "a3d03246eb7c180db5eda9a0fbeb670524ed6d4ca1ead33bdbeea0c351dd92aa",
+    "halftime-v14.js": "ec17cfe0fb06c599be5c7ca7b9a0fc32e56726b0643f3a8c6af77800875785fe",
+    "match-presentation-v74.js": "c51ea7a59c492b5005a12208dfded6f13571cd891c5cfa72c5d3b7e3c2898f9b",
+    "world-backpedal-v108.js": "6421b25e78968ebd6439d68243359c4ac9991ac261cae65116e2daf6b0ed781c",
+    "player-user-motion-v108.js": "52ae08c0722cfedddc67f38163c3bf9ea97176ad0b11f6ab2da97efeee0e5212",
+    "player-user-meshy-v107.js": "d6973b3ced7a4e485c9e5a90155745890c081f8ef6d5db87fd033f6017aad00d",
+    "player-user-ball-actions-v111.js": "430abc25ab23cb0a3673148ba3750a3199c9141a934e10d2bd98289187b5f196",
+    "world-ball-motion-v110.js": "cc67f9e0cbfe2dd34f73d91ab3b59dc131936e1109dbdd36822909ba38e87c9c",
+    "world-goal-replay-v103.js": "e6f59073720a47806eb69ada3cee7a9033c7d7620dda80ac77c79570de7a9e5a",
+    "world-pitch3d-v98.js": "b7ded9314d95dbd2092db2990201397970452c35cf7a0e597b30147a33265298",
+    "world-pitch-actions-v99.js": "67659fb1323c438d1388e04e3dd3a0134d756edbc214791d3a9ea3461dd0b9f8"
+  },
+  "goalCoverageCases": 80,
+  "goalCoverageFlightSeconds": 1.4,
+  "keeperSequences": 7,
+  "keeperHighTrials": 3000,
+  "keeperNormalTrials": 3000,
+  "dribbleSequences": 18,
+  "cornerFormations": 64,
+  "kitContexts": 4512,
+  "minNumberContrast": 5.210104397049007,
+  "nativeMatchFrames": 16701,
+  "nativeMatches": [
+    {
+      "seed": 12345,
+      "score": [
+        1,
+        0
+      ],
+      "frames": 9051,
+      "max": {
+        "engine": 0.774957325230178,
+        "root": 0.34844861629628987,
+        "hips": 0.534031828261807,
+        "ball": 0.7312406096354674,
+        "rawBall": 35.21940069374129
+      }
+    },
+    {
+      "seed": 8721,
+      "score": [
+        0,
+        0
+      ],
+      "frames": 7650,
+      "max": {
+        "engine": 0.3939728711111128,
+        "root": 0.1313242903704097,
+        "hips": 0.33074437702026016,
+        "ball": 0.632419650875771,
+        "rawBall": 32.83502294437948
+      }
+    }
+  ],
+  "pausedReview": true,
+  "sourceOfflineFallback": true,
+  "parityEvidence": "e674f5b886d0a7aeabf593ec8a79f896f245c3830b69c0a5ce41c4ff1cc41e6d",
+  "limits": "Coverage requires sufficient time and reachable starting position; two full-match seeds, no new season balance study. Session-only review, up to ten minutes in landscape 3D."
+}

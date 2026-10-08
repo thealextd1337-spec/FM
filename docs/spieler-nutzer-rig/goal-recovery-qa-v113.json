@@ -1,0 +1,19 @@
+{
+  "rows": [
+    {
+      "team": 0,
+      "motion": "keeper_rise",
+      "handContact": null,
+      "held": false,
+      "finite": true
+    },
+    {
+      "team": 1,
+      "motion": "keeper_rise",
+      "handContact": null,
+      "held": false,
+      "finite": true
+    }
+  ],
+  "unchanged": true
+}

@@ -1,0 +1,39 @@
+{
+  "fixtureSeed": 12345,
+  "fullMatch2D3DParity": true,
+  "simulationStepsPerRun": 2543,
+  "score": [
+    0,
+    0
+  ],
+  "compared": [
+    "timeline",
+    "score",
+    "goals",
+    "events",
+    "substitutions",
+    "statistics",
+    "booked result"
+  ],
+  "forcedGoalAndContactCases": true,
+  "browserGates": [
+    "goal/banner/pause",
+    "offside",
+    "substitutions",
+    "penalties",
+    "halftime",
+    "fulltime",
+    "tablet orientation",
+    "context loss",
+    "leave/storage",
+    "disposal",
+    "offline audio"
+  ],
+  "replayCases": 4,
+  "source": "outputs/user-match-regression.log",
+  "htmlSha256": "5a92557b6b062ddb5ae3b58ea05742b8aa6bdd4677dd0bc56634c4d94ee18a56",
+  "modelSha256": "035fa52973cd25b0d6f80819a5a2403cea6cf2f8a09127ac54e77bf0236de8db",
+  "additionalMeshyCredits": 0,
+  "published": false,
+  "limits": "Headless software WebGL, not a mobile hardware performance or full foot-contact acceptance"
+}

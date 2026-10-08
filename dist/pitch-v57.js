@@ -1,12 +1,14 @@
 // Free-kick players move into a visible restart shape while the banner is shown.
 function v57PositionFreeKick(realDelta){
  const m=match,piece=m?.setPiece;
+ if(m&&typeof v114PositionRestart==='function')v114PositionRestart(m,realDelta);
  if(!piece||!['freeKick','offside'].includes(piece.type)||!['waiting','fading'].includes(piece.phase))return;
  const previousElapsed=piece.positionElapsed||0;
  piece.positionElapsed=previousElapsed+realDelta;
  // Let the full offside snapshot remain still long enough to inspect before players move.
  if(piece.type==='offside'){
   if(piece.positionElapsed<v50OffsideFreezeSeconds)return;
+  if(m.offsideVisual&&typeof v65WorldActive!=='undefined'&&v65WorldActive)v115OffsideBalls.set(m,{piece,start:{...m.ball},at:v102Clock(m)});
   m.offsideVisual=null;
   realDelta=Math.max(0,piece.positionElapsed-Math.max(previousElapsed,v50OffsideFreezeSeconds));
  }
@@ -27,7 +29,9 @@ function v57PositionFreeKick(realDelta){
   y:clamp(spot.y+forward*{def:.24,mid:.12,att:-.09}[line(player)],.1,.9)
  }));
  const fraction=Math.min(1,realDelta*3.4);
- for(const[player,target]of targets){player.x+=(target.x-player.x)*fraction;player.y+=(target.y-player.y)*fraction;player.tx=player.x;player.ty=player.y}
+ const world=typeof v65WorldActive!=='undefined'&&v65WorldActive;
+ for(const[player,target]of targets){if(typeof v113FoulLocked==='function'&&v113FoulLocked(m,player))continue;const foul=typeof v113Fouls!=='undefined'&&v113Fouls.get(m)?.piece===piece;if(world||foul)v55Approach(player,target,realDelta*(foul?.6:1));else{player.x+=(target.x-player.x)*fraction;player.y+=(target.y-player.y)*fraction;player.tx=player.x;player.ty=player.y}}
+ if(world){const remaining=Math.max(...[...targets].map(([p,t])=>Math.hypot((t.x-p.x)*44/(v55Field.right-v55Field.left),(t.y-p.y)*68/(v55Field.bottom-v55Field.top))/(3+ability(p,'spd')*.14)));if(remaining>.05)piece.wait=Math.max(piece.wait,remaining+.15);}
  if(piece.type==='offside')m.ball={...spot};
 }
 const v57BaseStep=step;

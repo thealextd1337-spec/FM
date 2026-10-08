@@ -1,0 +1,52 @@
+{
+  "rig": {
+    "meshes": [
+      {
+        "vertices": 9725,
+        "joints": 28
+      }
+    ],
+    "maxWeightError": 4.563480615615845e-8,
+    "unweightedVertices": 0,
+    "invalidJointReferences": 0,
+    "clip": "walking",
+    "duration": 1.0333333015441895
+  },
+  "deformation": [
+    {
+      "name": "walking",
+      "samples": 33,
+      "finite": true,
+      "maxMovementMetres": 1.0823265635597534,
+      "minY": 0.011353316510721358,
+      "maxY": 1.8298163887469157,
+      "restPoseRestorationErrorMetres": 0
+    },
+    {
+      "name": "running",
+      "samples": 33,
+      "finite": true,
+      "maxMovementMetres": 1.2134440162316875,
+      "minY": 0.004469731903655826,
+      "maxY": 1.8102178637982334,
+      "restPoseRestorationErrorMetres": 0
+    },
+    {
+      "name": "gesture",
+      "samples": 33,
+      "finite": true,
+      "maxMovementMetres": 1.206893329835944,
+      "minY": -0.015018146855125897,
+      "maxY": 2.2017976819371805,
+      "restPoseRestorationErrorMetres": 0
+    }
+  ],
+  "sourcePreserved": true,
+  "downloadByteEqual": true,
+  "combinedDownloadByteEqual": true,
+  "sha256": "a7601baa52e60dae4f21758610f00e338e7d887eacd1d37a834945f14dfcb903",
+  "errors": [],
+  "bindingWarnings": [],
+  "remoteRequests": 0,
+  "hardware": "Headless Edge software WebGL; physical mobile performance untested"
+}

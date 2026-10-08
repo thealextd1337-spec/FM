@@ -1,6 +1,6 @@
 const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
 const source=fs.readFileSync('dist/world-pitch3d-v98.js','utf8');
-const context=vm.createContext({v55Field:{left:28/600,right:572/600,top:26/740,bottom:714/740},v83GoalPosition:()=>({x:.53,y:9/740,height:6})});
+const context=vm.createContext({v55Field:{left:28/600,right:572/600,top:26/740,bottom:714/740},v99Actions:new WeakMap(),v102Clock:()=>0,v83GoalSceneDuration:4.05,v83GoalPosition:()=>({x:.53,y:9/740,height:6})});
 vm.runInContext(source.slice(0,source.indexOf('const v98Style=')),context);
 const pitchSource=fs.readFileSync('dist/pitch-v55.js','utf8');vm.runInContext(pitchSource.slice(pitchSource.indexOf('function v55OffsideSignal('),pitchSource.indexOf('function v55DrawAssistantReferee(')),context);
 const point=vm.runInContext('v98PitchPoint',context),frame=vm.runInContext('v98PitchFrame',context);
@@ -8,7 +8,7 @@ const near=(actual,expected)=>assert(Math.abs(actual-expected)<1e-9,`${actual} !
 near(point({x:28/600,y:26/740}).x,34);near(point({x:28/600,y:26/740}).z,-22);
 near(point({x:572/600,y:714/740}).x,-34);near(point({x:572/600,y:714/740}).z,22);
 near(point({x:.5,y:.5}).x,0);near(point({x:.5,y:.5}).z,0);
-const person={pid:'p1',x:.3,y:.7,t:0,n:8,keeper:false},match={elapsed:10,people:[person],ball:{x:.53,y:.2},owner:person,flight:{aerial:true,progress:.5},offsideVisual:{x:.3,y:.7,lineY:.6}};
+const person={pid:'p1',x:.3,y:.7,t:0,n:8,keeper:false},match={elapsed:10,goals:[],people:[person],ball:{x:.53,y:.2},owner:person,flight:{aerial:true,progress:.5},offsideVisual:{x:.3,y:.7,lineY:.6}};
 const before=JSON.stringify(match),first=frame(match);assert.equal(JSON.stringify(match),before,'projection does not alter physical match');
 for(const [elapsed,pose]of [[0,'raised'],[1,'far'],[1.5,'middle']]){match.setPiece={positionElapsed:elapsed};assert.equal(frame(match).offside.signal.pose,pose,'uses existing referee signal sequence');}
 assert.equal(first.owner,'p1');assert.equal(first.players[0].id,'p1');near(first.ball.height,5.63);

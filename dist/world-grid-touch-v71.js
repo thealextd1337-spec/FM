@@ -3,8 +3,8 @@
 // Touchbedienung für dasselbe Raster vor Anpfiff und in der Spielpause.
 let v71Pointer=null,v71NativeDrag=null,v71ScrollFrame=0,v71SuppressClickUntil=0;
 function v71DragSource(target){
- const career=target.closest?.('#v61-world-screen [data-v64-career-bench-card]');
- if(career&&!v61CurrentCareer?.world.activeMatch&&v64CareerPlanTab==='lineup')return{mode:'career',source:{pid:career.dataset.v64CareerBenchCard,keeper:career.dataset.v64CareerKeeper==='true'},element:career};
+ const career=v64CareerDragSource(target);
+ if(career)return{mode:'career',...career};
  const before=target.closest?.('#v61-world-screen [data-v64-pick-slot],#v61-world-screen [data-v64-bench-card]');
  if(before){
   if(before.classList.contains('v64-keeper-choice'))return null;
@@ -22,13 +22,13 @@ function v71DragSource(target){
 }
 function v71Target(x,y){
  const element=document.elementFromPoint(x,y);
- return element?.closest?.('[data-v64-career-slot],[data-v64-cell],[data-v64-pick-slot],[data-v64-bench-card],[data-v65-pick-slot],[data-v65-bench-card]')||null;
+ return element?.closest?.('[data-v64-career-slot],[data-v64-career-bench-card],[data-v64-cell],[data-v64-pick-slot],[data-v64-bench-card],[data-v65-pick-slot],[data-v65-bench-card]')||null;
 }
 function v71Highlight(){
  document.querySelectorAll('.v64-drag-over').forEach(element=>element.classList.remove('v64-drag-over'));
  if(!v71Pointer?.dragging)return;
  const target=v71Target(v71Pointer.x,v71Pointer.y);
- if(target)target.classList.add('v64-drag-over');
+ if(target&&(v71Pointer.mode!=='career'||v64CareerCanDrop(v71Pointer.source,target)))target.classList.add('v64-drag-over');
 }
 function v71Scroll(){
  v71ScrollFrame=0;const drag=v71Pointer?.dragging?v71Pointer:v71NativeDrag;if(!drag)return;
@@ -69,8 +69,8 @@ document.addEventListener('pointermove',event=>{
  const drag=v71Pointer;if(!drag||drag.id!==event.pointerId)return;
  const dx=Math.abs(event.clientX-drag.startX),dy=Math.abs(event.clientY-drag.startY);
  if(!drag.dragging){
-  if(dy>=12&&dy>dx*1.25){v71Clear();return}
-  if(dx<20||dx<=dy*1.4)return;
+  if(drag.mode==='career'&&drag.source.kind==='field'){if(Math.hypot(dx,dy)<12)return}
+  else{if(dy>=12&&dy>dx*1.25){v71Clear();return}if(dx<20||dx<=dy*1.4)return}
   drag.dragging=true;drag.element.classList.add('v71-dragging');
   const ghost=document.createElement('div');ghost.id='v71-ghost';ghost.className='drag-ghost';ghost.textContent=drag.element.querySelector('.player-label,.bench-title,.v64-keeper-choice')?.textContent?.trim()||'Spieler';document.body.append(ghost);
   v71ScrollFrame=requestAnimationFrame(v71Scroll);
@@ -91,6 +91,7 @@ document.addEventListener('pointerup',event=>{
  v71Clear();
 });
 document.addEventListener('pointercancel',event=>{if(v71Pointer?.id===event.pointerId)v71Clear()});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&v71Pointer)v71Clear()});
 document.addEventListener('click',event=>{
  if(Date.now()<v71SuppressClickUntil&&event.target.closest?.('[data-v64-career-slot],[data-v64-career-bench-card],[data-v64-cell],[data-v64-bench-card],[data-v65-bench-card]')){event.preventDefault();event.stopImmediatePropagation()}
 },true);

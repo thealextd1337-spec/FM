@@ -1,0 +1,104 @@
+{
+  "version": 121,
+  "date": "2026-10-04T18:54:52.299Z",
+  "published": false,
+  "footer": 105,
+  "credits": 0,
+  "offline": {
+    "file": "outputs/Doppel-6-Fussballmanager.html",
+    "bytes": 49897331,
+    "sha256": "35b1ec7f8bd1e507608b457d2182b6a45a264666428929557c33d9588fa54988"
+  },
+  "previousBuildSha256": "d68d895e1a6bebc089a26e3d9da992274ff93bf25d15b93e1b9ff6d8082139c6",
+  "modelSha256": "39eee0c85c05a93496d1679330c0fcd81a9f5f87d8ad13876c61d29cb3a09cb2",
+  "changedFiles": [
+    "dist/game.js",
+    "dist/pitch-v55.js",
+    "dist/world-backpedal-v108.js",
+    "dist/player-user-motion-v108.js",
+    "dist/player-user-ball-actions-v111.js",
+    "dist/player-user-meshy-v107.js",
+    "dist/world-pitch3d-v98.js",
+    "dist/pitch-motion-v102.js"
+  ],
+  "sourceHashes": {
+    "dist/game.js": "4f816570ca29028a1ba5b1cfa0ccf05aff0cfa140159a5699b1e1dc91f8c15a5",
+    "dist/pitch-v55.js": "89dad037c156921587a946d515abdb8fa7118850aeb8c46ba47840bb810c17a0",
+    "dist/world-backpedal-v108.js": "5ff2466860e2569ec6fa20380aced07345c9a4d656ae12009a489c5d40850442",
+    "dist/player-user-motion-v108.js": "39dc95da5deb92b1fd2c052875e9f23ee106916f3198055ba1bbc7e422be9cc7",
+    "dist/player-user-ball-actions-v111.js": "b6c9cafdd19f0ad38d7058e40d91b7c9ba49e32f14b3f9cd070cc4764bab06f7",
+    "dist/player-user-meshy-v107.js": "fe3bee4e677e824ddacbadb006c73f52c22d1748981d37fd6e0235810bf190ff",
+    "dist/world-pitch3d-v98.js": "699e0ea1d380fe00ed3110c2943deb57d0f29e99f555ca76b759264d2319121f",
+    "dist/pitch-motion-v102.js": "9fbf566516e9d7390ad8206600ee26ba748231f57172178c53614860ee57b6b2"
+  },
+  "evidenceHashes": {
+    "docs/spieler-nutzer-rig/positioning-baseline-v121.json": "12e323225a0c8928ce77ca3a999bbf90ce70b8e3c451c1193c8d9724bf998426",
+    "docs/spieler-nutzer-rig/positioning-qa-v121.json": "757e26d3ff693f63726672d6aac1b7f38c1e9fb8ed23f9eb8e219437d16ecc09",
+    "docs/spieler-nutzer-rig/pursuit-animation-baseline-v121.json": "3736d59812b5d339638de30561fb8776cb5b3636c26d9c90671cf368b25ef989",
+    "docs/spieler-nutzer-rig/pursuit-animation-qa-v121.json": "f42e5426a53a8546e1b58e3ae5eda56a549af122903d952851d1aba21bc437a1",
+    "docs/spieler-nutzer-rig/warping-initial-v121.json": "97d7cee375fbf1c3300c6f74730952b4068503cd4554711bfe5ae8557fe9033e",
+    "docs/spieler-nutzer-rig/warping-intermediate-v121.json": "0c5cc46c1248a518094436d361ee71180b559e6897c16ece1d92d565ca8e297f",
+    "docs/spieler-nutzer-rig/warping-qa-v121.json": "f243a51e3e21d281f94172bd656686d96e0b7461164e1a12019d40f58efb4dff",
+    "docs/spieler-nutzer-rig/warping-foul-diagnosis-v121.json": "35a9b9e6c176130554b1ae7b157799aec2ec7bbd5b922405725569ce9806bb41",
+    "docs/spieler-nutzer-rig/warping-block-diagnosis-v121.json": "1f5f53043daa9d3170674a95803ea70c4be0d2180932cdf96bfe56b95c970f4c",
+    "docs/spieler-nutzer-rig/ball-actions-qa-v121.json": "4ecfa50304f30814756fbee80a41942b1fef4a639d629aba176bff2dacd90697",
+    "docs/spieler-nutzer-rig/keeper-scenarios-qa-v121.json": "f110749f86954cfd11a2f9fab45f3b7934b9c6213bbf894b53f71c3aa6f59c5d",
+    "docs/spieler-nutzer-rig/keeper-visual-qa-v121.json": "10e4db9df9adcc6df6d992ac1df3ace866fe1b6b7bad8cdffada7d190a4a9539"
+  },
+  "regressionHashes": {
+    "outputs/world3d-parity.json": "87c94da431e13aa6dbd1e5087cb80d1be3b8707d76d22bba90284452cf971153"
+  },
+  "gates": {
+    "uniqueMarking": true,
+    "tacticalLinesAndPossession": true,
+    "forwardPursuitAtNativePace": true,
+    "attributeDependentRunsAndSquarePasses": true,
+    "releaseMomentAndStandardExemption": true,
+    "animationCases": 12,
+    "physicsSteps": 6089,
+    "renderedFrames": 18261,
+    "completedWarpingMatches": 2,
+    "noThresholdViolations": true,
+    "pauseAndReadOnlyRendering": true,
+    "keeperRegression": true,
+    "nativeBallContacts": true,
+    "regular2d3dParity": true
+  },
+  "warping": [
+    {
+      "seed": 12345,
+      "score": [
+        0,
+        1
+      ],
+      "max": {
+        "engine": 0.38185152053333393,
+        "root": 0.4166384351789748,
+        "hips": 0.5154434573979975,
+        "ball": 0.9373656833068735,
+        "rawBall": 35.85478594307322
+      },
+      "counts": {
+        "rawBall": 4
+      }
+    },
+    {
+      "seed": 8721,
+      "score": [
+        1,
+        0
+      ],
+      "max": {
+        "engine": 0.3759176214219491,
+        "root": 0.44970840092380493,
+        "hips": 0.5216018249916546,
+        "ball": 0.959279529238002,
+        "rawBall": 35.21368999865313
+      },
+      "counts": {
+        "rawBall": 9
+      }
+    }
+  ],
+  "limitations": "Fixed scenes and two full recorded matches; no new general match-balance study or hardware performance proof. Raw ball resets at hidden restarts recorded separately. Replays checked by the regular browser gate. Simple body separation remains; compact parallel-match simulation unchanged."
+}

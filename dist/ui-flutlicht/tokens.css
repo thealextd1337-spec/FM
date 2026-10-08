@@ -1,0 +1,38 @@
+/* Flutlicht: the approved reference palette, scoped to the career surface. */
+.fl-shell,.fl-dialog,.fl-tooltip,.fl-match {
+  color-scheme:light;
+  --fl-paper:#f1f3f5;--fl-surface:#fff;--fl-ink:#202a35;--fl-muted:#556372;
+  --fl-line:#d3dae1;--fl-frame:#fff;--fl-accent:#7d5516;--fl-gold:#f0c46e;
+  --fl-nav:#4c5b6c;--fl-nav-hover:#e9edf2;--fl-control:#fff;--fl-control-line:#8190a1;
+  --fl-hover:#e7edf3;--fl-subtle:#f5f7f9;--fl-fixture:#faf4e7;--fl-tint:#fbf0d9;
+  --fl-notice:#eaf0f5;--fl-notice-ink:#435c70;--fl-warning:#fcf0d8;--fl-warning-ink:#745318;
+  --fl-success:#e6f0e8;--fl-success-ink:#315a3e;--fl-neutral:#e9edf2;--fl-neutral-ink:#4b5a6b;
+  --fl-alert:#f9e6e9;--fl-alert-ink:#8b3546;--fl-track:#d6dfe7;
+  --fl-violetgray:#a398b8;--fl-violetgray-ink:#64536f;--fl-bluegray:#91aec4;--fl-bluegray-ink:#385b76;
+  --fl-yellow:#e9cf59;--fl-yellow-ink:#725800;--fl-orange:#f3a14a;--fl-orange-ink:#934908;
+  --fl-pink:#f26bb5;--fl-pink-ink:#a4296c;
+  --fl-radius:10px;--fl-font:"Segoe UI",Arial,sans-serif;
+  --fl-space-1:4px;--fl-space-2:8px;--fl-space-3:12px;--fl-space-4:16px;--fl-space-5:24px;--fl-space-6:32px;
+  color:var(--fl-ink);font-family:var(--fl-font);font-size:16px;line-height:1.5;
+  scrollbar-color:#7b8a9c var(--fl-paper);accent-color:var(--fl-accent);caret-color:var(--fl-accent);
+}
+.fl-shell[data-fl-theme=dark],.fl-dialog[data-fl-theme=dark],.fl-tooltip[data-fl-theme=dark],.fl-match[data-fl-theme=dark] {
+  color-scheme:dark;
+  --fl-paper:#11151a;--fl-surface:#1b2129;--fl-ink:#edf0f3;--fl-muted:#acb7c4;
+  --fl-line:#36414e;--fl-frame:#15191e;--fl-accent:#f0c46e;
+  --fl-nav:#bdc7d2;--fl-nav-hover:#2d3743;--fl-control:#222b35;--fl-control-line:#647385;
+  --fl-hover:#344352;--fl-subtle:#212933;--fl-fixture:#252f3a;--fl-tint:#263746;
+  --fl-notice:#293642;--fl-notice-ink:#d2e0eb;--fl-warning:#483c23;--fl-warning-ink:#f2d79e;
+  --fl-success:#31413b;--fl-success-ink:#c3e5c9;--fl-neutral:#343e4a;--fl-neutral-ink:#d8e0e8;
+  --fl-alert:#503038;--fl-alert-ink:#f6c2cd;--fl-track:#46505c;
+  --fl-violetgray-ink:#a398b8;--fl-bluegray-ink:#91aec4;--fl-yellow-ink:#e9cf59;
+  --fl-orange-ink:#f3a14a;--fl-pink-ink:#f26bb5;
+  scrollbar-color:#77899b var(--fl-paper);
+}
+.fl-shell ::selection,.fl-dialog ::selection{background:var(--fl-gold);color:#15191e}
+.fl-band-violetgray{--fl-band:var(--fl-violetgray);--fl-band-ink:var(--fl-violetgray-ink)}
+.fl-band-bluegray{--fl-band:var(--fl-bluegray);--fl-band-ink:var(--fl-bluegray-ink)}
+.fl-band-yellow{--fl-band:var(--fl-yellow);--fl-band-ink:var(--fl-yellow-ink)}
+.fl-band-orange{--fl-band:var(--fl-orange);--fl-band-ink:var(--fl-orange-ink)}
+.fl-band-pink{--fl-band:var(--fl-pink);--fl-band-ink:var(--fl-pink-ink)}
+.fl-band-unknown{--fl-band:var(--fl-muted);--fl-band-ink:var(--fl-muted)}

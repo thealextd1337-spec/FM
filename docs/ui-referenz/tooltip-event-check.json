@@ -1,0 +1,14 @@
+{
+  "method": "Actual tooltip handlers in Node VM with a minimal DOM fixture. Native browser tap, keyboard focus and Escape checked separately.",
+  "passed": 8,
+  "checks": [
+    "Mouseover shows explanation",
+    "Pointer leaving dismisses",
+    "Touch pointerover does not open",
+    "Keyboard focus opens",
+    "Tap after focus stays open",
+    "Second tap closes",
+    "Escape dismisses",
+    "Resize dismisses"
+  ]
+}

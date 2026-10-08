@@ -40,8 +40,8 @@ step=function(delta,realDelta){
    const baseline=half?(m.firstHalfEnd||37.5)+37.5:37.5;
    if(paused&&m.elapsed<baseline){m.stoppageLost[half]+=Math.max(0,realDelta)*(m.throwIn?.82:1);m.addedMinutes[half]=Math.min(5,Math.round(m.stoppageLost[half]*.45))}
   }
-  m.firstHalfEnd=37.5+m.addedMinutes[0]*v74MinuteSeconds;
-  m.fullTimeEnd=m.whistleAttackUntil||75+(m.addedMinutes[0]+m.addedMinutes[1])*v74MinuteSeconds;
+  m.firstHalfEnd=37.5+m.addedMinutes[0]*v74MinuteSeconds+(m.halftimeExtension||0);
+  m.fullTimeEnd=m.whistleAttackUntil||75+(m.addedMinutes[0]+m.addedMinutes[1])*v74MinuteSeconds+(m.halftimeExtension||0);
  }
  const result=v74BaseStep(delta,realDelta);
  if(m&&!m.finished){

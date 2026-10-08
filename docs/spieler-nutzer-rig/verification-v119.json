@@ -1,0 +1,49 @@
+{
+  "version": 119,
+  "date": "2026-10-04T17:30:57.197Z",
+  "published": false,
+  "footer": "PROTOTYP 105",
+  "credits": 0,
+  "offline": {
+    "sha256": "76dda23f031efa7cc8c1b5ac3301f67b45354b990b369efc361236267ef26048",
+    "bytes": 49891640
+  },
+  "engineHashManifest": "moderate-gaps-engine-v118.json",
+  "gates": {
+    "completePhysicalGames": 300,
+    "groups": 10,
+    "gamesPerGroup": 30,
+    "balancedVenues": true,
+    "singleAttributeIsolation": true,
+    "frozenOpponent": true,
+    "shotAndKeeperIntegrity": true,
+    "linkedEvents": 16738,
+    "observedShots": 2758,
+    "bookedAndReportLedgerMatch": true,
+    "nativeSceneCases": 10,
+    "abilities": 9,
+    "nativeAllPassed": true,
+    "unchangedOfflineAndSource": true,
+    "prior2d3dOfflineVerification": "verification-v118.json"
+  },
+  "exploratory": {
+    "primaryDirectionalIntervals": 7,
+    "uncertainPrimaryIntervals": [
+      "pos",
+      "gk"
+    ],
+    "pointOutcomePositiveIntervals": [
+      "fin"
+    ],
+    "multipleComparisonCorrection": false
+  },
+  "evidenceHashes": {
+    "single-attributes-protocol-v119.json": "03b7ff77b46d71024b20d7776323d94b589b86ed15dcad692a81ae6183eae946",
+    "single-attributes-300-v119.json": "44cc0dfed2b036e88459b60188bc6a090f1f1c2c1cadadc061ea5f6e3ec8de50",
+    "single-attributes-summary-v119.json": "cf39fe200593628bf874134f668ced48828e3b5720a266ceda5adb61555acafb",
+    "single-attributes-native-v119.json": "6debd4f966fb0f6eb1f6c657773e822eb98ba1a69fe12f6e2320aa7377d96f71",
+    "single-attributes-300-v119.csv": "7d662f2a2313dc6f2992e02215b16ee099862d57908fdc47927bf10a28083ca5",
+    "single-attributes-v119.md": "167b4c4dc3f7c4901cb7a9410c4b31eade1cdac8cbc18b763e9d5c4cf44b021c"
+  },
+  "scope": "Single-attribute team experiments and native mechanisms; no ability reweighting, visuals, new assets, old-save changes or publication."
+}

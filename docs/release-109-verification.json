@@ -1,0 +1,2067 @@
+{
+  "preflight": {
+    "version": 109,
+    "rows": [
+      {
+        "command": "work/build.cjs",
+        "exit": 0,
+        "seconds": 9.421
+      },
+      {
+        "command": "work/check-release-tests-v108.cjs",
+        "exit": 0,
+        "seconds": 216.053
+      },
+      {
+        "command": "work/generate-user-meshy-match.cjs",
+        "exit": 0,
+        "seconds": 0.519
+      },
+      {
+        "command": "work/check-halftime-fullscreen-v136.cjs",
+        "exit": 0,
+        "seconds": 9.209
+      },
+      {
+        "command": "work/run-fullscreen-regression-v136.cjs",
+        "exit": 0,
+        "seconds": 10.299
+      },
+      {
+        "command": "work/run-halftime-parity-v136.cjs",
+        "exit": 0,
+        "seconds": 48.363
+      }
+    ],
+    "bytes": 50185079,
+    "sha256": "bc787921bf355ebb39d22968018b2e62840e78a8fb0f8958cd81b957e2c09210",
+    "sourceBuildMatch": true
+  },
+  "baseline": {
+    "baseline": true,
+    "cases": [
+      {
+        "scenario": {
+          "native": true,
+          "fullscreen": true,
+          "language": "de",
+          "portrait": false
+        },
+        "half": {
+          "fullscreen": true,
+          "native": true,
+          "phase": "paused",
+          "running": false,
+          "half": 2,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": true,
+          "tab": "tactics",
+          "view": "3d"
+        },
+        "tacticsVisible": true
+      }
+    ],
+    "cleanup": false,
+    "errors": []
+  },
+  "halftime": {
+    "baseline": false,
+    "cases": [
+      {
+        "scenario": {
+          "native": true,
+          "fullscreen": true,
+          "language": "de",
+          "portrait": false
+        },
+        "half": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "paused",
+          "running": false,
+          "half": 2,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": true,
+          "tab": "tactics",
+          "view": "3d"
+        },
+        "resumed": {
+          "fullscreen": true,
+          "native": true,
+          "phase": "live",
+          "running": true,
+          "half": 0,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": false,
+          "tab": "tactics",
+          "view": "3d"
+        }
+      },
+      {
+        "scenario": {
+          "native": false,
+          "fullscreen": true,
+          "language": "en",
+          "portrait": false
+        },
+        "half": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "paused",
+          "running": false,
+          "half": 2,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": true,
+          "tab": "tactics",
+          "view": "3d"
+        },
+        "resumed": {
+          "fullscreen": true,
+          "native": false,
+          "phase": "live",
+          "running": true,
+          "half": 0,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": false,
+          "tab": "tactics",
+          "view": "3d"
+        }
+      },
+      {
+        "scenario": {
+          "native": false,
+          "fullscreen": true,
+          "language": "de",
+          "portrait": true
+        },
+        "half": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "paused",
+          "running": false,
+          "half": 2,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": true,
+          "tab": "tactics",
+          "view": "2d"
+        },
+        "resumed": {
+          "fullscreen": true,
+          "native": false,
+          "phase": "live",
+          "running": true,
+          "half": 0,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": false,
+          "tab": "tactics",
+          "view": "2d"
+        }
+      },
+      {
+        "scenario": {
+          "native": true,
+          "fullscreen": false,
+          "language": "de",
+          "portrait": false
+        },
+        "half": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "paused",
+          "running": false,
+          "half": 2,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": true,
+          "tab": "tactics",
+          "view": "3d"
+        },
+        "resumed": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "live",
+          "running": true,
+          "half": 0,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": false,
+          "tab": "tactics",
+          "view": "3d"
+        }
+      },
+      {
+        "scenario": {
+          "native": false,
+          "fullscreen": true,
+          "exitBeforeHalf": true,
+          "language": "en",
+          "portrait": false
+        },
+        "half": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "paused",
+          "running": false,
+          "half": 2,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": true,
+          "tab": "tactics",
+          "view": "3d"
+        },
+        "resumed": {
+          "fullscreen": false,
+          "native": false,
+          "phase": "live",
+          "running": true,
+          "half": 0,
+          "elapsed": 37.5,
+          "score": [
+            2,
+            1
+          ],
+          "tactics": false,
+          "tab": "tactics",
+          "view": "3d"
+        }
+      }
+    ],
+    "cleanup": true,
+    "errors": []
+  },
+  "fullscreen": {
+    "native": {
+      "native": "match-area",
+      "active": true,
+      "area": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390
+      },
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390
+      },
+      "tv": {
+        "x": 8,
+        "y": 8,
+        "width": 182.234375,
+        "height": 65
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390
+      },
+      "buttons": [
+        {
+          "label": "Vollbild verlassen",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Fortsetzen",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "clock": "14:24",
+      "score": "2 : 1",
+      "kind": "Ligaspiel",
+      "overflow": false,
+      "viewport": [
+        844,
+        390
+      ],
+      "mode": "3d"
+    },
+    "views": [
+      {
+        "active": true,
+        "area": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "tv": {
+          "x": 8,
+          "y": 8,
+          "width": 182.234375,
+          "height": 65
+        },
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "buttons": [
+          {
+            "label": "Vollbild verlassen",
+            "width": 44,
+            "height": 44
+          },
+          {
+            "label": "Fortsetzen",
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "clock": "14:24",
+        "score": "2 : 1",
+        "kind": "Ligaspiel",
+        "overflow": false,
+        "viewport": [
+          844,
+          390
+        ],
+        "mode": "3d",
+        "language": "de"
+      },
+      {
+        "active": true,
+        "area": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "tv": {
+          "x": 8,
+          "y": 8,
+          "width": 182.234375,
+          "height": 65
+        },
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "buttons": [
+          {
+            "label": "Exit fullscreen",
+            "width": 44,
+            "height": 44
+          },
+          {
+            "label": "Resume",
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "clock": "14:24",
+        "score": "2 : 1",
+        "kind": "League match",
+        "overflow": false,
+        "viewport": [
+          844,
+          390
+        ],
+        "mode": "3d",
+        "language": "en"
+      },
+      {
+        "active": true,
+        "area": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "tv": {
+          "x": 8,
+          "y": 8,
+          "width": 182.234375,
+          "height": 66.25
+        },
+        "canvas": {
+          "x": 0,
+          "y": 181.5,
+          "width": 390,
+          "height": 481
+        },
+        "buttons": [
+          {
+            "label": "Vollbild verlassen",
+            "width": 44,
+            "height": 44
+          },
+          {
+            "label": "Fortsetzen",
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "clock": "14:24",
+        "score": "2 : 1",
+        "kind": "Ligaspiel",
+        "overflow": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "mode": "2d",
+        "language": "de"
+      },
+      {
+        "active": true,
+        "area": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 844
+        },
+        "tv": {
+          "x": 8,
+          "y": 8,
+          "width": 182.234375,
+          "height": 66.25
+        },
+        "canvas": {
+          "x": 0,
+          "y": 181.5,
+          "width": 390,
+          "height": 481
+        },
+        "buttons": [
+          {
+            "label": "Exit fullscreen",
+            "width": 44,
+            "height": 44
+          },
+          {
+            "label": "Resume",
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "clock": "14:24",
+        "score": "2 : 1",
+        "kind": "League match",
+        "overflow": false,
+        "viewport": [
+          390,
+          844
+        ],
+        "mode": "2d",
+        "language": "en"
+      },
+      {
+        "active": true,
+        "area": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "tv": {
+          "x": 8,
+          "y": 8,
+          "width": 182.234375,
+          "height": 65
+        },
+        "canvas": {
+          "x": 181.5,
+          "y": 0,
+          "width": 481,
+          "height": 390
+        },
+        "buttons": [
+          {
+            "label": "Exit fullscreen",
+            "width": 44,
+            "height": 44
+          },
+          {
+            "label": "Resume",
+            "width": 44,
+            "height": 44
+          }
+        ],
+        "clock": "14:24",
+        "score": "2 : 1",
+        "kind": "League match",
+        "overflow": false,
+        "viewport": [
+          844,
+          390
+        ],
+        "mode": "2d"
+      }
+    ],
+    "historical": {
+      "active": true,
+      "area": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390
+      },
+      "stage": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390
+      },
+      "tv": {
+        "x": 8,
+        "y": 8,
+        "width": 182.234375,
+        "height": 65
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390
+      },
+      "buttons": [
+        {
+          "label": "Vollbild verlassen",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Fortsetzen",
+          "width": 44,
+          "height": 44
+        }
+      ],
+      "clock": "01:48",
+      "score": "0 : 0",
+      "kind": "Ligaspiel",
+      "overflow": false,
+      "viewport": [
+        844,
+        390
+      ],
+      "mode": "3d"
+    },
+    "pauseResume": true,
+    "cleanup": true,
+    "matchUnchangedOnFullscreen": true,
+    "errors": []
+  },
+  "parity": {
+    "matched": true,
+    "twoD": {
+      "frames": 2508,
+      "timeline": [
+        "{\"elapsed\":0,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":0,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":0.6630000000000004,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":1.832999999999999,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":3.0030000000000023,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":4.1730000000000045,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":5.3429999999999955,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":6.512999999999987,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":7.682999999999978,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":8.85299999999997,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":10.02299999999996,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":11.192999999999952,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":12.362999999999943,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":13.532999999999934,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":14.702999999999925,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":15.872999999999916,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":17.042999999999953,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":18.212999999999997,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":19.38300000000004,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":20.553000000000086,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":21.72300000000013,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":22.893000000000175,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":24.06300000000022,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":25.233000000000263,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":26.403000000000308,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":27.573000000000352,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":28.743000000000396,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":29.91300000000044,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":31.083000000000485,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":32.253000000000526,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":33.42300000000057,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":34.593000000000615,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":35.76300000000066,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":36.9330000000007,\"score\":[0,0],\"goals\":0,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":37.5,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":37.96800000000002,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":39.13800000000006,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":40.308000000000106,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":41.47800000000015,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":42.648000000000195,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":43.81800000000024,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":44.988000000000284,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":45.88500000000032,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":45.88500000000032,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":45.88500000000032,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":45.88500000000032,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":45.88500000000032,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":45.88500000000032,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":46.70400000000035,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":47.87400000000039,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":49.04400000000044,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":50.21400000000048,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":51.384000000000526,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":52.55400000000057,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":53.724000000000615,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":0}",
+        "{\"elapsed\":54.85500000000066,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":54.85500000000066,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":54.85500000000066,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":54.85500000000066,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":54.85500000000066,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":54.85500000000066,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":54.85500000000066,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":55.08900000000067,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":56.25900000000071,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":57.429000000000755,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":58.5990000000008,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":59.769000000000844,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":60.93900000000089,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":62.10900000000093,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":63.27900000000098,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":64.44900000000102,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":65.61900000000107,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":66.78900000000111,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":67.95900000000115,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":69.1290000000012,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":70.29900000000124,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":71.46900000000129,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":72.63900000000133,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":73.80900000000138,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":74.97900000000142,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":76.14900000000146,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":77.31900000000151,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}",
+        "{\"elapsed\":78.48900000000155,\"score\":[0,0],\"goals\":0,\"half\":true,\"phase\":\"live\",\"substitutions\":1}"
+      ],
+      "score": [
+        0,
+        0
+      ],
+      "goals": [],
+      "events": [
+        {
+          "minute": 45,
+          "type": "halftime"
+        },
+        {
+          "minute": 65,
+          "type": "substitution",
+          "side": 0,
+          "outPid": "world3d-parity:GER-6:5",
+          "inPid": "world3d-parity:GER-6:8"
+        }
+      ],
+      "substitutions": [
+        {
+          "minute": 65,
+          "side": 0,
+          "outPid": "world3d-parity:GER-6:5",
+          "inPid": "world3d-parity:GER-6:8",
+          "reason": "Spielunterbrechung"
+        }
+      ],
+      "elapsed": 79.16666666666667,
+      "minute": 95,
+      "stats": {
+        "world3d-parity:GER-6:1": {
+          "passes": 3,
+          "passComplete": 3,
+          "progressive": 2,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 1,
+          "faced": 1,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 1,
+          "savesParried": 0
+        },
+        "world3d-parity:GER-6:2": {
+          "passes": 3,
+          "passComplete": 3,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 1,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        "world3d-parity:GER-6:5": {
+          "passes": 1,
+          "passComplete": 0,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 1,
+          "crossComplete": 0,
+          "highPasses": 1,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        "world3d-parity:GER-6:6": {
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 2,
+          "duelsWon": 0,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        "world3d-parity:GER-6:7": {
+          "passes": 3,
+          "passComplete": 2,
+          "progressive": 3,
+          "passLost": 1,
+          "duels": 2,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 1,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        "world3d-parity:GER-6:11": {
+          "passes": 3,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 4,
+          "duelsWon": 2,
+          "interceptions": 1,
+          "shots": 2,
+          "onTarget": 1,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 1,
+          "aerialWon": 0,
+          "slideAttempts": 2,
+          "slideWon": 1,
+          "tackleAttempts": 2,
+          "tacklesWon": 1,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        "world3d-parity:GER-2:1": {
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 1,
+          "faced": 1,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 1
+        },
+        "world3d-parity:GER-2:3": {
+          "passes": 3,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 3,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        "world3d-parity:GER-2:4": {
+          "passes": 5,
+          "passComplete": 5,
+          "progressive": 2,
+          "passLost": 1,
+          "duels": 3,
+          "duelsWon": 1,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 1,
+          "aerialWon": 1,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        "world3d-parity:GER-2:8": {
+          "passes": 4,
+          "passComplete": 3,
+          "progressive": 1,
+          "passLost": 1,
+          "duels": 1,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 1,
+          "onTarget": 1,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 1,
+          "tackleAttempts": 1,
+          "tacklesWon": 1,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        "world3d-parity:GER-2:5": {
+          "passes": 3,
+          "passComplete": 3,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        "world3d-parity:GER-2:10": {
+          "passes": 5,
+          "passComplete": 3,
+          "progressive": 0,
+          "passLost": 2,
+          "duels": 2,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 2,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        "world3d-parity:GER-6:9": {
+          "goals": 0,
+          "assists": 0,
+          "shots": 0
+        },
+        "world3d-parity:GER-6:3": {
+          "goals": 0,
+          "assists": 0,
+          "shots": 0
+        },
+        "world3d-parity:GER-6:10": {
+          "goals": 0,
+          "assists": 0,
+          "shots": 0
+        },
+        "world3d-parity:GER-6:8": {
+          "passes": 0,
+          "passComplete": 0,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0
+        },
+        "world3d-parity:GER-6:4": {
+          "goals": 0,
+          "assists": 0,
+          "shots": 0
+        },
+        "world3d-parity:GER-2:11": {
+          "goals": 0,
+          "assists": 0,
+          "shots": 0
+        },
+        "world3d-parity:GER-2:9": {
+          "goals": 0,
+          "assists": 0,
+          "shots": 0
+        },
+        "world3d-parity:GER-2:2": {
+          "goals": 0,
+          "assists": 0,
+          "shots": 0
+        },
+        "world3d-parity:GER-2:7": {
+          "goals": 0,
+          "assists": 0,
+          "shots": 0
+        },
+        "world3d-parity:GER-2:6": {
+          "goals": 0,
+          "assists": 0,
+          "shots": 0
+        }
+      },
+      "result": {
+        "homeGoals": 0,
+        "awayGoals": 0,
+        "penalties": null,
+        "winnerId": null
+      }
+    },
+    "goalPause": {
+      "frozen": true,
+      "ball": {
+        "x": 35.405452877758016,
+        "z": 0,
+        "height": 0.29,
+        "opacity": 1
+      }
+    },
+    "offside": {
+      "x": 29.255813953488374,
+      "z": -9.705882352941176,
+      "lineX": 17.663007988669452,
+      "signal": {
+        "left": false,
+        "pose": "raised"
+      }
+    },
+    "turned": true,
+    "errors": [],
+    "warnings": []
+  },
+  "releaseCommit": "1e48990cb7ed1dedd03736c18ab09025f29c7f3d",
+  "live": {
+    "version": 109,
+    "url": "https://fussball.cakamper.at/?release=109",
+    "bytes": 50185079,
+    "sha256": "bc787921bf355ebb39d22968018b2e62840e78a8fb0f8958cd81b957e2c09210",
+    "sourceBuildLiveMatch": true,
+    "halftime": {
+      "baseline": false,
+      "liveUrl": "https://fussball.cakamper.at/?release=109",
+      "cases": [
+        {
+          "scenario": {
+            "native": true,
+            "fullscreen": true,
+            "language": "de",
+            "portrait": false
+          },
+          "half": {
+            "fullscreen": false,
+            "native": false,
+            "phase": "paused",
+            "running": false,
+            "half": 2,
+            "elapsed": 37.5,
+            "score": [
+              2,
+              1
+            ],
+            "tactics": true,
+            "tab": "tactics",
+            "view": "3d"
+          },
+          "resumed": {
+            "fullscreen": true,
+            "native": true,
+            "phase": "live",
+            "running": true,
+            "half": 0,
+            "elapsed": 37.5,
+            "score": [
+              2,
+              1
+            ],
+            "tactics": false,
+            "tab": "tactics",
+            "view": "3d"
+          }
+        },
+        {
+          "scenario": {
+            "native": false,
+            "fullscreen": true,
+            "language": "en",
+            "portrait": false
+          },
+          "half": {
+            "fullscreen": false,
+            "native": false,
+            "phase": "paused",
+            "running": false,
+            "half": 2,
+            "elapsed": 37.5,
+            "score": [
+              2,
+              1
+            ],
+            "tactics": true,
+            "tab": "tactics",
+            "view": "3d"
+          },
+          "resumed": {
+            "fullscreen": true,
+            "native": false,
+            "phase": "live",
+            "running": true,
+            "half": 0,
+            "elapsed": 37.5,
+            "score": [
+              2,
+              1
+            ],
+            "tactics": false,
+            "tab": "tactics",
+            "view": "3d"
+          }
+        },
+        {
+          "scenario": {
+            "native": false,
+            "fullscreen": true,
+            "language": "de",
+            "portrait": true
+          },
+          "half": {
+            "fullscreen": false,
+            "native": false,
+            "phase": "paused",
+            "running": false,
+            "half": 2,
+            "elapsed": 37.5,
+            "score": [
+              2,
+              1
+            ],
+            "tactics": true,
+            "tab": "tactics",
+            "view": "2d"
+          },
+          "resumed": {
+            "fullscreen": true,
+            "native": false,
+            "phase": "live",
+            "running": true,
+            "half": 0,
+            "elapsed": 37.5,
+            "score": [
+              2,
+              1
+            ],
+            "tactics": false,
+            "tab": "tactics",
+            "view": "2d"
+          }
+        },
+        {
+          "scenario": {
+            "native": true,
+            "fullscreen": false,
+            "language": "de",
+            "portrait": false
+          },
+          "half": {
+            "fullscreen": false,
+            "native": false,
+            "phase": "paused",
+            "running": false,
+            "half": 2,
+            "elapsed": 37.5,
+            "score": [
+              2,
+              1
+            ],
+            "tactics": true,
+            "tab": "tactics",
+            "view": "3d"
+          },
+          "resumed": {
+            "fullscreen": false,
+            "native": false,
+            "phase": "live",
+            "running": true,
+            "half": 0,
+            "elapsed": 37.5,
+            "score": [
+              2,
+              1
+            ],
+            "tactics": false,
+            "tab": "tactics",
+            "view": "3d"
+          }
+        },
+        {
+          "scenario": {
+            "native": false,
+            "fullscreen": true,
+            "exitBeforeHalf": true,
+            "language": "en",
+            "portrait": false
+          },
+          "half": {
+            "fullscreen": false,
+            "native": false,
+            "phase": "paused",
+            "running": false,
+            "half": 2,
+            "elapsed": 37.5,
+            "score": [
+              2,
+              1
+            ],
+            "tactics": true,
+            "tab": "tactics",
+            "view": "3d"
+          },
+          "resumed": {
+            "fullscreen": false,
+            "native": false,
+            "phase": "live",
+            "running": true,
+            "half": 0,
+            "elapsed": 37.5,
+            "score": [
+              2,
+              1
+            ],
+            "tactics": false,
+            "tab": "tactics",
+            "view": "3d"
+          }
+        }
+      ],
+      "cleanup": true,
+      "errors": []
+    }
+  },
+  "deployment": {
+    "id": 37353724518,
+    "status": "completed",
+    "conclusion": "success",
+    "sha": "1e48990cb7ed1dedd03736c18ab09025f29c7f3d",
+    "url": "https://github.com/thealextd1337-spec/FM/actions/runs/37353724518",
+    "jobs": [
+      {
+        "id": 111910716441,
+        "status": "completed",
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Quellcode laden",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Node.js einrichten",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Spieltests ausführen",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Einzeldatei bauen",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Per FTPS zu World4You hochladen und Live-Datei prüfen",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Node.js einrichten",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Quellcode laden",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      }
+    ]
+  },
+  "releaseTests": {
+    "rows": [
+      {
+        "command": "node work/test-progress-v58.cjs",
+        "exit": 0,
+        "seconds": 0.051,
+        "log": "outputs\\release-108-tests\\test-progress-v58.cjs.log"
+      },
+      {
+        "command": "node work/test-live-player-v59.cjs",
+        "exit": 0,
+        "seconds": 0.222,
+        "log": "outputs\\release-108-tests\\test-live-player-v59.cjs.log"
+      },
+      {
+        "command": "node work/test-progress-menu.cjs",
+        "exit": 0,
+        "seconds": 0.06,
+        "log": "outputs\\release-108-tests\\test-progress-menu.cjs.log"
+      },
+      {
+        "command": "node work/test-transfer-confirmations.cjs",
+        "exit": 0,
+        "seconds": 0.057,
+        "log": "outputs\\release-108-tests\\test-transfer-confirmations.cjs.log"
+      },
+      {
+        "command": "node work/test-transfer-deadline-dialog.cjs",
+        "exit": 0,
+        "seconds": 0.057,
+        "log": "outputs\\release-108-tests\\test-transfer-deadline-dialog.cjs.log"
+      },
+      {
+        "command": "node work/test-tactics-replacement.cjs",
+        "exit": 0,
+        "seconds": 0.052,
+        "log": "outputs\\release-108-tests\\test-tactics-replacement.cjs.log"
+      },
+      {
+        "command": "node work/test-quick-lineup-cells.cjs",
+        "exit": 0,
+        "seconds": 0.053,
+        "log": "outputs\\release-108-tests\\test-quick-lineup-cells.cjs.log"
+      },
+      {
+        "command": "node work/test-v24.cjs",
+        "exit": 0,
+        "seconds": 0.06,
+        "log": "outputs\\release-108-tests\\test-v24.cjs.log"
+      },
+      {
+        "command": "node work/test-mobile-drag-scroll.cjs",
+        "exit": 0,
+        "seconds": 0.167,
+        "log": "outputs\\release-108-tests\\test-mobile-drag-scroll.cjs.log"
+      },
+      {
+        "command": "node work/test-v31.cjs",
+        "exit": 0,
+        "seconds": 1.549,
+        "log": "outputs\\release-108-tests\\test-v31.cjs.log"
+      },
+      {
+        "command": "node work/test-v41.cjs",
+        "exit": 0,
+        "seconds": 0.146,
+        "log": "outputs\\release-108-tests\\test-v41.cjs.log"
+      },
+      {
+        "command": "node work/test-v42.cjs",
+        "exit": 0,
+        "seconds": 0.21,
+        "log": "outputs\\release-108-tests\\test-v42.cjs.log"
+      },
+      {
+        "command": "node work/test-v44.cjs",
+        "exit": 0,
+        "seconds": 0.164,
+        "log": "outputs\\release-108-tests\\test-v44.cjs.log"
+      },
+      {
+        "command": "node work/test-v45.cjs",
+        "exit": 0,
+        "seconds": 0.16,
+        "log": "outputs\\release-108-tests\\test-v45.cjs.log"
+      },
+      {
+        "command": "node work/test-v47.cjs",
+        "exit": 0,
+        "seconds": 0.208,
+        "log": "outputs\\release-108-tests\\test-v47.cjs.log"
+      },
+      {
+        "command": "node work/test-statistics-menu.cjs",
+        "exit": 0,
+        "seconds": 0.179,
+        "log": "outputs\\release-108-tests\\test-statistics-menu.cjs.log"
+      },
+      {
+        "command": "node work/test-player-seasons.cjs",
+        "exit": 0,
+        "seconds": 0.168,
+        "log": "outputs\\release-108-tests\\test-player-seasons.cjs.log"
+      },
+      {
+        "command": "node work/test-v49.cjs",
+        "exit": 0,
+        "seconds": 0.16,
+        "log": "outputs\\release-108-tests\\test-v49.cjs.log"
+      },
+      {
+        "command": "node work/test-v50.cjs",
+        "exit": 0,
+        "seconds": 0.428,
+        "log": "outputs\\release-108-tests\\test-v50.cjs.log"
+      },
+      {
+        "command": "node work/test-v50-balance.cjs",
+        "exit": 0,
+        "seconds": 19.445,
+        "log": "outputs\\release-108-tests\\test-v50-balance.cjs.log"
+      },
+      {
+        "command": "node work/test-v51.cjs",
+        "exit": 0,
+        "seconds": 0.492,
+        "log": "outputs\\release-108-tests\\test-v51.cjs.log"
+      },
+      {
+        "command": "node work/test-v52.cjs",
+        "exit": 0,
+        "seconds": 0.209,
+        "log": "outputs\\release-108-tests\\test-v52.cjs.log"
+      },
+      {
+        "command": "node work/test-v53.cjs",
+        "exit": 0,
+        "seconds": 0.189,
+        "log": "outputs\\release-108-tests\\test-v53.cjs.log"
+      },
+      {
+        "command": "node work/test-v54.cjs",
+        "exit": 0,
+        "seconds": 8.557,
+        "log": "outputs\\release-108-tests\\test-v54.cjs.log"
+      },
+      {
+        "command": "node work/test-v55.cjs",
+        "exit": 0,
+        "seconds": 0.467,
+        "log": "outputs\\release-108-tests\\test-v55.cjs.log"
+      },
+      {
+        "command": "node work/test-ai-season-stats.cjs",
+        "exit": 0,
+        "seconds": 0.172,
+        "log": "outputs\\release-108-tests\\test-ai-season-stats.cjs.log"
+      },
+      {
+        "command": "node work/test-ai-career-v60.cjs",
+        "exit": 0,
+        "seconds": 0.654,
+        "log": "outputs\\release-108-tests\\test-ai-career-v60.cjs.log"
+      },
+      {
+        "command": "node work/test-breakaway.cjs",
+        "exit": 0,
+        "seconds": 0.169,
+        "log": "outputs\\release-108-tests\\test-breakaway.cjs.log"
+      },
+      {
+        "command": "node work/test-v56.cjs",
+        "exit": 0,
+        "seconds": 4.652,
+        "log": "outputs\\release-108-tests\\test-v56.cjs.log"
+      },
+      {
+        "command": "node work/test-duel-streaks.cjs",
+        "exit": 0,
+        "seconds": 0.484,
+        "log": "outputs\\release-108-tests\\test-duel-streaks.cjs.log"
+      },
+      {
+        "command": "node work/test-v57.cjs",
+        "exit": 0,
+        "seconds": 0.541,
+        "log": "outputs\\release-108-tests\\test-v57.cjs.log"
+      },
+      {
+        "command": "node work/test-world-foundation-v61.cjs",
+        "exit": 0,
+        "seconds": 0.138,
+        "log": "outputs\\release-108-tests\\test-world-foundation-v61.cjs.log"
+      },
+      {
+        "command": "node work/test-world-local-start.cjs",
+        "exit": 0,
+        "seconds": 0.958,
+        "log": "outputs\\release-108-tests\\test-world-local-start.cjs.log"
+      },
+      {
+        "command": "node work/test-world-competition-v62.cjs",
+        "exit": 0,
+        "seconds": 11.549,
+        "log": "outputs\\release-108-tests\\test-world-competition-v62.cjs.log"
+      },
+      {
+        "command": "node work/test-world-coaches-v63.cjs",
+        "exit": 0,
+        "seconds": 1.398,
+        "log": "outputs\\release-108-tests\\test-world-coaches-v63.cjs.log"
+      },
+      {
+        "command": "node work/test-world-match-v64.cjs",
+        "exit": 0,
+        "seconds": 0.394,
+        "log": "outputs\\release-108-tests\\test-world-match-v64.cjs.log"
+      },
+      {
+        "command": "node work/test-world-penalties-v65.cjs",
+        "exit": 0,
+        "seconds": 0.055,
+        "log": "outputs\\release-108-tests\\test-world-penalties-v65.cjs.log"
+      },
+      {
+        "command": "node work/test-world-victory-popup.cjs",
+        "exit": 0,
+        "seconds": 0.051,
+        "log": "outputs\\release-108-tests\\test-world-victory-popup.cjs.log"
+      },
+      {
+        "command": "node work/test-world-nationalities-v79.cjs",
+        "exit": 0,
+        "seconds": 2.762,
+        "log": "outputs\\release-108-tests\\test-world-nationalities-v79.cjs.log"
+      },
+      {
+        "command": "node work/test-world-market-nationalities-v79.cjs",
+        "exit": 0,
+        "seconds": 0.148,
+        "log": "outputs\\release-108-tests\\test-world-market-nationalities-v79.cjs.log"
+      },
+      {
+        "command": "node work/test-world-kits-v81.cjs",
+        "exit": 0,
+        "seconds": 2.198,
+        "log": "outputs\\release-108-tests\\test-world-kits-v81.cjs.log"
+      },
+      {
+        "command": "node work/test-world-direct-transfer.cjs",
+        "exit": 0,
+        "seconds": 0.198,
+        "log": "outputs\\release-108-tests\\test-world-direct-transfer.cjs.log"
+      },
+      {
+        "command": "node work/test-world-navigation.cjs",
+        "exit": 0,
+        "seconds": 0.05,
+        "log": "outputs\\release-108-tests\\test-world-navigation.cjs.log"
+      },
+      {
+        "command": "node work/test-world-swap-banner.cjs",
+        "exit": 0,
+        "seconds": 0.05,
+        "log": "outputs\\release-108-tests\\test-world-swap-banner.cjs.log"
+      },
+      {
+        "command": "node work/test-world-goal-scene-v83.cjs",
+        "exit": 0,
+        "seconds": 0.05,
+        "log": "outputs\\release-108-tests\\test-world-goal-scene-v83.cjs.log"
+      },
+      {
+        "command": "node work/test-world-goal-banner-v84.cjs",
+        "exit": 0,
+        "seconds": 0.05,
+        "log": "outputs\\release-108-tests\\test-world-goal-banner-v84.cjs.log"
+      },
+      {
+        "command": "node work/test-i18n-v75.cjs",
+        "exit": 0,
+        "seconds": 0.06,
+        "log": "outputs\\release-108-tests\\test-i18n-v75.cjs.log"
+      },
+      {
+        "command": "node work/test-world-live-ranks.cjs",
+        "exit": 0,
+        "seconds": 0.05,
+        "log": "outputs\\release-108-tests\\test-world-live-ranks.cjs.log"
+      },
+      {
+        "command": "node work/test-world-grid-v71.cjs",
+        "exit": 0,
+        "seconds": 0.126,
+        "log": "outputs\\release-108-tests\\test-world-grid-v71.cjs.log"
+      },
+      {
+        "command": "node work/test-world-player-instructions.cjs",
+        "exit": 0,
+        "seconds": 0.132,
+        "log": "outputs\\release-108-tests\\test-world-player-instructions.cjs.log"
+      },
+      {
+        "command": "node work/test-world-physical-instructions.cjs",
+        "exit": 0,
+        "seconds": 0.174,
+        "log": "outputs\\release-108-tests\\test-world-physical-instructions.cjs.log"
+      },
+      {
+        "command": "node work/test-world-career-plan.cjs",
+        "exit": 0,
+        "seconds": 0.143,
+        "log": "outputs\\release-108-tests\\test-world-career-plan.cjs.log"
+      },
+      {
+        "command": "node work/test-world-economy-v66.cjs",
+        "exit": 0,
+        "seconds": 8.491,
+        "log": "outputs\\release-108-tests\\test-world-economy-v66.cjs.log"
+      },
+      {
+        "command": "node work/test-world-sponsors-v97.cjs",
+        "exit": 0,
+        "seconds": 0.249,
+        "log": "outputs\\release-108-tests\\test-world-sponsors-v97.cjs.log"
+      },
+      {
+        "command": "node work/test-world-career-events.cjs",
+        "exit": 0,
+        "seconds": 2.017,
+        "log": "outputs\\release-108-tests\\test-world-career-events.cjs.log"
+      },
+      {
+        "command": "node work/test-world-playable-rosters.cjs",
+        "exit": 0,
+        "seconds": 0.292,
+        "log": "outputs\\release-108-tests\\test-world-playable-rosters.cjs.log"
+      },
+      {
+        "command": "node work/test-world-transfer-list-v72.cjs",
+        "exit": 0,
+        "seconds": 0.561,
+        "log": "outputs\\release-108-tests\\test-world-transfer-list-v72.cjs.log"
+      },
+      {
+        "command": "node work/test-world-human-sale-v73.cjs",
+        "exit": 0,
+        "seconds": 0.435,
+        "log": "outputs\\release-108-tests\\test-world-human-sale-v73.cjs.log"
+      },
+      {
+        "command": "node work/test-world-youth-manager-v67.cjs",
+        "exit": 0,
+        "seconds": 4.081,
+        "log": "outputs\\release-108-tests\\test-world-youth-manager-v67.cjs.log"
+      },
+      {
+        "command": "node work/test-finance-close-v130.cjs",
+        "exit": 0,
+        "seconds": 1.53,
+        "log": "outputs\\release-108-tests\\test-finance-close-v130.cjs.log"
+      },
+      {
+        "command": "node work/test-world-payments-v124.cjs",
+        "exit": 0,
+        "seconds": 3.415,
+        "log": "outputs\\release-108-tests\\test-world-payments-v124.cjs.log"
+      },
+      {
+        "command": "node work/test-3d-documentation-v134.cjs",
+        "exit": 0,
+        "seconds": 0.082,
+        "log": "outputs\\release-108-tests\\test-3d-documentation-v134.cjs.log"
+      },
+      {
+        "command": "node work/test-mobile-performance-v135.cjs",
+        "exit": 0,
+        "seconds": 0.055,
+        "log": "outputs\\release-108-tests\\test-mobile-performance-v135.cjs.log"
+      },
+      {
+        "command": "node work/test-world-storage-v67.cjs",
+        "exit": 0,
+        "seconds": 0.216,
+        "log": "outputs\\release-108-tests\\test-world-storage-v67.cjs.log"
+      },
+      {
+        "command": "node work/test-world-storage-recovery.cjs",
+        "exit": 0,
+        "seconds": 0.942,
+        "log": "outputs\\release-108-tests\\test-world-storage-recovery.cjs.log"
+      },
+      {
+        "command": "node work/test-world-save-management-v70.cjs",
+        "exit": 0,
+        "seconds": 1.137,
+        "log": "outputs\\release-108-tests\\test-world-save-management-v70.cjs.log"
+      },
+      {
+        "command": "node work/test-world-views-v68.cjs",
+        "exit": 0,
+        "seconds": 0.401,
+        "log": "outputs\\release-108-tests\\test-world-views-v68.cjs.log"
+      },
+      {
+        "command": "node work/test-world-honours-v74.cjs",
+        "exit": 0,
+        "seconds": 0.143,
+        "log": "outputs\\release-108-tests\\test-world-honours-v74.cjs.log"
+      },
+      {
+        "command": "node work/test-match-presentation-v74.cjs",
+        "exit": 0,
+        "seconds": 0.163,
+        "log": "outputs\\release-108-tests\\test-match-presentation-v74.cjs.log"
+      },
+      {
+        "command": "DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+        "exit": 0,
+        "seconds": 16.564,
+        "log": "outputs\\release-108-tests\\test-world-economy-v66.cjs.log"
+      },
+      {
+        "command": "DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+        "exit": 0,
+        "seconds": 17.516,
+        "log": "outputs\\release-108-tests\\test-world-economy-v66.cjs.log"
+      },
+      {
+        "command": "DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs",
+        "exit": 0,
+        "seconds": 13.16,
+        "log": "outputs\\release-108-tests\\test-world-youth-manager-v67.cjs.log"
+      },
+      {
+        "command": "node work/audit-world-balance-v68.cjs",
+        "exit": 0,
+        "seconds": 82.99,
+        "log": "outputs\\release-108-tests\\audit-world-balance-v68.cjs.log"
+      },
+      {
+        "command": "python3 work/test_deploy_ftps.py",
+        "exit": 0,
+        "seconds": 0.234,
+        "log": "outputs\\release-108-tests\\test_deploy_ftps.py.log"
+      },
+      {
+        "command": "node work/test-club-crests.cjs",
+        "exit": 0,
+        "seconds": 0.213,
+        "log": "outputs\\release-108-tests\\test-club-crests.cjs.log"
+      },
+      {
+        "command": "node work/test-no-player-images.cjs",
+        "exit": 0,
+        "seconds": 0.171,
+        "log": "outputs\\release-108-tests\\test-no-player-images.cjs.log"
+      }
+    ],
+    "passed": true
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "version": 127,
+  "date": "2026-10-05T09:59:29.696Z",
+  "published": false,
+  "footer": 106,
+  "credits": 0,
+  "modelClips": 32,
+  "modelSha256": "39eee0c85c05a93496d1679330c0fcd81a9f5f87d8ad13876c61d29cb3a09cb2",
+  "sourceHashes": {
+    "dist/game.js": "38dc19e449ecfc482054d2c3a0e86d0766b11c5774a771522027ae23277aab5a",
+    "dist/pitch-v55.js": "458c5f1f268b93a6cc4f30c44f75ed996206c0a53833704fbff56cc5fc317a8a",
+    "dist/pitch-v56.js": "124c0591e4266fe309ffff644a25e84746b16aa922678f31bf36980ccd2fa371",
+    "dist/pitch-motion-v102.js": "d87758ae7aa84d35d14f148d06f6455d2e194fee43597e2ee84573ef8aea0429",
+    "dist/player-user-ball-actions-v111.js": "21e353c0bafdc753e5b0f4892eda409126b54eb201f111fdb24a67816129f3cc",
+    "dist/world-backpedal-v108.js": "f707321bd0a12b3dbc7fb012f1402adcc14eff8665ecd20d8c553f04c1113eea",
+    "dist/world-match-v64.js": "68b2016ddf44cd1b3ef5c95efff726e92314e057fea5fcfdcce5483230dda321",
+    "dist/world-views-v68.js": "a4167a310dd47576ab4bc8464588cdc40a557203f3af0d84b0fbc78a432ef266",
+    "dist/i18n-v75.js": "f564346cfb920e5b5c95e6386e5f1e7b82f2484e473198bf8c8c2d0cdc0f2526"
+  },
+  "offline": {
+    "file": "outputs/Doppel-6-Fussballmanager.html",
+    "sha256": "77e3d9651fb617534371d3413c15a63417cc455337e48e50bf255fe0397989df",
+    "bytes": 49951914
+  },
+  "probe": {
+    "file": "outputs/spieler-nutzer-match.html",
+    "sha256": "05c2969594d97caacd2d525c9ea5e697937b63ad612f2586f2010f54b0f8b566"
+  },
+  "evidenceHashes": {
+    "docs/spieler-nutzer-rig/dribble-baseline-v127.json": "8f02086556b9e6c83e1f0974f036103ba6fbc593cb966cf72672e3bc6050252f",
+    "docs/spieler-nutzer-rig/dribble-qa-v127.json": "36f880143473593961ed220a9cfdb1e0bb39f122b491872260eaa03e21fc2a7b",
+    "docs/spieler-nutzer-rig/play-actions-qa-v127.json": "849c9357029f2d1420ffebc0602ccfc82984ac071280f880a8c8bb838a10c740",
+    "docs/spieler-nutzer-rig/direct-visual-qa-v127.json": "2643fc59d395bf0abdc742ab6f550de253d73f7eb544e6efd0cecf0238120017",
+    "docs/spieler-nutzer-rig/season-profile-qa-v127.json": "bbf26f973469a6f12bdf95967e473cb6544174267c230c8bb559a031e08f2b41",
+    "docs/spieler-nutzer-rig/running-qa-v127.json": "08ba171e150dc7ec1883ed15ead432727e0b8ccb5c9bc2d1b7683dbcef264e42",
+    "docs/spieler-nutzer-rig/ball-actions-qa-v127.json": "cf2ef3f82aea3d8ca09e1f7c448c267774d1652919085ab54c3b379db111f2a1",
+    "docs/spieler-nutzer-rig/locomotion-qa-v127.json": "3ef0b1d0df7d2c483898c6233e9262e77b3850e966444728de2b3fe1e101713e",
+    "docs/spieler-nutzer-rig/ground-scenarios-qa-v127.json": "46bd789838b3817ef7aefdd4f1980bcae2bbb96a13a39f0e79549ab58730ffac",
+    "docs/spieler-nutzer-rig/keeper-scenarios-qa-v127.json": "5fcb9dbd847ca87dc192e0892b2ffa626603833e34cb5cabe1a1cc67403a2ddb",
+    "docs/spieler-nutzer-rig/ball-motion-qa-v127.json": "6ced58e7aad90a5fe7a692de79eee21b41699273a89aad59923ff48d2413eaec",
+    "docs/spieler-nutzer-rig/air-bounce-qa-v127.json": "8079ac5aaf693668e680c708b33fb5e0e05bd96cad33cfbacb6331843186ba18",
+    "docs/spieler-nutzer-rig/warping-qa-v127.json": "71881ca1ca96a6884327e33e983210f164597cc7d792537ae2e76d8025e4f50b",
+    "outputs/world3d-parity-v127.json": "e0bb92ab7666bc773665b92aa251e6bf053ee28f34b27e4f0fa8d619fdf926fc",
+    "outputs/season-profile-390-de-v127.png": "5e34721ecaa4c40aa376e0be47f2fea19518f82bfd0e3fc78bf5910bbb9c8537",
+    "outputs/season-profile-390-en-v127.png": "a41d0814704812f354ec2dd066319242a7d9abb7674064ef5f0c2e74b53fd9be",
+    "outputs/season-profile-1270-de-v127.png": "3d21d21e61ffde4d0f54f801e70a51091b243f77c211649b0e7b049aae72c600",
+    "outputs/season-profile-1270-en-v127.png": "768b87db6d1abf2bf25315e731d9897180ccdcad677d358f5a1c818607651511",
+    "outputs/direct-pass-0.43-v127.png": "988cf60cfb208895cfd20b42f5a7c23bf77b0e1dd0ec2f6cf1ec87e78f9d3ed1",
+    "outputs/direct-shot-0.43-v127.png": "808d99c506e3520d831b6fd330bb3e1750e2b7cfb3e96da4162a143d5c9ae13a"
+  },
+  "documentationHashes": {
+    "docs/README.md": "73eb2f09ef11016c83e1a4a00bd19f2dc92114c97bb50ee0bb3b73fc6ef6e670",
+    "docs/CHANGELOG.md": "382f06f3ff036d962d5391dd63eaed01cfb54923319b13487e40b5da9eca4855",
+    "docs/development.md": "1530893637e6718d3da285d6f6425d0e88935b43b7c784bb9c30734f6b5e04c0",
+    "docs/product.md": "03c49a1e5f04f4d2222d6c93f794c6f0510910ee0a9169cfce8be67fa127054c",
+    "docs/spieler-nutzer-rig/README.md": "927feddc744ff6d0c702a66ab793e5bebc75346d0b1680ffa21f0583c24b130e",
+    "docs/spieler-nutzer-rig/changes-v127.md": "92348c4d128d33f71d86f5dfb51e3803d4ad9411f17980a5a69eacbd7b708ac9"
+  },
+  "improvements": [
+    {
+      "fps": 30,
+      "kind": "run-3.5",
+      "peakReduction": 0.5690104981160022,
+      "meanReduction": 0.22354691267415938
+    },
+    {
+      "fps": 30,
+      "kind": "run-4.5",
+      "peakReduction": 0.3564225560275184,
+      "meanReduction": 0.17512967276309999
+    },
+    {
+      "fps": 30,
+      "kind": "run-6.5",
+      "peakReduction": 0.39145797634459056,
+      "meanReduction": 0.07240444740995211
+    },
+    {
+      "fps": 30,
+      "kind": "curve-left",
+      "peakReduction": 0.371179504706614,
+      "meanReduction": 0.15122397552800604
+    },
+    {
+      "fps": 30,
+      "kind": "cut-right",
+      "peakReduction": 0.3724115496950289,
+      "meanReduction": 0.16457631562487451
+    },
+    {
+      "fps": 30,
+      "kind": "start-stop",
+      "peakReduction": 0.36216036550929687,
+      "meanReduction": 0.13549968923660594
+    },
+    {
+      "fps": 60,
+      "kind": "run-3.5",
+      "peakReduction": 0.7346836585779616,
+      "meanReduction": 0.33416715635457517
+    },
+    {
+      "fps": 60,
+      "kind": "run-4.5",
+      "peakReduction": 0.5737870447314983,
+      "meanReduction": 0.27680384021045223
+    },
+    {
+      "fps": 60,
+      "kind": "run-6.5",
+      "peakReduction": 0.3289102386787399,
+      "meanReduction": 0.1604977150991307
+    },
+    {
+      "fps": 60,
+      "kind": "curve-left",
+      "peakReduction": 0.5622916835233623,
+      "meanReduction": 0.29583896590708103
+    },
+    {
+      "fps": 60,
+      "kind": "cut-right",
+      "peakReduction": 0.07107185789695769,
+      "meanReduction": 0.2953202366784877
+    },
+    {
+      "fps": 60,
+      "kind": "start-stop",
+      "peakReduction": 0.3537720335912018,
+      "meanReduction": 0.23517229345231216
+    },
+    {
+      "fps": 120,
+      "kind": "run-3.5",
+      "peakReduction": 0.8299813897921964,
+      "meanReduction": 0.4678108842518457
+    },
+    {
+      "fps": 120,
+      "kind": "run-4.5",
+      "peakReduction": 0.627341842963681,
+      "meanReduction": 0.3959207872267504
+    },
+    {
+      "fps": 120,
+      "kind": "run-6.5",
+      "peakReduction": 0.4256469432500256,
+      "meanReduction": 0.24722595434113737
+    },
+    {
+      "fps": 120,
+      "kind": "curve-left",
+      "peakReduction": 0.695174029846789,
+      "meanReduction": 0.38604966318515443
+    },
+    {
+      "fps": 120,
+      "kind": "cut-right",
+      "peakReduction": 0.04532476783164696,
+      "meanReduction": 0.3910144437509706
+    },
+    {
+      "fps": 120,
+      "kind": "start-stop",
+      "peakReduction": 0.6544134364540535,
+      "meanReduction": 0.3592962254772135
+    }
+  ],
+  "gates": {
+    "dribbleComparisons": 18,
+    "contactAndOffsideCases": 8,
+    "directChoiceTrials": 2000,
+    "nativeDirectSequences": 6,
+    "outBoundaryCases": 16,
+    "keeperApproachCases": 16,
+    "actualTackleCountingCases": 4,
+    "desktopMobileSeasonProfile": true,
+    "prospectiveOnceOnlyBooking": true,
+    "fullWarpingMatches": 2,
+    "physicsSteps": 5427,
+    "renderFrames": 16275,
+    "visibleWarpViolations": 0,
+    "regularOffline2d3dParity": true,
+    "historicalEvidenceUnchanged": true,
+    "sourceMatchesEmbeddedBuild": true
+  },
+  "limitations": "Controlled contact/keeper scenes and two full-match seeds do not recalibrate season balance. Existing rig clips and instantaneous extreme direction changes retain limits. Missing historical statistics are not reconstructed; current form is reused. Future physical match outcomes may change."
+}

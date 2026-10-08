@@ -1,0 +1,14 @@
+{
+  "resolution": [
+    4096,
+    4096
+  ],
+  "source": "Meshy 4K retexture albedo; original UV geometry, head/neck bone weights and clothing mask",
+  "newHeadPixels": 2528234,
+  "fullReplacementPixels": 2498789,
+  "outsideHeadPixelChanges": 0,
+  "protectedClothingPixelChanges": 0,
+  "neckTransition": "5 cm geometric blend above original mesh Y 1.36",
+  "originalBodyUpscale": "nearest-neighbor 2K to 4K; decoded source pixels preserved exactly",
+  "normalAndMaterialMaps": "Retained from previous character"
+}

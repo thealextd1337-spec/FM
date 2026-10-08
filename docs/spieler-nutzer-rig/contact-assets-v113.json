@@ -1,0 +1,56 @@
+{
+  "output": "meshy_output/user-character-2026-10-03/character-football-v113.glb",
+  "sourceTasks": [
+    "01a106a6-77ec-75c1-bb63-28ea39ebf2c3"
+  ],
+  "resource": "animate",
+  "project": "meshy_output/20261003_123727_nutzercharakter-fussball-beweg_01a10156",
+  "rigTask": "01a10156-b12b-74d3-baef-6e0b4054a2b9",
+  "consumedCredits": {
+    "foulActions": 6,
+    "total": 6
+  },
+  "clipCount": 32,
+  "geometryRigTexturesOriginalClipsPreserved": true,
+  "sha256": "39eee0c85c05a93496d1679330c0fcd81a9f5f87d8ad13876c61d29cb3a09cb2",
+  "clips": [
+    {
+      "key": "foul_fall_meshy",
+      "actionId": 366,
+      "sourceTask": "01a106a6-77ec-75c1-bb63-28ea39ebf2c3",
+      "providerClip": "falling_down",
+      "duration": 2.2666666507720947,
+      "loop": false,
+      "providerYawRange": [
+        -2.937519180148134,
+        3.120930748680361
+      ]
+    },
+    {
+      "key": "foul_stumble_meshy",
+      "actionId": 519,
+      "sourceTask": "01a106a6-77ec-75c1-bb63-28ea39ebf2c3",
+      "providerClip": "sliding_stumble",
+      "duration": 11.366666793823242,
+      "loop": false,
+      "providerYawRange": [
+        -0.30172072425878466,
+        0.6843121621141066
+      ]
+    },
+    {
+      "key": "idle_stand_meshy",
+      "actionId": 344,
+      "sourceTask": "01a103be-1bae-748f-aff4-9a9f744b8695",
+      "providerClip": "standup_01",
+      "trim": [
+        6.8,
+        7.8
+      ],
+      "duration": 1,
+      "loop": true,
+      "reused": true,
+      "additionalCredits": 0
+    }
+  ]
+}

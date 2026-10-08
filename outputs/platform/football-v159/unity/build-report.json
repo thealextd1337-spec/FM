@@ -1,0 +1,16 @@
+{
+    "status": "completed",
+    "buildId": "transaction_27ae3753b76c46ff98938bfd5d22222d",
+    "method": "Ephemeral MCP Editor callback; one try/finally restores graphics, all quality pipelines, compression, background, target and group",
+    "result": "Succeeded",
+    "platform": "WebGL",
+    "outputPath": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/outputs/platform/unity-web",
+    "buildStartedAt": "2026-10-08T20:15:28.5817757Z",
+    "buildEndedAt": "2026-10-08T20:15:59.3963968Z",
+    "sourceId": "95eb4c7224a55115dd2e2aa4dccb3f9e27f5096bdde0ee23073c5cfbb3076f3e",
+    "error": "",
+    "totalSizeBytes": 86800244,
+    "buildTimeMs": 30814.6211,
+    "totalWarnings": 3,
+    "totalErrors": 0
+}

@@ -1,0 +1,225 @@
+{
+  "rows": [
+    {
+      "name": "stop",
+      "kind": "stop",
+      "time": 1.8,
+      "holding": false,
+      "ball": [
+        1.1,
+        0.29,
+        26
+      ],
+      "head": [
+        -0.005842833296754316,
+        2.4189905706161556,
+        5.993844428115416
+      ],
+      "motion": "brake_meshy",
+      "held": false,
+      "min": 0.09557011280465802,
+      "max": 2.802914914490418,
+      "finite": true
+    },
+    {
+      "name": "standing",
+      "kind": "stop",
+      "time": 3,
+      "holding": false,
+      "ball": [
+        1.1,
+        0.29,
+        26
+      ],
+      "head": [
+        0.016525310746850208,
+        2.431694696284328,
+        5.927370553003751
+      ],
+      "motion": "idle",
+      "held": false,
+      "min": 0.09427505299351335,
+      "max": 2.8213330107673715,
+      "finite": true
+    },
+    {
+      "name": "goal-kick",
+      "kind": "goal-kick",
+      "time": 1,
+      "holding": false,
+      "ball": [
+        0,
+        0.29,
+        0.65
+      ],
+      "head": [
+        0.01652531574722105,
+        2.434503984739006,
+        -0.07262882152924335
+      ],
+      "motion": "keeper_ground_ready",
+      "held": false,
+      "min": 0.10499999796915074,
+      "max": 2.824142246383743,
+      "finite": true
+    },
+    {
+      "name": "throw-pickup-low",
+      "kind": "throw",
+      "time": 1,
+      "holding": true,
+      "ball": [
+        0,
+        0.7196875,
+        -0.015625
+      ],
+      "head": [
+        -0.40959564001659277,
+        1.3816339253538565,
+        0.5669338398784484
+      ],
+      "motion": "throw_pickup",
+      "handContact": 0.32208748771816464,
+      "held": false,
+      "min": 0.10499999999999998,
+      "max": 1.6765210249114082,
+      "finite": true
+    },
+    {
+      "name": "throw-pickup-high",
+      "kind": "throw",
+      "time": 1,
+      "holding": true,
+      "ball": [
+        0,
+        2.2651875,
+        -0.07182500000000001
+      ],
+      "head": [
+        -0.06402713677288739,
+        2.2332674217418798,
+        0.43766265645647334
+      ],
+      "motion": "throw_pickup",
+      "handContact": 0.15000000000000002,
+      "held": false,
+      "min": 0.10499999999999998,
+      "max": 2.503860102445298,
+      "finite": true
+    },
+    {
+      "name": "throw-hold",
+      "kind": "throw",
+      "time": 1,
+      "holding": true,
+      "ball": [
+        0,
+        3.04,
+        -0.1
+      ],
+      "head": [
+        0.01652531574722105,
+        2.4345039867698555,
+        -0.07262882152924335
+      ],
+      "motion": "throw_hold",
+      "handContact": 0.16419030506952736,
+      "held": false,
+      "min": 0.10499999999999998,
+      "max": 3.3276847913377368,
+      "finite": true
+    },
+    {
+      "name": "throw-release",
+      "kind": "throw",
+      "time": 1,
+      "holding": false,
+      "ball": [
+        0,
+        3.04,
+        0.12
+      ],
+      "head": [
+        0.01652531574722105,
+        2.4345039867698555,
+        -0.07262882152924335
+      ],
+      "motion": "throw_release",
+      "handContact": 0.17801066365199508,
+      "held": false,
+      "min": 0.10499999999999998,
+      "max": 3.304922960667,
+      "finite": true
+    },
+    {
+      "name": "parry-left",
+      "kind": "parry",
+      "time": 1,
+      "holding": false,
+      "ball": [
+        -1.1,
+        0.8,
+        0.65
+      ],
+      "head": [
+        -0.706721437973242,
+        1.3135773118353415,
+        0.3133937252975189
+      ],
+      "motion": "keeper_parry_left",
+      "hand": "left",
+      "handContact": 0.24138752259724952,
+      "held": false,
+      "min": 0.6722615769318109,
+      "max": 1.5922141567439732,
+      "finite": true
+    },
+    {
+      "name": "parry-right",
+      "kind": "parry",
+      "time": 1,
+      "holding": false,
+      "ball": [
+        1.1,
+        0.8,
+        0.65
+      ],
+      "head": [
+        0.706721437973242,
+        1.313577311835342,
+        0.31339372529751885
+      ],
+      "motion": "keeper_parry_right",
+      "hand": "right",
+      "handContact": 0.24138752259725005,
+      "held": false,
+      "min": 0.6849386625997541,
+      "max": 1.5912078323533163,
+      "finite": true
+    },
+    {
+      "name": "smother",
+      "kind": "smother",
+      "time": 1,
+      "holding": false,
+      "ball": [
+        1.1000000000000012,
+        0.3499999999999999,
+        0.6500000000000004
+      ],
+      "head": [
+        0.8810292168908933,
+        0.8026943852589977,
+        0.42621990639653246
+      ],
+      "motion": "keeper_smother",
+      "hand": null,
+      "handContact": 0.15000000000000013,
+      "held": true,
+      "min": 0.10499999999999998,
+      "max": 1.0803249125273395,
+      "finite": true
+    }
+  ],
+  "errors": []
+}

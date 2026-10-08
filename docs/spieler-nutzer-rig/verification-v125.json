@@ -1,0 +1,241 @@
+{
+  "version": 125,
+  "date": "2026-10-05T08:06:08.509Z",
+  "published": false,
+  "footer": 106,
+  "credits": 0,
+  "modelClips": 32,
+  "modelSha256": "39eee0c85c05a93496d1679330c0fcd81a9f5f87d8ad13876c61d29cb3a09cb2",
+  "offline": {
+    "file": "outputs/Doppel-6-Fussballmanager.html",
+    "bytes": 49943748,
+    "sha256": "b918cc9a38ed35d68a348f20ccca1e239a13692a4f2adbd74b43f4a5bbb9d831"
+  },
+  "probe": {
+    "file": "outputs/spieler-nutzer-match.html",
+    "sha256": "40f0cdf48863d68387efd34708b96107074e133c43a10d88975bec6f6bff96e5"
+  },
+  "baselineSources": {
+    "locomotion": "0e355121e779bb5503224d35b98eacb2329e5121ad63f496da28616e9d2217e6",
+    "pitchMotion": "5beba9643650f445d7ec12ab396de18d5795f65a6c622481b3794f12e3b0259d",
+    "matchesV124": true
+  },
+  "sourceHashes": {
+    "dist/pitch-motion-v102.js": "924e71e8c7c3f08574bfee1d1c38fc9261d2d01b768b2bae539de0f4a4a980e6",
+    "dist/player-user-motion-v108.js": "00bf52003c993c9981e4bceb77e701f4f2261b7bd2d62d397a48a8b6c6714041",
+    "dist/player-user-meshy-v107.js": "ba456bdcd157dc3754e14cb29e9c57b844ce14af35515d65649142723aefc398",
+    "dist/player-user-ball-actions-v111.js": "f6d141ba1a8a5bc38a1a430be88653d7f1d51105d122bf782638b0119877a58b",
+    "dist/world-pitch3d-v98.js": "b9dbdfd0fef98d605aa8c3384651eb2bc32b2a177947be75221ecc2c91ee5556",
+    "dist/game.js": "51996269bb4bcb5d652bfb09a8e4690c533f57417e2def89f7073fcfaf8cebae",
+    "dist/pitch-v55.js": "f50d4b8205198a2850ef971c67ec39f3bf55322d4f1a6107158e3dedd54ed509",
+    "dist/pitch-v56.js": "87188b02736149c9b82f2987e63409c427b7ef0382d5ed9da72f67de5fdb9057",
+    "dist/world-backpedal-v108.js": "739347c2842ed04eae1ee7ad91c5fa731866dc160186c0e1112edc1384b86c64",
+    "dist/world-ball-motion-v110.js": "74e0a8d29f2b213fbdf1156856fb6e223ee536b1c92684e6f01025c4559fbf40",
+    "dist/world-pitch-actions-v99.js": "5ce425aaa46f087aa53a07abc802ca31aa0d0004940bdf7a0ff9b26feb238a93",
+    "dist/halftime-v14.js": "8f8aed479367bbdee9972806040aaaacf39903d991d8656c53411fb96f724346"
+  },
+  "evidenceHashes": {
+    "docs/spieler-nutzer-rig/running-diagnosis-v125.json": "16439f67c429f5765fbe5dc1bb4f767a86eadcf2a013258f63ee7b1a21c5d407",
+    "docs/spieler-nutzer-rig/running-turns-baseline-v125.json": "15ffe720a69b73a6d2429c269ab7ee207efed2ddf84435695b91675754adc09c",
+    "docs/spieler-nutzer-rig/running-turns-qa-v125.json": "ce8d7f53666d0a5e5c149c8e4c4828ce5d89e584b47407b615a7b883d9798c68",
+    "docs/spieler-nutzer-rig/running-qa-v125.json": "bb382bc1d86d7f8c80134ee02772b35297a7ea68675a518059f4ebf960890fd9",
+    "docs/spieler-nutzer-rig/locomotion-qa-v125.json": "3ef0b1d0df7d2c483898c6233e9262e77b3850e966444728de2b3fe1e101713e",
+    "docs/spieler-nutzer-rig/ground-visual-qa-v125.json": "abc27be313b3da789b7d733380931f901530aadf639acd5441d2d119acfedd0d",
+    "docs/spieler-nutzer-rig/ball-actions-qa-v125.json": "4925ae2c941c6e1f17dbaf254d87871816d1d13ce87d4a2ec3dfb6edcd9e67cf",
+    "docs/spieler-nutzer-rig/keeper-sidestep-qa-v125.json": "1108bdac2e8cff34595156063e119a5f9db5b47f82d681d2e8b83ae7c9a97b68",
+    "docs/spieler-nutzer-rig/warping-qa-v125.json": "f0ebc68784215f8ffa7377dbfd3c75a02ad3580f8f9286c9dd2bda0efc9a3a01",
+    "outputs/world3d-parity-v125.json": "7f0b6da9628acc1d4d079f7cdae54c7b61009301b41897f584c4d52f5cf6f3d9",
+    "outputs/run-turn-cut-left-1.80-qa-v125.png": "a985f38a9bbcbbf77b63789fd1bd4a98c3a11c9c5e32bd49364ddf524e97dd93",
+    "outputs/keeper-sidestep-qa-v125.png": "f0eac31757b19b8d16ed95f511324fef6855d9fc08cdfd51d839569959606ec1"
+  },
+  "documentationHashes": {
+    "docs/README.md": "8bd800cc5522abbf91fba5df5ee20934355b3e2177bb546e9ce3238d76e503b5",
+    "docs/CHANGELOG.md": "9efd1473fd07ce192e5d0519c1464de65313d06b2a17ca7136881b6e09a265b6",
+    "docs/development.md": "e15e67054b3fefc4bbc72701dd48d36f2f86dd8583dd0aeee320679e72106dec",
+    "docs/spieler-nutzer-rig/README.md": "29ccd131704aa31e3da04323942c584106493dcb4ca8c93ef4057e6f0e146511",
+    "docs/spieler-nutzer-rig/changes-v125.md": "5903dc272796048cddc446f40d5bd17de7a39134f352fbdd4a39aced80c0a4c8"
+  },
+  "reductions": [
+    {
+      "fps": 30,
+      "kind": "run-3.5",
+      "peakReduction": 0.2476296019489651,
+      "meanReduction": 0.0767095737865674
+    },
+    {
+      "fps": 30,
+      "kind": "run-4.5",
+      "peakReduction": 0.25565751896700406,
+      "meanReduction": 0.05442299479534751
+    },
+    {
+      "fps": 30,
+      "kind": "run-6.5",
+      "peakReduction": 0.22885899161061873,
+      "meanReduction": 0.0401094422883691
+    },
+    {
+      "fps": 30,
+      "kind": "curve-left",
+      "peakReduction": 0.18480490810063854,
+      "meanReduction": 0.030274589537639507
+    },
+    {
+      "fps": 30,
+      "kind": "curve-right",
+      "peakReduction": 0.18456179837875242,
+      "meanReduction": 0.03239442808795279
+    },
+    {
+      "fps": 30,
+      "kind": "cut-left",
+      "peakReduction": 0.4583310392540896,
+      "meanReduction": 0.15289172448067467
+    },
+    {
+      "fps": 30,
+      "kind": "cut-right",
+      "peakReduction": 0.47686952963644624,
+      "meanReduction": 0.17337318351277942
+    },
+    {
+      "fps": 30,
+      "kind": "reverse",
+      "peakReduction": 0.24706230915581573,
+      "meanReduction": 0.1172275963141306
+    },
+    {
+      "fps": 30,
+      "kind": "start-stop",
+      "peakReduction": 0.22287104908277156,
+      "meanReduction": 0.08491349083045896
+    },
+    {
+      "fps": 60,
+      "kind": "run-3.5",
+      "peakReduction": 0.5035503337069855,
+      "meanReduction": 0.12326566460365584
+    },
+    {
+      "fps": 60,
+      "kind": "run-4.5",
+      "peakReduction": 0.47806086599539266,
+      "meanReduction": 0.07159620071367045
+    },
+    {
+      "fps": 60,
+      "kind": "run-6.5",
+      "peakReduction": 0.30735685149337644,
+      "meanReduction": 0.07397003273336122
+    },
+    {
+      "fps": 60,
+      "kind": "curve-left",
+      "peakReduction": 0.40748940476565365,
+      "meanReduction": 0.10664613414818891
+    },
+    {
+      "fps": 60,
+      "kind": "curve-right",
+      "peakReduction": 0.4168063847216418,
+      "meanReduction": 0.1098111126556327
+    },
+    {
+      "fps": 60,
+      "kind": "cut-left",
+      "peakReduction": 0.4168743005002341,
+      "meanReduction": 0.15512205946275837
+    },
+    {
+      "fps": 60,
+      "kind": "cut-right",
+      "peakReduction": 0.5988329466320622,
+      "meanReduction": 0.2457306824770451
+    },
+    {
+      "fps": 60,
+      "kind": "reverse",
+      "peakReduction": 0.4492160159535664,
+      "meanReduction": 0.1380609680319319
+    },
+    {
+      "fps": 60,
+      "kind": "start-stop",
+      "peakReduction": 0.30981425607281143,
+      "meanReduction": 0.14012640317957947
+    },
+    {
+      "fps": 120,
+      "kind": "run-3.5",
+      "peakReduction": 0.6295389703052783,
+      "meanReduction": 0.2045041220691296
+    },
+    {
+      "fps": 120,
+      "kind": "run-4.5",
+      "peakReduction": 0.38417466799302336,
+      "meanReduction": 0.10743003155537367
+    },
+    {
+      "fps": 120,
+      "kind": "run-6.5",
+      "peakReduction": 0.320961434791995,
+      "meanReduction": 0.07084318792142419
+    },
+    {
+      "fps": 120,
+      "kind": "curve-left",
+      "peakReduction": 0.5218472069017562,
+      "meanReduction": 0.16333758556940348
+    },
+    {
+      "fps": 120,
+      "kind": "curve-right",
+      "peakReduction": 0.53042097381358,
+      "meanReduction": 0.164594033643364
+    },
+    {
+      "fps": 120,
+      "kind": "cut-left",
+      "peakReduction": 0.8202279225035235,
+      "meanReduction": 0.3270774384205304
+    },
+    {
+      "fps": 120,
+      "kind": "cut-right",
+      "peakReduction": 0.6817449059310301,
+      "meanReduction": 0.2088554185353586
+    },
+    {
+      "fps": 120,
+      "kind": "reverse",
+      "peakReduction": 0.5147896032920258,
+      "meanReduction": 0.2929223996760558
+    },
+    {
+      "fps": 120,
+      "kind": "start-stop",
+      "peakReduction": 0.34104855450006766,
+      "meanReduction": 0.22048855692445424
+    }
+  ],
+  "gates": {
+    "comparisonCases": 27,
+    "allRatesImprove": true,
+    "realRendererRunningCases": 8,
+    "falseBrakes": 0,
+    "groundTransitionCases": 15,
+    "ballActionCases": 10,
+    "keeperSidestepCases": 24,
+    "fullWarpingMatches": 2,
+    "physicsSteps": 4227,
+    "renderFrames": 12675,
+    "visibleWarpViolations": 0,
+    "limitsUnchanged": true,
+    "seededMatchOutcomesAndEventsUnchanged": true,
+    "regularOffline2d3dParity": true,
+    "historicalEvidenceUnchanged": true,
+    "sourceMatchesEmbeddedBuild": true
+  },
+  "limitations": "Finite-difference foot motion compared at matching frame rates; not force measurement or hardware FPS benchmark. Prepared sequences and two full-match seeds; existing Meshy clips tuned, no new provider animations. No ball spin, balance changes or historical save/statistics recomputation."
+}

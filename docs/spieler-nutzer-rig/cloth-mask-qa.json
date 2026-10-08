@@ -1,0 +1,24 @@
+{
+  "resolution": [
+    2048,
+    2048
+  ],
+  "channels": {
+    "red": "jersey",
+    "green": "shorts",
+    "blue": "socks"
+  },
+  "pixelCounts": {
+    "jersey": 307803,
+    "shorts": 186242,
+    "socks": 296467
+  },
+  "referenceBrightness": [
+    0.5529411764705883,
+    0.20784313725490197,
+    0.9411764705882353
+  ],
+  "meshAndUVsModified": false,
+  "source": "Meshy base color plus rasterized original model positions",
+  "limitation": "Editable fabric pixels; contrasting fixed seams and skin remain intact. Artistic seam inspection still required."
+}

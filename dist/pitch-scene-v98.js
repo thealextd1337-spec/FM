@@ -5,12 +5,16 @@ window.D6PitchScene={create(canvas,{goalWidth=7.6,advertising}={}){
  const advertisingState={name:advertising?.name||null,ready:false,boards:[]};
  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),mix=(a,b,q)=>a+(b-a)*q;
  const height=32,fov=46;
- const renderer=new THREE.WebGLRenderer({canvas,antialias:true,powerPreference:'high-performance'});
- renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.75));
+ // Touch devices keep the authored models, lighting and cheap contact shadows.
+ // Avoid high-DPI multisampling and a second skinned draw for dynamic shadows.
+ const mobile=window.matchMedia('(pointer:coarse)').matches;
+ const quality={mobile,maxFps:mobile?60:0};
+ const renderer=new THREE.WebGLRenderer({canvas,antialias:!mobile,powerPreference:'high-performance'});
+ renderer.setPixelRatio(Math.min(devicePixelRatio||1,mobile?1:1.75));
  renderer.outputColorSpace=THREE.SRGBColorSpace;
  renderer.toneMapping=THREE.ACESFilmicToneMapping;
  renderer.toneMappingExposure=1.18;
- renderer.shadowMap.enabled=true;
+ renderer.shadowMap.enabled=!mobile;
  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
  const scene=new THREE.Scene();
  scene.background=new THREE.Color('#a6c2c4');
@@ -151,17 +155,22 @@ window.D6PitchScene={create(canvas,{goalWidth=7.6,advertising}={}){
  }
  const ballRoot=new THREE.Group();scene.add(ballRoot);
  const ball=mesh(new THREE.IcosahedronGeometry(.28,2),mat('#fcfbec'),ballRoot);ball.castShadow=true;
+ // Diameter 0.3528: approximately one eighth of the standing player height.
+ ball.scale.setScalar(.63);
  // Small dark panels preserve a football silhouette at TV distance.
  for(let i=0;i<12;i++){const a=i*2.39996,y=1-2*(i+.5)/12,r=Math.sqrt(1-y*y);const direction=new THREE.Vector3(Math.cos(a)*r,y,Math.sin(a)*r);const panel=mesh(new THREE.CircleGeometry(.105,5),dark,ball);panel.position.copy(direction).multiplyScalar(.275);panel.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),direction);}
- const ballShadow=mesh(new THREE.CircleGeometry(.4,20),new THREE.MeshBasicMaterial({color:'#142b1c',transparent:true,opacity:.38,depthWrite:false}));ballShadow.rotation.x=-Math.PI/2;
+ const ballShadow=mesh(new THREE.CircleGeometry(.28,20),new THREE.MeshBasicMaterial({color:'#142b1c',transparent:true,opacity:.38,depthWrite:false}));ballShadow.rotation.x=-Math.PI/2;
  const ownerRing=mesh(new THREE.RingGeometry(.67,.76,40),new THREE.MeshBasicMaterial({color:'#eef9c2',transparent:true,opacity:.72,side:THREE.DoubleSide,depthWrite:false}));ownerRing.rotation.x=-Math.PI/2;ownerRing.position.y=.11;
 
  function disposeObject(root){
-  const geometries=new Set(),materials=new Set(),textures=new Set();
-  root.traverse(object=>{if(object.geometry)geometries.add(object.geometry);for(const material of (Array.isArray(object.material)?object.material:[object.material]))if(material){materials.add(material);for(const value of Object.values(material))if(value?.isTexture)textures.add(value);}});
-  for(const geometry of geometries)geometry.dispose();for(const material of materials)material.dispose();for(const texture of textures)texture.dispose();
+  const geometries=new Set(),materials=new Set(),textures=new Set(),skeletons=new Set();
+  root.traverse(object=>{if(object.skeleton)skeletons.add(object.skeleton);if(object.geometry)geometries.add(object.geometry);for(const material of (Array.isArray(object.material)?object.material:[object.material]))if(material){materials.add(material);for(const value of Object.values(material))if(value?.isTexture)textures.add(value);}});
+  for(const skeleton of skeletons)skeleton.dispose();
+  for(const geometry of geometries)if(!geometry.userData?.d6Shared)geometry.dispose();for(const material of materials)material.dispose();for(const texture of textures)if(!texture.userData?.d6Shared)texture.dispose();
+  // Imported player resources have per-player leases, also on substitutions.
+  root.traverse(object=>object.userData?.d6Release?.());
  }
- return {renderer,scene,camera,people,player,ballRoot,ball,ballShadow,ownerRing,advertisingState,
+ return {renderer,scene,camera,people,player,ballRoot,ball,ballShadow,ownerRing,advertisingState,quality,
   removePlayer(person){scene.remove(person.root);people.splice(people.indexOf(person),1);disposeObject(person.root);},
   dispose(){disposed=true;if(advertImage)advertImage.onload=null;disposeObject(scene);renderer.dispose();}
  };

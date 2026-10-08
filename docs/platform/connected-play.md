@@ -1,0 +1,19 @@
+# Zusammenhängende lokale Spielzüge
+
+Stand: 8. Oktober 2026. Unity ist durch Nutzerentscheidung der Hauptpfad für den weiteren 3D-Ausbau. Die lokale Demo enthält drei neue Szenenfamilien: Pass–Annahme–Tor, abgefangener Pass und Pass–Annahme–Parade mit freiem Abpraller. Insgesamt sind 45 Familien auswählbar. Die drei neuen Familien laufen in acht Feld-/Mannschafts-/Richtungskombinationen.
+
+Der Ball besitzt genau einen Zustand. Vorbereitete Pass- und Schussbewegungen geben ihn erst bei erreichbarem Fußkontakt frei. Annahme führt ihn über 0,22 Sekunden in kontrollierten Besitz. Die Parade prüft den bewegten Handkontakt, lässt den Ball frei und zwei Spieler verfolgen ihn bis zum tatsächlichen Zugriff. Das Szenenlabel erzwingt kein Ergebnis: ein weglaufender Empfänger verfehlt den Ball, ein entfernter Verteidiger fängt den Pass nicht ab. Tor, Aus oder Besitzabschluss erzeugen genau ein Ergebnis; anschließend läuft die Szene drei Sekunden weiter.
+
+Vorhandene Bewegungsclips werden am gemeinsamen Simulationstakt abgespielt. Begrenzte Zweigelenk-Korrekturen richten Fuß beziehungsweise Hand zum Kontaktziel aus. Kontaktvolumen sind Kugeln, keine vollständigen Meshkollisionen. Das Rig begrenzt die erreichbare Zielposition; bei der gemessenen Passvorbereitung beträgt die verbleibende Abweichung bis rund 11,5 cm. Diese begrenzten Proben liefern noch keine vollständige Match-KI, taktische Mannschaftsplanung oder produktive Karrierespeicherung.
+
+Nachweise:
+
+- [JavaScript: 24 Spielzüge, Negativkontakte, Fortsetzung und C#-Verlaufvergleich](../../outputs/platform/play/js-tests.json). Maximale Positionsabweichung zum C#-Kern unter 10⁻⁸ m; Ereignisart, Akteur und Tick stimmen überein.
+- [Unity-Editor: 24 Spielzüge, JSON-Zwischenstände und Negativkontakte](../../prototypes/match-engine-unity/play-tests.json). Die bestehenden 288 Kontaktfälle, 48 Ballphysikfälle und acht Netzfälle bleiben bestanden.
+- [Sichtbare Browserprobe: sechs Spielzüge](../../outputs/platform/play-build/browser-play-summary.json) und [Unity-Webprobe: sechs Spielzüge](../../outputs/platform/play-build/unity-play-summary.json), jeweils beide Richtungen, 12/14 Figuren, Pause, Zwischenstände vor Freigabe/nach Annahme/am freien Abpraller, drei Sekunden Nachlauf und Reset.
+- [Unity-Build](../../outputs/platform/play-build/build-report.json): erfolgreich, keine Buildfehler, drei Warnungen. Temporäre Web-/Grafikeinstellungen wurden zurückgestellt; SampleScene blieb unverändert.
+- Bestehende sichtbare [Unity-Bedienung](../../outputs/platform/play-build/unity-ui-summary.json), [Ballphysik](../../outputs/platform/play-build/unity-physics-summary.json), [Netz](../../outputs/platform/play-build/unity-net-summary.json) und [Enginewechsel](../../outputs/platform/play-build/switch-summary.json) bestanden. Keine neue Leistungsstudie; frühere Messungen gelten für ihren damaligen Stand.
+
+Gemeinsame Kernkennung: `4a7f5282835783a4233cd03654005f04f3f47ed937cecb1436af5c1bd4176579`. Neue Unityquellen bleiben unter `prototypes/match-engine-unity/` nachvollziehbar. Keine neuen Meshy-Generierungen, keine Veröffentlichung oder Änderung gespeicherter Partien. Die gesondert beauftragten Flutlicht-Korrekturen betreffen die Manageroberfläche.
+
+Der anschließend beauftragte Unity-Schritt ist lokal umgesetzt: echte Vereinswelt-Teams, Trikots und Aufstellung, native Pause, Zwischenstand, Wechsel und Rückschau sowie eine vollständige Vergleichspartie. Unity konsumiert den vorhandenen Matchzustand als Darstellung; es erzeugt keine zweite Ergebnis- oder Speicherautorität. [Aktueller Nachweis und Grenzen](vereinswelt-unity.md). Als nächstes folgen Spielergrundlagen P01–P03, Rollen P04 und darauf die vollständige taktische Oberfläche P05; umfangreichere Unity-Match-KI und Android-Geräteprüfung bleiben anschließend offen. Bestehende historische Partien werden nicht neu berechnet. Die oben genannten Demo-Belege und Kernkennung beschreiben ihren damaligen Stand.

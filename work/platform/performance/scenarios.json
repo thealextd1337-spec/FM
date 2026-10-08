@@ -1,0 +1,6 @@
+{
+  "schema": 1,
+  "baseline": {"adapter":"native","seed":12345,"viewport":{"width":1440,"height":950},"deviceScaleFactor":1,"durationSeconds":30,"caches":["cold","warm"],"view":"3d","expectedPlayers":12},
+  "comparison": {"adapter":"probe","durationSeconds":1200,"requiredVariants":["12 players / original field","14 players / larger field"],"requiredPhases":["live match","complete match","full recorded replay","cleanup"],"status":"requires frozen demo builds and serial GPU window"},
+  "limits": {"androidTargetFps":30,"androidDevices":["Pixel 9a","Pixel 9 Pro XL"],"pcFrameBudgetMs":null,"pcMemoryBudgetBytes":null,"note":"No inferred Android approval from PC or emulator runs."}
+}

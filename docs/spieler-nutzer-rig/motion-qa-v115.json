@@ -1,0 +1,715 @@
+{
+  "cadence": {
+    "ticks": 19,
+    "paints": 28,
+    "clock": 1.5200000000000002,
+    "between": 8,
+    "drawCalls": 60,
+    "geometries": 46
+  },
+  "pause": {
+    "frozen": true,
+    "clock": true,
+    "loop": 0,
+    "extra": 1
+  },
+  "actions": [
+    {
+      "kind": "pass",
+      "team": 0,
+      "turned": false,
+      "contactKind": "pass",
+      "contactHeight": 0.29,
+      "leg": -0.9437671964006538,
+      "posed": {
+        "leg": -1.0090571130538741,
+        "knee": 1.0531607568784764,
+        "elbow": -0.3419743698700085,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "highPass",
+      "team": 0,
+      "turned": false,
+      "contactKind": "highPass",
+      "contactHeight": 0.29,
+      "leg": -0.7602108225073505,
+      "posed": {
+        "leg": -0.8021022784939364,
+        "knee": 0.62288495530245,
+        "elbow": -0.3449148180495591,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "cross",
+      "team": 0,
+      "turned": false,
+      "contactKind": "cross",
+      "contactHeight": 0.29,
+      "leg": -0.7602108225073505,
+      "posed": {
+        "leg": -0.8021022784939364,
+        "knee": 0.62288495530245,
+        "elbow": -0.3449148180495591,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "shot",
+      "team": 0,
+      "turned": false,
+      "contactKind": "shot",
+      "contactHeight": 0.29,
+      "leg": -1.0125081515102097,
+      "posed": {
+        "leg": -1.1011204006904152,
+        "knee": 1.3188520252020255,
+        "elbow": -0.34656649402809164,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "freeKick",
+      "team": 0,
+      "turned": false,
+      "contactKind": "freeKick",
+      "contactHeight": 0.29,
+      "leg": -1.0125081515102097,
+      "posed": {
+        "leg": -1.1011204006904152,
+        "knee": 1.3188520252020255,
+        "elbow": -0.34656649402809164,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "volley",
+      "team": 0,
+      "turned": false,
+      "contactKind": "volley",
+      "contactHeight": 1.2,
+      "leg": -3.5304996323493976,
+      "posed": {
+        "leg": -3.7335421856487394,
+        "knee": 2.8622226902689762,
+        "elbow": -0.34143489035165187,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "header",
+      "team": 0,
+      "turned": false,
+      "contactKind": "header",
+      "contactHeight": 2.65,
+      "leg": -0.15,
+      "posed": {
+        "leg": -0.14656044423000367,
+        "knee": 0.2442674070500061,
+        "elbow": -0.4407988359646232,
+        "neck": 0.1137579867298761
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "pass",
+      "team": 0,
+      "turned": true,
+      "contactKind": "pass",
+      "contactHeight": 0.29,
+      "leg": -0.9437671964006538,
+      "posed": {
+        "leg": -1.0090571130538737,
+        "knee": 1.053160756878476,
+        "elbow": -0.3419743698700086,
+        "neck": 0
+      },
+      "drawCalls": 60
+    },
+    {
+      "kind": "highPass",
+      "team": 0,
+      "turned": true,
+      "contactKind": "highPass",
+      "contactHeight": 0.29,
+      "leg": -0.7602108225073505,
+      "posed": {
+        "leg": -0.8021022784939364,
+        "knee": 0.62288495530245,
+        "elbow": -0.3449148180495591,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "cross",
+      "team": 0,
+      "turned": true,
+      "contactKind": "cross",
+      "contactHeight": 0.29,
+      "leg": -0.7602108225073505,
+      "posed": {
+        "leg": -0.8021022784939364,
+        "knee": 0.62288495530245,
+        "elbow": -0.3449148180495591,
+        "neck": 0
+      },
+      "drawCalls": 60
+    },
+    {
+      "kind": "shot",
+      "team": 0,
+      "turned": true,
+      "contactKind": "shot",
+      "contactHeight": 0.29,
+      "leg": -1.0125081515102097,
+      "posed": {
+        "leg": -1.1011204006904152,
+        "knee": 1.3188520252020255,
+        "elbow": -0.34656649402809164,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "freeKick",
+      "team": 0,
+      "turned": true,
+      "contactKind": "freeKick",
+      "contactHeight": 0.29,
+      "leg": -1.0125081515102097,
+      "posed": {
+        "leg": -1.1011204006904152,
+        "knee": 1.3188520252020255,
+        "elbow": -0.34656649402809164,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "volley",
+      "team": 0,
+      "turned": true,
+      "contactKind": "volley",
+      "contactHeight": 1.2,
+      "leg": -3.5304996323493976,
+      "posed": {
+        "leg": -3.7335421856487394,
+        "knee": 2.8622226902689762,
+        "elbow": -0.34143489035165187,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "header",
+      "team": 0,
+      "turned": true,
+      "contactKind": "header",
+      "contactHeight": 2.65,
+      "leg": -0.15000000000000002,
+      "posed": {
+        "leg": -0.1465604442300037,
+        "knee": 0.24426740705000616,
+        "elbow": -0.38645641928761265,
+        "neck": 0.1137579867298761
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "pass",
+      "team": 1,
+      "turned": false,
+      "contactKind": "pass",
+      "contactHeight": 0.29,
+      "leg": -0.9437671964006538,
+      "posed": {
+        "leg": -1.0090571130538741,
+        "knee": 1.0531607568784764,
+        "elbow": -0.3419743698700085,
+        "neck": 0
+      },
+      "drawCalls": 58
+    },
+    {
+      "kind": "highPass",
+      "team": 1,
+      "turned": false,
+      "contactKind": "highPass",
+      "contactHeight": 0.29,
+      "leg": -0.7602108225073505,
+      "posed": {
+        "leg": -0.8021022784939364,
+        "knee": 0.62288495530245,
+        "elbow": -0.3449148180495591,
+        "neck": 0
+      },
+      "drawCalls": 58
+    },
+    {
+      "kind": "cross",
+      "team": 1,
+      "turned": false,
+      "contactKind": "cross",
+      "contactHeight": 0.29,
+      "leg": -0.7602108225073505,
+      "posed": {
+        "leg": -0.8021022784939364,
+        "knee": 0.62288495530245,
+        "elbow": -0.3449148180495591,
+        "neck": 0
+      },
+      "drawCalls": 58
+    },
+    {
+      "kind": "shot",
+      "team": 1,
+      "turned": false,
+      "contactKind": "shot",
+      "contactHeight": 0.29,
+      "leg": -1.0125081515102097,
+      "posed": {
+        "leg": -1.1011204006904152,
+        "knee": 1.3188520252020255,
+        "elbow": -0.34656649402809164,
+        "neck": 0
+      },
+      "drawCalls": 58
+    },
+    {
+      "kind": "freeKick",
+      "team": 1,
+      "turned": false,
+      "contactKind": "freeKick",
+      "contactHeight": 0.29,
+      "leg": -1.0125081515102097,
+      "posed": {
+        "leg": -1.1011204006904152,
+        "knee": 1.3188520252020255,
+        "elbow": -0.34656649402809164,
+        "neck": 0
+      },
+      "drawCalls": 58
+    },
+    {
+      "kind": "volley",
+      "team": 1,
+      "turned": false,
+      "contactKind": "volley",
+      "contactHeight": 1.2,
+      "leg": -3.5304996323493976,
+      "posed": {
+        "leg": -3.73354218564874,
+        "knee": 2.8622226902689762,
+        "elbow": -0.34143489035165187,
+        "neck": 0
+      },
+      "drawCalls": 57
+    },
+    {
+      "kind": "header",
+      "team": 1,
+      "turned": false,
+      "contactKind": "header",
+      "contactHeight": 2.65,
+      "leg": -0.15000000000000002,
+      "posed": {
+        "leg": -0.1465604442300037,
+        "knee": 0.24426740705000616,
+        "elbow": -0.40613199877468276,
+        "neck": 0.1137579867298761
+      },
+      "drawCalls": 57
+    },
+    {
+      "kind": "pass",
+      "team": 1,
+      "turned": true,
+      "contactKind": "pass",
+      "contactHeight": 0.29,
+      "leg": -0.9437671964006538,
+      "posed": {
+        "leg": -1.0090571130538741,
+        "knee": 1.0531607568784764,
+        "elbow": -0.3419743698700085,
+        "neck": 0
+      },
+      "drawCalls": 60
+    },
+    {
+      "kind": "highPass",
+      "team": 1,
+      "turned": true,
+      "contactKind": "highPass",
+      "contactHeight": 0.29,
+      "leg": -0.7602108225073505,
+      "posed": {
+        "leg": -0.8021022784939364,
+        "knee": 0.62288495530245,
+        "elbow": -0.3449148180495591,
+        "neck": 0
+      },
+      "drawCalls": 60
+    },
+    {
+      "kind": "cross",
+      "team": 1,
+      "turned": true,
+      "contactKind": "cross",
+      "contactHeight": 0.29,
+      "leg": -0.7602108225073505,
+      "posed": {
+        "leg": -0.8021022784939364,
+        "knee": 0.62288495530245,
+        "elbow": -0.3449148180495591,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "shot",
+      "team": 1,
+      "turned": true,
+      "contactKind": "shot",
+      "contactHeight": 0.29,
+      "leg": -1.0125081515102097,
+      "posed": {
+        "leg": -1.1011204006904152,
+        "knee": 1.3188520252020255,
+        "elbow": -0.34656649402809164,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "freeKick",
+      "team": 1,
+      "turned": true,
+      "contactKind": "freeKick",
+      "contactHeight": 0.29,
+      "leg": -1.0125081515102097,
+      "posed": {
+        "leg": -1.1011204006904152,
+        "knee": 1.3188520252020255,
+        "elbow": -0.34656649402809164,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "volley",
+      "team": 1,
+      "turned": true,
+      "contactKind": "volley",
+      "contactHeight": 1.2,
+      "leg": -3.5304996323493976,
+      "posed": {
+        "leg": -3.7335421856487394,
+        "knee": 2.8622226902689762,
+        "elbow": -0.34143489035165187,
+        "neck": 0
+      },
+      "drawCalls": 61
+    },
+    {
+      "kind": "header",
+      "team": 1,
+      "turned": true,
+      "contactKind": "header",
+      "contactHeight": 2.65,
+      "leg": -0.14999999999999997,
+      "posed": {
+        "leg": -0.1465604442300037,
+        "knee": 0.24426740705000616,
+        "elbow": -0.4577727055637518,
+        "neck": 0.1137579867298761
+      },
+      "drawCalls": 61
+    }
+  ],
+  "air": [
+    {
+      "resultKind": "header",
+      "team": 0,
+      "turned": false,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.08119747706142245,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.18,
+      "endY": 0.18
+    },
+    {
+      "resultKind": "headerPass",
+      "team": 0,
+      "turned": false,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.04437197794001869,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.5,
+      "endY": 0.5
+    },
+    {
+      "resultKind": "volley",
+      "team": 0,
+      "turned": false,
+      "kind": "volley",
+      "height": 1.2,
+      "headGap": 1.1566549905890395,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.18,
+      "endY": 0.18
+    },
+    {
+      "resultKind": "clear",
+      "team": 0,
+      "turned": false,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.08614495159182678,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.18,
+      "endY": 0.18
+    },
+    {
+      "resultKind": "control",
+      "team": 0,
+      "turned": false,
+      "kind": "control",
+      "height": 2.65,
+      "headGap": 0.08993976229200223,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.18,
+      "endY": 0.18
+    },
+    {
+      "resultKind": "header",
+      "team": 0,
+      "turned": true,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.05606614501094053,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.18,
+      "endY": 0.18
+    },
+    {
+      "resultKind": "headerPass",
+      "team": 0,
+      "turned": true,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.05944576739851992,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.5,
+      "endY": 0.5
+    },
+    {
+      "resultKind": "volley",
+      "team": 0,
+      "turned": true,
+      "kind": "volley",
+      "height": 1.2,
+      "headGap": 1.1721399968769186,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.18,
+      "endY": 0.18
+    },
+    {
+      "resultKind": "clear",
+      "team": 0,
+      "turned": true,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.08501018663191161,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.18,
+      "endY": 0.18
+    },
+    {
+      "resultKind": "control",
+      "team": 0,
+      "turned": true,
+      "kind": "control",
+      "height": 2.65,
+      "headGap": 0.12434465368825946,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.18,
+      "endY": 0.18
+    },
+    {
+      "resultKind": "header",
+      "team": 1,
+      "turned": false,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.09967601060621187,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.82,
+      "endY": 0.82
+    },
+    {
+      "resultKind": "headerPass",
+      "team": 1,
+      "turned": false,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.08509227366444976,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.5,
+      "endY": 0.5
+    },
+    {
+      "resultKind": "volley",
+      "team": 1,
+      "turned": false,
+      "kind": "volley",
+      "height": 1.2,
+      "headGap": 1.150322154239803,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.82,
+      "endY": 0.82
+    },
+    {
+      "resultKind": "clear",
+      "team": 1,
+      "turned": false,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.0875045285517371,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.82,
+      "endY": 0.82
+    },
+    {
+      "resultKind": "control",
+      "team": 1,
+      "turned": false,
+      "kind": "control",
+      "height": 2.65,
+      "headGap": 0.1247843366707467,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.82,
+      "endY": 0.82
+    },
+    {
+      "resultKind": "header",
+      "team": 1,
+      "turned": true,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.008369375000556867,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.82,
+      "endY": 0.82
+    },
+    {
+      "resultKind": "headerPass",
+      "team": 1,
+      "turned": true,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.021694403179083326,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.5,
+      "endY": 0.5
+    },
+    {
+      "resultKind": "volley",
+      "team": 1,
+      "turned": true,
+      "kind": "volley",
+      "height": 1.2,
+      "headGap": 1.1652578976148549,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.82,
+      "endY": 0.82
+    },
+    {
+      "resultKind": "clear",
+      "team": 1,
+      "turned": true,
+      "kind": "header",
+      "height": 2.65,
+      "headGap": 0.08688788231233253,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.82,
+      "endY": 0.82
+    },
+    {
+      "resultKind": "control",
+      "team": 1,
+      "turned": true,
+      "kind": "control",
+      "height": 2.65,
+      "headGap": 0.1153541281651471,
+      "native": true,
+      "startX": 0.5,
+      "endX": 0.5,
+      "startY": 0.82,
+      "endY": 0.82
+    }
+  ],
+  "clear": {
+    "height": 2.65,
+    "kind": "header",
+    "heightLater": 2.5700000000000007
+  },
+  "lifecycle": {
+    "stopped": true,
+    "restarted": true,
+    "pending": 75
+  },
+  "hidden": {
+    "stopped": true,
+    "restarted": true
+  },
+  "errors": []
+}

@@ -8,6 +8,7 @@ function v72Market(career){
 }
 function v72Listing(career,pid){return v72Market(career).saleListings.find(item=>item.pid===pid&&item.status==='active')||null}
 function v72TransferTerms(career,pid){
+ if(v66Owner(career,pid)?.simulationOnly)return null;
  const listing=v72Listing(career,pid);if(listing)return listing;
  const seller=v66Owner(career,pid),player=v66Player(career,pid);
  return seller&&player?{pid,sellerId:seller.id,ask:v66Value(player),reason:'direct'}:null;
@@ -56,7 +57,7 @@ function v72AdvanceDay(career){
   listing.status='withdrawn';
   for(const negotiation of market.negotiations.filter(item=>item.pid===listing.pid&&['fee-wait','fee-counter','seller-offer','seller-counter-wait'].includes(item.stage))){v72Reject(career,negotiation,'Der Verein hat den Spieler von der Verkaufsliste genommen.');const result=market.transferResults.find(item=>item.negotiationId===negotiation.id&&item.kind==='rejected');if(result)result.day=Math.max(0,market.day-1)}
  }
- for(const club of career.world.clubs.filter(item=>item.id!==own&&item.roster.length>10)){
+ for(const club of career.world.clubs.filter(item=>!item.simulationOnly&&item.id!==own&&item.roster.length>10)){
   const pressure=v72ListingPressure(career,club),counts={gk:0,def:0,mid:0,att:0};
   for(const player of club.roster)counts[player.line]++;
   const room=club.roster.length-10,surplusRoom=Math.max(0,club.roster.length-11),picks=new Map(),remaining={...counts};
@@ -88,6 +89,7 @@ function v72Willingness(career,pid,buyerId){
 function v72CommittedPids(career,sellerId){return new Set(v72Market(career).negotiations.filter(item=>item.sellerId===sellerId&&['contract','contract-wait','contract-counter','ready'].includes(item.stage)).map(item=>item.pid))}
 function v72SaleBlockReason(career,sellerId,pid){
  const seller=v66Club(career,sellerId),player=seller?.roster.find(item=>item.pid===pid);
+ if(seller?.simulationOnly)return 'Simulationsteams nehmen nicht am Transfermarkt teil.';
  if(!player)return 'Der Verein kann diesen Spieler nicht mehr abgeben.';
  const committed=v72CommittedPids(career,sellerId),remaining=seller.roster.filter(item=>item.pid!==pid&&!committed.has(item.pid));
  if(!remaining.some(item=>item.keeper))return 'Der Verein muss seinen letzten Torwart behalten.';
@@ -263,7 +265,7 @@ function v72Finalize(career){
 function v72AiInterest(career,targetPid=null){
  const market=v72Market(career),own=career.manager.managedClubId,random=v61Random(`${career.world.seed}:S${career.world.season}:D${market.day}:sale-interest:${targetPid||'all'}`);
  const listings=market.saleListings.filter(item=>item.status==='active'&&(!targetPid||item.pid===targetPid));
- for(const buyer of career.world.clubs.filter(item=>item.id!==career.manager.managedClubId&&item.roster.length<13&&item.roster.some(player=>player.keeper))){
+ for(const buyer of career.world.clubs.filter(item=>!item.simulationOnly&&item.id!==career.manager.managedClubId&&item.roster.length<13&&item.roster.some(player=>player.keeper))){
   if(random()>(targetPid ? .18 : .11))continue;
   const candidates=listings.filter(item=>{
    const player=v66Player(career,item.pid);if(!player)return false;

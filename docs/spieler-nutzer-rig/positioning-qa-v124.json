@@ -1,0 +1,354 @@
+{
+  "version": 121,
+  "baseline": false,
+  "date": "2026-10-04T21:04:44.755Z",
+  "marking": [
+    {
+      "team": 0,
+      "targets": [
+        {
+          "id": "v121-left",
+          "x": 0.18,
+          "y": 0.7503315559975071,
+          "assignment": "v121-runner-left"
+        },
+        {
+          "id": "v121-middle",
+          "x": 0.49,
+          "y": 0.7503315559975071,
+          "assignment": "v121-runner-middle"
+        },
+        {
+          "id": "v121-right",
+          "x": 0.7,
+          "y": 0.6703315559975072,
+          "assignment": "v121-carrier"
+        }
+      ]
+    },
+    {
+      "team": 1,
+      "targets": [
+        {
+          "id": "v121-left",
+          "x": 0.18,
+          "y": 0.24966844400249286,
+          "assignment": "v121-runner-left"
+        },
+        {
+          "id": "v121-middle",
+          "x": 0.49,
+          "y": 0.24966844400249286,
+          "assignment": "v121-runner-middle"
+        },
+        {
+          "id": "v121-right",
+          "x": 0.7,
+          "y": 0.32966844400249284,
+          "assignment": "v121-carrier"
+        }
+      ]
+    }
+  ],
+  "lines": [
+    {
+      "team": 0,
+      "line": -1,
+      "own": false,
+      "depth": 0.20999999999999996
+    },
+    {
+      "team": 0,
+      "line": -1,
+      "own": true,
+      "depth": 0.34919999999999995
+    },
+    {
+      "team": 0,
+      "line": 0,
+      "own": false,
+      "depth": 0.31000000000000005
+    },
+    {
+      "team": 0,
+      "line": 0,
+      "own": true,
+      "depth": 0.4012
+    },
+    {
+      "team": 0,
+      "line": 1,
+      "own": false,
+      "depth": 0.4099999999999999
+    },
+    {
+      "team": 0,
+      "line": 1,
+      "own": true,
+      "depth": 0.48
+    },
+    {
+      "team": 1,
+      "line": -1,
+      "own": false,
+      "depth": 0.21
+    },
+    {
+      "team": 1,
+      "line": -1,
+      "own": true,
+      "depth": 0.3492
+    },
+    {
+      "team": 1,
+      "line": 0,
+      "own": false,
+      "depth": 0.31
+    },
+    {
+      "team": 1,
+      "line": 0,
+      "own": true,
+      "depth": 0.4012
+    },
+    {
+      "team": 1,
+      "line": 1,
+      "own": false,
+      "depth": 0.41
+    },
+    {
+      "team": 1,
+      "line": 1,
+      "own": true,
+      "depth": 0.48
+    }
+  ],
+  "pursuit": [
+    {
+      "team": 0,
+      "target": 0.840331923881717,
+      "travel": 0.23317546346666748,
+      "limit": 0.2331754634666667,
+      "mode": "pursuit",
+      "factor": 1,
+      "toward": true
+    },
+    {
+      "team": 1,
+      "target": 0.15966807611828304,
+      "travel": 0.23317546346666748,
+      "limit": 0.2331754634666667,
+      "mode": "pursuit",
+      "factor": 1,
+      "toward": true
+    }
+  ],
+  "runs": [
+    {
+      "team": 0,
+      "pos": 6,
+      "trials": 80,
+      "offsides": 44,
+      "offsideFrames": 984,
+      "totalTravel": 1195.1891884388072,
+      "maxStep": 0.2529480712361247
+    },
+    {
+      "team": 0,
+      "pos": 18,
+      "trials": 80,
+      "offsides": 0,
+      "offsideFrames": 0,
+      "totalTravel": 1054.1221000493176,
+      "maxStep": 0.2331754634666677
+    },
+    {
+      "team": 1,
+      "pos": 6,
+      "trials": 80,
+      "offsides": 44,
+      "offsideFrames": 984,
+      "totalTravel": 1195.1891884388194,
+      "maxStep": 0.2529480712361318
+    },
+    {
+      "team": 1,
+      "pos": 18,
+      "trials": 80,
+      "offsides": 0,
+      "offsideFrames": 0,
+      "totalTravel": 1054.1221000492674,
+      "maxStep": 0.23317546346666487
+    }
+  ],
+  "squares": [
+    {
+      "team": 0,
+      "key": "pas",
+      "value": 6,
+      "trials": 300,
+      "chosen": 153
+    },
+    {
+      "team": 0,
+      "key": "pas",
+      "value": 18,
+      "trials": 300,
+      "chosen": 252
+    },
+    {
+      "team": 0,
+      "key": "pos",
+      "value": 6,
+      "trials": 300,
+      "chosen": 185
+    },
+    {
+      "team": 0,
+      "key": "pos",
+      "value": 18,
+      "trials": 300,
+      "chosen": 222
+    },
+    {
+      "team": 1,
+      "key": "pas",
+      "value": 6,
+      "trials": 300,
+      "chosen": 153
+    },
+    {
+      "team": 1,
+      "key": "pas",
+      "value": 18,
+      "trials": 300,
+      "chosen": 252
+    },
+    {
+      "team": 1,
+      "key": "pos",
+      "value": 6,
+      "trials": 300,
+      "chosen": 185
+    },
+    {
+      "team": 1,
+      "key": "pos",
+      "value": 18,
+      "trials": 300,
+      "chosen": 222
+    }
+  ],
+  "squareGuards": [
+    {
+      "team": 0,
+      "kind": "offside",
+      "chosen": false
+    },
+    {
+      "team": 0,
+      "kind": "blocked",
+      "chosen": false
+    },
+    {
+      "team": 0,
+      "kind": "worse",
+      "chosen": false
+    },
+    {
+      "team": 1,
+      "kind": "offside",
+      "chosen": false
+    },
+    {
+      "team": 1,
+      "kind": "blocked",
+      "chosen": false
+    },
+    {
+      "team": 1,
+      "kind": "worse",
+      "chosen": false
+    }
+  ],
+  "release": [
+    {
+      "team": 0,
+      "legalAtRelease": true,
+      "offsideNow": true,
+      "exempt": 0
+    },
+    {
+      "team": 1,
+      "legalAtRelease": true,
+      "offsideNow": true,
+      "exempt": 0
+    }
+  ],
+  "anticipation": [
+    {
+      "team": 0,
+      "pos": 6,
+      "safety": 0.007599117796263155,
+      "margin": -0.004541553435736919,
+      "lead": 0.012140671232000074
+    },
+    {
+      "team": 0,
+      "pos": 18,
+      "safety": 0.042924438963844735,
+      "margin": 0.026517443733320073,
+      "lead": 0.016406995230524662
+    },
+    {
+      "team": 1,
+      "pos": 6,
+      "safety": 0.007599117796263211,
+      "margin": -0.004541553435736919,
+      "lead": 0.01214067123200013
+    },
+    {
+      "team": 1,
+      "pos": 18,
+      "safety": 0.04292443896384479,
+      "margin": 0.026517443733320073,
+      "lead": 0.016406995230524718
+    }
+  ],
+  "actionChoices": [
+    {
+      "team": 0,
+      "value": 6,
+      "trials": 200,
+      "passes": 88,
+      "shots": 0,
+      "carries": 112
+    },
+    {
+      "team": 0,
+      "value": 18,
+      "trials": 200,
+      "passes": 180,
+      "shots": 0,
+      "carries": 20
+    },
+    {
+      "team": 1,
+      "value": 6,
+      "trials": 200,
+      "passes": 88,
+      "shots": 0,
+      "carries": 112
+    },
+    {
+      "team": 1,
+      "value": 18,
+      "trials": 200,
+      "passes": 180,
+      "shots": 0,
+      "carries": 20
+    }
+  ],
+  "errors": []
+}

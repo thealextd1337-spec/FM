@@ -1,0 +1,126 @@
+{
+  "version": 119,
+  "recordedAt": "2026-10-04T17:18:45.647Z",
+  "groups": [
+    {
+      "id": "control",
+      "label": "Kontrolle",
+      "a": 12,
+      "b": 12,
+      "key": null
+    },
+    {
+      "id": "spd",
+      "label": "Geschwindigkeit",
+      "a": 12,
+      "b": 12,
+      "key": "spd"
+    },
+    {
+      "id": "tec",
+      "label": "Technik",
+      "a": 12,
+      "b": 12,
+      "key": "tec"
+    },
+    {
+      "id": "pas",
+      "label": "Passspiel",
+      "a": 12,
+      "b": 12,
+      "key": "pas"
+    },
+    {
+      "id": "fin",
+      "label": "Abschluss",
+      "a": 12,
+      "b": 12,
+      "key": "fin"
+    },
+    {
+      "id": "tak",
+      "label": "Zweikampf",
+      "a": 12,
+      "b": 12,
+      "key": "tak"
+    },
+    {
+      "id": "pos",
+      "label": "Stellungsspiel",
+      "a": 12,
+      "b": 12,
+      "key": "pos"
+    },
+    {
+      "id": "air",
+      "label": "Luftspiel",
+      "a": 12,
+      "b": 12,
+      "key": "air"
+    },
+    {
+      "id": "sta",
+      "label": "Kondition",
+      "a": 12,
+      "b": 12,
+      "key": "sta"
+    },
+    {
+      "id": "gk",
+      "label": "Torwartspiel",
+      "a": 12,
+      "b": 12,
+      "key": "gk"
+    }
+  ],
+  "gamesPerGroup": 30,
+  "seeds": [
+    20261004,
+    20365733,
+    20470462,
+    20575191,
+    20679920,
+    20784649,
+    20889378,
+    20994107,
+    21098836,
+    21203565,
+    21308294,
+    21413023,
+    21517752,
+    21622481,
+    21727210,
+    21831939,
+    21936668,
+    22041397,
+    22146126,
+    22250855,
+    22355584,
+    22460313,
+    22565042,
+    22669771,
+    22774500,
+    22879229,
+    22983958,
+    23088687,
+    23193416,
+    23298145
+  ],
+  "boost": 4,
+  "artifactSha256": "76dda23f031efa7cc8c1b5ac3301f67b45354b990b369efc361236267ef26048",
+  "controls": "Only Team A focal attribute +4 on all its players; gk only on keepers. All other attributes, team B, role specialization, age, form, freshness, instructions, tactics, seeds and venue order held constant. No coaching/substitutions. Fresh career clone each game.",
+  "primaryMetrics": {
+    "spd": "bounded field-player travel metres per game",
+    "tec": "ground duel win rate (all duels minus aerial)",
+    "pas": "pass completion rate",
+    "fin": "on-target rate per completed intentional attempt",
+    "tak": "ground duel win rate",
+    "pos": "offsides per 100 passes (opportunity-dependent)",
+    "air": "aerial duel win rate",
+    "sta": "final field-player freshness",
+    "gk": "save rate per faced intentional target shot"
+  },
+  "analysis": "Paired 30-seed bootstrap, 10000 resamples; intervals exploratory, no multiple-comparison correction. Match outcomes descriptive; no requirement that every isolated attribute raises wins in 30 games.",
+  "fixedScenes": "Each attribute varied alone in identical native scenes; improved primary mechanism required. No balance tuning to match sample.",
+  "scope": "Single-attribute isolation across a team; no positional/player-level isolation, tactics or rare-animation expansion."
+}

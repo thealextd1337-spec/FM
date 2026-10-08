@@ -1,0 +1,20 @@
+/* Management controls use Flutlicht; the pitch keeps its football colours. */
+#v61-world-screen .fl-content [data-v46-view="matchplan"] :is(.v64-controls,.v64-individual,.v64-selection,.v64-plan-store,.v64-bench-section,.v64-bench-player,.v64-bench-chip,.plan-card,.v140-match-presets){background:var(--fl-surface);border-color:var(--fl-line);color:var(--fl-ink)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] :is(.segmented,.prematch-tabs){background:var(--fl-subtle);border:1px solid var(--fl-line)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .prematch-tabs button{background:var(--fl-control);color:var(--fl-ink)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .prematch-tabs button.active{background:var(--fl-gold);color:#15191e;border-color:var(--fl-accent)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .plan-card>span{color:var(--fl-accent)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] :is(label,.v64-bench-player small,.compact-bench-head,.v64-individual p,.plan-card p){color:var(--fl-muted);font-size:13px}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] :is(input,select,textarea){min-height:44px;background:var(--fl-control);color:var(--fl-ink);border-color:var(--fl-control-line);font-size:16px;caret-color:var(--fl-accent)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] :is(.segmented button,.formation-presets button,.v64-bench-undo,.menu-action){min-height:44px;background:var(--fl-control);color:var(--fl-ink);border-color:var(--fl-control-line)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] :is(.segmented button.active,.formation-presets button.active,[aria-pressed="true"]){background:var(--fl-tint);color:var(--fl-accent);border-color:var(--fl-accent)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .v64-prematch-field :is(.v64-field-player,.v64-keeper-choice){background:#214b41;color:#fff;border-color:#b7d9bd}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .v64-raster>.cell{background:transparent;color:#fff;border-color:#b7d9bd55}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .v64-raster>.cell.chosen{background:#365c40;border-color:#f2c66e}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .v64-prematch-field :is(.v64-field-player.chosen,.v64-keeper-choice.chosen){background:#365c40;border-color:#f2c66e}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .v64-prematch-field :is(.player-label,.position-label){color:#fff}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .v64-prematch-field [data-v64-pitch-profile]{color:#fff;text-decoration-color:#c8e0d0}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .v64-position-warning{color:var(--fl-warning-ink);background:var(--fl-warning)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] :is(.v64-bench-player strong,.compact-bench-head h3,.v64-individual h3,.plan-card h3){color:var(--fl-ink)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .v64-bench-chip :is(.bench-select,.bench-title b){color:var(--fl-ink)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] :is(.v64-bench-chip .bench-meta,.compact-bench-head>span){color:var(--fl-muted)}

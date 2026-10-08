@@ -1,0 +1,5 @@
+(function(root){'use strict';
+function points(s){if(s.cameraPoints?.length)return s.cameraPoints.map(p=>p.position);const b=s.ball.position,v=s.ball.velocity,d=Math.min(s.duration,1.2),p=[b,b.map((x,i)=>x+v[i]*d)];for(const a of s.actors||[])if(a.action&&a.action!=='none')p.push(a.position,a.position.map((x,i)=>x+a.velocity[i]*d));if(Math.abs(b[0])>s.geometry.length/2-15){const x=Math.sign(b[0])*s.geometry.length/2,w=s.geometry.goalWidth/2;p.push([x,0,-w],[x,s.geometry.goalHeight,w]);}return p;}
+function frame(points,aspect=16/9){const lo=[Infinity,Infinity,Infinity],hi=[-Infinity,-Infinity,-Infinity];for(const p of points)for(let i=0;i<3;i++){lo[i]=Math.min(lo[i],p[i]);hi[i]=Math.max(hi[i],p[i]);}const center=lo.map((x,i)=>(x+hi[i])/2),half=hi.map((x,i)=>(x-lo[i])/2),vertical=half[1]*.8+half[2]*.6+2.4,horizontal=half[0]+2.4,d=Math.max(12,horizontal/(Math.tan(Math.PI*25/180)*aspect),vertical/Math.tan(Math.PI*25/180))+half[2]*.8+half[1]*.6;return {center,distance:d};}
+const api={points,frame};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.D6ProbeCamera=api;
+})(typeof globalThis!=='undefined'?globalThis:this);

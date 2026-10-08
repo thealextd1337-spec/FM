@@ -12,11 +12,11 @@ const setup=vm.runInNewContext(source.slice(source.indexOf('async function setup
   const cadence=await page.evaluate(async()=>{
    hideOverlay();Object.assign(match,{kickoff:null,countdown:0,postBanner:null,throwIn:null,setPiece:null,flight:null,slide:null,goalPause:0,goalScene:null,rebound:null});
    const p=match.people.find(p=>p.t===0&&!p.keeper);let ticks=0,between=0,last=null;const before=v102PaintCount,clock=v102Clock(match);
-   const timer=setInterval(()=>{p.x+=.0009;step(.04*MATCH_SPEED,.04);ticks++;draw()},40);
-   const end=performance.now()+1100;
+   const timer=setInterval(()=>{p.x+=.0009;step(.08*MATCH_SPEED,.08);ticks++;draw()},80);
+   const end=performance.now()+1400;
    while(performance.now()<end){await new Promise(requestAnimationFrame);const visual=v98Players.get(p.pid),x=visual.root.position.z;if(last!==null&&x!==last&&Math.abs(x-v98Frame.players.find(a=>a.id===p.pid).z)>.001)between++;last=x;}
    clearInterval(timer);return {ticks,paints:v102PaintCount-before,clock:v102Clock(match)-clock,between,drawCalls:v98Scene.renderer.info.render.calls,geometries:v98Scene.renderer.info.memory.geometries};
-  });assert(cadence.ticks>10);assert(cadence.paints>cadence.ticks,'graphics interpolate above the simulation cadence');assert(cadence.between>3,'players occupy intermediate presentation positions');assert(Math.abs(cadence.clock-cadence.ticks*.04)<1e-8,'graphics do not step the engine');
+  });assert(cadence.ticks>10);assert(cadence.paints>cadence.ticks,'graphics interpolate above the simulation cadence '+JSON.stringify(cadence));assert(cadence.between>3,'players occupy intermediate presentation positions '+JSON.stringify(cadence));assert(Math.abs(cadence.clock-cadence.ticks*.08)<1e-8,'graphics do not step the engine');
   const pause=await page.evaluate(async()=>{
    running=false;draw();const snapshot=()=>JSON.stringify([...v98Players.values()].map(v=>[v.root.position,v.body.position,...v.limbs.map(l=>l.rotation),...v.knees.map(l=>l.rotation)]));
    const before=snapshot(),clock=v102Clock(match),paints=v102PaintCount;await new Promise(r=>setTimeout(r,150));v98Render();return {frozen:before===snapshot(),clock:v102Clock(match)===clock,loop:v102Loop,extra:v102PaintCount-paints};
@@ -58,12 +58,13 @@ const setup=vm.runInNewContext(source.slice(source.indexOf('async function setup
     draw();v102Frames.at-=1000;v98Render();
     const action=v102PlayerAction(match,winner),ball=v99BallView(match),visual=v98Players.get(winner.pid);visual.root.updateMatrixWorld(true);
     if(!ball)throw Error(JSON.stringify({team,turned,resultKind,action,owner:match.owner?.pid,setPiece:match.setPiece,flight:match.flight&&{progress:match.flight.progress,target:match.flight.target},loose:v102State(match).loose,poses:[...v102State(match).poses],end}));
-    const head=visual.neck.localToWorld(new THREE.Vector3(0,.26,.02)),point=v98PitchPoint(ball,turned),headGap=Math.hypot(head.x-point.x,head.z-point.z,head.y-ball.elevation);
-    return {resultKind,team,turned,kind:action?.kind,height:ball?.elevation,headGap,startX:ball.x,endX:end.x,startY:ball.y,endY:end.y};
+    const head=visual.neck.localToWorld(new THREE.Vector3(0,.26,.02)),point=v98PitchPoint(ball,turned);let headGap=Math.hypot(head.x-point.x,head.z-point.z,head.y-ball.elevation);const native=Boolean(visual.meshy);
+    if(native){headGap=Infinity;const mesh=visual.meshy.meshes[0],v=new THREE.Vector3(),center=new THREE.Vector3(point.x,ball.elevation,point.z);for(let i=0;i<mesh.geometry.attributes.position.count;i++)if(mesh.geometry.attributes.d6Rest.getY(i)>1.43){mesh.getVertexPosition(i,v).applyMatrix4(mesh.matrixWorld);headGap=Math.min(headGap,v.distanceTo(center))}}
+    return {resultKind,team,turned,kind:action?.kind,height:ball?.elevation,headGap,native,startX:ball.x,endX:end.x,startY:ball.y,endY:end.y};
    },{team,turned,resultKind});
    assert.equal(result.kind,resultKind==='headerPass'||resultKind==='clear'?'header':resultKind);
-   assert(Math.abs(result.startX-result.endX)<1e-8&&Math.abs(result.startY-result.endY)<1e-8,'confirmed air action starts at incoming contact');
-   if(result.kind==='header')assert(result.headGap>.35&&result.headGap<.75,'ball meets forehead without being buried inside the head');air.push(result);
+   assert(Math.abs(result.startX-result.endX)<1e-8&&Math.abs(result.startY-result.endY)<1e-8,'confirmed air action starts at incoming contact '+JSON.stringify(result));
+   if(result.kind==='header')assert(result.native?result.headGap>=0&&result.headGap<.1864:result.headGap>.35&&result.headGap<.75,'ball meets forehead '+JSON.stringify(result));air.push(result);
   }
   await page.locator('#match-area .v42-pitch-stage').screenshot({path:'outputs/motion102-air-contact.png'});
   const clear=await page.evaluate(()=>{

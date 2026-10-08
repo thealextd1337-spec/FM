@@ -1,0 +1,165 @@
+{
+  "pickups": [
+    {
+      "keeper": true,
+      "axis": "x",
+      "travel": 0.3217500000000012,
+      "limit": 0.169,
+      "claimed": false,
+      "gap": 1.778249999999997,
+      "ballJump": 0,
+      "action": null
+    },
+    {
+      "keeper": true,
+      "axis": "y",
+      "travel": 0.4849151162790716,
+      "limit": 0.169,
+      "claimed": true,
+      "gap": 1.6150848837209284,
+      "ballJump": 1.6150848837209284,
+      "action": null
+    },
+    {
+      "keeper": false,
+      "axis": "x",
+      "travel": 0.22806649411764954,
+      "limit": 0.2331786666666667,
+      "claimed": false,
+      "gap": 1.8719335058823487,
+      "ballJump": 0,
+      "action": null
+    },
+    {
+      "keeper": false,
+      "axis": "y",
+      "travel": 0.3437230474418642,
+      "limit": 0.2331786666666667,
+      "claimed": true,
+      "gap": 1.7562769525581357,
+      "ballJump": 1.7562769525581357,
+      "action": "receive"
+    }
+  ],
+  "shotQuality": [
+    {
+      "geometry": "central-12m",
+      "rows": [
+        {
+          "quality": 6,
+          "saves": 196,
+          "goals": 122,
+          "targets": 318,
+          "caught": 89,
+          "parried": 107,
+          "saveRate": 0.6163522012578616
+        },
+        {
+          "quality": 18,
+          "saves": 243,
+          "goals": 75,
+          "targets": 318,
+          "caught": 133,
+          "parried": 110,
+          "saveRate": 0.7641509433962265
+        }
+      ]
+    },
+    {
+      "geometry": "close-angle",
+      "rows": [
+        {
+          "quality": 6,
+          "saves": 196,
+          "goals": 122,
+          "targets": 318,
+          "caught": 67,
+          "parried": 129,
+          "saveRate": 0.6163522012578616
+        },
+        {
+          "quality": 18,
+          "saves": 243,
+          "goals": 75,
+          "targets": 318,
+          "caught": 114,
+          "parried": 129,
+          "saveRate": 0.7641509433962265
+        }
+      ]
+    },
+    {
+      "geometry": "wide-keeper",
+      "rows": [
+        {
+          "quality": 6,
+          "saves": 196,
+          "goals": 122,
+          "targets": 318,
+          "caught": 67,
+          "parried": 129,
+          "saveRate": 0.6163522012578616
+        },
+        {
+          "quality": 18,
+          "saves": 243,
+          "goals": 75,
+          "targets": 318,
+          "caught": 114,
+          "parried": 129,
+          "saveRate": 0.7641509433962265
+        }
+      ]
+    }
+  ],
+  "rush": [
+    {
+      "team": 0,
+      "quality": 6,
+      "trials": 100,
+      "catches": 0,
+      "started": 0,
+      "maxTravel": 0.08450000000000144,
+      "remote": 0
+    },
+    {
+      "team": 0,
+      "quality": 18,
+      "trials": 100,
+      "catches": 0,
+      "started": 0,
+      "maxTravel": 0.08450000000000144,
+      "remote": 0
+    },
+    {
+      "team": 1,
+      "quality": 6,
+      "trials": 100,
+      "catches": 0,
+      "started": 0,
+      "maxTravel": 0.08450000000000041,
+      "remote": 0
+    },
+    {
+      "team": 1,
+      "quality": 18,
+      "trials": 100,
+      "catches": 0,
+      "started": 0,
+      "maxTravel": 0.08450000000000041,
+      "remote": 0
+    }
+  ],
+  "boundaries": [
+    {
+      "name": "outside-box",
+      "challenge": false
+    },
+    {
+      "name": "wide",
+      "challenge": false
+    }
+  ],
+  "baseline": true,
+  "errors": []
+}

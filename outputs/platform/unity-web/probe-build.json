@@ -1,0 +1,121 @@
+{
+  "sourceId": "95eb4c7224a55115dd2e2aa4dccb3f9e27f5096bdde0ee23073c5cfbb3076f3e",
+  "schema": "d6-probe-1",
+  "worldView": "d6-world-view-1",
+  "engine": "unity",
+  "unity": "6000.6.4f1",
+  "loaderUrl": "/unity/Build/unity-web.loader.js?v=7c82adafe827c9dd284496c75b6aae9b82958bc9a7bd25904367c8446717c8ef",
+  "dataUrl": "/unity/Build/unity-web.data?v=d1332caaaf307e7a073347c7c0997ba88aa95933e20b1897ab73cdc966b0e5a8",
+  "frameworkUrl": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+  "codeUrl": "/unity/Build/unity-web.wasm?v=5ce1d16b72ee2679591a7f6fe3c924c66a686c0df2dc65ea6f6b44f4809520b5",
+  "assetHash": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+  "catalogHash": "17a21f5cad681a1f744bf74359cd8047dda10f66689a0f73e8113be7d20ca1da",
+  "sourceFiles": [
+    {
+      "file": "ProbeSimulation.cs",
+      "sha256": "64c20afce12eb1ba94c6191615b97a8cca72a628d48b8d165bff8f8100a20894"
+    },
+    {
+      "file": "ProbeBridge.cs",
+      "sha256": "4a4790a0894bb0419cbc7502e4c295e686aeb9c264ab0205aae1317c848cdbf3"
+    },
+    {
+      "file": "WorldViewContract.cs",
+      "sha256": "fa2b6fc8bd9ce17b790014c9faaa7c2a884ad92b96d3e0b07ec6a5a904a84e2f"
+    },
+    {
+      "file": "WorldViewBridge.cs",
+      "sha256": "7b48dd70f0ed80bfcd6062953687b0f3f8484ba5012ea2b8c4e196d42fd5083d"
+    },
+    {
+      "file": "WorldViewPlayback.cs",
+      "sha256": "ea11587ac8ebf57e495d4f4cc26c29789ee1beefcebfad18fabff97f80532e9d"
+    },
+    {
+      "file": "WorldViewPresentation.cs",
+      "sha256": "2302558abf0ef9f82234096d904e788237c65baf829c5dfac8a47076b8fc772b"
+    },
+    {
+      "file": "WorldViewSetup.cs",
+      "sha256": "b834f5b015234c4ed26a273b332bafca6121957bf24bc72225178975afa98bf3"
+    },
+    {
+      "file": "WorldKit.shader",
+      "sha256": "b38935fe9a3c1d18f13566e95d6bbfaeee0ac4b529fbaccb83c72d4d6f5390f9"
+    },
+    {
+      "file": "ProbeBallPhysics.cs",
+      "sha256": "6f6a6abff02c4d6273371e6a50169291e67b1d4a71433bec4f16c901a0ccc205"
+    },
+    {
+      "file": "ProbeNet.cs",
+      "sha256": "4df037b2278e9546110d1cdc20e94769b0d5317de67e58b12208de5abc3290f6"
+    },
+    {
+      "file": "ProbePlay.cs",
+      "sha256": "92dc9398dc1a48815d293e09b4bf4bac09eaa6e3945890eace2a147c8c1391be"
+    },
+    {
+      "file": "ProbePose.cs",
+      "sha256": "46f800051c1d974c2bb5aae6086d1493ec34f80b5ed58ffd64849528fbcdc037"
+    },
+    {
+      "file": "FootballAnimation.cs",
+      "sha256": "9a9f94237337a834382a8684f100b12b316b277cee16bd806c17803f8ceb88b4"
+    },
+    {
+      "file": "FootballPresentation.cs",
+      "sha256": "97ab9bd11bf680f6a5ff223820a8a5d9a3b621c45b543e31a17777674ab4721f"
+    },
+    {
+      "file": "FootballLocomotion.cs",
+      "sha256": "77f348d2f4c03c5fa894169b2cb4328066835ecdebf043881d5e4e2d954d03a1"
+    },
+    {
+      "file": "FootballSetup.cs",
+      "sha256": "52994cb631ea3c057c1b35bce767b93dafb285f24e9cf5a846652555aba42ad6"
+    },
+    {
+      "file": "ProbeCamera.cs",
+      "sha256": "b3cd4a8229588ca5a24b5a6c046daeeba54a821b9dd1100eb63bcf040a5a6b9a"
+    },
+    {
+      "file": "ProbeSetup.cs",
+      "sha256": "e6ba4686113b1451a56076aad5755cbdfc6a96860fafdb46b598e8acaea60d32"
+    },
+    {
+      "file": "ProbeWebBuild.cs",
+      "sha256": "78ef781df6324ca5ac2d4028a8be34189de937302f4edf94ff61e5ba1d5c2245"
+    },
+    {
+      "file": "link.xml",
+      "sha256": "ed89006c11fa1ecaa4e0cec5b37f504e9e41a02fb7a4c44e85a415ab18034c07"
+    },
+    {
+      "file": "D6Probe.jslib",
+      "sha256": "270a00924ad2d577f2200db6fb45a85015ebeb5be228b8bef24b97ebf900fdcc"
+    }
+  ],
+  "files": [
+    {
+      "file": "unity-web.data",
+      "bytes": 51459265,
+      "sha256": "d1332caaaf307e7a073347c7c0997ba88aa95933e20b1897ab73cdc966b0e5a8"
+    },
+    {
+      "file": "unity-web.framework.js",
+      "bytes": 300906,
+      "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+    },
+    {
+      "file": "unity-web.loader.js",
+      "bytes": 27914,
+      "sha256": "7c82adafe827c9dd284496c75b6aae9b82958bc9a7bd25904367c8446717c8ef"
+    },
+    {
+      "file": "unity-web.wasm",
+      "bytes": 34991657,
+      "sha256": "5ce1d16b72ee2679591a7f6fe3c924c66a686c0df2dc65ea6f6b44f4809520b5"
+    }
+  ]
+}

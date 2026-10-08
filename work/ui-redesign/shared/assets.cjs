@@ -1,0 +1,2 @@
+'use strict';
+module.exports={styles:['tokens.css','components.css','views/overview.css','views/squad.css','views/market.css','views/competitions.css','views/club.css','views/settings.css','navigation.css','matchplan.css','start.css','match.css','views/report.css'],scripts:['components.js','shell.js','registry.js','views/overview.js','views/squad.js','views/market.js','views/competitions.js','views/club.js','views/settings.js','navigation.js','adapter.js','start.js','match.js']};

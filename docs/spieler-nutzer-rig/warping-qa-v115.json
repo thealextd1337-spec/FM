@@ -1,0 +1,555 @@
+{
+  "baseline": false,
+  "physicsHz": 20,
+  "renderHz": 60,
+  "replaySkipped": true,
+  "gpuDrawSkipped": true,
+  "runs": [
+    {
+      "seed": 12345,
+      "steps": 2963,
+      "frames": 8886,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "analysisCuts": 1,
+      "halves": [
+        false,
+        true
+      ],
+      "events": {
+        "fly:pass": 36,
+        "fly:highPass": 4,
+        "fly:shot": 10,
+        "v50GoalKick:": 6,
+        "v50Deflect:": 1,
+        "fly:block": 1,
+        "v50LooseBall:": 1,
+        "v50Restart:offside": 1,
+        "v50Spot:": 39,
+        "kickoff:": 2,
+        "fly:header": 1
+      },
+      "counts": {
+        "rawBall": 7
+      },
+      "top": {
+        "engine": [],
+        "root": [],
+        "hips": [],
+        "ball": [],
+        "rawBall": [
+          {
+            "distance": 35.19528307529119,
+            "step": 2377,
+            "before": {
+              "elapsed": 62.655,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 62.655,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 35.18210217924231,
+            "step": 1841,
+            "before": {
+              "elapsed": 51.072,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 51.072,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 34.7940987483185,
+            "step": 2681,
+            "before": {
+              "elapsed": 69.324,
+              "owner": "warping-v115-12345:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 69.363,
+              "owner": "warping-v115-12345:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 33.62265554914223,
+            "step": 358,
+            "before": {
+              "elapsed": 11.115,
+              "owner": "warping-v115-12345:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 11.154,
+              "owner": "warping-v115-12345:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 27.05162139069694,
+            "step": 969,
+            "before": {
+              "elapsed": 34.944,
+              "owner": "warping-v115-12345:GER-3:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 34.983,
+              "owner": "warping-v115-12345:GER-3:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 18.715467272051164,
+            "step": 1515,
+            "before": {
+              "elapsed": 47.718,
+              "owner": null,
+              "flight": null,
+              "piece": "offside",
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 47.718,
+              "owner": null,
+              "flight": null,
+              "piece": "offside",
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 17.593887522819852,
+            "step": 1446,
+            "before": {
+              "elapsed": 47.679,
+              "owner": null,
+              "flight": {
+                "kind": "pass",
+                "progress": 0.985
+              },
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 47.718,
+              "owner": null,
+              "flight": null,
+              "piece": "offside",
+              "offside": true,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": [
+              {
+                "name": "v50Restart",
+                "detail": "offside"
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              },
+              {
+                "name": "v50Spot",
+                "detail": null
+              }
+            ]
+          }
+        ]
+      },
+      "max": {
+        "engine": 0.42059129618011054,
+        "root": 0.3232154037333242,
+        "hips": 0.6042301324464897,
+        "ball": 0.9373656807924103,
+        "rawBall": 35.19528307529119
+      },
+      "finished": true,
+      "score": [
+        1,
+        1
+      ],
+      "elapsed": 79.16666666666667
+    },
+    {
+      "seed": 8721,
+      "steps": 2335,
+      "frames": 7002,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "analysisCuts": 0,
+      "halves": [
+        false,
+        true
+      ],
+      "events": {
+        "fly:pass": 24,
+        "fly:shot": 10,
+        "v50GoalKick:": 9,
+        "fly:highPass": 5,
+        "v50LooseBall:": 2,
+        "v55Out:": 2,
+        "fly:": 2,
+        "v50Deflect:": 1,
+        "fly:block": 1
+      },
+      "counts": {
+        "rawBall": 6
+      },
+      "top": {
+        "engine": [],
+        "root": [],
+        "hips": [],
+        "ball": [],
+        "rawBall": [
+          {
+            "distance": 35.06976153910603,
+            "step": 1640,
+            "before": {
+              "elapsed": 51.754,
+              "owner": "warping-v115-8721:GER-3:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 51.793,
+              "owner": "warping-v115-8721:GER-3:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 30.87472496379402,
+            "step": 801,
+            "before": {
+              "elapsed": 28.392,
+              "owner": "warping-v115-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 28.431,
+              "owner": "warping-v115-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 29.2768783003032,
+            "step": 464,
+            "before": {
+              "elapsed": 15.249,
+              "owner": "warping-v115-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 15.288,
+              "owner": "warping-v115-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 27.669078135751516,
+            "step": 1797,
+            "before": {
+              "elapsed": 57.877,
+              "owner": "warping-v115-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 57.916,
+              "owner": "warping-v115-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 25.38478930793157,
+            "step": 972,
+            "before": {
+              "elapsed": 35.061,
+              "owner": "warping-v115-8721:GER-3:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 35.1,
+              "owner": "warping-v115-8721:GER-3:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 5.458978234957224,
+            "step": 2334,
+            "before": {
+              "elapsed": 78.786,
+              "owner": null,
+              "flight": {
+                "kind": "shot",
+                "progress": 0.938
+              },
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 80.833,
+              "owner": "warping-v115-8721:GER-3:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": true
+            },
+            "events": [
+              {
+                "name": "v50GoalKick",
+                "detail": null
+              }
+            ]
+          }
+        ]
+      },
+      "max": {
+        "engine": 0.4105487931162219,
+        "root": 0.3450699429084819,
+        "hips": 0.43389277434374524,
+        "ball": 0.9373656839670416,
+        "rawBall": 35.06976153910603
+      },
+      "finished": true,
+      "score": [
+        0,
+        0
+      ],
+      "elapsed": 80.83333333333333
+    }
+  ],
+  "errors": []
+}

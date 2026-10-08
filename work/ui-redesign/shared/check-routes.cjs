@@ -1,0 +1,11 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {chromium}=require('C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'),{createServer}=require('../serve.cjs');
+(async()=>{const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true}),out=path.resolve('outputs/ui-redesign/I00',new Date().toISOString().replace(/[:.]/g,'-'));fs.mkdirSync(out,{recursive:true});const results=[],errors=[];
+try{const page=await browser.newPage({viewport:{width:1440,height:900}});page.on('pageerror',e=>errors.push(e.message));await page.goto(`http://127.0.0.1:${server.address().port}/source/index.html`);await page.evaluate(async()=>{v61CurrentCareer=await v61StoreNewCareer(v61CreateCareer('GER-2','fl-routes','Test'));v61RenderCareer(v61CurrentCareer);});
+for(const route of ['overview','squad','transfers','competition','calendar','statistics','club','settings']){
+ await page.setViewportSize({width:1440,height:900});await page.locator(`.fl-sidebar [data-fl-route="${route}"]`).click();
+ for(const width of [320,390,1440]){await page.setViewportSize({width,height:900});await page.waitForTimeout(80);const state=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,visible:[...document.querySelectorAll('.fl-content>[data-v46-view]')].filter(n=>!n.hidden).map(n=>n.dataset.v46View),route:v61CareerTab}));results.push({route,width,...state});await page.screenshot({path:path.join(out,`${route}-${width}.png`)});}
+}
+const pure=await page.evaluate(()=>{const before=JSON.stringify(v61CurrentCareer);D6Flutlicht.adapter.project(v61CurrentCareer);return before===JSON.stringify(v61CurrentCareer);});assert.ok(pure);fs.writeFileSync(path.join(out,'routes.json'),JSON.stringify({results,errors,pure},null,2));console.log(JSON.stringify({out,failures:results.filter(r=>r.overflow||r.visible.length!==1),errors,pure}));
+}finally{await browser.close();await new Promise(r=>server.close(r));}})().catch(e=>{console.error(e);process.exitCode=1;});

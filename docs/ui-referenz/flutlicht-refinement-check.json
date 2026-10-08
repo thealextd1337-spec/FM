@@ -1,0 +1,1157 @@
+{
+  "date": "2026-10-07",
+  "environment": "Chromium-based Codex in-app browser; CSS viewport overrides, no physical device test",
+  "progressChecks": [
+    {
+      "label": "Spielvorbereitung",
+      "action": "Spieltag überspringen",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "1",
+      "preference": "system",
+      "review": "0",
+      "route": "progress",
+      "title": "FC Lindenstadt gegen SC Rheinhafen"
+    },
+    {
+      "label": "Spielergebnis",
+      "action": "Zum Saisonabschluss",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "2",
+      "preference": "system",
+      "review": "0",
+      "route": "progress",
+      "title": "Heimsieg für Lindenstadt"
+    },
+    {
+      "label": "Saisonbilanz",
+      "action": "Zu den Auszeichnungen",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "3",
+      "preference": "system",
+      "review": "0",
+      "route": "progress",
+      "title": "Sportliche Bilanz"
+    },
+    {
+      "label": "Auszeichnungen",
+      "action": "Zur Spielerbilanz",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "3",
+      "preference": "system",
+      "review": "1",
+      "route": "progress",
+      "title": "Titel & Auszeichnungen"
+    },
+    {
+      "label": "Spielerbilanz",
+      "action": "Zur Ligabilanz",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "3",
+      "preference": "system",
+      "review": "2",
+      "route": "progress",
+      "title": "Spielerbilanz"
+    },
+    {
+      "label": "Liga und Welt",
+      "action": "Zum Saisonwechsel",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "3",
+      "preference": "system",
+      "review": "3",
+      "route": "progress",
+      "title": "Liga & Welt"
+    },
+    {
+      "label": "Managerentscheidung",
+      "action": "Zukunft entscheiden",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "3",
+      "preference": "system",
+      "review": "4",
+      "route": "progress",
+      "title": "Deine Zukunft"
+    },
+    {
+      "label": "Verbleib erforderlich",
+      "action": "Zukunft entscheiden",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "3",
+      "preference": "system",
+      "review": "4",
+      "route": "progress",
+      "title": "Deine Zukunft"
+    },
+    {
+      "label": "Neue Saison vorbereiten",
+      "action": "Neue Saison starten",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "3",
+      "preference": "system",
+      "review": "5",
+      "route": "progress",
+      "title": "Saison 5 vorbereiten"
+    },
+    {
+      "label": "Sponsorwahl Saison 5",
+      "action": "Sponsor wählen",
+      "broken": [],
+      "caption": "Demo · Saison 5",
+      "mode": "light",
+      "overflow": false,
+      "phase": "4",
+      "preference": "system",
+      "review": "5",
+      "route": "progress",
+      "title": "Wähle deinen Hauptsponsor"
+    },
+    {
+      "label": "Sponsor erforderlich",
+      "action": "Sponsor wählen",
+      "broken": [],
+      "caption": "Demo · Saison 5",
+      "mode": "light",
+      "overflow": false,
+      "phase": "4",
+      "preference": "system",
+      "review": "5",
+      "route": "progress",
+      "title": "Wähle deinen Hauptsponsor"
+    },
+    {
+      "label": "Finanzabschluss",
+      "action": "Jugendbudget festlegen",
+      "broken": [],
+      "caption": "Demo · Saison 5",
+      "mode": "light",
+      "overflow": false,
+      "phase": "5",
+      "preference": "system",
+      "review": "5",
+      "route": "progress",
+      "title": "Finanzabschluss & Jugendförderung"
+    },
+    {
+      "label": "Budget erforderlich",
+      "action": "Jugendbudget festlegen",
+      "broken": [],
+      "caption": "Demo · Saison 5",
+      "mode": "light",
+      "overflow": false,
+      "phase": "5",
+      "preference": "system",
+      "review": "5",
+      "route": "progress",
+      "title": "Finanzabschluss & Jugendförderung"
+    },
+    {
+      "label": "Mobil Transfertag 1",
+      "action": "Nächster Transfertag",
+      "broken": [],
+      "caption": "Demo · Saison 5",
+      "mode": "light",
+      "overflow": false,
+      "phase": "6",
+      "preference": "system",
+      "review": "5",
+      "route": "progress",
+      "title": "Transfertag 1 von 5"
+    },
+    {
+      "label": "Transfertag 2",
+      "action": "Nächster Transfertag",
+      "broken": [],
+      "caption": "Demo · Saison 5",
+      "mode": "light",
+      "overflow": false,
+      "phase": "6",
+      "preference": "system",
+      "review": "5",
+      "route": "progress",
+      "title": "Transfertag 2 von 5"
+    },
+    {
+      "label": "Transfertag 3",
+      "action": "Nächster Transfertag",
+      "broken": [],
+      "caption": "Demo · Saison 5",
+      "mode": "light",
+      "overflow": false,
+      "phase": "6",
+      "preference": "system",
+      "review": "5",
+      "route": "progress",
+      "title": "Transfertag 3 von 5"
+    },
+    {
+      "label": "Transfertag 4",
+      "action": "Nächster Transfertag",
+      "broken": [],
+      "caption": "Demo · Saison 5",
+      "mode": "light",
+      "overflow": false,
+      "phase": "6",
+      "preference": "system",
+      "review": "5",
+      "route": "progress",
+      "title": "Transfertag 4 von 5"
+    },
+    {
+      "label": "Transfertag 5",
+      "action": "Transferschluss bestätigen",
+      "broken": [],
+      "caption": "Demo · Saison 5",
+      "mode": "light",
+      "overflow": false,
+      "phase": "6",
+      "preference": "system",
+      "review": "5",
+      "route": "progress",
+      "title": "Transfertag 5 von 5"
+    },
+    {
+      "label": "Saison 5 bereit",
+      "action": "Demo neu starten",
+      "broken": [],
+      "caption": "Demo · Saison 5",
+      "mode": "light",
+      "overflow": false,
+      "phase": "7",
+      "preference": "system",
+      "review": "5",
+      "route": "progress",
+      "title": "Saison 5 kann beginnen"
+    },
+    {
+      "label": "Neustart Saison 4",
+      "action": "Zum Spieltag",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "0",
+      "preference": "system",
+      "review": "0",
+      "route": "progress",
+      "title": "Dein Verein ist bereit"
+    },
+    {
+      "label": "Einstellung Dunkel",
+      "action": "Zum Spieltag",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "dark",
+      "overflow": false,
+      "phase": "0",
+      "preference": "dark",
+      "review": "0",
+      "route": "settings",
+      "title": "Darstellung"
+    },
+    {
+      "label": "Hell erhält Fortschritt",
+      "action": "Spieltag überspringen",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "1",
+      "preference": "light",
+      "review": "0",
+      "route": "settings",
+      "title": "Darstellung"
+    },
+    {
+      "label": "Geräteautomatik wiederhergestellt",
+      "action": "Spieltag überspringen",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "light",
+      "overflow": false,
+      "phase": "1",
+      "preference": "system",
+      "review": "0",
+      "route": "settings",
+      "title": "Darstellung"
+    },
+    {
+      "label": "320px Kader mit Einwechslungen",
+      "action": "Zum Spieltag",
+      "broken": [],
+      "caption": "Demo · Saison 4",
+      "mode": "dark",
+      "overflow": false,
+      "phase": "0",
+      "preference": "dark",
+      "review": "0",
+      "route": "squad"
+    }
+  ],
+  "intermediateLayoutChecks": [
+    {
+      "awards": 4,
+      "broken": [],
+      "button": 48,
+      "flags": 1,
+      "mode": "light",
+      "overflow": false,
+      "route": "overview",
+      "width": 320
+    },
+    {
+      "awards": 0,
+      "broken": [],
+      "button": 48,
+      "flags": 22,
+      "mode": "light",
+      "overflow": false,
+      "route": "squad",
+      "width": 320
+    },
+    {
+      "awards": 0,
+      "broken": [],
+      "button": 48,
+      "flags": 1,
+      "mode": "light",
+      "overflow": false,
+      "route": "player-rossi",
+      "width": 320
+    },
+    {
+      "awards": 3,
+      "broken": [],
+      "button": 48,
+      "flags": 4,
+      "mode": "light",
+      "overflow": false,
+      "route": "playercareer-rossi",
+      "width": 320
+    },
+    {
+      "awards": 0,
+      "broken": [],
+      "button": 48,
+      "flags": 4,
+      "mode": "light",
+      "overflow": false,
+      "route": "transfers",
+      "width": 320
+    },
+    {
+      "awards": 6,
+      "broken": [],
+      "button": 48,
+      "flags": 3,
+      "mode": "light",
+      "overflow": false,
+      "route": "competition",
+      "width": 320
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 3,
+      "mode": "light",
+      "overflow": false,
+      "route": "competition-world",
+      "width": 320
+    },
+    {
+      "awards": 9,
+      "broken": [],
+      "button": 48,
+      "flags": 6,
+      "mode": "light",
+      "overflow": false,
+      "route": "competition-archive",
+      "width": 320
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 4,
+      "mode": "light",
+      "overflow": false,
+      "route": "club",
+      "width": 320
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 2,
+      "mode": "light",
+      "overflow": false,
+      "route": "club-history",
+      "width": 320
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 2,
+      "mode": "light",
+      "overflow": false,
+      "route": "club-manager",
+      "width": 320
+    },
+    {
+      "awards": 1,
+      "broken": [],
+      "button": 48,
+      "flags": 2,
+      "mode": "light",
+      "overflow": false,
+      "route": "opponent",
+      "width": 320
+    },
+    {
+      "awards": 1,
+      "broken": [],
+      "button": 48,
+      "flags": 1,
+      "mode": "light",
+      "overflow": false,
+      "route": "report",
+      "width": 320
+    },
+    {
+      "awards": 0,
+      "broken": [],
+      "button": 48,
+      "flags": 0,
+      "mode": "light",
+      "overflow": false,
+      "route": "settings",
+      "width": 320
+    },
+    {
+      "awards": 4,
+      "broken": [],
+      "button": 48,
+      "flags": 1,
+      "mode": "light",
+      "overflow": false,
+      "route": "overview",
+      "width": 1280
+    },
+    {
+      "awards": 0,
+      "broken": [],
+      "button": 48,
+      "flags": 22,
+      "mode": "light",
+      "overflow": false,
+      "route": "squad",
+      "width": 1280
+    },
+    {
+      "awards": 0,
+      "broken": [],
+      "button": 48,
+      "flags": 1,
+      "mode": "light",
+      "overflow": false,
+      "route": "player-rossi",
+      "width": 1280
+    },
+    {
+      "awards": 3,
+      "broken": [],
+      "button": 48,
+      "flags": 4,
+      "mode": "light",
+      "overflow": false,
+      "route": "playercareer-rossi",
+      "width": 1280
+    },
+    {
+      "awards": 0,
+      "broken": [],
+      "button": 48,
+      "flags": 4,
+      "mode": "light",
+      "overflow": false,
+      "route": "transfers",
+      "width": 1280
+    },
+    {
+      "awards": 6,
+      "broken": [],
+      "button": 48,
+      "flags": 3,
+      "mode": "light",
+      "overflow": false,
+      "route": "competition",
+      "width": 1280
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 3,
+      "mode": "light",
+      "overflow": false,
+      "route": "competition-world",
+      "width": 1280
+    },
+    {
+      "awards": 9,
+      "broken": [],
+      "button": 48,
+      "flags": 6,
+      "mode": "light",
+      "overflow": false,
+      "route": "competition-archive",
+      "width": 1280
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 4,
+      "mode": "light",
+      "overflow": false,
+      "route": "club",
+      "width": 1280
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 2,
+      "mode": "light",
+      "overflow": false,
+      "route": "club-history",
+      "width": 1280
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 2,
+      "mode": "light",
+      "overflow": false,
+      "route": "club-manager",
+      "width": 1280
+    },
+    {
+      "awards": 1,
+      "broken": [],
+      "button": 48,
+      "flags": 2,
+      "mode": "light",
+      "overflow": false,
+      "route": "opponent",
+      "width": 1280
+    },
+    {
+      "awards": 1,
+      "broken": [],
+      "button": 48,
+      "flags": 1,
+      "mode": "light",
+      "overflow": false,
+      "route": "report",
+      "width": 1280
+    },
+    {
+      "awards": 0,
+      "broken": [],
+      "button": 48,
+      "flags": 0,
+      "mode": "light",
+      "overflow": false,
+      "route": "settings",
+      "width": 1280
+    },
+    {
+      "awards": 0,
+      "broken": [],
+      "button": 48,
+      "flags": 22,
+      "mode": "dark",
+      "overflow": false,
+      "route": "squad",
+      "width": 320
+    },
+    {
+      "awards": 3,
+      "broken": [],
+      "button": 48,
+      "flags": 4,
+      "mode": "dark",
+      "overflow": false,
+      "route": "playercareer-rossi",
+      "width": 320
+    },
+    {
+      "awards": 6,
+      "broken": [],
+      "button": 48,
+      "flags": 3,
+      "mode": "dark",
+      "overflow": false,
+      "route": "competition",
+      "width": 320
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 3,
+      "mode": "dark",
+      "overflow": false,
+      "route": "competition-world",
+      "width": 320
+    },
+    {
+      "awards": 9,
+      "broken": [],
+      "button": 48,
+      "flags": 6,
+      "mode": "dark",
+      "overflow": false,
+      "route": "competition-archive",
+      "width": 320
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 2,
+      "mode": "dark",
+      "overflow": false,
+      "route": "club-manager",
+      "width": 320
+    },
+    {
+      "awards": 1,
+      "broken": [],
+      "button": 48,
+      "flags": 1,
+      "mode": "dark",
+      "overflow": false,
+      "route": "report",
+      "width": 320
+    },
+    {
+      "awards": 0,
+      "broken": [],
+      "button": 48,
+      "flags": 22,
+      "mode": "dark",
+      "overflow": false,
+      "route": "squad",
+      "width": 1280
+    },
+    {
+      "awards": 3,
+      "broken": [],
+      "button": 48,
+      "flags": 4,
+      "mode": "dark",
+      "overflow": false,
+      "route": "playercareer-rossi",
+      "width": 1280
+    },
+    {
+      "awards": 6,
+      "broken": [],
+      "button": 48,
+      "flags": 3,
+      "mode": "dark",
+      "overflow": false,
+      "route": "competition",
+      "width": 1280
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 3,
+      "mode": "dark",
+      "overflow": false,
+      "route": "competition-world",
+      "width": 1280
+    },
+    {
+      "awards": 9,
+      "broken": [],
+      "button": 48,
+      "flags": 6,
+      "mode": "dark",
+      "overflow": false,
+      "route": "competition-archive",
+      "width": 1280
+    },
+    {
+      "awards": 2,
+      "broken": [],
+      "button": 48,
+      "flags": 2,
+      "mode": "dark",
+      "overflow": false,
+      "route": "club-manager",
+      "width": 1280
+    },
+    {
+      "awards": 1,
+      "broken": [],
+      "button": 48,
+      "flags": 1,
+      "mode": "dark",
+      "overflow": false,
+      "route": "report",
+      "width": 1280
+    }
+  ],
+  "finalLayoutChecks": [
+    {
+      "centers": [
+        [
+          "1",
+          673.3250122070312
+        ],
+        [
+          "Jonas Berger",
+          673.3250122070312
+        ],
+        [
+          "TOR",
+          673.3250122070312
+        ],
+        [
+          "29",
+          673.3250122070312
+        ],
+        [
+          "Gut",
+          673.3250122070312
+        ],
+        [
+          "6(3)",
+          673.3250122070312
+        ],
+        [
+          "0",
+          673.3250122070312
+        ],
+        [
+          "0",
+          673.3250122070312
+        ],
+        [
+          "7,1",
+          673.3250122070312
+        ]
+      ],
+      "overflow": false,
+      "route": "squad",
+      "width": 1362
+    },
+    {
+      "cardHeight": 345.75,
+      "centers": [
+        [
+          ".mobile-shirt",
+          259.4250030517578
+        ],
+        [
+          ".player-name",
+          259.4250030517578
+        ],
+        [
+          ".country-flag",
+          259.4250030517578
+        ]
+      ],
+      "details": 0,
+      "header": "FC Lindenstadt \nAmtierender Meister · Saison 3\n Deutschland · Liga 1",
+      "overflow": false,
+      "route": "squad",
+      "skills": 9,
+      "tooltip": "6 Spiele, davon 3 Mal eingewechselt.",
+      "width": 390
+    },
+    {
+      "cards": [
+        {
+          "height": 361.5874938964844,
+          "hiddenSkills": false,
+          "nameOverflow": false,
+          "skills": 9
+        },
+        {
+          "height": 332.1875,
+          "hiddenSkills": false,
+          "nameOverflow": false,
+          "skills": 8
+        },
+        {
+          "height": 332.1875,
+          "hiddenSkills": false,
+          "nameOverflow": false,
+          "skills": 8
+        },
+        {
+          "height": 332.1875,
+          "hiddenSkills": false,
+          "nameOverflow": false,
+          "skills": 8
+        },
+        {
+          "height": 332.1875,
+          "hiddenSkills": false,
+          "nameOverflow": false,
+          "skills": 8
+        },
+        {
+          "height": 332.1875,
+          "hiddenSkills": false,
+          "nameOverflow": false,
+          "skills": 8
+        },
+        {
+          "height": 332.1875,
+          "hiddenSkills": false,
+          "nameOverflow": false,
+          "skills": 8
+        },
+        {
+          "height": 332.1875,
+          "hiddenSkills": false,
+          "nameOverflow": false,
+          "skills": 8
+        },
+        {
+          "height": 332.1875,
+          "hiddenSkills": false,
+          "nameOverflow": false,
+          "skills": 8
+        },
+        {
+          "height": 361.5874938964844,
+          "hiddenSkills": false,
+          "nameOverflow": false,
+          "skills": 9
+        },
+        {
+          "height": 331.38751220703125,
+          "hiddenSkills": false,
+          "nameOverflow": false,
+          "skills": 8
+        }
+      ],
+      "headerHeight": 76.875,
+      "overflow": false,
+      "route": "squad",
+      "width": 320
+    },
+    {
+      "center": [
+        152.4000072479248,
+        152.4000015258789
+      ],
+      "overflow": false,
+      "route": "overview",
+      "sponsor": "Lindenwerke\nEnergie für unsere Stadt\n\nHauptsponsor · 900 Credits Fixum erhalten\n\nTop 3 · +350\nHalbfinale · +150",
+      "statuses": [
+        {
+          "background": "rgb(49, 65, 59)",
+          "color": "rgb(195, 229, 201)",
+          "label": "Top 3 · +350: Wird derzeit erreicht. Aktuell Platz 2: Top 3 wird derzeit erreicht. 350 Credits gibt es bei Platz 3 oder besser am Saisonende; noch keine sichere Einnahme.",
+          "text": "Top 3 · +350"
+        },
+        {
+          "background": "rgb(68, 53, 29)",
+          "color": "rgb(240, 196, 110)",
+          "label": "Halbfinale · +150: Wurde erreicht. Pokalhalbfinale erreicht. Die 150 Credits wurden bereits gebucht und sind im Kontostand enthalten.",
+          "text": "Halbfinale · +150"
+        }
+      ],
+      "width": 320
+    },
+    {
+      "lists": [
+        {
+          "count": 10,
+          "leader": "1\nLuca Rossi\n28\nTore",
+          "values": [
+            28,
+            18,
+            12,
+            9,
+            7,
+            3,
+            2,
+            1,
+            1,
+            0
+          ]
+        },
+        {
+          "count": 10,
+          "leader": "1\nJonas Berger\n36\nEinsätze",
+          "values": [
+            36,
+            34,
+            33,
+            32,
+            30,
+            28,
+            24,
+            22,
+            18,
+            12
+          ]
+        }
+      ],
+      "overflow": false,
+      "route": "club-history",
+      "width": 1280
+    },
+    {
+      "broken": 0,
+      "mode": "dark",
+      "overflow": false,
+      "route": "overview",
+      "width": 320
+    },
+    {
+      "broken": 0,
+      "mode": "dark",
+      "overflow": false,
+      "route": "squad",
+      "width": 320
+    },
+    {
+      "broken": 0,
+      "mode": "dark",
+      "overflow": false,
+      "route": "club-history",
+      "width": 320
+    },
+    {
+      "broken": 0,
+      "mode": "dark",
+      "overflow": false,
+      "route": "concept",
+      "width": 320
+    },
+    {
+      "broken": 0,
+      "mode": "light",
+      "overflow": false,
+      "route": "overview",
+      "width": 320
+    },
+    {
+      "broken": 0,
+      "mode": "light",
+      "overflow": false,
+      "route": "squad",
+      "width": 320
+    },
+    {
+      "broken": 0,
+      "mode": "light",
+      "overflow": false,
+      "route": "club-history",
+      "width": 320
+    },
+    {
+      "broken": 0,
+      "mode": "light",
+      "overflow": false,
+      "route": "concept",
+      "width": 320
+    },
+    {
+      "broken": 0,
+      "mode": "light",
+      "overflow": false,
+      "route": "overview",
+      "width": 1280
+    },
+    {
+      "broken": 0,
+      "mode": "light",
+      "overflow": false,
+      "route": "squad",
+      "width": 1280
+    },
+    {
+      "broken": 0,
+      "mode": "light",
+      "overflow": false,
+      "route": "club-history",
+      "width": 1280
+    },
+    {
+      "broken": 0,
+      "mode": "light",
+      "overflow": false,
+      "route": "concept",
+      "width": 1280
+    },
+    {
+      "broken": 0,
+      "mode": "dark",
+      "overflow": false,
+      "route": "overview",
+      "width": 1280
+    },
+    {
+      "broken": 0,
+      "mode": "dark",
+      "overflow": false,
+      "route": "squad",
+      "width": 1280
+    },
+    {
+      "broken": 0,
+      "mode": "dark",
+      "overflow": false,
+      "route": "club-history",
+      "width": 1280
+    },
+    {
+      "broken": 0,
+      "mode": "dark",
+      "overflow": false,
+      "route": "concept",
+      "width": 1280
+    }
+  ],
+  "abilityContrastChecks": [
+    {
+      "background": "color(srgb 0.164549 0.180745 0.222471)",
+      "band": "Violettgrau",
+      "ink": "rgb(163, 152, 184)",
+      "mode": "dark",
+      "ratio": 4.997155460264343
+    },
+    {
+      "background": "color(srgb 0.156784 0.190235 0.227647)",
+      "band": "Blaugrau",
+      "ink": "rgb(145, 174, 196)",
+      "mode": "dark",
+      "ratio": 5.722210493232611
+    },
+    {
+      "background": "color(srgb 0.194745 0.204471 0.18149)",
+      "band": "Gelb",
+      "ink": "rgb(233, 207, 89)",
+      "mode": "dark",
+      "ratio": 8.116427744972578
+    },
+    {
+      "background": "color(srgb 0.199059 0.184627 0.17502)",
+      "band": "Orange",
+      "ink": "rgb(243, 161, 74)",
+      "mode": "dark",
+      "ratio": 6.315134063895143
+    },
+    {
+      "background": "color(srgb 0.198627 0.161333 0.221176)",
+      "band": "Pink",
+      "ink": "rgb(242, 107, 181)",
+      "mode": "dark",
+      "ratio": 4.977568880591984
+    },
+    {
+      "background": "color(srgb 0.960314 0.955569 0.969373)",
+      "band": "Violettgrau",
+      "ink": "rgb(100, 83, 111)",
+      "mode": "light",
+      "ratio": 6.356289181739285
+    },
+    {
+      "background": "color(srgb 0.952549 0.965059 0.974549)",
+      "band": "Blaugrau",
+      "ink": "rgb(56, 91, 118)",
+      "mode": "light",
+      "ratio": 6.616957315108306
+    },
+    {
+      "background": "color(srgb 0.99051 0.979294 0.928392)",
+      "band": "Gelb",
+      "ink": "rgb(114, 88, 0)",
+      "mode": "light",
+      "ratio": 6.434491742848697
+    },
+    {
+      "background": "color(srgb 0.994824 0.959451 0.921922)",
+      "band": "Orange",
+      "ink": "rgb(147, 73, 8)",
+      "mode": "light",
+      "ratio": 6.075017117192389
+    },
+    {
+      "background": "color(srgb 0.994392 0.936157 0.968078)",
+      "band": "Pink",
+      "ink": "rgb(164, 41, 108)",
+      "mode": "light",
+      "ratio": 6.057781181982107
+    }
+  ],
+  "confirmed": {
+    "desktopPrimaryRowAligned": true,
+    "mobileIdentityAligned": true,
+    "allMobileSkillsAlwaysVisible": true,
+    "tooltipClickAndKeyboard": true,
+    "recentResultTooltip": "Sieg gegen FC Nordwald · 2 : 1 (Auswärts). Ergebnis aus Vereinssicht.",
+    "allTimeLists": {
+      "goals": {
+        "count": 10,
+        "leader": "Luca Rossi",
+        "value": 28
+      },
+      "appearances": {
+        "count": 10,
+        "leader": "Jonas Berger",
+        "value": 36
+      }
+    },
+    "multipleTitleExamples": [
+      2,
+      3
+    ]
+  },
+  "limitations": [
+    "Native mouseover input was not available; actual tooltip event handlers were checked in tooltip-event-check.json.",
+    "Earlier layout checks predate later design refinements; final checks cover modified overview, squad, club history and multiple-title examples in light/dark at 320/1280 pixels.",
+    "No physical touch hardware, Safari, integrated career, English product UI or complete accessibility audit."
+  ]
+}

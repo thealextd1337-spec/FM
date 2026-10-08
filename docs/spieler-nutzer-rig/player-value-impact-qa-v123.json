@@ -1,0 +1,58 @@
+{
+  "sourceStudy": "match-study-v123.json",
+  "criteriaUnchangedFrom": "player-value-impact-qa-v115.json",
+  "criteriaOriginallyPostExploratory": true,
+  "checks": [
+    {
+      "name": "Siege des stärkeren Teams",
+      "unit": "Anteil",
+      "minimum": 0.8,
+      "actual": 0.9333333333333333,
+      "passed": true
+    },
+    {
+      "name": "Untere Wilson-95%-Grenze der Siegquote",
+      "unit": "Anteil",
+      "minimum": 0.75,
+      "actual": 0.7867654163738308,
+      "passed": true
+    },
+    {
+      "name": "Siegquotenanstieg bei unverändertem Team A gegenüber gut/gut",
+      "unit": "Prozentpunkte",
+      "minimum": 30,
+      "actual": 66.66666666666667,
+      "passed": true
+    },
+    {
+      "name": "Mittlerer Torvorsprung des stärkeren Teams",
+      "unit": "Tore/Partie",
+      "minimum": 1,
+      "actual": 2.3333333333333335,
+      "passed": true
+    },
+    {
+      "name": "Passquotenvorsprung",
+      "unit": "Prozentpunkte",
+      "minimum": 10,
+      "actual": 18.10433565281838,
+      "passed": true
+    },
+    {
+      "name": "Zweikampfquotenvorsprung",
+      "unit": "Prozentpunkte",
+      "minimum": 20,
+      "actual": 62.64591439688716,
+      "passed": true
+    },
+    {
+      "name": "Verhältnis registrierter Zielschüsse stark/schwach",
+      "unit": "Faktor",
+      "minimum": 2,
+      "actual": 17.3,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "All nine attributes jointly, large gap; no renewed isolated/moderate-gap proof."
+}

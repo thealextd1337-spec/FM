@@ -1,0 +1,2 @@
+window.fixtureShell=D6Flutlicht.shell.mount(document.querySelector('#fixture'),FL_FIXTURE.frame,{navigate:id=>{FL_FIXTURE.frame.activeRoute=id;fixtureShell.update(FL_FIXTURE.frame);},lead:()=>{document.querySelector('#fixture-message').textContent='Testaktion ausgeführt';}});
+fixtureShell.content.innerHTML='<h1>Isolierte Testdaten</h1><p>Keine Verbindung zu echten Spielständen.</p><p id="fixture-message" role="status"></p><div data-v46-view="overview"></div><div data-v46-view="squad"></div><div data-v46-view="transfers"></div><div data-v46-view="club"></div>';

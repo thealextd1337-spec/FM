@@ -1,0 +1,1898 @@
+{
+  "version": 126,
+  "date": "2026-10-05T08:52:40.642Z",
+  "baseline": true,
+  "rows": [
+    {
+      "team": 0,
+      "tactic": -1,
+      "kind": "turnover",
+      "base": 0.21,
+      "attackingTargets": [
+        0.5788,
+        0.5788
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.20999999999999996,
+          "start": 0.31000000000000005,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.2496684515103339,
+          "start": 0.31000000000000005,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.21056683679188193,
+        0.24966019288521468
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": -1,
+      "kind": "far-onside",
+      "base": 0.21,
+      "attackingTargets": [
+        0.5788,
+        0.5788
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.20999999999999996,
+          "start": 0.31000000000000005,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.20999999999999996,
+          "start": 0.31000000000000005,
+          "mark": null,
+          "x": 0.5179999999999999
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666756,
+      "finalDepths": [
+        0.21056683679188193,
+        0.21056683679188204
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": -1,
+      "kind": "near-onside",
+      "base": 0.21,
+      "attackingTargets": [
+        0.5788,
+        0.5788
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.2496684515103339,
+          "start": 0.20999999999999996,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.20966845151033386,
+          "start": 0.20999999999999996,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666703,
+      "finalDepths": [
+        0.24825465509020384,
+        0.2096639468057233
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": -1,
+      "kind": "near-offside",
+      "base": 0.21,
+      "attackingTargets": [
+        0.5788,
+        0.5788
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.2496684515103339,
+          "start": 0.20999999999999996,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.1496684515103338,
+          "start": 0.20999999999999996,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.24825465509020384,
+        0.1496601928852146
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": -1,
+      "kind": "breakthrough",
+      "base": 0.21,
+      "attackingTargets": [
+        0.5788,
+        0.5788
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.1396684515103338,
+          "start": 0.20999999999999996,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.1496684515103338,
+          "start": 0.20999999999999996,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.1478787411192054,
+        0.1496601928852146
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": -1,
+      "kind": "flight",
+      "base": 0.21,
+      "attackingTargets": [
+        0.5788,
+        0.5788
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.20999999999999996,
+          "start": 0.31000000000000005,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.2496684515103339,
+          "start": 0.31000000000000005,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.21056683679188193,
+        0.24966019288521468
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": -1,
+      "kind": "loose",
+      "base": 0.21,
+      "attackingTargets": [
+        0.5788,
+        0.5788
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.20999999999999996,
+          "start": 0.31000000000000005,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.2496684515103339,
+          "start": 0.31000000000000005,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.21056683679188193,
+        0.24966019288521468
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": -1,
+      "kind": "parry",
+      "base": 0.21,
+      "attackingTargets": [
+        0.5788,
+        0.5788
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.20999999999999996,
+          "start": 0.31000000000000005,
+          "mark": null,
+          "x": 0.43
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.2496684515103339,
+          "start": 0.31000000000000005,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.20999999999999996,
+        0.24966019288521468
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": -1,
+      "kind": "keeper",
+      "base": 0.21,
+      "attackingTargets": [
+        0.5788,
+        0.5788
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.17513513513513512,
+          "start": 0.31000000000000005,
+          "mark": null,
+          "x": 0.21000000000000002
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.17513513513513512,
+          "start": 0.31000000000000005,
+          "mark": null,
+          "x": 0.79
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.2331786666666657,
+      "finalDepths": [
+        0.2234838168329366,
+        0.2234838168329366
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 0,
+      "kind": "turnover",
+      "base": 0.31,
+      "attackingTargets": [
+        0.5267999999999999,
+        0.5267999999999999
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.31000000000000005,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.349668451510334,
+          "start": 0.41000000000000003,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.3105668367918819,
+        0.34966019288521477
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 0,
+      "kind": "far-onside",
+      "base": 0.31,
+      "attackingTargets": [
+        0.5267999999999999,
+        0.5267999999999999
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.31000000000000005,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.31000000000000005,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.5179999999999999
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666756,
+      "finalDepths": [
+        0.3105668367918819,
+        0.3105668367918819
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 0,
+      "kind": "near-onside",
+      "base": 0.31,
+      "attackingTargets": [
+        0.5267999999999999,
+        0.5267999999999999
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.3496684515103339,
+          "start": 0.31000000000000005,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.30966845151033395,
+          "start": 0.31000000000000005,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666703,
+      "finalDepths": [
+        0.3482546550902039,
+        0.3096639468057234
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 0,
+      "kind": "near-offside",
+      "base": 0.31,
+      "attackingTargets": [
+        0.5267999999999999,
+        0.5267999999999999
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.3496684515103339,
+          "start": 0.31000000000000005,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.2496684515103339,
+          "start": 0.31000000000000005,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.3482546550902039,
+        0.24966019288521468
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 0,
+      "kind": "breakthrough",
+      "base": 0.31,
+      "attackingTargets": [
+        0.5267999999999999,
+        0.5267999999999999
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.2396684515103339,
+          "start": 0.31000000000000005,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.2496684515103339,
+          "start": 0.31000000000000005,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.2478787411192055,
+        0.24966019288521468
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 0,
+      "kind": "flight",
+      "base": 0.31,
+      "attackingTargets": [
+        0.5267999999999999,
+        0.5267999999999999
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.31000000000000005,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.349668451510334,
+          "start": 0.41000000000000003,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.3105668367918819,
+        0.34966019288521477
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 0,
+      "kind": "loose",
+      "base": 0.31,
+      "attackingTargets": [
+        0.5267999999999999,
+        0.5267999999999999
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.31000000000000005,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.349668451510334,
+          "start": 0.41000000000000003,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.3105668367918819,
+        0.34966019288521477
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 0,
+      "kind": "parry",
+      "base": 0.31,
+      "attackingTargets": [
+        0.5267999999999999,
+        0.5267999999999999
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.31000000000000005,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.43
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.349668451510334,
+          "start": 0.41000000000000003,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.31000000000000005,
+        0.34966019288521477
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 0,
+      "kind": "keeper",
+      "base": 0.31,
+      "attackingTargets": [
+        0.5267999999999999,
+        0.5267999999999999
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.17513513513513512,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.21000000000000002
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.17513513513513512,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.79
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666484,
+      "finalDepths": [
+        0.3017188120116726,
+        0.3017188120116726
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 1,
+      "kind": "turnover",
+      "base": 0.41,
+      "attackingTargets": [
+        0.4748,
+        0.4748
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.4099999999999999,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.44966845151033386,
+          "start": 0.51,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666667,
+      "finalDepths": [
+        0.410566836791882,
+        0.44966019288521464
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 1,
+      "kind": "far-onside",
+      "base": 0.41,
+      "attackingTargets": [
+        0.4748,
+        0.4748
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.4099999999999999,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.4099999999999999,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.5179999999999999
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666756,
+      "finalDepths": [
+        0.410566836791882,
+        0.410566836791882
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 1,
+      "kind": "near-onside",
+      "base": 0.41,
+      "attackingTargets": [
+        0.4748,
+        0.4748
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.44966845151033386,
+          "start": 0.4099999999999999,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.4096684515103338,
+          "start": 0.4099999999999999,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666703,
+      "finalDepths": [
+        0.4482546550902038,
+        0.40966394680572327
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 1,
+      "kind": "near-offside",
+      "base": 0.41,
+      "attackingTargets": [
+        0.4748,
+        0.4748
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.44966845151033386,
+          "start": 0.4099999999999999,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.3496684515103339,
+          "start": 0.4099999999999999,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.4482546550902038,
+        0.34966019288521455
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 1,
+      "kind": "breakthrough",
+      "base": 0.41,
+      "attackingTargets": [
+        0.4748,
+        0.4748
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.33966845151033387,
+          "start": 0.4099999999999999,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.3496684515103339,
+          "start": 0.4099999999999999,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.34787874111920536,
+        0.34966019288521455
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 1,
+      "kind": "flight",
+      "base": 0.41,
+      "attackingTargets": [
+        0.4748,
+        0.4748
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.4099999999999999,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.44966845151033386,
+          "start": 0.51,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666667,
+      "finalDepths": [
+        0.410566836791882,
+        0.44966019288521464
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 1,
+      "kind": "loose",
+      "base": 0.41,
+      "attackingTargets": [
+        0.4748,
+        0.4748
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.4099999999999999,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.44966845151033386,
+          "start": 0.51,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666667,
+      "finalDepths": [
+        0.410566836791882,
+        0.44966019288521464
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 1,
+      "kind": "parry",
+      "base": 0.41,
+      "attackingTargets": [
+        0.4748,
+        0.4748
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.4099999999999999,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.43
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.44966845151033386,
+          "start": 0.51,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666665,
+      "finalDepths": [
+        0.4099999999999999,
+        0.44966019288521464
+      ]
+    },
+    {
+      "team": 0,
+      "tactic": 1,
+      "kind": "keeper",
+      "base": 0.41,
+      "attackingTargets": [
+        0.4748,
+        0.4748
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.17513513513513512,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.39
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.17513513513513512,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.61
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666812,
+      "finalDepths": [
+        0.38290734750058986,
+        0.38290734750058986
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": -1,
+      "kind": "turnover",
+      "base": 0.21,
+      "attackingTargets": [
+        0.4212,
+        0.4212
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.21,
+          "start": 0.31,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.24966845151033387,
+          "start": 0.31,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666667,
+      "finalDepths": [
+        0.21056683679188193,
+        0.24966019288521465
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": -1,
+      "kind": "far-onside",
+      "base": 0.21,
+      "attackingTargets": [
+        0.4212,
+        0.4212
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.21,
+          "start": 0.31,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.21,
+          "start": 0.31,
+          "mark": null,
+          "x": 0.5179999999999999
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666756,
+      "finalDepths": [
+        0.21056683679188193,
+        0.21056683679188193
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": -1,
+      "kind": "near-onside",
+      "base": 0.21,
+      "attackingTargets": [
+        0.4212,
+        0.4212
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.24966845151033387,
+          "start": 0.21,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.20966845151033384,
+          "start": 0.21,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666762,
+      "finalDepths": [
+        0.2482546550902039,
+        0.20966394680572337
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": -1,
+      "kind": "near-offside",
+      "base": 0.21,
+      "attackingTargets": [
+        0.4212,
+        0.4212
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.24966845151033387,
+          "start": 0.21,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.14966845151033384,
+          "start": 0.21,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666762,
+      "finalDepths": [
+        0.2482546550902039,
+        0.14966019288521462
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": -1,
+      "kind": "breakthrough",
+      "base": 0.21,
+      "attackingTargets": [
+        0.4212,
+        0.4212
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.13966845151033383,
+          "start": 0.21,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.14966845151033384,
+          "start": 0.21,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666756,
+      "finalDepths": [
+        0.14787874111920532,
+        0.14966019288521462
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": -1,
+      "kind": "flight",
+      "base": 0.21,
+      "attackingTargets": [
+        0.4212,
+        0.4212
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.21,
+          "start": 0.31,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.24966845151033387,
+          "start": 0.31,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666667,
+      "finalDepths": [
+        0.21056683679188193,
+        0.24966019288521465
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": -1,
+      "kind": "loose",
+      "base": 0.21,
+      "attackingTargets": [
+        0.4212,
+        0.4212
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.21,
+          "start": 0.31,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.24966845151033387,
+          "start": 0.31,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666667,
+      "finalDepths": [
+        0.21056683679188193,
+        0.24966019288521465
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": -1,
+      "kind": "parry",
+      "base": 0.21,
+      "attackingTargets": [
+        0.4212,
+        0.4212
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.21,
+          "start": 0.31,
+          "mark": null,
+          "x": 0.43
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.24966845151033387,
+          "start": 0.31,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666665,
+      "finalDepths": [
+        0.21,
+        0.24966019288521465
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": -1,
+      "kind": "keeper",
+      "base": 0.21,
+      "attackingTargets": [
+        0.4212,
+        0.4212
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.17513513513513515,
+          "start": 0.31,
+          "mark": null,
+          "x": 0.21000000000000002
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.17513513513513515,
+          "start": 0.31,
+          "mark": null,
+          "x": 0.79
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666845,
+      "finalDepths": [
+        0.22348381683293667,
+        0.22348381683293672
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 0,
+      "kind": "turnover",
+      "base": 0.31,
+      "attackingTargets": [
+        0.4732,
+        0.4732
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.31,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.34966845151033393,
+          "start": 0.41000000000000003,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666667,
+      "finalDepths": [
+        0.31056683679188213,
+        0.34966019288521466
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 0,
+      "kind": "far-onside",
+      "base": 0.31,
+      "attackingTargets": [
+        0.4732,
+        0.4732
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.31,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.31,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.5179999999999999
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666756,
+      "finalDepths": [
+        0.31056683679188213,
+        0.31056683679188213
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 0,
+      "kind": "near-onside",
+      "base": 0.31,
+      "attackingTargets": [
+        0.4732,
+        0.4732
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.3496684515103339,
+          "start": 0.31,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.3096684515103339,
+          "start": 0.31,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666703,
+      "finalDepths": [
+        0.34825465509020387,
+        0.3096639468057234
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 0,
+      "kind": "near-offside",
+      "base": 0.31,
+      "attackingTargets": [
+        0.4732,
+        0.4732
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.3496684515103339,
+          "start": 0.31,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.24966845151033387,
+          "start": 0.31,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666703,
+      "finalDepths": [
+        0.34825465509020387,
+        0.24966019288521465
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 0,
+      "kind": "breakthrough",
+      "base": 0.31,
+      "attackingTargets": [
+        0.4732,
+        0.4732
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.23966845151033386,
+          "start": 0.31,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.24966845151033387,
+          "start": 0.31,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.2331786666666673,
+      "finalDepths": [
+        0.24787874111920538,
+        0.24966019288521465
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 0,
+      "kind": "flight",
+      "base": 0.31,
+      "attackingTargets": [
+        0.4732,
+        0.4732
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.31,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.34966845151033393,
+          "start": 0.41000000000000003,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666667,
+      "finalDepths": [
+        0.31056683679188213,
+        0.34966019288521466
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 0,
+      "kind": "loose",
+      "base": 0.31,
+      "attackingTargets": [
+        0.4732,
+        0.4732
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.31,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.34966845151033393,
+          "start": 0.41000000000000003,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666667,
+      "finalDepths": [
+        0.31056683679188213,
+        0.34966019288521466
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 0,
+      "kind": "parry",
+      "base": 0.31,
+      "attackingTargets": [
+        0.4732,
+        0.4732
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.31,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.43
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.34966845151033393,
+          "start": 0.41000000000000003,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666665,
+      "finalDepths": [
+        0.31,
+        0.34966019288521466
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 0,
+      "kind": "keeper",
+      "base": 0.31,
+      "attackingTargets": [
+        0.4732,
+        0.4732
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.17513513513513515,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.21000000000000002
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.17513513513513515,
+          "start": 0.41000000000000003,
+          "mark": null,
+          "x": 0.79
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.2331786666666683,
+      "finalDepths": [
+        0.3017188120116726,
+        0.3017188120116726
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 1,
+      "kind": "turnover",
+      "base": 0.41,
+      "attackingTargets": [
+        0.5252,
+        0.5252
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.41,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.4496684515103339,
+          "start": 0.51,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.41056683679188205,
+        0.44966019288521464
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 1,
+      "kind": "far-onside",
+      "base": 0.41,
+      "attackingTargets": [
+        0.5252,
+        0.5252
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.41,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.41,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.5179999999999999
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666756,
+      "finalDepths": [
+        0.41056683679188205,
+        0.410566836791882
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 1,
+      "kind": "near-onside",
+      "base": 0.41,
+      "attackingTargets": [
+        0.5252,
+        0.5252
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.44966845151033386,
+          "start": 0.41,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.4096684515103339,
+          "start": 0.41,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666703,
+      "finalDepths": [
+        0.44825465509020385,
+        0.4096639468057234
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 1,
+      "kind": "near-offside",
+      "base": 0.41,
+      "attackingTargets": [
+        0.5252,
+        0.5252
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.44966845151033386,
+          "start": 0.41,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.3496684515103339,
+          "start": 0.41,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666703,
+      "finalDepths": [
+        0.44825465509020385,
+        0.3496601928852146
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 1,
+      "kind": "breakthrough",
+      "base": 0.41,
+      "attackingTargets": [
+        0.5252,
+        0.5252
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.33966845151033387,
+          "start": 0.41,
+          "mark": "v121-carrier",
+          "x": 0.24
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.3496684515103339,
+          "start": 0.41,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.2331786666666673,
+      "finalDepths": [
+        0.34787874111920536,
+        0.3496601928852146
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 1,
+      "kind": "flight",
+      "base": 0.41,
+      "attackingTargets": [
+        0.5252,
+        0.5252
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.41,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.4496684515103339,
+          "start": 0.51,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.41056683679188205,
+        0.44966019288521464
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 1,
+      "kind": "loose",
+      "base": 0.41,
+      "attackingTargets": [
+        0.5252,
+        0.5252
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.41,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.378
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.4496684515103339,
+          "start": 0.51,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.41056683679188205,
+        0.44966019288521464
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 1,
+      "kind": "parry",
+      "base": 0.41,
+      "attackingTargets": [
+        0.5252,
+        0.5252
+      ],
+      "offsideBefore": true,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.41,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.43
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.4496684515103339,
+          "start": 0.51,
+          "mark": "v121-runner",
+          "x": 0.51
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666928,
+      "finalDepths": [
+        0.41,
+        0.44966019288521464
+      ]
+    },
+    {
+      "team": 1,
+      "tactic": 1,
+      "kind": "keeper",
+      "base": 0.41,
+      "attackingTargets": [
+        0.5252,
+        0.5252
+      ],
+      "offsideBefore": false,
+      "offsideAfter": false,
+      "plans": [
+        {
+          "id": "v121-left",
+          "depth": 0.17513513513513515,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.39
+        },
+        {
+          "id": "v121-right",
+          "depth": 0.17513513513513515,
+          "start": 0.51,
+          "mark": null,
+          "x": 0.61
+        }
+      ],
+      "unchanged": true,
+      "sameOrder": true,
+      "maxStep": 0.23317866666666812,
+      "finalDepths": [
+        0.38290734750058986,
+        0.38290734750058986
+      ]
+    }
+  ],
+  "errors": []
+}

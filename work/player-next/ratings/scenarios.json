@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "parameterId": "wave3-rating-candidate-1",
+  "scenarios": [
+    {
+      "name": "quiet-keeper",
+      "input": { "playerId": "p1", "fixtureId": "quiet", "worldId": "w1", "seasonId": 1, "virtualMinutes": 90, "rolePositionPhases": [{ "startMinute": 0, "endMinute": 90, "position": "gk", "roleId": "line-keeper", "orientation": 0 }], "actualEvents": [] }
+    },
+    {
+      "name": "difficult-saves",
+      "input": { "playerId": "p1", "fixtureId": "saves", "worldId": "w1", "seasonId": 1, "virtualMinutes": 90, "rolePositionPhases": [{ "startMinute": 0, "endMinute": 90, "position": "gk", "roleId": "line-keeper", "orientation": 0 }], "actualEvents": [
+        { "id": "save-1", "minute": 10, "playerId": "p1", "type": "save", "success": true, "context": { "difficulty": 0.9, "usefulness": 1, "pressure": 0.8, "repeatKey": "shot-a" } },
+        { "id": "save-2", "minute": 34, "playerId": "p1", "type": "save", "success": true, "context": { "difficulty": 0.95, "usefulness": 1, "pressure": 0.9, "repeatKey": "shot-b" } },
+        { "id": "save-3", "minute": 56, "playerId": "p1", "type": "save", "success": true, "context": { "difficulty": 0.85, "usefulness": 1, "pressure": 0.7, "repeatKey": "shot-c" } },
+        { "id": "save-4", "minute": 81, "playerId": "p1", "type": "save", "success": true, "context": { "difficulty": 0.8, "usefulness": 1, "pressure": 0.8, "repeatKey": "shot-d" } }
+      ] }
+    },
+    {
+      "name": "keeper-own-error",
+      "input": { "playerId": "p1", "fixtureId": "keeper-error", "worldId": "w1", "seasonId": 1, "virtualMinutes": 90, "rolePositionPhases": [{ "startMinute": 0, "endMinute": 90, "position": "gk", "roleId": "line-keeper", "orientation": 0 }], "actualEvents": [{ "id": "catch-error", "minute": 40, "playerId": "p1", "type": "error", "success": false, "context": { "difficulty": 0.1, "usefulness": 0.9, "pressure": 0.1, "errorAttribution": true } }] }
+    },
+    {
+      "name": "useful-failed-pass",
+      "input": { "playerId": "p1", "fixtureId": "failed-pass", "worldId": "w1", "seasonId": 1, "virtualMinutes": 90, "rolePositionPhases": [{ "startMinute": 0, "endMinute": 90, "position": "mid", "roleId": "playmaker", "orientation": 0 }], "actualEvents": [{ "id": "pass", "minute": 30, "playerId": "p1", "type": "pass", "success": false, "context": { "difficulty": 0.9, "usefulness": 1, "pressure": 0.8, "errorAttribution": false } }] }
+    },
+    {
+      "name": "observed-cover",
+      "input": { "playerId": "p1", "fixtureId": "cover", "worldId": "w1", "seasonId": 1, "virtualMinutes": 90, "rolePositionPhases": [{ "startMinute": 0, "endMinute": 90, "position": "mid", "roleId": "ball-winner", "orientation": 0 }], "actualEvents": [
+        { "id": "cover-1", "minute": 14, "playerId": "p1", "type": "cover", "success": true, "context": { "difficulty": 0.5, "usefulness": 0.9, "pressure": 0.6, "repeatKey": "gap-a" } },
+        { "id": "cover-2", "minute": 37, "playerId": "p1", "type": "cover", "success": true, "context": { "difficulty": 0.6, "usefulness": 0.8, "pressure": 0.7, "repeatKey": "gap-b" } },
+        { "id": "interception", "minute": 61, "playerId": "p1", "type": "interception", "success": true, "context": { "difficulty": 0.7, "usefulness": 0.9, "pressure": 0.4, "repeatKey": "lane-c" } }
+      ] }
+    },
+    {
+      "name": "role-change",
+      "input": { "playerId": "p1", "fixtureId": "role-change", "worldId": "w1", "seasonId": 1, "virtualMinutes": 90, "rolePositionPhases": [{ "startMinute": 0, "endMinute": 45, "position": "mid", "roleId": "playmaker", "orientation": 0 }, { "startMinute": 45, "endMinute": 90, "position": "att", "roleId": "poacher", "orientation": 1 }], "actualEvents": [
+        { "id": "pass", "minute": 30, "playerId": "p1", "type": "pass", "success": true, "context": { "difficulty": 0.7, "usefulness": 0.9, "pressure": 0.5 } },
+        { "id": "shot-at-boundary", "minute": 45, "playerId": "p1", "type": "shot", "success": true, "context": { "difficulty": 0.6, "usefulness": 0.9, "pressure": 0.4 } }
+      ] }
+    }
+  ]
+}

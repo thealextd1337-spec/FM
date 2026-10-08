@@ -1,0 +1,3919 @@
+{
+    "total": 288,
+    "passed": 288,
+    "checkpoints": 288,
+    "cases": [
+        {
+            "id": "free-goal-keeper-left-current-5-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-right-current-5-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-reachable-current-5-negative",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-unreachable-current-5-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-moving-away-current-5-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "fast-pass-interception-current-5-negative",
+            "observed": "contact",
+            "actorId": "interceptor",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "contact-tie-current-5-negative",
+            "observed": "contact",
+            "actorId": "a",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-enters-current-5-negative",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "block",
+                "free-ball",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-leaves-current-5-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "unreached-pass-current-5-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "alternate-receiver-current-5-negative",
+            "observed": "contact",
+            "actorId": "alternate",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "self-recovery-current-5-negative",
+            "observed": "contact",
+            "actorId": "passer",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "block-followup-current-5-negative",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "block",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "parry-followup-current-5-negative",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "parry",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "box-inside-current-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-boundary-current-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-outside-current-5-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-boundary-current-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-outside-current-5-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "native-box-mismatch-current-5-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-box-current-5-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "normal-origin-current-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "backpass-current-5-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "own-throw-current-5-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "control-no-exception-current-5-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "clearance-exception-current-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "attempt-exception-current-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-on-line-current-5-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-tangent-current-5-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "goal-post-edge-current-5-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "goal-crossbar-edge-current-5-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "touchline-out-current-5-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-uninvolved-current-5-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-late-participation-current-5-negative",
+            "observed": "offside",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-contact-no-whistle-current-5-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "direct-throw-exempt-current-5-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-left-current-5-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-right-current-5-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-reachable-current-5-positive",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-unreachable-current-5-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-moving-away-current-5-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "fast-pass-interception-current-5-positive",
+            "observed": "contact",
+            "actorId": "interceptor",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "contact-tie-current-5-positive",
+            "observed": "contact",
+            "actorId": "a",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-enters-current-5-positive",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "block",
+                "free-ball",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-leaves-current-5-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "unreached-pass-current-5-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "alternate-receiver-current-5-positive",
+            "observed": "contact",
+            "actorId": "alternate",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "self-recovery-current-5-positive",
+            "observed": "contact",
+            "actorId": "passer",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "block-followup-current-5-positive",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "block",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "parry-followup-current-5-positive",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "parry",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "box-inside-current-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-boundary-current-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-outside-current-5-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-boundary-current-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-outside-current-5-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "native-box-mismatch-current-5-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-box-current-5-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "normal-origin-current-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "backpass-current-5-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "own-throw-current-5-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "control-no-exception-current-5-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "clearance-exception-current-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "attempt-exception-current-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-on-line-current-5-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-tangent-current-5-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "goal-post-edge-current-5-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "goal-crossbar-edge-current-5-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "touchline-out-current-5-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-uninvolved-current-5-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-late-participation-current-5-positive",
+            "observed": "offside",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-contact-no-whistle-current-5-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "direct-throw-exempt-current-5-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-left-current-6-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-right-current-6-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-reachable-current-6-negative",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-unreachable-current-6-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-moving-away-current-6-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "fast-pass-interception-current-6-negative",
+            "observed": "contact",
+            "actorId": "interceptor",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "contact-tie-current-6-negative",
+            "observed": "contact",
+            "actorId": "a",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-enters-current-6-negative",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "block",
+                "free-ball",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-leaves-current-6-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "unreached-pass-current-6-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "alternate-receiver-current-6-negative",
+            "observed": "contact",
+            "actorId": "alternate",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "self-recovery-current-6-negative",
+            "observed": "contact",
+            "actorId": "passer",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "block-followup-current-6-negative",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "block",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "parry-followup-current-6-negative",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "parry",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "box-inside-current-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-boundary-current-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-outside-current-6-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-boundary-current-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-outside-current-6-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "native-box-mismatch-current-6-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-box-current-6-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "normal-origin-current-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "backpass-current-6-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "own-throw-current-6-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "control-no-exception-current-6-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "clearance-exception-current-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "attempt-exception-current-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-on-line-current-6-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-tangent-current-6-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "goal-post-edge-current-6-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "goal-crossbar-edge-current-6-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "touchline-out-current-6-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-uninvolved-current-6-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-late-participation-current-6-negative",
+            "observed": "offside",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-contact-no-whistle-current-6-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "direct-throw-exempt-current-6-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-left-current-6-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-right-current-6-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-reachable-current-6-positive",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-unreachable-current-6-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-moving-away-current-6-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "fast-pass-interception-current-6-positive",
+            "observed": "contact",
+            "actorId": "interceptor",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "contact-tie-current-6-positive",
+            "observed": "contact",
+            "actorId": "a",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-enters-current-6-positive",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "block",
+                "free-ball",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-leaves-current-6-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "unreached-pass-current-6-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "alternate-receiver-current-6-positive",
+            "observed": "contact",
+            "actorId": "alternate",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "self-recovery-current-6-positive",
+            "observed": "contact",
+            "actorId": "passer",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "block-followup-current-6-positive",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "block",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "parry-followup-current-6-positive",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "parry",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "box-inside-current-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-boundary-current-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-outside-current-6-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-boundary-current-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-outside-current-6-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "native-box-mismatch-current-6-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-box-current-6-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "normal-origin-current-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "backpass-current-6-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "own-throw-current-6-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "control-no-exception-current-6-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "clearance-exception-current-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "attempt-exception-current-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-on-line-current-6-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-tangent-current-6-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "goal-post-edge-current-6-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "goal-crossbar-edge-current-6-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "touchline-out-current-6-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-uninvolved-current-6-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-late-participation-current-6-positive",
+            "observed": "offside",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-contact-no-whistle-current-6-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "direct-throw-exempt-current-6-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-left-large-5-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-right-large-5-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-reachable-large-5-negative",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-unreachable-large-5-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-moving-away-large-5-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "fast-pass-interception-large-5-negative",
+            "observed": "contact",
+            "actorId": "interceptor",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "contact-tie-large-5-negative",
+            "observed": "contact",
+            "actorId": "a",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-enters-large-5-negative",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "block",
+                "free-ball",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-leaves-large-5-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "unreached-pass-large-5-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "alternate-receiver-large-5-negative",
+            "observed": "contact",
+            "actorId": "alternate",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "self-recovery-large-5-negative",
+            "observed": "contact",
+            "actorId": "passer",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "block-followup-large-5-negative",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "block",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "parry-followup-large-5-negative",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "parry",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "box-inside-large-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-boundary-large-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-outside-large-5-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-boundary-large-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-outside-large-5-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "native-box-mismatch-large-5-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-box-large-5-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "normal-origin-large-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "backpass-large-5-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "own-throw-large-5-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "control-no-exception-large-5-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "clearance-exception-large-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "attempt-exception-large-5-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-on-line-large-5-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-tangent-large-5-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "goal-post-edge-large-5-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "goal-crossbar-edge-large-5-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "touchline-out-large-5-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-uninvolved-large-5-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-late-participation-large-5-negative",
+            "observed": "offside",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-contact-no-whistle-large-5-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "direct-throw-exempt-large-5-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-left-large-5-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-right-large-5-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-reachable-large-5-positive",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-unreachable-large-5-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-moving-away-large-5-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "fast-pass-interception-large-5-positive",
+            "observed": "contact",
+            "actorId": "interceptor",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "contact-tie-large-5-positive",
+            "observed": "contact",
+            "actorId": "a",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-enters-large-5-positive",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "block",
+                "free-ball",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-leaves-large-5-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "unreached-pass-large-5-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "alternate-receiver-large-5-positive",
+            "observed": "contact",
+            "actorId": "alternate",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "self-recovery-large-5-positive",
+            "observed": "contact",
+            "actorId": "passer",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "block-followup-large-5-positive",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "block",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "parry-followup-large-5-positive",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "parry",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "box-inside-large-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-boundary-large-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-outside-large-5-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-boundary-large-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-outside-large-5-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "native-box-mismatch-large-5-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-box-large-5-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "normal-origin-large-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "backpass-large-5-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "own-throw-large-5-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "control-no-exception-large-5-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "clearance-exception-large-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "attempt-exception-large-5-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-on-line-large-5-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-tangent-large-5-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "goal-post-edge-large-5-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "goal-crossbar-edge-large-5-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "touchline-out-large-5-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-uninvolved-large-5-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-late-participation-large-5-positive",
+            "observed": "offside",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-contact-no-whistle-large-5-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "direct-throw-exempt-large-5-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-left-large-6-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-right-large-6-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-reachable-large-6-negative",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-unreachable-large-6-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-moving-away-large-6-negative",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "fast-pass-interception-large-6-negative",
+            "observed": "contact",
+            "actorId": "interceptor",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "contact-tie-large-6-negative",
+            "observed": "contact",
+            "actorId": "a",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-enters-large-6-negative",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "block",
+                "free-ball",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-leaves-large-6-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "unreached-pass-large-6-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "alternate-receiver-large-6-negative",
+            "observed": "contact",
+            "actorId": "alternate",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "self-recovery-large-6-negative",
+            "observed": "contact",
+            "actorId": "passer",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "block-followup-large-6-negative",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "block",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "parry-followup-large-6-negative",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "parry",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "box-inside-large-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-boundary-large-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-outside-large-6-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-boundary-large-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-outside-large-6-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "native-box-mismatch-large-6-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-box-large-6-negative",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "normal-origin-large-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "backpass-large-6-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "own-throw-large-6-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "control-no-exception-large-6-negative",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "clearance-exception-large-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "attempt-exception-large-6-negative",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-on-line-large-6-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-tangent-large-6-negative",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "goal-post-edge-large-6-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "goal-crossbar-edge-large-6-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "touchline-out-large-6-negative",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-uninvolved-large-6-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-late-participation-large-6-negative",
+            "observed": "offside",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-contact-no-whistle-large-6-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "direct-throw-exempt-large-6-negative",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-left-large-6-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "free-goal-keeper-right-large-6-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-reachable-large-6-positive",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-unreachable-large-6-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "keeper-moving-away-large-6-positive",
+            "observed": "goal",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "fast-pass-interception-large-6-positive",
+            "observed": "contact",
+            "actorId": "interceptor",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "contact-tie-large-6-positive",
+            "observed": "contact",
+            "actorId": "a",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-enters-large-6-positive",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "block",
+                "free-ball",
+                "result"
+            ]
+        },
+        {
+            "id": "blocker-leaves-large-6-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "unreached-pass-large-6-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "alternate-receiver-large-6-positive",
+            "observed": "contact",
+            "actorId": "alternate",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "self-recovery-large-6-positive",
+            "observed": "contact",
+            "actorId": "passer",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "id": "block-followup-large-6-positive",
+            "observed": "contact",
+            "actorId": "blocker",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "block",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "parry-followup-large-6-positive",
+            "observed": "contact",
+            "actorId": "keeper",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "shot-release",
+                "contact",
+                "parry",
+                "free-ball",
+                "contact",
+                "shot-release",
+                "goal",
+                "result"
+            ]
+        },
+        {
+            "id": "box-inside-large-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-boundary-large-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-outside-large-6-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-boundary-large-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "box-width-outside-large-6-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "native-box-mismatch-large-6-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-box-large-6-positive",
+            "observed": "outside-own-box",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "normal-origin-large-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "backpass-large-6-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "own-throw-large-6-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "control-no-exception-large-6-positive",
+            "observed": "restricted-origin",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "clearance-exception-large-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "attempt-exception-large-6-positive",
+            "observed": "allowed",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "keeper-permission",
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-on-line-large-6-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "whole-ball-tangent-large-6-positive",
+            "observed": "free",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "result"
+            ]
+        },
+        {
+            "id": "goal-post-edge-large-6-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "goal-crossbar-edge-large-6-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "touchline-out-large-6-positive",
+            "observed": "out",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "out",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-uninvolved-large-6-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "offside-late-participation-large-6-positive",
+            "observed": "offside",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "opponent-contact-no-whistle-large-6-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        },
+        {
+            "id": "direct-throw-exempt-large-6-positive",
+            "observed": "no-whistle",
+            "actorId": "",
+            "passed": true,
+            "checkpointPassed": true,
+            "pausePassed": true,
+            "uniqueResult": true,
+            "events": [
+                "offside-check",
+                "result"
+            ]
+        }
+    ],
+    "negativeCases": {
+        "outsideParryRejected": true,
+        "restrictedParryRejected": true,
+        "foreignCheckpointRejected": true,
+        "foreignSourceRejected": true,
+        "malformedCheckpointsRejected": true,
+        "restoreFailureAtomic": true
+    }
+}

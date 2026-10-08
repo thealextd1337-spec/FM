@@ -1,0 +1,86 @@
+[
+  {
+    "name": "work/test-pitch-motion-v102.cjs",
+    "seconds": 0.218,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/test-world-pitch-actions-v99.cjs",
+    "seconds": 0.037,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-warping-contacts-v114.cjs",
+    "seconds": 6.646,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-football-flow-v113.cjs",
+    "seconds": 5.192,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-ball-actions-v111.cjs",
+    "seconds": 93.213,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-ball-events-v111.cjs",
+    "seconds": 4.032,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-animation-audit-v112.cjs",
+    "seconds": 22.128,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-corner-ball-v109.cjs",
+    "seconds": 10.328,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-ball-motion-v110.cjs",
+    "seconds": 4.046,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-locomotion-v108.cjs",
+    "seconds": 5.873,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-world-pitch3d-browser.cjs",
+    "seconds": 53.319,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-pitch-motion-v102.cjs",
+    "seconds": 34.929,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-world-pitch-restarts-v101.cjs",
+    "seconds": 22.505,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-goal-replay-v103.cjs",
+    "seconds": 36.687,
+    "exitCode": 0,
+    "error": null
+  }
+]

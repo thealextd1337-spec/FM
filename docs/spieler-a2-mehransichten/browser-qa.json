@@ -1,0 +1,63 @@
+{
+  "models": [
+    {
+      "id": "a1",
+      "finite": true,
+      "vertices": 33968,
+      "meshes": 1,
+      "materials": 1,
+      "triangles": 30644,
+      "scale": 0.9520127816093723,
+      "rawBounds": {
+        "min": [
+          -0.610725998878479,
+          -0.9526879191398621,
+          -0.17360402643680573
+        ],
+        "max": [
+          0.6099159717559814,
+          0.9380429983139038,
+          0.17824506759643555
+        ]
+      },
+      "referenceViews": [
+        "front",
+        "side",
+        "back",
+        "quarter"
+      ]
+    },
+    {
+      "id": "a2",
+      "finite": true,
+      "vertices": 32646,
+      "meshes": 1,
+      "materials": 1,
+      "triangles": 30461,
+      "scale": 0.9484487287566281,
+      "rawBounds": {
+        "min": [
+          -0.6675170063972473,
+          -0.9507409334182739,
+          -0.1947600096464157
+        ],
+        "max": [
+          0.6658120155334473,
+          0.9470949172973633,
+          0.19266606867313385
+        ]
+      },
+      "referenceViews": [
+        "front",
+        "side",
+        "back",
+        "quarter"
+      ]
+    }
+  ],
+  "synchronized": true,
+  "downloadVerified": true,
+  "errors": [],
+  "remoteRequests": 0,
+  "hardware": "Headless Edge, software WebGL; physical device performance untested"
+}

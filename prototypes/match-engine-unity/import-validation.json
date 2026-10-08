@@ -1,0 +1,52 @@
+{
+    "unity": "6000.6.4f1",
+    "clips": [
+        "back_left",
+        "back_right",
+        "back_step_meshy",
+        "back_walk",
+        "brake_meshy",
+        "celebrate_arms",
+        "celebrate_fist",
+        "celebrate_victory",
+        "Charged_Spell_Cast",
+        "foul_fall_meshy",
+        "foul_stumble_meshy",
+        "idle_meshy",
+        "idle_ready",
+        "idle_relaxed",
+        "idle_stand_meshy",
+        "keeper_dive_meshy",
+        "keeper_high_meshy",
+        "keeper_low_meshy",
+        "keeper_ready_meshy",
+        "keeper_rise_meshy",
+        "keeper_shuffle_meshy",
+        "run_fast4",
+        "run_fast6",
+        "sprint_forward",
+        "turn_idle_left",
+        "turn_idle_right",
+        "turn_run_left",
+        "turn_run_right",
+        "turn_sharp_right",
+        "turn_walk_left",
+        "turn_walk_right",
+        "walking",
+        "running",
+        "shot_meshy"
+    ],
+    "bones": 28,
+    "vertices": 9725,
+    "triangles": 12668,
+    "boundsSize": {
+        "x": 1.6778478622436523,
+        "y": 0.3463127911090851,
+        "z": 1.7000001668930054
+    },
+    "rootScale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+    }
+}

@@ -1,0 +1,210 @@
+[
+  {
+    "name": "work/test-defensive-motion-v108.cjs",
+    "seconds": 0.035,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/test-pitch-motion-v102.cjs",
+    "seconds": 0.205,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/test-world-pitch-actions-v99.cjs",
+    "seconds": 0.037,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/test-world-pitch3d-v98.cjs",
+    "seconds": 0.037,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-contact-regressions-v113.cjs",
+    "seconds": 4.03,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-football-flow-v113.cjs",
+    "seconds": 5.095,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/inspect-contact-poses-v113.cjs",
+    "seconds": 5.31,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-ball-events-v111.cjs",
+    "seconds": 4.056,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-locomotion-v108.cjs",
+    "seconds": 5.904,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-animation-audit-v112.cjs",
+    "seconds": 24.007,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-model-integration-v112.cjs",
+    "seconds": 7.127,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-motion-lab-v108.cjs",
+    "seconds": 49.857,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-ball-actions-v111.cjs",
+    "seconds": 86.664,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-ball-motion-v110.cjs",
+    "seconds": 4.073,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-corner-ball-v109.cjs",
+    "seconds": 10.753,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-world-pitch3d-browser.cjs",
+    "seconds": 55.582,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-world-pitch-actions-v99.cjs",
+    "seconds": 17.773,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-pitch-motion-v102.cjs",
+    "seconds": 35.47,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-world-pitch-restarts-v101.cjs",
+    "seconds": 23.441,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-goal-replay-v103.cjs",
+    "seconds": 37.823,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-contact-regressions-v113.cjs",
+    "pass": "final",
+    "seconds": 4.129,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-football-flow-v113.cjs",
+    "pass": "final",
+    "seconds": 5.375,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-goal-keeper-clearance-v113.cjs",
+    "pass": "final",
+    "seconds": 4.103,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-keeper-origin-misses-v113.cjs",
+    "pass": "final",
+    "seconds": 4.401,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-ball-events-v111.cjs",
+    "pass": "final",
+    "seconds": 3.992,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-user-animation-audit-v112.cjs",
+    "pass": "final",
+    "seconds": 23.774,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-world-pitch3d-browser.cjs",
+    "pass": "final",
+    "seconds": 55.707,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-world-pitch-actions-v99.cjs",
+    "pass": "final",
+    "seconds": 17.428,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-pitch-motion-v102.cjs",
+    "pass": "final",
+    "seconds": 35.14,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-goal-replay-v103.cjs",
+    "pass": "final",
+    "seconds": 37.765,
+    "exitCode": 0,
+    "error": null
+  },
+  {
+    "name": "work/check-keeper-goal-recovery-v113.cjs",
+    "pass": "post-review",
+    "exitCode": 0,
+    "evidence": "goal-recovery-qa-v113.json"
+  },
+  {
+    "name": "work/check-goal-keeper-clearance-v113.cjs",
+    "pass": "post-review",
+    "exitCode": 0,
+    "evidence": "goal-clearance-qa-v113.json"
+  },
+  {
+    "name": "work/check-goal-replay-v103.cjs",
+    "pass": "post-review",
+    "exitCode": 0,
+    "evidence": "replay-qa-v113.json"
+  }
+]

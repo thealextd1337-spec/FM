@@ -1,0 +1,315 @@
+{
+  "ground": {
+    "action": {
+      "kind": "goalKick",
+      "phase": "waiting",
+      "held": false,
+      "progress": 0,
+      "target": {
+        "pid": "user-meshy-local-match:GER-2:4",
+        "n": 4,
+        "name": "Hugo Laurent",
+        "nation": "FRA",
+        "age": 25,
+        "line": "def",
+        "assignedLine": "def",
+        "keeper": false,
+        "type": "Abwehr",
+        "foot": "Rechts",
+        "form": 0,
+        "fresh": 100,
+        "history": [],
+        "seasons": [],
+        "honours": [],
+        "tec": 10,
+        "pas": 12,
+        "fin": 6,
+        "tak": 15,
+        "pos": 14,
+        "spd": 12,
+        "sta": 14,
+        "air": 15,
+        "gk": 4,
+        "appearance": {
+          "skinTone": "medium",
+          "hairColor": "dark-brown",
+          "hairstyle": "textured_crop",
+          "faceShape": "square",
+          "eyeBrows": "arched",
+          "nose": "straight",
+          "mouth": "narrow",
+          "facialHair": "stubble",
+          "pose": "fist_chest"
+        },
+        "marketValue": 350,
+        "marketValueStamp": "S1:start",
+        "cell": 28,
+        "role": -1,
+        "instructions": [],
+        "matchEntryElapsed": 0,
+        "t": 0,
+        "x": 0.605,
+        "y": 0.84,
+        "bx": 0.68,
+        "by": 0.75,
+        "tx": 0.605,
+        "ty": 0.84,
+        "stats": {
+          "passes": 0,
+          "passComplete": 0,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        "initialBy": 0.745,
+        "motionX": -0.0012181823830553773,
+        "motionY": -0.002423628679628087,
+        "recoverUntil": 0
+      },
+      "id": "goalKick"
+    },
+    "motion": "keeper_ground_ready",
+    "held": false,
+    "ballHeight": 0.29
+  },
+  "kickoff": {
+    "earlyPhase": "waiting",
+    "frames": 226,
+    "kickDistance": 25.59883720930232,
+    "phase": "rolling",
+    "ballStart": {
+      "x": 0.5,
+      "y": 0.5
+    },
+    "kickerGap": 0.6500000000000029,
+    "wrongHalf": 0,
+    "sourceClip": "pass"
+  },
+  "throwing": {
+    "travel": 0,
+    "flight": true,
+    "action": "throw"
+  },
+  "offsideFormation": {
+    "frozen": true,
+    "frames": 175,
+    "maxTravel": 0.2571840000000013,
+    "kickerGap": 0,
+    "finished": true
+  },
+  "stops": [
+    {
+      "fps": 30,
+      "phase": 0,
+      "largest": 0.23920051328370187,
+      "brake": true,
+      "entryTime": 0.9333333333333333,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.879528816539076e-12
+      },
+      "poses": []
+    },
+    {
+      "fps": 30,
+      "phase": 0.16,
+      "largest": 0.28443672651848634,
+      "brake": true,
+      "entryTime": 0.9333333333333333,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.8795288165390768e-12
+      },
+      "poses": []
+    },
+    {
+      "fps": 30,
+      "phase": 0.32,
+      "largest": 0.27825796030602395,
+      "brake": true,
+      "entryTime": 0.9333333333333333,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.8795288165390764e-12
+      },
+      "poses": []
+    },
+    {
+      "fps": 30,
+      "phase": 0.48,
+      "largest": 0.4929953131618253,
+      "brake": true,
+      "entryTime": 0.9333333333333333,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.8795288165390776e-12
+      },
+      "poses": []
+    },
+    {
+      "fps": 60,
+      "phase": 0,
+      "largest": 0.13845310187781407,
+      "brake": true,
+      "entryTime": 0.9166666666666667,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.8795288165390865e-12
+      },
+      "poses": [
+        {
+          "time": 1.6,
+          "motion": "brake_meshy",
+          "clipTime": 1.0166666666666666
+        },
+        {
+          "time": 1.8,
+          "motion": "brake_meshy",
+          "clipTime": 1.2166666666666668
+        },
+        {
+          "time": 2,
+          "motion": "brake_meshy",
+          "clipTime": 1.4166666666666665
+        },
+        {
+          "time": 2.2,
+          "motion": "brake_meshy",
+          "clipTime": 1.6166666666666671
+        },
+        {
+          "time": 2.4,
+          "motion": "idle",
+          "clipTime": 1.7833333333333345
+        },
+        {
+          "time": 2.6,
+          "motion": "idle",
+          "clipTime": 1.7833333333333345
+        },
+        {
+          "time": 2.8,
+          "motion": "idle",
+          "clipTime": 1.7833333333333345
+        }
+      ]
+    },
+    {
+      "fps": 60,
+      "phase": 0.16,
+      "largest": 0.3414423576815776,
+      "brake": true,
+      "entryTime": 0.9166666666666667,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.879528816539087e-12
+      },
+      "poses": []
+    },
+    {
+      "fps": 60,
+      "phase": 0.32,
+      "largest": 0.13989413497652103,
+      "brake": true,
+      "entryTime": 0.9166666666666667,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.8795288165390873e-12
+      },
+      "poses": []
+    },
+    {
+      "fps": 60,
+      "phase": 0.48,
+      "largest": 0.3423169818354963,
+      "brake": true,
+      "entryTime": 0.9166666666666667,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.879528816539085e-12
+      },
+      "poses": []
+    },
+    {
+      "fps": 120,
+      "phase": 0,
+      "largest": 0.17170003487081406,
+      "brake": true,
+      "entryTime": 0.9083333333333333,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.879528816537537e-12
+      },
+      "poses": []
+    },
+    {
+      "fps": 120,
+      "phase": 0.16,
+      "largest": 0.21723652729814574,
+      "brake": true,
+      "entryTime": 0.9083333333333333,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.879528816539011e-12
+      },
+      "poses": []
+    },
+    {
+      "fps": 120,
+      "phase": 0.32,
+      "largest": 0.1208210839788965,
+      "brake": true,
+      "entryTime": 0.9083333333333333,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.8795288165390816e-12
+      },
+      "poses": []
+    },
+    {
+      "fps": 120,
+      "phase": 0.48,
+      "largest": 0.2499627875788278,
+      "brake": true,
+      "entryTime": 0.9083333333333333,
+      "settled": {
+        "motion": "idle",
+        "runWeight": 1.8795288165390877e-12
+      },
+      "poses": []
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,50 @@
+[
+  {
+    "team": 0,
+    "variant": 0,
+    "goal": true,
+    "gap": 0.9124953451770839,
+    "bodyGap": 0.974232134387274,
+    "keeperContact": false
+  },
+  {
+    "team": 0,
+    "variant": 1,
+    "goal": true,
+    "gap": 0.29109508319287003,
+    "bodyGap": 0.44245606110678465,
+    "keeperContact": false
+  },
+  {
+    "team": 0,
+    "variant": 2,
+    "goal": true,
+    "gap": 0.48203178464749397,
+    "bodyGap": 0.49323169875984557,
+    "keeperContact": false
+  },
+  {
+    "team": 1,
+    "variant": 0,
+    "goal": true,
+    "gap": 0.9051970097712169,
+    "bodyGap": 0.9569010306918302,
+    "keeperContact": false
+  },
+  {
+    "team": 1,
+    "variant": 1,
+    "goal": true,
+    "gap": 0.29151135540742695,
+    "bodyGap": 0.4163603062694504,
+    "keeperContact": false
+  },
+  {
+    "team": 1,
+    "variant": 2,
+    "goal": true,
+    "gap": 0.4705434848733706,
+    "bodyGap": 0.471585034868451,
+    "keeperContact": false
+  }
+]

@@ -45,8 +45,8 @@ function v25Formation(team){
 }
 function v25Surname(name){const parts=String(name).trim().split(/\s+/);return parts[parts.length-1]||name}
 function v25Scorers(team){
- const goals=(match?.goals||[]).filter(goal=>goal.team===team),groups=[];for(const goal of goals){let group=groups.find(item=>item.name===goal.name);if(!group){group={name:goal.name,minutes:[]};groups.push(group)}group.minutes.push(goal.minute)}
- const surnames=groups.map(group=>v25Surname(group.name));return groups.map(group=>{const surname=v25Surname(group.name),duplicate=surnames.filter(value=>value===surname).length>1,first=group.name.trim().charAt(0);return`<div class="goal-line">${escapeHTML(duplicate?`${first}. ${surname}`:surname)} ${group.minutes.map(minute=>`${minute}′`).join(', ')}</div>`}).join('');
+ const goals=(match?.goals||[]).filter(goal=>goal.team===team),groups=[];for(const goal of goals){let group=groups.find(item=>item.name===goal.name&&item.ownGoal===Boolean(goal.ownGoal));if(!group){group={name:goal.name,ownGoal:Boolean(goal.ownGoal),minutes:[]};groups.push(group)}group.minutes.push(goal.minute)}
+ const surnames=groups.map(group=>v25Surname(group.name));return groups.map(group=>{const surname=v25Surname(group.name),duplicate=surnames.filter(value=>value===surname).length>1,first=group.name.trim().charAt(0);return`<div class="goal-line">${escapeHTML(duplicate?`${first}. ${surname}`:surname)}${group.ownGoal?' (E.)':''} ${group.minutes.map(minute=>`${minute}′`).join(', ')}</div>`}).join('');
 }
 function v25EnsureScoreboard(){
  const area=$('#match-area'),scoreboard=area?.querySelector('.scoreboard');if(!area||!scoreboard)return null;let clock=$('#retro-clock');if(!clock){clock=document.createElement('div');clock.id='retro-clock';clock.className='retro-clock';clock.setAttribute('aria-label','Spielzeit');scoreboard.before(clock)}

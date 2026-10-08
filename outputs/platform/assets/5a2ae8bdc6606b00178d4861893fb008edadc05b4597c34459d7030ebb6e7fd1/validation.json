@@ -1,0 +1,57 @@
+{
+  "passed": true,
+  "sourceUnchanged": true,
+  "textureBytesUnchanged": true,
+  "vertices": 9725,
+  "triangles": 12668,
+  "joints": 28,
+  "clips": 34,
+  "calibratedClips": 30,
+  "roundTripMaxJointErrorMetres": 0.0000029934648947924147,
+  "delivery": [
+    {
+      "file": "football-v130.glb",
+      "bytes": 21445448,
+      "sha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1"
+    },
+    {
+      "file": "football-v130.fbx",
+      "bytes": 10858636,
+      "sha256": "e79f62f49cc2fe00968cce77044aeba534a7aaf119a42ebd82f0f1516ed13695"
+    },
+    {
+      "file": "calibration-v130.json",
+      "bytes": 341831,
+      "sha256": "3c3d05ac3b7580730f3b0bb13cb63a77ddc76c82f5e0b04225a8fef6734a8305"
+    },
+    {
+      "file": "cloth-mask.png",
+      "bytes": 75111,
+      "sha256": "a12f08d37d1344f3c8428794d62660d12b044f7359de777f093d8956083e6333"
+    },
+    {
+      "file": "textures/image-0.png",
+      "bytes": 9834749,
+      "sha256": "cfd59dfe39aaff42ebe949156c6cccf78fb31999ac5414131e4904f5fc0ac843"
+    },
+    {
+      "file": "textures/image-1.jpg",
+      "bytes": 1214077,
+      "sha256": "ce490897b7515208dc2663726292d89735cdd75b6e0022d63b2d3e4c3c9288fc"
+    },
+    {
+      "file": "textures/image-2.jpg",
+      "bytes": 1935304,
+      "sha256": "e3126b5f044537ec14cff6918baf385f0bdb13f88b8b21775e69c902460c0ca9"
+    },
+    {
+      "file": "textures/image-3.png",
+      "bytes": 2961306,
+      "sha256": "03c2426b8c99f6d35daee294657acc2db2cc7e029f1ef8dfdca81746cd7bec13"
+    }
+  ],
+  "limits": [
+    "Numerical Blender round trip covers three poses per clip; Unity import and rendered silhouette/contact checks remain separate.",
+    "Full master geometry/textures retained; no mobile performance claim."
+  ]
+}

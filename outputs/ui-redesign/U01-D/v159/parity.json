@@ -1,0 +1,23 @@
+{
+  "sameHashes": true,
+  "sameCases": true,
+  "sameRanks": true,
+  "sameNative": true,
+  "sourceCases": 16,
+  "buildCases": 16,
+  "sourceGroups": 8,
+  "buildGroups": 8,
+  "errors": [],
+  "sourceHTML": "7a01c12c4ff0a9b8f43cf8558f8ba71ba74c65429e7d0e5e920a3f8aba48454d",
+  "buildHTML": "7bb12685500eafd967031059f8f798ef433c08debae3f23c479f6a80de33042a",
+  "hashes": {
+    "match-report-v47.js": "ad3f73056e9ceedae4fedf505afa3fc95b80c0670a1ff176283f49ab7d48c1e0",
+    "ui-flutlicht/views/report.css": "ae725e5dfaee7628cddd9fd858c8e0592073aedc91c1d3e1c0e5799e28ba3b71",
+    "ui-flutlicht/views/competitions.js": "60ee6c8bab0e2da208baa41f56e721afba4557e9f4a8829247268e5dff4f035a",
+    "ui-flutlicht/views/overview.js": "9b0a407fb4a40cfb24bc602ca2fc4e4380ff530b735addfd0f373ec74df91bee",
+    "ui-flutlicht/adapter.js": "c026847b5adea1d9cd5cec306334f8504e2ee4b088d1c70eb4fc3fbbc83e12df",
+    "i18n-v75.js": "e77695e96bb8e89fbcfea3f19cae1d4d6db3da9ea1d00e3ebed03996b54ba837",
+    "ui-flutlicht/tokens.css": "cf73180dbf339790f8874701e9d73109df7485aa227decc1c483020fedb92f98",
+    "ui-flutlicht/components.css": "cf84d4f7a8abcb1b35a40065177368a5c0302e6c7755fcfcbff405ea2fad3b90"
+  }
+}

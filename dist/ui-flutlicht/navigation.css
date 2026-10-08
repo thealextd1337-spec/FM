@@ -1,0 +1,16 @@
+/* Complete wrapping submenus; controller-owned content and controls remain in place. */
+.fl-section-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px;padding:5px;border:1px solid var(--fl-line);border-radius:10px;background:var(--fl-surface)}
+#v61-world-screen .fl-content .fl-section-tabs>[role=tab]{flex:1 1 auto;min-height:44px;padding:10px 16px;border:0;border-radius:7px;background:transparent;color:var(--fl-muted);font:650 14px/1.4 var(--fl-font);white-space:normal}
+#v61-world-screen .fl-content .fl-section-tabs>[role=tab]:hover{color:var(--fl-ink);background:var(--fl-subtle)}
+#v61-world-screen .fl-content .fl-section-tabs>[aria-selected=true],#v61-world-screen .fl-content .fl-section-tabs>[aria-selected=true]:hover{background:var(--fl-gold);color:#15191e}
+.fl-section-tabs>[role=tab]:focus-visible{outline:3px solid var(--fl-accent);outline-offset:3px}
+.fl-section-panels,.fl-section-panel{min-width:0}.fl-section-panel[hidden]{display:none!important}.fl-section-panel{outline:none;scroll-margin-top:20px}
+.fl-navigation-view .fl-market-jumps,.fl-navigation-native-tabs,.fl-navigation-native-area{display:none!important}
+.fl-navigation-empty{padding:18px;border:1px solid var(--fl-line);border-radius:var(--fl-radius);background:var(--fl-surface);color:var(--fl-muted);line-height:1.6}
+.fl-section-panel>.v62-season:first-child,.fl-section-panel>.v72-sale-list:first-child,.fl-section-panel>.v72-own-sales:first-child{margin-top:0}
+.fl-navigation-competition-group{display:grid;grid-template-columns:minmax(0,1fr)}
+.fl-navigation-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0 24px;padding:18px;background:var(--fl-surface);border:1px solid var(--fl-line);border-radius:var(--fl-radius)}
+.fl-navigation-filters label{display:grid;gap:6px;min-width:0;color:var(--fl-muted);font-size:13px;font-weight:600}
+#v61-world-screen .fl-content .fl-navigation-filters select{width:100%;max-width:100%;min-width:0;min-height:44px;font-size:16px;color:var(--fl-ink);background:var(--fl-control);border:1px solid var(--fl-control-line);border-radius:6px;padding:9px 12px}
+@media(max-width:700px){.fl-section-tabs{gap:4px;margin-bottom:16px}#v61-world-screen .fl-content .fl-section-tabs>[role=tab]{flex:1 1 120px;padding:10px 8px;font-size:13px}.fl-navigation-filters{gap:12px;padding:14px}}
+@media(max-width:420px){.fl-navigation-filters{grid-template-columns:minmax(0,1fr)}}

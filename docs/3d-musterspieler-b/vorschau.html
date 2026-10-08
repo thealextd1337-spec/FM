@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Doppel 6 · Musterspieler B</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f2f1e9;color:#172237;font:16px/1.5 system-ui,sans-serif}
+main{max-width:1160px;margin:auto;padding:28px 24px 40px}header{margin-bottom:22px}
+small{letter-spacing:.12em;text-transform:uppercase;color:#43634a}h1{font-size:clamp(25px,4vw,38px);line-height:1.12;margin:8px 0}
+p{margin:8px 0;color:#516070}.layout{display:grid;grid-template-columns:minmax(280px,1.1fr) minmax(280px,1fr);gap:24px;align-items:start}
+figure{margin:0}#model{display:block;width:100%;max-height:75vh;object-fit:contain;background:#4e6575}
+figcaption{font-size:14px;margin:9px 0;color:#516070}nav{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+button,a{font:inherit}button{border:1px solid #b7c6b9;background:transparent;color:#172237;padding:8px 12px;border-radius:4px;cursor:pointer}
+button[aria-pressed=true]{background:#215d3d;color:white;border-color:#215d3d}button:focus-visible,a:focus-visible{outline:3px solid #cd9c3b;outline-offset:3px}
+.reference{display:block;width:100%;height:auto}h2{font-size:20px;margin:0 0 12px}.links{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px}
+a{color:#215d3d;text-underline-offset:3px}footer{margin-top:22px;border-top:1px solid #cbd2c7;padding-top:15px;color:#516070;font-size:14px}
+@media(max-width:720px){main{padding:20px 14px}.layout{grid-template-columns:1fr}#model{max-height:65vh}}
+</style>
+<main><header><small>Doppel 6 · Stilprüfung</small><h1>Musterspieler B</h1><p>Stilisiertes Sport-3D nach dem gewählten Entwurf.</p></header>
+<div class="layout"><section aria-label="Modellansichten"><figure><img id="model" src="dreiviertel.png" alt="Musterspieler mit grün-weißem Trikot, dunkelblauer Shorts und weißen Stutzen, Dreiviertelansicht"><figcaption id="caption">Dreiviertelansicht · gerendertes 3D-Modell</figcaption></figure>
+<nav aria-label="Blickwinkel"><button data-view="dreiviertel" aria-pressed="true">Dreiviertel</button><button data-view="frontal" aria-pressed="false">Vorne</button><button data-view="profil" aria-pressed="false">Profil</button><button data-view="ruecken" aria-pressed="false">Hinten</button><button data-view="gesicht" aria-pressed="false">Gesicht</button></nav></section>
+<section><h2>Gewählter Entwurf B</h2><img class="reference" src="../3d-stilreferenz-b.png" alt="Gewähltes Stilkonzept B mit athletischem Fußballer und Stadion"><p>Vergleiche Proportionen, Gesicht, Frisur und Stoffformen. Die Musterfigur dient der Stilabnahme vor dem Ausbau der Bewegungen.</p>
+<div class="links"><a href="spieler.blend" download>Blender-Datei</a><a href="spieler.glb" download>GLB-Modell</a><a href="https://higgsfield.ai/3d-jutsu/106f0660-cb99-42fe-a9ec-004e61d3c884" target="_blank" rel="noopener">3D-Modell drehen</a></div></section></div>
+<footer>Verworfener Entwurf · Grafikqualität vom Nutzer zurückgewiesen. Diese Ansicht zeigt den bisherigen Stand; die Überarbeitung mit lokalem Blender MCP steht aus.</footer></main>
+<script>
+const names={dreiviertel:'Dreiviertelansicht',frontal:'Vorderansicht',profil:'Profilansicht',ruecken:'Rückenansicht',gesicht:'Gesichtsnahaufnahme'};
+document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>{
+ const view=button.dataset.view;document.getElementById('model').src=view+'.png';
+ document.getElementById('model').alt='Musterspieler B, '+names[view];
+ document.getElementById('caption').textContent=names[view]+' · gerendertes 3D-Modell';
+ document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+}));
+</script></html>

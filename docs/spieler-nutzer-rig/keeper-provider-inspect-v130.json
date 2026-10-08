@@ -1,0 +1,138 @@
+{
+  "rig": "Reference",
+  "scale": [
+    0.009999999776482582,
+    0.009999999776482582,
+    0.009999999776482582
+  ],
+  "bones": [
+    "Pelvis",
+    "L_Hip",
+    "L_Knee",
+    "L_Ankle",
+    "L_Foot",
+    "R_Hip",
+    "R_Knee",
+    "R_Ankle",
+    "R_Foot",
+    "Spine1",
+    "Spine2",
+    "Spine3",
+    "Neck",
+    "Head",
+    "L_Collar",
+    "L_Shoulder",
+    "L_Elbow",
+    "L_Wrist",
+    "L_Index1",
+    "L_Index2",
+    "L_Index3",
+    "L_Middle1",
+    "L_Middle2",
+    "L_Middle3",
+    "L_Pinky1",
+    "L_Pinky2",
+    "L_Pinky3",
+    "L_Ring1",
+    "L_Ring2",
+    "L_Ring3",
+    "L_Thumb1",
+    "L_Thumb2",
+    "L_Thumb3",
+    "R_Collar",
+    "R_Shoulder",
+    "R_Elbow",
+    "R_Wrist",
+    "R_Index1",
+    "R_Index2",
+    "R_Index3",
+    "R_Middle1",
+    "R_Middle2",
+    "R_Middle3",
+    "R_Pinky1",
+    "R_Pinky2",
+    "R_Pinky3",
+    "R_Ring1",
+    "R_Ring2",
+    "R_Ring3",
+    "R_Thumb1",
+    "R_Thumb2",
+    "R_Thumb3"
+  ],
+  "actions": [
+    {
+      "name": "Reference|SMPLH_Animation|Base Layer",
+      "range": [
+        1.0,
+        120.0
+      ]
+    }
+  ],
+  "fps": 30,
+  "meshes": [
+    {
+      "name": "body",
+      "vertices": 4571
+    },
+    {
+      "name": "arm",
+      "vertices": 7110
+    },
+    {
+      "name": "qiu_L1",
+      "vertices": 382
+    },
+    {
+      "name": "qiu_L3",
+      "vertices": 382
+    },
+    {
+      "name": "qiu_L5",
+      "vertices": 242
+    },
+    {
+      "name": "qiu_R2",
+      "vertices": 382
+    },
+    {
+      "name": "qiu_R4",
+      "vertices": 382
+    },
+    {
+      "name": "qiu_R6",
+      "vertices": 242
+    },
+    {
+      "name": "leg",
+      "vertices": 6156
+    },
+    {
+      "name": "head",
+      "vertices": 2395
+    },
+    {
+      "name": "qiu_L2",
+      "vertices": 382
+    },
+    {
+      "name": "qiu_L4",
+      "vertices": 382
+    },
+    {
+      "name": "qiu_L6",
+      "vertices": 242
+    },
+    {
+      "name": "qiu_R1",
+      "vertices": 382
+    },
+    {
+      "name": "qiu_R3",
+      "vertices": 382
+    },
+    {
+      "name": "qiu_R5",
+      "vertices": 242
+    }
+  ]
+}

@@ -1,0 +1,4339 @@
+{
+  "built": false,
+  "sourceHashes": {
+    "dist/index.html": "7a01c12c4ff0a9b8f43cf8558f8ba71ba74c65429e7d0e5e920a3f8aba48454d",
+    "dist/style.css": "fc7abde1213ae3495dc367506858284f5e76f18c84b255fbcd76910e78df380d",
+    "dist/manager.css": "2a4746fad538714befe560f04051cebd6aec9d2df5d6cdcfe4b4b8789ae660ac",
+    "dist/world-start-v61.css": "7615f5f098c76f0d074c816343c3ccfac06a1baabb78b590097c9240b4a0bbd3",
+    "dist/world-economy-v66.css": "d0b6dc985cfdf4a51adf1416d011d25788abe3be14c7544f859e82885c0947e2",
+    "dist/world-youth-v67.css": "8f489907a1173c18f3171cfd431e19ad59c82ab7c762ec879e3a9dca2750c6a7",
+    "dist/world-views-v68.css": "24b150d7252760a3bcc7bbc6b8dc999f09f78000445da6e0c2d9f3411e933417",
+    "dist/progress-v58.css": "181b5b64f08810734cb127d91519cdd5f07a6bf9e2a7985004dc43817bbbe77b",
+    "dist/ui-flutlicht/tokens.css": "cf73180dbf339790f8874701e9d73109df7485aa227decc1c483020fedb92f98",
+    "dist/ui-flutlicht/components.css": "cf84d4f7a8abcb1b35a40065177368a5c0302e6c7755fcfcbff405ea2fad3b90",
+    "dist/ui-flutlicht/views/overview.css": "ae46830edf05e823f476fdc5293d0505ae2dd23ade011dc72eb8342fb44e029f",
+    "dist/ui-flutlicht/views/squad.css": "19e8079720127b570ac5595b1289236a144db3fd763758c7a153449eb26b6e81",
+    "dist/ui-flutlicht/views/market.css": "c27853a675c274e2650cffe716745739ebc26350e077a2b96e68fccc26f70ee0",
+    "dist/ui-flutlicht/views/settings.css": "941e3c8276bcd58b3d8b1254290ddf1a6db14402f749fb64ed20b07ba51ff1a2",
+    "dist/ui-flutlicht/views/club.css": "bfbdd85cbd108d714c2040ca0ae26763b54e2c5946b194a4d956f56ee12245d3",
+    "dist/ui-flutlicht/views/competitions.css": "7fc964305520099911543d4f7fdb5d48eac6981d927496498de9fab564ccdfe0",
+    "dist/ui-flutlicht/navigation.css": "f671116a18737af2e2d9a5b746fc48b282ca98667f02bc374dce68a1b2dd6632",
+    "dist/ui-flutlicht/matchplan.css": "326f257641769f995dc9af8cf55fe1b49e17007e1f76354c71cbf2a6304c972b",
+    "dist/ui-flutlicht/start.css": "92cbba2ee0802be0c27aa496f2cd63c4ec3009c0ac2a95da838570d3b478e839",
+    "dist/ui-flutlicht/match.css": "031714371e2bc8fb71f9ee66844c0c8d1c9944b71e52355a4989c10f50d5bde0",
+    "dist/ui-flutlicht/views/report.css": "ae725e5dfaee7628cddd9fd858c8e0592073aedc91c1d3e1c0e5799e28ba3b71",
+    "dist/player-tactics-ui.css": "42077c7306e3675fb50db8b77fe849c19c009174f1ae4a5c7a4d39bc1c969beb",
+    "dist/world-tactics-layout-v156.css": "4eb557c24bfcbc9e69277f35d0c12c0843077947db88f0de733adbeb153d159b",
+    "dist/game.js": "e980ee060746296b9cd987145791b3034932387ce04fc3cae2395d8054fe6e9f",
+    "dist/manager-v11.js": "afcc18d4fb2a9e790bb7c0d9bcaa4b7a6e761791ef000f051ed06e663e168fb7",
+    "dist/identity-v12.js": "689c5e7b4eee2b8694ab0d4ec81fe90039e697e1821e0167bc4ce18e606937ff",
+    "dist/season-v13.js": "572c371a30d51464da5a9546873861e154222d13526ccbcb897d64f1f6b47864",
+    "dist/halftime-v14.js": "ec17cfe0fb06c599be5c7ca7b9a0fc32e56726b0643f3a8c6af77800875785fe",
+    "dist/finance-v15.js": "a3d03246eb7c180db5eda9a0fbeb670524ed6d4ca1ead33bdbeea0c351dd92aa",
+    "dist/transfer-v16.js": "7f5901a1e412eb022786bdf27ee70dd5f24e4696131664532ad36adf9ab617d6",
+    "dist/qol-v17.js": "85417ceab8ee0fe1c5c27bb7afac7e64dc6cf6affa125e335bcf85e20e9148f9",
+    "dist/player-card-v18.js": "ac087369266527ac8abbf4af0c54ede4a310f45c4a5fe13e0cdd140de778eb2d",
+    "dist/dashboard-v19.js": "cf2037e947164ec4e043540c622f3151e8f1c84850e56d61b7655136e301a984",
+    "dist/screen-wake-v20.js": "9153f94c85b8403cba1991c0e49747737aaa028040d70141cadfadb0a69e72a8",
+    "dist/match-clock-v21.js": "1a19d7420fb403b88d4d71d99167690b4916ce725d1752cbce0247c2e7e4d476",
+    "dist/club-history-v22.js": "1a19d7420fb403b88d4d71d99167690b4916ce725d1752cbce0247c2e7e4d476",
+    "dist/formation-label-v23.js": "1a19d7420fb403b88d4d71d99167690b4916ce725d1752cbce0247c2e7e4d476",
+    "dist/lineup-ux-v24.js": "6c44f1e128a5ed9fcf4c9f72bb7fd83acff3da7abde3d454ef6ea728a0f861c0",
+    "dist/presentation-v25.js": "79a7e6a5a745e1ed7f4466831bb5d6d06b36e2bac742bd446534b2fa25c20742",
+    "dist/sponsor-fix-v26.js": "7c899aab56b5d6f4ca1e919ca5a7a35e223029d2c7ee206ea1da21be2f296e6c",
+    "dist/dashboard-order-v27.js": "fe4dcebb41771aeac92d22fa19b336e1f1737731cfbe00416c0fe0d2e81f2a8c",
+    "dist/transfer-result-v28.js": "04b838039ce34c1377fd467d4ad14e9a0a2f44cd72258c108ba4f5be9e3ad44e",
+    "dist/transfer-actions-v29.js": "acc239a169a573bbd14cdb0b53d454d533a07377d3505e13b32af3a005404af2",
+    "dist/sale-profile-v30.js": "8c96775813978a1e57ef7533329435dcb3e181a5ffebf27022ee3b714825f3f0",
+    "dist/season-finale-v31.js": "d271a4de014aeefe5b7295a66b7bcd69139e1b176a469b3048dd95ced53facb3",
+    "dist/dashboard-layout-v32.js": "ac0e805da387004c4f648e649e3253adeb75d012bb0aca6aef3fa6babb4ecce6",
+    "dist/youth-v33.js": "a0b1842d029167a89f0fcf2cef9787f48ce2f1982339084ea89cf1b1eeead613",
+    "dist/season-roster-v34.js": "9e288ddeedfa0cca8cf67239b49dfb32522c47d67f3468c1b4ff8b3f70e9fcc8",
+    "dist/transfer-sections-v35.js": "0ee15b40d540d50c3f5143146f096e37e654938c08a987eae7d5995b6f2a40d8",
+    "dist/youth-direct-v36.js": "6e9f12880cdff4dbb111958f54169e52b02d695a988ba35f3ffe82b12be432ff",
+    "dist/transfer-order-v37.js": "7f6b6921b1338cef2cd14f205e9f603e44326475989dbad145efedcbef3e688f",
+    "dist/legal-v38.js": "8d6ac71932f18157718cc3d5c66834ee3bfd35fa5badebd1ba664e1875bbabe4",
+    "dist/awards-v40.js": "1cd9c6c8ab187f261463d5515b8afb7ad28a7c4e03b3e0e3bbc06f5ecb628a23",
+    "dist/cup-v41.js": "edefc9f122a807c67a38b7b136155fbd8373356c0632665ebd8bd2b464e30657",
+    "dist/penalties-v42.js": "b512f3bea96010a039ea99d049415840df0fb161bc72f1565c1a9e53d6a61e8b",
+    "dist/club-records-v43.js": "f63051751819ff6a5861fb36646d365581621c6b9ee06ba78df1cd173e0b0033",
+    "dist/club-identity-v44.js": "5aaebc6fa7c0b27841e5401e61595847d85ca1f871c4ef64f2349cc78cd75903",
+    "dist/keeper-logo-v45.js": "1e837cd6ea56c05f074128fbc9bb8fccbd8172d558e7c01de882ad64336167ac",
+    "dist/main-menu-v46.js": "78e67dfe9d7b24f5f890f8e08ec011af52cdde1c43cf061d91d219d75807ef0d",
+    "dist/match-report-v47.js": "ad3f73056e9ceedae4fedf505afa3fc95b80c0670a1ff176283f49ab7d48c1e0",
+    "dist/next-match-v49.js": "5e3318b7a036d3766610035732477e3cfb12631e9f7f6da4974b3eb0699dd38d",
+    "dist/set-pieces-v50.js": "4910aa6caaae1fb4073e140173933495325d3791a85641617d6cdb85b08e9ca4",
+    "dist/status-icons-v51.js": "0acaf925a75db25505f475d7280ae251bacb7c37cca3f13b79ebcbbf82c94c60",
+    "dist/player-status-v51.js": "410d514c8c5851f46ea1e0c533e5b400d09dcb13f17c253c8345a47edd8cf794",
+    "dist/strength-v55.js": "8545e5d6e3fd8bb161769e72f93ebf1ac4db81bd91801b32d074bf49f6888f8c",
+    "dist/opponent-profile-v54.js": "876562863eeafe53b7fe029fa4e479334b7d248004ce8c0583cd33fd1bf2de92",
+    "dist/pitch-v55.js": "0e8ccc24a30f636ece8403a36ec7ce415c3114cc9d860cf60929de203dcbba36",
+    "dist/pitch-v56.js": "aebc493b12c86647bc33e74aa1499cbf03d71263d1ccef1710585d986febe7c4",
+    "dist/pitch-v57.js": "fc843e3dbf2ca0df7200eef118f2403ef084aaf7c18146b6ffa6d691884b1368",
+    "dist/progress-v58.js": "3981c72a17927dd847ac71cbf1bd6e60091b1dbb265fe0b1c201b7d74603e7e3",
+    "dist/live-player-v59.js": "a0723b59638455afe7c91876ce9b44e02408daa2bea4982f5286ac05c5ea45b2",
+    "dist/ai-career-v60.js": "ff6bf2c2d024730547a45d290205b6e56185c16cf9981e2ba5b65a9c724a686e",
+    "dist/world-catalog-v61.js": "1c3aeb25200ee737b61f00989a52a1b58e67f4f93035109afebe4a562757ef50",
+    "dist/world-competition-v62.js": "ff3162794a343f30dd136ba2ef8797727a28c2094d99896b5b0c463ae3eebd19",
+    "dist/world-coaches-v63.js": "14b8f86c6139e4707fe1be3fbd3a81933f88dfa389819389adeac836e9ced551",
+    "dist/world-match-v64.js": "2dc27431393c63b61277403efcc5080e3fa8ad7b0cc059e4750becda2889a9d3",
+    "dist/world-nationalities-v79.js": "69b825a31b316cb066dae5aee86ee1f87f3979f25b1c9b67744e5d687169569e",
+    "dist/player-generation.js": "da657cbe0e09fab5335ebd62cb7c247974a0f785923e941cd6e71bb339a3e51b",
+    "dist/player-effective-abilities.js": "659e6c9a40c0a9acfc4342c579b616a9ff3984fad65e1654018d480380cccb45",
+    "dist/player-freshness.js": "0ed90ab51932f747f4f386921efd03b7fd8ac18f32ebe02ea75221a062a8cb79",
+    "dist/player-load-candidate-v158.js": "76a605c8e047b45f84dd5510347791bb1205a68f2793c8cc90435424cdf6dad7",
+    "dist/player-development.js": "9985f7f18b170046909adc994f862189d25a3fff9dbe292ca2a19767a155466a",
+    "dist/player-aging.js": "8903eeb54a0970bc750ffa2a00f9baf9d9f1931548fcc685baeac625810ba382",
+    "dist/player-role-suitability.js": "45a09bbdce6232a0bd0d9df188cbb5f1dce481db1b63849d6f38b5709191c632",
+    "dist/player-position-routine.js": "2a974ab054b34b8a8d2fa05dc8516d01a1f0b782f79ced2ebc4d818346960188",
+    "dist/player-tactic-transitions.js": "bea74b38dcf900710044dc014804a09a84670dd064d82bae4b2b0a4cfc23a0cb",
+    "dist/player-match-ratings.js": "adfc258b0066eddf7b5476e608d32475fe49fe039691fae86a2a8afc8c59284a",
+    "dist/player-tactics-ui.js": "c9191e1cfc52855ec40954c151450984f10548b55eefa01149824a747bee144a",
+    "dist/world-player-roles-v154.js": "863d0198042972b7ceb9c899fe98e99a675edb85514b1875e29d1812db712af1",
+    "dist/world-player-performance-v155.js": "078e0c2e2d240946dadfaf32671c49bbd95c47edc6a7bb2c9cf3e424edd00f53",
+    "dist/world-tactics-ui-v156.js": "0783083c0cc364c75cc00fd93e19be753cc17655ac7e7294a2782e79763bf1bf",
+    "dist/world-player-foundation-v153.js": "1156756cec83768cd401553c92cb19f1c0d21548f28f77dccdf52a0aee73573d",
+    "dist/world-player-load-v158.js": "a5d6b4b13e9838842de20856f9c98228f44d1913df7b86d92761adda48e14f13",
+    "dist/player-foundation-preview-v153.js": "b29aaa982a07e4d20743819d73a70c844a1cb4c5598dd280a38334ad9af953b5",
+    "dist/world-foundation-v61.js": "632d47b25cfb8bdceddae834fea665129c060e9e1199cdb9affbca3ba5df74b0",
+    "dist/world-match-ui-v64.js": "8415a19dc037bed441da6fdfda61032707db9960c34c0ab88367240babbdea6a",
+    "dist/world-physical-v65.js": "e0c653082eeb5386e8dc2167d02615a0248d49559842f5d3977ca4adef55dd2f",
+    "dist/world-economy-v66.js": "1c08c70f367715b544c58f266e67ae631feeb66d575915b65685cacd4d150545",
+    "dist/world-transfer-list-v72.js": "a09dd52fd5cb1a9a39d44195548705ce21657ae372ddc02e93d47f6381d0563d",
+    "dist/world-market-ui-v66.js": "e6b4a32bcff14a792d27c4f200eefdd94a21bfc490a0e90287c899ceb5e72e8c",
+    "dist/world-transfer-list-ui-v72.js": "92459d9aeba26ea532010e9e3ca7381110640a3707f74f2250b6d73ba95094dc",
+    "dist/world-youth-manager-v67.js": "8068a168e5c2c9b23274fd7be7eab06f48f3061d8570e3b4d069a4ecc85e611d",
+    "dist/world-payments-v124.js": "655b5cb7fc4f635995a00eccb310f7e3922ad332734fe356c4f154710ed72e01",
+    "dist/world-youth-ui-v67.js": "99f500bdafc9c5692922bdda93b1bc4d713f8015153a4b3e4347d8eb04869375",
+    "dist/world-payments-ui-v124.js": "6725f046b6912289cb7f992fda64fdf79f2cb5cc05ce61f675fec07120079b59",
+    "dist/world-honours-v74.js": "2e2171c6167eb51f0da4b4dcdc83d2c4740d4b923189702061ae3dc23d69c2db",
+    "dist/world-views-v68.js": "e3f7006c3a7567ec372e306fa9c0fcd674d9fa8c3a00749ac065729c492d9f4a",
+    "dist/world-career-plan-v64.js": "85f11f2f7e0b8c60db8b744e4ff515242c1e536141cc7a2c15063f5753e1bcce",
+    "dist/world-grid-touch-v71.js": "ca8e19206566bc464380798548d331f6f54602c8c88dcf3d6802d4f8bff8dff0",
+    "dist/match-presentation-v74.js": "c51ea7a59c492b5005a12208dfded6f13571cd891c5cfa72c5d3b7e3c2898f9b",
+    "dist/i18n-v75.js": "e77695e96bb8e89fbcfea3f19cae1d4d6db3da9ea1d00e3ebed03996b54ba837",
+    "dist/world-kits-ui-v81.js": "9a97db3df6bbfe7cebff3ffd5c288c0527ca251937782df23c9c019e37977375",
+    "dist/world-goal-scene-v83.js": "25d33e8b000b879137fa8425aef952566a2f6478ee3804f1aedf4af34d4b1669",
+    "dist/world-goal-banner-v84.js": "3b626f985b74d4041a8f2881012fe62e7523e6785a814bcc7a5a9c438b5d4e5b",
+    "dist/world-pitch-layout-v92.js": "66b91358c2f03244883a9bf69c2c9815949f8f833412ed7bfcce662bc9f48729",
+    "dist/camera-prototype/vendor/three-r160.min.js": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa",
+    "dist/player-model-v105.js": "34203a1729bf2ce234da15cd24d03ce9a32fc65e162d870a1c5ec387278993b6",
+    "dist/pitch-scene-v98.js": "76cb5d11e1590fb81f33a9319ae835b85b20e35db04f68fcd0c82b8923e7bf11",
+    "dist/world-pitch-actions-v99.js": "9d8b43f33172dc99484605903b4f0bfed00673447e8e4a3459b2ac1d01061fb3",
+    "dist/pitch-motion-v102.js": "20bbb87fc6c22a71ef61dac855c4a4aed777015f280d596f5b3c8f6fda4d89b4",
+    "dist/world-backpedal-v108.js": "e7e5b99d8f0385a12b8ae808d7a1455420e53940292ac9ee7c53cd1ea0c35c89",
+    "dist/world-corner-ball-v109.js": "9a3bc8a187fc582b5d78390926301325e163a73d378b470c78ed41e89f73af4c",
+    "dist/world-ball-motion-v110.js": "cc67f9e0cbfe2dd34f73d91ab3b59dc131936e1109dbdd36822909ba38e87c9c",
+    "dist/world-space-passes-v150.js": "a0c1ed2d57fc3acaceb4b7c8dcbe895ec2686b024304b102eb05b586f97318df",
+    "dist/world-attack-flow-v152.js": "b3ba99ae4e5b476e9d65c1d85859c45aa0c793600d6462f50b1e7ea506d5922f",
+    "dist/world-offensive-quality-v157.js": "c9cd0f58d87c9ed7821da9e8639c8e4c695c97cd58da3c33c7d5e73f87ba4bac",
+    "dist/match-shot-choice-v159.js": "184ec504b4a4209f96e3f0560eb8b4b67f63e43c7598d668248d42ee71a86d17",
+    "dist/world-football-flow-v159.js": "250465285cc05497cd9a8aba9f4e45d3815572118a2a137f43842218e5922ac7",
+    "dist/match-ball-events-v117.js": "7ade066d035081cc84c45a75289e0cc19280db45b466e3b577026e39b4b65a4d",
+    "dist/world-pitch3d-v98.js": "0ff4f5d169e2f858f83b0e71e4453b0e85c1ac01a3da1f191e5fec0705fcab18",
+    "dist/world-goal-replay-v103.js": "b0d260f1ad609e6fbf0a18af4bb99caf2ddb32a95da9022ca82d5c4e4ca09701",
+    "dist/world-unity-v151.js": "7f3ba8e9640509576e157a9bf9369891a4d10f067965ef35611820c19bb6de29",
+    "dist/player-user-motion-v108.js": "f967eca08a51cb67f54c961864995ee4f4b88332fb06cd60602ef89d8256c0af",
+    "dist/player-user-ball-actions-v111.js": "430abc25ab23cb0a3673148ba3750a3199c9141a934e10d2bd98289187b5f196",
+    "dist/player-ball-events-v111.js": "08adc5e6280e732fc4b4eea028560f4464e04d2f4d40f31ca822e93c51596964",
+    "dist/player-user-meshy-v107.js": "d6973b3ced7a4e485c9e5a90155745890c081f8ef6d5db87fd033f6017aad00d",
+    "dist/player-user-bootstrap-v112.js": "a329bcd35a7096775e785c4aad461ed7aee2460295ff688f353bc2854623cbc0",
+    "dist/world-3d-documentation-data-v134.js": "1bb92bbe229eaff6698dd60e6e10ae463738c493bceb220f0fb9f25142360bb4",
+    "dist/world-3d-help-v134.js": "a6efc0768ce2e6a304152591afb0d13002546cedf4f6a2f78aa5d775b63a65c2",
+    "dist/ui-flutlicht/components.js": "8a40f8abfcdb3fc7e757fc88e8c5929e4bad076b0611b76d01684f9f76b1634c",
+    "dist/ui-flutlicht/shell.js": "4561770960680495e06d72fecf5e3bf862ca2f21a0aa65cdb44af4d9be460477",
+    "dist/ui-flutlicht/registry.js": "af4d4c5f8103af2a98596d93a1aa130edcbbe512167999f6da90d35f9cc4bf3d",
+    "dist/ui-flutlicht/views/overview.js": "9b0a407fb4a40cfb24bc602ca2fc4e4380ff530b735addfd0f373ec74df91bee",
+    "dist/ui-flutlicht/views/squad.js": "1971dfd015ac7e4b387be10fe61439fcde3af583969ec2f6d31c3a7974edd58f",
+    "dist/ui-flutlicht/views/market.js": "0ecaa0a46bf40185a46d1c8da59e41204632c93353d57e40d00f28b0f044c202",
+    "dist/ui-flutlicht/views/settings.js": "172afdeab22c0c795ca47a7d55f7827bf86bd8006287e4151bf9ac3f1bdfa488",
+    "dist/ui-flutlicht/views/club.js": "ccf619c9a93bf949727d180d4f61e154385acf8512c308a3289a78b5a6e79ea0",
+    "dist/ui-flutlicht/views/competitions.js": "60ee6c8bab0e2da208baa41f56e721afba4557e9f4a8829247268e5dff4f035a",
+    "dist/ui-flutlicht/navigation.js": "6111c7d2df07a40eb3089a1749e314ef1316e22ea89b561ca15be123b4a2a947",
+    "dist/ui-flutlicht/adapter.js": "c026847b5adea1d9cd5cec306334f8504e2ee4b088d1c70eb4fc3fbbc83e12df",
+    "dist/ui-flutlicht/start.js": "b38d9eda64e1c6378f0393301f6d2846ee0d8f764053bbce18718c3cdc22d9fc",
+    "dist/ui-flutlicht/match.js": "e4aac9b44bdba4f809926667279c1dacf4ba4962b7ee6de566adf6707b64e378"
+  },
+  "buildHash": null,
+  "errors": [],
+  "checks": [],
+  "controlled": [],
+  "matches": [
+    {
+      "config": {
+        "large": false,
+        "count": 5,
+        "study": true,
+        "seed": "goals-football-159-0",
+        "club": "GER-2"
+      },
+      "mode": "baseline",
+      "harnessGeometryOnly": false,
+      "checks": [
+        "Real native field count matches controlled configuration",
+        "Full native match finishes including halftime",
+        "First-touch windows cannot release a native pass early"
+      ],
+      "ticks": 2384,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "passes": 48,
+        "complete": 43,
+        "shots": 6,
+        "onTarget": 2
+      },
+      "confirmed": 0,
+      "receptions": 39,
+      "firstTouches": 0,
+      "completedReturnReleases": 2,
+      "actuallyCompletedReturnPasses": 2,
+      "followDistance": 258.80794965108566,
+      "carryDistance": 0,
+      "defenseUpdates": 0,
+      "checkpoint": false,
+      "restoreDiagnostic": null,
+      "trace": [],
+      "shotRows": [
+        {
+          "actor": "goals-football-159-0:GER-2:8",
+          "team": 0,
+          "at": 9.79999999999997,
+          "range": 8.386637623321747,
+          "from": {
+            "x": 0.6540990789125438,
+            "y": 0.08703690355740168
+          },
+          "opening": {
+            "range": 5.573777305901654,
+            "margin": 2.96464421926614,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-3:1",
+            "x": 0.5073814435116313,
+            "y": 0.0669584620246595,
+            "tx": 0.5460228114698664,
+            "ty": 0.07,
+            "body": {
+              "vx": 3.1844125854093894,
+              "vy": 0.30026680154147867,
+              "heading": 1.4454956630103282,
+              "massKg": 83.24921352091552
+            },
+            "goalDepth": 2.327543327152422,
+            "lateral": 0.35821711159387093,
+            "q": 1,
+            "gap": 3.8277953040844643,
+            "reach": 0.8631510848183241,
+            "predictedContactSeconds": 0.20643619651487607,
+            "reactionSeconds": 0.18837844322697261,
+            "contact": {
+              "x": 0.57,
+              "y": 0.03513513513513514
+            },
+            "fin": 10.652295020993801,
+            "tec": 9.625102007228882,
+            "gk": 18.32431135460548,
+            "spd": 13.80265947602503,
+            "nearDefenders": 0
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.6142989312153537,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": 4.886780450884066,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-3:1",
+              "x": 0.5073814435116313,
+              "y": 0.0669584620246595,
+              "tx": 0.5460228114698664,
+              "ty": 0.07,
+              "body": {
+                "vx": 3.1844125854093894,
+                "vy": 0.30026680154147867,
+                "heading": 1.4454956630103282,
+                "massKg": 83.24921352091552
+              },
+              "goalDepth": 2.327543327152422,
+              "lateral": 0.35821711159387093,
+              "q": 1,
+              "gap": 5.686780450884066,
+              "reach": 0.7999999999999998,
+              "predictedContactSeconds": 0.15774805359254984,
+              "reactionSeconds": 0.18837844322697261,
+              "contact": {
+                "x": 0.6142989312153537,
+                "y": 0.03513513513513514
+              },
+              "fin": 10.652295020993801,
+              "tec": 9.625102007228882,
+              "gk": 18.32431135460548,
+              "spd": 13.80265947602503,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.1794871794871795,
+          "flightFrom": {
+            "x": 0.6540990789125438,
+            "y": 0.08703690355740168
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.5216851233082409,
+            "y": 0.06798213912327118,
+            "tx": 0.536251258072539,
+            "ty": 0.07
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-0:GER-2:11",
+          "team": 0,
+          "at": 38.32000000000064,
+          "range": 10.912260592668781,
+          "from": {
+            "x": 0.5622059113644935,
+            "y": 0.173284428700574
+          },
+          "opening": {
+            "range": 11.969035357775436,
+            "margin": 3.22892774845596,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-3:1",
+            "x": 0.5694239495082032,
+            "y": 0.07555066068916542,
+            "tx": 0.5222602504174789,
+            "ty": 0.07,
+            "body": {
+              "vx": -2.016003305283125,
+              "vy": 0.9002660222999908,
+              "heading": 10.99838375388374,
+              "massKg": 83.24921352091552
+            },
+            "goalDepth": 2.955972741102913,
+            "lateral": 3.3691034320157427,
+            "q": 0.4884849947401867,
+            "gap": 4.127428369016138,
+            "reach": 0.8985006205601778,
+            "predictedContactSeconds": 0.21654422865881637,
+            "reactionSeconds": 0.18837844322697261,
+            "contact": {
+              "x": 0.4976253074469873,
+              "y": 0.1058005717599001
+            },
+            "fin": 11.131201644605225,
+            "tec": 9.54666736724418,
+            "gk": 18.32431135460548,
+            "spd": 13.80265947602503,
+            "nearDefenders": 0
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.5882870189023364,
+            "y": 0.08424831995709973
+          },
+          "executed": {
+            "margin": 0.11428028965866877,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-3:1",
+              "x": 0.5694239495082032,
+              "y": 0.07555066068916542,
+              "tx": 0.5222602504174789,
+              "ty": 0.07,
+              "body": {
+                "vx": -2.016003305283125,
+                "vy": 0.9002660222999908,
+                "heading": 10.99838375388374,
+                "massKg": 83.24921352091552
+              },
+              "goalDepth": 2.955972741102913,
+              "lateral": 3.3691034320157427,
+              "q": 1,
+              "gap": 1.114746507018085,
+              "reach": 1.0004662173594163,
+              "predictedContactSeconds": 0.24570080761785604,
+              "reactionSeconds": 0.18837844322697261,
+              "contact": {
+                "x": 0.5882870189023364,
+                "y": 0.08424831995709973
+              },
+              "fin": 11.131201644605225,
+              "tec": 9.54666736724418,
+              "gk": 18.32431135460548,
+              "spd": 13.80265947602503,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.24570080761785607,
+          "flightFrom": {
+            "x": 0.5622059113644935,
+            "y": 0.173284428700574
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.5694239495082032,
+            "y": 0.07555066068916542,
+            "tx": 0.5694239495082032,
+            "ty": 0.07555066068916542
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-0:GER-3:10",
+          "team": 1,
+          "at": 49.32000000000105,
+          "range": 19.631557209630103,
+          "from": {
+            "x": 0.4369738479952226,
+            "y": 0.7081327467421157
+          },
+          "opening": {
+            "range": 19.856021721002477,
+            "margin": 1.0986166360747152,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-2:1",
+            "x": 0.4862046055241187,
+            "y": 0.9300000363556222,
+            "tx": 0.481076968420743,
+            "ty": 0.93,
+            "body": {
+              "vx": -2.5975468552219323,
+              "vy": -0.000027756509895355156,
+              "heading": 23.561934216260614,
+              "massKg": 75.70916447523845
+            },
+            "goalDepth": 2.5499973409667014,
+            "lateral": 0.6694823789765922,
+            "q": 0.8119667870517122,
+            "gap": 3.016544024119084,
+            "reach": 1.917927388044369,
+            "predictedContactSeconds": 0.5971270429789405,
+            "reactionSeconds": 0.22613178841098214,
+            "contact": {
+              "x": 0.5449866652323944,
+              "y": 0.9165906998272251
+            },
+            "fin": 13.63614507704009,
+            "tec": 10.64249408632533,
+            "gk": 10.773642317803576,
+            "spd": 6.358767885101959,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.6141593444566238,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 2.707852057129859,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-2:1",
+              "x": 0.4862046055241187,
+              "y": 0.9300000363556222,
+              "tx": 0.481076968420743,
+              "ty": 0.93,
+              "body": {
+                "vx": -2.5975468552219323,
+                "vy": -0.000027756509895355156,
+                "heading": 23.561934216260614,
+                "massKg": 75.70916447523845
+              },
+              "goalDepth": 2.5499973409667014,
+              "lateral": 0.6694823789765922,
+              "q": 0.7625541576858772,
+              "gap": 4.584059366200728,
+              "reach": 1.8762073090708693,
+              "predictedContactSeconds": 0.5832818223636328,
+              "reactionSeconds": 0.22613178841098214,
+              "contact": {
+                "x": 0.5720873850035004,
+                "y": 0.9039048908281199
+              },
+              "fin": 13.63614507704009,
+              "tec": 10.64249408632533,
+              "gk": 10.773642317803576,
+              "spd": 6.358767885101959,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.7649054384985822,
+          "flightFrom": {
+            "x": 0.4369738479952226,
+            "y": 0.7081327467421157
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.48252867746493067,
+            "y": 0.9265408655679956,
+            "tx": 0.5332119782320447,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-0:GER-3:10",
+          "team": 1,
+          "at": 62.96880341880377,
+          "range": 8.757213910100017,
+          "from": {
+            "x": 0.3892085222927951,
+            "y": 0.873460394274806
+          },
+          "opening": {
+            "range": 11.030451392522474,
+            "margin": 1.0296688542842236,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-2:1",
+            "x": 0.4388323841193794,
+            "y": 0.9299999239868876,
+            "tx": 0.465749306956724,
+            "ty": 0.93,
+            "body": {
+              "vx": 2.7475734984189555,
+              "vy": -0.0000024907219625782944,
+              "heading": 26.703533790708008,
+              "massKg": 75.70916447523845
+            },
+            "goalDepth": 2.5500055595636892,
+            "lateral": 2.9684284177359985,
+            "q": 0.4008721161022247,
+            "gap": 1.8296688542842232,
+            "reach": 0.7999999999999996,
+            "predictedContactSeconds": 0.1637703848623413,
+            "reactionSeconds": 0.22613178841098214,
+            "contact": {
+              "x": 0.4616827845345305,
+              "y": 0.9101018978214465
+            },
+            "fin": 13.639925260358028,
+            "tec": 10.645444376042773,
+            "gk": 10.773642317803576,
+            "spd": 6.358767885101959,
+            "nearDefenders": 0
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.38115038248337607,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 1.8455882128614511,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-2:1",
+              "x": 0.4388323841193794,
+              "y": 0.9299999239868876,
+              "tx": 0.465749306956724,
+              "ty": 0.93,
+              "body": {
+                "vx": 2.7475734984189555,
+                "vy": -0.0000024907219625782944,
+                "heading": 26.703533790708008,
+                "massKg": 75.70916447523845
+              },
+              "goalDepth": 2.5500055595636892,
+              "lateral": 2.9684284177359985,
+              "q": 0.5954551661034594,
+              "gap": 2.6455882128614516,
+              "reach": 0.8000000000000005,
+              "predictedContactSeconds": 0.14768849909045778,
+              "reactionSeconds": 0.22613178841098214,
+              "contact": {
+                "x": 0.3844102613140926,
+                "y": 0.9278876584926083
+              },
+              "fin": 13.639925260358028,
+              "tec": 10.645444376042773,
+              "gk": 10.773642317803576,
+              "spd": 6.358767885101959,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.2480262285016386,
+          "flightFrom": {
+            "x": 0.3892085222927951,
+            "y": 0.873460394274806
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.4540791296685335,
+            "y": 0.9299999675402092,
+            "tx": 0.4648132128967163,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-0:GER-2:6",
+          "team": 0,
+          "at": 78.11880341880435,
+          "range": 21.17653994111818,
+          "from": {
+            "x": 0.260314592720062,
+            "y": 0.2685340374222611
+          },
+          "opening": {
+            "range": 22.743674103984187,
+            "margin": 1.0453297640727452,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-3:1",
+            "x": 0.4340938487323123,
+            "y": 0.06867309084157257,
+            "tx": 0.4280402523151642,
+            "ty": 0.07,
+            "body": {
+              "vx": -2.6343676344555194,
+              "vy": 0.8694195658452062,
+              "heading": -13.818192908632195,
+              "massKg": 83.24921352091552
+            },
+            "goalDepth": 2.4529504813196676,
+            "lateral": 3.1983867526966074,
+            "q": 0.7274262329264046,
+            "gap": 3.3294427852082014,
+            "reach": 2.284113021135456,
+            "predictedContactSeconds": 0.6127535250506311,
+            "reactionSeconds": 0.18837844322697261,
+            "contact": {
+              "x": 0.48558788192998664,
+              "y": 0.09875355316237905
+            },
+            "fin": 8.705760995613751,
+            "tec": 11.022794726380235,
+            "gk": 18.32431135460548,
+            "spd": 13.80265947602503,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.42759021068790865,
+            "y": 0.07644221465941893
+          },
+          "executed": {
+            "margin": -1.5928954731154765,
+            "reachable": true,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-3:1",
+              "x": 0.4340938487323123,
+              "y": 0.06867309084157257,
+              "tx": 0.4280402523151642,
+              "ty": 0.07,
+              "body": {
+                "vx": -2.6343676344555194,
+                "vy": 0.8694195658452062,
+                "heading": -13.818192908632195,
+                "massKg": 83.24921352091552
+              },
+              "goalDepth": 2.4529504813196676,
+              "lateral": 3.1983867526966074,
+              "q": 1,
+              "gap": 0.649999999999999,
+              "reach": 2.2428954731154755,
+              "predictedContactSeconds": 0.6009675626175494,
+              "reactionSeconds": 0.18837844322697261,
+              "contact": {
+                "x": 0.42759021068790865,
+                "y": 0.07644221465941892
+              },
+              "fin": 8.705760995613751,
+              "tec": 11.022794726380235,
+              "gk": 18.32431135460548,
+              "spd": 13.80265947602503,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.6009675626175494,
+          "flightFrom": {
+            "x": 0.260314592720062,
+            "y": 0.2685340374222611
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.42737170503518884,
+            "y": 0.07014511064421677,
+            "tx": 0.42737170503518884,
+            "ty": 0.07014511064421677
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-0:GER-2:11",
+          "team": 0,
+          "at": 99.11880341880513,
+          "range": 18.932029518999055,
+          "from": {
+            "x": 0.5341363672246422,
+            "y": 0.29630581647578386
+          },
+          "opening": {
+            "range": 19.181027109001672,
+            "margin": 3.0951803834852374,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-3:1",
+            "x": 0.45528758344647857,
+            "y": 0.07495938938635517,
+            "tx": 0.5092355994404348,
+            "ty": 0.07,
+            "body": {
+              "vx": 3.3591842740283964,
+              "vy": -0.4654078735336384,
+              "heading": 14.274838398043364,
+              "massKg": 83.24921352091552
+            },
+            "goalDepth": 2.912727433025279,
+            "lateral": 2.1698672739208926,
+            "q": 0.8224369517170916,
+            "gap": 5.279667601148425,
+            "reach": 2.1844872176631878,
+            "predictedContactSeconds": 0.5842661283826013,
+            "reactionSeconds": 0.18837857270971056,
+            "contact": {
+              "x": 0.5636319440419086,
+              "y": 0.08150939743610483
+            },
+            "fin": 10.235382273109744,
+            "tec": 8.778368504834665,
+            "gk": 18.324285458057894,
+            "spd": 13.80265947602503,
+            "nearDefenders": 1
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.38455380855711746,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": -0.10333410587708558,
+            "reachable": true,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-3:1",
+              "x": 0.45528758344647857,
+              "y": 0.07495938938635517,
+              "tx": 0.5092355994404348,
+              "ty": 0.07,
+              "body": {
+                "vx": 3.3591842740283964,
+                "vy": -0.4654078735336384,
+                "heading": 14.274838398043364,
+                "massKg": 83.24921352091552
+              },
+              "goalDepth": 2.912727433025279,
+              "lateral": 2.1698672739208926,
+              "q": 0.8070853668989832,
+              "gap": 2.1740719430484003,
+              "reach": 2.277406048925486,
+              "predictedContactSeconds": 0.6108358276294468,
+              "reactionSeconds": 0.18837857270971056,
+              "contact": {
+                "x": 0.4134104729807743,
+                "y": 0.08551878130270896
+              },
+              "fin": 10.235382273109744,
+              "tec": 8.778368504834665,
+              "gk": 18.324285458057894,
+              "spd": 13.80265947602503,
+              "nearDefenders": 1
+            }
+          },
+          "flightSeconds": 0.7568416584932341,
+          "flightFrom": {
+            "x": 0.5341363672246422,
+            "y": 0.29630581647578386
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.4923812155530099,
+            "y": 0.06887865238370056,
+            "tx": 0.46577179919483125,
+            "ty": 0.07
+          },
+          "resolved": true,
+          "actualGoal": false
+        }
+      ],
+      "record": null,
+      "playerLoad": null
+    },
+    {
+      "config": {
+        "large": false,
+        "count": 5,
+        "study": true,
+        "seed": "goals-football-159-0",
+        "club": "GER-2"
+      },
+      "mode": "continuous",
+      "harnessGeometryOnly": false,
+      "checks": [
+        "Real native field count matches controlled configuration",
+        "Full native match finishes including halftime",
+        "First-touch windows cannot release a native pass early",
+        "New actual receptions create measured contact-control plans",
+        "Every preparation is bounded and serializable",
+        "One P02 authority survives full match",
+        "Actual dynamic defensive reads executed"
+      ],
+      "ticks": 2978,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "passes": 54,
+        "complete": 48,
+        "shots": 7,
+        "onTarget": 3
+      },
+      "confirmed": 38,
+      "receptions": 40,
+      "firstTouches": 40,
+      "completedReturnReleases": 3,
+      "actuallyCompletedReturnPasses": 3,
+      "followDistance": 333.797904405433,
+      "carryDistance": 29.956648186102072,
+      "defenseUpdates": 1424,
+      "checkpoint": false,
+      "restoreDiagnostic": null,
+      "trace": [],
+      "shotRows": [
+        {
+          "actor": "goals-football-159-0:GER-3:10",
+          "team": 1,
+          "at": 31.750000000000313,
+          "range": 11.15870621761065,
+          "from": {
+            "x": 0.532545179421863,
+            "y": 0.822295994527689
+          },
+          "opening": {
+            "range": 10.584658486266123,
+            "margin": 1.0732725883694694,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-2:1",
+            "x": 0.513443918659317,
+            "y": 0.8987349645521249,
+            "tx": 0.5315392374070416,
+            "ty": 0.8267026691635482,
+            "body": {
+              "vx": 0.4873893284997591,
+              "vy": -2.924045994619776,
+              "heading": 9.259613201846252,
+              "massKg": 75.70916447523845
+            },
+            "goalDepth": 4.836710150780636,
+            "lateral": 0.6524254643492094,
+            "q": 0.5053043594993955,
+            "gap": 1.8732725883694694,
+            "reach": 0.8,
+            "predictedContactSeconds": 0.19809163247861275,
+            "reactionSeconds": 0.22613178841098214,
+            "contact": {
+              "x": 0.5514712635442632,
+              "y": 0.894336666237968
+            },
+            "fin": 13.79296383912103,
+            "tec": 10.764885182829675,
+            "gk": 10.773642317803576,
+            "spd": 6.358767885101959,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.53758162092649,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 0.25772696357858127,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-2:1",
+              "x": 0.513443918659317,
+              "y": 0.8987349645521249,
+              "tx": 0.5315392374070416,
+              "ty": 0.8267026691635482,
+              "body": {
+                "vx": 0.4873893284997591,
+                "vy": -2.924045994619776,
+                "heading": 9.259613201846252,
+                "massKg": 75.70916447523845
+              },
+              "goalDepth": 4.836710150780636,
+              "lateral": 0.6524254643492094,
+              "q": 0.5337777000835037,
+              "gap": 1.0577269635785815,
+              "reach": 0.8000000000000003,
+              "predictedContactSeconds": 0.20620198260476086,
+              "reactionSeconds": 0.22613178841098214,
+              "contact": {
+                "x": 0.5352335195848079,
+                "y": 0.89839607823977
+              },
+              "fin": 13.79296383912103,
+              "tec": 10.764885182829675,
+              "gk": 10.773642317803576,
+              "spd": 6.358767885101959,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.3863068512837888,
+          "flightFrom": {
+            "x": 0.532545179421863,
+            "y": 0.822295994527689
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.513443918659317,
+            "y": 0.8987349645521249,
+            "tx": 0.513443918659317,
+            "ty": 0.8987349645521249
+          },
+          "resolved": true,
+          "actualGoal": true
+        },
+        {
+          "actor": "goals-football-159-0:GER-3:8",
+          "team": 1,
+          "at": 41.15000000000067,
+          "range": 12.489731198731308,
+          "from": {
+            "x": 0.4968338062350492,
+            "y": 0.792942867093594
+          },
+          "opening": {
+            "range": 13.066003663135264,
+            "margin": 5.576800610525321,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-2:1",
+            "x": 0.4114887522714646,
+            "y": 0.9247115381476416,
+            "tx": 0.49827149136676074,
+            "ty": 0.93,
+            "body": {
+              "vx": 2.9318359852694824,
+              "vy": 0.26926683186218736,
+              "heading": -4.80397444120038,
+              "massKg": 75.70916447523845
+            },
+            "goalDepth": 2.9367956401317947,
+            "lateral": 4.295398786825983,
+            "q": 0.6237015650802117,
+            "gap": 6.604889804141982,
+            "reach": 1.028089193616661,
+            "predictedContactSeconds": 0.3018254420015275,
+            "reactionSeconds": 0.22613178841098214,
+            "contact": {
+              "x": 0.542467675797211,
+              "y": 0.9001708861752523
+            },
+            "fin": 9.777430133225755,
+            "tec": 10.164635149182212,
+            "gk": 10.773642317803576,
+            "spd": 6.358767885101959,
+            "nearDefenders": 0
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.6375204435965551,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 7.395247281433725,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-2:1",
+              "x": 0.4114887522714646,
+              "y": 0.9247115381476416,
+              "tx": 0.49827149136676074,
+              "ty": 0.93,
+              "body": {
+                "vx": 2.9318359852694824,
+                "vy": 0.26926683186218736,
+                "heading": -4.80397444120038,
+                "massKg": 75.70916447523845
+              },
+              "goalDepth": 2.9367956401317947,
+              "lateral": 4.295398786825983,
+              "q": 0.4538107876671478,
+              "gap": 8.238515513783566,
+              "reach": 0.8432682323498417,
+              "predictedContactSeconds": 0.2404907790279093,
+              "reactionSeconds": 0.22613178841098214,
+              "contact": {
+                "x": 0.5606789199503166,
+                "y": 0.8709629243194841
+              },
+              "fin": 9.777430133225755,
+              "tec": 10.164635149182212,
+              "gk": 10.773642317803576,
+              "spd": 6.358767885101959,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.5299362323759914,
+          "flightFrom": {
+            "x": 0.4968338062350492,
+            "y": 0.792942867093594
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.444764501427491,
+            "y": 0.9263351405333653,
+            "tx": 0.5388719059148597,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-0:GER-2:11",
+          "team": 0,
+          "at": 53.46880341880342,
+          "range": 18.89355311366934,
+          "from": {
+            "x": 0.5983518581163428,
+            "y": 0.28575312015950205
+          },
+          "opening": {
+            "range": 20.068410737996967,
+            "margin": 4.861490969964372,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-3:1",
+            "x": 0.6050979195495005,
+            "y": 0.06388916547160016,
+            "tx": 0.5327477990697214,
+            "ty": 0.07,
+            "body": {
+              "vx": -2.8287348843436417,
+              "vy": -0.09930613496293053,
+              "heading": 23.682364987339763,
+              "massKg": 83.24921352091552
+            },
+            "goalDepth": 2.1030564048414533,
+            "lateral": 5.100340213431643,
+            "q": 0.7319044737231769,
+            "gap": 6.905181700987522,
+            "reach": 2.0436907310231502,
+            "predictedContactSeconds": 0.5440059110983045,
+            "reactionSeconds": 0.18837844322697261,
+            "contact": {
+              "x": 0.475134380001382,
+              "y": 0.10232469572467973
+            },
+            "fin": 10.98776189816505,
+            "tec": 9.42364636823372,
+            "gk": 18.32431135460548,
+            "spd": 13.80265947602503,
+            "nearDefenders": 0
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.42659498719550726,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": 4.978148401960041,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-3:1",
+              "x": 0.6050979195495005,
+              "y": 0.06388916547160016,
+              "tx": 0.5327477990697214,
+              "ty": 0.07,
+              "body": {
+                "vx": -2.8287348843436417,
+                "vy": -0.09930613496293053,
+                "heading": 23.682364987339763,
+                "massKg": 83.24921352091552
+              },
+              "goalDepth": 2.1030564048414533,
+              "lateral": 5.100340213431643,
+              "q": 0.7268478943307173,
+              "gap": 7.015081827339663,
+              "reach": 2.0369334253796216,
+              "predictedContactSeconds": 0.5420736915877005,
+              "reactionSeconds": 0.18837844322697261,
+              "contact": {
+                "x": 0.47351073815070066,
+                "y": 0.1035919654631337
+              },
+              "fin": 10.98776189816505,
+              "tec": 9.42364636823372,
+              "gk": 18.32431135460548,
+              "spd": 13.80265947602503,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.7457869738851521,
+          "flightFrom": {
+            "x": 0.5983518581163428,
+            "y": 0.28575312015950205
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.5910581156384899,
+            "y": 0.06366649026948404,
+            "tx": 0.5910581156384899,
+            "ty": 0.06366649026948404
+          },
+          "resolved": true,
+          "actualGoal": true
+        },
+        {
+          "actor": "goals-football-159-0:GER-3:10",
+          "team": 1,
+          "at": 58.3188034188036,
+          "range": 20.819787598126663,
+          "from": {
+            "x": 0.5127712173815601,
+            "y": 0.6887145606660684
+          },
+          "opening": {
+            "range": 20.593061741570104,
+            "margin": 0.9803584182279197,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-2:1",
+            "x": 0.5043792938743311,
+            "y": 0.9294685948571555,
+            "tx": 0.5038344657753473,
+            "ty": 0.93,
+            "body": {
+              "vx": 0,
+              "vy": 0,
+              "heading": -6.880552201320874,
+              "massKg": 75.70916447523845
+            },
+            "goalDepth": 2.5888667249824664,
+            "lateral": 0.21252455566606873,
+            "q": 0.8425092522672195,
+            "gap": 3.035270759124909,
+            "reach": 2.054912340896989,
+            "predictedContactSeconds": 0.6425868536956635,
+            "reactionSeconds": 0.22613178841098214,
+            "contact": {
+              "x": 0.4430357009161744,
+              "y": 0.9213737469699617
+            },
+            "fin": 13.70748763089939,
+            "tec": 10.698174243969689,
+            "gk": 10.773642317803576,
+            "spd": 6.358767885101959,
+            "nearDefenders": 1
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.6160085606731648,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 2.619622598969973,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-2:1",
+              "x": 0.5043792938743311,
+              "y": 0.9294685948571555,
+              "tx": 0.5038344657753473,
+              "ty": 0.93,
+              "body": {
+                "vx": 0,
+                "vy": 0,
+                "heading": -6.880552201320874,
+                "massKg": 75.70916447523845
+              },
+              "goalDepth": 2.5888667249824664,
+              "lateral": 0.21252455566606873,
+              "q": 0.8165766836656799,
+              "gap": 4.634669328598794,
+              "reach": 2.0150467296288213,
+              "predictedContactSeconds": 0.6293570565200044,
+              "reactionSeconds": 0.22613178841098214,
+              "contact": {
+                "x": 0.597072424797074,
+                "y": 0.9142124602619903
+              },
+              "fin": 13.70748763089939,
+              "tec": 10.698174243969689,
+              "gk": 10.773642317803576,
+              "spd": 6.358767885101959,
+              "nearDefenders": 1
+            }
+          },
+          "flightSeconds": 0.7707262148299029,
+          "flightFrom": {
+            "x": 0.5127712173815601,
+            "y": 0.6887145606660684
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.5222451544532322,
+            "y": 0.9349834009470804,
+            "tx": 0.5339696968212857,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-0:GER-3:6",
+          "team": 1,
+          "at": 75.96880341880427,
+          "range": 22.011505345339113,
+          "from": {
+            "x": 0.6503486480278688,
+            "y": 0.682604427240715
+          },
+          "opening": {
+            "range": 21.00941359516455,
+            "margin": 3.4389653124495227,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-2:1",
+            "x": 0.4619696721963432,
+            "y": 0.9250723481737264,
+            "tx": 0.5409619559090258,
+            "ty": 0.93,
+            "body": {
+              "vx": 1.8489992495126388,
+              "vy": -0.9108499640381327,
+              "heading": -10.856887435342935,
+              "massKg": 75.70916447523845
+            },
+            "goalDepth": 2.91040616264257,
+            "lateral": 1.8455894375304025,
+            "q": 0.9101914963012869,
+            "gap": 5.691723817892512,
+            "reach": 2.252758505442989,
+            "predictedContactSeconds": 0.7082440591331638,
+            "reactionSeconds": 0.22613178841098214,
+            "contact": {
+              "x": 0.5772159918535974,
+              "y": 0.939515477308496
+            },
+            "fin": 8.04237991659282,
+            "tec": 8.978043270626149,
+            "gk": 10.773642317803576,
+            "spd": 6.358767885101959,
+            "nearDefenders": 1
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.627220659745041,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 6.015451344348726,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-2:1",
+              "x": 0.4619696721963432,
+              "y": 0.9250723481737264,
+              "tx": 0.5409619559090258,
+              "ty": 0.93,
+              "body": {
+                "vx": 1.8489992495126388,
+                "vy": -0.9108499640381327,
+                "heading": -10.856887435342935,
+                "massKg": 75.70916447523845
+              },
+              "goalDepth": 2.91040616264257,
+              "lateral": 1.8455894375304025,
+              "q": 0.8804949129196594,
+              "gap": 8.165705839115923,
+              "reach": 2.1502544947671964,
+              "predictedContactSeconds": 0.6742270899260431,
+              "reactionSeconds": 0.22613178841098214,
+              "contact": {
+                "x": 0.6299845719987734,
+                "y": 0.9311333066872558
+              },
+              "fin": 8.04237991659282,
+              "tec": 8.978043270626149,
+              "gk": 10.773642317803576,
+              "spd": 6.358767885101959,
+              "nearDefenders": 1
+            }
+          },
+          "flightSeconds": 0.7657364966372756,
+          "flightFrom": {
+            "x": 0.6503486480278688,
+            "y": 0.682604427240715
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.5076788131821494,
+            "y": 0.9272062969808863,
+            "tx": 0.5383087875133143,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-0:GER-3:9",
+          "team": 1,
+          "at": 87.6188034188047,
+          "range": 9.72352225552009,
+          "from": {
+            "x": 0.38000224319819564,
+            "y": 0.8527308956439287
+          },
+          "opening": {
+            "range": 9.180311603616813,
+            "margin": 0.5414815638984035,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.465,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-2:1",
+            "x": 0.4697933406102164,
+            "y": 0.9277968981891183,
+            "tx": 0.3964397920242789,
+            "ty": 0.8772452760047206,
+            "body": {
+              "vx": 0.18606548763692243,
+              "vy": -1.4327086958907032,
+              "heading": -15.637113580610599,
+              "massKg": 75.70916447523845
+            },
+            "goalDepth": 2.7111338417493758,
+            "lateral": 1.4659114115630283,
+            "q": 0.7475544029446494,
+            "gap": 1.4259789779058736,
+            "reach": 0.8844974140074701,
+            "predictedContactSeconds": 0.2541771244328742,
+            "reactionSeconds": 0.22613582232748974,
+            "contact": {
+              "x": 0.44354269053580303,
+              "y": 0.9365571380546993
+            },
+            "fin": 12.495151685480028,
+            "tec": 12.79473845923692,
+            "gk": 10.77283553450206,
+            "spd": 6.358767885101959,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.47022252896690575,
+            "y": 0.9275691083284405
+          },
+          "executed": {
+            "margin": -0.8741791900932046,
+            "reachable": true,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-2:1",
+              "x": 0.4697933406102164,
+              "y": 0.9277968981891183,
+              "tx": 0.3964397920242789,
+              "ty": 0.8772452760047206,
+              "body": {
+                "vx": 0.18606548763692243,
+                "vy": -1.4327086958907032,
+                "heading": -15.637113580610599,
+                "massKg": 75.70916447523845
+              },
+              "goalDepth": 2.7111338417493758,
+              "lateral": 1.4659114115630283,
+              "q": 0.9999999999999997,
+              "gap": 0.026671834605454917,
+              "reach": 0.9008510246986595,
+              "predictedContactSeconds": 0.2596042317981357,
+              "reactionSeconds": 0.22613582232748974,
+              "contact": {
+                "x": 0.47022252896690575,
+                "y": 0.9275691083284405
+              },
+              "fin": 12.495151685480028,
+              "tec": 12.79473845923692,
+              "gk": 10.77283553450206,
+              "spd": 6.358767885101959,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.25960423179813585,
+          "flightFrom": {
+            "x": 0.38000224319819564,
+            "y": 0.8527308956439287
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.4697933406102164,
+            "y": 0.9277968981891183,
+            "tx": 0.4697933406102164,
+            "ty": 0.9277968981891183
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-0:GER-2:11",
+          "team": 0,
+          "at": 102.11880341880524,
+          "range": 11.051356262115352,
+          "from": {
+            "x": 0.38107758927035734,
+            "y": 0.15374403680653487
+          },
+          "opening": {
+            "range": 12.621934411609198,
+            "margin": 0.26993729251177934,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-0:GER-3:1",
+            "x": 0.4182213176553337,
+            "y": 0.11028527161861228,
+            "tx": 0.38660949377831233,
+            "ty": 0.14822671577499902,
+            "body": {
+              "vx": -1.6419116299767584,
+              "vy": 2.9700328289874727,
+              "heading": 62.326842709211924,
+              "massKg": 83.24921352091552
+            },
+            "goalDepth": 5.496446028849665,
+            "lateral": 3.968671349079393,
+            "q": 0.2768155803676677,
+            "gap": 1.0699372925117792,
+            "reach": 0.7999999999999998,
+            "predictedContactSeconds": 0.12940548516711986,
+            "reactionSeconds": 0.18837844322697261,
+            "contact": {
+              "x": 0.43337425604094226,
+              "y": 0.12091124485359472
+            },
+            "fin": 10.259415805755161,
+            "tec": 8.798980847432627,
+            "gk": 18.32431135460548,
+            "spd": 13.80265947602503,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.38137133755459185,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": 0.9973376167414598,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-0:GER-3:1",
+              "x": 0.4182213176553337,
+              "y": 0.11028527161861228,
+              "tx": 0.38660949377831233,
+              "ty": 0.14822671577499902,
+              "body": {
+                "vx": -1.6419116299767584,
+                "vy": 2.9700328289874727,
+                "heading": 62.326842709211924,
+                "massKg": 83.24921352091552
+              },
+              "goalDepth": 5.496446028849665,
+              "lateral": 3.968671349079393,
+              "q": 0.36674437221767303,
+              "gap": 1.7973376167414599,
+              "reach": 0.8,
+              "predictedContactSeconds": 0.11783376623711217,
+              "reactionSeconds": 0.18837844322697261,
+              "contact": {
+                "x": 0.38118531980044895,
+                "y": 0.11024488962362966
+              },
+              "fin": 10.259415805755161,
+              "tec": 8.798980847432627,
+              "gk": 18.32431135460548,
+              "spd": 13.80265947602503,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.32129672644894613,
+          "flightFrom": {
+            "x": 0.38107758927035734,
+            "y": 0.15374403680653487
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.41068718891900025,
+            "y": 0.11932795532546456,
+            "tx": 0.4644055600520054,
+            "ty": 0.07
+          },
+          "resolved": true,
+          "actualGoal": false
+        }
+      ],
+      "record": null,
+      "playerLoad": null
+    },
+    {
+      "config": {
+        "large": false,
+        "count": 5,
+        "study": true,
+        "seed": "goals-football-159-1",
+        "club": "ENG-1"
+      },
+      "mode": "baseline",
+      "harnessGeometryOnly": false,
+      "checks": [
+        "Real native field count matches controlled configuration",
+        "Full native match finishes including halftime",
+        "First-touch windows cannot release a native pass early"
+      ],
+      "ticks": 3678,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "passes": 59,
+        "complete": 56,
+        "shots": 6,
+        "onTarget": 0
+      },
+      "confirmed": 0,
+      "receptions": 54,
+      "firstTouches": 0,
+      "completedReturnReleases": 5,
+      "actuallyCompletedReturnPasses": 5,
+      "followDistance": 330.3703948141482,
+      "carryDistance": 0,
+      "defenseUpdates": 0,
+      "checkpoint": false,
+      "restoreDiagnostic": null,
+      "trace": [],
+      "shotRows": [
+        {
+          "actor": "goals-football-159-1:ENG-2:11",
+          "team": 1,
+          "at": 13.699999999999942,
+          "range": 19.687427712978792,
+          "from": {
+            "x": 0.5200128400649818,
+            "y": 0.7038319924272666
+          },
+          "opening": {
+            "range": 19.585185350728548,
+            "margin": 1.1518428127786646,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-1:1",
+            "x": 0.5055926930525094,
+            "y": 0.9300558810714298,
+            "tx": 0.506009754506608,
+            "ty": 0.93,
+            "body": {
+              "vx": -0.12403660073827855,
+              "vy": 0.023968052616180624,
+              "heading": 17.46864989370714,
+              "massKg": 87.08345244397042
+            },
+            "goalDepth": 2.5459128844268237,
+            "lateral": 0.27141010401883964,
+            "q": 0.831505636336116,
+            "gap": 3.0082188457999015,
+            "reach": 1.8563760330212369,
+            "predictedContactSeconds": 0.6031552595488265,
+            "reactionSeconds": 0.23779766876718056,
+            "contact": {
+              "x": 0.44516665620832807,
+              "y": 0.920882297128136
+            },
+            "fin": 16.993861316661352,
+            "tec": 14.845635432614946,
+            "gk": 8.44046624656389,
+            "spd": 4.482280865680376,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.614072800001944,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 2.709847713984205,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-1:1",
+              "x": 0.5055926930525094,
+              "y": 0.9300558810714298,
+              "tx": 0.506009754506608,
+              "ty": 0.93,
+              "body": {
+                "vx": -0.12403660073827855,
+                "vy": 0.023968052616180624,
+                "heading": 17.46864989370714,
+                "massKg": 87.08345244397042
+              },
+              "goalDepth": 2.5459128844268237,
+              "lateral": 0.27141010401883964,
+              "q": 0.8114966628076322,
+              "gap": 4.5281464678808545,
+              "reach": 1.8182987538966495,
+              "predictedContactSeconds": 0.5899858742829646,
+              "reactionSeconds": 0.23779766876718056,
+              "contact": {
+                "x": 0.5963421836576462,
+                "y": 0.915659297293468
+              },
+              "fin": 16.993861316661352,
+              "tec": 14.845635432614946,
+              "gk": 8.44046624656389,
+              "spd": 4.482280865680376,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.7270342582084315,
+          "flightFrom": {
+            "x": 0.5200128400649818,
+            "y": 0.7038319924272666
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.50854753534381,
+            "y": 0.9331724304555185,
+            "tx": 0.5331725739383718,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-1:ENG-2:10",
+          "team": 1,
+          "at": 33.35000000000038,
+          "range": 15.83288921236885,
+          "from": {
+            "x": 0.5521958528725789,
+            "y": 0.746967838616066
+          },
+          "opening": {
+            "range": 15.960291693464047,
+            "margin": 4.189130270044639,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-1:1",
+            "x": 0.4493516410553702,
+            "y": 0.9311037469840734,
+            "tx": 0.5152978938964172,
+            "ty": 0.93,
+            "body": {
+              "vx": 2.8353166113468546,
+              "vy": -0.07152010376395897,
+              "heading": 45.57831286177921,
+              "massKg": 87.08345244397042
+            },
+            "goalDepth": 2.4692724589555644,
+            "lateral": 2.4579350664305646,
+            "q": 0.8256537606215805,
+            "gap": 5.712731699569478,
+            "reach": 1.523601429524839,
+            "predictedContactSeconds": 0.48806203175281343,
+            "reactionSeconds": 0.23779766876718056,
+            "contact": {
+              "x": 0.566895913902994,
+              "y": 0.926875337766646
+            },
+            "fin": 14.191434377058187,
+            "tec": 12.472773806091967,
+            "gk": 8.44046624656389,
+            "spd": 4.482280865680376,
+            "nearDefenders": 1
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.622849363132463,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 6.3020463998318315,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-1:1",
+              "x": 0.4493516410553702,
+              "y": 0.9311037469840734,
+              "tx": 0.5152978938964172,
+              "ty": 0.93,
+              "body": {
+                "vx": 2.8353166113468546,
+                "vy": -0.07152010376395897,
+                "heading": 45.57831286177921,
+                "massKg": 87.08345244397042
+              },
+              "goalDepth": 2.4692724589555644,
+              "lateral": 2.4579350664305646,
+              "q": 0.7432765710621635,
+              "gap": 7.712017067744638,
+              "reach": 1.4099706679128063,
+              "predictedContactSeconds": 0.4487617636631254,
+              "reactionSeconds": 0.23779766876718056,
+              "contact": {
+                "x": 0.6047109517120509,
+                "y": 0.9089255931309155
+              },
+              "fin": 14.191434377058187,
+              "tec": 12.472773806091967,
+              "gk": 8.44046624656389,
+              "spd": 4.482280865680376,
+              "nearDefenders": 1
+            }
+          },
+          "flightSeconds": 0.6037614814386414,
+          "flightFrom": {
+            "x": 0.5521958528725789,
+            "y": 0.746967838616066
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.4873311598360127,
+            "y": 0.9305702228964072,
+            "tx": 0.5367227558646814,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-1:ENG-1:11",
+          "team": 0,
+          "at": 47.050000000000885,
+          "range": 12.517695263536321,
+          "from": {
+            "x": 0.371551542844798,
+            "y": 0.183553100848089
+          },
+          "opening": {
+            "range": 11.764439440486019,
+            "margin": 0.42935316324803396,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.465,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-2:1",
+            "x": 0.44611502173650575,
+            "y": 0.10975526976202883,
+            "tx": 0.44611502173650575,
+            "ty": 0.10975526976202883,
+            "body": {
+              "vx": -1.7710713552505326,
+              "vy": 2.539542451221355,
+              "heading": -57.157645159916314,
+              "massKg": 84.87094718611644
+            },
+            "goalDepth": 5.457681939571644,
+            "lateral": 2.6150062980813384,
+            "q": 0.5419101692832108,
+            "gap": 1.2582002917723207,
+            "reach": 0.8288471285242868,
+            "predictedContactSeconds": 0.23612108773021703,
+            "reactionSeconds": 0.2270197897301987,
+            "contact": {
+              "x": 0.4221922120810284,
+              "y": 0.1031238959239124
+            },
+            "fin": 18.56984734251914,
+            "tec": 16.288921358798444,
+            "gk": 10.596042053960263,
+            "spd": 8.762492701131851,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.6186044427976387,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": 0.75190918810538,
+            "reachable": false,
+            "blocked": true,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-2:1",
+              "x": 0.44611502173650575,
+              "y": 0.10975526976202883,
+              "tx": 0.44611502173650575,
+              "ty": 0.10975526976202883,
+              "body": {
+                "vx": -1.7710713552505326,
+                "vy": 2.539542451221355,
+                "heading": -57.157645159916314,
+                "massKg": 84.87094718611644
+              },
+              "goalDepth": 5.457681939571644,
+              "lateral": 2.6150062980813384,
+              "q": 0.38984316728445106,
+              "gap": 1.5725192802242574,
+              "reach": 0.8206100921188774,
+              "predictedContactSeconds": 0.23352229447772693,
+              "reactionSeconds": 0.2270197897301987,
+              "contact": {
+                "x": 0.4678634278492221,
+                "y": 0.125693371012636
+              },
+              "fin": 18.56984734251914,
+              "tec": 16.288921358798444,
+              "gk": 10.596042053960263,
+              "spd": 8.762492701131851,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.5990159994450698,
+          "flightFrom": {
+            "x": 0.371551542844798,
+            "y": 0.183553100848089
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.4378499423215294,
+            "y": 0.11681409027636834,
+            "tx": 0.5295166142917689,
+            "ty": 0.07
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-1:ENG-2:11",
+          "team": 1,
+          "at": 81.16880341880446,
+          "range": 21.956106620038195,
+          "from": {
+            "x": 0.3922325337830969,
+            "y": 0.6699013189721424
+          },
+          "opening": {
+            "range": 21.65121313197831,
+            "margin": -0.09445474492029504,
+            "blocked": false,
+            "reachable": true,
+            "target": {
+              "x": 0.43,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-1:1",
+            "x": 0.46858039224016235,
+            "y": 0.9300000000317018,
+            "tx": 0.4678888076442094,
+            "ty": 0.93,
+            "body": {
+              "vx": 0,
+              "vy": 0,
+              "heading": 48.694686061556574,
+              "massKg": 87.08345244397042
+            },
+            "goalDepth": 2.549999997681347,
+            "lateral": 1.5247750824627095,
+            "q": 0.8899667653398347,
+            "gap": 2.0814275164104465,
+            "reach": 2.1758822613307416,
+            "predictedContactSeconds": 0.7136614858055588,
+            "reactionSeconds": 0.23779965963243804,
+            "contact": {
+              "x": 0.4258443235272356,
+              "y": 0.9324090718034566
+            },
+            "fin": 16.72223490573939,
+            "tec": 14.608345825781242,
+            "gk": 8.440068073512395,
+            "spd": 4.482280865680376,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.38245689211035566,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 1.982059394949272,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-1:1",
+              "x": 0.46858039224016235,
+              "y": 0.9300000000317018,
+              "tx": 0.4678888076442094,
+              "ty": 0.93,
+              "body": {
+                "vx": 0,
+                "vy": 0,
+                "heading": 48.694686061556574,
+                "massKg": 87.08345244397042
+              },
+              "goalDepth": 2.549999997681347,
+              "lateral": 1.5247750824627095,
+              "q": 0.8775983426812392,
+              "gap": 4.122451088520243,
+              "reach": 2.1403916935709706,
+              "predictedContactSeconds": 0.7013867390043674,
+              "reactionSeconds": 0.23779965963243804,
+              "contact": {
+                "x": 0.38365344685245356,
+                "y": 0.9287608379989774
+              },
+              "fin": 16.72223490573939,
+              "tec": 14.608345825781242,
+              "gk": 8.440068073512395,
+              "spd": 4.482280865680376,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.7992115582870066,
+          "flightFrom": {
+            "x": 0.3922325337830969,
+            "y": 0.6699013189721424
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.4659395510416225,
+            "y": 0.930000000002256,
+            "tx": 0.46491764856501994,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-1:ENG-1:11",
+          "team": 0,
+          "at": 109.88632478632489,
+          "range": 14.080435421723074,
+          "from": {
+            "x": 0.2459193797823935,
+            "y": 0.1280883168258395
+          },
+          "opening": {
+            "range": 11.226067758078239,
+            "margin": 0.7276741071795112,
+            "blocked": true,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-2:1",
+            "x": 0.4262008006029981,
+            "y": 0.07015157686426572,
+            "tx": 0.4262008006029981,
+            "ty": 0.07015157686426572,
+            "body": {
+              "vx": -0.045173855512125806,
+              "vy": 0.25789515465766916,
+              "heading": -63.00525751685879,
+              "massKg": 84.87094718611644
+            },
+            "goalDepth": 2.5610862613515275,
+            "lateral": 3.5814317354427394,
+            "q": 0.8487696628582281,
+            "gap": 1.9263686509276947,
+            "reach": 1.1986945437481835,
+            "predictedContactSeconds": 0.35290169430547,
+            "reactionSeconds": 0.22711316562822007,
+            "contact": {
+              "x": 0.4021614257432249,
+              "y": 0.049192476140620736
+            },
+            "fin": 17.867427598251506,
+            "tec": 15.672779515292548,
+            "gk": 10.577366874355992,
+            "spd": 8.762492701131851,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.32543209127843065,
+            "y": 0.09996020588319668
+          },
+          "executed": {
+            "margin": 4.554225713899349,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-2:1",
+              "x": 0.4262008006029981,
+              "y": 0.07015157686426572,
+              "tx": 0.4262008006029981,
+              "ty": 0.07015157686426572,
+              "body": {
+                "vx": -0.045173855512125806,
+                "vy": 0.25789515465766916,
+                "heading": -63.00525751685879,
+                "massKg": 84.87094718611644
+              },
+              "goalDepth": 2.5610862613515275,
+              "lateral": 3.5814317354427394,
+              "q": 1,
+              "gap": 5.354225713899349,
+              "reach": 0.7999999999999998,
+              "predictedContactSeconds": 0.1619581549073358,
+              "reactionSeconds": 0.22711316562822007,
+              "contact": {
+                "x": 0.32543209127843065,
+                "y": 0.09996020588319668
+              },
+              "fin": 17.867427598251506,
+              "tec": 15.672779515292548,
+              "gk": 10.577366874355992,
+              "spd": 8.762492701131851,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.21794871794871795,
+          "flightFrom": {
+            "x": 0.2459193797823935,
+            "y": 0.1280883168258395
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.42633383339844866,
+            "y": 0.07089420218153905,
+            "tx": 0.44566519568774476,
+            "ty": 0.07
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-1:ENG-1:2",
+          "team": 0,
+          "at": 112.18632478632497,
+          "range": 8.53161242136883,
+          "from": {
+            "x": 0.5543062012886801,
+            "y": 0.14083170795725247
+          },
+          "opening": {
+            "range": 7.768024149317004,
+            "margin": 4.019338981827683,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-2:1",
+            "x": 0.46555173964605295,
+            "y": 0.06651917341195866,
+            "tx": 0.5564116726075894,
+            "ty": 0.12697506082854476,
+            "body": {
+              "vx": 2.2514263085678854,
+              "vy": 1.3789119268116161,
+              "heading": -62.042983194749276,
+              "massKg": 84.87094718611644
+            },
+            "goalDepth": 2.295413962339767,
+            "lateral": 1.6717538112944887,
+            "q": 0.6419523015984026,
+            "gap": 4.819338981827683,
+            "reach": 0.8000000000000007,
+            "predictedContactSeconds": 0.1846926289454083,
+            "reactionSeconds": 0.22713460707288832,
+            "contact": {
+              "x": 0.5643808714922339,
+              "y": 0.07297954976303109
+            },
+            "fin": 9.949993653886942,
+            "tec": 11.123975161001855,
+            "gk": 10.573078585422342,
+            "spd": 8.762492701131851,
+            "nearDefenders": 2
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.6245893667281355,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": 5.334679469411764,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-2:1",
+              "x": 0.46555173964605295,
+              "y": 0.06651917341195866,
+              "tx": 0.5564116726075894,
+              "ty": 0.12697506082854476,
+              "body": {
+                "vx": 2.2514263085678854,
+                "vy": 1.3789119268116161,
+                "heading": -62.042983194749276,
+                "massKg": 84.87094718611644
+              },
+              "goalDepth": 2.295413962339767,
+              "lateral": 1.6717538112944887,
+              "q": 0.3827431441812038,
+              "gap": 6.134679469411764,
+              "reach": 0.7999999999999998,
+              "predictedContactSeconds": 0.11977873237952057,
+              "reactionSeconds": 0.22713460707288832,
+              "contact": {
+                "x": 0.581206601011985,
+                "y": 0.10037706934613772
+              },
+              "fin": 9.949993653886942,
+              "tec": 11.123975161001855,
+              "gk": 10.573078585422342,
+              "spd": 8.762492701131851,
+              "nearDefenders": 2
+            }
+          },
+          "flightSeconds": 0.3129480807181047,
+          "flightFrom": {
+            "x": 0.5543062012886801,
+            "y": 0.14083170795725247
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.48456610564811536,
+            "y": 0.07067631348720023,
+            "tx": 0.5365044300724007,
+            "ty": 0.07
+          },
+          "resolved": true,
+          "actualGoal": false
+        }
+      ],
+      "record": null,
+      "playerLoad": null
+    },
+    {
+      "config": {
+        "large": false,
+        "count": 5,
+        "study": true,
+        "seed": "goals-football-159-1",
+        "club": "ENG-1"
+      },
+      "mode": "continuous",
+      "harnessGeometryOnly": false,
+      "checks": [
+        "Real native field count matches controlled configuration",
+        "Full native match finishes including halftime",
+        "First-touch windows cannot release a native pass early",
+        "New actual receptions create measured contact-control plans",
+        "Every preparation is bounded and serializable",
+        "One P02 authority survives full match",
+        "Actual dynamic defensive reads executed"
+      ],
+      "ticks": 3487,
+      "score": [
+        2,
+        1
+      ],
+      "stats": {
+        "passes": 42,
+        "complete": 39,
+        "shots": 8,
+        "onTarget": 3
+      },
+      "confirmed": 28,
+      "receptions": 34,
+      "firstTouches": 34,
+      "completedReturnReleases": 1,
+      "actuallyCompletedReturnPasses": 1,
+      "followDistance": 281.6385815074803,
+      "carryDistance": 78.73544617868926,
+      "defenseUpdates": 1608,
+      "checkpoint": false,
+      "restoreDiagnostic": null,
+      "trace": [],
+      "shotRows": [
+        {
+          "actor": "goals-football-159-1:ENG-1:11",
+          "team": 0,
+          "at": 5.500000000000004,
+          "range": 16.49731214358286,
+          "from": {
+            "x": 0.513673858418396,
+            "y": 0.2672739673045057
+          },
+          "opening": {
+            "range": 17.457353035281677,
+            "margin": 1.1380403122537772,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-2:1",
+            "x": 0.5037495846169622,
+            "y": 0.07101083516231382,
+            "tx": 0.50743614317651,
+            "ty": 0.2429570747217806,
+            "body": {
+              "vx": 0.3511127066656675,
+              "vy": 0.31468126022380327,
+              "heading": 7.064649753621705,
+              "massKg": 84.87094718611644
+            },
+            "goalDepth": 2.623932013615743,
+            "lateral": 0.1819651358231644,
+            "q": 0.8061300778722494,
+            "gap": 2.8705211212888884,
+            "reach": 1.7324808090351111,
+            "predictedContactSeconds": 0.5212184208064803,
+            "reactionSeconds": 0.2270197897301987,
+            "contact": {
+              "x": 0.44622184441570284,
+              "y": 0.08013987245063797
+            },
+            "fin": 18.602042599076405,
+            "tec": 16.31716208649613,
+            "gk": 10.596042053960263,
+            "spd": 8.762492701131851,
+            "nearDefenders": 1
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.3894707803411971,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": 2.6611123823258143,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-2:1",
+              "x": 0.5037495846169622,
+              "y": 0.07101083516231382,
+              "tx": 0.50743614317651,
+              "ty": 0.2429570747217806,
+              "body": {
+                "vx": 0.3511127066656675,
+                "vy": 0.31468126022380327,
+                "heading": 7.064649753621705,
+                "massKg": 84.87094718611644
+              },
+              "goalDepth": 2.623932013615743,
+              "lateral": 0.1819651358231644,
+              "q": 0.7597718762344143,
+              "gap": 4.348477103493464,
+              "reach": 1.6873647211676501,
+              "predictedContactSeconds": 0.5069842498063728,
+              "reactionSeconds": 0.2270197897301987,
+              "contact": {
+                "x": 0.4193078527535931,
+                "y": 0.0909014112403172
+              },
+              "fin": 18.602042599076405,
+              "tec": 16.31716208649613,
+              "gk": 10.596042053960263,
+              "spd": 8.762492701131851,
+              "nearDefenders": 1
+            }
+          },
+          "flightSeconds": 0.6672848333358836,
+          "flightFrom": {
+            "x": 0.513673858418396,
+            "y": 0.2672739673045057
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.4974791958367847,
+            "y": 0.07534157428356249,
+            "tx": 0.4678064124177282,
+            "ty": 0.07
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-1:ENG-2:10",
+          "team": 1,
+          "at": 18.449999999999907,
+          "range": 11.082761989915936,
+          "from": {
+            "x": 0.45242275515095975,
+            "y": 0.8249927110543622
+          },
+          "opening": {
+            "range": 11.713863041251347,
+            "margin": 1.9894185395801145,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-1:1",
+            "x": 0.4669163314042161,
+            "y": 0.9206207539616418,
+            "tx": 0.4542926044265194,
+            "ty": 0.8304898735383057,
+            "body": {
+              "vx": -0.6001409618185332,
+              "vy": -2.4619269995698656,
+              "heading": -28.178927118990707,
+              "massKg": 87.08345244397042
+            },
+            "goalDepth": 3.235993692805504,
+            "lateral": 1.6055309759718643,
+            "q": 0.5507083984315004,
+            "gap": 2.7926724520040818,
+            "reach": 0.8032539124239673,
+            "predictedContactSeconds": 0.2389230649960546,
+            "reactionSeconds": 0.23779766876718056,
+            "contact": {
+              "x": 0.5171735313537631,
+              "y": 0.9020214808645086
+            },
+            "fin": 14.192675743764266,
+            "tec": 12.473864836478603,
+            "gk": 8.44046624656389,
+            "spd": 4.482280865680376,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.6116869773390233,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 2.854960839477145,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-1:1",
+              "x": 0.4669163314042161,
+              "y": 0.9206207539616418,
+              "tx": 0.4542926044265194,
+              "ty": 0.8304898735383057,
+              "body": {
+                "vx": -0.6001409618185332,
+                "vy": -2.4619269995698656,
+                "heading": -28.178927118990707,
+                "massKg": 87.08345244397042
+              },
+              "goalDepth": 3.235993692805504,
+              "lateral": 1.6055309759718643,
+              "q": 0.46831465130555916,
+              "gap": 3.6549608394771456,
+              "reach": 0.8000000000000007,
+              "predictedContactSeconds": 0.22239093927273257,
+              "reactionSeconds": 0.23779766876718056,
+              "contact": {
+                "x": 0.5270085238304139,
+                "y": 0.8904968899934853
+              },
+              "fin": 14.192675743764266,
+              "tec": 12.473864836478603,
+              "gk": 8.44046624656389,
+              "spd": 4.482280865680376,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.4748750410706885,
+          "flightFrom": {
+            "x": 0.45242275515095975,
+            "y": 0.8249927110543622
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.46798138645251247,
+            "y": 0.9116967789873636,
+            "tx": 0.5310033059048087,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-1:ENG-2:10",
+          "team": 1,
+          "at": 34.35000000000041,
+          "range": 24.630504061272152,
+          "from": {
+            "x": 0.5458327663263889,
+            "y": 0.6294803211894442
+          },
+          "opening": {
+            "range": 24.557890988912852,
+            "margin": 0.20860158963247155,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-1:1",
+            "x": 0.5127225948486931,
+            "y": 0.9278721550551863,
+            "tx": 0.5127225948486931,
+            "ty": 0.9278721550551863,
+            "body": {
+              "vx": -0.6512838426608105,
+              "vy": 0.7785390120049072,
+              "heading": -38.36042182792405,
+              "massKg": 87.08345244397042
+            },
+            "goalDepth": 2.705629589568354,
+            "lateral": 0.6174200441277529,
+            "q": 0.8845466510894378,
+            "gap": 2.647253207386742,
+            "reach": 2.4386516177542705,
+            "predictedContactSeconds": 0.8045407493356423,
+            "reactionSeconds": 0.23779766876718056,
+            "contact": {
+              "x": 0.5672098119384774,
+              "y": 0.9261435961246969
+            },
+            "fin": 14.18938714963777,
+            "tec": 12.470974509145227,
+            "gk": 8.44046624656389,
+            "spd": 4.482280865680376,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.607943068381398,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 1.845413903173211,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-1:1",
+              "x": 0.5127225948486931,
+              "y": 0.9278721550551863,
+              "tx": 0.5127225948486931,
+              "ty": 0.9278721550551863,
+              "body": {
+                "vx": -0.6512838426608105,
+                "vy": 0.7785390120049072,
+                "heading": -38.36042182792405,
+                "massKg": 87.08345244397042
+              },
+              "goalDepth": 2.705629589568354,
+              "lateral": 0.6174200441277529,
+              "q": 0.8685375533485464,
+              "gap": 4.256517664594757,
+              "reach": 2.4111037614215456,
+              "predictedContactSeconds": 0.7950130640168663,
+              "reactionSeconds": 0.23779766876718056,
+              "contact": {
+                "x": 0.5997778961109856,
+                "y": 0.9207743921842129
+              },
+              "fin": 14.18938714963777,
+              "tec": 12.470974509145227,
+              "gk": 8.44046624656389,
+              "spd": 4.482280865680376,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.9153467929530337,
+          "flightFrom": {
+            "x": 0.5458327663263889,
+            "y": 0.6294803211894442
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.531078553498108,
+            "y": 0.9315439657100087,
+            "tx": 0.5320705163131176,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-1:ENG-1:11",
+          "team": 0,
+          "at": 46.05000000000085,
+          "range": 20.05239991216847,
+          "from": {
+            "x": 0.5294627820710516,
+            "y": 0.3086081978653384
+          },
+          "opening": {
+            "range": 20.098203139008536,
+            "margin": 1.8365896523043315,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-2:1",
+            "x": 0.4833254675528806,
+            "y": 0.065438308211239,
+            "tx": 0.5081881047696306,
+            "ty": 0.07,
+            "body": {
+              "vx": 1.6990255691996665,
+              "vy": -0.9281497367792847,
+              "heading": 14.302936511202464,
+              "massKg": 84.87094718611644
+            },
+            "goalDepth": 2.216359984287131,
+            "lateral": 0.8092052511102069,
+            "q": 0.8697677788025105,
+            "gap": 3.969124614083959,
+            "reach": 2.1325349617796276,
+            "predictedContactSeconds": 0.6474359074865593,
+            "reactionSeconds": 0.2270197897301987,
+            "contact": {
+              "x": 0.5647207480679464,
+              "y": 0.07075013953216991
+            },
+            "fin": 18.573100145276943,
+            "tec": 16.291774621258835,
+            "gk": 10.596042053960263,
+            "spd": 8.762492701131851,
+            "nearDefenders": 0
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.6047640266165786,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": 3.3119900486610208,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-2:1",
+              "x": 0.4833254675528806,
+              "y": 0.065438308211239,
+              "tx": 0.5081881047696306,
+              "ty": 0.07,
+              "body": {
+                "vx": 1.6990255691996665,
+                "vy": -0.9281497367792847,
+                "heading": 14.302936511202464,
+                "massKg": 84.87094718611644
+              },
+              "goalDepth": 2.216359984287131,
+              "lateral": 0.8092052511102069,
+              "q": 0.8406781203796491,
+              "gap": 5.399041890330428,
+              "reach": 2.087051841669407,
+              "predictedContactSeconds": 0.6330859374455126,
+              "reactionSeconds": 0.2270197897301987,
+              "contact": {
+                "x": 0.5927668907978335,
+                "y": 0.07870537751484527
+              },
+              "fin": 18.573100145276943,
+              "tec": 16.291774621258835,
+              "gk": 10.596042053960263,
+              "spd": 8.762492701131851,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.7530657954552354,
+          "flightFrom": {
+            "x": 0.5294627820710516,
+            "y": 0.3086081978653384
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.5265292290634204,
+            "y": 0.06963219053605574,
+            "tx": 0.5313372406370893,
+            "ty": 0.07
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-1:ENG-2:11",
+          "team": 1,
+          "at": 59.41880341880364,
+          "range": 11.5643718996737,
+          "from": {
+            "x": 0.4916024488710699,
+            "y": 0.8146720143332576
+          },
+          "opening": {
+            "range": 11.384563771647244,
+            "margin": 1.234204405715999,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-1:1",
+            "x": 0.49709898069218195,
+            "y": 0.9075380974814892,
+            "tx": 0.4919149363335367,
+            "ty": 0.8202609511581361,
+            "body": {
+              "vx": -0.11172254364920302,
+              "vy": -2.8347829419367345,
+              "heading": -28.234942946440455,
+              "massKg": 87.08345244397042
+            },
+            "goalDepth": 4.192853102807364,
+            "lateral": 0.14078476052646435,
+            "q": 0.5695231450840311,
+            "gap": 2.040976104811239,
+            "reach": 0.8067716990952398,
+            "predictedContactSeconds": 0.2401397246162318,
+            "reactionSeconds": 0.23779766876718056,
+            "contact": {
+              "x": 0.45651842844513996,
+              "y": 0.9002103189371544
+            },
+            "fin": 16.966814043051638,
+            "tec": 14.822007255594205,
+            "gk": 8.44046624656389,
+            "spd": 4.482280865680376,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.44423585644174246,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 0.8337267227546827,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-1:1",
+              "x": 0.49709898069218195,
+              "y": 0.9075380974814892,
+              "tx": 0.4919149363335367,
+              "ty": 0.8202609511581361,
+              "body": {
+                "vx": -0.11172254364920302,
+                "vy": -2.8347829419367345,
+                "heading": -28.234942946440455,
+                "massKg": 87.08345244397042
+              },
+              "goalDepth": 4.192853102807364,
+              "lateral": 0.14078476052646435,
+              "q": 0.5875055784974306,
+              "gap": 1.652254508827357,
+              "reach": 0.8185277860726743,
+              "predictedContactSeconds": 0.24420567791395179,
+              "reactionSeconds": 0.23779766876718056,
+              "contact": {
+                "x": 0.4637743115844259,
+                "y": 0.9029111518710077
+              },
+              "fin": 16.966814043051638,
+              "tec": 14.822007255594205,
+              "gk": 8.44046624656389,
+              "spd": 4.482280865680376,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.4156652921296813,
+          "flightFrom": {
+            "x": 0.4916024488710699,
+            "y": 0.8146720143332576
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.49709898069218195,
+            "y": 0.9075380974814892,
+            "tx": 0.49709898069218195,
+            "ty": 0.9075380974814892
+          },
+          "resolved": true,
+          "actualGoal": true
+        },
+        {
+          "actor": "goals-football-159-1:ENG-1:11",
+          "team": 0,
+          "at": 82.81880341880452,
+          "range": 10.920706976236536,
+          "from": {
+            "x": 0.5542618127468167,
+            "y": 0.17216112672532857
+          },
+          "opening": {
+            "range": 10.051077928647203,
+            "margin": 0.9150619204788473,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-2:1",
+            "x": 0.5270974319097876,
+            "y": 0.1000812833360994,
+            "tx": 0.5507806445179556,
+            "ty": 0.163370220113386,
+            "body": {
+              "vx": 0.7435619879542972,
+              "vy": 2.99468765949383,
+              "heading": 6.526557368528024,
+              "massKg": 84.87094718611644
+            },
+            "goalDepth": 4.750131071907735,
+            "lateral": 1.3150224309161647,
+            "q": 0.5130266013815359,
+            "gap": 1.7150619204788473,
+            "reach": 0.8,
+            "predictedContactSeconds": 0.1909803833316608,
+            "reactionSeconds": 0.2270197897301987,
+            "contact": {
+              "x": 0.5623359214652235,
+              "y": 0.10186314795887672
+            },
+            "fin": 18.4100080428582,
+            "tec": 16.14871504831031,
+            "gk": 10.596042053960263,
+            "spd": 8.762492701131851,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.5455603696968455,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": 0.29516971655260416,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-2:1",
+              "x": 0.5270974319097876,
+              "y": 0.1000812833360994,
+              "tx": 0.5507806445179556,
+              "ty": 0.163370220113386,
+              "body": {
+                "vx": 0.7435619879542972,
+                "vy": 2.99468765949383,
+                "heading": 6.526557368528024,
+                "massKg": 84.87094718611644
+              },
+              "goalDepth": 4.750131071907735,
+              "lateral": 1.3150224309161647,
+              "q": 0.5306307042780425,
+              "gap": 1.0951697165526042,
+              "reach": 0.8,
+              "predictedContactSeconds": 0.19713735664269397,
+              "reactionSeconds": 0.2270197897301987,
+              "contact": {
+                "x": 0.5496445598929752,
+                "y": 0.0994509283034271
+              },
+              "fin": 18.4100080428582,
+              "tec": 16.14871504831031,
+              "gk": 10.596042053960263,
+              "spd": 8.762492701131851,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.3715151706324875,
+          "flightFrom": {
+            "x": 0.5542618127468167,
+            "y": 0.17216112672532857
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.5270974319097876,
+            "y": 0.1000812833360994,
+            "tx": 0.5270974319097876,
+            "ty": 0.1000812833360994
+          },
+          "resolved": true,
+          "actualGoal": true
+        },
+        {
+          "actor": "goals-football-159-1:ENG-2:11",
+          "team": 1,
+          "at": 89.06880341880475,
+          "range": 19.22010888606751,
+          "from": {
+            "x": 0.6341370598672376,
+            "y": 0.7203119204124183
+          },
+          "opening": {
+            "range": 20.446716545833304,
+            "margin": 1.5429943982181922,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-1:1",
+            "x": 0.5376586787328719,
+            "y": 0.9300004067246869,
+            "tx": 0.5397018411447562,
+            "ty": 0.93,
+            "body": {
+              "vx": 1.4835088094087039,
+              "vy": -0.00044507678240606136,
+              "heading": -17.278459578480913,
+              "massKg": 87.08345244397042
+            },
+            "goalDepth": 2.5499702523455787,
+            "lateral": 1.8275535267423113,
+            "q": 0.767099188033414,
+            "gap": 3.3349267933501925,
+            "reach": 1.7919323951320003,
+            "predictedContactSeconds": 0.5809133207503,
+            "reactionSeconds": 0.23784416850230536,
+            "contact": {
+              "x": 0.47754368699555116,
+              "y": 0.9079082855330707
+            },
+            "fin": 16.131814660251447,
+            "tec": 14.035676366908554,
+            "gk": 8.431166299538933,
+            "spd": 4.482280865680376,
+            "nearDefenders": 1
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.3792359112723039,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 3.1245241881413066,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-1:1",
+              "x": 0.5376586787328719,
+              "y": 0.9300004067246869,
+              "tx": 0.5397018411447562,
+              "ty": 0.93,
+              "body": {
+                "vx": 1.4835088094087039,
+                "vy": -0.00044507678240606136,
+                "heading": -17.278459578480913,
+                "massKg": 87.08345244397042
+              },
+              "goalDepth": 2.5499702523455787,
+              "lateral": 1.8275535267423113,
+              "q": 0.7024746028901325,
+              "gap": 4.87279938047748,
+              "reach": 1.7482751923361737,
+              "predictedContactSeconds": 0.5658140663795523,
+              "reactionSeconds": 0.23784416850230536,
+              "contact": {
+                "x": 0.45507547673177284,
+                "y": 0.8921041529522633
+              },
+              "fin": 16.131814660251447,
+              "tec": 14.035676366908554,
+              "gk": 8.431166299538933,
+              "spd": 4.482280865680376,
+              "nearDefenders": 1
+            }
+          },
+          "flightSeconds": 0.8054583952952474,
+          "flightFrom": {
+            "x": 0.6341370598672376,
+            "y": 0.7203119204124183
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.5371116034886031,
+            "y": 0.9261931080267222,
+            "tx": 0.46428899427492565,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-1:ENG-1:11",
+          "team": 0,
+          "at": 102.81880341880527,
+          "range": 11.057634272230723,
+          "from": {
+            "x": 0.6141962512278025,
+            "y": 0.15700825361456883
+          },
+          "opening": {
+            "range": 12.623762896749419,
+            "margin": 0.4677418903609907,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-1:ENG-2:1",
+            "x": 0.5828202604318826,
+            "y": 0.11177006269569195,
+            "tx": 0.6051459222958516,
+            "ty": 0.14734951439727872,
+            "body": {
+              "vx": 1.171566368370603,
+              "vy": 2.813902021147461,
+              "heading": 12.96089135480307,
+              "massKg": 84.87094718611644
+            },
+            "goalDepth": 5.605042957626772,
+            "lateral": 4.019218520959009,
+            "q": 0.2704820201435519,
+            "gap": 1.267741890360991,
+            "reach": 0.8000000000000003,
+            "predictedContactSeconds": 0.12646299593059254,
+            "reactionSeconds": 0.22708525470050758,
+            "contact": {
+              "x": 0.5643744770928373,
+              "y": 0.12404376632705716
+            },
+            "fin": 18.0606811987424,
+            "tec": 15.842295863092199,
+            "gk": 10.582949059898489,
+            "spd": 8.762492701131851,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.40548955997452274,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": 0.6778383696959345,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-1:ENG-2:1",
+              "x": 0.5828202604318826,
+              "y": 0.11177006269569195,
+              "tx": 0.6051459222958516,
+              "ty": 0.14734951439727872,
+              "body": {
+                "vx": 1.171566368370603,
+                "vy": 2.813902021147461,
+                "heading": 12.96089135480307,
+                "massKg": 84.87094718611644
+              },
+              "goalDepth": 5.605042957626772,
+              "lateral": 4.019218520959009,
+              "q": 0.24673216869134673,
+              "gap": 1.4778383696959345,
+              "reach": 0.8,
+              "predictedContactSeconds": 0.12329484207670023,
+              "reactionSeconds": 0.22708525470050758,
+              "contact": {
+                "x": 0.5627015966744855,
+                "y": 0.1269382347869607
+              },
+              "fin": 18.0606811987424,
+              "tec": 15.842295863092199,
+              "gk": 10.582949059898489,
+              "spd": 8.762492701131851,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.49971125666608046,
+          "flightFrom": {
+            "x": 0.6141962512278025,
+            "y": 0.15700825361456883
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.5828202604318826,
+            "y": 0.11177006269569195,
+            "tx": 0.5828202604318826,
+            "ty": 0.11177006269569195
+          },
+          "resolved": true,
+          "actualGoal": true
+        }
+      ],
+      "record": null,
+      "playerLoad": null
+    },
+    {
+      "config": {
+        "large": false,
+        "count": 5,
+        "study": true,
+        "seed": "goals-football-159-2",
+        "club": "ESP-1"
+      },
+      "mode": "baseline",
+      "harnessGeometryOnly": false,
+      "checks": [
+        "Real native field count matches controlled configuration",
+        "Full native match finishes including halftime",
+        "First-touch windows cannot release a native pass early"
+      ],
+      "ticks": 2758,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "passes": 57,
+        "complete": 54,
+        "shots": 7,
+        "onTarget": 4
+      },
+      "confirmed": 0,
+      "receptions": 46,
+      "firstTouches": 0,
+      "completedReturnReleases": 7,
+      "actuallyCompletedReturnPasses": 7,
+      "followDistance": 318.93880518595626,
+      "carryDistance": 0,
+      "defenseUpdates": 0,
+      "checkpoint": false,
+      "restoreDiagnostic": null,
+      "trace": [],
+      "shotRows": [
+        {
+          "actor": "goals-football-159-2:ESP-1:10",
+          "team": 0,
+          "at": 6.399999999999998,
+          "range": 13.417372437721811,
+          "from": {
+            "x": 0.4942380902031229,
+            "y": 0.21041254461767775
+          },
+          "opening": {
+            "range": 13.193306266217185,
+            "margin": 1.4033455183902737,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-2:ESP-3:1",
+            "x": 0.5024326190937621,
+            "y": 0.07356816800701395,
+            "tx": 0.49464779474933657,
+            "ty": 0.20512739511087377,
+            "body": {
+              "vx": 1.5465325848839633,
+              "vy": 1.6378858598599013,
+              "heading": 0.3507173609346036,
+              "massKg": 82.89818684931895
+            },
+            "goalDepth": 2.8109741484199735,
+            "lateral": 0.11805357366786826,
+            "q": 0.7300177539377456,
+            "gap": 2.751371070252463,
+            "reach": 1.3480255518621895,
+            "predictedContactSeconds": 0.35671658546209833,
+            "reactionSeconds": 0.19537267563882754,
+            "contact": {
+              "x": 0.44734314387578883,
+              "y": 0.08245692383120548
+            },
+            "fin": 13.60188272256125,
+            "tec": 12.52623495259974,
+            "gk": 16.9254648722345,
+            "spd": 12.255844956134446,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.4763371273519496,
+            "y": 0.08181116928330404
+          },
+          "executed": {
+            "margin": 0.07789074586470868,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-2:ESP-3:1",
+              "x": 0.5024326190937621,
+              "y": 0.07356816800701395,
+              "tx": 0.49464779474933657,
+              "ty": 0.20512739511087377,
+              "body": {
+                "vx": 1.5465325848839633,
+                "vy": 1.6378858598599013,
+                "heading": 0.3507173609346036,
+                "massKg": 82.89818684931895
+              },
+              "goalDepth": 2.8109741484199735,
+              "lateral": 0.11805357366786826,
+              "q": 1,
+              "gap": 1.4025838890414906,
+              "reach": 1.3246931431767819,
+              "predictedContactSeconds": 0.34984730349138327,
+              "reactionSeconds": 0.19537267563882754,
+              "contact": {
+                "x": 0.4763371273519496,
+                "y": 0.08181116928330404
+              },
+              "fin": 13.60188272256125,
+              "tec": 12.52623495259974,
+              "gk": 16.9254648722345,
+              "spd": 12.255844956134446,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.34984730349138327,
+          "flightFrom": {
+            "x": 0.4942380902031229,
+            "y": 0.21041254461767775
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.503694521840997,
+            "y": 0.07445492225480119,
+            "tx": 0.503694521840997,
+            "ty": 0.07445492225480119
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-2:ESP-3:11",
+          "team": 1,
+          "at": 20.649999999999892,
+          "range": 17.27976579756032,
+          "from": {
+            "x": 0.45985007842297154,
+            "y": 0.7358036500326413
+          },
+          "opening": {
+            "range": 17.58556019661832,
+            "margin": 1.298053466490121,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-2:ESP-1:1",
+            "x": 0.4866538936182866,
+            "y": 0.9297608533612801,
+            "tx": 0.4875413665279462,
+            "ty": 0.93,
+            "body": {
+              "vx": 0.5126925110919702,
+              "vy": -0.16817040208218134,
+              "heading": -16.961803913341658,
+              "massKg": 83.66115573555126
+            },
+            "goalDepth": 2.5674910739249794,
+            "lateral": 0.6476786920537388,
+            "q": 0.790994116585245,
+            "gap": 3.0729005839354557,
+            "reach": 1.7748471174453346,
+            "predictedContactSeconds": 0.5151879500881761,
+            "reactionSeconds": 0.21193689339554406,
+            "contact": {
+              "x": 0.5469780183327272,
+              "y": 0.916989723302799
+            },
+            "fin": 13.3974289244581,
+            "tec": 10.202173785267398,
+            "gk": 13.612621320891193,
+            "spd": 9.45621005996596,
+            "nearDefenders": 1
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.3770496956965634,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 2.84852328446073,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-2:ESP-1:1",
+              "x": 0.4866538936182866,
+              "y": 0.9297608533612801,
+              "tx": 0.4875413665279462,
+              "ty": 0.93,
+              "body": {
+                "vx": 0.5126925110919702,
+                "vy": -0.16817040208218134,
+                "heading": -16.961803913341658,
+                "massKg": 83.66115573555126
+              },
+              "goalDepth": 2.5674910739249794,
+              "lateral": 0.6476786920537388,
+              "q": 0.7830784303653514,
+              "gap": 4.5735136244693155,
+              "reach": 1.7249903400085853,
+              "predictedContactSeconds": 0.4996787280056361,
+              "reactionSeconds": 0.21193689339554406,
+              "contact": {
+                "x": 0.3950108846839255,
+                "y": 0.9151765466010395
+              },
+              "fin": 13.3974289244581,
+              "tec": 10.202173785267398,
+              "gk": 13.612621320891193,
+              "spd": 9.45621005996596,
+              "nearDefenders": 1
+            }
+          },
+          "flightSeconds": 0.6380953792489306,
+          "flightFrom": {
+            "x": 0.45985007842297154,
+            "y": 0.7358036500326413
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.4865904372356893,
+            "y": 0.9308673299542011,
+            "tx": 0.46459790580524885,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-2:ESP-1:2",
+          "team": 0,
+          "at": 33.55000000000038,
+          "range": 16.602491091415075,
+          "from": {
+            "x": 0.42334969539623485,
+            "y": 0.24905753915562598
+          },
+          "opening": {
+            "range": 17.188737767359758,
+            "margin": 1.2690297840886675,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-2:ESP-3:1",
+            "x": 0.47714108115297343,
+            "y": 0.07023346441370164,
+            "tx": 0.42786726986235657,
+            "ty": 0.24292373665743172,
+            "body": {
+              "vx": 0.6632357099536413,
+              "vy": 0.33162588167268636,
+              "heading": -11.52670086487188,
+              "massKg": 82.89818684931895
+            },
+            "goalDepth": 2.5670754786300383,
+            "lateral": 1.109329885223348,
+            "q": 0.7555065741855723,
+            "gap": 3.0391000113725575,
+            "reach": 1.77007022728389,
+            "predictedContactSeconds": 0.4809705327848938,
+            "reactionSeconds": 0.19537267563882754,
+            "contact": {
+              "x": 0.534144964630696,
+              "y": 0.08743775655256303
+            },
+            "fin": 15.136998253527095,
+            "tec": 18.728945188808254,
+            "gk": 16.9254648722345,
+            "spd": 12.255844956134446,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.6145076886837282,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": 2.705785419534772,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-2:ESP-3:1",
+              "x": 0.47714108115297343,
+              "y": 0.07023346441370164,
+              "tx": 0.42786726986235657,
+              "ty": 0.24292373665743172,
+              "body": {
+                "vx": 0.6632357099536413,
+                "vy": 0.33162588167268636,
+                "heading": -11.52670086487188,
+                "massKg": 82.89818684931895
+              },
+              "goalDepth": 2.5670754786300383,
+              "lateral": 1.109329885223348,
+              "q": 0.6916931887653275,
+              "gap": 4.424959506442005,
+              "reach": 1.7191740869072332,
+              "predictedContactSeconds": 0.46598622729880795,
+              "reactionSeconds": 0.19537267563882754,
+              "contact": {
+                "x": 0.5555723773312422,
+                "y": 0.10108886937034794
+              },
+              "fin": 15.136998253527095,
+              "tec": 18.728945188808254,
+              "gk": 16.9254648722345,
+              "spd": 12.255844956134446,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.6736891946711133,
+          "flightFrom": {
+            "x": 0.42334969539623485,
+            "y": 0.24905753915562598
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.5075277312048907,
+            "y": 0.07041581019059494,
+            "tx": 0.5323357777880855,
+            "ty": 0.07
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-2:ESP-3:11",
+          "team": 1,
+          "at": 42.50000000000072,
+          "range": 18.948454438230222,
+          "from": {
+            "x": 0.6308107976459288,
+            "y": 0.7292831182431924
+          },
+          "opening": {
+            "range": 19.79530501164558,
+            "margin": 1.3390593681737424,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-2:ESP-1:1",
+            "x": 0.5345606590838241,
+            "y": 0.9332192661595545,
+            "tx": 0.5392746538156687,
+            "ty": 0.93,
+            "body": {
+              "vx": -1.4781920903222505,
+              "vy": -0.9935538480973505,
+              "heading": -53.09821322669145,
+              "massKg": 83.66115573555126
+            },
+            "goalDepth": 2.314544370423281,
+            "lateral": 1.6772084555385227,
+            "q": 0.7720317689102105,
+            "gap": 3.277321581510783,
+            "reach": 1.9382622133370404,
+            "predictedContactSeconds": 0.5660223831206628,
+            "reactionSeconds": 0.21193689339554406,
+            "contact": {
+              "x": 0.47577848232307207,
+              "y": 0.9111597108104792
+            },
+            "fin": 13.33703340014822,
+            "tec": 10.156182450785534,
+            "gk": 13.612621320891193,
+            "spd": 9.45621005996596,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.6219028689018764,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 2.3874053006891183,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-2:ESP-1:1",
+              "x": 0.5345606590838241,
+              "y": 0.9332192661595545,
+              "tx": 0.5392746538156687,
+              "ty": 0.93,
+              "body": {
+                "vx": -1.4781920903222505,
+                "vy": -0.9935538480973505,
+                "heading": -53.09821322669145,
+                "massKg": 83.66115573555126
+              },
+              "goalDepth": 2.314544370423281,
+              "lateral": 1.6772084555385227,
+              "q": 0.8719229967035167,
+              "gap": 4.295384582855439,
+              "reach": 1.9079792821663206,
+              "predictedContactSeconds": 0.5566021050966207,
+              "reactionSeconds": 0.21193689339554406,
+              "contact": {
+                "x": 0.6230437697209933,
+                "y": 0.9346922607262096
+              },
+              "fin": 13.33703340014822,
+              "tec": 10.156182450785534,
+              "gk": 13.612621320891193,
+              "spd": 9.45621005996596,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.6383615378892045,
+          "flightFrom": {
+            "x": 0.6308107976459288,
+            "y": 0.7292831182431924
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.537377485440135,
+            "y": 0.9272536396045229,
+            "tx": 0.5367314539201935,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-2:ESP-3:9",
+          "team": 1,
+          "at": 63.30042735042777,
+          "range": 6.923100587733728,
+          "from": {
+            "x": 0.47379835497465367,
+            "y": 0.8707741165307489
+          },
+          "opening": {
+            "range": 8.31591513126949,
+            "margin": 0.9538151661342951,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-2:ESP-1:1",
+            "x": 0.4909148386516062,
+            "y": 0.9302274403772931,
+            "tx": 0.49207528240161424,
+            "ty": 0.93,
+            "body": {
+              "vx": 0.6775411288556457,
+              "vy": -0.6777717884220137,
+              "heading": -66.75867369962516,
+              "massKg": 83.66115573555126
+            },
+            "goalDepth": 2.5333651165910065,
+            "lateral": 0.44089753602499426,
+            "q": 0.4887976724595722,
+            "gap": 1.7538151661342956,
+            "reach": 0.8000000000000005,
+            "predictedContactSeconds": 0.15054814668651348,
+            "reactionSeconds": 0.21193689339554406,
+            "contact": {
+              "x": 0.5208214951498249,
+              "y": 0.9167654553164442
+            },
+            "fin": 10.890242416591821,
+            "tec": 7.71911273978706,
+            "gk": 13.612621320891193,
+            "spd": 9.45621005996596,
+            "nearDefenders": 1
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.48823673971231957,
+            "y": 0.9215197809989049
+          },
+          "executed": {
+            "margin": -0.1500000000000028,
+            "reachable": true,
+            "blocked": true,
+            "keeper": {
+              "pid": "goals-football-159-2:ESP-1:1",
+              "x": 0.4909148386516062,
+              "y": 0.9302274403772931,
+              "tx": 0.49207528240161424,
+              "ty": 0.93,
+              "body": {
+                "vx": 0.6775411288556457,
+                "vy": -0.6777717884220137,
+                "heading": -66.75867369962516,
+                "massKg": 83.66115573555126
+              },
+              "goalDepth": 2.5333651165910065,
+              "lateral": 0.44089753602499426,
+              "q": 1,
+              "gap": 0.6499999999999972,
+              "reach": 0.8,
+              "predictedContactSeconds": 0.13989168693727724,
+              "reactionSeconds": 0.21193689339554406,
+              "contact": {
+                "x": 0.48823673971231957,
+                "y": 0.9215197809989049
+              },
+              "fin": 10.890242416591821,
+              "tec": 7.71911273978706,
+              "gk": 13.612621320891193,
+              "spd": 9.45621005996596,
+              "nearDefenders": 1
+            }
+          },
+          "flightSeconds": 0.1794871794871795,
+          "flightFrom": {
+            "x": 0.47379835497465367,
+            "y": 0.8707741165307489
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.4909148386516062,
+            "y": 0.9302274403772931,
+            "tx": 0.4909148386516062,
+            "ty": 0.9302274403772931
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-2:ESP-1:5",
+          "team": 0,
+          "at": 93.3504273504289,
+          "range": 18.067999082105622,
+          "from": {
+            "x": 0.3915702528345818,
+            "y": 0.26322756386915724
+          },
+          "opening": {
+            "range": 18.79596050911371,
+            "margin": 1.3598058149725833,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-2:ESP-3:1",
+            "x": 0.4664684701953732,
+            "y": 0.06999216955006907,
+            "tx": 0.46744337991418594,
+            "ty": 0.07,
+            "body": {
+              "vx": 0,
+              "vy": 0,
+              "heading": 19.920707290425455,
+              "massKg": 82.89818684931895
+            },
+            "goalDepth": 2.549427284534121,
+            "lateral": 1.6272654169892422,
+            "q": 0.756467650033076,
+            "gap": 3.2849047347200804,
+            "reach": 1.925098919747497,
+            "predictedContactSeconds": 0.5266124472756943,
+            "reactionSeconds": 0.19537267563882754,
+            "contact": {
+              "x": 0.5265465843688015,
+              "y": 0.09068302031439468
+            },
+            "fin": 11.872517083849651,
+            "tec": 12.098956970839886,
+            "gk": 16.9254648722345,
+            "spd": 12.255844956134446,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.4982588571292596,
+            "y": 0.08436711419476413
+          },
+          "executed": {
+            "margin": -0.039342673804740214,
+            "reachable": true,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-2:ESP-3:1",
+              "x": 0.4664684701953732,
+              "y": 0.06999216955006907,
+              "tx": 0.46744337991418594,
+              "ty": 0.07,
+              "body": {
+                "vx": 0,
+                "vy": 0,
+                "heading": 19.920707290425455,
+                "massKg": 82.89818684931895
+              },
+              "goalDepth": 2.549427284534121,
+              "lateral": 1.6272654169892422,
+              "q": 1,
+              "gap": 1.8669570439519418,
+              "reach": 1.906299717756682,
+              "predictedContactSeconds": 0.521077784265094,
+              "reactionSeconds": 0.19537267563882754,
+              "contact": {
+                "x": 0.4982588571292596,
+                "y": 0.08436711419476411
+              },
+              "fin": 11.872517083849651,
+              "tec": 12.098956970839886,
+              "gk": 16.9254648722345,
+              "spd": 12.255844956134446,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.521077784265094,
+          "flightFrom": {
+            "x": 0.3915702528345818,
+            "y": 0.26322756386915724
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.4667678714628741,
+            "y": 0.07005482009446848,
+            "tx": 0.4667678714628741,
+            "ty": 0.07005482009446848
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-2:ESP-3:5",
+          "team": 1,
+          "at": 101.05042735042919,
+          "range": 18.8288083317938,
+          "from": {
+            "x": 0.49911252167833614,
+            "y": 0.7159291655589647
+          },
+          "opening": {
+            "range": 18.51338976609297,
+            "margin": 0.9539274222875032,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-2:ESP-1:1",
+            "x": 0.5005324413187658,
+            "y": 0.9299997605429633,
+            "tx": 0.4997335415455511,
+            "ty": 0.93,
+            "body": {
+              "vx": 0,
+              "vy": 0,
+              "heading": -108.38449481519706,
+              "massKg": 83.66115573555126
+            },
+            "goalDepth": 2.5500175137762913,
+            "lateral": 0.02583906399893055,
+            "q": 0.8310448351437544,
+            "gap": 2.9042822766933747,
+            "reach": 1.9503548544058715,
+            "predictedContactSeconds": 0.5698317387449927,
+            "reactionSeconds": 0.21198452462565548,
+            "contact": {
+              "x": 0.4416769174937941,
+              "y": 0.9228058927500318
+            },
+            "fin": 7.88642300505098,
+            "tec": 9.828239241781645,
+            "gk": 13.603095074868905,
+            "spd": 9.45621005996596,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.4635895582241749,
+            "y": 0.9212164569056004
+          },
+          "executed": {
+            "margin": -0.013510434823371442,
+            "reachable": true,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-2:ESP-1:1",
+              "x": 0.5005324413187658,
+              "y": 0.9299997605429633,
+              "tx": 0.4997335415455511,
+              "ty": 0.93,
+              "body": {
+                "vx": 0,
+                "vy": 0,
+                "heading": -108.38449481519706,
+                "massKg": 83.66115573555126
+              },
+              "goalDepth": 2.5500175137762913,
+              "lateral": 0.02583906399893055,
+              "q": 1,
+              "gap": 1.904436141010756,
+              "reach": 1.9179465758341274,
+              "predictedContactSeconds": 0.5597503172106856,
+              "reactionSeconds": 0.21198452462565548,
+              "contact": {
+                "x": 0.4635895582241749,
+                "y": 0.9212164569056004
+              },
+              "fin": 7.88642300505098,
+              "tec": 9.828239241781645,
+              "gk": 13.603095074868905,
+              "spd": 9.45621005996596,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.5597503172106857,
+          "flightFrom": {
+            "x": 0.49911252167833614,
+            "y": 0.7159291655589647
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.5002346238477506,
+            "y": 0.9299997605429633,
+            "tx": 0.5002346238477506,
+            "ty": 0.9299997605429633
+          },
+          "resolved": true,
+          "actualGoal": false
+        }
+      ],
+      "record": null,
+      "playerLoad": null
+    },
+    {
+      "config": {
+        "large": false,
+        "count": 5,
+        "study": true,
+        "seed": "goals-football-159-2",
+        "club": "ESP-1"
+      },
+      "mode": "continuous",
+      "harnessGeometryOnly": false,
+      "checks": [
+        "Real native field count matches controlled configuration",
+        "Full native match finishes including halftime",
+        "First-touch windows cannot release a native pass early",
+        "New actual receptions create measured contact-control plans",
+        "Every preparation is bounded and serializable",
+        "One P02 authority survives full match",
+        "Actual dynamic defensive reads executed"
+      ],
+      "ticks": 2662,
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "passes": 53,
+        "complete": 50,
+        "shots": 4,
+        "onTarget": 1
+      },
+      "confirmed": 43,
+      "receptions": 44,
+      "firstTouches": 44,
+      "completedReturnReleases": 6,
+      "actuallyCompletedReturnPasses": 6,
+      "followDistance": 340.08435888215786,
+      "carryDistance": 46.41362797964214,
+      "defenseUpdates": 1642,
+      "checkpoint": false,
+      "restoreDiagnostic": null,
+      "trace": [],
+      "shotRows": [
+        {
+          "actor": "goals-football-159-2:ESP-3:7",
+          "team": 1,
+          "at": 24.75000000000005,
+          "range": 14.184408522535605,
+          "from": {
+            "x": 0.6536354510704854,
+            "y": 0.8008989211581956
+          },
+          "opening": {
+            "range": 16.17414162807439,
+            "margin": 2.346042777381058,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-2:ESP-1:1",
+            "x": 0.6305392061860198,
+            "y": 0.8819371421003797,
+            "tx": 0.6478191970353305,
+            "ty": 0.8169445887170204,
+            "body": {
+              "vx": -0.028208424651935165,
+              "vy": -1.405066527322467,
+              "heading": 28.243680174810333,
+              "massKg": 83.66115573555126
+            },
+            "goalDepth": 6.065295071960606,
+            "lateral": 6.334990888439195,
+            "q": 0.3182095366427207,
+            "gap": 3.1460427773810578,
+            "reach": 0.7999999999999998,
+            "predictedContactSeconds": 0.19062096715049232,
+            "reactionSeconds": 0.21193689339554406,
+            "contact": {
+              "x": 0.5824725178084604,
+              "y": 0.8530744481302812
+            },
+            "fin": 14.999390195011161,
+            "tec": 17.455461560077033,
+            "gk": 13.612621320891193,
+            "spd": 9.45621005996596,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.38294911506352214,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 2.8216379358148247,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-2:ESP-1:1",
+              "x": 0.6305392061860198,
+              "y": 0.8819371421003797,
+              "tx": 0.6478191970353305,
+              "ty": 0.8169445887170204,
+              "body": {
+                "vx": -0.028208424651935165,
+                "vy": -1.405066527322467,
+                "heading": 28.243680174810333,
+                "massKg": 83.66115573555126
+              },
+              "goalDepth": 6.065295071960606,
+              "lateral": 6.334990888439195,
+              "q": 0.27120619216678593,
+              "gap": 3.6216379358148245,
+              "reach": 0.7999999999999998,
+              "predictedContactSeconds": 0.17866493627300337,
+              "reactionSeconds": 0.21193689339554406,
+              "contact": {
+                "x": 0.5802236406104577,
+                "y": 0.8453675003959149
+              },
+              "fin": 14.999390195011161,
+              "tec": 17.455461560077033,
+              "gk": 13.612621320891193,
+              "spd": 9.45621005996596,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.6587789712527224,
+          "flightFrom": {
+            "x": 0.6536354510704854,
+            "y": 0.8008989211581956
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.6148319298222531,
+            "y": 0.8795092515129307,
+            "tx": 0.46596689454510803,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-2:ESP-3:11",
+          "team": 1,
+          "at": 56.12692307692338,
+          "range": 16.884946369726055,
+          "from": {
+            "x": 0.31652153410975326,
+            "y": 0.7686080979416979
+          },
+          "opening": {
+            "range": 15.374281579857433,
+            "margin": 3.642225127014049,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.43,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-2:ESP-1:1",
+            "x": 0.5246341197535568,
+            "y": 0.9211853997538915,
+            "tx": 0.44563429292578693,
+            "ty": 0.93,
+            "body": {
+              "vx": -3.1291748804845785,
+              "vy": 0.5262031993113983,
+              "heading": 11.162175943000637,
+              "massKg": 83.66115573555126
+            },
+            "goalDepth": 3.194695762186312,
+            "lateral": 1.195479340981432,
+            "q": 0.9129927848065681,
+            "gap": 5.4321374808780005,
+            "reach": 1.7899123538639516,
+            "predictedContactSeconds": 0.5198743760738652,
+            "reactionSeconds": 0.21193689339554406,
+            "contact": {
+              "x": 0.42012655469846677,
+              "y": 0.9477891101120137
+            },
+            "fin": 13.35240407644023,
+            "tec": 10.167887257104148,
+            "gk": 13.612621320891193,
+            "spd": 9.45621005996596,
+            "nearDefenders": 0
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.38643534220913195,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 5.57340534075035,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-2:ESP-1:1",
+              "x": 0.5246341197535568,
+              "y": 0.9211853997538915,
+              "tx": 0.44563429292578693,
+              "ty": 0.93,
+              "body": {
+                "vx": -3.1291748804845785,
+                "vy": 0.5262031993113983,
+                "heading": 11.162175943000637,
+                "massKg": 83.66115573555126
+              },
+              "goalDepth": 3.194695762186312,
+              "lateral": 1.195479340981432,
+              "q": 0.8938093472943294,
+              "gap": 7.261732289603829,
+              "reach": 1.6883269488534793,
+              "predictedContactSeconds": 0.4882736451872579,
+              "reactionSeconds": 0.21193689339554406,
+              "contact": {
+                "x": 0.37901114929391994,
+                "y": 0.9440242306873892
+              },
+              "fin": 13.35240407644023,
+              "tec": 10.167887257104148,
+              "gk": 13.612621320891193,
+              "spd": 9.45621005996596,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.5462838877947765,
+          "flightFrom": {
+            "x": 0.31652153410975326,
+            "y": 0.7686080979416979
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.48937464061415964,
+            "y": 0.9258364983928857,
+            "tx": 0.46415356900587684,
+            "ty": 0.93
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-2:ESP-1:10",
+          "team": 0,
+          "at": 66.9769230769238,
+          "range": 11.812033753974243,
+          "from": {
+            "x": 0.5118851019145133,
+            "y": 0.18828591165696673
+          },
+          "opening": {
+            "range": 11.550966471207625,
+            "margin": 1.3852547440662435,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.03513513513513514
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-2:ESP-3:1",
+            "x": 0.49754297905167366,
+            "y": 0.09591859464339848,
+            "tx": 0.5114752631583924,
+            "ty": 0.1830047517476849,
+            "body": {
+              "vx": 0.3529119660885859,
+              "vy": 3.3246073125409454,
+              "heading": 18.955311359750535,
+              "massKg": 82.89818684931895
+            },
+            "goalDepth": 4.445673957057865,
+            "lateral": 0.119237781315837,
+            "q": 0.5524474938328312,
+            "gap": 2.3244209917359155,
+            "reach": 0.939166247669672,
+            "predictedContactSeconds": 0.23634453623576718,
+            "reactionSeconds": 0.19537267563882754,
+            "contact": {
+              "x": 0.5439905317161908,
+              "y": 0.10367814898892887
+            },
+            "fin": 13.484632376751042,
+            "tec": 12.41825685796023,
+            "gk": 16.9254648722345,
+            "spd": 12.255844956134446,
+            "nearDefenders": 0
+          },
+          "direct": false,
+          "actualTarget": {
+            "x": 0.37702430825045163,
+            "y": 0.03513513513513514
+          },
+          "executed": {
+            "margin": 1.8927909671736098,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-2:ESP-3:1",
+              "x": 0.49754297905167366,
+              "y": 0.09591859464339848,
+              "tx": 0.5114752631583924,
+              "ty": 0.1830047517476849,
+              "body": {
+                "vx": 0.3529119660885859,
+                "vy": 3.3246073125409454,
+                "heading": 18.955311359750535,
+                "massKg": 82.89818684931895
+              },
+              "goalDepth": 4.445673957057865,
+              "lateral": 0.119237781315837,
+              "q": 0.4766869753901474,
+              "gap": 2.8071563946499736,
+              "reach": 0.9143654274763637,
+              "predictedContactSeconds": 0.22904294001782557,
+              "reactionSeconds": 0.19537267563882754,
+              "contact": {
+                "x": 0.447598718084077,
+                "y": 0.11528093121812243
+              },
+              "fin": 13.484632376751042,
+              "tec": 12.41825685796023,
+              "gk": 16.9254648722345,
+              "spd": 12.255844956134446,
+              "nearDefenders": 0
+            }
+          },
+          "flightSeconds": 0.48048919278812663,
+          "flightFrom": {
+            "x": 0.5118851019145133,
+            "y": 0.18828591165696673
+          },
+          "onTarget": false,
+          "keeperBeforeResolution": {
+            "x": 0.49931235500884535,
+            "y": 0.10697838580201353,
+            "tx": 0.46567454901240984,
+            "ty": 0.07
+          },
+          "resolved": true,
+          "actualGoal": false
+        },
+        {
+          "actor": "goals-football-159-2:ESP-3:Y0:1",
+          "team": 1,
+          "at": 79.02692307692425,
+          "range": 10.425781782330057,
+          "from": {
+            "x": 0.4592010229130048,
+            "y": 0.8285341006310811
+          },
+          "opening": {
+            "range": 11.32856710787963,
+            "margin": 4.9208059704471605,
+            "blocked": false,
+            "reachable": false,
+            "target": {
+              "x": 0.57,
+              "y": 0.9648648648648649
+            }
+          },
+          "keeper": {
+            "pid": "goals-football-159-2:ESP-1:1",
+            "x": 0.40327794870509853,
+            "y": 0.9245176586596837,
+            "tx": 0.48632365292903906,
+            "ty": 0.93,
+            "body": {
+              "vx": 3.1214385837005163,
+              "vy": 0.31056382079694816,
+              "heading": 20.321184798051522,
+              "massKg": 83.66115573555126
+            },
+            "goalDepth": 2.95097589570453,
+            "lateral": 4.693864254017277,
+            "q": 0.43173076747332745,
+            "gap": 5.720805970447161,
+            "reach": 0.8000000000000007,
+            "predictedContactSeconds": 0.18114411006881356,
+            "reactionSeconds": 0.21193689339554406,
+            "contact": {
+              "x": 0.5070363503260329,
+              "y": 0.8873922861039578
+            },
+            "fin": 9.52680275038816,
+            "tec": 12.43866699262522,
+            "gk": 13.612621320891193,
+            "spd": 9.45621005996596,
+            "nearDefenders": 1
+          },
+          "direct": true,
+          "actualTarget": {
+            "x": 0.574874723773839,
+            "y": 0.9648648648648649
+          },
+          "executed": {
+            "margin": 5.008857474818529,
+            "reachable": false,
+            "blocked": false,
+            "keeper": {
+              "pid": "goals-football-159-2:ESP-1:1",
+              "x": 0.40327794870509853,
+              "y": 0.9245176586596837,
+              "tx": 0.48632365292903906,
+              "ty": 0.93,
+              "body": {
+                "vx": 3.1214385837005163,
+                "vy": 0.31056382079694816,
+                "heading": 20.321184798051522,
+                "massKg": 83.66115573555126
+              },
+              "goalDepth": 2.95097589570453,
+              "lateral": 4.693864254017277,
+              "q": 0.4182545327398096,
+              "gap": 5.808857474818529,
+              "reach": 0.7999999999999998,
+              "predictedContactSeconds": 0.1772585406779577,
+              "reactionSeconds": 0.21193689339554406,
+              "contact": {
+                "x": 0.5075820726168375,
+                "y": 0.8855550607237435
+              },
+              "fin": 9.52680275038816,
+              "tec": 12.43866699262522,
+              "gk": 13.612621320891193,
+              "spd": 9.45621005996596,
+              "nearDefenders": 1
+            }
+          },
+          "flightSeconds": 0.4238054266066444,
+          "flightFrom": {
+            "x": 0.4592010229130048,
+            "y": 0.8285341006310811
+          },
+          "onTarget": true,
+          "keeperBeforeResolution": {
+            "x": 0.40327794870509853,
+            "y": 0.9245176586596837,
+            "tx": 0.40327794870509853,
+            "ty": 0.9245176586596837
+          },
+          "resolved": true,
+          "actualGoal": true
+        }
+      ],
+      "record": null,
+      "playerLoad": null
+    }
+  ],
+  "goalStudy": {
+    "definition": "Twenty identical paired seeds at current actual44×68/five-field+keeper product geometry. Only future159 marker differs; both use unchanged current roles/P02/quality157. Ten clubs in five countries, two seeds each. All games actually finish. No forced success or goals. Not production-wide balance approval.",
+    "summary": {
+      "baseline": {
+        "matches": 3,
+        "goals": 0,
+        "goalsPerMatch": 0,
+        "scorelessMatches": 3,
+        "shots": 19,
+        "onTarget": 6,
+        "actualResolvedShots": 19,
+        "openGoalReleases": 6,
+        "openGoalOffTarget": 4,
+        "openGoalOnTargetScored": 0,
+        "openGoalOnTargetNotScored": 2,
+        "carryMetres": 0,
+        "actuallyCompletedReturns": 14
+      },
+      "continuous": {
+        "matches": 3,
+        "goals": 6,
+        "goalsPerMatch": 2,
+        "scorelessMatches": 0,
+        "shots": 19,
+        "onTarget": 7,
+        "actualResolvedShots": 19,
+        "openGoalReleases": 8,
+        "openGoalOffTarget": 6,
+        "openGoalOnTargetScored": 2,
+        "openGoalOnTargetNotScored": 0,
+        "carryMetres": 155.10572234443347,
+        "actuallyCompletedReturns": 10
+      }
+    }
+  },
+  "pass": true
+}

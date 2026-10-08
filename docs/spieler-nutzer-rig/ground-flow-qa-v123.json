@@ -1,0 +1,140 @@
+{
+  "cases": [
+    {
+      "kind": "keeper-support",
+      "team": 0,
+      "plans": [
+        {
+          "id": "flow-left",
+          "x": 0.39,
+          "y": 0.8,
+          "mark": null
+        },
+        {
+          "id": "flow-right",
+          "x": 0.79,
+          "y": 0.8,
+          "mark": null
+        }
+      ],
+      "unchanged": true
+    },
+    {
+      "kind": "keeper-long",
+      "team": 0,
+      "flight": "highPass",
+      "high": true,
+      "pose": {
+        "kind": "goalKick",
+        "phase": "follow",
+        "held": false,
+        "progress": 0,
+        "target": {
+          "x": 0.78,
+          "y": 0.4
+        }
+      }
+    },
+    {
+      "kind": "keeper-support",
+      "team": 1,
+      "plans": [
+        {
+          "id": "flow-left",
+          "x": 0.39,
+          "y": 0.2,
+          "mark": null
+        },
+        {
+          "id": "flow-right",
+          "x": 0.79,
+          "y": 0.2,
+          "mark": null
+        }
+      ],
+      "unchanged": true
+    },
+    {
+      "kind": "keeper-long",
+      "team": 1,
+      "flight": "highPass",
+      "high": true,
+      "pose": {
+        "kind": "goalKick",
+        "phase": "follow",
+        "held": false,
+        "progress": 0,
+        "target": {
+          "x": 0.78,
+          "y": 0.6
+        }
+      }
+    },
+    {
+      "kind": "interceptor-contact",
+      "gap": 0.5,
+      "owned": "flow-interceptor",
+      "loose": false,
+      "direction": {
+        "x": 0,
+        "y": -0.05999999999999994
+      },
+      "velocity": null
+    },
+    {
+      "kind": "interceptor-contact",
+      "gap": 2,
+      "owned": null,
+      "loose": true,
+      "direction": {
+        "x": 0,
+        "y": -0.05999999999999994
+      },
+      "velocity": {
+        "x": 0,
+        "y": -0.2389198685841295
+      }
+    },
+    {
+      "kind": "receiver-contact",
+      "gap": 0.5,
+      "owned": "flow-receiver",
+      "loose": false,
+      "direction": {
+        "x": 0,
+        "y": -0.14999999999999997
+      },
+      "velocity": null
+    },
+    {
+      "kind": "receiver-contact",
+      "gap": 2,
+      "owned": null,
+      "loose": true,
+      "direction": {
+        "x": 0,
+        "y": -0.14999999999999997
+      },
+      "velocity": {
+        "x": 0,
+        "y": -0.26384482159288114
+      }
+    },
+    {
+      "kind": "cup-heading",
+      "round": "QF",
+      "label": "POKALSPIEL · Viertelfinale"
+    },
+    {
+      "kind": "cup-heading",
+      "round": "SF",
+      "label": "POKALSPIEL · Halbfinale"
+    },
+    {
+      "kind": "cup-heading",
+      "round": "F",
+      "label": "POKALSPIEL · Finale"
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,75 @@
+{
+  "engine": {
+    "displacement": 0.0007514977560000302,
+    "forwardDisplacement": 0.0012525000000000004,
+    "ratio": 0.5999982083832575,
+    "mode": "backpedal",
+    "projectedMovement": {
+      "mode": "backpedal",
+      "speedFactor": 0.6,
+      "facing": {
+        "x": -19.996440594661692,
+        "z": -0.5238069087014903
+      }
+    }
+  },
+  "ball": {
+    "radius": 0.28,
+    "scale": 0.63,
+    "rootScale": 1,
+    "radius2D": true
+  },
+  "keeper": {
+    "cases": [
+      {
+        "target": {
+          "x": 0,
+          "z": 6,
+          "height": 0.29
+        },
+        "alignment": 0.9999999996351014,
+        "heading": 0
+      },
+      {
+        "target": {
+          "x": 4,
+          "z": 0,
+          "height": 0.29
+        },
+        "alignment": 0.9999999998619478,
+        "heading": 1.5707963235572442
+      },
+      {
+        "target": {
+          "x": -4,
+          "z": 0,
+          "height": 0.29
+        },
+        "alignment": 0.9999999986068828,
+        "heading": -1.5707963214933653
+      },
+      {
+        "target": {
+          "x": 0,
+          "z": -6,
+          "height": 0.29
+        },
+        "alignment": 0.9999999996003996,
+        "heading": -3.1415926503521407
+      },
+      {
+        "target": {
+          "x": 0,
+          "z": 4,
+          "height": 4
+        },
+        "alignment": 0.999999999879982,
+        "heading": -5.30153139759863e-9
+      }
+    ],
+    "paused": true
+  },
+  "drawUnchanged": true,
+  "poseUnchanged": true,
+  "errors": []
+}

@@ -1,0 +1,30 @@
+{
+  "verifiedAt": "2026-10-04T12:06:58.760Z",
+  "published": false,
+  "footer": "PROTOTYP 105",
+  "consumedCredits": 6,
+  "clips": 32,
+  "original29Preserved": true,
+  "modelSha256": "39eee0c85c05a93496d1679330c0fcd81a9f5f87d8ad13876c61d29cb3a09cb2",
+  "offline": {
+    "path": "outputs/Doppel-6-Fussballmanager.html",
+    "bytes": 49853761,
+    "sha256": "c29f4ea16c0743f22ca4ace3090df5246d0afface64524b92a487c0868d00d24",
+    "modelEmbedded": true,
+    "externalScripts": 0
+  },
+  "sourceAssets": {
+    "model": "dist/players/football-v113.glb",
+    "calibration": "dist/players/calibration-v113.json"
+  },
+  "native": {
+    "file": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\meshy_output\\user-character-2026-10-03\\contact-v113\\Doppel6-Nutzercharakter-Foul-Stand-v113.blend",
+    "reopened": true,
+    "packedTextures": true,
+    "actions": 32
+  },
+  "parity": {
+    "matched": true
+  },
+  "gatesPassed": 33
+}

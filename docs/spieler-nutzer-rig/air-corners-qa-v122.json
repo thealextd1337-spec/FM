@@ -1,0 +1,77 @@
+{
+  "cases": [
+    {
+      "team": 0,
+      "swap": false,
+      "inherited": true,
+      "takerGap": 0,
+      "maxStep": 0.06000000000000207,
+      "flight": true,
+      "startGap": 0,
+      "first": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "final": {
+        "x": 0.04178787878787879,
+        "y": 0.02861685214626391
+      },
+      "pauseStable": true
+    },
+    {
+      "team": 0,
+      "swap": true,
+      "inherited": true,
+      "takerGap": 0,
+      "maxStep": 0.06000000000000207,
+      "flight": true,
+      "startGap": 0,
+      "first": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "final": {
+        "x": 0.04178787878787879,
+        "y": 0.02861685214626391
+      },
+      "pauseStable": true
+    },
+    {
+      "team": 1,
+      "swap": false,
+      "inherited": true,
+      "takerGap": 0,
+      "maxStep": 0.060000000000003474,
+      "flight": true,
+      "startGap": 0,
+      "first": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "final": {
+        "x": 0.04178787878787879,
+        "y": 0.971383147853736
+      },
+      "pauseStable": true
+    },
+    {
+      "team": 1,
+      "swap": true,
+      "inherited": true,
+      "takerGap": 0,
+      "maxStep": 0.060000000000003474,
+      "flight": true,
+      "startGap": 0,
+      "first": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "final": {
+        "x": 0.04178787878787879,
+        "y": 0.971383147853736
+      },
+      "pauseStable": true
+    }
+  ],
+  "errors": []
+}

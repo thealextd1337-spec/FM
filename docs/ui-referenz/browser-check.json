@@ -1,0 +1,191 @@
+{
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "views": [
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "overview"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "squad"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "squad-contracts"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "squad-youth"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "transfers"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "transfers-offers"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "transfers-sales"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "transfers-history"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "competition"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "competition-cup"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "competition-europe"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "competition-world"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "competition-archive"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "calendar"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "statistics"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "club"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "club-finances"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "club-sponsor"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "club-history"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "club-manager"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "player-rossi"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "playercareer-rossi"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "offer-silva"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "renew-rossi"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "market-0"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "opponent"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "report"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "settings"
+    },
+    {
+      "heading": true,
+      "overflow": false,
+      "route": "concept"
+    }
+  ],
+  "interactions": [
+    [
+      "Ablösefrei",
+      "2 Spieler · Preise und Gehälter sind Beispieldaten."
+    ],
+    [
+      "Leere Suche",
+      1
+    ],
+    [
+      "Filter zurückgesetzt",
+      "4 Spieler · Preise und Gehälter sind Beispieldaten."
+    ],
+    [
+      "Kadersuche",
+      "1 von 11 Profis · Fähigkeiten als Farbstufen; Form und Frische separat."
+    ],
+    [
+      "Profil",
+      "Luca Rossi"
+    ],
+    [
+      "Karriere",
+      1
+    ],
+    [
+      "Kalender leer",
+      1
+    ],
+    [
+      "Konditionen",
+      "Demo geprüft: 125 Credits pro Saison, 2 Saisons, Zusage: Keine. Kein Vertrag gespeichert."
+    ],
+    [
+      "Verkaufsangebot",
+      "Vorschau: 690 Credits Einnahmen, zehn Profis und 1.285 Credits verbleibende Jahresgehälter. Es wurde kein Verkauf durchgeführt."
+    ]
+  ]
+}

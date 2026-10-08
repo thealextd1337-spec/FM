@@ -1,0 +1,56 @@
+{
+  "source": "meshy_output/user-character-2026-10-03/character-meshy-motions.glb",
+  "meshTaskId": "01a10106-76ab-77a7-89a2-d58771af210c",
+  "textureTaskId": "01a10128-99dd-77a5-8b30-b633116d62fe",
+  "resource": "retexture",
+  "project": "meshy_output/20261003_114651_nutzercharakter-textur-2026-10_01a10128",
+  "output": "meshy_output/user-character-2026-10-03/character-textured-meshy-motions.glb",
+  "vertices": 9725,
+  "triangles": 12668,
+  "joints": 28,
+  "animations": [
+    "Charged_Spell_Cast",
+    "walking",
+    "running"
+  ],
+  "maxPositionError": 6.32596917737871e-7,
+  "maxUVError": 0,
+  "meshysStaticOutputNormalization": [
+    {
+      "scale": 1.17647062889177,
+      "translation": 0.0011330360043436045
+    },
+    {
+      "scale": 1.1764704201072207,
+      "translation": -1.0000000770818733
+    },
+    {
+      "scale": 1.1764706669337055,
+      "translation": 0.0021924447375829895
+    }
+  ],
+  "uvCorrespondenceVertices": 9725,
+  "sourceGeometryRigAndAnimationBinaryPreserved": true,
+  "originalNormalMapPreserved": true,
+  "generatedNormalMap": "Saved as source asset; not applied because it exposes the supplied mesh flat normals",
+  "maps": [
+    {
+      "image": 0,
+      "file": "meshy_output/user-character-2026-10-03/texture-maps/0-map.jpg",
+      "mimeType": "image/jpeg",
+      "sha256": "ef34f976bfc7871009a4d6ed0143f4c0b2807ed88a6c7621d86c891604206196"
+    },
+    {
+      "image": 1,
+      "file": "meshy_output/user-character-2026-10-03/texture-maps/1-map.jpg",
+      "mimeType": "image/jpeg",
+      "sha256": "ce490897b7515208dc2663726292d89735cdd75b6e0022d63b2d3e4c3c9288fc"
+    },
+    {
+      "image": 2,
+      "file": "meshy_output/user-character-2026-10-03/texture-maps/2-map.jpg",
+      "mimeType": "image/jpeg",
+      "sha256": "e3126b5f044537ec14cff6918baf385f0bdb13f88b8b21775e69c902460c0ca9"
+    }
+  ]
+}

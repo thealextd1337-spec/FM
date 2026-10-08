@@ -9,6 +9,7 @@ Die bisherige Sechserliga wird nicht weiterentwickelt. Neue Produktfunktionen ge
 Lies nur die für die Aufgabe relevanten Dateien:
 
 - Bei Spielregeln, Karriere, Transfers, Pokal, Auszeichnungen oder UI: `docs/product.md`.
+- Beim Flutlicht-Redesign oder dessen Integration: `docs/agentenauftraege/06-ui-redesign.md` und die dort verlinkte UI-Referenz.
 - Bei Codeänderungen, Tests, Build oder Veröffentlichung: `docs/development.md`.
 - Bei abgeschlossenen Änderungen und neuen Features: Eintrag in `docs/CHANGELOG.md` ergänzen; Format in `docs/README.md`.
 
@@ -19,3 +20,5 @@ Für künftige Änderungen gilt: Bestehende Spielstände nicht rückwirkend bere
 Spielerfähigkeiten in allen Ansichten einschließlich zugänglicher Beschriftungen nur als Farbstufen zeigen. Exakte Fähigkeitswerte und Entwicklungspunkte bleiben intern; Details stehen in `docs/product.md`.
 
 Halte diese Datei als Wegweiser kurz. Pflege feste Produktentscheidungen in `docs/product.md` und Entwicklungsregeln in `docs/development.md`.
+
+Für 3D-Modellierung, Texturen, Rigging und Animationen darfst du den vollen verfügbaren Funktionsumfang von meshy.ai nutzen, einschließlich Beratung, Generierung und Bearbeitung. Nutze dafür den Meshy-Plugin-Skill; projektspezifische Abläufe stehen in `docs/meshy-workflow.md`.

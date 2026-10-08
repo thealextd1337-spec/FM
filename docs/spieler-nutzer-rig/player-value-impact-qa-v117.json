@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-04",
+  "sourceStudy": "shot-accounting-90-v117.json",
+  "thresholdsAddedAfterExploratoryRun": true,
+  "controlledAttributeGap": 10,
+  "games": 90,
+  "mixedWins": 30,
+  "controlWins": 8,
+  "checks": [
+    {
+      "name": "Siege des stärkeren Teams",
+      "unit": "Anteil",
+      "minimum": 0.8,
+      "actual": 1,
+      "passed": true
+    },
+    {
+      "name": "Untere Wilson-95%-Grenze der Siegquote",
+      "unit": "Anteil",
+      "minimum": 0.75,
+      "actual": 0.8864866068260312,
+      "passed": true
+    },
+    {
+      "name": "Siegquotenanstieg bei unverändertem Team A gegenüber gut/gut",
+      "unit": "Prozentpunkte",
+      "minimum": 30,
+      "actual": 73.33333333333333,
+      "passed": true
+    },
+    {
+      "name": "Mittlerer Torvorsprung des stärkeren Teams",
+      "unit": "Tore/Partie",
+      "minimum": 1,
+      "actual": 2.6333333333333333,
+      "passed": true
+    },
+    {
+      "name": "Passquotenvorsprung",
+      "unit": "Prozentpunkte",
+      "minimum": 10,
+      "actual": 15.306591695320915,
+      "passed": true
+    },
+    {
+      "name": "Zweikampfquotenvorsprung",
+      "unit": "Prozentpunkte",
+      "minimum": 20,
+      "actual": 54.976303317535546,
+      "passed": true
+    },
+    {
+      "name": "Verhältnis registrierter Zielschüsse stark/schwach",
+      "unit": "Faktor",
+      "minimum": 2,
+      "actual": 9.823529411764707,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Joint influence of all nine abilities at a large gap; no isolated attribute or medium-gap proof",
+  "statisticsAccountingLimit": "All 90 live shot/keeper ledgers reconcile; scores and random draw counts reproduce the original study"
+}

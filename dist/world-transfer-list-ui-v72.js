@@ -87,7 +87,7 @@ v58State=function(){
 let v72Dialog=null,v72DialogMode=null,v72CurrentId=null,v72DialogBusy=false;
 function v72EnsureDialog(){
  if(v72Dialog?.isConnected)return v72Dialog;
- v72Dialog=document.createElement('dialog');v72Dialog.id='v72-transfer-dialog';v72Dialog.className='v72-transfer-dialog';document.body.append(v72Dialog);
+ v72Dialog=document.createElement('dialog');v72Dialog.id='v72-transfer-dialog';v72Dialog.className='v72-transfer-dialog';v72Dialog.setAttribute('aria-labelledby','v72-dialog-title');document.body.append(v72Dialog);
  v72Dialog.addEventListener('click',async event=>{
   const button=event.target.closest('button');if(!button||v72DialogBusy)return;
   if(button.dataset.v72Adjust!==undefined){const input=v72Dialog.querySelector(`#${button.dataset.v72Input}`),step=Number(input?.step)||10,min=Number(input?.min)||1;if(input){input.value=String(Math.max(min,(Number(input.value)||min)+Number(button.dataset.v72Adjust)*step));input.focus()}return}
@@ -113,7 +113,7 @@ function v72EnsureDialog(){
  v72Dialog.addEventListener('cancel',event=>{if(v72DialogMode==='result')event.preventDefault()});
  return v72Dialog;
 }
-function v72DialogShell(title,body,closable=true){return`<div class="v72-dialog-head"><h2>${title}</h2>${closable?'<button type="button" data-v72-close aria-label="Dialog schließen">×</button>':''}</div>${body}${closable?'<div class="v72-dialog-nav"><button type="button" class="menu-action" data-v72-close>Zur Transferübersicht</button></div>':''}<p class="v72-dialog-error" role="alert"></p>`}
+function v72DialogShell(title,body,closable=true){return`<div class="v72-dialog-head"><h2 id="v72-dialog-title">${title}</h2>${closable?'<button type="button" data-v72-close aria-label="Dialog schließen">×</button>':''}</div>${body}${closable?'<div class="v72-dialog-nav"><button type="button" class="menu-action" data-v72-close>Zur Transferübersicht</button></div>':''}<p class="v72-dialog-error" role="alert"></p>`}
 function v72DealProfiles(career,pid,clubId){
  const player=v66Player(career,pid),club=v66Club(career,clubId);
  return`<p class="v72-deal-profiles">${player?`<button type="button" data-v72-player-profile="${escapeHTML(pid)}" aria-label="Spielerprofil ${escapeHTML(player.name)} öffnen">${escapeHTML(player.name)}</button>`:escapeHTML(pid)} · ${club?`<button type="button" data-v72-club-profile="${escapeHTML(clubId)}" aria-label="Vereinsprofil ${escapeHTML(club.name)} öffnen">${escapeHTML(club.name)}</button>`:'Verein'}</p>`;
@@ -152,6 +152,13 @@ function v72OpenListing(career,pid){
  const willingness=v72Willingness(career,pid,career.manager.managedClubId);
  const body=`${v72DealProfiles(career,pid,club.id)}<div class="v72-dialog-facts">${listing.reason==='direct'?'':`<span>Verhandelbare Ablöse<b>${v66Credits(listing.ask)}</b></span>`}<span>Marktwert<b>${v66Credits(v66Value(player))}</b></span><span>Wechselbereitschaft<b>${v72WillingnessHTML(willingness)}</b></span></div><label>Dein Ablösegebot${v72NumberField('v72-fee',listing.ask)}</label><button type="button" class="primary" data-v72-start="${escapeHTML(pid)}">Gebot abgeben</button>`;
  const dialog=v72EnsureDialog();v72DialogMode='deal';v72CurrentId=null;dialog.innerHTML=v72DialogShell('Ablöse verhandeln',body);if(!dialog.open)dialog.showModal();
+}
+// The search action enters the same native dialog as the transfer-list action.
+function v72OpenPlayerOffer(career,pid){
+ if(!v66Owner(career,pid)){v72OpenFreeAgent(career,pid);return}
+ const item=[...v72Market(career).negotiations].reverse().find(deal=>deal.pid===pid&&deal.buyerId===career.manager.managedClubId);
+ if(item){v72RenderDeal(career,item.id);return}
+ v72OpenListing(career,pid);
 }
 function v72RenderDeal(career,id){
  const item=v72Negotiation(career,id),player=item&&v66Player(career,item.pid),seller=item&&v66Club(career,item.sellerId);if(!item)return;
@@ -216,7 +223,7 @@ v61WorldScreen.addEventListener('click',async event=>{
 });
 v61ProfileDialog.addEventListener('click',async event=>{
  const button=event.target.closest('button');if(!button||!v61CurrentCareer)return;
- if(button.dataset.v72ProfileOffer!==undefined){const pid=button.dataset.v72ProfileOffer;v61ProfileDialog.close();v61SetCareerTab('transfers');if(!v66Owner(v61CurrentCareer,pid)){v72OpenFreeAgent(v61CurrentCareer,pid);return}v66Filter.selected=pid;v61RenderCareer(v61CurrentCareer);v61WorldScreen.querySelector('#v66-offer')?.scrollIntoView({behavior:'smooth',block:'start'});return}
+ if(button.dataset.v72ProfileOffer!==undefined){const pid=button.dataset.v72ProfileOffer;v61ProfileDialog.close();v61SetCareerTab('transfers');v72OpenPlayerOffer(v61CurrentCareer,pid);return}
  if(button.dataset.v72GoSale!==undefined){v61ProfileDialog.close();v61SetCareerTab('transfers');v61WorldScreen.querySelector('#v72-own-sales')?.scrollIntoView({behavior:'smooth',block:'start'});return}
  if(button.dataset.v72ListOwn!==undefined){
   button.disabled=true;

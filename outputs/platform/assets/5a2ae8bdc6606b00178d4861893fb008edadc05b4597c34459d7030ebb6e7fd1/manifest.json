@@ -1,0 +1,1675 @@
+{
+  "schema": "d6-platform-assets/1",
+  "assetHash": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+  "source": [
+    {
+      "path": "dist/players/football-v130.glb",
+      "sha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+      "bytes": 21445448
+    },
+    {
+      "path": "dist/players/calibration-v130.json",
+      "sha256": "3c3d05ac3b7580730f3b0bb13cb63a77ddc76c82f5e0b04225a8fef6734a8305",
+      "bytes": 341831
+    },
+    {
+      "path": "dist/players/cloth-mask.png",
+      "sha256": "a12f08d37d1344f3c8428794d62660d12b044f7359de777f093d8956083e6333",
+      "bytes": 75111
+    }
+  ],
+  "outputDirectory": "outputs/platform/assets/5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+  "generator": {
+    "generator": "Khronos glTF Blender I/O v4.5.51",
+    "version": "2.0"
+  },
+  "meshes": [
+    {
+      "name": "low_poly_unwrapped",
+      "primitives": [
+        {
+          "vertices": 9725,
+          "triangles": 12668,
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2,
+            "TANGENT": 3,
+            "JOINTS_0": 4,
+            "WEIGHTS_0": 5
+          },
+          "bounds": {
+            "min": [
+              -0.8398867845535278,
+              0,
+              -0.17501996457576752
+            ],
+            "max": [
+              0.8379608988761902,
+              1.700000286102295,
+              0.1712927520275116
+            ]
+          },
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "images": [
+    {
+      "index": 0,
+      "name": null,
+      "file": "textures/image-0.png",
+      "mimeType": "image/png",
+      "bytes": 9834749,
+      "sha256": "cfd59dfe39aaff42ebe949156c6cccf78fb31999ac5414131e4904f5fc0ac843",
+      "width": 4096,
+      "height": 4096
+    },
+    {
+      "index": 1,
+      "name": null,
+      "file": "textures/image-1.jpg",
+      "mimeType": "image/jpeg",
+      "bytes": 1214077,
+      "sha256": "ce490897b7515208dc2663726292d89735cdd75b6e0022d63b2d3e4c3c9288fc",
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "index": 2,
+      "name": null,
+      "file": "textures/image-2.jpg",
+      "mimeType": "image/jpeg",
+      "bytes": 1935304,
+      "sha256": "e3126b5f044537ec14cff6918baf385f0bdb13f88b8b21775e69c902460c0ca9",
+      "width": 2048,
+      "height": 2048
+    },
+    {
+      "index": 3,
+      "name": "texture_0_normal",
+      "file": "textures/image-3.png",
+      "mimeType": "image/png",
+      "bytes": 2961306,
+      "sha256": "03c2426b8c99f6d35daee294657acc2db2cc7e029f1ef8dfdca81746cd7bec13",
+      "width": 2048,
+      "height": 2048
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "metallicFactor": 1,
+        "roughnessFactor": 1,
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1,
+          "texCoord": 0
+        }
+      },
+      "normalTexture": {
+        "index": 3,
+        "texCoord": 0,
+        "scale": 1
+      },
+      "alphaMode": "OPAQUE",
+      "doubleSided": true,
+      "name": "Doppel6_Meshy_2K"
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 1,
+      "source": 1
+    },
+    {
+      "sampler": 2,
+      "source": 2
+    },
+    {
+      "source": 3
+    }
+  ],
+  "skins": [
+    {
+      "name": "Armature",
+      "joints": [
+        {
+          "node": 27,
+          "name": "mixamorig:Hips",
+          "parent": "target_character",
+          "translation": [
+            0.0036391192115843296,
+            0.9438886642456055,
+            -0.05363420024514198
+          ],
+          "rotation": [
+            -0.020758604685179642,
+            -0.0025243155094155636,
+            -0.0025243153397447727,
+            0.9997781433872212
+          ]
+        },
+        {
+          "node": 16,
+          "name": "mixamorig:Spine",
+          "parent": "mixamorig:Hips",
+          "translation": [
+            4.656612873077393e-10,
+            0.11786365509033203,
+            9.313225746154785e-10
+          ],
+          "rotation": [
+            2.6996952229296737e-8,
+            -1.53884110315472e-10,
+            -6.981864808519587e-10,
+            0.9999999999999997
+          ]
+        },
+        {
+          "node": 15,
+          "name": "mixamorig:Spine1",
+          "parent": "mixamorig:Spine",
+          "translation": [
+            4.656612873077393e-10,
+            0.11786389350891113,
+            -1.862645149230957e-9
+          ],
+          "rotation": [
+            -1.3032814383251433e-8,
+            -2.551052702415291e-9,
+            -2.0946612222516596e-9,
+            0.9999999999999999
+          ]
+        },
+        {
+          "node": 14,
+          "name": "mixamorig:Spine2",
+          "parent": "mixamorig:Spine1",
+          "translation": [
+            0,
+            0.12143528461456299,
+            -4.6566128730773926e-9
+          ],
+          "rotation": [
+            -0.0000010864231250985891,
+            -0.0032950418778391953,
+            -0.00343476610501982,
+            0.999988672475667
+          ]
+        },
+        {
+          "node": 3,
+          "name": "mixamorig:Neck",
+          "parent": "mixamorig:Spine2",
+          "translation": [
+            0,
+            0.0850149393081665,
+            2.2351741790771484e-8
+          ],
+          "rotation": [
+            -1.3218622285648626e-7,
+            3.0498531478073422e-9,
+            -3.95616961412767e-9,
+            0.9999999999999913
+          ]
+        },
+        {
+          "node": 2,
+          "name": "mixamorig:Head",
+          "parent": "mixamorig:Neck",
+          "translation": [
+            -1.1175870895385742e-8,
+            0.06806337833404541,
+            1.862645149230957e-9
+          ],
+          "rotation": [
+            0.08992977628153094,
+            -0.03512557645138619,
+            -0.037697300497701786,
+            0.994614368864686
+          ]
+        },
+        {
+          "node": 0,
+          "name": "mixamorig:HeadTop_End",
+          "parent": "mixamorig:Head",
+          "translation": [
+            -1.4901161193847656e-8,
+            0.22976195812225342,
+            -2.9802322387695312e-8
+          ],
+          "rotation": [
+            -2.0757104124412052e-7,
+            5.6651666469063324e-8,
+            1.5064095748583913e-7,
+            0.9999999999999656
+          ]
+        },
+        {
+          "node": 1,
+          "name": "headfront",
+          "parent": "mixamorig:Head",
+          "translation": [
+            0.009582124650478363,
+            0.017308473587036133,
+            0.12067124247550964
+          ],
+          "rotation": [
+            -5.75966543501199e-8,
+            -0.7531242192372186,
+            -0.6551545637842114,
+            0.05980307643463046
+          ]
+        },
+        {
+          "node": 8,
+          "name": "mixamorig:LeftShoulder",
+          "parent": "mixamorig:Spine2",
+          "translation": [
+            0.037277787923812866,
+            0.048545002937316895,
+            -0.00013509485870599747
+          ],
+          "rotation": [
+            -0.4981579043478495,
+            -0.4804682847263999,
+            -0.49505913938954765,
+            0.5252669589977182
+          ]
+        },
+        {
+          "node": 7,
+          "name": "mixamorig:LeftArm",
+          "parent": "mixamorig:LeftShoulder",
+          "translation": [
+            4.470348358154297e-8,
+            0.14743921160697937,
+            1.1920928955078125e-7
+          ],
+          "rotation": [
+            -0.08289233163447277,
+            0.7756336972907456,
+            -0.112666715432761,
+            0.6154895939143749
+          ]
+        },
+        {
+          "node": 6,
+          "name": "mixamorig:LeftForeArm",
+          "parent": "mixamorig:LeftArm",
+          "translation": [
+            0,
+            0.22527676820755005,
+            -2.9802322387695312e-8
+          ],
+          "rotation": [
+            -0.005656148272483997,
+            0.17369165555187036,
+            0.14072268732145693,
+            0.9746775579910505
+          ]
+        },
+        {
+          "node": 5,
+          "name": "mixamorig:LeftHand",
+          "parent": "mixamorig:LeftForeArm",
+          "translation": [
+            0,
+            0.23539042472839355,
+            -1.1920928955078125e-7
+          ],
+          "rotation": [
+            -0.13392593954392565,
+            0.13028946220141074,
+            0.024067136786559407,
+            0.9820943293204788
+          ]
+        },
+        {
+          "node": 4,
+          "name": "mixamorig:LeftHandMiddle4",
+          "parent": "mixamorig:LeftHand",
+          "translation": [
+            1.1920928955078125e-7,
+            0.11750072240829468,
+            1.7881393432617188e-7
+          ],
+          "rotation": [
+            3.0320114602665786e-7,
+            -0.8935319856715018,
+            9.932241886489578e-7,
+            0.4489995440764553
+          ]
+        },
+        {
+          "node": 13,
+          "name": "mixamorig:RightShoulder",
+          "parent": "mixamorig:Spine2",
+          "translation": [
+            -0.03827138990163803,
+            0.047661542892456055,
+            0.00013872142881155014
+          ],
+          "rotation": [
+            -0.4968242218848143,
+            0.4818471177141956,
+            0.508468023979671,
+            0.5122980736732081
+          ]
+        },
+        {
+          "node": 12,
+          "name": "mixamorig:RightArm",
+          "parent": "mixamorig:RightShoulder",
+          "translation": [
+            -5.21540641784668e-8,
+            0.15493939816951752,
+            2.384185791015625e-7
+          ],
+          "rotation": [
+            -0.08755232921245504,
+            -0.7679093180989972,
+            0.12131277083243967,
+            0.6228427413554428
+          ]
+        },
+        {
+          "node": 11,
+          "name": "mixamorig:RightForeArm",
+          "parent": "mixamorig:RightArm",
+          "translation": [
+            0,
+            0.21111823618412018,
+            -2.9802322387695312e-8
+          ],
+          "rotation": [
+            -0.04214970240825593,
+            -0.19582712214484144,
+            -0.15278988020236858,
+            0.9677450042894103
+          ]
+        },
+        {
+          "node": 10,
+          "name": "mixamorig:RightHand",
+          "parent": "mixamorig:RightForeArm",
+          "translation": [
+            -3.5762786865234375e-7,
+            0.2353249490261078,
+            0
+          ],
+          "rotation": [
+            -0.004956782582745082,
+            -0.06337991811695298,
+            -0.03841901357118233,
+            0.9972373818114387
+          ]
+        },
+        {
+          "node": 9,
+          "name": "mixamorig:RightHandMiddle4",
+          "parent": "mixamorig:RightHand",
+          "translation": [
+            2.384185791015625e-7,
+            0.1615878939628601,
+            0
+          ],
+          "rotation": [
+            -1.6707205437817272e-7,
+            0.8935322184659117,
+            3.269466482227407e-7,
+            0.44899908080446166
+          ]
+        },
+        {
+          "node": 21,
+          "name": "mixamorig:LeftUpLeg",
+          "parent": "mixamorig:Hips",
+          "translation": [
+            0.0978173092007637,
+            -0.08274728059768677,
+            -0.003941033035516739
+          ],
+          "rotation": [
+            0.9933172729781972,
+            0.0740316055806533,
+            0.07204986509195224,
+            0.051467791078886646
+          ]
+        },
+        {
+          "node": 20,
+          "name": "mixamorig:LeftLeg",
+          "parent": "mixamorig:LeftUpLeg",
+          "translation": [
+            1.4901161193847656e-8,
+            0.34047776460647583,
+            -1.1175870895385742e-8
+          ],
+          "rotation": [
+            0.11686616477006098,
+            -0.018512232758828056,
+            0.031994132720997465,
+            0.9924595569803594
+          ]
+        },
+        {
+          "node": 19,
+          "name": "mixamorig:LeftFoot",
+          "parent": "mixamorig:LeftLeg",
+          "translation": [
+            0,
+            0.3907014727592468,
+            0
+          ],
+          "rotation": [
+            -0.3901892359562529,
+            0.09148757271471249,
+            -0.13930909376111067,
+            0.9055249088667323
+          ]
+        },
+        {
+          "node": 18,
+          "name": "mixamorig:LeftToeBase",
+          "parent": "mixamorig:LeftFoot",
+          "translation": [
+            -1.4901161193847656e-8,
+            0.15266379714012146,
+            -1.30385160446167e-8
+          ],
+          "rotation": [
+            0.10536106186842632,
+            0.8843474064088279,
+            -0.36559881360326596,
+            0.2704925487177447
+          ]
+        },
+        {
+          "node": 17,
+          "name": "mixamorig:LeftToe_End",
+          "parent": "mixamorig:LeftToeBase",
+          "translation": [
+            -2.9802322387695312e-8,
+            0.0789102092385292,
+            7.450580596923828e-9
+          ],
+          "rotation": [
+            0.01653653784622544,
+            0.1387735453834751,
+            -0.9888174630967734,
+            0.052042969675278584
+          ]
+        },
+        {
+          "node": 26,
+          "name": "mixamorig:RightUpLeg",
+          "parent": "mixamorig:Hips",
+          "translation": [
+            -0.09466063976287842,
+            -0.08300334215164185,
+            -0.0029591266065835953
+          ],
+          "rotation": [
+            0.9934798439998208,
+            -0.06723961415893208,
+            -0.07521392446570718,
+            0.053098958749835425
+          ]
+        },
+        {
+          "node": 25,
+          "name": "mixamorig:RightLeg",
+          "parent": "mixamorig:RightUpLeg",
+          "translation": [
+            -2.9802322387695312e-8,
+            0.3374174237251282,
+            0
+          ],
+          "rotation": [
+            0.14864649140232275,
+            0.010218094223433054,
+            -0.028740267476844043,
+            0.9884198541963733
+          ]
+        },
+        {
+          "node": 24,
+          "name": "mixamorig:RightFoot",
+          "parent": "mixamorig:RightLeg",
+          "translation": [
+            -1.4901161193847656e-8,
+            0.39550304412841797,
+            -2.2351741790771484e-8
+          ],
+          "rotation": [
+            -0.43602507155927767,
+            -0.09570114361860507,
+            0.16095807732002754,
+            0.8802362895423353
+          ]
+        },
+        {
+          "node": 23,
+          "name": "mixamorig:RightToeBase",
+          "parent": "mixamorig:RightFoot",
+          "translation": [
+            0,
+            0.16058439016342163,
+            -1.1175870895385742e-8
+          ],
+          "rotation": [
+            0.09957513400185018,
+            -0.8889412792489138,
+            0.34154199312594363,
+            0.28847402251741183
+          ]
+        },
+        {
+          "node": 22,
+          "name": "mixamorig:RightToe_End",
+          "parent": "mixamorig:RightToeBase",
+          "translation": [
+            2.9802322387695312e-8,
+            0.09330182522535324,
+            0
+          ],
+          "rotation": [
+            0.01365458603589505,
+            -0.12193110564565059,
+            0.9920086163929784,
+            0.02941534902574048
+          ]
+        }
+      ],
+      "inverseBindMatrices": 75
+    }
+  ],
+  "nodes": [
+    {
+      "name": "mixamorig:HeadTop_End",
+      "rotation": [
+        -2.0757104124412052e-7,
+        5.6651666469063324e-8,
+        1.5064095748583913e-7,
+        0.9999999999999656
+      ],
+      "translation": [
+        -1.4901161193847656e-8,
+        0.22976195812225342,
+        -2.9802322387695312e-8
+      ]
+    },
+    {
+      "name": "headfront",
+      "rotation": [
+        -5.75966543501199e-8,
+        -0.7531242192372186,
+        -0.6551545637842114,
+        0.05980307643463046
+      ],
+      "translation": [
+        0.009582124650478363,
+        0.017308473587036133,
+        0.12067124247550964
+      ]
+    },
+    {
+      "children": [
+        0,
+        1
+      ],
+      "name": "mixamorig:Head",
+      "rotation": [
+        0.08992977628153094,
+        -0.03512557645138619,
+        -0.037697300497701786,
+        0.994614368864686
+      ],
+      "translation": [
+        -1.1175870895385742e-8,
+        0.06806337833404541,
+        1.862645149230957e-9
+      ]
+    },
+    {
+      "children": [
+        2
+      ],
+      "name": "mixamorig:Neck",
+      "rotation": [
+        -1.3218622285648626e-7,
+        3.0498531478073422e-9,
+        -3.95616961412767e-9,
+        0.9999999999999913
+      ],
+      "translation": [
+        0,
+        0.0850149393081665,
+        2.2351741790771484e-8
+      ]
+    },
+    {
+      "name": "mixamorig:LeftHandMiddle4",
+      "rotation": [
+        3.0320114602665786e-7,
+        -0.8935319856715018,
+        9.932241886489578e-7,
+        0.4489995440764553
+      ],
+      "translation": [
+        1.1920928955078125e-7,
+        0.11750072240829468,
+        1.7881393432617188e-7
+      ]
+    },
+    {
+      "children": [
+        4
+      ],
+      "name": "mixamorig:LeftHand",
+      "rotation": [
+        -0.13392593954392565,
+        0.13028946220141074,
+        0.024067136786559407,
+        0.9820943293204788
+      ],
+      "translation": [
+        0,
+        0.23539042472839355,
+        -1.1920928955078125e-7
+      ]
+    },
+    {
+      "children": [
+        5
+      ],
+      "name": "mixamorig:LeftForeArm",
+      "rotation": [
+        -0.005656148272483997,
+        0.17369165555187036,
+        0.14072268732145693,
+        0.9746775579910505
+      ],
+      "translation": [
+        0,
+        0.22527676820755005,
+        -2.9802322387695312e-8
+      ]
+    },
+    {
+      "children": [
+        6
+      ],
+      "name": "mixamorig:LeftArm",
+      "rotation": [
+        -0.08289233163447277,
+        0.7756336972907456,
+        -0.112666715432761,
+        0.6154895939143749
+      ],
+      "translation": [
+        4.470348358154297e-8,
+        0.14743921160697937,
+        1.1920928955078125e-7
+      ]
+    },
+    {
+      "children": [
+        7
+      ],
+      "name": "mixamorig:LeftShoulder",
+      "rotation": [
+        -0.4981579043478495,
+        -0.4804682847263999,
+        -0.49505913938954765,
+        0.5252669589977182
+      ],
+      "translation": [
+        0.037277787923812866,
+        0.048545002937316895,
+        -0.00013509485870599747
+      ]
+    },
+    {
+      "name": "mixamorig:RightHandMiddle4",
+      "rotation": [
+        -1.6707205437817272e-7,
+        0.8935322184659117,
+        3.269466482227407e-7,
+        0.44899908080446166
+      ],
+      "translation": [
+        2.384185791015625e-7,
+        0.1615878939628601,
+        0
+      ]
+    },
+    {
+      "children": [
+        9
+      ],
+      "name": "mixamorig:RightHand",
+      "rotation": [
+        -0.004956782582745082,
+        -0.06337991811695298,
+        -0.03841901357118233,
+        0.9972373818114387
+      ],
+      "translation": [
+        -3.5762786865234375e-7,
+        0.2353249490261078,
+        0
+      ]
+    },
+    {
+      "children": [
+        10
+      ],
+      "name": "mixamorig:RightForeArm",
+      "rotation": [
+        -0.04214970240825593,
+        -0.19582712214484144,
+        -0.15278988020236858,
+        0.9677450042894103
+      ],
+      "translation": [
+        0,
+        0.21111823618412018,
+        -2.9802322387695312e-8
+      ]
+    },
+    {
+      "children": [
+        11
+      ],
+      "name": "mixamorig:RightArm",
+      "rotation": [
+        -0.08755232921245504,
+        -0.7679093180989972,
+        0.12131277083243967,
+        0.6228427413554428
+      ],
+      "translation": [
+        -5.21540641784668e-8,
+        0.15493939816951752,
+        2.384185791015625e-7
+      ]
+    },
+    {
+      "children": [
+        12
+      ],
+      "name": "mixamorig:RightShoulder",
+      "rotation": [
+        -0.4968242218848143,
+        0.4818471177141956,
+        0.508468023979671,
+        0.5122980736732081
+      ],
+      "translation": [
+        -0.03827138990163803,
+        0.047661542892456055,
+        0.00013872142881155014
+      ]
+    },
+    {
+      "children": [
+        3,
+        8,
+        13
+      ],
+      "name": "mixamorig:Spine2",
+      "rotation": [
+        -0.0000010864231250985891,
+        -0.0032950418778391953,
+        -0.00343476610501982,
+        0.999988672475667
+      ],
+      "translation": [
+        0,
+        0.12143528461456299,
+        -4.6566128730773926e-9
+      ]
+    },
+    {
+      "children": [
+        14
+      ],
+      "name": "mixamorig:Spine1",
+      "rotation": [
+        -1.3032814383251433e-8,
+        -2.551052702415291e-9,
+        -2.0946612222516596e-9,
+        0.9999999999999999
+      ],
+      "translation": [
+        4.656612873077393e-10,
+        0.11786389350891113,
+        -1.862645149230957e-9
+      ]
+    },
+    {
+      "children": [
+        15
+      ],
+      "name": "mixamorig:Spine",
+      "rotation": [
+        2.6996952229296737e-8,
+        -1.53884110315472e-10,
+        -6.981864808519587e-10,
+        0.9999999999999997
+      ],
+      "translation": [
+        4.656612873077393e-10,
+        0.11786365509033203,
+        9.313225746154785e-10
+      ]
+    },
+    {
+      "name": "mixamorig:LeftToe_End",
+      "rotation": [
+        0.01653653784622544,
+        0.1387735453834751,
+        -0.9888174630967734,
+        0.052042969675278584
+      ],
+      "translation": [
+        -2.9802322387695312e-8,
+        0.0789102092385292,
+        7.450580596923828e-9
+      ]
+    },
+    {
+      "children": [
+        17
+      ],
+      "name": "mixamorig:LeftToeBase",
+      "rotation": [
+        0.10536106186842632,
+        0.8843474064088279,
+        -0.36559881360326596,
+        0.2704925487177447
+      ],
+      "translation": [
+        -1.4901161193847656e-8,
+        0.15266379714012146,
+        -1.30385160446167e-8
+      ]
+    },
+    {
+      "children": [
+        18
+      ],
+      "name": "mixamorig:LeftFoot",
+      "rotation": [
+        -0.3901892359562529,
+        0.09148757271471249,
+        -0.13930909376111067,
+        0.9055249088667323
+      ],
+      "translation": [
+        0,
+        0.3907014727592468,
+        0
+      ]
+    },
+    {
+      "children": [
+        19
+      ],
+      "name": "mixamorig:LeftLeg",
+      "rotation": [
+        0.11686616477006098,
+        -0.018512232758828056,
+        0.031994132720997465,
+        0.9924595569803594
+      ],
+      "translation": [
+        1.4901161193847656e-8,
+        0.34047776460647583,
+        -1.1175870895385742e-8
+      ]
+    },
+    {
+      "children": [
+        20
+      ],
+      "name": "mixamorig:LeftUpLeg",
+      "rotation": [
+        0.9933172729781972,
+        0.0740316055806533,
+        0.07204986509195224,
+        0.051467791078886646
+      ],
+      "translation": [
+        0.0978173092007637,
+        -0.08274728059768677,
+        -0.003941033035516739
+      ]
+    },
+    {
+      "name": "mixamorig:RightToe_End",
+      "rotation": [
+        0.01365458603589505,
+        -0.12193110564565059,
+        0.9920086163929784,
+        0.02941534902574048
+      ],
+      "translation": [
+        2.9802322387695312e-8,
+        0.09330182522535324,
+        0
+      ]
+    },
+    {
+      "children": [
+        22
+      ],
+      "name": "mixamorig:RightToeBase",
+      "rotation": [
+        0.09957513400185018,
+        -0.8889412792489138,
+        0.34154199312594363,
+        0.28847402251741183
+      ],
+      "translation": [
+        0,
+        0.16058439016342163,
+        -1.1175870895385742e-8
+      ]
+    },
+    {
+      "children": [
+        23
+      ],
+      "name": "mixamorig:RightFoot",
+      "rotation": [
+        -0.43602507155927767,
+        -0.09570114361860507,
+        0.16095807732002754,
+        0.8802362895423353
+      ],
+      "translation": [
+        -1.4901161193847656e-8,
+        0.39550304412841797,
+        -2.2351741790771484e-8
+      ]
+    },
+    {
+      "children": [
+        24
+      ],
+      "name": "mixamorig:RightLeg",
+      "rotation": [
+        0.14864649140232275,
+        0.010218094223433054,
+        -0.028740267476844043,
+        0.9884198541963733
+      ],
+      "translation": [
+        -2.9802322387695312e-8,
+        0.3374174237251282,
+        0
+      ]
+    },
+    {
+      "children": [
+        25
+      ],
+      "name": "mixamorig:RightUpLeg",
+      "rotation": [
+        0.9934798439998208,
+        -0.06723961415893208,
+        -0.07521392446570718,
+        0.053098958749835425
+      ],
+      "translation": [
+        -0.09466063976287842,
+        -0.08300334215164185,
+        -0.0029591266065835953
+      ]
+    },
+    {
+      "children": [
+        16,
+        21,
+        26
+      ],
+      "name": "mixamorig:Hips",
+      "rotation": [
+        -0.020758604685179642,
+        -0.0025243155094155636,
+        -0.0025243153397447727,
+        0.9997781433872212
+      ],
+      "translation": [
+        0.0036391192115843296,
+        0.9438886642456055,
+        -0.05363420024514198
+      ]
+    },
+    {
+      "mesh": 0,
+      "name": "low_poly_unwrapped",
+      "skin": 0
+    },
+    {
+      "children": [
+        28,
+        27
+      ],
+      "name": "target_character"
+    }
+  ],
+  "clips": [
+    {
+      "name": "Charged_Spell_Cast",
+      "start": 0,
+      "duration": 2.7083332538604736,
+      "channels": 56,
+      "calibrated": false,
+      "calibration": null
+    },
+    {
+      "name": "walking",
+      "start": 0,
+      "duration": 1.0333333015441895,
+      "channels": 66,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1.0333333015441895,
+        "phaseOffset": 0.20833333333333334,
+        "nativeSpeed": 2.3266451855878887,
+        "stride": 2.4041999511454266
+      }
+    },
+    {
+      "name": "running",
+      "start": 0,
+      "duration": 0.6333333253860474,
+      "channels": 66,
+      "calibrated": true,
+      "calibration": {
+        "duration": 0.6333333253860474,
+        "phaseOffset": 0.21666666666666667,
+        "nativeSpeed": 8.032386096850757,
+        "stride": 5.087177797503144
+      }
+    },
+    {
+      "name": "run_fast4",
+      "start": 0,
+      "duration": 0.6666666865348816,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 0.6666666865348816,
+        "phaseOffset": 0.8583333333333333,
+        "nativeSpeed": 6.438534691326066,
+        "stride": 4.292356588806236
+      }
+    },
+    {
+      "name": "run_fast6",
+      "start": 0,
+      "duration": 0.8333333134651184,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 0.8333333134651184,
+        "phaseOffset": 0.20833333333333334,
+        "nativeSpeed": 3.1296140591368258,
+        "stride": 2.60801165376751
+      }
+    },
+    {
+      "name": "sprint_forward",
+      "start": 0,
+      "duration": 0.5666666626930237,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 0.5666666626930237,
+        "phaseOffset": 0.24166666666666667,
+        "nativeSpeed": 6.608125752042197,
+        "stride": 3.744604566565579
+      }
+    },
+    {
+      "name": "celebrate_fist",
+      "start": 0,
+      "duration": 1.5,
+      "channels": 72,
+      "calibrated": false,
+      "calibration": null
+    },
+    {
+      "name": "celebrate_arms",
+      "start": 0,
+      "duration": 1.8333333730697632,
+      "channels": 72,
+      "calibrated": false,
+      "calibration": null
+    },
+    {
+      "name": "celebrate_victory",
+      "start": 0,
+      "duration": 9.333333015441895,
+      "channels": 72,
+      "calibrated": false,
+      "calibration": null
+    },
+    {
+      "name": "idle_meshy",
+      "start": 0,
+      "duration": 4,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 4,
+        "phaseOffset": 0.6833333333333333,
+        "nativeSpeed": 0.1532865430905832,
+        "stride": 0.6131461723623328
+      }
+    },
+    {
+      "name": "brake_meshy",
+      "start": 0,
+      "duration": 1.9666666984558105,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1.9666666984558105,
+        "phaseOffset": 0.06666666666666667,
+        "nativeSpeed": 1.0048360940487566,
+        "stride": 1.9761776835721006
+      }
+    },
+    {
+      "name": "turn_run_left",
+      "start": 0,
+      "duration": 1.5666667222976685,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1.5666667222976685,
+        "phaseOffset": 0.008333333333333333,
+        "nativeSpeed": 2.9848520785189367,
+        "stride": 4.676268422396646
+      }
+    },
+    {
+      "name": "turn_run_right",
+      "start": 0,
+      "duration": 1.5666667222976685,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1.5666667222976685,
+        "phaseOffset": 0.4666666666666667,
+        "nativeSpeed": 2.8177547863266192,
+        "stride": 4.4144826553328915
+      }
+    },
+    {
+      "name": "turn_sharp_right",
+      "start": 0,
+      "duration": 1.1666666269302368,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1.1666666269302368,
+        "phaseOffset": 0.075,
+        "nativeSpeed": 2.9812857887332123,
+        "stride": 3.4781666350564273
+      }
+    },
+    {
+      "name": "turn_walk_left",
+      "start": 0,
+      "duration": 1.9666666984558105,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1.9666666984558105,
+        "phaseOffset": 0.30833333333333335,
+        "nativeSpeed": 1.6162646517109296,
+        "stride": 3.1786538664111643
+      }
+    },
+    {
+      "name": "turn_walk_right",
+      "start": 0,
+      "duration": 2.1666667461395264,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 2.1666667461395264,
+        "phaseOffset": 0.19166666666666668,
+        "nativeSpeed": 1.7338786441117473,
+        "stride": 3.756737200038413
+      }
+    },
+    {
+      "name": "turn_idle_left",
+      "start": 0,
+      "duration": 1,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1,
+        "phaseOffset": 0.925,
+        "nativeSpeed": 0.5005332723106507,
+        "stride": 0.5005332723106507
+      }
+    },
+    {
+      "name": "turn_idle_right",
+      "start": 0,
+      "duration": 1.0666667222976685,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1.0666667222976685,
+        "phaseOffset": 0.7833333333333333,
+        "nativeSpeed": 0.4238831476445686,
+        "stride": 0.45214204773525063
+      }
+    },
+    {
+      "name": "back_walk",
+      "start": 0,
+      "duration": 0.8666666746139526,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 0.8666666746139526,
+        "phaseOffset": 0.3333333333333333,
+        "nativeSpeed": 1.8750898596565417,
+        "stride": 1.6250778932708783
+      }
+    },
+    {
+      "name": "back_left",
+      "start": 0,
+      "duration": 0.800000011920929,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 0.800000011920929,
+        "phaseOffset": 0.7666666666666667,
+        "nativeSpeed": 3.0284931085866442,
+        "stride": 2.4227945229717665
+      }
+    },
+    {
+      "name": "back_right",
+      "start": 0,
+      "duration": 0.6000000238418579,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 0.6000000238418579,
+        "phaseOffset": 0.775,
+        "nativeSpeed": 3.373523965317213,
+        "stride": 2.0241144596214067
+      }
+    },
+    {
+      "name": "back_step_meshy",
+      "start": 0,
+      "duration": 0.8666666746139526,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 0.8666666746139526,
+        "phaseOffset": 1,
+        "nativeSpeed": 0.7988813058649397,
+        "stride": 0.6923638047652192
+      }
+    },
+    {
+      "name": "idle_relaxed",
+      "start": 0,
+      "duration": 1.8666666746139526,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1.8666666746139526,
+        "phaseOffset": 0,
+        "nativeSpeed": 0,
+        "stride": 0
+      }
+    },
+    {
+      "name": "idle_ready",
+      "start": 0,
+      "duration": 4.266666889190674,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 4.266666889190674,
+        "phaseOffset": 0.9,
+        "nativeSpeed": 0.14458269827942088,
+        "stride": 0.6168862114986505
+      }
+    },
+    {
+      "name": "shot_meshy",
+      "start": 0,
+      "duration": 1.6333333253860474,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1.6333333253860474,
+        "phaseOffset": 0.125,
+        "nativeSpeed": 0.5024468029302016,
+        "stride": 0.8206631074595742
+      }
+    },
+    {
+      "name": "keeper_low_meshy",
+      "start": 0,
+      "duration": 7.166666507720947,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 7.166666507720947,
+        "phaseOffset": 0.24166666666666667,
+        "nativeSpeed": 0.08461959299369362,
+        "stride": 0.6064404030048822
+      }
+    },
+    {
+      "name": "keeper_high_meshy",
+      "start": 0,
+      "duration": 4.133333206176758,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 4.133333206176758,
+        "phaseOffset": 0.45,
+        "nativeSpeed": 0.4983456903761594,
+        "stride": 2.059828790186861
+      }
+    },
+    {
+      "name": "keeper_dive_meshy",
+      "start": 0,
+      "duration": 2.6666667461395264,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 2.6666667461395264,
+        "phaseOffset": 0.43333333333333335,
+        "nativeSpeed": 0.36239933955649134,
+        "stride": 0.9663982676182221
+      }
+    },
+    {
+      "name": "keeper_rise_meshy",
+      "start": 0,
+      "duration": 8.233333587646484,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 8.233333587646484,
+        "phaseOffset": 0.6666666666666666,
+        "nativeSpeed": 0.17167641273674816,
+        "stride": 1.4134691751921293
+      }
+    },
+    {
+      "name": "foul_fall_meshy",
+      "start": 0,
+      "duration": 2.2666666507720947,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 2.2666666507720947,
+        "phaseOffset": 0.8416666666666667,
+        "nativeSpeed": 0.6553451911115793,
+        "stride": 1.4854490894364818
+      }
+    },
+    {
+      "name": "foul_stumble_meshy",
+      "start": 0,
+      "duration": 11.366666793823242,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 11.366666793823242,
+        "phaseOffset": 0.675,
+        "nativeSpeed": 0.02721878766639021,
+        "stride": 0.30938688993568325
+      }
+    },
+    {
+      "name": "idle_stand_meshy",
+      "start": 0,
+      "duration": 1,
+      "channels": 72,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1,
+        "phaseOffset": 0,
+        "nativeSpeed": 0,
+        "stride": 0
+      }
+    },
+    {
+      "name": "keeper_shuffle_meshy",
+      "start": 0,
+      "duration": 3.966666666666667,
+      "channels": 29,
+      "calibrated": true,
+      "calibration": {
+        "duration": 3.9666666984558105,
+        "phaseOffset": 0.35,
+        "nativeSpeed": 0.27125716375724873,
+        "stride": 1.075986758193453
+      }
+    },
+    {
+      "name": "keeper_ready_meshy",
+      "start": 0,
+      "duration": 1.1,
+      "channels": 29,
+      "calibrated": true,
+      "calibration": {
+        "duration": 1.100000023841858,
+        "phaseOffset": 0,
+        "nativeSpeed": 0.24446856099156813,
+        "stride": 0.26891542291930964
+      }
+    }
+  ],
+  "calibration": {
+    "scale": 1.45,
+    "rootScale": 1.12,
+    "ground": 0.105,
+    "soles": [
+      {
+        "side": "Left",
+        "joint": 20,
+        "center": [
+          -0.041958767322923966,
+          0.11055783087542556,
+          0.0670391683979021
+        ],
+        "normal": [
+          0.4013836729822355,
+          -0.7036314094728967,
+          -0.5863394807331966
+        ],
+        "sampleVertices": [
+          7643,
+          7657,
+          7677,
+          7764,
+          7803,
+          7851,
+          7865,
+          7879,
+          7893,
+          7907,
+          7921,
+          7935,
+          7949,
+          7963,
+          7977,
+          7991,
+          8005,
+          8019,
+          8033,
+          8047,
+          8061,
+          8075,
+          8089,
+          8103,
+          8117,
+          8131,
+          8145,
+          8159,
+          8174,
+          8234,
+          8251,
+          8265,
+          8279,
+          8293,
+          8307,
+          8321,
+          8335,
+          8349,
+          8363,
+          8377,
+          8391,
+          8411,
+          8446,
+          8460,
+          8474,
+          8488,
+          8502,
+          8516,
+          8530,
+          8544,
+          8443,
+          8057,
+          8518,
+          8204,
+          8545,
+          7649
+        ],
+        "vertexCount": 696
+      },
+      {
+        "side": "Right",
+        "joint": 25,
+        "center": [
+          0.04620279390448264,
+          0.11630133374088472,
+          0.06397441110162626
+        ],
+        "normal": [
+          -0.4448515444334679,
+          -0.6646712972903384,
+          -0.6002659160518252
+        ],
+        "sampleVertices": [
+          8907,
+          8949,
+          8965,
+          9041,
+          9054,
+          9067,
+          9082,
+          9095,
+          9108,
+          9122,
+          9135,
+          9148,
+          9161,
+          9174,
+          9188,
+          9201,
+          9215,
+          9230,
+          9244,
+          9257,
+          9270,
+          9283,
+          9296,
+          9309,
+          9322,
+          9335,
+          9348,
+          9361,
+          9390,
+          9425,
+          9441,
+          9454,
+          9467,
+          9480,
+          9493,
+          9506,
+          9519,
+          9532,
+          9545,
+          9558,
+          9571,
+          9584,
+          9597,
+          9610,
+          9623,
+          9636,
+          9653,
+          9669,
+          9686,
+          9702,
+          9716,
+          9192,
+          9722,
+          8932,
+          9376,
+          9659
+        ],
+        "vertexCount": 659
+      }
+    ],
+    "clipCount": 30
+  },
+  "contract": {
+    "units": "metres",
+    "sourceUp": "+Y",
+    "sourceForward": "+Z",
+    "runtimeScale": 1.45,
+    "runtimeYOffset": 0.08,
+    "rootMotion": "Simulation owns player position and facing. Export retains source joint motion; renderer must not apply root travel to gameplay.",
+    "geometry": "Full master, no decimation",
+    "textures": "Original embedded PNG bytes; shared between instances",
+    "skin": "One independent skeleton/animation state per instance; shared mesh/material textures",
+    "unity": "FBX Generic rig, animation compression Off for comparison, root motion disabled; separate URP material adapter required",
+    "productionExtras": "Club colours, numbers, gloves and contact IK are renderer-generated and are not embedded in the GLB."
+  },
+  "cost": {
+    "newMeshyTasks": 0,
+    "newCredits": 0
+  }
+}

@@ -1,0 +1,18 @@
+Doppel 6 – vollständige Neukonzeption der Figuren
+
+Aktuelle Konzepttafel: Neukonzept-2026-10-01/athlet-konzept.png
+Gestaltungsbrief: Neukonzept-2026-10-01/README.md
+Aktueller bekleideter Entwurf: Neukonzept-2026-10-01/FM-Athlet-Fussballkleidung.blend
+Graukörper: Neukonzept-2026-10-01/FM-Athlet-Graukoerper.blend
+Blender-Referenzdatei: Neukonzept-2026-10-01/FM-Neukonzept-Referenz.blend
+Prüfprotokoll: Neukonzept-2026-10-01/fussballer-dateipruefung.json
+
+Der bekleidete Entwurf enthält Körper, Kopf, Haare, Polotrikot, Shorts, Stutzen und Fußballschuhe.
+Eine neutrale Figur und eine statische Ballpose sind enthalten. Fünf echte Renderansichten liegen daneben.
+Produktionsrig, Bewegungsclips und mobile Optimierung stehen aus.
+Die Projekte wurden im installierten Blender in einem separaten Hintergrundprozess erzeugt.
+
+Die bisherigen Figuren, zuletzt FM-Athlet-Entwurf.blend, sind vom Nutzer verworfen.
+Die alte Superhelden-Körperbasis wird für den neuen Modellbau nicht weiterverformt.
+Frühere Projekte und ihre Quellen bleiben als Verlauf erhalten.
+Nutzerfreigabe des neuen Konzepts steht aus; keine neue Spielveröffentlichung.

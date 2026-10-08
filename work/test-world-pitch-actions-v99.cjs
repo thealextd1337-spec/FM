@@ -24,8 +24,10 @@ context.onTarget=false;shooter.stats.shots=0;context.v55Shoot(shooter);current.f
 assert(ballView(current).elevation>2.6,'off-target high shot clears crossbar');assert(Math.abs(ballView(current).x-.5)<.1,'high miss passes above goal mouth');
 current.flight.done();assert.equal(keeper.stats.saves,1,'miss never creates a save');assert(ballView(current).elevation>2.6,'miss continues beyond the goal');context.step(.78,1.6);assert.equal(ballView(current),null);
 shooter.stats.shots=2;context.v55Shoot(shooter);current.flight.progress=1;assert.equal(ballView(current).x,.8,'wide miss retains side of goal');current.flight.done();
-current.throwIn={taker:shooter,ready:.3,spot:{x:.05,y:.3}};
-assert.equal(pose(current,shooter).holding,true);assert.equal(ballView(current).elevation,2.62);
+current.throwIn={taker:shooter,ready:.4,spot:{x:.05,y:.3}};
+const pickup=[];for(const ready of [0,.05,.15,.25,.35]){current.throwIn.ready=ready;pickup.push(context.v115ThrowHold(current).elevation)}
+assert.equal(pickup[0],.29);assert.equal(pickup.at(-1),3.04);assert(pickup.every((height,i)=>i===0||height>pickup[i-1]),'ball rises continuously during pickup');current.throwIn.ready=.4;
+assert.equal(pose(current,shooter).holding,true);assert.equal(ballView(current).elevation,3.04);
 context.v55ThrowStep();assert.equal(pose(current,shooter).holding,false);current.flight.progress=.5;assert(ballView(current).elevation>2,'throw flies from overhead');current.flight.progress=1;assert(Math.abs(ballView(current).elevation-.29)<1e-9,'throw lands at receiver');
 current.flight.done();context.step(.78,.4);assert.equal(pose(current,shooter),null);
 context.v50Goal();context.v65ShowSwapInfo({},['A']);assert(banner.hidden);context.v65ShowSwapInfo({},['B']);context.step(.78,2);assert(banner.hidden,'swaps wait throughout goal banner');context.step(.78,2.1);assert.equal(banner.innerHTML,'AB');assert.equal(banner.hidden,false);assert.deepEqual(calls.slice(-2),['goal','swap']);
@@ -61,6 +63,6 @@ context.v55GroundPass(keeper,{x:.4,y:.2,t:1,pid:'def'});assert.equal(pose(curren
 const kickStart=ballView(current);current.flight.progress=.4;assert.notEqual(ballView(current).y,kickStart.y,'ball starts at foot and moves to actual pass target');
 context.running=false;context.step(0,.2);assert.equal(pose(current,keeper).progress,0,'paused kick does not move');
 context.running=true;context.step(0,.2);assert(pose(current,keeper).progress>0);const followProgress=pose(current,keeper).progress;current.flight.done();assert.equal(pose(current,keeper).progress,followProgress,'pass reception never restarts kicking animation');context.step(0,.3);assert.equal(pose(current,keeper),null,'follow-through finishes');
-const duration=vm.runInContext('v101ShotDuration',context);assert(duration({x:.5,y:.2},{x:.5,y:.035},.48)<.3,'near shot reaches goal with stronger pace');context.v65WorldActive=false;assert.equal(duration({x:.5,y:.2},{x:.5,y:.035},.48),.48,'legacy duration unchanged');
+const duration=vm.runInContext('v101ShotDuration',context);const near=duration({x:.5,y:.2},{x:.5,y:.035},.48);assert(Math.abs((.165*68/(.965-.035))/(near/.78)-27)<1e-8,'shot respects the 27 m/s pace');assert(duration({x:.5,y:.2},{x:.5,y:.035},.48,'header')>near,'header travels more slowly than a shot');context.v65WorldActive=false;assert.equal(duration({x:.5,y:.2},{x:.5,y:.035},.48),.48,'legacy duration unchanged');
 const goalTravel=vm.runInContext('v101GoalTravel',context),goalBall=vm.runInContext('v101GoalBall',context),sideHit=goalTravel({shooter,flight:{x:.08,y:.06,duration:.48},target:{x:.56,y:.035},startHeight:.29,endHeight:1.35});assert.equal(sideHit.hit,'side','angled shot meets side net first');assert(goalBall(sideHit,sideHit.impact+.02).x<goalBall(sideHit,sideHit.impact).x,'side net reflects sideways velocity after impact');
 console.log('Standing goalkeeper, backswing, synchronized kick, pause/recovery and shot velocity continuity passed.');

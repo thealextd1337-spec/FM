@@ -15,6 +15,21 @@
   <link rel="stylesheet" href="world-youth-v67.css">
   <link rel="stylesheet" href="world-views-v68.css">
   <link rel="stylesheet" href="progress-v58.css">
+  <link rel="stylesheet" href="ui-flutlicht/tokens.css">
+  <link rel="stylesheet" href="ui-flutlicht/components.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/overview.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/squad.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/market.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/settings.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/club.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/competitions.css">
+  <link rel="stylesheet" href="ui-flutlicht/navigation.css">
+  <link rel="stylesheet" href="ui-flutlicht/matchplan.css">
+  <link rel="stylesheet" href="ui-flutlicht/start.css">
+  <link rel="stylesheet" href="ui-flutlicht/match.css">
+<link rel="stylesheet" href="ui-flutlicht/views/report.css">
+  <link rel="stylesheet" href="player-tactics-ui.css">
+  <link rel="stylesheet" href="world-tactics-layout-v156.css">
 </head>
 <body>
 <header><a class="brand" href="./"><b>66</b> Doppel 6<span>MANAGER</span></a><div class="header-actions"><span class="tag">MEISTERSCHAFT</span><label class="language-control"><span>Sprache</span><select id="language-select" aria-label="Sprache"><option value="de" lang="de">Deutsch</option><option value="en" lang="en">English</option></select></label></div></header>
@@ -69,7 +84,7 @@
       <button id="start" class="primary">Ligaspiel starten <span>↗</span></button><p class="footer-note" id="duration">Ca. 100 Sekunden · 2 × 45 Ingame-Minuten · Keine Änderungen nach Anpfiff</p><button id="back" class="primary" hidden>Zurück zur Taktik <span>↗</span></button>
     </aside>
   </div>
-  <footer><span>Doppel 6 / PROTOTYP 105</span><span>Deine Farben. Dein Fußball.</span></footer>
+  <footer><span>Doppel 6 / PROTOTYP 110</span><span>Deine Farben. Dein Fußball.</span></footer>
 </main>
 <script src="game.js"></script>
 <script src="manager-v11.js"></script>
@@ -125,6 +140,23 @@
 <script src="world-coaches-v63.js"></script>
 <script src="world-match-v64.js"></script>
 <script src="world-nationalities-v79.js"></script>
+<script src="player-generation.js"></script>
+<script src="player-effective-abilities.js"></script>
+<script src="player-freshness.js"></script>
+<script src="player-load-candidate-v158.js"></script>
+<script src="player-development.js"></script>
+<script src="player-aging.js"></script>
+<script src="player-role-suitability.js"></script>
+<script src="player-position-routine.js"></script>
+<script src="player-tactic-transitions.js"></script>
+<script src="player-match-ratings.js"></script>
+<script src="player-tactics-ui.js"></script>
+<script src="world-player-roles-v154.js"></script>
+<script src="world-player-performance-v155.js"></script>
+<script src="world-tactics-ui-v156.js"></script>
+<script src="world-player-foundation-v153.js"></script>
+<script src="world-player-load-v158.js"></script>
+<script src="player-foundation-preview-v153.js"></script>
 <script src="world-foundation-v61.js"></script>
 <script src="world-match-ui-v64.js"></script>
 <script src="world-physical-v65.js"></script>
@@ -133,7 +165,9 @@
 <script src="world-market-ui-v66.js"></script>
 <script src="world-transfer-list-ui-v72.js"></script>
 <script src="world-youth-manager-v67.js"></script>
+<script src="world-payments-v124.js"></script>
 <script src="world-youth-ui-v67.js"></script>
+<script src="world-payments-ui-v124.js"></script>
 <script src="world-honours-v74.js"></script>
 <script src="world-views-v68.js"></script>
 <script src="world-career-plan-v64.js"></script>
@@ -149,7 +183,38 @@
 <script src="pitch-scene-v98.js"></script>
 <script src="world-pitch-actions-v99.js"></script>
 <script src="pitch-motion-v102.js"></script>
+<script src="world-backpedal-v108.js"></script>
+<script src="world-corner-ball-v109.js"></script>
+<script src="world-ball-motion-v110.js"></script>
+<script src="world-space-passes-v150.js"></script>
+<script src="world-attack-flow-v152.js"></script>
+<script src="world-offensive-quality-v157.js"></script>
+<script src="match-shot-choice-v159.js"></script>
+<script src="world-football-flow-v159.js"></script>
+<script src="match-ball-events-v117.js"></script>
 <script src="world-pitch3d-v98.js"></script>
 <script src="world-goal-replay-v103.js"></script>
+<script src="world-unity-v151.js"></script>
+<script type="importmap">{"imports":{"three":"./camera-prototype/vendor/three.module.js"}}</script>
+<script src="player-user-motion-v108.js"></script>
+<script src="player-user-ball-actions-v111.js"></script>
+<script src="player-ball-events-v111.js"></script>
+<script src="player-user-meshy-v107.js"></script>
+<script src="player-user-bootstrap-v112.js"></script>
+<script src="world-3d-documentation-data-v134.js"></script>
+<script src="world-3d-help-v134.js"></script>
+<script src="ui-flutlicht/components.js"></script>
+<script src="ui-flutlicht/shell.js"></script>
+<script src="ui-flutlicht/registry.js"></script>
+<script src="ui-flutlicht/views/overview.js"></script>
+<script src="ui-flutlicht/views/squad.js"></script>
+<script src="ui-flutlicht/views/market.js"></script>
+<script src="ui-flutlicht/views/settings.js"></script>
+<script src="ui-flutlicht/views/club.js"></script>
+<script src="ui-flutlicht/views/competitions.js"></script>
+<script src="ui-flutlicht/navigation.js"></script>
+<script src="ui-flutlicht/adapter.js"></script>
+<script src="ui-flutlicht/start.js"></script>
+<script src="ui-flutlicht/match.js"></script>
 </body>
 </html>

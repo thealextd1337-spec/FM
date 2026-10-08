@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-04T17:11:46.502Z",
+  "published": false,
+  "footer": "PROTOTYP 105",
+  "credits": 0,
+  "offline": {
+    "sha256": "76dda23f031efa7cc8c1b5ac3301f67b45354b990b369efc361236267ef26048",
+    "bytes": 49891640
+  },
+  "engineHashManifest": "moderate-gaps-engine-v118.json",
+  "gates": {
+    "completePhysicalGames": 120,
+    "groups": 4,
+    "gamesPerGroup": 30,
+    "balancedVenues": true,
+    "playerProfilesControlled": true,
+    "shotAndKeeperIntegrity": true,
+    "linkedEventsAndBookedScores": true,
+    "halfTimeRegressionCases": 4,
+    "penaltyDeferral": true,
+    "restartsAndStance": true,
+    "full2d3dAndOffline": true
+  },
+  "balance": {
+    "pointCriteriaPassed": true,
+    "allIntervalsPositive": false,
+    "flags": []
+  },
+  "evidenceHashes": {
+    "moderate-gaps-protocol-v118.json": "186828c0e18e4129bbdaaa710f4edc97cddcf2f3c3d0fa5cc4d6bc8f75fac724",
+    "moderate-gaps-engine-v118.json": "f0d4ebe52012e1963ff1411a8c38d535ac32ee3b3605a4d9b2e4526ec533412a",
+    "moderate-gaps-120-v118.json": "1bc0a455fb59072b653dd5a1ea41486aa0ebee7b4ebcbfdde172d790195ca09c",
+    "moderate-gaps-summary-v118.json": "a23ef305c667b48715183ed6f31ae1255fb86ddd9cb455ede9beec15561ec160",
+    "half-time-throw-baseline-v118.json": "b16ec13cccbe5ee323529c3a585805233aa31acccc42c38a1ac3380f13a76ff2",
+    "half-time-throw-qa-v118.json": "84d815bf15b9e6909aa43e22be40933113bcca722385cf6065136fcc0610e093"
+  },
+  "scope": "Joint moderate gaps; criteria and uncertainty reported without forcing the sample to pass. Halftime throw-in fix, no ability balance tuning or old match recalculation."
+}

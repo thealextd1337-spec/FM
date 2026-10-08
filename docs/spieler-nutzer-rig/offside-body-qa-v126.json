@@ -1,0 +1,45 @@
+{
+  "result": [
+    {
+      "team": 0,
+      "line": 0.29617170111287755,
+      "edge": 0.29617170111287755,
+      "offset": 0.28000000000000164,
+      "level": false,
+      "tight": true,
+      "retained": true,
+      "exempt": 0,
+      "ballOffset": 0.1763999999999994,
+      "slideOffset": 1.2299999999999993,
+      "reverseOffset": 0.28000000000000164,
+      "reverseEdge": 0.29617170111287755,
+      "slideEdge": 0.28318282988871224,
+      "sidewaysOffset": 0.28000000000000164,
+      "view1": 14.907906976744187,
+      "view2": -14.907906976744192,
+      "legacyLine": 0.3,
+      "legacyExpected": 0.3
+    },
+    {
+      "team": 1,
+      "line": 0.7038282988871224,
+      "edge": 0.7038282988871224,
+      "offset": 0.28000000000000164,
+      "level": false,
+      "tight": true,
+      "retained": true,
+      "exempt": 0,
+      "ballOffset": 0.17639999999999736,
+      "slideOffset": 1.2300000000000033,
+      "reverseOffset": 0.28000000000000164,
+      "reverseEdge": 0.7038282988871224,
+      "slideEdge": 0.7168171701112878,
+      "sidewaysOffset": 0.28000000000000164,
+      "view1": -14.907906976744183,
+      "view2": 14.907906976744183,
+      "legacyLine": 0.7,
+      "legacyExpected": 0.7
+    }
+  ],
+  "errors": []
+}

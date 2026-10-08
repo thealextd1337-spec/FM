@@ -1,0 +1,20 @@
+'use strict';
+const fs=require('node:fs'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const root='outputs/platform/football-v159/',read=file=>JSON.parse(fs.readFileSync(file)),hash=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const runtime=read(root+'unity-world/runtime-tests.json'),camera=read(root+'camera-smoke/runtime-tests.json'),native=read(root+'unity-world/parity-raw.json');
+assert.equal(runtime.errors.length,0);assert(runtime.parity);assert(runtime.checks.includes('Frozen source, HTML and actual Unity build stayed identical during tests'));assert.deepEqual(native.native,native.unity);assert.equal(camera.pass,true);assert.equal(camera.errors.length,0);
+const flow=read(root+'flow/delivery.json'),sourceFlow=read(root+'flow/native-source.json'),buildFlow=read(root+'flow/native-build.json'),goals=read(root+'flow/goal-study.json');
+for(const r of [flow,sourceFlow,buildFlow,goals])assert.equal(r.pass,true);assert.equal(buildFlow.sourceBuildParity,true);assert.equal(goals.matches.length,40);
+const snapshot=read(root+'load/snapshot-source-tests.json'),snapshotBuild=read(root+'load/snapshot-build-tests.json'),controlled=read(root+'load/controlled-source-tests.json');
+for(const r of [snapshot,snapshotBuild,controlled])assert.equal(r.pass,true);
+for(const row of snapshot.snapshotRegression.matches){const other=snapshotBuild.snapshotRegression.matches.find(p=>p.snapshotSchedule===row.snapshotSchedule);assert(other);for(const key of ['score','stats','record','playerLoad'])assert.deepEqual(row[key],other[key]);}
+const uiRoot='outputs/ui-redesign/U01-D/v159/',uiSource=read(uiRoot+'source/checks.json'),uiBuild=read(uiRoot+'build/checks.json');
+for(const key of ['hashes','cases','rankChecks','nativeMeta'])assert.deepEqual(uiSource[key],uiBuild[key],key+' UI source/build');assert.deepEqual(uiSource.errors,[]);assert.deepEqual(uiBuild.errors,[]);
+assert.equal(uiSource.htmlHash,hash('dist/index.html'));assert.equal(uiBuild.htmlHash,hash('outputs/index.html'));
+fs.writeFileSync(uiRoot+'parity.json',JSON.stringify({sameHashes:true,sameCases:true,sameRanks:true,sameNative:true,sourceCases:uiSource.cases.length,buildCases:uiBuild.cases.length,sourceGroups:uiSource.checks.length,buildGroups:uiBuild.checks.length,errors:[],sourceHTML:uiSource.htmlHash,buildHTML:uiBuild.htmlHash,hashes:uiSource.hashes},null,2)+'\n');
+const inputs={...runtime.sourceHashes,...sourceFlow.sourceHashes,...snapshot.sourceHashes,...controlled.sourceHashes};
+for(const [file,expected]of Object.entries(inputs))assert.equal(hash(file),expected,'Changed verified input '+file);
+assert.equal(hash('outputs/index.html'),hash('outputs/Doppel-6-Fussballmanager.html'));assert.equal(hash('outputs/index.html'),buildFlow.buildHash);assert.equal(hash('outputs/index.html'),snapshotBuild.buildHash);
+const version=file=>[...new Set(fs.readFileSync(file,'utf8').match(/PROTOTYP \d+/g))];assert.deepEqual(version('dist/index.html'),['PROTOTYP 110']);assert.deepEqual(version('outputs/index.html'),['PROTOTYP 110']);
+const report={pass:true,verifiedAt:new Date().toISOString(),verifiedFiles:Object.keys(inputs).length,sourceHashes:inputs,buildHash:hash('outputs/index.html'),version:110,unityBrowserChecks:runtime.checks.length,cameraBrowserChecks:camera.checks.length,uiSourceCases:uiSource.cases.length,uiBuildCases:uiBuild.cases.length,uiGroups:uiSource.checks.length,flow,goalStudy:goals.goalStudy,snapshotChecks:{source:snapshot.checkedAssertions,build:snapshotBuild.checkedAssertions,additionalSaves:snapshot.snapshotRegression.matches.find(p=>p.snapshotSchedule==='frequent').additionalSnapshots,sourceBuildFullParity:true},controlledLoadChecks:controlled.checkedAssertions};
+fs.writeFileSync(root+'delivery.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({pass:true,verifiedFiles:report.verifiedFiles,unityBrowserChecks:report.unityBrowserChecks,cameraBrowserChecks:report.cameraBrowserChecks,version:report.version}));

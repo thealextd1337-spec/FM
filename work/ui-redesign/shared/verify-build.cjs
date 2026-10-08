@@ -1,0 +1,7 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const base=path.resolve(__dirname,'../../..'),assets=require('./assets.cjs');
+const source=fs.readFileSync(path.join(base,'dist/index.html'),'utf8'),html=fs.readFileSync(path.join(base,'outputs/index.html'),'utf8');
+const embedded=[];for(const file of [...assets.styles,...assets.scripts]){const content=fs.readFileSync(path.join(base,'dist/ui-flutlicht',file),'utf8').replace(/\r\n/g,'\n');assert(source.includes('ui-flutlicht/'+file),'Missing source asset '+file);assert(html.includes(content),'Missing or stale embedded asset '+file);assert(!html.includes(`src="ui-flutlicht/${file}"`)&&!html.includes(`href="ui-flutlicht/${file}"`),'External Flutlicht dependency '+file);embedded.push({file,sha256:crypto.createHash('sha256').update(content).digest('hex')});}
+assert.equal(fs.readFileSync(path.join(base,'outputs/Doppel-6-Fussballmanager.html'),'utf8'),html,'Offline copies differ');assert.deepEqual([...new Set(source.match(/PROTOTYP \d+/g))],[...new Set(html.match(/PROTOTYP \d+/g))]);
+const out=path.join(base,'outputs/ui-redesign/I00/build-'+new Date().toISOString().replace(/[:.]/g,'-'));fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'manifest.json'),JSON.stringify({embedded,buildSha256:crypto.createHash('sha256').update(html).digest('hex'),bytes:Buffer.byteLength(html)},null,2));console.log(`PASS ${embedded.length} exact embedded assets, matching offline copies and version. ${out}`);

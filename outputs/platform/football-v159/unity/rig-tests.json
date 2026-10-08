@@ -1,0 +1,66 @@
+{
+    "passed": 23,
+    "checks": [
+        "Actual right foot reaches pass_inside_meshy direction 1 error=5,314515E-07 reachable=True hip=(0.13, 1.23, -0.03) foot=(0.25, 0.25, 0.30)",
+        "Opposite foot planted pass_inside_meshy direction 1",
+        "Paused bones freeze pass_inside_meshy1",
+        "Actual right foot reaches receive_ground_meshy direction 1 error=1,198409E-06 reachable=True hip=(0.15, 1.25, -0.04) foot=(0.25, 0.25, 0.30)",
+        "Opposite foot planted receive_ground_meshy direction 1",
+        "Paused bones freeze receive_ground_meshy1",
+        "Actual right foot reaches shot_meshy direction 1 error=7,835517E-07 reachable=True hip=(0.12, 1.21, -0.06) foot=(0.25, 0.25, 0.30)",
+        "Opposite foot planted shot_meshy direction 1",
+        "Paused bones freeze shot_meshy1",
+        "Actual right foot reaches pass_inside_meshy direction -1 error=5,314515E-07 reachable=True hip=(-0.13, 1.23, 0.03) foot=(-0.25, 0.25, -0.30)",
+        "Opposite foot planted pass_inside_meshy direction -1",
+        "Paused bones freeze pass_inside_meshy-1",
+        "Actual right foot reaches receive_ground_meshy direction -1 error=1,198409E-06 reachable=True hip=(-0.15, 1.25, 0.04) foot=(-0.25, 0.25, -0.30)",
+        "Opposite foot planted receive_ground_meshy direction -1",
+        "Paused bones freeze receive_ground_meshy-1",
+        "Actual right foot reaches shot_meshy direction -1 error=7,835517E-07 reachable=True hip=(-0.12, 1.21, 0.06) foot=(-0.25, 0.25, -0.30)",
+        "Opposite foot planted shot_meshy direction -1",
+        "Paused bones freeze shot_meshy-1",
+        "Unreachable contact remains a miss",
+        "Contact solver never moves the game-owned root",
+        "Animation transition is bounded",
+        "Mixer reuses cached nodes without per-frame graph rebuilds",
+        "Backward replay seek preserves authoritative root"
+    ],
+    "measurements": [
+        {
+            "clip": "pass_inside_meshy",
+            "contactError": 5.314515192367253e-7,
+            "plantError": 2.6530761942922254e-7,
+            "reachable": true
+        },
+        {
+            "clip": "receive_ground_meshy",
+            "contactError": 0.00000119840910883795,
+            "plantError": 4.946646754433459e-7,
+            "reachable": true
+        },
+        {
+            "clip": "shot_meshy",
+            "contactError": 7.835517408238957e-7,
+            "plantError": 7.698292279201269e-7,
+            "reachable": true
+        },
+        {
+            "clip": "pass_inside_meshy",
+            "contactError": 5.314515192367253e-7,
+            "plantError": 2.6530761942922254e-7,
+            "reachable": true
+        },
+        {
+            "clip": "receive_ground_meshy",
+            "contactError": 0.00000119840910883795,
+            "plantError": 4.946646754433459e-7,
+            "reachable": true
+        },
+        {
+            "clip": "shot_meshy",
+            "contactError": 7.835517408238957e-7,
+            "plantError": 7.698292279201269e-7,
+            "reachable": true
+        }
+    ]
+}

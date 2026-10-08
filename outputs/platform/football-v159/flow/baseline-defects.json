@@ -1,0 +1,12 @@
+{
+  "expectedRed": true,
+  "actualDefects": {
+    "destinationsReassignedAfterSmallCarrierMovement": true,
+    "releaseHasNoActualReceiptConfirmation": true,
+    "windowStartsAtRelease": true
+  },
+  "baselineHashes": {
+    "world-attack-flow-v152.js": "b202f4c6b78af4ac230dd630479075ee378dceb47e64984427bb4f6804731beb",
+    "world-offensive-quality-v157.js": "831a21a4ad3a14108846068462bea5fb355a5d9f83367218b0c7b564071f5ac9"
+  }
+}

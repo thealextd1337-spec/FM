@@ -1,0 +1,245 @@
+{
+  "baseline": false,
+  "physicsHz": 20,
+  "renderHz": 60,
+  "replaySkipped": true,
+  "gpuDrawSkipped": true,
+  "runs": [
+    {
+      "seed": 12345,
+      "steps": 2837,
+      "frames": 8508,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "halves": [
+        false,
+        true
+      ],
+      "events": {
+        "fly:pass": 41,
+        "v50Restart:freeKick": 2,
+        "v50Spot:": 22,
+        "v50LooseBall:": 9,
+        "fly:shot": 2,
+        "v50GoalKick:": 1,
+        "fly:highPass": 1,
+        "fly:cross": 3,
+        "v55Out:": 2,
+        "fly:": 1,
+        "fly:freeKick": 1,
+        "v50Deflect:": 2,
+        "fly:block": 2,
+        "kickoff:": 1,
+        "fly:header": 1
+      },
+      "counts": {
+        "rawBall": 2
+      },
+      "top": {
+        "engine": [],
+        "root": [],
+        "hips": [],
+        "ball": [],
+        "rawBall": [
+          {
+            "distance": 35.20251108031091,
+            "step": 1991,
+            "before": {
+              "elapsed": 55.239,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 55.239,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 32.5526704858376,
+            "step": 410,
+            "before": {
+              "elapsed": 8.151,
+              "owner": "warping-v121-12345:GER-4:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 8.19,
+              "owner": "warping-v121-12345:GER-4:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          }
+        ]
+      },
+      "max": {
+        "engine": 0.385798877630983,
+        "root": 0.17753001635080848,
+        "hips": 0.45520666820725186,
+        "ball": 0.6027757932316987,
+        "rawBall": 35.20251108031091
+      },
+      "finished": true,
+      "score": [
+        1,
+        0
+      ],
+      "elapsed": 82.7053333333334
+    },
+    {
+      "seed": 8721,
+      "steps": 2522,
+      "frames": 7563,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "halves": [
+        false,
+        true
+      ],
+      "events": {
+        "fly:pass": 44,
+        "v50LooseBall:": 5,
+        "fly:highPass": 2,
+        "fly:shot": 4,
+        "v50GoalKick:": 5,
+        "v50Restart:freeKick": 2,
+        "v50Spot:": 7,
+        "fly:freeKick": 2,
+        "v50Deflect:": 1,
+        "fly:block": 1,
+        "fly:cross": 1
+      },
+      "counts": {
+        "rawBall": 3
+      },
+      "top": {
+        "engine": [],
+        "root": [],
+        "hips": [],
+        "ball": [],
+        "rawBall": [
+          {
+            "distance": 35.37214314662178,
+            "step": 1751,
+            "before": {
+              "elapsed": 49.467,
+              "owner": "warping-v121-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 49.506,
+              "owner": "warping-v121-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 31.323973167528724,
+            "step": 620,
+            "before": {
+              "elapsed": 21.333,
+              "owner": "warping-v121-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 21.372,
+              "owner": "warping-v121-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 31.276835138529865,
+            "step": 2319,
+            "before": {
+              "elapsed": 71.619,
+              "owner": "warping-v121-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 71.658,
+              "owner": "warping-v121-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          }
+        ]
+      },
+      "max": {
+        "engine": 0.3939728711111128,
+        "root": 0.35517282666101435,
+        "hips": 0.3882446450482471,
+        "ball": 0.8847935686154551,
+        "rawBall": 35.37214314662178
+      },
+      "finished": true,
+      "score": [
+        0,
+        0
+      ],
+      "elapsed": 79.16666666666667
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,58 @@
+{
+    "passed": 4,
+    "total": 4,
+    "cases": [
+        {
+            "scene": "free-goal-keeper-left-current-5-negative",
+            "passed": true,
+            "resolvedAt": 0.6166666666666669,
+            "finishedAt": 3.6166666666666587,
+            "events": [
+                "shot-release",
+                "goal",
+                "result",
+                "net-contact",
+                "ground-contact"
+            ]
+        },
+        {
+            "scene": "free-goal-keeper-left-current-5-positive",
+            "passed": true,
+            "resolvedAt": 0.6166666666666669,
+            "finishedAt": 3.6166666666666587,
+            "events": [
+                "shot-release",
+                "goal",
+                "result",
+                "net-contact",
+                "ground-contact"
+            ]
+        },
+        {
+            "scene": "keeper-reachable-current-5-negative",
+            "passed": true,
+            "resolvedAt": 0.5166666666666666,
+            "finishedAt": 3.516666666666659,
+            "events": [
+                "shot-release",
+                "contact",
+                "possession",
+                "result"
+            ]
+        },
+        {
+            "scene": "keeper-reachable-current-5-negative-parry",
+            "passed": true,
+            "resolvedAt": 1.0,
+            "finishedAt": 3.9999999999999893,
+            "events": [
+                "shot-release",
+                "contact",
+                "parry",
+                "free-ball",
+                "result",
+                "ground-contact"
+            ]
+        }
+    ]
+}

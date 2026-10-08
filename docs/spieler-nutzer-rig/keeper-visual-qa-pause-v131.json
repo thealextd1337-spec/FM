@@ -1,0 +1,1279 @@
+{
+  "cases": [
+    {
+      "name": "parry-left",
+      "frames": 255,
+      "maxBallStep": 0.41181002433214947,
+      "maxHipsStep": 0.389561338623954,
+      "maxKeeperStep": 0.16900000000000237,
+      "minSkin": 0.0823627433358819,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "contacts": [
+        {
+          "tick": 5,
+          "sub": 0,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.08309234905367385,
+          "gloveGap": 0.5557214936864833,
+          "held": false,
+          "ball": [
+            28.695348232075094,
+            0.6027027569815283,
+            0.8893979993866008
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 1,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.026109910348662637,
+          "gloveGap": 0.3445528319212716,
+          "held": false,
+          "ball": [
+            28.90930192215859,
+            0.6018018379876855,
+            0.9175745491173378
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 5,
+          "sub": 2,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.005329058300196607,
+          "gloveGap": 0.14105251583927741,
+          "held": false,
+          "ball": [
+            29.123255612242083,
+            0.6009009189938427,
+            0.9457510988480745
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 0,
+          "motion": "keeper_parry_right",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0,
+          "gloveGap": 0.02654820921293317,
+          "held": false,
+          "ball": [
+            29.33720930232558,
+            0.5999999999999999,
+            0.9739276485788115
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.0016542424497660196,
+          "gloveGap": 0.16513947628785833,
+          "held": false,
+          "ball": [
+            29.114362281976742,
+            0.5948781494010502,
+            1.151363310343518
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 6,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.0015815885211310791,
+          "gloveGap": 0.13956221806919805,
+          "held": false,
+          "ball": [
+            28.891515261627905,
+            0.5897562988021006,
+            1.3287989721082216
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.032871608103945495,
+          "gloveGap": 0.22599309618368318,
+          "held": false,
+          "ball": [
+            28.668668241279068,
+            0.5846344482031509,
+            1.5062346338729278
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.1211912217102951,
+          "gloveGap": 0.47654270936192045,
+          "held": false,
+          "ball": [
+            28.44582122093023,
+            0.5784305460530133,
+            1.6836702956376342
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 7,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.3270420579213375,
+          "gloveGap": 0.9333648726041922,
+          "held": false,
+          "ball": [
+            28.222974200581394,
+            0.5722266439028757,
+            1.861105957402338
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.5166638252446869,
+          "gloveGap": 1.4163783176273945,
+          "held": false,
+          "ball": [
+            28.000127180232557,
+            0.566022741752738,
+            2.0385416191670442
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.6805497067518504,
+          "gloveGap": 1.8657614690582869,
+          "held": false,
+          "ball": [
+            27.777280159883723,
+            0.5578114350177747,
+            2.21597728093175
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 8,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.8161543256551577,
+          "gloveGap": 2.2432742881648893,
+          "held": false,
+          "ball": [
+            27.55443313953488,
+            0.5496001282828112,
+            2.39341294269646
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 0,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 0.9252070874763441,
+          "gloveGap": 2.57904029577812,
+          "held": false,
+          "ball": [
+            27.331586119186046,
+            0.541388821547848,
+            2.570848604461166
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 1,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 1.0047200602964967,
+          "gloveGap": 2.895285465597139,
+          "held": false,
+          "ball": [
+            27.108739098837212,
+            0.5305354617567132,
+            2.7482842662258697
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        },
+        {
+          "tick": 9,
+          "sub": 2,
+          "motion": "keeper_recover",
+          "saved": true,
+          "parry": true,
+          "hand": "right",
+          "handContact": 1.0441074573236186,
+          "gloveGap": 3.184358598256594,
+          "held": false,
+          "ball": [
+            26.885892078488368,
+            0.5196821019655781,
+            2.9257199279905786
+          ],
+          "keeper": {
+            "x": 0.5,
+            "y": 0.09
+          }
+        }
+      ],
+      "topJumps": [],
+      "topHips": [],
+      "secondShot": false,
+      "pauseChanges": [
+        {
+          "i": 0,
+          "heading": 0.40357493056995564,
+          "motion": "keeper_smother",
+          "phase": 2.833799873544629,
+          "proc": 0,
+          "stopping": false,
+          "transition": null,
+          "frozen": false,
+          "ready": 0,
+          "action": {
+            "kind": "save",
+            "id": "save",
+            "progress": 0.4545454545454529,
+            "recovery": 0,
+            "target": {
+              "x": 0.6898828261558312,
+              "y": 0.18025304161223452
+            },
+            "origin": {
+              "x": 0.6514485217940819,
+              "y": 0.17689608557549716
+            },
+            "height": 0.35,
+            "saved": false,
+            "smother": true,
+            "goal": false
+          },
+          "matrices": [
+            {
+              "name": "mixamorigHips",
+              "max": 0.014789430874465381,
+              "position": [
+                24.289588340346388,
+                1.464647817431175,
+                8.807575435621276
+              ]
+            },
+            {
+              "name": "mixamorigSpine",
+              "max": 0.014789430874465381,
+              "position": [
+                24.165179801290233,
+                1.5435261970946332,
+                8.685351664263328
+              ]
+            },
+            {
+              "name": "mixamorigSpine1",
+              "max": 0.014789430874465381,
+              "position": [
+                24.01434782775127,
+                1.4838495564540917,
+                8.58373192855287
+              ]
+            },
+            {
+              "name": "mixamorigSpine2",
+              "max": 0.014789430874465381,
+              "position": [
+                23.857318140481976,
+                1.398078711766659,
+                8.500802996780642
+              ]
+            },
+            {
+              "name": "mixamorigNeck",
+              "max": 0.014789430874465381,
+              "position": [
+                23.746825179705247,
+                1.338429711355241,
+                8.443400623595506
+              ]
+            },
+            {
+              "name": "mixamorigHead",
+              "max": 0.014789430874465381,
+              "position": [
+                23.661111948074737,
+                1.2780408880044598,
+                8.408409400055142
+              ]
+            },
+            {
+              "name": "mixamorigHeadTop_End",
+              "max": 0.014789430874465381,
+              "position": [
+                23.457457173141236,
+                0.9656996437541526,
+                8.42241822103734
+              ]
+            },
+            {
+              "name": "headfront",
+              "max": 0.014789430874465381,
+              "position": [
+                23.763039867934683,
+                1.1843878804802155,
+                8.550804471447481
+              ]
+            },
+            {
+              "name": "mixamorigLeftShoulder",
+              "max": 0.014789430874465381,
+              "position": [
+                23.758708513555643,
+                1.3895016957288158,
+                8.509908614747406
+              ]
+            },
+            {
+              "name": "mixamorigLeftArm",
+              "max": 0.020936569316624132,
+              "position": [
+                23.57600978906722,
+                1.425955164782076,
+                8.66032284744019
+              ]
+            },
+            {
+              "name": "mixamorigLeftForeArm",
+              "max": 0.02919706574415748,
+              "position": [
+                23.81087391375087,
+                1.2683689030452734,
+                8.892381532983041
+              ]
+            },
+            {
+              "name": "mixamorigLeftHand",
+              "max": 0.03115709905952546,
+              "position": [
+                24.04427199976729,
+                1.0332327138878872,
+                9.083089813837105
+              ]
+            },
+            {
+              "name": "mixamorigLeftHandMiddle4",
+              "max": 0.02843911963047674,
+              "position": [
+                24.16663110107949,
+                0.9201998576446163,
+                9.176173350858182
+              ]
+            },
+            {
+              "name": "mixamorigRightShoulder",
+              "max": 0.014789430874465381,
+              "position": [
+                23.831835654210526,
+                1.338475028242199,
+                8.425621928108702
+              ]
+            },
+            {
+              "name": "mixamorigRightArm",
+              "max": 0.031992361550617465,
+              "position": [
+                23.76088189447476,
+                1.1261314556973643,
+                8.310777676930284
+              ]
+            },
+            {
+              "name": "mixamorigRightForeArm",
+              "max": 0.036277707342851344,
+              "position": [
+                23.963990407804033,
+                0.9410190028374832,
+                8.515791152426583
+              ]
+            },
+            {
+              "name": "mixamorigRightHand",
+              "max": 0.034071899376074466,
+              "position": [
+                24.199510499595203,
+                0.8125571171904744,
+                8.787967479411776
+              ]
+            },
+            {
+              "name": "mixamorigRightHandMiddle4",
+              "max": 0.03407188075573209,
+              "position": [
+                24.350423099455377,
+                0.6608142981828438,
+                8.939832717023876
+              ]
+            },
+            {
+              "name": "mixamorigLeftUpLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.29387430074265,
+                1.4677684382019787,
+                9.015676978447516
+              ]
+            },
+            {
+              "name": "mixamorigLeftLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.045675153036125,
+                0.9851809622303741,
+                8.90963617950058
+              ]
+            },
+            {
+              "name": "mixamorigLeftFoot",
+              "max": 0.014789430874465381,
+              "position": [
+                24.239584679282373,
+                0.3951326170334698,
+                9.03937132155224
+              ]
+            },
+            {
+              "name": "mixamorigLeftToeBase",
+              "max": 0.014789430874465381,
+              "position": [
+                24.07606227888171,
+                0.23898117281467487,
+                8.937663729363722
+              ]
+            },
+            {
+              "name": "mixamorigLeftToe_End",
+              "max": 0.014789430874465381,
+              "position": [
+                23.969385846503524,
+                0.2240302837920438,
+                8.86824416236054
+              ]
+            },
+            {
+              "name": "mixamorigRightUpLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.463411513526705,
+                1.3618128738625284,
+                8.775381071834456
+              ]
+            },
+            {
+              "name": "mixamorigRightLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.197769442762382,
+                0.9274902920110333,
+                8.572736682667971
+              ]
+            },
+            {
+              "name": "mixamorigRightFoot",
+              "max": 0.014789430874465381,
+              "position": [
+                24.52672872497395,
+                0.3985204745168117,
+                8.72933179470834
+              ]
+            },
+            {
+              "name": "mixamorigRightToeBase",
+              "max": 0.014789430874465381,
+              "position": [
+                24.42456431144819,
+                0.2469888430943212,
+                8.543290064335515
+              ]
+            },
+            {
+              "name": "mixamorigRightToe_End",
+              "max": 0.014789430874465381,
+              "position": [
+                24.347797687913022,
+                0.22765121193113444,
+                8.41409288539618
+              ]
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "heading": 0.40357493056995564,
+          "motion": "keeper_smother",
+          "phase": 2.833799873544629,
+          "proc": 0,
+          "stopping": false,
+          "transition": null,
+          "frozen": false,
+          "ready": 0,
+          "action": {
+            "kind": "save",
+            "id": "save",
+            "progress": 0.4545454545454529,
+            "recovery": 0,
+            "target": {
+              "x": 0.6898828261558312,
+              "y": 0.18025304161223452
+            },
+            "origin": {
+              "x": 0.6514485217940819,
+              "y": 0.17689608557549716
+            },
+            "height": 0.35,
+            "saved": false,
+            "smother": true,
+            "goal": false
+          },
+          "matrices": [
+            {
+              "name": "mixamorigHips",
+              "max": 0.014789430874465381,
+              "position": [
+                24.289588340346388,
+                1.464647817431175,
+                8.807575435621276
+              ]
+            },
+            {
+              "name": "mixamorigSpine",
+              "max": 0.014789430874465381,
+              "position": [
+                24.165179801290233,
+                1.5435261970946332,
+                8.685351664263328
+              ]
+            },
+            {
+              "name": "mixamorigSpine1",
+              "max": 0.014789430874465381,
+              "position": [
+                24.01434782775127,
+                1.4838495564540917,
+                8.58373192855287
+              ]
+            },
+            {
+              "name": "mixamorigSpine2",
+              "max": 0.014789430874465381,
+              "position": [
+                23.857318140481976,
+                1.398078711766659,
+                8.500802996780642
+              ]
+            },
+            {
+              "name": "mixamorigNeck",
+              "max": 0.014789430874465381,
+              "position": [
+                23.746825179705247,
+                1.338429711355241,
+                8.443400623595506
+              ]
+            },
+            {
+              "name": "mixamorigHead",
+              "max": 0.014789430874465381,
+              "position": [
+                23.661111948074737,
+                1.2780408880044598,
+                8.408409400055142
+              ]
+            },
+            {
+              "name": "mixamorigHeadTop_End",
+              "max": 0.014789430874465381,
+              "position": [
+                23.457457173141236,
+                0.9656996437541526,
+                8.42241822103734
+              ]
+            },
+            {
+              "name": "headfront",
+              "max": 0.014789430874465381,
+              "position": [
+                23.763039867934683,
+                1.1843878804802155,
+                8.550804471447481
+              ]
+            },
+            {
+              "name": "mixamorigLeftShoulder",
+              "max": 0.014789430874465381,
+              "position": [
+                23.758708513555643,
+                1.3895016957288158,
+                8.509908614747406
+              ]
+            },
+            {
+              "name": "mixamorigLeftArm",
+              "max": 0.020936569316624132,
+              "position": [
+                23.57600978906722,
+                1.425955164782076,
+                8.66032284744019
+              ]
+            },
+            {
+              "name": "mixamorigLeftForeArm",
+              "max": 0.02919706574415748,
+              "position": [
+                23.81087391375087,
+                1.2683689030452734,
+                8.892381532983041
+              ]
+            },
+            {
+              "name": "mixamorigLeftHand",
+              "max": 0.03115709905952546,
+              "position": [
+                24.04427199976729,
+                1.0332327138878872,
+                9.083089813837105
+              ]
+            },
+            {
+              "name": "mixamorigLeftHandMiddle4",
+              "max": 0.02843911963047674,
+              "position": [
+                24.16663110107949,
+                0.9201998576446163,
+                9.176173350858182
+              ]
+            },
+            {
+              "name": "mixamorigRightShoulder",
+              "max": 0.014789430874465381,
+              "position": [
+                23.831835654210526,
+                1.338475028242199,
+                8.425621928108702
+              ]
+            },
+            {
+              "name": "mixamorigRightArm",
+              "max": 0.031992361550617465,
+              "position": [
+                23.76088189447476,
+                1.1261314556973643,
+                8.310777676930284
+              ]
+            },
+            {
+              "name": "mixamorigRightForeArm",
+              "max": 0.036277707342851344,
+              "position": [
+                23.963990407804033,
+                0.9410190028374832,
+                8.515791152426583
+              ]
+            },
+            {
+              "name": "mixamorigRightHand",
+              "max": 0.034071899376074466,
+              "position": [
+                24.199510499595203,
+                0.8125571171904744,
+                8.787967479411776
+              ]
+            },
+            {
+              "name": "mixamorigRightHandMiddle4",
+              "max": 0.03407188075573209,
+              "position": [
+                24.350423099455377,
+                0.6608142981828438,
+                8.939832717023876
+              ]
+            },
+            {
+              "name": "mixamorigLeftUpLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.29387430074265,
+                1.4677684382019787,
+                9.015676978447516
+              ]
+            },
+            {
+              "name": "mixamorigLeftLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.045675153036125,
+                0.9851809622303741,
+                8.90963617950058
+              ]
+            },
+            {
+              "name": "mixamorigLeftFoot",
+              "max": 0.014789430874465381,
+              "position": [
+                24.239584679282373,
+                0.3951326170334698,
+                9.03937132155224
+              ]
+            },
+            {
+              "name": "mixamorigLeftToeBase",
+              "max": 0.014789430874465381,
+              "position": [
+                24.07606227888171,
+                0.23898117281467487,
+                8.937663729363722
+              ]
+            },
+            {
+              "name": "mixamorigLeftToe_End",
+              "max": 0.014789430874465381,
+              "position": [
+                23.969385846503524,
+                0.2240302837920438,
+                8.86824416236054
+              ]
+            },
+            {
+              "name": "mixamorigRightUpLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.463411513526705,
+                1.3618128738625284,
+                8.775381071834456
+              ]
+            },
+            {
+              "name": "mixamorigRightLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.197769442762382,
+                0.9274902920110333,
+                8.572736682667971
+              ]
+            },
+            {
+              "name": "mixamorigRightFoot",
+              "max": 0.014789430874465381,
+              "position": [
+                24.52672872497395,
+                0.3985204745168117,
+                8.72933179470834
+              ]
+            },
+            {
+              "name": "mixamorigRightToeBase",
+              "max": 0.014789430874465381,
+              "position": [
+                24.42456431144819,
+                0.2469888430943212,
+                8.543290064335515
+              ]
+            },
+            {
+              "name": "mixamorigRightToe_End",
+              "max": 0.014789430874465381,
+              "position": [
+                24.347797687913022,
+                0.22765121193113444,
+                8.41409288539618
+              ]
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "heading": 0.40357493056995564,
+          "motion": "keeper_smother",
+          "phase": 2.833799873544629,
+          "proc": 0,
+          "stopping": false,
+          "transition": null,
+          "frozen": false,
+          "ready": 0,
+          "action": {
+            "kind": "save",
+            "id": "save",
+            "progress": 0.4545454545454529,
+            "recovery": 0,
+            "target": {
+              "x": 0.6898828261558312,
+              "y": 0.18025304161223452
+            },
+            "origin": {
+              "x": 0.6514485217940819,
+              "y": 0.17689608557549716
+            },
+            "height": 0.35,
+            "saved": false,
+            "smother": true,
+            "goal": false
+          },
+          "matrices": [
+            {
+              "name": "mixamorigHips",
+              "max": 0.014789430874465381,
+              "position": [
+                24.289588340346388,
+                1.464647817431175,
+                8.807575435621276
+              ]
+            },
+            {
+              "name": "mixamorigSpine",
+              "max": 0.014789430874465381,
+              "position": [
+                24.165179801290233,
+                1.5435261970946332,
+                8.685351664263328
+              ]
+            },
+            {
+              "name": "mixamorigSpine1",
+              "max": 0.014789430874465381,
+              "position": [
+                24.01434782775127,
+                1.4838495564540917,
+                8.58373192855287
+              ]
+            },
+            {
+              "name": "mixamorigSpine2",
+              "max": 0.014789430874465381,
+              "position": [
+                23.857318140481976,
+                1.398078711766659,
+                8.500802996780642
+              ]
+            },
+            {
+              "name": "mixamorigNeck",
+              "max": 0.014789430874465381,
+              "position": [
+                23.746825179705247,
+                1.338429711355241,
+                8.443400623595506
+              ]
+            },
+            {
+              "name": "mixamorigHead",
+              "max": 0.014789430874465381,
+              "position": [
+                23.661111948074737,
+                1.2780408880044598,
+                8.408409400055142
+              ]
+            },
+            {
+              "name": "mixamorigHeadTop_End",
+              "max": 0.014789430874465381,
+              "position": [
+                23.457457173141236,
+                0.9656996437541526,
+                8.42241822103734
+              ]
+            },
+            {
+              "name": "headfront",
+              "max": 0.014789430874465381,
+              "position": [
+                23.763039867934683,
+                1.1843878804802155,
+                8.550804471447481
+              ]
+            },
+            {
+              "name": "mixamorigLeftShoulder",
+              "max": 0.014789430874465381,
+              "position": [
+                23.758708513555643,
+                1.3895016957288158,
+                8.509908614747406
+              ]
+            },
+            {
+              "name": "mixamorigLeftArm",
+              "max": 0.020936569316624132,
+              "position": [
+                23.57600978906722,
+                1.425955164782076,
+                8.66032284744019
+              ]
+            },
+            {
+              "name": "mixamorigLeftForeArm",
+              "max": 0.02919706574415748,
+              "position": [
+                23.81087391375087,
+                1.2683689030452734,
+                8.892381532983041
+              ]
+            },
+            {
+              "name": "mixamorigLeftHand",
+              "max": 0.03115709905952546,
+              "position": [
+                24.04427199976729,
+                1.0332327138878872,
+                9.083089813837105
+              ]
+            },
+            {
+              "name": "mixamorigLeftHandMiddle4",
+              "max": 0.02843911963047674,
+              "position": [
+                24.16663110107949,
+                0.9201998576446163,
+                9.176173350858182
+              ]
+            },
+            {
+              "name": "mixamorigRightShoulder",
+              "max": 0.014789430874465381,
+              "position": [
+                23.831835654210526,
+                1.338475028242199,
+                8.425621928108702
+              ]
+            },
+            {
+              "name": "mixamorigRightArm",
+              "max": 0.031992361550617465,
+              "position": [
+                23.76088189447476,
+                1.1261314556973643,
+                8.310777676930284
+              ]
+            },
+            {
+              "name": "mixamorigRightForeArm",
+              "max": 0.036277707342851344,
+              "position": [
+                23.963990407804033,
+                0.9410190028374832,
+                8.515791152426583
+              ]
+            },
+            {
+              "name": "mixamorigRightHand",
+              "max": 0.034071899376074466,
+              "position": [
+                24.199510499595203,
+                0.8125571171904744,
+                8.787967479411776
+              ]
+            },
+            {
+              "name": "mixamorigRightHandMiddle4",
+              "max": 0.03407188075573209,
+              "position": [
+                24.350423099455377,
+                0.6608142981828438,
+                8.939832717023876
+              ]
+            },
+            {
+              "name": "mixamorigLeftUpLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.29387430074265,
+                1.4677684382019787,
+                9.015676978447516
+              ]
+            },
+            {
+              "name": "mixamorigLeftLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.045675153036125,
+                0.9851809622303741,
+                8.90963617950058
+              ]
+            },
+            {
+              "name": "mixamorigLeftFoot",
+              "max": 0.014789430874465381,
+              "position": [
+                24.239584679282373,
+                0.3951326170334698,
+                9.03937132155224
+              ]
+            },
+            {
+              "name": "mixamorigLeftToeBase",
+              "max": 0.014789430874465381,
+              "position": [
+                24.07606227888171,
+                0.23898117281467487,
+                8.937663729363722
+              ]
+            },
+            {
+              "name": "mixamorigLeftToe_End",
+              "max": 0.014789430874465381,
+              "position": [
+                23.969385846503524,
+                0.2240302837920438,
+                8.86824416236054
+              ]
+            },
+            {
+              "name": "mixamorigRightUpLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.463411513526705,
+                1.3618128738625284,
+                8.775381071834456
+              ]
+            },
+            {
+              "name": "mixamorigRightLeg",
+              "max": 0.014789430874465381,
+              "position": [
+                24.197769442762382,
+                0.9274902920110333,
+                8.572736682667971
+              ]
+            },
+            {
+              "name": "mixamorigRightFoot",
+              "max": 0.014789430874465381,
+              "position": [
+                24.52672872497395,
+                0.3985204745168117,
+                8.72933179470834
+              ]
+            },
+            {
+              "name": "mixamorigRightToeBase",
+              "max": 0.014789430874465381,
+              "position": [
+                24.42456431144819,
+                0.2469888430943212,
+                8.543290064335515
+              ]
+            },
+            {
+              "name": "mixamorigRightToe_End",
+              "max": 0.014789430874465381,
+              "position": [
+                24.347797687913022,
+                0.22765121193113444,
+                8.41409288539618
+              ]
+            }
+          ]
+        }
+      ],
+      "pauseStable": false,
+      "events": [
+        {
+          "id": 1,
+          "parentId": null,
+          "kind": "shot",
+          "actorPid": "v120-shooter",
+          "team": 0,
+          "at": 10,
+          "result": "parried",
+          "start": {
+            "x": 0.5,
+            "y": 0.2
+          },
+          "target": {
+            "x": 0.5200688121525331,
+            "y": 0.09888712241653418
+          },
+          "duration": 0.21548810621226205,
+          "shot": true,
+          "keeperPid": "v120-keeper",
+          "plannedOnTarget": true,
+          "expectedBlock": false,
+          "parried": true,
+          "endAt": 10.233999999999998
+        },
+        {
+          "id": 2,
+          "parentId": 1,
+          "kind": "block",
+          "actorPid": "v120-keeper",
+          "team": 1,
+          "at": 10.233999999999998,
+          "result": "loose",
+          "start": {
+            "x": 0.5200688121525331,
+            "y": 0.09888712241653418
+          },
+          "target": {
+            "x": 0.6100688121525331,
+            "y": 0.17388712241653417
+          },
+          "duration": 0.32,
+          "endAt": 10.584999999999996
+        },
+        {
+          "id": 3,
+          "parentId": 2,
+          "kind": "loose-ball",
+          "actorPid": null,
+          "team": null,
+          "at": 10.584999999999996,
+          "result": "rolling"
+        }
+      ],
+      "keeperStats": {
+        "passes": 0,
+        "passComplete": 0,
+        "progressive": 0,
+        "passLost": 0,
+        "duels": 0,
+        "duelsWon": 0,
+        "interceptions": 0,
+        "shots": 0,
+        "onTarget": 0,
+        "goals": 0,
+        "assists": 0,
+        "saves": 1,
+        "faced": 1,
+        "conceded": 0,
+        "cleanSheet": 0,
+        "fouls": 0,
+        "penaltiesScored": 0,
+        "penaltiesMissed": 0,
+        "rating": 6,
+        "crosses": 0,
+        "crossComplete": 0,
+        "highPasses": 0,
+        "highComplete": 0,
+        "headers": 0,
+        "headerPasses": 0,
+        "volleys": 0,
+        "aerialDuels": 0,
+        "aerialWon": 0,
+        "slideAttempts": 0,
+        "slideWon": 0,
+        "tackleAttempts": 0,
+        "tacklesWon": 0,
+        "shotGoals": 0,
+        "nonShotGoals": 0,
+        "shotConceded": 0,
+        "nonShotConceded": 0,
+        "shotsInterrupted": 0,
+        "savesCaught": 0,
+        "savesParried": 1
+      },
+      "score": [
+        0,
+        0
+      ],
+      "owner": "v120-shooter",
+      "challenge": {
+        "caught": false,
+        "pickup": false
+      }
+    }
+  ],
+  "errors": [],
+  "physicsHz": 20,
+  "renderHz": 60,
+  "gpuDrawSkippedDuringMeasurements": true
+}

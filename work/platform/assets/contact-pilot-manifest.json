@@ -1,0 +1,80 @@
+{
+  "schema": "d6-football-contact-pilot/1",
+  "date": "2026-10-08",
+  "originalAssetSha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+  "originalGeometryRigTexturesAndClipsUnchanged": true,
+  "rootMotion": false,
+  "targetJoints": 28,
+  "consumedCredits": 20,
+  "priceSource": "https://docs.meshy.ai/en/api/pricing",
+  "files": [
+    {
+      "path": "outputs/platform/assets/contact-pilot/football-contact-pilot.fbx",
+      "sha256": "cbbac9f598635ff85eb996fa6291dafa98d9147cbfe85abe1a7cac5621179f44",
+      "bytes": 572620
+    },
+    {
+      "path": "outputs/platform/assets/contact-pilot/pass_inside_meshy.anim",
+      "sha256": "545475ab372038f014538a21f735045cdbc88de0648d12c07a6ecb08508fde57",
+      "bytes": 8160690
+    },
+    {
+      "path": "outputs/platform/assets/contact-pilot/receive_ground_meshy.anim",
+      "sha256": "920bbf73281f17373a9efbfe0fa02bb0f434c817fb0ec88bb5afa09f331d8e46",
+      "bytes": 8166514
+    }
+  ],
+  "clips": [
+    {
+      "name": "pass_inside_meshy",
+      "task": "01a11bcb-26a6-721f-96cb-861d29ab3d14",
+      "duration": 2,
+      "samples": 61,
+      "sourceJoints": 52,
+      "targetJoints": 28,
+      "heightRatio": 0.9326337226085157,
+      "sourceHip": [
+        -0.0017950581014156343,
+        -0.19082698608972937,
+        0.02821913729369375
+      ],
+      "firstHip": [
+        0.00330402426487153,
+        0.932424263719116,
+        0.03377074273233963
+      ],
+      "consumedCredits": 10,
+      "contactSeconds": 0.8,
+      "contact": "right foot",
+      "horizontalRootAndYawRemoved": true
+    },
+    {
+      "name": "receive_ground_meshy",
+      "task": "01a11bcb-c2d0-7441-9e02-e7de536deb21",
+      "duration": 2,
+      "samples": 61,
+      "sourceJoints": 52,
+      "targetJoints": 28,
+      "heightRatio": 0.9326337226085157,
+      "sourceHip": [
+        -0.0017950581014156343,
+        -0.19082698608972937,
+        0.02821913729369375
+      ],
+      "firstHip": [
+        0.0218869538183446,
+        0.980853299214002,
+        0.043458092967997825
+      ],
+      "consumedCredits": 10,
+      "contactSeconds": 0.7,
+      "contact": "right foot",
+      "horizontalRootAndYawRemoved": true
+    }
+  ],
+  "roundTripMaximumJointErrorMetres": 0.0000021468017653765683,
+  "limits": [
+    "Two short right-foot ground motions; high balls, headers, tackling and full body variety are not delivered by this pilot.",
+    "Contact correction is visual only; unreachable targets remain misses. No game-owned root or ball is moved."
+  ]
+}

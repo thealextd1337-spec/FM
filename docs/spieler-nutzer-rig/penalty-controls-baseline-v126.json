@@ -1,0 +1,33 @@
+{
+  "version": 126,
+  "baseline": true,
+  "rows": [
+    {
+      "viewport": {
+        "width": 1270,
+        "height": 871
+      },
+      "initial": {
+        "phase": "shooting",
+        "kicks": 0,
+        "action": null,
+        "originalHidden": true
+      },
+      "visible": false
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "initial": {
+        "phase": "shooting",
+        "kicks": 0,
+        "action": null,
+        "originalHidden": true
+      },
+      "visible": false
+    }
+  ],
+  "errors": []
+}

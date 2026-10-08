@@ -1,0 +1,7 @@
+{
+  "tool": "built-in image_gen",
+  "source": "docs/meshy-concept-b/reference-a-pose.png",
+  "date": "2026-10-02",
+  "request": "Die Proportionen sind noch etwas falsch, mehr Schulter, wenider unterarme zb.",
+  "prompt": "Edit this existing soccer character reference with a targeted anatomical proportion correction. Preserve exactly his identity, youthful angular face, hair, overall height, leg lengths, waist, faceted matte art style, green polo jersey with two ivory bands and ivory collar, navy soccer shorts, ivory-green socks and black cleats. Keep this same clean neutral frontal A-pose and isolated light gray background. Make the shoulder girdle about 10 percent broader with clearly defined rounded athletic deltoids; give the upper arms modestly more athletic volume. Make the forearms noticeably slimmer (about 15-20 percent less thickness, especially near the elbows), gently tapering naturally to the wrists, and about 5 percent shorter, so the arms no longer look like bulky elongated lower arms. Keep hands realistically sized and move them with the shortened wrists. Adjust sleeves to fit the broader shoulders cleanly. Anatomically coherent lean soccer athlete, no exaggerated bodybuilding, no armor, no ball, no text. Keep the rest of the reference unchanged, single full body with boots and head completely visible, clear separation between arms and torso."
+}

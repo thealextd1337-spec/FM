@@ -1,0 +1,39 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const {read,accessor,pack}=require('../../user-character-glb.cjs');
+const root=path.resolve(__dirname,'../../..'),out=path.join(root,'meshy_output/contact-pilot-2026-10-08');
+(async()=>{
+ const T=await import('data:text/javascript;base64,'+fs.readFileSync(path.join(root,'dist/camera-prototype/vendor/three.module.js')).toString('base64'));
+ const target=read(path.join(root,'dist/players/football-v130.glb')),json=structuredClone(target.json),skin=json.skins[0],parts=[target.bin];let bytes=target.bin.length;
+ const semantic=n=>n.replace(/^mixamorig:?/i,'').replace(/[^a-z0-9]/gi,'');
+ const mapping={Hips:'Pelvis',Spine:'Spine1',Spine1:'Spine2',Spine2:'Spine3',Neck:'Neck',Head:'Head'};
+ for(const [side,prefix] of [['Left','L_'],['Right','R_']])Object.assign(mapping,{[side+'Shoulder']:prefix+'Collar',[side+'Arm']:prefix+'Shoulder',[side+'ForeArm']:prefix+'Elbow',[side+'Hand']:prefix+'Wrist',[side+'HandMiddle4']:prefix+'Middle3',[side+'UpLeg']:prefix+'Hip',[side+'Leg']:prefix+'Knee',[side+'Foot']:prefix+'Ankle',[side+'ToeBase']:prefix+'Foot'});
+ function parents(g){const p={};g.nodes.forEach((n,i)=>(n.children||[]).forEach(c=>p[c]=i));return p;}
+ function globals(g,parent,locals){const result=new Map();function at(i){if(result.has(i))return result.get(i);const n=g.nodes[i];const m=locals?.get(i)||new T.Matrix4().compose(new T.Vector3().fromArray(n.translation||[0,0,0]),new T.Quaternion().fromArray(n.rotation||[0,0,0,1]),new T.Vector3().fromArray(n.scale||[1,1,1]));const world=parent[i]===undefined?m.clone():at(parent[i]).clone().multiply(m);result.set(i,world);return world;}g.nodes.forEach((n,i)=>at(i));return result;}
+ function decomposition(m){const p=new T.Vector3(),q=new T.Quaternion(),s=new T.Vector3();m.decompose(p,q,s);return {p,q,s};}
+ const targetParent=parents(json),targetBind=new Map();accessor(target,skin.inverseBindMatrices).forEach((m,i)=>targetBind.set(skin.joints[i],decomposition(new T.Matrix4().fromArray(m).invert())));
+ const hipId=skin.joints.find(i=>semantic(json.nodes[i].name)==='Hips');
+ function add(rows,type){const flat=rows.flat(),buf=Buffer.alloc(flat.length*4);flat.forEach((v,i)=>{assert(Number.isFinite(v));buf.writeFloatLE(v,i*4);});const pad=(4-bytes%4)%4;if(pad){parts.push(Buffer.alloc(pad));bytes+=pad;}const view=json.bufferViews.length;json.bufferViews.push({buffer:0,byteOffset:bytes,byteLength:buf.length});parts.push(buf);bytes+=buf.length;const i=json.accessors.length,a={bufferView:view,componentType:5126,count:rows.length,type};if(type==='SCALAR'){a.min=[Math.min(...flat)];a.max=[Math.max(...flat)];}json.accessors.push(a);return i;}
+ const report={originalAssetSha256:crypto.createHash('sha256').update(target.bytes).digest('hex'),mapping,clips:[]};
+ for(const clip of ['pass','receive']){
+  const source=read(path.join(out,clip+'-provider.glb')),g=source.json,parent=parents(g),byName=new Map(),bind=new Map();g.skins[0].joints.forEach((id,i)=>{const b=decomposition(new T.Matrix4().fromArray(accessor(source,g.skins[0].inverseBindMatrices)[i]).invert());byName.set(g.nodes[id].name,id);bind.set(id,b);});
+  const animation=g.animations[0],channels=animation.channels.map(c=>{const s=animation.samplers[c.sampler];return {id:c.target.node,path:c.target.path,times:accessor(source,s.input).flat(),values:accessor(source,s.output),interpolation:s.interpolation};});
+  const end=Math.max(...channels.map(c=>c.times.at(-1))),sourceHip=byName.get('Pelvis'),sourceL=byName.get('L_Hip'),sourceFoot=byName.get('L_Ankle');
+  const targetL=skin.joints.find(i=>semantic(json.nodes[i].name)==='LeftUpLeg'),targetFoot=skin.joints.find(i=>semantic(json.nodes[i].name)==='LeftFoot'),ratio=targetBind.get(targetL).p.distanceTo(targetBind.get(targetFoot).p)/bind.get(sourceL).p.distanceTo(bind.get(sourceFoot).p);
+  function sample(time){const values=new Map();for(const c of channels){let i=0;while(i<c.times.length-2&&c.times[i+1]<time)i++;const q=Math.max(0,Math.min(1,(time-c.times[i])/(c.times[i+1]-c.times[i]||1))),a=c.values[i],b=c.values[Math.min(i+1,c.values.length-1)];let v=c.path==='rotation'?new T.Quaternion().fromArray(a).slerp(new T.Quaternion().fromArray(b),q).toArray():a.map((x,k)=>x+(b[k]-x)*q);if(!values.has(c.id))values.set(c.id,{});values.get(c.id)[c.path]=v;}const locals=new Map();g.nodes.forEach((n,id)=>{const v=values.get(id)||{};locals.set(id,new T.Matrix4().compose(new T.Vector3().fromArray(v.translation||n.translation||[0,0,0]),new T.Quaternion().fromArray(v.rotation||n.rotation||[0,0,0,1]),new T.Vector3().fromArray(v.scale||n.scale||[1,1,1])));});return globals(g,parent,locals);}
+  const first=sample(0),standingHip=decomposition(first.get(sourceHip)).p.y;
+  const poses=[];for(let i=0;i<=Math.round(end*30);i++){
+   const time=Math.min(end,i/30),world=sample(time),hip=decomposition(world.get(sourceHip)),delta=hip.q.clone().multiply(bind.get(sourceHip).q.clone().invert()),forward=new T.Vector3(0,0,1).applyQuaternion(delta),yaw=new T.Quaternion().setFromAxisAngle(new T.Vector3(0,1,0),-Math.atan2(forward.x,forward.z)),rotations=new Map();
+   function rotation(id){if(rotations.has(id))return rotations.get(id);const b=targetBind.get(id);let name=mapping[semantic(json.nodes[id].name)];if(clip==='pass'&&name?.startsWith('L_'))name='R_'+name.slice(2);else if(clip==='pass'&&name?.startsWith('R_'))name='L_'+name.slice(2);const sourceId=byName.get(name);let q;if(sourceId!==undefined){q=yaw.clone().multiply(decomposition(world.get(sourceId)).q).multiply(bind.get(sourceId).q.clone().invert());if(clip==='pass'){q.y=-q.y;q.z=-q.z;}q.multiply(b.q);}else{const p=targetParent[id];q=targetBind.has(p)?rotation(p).clone().multiply(targetBind.get(p).q.clone().invert()).multiply(b.q):b.q.clone();}rotations.set(id,q.normalize());return q;}
+   poses.push({time,rotations:skin.joints.map(id=>{const q=rotation(id).clone(),p=targetParent[id];if(targetBind.has(p))q.premultiply(rotation(p).clone().invert());return q.normalize().toArray();}),hip:[...json.nodes[hipId].translation]});
+   // Only source vertical body motion is retained. The game owns horizontal root travel and yaw.
+   poses.at(-1).hip[1]+=(hip.p.y-standingHip)*ratio;
+  }
+  const request=JSON.parse(fs.readFileSync(path.join(out,clip+'-submission.json'),'utf8').replace(/^\uFEFF/,'')),task=request.result||request.id;
+  const name=clip==='pass'?'pass_inside_meshy':'receive_ground_meshy',input=add(poses.map(p=>[p.time]),'SCALAR'),retarget={name,channels:[],samplers:[],extras:{provider:'Meshy',sourceResource:'text-to-motion',sourceTask:task,rootMotion:'horizontal and yaw removed',consumedCredits:10}};
+  for(const [i,id] of skin.joints.entries()){retarget.channels.push({sampler:retarget.samplers.length,target:{node:id,path:'rotation'}});retarget.samplers.push({input,output:add(poses.map(p=>p.rotations[i]),'VEC4'),interpolation:'LINEAR'});}
+  retarget.channels.push({sampler:retarget.samplers.length,target:{node:hipId,path:'translation'}});retarget.samplers.push({input,output:add(poses.map(p=>p.hip),'VEC3'),interpolation:'LINEAR'});json.animations.push(retarget);
+  report.clips.push({name,task,duration:end,samples:poses.length,sourceJoints:g.skins[0].joints.length,targetJoints:skin.joints.length,heightRatio:ratio,sourceHip:bind.get(sourceHip).p.toArray(),firstHip:decomposition(first.get(sourceHip)).p.toArray()});
+ }
+ const bin=Buffer.concat(parts);assert(bin.subarray(0,target.bin.length).equals(target.bin));const file=path.join(out,'football-contact-pilot.glb');pack(json,bin,file);report.sha256=crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');report.existingGeometryRigTexturesAndClipsPreserved=true;fs.writeFileSync(path.join(out,'retarget-report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
+})().catch(e=>{console.error(e);process.exitCode=1;});

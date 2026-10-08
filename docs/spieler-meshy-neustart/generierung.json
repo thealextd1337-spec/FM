@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-02",
+  "referenceTool": "built-in image_gen.imagegen",
+  "referenceSource": "docs/3d-neukonzept/athlet-konzept.png",
+  "referenceOutput": "docs/spieler-meshy-neustart/referenz-a-pose.png",
+  "prompt": "Create a NEW clean single-character 3D modeling reference based on the attached style reference only. Exactly ONE full-body male association football SOCCER athlete centered, straight-on front view, near orthographic. Keep the reference's adult athletic proportions, long strong football legs, lean waist, natural moderate shoulders, compact neck, angular handsome young adult face, modernized ISS64/ISS2000 stylized sports game art, matte sculpted surfaces. Do not exaggerate jaw, muscles, hands or head. This is a production A-pose: arms straight angled 35 degrees away from torso, hands relaxed open with clearly separate thumbs, both legs straight, feet shoulder-width apart and pointing forward, weight symmetric. Short close-cropped brown hair close to scalp, NO tall quiff. Plain solid forest-green short-sleeved soccer jersey with a simple fitted crew neck, dark navy soccer shorts ending at mid thigh, plain ivory knee-high socks, slim black low-cut football cleats. Neutral expression. The shirt follows an athletic torso with slight fabric ease, not baggy; distinct clean sleeve hems. All body parts visible and uncropped with margins. Flat softly lit pale gray background. High-quality stylized 3D render, restrained broad form shading, no hard baked shadows or specular shine. No ball, no lettering, no logos, no numbers, no stripes, no props, no multiple views, no montage, no scene. Purpose: feed this exact single figure to Meshy image-to-3D then rig and assign color regions.",
+  "meshy": {
+    "cli": "0.4.0",
+    "resource": "image-to-3d",
+    "model_type": "smart-topology",
+    "target_polycount": 3500,
+    "should_texture": true,
+    "enable_pbr": false,
+    "texture_resolution": "2k",
+    "pose_mode": "a-pose",
+    "target_formats": ["glb"],
+    "task_id": "01a0fe2c-6776-77c9-a044-fabe257e4585",
+    "consumed_credits": 15
+  },
+  "rigging": {
+    "resource": "rigging",
+    "height_meters": 1.8,
+    "task_id": "01a0fe30-6f3d-707f-ba66-d9127ec6656d",
+    "consumed_credits": 5
+  },
+  "additionalPaidStages": 0
+}

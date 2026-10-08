@@ -1,0 +1,73 @@
+{
+  "samples": [
+    {
+      "id": "idle",
+      "time": 0.9166999999999977,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "shot",
+      "time": 0.7814000000000019,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "start-stop",
+      "time": 0.9504999999999969,
+      "phase": 1.1688800701124733,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "turn-left",
+      "time": 0.8807000000000046,
+      "phase": 1.989848997845375,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "reverse",
+      "time": 0.798000000000004,
+      "phase": 1.9061643983185346,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "back-walk",
+      "time": 0.7820000000000005,
+      "phase": 1.7334314489096891,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "back-left",
+      "time": 0.8160000000000005,
+      "phase": 1.5845459303723648,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "back-right",
+      "time": 0.8661000000000064,
+      "phase": 1.7554277060037313,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "keeper-look",
+      "time": 0.865499999999993,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    }
+  ],
+  "downloadByteEqual": true,
+  "mobile": {
+    "width": 844,
+    "scroll": 844
+  },
+  "errors": []
+}

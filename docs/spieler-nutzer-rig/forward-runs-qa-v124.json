@@ -1,0 +1,239 @@
+{
+  "rows": [
+    {
+      "team": 0,
+      "line": "att",
+      "role": 1,
+      "ins": [],
+      "target": 0.22360598159241132,
+      "relative": 6.79116568,
+      "travel": 0.2753815976000001,
+      "limit": 0.2211623452359519
+    },
+    {
+      "team": 0,
+      "line": "att",
+      "role": -1,
+      "ins": [],
+      "target": 0.2509509736432857,
+      "relative": 4.791165680000001,
+      "travel": 0.2753815975999977,
+      "limit": 0.2211623452359519
+    },
+    {
+      "team": 0,
+      "line": "mid",
+      "role": 1,
+      "ins": [],
+      "target": 0.2646234696687229,
+      "relative": 3.7911656800000015,
+      "travel": 0.27538159760000147,
+      "limit": 0.2211623452359519
+    },
+    {
+      "team": 0,
+      "line": "mid",
+      "role": 0,
+      "ins": [],
+      "target": 0.37114815146204566,
+      "relative": -3.999999999999999,
+      "travel": 0.2753815975999972,
+      "limit": 0.2211623452359519
+    },
+    {
+      "team": 0,
+      "line": "mid",
+      "role": -1,
+      "ins": [],
+      "target": 0.5795908952964693,
+      "relative": -19.245405333936336,
+      "travel": 0.27538159759999925,
+      "limit": 0.2211623452359519
+    },
+    {
+      "team": 0,
+      "line": "att",
+      "role": 1,
+      "ins": [
+        "support"
+      ],
+      "target": 0.37114815146204566,
+      "relative": -3.999999999999999,
+      "travel": 0.27538159759999725,
+      "limit": 0.2211623452359519
+    },
+    {
+      "team": 0,
+      "line": "mid",
+      "role": -1,
+      "ins": [
+        "deep"
+      ],
+      "target": 0.2211623452359519,
+      "relative": 6.969892106536392,
+      "travel": 0.2753815976000022,
+      "limit": 0.2211623452359519
+    },
+    {
+      "team": 1,
+      "line": "att",
+      "role": 1,
+      "ins": [],
+      "target": 0.7694163648720442,
+      "relative": 6.791165680000002,
+      "travel": 0.2753815975999988,
+      "limit": 0.7788376547640482
+    },
+    {
+      "team": 1,
+      "line": "att",
+      "role": -1,
+      "ins": [],
+      "target": 0.7420713728211698,
+      "relative": 4.791165679999996,
+      "travel": 0.2753815975999996,
+      "limit": 0.7788376547640482
+    },
+    {
+      "team": 1,
+      "line": "mid",
+      "role": 1,
+      "ins": [],
+      "target": 0.7283988767957326,
+      "relative": 3.7911656799999975,
+      "travel": 0.27538159760000075,
+      "limit": 0.7788376547640482
+    },
+    {
+      "team": 1,
+      "line": "mid",
+      "role": 0,
+      "ins": [],
+      "target": 0.6218741950024098,
+      "relative": -4.0000000000000036,
+      "travel": 0.27538159759999953,
+      "limit": 0.7788376547640482
+    },
+    {
+      "team": 1,
+      "line": "mid",
+      "role": -1,
+      "ins": [],
+      "target": 0.4055908952964694,
+      "relative": -19.8188599436089,
+      "travel": 0.2753815976000029,
+      "limit": 0.7788376547640482
+    },
+    {
+      "team": 1,
+      "line": "att",
+      "role": 1,
+      "ins": [
+        "support"
+      ],
+      "target": 0.6218741950024098,
+      "relative": -4.0000000000000036,
+      "travel": 0.27538159759999775,
+      "limit": 0.7788376547640482
+    },
+    {
+      "team": 1,
+      "line": "mid",
+      "role": -1,
+      "ins": [
+        "deep"
+      ],
+      "target": 0.7788376547640482,
+      "relative": 7.480234440705874,
+      "travel": 0.27538159759999814,
+      "limit": 0.7788376547640482
+    }
+  ],
+  "choices": [
+    {
+      "team": 0,
+      "kind": "free-far",
+      "choice": "carry",
+      "clear": true,
+      "range": 26
+    },
+    {
+      "team": 0,
+      "kind": "free-near",
+      "choice": "shot",
+      "clear": true,
+      "range": 9
+    },
+    {
+      "team": 0,
+      "kind": "pressure-side",
+      "choice": "pass",
+      "clear": false,
+      "range": 26
+    },
+    {
+      "team": 0,
+      "kind": "pressure-ahead",
+      "choice": "pass",
+      "clear": false,
+      "range": 26
+    },
+    {
+      "team": 0,
+      "kind": "keeper-close",
+      "choice": "shot",
+      "clear": true,
+      "range": 15
+    },
+    {
+      "team": 0,
+      "kind": "better-square",
+      "choice": "pass",
+      "clear": true,
+      "range": 20
+    },
+    {
+      "team": 1,
+      "kind": "free-far",
+      "choice": "carry",
+      "clear": true,
+      "range": 26
+    },
+    {
+      "team": 1,
+      "kind": "free-near",
+      "choice": "shot",
+      "clear": true,
+      "range": 9.000000000000005
+    },
+    {
+      "team": 1,
+      "kind": "pressure-side",
+      "choice": "pass",
+      "clear": false,
+      "range": 26
+    },
+    {
+      "team": 1,
+      "kind": "pressure-ahead",
+      "choice": "pass",
+      "clear": false,
+      "range": 26
+    },
+    {
+      "team": 1,
+      "kind": "keeper-close",
+      "choice": "shot",
+      "clear": true,
+      "range": 14.999999999999998
+    },
+    {
+      "team": 1,
+      "kind": "better-square",
+      "choice": "pass",
+      "clear": true,
+      "range": 20
+    }
+  ],
+  "errors": []
+}

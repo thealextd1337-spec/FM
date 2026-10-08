@@ -1,0 +1,38 @@
+{
+  "run_fast4": {
+    "sampleCount": 106,
+    "preCorrectionMinimumWorldY": -0.026377064257330662,
+    "presentationScale": 1.058823252066368,
+    "heightOffsetMeters": 0.027911678323888304
+  },
+  "run_fast6": {
+    "sampleCount": 116,
+    "preCorrectionMinimumWorldY": -0.0058132462374643834,
+    "presentationScale": 1.058823252066368,
+    "heightOffsetMeters": 0.008490289551272533
+  },
+  "sprint_forward": {
+    "sampleCount": 100,
+    "preCorrectionMinimumWorldY": -0.0009825454685098358,
+    "presentationScale": 1.058823252066368,
+    "heightOffsetMeters": 0.003927959852215494
+  },
+  "celebrate_fist": {
+    "sampleCount": 156,
+    "preCorrectionMinimumWorldY": -0.044192953027794475,
+    "presentationScale": 1.058823252066368,
+    "heightOffsetMeters": 0.0447377999033822
+  },
+  "celebrate_arms": {
+    "sampleCount": 176,
+    "preCorrectionMinimumWorldY": -0.04826170113785982,
+    "presentationScale": 1.058823252066368,
+    "heightOffsetMeters": 0.048580507458325754
+  },
+  "celebrate_victory": {
+    "sampleCount": 626,
+    "preCorrectionMinimumWorldY": -0.03135904972948325,
+    "presentationScale": 1.058823252066368,
+    "heightOffsetMeters": 0.032616888057835774
+  }
+}

@@ -1,0 +1,84 @@
+/* U01-C: existing workflows, Flutlicht surfaces and complete mobile content. */
+.fl-content .fl-market,.fl-content .fl-market-contracts,.fl-content .fl-market-youth{min-width:0}
+#v61-world-screen .fl-content .fl-market-jumps{display:flex;flex-wrap:wrap;gap:6px 18px;margin:18px 0 26px;padding:0 0 12px;border-bottom:1px solid var(--fl-line)}
+#v61-world-screen .fl-content .fl-market-jumps button{min-height:44px;padding:8px 0;border:0;border-radius:0;background:transparent;color:var(--fl-accent);font-size:13px;font-weight:650;text-align:left;text-decoration:underline;text-underline-offset:5px}
+.fl-market [data-fl-market-target]{scroll-margin-top:24px}
+#v61-world-screen .fl-content .fl-market :is(.v72-sale-list,.v72-own-sales,.v66-offer,.v66-recovery){padding:20px;margin:26px 0;border:1px solid var(--fl-line);border-radius:var(--fl-radius);background:var(--fl-surface)}
+#v61-world-screen .fl-content .fl-market :is(.v72-sale-card,.v72-own-card,.v66-player-card){min-width:0;border-color:var(--fl-line);background:var(--fl-subtle);border-radius:8px;color:var(--fl-ink);padding:15px}
+#v61-world-screen .fl-content .fl-market :is(.v66-player-list,.v72-sale-grid){max-height:none;overflow:visible;gap:12px}
+#v61-world-screen .fl-content .fl-market :is(.v66-filters,.v72-filters){grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
+#v61-world-screen .fl-content :is(.fl-market,.fl-market-youth) :is(select,input){min-width:0;width:100%;max-width:100%;font-size:16px}
+#v61-world-screen .fl-content .fl-market-youth .v67-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0}
+#v61-world-screen .fl-content .fl-market-youth .v67-filters label{min-width:0;font-size:13px}
+#v61-world-screen .fl-content .fl-market-youth .v67-filters select{appearance:auto;background-image:none}
+#v61-world-screen .fl-content .fl-market-youth .v67-filters option{background:var(--fl-control);color:var(--fl-ink)}
+#v61-world-screen .fl-content .fl-market :is(.v72-sale-prices span,.v72-open-deals small,.v72-own-card small,.v66-player-identity small,.v66-bid span,.v66-bid small,.v66-note),#v61-world-screen .fl-content .fl-market-youth small{color:var(--fl-muted);font-size:12px;line-height:1.5}
+#v61-world-screen .fl-content .fl-market :is(.v72-sale-prices b,.v72-own-offer strong,.v66-player-pick b){color:var(--fl-ink);font-size:14px}
+#v61-world-screen .fl-content .fl-market .v72-sale-list .section-heading>span{color:var(--fl-accent);white-space:normal}
+#v61-world-screen .fl-content .fl-market :is(.v66-player-name,.v72-own-name,.v72-player-name,.v72-sale-top button),#v61-world-screen .fl-content .fl-market-youth .v67-profile{color:var(--fl-accent);background:transparent;border:0;padding:0;text-align:left;font-size:15px;font-weight:700;line-height:1.4;white-space:normal!important;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+#v61-world-screen .fl-content .fl-market .v66-player-list :is(strong,small){overflow:visible;text-overflow:clip;white-space:normal;overflow-wrap:anywhere}
+#v61-world-screen .fl-content .fl-market .v66-player-pick{min-width:0;max-width:100%;white-space:normal;background:transparent}
+#v61-world-screen .fl-content .fl-market .v66-player-pick small{color:var(--fl-accent)!important}
+#v61-world-screen .fl-content .fl-market .v66-player-card[data-selected=true]{border-color:var(--fl-accent);background:var(--fl-tint)}
+#v61-world-screen .fl-content .fl-market .v72-willingness{width:28px;height:28px;color:var(--fl-warning-ink);background:var(--fl-warning)}
+#v61-world-screen .fl-content .fl-market .v72-open{color:var(--fl-success-ink);background:var(--fl-success)}
+#v61-world-screen .fl-content .fl-market .v72-no{color:var(--fl-alert-ink);background:var(--fl-alert)}
+#v61-world-screen .fl-content .fl-market :is(.v72-own-offer,.v72-open-deals>div,.v66-bid,.v72-own-reprice){border-color:var(--fl-line);gap:14px;padding-block:14px}
+#v61-world-screen .fl-content .fl-market :is(.v72-own-offer,.v72-open-deals>div,.v66-bid){flex-wrap:wrap}
+#v61-world-screen .fl-content .fl-market :is(.v72-own-offer>span,.v72-open-deals>div>span,.v66-bid>div){min-width:0;overflow-wrap:anywhere}
+#v61-world-screen .fl-content .fl-market .v72-own-actions :is(.v72-quick-accept,.v72-quick-reject){min-width:44px;min-height:44px}
+#v61-world-screen .fl-content .fl-market .v72-own-actions .v72-quick-accept{color:var(--fl-success-ink);background:var(--fl-success);border-color:var(--fl-success-ink)}
+#v61-world-screen .fl-content .fl-market .v72-own-actions .v72-quick-reject{color:var(--fl-alert-ink);background:var(--fl-alert);border-color:var(--fl-alert-ink)}
+.fl-market .v72-sale-prices{font-variant-numeric:tabular-nums}
+#v61-world-screen .fl-content :is(.fl-market,.fl-market-youth) .fl-market-player{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 12px;align-items:start}
+#v61-world-screen .fl-content .fl-market .v72-sale-card{grid-template-columns:minmax(0,1fr)}
+#v61-world-screen .fl-content .fl-market-youth .fl-market-player{padding:18px;border:1px solid var(--fl-line);background:var(--fl-surface);border-radius:8px}
+#v61-world-screen .fl-content .fl-market-player>div{min-width:0}
+#v61-world-screen .fl-content .fl-market-player .fl-market-player-details{grid-column:1/-1;display:grid;gap:12px;padding-top:12px;border-top:1px solid var(--fl-line)}
+.fl-market-skills{display:flex;flex-wrap:wrap;gap:5px}
+.fl-market-player-status{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.fl-market-player-status .fl-freshness{width:130px;max-width:100%}
+#v61-world-screen .fl-content .fl-market-player-status .fl-freshness span{font-size:12px}
+#v61-world-screen .fl-content .fl-market-player-status .fl-freshness b{font-size:12px;color:var(--fl-ink)}
+#v61-world-screen .fl-content .fl-market-youth .v67-youth-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px}
+#v61-world-screen .fl-content .fl-market-youth .v67-youth-actions button{margin:0;white-space:normal;max-width:100%}
+#v61-world-screen .fl-content .fl-market-contracts :is(.v66-contract-wrap,.v66-contract-table){background:var(--fl-surface);border-color:var(--fl-line)}
+#v61-world-screen .fl-content .fl-market-contracts .v66-contract-table td:first-child button{color:var(--fl-accent);white-space:normal}
+#v61-world-screen .fl-content .fl-market-contracts :is(.v66-contract-table th,.v66-contract-table td){border-color:var(--fl-line);background:transparent;color:var(--fl-ink)}
+#v61-world-screen .fl-content .fl-market-contracts .v66-contract-table thead th{background:var(--fl-subtle);color:var(--fl-muted)}
+#v61-world-screen .fl-content .fl-market-contracts .v66-contract-table tbody tr:hover{background:var(--fl-tint)}
+/* Persistent native dialogs are marked by I00 even when outside the shell. */
+.fl-dialog.v72-transfer-dialog :is(.v72-dialog-facts>span,.v72-transfer-route,.v72-last-change,.v66-renew-history){background:var(--fl-subtle);border:1px solid var(--fl-line);border-radius:8px;color:var(--fl-ink)}
+.fl-dialog.v72-transfer-dialog :is(.v72-dialog-facts b,.v66-renew-history li strong,.v72-transfer-route strong){color:var(--fl-ink)}
+.fl-dialog.v72-transfer-dialog :is(.v72-dialog-facts span,.v72-last-change small,.v72-transfer-route small,.v66-renew-history li small){color:var(--fl-muted);font-size:12px}
+.fl-dialog.v72-transfer-dialog :is(.v72-stage,.v72-transfer-arrow){color:var(--fl-accent)!important}
+.fl-dialog.v72-transfer-dialog .v72-dialog-error{color:var(--fl-alert-ink)!important}
+.fl-dialog.v72-transfer-dialog .v72-confirm-danger{color:var(--fl-alert-ink)!important;border-color:var(--fl-alert-ink)!important;background:var(--fl-alert)}
+.fl-dialog.v72-transfer-dialog :is(.v72-dialog-nav,.v66-renew-history li){border-color:var(--fl-line)}
+.fl-dialog.v72-transfer-dialog .v72-deal-profiles button{color:var(--fl-accent);background:transparent}
+.fl-dialog.v72-transfer-dialog :is(.v72-confirm-actions,.v72-seller-actions){gap:10px}
+.fl-dialog.v72-transfer-dialog .v72-number{grid-template-columns:44px minmax(0,1fr) 44px}
+.fl-dialog.v72-transfer-dialog .v72-number button{min-height:44px;background:var(--fl-control);color:var(--fl-ink);border-color:var(--fl-control-line)}
+.fl-dialog.v72-transfer-dialog .v66-fields{grid-template-columns:repeat(2,minmax(0,1fr))}
+.fl-dialog.v72-transfer-dialog :is(input,select){width:100%;min-width:0;max-width:100%;font-size:16px}
+@media(max-width:1100px){#v61-world-screen .fl-content .fl-market :is(.v66-player-list,.v72-sale-grid){grid-template-columns:1fr}}
+@media(max-width:900px){
+ #v61-world-screen .fl-content .fl-market :is(.v72-sale-list,.v72-own-sales,.v66-offer,.v66-recovery){padding:15px;margin-block:22px}
+ #v61-world-screen .fl-content .fl-market :is(.v66-player-card,.v72-sale-card){padding:14px}
+ #v61-world-screen .fl-content .fl-market :is(.v72-sale-list .section-heading,.v66-player-identity){align-items:flex-start;flex-wrap:wrap}
+ #v61-world-screen .fl-content .fl-market .v66-player-identity{flex-wrap:nowrap}
+ #v61-world-screen .fl-content .fl-market-contracts .v66-table-hint{display:none}
+ #v61-world-screen .fl-content .fl-market-contracts .fl-data-table tbody td:first-child{grid-column:1/-1;font-size:15px}
+ #v61-world-screen .fl-content .fl-market-youth .fl-market-player{grid-template-columns:minmax(0,1fr);padding:14px}
+ #v61-world-screen .fl-content .fl-market-youth .v67-youth-actions{justify-content:flex-start}
+ #v61-world-screen .fl-content .fl-market-youth .fl-market-player-details{grid-row:2}
+ .fl-market-skills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}.fl-market-skills .fl-skill{min-width:0;font-size:12px}
+}
+@media(max-width:480px){
+ #v61-world-screen .fl-content .fl-market :is(.v66-filters,.v72-filters),#v61-world-screen .fl-content .fl-market-youth .v67-filters{grid-template-columns:1fr}
+ #v61-world-screen .fl-content .fl-market .v66-player-card{grid-template-columns:minmax(0,1fr)}
+ #v61-world-screen .fl-content .fl-market .v66-player-pick{justify-self:start;justify-items:start;text-align:left}
+ #v61-world-screen .fl-content .fl-market .v66-bid-actions label{max-width:100%;width:100%}
+ .fl-dialog.v72-transfer-dialog .v66-fields{grid-template-columns:minmax(0,1fr)}
+ .fl-dialog.v72-transfer-dialog .v72-confirm-actions>*{flex:1;white-space:normal}
+}

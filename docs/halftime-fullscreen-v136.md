@@ -1,0 +1,9 @@
+# Halbzeit und Vollbild
+
+Die bestehende Halbzeitpause öffnet den Taktikreiter. Bisher blieb das Spielfeld im Vollbild und verdeckte die Taktikansicht. Der veröffentlichte Stand 108 wurde mit derselben echten Halbzeitgrenze reproduziert: Match pausiert, Browser und Seitenlayout weiterhin im Vollbild.
+
+Die Vollbildsteuerung verlässt nun vor dem Wechsel zur vorhandenen Taktikansicht das Vollbild. Eine flüchtige Referenz auf die aktuelle Partie merkt sich die Rückkehr. Beide vorhandenen Startaktionen für die zweite Halbzeit verwenden dieselbe Fortsetzen-Funktion; sie stellen das Vollbild während der Nutzeraktion wieder her. Die Browserfunktion verwendet bei fehlender Unterstützung weiterhin den Viewport-Fallback. Ohne vorheriges Vollbild erfolgt keine automatische Vergrößerung. Verlassen oder Wechsel der Partie löscht die Referenz. Keine neuen Speicherfelder und keine Änderung an Simulation oder Spielständen.
+
+Geprüft mit isoliertem Edge-Testprofil: natives Vollbild, mobiler Fallback, Querformat mit 3D, Hochformat mit 2D, Deutsch/Englisch, Taktik-/Aufstellungswechsel, beide Startaktionen, normales Spielfeld ohne Vollbild, vorheriges manuelles Verlassen und Bereinigung bei Matchende. Während der Taktikpause bleiben Uhr und Spielstand stehen. `check-halftime-fullscreen-v136.cjs` verwendet `beginHalftimeBreak` und `v65AfterStep`; die Vergleichsprobe lädt den originalen Veröffentlichungscode 108. `run-fullscreen-regression-v136.cjs` prüft bestehendes Vollbild, Orientierung, Rückschau und Pause/Fortsetzen mit eigenen Nachweisen. Projektions- und mobile Bildplanungsprüfungen bestanden.
+
+Als [Prototyp 109 live veröffentlicht](release-109.md); Quellseite, Build und Live-Version stimmen bytegenau überein. Alle fünf Fälle einschließlich Bereinigung auch direkt live bestanden. Prüfung auf einem echten Pixel 9 Pro XL bleibt am Gerät erforderlich; Browseremulation belegt den Ablauf und die Viewport-Behandlung.

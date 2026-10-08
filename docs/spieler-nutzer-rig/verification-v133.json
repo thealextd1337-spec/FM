@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-05T15:03:49.522Z",
+  "published": false,
+  "newMeshyCredits": 0,
+  "modelSha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+  "buildSha256": "355a8752a27cbdbe1ddf920f21fd5e64947cb479e7768b54bf0b347f01572a4d",
+  "sources": {
+    "world-goal-replay-v103.js": "8ae8bccb932144ff02df9b94e79ea0e371ce26502f377716c2b4aec42fc0611e",
+    "pitch-v56.js": "4c4606df4bd9b316968aaf2a54ffd3bd86e6da682778ca711575da99f1e2f662",
+    "pitch-motion-v102.js": "545c56e40b08986c951fe6699e8ef893d89e051a47d0346a2db7742d0286636d",
+    "player-user-motion-v108.js": "698df4fb97ca31115bdf84b3f53e33abb1f8c8801984d759b4af4ad9605740d6"
+  },
+  "evidence": {
+    "outputs/image-enlarge-qa-v133.json": "33e82ca102676dda85d51ee1c7f8917865bf6e584e81780930481a13e0a798cd",
+    "outputs/keeper-facing-baseline-v133.json": "b1b6e549213ecdcc0718e8770e3f4fd9cf4c4864586b54326ea282ebda956f49",
+    "outputs/keeper-facing-qa-v133.json": "1cec5532e476cfb33d2dea8bbc8edb86b0ed894dad12044d7e51868a60fd768d",
+    "outputs/slide-decision-baseline-v133.json": "6ac867c10fbc55e84a3867e53681e96ddd156e6144dcc47578dfcc7a3dbee6bb",
+    "outputs/slide-decision-qa-v133.json": "b63d1e4315e7d1ac83beea3ab6505dc4a6f1a36c016af8080ea72f4e801c05f4",
+    "docs/spieler-nutzer-rig/keeper-sidestep-qa-v133.json": "904868344d6d779f3f55ba27d664ff2cc835f1856d298195f9b6f7209bc156e5",
+    "docs/spieler-nutzer-rig/keeper-visual-qa-v133.json": "21a1ab7a18f1bfd2ba6b7c667406b31b1449480cacc1c51c100618bd4b25f806",
+    "docs/spieler-nutzer-rig/play-actions-qa-v133.json": "849c9357029f2d1420ffebc0602ccfc82984ac071280f880a8c8bb838a10c740",
+    "docs/spieler-nutzer-rig/slide-visual-qa-v133.json": "ace909d25210dba2fdfb2106ea3fbcbbc57d9f6ca083fa993fb609f22838a228",
+    "docs/spieler-nutzer-rig/foul-exit-qa-v133.json": "fef226bc6454ac95435d118a27ba259fcf05a136b1e11a8f846819b2421967d3",
+    "docs/spieler-nutzer-rig/warping-qa-v133.json": "c9d12d447a00c568d2177a09162ab5f72d63cec2b2432bfc9d9c990c883e3080",
+    "outputs/world3d-parity-v133.json": "ca0c036e73f78e4485eaf97997c6ff6b4b55e7867e4c462622988648b533856c"
+  },
+  "imageEnlargementSeparateFromFullscreen": true,
+  "keeperFacingAndReadyNativeSequences": 24,
+  "contactDecisionsImmediate": true,
+  "completedNativeMatches": 2,
+  "nativeFrames": 15972,
+  "regular2d3dOfflineParity": true,
+  "limits": "Earlier review frames retain recorded poses. Reported past scene not available for exact replay; related corner and ball-turn scenes reproduced. Desktop browser tests, no physical mobile device."
+}

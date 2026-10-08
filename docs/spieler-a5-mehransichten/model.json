@@ -1,0 +1,17 @@
+{
+  "model": "meshy_output/player-a3-quality/player-a5-collar.glb",
+  "refs": "docs/spieler-a3-mehransichten",
+  "label": "A5 · korrigierter Kragen",
+  "comparisonTitle": "A4 → A5 · Kragenkorrektur",
+  "description": "Der bisherige Ausschnitt und der lokal korrigierte Rundkragen. Gesicht wählen und zoomen, um den Übergang genauer anzusehen. Beide Kameras bewegen sich gemeinsam.",
+  "note": "A5 ergänzt einen gleichmäßigen Kragenrand und korrigiert die Materialgrenze direkt am Ausschnitt. Die Körperform bleibt erhalten. 0 zusätzliche Meshy-Credits. Weitere Gesichts- und Kleidungsdetails sind noch offen; keine fertige Spielfigur.",
+  "previous": {
+    "id": "a4",
+    "label": "A4 · bisheriger Kragen",
+    "model": "meshy_output/player-a3-quality/player-a4-final.glb",
+    "refs": "docs/spieler-a3-mehransichten",
+    "referenceLabel": "A3-Körperreferenz anzeigen"
+  },
+  "referenceLabel": "A3-Körperreferenz anzeigen",
+  "goal": "gleichmäßiger Rundkragen mit sauberem Haut-Trikot-Übergang"
+}

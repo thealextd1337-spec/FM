@@ -1,0 +1,1 @@
+const fs=require('fs');const f='work/check-match-additions-v148.cjs';let s=fs.readFileSync(f,'utf8').replaceAll('v65CompetitionHTML','v65CompetitionResultsHTML').replaceAll('v99State(current)','v99StateFor(current)').replaceAll('v66ContractRow(c,p)','v66ContractHTML(c,p)');fs.writeFileSync(f,s);

@@ -1,0 +1,19 @@
+/* The one operating area follows the same portrait/landscape field geometry. */
+:is(.fl-shell,.fl-match) .v64-prematch-field .d6-zone-layer{position:absolute;inset:32px 18px 72px;z-index:1;pointer-events:none}
+:is(.fl-shell,.fl-match) .d6-zone-hint{color:var(--fl-muted);font-size:12px;line-height:1.5;margin:12px 0}
+:is(.fl-shell,.fl-match) .v64-raster{z-index:2}
+:is(.fl-shell,.fl-match) .v64-raster .d6-pitch-role{position:absolute;bottom:calc(100% - 18px);left:-8px;right:-8px;margin:auto;width:max-content;max-width:calc(100% + 16px);background:#193b31;border-radius:3px;font-size:9px;line-height:1.1}
+:is(.fl-shell,.fl-match) .v64-raster .cell:has(.d6-pitch-role){padding-top:17px}
+:is(.fl-shell,.fl-match) .d6-pitch-role>span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+:is(.fl-shell,.fl-match) .v64-keeper-choice .d6-pitch-role{position:absolute;top:-13px;left:50%;transform:translateX(-50%);width:max-content;max-width:120px;background:#193b31;border-radius:3px}
+@media (min-width:900px), (min-width:600px) and (orientation:landscape){
+ :is(.fl-shell,.fl-match) .v64-prematch-field .d6-zone-layer{inset:30px 76px 24px}
+ :is(.fl-shell,.fl-match) .d6-role-zone rect{transform:matrix(0,1,-1,0,100,0);transform-origin:0 0;transform-box:view-box}
+}
+@media (max-width:599px), (min-width:600px) and (max-width:899px) and (orientation:portrait){
+ :is(.fl-shell,.fl-match) :is(.v129-plan-layout,.v65-pause-layout):has(.d6-role-control){display:grid}
+ :is(.fl-shell,.fl-match) :is(.v129-plan-layout,.v65-pause-layout):has(.d6-role-control)>:is(.v64-pitch-area,.v65-pause-pitch){display:contents}
+ :is(.fl-shell,.fl-match) :is(.v129-plan-layout,.v65-pause-layout):has(.d6-role-control) .v64-prematch-field{grid-row:1}
+ :is(.fl-shell,.fl-match) :is(.v129-plan-layout,.v65-pause-layout):has(.d6-role-control)>:is(.v129-plan-controls,.v65-pause-controls){grid-row:2}
+ :is(.fl-shell,.fl-match) :is(.v129-plan-layout,.v65-pause-layout):has(.d6-role-control) .v64-bench-section{grid-row:3}
+}

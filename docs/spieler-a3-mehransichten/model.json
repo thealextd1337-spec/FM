@@ -1,0 +1,14 @@
+{
+  "resource": "multi-image-to-3d",
+  "taskId": "01a0fe64-923c-72ed-adba-e313fc3ae963",
+  "operationId": "d6-player-a3-multiview-01a0fe23-v1",
+  "project": "meshy_output/20261002_225335_doppel-6-spieler-a3-mehransich_01a0fe64",
+  "model": "meshy_output/20261002_225335_doppel-6-spieler-a3-mehransich_01a0fe64/player-a3.glb",
+  "previous": {
+    "id": "a2",
+    "label": "A2 · bisherige Fassung",
+    "model": "meshy_output/20261002_224215_doppel-6-spieler-a2-mehransich_01a0fe5a/player-a2.glb",
+    "refs": "docs/spieler-a2-mehransichten"
+  },
+  "goal": "etwas längerer und dünnerer Hals, weniger muskulöse Arme bei gleicher Armlänge"
+}

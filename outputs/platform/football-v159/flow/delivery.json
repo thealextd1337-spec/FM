@@ -1,0 +1,84 @@
+{
+  "pass": true,
+  "componentChecks": 224,
+  "sourceNamedRuntimeChecks": 82,
+  "buildNamedRuntimeChecks": 82,
+  "sourceBuildFinalComparisons": 42,
+  "sourceNativeGames": 9,
+  "buildNativeGames": 9,
+  "sourceCompactGames": 2,
+  "buildCompactGames": 2,
+  "controlledCasesPerSourceAndBuild": 2,
+  "additionalPreciseSquarePassGoalCasesPerSourceAndBuild": 2,
+  "additionalPreciseSquarePassSourceChecks": 18,
+  "additionalPreciseSquarePassBuildChecks": 18,
+  "additionalPreciseSquarePassSourceBuildComparisons": 6,
+  "pairedStudyMatches": 40,
+  "studyNamedChecks": 200,
+  "snapshotEndStateParity": [
+    "Actual first-touch safe save/resume preserves complete native score/statistics/matchRecord/P02 compared with identical unsaved seed"
+  ],
+  "goals": {
+    "baseline": {
+      "matches": 20,
+      "goals": 8,
+      "goalsPerMatch": 0.4,
+      "scorelessMatches": 14,
+      "shots": 122,
+      "onTarget": 59,
+      "actualResolvedShots": 122,
+      "openGoalReleases": 53,
+      "openGoalOffTarget": 28,
+      "openGoalOnTargetScored": 4,
+      "openGoalOnTargetNotScored": 21,
+      "carryMetres": 0,
+      "actuallyCompletedReturns": 81
+    },
+    "continuous": {
+      "matches": 20,
+      "goals": 33,
+      "goalsPerMatch": 1.65,
+      "scorelessMatches": 1,
+      "shots": 115,
+      "onTarget": 40,
+      "actualResolvedShots": 115,
+      "openGoalReleases": 68,
+      "openGoalOffTarget": 43,
+      "openGoalOnTargetScored": 23,
+      "openGoalOnTargetNotScored": 2,
+      "carryMetres": 947.4479790317765,
+      "actuallyCompletedReturns": 57
+    }
+  },
+  "keeper": {
+    "shotRows": 115,
+    "onTarget": 40,
+    "shotGoals": 33,
+    "meanDepth": 2.3710780016160706,
+    "meanLateral": 1.390680424564048,
+    "depthBeyond4m": 3,
+    "depthBeyond8m": 0,
+    "actualExecutionReachable": 17,
+    "actualExecutionReachableOnTarget": 7,
+    "actualExecutionReachableScored": 0,
+    "meanActualFlightSeconds": 0.48446842335002077
+  },
+  "limitations": [
+    "Actual product remains 44x68/five field players plus keeper.",
+    "Larger native cases scale two helper conversions only; some existing physical conversions remain current product dimensions.",
+    "Six field-player harness preserves role assignments and suppresses unsupported five-player AI formation changes only. Native pressing/substitutions/contact/P02 continue.",
+    "82.5% of on-target shots convert in twenty-seed sample; simplified reach and broader balance need further iteration.",
+    "Compact tests cover central P02/roles/idempotent booking contract, not detailed native movements."
+  ],
+  "currentHashes": {
+    "dist/world-football-flow-v159.js": "77a36cf07c802b508b86c092461bec025533e5270319e9de075a81fe9d1c4f71",
+    "dist/world-attack-flow-v152.js": "b3ba99ae4e5b476e9d65c1d85859c45aa0c793600d6462f50b1e7ea506d5922f",
+    "dist/world-offensive-quality-v157.js": "c9cd0f58d87c9ed7821da9e8639c8e4c695c97cd58da3c33c7d5e73f87ba4bac",
+    "dist/match-shot-choice-v159.js": "184ec504b4a4209f96e3f0560eb8b4b67f63e43c7598d668248d42ee71a86d17",
+    "dist/pitch-v55.js": "0e8ccc24a30f636ece8403a36ec7ce415c3114cc9d860cf60929de203dcbba36",
+    "dist/world-backpedal-v108.js": "d64a3d181a73b5908d7e074172fd0c767391807b22ba63b2aca79790fd76261a",
+    "dist/world-physical-v65.js": "e0c653082eeb5386e8dc2167d02615a0248d49559842f5d3977ca4adef55dd2f",
+    "dist/game.js": "e980ee060746296b9cd987145791b3034932387ce04fc3cae2395d8054fe6e9f"
+  },
+  "buildHash": "7bb12685500eafd967031059f8f798ef433c08debae3f23c479f6a80de33042a"
+}

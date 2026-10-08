@@ -1,0 +1,1223 @@
+{
+  "environment": "Chromium browser viewport emulation; no physical device or touch gesture evidence",
+  "layouts": [
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "overview",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "squad",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "squad-contracts",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "squad-youth",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "transfers",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "transfers-offers",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "transfers-sales",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "transfers-history",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "competition",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "competition-cup",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "competition-europe",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "competition-world",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "competition-archive",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "calendar",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "statistics",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "club",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "club-finances",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "club-sponsor",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "club-history",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "club-manager",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "player-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "playercareer-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "offer-silva",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "renew-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "market-0",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "opponent",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "report",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "settings",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 700,
+      "pageOverflow": false,
+      "route": "concept",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 320
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "overview",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "squad",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "squad-contracts",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "squad-youth",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "transfers",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "transfers-offers",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "transfers-sales",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "transfers-history",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "competition",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "competition-cup",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "competition-europe",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "competition-world",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "competition-archive",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "calendar",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "statistics",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "club",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "club-finances",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "club-sponsor",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "club-history",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "club-manager",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "player-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "playercareer-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "offer-silva",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "renew-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "market-0",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "opponent",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "report",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "settings",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 932,
+      "pageOverflow": false,
+      "route": "concept",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 430
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "overview",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "squad",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "squad-contracts",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "squad-youth",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "transfers",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "transfers-offers",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "transfers-sales",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "transfers-history",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "competition",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "competition-cup",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "competition-europe",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "competition-world",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "competition-archive",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "calendar",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "statistics",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "club",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "club-finances",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "club-sponsor",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "club-history",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "club-manager",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "player-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "playercareer-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "offer-silva",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "renew-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "market-0",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "opponent",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "report",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "settings",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 390,
+      "pageOverflow": false,
+      "route": "concept",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 844
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "overview",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "squad",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "squad-contracts",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "squad-youth",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "transfers",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "transfers-offers",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "transfers-sales",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "transfers-history",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "competition",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "competition-cup",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "competition-europe",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "competition-world",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "competition-archive",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "calendar",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "statistics",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "club",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "club-finances",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "club-sponsor",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "club-history",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "club-manager",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "player-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "playercareer-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "offer-silva",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "renew-rossi",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "market-0",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "opponent",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "report",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "settings",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 1024,
+      "pageOverflow": false,
+      "route": "concept",
+      "visibleMobileNav": true,
+      "visibleTables": 0,
+      "width": 768
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "overview",
+      "visibleMobileNav": false,
+      "visibleTables": 1,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "squad",
+      "visibleMobileNav": false,
+      "visibleTables": 1,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "squad-contracts",
+      "visibleMobileNav": false,
+      "visibleTables": 1,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "squad-youth",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "transfers",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "transfers-offers",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "transfers-sales",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "transfers-history",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "competition",
+      "visibleMobileNav": false,
+      "visibleTables": 1,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "competition-cup",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "competition-europe",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "competition-world",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "competition-archive",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "calendar",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "statistics",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "club",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "club-finances",
+      "visibleMobileNav": false,
+      "visibleTables": 1,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "club-sponsor",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "club-history",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "club-manager",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "player-rossi",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "playercareer-rossi",
+      "visibleMobileNav": false,
+      "visibleTables": 1,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "offer-silva",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "renew-rossi",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "market-0",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "opponent",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "report",
+      "visibleMobileNav": false,
+      "visibleTables": 1,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "settings",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    },
+    {
+      "height": 800,
+      "pageOverflow": false,
+      "route": "concept",
+      "visibleMobileNav": false,
+      "visibleTables": 0,
+      "width": 1265
+    }
+  ],
+  "interactions": [
+    {
+      "check": "Suche",
+      "text": "1 von 11 Profis · Fähigkeiten als Farbstufen; Form und Frische separat.",
+      "mobileRows": 1
+    },
+    {
+      "check": "Fähigkeiten aufklappbar",
+      "visibleSkills": 8
+    },
+    {
+      "check": "Spielerprofil",
+      "name": "Luca Rossi"
+    },
+    {
+      "check": "Alle Menüzielseiten",
+      "links": 9
+    },
+    {
+      "check": "Navigation schließt Menü",
+      "closed": true
+    },
+    {
+      "check": "Escape schließt Menü",
+      "closed": true
+    }
+  ],
+  "dataParity": [
+    {
+      "missing": [],
+      "pageOverflow": false,
+      "route": "#competition"
+    },
+    {
+      "missing": [],
+      "pageOverflow": false,
+      "route": "#squad-contracts"
+    },
+    {
+      "missing": [],
+      "pageOverflow": false,
+      "route": "#club-finances"
+    },
+    {
+      "missing": [],
+      "pageOverflow": false,
+      "route": "#playercareer-rossi"
+    },
+    {
+      "missing": [],
+      "pageOverflow": false,
+      "route": "#report"
+    }
+  ],
+  "touchTargetGeometry": {
+    "overflow": false,
+    "smallTargets": []
+  }
+}

@@ -1,0 +1,3631 @@
+{
+  "cases": [
+    {
+      "fps": 30,
+      "side": -1,
+      "diagonal": false,
+      "rows": [
+        {
+          "rootAlignment": -0.5699582093413892,
+          "torsoAlignment": -0.6157031145451111,
+          "backWeight": 0.5488116360940264,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.061833251760922185,
+          "torsoAlignment": -0.035991754342052595,
+          "backWeight": 0.3011942119122021,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.40325305140849876,
+          "torsoAlignment": 0.3108143559975626,
+          "backWeight": 0.16529888822158653,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6331313552820752,
+          "torsoAlignment": 0.5681046377884393,
+          "backWeight": 0.0907179532894125,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7788268165849626,
+          "torsoAlignment": 0.7391653474110981,
+          "backWeight": 0.04978706836786394,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.86816590329528,
+          "torsoAlignment": 0.8433160199380011,
+          "backWeight": 0.027323722447292555,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9219356494728419,
+          "torsoAlignment": 0.9064045564991258,
+          "backWeight": 0.014995576820477701,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9539530700479906,
+          "torsoAlignment": 0.946924491256096,
+          "backWeight": 0.008229747049020027,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9729001384950333,
+          "torsoAlignment": 0.9716598451044028,
+          "backWeight": 0.004516580942612666,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9840721029832004,
+          "torsoAlignment": 0.9856392540331252,
+          "backWeight": 0.002478752176666357,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9906456687847559,
+          "torsoAlignment": 0.9899445691044626,
+          "backWeight": 0.0013603680375478926,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9945087729174468,
+          "torsoAlignment": 0.9883989509174004,
+          "backWeight": 0.0007465858083766789,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9967773721972696,
+          "torsoAlignment": 0.9841569939776471,
+          "backWeight": 0.00040973497897978643,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9981090375472219,
+          "torsoAlignment": 0.9787038748607372,
+          "backWeight": 0.0002248673241788481,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9988905294486805,
+          "torsoAlignment": 0.9719033877554684,
+          "backWeight": 0.00012340980408667945,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9993490835345177,
+          "torsoAlignment": 0.9623350888849176,
+          "backWeight": 0.00006772873649085382,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996181251900772,
+          "torsoAlignment": 0.9497176166250393,
+          "backWeight": 0.00003717031868412667,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997759686922079,
+          "torsoAlignment": 0.9386608369050626,
+          "backWeight": 0.00002039950341117192,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    },
+    {
+      "fps": 30,
+      "side": -1,
+      "diagonal": true,
+      "rows": [
+        {
+          "rootAlignment": -0.3741395741683126,
+          "torsoAlignment": -0.3783796042005076,
+          "backWeight": 0.5488116360940264,
+          "motion": "back_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.21472594238056106,
+          "torsoAlignment": 0.147426835761885,
+          "backWeight": 0.3011942119122021,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5084935709577965,
+          "torsoAlignment": 0.40656848188795475,
+          "backWeight": 0.16529888822158653,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7006095702321224,
+          "torsoAlignment": 0.592232779172249,
+          "backWeight": 0.09071795328941248,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8204695484145889,
+          "torsoAlignment": 0.7216043730417036,
+          "backWeight": 0.04978706836786394,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8933202259186689,
+          "torsoAlignment": 0.8083509215939078,
+          "backWeight": 0.027323722447292552,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9369452261576073,
+          "torsoAlignment": 0.866164631092257,
+          "backWeight": 0.014995576820477701,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9628461172241564,
+          "torsoAlignment": 0.9124837607442045,
+          "backWeight": 0.008229747049020027,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9781475482428975,
+          "torsoAlignment": 0.9504709524857915,
+          "backWeight": 0.004516580942612666,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9871609456299907,
+          "torsoAlignment": 0.9769477175002079,
+          "backWeight": 0.0024787521766663576,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9924613356234848,
+          "torsoAlignment": 0.9867508296918021,
+          "backWeight": 0.0013603680375478928,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.995575170227675,
+          "torsoAlignment": 0.9868345622570429,
+          "backWeight": 0.000746585808376679,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9974033982462578,
+          "torsoAlignment": 0.9830761195537633,
+          "backWeight": 0.0004097349789797865,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9984764407420267,
+          "torsoAlignment": 0.9776346881173649,
+          "backWeight": 0.0002248673241788481,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9991061158750054,
+          "torsoAlignment": 0.9699999252646481,
+          "backWeight": 0.00012340980408667945,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9994755739577474,
+          "torsoAlignment": 0.9587576693649582,
+          "backWeight": 0.0000677287364908538,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996923363284203,
+          "torsoAlignment": 0.9445376087959492,
+          "backWeight": 0.000037170318684126666,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9998195064443208,
+          "torsoAlignment": 0.932831219650787,
+          "backWeight": 0.000020399503411171912,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    },
+    {
+      "fps": 30,
+      "side": 1,
+      "diagonal": false,
+      "rows": [
+        {
+          "rootAlignment": -0.5699582093413891,
+          "torsoAlignment": -0.5197224142213805,
+          "backWeight": 0.5488116360940264,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.06183325176092253,
+          "torsoAlignment": 0.15862620130847982,
+          "backWeight": 0.301194211912202,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.403253051408499,
+          "torsoAlignment": 0.4873670922313832,
+          "backWeight": 0.1652988882215865,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6331313552820755,
+          "torsoAlignment": 0.6844270602433663,
+          "backWeight": 0.09071795328941247,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7788268165849628,
+          "torsoAlignment": 0.8013173203471579,
+          "backWeight": 0.04978706836786392,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.86816590329528,
+          "torsoAlignment": 0.8731427951791711,
+          "backWeight": 0.02732372244729255,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9219356494728421,
+          "torsoAlignment": 0.916471376512768,
+          "backWeight": 0.014995576820477698,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9539530700479908,
+          "torsoAlignment": 0.9443693729830086,
+          "backWeight": 0.008229747049020023,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9729001384950333,
+          "torsoAlignment": 0.9616461928776138,
+          "backWeight": 0.004516580942612665,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9840721029832004,
+          "torsoAlignment": 0.9733451302457782,
+          "backWeight": 0.0024787521766663568,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9906456687847559,
+          "torsoAlignment": 0.9806682959029261,
+          "backWeight": 0.0013603680375478923,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9945087729174468,
+          "torsoAlignment": 0.9830400031543968,
+          "backWeight": 0.0007465858083766787,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9967773721972696,
+          "torsoAlignment": 0.9813123137220187,
+          "backWeight": 0.0004097349789797863,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.998109037547222,
+          "torsoAlignment": 0.9748048693600958,
+          "backWeight": 0.00022486732417884803,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9988905294486805,
+          "torsoAlignment": 0.9629330226963837,
+          "backWeight": 0.0001234098040866794,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9993490835345177,
+          "torsoAlignment": 0.9494454651876814,
+          "backWeight": 0.00006772873649085378,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996181251900772,
+          "torsoAlignment": 0.9514225109666039,
+          "backWeight": 0.000037170318684126646,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997759686922079,
+          "torsoAlignment": 0.9667196397256985,
+          "backWeight": 0.000020399503411171902,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    },
+    {
+      "fps": 30,
+      "side": 1,
+      "diagonal": true,
+      "rows": [
+        {
+          "rootAlignment": -0.37413957416831234,
+          "torsoAlignment": -0.26660662472606267,
+          "backWeight": 0.5488116360940265,
+          "motion": "back_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.21472594238056117,
+          "torsoAlignment": 0.33561245659139693,
+          "backWeight": 0.301194211912202,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5084935709577965,
+          "torsoAlignment": 0.6192682423871712,
+          "backWeight": 0.1652988882215865,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7006095702321228,
+          "torsoAlignment": 0.7880580965422452,
+          "backWeight": 0.09071795328941248,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8204695484145891,
+          "torsoAlignment": 0.8781404631668462,
+          "backWeight": 0.04978706836786394,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8933202259186691,
+          "torsoAlignment": 0.9224248214240817,
+          "backWeight": 0.027323722447292552,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9369452261576074,
+          "torsoAlignment": 0.944646572447837,
+          "backWeight": 0.0149955768204777,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9628461172241563,
+          "torsoAlignment": 0.9596159559102171,
+          "backWeight": 0.008229747049020025,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9781475482428975,
+          "torsoAlignment": 0.9704657995044209,
+          "backWeight": 0.004516580942612665,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9871609456299907,
+          "torsoAlignment": 0.9780146546266594,
+          "backWeight": 0.002478752176666357,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9924613356234849,
+          "torsoAlignment": 0.9824371953030547,
+          "backWeight": 0.0013603680375478926,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.995575170227675,
+          "torsoAlignment": 0.983309193226035,
+          "backWeight": 0.0007465858083766789,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9974033982462578,
+          "torsoAlignment": 0.9813483845052938,
+          "backWeight": 0.0004097349789797864,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9984764407420265,
+          "torsoAlignment": 0.9755217859731714,
+          "backWeight": 0.00022486732417884806,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9991061158750053,
+          "torsoAlignment": 0.9635647958927351,
+          "backWeight": 0.00012340980408667943,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9994755739577472,
+          "torsoAlignment": 0.9483297910082137,
+          "backWeight": 0.00006772873649085379,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996923363284203,
+          "torsoAlignment": 0.9487274745845538,
+          "backWeight": 0.00003717031868412665,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9998195064443208,
+          "torsoAlignment": 0.9640216126276491,
+          "backWeight": 0.00002039950341117191,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    },
+    {
+      "fps": 60,
+      "side": -1,
+      "diagonal": false,
+      "rows": [
+        {
+          "rootAlignment": -0.8646986276552749,
+          "torsoAlignment": -0.8723381309201989,
+          "backWeight": 0.7408182166572284,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.5699582093413895,
+          "torsoAlignment": -0.6157043504048676,
+          "backWeight": 0.5488116331126113,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.23939720860698013,
+          "torsoAlignment": -0.3207892724478604,
+          "backWeight": 0.40656965753191243,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.06183325176092174,
+          "torsoAlignment": -0.035993647413091634,
+          "backWeight": 0.30119421027596677,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.24762355388409635,
+          "torsoAlignment": 0.14725512036573862,
+          "backWeight": 0.22313015893627688,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.4032530514084983,
+          "torsoAlignment": 0.3108128572665043,
+          "backWeight": 0.16529888732360154,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5306223050956674,
+          "torsoAlignment": 0.45085113151942885,
+          "backWeight": 0.12245642758773827,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6331313552820749,
+          "torsoAlignment": 0.5681037618608588,
+          "backWeight": 0.0907179527965879,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.714625873079089,
+          "torsoAlignment": 0.6638786098036775,
+          "backWeight": 0.06720551237465631,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7788268165849622,
+          "torsoAlignment": 0.7391649160042332,
+          "backWeight": 0.04978706809739607,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8290609121874738,
+          "torsoAlignment": 0.7987859273710818,
+          "backWeight": 0.03688316720087247,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8681659032952797,
+          "torsoAlignment": 0.8433158194529621,
+          "backWeight": 0.027323722298856646,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8984898414676346,
+          "torsoAlignment": 0.8779116321986077,
+          "backWeight": 0.020241911335840357,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9219356494728418,
+          "torsoAlignment": 0.9064044968943722,
+          "backWeight": 0.014995576739014345,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9400230724899936,
+          "torsoAlignment": 0.9287813962778503,
+          "backWeight": 0.011108996477892765,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9539530700479903,
+          "torsoAlignment": 0.9461012975856173,
+          "backWeight": 0.008229747004311989,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.964667357906049,
+          "torsoAlignment": 0.9595771185760151,
+          "backWeight": 0.0060967465323951055,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9729001384950333,
+          "torsoAlignment": 0.9701229628178509,
+          "backWeight": 0.004516580918076375,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9792213746535416,
+          "torsoAlignment": 0.978327965368476,
+          "backWeight": 0.0033459654392943403,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9840721029832004,
+          "torsoAlignment": 0.9843654814192967,
+          "backWeight": 0.002478752163200556,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9877927655660242,
+          "torsoAlignment": 0.9885554518016985,
+          "backWeight": 0.0018363047670531948,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9906456687847559,
+          "torsoAlignment": 0.9907399339904298,
+          "backWeight": 0.0013603680301577043,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9928326327120908,
+          "torsoAlignment": 0.9911866922912564,
+          "backWeight": 0.001007785423573724,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9945087729174468,
+          "torsoAlignment": 0.9904328503354685,
+          "backWeight": 0.0007465858043208577,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9957932114971609,
+          "torsoAlignment": 0.9887786276732936,
+          "backWeight": 0.000553084367143207,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9967773721972696,
+          "torsoAlignment": 0.9866613710667352,
+          "backWeight": 0.0004097349767539046,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.997531387508743,
+          "torsoAlignment": 0.9841121455480671,
+          "backWeight": 0.0003035391364298927,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9981090375472219,
+          "torsoAlignment": 0.9816179435856359,
+          "backWeight": 0.0002248673229572583,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.998551551382705,
+          "torsoAlignment": 0.9788923696666014,
+          "backWeight": 0.0001665858100826573,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9988905294486805,
+          "torsoAlignment": 0.9758302187989074,
+          "backWeight": 0.00012340980341625675,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9991501882748915,
+          "torsoAlignment": 0.9722941571121826,
+          "backWeight": 0.00009142423098151191,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9993490835345177,
+          "torsoAlignment": 0.9679456397002717,
+          "backWeight": 0.00006772873612291805,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9995014319713278,
+          "torsoAlignment": 0.9625952415966652,
+          "backWeight": 0.00005017468178360174,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996181251900772,
+          "torsoAlignment": 0.9564327511044919,
+          "backWeight": 0.00003717031848219924,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997075069036105,
+          "torsoAlignment": 0.949894279981636,
+          "backWeight": 0.000027536449200155617,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997759686922079,
+          "torsoAlignment": 0.9437727532617716,
+          "backWeight": 0.000020399503300351796,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    },
+    {
+      "fps": 60,
+      "side": -1,
+      "diagonal": true,
+      "rows": [
+        {
+          "rootAlignment": -0.700926548073164,
+          "torsoAlignment": -0.6782319815635668,
+          "backWeight": 0.7408182173457448,
+          "motion": "back_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.37413957416831284,
+          "torsoAlignment": -0.37838059909617944,
+          "backWeight": 0.5488116336226768,
+          "motion": "back_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.056081598486470985,
+          "torsoAlignment": -0.09427713933448213,
+          "backWeight": 0.40656965790977817,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.14644187918506207,
+          "torsoAlignment": 0.0791221230843104,
+          "backWeight": 0.3011942105558967,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.3190262509120825,
+          "torsoAlignment": 0.2298078978440666,
+          "backWeight": 0.22313015914365406,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.4619988765541468,
+          "torsoAlignment": 0.3580150899133756,
+          "backWeight": 0.16529888747723032,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.578082893883995,
+          "torsoAlignment": 0.4680805073187906,
+          "backWeight": 0.12245642770154927,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6709685421572316,
+          "torsoAlignment": 0.5594348962710073,
+          "backWeight": 0.09071795288090116,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7444960772134938,
+          "torsoAlignment": 0.6367410616783536,
+          "backWeight": 0.06720551243711712,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.80223534546359,
+          "torsoAlignment": 0.7001025820606008,
+          "backWeight": 0.04978706814366816,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.847304863322401,
+          "torsoAlignment": 0.7519953289220368,
+          "backWeight": 0.036883167235151684,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8823257607727991,
+          "torsoAlignment": 0.7944299203406721,
+          "backWeight": 0.027323722324251308,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9094453295077873,
+          "torsoAlignment": 0.8288562310262002,
+          "backWeight": 0.02024191135465319,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9303916730975272,
+          "torsoAlignment": 0.8571602858089717,
+          "backWeight": 0.014995576752951236,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9465380115978402,
+          "torsoAlignment": 0.8802600220876046,
+          "backWeight": 0.011108996488217468,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9589655443238477,
+          "torsoAlignment": 0.9016651884626724,
+          "backWeight": 0.008229747011960716,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9685197836356311,
+          "torsoAlignment": 0.9216973761499581,
+          "backWeight": 0.006096746538061423,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9758585957758402,
+          "torsoAlignment": 0.939985411470573,
+          "backWeight": 0.004516580922274086,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9814919085946652,
+          "torsoAlignment": 0.9560994585575598,
+          "backWeight": 0.003345965442404081,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9858138517373753,
+          "torsoAlignment": 0.9693891244655056,
+          "backWeight": 0.002478752165504308,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9891283952384202,
+          "torsoAlignment": 0.9791828976443598,
+          "backWeight": 0.0018363047687598567,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9916695899126231,
+          "torsoAlignment": 0.9851448335226008,
+          "backWeight": 0.0013603680314220306,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9936174255414566,
+          "torsoAlignment": 0.9876648541856267,
+          "backWeight": 0.0010077854245103598,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9951101864286461,
+          "torsoAlignment": 0.9880322341660059,
+          "backWeight": 0.0007465858050147345,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.996254038014563,
+          "torsoAlignment": 0.9870466849881787,
+          "backWeight": 0.0005530843676572436,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9971304419338831,
+          "torsoAlignment": 0.9852992309151417,
+          "backWeight": 0.0004097349771347123,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9978018779605345,
+          "torsoAlignment": 0.9830170748673485,
+          "backWeight": 0.000303539136712002,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9983162515962101,
+          "torsoAlignment": 0.9805526512673473,
+          "backWeight": 0.00022486732316625,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9987102846410331,
+          "torsoAlignment": 0.9777024387057109,
+          "backWeight": 0.00016658581023748216,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9990121207423623,
+          "torsoAlignment": 0.9741761417749213,
+          "backWeight": 0.00012340980353095385,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9992433261150814,
+          "torsoAlignment": 0.9699270493631573,
+          "backWeight": 0.00009142423106648159,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.999420424917692,
+          "torsoAlignment": 0.9648739545755832,
+          "backWeight": 0.00006772873618586514,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9995560769819678,
+          "torsoAlignment": 0.9586899028944972,
+          "backWeight": 0.00005017468183023409,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996599808914223,
+          "torsoAlignment": 0.9517885126705191,
+          "backWeight": 0.00003717031851674534,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997395662743445,
+          "torsoAlignment": 0.9446467421098109,
+          "backWeight": 0.000027536449225747992,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9998005244024841,
+          "torsoAlignment": 0.9382003406394391,
+          "backWeight": 0.000020399503319311097,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    },
+    {
+      "fps": 60,
+      "side": 1,
+      "diagonal": false,
+      "rows": [
+        {
+          "rootAlignment": -0.8646986276552749,
+          "torsoAlignment": -0.8539041062212064,
+          "backWeight": 0.7408182166572284,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.5699582093413894,
+          "torsoAlignment": -0.5197211415444947,
+          "backWeight": 0.5488116331126113,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.23939720860698,
+          "torsoAlignment": -0.15493447970192809,
+          "backWeight": 0.4065696575319125,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.061833251760921866,
+          "torsoAlignment": 0.15862808286549912,
+          "backWeight": 0.30119421027596677,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.24762355388409643,
+          "torsoAlignment": 0.343212875722687,
+          "backWeight": 0.2231301589362769,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.4032530514084984,
+          "torsoAlignment": 0.48736855327021017,
+          "backWeight": 0.16529888732360157,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5306223050956678,
+          "torsoAlignment": 0.5990131707807174,
+          "backWeight": 0.1224564275877383,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6331313552820751,
+          "torsoAlignment": 0.6844279683207782,
+          "backWeight": 0.09071795279658791,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7146258730790892,
+          "torsoAlignment": 0.7498093889981834,
+          "backWeight": 0.06720551237465633,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7788268165849624,
+          "torsoAlignment": 0.8013178500820072,
+          "backWeight": 0.049787068097396074,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8290609121874738,
+          "torsoAlignment": 0.8407890600824752,
+          "backWeight": 0.03688316720087248,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8681659032952798,
+          "torsoAlignment": 0.8731431134962065,
+          "backWeight": 0.027323722298856653,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8984898414676347,
+          "torsoAlignment": 0.8979553220780824,
+          "backWeight": 0.02024191133584036,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9219356494728418,
+          "torsoAlignment": 0.9164715574633827,
+          "backWeight": 0.014995576739014348,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9400230724899937,
+          "torsoAlignment": 0.9305776281677303,
+          "backWeight": 0.011108996477892766,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9539530700479906,
+          "torsoAlignment": 0.9424332348195906,
+          "backWeight": 0.00822974700431199,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.964667357906049,
+          "torsoAlignment": 0.9523210371672362,
+          "backWeight": 0.006096746532395106,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9729001384950331,
+          "torsoAlignment": 0.9602173060589941,
+          "backWeight": 0.004516580918076376,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9792213746535416,
+          "torsoAlignment": 0.9664240562195512,
+          "backWeight": 0.003345965439294341,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9840721029832004,
+          "torsoAlignment": 0.9718835016639327,
+          "backWeight": 0.0024787521632005562,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9877927655660242,
+          "torsoAlignment": 0.9765192110876407,
+          "backWeight": 0.0018363047670531952,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9906456687847559,
+          "torsoAlignment": 0.980296326922185,
+          "backWeight": 0.0013603680301577045,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9928326327120908,
+          "torsoAlignment": 0.9827925427265572,
+          "backWeight": 0.0010077854235737242,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9945087729174468,
+          "torsoAlignment": 0.9839659114545483,
+          "backWeight": 0.0007465858043208578,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9957932114971609,
+          "torsoAlignment": 0.9842062876078232,
+          "backWeight": 0.0005530843671432071,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9967773721972696,
+          "torsoAlignment": 0.9836319555006774,
+          "backWeight": 0.00040973497675390473,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.997531387508743,
+          "torsoAlignment": 0.9821124625941374,
+          "backWeight": 0.00030353913642989274,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.998109037547222,
+          "torsoAlignment": 0.97980421542537,
+          "backWeight": 0.00022486732295725836,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.998551551382705,
+          "torsoAlignment": 0.9760526551957409,
+          "backWeight": 0.00016658581008265733,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9988905294486805,
+          "torsoAlignment": 0.9709517923459378,
+          "backWeight": 0.00012340980341625678,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9991501882748915,
+          "torsoAlignment": 0.9646260352964182,
+          "backWeight": 0.00009142423098151192,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9993490835345177,
+          "torsoAlignment": 0.957513830828397,
+          "backWeight": 0.00006772873612291806,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.999501431971328,
+          "torsoAlignment": 0.9510644024914824,
+          "backWeight": 0.000050174681783601754,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996181251900772,
+          "torsoAlignment": 0.9491178535771515,
+          "backWeight": 0.00003717031848219925,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997075069036105,
+          "torsoAlignment": 0.9527740107560524,
+          "backWeight": 0.000027536449200155624,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997759686922079,
+          "torsoAlignment": 0.959745485186491,
+          "backWeight": 0.0000203995033003518,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    },
+    {
+      "fps": 60,
+      "side": 1,
+      "diagonal": true,
+      "rows": [
+        {
+          "rootAlignment": -0.7009265480731639,
+          "torsoAlignment": -0.6212586627433534,
+          "backWeight": 0.7408182173457448,
+          "motion": "back_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.3741395741683128,
+          "torsoAlignment": -0.2666054213055672,
+          "backWeight": 0.5488116336226769,
+          "motion": "back_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.056081598486471144,
+          "torsoAlignment": 0.06430859927919153,
+          "backWeight": 0.4065696579097782,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.146441879185062,
+          "torsoAlignment": 0.2702283497133919,
+          "backWeight": 0.3011942105558967,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.31902625091208237,
+          "torsoAlignment": 0.4405140325820022,
+          "backWeight": 0.22313015914365408,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.46199887655414673,
+          "torsoAlignment": 0.5772411731630858,
+          "backWeight": 0.16529888747723037,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.578082893883995,
+          "torsoAlignment": 0.683835645164858,
+          "backWeight": 0.1224564277015493,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6709685421572317,
+          "torsoAlignment": 0.7628408972330266,
+          "backWeight": 0.09071795288090118,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.744496077213494,
+          "torsoAlignment": 0.8225616076195017,
+          "backWeight": 0.06720551243711713,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.80223534546359,
+          "torsoAlignment": 0.8633197833819728,
+          "backWeight": 0.049787068143668164,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8473048633224011,
+          "torsoAlignment": 0.8931798147525406,
+          "backWeight": 0.0368831672351517,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8823257607727991,
+          "torsoAlignment": 0.9135645975851462,
+          "backWeight": 0.027323722324251315,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9094453295077874,
+          "torsoAlignment": 0.9283674259165221,
+          "backWeight": 0.02024191135465319,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9303916730975272,
+          "torsoAlignment": 0.9391913610646708,
+          "backWeight": 0.01499557675295124,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.94653801159784,
+          "torsoAlignment": 0.94758849380843,
+          "backWeight": 0.01110899648821747,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9589655443238477,
+          "torsoAlignment": 0.9549873590459665,
+          "backWeight": 0.008229747011960718,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9685197836356311,
+          "torsoAlignment": 0.9617149487470652,
+          "backWeight": 0.006096746538061424,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9758585957758402,
+          "torsoAlignment": 0.9675591112326672,
+          "backWeight": 0.004516580922274087,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9814919085946654,
+          "torsoAlignment": 0.9720639016383685,
+          "backWeight": 0.0033459654424040815,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9858138517373755,
+          "torsoAlignment": 0.9758418468711231,
+          "backWeight": 0.002478752165504309,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9891283952384203,
+          "torsoAlignment": 0.9790768668908083,
+          "backWeight": 0.001836304768759857,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9916695899126231,
+          "torsoAlignment": 0.9816420364738796,
+          "backWeight": 0.0013603680314220306,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9936174255414564,
+          "torsoAlignment": 0.9832117731411985,
+          "backWeight": 0.00100778542451036,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9951101864286461,
+          "torsoAlignment": 0.9839267783922664,
+          "backWeight": 0.0007465858050147346,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9962540380145632,
+          "torsoAlignment": 0.9839379611763688,
+          "backWeight": 0.0005530843676572436,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9971304419338833,
+          "torsoAlignment": 0.9832800048737175,
+          "backWeight": 0.0004097349771347123,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9978018779605345,
+          "torsoAlignment": 0.9819152271059052,
+          "backWeight": 0.000303539136712002,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9983162515962101,
+          "torsoAlignment": 0.9796268409322042,
+          "backWeight": 0.00022486732316625,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.998710284641033,
+          "torsoAlignment": 0.9759520112509353,
+          "backWeight": 0.00016658581023748216,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9990121207423626,
+          "torsoAlignment": 0.9706841016950712,
+          "backWeight": 0.00012340980353095385,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9992433261150812,
+          "torsoAlignment": 0.9638362376365378,
+          "backWeight": 0.00009142423106648159,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9994204249176918,
+          "torsoAlignment": 0.9559038665534858,
+          "backWeight": 0.00006772873618586514,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9995560769819678,
+          "torsoAlignment": 0.9488933203975284,
+          "backWeight": 0.00005017468183023409,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996599808914222,
+          "torsoAlignment": 0.9461505083198537,
+          "backWeight": 0.00003717031851674534,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997395662743443,
+          "torsoAlignment": 0.9495112367509241,
+          "backWeight": 0.000027536449225747992,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9998005244024841,
+          "torsoAlignment": 0.956448692749362,
+          "backWeight": 0.000020399503319311097,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    },
+    {
+      "fps": 120,
+      "side": -1,
+      "diagonal": false,
+      "rows": [
+        {
+          "rootAlignment": -0.9623777972229401,
+          "torsoAlignment": -0.9587147946307382,
+          "backWeight": 0.8607079656235713,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.8646986276552748,
+          "torsoAlignment": -0.8723384027702447,
+          "backWeight": 0.7408182113847923,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.7280477909389172,
+          "torsoAlignment": -0.7536936765585128,
+          "backWeight": 0.6376281436198353,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.5699582093413892,
+          "torsoAlignment": -0.6157050418259153,
+          "backWeight": 0.5488116292066946,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.40387421999583817,
+          "torsoAlignment": -0.4688079456609982,
+          "backWeight": 0.47236654681303325,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.23939720860697966,
+          "torsoAlignment": -0.32079026633783336,
+          "backWeight": 0.40656965463833816,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.08288787488226926,
+          "torsoAlignment": -0.17486233108087912,
+          "backWeight": 0.34993774471959865,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.023671927120125533,
+          "torsoAlignment": -0.07399679520273583,
+          "backWeight": 0.3011942081323542,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.12313937013224836,
+          "torsoAlignment": 0.022652084556054386,
+          "backWeight": 0.2592402573925463,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.21510199292096502,
+          "torsoAlignment": 0.11426413119163081,
+          "backWeight": 0.22313015734824965,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.2994534947832479,
+          "torsoAlignment": 0.20160451267497337,
+          "backWeight": 0.19204990621061668,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.37631120244512584,
+          "torsoAlignment": 0.28304803603550965,
+          "backWeight": 0.16529888614716204,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.44594952844744346,
+          "torsoAlignment": 0.35851473792838207,
+          "backWeight": 0.14227406980103985,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5087474936283685,
+          "torsoAlignment": 0.4280471556700852,
+          "backWeight": 0.12245642671621043,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5651482063661871,
+          "torsoAlignment": 0.4917207438555646,
+          "backWeight": 0.10539922323915288,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6156282428999273,
+          "torsoAlignment": 0.5497385535656015,
+          "backWeight": 0.0907179521509442,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6606750508013863,
+          "torsoAlignment": 0.6021272684018959,
+          "backWeight": 0.0780816650212644,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7007707328105058,
+          "torsoAlignment": 0.6493214673655735,
+          "backWeight": 0.0672055118963517,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7363808181410598,
+          "torsoAlignment": 0.6908342489083665,
+          "backWeight": 0.05784432014891902,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7679468682585597,
+          "torsoAlignment": 0.727746969169567,
+          "backWeight": 0.049787067743059285,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7958819810793756,
+          "torsoAlignment": 0.7607211658878364,
+          "backWeight": 0.04285212632926583,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8205684460923717,
+          "torsoAlignment": 0.7899229313388725,
+          "backWeight": 0.03688316693837333,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8423569621485381,
+          "torsoAlignment": 0.8147560745383992,
+          "backWeight": 0.031745635979674905,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8615669612397205,
+          "torsoAlignment": 0.8364506095011545,
+          "backWeight": 0.027323722104392496,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8784876884076668,
+          "torsoAlignment": 0.8556548336410092,
+          "backWeight": 0.023517745560872286,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8933797733816846,
+          "torsoAlignment": 0.872626205019644,
+          "backWeight": 0.020241911191777772,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9064770970411565,
+          "torsoAlignment": 0.8883055004009854,
+          "backWeight": 0.017422374420850775,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9179888084985705,
+          "torsoAlignment": 0.9023821844117494,
+          "backWeight": 0.01499557663229016,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9281013892971167,
+          "torsoAlignment": 0.9148052906885641,
+          "backWeight": 0.012906812418505343,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9369806923107759,
+          "torsoAlignment": 0.9257507027890638,
+          "backWeight": 0.011108996398829542,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9447739064288184,
+          "torsoAlignment": 0.9353793856521184,
+          "backWeight": 0.00956160181054983,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9516114156472922,
+          "torsoAlignment": 0.9437690171510206,
+          "backWeight": 0.008229746945740513,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9576085341103241,
+          "torsoAlignment": 0.9511805792155407,
+          "backWeight": 0.007083408840158617,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9628671080100331,
+          "torsoAlignment": 0.9577652377112245,
+          "backWeight": 0.006096746489004289,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9674769819097814,
+          "torsoAlignment": 0.9635678046187375,
+          "backWeight": 0.005247518333327458,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.971517331663861,
+          "torsoAlignment": 0.9687079590647191,
+          "backWeight": 0.004516580885931668,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9750578691832666,
+          "torsoAlignment": 0.973237468016026,
+          "backWeight": 0.0038874571946903415,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9781599262404335,
+          "torsoAlignment": 0.9772258778512772,
+          "backWeight": 0.003345965415480955,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9808774256213373,
+          "torsoAlignment": 0.9806151292235495,
+          "backWeight": 0.0028798991219468406,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9832577484539181,
+          "torsoAlignment": 0.983514888400309,
+          "backWeight": 0.0024787521455591666,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9853425066432011,
+          "torsoAlignment": 0.9859796875924504,
+          "backWeight": 0.0021334817432635002,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9871682291575821,
+          "torsoAlignment": 0.9879283788431537,
+          "backWeight": 0.001836304753984132,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9887669705353404,
+          "torsoAlignment": 0.9893729037406981,
+          "backWeight": 0.001580522148901396,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9901668494874558,
+          "torsoAlignment": 0.9903475846690963,
+          "backWeight": 0.0013603680204759044,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9913925249143326,
+          "torsoAlignment": 0.9908434808461042,
+          "backWeight": 0.0011708796060971773,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9924656160673258,
+          "torsoAlignment": 0.9909721259996784,
+          "backWeight": 0.0010077854164012702,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.993405072996953,
+          "torsoAlignment": 0.9907803998138939,
+          "backWeight": 0.0008674089464214216,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9942275028560564,
+          "torsoAlignment": 0.9903428266634259,
+          "backWeight": 0.0007465857990073731,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9949474570793899,
+          "torsoAlignment": 0.9896536944958426,
+          "backWeight": 0.000642592352291321,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9955776839481756,
+          "torsoAlignment": 0.9887689729601865,
+          "backWeight": 0.0005530843632068807,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9961293505727844,
+          "torsoAlignment": 0.9878293792082641,
+          "backWeight": 0.000476044123048136,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9966122378903411,
+          "torsoAlignment": 0.986701528172213,
+          "backWeight": 0.0004097349738378023,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9970349118765355,
+          "torsoAlignment": 0.9854710487115569,
+          "backWeight": 0.0003526621602025088,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9974048738110542,
+          "torsoAlignment": 0.9841798487404032,
+          "backWeight": 0.0003035391342695909,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.99772869211188,
+          "torsoAlignment": 0.9829490943364301,
+          "backWeight": 0.0002612585540229935,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9980121179629583,
+          "torsoAlignment": 0.981701412572226,
+          "backWeight": 0.00022486732135686737,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9982601866998534,
+          "torsoAlignment": 0.9803702334332901,
+          "backWeight": 0.0001935450971291925,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9984773066864223,
+          "torsoAlignment": 0.9789808760627261,
+          "backWeight": 0.00016658580889705857,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9986673372096646,
+          "torsoAlignment": 0.9774762208867783,
+          "backWeight": 0.00014338173447691867,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9988336567373022,
+          "torsoAlignment": 0.9759171514170436,
+          "backWeight": 0.00012340980253794362,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9989792227209326,
+          "torsoAlignment": 0.9743113489943078,
+          "backWeight": 0.00010621980141344942,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9991066239846781,
+          "torsoAlignment": 0.9723753308003574,
+          "backWeight": 0.00009142423033084154,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.999218126613032,
+          "torsoAlignment": 0.9702807110785846,
+          "backWeight": 0.00007868956428427701,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9993157141403265,
+          "torsoAlignment": 0.9680174276737339,
+          "backWeight": 0.00006772873564088957,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9994011227461914,
+          "torsoAlignment": 0.9653950181551084,
+          "backWeight": 0.00005829466299929775,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9994758720750794,
+          "torsoAlignment": 0.9626558250642262,
+          "backWeight": 0.000050174681426506257,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9995412922220149,
+          "torsoAlignment": 0.9597053235388696,
+          "backWeight": 0.00004318574851838013,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.999598547360013,
+          "torsoAlignment": 0.9564802782512238,
+          "backWeight": 0.0000371703182176564,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996486564259817,
+          "torsoAlignment": 0.9530819808730937,
+          "backWeight": 0.0000319927893761945,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996925112304619,
+          "torsoAlignment": 0.9499291703258945,
+          "backWeight": 0.000027536449004177455,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997308923113778,
+          "torsoAlignment": 0.9469328373574715,
+          "backWeight": 0.000023700841300317375,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997644828123268,
+          "torsoAlignment": 0.943794917803876,
+          "backWeight": 0.000020399503155167605,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    },
+    {
+      "fps": 120,
+      "side": -1,
+      "diagonal": true,
+      "rows": [
+        {
+          "rootAlignment": -0.8425787995423745,
+          "torsoAlignment": -0.8146275161129416,
+          "backWeight": 0.8607079660921588,
+          "motion": "back_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.7009265480731641,
+          "torsoAlignment": -0.6782322707722884,
+          "backWeight": 0.7408182117881092,
+          "motion": "back_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.5405385669693077,
+          "torsoAlignment": -0.5292445566615871,
+          "backWeight": 0.6376281439669733,
+          "motion": "back_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.3741395741683132,
+          "torsoAlignment": -0.3783811557687187,
+          "backWeight": 0.5488116295054791,
+          "motion": "back_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.2107021840379012,
+          "torsoAlignment": -0.23197588479263676,
+          "backWeight": 0.4723665470701995,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.0971429554793823,
+          "torsoAlignment": -0.13481172672520947,
+          "backWeight": 0.4065696548596832,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.010283753868745266,
+          "torsoAlignment": -0.042963376706654184,
+          "backWeight": 0.34993774491011204,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.11069874064048972,
+          "torsoAlignment": 0.04349617802322303,
+          "backWeight": 0.30119420829633065,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.2036430537322469,
+          "torsoAlignment": 0.12429567827656743,
+          "backWeight": 0.25924025753368213,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.288975818964935,
+          "torsoAlignment": 0.19932140503552906,
+          "backWeight": 0.22313015746972636,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.36678952178082525,
+          "torsoAlignment": 0.268459016928402,
+          "backWeight": 0.19204990631517269,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.43734149956624646,
+          "torsoAlignment": 0.33240464085188565,
+          "backWeight": 0.16529888623715425,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5009997637585619,
+          "torsoAlignment": 0.39218570395991786,
+          "backWeight": 0.1422740698784969,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5582010518905057,
+          "torsoAlignment": 0.4468721980644015,
+          "backWeight": 0.1224564267828783,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6094190382957757,
+          "torsoAlignment": 0.4967006280013713,
+          "backWeight": 0.10539922329653445,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6551407981851675,
+          "torsoAlignment": 0.542041113599169,
+          "backWeight": 0.09071795220033296,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.695849850383568,
+          "torsoAlignment": 0.5842473112184785,
+          "backWeight": 0.0780816650637737,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7320143537090581,
+          "torsoAlignment": 0.6226036640204154,
+          "backWeight": 0.0672055119329398,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7640792740925832,
+          "torsoAlignment": 0.6573127938651828,
+          "backWeight": 0.05784432018041069,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7924615598812788,
+          "torsoAlignment": 0.6886716556124812,
+          "backWeight": 0.04978706777016442,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8175475551155778,
+          "torsoAlignment": 0.716951911642041,
+          "backWeight": 0.04285212635259544,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8396920435495996,
+          "torsoAlignment": 0.7427844952976277,
+          "backWeight": 0.03688316695845331,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8592184511900074,
+          "torsoAlignment": 0.7660768119703787,
+          "backWeight": 0.0317456359969579,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8764198449621462,
+          "torsoAlignment": 0.7870245907750405,
+          "backWeight": 0.027323722119268104,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8915604531362886,
+          "torsoAlignment": 0.8058618670781617,
+          "backWeight": 0.023517745573675843,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9048775027815913,
+          "torsoAlignment": 0.8228995747054522,
+          "backWeight": 0.020241911202797898,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9165832239619491,
+          "torsoAlignment": 0.8383832759878681,
+          "backWeight": 0.017422374430335886,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9268669124942231,
+          "torsoAlignment": 0.852373000175364,
+          "backWeight": 0.01499557664045407,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9358969753038622,
+          "torsoAlignment": 0.8650079653107422,
+          "backWeight": 0.012906812425532089,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9438229067895014,
+          "torsoAlignment": 0.8764116183575068,
+          "backWeight": 0.011108996404877518,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9507771628371464,
+          "torsoAlignment": 0.8872177083059596,
+          "backWeight": 0.009561601815755369,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.956876912576863,
+          "torsoAlignment": 0.8981584418754703,
+          "backWeight": 0.008229746950220962,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9622256577485171,
+          "torsoAlignment": 0.9086758553660343,
+          "backWeight": 0.007083408844014976,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9669147165085867,
+          "torsoAlignment": 0.9185689110511217,
+          "backWeight": 0.006096746492323488,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9710245733513048,
+          "torsoAlignment": 0.9278426562312777,
+          "backWeight": 0.005247518336184319,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9746261000672922,
+          "torsoAlignment": 0.9372735608965622,
+          "backWeight": 0.004516580888390591,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9777816547336385,
+          "torsoAlignment": 0.9459488779380502,
+          "backWeight": 0.0038874571968067553,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9805460669374095,
+          "torsoAlignment": 0.9538292827018418,
+          "backWeight": 0.0033459654173025708,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9829675180210856,
+          "torsoAlignment": 0.9609625983308411,
+          "backWeight": 0.0028798991235147197,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9850883252857823,
+          "torsoAlignment": 0.9675650414006985,
+          "backWeight": 0.0024787521469086518,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9869456389332015,
+          "torsoAlignment": 0.9731987679876193,
+          "backWeight": 0.0021334817444250134,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9885720601718279,
+          "torsoAlignment": 0.9777925888656757,
+          "backWeight": 0.0018363047549838558,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9899961884317866,
+          "torsoAlignment": 0.981498124317664,
+          "backWeight": 0.0015805221497618657,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9912431050804248,
+          "torsoAlignment": 0.9842805673660754,
+          "backWeight": 0.0013603680212165175,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.992334800445922,
+          "torsoAlignment": 0.9860751314085975,
+          "backWeight": 0.0011708796067346288,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9932905503664085,
+          "torsoAlignment": 0.9871680031940138,
+          "backWeight": 0.00100778541694993,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9941272479056674,
+          "torsoAlignment": 0.9876789180925969,
+          "backWeight": 0.0008674089468936574,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9948596953258013,
+          "torsoAlignment": 0.9877588393646529,
+          "backWeight": 0.0007465857994138303,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9955008608896382,
+          "torsoAlignment": 0.9874705527681262,
+          "backWeight": 0.000642592352641162,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9960621045853052,
+          "torsoAlignment": 0.9869107474198097,
+          "backWeight": 0.0005530843635079917,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9965533764239697,
+          "torsoAlignment": 0.9861781291060744,
+          "backWeight": 0.00047604412330730465,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9969833905592682,
+          "torsoAlignment": 0.9852427860684898,
+          "backWeight": 0.0004097349740608709,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9973597781122934,
+          "torsoAlignment": 0.9841726231601199,
+          "backWeight": 0.00035266216039450573,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9976892212573624,
+          "torsoAlignment": 0.9830075470783579,
+          "backWeight": 0.0003035391344348442,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9979775708288577,
+          "torsoAlignment": 0.9818410174464627,
+          "backWeight": 0.00026125855416522835,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9982299494457042,
+          "torsoAlignment": 0.9805741653714167,
+          "backWeight": 0.00022486732147929003,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9984508419149523,
+          "torsoAlignment": 0.9792003266131586,
+          "backWeight": 0.00019354509723456268,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9986441744668749,
+          "torsoAlignment": 0.9777405113573978,
+          "backWeight": 0.00016658580898775148,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9988133841885091,
+          "torsoAlignment": 0.9760475510297273,
+          "backWeight": 0.0001433817345549788,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9989614798582942,
+          "torsoAlignment": 0.9742217194499299,
+          "backWeight": 0.00012340980260513057,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9990910952392169,
+          "torsoAlignment": 0.9723187374809733,
+          "backWeight": 0.00010621980147127778,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9992045357596063,
+          "torsoAlignment": 0.9699742136611704,
+          "backWeight": 0.00009142423038061486,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9993038193976084,
+          "torsoAlignment": 0.967527842276946,
+          "backWeight": 0.00007868956432711732,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9993907124856908,
+          "torsoAlignment": 0.9649190055489378,
+          "backWeight": 0.00006772873567776255,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9994667610638005,
+          "torsoAlignment": 0.9618825870376302,
+          "backWeight": 0.000058294663031034625,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9995333183326,
+          "torsoAlignment": 0.9587297387580963,
+          "backWeight": 0.00005017468145382244,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9995915686903761,
+          "torsoAlignment": 0.9554090290893137,
+          "backWeight": 0.00004318574854189139,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996425487775927,
+          "torsoAlignment": 0.9518211322219708,
+          "backWeight": 0.00003717031823789273,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996871659007196,
+          "torsoAlignment": 0.9480944654499812,
+          "backWeight": 0.00003199278939361207,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997262141610271,
+          "torsoAlignment": 0.9446717247125485,
+          "backWeight": 0.000027536449019168895,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997603885737113,
+          "torsoAlignment": 0.9415001033314938,
+          "backWeight": 0.000023700841313220628,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997902974273636,
+          "torsoAlignment": 0.9382175803646027,
+          "backWeight": 0.000020399503166273538,
+          "motion": "turn_run_left",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    },
+    {
+      "fps": 120,
+      "side": 1,
+      "diagonal": false,
+      "rows": [
+        {
+          "rootAlignment": -0.9623777972229401,
+          "torsoAlignment": -0.9633701310667708,
+          "backWeight": 0.8607079656235714,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.8646986276552748,
+          "torsoAlignment": -0.8539038473524687,
+          "backWeight": 0.7408182113847922,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.728047790938917,
+          "torsoAlignment": -0.6983817360274799,
+          "backWeight": 0.6376281436198353,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.5699582093413891,
+          "torsoAlignment": -0.5197204294981497,
+          "backWeight": 0.5488116292066946,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.403874219995838,
+          "torsoAlignment": -0.33474632882926614,
+          "backWeight": 0.47236654681303325,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.23939720860697955,
+          "torsoAlignment": -0.15493346389167373,
+          "backWeight": 0.4065696546383382,
+          "motion": "back_walk",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.08288787488226913,
+          "torsoAlignment": 0.010323699906459205,
+          "backWeight": 0.34993774471959865,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.023671927120125655,
+          "torsoAlignment": 0.12094553514244478,
+          "backWeight": 0.3011942081323542,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.1231393701322485,
+          "torsoAlignment": 0.22139280511786805,
+          "backWeight": 0.2592402573925463,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.2151019929209652,
+          "torsoAlignment": 0.31178838681928,
+          "backWeight": 0.22313015734824967,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.299453494783248,
+          "torsoAlignment": 0.3912963716052983,
+          "backWeight": 0.1920499062106167,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.37631120244512595,
+          "torsoAlignment": 0.46180584005111863,
+          "backWeight": 0.16529888614716207,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.44594952844744334,
+          "torsoAlignment": 0.5239779665975871,
+          "backWeight": 0.14227406980103988,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5087474936283686,
+          "torsoAlignment": 0.5785366692892083,
+          "backWeight": 0.12245642671621046,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5651482063661872,
+          "torsoAlignment": 0.626366267234759,
+          "backWeight": 0.1053992232391529,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6156282428999275,
+          "torsoAlignment": 0.6681665662581231,
+          "backWeight": 0.09071795215094422,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6606750508013866,
+          "torsoAlignment": 0.7048675046729513,
+          "backWeight": 0.07808166502126442,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.700770732810506,
+          "torsoAlignment": 0.7369580387192711,
+          "backWeight": 0.06720551189635171,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7363808181410599,
+          "torsoAlignment": 0.7658037316426145,
+          "backWeight": 0.057844320148919035,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7679468682585597,
+          "torsoAlignment": 0.79121582564662,
+          "backWeight": 0.04978706774305929,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7958819810793757,
+          "torsoAlignment": 0.8133442124658641,
+          "backWeight": 0.042852126329265834,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8205684460923717,
+          "torsoAlignment": 0.8328571729562181,
+          "backWeight": 0.03688316693837334,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8423569621485381,
+          "torsoAlignment": 0.8509139434839944,
+          "backWeight": 0.03174563597967491,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8615669612397205,
+          "torsoAlignment": 0.8669615589100184,
+          "backWeight": 0.027323722104392503,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8784876884076668,
+          "torsoAlignment": 0.8809525438199449,
+          "backWeight": 0.02351774556087229,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8933797733816846,
+          "torsoAlignment": 0.8931407538003799,
+          "backWeight": 0.020241911191777776,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9064770970411565,
+          "torsoAlignment": 0.9035999909734009,
+          "backWeight": 0.01742237442085078,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9179888084985707,
+          "torsoAlignment": 0.9126901363289377,
+          "backWeight": 0.014995576632290163,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9281013892971167,
+          "torsoAlignment": 0.9206385848275709,
+          "backWeight": 0.012906812418505347,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9369806923107762,
+          "torsoAlignment": 0.9275905782965841,
+          "backWeight": 0.011108996398829543,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9447739064288185,
+          "torsoAlignment": 0.933960123350198,
+          "backWeight": 0.009561601810549832,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9516114156472922,
+          "torsoAlignment": 0.9398437220224161,
+          "backWeight": 0.008229746945740515,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9576085341103242,
+          "torsoAlignment": 0.9452297159304868,
+          "backWeight": 0.007083408840158619,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9628671080100333,
+          "torsoAlignment": 0.9500957233047049,
+          "backWeight": 0.00609674648900429,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9674769819097815,
+          "torsoAlignment": 0.9544617722001029,
+          "backWeight": 0.005247518333327459,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.971517331663861,
+          "torsoAlignment": 0.9583480771421997,
+          "backWeight": 0.004516580885931669,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9750578691832666,
+          "torsoAlignment": 0.9618248428623725,
+          "backWeight": 0.0038874571946903424,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9781599262404335,
+          "torsoAlignment": 0.9648737278568786,
+          "backWeight": 0.003345965415480956,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9808774256213373,
+          "torsoAlignment": 0.9678414806337042,
+          "backWeight": 0.002879899121946841,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9832577484539181,
+          "torsoAlignment": 0.9706126430953159,
+          "backWeight": 0.002478752145559167,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9853425066432011,
+          "torsoAlignment": 0.9730664837138978,
+          "backWeight": 0.0021334817432635007,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9871682291575821,
+          "torsoAlignment": 0.9754839708291949,
+          "backWeight": 0.0018363047539841325,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9887669705353404,
+          "torsoAlignment": 0.9776717564509804,
+          "backWeight": 0.0015805221489013964,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9901668494874558,
+          "torsoAlignment": 0.9795378099919604,
+          "backWeight": 0.0013603680204759046,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9913925249143328,
+          "torsoAlignment": 0.9810624239075136,
+          "backWeight": 0.0011708796060971775,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9924656160673258,
+          "torsoAlignment": 0.9822612437985153,
+          "backWeight": 0.0010077854164012704,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.993405072996953,
+          "torsoAlignment": 0.983055886806688,
+          "backWeight": 0.0008674089464214218,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9942275028560565,
+          "torsoAlignment": 0.9835900465514327,
+          "backWeight": 0.0007465857990073732,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9949474570793899,
+          "torsoAlignment": 0.9838623022657842,
+          "backWeight": 0.0006425923522913211,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9955776839481756,
+          "torsoAlignment": 0.9839388348658576,
+          "backWeight": 0.0005530843632068808,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9961293505727844,
+          "torsoAlignment": 0.9838571542041122,
+          "backWeight": 0.0004760441230481361,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9966122378903411,
+          "torsoAlignment": 0.983433404952707,
+          "backWeight": 0.0004097349738378024,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9970349118765355,
+          "torsoAlignment": 0.9829152054689048,
+          "backWeight": 0.00035266216020250887,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9974048738110542,
+          "torsoAlignment": 0.9819478906635787,
+          "backWeight": 0.00030353913426959096,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.99772869211188,
+          "torsoAlignment": 0.9808680463312773,
+          "backWeight": 0.00026125855402299355,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9980121179629583,
+          "torsoAlignment": 0.979650218648418,
+          "backWeight": 0.00022486732135686743,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9982601866998534,
+          "torsoAlignment": 0.9779012369396304,
+          "backWeight": 0.00019354509712919254,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9984773066864223,
+          "torsoAlignment": 0.975891273231324,
+          "backWeight": 0.0001665858088970586,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9986673372096646,
+          "torsoAlignment": 0.9735218313529491,
+          "backWeight": 0.0001433817344769187,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9988336567373022,
+          "torsoAlignment": 0.9707844872433627,
+          "backWeight": 0.00012340980253794365,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9989792227209326,
+          "torsoAlignment": 0.9677182094147051,
+          "backWeight": 0.00010621980141344944,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9991066239846781,
+          "torsoAlignment": 0.9644570407768213,
+          "backWeight": 0.00009142423033084156,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.999218126613032,
+          "torsoAlignment": 0.960796019036784,
+          "backWeight": 0.00007868956428427702,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9993157141403265,
+          "torsoAlignment": 0.9573477334203401,
+          "backWeight": 0.00006772873564088958,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9994011227461914,
+          "torsoAlignment": 0.9538322827708914,
+          "backWeight": 0.000058294662999297764,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9994758720750794,
+          "torsoAlignment": 0.9509061462571213,
+          "backWeight": 0.00005017468142650627,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9995412922220149,
+          "torsoAlignment": 0.9499698977032295,
+          "backWeight": 0.00004318574851838014,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.999598547360013,
+          "torsoAlignment": 0.9489777079933186,
+          "backWeight": 0.000037170318217656407,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996486564259817,
+          "torsoAlignment": 0.9505947663014975,
+          "backWeight": 0.000031992789376194504,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996925112304619,
+          "torsoAlignment": 0.9526600915371387,
+          "backWeight": 0.00002753644900417746,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997308923113778,
+          "torsoAlignment": 0.9554883894490009,
+          "backWeight": 0.00002370084130031738,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997644828123268,
+          "torsoAlignment": 0.9596630020544509,
+          "backWeight": 0.000020399503155167608,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    },
+    {
+      "fps": 120,
+      "side": 1,
+      "diagonal": true,
+      "rows": [
+        {
+          "rootAlignment": -0.8425787995423745,
+          "torsoAlignment": -0.7818546340149772,
+          "backWeight": 0.8607079660921587,
+          "motion": "back_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.7009265480731641,
+          "torsoAlignment": -0.621258347787434,
+          "backWeight": 0.7408182117881092,
+          "motion": "back_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.5405385669693079,
+          "torsoAlignment": -0.44531507287329597,
+          "backWeight": 0.6376281439669733,
+          "motion": "back_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.37413957416831367,
+          "torsoAlignment": -0.26660474803255446,
+          "backWeight": 0.548811629505479,
+          "motion": "back_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.21070218403790142,
+          "torsoAlignment": -0.09485340130725739,
+          "backWeight": 0.4723665470701994,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": -0.09714295547938268,
+          "torsoAlignment": 0.023637810547775584,
+          "backWeight": 0.4065696548596832,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.010283753868744978,
+          "torsoAlignment": 0.13402027903751085,
+          "backWeight": 0.3499377449101121,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.11069874064048939,
+          "torsoAlignment": 0.2357561046819218,
+          "backWeight": 0.30119420829633065,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.20364305373224656,
+          "torsoAlignment": 0.3283887081821173,
+          "backWeight": 0.2592402575336821,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.28897581896493496,
+          "torsoAlignment": 0.41231916337639013,
+          "backWeight": 0.22313015746972642,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.36678952178082513,
+          "torsoAlignment": 0.48772212742904814,
+          "backWeight": 0.19204990631517266,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.43734149956624635,
+          "torsoAlignment": 0.5547751607547083,
+          "backWeight": 0.16529888623715422,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5009997637585619,
+          "torsoAlignment": 0.6141535654476428,
+          "backWeight": 0.14227406987849683,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.5582010518905056,
+          "torsoAlignment": 0.6662724668310547,
+          "backWeight": 0.1224564267828783,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6094190382957757,
+          "torsoAlignment": 0.7106986011276185,
+          "backWeight": 0.10539922329653442,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6551407981851672,
+          "torsoAlignment": 0.7492498525726515,
+          "backWeight": 0.09071795220033296,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.6958498503835678,
+          "torsoAlignment": 0.7828914942914008,
+          "backWeight": 0.0780816650637737,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7320143537090581,
+          "torsoAlignment": 0.8121405089953321,
+          "backWeight": 0.0672055119329398,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7640792740925832,
+          "torsoAlignment": 0.8353623644476098,
+          "backWeight": 0.05784432018041069,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.7924615598812788,
+          "torsoAlignment": 0.8552946624129941,
+          "backWeight": 0.049787067770164416,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8175475551155775,
+          "torsoAlignment": 0.8724331498281094,
+          "backWeight": 0.04285212635259543,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8396920435495996,
+          "torsoAlignment": 0.8869991551923645,
+          "backWeight": 0.036883166958453305,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8592184511900074,
+          "torsoAlignment": 0.8986651248174411,
+          "backWeight": 0.0317456359969579,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8764198449621464,
+          "torsoAlignment": 0.9087595691736005,
+          "backWeight": 0.027323722119268097,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.8915604531362888,
+          "torsoAlignment": 0.9173246741165842,
+          "backWeight": 0.023517745573675843,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9048775027815913,
+          "torsoAlignment": 0.924612746264417,
+          "backWeight": 0.02024191120279789,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9165832239619491,
+          "torsoAlignment": 0.9308608007466912,
+          "backWeight": 0.017422374430335882,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9268669124942231,
+          "torsoAlignment": 0.9362355904220959,
+          "backWeight": 0.014995576640454065,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9358969753038625,
+          "torsoAlignment": 0.9409759615002475,
+          "backWeight": 0.012906812425532085,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9438229067895015,
+          "torsoAlignment": 0.9452532759738711,
+          "backWeight": 0.011108996404877516,
+          "motion": "walking",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9507771628371464,
+          "torsoAlignment": 0.9493314419299206,
+          "backWeight": 0.009561601815755365,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9568769125768631,
+          "torsoAlignment": 0.9529841421807823,
+          "backWeight": 0.00822974695022096,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9622256577485168,
+          "torsoAlignment": 0.9564487965160829,
+          "backWeight": 0.007083408844014975,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.966914716508587,
+          "torsoAlignment": 0.9599969672163197,
+          "backWeight": 0.006096746492323488,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9710245733513045,
+          "torsoAlignment": 0.9632687696866661,
+          "backWeight": 0.005247518336184318,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9746261000672922,
+          "torsoAlignment": 0.9661270418093714,
+          "backWeight": 0.00451658088839059,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9777816547336385,
+          "torsoAlignment": 0.9686318508123758,
+          "backWeight": 0.003887457196806755,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9805460669374096,
+          "torsoAlignment": 0.9708734298234223,
+          "backWeight": 0.0033459654173025703,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9829675180210857,
+          "torsoAlignment": 0.9729413367924357,
+          "backWeight": 0.0028798991235147193,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9850883252857824,
+          "torsoAlignment": 0.9748462986102591,
+          "backWeight": 0.0024787521469086518,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9869456389332018,
+          "torsoAlignment": 0.9765383382073148,
+          "backWeight": 0.0021334817444250134,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9885720601718281,
+          "torsoAlignment": 0.9782461390851054,
+          "backWeight": 0.0018363047549838556,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9899961884317869,
+          "torsoAlignment": 0.979756351923477,
+          "backWeight": 0.0015805221497618657,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9912431050804246,
+          "torsoAlignment": 0.9810166091812104,
+          "backWeight": 0.0013603680212165175,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9923348004459223,
+          "torsoAlignment": 0.9820165295959763,
+          "backWeight": 0.0011708796067346288,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9932905503664085,
+          "torsoAlignment": 0.982763550962084,
+          "backWeight": 0.00100778541694993,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9941272479056674,
+          "torsoAlignment": 0.9832889425006577,
+          "backWeight": 0.0008674089468936573,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9948596953258013,
+          "torsoAlignment": 0.9836118102225936,
+          "backWeight": 0.0007465857994138302,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9955008608896384,
+          "torsoAlignment": 0.9837330511110948,
+          "backWeight": 0.0006425923526411619,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9960621045853052,
+          "torsoAlignment": 0.9837196101423248,
+          "backWeight": 0.0005530843635079916,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9965533764239698,
+          "torsoAlignment": 0.983542773636756,
+          "backWeight": 0.0004760441233073046,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9969833905592682,
+          "torsoAlignment": 0.9831246410921298,
+          "backWeight": 0.00040973497406087084,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9973597781122933,
+          "torsoAlignment": 0.9826263497815243,
+          "backWeight": 0.00035266216039450573,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9976892212573625,
+          "torsoAlignment": 0.9817915724234266,
+          "backWeight": 0.00030353913443484414,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9979775708288577,
+          "torsoAlignment": 0.9807336917457362,
+          "backWeight": 0.0002612585541652283,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9982299494457042,
+          "torsoAlignment": 0.9795083895006563,
+          "backWeight": 0.00022486732147929003,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9984508419149523,
+          "torsoAlignment": 0.9778154742656366,
+          "backWeight": 0.00019354509723456265,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9986441744668749,
+          "torsoAlignment": 0.9758204891150586,
+          "backWeight": 0.00016658580898775148,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9988133841885091,
+          "torsoAlignment": 0.9733971704620131,
+          "backWeight": 0.0001433817345549788,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9989614798582942,
+          "torsoAlignment": 0.9705396786938661,
+          "backWeight": 0.00012340980260513057,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9990910952392168,
+          "torsoAlignment": 0.9673119068084117,
+          "backWeight": 0.00010621980147127775,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9992045357596065,
+          "torsoAlignment": 0.9636832633092136,
+          "backWeight": 0.00009142423038061486,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9993038193976084,
+          "torsoAlignment": 0.9596435602163732,
+          "backWeight": 0.0000786895643271173,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9993907124856908,
+          "torsoAlignment": 0.9557477283588861,
+          "backWeight": 0.00006772873567776255,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9994667610638003,
+          "torsoAlignment": 0.9519762552478899,
+          "backWeight": 0.00005829466303103461,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9995333183325997,
+          "torsoAlignment": 0.9487418815555255,
+          "backWeight": 0.00005017468145382243,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9995915686903761,
+          "torsoAlignment": 0.9473852736019546,
+          "backWeight": 0.00004318574854189138,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996425487775927,
+          "torsoAlignment": 0.9460133354896122,
+          "backWeight": 0.00003717031823789272,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9996871659007198,
+          "torsoAlignment": 0.9474558978159984,
+          "backWeight": 0.00003199278939361207,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997262141610272,
+          "torsoAlignment": 0.9493978759515961,
+          "backWeight": 0.000027536449019168895,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997603885737113,
+          "torsoAlignment": 0.9521527927902641,
+          "backWeight": 0.000023700841313220628,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        },
+        {
+          "rootAlignment": 0.9997902974273634,
+          "torsoAlignment": 0.95636404603078,
+          "backWeight": 0.000020399503166273535,
+          "motion": "turn_run_right",
+          "nonfinite": false
+        }
+      ],
+      "pauseStable": true
+    }
+  ],
+  "renderReadOnly": true,
+  "baseline": true,
+  "errors": []
+}

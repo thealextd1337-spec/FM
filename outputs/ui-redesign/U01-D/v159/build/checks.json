@@ -1,0 +1,552 @@
+{
+  "target": "build",
+  "htmlHash": "7bb12685500eafd967031059f8f798ef433c08debae3f23c479f6a80de33042a",
+  "cssIntegrated": true,
+  "cases": [
+    {
+      "width": 320,
+      "theme": "light",
+      "lang": "de",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(241, 243, 245)",
+      "titleColor": "rgb(32, 42, 53)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 199
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Aktueller Tabellenplatz 1",
+        "Aktueller Tabellenplatz 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "lang": "en",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(241, 243, 245)",
+      "titleColor": "rgb(32, 42, 53)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 199
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Current table position 1",
+        "Current table position 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "lang": "de",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(17, 21, 26)",
+      "titleColor": "rgb(237, 240, 243)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 199
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Aktueller Tabellenplatz 1",
+        "Aktueller Tabellenplatz 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "lang": "en",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(17, 21, 26)",
+      "titleColor": "rgb(237, 240, 243)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 199
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Current table position 1",
+        "Current table position 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "lang": "de",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(241, 243, 245)",
+      "titleColor": "rgb(32, 42, 53)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 269
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Aktueller Tabellenplatz 1",
+        "Aktueller Tabellenplatz 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "lang": "en",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(241, 243, 245)",
+      "titleColor": "rgb(32, 42, 53)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 269
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Current table position 1",
+        "Current table position 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "lang": "de",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(17, 21, 26)",
+      "titleColor": "rgb(237, 240, 243)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 269
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Aktueller Tabellenplatz 1",
+        "Aktueller Tabellenplatz 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "lang": "en",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(17, 21, 26)",
+      "titleColor": "rgb(237, 240, 243)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 269
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Current table position 1",
+        "Current table position 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "lang": "de",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(241, 243, 245)",
+      "titleColor": "rgb(32, 42, 53)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 125
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Aktueller Tabellenplatz 1",
+        "Aktueller Tabellenplatz 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "lang": "en",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(241, 243, 245)",
+      "titleColor": "rgb(32, 42, 53)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 125
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Current table position 1",
+        "Current table position 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "lang": "de",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(17, 21, 26)",
+      "titleColor": "rgb(237, 240, 243)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 125
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Aktueller Tabellenplatz 1",
+        "Aktueller Tabellenplatz 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "lang": "en",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(17, 21, 26)",
+      "titleColor": "rgb(237, 240, 243)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 125
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Current table position 1",
+        "Current table position 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 1280,
+      "theme": "light",
+      "lang": "de",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(241, 243, 245)",
+      "titleColor": "rgb(32, 42, 53)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 125
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Aktueller Tabellenplatz 1",
+        "Aktueller Tabellenplatz 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 1280,
+      "theme": "light",
+      "lang": "en",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(241, 243, 245)",
+      "titleColor": "rgb(32, 42, 53)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 125
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Current table position 1",
+        "Current table position 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 1280,
+      "theme": "dark",
+      "lang": "de",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(17, 21, 26)",
+      "titleColor": "rgb(237, 240, 243)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 125
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Aktueller Tabellenplatz 1",
+        "Aktueller Tabellenplatz 6"
+      ],
+      "unchanged": true
+    },
+    {
+      "width": 1280,
+      "theme": "dark",
+      "lang": "en",
+      "overflow": false,
+      "bodyOverflow": false,
+      "color": "rgb(17, 21, 26)",
+      "titleColor": "rgb(237, 240, 243)",
+      "table": "v47-stat-table",
+      "controls": [
+        {
+          "height": 44,
+          "width": 125
+        },
+        {
+          "height": 44,
+          "width": 44
+        }
+      ],
+      "rankLabels": [
+        "Current table position 1",
+        "Current table position 6"
+      ],
+      "unchanged": true
+    }
+  ],
+  "checks": [
+    "native report metadata and CURRENT actual table ranks",
+    "current rank changes immediately; historical league reads current standings; cup and European KO omit rank; unknown group context not invented",
+    "overview newest five include league/cup/Europe in chronological order and shootout result, without career mutation; DE/EN tooltips",
+    "native keeper/outfield match statistics opens and returns, English detail labels and embedded FIFA-code flags",
+    "native Continue/result overview/report return preserves postmatch controller",
+    "long escaped names, own-goal stoppage scorer, drawn regulation/penalty winner and no ambient randomness",
+    "calendar current ranks/crests, actual player profile, report return and Escape focus restoration",
+    "reduced-motion winner presentation"
+  ],
+  "rankChecks": {
+    "before": 1,
+    "changed": 1,
+    "currentExact": 1,
+    "cup": 0,
+    "group": 12,
+    "knockout": 0,
+    "unknown": 0,
+    "historicCurrent": 1,
+    "readOnly": true
+  },
+  "recentChecks": {
+    "rows": [
+      {
+        "outcome": "loss",
+        "label": "N",
+        "detail": "Saison 1 · 3. August · Nationaler Pokal · Heimspiel · Madrid Central CF · 0:1"
+      },
+      {
+        "outcome": "draw",
+        "label": "U",
+        "detail": "Saison 1 · 4. August · Europacup · Heimspiel · Madrid Central CF · 1:1"
+      },
+      {
+        "outcome": "win",
+        "label": "S",
+        "detail": "Saison 1 · 5. August · Liga · Heimspiel · Madrid Central CF · 2:0"
+      },
+      {
+        "outcome": "win",
+        "label": "S",
+        "detail": "Saison 1 · 6. August · Nationaler Pokal · Heimspiel · Madrid Central CF · 1:1 · Elfmeterschießen 5:4"
+      },
+      {
+        "outcome": "draw",
+        "label": "U",
+        "detail": "Saison 1 · 7. August · Europacup · Heimspiel · Madrid Central CF · 1:1"
+      }
+    ],
+    "english": [
+      {
+        "outcome": "loss",
+        "label": "L",
+        "detail": "Season 1 · 3 August · National cup · Home match · Madrid Central CF · 0:1"
+      },
+      {
+        "outcome": "draw",
+        "label": "D",
+        "detail": "Season 1 · 4 August · European cup · Home match · Madrid Central CF · 1:1"
+      },
+      {
+        "outcome": "win",
+        "label": "W",
+        "detail": "Season 1 · 5 August · League · Home match · Madrid Central CF · 2:0"
+      },
+      {
+        "outcome": "win",
+        "label": "W",
+        "detail": "Season 1 · 6 August · National cup · Home match · Madrid Central CF · 1:1 · Penalty shootout 5:4"
+      },
+      {
+        "outcome": "draw",
+        "label": "D",
+        "detail": "Season 1 · 7 August · European cup · Home match · Madrid Central CF · 1:1"
+      }
+    ],
+    "chronological": true,
+    "unchanged": true
+  },
+  "edgeCases": {
+    "calls": 0,
+    "score": "1 : 1",
+    "rankCount": 0,
+    "ownGoal": "Spieler <Name> & vollständiger Doppelname mit einer langen Erweiterung (E.) 45+2′",
+    "shotText": "SpielberichtSpielende · Noten von 1 bis 10 · T = Tore · V = VorlagenWeiter →×Vereinslogo Barcelona Mar FCVerein <mit> & einem sehr langen vollständigen VereinsnamenSpieler <Name> & vollständiger Doppelname mit einer langen Erweiterung (E.) 45+2′1 : 1Vereinslogo Sevilla Union FCUnited With A Very Long Complete Football Club NameMan of the MatchMarcos MolinaVerein <mit> & einem sehr langen vollständigen Vereinsnamen · Note 6,7Elfmeterschießen: 4 : 3 · Verein <mit> & einem sehr langen vollständigen Vereinsnamen gewinntTeamstatistikTeamstatistikV<UWSchüsse32Aufs Tor00Ballbesitz55 %45 %Passquote––Gewonnene Zweikämpfe00Hohe Pässe00Flanken00Kopfballschüsse00Volleyschüsse00Ecken00Fouls00Freistöße00Elfmeter00Verein <mit> & einem sehr langen vollständigen VereinsnamenSpielerNoteTVSpanien#1 Spieler <Name> & vollständiger Doppelname mit einer langen Erweiterung97 Min.6,700Spanien#2 Iker Díaz97 Min.6,702Spanien#3 Raúl Herrera97 Min.6,700Frankreich#5 Adrien Durand97 Min.6,710Spanien#6 Diego Castro97 Min.6,710Spanien#10 Marcos Molina97 Min.6,710United With A Very Long Complete Football Club NameSpielerNoteTVNorwegen#1 Oliver Andersen97 Min.6,700Spanien#2 Raúl Flores↓ Ausgewechselt 62′ · 62 Min.6,700Spanien#4 Iván Flores↓ Ausgewechselt 75′ · 75 Min.6,700Argentinien#6 Thiago Acosta97 Min.6,700Spanien#8 Javier Domínguez97 Min.6,700Spanien#10 Pablo García97 Min.6,700",
+    "fullName": "Verein <mit> & einem sehr langen vollständigen Vereinsnamen",
+    "overflow": false,
+    "playerOverflow": false,
+    "htmlEscaped": true,
+    "careerUnchanged": true
+  },
+  "flags": [
+    {
+      "code": "ARG",
+      "embedded": true,
+      "svg": true
+    },
+    {
+      "code": "NOR",
+      "embedded": true,
+      "svg": true
+    }
+  ],
+  "translatedShootout": "Penalty shootout: 4 : 3 · Verein <mit> & einem sehr langen vollständigen Vereinsnamen wins",
+  "nativeMeta": {
+    "competition": {
+      "id": "S1:ESP:LEAGUE",
+      "type": "league",
+      "country": "ESP",
+      "round": "R1"
+    },
+    "fixtureId": "S1:ESP:LEAGUE:R1:ESP-2-ESP-4:1",
+    "expected": {
+      "ESP-2": "(1.)",
+      "ESP-1": "(2.)",
+      "ESP-6": "(3.)",
+      "ESP-5": "(4.)",
+      "ESP-3": "(5.)",
+      "ESP-4": "(6.)"
+    },
+    "actual": [
+      "(1.)",
+      "(6.)"
+    ],
+    "identity": [
+      "ESP-2",
+      "ESP-4"
+    ]
+  },
+  "errors": [],
+  "hashes": {
+    "match-report-v47.js": "ad3f73056e9ceedae4fedf505afa3fc95b80c0670a1ff176283f49ab7d48c1e0",
+    "ui-flutlicht/views/report.css": "ae725e5dfaee7628cddd9fd858c8e0592073aedc91c1d3e1c0e5799e28ba3b71",
+    "ui-flutlicht/views/competitions.js": "60ee6c8bab0e2da208baa41f56e721afba4557e9f4a8829247268e5dff4f035a",
+    "ui-flutlicht/views/overview.js": "9b0a407fb4a40cfb24bc602ca2fc4e4380ff530b735addfd0f373ec74df91bee",
+    "ui-flutlicht/adapter.js": "c026847b5adea1d9cd5cec306334f8504e2ee4b088d1c70eb4fc3fbbc83e12df",
+    "i18n-v75.js": "e77695e96bb8e89fbcfea3f19cae1d4d6db3da9ea1d00e3ebed03996b54ba837",
+    "ui-flutlicht/tokens.css": "cf73180dbf339790f8874701e9d73109df7485aa227decc1c483020fedb92f98",
+    "ui-flutlicht/components.css": "cf84d4f7a8abcb1b35a40065177368a5c0302e6c7755fcfcbff405ea2fad3b90"
+  },
+  "limits": [
+    "isolated Edge profile",
+    "CSS viewport changes, not real mobile hardware or screen reader",
+    "2D test lane; does not certify Unity match animation"
+  ]
+}

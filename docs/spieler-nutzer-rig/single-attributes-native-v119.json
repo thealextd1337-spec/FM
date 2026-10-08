@@ -1,0 +1,249 @@
+{
+  "version": 119,
+  "date": "2026-10-04T17:26:02.244Z",
+  "rows": [
+    {
+      "key": "spd",
+      "metric": "distance in 0.1 s (metres)",
+      "direction": "higher",
+      "samples": 1,
+      "baseline": {
+        "value": 0.4663573333333345,
+        "numerator": 0.4663573333333345,
+        "denominator": 1,
+        "secondary": {}
+      },
+      "boosted": {
+        "value": 0.5223573333333336,
+        "numerator": 0.5223573333333336,
+        "denominator": 1,
+        "secondary": {}
+      },
+      "difference": 0.05599999999999905,
+      "passed": true
+    },
+    {
+      "key": "tec",
+      "metric": "won completed ground contacts / non-foul contacts",
+      "direction": "higher",
+      "samples": 1000,
+      "baseline": {
+        "value": 0.816008316008316,
+        "numerator": 785,
+        "denominator": 962,
+        "secondary": {
+          "fouls": 38,
+          "attempts": 1000
+        }
+      },
+      "boosted": {
+        "value": 0.9052523171987642,
+        "numerator": 879,
+        "denominator": 971,
+        "secondary": {
+          "fouls": 29,
+          "attempts": 1000
+        }
+      },
+      "difference": 0.08924400119044817,
+      "passed": true
+    },
+    {
+      "key": "tak",
+      "metric": "won completed ground contacts / non-foul contacts",
+      "direction": "higher",
+      "samples": 1000,
+      "baseline": {
+        "value": 0.183991683991684,
+        "numerator": 177,
+        "denominator": 962,
+        "secondary": {
+          "fouls": 38,
+          "attempts": 1000
+        }
+      },
+      "boosted": {
+        "value": 0.26652675760755506,
+        "numerator": 254,
+        "denominator": 953,
+        "secondary": {
+          "fouls": 47,
+          "attempts": 1000
+        }
+      },
+      "difference": 0.08253507361587106,
+      "passed": true
+    },
+    {
+      "key": "pas",
+      "metric": "ground pass landing error (metres), unpressured",
+      "direction": "lower",
+      "samples": 1000,
+      "baseline": {
+        "value": 1.147703484242063,
+        "numerator": 1147.703484242063,
+        "denominator": 1000,
+        "secondary": {}
+      },
+      "boosted": {
+        "value": 0.5821465767640427,
+        "numerator": 582.1465767640427,
+        "denominator": 1000,
+        "secondary": {}
+      },
+      "difference": -0.5655569074780203,
+      "passed": true
+    },
+    {
+      "key": "pas-square",
+      "metric": "better teammate chosen in fixed square-pass opportunity",
+      "direction": "higher",
+      "samples": 1000,
+      "baseline": {
+        "value": 0.656,
+        "numerator": 656,
+        "denominator": 1000,
+        "secondary": {}
+      },
+      "boosted": {
+        "value": 0.785,
+        "numerator": 785,
+        "denominator": 1000,
+        "secondary": {}
+      },
+      "difference": 0.129,
+      "passed": true
+    },
+    {
+      "key": "fin",
+      "metric": "on-target / intentional shot",
+      "direction": "higher",
+      "samples": 1000,
+      "baseline": {
+        "value": 0.633,
+        "numerator": 633,
+        "denominator": 1000,
+        "secondary": {
+          "shots": 1000,
+          "onTarget": 633,
+          "goals": 193,
+          "saves": 440,
+          "caught": 225,
+          "parried": 215
+        }
+      },
+      "boosted": {
+        "value": 0.709,
+        "numerator": 709,
+        "denominator": 1000,
+        "secondary": {
+          "shots": 1000,
+          "onTarget": 709,
+          "goals": 287,
+          "saves": 422,
+          "caught": 209,
+          "parried": 213
+        }
+      },
+      "difference": 0.07599999999999996,
+      "passed": true
+    },
+    {
+      "key": "gk",
+      "metric": "saves / faced target shot",
+      "direction": "higher",
+      "samples": 1000,
+      "baseline": {
+        "value": 0.6951026856240127,
+        "numerator": 440,
+        "denominator": 633,
+        "secondary": {
+          "shots": 1000,
+          "onTarget": 633,
+          "goals": 193,
+          "saves": 440,
+          "caught": 225,
+          "parried": 215
+        }
+      },
+      "boosted": {
+        "value": 0.7235387045813586,
+        "numerator": 458,
+        "denominator": 633,
+        "secondary": {
+          "shots": 1000,
+          "onTarget": 633,
+          "goals": 175,
+          "saves": 458,
+          "caught": 254,
+          "parried": 204
+        }
+      },
+      "difference": 0.028436018957345932,
+      "passed": true
+    },
+    {
+      "key": "pos",
+      "metric": "mean safety margin behind offside line (metres)",
+      "direction": "higher",
+      "samples": 200,
+      "baseline": {
+        "value": 1.354423820539041,
+        "numerator": 270.8847641078082,
+        "denominator": 200,
+        "secondary": {}
+      },
+      "boosted": {
+        "value": 1.8368944888601408,
+        "numerator": 367.37889777202815,
+        "denominator": 200,
+        "secondary": {}
+      },
+      "difference": 0.48247066832109975,
+      "passed": true
+    },
+    {
+      "key": "air",
+      "metric": "won aerial duel / reached aerial duel",
+      "direction": "higher",
+      "samples": 1000,
+      "baseline": {
+        "value": 0.503,
+        "numerator": 503,
+        "denominator": 1000,
+        "secondary": {}
+      },
+      "boosted": {
+        "value": 0.597,
+        "numerator": 597,
+        "denominator": 1000,
+        "secondary": {}
+      },
+      "difference": 0.09399999999999997,
+      "passed": true
+    },
+    {
+      "key": "sta",
+      "metric": "native workload for same player/tactic",
+      "direction": "lower",
+      "samples": 1,
+      "baseline": {
+        "value": 24.8,
+        "numerator": 24.8,
+        "denominator": 1,
+        "secondary": {}
+      },
+      "boosted": {
+        "value": 22.4,
+        "numerator": 22.4,
+        "denominator": 1,
+        "secondary": {}
+      },
+      "difference": -2.400000000000002,
+      "passed": true
+    }
+  ],
+  "controls": "All attributes 12; one focal attribute 16. Age25/form0/fresh100; identical geometry, random seeds and native functions. Only gk varied on keeper. pas-square is a second pas scene, not a tenth ability.",
+  "limitations": "Native fixed-scene tests, not visible animation or calibrated match outcome. Ground duels exclude foul contacts from win denominator; both counts reported. pos is safety margin, not an offside count.",
+  "errors": []
+}

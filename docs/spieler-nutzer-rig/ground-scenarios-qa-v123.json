@@ -1,0 +1,661 @@
+{
+  "shots": [
+    {
+      "metres": 12,
+      "quality": 6,
+      "trials": 500,
+      "goals": 43,
+      "targets": 247,
+      "saves": 204,
+      "centralGoals": 0,
+      "caught": 83,
+      "parried": 121
+    },
+    {
+      "metres": 12,
+      "quality": 18,
+      "trials": 500,
+      "goals": 176,
+      "targets": 386,
+      "saves": 210,
+      "centralGoals": 0,
+      "caught": 73,
+      "parried": 137
+    },
+    {
+      "metres": 24,
+      "quality": 6,
+      "trials": 500,
+      "goals": 10,
+      "targets": 207,
+      "saves": 197,
+      "centralGoals": 0,
+      "caught": 91,
+      "parried": 106
+    },
+    {
+      "metres": 24,
+      "quality": 18,
+      "trials": 500,
+      "goals": 42,
+      "targets": 324,
+      "saves": 282,
+      "centralGoals": 0,
+      "caught": 127,
+      "parried": 155
+    },
+    {
+      "metres": 40,
+      "quality": 6,
+      "trials": 500,
+      "goals": 3,
+      "targets": 145,
+      "saves": 142,
+      "centralGoals": 0,
+      "caught": 65,
+      "parried": 77
+    },
+    {
+      "metres": 40,
+      "quality": 18,
+      "trials": 500,
+      "goals": 9,
+      "targets": 226,
+      "saves": 217,
+      "centralGoals": 0,
+      "caught": 85,
+      "parried": 132
+    }
+  ],
+  "receives": [
+    {
+      "quality": 6,
+      "pressure": 0,
+      "controlled": 450,
+      "lost": 50,
+      "maxLead": 0.3305866666666682
+    },
+    {
+      "quality": 18,
+      "pressure": 0,
+      "controlled": 485,
+      "lost": 15,
+      "maxLead": 0.2705866666666685
+    },
+    {
+      "quality": 6,
+      "pressure": 2,
+      "controlled": 396,
+      "lost": 104,
+      "maxLead": 0.3305866666666682
+    },
+    {
+      "quality": 18,
+      "pressure": 2,
+      "controlled": 456,
+      "lost": 44,
+      "maxLead": 0.2705866666666685
+    }
+  ],
+  "outlets": [
+    {
+      "kind": "blocked-short",
+      "selected": {
+        "id": "v123-free",
+        "high": false
+      },
+      "wait": true
+    },
+    {
+      "kind": "free-short",
+      "selected": {
+        "id": "v123-blocked",
+        "high": false
+      },
+      "wait": true
+    },
+    {
+      "kind": "all-blocked",
+      "selected": null,
+      "wait": true
+    },
+    {
+      "kind": "free-long",
+      "selected": {
+        "id": "v123-free",
+        "high": true
+      },
+      "wait": true
+    }
+  ],
+  "rebounds": [
+    {
+      "team": 0,
+      "phase1": 0,
+      "during": {
+        "x": 0.51,
+        "y": 0.15929929411764704,
+        "mark": {
+          "pid": "v123-attacker",
+          "n": 1,
+          "name": "Max Hartmann",
+          "nation": "GER",
+          "age": 28,
+          "line": "att",
+          "assignedLine": "att",
+          "keeper": false,
+          "type": "Abwehr",
+          "foot": "Rechts",
+          "form": 0,
+          "fresh": 100,
+          "history": [],
+          "seasons": [],
+          "honours": [],
+          "tec": 12,
+          "pas": 12,
+          "fin": 12,
+          "tak": 12,
+          "pos": 12,
+          "spd": 12,
+          "sta": 12,
+          "air": 12,
+          "gk": 12,
+          "appearance": {
+            "skinTone": "warm",
+            "hairColor": "brown",
+            "hairstyle": "tight_curls",
+            "faceShape": "angular",
+            "eyeBrows": "soft",
+            "nose": "straight",
+            "mouth": "full",
+            "facialHair": "none",
+            "pose": "fist_chest"
+          },
+          "marketValue": 370,
+          "marketValueStamp": "S1:start",
+          "cell": 26,
+          "role": -1,
+          "instructions": [],
+          "matchEntryElapsed": 0,
+          "t": 0,
+          "x": 0.51,
+          "y": 0.18,
+          "bx": 0.51,
+          "by": 0.18,
+          "tx": 0.51,
+          "ty": 0.18,
+          "stats": {
+            "passes": 0,
+            "passComplete": 0,
+            "progressive": 0,
+            "passLost": 0,
+            "duels": 0,
+            "duelsWon": 0,
+            "interceptions": 0,
+            "shots": 0,
+            "onTarget": 0,
+            "goals": 0,
+            "assists": 0,
+            "saves": 0,
+            "faced": 0,
+            "conceded": 0,
+            "cleanSheet": 0,
+            "fouls": 0,
+            "penaltiesScored": 0,
+            "penaltiesMissed": 0,
+            "rating": 6,
+            "crosses": 0,
+            "crossComplete": 0,
+            "highPasses": 0,
+            "highComplete": 0,
+            "headers": 0,
+            "headerPasses": 0,
+            "volleys": 0,
+            "aerialDuels": 0,
+            "aerialWon": 0,
+            "slideAttempts": 0,
+            "slideWon": 0,
+            "shotGoals": 0,
+            "nonShotGoals": 0,
+            "shotConceded": 0,
+            "nonShotConceded": 0,
+            "shotsInterrupted": 0,
+            "savesCaught": 0,
+            "savesParried": 0
+          },
+          "initialBy": 0.18,
+          "motionX": 0,
+          "motionY": 0,
+          "recoverUntil": 0,
+          "slideActive": false
+        }
+      },
+      "loose": {
+        "x": 0.51,
+        "y": 0.15929929411764704,
+        "mark": {
+          "pid": "v123-attacker",
+          "n": 1,
+          "name": "Max Hartmann",
+          "nation": "GER",
+          "age": 28,
+          "line": "att",
+          "assignedLine": "att",
+          "keeper": false,
+          "type": "Abwehr",
+          "foot": "Rechts",
+          "form": 0,
+          "fresh": 100,
+          "history": [],
+          "seasons": [],
+          "honours": [],
+          "tec": 12,
+          "pas": 12,
+          "fin": 12,
+          "tak": 12,
+          "pos": 12,
+          "spd": 12,
+          "sta": 12,
+          "air": 12,
+          "gk": 12,
+          "appearance": {
+            "skinTone": "warm",
+            "hairColor": "brown",
+            "hairstyle": "tight_curls",
+            "faceShape": "angular",
+            "eyeBrows": "soft",
+            "nose": "straight",
+            "mouth": "full",
+            "facialHair": "none",
+            "pose": "fist_chest"
+          },
+          "marketValue": 370,
+          "marketValueStamp": "S1:start",
+          "cell": 26,
+          "role": -1,
+          "instructions": [],
+          "matchEntryElapsed": 0,
+          "t": 0,
+          "x": 0.51,
+          "y": 0.18,
+          "bx": 0.51,
+          "by": 0.18,
+          "tx": 0.51,
+          "ty": 0.18,
+          "stats": {
+            "passes": 0,
+            "passComplete": 0,
+            "progressive": 0,
+            "passLost": 0,
+            "duels": 0,
+            "duelsWon": 0,
+            "interceptions": 0,
+            "shots": 0,
+            "onTarget": 0,
+            "goals": 0,
+            "assists": 0,
+            "saves": 0,
+            "faced": 0,
+            "conceded": 0,
+            "cleanSheet": 0,
+            "fouls": 0,
+            "penaltiesScored": 0,
+            "penaltiesMissed": 0,
+            "rating": 6,
+            "crosses": 0,
+            "crossComplete": 0,
+            "highPasses": 0,
+            "highComplete": 0,
+            "headers": 0,
+            "headerPasses": 0,
+            "volleys": 0,
+            "aerialDuels": 0,
+            "aerialWon": 0,
+            "slideAttempts": 0,
+            "slideWon": 0,
+            "shotGoals": 0,
+            "nonShotGoals": 0,
+            "shotConceded": 0,
+            "nonShotConceded": 0,
+            "shotsInterrupted": 0,
+            "savesCaught": 0,
+            "savesParried": 0
+          },
+          "initialBy": 0.18,
+          "motionX": 0,
+          "motionY": 0,
+          "recoverUntil": 0,
+          "slideActive": false
+        }
+      },
+      "runner": {
+        "x": 0.51,
+        "y": 0.18
+      }
+    },
+    {
+      "team": 1,
+      "phase1": 1,
+      "during": {
+        "x": 0.51,
+        "y": 0.8407007058823529,
+        "mark": {
+          "pid": "v123-attacker",
+          "n": 1,
+          "name": "Max Hartmann",
+          "nation": "GER",
+          "age": 28,
+          "line": "att",
+          "assignedLine": "att",
+          "keeper": false,
+          "type": "Abwehr",
+          "foot": "Rechts",
+          "form": 0,
+          "fresh": 100,
+          "history": [],
+          "seasons": [],
+          "honours": [],
+          "tec": 12,
+          "pas": 12,
+          "fin": 12,
+          "tak": 12,
+          "pos": 12,
+          "spd": 12,
+          "sta": 12,
+          "air": 12,
+          "gk": 12,
+          "appearance": {
+            "skinTone": "warm",
+            "hairColor": "brown",
+            "hairstyle": "tight_curls",
+            "faceShape": "angular",
+            "eyeBrows": "soft",
+            "nose": "straight",
+            "mouth": "full",
+            "facialHair": "none",
+            "pose": "fist_chest"
+          },
+          "marketValue": 370,
+          "marketValueStamp": "S1:start",
+          "cell": 26,
+          "role": -1,
+          "instructions": [],
+          "matchEntryElapsed": 0,
+          "t": 1,
+          "x": 0.51,
+          "y": 0.82,
+          "bx": 0.51,
+          "by": 0.82,
+          "tx": 0.51,
+          "ty": 0.82,
+          "stats": {
+            "passes": 0,
+            "passComplete": 0,
+            "progressive": 0,
+            "passLost": 0,
+            "duels": 0,
+            "duelsWon": 0,
+            "interceptions": 0,
+            "shots": 0,
+            "onTarget": 0,
+            "goals": 0,
+            "assists": 0,
+            "saves": 0,
+            "faced": 0,
+            "conceded": 0,
+            "cleanSheet": 0,
+            "fouls": 0,
+            "penaltiesScored": 0,
+            "penaltiesMissed": 0,
+            "rating": 6,
+            "crosses": 0,
+            "crossComplete": 0,
+            "highPasses": 0,
+            "highComplete": 0,
+            "headers": 0,
+            "headerPasses": 0,
+            "volleys": 0,
+            "aerialDuels": 0,
+            "aerialWon": 0,
+            "slideAttempts": 0,
+            "slideWon": 0,
+            "shotGoals": 0,
+            "nonShotGoals": 0,
+            "shotConceded": 0,
+            "nonShotConceded": 0,
+            "shotsInterrupted": 0,
+            "savesCaught": 0,
+            "savesParried": 0
+          },
+          "initialBy": 0.82,
+          "motionX": 0,
+          "motionY": 0,
+          "recoverUntil": 0,
+          "slideActive": false
+        }
+      },
+      "loose": {
+        "x": 0.51,
+        "y": 0.8407007058823529,
+        "mark": {
+          "pid": "v123-attacker",
+          "n": 1,
+          "name": "Max Hartmann",
+          "nation": "GER",
+          "age": 28,
+          "line": "att",
+          "assignedLine": "att",
+          "keeper": false,
+          "type": "Abwehr",
+          "foot": "Rechts",
+          "form": 0,
+          "fresh": 100,
+          "history": [],
+          "seasons": [],
+          "honours": [],
+          "tec": 12,
+          "pas": 12,
+          "fin": 12,
+          "tak": 12,
+          "pos": 12,
+          "spd": 12,
+          "sta": 12,
+          "air": 12,
+          "gk": 12,
+          "appearance": {
+            "skinTone": "warm",
+            "hairColor": "brown",
+            "hairstyle": "tight_curls",
+            "faceShape": "angular",
+            "eyeBrows": "soft",
+            "nose": "straight",
+            "mouth": "full",
+            "facialHair": "none",
+            "pose": "fist_chest"
+          },
+          "marketValue": 370,
+          "marketValueStamp": "S1:start",
+          "cell": 26,
+          "role": -1,
+          "instructions": [],
+          "matchEntryElapsed": 0,
+          "t": 1,
+          "x": 0.51,
+          "y": 0.82,
+          "bx": 0.51,
+          "by": 0.82,
+          "tx": 0.51,
+          "ty": 0.82,
+          "stats": {
+            "passes": 0,
+            "passComplete": 0,
+            "progressive": 0,
+            "passLost": 0,
+            "duels": 0,
+            "duelsWon": 0,
+            "interceptions": 0,
+            "shots": 0,
+            "onTarget": 0,
+            "goals": 0,
+            "assists": 0,
+            "saves": 0,
+            "faced": 0,
+            "conceded": 0,
+            "cleanSheet": 0,
+            "fouls": 0,
+            "penaltiesScored": 0,
+            "penaltiesMissed": 0,
+            "rating": 6,
+            "crosses": 0,
+            "crossComplete": 0,
+            "highPasses": 0,
+            "highComplete": 0,
+            "headers": 0,
+            "headerPasses": 0,
+            "volleys": 0,
+            "aerialDuels": 0,
+            "aerialWon": 0,
+            "slideAttempts": 0,
+            "slideWon": 0,
+            "shotGoals": 0,
+            "nonShotGoals": 0,
+            "shotConceded": 0,
+            "nonShotConceded": 0,
+            "shotsInterrupted": 0,
+            "savesCaught": 0,
+            "savesParried": 0
+          },
+          "initialBy": 0.82,
+          "motionX": 0,
+          "motionY": 0,
+          "recoverUntil": 0,
+          "slideActive": false
+        }
+      },
+      "runner": {
+        "x": 0.51,
+        "y": 0.82
+      }
+    }
+  ],
+  "shortHigh": [
+    {
+      "gap": 2,
+      "kind": "pass",
+      "high": false
+    },
+    {
+      "gap": 5,
+      "kind": "pass",
+      "high": false
+    },
+    {
+      "gap": 12,
+      "kind": "highPass",
+      "high": true
+    }
+  ],
+  "tackles": [
+    {
+      "gap": 0.7,
+      "quality": 6,
+      "wins": 40,
+      "fouls": 11,
+      "attempts": 500
+    },
+    {
+      "gap": 0.7,
+      "quality": 18,
+      "wins": 166,
+      "fouls": 25,
+      "attempts": 500
+    },
+    {
+      "gap": 2,
+      "quality": 6,
+      "wins": 0,
+      "fouls": 0,
+      "attempts": 0
+    },
+    {
+      "gap": 2,
+      "quality": 18,
+      "wins": 0,
+      "fouls": 0,
+      "attempts": 0
+    },
+    {
+      "gap": 4,
+      "quality": 6,
+      "wins": 0,
+      "fouls": 0,
+      "attempts": 0
+    },
+    {
+      "gap": 4,
+      "quality": 18,
+      "wins": 0,
+      "fouls": 0,
+      "attempts": 0
+    }
+  ],
+  "missedBlock": [
+    {
+      "gap": 1,
+      "reachable": true
+    },
+    {
+      "gap": 3,
+      "reachable": false
+    },
+    {
+      "gap": 6,
+      "reachable": false
+    }
+  ],
+  "rolls": [
+    {
+      "initial": {
+        "vx": 0.03,
+        "vy": -0.02
+      },
+      "final": {
+        "x": 0.5091538882856027,
+        "y": 0.4938974078095982,
+        "delay": 99.21999999999997,
+        "vx": 0.00300776531168411,
+        "vy": -0.002005176874456073
+      },
+      "before": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "after": {
+        "x": 0.5091538882856027,
+        "y": 0.4938974078095982
+      }
+    },
+    {
+      "initial": {
+        "vx": 0.03,
+        "vy": -0.02
+      },
+      "final": {
+        "x": 0.5091538882856027,
+        "y": 0.4938974078095982,
+        "delay": 99.21999999999997,
+        "vx": 0.00300776531168411,
+        "vy": -0.002005176874456073
+      },
+      "before": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "after": {
+        "x": 0.5091538882856027,
+        "y": 0.4938974078095982
+      }
+    }
+  ],
+  "errors": []
+}

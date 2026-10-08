@@ -1,0 +1,38 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const base=path.resolve(__dirname,'../../../..'),runtime='C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node';
+if(Number(process.versions.node.split('.')[0])<20){const r=require('node:child_process').spawnSync(path.join(runtime,'bin/node.exe'),[__filename],{stdio:'inherit'});process.exit(r.status??1);}
+const {chromium}=require(path.join(runtime,'node_modules/playwright')),{createServer}=require('../../serve.cjs');
+const files=['index.html','i18n-v75.js','ui-flutlicht/adapter.js','ui-flutlicht/tokens.css','ui-flutlicht/components.css','ui-flutlicht/components.js','ui-flutlicht/shell.js','ui-flutlicht/views/competitions.js','ui-flutlicht/views/competitions.css'];
+const hashes=()=>Object.fromEntries(files.map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync(path.join(base,'dist',f))).digest('hex')]));
+(async()=>{
+ const before=hashes(),out=path.join(base,'outputs/ui-redesign/U01-D','source-'+new Date().toISOString().replace(/[:.]/g,'-'));fs.mkdirSync(out,{recursive:true});
+ const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
+ try{
+  browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});const page=await browser.newPage({viewport:{width:390,height:844}}),errors=[],checks=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(`http://127.0.0.1:${server.address().port}/source/index.html`);await page.waitForFunction(()=>typeof v61CreateCareer==='function');
+  await page.evaluate(async()=>{const career=v61CreateCareer('GER-2','u01-d-source-fixture','Wettbewerbstest');const own=v66Own(career);v66ChooseSponsor(career,own.id,own.sponsors[0].id);v124SetYouthBudget(career,0);for(let i=0;i<6&&career.world.market.phase!=='closed';i++)v66NextMarketDay(career);v62AdvanceToManaged(career);v61CurrentCareer=await v61StoreNewCareer(career);v61RenderCareer(career);v61SetCareerTab('competition',false);});
+  await page.locator('.fl-competition-table').first().waitFor();assert.equal(await page.locator('[data-v62-competition-area="own"] .fl-competition-table').first().locator('thead th').count(),9);checks.push('nine native competition columns');
+  await page.locator('[data-v62-area="other"]').click();const countries=page.locator('[data-v62-country-choice]');await countries.selectOption({index:1});const selected=await countries.inputValue();assert.equal(await page.locator(`[data-v62-country-panel="${selected}"]`).isVisible(),true);await page.locator('[data-v62-area="own"]').click();
+  const cup=page.locator('[data-v62-competition-area="own"] [data-v62-cup-bracket]').first();await cup.locator('[data-v62-cup-slide="1"]').click();assert.equal(await cup.getAttribute('data-v62-cup-index'),'1');await cup.locator('[data-v62-cup-slide="-1"]').click();checks.push('native country and cup round actions');
+  for(const width of [320,390,768,1280]){await page.setViewportSize({width,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,`competition source overflow ${width}`);if(width===390||width===1280)await page.screenshot({path:path.join(out,`competitions-${width}.png`),fullPage:true,animations:'disabled'});}
+  await page.evaluate(()=>v61SetCareerTab('calendar',false));const open=page.locator('[data-v46-view="calendar"] [data-fl-report-open]').first();await open.waitFor();
+  await page.evaluate(()=>window.reportCareerBefore=JSON.stringify(v61CurrentCareer));await open.click();await page.locator('.fl-competition-report[open]').waitFor();assert.equal(await page.locator('.fl-competition-report-players article').count()>0,true);
+  const projectionProbe=await page.evaluate(()=>{
+   const source=D6Flutlicht.adapter.project(v61CurrentCareer).competitions.report,copy=structuredClone(v61CurrentCareer),game=copy.world.competitions.flatMap(c=>c.fixtures).find(f=>f.id===source.id),pid=game.matchRecord.players[0].pid;
+   game.matchRecord.events=[{type:'goal',source:'own-goal',minute:45,minuteLabel:'45+2',side:0,ownGoalPid:pid},{type:'goal',source:'direct-free-kick',minute:70,side:0,scorerPid:pid}];game.matchRecord.manOfMatchPid=pid;game.result.aggregate=[3,2];
+   const ownGoal=D6Flutlicht.adapter.project(copy).competitions.report;
+   game.matchRecord.manOfMatchPid=null;const emptyAwards=D6Flutlicht.adapter.project(copy).competitions.report.awards;
+   return{ownGoal,emptyAwards,originalUnchanged:window.reportCareerBefore===JSON.stringify(v61CurrentCareer)};
+  });
+  assert.match(projectionProbe.ownGoal.events[0].text,/Eigentor/);assert.equal(projectionProbe.ownGoal.events[0].minuteLabel,'45+2′');assert.match(projectionProbe.ownGoal.events[1].text,/direktem Freistoß/);assert.equal(projectionProbe.ownGoal.awards.length,1);assert.deepEqual(projectionProbe.emptyAwards,[]);assert.match(projectionProbe.ownGoal.contextLabel,/Gesamtstand 3:2/);assert.equal(projectionProbe.originalUnchanged,true);checks.push('isolated projection copy: own goal/stoppage time/direct free kick/award and explicit no award/aggregate');
+  await page.locator('[data-fl-report-player]').first().click();await page.locator('.v61-profile-dialog[open]').waitFor();await page.locator('.v61-profile-dialog [data-v61-close]').click();assert.equal(await page.locator('.fl-competition-report').evaluate(n=>n.open),true);
+  await page.keyboard.press('Escape');assert.equal(await page.locator('.fl-competition-report[open]').count(),0);assert.equal(await page.evaluate(()=>document.activeElement.matches('[data-fl-report-open]')),true);assert.equal(await page.evaluate(()=>window.reportCareerBefore===JSON.stringify(v61CurrentCareer)),true);checks.push('native report/player profile/return/Escape with unchanged career');
+  await page.evaluate(async()=>{const c=v61CurrentCareer;for(let i=0;i<100&&!c.world.seasonFinished;i++)v62AdvanceDay(c);if(!c.world.seasonFinished)throw Error('Season not completed');if(c.world.transition?.choice===null)v67ChooseOffer(c);v62NextSeason(c);await v64UiSave();v61RenderCareer(c);v61SetCareerTab('calendar',false);});
+  await page.locator('[data-v62-calendar-season-choice]').selectOption('1');await page.locator('[data-v46-view="calendar"] [data-fl-report-open]').first().click();await page.locator('.fl-competition-report[open]').waitFor();assert.equal(await page.locator('.fl-competition-report-players article').count(),0);assert.equal(await page.locator('.fl-competition-missing').count()>=4,true);assert.equal(await page.locator('.fl-competition-report [data-fl-report-player]').count()>0,true);await page.screenshot({path:path.join(out,'archived-report.png'),animations:'disabled'});await page.keyboard.press('Escape');checks.push('native archived season selector and missing report rubrics with preserved lineups');
+  await page.evaluate(()=>v61SetCareerTab('competition',false));await page.locator('[data-v62-season-choice]').selectOption('1');assert.equal(await page.locator('[data-v62-season-choice]').inputValue(),'1');await page.locator('.v68-archive>summary').click();assert.equal(await page.locator('.v68-archive').evaluate(n=>n.open),true);checks.push('native competition season selector and title archive');
+  assert.deepEqual(errors,[]);assert.deepEqual(hashes(),before,'source changed during source check');fs.writeFileSync(path.join(out,'checks.json'),JSON.stringify({target:'source',checks,errors,hashes:before},null,2));console.log(out);
+ }finally{if(browser)await browser.close();await new Promise(r=>server.close(r));}
+})().catch(e=>{console.error(e);process.exitCode=1;});
+
+

@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-05T14:29:22.310Z",
+  "published": false,
+  "newMeshyCredits": 0,
+  "modelSha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+  "buildSha256": "3d5f513d263d4654bdb44e14a9fda572dec86ca283a1ca04a0784e89bd9b2ac4",
+  "sources": {
+    "pitch-v55.js": "329eaccbd96cde7f0f20d709aa36d1e5b7861e358cd6ca001eb2e27d30811245",
+    "world-backpedal-v108.js": "52354cba19f2fafa6cd7297ce449bc5d96dc784af89d763c16df0a69ba379193",
+    "world-pitch3d-v98.js": "174a81b4f5f59f4d8b6bda84cf2309f44d6d78e12c500123a07d15a1e73c1446",
+    "pitch-motion-v102.js": "f6b7dedec698b0994aa2c6c435cf10215bed41dc6d9b98880e0830147b128d40",
+    "world-goal-replay-v103.js": "ad0991bee8697f847b8cad16b9d72bc85320f6f7922a0b3315a9a0e1252993c6"
+  },
+  "evidence": {
+    "outputs/review-events-qa-v132.json": "375545661cf569a4f97d81b984188d7de360949e72e5a0097f40078d68c4d27c",
+    "outputs/fullscreen-tv-qa-v132.json": "5cdcd6d302591667d2c9faa970f5016504d77333b1e2c921b15d49a52206d8c5",
+    "outputs/touch-controls-qa-v132.json": "f0367024eb6223786642eb37ac1e8805735b7c3af37d820009aac49d8961d1ff",
+    "outputs/highball-pursuit-qa-v132.json": "f3496120b30f305a70b7c0c94463e1efb02599e349795056f9c28079693ba18b",
+    "docs/spieler-nutzer-rig/air-scenarios-qa-v132.json": "80d6e184816a7f519bb36b0f75383a3bbb29d80cadcfef568c4e199b693a7b3a",
+    "docs/spieler-nutzer-rig/warping-qa-v132.json": "a5142785b4a7c13780e079fe48cb554879cc57e8c80ba7626510f111166c30e2",
+    "outputs/world3d-parity-v132.json": "514275417c23487659fd9f2cf73933f0ce5a89bedd1d8940ff7c464a35592cb8"
+  },
+  "markerTypes": 5,
+  "eventLeadSeconds": 3,
+  "wholeRecordedSession": true,
+  "archiveTestClockSeconds": 900,
+  "reviewPausesMatch": true,
+  "reviewPlaybackReadOnly": true,
+  "mobileFullscreenAndFallback": true,
+  "desktopHoverFade": true,
+  "mobileTouchFade": true,
+  "historicalClockAndScore": true,
+  "earlyHighBallPursuit": true,
+  "completedNativeMatches": 2,
+  "nativeFrames": 15639,
+  "regular2d3dOfflineParity": true,
+  "limits": "Session-only recorded landscape 3D, no reconstruction of missing scenes or persistent replay; mobile viewports and touch emulated, no physical phone test. Legacy air-scenarios-qa-v122.json accidentally overwritten by first v132 rerun and explicitly reclassified; original hash remains in verification-v122.json."
+}

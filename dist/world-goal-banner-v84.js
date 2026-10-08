@@ -7,11 +7,11 @@ function v84SeasonGoals(player,career,fixture,physical){
  const completed=(player.history||[]).filter(entry=>entry.season===career.world.season&&entry.competitionId===fixture.competitionId&&entry.fixtureId!==fixture.id).reduce((total,entry)=>total+(entry.goals||0),0);
  return completed+(physical.goals||[]).filter(goal=>goal.pid===player.pid).length;
 }
-function v84BannerHTML(player,club,competition,count,score){
- const goals=`${count} ${count===1?'Tor':'Tore'} - ${v84CompetitionLabel(competition)}`;
+function v84BannerHTML(player,club,competition,count,score,ownGoal=false){
+ const goals=ownGoal?`Eigentor - ${v84CompetitionLabel(competition)}`:`${count} ${count===1?'Tor':'Tore'} - ${v84CompetitionLabel(competition)}`;
  const number=Number.isInteger(player.n)&&player.n>0?`<b class="v84-shirt-number" aria-label="Rückennummer ${player.n}">#${player.n}</b> `: "";
  const scoreClass=score.some(value=>value>9)?' v84-score-long':'';
- return `<div class="v84-goal-decor" aria-hidden="true"><i class="v84-pattern v84-pattern-tl"></i><i class="v84-pattern v84-pattern-tr"></i><i class="v84-pattern v84-pattern-br"></i><i class="v84-accent v84-accent-left"></i><i class="v84-accent v84-accent-right"></i><i class="v84-corner v84-corner-tl"></i><i class="v84-corner v84-corner-tr"></i><i class="v84-corner v84-corner-bl"></i><i class="v84-corner v84-corner-br"></i></div><div class="v84-goal-details"><span class="v84-score${scoreClass}" aria-label="Spielstand ${score[0]} zu ${score[1]}">${score[0]}:${score[1]}</span><span class="v84-scorer">${number}${escapeHTML(player.name)}</span><span class="v84-goals">${escapeHTML(goals)}</span></div><div class="v84-goal-logo">${v61CrestSVG(club)}</div><div class="v84-goal-strips" aria-hidden="true"><i></i><b></b><i></i></div>`;
+ return `<div class="v84-goal-decor" aria-hidden="true"><i class="v84-pattern v84-pattern-tl"></i><i class="v84-pattern v84-pattern-tr"></i><i class="v84-pattern v84-pattern-br"></i><i class="v84-accent v84-accent-left"></i><i class="v84-accent v84-accent-right"></i><i class="v84-corner v84-corner-tl"></i><i class="v84-corner v84-corner-tr"></i><i class="v84-corner v84-corner-bl"></i><i class="v84-corner v84-corner-br"></i></div><div class="v84-goal-details"><span class="v84-score${scoreClass}" aria-label="Spielstand ${score[0]} zu ${score[1]}">${score[0]}:${score[1]}</span><span class="v84-scorer">${number}${escapeHTML(player.name)}${ownGoal?' (Eigentor)':''}</span><span class="v84-goals">${escapeHTML(goals)}</span></div><div class="v84-goal-logo">${v61CrestSVG(club)}</div><div class="v84-goal-strips" aria-hidden="true"><i></i><b></b><i></i></div>`;
 }
 
 let v84PendingGoal=null;
@@ -24,15 +24,15 @@ showOverlay=function(title,copy,...rest){
  overlay.classList.remove('v84-goal-banner','v84-no-sprite');
  overlay.removeAttribute('role');
  const context=v65WorldActive&&v65Context(),goal=rest[0]&&context&&match?.goalPause>0&&match.goals.at(-1);
- if(!goal?.pid){if(overlay.parentElement?.classList.contains('v42-pitch-stage'))$('#match-area').insertBefore(overlay,$('#event'));return result}
- const player=v66Player(context.career,goal.pid),club=v65Club(context,goal.team);
+ if(!goal?.pid&&!goal?.ownGoalPid){if(overlay.parentElement?.classList.contains('v42-pitch-stage'))$('#match-area').insertBefore(overlay,$('#event'));return result}
+ const player=v66Player(context.career,goal.pid||goal.ownGoalPid),club=v65Club(context,goal.team);
  const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
  if(!player||!club||!competition)return result;
  $('#match-area .v42-pitch-stage').append(overlay);
  const count=v84SeasonGoals(player,context.career,context.fixture,match);
  $('#overlay-title').innerHTML='<span class="v84-goal-word">TOOOOR!</span>';
- $('#overlay-copy').textContent=`${player.name} · ${match.score[0]} : ${match.score[1]}`;
- overlay.insertAdjacentHTML('beforeend',v84BannerHTML(player,club,competition,count,match.score));
+ $('#overlay-copy').textContent=`${player.name}${goal.ownGoal?' (Eigentor)':''} · ${match.score[0]} : ${match.score[1]}`;
+ overlay.insertAdjacentHTML('beforeend',v84BannerHTML(player,club,competition,count,match.score,goal.ownGoal));
  overlay.classList.add('v84-goal-banner');
  if(!overlay.querySelector('.v82-goal-sprite'))overlay.classList.add('v84-no-sprite');
  overlay.setAttribute('role','status');

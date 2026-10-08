@@ -1,0 +1,35 @@
+.fl-settings{max-width:1060px;margin:0 auto;min-width:0}
+.fl-settings-heading{margin-bottom:30px}.fl-settings-heading h1{margin:0 0 9px}.fl-settings-heading p{margin:0}
+#v61-world-screen .fl-content .fl-settings-section{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(200px,1fr);align-items:start;gap:26px;padding:26px 0;border-top:1px solid var(--fl-line);min-width:0}
+#v61-world-screen .fl-content .fl-settings-section h2{font-size:19px;margin:0 0 9px}
+#v61-world-screen .fl-content .fl-settings-section p{font-size:14px;max-width:65ch;margin:0 0 10px;line-height:1.6}
+#v61-world-screen .fl-content .fl-settings-section .fl-settings-fine{font-size:12px;margin-top:14px}
+.fl-settings-control{display:grid;gap:8px;min-width:0}
+#v61-world-screen .fl-content .fl-settings-control label{font-size:13px;font-weight:600;color:var(--fl-ink)}
+#v61-world-screen .fl-content .fl-settings-control select{width:100%;min-width:0;min-height:48px;font-size:16px;background:var(--fl-control);color:var(--fl-ink);border:1px solid var(--fl-control-line);appearance:auto}
+.fl-settings-actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end}
+#v61-world-screen .fl-content .fl-settings-actions button{min-height:46px;width:auto;padding:11px 16px;font-size:14px;white-space:normal;overflow-wrap:anywhere;text-align:center}
+.fl-settings-legal{flex-direction:column;align-items:stretch}
+#v61-world-screen .fl-content .fl-settings-error{padding:14px 16px;border:1px solid var(--fl-alert-ink);border-radius:8px;background:var(--fl-alert);color:var(--fl-alert-ink);font-size:14px;overflow-wrap:anywhere}
+/* Native full help and legal content keeps its own controller and links. */
+.fl-dialog.legal-dialog{padding:0;background:var(--fl-surface);color:var(--fl-ink);border-color:var(--fl-line)}
+.fl-dialog.legal-dialog .legal-dialog-header{border-color:var(--fl-line)}
+.fl-dialog.legal-dialog :is(.legal-dialog-content h3,.legal-dialog-content a,.legal-inline){color:var(--fl-accent)}
+.fl-dialog.legal-dialog .legal-dialog-content{overflow-wrap:anywhere}
+.fl-dialog.legal-dialog :is(.legal-dialog-close,.privacy-actions button){min-height:44px;padding:10px 14px;background:var(--fl-control);border-color:var(--fl-control-line);color:var(--fl-ink)}
+.fl-dialog.legal-dialog .privacy-actions button[aria-pressed=true]{background:var(--fl-gold);color:#15191e;border-color:#916a25}
+.fl-dialog.legal-dialog .privacy-actions{display:flex;flex-wrap:wrap;gap:10px}
+.fl-dialog.v134-3d-help{padding:0;background:var(--fl-surface);color:var(--fl-ink)}
+.fl-dialog.v134-3d-help .v134-help-head{background:var(--fl-frame);color:var(--fl-ink);border-color:var(--fl-line)}
+.fl-dialog.v134-3d-help .v134-help-body{font-family:var(--fl-font)}
+.fl-dialog.v134-3d-help .v134-help-body :is(h3,a){color:var(--fl-accent)}
+.fl-dialog.v134-3d-help .v134-help-body details{border-color:var(--fl-line)}
+.fl-dialog.v134-3d-help .v134-help-body .help{color:var(--fl-muted)}
+.fl-dialog.v134-3d-help .v134-help-body pre{max-width:100%;overflow:auto}
+@media(max-width:900px){
+ #v61-world-screen .fl-content .fl-settings-section{grid-template-columns:minmax(0,1fr);gap:14px;padding:24px 0}
+ .fl-settings-actions{justify-content:flex-start}.fl-settings-control{max-width:420px}
+ #v61-world-screen .fl-content .fl-settings-actions button{flex:1}
+ .fl-settings-heading{margin-bottom:24px}
+}
+@media(max-width:480px){.fl-settings-actions{flex-direction:column;align-items:stretch}.fl-dialog.v134-3d-help .v134-help-head{gap:10px}.fl-dialog.v134-3d-help .v134-help-head h2{font-size:20px}.fl-dialog.v134-3d-help .v134-help-head button{flex:none}}

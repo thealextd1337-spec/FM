@@ -1,0 +1,64 @@
+[
+  {
+    "kind": "source",
+    "initial": {
+      "status": "ready",
+      "ready": true,
+      "career": null,
+      "random": {
+        "calls": 0,
+        "restored": true
+      },
+      "footer": "Doppel 6 / PROTOTYP 105"
+    },
+    "match": {
+      "models": 12,
+      "keepers": 2,
+      "base": 12,
+      "storage": "sechser.world.v9",
+      "status": ""
+    },
+    "requests": 107,
+    "errors": []
+  },
+  {
+    "kind": "offline",
+    "initial": {
+      "status": "ready",
+      "ready": true,
+      "career": null,
+      "random": {
+        "calls": 0,
+        "restored": true
+      },
+      "footer": "Doppel 6 / PROTOTYP 105"
+    },
+    "match": {
+      "models": 12,
+      "keepers": 2,
+      "base": 12,
+      "storage": "sechser.world.v9",
+      "status": ""
+    },
+    "requests": 0,
+    "errors": []
+  },
+  {
+    "kind": "missing-asset",
+    "initial": {
+      "status": "failed",
+      "ready": false,
+      "career": null,
+      "footer": "Doppel 6 / PROTOTYP 105"
+    },
+    "match": {
+      "models": 0,
+      "keepers": 0,
+      "base": 12,
+      "storage": "sechser.world.v9",
+      "status": "Spielermodelle nicht verfügbar · Ersatzdarstellung aktiv"
+    },
+    "requests": 107,
+    "errors": []
+  }
+]

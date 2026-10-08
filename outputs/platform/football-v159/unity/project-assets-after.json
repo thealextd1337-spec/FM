@@ -1,0 +1,72 @@
+[
+  {
+    "file": "Art/football-v130.fbx",
+    "path": "Assets/Doppel6EngineProbe/Art/football-v130.fbx",
+    "sha256": "e79f62f49cc2fe00968cce77044aeba534a7aaf119a42ebd82f0f1516ed13695"
+  },
+  {
+    "file": "Art/football-v130.fbx.meta",
+    "path": "Assets/Doppel6EngineProbe/Art/football-v130.fbx.meta",
+    "sha256": "221fe7473129c55fc376e322c11b915a4bd5d37f938e294072c8f5b320e1fd12"
+  },
+  {
+    "file": "Art/football-contact-pilot.fbx",
+    "path": "Assets/Doppel6EngineProbe/Art/football-contact-pilot.fbx",
+    "sha256": "cbbac9f598635ff85eb996fa6291dafa98d9147cbfe85abe1a7cac5621179f44"
+  },
+  {
+    "file": "Art/football-contact-pilot.fbx.meta",
+    "path": "Assets/Doppel6EngineProbe/Art/football-contact-pilot.fbx.meta",
+    "sha256": "c9bee09d60559aa0f51d05a804ab09c3fda21ec8d2c516141c9e59142818dfad"
+  },
+  {
+    "file": "Art/pass_inside_meshy.anim",
+    "path": "Assets/Doppel6EngineProbe/Art/pass_inside_meshy.anim",
+    "sha256": "545475ab372038f014538a21f735045cdbc88de0648d12c07a6ecb08508fde57"
+  },
+  {
+    "file": "Art/pass_inside_meshy.anim.meta",
+    "path": "Assets/Doppel6EngineProbe/Art/pass_inside_meshy.anim.meta",
+    "sha256": "0073db72d8712e59d7c2b49ca865e8bd4c881edda611c277836afbaba7ff3dc4"
+  },
+  {
+    "file": "Art/receive_ground_meshy.anim",
+    "path": "Assets/Doppel6EngineProbe/Art/receive_ground_meshy.anim",
+    "sha256": "920bbf73281f17373a9efbfe0fa02bb0f434c817fb0ec88bb5afa09f331d8e46"
+  },
+  {
+    "file": "Art/receive_ground_meshy.anim.meta",
+    "path": "Assets/Doppel6EngineProbe/Art/receive_ground_meshy.anim.meta",
+    "sha256": "0317128485159bdfe8a1997f89c591f84cd46bf8acf383c1f5b3f0e33bc1ac32"
+  },
+  {
+    "file": "Probe.unity",
+    "path": "Assets/Doppel6EngineProbe/Probe.unity",
+    "sha256": "5191d402b9613dce52490be7c575537e189a9437e9e043fb2693e2b8b54107f6"
+  },
+  {
+    "file": "Probe.unity.meta",
+    "path": "Assets/Doppel6EngineProbe/Probe.unity.meta",
+    "sha256": "2282c171abae704aa1812044b8ae90f45a9e47ef7db62538306b089a8af34102"
+  },
+  {
+    "file": "Rendering/ProbeWeb.asset",
+    "path": "Assets/Doppel6EngineProbe/Rendering/ProbeWeb.asset",
+    "sha256": "c0d93e0071396cdc1c404fc94ea09fd061d3d3ba6bfdd102af713880d2a2cb8b"
+  },
+  {
+    "file": "Rendering/ProbeWeb.asset.meta",
+    "path": "Assets/Doppel6EngineProbe/Rendering/ProbeWeb.asset.meta",
+    "sha256": "6fcdd78a5a9cb3a342e603c899c329e56d8847364ce3956f5016fcf253e19572"
+  },
+  {
+    "file": "Rendering/ProbeForward.asset",
+    "path": "Assets/Doppel6EngineProbe/Rendering/ProbeForward.asset",
+    "sha256": "5f774d5008d92d124bb01d50082a02b7d58314a9f3f270f893b25be61fc1dcbc"
+  },
+  {
+    "file": "Rendering/ProbeForward.asset.meta",
+    "path": "Assets/Doppel6EngineProbe/Rendering/ProbeForward.asset.meta",
+    "sha256": "d5314b0dc99849efed8cd9f940a886b50674da3fb9b8b83ae350efc9549464e7"
+  }
+]

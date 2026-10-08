@@ -1,0 +1,94 @@
+{
+  "version": 118,
+  "recordedAt": "2026-10-04T16:53:01.932Z",
+  "gamesPerGroup": 30,
+  "groups": [
+    {
+      "id": "gap-0",
+      "label": "Gleich stark",
+      "a": 14,
+      "b": 14
+    },
+    {
+      "id": "gap-1",
+      "label": "Kleiner Abstand",
+      "a": 14,
+      "b": 13
+    },
+    {
+      "id": "gap-2",
+      "label": "Mittlerer Abstand",
+      "a": 14,
+      "b": 12
+    },
+    {
+      "id": "gap-4",
+      "label": "Größerer Abstand",
+      "a": 14,
+      "b": 10
+    }
+  ],
+  "seeds": [
+    20261004,
+    20365733,
+    20470462,
+    20575191,
+    20679920,
+    20784649,
+    20889378,
+    20994107,
+    21098836,
+    21203565,
+    21308294,
+    21413023,
+    21517752,
+    21622481,
+    21727210,
+    21831939,
+    21936668,
+    22041397,
+    22146126,
+    22250855,
+    22355584,
+    22460313,
+    22565042,
+    22669771,
+    22774500,
+    22879229,
+    22983958,
+    23088687,
+    23193416,
+    23298145
+  ],
+  "controls": "Identical Team A, role specialization, tactics, form, age, freshness, roster, venue order and seed; all nine opposing abilities jointly reduced. Fresh career clone each game. 15 home/15 away per group.",
+  "criteria": [
+    {
+      "id": "gap2-points",
+      "gap": 2,
+      "metric": "pointsUplift",
+      "minimum": 0.2
+    },
+    {
+      "id": "gap2-goals",
+      "gap": 2,
+      "metric": "goalDifferenceUplift",
+      "minimum": 0.2
+    },
+    {
+      "id": "gap4-points",
+      "gap": 4,
+      "metric": "pointsUplift",
+      "minimum": 0.4
+    },
+    {
+      "id": "gap4-goals",
+      "gap": 4,
+      "metric": "goalDifferenceUplift",
+      "minimum": 0.5
+    }
+  ],
+  "uncertainty": "Paired bootstrap percentile intervals for point and goal difference uplift; 10000 resamples, fixed analysis RNG independent of game RNG. Point criteria and confidence evidence reported separately. No assertion of universal monotonicity from 30 matches.",
+  "balanceFlags": "Flag 90% or more wins at gaps 1/2, or no weaker wins/draws; flag non-monotone sample trend. No automatic tuning to this sample.",
+  "scope": "Moderate joint ability gaps only, not isolated attributes or tactics; no simulation/UI changes.",
+  "artifactSha256": "7e33ed70f32040eee8b63f02f56e4aa4e4f25704e32faa01283bcacefe2b48db"
+}

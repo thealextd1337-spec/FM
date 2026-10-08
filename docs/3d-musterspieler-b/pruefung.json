@@ -1,0 +1,119 @@
+{
+  "date": "2026-10-01",
+  "projectId": "106f0660-cb99-42fe-a9ec-004e61d3c884",
+  "revision": 5,
+  "views": [
+    {
+      "view": "dreiviertel",
+      "selected": "true",
+      "image": "dreiviertel.png"
+    },
+    {
+      "view": "frontal",
+      "selected": "true",
+      "image": "frontal.png"
+    },
+    {
+      "view": "profil",
+      "selected": "true",
+      "image": "profil.png"
+    },
+    {
+      "view": "ruecken",
+      "selected": "true",
+      "image": "ruecken.png"
+    },
+    {
+      "view": "gesicht",
+      "selected": "true",
+      "image": "gesicht.png"
+    }
+  ],
+  "layout": {
+    "width": 390,
+    "scrollWidth": 390,
+    "images": true
+  },
+  "errors": [],
+  "exports": {
+    "magic": "glTF",
+    "version": 2,
+    "bytes": 274816,
+    "meshes": 87,
+    "skins": 0,
+    "animations": 0,
+    "externalBuffers": 0,
+    "cameras": 5
+  },
+  "files": {
+    "spieler.glb": {
+      "bytes": 274816,
+      "sha256": "6ce357781b91ade4e8eb52e7ebb11a8d600c925c64fe742914a227ef35691992"
+    },
+    "spieler.blend": {
+      "bytes": 1604989,
+      "sha256": "9ff137c3a0106c170d4a866cfccce063cd793cbb850423d19664d6361b36982d"
+    },
+    "dreiviertel.png": {
+      "bytes": 434259,
+      "sha256": "77736aa0cb53f14ae76b4abf34d5d305eeacf1c671905cc97525646696546b27"
+    },
+    "frontal.png": {
+      "bytes": 425417,
+      "sha256": "0cdd7227545308ca349b0956a6c8da9523c19a69b6cbcd96008b7b549a93fef2"
+    },
+    "profil.png": {
+      "bytes": 402429,
+      "sha256": "8276f4d7f8d4fdf5b61556f9c89f0376fa6d285c8ad6d10a8e17c07729f4ccf0"
+    },
+    "ruecken.png": {
+      "bytes": 416093,
+      "sha256": "9c4146f3245d8df0cf8098e69928897fdec9ecf430e6b03669765b207a110aff"
+    },
+    "gesicht.png": {
+      "bytes": 456124,
+      "sha256": "1f831f2d4e1c4c79b8e3c5ed3cdbe46f3fd80c9446f5c7c6e326f6a9135a26d5"
+    }
+  },
+  "geometry": {
+    "stage": 1,
+    "revision_rendered": 5,
+    "player_meshes": 85,
+    "triangles": 3668,
+    "height_m": 1.8462399502750486,
+    "ground_min_m": -0.0020000000949949026,
+    "materials": [
+      "Augen_Braun",
+      "Augen_Elfenbein",
+      "Feldlinie",
+      "Haare_Deckflaechen",
+      "Haare_Dunkelbraun",
+      "Haare_Seiten",
+      "Haut_Licht",
+      "Haut_Schatten",
+      "Haut_Warm",
+      "Hose_Falten",
+      "Hose_Marine",
+      "Lippen_Natuerlich",
+      "Rasen_Stilpruefung",
+      "Schuhe_Anthrazit",
+      "Schuhe_Sohle",
+      "Trikot_Elfenbein",
+      "Trikot_Falten_Licht",
+      "Trikot_Falten_Schatten",
+      "Trikot_Vereinsgruen"
+    ],
+    "rigs": 0,
+    "animation_clips": 0,
+    "all_finite": true
+  },
+  "render": {
+    "engine": "Cycles CPU",
+    "samples": 32,
+    "denoising": true
+  },
+  "visualReview": {
+    "disposition": "Vorzeigbare erste Stufe-1-Musterfigur zur Nutzer-Stilprüfung",
+    "userAcceptance": "verworfen: Grafikqualität entspricht nicht dem gewünschten Stil"
+  }
+}

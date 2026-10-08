@@ -1,0 +1,546 @@
+{
+  "samples": 90,
+  "groups": [
+    {
+      "id": "good-good",
+      "label": "Gut gegen gut",
+      "totals": [
+        {
+          "passes": 590,
+          "passComplete": 483,
+          "progressive": 264,
+          "passLost": 121,
+          "duels": 238,
+          "duelsWon": 116,
+          "interceptions": 71,
+          "shots": 142,
+          "onTarget": 91,
+          "goals": 29,
+          "assists": 28,
+          "saves": 64,
+          "faced": 101,
+          "conceded": 36,
+          "cleanSheet": 42,
+          "fouls": 5,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 14,
+          "crossComplete": 4,
+          "highPasses": 79,
+          "highComplete": 37,
+          "headers": 1,
+          "headerPasses": 9,
+          "volleys": 0,
+          "aerialDuels": 89,
+          "aerialWon": 39,
+          "slideAttempts": 24,
+          "slideWon": 10,
+          "offsides": 4,
+          "throwIns": 8,
+          "parries": 33,
+          "fieldBlocks": 0,
+          "betterSquare": 5,
+          "keeperChallenges": 3,
+          "corners": 10,
+          "freeKicks": 5,
+          "penalties": 0,
+          "possessionSeconds": 699.6178266666562
+        },
+        {
+          "passes": 578,
+          "passComplete": 494,
+          "progressive": 237,
+          "passLost": 104,
+          "duels": 238,
+          "duelsWon": 112,
+          "interceptions": 85,
+          "shots": 166,
+          "onTarget": 101,
+          "goals": 36,
+          "assists": 33,
+          "saves": 62,
+          "faced": 91,
+          "conceded": 29,
+          "cleanSheet": 66,
+          "fouls": 3,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 16,
+          "crossComplete": 3,
+          "highPasses": 76,
+          "highComplete": 40,
+          "headers": 1,
+          "headerPasses": 10,
+          "volleys": 0,
+          "aerialDuels": 89,
+          "aerialWon": 50,
+          "slideAttempts": 26,
+          "slideWon": 10,
+          "offsides": 2,
+          "throwIns": 10,
+          "parries": 30,
+          "fieldBlocks": 0,
+          "betterSquare": 1,
+          "keeperChallenges": 2,
+          "corners": 10,
+          "freeKicks": 9,
+          "penalties": 0,
+          "possessionSeconds": 702.1905399999893
+        }
+      ],
+      "score": [
+        29,
+        36
+      ],
+      "outcomes": [
+        8,
+        10,
+        12
+      ],
+      "homeAway": [
+        8,
+        10,
+        12
+      ],
+      "distribution": {
+        "1:0": 2,
+        "1:1": 5,
+        "3:1": 1,
+        "3:3": 1,
+        "2:0": 2,
+        "0:1": 6,
+        "0:0": 3,
+        "0:4": 1,
+        "2:1": 3,
+        "2:2": 1,
+        "1:2": 2,
+        "1:3": 2,
+        "0:2": 1
+      },
+      "zeroZero": 3,
+      "meanGoals": 2.1666666666666665,
+      "meanDuration": 149.71000000000004
+    },
+    {
+      "id": "good-weak",
+      "label": "Gut gegen schwach",
+      "totals": [
+        {
+          "passes": 587,
+          "passComplete": 531,
+          "progressive": 237,
+          "passLost": 49,
+          "duels": 211,
+          "duelsWon": 156,
+          "interceptions": 110,
+          "shots": 224,
+          "onTarget": 167,
+          "goals": 80,
+          "assists": 69,
+          "saves": 16,
+          "faced": 17,
+          "conceded": 1,
+          "cleanSheet": 174,
+          "fouls": 3,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 24,
+          "crossComplete": 12,
+          "highPasses": 97,
+          "highComplete": 66,
+          "headers": 1,
+          "headerPasses": 21,
+          "volleys": 0,
+          "aerialDuels": 63,
+          "aerialWon": 49,
+          "slideAttempts": 34,
+          "slideWon": 24,
+          "offsides": 9,
+          "throwIns": 13,
+          "parries": 7,
+          "fieldBlocks": 0,
+          "betterSquare": 16,
+          "keeperChallenges": 0,
+          "corners": 13,
+          "freeKicks": 17,
+          "penalties": 0,
+          "possessionSeconds": 707.4615799999963
+        },
+        {
+          "passes": 652,
+          "passComplete": 490,
+          "progressive": 275,
+          "passLost": 190,
+          "duels": 211,
+          "duelsWon": 40,
+          "interceptions": 26,
+          "shots": 54,
+          "onTarget": 17,
+          "goals": 1,
+          "assists": 1,
+          "saves": 88,
+          "faced": 167,
+          "conceded": 80,
+          "cleanSheet": 0,
+          "fouls": 12,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 3,
+          "crossComplete": 0,
+          "highPasses": 53,
+          "highComplete": 9,
+          "headers": 0,
+          "headerPasses": 3,
+          "volleys": 0,
+          "aerialDuels": 63,
+          "aerialWon": 14,
+          "slideAttempts": 32,
+          "slideWon": 0,
+          "offsides": 5,
+          "throwIns": 11,
+          "parries": 57,
+          "fieldBlocks": 1,
+          "betterSquare": 0,
+          "keeperChallenges": 9,
+          "corners": 1,
+          "freeKicks": 12,
+          "penalties": 0,
+          "possessionSeconds": 624.1406666666621
+        }
+      ],
+      "score": [
+        80,
+        1
+      ],
+      "outcomes": [
+        30,
+        0,
+        0
+      ],
+      "homeAway": [
+        15,
+        0,
+        15
+      ],
+      "distribution": {
+        "1:0": 6,
+        "4:0": 4,
+        "3:0": 10,
+        "2:0": 7,
+        "6:0": 1,
+        "3:1": 1,
+        "5:0": 1
+      },
+      "zeroZero": 0,
+      "meanGoals": 2.7,
+      "meanDuration": 163.19000000000003
+    },
+    {
+      "id": "weak-weak",
+      "label": "Schwach gegen schwach",
+      "totals": [
+        {
+          "passes": 632,
+          "passComplete": 518,
+          "progressive": 271,
+          "passLost": 113,
+          "duels": 155,
+          "duelsWon": 74,
+          "interceptions": 53,
+          "shots": 83,
+          "onTarget": 38,
+          "goals": 11,
+          "assists": 9,
+          "saves": 44,
+          "faced": 57,
+          "conceded": 14,
+          "cleanSheet": 108,
+          "fouls": 1,
+          "penaltiesScored": 1,
+          "penaltiesMissed": 0,
+          "crosses": 23,
+          "crossComplete": 4,
+          "highPasses": 65,
+          "highComplete": 20,
+          "headers": 1,
+          "headerPasses": 5,
+          "volleys": 0,
+          "aerialDuels": 41,
+          "aerialWon": 21,
+          "slideAttempts": 17,
+          "slideWon": 6,
+          "offsides": 16,
+          "throwIns": 12,
+          "parries": 20,
+          "fieldBlocks": 0,
+          "betterSquare": 3,
+          "keeperChallenges": 0,
+          "corners": 5,
+          "freeKicks": 12,
+          "penalties": 1,
+          "possessionSeconds": 679.9541866666583
+        },
+        {
+          "passes": 564,
+          "passComplete": 454,
+          "progressive": 246,
+          "passLost": 108,
+          "duels": 155,
+          "duelsWon": 77,
+          "interceptions": 38,
+          "shots": 104,
+          "onTarget": 57,
+          "goals": 14,
+          "assists": 14,
+          "saves": 29,
+          "faced": 38,
+          "conceded": 11,
+          "cleanSheet": 126,
+          "fouls": 3,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 17,
+          "crossComplete": 3,
+          "highPasses": 72,
+          "highComplete": 18,
+          "headers": 0,
+          "headerPasses": 9,
+          "volleys": 0,
+          "aerialDuels": 41,
+          "aerialWon": 20,
+          "slideAttempts": 26,
+          "slideWon": 11,
+          "offsides": 10,
+          "throwIns": 17,
+          "parries": 18,
+          "fieldBlocks": 0,
+          "betterSquare": 1,
+          "keeperChallenges": 0,
+          "corners": 7,
+          "freeKicks": 17,
+          "penalties": 0,
+          "possessionSeconds": 589.2003133333253
+        }
+      ],
+      "score": [
+        11,
+        14
+      ],
+      "outcomes": [
+        7,
+        13,
+        10
+      ],
+      "homeAway": [
+        12,
+        13,
+        5
+      ],
+      "distribution": {
+        "0:1": 8,
+        "0:0": 11,
+        "0:2": 2,
+        "1:0": 5,
+        "1:1": 2,
+        "2:0": 2
+      },
+      "zeroZero": 11,
+      "meanGoals": 0.8333333333333334,
+      "meanDuration": 138.61666666666667
+    }
+  ],
+  "accountingDeviations": [
+    {
+      "pair": "good-good",
+      "game": 24,
+      "seed": 22669771,
+      "difference": [
+        -1,
+        0
+      ],
+      "goalTrace": [
+        {
+          "team": 1,
+          "source": null,
+          "elapsed": 7.682999999999978,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            0
+          ],
+          "shooterShots": 1,
+          "shooterOnTarget": 1
+        },
+        {
+          "team": 1,
+          "source": null,
+          "elapsed": 20.007000000000065,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            1
+          ],
+          "shooterShots": 2,
+          "shooterOnTarget": 2
+        },
+        {
+          "team": 1,
+          "source": null,
+          "elapsed": 45.80066666666682,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            2
+          ],
+          "shooterShots": 3,
+          "shooterOnTarget": 3
+        },
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 49.46666666666696,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            3
+          ],
+          "shooterShots": 5,
+          "shooterOnTarget": 3
+        }
+      ],
+      "terminalFlight": null
+    },
+    {
+      "pair": "good-weak",
+      "game": 27,
+      "seed": 22983958,
+      "difference": [
+        0,
+        1
+      ],
+      "goalTrace": [
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 37.539,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            0
+          ],
+          "shooterShots": 2,
+          "shooterOnTarget": 1
+        },
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 76.9680000000015,
+          "flightKind": null,
+          "scoreBefore": [
+            1,
+            0
+          ],
+          "shooterShots": 4,
+          "shooterOnTarget": 3
+        }
+      ],
+      "terminalFlight": null
+    },
+    {
+      "pair": "weak-weak",
+      "game": 8,
+      "seed": 20994107,
+      "difference": [
+        1,
+        0
+      ],
+      "goalTrace": [
+        {
+          "team": 1,
+          "source": null,
+          "elapsed": 61.94666666666743,
+          "flightKind": "cross",
+          "scoreBefore": [
+            0,
+            0
+          ],
+          "shooterShots": 0,
+          "shooterOnTarget": 0
+        },
+        {
+          "team": 1,
+          "source": null,
+          "elapsed": 82.3826666666682,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            1
+          ],
+          "shooterShots": 4,
+          "shooterOnTarget": 3
+        }
+      ],
+      "terminalFlight": null
+    },
+    {
+      "pair": "weak-weak",
+      "game": 9,
+      "seed": 21098836,
+      "difference": [
+        0,
+        1
+      ],
+      "goalTrace": [
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 55.9860000000007,
+          "flightKind": null,
+          "scoreBefore": [
+            0,
+            0
+          ],
+          "shooterShots": 2,
+          "shooterOnTarget": 1
+        }
+      ],
+      "terminalFlight": null
+    },
+    {
+      "pair": "weak-weak",
+      "game": 25,
+      "seed": 22774500,
+      "difference": [
+        0,
+        1
+      ],
+      "goalTrace": [
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 13.92299999999993,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            0
+          ],
+          "shooterShots": 1,
+          "shooterOnTarget": 1
+        },
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 29.13300000000041,
+          "flightKind": "pass",
+          "scoreBefore": [
+            1,
+            0
+          ],
+          "shooterShots": 0,
+          "shooterOnTarget": 0
+        }
+      ],
+      "terminalFlight": null
+    }
+  ]
+}

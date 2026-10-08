@@ -1,0 +1,104 @@
+{
+  "cases": [
+    {
+      "schedule": "30",
+      "carrying": false,
+      "frames": 151,
+      "maxHips": 0.2149321255773553,
+      "maxFoot": 0.5013109515184682,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast6": 118,
+        "run_fast4": 3
+      }
+    },
+    {
+      "schedule": "30",
+      "carrying": true,
+      "frames": 151,
+      "maxHips": 0.21493212557733943,
+      "maxFoot": 0.501311185406567,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 121
+      }
+    },
+    {
+      "schedule": "60",
+      "carrying": false,
+      "frames": 301,
+      "maxHips": 0.07906846674467688,
+      "maxFoot": 0.17359553291693636,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast4": 19,
+        "run_fast6": 223
+      }
+    },
+    {
+      "schedule": "60",
+      "carrying": true,
+      "frames": 301,
+      "maxHips": 0.07900135544911424,
+      "maxFoot": 0.17359553291658925,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 242
+      }
+    },
+    {
+      "schedule": "120",
+      "carrying": false,
+      "frames": 600,
+      "maxHips": 0.06703991160186419,
+      "maxFoot": 0.09315159636574784,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast6": 339,
+        "run_fast4": 141
+      }
+    },
+    {
+      "schedule": "120",
+      "carrying": true,
+      "frames": 600,
+      "maxHips": 0.06703991160263724,
+      "maxFoot": 0.09315159636148025,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 480
+      }
+    },
+    {
+      "schedule": "jitter",
+      "carrying": false,
+      "frames": 238,
+      "maxHips": 0.21142180452247988,
+      "maxFoot": 0.5114579522006543,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast6": 191
+      }
+    },
+    {
+      "schedule": "jitter",
+      "carrying": true,
+      "frames": 238,
+      "maxHips": 0.2114218045203544,
+      "maxFoot": 0.5114579521971395,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 191
+      }
+    }
+  ],
+  "errors": []
+}

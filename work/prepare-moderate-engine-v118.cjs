@@ -1,0 +1,11 @@
+const fs=require('node:fs'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const dir='docs/spieler-nutzer-rig/',hash=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex'),previous=JSON.parse(fs.readFileSync(dir+'verification-v117.json'));
+const baseline=JSON.parse(fs.readFileSync(dir+'half-time-throw-baseline-v118.json')),qa=JSON.parse(fs.readFileSync(dir+'half-time-throw-qa-v118.json'));
+assert.equal(baseline.cases.filter(c=>c.edge&&c.throwIn&&c.kickoff==='waiting'&&c.frames===601).length,4);
+assert.equal(qa.cases.filter(c=>c.edge&&!c.throwIn&&c.kickoff==='rolling'&&c.flight&&c.frames<600).length,4);assert(qa.cases.at(-1).samePiece&&qa.cases.at(-1).pending&&!qa.cases.at(-1).halfDone);assert.deepEqual(qa.errors,[]);
+for(const [file,value] of Object.entries(previous.sourceHashes))if(file!=='set-pieces-v50.js')assert.equal(hash('dist/'+file),value,'Only halftime restart fix is allowed');
+const source=fs.readFileSync('dist/set-pieces-v50.js','utf8').replace(/\r\n/g,'\n').replace(/PROTOTYP \d+\b/g,'PROTOTYP 105'),html=fs.readFileSync('outputs/Doppel-6-Fussballmanager.html','utf8').replace(/\r\n/g,'\n');assert(html.includes(source));assert(html.includes('PROTOTYP 105'));assert.equal(hash('outputs/index.html'),hash('outputs/Doppel-6-Fussballmanager.html'));
+const manifest={date:new Date().toISOString(),previousBuildSha256:previous.offline.sha256,offline:{sha256:hash('outputs/Doppel-6-Fussballmanager.html'),bytes:fs.statSync('outputs/Doppel-6-Fussballmanager.html').size},sourceHashes:Object.fromEntries(Object.keys(previous.sourceHashes).map(file=>[file,hash('dist/'+file)])),changedSimulationFiles:['set-pieces-v50.js'],change:'Clear pending world throw-in at halftime whistle; prevent simultaneous second-half kickoff and throw-in',modelSha256:hash('dist/players/football-v113.glb'),qaSha256:hash(dir+'half-time-throw-qa-v118.json')};
+assert.equal(manifest.modelSha256,previous.modelSha256);fs.writeFileSync(dir+'moderate-gaps-engine-v118.json',JSON.stringify(manifest,null,2)+'\n');
+const incomplete=dir+'moderate-gaps-120-v118.json',archive=dir+'moderate-gaps-attempt-before-fix-v118.json';if(fs.existsSync(incomplete)&&!fs.existsSync(archive))fs.copyFileSync(incomplete,archive);
+console.log(JSON.stringify(manifest));

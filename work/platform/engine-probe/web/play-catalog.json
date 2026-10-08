@@ -1,0 +1,9578 @@
+[
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-goal-current-5-positive",
+    "title": "Spielzug · Pass, Annahme und Tor",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          28,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          32,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-goal"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "goal"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-interception-current-5-positive",
+    "title": "Spielzug · Pass wird abgefangen",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          20.5,
+          0,
+          -2.2567871893279428
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          32,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-interception"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "interception"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-parry-current-5-positive",
+    "title": "Spielzug · Parade und freier Abpraller",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          28,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          32,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-parry"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "possession"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-goal-current-5-negative",
+    "title": "Spielzug · Pass, Annahme und Tor",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -28,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -32,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-goal"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "goal"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-interception-current-5-negative",
+    "title": "Spielzug · Pass wird abgefangen",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -20.5,
+          0,
+          -1.2178449706964587
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -32,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-interception"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "interception"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-parry-current-5-negative",
+    "title": "Spielzug · Parade und freier Abpraller",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -28,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -32,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-parry"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "possession"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-goal-current-6-positive",
+    "title": "Spielzug · Pass, Annahme und Tor",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          28,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          32,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-goal"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "goal"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-interception-current-6-positive",
+    "title": "Spielzug · Pass wird abgefangen",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          20.5,
+          0,
+          -2.2567871893279428
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          32,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-interception"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "interception"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-parry-current-6-positive",
+    "title": "Spielzug · Parade und freier Abpraller",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          28,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          32,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-parry"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "possession"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-goal-current-6-negative",
+    "title": "Spielzug · Pass, Annahme und Tor",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -28,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -32,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-goal"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "goal"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-interception-current-6-negative",
+    "title": "Spielzug · Pass wird abgefangen",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -20.5,
+          0,
+          -1.2178449706964587
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -32,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-interception"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "interception"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-parry-current-6-negative",
+    "title": "Spielzug · Parade und freier Abpraller",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 68,
+      "width": 44,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -16,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -16,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -25,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -28,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -32,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          32,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          14.96
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-parry"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -16,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -25,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -36.4,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "possession"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-goal-large-5-positive",
+    "title": "Spielzug · Pass, Annahme und Tor",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          34.8,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          38.8,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-goal"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "goal"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-interception-large-5-positive",
+    "title": "Spielzug · Pass wird abgefangen",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          27.299999999999997,
+          0,
+          -2.256787189327942
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          38.8,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-interception"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "interception"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-parry-large-5-positive",
+    "title": "Spielzug · Parade und freier Abpraller",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          34.8,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          38.8,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-parry"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "possession"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-goal-large-5-negative",
+    "title": "Spielzug · Pass, Annahme und Tor",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -34.8,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -38.8,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-goal"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "goal"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-interception-large-5-negative",
+    "title": "Spielzug · Pass wird abgefangen",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -27.299999999999997,
+          0,
+          -1.2178449706964578
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -38.8,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-interception"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "interception"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-parry-large-5-negative",
+    "title": "Spielzug · Parade und freier Abpraller",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 5,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -34.8,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -38.8,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-parry"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "possession"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-goal-large-6-positive",
+    "title": "Spielzug · Pass, Annahme und Tor",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          34.8,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          38.8,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-goal"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "goal"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-interception-large-6-positive",
+    "title": "Spielzug · Pass wird abgefangen",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          27.299999999999997,
+          0,
+          -2.256787189327942
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          38.8,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-interception"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "interception"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-parry-large-6-positive",
+    "title": "Spielzug · Parade und freier Abpraller",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": 1
+    },
+    "ball": {
+      "position": [
+        22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 0,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 0,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 1,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          34.8,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          38.8,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          -38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-parry"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "possession"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-goal-large-6-negative",
+    "title": "Spielzug · Pass, Annahme und Tor",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -34.8,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -38.8,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-goal"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "goal"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-interception-large-6-negative",
+    "title": "Spielzug · Pass wird abgefangen",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -27.299999999999997,
+          0,
+          -1.2178449706964578
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -38.8,
+          0,
+          -3.6
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-interception"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "interception"
+    }
+  },
+  {
+    "schemaVersion": "d6-probe-1",
+    "id": "play-parry-large-6-negative",
+    "title": "Spielzug · Parade und freier Abpraller",
+    "kind": "play",
+    "duration": 6,
+    "geometry": {
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10,
+      "penaltyWidth": 20,
+      "ballRadius": 0.1764,
+      "fieldPlayers": 6,
+      "attackDirection": -1
+    },
+    "ball": {
+      "position": [
+        -22.799999999999997,
+        0,
+        -4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "radius": 0.1764
+    },
+    "actors": [
+      {
+        "id": "passer",
+        "team": 1,
+        "role": "field",
+        "action": "pass",
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -0.8741572761215377,
+          0,
+          0.48564293117863205
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "receiver",
+        "team": 1,
+        "role": "field",
+        "action": "receive",
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "defender",
+        "team": 0,
+        "role": "field",
+        "action": "intercept",
+        "position": [
+          -34.8,
+          0,
+          3
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "keeper",
+        "team": 0,
+        "role": "keeper",
+        "action": "parry",
+        "position": [
+          -38.8,
+          0,
+          1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "own-keeper",
+        "team": 1,
+        "role": "keeper",
+        "action": "none",
+        "position": [
+          38.8,
+          0,
+          0
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.22,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-5",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-6",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-7",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-8",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-9",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-10",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          0,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-11",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          -4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-12",
+        "team": 0,
+        "role": "field",
+        "action": "none",
+        "position": [
+          8,
+          0,
+          -17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      },
+      {
+        "id": "support-13",
+        "team": 1,
+        "role": "field",
+        "action": "none",
+        "position": [
+          4,
+          0,
+          17.952
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "radius": 0.32,
+        "reach": 0.12,
+        "facing": [
+          -1,
+          0,
+          0
+        ],
+        "pose": "idle",
+        "poseStarted": 0
+      }
+    ],
+    "provenance": {
+      "family": "play-parry"
+    },
+    "play": {
+      "passerId": "passer",
+      "receiverId": "receiver",
+      "targetZ": 1
+    },
+    "cameraPoints": [
+      {
+        "position": [
+          -22.799999999999997,
+          0,
+          -4
+        ]
+      },
+      {
+        "position": [
+          -31.799999999999997,
+          0,
+          1
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          3.5,
+          -4.852941176470589
+        ]
+      },
+      {
+        "position": [
+          -43.199999999999996,
+          0,
+          4.852941176470589
+        ]
+      }
+    ],
+    "expected": {
+      "type": "possession"
+    }
+  }
+]

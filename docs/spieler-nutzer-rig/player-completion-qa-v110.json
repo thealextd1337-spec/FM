@@ -1,0 +1,136 @@
+{
+  "players": 12,
+  "keeperModels": 2,
+  "gloves": 2,
+  "glovesShareSkeleton": true,
+  "torso": [
+    {
+      "name": "mixamorigSpine",
+      "delta": 0.09298106266946013
+    },
+    {
+      "name": "mixamorigSpine1",
+      "delta": 0.10219774513115726
+    },
+    {
+      "name": "mixamorigSpine2",
+      "delta": 0.1021567576104659
+    },
+    {
+      "name": "mixamorigHead",
+      "delta": 0.06125431415452787
+    },
+    {
+      "name": "mixamorigHeadTop_End",
+      "delta": 0.061254318980772715
+    },
+    {
+      "name": "mixamorigLeftArm",
+      "delta": 0.10877121549879121
+    },
+    {
+      "name": "mixamorigLeftForeArm",
+      "delta": 0.08127892023116484
+    },
+    {
+      "name": "mixamorigRightArm",
+      "delta": 0.05142953208552714
+    },
+    {
+      "name": "mixamorigRightForeArm",
+      "delta": 0.07192463484461364
+    }
+  ],
+  "pause": true,
+  "shot": [
+    {
+      "progress": 0,
+      "motion": "shot_meshy",
+      "weights": 1,
+      "hand": [
+        -0.04211994211421069,
+        1.7988733230163798,
+        0.7816575706754436
+      ]
+    },
+    {
+      "progress": 0.14,
+      "motion": "shot_meshy",
+      "weights": 1,
+      "hand": [
+        -1.0580416015058687,
+        2.30915128984581,
+        0.12341596920598895
+      ]
+    },
+    {
+      "progress": 0.32,
+      "motion": "shot_meshy",
+      "weights": 1,
+      "hand": [
+        -0.8174328420936379,
+        1.874167747610639,
+        0.4935340190802387
+      ]
+    },
+    {
+      "progress": 0.55,
+      "motion": "shot_meshy",
+      "weights": 1,
+      "hand": [
+        0.27481508731699095,
+        1.8905182097460105,
+        0.4812273963568434
+      ]
+    },
+    {
+      "progress": 0.85,
+      "motion": "shot_meshy",
+      "weights": 1,
+      "hand": [
+        -0.3101925990953176,
+        1.6887366780890907,
+        0.36367623328655263
+      ]
+    },
+    {
+      "progress": 0.999,
+      "motion": "shot_meshy",
+      "weights": 1,
+      "hand": [
+        -0.4718764743019015,
+        1.626210346819512,
+        -0.0792329935777584
+      ]
+    }
+  ],
+  "returned": "idle",
+  "looks": [
+    {
+      "ball": {
+        "x": 0,
+        "z": 5,
+        "height": 0.29
+      },
+      "dot": 0.9999999952189325
+    },
+    {
+      "ball": {
+        "x": 4,
+        "z": 4,
+        "height": 1.2
+      },
+      "dot": 0.9999999944641496
+    },
+    {
+      "ball": {
+        "x": -4,
+        "z": 4,
+        "height": 2.2
+      },
+      "dot": 0.9999999982769076
+    }
+  ],
+  "unchanged": true,
+  "errors": []
+}

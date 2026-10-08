@@ -1,0 +1,129 @@
+{
+  "samples": [
+    {
+      "id": "idle",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "shot",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "start-stop",
+      "time": 0.7820000000000005,
+      "phase": 0.9918170437055984,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "turn-left",
+      "time": 0.7820000000000005,
+      "phase": 1.8710358799953122,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "reverse",
+      "time": 0.7820000000000005,
+      "phase": 1.8886806328048413,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "back-walk",
+      "time": 0.7820000000000005,
+      "phase": 1.7334314489096891,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "back-left",
+      "time": 0.7820000000000005,
+      "phase": 1.5546589159297663,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "back-right",
+      "time": 0.7820000000000005,
+      "phase": 1.6691846540679924,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "keeper-look",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "dribble",
+      "time": 0.7820000000000005,
+      "phase": 1.6316448432503996,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "pass",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "cross",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "receive",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "keeper-low",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "keeper-high",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "keeper-left",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    },
+    {
+      "id": "keeper-right",
+      "time": 0.7820000000000005,
+      "phase": 0.8672575837499998,
+      "playing": false,
+      "engine": 0
+    }
+  ],
+  "downloadByteEqual": true,
+  "mobile": {
+    "width": 844,
+    "scroll": 844
+  },
+  "errors": []
+}

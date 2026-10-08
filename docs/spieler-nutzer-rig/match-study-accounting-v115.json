@@ -1,0 +1,1260 @@
+{
+  "date": "2026-10-04",
+  "engine": "v115; regular offline build; physical live engine",
+  "artifact": {
+    "path": "outputs\\Doppel-6-Fussballmanager.html",
+    "sha256": "c522f4f6fe80580cf58d34ad4970ec619c2ccb4ae9c40d7ffd0afde4cb3395d3"
+  },
+  "method": {
+    "seeds": [
+      20261004,
+      20365733,
+      20470462,
+      20575191,
+      20679920,
+      20784649,
+      20889378,
+      20994107,
+      21098836,
+      21203565,
+      21308294,
+      21413023,
+      21517752,
+      21622481,
+      21727210,
+      21831939,
+      21936668,
+      22041397,
+      22146126,
+      22250855,
+      22355584,
+      22460313,
+      22565042,
+      22669771,
+      22774500,
+      22879229,
+      22983958,
+      23088687,
+      23193416,
+      23298145
+    ],
+    "tactics": {
+      "formation": "2–2–1",
+      "pressing": "Ausgewogen",
+      "passing": "Variabel",
+      "defense": "Neutral",
+      "aggression": "Normal",
+      "focus": "Variabel"
+    },
+    "physicsHz": 20,
+    "realDelta": 0.05,
+    "homeGamesA": 15,
+    "awayGamesA": 15,
+    "pairedSeeds": true,
+    "initialAge": 25,
+    "initialFreshness": 100,
+    "initialForm": 0,
+    "adaptiveCoaches": false,
+    "substitutions": false,
+    "rendering": false,
+    "careerResetEveryGame": true,
+    "roles": [
+      "gk",
+      "def",
+      "def",
+      "mid",
+      "mid",
+      "att"
+    ],
+    "instructions": {
+      "gk": [],
+      "def": [],
+      "midLeft": [
+        "wing",
+        "support"
+      ],
+      "midRight": [
+        "support"
+      ],
+      "att": [
+        "deep",
+        "shoot"
+      ]
+    },
+    "specialization": {
+      "gk": {
+        "gk": 2,
+        "pos": 1,
+        "air": 1
+      },
+      "def": {
+        "tak": 2,
+        "pos": 2,
+        "air": 1
+      },
+      "mid": {
+        "pas": 2,
+        "tec": 2,
+        "sta": 1
+      },
+      "att": {
+        "fin": 2,
+        "spd": 2,
+        "pos": 1,
+        "air": 1
+      }
+    },
+    "goodBase": 16,
+    "weakBase": 6
+  },
+  "profiles": {},
+  "runs": [
+    {
+      "pair": "good-good",
+      "game": 24,
+      "seed": 22669771,
+      "aHome": false,
+      "score": [
+        1,
+        3
+      ],
+      "teams": [
+        {
+          "passes": 22,
+          "passComplete": 20,
+          "progressive": 7,
+          "passLost": 2,
+          "duels": 10,
+          "duelsWon": 6,
+          "interceptions": 1,
+          "shots": 6,
+          "onTarget": 3,
+          "goals": 1,
+          "assists": 1,
+          "saves": 1,
+          "faced": 5,
+          "conceded": 3,
+          "cleanSheet": 0,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 1,
+          "crossComplete": 0,
+          "highPasses": 5,
+          "highComplete": 3,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 1,
+          "aerialWon": 0,
+          "slideAttempts": 2,
+          "slideWon": 0,
+          "offsides": 0,
+          "throwIns": 0,
+          "parries": 1,
+          "fieldBlocks": 0,
+          "betterSquare": 0,
+          "keeperChallenges": 0,
+          "corners": 1,
+          "freeKicks": 0,
+          "penalties": 0,
+          "possessionSeconds": 24.33600000000023
+        },
+        {
+          "passes": 16,
+          "passComplete": 15,
+          "progressive": 8,
+          "passLost": 1,
+          "duels": 10,
+          "duelsWon": 3,
+          "interceptions": 1,
+          "shots": 7,
+          "onTarget": 5,
+          "goals": 3,
+          "assists": 3,
+          "saves": 2,
+          "faced": 3,
+          "conceded": 1,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 1,
+          "aerialWon": 1,
+          "slideAttempts": 2,
+          "slideWon": 0,
+          "offsides": 0,
+          "throwIns": 1,
+          "parries": 2,
+          "fieldBlocks": 0,
+          "betterSquare": 0,
+          "keeperChallenges": 0,
+          "corners": 0,
+          "freeKicks": 1,
+          "penalties": 0,
+          "possessionSeconds": 22.786000000000172
+        }
+      ],
+      "shots": [
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 17.10233318829998
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 20.722645400882016
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 17.25294703243354
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 13.5940801123254
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 17.6417563147055
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 15.922115710977357
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 22.57794960898834
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 13.721626633113836
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 17.557010867831014
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 16.94041705523104
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 20.533725691408343
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 21.503554571510726
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 16.828834903720857
+        }
+      ],
+      "goalTrace": [
+        {
+          "team": 1,
+          "source": null,
+          "elapsed": 7.682999999999978,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            0
+          ],
+          "shooterShots": 1,
+          "shooterOnTarget": 1
+        },
+        {
+          "team": 1,
+          "source": null,
+          "elapsed": 20.007000000000065,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            1
+          ],
+          "shooterShots": 2,
+          "shooterOnTarget": 2
+        },
+        {
+          "team": 1,
+          "source": null,
+          "elapsed": 45.80066666666682,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            2
+          ],
+          "shooterShots": 3,
+          "shooterOnTarget": 3
+        },
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 49.46666666666696,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            3
+          ],
+          "shooterShots": 5,
+          "shooterOnTarget": 3
+        }
+      ],
+      "terminalFlight": null,
+      "finished": true,
+      "halves": [
+        false,
+        true
+      ],
+      "steps": 3617,
+      "elapsed": 83.33333333333333,
+      "minute": 99,
+      "addedMinutes": [
+        5,
+        5
+      ],
+      "substitutions": 0,
+      "tactics": [
+        {
+          "formation": "2–2–1",
+          "pressing": "Ausgewogen",
+          "passing": "Variabel",
+          "defense": "Neutral",
+          "aggression": "Normal",
+          "focus": "Variabel"
+        },
+        {
+          "formation": "2–2–1",
+          "pressing": "Ausgewogen",
+          "passing": "Variabel",
+          "defense": "Neutral",
+          "aggression": "Normal",
+          "focus": "Variabel"
+        }
+      ],
+      "result": {
+        "homeGoals": 3,
+        "awayGoals": 1,
+        "penalties": null,
+        "winnerId": null
+      },
+      "events": [
+        {
+          "minute": 9,
+          "minuteLabel": "09",
+          "type": "goal",
+          "side": 0,
+          "scorerPid": "study-B-05",
+          "assistPid": null,
+          "source": null
+        },
+        {
+          "minute": 24,
+          "minuteLabel": "24",
+          "type": "goal",
+          "side": 0,
+          "scorerPid": "study-B-05",
+          "assistPid": null,
+          "source": null
+        },
+        {
+          "minute": 49,
+          "type": "halftime"
+        },
+        {
+          "minute": 54,
+          "minuteLabel": "49",
+          "type": "goal",
+          "side": 0,
+          "scorerPid": "study-B-05",
+          "assistPid": null,
+          "source": null
+        },
+        {
+          "minute": 59,
+          "minuteLabel": "54",
+          "type": "goal",
+          "side": 1,
+          "scorerPid": "study-A-05",
+          "assistPid": null,
+          "source": null
+        }
+      ],
+      "draws": 243
+    },
+    {
+      "pair": "good-weak",
+      "game": 27,
+      "seed": 22983958,
+      "aHome": true,
+      "score": [
+        2,
+        0
+      ],
+      "teams": [
+        {
+          "passes": 19,
+          "passComplete": 17,
+          "progressive": 6,
+          "passLost": 2,
+          "duels": 6,
+          "duelsWon": 5,
+          "interceptions": 4,
+          "shots": 6,
+          "onTarget": 4,
+          "goals": 2,
+          "assists": 1,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 6,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 2,
+          "crossComplete": 1,
+          "highPasses": 4,
+          "highComplete": 3,
+          "headers": 0,
+          "headerPasses": 1,
+          "volleys": 0,
+          "aerialDuels": 2,
+          "aerialWon": 2,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "offsides": 1,
+          "throwIns": 0,
+          "parries": 0,
+          "fieldBlocks": 0,
+          "betterSquare": 1,
+          "keeperChallenges": 0,
+          "corners": 0,
+          "freeKicks": 0,
+          "penalties": 0,
+          "possessionSeconds": 24.531000000000237
+        },
+        {
+          "passes": 21,
+          "passComplete": 17,
+          "progressive": 5,
+          "passLost": 5,
+          "duels": 6,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 1,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 3,
+          "faced": 4,
+          "conceded": 2,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 1,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 2,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "offsides": 0,
+          "throwIns": 0,
+          "parries": 2,
+          "fieldBlocks": 0,
+          "betterSquare": 0,
+          "keeperChallenges": 0,
+          "corners": 0,
+          "freeKicks": 1,
+          "penalties": 0,
+          "possessionSeconds": 19.82200000000006
+        }
+      ],
+      "shots": [
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 17.169923032381313
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 8.131561313002207
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 23.28016882919403
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 13.704477033727398
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 23.101190377150992
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 10.629244799566496
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 12.910874511741598
+        }
+      ],
+      "goalTrace": [
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 37.539,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            0
+          ],
+          "shooterShots": 2,
+          "shooterOnTarget": 1
+        },
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 76.9680000000015,
+          "flightKind": null,
+          "scoreBefore": [
+            1,
+            0
+          ],
+          "shooterShots": 4,
+          "shooterOnTarget": 3
+        }
+      ],
+      "terminalFlight": null,
+      "finished": true,
+      "halves": [
+        false,
+        true
+      ],
+      "steps": 2791,
+      "elapsed": 78.33333333333333,
+      "minute": 93,
+      "addedMinutes": [
+        0,
+        4
+      ],
+      "substitutions": 0,
+      "tactics": [
+        {
+          "formation": "2–2–1",
+          "pressing": "Ausgewogen",
+          "passing": "Variabel",
+          "defense": "Neutral",
+          "aggression": "Normal",
+          "focus": "Variabel"
+        },
+        {
+          "formation": "2–2–1",
+          "pressing": "Ausgewogen",
+          "passing": "Variabel",
+          "defense": "Neutral",
+          "aggression": "Normal",
+          "focus": "Variabel"
+        }
+      ],
+      "result": {
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "penalties": null,
+        "winnerId": null
+      },
+      "events": [
+        {
+          "minute": 45,
+          "minuteLabel": "45",
+          "type": "goal",
+          "side": 0,
+          "scorerPid": "study-A-05",
+          "assistPid": null,
+          "source": null
+        },
+        {
+          "minute": 45,
+          "type": "halftime"
+        },
+        {
+          "minute": 92,
+          "minuteLabel": "90+3",
+          "type": "goal",
+          "side": 0,
+          "scorerPid": "study-A-05",
+          "assistPid": null,
+          "source": null
+        }
+      ],
+      "draws": 241
+    },
+    {
+      "pair": "weak-weak",
+      "game": 8,
+      "seed": 20994107,
+      "aHome": false,
+      "score": [
+        0,
+        2
+      ],
+      "teams": [
+        {
+          "passes": 21,
+          "passComplete": 19,
+          "progressive": 9,
+          "passLost": 2,
+          "duels": 9,
+          "duelsWon": 5,
+          "interceptions": 1,
+          "shots": 3,
+          "onTarget": 3,
+          "goals": 0,
+          "assists": 0,
+          "saves": 2,
+          "faced": 3,
+          "conceded": 2,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 1,
+          "crossComplete": 1,
+          "highPasses": 1,
+          "highComplete": 1,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 2,
+          "aerialWon": 2,
+          "slideAttempts": 2,
+          "slideWon": 0,
+          "offsides": 1,
+          "throwIns": 0,
+          "parries": 2,
+          "fieldBlocks": 0,
+          "betterSquare": 0,
+          "keeperChallenges": 0,
+          "corners": 1,
+          "freeKicks": 1,
+          "penalties": 0,
+          "possessionSeconds": 18.08066666666508
+        },
+        {
+          "passes": 21,
+          "passComplete": 18,
+          "progressive": 9,
+          "passLost": 2,
+          "duels": 9,
+          "duelsWon": 4,
+          "interceptions": 1,
+          "shots": 4,
+          "onTarget": 3,
+          "goals": 2,
+          "assists": 2,
+          "saves": 3,
+          "faced": 3,
+          "conceded": 0,
+          "cleanSheet": 6,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 1,
+          "crossComplete": 0,
+          "highPasses": 3,
+          "highComplete": 1,
+          "headers": 0,
+          "headerPasses": 1,
+          "volleys": 0,
+          "aerialDuels": 2,
+          "aerialWon": 0,
+          "slideAttempts": 2,
+          "slideWon": 1,
+          "offsides": 1,
+          "throwIns": 0,
+          "parries": 1,
+          "fieldBlocks": 0,
+          "betterSquare": 0,
+          "keeperChallenges": 0,
+          "corners": 0,
+          "freeKicks": 1,
+          "penalties": 0,
+          "possessionSeconds": 24.765000000000246
+        }
+      ],
+      "shots": [
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 12.967038241301802
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 9.513721142751216
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 15.95713767031173
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 18.191950365718483
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 15.398427176914877
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 23.82348203414225
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 10.930456173218845
+        }
+      ],
+      "goalTrace": [
+        {
+          "team": 1,
+          "source": null,
+          "elapsed": 61.94666666666743,
+          "flightKind": "cross",
+          "scoreBefore": [
+            0,
+            0
+          ],
+          "shooterShots": 0,
+          "shooterOnTarget": 0
+        },
+        {
+          "team": 1,
+          "source": null,
+          "elapsed": 82.3826666666682,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            1
+          ],
+          "shooterShots": 4,
+          "shooterOnTarget": 3
+        }
+      ],
+      "terminalFlight": null,
+      "finished": true,
+      "halves": [
+        false,
+        true
+      ],
+      "steps": 3310,
+      "elapsed": 83.33333333333333,
+      "minute": 99,
+      "addedMinutes": [
+        5,
+        5
+      ],
+      "substitutions": 0,
+      "tactics": [
+        {
+          "formation": "2–2–1",
+          "pressing": "Ausgewogen",
+          "passing": "Variabel",
+          "defense": "Neutral",
+          "aggression": "Normal",
+          "focus": "Variabel"
+        },
+        {
+          "formation": "2–2–1",
+          "pressing": "Ausgewogen",
+          "passing": "Variabel",
+          "defense": "Neutral",
+          "aggression": "Normal",
+          "focus": "Variabel"
+        }
+      ],
+      "result": {
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "penalties": null,
+        "winnerId": null
+      },
+      "events": [
+        {
+          "minute": 49,
+          "type": "halftime"
+        },
+        {
+          "minute": 74,
+          "minuteLabel": "69",
+          "type": "goal",
+          "side": 0,
+          "scorerPid": "study-B-03",
+          "assistPid": null,
+          "source": null
+        },
+        {
+          "minute": 98,
+          "minuteLabel": "90+4",
+          "type": "goal",
+          "side": 0,
+          "scorerPid": "study-B-05",
+          "assistPid": null,
+          "source": null
+        }
+      ],
+      "draws": 244
+    },
+    {
+      "pair": "weak-weak",
+      "game": 9,
+      "seed": 21098836,
+      "aHome": true,
+      "score": [
+        1,
+        0
+      ],
+      "teams": [
+        {
+          "passes": 19,
+          "passComplete": 15,
+          "progressive": 11,
+          "passLost": 4,
+          "duels": 8,
+          "duelsWon": 2,
+          "interceptions": 2,
+          "shots": 2,
+          "onTarget": 1,
+          "goals": 1,
+          "assists": 0,
+          "saves": 1,
+          "faced": 1,
+          "conceded": 0,
+          "cleanSheet": 6,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 1,
+          "crossComplete": 0,
+          "highPasses": 4,
+          "highComplete": 1,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 1,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "offsides": 1,
+          "throwIns": 0,
+          "parries": 0,
+          "fieldBlocks": 0,
+          "betterSquare": 0,
+          "keeperChallenges": 0,
+          "corners": 0,
+          "freeKicks": 0,
+          "penalties": 0,
+          "possessionSeconds": 22.50300000000016
+        },
+        {
+          "passes": 21,
+          "passComplete": 18,
+          "progressive": 8,
+          "passLost": 3,
+          "duels": 8,
+          "duelsWon": 6,
+          "interceptions": 0,
+          "shots": 3,
+          "onTarget": 1,
+          "goals": 0,
+          "assists": 0,
+          "saves": 1,
+          "faced": 1,
+          "conceded": 1,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 1,
+          "crossComplete": 1,
+          "highPasses": 1,
+          "highComplete": 1,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 1,
+          "aerialWon": 1,
+          "slideAttempts": 1,
+          "slideWon": 1,
+          "offsides": 0,
+          "throwIns": 0,
+          "parries": 1,
+          "fieldBlocks": 0,
+          "betterSquare": 0,
+          "keeperChallenges": 0,
+          "corners": 0,
+          "freeKicks": 1,
+          "penalties": 0,
+          "possessionSeconds": 21.278666666665202
+        }
+      ],
+      "shots": [
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 17.90532767190992
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 15.504584059306742
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 13.534100516843486
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 10.578304777638657
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 16.351249936982992
+        }
+      ],
+      "goalTrace": [
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 55.9860000000007,
+          "flightKind": null,
+          "scoreBefore": [
+            0,
+            0
+          ],
+          "shooterShots": 2,
+          "shooterOnTarget": 1
+        }
+      ],
+      "terminalFlight": null,
+      "finished": true,
+      "halves": [
+        false,
+        true
+      ],
+      "steps": 2690,
+      "elapsed": 79.16666666666667,
+      "minute": 95,
+      "addedMinutes": [
+        0,
+        5
+      ],
+      "substitutions": 0,
+      "tactics": [
+        {
+          "formation": "2–2–1",
+          "pressing": "Ausgewogen",
+          "passing": "Variabel",
+          "defense": "Neutral",
+          "aggression": "Normal",
+          "focus": "Variabel"
+        },
+        {
+          "formation": "2–2–1",
+          "pressing": "Ausgewogen",
+          "passing": "Variabel",
+          "defense": "Neutral",
+          "aggression": "Normal",
+          "focus": "Variabel"
+        }
+      ],
+      "result": {
+        "homeGoals": 1,
+        "awayGoals": 0,
+        "penalties": null,
+        "winnerId": null
+      },
+      "events": [
+        {
+          "minute": 45,
+          "type": "halftime"
+        },
+        {
+          "minute": 67,
+          "minuteLabel": "67",
+          "type": "goal",
+          "side": 0,
+          "scorerPid": "study-A-05",
+          "assistPid": null,
+          "source": null
+        }
+      ],
+      "draws": 235
+    },
+    {
+      "pair": "weak-weak",
+      "game": 25,
+      "seed": 22774500,
+      "aHome": true,
+      "score": [
+        2,
+        0
+      ],
+      "teams": [
+        {
+          "passes": 23,
+          "passComplete": 19,
+          "progressive": 10,
+          "passLost": 5,
+          "duels": 5,
+          "duelsWon": 3,
+          "interceptions": 3,
+          "shots": 2,
+          "onTarget": 1,
+          "goals": 2,
+          "assists": 2,
+          "saves": 1,
+          "faced": 1,
+          "conceded": 0,
+          "cleanSheet": 6,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 2,
+          "highComplete": 2,
+          "headers": 0,
+          "headerPasses": 1,
+          "volleys": 0,
+          "aerialDuels": 1,
+          "aerialWon": 1,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "offsides": 1,
+          "throwIns": 0,
+          "parries": 0,
+          "fieldBlocks": 0,
+          "betterSquare": 0,
+          "keeperChallenges": 0,
+          "corners": 0,
+          "freeKicks": 0,
+          "penalties": 0,
+          "possessionSeconds": 28.236000000000377
+        },
+        {
+          "passes": 18,
+          "passComplete": 14,
+          "progressive": 7,
+          "passLost": 5,
+          "duels": 5,
+          "duelsWon": 2,
+          "interceptions": 2,
+          "shots": 4,
+          "onTarget": 1,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 1,
+          "conceded": 2,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 2,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 1,
+          "aerialWon": 0,
+          "slideAttempts": 2,
+          "slideWon": 1,
+          "offsides": 0,
+          "throwIns": 0,
+          "parries": 0,
+          "fieldBlocks": 0,
+          "betterSquare": 0,
+          "keeperChallenges": 0,
+          "corners": 0,
+          "freeKicks": 1,
+          "penalties": 0,
+          "possessionSeconds": 18.105999999999995
+        }
+      ],
+      "shots": [
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 17.59479009101292
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 12.388004863424777
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 23.055369245924688
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 11.571804764884368
+        },
+        {
+          "team": 1,
+          "kind": "shot",
+          "distance": 14.865521739871943
+        },
+        {
+          "team": 0,
+          "kind": "shot",
+          "distance": 11.883695639830064
+        }
+      ],
+      "goalTrace": [
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 13.92299999999993,
+          "flightKind": "shot",
+          "scoreBefore": [
+            0,
+            0
+          ],
+          "shooterShots": 1,
+          "shooterOnTarget": 1
+        },
+        {
+          "team": 0,
+          "source": null,
+          "elapsed": 29.13300000000041,
+          "flightKind": "pass",
+          "scoreBefore": [
+            1,
+            0
+          ],
+          "shooterShots": 0,
+          "shooterOnTarget": 0
+        }
+      ],
+      "terminalFlight": null,
+      "finished": true,
+      "halves": [
+        false,
+        true
+      ],
+      "steps": 3003,
+      "elapsed": 82.5,
+      "minute": 99,
+      "addedMinutes": [
+        5,
+        4
+      ],
+      "substitutions": 0,
+      "tactics": [
+        {
+          "formation": "2–2–1",
+          "pressing": "Ausgewogen",
+          "passing": "Variabel",
+          "defense": "Neutral",
+          "aggression": "Normal",
+          "focus": "Variabel"
+        },
+        {
+          "formation": "2–2–1",
+          "pressing": "Ausgewogen",
+          "passing": "Variabel",
+          "defense": "Neutral",
+          "aggression": "Normal",
+          "focus": "Variabel"
+        }
+      ],
+      "result": {
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "penalties": null,
+        "winnerId": null
+      },
+      "events": [
+        {
+          "minute": 16,
+          "minuteLabel": "16",
+          "type": "goal",
+          "side": 0,
+          "scorerPid": "study-A-05",
+          "assistPid": null,
+          "source": null
+        },
+        {
+          "minute": 34,
+          "minuteLabel": "34",
+          "type": "goal",
+          "side": 0,
+          "scorerPid": "study-A-03",
+          "assistPid": null,
+          "source": null
+        },
+        {
+          "minute": 49,
+          "type": "halftime"
+        }
+      ],
+      "draws": 233
+    }
+  ],
+  "errors": [],
+  "auditOf": "match-study-v115.json",
+  "validation": {
+    "completeGames": 5,
+    "bothHalves": true,
+    "fixedTactics": true,
+    "noSubstitutions": true,
+    "bookedScoresMatch": true,
+    "shotCountersMatch": true,
+    "noPageErrors": true
+  }
+}

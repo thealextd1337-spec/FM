@@ -1,0 +1,66 @@
+{
+  "output": "meshy_output/user-character-2026-10-03/character-football-v111.glb",
+  "sourceTasks": [
+    "01a103be-1bae-748f-aff4-9a9f744b8695"
+  ],
+  "resource": "animate",
+  "project": "meshy_output/20261003_123727_nutzercharakter-fussball-beweg_01a10156",
+  "rigTask": "01a10156-b12b-74d3-baef-6e0b4054a2b9",
+  "consumedCredits": {
+    "keeperActions": 12,
+    "total": 12
+  },
+  "clipCount": 29,
+  "geometryRigTexturesOriginalClipsPreserved": true,
+  "sha256": "7749d79b227135c44f4b7826607efe7fbd174f978d68096fdca65d4d3183fd48",
+  "clips": [
+    {
+      "key": "keeper_low_meshy",
+      "actionId": 276,
+      "sourceTask": "01a103be-1bae-748f-aff4-9a9f744b8695",
+      "providerClip": "Male_Bend_Over_Pick_Up",
+      "duration": 7.166666507720947,
+      "loop": false,
+      "providerYawRange": [
+        -0.12090110378507601,
+        0.8258189993976142
+      ]
+    },
+    {
+      "key": "keeper_high_meshy",
+      "actionId": 419,
+      "sourceTask": "01a103be-1bae-748f-aff4-9a9f744b8695",
+      "providerClip": "Jump_to_Catch_and_Fall",
+      "duration": 4.133333206176758,
+      "loop": false,
+      "providerYawRange": [
+        -3.140925516927498,
+        3.1411434673287504
+      ]
+    },
+    {
+      "key": "keeper_dive_meshy",
+      "actionId": 465,
+      "sourceTask": "01a103be-1bae-748f-aff4-9a9f744b8695",
+      "providerClip": "Leap_Right_and_Catch",
+      "duration": 2.6666667461395264,
+      "loop": false,
+      "providerYawRange": [
+        -0.30848726034647295,
+        0.0550998260936782
+      ]
+    },
+    {
+      "key": "keeper_rise_meshy",
+      "actionId": 344,
+      "sourceTask": "01a103be-1bae-748f-aff4-9a9f744b8695",
+      "providerClip": "Stand_Up1",
+      "duration": 8.233333587646484,
+      "loop": false,
+      "providerYawRange": [
+        -0.2445871102727071,
+        2.0060983394413747
+      ]
+    }
+  ]
+}

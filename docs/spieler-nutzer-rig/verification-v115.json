@@ -1,0 +1,34 @@
+{
+  "verifiedAt": "2026-10-04T15:34:49.026Z",
+  "published": false,
+  "footer": "PROTOTYP 105",
+  "credits": 0,
+  "clips": 32,
+  "modelUnchanged": true,
+  "modelSha256": "39eee0c85c05a93496d1679330c0fcd81a9f5f87d8ad13876c61d29cb3a09cb2",
+  "sourceHashes": {
+    "game.js": "e35387c3b86930aab1aed9d845de933c72ad5fcf3b1d58f4cc9ad1815a4ce86f",
+    "set-pieces-v50.js": "5b3030498c52c3cb365e232ed2e07d4f25d27d0be98de10debe255e26ba8d3fe",
+    "pitch-v55.js": "9131c4990afd6c18d13cf5b5c5b95b1ac6698253fc2941125bee19a7342d1f24",
+    "pitch-v57.js": "fc843e3dbf2ca0df7200eef118f2403ef084aaf7c18146b6ffa6d691884b1368",
+    "pitch-motion-v102.js": "a7ef41204178083066edb24090752c8136a571823a528dc260be2f9981d508e4",
+    "world-backpedal-v108.js": "17dd41f18ba2121abff3ad6d6ddb7873b967d4d61bb627fe6d347e9b93680ef5",
+    "world-pitch-actions-v99.js": "62a6310e1ac1a226b91f3e82fcfa21e51deadae659330b6568b9abc6e857a754",
+    "world-ball-motion-v110.js": "74592ce456f42c5cabdfcced5386b0c79457c3b210979fc513a6c82a89a67823",
+    "player-user-motion-v108.js": "25ce617f6a18b053978c295fc2d56373139949db2a797801da9463d121a9cf10",
+    "player-user-ball-actions-v111.js": "94234e381d402bcb48ea8cd6ddc8a7e1b60d6fad5e0b0c3bb5dfc45cd15d9d19",
+    "player-user-meshy-v107.js": "e4e018182744cdbe90204c5fe4af76ba11dc02190b52c34dd2b96de9022e78e9"
+  },
+  "offline": {
+    "bytes": 49880785,
+    "sha256": "c522f4f6fe80580cf58d34ad4970ec619c2ccb4ae9c40d7ffd0afde4cb3395d3",
+    "embeddedSourceMatches": true
+  },
+  "renderFrames": 15888,
+  "steps": 5298,
+  "intentionalOffsideAnalysisCuts": 1,
+  "warpingThresholdsPassed": true,
+  "gatesPassed": 15,
+  "matchParity": true,
+  "labCases": 6
+}

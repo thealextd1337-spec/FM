@@ -1,0 +1,135 @@
+{
+  "rows": [
+    {
+      "viewport": {
+        "width": 1270,
+        "height": 871
+      },
+      "pid": "season-profile-v127:ESP-1:2",
+      "facts": {
+        "Einsätze": "2",
+        "Minuten": "135",
+        "Form": "gut",
+        "Tacklingquote": "60 %",
+        "Schüsse": "6",
+        "Tore": "1"
+      },
+      "history": [
+        {
+          "fixtureId": "older",
+          "season": 0,
+          "clubId": "ESP-2",
+          "minutes": 45,
+          "shots": 99,
+          "goals": 99,
+          "assists": 0,
+          "rating": 6
+        },
+        {
+          "fixtureId": "older",
+          "season": 1,
+          "clubId": "ESP-2",
+          "minutes": 45,
+          "shots": 2,
+          "goals": 1,
+          "assists": 0,
+          "rating": 6
+        },
+        {
+          "fixtureId": "S1:ESP:LEAGUE:R1:ESP-1-ESP-2:1",
+          "season": 1,
+          "clubId": "ESP-1",
+          "competitionId": "S1:ESP:LEAGUE",
+          "minutes": 90,
+          "goals": 0,
+          "assists": 1,
+          "shots": 4,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "cleanSheet": 0,
+          "conceded": 0,
+          "tackleAttempts": 5,
+          "tacklesWon": 3,
+          "rating": 7
+        }
+      ],
+      "once": true,
+      "noRetro": true,
+      "restoredTackles": 3,
+      "empty": "<section data-v127-season-stats><h3>Einsatzstatistik · Saison 1</h3><div class=\"career-grid\"><span>Einsätze<b>0</b></span><span>Minuten<b>0</b></span><span>Form<b>normal</b></span><span>Tacklingquote<b>–</b></span><span>Schüsse<b>0</b></span><span>Tore<b>0</b></span></div><small><span>Alle abgeschlossenen Pflichtspiele.</span> <span>Gewonnene Tacklings im Stand und per Grätsche / alle Versuche.</span> <span>Noch keine erfassten Tacklingversuche.</span></small></section>",
+      "unknown": "<section data-v127-season-stats><h3>Einsatzstatistik · Saison 1</h3><div class=\"career-grid\"><span>Einsätze<b>1</b></span><span>Minuten<b>45</b></span><span>Form<b>normal</b></span><span>Tacklingquote<b>–</b></span><span>Schüsse<b>2</b></span><span>Tore<b>1</b></span></div><small><span>Alle abgeschlossenen Pflichtspiele.</span> <span>Gewonnene Tacklings im Stand und per Grätsche / alle Versuche.</span> <span>Tacklingquote nur aus erfassten Partien.</span> <span>Noch keine erfassten Tacklingversuche.</span></small></section>",
+      "noAttempts": "<section data-v127-season-stats><h3>Einsatzstatistik · Saison 1</h3><div class=\"career-grid\"><span>Einsätze<b>1</b></span><span>Minuten<b>45</b></span><span>Form<b>normal</b></span><span>Tacklingquote<b>–</b></span><span>Schüsse<b>2</b></span><span>Tore<b>1</b></span></div><small><span>Alle abgeschlossenen Pflichtspiele.</span> <span>Gewonnene Tacklings im Stand und per Grätsche / alle Versuche.</span> <span>Noch keine erfassten Tacklingversuche.</span></small></section>",
+      "overflow": false,
+      "html": "<h3>Einsatzstatistik · Saison 1</h3><div class=\"career-grid\"><span>Einsätze<b>2</b></span><span>Minuten<b>135</b></span><span>Form<b>gut</b></span><span>Tacklingquote<b>60 %</b></span><span>Schüsse<b>6</b></span><span>Tore<b>1</b></span></div><small><span>Alle abgeschlossenen Pflichtspiele.</span> <span>Gewonnene Tacklings im Stand und per Grätsche / alle Versuche.</span> <span>Tacklingquote nur aus erfassten Partien.</span> <span>3 / 5</span></small>",
+      "english": "APPEARANCE STATISTICS · SEASON 1\nAppearances\n2\nMinutes\n135\nForm\ngood\nTackle success rate\n60 %\nShots\n6\nGoals\n1\nAll completed competitive matches. Successful standing and sliding tackles / all attempts. Tackle success rate includes recorded matches only. 3 / 5",
+      "tabSwitch": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "pid": "season-profile-v127:ESP-1:2",
+      "facts": {
+        "Einsätze": "2",
+        "Minuten": "135",
+        "Form": "gut",
+        "Tacklingquote": "60 %",
+        "Schüsse": "6",
+        "Tore": "1"
+      },
+      "history": [
+        {
+          "fixtureId": "older",
+          "season": 0,
+          "clubId": "ESP-2",
+          "minutes": 45,
+          "shots": 99,
+          "goals": 99,
+          "assists": 0,
+          "rating": 6
+        },
+        {
+          "fixtureId": "older",
+          "season": 1,
+          "clubId": "ESP-2",
+          "minutes": 45,
+          "shots": 2,
+          "goals": 1,
+          "assists": 0,
+          "rating": 6
+        },
+        {
+          "fixtureId": "S1:ESP:LEAGUE:R1:ESP-1-ESP-2:1",
+          "season": 1,
+          "clubId": "ESP-1",
+          "competitionId": "S1:ESP:LEAGUE",
+          "minutes": 90,
+          "goals": 0,
+          "assists": 1,
+          "shots": 4,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "cleanSheet": 0,
+          "conceded": 0,
+          "tackleAttempts": 5,
+          "tacklesWon": 3,
+          "rating": 7
+        }
+      ],
+      "once": true,
+      "noRetro": true,
+      "restoredTackles": 3,
+      "empty": "<section data-v127-season-stats><h3>Einsatzstatistik · Saison 1</h3><div class=\"career-grid\"><span>Einsätze<b>0</b></span><span>Minuten<b>0</b></span><span>Form<b>normal</b></span><span>Tacklingquote<b>–</b></span><span>Schüsse<b>0</b></span><span>Tore<b>0</b></span></div><small><span>Alle abgeschlossenen Pflichtspiele.</span> <span>Gewonnene Tacklings im Stand und per Grätsche / alle Versuche.</span> <span>Noch keine erfassten Tacklingversuche.</span></small></section>",
+      "unknown": "<section data-v127-season-stats><h3>Einsatzstatistik · Saison 1</h3><div class=\"career-grid\"><span>Einsätze<b>1</b></span><span>Minuten<b>45</b></span><span>Form<b>normal</b></span><span>Tacklingquote<b>–</b></span><span>Schüsse<b>2</b></span><span>Tore<b>1</b></span></div><small><span>Alle abgeschlossenen Pflichtspiele.</span> <span>Gewonnene Tacklings im Stand und per Grätsche / alle Versuche.</span> <span>Tacklingquote nur aus erfassten Partien.</span> <span>Noch keine erfassten Tacklingversuche.</span></small></section>",
+      "noAttempts": "<section data-v127-season-stats><h3>Einsatzstatistik · Saison 1</h3><div class=\"career-grid\"><span>Einsätze<b>1</b></span><span>Minuten<b>45</b></span><span>Form<b>normal</b></span><span>Tacklingquote<b>–</b></span><span>Schüsse<b>2</b></span><span>Tore<b>1</b></span></div><small><span>Alle abgeschlossenen Pflichtspiele.</span> <span>Gewonnene Tacklings im Stand und per Grätsche / alle Versuche.</span> <span>Noch keine erfassten Tacklingversuche.</span></small></section>",
+      "overflow": false,
+      "html": "<h3>Einsatzstatistik · Saison 1</h3><div class=\"career-grid\"><span>Einsätze<b>2</b></span><span>Minuten<b>135</b></span><span>Form<b>gut</b></span><span>Tacklingquote<b>60 %</b></span><span>Schüsse<b>6</b></span><span>Tore<b>1</b></span></div><small><span>Alle abgeschlossenen Pflichtspiele.</span> <span>Gewonnene Tacklings im Stand und per Grätsche / alle Versuche.</span> <span>Tacklingquote nur aus erfassten Partien.</span> <span>3 / 5</span></small>",
+      "english": "APPEARANCE STATISTICS · SEASON 1\nAppearances\n2\nMinutes\n135\nForm\ngood\nTackle success rate\n60 %\nShots\n6\nGoals\n1\nAll completed competitive matches. Successful standing and sliding tackles / all attempts. Tackle success rate includes recorded matches only. 3 / 5",
+      "tabSwitch": true
+    }
+  ],
+  "errors": []
+}

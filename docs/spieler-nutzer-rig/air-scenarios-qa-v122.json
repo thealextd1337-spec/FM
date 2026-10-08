@@ -1,0 +1,355 @@
+{
+  "version": 132,
+  "baseline": false,
+  "date": "2026-10-05T14:08:55.546Z",
+  "remote": [
+    {
+      "axis": "x",
+      "gap": 2.0000000000000018,
+      "owner": null,
+      "pose": null,
+      "free": true
+    },
+    {
+      "axis": "y",
+      "gap": 1.9999999999999976,
+      "owner": null,
+      "pose": null,
+      "free": true
+    }
+  ],
+  "masked": {
+    "owner": null,
+    "nearPose": true,
+    "farPose": false,
+    "free": false
+  },
+  "duels": [
+    {
+      "key": "air",
+      "value": 6,
+      "trials": 400,
+      "won": 143,
+      "attempts": 400
+    },
+    {
+      "key": "air",
+      "value": 18,
+      "trials": 400,
+      "won": 258,
+      "attempts": 400
+    },
+    {
+      "key": "pos",
+      "value": 6,
+      "trials": 400,
+      "won": 177,
+      "attempts": 400
+    },
+    {
+      "key": "pos",
+      "value": 18,
+      "trials": 400,
+      "won": 225,
+      "attempts": 400
+    }
+  ],
+  "clears": [
+    {
+      "team": 0,
+      "value": 6,
+      "speed": 7.267733333333331,
+      "duration": 1.6964740512621217,
+      "start": {
+        "x": 0.5,
+        "y": 0.5,
+        "elevation": 2.65
+      },
+      "gap": 0
+    },
+    {
+      "team": 0,
+      "value": 18,
+      "speed": 10.26773333333333,
+      "duration": 1.2008026125363045,
+      "start": {
+        "x": 0.5,
+        "y": 0.5,
+        "elevation": 2.65
+      },
+      "gap": 0
+    },
+    {
+      "team": 1,
+      "value": 6,
+      "speed": 7.267733333333333,
+      "duration": 1.6964740512621221,
+      "start": {
+        "x": 0.5,
+        "y": 0.5,
+        "elevation": 2.65
+      },
+      "gap": 0
+    },
+    {
+      "team": 1,
+      "value": 18,
+      "speed": 10.26773333333333,
+      "duration": 1.200802612536305,
+      "start": {
+        "x": 0.5,
+        "y": 0.5,
+        "elevation": 2.65
+      },
+      "gap": 0
+    }
+  ],
+  "headers": [
+    {
+      "team": 0,
+      "value": 6,
+      "shots": 1,
+      "speed": 7.267733333333334,
+      "height": 2.65,
+      "flightKind": "header"
+    },
+    {
+      "team": 0,
+      "value": 18,
+      "shots": 1,
+      "speed": 10.267733333333332,
+      "height": 2.65,
+      "flightKind": "header"
+    },
+    {
+      "team": 1,
+      "value": 6,
+      "shots": 1,
+      "speed": 7.267733333333334,
+      "height": 2.65,
+      "flightKind": "header"
+    },
+    {
+      "team": 1,
+      "value": 18,
+      "shots": 1,
+      "speed": 10.26773333333333,
+      "height": 2.65,
+      "flightKind": "header"
+    }
+  ],
+  "range": [
+    {
+      "team": 0,
+      "shots": 0,
+      "headerPasses": 1,
+      "kind": "header"
+    },
+    {
+      "team": 1,
+      "shots": 0,
+      "headerPasses": 1,
+      "kind": "header"
+    }
+  ],
+  "plans": [
+    {
+      "team": 0,
+      "target": {
+        "x": 0.5113642666666667,
+        "y": 0.2913642666666667
+      },
+      "assigned": [
+        "v122-cross-attacker",
+        "v122-cross-defender"
+      ],
+      "ready": [
+        "v122-cross-attacker",
+        "v122-cross-defender"
+      ],
+      "seconds": 0.9921354759424005,
+      "height": 2.65,
+      "progress": 0.907134178570841,
+      "clock": 0.9000000000000006,
+      "gaps": [
+        {
+          "gap": 0.5775060432046206,
+          "xy": {
+            "x": 0.4997768016119086,
+            "y": 0.2895661914598185
+          },
+          "target": {
+            "x": 0.5085160835387225,
+            "y": 0.2885160835387225
+          },
+          "pose": {
+            "id": "air-ready",
+            "kind": "airReady",
+            "target": {
+              "x": 0.5113642666666667,
+              "y": 0.2913642666666667
+            },
+            "contact": {
+              "x": 0.5113642666666667,
+              "y": 0.2913642666666667
+            },
+            "progress": 0.6928817468586645
+          }
+        },
+        {
+          "gap": 0.31508837410123913,
+          "xy": {
+            "x": 0.5144697343093496,
+            "y": 0.28758095511298815
+          },
+          "target": {
+            "x": 0.5116643449148016,
+            "y": 0.2879519466383412
+          },
+          "pose": {
+            "id": "air-ready",
+            "kind": "airReady",
+            "target": {
+              "x": 0.5113642666666667,
+              "y": 0.2913642666666667
+            },
+            "contact": {
+              "x": 0.5113642666666667,
+              "y": 0.2913642666666667
+            },
+            "progress": 0.6928817468586645
+          }
+        }
+      ]
+    },
+    {
+      "team": 1,
+      "target": {
+        "x": 0.5113642666666667,
+        "y": 0.7313642666666667
+      },
+      "assigned": [
+        "v122-cross-attacker",
+        "v122-cross-defender"
+      ],
+      "ready": [
+        "v122-cross-attacker",
+        "v122-cross-defender"
+      ],
+      "seconds": 1.0573906607879593,
+      "height": 2.65,
+      "progress": 0.9078952894142417,
+      "clock": 0.9600000000000006,
+      "gaps": [
+        {
+          "gap": 0.5751765539077057,
+          "xy": {
+            "x": 0.499797891887107,
+            "y": 0.7296478447074184
+          },
+          "target": {
+            "x": 0.5085160835387225,
+            "y": 0.7285160835387224
+          },
+          "pose": {
+            "id": "air-ready",
+            "kind": "airReady",
+            "target": {
+              "x": 0.5113642666666667,
+              "y": 0.7313642666666667
+            },
+            "contact": {
+              "x": 0.5113642666666667,
+              "y": 0.7313642666666667
+            },
+            "progress": 0.6753644640401375
+          }
+        },
+        {
+          "gap": 0.3160603548834657,
+          "xy": {
+            "x": 0.5144566714085191,
+            "y": 0.7275611403571417
+          },
+          "target": {
+            "x": 0.5116643449148016,
+            "y": 0.7279519466383412
+          },
+          "pose": {
+            "id": "air-ready",
+            "kind": "airReady",
+            "target": {
+              "x": 0.5113642666666667,
+              "y": 0.7313642666666667
+            },
+            "contact": {
+              "x": 0.5113642666666667,
+              "y": 0.7313642666666667
+            },
+            "progress": 0.6753644640401375
+          }
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "tec": 6,
+      "trials": 400,
+      "caught": 220
+    },
+    {
+      "tec": 18,
+      "trials": 400,
+      "caught": 343
+    }
+  ],
+  "missed": [
+    {
+      "team": 0,
+      "free": true,
+      "owner": null,
+      "before": {
+        "x": 0.5,
+        "y": 0.45,
+        "elevation": 2.6500000000000004
+      },
+      "after": {
+        "x": 0.5205069185211981,
+        "y": 0.42949308147880133,
+        "elevation": 1.4033895210683418
+      },
+      "speed": 18
+    },
+    {
+      "team": 1,
+      "free": true,
+      "owner": null,
+      "before": {
+        "x": 0.5,
+        "y": 0.55,
+        "elevation": 2.6500000000000004
+      },
+      "after": {
+        "x": 0.5205069185211981,
+        "y": 0.5705069185211982,
+        "elevation": 1.4033895210683418
+      },
+      "speed": 18
+    }
+  ],
+  "exemptions": [
+    {
+      "exempt": false,
+      "flagged": true,
+      "whistle": "offside"
+    },
+    {
+      "exempt": true,
+      "flagged": false,
+      "whistle": null
+    }
+  ],
+  "errors": [],
+  "evidenceNote": "Accidentally replaced by the first v132 run of the legacy test; no longer immutable v122 evidence. Original expected SHA-256 remains in verification-v122.json. Current authoritative report: air-scenarios-qa-v132.json."
+}

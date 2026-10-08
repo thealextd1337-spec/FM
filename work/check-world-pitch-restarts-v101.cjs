@@ -19,10 +19,10 @@ const setup=vm.runInNewContext(source.slice(source.indexOf('async function setup
   });assert(kick.standing.held&&kick.standing.moved);assert(kick.standing.distance<1e-9&&Math.abs(kick.standing.leg)<1e-9,'keeper stands still while teammates move');assert(kick.backswing>.1&&kick.leg<-.7&&kick.phase==='follow'&&kick.kind==='goalKick'&&kick.progress===0);
   await stage.screenshot({path:'outputs/goal-kick-contact101.png'});
   const pause=await page.evaluate(()=>{const k=match.people.find(p=>p.pid===v99Flights.get(match.flight).keeper.pid);const wasRunning=running;running=false;const pose=v99PlayerAction(match,k);draw();const frozen=JSON.stringify(pose)===JSON.stringify(v99PlayerAction(match,k));running=wasRunning;for(let i=0;i<14;i++)step(.05*MATCH_SPEED,.05);draw();return {frozen,done:v99PlayerAction(match,k)===null,pose:v99PlayerAction(match,k),running,stoppage:{goal:match.goalPause,half:match.halftimePause,kickoff:match.kickoff?.phase,post:match.postBanner},age:v99Actions.get(match)?.kicks.get(k.pid)?.age};});assert(pause.frozen&&pause.done,JSON.stringify(pause));
-  await page.evaluate(()=>{match.flight=null;match.slide=null;match.halftimePause=0;v65PauseTargetTab='tactics';if(!v65Pause())throw Error('Could not pause');window.scrollTo(0,document.body.scrollHeight);});
+  await page.evaluate(()=>{window.resumeScrollQa=[];const scroll=Element.prototype.scrollIntoView;Element.prototype.scrollIntoView=function(options){resumeScrollQa.push({id:this.id,cls:this.className,top:this.getBoundingClientRect().top,scroll:window.scrollY,view:document.body.classList.contains('v98-pitch3d'),options});return scroll.call(this,options)};match.flight=null;match.slide=null;match.halftimePause=0;v65PauseTargetTab='tactics';if(!v65Pause())throw Error('Could not pause');window.scrollTo(0,document.body.scrollHeight);});
   assert(await page.locator('#match-area').evaluate(el=>el.hidden));
   await page.locator('.v65-resume-action').click();await page.evaluate(()=>clearInterval(v65WorldFrame));await page.waitForTimeout(900);
-  const resume=await stage.evaluate(el=>({top:el.getBoundingClientRect().top,hidden:el.closest('#match-area').hidden}));assert(!resume.hidden&&resume.top>=0&&resume.top<350);assert.equal(await page.evaluate(()=>d6Pitch3D.getState().view),'3d');
+  const resume=await stage.evaluate(el=>({top:el.getBoundingClientRect().top,hidden:el.closest('#match-area').hidden,scroll:window.scrollY,calls:resumeScrollQa}));assert(!resume.hidden&&resume.top>=0&&resume.top<350,JSON.stringify(resume));assert.equal(await page.evaluate(()=>d6Pitch3D.getState().view),'3d');
   const shots=[];
   for(const [team,variant,turned]of [[0,0,false],[0,2,false],[1,1,false],[0,1,true]]){
    const shot=await page.evaluate(({team,variant,turned})=>{
@@ -35,9 +35,9 @@ const setup=vm.runInNewContext(source.slice(source.indexOf('async function setup
     match.flight=null;flight.done();draw();const start={...v98Frame.ball},travel=v99Actions.get(match).goalTravel;
     if(!travel)throw Error('Goal trajectory missing');const samples=[];
     for(const t of [0,.001,travel.impact,travel.impact+.04,.4]){match.goalScene.elapsed=t;draw();samples.push({t,...v98Frame.ball})}
-    return {seconds,atLine,start,end,travel,samples};
+    return {seconds,metres:Math.hypot((flight.target.x-flight.x)*44/(v55Field.right-v55Field.left),(flight.target.y-flight.y)*68/(v55Field.bottom-v55Field.top)),atLine,start,end,travel,samples};
    },{team,variant,turned});
-   for(const key of ['x','z','height'])assert(Math.abs(shot.atLine[key]-shot.start[key])<1e-8,'ball does not jump at goal line');assert(shot.seconds<.5,'close shots have punchier pace');assert(shot.travel.impact<.15);
+   for(const key of ['x','z','height'])assert(Math.abs(shot.atLine[key]-shot.start[key])<1e-8,'ball does not jump at goal line');assert(Math.abs(shot.seconds-Math.max(.14/.78,shot.metres/27))<.03,'shot pace respects distance and animation timing');assert(shot.travel.impact<.15);
    const sy=(turned?-1:1)*-68/(688/740); // compare direction independently of camera framing
    assert(Math.abs((shot.samples[1].x-shot.samples[0].x)/.001-shot.end.vy*sy)<.08,'same forward velocity through line');
    assert(shot.samples.every(p=>Number.isFinite(p.x)&&Number.isFinite(p.z)&&p.height>=.29));shots.push({team,variant,turned,seconds:shot.seconds,hit:shot.travel.hit});

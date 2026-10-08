@@ -1,0 +1,78 @@
+{
+    "sourceId": "ea318a41134886caf08fad356bbaa54a9d331011af4ef9bdb37aeaceb1a29a9d",
+    "passed": true,
+    "cases": [
+        {
+            "id": "physics-net-current-5-1",
+            "peak": 0.7732771497963498,
+            "gradualBraking": true,
+            "oscillated": true,
+            "checkpointPassed": true,
+            "corruptRejected": true,
+            "fixedAttachments": true
+        },
+        {
+            "id": "physics-net-current-5--1",
+            "peak": 0.7732771497963498,
+            "gradualBraking": true,
+            "oscillated": true,
+            "checkpointPassed": true,
+            "corruptRejected": true,
+            "fixedAttachments": true
+        },
+        {
+            "id": "physics-net-current-6-1",
+            "peak": 0.7732771497963498,
+            "gradualBraking": true,
+            "oscillated": true,
+            "checkpointPassed": true,
+            "corruptRejected": true,
+            "fixedAttachments": true
+        },
+        {
+            "id": "physics-net-current-6--1",
+            "peak": 0.7732771497963498,
+            "gradualBraking": true,
+            "oscillated": true,
+            "checkpointPassed": true,
+            "corruptRejected": true,
+            "fixedAttachments": true
+        },
+        {
+            "id": "physics-net-large-5-1",
+            "peak": 0.7732771497960655,
+            "gradualBraking": true,
+            "oscillated": true,
+            "checkpointPassed": true,
+            "corruptRejected": true,
+            "fixedAttachments": true
+        },
+        {
+            "id": "physics-net-large-5--1",
+            "peak": 0.7732771497960655,
+            "gradualBraking": true,
+            "oscillated": true,
+            "checkpointPassed": true,
+            "corruptRejected": true,
+            "fixedAttachments": true
+        },
+        {
+            "id": "physics-net-large-6-1",
+            "peak": 0.7732771497960655,
+            "gradualBraking": true,
+            "oscillated": true,
+            "checkpointPassed": true,
+            "corruptRejected": true,
+            "fixedAttachments": true
+        },
+        {
+            "id": "physics-net-large-6--1",
+            "peak": 0.7732771497960655,
+            "gradualBraking": true,
+            "oscillated": true,
+            "checkpointPassed": true,
+            "corruptRejected": true,
+            "fixedAttachments": true
+        }
+    ]
+}

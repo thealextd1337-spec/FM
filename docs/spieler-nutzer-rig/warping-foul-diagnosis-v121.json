@@ -1,0 +1,46 @@
+{
+  "baseline": false,
+  "physicsHz": 20,
+  "renderHz": 60,
+  "replaySkipped": true,
+  "gpuDrawSkipped": true,
+  "runs": [
+    {
+      "seed": 12345,
+      "steps": 180,
+      "frames": 540,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "halves": [
+        false
+      ],
+      "events": {
+        "fly:pass": 1,
+        "v50Restart:freeKick": 1,
+        "v50Spot:": 4
+      },
+      "counts": {},
+      "top": {
+        "engine": [],
+        "root": [],
+        "hips": [],
+        "ball": [],
+        "rawBall": []
+      },
+      "max": {
+        "engine": 0.3770492709802898,
+        "root": 0.12568309032677286,
+        "hips": 0.3809431395218876,
+        "ball": 0.5871035044800246,
+        "rawBall": 1.3000000000000058
+      },
+      "finished": false,
+      "score": [
+        0,
+        0
+      ],
+      "elapsed": 2.3009999999999997
+    }
+  ],
+  "errors": []
+}

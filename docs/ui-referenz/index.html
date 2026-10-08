@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#172d26">
+  <title>Doppel 6 · UI-Referenz</title>
+  <link rel="stylesheet" href="reference.css">
+  <link rel="stylesheet" href="mobile.css">
+  <link rel="stylesheet" href="variants.css">
+  <link rel="stylesheet" href="progress.css">
+  <script src="variants.js" defer></script>
+  <script src="progress.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#content">Zum Inhalt</a>
+  <aside class="sidebar">
+    <a class="brand" href="#overview" aria-label="Doppel 6 Übersicht"><span class="brand-mark">66</span><span>Doppel 6<small>Dein Fußballmanager</small></span></a>
+    <div class="club-switch"><span class="mini-crest" aria-hidden="true">FL</span><div><strong>FC Lindenstadt</strong><small><img class="country-flag" src="flags/ger.svg" alt="" width="24" height="18"> Deutschland · Liga 1</small><div class="club-current-title" id="current-title-badge"></div></div></div>
+    <nav id="navigation" aria-label="Vereinsmenü"></nav>
+    <div class="sidebar-bottom"><a href="#settings" class="nav-link" id="settings-link"></a><div class="manager"><span class="avatar">AM</span><span>Alex Morgan<small>Manager · Saison 4</small></span></div></div>
+  </aside>
+  <div class="app">
+    <header class="topbar"><div class="breadcrumb">Vereinszentrale <span>/</span> <strong id="breadcrumb">Übersicht</strong></div><div class="topbar-end"><span class="season">Saison 4 · 12. September</span><span class="demo-label">Designentwurf · Dummy-Daten</span></div></header>
+    <main id="content" tabindex="-1"></main>
+    <footer><span>Doppel 6 · Designstudie 01</span><a href="#concept">Inhalte & Designplanung</a><a href="#settings">Hilfe & Speicherhinweise</a><span>Alle Namen, Ergebnisse und Beträge sind Beispieldaten.</span></footer>
+  </div>
+  <nav class="mobile-nav" id="mobile-navigation" aria-label="Schnellnavigation"></nav>
+  <dialog class="menu-sheet" id="mobile-menu" aria-labelledby="mobile-menu-title">
+    <div class="menu-sheet-head"><div><h2 id="mobile-menu-title">Dein Vereinsmenü</h2><p>FC Lindenstadt · Saison 4</p></div><button type="button" class="button" id="close-mobile-menu" autofocus>Schließen</button></div>
+    <nav id="mobile-menu-links" aria-label="Alle Vereinsbereiche"></nav>
+  </dialog>
+  <div id="announcement" class="sr-only" aria-live="polite"></div>
+  <script src="reference.js"></script>
+  <script src="mobile.js"></script>
+</body>
+</html>

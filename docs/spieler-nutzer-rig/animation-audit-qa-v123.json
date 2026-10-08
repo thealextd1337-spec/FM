@@ -1,0 +1,3689 @@
+{
+  "baseline": false,
+  "focused": {
+    "cases": [
+      {
+        "name": "turn-with-ball",
+        "fps": 30,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5044627703993498
+          },
+          {
+            "alignment": 0.6952143387444671,
+            "heading": 2.3395143732622543,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6742261945500336
+          },
+          {
+            "alignment": 0.8171572408389676,
+            "heading": 2.5272581691001466,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7849763185742253
+          },
+          {
+            "alignment": 0.8913253265363839,
+            "heading": 2.6710564626845352,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8455220123986498
+          },
+          {
+            "alignment": 0.9357568960564294,
+            "heading": 2.781195650749298,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8632418988873266
+          },
+          {
+            "alignment": 0.962142737837075,
+            "heading": 2.865554376052573,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8459281060706454
+          },
+          {
+            "alignment": 0.9777327532992615,
+            "heading": 2.9301671143506702,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.802718097012769
+          },
+          {
+            "alignment": 0.9869168624980313,
+            "heading": 2.979655841632522,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7441977811142776
+          },
+          {
+            "alignment": 0.9923178883244972,
+            "heading": 3.017560660287292,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6819806846070311
+          },
+          {
+            "alignment": 0.9954909289399347,
+            "heading": 3.0465930350555532,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.627582198492651
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.0688297536205873,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5909430184542228
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5789760513856695
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6644160933886352
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6356691383574429
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220817,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6964421882571388
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.1224125613969096,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7673619826483125
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.1269020774468173,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8371961914034467
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.1303407250149844,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8947623449976334
+          }
+        ],
+        "pauseStable": true
+      },
+      {
+        "name": "receive-after-retreat",
+        "fps": 30,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.476987838710869
+          },
+          {
+            "alignment": 0.6952143387444671,
+            "heading": 2.3395143732622543,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6495322392596306
+          },
+          {
+            "alignment": 0.8171572408389676,
+            "heading": 2.5272581691001466,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7698231441070642
+          },
+          {
+            "alignment": 0.8913253265363839,
+            "heading": 2.6710564626845352,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8460850202809649
+          },
+          {
+            "alignment": 0.9357568960564294,
+            "heading": 2.781195650749298,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.883607447168945
+          },
+          {
+            "alignment": 0.962142737837075,
+            "heading": 2.865554376052573,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8865782590968165
+          },
+          {
+            "alignment": 0.9777327532992615,
+            "heading": 2.9301671143506702,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8600302428295961
+          },
+          {
+            "alignment": 0.9869168624980313,
+            "heading": 2.979655841632522,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8110283080166036
+          },
+          {
+            "alignment": 0.9923178883244972,
+            "heading": 3.017560660287292,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.748877068091296
+          },
+          {
+            "alignment": 0.9954909289399347,
+            "heading": 3.0465930350555532,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6844305043155612
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.0688297536205873,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6287584799470634
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5915203714416242
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5794203017246029
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6650386324433701
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220817,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.636537398558414
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.1224125613969096,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.697559776578736
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.1269020774468173,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7685979770898377
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.1303407250149844,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8383573557211474
+          }
+        ],
+        "pauseStable": true
+      },
+      {
+        "name": "slow-carrier",
+        "fps": 30,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.3946826776843967
+          },
+          {
+            "alignment": 0.6952143387444671,
+            "heading": 2.3395143732622543,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.4878285942520411
+          },
+          {
+            "alignment": 0.8171572408389676,
+            "heading": 2.5272581691001466,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5395661718319952
+          },
+          {
+            "alignment": 0.8913253265363839,
+            "heading": 2.6710564626845352,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5663390095289111
+          },
+          {
+            "alignment": 0.9357568960564294,
+            "heading": 2.781195650749298,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5788792980333468
+          },
+          {
+            "alignment": 0.962142737837075,
+            "heading": 2.865554376052573,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5836864168233835
+          },
+          {
+            "alignment": 0.9777327532992615,
+            "heading": 2.9301671143506702,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5845205550316975
+          },
+          {
+            "alignment": 0.9869168624980313,
+            "heading": 2.979655841632522,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5834817131863643
+          },
+          {
+            "alignment": 0.9923178883244972,
+            "heading": 3.017560660287292,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5817013180764221
+          },
+          {
+            "alignment": 0.9954909289399347,
+            "heading": 3.0465930350555532,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5797608447110797
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.0688297536205873,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5779371677947964
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5763433066280915
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.575007725432812
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.57391816075597
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220817,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5730452416241684
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.1224125613969096,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5723547498056312
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.1269020774468173,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5718135962035943
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.1303407250149844,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5713923988380202
+          }
+        ],
+        "pauseStable": true
+      },
+      {
+        "name": "moving-u-turn",
+        "fps": 30,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.4746781112530636
+          },
+          {
+            "alignment": 0.6952143387444671,
+            "heading": 2.3395143732622543,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6473904121191474
+          },
+          {
+            "alignment": 0.8171572408389676,
+            "heading": 2.5272581691001466,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7682548039046784
+          },
+          {
+            "alignment": 0.8913253265363839,
+            "heading": 2.6710564626845352,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8454540132289052
+          },
+          {
+            "alignment": 0.9357568960564294,
+            "heading": 2.781195650749298,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8841511854037138
+          },
+          {
+            "alignment": 0.962142737837075,
+            "heading": 2.865554376052573,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8883521130456309
+          },
+          {
+            "alignment": 0.9777327532992615,
+            "heading": 2.9301671143506702,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8628847314326691
+          },
+          {
+            "alignment": 0.9869168624980313,
+            "heading": 2.979655841632522,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8146219770312444
+          },
+          {
+            "alignment": 0.9923178883244972,
+            "heading": 3.017560660287292,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7527240464794221
+          },
+          {
+            "alignment": 0.9954909289399347,
+            "heading": 3.0465930350555532,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6879758990058041
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.0688297536205873,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6314692469923652
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5929758869063237
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5793864746900714
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6635121199678943
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220817,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6337516884366636
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.1224125613969096,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6939515561712029
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.1269020774468173,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7647390754127348
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.1303407250149844,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8348634360495737
+          }
+        ],
+        "pauseStable": true
+      },
+      {
+        "name": "turn-with-ball",
+        "fps": 60,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.48666507357910177
+          },
+          {
+            "alignment": 0.6086174259246594,
+            "heading": 2.22511329701542,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5805191084495398
+          },
+          {
+            "alignment": 0.6952143387444671,
+            "heading": 2.3395143732622543,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6594650343319133
+          },
+          {
+            "alignment": 0.7635796596777503,
+            "heading": 2.439635142863281,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7247310012888972
+          },
+          {
+            "alignment": 0.8171572408389673,
+            "heading": 2.527258169100146,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7773882676626027
+          },
+          {
+            "alignment": 0.8589149668917747,
+            "heading": 2.6039435037964505,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.818321692136734
+          },
+          {
+            "alignment": 0.8913253265363836,
+            "heading": 2.671056462684535,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8482635972461061
+          },
+          {
+            "alignment": 0.9164015525215401,
+            "heading": 2.729791933665412,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8678562807097077
+          },
+          {
+            "alignment": 0.9357568960564292,
+            "heading": 2.7811956507492974,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8777222472311658
+          },
+          {
+            "alignment": 0.950669323526524,
+            "heading": 2.826182812440746,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8785297166118975
+          },
+          {
+            "alignment": 0.9621427378370749,
+            "heading": 2.8655543760525726,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8711036179660401
+          },
+          {
+            "alignment": 0.9709608729243833,
+            "heading": 2.9000113180546454,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8564311600398928
+          },
+          {
+            "alignment": 0.9777327532992613,
+            "heading": 2.93016711435067,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8355995772456165
+          },
+          {
+            "alignment": 0.9829299975530051,
+            "heading": 2.956558662683445,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8098213446811603
+          },
+          {
+            "alignment": 0.9869168624980312,
+            "heading": 2.9796558416325216,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7804201018724498
+          },
+          {
+            "alignment": 0.9899741251748055,
+            "heading": 2.9998698763939142,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7488041834214995
+          },
+          {
+            "alignment": 0.9923178883244971,
+            "heading": 3.0175606602872915,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7164298969531878
+          },
+          {
+            "alignment": 0.994114286657688,
+            "heading": 3.03304316234373,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6847571253265156
+          },
+          {
+            "alignment": 0.9954909289399346,
+            "heading": 3.046593035055553,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6552001095810326
+          },
+          {
+            "alignment": 0.9965457665849674,
+            "heading": 3.058451522129368,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6290763956594846
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.068829753620587,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6075569079194024
+          },
+          {
+            "alignment": 0.9979731044206815,
+            "heading": 3.077912504920553,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5916199560269905
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5820117033940894
+          },
+          {
+            "alignment": 0.9988107632555817,
+            "heading": 3.092818223132748,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5792152429998024
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6533661974742089
+          },
+          {
+            "alignment": 0.9993022815854481,
+            "heading": 3.1042349351151466,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6645135062852026
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6821914277595231
+          },
+          {
+            "alignment": 0.9995906664520328,
+            "heading": 3.1129793183534127,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6357707349457948
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220817,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6642806553304668
+          },
+          {
+            "alignment": 0.9997598592491747,
+            "heading": 3.119676889277122,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6966394531720901
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.1224125613969096,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7315621129993755
+          },
+          {
+            "alignment": 0.999859120005592,
+            "heading": 3.1248067486457973,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7676506879667186
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.126902077446817,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8034520744869729
+          },
+          {
+            "alignment": 0.9999173524817186,
+            "heading": 3.1287358533080916,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8375182027117194
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.130340725014984,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.868466123512371
+          },
+          {
+            "alignment": 0.9999515148697812,
+            "heading": 3.1317452659133433,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8950354805206338
+          }
+        ],
+        "pauseStable": true
+      },
+      {
+        "name": "receive-after-retreat",
+        "fps": 60,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.4535654488003753
+          },
+          {
+            "alignment": 0.6086174259246594,
+            "heading": 2.22511329701542,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5471400030273355
+          },
+          {
+            "alignment": 0.6952143387444671,
+            "heading": 2.3395143732622543,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.627241987813957
+          },
+          {
+            "alignment": 0.7635796596777503,
+            "heading": 2.439635142863281,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6952804555286178
+          },
+          {
+            "alignment": 0.8171572408389673,
+            "heading": 2.527258169100146,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7524040275860977
+          },
+          {
+            "alignment": 0.8589149668917747,
+            "heading": 2.6039435037964505,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7994714022872311
+          },
+          {
+            "alignment": 0.8913253265363836,
+            "heading": 2.671056462684535,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8370885304595022
+          },
+          {
+            "alignment": 0.9164015525215401,
+            "heading": 2.729791933665412,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8656771398528464
+          },
+          {
+            "alignment": 0.9357568960564292,
+            "heading": 2.7811956507492974,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8855537741925201
+          },
+          {
+            "alignment": 0.950669323526524,
+            "heading": 2.826182812440746,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8970071932068584
+          },
+          {
+            "alignment": 0.9621427378370749,
+            "heading": 2.8655543760525726,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.9003670630805019
+          },
+          {
+            "alignment": 0.9709608729243833,
+            "heading": 2.9000113180546454,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.896059860320852
+          },
+          {
+            "alignment": 0.9777327532992613,
+            "heading": 2.93016711435067,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8846497571164926
+          },
+          {
+            "alignment": 0.9829299975530051,
+            "heading": 2.956558662683445,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8668634988990536
+          },
+          {
+            "alignment": 0.9869168624980312,
+            "heading": 2.9796558416325216,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.843599218114631
+          },
+          {
+            "alignment": 0.9899741251748055,
+            "heading": 2.9998698763939142,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8159198937479779
+          },
+          {
+            "alignment": 0.9923178883244971,
+            "heading": 3.0175606602872915,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.785032820466721
+          },
+          {
+            "alignment": 0.994114286657688,
+            "heading": 3.03304316234373,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7522570071722363
+          },
+          {
+            "alignment": 0.9954909289399346,
+            "heading": 3.046593035055553,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7189808757948724
+          },
+          {
+            "alignment": 0.9965457665849674,
+            "heading": 3.058451522129368,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6866129653759354
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.068829753620587,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.65652855353984
+          },
+          {
+            "alignment": 0.9979731044206815,
+            "heading": 3.077912504920553,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6300151820699837
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6082200162391502
+          },
+          {
+            "alignment": 0.9988107632555817,
+            "heading": 3.092818223132748,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.59210178557109
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5823897588686577
+          },
+          {
+            "alignment": 0.9993022815854481,
+            "heading": 3.1042349351151466,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5795518150030308
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6537357935906067
+          },
+          {
+            "alignment": 0.9995906664520328,
+            "heading": 3.1129793183534127,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6649184066479261
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220817,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6826552604280858
+          },
+          {
+            "alignment": 0.9997598592491747,
+            "heading": 3.119676889277122,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6362931679696553
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.1224125613969096,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6648768202407362
+          },
+          {
+            "alignment": 0.999859120005592,
+            "heading": 3.1248067486457973,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6972995704996725
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.126902077446817,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.73226848840849
+          },
+          {
+            "alignment": 0.9999173524817186,
+            "heading": 3.1287358533080916,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7683794571099032
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.130340725014984,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8041751005756481
+          },
+          {
+            "alignment": 0.9999515148697812,
+            "heading": 3.1317452659133433,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8382050529636915
+          }
+        ],
+        "pauseStable": true
+      },
+      {
+        "name": "slow-carrier",
+        "fps": 60,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.3940853352872512
+          },
+          {
+            "alignment": 0.6086174259246594,
+            "heading": 2.22511329701542,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.447404638547628
+          },
+          {
+            "alignment": 0.6952143387444671,
+            "heading": 2.3395143732622543,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.4875765789922089
+          },
+          {
+            "alignment": 0.7635796596777503,
+            "heading": 2.439635142863281,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5174872408357288
+          },
+          {
+            "alignment": 0.8171572408389673,
+            "heading": 2.527258169100146,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5393891831214677
+          },
+          {
+            "alignment": 0.8589149668917747,
+            "heading": 2.6039435037964505,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5551375043711949
+          },
+          {
+            "alignment": 0.8913253265363836,
+            "heading": 2.671056462684535,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5662196442243282
+          },
+          {
+            "alignment": 0.9164015525215401,
+            "heading": 2.729791933665412,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5738055034255504
+          },
+          {
+            "alignment": 0.9357568960564292,
+            "heading": 2.7811956507492974,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.578801946966971
+          },
+          {
+            "alignment": 0.950669323526524,
+            "heading": 2.826182812440746,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5819038783266428
+          },
+          {
+            "alignment": 0.9621427378370749,
+            "heading": 2.8655543760525726,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5836386525152494
+          },
+          {
+            "alignment": 0.9709608729243833,
+            "heading": 2.9000113180546454,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5844030291971749
+          },
+          {
+            "alignment": 0.9777327532992613,
+            "heading": 2.93016711435067,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5844930558066551
+          },
+          {
+            "alignment": 0.9829299975530051,
+            "heading": 2.956558662683445,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5841277680212243
+          },
+          {
+            "alignment": 0.9869168624980312,
+            "heading": 2.9796558416325216,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5834677284263925
+          },
+          {
+            "alignment": 0.9899741251748055,
+            "heading": 2.9998698763939142,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5826293803802143
+          },
+          {
+            "alignment": 0.9923178883244971,
+            "heading": 3.0175606602872915,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5816960754592593
+          },
+          {
+            "alignment": 0.994114286657688,
+            "heading": 3.03304316234373,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5807264930477153
+          },
+          {
+            "alignment": 0.9954909289399346,
+            "heading": 3.046593035055553,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5797610356799567
+          },
+          {
+            "alignment": 0.9965457665849674,
+            "heading": 3.058451522129368,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5788266647242313
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.068829753620587,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5779405411550912
+          },
+          {
+            "alignment": 0.9979731044206815,
+            "heading": 3.077912504920553,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5771127549699797
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5763483621112566
+          },
+          {
+            "alignment": 0.9988107632555817,
+            "heading": 3.092818223132748,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.575648896921322
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5750134886059836
+          },
+          {
+            "alignment": 0.9993022815854481,
+            "heading": 3.1042349351151466,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5744396796222475
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5739240204172884
+          },
+          {
+            "alignment": 0.9995906664520328,
+            "heading": 3.1129793183534127,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5734624969587911
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220817,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5730508337639048
+          },
+          {
+            "alignment": 0.9997598592491747,
+            "heading": 3.119676889277122,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5726847046726297
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.1224125613969096,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5723598756571111
+          },
+          {
+            "alignment": 0.999859120005592,
+            "heading": 3.1248067486457973,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5720722979200349
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.126902077446817,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.571818164958513
+          },
+          {
+            "alignment": 0.9999173524817186,
+            "heading": 3.1287358533080916,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.571593943806012
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.130340725014984,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.571396388047552
+          },
+          {
+            "alignment": 0.9999515148697812,
+            "heading": 3.1317452659133433,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5712225382292235
+          }
+        ],
+        "pauseStable": true
+      },
+      {
+        "name": "moving-u-turn",
+        "fps": 60,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.45129907659131363
+          },
+          {
+            "alignment": 0.6086174259246594,
+            "heading": 2.22511329701542,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5448628224348351
+          },
+          {
+            "alignment": 0.6952143387444671,
+            "heading": 2.3395143732622543,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6250270421898372
+          },
+          {
+            "alignment": 0.7635796596777503,
+            "heading": 2.439635142863281,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6932101678950957
+          },
+          {
+            "alignment": 0.8171572408389673,
+            "heading": 2.527258169100146,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7505642301384836
+          },
+          {
+            "alignment": 0.8589149668917747,
+            "heading": 2.6039435037964505,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7979457556204275
+          },
+          {
+            "alignment": 0.8913253265363836,
+            "heading": 2.671056462684535,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8359534734455394
+          },
+          {
+            "alignment": 0.9164015525215401,
+            "heading": 2.729791933665412,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8649974492520816
+          },
+          {
+            "alignment": 0.9357568960564292,
+            "heading": 2.7811956507492974,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8853788023384217
+          },
+          {
+            "alignment": 0.950669323526524,
+            "heading": 2.826182812440746,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8973678588593927
+          },
+          {
+            "alignment": 0.9621427378370749,
+            "heading": 2.8655543760525726,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.9012736758766602
+          },
+          {
+            "alignment": 0.9709608729243833,
+            "heading": 2.9000113180546454,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8975008542564491
+          },
+          {
+            "alignment": 0.9777327532992613,
+            "heading": 2.93016711435067,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8865913905847655
+          },
+          {
+            "alignment": 0.9829299975530051,
+            "heading": 2.956558662683445,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.869250549104817
+          },
+          {
+            "alignment": 0.9869168624980312,
+            "heading": 2.9796558416325216,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8463566592422801
+          },
+          {
+            "alignment": 0.9899741251748055,
+            "heading": 2.9998698763939142,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8189555049667734
+          },
+          {
+            "alignment": 0.9923178883244971,
+            "heading": 3.0175606602872915,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.788240625688536
+          },
+          {
+            "alignment": 0.994114286657688,
+            "heading": 3.03304316234373,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7555214070855324
+          },
+          {
+            "alignment": 0.9954909289399346,
+            "heading": 3.046593035055553,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.722181297156995
+          },
+          {
+            "alignment": 0.9965457665849674,
+            "heading": 3.058451522129368,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.689628825225847
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.068829753620587,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6592443185253329
+          },
+          {
+            "alignment": 0.9979731044206815,
+            "heading": 3.077912504920553,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.632325296368631
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6100334758122626
+          },
+          {
+            "alignment": 0.9988107632555817,
+            "heading": 3.092818223132748,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5933461513375391
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5830144259096762
+          },
+          {
+            "alignment": 0.9993022815854481,
+            "heading": 3.1042349351151466,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5795303877678721
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6530674565887801
+          },
+          {
+            "alignment": 0.9995906664520328,
+            "heading": 3.1129793183534127,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6636282243704615
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220817,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6807933871778654
+          },
+          {
+            "alignment": 0.9997598592491747,
+            "heading": 3.119676889277122,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6339329957871552
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.1224125613969096,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6621121391092843
+          },
+          {
+            "alignment": 0.999859120005592,
+            "heading": 3.1248067486457973,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6942408575417742
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.126902077446817,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.729038480068608
+          },
+          {
+            "alignment": 0.9999173524817186,
+            "heading": 3.1287358533080916,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7651081888382694
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.130340725014984,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8009946210660797
+          },
+          {
+            "alignment": 0.9999515148697812,
+            "heading": 3.1317452659133433,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.835244033685972
+          }
+        ],
+        "pauseStable": true
+      },
+      {
+        "name": "turn-with-ball",
+        "fps": 120,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "turn_walk_left",
+            "backWeight": 0,
+            "ballAlignment": 0.39600141727809535
+          },
+          {
+            "alignment": 0.5573043656811165,
+            "heading": 2.161932029737371,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5249300211320169
+          },
+          {
+            "alignment": 0.6086174259246591,
+            "heading": 2.2251132970154197,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5701285946433012
+          },
+          {
+            "alignment": 0.6544261882081069,
+            "heading": 2.284219813877184,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6117290952155766
+          },
+          {
+            "alignment": 0.6952143387444669,
+            "heading": 2.339514373262254,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6498929547634316
+          },
+          {
+            "alignment": 0.7314503638354483,
+            "heading": 2.3912428198012323,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6847715717269562
+          },
+          {
+            "alignment": 0.7635796596777503,
+            "heading": 2.439635142863281,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7165032956310636
+          },
+          {
+            "alignment": 0.7920196646374333,
+            "heading": 2.4849064991097345,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7452122068033247
+          },
+          {
+            "alignment": 0.8171572408389673,
+            "heading": 2.527258169100146,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7710082087626191
+          },
+          {
+            "alignment": 0.839347695375066,
+            "heading": 2.5668784522039303,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7939880552204243
+          },
+          {
+            "alignment": 0.8589149668917747,
+            "heading": 2.6039435037964505,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8142370175134623
+          },
+          {
+            "alignment": 0.8761526135268615,
+            "heading": 2.6386181184618103,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8318309646770896
+          },
+          {
+            "alignment": 0.8913253265363834,
+            "heading": 2.6710564626845343,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.846838680340745
+          },
+          {
+            "alignment": 0.9046707638565278,
+            "heading": 2.7014027602877526,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8593242809958515
+          },
+          {
+            "alignment": 0.9164015525215399,
+            "heading": 2.7297919336654117,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8693496314038822
+          },
+          {
+            "alignment": 0.9267073511480278,
+            "heading": 2.7563502036594856,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8769766770335867
+          },
+          {
+            "alignment": 0.9357568960564291,
+            "heading": 2.781195650749297,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8822696321180472
+          },
+          {
+            "alignment": 0.9436999790920045,
+            "heading": 2.8044387400480493,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8852969765398666
+          },
+          {
+            "alignment": 0.9506693235265239,
+            "heading": 2.8261828124407455,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8861332263291855
+          },
+          {
+            "alignment": 0.9567823379435486,
+            "heading": 2.846524544047146,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8848604518930836
+          },
+          {
+            "alignment": 0.9621427378370748,
+            "heading": 2.865554376052572,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8815715422134847
+          },
+          {
+            "alignment": 0.9668420316592296,
+            "heading": 2.8833569168176267,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8763917018750134
+          },
+          {
+            "alignment": 0.9709608729243833,
+            "heading": 2.9000113180546454,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.869439097207896
+          },
+          {
+            "alignment": 0.9745702832496558,
+            "heading": 2.9155916267433954,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8608407039871684
+          },
+          {
+            "alignment": 0.9777327532992613,
+            "heading": 2.93016711435067,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8507323235577949
+          },
+          {
+            "alignment": 0.9805032298203309,
+            "heading": 2.943802584817517,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8392583729515392
+          },
+          {
+            "alignment": 0.9829299975530051,
+            "heading": 2.956558662683445,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8265714583682592
+          },
+          {
+            "alignment": 0.9850554649510006,
+            "heading": 2.9684920626286275,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8128317440279172
+          },
+          {
+            "alignment": 0.9869168624980312,
+            "heading": 2.9796558416325216,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7982061307577116
+          },
+          {
+            "alignment": 0.9885468620526796,
+            "heading": 2.990099634870014,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7828672607658035
+          },
+          {
+            "alignment": 0.9899741251748055,
+            "heading": 2.9998698763939142,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7669923668687905
+          },
+          {
+            "alignment": 0.9912237878350458,
+            "heading": 3.009010005584969,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7507619859815825
+          },
+          {
+            "alignment": 0.9923178883244972,
+            "heading": 3.017560660287292,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7343585579423203
+          },
+          {
+            "alignment": 0.9932757445917456,
+            "heading": 3.0255598574879086,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.717964931728763
+          },
+          {
+            "alignment": 0.9941142866576881,
+            "heading": 3.0330431623437306,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7017628018249676
+          },
+          {
+            "alignment": 0.9948483492073764,
+            "heading": 3.0400438463074733,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6859310979189633
+          },
+          {
+            "alignment": 0.9954909289399347,
+            "heading": 3.0465930350555532,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6706443512566745
+          },
+          {
+            "alignment": 0.9960534107766137,
+            "heading": 3.0527198468756724,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.656071060850283
+          },
+          {
+            "alignment": 0.9965457665849674,
+            "heading": 3.0584515221293684,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6423720823486866
+          },
+          {
+            "alignment": 0.9969767296740228,
+            "heading": 3.063813544365134,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6296990617343571
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.0688297536205873,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6181929351276015
+          },
+          {
+            "alignment": 0.9976841182933041,
+            "heading": 3.073522452417444,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6079825148709596
+          },
+          {
+            "alignment": 0.9979731044206815,
+            "heading": 3.0779125049205533,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5991831807501921
+          },
+          {
+            "alignment": 0.9982260402349283,
+            "heading": 3.0820194297018673,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5918956937025525
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5862051476878499
+          },
+          {
+            "alignment": 0.9986411798773528,
+            "heading": 3.0894557575137083,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5821800735744095
+          },
+          {
+            "alignment": 0.9988107632555817,
+            "heading": 3.092818223132748,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5798717069426719
+          },
+          {
+            "alignment": 0.9989591859743059,
+            "heading": 3.0959638332062887,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5793134296567107
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6504566290543562
+          },
+          {
+            "alignment": 0.999202778666285,
+            "heading": 3.1016595274107472,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6534335218657676
+          },
+          {
+            "alignment": 0.9993022815854481,
+            "heading": 3.1042349351151466,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6581497031164418
+          },
+          {
+            "alignment": 0.9993893665944812,
+            "heading": 3.1066442470119164,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6645653787851435
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.672622893107222
+          },
+          {
+            "alignment": 0.9995322874273124,
+            "heading": 3.1110067406097706,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6822472995541682
+          },
+          {
+            "alignment": 0.9995906664520328,
+            "heading": 3.1129793183534127,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6933471131164322
+          },
+          {
+            "alignment": 0.9996417591492317,
+            "heading": 3.114824678611108,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6358403133174222
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220812,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6495519973326418
+          },
+          {
+            "alignment": 0.9997256093454003,
+            "heading": 3.1181660360836383,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6643758660854855
+          },
+          {
+            "alignment": 0.9997598592491747,
+            "heading": 3.1196768892771214,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6801650807947619
+          },
+          {
+            "alignment": 0.9997898341720278,
+            "heading": 3.121090302992982,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6967624258865333
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.122412561396909,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.714001928928077
+          },
+          {
+            "alignment": 0.999839026716735,
+            "heading": 3.1236495433697997,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7317105739655076
+          },
+          {
+            "alignment": 0.999859120005592,
+            "heading": 3.124806748645797,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7497100903043288
+          },
+          {
+            "alignment": 0.9998767052263292,
+            "heading": 3.125889322264608,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7678187979759183
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.1269020774468164,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7858534905408643
+          },
+          {
+            "alignment": 0.999905564584632,
+            "heading": 3.1278495169938996,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8036313354966409
+          },
+          {
+            "alignment": 0.9999173524817186,
+            "heading": 3.128735853308091,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8209717723847323
+          },
+          {
+            "alignment": 0.9999276689727445,
+            "heading": 3.1295650271211044,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8376983887313143
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.1303407250149835,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8536407542042213
+          },
+          {
+            "alignment": 0.9999445994601522,
+            "heading": 3.131066395812982,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8686361938232952
+          },
+          {
+            "alignment": 0.9999515148697812,
+            "heading": 3.131745265913343,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8825314817156369
+          },
+          {
+            "alignment": 0.9999575670648595,
+            "heading": 3.1323803536341597,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8951844377538287
+          }
+        ],
+        "pauseStable": true
+      },
+      {
+        "name": "receive-after-retreat",
+        "fps": 120,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.44066201212805023
+          },
+          {
+            "alignment": 0.5573043656811165,
+            "heading": 2.161932029737371,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.4891313463486999
+          },
+          {
+            "alignment": 0.6086174259246591,
+            "heading": 2.2251132970154197,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5341302300619493
+          },
+          {
+            "alignment": 0.6544261882081069,
+            "heading": 2.284219813877184,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5758616106715047
+          },
+          {
+            "alignment": 0.6952143387444669,
+            "heading": 2.339514373262254,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6145180698116866
+          },
+          {
+            "alignment": 0.7314503638354483,
+            "heading": 2.3912428198012323,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.650276097038486
+          },
+          {
+            "alignment": 0.7635796596777503,
+            "heading": 2.439635142863281,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6832928823023803
+          },
+          {
+            "alignment": 0.7920196646374333,
+            "heading": 2.4849064991097345,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7137049884881468
+          },
+          {
+            "alignment": 0.8171572408389673,
+            "heading": 2.527258169100146,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7416284018798067
+          },
+          {
+            "alignment": 0.839347695375066,
+            "heading": 2.5668784522039303,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7671595700554477
+          },
+          {
+            "alignment": 0.8589149668917747,
+            "heading": 2.6039435037964505,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7903771261457186
+          },
+          {
+            "alignment": 0.8761526135268615,
+            "heading": 2.6386181184618103,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8113440688518829
+          },
+          {
+            "alignment": 0.8913253265363834,
+            "heading": 2.6710564626845343,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8301102223907226
+          },
+          {
+            "alignment": 0.9046707638565278,
+            "heading": 2.7014027602877526,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8467148426402682
+          },
+          {
+            "alignment": 0.9164015525215399,
+            "heading": 2.7297919336654117,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8611892678510307
+          },
+          {
+            "alignment": 0.9267073511480278,
+            "heading": 2.7563502036594856,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8735595365968778
+          },
+          {
+            "alignment": 0.9357568960564291,
+            "heading": 2.781195650749297,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8838489140018142
+          },
+          {
+            "alignment": 0.9436999790920045,
+            "heading": 2.8044387400480493,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8920802811652906
+          },
+          {
+            "alignment": 0.9506693235265239,
+            "heading": 2.8261828124407455,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8982783532779077
+          },
+          {
+            "alignment": 0.9567823379435486,
+            "heading": 2.846524544047146,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.902471700067633
+          },
+          {
+            "alignment": 0.9621427378370748,
+            "heading": 2.865554376052572,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.9046945486252689
+          },
+          {
+            "alignment": 0.9668420316592296,
+            "heading": 2.8833569168176267,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.9049883538356913
+          },
+          {
+            "alignment": 0.9709608729243833,
+            "heading": 2.9000113180546454,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.9034031259607134
+          },
+          {
+            "alignment": 0.9745702832496558,
+            "heading": 2.9155916267433954,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8999985086465276
+          },
+          {
+            "alignment": 0.9777327532992613,
+            "heading": 2.93016711435067,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.894844603948167
+          },
+          {
+            "alignment": 0.9805032298203309,
+            "heading": 2.943802584817517,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8880225439983591
+          },
+          {
+            "alignment": 0.9829299975530051,
+            "heading": 2.956558662683445,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8796248117756598
+          },
+          {
+            "alignment": 0.9850554649510006,
+            "heading": 2.9684920626286275,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8697553160906257
+          },
+          {
+            "alignment": 0.9869168624980312,
+            "heading": 2.9796558416325216,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8585292284290631
+          },
+          {
+            "alignment": 0.9885468620526796,
+            "heading": 2.990099634870014,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8460725916716827
+          },
+          {
+            "alignment": 0.9899741251748055,
+            "heading": 2.9998698763939142,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8325217129430174
+          },
+          {
+            "alignment": 0.9912237878350458,
+            "heading": 3.009010005584969,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8180223549157595
+          },
+          {
+            "alignment": 0.9923178883244972,
+            "heading": 3.017560660287292,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8027287417932305
+          },
+          {
+            "alignment": 0.9932757445917456,
+            "heading": 3.0255598574879086,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7868023978951215
+          },
+          {
+            "alignment": 0.9941142866576881,
+            "heading": 3.0330431623437306,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7704108382629484
+          },
+          {
+            "alignment": 0.9948483492073764,
+            "heading": 3.0400438463074733,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7537261319670816
+          },
+          {
+            "alignment": 0.9954909289399347,
+            "heading": 3.0465930350555532,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7369233598241753
+          },
+          {
+            "alignment": 0.9960534107766137,
+            "heading": 3.0527198468756724,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.720178989012966
+          },
+          {
+            "alignment": 0.9965457665849674,
+            "heading": 3.0584515221293684,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7036691876015704
+          },
+          {
+            "alignment": 0.9969767296740228,
+            "heading": 3.063813544365134,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6875681022676328
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.0688297536205873,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6720461225043386
+          },
+          {
+            "alignment": 0.9976841182933041,
+            "heading": 3.073522452417444,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6572681543639396
+          },
+          {
+            "alignment": 0.9979731044206815,
+            "heading": 3.0779125049205533,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6433919263023635
+          },
+          {
+            "alignment": 0.9982260402349283,
+            "heading": 3.0820194297018673,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.630566348962962
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6189299497860556
+          },
+          {
+            "alignment": 0.9986411798773528,
+            "heading": 3.0894557575137083,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6086094021675925
+          },
+          {
+            "alignment": 0.9988107632555817,
+            "heading": 3.092818223132748,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5997181675307854
+          },
+          {
+            "alignment": 0.9989591859743059,
+            "heading": 3.0959638332062887,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.592355267136675
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.586604198762176
+          },
+          {
+            "alignment": 0.999202778666285,
+            "heading": 3.1016595274107472,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5825320115377282
+          },
+          {
+            "alignment": 0.9993022815854481,
+            "heading": 3.1042349351151466,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5801885502823385
+          },
+          {
+            "alignment": 0.9993893665944812,
+            "heading": 3.1066442470119164,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.579605878623759
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6507604788884684
+          },
+          {
+            "alignment": 0.9995322874273124,
+            "heading": 3.1110067406097706,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6537273581307672
+          },
+          {
+            "alignment": 0.9995906664520328,
+            "heading": 3.1129793183534127,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6584409961275064
+          },
+          {
+            "alignment": 0.9996417591492317,
+            "heading": 3.114824678611108,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6648604163127474
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220812,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6729268234990897
+          },
+          {
+            "alignment": 0.9997256093454003,
+            "heading": 3.1181660360836383,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6825641747378737
+          },
+          {
+            "alignment": 0.9997598592491747,
+            "heading": 3.1196768892771214,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6936799331635832
+          },
+          {
+            "alignment": 0.9997898341720278,
+            "heading": 3.121090302992982,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6361807086075726
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.122412561396909,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6499126692605719
+          },
+          {
+            "alignment": 0.999839026716735,
+            "heading": 3.1236495433697997,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6647567979264264
+          },
+          {
+            "alignment": 0.999859120005592,
+            "heading": 3.124806748645797,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6805654386419535
+          },
+          {
+            "alignment": 0.9998767052263292,
+            "heading": 3.125889322264608,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6971806212392004
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.1269020774468164,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7144356862297876
+          },
+          {
+            "alignment": 0.999905564584632,
+            "heading": 3.1278495169938996,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7321570027135924
+          },
+          {
+            "alignment": 0.9999173524817186,
+            "heading": 3.128735853308091,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7501657611974055
+          },
+          {
+            "alignment": 0.9999276689727445,
+            "heading": 3.1295650271211044,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7682798224412273
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.1303407250149835,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7863156028845264
+          },
+          {
+            "alignment": 0.9999445994601522,
+            "heading": 3.131066395812982,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8040899768464356
+          },
+          {
+            "alignment": 0.9999515148697812,
+            "heading": 3.131745265913343,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8214221755447086
+          },
+          {
+            "alignment": 0.9999575670648595,
+            "heading": 3.1323803536341597,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8381356630387375
+          }
+        ],
+        "pauseStable": true
+      },
+      {
+        "name": "slow-carrier",
+        "fps": 120,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.39376604630090073
+          },
+          {
+            "alignment": 0.5573043656811165,
+            "heading": 2.161932029737371,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.42224986314826235
+          },
+          {
+            "alignment": 0.6086174259246591,
+            "heading": 2.2251132970154197,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.4471373005938137
+          },
+          {
+            "alignment": 0.6544261882081069,
+            "heading": 2.284219813877184,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.4687867606628948
+          },
+          {
+            "alignment": 0.6952143387444669,
+            "heading": 2.339514373262254,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.4874447223454843
+          },
+          {
+            "alignment": 0.7314503638354483,
+            "heading": 2.3912428198012323,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5035429754317601
+          },
+          {
+            "alignment": 0.7635796596777503,
+            "heading": 2.439635142863281,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.517375798902212
+          },
+          {
+            "alignment": 0.7920196646374333,
+            "heading": 2.4849064991097345,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.529212194440816
+          },
+          {
+            "alignment": 0.8171572408389673,
+            "heading": 2.527258169100146,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5392959735719087
+          },
+          {
+            "alignment": 0.839347695375066,
+            "heading": 2.5668784522039303,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5478465633973599
+          },
+          {
+            "alignment": 0.8589149668917747,
+            "heading": 2.6039435037964505,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5550602787303704
+          },
+          {
+            "alignment": 0.8761526135268615,
+            "heading": 2.6386181184618103,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5611118736043067
+          },
+          {
+            "alignment": 0.8913253265363834,
+            "heading": 2.6710564626845343,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5661562359762784
+          },
+          {
+            "alignment": 0.9046707638565278,
+            "heading": 2.7014027602877526,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5703301285946847
+          },
+          {
+            "alignment": 0.9164015525215399,
+            "heading": 2.7297919336654117,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.573753908773765
+          },
+          {
+            "alignment": 0.9267073511480278,
+            "heading": 2.7563502036594856,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5765331821773271
+          },
+          {
+            "alignment": 0.9357568960564291,
+            "heading": 2.781195650749297,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5787603622798136
+          },
+          {
+            "alignment": 0.9436999790920045,
+            "heading": 2.8044387400480493,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5805161192621837
+          },
+          {
+            "alignment": 0.9506693235265239,
+            "heading": 2.8261828124407455,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5818707107658251
+          },
+          {
+            "alignment": 0.9567823379435486,
+            "heading": 2.846524544047146,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5828851930019675
+          },
+          {
+            "alignment": 0.9621427378370748,
+            "heading": 2.865554376052572,
+            "motion": "idle",
+            "backWeight": 0,
+            "ballAlignment": 0.5836125148472795
+          },
+          {
+            "alignment": 0.9668420316592296,
+            "heading": 2.8833569168176267,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5840985002521385
+          },
+          {
+            "alignment": 0.9709608729243833,
+            "heading": 2.9000113180546454,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5843827259329519
+          },
+          {
+            "alignment": 0.9745702832496558,
+            "heading": 2.9155916267433954,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5844993022079338
+          },
+          {
+            "alignment": 0.9777327532992613,
+            "heading": 2.93016711435067,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.584477565188752
+          },
+          {
+            "alignment": 0.9805032298203309,
+            "heading": 2.943802584817517,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5843426885243037
+          },
+          {
+            "alignment": 0.9829299975530051,
+            "heading": 2.956558662683445,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5841162226303439
+          },
+          {
+            "alignment": 0.9850554649510006,
+            "heading": 2.9684920626286275,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5838165689197224
+          },
+          {
+            "alignment": 0.9869168624980312,
+            "heading": 2.9796558416325216,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5834593960375961
+          },
+          {
+            "alignment": 0.9885468620526796,
+            "heading": 2.990099634870014,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.583058004550436
+          },
+          {
+            "alignment": 0.9899741251748055,
+            "heading": 2.9998698763939142,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5826236459692259
+          },
+          {
+            "alignment": 0.9912237878350458,
+            "heading": 3.009010005584969,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5821658014278428
+          },
+          {
+            "alignment": 0.9923178883244972,
+            "heading": 3.017560660287292,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5816924248015235
+          },
+          {
+            "alignment": 0.9932757445917456,
+            "heading": 3.0255598574879086,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5812101545463415
+          },
+          {
+            "alignment": 0.9941142866576881,
+            "heading": 3.0330431623437306,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5807244980735813
+          },
+          {
+            "alignment": 0.9948483492073764,
+            "heading": 3.0400438463074733,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5802399920448588
+          },
+          {
+            "alignment": 0.9954909289399347,
+            "heading": 3.0465930350555532,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5797603415849598
+          },
+          {
+            "alignment": 0.9960534107766137,
+            "heading": 3.0527198468756724,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5792885410585247
+          },
+          {
+            "alignment": 0.9965457665849674,
+            "heading": 3.0584515221293684,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5788269787419696
+          },
+          {
+            "alignment": 0.9969767296740228,
+            "heading": 3.063813544365134,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5783775274410098
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.0688297536205873,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5779416228541737
+          },
+          {
+            "alignment": 0.9976841182933041,
+            "heading": 3.073522452417444,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5775203312610695
+          },
+          {
+            "alignment": 0.9979731044206815,
+            "heading": 3.0779125049205533,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5771144079181932
+          },
+          {
+            "alignment": 0.9982260402349283,
+            "heading": 3.0820194297018673,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5767243473721728
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.576350426748101
+          },
+          {
+            "alignment": 0.9986411798773528,
+            "heading": 3.0894557575137083,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5759927429367808
+          },
+          {
+            "alignment": 0.9988107632555817,
+            "heading": 3.092818223132748,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5756512444872155
+          },
+          {
+            "alignment": 0.9989591859743059,
+            "heading": 3.0959638332062887,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.575325758907658
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5750160159883032
+          },
+          {
+            "alignment": 0.999202778666285,
+            "heading": 3.1016595274107472,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5747216676797374
+          },
+          {
+            "alignment": 0.9993022815854481,
+            "heading": 3.1042349351151466,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5744423049922052
+          },
+          {
+            "alignment": 0.9993893665944812,
+            "heading": 3.1066442470119164,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5741774723204104
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5739266795458713
+          },
+          {
+            "alignment": 0.9995322874273124,
+            "heading": 3.1110067406097706,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5736894122228422
+          },
+          {
+            "alignment": 0.9995906664520328,
+            "heading": 3.1129793183534127,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5734651401136901
+          },
+          {
+            "alignment": 0.9996417591492317,
+            "heading": 3.114824678611108,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5732533243046085
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220812,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.573053423102051
+          },
+          {
+            "alignment": 0.9997256093454003,
+            "heading": 3.1181660360836383,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5728648968836767
+          },
+          {
+            "alignment": 0.9997598592491747,
+            "heading": 3.1196768892771214,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5726872120544524
+          },
+          {
+            "alignment": 0.9997898341720278,
+            "heading": 3.121090302992982,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5725198442383895
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.122412561396909,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5723622808188529
+          },
+          {
+            "alignment": 0.999839026716735,
+            "heading": 3.1236495433697997,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5722140229251031
+          },
+          {
+            "alignment": 0.999859120005592,
+            "heading": 3.124806748645797,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5720745869494654
+          },
+          {
+            "alignment": 0.9998767052263292,
+            "heading": 3.125889322264608,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5719435056679641
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.1269020774468164,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5718203290272378
+          },
+          {
+            "alignment": 0.999905564584632,
+            "heading": 3.1278495169938996,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5717046246518307
+          },
+          {
+            "alignment": 0.9999173524817186,
+            "heading": 3.128735853308091,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5715959781183928
+          },
+          {
+            "alignment": 0.9999276689727445,
+            "heading": 3.1295650271211044,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5714939930367547
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.1303407250149835,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5713982909721484
+          },
+          {
+            "alignment": 0.9999445994601522,
+            "heading": 3.131066395812982,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5713085112379122
+          },
+          {
+            "alignment": 0.9999515148697812,
+            "heading": 3.131745265913343,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5712243105837385
+          },
+          {
+            "alignment": 0.9999575670648595,
+            "heading": 3.1323803536341597,
+            "motion": "idle_stand_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5711453628008262
+          }
+        ],
+        "pauseStable": true
+      },
+      {
+        "name": "moving-u-turn",
+        "fps": 120,
+        "rows": [
+          {
+            "alignment": 0.5000000000000002,
+            "heading": 2.0943951023931957,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.43849840198371814
+          },
+          {
+            "alignment": 0.5573043656811165,
+            "heading": 2.161932029737371,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.48694709744799725
+          },
+          {
+            "alignment": 0.6086174259246591,
+            "heading": 2.2251132970154197,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5319386656006462
+          },
+          {
+            "alignment": 0.6544261882081069,
+            "heading": 2.284219813877184,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5736779203354776
+          },
+          {
+            "alignment": 0.6952143387444669,
+            "heading": 2.339514373262254,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6123589740715318
+          },
+          {
+            "alignment": 0.7314503638354483,
+            "heading": 2.3912428198012323,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6481595065825365
+          },
+          {
+            "alignment": 0.7635796596777503,
+            "heading": 2.439635142863281,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6812375592883406
+          },
+          {
+            "alignment": 0.7920196646374333,
+            "heading": 2.4849064991097345,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7117302142027826
+          },
+          {
+            "alignment": 0.8171572408389673,
+            "heading": 2.527258169100146,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7397536539381218
+          },
+          {
+            "alignment": 0.839347695375066,
+            "heading": 2.5668784522039303,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.765404211306749
+          },
+          {
+            "alignment": 0.8589149668917747,
+            "heading": 2.6039435037964505,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7887601068620624
+          },
+          {
+            "alignment": 0.8761526135268615,
+            "heading": 2.6386181184618103,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8098836434515366
+          },
+          {
+            "alignment": 0.8913253265363834,
+            "heading": 2.6710564626845343,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8288236818110715
+          },
+          {
+            "alignment": 0.9046707638565278,
+            "heading": 2.7014027602877526,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8456182634536171
+          },
+          {
+            "alignment": 0.9164015525215399,
+            "heading": 2.7297919336654117,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8602972792607115
+          },
+          {
+            "alignment": 0.9267073511480278,
+            "heading": 2.7563502036594856,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8728851065204795
+          },
+          {
+            "alignment": 0.9357568960564291,
+            "heading": 2.781195650749297,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8834031555143431
+          },
+          {
+            "alignment": 0.9436999790920045,
+            "heading": 2.8044387400480493,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.891872280617596
+          },
+          {
+            "alignment": 0.9506693235265239,
+            "heading": 2.8261828124407455,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8983150214116651
+          },
+          {
+            "alignment": 0.9567823379435486,
+            "heading": 2.846524544047146,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.9027576474100565
+          },
+          {
+            "alignment": 0.9621427378370748,
+            "heading": 2.865554376052572,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.9052319863613139
+          },
+          {
+            "alignment": 0.9668420316592296,
+            "heading": 2.8833569168176267,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.9057770212229361
+          },
+          {
+            "alignment": 0.9709608729243833,
+            "heading": 2.9000113180546454,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.9044402451749332
+          },
+          {
+            "alignment": 0.9745702832496558,
+            "heading": 2.9155916267433954,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.9012787677286096
+          },
+          {
+            "alignment": 0.9777327532992613,
+            "heading": 2.93016711435067,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.896360168271062
+          },
+          {
+            "alignment": 0.9805032298203309,
+            "heading": 2.943802584817517,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8897630963926827
+          },
+          {
+            "alignment": 0.9829299975530051,
+            "heading": 2.956558662683445,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8815776211512417
+          },
+          {
+            "alignment": 0.9850554649510006,
+            "heading": 2.9684920626286275,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8719053340758126
+          },
+          {
+            "alignment": 0.9869168624980312,
+            "heading": 2.9796558416325216,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8608592132269292
+          },
+          {
+            "alignment": 0.9885468620526796,
+            "heading": 2.990099634870014,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8485632580093385
+          },
+          {
+            "alignment": 0.9899741251748055,
+            "heading": 2.9998698763939142,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8351519066733025
+          },
+          {
+            "alignment": 0.9912237878350458,
+            "heading": 3.009010005584969,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8207692505258048
+          },
+          {
+            "alignment": 0.9923178883244972,
+            "heading": 3.017560660287292,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8055680607871637
+          },
+          {
+            "alignment": 0.9932757445917456,
+            "heading": 3.0255598574879086,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7897086457533435
+          },
+          {
+            "alignment": 0.9941142866576881,
+            "heading": 3.0330431623437306,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7733575574423391
+          },
+          {
+            "alignment": 0.9948483492073764,
+            "heading": 3.0400438463074733,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7566861681987047
+          },
+          {
+            "alignment": 0.9954909289399347,
+            "heading": 3.0465930350555532,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7398691387906111
+          },
+          {
+            "alignment": 0.9960534107766137,
+            "heading": 3.0527198468756724,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7230828003486524
+          },
+          {
+            "alignment": 0.9965457665849674,
+            "heading": 3.0584515221293684,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7065034730581751
+          },
+          {
+            "alignment": 0.9969767296740228,
+            "heading": 3.063813544365134,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6903057448236786
+          },
+          {
+            "alignment": 0.9973539479500485,
+            "heading": 3.0688297536205873,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6746607331746017
+          },
+          {
+            "alignment": 0.9976841182933041,
+            "heading": 3.073522452417444,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6597343534794782
+          },
+          {
+            "alignment": 0.9979731044206815,
+            "heading": 3.0779125049205533,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6456856160859628
+          },
+          {
+            "alignment": 0.9982260402349283,
+            "heading": 3.0820194297018673,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6326649743162237
+          },
+          {
+            "alignment": 0.9984474204255911,
+            "heading": 3.085861486521786,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6208127443318764
+          },
+          {
+            "alignment": 0.9986411798773528,
+            "heading": 3.0894557575137083,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6102576167534962
+          },
+          {
+            "alignment": 0.9988107632555817,
+            "heading": 3.092818223132748,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6011152785922482
+          },
+          {
+            "alignment": 0.9989591859743059,
+            "heading": 3.0959638332062887,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5934871625426231
+          },
+          {
+            "alignment": 0.9990890876062798,
+            "heading": 3.098906573402272,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5874593390144145
+          },
+          {
+            "alignment": 0.999202778666285,
+            "heading": 3.1016595274107472,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5831015644690136
+          },
+          {
+            "alignment": 0.9993022815854481,
+            "heading": 3.1042349351151466,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.5804664976908714
+          },
+          {
+            "alignment": 0.9993893665944812,
+            "heading": 3.1066442470119164,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.579589093591519
+          },
+          {
+            "alignment": 0.999465583145823,
+            "heading": 3.1088981751204647,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6504487728534456
+          },
+          {
+            "alignment": 0.9995322874273124,
+            "heading": 3.1110067406097706,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6531234971150933
+          },
+          {
+            "alignment": 0.9995906664520328,
+            "heading": 3.1129793183534127,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6575506858609789
+          },
+          {
+            "alignment": 0.9996417591492317,
+            "heading": 3.114824678611108,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6636922563305261
+          },
+          {
+            "alignment": 0.9996864748287554,
+            "heading": 3.1165510260220812,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6714922306297584
+          },
+          {
+            "alignment": 0.9997256093454003,
+            "heading": 3.1181660360836383,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.680877276729895
+          },
+          {
+            "alignment": 0.9997598592491747,
+            "heading": 3.1196768892771214,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6917574335209294
+          },
+          {
+            "alignment": 0.9997898341720278,
+            "heading": 3.121090302992982,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6340417240155249
+          },
+          {
+            "alignment": 0.9998160676705298,
+            "heading": 3.122412561396909,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.647578541277204
+          },
+          {
+            "alignment": 0.999839026716735,
+            "heading": 3.1236495433697997,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6622508808909329
+          },
+          {
+            "alignment": 0.999859120005592,
+            "heading": 3.124806748645797,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.67791286600506
+          },
+          {
+            "alignment": 0.9998767052263292,
+            "heading": 3.125889322264608,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.6944080527507634
+          },
+          {
+            "alignment": 0.9998920954269157,
+            "heading": 3.1269020774468164,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7115710386220119
+          },
+          {
+            "alignment": 0.999905564584632,
+            "heading": 3.1278495169938996,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7292291666931732
+          },
+          {
+            "alignment": 0.9999173524817186,
+            "heading": 3.128735853308091,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7472043077044874
+          },
+          {
+            "alignment": 0.9999276689727445,
+            "heading": 3.1295650271211044,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7653147012460848
+          },
+          {
+            "alignment": 0.9999366977195481,
+            "heading": 3.1303407250149835,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.7833768366732339
+          },
+          {
+            "alignment": 0.9999445994601522,
+            "heading": 3.131066395812982,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8012073539937458
+          },
+          {
+            "alignment": 0.9999515148697812,
+            "heading": 3.131745265913343,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8186249447856286
+          },
+          {
+            "alignment": 0.9999575670648595,
+            "heading": 3.1323803536341597,
+            "motion": "dribble_meshy",
+            "backWeight": 0,
+            "ballAlignment": 0.8354522332297603
+          }
+        ],
+        "pauseStable": true
+      }
+    ],
+    "unchanged": true
+  },
+  "live": {
+    "frames": 3600,
+    "finished": false,
+    "score": [
+      1,
+      0
+    ],
+    "moving": 286,
+    "defensive": 63,
+    "backwardCarrier": 0,
+    "backClips": 0,
+    "ballBehind": 0,
+    "torsoBackward": 0,
+    "nonfinite": 0,
+    "renderChanges": 0,
+    "actions": [
+      "passReady",
+      "pass",
+      "receive",
+      "tackle",
+      "shot",
+      "save",
+      "kickReady",
+      "goalKick",
+      "highPass",
+      "airReady",
+      "header",
+      "airLand",
+      "control"
+    ],
+    "motions": [
+      "idle",
+      "turn_idle_right",
+      "turn_idle_left",
+      "pass_ready",
+      "pass_meshy",
+      "idle_stand_meshy",
+      "turn_walk_left",
+      "turn_walk_right",
+      "walking",
+      "run_fast6",
+      "run_fast4",
+      "receive_meshy",
+      "turn_run_right",
+      "dribble_meshy",
+      "brake_meshy",
+      "turn_run_left",
+      "turn_sharp_right",
+      "back_right",
+      "back_walk",
+      "tackle_meshy",
+      "shot_meshy",
+      "keeper_catch_high",
+      "celebrate_arms",
+      "celebrate_victory",
+      "celebrate_fist",
+      "keeper_recover",
+      "keeper_rise",
+      "shot_ready",
+      "keeper_catch_low",
+      "keeper_hold",
+      "keeper_kick",
+      "keeper_ground_ready",
+      "back_left",
+      "cross_meshy"
+    ],
+    "violations": []
+  },
+  "errors": []
+}

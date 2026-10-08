@@ -1,0 +1,216 @@
+{
+  "file": "G:\\Blenderassets\\FM\\Nutzercharakter-2026-10-03\\Doppel6-Nutzercharakter-Meshy-Stand-Schuss.blend",
+  "source": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\meshy_output\\user-character-2026-10-03\\character-football-v110.glb",
+  "nativeReopened": true,
+  "joints": 28,
+  "actions": [
+    {
+      "name": "back_left",
+      "frameRange": [
+        0.0,
+        19.200000762939453
+      ]
+    },
+    {
+      "name": "back_right",
+      "frameRange": [
+        0.0,
+        14.40000057220459
+      ]
+    },
+    {
+      "name": "back_step_meshy",
+      "frameRange": [
+        0.0,
+        20.799999237060547
+      ]
+    },
+    {
+      "name": "back_walk",
+      "frameRange": [
+        0.0,
+        20.799999237060547
+      ]
+    },
+    {
+      "name": "brake_meshy",
+      "frameRange": [
+        0.0,
+        47.20000076293945
+      ]
+    },
+    {
+      "name": "celebrate_arms",
+      "frameRange": [
+        0.0,
+        44.0
+      ]
+    },
+    {
+      "name": "celebrate_fist",
+      "frameRange": [
+        0.0,
+        36.0
+      ]
+    },
+    {
+      "name": "celebrate_victory",
+      "frameRange": [
+        0.0,
+        224.0
+      ]
+    },
+    {
+      "name": "Charged_Spell_Cast",
+      "frameRange": [
+        0.0,
+        65.0
+      ]
+    },
+    {
+      "name": "idle_meshy",
+      "frameRange": [
+        0.0,
+        96.0
+      ]
+    },
+    {
+      "name": "idle_ready",
+      "frameRange": [
+        0.0,
+        102.40000915527344
+      ]
+    },
+    {
+      "name": "idle_relaxed",
+      "frameRange": [
+        0.0,
+        44.79999923706055
+      ]
+    },
+    {
+      "name": "run_fast4",
+      "frameRange": [
+        0.0,
+        16.0
+      ]
+    },
+    {
+      "name": "run_fast6",
+      "frameRange": [
+        0.0,
+        20.0
+      ]
+    },
+    {
+      "name": "running",
+      "frameRange": [
+        0.0,
+        15.199999809265137
+      ]
+    },
+    {
+      "name": "shot_meshy",
+      "frameRange": [
+        0.0,
+        39.20000076293945
+      ]
+    },
+    {
+      "name": "sprint_forward",
+      "frameRange": [
+        0.0,
+        13.600000381469727
+      ]
+    },
+    {
+      "name": "turn_idle_left",
+      "frameRange": [
+        0.0,
+        24.0
+      ]
+    },
+    {
+      "name": "turn_idle_right",
+      "frameRange": [
+        0.0,
+        25.60000228881836
+      ]
+    },
+    {
+      "name": "turn_run_left",
+      "frameRange": [
+        0.0,
+        37.60000228881836
+      ]
+    },
+    {
+      "name": "turn_run_right",
+      "frameRange": [
+        0.0,
+        37.60000228881836
+      ]
+    },
+    {
+      "name": "turn_sharp_right",
+      "frameRange": [
+        0.0,
+        28.0
+      ]
+    },
+    {
+      "name": "turn_walk_left",
+      "frameRange": [
+        0.0,
+        47.20000076293945
+      ]
+    },
+    {
+      "name": "turn_walk_right",
+      "frameRange": [
+        0.0,
+        52.0
+      ]
+    },
+    {
+      "name": "walking",
+      "frameRange": [
+        0.0,
+        24.799999237060547
+      ]
+    }
+  ],
+  "activeClip": "walking",
+  "nlaTracksMuted": true,
+  "images": [
+    {
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    },
+    {
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    }
+  ],
+  "clothControlGroup": true
+}

@@ -1,0 +1,43 @@
+{
+  "model": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\meshy_output\\player-a3-quality\\player-a4-final.glb",
+  "native": "G:\\Blenderassets\\FM\\Spieler-A3-Qualitaet-2026-10-02\\Doppel6-A4-Qualitaet-4K.blend",
+  "nativeReopened": true,
+  "meshFinite": true,
+  "sourceVertices": 40796,
+  "resultVertices": 40824,
+  "rawMeshDistanceBeforeUniformAlignment": 0.05621829628944397,
+  "meshDistanceAfterHeightCenterAlignmentMetres": 1.3348812899494078e-07,
+  "nativeAlignmentScale": 0.9482561617050267,
+  "nativeAlignmentOffset": [
+    -0.00034695863723754883,
+    0.0021689757704734802,
+    -0.004399031400680542
+  ],
+  "triangles": 33318,
+  "images": [
+    {
+      "name": "Image_0.001",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "name": "Image_2",
+      "size": [
+        4096,
+        4096
+      ],
+      "packed": true
+    },
+    {
+      "name": "Image_1",
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "version": 122,
+  "date": "2026-10-04T19:39:01.372Z",
+  "published": false,
+  "footer": 105,
+  "credits": 0,
+  "modelClips": 32,
+  "offline": {
+    "file": "outputs/Doppel-6-Fussballmanager.html",
+    "bytes": 49904906,
+    "sha256": "029d537fce1accd34b9ab1a869aaefcef35b3210ed0e0331a4c818816a18d672"
+  },
+  "previousBuildSha256": "35b1ec7f8bd1e507608b457d2182b6a45a264666428929557c33d9588fa54988",
+  "modelSha256": "39eee0c85c05a93496d1679330c0fcd81a9f5f87d8ad13876c61d29cb3a09cb2",
+  "sourceHashes": {
+    "dist/pitch-v55.js": "b5de969da1139fbfb82403bc1ec2e760a67a1efae91a54fdf6fbedca6396b76f",
+    "dist/pitch-v56.js": "9b4cc398911ed5b39499441ccfb088cbf20c7b5c9c2cf005cab475ef8f1beb03",
+    "dist/pitch-motion-v102.js": "b3a9e0281b21b40e9f3218267017982dc715afaa54fee51934a1105b2f3a1614",
+    "dist/player-user-meshy-v107.js": "f36f4570df84241ed93e1db3bf8c8d08ad68d9d73ec0af755de7cb117aa2208c",
+    "dist/world-pitch3d-v98.js": "da112ea11ad07a62a58551b9c8231d9530c13456d721cb460e9fddcd2ea1f11f",
+    "dist/set-pieces-v50.js": "4a29a574bd609c039b2c051698a17815a01cdc0f244af335d28c7555df15bc6e",
+    "dist/world-physical-v65.js": "7cc32f09d8192723e700fcc12d6d7ea6f3d793ee071b59245df7189373401f31"
+  },
+  "evidenceHashes": {
+    "docs/spieler-nutzer-rig/air-scenarios-baseline-v122.json": "66c64ed321e79c9c33def82f8c16898c8c895b9ea7471802aafbdc9d431f2cb1",
+    "docs/spieler-nutzer-rig/air-scenarios-qa-v122.json": "9af793a9476f7a44d43f6c62aed09daf3361a7c0ac3db9121a4fe83df33a869f",
+    "docs/spieler-nutzer-rig/air-visual-qa-v122.json": "6dc5646e1e94afc1bf1e4f5c04911fa74930cb3a4ad97daca63e8c5078a34c87",
+    "docs/spieler-nutzer-rig/air-corners-qa-v122.json": "59f94c389e2f83218e630c8ee1cc3f845ad42da3b6b74c3466c3e2c45bd05ffa",
+    "docs/spieler-nutzer-rig/warping-initial-v122.json": "6937625bc899fc41a72f11f4b8887c7cadab36e764d4d54c4d6ccf1d236f5b59",
+    "docs/spieler-nutzer-rig/warping-qa-v122.json": "028da607b67219d4f8c1ea13a42611433d36b9434b7c3dbd2efefd4337e01d6f",
+    "docs/spieler-nutzer-rig/air-turn-baseline-v122.json": "be3f6747d5b9e1cc4fded971deab1a670c0e93b3adfb5419269ae672916191b3",
+    "docs/spieler-nutzer-rig/ball-motion-qa-v122.json": "e55b1002aacfb6688e9426449eca349e44daf4e9b6fecd0f3037cf92e06ef45a",
+    "docs/spieler-nutzer-rig/ball-actions-qa-v122.json": "4ecfa50304f30814756fbee80a41942b1fef4a639d629aba176bff2dacd90697",
+    "docs/spieler-nutzer-rig/keeper-scenarios-qa-v122.json": "f110749f86954cfd11a2f9fab45f3b7934b9c6213bbf894b53f71c3aa6f59c5d",
+    "docs/spieler-nutzer-rig/keeper-visual-qa-v122.json": "2383d70f1e064b88b4bcdf061fd723632bb19b0f747b7e4ed37e37c565cf82f3",
+    "docs/spieler-nutzer-rig/locomotion-qa-v122.json": "5e3325c49b198d557b6e8e4d4fb7d45a7624bea6a6ca87db7da445814d74b33f",
+    "docs/spieler-nutzer-rig/match-parity-qa-v122.json": "ecce8a30c11b28be3329482a4a497cb067344998a3c390c1cf65eca11922efe2",
+    "docs/spieler-nutzer-rig/replay-qa-v122.json": "bda654d80b3f40e95314c2986b6040060a07a23610cc1fe5b40c141bc922da16"
+  },
+  "parityHash": "ecce8a30c11b28be3329482a4a497cb067344998a3c390c1cf65eca11922efe2",
+  "gates": {
+    "reachBeforeAbilitySelection": true,
+    "attributeTrials": 2400,
+    "headerSpeedAndRange": true,
+    "missedContactContinuesFree": true,
+    "cornerOffsideExemption": true,
+    "visualCases": 6,
+    "exactContactPoseWithinBallRadius": true,
+    "cornerCases": 4,
+    "restartTargetInheritedOnSwap": true,
+    "completedWarpingMatches": 2,
+    "physicsSteps": 6674,
+    "renderedFrames": 20016,
+    "thresholdsUnchanged": true,
+    "visibleWarpViolations": 0,
+    "pauseAndReadOnlyRendering": true,
+    "keeperAndFootContacts": true,
+    "locomotionRegression": true,
+    "regular2d3dOfflineParity": true
+  },
+  "warping": [
+    {
+      "seed": 12345,
+      "score": [
+        0,
+        2
+      ],
+      "max": {
+        "engine": 0.3890701124266682,
+        "root": 0.34368168816113004,
+        "hips": 0.5144428827839151,
+        "ball": 0.937365683168657,
+        "rawBall": 38.500595319330635
+      },
+      "counts": {
+        "rawBall": 8
+      }
+    },
+    {
+      "seed": 8721,
+      "score": [
+        2,
+        0
+      ],
+      "max": {
+        "engine": 0.8597742213584126,
+        "root": 0.2865914071195711,
+        "hips": 0.6070040320520614,
+        "ball": 0.9373656806216363,
+        "rawBall": 35.25067167549474
+      },
+      "counts": {
+        "rawBall": 8
+      }
+    }
+  ],
+  "limitations": "Six prepared native sequences and separately sampled exact contact poses; two full seeded matches, not a general balance study or arbitrary mesh collision guarantee. Hidden restart resets and frozen offside analyses recorded separately. Existing Meshy rig with procedural header/jump/landing, no new provider clip. Parallel compact simulation and historical statistics unchanged."
+}

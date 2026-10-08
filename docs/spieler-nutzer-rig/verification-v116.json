@@ -1,0 +1,38 @@
+{
+  "verifiedAt": "2026-10-04T16:19:56.950Z",
+  "published": false,
+  "footer": "PROTOTYP 105",
+  "credits": 0,
+  "modelUnchanged": true,
+  "modelSha256": "39eee0c85c05a93496d1679330c0fcd81a9f5f87d8ad13876c61d29cb3a09cb2",
+  "source": {
+    "file": "dist/player-user-meshy-v107.js",
+    "sha256": "1c32bd8e3e0a4dcdfcc89ffdf3b7089f583951d3d4d1a4452ad98eb6e3f49b76"
+  },
+  "offline": {
+    "bytes": 49884311,
+    "sha256": "7998ffb68d92a60a8b1924de7c35ea2d5e41b8f9708b96d721019d75243e2079",
+    "embeddedAdapterMatches": true,
+    "indexIdentical": true
+  },
+  "unchangedSourceFiles": [
+    "game.js",
+    "set-pieces-v50.js",
+    "pitch-v55.js",
+    "pitch-v57.js",
+    "pitch-motion-v102.js",
+    "world-backpedal-v108.js",
+    "world-pitch-actions-v99.js",
+    "world-ball-motion-v110.js",
+    "player-user-motion-v108.js",
+    "player-user-ball-actions-v111.js"
+  ],
+  "gates": {
+    "glovePoses": 6,
+    "ballActionCases": 10,
+    "integrationVariants": 3,
+    "modelResourcesAndSettledContacts": true,
+    "outcomeCriteria": 7
+  },
+  "scope": "Graphics only; 90-game physical outcome study remains valid. No release or save changes."
+}

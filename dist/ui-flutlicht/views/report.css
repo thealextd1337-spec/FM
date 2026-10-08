@@ -1,0 +1,115 @@
+/* Native post-match report, its player detail and following result overview. */
+#v47-match-report.fl-dialog,#v47-competition.fl-dialog,.v47-player-dialog.fl-dialog:not(.v134-3d-help){
+ width:min(940px,calc(100vw - 24px));max-height:calc(100dvh - 32px);padding:0;
+ border:1px solid var(--fl-line);border-radius:var(--fl-radius);background:var(--fl-paper);
+ color:var(--fl-ink);font-family:var(--fl-font);box-shadow:none;overflow:auto;overscroll-behavior:contain;
+}
+#v47-match-report.fl-dialog::backdrop,#v47-competition.fl-dialog::backdrop,.v47-player-dialog.fl-dialog::backdrop{background:#10151bb3}
+#v47-match-report.fl-dialog .v47-body,#v47-competition.fl-dialog .v47-competition-body{max-height:none;overflow:visible;padding:0 24px 24px}
+#v47-match-report.fl-dialog .v47-head,#v47-competition.fl-dialog .v47-competition-head{
+ position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:16px;
+ margin:0 -24px 0;padding:18px 24px;background:var(--fl-paper);border-bottom:1px solid var(--fl-line);
+}
+#v47-match-report.fl-dialog .v47-head h2,#v47-competition.fl-dialog .v47-competition-head h2{margin:0;font:750 23px/1.25 var(--fl-font);color:var(--fl-ink);letter-spacing:-.025em}
+#v47-match-report.fl-dialog .v47-head p,#v47-competition.fl-dialog .v47-competition-head p{margin:6px 0 0;font:400 12px/1.5 var(--fl-font);color:var(--fl-muted)}
+#v47-match-report.fl-dialog .v47-report-head-actions,#v47-competition.fl-dialog .v47-competition-head-actions{display:flex;align-items:center;gap:8px;flex:none}
+#v47-match-report.fl-dialog .v47-menu,#v47-competition.fl-dialog .v47-competition-done,#v47-competition.fl-dialog .v47-competition-actions button{
+ min-height:44px;min-width:0;padding:10px 16px;border:1px solid #916a25;border-radius:6px;background:var(--fl-gold);color:#15191e;font:750 13px/1.4 var(--fl-font);white-space:normal;
+}
+#v47-match-report.fl-dialog .v47-report-close,#v47-competition.fl-dialog .v47-competition-close,.v47-player-dialog.fl-dialog .v47-player-close{
+ display:grid;place-items:center;width:44px;min-width:44px;height:44px;min-height:44px;padding:0;border:1px solid var(--fl-control-line);border-radius:6px;background:var(--fl-control);color:var(--fl-ink);font:400 23px/1 var(--fl-font);
+}
+#v47-competition.fl-dialog .v47-competition-back{min-height:44px;padding:9px 12px;background:var(--fl-control);color:var(--fl-ink);border:1px solid var(--fl-control-line);font:600 13px/1.4 var(--fl-font)}
+#v47-match-report.fl-dialog .v47-score{margin:20px 0 0;padding:16px 12px;gap:16px;border:1px solid var(--fl-line);border-radius:var(--fl-radius);background:var(--fl-surface);color:var(--fl-ink)}
+#v47-match-report.fl-dialog .v47-score-team{padding:4px 0;gap:10px;align-content:start}
+#v47-match-report.fl-dialog .v47-score-club{display:grid;justify-items:center;gap:8px;max-width:100%;line-height:1.35}
+#v47-match-report.fl-dialog .v47-score-club .v61-crest{width:36px;height:42px}
+#v47-match-report.fl-dialog .v47-score-club>span{font:700 15px/1.4 var(--fl-font);color:var(--fl-ink);overflow-wrap:anywhere}
+#v47-match-report.fl-dialog .v47-current-rank{display:inline;white-space:nowrap;font:600 12px/1.4 var(--fl-font);color:var(--fl-muted)}
+#v47-match-report.fl-dialog .v47-score-total{min-width:84px;font:750 34px/1.15 var(--fl-font);color:var(--fl-ink);font-variant-numeric:tabular-nums}
+#v47-match-report.fl-dialog .v47-score-total small{margin-top:8px;font:400 12px/1.4 var(--fl-font);color:var(--fl-muted)}
+#v47-match-report.fl-dialog .v47-score-goals{gap:4px;color:var(--fl-muted)}
+#v47-match-report.fl-dialog .v47-score-goals small{font:400 12px/1.45 var(--fl-font);color:var(--fl-muted)}
+#v47-match-report.fl-dialog .v47-winner{border:0;border-radius:0;background:none;color:var(--fl-ink);box-shadow:none;animation:none}
+#v47-match-report.fl-dialog .v47-winner::after{margin:0;font:650 10px/1.4 var(--fl-font);letter-spacing:.08em;color:var(--fl-accent)}
+#v47-match-report.fl-dialog .v47-rank-note,.fl-competition-report .fl-report-rank-note{margin:7px 0 18px;text-align:center;font:400 11px/1.5 var(--fl-font);color:var(--fl-muted)}
+#v47-match-report.fl-dialog .v47-match-award{margin:18px 0 22px;padding:12px 14px;border:1px solid var(--fl-line);background:var(--fl-subtle);color:var(--fl-ink);gap:12px;border-radius:var(--fl-radius)}
+#v47-match-report.fl-dialog .v47-match-award small{color:var(--fl-accent);font:650 10px/1.4 var(--fl-font)}
+#v47-match-report.fl-dialog .v47-match-award em{color:var(--fl-muted);font:400 12px/1.5 var(--fl-font)}
+#v47-match-report.fl-dialog .v47-award-player{min-height:44px;max-width:100%;padding:4px 0;border:0;background:none;color:var(--fl-accent);font:650 14px/1.5 var(--fl-font);white-space:normal;overflow-wrap:anywhere;text-align:left;text-decoration:underline;text-underline-offset:3px}
+.v47-stat-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:13px;line-height:1.45}
+.v47-stat-table caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#v47-match-report.fl-dialog .v47-stat-table{margin-top:22px;color:var(--fl-ink);background:var(--fl-surface)}
+#v47-match-report.fl-dialog .v47-stat-table :is(th,td){padding:8px 12px;border:0;border-bottom:1px solid var(--fl-line);text-align:center;vertical-align:middle;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+#v47-match-report.fl-dialog .v47-stat-table thead{background:var(--fl-subtle);color:var(--fl-muted);font-size:12px}
+#v47-match-report.fl-dialog .v47-stat-table th:first-child{width:calc(100% - 152px);text-align:left}
+#v47-match-report.fl-dialog .v47-stat-table thead th:not(:first-child){width:76px}
+#v47-match-report.fl-dialog .v47-stat-table tbody th{font-weight:400;color:var(--fl-muted)}
+#v47-match-report.fl-dialog .v47-stat-table tbody td{font-weight:650}
+#v47-match-report.fl-dialog .v47-rosters{gap:20px;margin:28px 0 0}
+#v47-match-report.fl-dialog .v47-roster{padding:0;border:1px solid var(--fl-line);border-radius:var(--fl-radius);background:var(--fl-surface);overflow:hidden;color:var(--fl-ink)}
+#v47-match-report.fl-dialog .v47-roster h3{margin:0;padding:14px 12px 10px;color:var(--fl-ink);font:650 15px/1.4 var(--fl-font);overflow-wrap:anywhere}
+#v47-match-report.fl-dialog .v47-player-head,#v47-match-report.fl-dialog .v47-player{grid-template-columns:minmax(0,1fr) 40px 28px 28px;gap:5px;padding:10px 12px;border-bottom:1px solid var(--fl-line);font:400 12px/1.4 var(--fl-font)}
+#v47-match-report.fl-dialog .v47-player-head{padding-block:6px;background:var(--fl-subtle);color:var(--fl-muted);font-weight:600;font-size:11px}
+#v47-match-report.fl-dialog .v47-player{min-height:50px;border-radius:0;background:transparent;color:var(--fl-ink)}
+#v47-match-report.fl-dialog .v47-player:last-child{border-bottom:0}
+#v47-match-report.fl-dialog .v47-player em{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;color:var(--fl-accent);text-decoration:underline;text-underline-offset:3px}
+#v47-match-report.fl-dialog .v47-player-detail small{font-size:10px;color:var(--fl-muted)}
+#v47-match-report.fl-dialog .v47-player-detail .v47-sub-change{color:var(--fl-muted);font-weight:500}
+#v47-match-report.fl-dialog .v47-player b{color:var(--fl-ink)}
+#v47-match-report.fl-dialog button:hover:not(:disabled),#v47-competition.fl-dialog button:hover:not(:disabled),.v47-player-dialog.fl-dialog button:hover:not(:disabled){background:var(--fl-hover);filter:none;transform:none}
+#v47-match-report.fl-dialog .v47-menu:hover:not(:disabled),#v47-competition.fl-dialog .v47-competition-done:hover:not(:disabled){background:#ffda8b}
+.v47-player-dialog.fl-dialog:not(.v134-3d-help){width:min(460px,calc(100vw - 24px));padding:20px}
+.v47-player-dialog.fl-dialog .v47-player-dialog-head{align-items:start;gap:12px}
+.v47-player-dialog.fl-dialog .v47-player-dialog-head h2{margin:0;font:700 20px/1.3 var(--fl-font);overflow-wrap:anywhere;color:var(--fl-ink)}
+.v47-player-dialog.fl-dialog .v47-player-dialog-head h2 .flag-icon{width:24px;height:auto;vertical-align:middle}
+.v47-player-dialog.fl-dialog .v47-player-dialog-head p{color:var(--fl-muted);font:400 12px/1.5 var(--fl-font)}
+.v47-player-dialog.fl-dialog .v47-player-stats :is(span,b){padding:8px 0;border-color:var(--fl-line);font:400 13px/1.5 var(--fl-font);color:var(--fl-muted)}
+.v47-player-dialog.fl-dialog .v47-player-stats b{color:var(--fl-ink);font-weight:650}
+/* Match ratings keep their bands; light-theme ink uses the shared contrast tones. */
+#v47-match-report.fl-dialog .v47-player b[style*="#A398B8" i],.v47-player-dialog.fl-dialog .v47-player-stats b[style*="#A398B8" i]{color:var(--fl-violetgray-ink)!important}
+#v47-match-report.fl-dialog .v47-player b[style*="#91AEC4" i],.v47-player-dialog.fl-dialog .v47-player-stats b[style*="#91AEC4" i]{color:var(--fl-bluegray-ink)!important}
+#v47-match-report.fl-dialog .v47-player b[style*="#E9CF59" i],.v47-player-dialog.fl-dialog .v47-player-stats b[style*="#E9CF59" i]{color:var(--fl-yellow-ink)!important}
+#v47-match-report.fl-dialog .v47-player b[style*="#F3A14A" i],.v47-player-dialog.fl-dialog .v47-player-stats b[style*="#F3A14A" i]{color:var(--fl-orange-ink)!important}
+#v47-match-report.fl-dialog .v47-player b[style*="#F26BB5" i],.v47-player-dialog.fl-dialog .v47-player-stats b[style*="#F26BB5" i]{color:var(--fl-pink-ink)!important}
+#v47-competition.fl-dialog .v47-competition-grid,#v47-competition.fl-dialog .v47-leaders{gap:20px;margin-top:24px}
+#v47-competition.fl-dialog .v47-competition-section{padding:16px;border:1px solid var(--fl-line);border-radius:var(--fl-radius);background:var(--fl-surface);color:var(--fl-ink)}
+#v47-competition.fl-dialog .v47-competition-section h3{color:var(--fl-ink);font:650 16px/1.4 var(--fl-font);margin:0 0 12px}
+#v47-competition.fl-dialog :is(.v47-result,.v47-leader-row){border-color:var(--fl-line);color:var(--fl-ink);font-size:12px}
+#v47-competition.fl-dialog :is(.v47-result small,.v47-leader-row small,.v47-leader-row>span){color:var(--fl-muted)}
+#v47-competition.fl-dialog :is(.v47-result .winner,.v47-leader-row strong){color:var(--fl-accent)}
+#v47-competition.fl-dialog .v47-leader-player{color:var(--fl-accent);border:0;background:none;min-height:44px;padding:4px 0;text-align:left;text-decoration:underline;text-underline-offset:3px;white-space:normal;overflow-wrap:anywhere}
+#v47-competition.fl-dialog .v62-table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain}
+#v47-competition.fl-dialog .v62-table{width:100%;min-width:340px;border-collapse:collapse;font-size:12px;background:var(--fl-surface);color:var(--fl-ink)}
+#v47-competition.fl-dialog .v62-table :is(td,th){padding:8px 6px;border-bottom:1px solid var(--fl-line);text-align:right;color:var(--fl-ink)}
+#v47-competition.fl-dialog .v62-table :is(td,th):nth-child(2){text-align:left}
+#v47-competition.fl-dialog .v62-table .v68-club-link{min-height:44px;background:none;border:0;color:var(--fl-accent);white-space:normal;text-align:left;font-size:12px}
+#v47-competition.fl-dialog .v62-table .v61-crest{width:20px;height:24px;flex:none}
+#v47-competition.fl-dialog .v62-table tr.own{background:var(--fl-tint)}
+.fl-competition-report .fl-report-score-team{display:grid;justify-items:center;gap:8px;min-width:0}
+.fl-competition-report .fl-report-score-team .v61-crest{width:36px;height:42px}
+.fl-competition-report .fl-report-score-team>span{overflow-wrap:anywhere}
+.fl-competition-report .fl-report-current-rank{display:inline;white-space:nowrap;font:600 12px/1.4 var(--fl-font);color:var(--fl-muted)}
+@media(max-width:650px){
+ #v47-match-report.fl-dialog,#v47-competition.fl-dialog{width:calc(100vw - 16px);max-height:calc(100dvh - 16px)}
+ #v47-match-report.fl-dialog .v47-body,#v47-competition.fl-dialog .v47-competition-body{padding:0 14px 20px}
+ #v47-match-report.fl-dialog .v47-head,#v47-competition.fl-dialog .v47-competition-head{margin-inline:-14px;padding:14px;gap:12px;flex-wrap:wrap;align-items:start}
+ #v47-match-report.fl-dialog .v47-head h2,#v47-competition.fl-dialog .v47-competition-head h2{font-size:20px}
+ #v47-match-report.fl-dialog .v47-head>div:first-child{flex:1 1 100%}
+ #v47-match-report.fl-dialog .v47-report-head-actions{width:100%;justify-content:flex-end}
+ #v47-match-report.fl-dialog .v47-menu{flex:1}
+ #v47-match-report.fl-dialog .v47-score{padding:12px 8px;gap:8px}
+ #v47-match-report.fl-dialog .v47-score-club>span{font-size:12px}
+ #v47-match-report.fl-dialog .v47-score-club .v61-crest{width:28px;height:33px}
+ #v47-match-report.fl-dialog .v47-score-total{min-width:56px;font-size:27px}
+ #v47-match-report.fl-dialog .v47-score-goals small{font-size:10px}
+ #v47-match-report.fl-dialog .v47-stat-table :is(th,td){padding:8px}
+ #v47-match-report.fl-dialog .v47-stat-table th:first-child{width:calc(100% - 104px)}
+ #v47-match-report.fl-dialog .v47-stat-table thead th:not(:first-child){width:52px}
+ #v47-match-report.fl-dialog .v47-rosters{grid-template-columns:1fr;gap:16px}
+ #v47-competition.fl-dialog .v47-competition-head-actions{width:100%;flex-wrap:wrap}
+ #v47-competition.fl-dialog .v47-competition-head-actions .v47-competition-done{flex:1}
+ #v47-competition.fl-dialog .v47-competition-grid,#v47-competition.fl-dialog .v47-leaders{grid-template-columns:minmax(0,1fr);gap:16px}
+ .fl-competition-report .fl-report-score-team .v61-crest{width:28px;height:33px}
+}
+@media(prefers-reduced-motion:reduce){#v47-match-report.fl-dialog *,#v47-competition.fl-dialog *,.v47-player-dialog.fl-dialog *{animation:none!important;transition:none!important}}

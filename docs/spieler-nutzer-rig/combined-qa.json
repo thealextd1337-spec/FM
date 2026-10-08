@@ -1,0 +1,24 @@
+{
+  "file": "meshy_output/user-character-2026-10-03/character-meshy-motions.glb",
+  "bytes": 3977456,
+  "sourceMeshRigAndTextureBinaryPreserved": true,
+  "animations": [
+    "Charged_Spell_Cast",
+    "walking",
+    "running"
+  ],
+  "meshTaskId": "01a10106-76ab-77a7-89a2-d58771af210c",
+  "clips": [
+    {
+      "name": "walking",
+      "source": "meshy_output/user-character-2026-10-03/walking.glb",
+      "keyframeBinarySha256": "2b91cc022f566bf12df5d78840ca783f4a6ed22f8743e459ea0da6cb3ddc63e6"
+    },
+    {
+      "name": "running",
+      "source": "meshy_output/user-character-2026-10-03/running.glb",
+      "keyframeBinarySha256": "2a8670ca6bfca261007e8bdf5efc45d12d0d3b5847d1ccad26bf26740c90851a"
+    }
+  ],
+  "additionalMeshyCredits": 0
+}

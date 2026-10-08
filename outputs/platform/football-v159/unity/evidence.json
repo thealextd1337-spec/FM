@@ -1,0 +1,79 @@
+{
+  "pass": true,
+  "verifiedAt": "2026-10-08T20:26:37.259Z",
+  "scope": "Unity visible path-derived ball spin, stable footfall phase and walk/run hysteresis, keeper contact timing and bounded lateral body dive",
+  "sourceId": "95eb4c7224a55115dd2e2aa4dccb3f9e27f5096bdde0ee23073c5cfbb3076f3e",
+  "previousSourceId": "e78c4ec8e11614ef3e81dc2ca58e0a059364d37a1b5f743cf68f160a2e8731ce",
+  "build": {
+    "result": "Succeeded",
+    "totalErrors": 0,
+    "totalWarnings": 3,
+    "buildTimeMs": 30814.6211,
+    "totalSizeBytes": 86800244,
+    "buildId": "transaction_27ae3753b76c46ff98938bfd5d22222d"
+  },
+  "tests": {
+    "momentum": 72,
+    "locomotion": 215,
+    "rig": 23,
+    "actions": 22,
+    "world": 24,
+    "motion": 40
+  },
+  "totalChecks": 396,
+  "redFeedback": {
+    "failed": 3,
+    "checks": [
+      {
+        "name": "An already observed keeper contact has its authored action pose immediately",
+        "passed": false,
+        "measured": 0
+      },
+      {
+        "name": "Known keeper launch is presented on the arrival frame, rather than one display frame later",
+        "passed": false,
+        "measured": 0
+      },
+      {
+        "name": "The actual world ball renderer applies a travel-derived orientation",
+        "passed": false,
+        "measured": 0
+      }
+    ]
+  },
+  "exactProjectByteMatches": 28,
+  "authoredAssetsPreserved": 14,
+  "editorRestoredExactly": true,
+  "console": {
+    "compileOrFeatureErrors": 0,
+    "newErrorsAfterFinalCompile": 0,
+    "compilationFailed": false,
+    "cleared": false,
+    "transientImportErrors": "Four temporary missing cross-file symbols occurred during sequential imports and are retained at cursor 427–430; final compilation and tests are clean."
+  },
+  "inputProtocol": "d6-world-view-1 unchanged; ball rotation is derived from actual travel and never saved",
+  "projection": "Additive rendered ballRotation/ballSpinDegrees and pose motion/stridePhase; head anchors still come from the true rendered rig",
+  "visualAcceptance": "Root owns the serialized browser GPU lane; this report validates the actual Editor renderer and final build",
+  "files": [
+    {
+      "file": "unity-web.data",
+      "bytes": 51459265,
+      "sha256": "d1332caaaf307e7a073347c7c0997ba88aa95933e20b1897ab73cdc966b0e5a8"
+    },
+    {
+      "file": "unity-web.framework.js",
+      "bytes": 300906,
+      "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+    },
+    {
+      "file": "unity-web.loader.js",
+      "bytes": 27914,
+      "sha256": "7c82adafe827c9dd284496c75b6aae9b82958bc9a7bd25904367c8446717c8ef"
+    },
+    {
+      "file": "unity-web.wasm",
+      "bytes": 34991657,
+      "sha256": "5ce1d16b72ee2679591a7f6fe3c924c66a686c0df2dc65ea6f6b44f4809520b5"
+    }
+  ]
+}

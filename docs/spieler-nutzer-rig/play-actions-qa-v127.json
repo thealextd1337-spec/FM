@@ -1,0 +1,428 @@
+{
+  "direct": [
+    {
+      "kind": "pass",
+      "ready": "passReady",
+      "passes": 1,
+      "shots": 0,
+      "passComplete": 1,
+      "owner": null,
+      "control": false,
+      "flight": true,
+      "startGap": 0,
+      "startHeight": 0.29,
+      "pose": "pass",
+      "assister": "passer"
+    },
+    {
+      "kind": "shot",
+      "ready": "kickReady",
+      "passes": 0,
+      "shots": 1,
+      "passComplete": 1,
+      "owner": null,
+      "control": false,
+      "flight": true,
+      "startGap": 0,
+      "startHeight": 0.29,
+      "pose": "shot",
+      "assister": "passer"
+    },
+    {
+      "kind": "remote",
+      "passes": 0,
+      "shots": 0,
+      "passComplete": 1,
+      "owner": null,
+      "control": true,
+      "flight": false,
+      "startGap": null,
+      "pose": "receive"
+    },
+    {
+      "kind": "blocked",
+      "passes": 0,
+      "shots": 0,
+      "passComplete": 1,
+      "owner": null,
+      "control": true,
+      "flight": false,
+      "startGap": null,
+      "pose": "receive"
+    },
+    {
+      "kind": "unreached",
+      "passes": 0,
+      "shots": 0,
+      "passComplete": 0,
+      "owner": null,
+      "control": false,
+      "flight": false,
+      "startGap": null
+    },
+    {
+      "kind": "offside",
+      "passes": 0,
+      "shots": 0,
+      "passComplete": 0,
+      "owner": null,
+      "control": false,
+      "offside": "offside",
+      "flight": false,
+      "startGap": null
+    },
+    {
+      "kind": "turn-back",
+      "passes": 0,
+      "shots": 0,
+      "passComplete": 1,
+      "owner": null,
+      "control": true,
+      "flight": false,
+      "startGap": null,
+      "pose": "receive"
+    },
+    {
+      "kind": "no-choice",
+      "passes": 0,
+      "shots": 0,
+      "passComplete": 1,
+      "owner": null,
+      "control": true,
+      "flight": false,
+      "startGap": null,
+      "pose": "receive"
+    }
+  ],
+  "frequency": [
+    {
+      "kind": "pass",
+      "quality": 6,
+      "actions": 116,
+      "trials": 500
+    },
+    {
+      "kind": "pass",
+      "quality": 18,
+      "actions": 300,
+      "trials": 500
+    },
+    {
+      "kind": "shot",
+      "quality": 6,
+      "actions": 116,
+      "trials": 500
+    },
+    {
+      "kind": "shot",
+      "quality": 18,
+      "actions": 300,
+      "trials": 500
+    }
+  ],
+  "boundaries": [
+    {
+      "edge": "left",
+      "team": 0,
+      "over": 0.1,
+      "result": false,
+      "held": false
+    },
+    {
+      "edge": "left",
+      "team": 0,
+      "over": 0.25,
+      "result": true,
+      "throwTeam": 1
+    },
+    {
+      "edge": "left",
+      "team": 1,
+      "over": 0.1,
+      "result": false,
+      "held": false
+    },
+    {
+      "edge": "left",
+      "team": 1,
+      "over": 0.25,
+      "result": true,
+      "throwTeam": 0
+    },
+    {
+      "edge": "right",
+      "team": 0,
+      "over": 0.1,
+      "result": false,
+      "held": false
+    },
+    {
+      "edge": "right",
+      "team": 0,
+      "over": 0.25,
+      "result": true,
+      "throwTeam": 1
+    },
+    {
+      "edge": "right",
+      "team": 1,
+      "over": 0.1,
+      "result": false,
+      "held": false
+    },
+    {
+      "edge": "right",
+      "team": 1,
+      "over": 0.25,
+      "result": true,
+      "throwTeam": 0
+    },
+    {
+      "edge": "top",
+      "team": 0,
+      "over": 0.1,
+      "result": false,
+      "held": false
+    },
+    {
+      "edge": "top",
+      "team": 0,
+      "over": 0.25,
+      "result": true,
+      "held": true
+    },
+    {
+      "edge": "top",
+      "team": 1,
+      "over": 0.1,
+      "result": false,
+      "held": false
+    },
+    {
+      "edge": "top",
+      "team": 1,
+      "over": 0.25,
+      "result": true,
+      "piece": "corner"
+    },
+    {
+      "edge": "bottom",
+      "team": 0,
+      "over": 0.1,
+      "result": false,
+      "held": false
+    },
+    {
+      "edge": "bottom",
+      "team": 0,
+      "over": 0.25,
+      "result": true,
+      "piece": "corner"
+    },
+    {
+      "edge": "bottom",
+      "team": 1,
+      "over": 0.1,
+      "result": false,
+      "held": false
+    },
+    {
+      "edge": "bottom",
+      "team": 1,
+      "over": 0.25,
+      "result": true,
+      "held": true
+    }
+  ],
+  "rush": [
+    {
+      "team": 0,
+      "depth": 9,
+      "lateral": 0,
+      "targetDepth": 8.084999999999997,
+      "initialGap": 0.9150000000000005,
+      "caught": true,
+      "maxStep": 0.06283333333333169,
+      "challenge": true
+    },
+    {
+      "team": 0,
+      "depth": 9,
+      "lateral": 5,
+      "targetDepth": 8.084999999999997,
+      "initialGap": 1.0467223976670132,
+      "caught": true,
+      "maxStep": 0.0628333333333379,
+      "challenge": true
+    },
+    {
+      "team": 0,
+      "depth": 12,
+      "lateral": 0,
+      "targetDepth": 11.085,
+      "initialGap": 0.9150000000000005,
+      "caught": true,
+      "maxStep": 0.06283333333333169,
+      "challenge": true
+    },
+    {
+      "team": 0,
+      "depth": 12,
+      "lateral": 5,
+      "targetDepth": 11.085,
+      "initialGap": 0.9912500000000003,
+      "caught": true,
+      "maxStep": 0.06283333333333432,
+      "challenge": true
+    },
+    {
+      "team": 0,
+      "depth": 16,
+      "lateral": 0,
+      "targetDepth": 15.084999999999997,
+      "initialGap": 0.9150000000000005,
+      "caught": true,
+      "maxStep": 0.06283333333333169,
+      "challenge": true
+    },
+    {
+      "team": 0,
+      "depth": 16,
+      "lateral": 5,
+      "targetDepth": 15.084999999999997,
+      "initialGap": 0.9586371857518627,
+      "caught": true,
+      "maxStep": 0.06283333333333638,
+      "challenge": true
+    },
+    {
+      "team": 0,
+      "depth": 20,
+      "lateral": 0,
+      "targetDepth": 1.9999999999999976,
+      "initialGap": 18.000000000000004,
+      "caught": false,
+      "maxStep": 0,
+      "challenge": false
+    },
+    {
+      "team": 0,
+      "depth": 20,
+      "lateral": 5,
+      "targetDepth": 1.9999999999999976,
+      "initialGap": 18.68154169226941,
+      "caught": false,
+      "maxStep": 0,
+      "challenge": false
+    },
+    {
+      "team": 1,
+      "depth": 9,
+      "lateral": 0,
+      "targetDepth": 8.085,
+      "initialGap": 0.9149999999999985,
+      "caught": true,
+      "maxStep": 0.06283333333333371,
+      "challenge": true
+    },
+    {
+      "team": 1,
+      "depth": 9,
+      "lateral": 5,
+      "targetDepth": 8.085,
+      "initialGap": 1.0467223976670117,
+      "caught": true,
+      "maxStep": 0.06283333333333464,
+      "challenge": true
+    },
+    {
+      "team": 1,
+      "depth": 12,
+      "lateral": 0,
+      "targetDepth": 11.085,
+      "initialGap": 0.9149999999999985,
+      "caught": true,
+      "maxStep": 0.06283333333333371,
+      "challenge": true
+    },
+    {
+      "team": 1,
+      "depth": 12,
+      "lateral": 5,
+      "targetDepth": 11.085,
+      "initialGap": 0.9912499999999983,
+      "caught": true,
+      "maxStep": 0.06283333333333432,
+      "challenge": true
+    },
+    {
+      "team": 1,
+      "depth": 16,
+      "lateral": 0,
+      "targetDepth": 15.085,
+      "initialGap": 0.9149999999999985,
+      "caught": true,
+      "maxStep": 0.06283333333333371,
+      "challenge": true
+    },
+    {
+      "team": 1,
+      "depth": 16,
+      "lateral": 5,
+      "targetDepth": 15.085,
+      "initialGap": 0.9586371857518609,
+      "caught": true,
+      "maxStep": 0.06283333333333446,
+      "challenge": true
+    },
+    {
+      "team": 1,
+      "depth": 20,
+      "lateral": 0,
+      "targetDepth": 1.9999999999999996,
+      "initialGap": 18,
+      "caught": false,
+      "maxStep": 0,
+      "challenge": false
+    },
+    {
+      "team": 1,
+      "depth": 20,
+      "lateral": 5,
+      "targetDepth": 1.9999999999999996,
+      "initialGap": 18.681541692269406,
+      "caught": false,
+      "maxStep": 0,
+      "challenge": false
+    }
+  ],
+  "tackles": [
+    {
+      "won": false,
+      "attempts": 1,
+      "wins": 0,
+      "victimAttempts": 0
+    },
+    {
+      "won": true,
+      "attempts": 1,
+      "wins": 1,
+      "victimAttempts": 0
+    },
+    {
+      "type": "slide",
+      "won": false,
+      "attempts": 1,
+      "wins": 0,
+      "victimAttempts": 0
+    },
+    {
+      "type": "slide",
+      "won": true,
+      "attempts": 1,
+      "wins": 1,
+      "victimAttempts": 0
+    }
+  ],
+  "errors": []
+}

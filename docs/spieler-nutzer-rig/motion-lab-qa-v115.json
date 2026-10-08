@@ -1,0 +1,85 @@
+{
+  "samples": [
+    {
+      "id": "stop-ball",
+      "time": 1.8693000000000015,
+      "motion": "brake_meshy",
+      "gloves": 0,
+      "ball": [
+        0.06217840051375931,
+        0.29,
+        6.551200000000005
+      ],
+      "engine": 0
+    },
+    {
+      "id": "throw",
+      "time": 0.6460000000000004,
+      "motion": "throw_hold",
+      "gloves": 0,
+      "ball": [
+        0,
+        3.04,
+        -0.1
+      ],
+      "handContact": 0.16419030506952736,
+      "engine": 0
+    },
+    {
+      "id": "goal-kick",
+      "time": 0.7820000000000005,
+      "motion": "keeper_ground_ready",
+      "gloves": 2,
+      "ball": [
+        0,
+        0.29,
+        0.65
+      ],
+      "engine": 0
+    },
+    {
+      "id": "keeper-parry-left",
+      "time": 0.7986999999999994,
+      "motion": "keeper_recover",
+      "gloves": 2,
+      "ball": [
+        -1.1,
+        0.8,
+        0.65
+      ],
+      "handContact": 0.4147343149095728,
+      "engine": 0
+    },
+    {
+      "id": "keeper-parry-right",
+      "time": 0.7986999999999994,
+      "motion": "keeper_recover",
+      "gloves": 2,
+      "ball": [
+        1.1,
+        0.8,
+        0.65
+      ],
+      "handContact": 0.41473431490957324,
+      "engine": 0
+    },
+    {
+      "id": "keeper-smother",
+      "time": 0.7480000000000004,
+      "motion": "keeper_smother",
+      "gloves": 2,
+      "ball": [
+        0.05277674065239196,
+        0.6462137376239837,
+        0.8236244486785592
+      ],
+      "handContact": 0.33528898914523475,
+      "engine": 0
+    }
+  ],
+  "layout": {
+    "width": 844,
+    "scroll": 844
+  },
+  "errors": []
+}

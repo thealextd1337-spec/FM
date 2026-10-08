@@ -1,0 +1,33 @@
+const fs=require('fs');
+const file='work/platform/qa/check-world-football-v159.cjs';let s=fs.readFileSync(file,'utf8');
+s=s.replace(/const out=freshnessCandidate\?[^;]+;/,"const out=path.resolve('outputs/platform/football-v159/unity-world');");
+s=s.replace("if(freshnessCandidate)for(const file of [", "if(freshnessCandidate)for(const file of ['dist/world-football-flow-v159.js','dist/match-shot-choice-v159.js','dist/world-pitch-actions-v99.js','dist/ui-flutlicht/match.css',");
+const anchor="  const previousSession=await page.evaluate(()=>D6UnityMatch.session);";
+if(!s.includes(anchor))throw Error('Camera insertion anchor missing');
+s=s.replace(anchor,`  const cameraState=await page.evaluate(()=>JSON.stringify({elapsed:match.elapsed,score:match.score,ball:match.ball,events:v65Context().state.events,load:v65Context().state.playerLoad}));
+  await page.locator('#v100-pitch-toggle').click();
+  check('Camera menu escapes pitch clipping using top-layer popover',await page.evaluate(()=>document.querySelector('#v100-pitch-panel').matches(':popover-open')));
+  const cameraViews=[];
+  for(const mode of ['follow','wide','sideline','diagonal','goal']){
+   await page.locator('#v98-camera').selectOption(mode);
+   await page.locator('#v159-camera-near').fill('0');await page.waitForTimeout(180);
+   const far=await page.evaluate(()=>D6UnityMatch.picture.camera);
+   await page.locator('#v159-camera-near').fill('100');await page.waitForTimeout(180);
+   const near=await page.evaluate(()=>D6UnityMatch.picture.camera);
+   const distance=c=>Math.hypot(...['x','y','z'].map((axis,i)=>c.position[i]-c.target[i]));
+   check(mode+' camera proximity changes actual Unity camera distance',distance(near)<distance(far)*.6);
+   cameraViews.push({mode,far,near});
+  }
+  report.cameraViews=cameraViews;
+  await page.locator('#v98-camera').selectOption('follow');await page.locator('#v159-camera-near').fill('60');
+  await page.keyboard.press('Escape');check('Escape closes options and restores focus',await page.locator('#v100-pitch-panel').isHidden()&&await page.locator('#v100-pitch-toggle').evaluate(el=>el===document.activeElement));
+  check('Camera controls never alter native match or P02 workload',cameraState===await page.evaluate(()=>JSON.stringify({elapsed:match.elapsed,score:match.score,ball:match.ball,events:v65Context().state.events,load:v65Context().state.playerLoad})));
+  ${anchor.trim()}`);
+const spinAnchor="  if(offenseCandidate){await waitPicture(page);await page.screenshot({path:path.join(out,'live-segment.png')});}";
+if(!s.includes(spinAnchor))throw Error('Spin anchor missing');
+s=s.replace(spinAnchor,`  await page.waitForTimeout(350);
+  report.presentation=await page.evaluate(()=>D6UnityMatch.projection);
+  check('Actual Unity ball transform rotates during the real football segment',report.presentation.ballSpinDegrees>1&&report.presentation.ballRotation.length===4&&report.presentation.ballRotation.every(Number.isFinite));
+  check('Real actor projection reports continuous stride phases',report.presentation.poses.every(p=>Number.isFinite(p.stridePhase)&&Number.isFinite(p.speed)));
+  ${spinAnchor.trim()}`);
+fs.writeFileSync(file,s);

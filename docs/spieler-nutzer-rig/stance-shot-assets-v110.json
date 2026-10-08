@@ -1,0 +1,54 @@
+{
+  "output": "meshy_output/user-character-2026-10-03/character-football-v110.glb",
+  "sourceTasks": [
+    "01a10392-b967-7448-ab3e-cb01e1873276"
+  ],
+  "resource": "animate",
+  "project": "meshy_output/20261003_123727_nutzercharakter-fussball-beweg_01a10156",
+  "rigTask": "01a10156-b12b-74d3-baef-6e0b4054a2b9",
+  "consumedCredits": {
+    "stanceShot": 9,
+    "total": 9
+  },
+  "clipCount": 25,
+  "geometryRigTexturesOriginalClipsPreserved": true,
+  "sha256": "533e4b1bf85c595fd80e2ace52d922fd2a55c599e7b3f8996e5ce048207659d6",
+  "clips": [
+    {
+      "key": "idle_relaxed",
+      "actionId": 11,
+      "sourceTask": "01a10392-b967-7448-ab3e-cb01e1873276",
+      "providerClip": "Idle_02",
+      "duration": 1.8666666746139526,
+      "loop": true,
+      "providerYawRange": [
+        -0.4603458657770218,
+        -0.40046696202078996
+      ]
+    },
+    {
+      "key": "idle_ready",
+      "actionId": 12,
+      "sourceTask": "01a10392-b967-7448-ab3e-cb01e1873276",
+      "providerClip": "Idle_03",
+      "duration": 4.266666889190674,
+      "loop": true,
+      "providerYawRange": [
+        -0.5552731045410985,
+        -0.08943082663954972
+      ]
+    },
+    {
+      "key": "shot_meshy",
+      "actionId": 410,
+      "sourceTask": "01a10392-b967-7448-ab3e-cb01e1873276",
+      "providerClip": "Kick_a_Soccer_Ball",
+      "duration": 1.6333333253860474,
+      "loop": false,
+      "providerYawRange": [
+        -0.5730576078115668,
+        -0.00019772291084077845
+      ]
+    }
+  ]
+}

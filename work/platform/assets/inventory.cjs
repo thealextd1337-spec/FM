@@ -1,0 +1,23 @@
+'use strict';
+// Read the asset actually referenced by the production bootstrap. No dependencies.
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+const root=path.resolve(__dirname,'../../..'),sha=b=>crypto.createHash('sha256').update(b).digest('hex');
+const relative=p=>path.relative(root,p).replaceAll('\\','/');
+function dimensions(b,mime){if(mime==='image/png')return{width:b.readUInt32BE(16),height:b.readUInt32BE(20)};for(let p=2;p<b.length;){if(b[p++]!==255)continue;const marker=b[p++];if(marker===216||marker===217)continue;const length=b.readUInt16BE(p);if([192,193,194,195].includes(marker))return{width:b.readUInt16BE(p+5),height:b.readUInt16BE(p+3)};p+=length;}throw Error('JPEG dimensions absent');}
+function inspect(){
+ const loader=fs.readFileSync(path.join(root,'dist/player-user-bootstrap-v112.js'),'utf8');
+ const file=loader.match(/fetch\('(players\/[^']+\.glb)'\)/)[1],source=path.join(root,'dist',file),bytes=fs.readFileSync(source);
+ if(bytes.toString('utf8',0,4)!=='glTF'||bytes.readUInt32LE(4)!==2)throw Error('Expected GLB 2');
+ const jsonLength=bytes.readUInt32LE(12),g=JSON.parse(bytes.toString('utf8',20,20+jsonLength)),bin=bytes.subarray(28+jsonLength);
+ const assetHash=sha(bytes),out=path.join(root,'outputs/platform/assets',assetHash);fs.mkdirSync(path.join(out,'textures'),{recursive:true});
+ const sources=[source,path.join(root,'dist/players/calibration-v130.json'),path.join(root,'dist/players/cloth-mask.png')].map(p=>{const b=fs.readFileSync(p);fs.copyFileSync(p,path.join(out,path.basename(p)));return{path:relative(p),sha256:sha(b),bytes:b.length};});
+ const cal=JSON.parse(fs.readFileSync(path.join(root,'dist/players/calibration-v130.json'),'utf8'));
+ const parent=new Map();g.nodes.forEach((n,i)=>(n.children||[]).forEach(c=>parent.set(c,i)));
+ const images=g.images.map((im,i)=>{const v=g.bufferViews[im.bufferView],b=bin.subarray(v.byteOffset||0,(v.byteOffset||0)+v.byteLength),name=`image-${i}.${im.mimeType==='image/jpeg'?'jpg':'png'}`;fs.writeFileSync(path.join(out,'textures',name),b);return{index:i,name:im.name||null,file:`textures/${name}`,mimeType:im.mimeType,bytes:b.length,sha256:sha(b),...dimensions(b,im.mimeType)};});
+ const meshes=g.meshes.map(m=>({name:m.name,primitives:m.primitives.map(p=>({vertices:g.accessors[p.attributes.POSITION].count,triangles:g.accessors[p.indices].count/3,attributes:p.attributes,bounds:{min:g.accessors[p.attributes.POSITION].min,max:g.accessors[p.attributes.POSITION].max},material:p.material}))}));
+ const clips=g.animations.map(a=>{const inputs=a.samplers.map(s=>g.accessors[s.input]);return{name:a.name,start:Math.min(...inputs.map(a=>a.min[0])),duration:Math.max(...inputs.map(a=>a.max[0])),channels:a.channels.length,calibrated:!!cal.clips[a.name],calibration:cal.clips[a.name]?{duration:cal.clips[a.name].duration,phaseOffset:cal.clips[a.name].phaseOffset,nativeSpeed:cal.clips[a.name].nativeSpeed,stride:cal.clips[a.name].stride}:null};});
+ const manifest={schema:'d6-platform-assets/1',assetHash,source:sources,outputDirectory:relative(out),generator:g.asset,meshes,images,materials:g.materials,textures:g.textures,skins:g.skins.map(s=>({name:s.name,joints:s.joints.map(i=>({node:i,name:g.nodes[i].name,parent:parent.has(i)?g.nodes[parent.get(i)].name:null,translation:g.nodes[i].translation,rotation:g.nodes[i].rotation,scale:g.nodes[i].scale})),inverseBindMatrices:s.inverseBindMatrices})),nodes:g.nodes,clips,calibration:{scale:cal.scale,rootScale:cal.rootScale,ground:cal.ground,soles:cal.soles,clipCount:Object.keys(cal.clips).length},contract:{units:'metres',sourceUp:'+Y',sourceForward:'+Z',runtimeScale:1.45,runtimeYOffset:0.08,rootMotion:'Simulation owns player position and facing. Export retains source joint motion; renderer must not apply root travel to gameplay.',geometry:'Full master, no decimation',textures:'Original embedded PNG bytes; shared between instances',skin:'One independent skeleton/animation state per instance; shared mesh/material textures',unity:'FBX Generic rig, animation compression Off for comparison, root motion disabled; separate URP material adapter required',productionExtras:'Club colours, numbers, gloves and contact IK are renderer-generated and are not embedded in the GLB.'},cost:{newMeshyTasks:0,newCredits:0}};
+ fs.writeFileSync(path.join(__dirname,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');fs.writeFileSync(path.join(out,'manifest.json'),JSON.stringify(manifest,null,2)+'\n');
+ console.log(JSON.stringify({assetHash,out,meshes,images,clips:clips.length,joints:manifest.skins[0].joints.length}));return manifest;
+}
+if(require.main===module)inspect();module.exports={inspect,root,sha};

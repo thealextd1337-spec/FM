@@ -1,0 +1,59 @@
+{
+  "version": 126,
+  "date": "2026-10-05T09:10:47.970Z",
+  "published": false,
+  "footer": 106,
+  "credits": 0,
+  "modelClips": 32,
+  "modelSha256": "39eee0c85c05a93496d1679330c0fcd81a9f5f87d8ad13876c61d29cb3a09cb2",
+  "sourceHashes": {
+    "dist/world-backpedal-v108.js": "e52023a235c930f8285fcbd989833655a900964acdbeade0b95ab6b53b0384c0",
+    "dist/world-physical-v65.js": "888735673e686067e0ff5b8a180608cb4d7f5b81f9503c119247455c227f9fe8",
+    "dist/i18n-v75.js": "877d735f66c85ddb65894c2582c594980755e157775eb195f234b1a58174ea4a"
+  },
+  "offline": {
+    "file": "outputs/Doppel-6-Fussballmanager.html",
+    "sha256": "6fe8b997f7f7e94630757def815d936d5dd399d9446b6208634dd796c271423a",
+    "bytes": 49944524
+  },
+  "probe": {
+    "file": "outputs/spieler-nutzer-match.html",
+    "sha256": "b34f350fa993c04cfa28a8cd9b2fffa2b17f0fabb6a9cbb42e1634c20b323bfa"
+  },
+  "evidenceHashes": {
+    "docs/spieler-nutzer-rig/defensive-line-baseline-v126.json": "c6277da80c2ca25f14cdc78cefaa5edf626d75eb1e2d61c1bd829977d6760892",
+    "docs/spieler-nutzer-rig/defensive-line-qa-v126.json": "bff54a9848fd1f5f6908d17d37a97e0977841581aa360e131104ea5e0db986d1",
+    "docs/spieler-nutzer-rig/penalty-controls-baseline-v126.json": "6c565b586e0071e1debc64f92d1dc8fc5ebdaa64e921ec43a6672ac9b65f229a",
+    "docs/spieler-nutzer-rig/penalty-controls-qa-v126.json": "9d0b2f9649964c985f36eca6cc733568d0411700d3e03be3f3d9b1febff918e8",
+    "docs/spieler-nutzer-rig/positioning-qa-v126.json": "b3178a15e95489f3368e569f3c5dc8c37609ac329451b8f97595dd90c766adb4",
+    "docs/spieler-nutzer-rig/free-ball-positioning-qa-v126.json": "15e0280fc0184eb2f70b53ed511fc21266389d328bede869eb8cd9600af2fab5",
+    "docs/spieler-nutzer-rig/offside-body-qa-v126.json": "4e8425a2c2eb4302c308ce685088418794d43fae73e71604232e878a51bb9ec9",
+    "docs/spieler-nutzer-rig/ground-scenarios-qa-v126.json": "b488395ae754ddcd68615683a91b4500906b35cc66f5b2034ada50e907ad69b7",
+    "docs/spieler-nutzer-rig/warping-qa-v126.json": "1a93c8d37addff5d384d1aa8f7e7e4f52db62eb2aeb9b9951fe8fd4c9bd88386",
+    "outputs/world3d-parity-v126.json": "05cd6271745d938d308f29a21089e991551a9362d132e820e293461046d38b45",
+    "outputs/penalty-controls-1270-v126.png": "fc8958198f2fd0890205ad4cb4117d3449b991d3a8af2544a6f093da0c8e8d46",
+    "outputs/penalty-controls-390-v126.png": "c312424f35723f7919e39e4c6c3b695b2f8f5add9bf3981419b370306c7e432b"
+  },
+  "documentationHashes": {
+    "docs/README.md": "092339001fe8426c74b19ba52d3c0f651f2aaccd79b23857f30e37b1bceb0a9a",
+    "docs/CHANGELOG.md": "b4de2dd627b2a3ccf6267fe95830344f2d4e21e2b3c1b3403c7b04a51f29ff83",
+    "docs/development.md": "2f2f0ac9a5cb5f2e4b581ab7363fd7257dac51fb1c6b67a4e0b9915e1690db86",
+    "docs/product.md": "ec43d486490125d61939905f3e296e789bba57ecc1f4f32b0e49368d0eb691c6",
+    "docs/spieler-nutzer-rig/README.md": "f4e6d9addccb04cc8b8a73823d462632d2fb5d377fbea446ddbd9767ef991f87",
+    "docs/spieler-nutzer-rig/changes-v126.md": "48cad9d1ab151ada773464a981091f0e9aeb7bfd7450c15508ba54216599ad72"
+  },
+  "gates": {
+    "defensiveCases": 54,
+    "turnoverFailuresBefore": 6,
+    "turnoverFailuresAfter": 0,
+    "desktopMobileShootoutWithRealReload": true,
+    "fullWarpingMatches": 2,
+    "physicsSteps": 4830,
+    "renderFrames": 14484,
+    "visibleWarpViolations": 0,
+    "regularOffline2d3dParity": true,
+    "historicalEvidenceUnchanged": true,
+    "sourceMatchesEmbeddedBuild": true
+  },
+  "limitations": "Controlled fixed opponents isolate line retreat; no guarantee of trapping every attacker. Future physical match outcomes can change; two seeds are a technical regression, not balance calibration. Shootout retains existing outcome and persistence logic."
+}

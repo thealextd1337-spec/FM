@@ -1,0 +1,75 @@
+{
+  "accepted": true,
+  "pid": "user-meshy-local-match:GER-2:2",
+  "before": 0,
+  "after": 0,
+  "history": [
+    {
+      "fixtureId": "S1:GER:LEAGUE:R2:GER-2-GER-6:1",
+      "season": 1,
+      "clubId": "GER-2",
+      "competitionId": "S1:GER:LEAGUE",
+      "minutes": 94,
+      "goals": 0,
+      "assists": 0,
+      "shots": 0,
+      "fouls": 0,
+      "penaltiesScored": 0,
+      "penaltiesMissed": 0,
+      "cleanSheet": 0,
+      "conceded": 0,
+      "rating": 6
+    }
+  ],
+  "leader": null,
+  "score": [
+    0,
+    1
+  ],
+  "result": {
+    "homeGoals": 0,
+    "awayGoals": 1,
+    "penalties": null,
+    "winnerId": null
+  },
+  "player": {
+    "pid": "user-meshy-local-match:GER-2:2",
+    "side": 0,
+    "minutes": 94,
+    "goals": 0,
+    "assists": 0,
+    "shots": 0,
+    "fouls": 0,
+    "penaltiesScored": 0,
+    "penaltiesMissed": 0,
+    "cleanSheet": 0,
+    "conceded": 0,
+    "rating": 6
+  },
+  "event": {
+    "minute": 94,
+    "minuteLabel": "90",
+    "type": "goal",
+    "side": 1,
+    "scorerPid": null,
+    "assistPid": null,
+    "source": "own-goal",
+    "ownGoalPid": "user-meshy-local-match:GER-2:2",
+    "scorerName": "Max Hartmann"
+  },
+  "reportGoal": {
+    "team": 1,
+    "pid": null,
+    "name": "Max Hartmann",
+    "minute": 90,
+    "penalty": false,
+    "source": "own-goal",
+    "ownGoal": true,
+    "ownGoalPid": "user-meshy-local-match:GER-2:2",
+    "ballEventId": 2,
+    "shotGoal": false
+  },
+  "restoredTotal": 0,
+  "seasonBannerCount": 0,
+  "errors": []
+}

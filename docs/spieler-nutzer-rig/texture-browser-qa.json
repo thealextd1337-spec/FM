@@ -1,0 +1,65 @@
+{
+  "loaded": {
+    "meshes": 1,
+    "joints": 28,
+    "vertices": 9725,
+    "textureSize": [
+      2048,
+      2048
+    ],
+    "normalMap": true,
+    "roughnessMap": true,
+    "metalnessMap": true
+  },
+  "poses": [
+    {
+      "name": "walking",
+      "samples": 33,
+      "finite": true,
+      "movement": 1.0823265635597534,
+      "restError": 0
+    },
+    {
+      "name": "running",
+      "samples": 33,
+      "finite": true,
+      "movement": 1.2134440162316875,
+      "restError": 0
+    },
+    {
+      "name": "gesture",
+      "samples": 33,
+      "finite": true,
+      "movement": 1.206893329835944,
+      "restError": 0
+    }
+  ],
+  "colorResults": [
+    {
+      "region": 0,
+      "color": "#e53232",
+      "changes": 360975,
+      "unexpected": 0
+    },
+    {
+      "region": 1,
+      "color": "#eec83b",
+      "changes": 227458,
+      "unexpected": 0
+    },
+    {
+      "region": 2,
+      "color": "#299c55",
+      "changes": 334276,
+      "unexpected": 0
+    }
+  ],
+  "defaultDownloadByteEqual": true,
+  "originalDownloadByteEqual": true,
+  "coloredDownloadRigAndMotionBinaryPreserved": true,
+  "resetPixelExact": true,
+  "errors": [],
+  "bindingWarnings": [],
+  "remoteRequests": 0,
+  "hardware": "Headless Edge software WebGL; real mobile performance and artistic acceptance pending"
+}

@@ -1,0 +1,70 @@
+/* U01-E: native financial, kit and profile controls retain their controller DOM. */
+.fl-club-tabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px;padding:5px;border:1px solid var(--fl-line);border-radius:10px;background:var(--fl-surface)}
+#v61-world-screen .fl-content .fl-club-tabs>[role=tab]{flex:1 1 auto;min-height:44px;padding:10px 16px;border:0;border-radius:7px;background:transparent;color:var(--fl-muted);font:inherit;font-size:14px;font-weight:650;line-height:1.4;white-space:normal}
+#v61-world-screen .fl-content .fl-club-tabs>[aria-selected=true]{background:var(--fl-gold);color:#15191e}
+#v61-world-screen .fl-content .fl-club-tabs>[role=tab]:hover{color:var(--fl-ink);background:var(--fl-subtle)}
+#v61-world-screen .fl-content .fl-club-tabs>[aria-selected=true]:hover{background:var(--fl-gold);color:#15191e}
+.fl-club-tabs>[role=tab]:focus-visible{outline:3px solid var(--fl-accent);outline-offset:3px}
+.fl-club-tab-panels,.fl-club-tab-panel{min-width:0}.fl-club-tab-panel[hidden]{display:none!important}
+.fl-club-tab-panel>.v62-season:first-child,.fl-club-tab-panel>.fl-club-records:first-child{margin-top:0}
+.fl-club-empty-panel{padding:22px;border:1px solid var(--fl-line);border-radius:var(--fl-radius);background:var(--fl-surface);color:var(--fl-muted);line-height:1.6}
+.fl-club-empty-panel h3{margin-top:0;color:var(--fl-ink)}
+#v61-world-screen .fl-content .fl-club .v68-profile-grid:not(:has(>:nth-child(2))){grid-template-columns:minmax(0,1fr)}
+#v61-world-screen .fl-content .fl-club :is(.v61-club-hero,.v68-profile-grid,.v61-roster-section,.v67-manager,.v74-club-chronicle){min-width:0}
+#v61-world-screen .fl-content .fl-club .v61-club-hero{display:flex;align-items:center;gap:24px;padding:24px;border:1px solid var(--fl-line);margin-bottom:20px}
+#v61-world-screen .fl-content .fl-club .v61-club-hero>.v61-crest{width:92px;height:104px;flex:none}
+#v61-world-screen .fl-content .fl-club .v61-club-hero h2{margin:6px 0 12px;font-size:clamp(22px,3vw,32px)}
+#v61-world-screen .fl-content .fl-club .v61-club-hero p{max-width:65ch;margin:8px 0}
+#v61-world-screen .fl-content .fl-club :is(.v68-profile-grid,.v74-transfer-columns){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+#v61-world-screen .fl-content .fl-club .v68-profile-grid>.v62-season{margin-top:0}
+#v61-world-screen .fl-content .fl-club :is(.v61-roster-section,.v81-kits){padding:22px;border:1px solid var(--fl-line);border-radius:var(--fl-radius);background:var(--fl-surface);margin-top:18px}
+#v61-world-screen .fl-content .fl-club .v61-roster{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}
+#v61-world-screen .fl-content .fl-club .v61-player{background:var(--fl-subtle);border:1px solid var(--fl-line);padding:10px;text-align:left;min-height:66px}
+#v61-world-screen .fl-content .fl-club .v61-player-name strong{color:var(--fl-ink)}
+#v61-world-screen .fl-content .fl-club .v61-shirt{background:var(--fl-surface);border-color:var(--fl-line);color:var(--fl-accent)}
+#v61-world-screen .fl-content .fl-club :is(.v68-history,.v67-manager ul){padding-left:18px;line-height:1.6;color:var(--fl-muted)}
+#v61-world-screen .fl-content .fl-club :is(.v68-history li,.v67-manager li){padding:7px 0}
+#v61-world-screen .fl-content .fl-club .v74-club-titles{padding-left:0;list-style:none}
+#v61-world-screen .fl-content .fl-club .v74-club-titles li{display:flex;gap:10px;align-items:center}
+#v61-world-screen .fl-content .fl-club .v74-club-titles :is(svg,img){width:42px;height:42px;flex:none;object-fit:contain}
+#v61-world-screen .fl-content .fl-club .v81-kit-row{display:flex;flex-wrap:wrap;justify-content:start;gap:18px;padding:12px 0}
+#v61-world-screen .fl-content .fl-club .v81-shirt{display:grid;gap:8px;justify-items:center;color:var(--fl-muted)}
+#v61-world-screen .fl-content .fl-club .v81-kit-controls,#v61-world-screen .fl-content .fl-club .v81-colors{border-color:var(--fl-line);background:var(--fl-subtle);padding:18px;border-radius:8px}
+#v61-world-screen .fl-content .fl-club .v81-fields{display:flex;flex-wrap:wrap;gap:14px}
+#v61-world-screen .fl-content .fl-club .v81-fields label{display:grid;gap:6px;flex:1 1 150px;min-width:0}
+#v61-world-screen .fl-content .fl-club .v81-fields input[type=color]{width:100%;min-width:44px;padding:4px}
+#v61-world-screen .fl-content .fl-club :is(.v74-transfer-list,.v74-transfer-list li){border-color:var(--fl-line)}
+.fl-club-records,.fl-club-last-lineup{padding:22px;margin-top:18px;border:1px solid var(--fl-line);border-radius:var(--fl-radius);background:var(--fl-surface);color:var(--fl-ink)}
+.fl-club-section-heading>span{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--fl-accent);font-weight:700;margin-bottom:6px}
+.fl-club-section-heading h3{margin:0 0 12px}.fl-club-coverage,.fl-club-empty,.fl-club-lineup-meta{font-size:13px;color:var(--fl-muted);line-height:1.6;margin:0 0 18px}
+.fl-club-coverage{padding:10px 12px;background:var(--fl-notice);color:var(--fl-notice-ink);border-radius:6px}
+.fl-club-record-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.fl-club-record-board{min-width:0}.fl-club-record-board h4{margin:0 0 10px;font-size:14px}
+.fl-club-record-list{list-style:none;padding:0;margin:0}.fl-club-record-list li{display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:8px;align-items:center;min-height:48px;border-bottom:1px solid var(--fl-line);padding:6px 0}
+.fl-club-record-rank{font-size:12px;color:var(--fl-muted);font-variant-numeric:tabular-nums}.fl-club-record-value{font-size:18px;font-weight:750;color:var(--fl-accent);font-variant-numeric:tabular-nums}
+#v61-world-screen .fl-content .fl-club-player{min-width:0;text-align:left;line-height:1.4;overflow-wrap:anywhere;font-size:13px;padding:4px 0;border:0;background:transparent}
+.fl-club-player-name{font-size:13px;overflow-wrap:anywhere}.fl-club-lineup-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;list-style:none;padding:0;margin:0}.fl-club-lineup-list li{padding:8px 12px;background:var(--fl-subtle);border-radius:6px;min-width:0}
+#v61-world-screen .fl-content .fl-club-finances .finance-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#v61-world-screen .fl-content .fl-club-finances .finance-cards>span{display:grid;gap:8px;padding:16px;background:var(--fl-subtle);border:1px solid var(--fl-line);border-radius:8px;color:var(--fl-muted);font-size:12px}
+#v61-world-screen .fl-content .fl-club-finances .finance-cards b{font-size:clamp(18px,2.2vw,25px);color:var(--fl-accent);overflow-wrap:anywhere}
+#v61-world-screen .fl-content .fl-club-finances .ledger{display:grid;gap:0}
+#v61-world-screen .fl-content .fl-club-finances .ledger>div{display:flex;align-items:start;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--fl-line);background:transparent;color:var(--fl-ink)}
+#v61-world-screen .fl-content .fl-club-finances .ledger b{flex:none;color:var(--fl-success-ink);font-variant-numeric:tabular-nums}
+#v61-world-screen .fl-content .fl-club-finances .ledger b.out{color:var(--fl-alert-ink)}
+#v61-world-screen .fl-content .fl-club-finances :is(.v130-annual,.v130-new-season){padding:20px;border:1px solid var(--fl-line);border-radius:8px;background:var(--fl-surface);margin:14px 0}
+#v61-world-screen .fl-content .fl-club-finances .v130-account-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:10px 0;color:var(--fl-ink);border-color:var(--fl-line)}
+#v61-world-screen .fl-content .fl-club-finances :is(.v130-total,.v130-negative){border-color:var(--fl-line);background:var(--fl-tint);padding:12px;color:var(--fl-ink)}
+#v61-world-screen .fl-content .fl-club-finances .v130-negative{color:var(--fl-alert-ink)}
+#v61-world-screen .fl-content .fl-club-finances :is(output,.v130-account-row b){font-variant-numeric:tabular-nums}
+#v61-world-screen .fl-content .fl-club-coach-detail>.v62-season{border:1px solid var(--fl-line)}
+@media(max-width:700px){
+ .fl-club-tabs{gap:4px;margin-bottom:16px}#v61-world-screen .fl-content .fl-club-tabs>[role=tab]{flex:1 1 120px;padding:10px 8px;font-size:13px}.fl-club-empty-panel{padding:16px}
+ #v61-world-screen .fl-content .fl-club .v61-club-hero{gap:14px;padding:16px;align-items:start}#v61-world-screen .fl-content .fl-club .v61-club-hero>.v61-crest{width:58px;height:68px}
+ #v61-world-screen .fl-content .fl-club :is(.v68-profile-grid,.v74-transfer-columns){grid-template-columns:1fr;gap:12px}
+ #v61-world-screen .fl-content .fl-club :is(.v61-roster-section,.v81-kits),.fl-club-records,.fl-club-last-lineup{padding:16px}
+ #v61-world-screen .fl-content .fl-club .v61-roster{grid-template-columns:minmax(0,1fr)}
+ .fl-club-record-grid{grid-template-columns:minmax(0,1fr);gap:24px}.fl-club-lineup-list{grid-template-columns:minmax(0,1fr)}
+ #v61-world-screen .fl-content .fl-club-finances .finance-cards{gap:8px}#v61-world-screen .fl-content .fl-club-finances .finance-cards>span{padding:12px}
+ #v61-world-screen .fl-content .fl-club-finances .ledger>div{flex-wrap:wrap;gap:5px}#v61-world-screen .fl-content .fl-club-finances .ledger>div>span{flex-basis:100%}
+ #v61-world-screen .fl-content .fl-club-finances :is(.v130-annual,.v130-new-season){padding:12px}
+ #v61-world-screen .fl-content .fl-club-finances .v130-account-row{flex-wrap:wrap;gap:4px}#v61-world-screen .fl-content .fl-club-finances .v130-account-row>:last-child{margin-left:auto}
+}

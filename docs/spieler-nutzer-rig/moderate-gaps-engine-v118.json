@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-04T17:02:02.426Z",
+  "previousBuildSha256": "7e33ed70f32040eee8b63f02f56e4aa4e4f25704e32faa01283bcacefe2b48db",
+  "offline": {
+    "sha256": "76dda23f031efa7cc8c1b5ac3301f67b45354b990b369efc361236267ef26048",
+    "bytes": 49891640
+  },
+  "sourceHashes": {
+    "game.js": "e35387c3b86930aab1aed9d845de933c72ad5fcf3b1d58f4cc9ad1815a4ce86f",
+    "set-pieces-v50.js": "0456d8f49edce57d34df80627e271cee642b3326d89f0efe43c7bf60b97ee212",
+    "pitch-v55.js": "9131c4990afd6c18d13cf5b5c5b95b1ac6698253fc2941125bee19a7342d1f24",
+    "pitch-v57.js": "fc843e3dbf2ca0df7200eef118f2403ef084aaf7c18146b6ffa6d691884b1368",
+    "world-backpedal-v108.js": "17dd41f18ba2121abff3ad6d6ddb7873b967d4d61bb627fe6d347e9b93680ef5",
+    "world-ball-motion-v110.js": "74592ce456f42c5cabdfcced5386b0c79457c3b210979fc513a6c82a89a67823",
+    "match-ball-events-v117.js": "280ed36447e244d57e7db090b4e26369bccad86501d9c2e6b66b369db73c4713",
+    "world-match-v64.js": "3949c0b5eeafd5803d9990d3273ce95ee6253884c1407cb637fc09fd479fc816",
+    "world-physical-v65.js": "8b0c35220a8b2739e069c8797e8b337c517dd3bb82e17eefdf94cad443f3d8e0"
+  },
+  "changedSimulationFiles": [
+    "set-pieces-v50.js"
+  ],
+  "change": "Clear pending world throw-in at halftime whistle; prevent simultaneous second-half kickoff and throw-in",
+  "modelSha256": "39eee0c85c05a93496d1679330c0fcd81a9f5f87d8ad13876c61d29cb3a09cb2",
+  "qaSha256": "84d815bf15b9e6909aa43e22be40933113bcca722385cf6065136fcc0610e093"
+}

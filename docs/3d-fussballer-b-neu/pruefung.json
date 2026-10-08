@@ -1,0 +1,27 @@
+{
+  "scene": "B_Fussballer_Komplett_Neu",
+  "mesh_count_with_ball": 57,
+  "triangles_with_ball": 1974,
+  "all_original_mesh_names": true,
+  "finite_geometry": true,
+  "smooth_faces": 0,
+  "shoe_ground_min": {
+    "L": 0.00299999862909317,
+    "R": 0.00299999862909317
+  },
+  "mesh_sources": "All newly authored in this MCP session; no meshes copied from previous project",
+  "animations": 0,
+  "game_integration": false,
+  "native_file": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\docs\\3d-fussballer-b-neu\\Fussballer-B-Komplett-Neu.blend",
+  "native_reopened": true,
+  "native_scene_count": 1,
+  "native_objects": 75,
+  "packed_reference": true,
+  "embedded_source": true,
+  "render_views": [
+    "Ballpose",
+    "Profil",
+    "Ruecken",
+    "Gesicht"
+  ]
+}

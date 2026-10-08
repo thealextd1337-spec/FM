@@ -1,0 +1,91 @@
+{
+  "date": "2026-10-04T20:36:46.533Z",
+  "cases": [
+    {
+      "name": "caught",
+      "passed": true
+    },
+    {
+      "name": "parried",
+      "passed": true
+    },
+    {
+      "name": "goal",
+      "passed": true
+    },
+    {
+      "name": "miss",
+      "passed": true
+    },
+    {
+      "name": "blocked",
+      "passed": true
+    },
+    {
+      "name": "unreached-block",
+      "passed": true
+    },
+    {
+      "name": "final whistle, repeated finish",
+      "passed": true
+    },
+    {
+      "name": "off-target interruption",
+      "passed": true
+    },
+    {
+      "name": "long header becomes pass",
+      "passed": true
+    },
+    {
+      "name": "shot goal without a predicted target booking",
+      "passed": true
+    },
+    {
+      "name": "goal from pass",
+      "passed": true
+    },
+    {
+      "name": "goal from cross",
+      "passed": true
+    },
+    {
+      "name": "rolling cross, snapshot restore",
+      "passed": true
+    },
+    {
+      "name": "parry and intentional follow-up shot",
+      "passed": true
+    },
+    {
+      "name": "parry rolls into goal, no new shot",
+      "passed": true
+    },
+    {
+      "name": "own goal",
+      "passed": true
+    },
+    {
+      "name": "penalty goal caught",
+      "passed": true
+    },
+    {
+      "name": "penalty save caught",
+      "passed": true
+    },
+    {
+      "name": "penalty save parried",
+      "passed": true
+    },
+    {
+      "name": "penalty wide caught",
+      "passed": true
+    },
+    {
+      "name": "old ongoing match stays untracked",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Accounting state transitions with deterministic callback stubs; physical behavior checked separately in real live matches."
+}

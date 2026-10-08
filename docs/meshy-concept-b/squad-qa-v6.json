@@ -1,0 +1,81 @@
+{
+  "squad": {
+    "count": 10,
+    "teams": [
+      5,
+      5
+    ],
+    "matching": true,
+    "geometries": 2,
+    "maps": 2,
+    "skeletons": 10,
+    "resources": {
+      "leases": 17,
+      "geometries": 2,
+      "hairStyles": 6,
+      "numberTextures": 8
+    },
+    "unchanged": true
+  },
+  "gallery": {
+    "styles": [
+      "buzz",
+      "side_part",
+      "medium_waves",
+      "round_afro",
+      "cornrows",
+      "textured_crop",
+      "tight_curls",
+      "short_locs",
+      "long_tied",
+      "bald"
+    ],
+    "immutable": true,
+    "geometryCount": 91
+  },
+  "lifetime": {
+    "partial": 0,
+    "full": 1,
+    "before": 10,
+    "after": 0,
+    "leases": 0,
+    "recreated": 10
+  },
+  "motion": {
+    "states": [
+      "idle",
+      "walk",
+      "run"
+    ],
+    "maxCadence": 14.000000000000057,
+    "root": [
+      0,
+      0,
+      0
+    ],
+    "unchanged": true
+  },
+  "natural": {
+    "steps": 220,
+    "states": [
+      "idle",
+      "walk",
+      "run"
+    ],
+    "actions": [],
+    "models": 10,
+    "render": {
+      "frame": 542,
+      "calls": 58,
+      "triangles": 76652,
+      "points": 0,
+      "lines": 194
+    },
+    "memory": {
+      "geometries": 77,
+      "textures": 23
+    }
+  },
+  "remoteRequests": 0,
+  "errors": []
+}

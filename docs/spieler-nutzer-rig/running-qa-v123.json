@@ -1,0 +1,104 @@
+{
+  "cases": [
+    {
+      "schedule": "30",
+      "carrying": false,
+      "frames": 151,
+      "maxHips": 0.21493212557735375,
+      "maxFoot": 0.5013109977648599,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast6": 118,
+        "run_fast4": 3
+      }
+    },
+    {
+      "schedule": "30",
+      "carrying": true,
+      "frames": 151,
+      "maxHips": 0.2149321255773427,
+      "maxFoot": 0.5013116189483163,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 121
+      }
+    },
+    {
+      "schedule": "60",
+      "carrying": false,
+      "frames": 301,
+      "maxHips": 0.07750128278182221,
+      "maxFoot": 0.173595532911729,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast4": 19,
+        "run_fast6": 223
+      }
+    },
+    {
+      "schedule": "60",
+      "carrying": true,
+      "frames": 301,
+      "maxHips": 0.0790109800168842,
+      "maxFoot": 0.17359553291132332,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 242
+      }
+    },
+    {
+      "schedule": "120",
+      "carrying": false,
+      "frames": 600,
+      "maxHips": 0.06703785242252654,
+      "maxFoot": 0.09336134714134638,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast6": 339,
+        "run_fast4": 141
+      }
+    },
+    {
+      "schedule": "120",
+      "carrying": true,
+      "frames": 600,
+      "maxHips": 0.06703785242329749,
+      "maxFoot": 0.09336134713701204,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 480
+      }
+    },
+    {
+      "schedule": "jitter",
+      "carrying": false,
+      "frames": 238,
+      "maxHips": 0.21138195692515954,
+      "maxFoot": 0.5113920064953883,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast6": 191
+      }
+    },
+    {
+      "schedule": "jitter",
+      "carrying": true,
+      "frames": 238,
+      "maxHips": 0.21138195692399953,
+      "maxFoot": 0.5113920064934359,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 191
+      }
+    }
+  ],
+  "errors": []
+}

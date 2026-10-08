@@ -111,7 +111,7 @@ function v61ValidAppearance(appearance){
  return !!appearance&&v61SkinTones.includes(appearance.skinTone)&&v61HairColors.includes(appearance.hairColor)&&v61Hairstyles.includes(appearance.hairstyle)&&v61FaceShapes.includes(appearance.faceShape)&&v61EyeBrows.includes(appearance.eyeBrows)&&v61Noses.includes(appearance.nose)&&v61Mouths.includes(appearance.mouth)&&v61FacialHair.includes(appearance.facialHair)&&v61StoredJubelPoses.includes(appearance.pose);
 }
 
-function v61GenerateRoster(entry,seed){
+function v61GenerateRoster(entry,seed,foundation=null){
  const random=v61Random(`${seed}:${entry.id}`),home=entry.id.slice(0,3),quality=entry.profile[5]-(entry.id.includes('-C')?1:0),used=new Set(),legacyUsed=new Set(),roster=[];
  return v61Layout.map((line,index)=>{
   const legacyNation=random()<.79?home:v61Countries[Math.floor(random()*v61Countries.length)][0],names=v61Names[legacyNation];
@@ -122,15 +122,16 @@ function v61GenerateRoster(entry,seed){
   used.add(name);
   const player={pid,n:index+1,name,nation,age:19+Math.floor(random()*16),line,assignedLine:line,keeper:line==='gk',type:v61PositionNames[line],foot:random()<.2?'Links':'Rechts',form:0,fresh:100,history:[],seasons:[],honours:[]};
   for(const [key,base]of Object.entries(v61SkillBases[line]))player[key]=Math.max(1,Math.min(20,Math.round(base+(quality-3)*1.1+(random()-.5)*3)));
+  if(foundation)v153Generate(player,foundation,entry.id.includes('FREE')?'free':entry.id.includes('-C')?'cup':'start',entry.profile[5],entry.profile[2]);
   player.appearance=v61GenerateAppearance(pid,nation,player.age,roster);roster.push(player);
   return player;
  });
 }
 
-function v61ClubRecord(entry,seed){
+function v61ClubRecord(entry,seed,foundation=null){
  const countryId=entry.id.slice(0,3),cupOnly=entry.id.includes('-C');
  const[tradition,fans,youth,risk,patience,startingSquad]=entry.profile;
- return{id:entry.id,countryId,leagueId:cupOnly?null:`${countryId}-LEAGUE`,cupId:`${countryId}-CUP`,name:entry.name,city:entry.city,colors:entry.colors,kits:v61BuildClubKits(entry),historyText:entry.history,policy:{tradition,fans,youth,risk,patience,startingSquad},roster:v61GenerateRoster(entry,seed),youthPool:[],balance:null,ledger:[],coachId:null,history:[]};
+ return{id:entry.id,countryId,leagueId:cupOnly?null:`${countryId}-LEAGUE`,cupId:`${countryId}-CUP`,name:entry.name,city:entry.city,colors:entry.colors,kits:v61BuildClubKits(entry),historyText:entry.history,policy:{tradition,fans,youth,risk,patience,startingSquad},roster:v61GenerateRoster(entry,seed,foundation),youthPool:[],balance:null,ledger:[],coachId:null,history:[]};
 }
 
 function v61ManagerName(value){return typeof value==='string'?value.replace(/\s+/g,' ').trim():''}
@@ -150,22 +151,24 @@ function v61ValidateCareer(career){
  const players=clubs.flatMap(club=>club.roster||[]);
  if([...players,...(career.world.market?.freePlayers||[])].some(player=>!Array.isArray(player.honours)))return false;
  if([...players,...clubs.flatMap(club=>club.youthPool||[]),...(career.world.market?.freePlayers||[])].some(player=>player.appearance&&!v61ValidAppearance(player.appearance)))return false;
- const marketOpen=career.world.seasonFinished||['sponsor','open','deadline'].includes(career.world.market?.phase);
+ const marketOpen=career.world.seasonFinished||['sponsor','open','deadline',...(career.world.paymentSchedule===1?['budget']:[])].includes(career.world.market?.phase);
  if(clubs.some(club=>!Array.isArray(club.roster)||club.roster.length>14||!marketOpen&&(club.roster.length<10||club.roster.filter(player=>player.keeper).length<1))||new Set(players.map(player=>player.pid)).size!==players.length)return false;
  if(!v61Countries.every(([id])=>clubs.filter(club=>club.countryId===id&&club.leagueId).length===6&&clubs.filter(club=>club.countryId===id&&!club.leagueId).length===2))return false;
  return (typeof v66Validate!=='function'||v66Validate(career))&&(typeof v67Validate!=='function'||v67Validate(career));
 }
 
-function v61CreateCareer(clubId,seed=crypto.randomUUID(),managerName=null){
+function v61CreateCareer(clubId,seed=crypto.randomUUID(),managerName=null,playerOptions=undefined){
+ const foundation=typeof v153Options==='function'?v153Options(playerOptions===undefined?v153PreviewOptions():playerOptions,seed):null;
  if(!v61Catalog.some(club=>club.id===clubId&&!club.id.includes('-C')))throw Error('Nur ein Ligaverein kann übernommen werden.');
  const name=managerName===null?null:v61ManagerName(managerName);
  if(name!==null&&!v61ValidManagerName(name))throw Error('Der Managername muss 2 bis 32 Zeichen enthalten.');
  const now=new Date().toISOString();
- const career={schema:14,modelVersion:10,id:crypto.randomUUID(),created:now,updated:now,phase:'world-matches',manager:{id:crypto.randomUUID(),...(name===null?{}:{name}),managedClubId:clubId,stationHistory:[{clubId,fromSeason:1}]},world:{season:1,calendarCursor:null,seed,countries:v61Countries.map(([id,name])=>({id,name,leagueId:`${id}-LEAGUE`,cupId:`${id}-CUP`})),clubs:v61Catalog.map(entry=>v61ClubRecord(entry,seed)),coaches:[],contracts:[],competitions:[],transfers:[],market:{freePlayers:[],pendingBids:[]},eventLog:{processedEventIds:[],visibleNews:[]}}};
+ const career={schema:14,modelVersion:10,id:crypto.randomUUID(),created:now,updated:now,phase:'world-matches',manager:{id:crypto.randomUUID(),...(name===null?{}:{name}),managedClubId:clubId,stationHistory:[{clubId,fromSeason:1}]},world:{season:1,calendarCursor:null,seed,...(foundation?{playerFoundation:foundation}:{}),countries:v61Countries.map(([id,name])=>({id,name,leagueId:`${id}-LEAGUE`,cupId:`${id}-CUP`})),clubs:v61Catalog.map(entry=>v61ClubRecord(entry,seed,foundation)),coaches:[],contracts:[],competitions:[],transfers:[],market:{freePlayers:[],pendingBids:[]},eventLog:{processedEventIds:[],visibleNews:[]}}};
  v62PrepareSeason(career);
  v63Init(career);
  if(typeof v66Init==='function')v66Init(career);
  if(typeof v67Init==='function')v67Init(career);
+ if(typeof v158SeasonStart==='function')v158SeasonStart(career);
  if(!v61ValidateCareer(career))throw Error('Die Vereinswelt ist unvollständig.');
  return career;
 }
@@ -373,6 +376,28 @@ function v61MatchFieldKit(club,home){
  if(kit)return{...kit,trim:kit.pattern};
  const colors=v61ClubColors(club);return{main:colors[home?0:1],trim:colors[home?1:0],style:'stripe'};
 }
+// Compare the visible shirt, including broad patterns, in perceptual color space.
+// Main RGB alone accepts white/gold halves against gold/white stripes.
+function v61KitAppearance(kit){
+ const lab=color=>{
+  const [r,g,b]=[1,3,5].map(i=>{const c=parseInt(color.slice(i,i+2),16)/255;return c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4)});
+  const f=n=>n>.008856?Math.cbrt(n):7.787*n+16/116;
+  const x=f((.4124564*r+.3575761*g+.1804375*b)/.95047),y=f(.2126729*r+.7151522*g+.072175*b),z=f((.0193339*r+.119192*g+.9503041*b)/1.08883);
+  // At TV-camera size, lightness is more reliable than small hue differences.
+  return[116*y-16,250*(x-y),100*(y-z)];
+ };
+ const coverage={stripe:.28,stripes:.45,hoops:.28,halves:.5,diagonal:.2,pinstripes:.12}[kit.style]||0;
+ const main=lab(kit.main),pattern=lab(kit.pattern||kit.trim||kit.main);
+ return main.map((n,i)=>n*(1-coverage)+pattern[i]*coverage);
+}
+function v61KitAppearanceDistance(first,second){
+ const a=v61KitAppearance(first),b=v61KitAppearance(second);return Math.hypot(...a.map((n,i)=>n-b[i]));
+}
+function v61KitNumberColor(background){
+ const rgb=[1,3,5].map(i=>{const c=parseInt(background.slice(i,i+2),16)/255;return c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4)}),l=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;
+ // Choose the larger actual text/background contrast, including mid-tone kits.
+ return (l+.05)/.064>1.05/(l+.05)?'#102126':'#ffffff';
+}
 function v61SelectMatchKits(own,opponent,ownIsHome){
  const desired=[ownIsHome?0:1,ownIsHome?1:0],choices=[own,opponent].map(club=>[v61MatchFieldKit(club,true),v61MatchFieldKit(club,false)]);
  const keeperChoices=[own,opponent].map((club,index)=>club.kits?.keepers?.length===2?club.kits.keepers:[{main:index?'#516bb4':'#e7b957',trim:'#ffffff',style:'solid'}]);
@@ -381,10 +406,14 @@ function v61SelectMatchKits(own,opponent,ownIsHome){
   const user=choices[0][first],opponentKit=choices[1][second];
   const colors=[user.main,opponentKit.main,userKeeper.main,opponentKeeper.main];
   const contrast=Math.min(...colors.flatMap((color,index)=>colors.slice(index+1).map(other=>v61KitColorDistance(color,other))));
-  candidates.push({user,opponent:opponentKit,userKeeper,opponentKeeper,contrast,swaps:Number(first!==desired[0])+Number(second!==desired[1])});
+  const shirts=[user,opponentKit,userKeeper,opponentKeeper],appearance=shirts.map(v61KitAppearance);
+  const visibleContrast=Math.min(...appearance.flatMap((color,index)=>appearance.slice(index+1).map(other=>Math.hypot(...color.map((n,i)=>n-other[i])))));
+  const order=ownIsHome?[first,second,userKeeper.main,opponentKeeper.main]:[second,first,opponentKeeper.main,userKeeper.main];
+  candidates.push({user,opponent:opponentKit,userKeeper,opponentKeeper,contrast:Math.round(contrast*1e6)/1e6,visibleContrast:Math.round(visibleContrast*1e6)/1e6,order:order.join('/'),homeSwap:Number((ownIsHome?first:second)!==0),swaps:Number(first!==desired[0])+Number(second!==desired[1])});
  }
- const clear=candidates.filter(candidate=>candidate.contrast>=100);
- const selected=(clear.length?clear.sort((a,b)=>a.swaps-b.swaps||b.contrast-a.contrast):candidates.sort((a,b)=>b.contrast-a.contrast||a.swaps-b.swaps))[0];
+ const clear=candidates.filter(candidate=>candidate.contrast>=100&&candidate.visibleContrast>=24),safe=candidates.filter(candidate=>candidate.contrast>=85);
+ const selected=(clear.length?clear.sort((a,b)=>a.homeSwap-b.homeSwap||a.swaps-b.swaps||b.visibleContrast-a.visibleContrast||a.order.localeCompare(b.order)):
+  (safe.length?safe:candidates).sort((a,b)=>b.visibleContrast-a.visibleContrast||b.contrast-a.contrast||a.homeSwap-b.homeSwap||a.swaps-b.swaps||a.order.localeCompare(b.order)))[0];
  return{user:selected.user,opponent:selected.opponent,userKeeper:{...selected.userKeeper},opponentKeeper:{...selected.opponentKeeper}};
 }
 function v61ClubColors(club){if(club.kits?.colors)return[club.kits.colors.primary,club.kits.colors.secondary];const[a,b]=club.colors.split('/');return[v61Colors[a]||'#c7f36b',v61Colors[b]||'#142629']}
@@ -1320,7 +1349,7 @@ function v61RenderCareer(career){
 function v61SetCareerTab(tab,scroll=true){
  if(tab==='transfers'||!v61CareerTabs.some(([key])=>key===tab))return;
  v61CareerTab=tab;
- for(const view of v61WorldScreen.querySelectorAll(':scope > [data-v46-view]'))view.hidden=view.dataset.v46View!==tab;
+ for(const view of v61WorldScreen.querySelectorAll(':scope > [data-v46-view], :scope > .fl-shell > .fl-workspace > .fl-content > [data-v46-view]'))view.hidden=view.dataset.v46View!==tab;
  for(const button of v61WorldScreen.querySelectorAll('.v61-career-nav button')){if(button.dataset.v61Tab===tab)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current')}
  if(scroll)window.scrollTo(0,0);
 }

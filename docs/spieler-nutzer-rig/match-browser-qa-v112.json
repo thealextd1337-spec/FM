@@ -1,0 +1,235 @@
+{
+  "initial": {
+    "count": 12,
+    "teams": [
+      6,
+      6
+    ],
+    "joints": [
+      28,
+      28,
+      28,
+      28,
+      28,
+      28,
+      28,
+      28,
+      28,
+      28,
+      28,
+      28
+    ],
+    "geometryCount": 1,
+    "baseColorCount": 1,
+    "skeletonCount": 12,
+    "textureSize": [
+      4096,
+      4096
+    ],
+    "ballRadius": 0.17640000000000003,
+    "storage": "sechser.world.user-meshy-v107",
+    "render": {
+      "frame": 10,
+      "calls": 60,
+      "triangles": 184316,
+      "points": 0,
+      "lines": 194
+    }
+  },
+  "natural": {
+    "steps": 180,
+    "states": [
+      "idle",
+      "turn_walk_left",
+      "walking",
+      "turn_idle_right",
+      "turn_idle_left",
+      "run_fast6",
+      "run_fast4",
+      "brake_meshy",
+      "idle_relaxed",
+      "turn_walk_right"
+    ],
+    "actions": [],
+    "elapsed": 5.61600000000001,
+    "models": 12
+  },
+  "motions": {
+    "results": [
+      {
+        "speed": 0,
+        "motion": "idle",
+        "minY": 0.08073634278558443,
+        "maxY": 2.765795298698632,
+        "finite": true,
+        "contactGap": 0.253654211825786
+      },
+      {
+        "speed": 0.8,
+        "motion": "walking",
+        "minY": 0.10336548262289216,
+        "maxY": 2.7976155823569284,
+        "finite": true,
+        "contactGap": 0.2429415485587309
+      },
+      {
+        "speed": 2.6,
+        "motion": "run_fast6",
+        "minY": 0.10418323136041631,
+        "maxY": 2.782406176268555,
+        "finite": true,
+        "contactGap": 0.2529243914212269
+      },
+      {
+        "speed": 4.5,
+        "motion": "run_fast4",
+        "minY": 0.08211993207261732,
+        "maxY": 2.752255860362619,
+        "finite": true,
+        "contactGap": 0.253426674995289
+      },
+      {
+        "speed": 7,
+        "motion": "sprint_forward",
+        "minY": 0.09482861611598094,
+        "maxY": 2.6511905390906283,
+        "finite": true,
+        "contactGap": 0.25824725945276955
+      },
+      {
+        "kind": "pass",
+        "motion": "pass_meshy",
+        "minY": 0.07887239508198376,
+        "maxY": 2.648061571260438,
+        "finite": true,
+        "contactGap": 0.02785294497408147
+      },
+      {
+        "kind": "shot",
+        "motion": "shot_meshy",
+        "minY": 0.0804523851281828,
+        "maxY": 2.6457684500087937,
+        "finite": true,
+        "contactGap": 0.02866456708391404
+      },
+      {
+        "kind": "header",
+        "motion": "idle",
+        "minY": 0.35260794223171976,
+        "maxY": 3.130400433420307,
+        "finite": true,
+        "contactGap": 0.15463401955943024
+      },
+      {
+        "kind": "volley",
+        "motion": "idle",
+        "minY": 0.08991150485732143,
+        "maxY": 2.7898501850264754,
+        "finite": true,
+        "contactGap": 0.10598735986030884
+      },
+      {
+        "kind": "celebration",
+        "motion": "celebrate_victory",
+        "minY": 0.13249908452092776,
+        "maxY": 3.5374524208509257,
+        "finite": true,
+        "contactGap": 0.47399971129761376
+      }
+    ],
+    "pausedPhasePreserved": true,
+    "unchanged": true
+  },
+  "gallery": {
+    "unchanged": true,
+    "kits": [
+      {
+        "main": "#ba3037",
+        "trim": "#f5eddd",
+        "accent": "#e5b23c",
+        "style": "stripe"
+      },
+      {
+        "main": "#2247ac",
+        "trim": "#f1e7ce",
+        "accent": "#e5b23c",
+        "style": "plain"
+      }
+    ],
+    "numbers": [
+      17,
+      23
+    ],
+    "geometryShared": true,
+    "textureShared": true
+  },
+  "goal": {
+    "results": [
+      {
+        "team": 0,
+        "motion": "celebrate_arms"
+      },
+      {
+        "team": 0,
+        "motion": "celebrate_victory"
+      },
+      {
+        "team": 0,
+        "motion": "celebrate_arms"
+      },
+      {
+        "team": 0,
+        "motion": "celebrate_fist"
+      },
+      {
+        "team": 0,
+        "motion": "celebrate_victory"
+      },
+      {
+        "team": 0,
+        "motion": "celebrate_fist"
+      },
+      {
+        "team": 1,
+        "motion": "turn_idle_left"
+      },
+      {
+        "team": 1,
+        "motion": "turn_idle_left"
+      },
+      {
+        "team": 1,
+        "motion": "turn_idle_right"
+      },
+      {
+        "team": 1,
+        "motion": "idle_relaxed"
+      },
+      {
+        "team": 1,
+        "motion": "idle"
+      },
+      {
+        "team": 1,
+        "motion": "idle_relaxed"
+      }
+    ],
+    "unchanged": true,
+    "celebration": {
+      "id": 1,
+      "team": 0,
+      "time": 1.1
+    }
+  },
+  "lifetime": {
+    "partial": 0,
+    "full": 1,
+    "after": 0,
+    "leases": 0,
+    "oldReleased": true,
+    "recreated": 12
+  },
+  "remoteRequests": 0,
+  "errors": [],
+  "warnings": []
+}

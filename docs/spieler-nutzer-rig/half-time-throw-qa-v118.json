@@ -1,0 +1,63 @@
+{
+  "cases": [
+    {
+      "edge": "left",
+      "ready": 0,
+      "atWhistle": {
+        "throwIn": false,
+        "halfDone": true,
+        "halfPause": 2
+      },
+      "frames": 81,
+      "throwIn": false,
+      "kickoff": "rolling",
+      "flight": true
+    },
+    {
+      "edge": "left",
+      "ready": 0.3,
+      "atWhistle": {
+        "throwIn": false,
+        "halfDone": true,
+        "halfPause": 2
+      },
+      "frames": 81,
+      "throwIn": false,
+      "kickoff": "rolling",
+      "flight": true
+    },
+    {
+      "edge": "right",
+      "ready": 0,
+      "atWhistle": {
+        "throwIn": false,
+        "halfDone": true,
+        "halfPause": 2
+      },
+      "frames": 81,
+      "throwIn": false,
+      "kickoff": "rolling",
+      "flight": true
+    },
+    {
+      "edge": "right",
+      "ready": 0.3,
+      "atWhistle": {
+        "throwIn": false,
+        "halfDone": true,
+        "halfPause": 2
+      },
+      "frames": 81,
+      "throwIn": false,
+      "kickoff": "rolling",
+      "flight": true
+    },
+    {
+      "kind": "penalty-deferred",
+      "samePiece": true,
+      "pending": true,
+      "halfDone": false
+    }
+  ],
+  "errors": []
+}

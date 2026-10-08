@@ -1,0 +1,1140 @@
+{
+  "baseline": false,
+  "physicsHz": 20,
+  "renderHz": 60,
+  "replaySkipped": true,
+  "gpuDrawSkipped": true,
+  "runs": [
+    {
+      "trace": [
+        {
+          "i": 1771,
+          "keeper": {
+            "x": 0.4024937630244294,
+            "y": 0.93,
+            "tx": 0.4024937630244294,
+            "ty": 0.93
+          },
+          "release": null,
+          "setting": false,
+          "action": null
+        },
+        {
+          "i": 1772,
+          "keeper": {
+            "x": 0.40268096947922405,
+            "y": 0.93,
+            "tx": 0.40268096947922405,
+            "ty": 0.93
+          },
+          "release": null,
+          "setting": false,
+          "action": null
+        },
+        {
+          "i": 1773,
+          "keeper": {
+            "x": 0.4028791732024777,
+            "y": 0.93,
+            "tx": 0.4028791732024777,
+            "ty": 0.93
+          },
+          "release": {
+            "onTarget": true,
+            "blocked": false,
+            "initial": {
+              "x": 0.4028791732024777,
+              "y": 0.93
+            },
+            "keeper": "warping-v121-12345:GER-2:1",
+            "flight": 0
+          },
+          "setting": true,
+          "action": null
+        },
+        {
+          "i": 1774,
+          "keeper": {
+            "x": 0.4028791732024777,
+            "y": 0.93,
+            "tx": 0.4028791732024777,
+            "ty": 0.93
+          },
+          "release": {
+            "onTarget": true,
+            "blocked": false,
+            "initial": {
+              "x": 0.4028791732024777,
+              "y": 0.93
+            },
+            "keeper": "warping-v121-12345:GER-2:1",
+            "flight": 0.09870931922905357
+          },
+          "setting": true,
+          "action": null
+        },
+        {
+          "i": 1775,
+          "keeper": {
+            "x": 0.4028791732024777,
+            "y": 0.93,
+            "tx": 0.4028791732024777,
+            "ty": 0.93
+          },
+          "release": {
+            "onTarget": true,
+            "blocked": false,
+            "initial": {
+              "x": 0.4028791732024777,
+              "y": 0.93
+            },
+            "keeper": "warping-v121-12345:GER-2:1",
+            "flight": 0.19741863845810714
+          },
+          "setting": true,
+          "action": null
+        },
+        {
+          "i": 1776,
+          "keeper": {
+            "x": 0.4028791732024777,
+            "y": 0.93,
+            "tx": 0.4028791732024777,
+            "ty": 0.93
+          },
+          "release": {
+            "onTarget": true,
+            "blocked": false,
+            "initial": {
+              "x": 0.4028791732024777,
+              "y": 0.93
+            },
+            "keeper": "warping-v121-12345:GER-2:1",
+            "flight": 0.2961279576871607
+          },
+          "setting": true,
+          "action": null
+        },
+        {
+          "i": 1777,
+          "keeper": {
+            "x": 0.4028791732024777,
+            "y": 0.93,
+            "tx": 0.4028791732024777,
+            "ty": 0.93
+          },
+          "release": {
+            "onTarget": true,
+            "blocked": false,
+            "initial": {
+              "x": 0.4028791732024777,
+              "y": 0.93
+            },
+            "keeper": "warping-v121-12345:GER-2:1",
+            "flight": 0.3948372769162143
+          },
+          "setting": true,
+          "action": null
+        },
+        {
+          "i": 1778,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": {
+            "onTarget": true,
+            "blocked": false,
+            "initial": {
+              "x": 0.4028791732024777,
+              "y": 0.93
+            },
+            "keeper": "warping-v121-12345:GER-2:1",
+            "flight": 0.49354659614526786
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 0.49354659614526786,
+            "recovery": 0,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.4028791732024777,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": false,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1779,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": {
+            "onTarget": true,
+            "blocked": false,
+            "diveAt": 0.49354659614526786,
+            "initial": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "keeper": "warping-v121-12345:GER-2:1",
+            "flight": 0.5922559153743214
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 0.19490306211342343,
+            "recovery": 0,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": false,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1780,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": {
+            "onTarget": true,
+            "blocked": false,
+            "diveAt": 0.49354659614526786,
+            "initial": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "keeper": "warping-v121-12345:GER-2:1",
+            "flight": 0.690965234603375
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 0.38980612422684685,
+            "recovery": 0,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": false,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1781,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": {
+            "onTarget": true,
+            "blocked": false,
+            "diveAt": 0.49354659614526786,
+            "initial": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "keeper": "warping-v121-12345:GER-2:1",
+            "flight": 0.7896745538324286
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 0.5847091863402702,
+            "recovery": 0,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": false,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1782,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": {
+            "onTarget": true,
+            "blocked": false,
+            "diveAt": 0.49354659614526786,
+            "initial": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "keeper": "warping-v121-12345:GER-2:1",
+            "flight": 0.8883838730614821
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 0.7796122484536937,
+            "recovery": 0,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": false,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1783,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": {
+            "onTarget": true,
+            "blocked": false,
+            "diveAt": 0.49354659614526786,
+            "initial": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "keeper": "warping-v121-12345:GER-2:1",
+            "flight": 0.9870931922905357
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 0.974515310567117,
+            "recovery": 0,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": false,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1784,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1785,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.03225806451612903,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1786,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.06451612903225806,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1787,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.09677419354838711,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1788,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.12903225806451613,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1789,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.16129032258064516,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1790,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.1935483870967742,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1791,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.2258064516129032,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1792,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.25806451612903225,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1793,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": null,
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.29032258064516125,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1794,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": null,
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.32258064516129026,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1795,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": null,
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.3548387096774193,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1796,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": null,
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.3870967741935484,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1797,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": null,
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.41935483870967744,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1798,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": null,
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.4516129032258065,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1799,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": null,
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.48387096774193555,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1800,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": null,
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.5161290322580646,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        },
+        {
+          "i": 1801,
+          "keeper": {
+            "x": 0.405,
+            "y": 0.93,
+            "tx": 0.405,
+            "ty": 0.93
+          },
+          "release": null,
+          "setting": false,
+          "action": {
+            "kind": "save",
+            "progress": 1,
+            "recovery": 0.5483870967741936,
+            "target": {
+              "x": 0.369909551552758,
+              "y": 0.9414367773502166
+            },
+            "origin": {
+              "x": 0.405,
+              "y": 0.93
+            },
+            "height": 0.6000000000000001,
+            "available": 0.5065377857988841,
+            "saved": true,
+            "parry": true,
+            "goal": false,
+            "id": "save"
+          }
+        }
+      ],
+      "seed": 12345,
+      "steps": 1802,
+      "frames": 5403,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "halves": [
+        false,
+        true
+      ],
+      "events": {
+        "fly:pass": 18,
+        "v50LooseBall:": 5,
+        "fly:shot": 6,
+        "v50Deflect:": 4,
+        "fly:block": 4,
+        "fly:cross": 2,
+        "v55Out:": 4,
+        "kickoff:": 1,
+        "v50Spot:": 56,
+        "fly:highPass": 1,
+        "fly:": 1,
+        "v50GoalKick:": 3,
+        "v50Restart:corner": 2,
+        "fly:header": 1
+      },
+      "counts": {
+        "rawBall": 4,
+        "hips": 1
+      },
+      "top": {
+        "engine": [],
+        "root": [],
+        "hips": [
+          {
+            "distance": 0.6659333794121376,
+            "step": 1779,
+            "before": {
+              "elapsed": 47.385,
+              "owner": null,
+              "flight": {
+                "kind": "shot",
+                "progress": 0.494
+              },
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 47.424,
+              "owner": null,
+              "flight": {
+                "kind": "shot",
+                "progress": 0.592
+              },
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": [],
+            "sub": 0,
+            "paintBefore": {
+              "elapsed": 47.385,
+              "owner": null,
+              "flight": {
+                "kind": "shot",
+                "progress": 0.494
+              },
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "opacity": 1,
+            "occluded": false,
+            "visibleOwner": null,
+            "carrying": false,
+            "inFlight": true,
+            "id": "warping-v121-12345:GER-2:1",
+            "keeper": true,
+            "action": "save",
+            "motion": "keeper_parry_right",
+            "slide": false,
+            "from": {
+              "x": 31.503273704701517,
+              "y": 1.5653077185711268,
+              "z": 4.587430054370362
+            },
+            "to": {
+              "x": 31.53710194119811,
+              "y": 1.4607004834707125,
+              "z": 5.244225488729834
+            }
+          }
+        ],
+        "ball": [],
+        "rawBall": [
+          {
+            "distance": 35.21940069374129,
+            "step": 414,
+            "before": {
+              "elapsed": 9.087,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 9.087,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 32.80572916414055,
+            "step": 869,
+            "before": {
+              "elapsed": 17.72,
+              "owner": "warping-v121-12345:GER-4:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 17.759,
+              "owner": "warping-v121-12345:GER-4:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 31.288886978364136,
+            "step": 1062,
+            "before": {
+              "elapsed": 25.247,
+              "owner": "warping-v121-12345:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 25.286,
+              "owner": "warping-v121-12345:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 10.942624230134474,
+            "step": 1443,
+            "before": {
+              "elapsed": 39.365,
+              "owner": null,
+              "flight": null,
+              "piece": "corner",
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 39.365,
+              "owner": null,
+              "flight": null,
+              "piece": "corner",
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          }
+        ]
+      },
+      "max": {
+        "engine": 0.33653073237548703,
+        "root": 0.2576626953350597,
+        "hips": 0.6659333794121376,
+        "ball": 0.7312406096354674,
+        "rawBall": 35.21940069374129
+      },
+      "finished": false,
+      "score": [
+        1,
+        0
+      ],
+      "elapsed": 47.970333333333606
+    }
+  ],
+  "errors": []
+}

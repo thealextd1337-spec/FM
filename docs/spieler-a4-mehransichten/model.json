@@ -1,0 +1,21 @@
+{
+  "resource": "retexture",
+  "taskId": "01a0fe79-ac66-70dd-b201-302e6830570a",
+  "operationId": "d6-player-a3-quality-retexture-01a0fe23-valid-v1",
+  "project": "meshy_output/20261002_231708_doppel-6-spieler-a3-qualitaet_01a0fe79",
+  "model": "meshy_output/player-a3-quality/player-a4-final.glb",
+  "refs": "docs/spieler-a3-mehransichten",
+  "label": "A4 · bereinigt und neu texturiert",
+  "comparisonTitle": "A3 → Qualitätsfassung · Detailvergleich",
+  "description": "A3 und die bereinigte Fassung mit neuer 4K-Textur. Ziehen zum gemeinsamen Drehen; scrollen oder mit zwei Fingern zoomen.",
+  "note": "Körper- und Halsproportionen von A3 sind erhalten. Gesicht, Haare und Kragen wurden lokal bereinigt und neu texturiert. Offen bleiben kantige Gesichtsfarben, grobe Brauen, Kragenränder und falsche Farbgrenzen an Trikotsaum und Stutzen. Erste Qualitätsprobe; noch keine fertige Spielfigur. Beide Modelle erscheinen in gleicher Höhe.",
+  "previous": {
+    "id": "a3",
+    "label": "A3 · bisherige Fassung",
+    "model": "meshy_output/20261002_225335_doppel-6-spieler-a3-mehransich_01a0fe64/player-a3.glb",
+    "refs": "docs/spieler-a3-mehransichten"
+  },
+  "goal": "sauberere Gesichts-, Haar- und Kragendetails bei erhaltener Körperform",
+  "rawModel": "meshy_output/20261002_231708_doppel-6-spieler-a3-qualitaet_01a0fe79/player-a4-quality.glb",
+  "referenceLabel": "A3-Körperreferenz anzeigen"
+}

@@ -1,0 +1,4094 @@
+{
+  "pair": "gap-1",
+  "game": 11,
+  "seed": 21308294,
+  "aHome": true,
+  "score": [
+    2,
+    2
+  ],
+  "teams": [
+    {
+      "passes": 28,
+      "passComplete": 26,
+      "progressive": 7,
+      "passLost": 2,
+      "duels": 13,
+      "duelsWon": 7,
+      "interceptions": 2,
+      "shots": 6,
+      "onTarget": 2,
+      "goals": 1,
+      "assists": 1,
+      "saves": 0,
+      "faced": 2,
+      "conceded": 2,
+      "cleanSheet": 0,
+      "fouls": 1,
+      "penaltiesScored": 0,
+      "penaltiesMissed": 0,
+      "crosses": 1,
+      "crossComplete": 0,
+      "highPasses": 3,
+      "highComplete": 2,
+      "headers": 0,
+      "headerPasses": 0,
+      "volleys": 0,
+      "aerialDuels": 1,
+      "aerialWon": 0,
+      "slideAttempts": 4,
+      "slideWon": 2,
+      "shotGoals": 1,
+      "nonShotGoals": 0,
+      "shotConceded": 2,
+      "nonShotConceded": 0,
+      "shotsInterrupted": 0,
+      "savesCaught": 0,
+      "savesParried": 0,
+      "offsides": 0,
+      "throwIns": 0,
+      "parries": 0,
+      "fieldBlocks": 0,
+      "betterSquare": 0,
+      "keeperChallenges": 0,
+      "corners": 0,
+      "freeKicks": 3,
+      "penalties": 0,
+      "possessionSeconds": 27.066000000000333
+    },
+    {
+      "passes": 19,
+      "passComplete": 15,
+      "progressive": 9,
+      "passLost": 4,
+      "duels": 13,
+      "duelsWon": 3,
+      "interceptions": 2,
+      "shots": 3,
+      "onTarget": 2,
+      "goals": 2,
+      "assists": 2,
+      "saves": 1,
+      "faced": 2,
+      "conceded": 2,
+      "cleanSheet": 0,
+      "fouls": 2,
+      "penaltiesScored": 0,
+      "penaltiesMissed": 0,
+      "crosses": 0,
+      "crossComplete": 0,
+      "highPasses": 0,
+      "highComplete": 0,
+      "headers": 0,
+      "headerPasses": 0,
+      "volleys": 0,
+      "aerialDuels": 1,
+      "aerialWon": 1,
+      "slideAttempts": 1,
+      "slideWon": 0,
+      "shotGoals": 2,
+      "nonShotGoals": 0,
+      "shotConceded": 1,
+      "nonShotConceded": 1,
+      "shotsInterrupted": 0,
+      "savesCaught": 0,
+      "savesParried": 1,
+      "offsides": 1,
+      "throwIns": 0,
+      "parries": 1,
+      "fieldBlocks": 1,
+      "betterSquare": 0,
+      "keeperChallenges": 0,
+      "corners": 0,
+      "freeKicks": 1,
+      "penalties": 0,
+      "possessionSeconds": 20.524000000000086
+    }
+  ],
+  "shots": [
+    {
+      "team": 0,
+      "kind": "shot",
+      "distance": 17.728083956491226
+    },
+    {
+      "team": 0,
+      "kind": "shot",
+      "distance": 8.669021858780171
+    },
+    {
+      "team": 0,
+      "kind": "shot",
+      "distance": 14.372176699359294
+    },
+    {
+      "team": 1,
+      "kind": "shot",
+      "distance": 10.886468169552751
+    },
+    {
+      "team": 0,
+      "kind": "shot",
+      "distance": 19.86620193894749
+    },
+    {
+      "team": 1,
+      "kind": "shot",
+      "distance": 14.163989534864523
+    },
+    {
+      "team": 0,
+      "kind": "shot",
+      "distance": 14.051884291114098
+    },
+    {
+      "team": 1,
+      "kind": "shot",
+      "distance": 20.032008054846383
+    },
+    {
+      "team": 0,
+      "kind": "shot",
+      "distance": 11.065043839306593
+    }
+  ],
+  "goalTrace": [
+    {
+      "team": 0,
+      "source": "own-goal",
+      "elapsed": 10.802999999999955,
+      "flightKind": null,
+      "scoreBefore": [
+        0,
+        0
+      ],
+      "shooterShots": 0,
+      "shooterOnTarget": 0
+    },
+    {
+      "team": 1,
+      "source": null,
+      "elapsed": 30.18600000000045,
+      "flightKind": "shot",
+      "scoreBefore": [
+        1,
+        0
+      ],
+      "shooterShots": 1,
+      "shooterOnTarget": 1
+    },
+    {
+      "team": 1,
+      "source": null,
+      "elapsed": 67.36766666666763,
+      "flightKind": "shot",
+      "scoreBefore": [
+        1,
+        1
+      ],
+      "shooterShots": 2,
+      "shooterOnTarget": 2
+    },
+    {
+      "team": 0,
+      "source": null,
+      "elapsed": 71.6576666666678,
+      "flightKind": "shot",
+      "scoreBefore": [
+        1,
+        2
+      ],
+      "shooterShots": 5,
+      "shooterOnTarget": 2
+    }
+  ],
+  "ballAccounting": {
+    "version": 117,
+    "sequence": 65,
+    "events": [
+      {
+        "id": 1,
+        "parentId": null,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 0,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.6
+        },
+        "duration": 0.72,
+        "endAt": 0.7410000000000004,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 2,
+        "parentId": 1,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 1.871999999999999,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.47970144781102975
+        },
+        "target": {
+          "x": 0.5098019485329108,
+          "y": 0.3083053523817839
+        },
+        "duration": 0.6112976400039376,
+        "endAt": 2.4960000000000004,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 3,
+        "parentId": 2,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 3.2760000000000034,
+        "result": "parried",
+        "start": {
+          "x": 0.5227998127322587,
+          "y": 0.25548029756815765
+        },
+        "target": {
+          "x": 0.5068399735568039,
+          "y": 0.07888712233652986
+        },
+        "duration": 0.37379750683968127,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "parried": true,
+        "endAt": 3.666000000000005
+      },
+      {
+        "id": 4,
+        "parentId": 3,
+        "kind": "block",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 3.666000000000005,
+        "result": "loose",
+        "start": {
+          "x": 0.5068399735568039,
+          "y": 0.07888712233652986
+        },
+        "target": {
+          "x": 0.4472428620285302,
+          "y": 0.15388712233652985
+        },
+        "duration": 0.32,
+        "endAt": 4.017000000000006
+      },
+      {
+        "id": 5,
+        "parentId": 4,
+        "kind": "loose-ball",
+        "actorPid": null,
+        "team": null,
+        "at": 4.017000000000006,
+        "result": "rolling"
+      },
+      {
+        "id": 6,
+        "parentId": 5,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 5.225999999999996,
+        "result": "received",
+        "start": {
+          "x": 0.4242872318005646,
+          "y": 0.3082949525334351
+        },
+        "target": {
+          "x": 0.2403692767725124,
+          "y": 0.4164762582805978
+        },
+        "duration": 0.5814717958258138,
+        "endAt": 5.810999999999992,
+        "receiverPid": "study-B-03"
+      },
+      {
+        "id": 7,
+        "parentId": 6,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 7.292999999999981,
+        "result": "received",
+        "start": {
+          "x": 0.26298122014050374,
+          "y": 0.4791149524474019
+        },
+        "target": {
+          "x": 0.47976089905775976,
+          "y": 0.5029108542254407
+        },
+        "duration": 0.5198301670835849,
+        "endAt": 7.838999999999976,
+        "receiverPid": "study-A-04"
+      },
+      {
+        "id": 8,
+        "parentId": 7,
+        "kind": "pass",
+        "actorPid": "study-A-04",
+        "team": 0,
+        "at": 8.618999999999971,
+        "result": "received",
+        "start": {
+          "x": 0.48010068455563515,
+          "y": 0.4352151434273836
+        },
+        "target": {
+          "x": 0.49235022503298503,
+          "y": 0.22491577362179638
+        },
+        "duration": 0.7503932188413802,
+        "endAt": 9.398999999999965,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 9,
+        "parentId": 8,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 10.17899999999996,
+        "result": "blocked",
+        "start": {
+          "x": 0.5085727718669267,
+          "y": 0.13155980788651483
+        },
+        "target": {
+          "x": 0.4946909908765783,
+          "y": 0.1430150272885919
+        },
+        "duration": 0.17,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": true,
+        "blocked": true,
+        "endAt": 10.373999999999958
+      },
+      {
+        "id": 10,
+        "parentId": 9,
+        "kind": "block",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 10.373999999999958,
+        "result": "loose",
+        "start": {
+          "x": 0.4946909908765783,
+          "y": 0.1430150272885919
+        },
+        "target": {
+          "x": 0.5329636036047568,
+          "y": 0.065
+        },
+        "duration": 0.2600288119103814,
+        "endAt": 10.646999999999956
+      },
+      {
+        "id": 11,
+        "parentId": 10,
+        "kind": "loose-ball",
+        "actorPid": null,
+        "team": null,
+        "at": 10.646999999999956,
+        "result": "rolling"
+      },
+      {
+        "id": 12,
+        "parentId": 11,
+        "kind": "goal",
+        "actorPid": null,
+        "team": 0,
+        "at": 10.802999999999955,
+        "result": "non-shot-goal",
+        "source": "own-goal",
+        "keeperPid": "study-B-00"
+      },
+      {
+        "id": 13,
+        "parentId": 12,
+        "kind": "pass",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 10.802999999999955,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.4
+        },
+        "duration": 0.72,
+        "endAt": 11.543999999999949,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 14,
+        "parentId": 13,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 13.181999999999936,
+        "result": "received",
+        "start": {
+          "x": 0.5158741252238712,
+          "y": 0.5599766383517636
+        },
+        "target": {
+          "x": 0.6921418688291103,
+          "y": 0.41643888858896155
+        },
+        "duration": 0.6601761560082755,
+        "endAt": 13.844999999999931,
+        "receiverPid": "study-B-02"
+      },
+      {
+        "id": 15,
+        "parentId": 14,
+        "kind": "pass",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 14.624999999999925,
+        "result": "received",
+        "start": {
+          "x": 0.7050202632871817,
+          "y": 0.5039311736212223
+        },
+        "target": {
+          "x": 0.600585019206547,
+          "y": 0.4969653369890267
+        },
+        "duration": 0.24831905441595323,
+        "endAt": 14.897999999999923,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 16,
+        "parentId": 15,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 15.599999999999918,
+        "result": "received",
+        "start": {
+          "x": 0.6149831174550402,
+          "y": 0.41077785616905016
+        },
+        "target": {
+          "x": 0.6593984168477174,
+          "y": 0.6462360745440626
+        },
+        "duration": 0.8460889234118594,
+        "endAt": 16.45799999999993,
+        "receiverPid": "study-A-02"
+      },
+      {
+        "id": 17,
+        "parentId": 16,
+        "kind": "pass",
+        "actorPid": "study-A-02",
+        "team": 0,
+        "at": 17.23799999999996,
+        "result": "received",
+        "start": {
+          "x": 0.6727321870509491,
+          "y": 0.5567913183706636
+        },
+        "target": {
+          "x": 0.7087927400337961,
+          "y": 0.5190941105775532
+        },
+        "duration": 0.2752474762127901,
+        "endAt": 17.549999999999972,
+        "receiverPid": "study-B-04"
+      },
+      {
+        "id": 18,
+        "parentId": 17,
+        "kind": "pass",
+        "actorPid": "study-B-04",
+        "team": 1,
+        "at": 18.252,
+        "result": "arrived",
+        "start": {
+          "x": 0.7166784523794482,
+          "y": 0.5941019836586644
+        },
+        "target": {
+          "x": 0.539312155233324,
+          "y": 0.7611765155996792
+        },
+        "duration": 0.7286635030351589,
+        "endAt": 18.993000000000027
+      },
+      {
+        "id": 19,
+        "parentId": 18,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 18.993000000000027,
+        "result": "received",
+        "start": {
+          "x": 0.5379841219335664,
+          "y": 0.6547684156972647
+        },
+        "target": {
+          "x": 0.3923013119510055,
+          "y": 0.656130099076644
+        },
+        "duration": 0.3446918725922744,
+        "endAt": 19.34400000000004,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 20,
+        "parentId": 19,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 20.709000000000092,
+        "result": "received",
+        "start": {
+          "x": 0.41143697934365164,
+          "y": 0.5159901959282327
+        },
+        "target": {
+          "x": 0.4966313673748987,
+          "y": 0.3028167157753234
+        },
+        "duration": 0.7863506184697934,
+        "endAt": 21.528000000000123,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 21,
+        "parentId": 20,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 22.308000000000153,
+        "result": "off-target",
+        "start": {
+          "x": 0.5126908167410356,
+          "y": 0.2096263963084879
+        },
+        "target": {
+          "x": 0.6165548923892828,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.39639962146977964,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 22.73700000000017,
+        "receiverPid": "study-B-00"
+      },
+      {
+        "id": 22,
+        "parentId": 21,
+        "kind": "pass",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 24.60900000000024,
+        "result": "received",
+        "start": {
+          "x": 0.5504634217507018,
+          "y": 0.092
+        },
+        "target": {
+          "x": 0.36869918756511727,
+          "y": 0.29665046483001906
+        },
+        "duration": 0.8469752285797113,
+        "endAt": 25.467000000000272,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 23,
+        "parentId": 22,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 26.247000000000302,
+        "result": "received",
+        "start": {
+          "x": 0.38682287381212377,
+          "y": 0.3838496225809747
+        },
+        "target": {
+          "x": 0.14671387011145215,
+          "y": 0.46100227232007013
+        },
+        "duration": 0.6311565399912066,
+        "endAt": 26.910000000000327,
+        "receiverPid": "study-B-03"
+      },
+      {
+        "id": 24,
+        "parentId": 23,
+        "kind": "pass",
+        "actorPid": "study-B-03",
+        "team": 1,
+        "at": 28.08000000000037,
+        "result": "received",
+        "start": {
+          "x": 0.1552533108434322,
+          "y": 0.5588358970729331
+        },
+        "target": {
+          "x": 0.3046639932412991,
+          "y": 0.8213090009205714
+        },
+        "duration": 1.0003914112223058,
+        "endAt": 29.09400000000041,
+        "receiverPid": "study-B-05"
+      },
+      {
+        "id": 25,
+        "parentId": 24,
+        "kind": "shot",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 29.87400000000044,
+        "result": "goal",
+        "start": {
+          "x": 0.3432780573935729,
+          "y": 0.8918870776217491
+        },
+        "target": {
+          "x": 0.5214850834850222,
+          "y": 0.9648648648648649
+        },
+        "duration": 0.29359177564471245,
+        "shot": true,
+        "keeperPid": "study-A-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "goal": true,
+        "endAt": 30.18600000000045
+      },
+      {
+        "id": 26,
+        "parentId": 25,
+        "kind": "goal",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 30.18600000000045,
+        "result": "shot-goal",
+        "source": null,
+        "keeperPid": "study-A-00"
+      },
+      {
+        "id": 27,
+        "parentId": 26,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 30.18600000000045,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.6
+        },
+        "duration": 0.72,
+        "endAt": 30.92700000000048,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 28,
+        "parentId": 27,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 32.05800000000052,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.48061539380231066
+        },
+        "target": {
+          "x": 0.15395525531528734,
+          "y": 0.5640080756909878
+        },
+        "duration": 0.9066713758368624,
+        "endAt": 32.994000000000554,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 29,
+        "parentId": 28,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 33.774000000000584,
+        "result": "received",
+        "start": {
+          "x": 0.17572346420281398,
+          "y": 0.4747984876210774
+        },
+        "target": {
+          "x": 0.31568663014108167,
+          "y": 0.5722251540412808
+        },
+        "duration": 0.4799138135058423,
+        "endAt": 34.2810000000006,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 30,
+        "parentId": 29,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 35.06100000000063,
+        "result": "received",
+        "start": {
+          "x": 0.33475240977866166,
+          "y": 0.48315964998959593
+        },
+        "target": {
+          "x": 0.1682345620960652,
+          "y": 0.5452538276353689
+        },
+        "duration": 0.4519005443615471,
+        "endAt": 35.52900000000065,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 31,
+        "parentId": 30,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 36.30900000000068,
+        "result": "received",
+        "start": {
+          "x": 0.18976236061198531,
+          "y": 0.45607350732607277
+        },
+        "target": {
+          "x": 0.2466660352127835,
+          "y": 0.6175497962312008
+        },
+        "duration": 0.5912816223499617,
+        "endAt": 36.9330000000007,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 32,
+        "parentId": 31,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 37.71300000000073,
+        "result": "received",
+        "start": {
+          "x": 0.2668747075135483,
+          "y": 0.5285671152289726
+        },
+        "target": {
+          "x": 0.1807819643652741,
+          "y": 0.5222791004381125
+        },
+        "duration": 0.32,
+        "endAt": 38.064000000000746,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 33,
+        "parentId": 32,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 38.844000000000776,
+        "result": "received",
+        "start": {
+          "x": 0.19963611181247692,
+          "y": 0.4366704227115142
+        },
+        "target": {
+          "x": 0.27793225398591087,
+          "y": 0.5653352308909013
+        },
+        "duration": 0.49474566951030896,
+        "endAt": 39.351000000000795,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 34,
+        "parentId": 33,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 40.131000000000824,
+        "result": "received",
+        "start": {
+          "x": 0.2976194774587047,
+          "y": 0.47638949672888453
+        },
+        "target": {
+          "x": 0.2035912689266549,
+          "y": 0.46912006703738024
+        },
+        "duration": 0.32,
+        "endAt": 40.48200000000084,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 35,
+        "parentId": 34,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 41.26200000000087,
+        "result": "received",
+        "start": {
+          "x": 0.21864861341131286,
+          "y": 0.38486244032755373
+        },
+        "target": {
+          "x": 0.31265495132673077,
+          "y": 0.5325546310432544
+        },
+        "duration": 0.5716417013249975,
+        "endAt": 41.705666666666666,
+        "receiverPid": "study-A-04"
+      },
+      {
+        "id": 36,
+        "parentId": 35,
+        "kind": "pass",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 41.666666666666664,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.4
+        },
+        "duration": 0.72,
+        "endAt": 42.40766666666669,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 37,
+        "parentId": 36,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 44.16266666666676,
+        "result": "received",
+        "start": {
+          "x": 0.5204243185353631,
+          "y": 0.48763226818051375
+        },
+        "target": {
+          "x": 0.6869034108875283,
+          "y": 0.5223216427352116
+        },
+        "duration": 0.41282237324516097,
+        "endAt": 44.591666666666775,
+        "receiverPid": "study-A-04"
+      },
+      {
+        "id": 38,
+        "parentId": 37,
+        "kind": "highPass",
+        "actorPid": "study-A-04",
+        "team": 0,
+        "at": 45.371666666666805,
+        "result": "received",
+        "start": {
+          "x": 0.6997923734790706,
+          "y": 0.4332088148368813
+        },
+        "target": {
+          "x": 0.7613397429022424,
+          "y": 0.5414731969709777
+        },
+        "duration": 0.55,
+        "endAt": 45.95666666666683,
+        "receiverPid": "study-A-02"
+      },
+      {
+        "id": 39,
+        "parentId": 38,
+        "kind": "highPass",
+        "actorPid": "study-A-02",
+        "team": 0,
+        "at": 46.54166666666685,
+        "result": "received",
+        "start": {
+          "x": 0.7527451121690513,
+          "y": 0.4872867065555829
+        },
+        "target": {
+          "x": 0.23987564399641872,
+          "y": 0.5974457636623809
+        },
+        "duration": 1.0202730265176285,
+        "endAt": 47.59466666666689,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 40,
+        "parentId": 39,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 48.17966666666691,
+        "result": "received",
+        "start": {
+          "x": 0.2214005905187724,
+          "y": 0.5651747923005521
+        },
+        "target": {
+          "x": 0.2838109882488043,
+          "y": 0.3347366680064913
+        },
+        "duration": 0.8348004533256057,
+        "endAt": 49.037666666666944,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 41,
+        "parentId": 40,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 49.81766666666697,
+        "result": "off-target",
+        "start": {
+          "x": 0.30779090228551037,
+          "y": 0.2469986964027707
+        },
+        "target": {
+          "x": 0.6196299781714758,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.6257179189618555,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 50.480666666667,
+        "receiverPid": "study-B-00"
+      },
+      {
+        "id": 42,
+        "parentId": 41,
+        "kind": "pass",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 52.35266666666707,
+        "result": "received",
+        "start": {
+          "x": 0.5150251368674715,
+          "y": 0.092
+        },
+        "target": {
+          "x": 0.589033976313257,
+          "y": 0.3233465579934827
+        },
+        "duration": 0.8432561392757313,
+        "endAt": 53.2106666666671,
+        "receiverPid": "study-B-02"
+      },
+      {
+        "id": 43,
+        "parentId": 42,
+        "kind": "pass",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 53.99066666666713,
+        "result": "received",
+        "start": {
+          "x": 0.6036099942141125,
+          "y": 0.4098124602470318
+        },
+        "target": {
+          "x": 0.336721966501679,
+          "y": 0.45910805439249186
+        },
+        "duration": 0.6554138348909676,
+        "endAt": 54.65366666666716,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 44,
+        "parentId": 43,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 55.35566666666718,
+        "result": "received",
+        "start": {
+          "x": 0.35516484357653083,
+          "y": 0.37683526684807356
+        },
+        "target": {
+          "x": 0.31244336841118364,
+          "y": 0.6413209307285701
+        },
+        "duration": 0.9484381859271174,
+        "endAt": 56.33066666666722,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 45,
+        "parentId": 44,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 57.11066666666725,
+        "result": "received",
+        "start": {
+          "x": 0.33154180530458527,
+          "y": 0.5527167352370436
+        },
+        "target": {
+          "x": 0.188523493642017,
+          "y": 0.5054552993989924
+        },
+        "duration": 0.37799482893166425,
+        "endAt": 57.500666666667264,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 46,
+        "parentId": 45,
+        "kind": "cross",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 59.52866666666734,
+        "result": "loose",
+        "start": {
+          "x": 0.21777457578039577,
+          "y": 0.3096309449452069
+        },
+        "target": {
+          "x": 0.3903570349731217,
+          "y": 0.21886525066639861
+        },
+        "duration": 0.55,
+        "endAt": 60.11366666666736
+      },
+      {
+        "id": 47,
+        "parentId": 46,
+        "kind": "loose-ball",
+        "actorPid": null,
+        "team": null,
+        "at": 60.11366666666736,
+        "result": "rolling"
+      },
+      {
+        "id": 48,
+        "parentId": 47,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 61.67366666666742,
+        "result": "received",
+        "start": {
+          "x": 0.3590086300975178,
+          "y": 0.4185173647179858
+        },
+        "target": {
+          "x": 0.5529357978014696,
+          "y": 0.3879064620738849
+        },
+        "duration": 0.47159842136117397,
+        "endAt": 62.18066666666744,
+        "receiverPid": "study-B-04"
+      },
+      {
+        "id": 49,
+        "parentId": 48,
+        "kind": "pass",
+        "actorPid": "study-B-04",
+        "team": 1,
+        "at": 62.96066666666747,
+        "result": "received",
+        "start": {
+          "x": 0.5680874450611919,
+          "y": 0.47450386793512034
+        },
+        "target": {
+          "x": 0.6386721408751338,
+          "y": 0.3317947688161855
+        },
+        "duration": 0.5355375561034208,
+        "endAt": 63.50666666666749,
+        "receiverPid": "study-B-02"
+      },
+      {
+        "id": 50,
+        "parentId": 49,
+        "kind": "pass",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 64.28666666666751,
+        "result": "received",
+        "start": {
+          "x": 0.6524639894342834,
+          "y": 0.4179757385658408
+        },
+        "target": {
+          "x": 0.6559311513325505,
+          "y": 0.43834938669214374
+        },
+        "duration": 0.32,
+        "endAt": 64.63766666666753,
+        "receiverPid": "study-B-04"
+      },
+      {
+        "id": 51,
+        "parentId": 50,
+        "kind": "pass",
+        "actorPid": "study-B-04",
+        "team": 1,
+        "at": 65.41766666666756,
+        "result": "received",
+        "start": {
+          "x": 0.6694348784704451,
+          "y": 0.524876707901704
+        },
+        "target": {
+          "x": 0.5159305484370198,
+          "y": 0.7139858573598152
+        },
+        "duration": 0.7658577878811309,
+        "endAt": 66.19766666666759,
+        "receiverPid": "study-B-05"
+      },
+      {
+        "id": 52,
+        "parentId": 51,
+        "kind": "shot",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 66.97766666666762,
+        "result": "goal",
+        "start": {
+          "x": 0.5396487129537546,
+          "y": 0.7938445285146306
+        },
+        "target": {
+          "x": 0.5023769370839,
+          "y": 0.9648648648648649
+        },
+        "duration": 0.36511080432072196,
+        "shot": true,
+        "keeperPid": "study-A-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "goal": true,
+        "endAt": 67.36766666666763
+      },
+      {
+        "id": 53,
+        "parentId": 52,
+        "kind": "goal",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 67.36766666666763,
+        "result": "shot-goal",
+        "source": null,
+        "keeperPid": "study-A-00"
+      },
+      {
+        "id": 54,
+        "parentId": 53,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 67.36766666666763,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.6
+        },
+        "duration": 0.72,
+        "endAt": 68.10866666666766,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 55,
+        "parentId": 54,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 69.2396666666677,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.4817388184046071
+        },
+        "target": {
+          "x": 0.5230137693967253,
+          "y": 0.3174513032058285
+        },
+        "duration": 0.5860107026260478,
+        "endAt": 69.86366666666773,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 56,
+        "parentId": 55,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 71.26766666666778,
+        "result": "goal",
+        "start": {
+          "x": 0.530909113848162,
+          "y": 0.2050046169841075
+        },
+        "target": {
+          "x": 0.4792084311041981,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.36616620678614786,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "goal": true,
+        "endAt": 71.6576666666678
+      },
+      {
+        "id": 57,
+        "parentId": 56,
+        "kind": "goal",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 71.6576666666678,
+        "result": "shot-goal",
+        "source": null,
+        "keeperPid": "study-B-00"
+      },
+      {
+        "id": 58,
+        "parentId": 57,
+        "kind": "pass",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 71.6576666666678,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.4
+        },
+        "duration": 0.72,
+        "endAt": 72.39866666666782,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 59,
+        "parentId": 58,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 73.52966666666786,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.5147348008279243
+        },
+        "target": {
+          "x": 0.5259855515420905,
+          "y": 0.6336488379142942
+        },
+        "duration": 0.424651844195368,
+        "endAt": 73.95866666666788,
+        "receiverPid": "study-B-05"
+      },
+      {
+        "id": 60,
+        "parentId": 59,
+        "kind": "shot",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 74.73866666666791,
+        "result": "off-target",
+        "start": {
+          "x": 0.5367067540931288,
+          "y": 0.7133221410698115
+        },
+        "target": {
+          "x": 0.3749030280975658,
+          "y": 0.9648648648648649
+        },
+        "duration": 0.5778743224985321,
+        "shot": true,
+        "keeperPid": "study-A-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 75.32366666666793,
+        "receiverPid": "study-A-00"
+      },
+      {
+        "id": 61,
+        "parentId": 60,
+        "kind": "pass",
+        "actorPid": "study-A-00",
+        "team": 0,
+        "at": 77.195666666668,
+        "result": "received",
+        "start": {
+          "x": 0.48114833357677306,
+          "y": 0.908
+        },
+        "target": {
+          "x": 0.32016454857795984,
+          "y": 0.6642854708512514
+        },
+        "duration": 0.9487743728228732,
+        "endAt": 78.17066666666804,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 62,
+        "parentId": 61,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 78.95066666666807,
+        "result": "received",
+        "start": {
+          "x": 0.3391153876663424,
+          "y": 0.5761341888657419
+        },
+        "target": {
+          "x": 0.4629288621676644,
+          "y": 0.25445742995203424
+        },
+        "duration": 1.1837685767043187,
+        "endAt": 80.15966666666812,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 63,
+        "parentId": 62,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 80.93966666666815,
+        "result": "off-target",
+        "start": {
+          "x": 0.47969722879796434,
+          "y": 0.1624920101965206
+        },
+        "target": {
+          "x": 0.623640302152065,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.33635742697216325,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 81.29066666666816,
+        "receiverPid": "study-B-00"
+      },
+      {
+        "id": 64,
+        "parentId": 63,
+        "kind": "pass",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 83.16266666666823,
+        "result": "received",
+        "start": {
+          "x": 0.525550041452043,
+          "y": 0.09103608035780955
+        },
+        "target": {
+          "x": 0.332474107737753,
+          "y": 0.3214383713915908
+        },
+        "duration": 0.9399625908214224,
+        "endAt": 82.37233333333333,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 65,
+        "parentId": 64,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 83.33333333333333,
+        "result": "interrupted",
+        "start": {
+          "x": 0.348474107737753,
+          "y": 0.34343837139159084
+        },
+        "target": {
+          "x": 0.48547379839396443,
+          "y": 0.7485355116265772
+        },
+        "duration": 1.4803133603702587,
+        "reason": "final-whistle",
+        "endAt": 83.33333333333333
+      }
+    ]
+  },
+  "reportAccounting": {
+    "version": 117,
+    "sequence": 65,
+    "events": [
+      {
+        "id": 1,
+        "parentId": null,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 0,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.6
+        },
+        "duration": 0.72,
+        "endAt": 0.7410000000000004,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 2,
+        "parentId": 1,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 1.871999999999999,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.47970144781102975
+        },
+        "target": {
+          "x": 0.5098019485329108,
+          "y": 0.3083053523817839
+        },
+        "duration": 0.6112976400039376,
+        "endAt": 2.4960000000000004,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 3,
+        "parentId": 2,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 3.2760000000000034,
+        "result": "parried",
+        "start": {
+          "x": 0.5227998127322587,
+          "y": 0.25548029756815765
+        },
+        "target": {
+          "x": 0.5068399735568039,
+          "y": 0.07888712233652986
+        },
+        "duration": 0.37379750683968127,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "parried": true,
+        "endAt": 3.666000000000005
+      },
+      {
+        "id": 4,
+        "parentId": 3,
+        "kind": "block",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 3.666000000000005,
+        "result": "loose",
+        "start": {
+          "x": 0.5068399735568039,
+          "y": 0.07888712233652986
+        },
+        "target": {
+          "x": 0.4472428620285302,
+          "y": 0.15388712233652985
+        },
+        "duration": 0.32,
+        "endAt": 4.017000000000006
+      },
+      {
+        "id": 5,
+        "parentId": 4,
+        "kind": "loose-ball",
+        "actorPid": null,
+        "team": null,
+        "at": 4.017000000000006,
+        "result": "rolling"
+      },
+      {
+        "id": 6,
+        "parentId": 5,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 5.225999999999996,
+        "result": "received",
+        "start": {
+          "x": 0.4242872318005646,
+          "y": 0.3082949525334351
+        },
+        "target": {
+          "x": 0.2403692767725124,
+          "y": 0.4164762582805978
+        },
+        "duration": 0.5814717958258138,
+        "endAt": 5.810999999999992,
+        "receiverPid": "study-B-03"
+      },
+      {
+        "id": 7,
+        "parentId": 6,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 7.292999999999981,
+        "result": "received",
+        "start": {
+          "x": 0.26298122014050374,
+          "y": 0.4791149524474019
+        },
+        "target": {
+          "x": 0.47976089905775976,
+          "y": 0.5029108542254407
+        },
+        "duration": 0.5198301670835849,
+        "endAt": 7.838999999999976,
+        "receiverPid": "study-A-04"
+      },
+      {
+        "id": 8,
+        "parentId": 7,
+        "kind": "pass",
+        "actorPid": "study-A-04",
+        "team": 0,
+        "at": 8.618999999999971,
+        "result": "received",
+        "start": {
+          "x": 0.48010068455563515,
+          "y": 0.4352151434273836
+        },
+        "target": {
+          "x": 0.49235022503298503,
+          "y": 0.22491577362179638
+        },
+        "duration": 0.7503932188413802,
+        "endAt": 9.398999999999965,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 9,
+        "parentId": 8,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 10.17899999999996,
+        "result": "blocked",
+        "start": {
+          "x": 0.5085727718669267,
+          "y": 0.13155980788651483
+        },
+        "target": {
+          "x": 0.4946909908765783,
+          "y": 0.1430150272885919
+        },
+        "duration": 0.17,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": true,
+        "blocked": true,
+        "endAt": 10.373999999999958
+      },
+      {
+        "id": 10,
+        "parentId": 9,
+        "kind": "block",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 10.373999999999958,
+        "result": "loose",
+        "start": {
+          "x": 0.4946909908765783,
+          "y": 0.1430150272885919
+        },
+        "target": {
+          "x": 0.5329636036047568,
+          "y": 0.065
+        },
+        "duration": 0.2600288119103814,
+        "endAt": 10.646999999999956
+      },
+      {
+        "id": 11,
+        "parentId": 10,
+        "kind": "loose-ball",
+        "actorPid": null,
+        "team": null,
+        "at": 10.646999999999956,
+        "result": "rolling"
+      },
+      {
+        "id": 12,
+        "parentId": 11,
+        "kind": "goal",
+        "actorPid": null,
+        "team": 0,
+        "at": 10.802999999999955,
+        "result": "non-shot-goal",
+        "source": "own-goal",
+        "keeperPid": "study-B-00"
+      },
+      {
+        "id": 13,
+        "parentId": 12,
+        "kind": "pass",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 10.802999999999955,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.4
+        },
+        "duration": 0.72,
+        "endAt": 11.543999999999949,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 14,
+        "parentId": 13,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 13.181999999999936,
+        "result": "received",
+        "start": {
+          "x": 0.5158741252238712,
+          "y": 0.5599766383517636
+        },
+        "target": {
+          "x": 0.6921418688291103,
+          "y": 0.41643888858896155
+        },
+        "duration": 0.6601761560082755,
+        "endAt": 13.844999999999931,
+        "receiverPid": "study-B-02"
+      },
+      {
+        "id": 15,
+        "parentId": 14,
+        "kind": "pass",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 14.624999999999925,
+        "result": "received",
+        "start": {
+          "x": 0.7050202632871817,
+          "y": 0.5039311736212223
+        },
+        "target": {
+          "x": 0.600585019206547,
+          "y": 0.4969653369890267
+        },
+        "duration": 0.24831905441595323,
+        "endAt": 14.897999999999923,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 16,
+        "parentId": 15,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 15.599999999999918,
+        "result": "received",
+        "start": {
+          "x": 0.6149831174550402,
+          "y": 0.41077785616905016
+        },
+        "target": {
+          "x": 0.6593984168477174,
+          "y": 0.6462360745440626
+        },
+        "duration": 0.8460889234118594,
+        "endAt": 16.45799999999993,
+        "receiverPid": "study-A-02"
+      },
+      {
+        "id": 17,
+        "parentId": 16,
+        "kind": "pass",
+        "actorPid": "study-A-02",
+        "team": 0,
+        "at": 17.23799999999996,
+        "result": "received",
+        "start": {
+          "x": 0.6727321870509491,
+          "y": 0.5567913183706636
+        },
+        "target": {
+          "x": 0.7087927400337961,
+          "y": 0.5190941105775532
+        },
+        "duration": 0.2752474762127901,
+        "endAt": 17.549999999999972,
+        "receiverPid": "study-B-04"
+      },
+      {
+        "id": 18,
+        "parentId": 17,
+        "kind": "pass",
+        "actorPid": "study-B-04",
+        "team": 1,
+        "at": 18.252,
+        "result": "arrived",
+        "start": {
+          "x": 0.7166784523794482,
+          "y": 0.5941019836586644
+        },
+        "target": {
+          "x": 0.539312155233324,
+          "y": 0.7611765155996792
+        },
+        "duration": 0.7286635030351589,
+        "endAt": 18.993000000000027
+      },
+      {
+        "id": 19,
+        "parentId": 18,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 18.993000000000027,
+        "result": "received",
+        "start": {
+          "x": 0.5379841219335664,
+          "y": 0.6547684156972647
+        },
+        "target": {
+          "x": 0.3923013119510055,
+          "y": 0.656130099076644
+        },
+        "duration": 0.3446918725922744,
+        "endAt": 19.34400000000004,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 20,
+        "parentId": 19,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 20.709000000000092,
+        "result": "received",
+        "start": {
+          "x": 0.41143697934365164,
+          "y": 0.5159901959282327
+        },
+        "target": {
+          "x": 0.4966313673748987,
+          "y": 0.3028167157753234
+        },
+        "duration": 0.7863506184697934,
+        "endAt": 21.528000000000123,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 21,
+        "parentId": 20,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 22.308000000000153,
+        "result": "off-target",
+        "start": {
+          "x": 0.5126908167410356,
+          "y": 0.2096263963084879
+        },
+        "target": {
+          "x": 0.6165548923892828,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.39639962146977964,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 22.73700000000017,
+        "receiverPid": "study-B-00"
+      },
+      {
+        "id": 22,
+        "parentId": 21,
+        "kind": "pass",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 24.60900000000024,
+        "result": "received",
+        "start": {
+          "x": 0.5504634217507018,
+          "y": 0.092
+        },
+        "target": {
+          "x": 0.36869918756511727,
+          "y": 0.29665046483001906
+        },
+        "duration": 0.8469752285797113,
+        "endAt": 25.467000000000272,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 23,
+        "parentId": 22,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 26.247000000000302,
+        "result": "received",
+        "start": {
+          "x": 0.38682287381212377,
+          "y": 0.3838496225809747
+        },
+        "target": {
+          "x": 0.14671387011145215,
+          "y": 0.46100227232007013
+        },
+        "duration": 0.6311565399912066,
+        "endAt": 26.910000000000327,
+        "receiverPid": "study-B-03"
+      },
+      {
+        "id": 24,
+        "parentId": 23,
+        "kind": "pass",
+        "actorPid": "study-B-03",
+        "team": 1,
+        "at": 28.08000000000037,
+        "result": "received",
+        "start": {
+          "x": 0.1552533108434322,
+          "y": 0.5588358970729331
+        },
+        "target": {
+          "x": 0.3046639932412991,
+          "y": 0.8213090009205714
+        },
+        "duration": 1.0003914112223058,
+        "endAt": 29.09400000000041,
+        "receiverPid": "study-B-05"
+      },
+      {
+        "id": 25,
+        "parentId": 24,
+        "kind": "shot",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 29.87400000000044,
+        "result": "goal",
+        "start": {
+          "x": 0.3432780573935729,
+          "y": 0.8918870776217491
+        },
+        "target": {
+          "x": 0.5214850834850222,
+          "y": 0.9648648648648649
+        },
+        "duration": 0.29359177564471245,
+        "shot": true,
+        "keeperPid": "study-A-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "goal": true,
+        "endAt": 30.18600000000045
+      },
+      {
+        "id": 26,
+        "parentId": 25,
+        "kind": "goal",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 30.18600000000045,
+        "result": "shot-goal",
+        "source": null,
+        "keeperPid": "study-A-00"
+      },
+      {
+        "id": 27,
+        "parentId": 26,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 30.18600000000045,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.6
+        },
+        "duration": 0.72,
+        "endAt": 30.92700000000048,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 28,
+        "parentId": 27,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 32.05800000000052,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.48061539380231066
+        },
+        "target": {
+          "x": 0.15395525531528734,
+          "y": 0.5640080756909878
+        },
+        "duration": 0.9066713758368624,
+        "endAt": 32.994000000000554,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 29,
+        "parentId": 28,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 33.774000000000584,
+        "result": "received",
+        "start": {
+          "x": 0.17572346420281398,
+          "y": 0.4747984876210774
+        },
+        "target": {
+          "x": 0.31568663014108167,
+          "y": 0.5722251540412808
+        },
+        "duration": 0.4799138135058423,
+        "endAt": 34.2810000000006,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 30,
+        "parentId": 29,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 35.06100000000063,
+        "result": "received",
+        "start": {
+          "x": 0.33475240977866166,
+          "y": 0.48315964998959593
+        },
+        "target": {
+          "x": 0.1682345620960652,
+          "y": 0.5452538276353689
+        },
+        "duration": 0.4519005443615471,
+        "endAt": 35.52900000000065,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 31,
+        "parentId": 30,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 36.30900000000068,
+        "result": "received",
+        "start": {
+          "x": 0.18976236061198531,
+          "y": 0.45607350732607277
+        },
+        "target": {
+          "x": 0.2466660352127835,
+          "y": 0.6175497962312008
+        },
+        "duration": 0.5912816223499617,
+        "endAt": 36.9330000000007,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 32,
+        "parentId": 31,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 37.71300000000073,
+        "result": "received",
+        "start": {
+          "x": 0.2668747075135483,
+          "y": 0.5285671152289726
+        },
+        "target": {
+          "x": 0.1807819643652741,
+          "y": 0.5222791004381125
+        },
+        "duration": 0.32,
+        "endAt": 38.064000000000746,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 33,
+        "parentId": 32,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 38.844000000000776,
+        "result": "received",
+        "start": {
+          "x": 0.19963611181247692,
+          "y": 0.4366704227115142
+        },
+        "target": {
+          "x": 0.27793225398591087,
+          "y": 0.5653352308909013
+        },
+        "duration": 0.49474566951030896,
+        "endAt": 39.351000000000795,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 34,
+        "parentId": 33,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 40.131000000000824,
+        "result": "received",
+        "start": {
+          "x": 0.2976194774587047,
+          "y": 0.47638949672888453
+        },
+        "target": {
+          "x": 0.2035912689266549,
+          "y": 0.46912006703738024
+        },
+        "duration": 0.32,
+        "endAt": 40.48200000000084,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 35,
+        "parentId": 34,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 41.26200000000087,
+        "result": "received",
+        "start": {
+          "x": 0.21864861341131286,
+          "y": 0.38486244032755373
+        },
+        "target": {
+          "x": 0.31265495132673077,
+          "y": 0.5325546310432544
+        },
+        "duration": 0.5716417013249975,
+        "endAt": 41.705666666666666,
+        "receiverPid": "study-A-04"
+      },
+      {
+        "id": 36,
+        "parentId": 35,
+        "kind": "pass",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 41.666666666666664,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.4
+        },
+        "duration": 0.72,
+        "endAt": 42.40766666666669,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 37,
+        "parentId": 36,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 44.16266666666676,
+        "result": "received",
+        "start": {
+          "x": 0.5204243185353631,
+          "y": 0.48763226818051375
+        },
+        "target": {
+          "x": 0.6869034108875283,
+          "y": 0.5223216427352116
+        },
+        "duration": 0.41282237324516097,
+        "endAt": 44.591666666666775,
+        "receiverPid": "study-A-04"
+      },
+      {
+        "id": 38,
+        "parentId": 37,
+        "kind": "highPass",
+        "actorPid": "study-A-04",
+        "team": 0,
+        "at": 45.371666666666805,
+        "result": "received",
+        "start": {
+          "x": 0.6997923734790706,
+          "y": 0.4332088148368813
+        },
+        "target": {
+          "x": 0.7613397429022424,
+          "y": 0.5414731969709777
+        },
+        "duration": 0.55,
+        "endAt": 45.95666666666683,
+        "receiverPid": "study-A-02"
+      },
+      {
+        "id": 39,
+        "parentId": 38,
+        "kind": "highPass",
+        "actorPid": "study-A-02",
+        "team": 0,
+        "at": 46.54166666666685,
+        "result": "received",
+        "start": {
+          "x": 0.7527451121690513,
+          "y": 0.4872867065555829
+        },
+        "target": {
+          "x": 0.23987564399641872,
+          "y": 0.5974457636623809
+        },
+        "duration": 1.0202730265176285,
+        "endAt": 47.59466666666689,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 40,
+        "parentId": 39,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 48.17966666666691,
+        "result": "received",
+        "start": {
+          "x": 0.2214005905187724,
+          "y": 0.5651747923005521
+        },
+        "target": {
+          "x": 0.2838109882488043,
+          "y": 0.3347366680064913
+        },
+        "duration": 0.8348004533256057,
+        "endAt": 49.037666666666944,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 41,
+        "parentId": 40,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 49.81766666666697,
+        "result": "off-target",
+        "start": {
+          "x": 0.30779090228551037,
+          "y": 0.2469986964027707
+        },
+        "target": {
+          "x": 0.6196299781714758,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.6257179189618555,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 50.480666666667,
+        "receiverPid": "study-B-00"
+      },
+      {
+        "id": 42,
+        "parentId": 41,
+        "kind": "pass",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 52.35266666666707,
+        "result": "received",
+        "start": {
+          "x": 0.5150251368674715,
+          "y": 0.092
+        },
+        "target": {
+          "x": 0.589033976313257,
+          "y": 0.3233465579934827
+        },
+        "duration": 0.8432561392757313,
+        "endAt": 53.2106666666671,
+        "receiverPid": "study-B-02"
+      },
+      {
+        "id": 43,
+        "parentId": 42,
+        "kind": "pass",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 53.99066666666713,
+        "result": "received",
+        "start": {
+          "x": 0.6036099942141125,
+          "y": 0.4098124602470318
+        },
+        "target": {
+          "x": 0.336721966501679,
+          "y": 0.45910805439249186
+        },
+        "duration": 0.6554138348909676,
+        "endAt": 54.65366666666716,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 44,
+        "parentId": 43,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 55.35566666666718,
+        "result": "received",
+        "start": {
+          "x": 0.35516484357653083,
+          "y": 0.37683526684807356
+        },
+        "target": {
+          "x": 0.31244336841118364,
+          "y": 0.6413209307285701
+        },
+        "duration": 0.9484381859271174,
+        "endAt": 56.33066666666722,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 45,
+        "parentId": 44,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 57.11066666666725,
+        "result": "received",
+        "start": {
+          "x": 0.33154180530458527,
+          "y": 0.5527167352370436
+        },
+        "target": {
+          "x": 0.188523493642017,
+          "y": 0.5054552993989924
+        },
+        "duration": 0.37799482893166425,
+        "endAt": 57.500666666667264,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 46,
+        "parentId": 45,
+        "kind": "cross",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 59.52866666666734,
+        "result": "loose",
+        "start": {
+          "x": 0.21777457578039577,
+          "y": 0.3096309449452069
+        },
+        "target": {
+          "x": 0.3903570349731217,
+          "y": 0.21886525066639861
+        },
+        "duration": 0.55,
+        "endAt": 60.11366666666736
+      },
+      {
+        "id": 47,
+        "parentId": 46,
+        "kind": "loose-ball",
+        "actorPid": null,
+        "team": null,
+        "at": 60.11366666666736,
+        "result": "rolling"
+      },
+      {
+        "id": 48,
+        "parentId": 47,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 61.67366666666742,
+        "result": "received",
+        "start": {
+          "x": 0.3590086300975178,
+          "y": 0.4185173647179858
+        },
+        "target": {
+          "x": 0.5529357978014696,
+          "y": 0.3879064620738849
+        },
+        "duration": 0.47159842136117397,
+        "endAt": 62.18066666666744,
+        "receiverPid": "study-B-04"
+      },
+      {
+        "id": 49,
+        "parentId": 48,
+        "kind": "pass",
+        "actorPid": "study-B-04",
+        "team": 1,
+        "at": 62.96066666666747,
+        "result": "received",
+        "start": {
+          "x": 0.5680874450611919,
+          "y": 0.47450386793512034
+        },
+        "target": {
+          "x": 0.6386721408751338,
+          "y": 0.3317947688161855
+        },
+        "duration": 0.5355375561034208,
+        "endAt": 63.50666666666749,
+        "receiverPid": "study-B-02"
+      },
+      {
+        "id": 50,
+        "parentId": 49,
+        "kind": "pass",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 64.28666666666751,
+        "result": "received",
+        "start": {
+          "x": 0.6524639894342834,
+          "y": 0.4179757385658408
+        },
+        "target": {
+          "x": 0.6559311513325505,
+          "y": 0.43834938669214374
+        },
+        "duration": 0.32,
+        "endAt": 64.63766666666753,
+        "receiverPid": "study-B-04"
+      },
+      {
+        "id": 51,
+        "parentId": 50,
+        "kind": "pass",
+        "actorPid": "study-B-04",
+        "team": 1,
+        "at": 65.41766666666756,
+        "result": "received",
+        "start": {
+          "x": 0.6694348784704451,
+          "y": 0.524876707901704
+        },
+        "target": {
+          "x": 0.5159305484370198,
+          "y": 0.7139858573598152
+        },
+        "duration": 0.7658577878811309,
+        "endAt": 66.19766666666759,
+        "receiverPid": "study-B-05"
+      },
+      {
+        "id": 52,
+        "parentId": 51,
+        "kind": "shot",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 66.97766666666762,
+        "result": "goal",
+        "start": {
+          "x": 0.5396487129537546,
+          "y": 0.7938445285146306
+        },
+        "target": {
+          "x": 0.5023769370839,
+          "y": 0.9648648648648649
+        },
+        "duration": 0.36511080432072196,
+        "shot": true,
+        "keeperPid": "study-A-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "goal": true,
+        "endAt": 67.36766666666763
+      },
+      {
+        "id": 53,
+        "parentId": 52,
+        "kind": "goal",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 67.36766666666763,
+        "result": "shot-goal",
+        "source": null,
+        "keeperPid": "study-A-00"
+      },
+      {
+        "id": 54,
+        "parentId": 53,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 67.36766666666763,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.6
+        },
+        "duration": 0.72,
+        "endAt": 68.10866666666766,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 55,
+        "parentId": 54,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 69.2396666666677,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.4817388184046071
+        },
+        "target": {
+          "x": 0.5230137693967253,
+          "y": 0.3174513032058285
+        },
+        "duration": 0.5860107026260478,
+        "endAt": 69.86366666666773,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 56,
+        "parentId": 55,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 71.26766666666778,
+        "result": "goal",
+        "start": {
+          "x": 0.530909113848162,
+          "y": 0.2050046169841075
+        },
+        "target": {
+          "x": 0.4792084311041981,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.36616620678614786,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "goal": true,
+        "endAt": 71.6576666666678
+      },
+      {
+        "id": 57,
+        "parentId": 56,
+        "kind": "goal",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 71.6576666666678,
+        "result": "shot-goal",
+        "source": null,
+        "keeperPid": "study-B-00"
+      },
+      {
+        "id": 58,
+        "parentId": 57,
+        "kind": "pass",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 71.6576666666678,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.4
+        },
+        "duration": 0.72,
+        "endAt": 72.39866666666782,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 59,
+        "parentId": 58,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 73.52966666666786,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.5147348008279243
+        },
+        "target": {
+          "x": 0.5259855515420905,
+          "y": 0.6336488379142942
+        },
+        "duration": 0.424651844195368,
+        "endAt": 73.95866666666788,
+        "receiverPid": "study-B-05"
+      },
+      {
+        "id": 60,
+        "parentId": 59,
+        "kind": "shot",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 74.73866666666791,
+        "result": "off-target",
+        "start": {
+          "x": 0.5367067540931288,
+          "y": 0.7133221410698115
+        },
+        "target": {
+          "x": 0.3749030280975658,
+          "y": 0.9648648648648649
+        },
+        "duration": 0.5778743224985321,
+        "shot": true,
+        "keeperPid": "study-A-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 75.32366666666793,
+        "receiverPid": "study-A-00"
+      },
+      {
+        "id": 61,
+        "parentId": 60,
+        "kind": "pass",
+        "actorPid": "study-A-00",
+        "team": 0,
+        "at": 77.195666666668,
+        "result": "received",
+        "start": {
+          "x": 0.48114833357677306,
+          "y": 0.908
+        },
+        "target": {
+          "x": 0.32016454857795984,
+          "y": 0.6642854708512514
+        },
+        "duration": 0.9487743728228732,
+        "endAt": 78.17066666666804,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 62,
+        "parentId": 61,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 78.95066666666807,
+        "result": "received",
+        "start": {
+          "x": 0.3391153876663424,
+          "y": 0.5761341888657419
+        },
+        "target": {
+          "x": 0.4629288621676644,
+          "y": 0.25445742995203424
+        },
+        "duration": 1.1837685767043187,
+        "endAt": 80.15966666666812,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 63,
+        "parentId": 62,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 80.93966666666815,
+        "result": "off-target",
+        "start": {
+          "x": 0.47969722879796434,
+          "y": 0.1624920101965206
+        },
+        "target": {
+          "x": 0.623640302152065,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.33635742697216325,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 81.29066666666816,
+        "receiverPid": "study-B-00"
+      },
+      {
+        "id": 64,
+        "parentId": 63,
+        "kind": "pass",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 83.16266666666823,
+        "result": "received",
+        "start": {
+          "x": 0.525550041452043,
+          "y": 0.09103608035780955
+        },
+        "target": {
+          "x": 0.332474107737753,
+          "y": 0.3214383713915908
+        },
+        "duration": 0.9399625908214224,
+        "endAt": 82.37233333333333,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 65,
+        "parentId": 64,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 83.33333333333333,
+        "result": "interrupted",
+        "start": {
+          "x": 0.348474107737753,
+          "y": 0.34343837139159084
+        },
+        "target": {
+          "x": 0.48547379839396443,
+          "y": 0.7485355116265772
+        },
+        "duration": 1.4803133603702587,
+        "reason": "final-whistle",
+        "endAt": 83.33333333333333
+      }
+    ]
+  },
+  "bookedAccounting": {
+    "version": 117,
+    "sequence": 65,
+    "events": [
+      {
+        "id": 1,
+        "parentId": null,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 0,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.6
+        },
+        "duration": 0.72,
+        "endAt": 0.7410000000000004,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 2,
+        "parentId": 1,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 1.871999999999999,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.47970144781102975
+        },
+        "target": {
+          "x": 0.5098019485329108,
+          "y": 0.3083053523817839
+        },
+        "duration": 0.6112976400039376,
+        "endAt": 2.4960000000000004,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 3,
+        "parentId": 2,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 3.2760000000000034,
+        "result": "parried",
+        "start": {
+          "x": 0.5227998127322587,
+          "y": 0.25548029756815765
+        },
+        "target": {
+          "x": 0.5068399735568039,
+          "y": 0.07888712233652986
+        },
+        "duration": 0.37379750683968127,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "parried": true,
+        "endAt": 3.666000000000005
+      },
+      {
+        "id": 4,
+        "parentId": 3,
+        "kind": "block",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 3.666000000000005,
+        "result": "loose",
+        "start": {
+          "x": 0.5068399735568039,
+          "y": 0.07888712233652986
+        },
+        "target": {
+          "x": 0.4472428620285302,
+          "y": 0.15388712233652985
+        },
+        "duration": 0.32,
+        "endAt": 4.017000000000006
+      },
+      {
+        "id": 5,
+        "parentId": 4,
+        "kind": "loose-ball",
+        "actorPid": null,
+        "team": null,
+        "at": 4.017000000000006,
+        "result": "rolling"
+      },
+      {
+        "id": 6,
+        "parentId": 5,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 5.225999999999996,
+        "result": "received",
+        "start": {
+          "x": 0.4242872318005646,
+          "y": 0.3082949525334351
+        },
+        "target": {
+          "x": 0.2403692767725124,
+          "y": 0.4164762582805978
+        },
+        "duration": 0.5814717958258138,
+        "endAt": 5.810999999999992,
+        "receiverPid": "study-B-03"
+      },
+      {
+        "id": 7,
+        "parentId": 6,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 7.292999999999981,
+        "result": "received",
+        "start": {
+          "x": 0.26298122014050374,
+          "y": 0.4791149524474019
+        },
+        "target": {
+          "x": 0.47976089905775976,
+          "y": 0.5029108542254407
+        },
+        "duration": 0.5198301670835849,
+        "endAt": 7.838999999999976,
+        "receiverPid": "study-A-04"
+      },
+      {
+        "id": 8,
+        "parentId": 7,
+        "kind": "pass",
+        "actorPid": "study-A-04",
+        "team": 0,
+        "at": 8.618999999999971,
+        "result": "received",
+        "start": {
+          "x": 0.48010068455563515,
+          "y": 0.4352151434273836
+        },
+        "target": {
+          "x": 0.49235022503298503,
+          "y": 0.22491577362179638
+        },
+        "duration": 0.7503932188413802,
+        "endAt": 9.398999999999965,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 9,
+        "parentId": 8,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 10.17899999999996,
+        "result": "blocked",
+        "start": {
+          "x": 0.5085727718669267,
+          "y": 0.13155980788651483
+        },
+        "target": {
+          "x": 0.4946909908765783,
+          "y": 0.1430150272885919
+        },
+        "duration": 0.17,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": true,
+        "blocked": true,
+        "endAt": 10.373999999999958
+      },
+      {
+        "id": 10,
+        "parentId": 9,
+        "kind": "block",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 10.373999999999958,
+        "result": "loose",
+        "start": {
+          "x": 0.4946909908765783,
+          "y": 0.1430150272885919
+        },
+        "target": {
+          "x": 0.5329636036047568,
+          "y": 0.065
+        },
+        "duration": 0.2600288119103814,
+        "endAt": 10.646999999999956
+      },
+      {
+        "id": 11,
+        "parentId": 10,
+        "kind": "loose-ball",
+        "actorPid": null,
+        "team": null,
+        "at": 10.646999999999956,
+        "result": "rolling"
+      },
+      {
+        "id": 12,
+        "parentId": 11,
+        "kind": "goal",
+        "actorPid": null,
+        "team": 0,
+        "at": 10.802999999999955,
+        "result": "non-shot-goal",
+        "source": "own-goal",
+        "keeperPid": "study-B-00"
+      },
+      {
+        "id": 13,
+        "parentId": 12,
+        "kind": "pass",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 10.802999999999955,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.4
+        },
+        "duration": 0.72,
+        "endAt": 11.543999999999949,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 14,
+        "parentId": 13,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 13.181999999999936,
+        "result": "received",
+        "start": {
+          "x": 0.5158741252238712,
+          "y": 0.5599766383517636
+        },
+        "target": {
+          "x": 0.6921418688291103,
+          "y": 0.41643888858896155
+        },
+        "duration": 0.6601761560082755,
+        "endAt": 13.844999999999931,
+        "receiverPid": "study-B-02"
+      },
+      {
+        "id": 15,
+        "parentId": 14,
+        "kind": "pass",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 14.624999999999925,
+        "result": "received",
+        "start": {
+          "x": 0.7050202632871817,
+          "y": 0.5039311736212223
+        },
+        "target": {
+          "x": 0.600585019206547,
+          "y": 0.4969653369890267
+        },
+        "duration": 0.24831905441595323,
+        "endAt": 14.897999999999923,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 16,
+        "parentId": 15,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 15.599999999999918,
+        "result": "received",
+        "start": {
+          "x": 0.6149831174550402,
+          "y": 0.41077785616905016
+        },
+        "target": {
+          "x": 0.6593984168477174,
+          "y": 0.6462360745440626
+        },
+        "duration": 0.8460889234118594,
+        "endAt": 16.45799999999993,
+        "receiverPid": "study-A-02"
+      },
+      {
+        "id": 17,
+        "parentId": 16,
+        "kind": "pass",
+        "actorPid": "study-A-02",
+        "team": 0,
+        "at": 17.23799999999996,
+        "result": "received",
+        "start": {
+          "x": 0.6727321870509491,
+          "y": 0.5567913183706636
+        },
+        "target": {
+          "x": 0.7087927400337961,
+          "y": 0.5190941105775532
+        },
+        "duration": 0.2752474762127901,
+        "endAt": 17.549999999999972,
+        "receiverPid": "study-B-04"
+      },
+      {
+        "id": 18,
+        "parentId": 17,
+        "kind": "pass",
+        "actorPid": "study-B-04",
+        "team": 1,
+        "at": 18.252,
+        "result": "arrived",
+        "start": {
+          "x": 0.7166784523794482,
+          "y": 0.5941019836586644
+        },
+        "target": {
+          "x": 0.539312155233324,
+          "y": 0.7611765155996792
+        },
+        "duration": 0.7286635030351589,
+        "endAt": 18.993000000000027
+      },
+      {
+        "id": 19,
+        "parentId": 18,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 18.993000000000027,
+        "result": "received",
+        "start": {
+          "x": 0.5379841219335664,
+          "y": 0.6547684156972647
+        },
+        "target": {
+          "x": 0.3923013119510055,
+          "y": 0.656130099076644
+        },
+        "duration": 0.3446918725922744,
+        "endAt": 19.34400000000004,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 20,
+        "parentId": 19,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 20.709000000000092,
+        "result": "received",
+        "start": {
+          "x": 0.41143697934365164,
+          "y": 0.5159901959282327
+        },
+        "target": {
+          "x": 0.4966313673748987,
+          "y": 0.3028167157753234
+        },
+        "duration": 0.7863506184697934,
+        "endAt": 21.528000000000123,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 21,
+        "parentId": 20,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 22.308000000000153,
+        "result": "off-target",
+        "start": {
+          "x": 0.5126908167410356,
+          "y": 0.2096263963084879
+        },
+        "target": {
+          "x": 0.6165548923892828,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.39639962146977964,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 22.73700000000017,
+        "receiverPid": "study-B-00"
+      },
+      {
+        "id": 22,
+        "parentId": 21,
+        "kind": "pass",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 24.60900000000024,
+        "result": "received",
+        "start": {
+          "x": 0.5504634217507018,
+          "y": 0.092
+        },
+        "target": {
+          "x": 0.36869918756511727,
+          "y": 0.29665046483001906
+        },
+        "duration": 0.8469752285797113,
+        "endAt": 25.467000000000272,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 23,
+        "parentId": 22,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 26.247000000000302,
+        "result": "received",
+        "start": {
+          "x": 0.38682287381212377,
+          "y": 0.3838496225809747
+        },
+        "target": {
+          "x": 0.14671387011145215,
+          "y": 0.46100227232007013
+        },
+        "duration": 0.6311565399912066,
+        "endAt": 26.910000000000327,
+        "receiverPid": "study-B-03"
+      },
+      {
+        "id": 24,
+        "parentId": 23,
+        "kind": "pass",
+        "actorPid": "study-B-03",
+        "team": 1,
+        "at": 28.08000000000037,
+        "result": "received",
+        "start": {
+          "x": 0.1552533108434322,
+          "y": 0.5588358970729331
+        },
+        "target": {
+          "x": 0.3046639932412991,
+          "y": 0.8213090009205714
+        },
+        "duration": 1.0003914112223058,
+        "endAt": 29.09400000000041,
+        "receiverPid": "study-B-05"
+      },
+      {
+        "id": 25,
+        "parentId": 24,
+        "kind": "shot",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 29.87400000000044,
+        "result": "goal",
+        "start": {
+          "x": 0.3432780573935729,
+          "y": 0.8918870776217491
+        },
+        "target": {
+          "x": 0.5214850834850222,
+          "y": 0.9648648648648649
+        },
+        "duration": 0.29359177564471245,
+        "shot": true,
+        "keeperPid": "study-A-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "goal": true,
+        "endAt": 30.18600000000045
+      },
+      {
+        "id": 26,
+        "parentId": 25,
+        "kind": "goal",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 30.18600000000045,
+        "result": "shot-goal",
+        "source": null,
+        "keeperPid": "study-A-00"
+      },
+      {
+        "id": 27,
+        "parentId": 26,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 30.18600000000045,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.6
+        },
+        "duration": 0.72,
+        "endAt": 30.92700000000048,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 28,
+        "parentId": 27,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 32.05800000000052,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.48061539380231066
+        },
+        "target": {
+          "x": 0.15395525531528734,
+          "y": 0.5640080756909878
+        },
+        "duration": 0.9066713758368624,
+        "endAt": 32.994000000000554,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 29,
+        "parentId": 28,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 33.774000000000584,
+        "result": "received",
+        "start": {
+          "x": 0.17572346420281398,
+          "y": 0.4747984876210774
+        },
+        "target": {
+          "x": 0.31568663014108167,
+          "y": 0.5722251540412808
+        },
+        "duration": 0.4799138135058423,
+        "endAt": 34.2810000000006,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 30,
+        "parentId": 29,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 35.06100000000063,
+        "result": "received",
+        "start": {
+          "x": 0.33475240977866166,
+          "y": 0.48315964998959593
+        },
+        "target": {
+          "x": 0.1682345620960652,
+          "y": 0.5452538276353689
+        },
+        "duration": 0.4519005443615471,
+        "endAt": 35.52900000000065,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 31,
+        "parentId": 30,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 36.30900000000068,
+        "result": "received",
+        "start": {
+          "x": 0.18976236061198531,
+          "y": 0.45607350732607277
+        },
+        "target": {
+          "x": 0.2466660352127835,
+          "y": 0.6175497962312008
+        },
+        "duration": 0.5912816223499617,
+        "endAt": 36.9330000000007,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 32,
+        "parentId": 31,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 37.71300000000073,
+        "result": "received",
+        "start": {
+          "x": 0.2668747075135483,
+          "y": 0.5285671152289726
+        },
+        "target": {
+          "x": 0.1807819643652741,
+          "y": 0.5222791004381125
+        },
+        "duration": 0.32,
+        "endAt": 38.064000000000746,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 33,
+        "parentId": 32,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 38.844000000000776,
+        "result": "received",
+        "start": {
+          "x": 0.19963611181247692,
+          "y": 0.4366704227115142
+        },
+        "target": {
+          "x": 0.27793225398591087,
+          "y": 0.5653352308909013
+        },
+        "duration": 0.49474566951030896,
+        "endAt": 39.351000000000795,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 34,
+        "parentId": 33,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 40.131000000000824,
+        "result": "received",
+        "start": {
+          "x": 0.2976194774587047,
+          "y": 0.47638949672888453
+        },
+        "target": {
+          "x": 0.2035912689266549,
+          "y": 0.46912006703738024
+        },
+        "duration": 0.32,
+        "endAt": 40.48200000000084,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 35,
+        "parentId": 34,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 41.26200000000087,
+        "result": "received",
+        "start": {
+          "x": 0.21864861341131286,
+          "y": 0.38486244032755373
+        },
+        "target": {
+          "x": 0.31265495132673077,
+          "y": 0.5325546310432544
+        },
+        "duration": 0.5716417013249975,
+        "endAt": 41.705666666666666,
+        "receiverPid": "study-A-04"
+      },
+      {
+        "id": 36,
+        "parentId": 35,
+        "kind": "pass",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 41.666666666666664,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.4
+        },
+        "duration": 0.72,
+        "endAt": 42.40766666666669,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 37,
+        "parentId": 36,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 44.16266666666676,
+        "result": "received",
+        "start": {
+          "x": 0.5204243185353631,
+          "y": 0.48763226818051375
+        },
+        "target": {
+          "x": 0.6869034108875283,
+          "y": 0.5223216427352116
+        },
+        "duration": 0.41282237324516097,
+        "endAt": 44.591666666666775,
+        "receiverPid": "study-A-04"
+      },
+      {
+        "id": 38,
+        "parentId": 37,
+        "kind": "highPass",
+        "actorPid": "study-A-04",
+        "team": 0,
+        "at": 45.371666666666805,
+        "result": "received",
+        "start": {
+          "x": 0.6997923734790706,
+          "y": 0.4332088148368813
+        },
+        "target": {
+          "x": 0.7613397429022424,
+          "y": 0.5414731969709777
+        },
+        "duration": 0.55,
+        "endAt": 45.95666666666683,
+        "receiverPid": "study-A-02"
+      },
+      {
+        "id": 39,
+        "parentId": 38,
+        "kind": "highPass",
+        "actorPid": "study-A-02",
+        "team": 0,
+        "at": 46.54166666666685,
+        "result": "received",
+        "start": {
+          "x": 0.7527451121690513,
+          "y": 0.4872867065555829
+        },
+        "target": {
+          "x": 0.23987564399641872,
+          "y": 0.5974457636623809
+        },
+        "duration": 1.0202730265176285,
+        "endAt": 47.59466666666689,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 40,
+        "parentId": 39,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 48.17966666666691,
+        "result": "received",
+        "start": {
+          "x": 0.2214005905187724,
+          "y": 0.5651747923005521
+        },
+        "target": {
+          "x": 0.2838109882488043,
+          "y": 0.3347366680064913
+        },
+        "duration": 0.8348004533256057,
+        "endAt": 49.037666666666944,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 41,
+        "parentId": 40,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 49.81766666666697,
+        "result": "off-target",
+        "start": {
+          "x": 0.30779090228551037,
+          "y": 0.2469986964027707
+        },
+        "target": {
+          "x": 0.6196299781714758,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.6257179189618555,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 50.480666666667,
+        "receiverPid": "study-B-00"
+      },
+      {
+        "id": 42,
+        "parentId": 41,
+        "kind": "pass",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 52.35266666666707,
+        "result": "received",
+        "start": {
+          "x": 0.5150251368674715,
+          "y": 0.092
+        },
+        "target": {
+          "x": 0.589033976313257,
+          "y": 0.3233465579934827
+        },
+        "duration": 0.8432561392757313,
+        "endAt": 53.2106666666671,
+        "receiverPid": "study-B-02"
+      },
+      {
+        "id": 43,
+        "parentId": 42,
+        "kind": "pass",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 53.99066666666713,
+        "result": "received",
+        "start": {
+          "x": 0.6036099942141125,
+          "y": 0.4098124602470318
+        },
+        "target": {
+          "x": 0.336721966501679,
+          "y": 0.45910805439249186
+        },
+        "duration": 0.6554138348909676,
+        "endAt": 54.65366666666716,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 44,
+        "parentId": 43,
+        "kind": "pass",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 55.35566666666718,
+        "result": "received",
+        "start": {
+          "x": 0.35516484357653083,
+          "y": 0.37683526684807356
+        },
+        "target": {
+          "x": 0.31244336841118364,
+          "y": 0.6413209307285701
+        },
+        "duration": 0.9484381859271174,
+        "endAt": 56.33066666666722,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 45,
+        "parentId": 44,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 57.11066666666725,
+        "result": "received",
+        "start": {
+          "x": 0.33154180530458527,
+          "y": 0.5527167352370436
+        },
+        "target": {
+          "x": 0.188523493642017,
+          "y": 0.5054552993989924
+        },
+        "duration": 0.37799482893166425,
+        "endAt": 57.500666666667264,
+        "receiverPid": "study-A-03"
+      },
+      {
+        "id": 46,
+        "parentId": 45,
+        "kind": "cross",
+        "actorPid": "study-A-03",
+        "team": 0,
+        "at": 59.52866666666734,
+        "result": "loose",
+        "start": {
+          "x": 0.21777457578039577,
+          "y": 0.3096309449452069
+        },
+        "target": {
+          "x": 0.3903570349731217,
+          "y": 0.21886525066639861
+        },
+        "duration": 0.55,
+        "endAt": 60.11366666666736
+      },
+      {
+        "id": 47,
+        "parentId": 46,
+        "kind": "loose-ball",
+        "actorPid": null,
+        "team": null,
+        "at": 60.11366666666736,
+        "result": "rolling"
+      },
+      {
+        "id": 48,
+        "parentId": 47,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 61.67366666666742,
+        "result": "received",
+        "start": {
+          "x": 0.3590086300975178,
+          "y": 0.4185173647179858
+        },
+        "target": {
+          "x": 0.5529357978014696,
+          "y": 0.3879064620738849
+        },
+        "duration": 0.47159842136117397,
+        "endAt": 62.18066666666744,
+        "receiverPid": "study-B-04"
+      },
+      {
+        "id": 49,
+        "parentId": 48,
+        "kind": "pass",
+        "actorPid": "study-B-04",
+        "team": 1,
+        "at": 62.96066666666747,
+        "result": "received",
+        "start": {
+          "x": 0.5680874450611919,
+          "y": 0.47450386793512034
+        },
+        "target": {
+          "x": 0.6386721408751338,
+          "y": 0.3317947688161855
+        },
+        "duration": 0.5355375561034208,
+        "endAt": 63.50666666666749,
+        "receiverPid": "study-B-02"
+      },
+      {
+        "id": 50,
+        "parentId": 49,
+        "kind": "pass",
+        "actorPid": "study-B-02",
+        "team": 1,
+        "at": 64.28666666666751,
+        "result": "received",
+        "start": {
+          "x": 0.6524639894342834,
+          "y": 0.4179757385658408
+        },
+        "target": {
+          "x": 0.6559311513325505,
+          "y": 0.43834938669214374
+        },
+        "duration": 0.32,
+        "endAt": 64.63766666666753,
+        "receiverPid": "study-B-04"
+      },
+      {
+        "id": 51,
+        "parentId": 50,
+        "kind": "pass",
+        "actorPid": "study-B-04",
+        "team": 1,
+        "at": 65.41766666666756,
+        "result": "received",
+        "start": {
+          "x": 0.6694348784704451,
+          "y": 0.524876707901704
+        },
+        "target": {
+          "x": 0.5159305484370198,
+          "y": 0.7139858573598152
+        },
+        "duration": 0.7658577878811309,
+        "endAt": 66.19766666666759,
+        "receiverPid": "study-B-05"
+      },
+      {
+        "id": 52,
+        "parentId": 51,
+        "kind": "shot",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 66.97766666666762,
+        "result": "goal",
+        "start": {
+          "x": 0.5396487129537546,
+          "y": 0.7938445285146306
+        },
+        "target": {
+          "x": 0.5023769370839,
+          "y": 0.9648648648648649
+        },
+        "duration": 0.36511080432072196,
+        "shot": true,
+        "keeperPid": "study-A-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "goal": true,
+        "endAt": 67.36766666666763
+      },
+      {
+        "id": 53,
+        "parentId": 52,
+        "kind": "goal",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 67.36766666666763,
+        "result": "shot-goal",
+        "source": null,
+        "keeperPid": "study-A-00"
+      },
+      {
+        "id": 54,
+        "parentId": 53,
+        "kind": "pass",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 67.36766666666763,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.6
+        },
+        "duration": 0.72,
+        "endAt": 68.10866666666766,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 55,
+        "parentId": 54,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 69.2396666666677,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.4817388184046071
+        },
+        "target": {
+          "x": 0.5230137693967253,
+          "y": 0.3174513032058285
+        },
+        "duration": 0.5860107026260478,
+        "endAt": 69.86366666666773,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 56,
+        "parentId": 55,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 71.26766666666778,
+        "result": "goal",
+        "start": {
+          "x": 0.530909113848162,
+          "y": 0.2050046169841075
+        },
+        "target": {
+          "x": 0.4792084311041981,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.36616620678614786,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": true,
+        "expectedBlock": false,
+        "goal": true,
+        "endAt": 71.6576666666678
+      },
+      {
+        "id": 57,
+        "parentId": 56,
+        "kind": "goal",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 71.6576666666678,
+        "result": "shot-goal",
+        "source": null,
+        "keeperPid": "study-B-00"
+      },
+      {
+        "id": 58,
+        "parentId": 57,
+        "kind": "pass",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 71.6576666666678,
+        "result": "received",
+        "start": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "target": {
+          "x": 0.5,
+          "y": 0.4
+        },
+        "duration": 0.72,
+        "endAt": 72.39866666666782,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 59,
+        "parentId": 58,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 73.52966666666786,
+        "result": "received",
+        "start": {
+          "x": 0.516,
+          "y": 0.5147348008279243
+        },
+        "target": {
+          "x": 0.5259855515420905,
+          "y": 0.6336488379142942
+        },
+        "duration": 0.424651844195368,
+        "endAt": 73.95866666666788,
+        "receiverPid": "study-B-05"
+      },
+      {
+        "id": 60,
+        "parentId": 59,
+        "kind": "shot",
+        "actorPid": "study-B-05",
+        "team": 1,
+        "at": 74.73866666666791,
+        "result": "off-target",
+        "start": {
+          "x": 0.5367067540931288,
+          "y": 0.7133221410698115
+        },
+        "target": {
+          "x": 0.3749030280975658,
+          "y": 0.9648648648648649
+        },
+        "duration": 0.5778743224985321,
+        "shot": true,
+        "keeperPid": "study-A-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 75.32366666666793,
+        "receiverPid": "study-A-00"
+      },
+      {
+        "id": 61,
+        "parentId": 60,
+        "kind": "pass",
+        "actorPid": "study-A-00",
+        "team": 0,
+        "at": 77.195666666668,
+        "result": "received",
+        "start": {
+          "x": 0.48114833357677306,
+          "y": 0.908
+        },
+        "target": {
+          "x": 0.32016454857795984,
+          "y": 0.6642854708512514
+        },
+        "duration": 0.9487743728228732,
+        "endAt": 78.17066666666804,
+        "receiverPid": "study-A-01"
+      },
+      {
+        "id": 62,
+        "parentId": 61,
+        "kind": "pass",
+        "actorPid": "study-A-01",
+        "team": 0,
+        "at": 78.95066666666807,
+        "result": "received",
+        "start": {
+          "x": 0.3391153876663424,
+          "y": 0.5761341888657419
+        },
+        "target": {
+          "x": 0.4629288621676644,
+          "y": 0.25445742995203424
+        },
+        "duration": 1.1837685767043187,
+        "endAt": 80.15966666666812,
+        "receiverPid": "study-A-05"
+      },
+      {
+        "id": 63,
+        "parentId": 62,
+        "kind": "shot",
+        "actorPid": "study-A-05",
+        "team": 0,
+        "at": 80.93966666666815,
+        "result": "off-target",
+        "start": {
+          "x": 0.47969722879796434,
+          "y": 0.1624920101965206
+        },
+        "target": {
+          "x": 0.623640302152065,
+          "y": 0.03513513513513514
+        },
+        "duration": 0.33635742697216325,
+        "shot": true,
+        "keeperPid": "study-B-00",
+        "plannedOnTarget": false,
+        "expectedBlock": false,
+        "endAt": 81.29066666666816,
+        "receiverPid": "study-B-00"
+      },
+      {
+        "id": 64,
+        "parentId": 63,
+        "kind": "pass",
+        "actorPid": "study-B-00",
+        "team": 1,
+        "at": 83.16266666666823,
+        "result": "received",
+        "start": {
+          "x": 0.525550041452043,
+          "y": 0.09103608035780955
+        },
+        "target": {
+          "x": 0.332474107737753,
+          "y": 0.3214383713915908
+        },
+        "duration": 0.9399625908214224,
+        "endAt": 82.37233333333333,
+        "receiverPid": "study-B-01"
+      },
+      {
+        "id": 65,
+        "parentId": 64,
+        "kind": "pass",
+        "actorPid": "study-B-01",
+        "team": 1,
+        "at": 83.33333333333333,
+        "result": "interrupted",
+        "start": {
+          "x": 0.348474107737753,
+          "y": 0.34343837139159084
+        },
+        "target": {
+          "x": 0.48547379839396443,
+          "y": 0.7485355116265772
+        },
+        "duration": 1.4803133603702587,
+        "reason": "final-whistle",
+        "endAt": 83.33333333333333
+      }
+    ]
+  },
+  "terminalFlight": null,
+  "profiles": null,
+  "finished": true,
+  "halves": [
+    false,
+    true
+  ],
+  "steps": 3914,
+  "elapsed": 83.33333333333333,
+  "minute": 99,
+  "addedMinutes": [
+    5,
+    5
+  ],
+  "substitutions": 0,
+  "tactics": [
+    {
+      "formation": "2–2–1",
+      "pressing": "Ausgewogen",
+      "passing": "Variabel",
+      "defense": "Neutral",
+      "aggression": "Normal",
+      "focus": "Variabel"
+    },
+    {
+      "formation": "2–2–1",
+      "pressing": "Ausgewogen",
+      "passing": "Variabel",
+      "defense": "Neutral",
+      "aggression": "Normal",
+      "focus": "Variabel"
+    }
+  ],
+  "result": {
+    "homeGoals": 2,
+    "awayGoals": 2,
+    "penalties": null,
+    "winnerId": null
+  },
+  "events": [
+    {
+      "minute": 12,
+      "minuteLabel": "12",
+      "type": "goal",
+      "side": 0,
+      "scorerPid": null,
+      "assistPid": null,
+      "source": "own-goal"
+    },
+    {
+      "minute": 36,
+      "minuteLabel": "36",
+      "type": "goal",
+      "side": 1,
+      "scorerPid": "study-B-05",
+      "assistPid": null,
+      "source": null
+    },
+    {
+      "minute": 49,
+      "type": "halftime"
+    },
+    {
+      "minute": 80,
+      "minuteLabel": "75",
+      "type": "goal",
+      "side": 1,
+      "scorerPid": "study-B-05",
+      "assistPid": null,
+      "source": null
+    },
+    {
+      "minute": 85,
+      "minuteLabel": "80",
+      "type": "goal",
+      "side": 0,
+      "scorerPid": "study-A-05",
+      "assistPid": null,
+      "source": null
+    }
+  ],
+  "draws": 276
+}

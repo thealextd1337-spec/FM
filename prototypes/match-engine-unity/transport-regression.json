@@ -1,0 +1,11 @@
+{
+    "fixture": "outputs/platform/qa/2026-10-07T22-39-13-923Z-checkpoint/checkpoint.json",
+    "fixtureSourceId": "e31bd2ebd0adedc37615d638576d0dba8540c90e2115a6b1646ac62c6f0452ea",
+    "testSourceId": "3914989081d845c9296ef294fd208fdfe473770ebab9e47ab8f4e64da573893e",
+    "checkpointTick": 12,
+    "restoredTick": 12,
+    "rawPayloadRestored": true,
+    "missingRejected": true,
+    "corruptRejected": true,
+    "failuresAtomic": true
+}

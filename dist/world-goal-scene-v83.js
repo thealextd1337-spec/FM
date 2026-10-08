@@ -45,7 +45,7 @@ function v83DrawGoalScene(ctx,scene,turned=false){
  ctx.save();
  const x=point.x*600,y=point.y*740;
  ctx.fillStyle='#071d1b88';ctx.beginPath();ctx.ellipse(x+2,y+3,7,4,0,0,Math.PI*2);ctx.fill();
- ctx.fillStyle='#fffdf2';ctx.strokeStyle='#17292b';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y-point.height,6,0,Math.PI*2);ctx.fill();ctx.stroke();
+ ctx.fillStyle='#fffdf2';ctx.strokeStyle='#17292b';ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y-point.height,3.78,0,Math.PI*2);ctx.fill();ctx.stroke();
  ctx.restore();
 }
 const v83BaseGoal=v50Goal;

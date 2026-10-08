@@ -1,0 +1,173 @@
+{
+  "output": "meshy_output/user-character-2026-10-03/character-locomotion-v108.glb",
+  "sourceTasks": [
+    "01a10348-ae94-7154-8ad1-f8c9713828bb",
+    "01a1035c-d78d-70e0-b91c-c8372adcee0d"
+  ],
+  "resource": "animate",
+  "project": "meshy_output/20261003_123727_nutzercharakter-fussball-beweg_01a10156",
+  "rigTask": "01a10156-b12b-74d3-baef-6e0b4054a2b9",
+  "consumedCredits": {
+    "locomotion": 27,
+    "backpedal": 12,
+    "total": 39
+  },
+  "clipCount": 22,
+  "geometryRigTexturesOriginalClipsPreserved": true,
+  "sha256": "dd71c56bb394b789d8a8924fe59d52815c0e8546fd024249270877bc22722703",
+  "clips": [
+    {
+      "key": "idle_meshy",
+      "actionId": 0,
+      "sourceTask": "01a10348-ae94-7154-8ad1-f8c9713828bb",
+      "providerClip": "Idle",
+      "duration": 4,
+      "loop": true,
+      "providerYawRange": null
+    },
+    {
+      "key": "brake_meshy",
+      "actionId": 531,
+      "sourceTask": "01a10348-ae94-7154-8ad1-f8c9713828bb",
+      "providerClip": "Sprint_and_Sudden_Stop",
+      "duration": 1.9666666984558105,
+      "loop": false,
+      "providerYawRange": [
+        -0.21238448469820148,
+        0.36960340626609306
+      ]
+    },
+    {
+      "key": "turn_run_left",
+      "actionId": 571,
+      "sourceTask": "01a10348-ae94-7154-8ad1-f8c9713828bb",
+      "providerClip": "Run_Turn_Left",
+      "duration": 1.5666667222976685,
+      "loop": false,
+      "providerYawRange": [
+        0.04181644937165388,
+        1.7662242040987752
+      ]
+    },
+    {
+      "key": "turn_run_right",
+      "actionId": 582,
+      "sourceTask": "01a10348-ae94-7154-8ad1-f8c9713828bb",
+      "providerClip": "Run_Turn_Right",
+      "duration": 1.5666667222976685,
+      "loop": false,
+      "providerYawRange": [
+        -1.8239087189661771,
+        0.13982934855525514
+      ]
+    },
+    {
+      "key": "turn_sharp_right",
+      "actionId": 581,
+      "sourceTask": "01a10348-ae94-7154-8ad1-f8c9713828bb",
+      "providerClip": "Run_Sharp_Turn_Right",
+      "duration": 1.1666666269302368,
+      "loop": false,
+      "providerYawRange": [
+        -1.711235952052314,
+        0.09446584785358371
+      ]
+    },
+    {
+      "key": "turn_walk_left",
+      "actionId": 572,
+      "sourceTask": "01a10348-ae94-7154-8ad1-f8c9713828bb",
+      "providerClip": "Walk_Turn_Left",
+      "duration": 1.9666666984558105,
+      "loop": false,
+      "providerYawRange": [
+        -0.06368531449418147,
+        1.7017195913406447
+      ]
+    },
+    {
+      "key": "turn_walk_right",
+      "actionId": 583,
+      "sourceTask": "01a10348-ae94-7154-8ad1-f8c9713828bb",
+      "providerClip": "Walk_Turn_Right",
+      "duration": 2.1666667461395264,
+      "loop": false,
+      "providerYawRange": [
+        -1.5993252861697298,
+        -0.03292196471882158
+      ]
+    },
+    {
+      "key": "turn_idle_left",
+      "actionId": 577,
+      "sourceTask": "01a10348-ae94-7154-8ad1-f8c9713828bb",
+      "providerClip": "Idle_Step_Turn_Left",
+      "duration": 1,
+      "loop": false,
+      "providerYawRange": [
+        -0.7483741074503414,
+        0.7559547652982012
+      ]
+    },
+    {
+      "key": "turn_idle_right",
+      "actionId": 586,
+      "sourceTask": "01a10348-ae94-7154-8ad1-f8c9713828bb",
+      "providerClip": "Idle_Turn_Right",
+      "duration": 1.0666667222976685,
+      "loop": false,
+      "providerYawRange": [
+        -1.7191901983354378,
+        0.04646970879173743
+      ]
+    },
+    {
+      "key": "back_walk",
+      "actionId": 544,
+      "sourceTask": "01a1035c-d78d-70e0-b91c-c8372adcee0d",
+      "providerClip": "Walk_Backward",
+      "duration": 0.8666666746139526,
+      "loop": true,
+      "providerYawRange": [
+        -0.16515599854393817,
+        -0.0325754934490419
+      ]
+    },
+    {
+      "key": "back_left",
+      "actionId": 5,
+      "sourceTask": "01a1035c-d78d-70e0-b91c-c8372adcee0d",
+      "providerClip": "BackLeft_run",
+      "duration": 0.800000011920929,
+      "loop": true,
+      "providerYawRange": [
+        -0.9655228783262088,
+        -0.6064070807592679
+      ]
+    },
+    {
+      "key": "back_right",
+      "actionId": 6,
+      "sourceTask": "01a1035c-d78d-70e0-b91c-c8372adcee0d",
+      "providerClip": "BackRight_Run",
+      "duration": 0.6000000238418579,
+      "loop": true,
+      "providerYawRange": [
+        0.1730765043880003,
+        0.5280574404077729
+      ]
+    },
+    {
+      "key": "back_step_meshy",
+      "actionId": 543,
+      "sourceTask": "01a1035c-d78d-70e0-b91c-c8372adcee0d",
+      "providerClip": "Step_Back",
+      "duration": 0.8666666746139526,
+      "loop": false,
+      "providerYawRange": [
+        -0.6740351499140416,
+        -0.4896085040051104
+      ]
+    }
+  ]
+}

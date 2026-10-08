@@ -1,0 +1,12 @@
+const fs=require('fs'),Module=require('module'),path=require('path');
+let s=fs.readFileSync('work/check-running-turns-v125.cjs','utf8');
+const a=s.indexOf('if(baseline){await page.addScriptTag'),b=s.indexOf('const report=await page.evaluate',a);s=s.slice(0,a)+s.slice(b);
+s=s.replace("keeper:false},frame={turned:false,owner:null,ballInFlight:false,ball:{x:0,z:20,height:.29}}","keeper:false,person:{}},frame={turned:false,owner:'run-turn',carrying:true,ballInFlight:false,ball:{x:0,z:20,height:.29}}");
+s=s.replace("diagnose?['original','no-turn','no-ik']:['original']","['original','no-touch','no-ik']");
+s=s.replace("diagnose?[60]:[30,60,120]","[60]").replace("['run-3.5','run-4.5','run-6.5','curve-left','curve-right','cut-left','cut-right','reverse','start-stop']","['run-3.5','run-4.5','curve-left','start-stop']");
+s=s.replace("v.renderMotion({person:p,frame,dt,live:true});", "frame.ball={x:p.x+Math.sin(v.heading)*.65,z:p.z+Math.cos(v.heading)*.65,height:.29};v.renderMotion({person:p,frame,dt,live:true});");
+s=s.replace('const v=v98Scene.player','const ballFactory=D6UserBallActions.create;D6UserBallActions.create=(args)=>{if(variant===\'no-touch\')args.locomotion.footTarget=()=>{};return ballFactory(args);};const v=v98Scene.player');
+s=s.replace('v98Scene.removePlayer(v);','v98Scene.removePlayer(v);D6UserBallActions.create=ballFactory;');
+s=s.replace("'docs/spieler-nutzer-rig/running-turns-'+tag+'-v125.json'","'outputs/dribble-diagnosis-v147.json'");
+const from=s.indexOf('if(!baseline){const before='),to=s.indexOf('console.log(JSON.stringify(report.rows.map',from);s=s.slice(0,from)+s.slice(to);
+const m=new Module(path.resolve('work/check-running-turns-v125.cjs'),module);m.filename=path.resolve('work/check-running-turns-v125.cjs');m.paths=module.paths;m._compile(s,m.filename);

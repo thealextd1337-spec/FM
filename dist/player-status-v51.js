@@ -19,6 +19,7 @@ function v51LiveFreshness(player){
  return clamp(initial-v51Workload(player,player.t===0&&Boolean(press))*clamp(match.elapsed/75,0,1),0,100);
 }
 function v51EffectiveForm(player,freshness=v51LiveFreshness(player)){
+ if(typeof v158PlayerActive==='function'&&v158PlayerActive(player))return clamp(player.form||0,-2,2);
  const cap=freshness>=88?2:freshness>=72?1:freshness>=52?0:freshness>=32?-1:-2;
  return Math.min(clamp(player.form||0,-2,2),cap);
 }

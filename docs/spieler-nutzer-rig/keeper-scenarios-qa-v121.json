@@ -1,0 +1,215 @@
+{
+  "pickups": [
+    {
+      "keeper": true,
+      "axis": "x",
+      "travel": 0.16900000000000215,
+      "limit": 0.169,
+      "claimed": false,
+      "gap": 1.930999999999996,
+      "ballJump": 0,
+      "action": null
+    },
+    {
+      "keeper": true,
+      "axis": "y",
+      "travel": 0.16900000000000287,
+      "limit": 0.169,
+      "claimed": false,
+      "gap": 1.9309999999999972,
+      "ballJump": 0,
+      "action": null
+    },
+    {
+      "keeper": false,
+      "axis": "x",
+      "travel": 0.23317866666666456,
+      "limit": 0.2331786666666667,
+      "claimed": false,
+      "gap": 1.8668213333333337,
+      "ballJump": 0,
+      "action": null
+    },
+    {
+      "keeper": false,
+      "axis": "y",
+      "travel": 0.23317866666666665,
+      "limit": 0.2331786666666667,
+      "claimed": false,
+      "gap": 1.8668213333333332,
+      "ballJump": 0,
+      "action": null
+    }
+  ],
+  "shotQuality": [
+    {
+      "geometry": "central-12m",
+      "rows": [
+        {
+          "quality": 6,
+          "saves": 196,
+          "goals": 122,
+          "targets": 318,
+          "caught": 89,
+          "parried": 107,
+          "saveRate": 0.6163522012578616
+        },
+        {
+          "quality": 18,
+          "saves": 243,
+          "goals": 75,
+          "targets": 318,
+          "caught": 133,
+          "parried": 110,
+          "saveRate": 0.7641509433962265
+        }
+      ]
+    },
+    {
+      "geometry": "close-angle",
+      "rows": [
+        {
+          "quality": 6,
+          "saves": 196,
+          "goals": 122,
+          "targets": 318,
+          "caught": 67,
+          "parried": 129,
+          "saveRate": 0.6163522012578616
+        },
+        {
+          "quality": 18,
+          "saves": 243,
+          "goals": 75,
+          "targets": 318,
+          "caught": 114,
+          "parried": 129,
+          "saveRate": 0.7641509433962265
+        }
+      ]
+    },
+    {
+      "geometry": "wide-keeper",
+      "rows": [
+        {
+          "quality": 6,
+          "saves": 196,
+          "goals": 122,
+          "targets": 318,
+          "caught": 67,
+          "parried": 129,
+          "saveRate": 0.6163522012578616
+        },
+        {
+          "quality": 18,
+          "saves": 243,
+          "goals": 75,
+          "targets": 318,
+          "caught": 114,
+          "parried": 129,
+          "saveRate": 0.7641509433962265
+        }
+      ]
+    }
+  ],
+  "rush": [
+    {
+      "team": 0,
+      "quality": 6,
+      "trials": 100,
+      "catches": 49,
+      "started": 100,
+      "maxTravel": 0.08450000000000144,
+      "remote": 0
+    },
+    {
+      "team": 0,
+      "quality": 18,
+      "trials": 100,
+      "catches": 79,
+      "started": 100,
+      "maxTravel": 0.08450000000000144,
+      "remote": 0
+    },
+    {
+      "team": 1,
+      "quality": 6,
+      "trials": 100,
+      "catches": 49,
+      "started": 100,
+      "maxTravel": 0.08450000000000041,
+      "remote": 0
+    },
+    {
+      "team": 1,
+      "quality": 18,
+      "trials": 100,
+      "catches": 79,
+      "started": 100,
+      "maxTravel": 0.08450000000000041,
+      "remote": 0
+    }
+  ],
+  "boundaries": [
+    {
+      "name": "outside-box",
+      "challenge": false
+    },
+    {
+      "name": "wide",
+      "challenge": false
+    }
+  ],
+  "handling": [
+    {
+      "team": 0,
+      "zone": "inside",
+      "claimed": true,
+      "held": true,
+      "pose": "save",
+      "saves": 0
+    },
+    {
+      "team": 0,
+      "zone": "outside",
+      "claimed": true,
+      "held": false,
+      "pose": null,
+      "saves": 0
+    },
+    {
+      "team": 0,
+      "zone": "wide",
+      "claimed": true,
+      "held": false,
+      "pose": null,
+      "saves": 0
+    },
+    {
+      "team": 1,
+      "zone": "inside",
+      "claimed": true,
+      "held": true,
+      "pose": "save",
+      "saves": 0
+    },
+    {
+      "team": 1,
+      "zone": "outside",
+      "claimed": true,
+      "held": false,
+      "pose": null,
+      "saves": 0
+    },
+    {
+      "team": 1,
+      "zone": "wide",
+      "claimed": true,
+      "held": false,
+      "pose": null,
+      "saves": 0
+    }
+  ],
+  "baseline": false,
+  "errors": []
+}

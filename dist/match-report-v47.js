@@ -23,6 +23,30 @@ v47CompetitionDialog.id='v47-competition';
 v47CompetitionDialog.setAttribute('aria-labelledby','v47-competition-title');
 document.body.append(v47CompetitionDialog);
 
+/* Report presentation reads the shared theme and current competition table. */
+function v47ThemeReportDialogs(){
+ const career=typeof v61CurrentCareer!=='undefined'?v61CurrentCareer:null;
+ if(!career?.world?.clubs)return;
+ let preference='system';try{preference=localStorage.getItem('doppel6.ui.flutlicht.theme')||'system'}catch{}
+ const theme=['light','dark'].includes(preference)?preference:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+ for(const dialog of [v47Dialog,v47PlayerDialog,v47CompetitionDialog]){dialog.classList.add('fl-dialog');dialog.dataset.flTheme=theme}
+}
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',v47ThemeReportDialogs);
+document.addEventListener('fl-theme-applied',v47ThemeReportDialogs);
+window.addEventListener('storage',v47ThemeReportDialogs);
+function v47CurrentReportRanks(report,career=typeof v61CurrentCareer!=='undefined'?v61CurrentCareer:null){
+ if(!career?.world?.clubs||!Array.isArray(report.clubIds)||typeof v62Current!=='function'||typeof v62Table!=='function')return new Map();
+ const saved=report.competition||{},context=typeof v65WorldActive!=='undefined'?v65WorldActive:null;
+ const candidate=report.fixtureId?career.world.competitions.flatMap(item=>item.fixtures).find(item=>item.id===report.fixtureId):context?.state?.postMatchReport===report?context.fixture:null;
+ const source=candidate&&career.world.competitions.find(item=>item.id===candidate.competitionId);
+ const fixture=source?.type===saved.type&&(!saved.id||source.id===saved.id)?candidate:null,round=saved.round??fixture?.round;
+ if(saved.type!=='league'&&!(saved.type==='europe'&&/^R\d+$/.test(round||'')))return new Map();
+ const current=v62Current(career),competition=current.find(item=>item.id===saved.id)||current.find(item=>item.type===saved.type&&(item.type==='europe'||item.country===saved.country));
+ if(!competition)return new Map();
+ const ids=competition.type==='europe'?competition.entrants:[...new Set(competition.fixtures.flatMap(item=>[item.homeId,item.awayId]))];
+ return new Map(v62Table(competition,ids).map((row,index)=>[row.clubId,index+1]));
+}
+
 function v47Snapshot(opponentName){
  if(!match)return null;
  const ownName=activeSave?.club||'FC Viertel';
@@ -30,13 +54,15 @@ function v47Snapshot(opponentName){
 }
 function v47TeamTotal(report,team,key){return report.players.filter(player=>player.team===team).reduce((sum,player)=>sum+(player.stats[key]||0),0)}
 function v47Percent(ok,total){return total?`${Math.round(ok/total*100)} %`:'–'}
-function v47PlayerRows(report,team){return report.players.filter(player=>player.team===team).map(player=>{const stats=player.stats,index=report.players.indexOf(player),color=typeof v51RatingColor==='function'?v51RatingColor(Number(stats.rating)):null,change=player.substitution,playingTime=player.minutes===undefined?'':`${player.minutes} Min.`,changeText=change?`${change.direction==='in'?'↑ Eingewechselt':'↓ Ausgewechselt'} ${change.minute}′ · ${playingTime}`:playingTime;return`<button type="button" class="v47-player" data-report-player="${index}" aria-label="Statistik von ${escapeHTML(player.name)} anzeigen${changeText?`, ${changeText}`:''}"><span>${flagSVG(player.nation)}<span class="v47-player-detail"><em title="${escapeHTML(player.name)}">#${player.n} ${escapeHTML(player.name)}</em>${changeText?`<small class="${change?'v47-sub-change':''}">${changeText}</small>`:''}</span></span><b${color?` style="color:${color}"`:''}>${Number(stats.rating||0).toFixed(1).replace('.',',')}</b><b>${stats.goals||0}</b><b>${stats.assists||0}</b></button>`}).join('')}
+function v47PlayerFlag(nation){return typeof v79FlagSVG==='function'&&typeof v79NationByCode!=='undefined'&&v79NationByCode[nation]?v79FlagSVG(nation):flagSVG(nation)}
+function v47PlayerRows(report,team){return report.players.filter(player=>player.team===team).map(player=>{const stats=player.stats,index=report.players.indexOf(player),color=typeof v51RatingColor==='function'?v51RatingColor(Number(stats.rating)):null,change=player.substitution,playingTime=player.minutes===undefined?'':`${player.minutes} Min.`,changeText=change?`${change.direction==='in'?'↑ Eingewechselt':'↓ Ausgewechselt'} ${change.minute}′ · ${playingTime}`:playingTime;return`<button type="button" class="v47-player" data-report-player="${index}" aria-label="Statistik von ${escapeHTML(player.name)} anzeigen${changeText?`, ${changeText}`:''}"><span>${v47PlayerFlag(player.nation)}<span class="v47-player-detail"><em title="${escapeHTML(player.name)}">#${player.n} ${escapeHTML(player.name)}</em>${changeText?`<small class="${change?'v47-sub-change':''}">${changeText}</small>`:''}</span></span><b${color?` style="color:${color}"`:''}>${Number(stats.rating||0).toFixed(1).replace('.',',')}</b><b>${stats.goals||0}</b><b>${stats.assists||0}</b></button>`}).join('')}
 function v47PlayerStatsHTML(player,teamName){
+ v47ThemeReportDialogs();
  const s=player.stats,rows=[['Note',Number(s.rating||0).toFixed(1).replace('.',',')],['Tore',s.goals||0],['Vorlagen',s.assists||0],['Pässe',`${s.passComplete||0} / ${s.passes||0}`],['Passquote',v47Percent(s.passComplete||0,s.passes||0)]];
  if(player.keeper)rows.push(['Paraden',s.saves||0],['Schüsse aufs Tor',s.faced||0],['Gegentore',s.conceded||0],['Zu null',s.cleanSheet?'Ja':'Nein']);
  else rows.push(['Schüsse',s.shots||0],['Davon aufs Tor',s.onTarget||0],['Hohe Pässe',`${s.highComplete||0} / ${s.highPasses||0}`],['Flanken',`${s.crossComplete||0} / ${s.crosses||0}`],['Kopfballschüsse',s.headers||0],['Kopfballpässe',s.headerPasses||0],['Volleyschüsse',s.volleys||0],['Luftduelle gewonnen',`${s.aerialWon||0} / ${s.aerialDuels||0}`],['Zweikämpfe gewonnen',`${s.duelsWon||0} / ${s.duels||0}`],['Ballabfänge',s.interceptions||0]);
  const color=typeof v51RatingColor==='function'?v51RatingColor(Number(s.rating)):null;
- return`<div class="v47-player-dialog-head"><div><h2 id="v47-player-title">${flagSVG(player.nation)} #${player.n} ${escapeHTML(player.name)}</h2><p>${escapeHTML(teamName)} · Statistik dieses Spiels</p></div><button type="button" class="v47-player-close" aria-label="Spielerstatistik schließen">×</button></div><div class="v47-player-stats">${rows.map(([label,value])=>`<span>${label}</span><b${label==='Note'&&color?` style="color:${color}"`:''}>${value}</b>`).join('')}</div>`;
+ return`<div class="v47-player-dialog-head"><div><h2 id="v47-player-title">${v47PlayerFlag(player.nation)} #${player.n} ${escapeHTML(player.name)}</h2><p>${escapeHTML(teamName)} · Statistik dieses Spiels</p></div><button type="button" class="v47-player-close" aria-label="Spielerstatistik schließen">×</button></div><div class="v47-player-stats">${rows.map(([label,value])=>`<span>${label}</span><b${label==='Note'&&color?` style="color:${color}"`:''}>${value}</b>`).join('')}</div>`;
 }
 function v47OpenPlayerStats(report,index){
  const player=report?.players?.[index];if(!player)return false;
@@ -65,6 +91,7 @@ function v47OtherResultHTML(game,type){
  return`<div class="v47-result"><span class="${winner===game.home?'winner':''}">${escapeHTML(teamName(game.home))}</span><b>${game.result.join(' : ')}</b><span class="${winner===game.away?'winner':''}">${escapeHTML(teamName(game.away))}</span>${game.penalties?`<small>Elfmeterschießen ${game.penalties.join(' : ')}</small>`:''}</div>`;
 }
 function v47CompetitionHTML(report){
+ v47ThemeReportDialogs();
  const type=report.competition?.type||(match?.cup?'cup':'league'),cup=type==='cup',index=cup?(report.competition?.stage??match?.cup?.stage??0):(report.competition?.round??Math.max(0,activeSave.currentRound-1)),games=(cup?activeSave.cup?.rounds[index]:activeSave.schedule[index])||[],roundResults=games.filter(game=>game.result&&(cup||game.home!=='user'&&game.away!=='user')),label=cup?`Pokal · ${v41Labels[index]}`:`Liga · Spieltag ${index+1}`;
  const results=`<section class="v47-competition-section"><h3>${cup?'Alle Ergebnisse':'Weitere Ergebnisse'}</h3>${roundResults.map(game=>v47OtherResultHTML(game,type)).join('')||'<p class="help">Noch keine Ergebnisse in dieser Runde.</p>'}</section>`;
  const table=`<section class="v47-competition-section"><h3>Ligatabelle</h3><div class="league-table"><div class="table-row table-head"><span>#</span><b>Verein</b><span>Sp.</span><span>TD</span><strong>Pt.</strong></div>${standings().map((team,rank)=>`<div class="table-row ${team.id==='user'?'own':''}"><span>${rank+1}</span><b>${escapeHTML(team.name)}</b><span>${team.played}</span><span>${team.gf-team.ga>0?'+':''}${team.gf-team.ga}</span><strong>${team.pts}</strong></div>`).join('')}</div></section>`;
@@ -82,7 +109,9 @@ v47Style.textContent+=`.v47-score-total small{display:block;margin-top:6px;color
 v47Style.textContent+=`.v47-award-player{padding:0;border:0;background:none;color:#edf5ef;font:inherit;font-weight:800;text-align:left;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.v47-award-player:focus-visible{outline:2px solid #c7f36b;outline-offset:3px}`;
 v47Style.textContent+=`.v47-report-head-actions{display:flex;align-items:center;gap:8px}.v47-report-close{width:44px;min-width:44px;min-height:44px;border:1px solid #536b65;border-radius:7px;background:#254047;color:#fff;font-size:20px;cursor:pointer}.v47-report-close:hover{background:#385858}`;
 function v47ReportHTML(report,shootout){
+ v47ThemeReportDialogs();
  const [homeTime,awayTime]=report.possession,share=Math.round(homeTime/(homeTime+awayTime||1)*100),homeCode=teamShortCode(report.ownName),awayCode=teamShortCode(report.opponentName);
+ const ranks=v47CurrentReportRanks(report);
  const winner=shootout?.winner??(report.score[0]===report.score[1]?null:report.score[0]>report.score[1]?0:1);
  const matchWinner=report.players.find(player=>player.pid&&player.pid===report.manOfMatchPid);
  const matchCountry=report.competition?.type==='europe'?'EU':report.competition?.country;
@@ -91,16 +120,17 @@ function v47ReportHTML(report,shootout){
   const club=report.clubIds&&typeof v61CurrentCareer!=='undefined'&&v61CurrentCareer?.world.clubs.find(item=>item.id===report.clubIds[side]);
   const goals=new Map();
   for(const goal of (report.goals||[]).filter(item=>item.team===side)){
-   const entry=goals.get(goal.name)||{name:goal.name,minutes:[]};
-   entry.minutes.push(`${goal.minute}′`);goals.set(goal.name,entry);
+   const name=goal.name+(goal.ownGoal?' (E.)':''),entry=goals.get(name)||{name,minutes:[]};
+   entry.minutes.push(`${goal.minute}′`);goals.set(name,entry);
   }
-  return`<div class="v47-score-team ${winner===side?'v47-winner':''}"><div class="v47-score-club">${club?v61CrestSVG(club):''}<span>${escapeHTML(name)}</span></div>${goals.size?`<div class="v47-score-goals">${[...goals.values()].map(goal=>`<span><small>${escapeHTML(goal.name)} ${escapeHTML(goal.minutes.join(', '))}</small></span>`).join('')}</div>`:''}</div>`;
+  const rank=ranks.get(report.clubIds?.[side]);
+  return`<div class="v47-score-team ${winner===side?'v47-winner':''}"><div class="v47-score-club">${club?v61CrestSVG(club):''}<span>${escapeHTML(name)}${rank?` <small class="v47-current-rank" aria-label="Aktueller Tabellenplatz ${rank}">(${rank}.)</small>`:''}</span></div>${goals.size?`<div class="v47-score-goals">${[...goals.values()].map(goal=>`<span><small>${escapeHTML(goal.name)} ${escapeHTML(goal.minutes.join(', '))}</small></span>`).join('')}</div>`:''}</div>`;
  };
  const rows=[['Schüsse',report.shots[0],report.shots[1]],['Aufs Tor',v47TeamTotal(report,0,'onTarget'),v47TeamTotal(report,1,'onTarget')],['Ballbesitz',`${share} %`,`${100-share} %`],['Passquote',v47Percent(v47TeamTotal(report,0,'passComplete'),v47TeamTotal(report,0,'passes')),v47Percent(v47TeamTotal(report,1,'passComplete'),v47TeamTotal(report,1,'passes'))],['Gewonnene Zweikämpfe',v47TeamTotal(report,0,'duelsWon'),v47TeamTotal(report,1,'duelsWon')]];
  rows.push(...[['Hohe Pässe','highPasses'],['Flanken','crosses'],['Kopfballschüsse','headers'],['Volleyschüsse','volleys']].map(([label,key])=>[label,v47TeamTotal(report,0,key),v47TeamTotal(report,1,key)]));
  if(report.setPieceStats)rows.push(...[['Ecken','corners'],['Fouls','fouls'],['Freistöße','freeKicks'],['Elfmeter','penalties']].map(([label,key])=>[label,...report.setPieceStats[key]]));
  const legDetail=report.firstLeg?`Hinspiel ${report.firstLeg.join(' : ')} · Gesamt ${report.aggregate.join(' : ')}`:report.leg===1?`Hinspiel · Gesamt ${report.score.join(' : ')}`:'';
- return`<div class="v47-body"><div class="v47-head"><div><h2 id="v47-report-title">Spielbericht</h2><p>Spielende · Noten von 1 bis 10 · T = Tore · V = Vorlagen</p></div><div class="v47-report-head-actions"><button type="button" class="primary v47-menu">Weiter →</button><button type="button" class="v47-report-close" aria-label="Spielbericht schließen">×</button></div></div><div class="v47-score">${scoreSide(0,report.ownName)}<strong class="v47-score-total">${report.score.join(' : ')}${legDetail?`<small>(${legDetail})</small>`:''}</strong>${scoreSide(1,report.opponentName)}</div>${matchAward}${shootout?`<p class="help">Elfmeterschießen: ${shootout.score.join(' : ')} · ${escapeHTML(shootout.winner===0?report.ownName:report.opponentName)} gewinnt</p>`:''}<div class="v47-stat-head"><span>Teamstatistik</span><b title="${escapeHTML(report.ownName)}">${escapeHTML(homeCode)}</b><b title="${escapeHTML(report.opponentName)}">${escapeHTML(awayCode)}</b></div>${rows.map(([label,home,away])=>`<div class="v47-stat-row"><span>${label}</span><b>${home}</b><b>${away}</b></div>`).join('')}<div class="v47-rosters">${[[0,report.ownName],[1,report.opponentName]].map(([team,name])=>`<section class="v47-roster"><h3>${escapeHTML(name)}</h3><div class="v47-player-head"><span>Spieler</span><span>Note</span><span>T</span><span>V</span></div>${v47PlayerRows(report,team)}</section>`).join('')}</div></div>`;
+ return`<div class="v47-body"><div class="v47-head"><div><h2 id="v47-report-title">Spielbericht</h2><p>Spielende · Noten von 1 bis 10 · T = Tore · V = Vorlagen</p></div><div class="v47-report-head-actions"><button type="button" class="primary v47-menu">Weiter →</button><button type="button" class="v47-report-close" aria-label="Spielbericht schließen">×</button></div></div><div class="v47-score">${scoreSide(0,report.ownName)}<strong class="v47-score-total">${report.score.join(' : ')}${legDetail?`<small>(${legDetail})</small>`:''}</strong>${scoreSide(1,report.opponentName)}</div>${ranks.size?'<p class="v47-rank-note">Tabellenplätze entsprechen dem aktuellen Stand.</p>':''}${matchAward}${shootout?`<p class="help">Elfmeterschießen: ${shootout.score.join(' : ')} · ${escapeHTML(shootout.winner===0?report.ownName:report.opponentName)} gewinnt</p>`:''}<table class="v47-stat-table"><caption>Teamstatistik</caption><thead><tr><th scope="col">Teamstatistik</th><th scope="col" title="${escapeHTML(report.ownName)}">${escapeHTML(homeCode)}</th><th scope="col" title="${escapeHTML(report.opponentName)}">${escapeHTML(awayCode)}</th></tr></thead><tbody>${rows.map(([label,home,away])=>`<tr><th scope="row">${label}</th><td>${home}</td><td>${away}</td></tr>`).join('')}</tbody></table><div class="v47-rosters">${[[0,report.ownName],[1,report.opponentName]].map(([team,name])=>`<section class="v47-roster"><h3>${escapeHTML(name)}</h3><div class="v47-player-head"><span>Spieler</span><span>Note</span><span>T</span><span>V</span></div>${v47PlayerRows(report,team)}</section>`).join('')}</div></div>`;
 }
 function v47ShowReport(report,shootout){
  if(!report)return;

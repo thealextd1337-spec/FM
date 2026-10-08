@@ -1,0 +1,8 @@
+{
+    "quality": 1,
+    "graphics": "",
+    "pipelines": [
+        "Assets/Settings/Mobile_RPAsset.asset",
+        "Assets/Settings/PC_RPAsset.asset"
+    ]
+}

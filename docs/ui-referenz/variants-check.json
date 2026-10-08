@@ -1,0 +1,2557 @@
+{
+  "checkedAt": "2026-10-07",
+  "layout": [
+    {
+      "design": "office",
+      "route": "overview",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "squad",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "squad-contracts",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "squad-youth",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "transfers",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "transfers-offers",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "transfers-sales",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "transfers-history",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "competition",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "competition-cup",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "competition-europe",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "competition-world",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "competition-archive",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "calendar",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "statistics",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "club",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "club-finances",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "club-sponsor",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "club-history",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "club-manager",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "player-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "playercareer-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "offer-silva",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "renew-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "market-0",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "opponent",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "report",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "settings",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "concept",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "overview",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "squad",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "squad-contracts",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "squad-youth",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "transfers",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "transfers-offers",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "transfers-sales",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "transfers-history",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "competition",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "competition-cup",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "competition-europe",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "competition-world",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "competition-archive",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "calendar",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "statistics",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "club",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "club-finances",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "club-sponsor",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "club-history",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "club-manager",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "player-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "playercareer-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "offer-silva",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "renew-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "market-0",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "opponent",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "report",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "settings",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "concept",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "overview",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "squad",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "squad-contracts",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "squad-youth",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "transfers",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "transfers-offers",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "transfers-sales",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "transfers-history",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "competition",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "competition-cup",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "competition-europe",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "competition-world",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "competition-archive",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "calendar",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "statistics",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "club",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "club-finances",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "club-sponsor",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "club-history",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "club-manager",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "player-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "playercareer-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "offer-silva",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "renew-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "market-0",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "opponent",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "report",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "settings",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "concept",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "overview",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "squad",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "squad-contracts",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "squad-youth",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "transfers",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "transfers-offers",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "transfers-sales",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "transfers-history",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "competition",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "competition-cup",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "competition-europe",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "competition-world",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "competition-archive",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "calendar",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "statistics",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "club",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "club-finances",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "club-sponsor",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "club-history",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "club-manager",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "player-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "playercareer-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "offer-silva",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "renew-rossi",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "market-0",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "opponent",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "report",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "settings",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "concept",
+      "width": 320,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "overview",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "squad",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "squad-contracts",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "squad-youth",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "transfers",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "transfers-offers",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "transfers-sales",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "transfers-history",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "competition",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "competition-cup",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "competition-europe",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "competition-world",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "competition-archive",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "calendar",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "statistics",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "club",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "club-finances",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "club-sponsor",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "club-history",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "club-manager",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "player-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "playercareer-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "offer-silva",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "renew-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "market-0",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "opponent",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "report",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "settings",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "office",
+      "route": "concept",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "overview",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "squad",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "squad-contracts",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "squad-youth",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "transfers",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "transfers-offers",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "transfers-sales",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "transfers-history",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "competition",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "competition-cup",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "competition-europe",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "competition-world",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "competition-archive",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "calendar",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "statistics",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "club",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "club-finances",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "club-sponsor",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "club-history",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "club-manager",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "player-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "playercareer-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "offer-silva",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "renew-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "market-0",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "opponent",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "report",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "settings",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "night",
+      "route": "concept",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "overview",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "squad",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "squad-contracts",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "squad-youth",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "transfers",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "transfers-offers",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "transfers-sales",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "transfers-history",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "competition",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "competition-cup",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "competition-europe",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "competition-world",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "competition-archive",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "calendar",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "statistics",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "club",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "club-finances",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "club-sponsor",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "club-history",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "club-manager",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "player-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "playercareer-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "offer-silva",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "renew-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "market-0",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "opponent",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "report",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "settings",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "journal",
+      "route": "concept",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "overview",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "squad",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "squad-contracts",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "squad-youth",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "transfers",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "transfers-offers",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "transfers-sales",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "transfers-history",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "competition",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "competition-cup",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "competition-europe",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "competition-world",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "competition-archive",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "calendar",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "statistics",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "club",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "club-finances",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "club-sponsor",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "club-history",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "club-manager",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "player-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "playercareer-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "offer-silva",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "renew-rossi",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "market-0",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "opponent",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "report",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "settings",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    },
+    {
+      "design": "control",
+      "route": "concept",
+      "width": 1440,
+      "overflow": false,
+      "heading": true,
+      "menuLinks": 9,
+      "sameContent": true
+    }
+  ],
+  "breakpoints": [
+    {
+      "design": "office",
+      "route": "overview",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "office",
+      "route": "squad",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "office",
+      "route": "competition",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "office",
+      "route": "club-finances",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "overview",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "squad",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "competition",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "club-finances",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "overview",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "squad",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "competition",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "club-finances",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "overview",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "squad",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "competition",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "club-finances",
+      "width": 844,
+      "height": 390,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "office",
+      "route": "overview",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "office",
+      "route": "squad",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "office",
+      "route": "competition",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "office",
+      "route": "club-finances",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "overview",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "squad",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "competition",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "club-finances",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "overview",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "squad",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "competition",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "club-finances",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "overview",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "squad",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "competition",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "club-finances",
+      "width": 768,
+      "height": 1024,
+      "menuVisible": true,
+      "overflow": false
+    },
+    {
+      "design": "office",
+      "route": "overview",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "office",
+      "route": "squad",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "office",
+      "route": "competition",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "office",
+      "route": "club-finances",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "overview",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "squad",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "competition",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "night",
+      "route": "club-finances",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "overview",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "squad",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "competition",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "journal",
+      "route": "club-finances",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "overview",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "squad",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "competition",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    },
+    {
+      "design": "control",
+      "route": "club-finances",
+      "width": 1024,
+      "height": 768,
+      "menuVisible": false,
+      "overflow": false
+    }
+  ],
+  "interactions": [
+    {
+      "check": "Mobile Suche und Fähigkeiten",
+      "pass": true
+    },
+    {
+      "check": "Mobiles Menü öffnet Verein und schließt Dialog",
+      "pass": true
+    },
+    {
+      "check": "Designwechsel behält Unterseite",
+      "pass": true
+    },
+    {
+      "check": "Escape schließt Menü",
+      "pass": true
+    }
+  ],
+  "gallery": [
+    {
+      "width": 320,
+      "height": 700,
+      "view": "Desktop",
+      "cards": 4,
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "height": 700,
+      "view": "Handy",
+      "cards": 4,
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "view": "Desktop",
+      "cards": 4,
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "view": "Handy",
+      "cards": 4,
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "view": "Desktop",
+      "cards": 4,
+      "imagesLoaded": true,
+      "overflow": false
+    },
+    {
+      "width": 1440,
+      "height": 960,
+      "view": "Handy",
+      "cards": 4,
+      "imagesLoaded": true,
+      "overflow": false
+    }
+  ],
+  "darkContrast": {
+    "checkedRoutes": 29,
+    "failures": [],
+    "method": "Computed text and nearest opaque background; no full accessibility certification"
+  },
+  "consoleErrors": [],
+  "limits": [
+    "No physical device or Safari validation",
+    "Shared dummy renderer only; no game engine loaded"
+  ]
+}

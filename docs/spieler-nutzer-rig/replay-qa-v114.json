@@ -1,0 +1,62 @@
+{
+  "cases": [
+    {
+      "team": 0,
+      "turned": false,
+      "frames": 41,
+      "duration": 2.38888888888889,
+      "goalBannerHidden": true,
+      "swapHidden": true,
+      "held": true,
+      "moved": true,
+      "paused": true
+    },
+    {
+      "team": 0,
+      "turned": true,
+      "frames": 42,
+      "duration": 2.4583333333333304,
+      "goalBannerHidden": true,
+      "swapHidden": true,
+      "held": true,
+      "moved": true,
+      "paused": true
+    },
+    {
+      "team": 1,
+      "turned": false,
+      "frames": 41,
+      "duration": 2.3888888888888777,
+      "goalBannerHidden": true,
+      "swapHidden": true,
+      "held": true,
+      "moved": true,
+      "paused": true
+    },
+    {
+      "team": 1,
+      "turned": true,
+      "frames": 41,
+      "duration": 2.3888888888888777,
+      "goalBannerHidden": true,
+      "swapHidden": true,
+      "held": true,
+      "moved": true,
+      "paused": true
+    }
+  ],
+  "penalty": {
+    "wait": 4,
+    "penalty": true,
+    "scene": true,
+    "paused": true
+  },
+  "sound": {
+    "buffers": 6,
+    "bass": 3,
+    "shotCues": 1,
+    "rate": 96000,
+    "muted": true
+  },
+  "errors": []
+}

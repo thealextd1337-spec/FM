@@ -1,0 +1,110 @@
+{
+  "bones": 22,
+  "skinned_meshes": 1,
+  "player_materials": 1,
+  "player_triangles": 3054,
+  "weight_sum_max_error": 2.9802322387695312e-08,
+  "run_loop_matrix_error": 0.0,
+  "run_stance_frame_drift_m": 2.0239988074509036e-07,
+  "minimum_run_sole_z_m": 0.0014461666578426957,
+  "brake_support_drift_m": 1.6563216717714247e-07,
+  "pass_contact_radius_error_m": 5.639520794797903e-11,
+  "finite_all_keyed_frames": true,
+  "actions": {
+    "B_Idle": {
+      "clip_duration_seconds": 1.0,
+      "purpose": "Authored animation asset test, not match simulation"
+    },
+    "B_Run": {
+      "clip_duration_seconds": 1.0,
+      "purpose": "Authored animation asset test, not match simulation"
+    },
+    "B_Pass": {
+      "clip_duration_seconds": 1.5,
+      "purpose": "Authored animation asset test, not match simulation"
+    },
+    "B_Lauf_Pass_Probe": {
+      "clip_duration_seconds": 6.5,
+      "purpose": "Authored animation asset test, not match simulation"
+    }
+  },
+  "unity_editor_tested": false,
+  "match_integration": false,
+  "deformation": {
+    "sampled_frames": 244,
+    "minimum_triangle_area_m2": 1.0339116955677953e-06,
+    "maximum_triangle_area_m2": 0.023324238276597235,
+    "finite_mesh_all_keyed_frames": true
+  },
+  "fbx_roundtrip": {
+    "Footballer-Rig": {
+      "blender_inferred_connections_disabled": true,
+      "bones": 22,
+      "vertices": 1744,
+      "triangles": 3054,
+      "weight_sum_max_error": 2.9802322387695312e-08
+    },
+    "Idle": {
+      "blender_inferred_connections_disabled": true,
+      "bones": 22,
+      "vertices": 1744,
+      "triangles": 3054,
+      "weight_sum_max_error": 2.9802322387695312e-08,
+      "frame_range": [
+        1.0,
+        25.0
+      ],
+      "max_sampled_world_vertex_error_m": 3.911377414586153e-07
+    },
+    "Run": {
+      "blender_inferred_connections_disabled": true,
+      "bones": 22,
+      "vertices": 1744,
+      "triangles": 3054,
+      "weight_sum_max_error": 2.9802322387695312e-08,
+      "frame_range": [
+        1.0,
+        25.0
+      ],
+      "max_sampled_world_vertex_error_m": 6.080331135720958e-07
+    },
+    "Pass": {
+      "blender_inferred_connections_disabled": true,
+      "bones": 22,
+      "vertices": 1744,
+      "triangles": 3054,
+      "weight_sum_max_error": 2.9802322387695312e-08,
+      "frame_range": [
+        1.0,
+        37.0
+      ],
+      "max_sampled_world_vertex_error_m": 5.529515539192996e-07
+    }
+  },
+  "native_reopened": {
+    "scenes": 1,
+    "objects": 20,
+    "bones": 22,
+    "vertices": 1744,
+    "packed_images": [
+      "B_Stilvorlage_Anhang",
+      "PlayerPalette.png.002"
+    ],
+    "actions": [
+      "B_Portraitkamera.003Action",
+      "B_Probe_Ball.002Action",
+      "B_V2_Idle",
+      "B_V2_Lauf_Pass_Probe",
+      "B_V2_Pass",
+      "B_V2_Run"
+    ]
+  },
+  "movie": {
+    "size": [
+      720,
+      720
+    ],
+    "frames": 156,
+    "fps": 24.0
+  }
+}

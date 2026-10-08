@@ -1,0 +1,117 @@
+{
+  "initial": {
+    "players": 12,
+    "imported": 10,
+    "kit": {
+      "main": "#d9ab45",
+      "pattern": "#f3f5f2",
+      "accent": "#398b5b",
+      "style": "diagonal",
+      "trim": "#f3f5f2"
+    }
+  },
+  "poses": [
+    {
+      "mode": "idle",
+      "minY": 0.08906303936514108,
+      "maxY": 2.5280724803316867,
+      "finite": true,
+      "contactGap": 0.4496023149538151
+    },
+    {
+      "mode": "walk",
+      "minY": 0.08981186529269133,
+      "maxY": 2.4862848209885864,
+      "finite": true,
+      "contactGap": 0.33946683299680236
+    },
+    {
+      "mode": "run",
+      "minY": 0.08986914051349162,
+      "maxY": 2.420944839739987,
+      "finite": true,
+      "contactGap": 0.31514950946512793
+    },
+    {
+      "mode": "turn",
+      "minY": 0.08969063140941376,
+      "maxY": 2.5131490902718077,
+      "finite": true,
+      "contactGap": 0.3889325443891822
+    },
+    {
+      "mode": "pass",
+      "minY": 0.0889409783132526,
+      "maxY": 2.4904322464338917,
+      "finite": true,
+      "contactGap": 0.08224822067693058
+    },
+    {
+      "mode": "shot",
+      "minY": 0.08887159899998845,
+      "maxY": 2.448737623891138,
+      "finite": true,
+      "contactGap": 0.11366421529980775
+    },
+    {
+      "mode": "header",
+      "minY": 0.36018484526633104,
+      "maxY": 2.807770691951497,
+      "finite": true,
+      "contactGap": 0.2715344456459888
+    },
+    {
+      "mode": "volley",
+      "minY": 0.08887159899998845,
+      "maxY": 2.448737623891138,
+      "finite": true,
+      "contactGap": 0.11366421529980777
+    }
+  ],
+  "cycles": {
+    "count": 172,
+    "finite": true,
+    "minGround": 0.08709826938814426,
+    "maxY": 2.8119143645554354
+  },
+  "play": {
+    "states": [
+      "walk",
+      "idle"
+    ],
+    "actions": [],
+    "elapsed": 10.92000000000003
+  },
+  "actions": [
+    {
+      "expected": "pass",
+      "kind": "pass",
+      "imported": true,
+      "elevation": 0.29
+    },
+    {
+      "expected": "shot",
+      "kind": "shot",
+      "imported": true,
+      "elevation": 0.29
+    },
+    {
+      "expected": "header",
+      "kind": "header",
+      "imported": true,
+      "elevation": 2.65
+    }
+  ],
+  "lifecycle": {
+    "oldDisposed": true,
+    "replaced": true,
+    "imported": 10
+  },
+  "automatic": {
+    "players": 12,
+    "imported": 10,
+    "storage": "sechser.world.meshy-squad-v6",
+    "careerId": "meshy-squad-v6"
+  },
+  "errors": []
+}

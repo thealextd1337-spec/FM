@@ -1,0 +1,43 @@
+.progress-dock{display:flex;align-items:center;justify-content:space-between;gap:20px;position:sticky;top:0;z-index:25;min-height:80px;padding:12px 37px;background:var(--surface);border-bottom:1px solid var(--line)}
+.progress-context{display:flex;flex-direction:column;justify-content:center;min-height:44px;min-width:0}
+.progress-context span{font-size:.73rem;color:var(--muted)}
+.progress-context strong{font-size:.94rem;font-weight:600;overflow-wrap:anywhere}
+.progress-next{max-width:65%;min-height:48px;flex-shrink:0}
+.progress-page>p{color:var(--muted);max-width:70ch;margin-top:12px}
+.progress-page>.facts{margin:26px 0}
+.progress-kicker{font-size:.8rem;font-weight:650;letter-spacing:.05em;text-transform:uppercase;margin-bottom:12px;color:var(--accent)!important}
+.progress-subheading{margin:28px 0 12px}.progress-world{margin-top:24px}
+.progress-plan{padding-left:22px;line-height:2;margin:20px 0;color:var(--ink)}
+.progress-back{min-height:44px;margin-top:18px}
+.progress-page .table-wrap{margin-top:20px}
+.progress-page .mobile-record-title .award-icon{width:24px;height:24px;margin-left:5px}
+.progress-page .finance-row{gap:20px}.progress-page .finance-row strong{text-align:right}
+.progress-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.progress-reset{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;flex-wrap:wrap}
+.progress-reset>span{font-size:.78rem;color:var(--muted)}
+.progress-match{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:18px;align-items:center;text-align:center;margin:28px 0;padding:22px 0;border-block:1px solid var(--line)}
+.progress-match>div{display:grid;justify-items:center;gap:8px}
+.progress-match small,.progress-match>span{color:var(--muted)}
+.progress-result{display:flex;align-items:center;justify-content:center;gap:25px;margin:28px 0;padding:24px 0;border-block:1px solid var(--line);text-align:center}
+.progress-result strong{font-size:2.5rem;white-space:nowrap;letter-spacing:-.03em}
+.progress-options{border:0;margin:24px 0 0;padding:0}
+.progress-options legend{font-size:.85rem;font-weight:600;margin-bottom:12px}
+.progress-option{display:flex;align-items:flex-start;gap:14px;padding:17px 0;border-top:1px solid var(--line);cursor:pointer;min-height:60px}
+.progress-option:has(input:checked){background:var(--tint)}
+html[data-design=night] .progress-option input{appearance:auto;accent-color:var(--accent);width:20px;height:20px;min-height:20px;margin:5px 8px 0;flex:none;padding:0}
+.progress-option>span{display:grid;gap:4px;min-width:0}
+.progress-option strong{font-size:1rem}
+.progress-option span>span,.progress-option small{font-size:.85rem;color:var(--muted)}
+@media(max-width:1150px){.progress-dock{padding-inline:25px}}
+@media(max-width:900px){
+  .has-progress{scroll-padding-bottom:calc(var(--progress-nav-height,69px) + var(--progress-dock-height,84px) + 20px)}
+  .has-progress body{padding-bottom:calc(var(--progress-nav-height,69px) + var(--progress-dock-height,84px) + 16px)}
+  .progress-dock{position:fixed;inset:auto 0 var(--progress-nav-height,69px);min-height:0;z-index:34;border-top:1px solid var(--line);border-bottom:0;padding:9px max(12px,env(safe-area-inset-right)) 9px max(12px,env(safe-area-inset-left));gap:10px}
+  .progress-context{flex:1}.progress-context span{font-size:.7rem}.progress-context strong{font-size:.83rem;line-height:1.35}
+  .progress-next{font-size:.87rem;max-width:58%;padding:9px 11px;gap:7px;min-height:48px;white-space:normal}
+  .progress-page>p{font-size:.94rem}.progress-options legend{font-size:.9rem}
+  .progress-option{gap:8px;padding:16px 0}.progress-option span>span,.progress-option small{font-size:.88rem}
+  .progress-match{gap:10px;font-size:.9rem}.progress-match small{font-size:.8rem}
+  .progress-result{gap:12px;font-size:.88rem}.progress-result strong{font-size:2rem}
+  .progress-reset .text-link{min-height:44px}.progress-reset>span{font-size:.82rem}
+}

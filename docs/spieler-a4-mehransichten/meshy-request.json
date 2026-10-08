@@ -1,0 +1,11 @@
+{
+  "ai_model": "meshy-6",
+  "text_style_prompt": "Polished stylized football game athlete. Clean warm light-tan skin, crisp dark brown eyes with clear pupils, tidy symmetrical dark eyebrows, subtle lips, no beard. Short swept dark brown hair. Plain forest-green shirt with narrow matching green crewneck; NO beige ring, pale trim or ragged neckline pattern. Plain navy shorts, ivory knee socks, matte black low football cleats. Clean smooth game-art surfaces, subtle fabric roughness and normal detail, restrained skin detail. Even albedo without painted shadows, faceted color patches, scratches, stains, speckles, logos, numbers or stripes. Preserve the existing outfit and face identity. No photorealistic pores or plastic skin.",
+  "enable_original_uv": true,
+  "enable_pbr": true,
+  "texture_resolution": "4k",
+  "remove_lighting": true,
+  "target_formats": [
+    "glb"
+  ]
+}

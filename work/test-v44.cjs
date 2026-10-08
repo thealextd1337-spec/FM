@@ -1,6 +1,7 @@
 const fs=require('fs'),vm=require('vm'),assert=require('assert');
 const {makeContext}=require('./test-v41.cjs');
 const context=makeContext();
+context.document.body.classList.contains=()=>false;
 for(const file of['penalties-v42.js','club-records-v43.js','club-identity-v44.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),context);
 
 vm.runInContext("v44Choice.home='hoops';v44Choice.away='diagonal';v44Choice.shape='circle';v44Choice.decoration='chevron';var v44TestWorld=makeWorld('#000000','#ffffff',true)",context);

@@ -1,0 +1,28 @@
+{
+  "verifiedAt": "2026-10-04T13:05:04.775Z",
+  "published": false,
+  "footer": "PROTOTYP 105",
+  "credits": 0,
+  "modelUnchanged": true,
+  "sourceHashes": {
+    "game.js": "99d3909610c316e4fea1d9c98a143e7feb674f62dc075d6a03353a32eaa1704a",
+    "set-pieces-v50.js": "7f37ee2435fd2d056d4ca695e27f82bd0c1f7f6c736ba2004eece0994a4551c9",
+    "pitch-v57.js": "a7546e97fcd68a473e34efeaec886d600763e0847129db30b4ad550a032ad41c",
+    "pitch-motion-v102.js": "94e41d90f853bb94fd79c5e27a33e04f6c87c9f7aa17728acbd8ea6c81388738",
+    "world-pitch3d-v98.js": "f07e25d8a8d8557eb238f670548a5d5a48c90a6c5cf4b3ec29a29975bf2313d2",
+    "world-pitch-actions-v99.js": "916fdc297208c1fb6890a564203dac1c3840a4d1cdafe1b265d31ecffbe35382",
+    "world-ball-motion-v110.js": "e576746bca1fb65773a3c79aef31d03571ee8737f10cf3d93d047cdf90b32834",
+    "player-user-ball-actions-v111.js": "1326a5fb441ec928265269cb797881a03e8ad90a2d19c6948186d0ab7d7cd1a1",
+    "player-user-meshy-v107.js": "93a234fbaab15889ed5ccd475fa5394cf3cc40227d7ca276b9d2c5351fce74fe"
+  },
+  "offline": {
+    "bytes": 49861986,
+    "sha256": "15428bdb4b4d88fb036c99808b9e25cf7d2b83298de183e1cdef0e14876b8ca5",
+    "embeddedSourceMatches": true
+  },
+  "renderFrames": 15768,
+  "steps": 5258,
+  "warpingThresholdsPassed": true,
+  "gatesPassed": 14,
+  "matchParity": true
+}

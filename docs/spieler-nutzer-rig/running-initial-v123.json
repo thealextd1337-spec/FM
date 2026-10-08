@@ -1,0 +1,105 @@
+{
+  "cases": [
+    {
+      "schedule": "30",
+      "carrying": false,
+      "frames": 151,
+      "maxHips": 0.2176256264662017,
+      "maxFoot": 0.5053387691546938,
+      "falseBrakes": 55,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast6": 66,
+        "brake_meshy": 55
+      }
+    },
+    {
+      "schedule": "30",
+      "carrying": true,
+      "frames": 151,
+      "maxHips": 0.22269080188582532,
+      "maxFoot": 0.47618685854938886,
+      "falseBrakes": 55,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 121
+      }
+    },
+    {
+      "schedule": "60",
+      "carrying": false,
+      "frames": 301,
+      "maxHips": 0.07750128278182221,
+      "maxFoot": 0.17359553291165863,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast4": 19,
+        "run_fast6": 223
+      }
+    },
+    {
+      "schedule": "60",
+      "carrying": true,
+      "frames": 301,
+      "maxHips": 0.0790109800168842,
+      "maxFoot": 0.17359553291132332,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 242
+      }
+    },
+    {
+      "schedule": "120",
+      "carrying": false,
+      "frames": 600,
+      "maxHips": 0.06703785242252654,
+      "maxFoot": 0.09336134714134638,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast6": 339,
+        "run_fast4": 141
+      }
+    },
+    {
+      "schedule": "120",
+      "carrying": true,
+      "frames": 600,
+      "maxHips": 0.06703785242329749,
+      "maxFoot": 0.09336134713701204,
+      "falseBrakes": 0,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 480
+      }
+    },
+    {
+      "schedule": "jitter",
+      "carrying": false,
+      "frames": 238,
+      "maxHips": 0.21665431708951147,
+      "maxFoot": 0.5177972082851314,
+      "falseBrakes": 68,
+      "renderChanges": 0,
+      "modes": {
+        "run_fast6": 123,
+        "brake_meshy": 68
+      }
+    },
+    {
+      "schedule": "jitter",
+      "carrying": true,
+      "frames": 238,
+      "maxHips": 0.21665553078279295,
+      "maxFoot": 0.5177989565242908,
+      "falseBrakes": 68,
+      "renderChanges": 0,
+      "modes": {
+        "dribble_meshy": 191
+      }
+    }
+  ],
+  "errors": []
+}

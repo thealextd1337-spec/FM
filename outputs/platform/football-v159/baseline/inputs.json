@@ -1,0 +1,242 @@
+[
+  {
+    "path": "dist\\world-pitch3d-v98.js",
+    "sha256": "b6756f142aaeca34d79cb8e56eca96aba611552fdc61703c0e7dad9db8a97269"
+  },
+  {
+    "path": "dist\\world-unity-v151.js",
+    "sha256": "0d695af74efcf22af7d393ee138c157126c18ffb44298c36e8b3b3bafabf4a38"
+  },
+  {
+    "path": "dist\\world-offensive-quality-v157.js",
+    "sha256": "831a21a4ad3a14108846068462bea5fb355a5d9f83367218b0c7b564071f5ac9"
+  },
+  {
+    "path": "dist\\world-attack-flow-v152.js",
+    "sha256": "b202f4c6b78af4ac230dd630479075ee378dceb47e64984427bb4f6804731beb"
+  },
+  {
+    "path": "dist\\world-physical-v65.js",
+    "sha256": "696e19b94813bd4c0a5b5a10dc033f66b5841b7ba0dee606ef49faa460c91ba9"
+  },
+  {
+    "path": "dist\\match-report-v47.js",
+    "sha256": "d9dc5a744e3514c2dbc6aa46323b82424cb12b7146942830a3ff828e55c8d942"
+  },
+  {
+    "path": "dist\\ui-flutlicht\\views\\competitions.css",
+    "sha256": "7fc964305520099911543d4f7fdb5d48eac6981d927496498de9fab564ccdfe0"
+  },
+  {
+    "path": "dist\\index.html",
+    "sha256": "357631997883c1af62075bf4cf09c0facb151502c5c22229b274e5283b7bad95"
+  },
+  {
+    "path": "outputs\\platform\\unity-web\\probe-build.json",
+    "sha256": "987bf713cb8cb92468e48f62eb4a3296ae02a958b28f1b58d269436731019d76"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\build-manifest.cjs",
+    "sha256": "9b615eb379e121fcf8d75883e8644a39f8a85140a89f02fde883631214540754"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\build-report.json",
+    "sha256": "c37db16e04a996023d9e30672ef1fe5737d32efa0c9a16b1f86ea79d3da393d7"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\build-settings-before.json",
+    "sha256": "ec90d1fa445cbefc36f15b3f80ac2c3b30efdbfdd2ee2dba1928577e4b6a4b37"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\checkpoint-diagnostic.json",
+    "sha256": "84323c89479f3abef9a922cd384a8299eafcf408c2bcb6cd7de5aa22dd35679b"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\contact.png",
+    "sha256": "03d06561efbc9a1d8435d926fce7bb3b862e8422be058c12e410920c1999aa3f"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\D6Probe.jslib",
+    "sha256": "270a00924ad2d577f2200db6fb45a85015ebeb5be228b8bef24b97ebf900fdcc"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\follow-through-tests.json",
+    "sha256": "96a5859df9ca193eb9af5bca737ac4456fd5efeba6c3ed24edd55dffd6bee636"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\FootballActionTests.cs",
+    "sha256": "6572cff87444e7d019427cf8247b6730efad3d0ec58caccc8e0b4ae9a73333cf"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\FootballAnimation.cs",
+    "sha256": "c251c843a6bade48d6909936eff0b36bc81fe32b56f42dc59622257635f01901"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\FootballLocomotion.cs",
+    "sha256": "71bb3166c5e68e83a47b020d9c62c11a51dc7cb1166718cacd619898d57fa95e"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\FootballLocomotionTests.cs",
+    "sha256": "c11c82acc88ef87cf9b75430deac93256bb397b6721b05f12faed63ee9362cb7"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\FootballMomentumTests.cs",
+    "sha256": "103f79df497fd38425611cb7adac1c90255168c5ff04659752312803491201bc"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\FootballPresentation.cs",
+    "sha256": "4e7d432027030d470273104d26b5b2eeb6461f6b2a235eb58b5050e0d5e9ed48"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\FootballSetup.cs",
+    "sha256": "52994cb631ea3c057c1b35bce767b93dafb285f24e9cf5a846652555aba42ad6"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\FootballTests.cs",
+    "sha256": "1e388e1aa28cbd383060de19b32b6590fb9bd9a78a5d041c734f1f04acd183ab"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\generate-identity.cjs",
+    "sha256": "4c1a9dbbf094a8ad86acf31d7dea4ceb530bbc59b5101efefedf54701ef5f3e6"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\import-validation.json",
+    "sha256": "e8abb0166f24645bf0cba4a10af185a5861d55b9a231bc286425c9cb2834f734"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\link.xml",
+    "sha256": "ed89006c11fa1ecaa4e0cec5b37f504e9e41a02fb7a4c44e85a415ab18034c07"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\net-tests.json",
+    "sha256": "2e963d7f4864254b0eb1ba55c4a709a0def7c3d4ebd07d917d2e2771db0b366c"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\overview.png",
+    "sha256": "9a8ba7763fcafd574190c3b1b77a3cd253da91abdcbfac950c2328856ab8ffb7"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\physics-tests.json",
+    "sha256": "4a75f5dff83236c08d1f1c9dbec5f5639ddfb4cc787297520aeebd54f563ac08"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\pipeline-settings-before.json",
+    "sha256": "f6cd9020d8be9839d4c47f28ec47cb5b36055f24051b399fd2f592a4a0c79e7b"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\pipeline-validation.json",
+    "sha256": "670558831cee4ed1af32238fe328467661cbb300b2ca6691618d74ff6ba86d69"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\play-tests.json",
+    "sha256": "b2aa53dcc81904b37b7767ec0fb322cd490600312bbfb77279413518f0f03073"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbeBallPhysics.cs",
+    "sha256": "6f6a6abff02c4d6273371e6a50169291e67b1d4a71433bec4f16c901a0ccc205"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbeBridge.cs",
+    "sha256": "4a4790a0894bb0419cbc7502e4c295e686aeb9c264ab0205aae1317c848cdbf3"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbeBuildIdentity.cs",
+    "sha256": "6000e32d00bfd6c731b4c263bc47c1bab768e79ef8fe40c9b8754d9e8d46c72a"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbeCamera.cs",
+    "sha256": "b3cd4a8229588ca5a24b5a6c046daeeba54a821b9dd1100eb63bcf040a5a6b9a"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbeFollowThroughTests.cs",
+    "sha256": "c920f431e79763441a070198576be546820ee631a7b164e098938a02d3ec884b"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbeNet.cs",
+    "sha256": "4df037b2278e9546110d1cdc20e94769b0d5317de67e58b12208de5abc3290f6"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbeNetTests.cs",
+    "sha256": "c3bc0928f94a0673a9a7636d8add5e3f91ad872392cce911864c953a164520be"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbePhysicsTests.cs",
+    "sha256": "4f90bd74874ea1594ae158cd0ce616149000587bb1147f3866d7d11b8e1832a7"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbePlay.cs",
+    "sha256": "92dc9398dc1a48815d293e09b4bf4bac09eaa6e3945890eace2a147c8c1391be"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbePlayTests.cs",
+    "sha256": "e64b88c9b45e214c6d4924849557c885fb42d55ed733938bc89b74ed0c992ff1"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbePose.cs",
+    "sha256": "46f800051c1d974c2bb5aae6086d1493ec34f80b5ed58ffd64849528fbcdc037"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbeSetup.cs",
+    "sha256": "e6ba4686113b1451a56076aad5755cbdfc6a96860fafdb46b598e8acaea60d32"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbeSimulation.cs",
+    "sha256": "64c20afce12eb1ba94c6191615b97a8cca72a628d48b8d165bff8f8100a20894"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\ProbeWebBuild.cs",
+    "sha256": "78ef781df6324ca5ac2d4028a8be34189de937302f4edf94ff61e5ba1d5c2245"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\README.md",
+    "sha256": "85be0149c1be5d04107d49909718af02b9ebecd33b36e1f93dd09861755aa906"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\restore-render.png",
+    "sha256": "d806e771a74e778aa1419d8d0ffaed42738515873e2b87a76d9dcc7880251be9"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\selftest.json",
+    "sha256": "2bfade412a4c7ea680f21f7510c4ef7ce8ac91b20e87cb8f4b4b963d5cae000d"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\source-identity.json",
+    "sha256": "4feafb0baaeafa83f663e1d4861237886a3dadedcd549aef6aa1dbeadf0905a0"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\transport-regression.json",
+    "sha256": "f818e5aacea83554dd886dd14988356bc62b694a20a19c25fb2ced8947d83e26"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\web-pipeline-render.png",
+    "sha256": "420f61b930c9ec77da0961d1ff73ff96b4383aaa8c9f0987257372798a45c9ae"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\WorldKit.shader",
+    "sha256": "b38935fe9a3c1d18f13566e95d6bbfaeee0ac4b529fbaccb83c72d4d6f5390f9"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\WorldViewBridge.cs",
+    "sha256": "e4c7653959f9815d65c829c24d039fdfa0cf4d68d0ad9a5e24fe4a89ea48d3ef"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\WorldViewContract.cs",
+    "sha256": "fa2b6fc8bd9ce17b790014c9faaa7c2a884ad92b96d3e0b07ec6a5a904a84e2f"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\WorldViewPlayback.cs",
+    "sha256": "58cbd0655d056c03ea33e1fc96a73896640c9a7afededb91eff40960132f40ce"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\WorldViewPresentation.cs",
+    "sha256": "9337a1ae842ed9f9ce8b466ff93feecba6caabb6e4eb7488d2933ed1d73c17dd"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\WorldViewSetup.cs",
+    "sha256": "b834f5b015234c4ed26a273b332bafca6121957bf24bc72225178975afa98bf3"
+  },
+  {
+    "path": "prototypes\\match-engine-unity\\WorldViewTests.cs",
+    "sha256": "c40d3ff23b2a0a6def218beba0ae45259ce5828dd3fe618d99df7abd185db71d"
+  }
+]

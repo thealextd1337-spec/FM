@@ -1,0 +1,79 @@
+{
+  "version": 126,
+  "baseline": false,
+  "rows": [
+    {
+      "viewport": {
+        "width": 1270,
+        "height": 871
+      },
+      "initial": {
+        "phase": "shooting",
+        "kicks": 0,
+        "action": "penalty-kick",
+        "originalHidden": true
+      },
+      "visible": true,
+      "resumedKicks": 1,
+      "clicks": 5,
+      "done": {
+        "score": [
+          2,
+          0
+        ],
+        "kicks": 6,
+        "winner": 0,
+        "phase": "done"
+      },
+      "booked": {
+        "result": {
+          "homeGoals": 0,
+          "awayGoals": 0,
+          "penalties": [
+            2,
+            0
+          ],
+          "winnerId": "GER-2"
+        },
+        "session": false
+      }
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "initial": {
+        "phase": "shooting",
+        "kicks": 0,
+        "action": "penalty-kick",
+        "originalHidden": true
+      },
+      "visible": true,
+      "resumedKicks": 1,
+      "clicks": 5,
+      "done": {
+        "score": [
+          2,
+          0
+        ],
+        "kicks": 6,
+        "winner": 0,
+        "phase": "done"
+      },
+      "booked": {
+        "result": {
+          "homeGoals": 0,
+          "awayGoals": 0,
+          "penalties": [
+            2,
+            0
+          ],
+          "winnerId": "GER-2"
+        },
+        "session": false
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,30 @@
+{
+  "finite": true,
+  "vertices": 33968,
+  "meshes": 1,
+  "materials": 1,
+  "triangles": 30644,
+  "scale": 0.9520127816093723,
+  "rawBounds": {
+    "min": [
+      -0.610725998878479,
+      -0.9526879191398621,
+      -0.17360402643680573
+    ],
+    "max": [
+      0.6099159717559814,
+      0.9380429983139038,
+      0.17824506759643555
+    ]
+  },
+  "referenceViews": [
+    "front",
+    "side",
+    "back",
+    "quarter"
+  ],
+  "ready": true,
+  "errors": [],
+  "remoteRequests": 0,
+  "hardware": "Headless Edge, software WebGL; physical device performance untested"
+}

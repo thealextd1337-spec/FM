@@ -1,0 +1,2587 @@
+{
+  "baseline": true,
+  "physicsHz": 20,
+  "renderHz": 60,
+  "replaySkipped": true,
+  "gpuDrawSkipped": true,
+  "runs": [
+    {
+      "seed": 8721,
+      "steps": 2023,
+      "frames": 6066,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "analysisCuts": 0,
+      "halves": [
+        false,
+        true
+      ],
+      "events": {
+        "fly:pass": 17,
+        "fly:shot": 6,
+        "kickoff:": 2,
+        "v50Spot:": 46,
+        "v50GoalKick:": 3,
+        "fly:highPass": 2,
+        "fly:header": 2,
+        "v50Deflect:": 1,
+        "fly:block": 1,
+        "v55Out:": 1,
+        "v50Restart:corner": 1,
+        "fly:cross": 1
+      },
+      "counts": {
+        "rawBall": 5,
+        "hips": 1
+      },
+      "turnHistory": [
+        {
+          "step": 2010,
+          "sub": 0,
+          "clock": 43.73366666666674,
+          "motion": "walking",
+          "weights": {
+            "idle_stand_meshy": 4.731711385533184e-21,
+            "walking": 0.795490541958612,
+            "run_fast6": 0.16770969698400306,
+            "run_fast4": 0.02859833417475183,
+            "sprint_forward": 2.6138330347813635e-45,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.0082014268826331,
+            "turn_sharp_right": 5.0416381922919466e-203,
+            "turn_run_left": 3.2676469595401146e-83,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 3.251283176716898e-30,
+            "turn_run_right": 7.905919195939618e-154,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.8967542471828142e-131,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.8854411560073179,
+          "hips": {
+            "x": 1.0168388060738078,
+            "y": 0.9630799594739893,
+            "z": 0.958875487174914
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2010,
+          "sub": 1,
+          "clock": 43.73366666666674,
+          "motion": "walking",
+          "weights": {
+            "idle_stand_meshy": 3.505338009409814e-21,
+            "walking": 0.8484956671812098,
+            "run_fast6": 0.12424239931074837,
+            "run_fast4": 0.021186167037798968,
+            "sprint_forward": 1.9363751379856557e-45,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.006075766470242931,
+            "turn_sharp_right": 3.7349374349343867e-203,
+            "turn_run_left": 2.420732406382322e-83,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 2.4086098179076054e-30,
+            "turn_run_right": 5.856848991588914e-154,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.4051501064683412e-131,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9030280321356043,
+          "hips": {
+            "x": 1.014160724200912,
+            "y": 0.9328352513895904,
+            "z": 0.9992885196832119
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2010,
+          "sub": 2,
+          "clock": 43.73366666666674,
+          "motion": "walking",
+          "weights": {
+            "idle_stand_meshy": 2.596818267019426e-21,
+            "walking": 0.8877628297355933,
+            "run_fast6": 0.09204103319063216,
+            "run_fast4": 0.01569509856801063,
+            "sprint_forward": 1.4345019842950995e-45,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.004501038505763795,
+            "turn_sharp_right": 2.766909704906114e-203,
+            "turn_run_left": 1.7933226740430377e-83,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 1.78434203961914e-30,
+            "turn_run_right": 4.33886044875117e-154,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.0409608016647845e-131,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9179150013761012,
+          "hips": {
+            "x": 1.0117275477280259,
+            "y": 0.9061317673046722,
+            "z": 1.0335986046404733
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2011,
+          "sub": 0,
+          "clock": 43.772666666666744,
+          "motion": "walking",
+          "weights": {
+            "idle_stand_meshy": 0.026186182107776665,
+            "walking": 0.8906664771226019,
+            "run_fast6": 0.06818567443798511,
+            "run_fast4": 0.011627214994576798,
+            "sprint_forward": 1.0627052075697966e-45,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.0033344513370595417,
+            "turn_sharp_right": 2.0497771243753454e-203,
+            "turn_run_left": 1.3285261124926277e-83,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 1.3218730948781232e-30,
+            "turn_run_right": 3.214306877429842e-154,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 7.71162728888653e-132,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9305165487772018,
+          "hips": {
+            "x": 1.0094673469237674,
+            "y": 0.8825476725960836,
+            "z": 1.0627048681602211
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2011,
+          "sub": 1,
+          "clock": 43.772666666666744,
+          "motion": "walking",
+          "weights": {
+            "idle_stand_meshy": 0.09946804096958631,
+            "walking": 0.8389348939870517,
+            "run_fast6": 0.05051319001312661,
+            "run_fast4": 0.00861365272376542,
+            "sprint_forward": 7.872713809809836e-46,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.002470222306470009,
+            "turn_sharp_right": 1.5185122420736992e-203,
+            "turn_run_left": 9.841963507859022e-84,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 9.792676741145613e-31,
+            "turn_run_right": 2.3812171016623758e-154,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 5.712914006713e-132,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9411835283575758,
+          "hips": {
+            "x": 1.0073638616812806,
+            "y": 0.8617420984092379,
+            "z": 1.0873823544575234
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2011,
+          "sub": 2,
+          "clock": 43.772666666666744,
+          "motion": "walking",
+          "weights": {
+            "idle_stand_meshy": 0.1964256919572322,
+            "walking": 0.7579420799181203,
+            "run_fast6": 0.03742109154648851,
+            "run_fast4": 0.0063811508843912455,
+            "sprint_forward": 5.83224983652073e-46,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.0018299856937677207,
+            "turn_sharp_right": 1.1249415372566404e-203,
+            "turn_run_left": 7.291105893907792e-84,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 7.254593359088004e-31,
+            "turn_run_right": 1.7640490163107065e-154,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 4.232230789361527e-132,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.950212931632136,
+          "hips": {
+            "x": 1.0060188746530856,
+            "y": 0.843677604007499,
+            "z": 1.1081890588078476
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2012,
+          "sub": 0,
+          "clock": 43.811666666666746,
+          "motion": "walking",
+          "weights": {
+            "idle_stand_meshy": 0.302042913177229,
+            "walking": 0.6641519007777303,
+            "run_fast6": 0.027722226455434873,
+            "run_fast4": 0.00472727284407588,
+            "sprint_forward": 4.32063694646215e-46,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.0013556867455298835,
+            "turn_sharp_right": 8.33377188001348e-204,
+            "turn_run_left": 5.401384095126285e-84,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 5.374334944048512e-31,
+            "turn_run_right": 1.3068396534585181e-154,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 3.135313682888915e-132,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9578561564907256,
+          "hips": {
+            "x": 1.00828334616623,
+            "y": 0.8284319016873014,
+            "z": 1.1251247323527669
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2012,
+          "sub": 1,
+          "clock": 43.811666666666746,
+          "motion": "walking",
+          "weights": {
+            "idle_stand_meshy": 0.40704341117983683,
+            "walking": 0.5679130910444639,
+            "run_fast6": 0.020537130476049114,
+            "run_fast4": 0.003502049857024991,
+            "sprint_forward": 3.200806574889501e-46,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.0010043174426251494,
+            "turn_sharp_right": 6.173810055718382e-204,
+            "turn_run_left": 4.0014437545696356e-84,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 3.981405250597251e-31,
+            "turn_run_right": 9.681306267913677e-155,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 2.322697503836607e-132,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.964326006652751,
+          "hips": {
+            "x": 1.0105337398714103,
+            "y": 0.8153148492769944,
+            "z": 1.1394000757630856
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2012,
+          "sub": 2,
+          "clock": 43.811666666666746,
+          "motion": "idle_stand_meshy",
+          "weights": {
+            "idle_stand_meshy": 0.506018548565295,
+            "walking": 0.47542877197286154,
+            "run_fast6": 0.015214280457177643,
+            "run_fast4": 0.002594382343820371,
+            "sprint_forward": 2.3712158315563978e-46,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.0007440166608453063,
+            "turn_sharp_right": 4.5736709803049876e-204,
+            "turn_run_left": 2.964342442418768e-84,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 2.949497553560819e-31,
+            "turn_run_right": 7.172088083271825e-155,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.7206966319744034e-132,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9698026165776815,
+          "hips": {
+            "x": 1.0127166477576028,
+            "y": 0.8040544871899916,
+            "z": 1.1514341409817044
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2013,
+          "sub": 0,
+          "clock": 43.85066666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.5961203671574594,
+            "walking": 0.3901354698547409,
+            "run_fast6": 0.011271016177237992,
+            "run_fast4": 0.0019219657117169045,
+            "sprint_forward": 1.7566398931857776e-46,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.000551181098844925,
+            "turn_sharp_right": 3.3882587976128544e-204,
+            "turn_run_left": 2.196038893683778e-84,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 2.1850415295338153e-31,
+            "turn_run_right": 5.3132135324215225e-155,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.274723417232191e-132,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9744384667934939,
+          "hips": {
+            "x": 1.0147893840355817,
+            "y": 0.7944042280272391,
+            "z": 1.1615808967663006
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2013,
+          "sub": 1,
+          "clock": 43.85066666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.6761567359654722,
+            "walking": 0.3136613376651473,
+            "run_fast6": 0.008349774149695574,
+            "run_fast4": 0.001423827218765264,
+            "sprint_forward": 1.3013508400482968e-46,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.0004083250009196556,
+            "turn_sharp_right": 2.5100838536565118e-204,
+            "turn_run_left": 1.626865625766522e-84,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 1.6187185780247584e-31,
+            "turn_run_right": 3.936125395190193e-155,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 9.443383338151882e-133,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.978362629280509,
+          "hips": {
+            "x": 1.01672227199405,
+            "y": 0.7861442546992999,
+            "z": 1.1701386261661213
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2013,
+          "sub": 2,
+          "clock": 43.85066666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.7459712104340646,
+            "walking": 0.24648583298985743,
+            "run_fast6": 0.006185664828672759,
+            "run_fast4": 0.001054797146764066,
+            "sprint_forward": 9.640644138074063e-47,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.00030249460064121287,
+            "turn_sharp_right": 1.8595158542280514e-204,
+            "turn_run_left": 1.205211698168815e-84,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 1.1991762167569514e-31,
+            "turn_run_right": 2.915953411645431e-155,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 6.99583044178628e-133,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9816843611112658,
+          "hips": {
+            "x": 1.0184977639856845,
+            "y": 0.7790812053610381,
+            "z": 1.1773583477130207
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2014,
+          "sub": 0,
+          "clock": 43.88966666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.8060233659142497,
+            "walking": 0.18838867441638124,
+            "run_fast6": 0.004582453212110436,
+            "run_fast4": 0.00078141294544584,
+            "sprint_forward": 7.141964836593037e-47,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.00022409351181283059,
+            "turn_sharp_right": 1.3775632264585493e-204,
+            "turn_run_left": 8.928427857821351e-85,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 8.883715911816412e-32,
+            "turn_run_right": 2.1601914180057645e-155,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 5.182638660074656e-133,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9844961464009914,
+          "hips": {
+            "x": 1.0201083222171892,
+            "y": 0.7730459829426709,
+            "z": 1.183451164116264
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2014,
+          "sub": 1,
+          "clock": 43.88966666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.8562985750827782,
+            "walking": 0.1395617625777188,
+            "run_fast6": 0.0033947648349525786,
+            "run_fast4": 0.0005788849478627968,
+            "sprint_forward": 5.290897682415787e-47,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.00016601255668748416,
+            "turn_sharp_right": 1.0205239383014996e-204,
+            "turn_run_left": 6.614342039115716e-85,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 6.581218614833124e-32,
+            "turn_run_right": 1.6003091626188074e-155,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 3.839393150592453e-133,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9868762712630602,
+          "hips": {
+            "x": 1.0215548805269932,
+            "y": 0.7678982964523942,
+            "z": 1.1885944700367694
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2014,
+          "sub": 2,
+          "clock": 43.88966666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.8935433660833777,
+            "walking": 0.10338989662804804,
+            "run_fast6": 0.002514903644662874,
+            "run_fast4": 0.000428848517055221,
+            "sprint_forward": 3.919593406896972e-47,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.00012298512685606633,
+            "turn_sharp_right": 7.560227281357481e-205,
+            "turn_run_left": 4.900025100398846e-85,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 4.875486664158926e-32,
+            "turn_run_right": 1.1855381863921218e-155,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 2.8442924023199722e-133,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9888910034617576,
+          "hips": {
+            "x": 1.0228462780145533,
+            "y": 0.7635406478337896,
+            "z": 1.1929371182369248
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2015,
+          "sub": 0,
+          "clock": 43.92866666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.9211349858821297,
+            "walking": 0.0765931192564506,
+            "run_fast6": 0.001863086443224955,
+            "run_fast4": 0.00031769879534681444,
+            "sprint_forward": 2.903706213492954e-47,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.00009110962284781846,
+            "turn_sharp_right": 5.6007541225241416e-205,
+            "turn_run_left": 3.630027876172912e-85,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 3.611849355499344e-32,
+            "turn_run_right": 8.782682897931657e-156,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 2.1071036365850266e-133,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9905964374485052,
+          "hips": {
+            "x": 1.0239878566781349,
+            "y": 0.759822710070985,
+            "z": 1.1966050927535778
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2015,
+          "sub": 1,
+          "clock": 43.92866666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.941575360567166,
+            "walking": 0.0567415783240214,
+            "run_fast6": 0.0013802083838460211,
+            "run_fast4": 0.00023535705628153177,
+            "sprint_forward": 2.1511184704621106e-47,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.00006749566868509737,
+            "turn_sharp_right": 4.149140703523769e-205,
+            "turn_run_left": 2.6891907922512175e-85,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 2.6757238129112e-32,
+            "turn_run_right": 6.506371517256916e-156,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.5609807668467604e-133,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9920400561512943,
+          "hips": {
+            "x": 1.024989347647863,
+            "y": 0.756650692387132,
+            "z": 1.1997041990521327
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2015,
+          "sub": 2,
+          "clock": 43.92866666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.9567179625713895,
+            "walking": 0.042035195092681214,
+            "run_fast6": 0.0010224835190909777,
+            "run_fast4": 0.00017435679565940175,
+            "sprint_forward": 1.5935877577635976e-47,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.00005000202117902531,
+            "turn_sharp_right": 3.073759033343107e-205,
+            "turn_run_left": 1.992201537789554e-85,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 1.9822249541169235e-32,
+            "turn_run_right": 4.82003857050932e-156,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.1564029942140028e-133,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9932620530009145,
+          "hips": {
+            "x": 1.0258626551260737,
+            "y": 0.7539450219283684,
+            "z": 1.2023233953685337
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2016,
+          "sub": 0,
+          "clock": 43.96766666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.9679358780446601,
+            "walking": 0.031140438434566257,
+            "run_fast6": 0.0007574744212892932,
+            "run_fast4": 0.0001291666911241526,
+            "sprint_forward": 1.1805588472064937e-47,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.000037042408360331866,
+            "turn_sharp_right": 2.277096697885399e-205,
+            "turn_run_left": 1.4758591984645108e-85,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 1.4684683634996708e-32,
+            "turn_run_right": 3.570772397421654e-156,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 8.566844085645536e-134,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9942964510019928,
+          "hips": {
+            "x": 1.0266204660457818,
+            "y": 0.7516369202819816,
+            "z": 1.2045375445741633
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2016,
+          "sub": 1,
+          "clock": 43.96766666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.9762463142253256,
+            "walking": 0.02306940419234194,
+            "run_fast6": 0.0005611508529913991,
+            "run_fast4": 0.0000956890382899314,
+            "sprint_forward": 8.745795045974983e-48,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.000027441691051264244,
+            "turn_sharp_right": 1.686914724047529e-205,
+            "turn_run_left": 1.0933433853831298e-85,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 1.0878681201751251e-32,
+            "turn_run_right": 2.645293253917071e-156,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 6.346474192385069e-134,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9951720500061689,
+          "hips": {
+            "x": 1.0272753966501789,
+            "y": 0.7496681552538399,
+            "z": 1.2064096964515276
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2016,
+          "sub": 2,
+          "clock": 43.96766666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.98240283676977,
+            "walking": 0.017090234965961102,
+            "run_fast6": 0.0004157107764471891,
+            "run_fast4": 0.00007088818308470413,
+            "sprint_forward": 6.479044324407301e-48,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.000020329304737098546,
+            "turn_sharp_right": 1.2496971643108997e-205,
+            "turn_run_left": 8.099687013537973e-86,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 8.05912525124642e-33,
+            "turn_run_right": 1.9596814415485382e-156,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 4.70158371880597e-134,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9959132285615359,
+          "hips": {
+            "x": 1.02783948812914,
+            "y": 0.7479887986776368,
+            "z": 1.2079929866271797
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2017,
+          "sub": 0,
+          "clock": 44.00666666666675,
+          "motion": "idle",
+          "weights": {
+            "idle_stand_meshy": 0.9869637008467365,
+            "walking": 0.012660757458514676,
+            "run_fast6": 0.0003079661177257951,
+            "run_fast4": 0.000052515257660165774,
+            "sprint_forward": 4.79979408812498e-48,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.000015060319363032447,
+            "turn_sharp_right": 9.257984296557082e-206,
+            "turn_run_left": 6.000395721447494e-86,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 5.9703468288789545e-33,
+            "turn_run_right": 1.451767718630845e-156,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 3.483018884951668e-134,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9965406226635354,
+          "hips": {
+            "x": 1.0283239285078847,
+            "y": 0.7465563017834079,
+            "z": 1.2093322206760333
+          },
+          "root": {
+            "x": 0.8323339550462884,
+            "y": 0,
+            "z": -0.21547058823529408
+          },
+          "heading": 1.768958451478141,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2017,
+          "sub": 1,
+          "clock": 44.00666666666675,
+          "motion": "idle_stand_meshy",
+          "weights": {
+            "idle_stand_meshy": 0.787281682699705,
+            "walking": 0.2124401091701994,
+            "run_fast6": 0.00022814691136386006,
+            "run_fast4": 0.000038904259738442565,
+            "sprint_forward": 3.5557749160030656e-48,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.000011156958993419147,
+            "turn_sharp_right": 6.858483453674103e-206,
+            "turn_run_left": 4.445202481748537e-86,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 4.422941714622457e-33,
+            "turn_run_right": 1.0754959781591655e-156,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 2.5802838529504904e-134,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9970717003051821,
+          "hips": {
+            "x": 1.5837866731281385,
+            "y": 0.733935806634218,
+            "z": 0.9648823124724719
+          },
+          "root": {
+            "x": 0.8009358843046814,
+            "y": 0,
+            "z": -0.2428616865122418
+          },
+          "heading": 2.1418486630182936,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2017,
+          "sub": 2,
+          "clock": 44.00666666666675,
+          "motion": "idle_stand_meshy",
+          "weights": {
+            "idle_stand_meshy": 0.583232615353006,
+            "walking": 0.41656128299507716,
+            "run_fast6": 0.00016901538893063388,
+            "run_fast4": 0.000028820984476377442,
+            "sprint_forward": 2.634182846418535e-48,
+            "turn_walk_left": 0,
+            "brake_meshy": 0.000008265278509725104,
+            "turn_sharp_right": 5.080889508726738e-206,
+            "turn_run_left": 3.293086993099482e-86,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 3.2765958112061265e-33,
+            "turn_run_right": 7.967470168903557e-157,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.911521292796883e-134,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.9975212478233336,
+          "hips": {
+            "x": 1.925333102766128,
+            "y": 0.7192038322350537,
+            "z": 0.5908373752918316
+          },
+          "root": {
+            "x": 0.7695378135631019,
+            "y": 0,
+            "z": -0.2702527847891656
+          },
+          "heading": 2.4522762636599618,
+          "pelvis": 3.3081405109035566e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2018,
+          "sub": 0,
+          "clock": 44.045666666666754,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.4320693483493209,
+            "walking": 0.5395035918659805,
+            "run_fast6": 0.00012520967969540978,
+            "run_fast4": 0.000021351110438083486,
+            "sprint_forward": 1.951450649233912e-48,
+            "turn_walk_left": 0.028274375925646068,
+            "brake_meshy": 0.000006123068919012857,
+            "turn_sharp_right": 3.7640155253350216e-206,
+            "turn_run_left": 2.439578846777854e-86,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 2.4273618787506807e-33,
+            "turn_run_right": 5.902447073861285e-157,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.4160898029248805e-134,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.8443835064724923,
+          "hips": {
+            "x": 1.7408344316885742,
+            "y": 1.1622327954391878,
+            "z": 0.15167218514006348
+          },
+          "root": {
+            "x": 0.7381397428215004,
+            "y": 0,
+            "z": -0.29764388306610867
+          },
+          "heading": 2.6448548285216695,
+          "pelvis": 2.180860635199414e-7,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2018,
+          "sub": 1,
+          "clock": 44.045666666666754,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.3200848458552253,
+            "walking": 0.6023071184445712,
+            "run_fast6": 0.00009275761212407318,
+            "run_fast4": 0.00001581729164431848,
+            "sprint_forward": 1.4456701977135236e-48,
+            "turn_walk_left": 0.07749492471541342,
+            "brake_meshy": 0.0000045360810216942385,
+            "turn_sharp_right": 2.7884512840968085e-206,
+            "turn_run_left": 1.8072844604825692e-86,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 1.798233907966554e-33,
+            "turn_run_right": 4.3726403389255474e-157,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.0490651281282428e-134,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.7147552070279857,
+          "hips": {
+            "x": 1.4940768960812663,
+            "y": 1.354798325079562,
+            "z": 0.14421268068732923
+          },
+          "root": {
+            "x": 0.804153678736153,
+            "y": 0,
+            "z": -0.30309617222485974
+          },
+          "heading": 2.5210701332797822,
+          "pelvis": 0.0037753074768480314,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2018,
+          "sub": 2,
+          "clock": 44.045666666666754,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.23712468597369138,
+            "walking": 0.6205587393314207,
+            "run_fast6": 0.00006871652916845286,
+            "run_fast4": 0.000011717737851949866,
+            "sprint_forward": 1.070978823562907e-48,
+            "turn_walk_left": 0.1422327800163963,
+            "brake_meshy": 0.0000033604114713602218,
+            "turn_sharp_right": 2.06573551874261e-206,
+            "turn_run_left": 1.3388692582806495e-86,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 1.3321644440695474e-33,
+            "turn_run_right": 3.2393316355644937e-157,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 7.77166561599339e-135,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.605027220519656,
+          "hips": {
+            "x": 1.326849621759026,
+            "y": 1.4671106597480743,
+            "z": 0.09069123772472354
+          },
+          "root": {
+            "x": 0.870167614650748,
+            "y": 0,
+            "z": -0.308548461383606
+          },
+          "heading": 2.412737070698312,
+          "pelvis": 0.018009680648689453,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0.0005628075050077008
+            }
+          ]
+        },
+        {
+          "step": 2019,
+          "sub": 0,
+          "clock": 44.084666666666756,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.17566628794272582,
+            "walking": 0.5922910028705591,
+            "run_fast6": 0.013565400302051028,
+            "run_fast4": 0.000008680713705895556,
+            "sprint_forward": 7.93400626459603e-49,
+            "turn_walk_left": 0.21846613871691128,
+            "brake_meshy": 0.0000024894540469712957,
+            "turn_sharp_right": 1.5303345113937923e-206,
+            "turn_run_left": 9.918587416448354e-87,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 9.868916931109658e-34,
+            "turn_run_right": 2.3997558984566775e-157,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 5.757391493373007e-135,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.5121444852312275,
+          "hips": {
+            "x": 1.226932417253612,
+            "y": 1.512610992431955,
+            "z": 0.01944985626694895
+          },
+          "root": {
+            "x": 0.9361815505653893,
+            "y": 0,
+            "z": -0.3140007505423561
+          },
+          "heading": 2.317926864756715,
+          "pelvis": 0.029347440708463,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2019,
+          "sub": 1,
+          "clock": 44.084666666666756,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.1301367868674811,
+            "walking": 0.49993279410292424,
+            "run_fast6": 0.06670656817413631,
+            "run_fast4": 0.000006430830881848385,
+            "sprint_forward": 5.8776564038151195e-49,
+            "turn_walk_left": 0.3032155757916591,
+            "brake_meshy": 0.0000018442329175460158,
+            "turn_sharp_right": 1.1336996897784763e-206,
+            "turn_run_left": 7.3478702815287045e-87,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 7.311073480959698e-34,
+            "turn_run_right": 1.777782894764978e-157,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 4.2651805218882774e-135,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.433520947251724,
+          "hips": {
+            "x": 1.130814891924091,
+            "y": 1.5438528667562468,
+            "z": -0.18287060723925408
+          },
+          "root": {
+            "x": 0.8422090069655045,
+            "y": 0,
+            "z": -0.31864718034504
+          },
+          "heading": 2.7107460608145972,
+          "pelvis": 0.020819117532005292,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2019,
+          "sub": 2,
+          "clock": 44.084666666666756,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.09640770289242012,
+            "walking": 0.3869032344349337,
+            "run_fast6": 0.12240905345990774,
+            "run_fast4": 0.000004764076691396794,
+            "sprint_forward": 4.354274958853581e-49,
+            "turn_walk_left": 0.39427387889469867,
+            "brake_meshy": 0.0000013662413484993312,
+            "turn_sharp_right": 8.39865386969253e-207,
+            "turn_run_left": 5.443436187763119e-87,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 5.416176447438802e-34,
+            "turn_run_right": 1.3170139608584145e-157,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 3.159723445112146e-135,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.36696755920588786,
+          "hips": {
+            "x": 0.9734801993805272,
+            "y": 1.5622414744265876,
+            "z": -0.2892612802684
+          },
+          "root": {
+            "x": 0.7482364633657017,
+            "y": 0,
+            "z": -0.3232936101477199
+          },
+          "heading": 3.037764353986143,
+          "pelvis": 0.013724808162019604,
+          "feet": [
+            {
+              "locked": false,
+              "strength": 0,
+              "reach": 0
+            },
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2020,
+          "sub": 0,
+          "clock": 44.12366666666676,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.07142058291676814,
+            "walking": 0.2866249657100641,
+            "run_fast6": 0.15718255610669896,
+            "run_fast4": 0.006074728596750077,
+            "sprint_forward": 3.2257262273765886e-49,
+            "turn_walk_left": 0.478696154533234,
+            "brake_meshy": 0.000001012136484816977,
+            "turn_sharp_right": 6.221875815866701e-207,
+            "turn_run_left": 4.032596711012795e-87,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 4.01240219868949e-34,
+            "turn_run_right": 9.75667939096027e-158,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 2.340780700454083e-135,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.31063133249548347,
+          "hips": {
+            "x": 0.8170776702946853,
+            "y": 1.5557563296271948,
+            "z": -0.3219362105604733
+          },
+          "root": {
+            "x": 0.654263919765833,
+            "y": 0,
+            "z": -0.32794003995040305
+          },
+          "heading": 3.240635211642891,
+          "pelvis": 0.02401641461426989,
+          "feet": [
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            },
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2020,
+          "sub": 1,
+          "clock": 44.12366666666676,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.052909669156446654,
+            "walking": 0.21233699710026951,
+            "run_fast6": 0.1709216769142207,
+            "run_fast4": 0.022593192462243613,
+            "sprint_forward": 2.389676764171266e-49,
+            "turn_walk_left": 0.5412377145576698,
+            "brake_meshy": 7.49809149769096e-7,
+            "turn_sharp_right": 4.6092789712125786e-207,
+            "turn_run_left": 2.9874211201791856e-87,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 2.972460657492301e-34,
+            "turn_run_right": 7.2279258661725434e-158,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.7340929935163478e-135,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.26294374613583393,
+          "hips": {
+            "x": 0.6852581667757598,
+            "y": 1.5513891910407005,
+            "z": -0.3265740262846985
+          },
+          "root": {
+            "x": 0.5669944503014552,
+            "y": 0,
+            "z": -0.32672535003339065
+          },
+          "heading": 3.4260866803859606,
+          "pelvis": 0.028567691370940784,
+          "feet": [
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            },
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2020,
+          "sub": 2,
+          "clock": 44.12366666666676,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.03919644696134402,
+            "walking": 0.1573031163767482,
+            "run_fast6": 0.17075267459460322,
+            "run_fast4": 0.04517756482143194,
+            "sprint_forward": 1.7703160884381115e-49,
+            "turn_walk_left": 0.5875696417735924,
+            "brake_meshy": 5.554722801829105e-7,
+            "turn_sharp_right": 3.4146378460799576e-207,
+            "turn_run_left": 2.213135998678515e-87,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 2.20205301533024e-34,
+            "turn_run_right": 5.354579179398243e-158,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 1.2846476859536387e-135,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.22257707577828204,
+          "hips": {
+            "x": 0.5696263075400674,
+            "y": 1.5486344222715196,
+            "z": -0.3206115826664382
+          },
+          "root": {
+            "x": 0.47972498083715365,
+            "y": 0,
+            "z": -0.32551066011637936
+          },
+          "heading": 3.5883888578070837,
+          "pelvis": 0.02898924081243794,
+          "feet": [
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            },
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2021,
+          "sub": 0,
+          "clock": 44.16266666666676,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.029037442094945666,
+            "walking": 0.11653301478190162,
+            "run_fast6": 0.16172156274695387,
+            "run_fast4": 0.07081439121773378,
+            "sprint_forward": 1.3114824146808259e-49,
+            "turn_walk_left": 0.6218931776544788,
+            "brake_meshy": 4.1150398624308443e-7,
+            "turn_sharp_right": 2.5296259334051866e-207,
+            "turn_run_left": 1.639531472667531e-87,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 1.6313209966636176e-34,
+            "turn_run_right": 3.9667698201808326e-158,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 9.516904129109778e-136,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.18840742702589997,
+          "hips": {
+            "x": 0.4662368309155432,
+            "y": 1.5395895481319166,
+            "z": -0.311648486471215
+          },
+          "root": {
+            "x": 0.3924555113727908,
+            "y": 0,
+            "z": -0.3242959701993672
+          },
+          "heading": 3.730431393108752,
+          "pelvis": 0.03954421891270316,
+          "feet": [
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            },
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2021,
+          "sub": 1,
+          "clock": 44.16266666666676,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.021511466185924182,
+            "walking": 0.08632978066139714,
+            "run_fast6": 0.14753257708457546,
+            "run_fast4": 0.0973051927851924,
+            "sprint_forward": 9.715700688991273e-50,
+            "turn_walk_left": 0.6473206784332599,
+            "brake_meshy": 3.0484965089200927e-7,
+            "turn_sharp_right": 1.8739929829753964e-207,
+            "turn_run_left": 1.214594788333131e-87,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 1.2085123181089621e-34,
+            "turn_run_right": 2.9386553600400455e-158,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 7.050295983324983e-136,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.15948344381107857,
+          "hips": {
+            "x": 0.3715218058344819,
+            "y": 1.5230660884968883,
+            "z": -0.30235008608370084
+          },
+          "root": {
+            "x": 0.30564407185405323,
+            "y": 0,
+            "z": -0.32215415600649827
+          },
+          "heading": 3.856085002173146,
+          "pelvis": 0.06343044726583019,
+          "feet": [
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0.5580351457699523,
+              "reach": 0
+            }
+          ]
+        },
+        {
+          "step": 2021,
+          "sub": 2,
+          "clock": 44.16266666666676,
+          "motion": "turn_walk_left",
+          "weights": {
+            "idle_stand_meshy": 0.015936086104114074,
+            "walking": 0.06395467450143037,
+            "run_fast6": 0.13056703599042874,
+            "run_fast4": 0.12338414324928706,
+            "sprint_forward": 7.197568097095912e-50,
+            "turn_walk_left": 0.6661578343165638,
+            "brake_meshy": 2.258381759493006e-7,
+            "turn_sharp_right": 1.3882881472181003e-207,
+            "turn_run_left": 8.99793949942395e-88,
+            "celebrate_victory": 5e-324,
+            "turn_idle_right": 8.952879451735758e-35,
+            "turn_run_right": 2.1770094350220395e-158,
+            "turn_walk_right": 5e-324,
+            "turn_idle_left": 5.222987725647189e-136,
+            "running": 0,
+            "celebrate_fist": 0,
+            "celebrate_arms": 0,
+            "idle_meshy": 0,
+            "back_walk": 0,
+            "back_left": 0,
+            "back_right": 0,
+            "back_step_meshy": 0,
+            "idle_relaxed": 0,
+            "idle_ready": 0,
+            "shot_meshy": 0,
+            "keeper_low_meshy": 0,
+            "keeper_high_meshy": 0,
+            "keeper_dive_meshy": 0,
+            "keeper_rise_meshy": 0,
+            "foul_fall_meshy": 0,
+            "foul_stumble_meshy": 0
+          },
+          "procedural": 0.1349998206087102,
+          "hips": {
+            "x": 0.2819772375099946,
+            "y": 1.5231528046417409,
+            "z": -0.2947567221089303
+          },
+          "root": {
+            "x": 0.21883263233539144,
+            "y": 0,
+            "z": -0.32001234181363125
+          },
+          "heading": 3.9660536882676625,
+          "pelvis": 0.06965288140388767,
+          "feet": [
+            {
+              "locked": true,
+              "strength": 1,
+              "reach": 0
+            },
+            {
+              "locked": false,
+              "strength": 0.3114032239146506,
+              "reach": 0
+            }
+          ]
+        }
+      ],
+      "top": {
+        "engine": [],
+        "root": [],
+        "hips": [
+          {
+            "distance": 0.6505232402521465,
+            "step": 2018,
+            "before": {
+              "elapsed": 44.007,
+              "owner": "warping-v122-8721:GER-5:2",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 44.046,
+              "owner": null,
+              "flight": {
+                "kind": "pass",
+                "progress": 0
+              },
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": [
+              {
+                "name": "fly",
+                "detail": "pass"
+              }
+            ],
+            "sub": 0,
+            "paintBefore": {
+              "elapsed": 44.007,
+              "owner": "warping-v122-8721:GER-5:2",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "opacity": 1,
+            "occluded": false,
+            "visibleOwner": "warping-v122-8721:GER-5:2",
+            "ownerAction": "pass",
+            "carrying": true,
+            "inFlight": false,
+            "ownerHeading": 1.2895573524523933,
+            "id": "warping-v122-8721:GER-2:11",
+            "keeper": false,
+            "action": null,
+            "details": null,
+            "displayAction": null,
+            "motion": "turn_walk_left",
+            "slide": false,
+            "from": {
+              "x": 1.925333102766128,
+              "y": 0.7192038322350537,
+              "z": 0.5908373752918316
+            },
+            "to": {
+              "x": 1.7408344316885742,
+              "y": 1.1622327954391878,
+              "z": 0.15167218514006348
+            }
+          }
+        ],
+        "ball": [],
+        "rawBall": [
+          {
+            "distance": 35.25067167549474,
+            "step": 395,
+            "before": {
+              "elapsed": 8.346,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 8.346,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 35.19232843595978,
+            "step": 1090,
+            "before": {
+              "elapsed": 25.935,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 25.935,
+              "owner": null,
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": true,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 33.01846845353605,
+            "step": 916,
+            "before": {
+              "elapsed": 23.4,
+              "owner": "warping-v122-8721:GER-5:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 23.439,
+              "owner": "warping-v122-8721:GER-5:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 23.995784783950857,
+            "step": 697,
+            "before": {
+              "elapsed": 14.859,
+              "owner": "warping-v122-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 14.898,
+              "owner": "warping-v122-8721:GER-2:1",
+              "flight": null,
+              "piece": null,
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          },
+          {
+            "distance": 12.473472431801348,
+            "step": 1626,
+            "before": {
+              "elapsed": 40.248,
+              "owner": null,
+              "flight": null,
+              "piece": "corner",
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "after": {
+              "elapsed": 40.248,
+              "owner": null,
+              "flight": null,
+              "piece": "corner",
+              "offside": false,
+              "throw": false,
+              "kickoff": false,
+              "goal": false,
+              "half": false,
+              "finished": false
+            },
+            "events": []
+          }
+        ]
+      },
+      "max": {
+        "engine": 0.8597742213584126,
+        "root": 0.2865914071195711,
+        "hips": 0.6505232402521465,
+        "ball": 0.9373656806216363,
+        "rawBall": 35.25067167549474
+      },
+      "finished": false,
+      "score": [
+        2,
+        0
+      ],
+      "elapsed": 44.20166666666676
+    }
+  ],
+  "errors": []
+}

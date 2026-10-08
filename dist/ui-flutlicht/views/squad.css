@@ -1,0 +1,65 @@
+/* U01-B preserves the controller-owned row, controls and all profile sections. */
+#v61-world-screen .fl-content .fl-squad-tools{display:flex;align-items:end;flex-wrap:wrap;gap:14px;margin:18px 0}
+#v61-world-screen .fl-content .fl-squad-tools label{display:grid;gap:6px;flex:1 1 190px;min-width:0;font-weight:600}
+#v61-world-screen .fl-content .fl-squad-tools :is(input,select){width:100%;min-width:0}
+#v61-world-screen .fl-content .fl-squad-tools .fl-squad-count{margin:0;padding-block:12px;font-size:12px;font-variant-numeric:tabular-nums}
+#v61-world-screen .fl-content .fl-squad-table{min-width:0;table-layout:auto;width:100%}
+#v61-world-screen .fl-content .fl-squad-table :is(th,td){vertical-align:top;white-space:normal;padding:14px 9px}
+#v61-world-screen .fl-content .fl-squad-table th[scope=row]{width:44%;min-width:220px;text-align:left;font-weight:400}
+#v61-world-screen .fl-content .fl-squad-table tbody td{padding-top:26px}
+#v61-world-screen .fl-content .fl-squad-table tbody td:first-child{padding-top:21px}
+#v61-world-screen .fl-content .fl-squad-table .v61-shirt{background:var(--fl-subtle);border-color:var(--fl-line);color:var(--fl-accent);box-shadow:none}
+#v61-world-screen .fl-content .fl-squad-table thead button{font-size:11px;white-space:normal;padding:4px;background:transparent;border:0}
+#v61-world-screen .fl-content .fl-squad-table tbody tr:hover{background:var(--fl-hover)}
+#v61-world-screen .fl-content .fl-squad-identity{display:flex;align-items:flex-start;gap:12px;justify-content:space-between;min-width:0}
+#v61-world-screen .fl-content .fl-squad-identity>.player-link{display:flex;align-items:center;gap:7px;min-width:0;white-space:normal;text-align:left;font-weight:700;line-height:1.4;overflow-wrap:anywhere;padding:0;border:0}
+#v61-world-screen .fl-content .fl-squad-identity .flag-icon{flex:none;width:22px;height:16px}
+.fl-squad-form{display:flex;align-items:center;min-height:44px;flex:none}.fl-squad-form .fl-form>span{max-width:60px}
+.fl-form-icon{min-height:36px;cursor:help}.fl-form-icon:focus-visible{outline:2px solid var(--fl-accent);outline-offset:2px;border-radius:50%}
+.fl-squad-rating{min-width:70px;text-align:right}.fl-rating-average{display:block;cursor:help;font-variant-numeric:tabular-nums}
+.fl-rating-average{color:var(--fl-band-ink);font-weight:700}
+.fl-rating-history{display:flex;justify-content:flex-end;align-items:flex-end;gap:3px;margin-top:8px;height:36px}
+.fl-rating-game{display:flex!important;align-items:flex-end;justify-content:center;width:10px;min-width:10px;min-height:36px!important;padding:0!important;border:0!important;background:transparent!important;border-radius:3px;cursor:help}
+.fl-rating-game i{display:block;width:7px;min-height:4px;background:var(--fl-band);border-radius:2px}
+.fl-rating-game:focus-visible,.fl-rating-average:focus-visible,.fl-rating-missing:focus-visible{outline:2px solid var(--fl-accent);outline-offset:2px}.fl-rating-missing{display:block;margin-top:8px;color:var(--fl-muted);cursor:help}
+.fl-squad-player-detail{display:grid;gap:12px;margin-top:8px;font-weight:400}
+.fl-squad-skills,.fl-squad-profile-skills{display:flex;flex-wrap:wrap;gap:6px}
+.fl-squad-skills .fl-skill{font-size:11px;padding:4px 6px}
+.fl-squad-freshness{max-width:220px}.fl-squad-empty{padding:24px;border:1px dashed var(--fl-line);border-radius:var(--fl-radius);color:var(--fl-muted)}
+.fl-squad-profile-status{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding:16px 0;border-bottom:1px solid var(--fl-line);margin-bottom:18px}
+.fl-squad-profile-status .fl-freshness{flex:1;max-width:260px;min-width:120px}
+.fl-squad-profile .player-card-head{display:flex;align-items:start;justify-content:space-between;gap:16px}
+.fl-squad-profile .player-card-head h2{overflow-wrap:anywhere;margin:8px 0}
+.fl-squad-profile .player-card-head span{color:var(--fl-muted)}
+.fl-squad-profile section h3{font-family:var(--fl-font);text-transform:none;letter-spacing:normal}
+.fl-squad-profile .player-card-head [data-v61-close]{flex:none;width:44px;height:44px}
+.fl-squad-profile .player-card-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.fl-squad-profile .player-card-facts>span{display:grid;gap:5px;padding:12px}
+.fl-squad-profile .v74-profile-tabs{display:flex;gap:8px;flex-wrap:wrap;padding:16px 0}
+.fl-squad-profile .v74-profile-tabs button{flex:1;min-height:44px}
+.fl-squad-profile .v74-profile-tabs [aria-selected=true]{color:var(--fl-accent);background:var(--fl-tint);border-color:var(--fl-accent)}
+.fl-squad-profile .career-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.fl-squad-profile .career-grid>span{display:grid;gap:5px;background:var(--fl-subtle);padding:12px;border-radius:6px;color:var(--fl-muted)}
+.fl-squad-profile .career-grid b{font-size:20px;color:var(--fl-ink)}
+.fl-squad-profile .v64-player-seasons p{display:grid;gap:6px;padding:14px 0;border-bottom:1px solid var(--fl-line)}
+.fl-squad-profile .v74-honour-sections{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fl-squad-profile .v68-player-honours{padding:0;list-style:none}.fl-squad-profile .v68-player-honours li{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--fl-line)}
+.fl-squad-profile .v68-player-honours li>span{display:grid;gap:4px;min-width:0}.fl-squad-profile .v68-player-honours :is(svg,img){flex:none;width:40px;height:40px;object-fit:contain}
+@media(max-width:1100px){#v61-world-screen .fl-content .fl-squad-identity{flex-wrap:wrap;gap:4px}.fl-squad-form{min-height:32px}.fl-squad-form .fl-form>span{max-width:none}}
+@media(max-width:700px){
+ #v61-world-screen .fl-content .fl-squad-tools{gap:10px}#v61-world-screen .fl-content .fl-squad-tools label{flex-basis:100%}#v61-world-screen .fl-content .fl-squad-tools .fl-squad-count{padding:0}
+ #v61-world-screen .fl-content .fl-squad .v61-roster-table-wrap{border:0;background:transparent;overflow:visible}
+ #v61-world-screen .fl-content .fl-squad-table,#v61-world-screen .fl-content .fl-squad-table tbody{display:block;width:100%}
+ #v61-world-screen .fl-content .fl-squad-table thead{display:block;background:transparent;margin-bottom:12px}
+ #v61-world-screen .fl-content .fl-squad-table thead tr{display:flex;flex-wrap:wrap;gap:5px}
+ #v61-world-screen .fl-content .fl-squad-table thead th{padding:0;border:0}#v61-world-screen .fl-content .fl-squad-table thead button{padding:7px 10px;border:1px solid var(--fl-line);background:var(--fl-surface)}
+ #v61-world-screen .fl-content .fl-squad-table tbody tr{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px 8px;background:var(--fl-surface);border:1px solid var(--fl-line);border-radius:10px;padding:14px 12px;margin-bottom:12px}
+ #v61-world-screen .fl-content .fl-squad-table tbody :is(td,th){width:auto;min-width:0;padding:0;border:0;text-align:left}
+ #v61-world-screen .fl-content .fl-squad-table tbody td:first-child{grid-column:1/3;padding-top:7px}
+ #v61-world-screen .fl-content .fl-squad-table tbody th[scope=row]{grid-column:3/-1}
+ #v61-world-screen .fl-content .fl-squad-table tbody td:nth-child(3),#v61-world-screen .fl-content .fl-squad-table tbody td:nth-child(4){grid-column:span 6}
+ #v61-world-screen .fl-content .fl-squad-table tbody td:nth-child(n+5){grid-column:span 3;font-size:15px;font-weight:650}
+ #v61-world-screen .fl-content .fl-squad-table tbody td:not(:first-child)::before{content:attr(data-fl-squad-label);display:block;font-size:11px;font-weight:400;color:var(--fl-muted);margin-bottom:3px}
+ #v61-world-screen .fl-content .fl-squad-identity{display:grid;gap:5px}.fl-squad-skills{gap:5px}.fl-squad-skills .fl-skill{font-size:11px}
+ .fl-squad-profile .v74-honour-sections{grid-template-columns:1fr}.fl-squad-profile .player-card-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}

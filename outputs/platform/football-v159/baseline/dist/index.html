@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="doppel6-preview" content="3d">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101d21">
+  <meta name="description" content="Dein 6-gegen-6-Fußballmanager. Stelle dein Team auf und erlebe deine Taktik auf dem Platz.">
+  <title>Doppel 6 · Fußballmanager</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23c7f36b'/%3E%3Ctext x='20' y='27' text-anchor='middle' font-size='22' font-family='Arial' font-weight='bold' fill='%23101d21'%3E66%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="manager.css">
+  <link rel="stylesheet" href="world-start-v61.css">
+  <link rel="stylesheet" href="world-economy-v66.css">
+  <link rel="stylesheet" href="world-youth-v67.css">
+  <link rel="stylesheet" href="world-views-v68.css">
+  <link rel="stylesheet" href="progress-v58.css">
+  <link rel="stylesheet" href="ui-flutlicht/tokens.css">
+  <link rel="stylesheet" href="ui-flutlicht/components.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/overview.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/squad.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/market.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/settings.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/club.css">
+  <link rel="stylesheet" href="ui-flutlicht/views/competitions.css">
+  <link rel="stylesheet" href="ui-flutlicht/navigation.css">
+  <link rel="stylesheet" href="ui-flutlicht/matchplan.css">
+  <link rel="stylesheet" href="ui-flutlicht/start.css">
+  <link rel="stylesheet" href="ui-flutlicht/match.css">
+  <link rel="stylesheet" href="player-tactics-ui.css">
+  <link rel="stylesheet" href="world-tactics-layout-v156.css">
+</head>
+<body>
+<header><a class="brand" href="./"><b>66</b> Doppel 6<span>MANAGER</span></a><div class="header-actions"><span class="tag">MEISTERSCHAFT</span><label class="language-control"><span>Sprache</span><select id="language-select" aria-label="Sprache"><option value="de" lang="de">Deutsch</option><option value="en" lang="en">English</option></select></label></div></header>
+<main id="game-screen" hidden>
+  <section class="intro"><div><p class="eyebrow">KLEINES FELD. DEINE TAKTIK.</p><h1 id="heading">Dein Plan fürs Spiel.</h1></div><p id="subtitle">Fünf Feldspieler. Ein Torwart. Du bestimmst die Ordnung.</p></section>
+  <div class="workspace">
+    <section class="board">
+      <div class="board-top"><div><span class="team-dot"></span><strong>FC Viertel</strong></div><span id="board-label">AUFSTELLUNG</span></div>
+      <div id="setup-pitch" class="pitch">
+        <div class="markings"><div class="center-circle"></div><div class="half-line"></div><div class="box top"></div><div class="box bottom"></div></div>
+        <div class="attack-label">ANGRIFF ↑</div>
+        <div id="grid" class="grid" aria-label="Aufstellungsraster"></div>
+        <div class="v55-zone-guide" aria-hidden="true"><span class="v55-zone-line v55-zone-mid"><b>MITTELFELD</b></span><span class="v55-zone-line v55-zone-def"><b>ABWEHR</b></span></div>
+        <div class="keeper"><b>1</b><span>BAUER · TW</span></div>
+      </div>
+      <div id="match-area" hidden>
+        <div class="match-meta"><span id="clock">00′</span><span id="match-plan">2-2-1</span><span>LIGASPIEL</span></div>
+        <div class="scoreboard"><span>FC Viertel</span><strong id="score">0 : 0</strong><span>SC Hafen</span></div>
+        <div class="v42-pitch-stage"><canvas id="canvas" width="600" height="740" aria-label="Animiertes Fußballspiel"></canvas></div>
+        <div id="match-overlay" class="match-overlay" hidden><strong id="overlay-title"></strong><span id="overlay-copy"></span></div>
+        <div id="event" role="status">Bereit zum Anpfiff</div>
+      </div>
+      <div class="board-bottom" id="pitch-help"><span>● Spieler wählen</span><span>＋ Freies Feld antippen</span></div>
+    </section>
+    <aside>
+      <section class="panel" id="player-panel">
+        <div class="section-heading"><h2>Deine Mannschaft</h2><span>6 / 6</span></div>
+        <p class="help">Spieler antippen, Position und Ausrichtung festlegen.</p>
+        <div id="roster"></div><div id="selected-player"></div>
+        <p class="duel-help"><b>Scouting:</b> Fähigkeiten werden bewusst nur ungefähr beschrieben. Alter, Form und Frische sind bekannt.</p>
+        <fieldset id="roles"><legend>Ausrichtung</legend><div class="segmented"><button data-role="-1">Defensiv</button><button data-role="0">Balance</button><button data-role="1">Offensiv</button></div><p id="role-help" class="help"></p></fieldset>
+      </section>
+      <section class="panel" id="tactics-panel">
+        <h2>Teamtaktik</h2>
+        <fieldset><legend>Grundordnung</legend><div class="formation-presets"><button data-formation="compact">Kompakt<small>2-1-2</small></button><button data-formation="balanced" class="active">Balance<small>2-2-1</small></button><button data-formation="bold">Mutig<small>1-2-2</small></button></div></fieldset>
+        <fieldset><legend>Pressing</legend><div class="segmented"><button data-press="0" class="active">Abwarten</button><button data-press="1">Früh angreifen</button></div></fieldset>
+        <fieldset><legend>Passspiel</legend><div class="segmented"><button data-pass="0" class="active">Kurze Pässe</button><button data-pass="1">Schnell nach vorne</button></div></fieldset>
+        <div class="plan-card"><span>DEIN MATCHPLAN</span><strong id="plan-title">Ausgewogenes 2-2-1</strong><p id="plan-copy">Stabile Staffelung mit kurzen Passwegen.</p></div>
+      </section>
+      <section class="panel" id="match-info" hidden>
+        <p class="eyebrow">VON DER SEITENLINIE</p><h2 id="match-title">Dein Team spielt.</h2><p class="help" id="live-plan"></p>
+        <div class="match-stat-header"><span>Statistik</span><b data-stat-home>Heimteam</b><b data-stat-away>Gastteam</b></div>
+        <div class="stats" id="shots"><span>Schüsse</span><b data-stat-value="home">0</b><b data-stat-value="away">0</b></div>
+        <div class="stats" id="setpiece-corners"><span>Ecken</span><b data-stat-value="home">0</b><b data-stat-value="away">0</b></div>
+        <div class="stats" id="setpiece-fouls"><span>Fouls</span><b data-stat-value="home">0</b><b data-stat-value="away">0</b></div>
+        <div class="stats" id="setpiece-free-kicks"><span>Freistöße</span><b data-stat-value="home">0</b><b data-stat-value="away">0</b></div>
+        <div class="stats" id="possession"><span>Ballbesitz</span><b data-stat-value="home">50 %</b><b data-stat-value="away">50 %</b></div>
+        <div class="stats" id="pass-rate"><span>Passquote</span><b data-stat-value="home">–</b><b data-stat-value="away">–</b></div>
+        <div id="player-stats" hidden></div>
+        <h3>Spielverlauf</h3><ol id="log"></ol>
+      </section>
+      <button id="start" class="primary">Ligaspiel starten <span>↗</span></button><p class="footer-note" id="duration">Ca. 100 Sekunden · 2 × 45 Ingame-Minuten · Keine Änderungen nach Anpfiff</p><button id="back" class="primary" hidden>Zurück zur Taktik <span>↗</span></button>
+    </aside>
+  </div>
+  <footer><span>Doppel 6 / PROTOTYP 110</span><span>Deine Farben. Dein Fußball.</span></footer>
+</main>
+<script src="game.js"></script>
+<script src="manager-v11.js"></script>
+<script src="identity-v12.js"></script>
+<script src="season-v13.js"></script>
+<script src="halftime-v14.js"></script>
+<script src="finance-v15.js"></script>
+<script src="transfer-v16.js"></script>
+<script src="qol-v17.js"></script>
+<script src="player-card-v18.js"></script>
+<script src="dashboard-v19.js"></script>
+<script src="screen-wake-v20.js"></script>
+<script src="match-clock-v21.js"></script>
+<script src="club-history-v22.js"></script>
+<script src="formation-label-v23.js"></script>
+<script src="lineup-ux-v24.js"></script>
+<script src="presentation-v25.js"></script>
+<script src="sponsor-fix-v26.js"></script>
+<script src="dashboard-order-v27.js"></script>
+<script src="transfer-result-v28.js"></script>
+<script src="transfer-actions-v29.js"></script>
+<script src="sale-profile-v30.js"></script>
+<script src="season-finale-v31.js"></script>
+<script src="dashboard-layout-v32.js"></script>
+<script src="youth-v33.js"></script>
+<script src="season-roster-v34.js"></script>
+<script src="transfer-sections-v35.js"></script>
+<script src="youth-direct-v36.js"></script>
+<script src="transfer-order-v37.js"></script>
+<script src="legal-v38.js"></script>
+<script src="awards-v40.js"></script>
+<script src="cup-v41.js"></script>
+<script src="penalties-v42.js"></script>
+<script src="club-records-v43.js"></script>
+<script src="club-identity-v44.js"></script>
+<script src="keeper-logo-v45.js"></script>
+<script src="main-menu-v46.js"></script>
+<script src="match-report-v47.js"></script>
+<script src="next-match-v49.js"></script>
+<script src="set-pieces-v50.js"></script>
+<script src="status-icons-v51.js"></script>
+<script src="player-status-v51.js"></script>
+<script src="strength-v55.js"></script>
+<script src="opponent-profile-v54.js"></script>
+<script src="pitch-v55.js"></script>
+<script src="pitch-v56.js"></script>
+<script src="pitch-v57.js"></script>
+<script src="progress-v58.js"></script>
+<script src="live-player-v59.js"></script>
+<script src="ai-career-v60.js"></script>
+<script src="world-catalog-v61.js"></script>
+<script src="world-competition-v62.js"></script>
+<script src="world-coaches-v63.js"></script>
+<script src="world-match-v64.js"></script>
+<script src="world-nationalities-v79.js"></script>
+<script src="player-generation.js"></script>
+<script src="player-effective-abilities.js"></script>
+<script src="player-freshness.js"></script>
+<script src="player-load-candidate-v158.js"></script>
+<script src="player-development.js"></script>
+<script src="player-aging.js"></script>
+<script src="player-role-suitability.js"></script>
+<script src="player-position-routine.js"></script>
+<script src="player-tactic-transitions.js"></script>
+<script src="player-match-ratings.js"></script>
+<script src="player-tactics-ui.js"></script>
+<script src="world-player-roles-v154.js"></script>
+<script src="world-player-performance-v155.js"></script>
+<script src="world-tactics-ui-v156.js"></script>
+<script src="world-player-foundation-v153.js"></script>
+<script src="world-player-load-v158.js"></script>
+<script src="player-foundation-preview-v153.js"></script>
+<script src="world-foundation-v61.js"></script>
+<script src="world-match-ui-v64.js"></script>
+<script src="world-physical-v65.js"></script>
+<script src="world-economy-v66.js"></script>
+<script src="world-transfer-list-v72.js"></script>
+<script src="world-market-ui-v66.js"></script>
+<script src="world-transfer-list-ui-v72.js"></script>
+<script src="world-youth-manager-v67.js"></script>
+<script src="world-payments-v124.js"></script>
+<script src="world-youth-ui-v67.js"></script>
+<script src="world-payments-ui-v124.js"></script>
+<script src="world-honours-v74.js"></script>
+<script src="world-views-v68.js"></script>
+<script src="world-career-plan-v64.js"></script>
+<script src="world-grid-touch-v71.js"></script>
+<script src="match-presentation-v74.js"></script>
+<script src="i18n-v75.js"></script>
+<script src="world-kits-ui-v81.js"></script>
+<script src="world-goal-scene-v83.js"></script>
+<script src="world-goal-banner-v84.js"></script>
+<script src="world-pitch-layout-v92.js"></script>
+<script src="camera-prototype/vendor/three-r160.min.js"></script>
+<script src="player-model-v105.js"></script>
+<script src="pitch-scene-v98.js"></script>
+<script src="world-pitch-actions-v99.js"></script>
+<script src="pitch-motion-v102.js"></script>
+<script src="world-backpedal-v108.js"></script>
+<script src="world-corner-ball-v109.js"></script>
+<script src="world-ball-motion-v110.js"></script>
+<script src="world-space-passes-v150.js"></script>
+<script src="world-attack-flow-v152.js"></script>
+<script src="world-offensive-quality-v157.js"></script>
+<script src="match-ball-events-v117.js"></script>
+<script src="world-pitch3d-v98.js"></script>
+<script src="world-goal-replay-v103.js"></script>
+<script src="world-unity-v151.js"></script>
+<script type="importmap">{"imports":{"three":"./camera-prototype/vendor/three.module.js"}}</script>
+<script src="player-user-motion-v108.js"></script>
+<script src="player-user-ball-actions-v111.js"></script>
+<script src="player-ball-events-v111.js"></script>
+<script src="player-user-meshy-v107.js"></script>
+<script src="player-user-bootstrap-v112.js"></script>
+<script src="world-3d-documentation-data-v134.js"></script>
+<script src="world-3d-help-v134.js"></script>
+<script src="ui-flutlicht/components.js"></script>
+<script src="ui-flutlicht/shell.js"></script>
+<script src="ui-flutlicht/registry.js"></script>
+<script src="ui-flutlicht/views/overview.js"></script>
+<script src="ui-flutlicht/views/squad.js"></script>
+<script src="ui-flutlicht/views/market.js"></script>
+<script src="ui-flutlicht/views/settings.js"></script>
+<script src="ui-flutlicht/views/club.js"></script>
+<script src="ui-flutlicht/views/competitions.js"></script>
+<script src="ui-flutlicht/navigation.js"></script>
+<script src="ui-flutlicht/adapter.js"></script>
+<script src="ui-flutlicht/start.js"></script>
+<script src="ui-flutlicht/match.js"></script>
+</body>
+</html>

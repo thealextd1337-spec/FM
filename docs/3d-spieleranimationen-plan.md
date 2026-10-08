@@ -1,6 +1,12 @@
 # Detailliertere Spieleranimationen in der 3D-Ansicht
 
-Stand: 1. Oktober 2026. Grundblöcke als Prototyp 102 und Laufkontakt/Übergänge als Prototyp 103/104 umgesetzt. Natürlichere Spielermodelle sind als Prototyp 105 umgesetzt und in der getrennten 3D-Vorschau veröffentlicht. Die ursprüngliche Planung ist unten als historische Referenz erhalten; ihre Ausgangslage beschreibt den Stand vor 102. Die Erweiterung betrifft die 3D-Spieldarstellung der Vereinswelt im Querformat. Die nahe TV-Kamera bleibt Grundlage.
+Stand: 2. Oktober 2026. Die neu erstellte Figur B besitzt jetzt ein [Test-Rig mit Lauf-/Passprobe und Unity-FBX-Assets](3d-fussballer-b-rig/README.md). [Unity ist die empfohlene Engine für die nächste isolierte Browserprobe](unity-unreal-entscheidung.md); Unity-Import, Web-Build und Matchanbindung sind noch nicht umgesetzt. Die folgenden Abschnitte dokumentieren die bisherige Implementierung: Grundblöcke als Prototyp 102 und Laufkontakt/Übergänge als Prototyp 103/104, natürlichere Spielermodelle als Prototyp 105 in der getrennten 3D-Vorschau. Die ursprüngliche Planung ist unten als historische Referenz erhalten; ihre Ausgangslage beschreibt den Stand vor 102. Die Erweiterung betrifft die 3D-Spieldarstellung der Vereinswelt im Querformat. Die nahe TV-Kamera bleibt Grundlage.
+
+## Neue Assetbasis: verbesserte Figur B
+
+Zusätzlich liegt ein nicht veröffentlichter Ausbau der bestehenden Browserposen vor: unterschiedliche Idle-/Walk-/Run-Gewichte, visuelles Anlaufen/Bremsen, Rumpf-/Blickdrehung und unterbrechbarer Gestenausklang. Ursachen, tatsächlich implementierte Regeln und Match-/Browserbelege stehen in der [Bewegungsanalyse](movement-animation-analysis.md). Der veröffentlichte Stand bleibt 105; kontinuierliche Bewegungsabnahme und Mobilhardwareprüfung bleiben offen.
+
+Die erste Rig-Probe wurde überarbeitet: [verbesserte Geometrie, Lauf-/Passclips und Prüfungen](3d-fussballer-b-rig-v2/README.md). Schultern und Kleidung entstehen direkt in neutraler Pose, Arme und Knie erhalten zusätzliche Deformationsringe. Unity-FBX-Assets und eine neue gerenderte Bewegungsprobe liegen vor. Der nächste Integrationspunkt bleibt eine isolierte Unity-Testszene; Engineimport und Mobilgeräteprüfung sind noch offen. Die folgenden Abschnitte dokumentieren die bisher veröffentlichte Browserdarstellung.
 
 ## Aktuelle Priorität: Modellqualität vor weiteren Zweikämpfen (105)
 

@@ -16,7 +16,7 @@ function v55CompleteKeeper(player){
  for(const [key,value] of Object.entries({tec:player.gk??10,fin:10,tak:10,air:10}))if(!Number.isFinite(player[key]))player[key]=v55Skill(value);
  return player;
 }
-function v55SkillEntries(player){v55CompleteKeeper(player);return(player.keeper?v55KeeperSkills:v55OutfieldSkills).map(([label,key],index)=>({label,key,index,value:player[key]})).filter(skill=>Number.isFinite(skill.value))}
+function v55SkillEntries(player){v55CompleteKeeper(player);const skills=[...(player.keeper?v55KeeperSkills:v55OutfieldSkills),...(player.playerModel?.version===2?[['Ruhe','calm'],['Antizipation','ant'],['Entscheidungen','dec'],['Körperkraft','str']]:[])];return skills.map(([label,key],index)=>({label,key,index,value:player[key]})).filter(skill=>Number.isFinite(skill.value))}
 function v55TopSkillsHTML(player){
  const skills=v55SkillEntries(player).sort((a,b)=>b.value-a.value||a.index-b.index).slice(0,3);
  return `<span class="v55-skill-list" role="list" aria-label="Beste Fähigkeiten">${skills.map(skill=>`<span role="listitem" aria-label="${skill.label}: ${v55SkillBandNames[v55SkillBand(skill.value)]}" style="color:${v55SkillColor(skill.value)}">${skill.label}</span>`).join('')}</span>`;
@@ -24,6 +24,7 @@ function v55TopSkillsHTML(player){
 function v55SkillGroupsHTML(player){
  v55CompleteKeeper(player);
  const groups=[['Offensiv',v55OutfieldSkills.slice(0,3)],['Defensiv',v55OutfieldSkills.slice(3,5)],['Körperlich',v55OutfieldSkills.slice(5)]];
+ if(player.playerModel?.version===2){groups[2][1]=[...groups[2][1],['Körperkraft','str']];groups.push(['Spielverständnis',[['Ruhe','calm'],['Antizipation','ant'],['Entscheidungen','dec']]]);}
  if(player.keeper)groups.unshift(['Torwart',[['Torwartspiel','gk']]]);
  return `<div class="v55-skill-groups">${groups.map(([title,skills])=>`<div class="v55-skill-group"><h4>${title}</h4><div role="list" aria-label="${title}">${skills.map(([label,key])=>`<span class="v55-skill-row" role="listitem" aria-label="${label}: ${v55SkillBandNames[v55SkillBand(player[key])]}"><span style="color:${v55SkillColor(player[key])}">${label}</span></span>`).join('')}</div></div>`).join('')}</div><div class="v55-skill-legend" aria-label="Farbstufen">${v51FormKeys.map(key=>`<span><i style="background:${v51FormColors[key]}" aria-hidden="true"></i>${v55SkillBandNames[key]}</span>`).join('')}</div>`;
 }
@@ -77,8 +78,9 @@ opponentPlayers=function(){
  return selection.map((player,index)=>{const copy={...structuredClone(player),cell:cells[index],role:roles[index],assignedLine:player.line};for(const key of v55SkillKeys)if(Number.isFinite(copy[key]))copy[key]=v55Skill(copy[key]+boost);return copy});
 };
 ability=function(player,key){
+ const load=typeof v158Ability==='function'?v158Ability(player,key):null;if(load!==null)return load;
  const base=Number.isFinite(player[key])?player[key]:key==='tec'?(player.gk||10):10;
- const age=player.youthPotential&&player.age<=23?0:player.age<=21?(key==='spd'?.4:key==='pos'?-.6:-.2):player.age<=29?0:player.age<=33?(['pas','pos'].includes(key)?.4:key==='spd'?-.6:-.2):(['pas','pos'].includes(key)?.2:key==='spd'?-1.4:-.6);
+ const age=player.playerModel?.version===2?0:player.youthPotential&&player.age<=23?0:player.age<=21?(key==='spd'?.4:key==='pos'?-.6:-.2):player.age<=29?0:player.age<=33?(['pas','pos'].includes(key)?.4:key==='spd'?-.6:-.2):(['pas','pos'].includes(key)?.2:key==='spd'?-1.4:-.6);
  const form=(typeof v51EffectiveForm==='function'?v51EffectiveForm(player):player.form||0)*.5;
  const freshness=(100-(player.fresh??100))*.016;
  const fatigue=match&&!player.keeper?match.elapsed/75*Math.max(0,16-(player.sta||14))*.22:0;

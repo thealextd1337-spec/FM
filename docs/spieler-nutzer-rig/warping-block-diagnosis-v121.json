@@ -1,0 +1,51 @@
+{
+  "baseline": false,
+  "physicsHz": 20,
+  "renderHz": 60,
+  "replaySkipped": true,
+  "gpuDrawSkipped": true,
+  "runs": [
+    {
+      "seed": 12345,
+      "steps": 340,
+      "frames": 1020,
+      "nonfinite": 0,
+      "renderChanges": 0,
+      "halves": [
+        false
+      ],
+      "events": {
+        "fly:pass": 2,
+        "v50Restart:freeKick": 1,
+        "v50Spot:": 5,
+        "fly:shot": 1,
+        "v50Deflect:": 1,
+        "fly:block": 1,
+        "v50LooseBall:": 1,
+        "v50GoalKick:": 1
+      },
+      "counts": {},
+      "top": {
+        "engine": [],
+        "root": [],
+        "hips": [],
+        "ball": [],
+        "rawBall": []
+      },
+      "max": {
+        "engine": 0.3770492709802898,
+        "root": 0.22476737022844603,
+        "hips": 0.5101014713649011,
+        "ball": 0.5871035044800246,
+        "rawBall": 1.3000000000000058
+      },
+      "finished": false,
+      "score": [
+        0,
+        0
+      ],
+      "elapsed": 5.303999999999996
+    }
+  ],
+  "errors": []
+}

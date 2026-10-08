@@ -1,0 +1,1210 @@
+{
+  "checkedAt": "2026-10-07",
+  "layout": [
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "overview",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "squad",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "squad-contracts",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "squad-youth",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "transfers",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "transfers-offers",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "transfers-sales",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "transfers-history",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "competition",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "competition-cup",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "competition-europe",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "competition-world",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "competition-archive",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "calendar",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "statistics",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "club",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "club-finances",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "club-sponsor",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "club-history",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "club-manager",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "player-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "playercareer-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "offer-silva",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "renew-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "market-0",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "opponent",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "report",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "settings",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "light",
+      "route": "concept",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "overview",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "squad",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "squad-contracts",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "squad-youth",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "transfers",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "transfers-offers",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "transfers-sales",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "transfers-history",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "competition",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "competition-cup",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "competition-europe",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "competition-world",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "competition-archive",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "calendar",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "statistics",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "club",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "club-finances",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "club-sponsor",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "club-history",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "club-manager",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "player-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "playercareer-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "offer-silva",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "renew-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "market-0",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "opponent",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "report",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "settings",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 320,
+      "mode": "dark",
+      "route": "concept",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "overview",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "squad",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "squad-contracts",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "squad-youth",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "transfers",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "transfers-offers",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "transfers-sales",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "transfers-history",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "competition",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "competition-cup",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "competition-europe",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "competition-world",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "competition-archive",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "calendar",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "statistics",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "club",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "club-finances",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "club-sponsor",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "club-history",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "club-manager",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "player-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "playercareer-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "offer-silva",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "renew-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "market-0",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "opponent",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "report",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "settings",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "light",
+      "route": "concept",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "overview",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "squad",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "squad-contracts",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "squad-youth",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "transfers",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "transfers-offers",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "transfers-sales",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "transfers-history",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "competition",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "competition-cup",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "competition-europe",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "competition-world",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "competition-archive",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "calendar",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "statistics",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "club",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "club-finances",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "club-sponsor",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "club-history",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "club-manager",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "player-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "playercareer-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "offer-silva",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "renew-rossi",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "market-0",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "opponent",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "report",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "settings",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    },
+    {
+      "width": 1440,
+      "mode": "dark",
+      "route": "concept",
+      "overflow": false,
+      "correctMode": true,
+      "sameContent": true,
+      "sameSkillColors": true
+    }
+  ],
+  "contrast": {
+    "method": "Computed text against nearest opaque ancestor surface; no accessibility certification",
+    "failures": []
+  },
+  "breakpoints": [
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "light",
+      "route": "overview",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "light",
+      "route": "squad",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "light",
+      "route": "competition",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "light",
+      "route": "club-finances",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "dark",
+      "route": "overview",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "dark",
+      "route": "squad",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "dark",
+      "route": "competition",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "dark",
+      "route": "club-finances",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "mode": "light",
+      "route": "overview",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "mode": "light",
+      "route": "squad",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "mode": "light",
+      "route": "competition",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "mode": "light",
+      "route": "club-finances",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "mode": "dark",
+      "route": "overview",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "mode": "dark",
+      "route": "squad",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "mode": "dark",
+      "route": "competition",
+      "modeButtons": true,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "mode": "dark",
+      "route": "club-finances",
+      "modeButtons": true,
+      "overflow": false
+    }
+  ],
+  "interactions": [
+    {
+      "test": "Theme switch preserves search, position, results and expanded skills",
+      "pass": true
+    },
+    {
+      "test": "Keyboard switches theme on club page",
+      "pass": true
+    },
+    {
+      "test": "Browser back restores route and mode",
+      "pass": true
+    },
+    {
+      "test": "Browser forward and reload retain light mode",
+      "pass": true
+    },
+    {
+      "test": "Shared hash navigation still works in other designs",
+      "pass": true
+    }
+  ],
+  "consoleErrors": [],
+  "limitations": [
+    "No physical mobile hardware or Safari validation",
+    "UI reference and dummy data only; no game engine or career storage accessed"
+  ]
+}

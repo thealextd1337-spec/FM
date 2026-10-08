@@ -1,0 +1,19 @@
+{
+  "source": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\meshy_output\\player-a3-quality\\player-a4-final.glb",
+  "model": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\meshy_output\\player-a3-quality\\player-a5-collar.glb",
+  "native": "G:\\Blenderassets\\FM\\Spieler-A3-Qualitaet-2026-10-02\\Doppel6-A5-Kragen.blend",
+  "nativeReopened": true,
+  "sourceBodyVertices": 40824,
+  "bodyMaxPositionErrorMetres": 2.0276625805662006e-07,
+  "collarQuads": 768,
+  "collarSegments": 128,
+  "collarRows": 7,
+  "collarFacesReassigned": 13304,
+  "sampledShirtAlbedoSRGB": [
+    0.05490196496248245,
+    0.3333333432674408,
+    0.2705882489681244
+  ],
+  "finite": true,
+  "additionalMeshyCredits": 0
+}
