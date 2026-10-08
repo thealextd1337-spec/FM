@@ -3,12 +3,13 @@ const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),
 const {chromium}=require(path.join(os.homedir(),'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'));
 const local=process.argv.includes('--local'),out='outputs/release-111';fs.mkdirSync(out,{recursive:true});
 const sha=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
+const buildFile=process.env.D6_RELEASE_BUILD||'outputs/index.html',manifestFile=process.env.D6_RELEASE_MANIFEST||'outputs/platform/unity-web/probe-build.json';
 let server,url=process.env.D6_RELEASE_URL||'https://fussball.cakamper.at/?release=111';
 const report={release:111,target:local?'local-production-layout':'live',checks:[],errors:[],pass:false};
 function check(name,value){assert(value,name);report.checks.push(name);console.log('PASS '+name);}
 async function prepare(page,browserRenderer=false){
  const target=url+(url.includes('?')?'&':'?')+(browserRenderer?'engine=browser':'default=unity');
- if(!report.pageVerified){const response=await fetch(target,{headers:{'Cache-Control':'no-cache'}});assert(response.ok);const digest=crypto.createHash('sha256');for await(const block of response.body)digest.update(block);check('Page bytes equal the inspected release build',digest.digest('hex')===sha(fs.readFileSync('outputs/index.html')));report.pageVerified=true;}
+ if(!report.pageVerified){const response=await fetch(target,{headers:{'Cache-Control':'no-cache'}});assert(response.ok);const digest=crypto.createHash('sha256');for await(const block of response.body)digest.update(block);check('Page bytes equal the inspected release build',digest.digest('hex')===sha(fs.readFileSync(buildFile)));report.pageVerified=true;}
  const response=await page.goto(target,{timeout:120000});assert(response.ok());
  await page.waitForFunction(()=>window.D6WorldUnityContract&&window.D6Flutlicht?.adapter&&window.userMeshyMatchReady,null,{timeout:120000});
  check('Start page and footer use Flutlicht and version 111',await page.evaluate(()=>document.querySelector('#start-screen').classList.contains('fl-shell')&&document.querySelector('footer span').textContent.includes('PROTOTYP 111')));
@@ -44,7 +45,7 @@ async function finish(page){return page.evaluate(()=>{
   check('Default view is genuine Unity with the actual players',await page.evaluate(ids=>D6UnityMatch.active&&!D6UnityMatch.lastError&&D6UnityMatch.lastAck.ids.length===ids.length&&D6UnityMatch.lastAck.ids.every(id=>ids.includes(id)),setup.players));
   report.runtimeUrl=page.frames().find(f=>f.url().includes('/unity-match/runtime.html')).url();
   const manifest=await page.evaluate(async()=>{const r=await fetch('/unity/probe-build.json',{cache:'no-store'});if(!r.ok)throw Error('Published manifest unavailable');return r.json();});
-  check('Actual published Unity identity equals the frozen build',manifest.sourceId===JSON.parse(fs.readFileSync('outputs/platform/unity-web/probe-build.json')).sourceId);report.unitySourceId=manifest.sourceId;
+  check('Actual published Unity identity equals the frozen build',manifest.sourceId===JSON.parse(fs.readFileSync(manifestFile)).sourceId);report.unitySourceId=manifest.sourceId;
   await page.evaluate(()=>{v133ToggleEnlarge();v65Resume();clearInterval(v65WorldFrame);let ticks=0;while((!match.halftimePause||v65Context().state.phase!=='paused')&&!match.finished&&ticks++<10000)D6ReleaseTick(.05);draw();});
   check('Real enlarged match reaches halftime without fullscreen',await page.evaluate(()=>match.halftimePause>0&&v65Context().state.phase==='paused'&&v99Expanded&&!document.fullscreenElement));
   await page.evaluate(()=>{v65Resume();clearInterval(v65WorldFrame);for(let i=0;i<15;i++)D6ReleaseTick(.05);draw();});await picture(page);
@@ -55,7 +56,7 @@ async function finish(page){return page.evaluate(()=>{
   check('Native match report uses the current dialog design',await page.evaluate(()=>v47Dialog.classList.contains('fl-dialog')&&v47Dialog.open));
   await page.close();page=await browser.newPage({viewport:{width:1440,height:950}});page.on('pageerror',e=>report.errors.push(e.message));
   await prepare(page,true);const native=await finish(page);assert.deepEqual(unity,native);check('Complete Unity/browser match results, events, player records and finances match',true);
-  report.score=unity.score;report.finished=new Date().toISOString();report.buildSha256=sha(fs.readFileSync('outputs/index.html'));check('No browser script errors',report.errors.length===0);report.pass=true;
+  report.score=unity.score;report.finished=new Date().toISOString();report.buildSha256=sha(fs.readFileSync(buildFile));check('No browser script errors',report.errors.length===0);report.pass=true;
  }finally{await browser.close();if(server)await new Promise(r=>server.close(r));}
  fs.writeFileSync(out+'/'+report.target+'.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({pass:true,target:report.target,checks:report.checks.length,score:report.score}));
 })().catch(error=>{report.failure=error.stack;fs.writeFileSync(out+'/'+report.target+'.json',JSON.stringify(report,null,2)+'\n');console.error(error);server?.close();process.exitCode=1;});

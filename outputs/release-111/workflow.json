@@ -1,0 +1,57 @@
+{
+  "id": 37845254850,
+  "head_sha": "6a51cdbe14579c8fd7a7aea9d86c05424163ff4f",
+  "status": "completed",
+  "conclusion": "success",
+  "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/37845254850",
+  "created_at": "2026-10-08T21:13:34Z",
+  "updated_at": "2026-10-08T21:22:17Z",
+  "jobs": [
+    {
+      "id": 113544409042,
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Quellcode laden",
+          "conclusion": "success"
+        },
+        {
+          "name": "Node.js einrichten",
+          "conclusion": "success"
+        },
+        {
+          "name": "Spieltests ausführen",
+          "conclusion": "success"
+        },
+        {
+          "name": "Einzeldatei bauen",
+          "conclusion": "success"
+        },
+        {
+          "name": "Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen",
+          "conclusion": "success"
+        },
+        {
+          "name": "Per FTPS zu World4You hochladen und Live-Datei prüfen",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Node.js einrichten",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Quellcode laden",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

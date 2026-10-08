@@ -1,6 +1,6 @@
 # Release 111: Flutlicht und Unity-Fußball
 
-Vorbereiteter Veröffentlichungsstand vom 8. Oktober 2026. Der vorherige vollständig geprüfte lokale Stand ist im Git-Commit `abc340c62caea8850e30653ed6e515d2a8d69d3c` gesichert. Die [v159-Abnahme](platform/football-experience-v159.md) bleibt ein historischer Nachweis dieses Standes; Release 111 ergänzt Versionsanzeige, Systemdokumentation und die vollständige Live-Auslieferung.
+Veröffentlichungsstand vom 8. Oktober 2026. Der vorherige vollständig geprüfte lokale Stand ist im Git-Commit `abc340c62caea8850e30653ed6e515d2a8d69d3c` gesichert. Die [v159-Abnahme](platform/football-experience-v159.md) bleibt ein historischer Nachweis dieses Standes; Release 111 ergänzt Versionsanzeige, Systemdokumentation und die vollständige Live-Auslieferung.
 
 Flutlicht umfasst Start-/Vereinserstellung, Vereinswelt-Menüs, Untermenüs, Matchplan, taktische Ansichten und Spielberichte. Neue physische Partien erhalten den offensiven Ablauf mit freien Stürmerwegen, erreichbarer Ballannahme, Anschlussläufen, ballbezogener Verteidigung und tatsächlichen Schusszielen. Unity ergänzt Ballrotation, flüssigere Bewegungsübergänge, verfolgte Namensschilder sowie fünf Kameras mit Nähe-Regler.
 
@@ -12,4 +12,5 @@ Der fertige HTTP-Build mit tatsächlichen Produktionspfaden besteht zwölf Brows
 
 Build-SHA-256: `74e13d67e82d6d8cd486907aea7f44a5cf64bc50a6afdcc79eae96842a0e8b57`. Unity-Quellkennung: `95eb4c7224a55115dd2e2aa4dccb3f9e27f5096bdde0ee23073c5cfbb3076f3e`. Der HTML-Upload erfolgt zunächst unter einem hashgebundenen Dateinamen und wird erst nach vollständiger Übertragung auf `index.html` umbenannt.
 
-Workflow- und Live-Nachweise werden nach der tatsächlichen Veröffentlichung ergänzt. Die in v159 dokumentierten Grenzen für Torquote, Kontakte und physische Mobilhardware bleiben bestehen.
+Live am 8. Oktober 2026 unter [fussball.cakamper.at](https://fussball.cakamper.at/) veröffentlicht und direkt geprüft. [Workflow](https://github.com/thealextd1337-spec/FM/actions/runs/37845254850) erfolgreich; Live-HTML stimmt bytegenau mit dem geprüften Build überein. Die direkte Live-Prüfung bestätigt dieselben zwölf Browserfälle einschließlich echter Unity-Identität, vergrößerter Halbzeit und vollständiger 1:0-Partieparität. [Live-Nachweis](../outputs/release-111/live.json), [Workflow-Nachweis](../outputs/release-111/workflow.json).
+ Die in v159 dokumentierten Grenzen für Torquote, Kontakte und physische Mobilhardware bleiben bestehen.
