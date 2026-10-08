@@ -26,8 +26,19 @@ public static class D6Cli {
             Debug.Log("[D6Cli] FootballActionTests: "+FootballActionTests.Run(repo));
             Debug.Log("[D6Cli] FootballMotionTests: "+FootballMotionTests.Run(repo));
             Debug.Log("[D6Cli] WorldViewTests: "+WorldViewTests.Run(repo));
+            Debug.Log("[D6Cli] FootballGaitTests: "+FootballGaitTests.Run(repo));
             Done(true,"tests finished");
         }catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+
+    // Assigns the existing presentation clips in the probe scene.
+    public static void Setup(){
+        try{Done(true,FootballSetup.ConfigurePresentation());}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+
+    // Measures footfall, ground speed and travel of the existing authored clips.
+    public static void Clips(){
+        try{var repo=Repo();Done(true,FootballClipDiagnostics.Run(repo));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
 
     // WebGL build of the probe scene into outputs/platform/unity-web. Previous

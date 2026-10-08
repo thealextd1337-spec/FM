@@ -62,8 +62,8 @@ public static class FootballMotionTests {
         AnimationClip Clip(string name)=>Array.Find(AssetDatabase.LoadAllAssetsAtPath(asset),a=>a is AnimationClip&&a.name==name) as AnimationClip;
         double cycles=10.37;
         foreach(var clip in new[]{Clip("walking"),run,Clip("sprint_forward")}){
-            double length=clip.length-.001,normalized=FootballStrideTiming.Time(cycles,clip)/length;
-            check(Math.Abs(normalized-cycles)<1e-9,"Walk, run and sprint retain one normalized footfall phase / "+clip.name,normalized);
+            double length=clip.length-.001,normalized=FootballStrideTiming.Time(cycles,clip)/length-FootballStride.Footfall(clip);
+            check(Math.Abs(normalized-cycles)<1e-9,"Walk, run and sprint share the measured left footfall at one cycle value / "+clip.name,normalized);
         }
         foreach(int frequency in new[]{30,60,120}){
             var motion=new FootballLocomotion();var point=Vector3.zero;motion.Sample(point,Vector3.forward,30,false,false);
@@ -108,7 +108,10 @@ public static class FootballMotionTests {
             Render();var old=ball.rotation;
             var frame=JsonUtility.FromJson<WorldFrame>(picture);frame.clock+=.05;frame.ball[0]+=.04;playback.Receive(frame,Time.realtimeSinceStartupAsDouble-.2);Render();
             check(Quaternion.Angle(old,ball.rotation)>5,"Actual RenderWorld rotates the rendered ball Transform from received travel",Quaternion.Angle(old,ball.rotation));
-            check(Vector3.Distance(ball.position,new Vector3((float)frame.ball[0],(float)frame.ball[1],(float)frame.ball[2]))<.00001,"Actual RenderWorld leaves the received ball path unchanged",0);
+            check(Vector3.Distance(ball.position,new Vector3((float)frame.ball[0],ProbeBridge.DisplayHeight(frame.ball[1]),(float)frame.ball[2]))<.00001,"Actual RenderWorld keeps the received ball path; only the documented ground display height applies",0);
+            check(Math.Abs(ProbeBridge.DisplayHeight(.29)-WorldBallMotion.Radius)<.0001f,"A native ground ball rests on the pitch instead of floating",ProbeBridge.DisplayHeight(.29));
+            bool monotonic=true;float last=-1;for(int h=0;h<=300;h++){float y=ProbeBridge.DisplayHeight(.29+h*.01);monotonic&=y>last;last=y;}
+            check(monotonic&&Math.Abs(ProbeBridge.DisplayHeight(1.29)-1.29f)<.0001f&&Math.Abs(ProbeBridge.DisplayHeight(2.6)-2.6f)<.0001f,"Ball display height is monotonic and unchanged from 1.29 m, so crossbar heights stay native",0);
             check(JsonUtility.ToJson(inbox.Frame)==picture,"Actual rendering cannot mutate the authoritative received match picture",0);
             frame.clock+=.05;frame.players[0].action="save";frame.players[0].actionId="native-low-save";frame.players[0].progress=1;frame.players[0].contactPoint=new[]{frame.players[0].position[0],.4,frame.players[0].position[2]};frame.ball=(double[])frame.players[0].contactPoint.Clone();playback.Receive(frame,Time.realtimeSinceStartupAsDouble-.2);Render();
             var actual=(FootballAnimation.Pose)typeof(ProbeBridge).GetMethod("WorldFootballPose",flags).Invoke(bridge,new object[]{frame.players[0],frame,0});

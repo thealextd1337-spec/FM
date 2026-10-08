@@ -14,12 +14,20 @@ public sealed class FootballLocomotion {
     public float ForwardLean {get;private set;}
     public float TurnLean {get;private set;}
     public float RecoveryLean {get;private set;}
+    // Smoothed observed speed that selects and paces the stride clip.
+    public float StrideSpeed=>strideSpeed;
+    // Within run or backward motion: the faster of two measured clips, with
+    // hysteresis so a speed near the boundary cannot alternate clips.
+    public bool FastStride {get;private set;}
+    public const float FastRunOn=4.2f,FastRunOff=3.8f,FastBackOn=2.3f,FastBackOff=2f;
     Vector3 position,forward;double clock=-1,brakeUntil,turnUntil,transitionAt;string turn;float strideSpeed,slowTurnAngle;
-    public void Sample(Vector3 point,Vector3 facing,double nativeClock,bool carrying,bool keeper,double freshness=-1){
+    // strideLength: measured metres per cycle of the clip that shows this stride
+    // (0 keeps the earlier fixed cadence references).
+    public void Sample(Vector3 point,Vector3 facing,double nativeClock,bool carrying,bool keeper,double freshness=-1,float strideLength=0){
         if(clock>=0&&nativeClock==clock)return;
         double dt=nativeClock-clock;
         var travel=point-position;travel.y=0;
-        if(clock<0||dt<0||dt>1||travel.magnitude>7){position=point;forward=facing;clock=nativeClock;Speed=strideSpeed=slowTurnAngle=Acceleration=ForwardLean=TurnLean=0;RecoveryLean=Recovery(freshness,carrying,keeper);Phase=StridePhase=nativeClock;Mode=StrideMode="idle";MotionWeight=1;brakeUntil=turnUntil=0;return;}
+        if(clock<0||dt<0||dt>1||travel.magnitude>7){position=point;forward=facing;clock=nativeClock;Speed=strideSpeed=slowTurnAngle=Acceleration=ForwardLean=TurnLean=0;RecoveryLean=Recovery(freshness,carrying,keeper);Phase=StridePhase=nativeClock;Mode=StrideMode="idle";MotionWeight=1;brakeUntil=turnUntil=0;FastStride=false;return;}
         float actual=travel.magnitude/(float)Math.Max(.0001,dt);
         Acceleration=Mathf.Lerp(Acceleration,Mathf.Clamp((actual-Speed)/(float)dt,-16,16),1-(float)Math.Exp(-dt/.12));
         if(Speed>2&&(actual<.3||Acceleration< -4&&actual<Speed)){if(nativeClock>=brakeUntil)transitionAt=nativeClock;brakeUntil=nativeClock+.20;}
@@ -38,6 +46,7 @@ public sealed class FootballLocomotion {
         strideSpeed=Mathf.Lerp(strideSpeed,actual,1-(float)Math.Exp(-dt/.08));
         float walkLimit=StrideMode=="walk"?1.95f:1.65f,sprintLimit=StrideMode=="sprint"?4.35f:4.9f;
         StrideMode=actual<.2?"idle":backward?"back":strideSpeed<walkLimit?"walk":(strideSpeed>sprintLimit||actual>5.2f)&&!carrying&&!keeper?"sprint":"run";
+        FastStride=StrideMode=="run"?(FastStride?strideSpeed>FastRunOff:strideSpeed>FastRunOn):StrideMode=="back"?(FastStride?strideSpeed>FastBackOff:strideSpeed>FastBackOn):false;
         Mode=nativeClock<brakeUntil?"brake":nativeClock<turnUntil?turn:StrideMode;
         // A moving turn/brake keeps the received stride underneath it. A real
         // stationary pivot still uses the complete turn; no travel is invented.
@@ -49,7 +58,8 @@ public sealed class FootballLocomotion {
         RecoveryLean=Mathf.Lerp(RecoveryLean,Mode=="idle"?Recovery(freshness,carrying,keeper):0,1-(float)Math.Exp(-dt/.35));
         // Keep the stride independent of short turn/brake poses. Received jitter
         // changes cadence smoothly without altering the authoritative position.
-        if(actual>=.2)StridePhase+=dt*Math.Clamp(strideSpeed/(StrideMode=="walk"?1.9:StrideMode=="sprint"?3.5:carrying?2.9:3.3),.35,2.15);
+        // A measured stride length makes the planted foot travel with the body.
+        if(actual>=.2)StridePhase+=dt*Math.Clamp(strideSpeed/(strideLength>.3f?strideLength:StrideMode=="walk"?1.9:StrideMode=="sprint"?3.5:carrying?2.9:3.3),.25,2.4);
         Phase=Mode=="brake"?.55+(nativeClock-transitionAt)*1.8:Mode.StartsWith("turn-")?.45+(nativeClock-transitionAt)*1.3:StridePhase;
         position=point;forward=facing;clock=nativeClock;
     }
