@@ -41,17 +41,19 @@ Shader "Doppel6/World Kit" {
   half3 color=SAMPLE_TEXTURE2D(_BaseMap,sampler_BaseMap,i.uv).rgb;
   half3 cloth=SAMPLE_TEXTURE2D(_ClothMask,sampler_ClothMask,i.uv).rgb;
   float3 b=i.body;float pigment=max(max(color.r,color.g),color.b),stripe=0,u=(b.x+.22)/.44,h=(b.y-.94)/.38;
-  bool shirt=cloth.r>.5,socks=!shirt&&cloth.b>.5;
+  // Cloth mask channels, measured per vertex (kit-regions.json): R shirt
+  // (0.93-1.42 m), G shorts (0.65-0.90 m), B socks (0.15-0.47 m).
+  bool shirt=cloth.r>.5,shorts=!shirt&&cloth.g>.5,socks=!shirt&&!shorts&&cloth.b>.5;
   // Derivatives must be taken in uniform control flow (WebGL), so every band
   // and number coverage is evaluated before choosing a region.
   float styleBand=_Style==1?Band(u,.37)*(1-Band(u,.63)):_Style==2?Band(frac(u*4),.55):_Style==3?Band(frac(h*4),.72):_Style==4?1-Band(u,.5):_Style==5?Band(frac(u*5),.88):_Style==6?1-Band(abs(u+h-1),.12):0;
   float collar=Band(b.y,1.35)*(1-Band(abs(b.x),.12)),sockBand=Band(b.y,.42)*(1-Band(b.y,.46)),glove=Band(abs(b.x),.615)*Band(b.y,1.15);
   // Actual squad number: large on the back, small on the left chest.
   float2 back=Number(float2(b.x,b.y),float2(0,1.15),.17)*step(b.z,-.02),chest=Number(float2(-b.x,b.y),float2(.075,1.24),.065)*step(.02,b.z),mark=max(back,chest);
-  if(shirt||socks){
+  if(shorts)color=_Accent.rgb*(.78+.22*pigment);
+  else if(shirt||socks){
    stripe=shirt?max(styleBand,collar):sockBand;
    color=lerp(_Main.rgb,_Trim.rgb,stripe)*(.78+.22*pigment);
-   if(shirt&&b.y<.916)color=_Accent.rgb*(.78+.22*pigment);
    if(shirt&&b.y>.95){color=lerp(color,_NumberEdge.rgb,mark.y);color=lerp(color,_NumberColor.rgb,mark.x);}
   }else{
    bool skin=color.r>color.g*1.12&&color.g>color.b*1.12&&pigment>.18;
@@ -63,7 +65,7 @@ Shader "Doppel6/World Kit" {
   }
   // Floodlight key light with shadow map, ambient and a rim that keeps
   // small figures readable against the turf. Fabric gets a faint sheen.
-  half fabric=shirt||socks?.12:.05;
+  half fabric=shirt||shorts||socks?.12:.05;
   return half4(D6Light(color,i.world,i.normal,.35,.55,fabric),1);
  }
  ENDHLSL

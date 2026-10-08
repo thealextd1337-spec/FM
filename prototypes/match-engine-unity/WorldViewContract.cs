@@ -12,7 +12,8 @@ namespace Doppel6.Probe {
 // Optional celebration fields describe an already booked native goal scene;
 // older pictures omit them and remain valid (celebrating=false).
 [Serializable] public class WorldFrame {public string schema,session,phase,owner,celebrationScorer;public int sequence,celebrationTeam;public double clock,elapsed,ballOpacity,celebrationTime;public bool turned,replay,netActive,celebrating;public int[] score;public double[] ball;public WorldCamera camera;public WorldPose[] players;public WorldNet net;}
-[Serializable] public class WorldConfig {public string schema,session,fixtureId;public Geometry geometry;public WorldTeam[] teams;public WorldPlayer[] players;public WorldFrame initial;}
+// quality: "standard" or "reduced"; older pages omit it (decided by platform).
+[Serializable] public class WorldConfig {public string schema,session,fixtureId,quality;public Geometry geometry;public WorldTeam[] teams;public WorldPlayer[] players;public WorldFrame initial;}
 [Serializable] public class WorldCommand {public string kind;public WorldConfig config;public WorldFrame frame;}
 
 // This is a view inbox, never a simulation or career/save owner.

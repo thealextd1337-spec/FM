@@ -40,6 +40,7 @@ public static class FootballGaitTests {
             Reach(animation,actor.transform,C,Bone,Check);
             Bridge(repository,scene,actor,animation,clips,names,Check);
             Kits(Check);
+            Presentation(repository,scene,Check);
         }finally{if(graph.IsValid())graph.Destroy();EditorSceneManager.ClosePreviewScene(scene);}
         int failed=checks.FindAll(c=>!c.passed).Count;var json=JsonUtility.ToJson(new Report{passed=checks.Count-failed,failed=failed,checks=checks.ToArray()},true);
         var folder=Path.Combine(repository,"outputs/platform/unity-phases");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"gait-tests.json"),json);
@@ -50,7 +51,7 @@ public static class FootballGaitTests {
     static void Ground(FootballAnimation a,Transform actor,Func<string,AnimationClip> C,Action<bool,string,double> check){
         check(a.ground.Calibrated&&a.ground.Sole<0,"Standing reference sole measured on the actual skinned mesh",a.ground.Sole);
         a.Sample(new FootballAnimation.Pose{clip=C("idle_stand_meshy"),time=0,loop=true,key="idle"},1,true);
-        float idle=Lowest(actor);check(Mathf.Abs(idle-FootballGround.PitchSurface)<.006f,"Standing players rest on the pitch instead of 5 cm above it",idle);
+        float idle=Lowest(actor);check(Mathf.Abs(idle-FootballGround.PitchSurface)<.006f,"Standing players rest on the pitch instead of about 3 cm above it",idle);
         check(Mathf.Abs(.08f-a.ground.Sole-FootballGround.PitchSurface)>.03f,"The previous fixed root height floated measurably",.08f+a.ground.Sole);
         // Every grounded clip touches the turf at least once per cycle and never hovers.
         foreach(var name in new[]{"keeper_ready_meshy","pass_inside_meshy","walking","run_fast6","run_fast4","sprint_forward","running","back_left","celebrate_arms"}){
@@ -144,7 +145,23 @@ public static class FootballGaitTests {
             check(onMain>=3&&onEdge>=3,"Shirt number of "+kit.Item1+" reads at contrast "+onMain.ToString("0.0")+":1 with a "+onEdge.ToString("0.0")+":1 edge",onMain);
         }
         var shader=File.ReadAllText("Assets/Doppel6EngineProbe/Art/WorldKit.shader");
+        check(shader.Contains("shorts=!shirt&&cloth.g>.5")&&shader.Contains("if(shorts)color=_Accent.rgb"),"Shorts use the mask's green channel and the club accent colour",0);
         check(shader.Contains("o.body=float3(i.rest.x,i.rest.z,-i.rest.y)"),"Kit regions use the mesh's z-up, front -y bind pose (measured in kit-regions.json)",0);
+    }
+    // Phase 4: stand occlusion without flicker and the conservative quality field.
+    static void Presentation(string repository,UnityEngine.SceneManagement.Scene scene,Action<bool,string,double> check){
+        var go=new GameObject("D6 presentation bridge");UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(go,scene);var bridge=go.AddComponent<ProbeBridge>();var flags=BindingFlags.NonPublic|BindingFlags.Instance;
+        var sides=(Transform[])typeof(ProbeBridge).GetField("standSides",flags).GetValue(bridge);for(int i=0;i<4;i++){var stand=new GameObject("stand "+i);UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(stand,scene);sides[i]=stand.transform;}
+        typeof(ProbeBridge).GetField("standHalf",flags).SetValue(bridge,new Vector2(34,22));var update=typeof(ProbeBridge).GetMethod("UpdateStadiumVisibility",flags);
+        int toggles=0;bool last=true;for(int k=0;k<=200;k++){float z=27.5f+Mathf.Sin(k*.7f)*.3f+(k>150?2:0);update.Invoke(bridge,new object[]{new Vector3(0,13,z)});if(bridge.StandShown(1)!=last){toggles++;last=bridge.StandShown(1);}}
+        check(toggles==1&&!bridge.StandShown(1)&&bridge.StandShown(0),"A camera wobbling at a stand front hides that stand once, without flicker",toggles);
+        update.Invoke(bridge,new object[]{new Vector3(-49,19,9)});check(!bridge.StandShown(2)&&bridge.StandShown(3)&&bridge.StandShown(0),"Behind-goal camera hides only its own end stand",0);
+        var config=JsonUtility.FromJson<WorldConfig>(File.ReadAllText(Path.Combine(repository,"outputs/platform/world-unity/contract-fixture.json")));
+        check(string.IsNullOrEmpty(config.quality),"Pages without a quality field remain valid (platform decides)",0);
+        config.quality="reduced";check(new WorldViewState(config).Config.quality=="reduced","A reduced quality request is carried by the match view configuration",0);
+        var env=File.ReadAllText("Assets/Doppel6EngineProbe/Runtime/WorldViewEnvironment.cs");
+        check(env.Contains("urp.msaaSampleCount=ReducedQuality?1:")&&env.Contains("mainLightShadowmapResolution=ReducedQuality?1024:")&&env.Contains("matchBloom.active=!ReducedQuality"),"Reduced quality disables MSAA and bloom and uses 1024 hard shadows",0);
+        check(env.Contains("SetReplayGrade(bool replay)")&&File.ReadAllText("Assets/Doppel6EngineProbe/Runtime/WorldViewBridge.cs").Contains("SetReplayGrade(f.replay)"),"Replay grading follows only the received replay flag",0);
     }
     static void Bridge(string repository,UnityEngine.SceneManagement.Scene scene,GameObject actor,FootballAnimation animation,AnimationClip[] clips,string[] names,Action<bool,string,double> check){
         AnimationClip C(string n)=>clips[Array.IndexOf(names,n)];
