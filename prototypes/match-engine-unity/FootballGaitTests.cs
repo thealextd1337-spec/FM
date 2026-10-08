@@ -29,8 +29,10 @@ public static class FootballGaitTests {
             var names=new[]{"idle_stand_meshy","running","keeper_ready_meshy","keeper_low_meshy","shot_meshy","pass_inside_meshy","receive_ground_meshy","keeper_high_meshy","keeper_dive_meshy","keeper_rise_meshy","walking","run_fast4","sprint_forward","back_walk","brake_meshy","turn_run_left","turn_run_right","run_fast6","back_left","turn_idle_left","turn_idle_right","turn_walk_left","turn_walk_right","celebrate_arms","celebrate_fist","celebrate_victory","foul_fall_meshy"};
             var clips=Array.ConvertAll(names,Clip);AnimationClip C(string n)=>clips[Array.IndexOf(names,n)];
             graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);AnimationPlayableOutput.Create(graph,"Character",animator).SetSourcePlayable(AnimationClipPlayable.Create(graph,C("idle_stand_meshy")));graph.Play();graph.Evaluate(0);
+            var probe=new FootballGround(actor.transform);bool measuredBefore=probe.Known(C("keeper_ready_meshy"));
             var animation=new FootballAnimation(graph,actor.transform,clips);
-            actor.transform.position=new Vector3(0,FootballGround.RootHeight,0);
+            Check(true,"Diagnostic: keeper_ready measured by an earlier suite on this mesh = "+measuredBefore,measuredBefore?1:0);
+            actor.transform.position=new Vector3(0,animation.RootHeight,0);
             var bones=actor.GetComponentsInChildren<Transform>();Transform Bone(string n)=>Array.Find(bones,t=>t.name=="mixamorig:"+n);
             Ground(animation,actor.transform,C,Check);
             Gait(animation,actor.transform,C,Check);
@@ -45,33 +47,37 @@ public static class FootballGaitTests {
     }
     static float Lowest(Transform actor){return FootballGround.LowestVertex(actor)+actor.position.y;}
     static void Ground(FootballAnimation a,Transform actor,Func<string,AnimationClip> C,Action<bool,string,double> check){
-        check(FootballGround.Calibrated&&FootballGround.Sole<0,"Standing reference sole measured on the actual skinned mesh",FootballGround.Sole);
+        check(a.ground.Calibrated&&a.ground.Sole<0,"Standing reference sole measured on the actual skinned mesh",a.ground.Sole);
         a.Sample(new FootballAnimation.Pose{clip=C("idle_stand_meshy"),time=0,loop=true,key="idle"},1,true);
         float idle=Lowest(actor);check(Mathf.Abs(idle-FootballGround.PitchSurface)<.006f,"Standing players rest on the pitch instead of 5 cm above it",idle);
-        check(Mathf.Abs(.08f-FootballGround.Sole-FootballGround.PitchSurface)>.03f,"The previous fixed root height floated measurably",.08f+FootballGround.Sole);
+        check(Mathf.Abs(.08f-a.ground.Sole-FootballGround.PitchSurface)>.03f,"The previous fixed root height floated measurably",.08f+a.ground.Sole);
         // Every grounded clip touches the turf at least once per cycle and never hovers.
         foreach(var name in new[]{"keeper_ready_meshy","pass_inside_meshy","walking","run_fast6","run_fast4","sprint_forward","running","back_left","celebrate_arms"}){
             var clip=C(name);float lowest=float.MaxValue;
             for(int s=0;s<24;s++){a.Sample(new FootballAnimation.Pose{clip=clip,time=s*(clip.length-.001)/23,key=name},2+s,true);lowest=Mathf.Min(lowest,Lowest(actor));}
-            check(lowest>-.02f&&lowest<.02f,"Measured ground contact within 2 cm for "+name+" (offset "+FootballGround.Of(clip).ToString("0.000")+" m)",lowest);
+            check(lowest>-.02f&&lowest<.02f,"Measured ground contact within 2 cm for "+name+" (offset "+a.ground.Of(clip).ToString("0.000")+" m)",lowest);
         }
         foreach(var name in new[]{"keeper_ready_meshy","keeper_rise_meshy","pass_inside_meshy"}){
             var clip=C(name);float raw=float.MaxValue,rawTime=0;
             for(int s=0;s<48;s++){float t=s*(clip.length-.001f)/47;a.Sample(new FootballAnimation.Pose{clip=clip,time=t,key="raw"+name},300+s,true);float v=Lowest(actor)+a.GroundShift;if(v<raw){raw=v;rawTime=t;}}
-            check(true,"Diagnostic unshifted skinned sole of "+name+" at "+rawTime.ToString("0.00")+" s; stored offset "+FootballGround.Of(clip).ToString("0.000"),raw);
+            var all=actor.GetComponentsInChildren<Transform>();float viaMeasure=a.MeasuredSole(clip,rawTime);var measuredPose=Array.ConvertAll(all,t=>(t.localRotation,t.localPosition));a.Sample(new FootballAnimation.Pose{clip=clip,time=rawTime,key="cmp"+name},400,true);float viaSample=Lowest(actor)+a.GroundShift;
+            var differing=new List<string>();for(int b=0;b<all.Length;b++){float angle=Quaternion.Angle(measuredPose[b].Item1,all[b].localRotation),move=Vector3.Distance(measuredPose[b].Item2,all[b].localPosition);if(angle>.5f||move>.002f)differing.Add(all[b].name.Replace("mixamorig:","")+" "+angle.ToString("0.0")+"deg/"+move.ToString("0.000"));}
+            check(true,"Diagnostic bones differing for "+name+": "+string.Join(", ",differing),differing.Count);
+            check(true,"Diagnostic same time via measuring path "+viaMeasure.ToString("0.0000")+" vs sampling path "+viaSample.ToString("0.0000")+" for "+name,viaMeasure-viaSample);
+            check(true,"Diagnostic unshifted skinned sole of "+name+" at "+rawTime.ToString("0.00")+" s; stored offset "+a.ground.Of(clip).ToString("0.000"),raw);
         }
-        check(FootballGround.Of(C("keeper_rise_meshy"))==0,"A lying pose below the standing sole is never lifted",FootballGround.Of(C("keeper_rise_meshy")));
+        check(a.ground.Of(C("keeper_rise_meshy"))==0,"A lying pose below the standing sole is never lifted",a.ground.Of(C("keeper_rise_meshy")));
         var root=actor.position;a.Sample(new FootballAnimation.Pose{clip=C("keeper_ready_meshy"),time=.5,key="keeper"},40,true);
         check(actor.position==root,"Grounding moves only bones, never the game-owned root",0);
     }
     // Stance foot slip in metres per second while the root moves at a constant real speed.
     static float Slip(FootballAnimation a,Transform actor,AnimationClip clip,float speed,float stride){
         var m=new FootballLocomotion();var start=actor.position;var p=Vector3.zero;m.Sample(p,Vector3.forward,0,false,false,-1,stride);
-        var ground=new FootballGround(actor);var toes=new[]{Find(actor,"LeftToeBase"),Find(actor,"RightToeBase")};
+        var ground=a.ground;var toes=new[]{Find(actor,"LeftToeBase"),Find(actor,"RightToeBase")};
         Vector3[] last=null;float slip=0;int count=0;
         for(int frame=1;frame<=180;frame++){
             double clock=frame/60.0;p+=Vector3.forward*speed/60;m.Sample(p,Vector3.forward,clock,false,false,-1,stride);actor.position=start+p;
-            a.Sample(new FootballAnimation.Pose{clip=clip,time=FootballStrideTiming.Time(m.StridePhase,clip),loop=true,key="gait"},clock,frame==1);
+            a.Sample(new FootballAnimation.Pose{clip=clip,time=a.StrideTime(m.StridePhase,clip),loop=true,key="gait"},clock,frame==1);
             var now=new[]{toes[0].position,toes[1].position};
             if(last!=null&&frame>60){int f=ground.Clearance(0)<ground.Clearance(1)?0:1;if(ground.Clearance(f)<.03f){slip+=Vector3.ProjectOnPlane(now[f]-last[f],Vector3.up).magnitude*60;count++;}}
             last=now;
@@ -81,15 +87,15 @@ public static class FootballGaitTests {
     static Transform Find(Transform root,string n){return Array.Find(root.GetComponentsInChildren<Transform>(),t=>t.name=="mixamorig:"+n);}
     static void Gait(FootballAnimation a,Transform actor,Func<string,AnimationClip> C,Action<bool,string,double> check){
         // Measured strides: metres per cycle of the planted foot.
-        foreach(var name in new[]{"walking","run_fast6","run_fast4","sprint_forward","running","back_walk"})check(FootballStride.Length(C(name))>.5f,"Stride measured for "+name+" = "+FootballStride.Length(C(name)).ToString("0.00")+" m",FootballStride.Length(C(name)));
+        foreach(var name in new[]{"walking","run_fast6","run_fast4","sprint_forward","running","back_walk"})check(a.StrideLength(C(name))>.5f,"Stride measured for "+name+" = "+a.StrideLength(C(name)).ToString("0.00")+" m",a.StrideLength(C(name)));
         // The left foot lands at the same cycle value in every stride clip.
-        var ground=new FootballGround(actor);
+        var ground=a.ground;
         foreach(var name in new[]{"walking","run_fast6","run_fast4","sprint_forward","running"}){
-            var clip=C(name);a.Sample(new FootballAnimation.Pose{clip=clip,time=FootballStrideTiming.Time(7,clip)+.02*clip.length,loop=true,key="ff"+name},50,true);
+            var clip=C(name);a.Sample(new FootballAnimation.Pose{clip=clip,time=a.StrideTime(7,clip)+.02*clip.length,loop=true,key="ff"+name},50,true);
             check(ground.Clearance(0)<.035f,"Left foot is planted at the shared footfall cycle in "+name,ground.Clearance(0));
         }
         foreach(var band in new[]{("walking",1.6f,1.9f),("run_fast6",3f,3.3f),("run_fast4",4.8f,3.3f),("sprint_forward",5.6f,3.5f),("running",3.6f,2.9f)}){
-            var clip=C(band.Item1);float measured=Slip(a,actor,clip,band.Item2,FootballStride.Length(clip)),old=Slip(a,actor,clip,band.Item2,band.Item3);
+            var clip=C(band.Item1);float measured=Slip(a,actor,clip,band.Item2,a.StrideLength(clip)),old=Slip(a,actor,clip,band.Item2,band.Item3);
             check(measured<band.Item2*.35f&&measured<=old+.05f,"Stance foot slip "+band.Item1+" at "+band.Item2+" m/s: measured cadence "+measured.ToString("0.00")+" m/s, previous "+old.ToString("0.00")+" m/s",measured);
         }
         // Speed bands with hysteresis: noise around the boundary cannot alternate clips.
@@ -141,7 +147,7 @@ public static class FootballGaitTests {
         var bridge=Object("D6 gait bridge").AddComponent<ProbeBridge>();var flags=BindingFlags.NonPublic|BindingFlags.Instance;
         void Field(string n,object v)=>typeof(ProbeBridge).GetField(n,flags).SetValue(bridge,v);
         Field("worldView",inbox);Field("ballView",Object("ball").transform);Field("worldActors",new[]{pose});Field("runSpeeds",new float[1]);Field("animationTimes",new double[1]);Field("worldLocomotion",new[]{new FootballLocomotion()});
-        ((List<Transform>)typeof(ProbeBridge).GetField("actors",flags).GetValue(bridge)).Add(actor.transform);
+        ((List<Transform>)typeof(ProbeBridge).GetField("actors",flags).GetValue(bridge)).Add(actor.transform);((List<FootballAnimation>)typeof(ProbeBridge).GetField("football",flags).GetValue(bridge)).Add(animation);
         bridge.idleClip=C("idle_stand_meshy");bridge.runClip=C("running");bridge.keeperClip=C("keeper_ready_meshy");bridge.keeperActionClip=C("keeper_low_meshy");bridge.shotClip=C("shot_meshy");bridge.passClip=C("pass_inside_meshy");bridge.receiveClip=C("receive_ground_meshy");bridge.keeperHighClip=C("keeper_high_meshy");bridge.keeperDiveClip=C("keeper_dive_meshy");bridge.keeperRiseClip=C("keeper_rise_meshy");
         bridge.walkClip=C("walking");bridge.fastRunClip=C("run_fast4");bridge.sprintClip=C("sprint_forward");bridge.backClip=C("back_walk");bridge.brakeClip=C("brake_meshy");bridge.turnLeftClip=C("turn_run_left");bridge.turnRightClip=C("turn_run_right");
         bridge.jogClip=C("run_fast6");bridge.fastBackClip=C("back_left");bridge.turnIdleLeftClip=C("turn_idle_left");bridge.turnIdleRightClip=C("turn_idle_right");bridge.turnWalkLeftClip=C("turn_walk_left");bridge.turnWalkRightClip=C("turn_walk_right");bridge.celebrateArmsClip=C("celebrate_arms");bridge.celebrateFistClip=C("celebrate_fist");bridge.celebrateVictoryClip=C("celebrate_victory");bridge.foulFallClip=C("foul_fall_meshy");
@@ -167,7 +173,7 @@ public static class FootballGaitTests {
         check(fall.clip==C("foul_fall_meshy")&&rise.clip==C("keeper_rise_meshy")&&rise.time>4.4&&rise.time<6.3,"Native foul victim falls and rises within measured windows",rise.time);
         // Carrier reach follows the measured footfall of the actual stride clip.
         Field("worldLocomotion",new[]{new FootballLocomotion()});int reaches=0,partial=0;z=0;
-        for(int k=0;k<=90;k++){z+=3.0/60;var f=Frame(5+k/60.0,0,z,Vector3.forward);f.owner=identity.id;var b=(Transform)typeof(ProbeBridge).GetField("ballView",flags).GetValue(bridge);b.position=new Vector3(0,.18f,(float)z+.5f);actor.transform.position=new Vector3(0,FootballGround.RootHeight,(float)z);var s=Select(f);if(s.contact){reaches++;if(s.contactWeight>0&&s.contactWeight<1)partial++;}}
+        for(int k=0;k<=90;k++){z+=3.0/60;var f=Frame(5+k/60.0,0,z,Vector3.forward);f.owner=identity.id;var b=(Transform)typeof(ProbeBridge).GetField("ballView",flags).GetValue(bridge);b.position=new Vector3(0,.18f,(float)z+.5f);actor.transform.position=new Vector3(0,animation.RootHeight,(float)z);var s=Select(f);if(s.contact){reaches++;if(s.contactWeight>0&&s.contactWeight<1)partial++;}}
         check(reaches>4&&partial==reaches,"Carrier stride shows smooth partial reaches at measured footfalls",reaches);
     }
 }

@@ -59,7 +59,9 @@ public static class FootballClipDiagnostics {
     // Lowest skinned vertex relative to the actor root, in metres.
     static float LowestVertex(Transform actor){
         float lowest=float.MaxValue;var mesh=new Mesh();
-        foreach(var r in actor.GetComponentsInChildren<SkinnedMeshRenderer>()){r.BakeMesh(mesh,true);foreach(var v in mesh.vertices)lowest=Mathf.Min(lowest,(r.transform.position+r.transform.rotation*v).y-actor.position.y);}
+        foreach(var r in actor.GetComponentsInChildren<SkinnedMeshRenderer>()){// Measured on this rig: BakeMesh(useScale:false) already carries the
+            // inherited 1.45 figure scale; only position and rotation remain to apply.
+            r.BakeMesh(mesh,false);foreach(var v in mesh.vertices)lowest=Mathf.Min(lowest,(r.transform.position+r.transform.rotation*v).y-actor.position.y);}
         UnityEngine.Object.DestroyImmediate(mesh);return lowest;
     }
     // Normalised clip time at which the sole first reaches its stance height.

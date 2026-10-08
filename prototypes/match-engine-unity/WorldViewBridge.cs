@@ -70,7 +70,7 @@ public partial class ProbeBridge {
         worldBallMotion.Sample(f);ballView.rotation=worldBallMotion.Rotation;
         var ball=V(f.ball);ball.y=DisplayHeight(f.ball[1]);ballView.position=ball;ballView.gameObject.SetActive(f.ballOpacity>.01);ballShadow.position=new Vector3(ballView.position.x,.045f,ballView.position.z);
         for(int i=0;i<f.players.Length;i++){
-            var p=f.players[i];var identity=worldView.Players[p.id];var position=V(p.position);position.y=FootballGround.RootHeight;
+            var p=f.players[i];var identity=worldView.Players[p.id];var position=V(p.position);position.y=football[i].RootHeight;
             float movement=lastWorldClock>=0&&f.clock>lastWorldClock?Vector3.ProjectOnPlane(position-actors[i].position,Vector3.up).magnitude/(float)(f.clock-lastWorldClock):0;
             if(lastWorldClock>=0&&f.clock>lastWorldClock)runSpeeds[i]=movement;
             actors[i].position=position;rings[i].position=new Vector3(position.x,.02f,position.z);

@@ -46,12 +46,12 @@ public partial class ProbeBridge {
         bool carrying=f.owner==p.id&&!identity.keeper;
         // Cadence follows the measured stride of the clip that shows this speed band.
         var preview=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride);
-        locomotion.Sample(V(p.position),V(p.facing),f.clock,f.owner==p.id,identity.keeper,p.freshness,FootballStride.Length(preview));
+        locomotion.Sample(V(p.position),V(p.facing),f.clock,f.owner==p.id,identity.keeper,p.freshness,football[i].StrideLength(preview));
         pose.clip=LocomotionClip(locomotion,carrying,identity.keeper);
         bool turnOrBrake=locomotion.Mode=="brake"||locomotion.Mode.StartsWith("turn-");
-        pose.time=locomotion.Mode=="idle"?f.clock+i*.09:turnOrBrake?TurnTime(pose.clip,locomotion.Phase):FootballStrideTiming.Time(locomotion.StridePhase+i*.09,pose.clip);
+        pose.time=locomotion.Mode=="idle"?f.clock+i*.09:turnOrBrake?TurnTime(pose.clip,locomotion.Phase):football[i].StrideTime(locomotion.StridePhase+i*.09,pose.clip);
         pose.loop=!turnOrBrake;
-        var strideClip=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride);double strideTime=locomotion.StrideMode=="idle"?f.clock+i*.09:FootballStrideTiming.Time(locomotion.StridePhase+i*.09,strideClip);bool strideLoop=true;
+        var strideClip=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride);double strideTime=locomotion.StrideMode=="idle"?f.clock+i*.09:football[i].StrideTime(locomotion.StridePhase+i*.09,strideClip);bool strideLoop=true;
         bool locomotionAction=string.IsNullOrEmpty(p.action)||p.action=="idle"||p.action=="run"||p.action=="running";
         if(locomotionAction&&pose.clip!=strideClip&&locomotion.Speed>.2f){pose.baseClip=strideClip;pose.baseTime=strideTime;pose.baseLoop=true;pose.actionWeight=locomotion.MotionWeight;}
         double progress=Math.Clamp(p.progress,0,1),age=progress*p.duration;
@@ -96,7 +96,7 @@ public partial class ProbeBridge {
             // impulse, gameplay touch or predicted action is emitted. The swing leg
             // reaches shortly before the other foot's measured footfall.
             double cycle=strideTime/Math.Max(.001,strideClip.length);double phase=cycle-Math.Floor(cycle);
-            float right=Reach(phase,FootballStride.Footfall(strideClip)),left=Reach(phase,FootballStride.RightFootfall(strideClip));
+            float right=Reach(phase,football[i].Footfall(strideClip)),left=Reach(phase,football[i].RightFootfall(strideClip));
             pose.contact=(right>0||left>0)&&ballView.position.y<.45f;
             pose.kind=right>0?"foot":"left-foot";pose.contactWeight=Mathf.Clamp(Mathf.Max(right,left),.001f,.999f);
         }

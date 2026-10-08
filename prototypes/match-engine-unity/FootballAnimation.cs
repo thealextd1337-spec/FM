@@ -17,22 +17,16 @@ public static class FootballActionTiming {
 public static class FootballStrideTiming {
     // Clips are aligned at their measured left footfall, so a walk, jog, run or
     // sprint exchange keeps the same foot on the ground at the same cycle value.
-    public static double Time(double cycles,AnimationClip clip){return (cycles+FootballStride.Footfall(clip))*Math.Max(.001,clip.length-.001);}
+    public static double Time(double cycles,AnimationClip clip,float footfall=0){return (cycles+footfall)*Math.Max(.001,clip.length-.001);}
 }
-// Measured gait of each authored clip on the actual rig: metres per cycle that
-// a planted foot portrays and the normalised left/right footfall times.
+// Measured gait of an authored clip on the actual rig: metres per cycle that a
+// planted foot portrays and the normalised left/right footfall times.
 public static class FootballStride {
-    struct Gait {public float stride,left,right;}
-    static readonly Dictionary<AnimationClip,Gait> gaits=new Dictionary<AnimationClip,Gait>();
-    public static bool Known(AnimationClip clip){return clip!=null&&gaits.ContainsKey(clip);}
-    public static float Length(AnimationClip clip){return clip!=null&&gaits.TryGetValue(clip,out var g)?g.stride:0;}
-    public static float Footfall(AnimationClip clip){return clip!=null&&gaits.TryGetValue(clip,out var g)&&g.left>=0?g.left:0;}
-    public static float RightFootfall(AnimationClip clip){return clip!=null&&gaits.TryGetValue(clip,out var g)&&g.right>=0?g.right:(Footfall(clip)+.5f)%1;}
-    public static void Store(AnimationClip clip,float stride,float left,float right){gaits[clip]=new Gait{stride=stride,left=left,right=right};}
+    public struct Gait {public float stride,left,right;}
     // Stance: the sole stays within two centimetres of its lowest point. A
     // planted foot moves backwards relative to an in-place body; its mean
     // velocity is the ground speed the clip portrays.
-    public static void Measure(AnimationClip clip,float[][] clearance,Vector3[][] toes,float dt){
+    public static Gait Measure(AnimationClip clip,float[][] clearance,Vector3[][] toes,float dt){
         int n=clearance[0].Length;float weight=0;var velocity=Vector3.zero;var footfall=new float[2];
         for(int f=0;f<2;f++){
             float min=float.MaxValue;foreach(var c in clearance[f])min=Mathf.Min(min,c);
@@ -45,7 +39,7 @@ public static class FootballStride {
             if(count>0){velocity+=v;weight+=count;}
         }
         float speed=weight>0?new Vector2(velocity.x,velocity.z).magnitude/weight:0;
-        Store(clip,speed*clip.length,footfall[0],footfall[1]);
+        return new Gait{stride=speed*clip.length,left=footfall[0],right=footfall[1]};
     }
 }
 public static class FootballKeeperTiming {
@@ -75,8 +69,14 @@ public sealed class FootballAnimation {
     public float GroundShift {get;private set;}
     public float ReleaseWeight {get;private set;}
     public readonly FootballRig rig;
+    public readonly FootballGround ground;
+    public float RootHeight=>ground.RootHeight;
+    public float StrideLength(AnimationClip clip)=>ground.StrideLength(clip);
+    public float Footfall(AnimationClip clip)=>ground.Footfall(clip);
+    public float RightFootfall(AnimationClip clip)=>ground.RightFootfall(clip);
+    public double StrideTime(double cycles,AnimationClip clip)=>FootballStrideTiming.Time(cycles,clip,ground.Footfall(clip));
     public FootballAnimation(PlayableGraph graph,Transform actor,IEnumerable<AnimationClip> catalogue){
-        this.graph=graph;root=actor;rig=new FootballRig(actor);hips=Array.Find(actor.GetComponentsInChildren<Transform>(),t=>t.name=="mixamorig:Hips");
+        this.graph=graph;root=actor;rig=new FootballRig(actor);ground=new FootballGround(actor);rig.ground=ground;hips=Array.Find(actor.GetComponentsInChildren<Transform>(),t=>t.name=="mixamorig:Hips");
         foreach(var clip in catalogue)if(clip!=null&&!indices.ContainsKey(clip))indices.Add(clip,indices.Count);
         weights=new float[indices.Count];start=new float[indices.Count];sources=new AnimationClip[indices.Count];mixer=AnimationMixerPlayable.Create(graph,indices.Count);
         foreach(var entry in indices){var playable=AnimationClipPlayable.Create(graph,entry.Key);playable.SetApplyFootIK(false);playable.SetApplyPlayableIK(false);clips.Add(playable);sources[entry.Value]=entry.Key;graph.Connect(playable,0,mixer,entry.Value);}
@@ -87,12 +87,11 @@ public sealed class FootballAnimation {
     // Measures each catalogue clip once per session on this rig. Shared by all
     // actors, since every figure uses the same skeleton and scale.
     void Measure(Transform actor){
-        var ground=new FootballGround(actor);
-        if(!FootballGround.Calibrated)foreach(var entry in indices)if(entry.Key.name==FootballGround.ReferenceClip){Only(entry.Value,0);ground.Calibrate();FootballGround.SetSole(FootballGround.LowestVertex(actor));break;}
-        if(FootballGround.Calibrated){
+        if(!ground.Calibrated)foreach(var entry in indices)if(entry.Key.name==FootballGround.ReferenceClip){Only(entry.Value,0);ground.Calibrate();ground.SetSole(FootballGround.LowestVertex(actor));break;}
+        if(ground.Calibrated){
             var toes=new[]{Bone("LeftToeBase"),Bone("RightToeBase")};
             foreach(var entry in indices){
-                var clip=entry.Key;if(FootballGround.Known(clip)&&FootballStride.Known(clip))continue;
+                var clip=entry.Key;if(ground.Known(clip))continue;
                 const int n=48;var clearance=new[]{new float[n],new float[n]};var toe=new[]{new Vector3[n],new Vector3[n]};float lowest=float.MaxValue,dt=(clip.length-.001f)/(n-1);
                 for(int s=0;s<n;s++){
                     Only(entry.Value,s*dt);lowest=Mathf.Min(lowest,ground.Lowest);
@@ -101,13 +100,20 @@ public sealed class FootballAnimation {
                 // Bone clearance finds the lowest moments; the skinned sole decides the
                 // offset, since a stretched foot can sit higher than its bones suggest.
                 var order=new List<int>();for(int s=0;s<n;s++)order.Add(s);order.Sort((x,y)=>Mathf.Min(clearance[0][x],clearance[1][x]).CompareTo(Mathf.Min(clearance[0][y],clearance[1][y])));
-                if(FootballGround.SoleKnown){lowest=float.MaxValue;for(int k=0;k<4&&k<n;k++){Only(entry.Value,order[k]*dt);lowest=Mathf.Min(lowest,FootballGround.LowestVertex(actor)-FootballGround.Sole);}}
-                FootballGround.Store(clip,lowest);if(toes[0]!=null&&toes[1]!=null)FootballStride.Measure(clip,clearance,toe,dt);
+                if(ground.SoleKnown){
+                    // The four lowest bone moments plus eight even samples: a lying or
+                    // kneeling body may touch down with something other than a foot.
+                    var picks=new HashSet<int>();for(int k=0;k<4&&k<n;k++)picks.Add(order[k]);for(int k=0;k<8;k++)picks.Add(k*(n-1)/7);
+                    lowest=float.MaxValue;foreach(var k in picks){Only(entry.Value,k*dt);lowest=Mathf.Min(lowest,FootballGround.LowestVertex(actor)-ground.Sole);}
+                }
+                ground.Store(clip,lowest);ground.StoreGait(clip,toes[0]!=null&&toes[1]!=null?FootballStride.Measure(clip,clearance,toe,dt):new FootballStride.Gait{left=-1,right=-1});
             }
         }
         for(int i=0;i<clips.Count;i++){mixer.SetInputWeight(i,0);clips[i].SetTime(0);}
     }
     Transform Bone(string name){return Array.Find(root.GetComponentsInChildren<Transform>(),t=>t.name=="mixamorig:"+name);}
+    // Editor diagnostics: skinned sole of one clip at one time through the measuring path.
+    public float MeasuredSole(AnimationClip clip,double time){if(!indices.TryGetValue(clip,out var index))return float.NaN;Only(index,time);float v=FootballGround.LowestVertex(root)-ground.Sole;mixer.SetInputWeight(index,0);lastClock=-1;return v;}
     public void Sample(Pose pose,double clock,bool cut=false){
         if(pose.clip==null||!indices.TryGetValue(pose.clip,out var index))throw new InvalidOperationException("Football clip is missing");
         if(!cut&&clock==lastClock)return;
@@ -125,7 +131,7 @@ public sealed class FootballAnimation {
         for(int i=0;i<clips.Count;i++){mixer.SetInputWeight(i,weights[i]);if(i==index||i==baseIndex){var clip=i==index?pose.clip:pose.baseClip;double time=i==index?pose.time:pose.baseTime;bool loop=i==index?pose.loop:pose.baseLoop;double end=Math.Max(.001,clip.length-.001);clips[i].SetTime(loop?(time%end+end)%end:Math.Clamp(time,0,end));}else if(lastClock>=0&&clock>lastClock)clips[i].SetTime(clips[i].GetTime()+clock-lastClock);}
         graph.Evaluate(0);
         // Measured floating clips are lowered onto the pitch, weighted like the mixer.
-        float shift=0;for(int i=0;i<weights.Length;i++)shift+=weights[i]*FootballGround.Of(sources[i]);
+        float shift=0;for(int i=0;i<weights.Length;i++)shift+=weights[i]*ground.Of(sources[i]);
         GroundShift=shift;if(shift>0&&hips!=null)hips.position-=root.up*shift;
         // Bone-only response to observed motion. Contacts and planted actions
         // always retain their authored pose and the root remains game-owned.
@@ -151,50 +157,64 @@ public sealed class FootballAnimation {
 // Some generated clips carry their whole body several centimetres above the
 // pitch (keeper ready stance, inside pass). A clip-constant, measured shift
 // lowers only such floating poses; it never lifts a body, removes a running
-// flight phase or moves the game-owned root.
+// flight phase or moves the game-owned root. Measurements belong to one skinned
+// mesh: the demo prefab and the club-world player differ in their soles.
 public sealed class FootballGround {
     public const string ReferenceClip="idle_stand_meshy";
     // Top of the rendered pitch, just below the painted lines.
     public const float PitchSurface=0f;
-    static readonly Dictionary<AnimationClip,float> offsets=new Dictionary<AnimationClip,float>();
-    static bool calibrated,soleKnown;static float referenceAnkle,referenceToe,sole;
-    readonly Transform root;readonly Transform[] ankles,toes;
-    public float ankle=>referenceAnkle;public float toe=>referenceToe;public static bool Calibrated=>calibrated;public static float ReferenceAnkle=>referenceAnkle;public static bool SoleKnown=>soleKnown;
-    // Lowest skinned vertex of the standing reference relative to the actor root.
-    public static float Sole=>sole;
-    // Actor root height that puts the standing reference sole on the pitch.
-    // Without a measurement the previous fixed height remains in use.
-    public static float RootHeight=>soleKnown?Mathf.Clamp(PitchSurface-sole,0,.12f):.08f;
+    sealed class Profile {public bool calibrated,soleKnown;public float ankle,toe,sole;public readonly Dictionary<AnimationClip,float> offsets=new Dictionary<AnimationClip,float>();public readonly Dictionary<AnimationClip,FootballStride.Gait> gaits=new Dictionary<AnimationClip,FootballStride.Gait>();}
+    static readonly Dictionary<Mesh,Profile> profiles=new Dictionary<Mesh,Profile>();static readonly Profile unnamed=new Profile();
+    readonly Profile profile;readonly Transform root;readonly Transform[] ankles,toes;
     public FootballGround(Transform root){
         this.root=root;Transform Find(string name){return Array.Find(root.GetComponentsInChildren<Transform>(),t=>t.name=="mixamorig:"+name);}
         ankles=new[]{Find("LeftFoot"),Find("RightFoot")};toes=new[]{Find("LeftToeBase"),Find("RightToeBase")};
+        var mesh=root.GetComponentInChildren<SkinnedMeshRenderer>()?.sharedMesh;
+        if(mesh==null)profile=unnamed;else if(!profiles.TryGetValue(mesh,out profile)){profile=new Profile();profiles.Add(mesh,profile);}
     }
+    public bool Calibrated=>profile.calibrated;public bool SoleKnown=>profile.soleKnown;
+    public float ankle=>profile.ankle;public float toe=>profile.toe;
+    // Lowest skinned vertex of the standing reference relative to the actor root.
+    public float Sole=>profile.sole;
+    // Actor root height that puts the standing reference sole on the pitch.
+    // Without a measurement the previous fixed height remains in use.
+    public float RootHeight=>profile.soleKnown?Mathf.Clamp(PitchSurface-profile.sole,0,.12f):.08f;
     bool Valid=>ankles[0]!=null&&ankles[1]!=null&&toes[0]!=null&&toes[1]!=null;
     float Height(Transform t){return (t.position.y-root.position.y)/Mathf.Max(.0001f,root.lossyScale.y);}
     // Called with the standing reference clip evaluated on this rig.
-    public void Calibrate(){if(!Valid)return;referenceAnkle=Mathf.Min(Height(ankles[0]),Height(ankles[1]));referenceToe=Mathf.Min(Height(toes[0]),Height(toes[1]));calibrated=true;}
-    public static void SetSole(float value){if(value<0&&value>-.3f){sole=value;soleKnown=true;}}
+    public void Calibrate(){if(!Valid)return;profile.ankle=Mathf.Min(Height(ankles[0]),Height(ankles[1]));profile.toe=Mathf.Min(Height(toes[0]),Height(toes[1]));profile.calibrated=true;}
+    public void SetSole(float value){if(value<0&&value>-.3f){profile.sole=value;profile.soleKnown=true;}}
     // Clearance in metres at the actor's scale; positive means above the pitch.
-    public float Clearance(int foot){return Valid&&calibrated?Mathf.Min(Height(ankles[foot])-referenceAnkle,Height(toes[foot])-referenceToe)*root.lossyScale.y:0;}
+    public float Clearance(int foot){return Valid&&profile.calibrated?Mathf.Min(Height(ankles[foot])-profile.ankle,Height(toes[foot])-profile.toe)*root.lossyScale.y:0;}
     public float Lowest=>Mathf.Min(Clearance(0),Clearance(1));
-    public static bool Known(AnimationClip clip){return clip!=null&&offsets.ContainsKey(clip);}
-    public static float Of(AnimationClip clip){return clip!=null&&offsets.TryGetValue(clip,out var o)?o:0;}
-    public static void Store(AnimationClip clip,float lowest){
+    public bool Known(AnimationClip clip){return clip!=null&&profile.offsets.ContainsKey(clip)&&profile.gaits.ContainsKey(clip);}
+    public float Of(AnimationClip clip){return clip!=null&&profile.offsets.TryGetValue(clip,out var o)?o:0;}
+    public void Store(AnimationClip clip,float lowest){
         // Only a consistent float (never touching down) is corrected. Lying or
         // kneeling poses that go below the standing sole are left untouched.
-        offsets[clip]=lowest>.012f?Mathf.Min(lowest,.25f):0;
+        profile.offsets[clip]=lowest>.012f?Mathf.Min(lowest,.25f):0;
     }
+    public void StoreGait(AnimationClip clip,FootballStride.Gait gait){profile.gaits[clip]=gait;}
+    public float StrideLength(AnimationClip clip){return clip!=null&&profile.gaits.TryGetValue(clip,out var g)?g.stride:0;}
+    public float Footfall(AnimationClip clip){return clip!=null&&profile.gaits.TryGetValue(clip,out var g)&&g.left>=0?g.left:0;}
+    public float RightFootfall(AnimationClip clip){return clip!=null&&profile.gaits.TryGetValue(clip,out var g)&&g.right>=0?g.right:(Footfall(clip)+.5f)%1;}
+    static Mesh bakeMesh;static readonly List<Vector3> bakeVertices=new List<Vector3>();
     // Lowest skinned vertex relative to the actor root, in metres.
     public static float LowestVertex(Transform actor){
-        float lowest=float.MaxValue;var mesh=new Mesh();
-        foreach(var r in actor.GetComponentsInChildren<SkinnedMeshRenderer>()){if(r.sharedMesh==null)continue;r.BakeMesh(mesh,true);foreach(var v in mesh.vertices)lowest=Mathf.Min(lowest,(r.transform.position+r.transform.rotation*v).y-actor.position.y);}
-        if(Application.isPlaying)UnityEngine.Object.Destroy(mesh);else UnityEngine.Object.DestroyImmediate(mesh);
+        float lowest=float.MaxValue;var mesh=bakeMesh??(bakeMesh=new Mesh());
+        foreach(var r in actor.GetComponentsInChildren<SkinnedMeshRenderer>()){if(r.sharedMesh==null)continue;
+            // Reading the bones completes the animation write; otherwise a bake
+            // directly after PlayableGraph.Evaluate can use the previous pose.
+            foreach(var bone in r.bones)if(bone!=null)_=bone.position;
+            // Measured on this rig: BakeMesh(useScale:false) already carries the
+            // inherited 1.45 figure scale; only position and rotation remain to apply.
+            r.BakeMesh(mesh,false);mesh.GetVertices(bakeVertices);var origin=r.transform.position;var rotation=r.transform.rotation;foreach(var v in bakeVertices)lowest=Mathf.Min(lowest,(origin+rotation*v).y-actor.position.y);}
         return lowest==float.MaxValue?0:lowest;
     }
     // Editor diagnostics: the same measurement on a single-clip graph.
     public float Offset(AnimationClip clip,PlayableGraph graph,AnimationPlayableOutput output){
         var playable=AnimationClipPlayable.Create(graph,clip);playable.SetApplyFootIK(false);output.SetSourcePlayable(playable);float lowest=float.MaxValue;
-        for(int s=0;s<24;s++){playable.SetTime(s*(clip.length-.001)/23);graph.Evaluate(0);lowest=Mathf.Min(lowest,Lowest);}
+        for(int s=0;s<24;s++){playable.SetTime(s*(clip.length-.001)/23);graph.Evaluate(0);lowest=Mathf.Min(lowest,profile.soleKnown?LowestVertex(root)-profile.sole:Lowest);}
         graph.DestroyPlayable(playable);Store(clip,lowest);return Of(clip);
     }
 }
@@ -204,6 +224,7 @@ public sealed class FootballRig {
     readonly Transform root,hips,spine,head,leftUpper,leftLower,leftFoot,rightUpper,rightLower,rightFoot,arm,forearm,hand,leftArm,leftForearm,leftHand;
     readonly Vector3 restLeft,restRight;Vector3 anchor;bool planted,plantRight;
     public float plantError,contactError;public bool reachable;
+    public FootballGround ground;
     // Largest head correction toward an actual header contact.
     public const float HeadReach=22;
     public FootballRig(Transform root){
@@ -241,7 +262,7 @@ public sealed class FootballRig {
             anchor=root.TransformPoint(right?restRight:restLeft);
             // The support foot rests on the pitch, not at the height of whichever
             // clip happened to be bound when the actor was created.
-            if(FootballGround.Calibrated)anchor.y=root.position.y+FootballGround.ReferenceAnkle*root.lossyScale.y;
+            if(ground!=null&&ground.Calibrated)anchor.y=root.position.y+ground.ankle*root.lossyScale.y;
             planted=true;plantRight=right;
         }
         var upper=right?rightUpper:leftUpper;var lower=right?rightLower:leftLower;var end=right?rightFoot:leftFoot;var correction=anchor-end.position;if(correction.magnitude<.65f)Solve(upper,lower,end,anchor);plantError=Vector3.Distance(anchor,end.position);
