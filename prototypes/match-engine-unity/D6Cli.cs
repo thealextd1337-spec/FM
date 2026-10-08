@@ -31,6 +31,11 @@ public static class D6Cli {
         }catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
 
+    // Rest-pose regions of the club-world player mesh.
+    public static void KitRegions(){
+        try{Done(true,WorldKitDiagnostics.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+
     // Assigns the existing presentation clips in the probe scene.
     public static void Setup(){
         try{Done(true,FootballSetup.ConfigurePresentation());}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}

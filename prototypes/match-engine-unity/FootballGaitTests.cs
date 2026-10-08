@@ -39,6 +39,7 @@ public static class FootballGaitTests {
             Release(animation,actor.transform,C,Bone,Check);
             Reach(animation,actor.transform,C,Bone,Check);
             Bridge(repository,scene,actor,animation,clips,names,Check);
+            Kits(Check);
         }finally{if(graph.IsValid())graph.Destroy();EditorSceneManager.ClosePreviewScene(scene);}
         int failed=checks.FindAll(c=>!c.passed).Count;var json=JsonUtility.ToJson(new Report{passed=checks.Count-failed,failed=failed,checks=checks.ToArray()},true);
         var folder=Path.Combine(repository,"outputs/platform/unity-phases");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"gait-tests.json"),json);
@@ -134,6 +135,16 @@ public static class FootballGaitTests {
         a.Sample(new FootballAnimation.Pose{clip=C("idle_stand_meshy"),time=0,key="throw",contact=true,kind="two-hands",target=throwBall},104,true);
         var shoulder=Bone("RightArm");float armLength=Vector3.Distance(shoulder.position,Bone("RightForeArm").position)+Vector3.Distance(Bone("RightForeArm").position,Bone("RightHand").position);
         check(a.rig.contactError<.35f,"Throw-in hands hold the actual ball above the head where reachable (shoulder "+shoulder.position.y.ToString("0.00")+" m, arm "+armLength.ToString("0.00")+" m, reachable "+a.rig.reachable+")",a.rig.contactError);
+    }
+    // Kit colours from an actual club-world fixture (FC Bremen Weser v FC Koeln Rhein).
+    static void Kits(Action<bool,string,double> check){
+        Color C(string code){ColorUtility.TryParseHtmlString(code,out var c);return c;}
+        foreach(var kit in new[]{("Bremen home","#398b5b","#f3f5f2","#d9ab45","stripe"),("Koeln away","#d9ab45","#f3f5f2","#1c3045","stripe"),("Koeln home","#1c3045","#f3f5f2","#d9ab45","diagonal"),("Bremen keeper","#6a88df","#f3f5f2","#f3f5f2","solid"),("Koeln keeper","#54d3ce","#1d2329","#1d2329","solid"),("Opponent keeper","#ed53b7","#f3f5f2","#f3f5f2","solid")}){
+            var (ink,edge)=ProbeBridge.KitNumberColors(C(kit.Item2),C(kit.Item3),C(kit.Item4),kit.Item5);float onMain=ProbeBridge.Contrast(ink,C(kit.Item2)),onEdge=ProbeBridge.Contrast(ink,edge);
+            check(onMain>=3&&onEdge>=3,"Shirt number of "+kit.Item1+" reads at contrast "+onMain.ToString("0.0")+":1 with a "+onEdge.ToString("0.0")+":1 edge",onMain);
+        }
+        var shader=File.ReadAllText("Assets/Doppel6EngineProbe/Art/WorldKit.shader");
+        check(shader.Contains("o.body=float3(i.rest.x,i.rest.z,-i.rest.y)"),"Kit regions use the mesh's z-up, front -y bind pose (measured in kit-regions.json)",0);
     }
     static void Bridge(string repository,UnityEngine.SceneManagement.Scene scene,GameObject actor,FootballAnimation animation,AnimationClip[] clips,string[] names,Action<bool,string,double> check){
         AnimationClip C(string n)=>clips[Array.IndexOf(names,n)];
