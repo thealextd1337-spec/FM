@@ -1,6 +1,12 @@
 # Doppel 6's 3D system
 
-System state: match fixes v133, mobile rendering v135 and halftime fullscreen v136, game version 110. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
+System state: football iteration v159 with Unity presentation, game version 111. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
+
+## Unity presentation
+
+The published HTTP build uses Unity for its 3D match view. world-unity-v151.js sends actual match pictures to the WebGL runtime. Labels follow head positions reported by Unity; ball rotation follows real ball travel. Five camera views and a distance slider affect presentation only. The simulation remains responsible for goals, contact, statistics and saving. Presentation errors retain the 2D fallback. The following THREE, shadow and IK details describe the existing browser renderer, which remains available through engine=browser.
+
+New physical matches use offensive flow v159: reachable receptions and follow-up runs, clear striker runs towards goal, ball- and receiver-aware defending, and shot targets determined independently of goalkeeper reach. Existing results are never recalculated. Measured goal frequency improved; physical mobile-device acceptance and final season balancing remain open.
 
 ## Shared simulation and presentation
 

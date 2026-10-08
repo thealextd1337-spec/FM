@@ -1,5 +1,7 @@
 # Entwicklungsdokumentation
 
+- [Release 111](release-111.md): Flutlicht und Unity-Fußball, vollständige WebGL-Auslieferung und Veröffentlichungsprüfung.
+
 - [Fußballerlebnis v159](platform/football-experience-v159.md): Schussziele und Ausführung, Keeperwinkel, Ballannahme und Anschlussläufe, defensive Aufmerksamkeit, Unity-Ballrotation/Schrittphasen, Kameras und aktuelle Spielberichte.
 
 - [Belastung, Erholung und Unity-Bewegung](platform/freshness-load-v158.md): tatsächliche Lauf-/Aktionslast, einmalige Match- und Kalendererholung, gemeinsame Fähigkeiten, neue Saisonfrische/-form und speicherschonende Einsatzgrenzen.

@@ -103,12 +103,21 @@ jobs:
           DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs
           node work/audit-world-balance-v68.cjs
           python3 work/test_deploy_ftps.py
+          python3 work/test_deploy_unity_assets.py
 
       - name: Einzeldatei bauen
         run: |
           node work/build.cjs
           node work/test-club-crests.cjs
           node work/test-no-player-images.cjs
+
+      - name: Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen
+        env:
+          W4Y_FTP_HOST: ${{ secrets.W4Y_FTP_HOST }}
+          W4Y_FTP_USER: ${{ secrets.W4Y_FTP_USER }}
+          W4Y_FTP_PASSWORD: ${{ secrets.W4Y_FTP_PASSWORD }}
+          W4Y_FTP_REMOTE_DIR: ${{ secrets.W4Y_FTP_REMOTE_DIR }}
+        run: python3 work/deploy_unity_assets.py
 
       - name: Per FTPS zu World4You hochladen und Live-Datei prüfen
         env:

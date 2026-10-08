@@ -5,6 +5,8 @@ work/*
 !work/test-world-sprite-masks-v87.py
 !work/deploy_ftps.py
 !work/test_deploy_ftps.py
+!work/deploy_unity_assets.py
+!work/test_deploy_unity_assets.py
 !work/deploy_preview_ftps.py
 !work/test_deploy_preview_ftps.py
 !work/ui-redesign/
@@ -16,6 +18,8 @@ work/*
 outputs/*
 !outputs/index.html
 !outputs/Doppel-6-Fussballmanager.html
+!outputs/release-111/
+outputs/release-111/tmp/
 !outputs/platform/
 outputs/platform/*
 !outputs/platform/unity-web/

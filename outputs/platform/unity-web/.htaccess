@@ -1,0 +1,7 @@
+AddType application/wasm .wasm
+AddType application/octet-stream .data
+<IfModule mod_headers.c>
+  <Files "probe-build.json">
+    Header set Cache-Control "no-cache"
+  </Files>
+</IfModule>

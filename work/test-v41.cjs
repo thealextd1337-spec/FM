@@ -7,6 +7,8 @@ function makeContext(){
  elements.set('#club-name',Object.assign(element(),{value:'FC Dauertest'}));elements.set('#club-primary',Object.assign(element(),{value:'#2244aa'}));elements.set('#club-secondary',Object.assign(element(),{value:'#ffcc22'}));
  const customMath=Object.create(Math);customMath.random=Math.random;
  const context={document,localStorage:{getItem:key=>storage.get(key)||null,setItem:(key,value)=>storage.set(key,value)},window:{scrollY:0,pageYOffset:0,scrollTo(){}},location:{protocol:'file:'},crypto,structuredClone,performance:{now:()=>0},requestAnimationFrame:()=>1,cancelAnimationFrame(){},setTimeout:()=>1,clearTimeout(){},alert:message=>{throw Error(message)},confirm:()=>true,fetch:async()=>({ok:true}),console,Math:customMath,Date,Blob:global.Blob,URL:{createObjectURL:()=>'',revokeObjectURL(){}}};
+ context.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});
+ context.document.addEventListener=()=>{};context.window.addEventListener=()=>{};
  vm.createContext(context);for(const file of['game.js','manager-v11.js','identity-v12.js','season-v13.js','halftime-v14.js','finance-v15.js','transfer-v16.js','qol-v17.js','player-card-v18.js','sponsor-fix-v26.js','season-finale-v31.js','dashboard-layout-v32.js','awards-v40.js','cup-v41.js'])vm.runInContext(fs.readFileSync('dist/'+file,'utf8'),context);return context
 }
 

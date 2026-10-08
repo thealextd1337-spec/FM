@@ -52,6 +52,9 @@ class FakeFTP:
         self.calls.append(("size", name))
         return len(self.uploaded)
 
+    def rename(self, source, target):
+        self.calls.append(("rename", source, target))
+
 
 class DeployTests(unittest.TestCase):
     def test_uploads_only_index_and_checks_live_bytes(self):
@@ -71,7 +74,9 @@ class DeployTests(unittest.TestCase):
         self.assertEqual(FakeFTP.instance.uploaded, content)
         self.assertEqual(FakeFTP.instance.calls[0], ("connect", "ftp.example.test", 21))
         self.assertEqual(FakeFTP.instance.calls[2], ("protected",))
-        self.assertEqual(FakeFTP.instance.calls[3:5], [("cwd", "/fussball"), ("upload", "STOR index.html")])
+        staged = "index.deploy-" + deploy.hashlib.sha256(content).hexdigest()[:12] + ".html"
+        self.assertEqual(FakeFTP.instance.calls[3:5], [("cwd", "/fussball"), ("upload", "STOR " + staged)])
+        self.assertEqual(FakeFTP.instance.calls[-1], ("rename", staged, "index.html"))
         self.assertIn("deploy=abc123-1", urlopen.call_args.args[0].full_url)
 
     def test_rejects_missing_secret_before_network(self):

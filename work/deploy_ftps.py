@@ -87,6 +87,7 @@ def publish() -> None:
 
     local_bytes = BUILD.read_bytes()
     expected = hashlib.sha256(local_bytes).digest()
+    staged_name = "index.deploy-" + expected.hex()[:12] + ".html"
     context = ssl.create_default_context()
 
     stage = "connect"
@@ -110,12 +111,14 @@ def publish() -> None:
                 raise
             stage = "upload"
             with BUILD.open("rb") as source:
-                ftp.storbinary("STOR index.html", source)
+                ftp.storbinary("STOR " + staged_name, source)
             stage = "check remote size"
             ftp.voidcmd("TYPE I")
-            remote_size = ftp.size("index.html")
+            remote_size = ftp.size(staged_name)
             if remote_size is not None and remote_size != len(local_bytes):
                 raise RuntimeError("Uploaded index.html has a different size")
+            stage = "publish complete page"
+            ftp.rename(staged_name, "index.html")
     except RuntimeError:
         raise
     except Exception as error:

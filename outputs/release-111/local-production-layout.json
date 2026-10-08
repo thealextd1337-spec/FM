@@ -1,0 +1,30 @@
+{
+  "release": 111,
+  "target": "local-production-layout",
+  "checks": [
+    "Page bytes equal the inspected release build",
+    "Start page and footer use Flutlicht and version 111",
+    "Regular new physical match uses flow v159",
+    "Default view is genuine Unity with the actual players",
+    "Actual published Unity identity equals the frozen build",
+    "Real enlarged match reaches halftime without fullscreen",
+    "Second half retains Unity and the enlarged view",
+    "Name projections correspond to actual player identities",
+    "Native match report uses the current dialog design",
+    "Start page and footer use Flutlicht and version 111",
+    "Complete Unity/browser match results, events, player records and finances match",
+    "No browser script errors"
+  ],
+  "errors": [],
+  "pass": true,
+  "url": "http://127.0.0.1:55887/?release=111",
+  "pageVerified": true,
+  "runtimeUrl": "http://127.0.0.1:55887/unity-match/runtime.html?v=111",
+  "unitySourceId": "95eb4c7224a55115dd2e2aa4dccb3f9e27f5096bdde0ee23073c5cfbb3076f3e",
+  "score": [
+    1,
+    0
+  ],
+  "finished": "2026-10-08T21:12:08.101Z",
+  "buildSha256": "74e13d67e82d6d8cd486907aea7f44a5cf64bc50a6afdcc79eae96842a0e8b57"
+}

@@ -31,6 +31,8 @@ assert.match(lineupCSS,/\.cell\[draggable=true\],\.bench-chip\[draggable=true\]\
 assert.match(fs.readFileSync('dist/player-status-v51.js','utf8'),/\.v51-starter\[draggable=true\]\{cursor:grab;touch-action:pan-y\}/,'starter cards allow native vertical panning');
 context.v65Context=()=>({state:{phase:'paused'}});
 context.v65PauseTab='tactics';
+// This fixture exercises prematch/pause dragging, without a career-plan DOM.
+context.v64CareerDragSource=()=>null;
 vm.runInContext(fs.readFileSync('dist/world-grid-touch-v71.js','utf8'),context,{filename:'world-grid-touch-v71.js'});
 const pauseSource={dataset:{v65BenchCard:'bench-1'},classList:{contains:()=>false}};
 const pauseTarget={closest:selector=>selector.startsWith('#v65-plan-view')?pauseSource:null};

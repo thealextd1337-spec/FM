@@ -23,6 +23,9 @@ for(const asset of [...new Set(html.match(/(?:referees|trophies|sprites|crests)\
  const data=fs.readFileSync('dist/'+asset).toString('base64');
  html=html.replaceAll(asset,`data:image/png;base64,${data}`);
 }
-html=html.replace(/PROTOTYP \d+\b/g,'PROTOTYP 110');
+// The published HTTP build loads its matching Unity runtime; file: retains the
+// existing local bridge. The query also separates runtime caches by release.
+html=html.replace('</head>',()=>'<script>if(location.protocol==="http:"||location.protocol==="https:")window.D6UnityMatchUrl=new URL("unity-match/runtime.html?v=111",document.baseURI).href;</script></head>');
+html=html.replace(/PROTOTYP \d+\b/g,'PROTOTYP 111');
 fs.mkdirSync('outputs',{recursive:true});
 fs.writeFileSync('outputs/index.html',html);fs.writeFileSync('outputs/Doppel-6-Fussballmanager.html',html);
