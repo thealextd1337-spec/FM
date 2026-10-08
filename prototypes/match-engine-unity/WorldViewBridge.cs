@@ -66,7 +66,7 @@ public partial class ProbeBridge {
     void RenderWorld(){
         if(worldView==null||world==null||playback==null)return;var f=playback.Sample(Time.realtimeSinceStartupAsDouble);displayed=f;var camera=Camera.main;
         camera.aspect=Screen.height>0?(float)Screen.width/Screen.height:camera.aspect;
-        camera.fieldOfView=(float)f.camera.fov;camera.transform.position=V(f.camera.position);camera.transform.LookAt(V(f.camera.target));
+        camera.fieldOfView=(float)f.camera.fov;camera.transform.position=V(f.camera.position);camera.transform.LookAt(V(f.camera.target));UpdateStadiumVisibility(camera.transform.position);
         worldBallMotion.Sample(f);ballView.rotation=worldBallMotion.Rotation;
         ballView.position=V(f.ball);ballView.gameObject.SetActive(f.ballOpacity>.01);ballShadow.position=new Vector3(ballView.position.x,.045f,ballView.position.z);
         for(int i=0;i<f.players.Length;i++){

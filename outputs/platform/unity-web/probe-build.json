@@ -1,13 +1,13 @@
 {
-  "sourceId": "95eb4c7224a55115dd2e2aa4dccb3f9e27f5096bdde0ee23073c5cfbb3076f3e",
+  "sourceId": "16d6c00c7ec84c3e2a116066589e499b52fe3787d902be12e7b42dc63dba4ea8",
   "schema": "d6-probe-1",
   "worldView": "d6-world-view-1",
   "engine": "unity",
   "unity": "6000.6.4f1",
-  "loaderUrl": "/unity/Build/unity-web.loader.js?v=7c82adafe827c9dd284496c75b6aae9b82958bc9a7bd25904367c8446717c8ef",
-  "dataUrl": "/unity/Build/unity-web.data?v=d1332caaaf307e7a073347c7c0997ba88aa95933e20b1897ab73cdc966b0e5a8",
+  "loaderUrl": "/unity/Build/unity-web.loader.js?v=19d964cf0df8f891d8d5ba1066c06219acbebfa6e8a482797c871345c99b2bc3",
+  "dataUrl": "/unity/Build/unity-web.data?v=6cfab041e110b2b7f50a31f0e4db8123a1c5f1b89d1b0945165434fc99c4f12f",
   "frameworkUrl": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
-  "codeUrl": "/unity/Build/unity-web.wasm?v=5ce1d16b72ee2679591a7f6fe3c924c66a686c0df2dc65ea6f6b44f4809520b5",
+  "codeUrl": "/unity/Build/unity-web.wasm?v=91f824cb82b39f5f0d5aad0ebc801bc1e6f36b02292abfdcaffafc6277dd3cd1",
   "assetHash": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
   "catalogHash": "17a21f5cad681a1f744bf74359cd8047dda10f66689a0f73e8113be7d20ca1da",
   "sourceFiles": [
@@ -17,7 +17,7 @@
     },
     {
       "file": "ProbeBridge.cs",
-      "sha256": "4a4790a0894bb0419cbc7502e4c295e686aeb9c264ab0205aae1317c848cdbf3"
+      "sha256": "a89808591cd3f875c71a6814ffffadf288d86e0e7b7796cdb662d2a52db7d3cc"
     },
     {
       "file": "WorldViewContract.cs",
@@ -25,7 +25,7 @@
     },
     {
       "file": "WorldViewBridge.cs",
-      "sha256": "7b48dd70f0ed80bfcd6062953687b0f3f8484ba5012ea2b8c4e196d42fd5083d"
+      "sha256": "a216b0953bf9294c9c2c02f4195f94b7d4e91264662b1ea77d4eeb5981d74895"
     },
     {
       "file": "WorldViewPlayback.cs",
@@ -33,7 +33,7 @@
     },
     {
       "file": "WorldViewPresentation.cs",
-      "sha256": "2302558abf0ef9f82234096d904e788237c65baf829c5dfac8a47076b8fc772b"
+      "sha256": "5c8f55577cdb5b4a1ddacb3416aae05916e919bc706bdb471af4f10563a7c87c"
     },
     {
       "file": "WorldViewSetup.cs",
@@ -41,7 +41,7 @@
     },
     {
       "file": "WorldKit.shader",
-      "sha256": "b38935fe9a3c1d18f13566e95d6bbfaeee0ac4b529fbaccb83c72d4d6f5390f9"
+      "sha256": "6cbdce6890290991555edea7a7ded18ddff9ba53fe463f74cdad7291e5df8d8c"
     },
     {
       "file": "ProbeBallPhysics.cs",
@@ -85,7 +85,7 @@
     },
     {
       "file": "ProbeWebBuild.cs",
-      "sha256": "78ef781df6324ca5ac2d4028a8be34189de937302f4edf94ff61e5ba1d5c2245"
+      "sha256": "392eb4653f0ce269114aa66a7fbee1c478f66898dabc90db138907bdc57c0797"
     },
     {
       "file": "link.xml",
@@ -94,13 +94,37 @@
     {
       "file": "D6Probe.jslib",
       "sha256": "270a00924ad2d577f2200db6fb45a85015ebeb5be228b8bef24b97ebf900fdcc"
+    },
+    {
+      "file": "WorldViewEnvironment.cs",
+      "sha256": "c1fe313a43b162a3db9620b822f83bac8bdd19dbe443f0974872b21b3dd741f8"
+    },
+    {
+      "file": "D6Common.hlsl",
+      "sha256": "03a398ef35bed3767b601812c454159cdd9a3020bc4385eea18bf0d6d59d5ab7"
+    },
+    {
+      "file": "D6Pitch.shader",
+      "sha256": "039c8f8f0bfd5f0f2d4a72c0b40d8ad763abb4eb3df3c12c0c90700553815c9c"
+    },
+    {
+      "file": "D6Env.shader",
+      "sha256": "5a40d3c85c256c5f1b4a56c9a9bc5e8a819ddb7bafcaf93b0a33d1ed2da9a495"
+    },
+    {
+      "file": "D6Blob.shader",
+      "sha256": "16507160a368d3ea9eb208e4aa4fbb87be462f5ac4e37d63bfc428ffdb961bb9"
+    },
+    {
+      "file": "D6Cli.cs",
+      "sha256": "f409e4431c35b45465f17db17dc6d953c9d91a082531ab3ca0a7493b97cd5fd6"
     }
   ],
   "files": [
     {
       "file": "unity-web.data",
-      "bytes": 51459265,
-      "sha256": "d1332caaaf307e7a073347c7c0997ba88aa95933e20b1897ab73cdc966b0e5a8"
+      "bytes": 51683738,
+      "sha256": "6cfab041e110b2b7f50a31f0e4db8123a1c5f1b89d1b0945165434fc99c4f12f"
     },
     {
       "file": "unity-web.framework.js",
@@ -110,12 +134,12 @@
     {
       "file": "unity-web.loader.js",
       "bytes": 27914,
-      "sha256": "7c82adafe827c9dd284496c75b6aae9b82958bc9a7bd25904367c8446717c8ef"
+      "sha256": "19d964cf0df8f891d8d5ba1066c06219acbebfa6e8a482797c871345c99b2bc3"
     },
     {
       "file": "unity-web.wasm",
-      "bytes": 34991657,
-      "sha256": "5ce1d16b72ee2679591a7f6fe3c924c66a686c0df2dc65ea6f6b44f4809520b5"
+      "bytes": 35020209,
+      "sha256": "91f824cb82b39f5f0d5aad0ebc801bc1e6f36b02292abfdcaffafc6277dd3cd1"
     }
   ]
 }

@@ -5,15 +5,16 @@ Shader "Doppel6/World Kit" {
  HLSLPROGRAM
  #pragma vertex vert
  #pragma fragment frag
- #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
- #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+ #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE
+ #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
+ #include "D6Common.hlsl"
  TEXTURE2D(_BaseMap);SAMPLER(sampler_BaseMap);TEXTURE2D(_ClothMask);SAMPLER(sampler_ClothMask);
  CBUFFER_START(UnityPerMaterial)
  float4 _BaseMap_ST,_Main,_Trim,_Accent,_Skin,_Hair;float _Style;
  CBUFFER_END
  struct Input {float4 position:POSITION;float3 normal:NORMAL;float2 uv:TEXCOORD0;float3 rest:TEXCOORD2;};
- struct Output {float4 position:SV_POSITION;float2 uv:TEXCOORD0;float3 rest:TEXCOORD1;float3 normal:TEXCOORD2;};
- Output vert(Input i){Output o;o.position=TransformObjectToHClip(i.position.xyz);o.uv=i.uv;o.rest=i.rest;o.normal=TransformObjectToWorldNormal(i.normal);return o;}
+ struct Output {float4 position:SV_POSITION;float2 uv:TEXCOORD0;float3 rest:TEXCOORD1;float3 normal:TEXCOORD2;float3 world:TEXCOORD3;};
+ Output vert(Input i){Output o;o.world=TransformObjectToWorld(i.position.xyz);o.position=TransformWorldToHClip(o.world);o.uv=i.uv;o.rest=i.rest;o.normal=TransformObjectToWorldNormal(i.normal);return o;}
  half4 frag(Output i):SV_Target {
   half3 color=SAMPLE_TEXTURE2D(_BaseMap,sampler_BaseMap,i.uv).rgb;
   half3 cloth=SAMPLE_TEXTURE2D(_ClothMask,sampler_ClothMask,i.uv).rgb;
@@ -28,8 +29,24 @@ Shader "Doppel6/World Kit" {
    if(skin&&!eye&&i.rest.y>.5)color=_Skin.rgb*(.65+.65*pigment);
    if((i.rest.y>1.62||(i.rest.y>1.49&&i.rest.z<-.025&&pigment<.24))&&pigment<.35)color=_Hair.rgb*(.7+pigment*2);
   }
-  Light light=GetMainLight();half illumination=.65+.35*saturate(dot(normalize(i.normal),light.direction));return half4(color*illumination,1);
+  // Floodlight key light with shadow map, ambient and a rim that keeps
+  // small figures readable against the turf. Fabric gets a faint sheen.
+  half fabric=cloth.r>.5||cloth.b>.5?.12:.05;
+  return half4(D6Light(color,i.world,i.normal,.35,.55,fabric),1);
  }
+ ENDHLSL
+ }
+ Pass { Name "ShadowCaster" Tags {"LightMode"="ShadowCaster"} ZWrite On ZTest LEqual ColorMask 0 Cull Off
+ HLSLPROGRAM
+ #pragma vertex shadowVert
+ #pragma fragment shadowFrag
+ #include "D6Common.hlsl"
+ CBUFFER_START(UnityPerMaterial)
+ float4 _BaseMap_ST,_Main,_Trim,_Accent,_Skin,_Hair;float _Style;
+ CBUFFER_END
+ struct ShadowInput {float4 position:POSITION;float3 normal:NORMAL;};
+ float4 shadowVert(ShadowInput i):SV_POSITION{return D6ShadowClip(i.position.xyz,i.normal);}
+ half4 shadowFrag():SV_Target{return 0;}
  ENDHLSL
  }
  }

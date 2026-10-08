@@ -16,7 +16,7 @@ public partial class ProbeBridge {
         labelHeads=new Transform[actors.Count];runSpeeds=new float[actors.Count];animationTimes=new double[actors.Count];renderedPoses=new WorldRenderedPose[actors.Count];
         worldLocomotion=new FootballLocomotion[actors.Count];for(int i=0;i<actors.Count;i++)worldLocomotion[i]=new FootballLocomotion();
         for(int i=0;i<actors.Count;i++)foreach(var t in actors[i].GetComponentsInChildren<Transform>())if(t.name=="mixamorig:Head")labelHeads[i]=t;
-        DecorateWorldPitch();
+        DecorateWorldPitch();BuildStadium();
     }
     void SendWorldProjection(){
         if(worldView==null||displayed==null)return;
@@ -67,6 +67,6 @@ public partial class ProbeBridge {
         ballShadow.localScale=new Vector3(.31f,.003f,.31f);
     }
     Texture2D worldBallTexture;
-    void ClearWorldPresentation(){if(worldBallTexture!=null)Destroy(worldBallTexture);worldBallTexture=null;playback=null;displayed=null;labelHeads=null;}
+    void ClearWorldPresentation(){ClearStadium();if(worldBallTexture!=null)Destroy(worldBallTexture);worldBallTexture=null;playback=null;displayed=null;labelHeads=null;}
 }
 }
