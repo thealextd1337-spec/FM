@@ -1,5 +1,7 @@
 # Entwicklungsdokumentation
 
+- [Native Match-/Spielerintegration v160](platform/native-match-player-integration-v160.md): regulärer Start mit dem vorhandenen Regelmodell, dauerhafte Feld-/Mannschaftsauswahl, geometrische Native-/2D-Pfade, echte JSON-Fortsetzung und Mehrsaisonprüfung; getrennte Unity-Übergabe und offene Balance.
+
 - [Release 111](release-111.md): Flutlicht und Unity-Fußball, vollständige WebGL-Auslieferung und Veröffentlichungsprüfung.
 
 - [Fußballerlebnis v159](platform/football-experience-v159.md): Schussziele und Ausführung, Keeperwinkel, Ballannahme und Anschlussläufe, defensive Aufmerksamkeit, Unity-Ballrotation/Schrittphasen, Kameras und aktuelle Spielberichte.

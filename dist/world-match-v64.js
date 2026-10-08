@@ -2,6 +2,17 @@
 
 // Ein Matchzustand für die sichtbare Partie und die kompakten Weltpartien.
 const v64Formations=['1–1–3','1–2–2','1–3–1','2–1–2','2–2–1','3–1–1'];
+const v160SixFormations=['1–2–3','1–3–2','2–1–3','2–2–2','2–3–1','3–1–2','3–2–1'];
+// Only career construction writes this configuration. Missing old data stays old.
+function v160MatchConfig(options={fieldSize:'large',fieldPlayers:5}){
+ if(!options||!['standard','large'].includes(options.fieldSize)||![5,6].includes(options.fieldPlayers)||options.version!==undefined&&options.version!==1)throw Error('Ungültige Spielfeld- oder Mannschaftsauswahl.');
+ return {version:1,fieldSize:options.fieldSize,fieldPlayers:options.fieldPlayers};
+}
+function v160WorldConfig(career){return career?.world?.matchConfig||{fieldSize:'standard',fieldPlayers:5};}
+function v160WorldGeometry(career){const scale=v160WorldConfig(career).fieldSize==='large'?1.2:1;return {version:1,length:68*scale,width:44*scale,goalWidth:44*.2/(544/600),goalHeight:44*.2/(544/600)/3,penaltyDepth:68*(.18-26/740)/(688/740),penaltyWidth:44*.5/(544/600),ballRadius:.1764};}
+function v160Formations(career){return v160WorldConfig(career).fieldPlayers===6?v160SixFormations:v64Formations;}
+function v160FormationValid(career,value){const parts=typeof value==='string'?value.split('–').map(Number):[];return career?.world?.matchConfig?parts.length===3&&parts.every(n=>Number.isInteger(n)&&n>=0)&&parts.reduce((a,b)=>a+b,0)===v160WorldConfig(career).fieldPlayers:v64Formations.includes(value);}
+function v160CoachFormation(career,value){const list=v160Formations(career);if(list.includes(value))return value;if(v160WorldConfig(career).fieldPlayers===6&&v64Formations.includes(value)){const parts=value.split('–').map(Number),index=parts.indexOf(Math.min(...parts));parts[index]++;return parts.join('–');}return list.includes('2–2–2')?'2–2–2':'2–2–1';}
 const v64Roles={def:'Abwehr',mid:'Mittelfeld',att:'Angriff',gk:'Torwart'};
 const v64Instructions={def:[],mid:['wing','support'],att:['wing','deep','shoot'],gk:[]};
 const v64InstructionNames={standard:'Standard',wing:'Außenbahn & Flanken',support:'Anspielbar bleiben',deep:'Tiefenlauf',shoot:'Abschluss suchen'};
@@ -54,7 +65,7 @@ function v64Rating(player,role){
 }
 function v64RoleList(formation){
  const parts=formation.split('–').map(Number);
- if(!v64Formations.includes(formation))throw Error('Ungültige Grundordnung.');
+ if(parts.length!==3||parts.some(n=>!Number.isInteger(n)||n<0)||![5,6].includes(parts.reduce((a,b)=>a+b,0)))throw Error('Ungültige Grundordnung.');
  return['gk',...Array(parts[0]).fill('def'),...Array(parts[1]).fill('mid'),...Array(parts[2]).fill('att')];
 }
 function v64BuildSide(club,formation){
@@ -68,8 +79,8 @@ function v64BuildSide(club,formation){
  const bench=club.roster.filter(player=>!chosen.has(player.pid)).sort((a,b)=>v64Rating(b,b.line)-v64Rating(a,a.line)||a.pid.localeCompare(b.pid)).slice(0,5).map(player=>player.pid);
  return{clubId:club.id,starters,bench,roles:assigned};
 }
-function v64CoachTactics(coach){
- return{formation:v64Formations.includes(coach?.style.formation)?coach.style.formation:'2–2–1',pressing:coach?.style.pressing||'Ausgewogen',passing:coach?.style.passing||'Variabel',defense:coach?.style.defense||'Neutral',aggression:coach?.style.risk>=4?'Aggressiv':'Normal',focus:'Variabel'};
+function v64CoachTactics(coach,career){
+ return{formation:v160CoachFormation(career,coach?.style.formation),pressing:coach?.style.pressing||'Ausgewogen',passing:coach?.style.passing||'Variabel',defense:coach?.style.defense||'Neutral',aggression:coach?.style.risk>=4?'Aggressiv':'Normal',focus:'Variabel'};
 }
 function v64PrepareFixture(career,fixture){
  if(typeof v158RecoverWorld==='function')v158RecoverWorld(career,fixture.day);
@@ -77,7 +88,7 @@ function v64PrepareFixture(career,fixture){
  const clubs=career.world.clubs,home=clubs.find(club=>club.id===fixture.homeId),away=clubs.find(club=>club.id===fixture.awayId);
  for(const club of [home,away])v64RecoverClub(career,club,fixture.day);
  const side=club=>{
-  const coach=career.world.coaches.find(item=>item.id===club.coachId),tactics=v64CoachTactics(coach);
+  const coach=career.world.coaches.find(item=>item.id===club.coachId),tactics=v64CoachTactics(coach,career);
   return{...v64BuildSide(club,tactics.formation),coachId:coach?.id||null,tactics};
  };
  fixture.plan={home:side(home),away:side(away)};
@@ -92,6 +103,7 @@ function v64MakeState(career,fixture){
  const state={fixtureId:fixture.id,minute:0,firstHalfEnd:45,fullTimeEnd:90,stoppages:[0,0],addedMinutes:[0,0],score:[0,0],active:[...plan.home.starters],awayActive:[...plan.away.starters],bench:[...plan.home.bench],awayBench:[...plan.away.bench],roles:{...plan.home.roles,...plan.away.roles},orientation:{},instructions:{},tactics:[{...plan.home.tactics},{...plan.away.tactics}],tacticChanges:[],pending:[[],[]],substitutions:[],exited:[],events:[],fresh,minutes,stats,phase:'prematch',lastAiCheck:[-1,-1],lastAiChange:[-20,-20]};
  for(const side of [0,1])v64RefreshAiInstructions(career,fixture,state,side);
  if(typeof v64ApplyCareerPlan==='function')v64ApplyCareerPlan(career,fixture,state);
+ if(career.world.matchConfig)state.geometry=v160WorldGeometry(career);
  if(typeof v154Initialize==='function')v154Initialize(career,fixture,state);
  if(typeof v155Initialize==='function')v155Initialize(career,state);
  if(typeof v158Initialize==='function')v158Initialize(career,fixture,state);
@@ -120,6 +132,7 @@ function v64Active(state,side){return side===0?state.active:state.awayActive}
 function v64Bench(state,side){return side===0?state.bench:state.awayBench}
 function v64Player(career,fixture,side,pid){return v64Side(career,fixture,side).find(player=>player.pid===pid)}
 const v64GridCells={def:{1:[27],2:[26,28],3:[25,27,29]},mid:{1:[17],2:[16,18],3:[15,17,19]},att:{1:[7],2:[6,8],3:[5,7,9]}};
+for(const role of ['def','mid','att']){v64GridCells[role][0]=[];for(const count of [4,5,6])v64GridCells[role][count]=[...(role==='def'?[25,26,27,28,29,32]:role==='mid'?[15,16,17,18,19,22]:[5,6,7,8,9,2])].slice(0,count);}
 function v64GridRole(cell){return cell<10?'att':cell<25?'mid':'def'}
 function v64EnsureCells(state,side){
  state.cells ||= {};
@@ -147,7 +160,7 @@ function v64MoveCell(career,fixture,state,side,sourcePid,targetCell){
  const proposed={...state.roles,[sourcePid]:group(targetCell)};
  if(otherPid)proposed[otherPid]=group(previous);
  const counts=['def','mid','att'].map(role=>active.filter(pid=>proposed[pid]===role).length);
- if(counts.some(count=>count<1||count>3))throw Error('In Abwehr, Mittelfeld und Angriff muss jeweils mindestens ein Spieler stehen.');
+ if(!career.world.matchConfig&&counts.some(count=>count<1||count>3))throw Error('In Abwehr, Mittelfeld und Angriff muss jeweils mindestens ein Spieler stehen.');
  if(state.playerPerformance)v155SyncPhases(state);
  if(state.roleAssignments){state.roleMoveSequence=(state.roleMoveSequence||0)+1;}
  if(state.roleAssignments)v154Transition(state,otherPid?{type:'swap',playerId:sourcePid,otherPlayerId:otherPid}:{type:'free-move',playerId:sourcePid,toCell:targetCell},v61Random(`${career.world.seed}:${fixture.id}:role-move:${state.minute}:${state.roleMoveSequence}:${sourcePid}:${targetCell}`));
@@ -166,7 +179,7 @@ function v64MoveCell(career,fixture,state,side,sourcePid,targetCell){
 }
 function v64SetFormation(career,fixture,state,side,formation,reason='Nutzerentscheidung'){
  const roles=v64RoleList(formation),active=v64Active(state,side),players=active.map(pid=>v64Player(career,fixture,side,pid));
- if(active.length!==6||players.filter(player=>player.keeper).length!==1)throw Error('Die Mannschaft ist nicht vollständig.');
+ if(!v160FormationValid(career,formation)||active.length!==roles.length||players.filter(player=>player.keeper).length!==1)throw Error('Die Mannschaft ist nicht vollständig.');
  const remaining=new Set(active),assign={};
  for(const role of roles){const pid=[...remaining].filter(id=>role==='gk'?v64Player(career,fixture,side,id).keeper:!v64Player(career,fixture,side,id).keeper).sort((a,b)=>v64Rating(v64Player(career,fixture,side,b),role)-v64Rating(v64Player(career,fixture,side,a),role)||a.localeCompare(b))[0];if(!pid)throw Error('Ungültige Feldbesetzung.');remaining.delete(pid);assign[pid]=role}
  Object.assign(state.roles,assign);state.tactics[side].formation=formation;v64ResetCells(state,side);
@@ -241,7 +254,7 @@ function v64ExecutePending(career,fixture,state,reason){
 }
 function v64TeamStrength(career,fixture,state,side){
  const active=v64Active(state,side),field=active.filter(pid=>state.roles[pid]!=='gk'),tactic=state.tactics[side];
- const attack=field.reduce((sum,pid)=>{const p=v64Player(career,fixture,side,pid),role=state.roles[pid];if(!state.playerLoad)return sum+v64Rating(p,role)*(state.fresh[pid]/100);const a=v158Effective(p,state,false);return sum+(role==='def'?(a.tak+a.pos+a.air)/3:role==='mid'?(a.tec+a.pas+a.sta)/3:(a.fin+a.tec+a.spd)/3)+(p.line===role?1.3:-1.3);},0)/5;
+ const attack=field.reduce((sum,pid)=>{const p=v64Player(career,fixture,side,pid),role=state.roles[pid];if(!state.playerLoad)return sum+v64Rating(p,role)*(state.fresh[pid]/100);const a=v158Effective(p,state,false);return sum+(role==='def'?(a.tak+a.pos+a.air)/3:role==='mid'?(a.tec+a.pas+a.sta)/3:(a.fin+a.tec+a.spd)/3)+(p.line===role?1.3:-1.3);},0)/Math.max(1,field.length);
  return attack+(tactic.pressing==='Früh'?.55:tactic.pressing==='Abwartend'?-.25:0)+(tactic.passing==='Direkt'?.2:0)+(tactic.aggression==='Aggressiv'?.2:0);
 }
 function v64PickAttacker(ids,weight,random){
@@ -256,7 +269,7 @@ function v64AiAdjust(career,fixture,state,side,reason){
  if(state.minute-state.lastAiChange[side]>=10||reason==='Tor'){
   const pressing=score<0&&state.minute>=30?'Früh':score>0&&state.minute>=60?'Abwartend':coach.style.pressing;
   if(tactic.pressing!==pressing)changes.pressing=pressing;
-  const formation=score<0&&state.minute>=60?'1–2–2':score>0&&state.minute>=70?'3–1–1':coach.style.formation;
+  const six=v160WorldConfig(career).fieldPlayers===6,formation=score<0&&state.minute>=60?(six?'1–2–3':'1–2–2'):score>0&&state.minute>=70?(six?'3–2–1':'3–1–1'):v160CoachFormation(career,coach.style.formation);
   if(tactic.formation!==formation)changes.formation=formation;
   if(Object.keys(changes).length){v64ChangeTactics(career,fixture,state,side,changes,reason);state.lastAiChange[side]=state.minute}
  }

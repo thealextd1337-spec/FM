@@ -9,7 +9,7 @@ function v121PreparePositioning(current){
  if(!v65WorldActive)return;
  const plans=new Map();v121PositioningPlans.set(current,plans);
  if(v121PositioningPaused(current)){v121PositioningSamples.delete(current);return;}
- const width=44/(v55Field.right-v55Field.left),length=68/(v55Field.bottom-v55Field.top),gap=(a,b)=>Math.hypot((a.x-b.x)*width,(a.y-b.y)*length),previous=v121PositioningSamples.get(current),seconds=previous?(current.elapsed-previous.at)/MATCH_SPEED:0,velocity=new Map();
+ const width=v160PitchWidth()/(v55Field.right-v55Field.left),length=v160PitchLength()/(v55Field.bottom-v55Field.top),gap=(a,b)=>Math.hypot((a.x-b.x)*width,(a.y-b.y)*length),previous=v121PositioningSamples.get(current),seconds=previous?(current.elapsed-previous.at)/MATCH_SPEED:0,velocity=new Map();
  for(const p of current.people){const before=previous?.positions.get(p);let x=0,y=0;if(before&&seconds>0&&seconds<.2){x=(p.x-before.x)/seconds;y=(p.y-before.y)/seconds;const speed=Math.hypot(x*width,y*length),limit=Math.min(1,7/Math.max(.001,speed));x*=limit;y*=limit;}velocity.set(p,{x,y});}
  v121PositioningSamples.set(current,{at:current.elapsed,positions:new Map(current.people.map(p=>[p,{x:p.x,y:p.y}]))});
  const possession=v123PossessionTeam(current);if(possession==null)return;
@@ -51,7 +51,7 @@ function v132FallingBallTarget(current,person){
  person.tx=target.x;person.ty=target.y;return true;
 }
 function v121RunnerTarget(current,person){if(!v65WorldActive)return;if(v132FallingBallTarget(current,person))return;const plan=v121PositioningPlans.get(current)?.get(person);if(plan?.limit==null||v121PositioningPaused(current)||current.flight&&person.interceptTarget)return;
- const reference=current.owner||current.ball,line=person.assignedLine||person.line,dir=person.t===0?-1:1,length=68/(v55Field.bottom-v55Field.top);
+ const reference=current.owner||current.ball,line=person.assignedLine||person.line,dir=person.t===0?-1:1,length=v160PitchLength()/(v55Field.bottom-v55Field.top);
  // Support instructions stay behind the carrier; strikers accompany the attack
  // even when their original formation anchor is now behind the ball.
  if(!current.owner?.keeper&&v123PossessionTeam(current)===person.t){
@@ -74,7 +74,7 @@ function v115KeeperTarget(current,person){
  const challenge=v115KeeperChallenges.get(current);if(challenge?.keeper===person&&v102Clock(current)-challenge.at<challenge.duration){const q=Math.min(1,(v102Clock(current)-challenge.at)/challenge.duration);person.tx=challenge.start.x+(challenge.end.x-challenge.start.x)*q;person.ty=challenge.start.y+(challenge.end.y-challenge.start.y)*q;return;}
  if(typeof v159KeeperTarget==='function'&&v159KeeperTarget(current,person))return;
  const owner=current.owner;if(!owner||owner.t===person.t||owner.keeper||current.flight||current.rebound)return;
- const width=44/(v55Field.right-v55Field.left),length=68/(v55Field.bottom-v55Field.top),goal=person.t===0?v55Field.bottom:v55Field.top,depth=Math.abs(owner.y-goal)*length,lateral=Math.abs(owner.x-.5)*width;
+ const width=v160PitchWidth()/(v55Field.right-v55Field.left),length=v160PitchLength()/(v55Field.bottom-v55Field.top),goal=person.t===0?v55Field.bottom:v55Field.top,depth=Math.abs(owner.y-goal)*length,lateral=Math.abs(owner.x-.5)*width;
  if(depth>16.5||lateral>12)return;
  const quality=(ability(person,'gk')+ability(person,'pos'))/40,direction=person.t===0?-1:1;
  // Close down along the ball-to-goal line, then approach the actual ball.
@@ -91,8 +91,8 @@ function v115ResolveKeeperChallenge(current){
  if(!v65WorldActive)return;const c=v115KeeperChallenges.get(current);if(!c||c.checked)return;
  const age=v102Clock(current)-c.at;if(age>c.duration){c.checked=true;return;}
  if(current.owner!==c.attacker||current.flight){c.checked=true;return;}
- const ball=v101KickPoint(c.attacker,c.keeper),gap=Math.hypot((ball.x-c.keeper.x)*44/(v55Field.right-v55Field.left),(ball.y-c.keeper.y)*68/(v55Field.bottom-v55Field.top));
- if(age>.4&&gap<.8){c.checked=true;const chance=clamp(.48+ability(c.keeper,'gk')*.025-ability(c.attacker,'tec')*.013,.28,.92);if(random()<chance){c.caught=true;c.contact={...ball};c.caughtAt=v102Clock(current);c.keeper.stats.interceptions++;v50GoalKick(c.keeper,`${c.keeper.name} kommt heraus und sichert den Ball.`,{held:true});}}
+ const ball=v101KickPoint(c.attacker,c.keeper),gap=Math.hypot((ball.x-c.keeper.x)*v160PitchWidth()/(v55Field.right-v55Field.left),(ball.y-c.keeper.y)*v160PitchLength()/(v55Field.bottom-v55Field.top));
+ if(age>.4&&gap<.8&&v160KeeperHands(current,c.keeper,ball)){c.checked=true;const chance=clamp(.48+ability(c.keeper,'gk')*.025-ability(c.attacker,'tec')*.013,.28,.92);if(random()<chance){c.caught=true;c.contact={...ball};c.caughtAt=v102Clock(current);c.keeper.stats.interceptions++;v50GoalKick(c.keeper,`${c.keeper.name} kommt heraus und sichert den Ball.`,{held:true});}}
 }
 function v115KeeperChallengeAction(current,person){
  const c=v115KeeperChallenges.get(current);if(c?.keeper!==person||current.flight&&v99Flights.get(current.flight)?.keeper===person)return null;const age=v102Clock(current)-c.at;if(age>1.8)return null;
@@ -105,7 +105,7 @@ function v113DefenderTarget(current,person){
 }
 function v108DefensiveMovement(current,person,dx,dy){
  if(!current?.owner||current.owner.t===person.t||current.owner.keeper||person.keeper||(person.assignedLine||person.line)!=='def'||person.slideActive||person.interceptTarget||current.finished||current.goalPause>0||current.kickoff||current.throwIn||current.setPiece||current.rebound||current.halftimePause||current.postBanner)return null;
- const width=44/(v55Field.right-v55Field.left),length=68/(v55Field.bottom-v55Field.top),motion={x:dx*width,y:dy*length},travel=Math.hypot(motion.x,motion.y);if(travel<.025)return null;
+ const width=v160PitchWidth()/(v55Field.right-v55Field.left),length=v160PitchLength()/(v55Field.bottom-v55Field.top),motion={x:dx*width,y:dy*length},travel=Math.hypot(motion.x,motion.y);if(travel<.025)return null;
  const goal={x:.5,y:person.t===0?v55Field.bottom:v55Field.top},toGoal={x:(goal.x-person.x)*width,y:(goal.y-person.y)*length},goalDistance=Math.hypot(toGoal.x,toGoal.y);if(goalDistance<1.5||((motion.x*toGoal.x+motion.y*toGoal.y)/travel/goalDistance)<.3)return null;
  // A beaten defender turns and runs at full pace, even if another attacker is still ahead.
  const owner=current.owner,ballSide={x:(owner.x-person.x)*width,y:(owner.y-person.y)*length},ownerGap=Math.hypot(ballSide.x,ballSide.y);

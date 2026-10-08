@@ -12,7 +12,7 @@ v50GoalKick=function(...args){
  if(v65WorldActive&&(incoming&&!release?.onTarget||rolling&&Number.isFinite(rolling.vx))){
   const end=incoming?v109FlightPoint(incoming,1):{...current.ball,elevation:v99BallView(current)?.elevation??.29},before=incoming?v109FlightPoint(incoming,.98):null,seconds=incoming?incoming.duration/MATCH_SPEED*.02:1;
   outgoing={start:end,at:v102Clock(current),velocity:before?{x:(end.x-before.x)/seconds,y:(end.y-before.y)/seconds,height:(end.elevation-before.elevation)/seconds}:{x:rolling.vx*MATCH_SPEED,y:rolling.vy*MATCH_SPEED,height:0}};
-  const speed=Math.hypot(outgoing.velocity.x*44/(v55Field.right-v55Field.left),outgoing.velocity.y*68/(v55Field.bottom-v55Field.top));if(speed>18){outgoing.velocity.x*=18/speed;outgoing.velocity.y*=18/speed}
+  const speed=Math.hypot(outgoing.velocity.x*v160PitchWidth()/(v55Field.right-v55Field.left),outgoing.velocity.y*v160PitchLength()/(v55Field.bottom-v55Field.top));if(speed>18){outgoing.velocity.x*=18/speed;outgoing.velocity.y*=18/speed}
  }
  const result=v100BaseGoalKick(...args);
  // The existing movement step forms the build-up while the keeper waits.
@@ -66,10 +66,10 @@ function v113KeeperReacting(current,person){const release=current.flight&&v99Fli
 function v115RestartLocked(current,person){const pose=v99Actions.get(current)?.throws.get(person.pid);return Boolean(pose&&(!pose.completed||pose.age<.32)||current.kickoff&&current.kickoff.kicker===person);}
 function v101KickTarget(current,keeper){return (v65WorldActive&&typeof v123KeeperOutlet==='function'&&v123KeeperOutlet(keeper,current)?.person)||current.people.filter(p=>p.t===keeper.t&&!p.keeper&&p.assignedLine==='def').sort((a,b)=>Math.hypot(a.x-keeper.x,a.y-keeper.y)-Math.hypot(b.x-keeper.x,b.y-keeper.y))[0]||{x:keeper.x,y:keeper.y+(keeper.t===0?-.1:.1)}}
 function v101KickPoint(keeper,target){
- const sx=44/(v55Field.right-v55Field.left),sy=68/(v55Field.bottom-v55Field.top),dx=(target.x-keeper.x)*sx,dy=(target.y-keeper.y)*sy,d=Math.hypot(dx,dy)||1;
+ const sx=v160PitchWidth()/(v55Field.right-v55Field.left),sy=v160PitchLength()/(v55Field.bottom-v55Field.top),dx=(target.x-keeper.x)*sx,dy=(target.y-keeper.y)*sy,d=Math.hypot(dx,dy)||1;
  return {x:keeper.x+dx/d*.65/sx,y:keeper.y+dy/d*.65/sy};
 }
-function v115ThrowPoint(taker,target,holding=true,progress=0){const width=44/(v55Field.right-v55Field.left),length=68/(v55Field.bottom-v55Field.top),dx=(target.x-taker.x)*width,dy=(target.y-taker.y)*length,d=Math.hypot(dx,dy)||1,lead=holding?-.10:-.10+.42*Math.min(1,progress/.45);return {x:taker.x+dx/d*lead/width,y:taker.y+dy/d*lead/length,elevation:3.04};}
+function v115ThrowPoint(taker,target,holding=true,progress=0){const width=v160PitchWidth()/(v55Field.right-v55Field.left),length=v160PitchLength()/(v55Field.bottom-v55Field.top),dx=(target.x-taker.x)*width,dy=(target.y-taker.y)*length,d=Math.hypot(dx,dy)||1,lead=holding?-.10:-.10+.42*Math.min(1,progress/.45);return {x:taker.x+dx/d*lead/width,y:taker.y+dy/d*lead/length,elevation:3.04};}
 function v115ThrowHold(current){const t=current.throwIn.taker,end=v115ThrowPoint(t,{x:t.x+(t.x<.5?.15:-.15),y:t.y}),start=current.throwIn.spot,q=Math.min(1,current.throwIn.ready/.35),blend=q*q*(3-2*q);return {x:start.x+(end.x-start.x)*blend,y:start.y+(end.y-start.y)*blend,elevation:.29+(end.elevation-.29)*blend};}
 const v101BaseGroundPass=v55GroundPass;
 v55GroundPass=function(passer,...args){
@@ -79,7 +79,7 @@ v55GroundPass=function(passer,...args){
 };
 function v101ShotDuration(from,to,duration,kind='shot'){
  if(!v65WorldActive)return duration;
- const metres=Math.hypot((to.x-from.x)*44/(v55Field.right-v55Field.left),(to.y-from.y)*68/(v55Field.bottom-v55Field.top));
+ const metres=Math.hypot((to.x-from.x)*v160PitchWidth()/(v55Field.right-v55Field.left),(to.y-from.y)*v160PitchLength()/(v55Field.bottom-v55Field.top));
  return Math.max(.14,metres/(kind==='header'?14:27)*MATCH_SPEED);
 }
 function v101ShotPoint(release,q){
@@ -90,9 +90,9 @@ function v101ShotPoint(release,q){
 }
 function v101GoalTravel(release){
  const end=v101ShotPoint(release,1),direction=release.shooter.t===0?-1:1;
- const depth=1.91*(v55Field.bottom-v55Field.top)/68,side=.2/2-.29*(v55Field.right-v55Field.left)/44;
+ const depth=1.91*(v55Field.bottom-v55Field.top)/v160PitchLength(),side=v160GoalX(.6)-.5-.29*(v55Field.right-v55Field.left)/v160PitchWidth();
  const rear=depth/Math.max(.001,Math.abs(end.vy)),edge=end.vx?((.5+Math.sign(end.vx)*side)-end.x)/end.vx:Infinity;
- const roofHeight=.2*44/(v55Field.right-v55Field.left)/3-.29,B=end.vh+.15*Math.abs(end.vy)*68/(v55Field.bottom-v55Field.top)/2.2,C=end.elevation-roofHeight;
+ const roofHeight=(match.geometry?.goalHeight||.2*44/(v55Field.right-v55Field.left)/3)-.29,B=end.vh+.15*Math.abs(end.vy)*v160PitchLength()/(v55Field.bottom-v55Field.top)/2.2,C=end.elevation-roofHeight;
  const root=B*B+19.6*C,roof=C>=0?0:B>0&&root>=0?(B-Math.sqrt(root))/9.8:Infinity;
  const impact=Math.max(.001,Math.min(rear,edge,roof));
  return {...end,direction,impact,hit:roof<=Math.min(rear,edge)?'roof':edge<rear?'side':'rear'};
@@ -108,7 +108,7 @@ function v100ShotOutcome(flight,goal){
  const release=flight&&v99Flights.get(flight);if(!release)return;release.goal=goal;
  if(goal&&release.keeper&&!(typeof v159ShotActive==='function'&&v159ShotActive(match))){
   // A successful finish clears the keeper's body; a failed reaction cannot pull him to the net.
-  const start=release.visualStart||flight,k=release.keeperStart,q=Math.max(0,Math.min(1,(k.y-start.y)/(release.target.y-start.y))),sx=44/(v55Field.right-v55Field.left),cross=start.x+(release.displayTarget.x-start.x)*q;
+  const start=release.visualStart||flight,k=release.keeperStart,q=Math.max(0,Math.min(1,(k.y-start.y)/(release.target.y-start.y))),sx=v160PitchWidth()/(v55Field.right-v55Field.left),cross=start.x+(release.displayTarget.x-start.x)*q;
   if(Math.abs(cross-k.x)*sx<1.6&&release.endHeight<2.4){let side=Math.sign(release.target.x-k.x)||((release.shooter.n%2)?1:-1),x=(k.x+side*1.65/sx-start.x*(1-q))/Math.max(.1,q);if(x<.405||x>.595){side=-side;x=(k.x+side*1.65/sx-start.x*(1-q))/Math.max(.1,q);}release.displayTarget.x=Math.max(.405,Math.min(.595,x));release.target.x=flight.target.x=release.displayTarget.x;}
  }
 }
@@ -135,7 +135,7 @@ fly=function(target,duration,done){
   const shooter=release.shooter,keeper=current.people.find(p=>p.keeper&&p.t!==shooter.t);
   const onTarget=(shooter.stats.onTarget||0)>release.onTarget;
   const goalLine=shooter.t===0?v55Field.top:v55Field.bottom;
-  const keeperContact=onTarget&&keeper&&Math.hypot((target.x-keeper.x)*44/(v55Field.right-v55Field.left),(target.y-keeper.y)*68/(v55Field.bottom-v55Field.top))<2.4;
+  const keeperContact=onTarget&&keeper&&Math.hypot((target.x-keeper.x)*v160PitchWidth()/(v55Field.right-v55Field.left),(target.y-keeper.y)*v160PitchLength()/(v55Field.bottom-v55Field.top))<2.4;
   const blocked=Math.abs(target.y-goalLine)>.015&&!keeperContact;
   const variant=((shooter.stats.shots||0)+shooter.n)%3;
   const displayTarget={...target};
@@ -191,7 +191,7 @@ function v99BallView(current){
   if(state?.goalTravel)return v101GoalBall(state.goalTravel,time);
   const impact=.12,depth=time<impact?1.9*time/impact:1.9-.52*(1-Math.exp(-(time-impact)*7));
   const startHeight=state?.goalHeight||.35,fall=Math.max(0,time-impact);
-  return {x:scene.x+(state?.goalLateral||0),y:(scene.team===0?v55Field.top:v55Field.bottom)+direction*depth*(v55Field.bottom-v55Field.top)/68,
+  return {x:scene.x+(state?.goalLateral||0),y:(scene.team===0?v55Field.top:v55Field.bottom)+direction*depth*(v55Field.bottom-v55Field.top)/v160PitchLength(),
    elevation:Math.max(.29,startHeight-5*fall*fall)};
  }
  const kickoffBall=typeof v114KickoffBalls!=='undefined'&&v114KickoffBalls.get(current);

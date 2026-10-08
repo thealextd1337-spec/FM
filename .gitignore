@@ -25,6 +25,7 @@ outputs/platform/*
 !outputs/platform/unity-web/
 !outputs/platform/assets/
 !outputs/platform/football-v159/
+!outputs/platform/native-integration-v160/
 !outputs/ui-redesign/
 outputs/ui-redesign/*
 !outputs/ui-redesign/U01-D/

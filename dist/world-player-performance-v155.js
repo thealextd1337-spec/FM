@@ -81,12 +81,12 @@ function v155ObserveNative(context){
 function v155CompactPoint(state,pid,side){
  if(state.playerLoad)return v158CompactPoint(state,pid,side);
  const cell=state.cells[pid],keeper=state.roles[pid]==='gk',x=keeper?.5:(cell%5+.5)/5,y=keeper?.93:(Math.floor(cell/5)+.5)/7;
- return {x:(side?1-x:x)*44,y:(side?1-y:y)*68};
+ const g=state.geometry||{width:44,length:68};return {x:(side?1-x:x)*g.width,y:(side?1-y:y)*g.length};
 }
 function v155CompactActions(career,fixture,state,side,random){
  const attackers=v64Active(state,side).filter(pid=>state.roles[pid]!=='gk'),rivals=v64Active(state,1-side),scorer=v64PickAttacker(attackers,pid=>1+(['poacher','striker'].includes(state.roleAssignments[pid].roleId)?1:0),random);
  const helper=v64PickAttacker(attackers.filter(pid=>pid!==scorer),pid=>1+(['playmaker','winger','target-player'].includes(state.roleAssignments[pid].roleId)?1:0),random);
- const p=v64Player(career,fixture,side,helper),q=v64Player(career,fixture,side,scorer),defender=rivals.filter(pid=>state.roles[pid]!=='gk')[Math.floor(random()*5)];
+ const p=v64Player(career,fixture,side,helper),q=v64Player(career,fixture,side,scorer),defenders=rivals.filter(pid=>state.roles[pid]!=='gk'),defender=defenders[Math.floor(random()*defenders.length)];
  if(state.playerLoad)v158CompactOffers(career,fixture,state,side,scorer,helper);
  const from=v155CompactPoint(state,helper,side),to=v155CompactPoint(state,scorer,side),opponents=rivals.map(pid=>({pid,point:v155CompactPoint(state,pid,1-side)})),range=Math.hypot(to.x-from.x,to.y-from.y),nearest=Math.min(...opponents.map(o=>Math.hypot(o.point.x-from.x,o.point.y-from.y)));
  const pressure=clamp(1-nearest/8,0,1),receiverPressure=clamp(1-Math.min(...opponents.map(o=>Math.hypot(o.point.x-to.x,o.point.y-to.y)))/8,0,1),progressMetres=(to.y-from.y)*(side?1:-1),difficulty=clamp(range/35+pressure*.3,0,1),context={difficulty,pressure,progressMetres,usefulness:clamp(Math.max(0,progressMetres)/12,0,1),repeatKey:`pass:${helper}:${scorer}`,errorAttribution:false};
@@ -100,7 +100,7 @@ function v155CompactActions(career,fixture,state,side,random){
  // No credit for support/cover unless that action was actually simulated.
  if(random()>.22)return false;
  state.stats[scorer].shots++;
- const goalPoint={x:22,y:side?68:0},shotDistance=Math.hypot(to.x-goalPoint.x,to.y-goalPoint.y),shotDifficulty=clamp(shotDistance/35+receiverPressure*.3+Math.abs(to.x-goalPoint.x)/22*.15,0,1);
+ const goalPoint={x:(state.geometry?.width||44)/2,y:side?(state.geometry?.length||68):0},shotDistance=Math.hypot(to.x-goalPoint.x,to.y-goalPoint.y),shotDifficulty=clamp(shotDistance/35+receiverPressure*.3+Math.abs(to.x-goalPoint.x)/22*.15,0,1);
  const keeper=rivals.find(pid=>state.roles[pid]==='gk'),k=v64Player(career,fixture,1-side,keeper),onTarget=random()<clamp(.48+(finishing-10)*.013-receiverPressure*.13,.25,.8);
  // New candidate shots specify their placement before the keeper outcome.
  if(state.playerLoad){const height=.29+random()*2.3,lateral=(random()-.5)*5.5;v158CompactKeeper(career,fixture,state,1-side,keeper,`${fixture.id}:compact-shot:${scorer}:${state.stats[scorer].shots}`,onTarget,height,Math.abs(lateral));}

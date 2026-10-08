@@ -434,3 +434,9 @@ body.v65-world-match #v65-plan-view .v64-keeper-choice .position-label{align-sel
 .v61-career-head h1{display:flex;align-items:center;flex-wrap:wrap;gap:10px}.v149-current-titles{display:inline-flex;align-items:center;gap:6px}.v149-current-titles .v62-award-icon-small{width:32px;height:32px}.v149-sponsor-compact{margin:10px 0 16px;padding:10px 12px;border-radius:8px;background:#142b2e}.v149-sponsor-compact .v66-sponsor-main{gap:12px}.v149-sponsor-compact h3{font-size:10px;margin:0 0 4px}.v149-sponsor-compact .v66-sponsor-brand strong{font-size:15px}.v149-sponsor-compact .v66-sponsor-brand svg,.v149-sponsor-compact .v66-sponsor-brand img{width:32px;height:28px}.v149-sponsor-compact .v66-sponsor-brand small{display:none}.v149-sponsor-compact .v66-sponsor-main p{padding:6px 8px;margin:0;font-size:12px}.v149-sponsor-compact .v66-sponsor-bonuses{margin-top:8px;padding-top:8px}.v149-sponsor-compact .v66-sponsor-bonuses h4{margin:0 0 4px;font-size:10px}.v149-sponsor-compact .v66-sponsor-goals{margin:0;gap:5px}.v149-sponsor-compact .v66-sponsor-goals li{padding:5px 6px;font-size:10px}
 
 .v149-sponsor-compact .v66-sponsor-brand{display:flex;align-items:center;gap:8px}
+
+/* New-world geometry: normalized pitch stays fixed; physical features do not grow. */
+.v64-prematch-field .markings .box{width:calc(50% * var(--v160-field-ratio,1));height:calc(15% * var(--v160-field-ratio,1));left:50%;transform:translateX(-50%)}
+.v64-prematch-field .markings .center-circle{width:calc(23% * var(--v160-field-ratio,1));height:calc(19% * var(--v160-field-ratio,1))}
+.v61-manager-step fieldset{display:grid;gap:10px;margin:16px 0;padding:16px;border:1px solid var(--fl-border,#52615b);border-radius:12px;min-width:0}
+.v61-manager-step fieldset select{max-width:100%;padding:10px;font:inherit}

@@ -1,7 +1,7 @@
 // Match contact uses the same 600 × 740 space as the visible players and ball.
 const v56Pixels=(a,b)=>Math.hypot((a.x-b.x)*600,(a.y-b.y)*740);
 // World contacts use rendered metres; the old pixel metric remains for legacy aerial selection.
-const v56Contact=(a,b)=>typeof v65WorldActive!=='undefined'&&v65WorldActive?Math.hypot((a.x-b.x)*44/(v55Field.right-v55Field.left),(a.y-b.y)*68/(v55Field.bottom-v55Field.top))*32:v56Pixels(a,b);
+const v56Contact=(a,b)=>typeof v65WorldActive!=='undefined'&&v65WorldActive?Math.hypot((a.x-b.x)*v160PitchWidth()/(v55Field.right-v55Field.left),(a.y-b.y)*v160PitchLength()/(v55Field.bottom-v55Field.top))*32:v56Pixels(a,b);
 const v56BaseStats=emptyStats;
 emptyStats=function(){return{...v56BaseStats(),slideAttempts:0,slideWon:0,tackleAttempts:0,tacklesWon:0,fouls:0}};
 for(const key of ['slideAttempts','slideWon','fouls'])if(!statKeys.includes(key))statKeys.push(key);
@@ -31,7 +31,7 @@ function v56StartSlide(tackler,victim){
  tackler.stats.slideAttempts++;tackler.stats.duels++;victim.stats.duels++;tackler.stats.tackleAttempts=(tackler.stats.tackleAttempts||0)+1;
  // A small boot follow-through in metres; the legacy normalized lead put the
  // landing point metres beyond the ball and could make a frontal slide miss it.
- const lead=behind?.04:.016,reach=behind?.25:.18,target={x:clamp(ball.x+forward.x*(world?reach*(v55Field.right-v55Field.left)/44:lead),.06,.94),y:clamp(ball.y+forward.y*(world?reach*(v55Field.bottom-v55Field.top)/68:lead),.06,.94)};
+ const lead=behind?.04:.016,reach=behind?.25:.18,target={x:clamp(ball.x+forward.x*(world?reach*(v55Field.right-v55Field.left)/v160PitchWidth():lead),.06,.94),y:clamp(ball.y+forward.y*(world?reach*(v55Field.bottom-v55Field.top)/v160PitchLength():lead),.06,.94)};
  m.slide={tackler,victim,from:{x:tackler.x,y:tackler.y},target,progress:0,behind};
  if(typeof v158Contact==='function')v158Contact(m,tackler,victim);
  tackler.slideActive=true;m.next=Infinity;
@@ -92,7 +92,7 @@ v55HighPass=function(...args){
 
 function v56Separate(){
  const m=match;if(!m||m.kickoff||m.setPiece||m.throwIn||m.goalPause>0||m.postBanner||m.finished)return;
- const people=m.people,world=typeof v65WorldActive!=='undefined'&&v65WorldActive,sx=world?44/(v55Field.right-v55Field.left)*32:600,sy=world?68/(v55Field.bottom-v55Field.top)*32:740,minimum=world?25.6:36;
+ const people=m.people,world=typeof v65WorldActive!=='undefined'&&v65WorldActive,sx=world?v160PitchWidth()/(v55Field.right-v55Field.left)*32:600,sy=world?v160PitchLength()/(v55Field.bottom-v55Field.top)*32:740,minimum=world?25.6:36;
  for(let i=0;i<people.length;i++)for(let j=i+1;j<people.length;j++){
   const a=people[i],b=people[j];if(a.slideActive||b.slideActive)continue;
   let dx=(a.x-b.x)*sx,dy=(a.y-b.y)*sy,gap=Math.hypot(dx,dy);

@@ -73,8 +73,8 @@ function v66DeadlineHTML(career){
 }
 function v66RecoveryHTML(career){
  const own=v66Own(career),market=career.world.market;
- if(market.phase!=='closed'||career.world.seasonFinished||v66PlayableRoster(own))return'';
- const release=own.roster.length===14&&own.roster.filter(player=>!player.keeper).length<5&&own.roster.filter(player=>player.keeper).length>1;
+ if(market.phase!=='closed'||career.world.seasonFinished||v66PlayableRoster(own,career))return'';
+ const release=own.roster.length===14&&own.roster.filter(player=>!player.keeper).length<v160WorldConfig(career).fieldPlayers&&own.roster.filter(player=>player.keeper).length>1;
  return`<section class="v66-recovery"><h3>Kader für das nächste Spiel vervollständigen</h3><p>Für eine Partie brauchst du mindestens einen Torwart und fünf Feldspieler. Vereinslose Spieler können auch jetzt verpflichtet werden.</p>${release?`<p>Dein Kader ist voll. Du kannst einen Torwart freistellen; das bis dahin angefallene Gehalt bleibt fällig.</p><div class="v66-bid-actions">${own.roster.filter(player=>player.keeper).map(player=>`<button type="button" class="menu-action" data-v66-release-keeper="${escapeHTML(player.pid)}">${escapeHTML(player.name)} freistellen</button>`).join('')}</div>`:''}</section>`;
 }
 function v66MarketHTML(career){
@@ -115,7 +115,7 @@ v58State=function(){
  const market=career.world.market;
  if(market.phase==='sponsor')return{context:`Saison ${career.world.season} · Sponsor`,label:'Sponsor wählen',action:'v66-sponsor'};
  if(market.phase==='open')return{context:`Transferphase · Tag ${market.day} von 5`,label:market.day===5?'Transferschluss bestätigen':'Nächster Transfertag',action:'v66-day'};
- if(market.phase==='closed'&&!career.world.seasonFinished&&!v66PlayableRoster(v66Own(career))){
+ if(market.phase==='closed'&&!career.world.seasonFinished&&!v66PlayableRoster(v66Own(career),career)){
   const pending=market.pendingBids.some(bid=>bid.buyerId===career.manager.managedClubId&&bid.status==='pending'&&!bid.sellerId);
   return{context:'Kader unvollständig',label:pending?'Ablösefreies Angebot auswerten':'Kader vervollständigen',action:pending?'v66-recover-resolve':'v66-recover'};
  }

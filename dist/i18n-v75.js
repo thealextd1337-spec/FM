@@ -3,6 +3,16 @@
  'use strict';
  const key='doppel6.language';
  const labels=new Map(`
+Regeln dieser Vereinswelt	Rules of this club world
+Spielfeld	Pitch
+Größer (+20 % Länge und Breite)	Larger (+20% length and width)
+Bisherige Größe	Original size
+Feldspieler pro Mannschaft	Outfield players per team
+5 plus Torwart	5 plus goalkeeper
+6 plus Torwart	6 plus goalkeeper
+Diese Auswahl gilt dauerhaft für alle Vereine und Wettbewerbe dieser Karriere. Tore und Strafräume behalten ihre Größe.	These settings apply permanently to all clubs and competitions in this career. Goals and penalty areas retain their size.
+Grundordnung	Formation
+
 Ungefährer Wirkungsraum. Die Rolle und Ausrichtung lenken Laufangebote. Spieler reagieren frei auf die Spielsituation.	Approximate operating area. The role and orientation guide runs. Players react freely to the match.
 Empfohlene Rollen	Recommended roles
 Linientormann	Line goalkeeper
@@ -1376,6 +1386,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
  if(typeof v79Nationalities!=='undefined')for(const nation of v79Nationalities)labels.set(nation.de,nation.en);
  const labelsLower=new Map([...labels].map(([de,en])=>[de.toLocaleLowerCase('de'),en]));
  const patterns=[
+  [/^(Bisherige Feldgröße|Größeres Feld) · ([56]) Feldspieler plus Torwart$/,(_,size,count)=>`${size==='Größeres Feld'?'Larger pitch':'Original pitch size'} · ${count} outfield players plus goalkeeper`],
   [/^Rolle: (.+)\. Rolleneignung: (.+)$/,(_,role,color)=>`Role: ${translate(role)}. Role suitability: ${translate(color)}`],
   [/^(Sieg|Niederlage|Unentschieden) (\d+):(\d+) gegen (.+)$/,(_,result,own,other,opponent)=>`${translate(result)} ${own}:${other} vs ${opponent}`],
   [/^Hinspiel (\d+) zu (\d+)$/,(_,home,away)=>`First leg ${home} to ${away}`],

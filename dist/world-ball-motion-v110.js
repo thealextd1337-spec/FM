@@ -52,7 +52,7 @@ v50LooseBall=function(point,...args){
   velocity={x:(loose.target.x-loose.start.x)/(loose.duration*MATCH_SPEED),y:(loose.target.y-loose.start.y)/(loose.duration*MATCH_SPEED)};
  }
  else if(flight){const end=v109FlightPoint(flight,1),before=v109FlightPoint(flight,.98);velocity={x:(end.x-before.x)/Math.max(.001,flight.duration*.02),y:(end.y-before.y)/Math.max(.001,flight.duration*.02)}}
- const speed=Math.hypot(velocity.x*44/(v55Field.right-v55Field.left),velocity.y*68/(v55Field.bottom-v55Field.top))*MATCH_SPEED,limit=Math.min(1,18/Math.max(.001,speed));
+ const speed=Math.hypot(velocity.x*v160PitchWidth()/(v55Field.right-v55Field.left),velocity.y*v160PitchLength()/(v55Field.bottom-v55Field.top))*MATCH_SPEED,limit=Math.min(1,18/Math.max(.001,speed));
  r.vx=velocity.x*limit;r.vy=velocity.y*limit;
  if(loose&&!loose.drop)loose.target={x:loose.start.x+r.vx*loose.duration*MATCH_SPEED,y:loose.start.y+r.vy*loose.duration*MATCH_SPEED};
  const end=flight&&v109FlightPoint(flight,1),before=flight&&v109FlightPoint(flight,.98),duration=loose?.duration;

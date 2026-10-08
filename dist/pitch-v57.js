@@ -31,7 +31,7 @@ function v57PositionFreeKick(realDelta){
  const fraction=Math.min(1,realDelta*3.4);
  const world=typeof v65WorldActive!=='undefined'&&v65WorldActive;
  for(const[player,target]of targets){if(typeof v113FoulLocked==='function'&&v113FoulLocked(m,player))continue;const foul=typeof v113Fouls!=='undefined'&&v113Fouls.get(m)?.piece===piece;if(world||foul)v55Approach(player,target,realDelta*(foul?.6:1));else{player.x+=(target.x-player.x)*fraction;player.y+=(target.y-player.y)*fraction;player.tx=player.x;player.ty=player.y}}
- if(world){const remaining=Math.max(...[...targets].map(([p,t])=>Math.hypot((t.x-p.x)*44/(v55Field.right-v55Field.left),(t.y-p.y)*68/(v55Field.bottom-v55Field.top))/(3+ability(p,'spd')*.14)));if(remaining>.05)piece.wait=Math.max(piece.wait,remaining+.15);}
+ if(world){const remaining=Math.max(...[...targets].map(([p,t])=>Math.hypot((t.x-p.x)*v160PitchWidth()/(v55Field.right-v55Field.left),(t.y-p.y)*v160PitchLength()/(v55Field.bottom-v55Field.top))/(3+ability(p,'spd')*.14)));if(remaining>.05)piece.wait=Math.max(piece.wait,remaining+.15);}
  if(piece.type==='offside')m.ball={...spot};
 }
 const v57BaseStep=step;

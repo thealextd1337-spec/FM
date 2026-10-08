@@ -1,0 +1,26 @@
+{
+  "pass": true,
+  "rows": [
+    {
+      "fieldPlayers": 6,
+      "season": 1,
+      "players": 520,
+      "bytes": 7589576,
+      "matches": 259
+    },
+    {
+      "fieldPlayers": 6,
+      "season": 2,
+      "players": 530,
+      "bytes": 8928815,
+      "matches": 259
+    },
+    {
+      "fieldPlayers": 6,
+      "season": 3,
+      "players": 498,
+      "bytes": 10673445,
+      "matches": 259
+    }
+  ]
+}

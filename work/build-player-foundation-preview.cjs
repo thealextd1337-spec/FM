@@ -1,5 +1,18 @@
 'use strict';
 const fs=require('node:fs'),{candidateParameters}=require('./measure-player-generation.cjs');
-const options={parameterId:'wave2-local-candidate-1',parameters:candidateParameters,qualityMapping:{0:'weak',1:'weak',2:'weak',3:'normal',4:'strong',5:'strong'}};
-const source=`'use strict';\n// Generated local measurement parameters, not approved production balance.\nif(typeof window==='object'&&(location.protocol==='file:'||['127.0.0.1','localhost'].includes(location.hostname))&&['wave2','wave3'].includes(new URLSearchParams(location.search).get('players'))){\n window.D6PlayerFoundationPreviewOptions=${JSON.stringify(options)};\n if(new URLSearchParams(location.search).get('players')==='wave3'){Object.assign(window.D6PlayerFoundationPreviewOptions,{parameterId:'wave3-local-candidate-1',roles:{suitability:D6PlayerRoles.candidateParameters,routine:D6PositionRoutine.candidateParameters,transitions:D6TacticTransitions.candidateParameters},ratings:D6MatchRatings.candidateParameters});}\n window.addEventListener('DOMContentLoaded',()=>{const notice=document.createElement('p');notice.setAttribute('role','status');notice.textContent='Spieler und Rollen · lokale Prüfkarriere. Neue Karrieren verwenden den Balancekandidaten; vorhandene Spielstände bleiben unverändert.';notice.style.cssText='padding:12px 18px;margin:0;color:#f1c56e;background:#1c242e;font:500 13px/1.5 system-ui';document.body.prepend(notice);});\n}\n`;
-fs.writeFileSync('dist/player-foundation-preview-v153.js',source);console.log('Explicit local player candidate generated.');
+const options={parameterId:'native-player-v160-1',parameters:candidateParameters,qualityMapping:{0:'weak',1:'weak',2:'weak',3:'normal',4:'strong',5:'strong'},balanceSource:'wave3-local-candidate-1'};
+function generateSource(){return `'use strict';
+// Existing measured candidates are the initial regular-career parameter stand.
+// Persist all parameters in new worlds; loading never creates this data.
+if(typeof window==='object'){
+ window.D6PlayerFoundationOptions=${JSON.stringify(options)};
+ Object.assign(window.D6PlayerFoundationOptions,{roles:{suitability:D6PlayerRoles.candidateParameters,routine:D6PositionRoutine.candidateParameters,transitions:D6TacticTransitions.candidateParameters},ratings:D6MatchRatings.candidateParameters,loadParameters:D6LoadCandidate.createParameters(),loadDay:0});
+ if((location.protocol==='file:'||['127.0.0.1','localhost'].includes(location.hostname))&&['wave2','wave3'].includes(new URLSearchParams(location.search).get('players'))){
+  window.D6PlayerFoundationPreviewOptions=structuredClone(window.D6PlayerFoundationOptions);
+  const wave=new URLSearchParams(location.search).get('players');window.D6PlayerFoundationPreviewOptions.parameterId=wave==='wave3'?'wave3-local-candidate-1':'wave2-local-candidate-1';
+  if(wave==='wave2')for(const key of ['roles','ratings','loadParameters','loadDay','balanceSource'])delete window.D6PlayerFoundationPreviewOptions[key];
+ }
+}
+`;}
+module.exports={generateSource};
+if(require.main===module){fs.writeFileSync('dist/player-foundation-preview-v153.js',generateSource());console.log('Regular and local preview player parameters generated.');}

@@ -4,14 +4,14 @@
 let v64CareerPlanTab='lineup',v64CareerSelectedSlot=1,v64CareerPresetName='',v64CareerUiId=null,v64CareerDraggedBench=null,v64CareerCommitPending=false;
 function v64CareerClub(career){return career.world.clubs.find(club=>club.id===career.manager.managedClubId)}
 function v64CareerPlanDefault(career){
- const club=v64CareerClub(career),coach=career.world.coaches.find(item=>item.id===club.coachId),tactics=v64CoachTactics(coach);
+ const club=v64CareerClub(career),coach=career.world.coaches.find(item=>item.id===club.coachId),tactics=v64CoachTactics(coach,career);
  const side=v64BuildSide(club,tactics.formation),state={active:side.starters,roles:side.roles,cells:{}};
  v64EnsureCells(state,0);
  return{starters:side.starters,bench:side.bench,roles:side.roles,cells:state.cells,orientation:{},instructions:{},tactics};
 }
 function v64CareerPlanNormalize(career,saved){
  const club=v64CareerClub(career),roster=club.roster,defaults=v64CareerPlanDefault(career),source=saved&&typeof saved==='object'?saved:defaults;
- const formation=v64Formations.includes(source.tactics?.formation)?source.tactics.formation:defaults.tactics.formation;
+ const formation=v160FormationValid(career,source.tactics?.formation)?source.tactics.formation:defaults.tactics.formation;
  const tactics={...defaults.tactics,formation};
  for(const [key,values]of Object.entries({pressing:v63Pressing,passing:v63Passing,focus:v64FocusOptions,defense:v63Defense,aggression:['Vorsichtig','Normal','Aggressiv']}))if(values.includes(source.tactics?.[key]))tactics[key]=source.tactics[key];
  const savedStarters=Array.isArray(source.starters)?source.starters:[],used=new Set(),starters=[],roles={};
@@ -90,7 +90,7 @@ function v140ApplyPausedPreset(career,fixture,state,source){
 }
 function v140TacticsHTML(state,side){return '<h2>Teamtaktik</h2>'+v64UiTactics(state,side);}
 function v64CareerPlanHTML(career){
- const {fixture,state}=v64CareerPlanContext(career),club=v64CareerClub(career),slot=Math.min(v64CareerSelectedSlot,5),pid=fixture.plan.home.starters[slot],player=club.roster.find(item=>item.pid===pid),presets=career.manager.tacticPresets||[];
+ const {fixture,state}=v64CareerPlanContext(career),club=v64CareerClub(career),slot=Math.min(v64CareerSelectedSlot,fixture.plan.home.starters.length-1),pid=fixture.plan.home.starters[slot],player=club.roster.find(item=>item.pid===pid),presets=career.manager.tacticPresets||[];
  const bench=fixture.plan.home.bench.map(id=>{const item=club.roster.find(entry=>entry.pid===id);return`<article class="bench-chip v64-bench-chip v64-career-bench-chip" draggable="true" data-v64-career-bench-card="${escapeHTML(id)}" data-v64-career-keeper="${item.keeper}" aria-label="${escapeHTML(item.name)} auf ein Feldtrikot ziehen"><div class="bench-select"><span class="bench-title">${v61FlagSVG(item.nation)}<b>#${escapeHTML(item.n)} ${escapeHTML(item.name)}</b></span><span class="bench-meta">${v61PositionNames[item.line]} · ${freshText(item.fresh)}</span>${v51StatusHTML(item,item.fresh)}<span class="bench-skills">${v55TopSkillsHTML(item)}</span></div><button type="button" class="player-link" data-v64-career-profile="${escapeHTML(id)}" aria-label="Profil von ${escapeHTML(item.name)} ansehen">Details</button></article>`}).join('');
  const benchPanel=`<section class="v64-bench-section compact-bench v64-career-bench"><div class="compact-bench-head"><h3>Ersatzbank</h3><span>${fixture.plan.home.bench.length} / 5 · Auf ein Trikot ziehen</span></div><div class="bench-strip v64-bench-strip">${bench||'<p>Keine Feldspieler auf der Bank.</p>'}</div></section>`;
  const controls=v64CareerPlanTab==='tactics'?v140TacticsHTML(state,0):`<h3>${escapeHTML(player.name)} · ${v64Roles[state.roles[pid]]}</h3>${v64PositionWarningHTML(player,state.roles[pid])}${state.roleAssignments?v156Selection(career,fixture,state,0,pid):v64OrientationHTML(state,pid)+v64InstructionHTML(state,pid)}`;

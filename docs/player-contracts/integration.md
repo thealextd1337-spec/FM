@@ -1,5 +1,7 @@
 # Welle 2: gelieferte Rechner und lokale Prüfkarriere
 
+Folgestand vom 9. Oktober 2026: Auf neuen Nutzerauftrag ist das bereits vorhandene wave3-Modell jetzt im regulären Start neuer Karrieren aktiv, mit gespeichertem Marker `native-player-v160-1` und unverändertem `balanceSource=wave3-local-candidate-1`. Rollen, echte Aktionsnoten, P03, Alterung und P02 verwenden die bestehenden Adapter. Zwei neue Welten wurden jeweils über drei Saisons geprüft; breite Parameterkalibrierung bleibt offen. [Native Integration](../platform/native-match-player-integration-v160.md). Die folgenden Abschnitte beschreiben die historische Welle-2-Abnahme und deren damalige Aktivierungsgrenzen; alte Karrieren werden weiterhin nicht nachgerüstet.
+
 Aktueller Folgestand: [P02 v158](../platform/freshness-load-v158.md) ersetzt in ausdrücklich **neu angelegten** lokalen wave3-Karrieren die alte Frischekette durch tatsächliche Last-/Erholungsereignisse und zentrale Fähigkeiten. Offene Balancegewichte bleiben Kandidaten. Die folgenden Abnahmedaten beschreiben weiterhin die ursprüngliche Welle 2; deren Bestandskarrieren werden nicht nachgerüstet.
 
 Die folgende Abnahme beschreibt den ursprünglichen Welle-2-Stand. Die anschließende [lokale P04–P06-/Taktiklieferung](../platform/roles-tactics-football.md) verbindet echte Rollen-/Aktionsbewertungen mit P03 in neuen `players=wave3`-Karrieren. Hinweise auf damals fehlende Rollen oder Match-Lernpfade gelten weiterhin für `wave2`, nicht für die neue Prüfkarriere. P02-Verbrauch und Produktionskalibrierung bleiben offen.

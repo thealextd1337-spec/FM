@@ -3,7 +3,7 @@
 // career never calls this generator or constructs missing internal properties.
 function v153Options(options,seed){
  if(!options)return null;
- if(!['wave2-local-candidate-1','wave3-local-candidate-1'].includes(options.parameterId)||!options.parameters||!options.qualityMapping)throw Error('Unbekannter Spieler-Prüfstand.');
+ if(!['wave2-local-candidate-1','wave3-local-candidate-1','native-player-v160-1'].includes(options.parameterId)||!options.parameters||!options.qualityMapping)throw Error('Unbekannter Spieler-Prüfstand.');
  const clean=JSON.parse(JSON.stringify(options));clean.version=2;clean.worldId=seed;if(clean.loadParameters)D6LoadCandidate.materializeParameters(clean.loadParameters);
  // Actual initial youth volumes, rather than a quota per team or a fabricated
  // equal club population, normalize the confirmed high-talent weights.
@@ -11,7 +11,7 @@ function v153Options(options,seed){
  for(const entry of v61Catalog){if(entry.id.includes('-C'))continue;const count=2+Math.floor(v61Random(`${seed}:${entry.id}:starting-youth`)()*3),quality=clean.qualityMapping[entry.profile[2]];if(!Object.hasOwn(counts,quality))throw Error('Jugendprofil fehlt.');counts[quality]+=count;}
  clean.parameters.youthPopulationWeights=counts;return clean;
 }
-function v153PreviewOptions(){return typeof window==='object'?window.D6PlayerFoundationPreviewOptions||null:null;}
+function v153PreviewOptions(){return typeof window==='object'?window.D6PlayerFoundationPreviewOptions||window.D6PlayerFoundationOptions||null:null;}
 function v153Generate(player,foundation,kind,quality,youthQuality){
  if(!foundation)return player;
  if(player.history?.length||player.seasons?.length||player.playerModel)throw Error('Spielergrundlagen dürfen nur bei Neuerzeugung entstehen.');

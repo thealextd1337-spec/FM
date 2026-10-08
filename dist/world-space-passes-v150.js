@@ -2,10 +2,10 @@
 
 // Only future physical world actions. Pursuit is transient; new loose intents can resume.
 const v150SpacePasses=new WeakMap();
-function v150Scale(){return {x:44/(v55Field.right-v55Field.left),y:68/(v55Field.bottom-v55Field.top)}}
+function v150Scale(m=match){return v160PitchScale(m)}
 function v150Pace(p){if(typeof v157Active==='function'&&v157Active(match))return v157Pace(match,p);return p.keeper?2.6+ability(p,'spd')*.065:3+ability(p,'spd')*.14}
 function v150Delay(p){return .08+(20-ability(p,'pos'))*.018+(typeof v158ReactionLoss==='function'?v158ReactionLoss(p):0)}
-function v150KeeperArea(p,point){const s=v150Scale(),goal=p.t===0?v55Field.bottom:v55Field.top;return Math.abs(point.y-goal)*s.y<=16.5&&Math.abs(point.x-.5)*s.x<=12}
+function v150KeeperArea(p,point){if(match?.geometry)return v160KeeperHands(match,p,point);const s=v150Scale(),goal=p.t===0?v55Field.bottom:v55Field.top;return Math.abs(point.y-goal)*s.y<=16.5&&Math.abs(point.x-.5)*s.x<=12}
 function v150Candidates(p,allies,rivals){
  const m=match,s=v150Scale(),dir=p.t===0?-1:1,quick=m.teamDirect?.[p.t],focus=m.teamFocus?.[p.t]||'Variabel',snapshot=v55OffsideSnapshot(p),options=[];
  for(const runner of allies){
@@ -106,7 +106,7 @@ function v150Prepare(m,seconds){
    let best=null;
    for(let i=1;i<=12;i++){
     const time=remaining*i/12,point=flight?{x:m.ball.x+(flight.target.x-m.ball.x)*i/12,y:m.ball.y+(flight.target.y-m.ball.y)*i/12}:{x:r.x+(r.vx||0)*MATCH_SPEED*(1-Math.exp(-2.3*time))/2.3,y:r.y+(r.vy||0)*MATCH_SPEED*(1-Math.exp(-2.3*time))/2.3};
-    if(p.keeper&&!v150KeeperArea(p,point))continue;
+    // Keepers may reach this ball with their feet outside their hand area.
     const delay=Math.max(0,v150Delay(p)-plan.age),arrival=delay+Math.max(0,v122Metres(p,point)-.8)/v150Pace(p),cost=Math.max(time,arrival)+(arrival>time?.25:0);
     if(!best||cost<best.cost)best={point,cost};
    }

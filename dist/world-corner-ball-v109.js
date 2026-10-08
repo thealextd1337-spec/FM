@@ -25,9 +25,9 @@ v50Restart=function(type,team,spot,...args){
  if(v65WorldActive&&current&&!current.finished&&!previous&&type==='corner'){
   const flight=v109IncomingFlight?.current===current?v109IncomingFlight.flight:current.flight;
   const end=flight?v109FlightPoint(flight,1):{...current.ball,elevation:.29},before=flight?v109FlightPoint(flight,.98):null,seconds=flight?flight.duration/MATCH_SPEED*.02:1;
-  const velocity=before?{x:(end.x-before.x)/seconds,y:(end.y-before.y)/seconds,height:(end.elevation-before.elevation)/seconds}:{x:0,y:(team===0?-1:1)*6*(v55Field.bottom-v55Field.top)/68,height:0};
+  const velocity=before?{x:(end.x-before.x)/seconds,y:(end.y-before.y)/seconds,height:(end.elevation-before.elevation)/seconds}:{x:0,y:(team===0?-1:1)*6*(v55Field.bottom-v55Field.top)/v160PitchLength(),height:0};
   // Bound the short visual tail to the stadium apron, even for very short engine flights.
-  const speed=Math.hypot(velocity.x*44/(v55Field.right-v55Field.left),velocity.y*68/(v55Field.bottom-v55Field.top));
+  const speed=Math.hypot(velocity.x*v160PitchWidth()/(v55Field.right-v55Field.left),velocity.y*v160PitchLength()/(v55Field.bottom-v55Field.top));
   if(speed>18){velocity.x*=18/speed;velocity.y*=18/speed}
   motion={start:{x:end.x,y:end.y,elevation:end.elevation??.29},velocity,at:v102Clock(current)};
  }

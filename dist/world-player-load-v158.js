@@ -14,11 +14,12 @@ function v158Generate(player,foundation){
 }
 // A newly reached season is an explicit product event, also for ordinary
 // careers. This hook is never called while loading an existing season.
+function v158StartingForm(seed,season,pid){return Math.floor(v61Random(`${seed}:S${season}:${pid}:starting-form`)()*5)-2;}
 function v158SeasonStart(career){
  const world=career.world;if(world.playerSeasonStart===world.season)return false;
  const absolute=v64AbsoluteDay(career,0),seen=new Set(),players=[...world.clubs.flatMap(c=>[...c.roster,...(c.youthPool||[])]),...(world.market?.freePlayers||[])];
  for(const p of players){
-  if(seen.has(p.pid))continue;seen.add(p.pid);p.fresh=100;p.form=Math.floor(v61Random(`${world.seed}:S${world.season}:${p.pid}:starting-form`)()*5)-2;p.formRatings=[];
+  if(seen.has(p.pid))continue;seen.add(p.pid);p.fresh=100;p.form=v158StartingForm(world.seed,world.season,p.pid);p.formRatings=[];
   if(v158PlayerActive(p)){p.playerModel.freshnessState=D6Freshness.createState(p.pid,100);p.playerModel.loadCursor=Math.max(0,absolute-1);}
  }
  if(v158Active(career))world.playerFoundation.loadDay=absolute;
@@ -182,14 +183,14 @@ function v158RecoverWorld(career,day){
 function v158CompactPoint(state,pid,side){
  const stored=state.playerLoad?.compactPositions[pid];if(stored)return stored;
  const cell=state.cells[pid],keeper=state.roles[pid]==='gk',x=keeper?.5:(cell%5+.5)/5,y=keeper?.93:(Math.floor(cell/5)+.5)/7;
- return {x:(side?1-x:x)*44,y:(side?1-y:y)*68};
+ const g=state.geometry||{width:44,length:68};return {x:(side?1-x:x)*g.width,y:(side?1-y:y)*g.length};
 }
 function v158CompactRun(career,fixture,state,pid,side,target,press=false){
  const load=state.playerLoad;if(load.compactBudget?.minute!==state.minute)load.compactBudget={minute:state.minute,used:{}};
  const remaining=Math.max(0,1-(load.compactBudget.used[pid]||0));
  const p=v64Player(career,fixture,side,pid),from=v158CompactPoint(state,pid,side),dx=target.x-from.x,dy=target.y-from.y,gap=Math.hypot(dx,dy),values=v158Effective(p,state,false);
  const neutral=3+values.spd*.14,pace=D6EffectiveAbilities.movementLimits({maxSpeed:neutral*1.42,acceleration:6.2+values.spd*.08},state.fresh[pid],v158Parameters(career).effectParameters).maxSpeed,distance=Math.min(gap,pace/.936*remaining),ratio=gap?distance/gap:0;
- state.playerLoad.compactPositions[pid]={x:clamp(from.x+dx*ratio,0,44),y:clamp(from.y+dy*ratio,0,68)};
+ state.playerLoad.compactPositions[pid]={x:clamp(from.x+dx*ratio,0,state.geometry?.width||44),y:clamp(from.y+dy*ratio,0,state.geometry?.length||68)};
  const activeMinutes=distance/Math.max(.01,pace)*.936,sprint=pace>neutral*1.15,pressing=press&&pace>.8;if(distance>.01&&(sprint||pressing))v158Pending(state,pid).running[sprint&&pressing?'both':sprint?'sprint':'pressing']+=activeMinutes;
  load.compactBudget.used[pid]=Math.min(1,(load.compactBudget.used[pid]||0)+activeMinutes);
 }

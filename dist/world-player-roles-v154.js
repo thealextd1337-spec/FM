@@ -1,9 +1,9 @@
 'use strict';
 // Role assignments belong only to newly generated, explicitly marked worlds.
-function v154Active(career){return career?.world?.playerFoundation?.parameterId==='wave3-local-candidate-1';}
+function v154Active(career){return ['wave3-local-candidate-1','native-player-v160-1'].includes(career?.world?.playerFoundation?.parameterId);}
 function v154Skills(player){return Object.fromEntries(D6PlayerGeneration.SKILL_KEYS.map(k=>[k,player[k]]));}
 function v154GenerateRoles(player,created,foundation){
- if(foundation.parameterId!=='wave3-local-candidate-1')return;
+ if(!['wave3-local-candidate-1','native-player-v160-1'].includes(foundation.parameterId))return;
  const routine=D6PositionRoutine.createRoutine(player.line,created.playablePositions,foundation.roles.routine);
  const recommendedRoles=D6PlayerRoles.recommendRoles({...created,routine},foundation.roles.suitability);
  player.playerModel.recommendedRoles=recommendedRoles;

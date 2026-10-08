@@ -49,9 +49,28 @@ function v65CreateMatch(context){
  const people=[];
  for(const physical of [0,1])for(const pid of v64Active(context.state,v65Side(physical,context.ownSide)))people.push(v65PhysicalPlayer(context,physical,pid));
  const own=v65Club(context,0),opponent=v65Club(context,1),kits=v61SelectMatchKits(own,opponent,context.ownSide===0);
- match={people,exitedPeople:[],attackFlow:{version:152,qualityVersion:157,flowVersion:159,intents:{},ownerPid:null,team:null},refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:opponent.name,kits};
+ match={people,geometry:v160WorldGeometry(context.career),exitedPeople:[],attackFlow:{version:152,qualityVersion:157,flowVersion:159,intents:{},ownerPid:null,team:null},refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:opponent.name,kits};
  for(const pose of ['raised','far','middle','penalty'])v55RefereeImage(v55RefereeAsset(pose));
  v65ApplyTactics(context);kickoff(0);note('Bereit zum Anpfiff.','restart');
+}
+// These existing native observations affect the next step. Project references
+// to IDs at the checkpoint; restore them into the same controllers after JSON.
+function v160SnapshotContinuation(m){
+ const sample=v121PositioningSamples.get(m),control=v123GroundControls.get(m),challenge=v115KeeperChallenges.get(m),air=v124AirBalls.get(m),restart=m.setPiece||m.kickoff,targets=restart&&v114RestartMoves.get(restart),motion=v102Motion.get(m);
+ const {person,...ground}=control||{}, {keeper,attacker,...keeperState}=challenge||{}, {rebound,...airState}=air||{}, {owner,...loose}=motion?.loose||{};
+ if(control&&!Number.isFinite(ground.at))ground.at=null;
+ return {version:1,...(sample?{positioning:{at:sample.at,positions:[...sample.positions].map(([p,point])=>[p.pid,point])}}:{}),...(control?{ground:{...ground,personPid:person.pid}}:{}),...(challenge?{keeper:{...keeperState,keeperPid:keeper.pid,attackerPid:attacker?.pid||null}}:{}),...(air&&rebound===m.rebound?{air:airState}:{}),...(targets?{restart:[...targets].map(([p,point])=>[p.pid,point])}:{}),...(motion?.loose?{loose:{...loose,ownerPid:owner?.pid||null}}:{}),defensiveThreat:v123DefensiveThreats.get(m)??null};
+}
+function v160RestoreContinuation(m,find){
+ const saved=m.nativeContinuation;if(saved?.version!==1)return;
+ if(saved.positioning)v121PositioningSamples.set(m,{at:saved.positioning.at,positions:new Map(saved.positioning.positions.map(([pid,point])=>[find(pid),point]).filter(([p])=>p))});
+ if(saved.ground){const {personPid,...control}=saved.ground;v123GroundControls.set(m,{...control,at:control.at===null?-Infinity:control.at,person:find(personPid)});}
+ if(saved.keeper){const {keeperPid,attackerPid,...challenge}=saved.keeper;v115KeeperChallenges.set(m,{...challenge,keeper:find(keeperPid),attacker:find(attackerPid)||null});}
+ if(saved.air&&m.rebound)v124AirBalls.set(m,{...saved.air,rebound:m.rebound});
+ if(saved.restart&&(m.setPiece||m.kickoff))v114RestartMoves.set(m.setPiece||m.kickoff,new Map(saved.restart.map(([pid,point])=>[find(pid),point]).filter(([p])=>p)));
+ if(saved.loose){const {ownerPid,...loose}=saved.loose;v102State(m).loose={...loose,owner:find(ownerPid)||null};}
+ if(saved.defensiveThreat!==null)v123DefensiveThreats.set(m,saved.defensiveThreat);
+ delete m.nativeContinuation;
 }
 function v65Snapshot(context){
  if(!match||match.flight||match.slide)return false;
@@ -61,6 +80,8 @@ function v65Snapshot(context){
  // Keeper challenges use the native contact clock. Preserve its origin for
  // new matches so a JSON checkpoint cannot change later contact decisions.
  if(match.attackFlow?.flowVersion===159&&typeof v102Clock==='function')plain.nativeContactClock=v102Clock(match);
+ if(match.geometry?.version===1)plain.nativeContinuation=v160SnapshotContinuation(match);
+ if(match.geometry?.version===1){plain.breakawayCarrierPid=match.breakawayCarrier?.pid||null;delete plain.breakawayCarrier;}
  delete plain.owner;delete plain.flight;delete plain.slide;
  if(plain.setPiece)plain.setPiece={...plain.setPiece,takerPid:plain.setPiece.taker?.pid,taker:undefined};
  if(plain.throwIn)plain.throwIn={...plain.throwIn,takerPid:plain.throwIn.taker?.pid,taker:undefined};
@@ -73,6 +94,8 @@ function v65Restore(context){
  match=saved.match;match.flight=null;match.slide=null;
  if(match.attackFlow?.flowVersion===159&&Number.isFinite(match.nativeContactClock)&&typeof v102State==='function')v102State(match).clock=match.nativeContactClock;
  const find=pid=>match.people.find(person=>person.pid===pid)||match.exitedPeople?.find(person=>person.pid===pid);
+ v160RestoreContinuation(match,find);
+ if(match.breakawayCarrierPid!==undefined){match.breakawayCarrier=find(match.breakawayCarrierPid)||null;delete match.breakawayCarrierPid;}
  match.owner=find(match.ownerPid)||null;delete match.ownerPid;
  if(match.lastPass)match.lastPass={passer:find(match.lastPass.passerPid),receiver:find(match.lastPass.receiverPid),at:match.lastPass.at};
  if(match.setPiece){match.setPiece.taker=find(match.setPiece.takerPid);delete match.setPiece.takerPid}

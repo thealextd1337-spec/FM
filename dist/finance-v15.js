@@ -66,17 +66,17 @@ const v14Step=step;
 function v15ClearChance(m){
  const carrier=m.owner;if(!carrier||carrier.keeper||m.setPiece||m.throwIn)return false;
  const progress=carrier.t===0?1-carrier.y:carrier.y;
- if(typeof v65WorldActive!=='undefined'&&v65WorldActive){const depth=Math.abs(carrier.y-(carrier.t===0?v55Field.top:v55Field.bottom))*68/(v55Field.bottom-v55Field.top),wide=Math.abs(carrier.x-.5)*44/(v55Field.right-v55Field.left);return depth<=16.5&&wide<=12.5||depth<=32&&v55HasClearRun(carrier,m.people.filter(p=>p.t!==carrier.t),progress);}
+ if(typeof v65WorldActive!=='undefined'&&v65WorldActive){const depth=Math.abs(carrier.y-(carrier.t===0?v55Field.top:v55Field.bottom))*v160PitchLength()/(v55Field.bottom-v55Field.top),wide=Math.abs(carrier.x-.5)*v160PitchWidth()/(v55Field.right-v55Field.left);return depth<=16.5&&wide<=12.5||depth<=32&&v55HasClearRun(carrier,m.people.filter(p=>p.t!==carrier.t),progress);}
  return typeof v55HasClearRun==='function'&&v55HasClearRun(carrier,m.people.filter(player=>player.t!==carrier.t),progress);
 }
 function v131AttackContinues(m,team){
  if(m.setPiece||m.throwIn||m.finished||m.goalPause>0)return false;
  if(m.flight)return m.flight.team===team;
  if(m.owner)return m.owner.t===team&&v15ClearChance(m);
- if(m.rebound){const goal=team===0?v55Field.top:v55Field.bottom,depth=Math.abs(m.ball.y-goal)*68/(v55Field.bottom-v55Field.top),wide=Math.abs(m.ball.x-.5)*44/(v55Field.right-v55Field.left);return depth<=16.5&&wide<=12.5&&m.people.some(p=>p.t===team&&!p.keeper&&v122Metres(p,m.ball)<8);}
+ if(m.rebound){const goal=team===0?v55Field.top:v55Field.bottom,depth=Math.abs(m.ball.y-goal)*v160PitchLength()/(v55Field.bottom-v55Field.top),wide=Math.abs(m.ball.x-.5)*v160PitchWidth()/(v55Field.right-v55Field.left);return depth<=16.5&&wide<=12.5&&m.people.some(p=>p.t===team&&!p.keeper&&v122Metres(p,m.ball)<8);}
  return false;
 }
-function v131DangerousFlight(m){const f=m.flight;if(!f||m.setPiece||m.throwIn)return null;const team=f.team??m.lastTouch;if(team!==0&&team!==1)return null;const target=f.target,depth=target&&Math.abs(target.y-(team===0?v55Field.top:v55Field.bottom))*68/(v55Field.bottom-v55Field.top),wide=target&&Math.abs(target.x-.5)*44/(v55Field.right-v55Field.left);return depth<=16.5&&wide<=12.5?team:null;}
+function v131DangerousFlight(m){const f=m.flight;if(!f||m.setPiece||m.throwIn)return null;const team=f.team??m.lastTouch;if(team!==0&&team!==1)return null;const target=f.target,depth=target&&Math.abs(target.y-(team===0?v55Field.top:v55Field.bottom))*v160PitchLength()/(v55Field.bottom-v55Field.top),wide=target&&Math.abs(target.x-.5)*v160PitchWidth()/(v55Field.right-v55Field.left);return depth<=16.5&&wide<=12.5?team:null;}
 function finishActivePlay(){match.fulltimePending=true;match.next=Infinity;match.elapsed=(match.fullTimeEnd||75)-.001;if(!match.flight&&match.goalPause<=0)v14Step(.01,0)}step=function(delta,realDelta){
  if(!match||match.finished)return v14Step(delta,realDelta);
  if(match.fulltimePending){if(match.goalPause>0){match.goalPause=Math.max(0,match.goalPause-realDelta);if(match.goalPause<=0){hideOverlay();match.pendingKickoff=null}updateTeamStats();if(match.goalPause<=0&&!match.flight)v14Step(.01,0);return}if(match.flight){match.elapsed=(match.fullTimeEnd||75)-1;v14Step(delta,realDelta);if(!match.finished)match.elapsed=(match.fullTimeEnd||75)-.001;if(!match.flight&&match.goalPause<=0)v14Step(.01,0);return}return v14Step(.01,0)}
