@@ -19,13 +19,27 @@
   return native?.version===1&&keys.every(k=>Number.isFinite(native[k])&&native[k]>0)?Object.fromEntries(keys.map(k=>[k,native[k]])):fallback;
  }
  // The shared picture keeps the native 68 x 44 projection (2D/THREE). Only the
- // Unity copy is stretched into the actual metres of a larger geometry.
+ // Unity copy is stretched into the actual metres of a larger geometry. Native
+ // contacts and the ball at the feet are already physical metres in normalized
+ // coordinates, so one uniform map keeps them exact. Only the net bulge point
+ // stays between the fixed posts: the native goal-scene drift (v83, up to
+ // +.012 of the width) would otherwise reach 5.55 m on a 52.8 m pitch.
  function scaled(frame,g){
   if(!g||g.length===legacy.length&&g.width===legacy.width)return frame;
-  const sx=g.length/legacy.length,sz=g.width/legacy.width,at=p=>p&&{...p,x:p.x*sx,z:p.z*sz};
-  return {...frame,ball:at(frame.ball),net:frame.net?{...frame.net,z:frame.net.z*sz}:frame.net,players:frame.players.map(p=>({...p,x:p.x*sx,z:p.z*sz,movement:p.movement?{...p.movement,facing:at(p.movement.facing)}:p.movement,action:p.action?.contactWorld?{...p.action,contactWorld:at(p.action.contactWorld)}:p.action}))};
+  const sx=g.length/legacy.length,sz=g.width/legacy.width,at=p=>p&&{...p,x:p.x*sx,z:p.z*sz},post=g.goalWidth/2-.1764;
+  return {...frame,ball:at(frame.ball),net:frame.net?{...frame.net,z:Math.max(-post,Math.min(post,frame.net.z*sz))}:frame.net,players:frame.players.map(p=>({...p,x:p.x*sx,z:p.z*sz,movement:p.movement?{...p.movement,facing:at(p.movement.facing)}:p.movement,action:p.action?.contactWorld?{...p.action,contactWorld:at(p.action.contactWorld)}:p.action}))};
  }
- root.D6WorldUnityContract={schema,kit,player,picture,geometry,scaled};
+ // The browser camera rules are authored for 68 x 44. On a larger pitch the
+ // aim follows the same relative ball position; overview cameras also step back
+ // by the pitch factor, so they show the same ball-led section as on 68 x 44
+ // (not the whole pitch); the following cameras keep their player distance.
+ function camera(aim,ball,g,mode){
+  if(!g||g.length===legacy.length&&g.width===legacy.width)return aim(ball);
+  const sx=g.length/legacy.length,sz=g.width/legacy.width,pose=aim({...ball,x:ball.x/sx,z:ball.z/sz}),k=['wide','goal'].includes(mode)?Math.max(sx,sz):1;
+  const target={x:pose.target.x*sx,y:pose.target.y,z:pose.target.z*sz};
+  return {position:{x:target.x+(pose.position.x-pose.target.x)*k,y:target.y+(pose.position.y-pose.target.y)*k,z:target.z+(pose.position.z-pose.target.z)*k},target,fov:pose.fov};
+ }
+ root.D6WorldUnityContract={schema,kit,player,picture,geometry,scaled,camera};
  if(typeof module==='object'&&module.exports)module.exports=root.D6WorldUnityContract;
 })(typeof window==='object'?window:globalThis);
 
@@ -75,7 +89,9 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  }
  function configuration(frame){
   const context=v65Context(),teams=[v65Club(context,0),v65Club(context,1)];
-  const base={length:68,width:44,goalWidth:44*.2/(v55Field.right-v55Field.left),goalHeight:2.44,penaltyDepth:68*.18/(v55Field.bottom-v55Field.top),penaltyWidth:44*.6/(v55Field.right-v55Field.left)};
+  // Unmarked careers read as the previous pitch; show the boxes and goal the
+  // native rules actually use there (x .25-.75, y .18, goal height width/3).
+  const goalWidth=44*.2/(v55Field.right-v55Field.left),base={length:68,width:44,goalWidth,goalHeight:goalWidth/3,penaltyDepth:68*(.18-v55Field.top)/(v55Field.bottom-v55Field.top),penaltyWidth:44*.5/(v55Field.right-v55Field.left)};
   // Touch devices start with the conservative Unity quality (no MSAA, smaller
   // hard shadows, no bloom), like the browser renderer since v135. ?quality= overrides.
   const requested=new URLSearchParams(location.search).get('quality'),quality=['standard','reduced'].includes(requested)?requested:matchMedia('(pointer:coarse)').matches?'reduced':'standard';
@@ -132,7 +148,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
     const replay=v103ReplayFrame(now,live),frame=replay||raw;if(replay)frame.replay=true;
     v98Frame=frame;v131RecordRendered(frame);
     if(!shownGeometry)shownGeometry=C.geometry(match.geometry,{length:68,width:44});const shown=C.scaled(frame,shownGeometry);
-    const viewKey=v98CameraMode+':'+v98CameraNear+':'+Math.round(rect.width/rect.height*1000000),aim=v98CameraAim(shown.ball,v98CameraMode,rect.width/rect.height,v98CameraNear);
+    const viewKey=v98CameraMode+':'+v98CameraNear+':'+Math.round(rect.width/rect.height*1000000),aim=C.camera(ball=>v98CameraAim(ball,v98CameraMode,rect.width/rect.height,v98CameraNear),shown.ball,shownGeometry,v98CameraMode);
     if(!cameraPose||!live&&!replay&&viewKey!==cameraViewKey)cameraPose=aim;
     else if(live||replay)cameraPose=v98BlendCamera(cameraPose,aim,Math.min(.15,Math.max(0,(now-lastSent)/1000)));
     cameraViewKey=viewKey;

@@ -8,6 +8,15 @@ vm.runInContext(foundation.slice(0,foundation.indexOf('const v61Panel=')),contex
 for(const file of ['world-economy-v66.js','world-transfer-list-v72.js','world-youth-manager-v67.js','world-honours-v74.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
 const call=(name,...args)=>vm.runInContext(name,context)(...args);
 const career=call('v61CreateCareer','GER-2','roster-regression');
+const six=call('v61CreateCareer','GER-2','six-roster-regression','QA',undefined,{fieldSize:'large',fieldPlayers:6});
+const sixOwn=call('v66Club',six,'GER-2');
+call('v66ChooseSponsor',six,sixOwn.id,sixOwn.sponsors[0].id);
+for(const player of sixOwn.roster.filter(player=>!player.keeper).slice(0,5)){player.keeper=true;player.line='gk';}
+assert.strictEqual(call('v66PlayableRoster',sixOwn,six),false,'five outfield players cannot start a six-player match');
+six.world.market.day=5;
+assert.throws(()=>call('v66NextMarketDay',six),/sechs Feldspieler/);
+six.world.market.phase='closed';
+assert.strictEqual(call('v61ValidateCareer',six),true,'incomplete six-player roster remains saveable for recovery');
 const own=call('v66Club',career,'GER-2'),ai=call('v66Club',career,'ENG-1');
 call('v66ChooseSponsor',career,own.id,own.sponsors[0].id);
 career.world.market.day=5;

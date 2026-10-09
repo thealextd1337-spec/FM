@@ -1004,9 +1004,12 @@ Es sind höchstens zwei Wechsel möglich.	At most two substitutions are allowed.
 Europacup-Heimrecht konnte nicht verteilt werden.	European cup home advantage could not be assigned.
 Für den Saisonstart brauchst du mindestens zehn Profis und einen Torwart. Der letzte Transfertag bleibt offen.	You need at least ten professionals and one goalkeeper to start the season. The final transfer day stays open.
 Für den Saisonstart brauchst du mindestens zehn Profis, einen Torwart und fünf Feldspieler. Der letzte Transfertag bleibt offen.	You need at least ten professionals, one goalkeeper and five outfield players to start the season. The final transfer day stays open.
+Für den Saisonstart brauchst du mindestens zehn Profis, einen Torwart und sechs Feldspieler. Der letzte Transfertag bleibt offen.	You need at least ten professionals, one goalkeeper and six outfield players to start the season. The final transfer day stays open.
 Nach dem fünften Tag braucht jeder Verein mindestens zehn Profis, einen Torwart und fünf Feldspieler. Offene Angebote werden nach Fristablauf automatisch abgelehnt.	After the fifth day every club needs at least ten professionals, one goalkeeper and five outfield players. Open offers expire at the deadline.
+Nach dem fünften Tag braucht jeder Verein mindestens zehn Profis, einen Torwart und sechs Feldspieler. Offene Angebote werden nach Fristablauf automatisch abgelehnt.	After the fifth day every club needs at least ten professionals, one goalkeeper and six outfield players. Open offers expire at the deadline.
 Kader für das nächste Spiel vervollständigen	Complete the squad for the next match
 Für eine Partie brauchst du mindestens einen Torwart und fünf Feldspieler. Vereinslose Spieler können auch jetzt verpflichtet werden.	A match needs at least one goalkeeper and five outfield players. Free agents can still be signed now.
+Für eine Partie brauchst du mindestens einen Torwart und sechs Feldspieler. Vereinslose Spieler können auch jetzt verpflichtet werden.	A match needs at least one goalkeeper and six outfield players. Free agents can still be signed now.
 Dein Kader ist voll. Du kannst einen Torwart freistellen; das bis dahin angefallene Gehalt bleibt fällig.	Your squad is full. You can release a goalkeeper; salary accrued so far remains payable.
 Kader unvollständig	Squad incomplete
 Kader vervollständigen	Complete squad

@@ -1,0 +1,28 @@
+# Release 113: Feldgrößen, Mannschaften und Spielerregelmodell
+
+Gemeinsamer Kandidat vom 9. Oktober 2026 auf Nutzerauftrag „Führe zusammen und veröffentliche“. Native Lieferung `9d9213f` und Unity Release 112 (`bc71711`) sind durch Merge `f507733` zusammengeführt. GPT 6.1 integriert native Karriere/Simulation, Release und Veröffentlichung; Claude Opus 5.5 verantwortet Unity/3D und den gemeinsamen Geometrieabgleich. Der veraltete Hauptcheckout bleibt unangetastet.
+
+Neue reguläre Vereinswelten bieten bisheriges/größeres Feld und fünf/sechs Feldspieler plus Torwart. Größer/fünf ist voreingestellt. Die Weltwahl bleibt nach Erstellung konstant; Tore, Strafräume, Körper und Ball behalten ihre physischen Größen. Aufstellung, KI, Transferabschluss und Matchstart berücksichtigen die gewählte Mannschaftsgröße. Neue Spieler aktivieren das vorhandene Fähigkeiten-, Positions-, Rollen-, Entwicklungs-, Alters- und Belastungsmodell mit unveränderten gespeicherten Kandidatenparametern. Fähigkeiten bleiben öffentlich Farbstufen.
+
+Bestehende Welten erhalten keine neuen Parameter oder Weltwahl, fehlende Konfiguration bedeutet bisherig/fünf. Alte Ergebnisse werden nicht nachberechnet. Vorübergehend unspielbare Kader bleiben für den vorhandenen Reparaturweg speicherbar; daraus folgt keine Freigabe für Matchstart oder Transferschluss.
+
+Die Unity-Phasen aus Release 112 bleiben enthalten. Unity liest ausschließlich native Bilder, Regeln, Uhr und Speicherung bleiben bei der Simulation. Die Veröffentlichung verwendet den bestehenden GitHub/World4You-Weg: Manifest und WebGL-Dateien prüfen und ausliefern, danach die HTML-Seite. Die Fußversion, Offline-Dateien und Live-Datei müssen 113 und denselben Hashstand zeigen.
+
+## Abnahme
+
+- [Ursprünglicher eingefrorener nativer Block](platform/native-match-player-integration-v160.md): je 195 Quell-/Buildchecks, zwölf Vollpartien in sechs echten JSON-Fortsetzungsvergleichen, neun Testsaisons, DE/EN-Erstellung und Export/Import/Reload.
+- Zusammengeführte Quelle: [195 Kombinationsprüfungen](../outputs/release-113/native-source-matrix.json); regulärer UI-Erstellungscontroller, Export/Import und echtes Neuladen erneut ausgeführt.
+- Zusammengeführter Build: [195 Kombinationsprüfungen, 42 UI-Prüfungen und drei echte Reloads](../outputs/release-113/native-build.json). Größer/fünf, bisherig/sechs und größer/sechs wurden über den normalen Erstellungskontroller angelegt, exportiert, importiert und neu geladen; die letzte Variante bei 390×844 CSS-Pixeln ohne horizontalen Überlauf. In diesen Tabs funktionierten tatsächliche Animationsframes, keine Timerersetzung.
+- Vollständige native JSON-Fortsetzung auf gemeinsamer Quelle (größer/sechs: je 2911 Ticks, 101′, 0:1) und Build (größer/fünf: je 3153 Ticks, 95′, 2:0): gespeicherter/geladener Verlauf exakt gleich einschließlich Bericht, Frische, Fähigkeiten und Routine. [Quellbeleg](../outputs/release-113/native-source-continuation.json), [Buildbeleg](../outputs/release-113/native-build.json).
+- Alle [83 Produktionskommandos](../outputs/release-113/preflight.json) bestanden, einschließlich sechs neuen Testsaisons mit je 259 abgeschlossenen Partien, drei bestehenden Zehn-Saisons-Wirtschafts-/Nachwuchsprüfungen und Balanceaudit. [Acht abschließende Prüfungen an den geänderten Pfaden](../outputs/release-113/final-changed-paths.json) bestanden.
+- [Kandidatenprüfung](../outputs/release-113/candidate.json): identische Offline-Dateien, Version 113, alle 26 eingebetteten Flutlicht-Assets, unveränderte Unity-C#-Quellen und alle vier WebGL-Dateien gegen das Manifest geprüft. Unity-Source-ID `28badd2c1f7386dbe67f5a8244b33cf49f98eba2378c8442ece04ba16f199e7f`; kein neuer Unity-Build erforderlich, da der bestehende optionale Geometrievertrag den Feldabgleich unterstützt.
+- [Gemeinsame Unity-Browserabnahme von Claude](../outputs/platform/unity-native-v160/final-qa.json): alle vier Kombinationen mit zwölf/vierzehn echten Spielern und Namen, fünf Kameras, Keeperkontakte und sichtbare Tor-/Netzszene. Größer/fünf und größer/sechs vollständig in Unity und nativem 2D gespielt: dreizehn Teilbereich-Hashes sowie die gesamte Karrierewelt gleich, einschließlich Ereignissen, Finanzen, P03 und P02. Pause, Rückschau, Halbzeit, echte JSON-Fortsetzung mit Unity-Neuladen, bestätigter 2D-Rückfall und reduzierte Touch-Stufe bestanden. [21 Bilder](../outputs/platform/unity-native-v160/screens/). „wide“ zeigt wie bisher einen ballgeführten Ausschnitt; die großen Felder erhalten dieselben relativen Bildgrenzen.
+- Der nach Fehlschüssen außerhalb sichtbare Ball ist die vorhandene native Nachlauf-/Ausblendanimation, während der Keeper bereits für den Abstoß als Besitzer geführt wird; Unity skaliert diese Szene proportional. Keine neue Matchentscheidung oder nachträgliche Ergebniskorrektur.
+
+## Veröffentlichung
+
+Release-Kandidat vollständig abgenommen; Upload und direkte Live-Prüfung folgen über den bestehenden Produktionsworkflow. Geprüfter HTML-SHA-256: `b119e19b850bca8a63c37caee5fa9141db628857c9c85b59cfa9095e20345658`. Quell-DOM und Build zeigen beide [Version 113](../outputs/release-113/source-footer.json). Der spätere Neubau nach der Quell-Footer-Korrektur ist bytegleich; die beim ersten Unity-Sichtlauf verwendete Vorfassung unterschied sich ausschließlich durch einen Kamera-Kommentar.
+
+## Grenzen
+
+Die vorhandenen Balancekurven sind unverändert und weiterhin ein Kandidat, keine neue breite Kalibrierungsfreigabe. Physische Mobilhardware wurde nicht gemessen. Der größere Platz verwendet die bisherige native Rechenskala; keine neue Festlegung absoluter Produktmeter. Eine allgemeine neue M01–M03-Engine, alle seltenen Sanktionen, Balleffet und vollständige Torrahmenphysik gehören nicht zu diesem Release.

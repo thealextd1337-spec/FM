@@ -1,0 +1,10 @@
+{
+ "source":"T3 preview http://127.0.0.1:4521/source/index.html?engine=unity, version 113 source, real v61CreateCareer/v64MakeState/v101KickPoint/v98PitchFrame/D6WorldUnityContract",
+ "note":"Keeper kick contact: native v122Metres(keeper,v101KickPoint) vs Unity picture distance after v98PitchPoint + uniform geometry map. Owned ball: native ball view 0.01 normalized beside the owner is mapped unchanged in physical metres (0.01*width/(544/600)).",
+ "rows":[
+  {"fieldSize":"standard","fieldPlayers":5,"people":12,"nativeKickMetres":0.65,"unityKickMetres":0.65,"ownedBallMetres":0.485294,"expectedOwnedBallMetres":0.485294},
+  {"fieldSize":"standard","fieldPlayers":6,"people":14,"nativeKickMetres":0.65,"unityKickMetres":0.65,"ownedBallMetres":0.485294,"expectedOwnedBallMetres":0.485294},
+  {"fieldSize":"large","fieldPlayers":5,"people":12,"nativeKickMetres":0.65,"unityKickMetres":0.65,"ownedBallMetres":0.582353,"expectedOwnedBallMetres":0.582353},
+  {"fieldSize":"large","fieldPlayers":6,"people":14,"nativeKickMetres":0.65,"unityKickMetres":0.65,"ownedBallMetres":0.582353,"expectedOwnedBallMetres":0.582353}
+ ]
+}

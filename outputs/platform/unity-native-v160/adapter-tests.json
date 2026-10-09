@@ -1,0 +1,354 @@
+{
+ "passed": true,
+ "reasoning": [
+  "Native contacts (v101KickPoint, v115ThrowPoint) and the 3D ball at the feet are physical metres inside normalized coordinates; v98PitchPoint maps to 68 x 44 and one uniform length/68, width/44 map restores the native metres exactly.",
+  "The only special clamp is the net bulge point: v83GoalPosition drifts up to x=.588, which is 4.27 m on the standard pitch but 5.12-5.55 m on 52.8 m and would exceed the fixed 4.853 m post and the C# frame validation. Ball and shot flights are not clamped.",
+  "Overview cameras (wide, goal) step back by the pitch factor and show the same ball-led section as on 68 x 44, not the whole pitch; following cameras keep their player distance."
+ ],
+ "combinations": [
+  {
+   "size": "standard",
+   "fieldPlayers": 5,
+   "players": 12,
+   "geometry": {
+    "length": 68,
+    "width": 44,
+    "goalWidth": 9.705882352941178,
+    "goalHeight": 3.2352941176470593,
+    "penaltyDepth": 10.5953488372093,
+    "penaltyWidth": 24.264705882352942
+   },
+   "kickContactMetres": 0.65,
+   "ballAtFeetMetres": 0.65,
+   "goalBallZ": 4.5529,
+   "v83NetDriftZ": 4.2706,
+   "netZShown": 4.2706,
+   "postZ": 4.8529,
+   "cameras": {
+    "tv": {
+     "position": {
+      "x": 8.4,
+      "y": 21,
+      "z": 31
+     },
+     "target": {
+      "x": 18,
+      "y": 0,
+      "z": 3.5
+     },
+     "distanceFactor": 1
+    },
+    "wide": {
+     "position": {
+      "x": 16.8,
+      "y": 32,
+      "z": 49
+     },
+     "target": {
+      "x": 16.8,
+      "y": 0,
+      "z": -2
+     },
+     "distanceFactor": 1
+    },
+    "sideline": {
+     "position": {
+      "x": 8.4,
+      "y": 21,
+      "z": 31
+     },
+     "target": {
+      "x": 18,
+      "y": 0,
+      "z": 3.5
+     },
+     "distanceFactor": 1
+    },
+    "diagonal": {
+     "position": {
+      "x": 8.4,
+      "y": 21,
+      "z": 31
+     },
+     "target": {
+      "x": 18,
+      "y": 0,
+      "z": 3.5
+     },
+     "distanceFactor": 1
+    },
+    "goal": {
+     "position": {
+      "x": -49,
+      "y": 19,
+      "z": 9
+     },
+     "target": {
+      "x": 19.5,
+      "y": 0,
+      "z": 4
+     },
+     "distanceFactor": 1
+    }
+   }
+  },
+  {
+   "size": "standard",
+   "fieldPlayers": 6,
+   "players": 14,
+   "geometry": {
+    "length": 68,
+    "width": 44,
+    "goalWidth": 9.705882352941178,
+    "goalHeight": 3.2352941176470593,
+    "penaltyDepth": 10.5953488372093,
+    "penaltyWidth": 24.264705882352942
+   },
+   "kickContactMetres": 0.65,
+   "ballAtFeetMetres": 0.65,
+   "goalBallZ": 4.5529,
+   "v83NetDriftZ": 4.2706,
+   "netZShown": 4.2706,
+   "postZ": 4.8529,
+   "cameras": {
+    "tv": {
+     "position": {
+      "x": 8.4,
+      "y": 21,
+      "z": 31
+     },
+     "target": {
+      "x": 18,
+      "y": 0,
+      "z": 3.5
+     },
+     "distanceFactor": 1
+    },
+    "wide": {
+     "position": {
+      "x": 16.8,
+      "y": 32,
+      "z": 49
+     },
+     "target": {
+      "x": 16.8,
+      "y": 0,
+      "z": -2
+     },
+     "distanceFactor": 1
+    },
+    "sideline": {
+     "position": {
+      "x": 8.4,
+      "y": 21,
+      "z": 31
+     },
+     "target": {
+      "x": 18,
+      "y": 0,
+      "z": 3.5
+     },
+     "distanceFactor": 1
+    },
+    "diagonal": {
+     "position": {
+      "x": 8.4,
+      "y": 21,
+      "z": 31
+     },
+     "target": {
+      "x": 18,
+      "y": 0,
+      "z": 3.5
+     },
+     "distanceFactor": 1
+    },
+    "goal": {
+     "position": {
+      "x": -49,
+      "y": 19,
+      "z": 9
+     },
+     "target": {
+      "x": 19.5,
+      "y": 0,
+      "z": 4
+     },
+     "distanceFactor": 1
+    }
+   }
+  },
+  {
+   "size": "large",
+   "fieldPlayers": 5,
+   "players": 12,
+   "geometry": {
+    "length": 81.6,
+    "width": 52.8,
+    "goalWidth": 9.705882352941178,
+    "goalHeight": 3.2352941176470593,
+    "penaltyDepth": 10.5953488372093,
+    "penaltyWidth": 24.264705882352942
+   },
+   "kickContactMetres": 0.65,
+   "ballAtFeetMetres": 0.65,
+   "goalBallZ": 4.5529,
+   "v83NetDriftZ": 5.1247,
+   "netZShown": 4.6765,
+   "postZ": 4.8529,
+   "cameras": {
+    "tv": {
+     "position": {
+      "x": 11.999999999999998,
+      "y": 21,
+      "z": 31.7
+     },
+     "target": {
+      "x": 21.599999999999998,
+      "y": 0,
+      "z": 4.2
+     },
+     "distanceFactor": 1
+    },
+    "wide": {
+     "position": {
+      "x": 20.16,
+      "y": 38.4,
+      "z": 58.8
+     },
+     "target": {
+      "x": 20.16,
+      "y": 0,
+      "z": -2.4
+     },
+     "distanceFactor": 1.2
+    },
+    "sideline": {
+     "position": {
+      "x": 11.999999999999998,
+      "y": 21,
+      "z": 31.7
+     },
+     "target": {
+      "x": 21.599999999999998,
+      "y": 0,
+      "z": 4.2
+     },
+     "distanceFactor": 1
+    },
+    "diagonal": {
+     "position": {
+      "x": 11.999999999999998,
+      "y": 21,
+      "z": 31.7
+     },
+     "target": {
+      "x": 21.599999999999998,
+      "y": 0,
+      "z": 4.2
+     },
+     "distanceFactor": 1
+    },
+    "goal": {
+     "position": {
+      "x": -58.800000000000004,
+      "y": 22.8,
+      "z": 10.8
+     },
+     "target": {
+      "x": 23.4,
+      "y": 0,
+      "z": 4.8
+     },
+     "distanceFactor": 1.2
+    }
+   }
+  },
+  {
+   "size": "large",
+   "fieldPlayers": 6,
+   "players": 14,
+   "geometry": {
+    "length": 81.6,
+    "width": 52.8,
+    "goalWidth": 9.705882352941178,
+    "goalHeight": 3.2352941176470593,
+    "penaltyDepth": 10.5953488372093,
+    "penaltyWidth": 24.264705882352942
+   },
+   "kickContactMetres": 0.65,
+   "ballAtFeetMetres": 0.65,
+   "goalBallZ": 4.5529,
+   "v83NetDriftZ": 5.1247,
+   "netZShown": 4.6765,
+   "postZ": 4.8529,
+   "cameras": {
+    "tv": {
+     "position": {
+      "x": 11.999999999999998,
+      "y": 21,
+      "z": 31.7
+     },
+     "target": {
+      "x": 21.599999999999998,
+      "y": 0,
+      "z": 4.2
+     },
+     "distanceFactor": 1
+    },
+    "wide": {
+     "position": {
+      "x": 20.16,
+      "y": 38.4,
+      "z": 58.8
+     },
+     "target": {
+      "x": 20.16,
+      "y": 0,
+      "z": -2.4
+     },
+     "distanceFactor": 1.2
+    },
+    "sideline": {
+     "position": {
+      "x": 11.999999999999998,
+      "y": 21,
+      "z": 31.7
+     },
+     "target": {
+      "x": 21.599999999999998,
+      "y": 0,
+      "z": 4.2
+     },
+     "distanceFactor": 1
+    },
+    "diagonal": {
+     "position": {
+      "x": 11.999999999999998,
+      "y": 21,
+      "z": 31.7
+     },
+     "target": {
+      "x": 21.599999999999998,
+      "y": 0,
+      "z": 4.2
+     },
+     "distanceFactor": 1
+    },
+    "goal": {
+     "position": {
+      "x": -58.800000000000004,
+      "y": 22.8,
+      "z": 10.8
+     },
+     "target": {
+      "x": 23.4,
+      "y": 0,
+      "z": 4.8
+     },
+     "distanceFactor": 1.2
+    }
+   }
+  }
+ ]
+}

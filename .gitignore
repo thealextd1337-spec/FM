@@ -58,3 +58,8 @@ node_modules/
 !work/prepare-user-head-texture.py
 !work/compose-user-head-previews.py
 meshy_output/
+
+# Current combined release evidence
+!outputs/release-113/
+outputs/release-113/tmp/
+!outputs/platform/unity-native-v160/

@@ -1,5 +1,7 @@
 # Entwicklungsdokumentation
 
+- [Release 113](release-113.md): gemeinsame native Karriere-/Feldgrößenintegration mit Unity Release 112; Abnahme und Veröffentlichung.
+
 - [Native Match-/Spielerintegration v160](platform/native-match-player-integration-v160.md): regulärer Start mit dem vorhandenen Regelmodell, dauerhafte Feld-/Mannschaftsauswahl, geometrische Native-/2D-Pfade, echte JSON-Fortsetzung und Mehrsaisonprüfung; getrennte Unity-Übergabe und offene Balance.
 
 - [Release 112](release-112.md): Unity-Phasen 1–4 (Flutlicht, gemessene Bewegung, Vereinstrikots, Präsentation und Qualitätsstufe) mit Veröffentlichungsprüfung.

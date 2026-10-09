@@ -13,11 +13,13 @@ function v98PitchFrame(current){
  const ball=v98PitchPoint(rawBall,turned);
  const restartFacing=Boolean(current.throwIn||current.setPiece?.type==='corner'||current.owner?.keeper&&v99Actions.get(current)?.kicks.get(current.owner.pid)?.phase==='waiting');
  const restartTaker=current.throwIn?.taker||current.setPiece?.taker||current.owner;
- // The engine's offset fits its large 2D disks. Keep possession at the 3D feet.
+ // The engine's offset fits its large 2D disks. Keep possession at the 3D feet:
+ // .65 physical metres like v101KickPoint, expressed in this 68 x 44 picture.
  if(current.owner&&!actionBall&&!scene&&!current.flight&&!current.rebound&&!current.setPiece&&!current.throwIn&&!current.kickoff&&!current.postBanner&&!current.halftimePause&&!current.finished&&!(typeof v123OwnedBall==='function'&&v123OwnedBall(current))){
   const owner=v98PitchPoint(current.owner,turned),dx=ball.x-owner.x,dz=ball.z-owner.z,gap=Math.hypot(dx,dz);
   const direction=(current.owner.t===0?1:-1)*(turned?-1:1);
-  ball.x=owner.x+(gap>0?dx/gap:direction)*.65;ball.z=owner.z+(gap>0?dz/gap:0)*.65;
+  const fx=typeof v160PitchLength==='function'?68/v160PitchLength(current):1,fz=typeof v160PitchWidth==='function'?44/v160PitchWidth(current):1;
+  ball.x=owner.x+(gap>0?dx/gap:direction)*.65*fx;ball.z=owner.z+(gap>0?dz/gap:0)*.65*fz;
  }
  return {
   elapsed:current.elapsed,clock:typeof v102Clock==='function'?v102Clock(current):0,turned,broadcast:typeof v132Broadcast==='function'?v132Broadcast(current):null,

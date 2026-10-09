@@ -25,7 +25,7 @@ for(const asset of [...new Set(html.match(/(?:referees|trophies|sprites|crests)\
 }
 // The published HTTP build loads its matching Unity runtime; file: retains the
 // existing local bridge. The query also separates runtime caches by release.
-html=html.replace('</head>',()=>'<script>if(location.protocol==="http:"||location.protocol==="https:")window.D6UnityMatchUrl=new URL("unity-match/runtime.html?v=112",document.baseURI).href;</script></head>');
-html=html.replace(/PROTOTYP \d+\b/g,'PROTOTYP 112');
+html=html.replace('</head>',()=>'<script>if(location.protocol==="http:"||location.protocol==="https:")window.D6UnityMatchUrl=new URL("unity-match/runtime.html?v=113",document.baseURI).href;</script></head>');
+html=html.replace(/PROTOTYP \d+\b/g,'PROTOTYP 113');
 fs.mkdirSync('outputs',{recursive:true});
 fs.writeFileSync('outputs/index.html',html);fs.writeFileSync('outputs/Doppel-6-Fussballmanager.html',html);

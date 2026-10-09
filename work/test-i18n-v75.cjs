@@ -3,6 +3,8 @@ const source=fs.readFileSync('dist/i18n-v75.js','utf8');
 const pure=source.slice(source.indexOf('const labels='),source.indexOf("let language='de'"));
 const context=vm.createContext({});vm.runInContext(`${pure};globalThis.translate=translate`,context);
 const translate=context.translate;
+assert.equal(translate('Für eine Partie brauchst du mindestens einen Torwart und sechs Feldspieler. Vereinslose Spieler können auch jetzt verpflichtet werden.'),'A match needs at least one goalkeeper and six outfield players. Free agents can still be signed now.');
+assert.equal(translate('Für den Saisonstart brauchst du mindestens zehn Profis, einen Torwart und sechs Feldspieler. Der letzte Transfertag bleibt offen.'),'You need at least ten professionals, one goalkeeper and six outfield players to start the season. The final transfer day stays open.');
 assert.equal(translate('Der Verein muss seinen letzten Torwart behalten.'),'The club must keep its last goalkeeper.');
 assert.equal(translate('Der Verein muss mindestens zehn Profis behalten.'),'The club must keep at least ten professionals.');
 assert.equal(translate('Der Verein kann diesen Spieler nicht mehr abgeben.'),'The club can no longer release this player.');

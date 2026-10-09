@@ -1,0 +1,38 @@
+{
+  "pass": true,
+  "checkedAt": "2026-10-09T07:12:20.544Z",
+  "checks": [
+    {
+      "command": "node work/test-world-foundation-v61.cjs",
+      "pass": true
+    },
+    {
+      "command": "node work/test-world-playable-rosters.cjs",
+      "pass": true
+    },
+    {
+      "command": "node work/test-world-grid-v71.cjs",
+      "pass": true
+    },
+    {
+      "command": "node work/test-i18n-v75.cjs",
+      "pass": true
+    },
+    {
+      "command": "node work/test-3d-documentation-v134.cjs",
+      "pass": true
+    },
+    {
+      "command": "node work/test-player-ui-projection.cjs",
+      "pass": true
+    },
+    {
+      "command": "node work/test-native-player-parameters-v160.cjs",
+      "pass": true
+    },
+    {
+      "command": "node work/platform/qa/test-unity-integration-v160.cjs",
+      "pass": true
+    }
+  ]
+}

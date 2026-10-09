@@ -98,6 +98,11 @@ jobs:
           node work/test-world-views-v68.cjs
           node work/test-world-honours-v74.cjs
           node work/test-match-presentation-v74.cjs
+          node work/test-player-ui-projection.cjs
+          node work/test-player-aging.cjs
+          node work/test-player-load-candidate-v158.cjs
+          node work/test-native-career-v160.cjs
+          node work/platform/qa/test-unity-integration-v160.cjs
           DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs
           DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs
           DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs

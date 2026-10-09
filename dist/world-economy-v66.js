@@ -390,7 +390,7 @@ function v66NextMarketDay(career){
  if(market.day===5){
   if(typeof v72HasPending==='function'&&v72HasPending(career)){if(market.phase==='deadline')throw Error('Bitte öffne die laufenden Verhandlungen und schließe sie ab.');market.phase='deadline';if(typeof v72ReleaseResults==='function')v72ReleaseResults(career);return}
   const own=v66Club(career,career.manager.managedClubId);
-  if(!v66PlayableRoster(own,career))throw Error(`Für den Saisonstart brauchst du mindestens zehn Profis, einen Torwart und ${v160WorldConfig(career).fieldPlayers} Feldspieler. Der letzte Transfertag bleibt offen.`);
+  if(!v66PlayableRoster(own,career))throw Error(`Für den Saisonstart brauchst du mindestens zehn Profis, einen Torwart und ${v160WorldConfig(career).fieldPlayers===6?"sechs":"fünf"} Feldspieler. Der letzte Transfertag bleibt offen.`);
   for(const club of career.world.clubs.filter(item=>!item.simulationOnly&&item.id!==own.id)){
    while(club.roster.filter(player=>player.keeper).length>3){const keeper=club.roster.filter(player=>player.keeper).sort((a,b)=>v66Skill(a)-v66Skill(b)||a.pid.localeCompare(b.pid))[0];v66ReleaseKeeper(career,club,keeper)}
    if(club.roster.length<10&&typeof v67AiFillOutfieldFromYouth==='function')v67AiFillOutfieldFromYouth(career,club);

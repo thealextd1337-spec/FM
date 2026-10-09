@@ -1,6 +1,6 @@
 # Das 3D-System von Doppel 6
 
-Systemstand: Fußballiteration v159 mit Unity-Darstellung, Spielversion 112. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
+Systemstand: Fußballiteration v159 mit Unity-Darstellung, Spielversion 113. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
 
 ## Unity-Darstellung
 
@@ -11,6 +11,8 @@ Seit Spielversion 112 zeigt Unity einen Flutlichtabend mit echten Schatten, Rase
 Neue physische Partien erhalten den offensiven Ablauf v159: erreichbare Ballannahmen und Anschlussläufe, freie Stürmerläufe zum Tor, ball- und empfängerbezogene Abwehrreaktionen sowie Schussziele getrennt von der Keeperreichweite. Gespeicherte Ergebnisse werden nicht neu berechnet. Die gemessene Torquote ist verbessert; vollständige mobile Hardwareabnahme und abschließende Saisonbalance stehen weiterhin aus.
 
 ## Gemeinsame Simulation und Darstellung
+
+Neue Karrieren bieten beide Feldgrößen und fünf oder sechs Feldspieler plus Torwart. Größer/fünf ist voreingestellt. Die gespeicherte Wahl gilt dauerhaft für die ganze Vereinswelt. Größer bedeutet 20 Prozent mehr Länge und Breite in der bisherigen nativen Rechenskala; Tore, Strafräume, Körper und Ball behalten ihre physischen Größen. Neue Spieler verwenden das vorhandene Fähigkeiten-, Rollen-, Entwicklungs-, Alters- und Belastungsmodell mit gespeicherten Kandidatenparametern. Bestehende Welten und Ergebnisse werden nicht umgerechnet; ohne Weltwahl bleibt bisherig/fünf.
 
 2D und 3D zeigen dieselbe physische Vereinswelt-Partie. Tore, Kontakte, Besitz, Abseits, Standards, Fähigkeiten, Statistik und Karrierebuchungen werden in der Simulation entschieden. Der Renderer liest diesen Zustand und darf ihn weder verändern noch zusätzliche Simulationszufallszahlen verbrauchen. Parallel gespielte KI-Partien verwenden den kompakten Matchlauf und sind keine aufgezeichneten 3D-Partien.
 

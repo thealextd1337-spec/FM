@@ -1,0 +1,81 @@
+{
+  "release": 113,
+  "ui": {
+    "checks": [
+      "Isolated QA profile has a free career slot",
+      "New career defaults to larger pitch and five field players",
+      "German field labels",
+      "English field labels",
+      "Manager step records selected rules",
+      "Back navigation keeps both selections",
+      "Start controls fit mobile width",
+      "Eleven generated starting profiles",
+      "English rule summary",
+      "German rule summary",
+      "Normal creation controller saves before opening",
+      "Created career retains preview abilities, positions and form",
+      "Regular model is active in the saved world",
+      "Real export/import keeps the complete world"
+    ],
+    "config": {
+      "version": 1,
+      "fieldSize": "large",
+      "fieldPlayers": 5
+    },
+    "id": "986ee133-2d86-4256-84c5-903a6fce83f5",
+    "nativeAnimationFrames": true,
+    "width": 1280,
+    "scrollWidth": 1280
+  },
+  "reload": {
+    "reload": true,
+    "config": {
+      "version": 1,
+      "fieldSize": "large",
+      "fieldPlayers": 5
+    },
+    "model": "native-player-v160-1"
+  },
+  "fullMatch": {
+    "config": {
+      "fieldSize": "large",
+      "fieldPlayers": 6
+    },
+    "checks": [
+      "Native reaches final whistle false",
+      "Halftime reached false",
+      "Stable world geometry false",
+      "Valid final career false",
+      "Checkpoint exercised false",
+      "Real JSON checkpoint saved",
+      "Real JSON checkpoint accepted",
+      "Native reaches final whistle true",
+      "Halftime reached true",
+      "Stable world geometry true",
+      "Valid final career true",
+      "Checkpoint exercised true",
+      "Complete gameplay/report/model parity after JSON"
+    ],
+    "matches": [
+      {
+        "restore": false,
+        "ticks": 2911,
+        "score": [
+          0,
+          1
+        ],
+        "minutes": 101
+      },
+      {
+        "restore": true,
+        "ticks": 2911,
+        "score": [
+          0,
+          1
+        ],
+        "minutes": 101
+      }
+    ]
+  },
+  "checkedAt": "2026-10-09T07:05:49.857Z"
+}

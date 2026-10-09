@@ -10,6 +10,9 @@ const foundation=fs.readFileSync('dist/world-foundation-v61.js','utf8');
 vm.runInContext(foundation.slice(0,foundation.indexOf('const v61Panel=')),context);
 const get=name=>vm.runInContext(name,context);
 const career=get('v61CreateCareer')('GER-2','grid-seed');
+// This regression covers existing careers with the original minimum per zone.
+// New configured careers allow empty zones (native-match-player-v160.js).
+delete career.world.matchConfig;
 const fixture=get('v62Fixtures')(career).find(item=>item.homeId==='GER-2'||item.awayId==='GER-2');
 get('v64PrepareFixture')(career,fixture);
 const state=get('v64MakeState')(career,fixture),side=fixture.homeId==='GER-2'?0:1,active=get('v64Active')(state,side),cells=get('v64EnsureCells')(state,side);

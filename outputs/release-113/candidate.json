@@ -1,0 +1,79 @@
+{
+  "release": 113,
+  "checkedAt": "2026-10-09T07:36:53.031Z",
+  "checks": [
+    "Both offline files are identical",
+    "Source and build footer are 113",
+    "Source footer setters match 113",
+    "Actual source browser footers show 113",
+    "HTTP runtime uses the release cache key",
+    "Every production preflight command passed",
+    "Final changed-path checks passed",
+    "All four native combinations passed in source and build",
+    "Regular creation, export/import and real reload passed",
+    "Six-player mobile creation has no horizontal overflow",
+    "Default world continues an identical full match after real JSON",
+    "Final Unity QA identifies this build",
+    "Complete large five/six native and Unity worlds agree",
+    "All four Unity configurations show real players and names",
+    "Final Unity source and embedded bytes dist/world-unity-v151.js",
+    "Final Unity source and embedded bytes dist/world-pitch3d-v98.js",
+    "Frozen Unity file unity-web.data",
+    "Frozen Unity file unity-web.framework.js",
+    "Frozen Unity file unity-web.loader.js",
+    "Frozen Unity file unity-web.wasm",
+    "Frozen Unity source ProbeSimulation.cs",
+    "Frozen Unity source ProbeBridge.cs",
+    "Frozen Unity source WorldViewContract.cs",
+    "Frozen Unity source WorldViewBridge.cs",
+    "Frozen Unity source WorldViewPlayback.cs",
+    "Frozen Unity source WorldViewPresentation.cs",
+    "Frozen Unity source WorldViewSetup.cs",
+    "Frozen Unity source WorldKit.shader",
+    "Frozen Unity source ProbeBallPhysics.cs",
+    "Frozen Unity source ProbeNet.cs",
+    "Frozen Unity source ProbePlay.cs",
+    "Frozen Unity source ProbePose.cs",
+    "Frozen Unity source FootballAnimation.cs",
+    "Frozen Unity source FootballPresentation.cs",
+    "Frozen Unity source FootballLocomotion.cs",
+    "Frozen Unity source FootballSetup.cs",
+    "Frozen Unity source ProbeCamera.cs",
+    "Frozen Unity source ProbeSetup.cs",
+    "Frozen Unity source ProbeWebBuild.cs",
+    "Frozen Unity source link.xml",
+    "Frozen Unity source D6Probe.jslib",
+    "Frozen Unity source WorldViewEnvironment.cs",
+    "Frozen Unity source D6Common.hlsl",
+    "Frozen Unity source D6Pitch.shader",
+    "Frozen Unity source D6Env.shader",
+    "Frozen Unity source D6Blob.shader",
+    "Frozen Unity source D6Cli.cs"
+  ],
+  "pass": true,
+  "buildSha256": "b119e19b850bca8a63c37caee5fa9141db628857c9c85b59cfa9095e20345658",
+  "buildBytes": 50792754,
+  "unitySourceId": "28badd2c1f7386dbe67f5a8244b33cf49f98eba2378c8442ece04ba16f199e7f",
+  "runtimeFiles": [
+    {
+      "file": "unity-web.data",
+      "bytes": 53717541,
+      "sha256": "6ef680cde873054058ee4235bd8be89475168c7bd727f803b21e54c55b24af28"
+    },
+    {
+      "file": "unity-web.framework.js",
+      "bytes": 300906,
+      "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+    },
+    {
+      "file": "unity-web.loader.js",
+      "bytes": 27914,
+      "sha256": "28f5486a3d2712bfe64e885c9135cea0dbf27a41cab5f2fce9220ba0ea8ebef2"
+    },
+    {
+      "file": "unity-web.wasm",
+      "bytes": 35069894,
+      "sha256": "123396ab2d3e228c227dc4a460a9648a01adf3b78df7e0af420b3205fc6a4b4f"
+    }
+  ]
+}

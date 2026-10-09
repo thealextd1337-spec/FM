@@ -1,0 +1,67 @@
+{
+ "schema": "d6-unity-native-v160-final-qa/1",
+ "release": "113",
+ "finishedUtc": "2026-10-09T07:34:41Z",
+ "build": {
+  "url": "http://127.0.0.1:4521/native-build.html (outputs/index.html, Unity default, footer PROTOTYP 113)",
+  "finalSha256": "b119e19b850bca8a63c37caee5fa9141db628857c9c85b59cfa9095e20345658",
+  "finalBuiltUtc": "2026-10-09T07:19:26Z",
+  "earlierBuildUtc": "2026-10-09T07:07:27Z",
+  "earlierVsFinal": "Only the C.camera comment in dist/world-unity-v151.js differs (claimed 'whole pitch fits', now 'same ball-led section as on 68 x 44'); no executable change. Parent reports a later rebuild after the progress-v58.js footer setters is byte-identical to b119e19b.",
+  "sourceFilesEmbeddedVerbatim": {"dist/world-unity-v151.js": "14085dc6cdc3bf6afa5f1221c295dbd634a458c702de7ca9c223112ad05c8276", "dist/world-pitch3d-v98.js": "695701fce011977a7df0cb2945ffef33419dce1e917caa3d39774252babe3639"},
+  "unityWebGL": "unchanged, identity 28badd2c (no C# change)",
+  "whichRunOnWhichBuild": {
+   "earlier 07:07 build (comment-only difference)": ["large6 Unity visual run #1 (cameras, pause, review, halftime, JSON, final whistle)", "large6 native 2D run #1"],
+   "final b119e19b": ["large6 Unity parity run #2 incl. goal/net", "large5 Unity full run", "standard5, standard6, legacy visual runs", "2D fallback", "touch quality", "native 2D reference runs large6/large5/default (repeated twice, identical)"]
+  }
+ },
+ "method": {
+  "tool": "T3 collaborative preview, own tabs tab_e (Unity) and tab_f (native 2D); no standalone Playwright",
+  "harness": "work/platform/qa/unity-integration-v160.js (D6QA160, D6QAScenario, QAJ)",
+  "determinism": "Seeded Math.random only inside career creation and native steps; every native step .05*MATCH_SPEED unchanged; Unity and 2D use the same call sequence. sampleEvery (3 for visual phases, 30 for long full-match phases) only thins awaited picture sampling, never the steps.",
+  "pictureChecks": "Each sampled Unity picture is compared with the native positions of exactly that rendered frame (v98Frame.qaNative, same elapsed). Pictures during ball flight are excluded from the position error only.",
+  "digest": "FNV-1a over score, events, stats, fresh, minutes, postMatchReport, ratings, ballAccounting, geometry, people, finances (club balance + full ledger), development (skills, form, fresh, full playerModel incl. development/freshnessState/loadCursor/roleModel), booked fixtures; plus a hash of the complete career world (minus updated/created/savedAt)",
+  "limits": "Desktop Chromium in T3 at about 9 fps with WebGL; no real phone, no mobile fps or battery release, no balance assessment. Touch quality only via emulated pointer:coarse."
+ },
+ "parity": {
+  "large6": {"seed": 160112, "score": "Freiburg (home) 2:0 Bremen (own, away)", "native2D": {"all": "e401b9cf", "world": "5748f227:3901125"}, "unity": {"all": "e401b9cf", "world": "5748f227:3901125"}, "equal": true,
+   "parts": {"score":"3c54589b:5","events":"af056a64:531","stats":"605ed925:9853","fresh":"44337970:994","minutes":"3fe1394e:737","report":"a8830386:35779","ratings":"917fad88:759","ballAccounting":"3d182c5d:22085","geometry":"44a0621d:188","people":"44b3f8ab:9247","finances":"d0c42d0e:20243","development":"23ba8d17:1004372","fixtures":"026d4157:204783"},
+   "extra": "Unity run #1 (pause at 14', different pause point) and #2 (scenario, pause at 20') and both 2D runs give the same all-hash: pause/resume does not alter play. Unity takes 52 more loop ticks because the goal replay holds the simulation; final state identical.",
+   "flow": "halftime 49' (+4), JSON checkpoint 60' with Unity reload (loads 3->4) ready without error, final whistle 99', booked, v61ValidateCareer true, own balance 4880"},
+  "large5": {"seed": 160112, "score": "0:1", "native2D": {"all": "52511eb6", "world": "c3046618:3667799"}, "unity": {"all": "52511eb6", "world": "c3046618:3667799"}, "equal": true,
+   "parts": {"score":"4fcce0e8:5","events":"db4d56e1:281","stats":"36c7347b:8291","fresh":"da4b5235:920","minutes":"88fd286b:702","report":"08e6170e:32781","ratings":"6df59ea4:599","ballAccounting":"a2d402ea:21632","geometry":"44a0621d:188","people":"c171325f:8012","finances":"b9a39f8d:18516","development":"5eff2676:979423","fixtures":"f1c2b0fd:192647"},
+   "flow": "pause 20', halftime 49', JSON checkpoint 60' with Unity reload (loads 1->2), final whistle 99', booked, valid, own balance 4658"},
+  "defaultNewCareer": {"note": "A new career without explicit choice stores matchConfig {version:1, fieldSize:'large', fieldPlayers:5}; default = large5 with its own seed name.", "native2D": {"all": "7d8fb620", "world": "c1f0a26e:3637260", "score": "1:1"}, "unity": "not run in full (same code path as large5, which is equal)"}
+ },
+ "visual": {
+  "large6": {"people": 14, "perTeam": [7,7], "keepers": [1,1], "unityAck": {"players": 14, "allRealIds": true}, "labels": 14, "maxVisibleLabelsInOneFrame": 13, "numbersAndNamesMatchRoster": true, "maxPositionErrorMetres": 0, "playersOutside": 0, "pictures": "408 (run #1 to 60') + 437; run #2 144",
+   "keeperContact": {"goalKick": 0.65, "save": 1.14}, "goal": "24' penalty Becker: ball -40.80 -> -42.25 m behind line, net active, bulge 0.67 at age 0.4 s; max net z over match 3.217 m < post half 4.853 m",
+   "screens": ["screens/large6-01-live-tv-page.png", "screens/large6-02-cam-tv.png", "screens/large6-03-cam-wide.png", "screens/large6-04-cam-sideline.png", "screens/large6-05-cam-diagonal.png", "screens/large6-06-cam-goal.png", "screens/large6-07-paused.png", "screens/large6-08-review.png", "screens/large6-09-halftime.png", "screens/large6-10-after-json-restore.png", "screens/large6-11-final-whistle.png", "screens/large6-12-goal-net-bulge-24min.png"]},
+  "large5": {"people": 12, "perTeam": [6,6], "unityAck": {"players": 12, "allRealIds": true}, "labels": 12, "maxPositionErrorMetres": 0, "playersOutside": 0, "keeperContact": {"goalKick": 0.65, "save": [0.738, 0.905]}, "netMaxZ": 1.081, "formations": "2-2-1 / 1-2-2", "screens": ["screens/large5-01-live-tv-20min.png", "screens/large5-02-match-report.png"]},
+  "standard5": {"people": 12, "geometry": "68 x 44", "unityAck": {"players": 12, "allRealIds": true}, "labels": 12, "maxPositionErrorMetres": 0, "keeperContact": {"goalKick": 0.65}, "screens": ["screens/standard5-01-cam-wide.png", "screens/standard5-02-cam-goal.png"]},
+  "standard6": {"people": 14, "perTeam": [7,7], "geometry": "68 x 44", "unityAck": {"players": 14, "allRealIds": true}, "labels": 14, "maxPositionErrorMetres": 0, "keeperContact": {"goalKick": 0.65}, "screens": ["screens/standard6-01-cam-wide.png", "screens/standard6-02-cam-diagonal.png"]},
+  "legacyNoMatchConfig": {"careerValid": true, "people": 12, "matchGeometry": "v1 68 x 44 (set natively for the match)", "unityGeometry": {"penaltyWidth": 24.265, "penaltyDepth": 10.595, "goalWidth": 9.706, "goalHeight": 3.235}, "unityAck": {"players": 12, "allRealIds": true}, "labels": 12, "screens": ["screens/legacy-01-no-matchconfig-wide.png"]}
+ },
+ "cameras": {
+  "large6Pose": {"tv": {"pos": [16,21,32.25], "fov": 42}, "wide": {"pos": [19.89,36.39,55.74], "fov": 45.86}, "sideline": {"pos": [28.25,16.53,35.8]}, "diagonal": {"pos": [21.23,22.02,33.64]}, "goal": {"pos": [-46.71,22.48,14.25]}},
+  "wideFraming": "Measured with the real v98CameraAim at aspect 1.778: 'wide' is a ball-led section already on 68 x 44 (target x = 0.5 x ball). With the ball in the centre the near corners are at NDC x = +-1.13 (outside), goal mouths at +-0.77 (inside); with the ball at 45 % towards one goal the far goal is at NDC -1.16 (outside). On 81.6 x 52.8 every NDC value is identical to 68 x 44 (uniform 1.2 scale): same framing, not a whole-pitch view. Comment in C.camera corrected accordingly (comment only)."
+ },
+ "flows": {
+  "pauseResume": {"pausedPicturePhase": "paused", "elapsedFrozen": true, "resume": "live, no error"},
+  "review": {"timelineFrames": 88, "seek": "05:06 while live 14:24", "replayPicture": true, "players": 14, "labelsDisabled": true},
+  "halftime": {"minute": 49, "view": "tactics, 2-2-2, 6 field players + keeper, 2 substitutions possible"},
+  "jsonContinuation": "v65Snapshot -> JSON round trip -> match=null -> v65Restore; Unity creates a new session and reloads; full-match digest unchanged against 2D",
+  "fallback2D": {"foreignMessageIgnored": true, "runtimeErrorFromUnityFrame": "QA forced runtime error", "status": "Unity ist nicht verfügbar · 2D ist aktiv", "unityHostRemoved": true, "playsOnIn2D": "15' -> 16', goal, kickoff countdown", "screen": "screens/standard6-03-fallback-2d.png", "note": "After a failure v98Failed stays set; Unity returns only after reload (existing behaviour)"},
+  "quality": {"desktop": "standard", "pointerCoarse": "reduced", "screen": "screens/legacy-02-touch-reduced-932x430.png"}
+ },
+ "ballOutsideFinding": {
+  "observed": ["large6 12': Unity ball (68.34, h 8.89, 21.48) opacity 0.11, keeper owner", "large5 59'/91': Unity ball (52.5, h 5.6-5.9) opacity 1, keeper owner"],
+  "cause": "world-pitch-actions-v99.js:211-212: after a missed shot the outgoing ball keeps flying with its native velocity for 1.15 s (fully visible until 0.65 s, faded out by 1.1 s); natively the keeper already owns the ball for the goal kick, from 1.15 s the ball reappears at his kick point. The browser frame v98Frame shows the same (56.95 / 43.73 m in the 68 x 44 picture); Unity applies the uniform 1.2 scale (68.3 / 52.5 m).",
+  "verdict": "Native browser animation timing, reproduced proportionally; no Unity display error and no simulation effect."
+ },
+ "harnessNotes": [
+  "Switching careers inside one tab without navigation leaves the 'Dein Team' cards and an open post-match dialog from the previous QA career; normal users do not reach this state.",
+  "Directly after setup the previous session's Unity ack can still be visible; the final harness and QAShort wait for the new session before reading the ack."
+ ],
+ "nodeTests": {"command": "node work/platform/qa/test-unity-integration-v160.cjs", "result": "passed", "output": "outputs/platform/unity-native-v160/adapter-tests.json"}
+}
