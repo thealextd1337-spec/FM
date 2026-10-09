@@ -22,5 +22,20 @@
     "Held hand contact is limited to confirmed keeper ownership, known outcome/flight facts and actual arm reach"
   ],
   "rootJsReview": "No findings across keeper picture bridge/contact/identity changes",
-  "limitation": "Reviewer ran no Editor, tests, build, WebGL or physical hardware measurement."
+  "limitation": "Reviewer ran no Editor, tests, build, WebGL or physical hardware measurement.",
+  "androidQaFollowup": {
+    "reviewer": "native_projection_review",
+    "readOnly": true,
+    "findings": [],
+    "priorP2": "closed: uncertain own creation explicitly reports unverifiable cleanup; no foreign target enumeration",
+    "pureTestsPassed": 8,
+    "sourceHashes": {
+      "work/platform/qa/android-3d-acceptance.cjs": "ad977b58145bada5fb6aede90a97e55594a66be6cabd542cc13b93dbf1222968",
+      "work/platform/qa/test-android-3d-acceptance.cjs": "e6e7a184345498502af63cdb565d4c1ebe99c566b71ee693e777a624c9e74cbe"
+    },
+    "hardwareReport": "outputs/3d-quality/android-device-prerequisites/run-2026-10-09T20-37-57-401Z/report.json",
+    "wakePassed": true,
+    "hardwarePass": false,
+    "manualAppSwitch": "not confirmed"
+  }
 }

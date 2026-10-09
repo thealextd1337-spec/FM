@@ -1,6 +1,6 @@
 # Release 118 – Torwartfolgen und Android-Prüfweg
 
-Stand: 9. Oktober 2026. Release 118 ist lokal vollständig geprüft; Auslieferung und Liveabnahme folgen. Der Nutzerauftrag „Setze das um“ umfasst die nächste 3D-Iteration und den Geräteprüfweg. Accounts bleiben die zweite Priorität.
+Stand: 9. Oktober 2026. Release 118 ist veröffentlicht und live abgenommen. Der Nutzerauftrag „Setze das um“ umfasst die nächste 3D-Iteration und den Geräteprüfweg. Accounts bleiben die zweite Priorität.
 
 ## Native Kontakte und Bildvertrag
 
@@ -22,9 +22,9 @@ Zentrale, tiefe, hohe und seitliche Paraden verwenden passende vorhandene Clips.
 
 Der [Android-Prüfweg](platform/android-3d-acceptance.md) nutzt ein physisches USB-Gerät, eine eigene lokale Chrome-QA-Seite und 14 tatsächliche Spieler mit dem regulären nativen Timer. Er verändert keine bestehenden Tabs, Live-Spielstände oder Bildschirm-Systemeinstellungen. Buildhashes, Gerätestand, optionale Unity-Schleifenrate, Browser-Bildtakt und tatsächliches Wachhalten bleiben getrennte Befunde. Eine gewollte Halbzeit-/Vollbildunterbrechung unterbricht die Messung und ist kein Wachhaltefehler. Der unabhängige Review hat diesen Fall gefunden; die Korrektur ist nachgeprüft.
 
-Hier sind App-Gerätezugang deaktiviert und ADB nicht vorhanden. Die ausgeführte Geräteprobe meldet ausdrücklich `blocked`, `pass=false`, `hardwarePass=false`. Echte Pixel-9a-/Pixel-9-Pro-XL-Leistung, Bildschirmtimeout, Appwechsel/Rückkehr, Speicherverhalten und Sichtabnahme bleiben offen. Desktop-WebGL und Unity-Editorbilder ersetzen diese Nachweise nicht.
+App-Gerätezugang ist deaktiviert; zunächst fehlte auch ADB. Nach Nutzerwahl des Pixel 9 Pro XL wurden die offiziellen Google Platform Tools 37.0.1 im ignorierten QA-Werkzeugordner eingerichtet. Der erste Browseraufbau scheiterte im generischen Playwright-Bootstrap. Der ausschließlich eigene Seiten-CDP ist danach erfolgreich geprüft; acht reine Protokoll-/Parserprüfungen und unabhängiger Nachreview bestehen. Der tatsächliche [75-Sekunden-Lauf](../outputs/3d-quality/android-device-prerequisites/run-2026-10-09T20-37-57-401Z/report.json) bestätigt 14 Spieler, unveränderte Buildbytes und durchgehendes Wachhalten über den unveränderten 60-Sekunden-Systemtimeout. Unity-Schleifenrate 60,055/s ist keine GPU-Bildrate. Die Vollbildaufnahme belegt außerdem eine um 71,111 CSS-Pixel nach oben verschobene Unity-Fläche mit grünem unteren Streifen; die Korrektur ist in [Release 119](release-119.md) aufgenommen. Im manuellen Fenster wurde kein Appwechsel beobachtet oder bestätigt. Pixel-9a-Leistung, Appwechsel/Rückkehr, GPU-/Speicherverhalten und allgemeine Sichtabnahme bleiben eigene Prüfungen. Desktop-WebGL und Unity-Editorbilder ersetzen diese Nachweise nicht.
 
-Das [Account-Betriebspaket](platform/account-provider-options.md) stellt zwei konkrete Backendwege mit aktuellen Primärquellen gegenüber. World4You bleibt der bestehende Websitehost. Anbieter-/Betriebsentscheidung, konkretes Elternverfahren und Lösch-/Restorefristen sind weiterhin auszuwählen. Keine Dienste, Authanbindung oder echten Nutzerdaten wurden dafür eingerichtet.
+Das [Account-Betriebspaket](platform/account-provider-options.md) stellt zwei konkrete Backendwege mit aktuellen Primärquellen gegenüber. Der Nutzer hat den eigenen EU-Server mit selbst betriebenen Updates und Backups gewählt; World4You bleibt der bestehende Websitehost. Konkreter Anbieter/Tarif und Gesamtkosten, Betriebszuständigkeit, Elternverfahren und Lösch-/Restorefristen sind noch festzulegen. Keine Dienste, Authanbindung oder echten Nutzerdaten wurden dafür eingerichtet.
 
 ## Prüf- und Veröffentlichungsstand
 
@@ -32,4 +32,12 @@ Alle [89 Produktionskommandos](../outputs/release-118/preflight.json) bestehen a
 
 Die [kleine Touch-Ansicht](../outputs/3d-quality/iteration-118/browser/mobile.json) besteht neun Bedien- und 18 Namensprüfungen. [Vier vollständige native/Unity-Partien](../outputs/3d-quality/iteration-118/browser/native-unity-parity.json) vergleichen Standard/fünf und größer/sechs mit Pause, Halbzeit, Wechsel, Rückschau, echter JSON-Fortsetzung und Abpfiff. Je Vergleich stimmen alle 14 Zustands-/Buchungsteile exakt: Kennungen `fea01da1` und `bb73e1bd` bleiben gegenüber Release 117 erhalten. Keine unbehandelten Seitenfehler; Produkt-/Buildbytes während der Prüfung unverändert. Isoliertes Edge mit Software-WebGL liefert keine physische Android-Leistungsmessung.
 
-Quelle, Footer, Hilfe, HTML-Build und Runtimecache tragen 118. Beide HTML-Kopien sind bytegleich, SHA-256 `78e5fd7cb96e221dd71f83b58b43dff2d945049601016d3e4fea86afa2ef518b`. Veröffentlichung nutzt den bestehenden Workflow mit geprüftem Unity-Upload vor dem HTML-Upload. Der Live-Stand ist bis zur erfolgreichen Auslieferung weiterhin Release 117.
+Quelle, Footer, Hilfe, HTML-Build und Runtimecache tragen 118. Beide HTML-Kopien sind bytegleich, SHA-256 `78e5fd7cb96e221dd71f83b58b43dff2d945049601016d3e4fea86afa2ef518b`. Veröffentlichung nutzt den bestehenden Workflow mit geprüftem Unity-Upload vor dem HTML-Upload.
+
+## Live-Abnahme
+
+Releasecommit [`1b2c3c8`](https://github.com/thealextd1337-spec/FM/commit/1b2c3c8e18e6a0e8ea39e8de40251ee54a6eb114) liegt auf `main`. [Produktionslauf 37983270411](https://github.com/thealextd1337-spec/FM/actions/runs/37983270411) ist erfolgreich abgeschlossen; der [Deploymentnachweis](../outputs/release-118/deployment.json) hält den direkt beobachteten Workflowabschluss fest. Einzelne API-Schrittmetadaten fehlen wegen des anonymen GitHub-Abfragelimits; dies wird nicht als zusätzlicher Schrittbeleg ausgegeben.
+
+Die [Live-Seite](https://fussball.cakamper.at/) liefert Release 118. Alle [65 Release-/Live-Prüfungen](../outputs/release-118/live-hashes.json) bestehen: HTML, vier Unity-Dateien, Manifest, iframe und Runtime-JavaScript sind bytegenau identisch mit dem freigegebenen Stand. Die Quellenkennung und der oben dokumentierte HTML-Hash stimmen überein.
+
+[Neun mobile Bedien- und 18 Namensprüfungen](../outputs/release-118/live-browser/mobile.json) bestehen auch live, einschließlich Ballhilfe, Reload, eigener Präferenz und Rückkehr aus 2D. Die [vollständige native/Unity-Livevergleichspartie](../outputs/release-118/live-browser/native-unity-parity.json) endet auf Standard/fünf bei Minute 100 mit Kennung `fea01da1`; alle 14 Zustands-/Buchungsteile einschließlich Pause, Halbzeit, Rückschau, echter JSON-Fortsetzung und Abpfiff sind identisch. Keine unbehandelten Seitenfehler. Isolierte QA-Karrieren verändern keine Nutzerkarrieren.

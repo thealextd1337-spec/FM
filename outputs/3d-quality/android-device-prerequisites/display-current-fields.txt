@@ -1,0 +1,12 @@
+Display Power Controller:
+  mDisplayId=0
+Display Power Controller Locked State:
+Display Power Controller Configuration:
+Display Power Controller Thread State:
+  mDisplayId=0
+Display Power State:
+  mScreenState=ON
+  mDisplayId=: 0
+  mDisplayId= 0
+  mDisplayId=0
+  mDisplayId=0

@@ -1,30 +1,57 @@
 'use strict';
 // QA only: an existing USB Android Chrome, one new page, one private loopback origin.
-const fs=require('node:fs'),path=require('node:path'),net=require('node:net'),os=require('node:os');
+const fs=require('node:fs'),path=require('node:path'),net=require('node:net');
 const {spawnSync}=require('node:child_process');
 const {createHash}=require('node:crypto');
 const root=path.resolve(__dirname,'../../..');
-const runtime=path.join(os.homedir(),'.cache/codex-runtimes/codex-primary-runtime/dependencies/node');
-const argv=process.argv.slice(2),options={mode:null,adb:'adb',serial:null,seconds:90};
+function parseOptions(argv){const options={mode:null,adb:'adb',serial:null,seconds:90,'manual-seconds':0};
 for(let i=0;i<argv.length;i++){
  const a=argv[i];if(a==='--probe'||a==='--run'){if(options.mode)throw Error('Choose exactly one of --probe and --run');options.mode=a.slice(2);}
- else if(['--adb','--serial','--seconds'].includes(a)){if(!argv[i+1])throw Error('Missing value for '+a);options[a.slice(2)]=argv[++i];}
+ else if(['--adb','--serial','--seconds','--manual-seconds'].includes(a)){if(!argv[i+1])throw Error('Missing value for '+a);options[a.slice(2)]=argv[++i];}
  else throw Error('Unknown argument: '+a);
 }
-if(!options.mode)throw Error('Usage: node android-3d-acceptance.cjs --probe|--run [--adb path] [--serial device] [--seconds 60..180]');
+if(!options.mode)throw Error('Usage: node android-3d-acceptance.cjs --probe|--run [--adb path] [--serial device] [--seconds 60..180] [--manual-seconds 0..180]');
 options.seconds=Number(options.seconds);
 if(!Number.isInteger(options.seconds)||options.seconds<60||options.seconds>180)throw Error('--seconds must be an integer from 60 to 180');
-const out=path.join(root,'outputs/3d-quality/android-device-prerequisites',options.mode+'-'+new Date().toISOString().replace(/[:.]/g,'-'));
-const report={schema:1,mode:options.mode,status:'blocked',pass:false,hardwarePass:false,started:new Date().toISOString(),prerequisites:{},samples:[],manual:['Real app switch and return; wake-lock reacquisition and unchanged native match state','Visual readability of names, team rings and ball in landscape; interaction and keeper animations'],limitations:['No GPU presentation or per-frame GPU timing measurement','No performance acceptance threshold or full device acceptance is inferred from loop counters']};
-let serial=null,server=null,browser=null,page=null,cdp=null,reverse=null,forward=null,origin=null;
+options['manual-seconds']=Number(options['manual-seconds']);if(!Number.isInteger(options['manual-seconds'])||options['manual-seconds']<0||options['manual-seconds']>180)throw Error('--manual-seconds must be an integer from 0 to 180');
+return options;}
+let options,out,report;
+let serial=null,server=null,connection=null,page=null,cdp=null,reverse=null,forward=null,origin=null;
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
+class CdpRpc {
+ constructor(socket){this.socket=socket;this.pending=new Map();this.next=1;this.closed=false;
+  socket.addEventListener('message',e=>{let m;try{m=JSON.parse(String(e.data));}catch{this.fail('Malformed CDP response');return;}const p=this.pending.get(m.id);if(!p)return;this.pending.delete(m.id);clearTimeout(p.timer);if(m.sessionId!==p.sessionId)p.reject(Error('CDP response session mismatch: '+p.method));else if(m.error)p.reject(Error('CDP '+p.method+': '+String(m.error.message||m.error.code)));else p.resolve(m.result);});
+  socket.addEventListener('close',()=>this.fail('CDP connection closed'));socket.addEventListener('error',()=>this.fail('CDP connection error'));
+ }
+ static async connect(url){const socket=new WebSocket(url),rpc=new CdpRpc(socket);try{await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('CDP WebSocket connection timeout')),10000);const finish=fn=>{clearTimeout(timer);socket.removeEventListener('open',opened);socket.removeEventListener('error',errored);socket.removeEventListener('close',errored);fn();};const opened=()=>finish(resolve),errored=()=>finish(()=>reject(Error('CDP WebSocket connection unavailable')));socket.addEventListener('open',opened,{once:true});socket.addEventListener('error',errored,{once:true});socket.addEventListener('close',errored,{once:true});});return rpc;}catch(e){try{rpc.close();}catch{}throw e;}}
+ send(method,params={},sessionId,timeout=10000){if(this.closed)return Promise.reject(Error('CDP connection closed'));const id=this.next++;return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{this.pending.delete(id);reject(Error('CDP method timeout: '+method));},timeout);this.pending.set(id,{resolve,reject,timer,sessionId,method});try{this.socket.send(JSON.stringify({id,method,params,...sessionId?{sessionId}:{}}));}catch{clearTimeout(timer);this.pending.delete(id);reject(Error('CDP send failed: '+method));}});}
+ fail(reason){this.closed=true;for(const p of this.pending.values()){clearTimeout(p.timer);p.reject(Error(reason));}this.pending.clear();}
+ close(){this.fail('CDP connection disconnected');this.socket.close();}
+}
+class OwnedPage {
+ constructor(rpc,qaOrigin){this.rpc=rpc;this.origin=qaOrigin;this.targetId=null;this.sessionId=null;this.creationUncertain=false;}
+ async init(){this.creationUncertain=true;const created=await this.rpc.send('Target.createTarget',{url:'about:blank',background:false});if(typeof created?.targetId!=='string'||!created.targetId)throw Error('Chrome did not return an owned QA target');this.targetId=created.targetId;this.creationUncertain=false;const attached=await this.rpc.send('Target.attachToTarget',{targetId:this.targetId,flatten:true});if(typeof attached?.sessionId!=='string'||!attached.sessionId)throw Error('Chrome did not attach the owned QA target');this.sessionId=attached.sessionId;await this.send('Page.enable');}
+ send(method,params={},timeout){if(!this.sessionId||!['Runtime.evaluate','Page.enable','Page.navigate','Page.bringToFront','Page.addScriptToEvaluateOnNewDocument','Page.captureScreenshot','Input.dispatchTouchEvent'].includes(method))throw Error('Command outside the owned QA page scope');return this.rpc.send(method,params,this.sessionId,timeout);}
+ async evaluate(value,arg){const expression=typeof value==='function'?'('+value.toString()+')('+(arg===undefined?'':JSON.stringify(arg))+')':String(value);const r=await this.send('Runtime.evaluate',{expression,awaitPromise:true,returnByValue:true});if(r?.exceptionDetails)throw Error('Owned QA evaluation failed: '+(r.exceptionDetails.exception?.description||r.exceptionDetails.text||'unknown exception'));if(r?.result?.type==='undefined')return undefined;if(!r?.result||!Object.hasOwn(r.result,'value'))throw Error('Owned QA evaluation did not return a JSON value');return r.result.value;}
+ addInitScript(fn){return this.send('Page.addScriptToEvaluateOnNewDocument',{source:typeof fn==='function'?'('+fn.toString()+')();':String(fn)});}
+ async goto(url,{timeout=90000}={}){const u=new URL(url);if(u.origin!==this.origin||u.pathname!=='/native-build.html')throw Error('Navigation outside the own QA origin refused');const result=await this.send('Page.navigate',{url});if(result?.errorText)throw Error('Own QA navigation failed: '+result.errorText);const until=Date.now()+timeout;while(Date.now()<until){if(interrupted)throw Error('Interrupted');try{const ready=await this.evaluate(()=>({url:location.href,ready:document.readyState!=='loading'&&typeof window.D6UnityMatch==='object'}));if(ready.url===u.href&&ready.ready)return;}catch(e){if(!/Execution context was destroyed|Cannot find context/.test(e.message))throw e;}await wait(250);}throw Error('Own QA DOM navigation timeout');}
+ bringToFront(){return this.send('Page.bringToFront');}
+ locator(selector){if(selector!=='#v99-expand')throw Error('Only the own QA fullscreen control is supported');return {scrollIntoViewIfNeeded:()=>this.evaluate(()=>document.querySelector('#v99-expand')?.scrollIntoView({block:'center',inline:'center'})),boundingBox:()=>this.evaluate(()=>{const e=document.querySelector('#v99-expand');if(!e)return null;const b=e.getBoundingClientRect();return b.width>0&&b.height>0&&getComputedStyle(e).visibility!=='hidden'?{x:b.x,y:b.y,width:b.width,height:b.height}:null;})};}
+ async close(){if(!this.targetId)return;const id=this.targetId;const result=await this.rpc.send('Target.closeTarget',{targetId:id},undefined,5000);if(!result?.success)throw Error('Own QA target did not close');this.targetId=null;this.sessionId=null;}
+}
+function displayState(text){
+ const blocks=text.split(/^[ \t]*Display Power Controller:[ \t]*$/m).slice(1),states=[];
+ for(const block of blocks){if(block.match(/^[ \t]*mDisplayId=[ \t]*(\d+)[ \t]*$/m)?.[1]!=='0')continue;const thread=block.split(/^[ \t]*Display Power Controller Thread State:[ \t]*$/m)[1];if(!thread||thread.match(/^[ \t]*mDisplayId=[ \t]*(\d+)[ \t]*$/m)?.[1]!=='0')continue;const current=thread.split(/^[ \t]*Display Power State:[ \t]*$/m)[1];if(!current)continue;const lines=current.replace(/^\r?\n/,'').split(/\r?\n/),part=[];for(const line of lines){if(line&& !/^[ \t]/.test(line))break;part.push(line);}const found=[...part.join('\n').matchAll(/^[ \t]*mScreenState=(ON|OFF|DOZE|DOZE_SUSPEND|ON_SUSPEND|UNKNOWN)[ \t]*$/gm)];if(found.length===1)states.push(found[0][1]);}
+ return states.length===1?states[0]:null;
+}
 function adb(args,device=true){
  const r=spawnSync(options.adb,[...(device?['-s',serial]:[]),...args],{encoding:'utf8',timeout:12000,windowsHide:true});
  if(r.error||r.status!==0)throw Error('ADB command unavailable/failed: '+args.slice(0,2).join(' '));return r.stdout.trim();
 }
 function power(){
  const text=adb(['shell','dumpsys','power']);
- return {wakefulness:text.match(/mWakefulness=(\w+)/)?.[1]??null,displayState:text.match(/Display Power: state=(\w+)/)?.[1]??text.match(/mScreenState=(\w+)/)?.[1]??null};
+ const legacy=text.match(/^[ \t]*Display Power: state=(ON|OFF|DOZE|DOZE_SUSPEND|ON_SUSPEND|UNKNOWN)\b/m)?.[1];
+ return {wakefulness:text.match(/^[ \t]*mWakefulness=(\w+)/m)?.[1]??null,displayState:legacy??displayState(adb(['shell','dumpsys','display'])),displayStateSource:legacy?'dumpsys-power':'dumpsys-display/DisplayPowerController[0]'};
 }
 function bindings(text){return text.split(/\r?\n/).filter(Boolean).map(line=>line.trim().split(/\s+/));}
 function hasBinding(rows,local,remote,owner){return rows.some(row=>row.at(-2)===local&&(!remote||row.at(-1)===remote)&&(!owner||row[0]===owner));}
@@ -41,9 +68,10 @@ async function buildSnapshot(){
 }
 async function prerequisites(){
  report.prerequisites.nodeMajor=Number(process.versions.node.split('.')[0]);
- report.prerequisites.nodeSupported=report.prerequisites.nodeMajor>=20;
+ report.prerequisites.nodeSupported=report.prerequisites.nodeMajor>=22&&typeof WebSocket==='function';
  report.prerequisites.buildAvailable=fs.existsSync(path.join(root,'outputs/index.html'));
- report.prerequisites.playwrightAvailable=fs.existsSync(path.join(runtime,'node_modules/playwright/index.js'));
+ report.prerequisites.nativeWebSocketAvailable=typeof WebSocket==='function';
+ report.prerequisites.adbSelection=options.adb==='adb'?'PATH':'explicit path';
  report.buildBefore=await buildSnapshot();
  try{report.prerequisites.adbVersion=adb(['version'],false).split(/\r?\n/)[0];report.prerequisites.adbAvailable=true;}catch{report.prerequisites.adbAvailable=false;report.reason='ADB missing: install/locate Platform Tools yourself and use --adb; no SDK download performed';return false;}
  const devices=adb(['devices','-l'],false).split(/\r?\n/).slice(1).map(line=>line.trim().split(/\s+/)).filter(row=>row.length>=2);
@@ -65,8 +93,8 @@ async function prerequisites(){
  report.prerequisites.chargingStayAwake=Number.isFinite(stay)&&Boolean(stay&plugged);
  report.prerequisites.initialPower=power();
  const p=report.prerequisites;
- const ok=p.nodeSupported&&report.buildBefore.valid&&p.playwrightAvailable&&p.chromeInstalled&&p.chromeDebugSocket&&p.initialPower.wakefulness==='Awake';
- report.status=ok?'prerequisites-ready':'blocked';report.reason=ok?'Prerequisites only; no match, FPS or wake timeout test has run':'Need current build, Node 20+, Playwright, unlocked awake device and already-open stable Chrome with USB debugging';return ok;
+ const ok=p.nodeSupported&&report.buildBefore.valid&&p.chromeInstalled&&p.chromeDebugSocket&&p.initialPower.wakefulness==='Awake';
+ report.status=ok?'prerequisites-ready':'blocked';report.reason=ok?'Prerequisites only; no match, FPS or wake timeout test has run':'Need current build, Node 22+ with WebSocket, unlocked awake device and already-open stable Chrome with USB debugging';return ok;
 }
 async function serve(){
  server=require('../../ui-redesign/serve.cjs').createServer();const source=server.listeners('request')[0];server.removeAllListeners('request');
@@ -89,12 +117,22 @@ async function snapshot(){return page.evaluate(()=>{
  const p=window.D6UnityMatch?.projection,u=window.D6UnityMatch;
  return {hostTime:performance.now(),elapsed:match?.elapsed??null,phase:v65Context()?.state.phase??null,halftimePause:match?.halftimePause??0,finished:Boolean(match?.finished),visible:document.visibilityState,unityActive:Boolean(u?.active),clockHeld:Boolean(u?.clockHeld),unityError:u?.lastError??null,sequence:p?.sequence??null,renderFrame:Number.isFinite(p?.renderFrame)?p.renderFrame:null,renderTime:Number.isFinite(p?.renderTime)?p.renderTime:null,wakeHeld:typeof matchWakeLock!=='undefined'&&Boolean(matchWakeLock&&!matchWakeLock.released),nativeFullscreen:Boolean(document.fullscreenElement),viewportFullscreen:document.body.classList.contains('v132-fullscreen')};
  });}
+async function captureOwnScreenshot(name){
+ const record={name,status:'not-captured',at:new Date().toISOString()};(report.screenshots??=[]).push(record);
+ try{const state=await snapshot();if(state.visible!=='visible'){record.reason='Own QA page is not visible; no screenshot taken';return;}
+  record.layout=await page.evaluate(()=>{const rect=e=>{if(!e)return null;const b=e.getBoundingClientRect();return {x:b.x,y:b.y,width:b.width,height:b.height,bottom:b.bottom};};const area=document.querySelector('#match-area'),frame=document.querySelector('#d6-unity-host iframe'),canvas=frame?.contentDocument?.querySelector('canvas'),projection=D6UnityMatch.projection;return {nativeFullscreen:Boolean(document.fullscreenElement),fullscreenElement:document.fullscreenElement?.id??null,viewportFullscreen:document.body.classList.contains('v132-fullscreen'),viewport:{width:innerWidth,height:innerHeight,devicePixelRatio},visualViewport:visualViewport?{width:visualViewport.width,height:visualViewport.height,offsetTop:visualViewport.offsetTop,offsetLeft:visualViewport.offsetLeft}:null,body:rect(document.body),matchArea:rect(area),pitchStage:rect(document.querySelector('#match-area .v42-pitch-stage')),unityHost:rect(document.querySelector('#d6-unity-host')),iframe:rect(frame),canvas:canvas?{css:rect(canvas),renderWidth:canvas.width,renderHeight:canvas.height}:null,projection:projection?{width:projection.width,height:projection.height,sequence:projection.sequence}:null,backgrounds:{body:getComputedStyle(document.body).backgroundColor,matchArea:area?getComputedStyle(area).backgroundColor:null,iframe:frame?getComputedStyle(frame).backgroundColor:null}};});
+  const result=await page.send('Page.captureScreenshot',{format:'png',fromSurface:true,captureBeyondViewport:false});if(typeof result?.data!=='string'||!result.data.startsWith('iVBORw0KGgo'))throw Error('Own QA screenshot did not return PNG data');fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,name+'.png'),Buffer.from(result.data,'base64'));record.status='captured';record.file=name+'.png';record.note='Only owned QA page pixels; Chrome/Android system bars are outside this capture';
+ }catch(e){record.reason=String(e.message);}
+}
+async function manualWindow(){
+ const seconds=options['manual-seconds'];if(!seconds)return;
+ const observation=report.manualObservations={status:'observing',seconds,pass:false,samples:[],note:'User switches apps manually; only the owned QA page is polled. No automated Home/app switch, forced resume/fullscreen or inferred acceptance.'};
+ try{observation.baseline=await snapshot();console.log(JSON.stringify({phase:'manual-ready',seconds,instructions:'Die eigene QA-Seite bleibt offen. Jetzt manuell die App wechseln und zu dieser QA-Seite zurückkehren; danach Vollbild/Wachhalten prüfen.'}));const start=Date.now();while(Date.now()-start<seconds*1000){if(interrupted)throw Error('Interrupted');await wait(Math.min(2000,seconds*1000-(Date.now()-start)));if(interrupted)throw Error('Interrupted');observation.samples.push(await snapshot());}observation.end=await snapshot();observation.status='observed-awaiting-user-feedback';if(observation.end.visible==='visible')await captureOwnScreenshot('manual-return');else observation.screenshotSkipped='Own QA page was not visible at manual-window end';}catch(e){observation.status='interrupted-or-not-measured';observation.reason=String(e.message);}
+}
 async function run(){
- const endpoint=await serve(),{chromium}=require(path.join(runtime,'node_modules/playwright'));
- browser=await chromium.connectOverCDP(endpoint,{timeout:20000});
- // Never enumerate/read/close existing pages. Existing default context stays open.
- const context=browser.contexts()[0];if(!context)throw Error('Android Chrome has no default CDP context');
- page=await context.newPage();
+ const endpoint=await serve(),response=await fetch(endpoint+'/json/version',{signal:AbortSignal.timeout(10000)});if(!response.ok)throw Error('Chrome browser CDP endpoint unavailable');const version=await response.json(),socketUrl=new URL(version.webSocketDebuggerUrl);const expected=new URL(endpoint);
+ if(socketUrl.protocol!=='ws:'||!['127.0.0.1','localhost'].includes(socketUrl.hostname)||socketUrl.port!==expected.port||socketUrl.pathname!=='/devtools/browser')throw Error('Chrome returned a CDP endpoint outside the own forward');
+ connection=await CdpRpc.connect(socketUrl.href);page=new OwnedPage(connection,origin);await page.init();report.cdp={transport:'Node native WebSocket',scope:'Only newly created QA target; no target enumeration, discovery or global auto-attach'};
  await page.addInitScript(()=>{window.addEventListener('message',e=>{if(window!==top&&e.source===parent&&e.origin===location.origin&&e.data?.channel==='d6-world-view-1'&&e.data.kind==='load')window.__androidQAConfig={quality:e.data.config?.quality,fieldPlayers:e.data.config?.geometry?.fieldPlayers};});});
  const navigatedAt=Date.now();await page.goto(origin+'/native-build.html?engine=unity',{waitUntil:'domcontentloaded',timeout:90000});await page.bringToFront();report.load={navigationToDomMs:Date.now()-navigatedAt,profile:'Existing Chrome profile/process; fresh QA origin; no cache/profile reset; no cold-start claim'};
  await page.evaluate(fs.readFileSync(path.join(__dirname,'unity-integration-v160.js'),'utf8'));
@@ -107,7 +145,7 @@ async function run(){
  // setup deliberately clears its interval. Resume through the real native entry point.
  await page.evaluate(()=>{v65Pause();v65Resume();hideOverlay();v132RevealControls();window.__androidQA={raf:[],last:null,trustedTap:null};const b=document.querySelector('#v99-expand');b.addEventListener('click',e=>{__androidQA.trustedTap={isTrusted:e.isTrusted,active:navigator.userActivation?.isActive??null};},{once:true,capture:true});function raf(t){if(__androidQA.last!==null&&__androidQA.raf.length<24000)__androidQA.raf.push(t-__androidQA.last);__androidQA.last=t;__androidQA.request=requestAnimationFrame(raf);}__androidQA.request=requestAnimationFrame(raf);});
  await page.locator('#v99-expand').scrollIntoViewIfNeeded();const box=await page.locator('#v99-expand').boundingBox();if(!box)throw Error('Fullscreen button unavailable; manual real-screen tap required');
- cdp=await context.newCDPSession(page);
+ cdp={send:(method,params)=>page.send(method,params)};
  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:box.x+box.width/2,y:box.y+box.height/2}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
  await wait(1500);report.fullscreenTap=await page.evaluate(()=>__androidQA.trustedTap);const initial=await snapshot();
  if(!report.fullscreenTap?.isTrusted||!initial.nativeFullscreen&&!initial.viewportFullscreen)throw Error('Trusted fullscreen tap failed; repeat as a documented manual step');
@@ -137,14 +175,18 @@ async function run(){
  else if(eligible){const awake=report.samples.every(s=>s.power.wakefulness==='Awake'&&s.power.displayState==='ON'),lock=report.samples.every(s=>s.wakeHeld);report.wake={status:observedMs>timeout&&awake&&lock?'passed':'failed',screenOffTimeoutMs:timeout,observedMs,continuousEligibleScope:true,awakeThroughout:awake,wakeLockHeldThroughout:lock,note:'Observed scope stayed visible and fullscreen in live/paused play, excluding native half/full-time. No touches after fullscreen entry; dumpsys power read only; global charging stay-awake excluded. Other OS wake policies can still affect attribution.'};}
  report.automatedChecksPassed=report.native.elapsedDelta>0&&report.native.activeThroughout&&report.native.visibleThroughout&&report.wake.status==='passed';
  report.status='measured-manual-acceptance-outstanding';report.reason='Raw physical-device observations; manual app-switch/readability and product performance acceptance remain outstanding';
+ await captureOwnScreenshot('automatic-fullscreen');await manualWindow();
 }
 async function cleanup(){
  const failures=[];
+ if(page?.creationUncertain)failures.push('own-target-creation-unverifiable-manual-close-may-be-needed');
  if(page)try{await page.close();}catch{failures.push('own-page-close');}
- if(browser)try{await browser.close();}catch{failures.push('CDP-disconnect');}
+ if(connection)try{connection.close();}catch{failures.push('CDP-disconnect');}
  // Remove only bindings still pointing at our original destination; never --remove-all.
  for(const [kind,binding] of [['forward',forward],['reverse',reverse]])if(binding)try{const rows=bindings(adb([kind,'--list'],kind==='reverse'));if(hasBinding(rows,binding.local,binding.remote,kind==='forward'?serial:null))adb([kind,'--remove',binding.local]);else failures.push(kind+'-binding-changed-preserved');}catch{failures.push(kind+'-cleanup');}
- if(server)await new Promise(r=>server.close(r));report.cleanup={failures};
+ if(server)await new Promise(r=>server.close(r));report.cleanup={failures,ownTargetCreationVerified:!page?.creationUncertain};
 }
-let interrupted=false;process.on('SIGINT',()=>{interrupted=true;});
-(async()=>{try{if(await prerequisites()&&options.mode==='run'){if(interrupted)throw Error('Interrupted');await run();}}catch(e){report.status='blocked-or-failed';report.reason=String(e.message).replaceAll(serial||'\0','<device>');}finally{await cleanup();try{report.buildAfter=await buildSnapshot();report.buildUnchanged=JSON.stringify(report.buildBefore)===JSON.stringify(report.buildAfter);if(!report.buildUnchanged||!report.buildAfter.valid){report.status='blocked-or-failed';report.reason='Build changed or manifest verification failed; observations are not a frozen build acceptance';report.automatedChecksPassed=false;}}catch{report.status='blocked-or-failed';report.reason='Final build snapshot unavailable';}report.finished=new Date().toISOString();fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:report.status,pass:false,hardwarePass:false,reason:report.reason,report:path.relative(root,path.join(out,'report.json'))}));process.exitCode=report.status==='prerequisites-ready'||report.status==='measured-manual-acceptance-outstanding'?0:2;}})();
+let interrupted=false;
+async function main(){options=parseOptions(process.argv.slice(2));out=path.join(root,'outputs/3d-quality/android-device-prerequisites',options.mode+'-'+new Date().toISOString().replace(/[:.]/g,'-'));report={schema:1,mode:options.mode,status:'blocked',pass:false,hardwarePass:false,started:new Date().toISOString(),prerequisites:{},samples:[],manual:['Real app switch and return; wake-lock reacquisition and unchanged native match state','Visual readability of names, team rings and ball in landscape; interaction and keeper animations'],limitations:['No GPU presentation or per-frame GPU timing measurement','No performance acceptance threshold or full device acceptance is inferred from loop counters']};process.on('SIGINT',()=>{interrupted=true;});try{if(await prerequisites()&&options.mode==='run'){if(interrupted)throw Error('Interrupted');await run();}}catch(e){report.status='blocked-or-failed';report.reason=String(e.message).replaceAll(serial||'\0','<device>');}finally{await cleanup();try{report.buildAfter=await buildSnapshot();report.buildUnchanged=JSON.stringify(report.buildBefore)===JSON.stringify(report.buildAfter);if(!report.buildUnchanged||!report.buildAfter.valid){report.status='blocked-or-failed';report.reason='Build changed or manifest verification failed; observations are not a frozen build acceptance';report.automatedChecksPassed=false;}}catch{report.status='blocked-or-failed';report.reason='Final build snapshot unavailable';}report.finished=new Date().toISOString();fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({status:report.status,pass:false,hardwarePass:false,reason:report.reason,report:path.relative(root,path.join(out,'report.json'))}));process.exitCode=report.status==='prerequisites-ready'||report.status==='measured-manual-acceptance-outstanding'?0:2;}}
+module.exports={CdpRpc,OwnedPage,displayState,parseOptions};
+if(require.main===module)main().catch(e=>{console.error(e.message);process.exitCode=2;});

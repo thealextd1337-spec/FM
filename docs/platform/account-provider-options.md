@@ -1,8 +1,8 @@
 # Accounts: konkretes Betriebspaket zur Auswahl
 
-Stand und Quellenabruf: **9. Oktober 2026**. Vorschlag zur Anbieterentscheidung, keine Buchung, Zugangskonfiguration oder Produktionsanmeldung. 3D-Abnahme bleibt vorrangig. Grundlage: [Produktregeln](../product.md), [Accountsauftrag](../agentenauftraege/04-accounts-adminstatistik.md), [offene Gates](account-preflight.md), [C01-Vertrag](account-contract.md) und [C02-Vertrag](admin-statistics-contract.md).
+Stand und Quellenabruf: **9. Oktober 2026**. Der Nutzer hat den Betriebsweg **eigener EU-Server mit selbst betriebenen Updates und Backups** gewählt. Paket A ist damit der weitere Arbeitsweg; konkreter Anbieter, verfügbare Größe und Endpreis werden vor einer Buchung gegen das gemeinsame 30-Euro-Budget geprüft. Keine Buchung, Zugangskonfiguration oder Produktionsanmeldung. 3D-Abnahme bleibt vorrangig. Grundlage: [Produktregeln](../product.md), [Accountsauftrag](../agentenauftraege/04-accounts-adminstatistik.md), [offene Gates](account-preflight.md), [C01-Vertrag](account-contract.md) und [C02-Vertrag](admin-statistics-contract.md).
 
-**Empfehlung:** World4You für die bestehende Website behalten; als kleinsten günstigen Accountbetrieb Paket A mit einem EU-Server, Better Auth, PostgreSQL und Brevo vorsehen. Das spart Geld, setzt aber eine ausdrücklich benannte Person für Betrieb, Updates und Wiederherstellung voraus. Paket B mit Supabase Pro ist die Alternative mit weniger eigener Infrastrukturarbeit, wenn sein tatsächlicher Endpreis einschließlich Mail und anderer Dienste im gemeinsamen Budget bleibt. Beide sind Auswahlvorschläge, keine bereits gewählten Anbieter.
+**Gewählter Betriebsweg und technische Empfehlung:** World4You für die bestehende Website behalten; Paket A mit einem EU-Server, Better Auth, PostgreSQL und Brevo weiter ausarbeiten. Eine ausdrücklich benannte Person übernimmt Betrieb, Updates und Wiederherstellung. Supabase Pro bleibt die dokumentierte Vergleichsalternative. Der Nutzer hat den Betriebsweg, aber noch keinen konkreten Anbieter oder Tarif gewählt.
 
 ## Bestehender Rahmen
 
@@ -64,7 +64,7 @@ Die Tabelle umfasst C01/C02, keine Cloudsave-/APK-/Assetverteilung. Historische 
 
 ## Drei Entscheidungen, die die Auswahl konkret machen
 
-1. **Betriebsweg und Budgetrest:** Paket A mit benannter Verantwortung für Updates, Alarme und Restore, oder Paket B mit bestätigtem Endpreis. Tatsächliche EU-Konfiguration, Tarifverfügbarkeit, bestehende Zusatzkosten und Mailspitzen ergänzen; bei breitem Start Mailangebot innerhalb des Restbudgets festlegen. Das ist die fehlende Sachauswahl, kein erneuter Startauftrag.
+1. **Gewählten Betriebsweg konkretisieren:** Paket A ist gewählt. Verantwortung für Updates, Alarme und Restore benennen; tatsächliche EU-Konfiguration, Tarifverfügbarkeit, bestehende Zusatzkosten und Mailspitzen ergänzen. Bei breitem Start ein Mailangebot innerhalb des Restbudgets festlegen. Das ist die verbleibende Betriebs-/Kostenkonfiguration, kein erneuter Startauftrag.
 2. **Tatsächliches Elternverfahren:** Wie Altersgruppe geklärt/korrigiert wird, welche Prüfung elterlicher Verantwortung durchgeführt wird, wer strittige Fälle bearbeitet, wie Zweckversion/Widerruf funktionieren und wie lange Kontakt-/Prüfdaten bestehen. Ein Eltern-E-Mail-Link belegt Mailzugriff, allein keine elterliche Verantwortung. Beide Pakete benötigen diesen eigenen serverseitigen Prozess. Hier wird kein Verfahren als rechtlich ausreichend behauptet.
 3. **Löschung und Wiederherstellung:** Technische Löschfristen einschließlich Backups, Tombstones nach Restore, Umgang mit widerrufenen/noch gepufferten Daten und verantwortlicher Restoretest. Vorschlag für den ersten Betrieb: täglich konsistente Sicherung, sieben Tage Backupfenster, angestrebter Datenverlust höchstens 24 Stunden; diese Betriebsziele und die übrigen Fristen müssen tatsächlich festgelegt und geprüft werden.
 

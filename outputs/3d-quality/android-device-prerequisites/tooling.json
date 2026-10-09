@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-09T20:11:34.780Z",
+  "sourcePage": "https://developer.android.com/tools/releases/platform-tools",
+  "downloadUrl": "https://dl.google.com/android/repository/platform-tools-latest-windows.zip",
+  "version": "37.0.1-15733141",
+  "archiveSha256": "45f4d63113e895ebde0c90f194099a4676b6ac653bd28d54314a9e022bbc1a99",
+  "archiveHashKind": "Locally computed provenance hash, not a vendor-published checksum",
+  "installation": "Task-owned ignored tmp/tools/platform-tools; no PATH or Android Studio changes",
+  "deviceChoice": "Pixel 9 Pro XL selected by user; initial Windows WPD presence does not prove ADB access",
+  "privacy": "No serial, adb keys or unrelated tab content published"
+}

@@ -2,7 +2,12 @@
 
 ## Noch nicht veröffentlicht
 
-- Release-118-Kandidat: Torwartparaden, Landung, Erholung und Aufstehen verwenden passende Clipphasen; Abstoß mit Vorbereitung und Ausklang. Bestätigtes Nachfassen verwendet seinen eigenen Kontakt statt einer älteren Parade; optionale Keeperfakten bleiben in der Unity-Brücke erhalten. Halten setzt bekannte Fakten, Besitz und erreichbaren Ball voraus. 160 gezielte Unity- und 13 Kontakt-/Brückenprüfungen, alle zwölf Unity-Suiten und 89 Produktionskommandos bestanden; keine neuen Spielregeln oder Altstandumrechnung. Android-Prüfweg für echtes USB-Chrome mit 14 Spielern, natürlichem Timer, Buildhashes und getrennten Leistungs-/Wachhaltebelegen bereitgestellt; tatsächliche Geräte fehlen. Account-Betriebsauswahl mit aktuellen offiziellen Quellen vorbereitet. Native Fangposition, einzelne späte Posewechsel und natürliche vollständige Keeperfolgen bleiben offen. [Stand und Grenzen](release-118.md).
+## 9. Oktober 2026 – Release 118
+
+Auf Nutzerauftrag umgesetzt, veröffentlicht und live abgenommen. Produktionslauf, 65 Release-/Live-Prüfungen, mobile Bedienung und vollständige native/Unity-Livevergleichspartie mit identischen 14 Zustands-/Buchungsteilen bestanden. [Releasebericht](release-118.md).
+
+- Torwartparaden, Landung, Erholung und Aufstehen verwenden passende Clipphasen; Abstoß mit Vorbereitung und Ausklang. Bestätigtes Nachfassen verwendet seinen eigenen Kontakt statt einer älteren Parade; optionale Keeperfakten bleiben in der Unity-Brücke erhalten. Halten setzt bekannte Fakten, Besitz und erreichbaren Ball voraus. 160 gezielte Unity- und 13 Kontakt-/Brückenprüfungen, alle zwölf Unity-Suiten und 89 Produktionskommandos bestanden; keine neuen Spielregeln oder Altstandumrechnung. Native Fangposition, einzelne späte Posewechsel und natürliche vollständige Keeperfolgen bleiben offen.
+- Android-Prüfweg für echtes USB-Chrome mit 14 Spielern, natürlichem Timer, Buildhashes und getrennten Leistungs-/Wachhaltebelegen bereitgestellt. Pixel 9 Pro XL ist auf Nutzerwahl verfügbar, ADB eingerichtet und USB-Zugang bestätigt; echte Hardware-Ergebnisse werden separat dokumentiert. Accounts folgen nach der 3D-Abnahme auf einem eigenen EU-Server mit selbst betriebenen Updates und Backups. Anbieter-/Tarif- und Betriebskonfiguration bleibt offen; keine Dienste gebucht.
 
 ## 9. Oktober 2026 – Release 117
 

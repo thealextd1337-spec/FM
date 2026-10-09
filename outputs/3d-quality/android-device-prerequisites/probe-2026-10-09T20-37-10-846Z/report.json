@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "mode": "probe",
+  "status": "blocked",
+  "pass": false,
+  "hardwarePass": false,
+  "started": "2026-10-09T20:37:10.847Z",
+  "prerequisites": {
+    "nodeMajor": 24,
+    "nodeSupported": true,
+    "buildAvailable": true,
+    "nativeWebSocketAvailable": true,
+    "adbSelection": "explicit path",
+    "adbVersion": "Android Debug Bridge version 1.0.41",
+    "adbAvailable": true,
+    "devices": {
+      "physicalUsbCandidates": 1,
+      "unauthorized": 0,
+      "offline": 0
+    },
+    "physicalUsb": true,
+    "chromeInstalled": true,
+    "chromeDebugSocket": true,
+    "screenOffTimeoutMs": 60000,
+    "chargingPolicyKnown": true,
+    "chargingStayAwake": false,
+    "initialPower": {
+      "wakefulness": "Dozing",
+      "displayState": "DOZE",
+      "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+    }
+  },
+  "samples": [],
+  "manual": [
+    "Real app switch and return; wake-lock reacquisition and unchanged native match state",
+    "Visual readability of names, team rings and ball in landscape; interaction and keeper animations"
+  ],
+  "limitations": [
+    "No GPU presentation or per-frame GPU timing measurement",
+    "No performance acceptance threshold or full device acceptance is inferred from loop counters"
+  ],
+  "buildBefore": {
+    "sourceId": "0b1d8a57fed95db82a9c034cc0729e60090b9ef99ceec2e8aa2cc04f195ed774",
+    "htmlSha256": "78e5fd7cb96e221dd71f83b58b43dff2d945049601016d3e4fea86afa2ef518b",
+    "manifestSha256": "83f19b766d80a764c105bb0505eef2ec7bcbb1e362bf111f544fefaca536ae36",
+    "assets": [
+      {
+        "file": "unity-web.data",
+        "sha256": "8547f457dbcf829f0ce63aa0e7d6695272a93a760c3e7e5a0e45cb25fd378935",
+        "bytes": 55089303,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+        "bytes": 300906,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.loader.js",
+        "sha256": "57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03",
+        "bytes": 27914,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.wasm",
+        "sha256": "a8f3b216aa441cddbdf065c6b58517a43a867c4e7b675ce442845dfbe7fda7d6",
+        "bytes": 35253048,
+        "manifestMatches": true
+      }
+    ],
+    "valid": true
+  },
+  "device": {
+    "model": "Pixel 9 Pro XL",
+    "androidRelease": "17",
+    "androidSdk": 37,
+    "chromeVersion": "154.0.8037.126",
+    "transport": "Authorized physical USB only; serial omitted"
+  },
+  "reason": "Need current build, Node 22+ with WebSocket, unlocked awake device and already-open stable Chrome with USB debugging",
+  "cleanup": {
+    "failures": [],
+    "ownTargetCreationVerified": true
+  },
+  "buildAfter": {
+    "sourceId": "0b1d8a57fed95db82a9c034cc0729e60090b9ef99ceec2e8aa2cc04f195ed774",
+    "htmlSha256": "78e5fd7cb96e221dd71f83b58b43dff2d945049601016d3e4fea86afa2ef518b",
+    "manifestSha256": "83f19b766d80a764c105bb0505eef2ec7bcbb1e362bf111f544fefaca536ae36",
+    "assets": [
+      {
+        "file": "unity-web.data",
+        "sha256": "8547f457dbcf829f0ce63aa0e7d6695272a93a760c3e7e5a0e45cb25fd378935",
+        "bytes": 55089303,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+        "bytes": 300906,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.loader.js",
+        "sha256": "57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03",
+        "bytes": 27914,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.wasm",
+        "sha256": "a8f3b216aa441cddbdf065c6b58517a43a867c4e7b675ce442845dfbe7fda7d6",
+        "bytes": 35253048,
+        "manifestMatches": true
+      }
+    ],
+    "valid": true
+  },
+  "buildUnchanged": true,
+  "finished": "2026-10-09T20:37:13.557Z"
+}
