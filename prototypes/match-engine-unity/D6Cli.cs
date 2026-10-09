@@ -30,6 +30,7 @@ public static class D6Cli {
             Debug.Log("[D6Cli] ClubStadiumProfilesTests: "+Doppel6.Probe.ClubStadiumProfilesTests.Run(repo));
             Debug.Log("[D6Cli] StadiumArchitectureTests: "+StadiumArchitectureTests.Run(repo));
             Debug.Log("[D6Cli] FootballDuelTests: "+FootballDuelTests.Run(repo));
+            Debug.Log("[D6Cli] FootballIterationTests: "+FootballIterationTests.Run(repo));
             Done(true,"tests finished");
         }catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
@@ -58,6 +59,17 @@ public static class D6Cli {
     }
     public static void DuelTests(){
         try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,FootballDuelTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+    // Iteration 117: aerial/throw/kick/keeper poses, ball marker and optional picture fields.
+    public static void IterationTests(){
+        try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,FootballIterationTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+    // Iteration 117 renders (club identity, pose strips, measured ball marker); needs a graphics device.
+    public static void IterationEvidence(){
+        string repo=null,message=null;bool ok=false;
+        try{repo=Repo();ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=IterationEvidenceDiagnostics.Run(repo);ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
+        Done(ok,message);
     }
     public static void TeamRings(){
         try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,TeamGroundRingTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}

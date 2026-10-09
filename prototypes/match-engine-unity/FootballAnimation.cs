@@ -50,13 +50,70 @@ public static class FootballKeeperTiming {
         double contact=clip=="keeper_high_meshy"?1.46:clip=="keeper_dive_meshy"?.81:1.18;
         return start+(contact-start)*Math.Clamp(progress,0,1);
     }
+    // Save clip from the contact relative to the keeper's received facing. A
+    // global Z difference only equals the keeper's side when it faces along X;
+    // diagonal or turned keepers need their own lateral axis.
+    public const double HighSave=1.6,DiveSave=1.2;
+    public static string SaveKind(Vector3 contact,Vector3 position,Vector3 facing){
+        if(contact.y>HighSave)return "high";
+        var forward=new Vector3(facing.x,0,facing.z);if(forward.sqrMagnitude<1e-6f)forward=Vector3.forward;forward.Normalize();
+        var right=new Vector3(forward.z,0,-forward.x);var offset=contact-position;offset.y=0;
+        return Math.Abs(Vector3.Dot(offset,right))>DiveSave?"dive":"low";
+    }
+}
+static class FootballEnvelope {
+    public static float Smooth(double x){var t=(float)Math.Clamp(x,0,1);return t*t*(3-2*t);}
+    public static float Bump(double x){return x<=0||x>=1?0:(float)Math.Sin(Math.PI*x);}
+}
+// Aerial actions from the received native phases. airReady counts down to the
+// arrival (progress 1); header, airLand and an aerial control start at the
+// contact (progress 0) and land by their end. Pure functions of progress, so
+// pause and replay show the same body. Nothing here moves the root or the ball
+// or decides whether a contact happened.
+public static class FootballAirTiming {
+    // Largest pelvis rise and landing dip in metres; a jump reaches at most
+    // MaxLift toward a contact, a higher ball stays out of reach.
+    public const float MaxLift=.30f,MinLift=.12f,LandDip=.14f;
+    // Lift needed for the head to meet the received contact height.
+    public static float Lift(float contactHeight,float headHeight){return float.IsNaN(contactHeight)?MinLift:Mathf.Clamp(contactHeight-headHeight+.06f,MinLift,MaxLift);}
+    // Preparation: a short crouch, then take-off; airborne at the arrival.
+    public static float ReadyCrouch(double progress){return FootballEnvelope.Bump(Math.Clamp(progress,0,1)/.5)*.55f;}
+    public static float ReadyLift(double progress){return FootballEnvelope.Smooth((progress-.3)/.7);}
+    // Native picture: height falls as (1-p)^2 from the contact apex.
+    public static float FallLift(double progress){var q=1-Math.Clamp(progress,0,1);return (float)(q*q);}
+    // Native landing bend between 60 % and the end of the action.
+    public static float Landing(double progress){return FootballEnvelope.Bump((progress-.6)/.4);}
+    // Shins fold only while clearly airborne; arms rise with the jump.
+    public static float Tuck(float lift){return FootballEnvelope.Smooth((lift-.2)/.5)*.7f;}
+    public static float Arms(float lift,float crouch){return Mathf.Clamp01(lift*.85f+crouch*.25f);}
+}
+// Follow-through after a lofted kick or volley. Zero through the native
+// contact window, so the contact pose stays the authored one.
+public static class FootballKickTiming {
+    public const double ContactEnd=.09,Peak=.22,End=.55;
+    public static float FollowThrough(double age){return age<=ContactEnd?0:age<Peak?FootballEnvelope.Smooth((age-ContactEnd)/(Peak-ContactEnd)):1-FootballEnvelope.Smooth((age-Peak)/(End-Peak));}
+}
+// Throw-in from the native phases: while holding, pickup 0..1 lifts the ball
+// (native 0.35 s) and progress reaches the ready release (native 0.55 s);
+// after the release progress follows the first quarter of the ball flight.
+public static class FootballThrowTiming {
+    public static float Bend(double pickup){return 1-FootballEnvelope.Smooth(pickup/.8);}
+    public static float Raise(double pickup){return FootballEnvelope.Smooth((pickup-.45)/.55);}
+    public static float Arch(double progress){return FootballEnvelope.Smooth((progress-.64)/.36);}
+    // Released: the arch whips forward and the arms follow through and settle.
+    public static float ReleaseArch(double progress){return 1-FootballEnvelope.Smooth(progress/.25);}
+    public static float ReleaseRaise(double progress){return 1-FootballEnvelope.Smooth(progress);}
+    public static float Whip(double progress){return FootballEnvelope.Bump(Math.Clamp(progress,0,1)/.9);}
 }
 // Visual sampling only: no events, randomness, ownership, ball motion or game clock.
 public sealed class FootballAnimation {
     // contactWeight: 0 or 1 is a full native contact; values between are a
     // partial visual reach (carrier stride). kind also accepts "two-hands" and "head".
     // slide/lunge: procedural duel weights (FootballDuelTiming); leftLead picks the leg.
-    public struct Pose {public AnimationClip clip,baseClip;public double time,baseTime;public bool loop,baseLoop,plant,contact,urgent,leftLead;public float actionWeight,forwardLean,turnLean,recoveryLean,keeperDive,contactWeight,slide,lunge;public string key,kind;public Vector3 target;}
+    // air*: aerial take-off/flight/landing (FootballAirTiming); airReach is the
+    // received contact height or NaN. loft/volley: kick follow-through after the
+    // native contact. throw*: native throw-in phases (FootballThrowTiming).
+    public struct Pose {public AnimationClip clip,baseClip;public double time,baseTime;public bool loop,baseLoop,plant,contact,urgent,leftLead;public float actionWeight,forwardLean,turnLean,recoveryLean,keeperDive,contactWeight,slide,lunge,airLift,airReach,airTuck,airCrouch,airArms,loft,volley,throwBend,throwRaise,throwArch,throwRelease;public string key,kind;public Vector3 target;}
     // A native contact releases over this much match time instead of popping.
     public const double ContactRelease=.10;
     readonly PlayableGraph graph;readonly AnimationMixerPlayable mixer;
@@ -139,6 +196,9 @@ public sealed class FootballAnimation {
         if(!pose.contact&&!pose.plant)rig.Lean(pose.forwardLean,pose.turnLean,pose.recoveryLean);
         if(pose.keeperDive!=0)rig.KeeperDive(pose.keeperDive,pose.target);
         if(pose.lunge>0)rig.Lunge(pose.lunge);
+        if(pose.airLift>0||pose.airCrouch>0||pose.airTuck>0||pose.airArms>0)rig.Air(pose.airLift,pose.airReach,pose.airTuck,pose.airCrouch,pose.airArms);else rig.ClearAir();
+        if(pose.loft>0||pose.volley>0)rig.FollowThrough(pose.loft,pose.volley);
+        if(pose.throwBend>0||pose.throwRaise>0||pose.throwArch>0||pose.throwRelease>0)rig.Throw(pose.throwBend,pose.throwRaise,pose.throwArch,pose.throwRelease);
         bool full=pose.contactWeight<=0||pose.contactWeight>=1;
         if(pose.contact&&full)rig.PrepareContact(pose.target,pose.kind);
         if(pose.plant)rig.Plant(pose.kind=="left-foot");else rig.Release();
@@ -288,15 +348,81 @@ public sealed class FootballRig {
         // The entering slide blends out of a running stride whose knee/boot may
         // point below the newly lowered pelvis. Constrain both soles throughout
         // that blend; otherwise the first slide pictures cut boots through turf.
-        void GroundFoot(Transform thigh,Transform calf,Transform ankle,Quaternion rest){
-            float clearance=ground!=null&&ground.Calibrated?root.position.y+ground.ankle*root.lossyScale.y:.28f;
-            if(ankle.position.y<clearance){var onTurf=ankle.position;onTurf.y=clearance;Solve(thigh,calf,ankle,onTurf,forward+Vector3.up);}
-            ankle.rotation=root.rotation*rest;
-        }
-        GroundFoot(leftUpper,leftLower,leftFoot,restLeftFootRotation);GroundFoot(rightUpper,rightLower,rightFoot,restRightFootRotation);
+        GroundFeet(forward+Vector3.up,true);
         contactError=Vector3.Distance(foot.position,target);
         var supportArm=leftLead?arm:leftArm;var supportForearm=leftLead?forearm:leftForearm;var supportHand=leftLead?hand:leftHand;
         if(supportArm!=null&&supportForearm!=null&&supportHand!=null){var palm=hips.position-forward*.28f-right*lead*.34f;palm.y=.18f;Blend(supportArm,supportForearm,supportHand,palm,w*.85f);}
+    }
+    // Ankles never pass below their standing height above the pitch. level
+    // also rests the foot flat (slide); otherwise only a sinking foot is levelled.
+    void GroundFeet(Vector3 pole,bool level=false){
+        float clearance=ground!=null&&ground.Calibrated?root.position.y+ground.ankle*root.lossyScale.y:.28f;
+        void One(Transform thigh,Transform calf,Transform ankle,Quaternion rest){
+            bool sinking=ankle.position.y<clearance;
+            if(sinking){var onTurf=ankle.position;onTurf.y=clearance;Solve(thigh,calf,ankle,onTurf,pole);}
+            if(level||sinking)ankle.rotation=root.rotation*rest;
+        }
+        One(leftUpper,leftLower,leftFoot,restLeftFootRotation);One(rightUpper,rightLower,rightFoot,restRightFootRotation);
+    }
+    // Pelvis rise of the last aerial pose in metres (diagnostics).
+    public float AirLift {get;private set;}
+    public void ClearAir(){AirLift=0;}
+    // Aerial take-off, flight and landing. Bones only: the pelvis rises by a
+    // bounded lift toward the received contact height and dips on landing; the
+    // received root, heading and ball stay authoritative. lift and crouch are
+    // envelope weights (FootballAirTiming), reach the contact height or NaN.
+    public void Air(float lift,float reach,float tuck,float crouch,float arms){
+        AirLift=0;if(hips==null)return;
+        lift=Mathf.Clamp01(lift);tuck=Mathf.Clamp01(tuck);crouch=Mathf.Clamp01(crouch);arms=Mathf.Clamp01(arms);
+        var forward=root.forward;var right=root.right;
+        // Head height of the sampled clip above the pitch, before any correction.
+        float headHeight=head!=null?head.position.y-FootballGround.PitchSurface:1.7f;
+        AirLift=lift*FootballAirTiming.Lift(reach,headHeight);
+        hips.position+=Vector3.up*(AirLift-crouch*FootballAirTiming.LandDip);
+        if(spine!=null&&crouch>0)spine.rotation=Quaternion.AngleAxis(crouch*10,right)*spine.rotation;
+        if(tuck>0){
+            // Shins fold back under the pelvis while clearly airborne.
+            foreach(int s in new[]{-1,1}){
+                var upper=s<0?leftUpper:rightUpper;var lower=s<0?leftLower:rightLower;var foot=s<0?leftFoot:rightFoot;
+                float leg=Vector3.Distance(upper.position,lower.position)+Vector3.Distance(lower.position,foot.position);
+                var target=upper.position-Vector3.up*leg*.78f-forward*.16f+right*s*.04f;Blend(upper,lower,foot,target,tuck,forward);
+            }
+        }
+        // Preparation and landing never put a boot through the turf.
+        GroundFeet(forward+Vector3.up*.25f);
+        if(arms>0){
+            // Both arms rise and spread for balance and leverage.
+            if(arm!=null&&forearm!=null&&hand!=null)Blend(arm,forearm,hand,arm.position+Vector3.up*.22f+right*.36f+forward*.14f,arms*.8f,-forward);
+            if(leftArm!=null&&leftForearm!=null&&leftHand!=null)Blend(leftArm,leftForearm,leftHand,leftArm.position+Vector3.up*.22f-right*.36f+forward*.14f,arms*.8f,-forward);
+        }
+    }
+    // Lofted pass/goal kick: kicking leg swings through high, the body leans
+    // back. Volley: the body banks away from the kicking leg. Applied only after
+    // the native contact window; an out-of-reach swing target just straightens
+    // the leg (Solve never stretches a limb).
+    public void FollowThrough(float loft,float volley){
+        if(hips==null)return;loft=Mathf.Clamp01(loft);volley=Mathf.Clamp01(volley);var forward=root.forward;var right=root.right;
+        float leg=Vector3.Distance(rightUpper.position,rightLower.position)+Vector3.Distance(rightLower.position,rightFoot.position);
+        if(spine!=null)spine.rotation=Quaternion.AngleAxis(volley*18,forward)*Quaternion.AngleAxis(-loft*10,right)*spine.rotation;
+        float w=Mathf.Max(loft,volley);if(w<=0)return;bool side=volley>loft;
+        var swing=rightUpper.position+forward*leg*(side?.55f:.72f)+Vector3.up*leg*(side?.38f:.28f)+right*leg*(side?.22f:.04f);
+        Blend(rightUpper,rightLower,rightFoot,swing,w*.75f,forward);
+        if(leftArm!=null&&leftForearm!=null&&leftHand!=null)Blend(leftArm,leftForearm,leftHand,leftArm.position-right*.42f+forward*.18f+Vector3.up*.05f,w*.6f,-forward);
+    }
+    // Throw-in posture from the native phases: bend to the ball, raise it
+    // overhead, arch back, then whip forward after the release. The hands meet
+    // the actual ball only through the separate two-hands contact.
+    public void Throw(float bend,float raise,float arch,float release){
+        if(hips==null)return;bend=Mathf.Clamp01(bend);raise=Mathf.Clamp01(raise);arch=Mathf.Clamp01(arch);release=Mathf.Clamp01(release);
+        var forward=root.forward;var right=root.right;
+        hips.position-=Vector3.up*(.24f*bend);
+        if(spine!=null)spine.rotation=Quaternion.AngleAxis(bend*38-arch*20+release*24,right)*spine.rotation;
+        GroundFeet(forward+Vector3.up*.25f);
+        float arms=Mathf.Max(raise,release);if(arms<=0||head==null)return;
+        // Overhead and slightly behind with the arch; forward after the release.
+        var centre=head.position+Vector3.up*.24f*raise-forward*.18f*arch+forward*.5f*release-Vector3.up*.25f*release;
+        if(arm!=null&&forearm!=null&&hand!=null)Blend(arm,forearm,hand,centre+right*.12f,arms,-forward);
+        if(leftArm!=null&&leftForearm!=null&&leftHand!=null)Blend(leftArm,leftForearm,leftHand,centre-right*.12f,arms,-forward);
     }
     public void PrepareContact(Vector3 point,string kind){
         if(kind!="foot"&&kind!="left-foot")return;var upper=kind=="left-foot"?leftUpper:rightUpper;var lower=kind=="left-foot"?leftLower:rightLower;var end=kind=="left-foot"?leftFoot:rightFoot;float length=Vector3.Distance(upper.position,lower.position)+Vector3.Distance(lower.position,end.position),distance=Vector3.Distance(upper.position,point);

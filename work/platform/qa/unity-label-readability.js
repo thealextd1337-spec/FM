@@ -22,6 +22,6 @@ window.D6LabelQA=async()=>{
   send(saved);check(match.elapsed===clock&&native()===before,'Layout and projection probes leave native match/accounting unchanged');
   const labels=[...document.querySelectorAll('#d6-unity-labels button')];check(labels.every(b=>!b.disabled),'Live paused player information remains enabled');
   const first=labels.find(b=>!b.hidden);first.focus();check(document.activeElement===first,'Labels retain keyboard focus');first.blur();
-  return {pass:true,checks,rows,viewport:{width:innerWidth,height:innerHeight},unitySourceId:'61abeca81ae558b301e832e1bde22745d0556d71a5b385ea7d2d51b5ada246e6',note:'Actual Unity WebGL rendering plus explicitly synthetic head-position layout cases. Desktop preview; no physical Android performance evidence.'};
+  return {pass:true,checks,rows,viewport:{width:innerWidth,height:innerHeight},unitySourceId:window.D6LabelQAIdentity||null,note:'Actual Unity WebGL rendering plus explicitly synthetic head-position layout cases. Desktop preview; no physical Android performance evidence.'};
  }finally{for(const b of document.querySelectorAll('#d6-unity-labels button')){b.dataset.offsetX='0';b.dataset.offsetY='0'}send(saved);removeEventListener('message',block,true)}
 };

@@ -1,6 +1,6 @@
 # Doppel 6's 3D system
 
-System state: football iteration v159 with Unity presentation, game version 114. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
+System state: small-pitch iteration v162 with Unity presentation, game version 117. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
 
 ## Unity presentation
 
@@ -11,6 +11,8 @@ Since game version 112, Unity shows a floodlit evening with real shadows, a pitc
 New physical matches use offensive flow v159: reachable receptions and follow-up runs, clear striker runs towards goal, ball- and receiver-aware defending, and shot targets determined independently of goalkeeper reach. Existing results are never recalculated. Measured goal frequency improved; physical mobile-device acceptance and final season balancing remain open.
 
 ## Shared simulation and presentation
+
+Teams wear club-coloured foot rings with bright/dark edges and continuous or segmented patterns. Name labels use the same team patterns, stay inside the viewport and connect displaced names subtly to the head. The optional Ball guide in the View and sound menu adds a contrast ring only around very small balls, at their actual rendered position. This setting is saved independently of careers. Fullscreen keeps running and paused matches awake through the supported Wake Lock API; backgrounding and the end of a match release the lock. Physical Android acceptance remains separate.
 
 New careers offer both pitch sizes and five or six outfield players plus a goalkeeper. Larger/five is the default. The saved choice applies to the entire club world. Larger means 20 percent more length and width in the existing native calculation scale; goals, penalty areas, bodies and the ball keep their physical sizes. New players use the existing ability, role, development, ageing and load model with saved candidate parameters. Existing worlds and results are not converted; a missing world choice retains original/five.
 

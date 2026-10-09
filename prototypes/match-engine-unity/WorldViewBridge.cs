@@ -25,7 +25,7 @@ public partial class ProbeBridge {
     }
     public void WorldCommand(string json){
         try{
-            var command=JsonUtility.FromJson<WorldCommand>(json);
+            var command=JsonUtility.FromJson<WorldCommand>(json);WorldPhasePresence.MarkCommand(command,json);
             if(command?.kind=="load"){
                 // Validate the entire message before disposing the visible world.
                 var candidate=new WorldViewState(command.config);

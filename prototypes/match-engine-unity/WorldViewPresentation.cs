@@ -11,7 +11,26 @@ public partial class ProbeBridge {
     [Serializable] class WorldMarker {public string id;public float x,y,depth;public bool visible,featured;}
     [Serializable] class WorldRenderedPose {public string id,clip,baseClip,kind,motion;public double time,stridePhase;public bool contact,reachable;public float contactError,plantError,actionWeight,speed;}
     WorldRenderedPose[] renderedPoses;
-    [Serializable] class WorldProjection {public string channel=WorldViewState.Schema,kind="projection",session;public int sequence;public double clock,ballSpinDegrees;public int width,height;public float[] ballRotation;public WorldMarker[] markers;public WorldRenderedPose[] poses;}
+    // The rendered ball in the same frame and camera: normalised viewport x/y
+    // (y down, like markers), view depth in metres and the projected sphere
+    // diameter in render pixels (the projection's width/height). visible needs
+    // an opaque ball in front of the camera inside the viewport.
+    [Serializable] public class WorldBallMarker {public float x,y,depth,diameter;public bool visible;}
+    [Serializable] class WorldProjection {public string channel=WorldViewState.Schema,kind="projection",session;public int sequence;public double clock,ballSpinDegrees;public int width,height;public float[] ballRotation;public WorldMarker[] markers;public WorldRenderedPose[] poses;public WorldBallMarker ballMarker;}
+    // Perspective projection of a sphere of the given world radius; no
+    // minimum size, smoothing or prediction.
+    public static WorldBallMarker BallMarker(Camera camera,Vector3 centre,float radius,bool shown,int pixelHeight){
+        var p=camera.WorldToViewportPoint(centre);float depth=p.z;
+        float diameter=depth>camera.nearClipPlane?2*radius*pixelHeight/(2*depth*Mathf.Tan(camera.fieldOfView*.5f*Mathf.Deg2Rad)):0;
+        bool inside=depth>camera.nearClipPlane&&depth<camera.farClipPlane&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1;
+        return new WorldBallMarker{x=p.x,y=1-p.y,depth=depth,diameter=diameter,visible=shown&&inside};
+    }
+    // Ball marker of the currently rendered ball. The sphere primitive has a
+    // 0.5 mesh radius, so its world radius is half the lossy scale.
+    WorldBallMarker CurrentBallMarker(Camera camera,int pixelHeight){
+        bool shown=ballView.gameObject.activeInHierarchy&&displayed!=null&&displayed.ballOpacity>.01;
+        return BallMarker(camera,ballView.position,ballView.lossyScale.x*.5f,shown,pixelHeight);
+    }
     void InitWorldPresentation(){
         playback=new WorldViewPlayback();playback.Receive(worldView.Frame,Time.realtimeSinceStartupAsDouble);worldBallMotion=new WorldBallMotion();displayed=null;lastProjectionAt=-1;
         labelHeads=new Transform[actors.Count];runSpeeds=new float[actors.Count];animationTimes=new double[actors.Count];renderedPoses=new WorldRenderedPose[actors.Count];
@@ -29,7 +48,7 @@ public partial class ProbeBridge {
             markers[i]=new WorldMarker{id=identity,x=p.x,y=1-p.y,depth=p.z,visible=p.z>0&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1,featured=identity==displayed.owner||Vector3.Distance(actors[i].position,ballView.position)<3.5f};
         }
         var rotation=ballView.rotation;
-        var json=JsonUtility.ToJson(new WorldProjection{session=worldView.Config.session,sequence=displayed.sequence,clock=displayed.clock,width=Screen.width,height=Screen.height,markers=markers,poses=renderedPoses,ballRotation=new[]{rotation.x,rotation.y,rotation.z,rotation.w},ballSpinDegrees=worldBallMotion.SpinDegrees});
+        var json=JsonUtility.ToJson(new WorldProjection{session=worldView.Config.session,sequence=displayed.sequence,clock=displayed.clock,width=Screen.width,height=Screen.height,markers=markers,poses=renderedPoses,ballRotation=new[]{rotation.x,rotation.y,rotation.z,rotation.w},ballSpinDegrees=worldBallMotion.SpinDegrees,ballMarker=CurrentBallMarker(camera,Screen.height)});
         #if UNITY_WEBGL && !UNITY_EDITOR
         D6ProbeSend(json);
         #endif

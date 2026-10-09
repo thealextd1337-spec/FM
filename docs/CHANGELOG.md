@@ -2,7 +2,12 @@
 
 ## Noch nicht veröffentlicht
 
-- Weitere 3D-Iteration: Unity-Namensschilder weichen dichtem Gedränge aus, bleiben am Bildrand vollständig und zeigen Vereinsfarbe/Team-Muster. Feine Kopfverbindungen beginnen am Schildrand; Namen, Spielerinfo und zugängliche Beschriftungen bleiben erhalten. 31 Layout-/Linienfälle, tatsächlicher HTML-Build mit 14 Unity-Spielern und 18 Browserprüfungen sowie Bildvertrag/Grätschenprojektion bestanden. Konkrete Folgeagenda für Luftlandung, Balllesbarkeit, Keeperwinkel, Einwurf und sichtbare Stadionidentität ergänzt. [Umfang und Nachweise](platform/3d-readability-iteration.md).
+## 9. Oktober 2026 – Release 117
+
+Auf Nutzerauftrag „Umsetzen und live stellen“ als Release 117 zur Veröffentlichung geprüft. Deployment und Live-Abnahme folgen im [Releasebericht](release-117.md).
+
+- 3D-Iteration: zusammenhängende Luft-/Landesequenzen, höhere Ausschwingbewegung nach hohen Pässen/Flanken, Volleyhaltung und lesbarerer Einwurf folgen vorhandenen Matchphasen. Torwart-Seitenauswahl verwendet die eigene Ausrichtung. Keine neue Ball-/Matchautorität oder Umrechnung bestehender Spielstände. 106 neue Unity- und 706 Stadionprüfungen, vollständige Unity-Suiten und WebGL-Build bestanden.
+- Spieler bleiben mit Vereinsringen und unterschiedlich gemusterten Namensschildern erkennbar; Namen weichen Gedränge aus und behalten Nummer, zugängliche Beschriftung und Spielerinfo. Eine abschaltbare Ballhilfe umrandet kleine echte Ballprojektionen; Einstellung bleibt außerhalb der Karriere. 31 Layoutfälle, 18 reine Brücken-/Ballhilfeprüfungen und mobile Browserbedienung einschließlich Reload bestanden. Vereinsmuster ergänzen sichtbare Gegentribünen und Banden; reduzierte Stufe bleibt erhalten. [Umfang und Nachweise](release-117.md). Quelle, Footer, Hilfe und Build tragen 117; physische Android-Abnahme bleibt offen.
 
 ## 9. Oktober 2026 – Release 116
 

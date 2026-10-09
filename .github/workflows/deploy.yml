@@ -106,6 +106,7 @@ jobs:
           node work/platform/qa/test-unity-integration-v160.cjs
           node work/platform/qa/test-world-unity-contract.cjs
           node work/test-unity-label-layout.cjs
+          node work/test-unity-3d-quality-v117.cjs
           node work/platform/qa/test-world-unity-slides.cjs
           DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs
           DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs

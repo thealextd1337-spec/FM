@@ -52,7 +52,7 @@ public static class StadiumArchitectureTests {
     public static string Run(string repository,string outputFolder=null){
         var checks=new List<string>();var clubs=new List<Club>();void Require(bool ok,string name){if(!ok)throw new Exception("Stadium architecture: "+name);checks.Add(name);}
         var ids=ClubStadiumProfiles.KnownClubIds;Require(ids.Length==48,"all 48 catalogue clubs are planned");
-        var signatures=new HashSet<string>();var archetypes=new Dictionary<string,StadiumBlueprint>();
+        var identities=new HashSet<int>();        var signatures=new HashSet<string>();var archetypes=new Dictionary<string,StadiumBlueprint>();
         int sightLines=0;
         foreach(var id in ids){
             var profile=ClubStadiumProfiles.Resolve(id);var before=Shape(profile);
@@ -79,10 +79,17 @@ public static class StadiumArchitectureTests {
             Require(reduced.Pieces.Count<plan.Pieces.Count&&reduced.Count(StadiumSlot.Crowd)==plan.Count(StadiumSlot.Crowd)&&reduced.Count(StadiumSlot.Roof)==plan.Count(StadiumSlot.Roof),id+" reduced quality drops details, keeps crowd and roofs");
             int tris=Triangles(plan,out int renderers),reducedTris=Triangles(reduced,out _);
             Require(tris<90000&&reducedTris<60000&&renderers<=60,id+" stays within the triangle and renderer budget");
+            // Club identity: accent panels only on camera-facing sides, kept in reduced quality; banners are detail.
+            Require(plan.Identity>=0&&plan.Identity<StadiumArchitecture.IdentityPatterns.Length&&plan.Identity==again.Identity,id+" has a stable identity pattern "+StadiumArchitecture.IdentityPatterns[plan.Identity]);
+            Require(plan.Count(StadiumSlot.Accent,1)==0&&plan.Count(StadiumSlot.Accent,StadiumBlueprint.Surroundings)==0&&plan.Count(StadiumSlot.Accent,0)>0,id+" shows its accent pattern facing the cameras, not on the hidden near stand");
+            Require(reduced.Count(StadiumSlot.Accent,0)>0&&reduced.Count(StadiumSlot.Accent)<plan.Count(StadiumSlot.Accent),id+" reduced quality keeps the wall pattern and a shallower choreography");
+            identities.Add(plan.Identity);
             var large=StadiumArchitecture.Plan(ClubStadiumProfiles.Resolve(id),105,68,Home,Trim);Require(large.Fronts[0]>=34+4.5f&&large.Fronts[2]>=52.5f+5.3f,id+" scales its stands with a large pitch");
             float tallest=0;for(int g=0;g<4;g++)tallest=Mathf.Max(tallest,plan.Top(g));
             clubs.Add(new Club{id=id,archetype=plan.Archetype,signature=plan.Signature(),pieces=plan.Pieces.Count,reducedPieces=reduced.Pieces.Count,triangles=tris,reducedTriangles=reducedTris,renderers=renderers,tallest=tallest});
         }
+        Require(identities.Count>=5,"club identity patterns differ across the catalogue ("+identities.Count+" patterns)");
+        Require(StadiumArchitecture.AccentOf(new Color(.8f,.1f,.1f),new Color(.78f,.12f,.1f))!=new Color(.78f,.12f,.1f)&&StadiumArchitecture.AccentOf(new Color(.8f,.1f,.1f),Color.white)==Color.white,"accent falls back to white or ink when the trim is too close to the home colour");
         Require(sightLines==48*5*3*15,"all camera sight lines checked ("+sightLines+")");
         Require(signatures.Count==48,"every club has its own structural signature");
         foreach(var a in StadiumArchitecture.Archetypes)Require(archetypes.ContainsKey(a),"archetype "+a+" is used by the catalogue");

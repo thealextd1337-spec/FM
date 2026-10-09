@@ -1,6 +1,6 @@
 # 3D-Iteration: Namen und nächste Qualitätsverbesserungen
 
-Stand: 9. Oktober 2026, lokaler Kandidat nach Release 116, noch nicht veröffentlicht. Priorität bleibt das 3D-Erlebnis, danach Accounts. Keine neuen Kaufassets oder Spielerporträts.
+Stand: 9. Oktober 2026. Die Namensiteration und alle fünf Folgepunkte gehören auf Nutzerauftrag zur gemeinsamen [Release-117-Freigabe](../release-117.md). Der folgende Namensnachweis beschreibt die erste lokale Iteration auf HTML 116; aktuelle Build-/Live-Nachweise werden im Releasebericht getrennt geführt. Priorität bleibt das 3D-Erlebnis, danach Accounts. Keine neuen Kaufassets oder Spielerporträts.
 
 ## Umgesetzt
 
@@ -20,7 +20,9 @@ Alle Namen bleiben erhalten. Bei einer theoretisch zu kleinen Fläche wählt die
 
 Die ersten T3-Quell-/Buildprüfungen bestanden. Für den abschließenden festen Mobilnachweis wurde der dokumentierte isolierte Edge-/Playwright-Weg verwendet: Nach zwei T3-Größenkorrekturen meldete die Seite weiterhin `actual/frame: 400 × 300` statt der angeforderten 844 × 390. Der endgültige Nachweis prüft das tatsächliche feste Format, Touchlayout und Software-WebGL. Er ist kein physischer Android-Leistungsnachweis. Bewegungsruhe, Bildschirm-Wachhalten und Ballverfolgbarkeit auf Pixel 9a/Pixel 9 Pro XL bleiben am Gerät abzunehmen. Quelle und lokaler Build tragen bis zur nächsten beauftragten Veröffentlichung weiterhin Version 116; die Live-Seite enthält diesen lokalen Nachtrag noch nicht.
 
-## Vorschläge für die nächsten Iterationen
+## Beauftragte Folgepunkte
+
+Die folgenden Vorschläge wurden durch „Umsetzen und live stellen“ beauftragt. Release 117 ergänzt vorhandene Phasen mit begrenzten Rig-Korrekturen, eine optionale kleine Ballmarkierung, lokale Keeper-Seitenauswahl, den tatsächlichen Einwurf-Abwurf sowie Vereinssignale an sichtbaren Tribünen/Banden. Die Aussagen zu fehlenden Anbindungen darunter beschreiben den Ausgangsstand; der aktuelle Releasebericht ordnet die behobenen Lücken und verbleibenden Geräteprüfungen ein.
 
 1. **Luftaktionen schließen:** vorhandene Vorbereitung und Kopfkontakte zu einer zusammenhängenden Absprung-/Kontakt-/Landefolge ergänzen. `airLand` bleibt die belegte fehlende Quellauswahl; hohe Pässe/Flanken und Volleys verwenden noch generische Fußclips. Vorhandene native Phasen verwenden, keine zweite Aktionsuhr. Beide Richtungen, verfehlten Kontakt, Pause und Rückschau prüfen.
 2. **Ball auf kleinen Screens verfolgen:** den Ball in identischen TV-/Nah-/Übersichtsbildern am Gerät messen. Bei belegtem Bedarf eine dezente optionale Kontrastmarkierung aus der tatsächlichen Unity-Ballprojektion ergänzen; kein geänderter Ballradius, Flugweg oder künstlicher Schweif mit Vorhersage. Der aktuelle 0,1764-m-Ball hat kein Mindestmaß in Bildschirmpixeln; eine praktische Unlesbarkeit ist noch nicht belegt.

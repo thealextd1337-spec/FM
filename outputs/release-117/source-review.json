@@ -1,0 +1,15 @@
+{
+  "release": 117,
+  "reviewer": "independent read-only iteration_proposals",
+  "reviewedAt": "2026-10-09T18:26:00Z",
+  "productBlockers": [],
+  "priorFinding": "Actual native throw release sends holding:false without pickup; unknown optional pickup previously selected the legacy pose.",
+  "resolution": "WorldPhasePresence preserves explicit boolean presence through actual JsonUtility parsing. Current 106-case Unity suite includes actual native-shaped JSON and real selector tests.",
+  "evidenceFinding": "Preserve historical Release115 stadium-architecture-tests.json; copy current report to iteration-117 before restoring historical bytes.",
+  "scope": "Current C# presentation/contract/playback/stadium/projection changes, JS guide lifecycle, browser runner and release verifier. No Unity Editor or independent build was run by reviewer.",
+  "stadiumFollowup": "Targeted changed-Mosaic review: no concrete geometry, budget or sight-line blocker. Current706 tests cover48 clubs;2418..10322 reduced triangles and30..54 renderers within60 limit. Actual final visibility and WebGL remain separate gates.",
+  "limits": "Build and actual browser acceptance are separate release gates; physical Android performance is unmeasured.",
+  "finalUnitySourceId": "1169b35efb3e4fb497871ab7785c43423321839fdd03a3037f71db534551d06c",
+  "historicalReportPreserved": true,
+  "stadiumFollowupCompleted": true
+}

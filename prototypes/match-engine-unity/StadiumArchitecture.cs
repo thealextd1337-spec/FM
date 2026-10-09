@@ -8,7 +8,8 @@ namespace Doppel6.Probe {
 // match data, and it never changes the profile it receives. Pitch and goals keep
 // their match geometry; every piece stands outside the advertising boards except
 // the four thin corner flags.
-public enum StadiumSlot {Concrete,Crowd,Seat,Roof,Steel,Cladding,Brick,Trim,Glass,Lamp,Shade,Grass,Foliage,Water,Ground,Sky}
+// Accent: the club's second colour on identity panels (appended; older slots keep their order).
+public enum StadiumSlot {Concrete,Crowd,Seat,Roof,Steel,Cladding,Brick,Trim,Glass,Lamp,Shade,Grass,Foliage,Water,Ground,Sky,Accent}
 public enum StadiumShape {Box,Quad,Wedge,Prism,Dome}
 public struct StadiumPiece {
     public StadiumSlot slot;public StadiumShape shape;public int group;
@@ -32,6 +33,9 @@ public sealed class StadiumBlueprint {
     public readonly Dictionary<StadiumSlot,Color> Colors=new Dictionary<StadiumSlot,Color>();
     public int PitchPattern,PitchStripes;public Color TurfA,TurfB;public float Wear;
     public Color SeatColor,CrowdHome,CrowdTrim;public float CrowdDensity;
+    // Club identity pattern (StadiumArchitecture.IdentityPatterns) on pitch walls,
+    // supporter banners and advertising boards, and its contrasting accent colour.
+    public int Identity;public Color Accent;
     public int Count(StadiumSlot slot,int group=-1){int n=0;foreach(var p in Pieces)if(p.slot==slot&&(group<0||p.group==group))n++;return n;}
     public float Top(int group){float top=0;foreach(var p in Pieces)if(p.group==group&&p.slot!=StadiumSlot.Sky)top=Mathf.Max(top,p.center.y+Mathf.Abs(p.size.y)/2);return top;}
     public bool SideVisible(int side,Vector3 camera,bool wasShown=true){
@@ -57,6 +61,34 @@ public sealed class StadiumBlueprint {
 }
 public static class StadiumArchitecture {
     public static readonly string[] Archetypes={"civic-bowl","modern-ring","industrial-shed","dockside-ground","urban-court","garden-ground","sun-terraces","hillside-ground"};
+    public static readonly string[] IdentityPatterns={"stripes","chevrons","blocks","diamonds","waves","hoops"};
+    // Facade motif suggests two related patterns; the profile seed picks one.
+    public static int IdentityOf(string motif,int seed){
+        motif=motif??"";int a,b;
+        if(motif.Contains("brick")){a=5;b=2;}else if(motif.Contains("colonnade")){a=0;b=3;}else if(motif.Contains("tiled")){a=3;b=1;}
+        else if(motif.Contains("timber")){a=0;b=4;}else if(motif.Contains("limestone")||motif.Contains("step")){a=2;b=5;}else if(motif.Contains("harbor")){a=4;b=0;}
+        else if(motif.Contains("truss")){a=1;b=2;}else if(motif.Contains("fins")){a=1;b=0;}else{a=2;b=4;}
+        return (seed&1)==0?a:b;
+    }
+    // Board and banner texel of an identity pattern in a w x h panel.
+    public static bool PatternTexel(int identity,int u,int v,int w,int h){
+        int cy=h/2;
+        switch(identity){
+            case 0:return u%12<5;
+            case 1:return (u+Math.Abs(v-cy))%16<6;
+            case 2:return (u/8+v*2/Math.Max(1,h))%2==0;
+            case 3:return Math.Abs(u%16-8)+Math.Abs(v-cy)*16/Math.Max(1,h)<7;
+            case 4:return Math.Abs(v-cy-h*.28f*Mathf.Sin(u*Mathf.PI*2/32))<h*.12f;
+            default:return v*6/Math.Max(1,h)%2==1;
+        }
+    }
+    static float Luma(Color c){float L(float x)=>x<=.04045f?x/12.92f:Mathf.Pow((x+.055f)/1.055f,2.4f);return .2126f*L(c.r)+.7152f*L(c.g)+.0722f*L(c.b);}
+    static float Contrast(Color a,Color b){float x=Luma(a),y=Luma(b);return (Mathf.Max(x,y)+.05f)/(Mathf.Min(x,y)+.05f);}
+    // The club trim when it stands out against the home colour, else white or ink.
+    public static Color AccentOf(Color home,Color trim){
+        if(Contrast(trim,home)>=1.8f)return trim;var white=new Color(.95f,.95f,.93f);var ink=new Color(.07f,.08f,.10f);
+        return Contrast(white,home)>=Contrast(ink,home)?white:ink;
+    }
     enum RoofKind {Flat,Cantilever,Shed,Gable,Sails,Girder}
     enum Lights {CornerMasts,RoofRail,SidePoles}
     sealed class Style {
@@ -106,6 +138,7 @@ public static class StadiumArchitecture {
         var b=new Builder{plan=plan,random=new System.Random(profile.DetailSeed),detailed=detailed};
         float L=length,W=width;
         Palette(plan,style,archetype,motif,home,trim,b.random);
+        plan.Identity=IdentityOf(motif,profile.DetailSeed);plan.Accent=AccentOf(home,trim);plan.Colors[StadiumSlot.Accent]=plan.Accent;
         var sides=new Side[4];
         for(int i=0;i<4;i++){
             bool longSide=i<2;int sign=i%2==0?-1:1;
@@ -182,6 +215,8 @@ public static class StadiumArchitecture {
         }
         // Painted pitch-side wall in the club colour.
         b.Local(side,StadiumSlot.Trim,0,frontWall*.5f+.05f,side.front-.08f,new Vector3(half*2,frontWall*.85f,.16f));
+        // The camera-facing sides carry the club pattern; the near side is hidden by every match camera.
+        if(side.index!=1)IdentityWall(b,side,half,frontWall);
         b.Local(side,StadiumSlot.Steel,0,frontWall+.55f,side.front+.05f,new Vector3(half*2,.05f,.05f),-1);
         // Aisles every few metres and vomitory openings mid-way up.
         int aisles=Mathf.Max(1,Mathf.RoundToInt(half*2/style.aisle));float spacing=half*2/aisles;int vom=Mathf.Clamp(lower/2,1,Mathf.Max(1,lower-3));
@@ -196,6 +231,7 @@ public static class StadiumArchitecture {
             }
         }
         CrowdSegments(b,style,side,-half,half,rows,(i)=>Out(i)+rowDepth*.38f,Tread,false,(i,a)=>Gap(i,a),spacing);
+        if(side.index==0)Mosaic(b,side,half,Mathf.Min(lower,b.detailed?4:2),i=>Out(i)+rowDepth*.38f,Tread);
         float back=Out(rows-1)+rowDepth,top=Tread(rows-1)+1.6f;
         // Back facade with the club's motif.
         var wallSlot=motif.Contains("brick")?StadiumSlot.Brick:StadiumSlot.Cladding;
@@ -208,6 +244,31 @@ public static class StadiumArchitecture {
             int flags=Mathf.Max(2,Mathf.RoundToInt(half/8));for(int f=0;f<=flags;f++){float x=-half+f*half*2/flags;b.Local(side,StadiumSlot.Steel,x,top+2.2f,back+.2f,new Vector3(.08f,4.4f,.08f),-1);b.Local(side,f%2==0?StadiumSlot.Trim:StadiumSlot.Cladding,x+.6f,top+3.9f,back+.2f,new Vector3(1.2f,.8f,.03f),-1);}
         }
         return Mathf.Max(top,roofTop);
+    }
+
+    // Accent panels on the pitch face of the painted wall, in the club pattern.
+    // Thin and flush, so the boards, pitch and camera sight lines stay clear.
+    static void IdentityWall(Builder b,Side side,float half,float frontWall){
+        float z=side.front-.175f,low=.16f,high=frontWall*.9f,h=high-low,mid=(low+high)/2;var size=new Vector3(0,0,.03f);
+        void Panel(float x,float y,float w,float height,float roll=0){if(Mathf.Abs(x)+w/2>half-.3f)return;b.Box(side.index,StadiumSlot.Accent,side.At(x,y,z),new Vector3(w,height,.03f),side.facing*Quaternion.Euler(0,0,roll));}
+        switch(b.plan.Identity){
+            case 0:for(float x=-half+1;x<half;x+=1.8f)Panel(x,mid,.45f,h);break;
+            case 1:for(float x=-half+1.2f;x<half;x+=2.4f){Panel(x-.3f,mid,.26f,h*.95f,38);Panel(x+.3f,mid,.26f,h*.95f,-38);}break;
+            case 2:{int k=0;for(float x=-half+.8f;x<half;x+=1.6f,k++)Panel(x,k%2==0?low+h*.25f:low+h*.75f,.8f,h*.5f);}break;
+            case 3:for(float x=-half+1;x<half;x+=2f)Panel(x,mid,h*.55f,h*.55f,45);break;
+            case 4:{int k=0;for(float x=-half+.6f;x<half;x+=1.2f,k++)Panel(x,low+h*(.5f+.3f*Mathf.Sin(k*Mathf.PI/3)),1.15f,h*.22f);}break;
+            default:foreach(float f in new[]{.3f,.7f})b.Box(side.index,StadiumSlot.Accent,side.At(0,low+h*f,z),new Vector3(half*2-.6f,h*.16f,.03f),side.facing);break;
+        }
+    }
+    // Supporter choreography across the front rows in the middle of the stand
+    // opposite the cameras: the club pattern in home and accent colours, held
+    // just in front of the spectators. Reduced quality keeps two rows.
+    static void Mosaic(Builder b,Side side,float half,int rows,Func<int,float> outAt,Func<int,float> treadAt){
+        int cells=Mathf.Min(16,Mathf.FloorToInt(half*.5f))*2;var lean=side.facing*Quaternion.Euler(-8,0,0);
+        for(int i=0;i<rows;i++)for(int k=0;k<cells;k++){
+            bool accent=PatternTexel(b.plan.Identity,k*4,rows<=1?14:(rows-1-i)*28/(rows-1),64,29);
+            b.Box(side.index,accent?StadiumSlot.Accent:StadiumSlot.Trim,side.At(-cells/2f+k+.5f,treadAt(i)+.55f,outAt(i)-.06f),new Vector3(.98f,1.0f,.04f),lean);
+        }
     }
 
     // Spectator strips per row between the aisles. Empty blocks show seats.

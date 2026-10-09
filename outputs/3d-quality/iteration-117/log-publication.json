@@ -1,0 +1,43 @@
+{
+  "release": 117,
+  "sanitized": true,
+  "scope": "Only automatic Unity token/session start parameters removed; line endings normalized for published evidence. Raw local originals stay under ignored tmp/raw-logs. Test/build verdicts and source identity unchanged.",
+  "files": [
+    {
+      "file": "evidence-1.log",
+      "redactedValues": 2
+    },
+    {
+      "file": "evidence-2.log",
+      "redactedValues": 2
+    },
+    {
+      "file": "evidence-3.log",
+      "redactedValues": 2
+    },
+    {
+      "file": "iteration-tests-1.log",
+      "redactedValues": 2
+    },
+    {
+      "file": "iteration-tests-2.log",
+      "redactedValues": 2
+    },
+    {
+      "file": "ray-probe.log",
+      "redactedValues": 2
+    },
+    {
+      "file": "tests-full-1.log",
+      "redactedValues": 2
+    },
+    {
+      "file": "tests-full-2.log",
+      "redactedValues": 2
+    },
+    {
+      "file": "web-build.log",
+      "redactedValues": 2
+    }
+  ]
+}

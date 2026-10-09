@@ -14,7 +14,7 @@
    // slide overrides the ordinary running/action pose. Both are read-only.
    const a=['foulVictim','foulOffender'].includes(p.action?.kind)?p.action:p.unityAction||p.action;
    const direction=a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0];
-   return {id:p.id,position:[p.x,0,p.z],facing:direction,moving:!['idle','restart'].includes(p.movement?.mode),action:a?.kind||'idle',actionId:String(a?.id??a?.kind??'idle'),contactPoint:a?.contactWorld?point(a.contactWorld):null,recovery:a?.recovery||0,progress:a?.progress??0,duration:a?.duration||1,number:p.number,...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})};
+   return {id:p.id,position:[p.x,0,p.z],facing:direction,moving:!['idle','restart'].includes(p.movement?.mode),action:a?.kind||'idle',actionId:String(a?.id??a?.kind??'idle'),contactPoint:a?.contactWorld?point(a.contactWorld):null,recovery:a?.recovery||0,progress:a?.progress??0,duration:a?.duration||1,number:p.number,...(typeof a?.holding==='boolean'?{holding:a.holding}:{}),...(Number.isFinite(a?.pickup)?{pickup:Math.max(0,Math.min(1,a.pickup))}:{}),...(a?.aerial===true?{aerial:true}:{}),...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})};
   }),netActive:Boolean(frame.net),net:frame.net?{...frame.net}:null,...celebration};
  }
  const legacy={length:68,width:44};
@@ -68,7 +68,12 @@
   const dx=x-p.x,dy=y-(p.y-p.h/2),factor=Math.min(1,p.w/2/Math.abs(dx),p.h/2/Math.abs(dy));
   return {left:p.w/2+dx*factor,top:p.h/2+dy*factor,length:Math.hypot(dx,dy)*(1-factor),angle:Math.atan2(dy,dx)};
  }
- root.D6WorldUnityContract={schema,kit,player,picture,geometry,scaled,camera,labelPosition,labelLeader};
+ function ballGuide(marker,width,height,renderWidth,enabled=true){
+  if(!enabled||!marker||marker.visible!==true||![marker.x,marker.y,marker.depth,marker.diameter,width,height,renderWidth].every(Number.isFinite)||marker.depth<=0||marker.x<0||marker.x>1||marker.y<0||marker.y>1||marker.diameter<=0||width<=0||height<=0||renderWidth<=0)return null;
+  const diameter=marker.diameter*width/renderWidth;if(diameter>=9)return null;
+  return {x:marker.x*width,y:marker.y*height,size:Math.max(12,Math.min(16,diameter+8)),opacity:Math.min(1,(9-diameter)/4)};
+ }
+ root.D6WorldUnityContract={schema,kit,player,picture,geometry,scaled,camera,labelPosition,labelLeader,ballGuide};
  if(typeof module==='object'&&module.exports)module.exports=root.D6WorldUnityContract;
 })(typeof window==='object'?window:globalThis);
 
@@ -79,7 +84,8 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  const enabled=selected==='unity'||selected!=='browser'&&(Boolean(window.D6UnityMatchUrl)||localFile);
  if(!enabled)return;
  const basePitchFrame=v98PitchFrame;v98PitchFrame=function(current){const frame=basePitchFrame(current);for(const p of frame.players){const action=p.action;if(!action)continue;const contact=action.contact||(action.kind==='save'?action.target:null)||(['pass','shot','highPass','cross','freeKick','goalKick'].includes(action.kind)&&action.target?v101KickPoint(p.person,action.target):null);if(contact){const spot=v98PitchPoint(contact,frame.turned);p.action={...action,contactWorld:{...spot,height:contact.elevation??action.height??.29}};}}if(frame.celebration){const goal=current.goals?.at(-1);frame.celebration={...frame.celebration,scorer:goal&&!goal.ownGoal&&goal.pid?goal.pid:''};}if(current.goalScene&&current.goalPause>0){const p=v83GoalPosition(current.goalScene),spot=v98PitchPoint(p,frame.turned);frame.net={sign:Math.sign(spot.x),z:spot.z,height:.8,age:current.goalScene.elapsed,bulge:p.bulge};}return frame;};
- let shownGeometry=null,host=null,iframe=null,labels=null,message=null,current=null,session='',sequence=0,ready=false,loaded=false,loading=false,pending=null,loop=0,lastSent=-Infinity,started=0,failed=false,cameraPose=null,cameraViewKey='',lastPicture=null,loadCount=0,lastProjection=null,suspendedAt=null;
+ let shownGeometry=null,host=null,iframe=null,labels=null,message=null,ballGuide=null,current=null,session='',sequence=0,ready=false,loaded=false,loading=false,pending=null,loop=0,lastSent=-Infinity,started=0,failed=false,cameraPose=null,cameraViewKey='',lastPicture=null,loadCount=0,lastProjection=null,suspendedAt=null;
+ let ballGuideEnabled=true;try{ballGuideEnabled=localStorage.getItem('d6-ball-guide')!=='off'}catch{}
  const labelMap=new Map();
  const runtimeUrl=new URL(window.D6UnityMatchUrl||(localFile?'http://127.0.0.1:4300/source/unity-match/runtime.html':new URL('unity-match/runtime.html',document.baseURI).href),location.href);
  if(localFile)runtimeUrl.searchParams.set('parent','file');
@@ -97,6 +103,8 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  #d6-unity-labels button[data-team="1"]{border-bottom-style:dashed}
  #d6-unity-labels button.is-featured{background:#17272de0;color:#fff}
  #d6-unity-labels button::after{content:'';position:absolute;left:var(--leader-left,50%);top:var(--leader-top,100%);width:var(--leader-length,0px);height:1px;background:#eeeede88;box-shadow:0 1px 0 #07101488;transform:rotate(var(--leader-angle,0rad));transform-origin:0 50%;pointer-events:none}
+ #d6-unity-ball-guide{position:absolute;transform:translate(-50%,-50%);box-sizing:border-box;border:1.5px solid #f6f7e1;border-radius:50%;box-shadow:0 0 0 1px #091216cf;pointer-events:none;z-index:2}
+ #d6-unity-ball-guide[hidden]{display:none}
  @keyframes d6-unity-spin{to{transform:rotate(360deg)}}
  @media(prefers-reduced-motion:reduce){#d6-unity-message::before{animation:none}}
  `;document.head.append(style);
@@ -104,7 +112,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  function dispose(){
   v100PitchMenu(false);
   if(loop)cancelAnimationFrame(loop);loop=0;
-  host?.remove();host=iframe=labels=message=null;current=null;session='';ready=loaded=loading=false;pending=null;lastPicture=null;lastProjection=null;suspendedAt=null;cameraPose=null;labelMap.clear();
+  host?.remove();host=iframe=labels=message=ballGuide=null;current=null;session='';ready=loaded=loading=false;pending=null;lastPicture=null;lastProjection=null;suspendedAt=null;cameraPose=null;labelMap.clear();
  }
  function fail(reason){
   failed=true;window.D6UnityMatch.lastFailure=String(reason);window.D6UnityMatch.lastError=v98Text('Unity ist nicht verfügbar · 2D ist aktiv','Unity is unavailable · using 2D');dispose();v98Failed=true;v98View='2d';v102StopPaint();document.body.classList.remove('v98-pitch3d');draw();
@@ -116,7 +124,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   host=document.createElement('div');host.id='d6-unity-host';
   iframe=document.createElement('iframe');iframe.title=v98Text('Unity-Spielfelddarstellung','Unity pitch view');iframe.src=runtimeUrl.href;iframe.setAttribute('tabindex','-1');iframe.addEventListener('error',()=>fail('Unity runtime unavailable'));
   message=document.createElement('div');message.id='d6-unity-message';message.setAttribute('role','status');message.textContent=v98Text('Unity wird vorbereitet …','Preparing Unity …');
-  labels=document.createElement('div');labels.id='d6-unity-labels';host.append(iframe,message,labels);$('#match-area .v42-pitch-stage').prepend(host);
+  labels=document.createElement('div');labels.id='d6-unity-labels';ballGuide=document.createElement('div');ballGuide.id='d6-unity-ball-guide';ballGuide.hidden=true;ballGuide.setAttribute('aria-hidden','true');host.append(iframe,message,ballGuide,labels);$('#match-area .v42-pitch-stage').prepend(host);
   labels.addEventListener('click',event=>{const id=event.target.closest('[data-player]')?.dataset.player,person=match?.people.find(p=>p.pid===id);if(person)v59OpenLivePlayer(person);});
   loadCount++;
  }
@@ -144,6 +152,8 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   if(!Array.isArray(data.markers)||data.sequence<1||data.sequence<(lastProjection?.sequence||0)||data.width<=0||data.height<=0)return;
   if(data.markers.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)||typeof p.id!=='string'||typeof p.visible!=='boolean'))return;
   lastProjection=data;const placed=[],width=labels.clientWidth,height=labels.clientHeight;
+  const guide=C.ballGuide(data.ballMarker,width,height,data.width,ballGuideEnabled);ballGuide.hidden=!guide;
+  if(guide){ballGuide.style.left=guide.x+'px';ballGuide.style.top=guide.y+'px';ballGuide.style.width=ballGuide.style.height=guide.size+'px';ballGuide.style.opacity=String(guide.opacity);placed.push({x:guide.x,y:guide.y+guide.size/2,w:guide.size,h:guide.size});}
   // Keep every name, prioritising the ball area and then the nearer player.
   // Displaced names retain a fine leader to the actual Unity head projection.
   const order=data.markers.filter(m=>labelMap.has(m.id)).sort((a,b)=>Number(b.featured)-Number(a.featured)||(Number.isFinite(a.depth)&&Number.isFinite(b.depth)?a.depth-b.depth:b.y-a.y));
@@ -225,7 +235,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   if(!loop)render();v98Toolbar();v98SyncAudio();
  };
  const baseToolbar=v98Toolbar;
- v98Toolbar=function(){const toolbar=baseToolbar();if(v98IsWorld()){toolbar.querySelector('[data-v98-view="3d"]').textContent='Unity · TV';const status=toolbar.querySelector('#v98-status');if(failed)status.textContent=window.D6UnityMatch.lastError;else if(!loaded&&v98View==='3d')status.textContent=v98Text('Unity wird geladen','Loading Unity');toolbar.dataset.status=String(Boolean(status.textContent));}return toolbar;};
+ v98Toolbar=function(){const toolbar=baseToolbar();if(v98IsWorld()){toolbar.querySelector('[data-v98-view="3d"]').textContent='Unity · TV';const status=toolbar.querySelector('#v98-status');if(failed)status.textContent=window.D6UnityMatch.lastError;else if(!loaded&&v98View==='3d')status.textContent=v98Text('Unity wird geladen','Loading Unity');toolbar.dataset.status=String(Boolean(status.textContent));let button=toolbar.querySelector('#d6-ball-guide-toggle');if(!button){button=document.createElement('button');button.id='d6-ball-guide-toggle';button.type='button';toolbar.querySelector('#v98-sound').after(button);button.addEventListener('click',()=>{ballGuideEnabled=!ballGuideEnabled;try{localStorage.setItem('d6-ball-guide',ballGuideEnabled?'on':'off')}catch{}if(lastProjection)paintLabels(lastProjection);v98Toolbar();});}button.textContent=v98Text('Ballhilfe','Ball guide');button.setAttribute('aria-pressed',String(ballGuideEnabled));button.disabled=v98View!=='3d'||!v98Orientation.matches;}return toolbar;};
  // Camera changes and return from 2D must resume the picture loop immediately.
  document.addEventListener('visibilitychange',()=>{if(document.hidden){if(suspendedAt===null)suspendedAt=performance.now();if(v65Context()?.state.phase==='live')v65Pause();}else if(host&&!loop)render();});
  const baseLeave=v65Leave;v65Leave=async function(...args){const result=await baseLeave.apply(this,args);if(!v98IsWorld())dispose();return result;};

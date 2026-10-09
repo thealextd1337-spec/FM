@@ -1,0 +1,325 @@
+{
+  "at": "2026-10-09T18:35:39.171Z",
+  "sourceId": "1169b35efb3e4fb497871ab7785c43423321839fdd03a3037f71db534551d06c",
+  "failures": 0,
+  "checks": [
+    {
+      "name": "identity source list equals generator",
+      "ok": true,
+      "detail": "40 files"
+    },
+    {
+      "name": "recomputed sourceId equals source-identity.json",
+      "ok": true,
+      "detail": "1169b35efb3e4fb497871ab7785c43423321839fdd03a3037f71db534551d06c"
+    },
+    {
+      "name": "ProbeBuildIdentity.cs carries sourceId",
+      "ok": true
+    },
+    {
+      "name": "probe-build.json sourceId",
+      "ok": true
+    },
+    {
+      "name": "probe-build.json worldView",
+      "ok": true,
+      "detail": "d6-world-view-1"
+    },
+    {
+      "name": "source ProbeSimulation.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source ProbeBridge.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source WorldViewContract.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source WorldViewBridge.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source WorldViewPlayback.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source WorldViewPresentation.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source WorldViewSetup.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source WorldKit.shader",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source ProbeBallPhysics.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source ProbeNet.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source ProbePlay.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source ProbePose.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source FootballAnimation.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source FootballPresentation.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source FootballLocomotion.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source FootballSetup.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source ProbeCamera.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source ProbeSetup.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source ProbeWebBuild.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source link.xml",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source D6Probe.jslib",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source WorldViewEnvironment.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source D6Common.hlsl",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source D6Pitch.shader",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source D6Env.shader",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source D6Blob.shader",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source D6TeamRing.shader",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source D6Cli.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source ClubStadiumProfiles.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source StadiumArchitecture.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "source FootballDuel.cs",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "build file set equals manifest",
+      "ok": true,
+      "detail": "unity-web.data,unity-web.framework.js,unity-web.loader.js,unity-web.wasm"
+    },
+    {
+      "name": "build unity-web.data",
+      "ok": true,
+      "detail": "55088047 B"
+    },
+    {
+      "name": "build unity-web.framework.js",
+      "ok": true,
+      "detail": "300906 B"
+    },
+    {
+      "name": "build unity-web.loader.js",
+      "ok": true,
+      "detail": "27914 B"
+    },
+    {
+      "name": "build unity-web.wasm",
+      "ok": true,
+      "detail": "35252055 B"
+    },
+    {
+      "name": "url loaderUrl",
+      "ok": true,
+      "detail": "unity-web.loader.js"
+    },
+    {
+      "name": "url dataUrl",
+      "ok": true,
+      "detail": "unity-web.data"
+    },
+    {
+      "name": "url frameworkUrl",
+      "ok": true,
+      "detail": "unity-web.framework.js"
+    },
+    {
+      "name": "url codeUrl",
+      "ok": true,
+      "detail": "unity-web.wasm"
+    },
+    {
+      "name": "assetHash",
+      "ok": true
+    },
+    {
+      "name": "catalogHash",
+      "ok": true
+    },
+    {
+      "name": "outputs/index.html contains every flowVersion-159 native flag site",
+      "ok": true,
+      "detail": "9/9 sites"
+    },
+    {
+      "name": "outputs/Doppel-6-Fussballmanager.html contains every flowVersion-159 native flag site",
+      "ok": true,
+      "detail": "9/9 sites"
+    }
+  ],
+  "hashes": [
+    {
+      "file": "dist/world-unity-v151.js",
+      "sha256": "cdbed1043c287db6b5271a71491dbc68f0b1d8073d91c8ddd1b4638526fefe74",
+      "mtime": "2026-10-09T18:11:06.544Z"
+    },
+    {
+      "file": "dist/pitch-motion-v102.js",
+      "sha256": "440262e343554bb6b7604f1e9d5ad308ef5eb208b1f844cae0e33e2746301775",
+      "mtime": "2026-10-09T11:09:26.688Z"
+    },
+    {
+      "file": "dist/world-pitch-actions-v99.js",
+      "sha256": "61ba670500646754451821d19b8a723e3d4290d1237b89b7a90ad619828ea108",
+      "mtime": "2026-10-09T11:00:23.003Z"
+    },
+    {
+      "file": "dist/player-ball-events-v111.js",
+      "sha256": "b3b62667710c9a0ec5b915f5fbb40ba0424a4abf57c80bee7f831e1c725db383",
+      "mtime": "2026-10-09T11:00:22.559Z"
+    },
+    {
+      "file": "dist/world-ball-motion-v110.js",
+      "sha256": "bb193d058d603f896b8f229df793e47ded1f43611a756fad104aeacd9849eed1",
+      "mtime": "2026-10-09T11:00:22.991Z"
+    },
+    {
+      "file": "dist/world-physical-v65.js",
+      "sha256": "5db2b47d52ca3af7a4d4d2cb60cf64860009a345cf3cabda0344ee289a6776ad",
+      "mtime": "2026-10-09T13:52:02.990Z"
+    },
+    {
+      "file": "dist/pitch-v55.js",
+      "sha256": "0a6de1e6b9c3bff1a69e350982e91ffa20c7128919ecb6767ade509e8fd4797c",
+      "mtime": "2026-10-09T11:00:22.559Z"
+    },
+    {
+      "file": "dist/world-offensive-quality-v157.js",
+      "sha256": "c44cd7bdf645efed352133d2706b1f962e13878990ef13ad17d46b5c79723d22",
+      "mtime": "2026-10-09T14:05:39.147Z"
+    },
+    {
+      "file": "dist/world-foundation-v61.js",
+      "sha256": "a57163a790638315a046361b519a0047af697ca486c37970b4ed6d30677e9198",
+      "mtime": "2026-10-09T11:00:22.994Z"
+    },
+    {
+      "file": "dist/progress-v58.js",
+      "sha256": "e161519af413425d943872cd53c385689cb4071b8fa69496dd09f151ddbe4bc6",
+      "mtime": "2026-10-09T18:13:28.304Z"
+    },
+    {
+      "file": "dist/index.html",
+      "sha256": "dd1e5ccc18bb847ca29dc0837a0e6e2199dfc615e5bae180a5c8ac9a34781c88",
+      "mtime": "2026-10-09T18:13:28.304Z"
+    },
+    {
+      "file": "outputs/index.html",
+      "sha256": "ebe4ea31c6675c3dffc5e9a5890ee07ec0fbd85e08f83e96a0914e531e902e72",
+      "mtime": "2026-10-09T18:21:49.891Z"
+    },
+    {
+      "file": "outputs/Doppel-6-Fussballmanager.html",
+      "sha256": "ebe4ea31c6675c3dffc5e9a5890ee07ec0fbd85e08f83e96a0914e531e902e72",
+      "mtime": "2026-10-09T18:21:50.018Z"
+    },
+    {
+      "file": "work/platform/qa/unity-integration-v160.js",
+      "sha256": "b22357263510ebdb2e714b82eb253052a975c18934519976b30b73d305b4ee2b",
+      "mtime": "2026-10-09T11:00:26.045Z"
+    },
+    {
+      "file": "work/platform/qa/check-unity-parity-114.cjs",
+      "sha256": "69746a829ef779f657a7d975a51f5ba76af978a8c9f7b643d0f41befb367457c",
+      "mtime": "2026-10-09T11:00:26.037Z"
+    }
+  ]
+}

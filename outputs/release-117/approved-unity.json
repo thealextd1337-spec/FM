@@ -1,0 +1,25 @@
+{
+  "release": 117,
+  "checkedAt": "2026-10-09T18:38:58.755Z",
+  "sourceId": "1169b35efb3e4fb497871ab7785c43423321839fdd03a3037f71db534551d06c",
+  "compiled": true,
+  "testsPassed": true,
+  "buildPassed": true,
+  "unity": "6000.6.4f1",
+  "iterationTests": 106,
+  "stadiumTests": 706,
+  "duelTests": 34,
+  "buildErrors": 0,
+  "buildWarnings": 3,
+  "evidenceHashes": {
+    "outputs/3d-quality/iteration-117/handoff.json": "fe58f793a89e84d30d3100aed41ff85c882d854c4c8ca88323624826ca59fca1",
+    "outputs/3d-quality/iteration-117/tests-full-2.log": "c84e538a3a265e238c7a3c3505fea43184f51ca0c3d3ccba2509ed9bf1e1eaba",
+    "outputs/3d-quality/iteration-117/iteration-tests.json": "e0652232a6c27300e2000b19040f20dee899631e7d37d59a3d80b4734ae7a387",
+    "outputs/3d-quality/iteration-117/stadium-architecture-tests.json": "b5a86630c66f797eeb231bc68e1e3058ccfe26dd46e8d5bdbeea6d0bc79182f7",
+    "outputs/3d-quality/iteration-117/renders/renders.json": "50c0e76ac896eed9d093a26b3f291e9b9b0006aac165836b73afb02a58ee62d6",
+    "outputs/3d-quality/iteration-117/web-build.log": "df8f75eba11cdeb23d46f788dc9959e74d03b08f4c50b3587846305f08fc10d5"
+  },
+  "independentManifestChecks": 49,
+  "independentReview": "outputs/release-117/source-review.json",
+  "limitation": "Editor render evidence is not physical Android performance or WebGL skinning proof; actual browser release gate is separate."
+}

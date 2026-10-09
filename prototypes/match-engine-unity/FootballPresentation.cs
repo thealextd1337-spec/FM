@@ -68,10 +68,25 @@ public partial class ProbeBridge {
             bool scorer=p.id==f.celebrationScorer;var clip=scorer?celebrateVictoryClip:i%2==0?celebrateArmsClip:celebrateFistClip;
             if(clip!=null){pose.clip=clip;pose.time=f.celebrationTime+(scorer?0:i*.37);pose.loop=true;pose.baseClip=null;pose.key="celebration:"+f.celebrationTeam+":"+f.celebrationScorer;}
         }
-        if(p.action=="pass"||p.action=="highPass"||p.action=="cross"){pose.clip=passClip;pose.time=PassContact+age;pose.loop=false;pose.plant=runSpeeds[i]<.4&&age<.7;pose.contact=age<.09;}
-        else if(p.action=="receive"||p.action=="control"){pose.clip=receiveClip;pose.time=ReceiveContact+age;pose.loop=false;pose.plant=runSpeeds[i]<.4&&age<.35;pose.contact=age<.12;}
+        if(p.action=="pass"||p.action=="highPass"||p.action=="cross"){
+            pose.clip=passClip;pose.time=PassContact+age;pose.loop=false;pose.plant=runSpeeds[i]<.4&&age<.7;pose.contact=age<.09;
+            // A lofted delivery swings through higher once the native contact is over.
+            if(p.action!="pass")pose.loft=FootballKickTiming.FollowThrough(age)*.85f;
+        }
+        else if(p.action=="receive"||p.action=="control"){
+            pose.clip=receiveClip;pose.time=ReceiveContact+age;pose.loop=false;pose.plant=runSpeeds[i]<.4&&age<.35;pose.contact=age<.12;
+            // An actual aerial control (native flag) lands from the contact; a
+            // chest-high ball is not forced onto the foot.
+            if(p.aerial){AirPose(ref pose,p.action,progress,contactPoint,identity.keeper,i,false);pose.plant=false;if(contactPoint.HasValue&&contactPoint.Value.y>.9f)pose.contact=false;}
+        }
         else if(p.action=="passReady"){pose.clip=passClip;pose.time=progress*PassContact;pose.loop=false;pose.plant=runSpeeds[i]<.4;}
-        else if(p.action=="shot"||p.action=="freeKick"||p.action=="volley"||p.action=="goalKick"){pose.clip=shotClip;pose.time=ShotContact+age;pose.loop=false;pose.plant=runSpeeds[i]<.4&&age<.55;pose.contact=age<.09;}
+        else if(p.action=="shot"||p.action=="freeKick"||p.action=="volley"||p.action=="goalKick"){
+            pose.clip=shotClip;pose.time=ShotContact+age;pose.loop=false;pose.plant=runSpeeds[i]<.4&&age<.55;pose.contact=age<.09;
+            // The picture has no goal-kick phase: its follow-through waits until
+            // the actual ball has left the kicker, never during the run-up.
+            if(p.action=="volley")pose.volley=FootballKickTiming.FollowThrough(age);
+            else if(p.action=="goalKick"&&Horizontal(ballView.position-actors[i].position)>GoalKickGone)pose.loft=FootballKickTiming.FollowThrough(age);
+        }
         else if(p.action=="kickReady"){pose.clip=shotClip;pose.time=progress*ShotContact;pose.loop=false;pose.plant=runSpeeds[i]<.4;}
         else if(p.action=="foulVictim"&&foulFallClip!=null&&keeperRiseClip!=null){
             double foul=progress*FoulWindow;
@@ -102,17 +117,35 @@ public partial class ProbeBridge {
             pose.lunge=FootballDuelTiming.OffenderLunge(foul);
         }
         else if(identity.keeper&&p.action=="save"){
-            pose.clip=p.contactPoint?.Length==3&&p.contactPoint[1]>1.6?keeperHighClip:p.contactPoint?.Length==3&&Math.Abs(p.contactPoint[2]-p.position[2])>1.2?keeperDiveClip:keeperActionClip;
+            // High, diving or low save relative to the keeper's received facing.
+            var facing=V(p.facing);var save=p.contactPoint?.Length==3?FootballKeeperTiming.SaveKind(V(p.contactPoint),V(p.position),facing.sqrMagnitude>.0001f?facing:actors[i].forward):"low";
+            pose.clip=save=="high"?keeperHighClip:save=="dive"?keeperDiveClip:keeperActionClip;
             pose.time=FootballKeeperTiming.Time(pose.clip.name,progress);pose.loop=false;pose.urgent=true;pose.kind=contactPoint.HasValue&&actors[i].InverseTransformPoint(contactPoint.Value).x<0?"left-hand":"hand";pose.contact=progress>.78&&contactPoint.HasValue&&Vector3.Distance(contactPoint.Value,ballView.position)<.6f;
             // A central ball at chest or head height is met with both palms.
             if(contactPoint.HasValue){var offset=contactPoint.Value-actors[i].position;if(Mathf.Abs(Vector3.Dot(offset,actors[i].right))<.45f&&contactPoint.Value.y>.5f&&contactPoint.Value.y<2.3f)pose.kind="two-hands";}
             if(pose.clip==keeperDiveClip)pose.keeperDive=(float)(Math.Clamp(progress/.7,0,1)*(1-Math.Clamp(p.recovery/.55,0,1)));
             if(p.recovery>.35){pose.clip=keeperRiseClip;pose.time=(p.recovery-.35)/.65*(pose.clip.length-.001);pose.contact=false;}
         }
-        else if((p.action=="header"||p.action=="airReady")&&contactPoint.HasValue){
-            // The head and upper body turn toward the actual aerial contact, within HeadReach.
-            pose.kind="head";pose.contact=Vector3.Distance(contactPoint.Value,actors[i].position)<2.6f&&Vector3.Distance(contactPoint.Value,ballView.position)<1.2f;
-            pose.contactWeight=Mathf.Clamp(p.action=="airReady"?(float)progress*.8f:1-(float)progress,.001f,.999f);
+        else if(p.action=="header"||p.action=="airReady"||p.action=="airLand"){
+            // Preparation, jump, contact and landing from the native phase. The
+            // losing contender (airLand) jumps and lands without a contact.
+            AirPose(ref pose,p.action,progress,contactPoint,identity.keeper,i,true);
+            if(p.action!="airLand"&&contactPoint.HasValue){
+                // The head and upper body turn toward the actual aerial contact, within HeadReach.
+                pose.kind="head";pose.contact=Vector3.Distance(contactPoint.Value,actors[i].position)<HeaderReach&&Vector3.Distance(contactPoint.Value,ballView.position)<1.2f;
+                pose.contactWeight=Mathf.Clamp(p.action=="airReady"?(float)progress*.8f:1-(float)progress,.001f,.999f);
+            }
+        }
+        else if(p.action=="throw"&&(p.holdingKnown||p.pickup>=0)){
+            // Native throw-in phases: pickup and wind-up while holding, then the
+            // release follow-through (native release states holding:false and has
+            // no pickup). Pictures without the fields keep the legacy branch below.
+            // The hands hold only the actual nearby ball.
+            pose.clip=identity.keeper?keeperClip:idleClip;pose.time=.4;pose.loop=true;pose.baseClip=null;pose.plant=false;
+            if(p.holding){
+                double pickup=p.pickup>=0?p.pickup:1;pose.throwBend=FootballThrowTiming.Bend(pickup);pose.throwRaise=FootballThrowTiming.Raise(pickup);pose.throwArch=FootballThrowTiming.Arch(progress);
+                if(ballView.gameObject.activeSelf&&Horizontal(ballView.position-actors[i].position)<1.3f){pose.kind="two-hands";pose.contact=true;}
+            }else{pose.throwArch=FootballThrowTiming.ReleaseArch(progress);pose.throwRaise=FootballThrowTiming.ReleaseRaise(progress);pose.throwRelease=FootballThrowTiming.Whip(progress);}
         }
         else if(p.action=="throw"&&ballView.position.y>1f&&Vector3.Distance(ballView.position,actors[i].position+Vector3.up*ballView.position.y)<1.3f){pose.kind="two-hands";pose.contact=true;}
         pose.target=p.action=="throw"&&pose.kind=="two-hands"?ballView.position:contactPoint??ballView.position;
@@ -137,6 +170,20 @@ public partial class ProbeBridge {
             pose.forwardLean=locomotion.ForwardLean;pose.turnLean=locomotion.TurnLean;pose.recoveryLean=locomotion.RecoveryLean;
         }
         return pose;
+    }
+    // Native header distance; the goal-kick ball has left its kicker beyond GoalKickGone.
+    const float HeaderReach=2.6f,GoalKickGone=1.5f;
+    static float Horizontal(Vector3 v){v.y=0;return v.magnitude;}
+    // Aerial body from the native phase: preparation counts toward the arrival,
+    // contact actions start at the apex and land by their end. upright: a
+    // standing base replaces the stride once airborne (the stride would run in the air).
+    void AirPose(ref FootballAnimation.Pose pose,string action,double progress,Vector3? contact,bool keeper,int i,bool upright){
+        bool ready=action=="airReady";
+        float lift=ready?FootballAirTiming.ReadyLift(progress):FootballAirTiming.FallLift(progress),crouch=ready?FootballAirTiming.ReadyCrouch(progress):FootballAirTiming.Landing(progress);
+        pose.airLift=lift;pose.airCrouch=crouch;pose.airTuck=FootballAirTiming.Tuck(lift);pose.airArms=FootballAirTiming.Arms(lift,crouch);pose.plant=false;
+        // Only a contact within the native header distance raises the jump toward it.
+        pose.airReach=contact.HasValue&&Horizontal(contact.Value-actors[i].position)<HeaderReach?contact.Value.y:float.NaN;
+        if(upright&&(!ready||lift>0)){pose.clip=keeper?keeperClip:idleClip;pose.time=.4;pose.loop=true;pose.baseClip=null;}
     }
     FootballAnimation.Pose DemoFootballPose(Actor a,State s){
         double age=Math.Max(0,s.elapsed-a.poseStarted);var read=ProbePose.Read(a,s);

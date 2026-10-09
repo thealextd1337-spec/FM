@@ -155,7 +155,7 @@ public partial class ProbeBridge {
         Slot(StadiumSlot.Cladding,claddingTex,4);Slot(StadiumSlot.Brick,brickTex,2.4f);Slot(StadiumSlot.Trim,null,1,gloss:.1f);
         Slot(StadiumSlot.Glass,windows,3,new Color(.75f,.72f,.66f),.6f);Slot(StadiumSlot.Lamp,lampTex,1,new Color(1.6f,1.5f,1.3f),color:new Color(.9f,.9f,.85f));
         Slot(StadiumSlot.Shade);Slot(StadiumSlot.Grass,leafTex,6);Slot(StadiumSlot.Foliage,leafTex,3);Slot(StadiumSlot.Water,null,1,gloss:.8f);Slot(StadiumSlot.Ground,groundTex,8);
-        Slot(StadiumSlot.Sky,skyTex,1,Color.white,color:Color.black);
+        Slot(StadiumSlot.Sky,skyTex,1,Color.white,color:Color.black);Slot(StadiumSlot.Accent,null,1,gloss:.1f);
 
         // One renderer per stand side and surface; each side hides as a whole.
         standHalf=new Vector2(L/2,W/2);
@@ -172,8 +172,12 @@ public partial class ProbeBridge {
         }
 
         // LED advertising boards in the home colours, glowing under the lights.
+        // Every other panel shows the club identity pattern in its accent colour.
+        int identity=plan.Identity;var accent=plan.Accent;
         var board=StadiumTexture(512,32,(x,y)=>{int panel=x/64,lx=x%64;bool alt=panel%2==1;var bg=alt?homeTrim:home;var fg=alt?home:homeTrim;
-            bool mark=y>9&&y<23&&lx>10&&lx<54&&((lx-10)%11<8)&&!(panel%3==0&&y>15);if(y<2||y>29)return new Color(.05f,.05f,.06f);return mark?fg:bg;});
+            if(y<2||y>29)return new Color(.05f,.05f,.06f);
+            if(alt)return StadiumArchitecture.PatternTexel(identity,lx,y-2,64,28)?accent:home;
+            bool mark=y>9&&y<23&&lx>10&&lx<54&&((lx-10)%11<8)&&!(panel%3==0&&y>15);return mark?fg:bg;});
         foreach(int sign in new[]{-1,1}){
             Box("LED board",new Vector3(0,.5f,sign*(W/2+3.2f)),new Vector3(L+6,.9f,.12f),EnvMaterial(new Color(.55f,.55f,.55f),board,new Vector2((L+6)/8,1),new Color(.55f,.55f,.55f)));
             Box("LED board",new Vector3(sign*(L/2+3.8f),.5f,0),new Vector3(.12f,.9f,W+6),EnvMaterial(new Color(.55f,.55f,.55f),board,new Vector2((W+6)/8,1),new Color(.55f,.55f,.55f)));

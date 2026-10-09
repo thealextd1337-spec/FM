@@ -1,5 +1,7 @@
 # Entwicklungsdokumentation
 
+- [Release 117](release-117.md): Luft-/Landefolgen, Einwurf, lokale Keeperwinkel, optionale Ballhilfe, bessere Namen und sichtbare Vereinsidentität; vollständige Produktions-, Unity-/Browserfreigabe bestanden, Veröffentlichung und Live-Abnahme folgen.
+
 - [Weitere 3D-Iteration](platform/3d-readability-iteration.md): lokale bessere Namensplatzierung, Vereinsmuster und Kopfverbindungen; geprüfte kleine Bildschirmansicht und konkrete Vorschläge für Animation, Ball und Stadien.
 
 - [Release 116](release-116.md): schnelles Kleinfeldspiel, Vereinsringe und Wachhalten im Vollbild; Veröffentlichungsprüfung und Live-Nachweise.

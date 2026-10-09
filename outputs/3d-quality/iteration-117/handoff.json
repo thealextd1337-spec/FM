@@ -1,0 +1,17 @@
+{
+  "sourceId": "1169b35efb3e4fb497871ab7785c43423321839fdd03a3037f71db534551d06c",
+  "base": "60b25ce",
+  "unity": "6000.6.4f1",
+  "build": {"result": "Succeeded", "bytes": 90689426, "errors": 0, "warnings": 3, "log": "web-build.log", "manifest": "outputs/platform/unity-web/probe-build.json", "pipelineSnapshot": "pipeline-validation-build.json (tracked copy restored from HEAD; only instance IDs differ)"},
+  "verification": "sourceId equal in recomputed source bytes, source-identity.json, ProbeBuildIdentity.cs, probe-build.json and renders/renders.json; 4 build files match manifest bytes+sha256; 51 Unity project copies byte-identical to repo sources",
+  "tests": {
+    "final": "tests-full-2.log (source 1169b35e: Stadium 706, Duel 34, Iteration 106, all earlier suites passed)",
+    "reports": ["iteration-tests.json", "stadium-architecture-tests.json", "duel-tests.json"],
+    "history": ["iteration-tests-1.log: FAILED compile CS0826 in IterationEvidenceDiagnostics.cs:102 (implicitly typed tuple array), fixed", "iteration-tests-2.log: 106 passed (source 1fe6fdb8, before mosaic)", "tests-full-1.log: all passed on source 1fe6fdb8 (banner variant, superseded)"]
+  },
+  "evidence": {
+    "final": "renders/ (evidence-3.log, 34 PNG, Direct3D11, warm-up capture first)",
+    "superseded": ["renders-attempt-1-banners/ (banner identity too small to read; first-capture artifact)", "renders-attempt-2-first-capture/ (mosaic; ENG-1 first capture miscoloured by Editor first-capture artifact, proven via ray probe ray-probe.txt and the later reduced reload)"],
+    "ballMarker": "renders/renders.json markers: follow 8.14 vs measured 8 px, wide 5.99 vs 7, diagonal 6.23 vs 7 (720 px height); centres within 0.0003 viewport"
+  }
+}
