@@ -1,6 +1,6 @@
 # 3D-Qualitätsiteration: lokale Abnahme und Restarbeit
 
-Stand: 9. Oktober 2026. Umsetzung im Worktree `work/3d-quality-stadiums`, Branch `codex/3d-quality-stadiums-20261009`, Basis `e630ebc` (Release 114). Der erste beauftragte Darstellungsumfang ist integriert und lokal geprüft. Es gab keine Veröffentlichung; die Versionsnummer bleibt 114. Bestehende Spielstände und die Matchsimulation erhalten keine neue Berechnung.
+Stand: 9. Oktober 2026. Umsetzung im Worktree `work/3d-quality-stadiums`, Branch `codex/3d-quality-stadiums-20261009`, Basis `e630ebc` (Release 114). Der erste beauftragte Darstellungsumfang wurde zunächst lokal mit Version 114 geprüft und anschließend auf gesonderten Nutzerauftrag als [Release 115 veröffentlicht](../release-115.md). Die folgenden lokalen Nachweise bleiben mit ihrem ursprünglichen Prüfstand dokumentiert; Produktions- und Live-Abnahme stehen im Releasebericht. Bestehende Spielstände und die Matchsimulation erhalten keine neue Berechnung.
 
 ## Geliefert
 

@@ -1,6 +1,6 @@
 # A02: Animationsqualität – Asset- und Quellcodeaudit
 
-Stand: 9. Oktober 2026. Aktueller eingefrorener Unity-Quellstand `959aea1e62482d85aff5d6c7d1d001f23bb64097f6497fe1389f5cb444128b93` mit integrierter nativer Grätschenprojektion und Unity-Zweikampf-/Bewegungsanbindung. Lokale Lieferung, keine Veröffentlichung und keine neuen Meshy-Aufträge.
+Stand: 9. Oktober 2026. Aktueller eingefrorener Unity-Quellstand `959aea1e62482d85aff5d6c7d1d001f23bb64097f6497fe1389f5cb444128b93` mit integrierter nativer Grätschenprojektion und Unity-Zweikampf-/Bewegungsanbindung, inzwischen als Teil von [Release 115 veröffentlicht](../release-115.md). Dieser Audit bleibt ein lokaler Asset-/Quellnachweis; keine neuen Meshy-Aufträge.
 
 Der Audit ist ausführbar und untersucht tatsächliche Assetbytes, den Bildvertrag sowie den Unity-Katalog und dessen Aktionsauswahl. **Dies ist keine neue visuelle Abnahme.** Insbesondere wurden weder Unity-Editor/-Build gestartet noch Screenshots, Videos oder Smartphonebefunde erzeugt. Vorhandene ältere Importberichte sind als historische Referenz gekennzeichnet.
 

@@ -1,6 +1,6 @@
 # Priorisierte Agenda: 3D-Erlebnis und Vereinsstadien
 
-Stand: 9. Oktober 2026. Nutzerauftrag: vorrangig das 3D-Erlebnis verbessern und schönere, unterschiedliche Stadien je Verein einplanen. Spielerporträts und Jubelbilder entfallen. Dieser Plan beauftragt keine Veröffentlichung, Dienste oder kostenpflichtige Assetgenerierung.
+Stand: 9. Oktober 2026. Nutzerauftrag: vorrangig das 3D-Erlebnis verbessern und schönere, unterschiedliche Stadien je Verein einplanen. Spielerporträts und Jubelbilder entfallen. Der erste umgesetzte Umfang wurde auf den späteren Nutzerauftrag „Veröffentliche“ als [Release 115 veröffentlicht](release-115.md). Dienste oder kostenpflichtige Assetgenerierung wurden nicht beauftragt.
 
 ## Verbindliche Prioritäten
 

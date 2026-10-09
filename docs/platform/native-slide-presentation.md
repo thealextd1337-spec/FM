@@ -1,6 +1,6 @@
 # Native Grätschenprojektion
 
-Stand: 9. Oktober 2026. Lokale Umsetzung auf Basis Release 114, keine Veröffentlichung.
+Stand: 9. Oktober 2026. Zunächst lokal auf Basis Release 114 umgesetzt und geprüft; anschließend als Teil von [Release 115 veröffentlicht](../release-115.md). Die unten aufgeführten lokalen Kontrollläufe behalten ihren ursprünglichen Prüfstand.
 
 Die bisherige Unity-Brücke übertrug zwar Laufbewegung und Fußballaktionen, aber nicht die vorhandene Grätschenphase. `v98PitchFrame` liefert jetzt eine separate optionale `unityAction` aus `match.slide`, `slideActive`, Bewegungsrichtung und `recoverUntil`. Bestehende Browseraktionen und deren Rig-Pfad bleiben erhalten. Die Unity-Brücke wählt Foulreaktionen vor dieser Pose und überträgt anschließend Rutschen oder Aufstehen mit Fortschritt, Dauer, Richtung und Kontaktziel. Die Laufzeit benötigt dafür keinen eigenen fortschreitenden Timer.
 

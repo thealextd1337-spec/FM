@@ -1,6 +1,6 @@
 # 3D-Qualität: Zuständigkeiten und abgeschlossene erste Iteration
 
-Start: 9. Oktober 2026 auf Nutzerauftrag. Basis `e630ebc` (Release 114), Branch `codex/3d-quality-stadiums-20261009`. Alle Arbeiten nur im Worktree `work/3d-quality-stadiums`, keine Änderungen am veralteten Hauptcheckout oder `freekickdemo/`. Neue lokale Assets und Lösungen sind erlaubt, wenn der Bestand die Qualität begrenzt; keine Veröffentlichung oder externe Dienste durch diesen Auftrag.
+Start: 9. Oktober 2026 auf Nutzerauftrag. Basis `e630ebc` (Release 114), Branch `codex/3d-quality-stadiums-20261009`. Alle Arbeiten nur im Worktree `work/3d-quality-stadiums`, keine Änderungen am veralteten Hauptcheckout oder `freekickdemo/`. Neue lokale Assets und Lösungen sind erlaubt, wenn der Bestand die Qualität begrenzt. Der ursprüngliche Umsetzungsauftrag umfasste keine Veröffentlichung oder externen Dienste; der spätere Nutzerauftrag „Veröffentliche“ führte zur [Veröffentlichung als Release 115](../release-115.md).
 
 ## Zuständigkeiten
 

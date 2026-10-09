@@ -1,0 +1,31 @@
+{
+  "initial": {
+    "url": "https://fussball.cakamper.at/?verify=release115-after",
+    "footer": "Doppel 6 / PROTOTYP 115\n3D-Hilfe",
+    "helpVersion": 115,
+    "flutlicht": true,
+    "overflow": false,
+    "width": 1280,
+    "height": 800,
+    "ready": "complete",
+    "release": 115,
+    "profile": "isolated incognito",
+    "checkedAt": "2026-10-09T13:00:40.885Z",
+    "note": "Initial live-page check before seeded QA match; no user career opened."
+  },
+  "reload": {
+    "url": "https://fussball.cakamper.at/?verify=release115-final",
+    "footer": "Doppel 6 / PROTOTYP 115\n3D-Hilfe",
+    "helpVersion": 115,
+    "flutlicht": true,
+    "overflow": false,
+    "width": 1280,
+    "height": 800,
+    "ready": "complete"
+  },
+  "liveMatchErrors": [],
+  "fullMatches": 2,
+  "all14HashesMatch": true,
+  "digest": "44417dc8",
+  "note": "Synthetic career in agent-owned incognito profile. Full live matches, pause, halftime and JSON restore verified; final page reload still shows 115. No hardware performance claim."
+}

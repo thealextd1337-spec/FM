@@ -5,7 +5,7 @@
 - [3D-Erlebnis und Vereinsstadien – priorisierte Agenda](3d-erlebnis-stadien-plan.md): zuerst 3D-Qualität mit Vereinsstadien, danach Accounts; parallele 3D-Arbeitsspuren für Stadien, Bewegung/Kontakte sowie Kamera/Performance; keine Spielerporträts oder Jubelbilder.
 
 - [3D-Qualitätsiteration](platform/3d-quality-unity.md): sichtbare Vereinsarchitektur, reduzierte Stufe, Grätschen und Zweikampfposen; Unity-Tests und Renderbilder.
-- [3D-Abnahme](platform/3d-quality-validation.md): eingefrorener WebGL-Kandidat, vollständige Browserpartien und Ergebnisvergleich; verbleibende Geräte- und Animationsarbeit.
+- [3D-Abnahme](platform/3d-quality-validation.md): eingefrorener WebGL-Stand in Release 115, lokale Browserpartien und Ergebnisvergleich; Live-Nachweise im Releasebericht, verbleibende Geräte- und Animationsarbeit.
 - [Vereinsstadien](platform/club-stadiums.md): deterministische Profile für 48 Vereine, acht Architekturtypen und reine Katalogprüfungen; im aktuellen Unity-Kandidaten angebunden.
 - [Native Grätschenprojektion](platform/native-slide-presentation.md): Rutsch-/Erholungsphasen, Foulvorrang und vollständige Kontrollpartien ohne Ergebnisänderung.
 - [Animationsaudit](platform/animation-quality-audit.md): tatsächliche Clips, Matchanbindung, nachgewiesene Lücken und Grenzen der Quellprüfung.

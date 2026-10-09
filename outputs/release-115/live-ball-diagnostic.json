@@ -1,0 +1,954 @@
+{
+  "result": {
+    "name": "release115-ball-diagnostic",
+    "done": true,
+    "v": {
+      "setup": {
+        "config": {
+          "fieldSize": "large",
+          "fieldPlayers": 6
+        },
+        "unity": true,
+        "people": 14,
+        "perTeam": [
+          7,
+          7
+        ],
+        "keepers": [
+          1,
+          1
+        ],
+        "geometry": {
+          "version": 1,
+          "length": 81.6,
+          "width": 52.8,
+          "goalWidth": 9.705882352941178,
+          "goalHeight": 3.2352941176470593,
+          "penaltyDepth": 10.5953488372093,
+          "penaltyWidth": 24.264705882352942,
+          "ballRadius": 0.1764
+        },
+        "expectedPerTeam": 7,
+        "unityReady": true,
+        "ack": {
+          "players": 14,
+          "ids": 14,
+          "allReal": true
+        },
+        "error": null
+      },
+      "r20": {
+        "ticks": 1365,
+        "minute": 20,
+        "phase": "live",
+        "score": [
+          0,
+          2
+        ],
+        "finished": false,
+        "halftime": false,
+        "unityError": null,
+        "stats": {
+          "pictures": 201,
+          "maxPositionError": 0,
+          "playersOutside": 0,
+          "visibleBallOutside": 0,
+          "netMaxZ": 3.624,
+          "labels": 14,
+          "visibleLabels": 13,
+          "domLabels": 14,
+          "keeperContactSamples": 13,
+          "keeperContactMetres": [
+            "save:3.159",
+            "save:1.221"
+          ]
+        }
+      },
+      "pause": {
+        "steps": 14,
+        "ok": true,
+        "phase": "paused",
+        "picturePhase": "paused"
+      },
+      "live": {
+        "phase": "live",
+        "replay": false,
+        "error": null
+      },
+      "half": {
+        "stopped": "halftime",
+        "minute": 49,
+        "score": [
+          0,
+          2
+        ]
+      },
+      "r60": {
+        "ticks": 475,
+        "minute": 60,
+        "phase": "live",
+        "score": [
+          0,
+          2
+        ],
+        "finished": false,
+        "halftime": true,
+        "unityError": null,
+        "stats": {
+          "pictures": 274,
+          "maxPositionError": 0,
+          "playersOutside": 0,
+          "visibleBallOutside": 0,
+          "netMaxZ": 3.624,
+          "labels": 14,
+          "visibleLabels": 13,
+          "domLabels": 14,
+          "keeperContactSamples": 13,
+          "keeperContactMetres": [
+            "save:3.159",
+            "save:1.221"
+          ]
+        }
+      },
+      "cp": {
+        "saved": true,
+        "restored": true,
+        "minute": 60,
+        "loadsBefore": 1,
+        "loadsAfter": 2,
+        "unityReady": true,
+        "error": null
+      },
+      "end": {
+        "ticks": 1366,
+        "minute": 99,
+        "phase": "finished",
+        "score": [
+          0,
+          2
+        ],
+        "finished": true,
+        "halftime": true,
+        "unityError": null,
+        "stats": {
+          "pictures": 300,
+          "maxPositionError": 0,
+          "playersOutside": 0,
+          "visibleBallOutside": 1,
+          "netMaxZ": 3.624,
+          "labels": 14,
+          "visibleLabels": 13,
+          "domLabels": 14,
+          "keeperContactSamples": 13,
+          "keeperContactMetres": [
+            "save:3.159",
+            "save:1.221"
+          ]
+        }
+      },
+      "digest": {
+        "score": [
+          0,
+          2
+        ],
+        "phase": "finished",
+        "finished": true,
+        "valid": true,
+        "booked": true,
+        "balanceOwn": 4918,
+        "checkpoints": 1,
+        "hashes": {
+          "score": "4fc49223:5",
+          "events": "974728da:531",
+          "stats": "e9777579:9853",
+          "fresh": "f33a999a:976",
+          "minutes": "ec3c3be2:736",
+          "report": "7ce9f295:34129",
+          "ratings": "3e79ffbc:727",
+          "ballAccounting": "097a9994:20494",
+          "geometry": "44a0621d:188",
+          "people": "e6dd7f59:9248",
+          "finances": "ae3ff9a5:20370",
+          "development": "cb6073b5:1004295",
+          "fixtures": "1016ce67:202948",
+          "world": "85008663:3902479"
+        },
+        "all": "44417dc8"
+      }
+    },
+    "ms": 199743
+  },
+  "ballFrames": [
+    {
+      "picture": {
+        "schema": "d6-world-view-1",
+        "session": "S1:GER:LEAGUE:R1:GER-4-GER-2:1:bdb13aca-71cd-48bb-a923-4a85c20be188",
+        "sequence": 16,
+        "clock": 158.85000000000187,
+        "elapsed": 69.2396666666677,
+        "phase": "live",
+        "score": [
+          2,
+          0
+        ],
+        "turned": true,
+        "replay": false,
+        "owner": "unity-v160-large-6:GER-4:1",
+        "ball": [
+          -47.69581577114753,
+          4.714367438878968,
+          -6.752061303150861
+        ],
+        "ballOpacity": 1,
+        "camera": {
+          "position": [
+            -4.980384022349832,
+            21,
+            31.05994909835622
+          ],
+          "target": [
+            -21.07552585759744,
+            0.3324766739354761,
+            0.29725407162800477
+          ],
+          "fov": 42
+        },
+        "players": [
+          {
+            "id": "unity-v160-large-6:GER-2:1",
+            "position": [
+              37.7400417413869,
+              0,
+              -0.29755147042954716
+            ],
+            "facing": [
+              -85.43585751253443,
+              0,
+              -6.454509832721314
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 1,
+            "freshness": 0.7887555371315158
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:2",
+            "position": [
+              -2.397391856521948,
+              0,
+              9.609090133270865
+            ],
+            "facing": [
+              -45.29842391462558,
+              0,
+              -16.361151436421725
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 2,
+            "freshness": 0.49731831552414085
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:4",
+            "position": [
+              -2.40610520396063,
+              0,
+              -11.468099973939973
+            ],
+            "facing": [
+              -45.2897105671869,
+              0,
+              4.7160386707891115
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 4,
+            "freshness": 0.4437060279072804
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:8",
+            "position": [
+              -20.576408603085525,
+              0,
+              11.488137014302252
+            ],
+            "facing": [
+              -27.119407168062004,
+              0,
+              -18.240198317453114
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 8,
+            "freshness": 0.47195233599979375
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:7",
+            "position": [
+              -7.0323592138456545,
+              0,
+              5.450534416376885
+            ],
+            "facing": [
+              -40.66345655730188,
+              0,
+              -12.202595719527746
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 7,
+            "freshness": 0.49385806178982783
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:10",
+            "position": [
+              -32.876067838705204,
+              0,
+              4.3511670303361845
+            ],
+            "facing": [
+              -14.819747932442326,
+              0,
+              -11.103228333487046
+            ],
+            "moving": false,
+            "action": "shot",
+            "actionId": "26",
+            "contactPoint": [
+              -33.27379154480649,
+              0.29,
+              3.8370504544459987
+            ],
+            "recovery": 0,
+            "progress": 0.947368421052847,
+            "duration": 0.95,
+            "number": 10,
+            "freshness": 0.5640352306331992
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:11",
+            "position": [
+              -25.538341307303934,
+              0,
+              -0.585526998396101
+            ],
+            "facing": [
+              -22.157474463843595,
+              0,
+              -6.1665343047547605
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 11,
+            "freshness": 0.37736783769244125
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:1",
+            "position": [
+              -37.478545628666744,
+              0,
+              0.8786102185990591
+            ],
+            "facing": [
+              0.06232057583071082,
+              0,
+              -0.9980561837031713
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 1,
+            "freshness": 0.7833461009931655
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:3",
+            "position": [
+              -28.735317826980815,
+              0,
+              2.711983664739279
+            ],
+            "facing": [
+              -18.960497944166715,
+              0,
+              -9.46404496789014
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 3,
+            "freshness": 0.43375537000652065
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:Y0:1",
+            "position": [
+              6.195583224774517,
+              0,
+              16.141147014235088
+            ],
+            "facing": [
+              -53.891398995922046,
+              0,
+              -22.893208317385948
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 12,
+            "freshness": 0.5369845622548742
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:8",
+            "position": [
+              -13.870032750619984,
+              0,
+              5.729775825494212
+            ],
+            "facing": [
+              -33.825783020527545,
+              0,
+              -12.481837128645072
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 8,
+            "freshness": 0.551724955806307
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:6",
+            "position": [
+              -9.418864164318837,
+              0,
+              -1.257637276637372
+            ],
+            "facing": [
+              -38.27695160682869,
+              0,
+              -5.494424026513489
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 6,
+            "freshness": 0.5185226413965655
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:9",
+            "position": [
+              6.1510945771793155,
+              0,
+              5.126147835419368
+            ],
+            "facing": [
+              -53.846910348326844,
+              0,
+              -11.878209138570229
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 9,
+            "freshness": 0.4531432037530909
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:7",
+            "position": [
+              5.977481513566319,
+              0,
+              -15.133188765823887
+            ],
+            "facing": [
+              -53.67329728471385,
+              0,
+              8.381127462673025
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 7,
+            "freshness": 0.8324237028063972
+          }
+        ],
+        "netActive": false,
+        "net": null
+      },
+      "frameElapsed": 69.2396666666677,
+      "outOfPlayBall": true,
+      "nativeBall": {
+        "x": -39.746513142622945,
+        "z": -5.6267177526257175,
+        "height": 4.714367438878968,
+        "opacity": 1
+      },
+      "miss": null,
+      "nativeClock": 70.40966666666775,
+      "geometry": {
+        "version": 1,
+        "length": 81.6,
+        "width": 52.8,
+        "goalWidth": 9.705882352941178,
+        "goalHeight": 3.2352941176470593,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "ballRadius": 0.1764
+      }
+    }
+  ],
+  "sampledOutside": [
+    {
+      "picture": {
+        "schema": "d6-world-view-1",
+        "session": "S1:GER:LEAGUE:R1:GER-4-GER-2:1:bdb13aca-71cd-48bb-a923-4a85c20be188",
+        "sequence": 16,
+        "clock": 158.85000000000187,
+        "elapsed": 69.2396666666677,
+        "phase": "live",
+        "score": [
+          2,
+          0
+        ],
+        "turned": true,
+        "replay": false,
+        "owner": "unity-v160-large-6:GER-4:1",
+        "ball": [
+          -47.69581577114753,
+          4.714367438878968,
+          -6.752061303150861
+        ],
+        "ballOpacity": 1,
+        "camera": {
+          "position": [
+            -4.980384022349832,
+            21,
+            31.05994909835622
+          ],
+          "target": [
+            -21.07552585759744,
+            0.3324766739354761,
+            0.29725407162800477
+          ],
+          "fov": 42
+        },
+        "players": [
+          {
+            "id": "unity-v160-large-6:GER-2:1",
+            "position": [
+              37.7400417413869,
+              0,
+              -0.29755147042954716
+            ],
+            "facing": [
+              -85.43585751253443,
+              0,
+              -6.454509832721314
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 1,
+            "freshness": 0.7887555371315158
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:2",
+            "position": [
+              -2.397391856521948,
+              0,
+              9.609090133270865
+            ],
+            "facing": [
+              -45.29842391462558,
+              0,
+              -16.361151436421725
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 2,
+            "freshness": 0.49731831552414085
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:4",
+            "position": [
+              -2.40610520396063,
+              0,
+              -11.468099973939973
+            ],
+            "facing": [
+              -45.2897105671869,
+              0,
+              4.7160386707891115
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 4,
+            "freshness": 0.4437060279072804
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:8",
+            "position": [
+              -20.576408603085525,
+              0,
+              11.488137014302252
+            ],
+            "facing": [
+              -27.119407168062004,
+              0,
+              -18.240198317453114
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 8,
+            "freshness": 0.47195233599979375
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:7",
+            "position": [
+              -7.0323592138456545,
+              0,
+              5.450534416376885
+            ],
+            "facing": [
+              -40.66345655730188,
+              0,
+              -12.202595719527746
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 7,
+            "freshness": 0.49385806178982783
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:10",
+            "position": [
+              -32.876067838705204,
+              0,
+              4.3511670303361845
+            ],
+            "facing": [
+              -14.819747932442326,
+              0,
+              -11.103228333487046
+            ],
+            "moving": false,
+            "action": "shot",
+            "actionId": "26",
+            "contactPoint": [
+              -33.27379154480649,
+              0.29,
+              3.8370504544459987
+            ],
+            "recovery": 0,
+            "progress": 0.947368421052847,
+            "duration": 0.95,
+            "number": 10,
+            "freshness": 0.5640352306331992
+          },
+          {
+            "id": "unity-v160-large-6:GER-2:11",
+            "position": [
+              -25.538341307303934,
+              0,
+              -0.585526998396101
+            ],
+            "facing": [
+              -22.157474463843595,
+              0,
+              -6.1665343047547605
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 11,
+            "freshness": 0.37736783769244125
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:1",
+            "position": [
+              -37.478545628666744,
+              0,
+              0.8786102185990591
+            ],
+            "facing": [
+              0.06232057583071082,
+              0,
+              -0.9980561837031713
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 1,
+            "freshness": 0.7833461009931655
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:3",
+            "position": [
+              -28.735317826980815,
+              0,
+              2.711983664739279
+            ],
+            "facing": [
+              -18.960497944166715,
+              0,
+              -9.46404496789014
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 3,
+            "freshness": 0.43375537000652065
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:Y0:1",
+            "position": [
+              6.195583224774517,
+              0,
+              16.141147014235088
+            ],
+            "facing": [
+              -53.891398995922046,
+              0,
+              -22.893208317385948
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 12,
+            "freshness": 0.5369845622548742
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:8",
+            "position": [
+              -13.870032750619984,
+              0,
+              5.729775825494212
+            ],
+            "facing": [
+              -33.825783020527545,
+              0,
+              -12.481837128645072
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 8,
+            "freshness": 0.551724955806307
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:6",
+            "position": [
+              -9.418864164318837,
+              0,
+              -1.257637276637372
+            ],
+            "facing": [
+              -38.27695160682869,
+              0,
+              -5.494424026513489
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 6,
+            "freshness": 0.5185226413965655
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:9",
+            "position": [
+              6.1510945771793155,
+              0,
+              5.126147835419368
+            ],
+            "facing": [
+              -53.846910348326844,
+              0,
+              -11.878209138570229
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 9,
+            "freshness": 0.4531432037530909
+          },
+          {
+            "id": "unity-v160-large-6:GER-4:7",
+            "position": [
+              5.977481513566319,
+              0,
+              -15.133188765823887
+            ],
+            "facing": [
+              -53.67329728471385,
+              0,
+              8.381127462673025
+            ],
+            "moving": false,
+            "action": "idle",
+            "actionId": "idle",
+            "contactPoint": null,
+            "recovery": 0,
+            "progress": 0,
+            "duration": 1,
+            "number": 7,
+            "freshness": 0.8324237028063972
+          }
+        ],
+        "netActive": false,
+        "net": null
+      },
+      "frameKeys": [
+        "elapsed",
+        "clock",
+        "turned",
+        "broadcast",
+        "celebration",
+        "players",
+        "ball",
+        "owner",
+        "ballInFlight",
+        "carrying",
+        "outOfPlayBall",
+        "offside",
+        "qaNative"
+      ],
+      "nativeBall": {
+        "x": -39.746513142622945,
+        "z": -5.6267177526257175,
+        "height": 4.714367438878968,
+        "opacity": 1
+      },
+      "geometry": {
+        "version": 1,
+        "length": 81.6,
+        "width": 52.8,
+        "goalWidth": 9.705882352941178,
+        "goalHeight": 3.2352941176470593,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "ballRadius": 0.1764
+      }
+    }
+  ],
+  "interpretation": {
+    "classification": "existing native out-of-play flight before fade",
+    "sameNativeFrame": true,
+    "outOfPlayBall": true,
+    "coordinateScale": 1.2,
+    "maxCoordinateError": 0,
+    "unchangedSinceRelease114": [
+      "dist/world-pitch-actions-v99.js",
+      "dist/world-corner-ball-v109.js"
+    ],
+    "rawBoundaryCounterRetained": true,
+    "note": "The generic opacity>=.99 geometric counter includes a legitimate outgoing ball. This is not a claim that all fully visible balls stay within field+4m; no renderer drift or new gameplay outcome was found.",
+    "instrumentation": "QA helper recorded offending picture, v98Frame ball and elapsed; a 16ms page diagnostic additionally recorded outOfPlayBall from the same rendered frame. Product source and match decisions were not changed."
+  }
+}

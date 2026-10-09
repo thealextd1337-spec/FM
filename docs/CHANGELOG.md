@@ -4,7 +4,7 @@
 
 ## 9. Oktober 2026 – Release 115
 
-Vereinsstadien und Zweikampfqualität werden auf Nutzerauftrag veröffentlicht. Umfang, geprüfte Quellen und Live-Nachweise stehen in [Release 115](release-115.md). Accounts erhalten in dieser Lieferung ausschließlich die vorbereiteten Verträge.
+Vereinsstadien und Zweikampfqualität sind auf Nutzerauftrag als Release 115 veröffentlicht. Umfang, geprüfte Quellen und Live-Nachweise stehen in [Release 115](release-115.md). Accounts erhalten in dieser Lieferung ausschließlich die vorbereiteten Verträge.
 
 - 3D-Qualitätsiteration integriert: alle 48 Vereinsprofile erzeugen unterschiedliche Stadionarchitektur mit Tribünen, Dächern, Fassaden, Umgebung und Rasenvarianten; reduzierte Stufe und Kameraausblendung erhalten. Grätsche/Aufstehen, stehender Zweikampf, vorhandenes Foulstolpern und Torwartnachstellen sind angebunden. 396 Profil-, 560 Architektur- und 34 Rigprüfungen, 48 Unity-Renderbilder und WebGL-Build bestanden. 21 Browserprüfungen und eine vollständige große 14-Spieler-Partie bestätigen Pause, Wechsel, Rückschau, Fortsetzung und identische native Ergebnisse/Buchungen. Einen verfrühten Bewegungstest vor Ablauf des Anstoß-Countdowns korrigiert. Reale Geräte und weitere Luft-/Einwurf-/Keepersequenzen bleiben offen. [Umsetzung](platform/3d-quality-unity.md), [Abnahme und Grenzen](platform/3d-quality-validation.md).
 

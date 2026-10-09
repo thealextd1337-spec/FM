@@ -1,6 +1,6 @@
 # Release 115: Vereinsstadien und Zweikampfqualität
 
-Nutzerauftrag vom 9. Oktober 2026: den zuvor geprüften 3D-Stand veröffentlichen. Basis Release 114; Arbeitsbranch `codex/3d-quality-stadiums-20261009`. Keine Änderungen an `freekickdemo/`, Matchentscheidungen oder bestehenden Spielständen. Die Accountlieferung umfasst ausschließlich Dokumentationsverträge.
+Veröffentlicht am 9. Oktober 2026 auf Nutzerauftrag „Veröffentliche“. Basis Release 114; Arbeitsbranch `codex/3d-quality-stadiums-20261009`. Keine Änderungen an `freekickdemo/`, Matchentscheidungen oder bestehenden Spielständen. Die Accountlieferung umfasst ausschließlich Dokumentationsverträge.
 
 ## Sichtbare Änderungen
 
@@ -22,7 +22,15 @@ Alle [85 Produktionskommandos](../outputs/release-115/preflight.json), [58 gemei
 
 ## Veröffentlichung und Live-Abnahme
 
-Noch ausstehend: geprüfter Releasecommit auf `main`, erfolgreicher Produktionslauf, bytegenauer Live-Abgleich von HTML, vier Unity-Builddateien, Manifest und iframe sowie tatsächliche Browserkontrolle der Live-Seite. Dieser Abschnitt wird nach erfolgreicher Abnahme mit den konkreten Nachweisen ergänzt.
+Releasecommit [`b365eff`](https://github.com/thealextd1337-spec/FM/commit/b365eff7f552b9caa516cecb49a5e8352a3fe188) wurde auf `main` übertragen. [Produktionslauf 37932033614](https://github.com/thealextd1337-spec/FM/actions/runs/37932033614) bestand einschließlich aller Spieltests, Build, Unity-Upload und abschließendem HTML-Upload mit Live-Prüfung. [Deploymentnachweis](../outputs/release-115/deployment.json).
+
+Die [Live-Seite](https://fussball.cakamper.at/) liefert Release 115. **65 Releaseprüfungen bestanden**, darunter der bytegenaue Abgleich von HTML, vier Unity-Builddateien, Buildmanifest und iframe. HTML-SHA-256 ist weiterhin `d65820fccdcc8610368ae1b3b264c686ad08c4952ea3a4104cf6f69c1a61e86b`; Unity-Quellenkennung unverändert. [Live-Hashes](../outputs/release-115/live-hashes.json).
+
+Im eigenen isolierten T3-Inkognito-Browser wurden zwei vollständige große Partien mit 14 tatsächlichen Spielern auf der Live-Seite ausgeführt. Pause, Rückkehr ins Livebild, Halbzeit und echte JSON-Fortsetzung bei Minute 60 funktionieren. Beide Läufe erreichen Minute 99 und das native Ergebnis 0:2; **alle 14 Teilhashes und Gesamtfingerabdruck `44417dc8` stimmen exakt mit der nativen Referenz überein**. Die erste Partie hat keine unbehandelten Seitenfehler. Bei jeweils 300 abgenommenen Bildern beträgt die Spielerpositionsabweichung 0 m, kein Spieler außerhalb der Prüfgrenze, 14 reale Namensmarker. [Erster Live-Lauf](../outputs/release-115/live-unity.json), [tatsächliches Stadionbild](../outputs/release-115/live-stadium.png).
+
+Der generische Ballgrenzzähler meldete in beiden Läufen ein voll sichtbares Bild außerhalb Feld + 4 m. Die zusätzliche Diagnose zeichnet genau dieses Bild mit identischem `v98Frame.elapsed` und `outOfPlayBall=true` auf: der bereits als Aus markierte Ball fliegt vor der bestehenden Ausblendung weiter. Unity erhält exakt die vorhandenen nativen Koordinaten mit Feldfaktor 1,2; Ballflug-/Ausblendquellen sind gegenüber Release 114 unverändert. Der Rohbefund bleibt erhalten und wird nicht als null ausgegeben. Er belegt keinen Rendererdrift; die pauschale Behauptung, jeder voll sichtbare Ball bleibe innerhalb dieser Grenze, wäre falsch. [Diagnose und zweiter vollständiger Lauf](../outputs/release-115/live-ball-diagnostic.json).
+
+Footer und generierte DE/EN-3D-Hilfe zeigen auch nach abschließendem Seitenreload **115**, Flutlicht ist verfügbar und die geprüfte 1280 × 800-Ansicht hat keinen horizontalen Überlauf. Alle Browserläufe verwenden eine synthetische Karriere im eigenen Profil. [Live-UI und Reload](../outputs/release-115/live-ui.json). Diese Funktionsprüfung ersetzt keine physische PC-/Smartphone-Leistungsmessung.
 
 ## Grenzen und nächste Priorität
 

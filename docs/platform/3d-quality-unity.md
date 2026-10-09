@@ -1,6 +1,6 @@
 # Unity: Vereinsstadien und Zweikampfqualität
 
-Stand: 9. Oktober 2026. Lokaler Kandidat auf Release 114, keine Veröffentlichung. Die Simulation, Spielstände, Vereinsstärken und Zufallsfolge bleiben beim bisherigen nativen Match. Dieses Paket erweitert ausschließlich dessen Unity-Darstellung.
+Stand: 9. Oktober 2026. Zunächst lokal auf Basis Release 114 geprüft, anschließend auf gesonderten Nutzerauftrag als [Release 115 veröffentlicht](../release-115.md). Die unten dokumentierten Unity-Quellen und Builddateien sind unverändert Teil dieser Veröffentlichung. Die Simulation, Spielstände, Vereinsstärken und Zufallsfolge bleiben beim bisherigen nativen Match. Dieses Paket erweitert ausschließlich dessen Unity-Darstellung.
 
 ## Umgesetzt
 
