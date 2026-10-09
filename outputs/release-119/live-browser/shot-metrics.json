@@ -1,0 +1,52 @@
+{
+  "pass": true,
+  "release": 119,
+  "sourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+  "htmlSha256": "8f14d9ec341e7e5134258001a9673221324aaf365fadf742db142411927523e2",
+  "matches": [
+    {
+      "config": {
+        "fieldSize": "standard",
+        "fieldPlayers": 5
+      },
+      "minute": 100,
+      "teams": [
+        {
+          "name": "FC Bremen Weser",
+          "shots": 4,
+          "onTarget": 0,
+          "goals": 0
+        },
+        {
+          "name": "SC Freiburg Tal",
+          "shots": 2,
+          "onTarget": 0,
+          "goals": 0
+        }
+      ],
+      "unresolvedShotEvents": 0,
+      "interruptedShots": 0,
+      "goalSources": [],
+      "compact": {
+        "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-4:1",
+        "minute": 97,
+        "teams": [
+          {
+            "name": "FC Bremen Weser",
+            "shots": 11,
+            "onTarget": 6,
+            "goals": 2
+          },
+          {
+            "name": "SC Freiburg Tal",
+            "shots": 6,
+            "onTarget": 2,
+            "goals": 0
+          }
+        ],
+        "note": "Same starting career, roster, plan and fixture; compact minute model on independent copy, physical match untouched"
+      }
+    }
+  ],
+  "note": "Complete native matches displayed in actual Unity WebGL; QA accelerates simulation for test throughput. Counts include exited players, use settled native onTarget and score, exclude penalty shootout goals. Deterministic fixture sample, not a population balance study."
+}

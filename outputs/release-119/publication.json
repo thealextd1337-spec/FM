@@ -1,0 +1,177 @@
+{
+  "pass": true,
+  "release": 119,
+  "checkedAt": "2026-10-09T23:43:40.6902043Z",
+  "productCommit": "0a06e57c3e2d89f99e9034471dae7ae52253764d",
+  "url": "https://fussball.cakamper.at/",
+  "footer": "PROTOTYP 119",
+  "ci": {
+    "id": 38004034984,
+    "conclusion": "success",
+    "jobs": [
+      {
+        "status": "completed",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Quellcode laden",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Node.js einrichten",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Spieltests ausführen",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Einzeldatei bauen",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Per FTPS zu World4You hochladen und Live-Datei prüfen",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Node.js einrichten",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Quellcode laden",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ],
+        "name": "deploy",
+        "id": 114068594977,
+        "conclusion": "success"
+      }
+    ],
+    "completedAt": "2026-10-09T23:39:52Z",
+    "url": "https://github.com/thealextd1337-spec/FM/actions/runs/38004034984",
+    "status": "completed"
+  },
+  "live": {
+    "manifestSha256": "832f4c33f46010fa6d59d3723ccc51fa09d414a55cccbd2e53d67e88ba6b0fc7",
+    "releaseChecks": 73,
+    "htmlBytes": 50873001,
+    "shotMetrics": [
+      {
+        "config": {
+          "fieldSize": "standard",
+          "fieldPlayers": 5
+        },
+        "minute": 100,
+        "teams": [
+          {
+            "name": "FC Bremen Weser",
+            "shots": 4,
+            "onTarget": 0,
+            "goals": 0
+          },
+          {
+            "name": "SC Freiburg Tal",
+            "shots": 2,
+            "onTarget": 0,
+            "goals": 0
+          }
+        ],
+        "unresolvedShotEvents": 0,
+        "interruptedShots": 0,
+        "goalSources": [],
+        "compact": {
+          "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-4:1",
+          "minute": 97,
+          "teams": [
+            {
+              "name": "FC Bremen Weser",
+              "shots": 11,
+              "onTarget": 6,
+              "goals": 2
+            },
+            {
+              "name": "SC Freiburg Tal",
+              "shots": 6,
+              "onTarget": 2,
+              "goals": 0
+            }
+          ],
+          "note": "Same starting career, roster, plan and fixture; compact minute model on independent copy, physical match untouched"
+        }
+      }
+    ],
+    "browserErrors": [],
+    "fullMatches": 2,
+    "htmlSha256": "8f14d9ec341e7e5134258001a9673221324aaf365fadf742db142411927523e2",
+    "digest": "8c0db75f",
+    "unitySourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+    "parityParts": 14,
+    "mobileChecks": 9,
+    "labelChecks": 18
+  },
+  "local": {
+    "nodeVersion": "20.20.2",
+    "candidateChecks": 65,
+    "fullMatches": 6,
+    "parityParts": 14,
+    "configurations": 3,
+    "productionCommands": 94
+  },
+  "commands": [
+    "Node24 work/verify-release-119.cjs --live",
+    "Node24 work/platform/qa/check-3d-quality-v119.cjs https://fussball.cakamper.at/ --live"
+  ],
+  "evidence": [
+    {
+      "sha256": "43e7c33438a8d7cfbd2188a4bc9ed7331b122a3b478fa1b118609057c22bb33a",
+      "path": "outputs/release-119/live-hashes.json"
+    },
+    {
+      "sha256": "4df99f4bab35e4e4d544ec2f650ac2b6c747da4f5e610239e49abc1ed1ad154a",
+      "path": "outputs/release-119/live-browser/mobile.json"
+    },
+    {
+      "sha256": "f50764935ed45763d4ca4681ba6872ce3aaed231431c26506fbe81abdb9e5428",
+      "path": "outputs/release-119/live-browser/native-unity-parity.json"
+    },
+    {
+      "sha256": "ca52360234bf7a7b031548a2b7cf1ffae0f570337225c03225cdbaed7ba0ecf4",
+      "path": "outputs/release-119/live-browser/shot-metrics.json"
+    },
+    {
+      "sha256": "523bd38054e1c15d5953c310a7394e720c96156f7ff60a2056e5590ccd961282",
+      "path": "outputs/release-119/live-browser/ball-guide-on.png"
+    },
+    {
+      "sha256": "93fc327a0fe801ae2bb8d4e473a88d73496924f5734fd58c588cdb8488409b0e",
+      "path": "outputs/release-119/live-browser/ball-guide-off.png"
+    }
+  ],
+  "limits": [
+    "Live browser comparison covers one standard/5-field-player fixture in native and Unity; local six complete runs across three configurations are separate evidence.",
+    "Edge software WebGL does not prove physical Android GPU performance, wake lock or manual app return. Pixel USB probe at 2026-10-09 22:53 UTC was blocked without an authorized device.",
+    "Twelve genuine physical fixtures averaged 3.75 total shots, below desired 10?16; physical balance remains open. Compact 48 averaged 12.625. No isolated rejected shot-calibration changes were integrated.",
+    "Claude source precheck completed; separate asynchronous eight-direction animation implementation started in work/claude-natural-motion, completion not claimed and frozen Release 119 artifacts untouched."
+  ]
+}
