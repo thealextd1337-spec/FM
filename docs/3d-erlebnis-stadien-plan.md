@@ -35,6 +35,8 @@ Nach Release 115 ist der [Kleinfeld-/Mobilstand](platform/mobile-match-readabili
 
 ## Ursprüngliche Umsetzungsschritte und Abnahmefolge
 
+Die nächste lokale [3D-Iteration nach Release 116](platform/3d-readability-iteration.md) verbessert Namensschilder bei Gedränge und am Bildrand mit Team-Mustern und feinen Kopfverbindungen. Noch nicht veröffentlicht. Die Folgeagenda priorisiert vollständige Luft-/Landesequenzen, reale Balllesbarkeit am kleinen Screen, isolierte Keeperwinkel und Einwürfe; Stadiondetails werden in der tatsächlich sichtbaren Gegentribüne verglichen. Geräteabnahme bleibt getrennt.
+
 1. Aktuellen Code-/Unity-/Buildstand und vorhandene Stadionassets aufnehmen. Sichtbare Qualitätsprobleme mit identischen Matchszenen festhalten; nicht bereits erledigte Paketnamen neu implementieren.
 2. Einen Stadionstil und mehrere deutlich unterschiedliche Beispielstadien ausarbeiten. Kleine Vereinsplätze, kompakte Stadtstadien und größere Arenen sind mögliche Typen, noch keine festgelegte Verteilung. Architektur, Tribünendächer, Eingänge, Beleuchtung, Umgebung und Vereinszeichen vergleichen. Ein modularer Bestand ist ein technischer Vorschlag; nicht 48 unabhängige Szenen voraussetzen.
 3. Die Beispiele in tatsächlichen Matchkameras und reduzierter Qualitätsstufe prüfen. Sicht auf Ball und Spieler, lesbare Namen, Schatten, Licht, Rasen und Tribünenausblendung gemeinsam betrachten.

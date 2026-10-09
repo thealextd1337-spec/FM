@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- Weitere 3D-Iteration: Unity-Namensschilder weichen dichtem Gedränge aus, bleiben am Bildrand vollständig und zeigen Vereinsfarbe/Team-Muster. Feine Kopfverbindungen beginnen am Schildrand; Namen, Spielerinfo und zugängliche Beschriftungen bleiben erhalten. 31 Layout-/Linienfälle, tatsächlicher HTML-Build mit 14 Unity-Spielern und 18 Browserprüfungen sowie Bildvertrag/Grätschenprojektion bestanden. Konkrete Folgeagenda für Luftlandung, Balllesbarkeit, Keeperwinkel, Einwurf und sichtbare Stadionidentität ergänzt. [Umfang und Nachweise](platform/3d-readability-iteration.md).
+
 ## 9. Oktober 2026 – Release 116
 
 Auf Nutzerauftrag „Stells online“ als Release 116 veröffentlicht. Deployment, 71 Release-/Live-Prüfungen und eine vollständige Live-Partie mit exakter nativer Zustands-/Buchungsgleichheit bestanden. [Releasebericht und Nachweise](release-116.md).

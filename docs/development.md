@@ -8,6 +8,8 @@ Für die Expansion auf sechs Länder müssen bisherige Spielstände nicht kompat
 
 ## Code, Prüfung und Veröffentlichung
 
+- Lokale 3D-Namensiteration nach Release 116: Bildschirmplatzierung und Kopfverbindungen gehören ausschließlich zur Browserdarstellung in `world-unity-v151.js`; tatsächliche Kopfanker kommen weiterhin aus Unity. Keine Match-/Speicher-/Kameraregeln ergänzen. Reine Layoutprüfung im Produktionsworkflow, tatsächliche kleine HTML-Build-Ansicht und native Parität separat: [Umfang und Nachweise](platform/3d-readability-iteration.md).
+
 - Kleinfelditeration v162 kennzeichnet nur neu erzeugte physische Partien über `attackFlow.paceVersion=162`; Lauf-/Rückkehr-/Luftpasslogik bleibt im nativen Controller, Daten bleiben serialisierbar und P02 unverändert. Keine Nachkennzeichnung beim Wiederherstellen. Fußringe sind reine Unity-Darstellung mit zwei gemeinsamen Meshes, einem Material und vollständigem Aufräumen; der neue Shader gehört zu Quellenkennung und Buildmanifest. Wake Lock folgt den tatsächlichen Vereinswelt-/Vollbild-Eigentümern statt ausschließlich dem alten Startknopf. [Umfang, Nachweise und Grenzen](platform/mobile-match-readability.md).
 
 - 3D-Qualitätsarbeit: `v98PitchFrame` projiziert vorhandene Grätschen und Erholung als optionales `unityAction`, ohne Browseraktionen oder Matchzustand zu verändern. Unity-Brücke bevorzugt Foulreaktionen, danach die Grätschenpose; Puffer und Geometrieskalierung übernehmen diese Daten. `test-world-unity-slides.cjs` prüft Phasen, Pause, Spielrichtungswechsel, Kontaktpunkte und reine Projektion. [Zuständigkeiten und Vertrag](platform/3d-quality-ownership.md). Als [Release 115 veröffentlicht](release-115.md); lokale und Live-Nachweise bleiben getrennt.

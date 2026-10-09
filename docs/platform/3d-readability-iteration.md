@@ -1,0 +1,31 @@
+# 3D-Iteration: Namen und nächste Qualitätsverbesserungen
+
+Stand: 9. Oktober 2026, lokaler Kandidat nach Release 116, noch nicht veröffentlicht. Priorität bleibt das 3D-Erlebnis, danach Accounts. Keine neuen Kaufassets oder Spielerporträts.
+
+## Umgesetzt
+
+Die Unity-Namensschilder behalten Nummer, Nachname, vollständige zugängliche Beschriftung und die vorhandene Spielerinfo. Vereinsfarbe sowie durchgehende beziehungsweise gestrichelte Unterkante entsprechen den Fußringen der Teams. Schilder in Ballnähe erhalten eine etwas stärkere Hintergrundfläche.
+
+Bei Gedränge sucht die reine Browserdarstellung mehr freie Positionen statt nach zwei Ausweichhöhen wieder auf die belegte Ausgangsposition zurückzufallen. Ganze Schilder bleiben mit einem kleinen Abstand im sichtbaren Spielfeld. Bruchteilige Browsermaße werden berücksichtigt. Eine feine Linie verbindet verschobene Namen mit der tatsächlich von Unity gemeldeten Kopfposition; sie beginnt am Schildrand und läuft nicht durch den eigenen Text. Frühere nahe Verschiebungen bleiben bei belegtem Anker erhalten; große Restverschiebungen nach Kamerasprüngen werden verworfen.
+
+Alle Namen bleiben erhalten. Bei einer theoretisch zu kleinen Fläche wählt die begrenzte Suche die geringste Überdeckung; sie garantiert keine Kollisionsfreiheit für beliebig viele oder beliebig breite Namen. Die Simulationsdaten, Kameraregeln, Rückschauen, Speicherformate und Unity-Builddateien bleiben unverändert.
+
+## Prüfung
+
+- 31 reine Layout-/Linienfälle bestanden: vier Bildschirmgrößen, 14 Namen im Gedränge an Mitte/Rändern, verschiedene Breiten/Höhen, Bruchteilmaße, Wiederverwendung naher Positionen und Linien nach oben/unten/seitlich/diagonal. [Daten](../../outputs/3d-quality/label-readability/layout-tests.json), Runner `work/test-unity-label-layout.cjs`, auch im Produktionsworkflow.
+- Tatsächlicher HTML-Build mit Unity-WebGL, großem Feld und 14 Spielern im Format 844 × 390: 18 Browserprüfungen, einschließlich echter Kopfpositionen und ausdrücklich synthetischer Projektionen für Gedränge an allen Ecken. Namen/Nummern, Team-Muster, Tastaturfokus, aktivierte Spielerinfo, Ablehnung fremder/nicht endlicher Projektionen und unveränderter nativer Match-/Weltzustand geprüft. [Browserdaten](../../outputs/3d-quality/label-readability/browser-mobile.json), [tatsächliches Matchbild](../../outputs/3d-quality/label-readability/mobile-unity.png), reproduzierbare Prüfung `work/platform/qa/unity-label-readability.js` nach dem bestehenden `D6QA160`-Setup.
+- Abschließender fester Browserlauf: zwei vollständige Standard-/Fünferpartien auf demselben HTML-Build, einmal nativ und einmal Unity; Pause, Halbzeit, tatsächliches JSON-Speichern/Laden und Abpfiff bestanden. Alle 14 Zustands-/Buchungsteile identisch, Gesamtkennung `fea01da1`, Ergebnis 1:1, keine unbehandelten Seitenfehler. Quell-/Build-/Manifesthashes vor/nach dem Lauf identisch. [Partien und Hashes](../../outputs/3d-quality/label-readability/native-unity-parity.json). Runner: `node work/platform/qa/check-unity-label-readability.cjs http://127.0.0.1:4532/native-build.html` (Node 20+, vorhandener lokaler QA-Server).
+- Gemeinsamer Bildvertrag und Grätschenprojektion bestanden; regulärer HTML-Build mit 26 bytegenau eingebetteten Assets und identischen Offlinekopien geprüft.
+- Unabhängige Leseprüfung: gemeldeten Linienverlauf durch das eigene Schild korrigiert; abschließende Prüfung ohne weiteren konkreten Befund.
+
+Die ersten T3-Quell-/Buildprüfungen bestanden. Für den abschließenden festen Mobilnachweis wurde der dokumentierte isolierte Edge-/Playwright-Weg verwendet: Nach zwei T3-Größenkorrekturen meldete die Seite weiterhin `actual/frame: 400 × 300` statt der angeforderten 844 × 390. Der endgültige Nachweis prüft das tatsächliche feste Format, Touchlayout und Software-WebGL. Er ist kein physischer Android-Leistungsnachweis. Bewegungsruhe, Bildschirm-Wachhalten und Ballverfolgbarkeit auf Pixel 9a/Pixel 9 Pro XL bleiben am Gerät abzunehmen. Quelle und lokaler Build tragen bis zur nächsten beauftragten Veröffentlichung weiterhin Version 116; die Live-Seite enthält diesen lokalen Nachtrag noch nicht.
+
+## Vorschläge für die nächsten Iterationen
+
+1. **Luftaktionen schließen:** vorhandene Vorbereitung und Kopfkontakte zu einer zusammenhängenden Absprung-/Kontakt-/Landefolge ergänzen. `airLand` bleibt die belegte fehlende Quellauswahl; hohe Pässe/Flanken und Volleys verwenden noch generische Fußclips. Vorhandene native Phasen verwenden, keine zweite Aktionsuhr. Beide Richtungen, verfehlten Kontakt, Pause und Rückschau prüfen.
+2. **Ball auf kleinen Screens verfolgen:** den Ball in identischen TV-/Nah-/Übersichtsbildern am Gerät messen. Bei belegtem Bedarf eine dezente optionale Kontrastmarkierung aus der tatsächlichen Unity-Ballprojektion ergänzen; kein geänderter Ballradius, Flugweg oder künstlicher Schweif mit Vorhersage. Der aktuelle 0,1764-m-Ball hat kein Mindestmaß in Bildschirmpixeln; eine praktische Unlesbarkeit ist noch nicht belegt.
+3. **Keeperwinkel prüfen:** Save-Clipwahl nutzt globale Z-Distanz, die folgende Hand-/Körperkorrektur lokale Achsen. 0°, 45°, 90° und beide Seiten isoliert prüfen; bei bestätigter falscher Auswahl lokale seitliche Distanz verwenden. Eigenständige Fang-/Nachfass-/Abspielketten brauchen zuerst tatsächliche Ereignisnachweise.
+4. **Einwürfe lesbarer machen:** vorhandene Handkorrektur mit einer zusammenhängenden Aushol-/Abwurfhaltung verbinden, soweit die native Phase belegt ist. Fehlende Aufnahme-/Freigabeinformationen im Bildvertrag zuerst klären; keine erfundene Matchregel.
+5. **Vereinsstadien im Kamerablick stärken:** zwei unveränderte Matchbilder je Architekturtyp vergleichen und Vereinssignale an sichtbarer Gegentribüne/Banden verfeinern. Bestehende 48 Zuordnungen und acht Architekturtypen sind bereits geliefert. Neue Details sind ein Gestaltungsvorschlag, keine fehlende Grundanbindung; reduzierte Qualitätsstufe und freie Sicht erhalten.
+
+Der [Animationsaudit](animation-quality-audit.md) trennt vorhandene Anbindungen von echten Restlücken. Accounts bleiben der anschließende Schwerpunkt; Android-Abnahme und begrenzte Account-Vorbereitung können parallel zur Animation erfolgen.

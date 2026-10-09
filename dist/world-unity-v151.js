@@ -45,7 +45,30 @@
   const target={x:pose.target.x*sx,y:pose.target.y,z:pose.target.z*sz};
   return {position:{x:target.x+(pose.position.x-pose.target.x)*k,y:target.y+(pose.position.y-pose.target.y)*k,z:target.z+(pose.position.z-pose.target.z)*k},target,fov:pose.fov};
  }
- root.D6WorldUnityContract={schema,kit,player,picture,geometry,scaled,camera};
+ // Screen-space decoration only. Keep the whole name inside the viewport and
+ // find room for crowded groups without changing any received player position.
+ function labelPosition(anchor,placed,width,height){
+  const w=Math.min(anchor.w,width),h=Math.min(anchor.h,height),gap=3;
+  const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+  const insetX=Math.min(2,(width-w)/2),insetY=Math.min(2,(height-h)/2);
+  const at=(x,y)=>({x:clamp(x,w/2+insetX,width-w/2-insetX),y:clamp(y,h+insetY,height-insetY),w,h});
+  const overlap=p=>placed.reduce((sum,r)=>sum+Math.max(0,(p.w+r.w)/2+gap-Math.abs(p.x-r.x))*Math.max(0,Math.min(p.y,r.y)-Math.max(p.y-p.h,r.y-r.h)+gap),0);
+  const base=at(anchor.x,anchor.y);if(!overlap(base))return base;
+  if(anchor.previous&&Math.hypot(anchor.previous.x,anchor.previous.y)<=Math.max(w,h*3)){const old=at(anchor.x+anchor.previous.x,anchor.y+anchor.previous.y);if(!overlap(old))return old;}
+  let best=base,bestOverlap=overlap(base),distance=Infinity;
+  // At most fourteen on-field players today. More rows are only needed when
+  // several heads share the same screen point; horizontal offsets stay short.
+  for(let row=-placed.length-1;row<=placed.length+1;row++)for(let col=-2;col<=2;col++){
+   const p=at(anchor.x+col*(w+gap),anchor.y+row*(h+gap)),area=overlap(p),d=(p.x-anchor.x)**2+(p.y-anchor.y)**2;
+   if(area<bestOverlap||area===bestOverlap&&d<distance){best=p;bestOverlap=area;distance=d;}
+  }
+  return best;
+ }
+ function labelLeader(p,x,y){
+  const dx=x-p.x,dy=y-(p.y-p.h/2),factor=Math.min(1,p.w/2/Math.abs(dx),p.h/2/Math.abs(dy));
+  return {left:p.w/2+dx*factor,top:p.h/2+dy*factor,length:Math.hypot(dx,dy)*(1-factor),angle:Math.atan2(dy,dx)};
+ }
+ root.D6WorldUnityContract={schema,kit,player,picture,geometry,scaled,camera,labelPosition,labelLeader};
  if(typeof module==='object'&&module.exports)module.exports=root.D6WorldUnityContract;
 })(typeof window==='object'?window:globalThis);
 
@@ -70,6 +93,10 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  #d6-unity-labels button{position:absolute;transform:translate(-50%,-100%);pointer-events:auto;white-space:nowrap;border:1px solid transparent;background:#17272d88;color:#eeeede;border-radius:3px;min-height:16px;padding:1px 3px;font:500 9px/1.3 var(--fl-font,system-ui);text-shadow:0 1px 2px #0008}
  #d6-unity-labels button span{display:inline}#d6-unity-labels button:hover,#d6-unity-labels button:focus-visible{background:#17272dbd}
  #d6-unity-labels button:focus-visible{outline:2px solid #f1c56e}
+ #d6-unity-labels button{border-bottom:2px solid var(--team-color,#eeeede);box-shadow:0 1px 0 #071014}
+ #d6-unity-labels button[data-team="1"]{border-bottom-style:dashed}
+ #d6-unity-labels button.is-featured{background:#17272de0;color:#fff}
+ #d6-unity-labels button::after{content:'';position:absolute;left:var(--leader-left,50%);top:var(--leader-top,100%);width:var(--leader-length,0px);height:1px;background:#eeeede88;box-shadow:0 1px 0 #07101488;transform:rotate(var(--leader-angle,0rad));transform-origin:0 50%;pointer-events:none}
  @keyframes d6-unity-spin{to{transform:rotate(360deg)}}
  @media(prefers-reduced-motion:reduce){#d6-unity-message::before{animation:none}}
  `;document.head.append(style);
@@ -109,6 +136,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
    ids.add(p.id);let label=labelMap.get(p.id);
    if(!label){label=document.createElement('button');label.type='button';label.dataset.player=p.id;label.hidden=true;const number=document.createElement('b'),name=document.createElement('span');label.append(number,name);labels.append(label);labelMap.set(p.id,label);}
    label.firstChild.textContent=p.number;label.lastChild.textContent=' '+p.person.name.split(' ').at(-1);label.setAttribute('aria-label',p.person.name+' · '+v98Text('Live-Spielerinfo','Live player information'));label.disabled=Boolean(frame.review||frame.replay);
+   label.dataset.team=String(p.team);const clubKit=p.team===0?match.kits.user:match.kits.opponent;label.style.setProperty('--team-color',C.kit(clubKit).main);
   }
   for(const [id,label]of labelMap)if(!ids.has(id)){label.remove();labelMap.delete(id);}
  }
@@ -116,19 +144,17 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   if(!Array.isArray(data.markers)||data.sequence<1||data.sequence<(lastProjection?.sequence||0)||data.width<=0||data.height<=0)return;
   if(data.markers.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)||typeof p.id!=='string'||typeof p.visible!=='boolean'))return;
   lastProjection=data;const placed=[],width=labels.clientWidth,height=labels.clientHeight;
-  // Every player keeps a visible name. Overlapping names stack upwards: the
-  // ball area first, then the nearer player. An unlifted name is preferred,
-  // then the previous lift, so labels do not hop while players cross.
+  // Keep every name, prioritising the ball area and then the nearer player.
+  // Displaced names retain a fine leader to the actual Unity head projection.
   const order=data.markers.filter(m=>labelMap.has(m.id)).sort((a,b)=>Number(b.featured)-Number(a.featured)||(Number.isFinite(a.depth)&&Number.isFinite(b.depth)?a.depth-b.depth:b.y-a.y));
   for(const marker of order){
-   const label=labelMap.get(marker.id);label.hidden=!marker.visible;label.classList.toggle('is-featured',Boolean(marker.featured));label.style.left=marker.x*100+'%';
-   let lift=0;
-   if(marker.visible&&width>0){
-    const w=label.offsetWidth||40,h=(label.offsetHeight||16)+1,x=marker.x*width,y=marker.y*height,free=k=>!placed.some(r=>Math.abs(r.x-x)<(r.w+w)/2+2&&Math.abs(r.y-(y-k*h))<h);
-    lift=[0,Number(label.dataset.lift)||0,1,2].find(free)??0;placed.push({x,y:y-lift*h,w});
-    label.style.top=`calc(${marker.y*100}% - ${lift*h}px)`;
-   }else label.style.top=marker.y*100+'%';
-   label.dataset.lift=String(lift);
+   const label=labelMap.get(marker.id);label.hidden=!marker.visible;label.classList.toggle('is-featured',Boolean(marker.featured));
+   if(marker.visible&&width>0&&height>0){
+    const size=label.getBoundingClientRect(),x=marker.x*width,y=marker.y*height,p=C.labelPosition({x,y,w:size.width||40,h:size.height||16,previous:{x:Number(label.dataset.offsetX)||0,y:Number(label.dataset.offsetY)||0}},placed,width,height);placed.push(p);
+    const dx=x-p.x,dy=y-p.y,leader=C.labelLeader(p,x,y);label.style.left=p.x+'px';label.style.top=p.y+'px';
+    label.style.setProperty('--leader-left',leader.left+'px');label.style.setProperty('--leader-top',leader.top+'px');label.style.setProperty('--leader-length',leader.length>4?leader.length+'px':'0px');label.style.setProperty('--leader-angle',leader.angle+'rad');
+    label.dataset.offsetX=String(-dx);label.dataset.offsetY=String(-dy);
+   }
   }
  }
  function render(now=performance.now()){

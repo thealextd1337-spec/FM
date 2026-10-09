@@ -1,5 +1,7 @@
 # Entwicklungsdokumentation
 
+- [Weitere 3D-Iteration](platform/3d-readability-iteration.md): lokale bessere Namensplatzierung, Vereinsmuster und Kopfverbindungen; geprüfte kleine Bildschirmansicht und konkrete Vorschläge für Animation, Ball und Stadien.
+
 - [Release 116](release-116.md): schnelles Kleinfeldspiel, Vereinsringe und Wachhalten im Vollbild; Veröffentlichungsprüfung und Live-Nachweise.
 
 - [Schnelles Kleinfeldspiel und mobile Erkennbarkeit](platform/mobile-match-readability.md): als Release 116 veröffentlicht, mit dynamischen Antritten, taktischer Rückkehr, gezielten hohen Vorwärtspässen, Vereinsringen und korrigiertem Wake Lock; Messungen und offene Android-Geräteabnahme.
