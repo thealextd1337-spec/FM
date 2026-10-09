@@ -59,6 +59,8 @@ async function fullMatch(page,engine){
   check('Rendering a paused match does not advance its clock or ball',JSON.stringify(frozen)===JSON.stringify(await page.evaluate(()=>({elapsed:match.elapsed,score:[...match.score],ball:{...match.ball},randomCalls:D6TestRandomCalls}))));
   const previousSession=await page.evaluate(()=>D6UnityMatch.session);
   const restore=await page.evaluate(()=>{const c=v65Context();v65Snapshot(c);const saved={elapsed:match.elapsed,score:[...match.score],ids:match.people.map(p=>p.pid)};match=null;v65WorldActive=null;v65Show(c);clearInterval(v65WorldFrame);return saved;});
+  // The restored match is picked up by the next render frame, not synchronously.
+  await page.waitForFunction(previous=>D6UnityMatch.session&&D6UnityMatch.session!==previous,previousSession,{timeout:15000});
   await waitPicture(page);check('Checkpoint restoration starts a fresh Unity session',previousSession!==await page.evaluate(()=>D6UnityMatch.session));
   check('Checkpoint keeps the original clock, score and lineup',JSON.stringify(restore)===JSON.stringify(await page.evaluate(()=>({elapsed:match.elapsed,score:[...match.score],ids:match.people.map(p=>p.pid)}))));
   const changed=await page.evaluate(()=>{const c=v65Context(),side=c.ownSide,out=v64Active(c.state,side).find(id=>!v64Player(c.career,c.fixture,side,id).keeper),incoming=v64Bench(c.state,side).find(id=>!v64Player(c.career,c.fixture,side,id).keeper);v64QueueSubstitution(c.career,c.fixture,c.state,side,out,incoming);const changes=v64ExecutePending(c.career,c.fixture,c.state,'Unity-Abnahme');for(const change of changes)v65PhysicalSwap(c,change);v65ApplyTactics(c);draw();return {out,incoming};});

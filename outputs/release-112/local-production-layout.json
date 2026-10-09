@@ -1,0 +1,40 @@
+{
+  "release": 112,
+  "target": "local-production-layout",
+  "checks": [
+    "Page bytes equal the inspected release build",
+    "Start page and footer use Flutlicht and version 112",
+    "Regular new physical match uses flow v159",
+    "Default view is genuine Unity with the actual players",
+    "Live pause holds clock and ball while Unity keeps rendering",
+    "Resume continues the same match in Unity",
+    "Review streams recorded pictures to Unity without changing the match",
+    "Deliberate 2D view hides Unity and stays playable",
+    "Return to Unity keeps the same session",
+    "Actual published Unity identity equals the frozen build",
+    "Real enlarged match reaches halftime without fullscreen",
+    "Second half retains Unity and the enlarged view",
+    "Name projections correspond to actual player identities",
+    "Native match report uses the current dialog design",
+    "Start page and footer use Flutlicht and version 112",
+    "Complete Unity/browser match results, events, player records and finances match",
+    "Start page and footer use Flutlicht and version 112",
+    "Touch landscape loads Unity with the reduced quality tier",
+    "Start page and footer use Flutlicht and version 112",
+    "Missing Unity runtime falls back to a playable 2D match",
+    "No browser script errors"
+  ],
+  "errors": [],
+  "pass": true,
+  "url": "http://127.0.0.1:62611/?release=112",
+  "pageVerified": true,
+  "runtimeUrl": "http://127.0.0.1:62611/unity-match/runtime.html?v=112",
+  "unitySourceId": "28badd2c1f7386dbe67f5a8244b33cf49f98eba2378c8442ece04ba16f199e7f",
+  "touchQuality": "reduced",
+  "score": [
+    2,
+    0
+  ],
+  "finished": "2026-10-09T01:45:01.025Z",
+  "buildSha256": "bee55334f039f6cf0ed413be371ad3e7b85673471a5341a9c1c13cf50347556a"
+}

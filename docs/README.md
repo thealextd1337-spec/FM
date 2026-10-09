@@ -1,5 +1,7 @@
 # Entwicklungsdokumentation
 
+- [Release 112](release-112.md): Unity-Phasen 1–4 (Flutlicht, gemessene Bewegung, Vereinstrikots, Präsentation und Qualitätsstufe) mit Veröffentlichungsprüfung.
+
 - [Release 111](release-111.md): Flutlicht und Unity-Fußball, vollständige WebGL-Auslieferung und Veröffentlichungsprüfung.
 
 - [Fußballerlebnis v159](platform/football-experience-v159.md): Schussziele und Ausführung, Keeperwinkel, Ballannahme und Anschlussläufe, defensive Aufmerksamkeit, Unity-Ballrotation/Schrittphasen, Kameras und aktuelle Spielberichte.

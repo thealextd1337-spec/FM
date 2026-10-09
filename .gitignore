@@ -20,6 +20,8 @@ outputs/*
 !outputs/Doppel-6-Fussballmanager.html
 !outputs/release-111/
 outputs/release-111/tmp/
+!outputs/release-112/
+outputs/release-112/tmp/
 !outputs/platform/
 outputs/platform/*
 !outputs/platform/unity-web/
