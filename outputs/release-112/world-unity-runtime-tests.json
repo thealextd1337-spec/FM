@@ -1,0 +1,55 @@
+{
+  "checks": [
+    "Unity loaded the real fixture",
+    "Unity displays exactly the actual starting players",
+    "Visible labels identify real players",
+    "Rendering a paused match does not advance its clock or ball",
+    "Checkpoint restoration starts a fresh Unity session",
+    "Checkpoint keeps the original clock, score and lineup",
+    "Substitution changes the Unity identity without a second substitute",
+    "Unity consumes actual movement and the authoritative clock",
+    "Unity review uses the existing recorded match timeline",
+    "Seeking review does not change live results or events",
+    "Actual goal pictures carry the animated net impact",
+    "Goal replay retains net motion and never books a second goal",
+    "Full match, halftime, events, stats, career records and finances are identical",
+    "Away fixture keeps physical team and real home/away identities",
+    "2D remains usable while retaining the Unity session",
+    "Return to Unity restores the same fixture",
+    "Leaving a match removes the renderer and stream",
+    "Missing Unity build falls back to a playable 2D match",
+    "Built HTML streams its actual match to Unity over local HTTP",
+    "Foreign window messages cannot fail the renderer or change a match",
+    "No uncaught page errors"
+  ],
+  "errors": [],
+  "parity": {
+    "ticks": 2783,
+    "half": true,
+    "score": [
+      0,
+      0
+    ],
+    "minute": 99,
+    "recordPlayers": 14
+  },
+  "roleCandidate": false,
+  "offenseCandidate": false,
+  "freshnessCandidate": false,
+  "builtDocumentProtocol": "http:",
+  "sourceHashes": {
+    "dist/world-unity-v151.js": "a4642e7821b5d4cb1360ba8daf1115f7dce1bc80363f6af9749f7c46b0cc61ed",
+    "dist/world-offensive-quality-v157.js": "c9cd0f58d87c9ed7821da9e8639c8e4c695c97cd58da3c33c7d5e73f87ba4bac",
+    "dist/pitch-v56.js": "aebc493b12c86647bc33e74aa1499cbf03d71263d1ccef1710585d986febe7c4",
+    "dist/world-pitch3d-v98.js": "0ff4f5d169e2f858f83b0e71e4453b0e85c1ac01a3da1f191e5fec0705fcab18",
+    "dist/pitch-motion-v102.js": "20bbb87fc6c22a71ef61dac855c4a4aed777015f280d596f5b3c8f6fda4d89b4",
+    "dist/unity-match/runtime.js": "ee10dde678e548fc3ccede93c5884a96d02bbdedfaa3e8e0db0c8f2b133ad9a7",
+    "dist/game.js": "e980ee060746296b9cd987145791b3034932387ce04fc3cae2395d8054fe6e9f",
+    "dist/pitch-v55.js": "0e8ccc24a30f636ece8403a36ec7ce415c3114cc9d860cf60929de203dcbba36",
+    "dist/world-match-v64.js": "2dc27431393c63b61277403efcc5080e3fa8ad7b0cc059e4750becda2889a9d3",
+    "dist/world-physical-v65.js": "e0c653082eeb5386e8dc2167d02615a0248d49559842f5d3977ca4adef55dd2f",
+    "dist/world-player-roles-v154.js": "863d0198042972b7ceb9c899fe98e99a675edb85514b1875e29d1812db712af1",
+    "dist/world-player-performance-v155.js": "078e0c2e2d240946dadfaf32671c49bbd95c47edc6a7bb2c9cf3e424edd00f53",
+    "outputs/index.html": "bee55334f039f6cf0ed413be371ad3e7b85673471a5341a9c1c13cf50347556a"
+  }
+}

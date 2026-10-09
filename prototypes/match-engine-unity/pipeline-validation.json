@@ -7,7 +7,7 @@
     },
     "m_RendererDataList": [
         {
-            "instanceID": 1099511653531
+            "instanceID": 1099511653584
         }
     ],
     "m_DefaultRendererIndex": 0,
@@ -17,7 +17,7 @@
     "m_SupportsTerrainHoles": true,
     "m_SupportsHDR": false,
     "m_HDRColorBufferPrecision": 0,
-    "m_MSAA": 1,
+    "m_MSAA": 4,
     "m_RenderScale": 1.0,
     "m_UpscalingFilter": 0,
     "m_FsrOverrideSharpness": false,
@@ -34,7 +34,7 @@
     "m_SupportProbeVolumeScenarioBlending": false,
     "m_ProbeVolumeSHBands": 1,
     "m_MainLightRenderingMode": 1,
-    "m_MainLightShadowsSupported": false,
+    "m_MainLightShadowsSupported": true,
     "m_MainLightShadowmapResolution": 2048,
     "m_AdditionalLightsRenderingMode": 0,
     "m_AdditionalLightsPerObjectLimit": 4,
@@ -46,7 +46,7 @@
     "m_ReflectionProbeBlending": false,
     "m_ReflectionProbeBoxProjection": false,
     "m_ReflectionProbeAtlas": false,
-    "m_ShadowDistance": 50.0,
+    "m_ShadowDistance": 110.0,
     "m_ShadowCascadeCount": 1,
     "m_Cascade2Split": 0.25,
     "m_Cascade3Split": {
@@ -61,8 +61,8 @@
     "m_CascadeBorder": 0.20000000298023224,
     "m_ShadowDepthBias": 1.0,
     "m_ShadowNormalBias": 1.0,
-    "m_AnyShadowsSupported": false,
-    "m_SoftShadowsSupported": false,
+    "m_AnyShadowsSupported": true,
+    "m_SoftShadowsSupported": true,
     "m_ConservativeEnclosingSphere": true,
     "m_NumIterationsEnclosingSphere": 64,
     "m_SoftShadowQuality": 2,
@@ -109,7 +109,7 @@
             "m_Values": []
         }
     },
-    "m_PrefilteringModeMainLightShadows": 0,
+    "m_PrefilteringModeMainLightShadows": 3,
     "m_PrefilteringModeAdditionalLight": 0,
     "m_PrefilteringModeAdditionalLightShadows": 0,
     "m_PrefilterXRKeywords": true,
@@ -154,10 +154,10 @@
     "m_ShadowCascades": 0,
     "m_Textures": {
         "blueNoise64LTex": {
-            "instanceID": 1099511639631
+            "instanceID": 1099511639635
         },
         "bayerMatrixTex": {
-            "instanceID": 1099511639632
+            "instanceID": 1099511639636
         }
     }
 }

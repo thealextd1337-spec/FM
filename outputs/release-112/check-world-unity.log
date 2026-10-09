@@ -1,0 +1,24 @@
+Waiting for genuine Unity player
+Unity loaded the real fixture
+Unity displays exactly the actual starting players
+Visible labels identify real players
+Rendering a paused match does not advance its clock or ball
+Checkpoint restoration starts a fresh Unity session
+Checkpoint keeps the original clock, score and lineup
+Substitution changes the Unity identity without a second substitute
+Unity consumes actual movement and the authoritative clock
+Unity review uses the existing recorded match timeline
+Seeking review does not change live results or events
+Actual goal pictures carry the animated net impact
+Goal replay retains net motion and never books a second goal
+Reference match complete
+Unity match complete
+Full match, halftime, events, stats, career records and finances are identical
+Away fixture keeps physical team and real home/away identities
+2D remains usable while retaining the Unity session
+Return to Unity restores the same fixture
+Leaving a match removes the renderer and stream
+Missing Unity build falls back to a playable 2D match
+Built HTML streams its actual match to Unity over local HTTP
+Foreign window messages cannot fail the renderer or change a match
+No uncaught page errors

@@ -7,7 +7,7 @@ public partial class ProbeBridge {
     float[] runSpeeds;double[] animationTimes;
     FootballLocomotion[] worldLocomotion;
     WorldBallMotion worldBallMotion;
-    [Serializable] class WorldMarker {public string id;public float x,y;public bool visible,featured;}
+    [Serializable] class WorldMarker {public string id;public float x,y,depth;public bool visible,featured;}
     [Serializable] class WorldRenderedPose {public string id,clip,baseClip,kind,motion;public double time,stridePhase;public bool contact,reachable;public float contactError,plantError,actionWeight,speed;}
     WorldRenderedPose[] renderedPoses;
     [Serializable] class WorldProjection {public string channel=WorldViewState.Schema,kind="projection",session;public int sequence;public double clock,ballSpinDegrees;public int width,height;public float[] ballRotation;public WorldMarker[] markers;public WorldRenderedPose[] poses;}
@@ -16,7 +16,7 @@ public partial class ProbeBridge {
         labelHeads=new Transform[actors.Count];runSpeeds=new float[actors.Count];animationTimes=new double[actors.Count];renderedPoses=new WorldRenderedPose[actors.Count];
         worldLocomotion=new FootballLocomotion[actors.Count];for(int i=0;i<actors.Count;i++)worldLocomotion[i]=new FootballLocomotion();
         for(int i=0;i<actors.Count;i++)foreach(var t in actors[i].GetComponentsInChildren<Transform>())if(t.name=="mixamorig:Head")labelHeads[i]=t;
-        DecorateWorldPitch();
+        DecorateWorldPitch();BuildStadium();
     }
     void SendWorldProjection(){
         if(worldView==null||displayed==null)return;
@@ -25,7 +25,7 @@ public partial class ProbeBridge {
         for(int i=0;i<markers.Length;i++){
             var anchor=(labelHeads[i]!=null?labelHeads[i].position:actors[i].position+Vector3.up*1.85f)+Vector3.up*.18f;
             var p=camera.WorldToViewportPoint(anchor);var identity=worldActors[i].id;
-            markers[i]=new WorldMarker{id=identity,x=p.x,y=1-p.y,visible=p.z>0&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1,featured=identity==displayed.owner||Vector3.Distance(actors[i].position,ballView.position)<3.5f};
+            markers[i]=new WorldMarker{id=identity,x=p.x,y=1-p.y,depth=p.z,visible=p.z>0&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1,featured=identity==displayed.owner||Vector3.Distance(actors[i].position,ballView.position)<3.5f};
         }
         var rotation=ballView.rotation;
         var json=JsonUtility.ToJson(new WorldProjection{session=worldView.Config.session,sequence=displayed.sequence,clock=displayed.clock,width=Screen.width,height=Screen.height,markers=markers,poses=renderedPoses,ballRotation=new[]{rotation.x,rotation.y,rotation.z,rotation.w},ballSpinDegrees=worldBallMotion.SpinDegrees});
@@ -67,6 +67,6 @@ public partial class ProbeBridge {
         ballShadow.localScale=new Vector3(.31f,.003f,.31f);
     }
     Texture2D worldBallTexture;
-    void ClearWorldPresentation(){if(worldBallTexture!=null)Destroy(worldBallTexture);worldBallTexture=null;playback=null;displayed=null;labelHeads=null;}
+    void ClearWorldPresentation(){ClearStadium();if(worldBallTexture!=null)Destroy(worldBallTexture);worldBallTexture=null;playback=null;displayed=null;labelHeads=null;}
 }
 }

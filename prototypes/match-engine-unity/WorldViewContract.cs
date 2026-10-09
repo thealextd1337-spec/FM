@@ -9,8 +9,11 @@ namespace Doppel6.Probe {
 [Serializable] public class WorldCamera {public double[] position,target;public double fov;}
 [Serializable] public class WorldPose {public string id,action,actionId;public double[] position,facing,contactPoint;public double progress,duration,recovery;public double freshness=-1;public int number;public bool moving;}
 [Serializable] public class WorldNet {public int sign;public double z,height,age,bulge;}
-[Serializable] public class WorldFrame {public string schema,session,phase,owner;public int sequence;public double clock,elapsed,ballOpacity;public bool turned,replay,netActive;public int[] score;public double[] ball;public WorldCamera camera;public WorldPose[] players;public WorldNet net;}
-[Serializable] public class WorldConfig {public string schema,session,fixtureId;public Geometry geometry;public WorldTeam[] teams;public WorldPlayer[] players;public WorldFrame initial;}
+// Optional celebration fields describe an already booked native goal scene;
+// older pictures omit them and remain valid (celebrating=false).
+[Serializable] public class WorldFrame {public string schema,session,phase,owner,celebrationScorer;public int sequence,celebrationTeam;public double clock,elapsed,ballOpacity,celebrationTime;public bool turned,replay,netActive,celebrating;public int[] score;public double[] ball;public WorldCamera camera;public WorldPose[] players;public WorldNet net;}
+// quality: "standard" or "reduced"; older pages omit it (decided by platform).
+[Serializable] public class WorldConfig {public string schema,session,fixtureId,quality;public Geometry geometry;public WorldTeam[] teams;public WorldPlayer[] players;public WorldFrame initial;}
 [Serializable] public class WorldCommand {public string kind;public WorldConfig config;public WorldFrame frame;}
 
 // This is a view inbox, never a simulation or career/save owner.
@@ -36,6 +39,7 @@ public sealed class WorldViewState {
         if(f==null||f.schema!=Schema||f.session!=Config.session||f.sequence<1||!Finite(f.clock)||f.clock<0||!Finite(f.elapsed)||f.elapsed<0||!new HashSet<string>{"live","paused","finished","replay","prematch","preparation"}.Contains(f.phase)||!Vector(f.ball)||f.ball[1]<0||!Finite(f.ballOpacity)||f.ballOpacity<0||f.ballOpacity>1||f.score?.Length!=2||Array.Exists(f.score,n=>n<0||n>1000)||f.camera==null||!Vector(f.camera.position)||!Vector(f.camera.target)||!Finite(f.camera.fov)||f.camera.fov<5||f.camera.fov>100||f.players==null||f.players.Length<1||f.players.Length>24)throw new ArgumentException("Invalid match picture");
         var ids=new HashSet<string>();foreach(var p in f.players){if(p==null||!Players.TryGetValue(p.id??"",out var identity)||!ids.Add(p.id)||!Vector(p.position)||!Vector(p.facing)||(p.contactPoint?.Length??0)>0&&!Vector(p.contactPoint)||p.actionId!=null&&p.actionId.Length>160||!Finite(p.recovery)||p.recovery<0||p.recovery>1||!Finite(p.freshness)||p.freshness!= -1&&(p.freshness<0||p.freshness>1)||!Finite(p.progress)||Math.Abs(p.progress)>100||!Finite(p.duration)||p.duration<=0||p.duration>30||p.number!=identity.number)throw new ArgumentException("Invalid match picture player");}
         if(!string.IsNullOrEmpty(f.owner)&&!ids.Contains(f.owner))throw new ArgumentException("Invalid match picture owner");
+        if(f.celebrating&&(f.celebrationTeam<0||f.celebrationTeam>1||!Finite(f.celebrationTime)||f.celebrationTime<0||f.celebrationTime>60||f.celebrationScorer!=null&&f.celebrationScorer.Length>160))throw new ArgumentException("Invalid match celebration picture");
         if(f.netActive&&(f.net==null||Math.Abs(f.net.sign)!=1||!Finite(f.net.z)||Math.Abs(f.net.z)>Config.geometry.goalWidth/2||!Finite(f.net.height)||f.net.height<0||f.net.height>5||!Finite(f.net.age)||f.net.age<0||!Finite(f.net.bulge)||f.net.bulge<0||f.net.bulge>1.5))throw new ArgumentException("Invalid match net picture");
     }
 }

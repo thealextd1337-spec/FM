@@ -7,9 +7,25 @@
  function kit(value={}){return {main:value.main||'#22579a',trim:value.pattern||value.trim||'#f2f3ed',accent:value.accent||value.pattern||'#f2f3ed',style:value.style||'plain'};}
  function player(p,team,shirt){return {id:p.pid||p.id,team,number:p.n||p.number||0,name:p.name,keeper:Boolean(p.keeper),kit:kit(shirt),skin:p.appearance?.skinTone||'warm',hair:p.appearance?.hairColor||'brown'};}
  function picture(frame,session,sequence,camera,phase,score){
-  return {schema,session,sequence,clock:frame.clock,elapsed:frame.elapsed,phase,score:[...score],turned:Boolean(frame.turned),replay:Boolean(frame.review||frame.replay),owner:frame.owner||'',ball:point(frame.ball),ballOpacity:frame.ball.opacity??1,camera:{position:point(camera.position),target:point(camera.target),fov:camera.fov},players:frame.players.map(p=>({id:p.id,position:[p.x,0,p.z],facing:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0],moving:!['idle','restart'].includes(p.movement?.mode),action:p.action?.kind||'idle',actionId:String(p.action?.id??p.action?.kind??'idle'),contactPoint:p.action?.contactWorld?point(p.action.contactWorld):null,recovery:p.action?.recovery||0,progress:p.action?.progress??0,duration:p.action?.duration||1,number:p.number,...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})})),netActive:Boolean(frame.net),net:frame.net?{...frame.net}:null};
+  // A booked native goal scene; older pictures simply omit these fields.
+  const celebration=frame.celebration&&Number.isFinite(frame.celebration.time)?{celebrating:true,celebrationTeam:frame.celebration.team,celebrationTime:Math.max(0,frame.celebration.time),celebrationScorer:frame.celebration.scorer||''}:{};
+  return {schema,session,sequence,clock:frame.clock,elapsed:frame.elapsed,phase,score:[...score],turned:Boolean(frame.turned),replay:Boolean(frame.review||frame.replay),owner:frame.owner||'',ball:point(frame.ball),ballOpacity:frame.ball.opacity??1,camera:{position:point(camera.position),target:point(camera.target),fov:camera.fov},players:frame.players.map(p=>({id:p.id,position:[p.x,0,p.z],facing:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0],moving:!['idle','restart'].includes(p.movement?.mode),action:p.action?.kind||'idle',actionId:String(p.action?.id??p.action?.kind??'idle'),contactPoint:p.action?.contactWorld?point(p.action.contactWorld):null,recovery:p.action?.recovery||0,progress:p.action?.progress??0,duration:p.action?.duration||1,number:p.number,...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})})),netActive:Boolean(frame.net),net:frame.net?{...frame.net}:null,...celebration};
  }
- root.D6WorldUnityContract={schema,kit,player,picture};
+ const legacy={length:68,width:44};
+ // Optional native match geometry (version 1) is used 1:1; without it the
+ // previous 68 x 44 configuration stays exactly as before.
+ function geometry(native,fallback){
+  const keys=['length','width','goalWidth','goalHeight','penaltyDepth','penaltyWidth'];
+  return native?.version===1&&keys.every(k=>Number.isFinite(native[k])&&native[k]>0)?Object.fromEntries(keys.map(k=>[k,native[k]])):fallback;
+ }
+ // The shared picture keeps the native 68 x 44 projection (2D/THREE). Only the
+ // Unity copy is stretched into the actual metres of a larger geometry.
+ function scaled(frame,g){
+  if(!g||g.length===legacy.length&&g.width===legacy.width)return frame;
+  const sx=g.length/legacy.length,sz=g.width/legacy.width,at=p=>p&&{...p,x:p.x*sx,z:p.z*sz};
+  return {...frame,ball:at(frame.ball),net:frame.net?{...frame.net,z:frame.net.z*sz}:frame.net,players:frame.players.map(p=>({...p,x:p.x*sx,z:p.z*sz,movement:p.movement?{...p.movement,facing:at(p.movement.facing)}:p.movement,action:p.action?.contactWorld?{...p.action,contactWorld:at(p.action.contactWorld)}:p.action}))};
+ }
+ root.D6WorldUnityContract={schema,kit,player,picture,geometry,scaled};
  if(typeof module==='object'&&module.exports)module.exports=root.D6WorldUnityContract;
 })(typeof window==='object'?window:globalThis);
 
@@ -19,8 +35,8 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  const localFile=location.protocol==='file:';
  const enabled=selected==='unity'||selected!=='browser'&&(Boolean(window.D6UnityMatchUrl)||localFile);
  if(!enabled)return;
- const basePitchFrame=v98PitchFrame;v98PitchFrame=function(current){const frame=basePitchFrame(current);for(const p of frame.players){const action=p.action;if(!action)continue;const contact=action.contact||(action.kind==='save'?action.target:null)||(['pass','shot','highPass','cross','freeKick','goalKick'].includes(action.kind)&&action.target?v101KickPoint(p.person,action.target):null);if(contact){const spot=v98PitchPoint(contact,frame.turned);p.action={...action,contactWorld:{...spot,height:contact.elevation??action.height??.29}};}}if(current.goalScene&&current.goalPause>0){const p=v83GoalPosition(current.goalScene),spot=v98PitchPoint(p,frame.turned);frame.net={sign:Math.sign(spot.x),z:spot.z,height:.8,age:current.goalScene.elapsed,bulge:p.bulge};}return frame;};
- let host=null,iframe=null,labels=null,message=null,current=null,session='',sequence=0,ready=false,loaded=false,loading=false,pending=null,loop=0,lastSent=-Infinity,started=0,failed=false,cameraPose=null,cameraViewKey='',lastPicture=null,loadCount=0,lastProjection=null,suspendedAt=null;
+ const basePitchFrame=v98PitchFrame;v98PitchFrame=function(current){const frame=basePitchFrame(current);for(const p of frame.players){const action=p.action;if(!action)continue;const contact=action.contact||(action.kind==='save'?action.target:null)||(['pass','shot','highPass','cross','freeKick','goalKick'].includes(action.kind)&&action.target?v101KickPoint(p.person,action.target):null);if(contact){const spot=v98PitchPoint(contact,frame.turned);p.action={...action,contactWorld:{...spot,height:contact.elevation??action.height??.29}};}}if(frame.celebration){const goal=current.goals?.at(-1);frame.celebration={...frame.celebration,scorer:goal&&!goal.ownGoal&&goal.pid?goal.pid:''};}if(current.goalScene&&current.goalPause>0){const p=v83GoalPosition(current.goalScene),spot=v98PitchPoint(p,frame.turned);frame.net={sign:Math.sign(spot.x),z:spot.z,height:.8,age:current.goalScene.elapsed,bulge:p.bulge};}return frame;};
+ let shownGeometry=null,host=null,iframe=null,labels=null,message=null,current=null,session='',sequence=0,ready=false,loaded=false,loading=false,pending=null,loop=0,lastSent=-Infinity,started=0,failed=false,cameraPose=null,cameraViewKey='',lastPicture=null,loadCount=0,lastProjection=null,suspendedAt=null;
  const labelMap=new Map();
  const runtimeUrl=new URL(window.D6UnityMatchUrl||(localFile?'http://127.0.0.1:4300/source/unity-match/runtime.html':new URL('unity-match/runtime.html',document.baseURI).href),location.href);
  if(localFile)runtimeUrl.searchParams.set('parent','file');
@@ -47,7 +63,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   failed=true;window.D6UnityMatch.lastFailure=String(reason);window.D6UnityMatch.lastError=v98Text('Unity ist nicht verfügbar · 2D ist aktiv','Unity is unavailable · using 2D');dispose();v98Failed=true;v98View='2d';v102StopPaint();document.body.classList.remove('v98-pitch3d');draw();
  }
  function create(){
-  dispose();v98Scene?.dispose();v98Scene=null;v98Players.clear();$('#v98-canvas')?.remove();$('#v98-player-labels')?.remove();v98Match=null;v102StopPaint();v102Frames=null;
+  dispose();shownGeometry=null;v98Scene?.dispose();v98Scene=null;v98Players.clear();$('#v98-canvas')?.remove();$('#v98-player-labels')?.remove();v98Match=null;v102StopPaint();v102Frames=null;
   current=match;session=v65Context().fixture.id+':'+crypto.randomUUID();sequence=0;started=performance.now();lastSent=-Infinity;
   window.D6UnityMatch.lastError=null;
   host=document.createElement('div');host.id='d6-unity-host';
@@ -59,7 +75,11 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  }
  function configuration(frame){
   const context=v65Context(),teams=[v65Club(context,0),v65Club(context,1)];
-  return {schema:channel,session,fixtureId:context.fixture.id,geometry:{length:68,width:44,goalWidth:44*.2/(v55Field.right-v55Field.left),goalHeight:2.44,penaltyDepth:68*.18/(v55Field.bottom-v55Field.top),penaltyWidth:44*.6/(v55Field.right-v55Field.left),fieldPlayers:match.people.filter(p=>p.t===0&&!p.keeper).length,attackDirection:1},teams:teams.map((club,team)=>({id:club.id,name:club.name,home:v65Side(team,context.ownSide)===0})),players:teams.flatMap((club,team)=>club.roster.map(p=>C.player(p,team,p.keeper?(team===0?match.kits.userKeeper:match.kits.opponentKeeper):(team===0?match.kits.user:match.kits.opponent)))),initial:frame};
+  const base={length:68,width:44,goalWidth:44*.2/(v55Field.right-v55Field.left),goalHeight:2.44,penaltyDepth:68*.18/(v55Field.bottom-v55Field.top),penaltyWidth:44*.6/(v55Field.right-v55Field.left)};
+  // Touch devices start with the conservative Unity quality (no MSAA, smaller
+  // hard shadows, no bloom), like the browser renderer since v135. ?quality= overrides.
+  const requested=new URLSearchParams(location.search).get('quality'),quality=['standard','reduced'].includes(requested)?requested:matchMedia('(pointer:coarse)').matches?'reduced':'standard';
+  return {schema:channel,session,fixtureId:context.fixture.id,quality,geometry:{...C.geometry(match.geometry,base),fieldPlayers:match.people.filter(p=>p.t===0&&!p.keeper).length,attackDirection:1},teams:teams.map((club,team)=>({id:club.id,name:club.name,home:v65Side(team,context.ownSide)===0})),players:teams.flatMap((club,team)=>club.roster.map(p=>C.player(p,team,p.keeper?(team===0?match.kits.userKeeper:match.kits.opponentKeeper):(team===0?match.kits.user:match.kits.opponent)))),initial:frame};
  }
  function syncLabels(frame){
   const ids=new Set();
@@ -73,7 +93,21 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  function paintLabels(data){
   if(!Array.isArray(data.markers)||data.sequence<1||data.sequence<(lastProjection?.sequence||0)||data.width<=0||data.height<=0)return;
   if(data.markers.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)||typeof p.id!=='string'||typeof p.visible!=='boolean'))return;
-  lastProjection=data;for(const marker of data.markers){const label=labelMap.get(marker.id);if(!label)continue;label.hidden=!marker.visible;label.classList.toggle('is-featured',Boolean(marker.featured));label.style.left=marker.x*100+'%';label.style.top=marker.y*100+'%';}
+  lastProjection=data;const placed=[],width=labels.clientWidth,height=labels.clientHeight;
+  // Every player keeps a visible name. Overlapping names stack upwards: the
+  // ball area first, then the nearer player. An unlifted name is preferred,
+  // then the previous lift, so labels do not hop while players cross.
+  const order=data.markers.filter(m=>labelMap.has(m.id)).sort((a,b)=>Number(b.featured)-Number(a.featured)||(Number.isFinite(a.depth)&&Number.isFinite(b.depth)?a.depth-b.depth:b.y-a.y));
+  for(const marker of order){
+   const label=labelMap.get(marker.id);label.hidden=!marker.visible;label.classList.toggle('is-featured',Boolean(marker.featured));label.style.left=marker.x*100+'%';
+   let lift=0;
+   if(marker.visible&&width>0){
+    const w=label.offsetWidth||40,h=(label.offsetHeight||16)+1,x=marker.x*width,y=marker.y*height,free=k=>!placed.some(r=>Math.abs(r.x-x)<(r.w+w)/2+2&&Math.abs(r.y-(y-k*h))<h);
+    lift=[0,Number(label.dataset.lift)||0,1,2].find(free)??0;placed.push({x,y:y-lift*h,w});
+    label.style.top=`calc(${marker.y*100}% - ${lift*h}px)`;
+   }else label.style.top=marker.y*100+'%';
+   label.dataset.lift=String(lift);
+  }
  }
  function render(now=performance.now()){
   // The scheduled picture loop needs the same separate random stream as the
@@ -97,12 +131,13 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
     // The existing replay clock pauses the simulation and supplies recorded pictures.
     const replay=v103ReplayFrame(now,live),frame=replay||raw;if(replay)frame.replay=true;
     v98Frame=frame;v131RecordRendered(frame);
-    const viewKey=v98CameraMode+':'+v98CameraNear+':'+Math.round(rect.width/rect.height*1000000),aim=v98CameraAim(frame.ball,v98CameraMode,rect.width/rect.height,v98CameraNear);
+    if(!shownGeometry)shownGeometry=C.geometry(match.geometry,{length:68,width:44});const shown=C.scaled(frame,shownGeometry);
+    const viewKey=v98CameraMode+':'+v98CameraNear+':'+Math.round(rect.width/rect.height*1000000),aim=v98CameraAim(shown.ball,v98CameraMode,rect.width/rect.height,v98CameraNear);
     if(!cameraPose||!live&&!replay&&viewKey!==cameraViewKey)cameraPose=aim;
     else if(live||replay)cameraPose=v98BlendCamera(cameraPose,aim,Math.min(.15,Math.max(0,(now-lastSent)/1000)));
     cameraViewKey=viewKey;
     const camera={position:{...cameraPose.position,height:cameraPose.position.y},target:{...cameraPose.target,height:cameraPose.target.y},fov:cameraPose.fov};
-    const state=v65Context().state,picture=C.picture(frame,session,++sequence,camera,match.finished?'finished':replay?'replay':state.phase,match.score);
+    const state=v65Context().state,picture=C.picture(shown,session,++sequence,camera,match.finished?'finished':replay?'replay':state.phase,match.score);
     pending={sequence,at:now};lastSent=now;lastPicture=picture;
     if(!loaded){loading=true;post('load',{config:configuration(picture)});}else post('frame',{frame:picture});
     syncLabels(frame);v103ReplayUI();v131ReviewUI();v132FullscreenUI();

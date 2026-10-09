@@ -1,10 +1,12 @@
 # Das 3D-System von Doppel 6
 
-Systemstand: Fußballiteration v159 mit Unity-Darstellung, Spielversion 111. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
+Systemstand: Fußballiteration v159 mit Unity-Darstellung, Spielversion 112. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
 
 ## Unity-Darstellung
 
 Der veröffentlichte HTTP-Build verwendet Unity für die 3D-Spielansicht. world-unity-v151.js übergibt ausschließlich echte Matchbilder an die WebGL-Laufzeit. Beschriftungen folgen den von Unity gemeldeten Kopfpositionen; Ballrotation entsteht aus dem tatsächlichen Ballweg. Fünf Kameraansichten und ein Nähe-Regler verändern nur die Darstellung. Die Simulation bleibt maßgeblich für Tore, Kontakte, Statistik und Speicherung. Bei einem Darstellungsfehler bleibt der 2D-Rückweg erhalten. Die nachfolgenden Angaben zu THREE, Schatten und IK beschreiben den vorhandenen Browserrenderer, der über engine=browser weiter erreichbar ist.
+
+Seit Spielversion 112 zeigt Unity einen Flutlichtabend mit echten Schatten, Rasenshader und Stadion mit ausblendbaren Tribünen. Lauf, Sprint, Bremsen und Drehungen folgen gemessenen Schrittlängen der vorhandenen Clips; Füße stehen gemessen auf dem Rasen. Hand-, Kopf- und Fußkorrekturen gelten nur für bestätigte native Ball- und Keeperkontakte. Trikots zeigen Vereinsfarben, Muster, Hosenfarbe und die echte Rückennummer; Torhüter tragen Handschuhe. Rückschauen erhalten eine eigene ruhigere Bildfarbe, Namensschilder weichen einander aus. Touchgeräte starten mit einer reduzierten Qualitätsstufe ohne Kantenglättung und Bloom mit kleineren Schatten; ?quality=standard oder reduced erzwingt eine Stufe. Eine vorhandene native match.geometry (Version 1) wird unverändert übernommen, ohne sie bleibt 68 × 44 Meter.
 
 Neue physische Partien erhalten den offensiven Ablauf v159: erreichbare Ballannahmen und Anschlussläufe, freie Stürmerläufe zum Tor, ball- und empfängerbezogene Abwehrreaktionen sowie Schussziele getrennt von der Keeperreichweite. Gespeicherte Ergebnisse werden nicht neu berechnet. Die gemessene Torquote ist verbessert; vollständige mobile Hardwareabnahme und abschließende Saisonbalance stehen weiterhin aus.
 

@@ -48,7 +48,7 @@ public partial class ProbeBridge {
     }
     Material WorldMaterial(int i){
         if(worldView==null)return playerMaterial;
-        var p=worldView.Players[worldActors[i].id];var key=p.team+":"+p.keeper+":"+p.skin+":"+p.hair;
+        var p=worldView.Players[worldActors[i].id];var key=p.team+":"+p.keeper+":"+p.skin+":"+p.hair+":"+p.number;
         if(kitMaterials.TryGetValue(key,out var cached))return cached;
         var material=new Material(matchKitShader);material.SetTexture("_BaseMap",playerMaterial.GetTexture("_BaseMap"));material.SetTexture("_ClothMask",clothMask);
         Color ColorOf(string code){ColorUtility.TryParseHtmlString(code,out var c);return c.linear;}
@@ -57,7 +57,22 @@ public partial class ProbeBridge {
         var skins=new Dictionary<string,string>{{"fair","#e9b996"},{"light","#d6a17c"},{"warm","#c28b60"},{"medium","#ad7550"},{"brown","#895638"},{"deep","#67442e"}};
         var hair=new Dictionary<string,string>{{"black","#242329"},{"dark-brown","#332922"},{"brown","#58402d"},{"light-brown","#876445"},{"blond","#bca177"},{"auburn","#a25e35"},{"gray","#96918a"}};
         material.SetColor("_Skin",ColorOf(skins.TryGetValue(p.skin??"",out var skin)?skin:skins["warm"]));material.SetColor("_Hair",ColorOf(hair.TryGetValue(p.hair??"",out var h)?h:hair["brown"]));
+        // The received squad number, in whichever kit colour (or white/ink)
+        // contrasts most with both the shirt and its pattern. Keepers get gloves.
+        Color Srgb(string code){ColorUtility.TryParseHtmlString(code,out var c);return c;}
+        var number=KitNumberColors(Srgb(p.kit.main),Srgb(p.kit.trim),Srgb(p.kit.accent),p.kit.style);
+        material.SetFloat("_Number",p.number>0?p.number:-1);material.SetColor("_NumberColor",number.ink.linear);material.SetColor("_NumberEdge",number.edge.linear);
+        material.SetFloat("_Keeper",p.keeper?1:0);material.SetColor("_Glove",(Contrast(Srgb(p.kit.trim),Srgb(p.kit.main))>=2.2f?Srgb(p.kit.trim):new Color(.95f,.95f,.93f)).linear);
         kitMaterials.Add(key,material);materials.Add(material);return material;
+    }
+    static float Luminance(Color c){float L(float v)=>v<=.04045f?v/12.92f:Mathf.Pow((v+.055f)/1.055f,2.4f);return .2126f*L(c.r)+.7152f*L(c.g)+.0722f*L(c.b);}
+    public static float Contrast(Color a,Color b){float x=Luminance(a),y=Luminance(b);return (Mathf.Max(x,y)+.05f)/(Mathf.Min(x,y)+.05f);}
+    // sRGB inputs. A patterned shirt needs the number to read on both colours.
+    public static (Color ink,Color edge) KitNumberColors(Color main,Color trim,Color accent,string style){
+        bool patterned=!string.IsNullOrEmpty(style)&&style!="plain"&&style!="solid";
+        var candidates=new[]{trim,accent,new Color(.96f,.96f,.94f),new Color(.07f,.08f,.10f)};Color best=candidates[0];float score=-1;
+        foreach(var c in candidates){float s=patterned?Mathf.Min(Contrast(c,main),Contrast(c,trim)*1.35f):Contrast(c,main);if(s>score+.15f){score=s;best=c;}}
+        var edge=Luminance(best)>.35f?new Color(.06f,.07f,.09f):new Color(.95f,.95f,.93f);return (best,edge);
     }
     void WorldMesh(GameObject go){
         if(worldView==null)return;
@@ -66,12 +81,12 @@ public partial class ProbeBridge {
     void RenderWorld(){
         if(worldView==null||world==null||playback==null)return;var f=playback.Sample(Time.realtimeSinceStartupAsDouble);displayed=f;var camera=Camera.main;
         camera.aspect=Screen.height>0?(float)Screen.width/Screen.height:camera.aspect;
-        camera.fieldOfView=(float)f.camera.fov;camera.transform.position=V(f.camera.position);camera.transform.LookAt(V(f.camera.target));
+        camera.fieldOfView=(float)f.camera.fov;camera.transform.position=V(f.camera.position);camera.transform.LookAt(V(f.camera.target));UpdateStadiumVisibility(camera.transform.position);SetReplayGrade(f.replay);
         worldBallMotion.Sample(f);ballView.rotation=worldBallMotion.Rotation;
-        ballView.position=V(f.ball);ballView.gameObject.SetActive(f.ballOpacity>.01);ballShadow.position=new Vector3(ballView.position.x,.045f,ballView.position.z);
+        var ball=V(f.ball);ball.y=DisplayHeight(f.ball[1]);ballView.position=ball;ballView.gameObject.SetActive(f.ballOpacity>.01);ballShadow.position=new Vector3(ballView.position.x,.045f,ballView.position.z);
         for(int i=0;i<f.players.Length;i++){
-            var p=f.players[i];var identity=worldView.Players[p.id];var position=V(p.position);position.y=.08f;
-            float movement=lastWorldClock>=0&&f.clock>lastWorldClock?(position-actors[i].position).magnitude/(float)(f.clock-lastWorldClock):0;
+            var p=f.players[i];var identity=worldView.Players[p.id];var position=V(p.position);position.y=football[i].RootHeight;
+            float movement=lastWorldClock>=0&&f.clock>lastWorldClock?Vector3.ProjectOnPlane(position-actors[i].position,Vector3.up).magnitude/(float)(f.clock-lastWorldClock):0;
             if(lastWorldClock>=0&&f.clock>lastWorldClock)runSpeeds[i]=movement;
             actors[i].position=position;rings[i].position=new Vector3(position.x,.02f,position.z);
             var direction=V(p.facing);direction.y=0;if(direction.sqrMagnitude>.0001)actors[i].rotation=Quaternion.LookRotation(direction);

@@ -1,10 +1,12 @@
 # Doppel 6's 3D system
 
-System state: football iteration v159 with Unity presentation, game version 111. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
+System state: football iteration v159 with Unity presentation, game version 112. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
 
 ## Unity presentation
 
 The published HTTP build uses Unity for its 3D match view. world-unity-v151.js sends actual match pictures to the WebGL runtime. Labels follow head positions reported by Unity; ball rotation follows real ball travel. Five camera views and a distance slider affect presentation only. The simulation remains responsible for goals, contact, statistics and saving. Presentation errors retain the 2D fallback. The following THREE, shadow and IK details describe the existing browser renderer, which remains available through engine=browser.
+
+Since game version 112, Unity shows a floodlit evening with real shadows, a pitch shader and a stadium whose stands hide when they would block the camera. Walking, sprinting, braking and turns follow measured stride lengths of the existing clips; feet are measured onto the turf. Hand, head and foot corrections apply only to confirmed native ball and keeper contacts. Kits show club colours, patterns, shorts colour and the actual squad number; keepers wear gloves. Reviews use a calmer grade, and name labels avoid overlapping. Touch devices start with a reduced quality tier without antialiasing or bloom and with smaller shadows; ?quality=standard or reduced forces a tier. An existing native match.geometry (version 1) is used unchanged; without it the pitch stays 68 × 44 metres.
 
 New physical matches use offensive flow v159: reachable receptions and follow-up runs, clear striker runs towards goal, ball- and receiver-aware defending, and shot targets determined independently of goalkeeper reach. Existing results are never recalculated. Measured goal frequency improved; physical mobile-device acceptance and final season balancing remain open.
 

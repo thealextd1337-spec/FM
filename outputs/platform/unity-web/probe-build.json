@@ -1,15 +1,15 @@
 {
-  "sourceId": "95eb4c7224a55115dd2e2aa4dccb3f9e27f5096bdde0ee23073c5cfbb3076f3e",
+  "sourceId": "28badd2c1f7386dbe67f5a8244b33cf49f98eba2378c8442ece04ba16f199e7f",
   "schema": "d6-probe-1",
   "worldView": "d6-world-view-1",
   "engine": "unity",
   "unity": "6000.6.4f1",
-  "loaderUrl": "/unity/Build/unity-web.loader.js?v=7c82adafe827c9dd284496c75b6aae9b82958bc9a7bd25904367c8446717c8ef",
-  "dataUrl": "/unity/Build/unity-web.data?v=d1332caaaf307e7a073347c7c0997ba88aa95933e20b1897ab73cdc966b0e5a8",
+  "loaderUrl": "/unity/Build/unity-web.loader.js?v=28f5486a3d2712bfe64e885c9135cea0dbf27a41cab5f2fce9220ba0ea8ebef2",
+  "dataUrl": "/unity/Build/unity-web.data?v=6ef680cde873054058ee4235bd8be89475168c7bd727f803b21e54c55b24af28",
   "frameworkUrl": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
-  "codeUrl": "/unity/Build/unity-web.wasm?v=5ce1d16b72ee2679591a7f6fe3c924c66a686c0df2dc65ea6f6b44f4809520b5",
+  "codeUrl": "/unity/Build/unity-web.wasm?v=123396ab2d3e228c227dc4a460a9648a01adf3b78df7e0af420b3205fc6a4b4f",
   "assetHash": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
-  "catalogHash": "17a21f5cad681a1f744bf74359cd8047dda10f66689a0f73e8113be7d20ca1da",
+  "catalogHash": "a954db935e549cd202383f41f9b8c83d66dd1e41cae62b0f49e3698a47356c7e",
   "sourceFiles": [
     {
       "file": "ProbeSimulation.cs",
@@ -17,23 +17,23 @@
     },
     {
       "file": "ProbeBridge.cs",
-      "sha256": "4a4790a0894bb0419cbc7502e4c295e686aeb9c264ab0205aae1317c848cdbf3"
+      "sha256": "a89808591cd3f875c71a6814ffffadf288d86e0e7b7796cdb662d2a52db7d3cc"
     },
     {
       "file": "WorldViewContract.cs",
-      "sha256": "fa2b6fc8bd9ce17b790014c9faaa7c2a884ad92b96d3e0b07ec6a5a904a84e2f"
+      "sha256": "f89170cd9f660a20f3f209699690b612d20f699a7c645472e5215a534ec4c330"
     },
     {
       "file": "WorldViewBridge.cs",
-      "sha256": "7b48dd70f0ed80bfcd6062953687b0f3f8484ba5012ea2b8c4e196d42fd5083d"
+      "sha256": "a98290573c358e4807ceee318f1cb60d62f621bb8bacbcbdc67edf47dfae39ad"
     },
     {
       "file": "WorldViewPlayback.cs",
-      "sha256": "ea11587ac8ebf57e495d4f4cc26c29789ee1beefcebfad18fabff97f80532e9d"
+      "sha256": "0c0544bd929525ff9133e441a983f1048404235e34353df90834fd1d15904bb6"
     },
     {
       "file": "WorldViewPresentation.cs",
-      "sha256": "2302558abf0ef9f82234096d904e788237c65baf829c5dfac8a47076b8fc772b"
+      "sha256": "0777e1960c492fe07f255ac6c644ffd81d59796c1dd2a2d2c3a5c92daf855a94"
     },
     {
       "file": "WorldViewSetup.cs",
@@ -41,7 +41,7 @@
     },
     {
       "file": "WorldKit.shader",
-      "sha256": "b38935fe9a3c1d18f13566e95d6bbfaeee0ac4b529fbaccb83c72d4d6f5390f9"
+      "sha256": "a6b4ffe2735988c7473d4f92d58dab377794ffbc3ea80253933fe93559ae8eb1"
     },
     {
       "file": "ProbeBallPhysics.cs",
@@ -61,19 +61,19 @@
     },
     {
       "file": "FootballAnimation.cs",
-      "sha256": "9a9f94237337a834382a8684f100b12b316b277cee16bd806c17803f8ceb88b4"
+      "sha256": "bc6c79f3a2bf0fa8d0f01c20560bc6f14101074ea545c3e44a1c6fc54a2caf63"
     },
     {
       "file": "FootballPresentation.cs",
-      "sha256": "97ab9bd11bf680f6a5ff223820a8a5d9a3b621c45b543e31a17777674ab4721f"
+      "sha256": "3fcff2e2e41c1865b37a1947a497343780021b046eddb6066f8536c0d54d1c93"
     },
     {
       "file": "FootballLocomotion.cs",
-      "sha256": "77f348d2f4c03c5fa894169b2cb4328066835ecdebf043881d5e4e2d954d03a1"
+      "sha256": "0be801810522778f7954975d128b0d4f11d4dd3d04c0226671a5c32722259b51"
     },
     {
       "file": "FootballSetup.cs",
-      "sha256": "52994cb631ea3c057c1b35bce767b93dafb285f24e9cf5a846652555aba42ad6"
+      "sha256": "0f6d27a8331757f5f3e30fe71ca532b71c08acbe78c3ee9d5dd4a4f7fefbd409"
     },
     {
       "file": "ProbeCamera.cs",
@@ -85,7 +85,7 @@
     },
     {
       "file": "ProbeWebBuild.cs",
-      "sha256": "78ef781df6324ca5ac2d4028a8be34189de937302f4edf94ff61e5ba1d5c2245"
+      "sha256": "392eb4653f0ce269114aa66a7fbee1c478f66898dabc90db138907bdc57c0797"
     },
     {
       "file": "link.xml",
@@ -94,13 +94,37 @@
     {
       "file": "D6Probe.jslib",
       "sha256": "270a00924ad2d577f2200db6fb45a85015ebeb5be228b8bef24b97ebf900fdcc"
+    },
+    {
+      "file": "WorldViewEnvironment.cs",
+      "sha256": "d8b770fa9ed4d11e5fe2badfa81878f0231068609b312f83e6a20c9dfedefae0"
+    },
+    {
+      "file": "D6Common.hlsl",
+      "sha256": "03a398ef35bed3767b601812c454159cdd9a3020bc4385eea18bf0d6d59d5ab7"
+    },
+    {
+      "file": "D6Pitch.shader",
+      "sha256": "039c8f8f0bfd5f0f2d4a72c0b40d8ad763abb4eb3df3c12c0c90700553815c9c"
+    },
+    {
+      "file": "D6Env.shader",
+      "sha256": "5a40d3c85c256c5f1b4a56c9a9bc5e8a819ddb7bafcaf93b0a33d1ed2da9a495"
+    },
+    {
+      "file": "D6Blob.shader",
+      "sha256": "16507160a368d3ea9eb208e4aa4fbb87be462f5ac4e37d63bfc428ffdb961bb9"
+    },
+    {
+      "file": "D6Cli.cs",
+      "sha256": "0eee2e1ad90ae004b50533fbd50f05c52ff393a3de7ada54ff7e19a197519e74"
     }
   ],
   "files": [
     {
       "file": "unity-web.data",
-      "bytes": 51459265,
-      "sha256": "d1332caaaf307e7a073347c7c0997ba88aa95933e20b1897ab73cdc966b0e5a8"
+      "bytes": 53717541,
+      "sha256": "6ef680cde873054058ee4235bd8be89475168c7bd727f803b21e54c55b24af28"
     },
     {
       "file": "unity-web.framework.js",
@@ -110,12 +134,12 @@
     {
       "file": "unity-web.loader.js",
       "bytes": 27914,
-      "sha256": "7c82adafe827c9dd284496c75b6aae9b82958bc9a7bd25904367c8446717c8ef"
+      "sha256": "28f5486a3d2712bfe64e885c9135cea0dbf27a41cab5f2fce9220ba0ea8ebef2"
     },
     {
       "file": "unity-web.wasm",
-      "bytes": 34991657,
-      "sha256": "5ce1d16b72ee2679591a7f6fe3c924c66a686c0df2dc65ea6f6b44f4809520b5"
+      "bytes": 35069894,
+      "sha256": "123396ab2d3e228c227dc4a460a9648a01adf3b78df7e0af420b3205fc6a4b4f"
     }
   ]
 }

@@ -17,5 +17,14 @@ assert.equal(measured.players[0].freshness,.37);assert.equal(JSON.stringify(fram
 const players=Array.from({length:12},(_,i)=>C.player({pid:'player-'+i,n:i%6+1,name:'Spieler '+i,keeper:i%6===0},i<6?0:1,{main:i<6?'#c72535':'#ffffff',pattern:'#202020',accent:'#f4c66c',style:'stripe'}));
 const initial={...pic,schema:C.schema,session:'test-session',sequence:1,score:[0,0],owner:'player-0',players:players.map((p,i)=>({id:p.id,number:p.number,position:[i-6,0,i%2?5:-5],facing:[1,0,0],action:'idle',progress:0,duration:1,moving:false}))};
 const fixture={schema:C.schema,session:'test-session',fixtureId:'actual-fixture-id',geometry:{length:68,width:44,goalWidth:9.7,goalHeight:2.44,penaltyDepth:13.2,penaltyWidth:29.1,fieldPlayers:5,attackDirection:1},teams:[{id:'club-0',name:'Regent Vale FC',home:true},{id:'club-1',name:'Bristol Quay FC',home:false}],players,initial};
+// Optional native geometry: version 1 is used 1:1, anything else keeps 68 x 44.
+const legacyGeometry={length:68,width:44};assert.equal(C.geometry(undefined,legacyGeometry),legacyGeometry);assert.equal(C.geometry({version:2,length:81.6,width:52.8},legacyGeometry),legacyGeometry);assert.equal(C.geometry({version:1,length:81.6,width:NaN,goalWidth:9.7,goalHeight:3.2,penaltyDepth:10.6,penaltyWidth:24.3},legacyGeometry),legacyGeometry);
+const large={version:1,length:81.6,width:52.8,goalWidth:9.706,goalHeight:3.235,penaltyDepth:10.6,penaltyWidth:24.26,ballRadius:.1764};const g=C.geometry(large,legacyGeometry);assert.deepEqual(Object.keys(g),['length','width','goalWidth','goalHeight','penaltyDepth','penaltyWidth']);assert.equal(g.length,81.6);
+assert.equal(C.scaled(frame,legacyGeometry),frame,'Legacy geometry returns the identical picture');
+const frozen=JSON.stringify(frame),wide=C.scaled(frame,g);assert.equal(JSON.stringify(frame),frozen,'Scaling never edits the native picture');
+assert(Math.abs(wide.ball.x-3*1.2)<1e-9&&Math.abs(wide.ball.z+2*1.2)<1e-9&&wide.ball.height===.6);assert(Math.abs(wide.players[0].action.contactWorld.x-2.2*1.2)<1e-9&&wide.players[0].action.contactWorld.height===.29);
+// A booked goal scene carries its celebration; older frames omit it.
+assert(!Object.hasOwn(pic,'celebrating'));const goalPic=C.picture({...frame,celebration:{id:1,team:1,time:1.5,scorer:'real-player'}},'s',6,{position:{x:0,z:40,height:24},target:{x:0,z:0},fov:42},'live',score);
+assert.equal(goalPic.celebrating,true);assert.equal(goalPic.celebrationTeam,1);assert.equal(goalPic.celebrationScorer,'real-player');assert.equal(goalPic.celebrationTime,1.5);
 fs.mkdirSync('outputs/platform/world-unity',{recursive:true});fs.writeFileSync('outputs/platform/world-unity/contract-fixture.json',JSON.stringify(fixture,null,2));
-console.log('Whitelisted identities, kit colors, camera/ball projection and read-only frame passed.');
+console.log('Whitelisted identities, kit colors, camera/ball projection, optional geometry, celebration and read-only frame passed.');

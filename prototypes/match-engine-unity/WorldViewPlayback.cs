@@ -32,7 +32,7 @@ public sealed class WorldViewPlayback {
         }
         var net=b.net;
         if(a.netActive&&b.netActive&&a.net.sign==b.net.sign)net=new WorldNet{sign=b.net.sign,z=Lerp(a.net.z,b.net.z,q),height=Lerp(a.net.height,b.net.height,q),age=Lerp(a.net.age,b.net.age,q),bulge=Lerp(a.net.bulge,b.net.bulge,q)};
-        return new WorldFrame{schema=b.schema,session=b.session,sequence=b.sequence,clock=Lerp(a.clock,b.clock,q),elapsed=Lerp(a.elapsed,b.elapsed,q),phase=b.phase,score=b.score,turned=b.turned,replay=b.replay,owner=b.owner,ball=Vector(a.ball,b.ball,q),ballOpacity=b.ballOpacity,camera=new WorldCamera{position=Vector(a.camera.position,b.camera.position,q),target=Vector(a.camera.target,b.camera.target,q),fov=Lerp(a.camera.fov,b.camera.fov,q)},players=players,netActive=b.netActive,net=net};
+        return new WorldFrame{schema=b.schema,session=b.session,sequence=b.sequence,clock=Lerp(a.clock,b.clock,q),elapsed=Lerp(a.elapsed,b.elapsed,q),phase=b.phase,score=b.score,turned=b.turned,replay=b.replay,owner=b.owner,ball=Vector(a.ball,b.ball,q),ballOpacity=b.ballOpacity,camera=new WorldCamera{position=Vector(a.camera.position,b.camera.position,q),target=Vector(a.camera.target,b.camera.target,q),fov=Lerp(a.camera.fov,b.camera.fov,q)},players=players,netActive=b.netActive,net=net,celebrating=b.celebrating,celebrationTeam=b.celebrationTeam,celebrationScorer=b.celebrationScorer,celebrationTime=a.celebrating&&b.celebrating&&a.celebrationTeam==b.celebrationTeam?Lerp(a.celebrationTime,b.celebrationTime,q):b.celebrationTime};
     }
     static Vector3 ToVector(double[] p){return new Vector3((float)p[0],(float)p[1],(float)p[2]);}
 }
