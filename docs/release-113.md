@@ -1,6 +1,6 @@
 # Release 113: Feldgrößen, Mannschaften und Spielerregelmodell
 
-Gemeinsamer Kandidat vom 9. Oktober 2026 auf Nutzerauftrag „Führe zusammen und veröffentliche“. Native Lieferung `9d9213f` und Unity Release 112 (`bc71711`) sind durch Merge `f507733` zusammengeführt. GPT 6.1 integriert native Karriere/Simulation, Release und Veröffentlichung; Claude Opus 5.5 verantwortet Unity/3D und den gemeinsamen Geometrieabgleich. Der veraltete Hauptcheckout bleibt unangetastet.
+Gemeinsame Veröffentlichung vom 9. Oktober 2026 auf Nutzerauftrag „Führe zusammen und veröffentliche“. Native Lieferung `9d9213f` und Unity Release 112 (`bc71711`) sind durch Merge `f507733` zusammengeführt. GPT 6.1 integriert native Karriere/Simulation, Release und Veröffentlichung; Claude Opus 5.5 verantwortet Unity/3D und den gemeinsamen Geometrieabgleich. Der veraltete Hauptcheckout bleibt unangetastet.
 
 Neue reguläre Vereinswelten bieten bisheriges/größeres Feld und fünf/sechs Feldspieler plus Torwart. Größer/fünf ist voreingestellt. Die Weltwahl bleibt nach Erstellung konstant; Tore, Strafräume, Körper und Ball behalten ihre physischen Größen. Aufstellung, KI, Transferabschluss und Matchstart berücksichtigen die gewählte Mannschaftsgröße. Neue Spieler aktivieren das vorhandene Fähigkeiten-, Positions-, Rollen-, Entwicklungs-, Alters- und Belastungsmodell mit unveränderten gespeicherten Kandidatenparametern. Fähigkeiten bleiben öffentlich Farbstufen.
 
@@ -21,7 +21,11 @@ Die Unity-Phasen aus Release 112 bleiben enthalten. Unity liest ausschließlich 
 
 ## Veröffentlichung
 
-Release-Kandidat vollständig abgenommen; Upload und direkte Live-Prüfung folgen über den bestehenden Produktionsworkflow. Geprüfter HTML-SHA-256: `b119e19b850bca8a63c37caee5fa9141db628857c9c85b59cfa9095e20345658`. Quell-DOM und Build zeigen beide [Version 113](../outputs/release-113/source-footer.json). Der spätere Neubau nach der Quell-Footer-Korrektur ist bytegleich; die beim ersten Unity-Sichtlauf verwendete Vorfassung unterschied sich ausschließlich durch einen Kamera-Kommentar.
+Commit `595064f2f78dabd675dd493f0851a17d5382ea7f` wurde per normalem Fast-forward auf main veröffentlicht. Der [Produktionsworkflow](https://github.com/thealextd1337-spec/FM/actions/runs/37900160250) bestand einschließlich aller Tests und beider Uploads. [Workflowbeleg](../outputs/release-113/workflow.json).
+
+Die [Live-Seite](https://fussball.cakamper.at/) zeigt 113; [54 direkte Live-Prüfungen](../outputs/release-113/live-hashes.json) bestätigen identische HTML-, Iframe-, Manifest- und WebGL-Dateien. HTML-SHA-256: `b119e19b850bca8a63c37caee5fa9141db628857c9c85b59cfa9095e20345658`. Quell-DOM und Build zeigen beide [Version 113](../outputs/release-113/source-footer.json). Der spätere Neubau nach der Quell-Footer-Korrektur ist bytegleich; die beim ersten Unity-Sichtlauf verwendete Vorfassung unterschied sich ausschließlich durch einen Kamera-Kommentar.
+
+[Live-Browserprüfung](../outputs/release-113/live-browser.json): 16 Prüfungen mit echten Animationsframes, regulärer Erstellung und Seitenneustart der gespeicherten Karriere, vollständiger Unity-/2D-Partie größer/sechs, Pause/Halbzeit sowie JSON-Fortsetzung innerhalb der Seite. Alle dreizehn Teilbereiche und die komplette Welt stimmen exakt zwischen Live-Unity und Live-2D sowie mit Claudes lokalem Nachweis überein. Eine zusätzliche Prüfung gegen einen älteren Gesamt-Aggregatwert war zunächst fehlgeschlagen; sie wurde auf die tatsächlich identischen Einzelbereiche und Welt korrigiert, ohne einen erneuten Spiellauf zu behaupten. [Erster Prüflauf](../outputs/release-113/live-browser-first-check.json). Nach ausdrücklich gemeldeter Trennung des T3-Preview-Hosts erfolgte diese Prüfung in einem isolierten Headless-Edge-Profil. Der Seitenneustart während eines laufenden 3D-Spiels ist damit noch nicht geprüft; der anschließend gemeldete Nutzerfehler wird separat behoben.
 
 ## Grenzen
 

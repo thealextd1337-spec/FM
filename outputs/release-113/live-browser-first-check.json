@@ -1,0 +1,409 @@
+{
+  "release": 113,
+  "url": "https://fussball.cakamper.at/?verify=release113-headless",
+  "startedAt": "2026-10-09T08:02:51.979Z",
+  "method": "Isolated headless Edge after explicit T3 preview-host disconnection",
+  "checks": [
+    "Actual live footer 113 (browser)",
+    "Normal DE/EN creation, preview, export/import and real animation frames",
+    "Actual live reload retains configuration and regular model",
+    "Actual live footer 113 (unity)",
+    "Full live match booked and valid (Unity)",
+    "Real JSON save/restore at 60 minutes (Unity)",
+    "Unity acknowledges fourteen genuine players",
+    "Live Unity pause/resume and halftime work",
+    "Live Unity reloaded the saved session",
+    "Live Unity pictures and fourteen labels match native positions",
+    "Actual live footer 113 (browser)",
+    "Full live match booked and valid (native)",
+    "Real JSON save/restore at 60 minutes (native)",
+    "Exact complete live Unity/native parity including world, reports, P02/P03 and finances"
+  ],
+  "errors": [],
+  "pass": false,
+  "ui": {
+    "checks": [
+      "Isolated QA profile has a free career slot",
+      "New career defaults to larger pitch and five field players",
+      "German field labels",
+      "English field labels",
+      "Manager step records selected rules",
+      "Back navigation keeps both selections",
+      "Start controls fit mobile width",
+      "Eleven generated starting profiles",
+      "English rule summary",
+      "German rule summary",
+      "Normal creation controller saves before opening",
+      "Created career retains preview abilities, positions and form",
+      "Regular model is active in the saved world",
+      "Real export/import keeps the complete world"
+    ],
+    "config": {
+      "version": 1,
+      "fieldSize": "large",
+      "fieldPlayers": 5
+    },
+    "id": "52acc27f-13b7-4bdf-8290-a85bf2ad2d37",
+    "nativeAnimationFrames": true,
+    "width": 1280,
+    "scrollWidth": 1280
+  },
+  "reload": {
+    "reload": true,
+    "config": {
+      "version": 1,
+      "fieldSize": "large",
+      "fieldPlayers": 5
+    },
+    "model": "native-player-v160-1"
+  },
+  "unity": {
+    "setup": {
+      "config": {
+        "fieldSize": "large",
+        "fieldPlayers": 6
+      },
+      "unity": true,
+      "people": 14,
+      "perTeam": [
+        7,
+        7
+      ],
+      "keepers": [
+        1,
+        1
+      ],
+      "geometry": {
+        "version": 1,
+        "length": 81.6,
+        "width": 52.8,
+        "goalWidth": 9.705882352941178,
+        "goalHeight": 3.2352941176470593,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "ballRadius": 0.1764
+      },
+      "expectedPerTeam": 7,
+      "unityReady": true,
+      "ack": {
+        "players": 14,
+        "ids": 14,
+        "allReal": true
+      },
+      "error": null
+    },
+    "r20": {
+      "ticks": 888,
+      "minute": 20,
+      "phase": "live",
+      "score": [
+        0,
+        0
+      ],
+      "finished": false,
+      "halftime": false,
+      "unityError": null,
+      "stats": {
+        "pictures": 299,
+        "maxPositionError": 0,
+        "playersOutside": 0,
+        "visibleBallOutside": 3,
+        "netMaxZ": 0,
+        "labels": 14,
+        "visibleLabels": 12,
+        "domLabels": 14,
+        "keeperContactSamples": 13,
+        "keeperContactMetres": [
+          "goalKick:0.65"
+        ]
+      }
+    },
+    "pause": {
+      "steps": 2,
+      "ok": true,
+      "phase": "paused",
+      "picturePhase": "paused"
+    },
+    "live": {
+      "phase": "live",
+      "replay": false,
+      "error": null
+    },
+    "half": {
+      "stopped": "halftime",
+      "minute": 49,
+      "score": [
+        1,
+        0
+      ]
+    },
+    "r60": {
+      "ticks": 248,
+      "minute": 60,
+      "phase": "live",
+      "score": [
+        1,
+        0
+      ],
+      "finished": false,
+      "halftime": true,
+      "unityError": null,
+      "stats": {
+        "pictures": 376,
+        "maxPositionError": 0,
+        "playersOutside": 0,
+        "visibleBallOutside": 3,
+        "netMaxZ": 0.699,
+        "labels": 14,
+        "visibleLabels": 13,
+        "domLabels": 14,
+        "keeperContactSamples": 14,
+        "keeperContactMetres": [
+          "goalKick:0.65",
+          "save:1.14"
+        ]
+      }
+    },
+    "cp": {
+      "saved": true,
+      "restored": true,
+      "minute": 60,
+      "loadsBefore": 1,
+      "loadsAfter": 2,
+      "unityReady": true,
+      "error": null
+    },
+    "end": {
+      "ticks": 1565,
+      "minute": 99,
+      "phase": "finished",
+      "score": [
+        2,
+        0
+      ],
+      "finished": true,
+      "halftime": true,
+      "unityError": null,
+      "stats": {
+        "pictures": 431,
+        "maxPositionError": 0,
+        "playersOutside": 0,
+        "visibleBallOutside": 4,
+        "netMaxZ": 3.545,
+        "labels": 14,
+        "visibleLabels": 13,
+        "domLabels": 14,
+        "keeperContactSamples": 18,
+        "keeperContactMetres": [
+          "goalKick:0.65",
+          "save:1.14",
+          "save:4.355"
+        ]
+      }
+    },
+    "digest": {
+      "score": [
+        2,
+        0
+      ],
+      "phase": "finished",
+      "finished": true,
+      "valid": true,
+      "booked": true,
+      "balanceOwn": 4880,
+      "checkpoints": 1,
+      "hashes": {
+        "score": "3c54589b:5",
+        "events": "af056a64:531",
+        "stats": "605ed925:9853",
+        "fresh": "44337970:994",
+        "minutes": "3fe1394e:737",
+        "report": "a8830386:35779",
+        "ratings": "917fad88:759",
+        "ballAccounting": "3d182c5d:22085",
+        "geometry": "44a0621d:188",
+        "people": "44b3f8ab:9247",
+        "finances": "d0c42d0e:20243",
+        "development": "23ba8d17:1004372",
+        "fixtures": "026d4157:204783",
+        "world": "5748f227:3901125"
+      },
+      "all": "99c0029b"
+    }
+  },
+  "native": {
+    "setup": {
+      "config": {
+        "fieldSize": "large",
+        "fieldPlayers": 6
+      },
+      "unity": false,
+      "people": 14,
+      "perTeam": [
+        7,
+        7
+      ],
+      "keepers": [
+        1,
+        1
+      ],
+      "geometry": {
+        "version": 1,
+        "length": 81.6,
+        "width": 52.8,
+        "goalWidth": 9.705882352941178,
+        "goalHeight": 3.2352941176470593,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "ballRadius": 0.1764
+      },
+      "expectedPerTeam": 7
+    },
+    "r20": {
+      "ticks": 888,
+      "minute": 20,
+      "phase": "live",
+      "score": [
+        0,
+        0
+      ],
+      "finished": false,
+      "halftime": false,
+      "unityError": null,
+      "stats": {
+        "pictures": 0,
+        "maxPositionError": 0,
+        "playersOutside": 0,
+        "visibleBallOutside": 0,
+        "netMaxZ": 0,
+        "labels": 0,
+        "visibleLabels": 0,
+        "domLabels": 0,
+        "keeperContactSamples": 0,
+        "keeperContactMetres": []
+      }
+    },
+    "pause": {
+      "steps": 2,
+      "ok": true,
+      "phase": "paused",
+      "picturePhase": null
+    },
+    "live": {
+      "phase": "live",
+      "replay": null,
+      "error": null
+    },
+    "half": {
+      "stopped": "halftime",
+      "minute": 49,
+      "score": [
+        1,
+        0
+      ]
+    },
+    "r60": {
+      "ticks": 248,
+      "minute": 60,
+      "phase": "live",
+      "score": [
+        1,
+        0
+      ],
+      "finished": false,
+      "halftime": true,
+      "unityError": null,
+      "stats": {
+        "pictures": 0,
+        "maxPositionError": 0,
+        "playersOutside": 0,
+        "visibleBallOutside": 0,
+        "netMaxZ": 0,
+        "labels": 0,
+        "visibleLabels": 0,
+        "domLabels": 0,
+        "keeperContactSamples": 0,
+        "keeperContactMetres": []
+      }
+    },
+    "cp": {
+      "saved": true,
+      "restored": true,
+      "minute": 60,
+      "loadsBefore": null,
+      "loadsAfter": null,
+      "unityReady": null,
+      "error": null
+    },
+    "end": {
+      "ticks": 1513,
+      "minute": 99,
+      "phase": "finished",
+      "score": [
+        2,
+        0
+      ],
+      "finished": true,
+      "halftime": true,
+      "unityError": null,
+      "stats": {
+        "pictures": 0,
+        "maxPositionError": 0,
+        "playersOutside": 0,
+        "visibleBallOutside": 0,
+        "netMaxZ": 0,
+        "labels": 0,
+        "visibleLabels": 0,
+        "domLabels": 0,
+        "keeperContactSamples": 0,
+        "keeperContactMetres": []
+      }
+    },
+    "digest": {
+      "score": [
+        2,
+        0
+      ],
+      "phase": "finished",
+      "finished": true,
+      "valid": true,
+      "booked": true,
+      "balanceOwn": 4880,
+      "checkpoints": 1,
+      "hashes": {
+        "score": "3c54589b:5",
+        "events": "af056a64:531",
+        "stats": "605ed925:9853",
+        "fresh": "44337970:994",
+        "minutes": "3fe1394e:737",
+        "report": "a8830386:35779",
+        "ratings": "917fad88:759",
+        "ballAccounting": "3d182c5d:22085",
+        "geometry": "44a0621d:188",
+        "people": "44b3f8ab:9247",
+        "finances": "d0c42d0e:20243",
+        "development": "23ba8d17:1004372",
+        "fixtures": "026d4157:204783",
+        "world": "5748f227:3901125"
+      },
+      "all": "99c0029b"
+    }
+  },
+  "partNames": [
+    "score",
+    "events",
+    "stats",
+    "fresh",
+    "minutes",
+    "report",
+    "ratings",
+    "ballAccounting",
+    "geometry",
+    "people",
+    "finances",
+    "development",
+    "fixtures",
+    "world"
+  ],
+  "failure": "AssertionError [ERR_ASSERTION]: Full live digest matches Claudes inspected local build\n    at check (F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\native-match-player-integration\\work\\check-release-113-live.cjs:7:25)\n    at F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\native-match-player-integration\\work\\check-release-113-live.cjs:53:3"
+}

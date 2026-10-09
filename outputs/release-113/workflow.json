@@ -1,0 +1,78 @@
+{
+  "release": 113,
+  "sha": "595064f2f78dabd675dd493f0851a17d5382ea7f",
+  "url": "https://github.com/thealextd1337-spec/FM/actions/runs/37900160250",
+  "checkedAt": "2026-10-09T07:55:33.185Z",
+  "jobs": [
+    {
+      "id": 113720577082,
+      "name": "deploy",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 37900160250,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Quellcode laden",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Node.js einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Spieltests ausführen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Einzeldatei bauen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Per FTPS zu World4You hochladen und Live-Datei prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Node.js einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Quellcode laden",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    }
+  ]
+}
