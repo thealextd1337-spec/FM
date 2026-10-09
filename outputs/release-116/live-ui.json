@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-09T15:09:12.021Z",
+  "url": "https://fussball.cakamper.at/?engine=unity&release=116&visual=1",
+  "reloaded": true,
+  "footer": "Doppel 6 / PROTOTYP 116",
+  "helpVersion": 116,
+  "ready": true,
+  "session": "S1:GER:LEAGUE:R1:GER-2-GER-4:1:23bf92d1-5899-4469-9a4c-c15b082f93a1",
+  "ackSession": "S1:GER:LEAGUE:R1:GER-2-GER-4:1:23bf92d1-5899-4469-9a4c-c15b082f93a1",
+  "players": 12,
+  "clock": 0,
+  "paceVersion": 162,
+  "reportVisible": false,
+  "scrollOverflow": false,
+  "viewport": [
+    1280,
+    800
+  ],
+  "mode": "paused viewport fullscreen; synthetic own incognito case",
+  "physicalAndroidMeasured": false
+}

@@ -2,7 +2,7 @@
 
 - [Release 116](release-116.md): schnelles Kleinfeldspiel, Vereinsringe und Wachhalten im Vollbild; Veröffentlichungsprüfung und Live-Nachweise.
 
-- [Schnelles Kleinfeldspiel und mobile Erkennbarkeit](platform/mobile-match-readability.md): lokaler Kandidat mit dynamischen Antritten, taktischer Rückkehr, gezielten hohen Vorwärtspässen, Vereinsringen und korrigiertem Wake Lock; Messungen und offene Android-Geräteabnahme.
+- [Schnelles Kleinfeldspiel und mobile Erkennbarkeit](platform/mobile-match-readability.md): als Release 116 veröffentlicht, mit dynamischen Antritten, taktischer Rückkehr, gezielten hohen Vorwärtspässen, Vereinsringen und korrigiertem Wake Lock; Messungen und offene Android-Geräteabnahme.
 
 - [Release 115](release-115.md): Vereinsstadien und Zweikampfqualität, vollständige Produktionsprüfung und Veröffentlichung.
 
