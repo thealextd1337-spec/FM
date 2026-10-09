@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 namespace Doppel6.Probe {
 // This envelope reads completed native contacts, never guesses the next action.
 public static class FootballActionTiming {
-    public static bool IsFootAction(string action){return action=="pass"||action=="highPass"||action=="cross"||action=="receive"||action=="control"||action=="passReady"||action=="shot"||action=="freeKick"||action=="volley"||action=="goalKick"||action=="kickReady";}
+    public static bool IsFootAction(string action){return action=="pass"||action=="highPass"||action=="cross"||action=="receive"||action=="control"||action=="passReady"||action=="shot"||action=="freeKick"||action=="volley"||action=="goalKick"||action=="kickReady"||action=="tackle";}
     public static float Weight(string action,double age,double progress,float speed){
         if(action=="passReady"||action=="kickReady")return (float)(.25+.75*Math.Clamp(progress,0,1));
         bool receive=action=="receive"||action=="control",shot=action=="shot"||action=="freeKick"||action=="volley"||action=="goalKick";
@@ -55,7 +55,8 @@ public static class FootballKeeperTiming {
 public sealed class FootballAnimation {
     // contactWeight: 0 or 1 is a full native contact; values between are a
     // partial visual reach (carrier stride). kind also accepts "two-hands" and "head".
-    public struct Pose {public AnimationClip clip,baseClip;public double time,baseTime;public bool loop,baseLoop,plant,contact,urgent;public float actionWeight,forwardLean,turnLean,recoveryLean,keeperDive,contactWeight;public string key,kind;public Vector3 target;}
+    // slide/lunge: procedural duel weights (FootballDuelTiming); leftLead picks the leg.
+    public struct Pose {public AnimationClip clip,baseClip;public double time,baseTime;public bool loop,baseLoop,plant,contact,urgent,leftLead;public float actionWeight,forwardLean,turnLean,recoveryLean,keeperDive,contactWeight,slide,lunge;public string key,kind;public Vector3 target;}
     // A native contact releases over this much match time instead of popping.
     public const double ContactRelease=.10;
     readonly PlayableGraph graph;readonly AnimationMixerPlayable mixer;
@@ -137,9 +138,11 @@ public sealed class FootballAnimation {
         // always retain their authored pose and the root remains game-owned.
         if(!pose.contact&&!pose.plant)rig.Lean(pose.forwardLean,pose.turnLean,pose.recoveryLean);
         if(pose.keeperDive!=0)rig.KeeperDive(pose.keeperDive,pose.target);
+        if(pose.lunge>0)rig.Lunge(pose.lunge);
         bool full=pose.contactWeight<=0||pose.contactWeight>=1;
         if(pose.contact&&full)rig.PrepareContact(pose.target,pose.kind);
         if(pose.plant)rig.Plant(pose.kind=="left-foot");else rig.Release();
+        if(pose.slide>0)rig.Slide(pose.slide,pose.target,pose.leftLead);
         ReleaseWeight=0;
         if(pose.contact){
             rig.Contact(pose.target,pose.kind,full?1:pose.contactWeight);
@@ -223,6 +226,7 @@ public sealed class FootballGround {
 public sealed class FootballRig {
     readonly Transform root,hips,spine,head,leftUpper,leftLower,leftFoot,rightUpper,rightLower,rightFoot,arm,forearm,hand,leftArm,leftForearm,leftHand;
     readonly Vector3 restLeft,restRight;Vector3 anchor;bool planted,plantRight;
+    readonly Quaternion restLeftFootRotation,restRightFootRotation;
     public float plantError,contactError;public bool reachable;
     public FootballGround ground;
     // Largest head correction toward an actual header contact.
@@ -231,6 +235,7 @@ public sealed class FootballRig {
         this.root=root;Transform Find(string name){return Array.Find(root.GetComponentsInChildren<Transform>(),t=>t.name=="mixamorig:"+name);}
         hips=Find("Hips");spine=Find("Spine");head=Find("Head");leftUpper=Find("LeftUpLeg");leftLower=Find("LeftLeg");leftFoot=Find("LeftFoot");rightUpper=Find("RightUpLeg");rightLower=Find("RightLeg");rightFoot=Find("RightFoot");arm=Find("RightArm");forearm=Find("RightForeArm");hand=Find("RightHand");leftArm=Find("LeftArm");leftForearm=Find("LeftForeArm");leftHand=Find("LeftHand");
         if(leftFoot==null||rightFoot==null||hand==null)throw new InvalidOperationException("Football contact rig is missing bones");restLeft=root.InverseTransformPoint(leftFoot.position);restRight=root.InverseTransformPoint(rightFoot.position);
+        restLeftFootRotation=Quaternion.Inverse(root.rotation)*leftFoot.rotation;restRightFootRotation=Quaternion.Inverse(root.rotation)*rightFoot.rotation;
     }
     public void Release(){planted=false;plantError=0;reachable=false;contactError=0;}
     public void Lean(float forward,float turn,float recovery){
@@ -249,6 +254,49 @@ public sealed class FootballRig {
         float q=Mathf.Clamp01(Mathf.Abs(weight));float angle=-side*q*Mathf.Lerp(26,58,Mathf.Clamp01((1.7f-point.y)/1.4f));
         hips.rotation=Quaternion.AngleAxis(angle,root.forward)*hips.rotation;
         hips.position-=root.up*(q*Mathf.Clamp((1.6f-point.y)*.23f,0,.30f));
+    }
+    // Standing tackle or foul challenge: a lower, forward-leaning body. The
+    // reaching foot itself is the ordinary bounded contact correction.
+    public void Lunge(float weight){
+        if(hips==null)return;float w=Mathf.Clamp01(weight);if(w<=0)return;
+        hips.position-=Vector3.up*(.13f*w);
+        if(spine!=null)spine.rotation=Quaternion.AngleAxis(16*w,root.right)*spine.rotation;
+    }
+    // Observed native slide: pelvis low and banked onto the trailing hip, body
+    // leaning back with the chest up, lead leg straight along the turf toward
+    // the actual contact, trailing leg folded and its hand on the ground. Only
+    // bones move; the received root and heading stay authoritative and an
+    // out-of-reach contact stays out of reach.
+    public void Slide(float weight,Vector3 target,bool leftLead){
+        if(hips==null)return;float w=Mathf.Clamp01(weight);if(w<=0)return;
+        var forward=root.forward;var right=root.right;float lead=leftLead?-1:1;
+        float height=hips.position.y-FootballGround.PitchSurface;
+        hips.position-=Vector3.up*(w*Mathf.Max(0,height-FootballDuelTiming.SlideHips));
+        hips.rotation=Quaternion.AngleAxis(w*FootballDuelTiming.SlideBank*lead,forward)*Quaternion.AngleAxis(-w*FootballDuelTiming.SlideLean,right)*hips.rotation;
+        if(spine!=null)spine.rotation=Quaternion.AngleAxis(w*FootballDuelTiming.SlideLean*.45f,right)*spine.rotation;
+        var upper=leftLead?leftUpper:rightUpper;var lower=leftLead?leftLower:rightLower;var foot=leftLead?leftFoot:rightFoot;
+        float leg=Vector3.Distance(upper.position,lower.position)+Vector3.Distance(lower.position,foot.position);
+        // The lead foot slides just above the turf toward the contact; a contact
+        // behind or beyond the leg leaves the foot on the slide line instead.
+        var aim=target;aim.y=Mathf.Clamp(aim.y,.09f,.35f);var reach=aim-upper.position;
+        var line=upper.position+forward*leg*.94f;line.y=.09f;
+        bool usable=Vector3.Dot(reach.normalized,forward)>.35f&&reach.magnitude<leg*.995f;
+        Blend(upper,lower,foot,usable?aim:line,w,Vector3.up);
+        reachable=usable;contactError=Vector3.Distance(foot.position,target);
+        var tuckUpper=leftLead?rightUpper:leftUpper;var tuckLower=leftLead?rightLower:leftLower;var tuckFoot=leftLead?rightFoot:leftFoot;
+        var tuck=hips.position+forward*.12f-right*lead*.18f;tuck.y=.1f;Blend(tuckUpper,tuckLower,tuckFoot,tuck,w,forward+Vector3.up*.25f);
+        // The entering slide blends out of a running stride whose knee/boot may
+        // point below the newly lowered pelvis. Constrain both soles throughout
+        // that blend; otherwise the first slide pictures cut boots through turf.
+        void GroundFoot(Transform thigh,Transform calf,Transform ankle,Quaternion rest){
+            float clearance=ground!=null&&ground.Calibrated?root.position.y+ground.ankle*root.lossyScale.y:.28f;
+            if(ankle.position.y<clearance){var onTurf=ankle.position;onTurf.y=clearance;Solve(thigh,calf,ankle,onTurf,forward+Vector3.up);}
+            ankle.rotation=root.rotation*rest;
+        }
+        GroundFoot(leftUpper,leftLower,leftFoot,restLeftFootRotation);GroundFoot(rightUpper,rightLower,rightFoot,restRightFootRotation);
+        contactError=Vector3.Distance(foot.position,target);
+        var supportArm=leftLead?arm:leftArm;var supportForearm=leftLead?forearm:leftForearm;var supportHand=leftLead?hand:leftHand;
+        if(supportArm!=null&&supportForearm!=null&&supportHand!=null){var palm=hips.position-forward*.28f-right*lead*.34f;palm.y=.18f;Blend(supportArm,supportForearm,supportHand,palm,w*.85f);}
     }
     public void PrepareContact(Vector3 point,string kind){
         if(kind!="foot"&&kind!="left-foot")return;var upper=kind=="left-foot"?leftUpper:rightUpper;var lower=kind=="left-foot"?leftLower:rightLower;var end=kind=="left-foot"?leftFoot:rightFoot;float length=Vector3.Distance(upper.position,lower.position)+Vector3.Distance(lower.position,end.position),distance=Vector3.Distance(upper.position,point);
@@ -293,14 +341,14 @@ public sealed class FootballRig {
         float limited=Mathf.Clamp(angle,-HeadReach,HeadReach)*weight;if(Mathf.Abs(limited)<.001f)return;
         spine.rotation=Quaternion.AngleAxis(limited,axis)*spine.rotation;
     }
-    static void Blend(Transform upper,Transform lower,Transform end,Vector3 point,float weight){
-        if(weight>=1){Solve(upper,lower,end,point);return;}if(weight<=0)return;
-        var a=upper.rotation;var b=lower.rotation;var c=end.rotation;Solve(upper,lower,end,point);
+    static void Blend(Transform upper,Transform lower,Transform end,Vector3 point,float weight,Vector3? poleDirection=null){
+        if(weight>=1){Solve(upper,lower,end,point,poleDirection);return;}if(weight<=0)return;
+        var a=upper.rotation;var b=lower.rotation;var c=end.rotation;Solve(upper,lower,end,point,poleDirection);
         upper.rotation=Quaternion.Slerp(a,upper.rotation,weight);lower.rotation=Quaternion.Slerp(b,lower.rotation,weight);end.rotation=c;
     }
     public static bool CanReach(Transform upper,Transform lower,Transform end,Vector3 point){float a=Vector3.Distance(upper.position,lower.position),b=Vector3.Distance(lower.position,end.position),d=Vector3.Distance(upper.position,point);return d>=Math.Abs(a-b)+.00001&&d<=a+b-.00001;}
-    public static Vector3 Solve(Transform upper,Transform lower,Transform end,Vector3 point){
-        var hip=upper.position;var knee=lower.position;float a=Vector3.Distance(hip,knee),b=Vector3.Distance(knee,end.position);var direction=(point-hip).normalized;float d=Mathf.Clamp(Vector3.Distance(hip,point),Mathf.Abs(a-b)+.00001f,a+b-.00001f),along=(a*a-b*b+d*d)/(2*d),height=Mathf.Sqrt(Mathf.Max(0,a*a-along*along));var pole=Vector3.ProjectOnPlane(knee-hip,direction);if(pole.sqrMagnitude<1e-8)pole=Vector3.ProjectOnPlane(upper.forward,direction);pole.Normalize();var wantedKnee=hip+direction*along+pole*height;var rotation=end.rotation;upper.rotation=Quaternion.FromToRotation(lower.position-hip,wantedKnee-hip)*upper.rotation;lower.rotation=Quaternion.FromToRotation(end.position-lower.position,hip+direction*d-lower.position)*lower.rotation;end.rotation=rotation;return end.position;
+    public static Vector3 Solve(Transform upper,Transform lower,Transform end,Vector3 point,Vector3? poleDirection=null){
+        var hip=upper.position;var knee=lower.position;float a=Vector3.Distance(hip,knee),b=Vector3.Distance(knee,end.position);var direction=(point-hip).normalized;float d=Mathf.Clamp(Vector3.Distance(hip,point),Mathf.Abs(a-b)+.00001f,a+b-.00001f),along=(a*a-b*b+d*d)/(2*d),height=Mathf.Sqrt(Mathf.Max(0,a*a-along*along));var pole=Vector3.ProjectOnPlane(poleDirection??(knee-hip),direction);if(pole.sqrMagnitude<1e-8)pole=Vector3.ProjectOnPlane(upper.forward,direction);pole.Normalize();var wantedKnee=hip+direction*along+pole*height;var rotation=end.rotation;upper.rotation=Quaternion.FromToRotation(lower.position-hip,wantedKnee-hip)*upper.rotation;lower.rotation=Quaternion.FromToRotation(end.position-lower.position,hip+direction*d-lower.position)*lower.rotation;end.rotation=rotation;return end.position;
     }
 }
 }

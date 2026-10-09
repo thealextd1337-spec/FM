@@ -66,7 +66,10 @@ async function fullMatch(page,engine){
   const changed=await page.evaluate(()=>{const c=v65Context(),side=c.ownSide,out=v64Active(c.state,side).find(id=>!v64Player(c.career,c.fixture,side,id).keeper),incoming=v64Bench(c.state,side).find(id=>!v64Player(c.career,c.fixture,side,id).keeper);v64QueueSubstitution(c.career,c.fixture,c.state,side,out,incoming);const changes=v64ExecutePending(c.career,c.fixture,c.state,'Unity-Abnahme');for(const change of changes)v65PhysicalSwap(c,change);v65ApplyTactics(c);draw();return {out,incoming};});
   await page.waitForFunction(p=>D6UnityMatch.lastAck.ids.includes(p.incoming)&&!D6UnityMatch.lastAck.ids.includes(p.out),changed);
   check('Substitution changes the Unity identity without a second substitute',await page.locator('#d6-unity-labels button').count()===12);
-  await page.evaluate(()=>{v65Resume();clearInterval(v65WorldFrame);for(let n=0;n<30;n++)D6QAWorldTick(.05);draw();});await page.waitForTimeout(150);
+  // The native kickoff countdown deliberately keeps elapsed at 0.
+  // Reach actual play, then await Unity's ACK instead of a fixed render delay.
+  report.liveClock=await page.evaluate(()=>{v65Resume();clearInterval(v65WorldFrame);let ticks=0;while(match.elapsed===0&&ticks++<200)D6QAWorldTick(.05);for(let n=0;n<20;n++)D6QAWorldTick(.05);draw();return {ticks,elapsed:match.elapsed,countdown:match.countdown};});
+  await page.waitForFunction(()=>D6UnityMatch.lastAck?.clock>0,{},{timeout:30000});
   check('Unity consumes actual movement and the authoritative clock',await page.evaluate(()=>D6UnityMatch.lastAck.clock>0));
   if(offenseCandidate){
    check('New native mass and body heading are finite and included in actual Unity facing',await page.evaluate(()=>v157Active(match)&&match.people.every(p=>{const b=p.offenseMotion||v157InitialBody(p),frame=v98PitchFrame(match),actor=frame.players.find(q=>q.id===p.pid);return b&&b.massKg>=52&&b.massKg<=108&&[b.vx,b.vy,b.heading].every(Number.isFinite)&&(p.slideActive||Boolean(actor.movement?.facing));})));

@@ -153,6 +153,7 @@ public static class FootballGaitTests {
         var go=new GameObject("D6 presentation bridge");UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(go,scene);var bridge=go.AddComponent<ProbeBridge>();var flags=BindingFlags.NonPublic|BindingFlags.Instance;
         var sides=(Transform[])typeof(ProbeBridge).GetField("standSides",flags).GetValue(bridge);for(int i=0;i<4;i++){var stand=new GameObject("stand "+i);UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(stand,scene);sides[i]=stand.transform;}
         typeof(ProbeBridge).GetField("standHalf",flags).SetValue(bridge,new Vector2(34,22));var update=typeof(ProbeBridge).GetMethod("UpdateStadiumVisibility",flags);
+        var fronts=(float[])typeof(ProbeBridge).GetField("standFronts",flags).GetValue(bridge);fronts[0]=fronts[1]=27.5f;fronts[2]=fronts[3]=40.5f;
         int toggles=0;bool last=true;for(int k=0;k<=200;k++){float z=27.5f+Mathf.Sin(k*.7f)*.3f+(k>150?2:0);update.Invoke(bridge,new object[]{new Vector3(0,13,z)});if(bridge.StandShown(1)!=last){toggles++;last=bridge.StandShown(1);}}
         check(toggles==1&&!bridge.StandShown(1)&&bridge.StandShown(0),"A camera wobbling at a stand front hides that stand once, without flicker",toggles);
         update.Invoke(bridge,new object[]{new Vector3(-49,19,9)});check(!bridge.StandShown(2)&&bridge.StandShown(3)&&bridge.StandShown(0),"Behind-goal camera hides only its own end stand",0);

@@ -1,0 +1,4156 @@
+{
+  "schema": "d6-animation-quality-audit/1",
+  "generatedAt": "2026-10-09T11:19:58.659Z",
+  "scope": "Current repo assets, JS picture contract and Unity source selection. No Editor, build, render, hardware or provider jobs.",
+  "sourceSnapshot": [
+    {
+      "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+      "bytes": 12678,
+      "normalizedTextSha256": "3fcff2e2e41c1865b37a1947a497343780021b046eddb6066f8536c0d54d1c93"
+    },
+    {
+      "file": "prototypes/match-engine-unity/FootballAnimation.cs",
+      "bytes": 26458,
+      "normalizedTextSha256": "bc6c79f3a2bf0fa8d0f01c20560bc6f14101074ea545c3e44a1c6fc54a2caf63"
+    },
+    {
+      "file": "prototypes/match-engine-unity/FootballLocomotion.cs",
+      "bytes": 5345,
+      "normalizedTextSha256": "0be801810522778f7954975d128b0d4f11d4dd3d04c0226671a5c32722259b51"
+    },
+    {
+      "file": "prototypes/match-engine-unity/FootballSetup.cs",
+      "bytes": 4633,
+      "normalizedTextSha256": "0f6d27a8331757f5f3e30fe71ca532b71c08acbe78c3ee9d5dd4a4f7fefbd409"
+    },
+    {
+      "file": "dist/world-unity-v151.js",
+      "bytes": 20703,
+      "normalizedTextSha256": "6366319fcc674289211829c01adbf1b2e600c20eca1cc2db8b3b4c80efc3921a"
+    },
+    {
+      "file": "prototypes/match-engine-unity/ProbeBridge.cs",
+      "bytes": 17010,
+      "normalizedTextSha256": "a89808591cd3f875c71a6814ffffadf288d86e0e7b7796cdb662d2a52db7d3cc"
+    },
+    {
+      "file": "prototypes/match-engine-unity/ProbeSetup.cs",
+      "bytes": 13198,
+      "normalizedTextSha256": "e6ba4686113b1451a56076aad5755cbdfc6a96860fafdb46b598e8acaea60d32"
+    },
+    {
+      "file": "prototypes/match-engine-unity/WorldViewContract.cs",
+      "bytes": 6004,
+      "normalizedTextSha256": "f89170cd9f660a20f3f209699690b612d20f699a7c645472e5215a534ec4c330"
+    },
+    {
+      "file": "prototypes/match-engine-unity/FootballGaitTests.cs",
+      "bytes": 25517,
+      "normalizedTextSha256": "bb894c402a185d608ece17a42c286b484e8c209eb9c6366aa6876015ac3a0805"
+    },
+    {
+      "file": "prototypes/match-engine-unity/FootballActionTests.cs",
+      "bytes": 6835,
+      "normalizedTextSha256": "6572cff87444e7d019427cf8247b6730efad3d0ec58caccc8e0b4ae9a73333cf"
+    },
+    {
+      "file": "dist/world-pitch3d-v98.js",
+      "bytes": 45158,
+      "normalizedTextSha256": "7ddb4264f96008179e3c18a0bc371ff4c5e083ceb598523576f77fde4445de2c"
+    },
+    {
+      "file": "dist/pitch-v56.js",
+      "bytes": 10788,
+      "normalizedTextSha256": "b3587a87f24bb7b948caa4f62524be98acadb3795f079571fe84d1606cc959e2"
+    },
+    {
+      "file": "dist/pitch-motion-v102.js",
+      "bytes": 25130,
+      "normalizedTextSha256": "440262e343554bb6b7604f1e9d5ad308ef5eb208b1f844cae0e33e2746301775"
+    },
+    {
+      "file": "dist/player-ball-events-v111.js",
+      "bytes": 2836,
+      "normalizedTextSha256": "b3b62667710c9a0ec5b915f5fbb40ba0424a4abf57c80bee7f831e1c725db383"
+    },
+    {
+      "file": "dist/player-user-ball-actions-v111.js",
+      "bytes": 17873,
+      "normalizedTextSha256": "430abc25ab23cb0a3673148ba3750a3199c9141a934e10d2bd98289187b5f196"
+    },
+    {
+      "file": "dist/world-pitch-actions-v99.js",
+      "bytes": 20806,
+      "normalizedTextSha256": "61ba670500646754451821d19b8a723e3d4290d1237b89b7a90ad619828ea108"
+    },
+    {
+      "file": "work/platform/assets/manifest.json",
+      "bytes": 41083,
+      "normalizedTextSha256": "31dcbf08cca9c58ad6cad0a934f0490ce1c590b65f006e8e9ecbdf02d1939adf"
+    },
+    {
+      "file": "work/platform/assets/contact-pilot-manifest.json",
+      "bytes": 2590,
+      "normalizedTextSha256": "48198fd19678bd41e1d58b9a9056cb27784acb683d23ef9e81badfc2604f68b4"
+    },
+    {
+      "file": "prototypes/match-engine-unity/import-validation.json",
+      "bytes": 1185,
+      "normalizedTextSha256": "e8abb0166f24645bf0cba4a10af185a5861d55b9a231bc286425c9cb2834f734"
+    }
+  ],
+  "assets": {
+    "original": {
+      "file": "dist/players/football-v130.glb",
+      "exists": true,
+      "bytes": 21445448,
+      "sha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+      "expectedSha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+      "hashMatches": true
+    },
+    "baseFbx": {
+      "file": "outputs/platform/assets/5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1/football-v130.fbx",
+      "exists": true,
+      "bytes": 10858636,
+      "sha256": "e79f62f49cc2fe00968cce77044aeba534a7aaf119a42ebd82f0f1516ed13695"
+    },
+    "pilotAssets": [
+      {
+        "file": "outputs/platform/assets/contact-pilot/football-contact-pilot.fbx",
+        "exists": true,
+        "bytes": 572620,
+        "sha256": "cbbac9f598635ff85eb996fa6291dafa98d9147cbfe85abe1a7cac5621179f44",
+        "expectedSha256": "cbbac9f598635ff85eb996fa6291dafa98d9147cbfe85abe1a7cac5621179f44",
+        "hashMatches": true
+      },
+      {
+        "file": "outputs/platform/assets/contact-pilot/pass_inside_meshy.anim",
+        "exists": true,
+        "bytes": 8160690,
+        "sha256": "545475ab372038f014538a21f735045cdbc88de0648d12c07a6ecb08508fde57",
+        "expectedSha256": "545475ab372038f014538a21f735045cdbc88de0648d12c07a6ecb08508fde57",
+        "hashMatches": true
+      },
+      {
+        "file": "outputs/platform/assets/contact-pilot/receive_ground_meshy.anim",
+        "exists": true,
+        "bytes": 8166514,
+        "sha256": "920bbf73281f17373a9efbfe0fa02bb0f434c817fb0ec88bb5afa09f331d8e46",
+        "expectedSha256": "920bbf73281f17373a9efbfe0fa02bb0f434c817fb0ec88bb5afa09f331d8e46",
+        "hashMatches": true
+      }
+    ],
+    "clips": [
+      {
+        "name": "Charged_Spell_Cast",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 2.7083332538604736,
+        "start": 0,
+        "channels": 56,
+        "targetNodes": [
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:Head",
+          "mixamorig:Neck",
+          "mixamorig:LeftHandMiddle4",
+          "mixamorig:LeftHand",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftShoulder",
+          "mixamorig:RightHandMiddle4",
+          "mixamorig:RightHand",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightArm",
+          "mixamorig:RightShoulder",
+          "mixamorig:Spine2",
+          "mixamorig:Spine1",
+          "mixamorig:Spine",
+          "mixamorig:LeftToe_End",
+          "mixamorig:LeftToeBase",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:RightToe_End",
+          "mixamorig:RightToeBase",
+          "mixamorig:RightFoot",
+          "mixamorig:RightLeg",
+          "mixamorig:RightUpLeg",
+          "mixamorig:Hips"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          81,
+          66
+        ]
+      },
+      {
+        "name": "walking",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.0333333015441895,
+        "start": 0,
+        "channels": 66,
+        "targetNodes": [
+          "mixamorig:Head",
+          "mixamorig:Neck",
+          "mixamorig:LeftHand",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftShoulder",
+          "mixamorig:RightHand",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightArm",
+          "mixamorig:RightShoulder",
+          "mixamorig:Spine2",
+          "mixamorig:Spine1",
+          "mixamorig:Spine",
+          "mixamorig:LeftToeBase",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:RightToeBase",
+          "mixamorig:RightFoot",
+          "mixamorig:RightLeg",
+          "mixamorig:RightUpLeg",
+          "mixamorig:Hips"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          32
+        ]
+      },
+      {
+        "name": "running",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 0.6333333253860474,
+        "start": 0,
+        "channels": 66,
+        "targetNodes": [
+          "mixamorig:Head",
+          "mixamorig:Neck",
+          "mixamorig:LeftHand",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftShoulder",
+          "mixamorig:RightHand",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightArm",
+          "mixamorig:RightShoulder",
+          "mixamorig:Spine2",
+          "mixamorig:Spine1",
+          "mixamorig:Spine",
+          "mixamorig:LeftToeBase",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:RightToeBase",
+          "mixamorig:RightFoot",
+          "mixamorig:RightLeg",
+          "mixamorig:RightUpLeg",
+          "mixamorig:Hips"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          20
+        ]
+      },
+      {
+        "name": "run_fast4",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 0.6666666865348816,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          21,
+          2
+        ]
+      },
+      {
+        "name": "run_fast6",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 0.8333333134651184,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          26,
+          2
+        ]
+      },
+      {
+        "name": "sprint_forward",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 0.5666666626930237,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          18,
+          2
+        ]
+      },
+      {
+        "name": "celebrate_fist",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.5,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          46,
+          2
+        ]
+      },
+      {
+        "name": "celebrate_arms",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.8333333730697632,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          56,
+          2
+        ]
+      },
+      {
+        "name": "celebrate_victory",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 9.333333015441895,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          281,
+          2
+        ]
+      },
+      {
+        "name": "idle_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 4,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          121,
+          2
+        ]
+      },
+      {
+        "name": "brake_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.9666666984558105,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          60,
+          2
+        ]
+      },
+      {
+        "name": "turn_run_left",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.5666667222976685,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          48,
+          2
+        ]
+      },
+      {
+        "name": "turn_run_right",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.5666667222976685,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          48,
+          2
+        ]
+      },
+      {
+        "name": "turn_sharp_right",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.1666666269302368,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          36,
+          2
+        ]
+      },
+      {
+        "name": "turn_walk_left",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.9666666984558105,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          60,
+          2
+        ]
+      },
+      {
+        "name": "turn_walk_right",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 2.1666667461395264,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          66,
+          2
+        ]
+      },
+      {
+        "name": "turn_idle_left",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          31,
+          2
+        ]
+      },
+      {
+        "name": "turn_idle_right",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.0666667222976685,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          33,
+          2
+        ]
+      },
+      {
+        "name": "back_walk",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 0.8666666746139526,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          27,
+          2
+        ]
+      },
+      {
+        "name": "back_left",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 0.800000011920929,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          25,
+          2
+        ]
+      },
+      {
+        "name": "back_right",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 0.6000000238418579,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          19,
+          2
+        ]
+      },
+      {
+        "name": "back_step_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 0.8666666746139526,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          27,
+          2
+        ]
+      },
+      {
+        "name": "idle_relaxed",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.8666666746139526,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          57,
+          2
+        ]
+      },
+      {
+        "name": "idle_ready",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 4.266666889190674,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          129,
+          2
+        ]
+      },
+      {
+        "name": "shot_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.6333333253860474,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          50,
+          2
+        ]
+      },
+      {
+        "name": "keeper_low_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 7.166666507720947,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          216,
+          2
+        ]
+      },
+      {
+        "name": "keeper_high_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 4.133333206176758,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          125,
+          2
+        ]
+      },
+      {
+        "name": "keeper_dive_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 2.6666667461395264,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          81,
+          2
+        ]
+      },
+      {
+        "name": "keeper_rise_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 8.233333587646484,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          248,
+          2
+        ]
+      },
+      {
+        "name": "foul_fall_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 2.2666666507720947,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          69,
+          2
+        ]
+      },
+      {
+        "name": "foul_stumble_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 11.366666793823242,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          342,
+          2
+        ]
+      },
+      {
+        "name": "idle_stand_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1,
+        "start": 0,
+        "channels": 72,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          31
+        ]
+      },
+      {
+        "name": "keeper_shuffle_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 3.9666666984558105,
+        "start": 0,
+        "channels": 29,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:LeftHandMiddle4",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:RightHandMiddle4",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:LeftToe_End",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase",
+          "mixamorig:RightToe_End"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          120
+        ]
+      },
+      {
+        "name": "keeper_ready_meshy",
+        "asset": "dist/players/football-v130.glb",
+        "duration": 1.100000023841858,
+        "start": 0,
+        "channels": 29,
+        "targetNodes": [
+          "mixamorig:Hips",
+          "mixamorig:Spine",
+          "mixamorig:Spine1",
+          "mixamorig:Spine2",
+          "mixamorig:Neck",
+          "mixamorig:Head",
+          "mixamorig:HeadTop_End",
+          "headfront",
+          "mixamorig:LeftShoulder",
+          "mixamorig:LeftArm",
+          "mixamorig:LeftForeArm",
+          "mixamorig:LeftHand",
+          "mixamorig:LeftHandMiddle4",
+          "mixamorig:RightShoulder",
+          "mixamorig:RightArm",
+          "mixamorig:RightForeArm",
+          "mixamorig:RightHand",
+          "mixamorig:RightHandMiddle4",
+          "mixamorig:LeftUpLeg",
+          "mixamorig:LeftLeg",
+          "mixamorig:LeftFoot",
+          "mixamorig:LeftToeBase",
+          "mixamorig:LeftToe_End",
+          "mixamorig:RightUpLeg",
+          "mixamorig:RightLeg",
+          "mixamorig:RightFoot",
+          "mixamorig:RightToeBase",
+          "mixamorig:RightToe_End"
+        ],
+        "nonJointTargets": [],
+        "inputSamples": [
+          34
+        ]
+      },
+      {
+        "name": "pass_inside_meshy",
+        "asset": "outputs/platform/assets/contact-pilot/pass_inside_meshy.anim",
+        "duration": 2,
+        "contactSecondsFromExistingManifest": 0.8,
+        "contact": "right foot",
+        "channels": 29,
+        "bindingPaths": [
+          "target_character",
+          "target_character/mixamorig:Hips",
+          "target_character/mixamorig:Hips/mixamorig:Spine",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/headfront",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand/mixamorig:LeftHandMiddle4",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/mixamorig:RightHandMiddle4",
+          "target_character/mixamorig:Hips/mixamorig:LeftUpLeg",
+          "target_character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg",
+          "target_character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot",
+          "target_character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase",
+          "target_character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase/mixamorig:LeftToe_End",
+          "target_character/mixamorig:Hips/mixamorig:RightUpLeg",
+          "target_character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg",
+          "target_character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot",
+          "target_character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase",
+          "target_character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase/mixamorig:RightToe_End"
+        ],
+        "bindsActorRoot": false,
+        "allBindingsUnderExistingPrefabRoot": true,
+        "metadataOrigin": "Existing pilot manifest, contact timings not remeasured in Unity by this audit"
+      },
+      {
+        "name": "receive_ground_meshy",
+        "asset": "outputs/platform/assets/contact-pilot/receive_ground_meshy.anim",
+        "duration": 2,
+        "contactSecondsFromExistingManifest": 0.7,
+        "contact": "right foot",
+        "channels": 29,
+        "bindingPaths": [
+          "target_character",
+          "target_character/mixamorig:Hips",
+          "target_character/mixamorig:Hips/mixamorig:Spine",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/headfront",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:LeftShoulder/mixamorig:LeftArm/mixamorig:LeftForeArm/mixamorig:LeftHand/mixamorig:LeftHandMiddle4",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand",
+          "target_character/mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm/mixamorig:RightForeArm/mixamorig:RightHand/mixamorig:RightHandMiddle4",
+          "target_character/mixamorig:Hips/mixamorig:LeftUpLeg",
+          "target_character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg",
+          "target_character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot",
+          "target_character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase",
+          "target_character/mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase/mixamorig:LeftToe_End",
+          "target_character/mixamorig:Hips/mixamorig:RightUpLeg",
+          "target_character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg",
+          "target_character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot",
+          "target_character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase",
+          "target_character/mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase/mixamorig:RightToe_End"
+        ],
+        "bindsActorRoot": false,
+        "allBindingsUnderExistingPrefabRoot": true,
+        "metadataOrigin": "Existing pilot manifest, contact timings not remeasured in Unity by this audit"
+      }
+    ],
+    "joints": [
+      "mixamorig:Hips",
+      "mixamorig:Spine",
+      "mixamorig:Spine1",
+      "mixamorig:Spine2",
+      "mixamorig:Neck",
+      "mixamorig:Head",
+      "mixamorig:HeadTop_End",
+      "headfront",
+      "mixamorig:LeftShoulder",
+      "mixamorig:LeftArm",
+      "mixamorig:LeftForeArm",
+      "mixamorig:LeftHand",
+      "mixamorig:LeftHandMiddle4",
+      "mixamorig:RightShoulder",
+      "mixamorig:RightArm",
+      "mixamorig:RightForeArm",
+      "mixamorig:RightHand",
+      "mixamorig:RightHandMiddle4",
+      "mixamorig:LeftUpLeg",
+      "mixamorig:LeftLeg",
+      "mixamorig:LeftFoot",
+      "mixamorig:LeftToeBase",
+      "mixamorig:LeftToe_End",
+      "mixamorig:RightUpLeg",
+      "mixamorig:RightLeg",
+      "mixamorig:RightFoot",
+      "mixamorig:RightToeBase",
+      "mixamorig:RightToe_End"
+    ],
+    "priorClipCount": 34,
+    "clipNamesMatchPrior": true,
+    "historicalUnityImport": {
+      "unity": "6000.6.4f1",
+      "clips": [
+        "back_left",
+        "back_right",
+        "back_step_meshy",
+        "back_walk",
+        "brake_meshy",
+        "celebrate_arms",
+        "celebrate_fist",
+        "celebrate_victory",
+        "Charged_Spell_Cast",
+        "foul_fall_meshy",
+        "foul_stumble_meshy",
+        "idle_meshy",
+        "idle_ready",
+        "idle_relaxed",
+        "idle_stand_meshy",
+        "keeper_dive_meshy",
+        "keeper_high_meshy",
+        "keeper_low_meshy",
+        "keeper_ready_meshy",
+        "keeper_rise_meshy",
+        "keeper_shuffle_meshy",
+        "run_fast4",
+        "run_fast6",
+        "sprint_forward",
+        "turn_idle_left",
+        "turn_idle_right",
+        "turn_run_left",
+        "turn_run_right",
+        "turn_sharp_right",
+        "turn_walk_left",
+        "turn_walk_right",
+        "walking",
+        "running",
+        "shot_meshy"
+      ],
+      "bones": 28,
+      "vertices": 9725,
+      "triangles": 12668,
+      "boundsSize": {
+        "x": 1.6778478622436523,
+        "y": 0.3463127911090851,
+        "z": 1.7000001668930054
+      },
+      "rootScale": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      }
+    },
+    "notes": [
+      "GLB durations read from binary sample times; not merely copied from the old manifest.",
+      "FBX existence/hash is measured; prior Unity import report is historical evidence, not a new import.",
+      ".anim binding paths are inspected; animated target_character under prefab is distinct from actor root. No new rig evaluation or retargeting."
+    ]
+  },
+  "wiring": {
+    "controller": "Manual PlayableGraph + cached AnimationMixerPlayable; no AnimatorController state machine",
+    "fields": [
+      "idleClip",
+      "runClip",
+      "keeperClip",
+      "keeperActionClip",
+      "shotClip",
+      "passClip",
+      "receiveClip",
+      "keeperHighClip",
+      "keeperDiveClip",
+      "keeperRiseClip",
+      "walkClip",
+      "fastRunClip",
+      "sprintClip",
+      "backClip",
+      "brakeClip",
+      "turnLeftClip",
+      "turnRightClip",
+      "jogClip",
+      "fastBackClip",
+      "turnIdleLeftClip",
+      "turnIdleRightClip",
+      "turnWalkLeftClip",
+      "turnWalkRightClip",
+      "celebrateArmsClip",
+      "celebrateFistClip",
+      "celebrateVictoryClip",
+      "foulFallClip"
+    ],
+    "assignments": {
+      "idleClip": {
+        "clip": "idle_stand_meshy",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/ProbeSetup.cs",
+          "line": 24,
+          "needle": "bridge.idleClip=Clip(\"idle_stand_meshy\")"
+        }
+      },
+      "runClip": {
+        "clip": "running",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/ProbeSetup.cs",
+          "line": 24,
+          "needle": "bridge.runClip=Clip(\"running\")"
+        }
+      },
+      "keeperClip": {
+        "clip": "keeper_ready_meshy",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/ProbeSetup.cs",
+          "line": 24,
+          "needle": "bridge.keeperClip=Clip(\"keeper_ready_meshy\")"
+        }
+      },
+      "keeperActionClip": {
+        "clip": "keeper_low_meshy",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/ProbeSetup.cs",
+          "line": 24,
+          "needle": "bridge.keeperActionClip=Clip(\"keeper_low_meshy\")"
+        }
+      },
+      "shotClip": {
+        "clip": "shot_meshy",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/ProbeSetup.cs",
+          "line": 24,
+          "needle": "bridge.shotClip=Clip(\"shot_meshy\")"
+        }
+      },
+      "keeperHighClip": {
+        "clip": "keeper_high_meshy",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 21,
+          "needle": "bridge.keeperHighClip=Clip(baseAsset,\"keeper_high_meshy\")"
+        }
+      },
+      "keeperDiveClip": {
+        "clip": "keeper_dive_meshy",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 21,
+          "needle": "bridge.keeperDiveClip=Clip(baseAsset,\"keeper_dive_meshy\")"
+        }
+      },
+      "keeperRiseClip": {
+        "clip": "keeper_rise_meshy",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 21,
+          "needle": "bridge.keeperRiseClip=Clip(baseAsset,\"keeper_rise_meshy\")"
+        }
+      },
+      "walkClip": {
+        "clip": "walking",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 21,
+          "needle": "bridge.walkClip=Clip(baseAsset,\"walking\")"
+        }
+      },
+      "fastRunClip": {
+        "clip": "run_fast4",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 21,
+          "needle": "bridge.fastRunClip=Clip(baseAsset,\"run_fast4\")"
+        }
+      },
+      "sprintClip": {
+        "clip": "sprint_forward",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 21,
+          "needle": "bridge.sprintClip=Clip(baseAsset,\"sprint_forward\")"
+        }
+      },
+      "backClip": {
+        "clip": "back_walk",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 21,
+          "needle": "bridge.backClip=Clip(baseAsset,\"back_walk\")"
+        }
+      },
+      "brakeClip": {
+        "clip": "brake_meshy",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 21,
+          "needle": "bridge.brakeClip=Clip(baseAsset,\"brake_meshy\")"
+        }
+      },
+      "turnLeftClip": {
+        "clip": "turn_run_left",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 21,
+          "needle": "bridge.turnLeftClip=Clip(baseAsset,\"turn_run_left\")"
+        }
+      },
+      "turnRightClip": {
+        "clip": "turn_run_right",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 21,
+          "needle": "bridge.turnRightClip=Clip(baseAsset,\"turn_run_right\")"
+        }
+      },
+      "jogClip": {
+        "clip": "run_fast6",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 32,
+          "needle": "bridge.jogClip=Clip(\"run_fast6\")"
+        }
+      },
+      "fastBackClip": {
+        "clip": "back_left",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 32,
+          "needle": "bridge.fastBackClip=Clip(\"back_left\")"
+        }
+      },
+      "turnIdleLeftClip": {
+        "clip": "turn_idle_left",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 32,
+          "needle": "bridge.turnIdleLeftClip=Clip(\"turn_idle_left\")"
+        }
+      },
+      "turnIdleRightClip": {
+        "clip": "turn_idle_right",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 32,
+          "needle": "bridge.turnIdleRightClip=Clip(\"turn_idle_right\")"
+        }
+      },
+      "turnWalkLeftClip": {
+        "clip": "turn_walk_left",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 32,
+          "needle": "bridge.turnWalkLeftClip=Clip(\"turn_walk_left\")"
+        }
+      },
+      "turnWalkRightClip": {
+        "clip": "turn_walk_right",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 32,
+          "needle": "bridge.turnWalkRightClip=Clip(\"turn_walk_right\")"
+        }
+      },
+      "celebrateArmsClip": {
+        "clip": "celebrate_arms",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 33,
+          "needle": "bridge.celebrateArmsClip=Clip(\"celebrate_arms\")"
+        }
+      },
+      "celebrateFistClip": {
+        "clip": "celebrate_fist",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 33,
+          "needle": "bridge.celebrateFistClip=Clip(\"celebrate_fist\")"
+        }
+      },
+      "celebrateVictoryClip": {
+        "clip": "celebrate_victory",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 33,
+          "needle": "bridge.celebrateVictoryClip=Clip(\"celebrate_victory\")"
+        }
+      },
+      "foulFallClip": {
+        "clip": "foul_fall_meshy",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 33,
+          "needle": "bridge.foulFallClip=Clip(\"foul_fall_meshy\")"
+        }
+      },
+      "passClip": {
+        "clip": "pass_inside_meshy",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 19,
+          "needle": "var pass=Adapt(\"pass_inside_meshy\")"
+        }
+      },
+      "receiveClip": {
+        "clip": "receive_ground_meshy",
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballSetup.cs",
+          "line": 19,
+          "needle": "var receive=Adapt(\"receive_ground_meshy\")"
+        }
+      }
+    },
+    "actionCases": [
+      {
+        "action": "pass",
+        "condition": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\"",
+        "clipFields": [
+          "passClip"
+        ],
+        "clips": [
+          "pass_inside_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 64,
+          "needle": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\""
+        }
+      },
+      {
+        "action": "highPass",
+        "condition": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\"",
+        "clipFields": [
+          "passClip"
+        ],
+        "clips": [
+          "pass_inside_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 64,
+          "needle": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\""
+        }
+      },
+      {
+        "action": "cross",
+        "condition": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\"",
+        "clipFields": [
+          "passClip"
+        ],
+        "clips": [
+          "pass_inside_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 64,
+          "needle": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\""
+        }
+      },
+      {
+        "action": "receive",
+        "condition": "p.action==\"receive\"||p.action==\"control\"",
+        "clipFields": [
+          "receiveClip"
+        ],
+        "clips": [
+          "receive_ground_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 65,
+          "needle": "p.action==\"receive\"||p.action==\"control\""
+        }
+      },
+      {
+        "action": "control",
+        "condition": "p.action==\"receive\"||p.action==\"control\"",
+        "clipFields": [
+          "receiveClip"
+        ],
+        "clips": [
+          "receive_ground_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 65,
+          "needle": "p.action==\"receive\"||p.action==\"control\""
+        }
+      },
+      {
+        "action": "passReady",
+        "condition": "p.action==\"passReady\"",
+        "clipFields": [
+          "passClip"
+        ],
+        "clips": [
+          "pass_inside_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 66,
+          "needle": "p.action==\"passReady\""
+        }
+      },
+      {
+        "action": "shot",
+        "condition": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\"",
+        "clipFields": [
+          "shotClip"
+        ],
+        "clips": [
+          "shot_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 67,
+          "needle": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\""
+        }
+      },
+      {
+        "action": "freeKick",
+        "condition": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\"",
+        "clipFields": [
+          "shotClip"
+        ],
+        "clips": [
+          "shot_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 67,
+          "needle": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\""
+        }
+      },
+      {
+        "action": "volley",
+        "condition": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\"",
+        "clipFields": [
+          "shotClip"
+        ],
+        "clips": [
+          "shot_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 67,
+          "needle": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\""
+        }
+      },
+      {
+        "action": "goalKick",
+        "condition": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\"",
+        "clipFields": [
+          "shotClip"
+        ],
+        "clips": [
+          "shot_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 67,
+          "needle": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\""
+        }
+      },
+      {
+        "action": "kickReady",
+        "condition": "p.action==\"kickReady\"",
+        "clipFields": [
+          "shotClip"
+        ],
+        "clips": [
+          "shot_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 68,
+          "needle": "p.action==\"kickReady\""
+        }
+      },
+      {
+        "action": "foulVictim",
+        "condition": "p.action==\"foulVictim\"&&foulFallClip!=null&&keeperRiseClip!=null",
+        "clipFields": [
+          "foulFallClip",
+          "keeperRiseClip"
+        ],
+        "clips": [
+          "foul_fall_meshy",
+          "keeper_rise_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 69,
+          "needle": "p.action==\"foulVictim\"&&foulFallClip!=null&&keeperRiseClip!=null"
+        }
+      },
+      {
+        "action": "save",
+        "condition": "identity.keeper&&p.action==\"save\"",
+        "clipFields": [
+          "keeperHighClip",
+          "keeperDiveClip",
+          "keeperActionClip",
+          "keeperRiseClip"
+        ],
+        "clips": [
+          "keeper_high_meshy",
+          "keeper_dive_meshy",
+          "keeper_low_meshy",
+          "keeper_rise_meshy"
+        ],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 74,
+          "needle": "identity.keeper&&p.action==\"save\""
+        }
+      },
+      {
+        "action": "header",
+        "condition": "(p.action==\"header\"||p.action==\"airReady\")&&contactPoint.HasValue",
+        "clipFields": [],
+        "clips": [],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 82,
+          "needle": "(p.action==\"header\"||p.action==\"airReady\")&&contactPoint.HasValue"
+        }
+      },
+      {
+        "action": "airReady",
+        "condition": "(p.action==\"header\"||p.action==\"airReady\")&&contactPoint.HasValue",
+        "clipFields": [],
+        "clips": [],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 82,
+          "needle": "(p.action==\"header\"||p.action==\"airReady\")&&contactPoint.HasValue"
+        }
+      },
+      {
+        "action": "throw",
+        "condition": "p.action==\"throw\"&&ballView.position.y>1f&&Vector3.Distance(ballView.position,actors[i].position+Vector3.up*ballView.position.y)<1.3f",
+        "clipFields": [],
+        "clips": [],
+        "anchor": {
+          "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+          "line": 87,
+          "needle": "p.action==\"throw\"&&ballView.position.y>1f&&Vector3.Distance(ballView.position,actors[i].position+Vector3.up*ballView.position.y)<1.3f"
+        }
+      }
+    ],
+    "catalogueClips": [
+      "idle_stand_meshy",
+      "running",
+      "keeper_ready_meshy",
+      "keeper_low_meshy",
+      "shot_meshy",
+      "pass_inside_meshy",
+      "receive_ground_meshy",
+      "keeper_high_meshy",
+      "keeper_dive_meshy",
+      "keeper_rise_meshy",
+      "walking",
+      "run_fast4",
+      "sprint_forward",
+      "back_walk",
+      "brake_meshy",
+      "turn_run_left",
+      "turn_run_right",
+      "run_fast6",
+      "back_left",
+      "turn_idle_left",
+      "turn_idle_right",
+      "turn_walk_left",
+      "turn_walk_right",
+      "celebrate_arms",
+      "celebrate_fist",
+      "celebrate_victory",
+      "foul_fall_meshy"
+    ],
+    "existingUncataloguedClips": [
+      "Charged_Spell_Cast",
+      "idle_meshy",
+      "turn_sharp_right",
+      "back_right",
+      "back_step_meshy",
+      "idle_relaxed",
+      "idle_ready",
+      "foul_stumble_meshy",
+      "keeper_shuffle_meshy"
+    ]
+  },
+  "bridgeProbe": {
+    "method": "Execute the actual browser picture contract in isolated node:vm; synthetic frame, no game state or browser",
+    "slide": {
+      "id": "p",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "facing": [
+        1,
+        0,
+        0
+      ],
+      "moving": true,
+      "action": "slide",
+      "actionId": "slide:p",
+      "contactPoint": [
+        0.4,
+        0.29,
+        0
+      ],
+      "recovery": 0,
+      "progress": 0.3,
+      "duration": 0.65,
+      "number": 1
+    },
+    "slideRecovery": {
+      "id": "p",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "facing": [
+        1,
+        0,
+        0
+      ],
+      "moving": true,
+      "action": "slideRecovery",
+      "actionId": "slide:p",
+      "contactPoint": [
+        0.4,
+        0.29,
+        0
+      ],
+      "recovery": 0,
+      "progress": 0.5,
+      "duration": 0.65,
+      "number": 1
+    },
+    "foulPrecedence": "foulOffender",
+    "preservedSaveFields": {
+      "saved": false,
+      "holding": false,
+      "pickup": false,
+      "height": false
+    },
+    "slideProjected": true,
+    "recoveryProjected": true
+  },
+  "actions": [
+    {
+      "id": "stand",
+      "label": "Stehen",
+      "classification": "present+integrated",
+      "actionTrigger": "received position/facing/time",
+      "triggerEvidence": [
+        {
+          "file": "prototypes/match-engine-unity/FootballLocomotion.cs",
+          "line": 26,
+          "needle": "public void Sample("
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": {
+        "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+        "line": 22,
+        "needle": "return keeper?keeperClip:idleClip"
+      },
+      "candidateClips": [
+        {
+          "name": "idle_stand_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Measured footfall/stride/sole on rig at runtime; no ball contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "walk",
+      "label": "Gehen",
+      "classification": "present+integrated",
+      "actionTrigger": "received position/facing/time",
+      "triggerEvidence": [
+        {
+          "file": "prototypes/match-engine-unity/FootballLocomotion.cs",
+          "line": 26,
+          "needle": "public void Sample("
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": {
+        "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+        "line": 19,
+        "needle": "if(mode==\"walk\")"
+      },
+      "candidateClips": [
+        {
+          "name": "walking",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.0333333015441895
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Measured footfall/stride/sole on rig at runtime; no ball contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "run",
+      "label": "Laufen/Joggen",
+      "classification": "present+integrated",
+      "actionTrigger": "received position/facing/time",
+      "triggerEvidence": [
+        {
+          "file": "prototypes/match-engine-unity/FootballLocomotion.cs",
+          "line": 26,
+          "needle": "public void Sample("
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": {
+        "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+        "line": 21,
+        "needle": "if(mode==\"run\")"
+      },
+      "candidateClips": [
+        {
+          "name": "running",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 0.6333333253860474
+        },
+        {
+          "name": "run_fast4",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 0.6666666865348816
+        },
+        {
+          "name": "run_fast6",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 0.8333333134651184
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Measured footfall/stride/sole on rig at runtime; no ball contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "sprint",
+      "label": "Sprint",
+      "classification": "present+integrated",
+      "actionTrigger": "received position/facing/time",
+      "triggerEvidence": [
+        {
+          "file": "prototypes/match-engine-unity/FootballLocomotion.cs",
+          "line": 26,
+          "needle": "public void Sample("
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": {
+        "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+        "line": 19,
+        "needle": "if(mode==\"sprint\")"
+      },
+      "candidateClips": [
+        {
+          "name": "sprint_forward",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 0.5666666626930237
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Measured footfall/stride/sole on rig at runtime; no ball contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "turn",
+      "label": "Drehungen Stand/Gehen/Laufen",
+      "classification": "present+integrated",
+      "actionTrigger": "received position/facing/time",
+      "triggerEvidence": [
+        {
+          "file": "prototypes/match-engine-unity/FootballLocomotion.cs",
+          "line": 26,
+          "needle": "public void Sample("
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": {
+        "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+        "line": 26,
+        "needle": "if(m.Mode.StartsWith(\"turn-\"))"
+      },
+      "candidateClips": [
+        {
+          "name": "turn_idle_left",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1
+        },
+        {
+          "name": "turn_idle_right",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.0666667222976685
+        },
+        {
+          "name": "turn_walk_left",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.9666666984558105
+        },
+        {
+          "name": "turn_walk_right",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 2.1666667461395264
+        },
+        {
+          "name": "turn_run_left",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.5666667222976685
+        },
+        {
+          "name": "turn_run_right",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.5666667222976685
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Measured footfall/stride/sole on rig at runtime; no ball contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "brake",
+      "label": "Bremsen",
+      "classification": "present+integrated",
+      "actionTrigger": "received position/facing/time",
+      "triggerEvidence": [
+        {
+          "file": "prototypes/match-engine-unity/FootballLocomotion.cs",
+          "line": 26,
+          "needle": "public void Sample("
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": {
+        "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+        "line": 25,
+        "needle": "if(m.Mode==\"brake\")"
+      },
+      "candidateClips": [
+        {
+          "name": "brake_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.9666666984558105
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Measured footfall/stride/sole on rig at runtime; no ball contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "backpedal",
+      "label": "Rückwärtsbewegung",
+      "classification": "present+integrated",
+      "actionTrigger": "received position/facing/time",
+      "triggerEvidence": [
+        {
+          "file": "prototypes/match-engine-unity/FootballLocomotion.cs",
+          "line": 26,
+          "needle": "public void Sample("
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": {
+        "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+        "line": 20,
+        "needle": "if(mode==\"back\")"
+      },
+      "candidateClips": [
+        {
+          "name": "back_walk",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 0.8666666746139526
+        },
+        {
+          "name": "back_left",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 0.800000011920929
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Measured footfall/stride/sole on rig at runtime; no ball contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "back_right/back_step_meshy remain unused; backward gait does not prove lateral keeper shuffle.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "dribble",
+      "label": "Dribbling/Ballführung",
+      "classification": "present+integrated",
+      "actionTrigger": "received position/facing/time",
+      "triggerEvidence": [
+        {
+          "file": "dist/world-pitch3d-v98.js",
+          "line": 39,
+          "needle": "owner:current.owner?.pid"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": {
+        "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+        "line": 94,
+        "needle": "else if(carrying&&locomotion.Speed"
+      },
+      "candidateClips": [
+        {
+          "name": "running",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 0.6333333253860474
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Procedural alternating left/right foot reach before measured stride footfall; partial weight, ground-ball gate, no native impulse.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No dedicated dribble source clip; suitability in tight space remains visual review.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "control",
+      "label": "Bodenannahme/Kontrolle",
+      "classification": "present+integrated",
+      "actionTrigger": "control",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-motion-v102.js",
+          "line": 10,
+          "needle": "function v102Pose"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "control",
+          "condition": "p.action==\"receive\"||p.action==\"control\"",
+          "clips": [
+            "receive_ground_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 65,
+            "needle": "p.action==\"receive\"||p.action==\"control\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "receive_ground_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "outputs/platform/assets/contact-pilot/receive_ground_meshy.anim",
+          "duration": 2
+        }
+      ],
+      "selectedClipFields": [
+        "receiveClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "ReceiveContact=.7; post-release contact gate .09 s (receive .12 s), right-foot IK within 1.4 m root and 1 m current ball. Standing support-foot planting.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "receive",
+      "label": "Passempfang",
+      "classification": "present+integrated",
+      "actionTrigger": "receive",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-motion-v102.js",
+          "line": 10,
+          "needle": "function v102Pose"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "receive",
+          "condition": "p.action==\"receive\"||p.action==\"control\"",
+          "clips": [
+            "receive_ground_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 65,
+            "needle": "p.action==\"receive\"||p.action==\"control\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "receive_ground_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "outputs/platform/assets/contact-pilot/receive_ground_meshy.anim",
+          "duration": 2
+        }
+      ],
+      "selectedClipFields": [
+        "receiveClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "ReceiveContact=.7; post-release contact gate .09 s (receive .12 s), right-foot IK within 1.4 m root and 1 m current ball. Standing support-foot planting.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "pass",
+      "label": "Bodenpass",
+      "classification": "present+integrated",
+      "actionTrigger": "pass",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-motion-v102.js",
+          "line": 10,
+          "needle": "function v102Pose"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "pass",
+          "condition": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\"",
+          "clips": [
+            "pass_inside_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 64,
+            "needle": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "pass_inside_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "outputs/platform/assets/contact-pilot/pass_inside_meshy.anim",
+          "duration": 2
+        }
+      ],
+      "selectedClipFields": [
+        "passClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "PassContact=.8; post-release contact gate .09 s (receive .12 s), right-foot IK within 1.4 m root and 1 m current ball. Standing support-foot planting.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "high-pass",
+      "label": "Hoher Pass",
+      "classification": "integrated-quality-defect",
+      "actionTrigger": "highPass",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-motion-v102.js",
+          "line": 10,
+          "needle": "function v102Pose"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "highPass",
+          "condition": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\"",
+          "clips": [
+            "pass_inside_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 64,
+            "needle": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "pass_inside_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "outputs/platform/assets/contact-pilot/pass_inside_meshy.anim",
+          "duration": 2
+        }
+      ],
+      "selectedClipFields": [
+        "passClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "PassContact=.8; post-release contact gate .09 s (receive .12 s), right-foot IK within 1.4 m root and 1 m current ball. Standing support-foot planting.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Ground inside-pass pose reused for high delivery; authored crossing action absent.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "cross",
+      "label": "Flanke",
+      "classification": "integrated-quality-defect",
+      "actionTrigger": "cross",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-motion-v102.js",
+          "line": 10,
+          "needle": "function v102Pose"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "cross",
+          "condition": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\"",
+          "clips": [
+            "pass_inside_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 64,
+            "needle": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "pass_inside_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "outputs/platform/assets/contact-pilot/pass_inside_meshy.anim",
+          "duration": 2
+        }
+      ],
+      "selectedClipFields": [
+        "passClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "PassContact=.8; post-release contact gate .09 s (receive .12 s), right-foot IK within 1.4 m root and 1 m current ball. Standing support-foot planting.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Ground inside-pass pose reused for high delivery; authored crossing action absent.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "shot",
+      "label": "Schuss",
+      "classification": "present+integrated",
+      "actionTrigger": "shot",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-motion-v102.js",
+          "line": 10,
+          "needle": "function v102Pose"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "shot",
+          "condition": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\"",
+          "clips": [
+            "shot_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 67,
+            "needle": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "shot_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.6333333253860474
+        }
+      ],
+      "selectedClipFields": [
+        "shotClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "ShotContact=.46; post-release contact gate .09 s (receive .12 s), right-foot IK within 1.4 m root and 1 m current ball. Standing support-foot planting.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "volley",
+      "label": "Volley",
+      "classification": "integrated-quality-defect",
+      "actionTrigger": "volley",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-motion-v102.js",
+          "line": 10,
+          "needle": "function v102Pose"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "volley",
+          "condition": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\"",
+          "clips": [
+            "shot_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 67,
+            "needle": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "shot_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.6333333253860474
+        }
+      ],
+      "selectedClipFields": [
+        "shotClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "ShotContact=.46; post-release contact gate .09 s (receive .12 s), right-foot IK within 1.4 m root and 1 m current ball. Standing support-foot planting.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Volley uses ground-shot body/foot pose; no dedicated aerial preparation, height or authored volley family.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "pass-ready",
+      "label": "Passvorbereitung",
+      "classification": "present+integrated",
+      "actionTrigger": "passReady",
+      "triggerEvidence": [],
+      "unitySelection": [
+        {
+          "action": "passReady",
+          "condition": "p.action==\"passReady\"",
+          "clips": [
+            "pass_inside_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 66,
+            "needle": "p.action==\"passReady\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "pass_inside_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "outputs/platform/assets/contact-pilot/pass_inside_meshy.anim",
+          "duration": 2
+        }
+      ],
+      "selectedClipFields": [
+        "passClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Progress samples 0..0.8 s before contact; no invented ball release.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "kick-ready",
+      "label": "Schussvorbereitung",
+      "classification": "present+integrated",
+      "actionTrigger": "kickReady",
+      "triggerEvidence": [],
+      "unitySelection": [
+        {
+          "action": "kickReady",
+          "condition": "p.action==\"kickReady\"",
+          "clips": [
+            "shot_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 68,
+            "needle": "p.action==\"kickReady\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "shot_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.6333333253860474
+        }
+      ],
+      "selectedClipFields": [
+        "shotClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Progress samples 0..0.46 s before contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": null,
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "header",
+      "label": "Kopfball",
+      "classification": "integrated-quality-defect",
+      "actionTrigger": "header",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-motion-v102.js",
+          "line": 16,
+          "needle": "'header'"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "header",
+          "condition": "(p.action==\"header\"||p.action==\"airReady\")&&contactPoint.HasValue",
+          "clips": [],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 82,
+            "needle": "(p.action==\"header\"||p.action==\"airReady\")&&contactPoint.HasValue"
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Head/spine procedural reach; root distance <2.6 m, ball/contact distance <1.2 m; no dedicated clip; head correction at most 22 degrees.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No authored takeoff/header/landing family; locomotion clip continues under head reach.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "air-ready",
+      "label": "Luftballvorbereitung",
+      "classification": "integrated-quality-defect",
+      "actionTrigger": "airReady",
+      "triggerEvidence": [],
+      "unitySelection": [
+        {
+          "action": "airReady",
+          "condition": "(p.action==\"header\"||p.action==\"airReady\")&&contactPoint.HasValue",
+          "clips": [],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 82,
+            "needle": "(p.action==\"header\"||p.action==\"airReady\")&&contactPoint.HasValue"
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Same bounded head reach as header; partial weight .8*progress.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No aerial body preparation/takeoff clip.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "air-land",
+      "label": "Landung nach Luftduell",
+      "classification": "missing",
+      "actionTrigger": "airLand",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-motion-v102.js",
+          "line": 234,
+          "needle": "action.kind==='airLand'"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "None required.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No dedicated airLand selection or landing clip in current Unity action catalog.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "standing-tackle",
+      "label": "Stehender Zweikampf",
+      "classification": "missing",
+      "actionTrigger": "tackle",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 19,
+          "needle": "v102Pose(m,tackler,'tackle'"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Native actual ball contact; Unity selector must not decide winning/foul.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Browser reuses shot pose; current Unity has no tackle branch or dedicated tackle clip.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "slide-front",
+      "label": "Grätsche von vorn",
+      "classification": "missing",
+      "actionTrigger": "slide",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 13,
+          "needle": "function v56ApproachInfo"
+        },
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 35,
+          "needle": "m.slide={"
+        },
+        {
+          "file": "dist/world-pitch3d-v98.js",
+          "line": 37,
+          "needle": "slideActive:Boolean"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Native path/behind/contact gates decide legality; all origins use same observed slide action. No authored slide clip in source inventory.",
+      "transition": "Native slide progress then recovery; never local visual timer.",
+      "limitation": "Native slide phase now reaches bridge. C# selector still must select a procedural or authored sliding body pose.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "slide-side",
+      "label": "Grätsche von der Seite",
+      "classification": "missing",
+      "actionTrigger": "slide",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 13,
+          "needle": "function v56ApproachInfo"
+        },
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 35,
+          "needle": "m.slide={"
+        },
+        {
+          "file": "dist/world-pitch3d-v98.js",
+          "line": 37,
+          "needle": "slideActive:Boolean"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Native path/behind/contact gates decide legality; all origins use same observed slide action. No authored slide clip in source inventory.",
+      "transition": "Native slide progress then recovery; never local visual timer.",
+      "limitation": "Native slide phase now reaches bridge. C# selector still must select a procedural or authored sliding body pose.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "slide-back",
+      "label": "Grätsche von hinten",
+      "classification": "missing",
+      "actionTrigger": "slide",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 13,
+          "needle": "function v56ApproachInfo"
+        },
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 35,
+          "needle": "m.slide={"
+        },
+        {
+          "file": "dist/world-pitch3d-v98.js",
+          "line": 37,
+          "needle": "slideActive:Boolean"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Native path/behind/contact gates decide legality; all origins use same observed slide action. No authored slide clip in source inventory.",
+      "transition": "Native slide progress then recovery; never local visual timer.",
+      "limitation": "Native slide phase now reaches bridge. C# selector still must select a procedural or authored sliding body pose.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "slide-gain",
+      "label": "Grätsche: Ballgewinn",
+      "classification": "missing",
+      "actionTrigger": "slide",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 23,
+          "needle": "m.owner=tackler"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Outcome authoritative in native simulation; phase must preserve actual root/ball, never fake successful contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No source-verified separate Unity outcome animation/contact family; common slide pose may be enough, but actual outcomes need explicit visual fixtures.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "slide-deflect",
+      "label": "Grätsche: freier/abgefälschter Ball",
+      "classification": "missing",
+      "actionTrigger": "slide",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 58,
+          "needle": "v50LooseBall({x:tackler.x"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Outcome authoritative in native simulation; phase must preserve actual root/ball, never fake successful contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No source-verified separate Unity outcome animation/contact family; common slide pose may be enough, but actual outcomes need explicit visual fixtures.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "slide-miss",
+      "label": "Grätsche: verfehlt",
+      "classification": "missing",
+      "actionTrigger": "slide",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 62,
+          "needle": "if(slide.progress>=1)"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Outcome authoritative in native simulation; phase must preserve actual root/ball, never fake successful contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No source-verified separate Unity outcome animation/contact family; common slide pose may be enough, but actual outcomes need explicit visual fixtures.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "slide-foul",
+      "label": "Grätsche: Foulkontakt",
+      "classification": "missing",
+      "actionTrigger": "slide",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 21,
+          "needle": "v50Foul(victim,tackler)"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Outcome authoritative in native simulation; phase must preserve actual root/ball, never fake successful contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No source-verified separate Unity outcome animation/contact family; common slide pose may be enough, but actual outcomes need explicit visual fixtures.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "slide-recover",
+      "label": "Grätsche: Aufstehen/Erholung",
+      "classification": "present-unwired",
+      "actionTrigger": "slideRecovery",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-v56.js",
+          "line": 118,
+          "needle": "player.slideActive&&!m.slide"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "keeper_rise_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 8.233333587646484
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "No extra ball/contact decision.",
+      "transition": "Integrator supplies recovery progress/duration; rise uses supplied native phase, no new timer.",
+      "limitation": "Keeper rise exists as reuse candidate, but no current slideRecovery selector. Floor-to-rise compatibility unproven.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "foul-victim",
+      "label": "Foulopfer: Sturz und Aufstehen",
+      "classification": "present+integrated",
+      "actionTrigger": "foulVictim",
+      "triggerEvidence": [
+        {
+          "file": "dist/player-ball-events-v111.js",
+          "line": 20,
+          "needle": "function v113FoulAction"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "foulVictim",
+          "condition": "p.action==\"foulVictim\"&&foulFallClip!=null&&keeperRiseClip!=null",
+          "clips": [
+            "foul_fall_meshy",
+            "keeper_rise_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 69,
+            "needle": "p.action==\"foulVictim\"&&foulFallClip!=null&&keeperRiseClip!=null"
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "foul_fall_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 2.2666666507720947
+        },
+        {
+          "name": "keeper_rise_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 8.233333587646484
+        }
+      ],
+      "selectedClipFields": [
+        "foulFallClip",
+        "keeperRiseClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Existing foul signal, no contact prediction.",
+      "transition": "Foul 2.7 s: fall first 1.6 s, then keeper_rise 4.4..6.3 clip seconds.",
+      "limitation": "A reused keeper rise after the fall needs floor/body continuity and contact checks on both sides.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "foul-offender",
+      "label": "Foulverursacher/Stolpern",
+      "classification": "present-unwired",
+      "actionTrigger": "foulOffender",
+      "triggerEvidence": [
+        {
+          "file": "dist/player-ball-events-v111.js",
+          "line": 23,
+          "needle": "'foulOffender'"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "foul_stumble_meshy",
+          "present": true,
+          "catalogued": false,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 11.366666793823242
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "None required.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Asset exists; current setup/catalog/pose do not assign/select it. Short suitable window must be measured before truncating the 11.37 s source clip.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "stumble-general",
+      "label": "Stolpern außerhalb Foul",
+      "classification": "unproven",
+      "actionTrigger": "stumble",
+      "triggerEvidence": [],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "foul_stumble_meshy",
+          "present": true,
+          "catalogued": false,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 11.366666793823242
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "None required.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No proven native independent stumble trigger; avoid inventing gameplay events merely for animation.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "keeper-ready",
+      "label": "Torwartbereitschaft",
+      "classification": "present+integrated",
+      "actionTrigger": "received position/facing/time",
+      "triggerEvidence": [],
+      "unitySelection": [],
+      "modeEvidence": {
+        "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+        "line": 22,
+        "needle": "return keeper?keeperClip:idleClip"
+      },
+      "candidateClips": [
+        {
+          "name": "keeper_ready_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.100000023841858
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "No ball contact.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Current gaze/stance source exists; visible readiness before lateral action still needs review.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "keeper-shuffle",
+      "label": "Seitlicher Torwartschritt",
+      "classification": "present-unwired",
+      "actionTrigger": "keeperShuffle",
+      "triggerEvidence": [
+        {
+          "file": "prototypes/match-engine-unity/FootballLocomotion.cs",
+          "line": 45,
+          "needle": "bool backward="
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "keeper_shuffle_meshy",
+          "present": true,
+          "catalogued": false,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 3.9666666984558105
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "None required.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Dedicated clip exists but is not in setup/catalog; keeper uses ordinary walk/run/back from observed motion. Select lateral movement without extra AI.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "keeper-save",
+      "label": "Torwartparade allgemein",
+      "classification": "present+integrated",
+      "actionTrigger": "save",
+      "triggerEvidence": [],
+      "unitySelection": [
+        {
+          "action": "save",
+          "condition": "identity.keeper&&p.action==\"save\"",
+          "clips": [
+            "keeper_high_meshy",
+            "keeper_dive_meshy",
+            "keeper_low_meshy",
+            "keeper_rise_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 74,
+            "needle": "identity.keeper&&p.action==\"save\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "keeper_low_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 7.166666507720947
+        },
+        {
+          "name": "keeper_high_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 4.133333206176758
+        },
+        {
+          "name": "keeper_dive_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 2.6666667461395264
+        }
+      ],
+      "selectedClipFields": [
+        "keeperHighClip",
+        "keeperDiveClip",
+        "keeperActionClip",
+        "keeperRiseClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Select high if contact y>1.6 m, dive if |contact.z-position.z|>1.2 m, else low; authored windows low .70..1.18, high .93..1.46, dive .23.. .81. Contact only progress>.78 and ball/contact distance<.6 m; one/two hands; bounded arms.",
+      "transition": "Urgent mixer response .035 s; recovery>.35 reuses keeper_rise.",
+      "limitation": "Source thresholds are global-z based while hands/dive lean use local space. Angled orientations and both diving sides require actual review.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "keeper-dive",
+      "label": "Seitliches Hechten",
+      "classification": "present+integrated",
+      "actionTrigger": "save",
+      "triggerEvidence": [],
+      "unitySelection": [
+        {
+          "action": "save",
+          "condition": "identity.keeper&&p.action==\"save\"",
+          "clips": [
+            "keeper_high_meshy",
+            "keeper_dive_meshy",
+            "keeper_low_meshy",
+            "keeper_rise_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 74,
+            "needle": "identity.keeper&&p.action==\"save\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "keeper_low_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 7.166666507720947
+        },
+        {
+          "name": "keeper_high_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 4.133333206176758
+        },
+        {
+          "name": "keeper_dive_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 2.6666667461395264
+        }
+      ],
+      "selectedClipFields": [
+        "keeperHighClip",
+        "keeperDiveClip",
+        "keeperActionClip",
+        "keeperRiseClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Select high if contact y>1.6 m, dive if |contact.z-position.z|>1.2 m, else low; authored windows low .70..1.18, high .93..1.46, dive .23.. .81. Contact only progress>.78 and ball/contact distance<.6 m; one/two hands; bounded arms.",
+      "transition": "Urgent mixer response .035 s; recovery>.35 reuses keeper_rise.",
+      "limitation": "Source thresholds are global-z based while hands/dive lean use local space. Angled orientations and both diving sides require actual review.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "keeper-high",
+      "label": "Hohe Parade",
+      "classification": "present+integrated",
+      "actionTrigger": "save",
+      "triggerEvidence": [],
+      "unitySelection": [
+        {
+          "action": "save",
+          "condition": "identity.keeper&&p.action==\"save\"",
+          "clips": [
+            "keeper_high_meshy",
+            "keeper_dive_meshy",
+            "keeper_low_meshy",
+            "keeper_rise_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 74,
+            "needle": "identity.keeper&&p.action==\"save\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "keeper_low_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 7.166666507720947
+        },
+        {
+          "name": "keeper_high_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 4.133333206176758
+        },
+        {
+          "name": "keeper_dive_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 2.6666667461395264
+        }
+      ],
+      "selectedClipFields": [
+        "keeperHighClip",
+        "keeperDiveClip",
+        "keeperActionClip",
+        "keeperRiseClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Select high if contact y>1.6 m, dive if |contact.z-position.z|>1.2 m, else low; authored windows low .70..1.18, high .93..1.46, dive .23.. .81. Contact only progress>.78 and ball/contact distance<.6 m; one/two hands; bounded arms.",
+      "transition": "Urgent mixer response .035 s; recovery>.35 reuses keeper_rise.",
+      "limitation": "Source thresholds are global-z based while hands/dive lean use local space. Angled orientations and both diving sides require actual review.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "keeper-catch",
+      "label": "Torwart fängt/hält",
+      "classification": "unproven",
+      "actionTrigger": "save",
+      "triggerEvidence": [],
+      "unitySelection": [
+        {
+          "action": "save",
+          "condition": "identity.keeper&&p.action==\"save\"",
+          "clips": [
+            "keeper_high_meshy",
+            "keeper_dive_meshy",
+            "keeper_low_meshy",
+            "keeper_rise_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 74,
+            "needle": "identity.keeper&&p.action==\"save\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "keeper_low_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 7.166666507720947
+        }
+      ],
+      "selectedClipFields": [
+        "keeperHighClip",
+        "keeperDiveClip",
+        "keeperActionClip",
+        "keeperRiseClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Same native save signal/hand reach as parry; ball still native-owned.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Picture contract does not preserve saved/holding, so distinct catch/hold/secure sequence is not proven.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "keeper-rebound",
+      "label": "Torwart Abpraller/Nachfassen",
+      "classification": "unproven",
+      "actionTrigger": "save",
+      "triggerEvidence": [],
+      "unitySelection": [
+        {
+          "action": "save",
+          "condition": "identity.keeper&&p.action==\"save\"",
+          "clips": [
+            "keeper_high_meshy",
+            "keeper_dive_meshy",
+            "keeper_low_meshy",
+            "keeper_rise_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 74,
+            "needle": "identity.keeper&&p.action==\"save\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "keeper_low_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 7.166666507720947
+        },
+        {
+          "name": "keeper_dive_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 2.6666667461395264
+        }
+      ],
+      "selectedClipFields": [
+        "keeperHighClip",
+        "keeperDiveClip",
+        "keeperActionClip",
+        "keeperRiseClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "None required.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Rebound ball remains visible from native frames; no explicit saved vs parry outcome passed and no authored follow-up family proven.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "keeper-rise",
+      "label": "Torwart Aufstehen",
+      "classification": "present+integrated",
+      "actionTrigger": "save",
+      "triggerEvidence": [],
+      "unitySelection": [
+        {
+          "action": "save",
+          "condition": "identity.keeper&&p.action==\"save\"",
+          "clips": [
+            "keeper_high_meshy",
+            "keeper_dive_meshy",
+            "keeper_low_meshy",
+            "keeper_rise_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 74,
+            "needle": "identity.keeper&&p.action==\"save\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "keeper_rise_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 8.233333587646484
+        }
+      ],
+      "selectedClipFields": [
+        "keeperHighClip",
+        "keeperDiveClip",
+        "keeperActionClip",
+        "keeperRiseClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Contact disabled after recovery>.35.",
+      "transition": "Uses native recovery, samples (recovery-.35)/.65 of full rise clip.",
+      "limitation": "Separate foul rise uses short window, keeper uses full 8.23 s mapped recovery. Fallen pose and floor continuity require visual review.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "keeper-kick",
+      "label": "Torwart Fußabspiel/Abstoß",
+      "classification": "integrated-quality-defect",
+      "actionTrigger": "goalKick",
+      "triggerEvidence": [
+        {
+          "file": "dist/world-pitch-actions-v99.js",
+          "line": 22,
+          "needle": "'goalKick'"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "goalKick",
+          "condition": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\"",
+          "clips": [
+            "shot_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 67,
+            "needle": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "shot_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.6333333253860474
+        }
+      ],
+      "selectedClipFields": [
+        "shotClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Same right-foot ground-shot timing .46 s.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No pickup/ball hold/drop-kick preparation passed; dedicated distribution animation absent.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "keeper-throw",
+      "label": "Torwart Wurf/Rollen",
+      "classification": "unproven",
+      "actionTrigger": "keeperThrow",
+      "triggerEvidence": [],
+      "unitySelection": [],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "None required.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No proven native keeperThrow action, no authored roll/throw clip. Existing throw denotes throw-in; do not assume keeper distribution is implemented.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "throw-in",
+      "label": "Einwurf",
+      "classification": "integrated-quality-defect",
+      "actionTrigger": "throw",
+      "triggerEvidence": [
+        {
+          "file": "dist/world-pitch-actions-v99.js",
+          "line": 126,
+          "needle": "kind:'throw'"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "throw",
+          "condition": "p.action==\"throw\"&&ballView.position.y>1f&&Vector3.Distance(ballView.position,actors[i].position+Vector3.up*ballView.position.y)<1.3f",
+          "clips": [],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 87,
+            "needle": "p.action==\"throw\"&&ballView.position.y>1f&&Vector3.Distance(ballView.position,actors[i].position+Vector3.up*ballView.position.y)<1.3f"
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Procedural two-hands when actual ball y>1 m and within 1.3 m projected horizontal reach; no authored overhead throw clip.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "holding/pickup are discarded by picture contract; no full pickup/hold/windup/release follow-through sequence.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "corner",
+      "label": "Eckball",
+      "classification": "integrated-quality-defect",
+      "actionTrigger": "cross",
+      "triggerEvidence": [],
+      "unitySelection": [
+        {
+          "action": "cross",
+          "condition": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\"",
+          "clips": [
+            "pass_inside_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 64,
+            "needle": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "pass_inside_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "outputs/platform/assets/contact-pilot/pass_inside_meshy.anim",
+          "duration": 2
+        }
+      ],
+      "selectedClipFields": [
+        "passClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Uses high-pass/cross right-foot window .8 s.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Corner preparation/delivery reuses ground-pass movement; dedicated corner clip not required if validated visually, but not yet validated here.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "free-kick",
+      "label": "Freistoß",
+      "classification": "present+integrated",
+      "actionTrigger": "freeKick",
+      "triggerEvidence": [
+        {
+          "file": "dist/pitch-motion-v102.js",
+          "line": 16,
+          "needle": "'freeKick'"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "freeKick",
+          "condition": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\"",
+          "clips": [
+            "shot_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 67,
+            "needle": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "shot_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.6333333253860474
+        }
+      ],
+      "selectedClipFields": [
+        "shotClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Reuse shot .46 s and kickReady preparation.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "No specialised free-kick clip; shot reuse needs ball placement/foot/plant review.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "penalty",
+      "label": "Elfmeter",
+      "classification": "unproven",
+      "actionTrigger": "shot",
+      "triggerEvidence": [
+        {
+          "file": "dist/world-pitch-actions-v99.js",
+          "line": 30,
+          "needle": "'penalty'"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "shot",
+          "condition": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\"",
+          "clips": [
+            "shot_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 67,
+            "needle": "p.action==\"shot\"||p.action==\"freeKick\"||p.action==\"volley\"||p.action==\"goalKick\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "shot_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.6333333253860474
+        }
+      ],
+      "selectedClipFields": [
+        "shotClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "Generic shot contact .46 s if native penalty projects shot.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Generic branch is present; full penalty-specific run-up/contact/keeper/result sequence not proven by this source audit.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "kickoff",
+      "label": "Anstoß/Wiederanstoß",
+      "classification": "unproven",
+      "actionTrigger": "pass",
+      "triggerEvidence": [
+        {
+          "file": "dist/world-pitch-actions-v99.js",
+          "line": 66,
+          "needle": "current.kickoff"
+        }
+      ],
+      "unitySelection": [
+        {
+          "action": "pass",
+          "condition": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\"",
+          "clips": [
+            "pass_inside_meshy"
+          ],
+          "anchor": {
+            "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+            "line": 64,
+            "needle": "p.action==\"pass\"||p.action==\"highPass\"||p.action==\"cross\""
+          }
+        }
+      ],
+      "modeEvidence": null,
+      "candidateClips": [
+        {
+          "name": "pass_inside_meshy",
+          "present": true,
+          "catalogued": true,
+          "asset": "outputs/platform/assets/contact-pilot/pass_inside_meshy.anim",
+          "duration": 2
+        }
+      ],
+      "selectedClipFields": [
+        "passClip"
+      ],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "None required.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Reuse pass is possible; dedicated native kickoff action path and complete sequence must be demonstrated in fixture.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    },
+    {
+      "id": "celebration",
+      "label": "Torjubel",
+      "classification": "present+integrated",
+      "actionTrigger": "received position/facing/time",
+      "triggerEvidence": [
+        {
+          "file": "dist/world-unity-v151.js",
+          "line": 11,
+          "needle": "celebrating:true"
+        }
+      ],
+      "unitySelection": [],
+      "modeEvidence": {
+        "file": "prototypes/match-engine-unity/FootballPresentation.cs",
+        "line": 60,
+        "needle": "if(f.celebrating&&locomotionAction"
+      },
+      "candidateClips": [
+        {
+          "name": "celebrate_arms",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.8333333730697632
+        },
+        {
+          "name": "celebrate_fist",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 1.5
+        },
+        {
+          "name": "celebrate_victory",
+          "present": true,
+          "catalogued": true,
+          "asset": "dist/players/football-v130.glb",
+          "duration": 9.333333015441895
+        }
+      ],
+      "selectedClipFields": [],
+      "rig": "Existing 28-joint Generic rig; actor root motion disabled.",
+      "contact": "None required.",
+      "transition": "Native time; shared mixer fade 0.12 s, cut on replay/time jump, pause freezes sampling.",
+      "limitation": "Only booked scoring team while nearly stationary; scorer gets victory; replay/pause and return to restart require review.",
+      "visualReviewRequired": "Both directions, pause, replay seek, entry/exit and close/TV view.",
+      "evidenceLevel": "asset bytes + source wiring only; no new rendered evidence"
+    }
+  ],
+  "counts": {
+    "present+integrated": 22,
+    "integrated-quality-defect": 8,
+    "missing": 9,
+    "present-unwired": 3,
+    "unproven": 6
+  },
+  "limitations": [
+    "present+integrated means bytes exist, setup assigns a clip, source selects it; it does not prove the active Editor scene, WebGL build, or visible quality.",
+    "Missing clip families refer to the audited 34 original + 2 pilot clips. Procedural alternatives remain possible without paid jobs.",
+    "integrated-quality-defect identifies demonstrable generic/partial source substitutions; visual severity is unmeasured.",
+    "No new rig/contact-phase measurement, rendered screenshot/video, device performance measurement or licence decision.",
+    "Source parser depends on explicit clip names and branch syntax. Unknown/unassigned catalog fields remain unproven; adapt when selector structure changes.",
+    "Native tackle result/legality remains authoritative; origin/outcome details are not inferred as new gameplay states."
+  ],
+  "recommendedFixes": [
+    {
+      "priority": "P1",
+      "owner": "Integrator + Claude",
+      "task": "Preserve native slide/slideRecovery phase, prioritise foul then slide over ordinary action; add low-body slide and supplied-progress recovery in Unity. Validate gain/deflection/miss/front/side/back/foul without gameplay change."
+    },
+    {
+      "priority": "P1",
+      "owner": "Claude",
+      "task": "Reuse existing foul_stumble_meshy for foulOffender, measure appropriate source window and integrate floor/rise continuity; do not buy/generate first."
+    },
+    {
+      "priority": "P1",
+      "owner": "Claude",
+      "task": "Reuse keeper_shuffle_meshy from measured lateral displacement and facing; test both sides, readiness, urgent dive and rise."
+    },
+    {
+      "priority": "P2",
+      "owner": "Claude",
+      "task": "Fill standing tackle and aerial/throw body pose gaps using isolated procedural/local candidates. Existing generic ground pass/shot do not demonstrate crossing or volley quality."
+    },
+    {
+      "priority": "P2",
+      "owner": "Integrator + Claude",
+      "task": "Demonstrate throw-in preparation/holding/release, distinct catch/parry/rebound and keeper distribution signals before introducing broader fields."
+    },
+    {
+      "priority": "P1 final gate",
+      "owner": "Integrator + independent reviewer",
+      "task": "Render reproducible actual Unity sequences in TV and close view, both directions, pause/replay, normal/large pitch, 12/14 players. Source audit alone cannot accept 3D quality."
+    }
+  ],
+  "tests": {
+    "passed": 9,
+    "checks": [
+      "Actual original GLB hash matches frozen manifest",
+      "34 actual original clips, 28 actual rig joints",
+      "Binary clip list agrees with existing baseline",
+      "Pilot asset hashes and prefab binding root",
+      "Clip assignment maps all current original/pilot catalogued fields",
+      "Parser separates world actions from demo actions",
+      "All requested families represented and exact classifications",
+      "Clip presence alone never proves Unity wiring",
+      "Picture contract actually projects pass/contact and prioritises foul"
+    ],
+    "method": "Node asset decoding, source mapping and actual picture-contract execution; no Unity runtime tests"
+  }
+}

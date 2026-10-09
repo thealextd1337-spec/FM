@@ -1,0 +1,318 @@
+{
+  "release": 115,
+  "started": "2026-10-09T12:26:04.216Z",
+  "checks": [
+    {
+      "command": "node work/test-progress-v58.cjs",
+      "pass": true,
+      "seconds": 0.1
+    },
+    {
+      "command": "node work/test-live-player-v59.cjs",
+      "pass": true,
+      "seconds": 0.26
+    },
+    {
+      "command": "node work/test-progress-menu.cjs",
+      "pass": true,
+      "seconds": 0.07
+    },
+    {
+      "command": "node work/test-transfer-confirmations.cjs",
+      "pass": true,
+      "seconds": 0.08
+    },
+    {
+      "command": "node work/test-transfer-deadline-dialog.cjs",
+      "pass": true,
+      "seconds": 0.05
+    },
+    {
+      "command": "node work/test-tactics-replacement.cjs",
+      "pass": true,
+      "seconds": 0.07
+    },
+    {
+      "command": "node work/test-quick-lineup-cells.cjs",
+      "pass": true,
+      "seconds": 0.09
+    },
+    {
+      "command": "node work/test-v24.cjs",
+      "pass": true,
+      "seconds": 0.05
+    },
+    {
+      "command": "node work/test-mobile-drag-scroll.cjs",
+      "pass": true,
+      "seconds": 0.22
+    },
+    {
+      "command": "node work/test-v31.cjs",
+      "pass": true,
+      "seconds": 2.28
+    },
+    {
+      "command": "node work/test-v41.cjs",
+      "pass": true,
+      "seconds": 0.2
+    },
+    {
+      "command": "node work/test-v42.cjs",
+      "pass": true,
+      "seconds": 0.29
+    },
+    {
+      "command": "node work/test-v44.cjs",
+      "pass": true,
+      "seconds": 0.25
+    },
+    {
+      "command": "node work/test-v45.cjs",
+      "pass": true,
+      "seconds": 0.23
+    },
+    {
+      "command": "node work/test-v47.cjs",
+      "pass": true,
+      "seconds": 0.26
+    },
+    {
+      "command": "node work/test-statistics-menu.cjs",
+      "pass": true,
+      "seconds": 0.24
+    },
+    {
+      "command": "node work/test-player-seasons.cjs",
+      "pass": true,
+      "seconds": 0.21
+    },
+    {
+      "command": "node work/test-v49.cjs",
+      "pass": true,
+      "seconds": 0.21
+    },
+    {
+      "command": "node work/test-v50.cjs",
+      "pass": true,
+      "seconds": 0.63
+    },
+    {
+      "command": "node work/test-v50-balance.cjs",
+      "pass": true,
+      "seconds": 34.29
+    },
+    {
+      "command": "node work/test-v51.cjs",
+      "pass": true,
+      "seconds": 0.79
+    },
+    {
+      "command": "node work/test-v52.cjs",
+      "pass": true,
+      "seconds": 0.28
+    },
+    {
+      "command": "node work/test-v53.cjs",
+      "pass": true,
+      "seconds": 0.29
+    },
+    {
+      "command": "node work/test-v54.cjs",
+      "pass": true,
+      "seconds": 12.43
+    },
+    {
+      "command": "node work/test-v55.cjs",
+      "pass": true,
+      "seconds": 0.82
+    },
+    {
+      "command": "node work/test-ai-season-stats.cjs",
+      "pass": true,
+      "seconds": 0.23
+    },
+    {
+      "command": "node work/test-ai-career-v60.cjs",
+      "pass": true,
+      "seconds": 1.14
+    },
+    {
+      "command": "node work/test-breakaway.cjs",
+      "pass": true,
+      "seconds": 0.25
+    },
+    {
+      "command": "node work/test-v56.cjs",
+      "pass": true,
+      "seconds": 8.63
+    },
+    {
+      "command": "node work/test-duel-streaks.cjs",
+      "pass": true,
+      "seconds": 0.82
+    },
+    {
+      "command": "node work/test-v57.cjs",
+      "pass": true,
+      "seconds": 0.84
+    },
+    {
+      "command": "node work/test-world-foundation-v61.cjs",
+      "pass": true,
+      "seconds": 0.21
+    },
+    {
+      "command": "node work/test-world-local-start.cjs",
+      "pass": true,
+      "seconds": 1.45
+    },
+    {
+      "command": "node work/test-world-competition-v62.cjs",
+      "pass": true,
+      "seconds": 18.07
+    },
+    {
+      "command": "node work/test-world-coaches-v63.cjs",
+      "pass": true,
+      "seconds": 2.15
+    },
+    {
+      "command": "node work/test-world-match-v64.cjs",
+      "pass": true,
+      "seconds": 0.59
+    },
+    {
+      "command": "node work/test-world-penalties-v65.cjs",
+      "pass": true,
+      "seconds": 0.07
+    },
+    {
+      "command": "node work/test-world-victory-popup.cjs",
+      "pass": true,
+      "seconds": 0.09
+    },
+    {
+      "command": "node work/test-world-nationalities-v79.cjs",
+      "pass": true,
+      "seconds": 4.33
+    },
+    {
+      "command": "node work/test-world-market-nationalities-v79.cjs",
+      "pass": true,
+      "seconds": 0.21
+    },
+    {
+      "command": "node work/test-world-kits-v81.cjs",
+      "pass": true,
+      "seconds": 3.4
+    },
+    {
+      "command": "node work/test-world-direct-transfer.cjs",
+      "pass": true,
+      "seconds": 0.28
+    },
+    {
+      "command": "node work/test-world-navigation.cjs",
+      "pass": true,
+      "seconds": 0.06
+    },
+    {
+      "command": "node work/test-world-swap-banner.cjs",
+      "pass": true,
+      "seconds": 0.08
+    },
+    {
+      "command": "node work/test-world-goal-scene-v83.cjs",
+      "pass": true,
+      "seconds": 0.07
+    },
+    {
+      "command": "node work/test-world-goal-banner-v84.cjs",
+      "pass": true,
+      "seconds": 0.06
+    },
+    {
+      "command": "node work/test-i18n-v75.cjs",
+      "pass": true,
+      "seconds": 0.1
+    },
+    {
+      "command": "node work/test-world-live-ranks.cjs",
+      "pass": true,
+      "seconds": 0.05
+    },
+    {
+      "command": "node work/test-world-grid-v71.cjs",
+      "pass": true,
+      "seconds": 0.2
+    },
+    {
+      "command": "node work/test-world-player-instructions.cjs",
+      "pass": true,
+      "seconds": 0.2
+    },
+    {
+      "command": "node work/test-world-physical-instructions.cjs",
+      "pass": true,
+      "seconds": 0.23
+    },
+    {
+      "command": "node work/test-world-career-plan.cjs",
+      "pass": true,
+      "seconds": 0.2
+    },
+    {
+      "command": "node work/test-world-economy-v66.cjs",
+      "pass": true,
+      "seconds": 12.99
+    },
+    {
+      "command": "node work/test-world-sponsors-v97.cjs",
+      "pass": true,
+      "seconds": 0.36
+    },
+    {
+      "command": "node work/test-world-career-events.cjs",
+      "pass": true,
+      "seconds": 3.22
+    },
+    {
+      "command": "node work/test-world-playable-rosters.cjs",
+      "pass": true,
+      "seconds": 0.56
+    },
+    {
+      "command": "node work/test-world-transfer-list-v72.cjs",
+      "pass": true,
+      "seconds": 0.86
+    },
+    {
+      "command": "node work/test-world-human-sale-v73.cjs",
+      "pass": true,
+      "seconds": 0.7
+    },
+    {
+      "command": "node work/test-world-youth-manager-v67.cjs",
+      "pass": true,
+      "seconds": 6.5
+    },
+    {
+      "command": "node work/test-finance-close-v130.cjs",
+      "pass": true,
+      "seconds": 2.31
+    },
+    {
+      "command": "node work/test-world-payments-v124.cjs",
+      "pass": true,
+      "seconds": 5.01
+    },
+    {
+      "command": "node work/test-3d-documentation-v134.cjs",
+      "pass": false,
+      "seconds": 0.12,
+      "output": "node:assert:152\r\n  throw new AssertionError(obj);\r\n  ^\r\n\r\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\r\n\r\n114 !== 115\r\n\r\n    at Object.<anonymous> (F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\3d-quality-stadiums\\work\\test-3d-documentation-v134.cjs:6:8)\r\n    at Module._compile (node:internal/modules/cjs/loader:1872:14)\r\n    at Object..js (node:internal/modules/cjs/loader:2003:10)\r\n    at Module.load (node:internal/modules/cjs/loader:1594:32)\r\n    at Module._load (node:internal/modules/cjs/loader:1396:12)\r\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\r\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\r\n    at node:internal/main/run_main_module:33:47 {\r\n  generatedMessage: true,\r\n  code: 'ERR_ASSERTION',\r\n  actual: 114,\r\n  expected: 115,\r\n  operator: 'strictEqual',\r\n  diff: 'simple'\r\n}\r\n\r\nNode.js v24.19.0\r\n"
+    }
+  ],
+  "pass": false
+}

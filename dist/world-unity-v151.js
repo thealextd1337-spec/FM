@@ -9,7 +9,13 @@
  function picture(frame,session,sequence,camera,phase,score){
   // A booked native goal scene; older pictures simply omit these fields.
   const celebration=frame.celebration&&Number.isFinite(frame.celebration.time)?{celebrating:true,celebrationTeam:frame.celebration.team,celebrationTime:Math.max(0,frame.celebration.time),celebrationScorer:frame.celebration.scorer||''}:{};
-  return {schema,session,sequence,clock:frame.clock,elapsed:frame.elapsed,phase,score:[...score],turned:Boolean(frame.turned),replay:Boolean(frame.review||frame.replay),owner:frame.owner||'',ball:point(frame.ball),ballOpacity:frame.ball.opacity??1,camera:{position:point(camera.position),target:point(camera.target),fov:camera.fov},players:frame.players.map(p=>({id:p.id,position:[p.x,0,p.z],facing:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0],moving:!['idle','restart'].includes(p.movement?.mode),action:p.action?.kind||'idle',actionId:String(p.action?.id??p.action?.kind??'idle'),contactPoint:p.action?.contactWorld?point(p.action.contactWorld):null,recovery:p.action?.recovery||0,progress:p.action?.progress??0,duration:p.action?.duration||1,number:p.number,...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})})),netActive:Boolean(frame.net),net:frame.net?{...frame.net}:null,...celebration};
+  return {schema,session,sequence,clock:frame.clock,elapsed:frame.elapsed,phase,score:[...score],turned:Boolean(frame.turned),replay:Boolean(frame.review||frame.replay),owner:frame.owner||'',ball:point(frame.ball),ballOpacity:frame.ball.opacity??1,camera:{position:point(camera.position),target:point(camera.target),fov:camera.fov},players:frame.players.map(p=>{
+   // Foul reactions own the contact picture; otherwise an observed native
+   // slide overrides the ordinary running/action pose. Both are read-only.
+   const a=['foulVictim','foulOffender'].includes(p.action?.kind)?p.action:p.unityAction||p.action;
+   const direction=a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0];
+   return {id:p.id,position:[p.x,0,p.z],facing:direction,moving:!['idle','restart'].includes(p.movement?.mode),action:a?.kind||'idle',actionId:String(a?.id??a?.kind??'idle'),contactPoint:a?.contactWorld?point(a.contactWorld):null,recovery:a?.recovery||0,progress:a?.progress??0,duration:a?.duration||1,number:p.number,...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})};
+  }),netActive:Boolean(frame.net),net:frame.net?{...frame.net}:null,...celebration};
  }
  const legacy={length:68,width:44};
  // Optional native match geometry (version 1) is used 1:1; without it the
@@ -27,7 +33,7 @@
  function scaled(frame,g){
   if(!g||g.length===legacy.length&&g.width===legacy.width)return frame;
   const sx=g.length/legacy.length,sz=g.width/legacy.width,at=p=>p&&{...p,x:p.x*sx,z:p.z*sz},post=g.goalWidth/2-.1764;
-  return {...frame,ball:at(frame.ball),net:frame.net?{...frame.net,z:Math.max(-post,Math.min(post,frame.net.z*sz))}:frame.net,players:frame.players.map(p=>({...p,x:p.x*sx,z:p.z*sz,movement:p.movement?{...p.movement,facing:at(p.movement.facing)}:p.movement,action:p.action?.contactWorld?{...p.action,contactWorld:at(p.action.contactWorld)}:p.action}))};
+  return {...frame,ball:at(frame.ball),net:frame.net?{...frame.net,z:Math.max(-post,Math.min(post,frame.net.z*sz))}:frame.net,players:frame.players.map(p=>({...p,x:p.x*sx,z:p.z*sz,movement:p.movement?{...p.movement,facing:at(p.movement.facing)}:p.movement,action:p.action?.contactWorld?{...p.action,contactWorld:at(p.action.contactWorld)}:p.action,unityAction:p.unityAction?{...p.unityAction,contactWorld:at(p.unityAction.contactWorld),facing:{x:p.unityAction.facing.x*sx,z:p.unityAction.facing.z*sz}}:p.unityAction}))};
  }
  // The browser camera rules are authored for 68 x 44. On a larger pitch the
  // aim follows the same relative ball position; overview cameras also step back

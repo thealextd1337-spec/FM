@@ -1,0 +1,74 @@
+{
+  "date": "2026-10-09",
+  "config": {
+    "fieldSize": "large",
+    "fieldPlayers": 6
+  },
+  "probe": {
+    "slides": 32,
+    "recoveries": 40,
+    "fouls": 164,
+    "maxProgress": 0.5384615384615385,
+    "errors": []
+  },
+  "baseline": {
+    "score": [
+      0,
+      2
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4918,
+    "checkpoints": 1,
+    "hashes": {
+      "score": "4fc49223:5",
+      "events": "974728da:531",
+      "stats": "e9777579:9853",
+      "fresh": "f33a999a:976",
+      "minutes": "ec3c3be2:736",
+      "report": "7ce9f295:34129",
+      "ratings": "3e79ffbc:727",
+      "ballAccounting": "097a9994:20494",
+      "geometry": "44a0621d:188",
+      "people": "e6dd7f59:9248",
+      "finances": "ae3ff9a5:20370",
+      "development": "cb6073b5:1004295",
+      "fixtures": "1016ce67:202948",
+      "world": "85008663:3902479"
+    },
+    "all": "44417dc8"
+  },
+  "projected": {
+    "score": [
+      0,
+      2
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4918,
+    "checkpoints": 1,
+    "hashes": {
+      "score": "4fc49223:5",
+      "events": "974728da:531",
+      "stats": "e9777579:9853",
+      "fresh": "f33a999a:976",
+      "minutes": "ec3c3be2:736",
+      "report": "7ce9f295:34129",
+      "ratings": "3e79ffbc:727",
+      "ballAccounting": "097a9994:20494",
+      "geometry": "44a0621d:188",
+      "people": "e6dd7f59:9248",
+      "finances": "ae3ff9a5:20370",
+      "development": "cb6073b5:1004295",
+      "fixtures": "1016ce67:202948",
+      "world": "85008663:3902479"
+    },
+    "all": "44417dc8"
+  },
+  "equal": true,
+  "scope": "Native source match via T3 preview; no rendered Unity claim"
+}

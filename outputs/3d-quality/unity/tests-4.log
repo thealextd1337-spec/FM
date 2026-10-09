@@ -1,0 +1,2420 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 56220)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 32732)
+VBCSCompiler prewarm took 11.97 ms
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Channel LicenseClient-alex doesn't exist
+Built from '6000.6/staging' branch; Version is '6000.6.4f1 (12bfff696524) revision 1228799'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) Professional' Language: 'de' Physical Memory: 31895 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-09T11:39:05Z
+[Licensing::Module] Successfully launched the LicensingClient (PId: 32656)
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.6.4f1\Editor\Unity.exe
+-batchmode
+-quit
+-projectPath
+G:\unity\My project
+-nographics
+-executeMethod
+D6Cli.Tests
+-d6repo
+F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/3d-quality-stadiums
+-logFile
+F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/3d-quality-stadiums/outputs/3d-quality/unity/tests-4.log
+-hubSessionId
+d762ee11-d841-4920-9f89-3b0daa2f0b10
+-accessToken
+0MM4EiHPd1_7ilXZwca9RYFZbI8FLq-pzEqjwtpQb5c008f
+Successfully changed project path to: G:\unity\My project
+G:/unity/My project
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-remapper-allocator-initial-capacity=32768"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=1"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.
+Player connection [37896]  Target information:
+
+Player connection [37896]  * "[IP] 192.168.0.181 [Port] 55504 [Flags] 2 [Guid] 3564987697 [EditorId] 3564987697 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-CDBQG7S) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [37896]  * "[IP] 172.31.224.1 [Port] 55504 [Flags] 2 [Guid] 3564987697 [EditorId] 3564987697 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-CDBQG7S) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [37896] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [37896] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Starting IPC server.
+Waiting for clients to connect on \\.\pipe\Unity-LicenseClient-alex, press Ctrl-C to exit.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-alex" at "2026-10-09T11:39:05.6437872Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 32656, path: "C:/Program Files/Unity/Hub/Editor/6000.6.4f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.3+d7ffd15
+  Session Id:              2b4249b6187441f09cd5bbbe34a9b343
+  Correlation Id:          e25a83a27fcc1bff2e8cc2a12f4071f4
+  External correlation Id: 6433995467175970458
+  Machine Id:              UDTdSE44fu2Ouz1mnnHXCoG9PPk=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-alex" (connect: 0.24s, validation: 0.03s, handshake: 0.03s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-alex-notifications" at "2026-10-09T11:39:05.703206Z"
+[Licensing::Module] Connected to LicensingClient (PId: 32656, launch time: 0.00, total connection time: 0.30s)
+[Package Manager] Connected to IPC stream "Upm-55960" after 0.2 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Successfully updated the access token
+[Licensing::Module] Successfully updated the access token 0MM4EiHPd1...
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 9072459469755-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.01
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 0.34s
+[Licensing::Module] Licensing is initialized (took 0.03s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Initialising UDS system complete:
+  - System type: Client
+  - Resource namespace: cf991fedacb313eb635162357223aca3
+  - Shared memory size: 1073741824
+  - Command buffer id: 1052576
+  - Command buffer size: 8192
+  - Hashmap size: 4194304
+  - Service connected: false
+Launching Unity Data Store - C:/Program Files/Unity/Hub/Editor/6000.6.4f1/Editor/Data/Tools/Unity.DataStore.exe 
+Unity Data Store artifact dir = Library/DataStore, working dir = G:/unity/My projectUnity Data Store running and initialised
+[Physics::Module] Selected backend (deferred post-plugins).
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Initialize engine version: 6000.6.4f1 (12bfff696524)
+[EntityIdStore] init: VM path (explicit commit), pageSize=4096, blockCount=1048576, entitiesPerBlock=256, slots reserved=4294967296 bytes
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.6.4f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path G:/unity/My project/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.6.4f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.6.4f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.6.4f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.6.4f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56960
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.4f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.6.4f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002204 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.500 seconds
+Domain Reload Profiling: 940ms
+	BeginReloadAssembly (122ms)
+		CreateAndSetChildDomain (13ms)
+	RebuildCommonClasses (4ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (57ms)
+	LoadAllAssembliesAndSetupDomain (243ms)
+		LoadAssemblies (105ms)
+		TypeCache.Refresh (164ms)
+			TypeCache.ScanAssembly (154ms)
+		AnalyzeDomain (0ms)
+	FinalizeReload (501ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (75ms)
+			ProcessInitializeOnLoadAttributes (83ms)
+			ProcessInitializeOnLoadMethodAttributes (176ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 61 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ai.navigation@2.0.14 (location: G:\unity\My project\Library\PackageCache\com.unity.ai.navigation@134dd6a3b97b)
+    com.unity.collab-proxy@2.13.6 (location: G:\unity\My project\Library\PackageCache\com.unity.collab-proxy@4628d2ba6ea4)
+    com.unity.ide.rider@3.0.38 (location: G:\unity\My project\Library\PackageCache\com.unity.ide.rider@1f60b3138684)
+    com.unity.ide.visualstudio@2.0.26 (location: G:\unity\My project\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.20.0 (location: G:\unity\My project\Library\PackageCache\com.unity.inputsystem@7a4e1a2a8194)
+    com.unity.visualscripting@1.9.12 (location: G:\unity\My project\Library\PackageCache\com.unity.visualscripting@4edfcc09512f)
+    com.unity.pipeline@0.8.0-exp.1 (location: G:\unity\My project\Library\PackageCache\com.unity.pipeline@62c08c808737)
+    com.unity.nuget.mono-cecil@1.11.6 (location: G:\unity\My project\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.nuget.newtonsoft-json@3.2.2 (location: G:\unity\My project\Library\PackageCache\com.unity.nuget.newtonsoft-json@4dfd81071c64)
+    com.unity.searcher@4.9.5 (location: G:\unity\My project\Library\PackageCache\com.unity.searcher@a463122f2c00)
+    com.unity.profiling.core@1.0.3 (location: G:\unity\My project\Library\PackageCache\com.unity.profiling.core@8a49f7027d06)
+  Built-in packages:
+    com.unity.render-pipelines.universal@17.6.0 (location: G:\unity\My project\Library\PackageCache\com.unity.render-pipelines.universal@b0678dfc9e21)
+    com.unity.test-framework@1.8.0 (location: G:\unity\My project\Library\PackageCache\com.unity.test-framework@80f691d4262b)
+    com.unity.timeline@6.6.0 (location: G:\unity\My project\Library\PackageCache\com.unity.timeline@c56d56b0070b)
+    com.unity.ugui@2.6.0 (location: G:\unity\My project\Library\PackageCache\com.unity.ugui@0727b404f3a0)
+    com.unity.modules.accessibility@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tetgen@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.tetgen)
+    com.unity.modules.tilemap@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.timelinefoundation@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.timelinefoundation)
+    com.unity.modules.ui@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.1.0 (location: G:\unity\My project\Library\PackageCache\com.unity.ext.nunit@0198eae3b53e)
+    com.unity.render-pipelines.core@17.6.0 (location: G:\unity\My project\Library\PackageCache\com.unity.render-pipelines.core@285af6b8c83f)
+    com.unity.shadergraph@17.6.0 (location: G:\unity\My project\Library\PackageCache\com.unity.shadergraph@58bcb150677d)
+    com.unity.render-pipelines.universal-config@17.6.0 (location: G:\unity\My project\Library\PackageCache\com.unity.render-pipelines.universal-config@561422b74439)
+    com.unity.graph-authoring@1.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.graph-authoring@cfd2588851ee)
+    com.unity.burst@2.0.0 (location: G:\unity\My project\Library\PackageCache\com.unity.burst@626e66ab421b)
+    com.unity.collections@6.6.0 (location: G:\unity\My project\Library\PackageCache\com.unity.collections@10fff0607388)
+    com.unity.test-framework.performance@6.6.0 (location: G:\unity\My project\Library\PackageCache\com.unity.test-framework.performance@b6023decb532)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.02 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.6.4f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: G:/unity/My project
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.runtime.interopservices.windowsruntime has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.4f1\Editor\Data\NetStandard\Extensions\2.0.0\System.Runtime.InteropServices.WindowsRuntime.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.4f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\Facades\System.Runtime.InteropServices.WindowsRuntime.dll"
+warn: Unity.ILPP.Runner.PostProcessingAssemblyLoadContext[0]
+      Assembly system.componentmodel.composition has duplicate hint path. Ignoring "C:\Program Files\Unity\Hub\Editor\6000.6.4f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.ComponentModel.Composition.dll" in favor of "C:\Program Files\Unity\Hub\Editor\6000.6.4f1\Editor\Data\UnityReferenceAssemblies\unity-4.8-api\System.ComponentModel.Composition.dll"
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 1s626ms
+[ 799/1027  0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[1019/1027  0s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll (+2 others)
+Assets\Doppel6EngineProbe\Runtime\ProbeBridge.cs(25,21): warning CS0618: 'RenderPipelineManager.endFrameRendering' is obsolete: 'endFrameRendering is deprecated. Use endContextRendering instead. #from 2023.3'
+
+Assets\Doppel6EngineProbe\Runtime\ProbeBridge.cs(26,22): warning CS0618: 'RenderPipelineManager.endFrameRendering' is obsolete: 'endFrameRendering is deprecated. Use endContextRendering instead. #from 2023.3'
+[1020/1027  0s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets\Doppel6EngineProbe\Editor\UnityEvidenceDiagnostics.cs(17,20): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+[1021/1027  0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll, with 149 defines and 361 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor
+[1022/1027  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
+[1023/1027  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
+[1024/1027  0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 147 defines and 384 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+1 processor(s) skipped this assembly
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running Unity.Pipeline.CodeGen.CodeReloadInPlaceILPostProcessor
+[1025/1027  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[1026/1027  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (1.60 seconds), 9 items updated, 1027 evaluated
+Assets\Doppel6EngineProbe\Runtime\ProbeBridge.cs(25,21): warning CS0618: 'RenderPipelineManager.endFrameRendering' is obsolete: 'endFrameRendering is deprecated. Use endContextRendering instead. #from 2023.3'
+Assets\Doppel6EngineProbe\Runtime\ProbeBridge.cs(26,22): warning CS0618: 'RenderPipelineManager.endFrameRendering' is obsolete: 'endFrameRendering is deprecated. Use endContextRendering instead. #from 2023.3'
+Assets\Doppel6EngineProbe\Editor\UnityEvidenceDiagnostics.cs(17,20): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Total cache size 180324781
+Total cache size after purge 180324781, took 00:00:00.1848723
+AssetDatabase: script compilation time: 2.445722s
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+'Packages/com.unity.render-pipelines.core/Editor/Deprecated.cs' contains partial class of Unity.Object, exactly 1 of the partial classes needs to be in a file with the same filename. This is to know the one that can be referenced from ie. GameObjects
+Refreshing native plugins compatible for Editor in 2.21 ms, found 4 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Start HTTP server: port:7800
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Scripting: successfully reloaded assembly
+- Finished resetting the current domain, in  0.785 seconds
+Domain Reload Profiling: 1703ms
+	BeginReloadAssembly (204ms)
+		DisableScriptedObjects (22ms)
+		CreateAndSetChildDomain (40ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (13ms)
+	initialDomainReloadingComplete (77ms)
+	LoadAllAssembliesAndSetupDomain (617ms)
+		LoadAssemblies (346ms)
+		TypeCache.Refresh (180ms)
+			TypeCache.ScanAssembly (170ms)
+		AnalyzeDomain (55ms)
+			BuildScriptInfoCaches (48ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (786ms)
+		SetupLoadedEditorAssemblies (0ms)
+			BeforeProcessingInitializeOnLoad (79ms)
+			ProcessInitializeOnLoadAttributes (339ms)
+			ProcessInitializeOnLoadMethodAttributes (75ms)
+			AfterProcessingInitializeOnLoad (7ms)
+		AwakeInstancesAfterBackupRestoration (18ms)
+Starting new worker id: 0 with log in G:/unity/My project/Logs/AssetImportWorkerHW0.log
+Refreshing native plugins compatible for Editor in 2.20 ms, found 4 plugins.
+
+Asset Pipeline Refresh (id=e92be6611fc786947a6f7813c018efbe): Total: 4.834 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=1188 ms
+		Asset DB Callback time: managed=129 ms, native=25 ms
+		Scripting: domain reloads=1, domain reload time=981 ms, compile time=2447 ms, other=61 ms
+		Project Asset Count: scripts=1425, non-scripts=2361
+		Asset File Changes: new=0, changed=3, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 22.006ms
+	ApplyChangesToAssetFolders: 0.629ms
+	Scan: 81.883ms
+	Collect global state as custom dependencies: 14.483ms
+	OnSourceAssetsModified: 0.448ms
+	CategorizeScriptCompilationAssets: 40.542ms
+	ProcessAssetsWithTransientArtifactChanges: 60.278ms
+	CategorizeAssets: 37.444ms
+	CompileScripts: 2447.403ms
+	ImportOutOfDateAssets: 802.865ms (793.755ms without children)
+		UnloadImportedAssets: 1.546ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.355ms
+		ImportSchedulerStart: 7.184ms
+	PostProcessAllAssets: 131.672ms
+		XRBuildSystem.XRAssetImported 1.337ms
+		VCAutoAddAssetPostprocess 0.652ms
+		MonoPostProcessAllAssets: 129.169ms
+			AssetPostprocessor.OnPostprocessAllAssets 79.295ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 12.531ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 11.331ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 4.490ms
+			SyncVS.PostprocessSyncProject 2.555ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 1.305ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 1.265ms
+			AssetChangedListener.OnPostprocessAllAssets 1.229ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 1.200ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 0.924ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.690ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 0.646ms
+			MaterialPostprocessor.OnPostprocessAllAssets 0.524ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.404ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.379ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.270ms
+			UVCSAssetPostprocessor.OnPostprocessAllAssets 0.260ms
+			PostProcessor.OnPostprocessAllAssets 0.256ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.256ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.231ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.224ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.210ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.194ms
+			AssetEvents.OnPostprocessAllAssets 0.162ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.150ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.136ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.120ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.118ms
+			SamplePostprocessor.OnPostprocessAllAssets 0.114ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.110ms
+			ThemePostprocessor.OnPostprocessAllAssets 0.098ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.094ms
+			AssetReloadNotifier.OnPostprocessAllAssets 0.086ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.062ms
+	PostAssetChangesProfiler: 3.035ms
+	UnloadStreamsBegin: 1.244ms
+	PersistCurrentRevisions: 0.093ms
+	GenerateScriptTypeHashes: 0.817ms
+	GenerateScriptTypeSerializationHashes: 1.575ms
+	Untracked: 1173.613ms
+
+Application.AssetDatabase Initial Refresh End
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Scanning for USB devices : 3.994ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-My project
+Unloading 30 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6835 unused Assets / (3.4 MB). Loaded Objects now: 7829.
+Memory consumption went from 433.9 MB to 430.5 MB.
+Total: 6.470200 ms (FindLiveObjects: 0.363200 ms CreateObjectMapping: 0.139500 ms MarkObjects: 4.951700 ms  DeleteObjects: 0.858500 ms)
+
+Opening scene 'Assets/Doppel6EngineProbe/Probe.unity'
+Unloading 9 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Doppel6EngineProbe/Probe.unity'
+	Deserialize:            141.462 ms
+	Integration:            6.507 ms
+	Integration of assets:  19.878 ms
+	Thread Wait Time:       0.007 ms
+	Total Operation Time:   167.853 ms
+Unloading 2 unused Assets / (111.3 KB). Loaded Objects now: 7935.
+Memory consumption went from 470.0 MB to 469.9 MB.
+Total: 5.334200 ms (FindLiveObjects: 0.278300 ms CreateObjectMapping: 0.059900 ms MarkObjects: 4.820300 ms  DeleteObjects: 0.012200 ms)
+
+pass_inside_meshy upperLength=0,4892536 lowerLength=0,5734789 targetDistance=0,9212325
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FootballTests:Run (string,string) (at Assets/Doppel6EngineProbe/Editor/FootballTests.cs:25)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:23)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/FootballTests.cs Line: 25)
+
+receive_ground_meshy upperLength=0,4892541 lowerLength=0,5734786 targetDistance=1,030751
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FootballTests:Run (string,string) (at Assets/Doppel6EngineProbe/Editor/FootballTests.cs:25)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:23)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/FootballTests.cs Line: 25)
+
+shot_meshy upperLength=0,4892546 lowerLength=0,5734789 targetDistance=1,031709
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FootballTests:Run (string,string) (at Assets/Doppel6EngineProbe/Editor/FootballTests.cs:25)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:23)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/FootballTests.cs Line: 25)
+
+pass_inside_meshy upperLength=0,4892536 lowerLength=0,5734789 targetDistance=0,9212325
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FootballTests:Run (string,string) (at Assets/Doppel6EngineProbe/Editor/FootballTests.cs:25)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:23)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/FootballTests.cs Line: 25)
+
+receive_ground_meshy upperLength=0,4892541 lowerLength=0,5734786 targetDistance=1,030751
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FootballTests:Run (string,string) (at Assets/Doppel6EngineProbe/Editor/FootballTests.cs:25)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:23)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/FootballTests.cs Line: 25)
+
+shot_meshy upperLength=0,4892546 lowerLength=0,5734789 targetDistance=1,031709
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+FootballTests:Run (string,string) (at Assets/Doppel6EngineProbe/Editor/FootballTests.cs:25)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:23)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/FootballTests.cs Line: 25)
+
+[D6Cli] FootballTests: {
+    "passed": 23,
+    "checks": [
+        "Actual right foot reaches pass_inside_meshy direction 1 error=7,511427E-07 reachable=True hip=(0.13, 1.10, -0.03) foot=(0.25, 0.25, 0.30)",
+        "Opposite foot planted pass_inside_meshy direction 1",
+        "Paused bones freeze pass_inside_meshy1",
+        "Actual right foot reaches receive_ground_meshy direction 1 error=8,178009E-07 reachable=True hip=(0.15, 1.22, -0.04) foot=(0.25, 0.25, 0.30)",
+        "Opposite foot planted receive_ground_meshy direction 1",
+        "Paused bones freeze receive_ground_meshy1",
+        "Actual right foot reaches shot_meshy direction 1 error=7,835517E-07 reachable=True hip=(0.12, 1.21, -0.06) foot=(0.25, 0.25, 0.30)",
+        "Opposite foot planted shot_meshy direction 1",
+        "Paused bones freeze shot_meshy1",
+        "Actual right foot reaches pass_inside_meshy direction -1 error=7,511427E-07 reachable=True hip=(-0.13, 1.10, 0.03) foot=(-0.25, 0.25, -0.30)",
+        "Opposite foot planted pass_inside_meshy direction -1",
+        "Paused bones freeze pass_inside_meshy-1",
+        "Actual right foot reaches receive_ground_meshy direction -1 error=8,178009E-07 reachable=True hip=(-0.15, 1.22, 0.04) foot=(-0.25, 0.25, -0.30)",
+        "Opposite foot planted receive_ground_meshy direction -1",
+        "Paused bones freeze receive_ground_meshy-1",
+        "Actual right foot reaches shot_meshy direction -1 error=7,835517E-07 reachable=True hip=(-0.12, 1.21, 0.06) foot=(-0.25, 0.25, -0.30)",
+        "Opposite foot planted shot_meshy direction -1",
+        "Paused bones freeze shot_meshy-1",
+        "Unreachable contact remains a miss",
+        "Contact solver never moves the game-owned root",
+        "Animation transition is bounded",
+        "Mixer reuses cached nodes without per-frame graph rebuilds",
+        "Backward replay seek preserves authoritative root"
+    ],
+    "measurements": [
+        {
+            "clip": "pass_inside_meshy",
+            "contactError": 7.511426929340814e-7,
+            "plantError": 4.49264462076826e-7,
+            "reachable": true
+        },
+        {
+            "clip": "receive_ground_meshy",
+            "contactError": 8.17800923869072e-7,
+            "plantError": 6.217553050191782e-7,
+            "reachable": true
+        },
+        {
+            "clip": "shot_meshy",
+            "contactError": 7.835517408238957e-7,
+            "plantError": 7.662153507226321e-7,
+            "reachable": true
+        },
+        {
+            "clip": "pass_inside_meshy",
+            "contactError": 7.511426929340814e-7,
+            "plantError": 4.49264462076826e-7,
+            "reachable": true
+        },
+        {
+            "clip": "receive_ground_meshy",
+            "contactError": 8.17800923869072e-7,
+            "plantError": 6.217553050191782e-7,
+            "reachable": true
+        },
+        {
+            "clip": "shot_meshy",
+            "contactError": 7.835517408238957e-7,
+            "plantError": 7.662153507226321e-7,
+            "reachable": true
+        }
+    ]
+}
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:23)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/D6Cli.cs Line: 23)
+
+[D6Cli] FootballLocomotionTests: {
+    "passed": 215,
+    "checks": [
+        "Initial pose does not infer movement",
+        "Slow actual movement uses walking",
+        "Forward run uses football running",
+        "Fast off-ball run uses sprint",
+        "Native pause freezes motion classification and phase",
+        "Ball carrier preserves controlled running at fast pace",
+        "Stopping from a run has a brief braking motion",
+        "Braking completes in native time",
+        "Retreat while facing play uses backward motion",
+        "A substantial direction change uses a right turn",
+        "Turn releases back to the actual run",
+        "Replay seeking resets stale turns and braking",
+        "Checkpoint cut is not shown as a twenty-metre sprint",
+        "Turn pose does not reset the underlying carrier stride",
+        "Height adjustment cannot fabricate a football stride",
+        "Stationary pivot cannot fabricate a stride 30 Hz / -1 / 1",
+        "Stationary pivot cannot fabricate a stride 30 Hz / -1 / 2",
+        "Stationary pivot cannot fabricate a stride 30 Hz / -1 / 3",
+        "Stationary pivot cannot fabricate a stride 30 Hz / -1 / 4",
+        "Stationary pivot cannot fabricate a stride 30 Hz / -1 / 5",
+        "Stationary pivot cannot fabricate a stride 30 Hz / -1 / 6",
+        "Stationary pivot cannot fabricate a stride 30 Hz / -1 / 7",
+        "Stationary pivot cannot fabricate a stride 30 Hz / -1 / 8",
+        "Stationary pivot cannot fabricate a stride 30 Hz / -1 / 9",
+        "Stationary pivot cannot fabricate a stride 30 Hz / -1 / 10",
+        "Incremental stationary pivot selects turn-left at 30 Hz",
+        "Paused stationary pivot freezes at 30 Hz / -1",
+        "Stationary pivot releases after angular motion ends at 30 Hz / -1",
+        "Stationary pivot cannot fabricate a stride 30 Hz / 1 / 1",
+        "Stationary pivot cannot fabricate a stride 30 Hz / 1 / 2",
+        "Stationary pivot cannot fabricate a stride 30 Hz / 1 / 3",
+        "Stationary pivot cannot fabricate a stride 30 Hz / 1 / 4",
+        "Stationary pivot cannot fabricate a stride 30 Hz / 1 / 5",
+        "Stationary pivot cannot fabricate a stride 30 Hz / 1 / 6",
+        "Stationary pivot cannot fabricate a stride 30 Hz / 1 / 7",
+        "Stationary pivot cannot fabricate a stride 30 Hz / 1 / 8",
+        "Stationary pivot cannot fabricate a stride 30 Hz / 1 / 9",
+        "Stationary pivot cannot fabricate a stride 30 Hz / 1 / 10",
+        "Incremental stationary pivot selects turn-right at 30 Hz",
+        "Paused stationary pivot freezes at 30 Hz / 1",
+        "Stationary pivot releases after angular motion ends at 30 Hz / 1",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 1",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 2",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 3",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 4",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 5",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 6",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 7",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 8",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 9",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 10",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 11",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 12",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 13",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 14",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 15",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 16",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 17",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 18",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 19",
+        "Stationary pivot cannot fabricate a stride 60 Hz / -1 / 20",
+        "Incremental stationary pivot selects turn-left at 60 Hz",
+        "Paused stationary pivot freezes at 60 Hz / -1",
+        "Stationary pivot releases after angular motion ends at 60 Hz / -1",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 1",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 2",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 3",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 4",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 5",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 6",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 7",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 8",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 9",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 10",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 11",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 12",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 13",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 14",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 15",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 16",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 17",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 18",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 19",
+        "Stationary pivot cannot fabricate a stride 60 Hz / 1 / 20",
+        "Incremental stationary pivot selects turn-right at 60 Hz",
+        "Paused stationary pivot freezes at 60 Hz / 1",
+        "Stationary pivot releases after angular motion ends at 60 Hz / 1",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 1",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 2",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 3",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 4",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 5",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 6",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 7",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 8",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 9",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 10",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 11",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 12",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 13",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 14",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 15",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 16",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 17",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 18",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 19",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 20",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 21",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 22",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 23",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 24",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 25",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 26",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 27",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 28",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 29",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 30",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 31",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 32",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 33",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 34",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 35",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 36",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 37",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 38",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 39",
+        "Stationary pivot cannot fabricate a stride 120 Hz / -1 / 40",
+        "Incremental stationary pivot selects turn-left at 120 Hz",
+        "Paused stationary pivot freezes at 120 Hz / -1",
+        "Stationary pivot releases after angular motion ends at 120 Hz / -1",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 1",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 2",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 3",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 4",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 5",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 6",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 7",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 8",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 9",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 10",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 11",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 12",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 13",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 14",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 15",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 16",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 17",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 18",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 19",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 20",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 21",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 22",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 23",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 24",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 25",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 26",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 27",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 28",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 29",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 30",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 31",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 32",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 33",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 34",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 35",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 36",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 37",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 38",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 39",
+        "Stationary pivot cannot fabricate a stride 120 Hz / 1 / 40",
+        "Incremental stationary pivot selects turn-right at 120 Hz",
+        "Paused stationary pivot freezes at 120 Hz / 1",
+        "Stationary pivot releases after angular motion ends at 120 Hz / 1",
+        "Alternating angular jitter cannot trigger a turn / 1",
+        "Alternating angular jitter cannot trigger a turn / 2",
+        "Alternating angular jitter cannot trigger a turn / 3",
+        "Alternating angular jitter cannot trigger a turn / 4",
+        "Alternating angular jitter cannot trigger a turn / 5",
+        "Alternating angular jitter cannot trigger a turn / 6",
+        "Alternating angular jitter cannot trigger a turn / 7",
+        "Alternating angular jitter cannot trigger a turn / 8",
+        "Alternating angular jitter cannot trigger a turn / 9",
+        "Alternating angular jitter cannot trigger a turn / 10",
+        "Alternating angular jitter cannot trigger a turn / 11",
+        "Alternating angular jitter cannot trigger a turn / 12",
+        "Alternating angular jitter cannot trigger a turn / 13",
+        "Alternating angular jitter cannot trigger a turn / 14",
+        "Alternating angular jitter cannot trigger a turn / 15",
+        "Alternating angular jitter cannot trigger a turn / 16",
+        "Alternating angular jitter cannot trigger a turn / 17",
+        "Alternating angular jitter cannot trigger a turn / 18",
+        "Alternating angular jitter cannot trigger a turn / 19",
+        "Alternating angular jitter cannot trigger a turn / 20",
+        "Alternating angular jitter cannot trigger a turn / 21",
+        "Alternating angular jitter cannot trigger a turn / 22",
+        "Alternating angular jitter cannot trigger a turn / 23",
+        "Alternating angular jitter cannot trigger a turn / 24",
+        "Alternating angular jitter cannot trigger a turn / 25",
+        "Alternating angular jitter cannot trigger a turn / 26",
+        "Alternating angular jitter cannot trigger a turn / 27",
+        "Alternating angular jitter cannot trigger a turn / 28",
+        "Alternating angular jitter cannot trigger a turn / 29",
+        "Alternating angular jitter cannot trigger a turn / 30",
+        "A walking actor can turn from incremental native headings",
+        "Slow heading correction does not force a pivot animation",
+        "Replay seek clears partially accumulated pivot motion",
+        "Checkpoint cut clears partially accumulated pivot motion",
+        "A running stop retains braking precedence over a pivot",
+        "A stationary keeper uses the observed turn direction",
+        "Existing turn_run_left animates the actual stationary rig",
+        "Existing turn_run_left cannot move the game-owned root",
+        "Existing turn_run_left freezes bones at a paused native clock",
+        "Existing turn_run_right animates the actual stationary rig",
+        "Existing turn_run_right cannot move the game-owned root",
+        "Existing turn_run_right freezes bones at a paused native clock"
+    ]
+}
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:24)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/D6Cli.cs Line: 24)
+
+[D6Cli] FootballMomentumTests: {
+    "passed": 72,
+    "checks": [
+        "Observed acceleration produces launch lean at 30 Hz",
+        "Steady observed speed releases launch lean at 30 Hz",
+        "Progressive real deceleration produces braking and recoil at 30 Hz",
+        "Incremental moving turn retains its stride at 30 Hz / -1",
+        "Observed momentum banks toward the turn at 30 Hz / -1",
+        "Paused native time freezes stride and momentum at 30 Hz / -1",
+        "Replay seek clears momentum at 30 Hz / -1",
+        "Incremental moving turn retains its stride at 30 Hz / 1",
+        "Observed momentum banks toward the turn at 30 Hz / 1",
+        "Paused native time freezes stride and momentum at 30 Hz / 1",
+        "Replay seek clears momentum at 30 Hz / 1",
+        "Observed acceleration produces launch lean at 60 Hz",
+        "Steady observed speed releases launch lean at 60 Hz",
+        "Progressive real deceleration produces braking and recoil at 60 Hz",
+        "Incremental moving turn retains its stride at 60 Hz / -1",
+        "Observed momentum banks toward the turn at 60 Hz / -1",
+        "Paused native time freezes stride and momentum at 60 Hz / -1",
+        "Replay seek clears momentum at 60 Hz / -1",
+        "Incremental moving turn retains its stride at 60 Hz / 1",
+        "Observed momentum banks toward the turn at 60 Hz / 1",
+        "Paused native time freezes stride and momentum at 60 Hz / 1",
+        "Replay seek clears momentum at 60 Hz / 1",
+        "Observed acceleration produces launch lean at 120 Hz",
+        "Steady observed speed releases launch lean at 120 Hz",
+        "Progressive real deceleration produces braking and recoil at 120 Hz",
+        "Incremental moving turn retains its stride at 120 Hz / -1",
+        "Observed momentum banks toward the turn at 120 Hz / -1",
+        "Paused native time freezes stride and momentum at 120 Hz / -1",
+        "Replay seek clears momentum at 120 Hz / -1",
+        "Incremental moving turn retains its stride at 120 Hz / 1",
+        "Observed momentum banks toward the turn at 120 Hz / 1",
+        "Paused native time freezes stride and momentum at 120 Hz / 1",
+        "Replay seek clears momentum at 120 Hz / 1",
+        "Missing freshness never fabricates a tired stance",
+        "Explicit tired idle player uses a bounded recovery stance",
+        "Paused freshness changes cannot advance a recovery pose",
+        "Observed recovery relaxes the stance smoothly",
+        "Actual movement releases the idle recovery stance",
+        "Ball carrier remains ready instead of using tired idle",
+        "Keeper readiness retains priority over tired idle",
+        "Actual Unity JSON reader preserves the missing freshness sentinel",
+        "Invalid freshness rejected atomically / NaN",
+        "Invalid freshness rejected atomically / +unendlich",
+        "Invalid freshness rejected atomically / -0,5",
+        "Invalid freshness rejected atomically / 1,01",
+        "Current native freshness is accepted without changing match authority",
+        "Freshness interpolation stays between actual endpoints / 1",
+        "Freshness interpolation stays between actual endpoints / 2",
+        "Freshness interpolation stays between actual endpoints / 3",
+        "Freshness interpolation stays between actual endpoints / 4",
+        "Freshness interpolation stays between actual endpoints / 5",
+        "Freshness interpolation stays between actual endpoints / 6",
+        "Freshness interpolation stays between actual endpoints / 7",
+        "Freshness interpolation stays between actual endpoints / 8",
+        "Freshness interpolation stays between actual endpoints / 9",
+        "Freshness interpolation never edits a received picture",
+        "A first explicit freshness value does not interpolate from missing data",
+        "Legacy pictures remain explicitly unmeasured",
+        "Paused native freshness stays frozen for any display time",
+        "Momentum lean changes the actual upper-body joints within bounds",
+        "Upper-body inertia preserves both real feet",
+        "Momentum lean never moves or turns the game-owned root",
+        "Paused native clock freezes all actual momentum bones",
+        "Repeated sampling cannot accumulate upper-body lean",
+        "Moving turn blends the actual turn and stride clips equally",
+        "Blended momentum turn retains authoritative root and facing",
+        "Explicit tired recovery bends actual upper-body joints within bounds",
+        "Recovery stance preserves actual feet and authoritative root",
+        "Planted native action ignores all locomotion and recovery lean",
+        "Native hand contact ignores all locomotion and recovery lean",
+        "Protected native contacts keep the game-owned root",
+        "Momentum changes reuse cached graph nodes"
+    ],
+    "measurements": [
+        {
+            "stage": "launch-30",
+            "speed": 1.8666666746139526,
+            "forwardLean": 2.470796585083008,
+            "turnLean": 0.0,
+            "recoveryLean": 0.0,
+            "headDisplacement": 0.0
+        },
+        {
+            "stage": "launch-60",
+            "speed": 2.0000007152557373,
+            "forwardLean": 2.531693696975708,
+            "turnLean": 0.0,
+            "recoveryLean": 0.0,
+            "headDisplacement": 0.0
+        },
+        {
+            "stage": "launch-120",
+            "speed": 2.0000016689300537,
+            "forwardLean": 2.4993815422058105,
+            "turnLean": 0.0,
+            "recoveryLean": 0.0,
+            "headDisplacement": 0.0
+        },
+        {
+            "stage": "real-rig-momentum",
+            "speed": 0.0,
+            "forwardLean": 6.0,
+            "turnLean": -5.0,
+            "recoveryLean": 0.0,
+            "headDisplacement": 0.07416271418333054
+        }
+    ]
+}
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:25)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/D6Cli.cs Line: 25)
+
+[D6Cli] FootballActionTests: {
+    "passed": 22,
+    "checks": [
+        "pass retains full native contact priority",
+        "pass returns to moving stride promptly",
+        "pass keeps longer standing follow-through",
+        "receive retains full native contact priority",
+        "receive returns to moving stride promptly",
+        "receive keeps longer standing follow-through",
+        "shot retains full native contact priority",
+        "shot returns to moving stride promptly",
+        "shot keeps longer standing follow-through",
+        "Preparation retains the run until native release approaches",
+        "Moving reception reaches the actual right foot",
+        "Reception rejoins the observed run within 0.23 native seconds",
+        "Running action blend is normalized",
+        "Paused native clock freezes both blended clips",
+        "A quick reception-to-pass retains bounded real-foot contact",
+        "Completed pass follows straight into the actual off-ball run",
+        "Running reception and one-two never change authoritative root",
+        "Controlled stride can reach with left foot direction 1",
+        "Controlled stride can reach with left foot direction -1",
+        "Unreachable carrier ball remains unreachable",
+        "Carrier reach cannot attract ball or reposition player",
+        "Action iteration reuses cached graph nodes"
+    ],
+    "measurements": [
+        {
+            "stage": "receive-contact",
+            "foot": "right",
+            "actionWeight": 1.0,
+            "strideWeight": 0.0,
+            "contactError": 8.17800923869072e-7,
+            "reachable": true
+        },
+        {
+            "stage": "carrier-reach",
+            "foot": "left",
+            "actionWeight": 1.0,
+            "strideWeight": 0.0,
+            "contactError": 0.0000018997665165443323,
+            "reachable": true
+        },
+        {
+            "stage": "carrier-reach",
+            "foot": "left",
+            "actionWeight": 1.0,
+            "strideWeight": 0.0,
+            "contactError": 0.0000018997665165443323,
+            "reachable": true
+        }
+    ]
+}
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:26)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/D6Cli.cs Line: 26)
+
+[D6Cli] FootballMotionTests: {
+    "phase": "final",
+    "failed": 0,
+    "checks": [
+        {
+            "name": "An already observed keeper contact has its authored action pose immediately",
+            "passed": true,
+            "measured": 1.0
+        },
+        {
+            "name": "Known keeper launch is presented on the arrival frame, rather than one display frame later",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "The actual world ball renderer applies a travel-derived orientation",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Observed half-circumference rolls the ball by 180 degrees / 30",
+            "passed": true,
+            "measured": 180.00000858306885
+        },
+        {
+            "name": "Real panel orientation changes at 30 Hz",
+            "passed": true,
+            "measured": 180.0
+        },
+        {
+            "name": "A stationary ball does not spin at 30 Hz",
+            "passed": true,
+            "measured": 180.00000858306885
+        },
+        {
+            "name": "A paused native clock freezes the ball orientation / 30",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Replay seek resets ball orientation / 30",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A restart cut cannot turn a teleport into rolling / 30",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Observed half-circumference rolls the ball by 180 degrees / 60",
+            "passed": true,
+            "measured": 180.0000081062317
+        },
+        {
+            "name": "Real panel orientation changes at 60 Hz",
+            "passed": true,
+            "measured": 180.0
+        },
+        {
+            "name": "A stationary ball does not spin at 60 Hz",
+            "passed": true,
+            "measured": 180.0000081062317
+        },
+        {
+            "name": "A paused native clock freezes the ball orientation / 60",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Replay seek resets ball orientation / 60",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A restart cut cannot turn a teleport into rolling / 60",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Observed half-circumference rolls the ball by 180 degrees / 120",
+            "passed": true,
+            "measured": 180.00000727176666
+        },
+        {
+            "name": "Real panel orientation changes at 120 Hz",
+            "passed": true,
+            "measured": 179.99998474121094
+        },
+        {
+            "name": "A stationary ball does not spin at 120 Hz",
+            "passed": true,
+            "measured": 180.00000727176666
+        },
+        {
+            "name": "A paused native clock freezes the ball orientation / 120",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Replay seek resets ball orientation / 120",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A restart cut cannot turn a teleport into rolling / 120",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Walk, run and sprint share the measured left footfall at one cycle value / walking",
+            "passed": true,
+            "measured": 10.37
+        },
+        {
+            "name": "Walk, run and sprint share the measured left footfall at one cycle value / run_fast4",
+            "passed": true,
+            "measured": 10.37
+        },
+        {
+            "name": "Walk, run and sprint share the measured left footfall at one cycle value / sprint_forward",
+            "passed": true,
+            "measured": 10.37
+        },
+        {
+            "name": "Threshold jitter cannot alternate walk/run clips / 30",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Paused stride phase remains frozen / 30",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Threshold jitter cannot alternate walk/run clips / 60",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Paused stride phase remains frozen / 60",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Threshold jitter cannot alternate walk/run clips / 120",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Paused stride phase remains frozen / 120",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Observed lateral dive banks the actual body, rather than leaving it upright",
+            "passed": true,
+            "measured": 55.71428298950195
+        },
+        {
+            "name": "A repeated observed dive cannot accumulate body displacement",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Dive presentation cannot move or turn the game-owned root",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "The left hand can reach an actual left-side native contact without stretching",
+            "passed": true,
+            "measured": 1.3328003944934608e-7
+        },
+        {
+            "name": "Left-hand correction retains the game-owned root",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Actual RenderWorld rotates the rendered ball Transform from received travel",
+            "passed": true,
+            "measured": 12.992252349853516
+        },
+        {
+            "name": "Actual RenderWorld keeps the received ball path; only the documented ground display height applies",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A native ground ball rests on the pitch instead of floating",
+            "passed": true,
+            "measured": 0.17640002071857452
+        },
+        {
+            "name": "Ball display height is monotonic and unchanged from 1.29 m, so crossbar heights stay native",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Actual rendering cannot mutate the authoritative received match picture",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Actual low save uses the measured contact window on the received contact frame",
+            "passed": true,
+            "measured": 1.18
+        },
+        {
+            "name": "Actual low save contact is not delayed by the visual mixer",
+            "passed": true,
+            "measured": 1.0
+        }
+    ],
+    "keeper": [
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 0.0,
+            "x": 0.2761073112487793,
+            "y": 0.8732119202613831,
+            "z": 0.33095410466194153,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 0.2222222238779068,
+            "x": 0.2910739779472351,
+            "y": 0.7469643354415894,
+            "z": 0.2300415188074112,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 0.4444444477558136,
+            "x": 0.25219491124153137,
+            "y": 1.2438633441925049,
+            "z": 0.5220301747322083,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 0.6666666865348816,
+            "x": 0.44450336694717407,
+            "y": 1.9110782146453857,
+            "z": 0.09344398975372314,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 0.8888888955116272,
+            "x": 0.42543238401412964,
+            "y": 2.0102970600128174,
+            "z": 0.1661323457956314,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 1.1111111640930176,
+            "x": 0.19266849756240845,
+            "y": 1.3802168369293213,
+            "z": 0.22433996200561523,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 1.3333333730697632,
+            "x": 0.08752858638763428,
+            "y": 0.882046639919281,
+            "z": 0.3797229826450348,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 1.5555555820465088,
+            "x": 0.09983699023723602,
+            "y": 0.9008470773696899,
+            "z": 0.34203091263771057,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 1.7777777910232544,
+            "x": 0.1238982155919075,
+            "y": 0.9392181634902954,
+            "z": 0.29616016149520874,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 2.0,
+            "x": 0.10895951092243195,
+            "y": 0.9099945425987244,
+            "z": 0.2676636576652527,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 2.222222328186035,
+            "x": 0.10554889589548111,
+            "y": 0.9603493809700012,
+            "z": 0.240500345826149,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 2.444444417953491,
+            "x": 0.15297137200832367,
+            "y": 0.9387001395225525,
+            "z": 0.2664063274860382,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 2.6656668186187744,
+            "x": 0.13633455336093903,
+            "y": 0.9514116644859314,
+            "z": 0.275956392288208,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 0.0,
+            "x": 0.36692357063293457,
+            "y": 0.9119539856910706,
+            "z": 0.2954300045967102,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 0.34444448351860046,
+            "x": 0.31469184160232544,
+            "y": 0.8883723616600037,
+            "z": 0.32882991433143616,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 0.6888889670372009,
+            "x": 0.5265915393829346,
+            "y": 1.1429542303085327,
+            "z": -0.2022184282541275,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 1.033333420753479,
+            "x": 0.4319603741168976,
+            "y": 0.6339214444160461,
+            "z": 0.4339543282985687,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 1.3777779340744019,
+            "x": 0.30236804485321045,
+            "y": 2.08272647857666,
+            "z": -0.37801530957221985,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 1.7222223281860352,
+            "x": -0.06187867000699043,
+            "y": 2.038926839828491,
+            "z": -0.2257986217737198,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 2.066666841506958,
+            "x": -0.1171770915389061,
+            "y": 1.2446386814117432,
+            "z": 0.004490375518798828,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 2.411111354827881,
+            "x": -0.33014553785324097,
+            "y": 0.5288887023925781,
+            "z": 0.13396139442920685,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 2.7555558681488037,
+            "x": -0.08665154129266739,
+            "y": 0.5130310654640198,
+            "z": 0.3310166895389557,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 3.1000003814697266,
+            "x": -0.5278074741363525,
+            "y": 0.44338756799697876,
+            "z": 0.13128817081451416,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 3.4444446563720703,
+            "x": -0.44247734546661377,
+            "y": 0.44509658217430115,
+            "z": 0.2033408135175705,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 3.788889169692993,
+            "x": -0.4254206717014313,
+            "y": 0.44456782937049866,
+            "z": 0.22330240905284882,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 4.132333755493164,
+            "x": -0.429299533367157,
+            "y": 0.4550751745700836,
+            "z": 0.21097801625728607,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 0.0,
+            "x": 0.2866188585758209,
+            "y": 0.9295154809951782,
+            "z": 0.03269118443131447,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 0.5972222685813904,
+            "x": 0.28614571690559387,
+            "y": 0.8970726132392883,
+            "z": 0.02211683988571167,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 1.1944445371627808,
+            "x": 0.37533333897590637,
+            "y": 0.3409525752067566,
+            "z": 0.3288637101650238,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 1.7916667461395264,
+            "x": 0.38431212306022644,
+            "y": 0.3693307042121887,
+            "z": 0.3963697850704193,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 2.3888890743255615,
+            "x": 0.3155604302883148,
+            "y": 1.129867672920227,
+            "z": 0.3651559352874756,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 2.9861111640930176,
+            "x": 0.2613596022129059,
+            "y": 1.3543872833251953,
+            "z": 0.22922660410404205,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 3.5833334922790527,
+            "x": 0.25019505620002747,
+            "y": 1.3519575595855713,
+            "z": 0.1819249540567398,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 4.180555820465088,
+            "x": 0.25037267804145813,
+            "y": 1.3372482061386108,
+            "z": 0.17422713339328766,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 4.777778148651123,
+            "x": 0.251605361700058,
+            "y": 1.3258554935455322,
+            "z": 0.17035377025604248,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 5.375,
+            "x": 0.2708810567855835,
+            "y": 1.0683400630950928,
+            "z": 0.15407223999500275,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 5.972222328186035,
+            "x": 0.3019855320453644,
+            "y": 0.9355871677398682,
+            "z": -0.05094093456864357,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 6.56944465637207,
+            "x": 0.2856837213039398,
+            "y": 0.9285395741462708,
+            "z": 0.020554842427372932,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 7.1656670570373535,
+            "x": 0.2872009873390198,
+            "y": 0.9299607872962952,
+            "z": 0.033372167497873306,
+            "length": 7.1666669845581055
+        }
+    ]
+}
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:27)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/D6Cli.cs Line: 27)
+
+[D6Cli] WorldViewTests: {
+    "passed": 24,
+    "checks": [
+        "new picture accepted",
+        "duplicate ignored atomically",
+        "stale picture ignored atomically",
+        "invalid picture rejected 3",
+        "invalid picture rejected 4",
+        "invalid picture rejected 5",
+        "invalid picture rejected 6",
+        "invalid picture rejected 7",
+        "invalid picture rejected 8",
+        "invalid picture rejected 9",
+        "invalid picture rejected 10",
+        "invalid picture rejected 11",
+        "invalid picture rejected 12",
+        "replay can seek backwards with a new sequence",
+        "duplicate roster rejected",
+        "players interpolate between actual pictures",
+        "ball and camera share the player picture time",
+        "no extrapolation past the last actual picture",
+        "presentation does not modify its source picture",
+        "paused match freezes without interpolation drift",
+        "restart snaps instead of flying players across the pitch",
+        "backwards replay seek snaps coherently",
+        "a second pass does not inherit the first pass contact phase",
+        "nonfinite visual contact is rejected"
+    ]
+}
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:28)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/D6Cli.cs Line: 28)
+
+[D6Cli] FootballGaitTests: {
+    "passed": 75,
+    "failed": 0,
+    "checks": [
+        {
+            "name": "Diagnostic: keeper_ready measured by an earlier suite on this mesh = True",
+            "passed": true,
+            "measured": 1.0
+        },
+        {
+            "name": "Standing reference sole measured on the actual skinned mesh",
+            "passed": true,
+            "measured": -0.051915306597948074
+        },
+        {
+            "name": "Standing players rest on the pitch instead of about 3 cm above it",
+            "passed": true,
+            "measured": -7.450580596923828e-9
+        },
+        {
+            "name": "The previous fixed root height floated measurably",
+            "passed": true,
+            "measured": 0.028084691613912582
+        },
+        {
+            "name": "Measured ground contact within 2 cm for keeper_ready_meshy (offset 0,157 m)",
+            "passed": true,
+            "measured": 0.00003339722752571106
+        },
+        {
+            "name": "Measured ground contact within 2 cm for pass_inside_meshy (offset 0,131 m)",
+            "passed": true,
+            "measured": -0.0008577220141887665
+        },
+        {
+            "name": "Measured ground contact within 2 cm for walking (offset 0,069 m)",
+            "passed": true,
+            "measured": -0.0005746074020862579
+        },
+        {
+            "name": "Measured ground contact within 2 cm for run_fast6 (offset 0,056 m)",
+            "passed": true,
+            "measured": 0.0018297992646694183
+        },
+        {
+            "name": "Measured ground contact within 2 cm for run_fast4 (offset 0,059 m)",
+            "passed": true,
+            "measured": -0.0020232796669006348
+        },
+        {
+            "name": "Measured ground contact within 2 cm for sprint_forward (offset 0,064 m)",
+            "passed": true,
+            "measured": -0.005425266921520233
+        },
+        {
+            "name": "Measured ground contact within 2 cm for running (offset 0,060 m)",
+            "passed": true,
+            "measured": 0.0016948319971561432
+        },
+        {
+            "name": "Measured ground contact within 2 cm for back_left (offset 0,076 m)",
+            "passed": true,
+            "measured": 0.0013254210352897644
+        },
+        {
+            "name": "Measured ground contact within 2 cm for celebrate_arms (offset 0,057 m)",
+            "passed": true,
+            "measured": -0.00017194822430610657
+        },
+        {
+            "name": "Diagnostic bones differing for keeper_ready_meshy: Hips 0,0deg/0,108",
+            "passed": true,
+            "measured": 1.0
+        },
+        {
+            "name": "Diagnostic same time via measuring path 0,1569 vs sampling path 0,1569 for keeper_ready_meshy",
+            "passed": true,
+            "measured": 1.9371509552001953e-7
+        },
+        {
+            "name": "Diagnostic unshifted skinned sole of keeper_ready_meshy at 0,33 s; stored offset 0,157",
+            "passed": true,
+            "measured": 0.1568613499403
+        },
+        {
+            "name": "Diagnostic bones differing for keeper_rise_meshy: ",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Diagnostic same time via measuring path -0,0028 vs sampling path -0,0028 for keeper_rise_meshy",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Diagnostic unshifted skinned sole of keeper_rise_meshy at 5,96 s; stored offset 0,000",
+            "passed": true,
+            "measured": -0.0028234831988811493
+        },
+        {
+            "name": "Diagnostic bones differing for pass_inside_meshy: Hips 0,0deg/0,090",
+            "passed": true,
+            "measured": 1.0
+        },
+        {
+            "name": "Diagnostic same time via measuring path 0,1300 vs sampling path 0,1300 for pass_inside_meshy",
+            "passed": true,
+            "measured": 1.1920928955078125e-7
+        },
+        {
+            "name": "Diagnostic unshifted skinned sole of pass_inside_meshy at 1,91 s; stored offset 0,131",
+            "passed": true,
+            "measured": 0.12997467815876007
+        },
+        {
+            "name": "A lying pose below the standing sole is never lifted",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Grounding moves only bones, never the game-owned root",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Stride measured for walking = 2,17 m",
+            "passed": true,
+            "measured": 2.1666619777679443
+        },
+        {
+            "name": "Stride measured for run_fast6 = 2,48 m",
+            "passed": true,
+            "measured": 2.4796440601348877
+        },
+        {
+            "name": "Stride measured for run_fast4 = 4,20 m",
+            "passed": true,
+            "measured": 4.197944164276123
+        },
+        {
+            "name": "Stride measured for sprint_forward = 3,28 m",
+            "passed": true,
+            "measured": 3.282442092895508
+        },
+        {
+            "name": "Stride measured for running = 4,68 m",
+            "passed": true,
+            "measured": 4.679008960723877
+        },
+        {
+            "name": "Stride measured for back_walk = 1,33 m",
+            "passed": true,
+            "measured": 1.3286722898483276
+        },
+        {
+            "name": "Left foot is planted at the shared footfall cycle in walking",
+            "passed": true,
+            "measured": -0.018462860956788063
+        },
+        {
+            "name": "Left foot is planted at the shared footfall cycle in run_fast6",
+            "passed": true,
+            "measured": 0.007812642492353916
+        },
+        {
+            "name": "Left foot is planted at the shared footfall cycle in run_fast4",
+            "passed": true,
+            "measured": 0.01034120749682188
+        },
+        {
+            "name": "Left foot is planted at the shared footfall cycle in sprint_forward",
+            "passed": true,
+            "measured": 0.001782140927389264
+        },
+        {
+            "name": "Left foot is planted at the shared footfall cycle in running",
+            "passed": true,
+            "measured": -0.007102781441062689
+        },
+        {
+            "name": "Stance foot slip walking at 1,6 m/s: measured cadence 0,10 m/s, previous 0,22 m/s",
+            "passed": true,
+            "measured": 0.101523257791996
+        },
+        {
+            "name": "Stance foot slip run_fast6 at 3 m/s: measured cadence 0,45 m/s, previous 0,77 m/s",
+            "passed": true,
+            "measured": 0.4453425407409668
+        },
+        {
+            "name": "Stance foot slip run_fast4 at 4,8 m/s: measured cadence 0,83 m/s, previous 1,44 m/s",
+            "passed": true,
+            "measured": 0.8344421982765198
+        },
+        {
+            "name": "Stance foot slip sprint_forward at 5,6 m/s: measured cadence 1,39 m/s, previous 1,52 m/s",
+            "passed": true,
+            "measured": 1.389235258102417
+        },
+        {
+            "name": "Stance foot slip running at 3,6 m/s: measured cadence 0,25 m/s, previous 2,00 m/s",
+            "passed": true,
+            "measured": 0.24847687780857086
+        },
+        {
+            "name": "A 3 m/s run uses the measured jog clip",
+            "passed": true,
+            "measured": 2.999983072280884
+        },
+        {
+            "name": "A 4.6 m/s run uses the measured fast run clip",
+            "passed": true,
+            "measured": 4.600003719329834
+        },
+        {
+            "name": "Speed noise near the jog/fast boundary keeps one clip",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Native pass contact reaches the actual point",
+            "passed": true,
+            "measured": 4.182955137821409e-7
+        },
+        {
+            "name": "Contact releases over 0.1 s instead of popping back to the authored foot",
+            "passed": true,
+            "measured": 0.2118525207042694
+        },
+        {
+            "name": "Release ends within the documented native time",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Paused native clock freezes a releasing limb",
+            "passed": true,
+            "measured": 0.7839999794960022
+        },
+        {
+            "name": "Central keeper save meets the actual ball with both palms",
+            "passed": true,
+            "measured": 4.622363292128284e-7
+        },
+        {
+            "name": "An unreachable central ball stays unreachable",
+            "passed": true,
+            "measured": 6.307340145111084
+        },
+        {
+            "name": "Header turns the actual head toward the contact within 22 degrees",
+            "passed": true,
+            "measured": 0.20040088891983032
+        },
+        {
+            "name": "Keeper palms and headers keep the game-owned root",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Throw-in hands hold the actual ball above the head where reachable (shoulder 1,96 m, arm 0,65 m, reachable True)",
+            "passed": true,
+            "measured": 2.544403230331227e-7
+        },
+        {
+            "name": "A legacy picture without celebration fields is read as no celebration",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Invalid celebration team is rejected atomically",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A stationary native pivot uses turn_idle_right",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A walking native turn uses turn_walk_left over the walking stride",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Without a native goal the player stays in the authored idle",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "The actual scorer celebrates the booked goal",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "The conceding team never celebrates",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Native foul victim falls and rises within measured windows",
+            "passed": true,
+            "measured": 5.367272727272727
+        },
+        {
+            "name": "Carrier stride shows smooth partial reaches at measured footfalls",
+            "passed": true,
+            "measured": 18.0
+        },
+        {
+            "name": "Shirt number of Bremen home reads at contrast 4,4:1 with a 16,4:1 edge",
+            "passed": true,
+            "measured": 4.390994071960449
+        },
+        {
+            "name": "Shirt number of Koeln away reads at contrast 8,6:1 with a 16,4:1 edge",
+            "passed": true,
+            "measured": 8.629093170166016
+        },
+        {
+            "name": "Shirt number of Koeln home reads at contrast 6,3:1 with a 8,8:1 edge",
+            "passed": true,
+            "measured": 6.329184532165527
+        },
+        {
+            "name": "Shirt number of Bremen keeper reads at contrast 5,4:1 with a 16,4:1 edge",
+            "passed": true,
+            "measured": 5.42524528503418
+        },
+        {
+            "name": "Shirt number of Koeln keeper reads at contrast 10,1:1 with a 16,4:1 edge",
+            "passed": true,
+            "measured": 10.138067245483398
+        },
+        {
+            "name": "Shirt number of Opponent keeper reads at contrast 5,7:1 with a 16,4:1 edge",
+            "passed": true,
+            "measured": 5.706957817077637
+        },
+        {
+            "name": "Shorts use the mask's green channel and the club accent colour",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Kit regions use the mesh's z-up, front -y bind pose (measured in kit-regions.json)",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A camera wobbling at a stand front hides that stand once, without flicker",
+            "passed": true,
+            "measured": 1.0
+        },
+        {
+            "name": "Behind-goal camera hides only its own end stand",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Pages without a quality field remain valid (platform decides)",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A reduced quality request is carried by the match view configuration",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Reduced quality disables MSAA and bloom and uses 1024 hard shadows",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Replay grading follows only the received replay flag",
+            "passed": true,
+            "measured": 0.0
+        }
+    ]
+}
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:29)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/D6Cli.cs Line: 29)
+
+[D6Cli] ClubStadiumProfilesTests: {
+  "passed": 396,
+  "checks": [
+    "all 48 current club IDs exactly once",
+    "known IDs have deterministic ordinal order",
+    "ENG-1 resolved identity and architecture",
+    "ENG-1 four stand sides",
+    "ENG-1 finite coherent dimensions and shelter",
+    "ENG-1 repeated lookup stable",
+    "ENG-1 independent lookup objects and arrays",
+    "ENG-1 consumer mutation cannot alter catalog or peers",
+    "ENG-1 unique architecture dimensions without color or seed",
+    "ENG-1 deterministic distinct detail seed",
+    "ENG-2 resolved identity and architecture",
+    "ENG-2 four stand sides",
+    "ENG-2 finite coherent dimensions and shelter",
+    "ENG-2 repeated lookup stable",
+    "ENG-2 independent lookup objects and arrays",
+    "ENG-2 consumer mutation cannot alter catalog or peers",
+    "ENG-2 unique architecture dimensions without color or seed",
+    "ENG-2 deterministic distinct detail seed",
+    "ENG-3 resolved identity and architecture",
+    "ENG-3 four stand sides",
+    "ENG-3 finite coherent dimensions and shelter",
+    "ENG-3 repeated lookup stable",
+    "ENG-3 independent lookup objects and arrays",
+    "ENG-3 consumer mutation cannot alter catalog or peers",
+    "ENG-3 unique architecture dimensions without color or seed",
+    "ENG-3 deterministic distinct detail seed",
+    "ENG-4 resolved identity and architecture",
+    "ENG-4 four stand sides",
+    "ENG-4 finite coherent dimensions and shelter",
+    "ENG-4 repeated lookup stable",
+    "ENG-4 independent lookup objects and arrays",
+    "ENG-4 consumer mutation cannot alter catalog or peers",
+    "ENG-4 unique architecture dimensions without color or seed",
+    "ENG-4 deterministic distinct detail seed",
+    "ENG-5 resolved identity and architecture",
+    "ENG-5 four stand sides",
+    "ENG-5 finite coherent dimensions and shelter",
+    "ENG-5 repeated lookup stable",
+    "ENG-5 independent lookup objects and arrays",
+    "ENG-5 consumer mutation cannot alter catalog or peers",
+    "ENG-5 unique architecture dimensions without color or seed",
+    "ENG-5 deterministic distinct detail seed",
+    "ENG-6 resolved identity and architecture",
+    "ENG-6 four stand sides",
+    "ENG-6 finite coherent dimensions and shelter",
+    "ENG-6 repeated lookup stable",
+    "ENG-6 independent lookup objects and arrays",
+    "ENG-6 consumer mutation cannot alter catalog or peers",
+    "ENG-6 unique architecture dimensions without color or seed",
+    "ENG-6 deterministic distinct detail seed",
+    "ENG-C1 resolved identity and architecture",
+    "ENG-C1 four stand sides",
+    "ENG-C1 finite coherent dimensions and shelter",
+    "ENG-C1 repeated lookup stable",
+    "ENG-C1 independent lookup objects and arrays",
+    "ENG-C1 consumer mutation cannot alter catalog or peers",
+    "ENG-C1 unique architecture dimensions without color or seed",
+    "ENG-C1 deterministic distinct detail seed",
+    "ENG-C2 resolved identity and architecture",
+    "ENG-C2 four stand sides",
+    "ENG-C2 finite coherent dimensions and shelter",
+    "ENG-C2 repeated lookup stable",
+    "ENG-C2 independent lookup objects and arrays",
+    "ENG-C2 consumer mutation cannot alter catalog or peers",
+    "ENG-C2 unique architecture dimensions without color or seed",
+    "ENG-C2 deterministic distinct detail seed",
+    "ESP-1 resolved identity and architecture",
+    "ESP-1 four stand sides",
+    "ESP-1 finite coherent dimensions and shelter",
+    "ESP-1 repeated lookup stable",
+    "ESP-1 independent lookup objects and arrays",
+    "ESP-1 consumer mutation cannot alter catalog or peers",
+    "ESP-1 unique architecture dimensions without color or seed",
+    "ESP-1 deterministic distinct detail seed",
+    "ESP-2 resolved identity and architecture",
+    "ESP-2 four stand sides",
+    "ESP-2 finite coherent dimensions and shelter",
+    "ESP-2 repeated lookup stable",
+    "ESP-2 independent lookup objects and arrays",
+    "ESP-2 consumer mutation cannot alter catalog or peers",
+    "ESP-2 unique architecture dimensions without color or seed",
+    "ESP-2 deterministic distinct detail seed",
+    "ESP-3 resolved identity and architecture",
+    "ESP-3 four stand sides",
+    "ESP-3 finite coherent dimensions and shelter",
+    "ESP-3 repeated lookup stable",
+    "ESP-3 independent lookup objects and arrays",
+    "ESP-3 consumer mutation cannot alter catalog or peers",
+    "ESP-3 unique architecture dimensions without color or seed",
+    "ESP-3 deterministic distinct detail seed",
+    "ESP-4 resolved identity and architecture",
+    "ESP-4 four stand sides",
+    "ESP-4 finite coherent dimensions and shelter",
+    "ESP-4 repeated lookup stable",
+    "ESP-4 independent lookup objects and arrays",
+    "ESP-4 consumer mutation cannot alter catalog or peers",
+    "ESP-4 unique architecture dimensions without color or seed",
+    "ESP-4 deterministic distinct detail seed",
+    "ESP-5 resolved identity and architecture",
+    "ESP-5 four stand sides",
+    "ESP-5 finite coherent dimensions and shelter",
+    "ESP-5 repeated lookup stable",
+    "ESP-5 independent lookup objects and arrays",
+    "ESP-5 consumer mutation cannot alter catalog or peers",
+    "ESP-5 unique architecture dimensions without color or seed",
+    "ESP-5 deterministic distinct detail seed",
+    "ESP-6 resolved identity and architecture",
+    "ESP-6 four stand sides",
+    "ESP-6 finite coherent dimensions and shelter",
+    "ESP-6 repeated lookup stable",
+    "ESP-6 independent lookup objects and arrays",
+    "ESP-6 consumer mutation cannot alter catalog or peers",
+    "ESP-6 unique architecture dimensions without color or seed",
+    "ESP-6 deterministic distinct detail seed",
+    "ESP-C1 resolved identity and architecture",
+    "ESP-C1 four stand sides",
+    "ESP-C1 finite coherent dimensions and shelter",
+    "ESP-C1 repeated lookup stable",
+    "ESP-C1 independent lookup objects and arrays",
+    "ESP-C1 consumer mutation cannot alter catalog or peers",
+    "ESP-C1 unique architecture dimensions without color or seed",
+    "ESP-C1 deterministic distinct detail seed",
+    "ESP-C2 resolved identity and architecture",
+    "ESP-C2 four stand sides",
+    "ESP-C2 finite coherent dimensions and shelter",
+    "ESP-C2 repeated lookup stable",
+    "ESP-C2 independent lookup objects and arrays",
+    "ESP-C2 consumer mutation cannot alter catalog or peers",
+    "ESP-C2 unique architecture dimensions without color or seed",
+    "ESP-C2 deterministic distinct detail seed",
+    "FRA-1 resolved identity and architecture",
+    "FRA-1 four stand sides",
+    "FRA-1 finite coherent dimensions and shelter",
+    "FRA-1 repeated lookup stable",
+    "FRA-1 independent lookup objects and arrays",
+    "FRA-1 consumer mutation cannot alter catalog or peers",
+    "FRA-1 unique architecture dimensions without color or seed",
+    "FRA-1 deterministic distinct detail seed",
+    "FRA-2 resolved identity and architecture",
+    "FRA-2 four stand sides",
+    "FRA-2 finite coherent dimensions and shelter",
+    "FRA-2 repeated lookup stable",
+    "FRA-2 independent lookup objects and arrays",
+    "FRA-2 consumer mutation cannot alter catalog or peers",
+    "FRA-2 unique architecture dimensions without color or seed",
+    "FRA-2 deterministic distinct detail seed",
+    "FRA-3 resolved identity and architecture",
+    "FRA-3 four stand sides",
+    "FRA-3 finite coherent dimensions and shelter",
+    "FRA-3 repeated lookup stable",
+    "FRA-3 independent lookup objects and arrays",
+    "FRA-3 consumer mutation cannot alter catalog or peers",
+    "FRA-3 unique architecture dimensions without color or seed",
+    "FRA-3 deterministic distinct detail seed",
+    "FRA-4 resolved identity and architecture",
+    "FRA-4 four stand sides",
+    "FRA-4 finite coherent dimensions and shelter",
+    "FRA-4 repeated lookup stable",
+    "FRA-4 independent lookup objects and arrays",
+    "FRA-4 consumer mutation cannot alter catalog or peers",
+    "FRA-4 unique architecture dimensions without color or seed",
+    "FRA-4 deterministic distinct detail seed",
+    "FRA-5 resolved identity and architecture",
+    "FRA-5 four stand sides",
+    "FRA-5 finite coherent dimensions and shelter",
+    "FRA-5 repeated lookup stable",
+    "FRA-5 independent lookup objects and arrays",
+    "FRA-5 consumer mutation cannot alter catalog or peers",
+    "FRA-5 unique architecture dimensions without color or seed",
+    "FRA-5 deterministic distinct detail seed",
+    "FRA-6 resolved identity and architecture",
+    "FRA-6 four stand sides",
+    "FRA-6 finite coherent dimensions and shelter",
+    "FRA-6 repeated lookup stable",
+    "FRA-6 independent lookup objects and arrays",
+    "FRA-6 consumer mutation cannot alter catalog or peers",
+    "FRA-6 unique architecture dimensions without color or seed",
+    "FRA-6 deterministic distinct detail seed",
+    "FRA-C1 resolved identity and architecture",
+    "FRA-C1 four stand sides",
+    "FRA-C1 finite coherent dimensions and shelter",
+    "FRA-C1 repeated lookup stable",
+    "FRA-C1 independent lookup objects and arrays",
+    "FRA-C1 consumer mutation cannot alter catalog or peers",
+    "FRA-C1 unique architecture dimensions without color or seed",
+    "FRA-C1 deterministic distinct detail seed",
+    "FRA-C2 resolved identity and architecture",
+    "FRA-C2 four stand sides",
+    "FRA-C2 finite coherent dimensions and shelter",
+    "FRA-C2 repeated lookup stable",
+    "FRA-C2 independent lookup objects and arrays",
+    "FRA-C2 consumer mutation cannot alter catalog or peers",
+    "FRA-C2 unique architecture dimensions without color or seed",
+    "FRA-C2 deterministic distinct detail seed",
+    "GER-1 resolved identity and architecture",
+    "GER-1 four stand sides",
+    "GER-1 finite coherent dimensions and shelter",
+    "GER-1 repeated lookup stable",
+    "GER-1 independent lookup objects and arrays",
+    "GER-1 consumer mutation cannot alter catalog or peers",
+    "GER-1 unique architecture dimensions without color or seed",
+    "GER-1 deterministic distinct detail seed",
+    "GER-2 resolved identity and architecture",
+    "GER-2 four stand sides",
+    "GER-2 finite coherent dimensions and shelter",
+    "GER-2 repeated lookup stable",
+    "GER-2 independent lookup objects and arrays",
+    "GER-2 consumer mutation cannot alter catalog or peers",
+    "GER-2 unique architecture dimensions without color or seed",
+    "GER-2 deterministic distinct detail seed",
+    "GER-3 resolved identity and architecture",
+    "GER-3 four stand sides",
+    "GER-3 finite coherent dimensions and shelter",
+    "GER-3 repeated lookup stable",
+    "GER-3 independent lookup objects and arrays",
+    "GER-3 consumer mutation cannot alter catalog or peers",
+    "GER-3 unique architecture dimensions without color or seed",
+    "GER-3 deterministic distinct detail seed",
+    "GER-4 resolved identity and architecture",
+    "GER-4 four stand sides",
+    "GER-4 finite coherent dimensions and shelter",
+    "GER-4 repeated lookup stable",
+    "GER-4 independent lookup objects and arrays",
+    "GER-4 consumer mutation cannot alter catalog or peers",
+    "GER-4 unique architecture dimensions without color or seed",
+    "GER-4 deterministic distinct detail seed",
+    "GER-5 resolved identity and architecture",
+    "GER-5 four stand sides",
+    "GER-5 finite coherent dimensions and shelter",
+    "GER-5 repeated lookup stable",
+    "GER-5 independent lookup objects and arrays",
+    "GER-5 consumer mutation cannot alter catalog or peers",
+    "GER-5 unique architecture dimensions without color or seed",
+    "GER-5 deterministic distinct detail seed",
+    "GER-6 resolved identity and architecture",
+    "GER-6 four stand sides",
+    "GER-6 finite coherent dimensions and shelter",
+    "GER-6 repeated lookup stable",
+    "GER-6 independent lookup objects and arrays",
+    "GER-6 consumer mutation cannot alter catalog or peers",
+    "GER-6 unique architecture dimensions without color or seed",
+    "GER-6 deterministic distinct detail seed",
+    "GER-C1 resolved identity and architecture",
+    "GER-C1 four stand sides",
+    "GER-C1 finite coherent dimensions and shelter",
+    "GER-C1 repeated lookup stable",
+    "GER-C1 independent lookup objects and arrays",
+    "GER-C1 consumer mutation cannot alter catalog or peers",
+    "GER-C1 unique architecture dimensions without color or seed",
+    "GER-C1 deterministic distinct detail seed",
+    "GER-C2 resolved identity and architecture",
+    "GER-C2 four stand sides",
+    "GER-C2 finite coherent dimensions and shelter",
+    "GER-C2 repeated lookup stable",
+    "GER-C2 independent lookup objects and arrays",
+    "GER-C2 consumer mutation cannot alter catalog or peers",
+    "GER-C2 unique architecture dimensions without color or seed",
+    "GER-C2 deterministic distinct detail seed",
+    "ITA-1 resolved identity and architecture",
+    "ITA-1 four stand sides",
+    "ITA-1 finite coherent dimensions and shelter",
+    "ITA-1 repeated lookup stable",
+    "ITA-1 independent lookup objects and arrays",
+    "ITA-1 consumer mutation cannot alter catalog or peers",
+    "ITA-1 unique architecture dimensions without color or seed",
+    "ITA-1 deterministic distinct detail seed",
+    "ITA-2 resolved identity and architecture",
+    "ITA-2 four stand sides",
+    "ITA-2 finite coherent dimensions and shelter",
+    "ITA-2 repeated lookup stable",
+    "ITA-2 independent lookup objects and arrays",
+    "ITA-2 consumer mutation cannot alter catalog or peers",
+    "ITA-2 unique architecture dimensions without color or seed",
+    "ITA-2 deterministic distinct detail seed",
+    "ITA-3 resolved identity and architecture",
+    "ITA-3 four stand sides",
+    "ITA-3 finite coherent dimensions and shelter",
+    "ITA-3 repeated lookup stable",
+    "ITA-3 independent lookup objects and arrays",
+    "ITA-3 consumer mutation cannot alter catalog or peers",
+    "ITA-3 unique architecture dimensions without color or seed",
+    "ITA-3 deterministic distinct detail seed",
+    "ITA-4 resolved identity and architecture",
+    "ITA-4 four stand sides",
+    "ITA-4 finite coherent dimensions and shelter",
+    "ITA-4 repeated lookup stable",
+    "ITA-4 independent lookup objects and arrays",
+    "ITA-4 consumer mutation cannot alter catalog or peers",
+    "ITA-4 unique architecture dimensions without color or seed",
+    "ITA-4 deterministic distinct detail seed",
+    "ITA-5 resolved identity and architecture",
+    "ITA-5 four stand sides",
+    "ITA-5 finite coherent dimensions and shelter",
+    "ITA-5 repeated lookup stable",
+    "ITA-5 independent lookup objects and arrays",
+    "ITA-5 consumer mutation cannot alter catalog or peers",
+    "ITA-5 unique architecture dimensions without color or seed",
+    "ITA-5 deterministic distinct detail seed",
+    "ITA-6 resolved identity and architecture",
+    "ITA-6 four stand sides",
+    "ITA-6 finite coherent dimensions and shelter",
+    "ITA-6 repeated lookup stable",
+    "ITA-6 independent lookup objects and arrays",
+    "ITA-6 consumer mutation cannot alter catalog or peers",
+    "ITA-6 unique architecture dimensions without color or seed",
+    "ITA-6 deterministic distinct detail seed",
+    "ITA-C1 resolved identity and architecture",
+    "ITA-C1 four stand sides",
+    "ITA-C1 finite coherent dimensions and shelter",
+    "ITA-C1 repeated lookup stable",
+    "ITA-C1 independent lookup objects and arrays",
+    "ITA-C1 consumer mutation cannot alter catalog or peers",
+    "ITA-C1 unique architecture dimensions without color or seed",
+    "ITA-C1 deterministic distinct detail seed",
+    "ITA-C2 resolved identity and architecture",
+    "ITA-C2 four stand sides",
+    "ITA-C2 finite coherent dimensions and shelter",
+    "ITA-C2 repeated lookup stable",
+    "ITA-C2 independent lookup objects and arrays",
+    "ITA-C2 consumer mutation cannot alter catalog or peers",
+    "ITA-C2 unique architecture dimensions without color or seed",
+    "ITA-C2 deterministic distinct detail seed",
+    "POR-1 resolved identity and architecture",
+    "POR-1 four stand sides",
+    "POR-1 finite coherent dimensions and shelter",
+    "POR-1 repeated lookup stable",
+    "POR-1 independent lookup objects and arrays",
+    "POR-1 consumer mutation cannot alter catalog or peers",
+    "POR-1 unique architecture dimensions without color or seed",
+    "POR-1 deterministic distinct detail seed",
+    "POR-2 resolved identity and architecture",
+    "POR-2 four stand sides",
+    "POR-2 finite coherent dimensions and shelter",
+    "POR-2 repeated lookup stable",
+    "POR-2 independent lookup objects and arrays",
+    "POR-2 consumer mutation cannot alter catalog or peers",
+    "POR-2 unique architecture dimensions without color or seed",
+    "POR-2 deterministic distinct detail seed",
+    "POR-3 resolved identity and architecture",
+    "POR-3 four stand sides",
+    "POR-3 finite coherent dimensions and shelter",
+    "POR-3 repeated lookup stable",
+    "POR-3 independent lookup objects and arrays",
+    "POR-3 consumer mutation cannot alter catalog or peers",
+    "POR-3 unique architecture dimensions without color or seed",
+    "POR-3 deterministic distinct detail seed",
+    "POR-4 resolved identity and architecture",
+    "POR-4 four stand sides",
+    "POR-4 finite coherent dimensions and shelter",
+    "POR-4 repeated lookup stable",
+    "POR-4 independent lookup objects and arrays",
+    "POR-4 consumer mutation cannot alter catalog or peers",
+    "POR-4 unique architecture dimensions without color or seed",
+    "POR-4 deterministic distinct detail seed",
+    "POR-5 resolved identity and architecture",
+    "POR-5 four stand sides",
+    "POR-5 finite coherent dimensions and shelter",
+    "POR-5 repeated lookup stable",
+    "POR-5 independent lookup objects and arrays",
+    "POR-5 consumer mutation cannot alter catalog or peers",
+    "POR-5 unique architecture dimensions without color or seed",
+    "POR-5 deterministic distinct detail seed",
+    "POR-6 resolved identity and architecture",
+    "POR-6 four stand sides",
+    "POR-6 finite coherent dimensions and shelter",
+    "POR-6 repeated lookup stable",
+    "POR-6 independent lookup objects and arrays",
+    "POR-6 consumer mutation cannot alter catalog or peers",
+    "POR-6 unique architecture dimensions without color or seed",
+    "POR-6 deterministic distinct detail seed",
+    "POR-C1 resolved identity and architecture",
+    "POR-C1 four stand sides",
+    "POR-C1 finite coherent dimensions and shelter",
+    "POR-C1 repeated lookup stable",
+    "POR-C1 independent lookup objects and arrays",
+    "POR-C1 consumer mutation cannot alter catalog or peers",
+    "POR-C1 unique architecture dimensions without color or seed",
+    "POR-C1 deterministic distinct detail seed",
+    "POR-C2 resolved identity and architecture",
+    "POR-C2 four stand sides",
+    "POR-C2 finite coherent dimensions and shelter",
+    "POR-C2 repeated lookup stable",
+    "POR-C2 independent lookup objects and arrays",
+    "POR-C2 consumer mutation cannot alter catalog or peers",
+    "POR-C2 unique architecture dimensions without color or seed",
+    "POR-C2 deterministic distinct detail seed",
+    "eight architectural silhouettes covered",
+    "at least eight visible roof arrangements",
+    "mutating KnownClubIds does not alter catalog",
+    "null and empty identity use the same neutral ground",
+    "unknown IDs preserve identity with safe neutral architecture",
+    "case and whitespace aliases do not impersonate a known club",
+    "fallback arrays are independent",
+    "long unknown ID hashes without checked overflow",
+    "seed algorithm has fixed cross-process reference vectors",
+    "side mapping remains z-minus z-plus x-minus x-plus"
+  ]
+}
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:30)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/D6Cli.cs Line: 30)
+
+Worker ready: AssetImportWorkerHW0 0
+Exception: Stadium architecture: ITA-1 keeps the pitch, boards and goals clear below roof height
+  at StadiumArchitectureTests+<>c__DisplayClass10_0.<Run>g__Require|0 (System.Boolean ok, System.String name) [0x00020] in G:\unity\My project\Assets\Doppel6EngineProbe\Editor\StadiumArchitectureTests.cs:53 
+  at StadiumArchitectureTests.Run (System.String repository, System.String outputFolder) [0x0032f] in G:\unity\My project\Assets\Doppel6EngineProbe\Editor\StadiumArchitectureTests.cs:67 
+  at D6Cli.Tests () [0x000c4] in G:\unity\My project\Assets\Doppel6EngineProbe\Editor\D6Cli.cs:31 
+UnityEngine.StackTraceUtility:ExtractStringFromExceptionInternal(Object, String&, String&)
+UnityEngine.DebugLogHandler:Internal_LogException_Injected(Exception, IntPtr)
+UnityEngine.DebugLogHandler:Internal_LogException(Exception, Object)
+UnityEngine.DebugLogHandler:LogException(Exception, Object)
+UnityEngine.Logger:LogException(Exception, Object)
+UnityEngine.Debug:LogException(Exception)
+D6Cli:Tests() (at Assets\Doppel6EngineProbe\Editor\D6Cli.cs:34)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/D6Cli.cs Line: 34)
+
+[D6Cli] FAILED Stadium architecture: ITA-1 keeps the pitch, boards and goals clear below roof height
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+D6Cli:Done (bool,string) (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:13)
+D6Cli:Tests () (at Assets/Doppel6EngineProbe/Editor/D6Cli.cs:34)
+
+(Filename: Assets/Doppel6EngineProbe/Editor/D6Cli.cs Line: 13)
+
+MonoPathRemapper: Attempts to remap: 13761; Successful remaps: 4
+Serialized file version minimum: 23, current 23
+Pipeline Server stopped
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-alex-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-alex channel disconnected successfully.
+Shut down.
+Lingering sessions upon destruction of worker manager
+Unity Data Store service was successfully shut down
+UDS shutting down local client system
+Shut down UDS service system complete
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+abort_threads: Failed aborting id: 000000000000EF78, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000007F08, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 000000000000EF78, mono_thread_manage will ignore it
+
+abort_threads: Failed aborting id: 0000000000007F08, mono_thread_manage will ignore it
+
+debugger-agent: Unable to listen on 3400
+VBCSCompilerPreWarmer: requested VBCSCompiler shutdown
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1791545961304,"processId":55960,"allocatedMemory":15647622,"memoryLabels":[{"Default":191564},{"Permanent":15516},{"NewDelete":69983},{"Thread":4198064},{"Manager":34877},{"VertexData":8},{"Geometry":816},{"Texture":24},{"Shader":848190},{"Material":132},{"GfxDevice":55968},{"Animation":952},{"Audio":1272},{"FreeType":8},{"FontEngine":736},{"Physics":1970},{"Physics2D":16},{"Serialization":33088},{"Input":42840},{"JobScheduler":256},{"TextLib":336},{"Mono":48},{"MonoCode":64},{"ScriptingNativeRuntime":1331280},{"BaseObject":48784},{"Resource":1444},{"Renderer":2504},{"Transform":4685},{"File":7385},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":750740},{"StaticString":3808},{"Utility":2674806},{"Curl":2579},{"PoolAlloc":2264},{"AI":80},{"TypeTree":17165},{"ScriptManager":12656},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":7296},{"WebRequest":8659},{"VR":49650},{"SceneManager":608},{"Video":64},{"LazyScriptCache":32},{"Camera":729},{"Secure":2377},{"SerializationCache":9256},{"APIUpdating":10320},{"Subsystems":336},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":592},{"Hierarchy":1188},{"UIElements":40},{"CoreStats":14456},{"Identifiers":7152},{"Gui":128},{"EditorUtility":116019},{"VersionControl":8},{"Undo":931},{"AssetDatabase":4637154},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":40489},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":96},{"DrivenProperties":72},{"LocalIPC":210},{"ProfilerEditor":9746},{"CoreBusinessMetrics":3618},{"Windowing":456},{"Licensing":1264},{"AssetReference":32},{"IPCStream":32}]}

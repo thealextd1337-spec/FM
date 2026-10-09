@@ -1,0 +1,74 @@
+{
+  "name": "webgl-native-slide-visual",
+  "done": true,
+  "v": {
+    "run": {
+      "stopped": "when",
+      "minute": 25,
+      "score": [
+        0,
+        2
+      ]
+    },
+    "slide": {
+      "progress": 0.30769230769230776,
+      "pid": "unity-v160-large-6:GER-2:2"
+    },
+    "picture": [
+      {
+        "id": "unity-v160-large-6:GER-2:2",
+        "position": [
+          -11.708237526136157,
+          0,
+          -4.076338876612692
+        ],
+        "facing": [
+          -0.336719503797471,
+          0,
+          2.5459887050657235
+        ],
+        "moving": true,
+        "action": "slide",
+        "actionId": "slide:unity-v160-large-6:GER-2:2",
+        "contactPoint": [
+          -11.869623797187014,
+          0.29,
+          -2.856072100811962
+        ],
+        "recovery": 0,
+        "progress": 0.30769230769230776,
+        "duration": 0.65,
+        "number": 2,
+        "freshness": 0.8247403654877126
+      }
+    ],
+    "ack": {
+      "channel": "d6-world-view-1",
+      "session": "S1:GER:LEAGUE:R1:GER-4-GER-2:1:98f63628-5cc6-4950-a858-2be9b3766180",
+      "kind": "ack",
+      "message": "",
+      "sequence": 662,
+      "players": 14,
+      "clock": 64.54999999999848,
+      "ids": [
+        "unity-v160-large-6:GER-2:1",
+        "unity-v160-large-6:GER-2:2",
+        "unity-v160-large-6:GER-2:4",
+        "unity-v160-large-6:GER-2:8",
+        "unity-v160-large-6:GER-2:7",
+        "unity-v160-large-6:GER-2:10",
+        "unity-v160-large-6:GER-2:11",
+        "unity-v160-large-6:GER-4:1",
+        "unity-v160-large-6:GER-4:3",
+        "unity-v160-large-6:GER-4:Y0:1",
+        "unity-v160-large-6:GER-4:8",
+        "unity-v160-large-6:GER-4:6",
+        "unity-v160-large-6:GER-4:9",
+        "unity-v160-large-6:GER-4:10"
+      ]
+    },
+    "ready": true,
+    "error": null
+  },
+  "ms": 253966
+}

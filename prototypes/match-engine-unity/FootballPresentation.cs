@@ -6,14 +6,14 @@ public partial class ProbeBridge {
     public AnimationClip passClip,receiveClip,keeperHighClip,keeperDiveClip,keeperRiseClip;
     public AnimationClip walkClip,fastRunClip,sprintClip,backClip,brakeClip,turnLeftClip,turnRightClip;
     // Further existing clips of the same rig (football-v130.fbx); all optional.
-    public AnimationClip jogClip,fastBackClip,turnIdleLeftClip,turnIdleRightClip,turnWalkLeftClip,turnWalkRightClip,celebrateArmsClip,celebrateFistClip,celebrateVictoryClip,foulFallClip;
+    public AnimationClip jogClip,fastBackClip,turnIdleLeftClip,turnIdleRightClip,turnWalkLeftClip,turnWalkRightClip,celebrateArmsClip,celebrateFistClip,celebrateVictoryClip,foulFallClip,foulStumbleClip,keeperShuffleClip;
     readonly List<FootballAnimation> football=new List<FootballAnimation>();
     const double PassContact=.8,ReceiveContact=.7,ShotContact=.46;
     // Native foul windows last 2.7 s: measured fall (hips reach the ground near
     // 1.0 s of foul_fall_meshy) followed by the measured rise window of
     // keeper_rise_meshy (hips 0.37 m -> 1.30 m between 4.4 s and 6.3 s).
     const double FoulWindow=2.7,FoulFall=1.6,RiseFrom=4.4,RiseLength=1.9;
-    AnimationClip[] FootballClips(){return new[]{idleClip,runClip,keeperClip,keeperActionClip,shotClip,passClip,receiveClip,keeperHighClip,keeperDiveClip,keeperRiseClip,walkClip,fastRunClip,sprintClip,backClip,brakeClip,turnLeftClip,turnRightClip,jogClip,fastBackClip,turnIdleLeftClip,turnIdleRightClip,turnWalkLeftClip,turnWalkRightClip,celebrateArmsClip,celebrateFistClip,celebrateVictoryClip,foulFallClip};}
+    AnimationClip[] FootballClips(){return new[]{idleClip,runClip,keeperClip,keeperActionClip,shotClip,passClip,receiveClip,keeperHighClip,keeperDiveClip,keeperRiseClip,walkClip,fastRunClip,sprintClip,backClip,brakeClip,turnLeftClip,turnRightClip,jogClip,fastBackClip,turnIdleLeftClip,turnIdleRightClip,turnWalkLeftClip,turnWalkRightClip,celebrateArmsClip,celebrateFistClip,celebrateVictoryClip,foulFallClip,foulStumbleClip,keeperShuffleClip};}
     // The clip whose measured stride matches the observed speed band.
     AnimationClip StrideClip(string mode,bool carrying,bool keeper,bool fast){
         if(mode=="walk")return walkClip;if(mode=="sprint")return sprintClip;
@@ -51,6 +51,13 @@ public partial class ProbeBridge {
         bool turnOrBrake=locomotion.Mode=="brake"||locomotion.Mode.StartsWith("turn-");
         pose.time=locomotion.Mode=="idle"?f.clock+i*.09:turnOrBrake?TurnTime(pose.clip,locomotion.Phase):football[i].StrideTime(locomotion.StridePhase+i*.09,pose.clip);
         pose.loop=!turnOrBrake;
+        // Keeper side steps from observed lateral travel relative to the received
+        // facing. keeper_shuffle_meshy steps to the keeper's left; the right uses
+        // the same cycle reversed. Its measured cadence is slow, so 0.55 cycles
+        // per stride cycle keeps the steps readable.
+        if(identity.keeper&&keeperShuffleClip!=null&&!turnOrBrake&&Math.Abs(locomotion.Lateral)>.72f&&locomotion.Speed>.12f&&locomotion.Speed<4.1f){
+            double cycle=locomotion.StridePhase*.55*keeperShuffleClip.length;pose.clip=keeperShuffleClip;pose.time=locomotion.Lateral<0?cycle:-cycle;pose.loop=true;
+        }
         var strideClip=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride);double strideTime=locomotion.StrideMode=="idle"?f.clock+i*.09:football[i].StrideTime(locomotion.StridePhase+i*.09,strideClip);bool strideLoop=true;
         bool locomotionAction=string.IsNullOrEmpty(p.action)||p.action=="idle"||p.action=="run"||p.action=="running";
         if(locomotionAction&&pose.clip!=strideClip&&locomotion.Speed>.2f){pose.baseClip=strideClip;pose.baseTime=strideTime;pose.baseLoop=true;pose.actionWeight=locomotion.MotionWeight;}
@@ -70,6 +77,29 @@ public partial class ProbeBridge {
             double foul=progress*FoulWindow;
             if(foul<FoulFall){pose.clip=foulFallClip;pose.time=foul*1.15;}else{pose.clip=keeperRiseClip;pose.time=RiseFrom+(foul-FoulFall)/(FoulWindow-FoulFall)*RiseLength;}
             pose.loop=false;pose.baseClip=null;
+        }
+        else if((p.action=="slide"||p.action=="slideRecovery")&&!identity.keeper){
+            // Observed native slide (0.65 s) and its recovery. No slide clip
+            // exists on this rig: a frozen stride carries the procedural slide,
+            // then keeper_rise_meshy lifts the body from its measured low pose.
+            var aim=contactPoint??actors[i].position+actors[i].forward;
+            pose.leftLead=FootballDuelTiming.LeftLead(actors[i].InverseTransformPoint(aim),identity.number);pose.kind="slide";pose.urgent=true;pose.baseClip=null;
+            if(p.action=="slide"||keeperRiseClip==null){pose.clip=sprintClip??runClip;pose.time=football[i].StrideTime(pose.leftLead?.5:0,pose.clip);pose.loop=true;pose.slide=p.action=="slide"?FootballDuelTiming.Slide(progress):FootballDuelTiming.Recovery(progress);}
+            else{pose.clip=keeperRiseClip;pose.time=FootballDuelTiming.RiseTime(progress);pose.loop=false;pose.slide=FootballDuelTiming.Recovery(progress);}
+        }
+        else if(p.action=="tackle"){
+            // Standing tackle: the native contact is at progress 0; the foot reaches
+            // the actual ball, the body lunges and then follows through.
+            pose.clip=receiveClip;pose.time=ReceiveContact+age;pose.loop=false;pose.plant=runSpeeds[i]<.4&&age<.3;pose.contact=age<.12;
+            pose.kind=contactPoint.HasValue&&actors[i].InverseTransformPoint(contactPoint.Value).x<0?"left-foot":"foot";pose.lunge=FootballDuelTiming.Lunge(progress);
+        }
+        else if(p.action=="foulOffender"){
+            // The challenge lunge fades while the upright stumble plays; the body
+            // settles into its standing pose by the end of the 2.7 s window.
+            double foul=progress*FoulWindow;var stand=identity.keeper?keeperClip:idleClip;
+            if(foulStumbleClip!=null){pose.clip=foulStumbleClip;pose.time=Math.Min(foul,FootballDuelTiming.StumbleLength);pose.loop=false;pose.baseClip=stand;pose.baseTime=f.clock+i*.09;pose.baseLoop=true;pose.actionWeight=FootballDuelTiming.OffenderStumble(foul);}
+            else{pose.clip=stand;pose.time=f.clock+i*.09;pose.loop=true;pose.baseClip=null;}
+            pose.lunge=FootballDuelTiming.OffenderLunge(foul);
         }
         else if(identity.keeper&&p.action=="save"){
             pose.clip=p.contactPoint?.Length==3&&p.contactPoint[1]>1.6?keeperHighClip:p.contactPoint?.Length==3&&Math.Abs(p.contactPoint[2]-p.position[2])>1.2?keeperDiveClip:keeperActionClip;
@@ -91,7 +121,7 @@ public partial class ProbeBridge {
             // known, so its legs return promptly instead of holding a static kick.
             pose.baseClip=strideClip;pose.baseTime=strideLoop?strideTime:locomotion.Phase;pose.baseLoop=strideLoop;
             pose.actionWeight=FootballActionTiming.Weight(p.action,age,progress,locomotion.Speed);
-        }else if(carrying&&locomotion.Speed>.2f&&locomotion.Mode!="back"&&locomotion.Mode!="brake"&&!locomotion.Mode.StartsWith("turn-")){
+        }else if(locomotionAction&&carrying&&locomotion.Speed>.2f&&locomotion.Mode!="back"&&locomotion.Mode!="brake"&&!locomotion.Mode.StartsWith("turn-")){
             // Only a visual reach during an observed carrier stride: no extra ball
             // impulse, gameplay touch or predicted action is emitted. The swing leg
             // reaches shortly before the other foot's measured footfall.

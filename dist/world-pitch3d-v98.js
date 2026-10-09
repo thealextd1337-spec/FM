@@ -5,6 +5,16 @@ function v98PitchPoint(point,turned=false){
  const x=turned?1-point.x:point.x,y=turned?1-point.y:point.y;
  return {x:(.5-y)*68/(v55Field.bottom-v55Field.top),z:(x-.5)*44/(v55Field.right-v55Field.left)};
 }
+// Unity-only pose projection. The browser keeps its existing slide rig path.
+// Derive every phase from the native picture; never add a timer or saved state.
+function v161UnitySlide(current,person,turned){
+ if(!person.slideActive||person.keeper)return null;
+ const slide=current.slide?.tackler===person?current.slide:null;
+ const target=slide?slide.target:{x:person.x+(person.motionX||0),y:person.y+(person.motionY||0)};
+ const from=slide?slide.from:person,a=v98PitchPoint(from,turned),b=v98PitchPoint(target,turned);
+ const remaining=Math.max(0,(person.recoverUntil||0)-current.elapsed);
+ return {id:'slide:'+person.pid,kind:slide?'slide':'slideRecovery',progress:slide?Math.max(0,Math.min(1,slide.progress)):Math.max(0,Math.min(1,1-remaining/.6)),duration:slide ? .65 : .6/MATCH_SPEED,contactWorld:{...b,height:.29},facing:{x:b.x-a.x,z:b.z-a.z}};
+}
 function v98PitchFrame(current){
  const turned=Boolean(current.halftimeBreakDone),scene=current.goalPause>0&&current.goalScene;
  const actionBall=typeof v99BallView==='function'?v99BallView(current):null;
@@ -24,7 +34,7 @@ function v98PitchFrame(current){
  return {
   elapsed:current.elapsed,clock:typeof v102Clock==='function'?v102Clock(current):0,turned,broadcast:typeof v132Broadcast==='function'?v132Broadcast(current):null,
   celebration:scene?{id:current.goals.length,team:scene.team,time:Math.max(0,v83GoalSceneDuration-current.goalPause)}:null,
-  players:current.people.map(person=>{const mode=restartFacing&&person!==restartTaker?{mode:'restart',facing:rawBall}:(typeof v157Movement==='function'&&v157Movement(current,person))||(typeof v108MovementMode==='function'?v108MovementMode(current,person):null);return {id:person.pid,person,...(typeof v65WorldActive!=='undefined'&&v65WorldActive?.state.playerLoad&&current===match?{freshness:clamp(v65WorldActive.state.fresh[person.pid]/100,0,1)}:{}),team:person.t,number:person.n,keeper:person.keeper,slideActive:Boolean(person.slideActive),action:typeof v102PlayerAction==='function'?v102PlayerAction(current,person):null,movement:mode?{...mode,facing:v98PitchPoint(mode.facing,turned)}:null,...v98PitchPoint(person,turned)}}),
+  players:current.people.map(person=>{const mode=restartFacing&&person!==restartTaker?{mode:'restart',facing:rawBall}:(typeof v157Movement==='function'&&v157Movement(current,person))||(typeof v108MovementMode==='function'?v108MovementMode(current,person):null);return {id:person.pid,person,...(typeof v65WorldActive!=='undefined'&&v65WorldActive?.state.playerLoad&&current===match?{freshness:clamp(v65WorldActive.state.fresh[person.pid]/100,0,1)}:{}),team:person.t,number:person.n,keeper:person.keeper,slideActive:Boolean(person.slideActive),unityAction:v161UnitySlide(current,person,turned),action:typeof v102PlayerAction==='function'?v102PlayerAction(current,person):null,movement:mode?{...mode,facing:v98PitchPoint(mode.facing,turned)}:null,...v98PitchPoint(person,turned)}}),
   ball:{...ball,height:.29+Math.max(0,height),opacity:actionBall?.opacity??1},
   owner:current.owner?.pid||null,ballInFlight:Boolean(current.flight),carrying:Boolean(current.owner&&!scene&&!current.flight&&!current.rebound&&!current.setPiece&&!current.throwIn&&!current.kickoff&&!current.postBanner&&!current.halftimePause&&!current.finished),
   outOfPlayBall:Boolean(v99Actions.get(current)?.miss&&v99Actions.get(current).miss.age<1.15||v99Actions.get(current)?.outBall&&v102Clock(current)-v99Actions.get(current).outBall.at<1.15),

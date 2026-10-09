@@ -96,7 +96,7 @@ public partial class ProbeBridge {
             var pose=WorldFootballPose(p,f,i);football[i].Sample(pose,f.clock,lastWorldClock<0||f.clock<lastWorldClock);
             renderedPoses[i]=new WorldRenderedPose{id=p.id,clip=pose.clip.name,baseClip=pose.baseClip?.name,kind=pose.kind,time=pose.time,contact=pose.contact,reachable=football[i].rig.reachable,contactError=football[i].rig.contactError,plantError=football[i].rig.plantError,actionWeight=football[i].Weight(pose.clip),speed=worldLocomotion[i].Speed,motion=worldLocomotion[i].Mode,stridePhase=worldLocomotion[i].StridePhase};
         }
-        RenderWorldNet(f.netActive?f.net:null);lastWorldClock=f.clock;
+        RenderWorldNet(f.netActive?f.net:null);UpdateCrowd(f);lastWorldClock=f.clock;
     }
     void RenderWorldNet(WorldNet net){
         if(net==null&&!liveNetMoved)return;

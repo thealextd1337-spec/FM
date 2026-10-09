@@ -43,7 +43,7 @@ public partial class ProbeBridge {
         var go=new GameObject(name,typeof(MeshFilter),typeof(MeshRenderer));go.transform.SetParent(world,false);go.GetComponent<MeshFilter>().sharedMesh=mesh;go.GetComponent<MeshRenderer>().sharedMaterial=material;
     }
     void PitchSpot(string name,Vector3 at,Material material){
-        var go=GameObject.CreatePrimitive(PrimitiveType.Cylinder);go.name=name;go.transform.SetParent(world,false);go.transform.position=at;go.transform.localScale=new Vector3(.24f,.01f,.24f);go.GetComponent<Renderer>().sharedMaterial=material;Destroy(go.GetComponent<Collider>());
+        var go=GameObject.CreatePrimitive(PrimitiveType.Cylinder);go.name=name;go.transform.SetParent(world,false);go.transform.position=at;go.transform.localScale=new Vector3(.24f,.01f,.24f);go.GetComponent<Renderer>().sharedMaterial=material;DestroyVisual(go.GetComponent<Collider>());
     }
     void DecorateWorldPitch(){
         var g=worldView.Config.geometry;var line=Mat(new Color(.94f,.95f,.9f));
@@ -67,6 +67,6 @@ public partial class ProbeBridge {
         ballShadow.localScale=new Vector3(.31f,.003f,.31f);
     }
     Texture2D worldBallTexture;
-    void ClearWorldPresentation(){ClearStadium();if(worldBallTexture!=null)Destroy(worldBallTexture);worldBallTexture=null;playback=null;displayed=null;labelHeads=null;}
+    void ClearWorldPresentation(){ClearStadium();if(worldBallTexture!=null)DestroyVisual(worldBallTexture);worldBallTexture=null;playback=null;displayed=null;labelHeads=null;}
 }
 }

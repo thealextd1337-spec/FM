@@ -1,0 +1,65 @@
+# A02: reproduzierbarer Asset-/Animationsaudit
+
+Stand: 2026-10-09T11:17:25.517Z. **Keine neue visuelle Abnahme.** Vollständige JSON-Evidenz in `report.json`; jede Aktion enthält Trigger-, Clip-, Rig-, Kontakt- und Übergangsbelege.
+
+Original: 34 Clips, 28 Gelenke; 2 zusätzliche Pilotclips. Katalog enthält 27 nachweislich vorhandene Clips.
+
+present+integrated: 22; integrated-quality-defect: 8; missing: 9; present-unwired: 3; unproven: 6.
+
+- **stand — Stehen: present+integrated.** Measured footfall/stride/sole on rig at runtime; no ball contact.
+- **walk — Gehen: present+integrated.** Measured footfall/stride/sole on rig at runtime; no ball contact.
+- **run — Laufen/Joggen: present+integrated.** Measured footfall/stride/sole on rig at runtime; no ball contact.
+- **sprint — Sprint: present+integrated.** Measured footfall/stride/sole on rig at runtime; no ball contact.
+- **turn — Drehungen Stand/Gehen/Laufen: present+integrated.** Measured footfall/stride/sole on rig at runtime; no ball contact.
+- **brake — Bremsen: present+integrated.** Measured footfall/stride/sole on rig at runtime; no ball contact.
+- **backpedal — Rückwärtsbewegung: present+integrated.** back_right/back_step_meshy remain unused; backward gait does not prove lateral keeper shuffle.
+- **dribble — Dribbling/Ballführung: present+integrated.** No dedicated dribble source clip; suitability in tight space remains visual review.
+- **control — Bodenannahme/Kontrolle: present+integrated.** ReceiveContact=.7; post-release contact gate .09 s (receive .12 s), right-foot IK within 1.4 m root and 1 m current ball. Standing support-foot planting.
+- **receive — Passempfang: present+integrated.** ReceiveContact=.7; post-release contact gate .09 s (receive .12 s), right-foot IK within 1.4 m root and 1 m current ball. Standing support-foot planting.
+- **pass — Bodenpass: present+integrated.** PassContact=.8; post-release contact gate .09 s (receive .12 s), right-foot IK within 1.4 m root and 1 m current ball. Standing support-foot planting.
+- **high-pass — Hoher Pass: integrated-quality-defect.** Ground inside-pass pose reused for high delivery; authored crossing action absent.
+- **cross — Flanke: integrated-quality-defect.** Ground inside-pass pose reused for high delivery; authored crossing action absent.
+- **shot — Schuss: present+integrated.** ShotContact=.46; post-release contact gate .09 s (receive .12 s), right-foot IK within 1.4 m root and 1 m current ball. Standing support-foot planting.
+- **volley — Volley: integrated-quality-defect.** Volley uses ground-shot body/foot pose; no dedicated aerial preparation, height or authored volley family.
+- **pass-ready — Passvorbereitung: present+integrated.** Progress samples 0..0.8 s before contact; no invented ball release.
+- **kick-ready — Schussvorbereitung: present+integrated.** Progress samples 0..0.46 s before contact.
+- **header — Kopfball: integrated-quality-defect.** No authored takeoff/header/landing family; locomotion clip continues under head reach.
+- **air-ready — Luftballvorbereitung: integrated-quality-defect.** No aerial body preparation/takeoff clip.
+- **air-land — Landung nach Luftduell: missing.** No dedicated airLand selection or landing clip in current Unity action catalog.
+- **standing-tackle — Stehender Zweikampf: missing.** Browser reuses shot pose; current Unity has no tackle branch or dedicated tackle clip.
+- **slide-front — Grätsche von vorn: missing.** Native slide phase now reaches bridge. C# selector still must select a procedural or authored sliding body pose.
+- **slide-side — Grätsche von der Seite: missing.** Native slide phase now reaches bridge. C# selector still must select a procedural or authored sliding body pose.
+- **slide-back — Grätsche von hinten: missing.** Native slide phase now reaches bridge. C# selector still must select a procedural or authored sliding body pose.
+- **slide-gain — Grätsche: Ballgewinn: missing.** No source-verified separate Unity outcome animation/contact family; common slide pose may be enough, but actual outcomes need explicit visual fixtures.
+- **slide-deflect — Grätsche: freier/abgefälschter Ball: missing.** No source-verified separate Unity outcome animation/contact family; common slide pose may be enough, but actual outcomes need explicit visual fixtures.
+- **slide-miss — Grätsche: verfehlt: missing.** No source-verified separate Unity outcome animation/contact family; common slide pose may be enough, but actual outcomes need explicit visual fixtures.
+- **slide-foul — Grätsche: Foulkontakt: missing.** No source-verified separate Unity outcome animation/contact family; common slide pose may be enough, but actual outcomes need explicit visual fixtures.
+- **slide-recover — Grätsche: Aufstehen/Erholung: present-unwired.** Keeper rise exists as reuse candidate, but no current slideRecovery selector. Floor-to-rise compatibility unproven.
+- **foul-victim — Foulopfer: Sturz und Aufstehen: present+integrated.** A reused keeper rise after the fall needs floor/body continuity and contact checks on both sides.
+- **foul-offender — Foulverursacher/Stolpern: present-unwired.** Asset exists; current setup/catalog/pose do not assign/select it. Short suitable window must be measured before truncating the 11.37 s source clip.
+- **stumble-general — Stolpern außerhalb Foul: unproven.** No proven native independent stumble trigger; avoid inventing gameplay events merely for animation.
+- **keeper-ready — Torwartbereitschaft: present+integrated.** Current gaze/stance source exists; visible readiness before lateral action still needs review.
+- **keeper-shuffle — Seitlicher Torwartschritt: present-unwired.** Dedicated clip exists but is not in setup/catalog; keeper uses ordinary walk/run/back from observed motion. Select lateral movement without extra AI.
+- **keeper-save — Torwartparade allgemein: present+integrated.** Source thresholds are global-z based while hands/dive lean use local space. Angled orientations and both diving sides require actual review.
+- **keeper-dive — Seitliches Hechten: present+integrated.** Source thresholds are global-z based while hands/dive lean use local space. Angled orientations and both diving sides require actual review.
+- **keeper-high — Hohe Parade: present+integrated.** Source thresholds are global-z based while hands/dive lean use local space. Angled orientations and both diving sides require actual review.
+- **keeper-catch — Torwart fängt/hält: unproven.** Picture contract does not preserve saved/holding, so distinct catch/hold/secure sequence is not proven.
+- **keeper-rebound — Torwart Abpraller/Nachfassen: unproven.** Rebound ball remains visible from native frames; no explicit saved vs parry outcome passed and no authored follow-up family proven.
+- **keeper-rise — Torwart Aufstehen: present+integrated.** Separate foul rise uses short window, keeper uses full 8.23 s mapped recovery. Fallen pose and floor continuity require visual review.
+- **keeper-kick — Torwart Fußabspiel/Abstoß: integrated-quality-defect.** No pickup/ball hold/drop-kick preparation passed; dedicated distribution animation absent.
+- **keeper-throw — Torwart Wurf/Rollen: unproven.** No proven native keeperThrow action, no authored roll/throw clip. Existing throw denotes throw-in; do not assume keeper distribution is implemented.
+- **throw-in — Einwurf: integrated-quality-defect.** holding/pickup are discarded by picture contract; no full pickup/hold/windup/release follow-through sequence.
+- **corner — Eckball: integrated-quality-defect.** Corner preparation/delivery reuses ground-pass movement; dedicated corner clip not required if validated visually, but not yet validated here.
+- **free-kick — Freistoß: present+integrated.** No specialised free-kick clip; shot reuse needs ball placement/foot/plant review.
+- **penalty — Elfmeter: unproven.** Generic branch is present; full penalty-specific run-up/contact/keeper/result sequence not proven by this source audit.
+- **kickoff — Anstoß/Wiederanstoß: unproven.** Reuse pass is possible; dedicated native kickoff action path and complete sequence must be demonstrated in fixture.
+- **celebration — Torjubel: present+integrated.** Only booked scoring team while nearly stationary; scorer gets victory; replay/pause and return to restart require review.
+
+## Grenzen
+
+- present+integrated means bytes exist, setup assigns a clip, source selects it; it does not prove the active Editor scene, WebGL build, or visible quality.
+- Missing clip families refer to the audited 34 original + 2 pilot clips. Procedural alternatives remain possible without paid jobs.
+- integrated-quality-defect identifies demonstrable generic/partial source substitutions; visual severity is unmeasured.
+- No new rig/contact-phase measurement, rendered screenshot/video, device performance measurement or licence decision.
+- Source parser depends on explicit clip names and branch syntax. Unknown/unassigned catalog fields remain unproven; adapt when selector structure changes.
+- Native tackle result/legality remains authoritative; origin/outcome details are not inferred as new gameplay states.

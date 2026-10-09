@@ -27,6 +27,9 @@ public static class D6Cli {
             Debug.Log("[D6Cli] FootballMotionTests: "+FootballMotionTests.Run(repo));
             Debug.Log("[D6Cli] WorldViewTests: "+WorldViewTests.Run(repo));
             Debug.Log("[D6Cli] FootballGaitTests: "+FootballGaitTests.Run(repo));
+            Debug.Log("[D6Cli] ClubStadiumProfilesTests: "+Doppel6.Probe.ClubStadiumProfilesTests.Run(repo));
+            Debug.Log("[D6Cli] StadiumArchitectureTests: "+StadiumArchitectureTests.Run(repo));
+            Debug.Log("[D6Cli] FootballDuelTests: "+FootballDuelTests.Run(repo));
             Done(true,"tests finished");
         }catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
@@ -44,6 +47,17 @@ public static class D6Cli {
     // Measures footfall, ground speed and travel of the existing authored clips.
     public static void Clips(){
         try{var repo=Repo();Done(true,FootballClipDiagnostics.Run(repo));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+
+    // Actual world renderer evidence; use a graphics device, never -nographics.
+    public static void Evidence(){
+        string repo=null,message=null;bool ok=false;
+        try{repo=Repo();ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=UnityEvidenceDiagnostics.Run(repo);ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
+        Done(ok,message);
+    }
+    public static void DuelTests(){
+        try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,FootballDuelTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
 
     // WebGL build of the probe scene into outputs/platform/unity-web. Previous

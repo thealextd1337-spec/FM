@@ -1,0 +1,1106 @@
+﻿[
+    {
+        "ClubId":  "ENG-1",
+        "DisplayName":  "Regent Vale Gardens",
+        "Archetype":  "civic-bowl",
+        "FacadeMotif":  "brick-arcade",
+        "TierCounts":  [
+                           13,
+                           12,
+                           11,
+                           10
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          true
+                      ],
+        "StandDepth":  16.5,
+        "MastHeight":  34,
+        "RoofOverhang":  2.8,
+        "DetailSeed":  439681357,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ENG-2",
+        "DisplayName":  "Irwell Arena",
+        "Archetype":  "modern-ring",
+        "FacadeMotif":  "metal-fins",
+        "TierCounts":  [
+                           12,
+                           12,
+                           10,
+                           11
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          true
+                      ],
+        "StandDepth":  15.8,
+        "MastHeight":  32,
+        "RoofOverhang":  3.6,
+        "DetailSeed":  389348500,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ENG-3",
+        "DisplayName":  "Mersey Dock Ground",
+        "Archetype":  "dockside-ground",
+        "FacadeMotif":  "harbor-slat",
+        "TierCounts":  [
+                           11,
+                           9,
+                           10,
+                           7
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          false
+                      ],
+        "StandDepth":  13.2,
+        "MastHeight":  31,
+        "RoofOverhang":  2.1,
+        "DetailSeed":  406126119,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ENG-4",
+        "DisplayName":  "Works Assembly Park",
+        "Archetype":  "industrial-shed",
+        "FacadeMotif":  "steel-truss",
+        "TierCounts":  [
+                           10,
+                           8,
+                           7,
+                           8
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          true
+                      ],
+        "StandDepth":  11.8,
+        "MastHeight":  30,
+        "RoofOverhang":  2.4,
+        "DetailSeed":  355793262,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "ENG-5",
+        "DisplayName":  "Quay Riverside Park",
+        "Archetype":  "dockside-ground",
+        "FacadeMotif":  "brick-arcade",
+        "TierCounts":  [
+                           8,
+                           6,
+                           5,
+                           4
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          false
+                      ],
+        "StandDepth":  9.2,
+        "MastHeight":  25,
+        "RoofOverhang":  1.5,
+        "DetailSeed":  372570881,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "ENG-6",
+        "DisplayName":  "Wandle Meadow",
+        "Archetype":  "garden-ground",
+        "FacadeMotif":  "timber-rib",
+        "TierCounts":  [
+                           6,
+                           4,
+                           3,
+                           4
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          false,
+                          false
+                      ],
+        "StandDepth":  6.8,
+        "MastHeight":  21,
+        "RoofOverhang":  0.9,
+        "DetailSeed":  322238024,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "ENG-C1",
+        "DisplayName":  "Forge Yard",
+        "Archetype":  "industrial-shed",
+        "FacadeMotif":  "brick-arcade",
+        "TierCounts":  [
+                           6,
+                           5,
+                           4,
+                           3
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          false
+                      ],
+        "StandDepth":  7.2,
+        "MastHeight":  24,
+        "RoofOverhang":  1.2,
+        "DetailSeed":  842166226,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ENG-C2",
+        "DisplayName":  "Bay Terrace",
+        "Archetype":  "dockside-ground",
+        "FacadeMotif":  "harbor-slat",
+        "TierCounts":  [
+                           5,
+                           4,
+                           3,
+                           3
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          false,
+                          true
+                      ],
+        "StandDepth":  6.2,
+        "MastHeight":  22,
+        "RoofOverhang":  1.1,
+        "DetailSeed":  825388607,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "ESP-1",
+        "DisplayName":  "Central Colonnade",
+        "Archetype":  "civic-bowl",
+        "FacadeMotif":  "stone-colonnade",
+        "TierCounts":  [
+                           14,
+                           13,
+                           12,
+                           12
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          true
+                      ],
+        "StandDepth":  18.5,
+        "MastHeight":  36,
+        "RoofOverhang":  3.2,
+        "DetailSeed":  537864617,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ESP-2",
+        "DisplayName":  "Mar Mediterranean Arena",
+        "Archetype":  "modern-ring",
+        "FacadeMotif":  "tiled-parapet",
+        "TierCounts":  [
+                           13,
+                           12,
+                           11,
+                           12
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          true
+                      ],
+        "StandDepth":  17.2,
+        "MastHeight":  33,
+        "RoofOverhang":  3.8,
+        "DetailSeed":  487531760,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ESP-3",
+        "DisplayName":  "Turia Sun Terrace",
+        "Archetype":  "sun-terraces",
+        "FacadeMotif":  "limestone-step",
+        "TierCounts":  [
+                           11,
+                           8,
+                           8,
+                           7
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          false
+                      ],
+        "StandDepth":  12.8,
+        "MastHeight":  29,
+        "RoofOverhang":  2.5,
+        "DetailSeed":  504309379,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ESP-4",
+        "DisplayName":  "Union Patio Ground",
+        "Archetype":  "urban-court",
+        "FacadeMotif":  "tiled-parapet",
+        "TierCounts":  [
+                           12,
+                           9,
+                           8,
+                           9
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          true,
+                          true
+                      ],
+        "StandDepth":  13.4,
+        "MastHeight":  30,
+        "RoofOverhang":  1.8,
+        "DetailSeed":  588197474,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ESP-5",
+        "DisplayName":  "Delta Youth Park",
+        "Archetype":  "garden-ground",
+        "FacadeMotif":  "tiled-parapet",
+        "TierCounts":  [
+                           7,
+                           5,
+                           4,
+                           5
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          false,
+                          true
+                      ],
+        "StandDepth":  7.8,
+        "MastHeight":  23,
+        "RoofOverhang":  1.2,
+        "DetailSeed":  604975093,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "ESP-6",
+        "DisplayName":  "Atlantic Steps",
+        "Archetype":  "dockside-ground",
+        "FacadeMotif":  "stone-colonnade",
+        "TierCounts":  [
+                           7,
+                           6,
+                           5,
+                           4
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          false
+                      ],
+        "StandDepth":  8.6,
+        "MastHeight":  26,
+        "RoofOverhang":  1.7,
+        "DetailSeed":  554642236,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ESP-C1",
+        "DisplayName":  "Norte Courtyard",
+        "Archetype":  "sun-terraces",
+        "FacadeMotif":  "tiled-parapet",
+        "TierCounts":  [
+                           6,
+                           4,
+                           4,
+                           3
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          false,
+                          false
+                      ],
+        "StandDepth":  6.6,
+        "MastHeight":  22,
+        "RoofOverhang":  0.7,
+        "DetailSeed":  56778598,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ESP-C2",
+        "DisplayName":  "Costa Promenade",
+        "Archetype":  "dockside-ground",
+        "FacadeMotif":  "harbor-slat",
+        "TierCounts":  [
+                           5,
+                           5,
+                           3,
+                           4
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          true,
+                          false
+                      ],
+        "StandDepth":  6.4,
+        "MastHeight":  23,
+        "RoofOverhang":  1,
+        "DetailSeed":  40000979,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "FRA-1",
+        "DisplayName":  "Central Lumiere Arena",
+        "Archetype":  "modern-ring",
+        "FacadeMotif":  "metal-fins",
+        "TierCounts":  [
+                           13,
+                           13,
+                           12,
+                           11
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          true
+                      ],
+        "StandDepth":  18.2,
+        "MastHeight":  36,
+        "RoofOverhang":  3.9,
+        "DetailSeed":  1752230274,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "FRA-2",
+        "DisplayName":  "Union Harbour Bowl",
+        "Archetype":  "civic-bowl",
+        "FacadeMotif":  "limestone-step",
+        "TierCounts":  [
+                           12,
+                           11,
+                           10,
+                           9
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          false
+                      ],
+        "StandDepth":  15.2,
+        "MastHeight":  32,
+        "RoofOverhang":  2.8,
+        "DetailSeed":  1735452655,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "FRA-3",
+        "DisplayName":  "Rive Hillside",
+        "Archetype":  "hillside-ground",
+        "FacadeMotif":  "stone-colonnade",
+        "TierCounts":  [
+                           10,
+                           7,
+                           8,
+                           6
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          true,
+                          true
+                      ],
+        "StandDepth":  11.6,
+        "MastHeight":  29,
+        "RoofOverhang":  2.1,
+        "DetailSeed":  1718675036,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "FRA-4",
+        "DisplayName":  "Atlantic Arcade",
+        "Archetype":  "urban-court",
+        "FacadeMotif":  "stone-colonnade",
+        "TierCounts":  [
+                           11,
+                           8,
+                           7,
+                           8
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          true
+                      ],
+        "StandDepth":  12.2,
+        "MastHeight":  30,
+        "RoofOverhang":  1.9,
+        "DetailSeed":  1701897417,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "FRA-5",
+        "DisplayName":  "Union Youth Yard",
+        "Archetype":  "industrial-shed",
+        "FacadeMotif":  "brick-arcade",
+        "TierCounts":  [
+                           8,
+                           7,
+                           6,
+                           5
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          false
+                      ],
+        "StandDepth":  9.6,
+        "MastHeight":  27,
+        "RoofOverhang":  1.7,
+        "DetailSeed":  1685119798,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "FRA-6",
+        "DisplayName":  "Valmy City Garden",
+        "Archetype":  "urban-court",
+        "FacadeMotif":  "metal-fins",
+        "TierCounts":  [
+                           6,
+                           5,
+                           4,
+                           3
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          true,
+                          false
+                      ],
+        "StandDepth":  7.4,
+        "MastHeight":  23,
+        "RoofOverhang":  1.1,
+        "DetailSeed":  1668342179,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "FRA-C1",
+        "DisplayName":  "Garonne Meadow",
+        "Archetype":  "garden-ground",
+        "FacadeMotif":  "brick-arcade",
+        "TierCounts":  [
+                           5,
+                           5,
+                           4,
+                           3
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          false,
+                          false
+                      ],
+        "StandDepth":  6.7,
+        "MastHeight":  22,
+        "RoofOverhang":  0.9,
+        "DetailSeed":  820156039,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "FRA-C2",
+        "DisplayName":  "Nord Stone Court",
+        "Archetype":  "urban-court",
+        "FacadeMotif":  "stone-colonnade",
+        "TierCounts":  [
+                           6,
+                           4,
+                           4,
+                           3
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          false,
+                          true
+                      ],
+        "StandDepth":  6.8,
+        "MastHeight":  23,
+        "RoofOverhang":  1.2,
+        "DetailSeed":  836933658,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "GER-1",
+        "DisplayName":  "Isar Light Arena",
+        "Archetype":  "modern-ring",
+        "FacadeMotif":  "metal-fins",
+        "TierCounts":  [
+                           14,
+                           12,
+                           12,
+                           11
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          true
+                      ],
+        "StandDepth":  18,
+        "MastHeight":  35,
+        "RoofOverhang":  4,
+        "DetailSeed":  938718175,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "GER-2",
+        "DisplayName":  "Weser Dock Park",
+        "Archetype":  "dockside-ground",
+        "FacadeMotif":  "steel-truss",
+        "TierCounts":  [
+                           11,
+                           10,
+                           9,
+                           8
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          false
+                      ],
+        "StandDepth":  13.6,
+        "MastHeight":  31,
+        "RoofOverhang":  2.6,
+        "DetailSeed":  955495794,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "GER-3",
+        "DisplayName":  "Elbe Shipyard Stadium",
+        "Archetype":  "industrial-shed",
+        "FacadeMotif":  "harbor-slat",
+        "TierCounts":  [
+                           12,
+                           10,
+                           8,
+                           9
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          true
+                      ],
+        "StandDepth":  14.2,
+        "MastHeight":  33,
+        "RoofOverhang":  2.7,
+        "DetailSeed":  972273413,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "GER-4",
+        "DisplayName":  "Tal Forest Ground",
+        "Archetype":  "hillside-ground",
+        "FacadeMotif":  "timber-rib",
+        "TierCounts":  [
+                           9,
+                           6,
+                           6,
+                           5
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          true,
+                          true
+                      ],
+        "StandDepth":  9.8,
+        "MastHeight":  26,
+        "RoofOverhang":  1.8,
+        "DetailSeed":  854830080,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "GER-5",
+        "DisplayName":  "Rhein Civic Park",
+        "Archetype":  "civic-bowl",
+        "FacadeMotif":  "brick-arcade",
+        "TierCounts":  [
+                           9,
+                           8,
+                           7,
+                           6
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          false
+                      ],
+        "StandDepth":  10.6,
+        "MastHeight":  28,
+        "RoofOverhang":  2.2,
+        "DetailSeed":  871607699,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "GER-6",
+        "DisplayName":  "Au Meadow Court",
+        "Archetype":  "urban-court",
+        "FacadeMotif":  "timber-rib",
+        "TierCounts":  [
+                           6,
+                           5,
+                           4,
+                           4
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          true,
+                          false
+                      ],
+        "StandDepth":  7,
+        "MastHeight":  22,
+        "RoofOverhang":  0.9,
+        "DetailSeed":  888385318,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "GER-C1",
+        "DisplayName":  "Sued Community Park",
+        "Archetype":  "garden-ground",
+        "FacadeMotif":  "timber-rib",
+        "TierCounts":  [
+                           5,
+                           4,
+                           4,
+                           3
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          false,
+                          true
+                      ],
+        "StandDepth":  6.3,
+        "MastHeight":  21,
+        "RoofOverhang":  0.8,
+        "DetailSeed":  1874772588,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "GER-C2",
+        "DisplayName":  "Nord Brick Yard",
+        "Archetype":  "industrial-shed",
+        "FacadeMotif":  "brick-arcade",
+        "TierCounts":  [
+                           6,
+                           4,
+                           3,
+                           5
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          false,
+                          true
+                      ],
+        "StandDepth":  7.1,
+        "MastHeight":  24,
+        "RoofOverhang":  1.1,
+        "DetailSeed":  1925105445,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "ITA-1",
+        "DisplayName":  "Centrale Works Stadium",
+        "Archetype":  "industrial-shed",
+        "FacadeMotif":  "steel-truss",
+        "TierCounts":  [
+                           13,
+                           11,
+                           11,
+                           10
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          true
+                      ],
+        "StandDepth":  16.2,
+        "MastHeight":  35,
+        "RoofOverhang":  3,
+        "DetailSeed":  1507001409,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ITA-2",
+        "DisplayName":  "Ferro Ring",
+        "Archetype":  "modern-ring",
+        "FacadeMotif":  "steel-truss",
+        "TierCounts":  [
+                           12,
+                           13,
+                           10,
+                           10
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          true
+                      ],
+        "StandDepth":  16.8,
+        "MastHeight":  34,
+        "RoofOverhang":  3.5,
+        "DetailSeed":  1456668552,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "ITA-3",
+        "DisplayName":  "Capitol Forum",
+        "Archetype":  "civic-bowl",
+        "FacadeMotif":  "stone-colonnade",
+        "TierCounts":  [
+                           12,
+                           10,
+                           9,
+                           10
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          true
+                      ],
+        "StandDepth":  14.8,
+        "MastHeight":  33,
+        "RoofOverhang":  2.3,
+        "DetailSeed":  1473446171,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ITA-4",
+        "DisplayName":  "Collina Terrace",
+        "Archetype":  "hillside-ground",
+        "FacadeMotif":  "limestone-step",
+        "TierCounts":  [
+                           10,
+                           6,
+                           5,
+                           7
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          true,
+                          false
+                      ],
+        "StandDepth":  11.2,
+        "MastHeight":  27,
+        "RoofOverhang":  1.6,
+        "DetailSeed":  1557334266,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ITA-5",
+        "DisplayName":  "Navigli Court",
+        "Archetype":  "urban-court",
+        "FacadeMotif":  "brick-arcade",
+        "TierCounts":  [
+                           8,
+                           7,
+                           5,
+                           6
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          false
+                      ],
+        "StandDepth":  9.4,
+        "MastHeight":  25,
+        "RoofOverhang":  1.3,
+        "DetailSeed":  1574111885,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ITA-6",
+        "DisplayName":  "Sud Sun Bowl",
+        "Archetype":  "sun-terraces",
+        "FacadeMotif":  "stone-colonnade",
+        "TierCounts":  [
+                           11,
+                           9,
+                           8,
+                           6
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          true
+                      ],
+        "StandDepth":  12.6,
+        "MastHeight":  30,
+        "RoofOverhang":  2,
+        "DetailSeed":  1523779028,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "ITA-C1",
+        "DisplayName":  "Ovest Garden",
+        "Archetype":  "garden-ground",
+        "FacadeMotif":  "brick-arcade",
+        "TierCounts":  [
+                           6,
+                           5,
+                           3,
+                           4
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          true,
+                          false
+                      ],
+        "StandDepth":  6.9,
+        "MastHeight":  22,
+        "RoofOverhang":  1,
+        "DetailSeed":  1790186446,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "ITA-C2",
+        "DisplayName":  "Marina Steps",
+        "Archetype":  "sun-terraces",
+        "FacadeMotif":  "limestone-step",
+        "TierCounts":  [
+                           5,
+                           4,
+                           4,
+                           4
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          false,
+                          true
+                      ],
+        "StandDepth":  6.1,
+        "MastHeight":  21,
+        "RoofOverhang":  0.8,
+        "DetailSeed":  1773408827,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "POR-1",
+        "DisplayName":  "Central Tile Bowl",
+        "Archetype":  "civic-bowl",
+        "FacadeMotif":  "tiled-parapet",
+        "TierCounts":  [
+                           13,
+                           11,
+                           10,
+                           11
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          true
+                      ],
+        "StandDepth":  16.4,
+        "MastHeight":  33,
+        "RoofOverhang":  3.1,
+        "DetailSeed":  1259523248,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "POR-2",
+        "DisplayName":  "Ribeira River Arena",
+        "Archetype":  "modern-ring",
+        "FacadeMotif":  "harbor-slat",
+        "TierCounts":  [
+                           12,
+                           11,
+                           10,
+                           9
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          true
+                      ],
+        "StandDepth":  15.6,
+        "MastHeight":  32,
+        "RoofOverhang":  3.3,
+        "DetailSeed":  1309856105,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "POR-3",
+        "DisplayName":  "Tejo Civic Terrace",
+        "Archetype":  "sun-terraces",
+        "FacadeMotif":  "tiled-parapet",
+        "TierCounts":  [
+                           12,
+                           10,
+                           8,
+                           9
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          true,
+                          false
+                      ],
+        "StandDepth":  14.6,
+        "MastHeight":  31,
+        "RoofOverhang":  2.6,
+        "DetailSeed":  1293078486,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "POR-4",
+        "DisplayName":  "Norte Hillside Park",
+        "Archetype":  "hillside-ground",
+        "FacadeMotif":  "limestone-step",
+        "TierCounts":  [
+                           9,
+                           5,
+                           6,
+                           5
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          true,
+                          false
+                      ],
+        "StandDepth":  9.2,
+        "MastHeight":  25,
+        "RoofOverhang":  1.5,
+        "DetailSeed":  1343411343,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "POR-5",
+        "DisplayName":  "Athletic Scholar Court",
+        "Archetype":  "urban-court",
+        "FacadeMotif":  "stone-colonnade",
+        "TierCounts":  [
+                           8,
+                           6,
+                           5,
+                           5
+                       ],
+        "RoofSides":  [
+                          true,
+                          true,
+                          false,
+                          false
+                      ],
+        "StandDepth":  8.8,
+        "MastHeight":  25,
+        "RoofOverhang":  1.4,
+        "DetailSeed":  1326633724,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "POR-6",
+        "DisplayName":  "Costa Lagoon Ground",
+        "Archetype":  "dockside-ground",
+        "FacadeMotif":  "timber-rib",
+        "TierCounts":  [
+                           6,
+                           5,
+                           3,
+                           4
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          false,
+                          true
+                      ],
+        "StandDepth":  7.3,
+        "MastHeight":  23,
+        "RoofOverhang":  1,
+        "DetailSeed":  1376966581,
+        "CornerBuildings":  false
+    },
+    {
+        "ClubId":  "POR-C1",
+        "DisplayName":  "Central White Garden",
+        "Archetype":  "sun-terraces",
+        "FacadeMotif":  "tiled-parapet",
+        "TierCounts":  [
+                           5,
+                           4,
+                           3,
+                           4
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          true,
+                          false
+                      ],
+        "StandDepth":  6,
+        "MastHeight":  20,
+        "RoofOverhang":  0.6,
+        "DetailSeed":  1013169109,
+        "CornerBuildings":  true
+    },
+    {
+        "ClubId":  "POR-C2",
+        "DisplayName":  "Sul Sun Park",
+        "Archetype":  "garden-ground",
+        "FacadeMotif":  "limestone-step",
+        "TierCounts":  [
+                           5,
+                           3,
+                           3,
+                           4
+                       ],
+        "RoofSides":  [
+                          true,
+                          false,
+                          false,
+                          false
+                      ],
+        "StandDepth":  5.8,
+        "MastHeight":  20,
+        "RoofOverhang":  0.7,
+        "DetailSeed":  962836252,
+        "CornerBuildings":  false
+    }
+]

@@ -22,7 +22,8 @@ public static class FootballSetup {
         finally{EditorSceneManager.CloseScene(scene,true);UnityEngine.SceneManagement.SceneManager.SetActiveScene(previous);AssetDatabase.SaveAssets();}
     }
     // Assigns further existing clips of football-v130.fbx for gait bands, turns,
-    // fouls and celebrations. No clip, prefab or Meshy asset is created or changed.
+    // fouls (victim fall, offender stumble) and celebrations. No clip, prefab or
+    // Meshy asset is created or changed.
     public static string ConfigurePresentation(){
         const string baseAsset="Assets/Doppel6EngineProbe/Art/football-v130.fbx";
         AnimationClip Clip(string name){return Array.Find(AssetDatabase.LoadAllAssetsAtPath(baseAsset),a=>a is AnimationClip&&a.name==name) as AnimationClip??throw new InvalidOperationException("Missing football clip "+name);}
@@ -30,8 +31,8 @@ public static class FootballSetup {
         try{
             ProbeBridge bridge=null;foreach(var root in scene.GetRootGameObjects()){bridge=root.GetComponentInChildren<ProbeBridge>();if(bridge!=null)break;}if(bridge==null)throw new InvalidOperationException("ProbeBridge is missing");
             bridge.jogClip=Clip("run_fast6");bridge.fastBackClip=Clip("back_left");bridge.turnIdleLeftClip=Clip("turn_idle_left");bridge.turnIdleRightClip=Clip("turn_idle_right");bridge.turnWalkLeftClip=Clip("turn_walk_left");bridge.turnWalkRightClip=Clip("turn_walk_right");
-            bridge.celebrateArmsClip=Clip("celebrate_arms");bridge.celebrateFistClip=Clip("celebrate_fist");bridge.celebrateVictoryClip=Clip("celebrate_victory");bridge.foulFallClip=Clip("foul_fall_meshy");
-            EditorUtility.SetDirty(bridge);EditorSceneManager.SaveScene(scene);return "Ten further existing clips assigned";
+            bridge.celebrateArmsClip=Clip("celebrate_arms");bridge.celebrateFistClip=Clip("celebrate_fist");bridge.celebrateVictoryClip=Clip("celebrate_victory");bridge.foulFallClip=Clip("foul_fall_meshy");bridge.foulStumbleClip=Clip("foul_stumble_meshy");bridge.keeperShuffleClip=Clip("keeper_shuffle_meshy");
+            EditorUtility.SetDirty(bridge);EditorSceneManager.SaveScene(scene);return "Twelve further existing clips assigned";
         }finally{EditorSceneManager.CloseScene(scene,true);UnityEngine.SceneManagement.SceneManager.SetActiveScene(previous);AssetDatabase.SaveAssets();}
     }
 }

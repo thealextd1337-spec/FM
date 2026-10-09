@@ -103,6 +103,8 @@ jobs:
           node work/test-player-load-candidate-v158.cjs
           node work/test-native-career-v160.cjs
           node work/platform/qa/test-unity-integration-v160.cjs
+          node work/platform/qa/test-world-unity-contract.cjs
+          node work/platform/qa/test-world-unity-slides.cjs
           DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs
           DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs
           DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs

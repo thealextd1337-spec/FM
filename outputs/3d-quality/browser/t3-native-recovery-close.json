@@ -1,0 +1,44 @@
+{
+  "source": "Actual current native recovery; diagnostic camera only",
+  "actor": {
+    "id": "unity-v160-large-6:GER-2:2",
+    "position": [
+      -11.771995065316744,
+      0,
+      -3.594258175061786
+    ],
+    "facing": [
+      -0.029886346490904714,
+      0,
+      0.22597532885198923
+    ],
+    "moving": true,
+    "action": "slideRecovery",
+    "actionId": "slide:unity-v160-large-6:GER-2:2",
+    "contactPoint": [
+      -11.80188141180765,
+      0.29,
+      -3.3682828462097967
+    ],
+    "recovery": 0,
+    "progress": 0.43000000000000205,
+    "duration": 0.7692307692307692,
+    "number": 2,
+    "freshness": 0.8247403654877126
+  },
+  "camera": {
+    "position": [
+      -6.271995065316746,
+      2.500000000000001,
+      -2.194258175061785
+    ],
+    "target": [
+      -11.771995065316746,
+      0.7499999999999999,
+      -3.5942581750617855
+    ],
+    "fov": 42
+  },
+  "ready": true,
+  "error": null
+}

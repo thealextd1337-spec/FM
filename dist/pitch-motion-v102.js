@@ -116,7 +116,8 @@ function v102Interpolate(a,b,q){
   const before=old.get(p.id);if(!before)return {...p};
   const action=before.action?.id===p.action?.id&&before.action?.kind===p.action?.kind&&p.action?{...p.action,progress:lerp(before.action.progress,p.action.progress),recovery:lerp(before.action.recovery||0,p.action.recovery||0),...(Number.isFinite(before.action.age)&&Number.isFinite(p.action.age)?{age:lerp(before.action.age,p.action.age)}:{})}:q<1?before.action:p.action;
   const movement=before.movement?.mode===p.movement?.mode&&p.movement?{...p.movement,facing:{x:lerp(before.movement.facing.x,p.movement.facing.x),z:lerp(before.movement.facing.z,p.movement.facing.z)}}:p.movement;
-  return {...p,x:lerp(before.x,p.x),z:lerp(before.z,p.z),slideActive:before.slideActive,action,movement};
+  const unityAction=before.unityAction&&p.unityAction&&before.unityAction.id===p.unityAction.id&&before.unityAction.kind===p.unityAction.kind?{...p.unityAction,progress:lerp(before.unityAction.progress,p.unityAction.progress)}:before.unityAction;
+  return {...p,x:lerp(before.x,p.x),z:lerp(before.z,p.z),slideActive:before.slideActive,unityAction,action,movement};
  });
  // Ownership and its flags belong to the same buffered picture.
  const hiddenReset=Math.min(a.ball.opacity??1,b.ball.opacity??1)===0&&Math.hypot(a.ball.x-b.ball.x,a.ball.z-b.ball.z)>2;

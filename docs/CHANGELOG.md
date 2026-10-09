@@ -1,5 +1,27 @@
 # Änderungen
 
+## Noch nicht veröffentlicht
+
+## 9. Oktober 2026 – Release 115
+
+Vereinsstadien und Zweikampfqualität werden auf Nutzerauftrag veröffentlicht. Umfang, geprüfte Quellen und Live-Nachweise stehen in [Release 115](release-115.md). Accounts erhalten in dieser Lieferung ausschließlich die vorbereiteten Verträge.
+
+- 3D-Qualitätsiteration integriert: alle 48 Vereinsprofile erzeugen unterschiedliche Stadionarchitektur mit Tribünen, Dächern, Fassaden, Umgebung und Rasenvarianten; reduzierte Stufe und Kameraausblendung erhalten. Grätsche/Aufstehen, stehender Zweikampf, vorhandenes Foulstolpern und Torwartnachstellen sind angebunden. 396 Profil-, 560 Architektur- und 34 Rigprüfungen, 48 Unity-Renderbilder und WebGL-Build bestanden. 21 Browserprüfungen und eine vollständige große 14-Spieler-Partie bestätigen Pause, Wechsel, Rückschau, Fortsetzung und identische native Ergebnisse/Buchungen. Einen verfrühten Bewegungstest vor Ablauf des Anstoß-Countdowns korrigiert. Reale Geräte und weitere Luft-/Einwurf-/Keepersequenzen bleiben offen. [Umsetzung](platform/3d-quality-unity.md), [Abnahme und Grenzen](platform/3d-quality-validation.md).
+
+- Account-Vorlauf: anbieterunabhängige C01/C02-Vertragsentwürfe für Identität/Rechte, Elternstatus, accountgebundene Offlinefreigabe, Abmeldung, neue Karrierezuordnung sowie begrenzte private Adminstatistik/CSV geliefert. Bestätigte Entscheidungen und noch offene Integrations-/Betriebsfragen sind getrennt. Keine Auth-/UI-/Backendanbindung, echte Datenaufnahme oder Anbieterbuchung. [Verträge und nächste Entscheidungen](platform/account-preflight.md).
+
+- A02-Quellaudit ausgeführt: 34 Originalclips und zwei Pilotclips am tatsächlichen Rig geprüft, 48 Aktions-/Variantenzeilen mit getrennten Trigger-/Asset-/Unity-Belegen. Historische Baseline erhalten; abschließenden Lauf an echte bewegungsbasierte Keeper-/Carrier-Selektoren angepasst. 16 Audit-Prüffamilien bestanden. Aktuell 33 quellseitig angebundene Varianten, acht generische/teilweise Substitutionen, eine fehlende Luftlandung und sechs nicht nachgewiesene Folgen/Auslöser. Erledigte Grätschen-/Zweikampfanbindungen werden als visuelle Prüfaufträge geführt. Kein Dateiname wird als sichtbare Animationsabnahme ausgegeben. [Audit und Grenzen](platform/animation-quality-audit.md).
+
+- Vereinsstadien: deterministische visuelle Profile für alle 48 aktuellen Vereine mit acht Architekturtypen, acht Fassadenmotiven und je eigener Architekturkombination. Isolierte Profilkopien und neutraler Rückfall ohne Spielstand-/Zufallsänderung; 396 reine C#- und 197 unabhängige Katalogprüfungen bestanden. Sichtbare Unity-Integration und Kameranachweise sind separat belegt; reale Geräteabnahme bleibt offen. [Profile und Integration](platform/club-stadiums.md).
+
+- Grätschenprojektion: Die Unity-Brücke erhält aus vorhandenen Matchdaten Rutsch- und Erholungsphase samt Richtung/Kontaktziel. Bildpuffer und Feldskalierung übernehmen die reine Darstellung; Foulreaktionen behalten Vorrang. Bestehender Bildvertrag, gezielte Phasenprüfungen und zwei vollständige native Kontrollpartien mit Pause/Halbzeit/JSON-Fortsetzung bestanden; Zustands- und Buchungshashes identisch. Lokalen HTML-Build erzeugt. Die sichtbare Unity-Umsetzung ist getrennt nachgewiesen. [Nachweise](platform/native-slide-presentation.md).
+
+- Der priorisierte 3D-Plan enthält zusätzlich einen Animationsaudit: vorhandene Clips, Rig-Eignung, echte Unity-Matchanbindung und sichtbare Übergänge getrennt prüfen, insbesondere Grätschen, Fehlversuche, Foulreaktionen und Aufstehen. Die Fachspuren für Unity, Stadionprofile und Audit wurden ausgeführt; aktuelle Lieferungen und Restarbeit stehen in der [Abnahme](platform/3d-quality-validation.md).
+
+- Agenda vom 9. Oktober 2026: Die Qualität des 3D-Erlebnisses steht an erster Stelle; schönere, unterschiedliche Stadien je Verein gehören zum Ausbau. Accounts folgen als zweite Priorität. Stadiongestaltung, Bewegung/Kontakte sowie Kamera/Performance haben getrennte Fachspuren mit serieller Integration. Der erste lokale Darstellungsumfang ist inzwischen geliefert; keine Veröffentlichung. Spielerporträts und Jubelbilder bleiben ausgenommen.
+
+- Produktentscheidung vom 9. Oktober 2026: Spielerporträts und Jubelbilder entfallen auf Nutzerwunsch. Ihre frühere Qualitätsfreigabe und der Bildpool-Ausbau gehören nicht mehr zum Redesign-Plan. Der Beschluss ist in den Produktregeln festgehalten; keine Laufzeitänderung, Veröffentlichung oder Umrechnung bestehender Spielstände.
+
 ## 9. Oktober 2026 – Release 114
 
 Release 114 ist live veröffentlicht. Deployment, sieben bytegenaue Live-Dateiabgleiche und je zwölf T3-Browserprüfungen vor und nach Reload bestanden; Nutzerkarrieren unverändert. [Veröffentlichungsnachweis](release-114.md#veröffentlichung-und-live-abnahme).
