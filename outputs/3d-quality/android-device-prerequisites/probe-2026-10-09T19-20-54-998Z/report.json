@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "mode": "probe",
+  "status": "blocked",
+  "pass": false,
+  "hardwarePass": false,
+  "started": "2026-10-09T19:20:55.000Z",
+  "prerequisites": {
+    "nodeMajor": 24,
+    "nodeSupported": true,
+    "buildAvailable": true,
+    "playwrightAvailable": true,
+    "adbAvailable": false
+  },
+  "samples": [],
+  "manual": [
+    "Real app switch and return; wake-lock reacquisition and unchanged native match state",
+    "Visual readability of names, team rings and ball in landscape; interaction and keeper animations"
+  ],
+  "limitations": [
+    "No GPU presentation or per-frame GPU timing measurement",
+    "No performance acceptance threshold or full device acceptance is inferred from loop counters"
+  ],
+  "build": {
+    "sourceId": "1169b35efb3e4fb497871ab7785c43423321839fdd03a3037f71db534551d06c"
+  },
+  "reason": "ADB missing: install/locate Platform Tools yourself and use --adb; no SDK download performed",
+  "cleanup": {
+    "failures": []
+  },
+  "finished": "2026-10-09T19:20:55.004Z"
+}

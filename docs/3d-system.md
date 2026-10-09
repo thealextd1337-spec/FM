@@ -1,6 +1,6 @@
 # Das 3D-System von Doppel 6
 
-Systemstand: Kleinfelditeration v162 mit Unity-Darstellung, Spielversion 117. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
+Systemstand: Kleinfelditeration v162 mit Unity-Darstellung, Spielversion 118. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
 
 ## Unity-Darstellung
 
@@ -71,6 +71,8 @@ Bei einer Grätsche prüft die Engine Körper- und Ballnähe während der Bewegu
 world-space-passes-v150.js bewertet freie Ziele, Passwege und Ankunftszeiten getrennt vom bisherigen empfängerbezogenen Pass. Passspiel bestimmt Streuung und Dosierung; Technik ergänzt die Ausführung unter Druck. Stellungsspiel beeinflusst die Laufreaktion, Geschwindigkeit und Kondition das Erreichen. Teamtaktik und Tiefen-/Außenläufe gewichten die Wahl. Beide Teams verfolgen erreichbare Punkte der verbleibenden Bahn. Der gemeinsame Bewegungsschritt prüft die tatsächlichen Ball- und Spielerwege; auch ein anderer Mitspieler oder Torwart kann zuerst Kontakt herstellen. Ohne Kontakt rollt der Ball frei weiter. Abseits wird beim Abspiel gespeichert und erst bei Beteiligung gepfiffen. Nur neue noch freie Raumpässe speichern einen einfachen Absichtsdatensatz für das Fortsetzen nach dem Laden; historische Ereignisse werden nicht rekonstruiert. [Prüfungen und Grenzen](raumpaesse-v150.md).
 
 ## Torwartkette
+
+Die Unity-Bilder enthalten vorhandene Fang-/Abwehrergebnisse, Nachfasskennungen und die native Abspielphase. Ein abgewehrter Schuss zählt als Parade, aber nicht als gehaltener Ball. Beim bestätigten Nachfassen folgt die Darstellung dessen eigenem Kontaktpunkt. Die Simulation entscheidet weiterhin Besitz, Flug und Abspiel; es gibt keinen neuen Wurf-/Rollauslöser oder zusätzliche Torwartuhr. Geräteprüfungen unterscheiden Unity-Schleifenrate und Browser-Bildtakt; eine echte Android-Freigabe erfordert weiterhin angeschlossene Hardware.
 
 Bereitschaft und Sidesteps richten den Körper zum Ball aus. Stationärer Torwartstand verwendet auch bei entfernten Bällen tiefe offene Hände und gebeugte Knie; allgemeine Feldspieler-Drehclips überschreiben diese Ausrichtung nicht.
 

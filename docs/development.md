@@ -8,6 +8,8 @@ Für die Expansion auf sechs Länder müssen bisherige Spielstände nicht kompat
 
 ## Code, Prüfung und Veröffentlichung
 
+- Release-118-Kandidat: vorhandene Keeperergebnisse und Flight-/Abspielphasen bleiben optionale Bilddaten. Nachfassen verwendet den tatsächlichen Challengekontakt; eine gezählte Parade allein ist kein Fang. Aktionskennungen bleiben erhalten. Android-QA läuft ausschließlich auf eigener Loopback-Seite und physischer Hardware, ohne bestehende Tabs oder System-Wachhalteinstellungen zu verändern. Mittelwerte aus Unity-Zähler/Echtzeit und Browser-rAF sind getrennte Kennzahlen; Halbzeit beendet einen durchgehenden Wake-Lock-Nachweis. [Umfang und Prüflimits](release-118.md).
+
 - Release 117 erweitert ausschließlich die Darstellung: optionale `holding`/`pickup`/`aerial`-Bildfelder stammen aus vorhandenen nativen Aktionen, `airLand` war bereits angebunden. Unity unterscheidet fehlendes `holding` von explizitem `false`; das tatsächliche Release-Paket enthält kein `pickup`. Die Ballhilfe liest `WorldProjection.ballMarker` derselben gerenderten Kamera und bleibt außerhalb von Match-/Speicherdaten. Keine zweite Aktionsuhr, Ballautorität oder neue Zufallsziehung. [Freigabe und Nachweise](release-117.md).
 
 - 3D-Namensarbeit in Release 117: Bildschirmplatzierung und Kopfverbindungen gehören ausschließlich zur Browserdarstellung in `world-unity-v151.js`; tatsächliche Kopfanker kommen weiterhin aus Unity. Keine Match-/Speicher-/Kameraregeln ergänzen. Reine Layoutprüfung im Produktionsworkflow, tatsächliche kleine HTML-Build-Ansicht und native Parität separat: [Umfang und Nachweise](platform/3d-readability-iteration.md).

@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- Release-118-Kandidat: Torwartparaden, Landung, Erholung und Aufstehen verwenden passende Clipphasen; Abstoß mit Vorbereitung und Ausklang. Bestätigtes Nachfassen verwendet seinen eigenen Kontakt statt einer älteren Parade; optionale Keeperfakten bleiben in der Unity-Brücke erhalten. Halten setzt bekannte Fakten, Besitz und erreichbaren Ball voraus. 160 gezielte Unity- und 13 Kontakt-/Brückenprüfungen, alle zwölf Unity-Suiten und 89 Produktionskommandos bestanden; keine neuen Spielregeln oder Altstandumrechnung. Android-Prüfweg für echtes USB-Chrome mit 14 Spielern, natürlichem Timer, Buildhashes und getrennten Leistungs-/Wachhaltebelegen bereitgestellt; tatsächliche Geräte fehlen. Account-Betriebsauswahl mit aktuellen offiziellen Quellen vorbereitet. Native Fangposition, einzelne späte Posewechsel und natürliche vollständige Keeperfolgen bleiben offen. [Stand und Grenzen](release-118.md).
+
 ## 9. Oktober 2026 – Release 117
 
 Auf Nutzerauftrag „Umsetzen und live stellen“ als Release 117 veröffentlicht und live abgenommen. Produktionsworkflow, 64 Release-/Live-Prüfungen, mobile Bedienung und eine vollständige native/Unity-Livevergleichspartie mit identischen 14 Zustands-/Buchungsteilen bestanden. [Releasebericht](release-117.md).

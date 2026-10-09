@@ -70,6 +70,8 @@ outputs/release-115/tmp/
 outputs/release-116/tmp/
 !outputs/release-117/
 outputs/release-117/tmp/
+!outputs/release-118/
+outputs/release-118/tmp/
 !outputs/3d-quality/
 outputs/3d-quality/**/tmp/
 outputs/3d-quality/iteration-117/renders-attempt*/

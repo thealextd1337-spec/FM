@@ -1,0 +1,1404 @@
+[
+ {
+  "file": "windows-160112-standard-5-00.json",
+  "from": 841,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": false,
+  "facing": [
+   0.24,
+   0,
+   -0.97
+  ],
+  "position": [
+   -32.71,
+   0,
+   -0.68
+  ],
+  "contact": [
+   -32.25,
+   0.29,
+   -1.14
+  ],
+  "lateral": -0.33,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160112-standard-5-01.json",
+  "from": 1664,
+  "action": "save",
+  "actionId": "save",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   0.17,
+   0,
+   0.99
+  ],
+  "position": [
+   31.12,
+   0,
+   -1.19
+  ],
+  "contact": [
+   30.81,
+   1.35,
+   0.21
+  ],
+  "lateral": -0.55,
+  "ownerSteps": 0,
+  "flightSteps": 15,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false",
+   "true"
+  ],
+  "parry": [
+   "true"
+  ],
+  "goal": [
+   "false"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160112-standard-5-02.json",
+  "from": 2177,
+  "action": "save",
+  "actionId": "save",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   0,
+   0,
+   -1
+  ],
+  "position": [
+   -31.45,
+   0,
+   2.14
+  ],
+  "contact": [
+   -30.84,
+   2.7,
+   1.06
+  ],
+  "lateral": -0.61,
+  "ownerSteps": 0,
+  "flightSteps": 15,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false",
+   "true"
+  ],
+  "parry": [
+   "true"
+  ],
+  "goal": [
+   "false"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160112-standard-5-03.json",
+  "from": 2439,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   -0.27,
+   0,
+   0.96
+  ],
+  "position": [
+   -31.03,
+   0,
+   0.34
+  ],
+  "contact": [
+   -30.52,
+   0.29,
+   0.74
+  ],
+  "lateral": 0.6,
+  "ownerSteps": 27,
+  "flightSteps": 9,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160113-standard-5-00.json",
+  "from": 309,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 38,
+  "turned": false,
+  "facing": [
+   0.43,
+   0,
+   -0.9
+  ],
+  "position": [
+   29.64,
+   0,
+   2.6
+  ],
+  "contact": [
+   28.99,
+   0.29,
+   2.65
+  ],
+  "lateral": 0.56,
+  "ownerSteps": 28,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160113-standard-5-01.json",
+  "from": 975,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": false,
+  "facing": [
+   0.4,
+   0,
+   -0.91
+  ],
+  "position": [
+   -31.55,
+   0,
+   -1.45
+  ],
+  "contact": [
+   -31.14,
+   0.29,
+   -1.96
+  ],
+  "lateral": -0.17,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160113-standard-5-02.json",
+  "from": 1299,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   -0.14,
+   0,
+   -0.99
+  ],
+  "position": [
+   31.03,
+   0,
+   -0.37
+  ],
+  "contact": [
+   30.6,
+   0.29,
+   0.12
+  ],
+  "lateral": 0.5,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160113-standard-5-03.json",
+  "from": 2270,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   -0.01,
+   0,
+   -1
+  ],
+  "position": [
+   -31.44,
+   0,
+   -0.48
+  ],
+  "contact": [
+   -30.81,
+   0.29,
+   -0.65
+  ],
+  "lateral": -0.63,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160113-standard-5-04.json",
+  "from": 2639,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   -0.61,
+   0,
+   0.79
+  ],
+  "position": [
+   31.68,
+   0,
+   1.51
+  ],
+  "contact": [
+   31.07,
+   0.29,
+   1.29
+  ],
+  "lateral": -0.62,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160114-large-6-00.json",
+  "from": 257,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 38,
+  "turned": false,
+  "facing": [
+   0.03,
+   0,
+   1
+  ],
+  "position": [
+   37.52,
+   0,
+   1.04
+  ],
+  "contact": [
+   37.09,
+   0.29,
+   1.53
+  ],
+  "lateral": -0.45,
+  "ownerSteps": 28,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160114-large-6-01.json",
+  "from": 896,
+  "action": "save",
+  "actionId": "save",
+  "steps": 38,
+  "turned": false,
+  "facing": [
+   -1,
+   0,
+   0.07
+  ],
+  "position": [
+   38.55,
+   0,
+   -0.32
+  ],
+  "contact": [
+   38.55,
+   0.46,
+   0.9
+  ],
+  "lateral": 1.22,
+  "ownerSteps": 0,
+  "flightSteps": 7,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false"
+  ],
+  "parry": [
+   "false"
+  ],
+  "goal": [
+   "true"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160114-large-6-02.json",
+  "from": 1536,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": false,
+  "facing": [
+   0.26,
+   0,
+   0.97
+  ],
+  "position": [
+   -37.29,
+   0,
+   1.16
+  ],
+  "contact": [
+   -36.71,
+   0.29,
+   0.87
+  ],
+  "lateral": 0.64,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160114-large-6-03.json",
+  "from": 2085,
+  "action": "save",
+  "actionId": "save",
+  "steps": 38,
+  "turned": true,
+  "facing": [
+   -1,
+   0,
+   0.01
+  ],
+  "position": [
+   39.14,
+   0,
+   -0.25
+  ],
+  "contact": [
+   39.14,
+   1.33,
+   -2.85
+  ],
+  "lateral": -2.6,
+  "ownerSteps": 0,
+  "flightSteps": 7,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false"
+  ],
+  "parry": [
+   "false"
+  ],
+  "goal": [
+   "true"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160114-large-6-04.json",
+  "from": 2540,
+  "action": "save",
+  "actionId": "save",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   0.52,
+   0,
+   -0.85
+  ],
+  "position": [
+   -39.42,
+   0,
+   0.14
+  ],
+  "contact": [
+   -39.42,
+   1.35,
+   1.66
+  ],
+  "lateral": -0.79,
+  "ownerSteps": 0,
+  "flightSteps": 16,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false",
+   "true"
+  ],
+  "parry": [
+   "true"
+  ],
+  "goal": [
+   "false"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160114-large-6-04.json",
+  "from": 2709,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   0.39,
+   0,
+   0.92
+  ],
+  "position": [
+   -38.1,
+   0,
+   0.72
+  ],
+  "contact": [
+   -37.46,
+   0.29,
+   0.84
+  ],
+  "lateral": 0.54,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160114-large-6-05.json",
+  "from": 3269,
+  "action": "save",
+  "actionId": "save",
+  "steps": 39,
+  "turned": true,
+  "facing": [
+   -0.82,
+   0,
+   0.57
+  ],
+  "position": [
+   38.45,
+   0,
+   -2.78
+  ],
+  "contact": [
+   38.45,
+   2.72,
+   2.71
+  ],
+  "lateral": 4.5,
+  "ownerSteps": 0,
+  "flightSteps": 8,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false"
+  ],
+  "parry": [
+   "false"
+  ],
+  "goal": [
+   "true"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160115-large-6-00.json",
+  "from": 630,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 38,
+  "turned": false,
+  "facing": [
+   0.83,
+   0,
+   -0.56
+  ],
+  "position": [
+   -38.81,
+   0,
+   -1.13
+  ],
+  "contact": [
+   -38.62,
+   0.29,
+   -1.75
+  ],
+  "lateral": 0.41,
+  "ownerSteps": 28,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160115-large-6-01.json",
+  "from": 1060,
+  "action": "save",
+  "actionId": "save",
+  "steps": 39,
+  "turned": false,
+  "facing": [
+   -0.45,
+   0,
+   -0.89
+  ],
+  "position": [
+   38.97,
+   0,
+   -0.28
+  ],
+  "contact": [
+   38.97,
+   0.46,
+   -2.18
+  ],
+  "lateral": -0.86,
+  "ownerSteps": 0,
+  "flightSteps": 8,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false"
+  ],
+  "parry": [
+   "false"
+  ],
+  "goal": [
+   "true"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160115-large-6-02.json",
+  "from": 1819,
+  "action": "save",
+  "actionId": "save",
+  "steps": 37,
+  "turned": false,
+  "facing": [
+   0,
+   0,
+   -1
+  ],
+  "position": [
+   38.79,
+   0,
+   -0.49
+  ],
+  "contact": [
+   38.92,
+   1.35,
+   -1.62
+  ],
+  "lateral": -0.12,
+  "ownerSteps": 0,
+  "flightSteps": 16,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false",
+   "true"
+  ],
+  "parry": [
+   "true"
+  ],
+  "goal": [
+   "false"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160115-large-6-03.json",
+  "from": 2089,
+  "action": "save",
+  "actionId": "save",
+  "steps": 39,
+  "turned": true,
+  "facing": [
+   0,
+   0,
+   1
+  ],
+  "position": [
+   38.47,
+   0,
+   -0.64
+  ],
+  "contact": [
+   38.47,
+   0.64,
+   3.45
+  ],
+  "lateral": 0,
+  "ownerSteps": 0,
+  "flightSteps": 8,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false"
+  ],
+  "parry": [
+   "false"
+  ],
+  "goal": [
+   "true"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160115-large-6-04.json",
+  "from": 3004,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 58,
+  "turned": true,
+  "facing": [
+   0.66,
+   0,
+   0.75
+  ],
+  "position": [
+   38.55,
+   0,
+   -1.88
+  ],
+  "contact": [
+   37.94,
+   0.29,
+   -1.66
+  ],
+  "lateral": -0.6,
+  "ownerSteps": 48,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160115-large-6-05.json",
+  "from": 3502,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   -0.09,
+   0,
+   -1
+  ],
+  "position": [
+   -37.43,
+   0,
+   2.05
+  ],
+  "contact": [
+   -36.88,
+   0.29,
+   1.71
+  ],
+  "lateral": -0.58,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160116-standard-5-00.json",
+  "from": 263,
+  "action": "save",
+  "actionId": "save",
+  "steps": 39,
+  "turned": false,
+  "facing": [
+   -0.81,
+   0,
+   0.58
+  ],
+  "position": [
+   31.12,
+   0,
+   3.1
+  ],
+  "contact": [
+   31.12,
+   1.9,
+   1.73
+  ],
+  "lateral": -1.11,
+  "ownerSteps": 0,
+  "flightSteps": 8,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false"
+  ],
+  "parry": [
+   "false"
+  ],
+  "goal": [
+   "true"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160116-standard-5-01.json",
+  "from": 838,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 38,
+  "turned": false,
+  "facing": [
+   -0.3,
+   0,
+   -0.95
+  ],
+  "position": [
+   -29.73,
+   0,
+   3.51
+  ],
+  "contact": [
+   -29.09,
+   0.29,
+   3.42
+  ],
+  "lateral": -0.64,
+  "ownerSteps": 28,
+  "flightSteps": 9,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160116-standard-5-02.json",
+  "from": 1171,
+  "action": "save",
+  "actionId": "save",
+  "steps": 38,
+  "turned": false,
+  "facing": [
+   -0.29,
+   0,
+   -0.96
+  ],
+  "position": [
+   32.36,
+   0,
+   0.78
+  ],
+  "contact": [
+   32.36,
+   0.45,
+   3.35
+  ],
+  "lateral": 0.76,
+  "ownerSteps": 0,
+  "flightSteps": 7,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false"
+  ],
+  "parry": [
+   "false"
+  ],
+  "goal": [
+   "true"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160116-standard-5-03.json",
+  "from": 1746,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": false,
+  "facing": [
+   -0.33,
+   0,
+   -0.94
+  ],
+  "position": [
+   -31.34,
+   0,
+   -1.99
+  ],
+  "contact": [
+   -30.77,
+   0.29,
+   -1.67
+  ],
+  "lateral": -0.43,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160116-standard-5-04.json",
+  "from": 2648,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   -0.26,
+   0,
+   -0.97
+  ],
+  "position": [
+   31.7,
+   0,
+   -0.84
+  ],
+  "contact": [
+   31.17,
+   0.29,
+   -0.46
+  ],
+  "lateral": 0.61,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160116-standard-5-05.json",
+  "from": 3169,
+  "action": "save",
+  "actionId": "save",
+  "steps": 39,
+  "turned": true,
+  "facing": [
+   0,
+   0,
+   1
+  ],
+  "position": [
+   -31.7,
+   0,
+   -0.63
+  ],
+  "contact": [
+   -31.7,
+   1.64,
+   2.7
+  ],
+  "lateral": 0,
+  "ownerSteps": 0,
+  "flightSteps": 8,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0.97,
+  "saved": [
+   "false"
+  ],
+  "parry": [
+   "false"
+  ],
+  "goal": [
+   "true"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "undefined"
+  ],
+  "phase": [
+   "undefined"
+  ]
+ },
+ {
+  "file": "windows-160116-standard-5-06.json",
+  "from": 3679,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   -0.98,
+   0,
+   0.21
+  ],
+  "position": [
+   31.36,
+   0,
+   -0.55
+  ],
+  "contact": [
+   30.76,
+   0.29,
+   -0.8
+  ],
+  "lateral": -0.37,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ },
+ {
+  "file": "windows-160116-standard-5-07.json",
+  "from": 4171,
+  "action": "goalKick",
+  "actionId": "goalKick",
+  "steps": 37,
+  "turned": true,
+  "facing": [
+   0.11,
+   0,
+   -0.99
+  ],
+  "position": [
+   31.12,
+   0,
+   0.9
+  ],
+  "contact": [
+   30.75,
+   0.29,
+   0.37
+  ],
+  "lateral": 0.43,
+  "ownerSteps": 27,
+  "flightSteps": 10,
+  "ownedWithRecovery": 0,
+  "maxRecovery": 0,
+  "saved": [
+   "undefined"
+  ],
+  "parry": [
+   "undefined"
+  ],
+  "goal": [
+   "undefined"
+  ],
+  "smother": [
+   "undefined"
+  ],
+  "held": [
+   "false"
+  ],
+  "phase": [
+   "waiting",
+   "follow"
+  ]
+ }
+]

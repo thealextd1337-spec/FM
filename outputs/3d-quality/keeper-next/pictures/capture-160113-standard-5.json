@@ -1,0 +1,16 @@
+{
+ "seed": 160113,
+ "fieldSize": "standard",
+ "fieldPlayers": 5,
+ "page": "http://127.0.0.1:4591/source/index.html?engine=unity",
+ "windows": 5,
+ "errors": [],
+ "hashesUnchanged": true,
+ "hashes": {
+  "dist/world-unity-v151.js": "dbbf8d4b9c766cbaf185e8afbbf141784ceb325000e21706ceda7e170b54deef",
+  "dist/world-pitch-actions-v99.js": "8ca4888cd7f4fa2012fa48cc15ab64c7f276676edd5e55e4fead9d024902295a",
+  "dist/pitch-motion-v102.js": "66cc8e4dac75fc717fd2951934c685ac4316ff58646310c0096b402379a57fcd",
+  "dist/world-backpedal-v108.js": "0332d0c9cc1ff6ffd4f667e2505f1cd5315537435e27786bf0c7b8e4df3f2139"
+ },
+ "note": "Pictures built per native step with the bridge contract functions; Unity not loaded. Display-only calls; seeded QA RNG."
+}

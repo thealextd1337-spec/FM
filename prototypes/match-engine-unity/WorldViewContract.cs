@@ -9,15 +9,19 @@ namespace Doppel6.Probe {
 [Serializable] public class WorldCamera {public double[] position,target;public double fov;}
 // Optional native phase fields; older pictures omit them. holding/pickup belong
 // to a throw-in (pickup -1 = not supplied), aerial marks an actual aerial
-// control or reception.
-[Serializable] public class WorldPose {public string id,action,actionId;public double[] position,facing,contactPoint;public double progress,duration,recovery;public double freshness=-1,pickup=-1;public int number;public bool moving,holding,aerial;
+// control or reception. saved/parry/goal are the native outcome facts of a
+// keeper save; phase is the native goal-kick phase ("waiting"/"follow").
+[Serializable] public class WorldPose {public string id,action,actionId,phase;public double[] position,facing,contactPoint;public double progress,duration,recovery;public double freshness=-1,pickup=-1;public int number;public bool moving,holding,aerial,saved,parry,goal;
     // Set from the received JSON, never serialised: the picture states holding
-    // explicitly (native release sends holding:false without pickup).
-    [NonSerialized] public bool holdingKnown;}
+    // explicitly (native release sends holding:false without pickup). The same
+    // applies to the keeper outcome facts: an omitted fact is unknown, not false.
+    [NonSerialized] public bool holdingKnown,savedKnown,parryKnown,goalKnown;}
 [Serializable] public class WorldNet {public int sign;public double z,height,age,bulge;}
 // Optional celebration fields describe an already booked native goal scene;
 // older pictures omit them and remain valid (celebrating=false).
-[Serializable] public class WorldFrame {public string schema,session,phase,owner,celebrationScorer;public int sequence,celebrationTeam;public double clock,elapsed,ballOpacity,celebrationTime;public bool turned,replay,netActive,celebrating;public int[] score;public double[] ball;public WorldCamera camera;public WorldPose[] players;public WorldNet net;}
+// ballInFlight: optional native flight fact (omitted = unknown).
+[Serializable] public class WorldFrame {public string schema,session,phase,owner,celebrationScorer;public int sequence,celebrationTeam;public double clock,elapsed,ballOpacity,celebrationTime;public bool turned,replay,netActive,celebrating,ballInFlight;public int[] score;public double[] ball;public WorldCamera camera;public WorldPose[] players;public WorldNet net;
+    [NonSerialized] public bool ballInFlightKnown;}
 // quality: "standard" or "reduced"; older pages omit it (decided by platform).
 [Serializable] public class WorldConfig {public string schema,session,fixtureId,quality;public Geometry geometry;public WorldTeam[] teams;public WorldPlayer[] players;public WorldFrame initial;}
 [Serializable] public class WorldCommand {public string kind;public WorldConfig config;public WorldFrame frame;}
@@ -25,22 +29,28 @@ namespace Doppel6.Probe {
 // JsonUtility cannot tell an omitted bool from false. Two parses whose
 // defaults differ agree only where the key is present.
 public static class WorldPhasePresence {
-    [Serializable] class On {public bool holding=true;} [Serializable] class Off {public bool holding;}
-    [Serializable] class FrameOn {public On[] players;} [Serializable] class FrameOff {public Off[] players;}
+    [Serializable] class On {public bool holding=true,saved=true,parry=true,goal=true;} [Serializable] class Off {public bool holding,saved,parry,goal;}
+    [Serializable] class FrameOn {public bool ballInFlight=true;public On[] players;} [Serializable] class FrameOff {public bool ballInFlight;public Off[] players;}
     [Serializable] class ConfigOn {public FrameOn initial;} [Serializable] class ConfigOff {public FrameOff initial;}
     [Serializable] class CommandOn {public FrameOn frame;public ConfigOn config;} [Serializable] class CommandOff {public FrameOff frame;public ConfigOff config;}
-    static void Mark(WorldFrame frame,On[] on,Off[] off){
-        if(frame?.players==null||on==null||off==null||on.Length!=frame.players.Length||off.Length!=frame.players.Length)return;
-        for(int i=0;i<frame.players.Length;i++)if(frame.players[i]!=null&&on[i]!=null&&off[i]!=null)frame.players[i].holdingKnown=on[i].holding==off[i].holding;
+    static void Mark(WorldFrame frame,FrameOn fon,FrameOff foff){
+        if(frame==null||fon==null||foff==null)return;
+        frame.ballInFlightKnown=fon.ballInFlight==foff.ballInFlight;
+        var on=fon.players;var off=foff.players;
+        if(frame.players==null||on==null||off==null||on.Length!=frame.players.Length||off.Length!=frame.players.Length)return;
+        for(int i=0;i<frame.players.Length;i++){
+            var p=frame.players[i];if(p==null||on[i]==null||off[i]==null)continue;
+            p.holdingKnown=on[i].holding==off[i].holding;p.savedKnown=on[i].saved==off[i].saved;p.parryKnown=on[i].parry==off[i].parry;p.goalKnown=on[i].goal==off[i].goal;
+        }
     }
     // A WorldCommand JSON: marks command.frame or command.config.initial.
     public static void MarkCommand(WorldCommand command,string json){
         var on=JsonUtility.FromJson<CommandOn>(json);var off=JsonUtility.FromJson<CommandOff>(json);
-        if(command?.frame!=null)Mark(command.frame,on?.frame?.players,off?.frame?.players);
-        if(command?.config?.initial!=null)Mark(command.config.initial,on?.config?.initial?.players,off?.config?.initial?.players);
+        if(command?.frame!=null)Mark(command.frame,on?.frame,off?.frame);
+        if(command?.config?.initial!=null)Mark(command.config.initial,on?.config?.initial,off?.config?.initial);
     }
     // A bare WorldFrame JSON (tests and diagnostics).
-    public static WorldFrame ParseFrame(string json){var frame=JsonUtility.FromJson<WorldFrame>(json);Mark(frame,JsonUtility.FromJson<FrameOn>(json)?.players,JsonUtility.FromJson<FrameOff>(json)?.players);return frame;}
+    public static WorldFrame ParseFrame(string json){var frame=JsonUtility.FromJson<WorldFrame>(json);Mark(frame,JsonUtility.FromJson<FrameOn>(json),JsonUtility.FromJson<FrameOff>(json));return frame;}
 }
 // This is a view inbox, never a simulation or career/save owner.
 public sealed class WorldViewState {
@@ -63,7 +73,7 @@ public sealed class WorldViewState {
     public bool Accept(WorldFrame candidate){Validate(candidate);if(candidate.sequence<=Frame.sequence)return false;Frame=candidate;return true;}
     public void Validate(WorldFrame f){
         if(f==null||f.schema!=Schema||f.session!=Config.session||f.sequence<1||!Finite(f.clock)||f.clock<0||!Finite(f.elapsed)||f.elapsed<0||!new HashSet<string>{"live","paused","finished","replay","prematch","preparation"}.Contains(f.phase)||!Vector(f.ball)||f.ball[1]<0||!Finite(f.ballOpacity)||f.ballOpacity<0||f.ballOpacity>1||f.score?.Length!=2||Array.Exists(f.score,n=>n<0||n>1000)||f.camera==null||!Vector(f.camera.position)||!Vector(f.camera.target)||!Finite(f.camera.fov)||f.camera.fov<5||f.camera.fov>100||f.players==null||f.players.Length<1||f.players.Length>24)throw new ArgumentException("Invalid match picture");
-        var ids=new HashSet<string>();foreach(var p in f.players){if(p==null||!Players.TryGetValue(p.id??"",out var identity)||!ids.Add(p.id)||!Vector(p.position)||!Vector(p.facing)||(p.contactPoint?.Length??0)>0&&!Vector(p.contactPoint)||p.actionId!=null&&p.actionId.Length>160||!Finite(p.recovery)||p.recovery<0||p.recovery>1||!Finite(p.freshness)||p.freshness!= -1&&(p.freshness<0||p.freshness>1)||!Finite(p.progress)||Math.Abs(p.progress)>100||!Finite(p.duration)||p.duration<=0||p.duration>30||p.number!=identity.number||!Finite(p.pickup)||p.pickup!= -1&&(p.pickup<0||p.pickup>1)||p.holding&&p.action!="throw")throw new ArgumentException("Invalid match picture player");}
+        var ids=new HashSet<string>();foreach(var p in f.players){if(p==null||!Players.TryGetValue(p.id??"",out var identity)||!ids.Add(p.id)||!Vector(p.position)||!Vector(p.facing)||(p.contactPoint?.Length??0)>0&&!Vector(p.contactPoint)||p.actionId!=null&&p.actionId.Length>160||!Finite(p.recovery)||p.recovery<0||p.recovery>1||!Finite(p.freshness)||p.freshness!= -1&&(p.freshness<0||p.freshness>1)||!Finite(p.progress)||Math.Abs(p.progress)>100||!Finite(p.duration)||p.duration<=0||p.duration>30||p.number!=identity.number||!Finite(p.pickup)||p.pickup!= -1&&(p.pickup<0||p.pickup>1)||p.holding&&p.action!="throw"||!string.IsNullOrEmpty(p.phase)&&(p.action!="goalKick"||p.phase!="waiting"&&p.phase!="follow"))throw new ArgumentException("Invalid match picture player");}
         if(!string.IsNullOrEmpty(f.owner)&&!ids.Contains(f.owner))throw new ArgumentException("Invalid match picture owner");
         if(f.celebrating&&(f.celebrationTeam<0||f.celebrationTeam>1||!Finite(f.celebrationTime)||f.celebrationTime<0||f.celebrationTime>60||f.celebrationScorer!=null&&f.celebrationScorer.Length>160))throw new ArgumentException("Invalid match celebration picture");
         if(f.netActive&&(f.net==null||Math.Abs(f.net.sign)!=1||!Finite(f.net.z)||Math.Abs(f.net.z)>Config.geometry.goalWidth/2||!Finite(f.net.height)||f.net.height<0||f.net.height>5||!Finite(f.net.age)||f.net.age<0||!Finite(f.net.bulge)||f.net.bulge<0||f.net.bulge>1.5))throw new ArgumentException("Invalid match net picture");

@@ -219,8 +219,12 @@ function v99BallView(current){
   return {x:end.x+end.vx*time,y:pose.target.y+velocityY*time,
    elevation:Math.max(.29,pose.endHeight+velocityHeight*time-4.9*time*time),opacity:Math.max(0,Math.min(1,(1.1-time)/.45))};
  }
+ // A confirmed pickup/smother has its own native contact. A previous parry
+ // also increments saves, but cannot represent the newly held ball.
+ const secured=current.owner?.keeper&&!current.flight&&typeof v115KeeperChallengeAction==='function'&&v115KeeperChallengeAction(current,current.owner);
+ if(secured?.saved&&secured.target)return {...secured.target,elevation:secured.height??.29};
  const caught=current.owner?.keeper&&state?.keepers.get(current.owner.pid);
- if(caught?.completed&&caught.saved&&!current.flight)return v101ShotPoint(caught,1);
+ if(caught?.completed&&caught.saved&&!caught.parry&&!current.flight)return v101ShotPoint(caught,1);
  if(current.owner?.keeper&&v101KeeperWaiting(current,current.owner))return {...v101KickPoint(current.owner,v101KickTarget(current,current.owner)),elevation:.29};
  return null;
 }

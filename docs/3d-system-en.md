@@ -1,6 +1,6 @@
 # Doppel 6's 3D system
 
-System state: small-pitch iteration v162 with Unity presentation, game version 117. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
+System state: small-pitch iteration v162 with Unity presentation, game version 118. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
 
 ## Unity presentation
 
@@ -55,6 +55,8 @@ The loader reports loading, ready or failed. Failed assets leave the procedural 
 Calibration provides clip durations, phases, stride measurements and contact samples. Foot anchors reduce sliding; inverse joint corrections connect arms and legs to confirmed contacts without inventing unlimited reach or remote possession.
 
 ## Ball contacts and goalkeeper actions
+
+Unity pictures include existing catch/parry outcomes, pickup identities and native distribution phases. A parried shot counts as a save but does not mean the ball is held. A confirmed follow-up pickup uses its own contact point. The simulation retains possession, flight and distribution authority; there is no new throw/roll trigger or goalkeeper clock. Device checks distinguish Unity loop rate from browser frame scheduling; physical Android acceptance still requires connected hardware.
 
 Possession, flight and a loose ball are separate states. Reception needs reachable contact. First-time passes and shots prepare before arrival and release at actual contact. Appropriate abilities and pressure affect action choice and quality; the interface displays abilities only as colour levels.
 

@@ -1,0 +1,23 @@
+{
+ "frozen": "2026-10-09",
+ "branch": "codex/3d-quality-stadiums-20261009",
+ "base": "bb02fc897ae4375a6fdb2c25e65c2dc5cf2de92e",
+ "sourceId": "0b1d8a57fed95db82a9c034cc0729e60090b9ef99ceec2e8aa2cc04f195ed774",
+ "previousSourceId": "1169b35efb3e4fb497871ab7785c43423321839fdd03a3037f71db534551d06c",
+ "files": {
+  "prototypes/match-engine-unity/WorldViewContract.cs": "78e7c63f6c0b169bae99e9decba2ab4bfa299b42b7f31ed21c41c62e372c80fc",
+  "prototypes/match-engine-unity/WorldViewPlayback.cs": "4f8b77a2e4731fe32fae11897650d79a86ad7604f6202b7940ac75b4d2d8ecc2",
+  "prototypes/match-engine-unity/WorldViewPresentation.cs": "e96f604e92da455d2f1dbe01e8413bcdb30096b8ae428fb83b82dfbce7162483",
+  "prototypes/match-engine-unity/FootballAnimation.cs": "211da1ebee33eda99b2ec984a5e5c3357fbf07e715bdb3abef2d8bd270212fe0",
+  "prototypes/match-engine-unity/FootballPresentation.cs": "ec7e191a2f47ed225d05c0e10ca64c46bad974586dab6a60be7be4e5ab60a58b",
+  "prototypes/match-engine-unity/D6Cli.cs": "62a4689cb041073e372040a7a3ceca9bea228c7b1a47a79980631176ef4f664c",
+  "prototypes/match-engine-unity/FootballKeeperTests.cs": "f252d138ee055d399591d513e47672987f2e35534bae82e1dd5f4a755f43b208",
+  "prototypes/match-engine-unity/KeeperEvidenceDiagnostics.cs": "0420d5e7901847258c459d976606b60443ed3100f8cc525fe83be5833bfdf5c4",
+  "prototypes/match-engine-unity/ProbeBuildIdentity.cs": "953e7ad1560026d2857c4db1b248e05ea19f5f6fe7ac44d151cda4bc49d9ddcf",
+  "prototypes/match-engine-unity/source-identity.json": "b9707d3860d21ad171a1fc9497e6c33d811f627b126e550a41a48689891d9850",
+  "outputs/3d-quality/keeper-next/keeper-fixtures.json": "cbfd58e7ee16af71161f5b0e6f9ac61da7343967380bc6d33e21e6dc262a1485",
+  "outputs/3d-quality/keeper-next/capture-keeper-pictures.cjs": "d7d98b3d973d1ce01a15589f5a9a1598ae0ae3f3f01936eec0270eb3f05931e8",
+  "outputs/3d-quality/keeper-next/summarize-keeper-pictures.cjs": "b0e8508c2c8be4e7460d9964ee15d517d691b7d904040b99813211c923ccfd52",
+  "outputs/3d-quality/keeper-next/build-keeper-fixtures.cjs": "7e2bad8475f12c80e3e5594f6863eed3c210e6318edc07fe9d1795de20196df6"
+ }
+}

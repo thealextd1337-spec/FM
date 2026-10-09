@@ -1,0 +1,27 @@
+{
+  "release": 118,
+  "checkedAt": "2026-10-09T19:51:01.354Z",
+  "sourceId": "0b1d8a57fed95db82a9c034cc0729e60090b9ef99ceec2e8aa2cc04f195ed774",
+  "compiled": true,
+  "testsPassed": true,
+  "buildPassed": true,
+  "unity": "6000.6.4f1",
+  "keeperTests": 160,
+  "iterationTests": 106,
+  "stadiumTests": 706,
+  "duelTests": 34,
+  "buildErrors": 0,
+  "buildWarnings": 3,
+  "evidenceHashes": {
+    "outputs/3d-quality/keeper-next/handoff.json": "06a1bd5a182e6a86bd4d043077641a577d6f5a8db9a920f732c0e0dcbd5bcf2c",
+    "outputs/3d-quality/keeper-next/freeze.json": "509a0d815b0630ced118a7d56df480d9d8a3b49335c9724f1dd68b69e502d03a",
+    "outputs/3d-quality/keeper-next/verification.json": "53d36568ce3a2957155fb1d0e7093bbb26f364ccab20931f5272b6303a4624da",
+    "outputs/3d-quality/keeper-next/tests-full.log": "1ba539bfcd498da26871c5245fab7152db5e07841196be137145d80bbc6bbe93",
+    "outputs/3d-quality/keeper-next/keeper-tests.json": "57490807bb5633a2b491319e6645d888044bba6aa2eb7cdbb5f24e94ae346b0a",
+    "outputs/3d-quality/keeper-next/renders/renders.json": "0ce979865d5b2f9f5d38164cb15b482a1125fcffb734567ffaaea5a36d8cd0b5",
+    "outputs/3d-quality/keeper-next/web-build.log": "f0479546ffa354c87701241f4d10a6c44282d87f511797b7f1cf8c625dfa73e9"
+  },
+  "independentManifestChecks": 49,
+  "independentReview": "outputs/release-118/source-review.json",
+  "limitation": "Editor evidence and software WebGL are separate from physical Android quality; native caught-ball reach and late save-kind changes remain documented."
+}

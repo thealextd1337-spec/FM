@@ -95,7 +95,7 @@ v99BallView=function(current){
  return existing;
 };
 function v102PlayerAction(current,person){
- const existing=v99PlayerAction(current,person);if(existing)return {...existing,id:existing.kind};
+ const existing=v99PlayerAction(current,person);if(existing)return {...existing,id:existing.id??existing.kind};
  const state=v102Motion.get(current),pose=state?.poses.get(person.pid);
  if(pose){const progress=Math.max(0,Math.min(1,(state.clock-pose.at)/pose.duration));return {...pose,progress}}
  const flight=current.flight,meta=flight&&v102Flights.get(flight);

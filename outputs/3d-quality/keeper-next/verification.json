@@ -1,0 +1,34 @@
+{
+ "buildFiles": [
+  [
+   "outputs/platform/unity-web/Build/unity-web.loader.js",
+   true,
+   27914
+  ],
+  [
+   "outputs/platform/unity-web/Build/unity-web.data",
+   true,
+   55089303
+  ],
+  [
+   "outputs/platform/unity-web/Build/unity-web.framework.js",
+   true,
+   300906
+  ],
+  [
+   "outputs/platform/unity-web/Build/unity-web.wasm",
+   true,
+   35253048
+  ]
+ ],
+ "sourceIds": [
+  "0b1d8a57fed95db82a9c034cc0729e60090b9ef99ceec2e8aa2cc04f195ed774",
+  "0b1d8a57fed95db82a9c034cc0729e60090b9ef99ceec2e8aa2cc04f195ed774",
+  "0b1d8a57fed95db82a9c034cc0729e60090b9ef99ceec2e8aa2cc04f195ed774",
+  "0b1d8a57fed95db82a9c034cc0729e60090b9ef99ceec2e8aa2cc04f195ed774",
+  "0b1d8a57fed95db82a9c034cc0729e60090b9ef99ceec2e8aa2cc04f195ed774"
+ ],
+ "allIdsEqual": true,
+ "unityCopiesIdentical": 54,
+ "unityCopiesDiffering": []
+}

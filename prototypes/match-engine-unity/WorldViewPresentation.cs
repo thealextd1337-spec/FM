@@ -16,7 +16,9 @@ public partial class ProbeBridge {
     // diameter in render pixels (the projection's width/height). visible needs
     // an opaque ball in front of the camera inside the viewport.
     [Serializable] public class WorldBallMarker {public float x,y,depth,diameter;public bool visible;}
-    [Serializable] class WorldProjection {public string channel=WorldViewState.Schema,kind="projection",session;public int sequence;public double clock,ballSpinDegrees;public int width,height;public float[] ballRotation;public WorldMarker[] markers;public WorldRenderedPose[] poses;public WorldBallMarker ballMarker;}
+    // renderFrame/renderTime: Unity's frame counter and real time when this
+    // projection was produced, for an actual mean loop rate (QA only, stateless).
+    [Serializable] class WorldProjection {public string channel=WorldViewState.Schema,kind="projection",session;public int sequence,renderFrame;public double clock,ballSpinDegrees,renderTime;public int width,height;public float[] ballRotation;public WorldMarker[] markers;public WorldRenderedPose[] poses;public WorldBallMarker ballMarker;}
     // Perspective projection of a sphere of the given world radius; no
     // minimum size, smoothing or prediction.
     public static WorldBallMarker BallMarker(Camera camera,Vector3 centre,float radius,bool shown,int pixelHeight){
@@ -48,7 +50,7 @@ public partial class ProbeBridge {
             markers[i]=new WorldMarker{id=identity,x=p.x,y=1-p.y,depth=p.z,visible=p.z>0&&p.x>=0&&p.x<=1&&p.y>=0&&p.y<=1,featured=identity==displayed.owner||Vector3.Distance(actors[i].position,ballView.position)<3.5f};
         }
         var rotation=ballView.rotation;
-        var json=JsonUtility.ToJson(new WorldProjection{session=worldView.Config.session,sequence=displayed.sequence,clock=displayed.clock,width=Screen.width,height=Screen.height,markers=markers,poses=renderedPoses,ballRotation=new[]{rotation.x,rotation.y,rotation.z,rotation.w},ballSpinDegrees=worldBallMotion.SpinDegrees,ballMarker=CurrentBallMarker(camera,Screen.height)});
+        var json=JsonUtility.ToJson(new WorldProjection{session=worldView.Config.session,sequence=displayed.sequence,renderFrame=Time.frameCount,renderTime=now,clock=displayed.clock,width=Screen.width,height=Screen.height,markers=markers,poses=renderedPoses,ballRotation=new[]{rotation.x,rotation.y,rotation.z,rotation.w},ballSpinDegrees=worldBallMotion.SpinDegrees,ballMarker=CurrentBallMarker(camera,Screen.height)});
         #if UNITY_WEBGL && !UNITY_EDITOR
         D6ProbeSend(json);
         #endif

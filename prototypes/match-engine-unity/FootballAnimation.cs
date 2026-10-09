@@ -53,12 +53,43 @@ public static class FootballKeeperTiming {
     // Save clip from the contact relative to the keeper's received facing. A
     // global Z difference only equals the keeper's side when it faces along X;
     // diagonal or turned keepers need their own lateral axis.
-    public const double HighSave=1.6,DiveSave=1.2;
+    // After the contact, native recovery (0..1 over 1.55 s) continues each
+    // authored clip instead of dropping every keeper to the floor. Measured hips
+    // on the rig (clip-diagnostics): keeper_low_meshy stands again by 2.6 s;
+    // keeper_high_meshy lands (hips 0.43 m) by 2.75 s; keeper_rise_meshy kneels
+    // (0.34 m) at 3.0 s and stands (1.30 m) by 6.3 s. The native 1.55 s
+    // leaves no room for its 3 s of lying, so a grounded keeper rises from the kneel.
+    public const double LowStand=2.6,HighLand=2.75,HighLanding=.40,RiseKneel=3.0,RiseStand=6.6,DiveRise=.35;
+    public enum Recovery {Save,Clip,Rise,Ready}
+    // Which body a recovering save shows and at which clip time. Pure function
+    // of the received recovery: pause, replay and seek show the same body.
+    public static Recovery RecoveryPose(string save,double recovery,out double time){
+        double r=Math.Clamp(recovery,0,1);
+        if(save=="low"){time=1.18+(LowStand-1.18)*r;return Recovery.Clip;}
+        // After an upright contact the clip lifts a hand to the forehead; the
+        // keeper settles into its ready stance instead.
+        if(save=="mid"){time=0;return Recovery.Ready;}
+        if(save=="high"){
+            if(r<HighLanding){time=1.46+(HighLand-1.46)*r/HighLanding;return Recovery.Clip;}
+            time=RiseKneel+(RiseStand-RiseKneel)*(r-HighLanding)/(1-HighLanding);return Recovery.Rise;
+        }
+        if(r>DiveRise){time=RiseKneel+(RiseStand-RiseKneel)*(r-DiveRise)/(1-DiveRise);return Recovery.Rise;}
+        time=0;return Recovery.Save;
+    }
+    // A native catch, only from known picture facts: saved and not parried or
+    // conceded, the keeper owns the ball and it is not in flight. An older
+    // picture without these facts never shows a held ball.
+    public static bool Held(WorldPose p,WorldFrame f){return p!=null&&f!=null&&p.action=="save"&&p.savedKnown&&p.saved&&p.parryKnown&&!p.parry&&!(p.goalKnown&&p.goal)&&f.owner==p.id&&f.ballInFlightKnown&&!f.ballInFlight;}
+    // A ball between MidSave and HighSave that needs no dive is met upright:
+    // keeper_low_meshy scoops (hands 0.83 m at its 1.18 s contact), then gathers
+    // to the chest (hands 1.24 m at 2.0 s, 1.45 m at 2.3 s, upright by 3.0 s).
+    public const double HighSave=1.6,DiveSave=1.2,MidSave=.9,MidStart=1.9,MidContact=2.3;
+    public static double MidTime(double progress){return MidStart+(MidContact-MidStart)*Math.Clamp(progress,0,1);}
     public static string SaveKind(Vector3 contact,Vector3 position,Vector3 facing){
         if(contact.y>HighSave)return "high";
         var forward=new Vector3(facing.x,0,facing.z);if(forward.sqrMagnitude<1e-6f)forward=Vector3.forward;forward.Normalize();
         var right=new Vector3(forward.z,0,-forward.x);var offset=contact-position;offset.y=0;
-        return Math.Abs(Vector3.Dot(offset,right))>DiveSave?"dive":"low";
+        return Math.Abs(Vector3.Dot(offset,right))>DiveSave?"dive":contact.y>MidSave?"mid":"low";
     }
 }
 static class FootballEnvelope {

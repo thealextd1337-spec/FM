@@ -4,6 +4,8 @@ Stand: 9. Oktober 2026. Nutzerauftrag: vorrangig das 3D-Erlebnis verbessern und 
 
 ## Verbindliche Prioritäten
 
+Die anschließende Torwartiteration ist als [Release 118](release-118.md) umgesetzt: Erholung und Aufstehen folgen dem jeweiligen Paradeclip, bestätigtes Nachfassen behält seinen eigenen Kontakt, und der Abstoß erhält eine Vorbereitung. Ein reproduzierbarer [Android-Prüfweg](platform/android-3d-acceptance.md) ist vorhanden; echte Pixel-Geräteabnahme bleibt ohne Gerätezugang offen. Das [Account-Betriebspaket](platform/account-provider-options.md) bereitet die anschließende Anbieterentscheidung vor. Der Releasebericht enthält den aktuellen Build- und Veröffentlichungsstand.
+
 Die fünf Folgepunkte der Namensiteration sind auf Nutzerauftrag als Release 117 umgesetzt, veröffentlicht und live abgenommen: Luft-/Landesequenzen, kleine Ballprojektion, lokale Keeperwinkel, Einwurf und sichtbare Vereinsidentität. [Aktueller Umfang und Abnahme](release-117.md). Die Prioritäten bleiben unverändert.
 
 1. Qualität des 3D-Erlebnisses einschließlich schönerer, unterschiedlicher Vereinsstadien.

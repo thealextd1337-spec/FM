@@ -1,0 +1,24 @@
+{
+  "pass": true,
+  "checks": [
+    "Small actual ball gets bounded hollow guide",
+    "Render-pixel diameter converts to CSS pixels",
+    "Large nearby ball needs no guide",
+    "Boundary fades smoothly instead of blinking",
+    "No cue for missing",
+    "No cue for invisible",
+    "No cue for behind camera",
+    "No cue for outside",
+    "No cue for nonfinite",
+    "No cue for zero diameter",
+    "Preference off hides cue",
+    "Zero viewport hides cue",
+    "Projection remains unchanged",
+    "Native holding and pickup phases cross pure picture whitelist",
+    "Observed release explicitly carries holding false",
+    "Old actions omit optional phases",
+    "Observed aerial control stays an optional visual flag",
+    "Native airLand remains exact supplied phase"
+  ],
+  "sourceSha256": "dbbf8d4b9c766cbaf185e8afbbf141784ceb325000e21706ceda7e170b54deef"
+}

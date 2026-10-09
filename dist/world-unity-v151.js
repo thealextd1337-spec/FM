@@ -9,12 +9,13 @@
  function picture(frame,session,sequence,camera,phase,score){
   // A booked native goal scene; older pictures simply omit these fields.
   const celebration=frame.celebration&&Number.isFinite(frame.celebration.time)?{celebrating:true,celebrationTeam:frame.celebration.team,celebrationTime:Math.max(0,frame.celebration.time),celebrationScorer:frame.celebration.scorer||''}:{};
-  return {schema,session,sequence,clock:frame.clock,elapsed:frame.elapsed,phase,score:[...score],turned:Boolean(frame.turned),replay:Boolean(frame.review||frame.replay),owner:frame.owner||'',ball:point(frame.ball),ballOpacity:frame.ball.opacity??1,camera:{position:point(camera.position),target:point(camera.target),fov:camera.fov},players:frame.players.map(p=>{
+  return {schema,session,sequence,clock:frame.clock,elapsed:frame.elapsed,phase,score:[...score],turned:Boolean(frame.turned),replay:Boolean(frame.review||frame.replay),owner:frame.owner||'',...(typeof frame.ballInFlight==='boolean'?{ballInFlight:frame.ballInFlight}:{}),ball:point(frame.ball),ballOpacity:frame.ball.opacity??1,camera:{position:point(camera.position),target:point(camera.target),fov:camera.fov},players:frame.players.map(p=>{
    // Foul reactions own the contact picture; otherwise an observed native
    // slide overrides the ordinary running/action pose. Both are read-only.
    const a=['foulVictim','foulOffender'].includes(p.action?.kind)?p.action:p.unityAction||p.action;
    const direction=a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0];
-   return {id:p.id,position:[p.x,0,p.z],facing:direction,moving:!['idle','restart'].includes(p.movement?.mode),action:a?.kind||'idle',actionId:String(a?.id??a?.kind??'idle'),contactPoint:a?.contactWorld?point(a.contactWorld):null,recovery:a?.recovery||0,progress:a?.progress??0,duration:a?.duration||1,number:p.number,...(typeof a?.holding==='boolean'?{holding:a.holding}:{}),...(Number.isFinite(a?.pickup)?{pickup:Math.max(0,Math.min(1,a.pickup))}:{}),...(a?.aerial===true?{aerial:true}:{}),...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})};
+   const keeperFacts=Object.fromEntries(['saved','parry','goal','smother','held'].filter(k=>typeof a?.[k]==='boolean').map(k=>[k,a[k]]));
+   return {id:p.id,position:[p.x,0,p.z],facing:direction,moving:!['idle','restart'].includes(p.movement?.mode),action:a?.kind||'idle',actionId:String(a?.id??a?.kind??'idle'),contactPoint:a?.contactWorld?point(a.contactWorld):null,recovery:a?.recovery||0,progress:a?.progress??0,duration:a?.duration||1,number:p.number,...keeperFacts,...(a?.kind==='goalKick'&&['waiting','follow'].includes(a.phase)?{phase:a.phase}:{}),...(typeof a?.holding==='boolean'?{holding:a.holding}:{}),...(Number.isFinite(a?.pickup)?{pickup:Math.max(0,Math.min(1,a.pickup))}:{}),...(a?.aerial===true?{aerial:true}:{}),...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})};
   }),netActive:Boolean(frame.net),net:frame.net?{...frame.net}:null,...celebration};
  }
  const legacy={length:68,width:44};

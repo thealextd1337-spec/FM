@@ -107,3 +107,11 @@ Mindestens zusammenhängende Folgen aufnehmen: Lauf → Annahme → Pass → Fla
 Die Quell-/Assetprüfungen bestanden mit **neun Prüffamilien**: Masterhash, echte Clips/Gelenke, Bestandsgleichheit, Pilotbytes/-bindung, Katalogzuweisungen, Trennung Demo/Welt, Pflichtaktionen/Klassifikationen, Negativfall „Clip allein beweist keine Anbindung“ und echter Bildvertrag/Foulvorrang. Die erste Pilot-Bindprüfung deckte numerische Unity-Bindinghashes als Parser-Sonderfall auf; der Parser wurde korrigiert und der gesamte Lauf wiederholt. Es wurde kein Asset geändert.
 
 Der Integrator ergänzt den gemeinsamen Changelog-/Entwicklungsnachtrag. Keine Render-/Hardware-/Releasefreigabe durch diesen Audit.
+
+## Fortschreibung: Torwartfolgen in Release 118
+
+Der [Releasebericht](../release-118.md) führt die anschließende Umsetzung und ihre Abnahme. Der ursprüngliche Auditbestand bleibt als historische Baseline erhalten. Neun Torwartsequenzen wurden aus fünf tatsächlichen nativen Partien aufgezeichnet: Abstoß in beiden Richtungen, mittlere/hohe Paraden und Gegentorfolgen. Separate kontrollierte Szenen prüfen Halten, Nachfassen, Sichern sowie die Negativfälle Abwehrergebnis und fehlende Fakten; diese sind keine natürlich aufgetretenen Matchfolgen.
+
+Der aktuelle Renderer unterscheidet zentrale und seitliche Paraden, verwendet das jeweilige Clipende für Landung, Erholung und Aufstehen und bereitet den vorhandenen Abstoß vor. Bestätigtes Halten erfordert bekannte Fang-/Abwehr-/Flugfakten, tatsächlichen Torwartbesitz und einen erreichbaren Ball. Abwehrergebnis, Gegentor, unbekannte Fakten und unerreichbarer Ball erzeugen keinen behaupteten Handkontakt. Der Integrator hat außerdem den durch eine ältere Parade verdrängten nativen Nachfasskontakt korrigiert. 160 gezielte Unity-Prüfungen prüfen echte Clips/Gelenke, Phasen, Pause, Rückschau und Vertragsgrenzen.
+
+Offen bleiben die vollständige natürlich aufgetretene Folge Parade → Nachfassen/Sichern → Aufstehen → Abspiel, die gemeinsame Sichtabnahme im tatsächlichen mobilen Spiel und physische Android-Leistung/Wachhalten. Ein eigenständiger Torwartwurf-/Rollauslöser fehlt im nativen Match weiterhin; die vorhandenen kurzen und hohen Pässe bleiben maßgeblich. Editorbilder und kontrollierte Kontaktproben belegen weder ein neues Matchereignis noch mobile Hardwarequalität.

@@ -31,6 +31,7 @@ public static class D6Cli {
             Debug.Log("[D6Cli] StadiumArchitectureTests: "+StadiumArchitectureTests.Run(repo));
             Debug.Log("[D6Cli] FootballDuelTests: "+FootballDuelTests.Run(repo));
             Debug.Log("[D6Cli] FootballIterationTests: "+FootballIterationTests.Run(repo));
+            Debug.Log("[D6Cli] FootballKeeperTests: "+FootballKeeperTests.Run(repo));
             Done(true,"tests finished");
         }catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
@@ -68,6 +69,17 @@ public static class D6Cli {
     public static void IterationEvidence(){
         string repo=null,message=null;bool ok=false;
         try{repo=Repo();ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=IterationEvidenceDiagnostics.Run(repo);ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
+        Done(ok,message);
+    }
+    // Keeper iteration: actual native keeper picture JSON through selector and rig.
+    public static void KeeperTests(){
+        try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,FootballKeeperTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+    // Keeper iteration renders from actual captured native pictures; needs a graphics device.
+    public static void KeeperEvidence(){
+        string repo=null,message=null;bool ok=false;
+        try{repo=Repo();ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=KeeperEvidenceDiagnostics.Run(repo);ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
         finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
         Done(ok,message);
     }

@@ -1,0 +1,26 @@
+{
+  "release": 118,
+  "checkedAt": "2026-10-09T19:49:06.506Z",
+  "sourceId": "0b1d8a57fed95db82a9c034cc0729e60090b9ef99ceec2e8aa2cc04f195ed774",
+  "reviewer": "native_projection_review",
+  "mode": "independent read-only source and existing evidence",
+  "sourceHashes": {
+    "prototypes/match-engine-unity/WorldViewContract.cs": "78e7c63f6c0b169bae99e9decba2ab4bfa299b42b7f31ed21c41c62e372c80fc",
+    "prototypes/match-engine-unity/WorldViewPlayback.cs": "4f8b77a2e4731fe32fae11897650d79a86ad7604f6202b7940ac75b4d2d8ecc2",
+    "prototypes/match-engine-unity/WorldViewPresentation.cs": "e96f604e92da455d2f1dbe01e8413bcdb30096b8ae428fb83b82dfbce7162483",
+    "prototypes/match-engine-unity/FootballAnimation.cs": "211da1ebee33eda99b2ec984a5e5c3357fbf07e715bdb3abef2d8bd270212fe0",
+    "prototypes/match-engine-unity/FootballPresentation.cs": "ec7e191a2f47ed225d05c0e10ca64c46bad974586dab6a60be7be4e5ab60a58b",
+    "prototypes/match-engine-unity/D6Cli.cs": "62a4689cb041073e372040a7a3ceca9bea228c7b1a47a79980631176ef4f664c",
+    "prototypes/match-engine-unity/FootballKeeperTests.cs": "f252d138ee055d399591d513e47672987f2e35534bae82e1dd5f4a755f43b208",
+    "prototypes/match-engine-unity/KeeperEvidenceDiagnostics.cs": "0420d5e7901847258c459d976606b60443ed3100f8cc525fe83be5833bfdf5c4"
+  },
+  "hashesStable": true,
+  "findings": [],
+  "resolved": [
+    "Android halftime interruption is not a wake failure; independent follow-up review passed",
+    "Controlled unknown JSON preserves omitted fields; current render evidence differs from known catch",
+    "Held hand contact is limited to confirmed keeper ownership, known outcome/flight facts and actual arm reach"
+  ],
+  "rootJsReview": "No findings across keeper picture bridge/contact/identity changes",
+  "limitation": "Reviewer ran no Editor, tests, build, WebGL or physical hardware measurement."
+}

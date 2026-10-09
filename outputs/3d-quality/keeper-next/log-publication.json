@@ -1,0 +1,38 @@
+{
+  "sanitized": true,
+  "scope": "Only automatic Unity token/session start parameters removed; line endings normalized. Raw originals stay in ignored tmp/. Verdicts and source identity unchanged.",
+  "files": [
+    {
+      "file": "tests-full.log",
+      "source": "tmp/tests-full-final.log",
+      "redactedValues": 0,
+      "leftover": false
+    },
+    {
+      "file": "keeper-tests.log",
+      "source": "tmp/keeper-tests-10.log",
+      "redactedValues": 0,
+      "leftover": false
+    },
+    {
+      "file": "evidence.log",
+      "source": "tmp/evidence-final.log",
+      "redactedValues": 0,
+      "leftover": false
+    },
+    {
+      "file": "web-build.log",
+      "source": "tmp/web-build.log",
+      "redactedValues": 0,
+      "leftover": false
+    },
+    {
+      "file": "clips.log",
+      "source": "tmp/clips.log",
+      "redactedValues": 0,
+      "leftover": false
+    }
+  ],
+  "note": "Unity was started directly (Unity.exe -batchmode), not via Unity Hub: raw and published logs contain zero accessToken/hubSessionId markers (counted, not printed). The same redaction pass was applied anyway.",
+  "postProcessing": "Root removed trailing whitespace in published copies; raw originals retained; verdicts, source identity and build bytes unchanged."
+}

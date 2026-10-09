@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "mode": "probe",
+  "status": "blocked",
+  "pass": false,
+  "hardwarePass": false,
+  "started": "2026-10-09T19:23:16.899Z",
+  "prerequisites": {
+    "nodeMajor": 24,
+    "nodeSupported": true,
+    "buildAvailable": true,
+    "playwrightAvailable": true,
+    "adbAvailable": false
+  },
+  "samples": [],
+  "manual": [
+    "Real app switch and return; wake-lock reacquisition and unchanged native match state",
+    "Visual readability of names, team rings and ball in landscape; interaction and keeper animations"
+  ],
+  "limitations": [
+    "No GPU presentation or per-frame GPU timing measurement",
+    "No performance acceptance threshold or full device acceptance is inferred from loop counters"
+  ],
+  "buildBefore": {
+    "sourceId": "1169b35efb3e4fb497871ab7785c43423321839fdd03a3037f71db534551d06c",
+    "htmlSha256": "ebe4ea31c6675c3dffc5e9a5890ee07ec0fbd85e08f83e96a0914e531e902e72",
+    "manifestSha256": "9627d847da1a517bbe893c26b63a6f939eacf00d602a846ad1418075abb05fb1",
+    "assets": [
+      {
+        "file": "unity-web.data",
+        "sha256": "59900478cd385639ea7c03504f1b28132f904bf847b67a20e8da41f0bc49e5d4",
+        "bytes": 55088047,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+        "bytes": 300906,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.loader.js",
+        "sha256": "57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03",
+        "bytes": 27914,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.wasm",
+        "sha256": "85bdee889b2df82899cde196b01867a723c65630caf0ec2e786b4036a0e6be3a",
+        "bytes": 35252055,
+        "manifestMatches": true
+      }
+    ],
+    "valid": true
+  },
+  "reason": "ADB missing: install/locate Platform Tools yourself and use --adb; no SDK download performed",
+  "cleanup": {
+    "failures": []
+  },
+  "buildAfter": {
+    "sourceId": "1169b35efb3e4fb497871ab7785c43423321839fdd03a3037f71db534551d06c",
+    "htmlSha256": "ebe4ea31c6675c3dffc5e9a5890ee07ec0fbd85e08f83e96a0914e531e902e72",
+    "manifestSha256": "9627d847da1a517bbe893c26b63a6f939eacf00d602a846ad1418075abb05fb1",
+    "assets": [
+      {
+        "file": "unity-web.data",
+        "sha256": "59900478cd385639ea7c03504f1b28132f904bf847b67a20e8da41f0bc49e5d4",
+        "bytes": 55088047,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+        "bytes": 300906,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.loader.js",
+        "sha256": "57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03",
+        "bytes": 27914,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.wasm",
+        "sha256": "85bdee889b2df82899cde196b01867a723c65630caf0ec2e786b4036a0e6be3a",
+        "bytes": 35252055,
+        "manifestMatches": true
+      }
+    ],
+    "valid": true
+  },
+  "buildUnchanged": true,
+  "finished": "2026-10-09T19:23:17.370Z"
+}

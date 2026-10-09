@@ -26,6 +26,6 @@ for(const [x,y]of [[100,50],[100,150],[20,90],[200,90],[20,20],[200,150],[100,90
  if(leader.length){assert(leader.left===0||leader.left===box.w||leader.top===0||leader.top===box.h,'Leader starts at label edge');const middle={x:start.x+Math.cos(leader.angle)*leader.length/2,y:start.y+Math.sin(leader.angle)*leader.length/2};assert(middle.x<=65||middle.x>=135||middle.y<=80||middle.y>=100,'Leader does not run through its own text');}else assert(x===100&&y===90);
  cases.push({name:`Head leader to ${x},${y}`,leader});
 }
-const out='outputs/3d-quality/label-readability';fs.mkdirSync(out,{recursive:true});
+const out=process.argv[2]||'outputs/3d-quality/label-readability';fs.mkdirSync(out,{recursive:true});
 fs.writeFileSync(out+'/layout-tests.json',JSON.stringify({pass:true,cases:cases.length,rows:cases,sourceSha256:crypto.createHash('sha256').update(fs.readFileSync('dist/world-unity-v151.js')).digest('hex')},null,2)+'\n');
 console.log(JSON.stringify({pass:true,cases:cases.length}));

@@ -61,7 +61,9 @@ public partial class ProbeBridge {
         var strideClip=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride);double strideTime=locomotion.StrideMode=="idle"?f.clock+i*.09:football[i].StrideTime(locomotion.StridePhase+i*.09,strideClip);bool strideLoop=true;
         bool locomotionAction=string.IsNullOrEmpty(p.action)||p.action=="idle"||p.action=="run"||p.action=="running";
         if(locomotionAction&&pose.clip!=strideClip&&locomotion.Speed>.2f){pose.baseClip=strideClip;pose.baseTime=strideTime;pose.baseLoop=true;pose.actionWeight=locomotion.MotionWeight;}
-        double progress=Math.Clamp(p.progress,0,1),age=progress*p.duration;
+        // A native goal-kick follow-through counts its progress over 0.45 s; the
+        // picture carries no duration for it.
+        double progress=Math.Clamp(p.progress,0,1),age=progress*(p.action=="goalKick"&&p.phase=="follow"?GoalKickFollow:p.duration);
         var contactPoint=p.contactPoint?.Length==3?Display(p.contactPoint):(Vector3?)null;
         // A booked native goal: the scoring side celebrates where it already stands.
         if(f.celebrating&&locomotionAction&&locomotion.Speed<.6f&&identity.team==f.celebrationTeam&&!identity.keeper){
@@ -80,6 +82,12 @@ public partial class ProbeBridge {
             if(p.aerial){AirPose(ref pose,p.action,progress,contactPoint,identity.keeper,i,false);pose.plant=false;if(contactPoint.HasValue&&contactPoint.Value.y>.9f)pose.contact=false;}
         }
         else if(p.action=="passReady"){pose.clip=passClip;pose.time=progress*PassContact;pose.loop=false;pose.plant=runSpeeds[i]<.4;}
+        else if(p.action=="goalKick"&&p.phase=="waiting"){
+            // Native goal-kick wait: the keeper stands behind the placed ball and
+            // winds up over the native countdown (progress); the contact belongs
+            // to the release (phase follow), never to the whole wait.
+            pose.clip=shotClip;pose.time=progress*ShotContact;pose.loop=false;pose.plant=runSpeeds[i]<.4;
+        }
         else if(p.action=="shot"||p.action=="freeKick"||p.action=="volley"||p.action=="goalKick"){
             pose.clip=shotClip;pose.time=ShotContact+age;pose.loop=false;pose.plant=runSpeeds[i]<.4&&age<.55;pose.contact=age<.09;
             // The picture has no goal-kick phase: its follow-through waits until
@@ -117,14 +125,33 @@ public partial class ProbeBridge {
             pose.lunge=FootballDuelTiming.OffenderLunge(foul);
         }
         else if(identity.keeper&&p.action=="save"){
-            // High, diving or low save relative to the keeper's received facing.
+            // High, diving, upright (mid) or low save relative to the keeper's received facing.
             var facing=V(p.facing);var save=p.contactPoint?.Length==3?FootballKeeperTiming.SaveKind(V(p.contactPoint),V(p.position),facing.sqrMagnitude>.0001f?facing:actors[i].forward):"low";
             pose.clip=save=="high"?keeperHighClip:save=="dive"?keeperDiveClip:keeperActionClip;
-            pose.time=FootballKeeperTiming.Time(pose.clip.name,progress);pose.loop=false;pose.urgent=true;pose.kind=contactPoint.HasValue&&actors[i].InverseTransformPoint(contactPoint.Value).x<0?"left-hand":"hand";pose.contact=progress>.78&&contactPoint.HasValue&&Vector3.Distance(contactPoint.Value,ballView.position)<.6f;
+            // A native conceded goal is a miss: the reach stays, but no hand is
+            // corrected onto the ball that passes into the goal.
+            bool conceded=p.goalKnown&&p.goal;
+            pose.time=save=="mid"?FootballKeeperTiming.MidTime(progress):FootballKeeperTiming.Time(pose.clip.name,progress);pose.loop=false;pose.urgent=true;pose.kind=contactPoint.HasValue&&actors[i].InverseTransformPoint(contactPoint.Value).x<0?"left-hand":"hand";pose.contact=!conceded&&progress>.78&&contactPoint.HasValue&&Vector3.Distance(contactPoint.Value,ballView.position)<.6f;
             // A central ball at chest or head height is met with both palms.
             if(contactPoint.HasValue){var offset=contactPoint.Value-actors[i].position;if(Mathf.Abs(Vector3.Dot(offset,actors[i].right))<.45f&&contactPoint.Value.y>.5f&&contactPoint.Value.y<2.3f)pose.kind="two-hands";}
             if(pose.clip==keeperDiveClip)pose.keeperDive=(float)(Math.Clamp(progress/.7,0,1)*(1-Math.Clamp(p.recovery/.55,0,1)));
-            if(p.recovery>.35){pose.clip=keeperRiseClip;pose.time=(p.recovery-.35)/.65*(pose.clip.length-.001);pose.contact=false;}
+            if(p.recovery>0){
+                // Recovery continues the authored landing/standing of this clip;
+                // only a grounded body uses keeper_rise_meshy. A softer blend.
+                pose.urgent=false;
+                var body=FootballKeeperTiming.RecoveryPose(save,p.recovery,out var time);
+                if(body==FootballKeeperTiming.Recovery.Clip)pose.time=time;
+                else if(body==FootballKeeperTiming.Recovery.Ready&&keeperClip!=null){pose.clip=keeperClip;pose.time=f.clock+i*.09;pose.loop=true;}
+                else if(body==FootballKeeperTiming.Recovery.Rise&&keeperRiseClip!=null){pose.clip=keeperRiseClip;pose.time=time;pose.contact=false;}
+                // Native catch: saved, not parried, the keeper owns the ball and it
+                // is not in flight. Only these known facts hold the actual ball.
+                // Hands hold only a ball within arm reach. The native caught ball rests
+                // at the contact, 1.1-1.9 m from the keeper root, which the arms cannot
+                // reach: no hold is claimed and no contact cuts the recovery blend.
+                // Without these facts a ball near the hands is never held.
+                if(FootballKeeperTiming.Held(p,f)){pose.kind="two-hands";pose.target=ballView.position;contactPoint=ballView.position;pose.contact=ballView.gameObject.activeSelf&&Horizontal(ballView.position-actors[i].position)<HoldReach&&ballView.position.y<2.4f;}
+                else pose.contact=false;
+            }
         }
         else if(p.action=="header"||p.action=="airReady"||p.action=="airLand"){
             // Preparation, jump, contact and landing from the native phase. The
@@ -153,7 +180,7 @@ public partial class ProbeBridge {
             // Contacts override the stride. The following native motion is already
             // known, so its legs return promptly instead of holding a static kick.
             pose.baseClip=strideClip;pose.baseTime=strideLoop?strideTime:locomotion.Phase;pose.baseLoop=strideLoop;
-            pose.actionWeight=FootballActionTiming.Weight(p.action,age,progress,locomotion.Speed);
+            pose.actionWeight=FootballActionTiming.Weight(p.action=="goalKick"&&p.phase=="waiting"?"kickReady":p.action,age,progress,locomotion.Speed);
         }else if(locomotionAction&&carrying&&locomotion.Speed>.2f&&locomotion.Mode!="back"&&locomotion.Mode!="brake"&&!locomotion.Mode.StartsWith("turn-")){
             // Only a visual reach during an observed carrier stride: no extra ball
             // impulse, gameplay touch or predicted action is emitted. The swing leg
@@ -173,6 +200,8 @@ public partial class ProbeBridge {
     }
     // Native header distance; the goal-kick ball has left its kicker beyond GoalKickGone.
     const float HeaderReach=2.6f,GoalKickGone=1.5f;
+    const double GoalKickFollow=.45;
+    const float HoldReach=.9f;
     static float Horizontal(Vector3 v){v.y=0;return v.magnitude;}
     // Aerial body from the native phase: preparation counts toward the arrival,
     // contact actions start at the apex and land by their end. upright: a

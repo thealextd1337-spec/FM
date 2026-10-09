@@ -1,5 +1,9 @@
 # Entwicklungsdokumentation
 
+- [Release 118](release-118.md): aktueller lokaler Torwartkandidat, Android-Prüfweg und vorbereitete Account-Anbieterauswahl; abschließende Unity-/Browserprüfung und Veröffentlichung folgen.
+- [Android-Geräteabnahme](platform/android-3d-acceptance.md): physischer USB-/Chrome-Prüfweg für 14 Spieler, native Spielgeschwindigkeit, echte Wake-Lock-/Bildschirmbeobachtung und getrennte Leistungskennzahlen; Gerätezugang fehlt derzeit.
+- [Account-Betriebspaket](platform/account-provider-options.md): vorhandenes Websitehosting und zwei Backendwege, aktuelle Primärquellen, Budgetannahmen und noch fehlende Betriebs-/Eltern-/Löschentscheidungen.
+
 - [Release 117](release-117.md): veröffentlichte Luft-/Landefolgen, Einwurf, lokale Keeperwinkel, optionale Ballhilfe, bessere Namen und sichtbare Vereinsidentität; vollständige Produktions-, Unity-/Browser- und Live-Abnahme bestanden.
 
 - [Weitere 3D-Iteration](platform/3d-readability-iteration.md): lokale bessere Namensplatzierung, Vereinsmuster und Kopfverbindungen; geprüfte kleine Bildschirmansicht und konkrete Vorschläge für Animation, Ball und Stadien.
