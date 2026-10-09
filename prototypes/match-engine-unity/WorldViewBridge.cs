@@ -89,6 +89,7 @@ public partial class ProbeBridge {
             float movement=lastWorldClock>=0&&f.clock>lastWorldClock?Vector3.ProjectOnPlane(position-actors[i].position,Vector3.up).magnitude/(float)(f.clock-lastWorldClock):0;
             if(lastWorldClock>=0&&f.clock>lastWorldClock)runSpeeds[i]=movement;
             actors[i].position=position;rings[i].position=new Vector3(position.x,.02f,position.z);
+            if(teamGroundRings!=null)teamGroundRings[i].position=new Vector3(position.x,.045f,position.z);
             var direction=V(p.facing);direction.y=0;if(direction.sqrMagnitude>.0001)actors[i].rotation=Quaternion.LookRotation(direction);
             var desired=runSpeeds[i]>.2?runClip:identity.keeper?keeperClip:idleClip;
             if(lastWorldClock<0||f.clock<lastWorldClock)animationTimes[i]=f.clock;

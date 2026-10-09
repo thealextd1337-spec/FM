@@ -1,5 +1,9 @@
 # Entwicklungsdokumentation
 
+- [Release 116](release-116.md): schnelles Kleinfeldspiel, Vereinsringe und Wachhalten im Vollbild; Veröffentlichungsprüfung und Live-Nachweise.
+
+- [Schnelles Kleinfeldspiel und mobile Erkennbarkeit](platform/mobile-match-readability.md): lokaler Kandidat mit dynamischen Antritten, taktischer Rückkehr, gezielten hohen Vorwärtspässen, Vereinsringen und korrigiertem Wake Lock; Messungen und offene Android-Geräteabnahme.
+
 - [Release 115](release-115.md): Vereinsstadien und Zweikampfqualität, vollständige Produktionsprüfung und Veröffentlichung.
 
 - [3D-Erlebnis und Vereinsstadien – priorisierte Agenda](3d-erlebnis-stadien-plan.md): zuerst 3D-Qualität mit Vereinsstadien, danach Accounts; parallele 3D-Arbeitsspuren für Stadien, Bewegung/Kontakte sowie Kamera/Performance; keine Spielerporträts oder Jubelbilder.

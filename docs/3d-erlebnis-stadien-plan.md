@@ -21,6 +21,7 @@ Die Umsetzung ist auf Nutzerauftrag gestartet. Der eigene Worktree `work/3d-qual
 
 ## Bestätigtes Ziel
 
+- Weitere Nutzerpräzisierung: schnelles Kleinfeldspiel mit dynamischen Antritten, kurzen Kombinationen, taktischer Raumtreue abseits des Balls und gezielten hohen Vorwärtspässen. Mobile Teamringe verwenden Vereinsfarben mit heller/dunkler Kontrastkante; Vollbild soll den Bildschirm wach halten. [Aktueller lokaler Kandidat und Messungen](platform/mobile-match-readability.md).
 - Das sichtbare 3D-Spiel erhält Vorrang vor weiteren Verwaltungs- und Accountausbauten.
 - Jeder Verein soll ein wiedererkennbares eigenes Stadionbild erhalten. Der konkrete Umfang und die Zuordnung werden gegen den aktuellen Vereinsbestand ausgearbeitet.
 - Stadien werden schöner und unterscheiden sich sichtbar in Architektur und Umgebung, nicht allein durch eine andere Farbe.
@@ -30,7 +31,7 @@ Die Umsetzung ist auf Nutzerauftrag gestartet. Der eigene Worktree `work/3d-qual
 
 Der lokale Kandidat ist integriert: alle 48 Vereine erhalten unterschiedliche Architekturkombinationen aus acht Stadiontypen mit Tribünen, Dächern, Fassaden, Umgebung und Rasenvarianten. Grätsche und Aufstehen, stehender Zweikampf, Foulstolpern und Torwartnachstellen wurden verbessert. Profil-, Architektur- und Rigprüfungen, 48 Unity-Bilder, WebGL-Build sowie vollständige Browservergleiche bestanden. [Unity-Lieferung](platform/3d-quality-unity.md), [Abnahme und Grenzen](platform/3d-quality-validation.md).
 
-Die nächste 3D-Arbeit umfasst reale PC-/Pixel-Messungen, gemeinsame visuelle Besichtigung und die verbleibenden Luft-/Einwurf-/Keepersequenzen aus dem Audit. Parallel ist der reine [Account-Vertragsvorlauf C01/C02](platform/account-preflight.md) fertig. Produktionsanbindung folgt als zweite Priorität nach den jeweiligen offenen Anbieter-/Integrationsentscheidungen. Kein Release und keine bezahlte Assetgenerierung wurden ausgeführt.
+Nach Release 115 ist der [Kleinfeld-/Mobilkandidat](platform/mobile-match-readability.md) lokal umgesetzt. Als nächste Abnahme folgen Spielgefühl und Wachhalten auf Android sowie reale PC-/Pixel-Messungen; verbleibende Luft-/Einwurf-/Keepersequenzen aus dem Audit bleiben auf der Agenda. Parallel ist der reine [Account-Vertragsvorlauf C01/C02](platform/account-preflight.md) fertig. Produktionsanbindung folgt als zweite Priorität nach den jeweiligen offenen Anbieter-/Integrationsentscheidungen. Der neue Kandidat ist noch nicht veröffentlicht; bezahlte Assetgenerierung wurde nicht ausgeführt.
 
 ## Ursprüngliche Umsetzungsschritte und Abnahmefolge
 

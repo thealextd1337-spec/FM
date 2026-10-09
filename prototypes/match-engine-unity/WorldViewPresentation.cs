@@ -7,6 +7,7 @@ public partial class ProbeBridge {
     float[] runSpeeds;double[] animationTimes;
     FootballLocomotion[] worldLocomotion;
     WorldBallMotion worldBallMotion;
+    Transform[] teamGroundRings;Material teamRingMaterial;
     [Serializable] class WorldMarker {public string id;public float x,y,depth;public bool visible,featured;}
     [Serializable] class WorldRenderedPose {public string id,clip,baseClip,kind,motion;public double time,stridePhase;public bool contact,reachable;public float contactError,plantError,actionWeight,speed;}
     WorldRenderedPose[] renderedPoses;
@@ -16,7 +17,7 @@ public partial class ProbeBridge {
         labelHeads=new Transform[actors.Count];runSpeeds=new float[actors.Count];animationTimes=new double[actors.Count];renderedPoses=new WorldRenderedPose[actors.Count];
         worldLocomotion=new FootballLocomotion[actors.Count];for(int i=0;i<actors.Count;i++)worldLocomotion[i]=new FootballLocomotion();
         for(int i=0;i<actors.Count;i++)foreach(var t in actors[i].GetComponentsInChildren<Transform>())if(t.name=="mixamorig:Head")labelHeads[i]=t;
-        DecorateWorldPitch();BuildStadium();
+        DecorateWorldPitch();BuildStadium();BuildTeamGroundRings();
     }
     void SendWorldProjection(){
         if(worldView==null||displayed==null)return;
@@ -41,6 +42,35 @@ public partial class ProbeBridge {
         }
         var mesh=new Mesh{name=name};mesh.vertices=vertices;mesh.triangles=triangles;mesh.RecalculateNormals();mesh.RecalculateBounds();netMeshes.Add(mesh);
         var go=new GameObject(name,typeof(MeshFilter),typeof(MeshRenderer));go.transform.SetParent(world,false);go.GetComponent<MeshFilter>().sharedMesh=mesh;go.GetComponent<MeshRenderer>().sharedMaterial=material;
+    }
+    internal static Mesh TeamGroundRingMesh(Color clubColor,bool dashed){
+        const int sectors=48;var vertices=new List<Vector3>();var colors=new List<Color>();var triangles=new List<int>();
+        var radii=new[]{.57f,.63f,.79f,.88f};var bands=new[]{Color.white.linear,clubColor.linear,new Color(.018f,.025f,.031f).linear};
+        for(int i=0;i<sectors;i++){
+            if(dashed&&i%8>=6)continue;
+            float a=i*Mathf.PI*2/sectors,b=(i+1)*Mathf.PI*2/sectors;var from=new Vector3(Mathf.Cos(a),0,Mathf.Sin(a));var to=new Vector3(Mathf.Cos(b),0,Mathf.Sin(b));
+            for(int band=0;band<3;band++){
+                int n=vertices.Count;vertices.Add(from*radii[band]);vertices.Add(to*radii[band]);vertices.Add(from*radii[band+1]);vertices.Add(to*radii[band+1]);
+                for(int k=0;k<4;k++)colors.Add(bands[band]);
+                triangles.Add(n);triangles.Add(n+2);triangles.Add(n+1);triangles.Add(n+1);triangles.Add(n+2);triangles.Add(n+3);
+            }
+        }
+        var mesh=new Mesh{name=dashed?"Club ring segmented":"Club ring continuous"};mesh.SetVertices(vertices);mesh.SetColors(colors);mesh.SetTriangles(triangles,0);mesh.RecalculateBounds();return mesh;
+    }
+    void BuildTeamGroundRings(){
+        var shader=Resources.Load<Shader>("D6TeamRing");if(shader==null)throw new InvalidOperationException("Team ring shader is unavailable");
+        teamRingMaterial=new Material(shader);teamGroundRings=new Transform[actors.Count];var meshes=new Mesh[2];
+        for(int team=0;team<2;team++){
+            var player=Array.Find(worldView.Config.players,p=>p.team==team&&!p.keeper&&p.kit!=null);
+            var color=Kit(player?.kit?.main,team==0?new Color(.13f,.34f,.60f):new Color(.72f,.19f,.18f));
+            meshes[team]=TeamGroundRingMesh(color,team==1);netMeshes.Add(meshes[team]);
+        }
+        for(int i=0;i<actors.Count;i++){
+            int team=worldView.Players[worldActors[i].id].team;
+            var go=new GameObject("Club foot ring "+worldActors[i].id,typeof(MeshFilter),typeof(MeshRenderer));go.transform.SetParent(world,false);
+            go.GetComponent<MeshFilter>().sharedMesh=meshes[team];var renderer=go.GetComponent<MeshRenderer>();renderer.sharedMaterial=teamRingMaterial;renderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;renderer.receiveShadows=false;
+            go.transform.position=new Vector3(actors[i].position.x,.045f,actors[i].position.z);teamGroundRings[i]=go.transform;
+        }
     }
     void PitchSpot(string name,Vector3 at,Material material){
         var go=GameObject.CreatePrimitive(PrimitiveType.Cylinder);go.name=name;go.transform.SetParent(world,false);go.transform.position=at;go.transform.localScale=new Vector3(.24f,.01f,.24f);go.GetComponent<Renderer>().sharedMaterial=material;DestroyVisual(go.GetComponent<Collider>());
@@ -67,6 +97,6 @@ public partial class ProbeBridge {
         ballShadow.localScale=new Vector3(.31f,.003f,.31f);
     }
     Texture2D worldBallTexture;
-    void ClearWorldPresentation(){ClearStadium();if(worldBallTexture!=null)DestroyVisual(worldBallTexture);worldBallTexture=null;playback=null;displayed=null;labelHeads=null;}
+    void ClearWorldPresentation(){ClearStadium();if(worldBallTexture!=null)DestroyVisual(worldBallTexture);if(teamRingMaterial!=null)DestroyVisual(teamRingMaterial);teamRingMaterial=null;teamGroundRings=null;worldBallTexture=null;playback=null;displayed=null;labelHeads=null;}
 }
 }

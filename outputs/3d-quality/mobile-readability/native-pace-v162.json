@@ -1,0 +1,6600 @@
+{
+  "scope": "Summary of bounded deterministic native before/after; actual formation, roles, P02 and pass/contact controllers. Full measured P02 ledgers are validated before summarizing freshness and retaining their hashes. No hardware/FPS claim.",
+  "baselineCommit": "95db60a11c5803ac3dcbcf1487800e96ea1730a4",
+  "sourceHashes": {
+    "world-offensive-quality-v157.js": "c44cd7bdf645efed352133d2706b1f962e13878990ef13ad17d46b5c79723d22",
+    "world-football-flow-v159.js": "b2aa3d913d0fc868bf04780d861a3574b130ca709e0de3745e2d63b07f4aec7a"
+  },
+  "baselineHashes": {
+    "world-offensive-quality-v157.js": "5800e8327019090217dd1b2f6085ac9a23688d67fba84154f91abc61cb4deac6",
+    "world-football-flow-v159.js": "77a36cf07c802b508b86c092461bec025533e5270319e9de075a81fe9d1c4f71"
+  },
+  "errors": [],
+  "matches": [
+    {
+      "config": {
+        "seed": "pace-162-a",
+        "size": "standard",
+        "count": 5
+      },
+      "baseline": true,
+      "finished": true,
+      "half": true,
+      "geometry": {
+        "version": 1,
+        "length": 68,
+        "width": 44,
+        "goalWidth": 9.705882352941178,
+        "goalHeight": 3.2352941176470593,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "ballRadius": 0.1764
+      },
+      "fieldCounts": [
+        5,
+        5
+      ],
+      "formations": [
+        {
+          "pid": "pace-162-a:GER-2:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.93
+        },
+        {
+          "pid": "pace-162-a:GER-2:3",
+          "cell": 26,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.32,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-a:GER-2:2",
+          "cell": 28,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "ball-playing-defender",
+          "bx": 0.68,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-a:GER-2:5",
+          "cell": 16,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "ball-winner",
+          "bx": 0.32,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-a:GER-2:6",
+          "cell": 18,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "ball-winner",
+          "bx": 0.68,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-a:GER-2:10",
+          "cell": 7,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "poacher",
+          "bx": 0.5,
+          "by": 0.245
+        },
+        {
+          "pid": "pace-162-a:GER-6:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.07
+        },
+        {
+          "pid": "pace-162-a:GER-6:4",
+          "cell": 25,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.14,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-a:GER-6:2",
+          "cell": 27,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "cover-defender",
+          "bx": 0.5,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-a:GER-6:Y1:0",
+          "cell": 29,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "ball-playing-defender",
+          "bx": 0.86,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-a:GER-6:5",
+          "cell": 17,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "playmaker",
+          "bx": 0.5,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-a:GER-6:10",
+          "cell": 7,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "poacher",
+          "bx": 0.5,
+          "by": 0.755
+        }
+      ],
+      "metrics": {
+        "ticks": 3015,
+        "path": 3414.7059635242767,
+        "burstPath": 405.67261155490905,
+        "carryPath": 22.03621448829027,
+        "passiveZoneSum": 174785.38381733958,
+        "passiveSamples": 15869,
+        "crowdSum": 3205,
+        "crowdSamples": 2040,
+        "passTypes": {
+          "pass": 49,
+          "shot": 4,
+          "block": 1
+        },
+        "passes": [
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 6.584079737858298,
+            "gain": 6.559500558746714
+          },
+          {
+            "kind": "pass",
+            "range": 9.031339063072506,
+            "gain": 6.984796182915248
+          },
+          {
+            "kind": "pass",
+            "range": 4.797593502470206,
+            "gain": 0.6047334741239255
+          },
+          {
+            "kind": "pass",
+            "range": 7.060803472924644,
+            "gain": 5.487654232045747
+          },
+          {
+            "kind": "pass",
+            "range": 16.336331714245198,
+            "gain": -2.8737215072873887
+          },
+          {
+            "kind": "pass",
+            "range": 22.691058720917482,
+            "gain": 15.383024385465513
+          },
+          {
+            "kind": "pass",
+            "range": 1.2276105937735937,
+            "gain": 1.0458842143092715
+          },
+          {
+            "kind": "pass",
+            "range": 21.778255633872266,
+            "gain": -10.558634721315123
+          },
+          {
+            "kind": "pass",
+            "range": 7.4940257107373585,
+            "gain": 3.7463944790722636
+          },
+          {
+            "kind": "pass",
+            "range": 4.901107300305824,
+            "gain": -0.8637377016609445
+          },
+          {
+            "kind": "pass",
+            "range": 4.1070264908410214,
+            "gain": 2.944325617261904
+          },
+          {
+            "kind": "pass",
+            "range": 4.036975604580453,
+            "gain": 0.5692622312226898
+          },
+          {
+            "kind": "pass",
+            "range": 17.96491544497332,
+            "gain": -17.79504345122517
+          },
+          {
+            "kind": "pass",
+            "range": 14.292232066549323,
+            "gain": -9.743070027875213
+          },
+          {
+            "kind": "pass",
+            "range": 13.5895377600995,
+            "gain": 13.020194313491363
+          },
+          {
+            "kind": "pass",
+            "range": 7.275093318756866,
+            "gain": -7.252356529793907
+          },
+          {
+            "kind": "pass",
+            "range": 3.008885298786398,
+            "gain": 2.975740601618581
+          },
+          {
+            "kind": "pass",
+            "range": 4.4238830703870695,
+            "gain": 3.390154322962199
+          },
+          {
+            "kind": "pass",
+            "range": 13.574282608165573,
+            "gain": 3.1982010609116154
+          },
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 6.294710864886583,
+            "gain": 6.270638213764191
+          },
+          {
+            "kind": "pass",
+            "range": 5.9639250051892,
+            "gain": -5.566259319136454
+          },
+          {
+            "kind": "pass",
+            "range": 5.358783103729597,
+            "gain": -3.035319757784964
+          },
+          {
+            "kind": "pass",
+            "range": 7.420431422176982,
+            "gain": -3.8728189320310205
+          },
+          {
+            "kind": "pass",
+            "range": 11.810051247156094,
+            "gain": 11.631649354972552
+          },
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 5.761185970296855,
+            "gain": 5.757169714411783
+          },
+          {
+            "kind": "pass",
+            "range": 2.631186139518997,
+            "gain": 2.399291116038226
+          },
+          {
+            "kind": "pass",
+            "range": 13.405447821084605,
+            "gain": -12.701582011547417
+          },
+          {
+            "kind": "pass",
+            "range": 13.44148182850549,
+            "gain": -13.015051800974708
+          },
+          {
+            "kind": "pass",
+            "range": 9.257117562301904,
+            "gain": 6.57960192887681
+          },
+          {
+            "kind": "pass",
+            "range": 6.135808711139914,
+            "gain": 3.136184573062422
+          },
+          {
+            "kind": "pass",
+            "range": 4.944896265086761,
+            "gain": 2.726673261034995
+          },
+          {
+            "kind": "pass",
+            "range": 14.280561809022172,
+            "gain": -10.06668812632773
+          },
+          {
+            "kind": "pass",
+            "range": 15.24246012564616,
+            "gain": 12.789708177249315
+          },
+          {
+            "kind": "pass",
+            "range": 15.233213480960826,
+            "gain": -2.955993561767674
+          },
+          {
+            "kind": "pass",
+            "range": 6.0217382352332,
+            "gain": 4.62458359175219
+          },
+          {
+            "kind": "pass",
+            "range": 22.172409976816002,
+            "gain": 21.137661919425803
+          },
+          {
+            "kind": "pass",
+            "range": 24.09362956409178,
+            "gain": -1.3855977941556152
+          },
+          {
+            "kind": "pass",
+            "range": 12.229909723428257,
+            "gain": 12.213488121719285
+          },
+          {
+            "kind": "pass",
+            "range": 19.91099655798665,
+            "gain": 11.36013457490033
+          },
+          {
+            "kind": "pass",
+            "range": 3.585361799633564,
+            "gain": 3.1927297951190012
+          },
+          {
+            "kind": "pass",
+            "range": 20.800328196731964,
+            "gain": 4.770545913873277
+          },
+          {
+            "kind": "pass",
+            "range": 21.56897971650404,
+            "gain": 8.036735040701213
+          },
+          {
+            "kind": "pass",
+            "range": 4.306812253983769,
+            "gain": -3.385662401112389
+          },
+          {
+            "kind": "pass",
+            "range": 5.042732971606723,
+            "gain": 2.8696791641742156
+          },
+          {
+            "kind": "pass",
+            "range": 4.641308049648708,
+            "gain": -3.2356676278991188
+          },
+          {
+            "kind": "pass",
+            "range": 7.666153915323222,
+            "gain": 6.181407532309825
+          }
+        ],
+        "maxSpeed": 7.051551711237242,
+        "half": true,
+        "actions": 474,
+        "activeSeconds": 101.99999999999635,
+        "ownerDwells": [
+          0.2500000000000071,
+          0.2500000000000071,
+          0.2500000000000142,
+          0.29999999999999893,
+          0.3320512820493633,
+          0.3499999999999961,
+          0.3500000000000004,
+          0.3500000000000085,
+          0.35000000000001563,
+          0.3999999999999986,
+          0.40000000000001634,
+          0.5000000000000213,
+          0.5500000000000114,
+          0.6000000000000019,
+          0.6000000000000227,
+          0.6500000000000199,
+          0.650000000000027,
+          0.650000000000027,
+          0.6500000000000341,
+          0.6500000000000341,
+          0.6500000000000341,
+          0.6500000000000341,
+          0.7000000000000242,
+          0.7000000000000313,
+          0.7500000000000284,
+          0.7500000000000284,
+          0.7999999999999936,
+          0.8499999999999943,
+          0.949999999999994,
+          0.9500000000000313,
+          0.9500000000000384,
+          0.9500000000000455,
+          0.999999999999992,
+          1.000000000000039,
+          1.0500000000000398,
+          1.0500000000000398,
+          1.1500000000000483,
+          1.2500000000000497,
+          1.3000000000000398,
+          1.3500000000000512,
+          1.5000000000000568,
+          1.7000000000000597,
+          1.7500000000000568,
+          1.750000000000071,
+          1.9000000000000021,
+          1.9000000000000696,
+          1.9948034188022774,
+          2.0499999999999847,
+          2.5500000000000966,
+          2.599999999999987,
+          2.7500000000000995,
+          3.750000000000142,
+          4.5000000000001705
+        ],
+        "completedPasses": 45,
+        "completedForwardPasses": 18,
+        "restored": false,
+        "actionsPerMinute": 278.8235294117747,
+        "ownerDwellMedian": 0.7999999999999936,
+        "ownerDwellMean": 1.1052236736010053,
+        "passiveMeanMetres": 11.014265789737196,
+        "crowdMean": 1.571078431372549
+      },
+      "score": [
+        1,
+        0
+      ],
+      "stats": [
+        {
+          "pid": "pace-162-a:GER-2:1",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-2:3",
+          "passes": 3,
+          "passComplete": 3,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-2:2",
+          "passes": 3,
+          "passComplete": 3,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 3,
+          "duelsWon": 2,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-2:5",
+          "passes": 6,
+          "passComplete": 5,
+          "progressive": 1,
+          "passLost": 1,
+          "duels": 3,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 1,
+          "onTarget": 1,
+          "goals": 0,
+          "assists": 1,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 3,
+          "tacklesWon": 1,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-2:6",
+          "passes": 3,
+          "passComplete": 3,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 1,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-2:10",
+          "passes": 9,
+          "passComplete": 8,
+          "progressive": 0,
+          "passLost": 2,
+          "duels": 8,
+          "duelsWon": 6,
+          "interceptions": 0,
+          "shots": 1,
+          "onTarget": 1,
+          "goals": 1,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 2,
+          "slideWon": 1,
+          "tackleAttempts": 2,
+          "tacklesWon": 1,
+          "shotGoals": 1,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-6:1",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 1,
+          "faced": 1,
+          "conceded": 1,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 1,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 1
+        },
+        {
+          "pid": "pace-162-a:GER-6:4",
+          "passes": 3,
+          "passComplete": 3,
+          "progressive": 3,
+          "passLost": 0,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-6:2",
+          "passes": 6,
+          "passComplete": 6,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 2,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 1,
+          "tackleAttempts": 1,
+          "tacklesWon": 1,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-6:Y1:0",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 1,
+          "passLost": 1,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-6:5",
+          "passes": 6,
+          "passComplete": 6,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 5,
+          "duelsWon": 2,
+          "interceptions": 1,
+          "shots": 1,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 3,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-6:10",
+          "passes": 7,
+          "passComplete": 7,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 6,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 3,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        }
+      ],
+      "rng": 3631333711,
+      "draws": 286,
+      "load": {
+        "evidence": "summary",
+        "version": 158,
+        "parameterId": "p02-local-candidate-158-1",
+        "day": 7,
+        "sequence": 1215,
+        "playerCount": 22,
+        "finiteFreshnessValidated": true,
+        "players": {
+          "pace-162-a:GER-2:1": {
+            "freshness": 84.73047817478343
+          },
+          "pace-162-a:GER-2:2": {
+            "freshness": 60.24516105703605
+          },
+          "pace-162-a:GER-2:3": {
+            "freshness": 59.64202868749444
+          },
+          "pace-162-a:GER-2:4": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-2:5": {
+            "freshness": 57.5672808780688
+          },
+          "pace-162-a:GER-2:6": {
+            "freshness": 52.11429569247247
+          },
+          "pace-162-a:GER-2:7": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-2:8": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-2:9": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-2:10": {
+            "freshness": 39.203821147895574
+          },
+          "pace-162-a:GER-2:11": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-6:1": {
+            "freshness": 82.99948366586528
+          },
+          "pace-162-a:GER-6:2": {
+            "freshness": 38.77413467778702
+          },
+          "pace-162-a:GER-6:3": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-6:4": {
+            "freshness": 39.79410887793324
+          },
+          "pace-162-a:GER-6:5": {
+            "freshness": 39.47393197650149
+          },
+          "pace-162-a:GER-6:7": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-6:8": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-6:9": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-6:10": {
+            "freshness": 35.22796527294328
+          },
+          "pace-162-a:GER-6:11": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-6:Y1:0": {
+            "freshness": 35.19944895725691
+          }
+        },
+        "fullLedgerSha256": "f19cafb75a3da4a09a0999cbb752405eb8bd55fa57eeb71e8335b578e63bebe7"
+      }
+    },
+    {
+      "config": {
+        "seed": "pace-162-a",
+        "size": "standard",
+        "count": 5
+      },
+      "baseline": false,
+      "finished": true,
+      "half": true,
+      "geometry": {
+        "version": 1,
+        "length": 68,
+        "width": 44,
+        "goalWidth": 9.705882352941178,
+        "goalHeight": 3.2352941176470593,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "ballRadius": 0.1764
+      },
+      "fieldCounts": [
+        5,
+        5
+      ],
+      "formations": [
+        {
+          "pid": "pace-162-a:GER-2:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.93
+        },
+        {
+          "pid": "pace-162-a:GER-2:3",
+          "cell": 26,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.32,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-a:GER-2:2",
+          "cell": 28,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "ball-playing-defender",
+          "bx": 0.68,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-a:GER-2:5",
+          "cell": 16,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "ball-winner",
+          "bx": 0.32,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-a:GER-2:6",
+          "cell": 18,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "ball-winner",
+          "bx": 0.68,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-a:GER-2:10",
+          "cell": 7,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "poacher",
+          "bx": 0.5,
+          "by": 0.245
+        },
+        {
+          "pid": "pace-162-a:GER-6:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.07
+        },
+        {
+          "pid": "pace-162-a:GER-6:4",
+          "cell": 25,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.14,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-a:GER-6:2",
+          "cell": 27,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "cover-defender",
+          "bx": 0.5,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-a:GER-6:Y1:0",
+          "cell": 29,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "ball-playing-defender",
+          "bx": 0.86,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-a:GER-6:5",
+          "cell": 17,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "playmaker",
+          "bx": 0.5,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-a:GER-6:10",
+          "cell": 7,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "poacher",
+          "bx": 0.5,
+          "by": 0.755
+        }
+      ],
+      "metrics": {
+        "ticks": 3825,
+        "path": 3686.2230938904,
+        "burstPath": 355.58723514067043,
+        "carryPath": 28.612521357422445,
+        "passiveZoneSum": 171021.48435730563,
+        "passiveSamples": 17346,
+        "crowdSum": 2839,
+        "crowdSamples": 2082,
+        "passTypes": {
+          "pass": 48,
+          "shot": 5,
+          "highPass": 4
+        },
+        "passes": [
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 6.6580125867037205,
+            "gain": 6.600131008100919
+          },
+          {
+            "kind": "pass",
+            "range": 5.786522365461303,
+            "gain": 1.5162573655743337
+          },
+          {
+            "kind": "pass",
+            "range": 5.187138591124122,
+            "gain": 3.3036002889738953
+          },
+          {
+            "kind": "pass",
+            "range": 12.00958610190056,
+            "gain": 7.813653562528288
+          },
+          {
+            "kind": "pass",
+            "range": 17.516861067945026,
+            "gain": 17.034414670518647
+          },
+          {
+            "kind": "pass",
+            "range": 2.696519556327787,
+            "gain": 2.3830407376585505
+          },
+          {
+            "kind": "pass",
+            "range": 4.280831193638482,
+            "gain": 3.18369097049841
+          },
+          {
+            "kind": "pass",
+            "range": 9.060278431039633,
+            "gain": -8.043507738927001
+          },
+          {
+            "kind": "pass",
+            "range": 19.932939249244615,
+            "gain": -12.112501013891077
+          },
+          {
+            "kind": "highPass",
+            "range": 19.973934309015238,
+            "gain": 13.430742459954548
+          },
+          {
+            "kind": "highPass",
+            "range": 31.15544021393383,
+            "gain": 18.420091996229935
+          },
+          {
+            "kind": "pass",
+            "range": 19.387184095039533,
+            "gain": -11.831364568693981
+          },
+          {
+            "kind": "highPass",
+            "range": 24.958375091921127,
+            "gain": 19.004855596271405
+          },
+          {
+            "kind": "pass",
+            "range": 14.735102115486848,
+            "gain": 4.403543322849892
+          },
+          {
+            "kind": "pass",
+            "range": 6.0983669420232065,
+            "gain": -5.640200709777744
+          },
+          {
+            "kind": "pass",
+            "range": 20.10446249479332,
+            "gain": -15.700719906298112
+          },
+          {
+            "kind": "pass",
+            "range": 16.758198804207336,
+            "gain": 15.243940434006426
+          },
+          {
+            "kind": "pass",
+            "range": 6.118060614664032,
+            "gain": -1.0290398603157154
+          },
+          {
+            "kind": "pass",
+            "range": 1.1319210748526038,
+            "gain": 0.6666968646866489
+          },
+          {
+            "kind": "pass",
+            "range": 5.435493508535346,
+            "gain": 4.427041066699737
+          },
+          {
+            "kind": "pass",
+            "range": 4.022058400801265,
+            "gain": 3.339863601186874
+          },
+          {
+            "kind": "pass",
+            "range": 17.226344572302462,
+            "gain": 6.126782039256369
+          },
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 8.066471576967183,
+            "gain": 8.0650294892858
+          },
+          {
+            "kind": "pass",
+            "range": 4.5191915720789435,
+            "gain": -4.2557237951808045
+          },
+          {
+            "kind": "pass",
+            "range": 20.22182992046894,
+            "gain": -9.168653510625978
+          },
+          {
+            "kind": "highPass",
+            "range": 26.097094562401995,
+            "gain": 9.889909081163246
+          },
+          {
+            "kind": "pass",
+            "range": 13.54932359466175,
+            "gain": 7.776884598174334
+          },
+          {
+            "kind": "pass",
+            "range": 5.450846957142125,
+            "gain": 1.7696632447913556
+          },
+          {
+            "kind": "pass",
+            "range": 3.342242194222806,
+            "gain": 0.9832202102776786
+          },
+          {
+            "kind": "pass",
+            "range": 11.51827492910181,
+            "gain": 11.506594646366274
+          },
+          {
+            "kind": "pass",
+            "range": 2.4108787954549977,
+            "gain": 2.409186098948561
+          },
+          {
+            "kind": "pass",
+            "range": 15.884038021706946,
+            "gain": 15.88370546170053
+          },
+          {
+            "kind": "pass",
+            "range": 14.996841106201481,
+            "gain": 6.595418403068405
+          },
+          {
+            "kind": "pass",
+            "range": 18.46488725492224,
+            "gain": 17.640980448173703
+          },
+          {
+            "kind": "pass",
+            "range": 7.455893012348784,
+            "gain": 3.7142276607608067
+          },
+          {
+            "kind": "pass",
+            "range": 11.579127585891028,
+            "gain": 5.64488812709537
+          },
+          {
+            "kind": "pass",
+            "range": 5.426809349160232,
+            "gain": -1.504752711820766
+          },
+          {
+            "kind": "pass",
+            "range": 11.374678059180516,
+            "gain": 5.8348466131780405
+          },
+          {
+            "kind": "pass",
+            "range": 20.016902750588486,
+            "gain": 19.21764514979001
+          },
+          {
+            "kind": "pass",
+            "range": 8.292180838679815,
+            "gain": -7.237011345938401
+          },
+          {
+            "kind": "pass",
+            "range": 4.549853072778879,
+            "gain": 0.8794436124253932
+          },
+          {
+            "kind": "pass",
+            "range": 4.231138296189015,
+            "gain": 4.2167545952411025
+          },
+          {
+            "kind": "pass",
+            "range": 9.629724408019504,
+            "gain": 2.7801881347994155
+          },
+          {
+            "kind": "pass",
+            "range": 8.115511220215605,
+            "gain": 1.361158786598233
+          },
+          {
+            "kind": "pass",
+            "range": 5.5440754052506485,
+            "gain": 3.978465760752717
+          },
+          {
+            "kind": "pass",
+            "range": 16.216307990162516,
+            "gain": 16.213230033878844
+          },
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 8.393710310745355,
+            "gain": 8.391248471739926
+          },
+          {
+            "kind": "pass",
+            "range": 7.310497221541304,
+            "gain": 0.3891096002906134
+          },
+          {
+            "kind": "pass",
+            "range": 5.046158507997921,
+            "gain": 3.8126069032661047
+          }
+        ],
+        "maxSpeed": 7.31921934896112,
+        "half": true,
+        "actions": 335,
+        "activeSeconds": 104.09999999999623,
+        "ownerDwells": [
+          0.15128205128206673,
+          0.24999999999999822,
+          0.2500000000000142,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.3500000000000004,
+          0.3500000000000085,
+          0.3500000000000085,
+          0.3500000000000085,
+          0.3500000000000085,
+          0.35000000000002274,
+          0.4000000000000017,
+          0.4000000000000128,
+          0.45000000000001705,
+          0.45000000000001705,
+          0.5000000000000142,
+          0.5000000000000142,
+          0.5499999999999972,
+          0.5500000000000256,
+          0.5999999999999961,
+          0.6000000000000227,
+          0.6000000000000227,
+          0.6000000000000227,
+          0.649999999999995,
+          0.6500000000000199,
+          0.650000000000027,
+          0.650000000000027,
+          0.650000000000027,
+          0.6500000000000341,
+          0.7000000000000242,
+          0.7000000000000313,
+          0.7500000000000284,
+          0.7500000000000284,
+          0.850000000000037,
+          0.9000000000000341,
+          0.9000000000000341,
+          0.9500000000000348,
+          0.9999999999999987,
+          1.0500000000000398,
+          1.100000000000037,
+          1.1500000000000412,
+          1.2000000000000455,
+          1.2499999999999911,
+          1.3595213675196476,
+          1.8500000000000654,
+          2.2500000000000853,
+          2.3000000000000824,
+          2.399999999999999,
+          2.400000000000091,
+          2.5500000000000966,
+          2.7499999999999805
+        ],
+        "completedPasses": 45,
+        "completedForwardPasses": 22,
+        "restored": true,
+        "actionsPerMinute": 193.0835734870387,
+        "ownerDwellMedian": 0.650000000000027,
+        "ownerDwellMean": 0.8737412435059393,
+        "passiveMeanMetres": 9.859419137397996,
+        "crowdMean": 1.3635926993275695
+      },
+      "score": [
+        0,
+        1
+      ],
+      "stats": [
+        {
+          "pid": "pace-162-a:GER-2:1",
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 1,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 1,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-2:3",
+          "passes": 4,
+          "passComplete": 3,
+          "progressive": 3,
+          "passLost": 1,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 1,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-2:2",
+          "passes": 0,
+          "passComplete": 0,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 2,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 2,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 2,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-2:5",
+          "passes": 4,
+          "passComplete": 4,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 4,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 3,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 3,
+          "slideWon": 0,
+          "tackleAttempts": 3,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-2:6",
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 3,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 2,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 3,
+          "slideWon": 0,
+          "tackleAttempts": 3,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-2:10",
+          "passes": 6,
+          "passComplete": 6,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 3,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 2,
+          "onTarget": 1,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-6:1",
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 1,
+          "faced": 1,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 1,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-6:4",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 2,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 1,
+          "tackleAttempts": 1,
+          "tacklesWon": 1,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-6:2",
+          "passes": 6,
+          "passComplete": 6,
+          "progressive": 3,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 1,
+          "highComplete": 1,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-6:Y1:0",
+          "passes": 3,
+          "passComplete": 1,
+          "progressive": 3,
+          "passLost": 2,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 2,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-a:GER-6:8",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 1,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0
+        },
+        {
+          "pid": "pace-162-a:GER-6:11",
+          "passes": 4,
+          "passComplete": 4,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 2,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 2,
+          "onTarget": 1,
+          "goals": 1,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 1,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        }
+      ],
+      "rng": 665907066,
+      "draws": 279,
+      "load": {
+        "evidence": "summary",
+        "version": 158,
+        "parameterId": "p02-local-candidate-158-1",
+        "day": 7,
+        "sequence": 1237,
+        "playerCount": 22,
+        "finiteFreshnessValidated": true,
+        "players": {
+          "pace-162-a:GER-2:1": {
+            "freshness": 82.97808845578685
+          },
+          "pace-162-a:GER-2:2": {
+            "freshness": 59.4992234973796
+          },
+          "pace-162-a:GER-2:3": {
+            "freshness": 59.257465767302286
+          },
+          "pace-162-a:GER-2:4": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-2:5": {
+            "freshness": 58.51842102130621
+          },
+          "pace-162-a:GER-2:6": {
+            "freshness": 55.40765252612522
+          },
+          "pace-162-a:GER-2:7": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-2:8": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-2:9": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-2:10": {
+            "freshness": 42.57125811852334
+          },
+          "pace-162-a:GER-2:11": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-6:1": {
+            "freshness": 84.44546981239318
+          },
+          "pace-162-a:GER-6:2": {
+            "freshness": 41.26169096448798
+          },
+          "pace-162-a:GER-6:3": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-6:4": {
+            "freshness": 47.90009697816671
+          },
+          "pace-162-a:GER-6:5": {
+            "freshness": 44.29056669076614
+          },
+          "pace-162-a:GER-6:7": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-6:8": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-6:9": {
+            "freshness": 100
+          },
+          "pace-162-a:GER-6:10": {
+            "freshness": 66.89804039898614
+          },
+          "pace-162-a:GER-6:11": {
+            "freshness": 78.27588869497976
+          },
+          "pace-162-a:GER-6:Y1:0": {
+            "freshness": 44.968225682931646
+          }
+        },
+        "fullLedgerSha256": "431ed80f36a174eebacd3878e51064af039d163e5d0228555c695ecdb2f57bf1"
+      }
+    },
+    {
+      "config": {
+        "seed": "pace-162-b",
+        "size": "standard",
+        "count": 6
+      },
+      "baseline": true,
+      "finished": true,
+      "half": true,
+      "geometry": {
+        "version": 1,
+        "length": 68,
+        "width": 44,
+        "goalWidth": 9.705882352941178,
+        "goalHeight": 3.2352941176470593,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "ballRadius": 0.1764
+      },
+      "fieldCounts": [
+        6,
+        6
+      ],
+      "formations": [
+        {
+          "pid": "pace-162-b:GER-2:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.93
+        },
+        {
+          "pid": "pace-162-b:GER-2:2",
+          "cell": 26,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.32,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-b:GER-2:4",
+          "cell": 28,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.68,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-b:GER-2:5",
+          "cell": 16,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "box-to-box",
+          "bx": 0.32,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-b:GER-2:7",
+          "cell": 18,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "box-to-box",
+          "bx": 0.68,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-b:GER-2:10",
+          "cell": 6,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "poacher",
+          "bx": 0.32,
+          "by": 0.245
+        },
+        {
+          "pid": "pace-162-b:GER-2:11",
+          "cell": 8,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "target-player",
+          "bx": 0.68,
+          "by": 0.245
+        },
+        {
+          "pid": "pace-162-b:GER-3:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.07
+        },
+        {
+          "pid": "pace-162-b:GER-3:6",
+          "cell": 26,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.32,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-b:GER-3:2",
+          "cell": 28,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.68,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-b:GER-3:7",
+          "cell": 16,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "playmaker",
+          "bx": 0.32,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-b:GER-3:5",
+          "cell": 18,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "playmaker",
+          "bx": 0.68,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-b:GER-3:10",
+          "cell": 6,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "striker",
+          "bx": 0.32,
+          "by": 0.755
+        },
+        {
+          "pid": "pace-162-b:GER-3:11",
+          "cell": 8,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "striker",
+          "bx": 0.68,
+          "by": 0.755
+        }
+      ],
+      "metrics": {
+        "ticks": 3932,
+        "path": 4695.992459877383,
+        "burstPath": 643.1718149128235,
+        "carryPath": 93.70649322621836,
+        "passiveZoneSum": 217530.69427639825,
+        "passiveSamples": 19390,
+        "crowdSum": 2803,
+        "crowdSamples": 2115,
+        "passTypes": {
+          "pass": 43,
+          "shot": 8,
+          "block": 1
+        },
+        "passes": [
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 6.822407076202112,
+            "gain": 6.698967804744772
+          },
+          {
+            "kind": "pass",
+            "range": 16.620578600872367,
+            "gain": 11.58665255889004
+          },
+          {
+            "kind": "pass",
+            "range": 12.826285498144033,
+            "gain": 12.729343344385232
+          },
+          {
+            "kind": "pass",
+            "range": 4.486224179641958,
+            "gain": 2.1027158700243826
+          },
+          {
+            "kind": "pass",
+            "range": 3.1386319081762633,
+            "gain": 1.5107055142563914
+          },
+          {
+            "kind": "pass",
+            "range": 6.660604025934947,
+            "gain": -1.989896461355815
+          },
+          {
+            "kind": "pass",
+            "range": 12.347979049657368,
+            "gain": 5.220941297373883
+          },
+          {
+            "kind": "pass",
+            "range": 17.23454712430921,
+            "gain": 17.22980422998508
+          },
+          {
+            "kind": "pass",
+            "range": 4.876085690654899,
+            "gain": 1.283871618458516
+          },
+          {
+            "kind": "pass",
+            "range": 5.7336742230030655,
+            "gain": 3.101522615976131
+          },
+          {
+            "kind": "pass",
+            "range": 4.701089283738473,
+            "gain": 3.55949311920413
+          },
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 9.293095404617448,
+            "gain": 8.67024117799435
+          },
+          {
+            "kind": "pass",
+            "range": 15.590953901084523,
+            "gain": 5.8671562889932725
+          },
+          {
+            "kind": "pass",
+            "range": 12.828049452440979,
+            "gain": 11.068185629349113
+          },
+          {
+            "kind": "pass",
+            "range": 12.325617714826304,
+            "gain": -1.5597993134982016
+          },
+          {
+            "kind": "pass",
+            "range": 16.282896580895187,
+            "gain": 7.084261570401361
+          },
+          {
+            "kind": "pass",
+            "range": 10.450268670367247,
+            "gain": 6.036524070803974
+          },
+          {
+            "kind": "pass",
+            "range": 15.916541811283494,
+            "gain": 7.9153930098983025
+          },
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 5.9719441592272045,
+            "gain": 5.971915570619742
+          },
+          {
+            "kind": "pass",
+            "range": 7.682230311710578,
+            "gain": 1.7461566395708228
+          },
+          {
+            "kind": "pass",
+            "range": 6.193766301847507,
+            "gain": 0.2495162586443498
+          },
+          {
+            "kind": "pass",
+            "range": 14.146862857577991,
+            "gain": 5.739634482801721
+          },
+          {
+            "kind": "pass",
+            "range": 30.03868244091478,
+            "gain": 24.580744198866455
+          },
+          {
+            "kind": "pass",
+            "range": 23.314833008302795,
+            "gain": 22.602171580628415
+          },
+          {
+            "kind": "pass",
+            "range": 11.05328911352833,
+            "gain": 5.499595022758942
+          },
+          {
+            "kind": "pass",
+            "range": 22.43261288888047,
+            "gain": 14.890163817314471
+          },
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 6.413240390369597,
+            "gain": 6.340906335761857
+          },
+          {
+            "kind": "pass",
+            "range": 12.310968833609484,
+            "gain": 9.75742777619451
+          },
+          {
+            "kind": "pass",
+            "range": 13.411998785838527,
+            "gain": 11.845783266606125
+          },
+          {
+            "kind": "pass",
+            "range": 17.72802913906823,
+            "gain": 16.686166742845604
+          },
+          {
+            "kind": "pass",
+            "range": 11.630436599337923,
+            "gain": -3.808661243540117
+          },
+          {
+            "kind": "pass",
+            "range": 24.546672666509686,
+            "gain": 15.380106152953704
+          },
+          {
+            "kind": "pass",
+            "range": 19.677486959560284,
+            "gain": -14.622661848129397
+          },
+          {
+            "kind": "pass",
+            "range": 14.046644322732654,
+            "gain": 5.842982945453066
+          },
+          {
+            "kind": "pass",
+            "range": 12.991597796084383,
+            "gain": 12.019355325654283
+          },
+          {
+            "kind": "pass",
+            "range": 6.2165299429677665,
+            "gain": -2.8992333748270376
+          },
+          {
+            "kind": "pass",
+            "range": 6.103203583456654,
+            "gain": 3.98592879053251
+          },
+          {
+            "kind": "pass",
+            "range": 11.37403802567815,
+            "gain": 10.927113784233832
+          },
+          {
+            "kind": "pass",
+            "range": 2.214340249912617,
+            "gain": -1.967485331164759
+          }
+        ],
+        "maxSpeed": 7.380633341651829,
+        "half": true,
+        "actions": 360,
+        "activeSeconds": 105.74999999999613,
+        "ownerDwells": [
+          0.2500000000000071,
+          0.29999999999999716,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.3500000000000004,
+          0.3500000000000085,
+          0.3500000000000085,
+          0.3500000000000085,
+          0.3500000000000085,
+          0.35000000000002274,
+          0.45000000000001705,
+          0.5000000000000213,
+          0.5000000000000284,
+          0.5499999999999954,
+          0.5500000000000185,
+          0.5500000000000256,
+          0.5999999999999961,
+          0.599999999999997,
+          0.6000000000000227,
+          0.6000000000000227,
+          0.700000000000017,
+          0.7000000000000277,
+          0.7000000000000313,
+          0.7500000000000027,
+          0.7500000000000284,
+          0.7500000000000284,
+          0.8500000000000227,
+          0.8500000000000298,
+          0.850000000000037,
+          0.9499999999999922,
+          1.0999999999999908,
+          1.1500000000000128,
+          1.1999999999999922,
+          1.2500000000000426,
+          1.2500000000000497,
+          1.4500000000000006,
+          1.4500000000000455,
+          1.4500000000000597,
+          1.5499999999999883,
+          1.8000000000000682,
+          2.200000000000088,
+          2.2500000000000853,
+          2.8000000000001037,
+          4.300000000000164,
+          4.350000000000165,
+          4.800000000000182,
+          7.800000000000296
+        ],
+        "completedPasses": 31,
+        "completedForwardPasses": 18,
+        "restored": false,
+        "actionsPerMinute": 204.25531914894364,
+        "ownerDwellMedian": 0.7500000000000027,
+        "ownerDwellMean": 1.2500000000000377,
+        "passiveMeanMetres": 11.218705223125232,
+        "crowdMean": 1.3252955082742317
+      },
+      "score": [
+        0,
+        3
+      ],
+      "stats": [
+        {
+          "pid": "pace-162-b:GER-2:1",
+          "passes": 3,
+          "passComplete": 3,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 1,
+          "faced": 2,
+          "conceded": 3,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 3,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 1
+        },
+        {
+          "pid": "pace-162-b:GER-2:2",
+          "passes": 4,
+          "passComplete": 3,
+          "progressive": 1,
+          "passLost": 1,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-2:4",
+          "passes": 3,
+          "passComplete": 1,
+          "progressive": 3,
+          "passLost": 2,
+          "duels": 3,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 2,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 2,
+          "slideWon": 0,
+          "tackleAttempts": 3,
+          "tacklesWon": 1,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-2:5",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 2,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-2:7",
+          "passes": 0,
+          "passComplete": 0,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-2:10",
+          "passes": 8,
+          "passComplete": 6,
+          "progressive": 2,
+          "passLost": 1,
+          "duels": 4,
+          "duelsWon": 3,
+          "interceptions": 0,
+          "shots": 1,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-2:11",
+          "passes": 1,
+          "passComplete": 0,
+          "progressive": 1,
+          "passLost": 2,
+          "duels": 3,
+          "duelsWon": 2,
+          "interceptions": 0,
+          "shots": 1,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 1,
+          "tackleAttempts": 1,
+          "tacklesWon": 1,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:1",
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:6",
+          "passes": 4,
+          "passComplete": 4,
+          "progressive": 3,
+          "passLost": 0,
+          "duels": 3,
+          "duelsWon": 0,
+          "interceptions": 2,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 2,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 2,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:2",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 1,
+          "passLost": 1,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:7",
+          "passes": 3,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 2,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 2,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:8",
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 1,
+          "onTarget": 1,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:10",
+          "passes": 4,
+          "passComplete": 4,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 2,
+          "duelsWon": 0,
+          "interceptions": 1,
+          "shots": 4,
+          "onTarget": 2,
+          "goals": 2,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 1,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 2,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:9",
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0
+        }
+      ],
+      "rng": 792942956,
+      "draws": 265,
+      "load": {
+        "evidence": "summary",
+        "version": 158,
+        "parameterId": "p02-local-candidate-158-1",
+        "day": 7,
+        "sequence": 1457,
+        "playerCount": 23,
+        "finiteFreshnessValidated": true,
+        "players": {
+          "pace-162-b:GER-3:1": {
+            "freshness": 87.65076175769187
+          },
+          "pace-162-b:GER-3:2": {
+            "freshness": 44.988676285230746
+          },
+          "pace-162-b:GER-3:3": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-3:4": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-3:5": {
+            "freshness": 62.19755557372661
+          },
+          "pace-162-b:GER-3:6": {
+            "freshness": 54.35587954613698
+          },
+          "pace-162-b:GER-3:7": {
+            "freshness": 52.365273102750834
+          },
+          "pace-162-b:GER-3:8": {
+            "freshness": 87.74446653497483
+          },
+          "pace-162-b:GER-3:9": {
+            "freshness": 88.4445389405564
+          },
+          "pace-162-b:GER-3:10": {
+            "freshness": 52.959193654948095
+          },
+          "pace-162-b:GER-3:11": {
+            "freshness": 64.37129596524336
+          },
+          "pace-162-b:GER-3:Y1:0": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-2:1": {
+            "freshness": 82.11833094498785
+          },
+          "pace-162-b:GER-2:2": {
+            "freshness": 49.15954752935176
+          },
+          "pace-162-b:GER-2:3": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-2:4": {
+            "freshness": 33.07901542448636
+          },
+          "pace-162-b:GER-2:5": {
+            "freshness": 55.68147234284858
+          },
+          "pace-162-b:GER-2:6": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-2:7": {
+            "freshness": 42.857796698028395
+          },
+          "pace-162-b:GER-2:8": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-2:9": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-2:10": {
+            "freshness": 47.80909363177723
+          },
+          "pace-162-b:GER-2:11": {
+            "freshness": 36.957722931363946
+          }
+        },
+        "fullLedgerSha256": "cf1dbc936d6967785e47245b8b1275e4e53857455cfc8b7f2af3b8c9485d721f"
+      }
+    },
+    {
+      "config": {
+        "seed": "pace-162-b",
+        "size": "standard",
+        "count": 6
+      },
+      "baseline": false,
+      "finished": true,
+      "half": true,
+      "geometry": {
+        "version": 1,
+        "length": 68,
+        "width": 44,
+        "goalWidth": 9.705882352941178,
+        "goalHeight": 3.2352941176470593,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "ballRadius": 0.1764
+      },
+      "fieldCounts": [
+        6,
+        6
+      ],
+      "formations": [
+        {
+          "pid": "pace-162-b:GER-2:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.93
+        },
+        {
+          "pid": "pace-162-b:GER-2:2",
+          "cell": 26,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.32,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-b:GER-2:4",
+          "cell": 28,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.68,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-b:GER-2:5",
+          "cell": 16,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "box-to-box",
+          "bx": 0.32,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-b:GER-2:7",
+          "cell": 18,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "box-to-box",
+          "bx": 0.68,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-b:GER-2:10",
+          "cell": 6,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "poacher",
+          "bx": 0.32,
+          "by": 0.245
+        },
+        {
+          "pid": "pace-162-b:GER-2:11",
+          "cell": 8,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "target-player",
+          "bx": 0.68,
+          "by": 0.245
+        },
+        {
+          "pid": "pace-162-b:GER-3:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.07
+        },
+        {
+          "pid": "pace-162-b:GER-3:6",
+          "cell": 26,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.32,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-b:GER-3:2",
+          "cell": 28,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.68,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-b:GER-3:7",
+          "cell": 16,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "playmaker",
+          "bx": 0.32,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-b:GER-3:5",
+          "cell": 18,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "playmaker",
+          "bx": 0.68,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-b:GER-3:10",
+          "cell": 6,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "striker",
+          "bx": 0.32,
+          "by": 0.755
+        },
+        {
+          "pid": "pace-162-b:GER-3:11",
+          "cell": 8,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "striker",
+          "bx": 0.68,
+          "by": 0.755
+        }
+      ],
+      "metrics": {
+        "ticks": 3859,
+        "path": 4627.080866577251,
+        "burstPath": 606.1504479593918,
+        "carryPath": 57.395925360548745,
+        "passiveZoneSum": 203885.51068541483,
+        "passiveSamples": 19913,
+        "crowdSum": 2764,
+        "crowdSamples": 2067,
+        "passTypes": {
+          "pass": 50,
+          "freeKick": 2,
+          "block": 1,
+          "shot": 6,
+          "highPass": 1
+        },
+        "passes": [
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 6.984345877565341,
+            "gain": 6.781516157102994
+          },
+          {
+            "kind": "pass",
+            "range": 1.0412089374426197,
+            "gain": -0.5679452634023657
+          },
+          {
+            "kind": "pass",
+            "range": 6.40348967590358,
+            "gain": 2.44519012407711
+          },
+          {
+            "kind": "pass",
+            "range": 8.286133433669768,
+            "gain": 7.570426635429113
+          },
+          {
+            "kind": "pass",
+            "range": 13.49672338231948,
+            "gain": 13.363943916807488
+          },
+          {
+            "kind": "pass",
+            "range": 22.54176306316686,
+            "gain": 2.821080847041072
+          },
+          {
+            "kind": "pass",
+            "range": 9.304679724003142,
+            "gain": -4.644793380789047
+          },
+          {
+            "kind": "pass",
+            "range": 18.646808530005874,
+            "gain": 15.267933824563372
+          },
+          {
+            "kind": "pass",
+            "range": 22.435662837425706,
+            "gain": -6.329171219084568
+          },
+          {
+            "kind": "pass",
+            "range": 17.221903832264694,
+            "gain": 5.873039680472557
+          },
+          {
+            "kind": "highPass",
+            "range": 31.246400336394867,
+            "gain": 20.99320510726423
+          },
+          {
+            "kind": "pass",
+            "range": 6.722926294477597,
+            "gain": 6.286806171190578
+          },
+          {
+            "kind": "pass",
+            "range": 20.722624828727678,
+            "gain": 0.9135870809643422
+          },
+          {
+            "kind": "pass",
+            "range": 2.7157918513155557,
+            "gain": -2.1839878135169206
+          },
+          {
+            "kind": "pass",
+            "range": 12.78537469267589,
+            "gain": 11.891737329791454
+          },
+          {
+            "kind": "pass",
+            "range": 7.411397928691475,
+            "gain": -5.4248169248243485
+          },
+          {
+            "kind": "pass",
+            "range": 5.022221857746664,
+            "gain": -1.5341189909050594
+          },
+          {
+            "kind": "pass",
+            "range": 13.437998019613655,
+            "gain": 5.845685757369695
+          },
+          {
+            "kind": "pass",
+            "range": 25.5545809885629,
+            "gain": 25.500308808067647
+          },
+          {
+            "kind": "pass",
+            "range": 2.7487334580521394,
+            "gain": 2.2359539234586907
+          },
+          {
+            "kind": "pass",
+            "range": 3.7478058053818177,
+            "gain": 2.1852749639775486
+          },
+          {
+            "kind": "pass",
+            "range": 5.393412140000152,
+            "gain": 3.9962034995880362
+          },
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 6.401801826421755,
+            "gain": 6.384641448699802
+          },
+          {
+            "kind": "pass",
+            "range": 14.117710582277562,
+            "gain": 1.901378684679879
+          },
+          {
+            "kind": "pass",
+            "range": 17.96800498806079,
+            "gain": 17.67167995906717
+          },
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 7.226769206087576,
+            "gain": 7.1847656617694735
+          },
+          {
+            "kind": "pass",
+            "range": 15.407475153617312,
+            "gain": 12.105747361188884
+          },
+          {
+            "kind": "pass",
+            "range": 7.313953488372092,
+            "gain": -7.313953488372091
+          },
+          {
+            "kind": "pass",
+            "range": 6.292506251122275,
+            "gain": 6.043690161783815
+          },
+          {
+            "kind": "pass",
+            "range": 3.934608914376026,
+            "gain": -3.926053802908154
+          },
+          {
+            "kind": "pass",
+            "range": 5.035288704880672,
+            "gain": 4.982015595016592
+          },
+          {
+            "kind": "pass",
+            "range": 9.683738026846775,
+            "gain": 5.694870189073659
+          },
+          {
+            "kind": "pass",
+            "range": 15.784395801603477,
+            "gain": 11.316752866873136
+          },
+          {
+            "kind": "pass",
+            "range": 7.423358576208807,
+            "gain": -7.397783261450448
+          },
+          {
+            "kind": "pass",
+            "range": 18.068877707767523,
+            "gain": 13.234715754029336
+          },
+          {
+            "kind": "pass",
+            "range": 10.802684725996057,
+            "gain": 10.572207012324734
+          },
+          {
+            "kind": "pass",
+            "range": 6.797094451579257,
+            "gain": 3.248590607234794
+          },
+          {
+            "kind": "pass",
+            "range": 11.13917247727338,
+            "gain": 8.140523686294081
+          },
+          {
+            "kind": "pass",
+            "range": 18.834497011539757,
+            "gain": 15.776094430061924
+          },
+          {
+            "kind": "pass",
+            "range": 11.841452461141046,
+            "gain": 5.856528007623094
+          },
+          {
+            "kind": "pass",
+            "range": 16.119695602397897,
+            "gain": 15.89919708444317
+          },
+          {
+            "kind": "pass",
+            "range": 15.23871065267601,
+            "gain": 6.861014720356224
+          },
+          {
+            "kind": "pass",
+            "range": 27.32797932622784,
+            "gain": 27.326154094361026
+          },
+          {
+            "kind": "pass",
+            "range": 20.128568767577736,
+            "gain": 11.323629578406688
+          },
+          {
+            "kind": "pass",
+            "range": 11.904914050723956,
+            "gain": 4.23936385614041
+          },
+          {
+            "kind": "pass",
+            "range": 10.797763870588973,
+            "gain": 5.729519616740713
+          },
+          {
+            "kind": "pass",
+            "range": 9.24128646241722,
+            "gain": 6.023723017209616
+          },
+          {
+            "kind": "pass",
+            "range": 12.854257090982712,
+            "gain": 11.73444837451442
+          }
+        ],
+        "maxSpeed": 7.558313091179541,
+        "half": true,
+        "actions": 346,
+        "activeSeconds": 103.34999999999627,
+        "ownerDwells": [
+          0.15000000000000568,
+          0.24999999999999822,
+          0.2500000000000071,
+          0.29999999999999893,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.3500000000000004,
+          0.3500000000000085,
+          0.3500000000000085,
+          0.3500000000000085,
+          0.35000000000001563,
+          0.35000000000002274,
+          0.35000000000002274,
+          0.5500000000000114,
+          0.5999999999999961,
+          0.6000000000000227,
+          0.6000000000000227,
+          0.6000000000000227,
+          0.6000000000000227,
+          0.6000000000000227,
+          0.6000000000000227,
+          0.700000000000017,
+          0.7500000000000284,
+          0.7500000000000284,
+          0.7500000000000284,
+          0.8000000000000327,
+          0.8500000000000298,
+          0.9000000000000341,
+          0.9000000000000341,
+          0.9000000000000341,
+          0.9000000000000341,
+          0.9499999999999984,
+          0.9500000000000033,
+          0.9500000000000455,
+          0.9500000000000455,
+          1.0000000000000355,
+          1.1499999999999915,
+          1.4999999999999885,
+          1.5499999999999883,
+          1.8500000000000725,
+          2.000000000000071,
+          2.0500000000000753,
+          2.1000000000000796,
+          2.3000000000000824,
+          2.450000000000088,
+          2.7500000000000995
+        ],
+        "completedPasses": 41,
+        "completedForwardPasses": 23,
+        "restored": true,
+        "actionsPerMinute": 200.87082728592887,
+        "ownerDwellMedian": 0.6000000000000227,
+        "ownerDwellMean": 0.8120370370370615,
+        "passiveMeanMetres": 10.238814376809865,
+        "crowdMean": 1.3372036768263182
+      },
+      "score": [
+        0,
+        2
+      ],
+      "stats": [
+        {
+          "pid": "pace-162-b:GER-2:1",
+          "passes": 3,
+          "passComplete": 3,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 2,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 2,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-2:2",
+          "passes": 9,
+          "passComplete": 8,
+          "progressive": 4,
+          "passLost": 1,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 1,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-2:4",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 1,
+          "passLost": 1,
+          "duels": 3,
+          "duelsWon": 0,
+          "interceptions": 2,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 2,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-2:5",
+          "passes": 4,
+          "passComplete": 3,
+          "progressive": 1,
+          "passLost": 1,
+          "duels": 2,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 2,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 2,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-2:7",
+          "passes": 0,
+          "passComplete": 0,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 3,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 1,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 2,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-2:10",
+          "passes": 7,
+          "passComplete": 6,
+          "progressive": 0,
+          "passLost": 2,
+          "duels": 3,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 3,
+          "onTarget": 1,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-2:11",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 0,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:1",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 1,
+          "faced": 1,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 1
+        },
+        {
+          "pid": "pace-162-b:GER-3:6",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 2,
+          "duelsWon": 0,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:2",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:7",
+          "passes": 6,
+          "passComplete": 6,
+          "progressive": 4,
+          "passLost": 0,
+          "duels": 3,
+          "duelsWon": 1,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 1,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 2,
+          "slideWon": 1,
+          "tackleAttempts": 2,
+          "tacklesWon": 1,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:8",
+          "passes": 2,
+          "passComplete": 1,
+          "progressive": 1,
+          "passLost": 1,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:10",
+          "passes": 7,
+          "passComplete": 7,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 4,
+          "onTarget": 2,
+          "goals": 2,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 2,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-b:GER-3:9",
+          "passes": 2,
+          "passComplete": 1,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 1,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0
+        }
+      ],
+      "rng": 1735998442,
+      "draws": 327,
+      "load": {
+        "evidence": "summary",
+        "version": 158,
+        "parameterId": "p02-local-candidate-158-1",
+        "day": 7,
+        "sequence": 1426,
+        "playerCount": 23,
+        "finiteFreshnessValidated": true,
+        "players": {
+          "pace-162-b:GER-3:1": {
+            "freshness": 87.26210252435975
+          },
+          "pace-162-b:GER-3:2": {
+            "freshness": 51.41236185905426
+          },
+          "pace-162-b:GER-3:3": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-3:4": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-3:5": {
+            "freshness": 75.19654826695991
+          },
+          "pace-162-b:GER-3:6": {
+            "freshness": 61.583136586012984
+          },
+          "pace-162-b:GER-3:7": {
+            "freshness": 55.347407387487465
+          },
+          "pace-162-b:GER-3:8": {
+            "freshness": 82.8303524767777
+          },
+          "pace-162-b:GER-3:9": {
+            "freshness": 80.56909769477139
+          },
+          "pace-162-b:GER-3:10": {
+            "freshness": 56.14964925463993
+          },
+          "pace-162-b:GER-3:11": {
+            "freshness": 72.89697394888822
+          },
+          "pace-162-b:GER-3:Y1:0": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-2:1": {
+            "freshness": 83.75195509697588
+          },
+          "pace-162-b:GER-2:2": {
+            "freshness": 52.70004932346241
+          },
+          "pace-162-b:GER-2:3": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-2:4": {
+            "freshness": 45.91590014430975
+          },
+          "pace-162-b:GER-2:5": {
+            "freshness": 57.53979566631552
+          },
+          "pace-162-b:GER-2:6": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-2:7": {
+            "freshness": 54.431485498995016
+          },
+          "pace-162-b:GER-2:8": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-2:9": {
+            "freshness": 100
+          },
+          "pace-162-b:GER-2:10": {
+            "freshness": 49.88131419280244
+          },
+          "pace-162-b:GER-2:11": {
+            "freshness": 47.96400523060436
+          }
+        },
+        "fullLedgerSha256": "36a9499d156603244564fb66627e256521eabbcf025685af401bccea39ae0893"
+      }
+    },
+    {
+      "config": {
+        "seed": "pace-162-c",
+        "size": "large",
+        "count": 5
+      },
+      "baseline": true,
+      "finished": true,
+      "half": true,
+      "geometry": {
+        "version": 1,
+        "length": 81.6,
+        "width": 52.8,
+        "goalWidth": 9.705882352941178,
+        "goalHeight": 3.2352941176470593,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "ballRadius": 0.1764
+      },
+      "fieldCounts": [
+        5,
+        5
+      ],
+      "formations": [
+        {
+          "pid": "pace-162-c:GER-2:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.93
+        },
+        {
+          "pid": "pace-162-c:GER-2:2",
+          "cell": 26,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "cover-defender",
+          "bx": 0.32,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-c:GER-2:4",
+          "cell": 28,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.68,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-c:GER-2:6",
+          "cell": 16,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "box-to-box",
+          "bx": 0.32,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-c:GER-2:7",
+          "cell": 18,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "ball-winner",
+          "bx": 0.68,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-c:GER-2:9",
+          "cell": 7,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "poacher",
+          "bx": 0.5,
+          "by": 0.245
+        },
+        {
+          "pid": "pace-162-c:GER-1:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.07
+        },
+        {
+          "pid": "pace-162-c:GER-1:4",
+          "cell": 27,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.5,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-c:GER-1:6",
+          "cell": 15,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "winger",
+          "bx": 0.14,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-c:GER-1:7",
+          "cell": 17,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "playmaker",
+          "bx": 0.5,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-c:GER-1:8",
+          "cell": 19,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "winger",
+          "bx": 0.86,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-c:GER-1:9",
+          "cell": 7,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "striker",
+          "bx": 0.5,
+          "by": 0.755
+        }
+      ],
+      "metrics": {
+        "ticks": 2901,
+        "path": 4086.3052860620237,
+        "burstPath": 736.6015970606645,
+        "carryPath": 27.745231928970433,
+        "passiveZoneSum": 219551.48313677407,
+        "passiveSamples": 14837,
+        "crowdSum": 2588,
+        "crowdSamples": 2003,
+        "passTypes": {
+          "pass": 43,
+          "shot": 4,
+          "freeKick": 2,
+          "block": 1,
+          "cross": 1
+        },
+        "passes": [
+          {
+            "kind": "pass",
+            "range": 8.776744186046509,
+            "gain": -8.776744186046509
+          },
+          {
+            "kind": "pass",
+            "range": 8.174851138701383,
+            "gain": 8.15152448972381
+          },
+          {
+            "kind": "pass",
+            "range": 16.73774470659062,
+            "gain": 6.333504515681377
+          },
+          {
+            "kind": "pass",
+            "range": 7.139629665853337,
+            "gain": -2.7578054570589505
+          },
+          {
+            "kind": "pass",
+            "range": 12.810353160386722,
+            "gain": 5.919926340824443
+          },
+          {
+            "kind": "pass",
+            "range": 16.153324108484476,
+            "gain": 12.576932988293146
+          },
+          {
+            "kind": "pass",
+            "range": 12.394595601763424,
+            "gain": 5.779724417629703
+          },
+          {
+            "kind": "pass",
+            "range": 3.8976444815590634,
+            "gain": 0.24419941548221516
+          },
+          {
+            "kind": "pass",
+            "range": 3.780179303910129,
+            "gain": 0.4012891112923146
+          },
+          {
+            "kind": "pass",
+            "range": 23.20381646394167,
+            "gain": 4.500871025402529
+          },
+          {
+            "kind": "pass",
+            "range": 11.11112505952578,
+            "gain": 5.798985930334224
+          },
+          {
+            "kind": "pass",
+            "range": 17.514214371867265,
+            "gain": 14.732613353112688
+          },
+          {
+            "kind": "pass",
+            "range": 8.922847757292962,
+            "gain": 4.0614355107338325
+          },
+          {
+            "kind": "pass",
+            "range": 9.609020555689424,
+            "gain": 9.566313346409611
+          },
+          {
+            "kind": "pass",
+            "range": 7.41792625194719,
+            "gain": 6.092276637959558
+          },
+          {
+            "kind": "pass",
+            "range": 6.083157562216658,
+            "gain": 4.637010792392548
+          },
+          {
+            "kind": "pass",
+            "range": 18.65728023641775,
+            "gain": -14.109110216984
+          },
+          {
+            "kind": "pass",
+            "range": 11.525223603756881,
+            "gain": 3.4846617710383962
+          },
+          {
+            "kind": "pass",
+            "range": 10.602294070984891,
+            "gain": 10.554352767849693
+          },
+          {
+            "kind": "pass",
+            "range": 4.492690933466693,
+            "gain": 3.423031824036234
+          },
+          {
+            "kind": "pass",
+            "range": 8.776744186046509,
+            "gain": -8.776744186046509
+          },
+          {
+            "kind": "pass",
+            "range": 7.760500537948658,
+            "gain": 7.573086625206288
+          },
+          {
+            "kind": "pass",
+            "range": 4.457138754329715,
+            "gain": -4.177044305351069
+          },
+          {
+            "kind": "pass",
+            "range": 31.36879529829083,
+            "gain": 17.463652758366464
+          },
+          {
+            "kind": "pass",
+            "range": 6.608971551851904,
+            "gain": -6.163558534984966
+          },
+          {
+            "kind": "pass",
+            "range": 8.688762918361958,
+            "gain": 6.67420616286842
+          },
+          {
+            "kind": "pass",
+            "range": 17.99941107606834,
+            "gain": 11.276164110975738
+          },
+          {
+            "kind": "pass",
+            "range": 12.526010175815262,
+            "gain": 9.406963915363209
+          },
+          {
+            "kind": "cross",
+            "range": 4.335235364799054,
+            "gain": 1.843116279069769
+          },
+          {
+            "kind": "pass",
+            "range": 14.89431861231233,
+            "gain": 5.685956538164014
+          },
+          {
+            "kind": "pass",
+            "range": 20.43759659305472,
+            "gain": 15.780915379949155
+          },
+          {
+            "kind": "pass",
+            "range": 8.565708913734207,
+            "gain": -2.680543719780623
+          },
+          {
+            "kind": "pass",
+            "range": 18.90061188647225,
+            "gain": 18.89884417603184
+          },
+          {
+            "kind": "pass",
+            "range": 8.69199473822561,
+            "gain": -8.632613348264867
+          },
+          {
+            "kind": "pass",
+            "range": 7.9111967369466765,
+            "gain": 6.9523144417813265
+          },
+          {
+            "kind": "pass",
+            "range": 3.013355878940179,
+            "gain": 2.969494018305391
+          },
+          {
+            "kind": "pass",
+            "range": 4.896268176644181,
+            "gain": 3.9275689588015403
+          },
+          {
+            "kind": "pass",
+            "range": 12.690343605634677,
+            "gain": 11.772749150125385
+          },
+          {
+            "kind": "pass",
+            "range": 13.662500198441766,
+            "gain": 6.415058158276517
+          },
+          {
+            "kind": "pass",
+            "range": 18.48782844562227,
+            "gain": 15.506091302424535
+          },
+          {
+            "kind": "pass",
+            "range": 8.069771795783337,
+            "gain": 6.944781017842726
+          },
+          {
+            "kind": "pass",
+            "range": 9.78481643184185,
+            "gain": 3.4592141648454864
+          },
+          {
+            "kind": "pass",
+            "range": 6.966449545773388,
+            "gain": 4.053453722347728
+          },
+          {
+            "kind": "pass",
+            "range": 11.502107558325871,
+            "gain": -1.4384959562887134
+          }
+        ],
+        "maxSpeed": 7.537592579685573,
+        "half": true,
+        "actions": 361,
+        "activeSeconds": 100.14999999999645,
+        "ownerDwells": [
+          0.2500000000000071,
+          0.3000000000000004,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.34999999999999787,
+          0.35000000000002274,
+          0.5500000000000114,
+          0.5500000000000185,
+          0.5500000000000256,
+          0.6500000000000199,
+          0.650000000000027,
+          0.6500000000000341,
+          0.7000000000000242,
+          0.7000000000000242,
+          0.7000000000000277,
+          0.7000000000000313,
+          0.7000000000000313,
+          0.7000000000000313,
+          0.7000000000000313,
+          0.7500000000000284,
+          0.8000000000000256,
+          0.8500000000000227,
+          0.8999999999999932,
+          0.9499999999999922,
+          0.9500000000000348,
+          0.9500000000000384,
+          1.0500000000000398,
+          1.0500000000000398,
+          1.100000000000044,
+          1.3500000000000512,
+          1.4000000000000483,
+          1.4499999999999886,
+          1.5000000000000568,
+          1.9500000000000028,
+          2.000000000000071,
+          2.1000000000000796,
+          2.400000000000091,
+          3.2000000000001307,
+          4.899999999999967,
+          7.050000000000267
+        ],
+        "completedPasses": 34,
+        "completedForwardPasses": 22,
+        "restored": false,
+        "actionsPerMinute": 216.27558662007755,
+        "ownerDwellMedian": 0.7500000000000284,
+        "ownerDwellMean": 1.180952380952415,
+        "passiveMeanMetres": 14.797565757011126,
+        "crowdMean": 1.2920619071392911
+      },
+      "score": [
+        0,
+        0
+      ],
+      "stats": [
+        {
+          "pid": "pace-162-c:GER-2:1",
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-2:2",
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-2:4",
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 2,
+          "passLost": 0,
+          "duels": 2,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-2:6",
+          "passes": 5,
+          "passComplete": 4,
+          "progressive": 1,
+          "passLost": 1,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-2:7",
+          "passes": 5,
+          "passComplete": 4,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 3,
+          "duelsWon": 2,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 2,
+          "tacklesWon": 1,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-2:9",
+          "passes": 4,
+          "passComplete": 4,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 3,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 3,
+          "onTarget": 1,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-1:1",
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 1,
+          "faced": 1,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 1,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-1:4",
+          "passes": 7,
+          "passComplete": 5,
+          "progressive": 4,
+          "passLost": 2,
+          "duels": 2,
+          "duelsWon": 1,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-1:6",
+          "passes": 3,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 1,
+          "crossComplete": 0,
+          "highPasses": 1,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-1:5",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 1,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0
+        },
+        {
+          "pid": "pace-162-c:GER-1:8",
+          "passes": 2,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-1:9",
+          "passes": 6,
+          "passComplete": 5,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 2,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 2,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        }
+      ],
+      "rng": 475041055,
+      "draws": 238,
+      "load": {
+        "evidence": "summary",
+        "version": 158,
+        "parameterId": "p02-local-candidate-158-1",
+        "day": 7,
+        "sequence": 1161,
+        "playerCount": 22,
+        "finiteFreshnessValidated": true,
+        "players": {
+          "pace-162-c:GER-2:1": {
+            "freshness": 83.5798444771543
+          },
+          "pace-162-c:GER-2:2": {
+            "freshness": 61.5882910181672
+          },
+          "pace-162-c:GER-2:3": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-2:4": {
+            "freshness": 59.29805994922517
+          },
+          "pace-162-c:GER-2:5": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-2:6": {
+            "freshness": 49.39607901858298
+          },
+          "pace-162-c:GER-2:7": {
+            "freshness": 39.26579341495152
+          },
+          "pace-162-c:GER-2:8": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-2:9": {
+            "freshness": 43.169449088544184
+          },
+          "pace-162-c:GER-2:10": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-2:11": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-1:1": {
+            "freshness": 89.07413801757116
+          },
+          "pace-162-c:GER-1:2": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-1:3": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-1:4": {
+            "freshness": 59.07948941904181
+          },
+          "pace-162-c:GER-1:5": {
+            "freshness": 87.70020818165865
+          },
+          "pace-162-c:GER-1:6": {
+            "freshness": 56.35329394852203
+          },
+          "pace-162-c:GER-1:7": {
+            "freshness": 71.88439358433182
+          },
+          "pace-162-c:GER-1:8": {
+            "freshness": 57.80990221667581
+          },
+          "pace-162-c:GER-1:9": {
+            "freshness": 59.70040004410127
+          },
+          "pace-162-c:GER-1:10": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-1:11": {
+            "freshness": 100
+          }
+        },
+        "fullLedgerSha256": "3e73ee0e58eb82aed8010e7aaf8c332f2753f9a006877e5fda8d460e70e16461"
+      }
+    },
+    {
+      "config": {
+        "seed": "pace-162-c",
+        "size": "large",
+        "count": 5
+      },
+      "baseline": false,
+      "finished": true,
+      "half": true,
+      "geometry": {
+        "version": 1,
+        "length": 81.6,
+        "width": 52.8,
+        "goalWidth": 9.705882352941178,
+        "goalHeight": 3.2352941176470593,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "ballRadius": 0.1764
+      },
+      "fieldCounts": [
+        5,
+        5
+      ],
+      "formations": [
+        {
+          "pid": "pace-162-c:GER-2:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.93
+        },
+        {
+          "pid": "pace-162-c:GER-2:2",
+          "cell": 26,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "cover-defender",
+          "bx": 0.32,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-c:GER-2:4",
+          "cell": 28,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.68,
+          "by": 0.745
+        },
+        {
+          "pid": "pace-162-c:GER-2:6",
+          "cell": 16,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "box-to-box",
+          "bx": 0.32,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-c:GER-2:7",
+          "cell": 18,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "ball-winner",
+          "bx": 0.68,
+          "by": 0.495
+        },
+        {
+          "pid": "pace-162-c:GER-2:9",
+          "cell": 7,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "poacher",
+          "bx": 0.5,
+          "by": 0.245
+        },
+        {
+          "pid": "pace-162-c:GER-1:1",
+          "line": "gk",
+          "role": 0,
+          "tacticalRole": "line-keeper",
+          "bx": 0.5,
+          "by": 0.07
+        },
+        {
+          "pid": "pace-162-c:GER-1:4",
+          "cell": 27,
+          "line": "def",
+          "role": 0,
+          "tacticalRole": "stopper",
+          "bx": 0.5,
+          "by": 0.255
+        },
+        {
+          "pid": "pace-162-c:GER-1:6",
+          "cell": 15,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "winger",
+          "bx": 0.14,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-c:GER-1:7",
+          "cell": 17,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "playmaker",
+          "bx": 0.5,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-c:GER-1:8",
+          "cell": 19,
+          "line": "mid",
+          "role": 0,
+          "tacticalRole": "winger",
+          "bx": 0.86,
+          "by": 0.505
+        },
+        {
+          "pid": "pace-162-c:GER-1:9",
+          "cell": 7,
+          "line": "att",
+          "role": 0,
+          "tacticalRole": "striker",
+          "bx": 0.5,
+          "by": 0.755
+        }
+      ],
+      "metrics": {
+        "ticks": 3241,
+        "path": 4144.196244480517,
+        "burstPath": 556.6271387680349,
+        "carryPath": 4.564352122805676,
+        "passiveZoneSum": 209146.4162351265,
+        "passiveSamples": 16245,
+        "crowdSum": 3143,
+        "crowdSamples": 2087,
+        "passTypes": {
+          "pass": 48,
+          "highPass": 3,
+          "header": 2,
+          "shot": 1,
+          "freeKick": 1,
+          "block": 1
+        },
+        "passes": [
+          {
+            "kind": "pass",
+            "range": 8.776744186046509,
+            "gain": -8.776744186046509
+          },
+          {
+            "kind": "pass",
+            "range": 8.295802206092777,
+            "gain": 8.17614524764431
+          },
+          {
+            "kind": "pass",
+            "range": 6.167489277904107,
+            "gain": 3.4325548813142372
+          },
+          {
+            "kind": "pass",
+            "range": 3.9766097750240696,
+            "gain": 1.962621502907787
+          },
+          {
+            "kind": "pass",
+            "range": 12.399234806537523,
+            "gain": -12.388969124568193
+          },
+          {
+            "kind": "pass",
+            "range": 9.659336274945098,
+            "gain": 9.500035363541484
+          },
+          {
+            "kind": "pass",
+            "range": 21.34832733753098,
+            "gain": -5.579142495429803
+          },
+          {
+            "kind": "highPass",
+            "range": 18.086572151131016,
+            "gain": 3.338584696846394
+          },
+          {
+            "kind": "header",
+            "range": 3.163725044851649,
+            "gain": 2.2893763870301647
+          },
+          {
+            "kind": "pass",
+            "range": 16.702356740994457,
+            "gain": -15.599109106835744
+          },
+          {
+            "kind": "pass",
+            "range": 13.34251348285943,
+            "gain": -1.3817403551980507
+          },
+          {
+            "kind": "pass",
+            "range": 9.23202059050156,
+            "gain": 7.7753379415721104
+          },
+          {
+            "kind": "pass",
+            "range": 3.8685824621956955,
+            "gain": 1.3600569009467187
+          },
+          {
+            "kind": "pass",
+            "range": 18.7161458200451,
+            "gain": 0.4426048217001686
+          },
+          {
+            "kind": "pass",
+            "range": 11.624554411856142,
+            "gain": 7.274252725999089
+          },
+          {
+            "kind": "highPass",
+            "range": 27.24734499806465,
+            "gain": 16.95204150173159
+          },
+          {
+            "kind": "header",
+            "range": 9.09393607704972,
+            "gain": -8.797142449289304
+          },
+          {
+            "kind": "highPass",
+            "range": 25.4930572292212,
+            "gain": 22.189465207662213
+          },
+          {
+            "kind": "pass",
+            "range": 11.169228049709808,
+            "gain": 11.068761565838681
+          },
+          {
+            "kind": "pass",
+            "range": 13.505108205246751,
+            "gain": -5.097669266346715
+          },
+          {
+            "kind": "pass",
+            "range": 14.723280589081558,
+            "gain": 4.889778085382958
+          },
+          {
+            "kind": "pass",
+            "range": 16.54834723616879,
+            "gain": 4.06316694824854
+          },
+          {
+            "kind": "pass",
+            "range": 2.7260591682567745,
+            "gain": -1.3064429556343475
+          },
+          {
+            "kind": "pass",
+            "range": 15.530385622212737,
+            "gain": 2.354251797917347
+          },
+          {
+            "kind": "pass",
+            "range": 14.38610571393935,
+            "gain": 12.48584841283501
+          },
+          {
+            "kind": "pass",
+            "range": 3.7069555931765463,
+            "gain": -1.2884070313128793
+          },
+          {
+            "kind": "pass",
+            "range": 11.75849402197344,
+            "gain": 3.2361935439842258
+          },
+          {
+            "kind": "pass",
+            "range": 8.776744186046509,
+            "gain": -8.776744186046509
+          },
+          {
+            "kind": "pass",
+            "range": 8.17226524554893,
+            "gain": 8.161694984968745
+          },
+          {
+            "kind": "pass",
+            "range": 18.946015201410003,
+            "gain": -7.460456159468266
+          },
+          {
+            "kind": "pass",
+            "range": 8.972414291437438,
+            "gain": 7.680338720101254
+          },
+          {
+            "kind": "pass",
+            "range": 7.603587705385097,
+            "gain": -5.386909069886212
+          },
+          {
+            "kind": "pass",
+            "range": 12.892308047398359,
+            "gain": 10.440453609697963
+          },
+          {
+            "kind": "pass",
+            "range": 3.5113123206401253,
+            "gain": -3.405987347948342
+          },
+          {
+            "kind": "pass",
+            "range": 11.67937764353358,
+            "gain": 5.128376719979889
+          },
+          {
+            "kind": "pass",
+            "range": 24.28362550160796,
+            "gain": 23.800889099335915
+          },
+          {
+            "kind": "pass",
+            "range": 16.145150107924444,
+            "gain": 15.006423789677296
+          },
+          {
+            "kind": "pass",
+            "range": 15.362124814289498,
+            "gain": 14.918061480609783
+          },
+          {
+            "kind": "pass",
+            "range": 9.179003581214678,
+            "gain": -2.7087177072362953
+          },
+          {
+            "kind": "pass",
+            "range": 9.767437470149073,
+            "gain": 6.631632010277059
+          },
+          {
+            "kind": "pass",
+            "range": 5.768842776256869,
+            "gain": 4.495755442843592
+          },
+          {
+            "kind": "pass",
+            "range": 4.005378949345733,
+            "gain": -0.7582326510675326
+          },
+          {
+            "kind": "pass",
+            "range": 16.19730058429246,
+            "gain": -15.714343130837484
+          },
+          {
+            "kind": "pass",
+            "range": 18.734849802625252,
+            "gain": -4.401506251184454
+          },
+          {
+            "kind": "pass",
+            "range": 10.28252053057089,
+            "gain": 5.4290867637514
+          },
+          {
+            "kind": "pass",
+            "range": 4.901623816515132,
+            "gain": 1.6919534103459946
+          },
+          {
+            "kind": "pass",
+            "range": 15.253003280586046,
+            "gain": -3.3885537460222257
+          },
+          {
+            "kind": "pass",
+            "range": 5.406493984991402,
+            "gain": 2.4991397904416934
+          },
+          {
+            "kind": "pass",
+            "range": 19.856088206414036,
+            "gain": 16.244935143832016
+          },
+          {
+            "kind": "pass",
+            "range": 8.515342373767096,
+            "gain": -8.386381604454009
+          },
+          {
+            "kind": "pass",
+            "range": 12.136271797434649,
+            "gain": 9.564661220434788
+          },
+          {
+            "kind": "pass",
+            "range": 30.568603009584063,
+            "gain": 8.369236562511437
+          },
+          {
+            "kind": "pass",
+            "range": 16.037802395605777,
+            "gain": 7.426967960636867
+          }
+        ],
+        "maxSpeed": 7.875594658554325,
+        "half": true,
+        "actions": 369,
+        "activeSeconds": 104.34999999999621,
+        "ownerDwells": [
+          0.2000000000000064,
+          0.2500000000000142,
+          0.29999999999999716,
+          0.3000000000000004,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.30000000000001137,
+          0.3500000000000085,
+          0.3500000000000085,
+          0.35000000000001563,
+          0.4000000000000199,
+          0.45000000000001705,
+          0.5000000000000213,
+          0.5000000000000284,
+          0.5500000000000114,
+          0.5500000000000185,
+          0.5500000000000256,
+          0.5500000000000256,
+          0.6000000000000023,
+          0.6000000000000227,
+          0.649999999999995,
+          0.6500000000000199,
+          0.7000000000000242,
+          0.7499999999999947,
+          0.7500000000000284,
+          0.7500000000000284,
+          0.8000000000000327,
+          0.8500000000000227,
+          0.8500000000000227,
+          0.8500000000000298,
+          0.8999999999999986,
+          0.9000000000000341,
+          0.9500000000000313,
+          0.9999999999999929,
+          0.9999999999999929,
+          1.0000000000000426,
+          1.0500000000000398,
+          1.0500000000000398,
+          1.0999999999999908,
+          1.1500000000000412,
+          1.1999999999999922,
+          1.300000000000054,
+          1.3500000000000512,
+          1.4000000000000048,
+          1.4500000000000455,
+          1.5000000000000568,
+          1.6000000000000654,
+          1.8500000000000654,
+          1.9000000000000696,
+          1.950000000000074,
+          2.3000000000000895,
+          2.9000000000001087
+        ],
+        "completedPasses": 41,
+        "completedForwardPasses": 19,
+        "restored": true,
+        "actionsPerMinute": 212.1705797795956,
+        "ownerDwellMedian": 0.7500000000000284,
+        "ownerDwellMean": 0.8858490566037994,
+        "passiveMeanMetres": 12.874510079109049,
+        "crowdMean": 1.5059894585529467
+      },
+      "score": [
+        0,
+        0
+      ],
+      "stats": [
+        {
+          "pid": "pace-162-c:GER-2:1",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-2:2",
+          "passes": 7,
+          "passComplete": 6,
+          "progressive": 4,
+          "passLost": 1,
+          "duels": 3,
+          "duelsWon": 0,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 1,
+          "highComplete": 1,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 3,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-2:4",
+          "passes": 3,
+          "passComplete": 1,
+          "progressive": 2,
+          "passLost": 3,
+          "duels": 3,
+          "duelsWon": 0,
+          "interceptions": 3,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 1,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 1,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-2:6",
+          "passes": 5,
+          "passComplete": 5,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 3,
+          "duelsWon": 0,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 2,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-2:7",
+          "passes": 3,
+          "passComplete": 2,
+          "progressive": 0,
+          "passLost": 2,
+          "duels": 3,
+          "duelsWon": 2,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 1,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-2:9",
+          "passes": 5,
+          "passComplete": 5,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 8,
+          "duelsWon": 2,
+          "interceptions": 0,
+          "shots": 1,
+          "onTarget": 1,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 1,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 2,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-1:1",
+          "passes": 0,
+          "passComplete": 0,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 1,
+          "faced": 1,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 1
+        },
+        {
+          "pid": "pace-162-c:GER-1:4",
+          "passes": 4,
+          "passComplete": 4,
+          "progressive": 1,
+          "passLost": 0,
+          "duels": 5,
+          "duelsWon": 3,
+          "interceptions": 1,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 1,
+          "aerialWon": 1,
+          "slideAttempts": 1,
+          "slideWon": 0,
+          "tackleAttempts": 2,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-1:6",
+          "passes": 4,
+          "passComplete": 4,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 1,
+          "highComplete": 1,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-1:5",
+          "passes": 1,
+          "passComplete": 0,
+          "progressive": 0,
+          "passLost": 1,
+          "duels": 3,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 1,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 2,
+          "slideWon": 0,
+          "tackleAttempts": 3,
+          "tacklesWon": 0
+        },
+        {
+          "pid": "pace-162-c:GER-1:8",
+          "passes": 3,
+          "passComplete": 1,
+          "progressive": 2,
+          "passLost": 2,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0,
+          "shotGoals": 0,
+          "nonShotGoals": 0,
+          "shotConceded": 0,
+          "nonShotConceded": 0,
+          "shotsInterrupted": 0,
+          "savesCaught": 0,
+          "savesParried": 0
+        },
+        {
+          "pid": "pace-162-c:GER-1:10",
+          "passes": 1,
+          "passComplete": 1,
+          "progressive": 0,
+          "passLost": 0,
+          "duels": 0,
+          "duelsWon": 0,
+          "interceptions": 0,
+          "shots": 0,
+          "onTarget": 0,
+          "goals": 0,
+          "assists": 0,
+          "saves": 0,
+          "faced": 0,
+          "conceded": 0,
+          "cleanSheet": 1,
+          "fouls": 0,
+          "penaltiesScored": 0,
+          "penaltiesMissed": 0,
+          "rating": 6,
+          "crosses": 0,
+          "crossComplete": 0,
+          "highPasses": 0,
+          "highComplete": 0,
+          "headers": 0,
+          "headerPasses": 0,
+          "volleys": 0,
+          "aerialDuels": 0,
+          "aerialWon": 0,
+          "slideAttempts": 0,
+          "slideWon": 0,
+          "tackleAttempts": 0,
+          "tacklesWon": 0
+        }
+      ],
+      "rng": 3670594849,
+      "draws": 296,
+      "load": {
+        "evidence": "summary",
+        "version": 158,
+        "parameterId": "p02-local-candidate-158-1",
+        "day": 7,
+        "sequence": 1232,
+        "playerCount": 22,
+        "finiteFreshnessValidated": true,
+        "players": {
+          "pace-162-c:GER-2:1": {
+            "freshness": 82.04636424461343
+          },
+          "pace-162-c:GER-2:2": {
+            "freshness": 59.54708391177128
+          },
+          "pace-162-c:GER-2:3": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-2:4": {
+            "freshness": 60.90458878056328
+          },
+          "pace-162-c:GER-2:5": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-2:6": {
+            "freshness": 53.090683778037416
+          },
+          "pace-162-c:GER-2:7": {
+            "freshness": 46.105723202751754
+          },
+          "pace-162-c:GER-2:8": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-2:9": {
+            "freshness": 42.803932543716684
+          },
+          "pace-162-c:GER-2:10": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-2:11": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-1:1": {
+            "freshness": 87.31152412219959
+          },
+          "pace-162-c:GER-1:2": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-1:3": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-1:4": {
+            "freshness": 60.3324446087292
+          },
+          "pace-162-c:GER-1:5": {
+            "freshness": 85.45203867957136
+          },
+          "pace-162-c:GER-1:6": {
+            "freshness": 60.248915249046945
+          },
+          "pace-162-c:GER-1:7": {
+            "freshness": 72.6533016560526
+          },
+          "pace-162-c:GER-1:8": {
+            "freshness": 61.33958695244289
+          },
+          "pace-162-c:GER-1:9": {
+            "freshness": 66.86607147588654
+          },
+          "pace-162-c:GER-1:10": {
+            "freshness": 100
+          },
+          "pace-162-c:GER-1:11": {
+            "freshness": 100
+          }
+        },
+        "fullLedgerSha256": "ce8a7ed07cd6ad82004f21e6c0d06852e210340ff9bf6d0048defee7523716fc"
+      }
+    }
+  ],
+  "components": [
+    {
+      "baseline": true,
+      "t": 0,
+      "firstHalfSecondMetres": 0.971106217616573,
+      "speed": 3.531295336787565,
+      "stoppedSpeed": 0.5549296535403901,
+      "brakingSeconds": 0.5,
+      "recoveryStart": 35.49924784324315,
+      "recoveryEnd": 16.374786578104317
+    },
+    {
+      "baseline": true,
+      "t": 1,
+      "firstHalfSecondMetres": 0.9711062176165812,
+      "speed": 3.531295336787565,
+      "stoppedSpeed": 0.5549296535403896,
+      "brakingSeconds": 0.5,
+      "recoveryStart": 35.49924784324315,
+      "recoveryEnd": 16.376516310860268
+    },
+    {
+      "baseline": false,
+      "t": 0,
+      "firstHalfSecondMetres": 1.2041717098445595,
+      "speed": 4.37880621761658,
+      "stoppedSpeed": 0.8988685085015882,
+      "brakingSeconds": 0.42,
+      "recoveryStart": 35.49924784324315,
+      "recoveryEnd": 11.113829743139654,
+      "highOption": "receiver",
+      "planningDraws": 0,
+      "openLaneHigh": null,
+      "offsideHigh": null,
+      "actualHighChosen": true,
+      "highTurnQueued": true,
+      "highTurnTicks": 18,
+      "actualHighFlight": true,
+      "actualHighPasses": 1,
+      "aerialResolution": {
+        "ticks": 42,
+        "owner": "receiver",
+        "completed": 1,
+        "lost": 0,
+        "free": false
+      },
+      "firstOffers": [
+        {
+          "id": "receiver",
+          "type": "depth"
+        }
+      ],
+      "nextOffers": [],
+      "recovering": [
+        "receiver"
+      ],
+      "targetPlayer": [
+        {
+          "keeperBuild": false,
+          "preservedGap": 0,
+          "offsideSafe": true,
+          "hasIntent": false
+        },
+        {
+          "keeperBuild": true,
+          "preservedGap": 0,
+          "offsideSafe": true,
+          "hasIntent": false
+        }
+      ],
+      "targetPlayerRecoveryGap": 6.326696690946705,
+      "targetPlayerRecoveryCloser": true,
+      "pausedInert": true
+    },
+    {
+      "baseline": false,
+      "t": 1,
+      "firstHalfSecondMetres": 1.2041717098445595,
+      "speed": 4.37880621761658,
+      "stoppedSpeed": 0.898868508501588,
+      "brakingSeconds": 0.42,
+      "recoveryStart": 35.49924784324315,
+      "recoveryEnd": 11.113829743139672,
+      "highOption": "receiver",
+      "planningDraws": 0,
+      "openLaneHigh": null,
+      "offsideHigh": null,
+      "actualHighChosen": true,
+      "highTurnQueued": true,
+      "highTurnTicks": 18,
+      "actualHighFlight": true,
+      "actualHighPasses": 1,
+      "aerialResolution": {
+        "ticks": 42,
+        "owner": "receiver",
+        "completed": 1,
+        "lost": 0,
+        "free": false
+      },
+      "firstOffers": [
+        {
+          "id": "receiver",
+          "type": "depth"
+        }
+      ],
+      "nextOffers": [],
+      "recovering": [
+        "receiver"
+      ],
+      "targetPlayer": [
+        {
+          "keeperBuild": false,
+          "preservedGap": 0,
+          "offsideSafe": true,
+          "hasIntent": false
+        },
+        {
+          "keeperBuild": true,
+          "preservedGap": 0,
+          "offsideSafe": true,
+          "hasIntent": false
+        }
+      ],
+      "targetPlayerRecoveryGap": 6.3266966909467,
+      "targetPlayerRecoveryCloser": true,
+      "pausedInert": true
+    }
+  ],
+  "legacy": [
+    {
+      "baseline": true,
+      "rng": 2341359646,
+      "draws": 28,
+      "legacyRestoreUnmarked": true,
+      "snapshotHash": "0cbd3e191019755693e53540a4bd43e00362b772563e32c3e8129a040d2ea0f8"
+    },
+    {
+      "baseline": false,
+      "rng": 2341359646,
+      "draws": 28,
+      "legacyRestoreUnmarked": true,
+      "snapshotHash": "0cbd3e191019755693e53540a4bd43e00362b772563e32c3e8129a040d2ea0f8"
+    }
+  ],
+  "legacyParity": true,
+  "pass": true
+}

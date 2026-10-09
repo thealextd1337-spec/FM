@@ -1,0 +1,525 @@
+{
+  "pass": true,
+  "checks": [
+    "Separated stable offers false/5/0",
+    "Depth destinations separated false/5/0",
+    "Committed diagonal lanes survive carrier movement false/5/0",
+    "Release is an unconfirmed intent false/5/0",
+    "Actual receipt gets its own bounded combination window false/5/0",
+    "Repeated contact has no duplicate mutation false/5/0",
+    "First touch opens space with a bounded preparation false/5/0",
+    "First-touch ball starts at the actual contact false/5/0",
+    "Planned touch retains real body inertia false/5/0",
+    "Actual action waits for control false/5/0",
+    "Checkpoint preserves touch control after JSON false/5/0",
+    "Control releases by its finite deadline false/5/0",
+    "Turnover cancels first-touch control false/5/0",
+    "Unmarked snapshot inert false/5/0",
+    "Separated stable offers false/5/1",
+    "Depth destinations separated false/5/1",
+    "Committed diagonal lanes survive carrier movement false/5/1",
+    "Release is an unconfirmed intent false/5/1",
+    "Actual receipt gets its own bounded combination window false/5/1",
+    "Repeated contact has no duplicate mutation false/5/1",
+    "First touch opens space with a bounded preparation false/5/1",
+    "First-touch ball starts at the actual contact false/5/1",
+    "Planned touch retains real body inertia false/5/1",
+    "Actual action waits for control false/5/1",
+    "Checkpoint preserves touch control after JSON false/5/1",
+    "Control releases by its finite deadline false/5/1",
+    "Turnover cancels first-touch control false/5/1",
+    "Unmarked snapshot inert false/5/1",
+    "Separated stable offers false/6/0",
+    "Depth destinations separated false/6/0",
+    "Committed diagonal lanes survive carrier movement false/6/0",
+    "Release is an unconfirmed intent false/6/0",
+    "Actual receipt gets its own bounded combination window false/6/0",
+    "Repeated contact has no duplicate mutation false/6/0",
+    "First touch opens space with a bounded preparation false/6/0",
+    "First-touch ball starts at the actual contact false/6/0",
+    "Planned touch retains real body inertia false/6/0",
+    "Actual action waits for control false/6/0",
+    "Checkpoint preserves touch control after JSON false/6/0",
+    "Control releases by its finite deadline false/6/0",
+    "Turnover cancels first-touch control false/6/0",
+    "Unmarked snapshot inert false/6/0",
+    "Separated stable offers false/6/1",
+    "Depth destinations separated false/6/1",
+    "Committed diagonal lanes survive carrier movement false/6/1",
+    "Release is an unconfirmed intent false/6/1",
+    "Actual receipt gets its own bounded combination window false/6/1",
+    "Repeated contact has no duplicate mutation false/6/1",
+    "First touch opens space with a bounded preparation false/6/1",
+    "First-touch ball starts at the actual contact false/6/1",
+    "Planned touch retains real body inertia false/6/1",
+    "Actual action waits for control false/6/1",
+    "Checkpoint preserves touch control after JSON false/6/1",
+    "Control releases by its finite deadline false/6/1",
+    "Turnover cancels first-touch control false/6/1",
+    "Unmarked snapshot inert false/6/1",
+    "Separated stable offers true/5/0",
+    "Depth destinations separated true/5/0",
+    "Committed diagonal lanes survive carrier movement true/5/0",
+    "Release is an unconfirmed intent true/5/0",
+    "Actual receipt gets its own bounded combination window true/5/0",
+    "Repeated contact has no duplicate mutation true/5/0",
+    "First touch opens space with a bounded preparation true/5/0",
+    "First-touch ball starts at the actual contact true/5/0",
+    "Planned touch retains real body inertia true/5/0",
+    "Actual action waits for control true/5/0",
+    "Checkpoint preserves touch control after JSON true/5/0",
+    "Control releases by its finite deadline true/5/0",
+    "Turnover cancels first-touch control true/5/0",
+    "Unmarked snapshot inert true/5/0",
+    "Separated stable offers true/5/1",
+    "Depth destinations separated true/5/1",
+    "Committed diagonal lanes survive carrier movement true/5/1",
+    "Release is an unconfirmed intent true/5/1",
+    "Actual receipt gets its own bounded combination window true/5/1",
+    "Repeated contact has no duplicate mutation true/5/1",
+    "First touch opens space with a bounded preparation true/5/1",
+    "First-touch ball starts at the actual contact true/5/1",
+    "Planned touch retains real body inertia true/5/1",
+    "Actual action waits for control true/5/1",
+    "Checkpoint preserves touch control after JSON true/5/1",
+    "Control releases by its finite deadline true/5/1",
+    "Turnover cancels first-touch control true/5/1",
+    "Unmarked snapshot inert true/5/1",
+    "Separated stable offers true/6/0",
+    "Depth destinations separated true/6/0",
+    "Committed diagonal lanes survive carrier movement true/6/0",
+    "Release is an unconfirmed intent true/6/0",
+    "Actual receipt gets its own bounded combination window true/6/0",
+    "Repeated contact has no duplicate mutation true/6/0",
+    "First touch opens space with a bounded preparation true/6/0",
+    "First-touch ball starts at the actual contact true/6/0",
+    "Planned touch retains real body inertia true/6/0",
+    "Actual action waits for control true/6/0",
+    "Checkpoint preserves touch control after JSON true/6/0",
+    "Control releases by its finite deadline true/6/0",
+    "Turnover cancels first-touch control true/6/0",
+    "Unmarked snapshot inert true/6/0",
+    "Separated stable offers true/6/1",
+    "Depth destinations separated true/6/1",
+    "Committed diagonal lanes survive carrier movement true/6/1",
+    "Release is an unconfirmed intent true/6/1",
+    "Actual receipt gets its own bounded combination window true/6/1",
+    "Repeated contact has no duplicate mutation true/6/1",
+    "First touch opens space with a bounded preparation true/6/1",
+    "First-touch ball starts at the actual contact true/6/1",
+    "Planned touch retains real body inertia true/6/1",
+    "Actual action waits for control true/6/1",
+    "Checkpoint preserves touch control after JSON true/6/1",
+    "Control releases by its finite deadline true/6/1",
+    "Turnover cancels first-touch control true/6/1",
+    "Unmarked snapshot inert true/6/1",
+    "Unblocked striker carries before distant speculative shot 0",
+    "Real carry advances toward goal through bounded inertia 0",
+    "Observed defender ahead cancels optional carry 0",
+    "Close finishing window stops further carry 0",
+    "Non-chasing defender observes goal-side incoming recipient 0",
+    "Defensive observation cadence preserves committed bounded target 0",
+    "Defensive awareness retains its role zone 0",
+    "Paused defensive reader is inert 0",
+    "Covered attack keeps a safe observed goalkeeper angle 0",
+    "Keeper angle uses native mass and bounded movement 0",
+    "Real unprotected close breakthrough retains native contact path 0",
+    "Distant carrier cannot drag keeper sideways outside goal 0",
+    "Released shot and pass keep existing goalkeeper flight path 0",
+    "Legacy goalkeeper target remains inert 0",
+    "Unblocked striker carries before distant speculative shot 1",
+    "Real carry advances toward goal through bounded inertia 1",
+    "Observed defender ahead cancels optional carry 1",
+    "Close finishing window stops further carry 1",
+    "Non-chasing defender observes goal-side incoming recipient 1",
+    "Defensive observation cadence preserves committed bounded target 1",
+    "Defensive awareness retains its role zone 1",
+    "Paused defensive reader is inert 1",
+    "Covered attack keeps a safe observed goalkeeper angle 1",
+    "Keeper angle uses native mass and bounded movement 1",
+    "Real unprotected close breakthrough retains native contact path 1",
+    "Distant carrier cannot drag keeper sideways outside goal 1",
+    "Released shot and pass keep existing goalkeeper flight path 1",
+    "Legacy goalkeeper target remains inert 1",
+    "Unblocked striker carries before distant speculative shot 0",
+    "Real carry advances toward goal through bounded inertia 0",
+    "Observed defender ahead cancels optional carry 0",
+    "Close finishing window stops further carry 0",
+    "Non-chasing defender observes goal-side incoming recipient 0",
+    "Defensive observation cadence preserves committed bounded target 0",
+    "Defensive awareness retains its role zone 0",
+    "Paused defensive reader is inert 0",
+    "Covered attack keeps a safe observed goalkeeper angle 0",
+    "Keeper angle uses native mass and bounded movement 0",
+    "Real unprotected close breakthrough retains native contact path 0",
+    "Distant carrier cannot drag keeper sideways outside goal 0",
+    "Released shot and pass keep existing goalkeeper flight path 0",
+    "Legacy goalkeeper target remains inert 0",
+    "Unblocked striker carries before distant speculative shot 1",
+    "Real carry advances toward goal through bounded inertia 1",
+    "Observed defender ahead cancels optional carry 1",
+    "Close finishing window stops further carry 1",
+    "Non-chasing defender observes goal-side incoming recipient 1",
+    "Defensive observation cadence preserves committed bounded target 1",
+    "Defensive awareness retains its role zone 1",
+    "Paused defensive reader is inert 1",
+    "Covered attack keeps a safe observed goalkeeper angle 1",
+    "Keeper angle uses native mass and bounded movement 1",
+    "Real unprotected close breakthrough retains native contact path 1",
+    "Distant carrier cannot drag keeper sideways outside goal 1",
+    "Released shot and pass keep existing goalkeeper flight path 1",
+    "Legacy goalkeeper target remains inert 1",
+    "Unblocked striker carries before distant speculative shot 0",
+    "Real carry advances toward goal through bounded inertia 0",
+    "Observed defender ahead cancels optional carry 0",
+    "Close finishing window stops further carry 0",
+    "Non-chasing defender observes goal-side incoming recipient 0",
+    "Defensive observation cadence preserves committed bounded target 0",
+    "Defensive awareness retains its role zone 0",
+    "Paused defensive reader is inert 0",
+    "Covered attack keeps a safe observed goalkeeper angle 0",
+    "Keeper angle uses native mass and bounded movement 0",
+    "Real unprotected close breakthrough retains native contact path 0",
+    "Distant carrier cannot drag keeper sideways outside goal 0",
+    "Released shot and pass keep existing goalkeeper flight path 0",
+    "Legacy goalkeeper target remains inert 0",
+    "Unblocked striker carries before distant speculative shot 1",
+    "Real carry advances toward goal through bounded inertia 1",
+    "Observed defender ahead cancels optional carry 1",
+    "Close finishing window stops further carry 1",
+    "Non-chasing defender observes goal-side incoming recipient 1",
+    "Defensive observation cadence preserves committed bounded target 1",
+    "Defensive awareness retains its role zone 1",
+    "Paused defensive reader is inert 1",
+    "Covered attack keeps a safe observed goalkeeper angle 1",
+    "Keeper angle uses native mass and bounded movement 1",
+    "Real unprotected close breakthrough retains native contact path 1",
+    "Distant carrier cannot drag keeper sideways outside goal 1",
+    "Released shot and pass keep existing goalkeeper flight path 1",
+    "Legacy goalkeeper target remains inert 1",
+    "Unblocked striker carries before distant speculative shot 0",
+    "Real carry advances toward goal through bounded inertia 0",
+    "Observed defender ahead cancels optional carry 0",
+    "Close finishing window stops further carry 0",
+    "Non-chasing defender observes goal-side incoming recipient 0",
+    "Defensive observation cadence preserves committed bounded target 0",
+    "Defensive awareness retains its role zone 0",
+    "Paused defensive reader is inert 0",
+    "Covered attack keeps a safe observed goalkeeper angle 0",
+    "Keeper angle uses native mass and bounded movement 0",
+    "Real unprotected close breakthrough retains native contact path 0",
+    "Distant carrier cannot drag keeper sideways outside goal 0",
+    "Released shot and pass keep existing goalkeeper flight path 0",
+    "Legacy goalkeeper target remains inert 0",
+    "Unblocked striker carries before distant speculative shot 1",
+    "Real carry advances toward goal through bounded inertia 1",
+    "Observed defender ahead cancels optional carry 1",
+    "Close finishing window stops further carry 1",
+    "Non-chasing defender observes goal-side incoming recipient 1",
+    "Defensive observation cadence preserves committed bounded target 1",
+    "Defensive awareness retains its role zone 1",
+    "Paused defensive reader is inert 1",
+    "Covered attack keeps a safe observed goalkeeper angle 1",
+    "Keeper angle uses native mass and bounded movement 1",
+    "Real unprotected close breakthrough retains native contact path 1",
+    "Distant carrier cannot drag keeper sideways outside goal 1",
+    "Released shot and pass keep existing goalkeeper flight path 1",
+    "Legacy goalkeeper target remains inert 1"
+  ],
+  "rows": [
+    {
+      "geometryMetres": [
+        44,
+        68
+      ],
+      "fieldPlayers": 5,
+      "team": 0,
+      "confirmedReceipt": {
+        "passerId": "carrier",
+        "receiverId": "striker",
+        "team": 0,
+        "until": 3.3,
+        "releaseAt": 0.6,
+        "confirmed": true,
+        "receivedAt": 1.65,
+        "contact": {
+          "x": 0.3,
+          "y": 0.52
+        }
+      },
+      "firstTouch": {
+        "playerId": "striker",
+        "at": 1.65,
+        "readyAt": 1.9035,
+        "until": 2.15,
+        "start": {
+          "x": 0.3,
+          "y": 0.52
+        },
+        "direction": {
+          "x": -0.8674232255940167,
+          "y": -0.49757104789172724
+        },
+        "lead": 0.5429999999999999
+      }
+    },
+    {
+      "geometryMetres": [
+        44,
+        68
+      ],
+      "fieldPlayers": 5,
+      "team": 1,
+      "confirmedReceipt": {
+        "passerId": "carrier",
+        "receiverId": "striker",
+        "team": 1,
+        "until": 3.3,
+        "releaseAt": 0.6,
+        "confirmed": true,
+        "receivedAt": 1.65,
+        "contact": {
+          "x": 0.3,
+          "y": 0.48
+        }
+      },
+      "firstTouch": {
+        "playerId": "striker",
+        "at": 1.65,
+        "readyAt": 1.9035,
+        "until": 2.15,
+        "start": {
+          "x": 0.3,
+          "y": 0.48
+        },
+        "direction": {
+          "x": -0.867423225594017,
+          "y": 0.49757104789172696
+        },
+        "lead": 0.5429999999999999
+      }
+    },
+    {
+      "geometryMetres": [
+        44,
+        68
+      ],
+      "fieldPlayers": 6,
+      "team": 0,
+      "confirmedReceipt": {
+        "passerId": "carrier",
+        "receiverId": "striker",
+        "team": 0,
+        "until": 3.3,
+        "releaseAt": 0.6,
+        "confirmed": true,
+        "receivedAt": 1.65,
+        "contact": {
+          "x": 0.3,
+          "y": 0.52
+        }
+      },
+      "firstTouch": {
+        "playerId": "striker",
+        "at": 1.65,
+        "readyAt": 1.9035,
+        "until": 2.15,
+        "start": {
+          "x": 0.3,
+          "y": 0.52
+        },
+        "direction": {
+          "x": -0.8674232255940167,
+          "y": -0.49757104789172724
+        },
+        "lead": 0.5429999999999999
+      }
+    },
+    {
+      "geometryMetres": [
+        44,
+        68
+      ],
+      "fieldPlayers": 6,
+      "team": 1,
+      "confirmedReceipt": {
+        "passerId": "carrier",
+        "receiverId": "striker",
+        "team": 1,
+        "until": 3.3,
+        "releaseAt": 0.6,
+        "confirmed": true,
+        "receivedAt": 1.65,
+        "contact": {
+          "x": 0.3,
+          "y": 0.48
+        }
+      },
+      "firstTouch": {
+        "playerId": "striker",
+        "at": 1.65,
+        "readyAt": 1.9035,
+        "until": 2.15,
+        "start": {
+          "x": 0.3,
+          "y": 0.48
+        },
+        "direction": {
+          "x": -0.867423225594017,
+          "y": 0.49757104789172696
+        },
+        "lead": 0.5429999999999999
+      }
+    },
+    {
+      "geometryMetres": [
+        52.8,
+        81.6
+      ],
+      "fieldPlayers": 5,
+      "team": 0,
+      "confirmedReceipt": {
+        "passerId": "carrier",
+        "receiverId": "striker",
+        "team": 0,
+        "until": 3.3,
+        "releaseAt": 0.6,
+        "confirmed": true,
+        "receivedAt": 1.65,
+        "contact": {
+          "x": 0.3,
+          "y": 0.52
+        }
+      },
+      "firstTouch": {
+        "playerId": "striker",
+        "at": 1.65,
+        "readyAt": 1.9035,
+        "until": 2.15,
+        "start": {
+          "x": 0.3,
+          "y": 0.52
+        },
+        "direction": {
+          "x": 0.8674232255940169,
+          "y": -0.497571047891727
+        },
+        "lead": 0.5429999999999999
+      }
+    },
+    {
+      "geometryMetres": [
+        52.8,
+        81.6
+      ],
+      "fieldPlayers": 5,
+      "team": 1,
+      "confirmedReceipt": {
+        "passerId": "carrier",
+        "receiverId": "striker",
+        "team": 1,
+        "until": 3.3,
+        "releaseAt": 0.6,
+        "confirmed": true,
+        "receivedAt": 1.65,
+        "contact": {
+          "x": 0.3,
+          "y": 0.48
+        }
+      },
+      "firstTouch": {
+        "playerId": "striker",
+        "at": 1.65,
+        "readyAt": 1.9035,
+        "until": 2.15,
+        "start": {
+          "x": 0.3,
+          "y": 0.48
+        },
+        "direction": {
+          "x": -0.867423225594017,
+          "y": 0.49757104789172696
+        },
+        "lead": 0.5429999999999999
+      }
+    },
+    {
+      "geometryMetres": [
+        52.8,
+        81.6
+      ],
+      "fieldPlayers": 6,
+      "team": 0,
+      "confirmedReceipt": {
+        "passerId": "carrier",
+        "receiverId": "striker",
+        "team": 0,
+        "until": 3.3,
+        "releaseAt": 0.6,
+        "confirmed": true,
+        "receivedAt": 1.65,
+        "contact": {
+          "x": 0.3,
+          "y": 0.52
+        }
+      },
+      "firstTouch": {
+        "playerId": "striker",
+        "at": 1.65,
+        "readyAt": 1.9035,
+        "until": 2.15,
+        "start": {
+          "x": 0.3,
+          "y": 0.52
+        },
+        "direction": {
+          "x": 0.8674232255940169,
+          "y": -0.497571047891727
+        },
+        "lead": 0.5429999999999999
+      }
+    },
+    {
+      "geometryMetres": [
+        52.8,
+        81.6
+      ],
+      "fieldPlayers": 6,
+      "team": 1,
+      "confirmedReceipt": {
+        "passerId": "carrier",
+        "receiverId": "striker",
+        "team": 1,
+        "until": 3.3,
+        "releaseAt": 0.6,
+        "confirmed": true,
+        "receivedAt": 1.65,
+        "contact": {
+          "x": 0.3,
+          "y": 0.48
+        }
+      },
+      "firstTouch": {
+        "playerId": "striker",
+        "at": 1.65,
+        "readyAt": 1.9035,
+        "until": 2.15,
+        "start": {
+          "x": 0.3,
+          "y": 0.48
+        },
+        "direction": {
+          "x": -0.867423225594017,
+          "y": 0.49757104789172696
+        },
+        "lead": 0.5429999999999999
+      }
+    }
+  ],
+  "scope": "Eight parameter fixtures use actual v152/v157 native planning/movement with explicitly configured scale. Full-match source/build cases below use actual native controllers; larger/six configurations are harness overrides, not implemented career selectors.",
+  "sourceHashes": {
+    "dist/world-football-flow-v159.js": "6500935b6a0015d17c55f1070264b2231922b336793a3f1d415bf0e3aaa5fa5d",
+    "dist/world-attack-flow-v152.js": "b3ba99ae4e5b476e9d65c1d85859c45aa0c793600d6462f50b1e7ea506d5922f",
+    "dist/world-offensive-quality-v157.js": "c44cd7bdf645efed352133d2706b1f962e13878990ef13ad17d46b5c79723d22"
+  }
+}

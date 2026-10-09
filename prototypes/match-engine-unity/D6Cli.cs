@@ -59,6 +59,9 @@ public static class D6Cli {
     public static void DuelTests(){
         try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,FootballDuelTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
+    public static void TeamRings(){
+        try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,TeamGroundRingTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
 
     // WebGL build of the probe scene into outputs/platform/unity-web. Previous
     // build target, pipeline and player settings are restored afterwards.

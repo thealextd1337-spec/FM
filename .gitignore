@@ -66,6 +66,8 @@ outputs/release-113/tmp/
 outputs/release-114/tmp/
 !outputs/release-115/
 outputs/release-115/tmp/
+!outputs/release-116/
+outputs/release-116/tmp/
 !outputs/3d-quality/
 outputs/3d-quality/**/tmp/
 !outputs/platform/unity-native-v160/

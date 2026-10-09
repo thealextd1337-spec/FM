@@ -233,6 +233,7 @@ function v132BroadcastUI(frame){
 function v132ScreenState(active){
  if(active&&!document.body.classList.contains('v132-fullscreen'))v132ScreenScroll=window.scrollY;
  document.body.classList.toggle('v132-fullscreen',active);v132ScreenMatch=active?match:null;
+ syncMatchWakeLock();
  if(!active){v132NativeScreen=false;window.scrollTo(0,v132ScreenScroll);}
 }
 function v132LeaveFullscreen(){

@@ -2,6 +2,12 @@
 
 ## Noch nicht veröffentlicht
 
+## 9. Oktober 2026 – Release 116
+
+Auf Nutzerauftrag „Stells online“ als Release 116 vorbereitet; Veröffentlichung und Live-Abnahme werden im [Releasebericht](release-116.md) nachgewiesen.
+
+- Schnelles Kleinfeldspiel umgesetzt: gezielte Antritte, schnelleres Bremsen/Drehen, weiche Rückkehr in aktuelle taktische Räume und hohe Vorwärtspässe über blockierte Bodenwege. Aktivierung nur bei neuen Partien; gespeicherte unmarkierte Matchabläufe bleiben exakt erhalten. Unity ergänzt Vereinsringe mit heller/dunkler Kante und durchgehendem/segmentiertem Muster. Wachhaltefunktion folgt Vereinswelt, nativem/Viewport-Vollbild und App-Rückkehr. Native Vergleichspartien, Wake-Lock-Regression, Unity-Ringtests, WebGL-Build und mobile Browserabläufe geprüft; breite Balance und physisches Android bleiben offen. [Umfang und Nachweise](platform/mobile-match-readability.md). Quelle, Footer, Hilfe und Build auf 116 angehoben; laufende Veröffentlichung separat nachgewiesen.
+
 ## 9. Oktober 2026 – Release 115
 
 Vereinsstadien und Zweikampfqualität sind auf Nutzerauftrag als Release 115 veröffentlicht. Umfang, geprüfte Quellen und Live-Nachweise stehen in [Release 115](release-115.md). Accounts erhalten in dieser Lieferung ausschließlich die vorbereiteten Verträge.

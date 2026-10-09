@@ -1,0 +1,110 @@
+{
+  "embedded": [
+    {
+      "file": "tokens.css",
+      "sha256": "acbe428025b4ceba28aaeff0bce20f07d8639a5447fc23101064d2243d035922"
+    },
+    {
+      "file": "components.css",
+      "sha256": "6fcc7f21bf16481f69b6f53855b5565a84bdecb5ae41c1945451d90a6c452aae"
+    },
+    {
+      "file": "views/overview.css",
+      "sha256": "a520325d18d7754cf3244df1232ac08d0ba5bf5ee0cfbcaf3b0a48ffa1ca251f"
+    },
+    {
+      "file": "views/squad.css",
+      "sha256": "19e8079720127b570ac5595b1289236a144db3fd763758c7a153449eb26b6e81"
+    },
+    {
+      "file": "views/market.css",
+      "sha256": "c27853a675c274e2650cffe716745739ebc26350e077a2b96e68fccc26f70ee0"
+    },
+    {
+      "file": "views/competitions.css",
+      "sha256": "7fc964305520099911543d4f7fdb5d48eac6981d927496498de9fab564ccdfe0"
+    },
+    {
+      "file": "views/club.css",
+      "sha256": "b31cd6746ad18fc96b908b45e49d88ec3d2288f6065dc689080e5cf33ed12af4"
+    },
+    {
+      "file": "views/settings.css",
+      "sha256": "941e3c8276bcd58b3d8b1254290ddf1a6db14402f749fb64ed20b07ba51ff1a2"
+    },
+    {
+      "file": "navigation.css",
+      "sha256": "f671116a18737af2e2d9a5b746fc48b282ca98667f02bc374dce68a1b2dd6632"
+    },
+    {
+      "file": "matchplan.css",
+      "sha256": "5e84a7fd7da34e8e3e3728ed349f277d9e6bf68430ba716579f960ae5fd0bff3"
+    },
+    {
+      "file": "start.css",
+      "sha256": "9897f62c539c058dcb373432f361559f73180c7d9f57005dbab2f986ebd981ad"
+    },
+    {
+      "file": "match.css",
+      "sha256": "031714371e2bc8fb71f9ee66844c0c8d1c9944b71e52355a4989c10f50d5bde0"
+    },
+    {
+      "file": "views/report.css",
+      "sha256": "234cfc996c118eb1946cb8d8edcdc26604cd8785c023d6ee632c82f558a08d7d"
+    },
+    {
+      "file": "components.js",
+      "sha256": "d464ebfa4029560162246ca58dac855b1c83dde6e3e04368c6526acb1ecef0c2"
+    },
+    {
+      "file": "shell.js",
+      "sha256": "6c2f62b6d404656c589e64c0ef17a12f06619fba3078356717cb670a10ae4712"
+    },
+    {
+      "file": "registry.js",
+      "sha256": "af4d4c5f8103af2a98596d93a1aa130edcbbe512167999f6da90d35f9cc4bf3d"
+    },
+    {
+      "file": "views/overview.js",
+      "sha256": "5976a5c0c96912d903c84c644615896ee7add78c5f973b366698bc90dc1e3df0"
+    },
+    {
+      "file": "views/squad.js",
+      "sha256": "1971dfd015ac7e4b387be10fe61439fcde3af583969ec2f6d31c3a7974edd58f"
+    },
+    {
+      "file": "views/market.js",
+      "sha256": "0ecaa0a46bf40185a46d1c8da59e41204632c93353d57e40d00f28b0f044c202"
+    },
+    {
+      "file": "views/competitions.js",
+      "sha256": "60ee6c8bab0e2da208baa41f56e721afba4557e9f4a8829247268e5dff4f035a"
+    },
+    {
+      "file": "views/club.js",
+      "sha256": "706647abef0bb23fc73e8d1cd8c18cf370652173fb98d3b4834204f9afba27d8"
+    },
+    {
+      "file": "views/settings.js",
+      "sha256": "172afdeab22c0c795ca47a7d55f7827bf86bd8006287e4151bf9ac3f1bdfa488"
+    },
+    {
+      "file": "navigation.js",
+      "sha256": "6111c7d2df07a40eb3089a1749e314ef1316e22ea89b561ca15be123b4a2a947"
+    },
+    {
+      "file": "adapter.js",
+      "sha256": "e1d29602f315fe00494a71f388992a5c42b9a3fc42d74cef5816b63c005908a5"
+    },
+    {
+      "file": "start.js",
+      "sha256": "c9d92d64f01da82f8938ccbadec3b2775a2a99982eb3c8e00b18915ab27cda82"
+    },
+    {
+      "file": "match.js",
+      "sha256": "144dd8d821a8b178a70fa1307ee6b93506c3b4d057b6dd9010c9145b6d3d0f53"
+    }
+  ],
+  "buildSha256": "b5bae5adfbbdd0895180c74e652384b9c43fc45863c5a1ae5bffd384a4822698",
+  "bytes": 50813299
+}

@@ -49,7 +49,7 @@ function v65CreateMatch(context){
  const people=[];
  for(const physical of [0,1])for(const pid of v64Active(context.state,v65Side(physical,context.ownSide)))people.push(v65PhysicalPlayer(context,physical,pid));
  const own=v65Club(context,0),opponent=v65Club(context,1),kits=v61SelectMatchKits(own,opponent,context.ownSide===0);
- match={people,geometry:v160WorldGeometry(context.career),exitedPeople:[],attackFlow:{version:152,qualityVersion:157,flowVersion:159,intents:{},ownerPid:null,team:null},refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:opponent.name,kits};
+ match={people,geometry:v160WorldGeometry(context.career),exitedPeople:[],attackFlow:{version:152,qualityVersion:157,flowVersion:159,paceVersion:162,intents:{},ownerPid:null,team:null},refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:opponent.name,kits};
  for(const pose of ['raised','far','middle','penalty'])v55RefereeImage(v55RefereeAsset(pose));
  v65ApplyTactics(context);kickoff(0);note('Bereit zum Anpfiff.','restart');
 }
@@ -247,6 +247,7 @@ function v65SettleWorldPenalties(){
  v65BookWorldMatch(context);v42Screen.hidden=true;v42Session=null;v65WorldActive=null;match=null;document.body.classList.remove('v65-world-match');$('#game-screen').hidden=true;v61WorldScreen.hidden=false;v64UiRender(context.career);
 }
 function v65Finish(){
+ releaseMatchWakeLock();
  const context=v65Context();if(!context||match.finished)return;
  if(context.state.playerLoad){v158EndNative(match);v158RecoverMatch(context.career,context.fixture,context.state,'final-whistle');}
  const state=context.state;state.addedMinutes=[...(match.addedMinutes||[0,0])];state.firstHalfEnd=45+state.addedMinutes[0];state.fullTimeEnd=90+state.addedMinutes[0]+state.addedMinutes[1];v65SyncMinute(context,Math.floor(match.elapsed/75*90));running=false;clearInterval(v65WorldFrame);v65PauseRequested=false;match.finished=true;match.flight=null;hideOverlay();
@@ -319,6 +320,7 @@ function v65SwapPositions(context,otherSlot,firstSlot=v65SelectedSlot){
  v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw();
 }
 function v65UpdateControls(context){
+ syncMatchWakeLock();
  let panel=$('#v65-controls');if(!panel){panel=document.createElement('section');panel.id='v65-controls';panel.className='v64-controls';$('#match-info').insertBefore(panel,$('#match-info').querySelector('.match-stat-header'))}
  const {state,fixture,ownSide}=context;
  let quick=$('#v65-quick-nav');if(!quick){quick=document.createElement('nav');quick.id='v65-quick-nav';quick.setAttribute('aria-label','Spielsteuerung');quick.innerHTML='<button type="button" data-v65-quick="lineup" aria-label="Spiel pausieren"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1"/><rect x="14" y="4" width="5" height="16" rx="1"/></svg><span>Pause</span></button>'}
@@ -421,6 +423,7 @@ async function v65Leave(toStart){
  if(!toStart){const active=context.career.world.activeMatch;delete context.career.world.activeMatch;try{await v64UiSave()}catch(error){context.career.world.activeMatch=active;throw error}}
  clearInterval(v65WorldFrame);clearTimeout(v65SwapInfoTimer);v65SwapInfoTimer=0;running=false;v65WorldActive=null;v65PauseView=false;match=null;document.body.classList.remove('v65-world-postmatch','v65-world-match');$('#v65-adboards')?.remove();$('#v65-swap-info')?.remove();$('#v65-quick-nav')?.remove();$('#v65-pause-tabs')?.remove();$('#v65-plan-view')?.remove();$('#game-screen').hidden=true;menuButton.hidden=false;
  v64UiMenuVisible(false);
+ releaseMatchWakeLock();
  if(toStart)return v65BaseShowStart(true);else{v61CareerTab='overview';v61RenderCareer(context.career)}
 }
 const v65BaseFinishMatch=finishMatch;

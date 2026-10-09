@@ -6,6 +6,33 @@ function v159Active(m){return Boolean(typeof v157Active==='function'&&v157Active
 function v159Rivals(m,p){return m.people.filter(q=>q.t!==p.t&&!q.keeper&&!q.slideActive);}
 function v159Cover(p){return p.role<0||['ball-winner','ball-playing-defender'].includes(p.tacticalRole)||(p.assignedLine||p.line)==='def'&&p.role<=0;}
 function v159Point(point,s,margin=1.4){return {x:clamp(point.x,v55Field.left+margin/s.x,v55Field.right-margin/s.x),y:clamp(point.y,v55Field.top+margin/s.y,v55Field.bottom-margin/s.y)};}
+function v162Zone(m,p){
+ const s=v150Scale(),plan=v121PositioningPlans.get(m)?.get(p),line=p.assignedLine||p.line,attacking=v123PossessionTeam(m)===p.t,dir=p.t===0?-1:1;
+ // Read the current formation/defensive line, so a tactical change immediately
+ // changes the home zone. The ball shifts it modestly rather than replacing it.
+ if(line==='def'&&plan?.x!=null)return{x:plan.x,y:plan.y};
+ const depth=line==='att'?8:line==='mid'?6:3;
+ const x=p.tacticalRole==='winger'?p.bx<.5?v55Field.left+3/s.x:v55Field.right-3/s.x:p.bx+clamp((m.ball.x-.5)*.12,-3/s.x,3/s.x);
+ return v159Point({x,y:p.by+dir*(attacking?2+p.role*1.5:-2)/s.y+clamp((m.ball.y-p.by)*.18,-depth/s.y,depth/s.y)},s,.5);
+}
+function v162RecoverTarget(m,p,dt){
+ if(!v162Active(m)||p===m.owner||p.keeper||p.slideActive||v121PositioningPaused(m)||p.interceptTarget&&m.flight)return false;
+ // A target player is already making the role's carrier-relative outlet,
+ // including keeper build-up. Preserve that active purpose until ownership ends.
+ if(p.tacticalRole==='target-player'&&m.owner?.t===p.t){
+  const limit=v121PositioningPlans.get(m)?.get(p)?.limit;if(limit!=null)p.ty=p.t===0?Math.max(p.ty,limit):Math.min(p.ty,limit);
+  return true;
+ }
+ // Keep the existing actual loose-ball chasers and incoming receivers free.
+ if(m.rebound&&typeof v132FallingBallTarget==='function'&&v132FallingBallTarget(m,p))return true;
+ if(m.flight){const runners=m.people.filter(q=>q.t===p.t&&!q.keeper&&!q.slideActive).sort((a,b)=>v122Metres(a,m.ball)-v122Metres(b,m.ball)||a.n-b.n).slice(0,2);if(runners.includes(p))return false;}
+ const zone=v162Zone(m,p),s=v150Scale(),dx=(p.tx-zone.x)*s.x,dy=(p.ty-zone.y)*s.y,gap=Math.hypot(dx,dy),reach=(p.assignedLine||p.line)==='att'?5:3.5;
+ const weight=.28*Math.min(1,reach/Math.max(.001,gap)),target={x:zone.x+dx*weight/s.x,y:zone.y+dy*weight/s.y};
+ const last=p.offenseCoord||(p.offenseCoord={x:p.tx,y:p.ty}),blend=Math.min(1,Math.max(0,dt)*(4+4*clamp(p.positionRoutine??.7,0,1)));
+ last.x+=(target.x-last.x)*blend;last.y+=(target.y-last.y)*blend;p.tx=last.x;p.ty=last.y;
+ const limit=v121PositioningPlans.get(m)?.get(p)?.limit;if(limit!=null)p.ty=p.t===0?Math.max(p.ty,limit):Math.min(p.ty,limit);
+ return true;
+}
 function v159Contact(m,p,point){
  if(!v159Active(m)||m.owner!==p||p.keeper||v121PositioningPaused(m)||v122Metres(p,point)>.8)return false;
  const combo=m.attackFlow.combination,pass=m.lastPass;
@@ -27,10 +54,11 @@ function v159Follow(m,p,q){
  const score=point=>Math.min(10,...rivals.map(r=>v122Metres(r,point)))-Math.max(0,3-v122Metres(q,point))*2-v122Metres(p,point)*.07;
  choices.sort((a,b)=>score(b)-score(a));
  m.attackFlow.intents[p.pid]={...choices[0],type:'follow',team:p.t,until:v152Seconds(m)+2.2};
+ if(v162Active(m))(m.attackFlow.paceRecovery||(m.attackFlow.paceRecovery={}))[p.pid]=v152Seconds(m)+3.05;
 }
 function v159Offers(m,owner,allies,rivals){
  if(!v159Active(m))return false;
- const flow=m.attackFlow,now=v152Seconds(m),s=v150Scale(),dir=owner.t===0?-1:1;
+ const flow=m.attackFlow,now=v152Seconds(m),s=v150Scale(),dir=owner.t===0?-1:1,quick=v162Active(m);
  const valid=flow.offerOwner===owner.pid&&flow.offerUntil>now;
  if(valid){
   const offers=Object.entries(flow.intents).filter(([,i])=>i.type!=='follow');
@@ -40,23 +68,29 @@ function v159Offers(m,owner,allies,rivals){
  }
  // A runner commits to a destination rather than shifting lanes whenever the
  // carrier moves. A changed owner, reached run, crowding or timeout reconsiders.
+ if(quick){
+  const recovery=flow.paceRecovery||(flow.paceRecovery={});
+  for(const id of Object.keys(recovery))if(recovery[id]<=now||!m.people.some(p=>p.pid===id))delete recovery[id];
+  for(const id of flow.paceOffers||[])if(id!==owner.pid&&flow.intents[id]?.type!=='follow')recovery[id]=now+.85;
+ }
  flow.offerOwner=owner.pid;flow.offerUntil=now+1.35;
  flow.intents=Object.fromEntries(Object.entries(flow.intents).filter(([pid,i])=>i.type==='follow'&&i.until>now&&m.people.some(p=>p.pid===pid&&!p.slideActive)));
- const occupied=Object.values(flow.intents),runners=allies.filter(p=>!hasInstruction(p,'support')&&!v159Cover(p)&&!['target-player'].includes(p.tacticalRole)&&(p.assignedLine||p.line)!=='def')
+ const occupied=Object.values(flow.intents),runners=allies.filter(p=>!hasInstruction(p,'support')&&!v159Cover(p)&&!['target-player'].includes(p.tacticalRole)&&(p.assignedLine||p.line)!=='def'&&(!quick||!(flow.paceRecovery[p.pid]>now)))
   .sort((a,b)=>(hasInstruction(b,'deep')?4:0)+((b.assignedLine||b.line)==='att'?2:0)+b.role*.4-((hasInstruction(a,'deep')?4:0)+((a.assignedLine||a.line)==='att'?2:0)+a.role*.4)||a.n-b.n);
- for(const p of runners.slice(0,2)){
+ for(const p of runners.slice(0,quick&&allies.length<5?1:2)){
   if(flow.intents[p.pid])continue;
   const side=p.bx<.5?-1:1,lead=(hasInstruction(p,'deep')?8:6.5)+ability(p,'pos')*.07;
   const targets=[{x:p.x+side*3.5/s.x,y:owner.y+dir*lead/s.y},{x:owner.x+side*7/s.x,y:owner.y+dir*lead/s.y},{x:p.x-side*3.5/s.x,y:owner.y+dir*(lead+1)/s.y}].map(point=>v159Point(point,s));
-  const score=point=>Math.min(10,...rivals.map(r=>v122Metres(r,point)))-v122Metres(p,point)*.15-occupied.reduce((n,i)=>n+Math.max(0,4-v122Metres(i,point))*2.5,0)+(v157Lane(m,owner,point,rivals,1.25)?1.2:0);
+  const score=point=>Math.min(10,...rivals.map(r=>v122Metres(r,point)))-v122Metres(p,point)*.15-occupied.reduce((n,i)=>n+Math.max(0,4-v122Metres(i,point))*2.5,0)+(v157Lane(m,owner,point,rivals,1.25)?1.2:0)-(quick?Math.max(0,v122Metres(v162Zone(m,p),point)-10)*.12:0);
   targets.sort((a,b)=>score(b)-score(a));flow.intents[p.pid]={...targets[0],type:'depth',team:p.t,at:now,until:flow.offerUntil};occupied.push(targets[0]);
  }
- const support=allies.filter(p=>!flow.intents[p.pid]&&!v159Cover(p)&&(hasInstruction(p,'support')||(p.assignedLine||p.line)==='mid')).sort((a,b)=>v122Metres(a,owner)-v122Metres(b,owner)||a.n-b.n)[0];
+ const support=allies.filter(p=>!flow.intents[p.pid]&&!v159Cover(p)&&(hasInstruction(p,'support')||(p.assignedLine||p.line)==='mid')&&(!quick||!(flow.paceRecovery[p.pid]>now))).sort((a,b)=>v122Metres(a,owner)-v122Metres(b,owner)||a.n-b.n)[0];
  if(support){
   const side=support.bx<.5?-1:1,targets=[5.5,-5.5].map(lateral=>v159Point({x:owner.x+side*lateral/s.x,y:owner.y-dir*2/s.y},s));
   const score=point=>Math.min(8,...rivals.map(r=>v122Metres(r,point)))-v122Metres(support,point)*.1+(v157Lane(m,owner,point,rivals)?1:0);
   targets.sort((a,b)=>score(b)-score(a));flow.intents[support.pid]={...targets[0],type:'support',team:support.t,at:now,until:flow.offerUntil};
  }
+ if(quick)flow.paceOffers=Object.entries(flow.intents).filter(([,i])=>i.type!=='follow').map(([id])=>id);
  return true;
 }
 function v159ReceivePlan(m,p,point){
@@ -91,7 +125,7 @@ function v159CarrierTarget(m,p){
 function v159Prepare(m){
  if(!v159Active(m))return;
  const flow=m.attackFlow,now=v152Seconds(m);
- if(v121PositioningPaused(m)){delete flow.receipt;delete flow.carry;delete flow.defenseReads;delete flow.offerOwner;delete flow.offerUntil;return;}
+ if(v121PositioningPaused(m)){delete flow.receipt;delete flow.carry;delete flow.defenseReads;delete flow.offerOwner;delete flow.offerUntil;if(v162Active(m)){delete flow.paceOffers;delete flow.paceRecovery;}return;}
  const receipt=flow.receipt;
  if(receipt&&(receipt.playerId!==m.owner?.pid||!m.people.some(p=>p.pid===receipt.playerId)||receipt.until<now))delete flow.receipt;
  else if(receipt&&now<receipt.readyAt)m.next=Math.max(m.next||0,receipt.readyAt*MATCH_SPEED);
@@ -160,6 +194,9 @@ function v159DefensiveTarget(m,p){
   }
  }
  if(!target)return false;
+ if(v162Active(m)&&!['press','ball'].includes(purpose)){
+  const zone=v162Zone(m,p);target={x:target.x*.65+zone.x*.35,y:target.y*.65+zone.y*.35};
+ }
  const radius=(p.assignedLine||p.line)==='def'?12:16,anchor={x:p.bx,y:p.by},dx=(target.x-anchor.x)*s.x,dy=(target.y-anchor.y)*s.y,gap=Math.hypot(dx,dy),limit=Math.min(1,radius/Math.max(.001,gap));
  target=v159Point({x:anchor.x+(target.x-anchor.x)*limit,y:anchor.y+(target.y-anchor.y)*limit},s,.5);
  reads[p.pid]={team:possession,at:now,nextAt:now+clamp(.34-(awareness-1)*.01+(typeof v158ReactionLoss==='function'?v158ReactionLoss(p):0),.12,.45),ball:{x:m.ball.x,y:m.ball.y},target,purpose};p.tx=target.x;p.ty=target.y;return true;

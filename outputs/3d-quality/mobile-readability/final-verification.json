@@ -1,0 +1,40 @@
+{
+  "pass": true,
+  "checkedAt": "2026-10-09T14:17:51.602Z",
+  "status": "local unpublished candidate after release115",
+  "sourceHashes": {
+    "screen-wake-v20.js": "a2e1f7678ff4be0f107c06ed66375bb0f39af8d2886c321728fe2c8919e7da56",
+    "world-physical-v65.js": "5db2b47d52ca3af7a4d4d2cb60cf64860009a345cf3cabda0344ee289a6776ad",
+    "world-goal-replay-v103.js": "cd010332ffc81eae949769c76ec024148b252b19f85fe353663e92367e8d5be5",
+    "world-offensive-quality-v157.js": "c44cd7bdf645efed352133d2706b1f962e13878990ef13ad17d46b5c79723d22",
+    "world-football-flow-v159.js": "b2aa3d913d0fc868bf04780d861a3574b130ca709e0de3745e2d63b07f4aec7a"
+  },
+  "htmlSha256": "e7e999a126e4dfe3c98160d0fbaaeca6b52b4ca82ff8b8519131064c075e64a3",
+  "offlineCopiesIdentical": true,
+  "embeddedChangedModules": 5,
+  "nativeEvidenceHashesMatch": true,
+  "unitySourceId": "61abeca81ae558b301e832e1bde22745d0556d71a5b385ea7d2d51b5ada246e6",
+  "completeParityConfigs": [
+    {
+      "config": "standard-5",
+      "ok": true,
+      "sameDigest": true,
+      "diffParts": [],
+      "score": [
+        1,
+        1
+      ]
+    },
+    {
+      "config": "large-6",
+      "ok": true,
+      "sameDigest": true,
+      "diffParts": [],
+      "score": [
+        1,
+        0
+      ]
+    }
+  ],
+  "physicalAndroidMeasured": false
+}

@@ -29,7 +29,7 @@ function setup({world = true, baseline = false} = {}) {
   load('let match=null,calls=[],rngCalls=0;const v99Flights=new WeakMap(),v99Actions=new WeakMap(),v102Flights=new WeakMap(),v123DefensiveThreats=new WeakMap(),v121PositioningPlans=new WeakMap(),v123GroundControls=new WeakMap();function v131KeeperSetting(){return false;}function random(){rngCalls++;return .999;}function note(){}function v115DecisionChance(p,kind,value){return value;}function v55Shoot(){calls.push("shot");}function v55GroundPass(p,q){calls.push("pass:"+q.pid);}function v55HighPass(p,q){calls.push("high:"+q.pid);}function v55ChooseTarget(p,allies){calls.push("choose");return allies[0]||p;}function v115BetterSquare(){return null;}function v131OpenGoal(){return false;}function v150TrySpacePass(){return false;}');
   load('const ' + game.slice(game.indexOf('distance='), game.indexOf(',random=', game.indexOf('distance='))) + ';');
   for (const name of ['passLaneGeometry', 'hasInstruction']) load(fn(game, name));
-  for (const name of ['v122Metres', 'v115GoalDistance', 'v124OffsideEdge', 'v55OffsideLine', 'v55OffsideSnapshot', 'v123ControlDirection', 'v123DribbleTarget', 'v55HasClearRun', 'v145ShotChance']) load(fn(pitch, name));
+  for (const name of ['v160PitchWidth', 'v160PitchLength', 'v160PitchScale', 'v122Metres', 'v115GoalDistance', 'v124OffsideEdge', 'v55OffsideLine', 'v55OffsideSnapshot', 'v123ControlDirection', 'v123DribbleTarget', 'v55HasClearRun', 'v145ShotChance']) load(fn(pitch, name));
   for (const name of ['v121PositioningPaused', 'v123PossessionTeam']) load(fn(positioning, name));
   for (const name of ['v150Scale', 'v150Pace', 'v150Delay', 'v150KeeperArea']) load(fn(space, name));
   load(fn(read('world-pitch-actions-v99.js'), 'v113KeeperReacting'));

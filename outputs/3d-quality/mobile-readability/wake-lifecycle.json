@@ -1,0 +1,24 @@
+{
+  "passed": 18,
+  "checks": [
+    "Vereinswelt entry acquires without old start",
+    "Repeated UI updates share one sentinel",
+    "Windowed pause releases",
+    "Viewport fullscreen acquires even paused/halftime",
+    "Native fullscreen does not duplicate lock",
+    "Background releases",
+    "Visible fullscreen reacquires while paused",
+    "Resume reacquires",
+    "Platform release schedules one bounded retry",
+    "Repeated platform release does not loop",
+    "Finished fullscreen never reacquires",
+    "Rejected API leaves no lock or retry",
+    "Pending acquisition after leaving releases",
+    "Already-released pending sentinel not retained",
+    "Unsupported API preserves playable lifecycle",
+    "Existing start/pause still works",
+    "Pagehide releases",
+    "Actual Vereinswelt/fullscreen owner hooks present"
+  ],
+  "note": "API/lifecycle regression; physical Android screen-timeout remains a device check."
+}

@@ -3,6 +3,7 @@
 // Local football tuning for future matches only. Metres/second, native clock,
 // and plain checkpoint data; neither renderer owns movement or possession.
 function v157Active(m){return Boolean(v152Active(m)&&m.attackFlow.qualityVersion===157);}
+function v162Active(m){return Boolean(v157Active(m)&&m.attackFlow.flowVersion===159&&m.attackFlow.paceVersion===162);}
 function v157Angle(a,b){return Math.atan2(Math.sin(b-a),Math.cos(b-a));}
 function v157InitialBody(p){
   const s=v150Scale(),dx=(p.motionX||0)*s.x,dy=(p.motionY||0)*s.y;
@@ -21,6 +22,13 @@ function v157Boundary(before,after,min,max){
 function v157Pace(m,p){
  const base=p.keeper?2.6+ability(p,'spd')*.065:3+ability(p,'spd')*.14;
  if(p.keeper)return typeof v158Movement==='function'?v158Movement(p,base,1).maxSpeed:base;
+ if(v162Active(m)){
+  const intent=m.attackFlow.intents[p.pid],now=v152Seconds(m),read=m.attackFlow.defenseReads?.[p.pid],target=m.flight?m.ball:m.rebound;
+  const contest=target&&m.people.filter(q=>q.t===p.t&&!q.keeper&&!q.slideActive).sort((a,b)=>v122Metres(a,target)-v122Metres(b,target)||a.n-b.n).slice(0,2).includes(p);
+  const purposeful=intent&&intent.until>=now&&intent.team===v123PossessionTeam(m)&&['depth','follow'].includes(intent.type)||read&&read.nextAt>=now&&['press','ball'].includes(read.purpose)||p.interceptTarget&&m.flight||contest;
+  const pace=base*(m.owner===p?1.28*(.78+ability(p,'tec')*.009):purposeful?1.48:1.08);
+  return typeof v158Movement==='function'?v158Movement(p,pace,1).maxSpeed:pace;
+ }
  const intent=m.attackFlow.intents[p.pid],chase=Boolean(m.flight||m.rebound),purposeful=intent&&['depth','follow'].includes(intent.type);
  const pace=base*(m.owner===p?1.24*(.78+ability(p,'tec')*.009):purposeful||chase?1.42:1.18);return typeof v158Movement==='function'?v158Movement(p,pace,1).maxSpeed:pace;
 }
@@ -34,9 +42,9 @@ function v157Move(m,p,dt){
  const mode=v108MovementMode(m,p),focus=mode?.facing;
  const target=pivot?(pending.kind==='space'?pending.target:pending.receiverId?m.people.find(q=>q.pid===pending.receiverId):pending.target):null;
  const heading=target?Math.atan2((target.x-p.x)*s.x,(target.y-p.y)*s.y):focus?Math.atan2((focus.x-p.x)*s.x,(focus.y-p.y)*s.y):d>.03?Math.atan2(dx,dy):body.heading;
- const angularRate=(3.5+ability(p,'tec')*.055)/Math.sqrt(mass)/(1+speed*.055);
+ const quick=v162Active(m)&&!p.keeper,angularRate=(3.5+ability(p,'tec')*.055)*(quick?1.22:1)/Math.sqrt(mass)/(1+speed*.055);
  body.heading+=clamp(v157Angle(body.heading,heading),-angularRate*dt,angularRate*dt);
- const factor=v108MoveFactor(m,p,p.tx-p.x,p.ty-p.y),brake=10.5/mass,baseAccel=(6.2+ability(p,'spd')*.08)/mass,accel=typeof v158Movement==='function'?v158Movement(p,1,baseAccel).acceleration:baseAccel;
+ const factor=v108MoveFactor(m,p,p.tx-p.x,p.ty-p.y),brake=10.5*(quick?1.18:1)/mass,baseAccel=(6.2+ability(p,'spd')*.08)*(quick?1.24:1)/mass,accel=typeof v158Movement==='function'?v158Movement(p,1,baseAccel).acceleration:baseAccel;
  const desired=pivot?0:Math.min(v157Pace(m,p)*factor,Math.sqrt(2*brake*Math.max(0,d-.05)));
  // Forward runners follow the body through a curve; defensive backpedalling
  // can retain its observed focus and its existing reduced speed.
@@ -90,7 +98,7 @@ function v157Target(m,p,dt){
  if(m.owner===p&&m.attackFlow.pendingTurn?.playerId===p.pid){p.tx=p.x;p.ty=p.y;return;}
  if(m.owner===p){if(typeof v159CarrierTarget==='function')v159CarrierTarget(m,p);return;}
  if(typeof v159DefensiveTarget==='function'&&v159DefensiveTarget(m,p))return;
- const intent=m.attackFlow.intents[p.pid];if(!intent||intent.team!==v123PossessionTeam(m)||intent.until<v152Seconds(m))return;
+ const intent=m.attackFlow.intents[p.pid];if(!intent||intent.team!==v123PossessionTeam(m)||intent.until<v152Seconds(m)){if(v162Active(m))v162RecoverTarget(m,p,dt);return;}
  const last=p.offenseCoord||(p.offenseCoord={x:p.tx,y:p.ty}),blend=Math.min(1,dt*(3+4*clamp(p.positionRoutine??.7,0,1)));
  last.x+=(intent.x-last.x)*blend;last.y+=(intent.y-last.y)*blend;p.tx=last.x;p.ty=last.y;
  if(m.owner){const limit=v121PositioningPlans.get(m)?.get(p)?.limit;if(limit!=null)p.ty=p.t===0?Math.max(p.ty,limit):Math.min(p.ty,limit);}
@@ -138,7 +146,8 @@ function v157ContinueTurn(m,p,rivals){
  const q=m.people.find(p=>p.pid===turn.receiverId),target=turn.kind==='space'?turn.target:q,body=v157Body(p),s=v150Scale();
  // A standing restart must be kicked. A blocked/offside receiver may affect
  // the actual pass outcome, but cannot cancel it into a carry by the taker.
- if(turn.playerId!==p.pid||!q||!turn.options?.restart&&(q.slideActive||v55OffsideSnapshot(p).offside.has(q)||!v157Lane(m,p,target,rivals,1.2))){delete m.attackFlow.pendingTurn;return false;}
+ const lane=q&&(v162Active(m)&&turn.kind==='high'?rivals.every(r=>v122Metres(r,target)>(r.keeper?4:2.8)):v157Lane(m,p,target,rivals,1.2));
+ if(turn.playerId!==p.pid||!q||!turn.options?.restart&&(q.slideActive||v55OffsideSnapshot(p).offside.has(q)||!lane)){delete m.attackFlow.pendingTurn;return false;}
  const angle=Math.atan2((target.x-p.x)*s.x,(target.y-p.y)*s.y);
  if(Math.abs(v157Angle(body.heading,angle))>.30||Math.hypot(body.vx,body.vy)>1.2){m.next=m.elapsed+.04*MATCH_SPEED;return true;}
  delete m.attackFlow.pendingTurn;m.attackFlow.releaseGuard=p.pid;
@@ -150,6 +159,25 @@ function v157ShotQuality(p,rivals){
  if(depth<1||range>22||lateral>depth*.85+1)return 0;
  if(rivals.some(r=>!r.keeper&&!r.slideActive&&(()=>{const lane=passLaneGeometry(r,p,goal);return lane&&v122Metres(r,lane)<1.4;})()))return 0;
  return clamp((22-range)/12,0,1)*(.55+(ability(p,'fin')+ability(p,'tec'))/80);
+}
+function v162HighOption(m,p,allies,rivals){
+ if(!v162Active(m)||p.keeper||m.owner!==p||m.attackFlow.pendingTurn||m.flight||m.rebound||v121PositioningPaused(m))return null;
+ const now=v152Seconds(m);if(now<(m.attackFlow.paceHighUntil||0)||v115GoalDistance(p)<22)return null;
+ const s=v150Scale(),dir=p.t===0?-1:1,offside=v55OffsideSnapshot(p).offside,legal=allies.filter(q=>!q.keeper&&!q.slideActive&&!offside.has(q));
+ // Prefer an available short progressive ground combination. Lift only over a
+ // visible midfield obstruction toward an available forward outlet or runner.
+ if(legal.some(q=>v122Metres(p,q)<=18&&(q.y-p.y)*dir*s.y>=5&&v157Lane(m,p,q,rivals)))return null;
+ return legal.map(q=>{
+  const range=v122Metres(p,q),gain=(q.y-p.y)*dir*s.y,space=Math.min(12,...rivals.map(r=>v122Metres(r,q))),blocked=rivals.some(r=>{const lane=passLaneGeometry(r,m.ball,q);return !r.keeper&&lane&&lane.t>.12&&lane.t<.82&&v122Metres(r,lane)<2;});
+  const intent=m.attackFlow.intents[q.pid],runner=intent&&intent.until>=now&&['depth','follow'].includes(intent.type),score=gain*.12-range*.025+space*.06+(runner?.5:0);
+  return {q,range,gain,space,blocked,score};
+ }).filter(o=>o.range>=14&&o.range<=32&&o.gain>=9&&o.space>=2.8&&o.blocked&&rivals.every(r=>!r.keeper||v122Metres(r,o.q)>4)).sort((a,b)=>b.score-a.score||a.q.n-b.q.n)[0]||null;
+}
+function v162TryHighPass(m,p,allies,rivals){
+ const option=v162HighOption(m,p,allies,rivals);if(!option)return false;
+ // Native preparation, aerial planning, execution error, contact and heading
+ // choice decide what follows. This is an option, never a guaranteed receipt.
+ m.attackFlow.paceHighUntil=v152Seconds(m)+4;v55HighPass(p,option.q);return true;
 }
 function v157Decide(m,p,allies,rivals){
  if(!v157Active(m)||p.keeper)return false;
@@ -165,6 +193,7 @@ function v157Decide(m,p,allies,rivals){
  if(square){v55GroundPass(p,square.q);return true;}
  // A useful finishing window precedes speculative space balls and forced carry.
  if(shot>0&&(range<=14||random()<Math.max(v145ShotChance(p,rivals),shot*.65))){v55Shoot(p);return true;}
+ if(v162TryHighPass(m,p,allies,rivals))return true;
  const useful=options.find(o=>o.returnRun||o.gain>=3&&o.score>.05);
  if(useful){v55GroundPass(p,useful.q);return true;}
  if(v150TrySpacePass(p,allies,rivals))return true;
