@@ -1,0 +1,27 @@
+{
+  "release": 114,
+  "pass": true,
+  "checks": [
+    "Live footer 114",
+    "Final start surface",
+    "Boot surface removed",
+    "Options contain system/light/dark",
+    "Theme surface light",
+    "Theme meta light",
+    "Theme surface dark",
+    "Theme meta dark",
+    "No horizontal overflow",
+    "Unity loading gate available",
+    "Theme preference restored",
+    "User storage unchanged"
+  ],
+  "url": "https://fussball.cakamper.at/?verify=release114-final",
+  "footer": "Doppel 6 / PROTOTYP 1143D-Hilfe",
+  "theme": "light",
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "checkedAt": "2026-10-09T10:33:42.640Z",
+  "method": "Same-URL page reload in T3; careers untouched"
+}

@@ -1,0 +1,28 @@
+{
+  "release": 114,
+  "pass": true,
+  "checks": [
+    "Live footer 114",
+    "Final start surface",
+    "Boot surface removed",
+    "Options contain system/light/dark",
+    "Theme surface light",
+    "Theme meta light",
+    "Theme surface dark",
+    "Theme meta dark",
+    "No horizontal overflow",
+    "Unity loading gate available",
+    "Theme preference restored",
+    "User storage unchanged"
+  ],
+  "url": "https://fussball.cakamper.at/?verify=release114-final",
+  "footer": "Doppel 6 / PROTOTYP 1143D-Hilfe",
+  "theme": "light",
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "checkedAt": "2026-10-09T10:33:31.915Z",
+  "method": "T3 preview_evaluate; temporary theme changes without persistence",
+  "expression": "(()=>{const before=Object.fromEntries(Object.keys(localStorage).map(k=>[k,localStorage.getItem(k)])),ns=D6Flutlicht,preference=ns.theme.preference(),checks=[];function check(name,ok){if(!ok)throw Error(name);checks.push(name)}try{check('Live footer 114',document.querySelector('#start-screen>footer').textContent.includes('PROTOTYP 114'));check('Final start surface',document.querySelector('#start-screen').classList.contains('fl-start')&&document.body.classList.contains('fl-start-active'));check('Boot surface removed',!document.querySelector('#fl-boot')&&!document.documentElement.dataset.flBootTheme);const picker=document.querySelector('#fl-start-theme');check('Options contain system/light/dark',JSON.stringify([...picker.options].map(o=>o.value))===JSON.stringify(['system','light','dark']));for(const theme of ['light','dark']){ns.theme.set(theme,false);check('Theme surface '+theme,document.body.dataset.flStartTheme===theme&&getComputedStyle(document.body).backgroundColor===(theme==='light'?'rgb(241, 243, 245)':'rgb(17, 21, 26)'));check('Theme meta '+theme,document.querySelector('meta[name=theme-color]').content===(theme==='light'?'#f1f3f5':'#11151a'));}check('No horizontal overflow',document.documentElement.scrollWidth<=innerWidth+1);check('Unity loading gate available',typeof D6UnityMatch.clockHeld==='boolean');}finally{ns.theme.set(preference,false)}check('Theme preference restored',ns.theme.preference()===preference);check('User storage unchanged',JSON.stringify(before)===JSON.stringify(Object.fromEntries(Object.keys(localStorage).map(k=>[k,localStorage.getItem(k)]))));return {release:114,pass:true,checks,url:location.href,footer:document.querySelector('#start-screen>footer').textContent,theme:ns.theme.resolve(),viewport:{width:innerWidth,height:innerHeight}}})()"
+}

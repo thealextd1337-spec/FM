@@ -1,6 +1,6 @@
 # Entwicklungsdokumentation
 
-- [Release 114](release-114.md): Abnahme von Unity-Ladestopp, wiederholter Karrierefortsetzung, Freistoßausführung, Grafik-unabhängigem Matchverlauf und Flutlicht-Korrekturen.
+- [Release 114](release-114.md): veröffentlichte Korrekturen für Unity-Ladestopp, wiederholte Karrierefortsetzung, Freistoßausführung, Grafik-unabhängigen Matchverlauf und Flutlicht; Abnahme und Live-Nachweise.
 
 - [Release 113](release-113.md): gemeinsame native Karriere-/Feldgrößenintegration mit Unity Release 112; Abnahme und Veröffentlichung.
 

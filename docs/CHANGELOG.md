@@ -2,6 +2,8 @@
 
 ## 9. Oktober 2026 – Release 114
 
+Release 114 ist live veröffentlicht. Deployment, sieben bytegenaue Live-Dateiabgleiche und je zwölf T3-Browserprüfungen vor und nach Reload bestanden; Nutzerkarrieren unverändert. [Veröffentlichungsnachweis](release-114.md#veröffentlichung-und-live-abnahme).
+
 - Unity wartet vor Spielbeginn und nach Karrierefortsetzung auf das erste vollständige Bild. Wiederholtes Speichern/Laden erhält die Standard-Spielerreferenzen; Freistoßschützen führen ihren vorbereiteten Pass aus. Das asynchrone Laden des 3D-Modells beeinflusst laufende v159-Partien nicht mehr. Flutlicht startet ohne alte Designblende; Optionen teilen Hell/Dunkel/Geräteautomatik. Frühere Erstellungsschritte sind rückwärts erreichbar. Sponsorflächen und mobile Begegnung mit „präsentiert“, Rollenfarbfeld mit qualitativer Erklärung, kompakte letzte Aufstellung, Fortschritt im Kalenderknopf und Ergebnislisten nach Vollbild-Abpfiff sind angepasst. Unity reduziert weißes Kantenlicht und erhält Teamfarben in Rückschauen. Alle 83 Produktionskommandos, je 195 Quell-/Buildprüfungen, zusätzliche Reload-/Freistoß-/Grafikladeprüfungen und 238 Q01-Buildprüfungen bestanden; vollständige native/Unity-Partiegleichheit auf Quelle in fünf und auf Build in drei kritischen Konfigurationen bestätigt. Historische Ergebnisse bleiben erhalten; physische Mobilhardware ungemessen. [Abnahme und Grenzen](release-114.md).
 
 ## 9. Oktober 2026 – Release 113

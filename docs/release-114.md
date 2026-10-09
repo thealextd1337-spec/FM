@@ -1,6 +1,6 @@
 # Release 114: Laden, Fortsetzen und Flutlicht-Korrekturen
 
-Arbeitsstand vom 9. Oktober 2026; noch nicht veröffentlicht. Nutzerauftrag: die gemeldeten Matchfehler und Designreste beheben und die gemeinsame Fassung veröffentlichen. GPT 6.1 bearbeitet native JavaScript-/Karrierepfade, UI und Veröffentlichung; Claude Opus 5.5 bearbeitet Unity, Brücke und WebGL-Build im selben abgestimmten Worktree. Keine Änderungen an `freekickdemo/` oder am veralteten Hauptcheckout.
+Veröffentlicht am 9. Oktober 2026. Nutzerauftrag: die gemeldeten Matchfehler und Designreste beheben und die gemeinsame Fassung veröffentlichen. GPT 6.1 bearbeitet native JavaScript-/Karrierepfade, UI und Veröffentlichung; Claude Opus 5.5 bearbeitet Unity, Brücke und WebGL-Build im selben abgestimmten Worktree. Keine Änderungen an `freekickdemo/` oder am veralteten Hauptcheckout.
 
 ## Änderungen
 
@@ -35,9 +35,17 @@ Arbeitsstand vom 9. Oktober 2026; noch nicht veröffentlicht. Nutzerauftrag: die
 
 Der vollständige [native/Unity-Quellvergleich](../outputs/release-114/unity-parity-final.json) ist nach dem Kontaktfix für alle fünf Fälle bestanden: unkonfigurierte Welt sowie beide Felder mit fünf/sechs Feldspielern. Der [finale Buildvergleich](../outputs/release-114/unity-parity-build-final.json) bestätigt zusätzlich bisherig/sechs, größer/fünf und größer/sechs. Alle vierzehn Teilbereiche und vollständigen Karrierewelten stimmen exakt einschließlich Pause, Halbzeit, JSON-Checkpoint und Abschlussbuchungen. Kein zusätzliches Warten auf das Meshy-Modell war erforderlich. Im ersten Lauf unterschieden sich neun tatsächliche Teilbereiche bei größer/fünf; Ursache war die asynchrone Modellverfügbarkeit. Der damalige Unity-Rückfall bei bisherig/sechs trat im finalen seriellen Lauf nicht auf. Frühere fehlgeschlagene Läufe werden nicht als bestandene Abnahme gewertet. [Alle 83 Produktionskommandos](../outputs/release-114/preflight.json) sind bestanden; der lokale Python-3-Storealias wurde durch den installierten Python-Interpreter ersetzt.
 
-Die [75 gemeinsamen Releaseprüfungen](../outputs/release-114/candidate.json) bestätigen Version 114 in Quelle und Build, identische Offline-Dateien, alle genannten finalen Prüfungen und aktuelle eingebettete UI-Dateien. Der HTML-SHA-256 lautet `4720c5751c6478e3b435bc328006775669866299e08987bcad4cf7bf26c8d481`; Unity-Quellidentität ist `3388667d932d3f6987281afb901c52e6c526e49a05c559ef761d736e3b374677`. [45 Unity-Manifestprüfungen](../outputs/release-114/unity-manifest-verify.json) bestätigen sämtliche Builddateien und ihre aktuellen C#-/Shaderquellen. Veröffentlichung und Livevergleich werden nach dem Deployment ergänzt.
+Die [75 gemeinsamen Releaseprüfungen](../outputs/release-114/candidate.json) bestätigen Version 114 in Quelle und Build, identische Offline-Dateien, alle genannten finalen Prüfungen und aktuelle eingebettete UI-Dateien. Der HTML-SHA-256 lautet `4720c5751c6478e3b435bc328006775669866299e08987bcad4cf7bf26c8d481`; Unity-Quellidentität ist `3388667d932d3f6987281afb901c52e6c526e49a05c559ef761d736e3b374677`. [45 Unity-Manifestprüfungen](../outputs/release-114/unity-manifest-verify.json) bestätigen sämtliche Builddateien und ihre aktuellen C#-/Shaderquellen.
 
 Der [echte Unity-Vollbildabschluss](../outputs/release-114/unity-fullscreen-report/result.json) ist im automatisierten Edge-Projektlauf bestätigt: größer/sechs, reales `fullscreenElement=match-area`, Abschluss mit gestaltetem Spielbericht und sechs nachfolgende Reaktionsprüfungen in 1–5 ms, keine JavaScript- oder Konsolenfehler. [Berichtansicht](../outputs/release-114/unity-fullscreen-report/after-whistle.png). Zwei T3-Testtabs liefen dagegen in Automationszeitlimits; deren Ursache ist nicht eindeutig belegt, sie zählen nicht als bestandene Abnahme.
+
+## Veröffentlichung und Live-Abnahme
+
+Quell-/Buildcommit `881d4a5f6ae4f897ff5f46c4bcd5e2b8271e9312` ist auf `main`. Der [Deploymentlauf 37916438100](https://github.com/thealextd1337-spec/FM/actions/runs/37916438100) ist erfolgreich abgeschlossen; [Statusbeleg](../outputs/release-114/deployment.json). Die Unity-Laufzeit wurde vor der neuen Spielseite hochgeladen und geprüft.
+
+Der [gemeinsame Live-Verifier](../outputs/release-114/live-hashes.json) besteht alle 82 Prüfungen: 75 lokale Abnahmen und sieben direkte Live-Dateivergleiche für HTML, vier Unity-Builddateien, Manifest und iframe-Laufzeit. Die Dateien auf [fussball.cakamper.at](https://fussball.cakamper.at/) sind bytegleich zum geprüften Build. Der Fuß zeigt Release 114.
+
+Im produktiven T3-Browser sind [zwölf UI-Prüfungen](../outputs/release-114/live-ui.json) sowie dieselben [zwölf Prüfungen nach erneutem Laden](../outputs/release-114/live-ui-reload.json) bestanden: finaler Start, entfernte Bootfläche, Hell/Dunkel und Metafarben, Optionsauswahl, kein horizontaler Überlauf, vorhandenes Unity-Uhr-Gate und erhaltene Gerätepräferenz. Temporäre Farbschemawechsel wurden ohne Speicherung ausgeführt; der gesamte lokale Speicher blieb unverändert. Keine Nutzerkarriere wurde geöffnet oder verändert. Der erste Verifier-Aufruf suchte den nativen Fuß fälschlich direkt unter `body`; nach Prüfung des tatsächlichen DOM wurde der vorhandene Fuß innerhalb `#start-screen` verwendet. Dies war eine Korrektur des Prüfselektors, keine Produktänderung.
 
 ## Grenzen
 
