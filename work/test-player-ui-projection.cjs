@@ -120,5 +120,15 @@ test('renderers have no storage, DOM, simulation, clock or random dependencies',
   for (const name of ['renderProfileRoles', 'renderTacticRoleControl', 'renderPitchRole']) assert.ok(browser.D6PlayerTacticsUI[name](input, labelsDE));
   assert.ok(browser.D6PlayerTacticsUI.renderRoleZone(input.zone, labelsDE));
   assert.equal(JSON.stringify(input), before);
+  // Explicit host objects exercise accessors equally on Node20 and Node24;
+  // a contextified global can hide that access on newer VM implementations.
+  for (const legacy of [false, true]) {
+    const host = {};
+    if (legacy) host.HTMLElement = function HTMLElement() {};
+    Object.defineProperty(host, 'document', {get() { throw Error('No host document'); }});
+    vm.runInNewContext(source, {globalThis: host});
+    assert.ok(host.D6PlayerTacticsUI.renderTacticRoleControl(input, labelsDE));
+    assert.equal(JSON.stringify(input), before);
+  }
 });
 console.log(`${groups} player UI projection groups passed`);

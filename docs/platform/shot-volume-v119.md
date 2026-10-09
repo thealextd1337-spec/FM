@@ -38,7 +38,7 @@ Belege: `compact-matrix.json`, `compact-summary.json`, `compact-production.json`
 
 ## Finale Matchzähler
 
-Die abschließenden drei nativen/Unity-Paare des HTML-Builds `ecd3d875e5561f5e488c3e8d480a32a4cf43abb90108c5837db9293ad5d8950f` stimmen in allen 14 Zustands-/Buchungsteilen überein. Für Standard/fünf, groß/fünf und groß/sechs lauten die physischen Zähler jeweils **6/0/0**, **3/2/1** und **4/2/0** (Schüsse/aufs Tor/Tore, beide Teams zusammen). Die unabhängigen kompakten Partien derselben Ausgangskarrieren liefern **17/8/2**, **16/9/3** und **13/6/1**. Alle physischen Schussereignisse sind abgeschlossen. Einzelpaarungen belegen keine Verteilungsfreigabe; die zusätzliche [Zwölf-Partien-Weltstichprobe](../agentenauftraege/d6-119-world-shot-sample.md) bestätigt mit Ø 3,75 weiterhin die offene physische Abstimmung.
+Die abschließenden drei nativen/Unity-Paare des HTML-Builds `8f14d9ec341e7e5134258001a9673221324aaf365fadf742db142411927523e2` stimmen in allen 14 Zustands-/Buchungsteilen überein. Für Standard/fünf, groß/fünf und groß/sechs lauten die physischen Zähler jeweils **6/0/0**, **3/2/1** und **4/2/0** (Schüsse/aufs Tor/Tore, beide Teams zusammen). Die unabhängigen kompakten Partien derselben Ausgangskarrieren liefern **17/8/2**, **16/9/3** und **13/6/1**. Alle physischen Schussereignisse sind abgeschlossen. Einzelpaarungen belegen keine Verteilungsfreigabe; die zusätzliche [Zwölf-Partien-Weltstichprobe](../agentenauftraege/d6-119-world-shot-sample.md) bestätigt mit Ø 3,75 weiterhin die offene physische Abstimmung.
 
 ## Private native Kandidaten
 

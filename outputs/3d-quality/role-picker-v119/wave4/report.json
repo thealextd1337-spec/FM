@@ -80,8 +80,8 @@
     "plan-1366-light-en.png"
   ],
   "sourceHashes": {
-    "world-tactics-ui-v156.js": "0783083c0cc364c75cc00fd93e19be753cc17655ac7e7294a2782e79763bf1bf",
-    "player-tactics-ui.js": "5a41b67f6f839c3fd41334ddab3f199a5be6489ea4943d8836da2d641c0c4c4b",
+    "world-tactics-ui-v156.js": "c86f6a13c8b21629e5112062cf7d2cde61363e429a99ff17240a05f1d464dd6d",
+    "player-tactics-ui.js": "45a51dcd5e2a53b56acfb221a7b6bd963ff5e0b5c79e492220c2ff4b487f4aeb",
     "player-tactics-ui.css": "9112723381ca780a8284edacbaa4fea84681663a589527d3f3851439c19e22d9",
     "world-tactics-layout-v156.css": "4eb557c24bfcbc9e69277f35d0c12c0843077947db88f0de733adbeb153d159b"
   },

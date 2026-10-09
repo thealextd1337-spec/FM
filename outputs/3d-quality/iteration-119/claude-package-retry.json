@@ -1,0 +1,14 @@
+{
+  "phase": "readonly-retry-after-user-hour",
+  "scheduledForUTC": "2026-10-09T23:08:40.946Z",
+  "timerDisabled": true,
+  "taskId": "node:delegated-task:command%3Amcp%3A4f709f9a-7716-4f92-a860-643691ad462b%3Adelegate-task%3Ad6-claude-next-unity-readonly-20261010-r2",
+  "childThreadId": "thread:delegated-task:command%3Amcp%3A4f709f9a-7716-4f92-a860-643691ad462b%3Adelegate-task%3Ad6-claude-next-unity-readonly-20261010-r2",
+  "provider": "claudeAgent",
+  "model": "claude-opus-5-5",
+  "statusAtAcceptance": "running",
+  "fastMode": false,
+  "implementationStarted": false,
+  "releaseFreeze": true,
+  "scope": "Read-only animation gap check; no editor, source edits, sync or build. Full package in a separate task after release119 handoff."
+}

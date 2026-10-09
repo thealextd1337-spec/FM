@@ -3,8 +3,8 @@
   "release": 119,
   "hashes": {
     "dist/world-unity-v151.js": "32d6820249920179b1182f0e145e0e341b6872583c818a10872d085ff99b7242",
-    "outputs/index.html": "ecd3d875e5561f5e488c3e8d480a32a4cf43abb90108c5837db9293ad5d8950f",
-    "outputs/Doppel-6-Fussballmanager.html": "ecd3d875e5561f5e488c3e8d480a32a4cf43abb90108c5837db9293ad5d8950f",
+    "outputs/index.html": "8f14d9ec341e7e5134258001a9673221324aaf365fadf742db142411927523e2",
+    "outputs/Doppel-6-Fussballmanager.html": "8f14d9ec341e7e5134258001a9673221324aaf365fadf742db142411927523e2",
     "outputs/platform/unity-web/probe-build.json": "832f4c33f46010fa6d59d3723ccc51fa09d414a55cccbd2e53d67e88ba6b0fc7"
   },
   "sourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
@@ -277,10 +277,10 @@
           "halftime": false,
           "unityError": null,
           "stats": {
-            "pictures": 112,
+            "pictures": 107,
             "maxPositionError": 0,
             "playersOutside": 0,
-            "visibleBallOutside": 2,
+            "visibleBallOutside": 1,
             "netMaxZ": 0,
             "labels": 12,
             "visibleLabels": 11,
@@ -325,12 +325,12 @@
             "pictures": 171,
             "maxPositionError": 0,
             "playersOutside": 0,
-            "visibleBallOutside": 3,
+            "visibleBallOutside": 1,
             "netMaxZ": 0,
             "labels": 12,
             "visibleLabels": 11,
             "domLabels": 12,
-            "keeperContactSamples": 6,
+            "keeperContactSamples": 7,
             "keeperContactMetres": [
               "goalKick:0.65"
             ]
@@ -360,12 +360,12 @@
             "pictures": 210,
             "maxPositionError": 0,
             "playersOutside": 0,
-            "visibleBallOutside": 5,
+            "visibleBallOutside": 3,
             "netMaxZ": 0,
             "labels": 12,
             "visibleLabels": 11,
             "domLabels": 12,
-            "keeperContactSamples": 10,
+            "keeperContactSamples": 11,
             "keeperContactMetres": [
               "goalKick:0.65"
             ]
@@ -740,7 +740,7 @@
           "halftime": true,
           "unityError": null,
           "stats": {
-            "pictures": 152,
+            "pictures": 153,
             "maxPositionError": 0,
             "playersOutside": 0,
             "visibleBallOutside": 0,
@@ -1118,7 +1118,7 @@
           "halftime": false,
           "unityError": null,
           "stats": {
-            "pictures": 154,
+            "pictures": 155,
             "maxPositionError": 0,
             "playersOutside": 0,
             "visibleBallOutside": 1,
@@ -1126,7 +1126,7 @@
             "labels": 14,
             "visibleLabels": 13,
             "domLabels": 14,
-            "keeperContactSamples": 13,
+            "keeperContactSamples": 15,
             "keeperContactMetres": [
               "save:1.398",
               "goalKick:0.65"
@@ -1164,15 +1164,15 @@
           "halftime": true,
           "unityError": null,
           "stats": {
-            "pictures": 187,
+            "pictures": 188,
             "maxPositionError": 0,
             "playersOutside": 0,
-            "visibleBallOutside": 1,
+            "visibleBallOutside": 2,
             "netMaxZ": 0,
             "labels": 14,
             "visibleLabels": 13,
             "domLabels": 14,
-            "keeperContactSamples": 15,
+            "keeperContactSamples": 16,
             "keeperContactMetres": [
               "save:1.398",
               "goalKick:0.65"
@@ -1200,15 +1200,15 @@
           "halftime": true,
           "unityError": null,
           "stats": {
-            "pictures": 222,
+            "pictures": 227,
             "maxPositionError": 0,
             "playersOutside": 0,
-            "visibleBallOutside": 1,
+            "visibleBallOutside": 2,
             "netMaxZ": 0,
             "labels": 14,
             "visibleLabels": 13,
             "domLabels": 14,
-            "keeperContactSamples": 16,
+            "keeperContactSamples": 18,
             "keeperContactMetres": [
               "save:1.398",
               "goalKick:0.65",

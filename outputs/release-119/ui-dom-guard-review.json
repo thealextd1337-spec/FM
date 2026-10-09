@@ -1,0 +1,21 @@
+{
+  "pass": true,
+  "scope": "CI Node20 DOM guard correction and asynchronous career role focus completion",
+  "priorFailedCommit": "2ffd54a5ed565f48f72419070cb7a1a2da08461f",
+  "priorFailedRun": 38002153576,
+  "originalFailure": "No document during pure renderer factory initialization",
+  "runtimeSmokeTests": [
+    "Node20.20.2:11 groups incl explicit host getter cases",
+    "Node24:11 groups incl explicit host getter cases"
+  ],
+  "oldCommittedSourceReproduced": true,
+  "tacticalBrowserChecks": 63,
+  "touchKeyboardFocusAfterActualSave": true,
+  "sourceHashes": {
+    "dist/player-tactics-ui.js": "45a51dcd5e2a53b56acfb221a7b6bd963ff5e0b5c79e492220c2ff4b487f4aeb",
+    "dist/world-tactics-ui-v156.js": "c86f6a13c8b21629e5112062cf7d2cde61363e429a99ff17240a05f1d464dd6d",
+    "work/test-player-ui-projection.cjs": "a5a41ef76ab90db4dd4d1bf161a00390e4b6cf979076e2788b298c8960a8a00a",
+    "work/platform/qa/check-tactics-wave4.cjs": "c89ce145e96d16a4050186c3570a49e3894ecf3a5ee08eb1e2f01cb34a1ac7bd"
+  },
+  "note": "New full94 Node20 production preflight remains separate; no native gameplay or Unity source modification for this correction."
+}

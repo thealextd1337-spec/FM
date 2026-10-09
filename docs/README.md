@@ -1,6 +1,6 @@
 # Entwicklungsdokumentation
 
-- [Unity-Arbeitspaket für Claude](agentenauftraege/07-unity-qualitaet-claude.md): nächste 3D-Iteration mit natürlichen Bewegungen in acht Richtungen, flüssigen Übergängen, Keeperkontakten, kleinen Bildschirmen und Vereinsstadien. Erster Vorabcheck am Quotalimit gescheitert; einmaliger Startversuch für den 10. Oktober um 01:08 Uhr geplant. Implementierung noch nicht begonnen.
+- [Unity-Arbeitspaket für Claude](agentenauftraege/07-unity-qualitaet-claude.md): nächste 3D-Iteration mit natürlichen Bewegungen in acht Richtungen, flüssigen Übergängen, Keeperkontakten, kleinen Bildschirmen und Vereinsstadien. Vorabcheck nach dem Refresh abgeschlossen; [Quellbefunde](agentenauftraege/d6-claude-animation-vorabcheck-20261010.md) sind vorbereitet. Einmaliger Timer deaktiviert; Implementierung folgt nach der Release-119-Übergabe.
 
 - [Release 118](release-118.md): veröffentlichte Torwartfolgen und Kontakte; vollständige Produktions-, Unity-, Browser- und Live-Abnahme bestanden. Android-Prüfweg und Account-Betriebspaket folgen demselben priorisierten Plan.
 - [Android-Geräteabnahme](platform/android-3d-acceptance.md): physischer USB-/Chrome-Prüfweg für 14 Spieler, native Spielgeschwindigkeit, echte Wake-Lock-/Bildschirmbeobachtung und getrennte Leistungskennzahlen; Pixel 9 Pro XL ist nun verfügbar und über USB erreichbar.

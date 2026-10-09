@@ -867,5 +867,5 @@
     "dist/ui-flutlicht/views/competitions.css": "e928d63b5be4b1014c4b866cb68ae941e7f95bb4f885763242bea0e3df57efda"
   },
   "buildComparison": "exact code; historical v62AwardSprites PNG registry is inlined by official build",
-  "buildSha256": "ecd3d875e5561f5e488c3e8d480a32a4cf43abb90108c5837db9293ad5d8950f"
+  "buildSha256": "8f14d9ec341e7e5134258001a9673221324aaf365fadf742db142411927523e2"
 }

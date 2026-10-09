@@ -1,0 +1,13 @@
+{
+  "taskId": "node:delegated-task:command%3Amcp%3A4f709f9a-7716-4f92-a860-643691ad462b%3Adelegate-task%3Ad6-claude-next-unity-readonly-20261010-r2",
+  "childThreadId": "thread:delegated-task:command%3Amcp%3A4f709f9a-7716-4f92-a860-643691ad462b%3Adelegate-task%3Ad6-claude-next-unity-readonly-20261010-r2",
+  "status": "completed",
+  "model": "claude-opus-5-5",
+  "provider": "claudeAgent",
+  "readonly": true,
+  "filesChanged": false,
+  "editorHandoff": false,
+  "report": "docs/agentenauftraege/d6-claude-animation-vorabcheck-20261010.md",
+  "sourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+  "implementationStarted": false
+}

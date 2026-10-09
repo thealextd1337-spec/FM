@@ -25,7 +25,7 @@ function v156PitchRole(career,player,state,pid){return state.roleAssignments?D6P
 document.addEventListener('change',async event=>{
  const select=event.target.closest?.('[data-d6-role]');if(!select)return;
  const career=v61CurrentCareer,pid=select.dataset.d6Role;if(!v154Active(career))return;
- if(!career.world.activeMatch){await v64CareerCommit(career,({state})=>v154SetRole(state,pid,select.value));return;}
+ if(!career.world.activeMatch){if(await v64CareerCommit(career,({state})=>v154SetRole(state,pid,select.value)))document.querySelector(`[data-d6-role="${CSS.escape(pid)}"]`)?.focus();return;}
  const fixture=v64ActiveFixture(career),state=career.world.activeMatch.state;if(!['prematch','paused'].includes(state.phase))return;
  const old=structuredClone(state.roleAssignments);
  try{

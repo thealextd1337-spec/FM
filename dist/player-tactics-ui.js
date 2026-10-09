@@ -7,7 +7,7 @@
 
   var BANDS = ['violetgray', 'bluegray', 'yellow', 'orange', 'pink'];
   var pickerId = 0;
-  var popovers = !root.document || !!(root.HTMLElement && root.HTMLElement.prototype.showPopover);
+  var popovers = !root.HTMLElement || !!root.HTMLElement.prototype.showPopover;
   var POSITIONS = ['gk', 'def', 'mid', 'att'];
   var SKILLS = ['tec', 'pas', 'fin', 'tak', 'pos', 'spd', 'sta', 'air', 'gk', 'calm', 'ant', 'dec', 'str'];
   var COLOR_NAMES = {violetgray: ['Violettgrau', 'Violet grey'], bluegray: ['Blaugrau', 'Blue grey'], yellow: ['Gelb', 'Yellow'], orange: ['Orange'], pink: ['Pink']};
@@ -119,7 +119,7 @@
   }
   // Shared presentation enhancement; the existing select/change controllers own
   // every role assignment, persistence, and prematch/pause validation.
-  if (root && root.document && popovers) {
+  if (root && root.HTMLElement && popovers && root.document) {
     var doc = root.document;
     function parts(node) {var row=node.closest('.d6-role-select-row');return row && {row:row,select:row.querySelector('[data-d6-role]'),trigger:row.querySelector('.d6-role-trigger'),list:row.querySelector('.d6-role-choices')};}
     function isOpen(p) {return p.list.matches(':popover-open');}
