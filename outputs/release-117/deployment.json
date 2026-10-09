@@ -1,0 +1,71 @@
+{
+  "release": 117,
+  "releaseCommit": "735668274fb465dea5081c638a773ffe6375371a",
+  "runId": 37974903801,
+  "url": "https://github.com/thealextd1337-spec/FM/actions/runs/37974903801",
+  "status": "completed",
+  "conclusion": "success",
+  "started": "2026-10-09T18:40:23Z",
+  "updated": "2026-10-09T18:57:13Z",
+  "jobs": [
+    {
+      "id": 113970610168,
+      "status": "completed",
+      "conclusion": "success",
+      "started": "2026-10-09T18:40:27Z",
+      "completed": "2026-10-09T18:57:13Z",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Quellcode laden",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Node.js einrichten",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Spieltests ausführen",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Einzeldatei bauen",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Per FTPS zu World4You hochladen und Live-Datei prüfen",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Node.js einrichten",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Quellcode laden",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

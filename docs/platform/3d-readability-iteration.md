@@ -1,6 +1,6 @@
 # 3D-Iteration: Namen und nächste Qualitätsverbesserungen
 
-Stand: 9. Oktober 2026. Die Namensiteration und alle fünf Folgepunkte gehören auf Nutzerauftrag zur gemeinsamen [Release-117-Freigabe](../release-117.md). Der folgende Namensnachweis beschreibt die erste lokale Iteration auf HTML 116; aktuelle Build-/Live-Nachweise werden im Releasebericht getrennt geführt. Priorität bleibt das 3D-Erlebnis, danach Accounts. Keine neuen Kaufassets oder Spielerporträts.
+Stand: 9. Oktober 2026. Die Namensiteration und alle fünf Folgepunkte sind auf Nutzerauftrag als [Release 117 veröffentlicht und live abgenommen](../release-117.md). Der folgende Namensnachweis beschreibt die erste lokale Iteration auf HTML 116; aktuelle Build-/Live-Nachweise werden im Releasebericht getrennt geführt. Priorität bleibt das 3D-Erlebnis, danach Accounts. Keine neuen Kaufassets oder Spielerporträts.
 
 ## Umgesetzt
 
@@ -18,7 +18,7 @@ Alle Namen bleiben erhalten. Bei einer theoretisch zu kleinen Fläche wählt die
 - Gemeinsamer Bildvertrag und Grätschenprojektion bestanden; regulärer HTML-Build mit 26 bytegenau eingebetteten Assets und identischen Offlinekopien geprüft.
 - Unabhängige Leseprüfung: gemeldeten Linienverlauf durch das eigene Schild korrigiert; abschließende Prüfung ohne weiteren konkreten Befund.
 
-Die ersten T3-Quell-/Buildprüfungen bestanden. Für den abschließenden festen Mobilnachweis wurde der dokumentierte isolierte Edge-/Playwright-Weg verwendet: Nach zwei T3-Größenkorrekturen meldete die Seite weiterhin `actual/frame: 400 × 300` statt der angeforderten 844 × 390. Der endgültige Nachweis prüft das tatsächliche feste Format, Touchlayout und Software-WebGL. Er ist kein physischer Android-Leistungsnachweis. Bewegungsruhe, Bildschirm-Wachhalten und Ballverfolgbarkeit auf Pixel 9a/Pixel 9 Pro XL bleiben am Gerät abzunehmen. Quelle und lokaler Build tragen bis zur nächsten beauftragten Veröffentlichung weiterhin Version 116; die Live-Seite enthält diesen lokalen Nachtrag noch nicht.
+Die ersten T3-Quell-/Buildprüfungen bestanden. Für den abschließenden festen Mobilnachweis wurde der dokumentierte isolierte Edge-/Playwright-Weg verwendet: Nach zwei T3-Größenkorrekturen meldete die Seite weiterhin `actual/frame: 400 × 300` statt der angeforderten 844 × 390. Der endgültige Nachweis prüft das tatsächliche feste Format, Touchlayout und Software-WebGL. Er ist kein physischer Android-Leistungsnachweis. Bewegungsruhe, Bildschirm-Wachhalten und Ballverfolgbarkeit auf Pixel 9a/Pixel 9 Pro XL bleiben am Gerät abzunehmen. Dieser erste Nachweis verwendete HTML 116; Quelle, Build und Live-Seite zeigen inzwischen Release 117 mit eigener vollständiger Abnahme im Releasebericht.
 
 ## Beauftragte Folgepunkte
 

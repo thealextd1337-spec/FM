@@ -4,7 +4,7 @@
 
 ## 9. Oktober 2026 – Release 117
 
-Auf Nutzerauftrag „Umsetzen und live stellen“ als Release 117 zur Veröffentlichung geprüft. Deployment und Live-Abnahme folgen im [Releasebericht](release-117.md).
+Auf Nutzerauftrag „Umsetzen und live stellen“ als Release 117 veröffentlicht und live abgenommen. Produktionsworkflow, 64 Release-/Live-Prüfungen, mobile Bedienung und eine vollständige native/Unity-Livevergleichspartie mit identischen 14 Zustands-/Buchungsteilen bestanden. [Releasebericht](release-117.md).
 
 - 3D-Iteration: zusammenhängende Luft-/Landesequenzen, höhere Ausschwingbewegung nach hohen Pässen/Flanken, Volleyhaltung und lesbarerer Einwurf folgen vorhandenen Matchphasen. Torwart-Seitenauswahl verwendet die eigene Ausrichtung. Keine neue Ball-/Matchautorität oder Umrechnung bestehender Spielstände. 106 neue Unity- und 706 Stadionprüfungen, vollständige Unity-Suiten und WebGL-Build bestanden.
 - Spieler bleiben mit Vereinsringen und unterschiedlich gemusterten Namensschildern erkennbar; Namen weichen Gedränge aus und behalten Nummer, zugängliche Beschriftung und Spielerinfo. Eine abschaltbare Ballhilfe umrandet kleine echte Ballprojektionen; Einstellung bleibt außerhalb der Karriere. 31 Layoutfälle, 18 reine Brücken-/Ballhilfeprüfungen und mobile Browserbedienung einschließlich Reload bestanden. Vereinsmuster ergänzen sichtbare Gegentribünen und Banden; reduzierte Stufe bleibt erhalten. [Umfang und Nachweise](release-117.md). Quelle, Footer, Hilfe und Build tragen 117; physische Android-Abnahme bleibt offen.

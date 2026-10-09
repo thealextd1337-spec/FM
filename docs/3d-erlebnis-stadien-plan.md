@@ -4,7 +4,7 @@ Stand: 9. Oktober 2026. Nutzerauftrag: vorrangig das 3D-Erlebnis verbessern und 
 
 ## Verbindliche Prioritäten
 
-Die fünf Folgepunkte der Namensiteration sind auf Nutzerauftrag in der gemeinsamen Release-117-Freigabe: Luft-/Landesequenzen, kleine Ballprojektion, lokale Keeperwinkel, Einwurf und sichtbare Vereinsidentität. [Aktueller Umfang und Abnahme](release-117.md). Die Prioritäten bleiben unverändert.
+Die fünf Folgepunkte der Namensiteration sind auf Nutzerauftrag als Release 117 umgesetzt, veröffentlicht und live abgenommen: Luft-/Landesequenzen, kleine Ballprojektion, lokale Keeperwinkel, Einwurf und sichtbare Vereinsidentität. [Aktueller Umfang und Abnahme](release-117.md). Die Prioritäten bleiben unverändert.
 
 1. Qualität des 3D-Erlebnisses einschließlich schönerer, unterschiedlicher Vereinsstadien.
 2. Accounts, Anmeldung und die dazugehörigen Rechte-, Offline- und Adminstatistikverträge.

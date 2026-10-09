@@ -1,10 +1,16 @@
 # A02: Animationsqualität – Asset- und Quellcodeaudit
 
+## Fortschreibung durch Release 117
+
+[Release 117](../release-117.md) ergänzt auf dem vorhandenen Rig eine eigene `airLand`-Auswahl, zusammenhängende Luft-/Landefolgen, Ausschwingen hoher Pässe/Flanken, Volleyhaltung, native Einwurfphasen und lokale Keeper-Seitenauswahl. 106 tatsächliche Unity-Iterationsprüfungen, vollständige Suiten, aktuelle Editorbilder und WebGL-Build sind getrennt nachgewiesen. Es wurden keine neuen Clips gekauft oder erzeugt. Die nachfolgende 48-Zeilen-Klassifikation beschreibt ausdrücklich den historischen Release-115-Quellstand; die dortige fehlende `airLand`-Auswahl ist damit geschlossen. Eigenständige Nachfass-/Abspielketten und physische Gerätequalität werden dadurch nicht pauschal freigegeben.
+
+## Historischer Auditstand
+
 Stand: 9. Oktober 2026. Aktueller eingefrorener Unity-Quellstand `959aea1e62482d85aff5d6c7d1d001f23bb64097f6497fe1389f5cb444128b93` mit integrierter nativer Grätschenprojektion und Unity-Zweikampf-/Bewegungsanbindung, inzwischen als Teil von [Release 115 veröffentlicht](../release-115.md). Dieser Audit bleibt ein lokaler Asset-/Quellnachweis; keine neuen Meshy-Aufträge.
 
 Der Audit ist ausführbar und untersucht tatsächliche Assetbytes, den Bildvertrag sowie den Unity-Katalog und dessen Aktionsauswahl. **Dies ist keine neue visuelle Abnahme.** Insbesondere wurden weder Unity-Editor/-Build gestartet noch Screenshots, Videos oder Smartphonebefunde erzeugt. Vorhandene ältere Importberichte sind als historische Referenz gekennzeichnet.
 
-## Aktueller Befund: Unity 959aea
+## Befund des historischen Audits: Unity 959aea
 
 Maßgeblich ist der neue Lauf [unity-959aea-final/report.json](../../outputs/3d-quality/animation-audit/unity-959aea-final/report.json), mit [lesbarer Aktionsliste](../../outputs/3d-quality/animation-audit/unity-959aea-final/README.md). Historische `source-baseline`- und `unity-959aea-candidate`-Dateien bleiben unverändert. Der Kandidatenlauf hatte Keeper-Seitwärtsschritt und Dribbling fälschlich als nicht angebunden geführt; diese Parserfehler sind im neuen Lauf korrigiert.
 

@@ -1,0 +1,21 @@
+{
+  "release": 117,
+  "status": "published-and-live-accepted",
+  "checkedAt": "2026-10-09T19:00:10.695Z",
+  "url": "https://fussball.cakamper.at/",
+  "releaseCommit": "735668274fb465dea5081c638a773ffe6375371a",
+  "workflowRun": 37974903801,
+  "workflowUrl": "https://github.com/thealextd1337-spec/FM/actions/runs/37974903801",
+  "unitySourceId": "1169b35efb3e4fb497871ab7785c43423321839fdd03a3037f71db534551d06c",
+  "htmlSha256": "ebe4ea31c6675c3dffc5e9a5890ee07ec0fbd85e08f83e96a0914e531e902e72",
+  "productionCommands": 88,
+  "releaseLiveChecks": 64,
+  "mobileChecks": 9,
+  "labelChecks": 18,
+  "localFullMatches": 4,
+  "liveFullMatches": 2,
+  "liveMatchDigest": "fea01da1",
+  "identicalStateBookingParts": 14,
+  "pageErrors": [],
+  "deviceLimit": "Fixed touch Edge/software-WebGL acceptance. Physical Android screen timeout, GPU performance and match feel remain a separate device acceptance."
+}
