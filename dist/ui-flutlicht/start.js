@@ -7,7 +7,12 @@
  if(!home||!world||!ns.components)return;
  const media=win.matchMedia('(prefers-color-scheme: dark)'),surfaces=new Map(),dialogs=new Map();
  let disposed=false;
- function preference(){try{const value=localStorage.getItem('doppel6.ui.flutlicht.theme');return ['light','dark'].includes(value)?value:'system';}catch{return 'system';}}
+ function preference(){return ns.theme.preference();}
+ const options=doc.querySelector('.v81-settings');
+ if(options){
+  options.querySelector('.v81-settings-head').insertAdjacentHTML('afterend','<label class="fl-start-theme-control" for="fl-start-theme"><span>Farbschema</span><select id="fl-start-theme"><option value="system">Geräteeinstellung</option><option value="light">Hell</option><option value="dark">Dunkel</option></select></label>');
+  options.querySelector('#fl-start-theme').addEventListener('change',event=>ns.theme.set(event.target.value));
+ }
  function surface(node,name,visible,theme){
   if(!node)return;
   if(visible){if(!surfaces.has(node))surfaces.set(node,{name,hadShell:node.classList.contains('fl-shell')});node.classList.add('fl-shell',name);node.dataset.flTheme=theme;}
@@ -23,7 +28,9 @@
  function refresh(){
   if(disposed)return;
   const flow=!world.hidden&&!!world.querySelector(':scope > .v61-steps'),active=!home.hidden||flow;
-  const selected=preference(),theme=selected==='system'?(media.matches?'dark':'light'):selected;
+  const selected=preference(),theme=ns.theme.resolve();
+  doc.querySelector('meta[name="theme-color"]').content=theme==='dark'?'#11151a':'#f1f3f5';
+  if(options)options.querySelector('#fl-start-theme').value=selected;
   doc.body.classList.toggle('fl-start-active',active);if(active)doc.body.dataset.flStartTheme=theme;else delete doc.body.dataset.flStartTheme;
   surface(home,'fl-start',!home.hidden,theme);surface(world,'fl-start-flow',flow,theme);surface(header,'fl-start-header',active,theme);surface(legal,'fl-start-legal',active,theme);
   for(const node of [home,world])if(node?.classList.contains('fl-shell'))icons(node);
@@ -39,4 +46,7 @@
  media.addEventListener('change',refresh);win.addEventListener('storage',refresh);doc.addEventListener('fl-theme-applied',refresh);
  ns.start=Object.freeze({refresh,dispose(){if(disposed)return;disposed=true;observer.disconnect();languageObserver.disconnect();media.removeEventListener('change',refresh);win.removeEventListener('storage',refresh);doc.removeEventListener('fl-theme-applied',refresh);for(const [dialog] of dialogs)releaseDialog(dialog);for(const [node,previous] of [...surfaces])surface(node,previous.name,false,'');doc.body.classList.remove('fl-start-active');delete doc.body.dataset.flStartTheme;}});
  refresh();
+ // Reveal only after the native start nodes have received their final design.
+ delete doc.documentElement.dataset.flBootTheme;
+ doc.querySelector('#fl-boot')?.remove();
 })();

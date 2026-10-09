@@ -1,0 +1,184 @@
+{
+  "toolIcon": {
+    "_tag": "website",
+    "pageUrl": "http://127.0.0.1:4521/native-build.html?verify=114"
+  },
+  "value": [
+    {
+      "theme": "light",
+      "lang": "de",
+      "clubs": [
+        {
+          "x": 29,
+          "y": 634.3125,
+          "width": 152,
+          "height": 203.5,
+          "right": 181,
+          "bottom": 837.8125
+        },
+        {
+          "x": 209,
+          "y": 634.3125,
+          "width": 152,
+          "height": 206.6953125,
+          "right": 361,
+          "bottom": 841.0078125
+        }
+      ],
+      "dash": {
+        "x": 185,
+        "y": 634.3125,
+        "width": 20,
+        "height": 97.796875,
+        "right": 205,
+        "bottom": 732.109375
+      },
+      "dashText": "–",
+      "sponsor": {
+        "x": 107.5,
+        "y": 548.6953125,
+        "width": 175,
+        "height": 73.6171875,
+        "right": 282.5,
+        "bottom": 622.3125
+      },
+      "label": "präsentiert",
+      "labelVisible": true,
+      "plate": "rgba(0, 0, 0, 0)",
+      "ink": "rgb(32, 42, 53)",
+      "overflow": false
+    },
+    {
+      "theme": "light",
+      "lang": "en",
+      "clubs": [
+        {
+          "x": 29,
+          "y": 634.3125,
+          "width": 152,
+          "height": 203.5,
+          "right": 181,
+          "bottom": 837.8125
+        },
+        {
+          "x": 209,
+          "y": 634.3125,
+          "width": 152,
+          "height": 206.6953125,
+          "right": 361,
+          "bottom": 841.0078125
+        }
+      ],
+      "dash": {
+        "x": 185,
+        "y": 634.3125,
+        "width": 20,
+        "height": 97.796875,
+        "right": 205,
+        "bottom": 732.109375
+      },
+      "dashText": "–",
+      "sponsor": {
+        "x": 107.5,
+        "y": 548.6953125,
+        "width": 175,
+        "height": 73.6171875,
+        "right": 282.5,
+        "bottom": 622.3125
+      },
+      "label": "presents",
+      "labelVisible": true,
+      "plate": "rgba(0, 0, 0, 0)",
+      "ink": "rgb(32, 42, 53)",
+      "overflow": false
+    },
+    {
+      "theme": "dark",
+      "lang": "de",
+      "clubs": [
+        {
+          "x": 29,
+          "y": 634.3125,
+          "width": 152,
+          "height": 203.5,
+          "right": 181,
+          "bottom": 837.8125
+        },
+        {
+          "x": 209,
+          "y": 634.3125,
+          "width": 152,
+          "height": 206.6953125,
+          "right": 361,
+          "bottom": 841.0078125
+        }
+      ],
+      "dash": {
+        "x": 185,
+        "y": 634.3125,
+        "width": 20,
+        "height": 97.796875,
+        "right": 205,
+        "bottom": 732.109375
+      },
+      "dashText": "–",
+      "sponsor": {
+        "x": 107.5,
+        "y": 548.6953125,
+        "width": 175,
+        "height": 73.6171875,
+        "right": 282.5,
+        "bottom": 622.3125
+      },
+      "label": "präsentiert",
+      "labelVisible": true,
+      "plate": "rgba(0, 0, 0, 0)",
+      "ink": "rgb(237, 240, 243)",
+      "overflow": false
+    },
+    {
+      "theme": "dark",
+      "lang": "en",
+      "clubs": [
+        {
+          "x": 29,
+          "y": 634.3125,
+          "width": 152,
+          "height": 203.5,
+          "right": 181,
+          "bottom": 837.8125
+        },
+        {
+          "x": 209,
+          "y": 634.3125,
+          "width": 152,
+          "height": 206.6953125,
+          "right": 361,
+          "bottom": 841.0078125
+        }
+      ],
+      "dash": {
+        "x": 185,
+        "y": 634.3125,
+        "width": 20,
+        "height": 97.796875,
+        "right": 205,
+        "bottom": 732.109375
+      },
+      "dashText": "–",
+      "sponsor": {
+        "x": 107.5,
+        "y": 548.6953125,
+        "width": 175,
+        "height": 73.6171875,
+        "right": 282.5,
+        "bottom": 622.3125
+      },
+      "label": "presents",
+      "labelVisible": true,
+      "plate": "rgba(0, 0, 0, 0)",
+      "ink": "rgb(237, 240, 243)",
+      "overflow": false
+    }
+  ]
+}

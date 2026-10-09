@@ -41,8 +41,9 @@ public partial class ProbeBridge {
         matchVolume.enabled=true;if(matchBloom!=null)matchBloom.active=!ReducedQuality;
         if(replayVolume==null){
             // Review and goal replays read as recorded footage: cooler, calmer, framed.
+            // Only mildly desaturated: stronger values merged similar kits (violet/white).
             replayProfile=ScriptableObject.CreateInstance<VolumeProfile>();
-            var grade=replayProfile.Add<ColorAdjustments>(true);grade.saturation.Override(-28);grade.contrast.Override(10);grade.colorFilter.Override(new Color(.93f,.97f,1f));
+            var grade=replayProfile.Add<ColorAdjustments>(true);grade.saturation.Override(-10);grade.contrast.Override(8);grade.colorFilter.Override(new Color(.93f,.97f,1f));
             var vignette=replayProfile.Add<Vignette>(true);vignette.intensity.Override(.36f);vignette.smoothness.Override(.42f);
             var go=new GameObject("D6 replay grading");go.transform.SetParent(transform,false);replayVolume=go.AddComponent<Volume>();replayVolume.isGlobal=true;replayVolume.priority=11;replayVolume.sharedProfile=replayProfile;
         }

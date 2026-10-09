@@ -70,7 +70,7 @@ function v157Prepare(m){
  const flow=m.attackFlow,now=v152Seconds(m),owner=m.owner;
  if(v121PositioningPaused(m)){delete flow.pendingTurn;delete flow.combination;return;}
  for(const p of m.people)v157Body(p);
- if(flow.pendingTurn&&(flow.pendingTurn.playerId!==owner?.pid||!m.people.some(p=>p.pid===flow.pendingTurn.receiverId)||flow.pendingTurn.until<now))delete flow.pendingTurn;
+ if(flow.pendingTurn&&(flow.pendingTurn.playerId!==owner?.pid||!m.people.some(p=>p.pid===flow.pendingTurn.receiverId)||!flow.pendingTurn.options?.restart&&flow.pendingTurn.until<now))delete flow.pendingTurn;
  const combo=flow.combination;
  if(combo&&(combo.until<now||v123PossessionTeam(m)!==combo.team||!m.people.some(p=>p.pid===combo.passerId)||!m.people.some(p=>p.pid===combo.receiverId)))delete flow.combination;
  // Negative orientations and cover roles keep their role-specific guard.
@@ -136,11 +136,13 @@ function v157QueueTurn(m,p,q,kind='ground',options={}){
 function v157ContinueTurn(m,p,rivals){
  const turn=m.attackFlow.pendingTurn;if(!turn)return false;
  const q=m.people.find(p=>p.pid===turn.receiverId),target=turn.kind==='space'?turn.target:q,body=v157Body(p),s=v150Scale();
- if(turn.playerId!==p.pid||!q||q.slideActive||v55OffsideSnapshot(p).offside.has(q)||!v157Lane(m,p,target,rivals,1.2)){delete m.attackFlow.pendingTurn;return false;}
+ // A standing restart must be kicked. A blocked/offside receiver may affect
+ // the actual pass outcome, but cannot cancel it into a carry by the taker.
+ if(turn.playerId!==p.pid||!q||!turn.options?.restart&&(q.slideActive||v55OffsideSnapshot(p).offside.has(q)||!v157Lane(m,p,target,rivals,1.2))){delete m.attackFlow.pendingTurn;return false;}
  const angle=Math.atan2((target.x-p.x)*s.x,(target.y-p.y)*s.y);
  if(Math.abs(v157Angle(body.heading,angle))>.30||Math.hypot(body.vx,body.vy)>1.2){m.next=m.elapsed+.04*MATCH_SPEED;return true;}
  delete m.attackFlow.pendingTurn;m.attackFlow.releaseGuard=p.pid;
- try{if(turn.kind==='high')v55HighPass(p,q,turn.options);else if(turn.kind==='space')v150SpacePass(p,{target:turn.target,runner:q});else v55GroundPass(p,q);}finally{delete m.attackFlow.releaseGuard;}
+ try{if(turn.kind==='high')v55HighPass(p,q,turn.options);else if(turn.kind==='space')v150SpacePass(p,{target:turn.target,runner:q});else v55GroundPass(p,q,'pass',turn.options.exempt,turn.options);}finally{delete m.attackFlow.releaseGuard;}
  return true;
 }
 function v157ShotQuality(p,rivals){

@@ -1,0 +1,1154 @@
+{
+ "rows": [
+  {
+   "stage": "setup",
+   "equal": true,
+   "diff": [],
+   "unity": {
+    "minute": 0,
+    "elapsed": 0,
+    "calls": 0,
+    "after": 0,
+    "goals": 0,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 0,
+    "elapsed": 0,
+    "calls": 0,
+    "after": 0,
+    "goals": 0
+   }
+  },
+  {
+   "stage": "r10",
+   "equal": false,
+   "diff": [
+    "world"
+   ],
+   "unity": {
+    "minute": 10,
+    "elapsed": 8.345999999999973,
+    "calls": 287,
+    "after": 287,
+    "goals": 0,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 10,
+    "elapsed": 8.345999999999973,
+    "calls": 287,
+    "after": 287,
+    "goals": 0
+   }
+  },
+  {
+   "stage": "r20",
+   "equal": false,
+   "diff": [
+    "world"
+   ],
+   "unity": {
+    "minute": 20,
+    "elapsed": 16.69199999999994,
+    "calls": 1000,
+    "after": 1000,
+    "goals": 1,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 20,
+    "elapsed": 16.69199999999994,
+    "calls": 908,
+    "after": 908,
+    "goals": 1
+   }
+  },
+  {
+   "stage": "pause",
+   "equal": false,
+   "diff": [
+    "world"
+   ],
+   "unity": {
+    "minute": 20,
+    "elapsed": 17.00399999999995,
+    "calls": 1008,
+    "after": 1008,
+    "goals": 1,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 20,
+    "elapsed": 17.00399999999995,
+    "calls": 916,
+    "after": 916,
+    "goals": 1
+   }
+  },
+  {
+   "stage": "live",
+   "equal": false,
+   "diff": [
+    "world"
+   ],
+   "unity": {
+    "minute": 20,
+    "elapsed": 17.00399999999995,
+    "calls": 1008,
+    "after": 1008,
+    "goals": 1,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 20,
+    "elapsed": 17.00399999999995,
+    "calls": 916,
+    "after": 916,
+    "goals": 1
+   }
+  },
+  {
+   "stage": "half",
+   "equal": false,
+   "diff": [
+    "world"
+   ],
+   "unity": {
+    "minute": 49,
+    "elapsed": 41.666666666666664,
+    "calls": 1957,
+    "after": 1957,
+    "goals": 1,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 49,
+    "elapsed": 41.666666666666664,
+    "calls": 1865,
+    "after": 1865,
+    "goals": 1
+   }
+  },
+  {
+   "stage": "r45b",
+   "equal": false,
+   "diff": [
+    "world"
+   ],
+   "unity": {
+    "minute": 50,
+    "elapsed": 41.705666666666666,
+    "calls": 1991,
+    "after": 1991,
+    "goals": 1,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 50,
+    "elapsed": 41.705666666666666,
+    "calls": 1899,
+    "after": 1899,
+    "goals": 1
+   }
+  },
+  {
+   "stage": "r60",
+   "equal": false,
+   "diff": [
+    "world"
+   ],
+   "unity": {
+    "minute": 60,
+    "elapsed": 50.01266666666698,
+    "calls": 2348,
+    "after": 2348,
+    "goals": 1,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 60,
+    "elapsed": 50.01266666666698,
+    "calls": 2256,
+    "after": 2256,
+    "goals": 1
+   }
+  },
+  {
+   "stage": "cp",
+   "equal": false,
+   "diff": [
+    "world"
+   ],
+   "unity": {
+    "minute": 60,
+    "elapsed": 50.01266666666698,
+    "calls": 2348,
+    "after": 2348,
+    "goals": 1,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 60,
+    "elapsed": 50.01266666666698,
+    "calls": 2256,
+    "after": 2256,
+    "goals": 1
+   }
+  },
+  {
+   "stage": "r70",
+   "equal": false,
+   "diff": [
+    "world"
+   ],
+   "unity": {
+    "minute": 70,
+    "elapsed": 58.3586666666673,
+    "calls": 2727,
+    "after": 2727,
+    "goals": 1,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 70,
+    "elapsed": 58.3586666666673,
+    "calls": 2635,
+    "after": 2635,
+    "goals": 1
+   }
+  },
+  {
+   "stage": "r80",
+   "equal": false,
+   "diff": [
+    "world"
+   ],
+   "unity": {
+    "minute": 80,
+    "elapsed": 66.7046666666676,
+    "calls": 2941,
+    "after": 2941,
+    "goals": 1,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 80,
+    "elapsed": 66.7046666666676,
+    "calls": 2849,
+    "after": 2849,
+    "goals": 1
+   }
+  },
+  {
+   "stage": "end",
+   "equal": true,
+   "diff": [],
+   "unity": {
+    "minute": 99,
+    "elapsed": 83.33333333333333,
+    "calls": 3368,
+    "after": 3367,
+    "goals": 1,
+    "held": false,
+    "replay": false
+   },
+   "native": {
+    "minute": 99,
+    "elapsed": 83.33333333333333,
+    "calls": 3276,
+    "after": 3275,
+    "goals": 1
+   }
+  }
+ ],
+ "unity": {
+  "setup": {
+   "minute": 0,
+   "elapsed": 0,
+   "phase": "live",
+   "calls": 0,
+   "after": 0,
+   "all": "78eeb263",
+   "hashes": {
+    "score": "13ca43dd:5",
+    "events": "741638a5:2",
+    "stats": "c6012885:1393",
+    "fresh": "fa7610a1:733",
+    "minutes": "0ef4114d:689",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "fcde5026:40",
+    "geometry": "44a0621d:188",
+    "people": "252e9add:7804",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "5653447f:2043346"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 0
+  },
+  "r10": {
+   "result": {
+    "ticks": 288,
+    "minute": 10,
+    "phase": "live",
+    "score": [
+     0,
+     0
+    ],
+    "finished": false,
+    "halftime": false,
+    "unityError": null
+   },
+   "minute": 10,
+   "elapsed": 8.345999999999973,
+   "phase": "live",
+   "calls": 287,
+   "after": 287,
+   "all": "6db310b0",
+   "hashes": {
+    "score": "13ca43dd:5",
+    "events": "741638a5:2",
+    "stats": "c6012885:1393",
+    "fresh": "056abf34:898",
+    "minutes": "acac48bb:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "cbac5292:1865",
+    "geometry": "44a0621d:188",
+    "people": "f10e1955:8137",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "6b62d263:2196609"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 0
+  },
+  "r20": {
+   "result": {
+    "ticks": 714,
+    "minute": 20,
+    "phase": "live",
+    "score": [
+     0,
+     1
+    ],
+    "finished": false,
+    "halftime": false,
+    "unityError": null
+   },
+   "minute": 20,
+   "elapsed": 16.69199999999994,
+   "phase": "live",
+   "calls": 1000,
+   "after": 1000,
+   "all": "129b5b3d",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "a9f39aa5:129",
+    "stats": "c6012885:1393",
+    "fresh": "5fbae566:898",
+    "minutes": "6f201435:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "0de881aa:4525",
+    "geometry": "44a0621d:188",
+    "people": "45fdeb65:8133",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "acfb22af:2311593"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 1
+  },
+  "pause": {
+   "result": {
+    "steps": 8,
+    "ok": true,
+    "phase": "paused",
+    "picturePhase": "paused"
+   },
+   "minute": 20,
+   "elapsed": 17.00399999999995,
+   "phase": "paused",
+   "calls": 1008,
+   "after": 1008,
+   "all": "4bfe54ab",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "a9f39aa5:129",
+    "stats": "c6012885:1393",
+    "fresh": "5fbae566:898",
+    "minutes": "6f201435:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "a90938b6:4600",
+    "geometry": "44a0621d:188",
+    "people": "a8c2c2fd:8131",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "00dc4ff5:2314335"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 1
+  },
+  "live": {
+   "result": {
+    "phase": "live",
+    "replay": false,
+    "error": null
+   },
+   "minute": 20,
+   "elapsed": 17.00399999999995,
+   "phase": "live",
+   "calls": 1008,
+   "after": 1008,
+   "all": "320b734b",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "a9f39aa5:129",
+    "stats": "c6012885:1393",
+    "fresh": "5fbae566:898",
+    "minutes": "6f201435:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "a90938b6:4600",
+    "geometry": "44a0621d:188",
+    "people": "a8c2c2fd:8131",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "68dd4d8d:2314333"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 1
+  },
+  "half": {
+   "result": {
+    "stopped": "halftime",
+    "minute": 49,
+    "score": [
+     0,
+     1
+    ]
+   },
+   "minute": 49,
+   "elapsed": 41.666666666666664,
+   "phase": "paused",
+   "calls": 1957,
+   "after": 1957,
+   "all": "7cb14381",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "43f700d4:161",
+    "stats": "c6012885:1393",
+    "fresh": "2b17d932:899",
+    "minutes": "25c1494b:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "2aeab0c6:10635",
+    "geometry": "44a0621d:188",
+    "people": "d9ae39e3:8128",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "cff37b2e:2689905"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 1
+  },
+  "r45b": {
+   "result": {
+    "ticks": 35,
+    "minute": 50,
+    "phase": "live",
+    "score": [
+     0,
+     1
+    ],
+    "finished": false,
+    "halftime": true,
+    "unityError": null
+   },
+   "minute": 50,
+   "elapsed": 41.705666666666666,
+   "phase": "live",
+   "calls": 1991,
+   "after": 1991,
+   "all": "4def7f64",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "43f700d4:161",
+    "stats": "c6012885:1393",
+    "fresh": "2b17d932:899",
+    "minutes": "b01ce4c3:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "c0722811:10830",
+    "geometry": "44a0621d:188",
+    "people": "04725698:7804",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "668ae5d3:2686646"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 1
+  },
+  "r60": {
+   "result": {
+    "ticks": 358,
+    "minute": 60,
+    "phase": "live",
+    "score": [
+     0,
+     1
+    ],
+    "finished": false,
+    "halftime": true,
+    "unityError": null
+   },
+   "minute": 60,
+   "elapsed": 50.01266666666698,
+   "phase": "live",
+   "calls": 2348,
+   "after": 2348,
+   "all": "82edc7ea",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "43f700d4:161",
+    "stats": "c6012885:1393",
+    "fresh": "e0eda4cc:900",
+    "minutes": "d884762d:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "2b84e842:12928",
+    "geometry": "44a0621d:188",
+    "people": "acfb5225:8132",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "e74153f3:2795646"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 1
+  },
+  "cp": {
+   "result": {
+    "saved": true,
+    "restored": true,
+    "minute": 60,
+    "loadsBefore": 1,
+    "loadsAfter": 2,
+    "unityReady": true,
+    "error": null
+   },
+   "minute": 60,
+   "elapsed": 50.01266666666698,
+   "phase": "live",
+   "calls": 2348,
+   "after": 2348,
+   "all": "50db9091",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "43f700d4:161",
+    "stats": "c6012885:1393",
+    "fresh": "e0eda4cc:900",
+    "minutes": "d884762d:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "2b84e842:12928",
+    "geometry": "44a0621d:188",
+    "people": "acfb5225:8132",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "243fe202:2795695"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 1
+  },
+  "r70": {
+   "result": {
+    "ticks": 380,
+    "minute": 70,
+    "phase": "live",
+    "score": [
+     0,
+     1
+    ],
+    "finished": false,
+    "halftime": true,
+    "unityError": null
+   },
+   "minute": 70,
+   "elapsed": 58.3586666666673,
+   "phase": "live",
+   "calls": 2727,
+   "after": 2727,
+   "all": "61e57c08",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "db4d56e1:281",
+    "stats": "c6012885:1393",
+    "fresh": "7ebb2f44:914",
+    "minutes": "c9743d00:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "0a6665d0:15391",
+    "geometry": "44a0621d:188",
+    "people": "e293c3ab:8011",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "104b84bd:2947240"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 1
+  },
+  "r80": {
+   "result": {
+    "ticks": 215,
+    "minute": 80,
+    "phase": "live",
+    "score": [
+     0,
+     1
+    ],
+    "finished": false,
+    "halftime": true,
+    "unityError": null
+   },
+   "minute": 80,
+   "elapsed": 66.7046666666676,
+   "phase": "live",
+   "calls": 2941,
+   "after": 2941,
+   "all": "09365532",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "db4d56e1:281",
+    "stats": "c6012885:1393",
+    "fresh": "d9a373a6:913",
+    "minutes": "2b10915e:702",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "b5dbaaf5:17442",
+    "geometry": "44a0621d:188",
+    "people": "75efe07f:8009",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "6a42696e:3062123"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 1
+  },
+  "end": {
+   "result": {
+    "ticks": 427,
+    "minute": 99,
+    "phase": "finished",
+    "score": [
+     0,
+     1
+    ],
+    "finished": true,
+    "halftime": true,
+    "unityError": null
+   },
+   "minute": 99,
+   "elapsed": 83.33333333333333,
+   "phase": "finished",
+   "calls": 3368,
+   "after": 3367,
+   "all": "99aace1d",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "db4d56e1:281",
+    "stats": "36c7347b:8291",
+    "fresh": "da4b5235:920",
+    "minutes": "88fd286b:702",
+    "report": "08e6170e:32781",
+    "ratings": "6df59ea4:599",
+    "ballAccounting": "a2d402ea:21632",
+    "geometry": "44a0621d:188",
+    "people": "c171325f:8012",
+    "finances": "b9a39f8d:18516",
+    "development": "5eff2676:979423",
+    "fixtures": "f1c2b0fd:192647",
+    "world": "c3046618:3667799"
+   },
+   "held": false,
+   "replay": false,
+   "goals": 1
+  },
+  "errors": []
+ },
+ "native": {
+  "setup": {
+   "minute": 0,
+   "elapsed": 0,
+   "phase": "live",
+   "calls": 0,
+   "after": 0,
+   "all": "78eeb263",
+   "hashes": {
+    "score": "13ca43dd:5",
+    "events": "741638a5:2",
+    "stats": "c6012885:1393",
+    "fresh": "fa7610a1:733",
+    "minutes": "0ef4114d:689",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "fcde5026:40",
+    "geometry": "44a0621d:188",
+    "people": "252e9add:7804",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "5653447f:2043346"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 0
+  },
+  "r10": {
+   "result": {
+    "ticks": 288,
+    "minute": 10,
+    "phase": "live",
+    "score": [
+     0,
+     0
+    ],
+    "finished": false,
+    "halftime": false,
+    "unityError": null
+   },
+   "minute": 10,
+   "elapsed": 8.345999999999973,
+   "phase": "live",
+   "calls": 287,
+   "after": 287,
+   "all": "2f43edee",
+   "hashes": {
+    "score": "13ca43dd:5",
+    "events": "741638a5:2",
+    "stats": "c6012885:1393",
+    "fresh": "056abf34:898",
+    "minutes": "acac48bb:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "cbac5292:1865",
+    "geometry": "44a0621d:188",
+    "people": "f10e1955:8137",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "6550ea03:2186016"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 0
+  },
+  "r20": {
+   "result": {
+    "ticks": 622,
+    "minute": 20,
+    "phase": "live",
+    "score": [
+     0,
+     1
+    ],
+    "finished": false,
+    "halftime": false,
+    "unityError": null
+   },
+   "minute": 20,
+   "elapsed": 16.69199999999994,
+   "phase": "live",
+   "calls": 908,
+   "after": 908,
+   "all": "30d17b8b",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "a9f39aa5:129",
+    "stats": "c6012885:1393",
+    "fresh": "5fbae566:898",
+    "minutes": "6f201435:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "0de881aa:4525",
+    "geometry": "44a0621d:188",
+    "people": "45fdeb65:8133",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "672a7bf9:2311090"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 1
+  },
+  "pause": {
+   "result": {
+    "steps": 8,
+    "ok": true,
+    "phase": "paused",
+    "picturePhase": null
+   },
+   "minute": 20,
+   "elapsed": 17.00399999999995,
+   "phase": "paused",
+   "calls": 916,
+   "after": 916,
+   "all": "5146e3bc",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "a9f39aa5:129",
+    "stats": "c6012885:1393",
+    "fresh": "5fbae566:898",
+    "minutes": "6f201435:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "a90938b6:4600",
+    "geometry": "44a0621d:188",
+    "people": "a8c2c2fd:8131",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "5ec40c06:2314302"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 1
+  },
+  "live": {
+   "result": {
+    "phase": "live",
+    "replay": null,
+    "error": null
+   },
+   "minute": 20,
+   "elapsed": 17.00399999999995,
+   "phase": "live",
+   "calls": 916,
+   "after": 916,
+   "all": "3294985c",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "a9f39aa5:129",
+    "stats": "c6012885:1393",
+    "fresh": "5fbae566:898",
+    "minutes": "6f201435:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "a90938b6:4600",
+    "geometry": "44a0621d:188",
+    "people": "a8c2c2fd:8131",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "6d5ed4ee:2314300"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 1
+  },
+  "half": {
+   "result": {
+    "stopped": "halftime",
+    "minute": 49,
+    "score": [
+     0,
+     1
+    ]
+   },
+   "minute": 49,
+   "elapsed": 41.666666666666664,
+   "phase": "paused",
+   "calls": 1865,
+   "after": 1865,
+   "all": "f1756da9",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "43f700d4:161",
+    "stats": "c6012885:1393",
+    "fresh": "2b17d932:899",
+    "minutes": "25c1494b:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "2aeab0c6:10635",
+    "geometry": "44a0621d:188",
+    "people": "d9ae39e3:8128",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "5c8b129c:2689904"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 1
+  },
+  "r45b": {
+   "result": {
+    "ticks": 35,
+    "minute": 50,
+    "phase": "live",
+    "score": [
+     0,
+     1
+    ],
+    "finished": false,
+    "halftime": true,
+    "unityError": null
+   },
+   "minute": 50,
+   "elapsed": 41.705666666666666,
+   "phase": "live",
+   "calls": 1899,
+   "after": 1899,
+   "all": "12d926fa",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "43f700d4:161",
+    "stats": "c6012885:1393",
+    "fresh": "2b17d932:899",
+    "minutes": "b01ce4c3:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "c0722811:10830",
+    "geometry": "44a0621d:188",
+    "people": "04725698:7804",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "e62c2193:2686645"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 1
+  },
+  "r60": {
+   "result": {
+    "ticks": 358,
+    "minute": 60,
+    "phase": "live",
+    "score": [
+     0,
+     1
+    ],
+    "finished": false,
+    "halftime": true,
+    "unityError": null
+   },
+   "minute": 60,
+   "elapsed": 50.01266666666698,
+   "phase": "live",
+   "calls": 2256,
+   "after": 2256,
+   "all": "d239aff0",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "43f700d4:161",
+    "stats": "c6012885:1393",
+    "fresh": "e0eda4cc:900",
+    "minutes": "d884762d:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "2b84e842:12928",
+    "geometry": "44a0621d:188",
+    "people": "acfb5225:8132",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "3a648623:2794265"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 1
+  },
+  "cp": {
+   "result": {
+    "saved": true,
+    "restored": true,
+    "minute": 60,
+    "loadsBefore": null,
+    "loadsAfter": null,
+    "unityReady": null,
+    "error": null
+   },
+   "minute": 60,
+   "elapsed": 50.01266666666698,
+   "phase": "live",
+   "calls": 2256,
+   "after": 2256,
+   "all": "32338478",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "43f700d4:161",
+    "stats": "c6012885:1393",
+    "fresh": "e0eda4cc:900",
+    "minutes": "d884762d:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "2b84e842:12928",
+    "geometry": "44a0621d:188",
+    "people": "acfb5225:8132",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "1eccb60d:2795696"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 1
+  },
+  "r70": {
+   "result": {
+    "ticks": 380,
+    "minute": 70,
+    "phase": "live",
+    "score": [
+     0,
+     1
+    ],
+    "finished": false,
+    "halftime": true,
+    "unityError": null
+   },
+   "minute": 70,
+   "elapsed": 58.3586666666673,
+   "phase": "live",
+   "calls": 2635,
+   "after": 2635,
+   "all": "cc7c77d5",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "db4d56e1:281",
+    "stats": "c6012885:1393",
+    "fresh": "7ebb2f44:914",
+    "minutes": "c9743d00:701",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "0a6665d0:15391",
+    "geometry": "44a0621d:188",
+    "people": "e293c3ab:8011",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "0e5b9ea2:2938113"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 1
+  },
+  "r80": {
+   "result": {
+    "ticks": 215,
+    "minute": 80,
+    "phase": "live",
+    "score": [
+     0,
+     1
+    ],
+    "finished": false,
+    "halftime": true,
+    "unityError": null
+   },
+   "minute": 80,
+   "elapsed": 66.7046666666676,
+   "phase": "live",
+   "calls": 2849,
+   "after": 2849,
+   "all": "207786cc",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "db4d56e1:281",
+    "stats": "c6012885:1393",
+    "fresh": "d9a373a6:913",
+    "minutes": "2b10915e:702",
+    "report": "77074ba4:4",
+    "ratings": "77074ba4:4",
+    "ballAccounting": "b5dbaaf5:17442",
+    "geometry": "44a0621d:188",
+    "people": "75efe07f:8009",
+    "finances": "f234c3d2:18389",
+    "development": "b1f4ef91:886594",
+    "fixtures": "741638a5:2",
+    "world": "3f517938:3061733"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 1
+  },
+  "end": {
+   "result": {
+    "ticks": 427,
+    "minute": 99,
+    "phase": "finished",
+    "score": [
+     0,
+     1
+    ],
+    "finished": true,
+    "halftime": true,
+    "unityError": null
+   },
+   "minute": 99,
+   "elapsed": 83.33333333333333,
+   "phase": "finished",
+   "calls": 3276,
+   "after": 3275,
+   "all": "99aace1d",
+   "hashes": {
+    "score": "4fcce0e8:5",
+    "events": "db4d56e1:281",
+    "stats": "36c7347b:8291",
+    "fresh": "da4b5235:920",
+    "minutes": "88fd286b:702",
+    "report": "08e6170e:32781",
+    "ratings": "6df59ea4:599",
+    "ballAccounting": "a2d402ea:21632",
+    "geometry": "44a0621d:188",
+    "people": "c171325f:8012",
+    "finances": "b9a39f8d:18516",
+    "development": "5eff2676:979423",
+    "fixtures": "f1c2b0fd:192647",
+    "world": "c3046618:3667799"
+   },
+   "held": null,
+   "replay": false,
+   "goals": 1
+  },
+  "errors": []
+ }
+}

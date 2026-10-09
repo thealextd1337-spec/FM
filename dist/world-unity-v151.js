@@ -170,8 +170,21 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   if(data.kind==='interaction'&&data.session===session){v132RevealControls();return;}
   if(data.kind==='projection'&&data.session===session){paintLabels(data);return;}
   if(data.kind==='error'){fail(data.message);return;}
-  if(data.kind==='ack'&&pending?.sequence===data.sequence){pending=null;if(loading){loaded=true;loading=false;message.hidden=true;}window.D6UnityMatch.lastAck=data;}
+  if(data.kind==='ack'&&pending?.sequence===data.sequence){
+   // The first acknowledged picture must carry every sent player; otherwise the
+   // held native clock would wait for an incomplete scene, so drop to 2D.
+   if(loading&&Number.isFinite(data.players)&&(data.players!==lastPicture.players.length||Array.isArray(data.ids)&&!lastPicture.players.every(p=>data.ids.includes(p.id)))){fail(v98Text('Unity hat nicht alle Spieler geladen · 2D ist aktiv','Unity did not load all players · using 2D'));return;}
+   pending=null;if(loading){loaded=true;loading=false;message.hidden=true;}window.D6UnityMatch.lastAck=data;
+  }
  });
+ // While the selected Unity view of this match is still loading (first start,
+ // reload, restored checkpoint), native steps wait like during a replay: the
+ // clock, phase and pause state stay untouched and continue with the first
+ // acknowledged picture. 2D, a failure or another view never wait.
+ function holdsClock(){return Boolean(match)&&!failed&&!v98Failed&&v98IsWorld()&&v98View==='3d'&&v98Orientation.matches&&(!loaded||current!==match);}
+ let heldStep=null;
+ const baseStep=step;step=function(...args){if(holdsClock()){heldStep=match;return;}heldStep=null;return baseStep.apply(this,args);};
+ const baseAfterStep=v65AfterStep;v65AfterStep=function(...args){if(heldStep&&heldStep===match)return;return baseAfterStep.apply(this,args);};
  const baseRender=v98RenderScene;
  v98RenderScene=function(captureOnly=false){
   if(!v98IsWorld()){dispose();return baseRender(captureOnly);}
@@ -184,5 +197,5 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  // Camera changes and return from 2D must resume the picture loop immediately.
  document.addEventListener('visibilitychange',()=>{if(document.hidden){if(suspendedAt===null)suspendedAt=performance.now();if(v65Context()?.state.phase==='live')v65Pause();}else if(host&&!loop)render();});
  const baseLeave=v65Leave;v65Leave=async function(...args){const result=await baseLeave.apply(this,args);if(!v98IsWorld())dispose();return result;};
- window.D6UnityMatch={get ready(){return loaded;},get session(){return session;},get picture(){return lastPicture&&structuredClone(lastPicture);},get projection(){return lastProjection&&structuredClone(lastProjection);},get loads(){return loadCount;},get active(){return Boolean(host&&!host.hidden&&loaded);},lastError:null,lastAck:null};
+ window.D6UnityMatch={get ready(){return loaded;},get session(){return session;},get picture(){return lastPicture&&structuredClone(lastPicture);},get projection(){return lastProjection&&structuredClone(lastProjection);},get loads(){return loadCount;},get active(){return Boolean(host&&!host.hidden&&loaded);},get clockHeld(){return holdsClock();},lastError:null,lastAck:null};
 })();

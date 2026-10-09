@@ -1,0 +1,111 @@
+{
+  "pass": true,
+  "checks": [
+    "standard/5/team0 queues a physical turn",
+    "standard/5/team0 receiver is offside before the kick",
+    "standard/5/team0 obligatory restart survives old normal-turn expiry",
+    "standard/5/team0 blocked/offside lane cannot cancel into a carry",
+    "standard/5/team0 kick releases the ball after actual rotation",
+    "standard/5/team1 queues a physical turn",
+    "standard/5/team1 receiver is offside before the kick",
+    "standard/5/team1 obligatory restart survives old normal-turn expiry",
+    "standard/5/team1 blocked/offside lane cannot cancel into a carry",
+    "standard/5/team1 kick releases the ball after actual rotation",
+    "standard/6/team0 queues a physical turn",
+    "standard/6/team0 receiver is offside before the kick",
+    "standard/6/team0 obligatory restart survives old normal-turn expiry",
+    "standard/6/team0 blocked/offside lane cannot cancel into a carry",
+    "standard/6/team0 kick releases the ball after actual rotation",
+    "standard/6/team1 queues a physical turn",
+    "standard/6/team1 receiver is offside before the kick",
+    "standard/6/team1 obligatory restart survives old normal-turn expiry",
+    "standard/6/team1 blocked/offside lane cannot cancel into a carry",
+    "standard/6/team1 kick releases the ball after actual rotation",
+    "large/5/team0 queues a physical turn",
+    "large/5/team0 receiver is offside before the kick",
+    "large/5/team0 obligatory restart survives old normal-turn expiry",
+    "large/5/team0 blocked/offside lane cannot cancel into a carry",
+    "large/5/team0 kick releases the ball after actual rotation",
+    "large/5/team1 queues a physical turn",
+    "large/5/team1 receiver is offside before the kick",
+    "large/5/team1 obligatory restart survives old normal-turn expiry",
+    "large/5/team1 blocked/offside lane cannot cancel into a carry",
+    "large/5/team1 kick releases the ball after actual rotation",
+    "large/6/team0 queues a physical turn",
+    "large/6/team0 receiver is offside before the kick",
+    "large/6/team0 obligatory restart survives old normal-turn expiry",
+    "large/6/team0 blocked/offside lane cannot cancel into a carry",
+    "large/6/team0 kick releases the ball after actual rotation",
+    "large/6/team1 queues a physical turn",
+    "large/6/team1 receiver is offside before the kick",
+    "large/6/team1 obligatory restart survives old normal-turn expiry",
+    "large/6/team1 blocked/offside lane cannot cancel into a carry",
+    "large/6/team1 kick releases the ball after actual rotation"
+  ],
+  "cases": [
+    {
+      "fieldSize": "standard",
+      "fieldPlayers": 5,
+      "team": 0,
+      "ticks": 16,
+      "flight": true,
+      "passes": 1
+    },
+    {
+      "fieldSize": "standard",
+      "fieldPlayers": 5,
+      "team": 1,
+      "ticks": 14,
+      "flight": true,
+      "passes": 1
+    },
+    {
+      "fieldSize": "standard",
+      "fieldPlayers": 6,
+      "team": 0,
+      "ticks": 16,
+      "flight": true,
+      "passes": 1
+    },
+    {
+      "fieldSize": "standard",
+      "fieldPlayers": 6,
+      "team": 1,
+      "ticks": 14,
+      "flight": true,
+      "passes": 1
+    },
+    {
+      "fieldSize": "large",
+      "fieldPlayers": 5,
+      "team": 0,
+      "ticks": 15,
+      "flight": true,
+      "passes": 1
+    },
+    {
+      "fieldSize": "large",
+      "fieldPlayers": 5,
+      "team": 1,
+      "ticks": 16,
+      "flight": true,
+      "passes": 1
+    },
+    {
+      "fieldSize": "large",
+      "fieldPlayers": 6,
+      "team": 0,
+      "ticks": 16,
+      "flight": true,
+      "passes": 1
+    },
+    {
+      "fieldSize": "large",
+      "fieldPlayers": 6,
+      "team": 1,
+      "ticks": 16,
+      "flight": true,
+      "passes": 1
+    }
+  ]
+}

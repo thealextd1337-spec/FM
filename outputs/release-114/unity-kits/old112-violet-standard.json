@@ -1,0 +1,95 @@
+{
+ "label": "old112-violet",
+ "quality": "standard",
+ "unityDir": "work/platform/qa/tmp-unity-112",
+ "setup": {
+  "ready": true,
+  "error": null
+ },
+ "kits": {
+  "user": {
+   "main": "#8a6cc0",
+   "pattern": "#f2f3ed",
+   "accent": "#3d2f5c",
+   "style": "solid",
+   "trim": "#f2f3ed"
+  },
+  "opponent": {
+   "main": "#e9e7e1",
+   "pattern": "#24262b",
+   "accent": "#24262b",
+   "style": "stripe",
+   "trim": "#24262b"
+  },
+  "userKeeper": {
+   "id": "blue",
+   "main": "#6a88df",
+   "trim": "#f3f5f2",
+   "style": "solid"
+  },
+  "opponentKeeper": {
+   "id": "magenta",
+   "main": "#ed53b7",
+   "trim": "#f3f5f2",
+   "style": "solid"
+  }
+ },
+ "source": {
+  "source": null
+ },
+ "checkpoint": {
+  "saved": true,
+  "restored": true,
+  "minute": 9,
+  "loadsBefore": 1,
+  "loadsAfter": 2,
+  "unityReady": true,
+  "error": null
+ },
+ "live": {
+  "replay": false,
+  "ball": [
+   9.199908222077061,
+   0.29,
+   0.49531133137033884
+  ],
+  "camera": {
+   "position": [
+    4.899030992303717,
+    19.626350990956404,
+    29.010575352877762
+   ],
+   "target": [
+    13.079152470755062,
+    0,
+    0.17335896597961856
+   ],
+   "fov": 42
+  }
+ },
+ "review": {
+  "timeline": 1
+ },
+ "replay": {
+  "replay": false,
+  "ball": [
+   9.199908222077061,
+   0.29,
+   0.49531133137033884
+  ],
+  "camera": {
+   "position": [
+    4.912269334263279,
+    19.594588584185175,
+    28.963906494389867
+   ],
+   "target": [
+    13.079152470755062,
+    0,
+    0.17335896597961856
+   ],
+   "fov": 42
+  }
+ },
+ "errors": []
+}

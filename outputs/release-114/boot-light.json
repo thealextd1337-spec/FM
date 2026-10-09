@@ -1,0 +1,20 @@
+{
+  "toolIcon": {
+    "_tag": "website",
+    "pageUrl": "http://127.0.0.1:4522/source/index.html?boot=light114"
+  },
+  "value": {
+    "href": "http://127.0.0.1:4522/source/index.html?boot=light114",
+    "boot": "light",
+    "overlay": true,
+    "ready": false,
+    "theme": null,
+    "background": "rgb(241, 243, 245)",
+    "visible": [
+      "fl-boot",
+      "HEADER",
+      "start-screen",
+      "NAV"
+    ]
+  }
+}

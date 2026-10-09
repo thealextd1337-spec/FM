@@ -1,0 +1,7 @@
+2026-10-09T11:50:16+02:00
+PASS standard-6 [unity,native] digest equal · score [3,3] / [3,3]
+PASS large-5 [unity,native] digest equal · score [0,1] / [0,1]
+PASS large-6 [unity,native] digest equal · score [0,2] / [0,2]
+ALL 3 configurations PASSED
+exit 0
+2026-10-09T11:57:47+02:00

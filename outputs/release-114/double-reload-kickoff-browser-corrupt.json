@@ -1,0 +1,175 @@
+{
+  "kind": "kickoff",
+  "engine": "browser",
+  "between": "corrupt",
+  "id": "25c893be-eca5-4372-b214-1029aa924877",
+  "reached": {
+    "ok": true,
+    "minute": 10,
+    "kickoff": "waiting",
+    "setPiece": null
+  },
+  "storedFirst": {
+    "phase": "paused",
+    "minute": 10,
+    "kickoff": {
+      "phase": "waiting",
+      "kickerPid": "unity-v160-large-6:GER-4:9",
+      "kickerObject": false
+    },
+    "setPiece": null,
+    "ownerPid": null,
+    "ownerObject": false
+  },
+  "afterFirstOpen": {
+    "phase": "paused",
+    "elapsed": 9.047999999999968,
+    "running": false,
+    "kicker": "unity-v160-large-6:GER-4:9",
+    "taker": null,
+    "owner": null,
+    "overlay": "6 | SC Freiburg Tal hat Anstoß",
+    "alias": false,
+    "tickErrors": []
+  },
+  "corrupted": [
+    "kickoff"
+  ],
+  "storedAfterShowStart": {
+    "phase": "paused",
+    "minute": 10,
+    "kickoff": {
+      "phase": "waiting",
+      "kickerPid": null,
+      "kickerObject": true
+    },
+    "setPiece": null,
+    "ownerPid": null,
+    "ownerObject": false
+  },
+  "afterSecondOpen": {
+    "phase": "paused",
+    "elapsed": 9.047999999999968,
+    "running": false,
+    "kicker": "unity-v160-large-6:GER-4:9",
+    "taker": null,
+    "owner": null,
+    "overlay": "6 | SC Freiburg Tal hat Anstoß",
+    "alias": false,
+    "tickErrors": []
+  },
+  "afterResume": [
+    {
+      "phase": "live",
+      "elapsed": 9.047999999999968,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "5 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.047999999999968,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "5 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.047999999999968,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "4 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.047999999999968,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "4 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.047999999999968,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "3 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.047999999999968,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "2 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.047999999999968,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "2 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.047999999999968,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "1 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.047999999999968,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "ANPFIFF | Gleich rollt der Ball",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.047999999999968,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    }
+  ],
+  "v65Error": "(element missing)",
+  "errors": []
+}

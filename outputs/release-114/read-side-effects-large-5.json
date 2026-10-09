@@ -1,0 +1,203 @@
+{
+ "config": "large-5",
+ "runs": [
+  {
+   "mode": "none",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "0c378e9d:8291",
+     "fresh": "235cb0cc:917",
+     "minutes": "88fd286b:702",
+     "report": "af070066:32671",
+     "ratings": "5933cc8b:600",
+     "ballAccounting": "45cf6509:21529",
+     "geometry": "44a0621d:188",
+     "people": "482e7dfc:8007",
+     "finances": "b9a39f8d:18516",
+     "development": "7ca0397e:979427",
+     "fixtures": "6eace1be:192545",
+     "world": "411bd52b:3680788"
+    },
+    "all": "b2da8c03"
+   },
+   "errors": []
+  },
+  {
+   "mode": "context",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "0c378e9d:8291",
+     "fresh": "235cb0cc:917",
+     "minutes": "88fd286b:702",
+     "report": "af070066:32671",
+     "ratings": "5933cc8b:600",
+     "ballAccounting": "45cf6509:21529",
+     "geometry": "44a0621d:188",
+     "people": "482e7dfc:8007",
+     "finances": "b9a39f8d:18516",
+     "development": "7ca0397e:979427",
+     "fixtures": "6eace1be:192545",
+     "world": "411bd52b:3680788"
+    },
+    "all": "b2da8c03"
+   },
+   "errors": []
+  },
+  {
+   "mode": "fixtures",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "0c378e9d:8291",
+     "fresh": "235cb0cc:917",
+     "minutes": "88fd286b:702",
+     "report": "af070066:32671",
+     "ratings": "5933cc8b:600",
+     "ballAccounting": "45cf6509:21529",
+     "geometry": "44a0621d:188",
+     "people": "482e7dfc:8007",
+     "finances": "b9a39f8d:18516",
+     "development": "7ca0397e:979427",
+     "fixtures": "6eace1be:192545",
+     "world": "411bd52b:3680788"
+    },
+    "all": "b2da8c03"
+   },
+   "errors": []
+  },
+  {
+   "mode": "activeFixture",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "0c378e9d:8291",
+     "fresh": "235cb0cc:917",
+     "minutes": "88fd286b:702",
+     "report": "af070066:32671",
+     "ratings": "5933cc8b:600",
+     "ballAccounting": "45cf6509:21529",
+     "geometry": "44a0621d:188",
+     "people": "482e7dfc:8007",
+     "finances": "b9a39f8d:18516",
+     "development": "7ca0397e:979427",
+     "fixtures": "6eace1be:192545",
+     "world": "411bd52b:3680788"
+    },
+    "all": "b2da8c03"
+   },
+   "errors": []
+  },
+  {
+   "mode": "worldJson",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "0c378e9d:8291",
+     "fresh": "235cb0cc:917",
+     "minutes": "88fd286b:702",
+     "report": "af070066:32671",
+     "ratings": "5933cc8b:600",
+     "ballAccounting": "45cf6509:21529",
+     "geometry": "44a0621d:188",
+     "people": "482e7dfc:8007",
+     "finances": "b9a39f8d:18516",
+     "development": "7ca0397e:979427",
+     "fixtures": "6eace1be:192545",
+     "world": "411bd52b:3680788"
+    },
+    "all": "b2da8c03"
+   },
+   "errors": []
+  },
+  {
+   "mode": "people",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "0c378e9d:8291",
+     "fresh": "235cb0cc:917",
+     "minutes": "88fd286b:702",
+     "report": "af070066:32671",
+     "ratings": "5933cc8b:600",
+     "ballAccounting": "45cf6509:21529",
+     "geometry": "44a0621d:188",
+     "people": "482e7dfc:8007",
+     "finances": "b9a39f8d:18516",
+     "development": "7ca0397e:979427",
+     "fixtures": "6eace1be:192545",
+     "world": "411bd52b:3680788"
+    },
+    "all": "b2da8c03"
+   },
+   "errors": []
+  }
+ ]
+}

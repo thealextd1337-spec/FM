@@ -1,0 +1,95 @@
+{
+ "label": "after-violet",
+ "quality": "standard",
+ "unityDir": null,
+ "setup": {
+  "ready": true,
+  "error": null
+ },
+ "kits": {
+  "user": {
+   "main": "#8a6cc0",
+   "pattern": "#f2f3ed",
+   "accent": "#3d2f5c",
+   "style": "solid",
+   "trim": "#f2f3ed"
+  },
+  "opponent": {
+   "main": "#e9e7e1",
+   "pattern": "#24262b",
+   "accent": "#24262b",
+   "style": "stripe",
+   "trim": "#24262b"
+  },
+  "userKeeper": {
+   "id": "blue",
+   "main": "#6a88df",
+   "trim": "#f3f5f2",
+   "style": "solid"
+  },
+  "opponentKeeper": {
+   "id": "magenta",
+   "main": "#ed53b7",
+   "trim": "#f3f5f2",
+   "style": "solid"
+  }
+ },
+ "source": {
+  "source": null
+ },
+ "checkpoint": {
+  "saved": true,
+  "restored": true,
+  "minute": 9,
+  "loadsBefore": 1,
+  "loadsAfter": 2,
+  "unityReady": true,
+  "error": null
+ },
+ "live": {
+  "replay": false,
+  "ball": [
+   9.199908222077061,
+   0.29,
+   0.49531133137033884
+  ],
+  "camera": {
+   "position": [
+    4.877764718061879,
+    19.677374605170414,
+    29.08554491826507
+   ],
+   "target": [
+    13.079152470755062,
+    0,
+    0.17335896597961856
+   ],
+   "fov": 42
+  }
+ },
+ "review": {
+  "timeline": 1
+ },
+ "replay": {
+  "replay": false,
+  "ball": [
+   9.199908222077061,
+   0.29,
+   0.49531133137033884
+  ],
+  "camera": {
+   "position": [
+    4.883604490238259,
+    19.66336339289896,
+    29.064958087819576
+   ],
+   "target": [
+    13.079152470755062,
+    0,
+    0.17335896597961856
+   ],
+   "fov": 42
+  }
+ },
+ "errors": []
+}

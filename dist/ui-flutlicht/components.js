@@ -63,14 +63,14 @@
       tip.style.top=`${Math.max(8,box.bottom+rect.height+12<win.innerHeight?box.bottom+8:box.top-rect.height-8)}px`;
     }
     on(root,'pointerover',e=>{const node=target(e);if(node&&e.pointerType!=='touch'&&!pinned)show(node);});
-    on(root,'pointerout',e=>{if(!pinned&&active&&!active.contains(e.relatedTarget)&&!tip.contains(e.relatedTarget))hide();});
+    on(root,'pointerout',e=>{if(!pinned&&active&&active!==doc.activeElement&&!active.contains(e.relatedTarget)&&!tip.contains(e.relatedTarget))hide();});
     on(root,'focusin',e=>{const node=target(e);if(node)show(node);else hide();});
     on(root,'focusout',e=>{if(e.target===active&&!pinned)hide();});
     on(doc,'click',e=>{const node=target(e);if(node){if(active===node&&pinned)hide();else show(node,true);}else if(!tip.contains(e.target))hide();});
     on(doc,'keydown',e=>{if(e.key==='Escape')hide();});
     on(doc,'scroll',()=>{
       // Keyboard focus may scroll its target into view after focusin has fired.
-      if(active===doc.activeElement&&!pinned){const box=active.getBoundingClientRect();if(box.bottom>0&&box.top<win.innerHeight){show(active);return;}}
+      if(active===doc.activeElement){const box=active.getBoundingClientRect();if(box.bottom>0&&box.top<win.innerHeight){show(active,pinned);return;}}
       hide();
     },true);on(win,'resize',hide);on(win,'hashchange',hide);
     return ()=>{hide();off.forEach(remove=>remove());tip.remove();};

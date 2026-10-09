@@ -1,0 +1,107 @@
+{
+  "setup": {
+    "config": {
+      "fieldSize": "large",
+      "fieldPlayers": 6
+    },
+    "unity": true,
+    "people": 14,
+    "perTeam": [
+      7,
+      7
+    ],
+    "keepers": [
+      1,
+      1
+    ],
+    "geometry": {
+      "version": 1,
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10.5953488372093,
+      "penaltyWidth": 24.264705882352942,
+      "ballRadius": 0.1764
+    },
+    "expectedPerTeam": 7,
+    "unityReady": true,
+    "ack": {
+      "players": 14,
+      "ids": 14,
+      "allReal": true
+    },
+    "error": null
+  },
+  "id": "d038fe33-87ee-432d-b364-8ae1d32d5a23",
+  "before": {
+    "phase": "live",
+    "elapsed": 15.014999999999922,
+    "minute": 18,
+    "running": true,
+    "active": true,
+    "flight": false,
+    "storage": null,
+    "unity": {
+      "ready": true,
+      "error": null,
+      "ack": 14
+    },
+    "snapshot": 15.014999999999922
+  },
+  "after": {
+    "phase": "live",
+    "elapsed": 15.014999999999922,
+    "minute": 18,
+    "running": true,
+    "active": true,
+    "flight": false,
+    "storage": null,
+    "unity": {
+      "ready": false,
+      "error": null
+    },
+    "snapshot": 15.014999999999922
+  },
+  "later": {
+    "phase": "live",
+    "elapsed": 16.068000000023165,
+    "minute": 19,
+    "running": true,
+    "active": true,
+    "flight": true,
+    "storage": null,
+    "unity": {
+      "ready": false,
+      "error": null
+    },
+    "snapshot": 15.772068000018516
+  },
+  "final": {
+    "phase": "live",
+    "elapsed": 21.19674179995443,
+    "minute": 25,
+    "running": true,
+    "active": true,
+    "flight": true,
+    "storage": null,
+    "unity": {
+      "ready": true,
+      "error": null,
+      "ack": 14
+    },
+    "snapshot": 20.911105799963728
+  },
+  "errors": [],
+  "stepErrors": [],
+  "continued": {
+    "ticks": 1771,
+    "finished": true,
+    "phase": "finished",
+    "elapsed": 82.87566666666672,
+    "score": [
+      0,
+      0
+    ]
+  }
+}

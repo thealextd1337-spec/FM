@@ -98,7 +98,7 @@ const v110BasePlayerAction=v102PlayerAction;
 v102PlayerAction=function(current,person){
  const block=current.flight&&v110Blocks.get(current.flight);if(block?.player===person&&current.flight.progress>.55)return {id:'block-ready',kind:'block',target:block.point,contact:block.point,progress:-Math.min(.15,(1-current.flight.progress)*.3),duration:.48};
  const existing=v110BasePlayerAction(current,person);if(existing)return existing;
- if(window.D6UserMeshyPlayer?.nativeShot&&current.owner===person&&!person.keeper&&!current.flight&&!current.setPiece&&!current.kickoff&&!current.throwIn&&current.goalPause<=0&&!current.postBanner&&!current.halftimePause){const remaining=(current.next-current.elapsed)/MATCH_SPEED;if(remaining>=0&&remaining<.35)return {id:'kick-ready',kind:'kickReady',target:{x:.5,y:person.t===0?v55Field.top:v55Field.bottom},progress:1-remaining/.35,duration:.35}}
+ if((current.attackFlow?.flowVersion===159||window.D6UserMeshyPlayer?.nativeShot)&&current.owner===person&&!person.keeper&&!current.flight&&!current.setPiece&&!current.kickoff&&!current.throwIn&&current.goalPause<=0&&!current.postBanner&&!current.halftimePause){const remaining=(current.next-current.elapsed)/MATCH_SPEED;if(remaining>=0&&remaining<.35)return {id:'kick-ready',kind:'kickReady',target:{x:.5,y:person.t===0?v55Field.top:v55Field.bottom},progress:1-remaining/.35,duration:.35}}
  return null;
 };
 function v110BallRoll(scene,frame,live){

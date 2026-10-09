@@ -1,0 +1,352 @@
+{
+  "toolIcon": {
+    "_tag": "website",
+    "pageUrl": "http://127.0.0.1:4521/source/index.html?verify=114-contact&engine=browser"
+  },
+  "value": {
+    "name": "native-contact-source114",
+    "done": true,
+    "v": {
+      "pass": true,
+      "checks": [
+        "missing fixed pass duration",
+        "missing fixed receive duration",
+        "missing fixed control duration",
+        "missing fixed shot duration",
+        "missing fixed freeKick duration",
+        "missing fixed highPass duration",
+        "missing full match and JSON continuation",
+        "failed fixed pass duration",
+        "failed fixed receive duration",
+        "failed fixed control duration",
+        "failed fixed shot duration",
+        "failed fixed freeKick duration",
+        "failed fixed highPass duration",
+        "failed full match and JSON continuation",
+        "ready fixed pass duration",
+        "ready fixed receive duration",
+        "ready fixed control duration",
+        "ready fixed shot duration",
+        "ready fixed freeKick duration",
+        "ready fixed highPass duration",
+        "ready full match and JSON continuation",
+        "late fixed pass duration",
+        "late fixed receive duration",
+        "late fixed control duration",
+        "late fixed shot duration",
+        "late fixed freeKick duration",
+        "late fixed highPass duration",
+        "late full match and JSON continuation",
+        "Exact match/model/report/finance parity failed",
+        "Exact match/model/report/finance parity ready",
+        "Exact match/model/report/finance parity late"
+      ],
+      "poseChecks": [
+        {
+          "mode": "missing",
+          "kind": "pass",
+          "duration": 0.62
+        },
+        {
+          "mode": "missing",
+          "kind": "receive",
+          "duration": 0.45
+        },
+        {
+          "mode": "missing",
+          "kind": "control",
+          "duration": 0.48
+        },
+        {
+          "mode": "missing",
+          "kind": "shot",
+          "duration": 0.95
+        },
+        {
+          "mode": "missing",
+          "kind": "freeKick",
+          "duration": 0.95
+        },
+        {
+          "mode": "missing",
+          "kind": "highPass",
+          "duration": 0.78
+        },
+        {
+          "mode": "failed",
+          "kind": "pass",
+          "duration": 0.62
+        },
+        {
+          "mode": "failed",
+          "kind": "receive",
+          "duration": 0.45
+        },
+        {
+          "mode": "failed",
+          "kind": "control",
+          "duration": 0.48
+        },
+        {
+          "mode": "failed",
+          "kind": "shot",
+          "duration": 0.95
+        },
+        {
+          "mode": "failed",
+          "kind": "freeKick",
+          "duration": 0.95
+        },
+        {
+          "mode": "failed",
+          "kind": "highPass",
+          "duration": 0.78
+        },
+        {
+          "mode": "ready",
+          "kind": "pass",
+          "duration": 0.62
+        },
+        {
+          "mode": "ready",
+          "kind": "receive",
+          "duration": 0.45
+        },
+        {
+          "mode": "ready",
+          "kind": "control",
+          "duration": 0.48
+        },
+        {
+          "mode": "ready",
+          "kind": "shot",
+          "duration": 0.95
+        },
+        {
+          "mode": "ready",
+          "kind": "freeKick",
+          "duration": 0.95
+        },
+        {
+          "mode": "ready",
+          "kind": "highPass",
+          "duration": 0.78
+        },
+        {
+          "mode": "late",
+          "kind": "pass",
+          "duration": 0.62
+        },
+        {
+          "mode": "late",
+          "kind": "receive",
+          "duration": 0.45
+        },
+        {
+          "mode": "late",
+          "kind": "control",
+          "duration": 0.48
+        },
+        {
+          "mode": "late",
+          "kind": "shot",
+          "duration": 0.95
+        },
+        {
+          "mode": "late",
+          "kind": "freeKick",
+          "duration": 0.95
+        },
+        {
+          "mode": "late",
+          "kind": "highPass",
+          "duration": 0.78
+        }
+      ],
+      "cases": [
+        {
+          "mode": "missing",
+          "digest": {
+            "score": [
+              0,
+              1
+            ],
+            "phase": "finished",
+            "finished": true,
+            "valid": true,
+            "booked": true,
+            "balanceOwn": 4658,
+            "checkpoints": 1,
+            "hashes": {
+              "score": "4fcce0e8:5",
+              "events": "db4d56e1:281",
+              "stats": "36c7347b:8291",
+              "fresh": "da4b5235:920",
+              "minutes": "88fd286b:702",
+              "report": "08e6170e:32781",
+              "ratings": "6df59ea4:599",
+              "ballAccounting": "a2d402ea:21632",
+              "geometry": "44a0621d:188",
+              "people": "c171325f:8012",
+              "finances": "b9a39f8d:18516",
+              "development": "5eff2676:979423",
+              "fixtures": "f1c2b0fd:192647",
+              "world": "c3046618:3667799"
+            },
+            "all": "99aace1d"
+          },
+          "checkpoint": {
+            "saved": true,
+            "restored": true,
+            "minute": 60,
+            "loadsBefore": null,
+            "loadsAfter": null,
+            "unityReady": null,
+            "error": null
+          },
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "mode": "failed",
+          "digest": {
+            "score": [
+              0,
+              1
+            ],
+            "phase": "finished",
+            "finished": true,
+            "valid": true,
+            "booked": true,
+            "balanceOwn": 4658,
+            "checkpoints": 1,
+            "hashes": {
+              "score": "4fcce0e8:5",
+              "events": "db4d56e1:281",
+              "stats": "36c7347b:8291",
+              "fresh": "da4b5235:920",
+              "minutes": "88fd286b:702",
+              "report": "08e6170e:32781",
+              "ratings": "6df59ea4:599",
+              "ballAccounting": "a2d402ea:21632",
+              "geometry": "44a0621d:188",
+              "people": "c171325f:8012",
+              "finances": "b9a39f8d:18516",
+              "development": "5eff2676:979423",
+              "fixtures": "f1c2b0fd:192647",
+              "world": "c3046618:3667799"
+            },
+            "all": "99aace1d"
+          },
+          "checkpoint": {
+            "saved": true,
+            "restored": true,
+            "minute": 60,
+            "loadsBefore": null,
+            "loadsAfter": null,
+            "unityReady": null,
+            "error": null
+          },
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "mode": "ready",
+          "digest": {
+            "score": [
+              0,
+              1
+            ],
+            "phase": "finished",
+            "finished": true,
+            "valid": true,
+            "booked": true,
+            "balanceOwn": 4658,
+            "checkpoints": 1,
+            "hashes": {
+              "score": "4fcce0e8:5",
+              "events": "db4d56e1:281",
+              "stats": "36c7347b:8291",
+              "fresh": "da4b5235:920",
+              "minutes": "88fd286b:702",
+              "report": "08e6170e:32781",
+              "ratings": "6df59ea4:599",
+              "ballAccounting": "a2d402ea:21632",
+              "geometry": "44a0621d:188",
+              "people": "c171325f:8012",
+              "finances": "b9a39f8d:18516",
+              "development": "5eff2676:979423",
+              "fixtures": "f1c2b0fd:192647",
+              "world": "c3046618:3667799"
+            },
+            "all": "99aace1d"
+          },
+          "checkpoint": {
+            "saved": true,
+            "restored": true,
+            "minute": 60,
+            "loadsBefore": null,
+            "loadsAfter": null,
+            "unityReady": null,
+            "error": null
+          },
+          "score": [
+            0,
+            1
+          ]
+        },
+        {
+          "mode": "late",
+          "digest": {
+            "score": [
+              0,
+              1
+            ],
+            "phase": "finished",
+            "finished": true,
+            "valid": true,
+            "booked": true,
+            "balanceOwn": 4658,
+            "checkpoints": 1,
+            "hashes": {
+              "score": "4fcce0e8:5",
+              "events": "db4d56e1:281",
+              "stats": "36c7347b:8291",
+              "fresh": "da4b5235:920",
+              "minutes": "88fd286b:702",
+              "report": "08e6170e:32781",
+              "ratings": "6df59ea4:599",
+              "ballAccounting": "a2d402ea:21632",
+              "geometry": "44a0621d:188",
+              "people": "c171325f:8012",
+              "finances": "b9a39f8d:18516",
+              "development": "5eff2676:979423",
+              "fixtures": "f1c2b0fd:192647",
+              "world": "c3046618:3667799"
+            },
+            "all": "99aace1d"
+          },
+          "checkpoint": {
+            "saved": true,
+            "restored": true,
+            "minute": 60,
+            "loadsBefore": null,
+            "loadsAfter": null,
+            "unityReady": null,
+            "error": null
+          },
+          "score": [
+            0,
+            1
+          ]
+        }
+      ],
+      "limitation": "Visual flags are overridden only during native synchronous steps; actual model-download delay is tested separately by the Unity loading suite."
+    },
+    "ms": 68104
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "kind": "open",
+  "engine": "browser",
+  "between": "save",
+  "id": "e95f2001-2c32-4714-bddd-e103e9fe7999",
+  "reached": {
+    "ok": true,
+    "minute": 10,
+    "kickoff": null,
+    "setPiece": null
+  },
+  "storedFirst": {
+    "phase": "paused",
+    "minute": 10,
+    "kickoff": null,
+    "setPiece": null,
+    "ownerPid": "unity-v160-large-6:GER-2:11",
+    "ownerObject": false
+  },
+  "afterFirstOpen": {
+    "phase": "paused",
+    "elapsed": 8.85299999999997,
+    "running": false,
+    "kicker": null,
+    "taker": null,
+    "owner": "unity-v160-large-6:GER-2:11",
+    "overlay": null,
+    "alias": false,
+    "tickErrors": []
+  },
+  "storedAfterShowStart": {
+    "phase": "paused",
+    "minute": 10,
+    "kickoff": null,
+    "setPiece": null,
+    "ownerPid": "unity-v160-large-6:GER-2:11",
+    "ownerObject": false
+  },
+  "afterSecondOpen": {
+    "phase": "paused",
+    "elapsed": 8.85299999999997,
+    "running": false,
+    "kicker": null,
+    "taker": null,
+    "owner": "unity-v160-large-6:GER-2:11",
+    "overlay": null,
+    "alias": false,
+    "tickErrors": []
+  },
+  "afterResume": [
+    {
+      "phase": "live",
+      "elapsed": 9.865127999995314,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-2:8",
+      "owner": null,
+      "overlay": "FREISTOSS | FC Bremen Weser · Supachai Mueanta",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.865127999995314,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-2:8",
+      "owner": null,
+      "overlay": "FREISTOSS | FC Bremen Weser · Supachai Mueanta",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.865127999995314,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-2:8",
+      "owner": null,
+      "overlay": "FREISTOSS | FC Bremen Weser · Supachai Mueanta",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.865127999995314,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-2:8",
+      "owner": null,
+      "overlay": "FREISTOSS | FC Bremen Weser · Supachai Mueanta",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.865127999995314,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-2:8",
+      "owner": null,
+      "overlay": "FREISTOSS | FC Bremen Weser · Supachai Mueanta",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.865127999995314,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-2:8",
+      "owner": null,
+      "overlay": "FREISTOSS | FC Bremen Weser · Supachai Mueanta",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.865127999995314,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-2:8",
+      "owner": null,
+      "overlay": "FREISTOSS | FC Bremen Weser · Supachai Mueanta",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.865127999995314,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-2:8",
+      "owner": null,
+      "overlay": "FREISTOSS | FC Bremen Weser · Supachai Mueanta",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.865127999995314,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-2:8",
+      "owner": null,
+      "overlay": "FREISTOSS | FC Bremen Weser · Supachai Mueanta",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.865127999995314,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-2:8",
+      "owner": null,
+      "overlay": "FREISTOSS | FC Bremen Weser · Supachai Mueanta",
+      "alias": false,
+      "tickErrors": []
+    }
+  ],
+  "v65Error": "(element missing)",
+  "errors": []
+}

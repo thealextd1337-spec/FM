@@ -9,8 +9,10 @@ function v102State(current){
 function v102Clock(current){return v102Motion.get(current)?.clock||0}
 function v102Pose(current,person,kind,target,contact=null){
  // Contact is still at progress zero; only the visual follow-through lasts longer.
- const nativeShot=typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeShot;
- const nativeBall=typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeBall;
+ // The stored native-flow contract owns contact timing. Loading a visual
+ // model later must not change a running v159 match or its continuation.
+ const nativeShot=current.attackFlow?.flowVersion===159||typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeShot;
+ const nativeBall=current.attackFlow?.flowVersion===159||typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeBall;
  const duration=nativeBall&&kind==='receive'?.45:nativeBall&&kind==='control'?.48:kind==='header'?.62:kind==='pass'?(nativeBall?.62:.40):nativeShot&&['shot','freeKick'].includes(kind)?.95:['shot','freeKick','volley'].includes(kind)?.60:['cross','highPass'].includes(kind)?(nativeBall?.78:.55):.48;
  const state=v102State(current),pose={id:++state.serial,kind,target:{...target},contact:contact&&{...contact},at:state.clock,duration};
  state.poses.set(person.pid,pose);return pose;

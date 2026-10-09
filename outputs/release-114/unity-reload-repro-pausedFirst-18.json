@@ -1,0 +1,218 @@
+{
+  "minute": 18,
+  "url": "http://127.0.0.1:4521/source/index.html?engine=unity",
+  "mode": "pausedFirst",
+  "setup": {
+    "config": {
+      "fieldSize": "large",
+      "fieldPlayers": 6
+    },
+    "unity": true,
+    "people": 14,
+    "perTeam": [
+      7,
+      7
+    ],
+    "keepers": [
+      1,
+      1
+    ],
+    "geometry": {
+      "version": 1,
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10.5953488372093,
+      "penaltyWidth": 24.264705882352942,
+      "ballRadius": 0.1764
+    },
+    "expectedPerTeam": 7,
+    "unityReady": true,
+    "ack": {
+      "players": 14,
+      "ids": 14,
+      "allReal": true
+    },
+    "error": null
+  },
+  "id": "4f9f8648-5d67-4067-92ef-70f941794430",
+  "before": {
+    "phase": "paused",
+    "minute": 18,
+    "elapsed": 15.030287999972064,
+    "running": false,
+    "frame": true,
+    "active": true,
+    "gameHidden": false,
+    "overlay": null,
+    "event": "Abdoulaye Gueye nimmt den freien Ball auf.",
+    "v65error": "(missing)",
+    "kick": null,
+    "countdown": 0,
+    "postBanner": null,
+    "goalPause": 0,
+    "setPiece": null,
+    "owner": "unity-v160-large-6:GER-4:10",
+    "flight": false,
+    "unity": {
+      "ready": true,
+      "active": true,
+      "error": null,
+      "loads": 1
+    },
+    "view": "3d",
+    "v58": {
+      "context": "Spiel pausiert",
+      "label": "Taktik & Wechsel",
+      "action": "v65-tactics"
+    },
+    "tickErrors": []
+  },
+  "storedBefore": {
+    "phase": "paused",
+    "minute": 18,
+    "snapElapsed": 15.030287999972064
+  },
+  "storedAfterReload": {
+    "phase": "paused",
+    "minute": 18,
+    "snapElapsed": 15.030287999972064,
+    "kickoff": null,
+    "postBanner": null,
+    "setPiece": null,
+    "goalPause": 0,
+    "countdown": 0
+  },
+  "afterOpen": {
+    "phase": "paused",
+    "minute": 18,
+    "elapsed": 15.030287999972064,
+    "running": false,
+    "frame": false,
+    "active": true,
+    "gameHidden": false,
+    "overlay": null,
+    "event": "Abdoulaye Gueye nimmt den freien Ball auf.",
+    "v65error": "(missing)",
+    "kick": null,
+    "countdown": 0,
+    "postBanner": null,
+    "goalPause": 0,
+    "setPiece": null,
+    "owner": "unity-v160-large-6:GER-4:10",
+    "flight": false,
+    "unity": {
+      "ready": false,
+      "active": false,
+      "error": null,
+      "loads": 1
+    },
+    "view": "3d",
+    "v58": {
+      "context": "Spiel pausiert",
+      "label": "Taktik & Wechsel",
+      "action": "v65-tactics"
+    },
+    "tickErrors": []
+  },
+  "after3s": {
+    "phase": "paused",
+    "minute": 18,
+    "elapsed": 15.030287999972064,
+    "running": false,
+    "frame": false,
+    "active": true,
+    "gameHidden": false,
+    "overlay": null,
+    "event": "Abdoulaye Gueye nimmt den freien Ball auf.",
+    "v65error": "(missing)",
+    "kick": null,
+    "countdown": 0,
+    "postBanner": null,
+    "goalPause": 0,
+    "setPiece": null,
+    "owner": "unity-v160-large-6:GER-4:10",
+    "flight": false,
+    "unity": {
+      "ready": false,
+      "active": false,
+      "error": null,
+      "loads": 1
+    },
+    "view": "3d",
+    "v58": {
+      "context": "Spiel pausiert",
+      "label": "Taktik & Wechsel",
+      "action": "v65-tactics"
+    },
+    "tickErrors": []
+  },
+  "resumeVia": "quick-nav",
+  "afterResume": {
+    "phase": "live",
+    "minute": 19,
+    "elapsed": 16.184453999939524,
+    "running": true,
+    "frame": true,
+    "active": true,
+    "gameHidden": false,
+    "overlay": null,
+    "event": "Anton Becker erreicht den Pass nicht.",
+    "v65error": "(missing)",
+    "kick": null,
+    "countdown": 0,
+    "postBanner": null,
+    "goalPause": 0,
+    "setPiece": null,
+    "owner": null,
+    "flight": false,
+    "unity": {
+      "ready": true,
+      "active": true,
+      "error": null,
+      "loads": 1
+    },
+    "view": "3d",
+    "v58": {
+      "context": "Spiel läuft",
+      "label": "Taktik & Wechsel",
+      "action": "v65-tactics"
+    },
+    "tickErrors": []
+  },
+  "later": {
+    "phase": "live",
+    "minute": 27,
+    "elapsed": 23.07122999990709,
+    "running": true,
+    "frame": true,
+    "active": true,
+    "gameHidden": false,
+    "overlay": null,
+    "event": "Abdoulaye Gueye setzt den Ball vorbei. Abstoß.",
+    "v65error": "(missing)",
+    "kick": null,
+    "countdown": 0,
+    "postBanner": null,
+    "goalPause": 0,
+    "setPiece": null,
+    "owner": "unity-v160-large-6:GER-2:1",
+    "flight": false,
+    "unity": {
+      "ready": true,
+      "active": true,
+      "error": null,
+      "loads": 1
+    },
+    "view": "3d",
+    "v58": {
+      "context": "Spiel läuft",
+      "label": "Taktik & Wechsel",
+      "action": "v65-tactics"
+    },
+    "tickErrors": []
+  },
+  "errors": [],
+  "consoleErrors": []
+}

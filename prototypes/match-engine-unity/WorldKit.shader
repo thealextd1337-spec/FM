@@ -65,8 +65,14 @@ Shader "Doppel6/World Kit" {
   }
   // Floodlight key light with shadow map, ambient and a rim that keeps
   // small figures readable against the turf. Fabric gets a faint sheen.
+  // Cull Off shows inner faces (sleeves, collar, thin silhouettes); their
+  // normal points away from the camera and gave a full white fresnel rim as
+  // speckles. Light the side that faces the camera, and tint the rim with the
+  // kit colour so team colours stay distinct instead of reading as white.
   half fabric=shirt||shorts||socks?.12:.05;
-  return half4(D6Light(color,i.world,i.normal,.35,.55,fabric),1);
+  float3 n=normalize(i.normal),view=normalize(GetWorldSpaceViewDir(i.world));if(dot(n,view)<0)n=-n;
+  half rim=pow(1-saturate(dot(n,view)),3)*.3;
+  return half4(D6Light(color,i.world,n,.35,0,fabric)+rim*lerp(SampleSH(n)*2,color*1.4,.65),1);
  }
  ENDHLSL
  }

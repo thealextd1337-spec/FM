@@ -1,0 +1,173 @@
+{
+  "base": "http://127.0.0.1:4521/native-build.html",
+  "config": {
+    "fieldSize": "large",
+    "fieldPlayers": 6
+  },
+  "gpu": false,
+  "ok": true,
+  "pageErrors": [],
+  "consoleErrors": [],
+  "log": [
+    {
+      "k": "storage",
+      "v": [
+        "doppel6.language"
+      ],
+      "at": 1791540453354
+    },
+    {
+      "k": "setup",
+      "v": {
+        "unityReady": true,
+        "people": 14,
+        "ack": {
+          "players": 14,
+          "ids": 14,
+          "allReal": true
+        }
+      },
+      "at": 1791540457933
+    },
+    {
+      "k": "at88",
+      "v": {
+        "minute": 88,
+        "phase": "live",
+        "score": [
+          0,
+          2
+        ],
+        "finished": false,
+        "ticks": 171,
+        "unityError": null,
+        "held": false
+      },
+      "at": 1791540573321
+    },
+    {
+      "k": "fullscreen",
+      "v": {
+        "layout": true,
+        "element": "match-area",
+        "unityReady": true
+      },
+      "at": 1791540574504
+    },
+    {
+      "k": "end",
+      "v": {
+        "minute": 99,
+        "phase": "finished",
+        "score": [
+          0,
+          2
+        ],
+        "finished": true,
+        "ticks": 121,
+        "unityError": null,
+        "held": false
+      },
+      "at": 1791540621154
+    },
+    {
+      "k": "endMs",
+      "v": 45596,
+      "at": 1791540621154
+    },
+    {
+      "k": "pingsMs",
+      "v": [
+        4,
+        1,
+        0,
+        2,
+        1,
+        1
+      ],
+      "at": 1791540624214
+    },
+    {
+      "k": "rafPer2s",
+      "v": 8,
+      "at": 1791540626381
+    },
+    {
+      "k": "viewport",
+      "v": {
+        "w": 1280,
+        "h": 800,
+        "canvas": {
+          "id": "",
+          "tag": "IFRAME",
+          "w": 1280,
+          "h": 800
+        }
+      },
+      "at": 1791540626386
+    },
+    {
+      "k": "afterWhistle",
+      "v": {
+        "layout": true,
+        "element": "match-area",
+        "phase": "finished",
+        "finished": true,
+        "score": [
+          0,
+          2
+        ],
+        "unity": {
+          "ready": true,
+          "lastError": null,
+          "clockHeld": false
+        },
+        "tv": "LIGASPIEL · SPIELTAG 1 BRE 2 : 0 FRE 90:00 +5 ABPFIFF",
+        "dialogs": [
+          {
+            "id": "v47-match-report",
+            "cls": "fl-dialog",
+            "text": "Spielbericht Spielende · Noten von 1 bis 10 · T = Tore · V = Vorlagen Weiter → × FC Bremen Weser (3.) Mees Bakker 8′, 19′ 2 : 0 SC Freiburg Tal (6.) Tabellenplätze entsprechen dem aktuellen Stand. MAN OF THE MATCH Mees Bakker FC Bremen Weser · Note 8,6 Teamstatistik Teamstatistik FB SF Schüsse 4 0 Aufs Tor 2 0 Ballbesitz 57 % 43 % Passquote 96 % 77 % Gewonnene Zweikämpfe 5 4 Hohe Pässe 0 1 Flanken 0 1 Kopfballschüsse 0 0 Volleyschüsse 0 0 Ecken 0 0 Fouls 0 4 Freistöße 4 0 Elfmeter 0 0 FC Bremen "
+          }
+        ],
+        "report": true,
+        "title": "Doppel 6 · Fußballmanager"
+      },
+      "at": 1791540626388
+    },
+    {
+      "k": "after6s",
+      "v": {
+        "layout": true,
+        "element": "match-area",
+        "phase": "finished",
+        "finished": true,
+        "score": [
+          0,
+          2
+        ],
+        "unity": {
+          "ready": true,
+          "lastError": null,
+          "clockHeld": false
+        },
+        "tv": "LIGASPIEL · SPIELTAG 1 BRE 2 : 0 FRE 90:00 +5 ABPFIFF",
+        "dialogs": [
+          {
+            "id": "v47-match-report",
+            "cls": "fl-dialog",
+            "text": "Spielbericht Spielende · Noten von 1 bis 10 · T = Tore · V = Vorlagen Weiter → × FC Bremen Weser (3.) Mees Bakker 8′, 19′ 2 : 0 SC Freiburg Tal (6.) Tabellenplätze entsprechen dem aktuellen Stand. MAN OF THE MATCH Mees Bakker FC Bremen Weser · Note 8,6 Teamstatistik Teamstatistik FB SF Schüsse 4 0 Aufs Tor 2 0 Ballbesitz 57 % 43 % Passquote 96 % 77 % Gewonnene Zweikämpfe 5 4 Hohe Pässe 0 1 Flanken 0 1 Kopfballschüsse 0 0 Volleyschüsse 0 0 Ecken 0 0 Fouls 0 4 Freistöße 4 0 Elfmeter 0 0 FC Bremen "
+          }
+        ],
+        "report": true,
+        "title": "Doppel 6 · Fußballmanager"
+      },
+      "at": 1791540633588
+    },
+    {
+      "k": "longTasksMs",
+      "v": [],
+      "at": 1791540633589
+    }
+  ]
+}

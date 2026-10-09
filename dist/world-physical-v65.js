@@ -91,16 +91,20 @@ function v65Snapshot(context){
 }
 function v65Restore(context){
  const saved=context.state.physicalSnapshot;if(!saved?.match)return false;
- match=saved.match;match.flight=null;match.slide=null;
+ // Restoring must not turn the stored ID snapshot into the mutable live match.
+ // Otherwise an intervening save loses restart IDs before the next snapshot.
+ match=structuredClone(saved.match);match.flight=null;match.slide=null;
  if(match.attackFlow?.flowVersion===159&&Number.isFinite(match.nativeContactClock)&&typeof v102State==='function')v102State(match).clock=match.nativeContactClock;
  const find=pid=>match.people.find(person=>person.pid===pid)||match.exitedPeople?.find(person=>person.pid===pid);
  v160RestoreContinuation(match,find);
  if(match.breakawayCarrierPid!==undefined){match.breakawayCarrier=find(match.breakawayCarrierPid)||null;delete match.breakawayCarrierPid;}
- match.owner=find(match.ownerPid)||null;delete match.ownerPid;
- if(match.lastPass)match.lastPass={passer:find(match.lastPass.passerPid),receiver:find(match.lastPass.receiverPid),at:match.lastPass.at};
- if(match.setPiece){match.setPiece.taker=find(match.setPiece.takerPid);delete match.setPiece.takerPid}
- if(match.throwIn){match.throwIn.taker=find(match.throwIn.takerPid);delete match.throwIn.takerPid}
- if(match.kickoff){match.kickoff.kicker=find(match.kickoff.kickerPid);match.kickoff.support=find(match.kickoff.supportPid);delete match.kickoff.kickerPid;delete match.kickoff.supportPid}
+ // A snapshot already saved after the former in-place restore can contain the
+ // player object instead of its ID. Bind its existing pid; never regenerate it.
+ match.owner=find(match.ownerPid||match.owner?.pid)||null;delete match.ownerPid;
+ if(match.lastPass)match.lastPass={passer:find(match.lastPass.passerPid||match.lastPass.passer?.pid),receiver:find(match.lastPass.receiverPid||match.lastPass.receiver?.pid),at:match.lastPass.at};
+ if(match.setPiece){match.setPiece.taker=find(match.setPiece.takerPid||match.setPiece.taker?.pid);delete match.setPiece.takerPid}
+ if(match.throwIn){match.throwIn.taker=find(match.throwIn.takerPid||match.throwIn.taker?.pid);delete match.throwIn.takerPid}
+ if(match.kickoff){match.kickoff.kicker=find(match.kickoff.kickerPid||match.kickoff.kicker?.pid);match.kickoff.support=find(match.kickoff.supportPid||match.kickoff.support?.pid);delete match.kickoff.kickerPid;delete match.kickoff.supportPid}
  $('#log').innerHTML=saved.log||'';$('#event').textContent=saved.event||'';
  if(match.setPiece?.type==='penalty')v50PenaltyVisual(match.setPiece,null);
  else if(match.setPiece)showOverlay(match.setPiece.type==='corner'?'ECKBALL':'FREISTOSS',`${v65Club(context,match.setPiece.team).name} · ${match.setPiece.taker?.name||''}`);

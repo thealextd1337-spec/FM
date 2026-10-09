@@ -185,8 +185,8 @@ function v55Out(hit,lastTouch,description){
  if(lastTouch===attacker)v50GoalKick(v50Keeper(defender),`${description} Abstoß für ${v50Name(defender)}.`);
  else v50Corner(attacker,hit.x,description);
 }
-function v55GroundPass(passer,receiver,kind='pass',exempt=false){
- if(typeof v157QueueTurn==='function'&&v157QueueTurn(match,passer,receiver,kind==='header'?'header':'ground',{exempt}))return;
+function v55GroundPass(passer,receiver,kind='pass',exempt=false,options={}){
+ if(typeof v157QueueTurn==='function'&&v157QueueTurn(match,passer,receiver,kind==='header'?'header':'ground',{...options,exempt}))return;
  if(typeof v155AttemptPass==='function')v155AttemptPass(match,passer,receiver);
  if(typeof v152AfterPass==='function'&&kind==='pass')v152AfterPass(match,passer,receiver);
  const m=match,snapshot=v55OffsideSnapshot(passer,exempt),from={x:m.ball.x,y:m.ball.y},header=kind==='header'&&typeof v65WorldActive!=='undefined'&&v65WorldActive,pressure=m.people.filter(player=>player.t!==passer.t&&!player.keeper&&(header?v122Metres(player,passer)<2:distance(player,passer)<.15)).length;
@@ -509,7 +509,7 @@ v50TakeFreeKick=function(setPiece){
  if(setPiece.type!=='offside'&&goalDistance<.38&&setPiece.spot.x>.18&&setPiece.spot.x<.82&&random()<.65){note(`${taker.name} versucht es direkt mit dem Freistoß.`,'restart');v55Shoot(taker,'direct-free-kick');return}
  const allies=v50Outfield(team).filter(player=>player!==taker),receiver=setPiece.type==='offside'?[...allies].sort((a,b)=>distance(a,taker)-distance(b,taker))[0]:[...allies].sort((a,b)=>(team===0?a.y-b.y:b.y-a.y)||distance(a,taker)-distance(b,taker))[0];
  note(`${taker.name} spielt den Freistoß ${setPiece.type==='offside'?'nach Abseits kurz ':''}auf ${receiver.name}.`,'restart');
- v55GroundPass(taker,receiver);
+ v55GroundPass(taker,receiver,'pass',false,{restart:true});
 };
 
 const v55BaseVersion=v50Version;

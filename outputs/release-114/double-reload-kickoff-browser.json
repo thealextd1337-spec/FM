@@ -1,0 +1,171 @@
+{
+  "kind": "kickoff",
+  "engine": "browser",
+  "id": "633b9d4d-14cb-4168-9df1-35521f006033",
+  "reached": {
+    "ok": true,
+    "minute": 11,
+    "kickoff": "waiting",
+    "setPiece": null
+  },
+  "storedFirst": {
+    "phase": "paused",
+    "minute": 11,
+    "kickoff": {
+      "phase": "waiting",
+      "kickerPid": "unity-v160-large-6:GER-4:9",
+      "kickerObject": false
+    },
+    "setPiece": null,
+    "ownerPid": null,
+    "ownerObject": false
+  },
+  "afterFirstOpen": {
+    "phase": "paused",
+    "elapsed": 9.554999999999964,
+    "running": false,
+    "kicker": "unity-v160-large-6:GER-4:9",
+    "taker": null,
+    "owner": null,
+    "overlay": "3 | SC Freiburg Tal hat Anstoß",
+    "alias": true,
+    "tickErrors": []
+  },
+  "storedAfterShowStart": {
+    "phase": "paused",
+    "minute": 11,
+    "kickoff": {
+      "phase": "waiting",
+      "kickerPid": "unity-v160-large-6:GER-4:9",
+      "kickerObject": false
+    },
+    "setPiece": null,
+    "ownerPid": null,
+    "ownerObject": false
+  },
+  "afterSecondOpen": {
+    "phase": "paused",
+    "elapsed": 9.554999999999964,
+    "running": false,
+    "kicker": "unity-v160-large-6:GER-4:9",
+    "taker": null,
+    "owner": null,
+    "overlay": "3 | SC Freiburg Tal hat Anstoß",
+    "alias": true,
+    "tickErrors": []
+  },
+  "afterResume": [
+    {
+      "phase": "live",
+      "elapsed": 9.554999999999964,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "3 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.554999999999964,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "2 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.554999999999964,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "1 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.554999999999964,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "1 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.554999999999964,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "ANPFIFF | Gleich rollt der Ball",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.554999999999964,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "ANPFIFF | Gleich rollt der Ball",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.554999999999964,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.554999999999964,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 9.98298600001391,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 10.366902000004607,
+      "running": true,
+      "kicker": null,
+      "taker": null,
+      "owner": "unity-v160-large-6:GER-4:3",
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    }
+  ],
+  "v65Error": "(element missing)",
+  "errors": []
+}

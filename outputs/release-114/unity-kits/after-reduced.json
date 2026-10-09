@@ -1,0 +1,92 @@
+{
+ "label": "after",
+ "quality": "reduced",
+ "setup": {
+  "ready": true,
+  "error": null
+ },
+ "kits": {
+  "user": {
+   "main": "#398b5b",
+   "pattern": "#f3f5f2",
+   "accent": "#d9ab45",
+   "style": "stripe",
+   "trim": "#f3f5f2"
+  },
+  "opponent": {
+   "main": "#f1e5cc",
+   "pattern": "#315b42",
+   "accent": "#dc9a32",
+   "style": "solid",
+   "trim": "#315b42"
+  },
+  "userKeeper": {
+   "id": "blue",
+   "main": "#6a88df",
+   "trim": "#f3f5f2",
+   "style": "solid"
+  },
+  "opponentKeeper": {
+   "id": "magenta",
+   "main": "#ed53b7",
+   "trim": "#f3f5f2",
+   "style": "solid"
+  }
+ },
+ "source": {
+  "source": null
+ },
+ "live": {
+  "replay": false,
+  "ball": [
+   4.134932170542637,
+   0.3457285731723154,
+   0
+  ],
+  "camera": {
+   "position": [
+    2.4804449723884154,
+    19.571255590890985,
+    28.88965624796942
+   ],
+   "target": [
+    6.8297971792574454,
+    0.010030010240882316,
+    -0.000017509725001348884
+   ],
+   "fov": 42
+  }
+ },
+ "review": {
+  "timeline": 8,
+  "phase": "paused",
+  "replayPicture": true,
+  "pictureElapsed": 7.526999999999979,
+  "liveElapsed": 7.994999999999975,
+  "players": 14,
+  "labelsDisabled": true,
+  "panel": true
+ },
+ "replay": {
+  "replay": true,
+  "ball": [
+   4.134932170542637,
+   0.3457285731723154,
+   0
+  ],
+  "camera": {
+   "position": [
+    2.4707594147494247,
+    19.530883696188337,
+    28.830474243330755
+   ],
+   "target": [
+    6.833365778131018,
+    0.010026556483813731,
+    0.00004418197143853116
+   ],
+   "fov": 42
+  }
+ },
+ "errors": []
+}

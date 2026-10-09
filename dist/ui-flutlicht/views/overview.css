@@ -26,6 +26,8 @@
 .fl-shell .fl-overview-sponsor{display:flex;flex-direction:column;align-items:center;gap:8px;order:-1;min-height:44px;width:100%;color:var(--fl-accent);text-decoration:none}
 .fl-shell .fl-overview-sponsor>svg{display:block;width:100%!important;max-width:175px;height:auto!important;max-height:62px}
 .fl-shell .fl-overview-sponsor>small{font-size:10px}
+.fl-shell .fl-overview-versus{font:600 22px/1.4 var(--fl-font);color:var(--fl-muted)}
+.fl-shell .fl-overview-versus .fl-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .fl-shell .fl-overview .v62-first-leg-score{padding:0;color:var(--fl-ink)}
 .fl-shell .fl-overview .fl-overview-goals{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:18px}
 .fl-shell .fl-overview-goal{display:grid;gap:5px;min-width:0;padding:9px 12px;border:1px solid var(--fl-line);border-radius:7px;background:var(--fl-surface);color:var(--fl-ink);text-decoration:none;font-size:12px;text-align:left}
@@ -105,9 +107,9 @@
 .fl-shell .fl-overview-finance dt{color:var(--fl-muted);min-width:0;overflow-wrap:anywhere}
 .fl-shell .fl-overview-finance dd{font-weight:650;font-variant-numeric:tabular-nums;margin:0;white-space:nowrap}
 .fl-shell .fl-overview-finance .fl-overview-finance-total dd{color:var(--fl-accent)}
-/* Neutral brand plates preserve national artwork contrast throughout management views. */
-#v61-world-screen .fl-content .v66-sponsor-logo>rect:first-child[fill="#18302e"]{fill:#252f3a}
-#v61-world-screen .fl-content .v66-sponsor-logo>rect:first-child:is([fill="#f7f4e9"],[fill="#f5f5ef"]){fill:#f5f7f9}
+/* Wordmarks sit directly on the current management surface. National icons keep their colours. */
+#v61-world-screen .fl-content .v66-sponsor-brand .v66-sponsor-logo[data-v66-brand]{color:var(--fl-ink)!important}
+#v61-world-screen .fl-content .v66-sponsor-brand .v66-sponsor-logo[data-v66-brand]>rect:first-child{fill:transparent}
 @media(max-width:1100px){
  .fl-shell .fl-overview-grid{grid-template-columns:minmax(0,1fr)}
  .fl-shell .fl-overview-main{display:contents}
@@ -125,10 +127,11 @@
  .fl-shell .fl-overview .fl-overview-fixture{padding:16px 12px}
  .fl-shell .fl-overview .fl-overview-fixture-heading{grid-template-columns:1fr;gap:5px;margin-bottom:18px}
  .fl-shell .fl-overview-fixture-heading>small{grid-column:1;grid-row:auto;justify-self:start;max-width:100%}
- .fl-shell .fl-overview .fl-overview-teams{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 8px}
- .fl-shell .fl-overview .fl-overview-center{grid-column:1/-1;grid-row:1;padding:0;flex-direction:row;justify-content:center;flex-wrap:wrap}
- .fl-shell .fl-overview-team:nth-of-type(1){grid-column:1;grid-row:2}.fl-shell .fl-overview-team:nth-of-type(2){grid-column:2;grid-row:2}
- .fl-shell .fl-overview-sponsor{width:auto;max-width:175px}.fl-shell .fl-overview-sponsor>small{display:none}
+ .fl-shell .fl-overview .fl-overview-teams{grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr);gap:12px 4px}
+ .fl-shell .fl-overview .fl-overview-center{display:contents}
+ .fl-shell .fl-overview-team:nth-of-type(1){grid-column:1;grid-row:2}.fl-shell .fl-overview-team:nth-of-type(2){grid-column:3;grid-row:2}
+ .fl-shell .fl-overview-versus{grid-column:2;grid-row:2;align-self:start;padding-top:67px;text-align:center}
+ .fl-shell .fl-overview-sponsor{grid-column:1/-1;grid-row:1;justify-self:center;width:175px;max-width:100%;gap:2px}.fl-shell .fl-overview-sponsor>small{display:block}
  .fl-shell .fl-overview-team>strong{font-size:13px}.fl-shell .fl-overview-team>.v49-side{font-size:11px}
  .fl-shell .fl-overview-results .fl-result>span{width:21px;height:24px;font-size:11px}
  .fl-shell .fl-overview-goals{align-items:stretch}.fl-shell .fl-overview-goal{flex:1 1 160px;padding:8px;font-size:11px}

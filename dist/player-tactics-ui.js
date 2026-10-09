@@ -45,9 +45,14 @@
     var selected = allowed.find(function (entry) { return entry.id === id; }) || recommended.find(function (entry) { return entry.id === id && entry.position === assignment.position; });
     return {id: id, label: roleLabel(id, assignment.label), band: selected ? selected.band : 'unknown', colorLabel: selected ? selected.colorLabel : ''};
   }
-  function dot(entry, labels) {
-    var color = entry.colorLabel || label(labels, 'empty', 'Noch nicht bewertet');
+  function dot(entry, labels, qualitative) {
+    var color = qualitative ? suitability(entry, labels) : entry.colorLabel || label(labels, 'empty', 'Noch nicht bewertet');
     return '<span class="d6-role-suitability fl-band-' + band(entry.band) + '" role="img" aria-label="' + escape(label(labels, 'suitability', 'Eignung') + ': ' + color) + '" title="' + escape(label(labels, 'suitability', 'Eignung') + ': ' + color) + '"><i aria-hidden="true"></i></span>';
+  }
+  function suitability(entry, labels) {
+    var names={violetgray:'Sehr schwach',bluegray:'Schwach',yellow:'Normal',orange:'Gut',pink:'Sehr gut'};
+    var name=names[entry.band] || label(labels, 'empty', 'Noch nicht bewertet');
+    return label(labels, entry.band, root && root.doppel6Language ? root.doppel6Language.localize(name) : name);
   }
   function importantMark() {
     return '<svg class="d6-role-important-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="m3 8 3 3 7-7"/></svg>';
@@ -83,12 +88,12 @@
     var allowed = roleList(input.allowedRoles), pid = text(input.pid), name = text(input.name), roleText = label(labels, 'role', 'Rolle');
     var hasSelected = allowed.some(function (entry) { return entry.id === id; });
     var options = hasSelected ? '' : '<option value="" disabled selected>' + escape(label(labels, 'empty', 'Rolle auswählen')) + '</option>';
-    options += allowed.map(function (entry) { return '<option value="' + escape(entry.id) + '"' + (entry.id === id ? ' selected' : '') + '>' + escape(entry.label + (entry.colorLabel ? ' · ' + entry.colorLabel : '')) + '</option>'; }).join('');
+    options += allowed.map(function (entry) { return '<option value="' + escape(entry.id) + '"' + (entry.id === id ? ' selected' : '') + ' title="' + escape(suitability(entry, labels)) + '" aria-label="' + escape(entry.label + ': ' + suitability(entry, labels)) + '"' + '>' + escape(entry.label) + '</option>'; }).join('');
     var orientation = [-1, 0, 1].indexOf(assignment.orientation) >= 0 ? assignment.orientation : 0;
     var orientationMarkup = assignment.position === 'gk' ? '' : '<fieldset class="d6-role-orientation v64-orientation"><legend>' + escape(label(labels, 'orientation', 'Individuelle Ausrichtung')) + '</legend><div class="d6-role-segmented">' + [[-1, label(labels, 'defensive', 'Defensiv')], [0, label(labels, 'neutral', 'Neutral')], [1, label(labels, 'offensive', 'Offensiv')]].map(function (entry) {
       return '<button type="button" data-v64-orientation="' + entry[0] + '" data-d6-orientation-player="' + escape(pid) + '" aria-pressed="' + (orientation === entry[0]) + '"' + (orientation === entry[0] ? ' class="active"' : '') + '>' + escape(entry[1]) + '</button>';
     }).join('') + '</div></fieldset>';
-    return '<section class="d6-role-control" aria-label="' + escape(roleText + (name ? ': ' + name : '')) + '"><label class="d6-role-picker"><span>' + escape(roleText) + '</span><span class="d6-role-select-row"><select data-d6-role="' + escape(pid) + '" aria-label="' + escape(roleText + (name ? ': ' + name : '')) + '"' + (!allowed.length ? ' disabled' : '') + '>' + options + '</select>' + (selected ? dot(selected, labels) : '') + '</span></label>' + orientationMarkup + importantSkills(input, labels) + '</section>';
+    return '<section class="d6-role-control" aria-label="' + escape(roleText + (name ? ': ' + name : '')) + '"><label class="d6-role-picker"><span>' + escape(roleText) + '</span><span class="d6-role-select-row"><select title="' + escape(selected ? suitability(selected, labels) : label(labels, 'empty', 'Noch nicht bewertet')) + '" data-d6-role="' + escape(pid) + '" aria-label="' + escape(roleText + (name ? ': ' + name : '')) + '"' + (!allowed.length ? ' disabled' : '') + '>' + options + '</select>' + (selected ? dot(selected, labels, true) : '') + '</span></label>' + orientationMarkup + importantSkills(input, labels) + '</section>';
   }
   function renderRoleZone(zone, labels) {
     var input = object(zone);

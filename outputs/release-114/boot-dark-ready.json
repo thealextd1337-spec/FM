@@ -1,0 +1,14 @@
+{
+  "toolIcon": {
+    "_tag": "website",
+    "pageUrl": "http://127.0.0.1:4522/source/index.html?boot=dark114"
+  },
+  "value": {
+    "href": "http://127.0.0.1:4522/source/index.html?boot=dark114",
+    "boot": null,
+    "overlay": false,
+    "ready": true,
+    "theme": "dark",
+    "background": "rgb(17, 21, 26)"
+  }
+}

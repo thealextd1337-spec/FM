@@ -1,0 +1,87 @@
+{
+  "base": "http://127.0.0.1:4521/source/index.html",
+  "delayMs": 9000,
+  "failures": 0,
+  "results": [
+    {
+      "scenario": "switch-2d",
+      "name": "held while Unity loads",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0|2|waiting||||139.951277"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0|2|waiting||||139.951277"
+        }
+      }
+    },
+    {
+      "scenario": "switch-2d",
+      "name": "choosing 2D releases the clock at once",
+      "ok": true,
+      "detail": {
+        "b": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0|2|waiting||||139.951277"
+        },
+        "c": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0.4066139999860525,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": false,
+          "error": null,
+          "view": "2d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0.4066139999860525|0|rolling||||139.951277"
+        }
+      }
+    },
+    {
+      "scenario": "switch-2d",
+      "name": "no page errors",
+      "ok": true,
+      "detail": []
+    }
+  ]
+}

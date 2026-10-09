@@ -172,7 +172,7 @@ step=function(delta,realDelta){
    else if(current.owner!==kick.keeper||current.setPiece||current.kickoff||current.goalPause>0)state.kicks.delete(id);
   }
   for(const poses of [state.keepers,state.throws])for(const [id,pose]of poses){
-   if(pose.completed){pose.age+=dt;if(pose.age>(pose.kind==='throw'?.32:typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeBall?1.55:.95))poses.delete(id)}
+   if(pose.completed){pose.age+=dt;if(pose.age>(pose.kind==='throw'?.32:current.attackFlow?.flowVersion===159||typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeBall?1.55:.95))poses.delete(id)}
    else if(current.flight!==pose.flight)poses.delete(id);
   }
   if(state.miss){state.miss.age+=dt;if(state.miss.age>1.5)state.miss=null}
@@ -226,7 +226,7 @@ function v99BallView(current){
 }
 function v99PlayerAction(current,person){
  if(current.finished)return null;
- const native=typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeBall;
+ const native=current.attackFlow?.flowVersion===159||typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeBall;
  const smother=typeof v115KeeperChallengeAction==='function'&&v115KeeperChallengeAction(current,person);if(smother)return smother;
  if(v65WorldActive&&current.kickoff?.kicker===person&&current.kickoff.phase!=='rolling'&&v115KickoffReady(current))return {kind:'passReady',progress:current.postBanner?Math.min(1,Math.max(0,1-current.postBanner.wait/.35)):0,target:current.kickoff.support};
  if(current.throwIn?.taker===person&&current.throwIn.ready>0)return {kind:'throw',progress:Math.min(1,current.throwIn.ready/.55),holding:true,pickup:Math.min(1,current.throwIn.ready/.35),target:{x:person.x+(person.x<.5?.15:-.15),y:person.y}};

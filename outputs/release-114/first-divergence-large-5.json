@@ -1,0 +1,16 @@
+{
+ "config": "large-5",
+ "firstDiff": 33,
+ "beforeMatchDiff": [],
+ "beforeMapsDiff": [],
+ "atMatchDiff": [],
+ "atMapsDiff": [
+  "v102"
+ ],
+ "details": {
+  "at.v102": [
+   "{\"clock\":114.49999999999564,\"serial\":1,\"poses\":[[\"unity-v160-large-5:GER-2:1\",{\"id\":1,\"kind\":\"pass\",\"target\":{\"x\":0.2538443083519572,\"y\":0.8188237036658284},\"contact\":null,\"at\":114.49999999999564,\"duration\":0.4}]],\"loose\":null}",
+   "{\"clock\":114.49999999999564,\"serial\":1,\"poses\":[[\"unity-v160-large-5:GER-2:1\",{\"id\":1,\"kind\":\"pass\",\"target\":{\"x\":0.2538443083519572,\"y\":0.8188237036658284},\"contact\":null,\"at\":114.49999999999564,\"duration\":0.62}]],\"loose\":null}"
+  ]
+ }
+}

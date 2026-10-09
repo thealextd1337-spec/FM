@@ -1,0 +1,1159 @@
+{
+  "base": "http://127.0.0.1:4521/source/index.html",
+  "delayMs": 9000,
+  "failures": 0,
+  "results": [
+    {
+      "scenario": "reload-live-18",
+      "name": "reopened live at the saved minute",
+      "ok": true,
+      "detail": {
+        "phase": "live",
+        "minute": 16,
+        "elapsed": 14.0349299999767,
+        "running": true,
+        "halftime": false,
+        "held": true,
+        "ready": false,
+        "error": null,
+        "view": "3d",
+        "failed": false,
+        "ackPlayers": null,
+        "people": 14,
+        "sig": "14.0349299999767|0|||||115.479635"
+      }
+    },
+    {
+      "scenario": "reload-live-18",
+      "name": "Unity still loading during the hold window",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 16,
+          "elapsed": 14.0349299999767,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "14.0349299999767|0|||||115.479635"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 16,
+          "elapsed": 14.0349299999767,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "14.0349299999767|0|||||115.479635"
+        }
+      }
+    },
+    {
+      "scenario": "reload-live-18",
+      "name": "native state frozen while Unity loads (clock, countdowns, positions)",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 16,
+          "elapsed": 14.0349299999767,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "14.0349299999767|0|||||115.479635"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 16,
+          "elapsed": 14.0349299999767,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "14.0349299999767|0|||||115.479635"
+        }
+      }
+    },
+    {
+      "scenario": "reload-live-18",
+      "name": "phase unchanged while held",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 16,
+          "elapsed": 14.0349299999767,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "14.0349299999767|0|||||115.479635"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 16,
+          "elapsed": 14.0349299999767,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "14.0349299999767|0|||||115.479635"
+        }
+      }
+    },
+    {
+      "scenario": "reload-live-18",
+      "name": "first ack carries all players",
+      "ok": true,
+      "detail": {
+        "phase": "live",
+        "minute": 16,
+        "elapsed": 14.1129299999767,
+        "running": true,
+        "halftime": false,
+        "held": false,
+        "ready": true,
+        "error": null,
+        "view": "3d",
+        "failed": false,
+        "ackPlayers": 14,
+        "people": 14,
+        "sig": "14.1129299999767|0|||||116.076416"
+      }
+    },
+    {
+      "scenario": "reload-live-18",
+      "name": "clock had not advanced before the ack",
+      "ok": true,
+      "detail": {
+        "b": {
+          "phase": "live",
+          "minute": 16,
+          "elapsed": 14.0349299999767,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "14.0349299999767|0|||||115.479635"
+        },
+        "c": {
+          "phase": "live",
+          "minute": 16,
+          "elapsed": 14.1129299999767,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 14,
+          "people": 14,
+          "sig": "14.1129299999767|0|||||116.076416"
+        }
+      }
+    },
+    {
+      "scenario": "reload-live-18",
+      "name": "native match continues after the ack",
+      "ok": true,
+      "detail": {
+        "c": {
+          "phase": "live",
+          "minute": 16,
+          "elapsed": 14.1129299999767,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 14,
+          "people": 14,
+          "sig": "14.1129299999767|0|||||116.076416"
+        },
+        "d": {
+          "phase": "live",
+          "minute": 17,
+          "elapsed": 14.508857999995293,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 14,
+          "people": 14,
+          "sig": "14.508857999995293|0|||||118.532896"
+        }
+      }
+    },
+    {
+      "scenario": "reload-live-18",
+      "name": "real loop continues with Unity",
+      "ok": true,
+      "detail": {
+        "phase": "live",
+        "minute": 19,
+        "elapsed": 16.17197400000924,
+        "running": true,
+        "halftime": false,
+        "held": false,
+        "ready": true,
+        "error": null,
+        "view": "3d",
+        "failed": false,
+        "ackPlayers": 14,
+        "people": 14,
+        "sig": "16.17197400000924|0|||||115.314628"
+      }
+    },
+    {
+      "scenario": "reload-live-18",
+      "name": "complete remaining match finishes",
+      "ok": true,
+      "detail": {
+        "finished": true,
+        "phase": "finished",
+        "error": null
+      }
+    },
+    {
+      "scenario": "reload-live-18",
+      "name": "no page errors",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "scenario": "reload-paused",
+      "name": "Unity still loading during the hold window",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "paused",
+          "minute": 12,
+          "elapsed": 10.02299999999996,
+          "running": false,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "10.02299999999996|0|||||141.080590"
+        },
+        "b": {
+          "phase": "paused",
+          "minute": 12,
+          "elapsed": 10.02299999999996,
+          "running": false,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "10.02299999999996|0|||||141.080590"
+        }
+      }
+    },
+    {
+      "scenario": "reload-paused",
+      "name": "native state frozen while Unity loads (clock, countdowns, positions)",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "paused",
+          "minute": 12,
+          "elapsed": 10.02299999999996,
+          "running": false,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "10.02299999999996|0|||||141.080590"
+        },
+        "b": {
+          "phase": "paused",
+          "minute": 12,
+          "elapsed": 10.02299999999996,
+          "running": false,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "10.02299999999996|0|||||141.080590"
+        }
+      }
+    },
+    {
+      "scenario": "reload-paused",
+      "name": "phase unchanged while held",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "paused",
+          "minute": 12,
+          "elapsed": 10.02299999999996,
+          "running": false,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "10.02299999999996|0|||||141.080590"
+        },
+        "b": {
+          "phase": "paused",
+          "minute": 12,
+          "elapsed": 10.02299999999996,
+          "running": false,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "10.02299999999996|0|||||141.080590"
+        }
+      }
+    },
+    {
+      "scenario": "reload-paused",
+      "name": "first ack carries all players",
+      "ok": true,
+      "detail": {
+        "phase": "paused",
+        "minute": 12,
+        "elapsed": 10.02299999999996,
+        "running": false,
+        "halftime": false,
+        "held": false,
+        "ready": true,
+        "error": null,
+        "view": "3d",
+        "failed": false,
+        "ackPlayers": 14,
+        "people": 14,
+        "sig": "10.02299999999996|0|||||141.080590"
+      }
+    },
+    {
+      "scenario": "reload-paused",
+      "name": "clock had not advanced before the ack",
+      "ok": true,
+      "detail": {
+        "b": {
+          "phase": "paused",
+          "minute": 12,
+          "elapsed": 10.02299999999996,
+          "running": false,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "10.02299999999996|0|||||141.080590"
+        },
+        "c": {
+          "phase": "paused",
+          "minute": 12,
+          "elapsed": 10.02299999999996,
+          "running": false,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 14,
+          "people": 14,
+          "sig": "10.02299999999996|0|||||141.080590"
+        }
+      }
+    },
+    {
+      "scenario": "reload-paused",
+      "name": "genuine pause is not resumed by the ack",
+      "ok": true,
+      "detail": {
+        "c": {
+          "phase": "paused",
+          "minute": 12,
+          "elapsed": 10.02299999999996,
+          "running": false,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 14,
+          "people": 14,
+          "sig": "10.02299999999996|0|||||141.080590"
+        },
+        "d": {
+          "phase": "paused",
+          "minute": 12,
+          "elapsed": 10.02299999999996,
+          "running": false,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 14,
+          "people": 14,
+          "sig": "10.02299999999996|0|||||141.080590"
+        }
+      }
+    },
+    {
+      "scenario": "reload-paused",
+      "name": "user resume continues after load",
+      "ok": true,
+      "detail": {
+        "phase": "live",
+        "minute": 13,
+        "elapsed": 11.32224599996741,
+        "running": true,
+        "halftime": false,
+        "held": false,
+        "ready": true,
+        "error": null,
+        "view": "3d",
+        "failed": false,
+        "ackPlayers": 14,
+        "people": 14,
+        "sig": "11.32224599996741|0|||||139.702479"
+      }
+    },
+    {
+      "scenario": "reload-paused",
+      "name": "no page errors",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "scenario": "reload-halftime",
+      "name": "reached halftime",
+      "ok": true,
+      "detail": {
+        "stopped": "halftime",
+        "minute": 49,
+        "score": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "scenario": "reload-halftime",
+      "name": "halftime pause kept after reload",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "paused",
+          "minute": 49,
+          "elapsed": 41.666666666666664,
+          "running": false,
+          "halftime": true,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "41.666666666666664|0||||2|164.170910"
+        },
+        "b": {
+          "phase": "paused",
+          "minute": 49,
+          "elapsed": 41.666666666666664,
+          "running": false,
+          "halftime": true,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "41.666666666666664|0||||2|164.170910"
+        }
+      }
+    },
+    {
+      "scenario": "reload-halftime second half",
+      "name": "Unity still loading during the hold window",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 49,
+          "elapsed": 41.666666666666664,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "41.666666666666664|2|banner|1.65||0|145.088723"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 49,
+          "elapsed": 41.666666666666664,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "41.666666666666664|2|banner|1.65||0|145.088723"
+        }
+      }
+    },
+    {
+      "scenario": "reload-halftime second half",
+      "name": "native state frozen while Unity loads (clock, countdowns, positions)",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 49,
+          "elapsed": 41.666666666666664,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "41.666666666666664|2|banner|1.65||0|145.088723"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 49,
+          "elapsed": 41.666666666666664,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "41.666666666666664|2|banner|1.65||0|145.088723"
+        }
+      }
+    },
+    {
+      "scenario": "reload-halftime second half",
+      "name": "phase unchanged while held",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 49,
+          "elapsed": 41.666666666666664,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "41.666666666666664|2|banner|1.65||0|145.088723"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 49,
+          "elapsed": 41.666666666666664,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "41.666666666666664|2|banner|1.65||0|145.088723"
+        }
+      }
+    },
+    {
+      "scenario": "reload-halftime second half",
+      "name": "first ack carries all players",
+      "ok": true,
+      "detail": {
+        "phase": "live",
+        "minute": 49,
+        "elapsed": 41.666666666666664,
+        "running": true,
+        "halftime": false,
+        "held": false,
+        "ready": true,
+        "error": null,
+        "view": "3d",
+        "failed": false,
+        "ackPlayers": 14,
+        "people": 14,
+        "sig": "41.666666666666664|2|banner|1.5499999999999998||0|145.088723"
+      }
+    },
+    {
+      "scenario": "reload-halftime second half",
+      "name": "clock had not advanced before the ack",
+      "ok": true,
+      "detail": {
+        "b": {
+          "phase": "live",
+          "minute": 49,
+          "elapsed": 41.666666666666664,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "41.666666666666664|2|banner|1.65||0|145.088723"
+        },
+        "c": {
+          "phase": "live",
+          "minute": 49,
+          "elapsed": 41.666666666666664,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 14,
+          "people": 14,
+          "sig": "41.666666666666664|2|banner|1.5499999999999998||0|145.088723"
+        }
+      }
+    },
+    {
+      "scenario": "reload-halftime second half",
+      "name": "native match continues after the ack",
+      "ok": true,
+      "detail": {
+        "c": {
+          "phase": "live",
+          "minute": 49,
+          "elapsed": 41.666666666666664,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 14,
+          "people": 14,
+          "sig": "41.666666666666664|2|banner|1.5499999999999998||0|145.088723"
+        },
+        "d": {
+          "phase": "live",
+          "minute": 50,
+          "elapsed": 42.00526466666203,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 14,
+          "people": 14,
+          "sig": "42.00526466666203|2|rolling|||0|145.088723"
+        }
+      }
+    },
+    {
+      "scenario": "reload-halftime",
+      "name": "no page errors",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "scenario": "fresh-start",
+      "name": "Unity still loading during the hold window",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 12,
+          "sig": "0|2|waiting||||118.775533"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 12,
+          "sig": "0|2|waiting||||118.775533"
+        }
+      }
+    },
+    {
+      "scenario": "fresh-start",
+      "name": "native state frozen while Unity loads (clock, countdowns, positions)",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 12,
+          "sig": "0|2|waiting||||118.775533"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 12,
+          "sig": "0|2|waiting||||118.775533"
+        }
+      }
+    },
+    {
+      "scenario": "fresh-start",
+      "name": "phase unchanged while held",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 12,
+          "sig": "0|2|waiting||||118.775533"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 12,
+          "sig": "0|2|waiting||||118.775533"
+        }
+      }
+    },
+    {
+      "scenario": "fresh-start",
+      "name": "first ack carries all players",
+      "ok": true,
+      "detail": {
+        "phase": "live",
+        "minute": 0,
+        "elapsed": 0,
+        "running": true,
+        "halftime": false,
+        "held": false,
+        "ready": true,
+        "error": null,
+        "view": "3d",
+        "failed": false,
+        "ackPlayers": 12,
+        "people": 12,
+        "sig": "0|1.95|waiting||||118.775533"
+      }
+    },
+    {
+      "scenario": "fresh-start",
+      "name": "clock had not advanced before the ack",
+      "ok": true,
+      "detail": {
+        "b": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 12,
+          "sig": "0|2|waiting||||118.775533"
+        },
+        "c": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 12,
+          "people": 12,
+          "sig": "0|1.95|waiting||||118.775533"
+        }
+      }
+    },
+    {
+      "scenario": "fresh-start",
+      "name": "native match continues after the ack",
+      "ok": true,
+      "detail": {
+        "c": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 12,
+          "people": 12,
+          "sig": "0|1.95|waiting||||118.775533"
+        },
+        "d": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0.4309500000000001,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": true,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": 12,
+          "people": 12,
+          "sig": "0.4309500000000001|0|rolling||||118.775533"
+        }
+      }
+    },
+    {
+      "scenario": "fresh-start",
+      "name": "no page errors",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "scenario": "failure-2d",
+      "name": "Unity failure falls back to 2D",
+      "ok": true,
+      "detail": {
+        "phase": "live",
+        "minute": 0,
+        "elapsed": 0,
+        "running": true,
+        "halftime": false,
+        "held": false,
+        "ready": false,
+        "error": "Unity ist nicht verfügbar · 2D ist aktiv",
+        "view": "2d",
+        "failed": true,
+        "ackPlayers": null,
+        "people": 14,
+        "sig": "0|1.9|waiting||||139.951277"
+      }
+    },
+    {
+      "scenario": "failure-2d",
+      "name": "native clock runs in 2D after the failure",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": false,
+          "error": "Unity ist nicht verfügbar · 2D ist aktiv",
+          "view": "2d",
+          "failed": true,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0|1.9|waiting||||139.951277"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0.3945239999860526,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": false,
+          "error": "Unity ist nicht verfügbar · 2D ist aktiv",
+          "view": "2d",
+          "failed": true,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0.3945239999860526|0|rolling||||139.951277"
+        }
+      }
+    },
+    {
+      "scenario": "failure-2d",
+      "name": "no page errors besides the simulated loader failure",
+      "ok": true,
+      "detail": [
+        "Cannot read properties of undefined (reading 'subarray')"
+      ]
+    },
+    {
+      "scenario": "switch-2d",
+      "name": "held while Unity loads",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0|2|waiting||||139.951277"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0|2|waiting||||139.951277"
+        }
+      }
+    },
+    {
+      "scenario": "switch-2d",
+      "name": "choosing 2D releases the clock at once",
+      "ok": true,
+      "detail": {
+        "b": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": true,
+          "ready": false,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0|2|waiting||||139.951277"
+        },
+        "c": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0.5443620000046492,
+          "running": true,
+          "halftime": false,
+          "held": false,
+          "ready": false,
+          "error": null,
+          "view": "2d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0.5443620000046492|0|rolling||||139.951277"
+        }
+      }
+    },
+    {
+      "scenario": "switch-2d",
+      "name": "no page errors",
+      "ok": true,
+      "detail": []
+    },
+    {
+      "scenario": "browser-engine",
+      "name": "2D-only page never holds",
+      "ok": true,
+      "detail": {
+        "a": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0,
+          "running": true,
+          "halftime": false,
+          "held": null,
+          "ready": null,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0|1.9|waiting||||139.951277"
+        },
+        "b": {
+          "phase": "live",
+          "minute": 0,
+          "elapsed": 0.4304820000046493,
+          "running": true,
+          "halftime": false,
+          "held": null,
+          "ready": null,
+          "error": null,
+          "view": "3d",
+          "failed": false,
+          "ackPlayers": null,
+          "people": 14,
+          "sig": "0.4304820000046493|0|rolling||||139.951277"
+        }
+      }
+    },
+    {
+      "scenario": "browser-engine",
+      "name": "no page errors",
+      "ok": true,
+      "detail": []
+    }
+  ]
+}

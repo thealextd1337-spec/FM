@@ -4,6 +4,7 @@
 #v61-world-screen .fl-content [data-v46-view="matchplan"] .prematch-tabs button{background:var(--fl-control);color:var(--fl-ink)}
 #v61-world-screen .fl-content [data-v46-view="matchplan"] .prematch-tabs button.active{background:var(--fl-gold);color:#15191e;border-color:var(--fl-accent)}
 #v61-world-screen .fl-content [data-v46-view="matchplan"] .plan-card>span{color:var(--fl-accent)}
+#v61-world-screen .fl-content [data-v46-view="matchplan"] .role-mark{color:var(--fl-gold)}
 #v61-world-screen .fl-content [data-v46-view="matchplan"] :is(label,.v64-bench-player small,.compact-bench-head,.v64-individual p,.plan-card p){color:var(--fl-muted);font-size:13px}
 #v61-world-screen .fl-content [data-v46-view="matchplan"] :is(input,select,textarea){min-height:44px;background:var(--fl-control);color:var(--fl-ink);border-color:var(--fl-control-line);font-size:16px;caret-color:var(--fl-accent)}
 #v61-world-screen .fl-content [data-v46-view="matchplan"] :is(.segmented button,.formation-presets button,.v64-bench-undo,.menu-action){min-height:44px;background:var(--fl-control);color:var(--fl-ink);border-color:var(--fl-control-line)}

@@ -99,6 +99,7 @@ Doppel 6	Doppel 6
 Menü schließen	Close menu
 Nächste Begegnung	Next fixture
 Hauptsponsor	Main sponsor
+präsentiert	presents
 Vertrag ansehen	View contract
 Letzte Ligaspiele	Recent league matches
 Noch keine Ligaspiele erfasst	No league matches recorded yet

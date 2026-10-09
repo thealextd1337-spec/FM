@@ -27,7 +27,8 @@ function validateProjection(p){
  keys(p.players,['season','ownClubId','roster','all'],'players');
  const bands=['violetgray','bluegray','yellow','orange','pink','unknown'];
  for(const row of [...p.players.roster,...p.players.all]){
-  keys(row,['id','name','number','nationCode','nationLabel','positionCode','positionLabel','age','skills','form','freshness','stats'],'player');
+  keys(row,['id','name','number','nationCode','nationLabel','positionCode','positionLabel','age','skills','form','formRatings','freshness','stats'],'player');
+  if(row.formRatings!==null){assert(Array.isArray(row.formRatings)&&row.formRatings.length<=5);for(const rating of row.formRatings)assert(Number.isFinite(rating)&&rating>=1&&rating<=10,'stored form rating');}
   for(const skill of row.skills){keys(skill,['key','label','band','colorLabel'],'skill');assert(bands.includes(skill.band));for(const value of Object.values(skill))assert.equal(typeof value,'string','skills only qualitative strings');}
   keys(row.form,['band','label'],'form');keys(row.freshness,['percent','band','label'],'freshness');keys(row.stats,['appearances','substitutions','goals','assists','averageRating','ratedGames','substitutionCoverage'],'stats');
  }

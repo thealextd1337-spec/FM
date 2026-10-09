@@ -1,0 +1,277 @@
+{
+ "config": "large-5",
+ "runs": [
+  {
+   "variant": "plain",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "0c378e9d:8291",
+     "fresh": "235cb0cc:917",
+     "minutes": "88fd286b:702",
+     "report": "af070066:32671",
+     "ratings": "5933cc8b:600",
+     "ballAccounting": "45cf6509:21529",
+     "geometry": "44a0621d:188",
+     "people": "482e7dfc:8007",
+     "finances": "b9a39f8d:18516",
+     "development": "7ca0397e:979427",
+     "fixtures": "6eace1be:192545",
+     "world": "411bd52b:3680788"
+    },
+    "all": "b2da8c03"
+   },
+   "errors": [],
+   "ms": 4407
+  },
+  {
+   "variant": "sleep:setup",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "36c7347b:8291",
+     "fresh": "da4b5235:920",
+     "minutes": "88fd286b:702",
+     "report": "08e6170e:32781",
+     "ratings": "6df59ea4:599",
+     "ballAccounting": "a2d402ea:21632",
+     "geometry": "44a0621d:188",
+     "people": "c171325f:8012",
+     "finances": "b9a39f8d:18516",
+     "development": "5eff2676:979423",
+     "fixtures": "f1c2b0fd:192647",
+     "world": "c3046618:3667799"
+    },
+    "all": "99aace1d"
+   },
+   "errors": [],
+   "ms": 5464
+  },
+  {
+   "variant": "sleep:r20",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "36c7347b:8291",
+     "fresh": "da4b5235:920",
+     "minutes": "88fd286b:702",
+     "report": "08e6170e:32781",
+     "ratings": "6df59ea4:599",
+     "ballAccounting": "a2d402ea:21632",
+     "geometry": "44a0621d:188",
+     "people": "c171325f:8012",
+     "finances": "b9a39f8d:18516",
+     "development": "5eff2676:979423",
+     "fixtures": "f1c2b0fd:192647",
+     "world": "c3046618:3667799"
+    },
+    "all": "99aace1d"
+   },
+   "errors": [],
+   "ms": 6504
+  },
+  {
+   "variant": "sleep:pause",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "36c7347b:8291",
+     "fresh": "da4b5235:920",
+     "minutes": "88fd286b:702",
+     "report": "08e6170e:32781",
+     "ratings": "6df59ea4:599",
+     "ballAccounting": "a2d402ea:21632",
+     "geometry": "44a0621d:188",
+     "people": "c171325f:8012",
+     "finances": "b9a39f8d:18516",
+     "development": "5eff2676:979423",
+     "fixtures": "f1c2b0fd:192647",
+     "world": "c3046618:3667799"
+    },
+    "all": "99aace1d"
+   },
+   "errors": [],
+   "ms": 6564
+  },
+  {
+   "variant": "sleep:live",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "36c7347b:8291",
+     "fresh": "da4b5235:920",
+     "minutes": "88fd286b:702",
+     "report": "08e6170e:32781",
+     "ratings": "6df59ea4:599",
+     "ballAccounting": "a2d402ea:21632",
+     "geometry": "44a0621d:188",
+     "people": "c171325f:8012",
+     "finances": "b9a39f8d:18516",
+     "development": "5eff2676:979423",
+     "fixtures": "f1c2b0fd:192647",
+     "world": "c3046618:3667799"
+    },
+    "all": "99aace1d"
+   },
+   "errors": [],
+   "ms": 6343
+  },
+  {
+   "variant": "sleep:half",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "36c7347b:8291",
+     "fresh": "da4b5235:920",
+     "minutes": "88fd286b:702",
+     "report": "08e6170e:32781",
+     "ratings": "6df59ea4:599",
+     "ballAccounting": "a2d402ea:21632",
+     "geometry": "44a0621d:188",
+     "people": "c171325f:8012",
+     "finances": "b9a39f8d:18516",
+     "development": "5eff2676:979423",
+     "fixtures": "f1c2b0fd:192647",
+     "world": "c3046618:3667799"
+    },
+    "all": "99aace1d"
+   },
+   "errors": [],
+   "ms": 6399
+  },
+  {
+   "variant": "sleep:r60",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "36c7347b:8291",
+     "fresh": "da4b5235:920",
+     "minutes": "88fd286b:702",
+     "report": "08e6170e:32781",
+     "ratings": "6df59ea4:599",
+     "ballAccounting": "a2d402ea:21632",
+     "geometry": "44a0621d:188",
+     "people": "c171325f:8012",
+     "finances": "b9a39f8d:18516",
+     "development": "5eff2676:979423",
+     "fixtures": "f1c2b0fd:192647",
+     "world": "c3046618:3667799"
+    },
+    "all": "99aace1d"
+   },
+   "errors": [],
+   "ms": 6204
+  },
+  {
+   "variant": "sleep:cp",
+   "digest": {
+    "score": [
+     0,
+     1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4658,
+    "checkpoints": 1,
+    "hashes": {
+     "score": "4fcce0e8:5",
+     "events": "db4d56e1:281",
+     "stats": "36c7347b:8291",
+     "fresh": "da4b5235:920",
+     "minutes": "88fd286b:702",
+     "report": "08e6170e:32781",
+     "ratings": "6df59ea4:599",
+     "ballAccounting": "a2d402ea:21632",
+     "geometry": "44a0621d:188",
+     "people": "c171325f:8012",
+     "finances": "b9a39f8d:18516",
+     "development": "5eff2676:979423",
+     "fixtures": "f1c2b0fd:192647",
+     "world": "c3046618:3667799"
+    },
+    "all": "99aace1d"
+   },
+   "errors": [],
+   "ms": 5577
+  }
+ ]
+}

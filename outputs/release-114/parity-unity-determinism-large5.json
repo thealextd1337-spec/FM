@@ -1,0 +1,164 @@
+{
+  "base": "http://127.0.0.1:4521/source/index.html",
+  "failures": 0,
+  "results": [
+    {
+      "config": "large-5",
+      "modes": [
+        "unity",
+        "unity"
+      ],
+      "ok": true,
+      "sameDigest": true,
+      "diffParts": [],
+      "unityDigest": {
+        "score": [
+          0,
+          1
+        ],
+        "phase": "finished",
+        "finished": true,
+        "valid": true,
+        "booked": true,
+        "balanceOwn": 4658,
+        "checkpoints": 1,
+        "hashes": {
+          "score": "4fcce0e8:5",
+          "events": "db4d56e1:281",
+          "stats": "36c7347b:8291",
+          "fresh": "da4b5235:920",
+          "minutes": "88fd286b:702",
+          "report": "08e6170e:32781",
+          "ratings": "6df59ea4:599",
+          "ballAccounting": "a2d402ea:21632",
+          "geometry": "44a0621d:188",
+          "people": "c171325f:8012",
+          "finances": "b9a39f8d:18516",
+          "development": "5eff2676:979423",
+          "fixtures": "f1c2b0fd:192647",
+          "world": "c3046618:3667799"
+        },
+        "all": "99aace1d"
+      },
+      "nativeDigest": {
+        "score": [
+          0,
+          1
+        ],
+        "phase": "finished",
+        "finished": true,
+        "valid": true,
+        "booked": true,
+        "balanceOwn": 4658,
+        "checkpoints": 1,
+        "hashes": {
+          "score": "4fcce0e8:5",
+          "events": "db4d56e1:281",
+          "stats": "36c7347b:8291",
+          "fresh": "da4b5235:920",
+          "minutes": "88fd286b:702",
+          "report": "08e6170e:32781",
+          "ratings": "6df59ea4:599",
+          "ballAccounting": "a2d402ea:21632",
+          "geometry": "44a0621d:188",
+          "people": "c171325f:8012",
+          "finances": "b9a39f8d:18516",
+          "development": "5eff2676:979423",
+          "fixtures": "f1c2b0fd:192647",
+          "world": "c3046618:3667799"
+        },
+        "all": "99aace1d"
+      },
+      "unity": {
+        "error": null,
+        "ms": 128450,
+        "setup": {
+          "config": {
+            "fieldSize": "large",
+            "fieldPlayers": 5
+          },
+          "unity": true,
+          "people": 12,
+          "perTeam": [
+            6,
+            6
+          ],
+          "keepers": [
+            1,
+            1
+          ],
+          "geometry": {
+            "version": 1,
+            "length": 81.6,
+            "width": 52.8,
+            "goalWidth": 9.705882352941178,
+            "goalHeight": 3.2352941176470593,
+            "penaltyDepth": 10.5953488372093,
+            "penaltyWidth": 24.264705882352942,
+            "ballRadius": 0.1764
+          },
+          "expectedPerTeam": 6,
+          "unityReady": true,
+          "ack": {
+            "players": 12,
+            "ids": 12,
+            "allReal": true
+          },
+          "error": null
+        },
+        "checkpoint": {
+          "saved": true,
+          "restored": true,
+          "minute": 60,
+          "loadsBefore": 1,
+          "loadsAfter": 2,
+          "unityReady": true,
+          "error": null
+        },
+        "end": {
+          "minute": 99,
+          "score": [
+            0,
+            1
+          ],
+          "finished": true,
+          "unityError": null,
+          "stats": {
+            "pictures": 451,
+            "maxPositionError": 0,
+            "playersOutside": 0,
+            "visibleBallOutside": 6,
+            "netMaxZ": 1.081,
+            "labels": 12,
+            "visibleLabels": 11,
+            "domLabels": 12,
+            "keeperContactSamples": 72,
+            "keeperContactMetres": [
+              "save:0.738",
+              "goalKick:0.65",
+              "save:0.905"
+            ]
+          }
+        },
+        "pageErrors": [],
+        "lastFailure": null,
+        "loads": 2
+      },
+      "native": {
+        "error": null,
+        "ms": 124398,
+        "end": {
+          "minute": 99,
+          "score": [
+            0,
+            1
+          ],
+          "finished": true
+        },
+        "pageErrors": [],
+        "lastFailure": null,
+        "unityError": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,432 @@
+{
+ "mode": "control",
+ "cfg": "large6",
+ "trace": [
+  {
+   "phase": "live",
+   "elapsed": 8.853,
+   "kickoffPhase": "waiting",
+   "countdown": 3.019,
+   "postBanner": null,
+   "kickerCentre": 3.566,
+   "wrongHalf": [
+    {
+     "pid": "8",
+     "t": 0,
+     "y": 0.4932,
+     "keeper": false
+    },
+    {
+     "pid": "7",
+     "t": 0,
+     "y": 0.4416,
+     "keeper": false
+    },
+    {
+     "pid": "10",
+     "t": 0,
+     "y": 0.3713,
+     "keeper": false
+    },
+    {
+     "pid": "11",
+     "t": 0,
+     "y": 0.3872,
+     "keeper": false
+    }
+   ],
+   "farFromTarget": [
+    {
+     "pid": "2",
+     "d": 17.517
+    },
+    {
+     "pid": "4",
+     "d": 8.212
+    },
+    {
+     "pid": "8",
+     "d": 5.895
+    },
+    {
+     "pid": "7",
+     "d": 10.393
+    },
+    {
+     "pid": "10",
+     "d": 16.594
+    },
+    {
+     "pid": "11",
+     "d": 15.464
+    },
+    {
+     "pid": "3",
+     "d": 14.521
+    },
+    {
+     "pid": "9",
+     "d": 3.014
+    }
+   ],
+   "targetCount": 14,
+   "ready": false,
+   "overlay": "4"
+  },
+  {
+   "phase": "live",
+   "elapsed": 8.853,
+   "kickoffPhase": "waiting",
+   "countdown": 1.51,
+   "postBanner": null,
+   "kickerCentre": 0.65,
+   "wrongHalf": [
+    {
+     "pid": "10",
+     "t": 0,
+     "y": 0.4743,
+     "keeper": false
+    },
+    {
+     "pid": "11",
+     "t": 0,
+     "y": 0.4884,
+     "keeper": false
+    }
+   ],
+   "farFromTarget": [
+    {
+     "pid": "2",
+     "d": 8.46
+    },
+    {
+     "pid": "7",
+     "d": 1.336
+    },
+    {
+     "pid": "10",
+     "d": 7.537
+    },
+    {
+     "pid": "11",
+     "d": 6.407
+    },
+    {
+     "pid": "3",
+     "d": 5.464
+    }
+   ],
+   "targetCount": 14,
+   "ready": false,
+   "overlay": "2"
+  },
+  {
+   "phase": "live",
+   "elapsed": 8.853,
+   "kickoffPhase": "banner",
+   "countdown": 0,
+   "postBanner": {
+    "kind": "kickoff",
+    "wait": 1.65,
+    "visible": true
+   },
+   "kickerCentre": 0.65,
+   "wrongHalf": [],
+   "farFromTarget": [],
+   "targetCount": 14,
+   "ready": true,
+   "overlay": "ANPFIFF"
+  },
+  {
+   "phase": "live",
+   "elapsed": 8.853,
+   "kickoffPhase": "banner",
+   "countdown": 0,
+   "postBanner": {
+    "kind": "kickoff",
+    "wait": 0.13629999998211875,
+    "visible": false
+   },
+   "kickerCentre": 0.65,
+   "wrongHalf": [],
+   "farFromTarget": [],
+   "targetCount": 14,
+   "ready": true,
+   "overlay": null
+  },
+  {
+   "kickoff": null,
+   "elapsed": 9.95279999999997,
+   "phase": "live"
+  },
+  {
+   "kickoff": null,
+   "elapsed": 11.124672000004615,
+   "phase": "live"
+  },
+  {
+   "kickoff": null,
+   "elapsed": 12.271349999999966,
+   "phase": "live"
+  },
+  {
+   "kickoff": null,
+   "elapsed": 13.458899999976719,
+   "phase": "live"
+  },
+  {
+   "kickoff": null,
+   "elapsed": 14.627495999967417,
+   "phase": "live"
+  },
+  {
+   "kickoff": null,
+   "elapsed": 15.80474999997672,
+   "phase": "live"
+  },
+  {
+   "kickoff": null,
+   "elapsed": 16.94994599999067,
+   "phase": "live"
+  },
+  {
+   "kickoff": null,
+   "elapsed": 18.13843200000461,
+   "phase": "live"
+  },
+  {
+   "kickoff": null,
+   "elapsed": 19.31404799999531,
+   "phase": "live"
+  },
+  {
+   "kickoff": null,
+   "elapsed": 20.466263999986015,
+   "phase": "live"
+  }
+ ],
+ "atPause": {
+  "phase": "paused",
+  "elapsed": 8.853,
+  "kickoffPhase": "waiting",
+  "countdown": 4.487,
+  "postBanner": null,
+  "kickerCentre": 12.357,
+  "wrongHalf": [
+   {
+    "pid": "2",
+    "t": 0,
+    "y": 0.4474,
+    "keeper": false
+   },
+   {
+    "pid": "8",
+    "t": 0,
+    "y": 0.3935,
+    "keeper": false
+   },
+   {
+    "pid": "7",
+    "t": 0,
+    "y": 0.3413,
+    "keeper": false
+   },
+   {
+    "pid": "10",
+    "t": 0,
+    "y": 0.2711,
+    "keeper": false
+   },
+   {
+    "pid": "11",
+    "t": 0,
+    "y": 0.2889,
+    "keeper": false
+   },
+   {
+    "pid": "10",
+    "t": 1,
+    "y": 0.514,
+    "keeper": false
+   }
+  ],
+  "farFromTarget": [
+   {
+    "pid": "1",
+    "d": 0.429
+   },
+   {
+    "pid": "2",
+    "d": 26.322
+   },
+   {
+    "pid": "4",
+    "d": 17.017
+   },
+   {
+    "pid": "8",
+    "d": 14.7
+   },
+   {
+    "pid": "7",
+    "d": 19.198
+   },
+   {
+    "pid": "10",
+    "d": 25.399
+   },
+   {
+    "pid": "11",
+    "d": 24.269
+   },
+   {
+    "pid": "1",
+    "d": 0.891
+   },
+   {
+    "pid": "3",
+    "d": 23.326
+   },
+   {
+    "pid": "1",
+    "d": 4.886
+   },
+   {
+    "pid": "8",
+    "d": 1.405
+   },
+   {
+    "pid": "6",
+    "d": 4.528
+   },
+   {
+    "pid": "9",
+    "d": 11.819
+   },
+   {
+    "pid": "10",
+    "d": 6.527
+   }
+  ],
+  "targetCount": 14,
+  "ready": false,
+  "overlay": "5"
+ },
+ "savedContinuation": {
+  "keys": [
+   "version",
+   "ground",
+   "restart",
+   "defensiveThreat"
+  ],
+  "restart": 14
+ },
+ "afterOpen": {
+  "phase": "paused",
+  "elapsed": 8.853,
+  "kickoffPhase": "waiting",
+  "countdown": 4.487,
+  "postBanner": null,
+  "kickerCentre": 12.357,
+  "wrongHalf": [
+   {
+    "pid": "2",
+    "t": 0,
+    "y": 0.4474,
+    "keeper": false
+   },
+   {
+    "pid": "8",
+    "t": 0,
+    "y": 0.3935,
+    "keeper": false
+   },
+   {
+    "pid": "7",
+    "t": 0,
+    "y": 0.3413,
+    "keeper": false
+   },
+   {
+    "pid": "10",
+    "t": 0,
+    "y": 0.2711,
+    "keeper": false
+   },
+   {
+    "pid": "11",
+    "t": 0,
+    "y": 0.2889,
+    "keeper": false
+   },
+   {
+    "pid": "10",
+    "t": 1,
+    "y": 0.514,
+    "keeper": false
+   }
+  ],
+  "farFromTarget": [
+   {
+    "pid": "1",
+    "d": 0.429
+   },
+   {
+    "pid": "2",
+    "d": 26.322
+   },
+   {
+    "pid": "4",
+    "d": 17.017
+   },
+   {
+    "pid": "8",
+    "d": 14.7
+   },
+   {
+    "pid": "7",
+    "d": 19.198
+   },
+   {
+    "pid": "10",
+    "d": 25.399
+   },
+   {
+    "pid": "11",
+    "d": 24.269
+   },
+   {
+    "pid": "1",
+    "d": 0.891
+   },
+   {
+    "pid": "3",
+    "d": 23.326
+   },
+   {
+    "pid": "1",
+    "d": 4.886
+   },
+   {
+    "pid": "8",
+    "d": 1.405
+   },
+   {
+    "pid": "6",
+    "d": 4.528
+   },
+   {
+    "pid": "9",
+    "d": 11.819
+   },
+   {
+    "pid": "10",
+    "d": 6.527
+   }
+  ],
+  "targetCount": 14,
+  "ready": false,
+  "overlay": "5"
+ },
+ "errors": []
+}

@@ -3,13 +3,15 @@
  'use strict';
  const ns=window.D6Flutlicht=window.D6Flutlicht||{},screen=document.querySelector('#game-screen'),world=document.querySelector('#v61-world-screen'),header=document.querySelector('body>header'),media=matchMedia('(prefers-color-scheme: dark)');
  if(!screen||ns.match)return;
- function theme(){let selected='system';try{selected=localStorage.getItem('doppel6.ui.flutlicht.theme')||'system';}catch{}return ['light','dark'].includes(selected)?selected:media.matches?'dark':'light';}
+ function theme(){return ns.theme.resolve();}
  function refresh(){
   const playing=Boolean(v65WorldActive&&!screen.hidden),prematch=Boolean(world&&!world.hidden&&world.querySelector(':scope > .v64-match-page')&&v61CurrentCareer?.world.activeMatch?.state.phase==='prematch'),active=playing||prematch,value=theme();
   document.body.classList.toggle('fl-match-active',active);
   for(const node of [document.body,header]){node.classList.toggle('fl-match',active);if(active)node.dataset.flTheme=value;else if(node===document.body)delete node.dataset.flTheme;}
   screen.classList.toggle('fl-match',playing);if(playing)screen.dataset.flTheme=value;
   if(world){const wasPrematch=world.classList.contains('fl-prematch');world.classList.toggle('fl-match',prematch);world.classList.toggle('fl-prematch',prematch);if(prematch)world.dataset.flTheme=value;else if(wasPrematch&&!world.classList.contains('fl-shell'))delete world.dataset.flTheme;}
+  // Post-match dialogs remain native, including when a fullscreen match ends.
+  for(const dialog of document.querySelectorAll('#v47-match-report[open],#v47-competition[open],.v47-player-dialog[open]')){dialog.classList.add('fl-dialog');dialog.dataset.flTheme=value;}
   if(!active)return;
   const tabs=document.querySelector('#v65-pause-tabs'),panel=document.querySelector('#v65-controls');
   if(tabs&&!tabs.hidden){

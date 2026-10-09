@@ -1,5 +1,7 @@
 # Entwicklungsdokumentation
 
+- [Release 114](release-114.md): Abnahme von Unity-Ladestopp, wiederholter Karrierefortsetzung, Freistoßausführung, Grafik-unabhängigem Matchverlauf und Flutlicht-Korrekturen.
+
 - [Release 113](release-113.md): gemeinsame native Karriere-/Feldgrößenintegration mit Unity Release 112; Abnahme und Veröffentlichung.
 
 - [Native Match-/Spielerintegration v160](platform/native-match-player-integration-v160.md): regulärer Start mit dem vorhandenen Regelmodell, dauerhafte Feld-/Mannschaftsauswahl, geometrische Native-/2D-Pfade, echte JSON-Fortsetzung und Mehrsaisonprüfung; getrennte Unity-Übergabe und offene Balance.

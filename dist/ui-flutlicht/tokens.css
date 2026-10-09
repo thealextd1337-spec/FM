@@ -36,3 +36,5 @@
 .fl-band-orange{--fl-band:var(--fl-orange);--fl-band-ink:var(--fl-orange-ink)}
 .fl-band-pink{--fl-band:var(--fl-pink);--fl-band-ink:var(--fl-pink-ink)}
 .fl-band-unknown{--fl-band:var(--fl-muted);--fl-band-ink:var(--fl-muted)}
+:is(.fl-shell,.fl-dialog) :is(.v66-sponsor-brand,.fl-overview-sponsor) .v66-sponsor-logo[data-v66-brand]{color:var(--fl-ink)!important}
+:is(.fl-shell,.fl-dialog) :is(.v66-sponsor-brand,.fl-overview-sponsor) .v66-sponsor-logo[data-v66-brand]>rect{fill:transparent}

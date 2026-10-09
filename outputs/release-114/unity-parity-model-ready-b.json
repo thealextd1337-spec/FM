@@ -1,0 +1,338 @@
+{
+  "base": "http://127.0.0.1:4521/source/index.html",
+  "failures": 0,
+  "results": [
+    {
+      "config": "legacy",
+      "modes": [
+        "unity",
+        "native"
+      ],
+      "ok": true,
+      "sameDigest": true,
+      "diffParts": [],
+      "unityDigest": {
+        "score": [
+          1,
+          0
+        ],
+        "phase": "finished",
+        "finished": true,
+        "valid": true,
+        "booked": true,
+        "balanceOwn": 4768,
+        "checkpoints": 1,
+        "hashes": {
+          "score": "39929898:5",
+          "events": "9a2431d6:416",
+          "stats": "40073f70:8709",
+          "fresh": "d0e3c686:931",
+          "minutes": "b75d7089:703",
+          "report": "dece2f4d:32545",
+          "ratings": "06b4bc64:647",
+          "ballAccounting": "b84d8114:20622",
+          "geometry": "44a0621d:188",
+          "people": "5f78801d:7884",
+          "finances": "ea4231cf:20668",
+          "development": "8995cab1:991254",
+          "fixtures": "0c2e7e33:188632",
+          "world": "90be09e3:3675070"
+        },
+        "all": "f92c0da5"
+      },
+      "nativeDigest": {
+        "score": [
+          1,
+          0
+        ],
+        "phase": "finished",
+        "finished": true,
+        "valid": true,
+        "booked": true,
+        "balanceOwn": 4768,
+        "checkpoints": 1,
+        "hashes": {
+          "score": "39929898:5",
+          "events": "9a2431d6:416",
+          "stats": "40073f70:8709",
+          "fresh": "d0e3c686:931",
+          "minutes": "b75d7089:703",
+          "report": "dece2f4d:32545",
+          "ratings": "06b4bc64:647",
+          "ballAccounting": "b84d8114:20622",
+          "geometry": "44a0621d:188",
+          "people": "5f78801d:7884",
+          "finances": "ea4231cf:20668",
+          "development": "8995cab1:991254",
+          "fixtures": "0c2e7e33:188632",
+          "world": "90be09e3:3675070"
+        },
+        "all": "f92c0da5"
+      },
+      "unity": {
+        "error": null,
+        "ms": 82043,
+        "setup": {
+          "config": null,
+          "unity": true,
+          "people": 12,
+          "perTeam": [
+            6,
+            6
+          ],
+          "keepers": [
+            1,
+            1
+          ],
+          "geometry": {
+            "version": 1,
+            "length": 81.6,
+            "width": 52.8,
+            "goalWidth": 9.705882352941178,
+            "goalHeight": 3.2352941176470593,
+            "penaltyDepth": 10.5953488372093,
+            "penaltyWidth": 24.264705882352942,
+            "ballRadius": 0.1764
+          },
+          "expectedPerTeam": 6,
+          "unityReady": true,
+          "ack": {
+            "players": 12,
+            "ids": 12,
+            "allReal": true
+          },
+          "error": null
+        },
+        "checkpoint": {
+          "saved": true,
+          "restored": true,
+          "minute": 60,
+          "loadsBefore": 1,
+          "loadsAfter": 2,
+          "unityReady": true,
+          "error": null
+        },
+        "end": {
+          "minute": 99,
+          "score": [
+            1,
+            0
+          ],
+          "finished": true,
+          "unityError": null,
+          "stats": {
+            "pictures": 276,
+            "maxPositionError": 0,
+            "playersOutside": 0,
+            "visibleBallOutside": 3,
+            "netMaxZ": 3.921,
+            "labels": 12,
+            "visibleLabels": 11,
+            "domLabels": 12,
+            "keeperContactSamples": 16,
+            "keeperContactMetres": [
+              "goalKick:0.65",
+              "save:3.286"
+            ]
+          }
+        },
+        "model": {
+          "status": "ready",
+          "nativeBall": true,
+          "nativeShot": true
+        },
+        "pageErrors": [],
+        "lastFailure": null,
+        "loads": 2
+      },
+      "native": {
+        "error": null,
+        "ms": 6230,
+        "end": {
+          "minute": 99,
+          "score": [
+            1,
+            0
+          ],
+          "finished": true
+        },
+        "model": {
+          "status": "ready",
+          "nativeBall": true,
+          "nativeShot": true
+        },
+        "pageErrors": [],
+        "lastFailure": null,
+        "unityError": null
+      }
+    },
+    {
+      "config": "standard-5",
+      "modes": [
+        "unity",
+        "native"
+      ],
+      "ok": true,
+      "sameDigest": true,
+      "diffParts": [],
+      "unityDigest": {
+        "score": [
+          0,
+          2
+        ],
+        "phase": "finished",
+        "finished": true,
+        "valid": true,
+        "booked": true,
+        "balanceOwn": 4850,
+        "checkpoints": 1,
+        "hashes": {
+          "score": "4fc49223:5",
+          "events": "d800b565:550",
+          "stats": "037e42eb:8773",
+          "fresh": "590ee660:995",
+          "minutes": "da02beef:777",
+          "report": "3bda8fa7:35177",
+          "ratings": "3795d82d:689",
+          "ballAccounting": "45d3f2e8:23058",
+          "geometry": "708a8f7b:184",
+          "people": "767ded23:7924",
+          "finances": "244755bc:20117",
+          "development": "c8fd2b08:1002163",
+          "fixtures": "a2a7201a:198653",
+          "world": "951dba27:3739671"
+        },
+        "all": "304bc024"
+      },
+      "nativeDigest": {
+        "score": [
+          0,
+          2
+        ],
+        "phase": "finished",
+        "finished": true,
+        "valid": true,
+        "booked": true,
+        "balanceOwn": 4850,
+        "checkpoints": 1,
+        "hashes": {
+          "score": "4fc49223:5",
+          "events": "d800b565:550",
+          "stats": "037e42eb:8773",
+          "fresh": "590ee660:995",
+          "minutes": "da02beef:777",
+          "report": "3bda8fa7:35177",
+          "ratings": "3795d82d:689",
+          "ballAccounting": "45d3f2e8:23058",
+          "geometry": "708a8f7b:184",
+          "people": "767ded23:7924",
+          "finances": "244755bc:20117",
+          "development": "c8fd2b08:1002163",
+          "fixtures": "a2a7201a:198653",
+          "world": "951dba27:3739671"
+        },
+        "all": "304bc024"
+      },
+      "unity": {
+        "error": null,
+        "ms": 98992,
+        "setup": {
+          "config": {
+            "fieldSize": "standard",
+            "fieldPlayers": 5
+          },
+          "unity": true,
+          "people": 12,
+          "perTeam": [
+            6,
+            6
+          ],
+          "keepers": [
+            1,
+            1
+          ],
+          "geometry": {
+            "version": 1,
+            "length": 68,
+            "width": 44,
+            "goalWidth": 9.705882352941178,
+            "goalHeight": 3.2352941176470593,
+            "penaltyDepth": 10.5953488372093,
+            "penaltyWidth": 24.264705882352942,
+            "ballRadius": 0.1764
+          },
+          "expectedPerTeam": 6,
+          "unityReady": true,
+          "ack": {
+            "players": 12,
+            "ids": 12,
+            "allReal": true
+          },
+          "error": null
+        },
+        "checkpoint": {
+          "saved": true,
+          "restored": true,
+          "minute": 60,
+          "loadsBefore": 1,
+          "loadsAfter": 2,
+          "unityReady": true,
+          "error": null
+        },
+        "end": {
+          "minute": 101,
+          "score": [
+            0,
+            2
+          ],
+          "finished": true,
+          "unityError": null,
+          "stats": {
+            "pictures": 337,
+            "maxPositionError": 0,
+            "playersOutside": 0,
+            "visibleBallOutside": 7,
+            "netMaxZ": 3.557,
+            "labels": 12,
+            "visibleLabels": 11,
+            "domLabels": 12,
+            "keeperContactSamples": 28,
+            "keeperContactMetres": [
+              "goalKick:0.65",
+              "save:2.545",
+              "save:3.254"
+            ]
+          }
+        },
+        "model": {
+          "status": "ready",
+          "nativeBall": true,
+          "nativeShot": true
+        },
+        "pageErrors": [],
+        "lastFailure": null,
+        "loads": 2
+      },
+      "native": {
+        "error": null,
+        "ms": 4710,
+        "end": {
+          "minute": 101,
+          "score": [
+            0,
+            2
+          ],
+          "finished": true
+        },
+        "model": {
+          "status": "ready",
+          "nativeBall": true,
+          "nativeShot": true
+        },
+        "pageErrors": [],
+        "lastFailure": null,
+        "unityError": null
+      }
+    }
+  ]
+}

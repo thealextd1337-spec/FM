@@ -4,10 +4,31 @@
   <meta charset="utf-8">
   <meta name="doppel6-preview" content="3d">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#101d21">
+  <meta name="theme-color" content="#f1f3f5">
   <meta name="description" content="Dein 6-gegen-6-Fußballmanager. Stelle dein Team auf und erlebe deine Taktik auf dem Platz.">
   <title>Doppel 6 · Fußballmanager</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23c7f36b'/%3E%3Ctext x='20' y='27' text-anchor='middle' font-size='22' font-family='Arial' font-weight='bold' fill='%23101d21'%3E66%3C/text%3E%3C/svg%3E">
+  <script>
+    // The first paint uses the same preference as the mounted Flutlicht UI.
+    (() => {
+      let preference = 'system';
+      try { preference = localStorage.getItem('doppel6.ui.flutlicht.theme') || 'system'; } catch {}
+      document.documentElement.dataset.flBootTheme = ['light', 'dark'].includes(preference)
+        ? preference : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.querySelector('meta[name="theme-color"]').content = document.documentElement.dataset.flBootTheme === 'dark' ? '#11151a' : '#f1f3f5';
+    })();
+  </script>
+  <style>
+    html[data-fl-boot-theme]{background:#f1f3f5;color-scheme:light}
+    html[data-fl-boot-theme=dark]{background:#11151a;color-scheme:dark}
+    html[data-fl-boot-theme] body{background:inherit!important}
+    html[data-fl-boot-theme] body>*{visibility:hidden!important}
+    html[data-fl-boot-theme] #fl-boot{visibility:visible!important}
+    #fl-boot{display:none}
+    html[data-fl-boot-theme] #fl-boot{display:grid;position:fixed;inset:0;place-content:center;gap:12px;text-align:center;color:#202a35;font:600 14px/1.5 "Segoe UI",Arial,sans-serif}
+    html[data-fl-boot-theme=dark] #fl-boot{color:#edf0f3}
+    #fl-boot b{justify-self:center;border-radius:9px;padding:8px 12px;background:#f0c46e;color:#15191e;font-size:24px}
+  </style>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%23f0c46e'/%3E%3Ctext x='20' y='27' text-anchor='middle' font-size='22' font-family='Arial' font-weight='bold' fill='%2315191e'%3E66%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="manager.css">
   <link rel="stylesheet" href="world-start-v61.css">
@@ -32,6 +53,7 @@
   <link rel="stylesheet" href="world-tactics-layout-v156.css">
 </head>
 <body>
+<div id="fl-boot" role="status"><b>66</b><span>Doppel 6</span></div>
 <header><a class="brand" href="./"><b>66</b> Doppel 6<span>MANAGER</span></a><div class="header-actions"><span class="tag">MEISTERSCHAFT</span><label class="language-control"><span>Sprache</span><select id="language-select" aria-label="Sprache"><option value="de" lang="de">Deutsch</option><option value="en" lang="en">English</option></select></label></div></header>
 <main id="game-screen" hidden>
   <section class="intro"><div><p class="eyebrow">KLEINES FELD. DEINE TAKTIK.</p><h1 id="heading">Dein Plan fürs Spiel.</h1></div><p id="subtitle">Fünf Feldspieler. Ein Torwart. Du bestimmst die Ordnung.</p></section>
@@ -84,7 +106,7 @@
       <button id="start" class="primary">Ligaspiel starten <span>↗</span></button><p class="footer-note" id="duration">Ca. 100 Sekunden · 2 × 45 Ingame-Minuten · Keine Änderungen nach Anpfiff</p><button id="back" class="primary" hidden>Zurück zur Taktik <span>↗</span></button>
     </aside>
   </div>
-  <footer><span>Doppel 6 / PROTOTYP 113</span><span>Deine Farben. Dein Fußball.</span></footer>
+  <footer><span>Doppel 6 / PROTOTYP 114</span><span>Deine Farben. Dein Fußball.</span></footer>
 </main>
 <script src="game.js"></script>
 <script src="manager-v11.js"></script>

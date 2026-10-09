@@ -102,12 +102,14 @@
     });
     const center = element(teams, '.fl-overview-center', 'div', 'fl-overview-center');
     [...teams.children].filter(node => node !== center && !node.classList.contains('v49-club')).forEach(node => center.append(node));
+    const versus = center.querySelector(':scope > span');
+    if (versus) { versus.classList.add('fl-overview-versus');markup(versus, `<span aria-hidden="true">–</span><span class="fl-sr-only">${c.escape(t('gegen'))}</span>`); }
     const sponsor = data.sponsor;
     if (sponsor && contract) {
       const identity = element(center, '.fl-overview-sponsor', 'a', 'fl-overview-sponsor');
       identity.href = `#${contract.id}`;
       identity.setAttribute('aria-label', `${t('Hauptsponsor')}: ${sponsor.name}. ${t('Vertrag ansehen')}`);
-      markup(identity, `${sponsor.logoHTML || `<strong>${c.escape(sponsor.name)}</strong>`}<small>${c.escape(t('Hauptsponsor'))}</small>`);
+      markup(identity, `${sponsor.logoHTML || `<strong>${c.escape(sponsor.name)}</strong>`}<small>${c.escape(t('präsentiert'))}</small>`);
       const compact = element(fixture, '.fl-overview-goals', 'div', 'fl-overview-goals');
       markup(compact, (sponsor.goals || []).map(goal => `<a class="fl-overview-goal" href="#${c.escape(contract.id)}"><span>${c.escape(goal.label)} <b>${c.escape(goal.bonusLabel)}</b></span>${goalStatus(goal,t)}</a>`).join(''));
       teams.after(compact);

@@ -1,0 +1,185 @@
+{
+  "minute": 18,
+  "url": "http://127.0.0.1:4521/source/index.html?engine=unity",
+  "mode": "live",
+  "setup": {
+    "config": {
+      "fieldSize": "large",
+      "fieldPlayers": 6
+    },
+    "unity": true,
+    "people": 14,
+    "perTeam": [
+      7,
+      7
+    ],
+    "keepers": [
+      1,
+      1
+    ],
+    "geometry": {
+      "version": 1,
+      "length": 81.6,
+      "width": 52.8,
+      "goalWidth": 9.705882352941178,
+      "goalHeight": 3.2352941176470593,
+      "penaltyDepth": 10.5953488372093,
+      "penaltyWidth": 24.264705882352942,
+      "ballRadius": 0.1764
+    },
+    "expectedPerTeam": 7,
+    "unityReady": true,
+    "ack": {
+      "players": 14,
+      "ids": 14,
+      "allReal": true
+    },
+    "error": null
+  },
+  "id": "224bba41-220d-4de9-8778-f5c5ce58f240",
+  "before": {
+    "phase": "live",
+    "minute": 18,
+    "elapsed": 15.035748000134795,
+    "running": true,
+    "frame": true,
+    "active": true,
+    "gameHidden": false,
+    "overlay": null,
+    "event": "Can Demir spielt auf Abdoulaye Gueye.",
+    "v65error": "(missing)",
+    "kick": null,
+    "countdown": 0,
+    "postBanner": null,
+    "goalPause": 0,
+    "setPiece": null,
+    "owner": "unity-v160-large-6:GER-4:10",
+    "flight": false,
+    "unity": {
+      "ready": true,
+      "active": true,
+      "error": null,
+      "loads": 1
+    },
+    "view": "3d",
+    "v58": {
+      "context": "Spiel läuft",
+      "label": "Taktik & Wechsel",
+      "action": "v65-tactics"
+    },
+    "tickErrors": []
+  },
+  "storedBefore": {
+    "phase": "live",
+    "minute": 17,
+    "snapElapsed": 14.73061200012085
+  },
+  "storedAfterReload": {
+    "phase": "live",
+    "minute": 17,
+    "snapElapsed": 14.73061200012085,
+    "kickoff": null,
+    "postBanner": null,
+    "setPiece": null,
+    "goalPause": 0,
+    "countdown": 0
+  },
+  "afterOpen": {
+    "phase": "live",
+    "minute": 17,
+    "elapsed": 14.73061200012085,
+    "running": true,
+    "frame": true,
+    "active": true,
+    "gameHidden": false,
+    "overlay": null,
+    "event": "Can Demir spielt auf Abdoulaye Gueye.",
+    "v65error": "(missing)",
+    "kick": null,
+    "countdown": 0,
+    "postBanner": null,
+    "goalPause": 0,
+    "setPiece": null,
+    "owner": "unity-v160-large-6:GER-4:10",
+    "flight": false,
+    "unity": {
+      "ready": false,
+      "active": false,
+      "error": null,
+      "loads": 1
+    },
+    "view": "3d",
+    "v58": {
+      "context": "Spiel läuft",
+      "label": "Taktik & Wechsel",
+      "action": "v65-tactics"
+    },
+    "tickErrors": []
+  },
+  "after3s": {
+    "phase": "live",
+    "minute": 19,
+    "elapsed": 16.087656000153395,
+    "running": true,
+    "frame": true,
+    "active": true,
+    "gameHidden": false,
+    "overlay": null,
+    "event": "Can Demir spielt auf Abdoulaye Gueye.",
+    "v65error": "(missing)",
+    "kick": null,
+    "countdown": 0,
+    "postBanner": null,
+    "goalPause": 0,
+    "setPiece": null,
+    "owner": "unity-v160-large-6:GER-4:10",
+    "flight": false,
+    "unity": {
+      "ready": false,
+      "active": false,
+      "error": null,
+      "loads": 1
+    },
+    "view": "3d",
+    "v58": {
+      "context": "Spiel läuft",
+      "label": "Taktik & Wechsel",
+      "action": "v65-tactics"
+    },
+    "tickErrors": []
+  },
+  "later": {
+    "phase": "live",
+    "minute": 36,
+    "elapsed": 30.009720000325597,
+    "running": true,
+    "frame": true,
+    "active": true,
+    "gameHidden": false,
+    "overlay": null,
+    "event": "Finn Wolf spielt auf Emre Şahin.",
+    "v65error": "(missing)",
+    "kick": null,
+    "countdown": 0,
+    "postBanner": null,
+    "goalPause": 0,
+    "setPiece": null,
+    "owner": "unity-v160-large-6:GER-2:7",
+    "flight": false,
+    "unity": {
+      "ready": true,
+      "active": true,
+      "error": null,
+      "loads": 1
+    },
+    "view": "3d",
+    "v58": {
+      "context": "Spiel läuft",
+      "label": "Taktik & Wechsel",
+      "action": "v65-tactics"
+    },
+    "tickErrors": []
+  },
+  "errors": [],
+  "consoleErrors": []
+}

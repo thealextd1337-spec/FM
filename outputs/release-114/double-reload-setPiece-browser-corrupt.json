@@ -1,0 +1,175 @@
+{
+  "kind": "setPiece",
+  "engine": "browser",
+  "between": "corrupt",
+  "id": "faf2f4e6-2a8b-405d-a988-41f45c47fbdc",
+  "reached": {
+    "ok": true,
+    "minute": 7,
+    "kickoff": null,
+    "setPiece": "freeKick"
+  },
+  "storedFirst": {
+    "phase": "paused",
+    "minute": 7,
+    "kickoff": null,
+    "setPiece": {
+      "type": "freeKick",
+      "takerPid": "unity-v160-large-6:GER-4:8",
+      "takerObject": false
+    },
+    "ownerPid": null,
+    "ownerObject": false
+  },
+  "afterFirstOpen": {
+    "phase": "paused",
+    "elapsed": 6.12299999999999,
+    "running": false,
+    "kicker": null,
+    "taker": "unity-v160-large-6:GER-4:8",
+    "owner": null,
+    "overlay": "FREISTOSS | SC Freiburg Tal · Anton Becker",
+    "alias": false,
+    "tickErrors": []
+  },
+  "corrupted": [
+    "setPiece"
+  ],
+  "storedAfterShowStart": {
+    "phase": "paused",
+    "minute": 7,
+    "kickoff": null,
+    "setPiece": {
+      "type": "freeKick",
+      "takerPid": null,
+      "takerObject": true
+    },
+    "ownerPid": null,
+    "ownerObject": false
+  },
+  "afterSecondOpen": {
+    "phase": "paused",
+    "elapsed": 6.12299999999999,
+    "running": false,
+    "kicker": null,
+    "taker": "unity-v160-large-6:GER-4:8",
+    "owner": null,
+    "overlay": "FREISTOSS | SC Freiburg Tal · Anton Becker",
+    "alias": false,
+    "tickErrors": []
+  },
+  "afterResume": [
+    {
+      "phase": "live",
+      "elapsed": 6.12299999999999,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-4:8",
+      "owner": null,
+      "overlay": "FREISTOSS | SC Freiburg Tal · Anton Becker",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 6.12299999999999,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-4:8",
+      "owner": null,
+      "overlay": "FREISTOSS | SC Freiburg Tal · Anton Becker",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 6.12299999999999,
+      "running": true,
+      "kicker": null,
+      "taker": "unity-v160-large-6:GER-4:8",
+      "owner": null,
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 6.406296000013936,
+      "running": true,
+      "kicker": null,
+      "taker": null,
+      "owner": null,
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 6.814158000018582,
+      "running": true,
+      "kicker": null,
+      "taker": null,
+      "owner": "unity-v160-large-6:GER-4:9",
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 7.156109999999984,
+      "running": true,
+      "kicker": null,
+      "taker": null,
+      "owner": "unity-v160-large-6:GER-4:9",
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 7.468109999999982,
+      "running": true,
+      "kicker": null,
+      "taker": null,
+      "owner": null,
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 7.927607999995329,
+      "running": true,
+      "kicker": null,
+      "taker": null,
+      "owner": null,
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 8.336484000009275,
+      "running": true,
+      "kicker": null,
+      "taker": null,
+      "owner": "unity-v160-large-6:GER-4:Y0:1",
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 8.648484000009272,
+      "running": true,
+      "kicker": null,
+      "taker": null,
+      "owner": "unity-v160-large-6:GER-4:Y0:1",
+      "overlay": null,
+      "alias": false,
+      "tickErrors": []
+    }
+  ],
+  "v65Error": "(element missing)",
+  "errors": []
+}

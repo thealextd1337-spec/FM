@@ -9,7 +9,7 @@ let groups = 0;
 function test(name, run) { run(); groups++; console.log('PASS ' + name); }
 function freeze(value) { Object.values(value).forEach(item => { if (item && typeof item === 'object') freeze(item); }); return Object.freeze(value); }
 const labelsDE = freeze({roles: 'Empfohlene Rollen', role: 'Rolle', orientation: 'Individuelle Ausrichtung', defensive: 'Defensiv', neutral: 'Neutral', offensive: 'Offensiv', importantSkills: 'Wichtige Fähigkeiten', suitability: 'Eignung', best: 'Beste Eignung', zone: 'Ungefähre Wirkungszone', zoneHint: 'Bewegung bleibt situationsabhängig.', empty: 'Noch nicht bewertet', skillHint: 'Wichtig für diese Rolle', positions: {gk: 'Torwart', def: 'Abwehr', mid: 'Mittelfeld', att: 'Angriff'}});
-const labelsEN = freeze({roles: 'Recommended roles', role: 'Role', orientation: 'Individual orientation', defensive: 'Defensive', neutral: 'Neutral', offensive: 'Offensive', importantSkills: 'Important abilities', suitability: 'Suitability', best: 'Best suitability', zone: 'Approximate area of influence', zoneHint: 'Movement adapts to the situation.', empty: 'Not rated yet', skillHint: 'Important for this role', positions: {gk: 'Goalkeeper', def: 'Defence', mid: 'Midfield', att: 'Attack'}});
+const labelsEN = freeze({violetgray:'Very weak',bluegray:'Weak',yellow:'Normal',orange:'Good',pink:'Very good',roles: 'Recommended roles', role: 'Role', orientation: 'Individual orientation', defensive: 'Defensive', neutral: 'Neutral', offensive: 'Offensive', importantSkills: 'Important abilities', suitability: 'Suitability', best: 'Best suitability', zone: 'Approximate area of influence', zoneHint: 'Movement adapts to the situation.', empty: 'Not rated yet', skillHint: 'Important for this role', positions: {gk: 'Goalkeeper', def: 'Defence', mid: 'Midfield', att: 'Attack'}});
 function projection() {
   return {pid: 'player-7', name: 'Tim Schäfer', skills: [{key: 'pas', label: 'Passspiel', band: 'orange', colorLabel: 'Orange', important: true}, {key: 'fin', label: 'Abschluss', band: 'pink', colorLabel: 'Pink', important: false}], recommendations: [{position: 'att', roleId: 'poacher', label: 'Torjäger', band: 'pink', colorLabel: 'Pink', best: true}, {position: 'mid', roleId: 'playmaker', label: 'Spielmacher', band: 'orange', colorLabel: 'Orange', best: false}], assignment: {position: 'mid', roleId: 'playmaker', label: 'Spielmacher', orientation: 0}, allowedRoles: [{id: 'playmaker', label: 'Spielmacher', band: 'orange', colorLabel: 'Orange'}, {id: 'ball-winner', label: 'Abräumer', band: 'bluegray', colorLabel: 'Blaugrau'}, {id: 'box-to-box', label: 'Box-to-Box', band: 'yellow', colorLabel: 'Gelb'}], zone: {x: .2, y: .3, width: .6, height: .4}};
 }
@@ -42,7 +42,8 @@ test('all valid zone roles remain selectable independently of profile recommenda
   const html = ui.renderTacticRoleControl(input, labelsDE);
   for (const id of ['playmaker', 'ball-winner', 'box-to-box']) assert.ok(html.includes(`value="${id}"`));
   assert.ok(html.includes('data-d6-role="player-7"'));
-  assert.ok(html.includes('value="playmaker" selected')); assert.ok(html.includes('Abräumer · Blaugrau'));
+  assert.ok(html.includes('value="playmaker" selected')); assert.ok(html.includes('Abräumer: Schwach'));
+  assert.ok(html.includes('fl-band-orange')); assert.ok(html.includes('title="Gut"')); assert.ok(!html.includes(' · Blaugrau'));
   assert.ok(!html.includes('value="poacher"'));
   assert.equal((html.match(/data-v64-orientation=/g) || []).length, 3);
   assert.ok(html.includes('data-v64-orientation="0" data-d6-orientation-player="player-7" aria-pressed="true"'));
@@ -73,7 +74,7 @@ test('localized DE/EN controls, positions, color names and long role labels pass
   input.allowedRoles = [{id: 'ball-playing-defender', label: 'Ball-playing defender', band: 'bluegray', colorLabel: 'Blue grey'}];
   const profile = ui.renderProfileRoles(input, labelsEN), control = ui.renderTacticRoleControl(input, labelsEN), token = ui.renderPitchRole(input, labelsEN);
   for (const word of ['Recommended roles', 'Defence', 'Best suitability', 'Blue grey']) assert.ok(profile.includes(word));
-  for (const word of ['Individual orientation', 'Defensive', 'Neutral', 'Offensive', 'Ball-playing defender · Blue grey']) assert.ok(control.includes(word));
+  for (const word of ['Individual orientation', 'Defensive', 'Neutral', 'Offensive', 'Ball-playing defender: Weak']) assert.ok(control.includes(word));
   assert.ok(token.includes('Role: Ball-playing defender. Suitability: Blue grey'));
   assert.ok(ui.renderRoleZone(input.zone, labelsEN).includes('Approximate area of influence'));
 });

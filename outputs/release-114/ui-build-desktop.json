@@ -1,0 +1,47 @@
+{
+  "toolIcon": {
+    "_tag": "website",
+    "pageUrl": "http://127.0.0.1:4521/native-build.html?verify=114-ui-desktop-final&engine=browser"
+  },
+  "value": {
+    "pass": true,
+    "checks": [
+      "Options apply light to start and dialog",
+      "Options persist light",
+      "Options use light paper",
+      "Options apply dark to start and dialog",
+      "Options persist dark",
+      "Options use dark paper",
+      "English theme labels",
+      "Boot screen removed after final design",
+      "Only previous creation steps are links",
+      "Current/future steps do not navigate",
+      "Backward navigation preserves manager",
+      "Actual final whistle opens report",
+      "Postmatch report adopts light",
+      "Postmatch report adopts dark",
+      "All results use native fixture rows",
+      "All results shed the old green surface",
+      "Result club links retain native actions and touch size",
+      "Result dialog has no horizontal overflow",
+      "Recorded lineup has all six real starter links",
+      "Recorded lineup shows numbers and position labels",
+      "Recorded lineup fits viewport",
+      "Recorded starter still opens native profile",
+      "Role options show role names without color suffix",
+      "Role tooltip uses qualitative rating",
+      "Role color swatch is inside dropdown",
+      "Calendar message is small and centered in both buttons",
+      "Calendar processing prevents a second action",
+      "Calendar progress updates inside button",
+      "Calendar completion restores both actions"
+    ],
+    "details": {
+      "fullscreen": {
+        "native": true,
+        "viewport": true
+      }
+    },
+    "width": 1280
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "dist/pitch-motion-v102.js": "f4a8b646456b8bcae722d7b9c5887f50073bfb4a172cd4c213b835857c8cc965",
+  "dist/player-ball-events-v111.js": "b3b62667710c9a0ec5b915f5fbb40ba0424a4abf57c80bee7f831e1c725db383",
+  "dist/world-pitch-actions-v99.js": "61ba670500646754451821d19b8a723e3d4290d1237b89b7a90ad619828ea108",
+  "dist/world-ball-motion-v110.js": "bb193d058d603f896b8f229df793e47ded1f43611a756fad104aeacd9849eed1",
+  "dist/world-physical-v65.js": "5fee0e707bb0a839f14a4de1f1bf069192bbec29e8a98065faf23352a5e46eca",
+  "dist/world-offensive-quality-v157.js": "5800e8327019090217dd1b2f6085ac9a23688d67fba84154f91abc61cb4deac6",
+  "dist/pitch-v55.js": "0a6de1e6b9c3bff1a69e350982e91ffa20c7128919ecb6767ade509e8fd4797c",
+  "dist/world-unity-v151.js": "0f556c8fb697d246a57b27389f965f88a9222ad1eda6ed4dd77f56e7f8ae016e",
+  "outputs/index.html": "4720c5751c6478e3b435bc328006775669866299e08987bcad4cf7bf26c8d481"
+}

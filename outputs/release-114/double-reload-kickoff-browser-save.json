@@ -1,0 +1,172 @@
+{
+  "kind": "kickoff",
+  "engine": "browser",
+  "between": "save",
+  "id": "9efc0c4a-e387-4cba-9cca-c20d9b903b0c",
+  "reached": {
+    "ok": true,
+    "minute": 10,
+    "kickoff": "waiting",
+    "setPiece": null
+  },
+  "storedFirst": {
+    "phase": "paused",
+    "minute": 10,
+    "kickoff": {
+      "phase": "waiting",
+      "kickerPid": "unity-v160-large-6:GER-4:9",
+      "kickerObject": false
+    },
+    "setPiece": null,
+    "ownerPid": null,
+    "ownerObject": false
+  },
+  "afterFirstOpen": {
+    "phase": "paused",
+    "elapsed": 8.85299999999997,
+    "running": false,
+    "kicker": "unity-v160-large-6:GER-4:9",
+    "taker": null,
+    "owner": null,
+    "overlay": "6 | SC Freiburg Tal hat Anstoß",
+    "alias": false,
+    "tickErrors": []
+  },
+  "storedAfterShowStart": {
+    "phase": "paused",
+    "minute": 10,
+    "kickoff": {
+      "phase": "waiting",
+      "kickerPid": "unity-v160-large-6:GER-4:9",
+      "kickerObject": false
+    },
+    "setPiece": null,
+    "ownerPid": null,
+    "ownerObject": false
+  },
+  "afterSecondOpen": {
+    "phase": "paused",
+    "elapsed": 8.85299999999997,
+    "running": false,
+    "kicker": "unity-v160-large-6:GER-4:9",
+    "taker": null,
+    "owner": null,
+    "overlay": "6 | SC Freiburg Tal hat Anstoß",
+    "alias": false,
+    "tickErrors": []
+  },
+  "afterResume": [
+    {
+      "phase": "live",
+      "elapsed": 8.85299999999997,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "6 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 8.85299999999997,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "6 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 8.85299999999997,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "5 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 8.85299999999997,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "5 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 8.85299999999997,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "5 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 8.85299999999997,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "4 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 8.85299999999997,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "4 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 8.85299999999997,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "4 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 8.85299999999997,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "4 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    },
+    {
+      "phase": "live",
+      "elapsed": 8.85299999999997,
+      "running": true,
+      "kicker": "unity-v160-large-6:GER-4:9",
+      "taker": null,
+      "owner": null,
+      "overlay": "3 | SC Freiburg Tal hat Anstoß",
+      "alias": false,
+      "tickErrors": []
+    }
+  ],
+  "v65Error": "(element missing)",
+  "errors": []
+}

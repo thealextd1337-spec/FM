@@ -26,6 +26,8 @@
 .fl-lead-wrap{display:grid;gap:5px;justify-items:end;max-width:min(100%,560px)}.fl-lead-wrap small{font-size:12px;color:var(--fl-muted);text-align:right}
 .fl-lead-label{min-width:0}.fl-lead-progress{font-variant-numeric:tabular-nums}.fl-lead-status[hidden]{display:none}.fl-lead-wrap .fl-lead-error{color:var(--fl-alert-ink);max-width:100%;overflow-wrap:anywhere}
 .fl-lead-spinner{width:21px;height:21px;flex:none;border:2px solid #15191e55;border-top-color:currentColor;border-radius:50%}.fl-shell .fl-lead-wrap .fl-button[aria-busy=true]{opacity:1;cursor:wait!important}.fl-shell .fl-lead-wrap .fl-button:disabled:hover{background:var(--fl-gold)}
+.fl-shell [data-fl-lead][aria-busy=true] .fl-lead-label{font-size:11px;line-height:1.4;text-align:center}.fl-shell .fl-lead-status,.fl-active .v67-loading-inline{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+#career-progress-action.fl-progress-busy{font-size:11px;text-align:center;justify-content:center}
 @media(prefers-reduced-motion:no-preference){.fl-lead-spinner{animation:fl-lead-spin 800ms linear infinite}}
 @keyframes fl-lead-spin{to{transform:rotate(360deg)}}
 .fl-shell .fl-button,.fl-dialog .fl-button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:44px;padding:10px 16px;border:1px solid var(--fl-control-line);border-radius:6px;background:var(--fl-control);color:var(--fl-ink);font:600 14px/1.4 var(--fl-font);text-decoration:none;white-space:normal}

@@ -1,0 +1,21 @@
+{
+ "before": {
+  "hash": "47b61584",
+  "elapsed": 50.01266666666698,
+  "minute": 60,
+  "phase": "live",
+  "running": true,
+  "frame": 12,
+  "currentIsQA": true
+ },
+ "after": {
+  "hash": "47b61584",
+  "elapsed": 50.01266666666698,
+  "minute": 60,
+  "phase": "live",
+  "running": true,
+  "frame": 12,
+  "currentIsQA": true
+ },
+ "changes": []
+}

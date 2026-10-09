@@ -1,0 +1,20 @@
+[
+  {
+    "test": "work/test-pitch-motion-v102.cjs",
+    "baselineRef": "7d41731d78b234762beeeb80a6b5d83d2793eb90",
+    "baselineExit": 1,
+    "error": "ReferenceError: v127OneTouchRelease is not defined\r"
+  },
+  {
+    "test": "work/test-world-pitch-actions-v99.cjs",
+    "baselineRef": "7d41731d78b234762beeeb80a6b5d83d2793eb90",
+    "baselineExit": 1,
+    "error": "ReferenceError: v50TakePenalty is not defined\r"
+  },
+  {
+    "test": "work/platform/qa/test-shot-target-v159.cjs",
+    "baselineRef": "7d41731d78b234762beeeb80a6b5d83d2793eb90",
+    "baselineExit": 1,
+    "error": "ReferenceError: v150Scale is not defined\r"
+  }
+]

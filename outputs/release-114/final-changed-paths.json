@@ -1,0 +1,45 @@
+{
+  "pass": true,
+  "checks": [
+    {
+      "file": "work/test-v55.cjs",
+      "pass": true,
+      "output": "PASS: cup bracket, ten league rounds, separate cup statistics, winner award, single prize, penalty order\nPASS: native 1–20 squads, new saves, assigned positions, touchline stop and running throw-in\nPASS: complete v55 match and career progression\nPASS: clear goal chance continues past full time and ends after possession changes\nPASS: direct free-kick goal is labeled in the match log"
+    },
+    {
+      "file": "work/test-world-physical-instructions.cjs",
+      "pass": true,
+      "output": "PASS: cup bracket, ten league rounds, separate cup statistics, winner award, single prize, penalty order\nPASS: wide runs, support, onside depth, crosses, early shots and attacking focus"
+    },
+    {
+      "file": "work/test-world-penalties-v65.cjs",
+      "pass": true,
+      "output": "Welt-Elfmeterschießen: Pokal, Europacup-Gesamtstand, Heimrecht, Statistik und einmalige Verbuchung geprüft."
+    },
+    {
+      "file": "work/test-world-career-plan.cjs",
+      "pass": true,
+      "output": "PASS: saved full plans, squad reconciliation, match application and drag-only career controls"
+    },
+    {
+      "file": "work/test-player-ui-projection.cjs",
+      "pass": true,
+      "output": "PASS every renderer reads an allowlist and excludes hidden raw values even in ARIA/title\nPASS profile recommendations stay fixed and grouped by their playable position with best highlight\nPASS all valid zone roles remain selectable independently of profile recommendation or low suitability\nPASS keeper role selection has two real options and no orientation editor\nPASS important abilities retain actual skill bands and the existing Flutlicht component contract\nPASS localized DE/EN controls, positions, color names and long role labels pass through safely\nPASS one approximate zone geometry is bounded, omits routes and exposes no exact limits in text\nPASS pitch role shows the actual chosen role above a token with only a band dot and safe tooltip\nPASS malformed input is empty/disabled and never introduces arbitrary classes or unsupported roles\nPASS text and identity escaping prevents executable markup and keeps inputs unchanged\nPASS renderers have no storage, DOM, simulation, clock or random dependencies\n11 player UI projection groups passed"
+    },
+    {
+      "file": "work/platform/qa/test-camera-v159.cjs",
+      "pass": true,
+      "output": "{\"passed\":true,\"checks\":542}"
+    },
+    {
+      "file": "work/platform/qa/test-unity-integration-v160.cjs",
+      "pass": true,
+      "output": "Unity v160 adapter: 4 combinations, native metres, fixed body/goal sizes, goal scene and 5 cameras passed."
+    },
+    {
+      "file": "work/test-3d-documentation-v134.cjs",
+      "pass": true,
+      "output": "PASS: DE/EN documentation, escaped markup, deterministic source hashes and source/build/server integration."
+    }
+  ]
+}
