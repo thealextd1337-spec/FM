@@ -1,0 +1,135 @@
+{
+  "passed": true,
+  "controlledFutureLabelProbe": true,
+  "nativeSeason2Flow": true,
+  "rows": [
+    {
+      "name": "light-390",
+      "geometry": {
+        "overflow": false,
+        "panelWidth": 358,
+        "theme": "light",
+        "selectColor": "rgb(32, 42, 53)",
+        "selectBackground": "rgb(255, 255, 255)",
+        "visibleDashboard": 0
+      },
+      "balanceBefore": 4656,
+      "before": {
+        "salary": 920,
+        "balance": 7156,
+        "books": 26
+      },
+      "after": {
+        "season": 2,
+        "balance": 6956,
+        "books": 1,
+        "salary": 920,
+        "blocked": true,
+        "valid": true
+      },
+      "sponsorGate": {
+        "blocked": true,
+        "season": 2,
+        "phase": "sponsor",
+        "base": 1
+      },
+      "errors": []
+    },
+    {
+      "name": "light-931",
+      "geometry": {
+        "overflow": false,
+        "panelWidth": 687,
+        "theme": "light",
+        "selectColor": "rgb(32, 42, 53)",
+        "selectBackground": "rgb(255, 255, 255)",
+        "visibleDashboard": 0
+      },
+      "balanceBefore": 4656,
+      "before": {
+        "salary": 920,
+        "balance": 7156,
+        "books": 26
+      },
+      "after": {
+        "season": 2,
+        "balance": 6956,
+        "books": 1,
+        "salary": 920,
+        "blocked": true,
+        "valid": true
+      },
+      "sponsorGate": {
+        "blocked": true,
+        "season": 2,
+        "phase": "sponsor",
+        "base": 1
+      },
+      "errors": []
+    },
+    {
+      "name": "dark-390",
+      "geometry": {
+        "overflow": false,
+        "panelWidth": 358,
+        "theme": "dark",
+        "selectColor": "rgb(237, 240, 243)",
+        "selectBackground": "rgb(34, 43, 53)",
+        "visibleDashboard": 0
+      },
+      "balanceBefore": 4656,
+      "before": {
+        "salary": 920,
+        "balance": 7156,
+        "books": 26
+      },
+      "after": {
+        "season": 2,
+        "balance": 6956,
+        "books": 1,
+        "salary": 920,
+        "blocked": true,
+        "valid": true
+      },
+      "sponsorGate": {
+        "blocked": true,
+        "season": 2,
+        "phase": "sponsor",
+        "base": 1
+      },
+      "errors": []
+    },
+    {
+      "name": "dark-931",
+      "geometry": {
+        "overflow": false,
+        "panelWidth": 687,
+        "theme": "dark",
+        "selectColor": "rgb(237, 240, 243)",
+        "selectBackground": "rgb(34, 43, 53)",
+        "visibleDashboard": 0
+      },
+      "balanceBefore": 4656,
+      "before": {
+        "salary": 920,
+        "balance": 7156,
+        "books": 26
+      },
+      "after": {
+        "season": 2,
+        "balance": 6956,
+        "books": 1,
+        "salary": 920,
+        "blocked": true,
+        "valid": true
+      },
+      "sponsorGate": {
+        "blocked": true,
+        "season": 2,
+        "phase": "sponsor",
+        "base": 1
+      },
+      "errors": []
+    }
+  ]
+}

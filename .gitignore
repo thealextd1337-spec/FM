@@ -72,7 +72,13 @@ outputs/release-116/tmp/
 outputs/release-117/tmp/
 !outputs/release-118/
 outputs/release-118/tmp/
+!outputs/release-119/
+outputs/release-119/tmp/
+!outputs/season-close-119/
 !outputs/3d-quality/
 outputs/3d-quality/**/tmp/
 outputs/3d-quality/iteration-117/renders-attempt*/
+outputs/3d-quality/iteration-119/**/*.log
+!outputs/3d-quality/iteration-119/final-*-summary.log
+/tmp/
 !outputs/platform/unity-native-v160/

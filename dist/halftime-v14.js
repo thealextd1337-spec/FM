@@ -1,6 +1,13 @@
 'use strict';
 
 const v13Note=note;note=function(text,kind){if(text==='Halbzeit - der Matchplan bleibt unverändert.')return;v13Note(text,kind)};
+function v119KeepPlayedHalfTime(current){
+ if(typeof v119PaceActive!=='function'||!v119PaceActive(current))return false;
+ const extra=Math.max(0,current.elapsed-(current.firstHalfEnd||37.5));
+ current.halftimeExtension=(current.halftimeExtension||0)+extra;
+ current.firstHalfEnd=(current.firstHalfEnd||37.5)+extra;
+ return true;
+}
 function beginHalftimeBreak(){
  if(match.halftimeBreakDone)return;match.halftimeBreakDone=true;match.halftimePending=false;match.halftimePause=2;match.elapsed=match.firstHalfEnd||37.5;match.owner=null;match.flight=null;match.kickoff=null;match.pendingKickoff=null;match.countdown=0;match.goalPause=0;match.ball={x:.5,y:.5};match.next=Infinity;$('#board-label').textContent='HALBZEIT';note('Halbzeitpfiff. Kurze Pause vor der zweiten Hälfte.','major');showOverlay('HALBZEIT','Kurze Pause · Der Gegner stößt danach an',false);updateTeamStats();
 }
@@ -14,9 +21,9 @@ function startSecondHalf(){
 const v13Step=step;step=function(delta,realDelta){
  if(!match||match.finished)return v13Step(delta,realDelta);
  if(match.halftimePause>0){match.halftimePause=Math.max(0,match.halftimePause-realDelta);if(match.halftimePause<=0)startSecondHalf();updateTeamStats();return}
- if(match.halftimePending){const held=match.elapsed,attack=match.halftimeAttackTeam!==undefined;v13Step(delta,realDelta);if(attack){const extra=Math.max(0,match.elapsed-held);match.halftimeExtension=(match.halftimeExtension||0)+extra;match.firstHalfEnd=(match.firstHalfEnd||37.5)+extra;}else match.elapsed=held;if(!match.flight&&match.goalPause<=0&&(!attack||!v131AttackContinues(match,match.halftimeAttackTeam)||(match.halftimeExtension||0)>=20*MATCH_SPEED))beginHalftimeBreak();updateTeamStats();return}
+ if(match.halftimePending){const held=match.elapsed,attack=match.halftimeAttackTeam!==undefined;v13Step(delta,realDelta);if(!v119KeepPlayedHalfTime(match)){if(attack){const extra=Math.max(0,match.elapsed-held);match.halftimeExtension=(match.halftimeExtension||0)+extra;match.firstHalfEnd=(match.firstHalfEnd||37.5)+extra;}else match.elapsed=held;}if(!match.flight&&match.goalPause<=0&&(!attack||!v131AttackContinues(match,match.halftimeAttackTeam)||(match.halftimeExtension||0)>=20*MATCH_SPEED))beginHalftimeBreak();updateTeamStats();return}
  if(!match.halftime&&match.elapsed<(match.firstHalfEnd||37.5)&&match.elapsed+delta>=(match.firstHalfEnd||37.5)&&!(typeof v65WorldActive!=='undefined'&&v65WorldActive&&v15ClearChance(match)))match.next=Infinity;
  v13Step(delta,realDelta);
- if(match.halftime&&!match.halftimeBreakDone){match.elapsed=match.firstHalfEnd||37.5;if(match.flight)match.halftimePending=true;else beginHalftimeBreak()}
+ if(match.halftime&&!match.halftimeBreakDone){v119KeepPlayedHalfTime(match);match.elapsed=match.firstHalfEnd||37.5;if(match.flight)match.halftimePending=true;else beginHalftimeBreak()}
 };
 document.querySelectorAll('footer span:first-child').forEach(element=>element.textContent='Doppel 6 / PROTOTYP 39');

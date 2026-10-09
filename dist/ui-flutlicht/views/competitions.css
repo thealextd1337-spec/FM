@@ -82,3 +82,9 @@
  .fl-competition-report-sides,.fl-competition-report-players{grid-template-columns:1fr}
  .fl-competition-report-teamstats>div{grid-template-columns:minmax(0,1fr) 42px 42px;gap:8px}
 }
+
+/* Subtle outcome colour belongs to the displayed match score, including shootouts. */
+.fl-shell .fl-competitions .v119-calendar-score{display:inline-grid;text-align:center;padding:4px 8px;border-radius:5px}
+.fl-shell .fl-competitions [data-v119-outcome="win"] .v119-calendar-score{background:rgba(84,173,113,.16);color:var(--fl-ink)}
+.fl-shell .fl-competitions [data-v119-outcome="loss"] .v119-calendar-score{background:rgba(218,102,102,.16);color:var(--fl-ink)}
+#v65-victory-dialog .v65-victory-content :is(h2,.v65-victory-context){color:#f1f4f7}

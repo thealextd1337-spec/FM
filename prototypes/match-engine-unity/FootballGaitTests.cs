@@ -20,7 +20,7 @@ public static class FootballGaitTests {
         var clip=Array.Find(AssetDatabase.LoadAllAssetsAtPath(Asset),a=>a is AnimationClip&&a.name==name) as AnimationClip;
         return clip??AssetDatabase.LoadAssetAtPath<AnimationClip>("Assets/Doppel6EngineProbe/Art/"+name+".anim")??throw new Exception("Missing clip "+name);
     }
-    public static string Run(string repository){
+    public static string Run(string repository,string outputFolder=null){
         var checks=new List<Check>();void Check(bool ok,string name,double measured=0){checks.Add(new Check{name=name,passed=ok,measured=measured});}
         var scene=EditorSceneManager.NewPreviewScene();var graph=PlayableGraph.Create("D6 gait validation");
         try{
@@ -43,7 +43,7 @@ public static class FootballGaitTests {
             Presentation(repository,scene,Check);
         }finally{if(graph.IsValid())graph.Destroy();EditorSceneManager.ClosePreviewScene(scene);}
         int failed=checks.FindAll(c=>!c.passed).Count;var json=JsonUtility.ToJson(new Report{passed=checks.Count-failed,failed=failed,checks=checks.ToArray()},true);
-        var folder=Path.Combine(repository,"outputs/platform/unity-phases");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"gait-tests.json"),json);
+        var folder=Path.Combine(repository,outputFolder??"outputs/platform/unity-phases");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"gait-tests.json"),json);
         if(failed>0)throw new Exception(failed+" gait checks failed; see outputs/platform/unity-phases/gait-tests.json");
         return json;
     }

@@ -1,0 +1,3391 @@
+{
+  "scope": "Current production and separately labeled private stage2, actual native std5 shot119-5 fixture, complete P02 facts, JSON around halftime. No wall-clock override, shortened intervals, forced outcomes, production edits or Unity/build operations.",
+  "sourceHashes": {
+    "dist/index.html": "ee1bd108b736ab709519b7b1c9d1baa2797839ff9c73391da8bb69ca6a19635b",
+    "dist/style.css": "fc7abde1213ae3495dc367506858284f5e76f18c84b255fbcd76910e78df380d",
+    "dist/manager.css": "2a4746fad538714befe560f04051cebd6aec9d2df5d6cdcfe4b4b8789ae660ac",
+    "dist/world-start-v61.css": "4dedba96952b53072944591994808e8a71adc91b4939b84e60458d838f3a0590",
+    "dist/world-economy-v66.css": "d0b6dc985cfdf4a51adf1416d011d25788abe3be14c7544f859e82885c0947e2",
+    "dist/world-youth-v67.css": "8f489907a1173c18f3171cfd431e19ad59c82ab7c762ec879e3a9dca2750c6a7",
+    "dist/world-views-v68.css": "24b150d7252760a3bcc7bbc6b8dc999f09f78000445da6e0c2d9f3411e933417",
+    "dist/progress-v58.css": "181b5b64f08810734cb127d91519cdd5f07a6bf9e2a7985004dc43817bbbe77b",
+    "dist/ui-flutlicht/tokens.css": "acbe428025b4ceba28aaeff0bce20f07d8639a5447fc23101064d2243d035922",
+    "dist/ui-flutlicht/components.css": "6fcc7f21bf16481f69b6f53855b5565a84bdecb5ae41c1945451d90a6c452aae",
+    "dist/ui-flutlicht/views/overview.css": "b75c39e45c6e9183d00f0e39e283036979fe995620c81ed02136e65a0dd38cd8",
+    "dist/ui-flutlicht/views/squad.css": "19e8079720127b570ac5595b1289236a144db3fd763758c7a153449eb26b6e81",
+    "dist/ui-flutlicht/views/market.css": "b5dff4a85800027ec4499ad0586cff7798acec61c0e117587ddd1a5925cb3f61",
+    "dist/ui-flutlicht/views/settings.css": "941e3c8276bcd58b3d8b1254290ddf1a6db14402f749fb64ed20b07ba51ff1a2",
+    "dist/ui-flutlicht/views/club.css": "b31cd6746ad18fc96b908b45e49d88ec3d2288f6065dc689080e5cf33ed12af4",
+    "dist/ui-flutlicht/views/competitions.css": "e928d63b5be4b1014c4b866cb68ae941e7f95bb4f885763242bea0e3df57efda",
+    "dist/ui-flutlicht/navigation.css": "f671116a18737af2e2d9a5b746fc48b282ca98667f02bc374dce68a1b2dd6632",
+    "dist/ui-flutlicht/matchplan.css": "5e84a7fd7da34e8e3e3728ed349f277d9e6bf68430ba716579f960ae5fd0bff3",
+    "dist/ui-flutlicht/start.css": "9897f62c539c058dcb373432f361559f73180c7d9f57005dbab2f986ebd981ad",
+    "dist/ui-flutlicht/match.css": "031714371e2bc8fb71f9ee66844c0c8d1c9944b71e52355a4989c10f50d5bde0",
+    "dist/ui-flutlicht/views/report.css": "234cfc996c118eb1946cb8d8edcdc26604cd8785c023d6ee632c82f558a08d7d",
+    "dist/player-tactics-ui.css": "9112723381ca780a8284edacbaa4fea84681663a589527d3f3851439c19e22d9",
+    "dist/world-tactics-layout-v156.css": "4eb557c24bfcbc9e69277f35d0c12c0843077947db88f0de733adbeb153d159b",
+    "dist/game.js": "0e17309bdeedd788836364d3bebc6263df13c2fbbecefa4be5b1365301f6ea1d",
+    "dist/manager-v11.js": "afcc18d4fb2a9e790bb7c0d9bcaa4b7a6e761791ef000f051ed06e663e168fb7",
+    "dist/identity-v12.js": "abe11489a8d5d78ca69f6e36107f8c0f23f75d184efd28daccbebc6f12e169df",
+    "dist/season-v13.js": "572c371a30d51464da5a9546873861e154222d13526ccbcb897d64f1f6b47864",
+    "dist/halftime-v14.js": "8a8233f08ebd8587c8102cff2f4fdd7724353fb418894e7380368e4384e63bef",
+    "dist/finance-v15.js": "ddc667a1c18b0db944fd5f4c39538b0bafd686612a87df83f9df30824dd9d740",
+    "dist/transfer-v16.js": "7f5901a1e412eb022786bdf27ee70dd5f24e4696131664532ad36adf9ab617d6",
+    "dist/qol-v17.js": "85417ceab8ee0fe1c5c27bb7afac7e64dc6cf6affa125e335bcf85e20e9148f9",
+    "dist/player-card-v18.js": "ac087369266527ac8abbf4af0c54ede4a310f45c4a5fe13e0cdd140de778eb2d",
+    "dist/dashboard-v19.js": "cf2037e947164ec4e043540c622f3151e8f1c84850e56d61b7655136e301a984",
+    "dist/screen-wake-v20.js": "a2e1f7678ff4be0f107c06ed66375bb0f39af8d2886c321728fe2c8919e7da56",
+    "dist/match-clock-v21.js": "1a19d7420fb403b88d4d71d99167690b4916ce725d1752cbce0247c2e7e4d476",
+    "dist/club-history-v22.js": "1a19d7420fb403b88d4d71d99167690b4916ce725d1752cbce0247c2e7e4d476",
+    "dist/formation-label-v23.js": "1a19d7420fb403b88d4d71d99167690b4916ce725d1752cbce0247c2e7e4d476",
+    "dist/lineup-ux-v24.js": "6c44f1e128a5ed9fcf4c9f72bb7fd83acff3da7abde3d454ef6ea728a0f861c0",
+    "dist/presentation-v25.js": "79a7e6a5a745e1ed7f4466831bb5d6d06b36e2bac742bd446534b2fa25c20742",
+    "dist/sponsor-fix-v26.js": "7c899aab56b5d6f4ca1e919ca5a7a35e223029d2c7ee206ea1da21be2f296e6c",
+    "dist/dashboard-order-v27.js": "fe4dcebb41771aeac92d22fa19b336e1f1737731cfbe00416c0fe0d2e81f2a8c",
+    "dist/transfer-result-v28.js": "04b838039ce34c1377fd467d4ad14e9a0a2f44cd72258c108ba4f5be9e3ad44e",
+    "dist/transfer-actions-v29.js": "acc239a169a573bbd14cdb0b53d454d533a07377d3505e13b32af3a005404af2",
+    "dist/sale-profile-v30.js": "8c96775813978a1e57ef7533329435dcb3e181a5ffebf27022ee3b714825f3f0",
+    "dist/season-finale-v31.js": "d271a4de014aeefe5b7295a66b7bcd69139e1b176a469b3048dd95ced53facb3",
+    "dist/dashboard-layout-v32.js": "ac0e805da387004c4f648e649e3253adeb75d012bb0aca6aef3fa6babb4ecce6",
+    "dist/youth-v33.js": "a0b1842d029167a89f0fcf2cef9787f48ce2f1982339084ea89cf1b1eeead613",
+    "dist/season-roster-v34.js": "9e288ddeedfa0cca8cf67239b49dfb32522c47d67f3468c1b4ff8b3f70e9fcc8",
+    "dist/transfer-sections-v35.js": "0ee15b40d540d50c3f5143146f096e37e654938c08a987eae7d5995b6f2a40d8",
+    "dist/youth-direct-v36.js": "6e9f12880cdff4dbb111958f54169e52b02d695a988ba35f3ffe82b12be432ff",
+    "dist/transfer-order-v37.js": "7f6b6921b1338cef2cd14f205e9f603e44326475989dbad145efedcbef3e688f",
+    "dist/legal-v38.js": "8d6ac71932f18157718cc3d5c66834ee3bfd35fa5badebd1ba664e1875bbabe4",
+    "dist/awards-v40.js": "1cd9c6c8ab187f261463d5515b8afb7ad28a7c4e03b3e0e3bbc06f5ecb628a23",
+    "dist/cup-v41.js": "edefc9f122a807c67a38b7b136155fbd8373356c0632665ebd8bd2b464e30657",
+    "dist/penalties-v42.js": "92bdbca73b2f68b10cf11d7a3690ab4d842d85835b92f227b231fa23af0f9d04",
+    "dist/club-records-v43.js": "f63051751819ff6a5861fb36646d365581621c6b9ee06ba78df1cd173e0b0033",
+    "dist/club-identity-v44.js": "5aaebc6fa7c0b27841e5401e61595847d85ca1f871c4ef64f2349cc78cd75903",
+    "dist/keeper-logo-v45.js": "1e837cd6ea56c05f074128fbc9bb8fccbd8172d558e7c01de882ad64336167ac",
+    "dist/main-menu-v46.js": "78e67dfe9d7b24f5f890f8e08ec011af52cdde1c43cf061d91d219d75807ef0d",
+    "dist/match-report-v47.js": "ad3f73056e9ceedae4fedf505afa3fc95b80c0670a1ff176283f49ab7d48c1e0",
+    "dist/next-match-v49.js": "5e3318b7a036d3766610035732477e3cfb12631e9f7f6da4974b3eb0699dd38d",
+    "dist/set-pieces-v50.js": "89ff8bbb371afec822b2c02a4609723cb6a3dfa1e28b51f45c91ee177a00a40c",
+    "dist/status-icons-v51.js": "0acaf925a75db25505f475d7280ae251bacb7c37cca3f13b79ebcbbf82c94c60",
+    "dist/player-status-v51.js": "410d514c8c5851f46ea1e0c533e5b400d09dcb13f17c253c8345a47edd8cf794",
+    "dist/strength-v55.js": "8545e5d6e3fd8bb161769e72f93ebf1ac4db81bd91801b32d074bf49f6888f8c",
+    "dist/opponent-profile-v54.js": "876562863eeafe53b7fe029fa4e479334b7d248004ce8c0583cd33fd1bf2de92",
+    "dist/pitch-v55.js": "0a6de1e6b9c3bff1a69e350982e91ffa20c7128919ecb6767ade509e8fd4797c",
+    "dist/pitch-v56.js": "b3587a87f24bb7b948caa4f62524be98acadb3795f079571fe84d1606cc959e2",
+    "dist/pitch-v57.js": "b6d1fb8f1746f363a30f1ce63ff40d006745acdbee96218cf366c35f9824df4a",
+    "dist/progress-v58.js": "f87fbd19144134dcf58f9a29d00207c88e53ef984a49ada43030a20e8e7a1aa5",
+    "dist/live-player-v59.js": "a0723b59638455afe7c91876ce9b44e02408daa2bea4982f5286ac05c5ea45b2",
+    "dist/ai-career-v60.js": "ff6bf2c2d024730547a45d290205b6e56185c16cf9981e2ba5b65a9c724a686e",
+    "dist/world-catalog-v61.js": "1c3aeb25200ee737b61f00989a52a1b58e67f4f93035109afebe4a562757ef50",
+    "dist/trophy-art-v119.js": "f67b8cf1fec6c2fb49c65d46be7aa2ddb4f9f7aa764b16b84d05af3b5f0c041a",
+    "dist/world-competition-v62.js": "6d9a6192d0f6c59c1db4c586232f5390e81635ddc895e27ff4601b7c7e0622ca",
+    "dist/world-coaches-v63.js": "14b8f86c6139e4707fe1be3fbd3a81933f88dfa389819389adeac836e9ced551",
+    "dist/world-match-v64.js": "8656bc3b0eef950fcfecd529689ba39b349baa6ec78621c3c2c1726fb7c8489f",
+    "dist/world-nationalities-v79.js": "69b825a31b316cb066dae5aee86ee1f87f3979f25b1c9b67744e5d687169569e",
+    "dist/player-generation.js": "da657cbe0e09fab5335ebd62cb7c247974a0f785923e941cd6e71bb339a3e51b",
+    "dist/player-effective-abilities.js": "659e6c9a40c0a9acfc4342c579b616a9ff3984fad65e1654018d480380cccb45",
+    "dist/player-freshness.js": "0ed90ab51932f747f4f386921efd03b7fd8ac18f32ebe02ea75221a062a8cb79",
+    "dist/player-load-candidate-v158.js": "76a605c8e047b45f84dd5510347791bb1205a68f2793c8cc90435424cdf6dad7",
+    "dist/player-development.js": "9985f7f18b170046909adc994f862189d25a3fff9dbe292ca2a19767a155466a",
+    "dist/player-aging.js": "8903eeb54a0970bc750ffa2a00f9baf9d9f1931548fcc685baeac625810ba382",
+    "dist/player-role-suitability.js": "45a09bbdce6232a0bd0d9df188cbb5f1dce481db1b63849d6f38b5709191c632",
+    "dist/player-position-routine.js": "2a974ab054b34b8a8d2fa05dc8516d01a1f0b782f79ced2ebc4d818346960188",
+    "dist/player-tactic-transitions.js": "bea74b38dcf900710044dc014804a09a84670dd064d82bae4b2b0a4cfc23a0cb",
+    "dist/player-match-ratings.js": "adfc258b0066eddf7b5476e608d32475fe49fe039691fae86a2a8afc8c59284a",
+    "dist/player-tactics-ui.js": "5a41b67f6f839c3fd41334ddab3f199a5be6489ea4943d8836da2d641c0c4c4b",
+    "dist/world-player-roles-v154.js": "d0218175b825d961321f422086dba6b676f73666b7e91ddf363521dc520c00d0",
+    "dist/world-player-performance-v155.js": "262ad562b2f8730aef2c816f56bb832796cf53169349a9a8b25a10d5437a8271",
+    "dist/world-tactics-ui-v156.js": "0783083c0cc364c75cc00fd93e19be753cc17655ac7e7294a2782e79763bf1bf",
+    "dist/world-player-foundation-v153.js": "7cb83f733e9fbcb7e392c36a9fc69388c9a88c52b3efccfa2e6bb0740d90cda4",
+    "dist/world-player-load-v158.js": "12c3ff94c67a468c259b4f26aefb0c7dfdd1185a7cf25d1886f6f2c8972e69b5",
+    "dist/player-foundation-preview-v153.js": "1e3a275923162b518f502e0b4902698a3f37311dc00c0e87d5d4243bf5859e14",
+    "dist/world-foundation-v61.js": "a57163a790638315a046361b519a0047af697ca486c37970b4ed6d30677e9198",
+    "dist/world-match-ui-v64.js": "3deb3425da0c30ba686caa64517e6ccc044052d1fa1260eb621d16af8982ad9a",
+    "dist/world-physical-v65.js": "23ef31850a4b320d120e8122a711103e4c00dd079c9917a4e48c4733e7b0d173",
+    "dist/world-economy-v66.js": "99a60c08f9559abeffe3114015f737a820ea09ca6ffa06015c93ccc80bcc7ec0",
+    "dist/world-transfer-list-v72.js": "a09dd52fd5cb1a9a39d44195548705ce21657ae372ddc02e93d47f6381d0563d",
+    "dist/world-market-ui-v66.js": "082bbea9b45b54e6a04e12299c7883412dbef3897b4bb9ce36e66ded8fdba6e5",
+    "dist/world-transfer-list-ui-v72.js": "92459d9aeba26ea532010e9e3ca7381110640a3707f74f2250b6d73ba95094dc",
+    "dist/world-youth-manager-v67.js": "8068a168e5c2c9b23274fd7be7eab06f48f3061d8570e3b4d069a4ecc85e611d",
+    "dist/world-payments-v124.js": "655b5cb7fc4f635995a00eccb310f7e3922ad332734fe356c4f154710ed72e01",
+    "dist/world-youth-ui-v67.js": "99f500bdafc9c5692922bdda93b1bc4d713f8015153a4b3e4347d8eb04869375",
+    "dist/world-payments-ui-v124.js": "39c7ebd63dad1da06e873a24baacf3aa523fc0a9ba41baa08666725d71863933",
+    "dist/world-honours-v74.js": "2e2171c6167eb51f0da4b4dcdc83d2c4740d4b923189702061ae3dc23d69c2db",
+    "dist/world-views-v68.js": "e3f7006c3a7567ec372e306fa9c0fcd674d9fa8c3a00749ac065729c492d9f4a",
+    "dist/world-career-plan-v64.js": "64d0efa086c9fad59edb407c4025d6522400213db8ab65d20bab71858dd2808a",
+    "dist/world-grid-touch-v71.js": "ca8e19206566bc464380798548d331f6f54602c8c88dcf3d6802d4f8bff8dff0",
+    "dist/match-presentation-v74.js": "c51ea7a59c492b5005a12208dfded6f13571cd891c5cfa72c5d3b7e3c2898f9b",
+    "dist/i18n-v75.js": "4b9ea35107eea892333a2b3d4175015eb53a03b3d9c8263b71923e19e3d3bdc3",
+    "dist/world-kits-ui-v81.js": "9a97db3df6bbfe7cebff3ffd5c288c0527ca251937782df23c9c019e37977375",
+    "dist/world-goal-scene-v83.js": "25d33e8b000b879137fa8425aef952566a2f6478ee3804f1aedf4af34d4b1669",
+    "dist/world-goal-banner-v84.js": "76c6635ca95c3794bad1ed00a35ff6a85142e9fe3b9f0c8b14ac4730ae194ab1",
+    "dist/world-pitch-layout-v92.js": "66b91358c2f03244883a9bf69c2c9815949f8f833412ed7bfcce662bc9f48729",
+    "dist/camera-prototype/vendor/three-r160.min.js": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa",
+    "dist/player-model-v105.js": "34203a1729bf2ce234da15cd24d03ce9a32fc65e162d870a1c5ec387278993b6",
+    "dist/pitch-scene-v98.js": "76cb5d11e1590fb81f33a9319ae835b85b20e35db04f68fcd0c82b8923e7bf11",
+    "dist/world-pitch-actions-v99.js": "596b0cfb28a68782ca829a2b55f2702e844ec3e7c04e698d5f9543069f2c9877",
+    "dist/pitch-motion-v102.js": "66cc8e4dac75fc717fd2951934c685ac4316ff58646310c0096b402379a57fcd",
+    "dist/world-backpedal-v108.js": "0332d0c9cc1ff6ffd4f667e2505f1cd5315537435e27786bf0c7b8e4df3f2139",
+    "dist/world-corner-ball-v109.js": "2174d116134bb25938754d4595e0986d1f2a6eef5fa6e9dd50c592a75e5e25f8",
+    "dist/world-ball-motion-v110.js": "bb193d058d603f896b8f229df793e47ded1f43611a756fad104aeacd9849eed1",
+    "dist/world-space-passes-v150.js": "fa609dda3dae2fb6c2ceff40d43e910d7982990517270e9a772c9cafe794b4a5",
+    "dist/world-attack-flow-v152.js": "b3ba99ae4e5b476e9d65c1d85859c45aa0c793600d6462f50b1e7ea506d5922f",
+    "dist/world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "dist/match-shot-choice-v159.js": "03439209ae9203b1eb56dc0f74a7b31b8efe4cef95232dd6d45467cdbe429dab",
+    "dist/world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d",
+    "dist/match-ball-events-v117.js": "594c885c83ee9a973e74cc1df7ca0481ce83bab0ae3ae3742447c697342c1a93",
+    "dist/world-pitch3d-v98.js": "a6ee4296956afdacc4ef4ea6ec6145fd85276eed8677ee337ef8e9c49e11f8a5",
+    "dist/world-goal-replay-v103.js": "fe51f7038a89f9a5f004f80bf0e31a84d00d6dd9511273c79e55705f3919253b",
+    "dist/world-unity-v151.js": "32d6820249920179b1182f0e145e0e341b6872583c818a10872d085ff99b7242",
+    "dist/player-user-motion-v108.js": "f967eca08a51cb67f54c961864995ee4f4b88332fb06cd60602ef89d8256c0af",
+    "dist/player-user-ball-actions-v111.js": "430abc25ab23cb0a3673148ba3750a3199c9141a934e10d2bd98289187b5f196",
+    "dist/player-ball-events-v111.js": "b3b62667710c9a0ec5b915f5fbb40ba0424a4abf57c80bee7f831e1c725db383",
+    "dist/player-user-meshy-v107.js": "d6973b3ced7a4e485c9e5a90155745890c081f8ef6d5db87fd033f6017aad00d",
+    "dist/player-user-bootstrap-v112.js": "a329bcd35a7096775e785c4aad461ed7aee2460295ff688f353bc2854623cbc0",
+    "dist/world-3d-documentation-data-v134.js": "4b726bbc2ff797f02f3ea716b435c98004b57fadfd180c652ec118db06751382",
+    "dist/world-3d-help-v134.js": "a6efc0768ce2e6a304152591afb0d13002546cedf4f6a2f78aa5d775b63a65c2",
+    "dist/ui-flutlicht/components.js": "d464ebfa4029560162246ca58dac855b1c83dde6e3e04368c6526acb1ecef0c2",
+    "dist/ui-flutlicht/shell.js": "6c2f62b6d404656c589e64c0ef17a12f06619fba3078356717cb670a10ae4712",
+    "dist/ui-flutlicht/registry.js": "af4d4c5f8103af2a98596d93a1aa130edcbbe512167999f6da90d35f9cc4bf3d",
+    "dist/ui-flutlicht/views/overview.js": "5976a5c0c96912d903c84c644615896ee7add78c5f973b366698bc90dc1e3df0",
+    "dist/ui-flutlicht/views/squad.js": "1971dfd015ac7e4b387be10fe61439fcde3af583969ec2f6d31c3a7974edd58f",
+    "dist/ui-flutlicht/views/market.js": "0ecaa0a46bf40185a46d1c8da59e41204632c93353d57e40d00f28b0f044c202",
+    "dist/ui-flutlicht/views/settings.js": "172afdeab22c0c795ca47a7d55f7827bf86bd8006287e4151bf9ac3f1bdfa488",
+    "dist/ui-flutlicht/views/club.js": "706647abef0bb23fc73e8d1cd8c18cf370652173fb98d3b4834204f9afba27d8",
+    "dist/ui-flutlicht/views/competitions.js": "60ee6c8bab0e2da208baa41f56e721afba4557e9f4a8829247268e5dff4f035a",
+    "dist/ui-flutlicht/navigation.js": "6111c7d2df07a40eb3089a1749e314ef1316e22ea89b561ca15be123b4a2a947",
+    "dist/ui-flutlicht/adapter.js": "3050b696b8daaf5fa0eddf3d52175e8249379ec834c3dcf4125c49ccb9996911",
+    "dist/ui-flutlicht/start.js": "c9d92d64f01da82f8938ccbadec3b2775a2a99982eb3c8e00b18915ab27cda82",
+    "dist/ui-flutlicht/match.js": "144dd8d821a8b178a70fa1307ee6b93506c3b4d057b6dd9010c9145b6d3d0f53"
+  },
+  "candidateScriptSha256": "fe274e042a271b6b90883c57996b7652344c940a5e814aaff6dcd287200da3e2",
+  "candidateHashes": {
+    "world-offensive-quality-v157.js": "f9a5666f1960ef8aca972462afda8dd746b2b02bdd7182dfe0f060dd009536d7",
+    "world-football-flow-v159.js": "4471724700b95a8b96cdf64ac0de1b3f40ccd013bb6a932d475532455df0f4f2"
+  },
+  "rows": [
+    {
+      "route": "production",
+      "marked": true,
+      "json": false,
+      "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1",
+      "finished": true,
+      "ticks": 3907,
+      "stats": {
+        "shots": 6,
+        "onTarget": 1,
+        "passes": 54,
+        "passComplete": 45,
+        "goals": 1,
+        "saves": 0,
+        "interceptions": 7
+      },
+      "score": [
+        2,
+        0
+      ],
+      "rng": 3116718187,
+      "draws": 325,
+      "lastElapsed": 83.35766666666754,
+      "rewinds": 1,
+      "clockClamps": [
+        {
+          "before": 83.3570400000023,
+          "after": 83.35666666666754,
+          "halfAlreadyDone": true,
+          "finished": false
+        }
+      ],
+      "checkpoints": [],
+      "boundaries": [
+        {
+          "elapsed": 41.691000000000884,
+          "firstHalfEnd": 41.691000000000884,
+          "minute": 50,
+          "pending": []
+        }
+      ],
+      "commits": [
+        {
+          "elapsed": 41.691000000000884,
+          "minute": 49,
+          "firstHalfEnd": 41.691000000000884,
+          "facts": [
+            {
+              "pid": "shot119-5:GER-2:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:4",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000085,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:6",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.5616000000000199,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.14040000000001385,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:7",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [
+                {
+                  "id": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:601:shot119-5:GER-2:11:intense-duel",
+                  "causeId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:601",
+                  "type": "intense-duel",
+                  "minute": 49.74840000000105,
+                  "units": 1
+                }
+              ],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:5",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.4212000000000202,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:Y1:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [
+                {
+                  "id": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:601:shot119-5:GER-5:Y1:1:intense-duel",
+                  "causeId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:601",
+                  "type": "intense-duel",
+                  "minute": 49.74840000000105,
+                  "units": 1
+                }
+              ],
+              "running": {
+                "sprint": 0.14040000000000674,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:10",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.2808000000000135,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "elapsed": 41.691000000000884,
+          "minute": 50,
+          "firstHalfEnd": 41.691000000000884,
+          "facts": []
+        }
+      ],
+      "digestSha256": "86ac8fee5a2e4c6c59ba5955c24212d297a07b6692cbdf4fd797090298431719"
+    },
+    {
+      "route": "production",
+      "marked": true,
+      "json": true,
+      "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1",
+      "finished": true,
+      "ticks": 3907,
+      "stats": {
+        "shots": 6,
+        "onTarget": 1,
+        "passes": 54,
+        "passComplete": 45,
+        "goals": 1,
+        "saves": 0,
+        "interceptions": 7
+      },
+      "score": [
+        2,
+        0
+      ],
+      "rng": 3116718187,
+      "draws": 325,
+      "lastElapsed": 83.35766666666754,
+      "rewinds": 1,
+      "clockClamps": [
+        {
+          "before": 83.3570400000023,
+          "after": 83.35666666666754,
+          "halfAlreadyDone": true,
+          "finished": false
+        }
+      ],
+      "checkpoints": [
+        {
+          "elapsed": 37.63500000000073,
+          "firstHalfEnd": 41.666666666666664,
+          "minute": 45,
+          "phase": "live",
+          "paceRevision": 119,
+          "pending": [
+            {
+              "pid": "shot119-5:GER-2:1",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:4",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:6",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:9",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:7",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:11",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:1",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:11",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.046800000000004616,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:5",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:Y1:1",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.14039999999999964,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:10",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:9",
+              "intervals": [
+                {
+                  "startMinute": 45.02160000000087,
+                  "endMinute": 45.16200000000087
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.14039999999999964,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 45.02160000000087
+                }
+              ]
+            }
+          ],
+          "label": "before-half"
+        },
+        {
+          "elapsed": 41.691000000000884,
+          "firstHalfEnd": 41.691000000000884,
+          "minute": 50,
+          "phase": "paused",
+          "paceRevision": 119,
+          "pending": [],
+          "label": "half-break"
+        }
+      ],
+      "boundaries": [
+        {
+          "elapsed": 41.691000000000884,
+          "firstHalfEnd": 41.691000000000884,
+          "minute": 50,
+          "pending": []
+        }
+      ],
+      "commits": [
+        {
+          "elapsed": 41.691000000000884,
+          "minute": 49,
+          "firstHalfEnd": 41.691000000000884,
+          "facts": [
+            {
+              "pid": "shot119-5:GER-2:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:4",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000085,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:6",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.5616000000000199,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.14040000000001385,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:7",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [
+                {
+                  "id": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:601:shot119-5:GER-2:11:intense-duel",
+                  "causeId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:601",
+                  "type": "intense-duel",
+                  "minute": 49.74840000000105,
+                  "units": 1
+                }
+              ],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:5",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.4212000000000202,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:Y1:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [
+                {
+                  "id": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:601:shot119-5:GER-5:Y1:1:intense-duel",
+                  "causeId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:601",
+                  "type": "intense-duel",
+                  "minute": 49.74840000000105,
+                  "units": 1
+                }
+              ],
+              "running": {
+                "sprint": 0.14040000000000674,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:10",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.2808000000000135,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "elapsed": 41.691000000000884,
+          "minute": 50,
+          "firstHalfEnd": 41.691000000000884,
+          "facts": []
+        }
+      ],
+      "digestSha256": "86ac8fee5a2e4c6c59ba5955c24212d297a07b6692cbdf4fd797090298431719"
+    },
+    {
+      "route": "production",
+      "marked": false,
+      "json": false,
+      "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1",
+      "finished": true,
+      "ticks": 4814,
+      "stats": {
+        "shots": 4,
+        "onTarget": 2,
+        "passes": 56,
+        "passComplete": 49,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 4
+      },
+      "score": [
+        2,
+        0
+      ],
+      "rng": 107197590,
+      "draws": 302,
+      "lastElapsed": 83.33333333333333,
+      "rewinds": 0,
+      "clockClamps": [],
+      "checkpoints": [],
+      "boundaries": [
+        {
+          "elapsed": 41.666666666666664,
+          "firstHalfEnd": 41.666666666666664,
+          "minute": 49,
+          "pending": []
+        }
+      ],
+      "commits": [
+        {
+          "elapsed": 41.666666666666664,
+          "minute": 49,
+          "firstHalfEnd": 41.666666666666664,
+          "facts": [
+            {
+              "pid": "shot119-5:GER-2:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:4",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:6",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000156,
+                "pressing": 0.3744000000000156,
+                "both": 0.18720000000000425
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:7",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.18720000000000425,
+                "pressing": 0,
+                "both": 0.5616000000000199
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:5",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:Y1:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:10",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "elapsed": 41.666666666666664,
+          "minute": 49,
+          "firstHalfEnd": 41.666666666666664,
+          "facts": []
+        }
+      ],
+      "digestSha256": "d949a1c7626c9c7f5e771e681833e4a85f37a5cd068ee04e0b23452802512f28"
+    },
+    {
+      "route": "private-stage2",
+      "marked": true,
+      "json": false,
+      "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1",
+      "finished": true,
+      "ticks": 4127,
+      "stats": {
+        "shots": 7,
+        "onTarget": 3,
+        "passes": 56,
+        "passComplete": 51,
+        "goals": 2,
+        "saves": 1,
+        "interceptions": 4
+      },
+      "score": [
+        0,
+        2
+      ],
+      "rng": 4001085484,
+      "draws": 372,
+      "lastElapsed": 83.78666666666757,
+      "rewinds": 0,
+      "clockClamps": [],
+      "checkpoints": [],
+      "boundaries": [
+        {
+          "elapsed": 42.1200000000009,
+          "firstHalfEnd": 42.1200000000009,
+          "minute": 50,
+          "pending": []
+        }
+      ],
+      "commits": [
+        {
+          "elapsed": 41.691000000000884,
+          "minute": 49,
+          "firstHalfEnd": 41.691000000000884,
+          "facts": [
+            {
+              "pid": "shot119-5:GER-2:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:4",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000156,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:6",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000156,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000156,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:7",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.23400000000000887,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.04679999999999751,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.46800000000001774,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:5",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.09360000000000213,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:Y1:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.14040000000000674,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:10",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.23400000000000887,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "elapsed": 42.1200000000009,
+          "minute": 50,
+          "firstHalfEnd": 42.1200000000009,
+          "facts": [
+            {
+              "pid": "shot119-5:GER-2:1",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:4",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.4212000000000131,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:6",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.46800000000001774,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:9",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000085,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:7",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.14040000000000674,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:11",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [
+                {
+                  "id": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:618:shot119-5:GER-2:11:intense-duel",
+                  "causeId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:618",
+                  "type": "intense-duel",
+                  "minute": 50.544000000001084,
+                  "units": 1
+                }
+              ],
+              "running": {
+                "sprint": 0.23400000000000887,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:1",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:11",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:5",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.14040000000000674,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:Y1:1",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [
+                {
+                  "id": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:618:shot119-5:GER-5:Y1:1:intense-duel",
+                  "causeId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:618",
+                  "type": "intense-duel",
+                  "minute": 50.544000000001084,
+                  "units": 1
+                }
+              ],
+              "running": {
+                "sprint": 0.2808000000000135,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:10",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.4212000000000131,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:9",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.46800000000001774,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "elapsed": 42.1200000000009,
+          "minute": 50,
+          "firstHalfEnd": 42.1200000000009,
+          "facts": []
+        },
+        {
+          "elapsed": 42.510000000000915,
+          "minute": 50,
+          "firstHalfEnd": 42.1200000000009,
+          "facts": [
+            {
+              "pid": "shot119-5:GER-2:1",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:4",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:6",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:9",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:7",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:11",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:1",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:11",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:5",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:Y1:1",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:10",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:9",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "digestSha256": "399d5776f7cd3dec027ec4a5bdcef5a5517f955a2eb688da624c31e1fb2eb03e"
+    },
+    {
+      "route": "private-stage2",
+      "marked": true,
+      "json": true,
+      "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1",
+      "finished": true,
+      "ticks": 4127,
+      "stats": {
+        "shots": 7,
+        "onTarget": 3,
+        "passes": 56,
+        "passComplete": 51,
+        "goals": 2,
+        "saves": 1,
+        "interceptions": 4
+      },
+      "score": [
+        0,
+        2
+      ],
+      "rng": 4001085484,
+      "draws": 372,
+      "lastElapsed": 83.78666666666757,
+      "rewinds": 0,
+      "clockClamps": [],
+      "checkpoints": [
+        {
+          "elapsed": 36.699000000000694,
+          "firstHalfEnd": 41.666666666666664,
+          "minute": 44,
+          "phase": "live",
+          "paceRevision": 119,
+          "pending": [],
+          "label": "before-half"
+        },
+        {
+          "elapsed": 42.1200000000009,
+          "firstHalfEnd": 42.1200000000009,
+          "minute": 50,
+          "phase": "paused",
+          "paceRevision": 119,
+          "pending": [],
+          "label": "half-break"
+        }
+      ],
+      "boundaries": [
+        {
+          "elapsed": 42.1200000000009,
+          "firstHalfEnd": 42.1200000000009,
+          "minute": 50,
+          "pending": []
+        }
+      ],
+      "commits": [
+        {
+          "elapsed": 41.691000000000884,
+          "minute": 49,
+          "firstHalfEnd": 41.691000000000884,
+          "facts": [
+            {
+              "pid": "shot119-5:GER-2:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:4",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000156,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:6",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000156,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000156,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:7",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.23400000000000887,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.04679999999999751,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.46800000000001774,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:5",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.09360000000000213,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:Y1:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.14040000000000674,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:10",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50.02920000000106
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.23400000000000887,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "elapsed": 42.1200000000009,
+          "minute": 50,
+          "firstHalfEnd": 42.1200000000009,
+          "facts": [
+            {
+              "pid": "shot119-5:GER-2:1",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:4",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.4212000000000131,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:6",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.46800000000001774,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:9",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000085,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:7",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.14040000000000674,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:11",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [
+                {
+                  "id": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:618:shot119-5:GER-2:11:intense-duel",
+                  "causeId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:618",
+                  "type": "intense-duel",
+                  "minute": 50.544000000001084,
+                  "units": 1
+                }
+              ],
+              "running": {
+                "sprint": 0.23400000000000887,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:1",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:11",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:5",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.14040000000000674,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:Y1:1",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [
+                {
+                  "id": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:618:shot119-5:GER-5:Y1:1:intense-duel",
+                  "causeId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:618",
+                  "type": "intense-duel",
+                  "minute": 50.544000000001084,
+                  "units": 1
+                }
+              ],
+              "running": {
+                "sprint": 0.2808000000000135,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:10",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.4212000000000131,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:9",
+              "intervals": [
+                {
+                  "startMinute": 50.02920000000106,
+                  "endMinute": 50.544000000001084
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.46800000000001774,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.02920000000106
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "elapsed": 42.1200000000009,
+          "minute": 50,
+          "firstHalfEnd": 42.1200000000009,
+          "facts": []
+        },
+        {
+          "elapsed": 42.510000000000915,
+          "minute": 50,
+          "firstHalfEnd": 42.1200000000009,
+          "facts": [
+            {
+              "pid": "shot119-5:GER-2:1",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:4",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:6",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:9",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:7",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:11",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:1",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:11",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:5",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:Y1:1",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:10",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:9",
+              "intervals": [
+                {
+                  "startMinute": 50.544000000001084,
+                  "endMinute": 51.0120000000011
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 50.544000000001084
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "digestSha256": "399d5776f7cd3dec027ec4a5bdcef5a5517f955a2eb688da624c31e1fb2eb03e"
+    },
+    {
+      "route": "private-stage2",
+      "marked": false,
+      "json": false,
+      "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1",
+      "finished": true,
+      "ticks": 4814,
+      "stats": {
+        "shots": 4,
+        "onTarget": 2,
+        "passes": 56,
+        "passComplete": 49,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 4
+      },
+      "score": [
+        2,
+        0
+      ],
+      "rng": 107197590,
+      "draws": 302,
+      "lastElapsed": 83.33333333333333,
+      "rewinds": 0,
+      "clockClamps": [],
+      "checkpoints": [],
+      "boundaries": [
+        {
+          "elapsed": 41.666666666666664,
+          "firstHalfEnd": 41.666666666666664,
+          "minute": 49,
+          "pending": []
+        }
+      ],
+      "commits": [
+        {
+          "elapsed": 41.666666666666664,
+          "minute": 49,
+          "firstHalfEnd": 41.666666666666664,
+          "facts": [
+            {
+              "pid": "shot119-5:GER-2:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:4",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:6",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.3744000000000156,
+                "pressing": 0.3744000000000156,
+                "both": 0.18720000000000425
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:7",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-2:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0.18720000000000425,
+                "pressing": 0,
+                "both": 0.5616000000000199
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:11",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:5",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:Y1:1",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:10",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            },
+            {
+              "pid": "shot119-5:GER-5:9",
+              "intervals": [
+                {
+                  "startMinute": 49.04640000000102,
+                  "endMinute": 50
+                }
+              ],
+              "events": [],
+              "running": {
+                "sprint": 0,
+                "pressing": 0,
+                "both": 0
+              },
+              "playedRanges": [
+                {
+                  "startMinute": 0,
+                  "endMinute": 49.04640000000102
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "elapsed": 41.666666666666664,
+          "minute": 49,
+          "firstHalfEnd": 41.666666666666664,
+          "facts": []
+        }
+      ],
+      "digestSha256": "d949a1c7626c9c7f5e771e681833e4a85f37a5cd068ee04e0b23452802512f28"
+    }
+  ],
+  "errors": [],
+  "pass": true,
+  "runnerSha256": "6da6917d8f1ab049a9a27c3d8e3239b60a982c45fb05cc1017ccff2ba06feb9c"
+}

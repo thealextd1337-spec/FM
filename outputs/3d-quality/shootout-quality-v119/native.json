@@ -1,0 +1,48 @@
+{
+  "pass": true,
+  "checks": [
+    "Uses actual full-time lineup including keeper swaps, excludes unused bench and departed starters",
+    "Existing helper governs shooter, keeper, composure, form and freshness without modifying saved roster",
+    "Missing historical composure is derived on independent copies only",
+    "Actual saved calm influences both shared chance and copied world squad; missing calm retains legacy composure",
+    "Replay and actual JSON continuation are deterministic for six and seven players",
+    "Five rounds stop at an actual early clinch, not after a synthetic score draw",
+    "Sudden death evaluates paired real kicks and rotates all actual players",
+    "Pathological identical outcomes terminate in a symmetric conditional deciding pair",
+    "Both single final and second-leg aggregate routes use the same ability-aware shootout",
+    "Previously booked and visible human shootout scores are preserved byte for byte",
+    "Untied regulation and aggregate outcomes do not request a shootout roster",
+    "Seeded actual resolver rewards better shooters and penalizes better opposing keepers across 1000 seeds"
+  ],
+  "metrics": {
+    "weakShooter": {
+      "goals": 1613,
+      "kicks": 5189,
+      "rate": 0.3108498747350164,
+      "wins": 301
+    },
+    "strongShooter": {
+      "goals": 3091,
+      "kicks": 5074,
+      "rate": 0.6091840756799369,
+      "wins": 738
+    },
+    "weakKeeper": {
+      "goals": 2795,
+      "kicks": 5157,
+      "rate": 0.5419817723482645,
+      "wins": 633
+    },
+    "strongKeeper": {
+      "goals": 1950,
+      "kicks": 5243,
+      "rate": 0.3719244707228686,
+      "wins": 385
+    }
+  },
+  "hashes": {
+    "dist/world-competition-v62.js": "6d9a6192d0f6c59c1db4c586232f5390e81635ddc895e27ff4601b7c7e0622ca",
+    "dist/penalties-v42.js": "92bdbca73b2f68b10cf11d7a3690ab4d842d85835b92f227b231fa23af0f9d04",
+    "dist/world-foundation-v61.js": "a57163a790638315a046361b519a0047af697ca486c37970b4ed6d30677e9198"
+  }
+}

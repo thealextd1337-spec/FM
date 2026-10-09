@@ -1,0 +1,295 @@
+{
+  "pass": true,
+  "diagnosticOnly": true,
+  "noReleaseImplementation": true,
+  "noLegacySaveCompatibilityClaim": true,
+  "scope": "Diagnostic-only private global constant interception .78 -> .39, ALL other production stock. Six fresh119 fixtures: standard5/6 seed0 before/candidate/candidateJSON. NOT a ship-ready new-match-only implementation, no legacy/save compatibility claim.",
+  "rows": [
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "before",
+      "matchSpeed": 0.78,
+      "ticks": 4371,
+      "simulationSeconds": 218.55,
+      "finalElapsed": 84.05966666666757,
+      "finalMinute": 100,
+      "stats": {
+        "shots": 6,
+        "onTarget": 2,
+        "passes": 57,
+        "passComplete": 49,
+        "goals": 1,
+        "saves": 1,
+        "interceptions": 5
+      },
+      "shotRequests": 6,
+      "halftime": {
+        "tick": 2342,
+        "simulationSeconds": 117.10000000000001,
+        "statePhase": "paused",
+        "minute": 50,
+        "elapsed": 42.39300000000091,
+        "halftime": true,
+        "halftimeBreakDone": true,
+        "halftimePause": 2,
+        "fulltimePending": false,
+        "finished": false,
+        "firstHalfEnd": 42.39300000000091,
+        "fullTimeEnd": 79.85400000000092
+      },
+      "fulltime": {
+        "tick": 4371,
+        "simulationSeconds": 218.55,
+        "statePhase": "finished",
+        "minute": 100,
+        "elapsed": 84.05966666666757,
+        "halftime": true,
+        "halftimeBreakDone": true,
+        "halftimePause": 0,
+        "fulltimePending": true,
+        "finished": true,
+        "firstHalfEnd": 42.39300000000091,
+        "fullTimeEnd": 84.05966666666757
+      },
+      "playerLoadSummary": {
+        "sequence": 1280,
+        "pendingCount": 0,
+        "playerCount": 22
+      },
+      "rng": 1791790654,
+      "draws": 374
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "candidate",
+      "matchSpeed": 0.39,
+      "ticks": 7693,
+      "simulationSeconds": 384.65000000000003,
+      "finalElapsed": 83.76053666666769,
+      "finalMinute": 100,
+      "stats": {
+        "shots": 10,
+        "onTarget": 5,
+        "passes": 100,
+        "passComplete": 87,
+        "goals": 4,
+        "saves": 1,
+        "interceptions": 8
+      },
+      "shotRequests": 10,
+      "halftime": {
+        "tick": 4075,
+        "simulationSeconds": 203.75,
+        "statePhase": "paused",
+        "minute": 50,
+        "elapsed": 42.09387000000103,
+        "halftime": true,
+        "halftimeBreakDone": true,
+        "halftimePause": 2,
+        "fulltimePending": false,
+        "finished": false,
+        "firstHalfEnd": 42.09387000000103,
+        "fullTimeEnd": 79.57437000000104
+      },
+      "fulltime": {
+        "tick": 7693,
+        "simulationSeconds": 384.65000000000003,
+        "statePhase": "finished",
+        "minute": 100,
+        "elapsed": 83.76053666666769,
+        "halftime": true,
+        "halftimeBreakDone": true,
+        "halftimePause": 0,
+        "fulltimePending": true,
+        "finished": true,
+        "firstHalfEnd": 42.09387000000103,
+        "fullTimeEnd": 83.76053666666769
+      },
+      "playerLoadSummary": {
+        "sequence": 1297,
+        "pendingCount": 0,
+        "playerCount": 22
+      },
+      "rng": 693569609,
+      "draws": 571
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "before",
+      "matchSpeed": 0.78,
+      "ticks": 4207,
+      "simulationSeconds": 210.35000000000002,
+      "finalElapsed": 83.35766666666754,
+      "finalMinute": 100,
+      "stats": {
+        "shots": 5,
+        "onTarget": 2,
+        "passes": 49,
+        "passComplete": 44,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 1
+      },
+      "shotRequests": 5,
+      "halftime": {
+        "tick": 1874,
+        "simulationSeconds": 93.7,
+        "statePhase": "paused",
+        "minute": 50,
+        "elapsed": 41.691000000000884,
+        "halftime": true,
+        "halftimeBreakDone": true,
+        "halftimePause": 2,
+        "fulltimePending": false,
+        "finished": false,
+        "firstHalfEnd": 41.691000000000884,
+        "fullTimeEnd": 79.16666666666667
+      },
+      "fulltime": {
+        "tick": 4207,
+        "simulationSeconds": 210.35000000000002,
+        "statePhase": "finished",
+        "minute": 100,
+        "elapsed": 83.35766666666754,
+        "halftime": true,
+        "halftimeBreakDone": true,
+        "halftimePause": 0,
+        "fulltimePending": true,
+        "finished": true,
+        "firstHalfEnd": 41.691000000000884,
+        "fullTimeEnd": 83.35766666666754
+      },
+      "playerLoadSummary": {
+        "sequence": 1465,
+        "pendingCount": 0,
+        "playerCount": 23
+      },
+      "rng": 4011987662,
+      "draws": 326
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "candidate",
+      "matchSpeed": 0.39,
+      "ticks": 7272,
+      "simulationSeconds": 363.6,
+      "finalElapsed": 83.61116666666791,
+      "finalMinute": 100,
+      "stats": {
+        "shots": 7,
+        "onTarget": 2,
+        "passes": 91,
+        "passComplete": 78,
+        "goals": 3,
+        "saves": 0,
+        "interceptions": 8
+      },
+      "shotRequests": 7,
+      "halftime": {
+        "tick": 3186,
+        "simulationSeconds": 159.3,
+        "statePhase": "paused",
+        "minute": 50,
+        "elapsed": 41.94450000000124,
+        "halftime": true,
+        "halftimeBreakDone": true,
+        "halftimePause": 2,
+        "fulltimePending": false,
+        "finished": false,
+        "firstHalfEnd": 41.94450000000124,
+        "fullTimeEnd": 79.42500000000125
+      },
+      "fulltime": {
+        "tick": 7272,
+        "simulationSeconds": 363.6,
+        "statePhase": "finished",
+        "minute": 100,
+        "elapsed": 83.61116666666791,
+        "halftime": true,
+        "halftimeBreakDone": true,
+        "halftimePause": 0,
+        "fulltimePending": true,
+        "finished": true,
+        "firstHalfEnd": 41.94450000000124,
+        "fullTimeEnd": 83.61116666666791
+      },
+      "playerLoadSummary": {
+        "sequence": 1497,
+        "pendingCount": 0,
+        "playerCount": 23
+      },
+      "rng": 4152805459,
+      "draws": 557
+    }
+  ],
+  "overall": [
+    {
+      "mode": "before",
+      "n": 2,
+      "simulationSeconds": 214.45000000000002,
+      "shots": 5.5,
+      "onTarget": 2,
+      "goals": 1.5,
+      "passes": 53,
+      "completed": 46.5
+    },
+    {
+      "mode": "candidate",
+      "n": 2,
+      "simulationSeconds": 374.125,
+      "shots": 8.5,
+      "onTarget": 3.5,
+      "goals": 3.5,
+      "passes": 95.5,
+      "completed": 82.5
+    }
+  ],
+  "observations": [
+    {
+      "count": 5,
+      "digestExact": true
+    },
+    {
+      "count": 6,
+      "digestExact": true
+    }
+  ],
+  "JSON": [
+    {
+      "count": 5,
+      "digest": "458a28c4574ad49e09945d8b181cd4d35579d043ae577c7c29680b0c07b891d3",
+      "identicalToUninterrupted": true,
+      "ticks": 7693,
+      "elapsed": 83.76053666666769,
+      "minute": 100,
+      "rng": 693569609,
+      "draws": 571
+    },
+    {
+      "count": 6,
+      "digest": "56ab5b8be133b2e4c9229e17010291b4d6979d2619c6c434559f9748189ac5a4",
+      "identicalToUninterrupted": true,
+      "ticks": 7272,
+      "elapsed": 83.61116666666791,
+      "minute": 100,
+      "rng": 4152805459,
+      "draws": 557
+    }
+  ],
+  "sourceHashes": {
+    "game.js": "0e17309bdeedd788836364d3bebc6263df13c2fbbecefa4be5b1365301f6ea1d"
+  },
+  "candidateHashes": {
+    "game.js": "93307a7a14d8de33ce2ef03468061d2761d035c98119b7e2df0379ede3c33511"
+  },
+  "wholeProductionFreeze": 157,
+  "limits": [
+    "Only one seed, standard5/6; no large field or population calibration",
+    "Ticks*.05 simulation duration with automatic tactics resume, not measured browser/device wall time",
+    "Rate changes raw minimum flight duration and raw next deadlines as well as whole-match length"
+  ]
+}

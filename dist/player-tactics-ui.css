@@ -1,4 +1,16 @@
 /* P05 uses the existing Flutlicht surfaces; the pitch remains a football pitch. */
+.d6-role-native{pointer-events:none}
+:is(.fl-shell,.fl-match,.fl-dialog) .d6-role-trigger{display:flex;align-items:center;gap:8px;width:100%;min-height:44px;padding:9px 11px;border:1px solid var(--fl-control-line);border-radius:6px;background:var(--fl-control);color:var(--fl-ink);font:400 16px/1.4 var(--fl-font);text-align:left;cursor:pointer}
+.d6-role-trigger>span:first-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.d6-role-trigger:disabled{opacity:.65;cursor:not-allowed}
+.d6-role-chevron{font-style:normal;font-size:18px}
+.d6-role-choices{position:fixed;inset:auto;margin:0;padding:5px;max-width:calc(100vw - 16px);overflow:auto;border:1px solid var(--fl-control-line,#748078);border-radius:7px;background:var(--fl-surface,#f7faf3);color:var(--fl-ink,#182920);box-shadow:0 6px 20px #0004;font:400 14px/1.3 var(--fl-font,Arial,sans-serif)}
+.d6-role-choices::backdrop{background:transparent}
+.d6-role-choices [role=option]{display:flex;align-items:center;gap:9px;width:100%;min-height:48px;padding:7px 9px;text-align:left;border:0;border-radius:4px;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.d6-role-choices [role=option]>span:last-child{flex:1;min-width:0;overflow-wrap:anywhere}
+.d6-role-choices small{display:block;margin-top:2px;color:var(--fl-muted,#59675e);font-size:11px}
+.d6-role-choices [role=option]:is(:hover,.is-active){background:var(--fl-hover,#e4ebdf)}
+.d6-role-choices [role=option][aria-selected=true]{outline:1px solid var(--fl-accent,#397342);outline-offset:-1px}
 :is(.fl-shell,.fl-match,.fl-dialog) :is(.d6-role-control,.d6-profile-roles){min-width:0;color:var(--fl-ink);font-family:var(--fl-font);line-height:1.5}
 :is(.fl-shell,.fl-match,.fl-dialog) :is(.d6-role-control,.d6-profile-roles) *{box-sizing:border-box}
 :is(.fl-shell,.fl-match,.fl-dialog) .d6-role-control{display:grid;gap:18px;margin:14px 0}

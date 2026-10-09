@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "scope": "Saisonabschluss UI; existing native authorities retained",
+  "files": [
+    {
+      "path": "dist/world-payments-ui-v124.js",
+      "sha256": "39c7ebd63dad1da06e873a24baacf3aa523fc0a9ba41baa08666725d71863933"
+    },
+    {
+      "path": "dist/ui-flutlicht/views/overview.css",
+      "sha256": "b75c39e45c6e9183d00f0e39e283036979fe995620c81ed02136e65a0dd38cd8"
+    },
+    {
+      "path": "work/qa-season-close-native119.cjs",
+      "sha256": "082d8b43ecd88b9e6d6a3e0949cc93a59b8c26eb7498ea2321fc41ebe36adf39"
+    },
+    {
+      "path": "work/qa-season-close-browser119.cjs",
+      "sha256": "75ddddeb06320b85c3fc0cfdc469c326063cb4137cbc38c9594032082e4b87bc"
+    },
+    {
+      "path": "docs/platform/season-close-119.md",
+      "sha256": "62ed886190336a3a12ba148deea0c708655b83eef6a69cf3fca2c7f72f01eee1"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "browser-evidence.json",
+      "sha256": "9fbbc1125c843c915a1261afc7589719f9d63bb6d4ce05bf2101f53e4e5be8ea"
+    },
+    {
+      "file": "native-tests.json",
+      "sha256": "4499f15d69c8b230cabf6891d39f00f7ae1307b5281a0dcacc913158987f709b"
+    },
+    {
+      "file": "dark-390-budget.png",
+      "sha256": "9c863a91e6f0ae2a840873009c5e11e088e98cee5574b1c63349aa0bca322a5a"
+    },
+    {
+      "file": "dark-390-finance.png",
+      "sha256": "59338606b421fa91ffe872f53965a10aa13ec209eed9a1c369622abb7a5db086"
+    },
+    {
+      "file": "dark-390-sponsor.png",
+      "sha256": "9b9daf894347968e97f2a087b4c6211c811fec2ff12694f4f42130ae6ba4d9a7"
+    },
+    {
+      "file": "dark-931-budget.png",
+      "sha256": "814277b205ded0650594dfc74feb7711a5099a18b9c6573c271c13149c11f029"
+    },
+    {
+      "file": "dark-931-finance.png",
+      "sha256": "b37462c0bdc6c9c57abd8d6d770f96fb08ab594801335a1e308190b948a87454"
+    },
+    {
+      "file": "dark-931-sponsor.png",
+      "sha256": "dfab635d733e9a0e0aafaf2eb753d338f4eaed1339d07ee6381df559979c261a"
+    },
+    {
+      "file": "light-390-budget.png",
+      "sha256": "88835a4a4648fdcf8b8d3247e9128d35f26e838092aa03f8f7e13583b795ec2d"
+    },
+    {
+      "file": "light-390-finance.png",
+      "sha256": "0bb2b85102a1d5c2cb822bb62b1ede7012b806e6205e40a482cb87ccb2a2eda0"
+    },
+    {
+      "file": "light-390-sponsor.png",
+      "sha256": "78c8698c74a7b6302d02f084dd58924ee86259da59f02a07d033c68d867f14f4"
+    },
+    {
+      "file": "light-931-budget.png",
+      "sha256": "7d9e99716f4b926d036df109c4698873684370bb6e90d4ae793265656722e35f"
+    },
+    {
+      "file": "light-931-finance.png",
+      "sha256": "404c5302d02c7f5ee5e0ca98a1b923b326d95f7a4f5c90737bddd684348d7a76"
+    },
+    {
+      "file": "light-931-sponsor.png",
+      "sha256": "36daaa9ef3064c29f153c605219ea3f5700a629ee67270d6bcbbc2ac115afbe7"
+    }
+  ],
+  "limits": [
+    "Source DOM/local Headless Edge only; release/build/live owned by root.",
+    "Future season 6 label probe is controlled view data, separate from native three-season suite."
+  ]
+}

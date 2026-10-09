@@ -1,5 +1,7 @@
 # Entwicklungsdokumentation
 
+- [Unity-Arbeitspaket für Claude](agentenauftraege/07-unity-qualitaet-claude.md): nächste 3D-Iteration mit natürlichen Bewegungen in acht Richtungen, flüssigen Übergängen, Keeperkontakten, kleinen Bildschirmen und Vereinsstadien. Erster Vorabcheck am Quotalimit gescheitert; einmaliger Startversuch für den 10. Oktober um 01:08 Uhr geplant. Implementierung noch nicht begonnen.
+
 - [Release 118](release-118.md): veröffentlichte Torwartfolgen und Kontakte; vollständige Produktions-, Unity-, Browser- und Live-Abnahme bestanden. Android-Prüfweg und Account-Betriebspaket folgen demselben priorisierten Plan.
 - [Android-Geräteabnahme](platform/android-3d-acceptance.md): physischer USB-/Chrome-Prüfweg für 14 Spieler, native Spielgeschwindigkeit, echte Wake-Lock-/Bildschirmbeobachtung und getrennte Leistungskennzahlen; Pixel 9 Pro XL ist nun verfügbar und über USB erreichbar.
 - [Account-Betriebspaket](platform/account-provider-options.md): eigener EU-Server mit selbst betriebenen Updates und Backups ist gewählt; konkrete Tarif-/Budget-, Betriebs-, Eltern- und Löschkonfiguration folgt nach der 3D-Abnahme.

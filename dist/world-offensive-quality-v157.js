@@ -4,6 +4,7 @@
 // and plain checkpoint data; neither renderer owns movement or possession.
 function v157Active(m){return Boolean(v152Active(m)&&m.attackFlow.qualityVersion===157);}
 function v162Active(m){return Boolean(v157Active(m)&&m.attackFlow.flowVersion===159&&m.attackFlow.paceVersion===162);}
+function v119PaceActive(m){return Boolean(v162Active(m)&&m.attackFlow.paceRevision===119);}
 function v157Angle(a,b){return Math.atan2(Math.sin(b-a),Math.cos(b-a));}
 function v157InitialBody(p){
   const s=v150Scale(),dx=(p.motionX||0)*s.x,dy=(p.motionY||0)*s.y;
@@ -26,7 +27,8 @@ function v157Pace(m,p){
   const intent=m.attackFlow.intents[p.pid],now=v152Seconds(m),read=m.attackFlow.defenseReads?.[p.pid],target=m.flight?m.ball:m.rebound;
   const contest=target&&m.people.filter(q=>q.t===p.t&&!q.keeper&&!q.slideActive).sort((a,b)=>v122Metres(a,target)-v122Metres(b,target)||a.n-b.n).slice(0,2).includes(p);
   const purposeful=intent&&intent.until>=now&&intent.team===v123PossessionTeam(m)&&['depth','follow'].includes(intent.type)||read&&read.nextAt>=now&&['press','ball'].includes(read.purpose)||p.interceptTarget&&m.flight||contest;
-  const pace=base*(m.owner===p?1.28*(.78+ability(p,'tec')*.009):purposeful?1.48:1.08);
+  const revised=v119PaceActive(m),support=revised&&intent&&intent.until>=now&&intent.team===v123PossessionTeam(m)&&intent.type==='support';
+  const pace=base*(m.owner===p?1.28*(.78+ability(p,'tec')*.009):purposeful?(revised?1.58:1.48):support?1.35:revised?1.15:1.08);
   return typeof v158Movement==='function'?v158Movement(p,pace,1).maxSpeed:pace;
  }
  const intent=m.attackFlow.intents[p.pid],chase=Boolean(m.flight||m.rebound),purposeful=intent&&['depth','follow'].includes(intent.type);
@@ -42,9 +44,9 @@ function v157Move(m,p,dt){
  const mode=v108MovementMode(m,p),focus=mode?.facing;
  const target=pivot?(pending.kind==='space'?pending.target:pending.receiverId?m.people.find(q=>q.pid===pending.receiverId):pending.target):null;
  const heading=target?Math.atan2((target.x-p.x)*s.x,(target.y-p.y)*s.y):focus?Math.atan2((focus.x-p.x)*s.x,(focus.y-p.y)*s.y):d>.03?Math.atan2(dx,dy):body.heading;
- const quick=v162Active(m)&&!p.keeper,angularRate=(3.5+ability(p,'tec')*.055)*(quick?1.22:1)/Math.sqrt(mass)/(1+speed*.055);
+ const quick=v162Active(m)&&!p.keeper,revised=quick&&v119PaceActive(m),angularRate=(3.5+ability(p,'tec')*.055)*(revised?1.32:quick?1.22:1)/Math.sqrt(mass)/(1+speed*.055);
  body.heading+=clamp(v157Angle(body.heading,heading),-angularRate*dt,angularRate*dt);
- const factor=v108MoveFactor(m,p,p.tx-p.x,p.ty-p.y),brake=10.5*(quick?1.18:1)/mass,baseAccel=(6.2+ability(p,'spd')*.08)*(quick?1.24:1)/mass,accel=typeof v158Movement==='function'?v158Movement(p,1,baseAccel).acceleration:baseAccel;
+ const factor=v108MoveFactor(m,p,p.tx-p.x,p.ty-p.y),brake=10.5*(revised?1.25:quick?1.18:1)/mass,baseAccel=(6.2+ability(p,'spd')*.08)*(revised?1.40:quick?1.24:1)/mass,accel=typeof v158Movement==='function'?v158Movement(p,1,baseAccel).acceleration:baseAccel;
  const desired=pivot?0:Math.min(v157Pace(m,p)*factor,Math.sqrt(2*brake*Math.max(0,d-.05)));
  // Forward runners follow the body through a curve; defensive backpedalling
  // can retain its observed focus and its existing reduced speed.

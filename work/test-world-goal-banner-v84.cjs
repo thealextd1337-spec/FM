@@ -13,7 +13,7 @@ overlay.setAttribute=(key,value)=>{overlay.attributes[key]=value};
 overlay.removeAttribute=key=>{delete overlay.attributes[key]};
 const title={textContent:'',innerHTML:''},copy={textContent:''};
 const career={world:{season:3,competitions:[
- {id:'league-3',type:'league'},{id:'cup-3',type:'cup'},{id:'europe-3',type:'europe'}
+ {id:'league-3',type:'league',division:1},{id:'cup-3',type:'cup'},{id:'europe-3',type:'europe'}
 ]}};
 const fixture={id:'current',competitionId:'league-3'};
 const player={pid:'p7',n:7,name:'M. Berger',history:[
@@ -46,6 +46,7 @@ assert(classes.has('v84-goal-banner')&&!classes.has('v84-no-sprite'));
 assert.strictEqual(title.innerHTML,'<span class="v84-goal-word">TOOOOR!</span>');
 assert(overlay.html.includes('M. Berger')&&overlay.html.includes('5 Tore - Liga 1'));
 assert(overlay.html.includes('2:1')&&overlay.html.includes('Vereinslogo SC Beispiel'));
+assert(overlay.html.includes('<span class="v119-goal-club">SC Beispiel</span>'),'real club name below crest');
 assert(overlay.html.includes('v84-goal-decor')&&overlay.html.includes('v84-goal-strips'),'Vorlagenornamente erscheinen im Banner');
 assert(overlay.html.indexOf('class="v84-score')<overlay.html.indexOf('class="v84-scorer'),'Ergebnis vor Name');
 assert(overlay.html.includes('Rückennummer 7')&&overlay.html.includes('#7'),'Rückennummer sichtbar');

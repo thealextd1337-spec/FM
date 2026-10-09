@@ -2,6 +2,8 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const c=vm.createContext({crypto:require('node:crypto').webcrypto,structuredClone,clamp:(v,a,b)=>Math.max(a,Math.min(b,v)),v61CurrentCareer:null,location:{protocol:'http:',hostname:'test.invalid',search:''},URLSearchParams});c.window=c;
 const read=f=>fs.readFileSync('dist/'+f,'utf8'),run=f=>vm.runInContext(read(f),c,{filename:f}),call=(n,...args)=>vm.runInContext(n,c)(...args),copy=o=>JSON.parse(JSON.stringify(o));
+const penaltySource=read('penalties-v42.js');
+vm.runInContext(penaltySource.slice(penaltySource.indexOf('function v42Composure('),penaltySource.indexOf('function v42OrderHTML(')),c);
 for(const f of ['world-catalog-v61.js','world-competition-v62.js','world-coaches-v63.js','world-match-v64.js','world-nationalities-v79.js','player-generation.js','player-effective-abilities.js','player-freshness.js','player-load-candidate-v158.js','player-development.js','player-aging.js','player-role-suitability.js','player-position-routine.js','player-tactic-transitions.js','player-match-ratings.js','player-foundation-preview-v153.js','world-player-foundation-v153.js','world-player-roles-v154.js','world-player-performance-v155.js','world-player-load-v158.js'])run(f);
 const source=read('world-foundation-v61.js');vm.runInContext(source.slice(0,source.indexOf('const v61Panel=')),c);
 for(const f of ['world-economy-v66.js','world-youth-manager-v67.js'])run(f);

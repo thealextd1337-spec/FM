@@ -28,8 +28,7 @@ function v130SeasonAccounts(career,clubId,season){
 function v130AccountRow(label,amount,sign=''){
  return`<div class="v130-account-row"><span>${escapeHTML(label)}</span><b>${amount?sign:''}${v66Credits(amount)}</b></div>`;
 }
-function v130AnnualAccountsHTML(career,club){
- const season=career.world.season-1;
+function v130AnnualAccountsHTML(career,club,season=career.world.season-1){
  if(season<1)return`<h3>Karrierestart</h3><p>Für deinen Verein liegt noch keine abgeschlossene Saisonabrechnung vor.</p>`;
  const accounts=v130SeasonAccounts(career,club.id,season),rows=accounts.categories;
  const income=[['Jahresgrundbetrag','base'],['Sponsorfixum','sponsorFixed'],['Sponsorboni','sponsorBonus'],['Ligaprämien','league'],['Nationale Pokalprämien','cup'],['Europacupprämien','europe'],['Match-Credits','match'],['Transfereinnahmen','sales'],['Weitere Einnahmen','otherIncome']];
@@ -44,7 +43,7 @@ function v124BudgetHTML(career){
  const club=v66Own(career),limit=v67BudgetLimit(club),due=v66SalaryDue(career,club.id),amount=limit>=200?200:0,options=v130FundingOptions(limit),sponsor=club.sponsors.find(item=>item.id===club.sponsorId);
  const current=club.ledger.filter(row=>row.season===career.world.season),base=current.filter(row=>row.id.endsWith(':base')).reduce((sum,row)=>sum+row.amount,0),fixed=current.filter(row=>row.id.endsWith(':fixed')).reduce((sum,row)=>sum+row.amount,0),other=current.filter(row=>!row.id.endsWith(':base')&&!row.id.endsWith(':fixed')).reduce((sum,row)=>sum+row.amount,0);
  const carry=club.balance-current.reduce((sum,row)=>sum+row.amount,0);
- return`<section class="v62-season v67-transition v130-finance-close" id="v124-budget"><p class="eyebrow">Saisonwechsel · Saison ${career.world.season}</p><h2>Finanzabschluss</h2>${v130AnnualAccountsHTML(career,club)}<div class="v130-new-season"><h3>Neue Saison · Saison ${career.world.season}</h3>${v130AccountRow(career.world.season===1?'Startkapital':'Übertrag',carry)}${v130AccountRow('Grundbetrag bereits eingegangen',base,'+')}${v130AccountRow('Sponsorfixum bereits eingegangen',fixed,'+')}<p><span>Gewählter Sponsor</span> <strong translate="no">${escapeHTML(sponsor.name)}</strong></p>${other?v130AccountRow('Weitere Buchungen der neuen Saison',other,other>0?'+':''):''}${v130AccountRow('Aktueller Kontostand',club.balance)}<h3>Jugendförderung wählen</h3><label class="v130-funding-label" for="v67-budget">Förderstufe<select id="v67-budget">${options.map(item=>`<option value="${item.amount}" ${item.amount===amount?'selected':''} ${item.available?'':'disabled'}>${item.label} · ${v66Credits(item.amount)}${item.available?'':' · Nicht finanzierbar'}</option>`).join('')}</select></label><p id="v130-funding-detail">${escapeHTML(options.find(item=>item.amount===amount).detail)}</p><p>Die Jugendförderung wird jetzt vollständig bezahlt. Ausbildungsentschädigungen und spätere Profigehälter werden separat bezahlt.</p><div class="v130-account-row v130-total"><span>Kontostand zum Transferstart</span><output id="v130-transfer-balance" aria-live="polite">${v66Credits(club.balance-amount)}</output></div><h3>Projizierte Gehaltskosten</h3>${v130AccountRow('Vereinbarte Gehälter der neuen Saison',due)}<p>Diese Gehälter werden erst am Ende der neuen Saison bezahlt. Neue Verträge und Transfers verändern den Betrag.</p><div class="v130-account-row v130-total"><span>Rest nach vereinbarten Gehältern</span><output id="v130-after-salary" class="${club.balance-amount-due<0?'v130-negative':''}" aria-live="polite">${v66Credits(club.balance-amount-due)}</output></div><p>Weitere Einnahmen, Sichtungen und Transfers der neuen Saison sind noch nicht enthalten. Mögliche Sponsorboni sind noch nicht verdient.</p><button type="button" class="primary" data-v124-budget>Jugendförderung bezahlen und Transfers öffnen</button><p id="v67-transition-error" class="v61-error" role="alert"></p></div></section>`;
+ return`<section class="v62-season v67-transition v130-finance-close${career.world.season>1?' v67-season-show v119-season-close':''}" id="v124-budget"><p class="eyebrow">${career.world.season>1?`Saisonabschluss · Saison ${career.world.season-1}`:`Saisonwechsel · Saison ${career.world.season}`}</p><h2>${career.world.season>1?'Jugendförderung und Saisonstart':'Finanzabschluss'}</h2>${career.world.season>1?v119CloseProgress(career,'budget'):''}${v130AnnualAccountsHTML(career,club)}<div class="v130-new-season"><h3>Neue Saison · Saison ${career.world.season}</h3>${v130AccountRow(career.world.season===1?'Startkapital':'Übertrag',carry)}${v130AccountRow('Grundbetrag bereits eingegangen',base,'+')}${v130AccountRow('Sponsorfixum bereits eingegangen',fixed,'+')}<p><span>Gewählter Sponsor</span> <strong translate="no">${escapeHTML(sponsor.name)}</strong></p>${other?v130AccountRow('Weitere Buchungen der neuen Saison',other,other>0?'+':''):''}${v130AccountRow('Aktueller Kontostand',club.balance)}<h3>Jugendförderung wählen</h3><label class="v130-funding-label" for="v67-budget">Förderstufe<select id="v67-budget">${options.map(item=>`<option value="${item.amount}" ${item.amount===amount?'selected':''} ${item.available?'':'disabled'}>${item.label} · ${v66Credits(item.amount)}${item.available?'':' · Nicht finanzierbar'}</option>`).join('')}</select></label><p id="v130-funding-detail">${escapeHTML(options.find(item=>item.amount===amount).detail)}</p><p>Die Jugendförderung wird jetzt vollständig bezahlt. Ausbildungsentschädigungen und spätere Profigehälter werden separat bezahlt.</p><div class="v130-account-row v130-total"><span>Kontostand zum Transferstart</span><output id="v130-transfer-balance" aria-live="polite">${v66Credits(club.balance-amount)}</output></div><h3>Projizierte Gehaltskosten</h3>${v130AccountRow('Vereinbarte Gehälter der neuen Saison',due)}<p>Diese Gehälter werden erst am Ende der neuen Saison bezahlt. Neue Verträge und Transfers verändern den Betrag.</p><div class="v130-account-row v130-total"><span>Rest nach vereinbarten Gehältern</span><output id="v130-after-salary" class="${club.balance-amount-due<0?'v130-negative':''}" aria-live="polite">${v66Credits(club.balance-amount-due)}</output></div><p>Weitere Einnahmen, Sichtungen und Transfers der neuen Saison sind noch nicht enthalten. Mögliche Sponsorboni sind noch nicht verdient.</p><button type="button" class="primary" data-v124-budget>Jugendförderung bezahlen und ${career.world.season>1?`Saison ${career.world.season} starten`:'Transfers öffnen'}</button><p id="v67-transition-error" class="v61-error" role="alert"></p></div></section>`;
 }
 v61WorldScreen.addEventListener('change',event=>{
  if(event.target.id!=='v67-budget'||!event.target.closest('#v124-budget'))return;
@@ -53,11 +52,20 @@ v61WorldScreen.addEventListener('change',event=>{
  const output=section.querySelector('#v130-after-salary');output.textContent=v66Credits(rest);output.classList.toggle('v130-negative',rest<0);
  section.querySelector('#v130-funding-detail').textContent=v130FundingOptions(v67BudgetLimit(club)).find(item=>item.amount===amount).detail;
 });
+function v119CloseProgress(career,stage){
+ const steps=['Finanzabschluss','Sponsorwahl','Jugendförderung','Saisonstart'],active=stage==='budget'?2:stage==='sponsor'?1:0;
+ return '<ol class="v119-close-progress" aria-label="Saisonwechsel">'+steps.map((label,index)=>'<li'+(index===active?' aria-current="step"':'')+'>'+escapeHTML(label)+'</li>').join('')+'</ol>';
+}
+function v119CloseSponsorHTML(career){
+ const club=v66Own(career);
+ return '<section class="v62-season v67-season-show v119-season-close v130-finance-close" id="v119-season-close"><p class="eyebrow">Saisonabschluss · Saison '+(career.world.season-1)+'</p><h2>Saison '+career.world.season+' vorbereiten</h2>'+v119CloseProgress(career,'sponsor')+v130AnnualAccountsHTML(career,club)+'<div class="v130-new-season">'+v66SponsorHTML(career)+'<h3>Jugendförderung und Saisonstart</h3><p>Nach der Sponsorwahl legst du die Jugendförderung fest. Danach beginnen die Transfers für Saison '+career.world.season+'.</p></div></section>';
+}
 const v124BaseTransitionHTML=v67TransitionHTML;
 v67TransitionHTML=function(career){
  const transition=career.world.transition;
- if(!v124Payments(career)||!career.world.seasonFinished||!transition||(transition.reviewStep??4)<4||transition.choice===null)return v124BaseTransitionHTML(career);
- return`<section class="v62-season v67-transition" id="v67-transition"><h2>Saison ${career.world.season+1} vorbereiten</h2><p>In der neuen Saison erhält dein Verein zuerst den Grundbetrag. Nach der Sponsorwahl legst du das Jugendbudget fest.</p><button type="button" class="primary" data-v124-next>Neue Saison starten</button><p id="v67-transition-error" class="v61-error" role="alert"></p></section>`;
+ if(!v124Payments(career)||!career.world.seasonFinished||!transition||(transition.reviewStep??4)<4)return v124BaseTransitionHTML(career);
+ const club=v66Own(career),decision=transition.choice===null?v124BaseTransitionHTML(career):'<div id="v67-transition"><h3>Sponsor und Jugendförderung für Saison '+(career.world.season+1)+'</h3><p>Wähle zuerst deinen Sponsor für die neue Saison. Mit dem eingegangenen Fixum legst du anschließend die Jugendförderung fest.</p><button type="button" class="primary" data-v124-next>Saison '+(career.world.season+1)+' vorbereiten</button><p id="v67-transition-error" class="v61-error" role="alert"></p></div>';
+ return '<section class="v62-season v67-season-show v119-season-close v130-finance-close" id="v119-season-close"><p class="eyebrow">Saisonabschluss · Saison '+career.world.season+'</p><h2>Finanzabschluss und Saisonwechsel</h2>'+v119CloseProgress(career,'finance')+v130AnnualAccountsHTML(career,club,career.world.season)+'<div class="v130-new-season">'+decision+'</div></section>';
 };
 const v124BaseFinanceHTML=v66FinanceHTML;
 v66FinanceHTML=function(career){
@@ -70,8 +78,11 @@ const v124BaseRenderCareer=v61RenderCareer;
 v61RenderCareer=function(career){
  v124BaseRenderCareer(career);
  if(!career.world.activeMatch){
-  const overview=v61WorldScreen.querySelector('[data-v46-view="overview"]'),budget=v124BudgetHTML(career);
-  overview?.insertAdjacentHTML('afterbegin',budget);overview?.classList.toggle('v130-showing-close',Boolean(budget));
+  const overview=v61WorldScreen.querySelector('[data-v46-view="overview"]'),budget=v124BudgetHTML(career),sponsorClose=v124Payments(career)&&career.world.season>1&&!career.world.seasonFinished&&career.world.market.phase==='sponsor';
+  if(sponsorClose)overview?.querySelector('#v66-sponsor')?.remove();
+  overview?.insertAdjacentHTML('afterbegin',budget||(sponsorClose?v119CloseSponsorHTML(career):''));
+  const close=Boolean(overview?.querySelector('.v119-season-close'));
+  overview?.classList.toggle('v130-showing-close',Boolean(budget)&&!close);overview?.classList.toggle('v67-showing',Boolean(career.world.seasonFinished&&career.world.transition?.reviewStep<4)||close);
  }
  v58Refresh();
 };
@@ -81,7 +92,7 @@ v58State=function(){
  if(career&&!v61WorldScreen.hidden&&!career.world.activeMatch&&v124Payments(career)){
   if(career.world.market.phase==='budget')return{context:`Saison ${career.world.season}`,label:'Finanzabschluss und Jugendförderung',action:'v124-budget'};
   const transition=career.world.transition;
-  if(career.world.seasonFinished&&transition&&(transition.reviewStep??4)>=4&&transition.choice!==null)return{context:`Saison ${career.world.season+1} vorbereiten`,label:'Neue Saison starten',action:'v124-next'};
+  if(career.world.seasonFinished&&transition&&(transition.reviewStep??4)>=4&&transition.choice!==null)return{context:`Saison ${career.world.season+1} vorbereiten`,label:'Sponsorwahl vorbereiten',action:'v124-next'};
  }
  return v124BaseProgressState();
 };

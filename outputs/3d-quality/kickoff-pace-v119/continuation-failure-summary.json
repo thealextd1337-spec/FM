@@ -1,0 +1,392 @@
+{
+  "pass": false,
+  "observedMissing": "v108MovementModes defensive heading/focus at first restored step",
+  "sourceHashes": {
+    "set-pieces-v50.js": "6006a16d2700dc55cbda50b044f27fc03ce07f6bc908bf9e57b41fb52c31c0f6",
+    "pitch-v57.js": "b6d1fb8f1746f363a30f1ce63ff40d006745acdbee96218cf366c35f9824df4a",
+    "world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d"
+  },
+  "dependencyHashes": {
+    "world-physical-v65.js": "100c76c425892fc8e1322bd6ab1593ea502cb1bac01bc39c3c6dee87d1f4abb3",
+    "world-pitch-actions-v99.js": "596b0cfb28a68782ca829a2b55f2702e844ec3e7c04e698d5f9543069f2c9877",
+    "match-ball-events-v117.js": "594c885c83ee9a973e74cc1df7ca0481ce83bab0ae3ae3742447c697342c1a93",
+    "penalties-v42.js": "92bdbca73b2f68b10cf11d7a3690ab4d842d85835b92f227b231fa23af0f9d04",
+    "world-competition-v62.js": "1736023c081f9fb4e926084deebcd5cde936c67d04765b3f35c9bcf4baea11a6"
+  },
+  "summaries": [
+    {
+      "config": {
+        "seed": "pace119-a",
+        "size": "standard",
+        "count": 5
+      },
+      "mode": "before",
+      "ticks": 3475,
+      "score": [
+        1,
+        0
+      ],
+      "rng": 1226111418,
+      "draws": 258,
+      "checkpointFacts": {
+        "tick": 790,
+        "minute": 20,
+        "ownerPid": "pace119-a:GER-2:6",
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": false,
+        "spaceIntent": false
+      },
+      "keeperCheckpoint": {
+        "tick": 1594,
+        "minute": 45,
+        "ownerPid": "pace119-a:GER-2:1",
+        "waitingBefore": true
+      }
+    },
+    {
+      "config": {
+        "seed": "pace119-a",
+        "size": "standard",
+        "count": 5
+      },
+      "mode": "after",
+      "ticks": 4291,
+      "score": [
+        0,
+        2
+      ],
+      "rng": 880421625,
+      "draws": 363,
+      "checkpointFacts": {
+        "tick": 635,
+        "minute": 20,
+        "ownerPid": "pace119-a:GER-3:5",
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": false,
+        "spaceIntent": false
+      },
+      "keeperCheckpoint": {
+        "tick": 1009,
+        "minute": 37,
+        "ownerPid": "pace119-a:GER-2:1",
+        "waitingBefore": true
+      }
+    },
+    {
+      "config": {
+        "seed": "pace119-a",
+        "size": "standard",
+        "count": 5
+      },
+      "mode": "after-json",
+      "ticks": 4291,
+      "score": [
+        0,
+        2
+      ],
+      "rng": 880421625,
+      "draws": 363,
+      "checkpointFacts": {
+        "tick": 635,
+        "minute": 20,
+        "ownerPid": "pace119-a:GER-3:5",
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": false,
+        "spaceIntent": false,
+        "immediateDifferences": [],
+        "keeperWaitingRestored": false
+      },
+      "keeperCheckpoint": {
+        "tick": 1009,
+        "minute": 37,
+        "ownerPid": "pace119-a:GER-2:1",
+        "waitingBefore": true,
+        "waitingRestored": true
+      }
+    },
+    {
+      "config": {
+        "seed": "pace119-b",
+        "size": "standard",
+        "count": 6
+      },
+      "mode": "before",
+      "ticks": 3219,
+      "score": [
+        0,
+        0
+      ],
+      "rng": 1105786226,
+      "draws": 282,
+      "checkpointFacts": {
+        "tick": 502,
+        "minute": 20,
+        "ownerPid": null,
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": true,
+        "spaceIntent": false
+      },
+      "keeperCheckpoint": {
+        "tick": 1372,
+        "minute": 43,
+        "ownerPid": "pace119-b:GER-2:1",
+        "waitingBefore": true
+      }
+    },
+    {
+      "config": {
+        "seed": "pace119-b",
+        "size": "standard",
+        "count": 6
+      },
+      "mode": "after",
+      "ticks": 4037,
+      "score": [
+        0,
+        2
+      ],
+      "rng": 3927452927,
+      "draws": 377,
+      "checkpointFacts": {
+        "tick": 1186,
+        "minute": 20,
+        "ownerPid": null,
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": true,
+        "spaceIntent": true
+      },
+      "keeperCheckpoint": {
+        "tick": 2579,
+        "minute": 63,
+        "ownerPid": "pace119-b:GER-2:1",
+        "waitingBefore": true
+      }
+    },
+    {
+      "config": {
+        "seed": "pace119-b",
+        "size": "standard",
+        "count": 6
+      },
+      "mode": "after-json",
+      "ticks": 4037,
+      "score": [
+        0,
+        2
+      ],
+      "rng": 3927452927,
+      "draws": 377,
+      "checkpointFacts": {
+        "tick": 1186,
+        "minute": 20,
+        "ownerPid": null,
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": true,
+        "spaceIntent": true,
+        "immediateDifferences": [
+          {
+            "path": "match.next",
+            "before": "Infinity",
+            "after": null
+          }
+        ],
+        "keeperWaitingRestored": false
+      },
+      "keeperCheckpoint": {
+        "tick": 2579,
+        "minute": 63,
+        "ownerPid": "pace119-b:GER-2:1",
+        "waitingBefore": true,
+        "waitingRestored": true
+      }
+    },
+    {
+      "config": {
+        "seed": "pace119-c",
+        "size": "large",
+        "count": 5
+      },
+      "mode": "before",
+      "ticks": 3761,
+      "score": [
+        0,
+        0
+      ],
+      "rng": 2007559735,
+      "draws": 305,
+      "checkpointFacts": {
+        "tick": 1059,
+        "minute": 20,
+        "ownerPid": "pace119-c:GER-2:9",
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": false,
+        "spaceIntent": false
+      },
+      "keeperCheckpoint": {
+        "tick": 1432,
+        "minute": 28,
+        "ownerPid": "pace119-c:GER-5:Y0:0",
+        "waitingBefore": true
+      }
+    },
+    {
+      "config": {
+        "seed": "pace119-c",
+        "size": "large",
+        "count": 5
+      },
+      "mode": "after",
+      "ticks": 3354,
+      "score": [
+        0,
+        0
+      ],
+      "rng": 3045901683,
+      "draws": 333,
+      "checkpointFacts": {
+        "tick": 502,
+        "minute": 20,
+        "ownerPid": "pace119-c:GER-2:9",
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": false,
+        "spaceIntent": false
+      },
+      "keeperCheckpoint": {
+        "tick": 2464,
+        "minute": 74,
+        "ownerPid": "pace119-c:GER-5:Y0:0",
+        "waitingBefore": true
+      }
+    },
+    {
+      "config": {
+        "seed": "pace119-c",
+        "size": "large",
+        "count": 5
+      },
+      "mode": "after-json",
+      "ticks": 3354,
+      "score": [
+        0,
+        0
+      ],
+      "rng": 3045901683,
+      "draws": 333,
+      "checkpointFacts": {
+        "tick": 502,
+        "minute": 20,
+        "ownerPid": "pace119-c:GER-2:9",
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": false,
+        "spaceIntent": false,
+        "immediateDifferences": [],
+        "keeperWaitingRestored": false
+      },
+      "keeperCheckpoint": {
+        "tick": 2464,
+        "minute": 74,
+        "ownerPid": "pace119-c:GER-5:Y0:0",
+        "waitingBefore": true,
+        "waitingRestored": true
+      }
+    },
+    {
+      "config": {
+        "seed": "pace119-d",
+        "size": "large",
+        "count": 6
+      },
+      "mode": "before",
+      "ticks": 3718,
+      "score": [
+        0,
+        1
+      ],
+      "rng": 1738203483,
+      "draws": 309,
+      "checkpointFacts": {
+        "tick": 886,
+        "minute": 20,
+        "ownerPid": "pace119-d:GER-5:4",
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": false,
+        "spaceIntent": false
+      },
+      "keeperCheckpoint": {
+        "tick": 1280,
+        "minute": 28,
+        "ownerPid": "pace119-d:GER-2:1",
+        "waitingBefore": true
+      }
+    },
+    {
+      "config": {
+        "seed": "pace119-d",
+        "size": "large",
+        "count": 6
+      },
+      "mode": "after",
+      "ticks": 3788,
+      "score": [
+        0,
+        0
+      ],
+      "rng": 333890721,
+      "draws": 339,
+      "checkpointFacts": {
+        "tick": 1098,
+        "minute": 20,
+        "ownerPid": "pace119-d:GER-2:9",
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": false,
+        "spaceIntent": false
+      },
+      "keeperCheckpoint": {
+        "tick": 1376,
+        "minute": 33,
+        "ownerPid": "pace119-d:GER-5:1",
+        "waitingBefore": true
+      }
+    },
+    {
+      "config": {
+        "seed": "pace119-d",
+        "size": "large",
+        "count": 6
+      },
+      "mode": "after-json",
+      "ticks": 3705,
+      "score": [
+        0,
+        1
+      ],
+      "rng": 769890131,
+      "draws": 301,
+      "checkpointFacts": {
+        "tick": 1098,
+        "minute": 20,
+        "ownerPid": "pace119-d:GER-2:9",
+        "keeper": false,
+        "keeperWaiting": false,
+        "rebound": false,
+        "spaceIntent": false,
+        "immediateDifferences": [],
+        "keeperWaitingRestored": false
+      },
+      "keeperCheckpoint": null
+    }
+  ],
+  "trace": "failure-trace-large6.json"
+}

@@ -1,0 +1,145 @@
+{
+  "pass": true,
+  "release": 119,
+  "sourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+  "htmlSha256": "ecd3d875e5561f5e488c3e8d480a32a4cf43abb90108c5837db9293ad5d8950f",
+  "matches": [
+    {
+      "config": {
+        "fieldSize": "standard",
+        "fieldPlayers": 5
+      },
+      "minute": 100,
+      "teams": [
+        {
+          "name": "FC Bremen Weser",
+          "shots": 4,
+          "onTarget": 0,
+          "goals": 0
+        },
+        {
+          "name": "SC Freiburg Tal",
+          "shots": 2,
+          "onTarget": 0,
+          "goals": 0
+        }
+      ],
+      "unresolvedShotEvents": 0,
+      "interruptedShots": 0,
+      "goalSources": [],
+      "compact": {
+        "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-4:1",
+        "minute": 97,
+        "teams": [
+          {
+            "name": "FC Bremen Weser",
+            "shots": 11,
+            "onTarget": 6,
+            "goals": 2
+          },
+          {
+            "name": "SC Freiburg Tal",
+            "shots": 6,
+            "onTarget": 2,
+            "goals": 0
+          }
+        ],
+        "note": "Same starting career, roster, plan and fixture; compact minute model on independent copy, physical match untouched"
+      }
+    },
+    {
+      "config": {
+        "fieldSize": "large",
+        "fieldPlayers": 5
+      },
+      "minute": 100,
+      "teams": [
+        {
+          "name": "FC Bremen Weser",
+          "shots": 2,
+          "onTarget": 1,
+          "goals": 1
+        },
+        {
+          "name": "SC Freiburg Tal",
+          "shots": 1,
+          "onTarget": 1,
+          "goals": 0
+        }
+      ],
+      "unresolvedShotEvents": 0,
+      "interruptedShots": 0,
+      "goalSources": [
+        {
+          "kind": "shot",
+          "shot": true,
+          "team": 0,
+          "result": "goal"
+        }
+      ],
+      "compact": {
+        "fixtureId": "S1:GER:LEAGUE:R1:GER-4-GER-2:1",
+        "minute": 97,
+        "teams": [
+          {
+            "name": "SC Freiburg Tal",
+            "shots": 6,
+            "onTarget": 4,
+            "goals": 2
+          },
+          {
+            "name": "FC Bremen Weser",
+            "shots": 10,
+            "onTarget": 5,
+            "goals": 1
+          }
+        ],
+        "note": "Same starting career, roster, plan and fixture; compact minute model on independent copy, physical match untouched"
+      }
+    },
+    {
+      "config": {
+        "fieldSize": "large",
+        "fieldPlayers": 6
+      },
+      "minute": 100,
+      "teams": [
+        {
+          "name": "FC Bremen Weser",
+          "shots": 3,
+          "onTarget": 2,
+          "goals": 0
+        },
+        {
+          "name": "SC Freiburg Tal",
+          "shots": 1,
+          "onTarget": 0,
+          "goals": 0
+        }
+      ],
+      "unresolvedShotEvents": 0,
+      "interruptedShots": 0,
+      "goalSources": [],
+      "compact": {
+        "fixtureId": "S1:GER:LEAGUE:R1:GER-4-GER-2:1",
+        "minute": 98,
+        "teams": [
+          {
+            "name": "SC Freiburg Tal",
+            "shots": 7,
+            "onTarget": 4,
+            "goals": 1
+          },
+          {
+            "name": "FC Bremen Weser",
+            "shots": 6,
+            "onTarget": 2,
+            "goals": 0
+          }
+        ],
+        "note": "Same starting career, roster, plan and fixture; compact minute model on independent copy, physical match untouched"
+      }
+    }
+  ],
+  "note": "Complete native matches displayed in actual Unity WebGL; QA accelerates simulation for test throughput. Counts include exited players, use settled native onTarget and score, exclude penalty shootout goals. Deterministic fixture sample, not a population balance study."
+}

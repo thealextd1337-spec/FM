@@ -3,7 +3,9 @@ const fs=require('fs');
 const vm=require('vm');
 
 let nextId=0;
-const context=vm.createContext({crypto:{randomUUID:()=>`test-${++nextId}`}});
+const context=vm.createContext({clamp:(v,a,b)=>Math.max(a,Math.min(b,v)),crypto:{randomUUID:()=>`test-${++nextId}`}});
+const penaltySource=fs.readFileSync('dist/penalties-v42.js','utf8');
+vm.runInContext(penaltySource.slice(penaltySource.indexOf('function v42Composure('),penaltySource.indexOf('function v42OrderHTML(')),context);
 for(const file of ['world-catalog-v61.js','world-competition-v62.js','world-coaches-v63.js','world-match-v64.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
 vm.runInContext(fs.readFileSync('dist/world-nationalities-v79.js','utf8'),context);
 const foundation=fs.readFileSync('dist/world-foundation-v61.js','utf8');

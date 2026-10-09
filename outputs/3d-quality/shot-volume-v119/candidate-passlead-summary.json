@@ -1,0 +1,231 @@
+{
+  "pass": true,
+  "scope": "Private stock-source ordinary ground-pass lead consistency only; 2 seeds x 4 configs plus4 JSON continuation; no production edits, no shot range/accuracy/RNG/fatigue changes.",
+  "acceptedForShotTarget": false,
+  "summary": [
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "before",
+      "n": 2,
+      "shots": 6.5,
+      "onTarget": 2,
+      "goals": 1.5,
+      "min": 6,
+      "max": 7,
+      "passes": 56,
+      "completed": 49.5,
+      "turns": {
+        "queued": 62,
+        "continued": 219,
+        "waited": 169,
+        "released": 17.5,
+        "aborted": 32.5,
+        "prepareCancelled": 7.5
+      },
+      "pressureAtShot": 0.6153846153846154
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 5.5,
+      "onTarget": 2.5,
+      "goals": 1.5,
+      "min": 5,
+      "max": 6,
+      "passes": 54,
+      "completed": 51,
+      "turns": {
+        "queued": 46.5,
+        "continued": 268,
+        "waited": 230.5,
+        "released": 26.5,
+        "aborted": 11,
+        "prepareCancelled": 5.5
+      },
+      "pressureAtShot": 0.9090909090909091
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "before",
+      "n": 2,
+      "shots": 6,
+      "onTarget": 2,
+      "goals": 2,
+      "min": 5,
+      "max": 7,
+      "passes": 51,
+      "completed": 46.5,
+      "turns": {
+        "queued": 65,
+        "continued": 268,
+        "waited": 214.5,
+        "released": 20.5,
+        "aborted": 33,
+        "prepareCancelled": 7.5
+      },
+      "pressureAtShot": 0.5833333333333334
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 5.5,
+      "onTarget": 3,
+      "goals": 2,
+      "min": 5,
+      "max": 6,
+      "passes": 52.5,
+      "completed": 46,
+      "turns": {
+        "queued": 38.5,
+        "continued": 209,
+        "waited": 180,
+        "released": 18,
+        "aborted": 11,
+        "prepareCancelled": 7.5
+      },
+      "pressureAtShot": 1.2
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "before",
+      "n": 2,
+      "shots": 5,
+      "onTarget": 0.5,
+      "goals": 0.5,
+      "min": 4,
+      "max": 6,
+      "passes": 49.5,
+      "completed": 43.5,
+      "turns": {
+        "queued": 43.5,
+        "continued": 239.5,
+        "waited": 203,
+        "released": 21,
+        "aborted": 15.5,
+        "prepareCancelled": 5.5
+      },
+      "pressureAtShot": 0.4
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 2.5,
+      "onTarget": 0.5,
+      "goals": 0.5,
+      "min": 2,
+      "max": 3,
+      "passes": 49.5,
+      "completed": 39.5,
+      "turns": {
+        "queued": 31,
+        "continued": 199.5,
+        "waited": 175.5,
+        "released": 18.5,
+        "aborted": 5.5,
+        "prepareCancelled": 6.5
+      },
+      "pressureAtShot": 1
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "before",
+      "n": 2,
+      "shots": 2,
+      "onTarget": 1,
+      "goals": 0.5,
+      "min": 2,
+      "max": 2,
+      "passes": 52,
+      "completed": 42.5,
+      "turns": {
+        "queued": 43,
+        "continued": 253.5,
+        "waited": 218,
+        "released": 22,
+        "aborted": 13.5,
+        "prepareCancelled": 6
+      },
+      "pressureAtShot": 0.75
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 2.5,
+      "onTarget": 1.5,
+      "goals": 1.5,
+      "min": 2,
+      "max": 3,
+      "passes": 55.5,
+      "completed": 48.5,
+      "turns": {
+        "queued": 38.5,
+        "continued": 222.5,
+        "waited": 192,
+        "released": 22.5,
+        "aborted": 8,
+        "prepareCancelled": 5
+      },
+      "pressureAtShot": 0.8
+    }
+  ],
+  "sourceHashes": {
+    "world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d"
+  },
+  "candidateHashes": {
+    "world-offensive-quality-v157.js": "0f55ea46c53ed36c55f56665a6056a22c22b4b2a068efa9ce91fa28ee24b683e",
+    "world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d"
+  },
+  "JSON": [
+    {
+      "size": "standard",
+      "count": 5,
+      "digest": "3b99606340f68c2b9456683ee9386a11eadd165c939b7ffe7c9fce3fb04efc07",
+      "identicalToUninterrupted": true,
+      "rng": 14281153,
+      "draws": 371,
+      "finished": true
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "digest": "57dfecba2b478b596debbb6bf7f3d474ea3761ac17c9ce68a7fefe250d014d94",
+      "identicalToUninterrupted": true,
+      "rng": 3636102573,
+      "draws": 351,
+      "finished": true
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "digest": "c2f0682589bc33c18706e37aae6642edb6c2a3d881681af5909d6bce358b86df",
+      "identicalToUninterrupted": true,
+      "rng": 2216424655,
+      "draws": 329,
+      "finished": true
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "digest": "ee5ab687f8074b88d98256743f246f7b400b91baa1768b20cfc2193831edd501",
+      "identicalToUninterrupted": true,
+      "rng": 922330878,
+      "draws": 310,
+      "finished": true
+    }
+  ],
+  "wholeProductionFreeze": 157,
+  "turnObservation": "Counters include all existing turn kinds. Counts describe full outcome, not unique independent chances or elapsed physical duration."
+}

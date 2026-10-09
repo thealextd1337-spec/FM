@@ -1,0 +1,29 @@
+{
+    "passed": 24,
+    "checks": [
+        "new picture accepted",
+        "duplicate ignored atomically",
+        "stale picture ignored atomically",
+        "invalid picture rejected 3",
+        "invalid picture rejected 4",
+        "invalid picture rejected 5",
+        "invalid picture rejected 6",
+        "invalid picture rejected 7",
+        "invalid picture rejected 8",
+        "invalid picture rejected 9",
+        "invalid picture rejected 10",
+        "invalid picture rejected 11",
+        "invalid picture rejected 12",
+        "replay can seek backwards with a new sequence",
+        "duplicate roster rejected",
+        "players interpolate between actual pictures",
+        "ball and camera share the player picture time",
+        "no extrapolation past the last actual picture",
+        "presentation does not modify its source picture",
+        "paused match freezes without interpolation drift",
+        "restart snaps instead of flying players across the pitch",
+        "backwards replay seek snaps coherently",
+        "a second pass does not inherit the first pass contact phase",
+        "nonfinite visual contact is rejected"
+    ]
+}

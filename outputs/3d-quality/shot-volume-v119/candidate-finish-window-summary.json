@@ -1,0 +1,267 @@
+{
+  "pass": true,
+  "target": "10-16 BOTH teams total, overall population mean, no per-config quota",
+  "screenOnly": true,
+  "acceptedForShotTarget": false,
+  "overall": [
+    {
+      "mode": "before",
+      "n": 8,
+      "shots": 4.875,
+      "onTarget": 1.375,
+      "goals": 1.125,
+      "passes": 52.125,
+      "passComplete": 45.5,
+      "observedShootCalls": 39,
+      "recordedShots": 39,
+      "rangeAtShootRequest": {
+        "min": 8.346207275933782,
+        "max": 30.28363444555518,
+        "mean": 18.536477552451913
+      },
+      "rivalsWithin2_5mAtShootRequest": 0.5641025641025641
+    },
+    {
+      "mode": "candidate",
+      "n": 8,
+      "shots": 5.625,
+      "onTarget": 2.125,
+      "goals": 1.125,
+      "passes": 51.375,
+      "passComplete": 44.5,
+      "observedShootCalls": 45,
+      "recordedShots": 45,
+      "rangeAtShootRequest": {
+        "min": 9.13249016111185,
+        "max": 26.01465978760321,
+        "mean": 19.956292725128325
+      },
+      "rivalsWithin2_5mAtShootRequest": 0.8
+    }
+  ],
+  "summary": [
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "before",
+      "n": 2,
+      "shots": 6.5,
+      "onTarget": 2,
+      "goals": 1.5,
+      "min": 6,
+      "max": 7,
+      "passes": 56,
+      "completed": 49.5,
+      "turns": {
+        "queued": 62,
+        "continued": 219,
+        "waited": 169,
+        "released": 17.5,
+        "aborted": 32.5,
+        "prepareCancelled": 7.5
+      },
+      "pressureAtShot": 0.6153846153846154
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 7.5,
+      "onTarget": 3.5,
+      "goals": 2.5,
+      "min": 6,
+      "max": 9,
+      "passes": 56,
+      "completed": 49,
+      "turns": {
+        "queued": 40.5,
+        "continued": 244,
+        "waited": 213.5,
+        "released": 22,
+        "aborted": 8.5,
+        "prepareCancelled": 6.5
+      },
+      "pressureAtShot": 0.7333333333333333
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "before",
+      "n": 2,
+      "shots": 6,
+      "onTarget": 2,
+      "goals": 2,
+      "min": 5,
+      "max": 7,
+      "passes": 51,
+      "completed": 46.5,
+      "turns": {
+        "queued": 65,
+        "continued": 268,
+        "waited": 214.5,
+        "released": 20.5,
+        "aborted": 33,
+        "prepareCancelled": 7.5
+      },
+      "pressureAtShot": 0.5833333333333334
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 8,
+      "onTarget": 3,
+      "goals": 1.5,
+      "min": 7,
+      "max": 9,
+      "passes": 51,
+      "completed": 45,
+      "turns": {
+        "queued": 29,
+        "continued": 178,
+        "waited": 155.5,
+        "released": 17,
+        "aborted": 5.5,
+        "prepareCancelled": 4.5
+      },
+      "pressureAtShot": 0.9375
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "before",
+      "n": 2,
+      "shots": 5,
+      "onTarget": 0.5,
+      "goals": 0.5,
+      "min": 4,
+      "max": 6,
+      "passes": 49.5,
+      "completed": 43.5,
+      "turns": {
+        "queued": 43.5,
+        "continued": 239.5,
+        "waited": 203,
+        "released": 21,
+        "aborted": 15.5,
+        "prepareCancelled": 5.5
+      },
+      "pressureAtShot": 0.4
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 4.5,
+      "onTarget": 1.5,
+      "goals": 0.5,
+      "min": 4,
+      "max": 5,
+      "passes": 49,
+      "completed": 41,
+      "turns": {
+        "queued": 33,
+        "continued": 220,
+        "waited": 190,
+        "released": 21.5,
+        "aborted": 8.5,
+        "prepareCancelled": 2
+      },
+      "pressureAtShot": 0.6666666666666666
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "before",
+      "n": 2,
+      "shots": 2,
+      "onTarget": 1,
+      "goals": 0.5,
+      "min": 2,
+      "max": 2,
+      "passes": 52,
+      "completed": 42.5,
+      "turns": {
+        "queued": 43,
+        "continued": 253.5,
+        "waited": 218,
+        "released": 22,
+        "aborted": 13.5,
+        "prepareCancelled": 6
+      },
+      "pressureAtShot": 0.75
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 2.5,
+      "onTarget": 0.5,
+      "goals": 0,
+      "min": 2,
+      "max": 3,
+      "passes": 49.5,
+      "completed": 43,
+      "turns": {
+        "queued": 37,
+        "continued": 224.5,
+        "waited": 198,
+        "released": 19,
+        "aborted": 7.5,
+        "prepareCancelled": 8
+      },
+      "pressureAtShot": 0.8
+    }
+  ],
+  "sourceHashes": {
+    "world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d"
+  },
+  "candidateHashes": {
+    "world-offensive-quality-v157.js": "247356e20f2034b37121e867c0c12fe43d4954d4e6ca49aeb43dc6ed377cd962",
+    "world-football-flow-v159.js": "bcb63f0d8690d0234c36400aa2722b115fc5a10609cb7f4ba51b9829c19b456d"
+  },
+  "JSON": [
+    {
+      "size": "standard",
+      "count": 5,
+      "digest": "df5b298106c30b6ac8fb0afce0e1740d14eab40345fb14f7cc0b8d40708640b1",
+      "identicalToUninterrupted": true,
+      "rng": 1266242187,
+      "draws": 357,
+      "finished": true
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "digest": "bf5a3048cfd2f63e4c0e294624db5c75894720016160a9f21958c2eb0a2ec98b",
+      "identicalToUninterrupted": true,
+      "rng": 1744964679,
+      "draws": 321,
+      "finished": true
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "digest": "a8f8fab8a82ddd4083d49d7a0e0593423f9a7d48fee5163fbcf2820a1d2ffc6b",
+      "identicalToUninterrupted": true,
+      "rng": 2967667546,
+      "draws": 290,
+      "finished": true
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "digest": "89cffbcc93f3894445c4fb0a2e074e5df98e52ffe047166378e4df28aed6009b",
+      "identicalToUninterrupted": true,
+      "rng": 515468875,
+      "draws": 293,
+      "finished": true
+    }
+  ],
+  "wholeProductionFreeze": 157
+}

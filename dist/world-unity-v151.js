@@ -13,10 +13,18 @@
    // Foul reactions own the contact picture; otherwise an observed native
    // slide overrides the ordinary running/action pose. Both are read-only.
    const a=['foulVictim','foulOffender'].includes(p.action?.kind)?p.action:p.unityAction||p.action;
-   const direction=a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0];
+   // Keeper attention belongs to the received action/ball, never a stale
+   // outfield running heading. Targets are projected with the same pitch map.
+   const aimedKick=['freeKick','shot','volley','kickReady','passReady'].includes(a?.kind);
+   const focus=p.keeper?(a?.kind==='goalKick'?a.targetWorld:a?.kind==='save'?a.contactWorld:frame.ball):aimedKick?a.targetWorld:null;
+   const focusDirection=focus&&[focus.x-p.x,0,focus.z-p.z];
+   const travel=p.movement?.travelFacing;
+   const direction=a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:focusDirection&&Math.hypot(focusDirection[0],focusDirection[2])>.00001?focusDirection:travel?[travel.x-p.x,0,travel.z-p.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0];
    const keeperFacts=Object.fromEntries(['saved','parry','goal','smother','held'].filter(k=>typeof a?.[k]==='boolean').map(k=>[k,a[k]]));
-   return {id:p.id,position:[p.x,0,p.z],facing:direction,moving:!['idle','restart'].includes(p.movement?.mode),action:a?.kind||'idle',actionId:String(a?.id??a?.kind??'idle'),contactPoint:a?.contactWorld?point(a.contactWorld):null,recovery:a?.recovery||0,progress:a?.progress??0,duration:a?.duration||1,number:p.number,...keeperFacts,...(a?.kind==='goalKick'&&['waiting','follow'].includes(a.phase)?{phase:a.phase}:{}),...(typeof a?.holding==='boolean'?{holding:a.holding}:{}),...(Number.isFinite(a?.pickup)?{pickup:Math.max(0,Math.min(1,a.pickup))}:{}),...(a?.aerial===true?{aerial:true}:{}),...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})};
-  }),netActive:Boolean(frame.net),net:frame.net?{...frame.net}:null,...celebration};
+   const holdingKnown=p.keeper&&a?.kind==='save'&&['saved','parry','goal'].every(k=>typeof a[k]==='boolean')&&typeof frame.ballInFlight==='boolean';
+   const ballHeld=holdingKnown?{ballHeld:a.saved&&!a.parry&&!a.goal&&frame.owner===p.id&&!frame.ballInFlight&&(a.progress??0)>=1}:{};
+   return {id:p.id,position:[p.x,0,p.z],facing:direction,moving:!['idle','restart'].includes(p.movement?.mode),action:a?.kind||'idle',actionId:String(a?.id??a?.kind??'idle'),contactPoint:a?.contactWorld?point(a.contactWorld):null,recovery:a?.recovery||0,progress:a?.progress??0,duration:a?.duration||1,number:p.number,...keeperFacts,...ballHeld,...(a?.kind==='goalKick'&&['waiting','follow'].includes(a.phase)?{phase:a.phase}:{}),...(typeof a?.holding==='boolean'?{holding:a.holding}:{}),...(Number.isFinite(a?.pickup)?{pickup:Math.max(0,Math.min(1,a.pickup))}:{}),...(a?.aerial===true?{aerial:true}:{}),...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})};
+  }),netActive:Boolean(frame.net),net:frame.net?{...frame.net}:null,...(frame.offside&&Number.isFinite(frame.offside.lineX)?{offside:{lineX:frame.offside.lineX}}:{}),...celebration};
  }
  const legacy={length:68,width:44};
  // Optional native match geometry (version 1) is used 1:1; without it the
@@ -34,7 +42,7 @@
  function scaled(frame,g){
   if(!g||g.length===legacy.length&&g.width===legacy.width)return frame;
   const sx=g.length/legacy.length,sz=g.width/legacy.width,at=p=>p&&{...p,x:p.x*sx,z:p.z*sz},post=g.goalWidth/2-.1764;
-  return {...frame,ball:at(frame.ball),net:frame.net?{...frame.net,z:Math.max(-post,Math.min(post,frame.net.z*sz))}:frame.net,players:frame.players.map(p=>({...p,x:p.x*sx,z:p.z*sz,movement:p.movement?{...p.movement,facing:at(p.movement.facing)}:p.movement,action:p.action?.contactWorld?{...p.action,contactWorld:at(p.action.contactWorld)}:p.action,unityAction:p.unityAction?{...p.unityAction,contactWorld:at(p.unityAction.contactWorld),facing:{x:p.unityAction.facing.x*sx,z:p.unityAction.facing.z*sz}}:p.unityAction}))};
+  return {...frame,ball:at(frame.ball),offside:frame.offside?{...frame.offside,lineX:frame.offside.lineX*sx}:frame.offside,net:frame.net?{...frame.net,z:Math.max(-post,Math.min(post,frame.net.z*sz))}:frame.net,players:frame.players.map(p=>({...p,x:p.x*sx,z:p.z*sz,movement:p.movement?{...p.movement,facing:at(p.movement.facing),travelFacing:at(p.movement.travelFacing)}:p.movement,action:p.action?{...p.action,...(p.action.contactWorld?{contactWorld:at(p.action.contactWorld)}:{}),...(p.action.targetWorld?{targetWorld:at(p.action.targetWorld)}:{})}:p.action,unityAction:p.unityAction?{...p.unityAction,contactWorld:at(p.unityAction.contactWorld),facing:{x:p.unityAction.facing.x*sx,z:p.unityAction.facing.z*sz}}:p.unityAction}))};
  }
  // The browser camera rules are authored for 68 x 44. On a larger pitch the
  // aim follows the same relative ball position; overview cameras also step back
@@ -84,7 +92,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  const localFile=location.protocol==='file:';
  const enabled=selected==='unity'||selected!=='browser'&&(Boolean(window.D6UnityMatchUrl)||localFile);
  if(!enabled)return;
- const basePitchFrame=v98PitchFrame;v98PitchFrame=function(current){const frame=basePitchFrame(current);for(const p of frame.players){const action=p.action;if(!action)continue;const contact=action.contact||(action.kind==='save'?action.target:null)||(['pass','shot','highPass','cross','freeKick','goalKick'].includes(action.kind)&&action.target?v101KickPoint(p.person,action.target):null);if(contact){const spot=v98PitchPoint(contact,frame.turned);p.action={...action,contactWorld:{...spot,height:contact.elevation??action.height??.29}};}}if(frame.celebration){const goal=current.goals?.at(-1);frame.celebration={...frame.celebration,scorer:goal&&!goal.ownGoal&&goal.pid?goal.pid:''};}if(current.goalScene&&current.goalPause>0){const p=v83GoalPosition(current.goalScene),spot=v98PitchPoint(p,frame.turned);frame.net={sign:Math.sign(spot.x),z:spot.z,height:.8,age:current.goalScene.elapsed,bulge:p.bulge};}return frame;};
+ const basePitchFrame=v98PitchFrame;v98PitchFrame=function(current){const frame=basePitchFrame(current);for(const p of frame.players){const action=p.action;if(!action)continue;if(action.target){const targetWorld=v98PitchPoint(action.target,frame.turned);p.action={...action,targetWorld};}const contact=action.contact||(action.kind==='save'?action.target:null)||(['pass','shot','highPass','cross','freeKick','goalKick'].includes(action.kind)&&action.target?v101KickPoint(p.person,action.target):null);if(contact){const spot=v98PitchPoint(contact,frame.turned);p.action={...p.action,contactWorld:{...spot,height:contact.elevation??action.height??.29}};}}if(frame.celebration){const goal=current.goals?.at(-1);frame.celebration={...frame.celebration,scorer:goal&&!goal.ownGoal&&goal.pid?goal.pid:''};}if(current.goalScene&&current.goalPause>0){const view=typeof v119VisibleGoalView==='function'?v119VisibleGoalView(current):null,p=view?.contact||v83GoalPosition(current.goalScene),spot=v98PitchPoint(p,frame.turned);if(!view||view.hit==='rear')frame.net={sign:Math.sign(spot.x),z:spot.z,height:view?.height??.8,age:view?.age??current.goalScene.elapsed,bulge:view?.bulge??p.bulge};}return frame;};
  let shownGeometry=null,host=null,iframe=null,labels=null,message=null,ballGuide=null,current=null,session='',sequence=0,ready=false,loaded=false,loading=false,pending=null,loop=0,lastSent=-Infinity,started=0,failed=false,cameraPose=null,cameraViewKey='',lastPicture=null,loadCount=0,lastProjection=null,suspendedAt=null;
  let ballGuideEnabled=true;try{ballGuideEnabled=localStorage.getItem('d6-ball-guide')!=='off'}catch{}
  const labelMap=new Map();
@@ -94,6 +102,10 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  const style=document.createElement('style');style.textContent=`
  #d6-unity-host{position:absolute;inset:0;z-index:1;overflow:hidden;background:#182b30}
  #d6-unity-host iframe{display:block;width:100%;height:100%;border:0}
+ /* The hidden 2D canvas can exceed the fullscreen height. overflow:hidden
+    still allows focus/scrollIntoView to scroll it and lift the Unity iframe;
+    clip keeps this presentation surface at its actual viewport origin. */
+ body.v98-pitch3d #match-area .v42-pitch-stage:has(#d6-unity-host){overflow:clip!important}
  #d6-unity-message{position:absolute;inset:0;display:grid;place-content:center;gap:12px;background:#18232eea;color:#f1c56e;text-align:center;font:700 16px/1.4 var(--fl-font,system-ui);padding:24px;z-index:2}
  #d6-unity-message::before{content:'';width:30px;height:30px;border:3px solid #53616d;border-top-color:#f1c56e;border-radius:50%;animation:d6-unity-spin .8s linear infinite;justify-self:center}
  #d6-unity-message[hidden]{display:none}#d6-unity-labels{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:3}

@@ -17,21 +17,22 @@ public static class D6Cli {
 
     public static void Tests(){
         try{
-            var repo=Repo();
+            var repo=Repo();var output=Arg("-d6output");if(output!=null)Directory.CreateDirectory(Path.Combine(repo,output));
             // Batchmode starts without an open scene; some suites need the probe camera.
             UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);
-            Debug.Log("[D6Cli] FootballTests: "+FootballTests.Run(repo));
-            Debug.Log("[D6Cli] FootballLocomotionTests: "+FootballLocomotionTests.Run(repo));
-            Debug.Log("[D6Cli] FootballMomentumTests: "+FootballMomentumTests.Run(repo));
-            Debug.Log("[D6Cli] FootballActionTests: "+FootballActionTests.Run(repo));
-            Debug.Log("[D6Cli] FootballMotionTests: "+FootballMotionTests.Run(repo));
-            Debug.Log("[D6Cli] WorldViewTests: "+WorldViewTests.Run(repo));
-            Debug.Log("[D6Cli] FootballGaitTests: "+FootballGaitTests.Run(repo));
-            Debug.Log("[D6Cli] ClubStadiumProfilesTests: "+Doppel6.Probe.ClubStadiumProfilesTests.Run(repo));
-            Debug.Log("[D6Cli] StadiumArchitectureTests: "+StadiumArchitectureTests.Run(repo));
-            Debug.Log("[D6Cli] FootballDuelTests: "+FootballDuelTests.Run(repo));
-            Debug.Log("[D6Cli] FootballIterationTests: "+FootballIterationTests.Run(repo));
-            Debug.Log("[D6Cli] FootballKeeperTests: "+FootballKeeperTests.Run(repo));
+            Debug.Log("[D6Cli] FootballTests: "+FootballTests.Run(repo,output));
+            Debug.Log("[D6Cli] FootballLocomotionTests: "+FootballLocomotionTests.Run(repo,output));
+            Debug.Log("[D6Cli] FootballMomentumTests: "+FootballMomentumTests.Run(repo,output));
+            Debug.Log("[D6Cli] FootballActionTests: "+FootballActionTests.Run(repo,output));
+            Debug.Log("[D6Cli] FootballMotionTests: "+FootballMotionTests.Run(repo,"final",output));
+            Debug.Log("[D6Cli] WorldViewTests: "+WorldViewTests.Run(repo,output));
+            Debug.Log("[D6Cli] FootballGaitTests: "+FootballGaitTests.Run(repo,output));
+            Debug.Log("[D6Cli] ClubStadiumProfilesTests: "+Doppel6.Probe.ClubStadiumProfilesTests.Run(repo,output));
+            Debug.Log("[D6Cli] StadiumArchitectureTests: "+StadiumArchitectureTests.Run(repo,output));
+            Debug.Log("[D6Cli] FootballDuelTests: "+FootballDuelTests.Run(repo,output));
+            Debug.Log("[D6Cli] FootballIterationTests: "+FootballIterationTests.Run(repo,output));
+            Debug.Log("[D6Cli] FootballKeeperTests: "+FootballKeeperTests.Run(repo,output));
+            Debug.Log("[D6Cli] FootballPresentation119Tests: "+FootballPresentation119Tests.Run(repo));
             Done(true,"tests finished");
         }catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
@@ -79,8 +80,14 @@ public static class D6Cli {
     // Keeper iteration renders from actual captured native pictures; needs a graphics device.
     public static void KeeperEvidence(){
         string repo=null,message=null;bool ok=false;
-        try{repo=Repo();ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=KeeperEvidenceDiagnostics.Run(repo);ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        try{repo=Repo();ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=KeeperEvidenceDiagnostics.Run(repo,Arg("-d6output"));ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
         finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
+        Done(ok,message);
+    }
+    public static void OffsideTests(){try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,"checks="+OffsidePresentation119Tests.Run(Repo()).Length);}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}}
+    public static void OffsideEvidence(){
+        string repo=null;bool ok=false;string message=null;
+        try{repo=Repo();ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message="checks="+OffsidePresentation119Tests.Run(repo,true).Length;ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
         Done(ok,message);
     }
     public static void TeamRings(){

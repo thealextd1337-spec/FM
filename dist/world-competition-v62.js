@@ -98,11 +98,43 @@ function v62Quality(club){
 function v62Score(career,fixture){
  return v64SimulateFixture(career,fixture);
 }
+// Only a newly resolved shootout reads the saved squad. Never create players
+// or rewrite an existing result. Follow the actual substitutions to full time.
+function v119ShootoutSquad(career,fixture,side){
+ const key=side===0?'home':'away',club=career.world.clubs.find(item=>item.id===(side===0?fixture.homeId:fixture.awayId));
+ const starters=fixture.matchRecord?.starters?.[key]||fixture.plan?.[key]?.starters;
+ if(!club||!starters)throw Error('Die Elfmetermannschaft fehlt.');
+ const active=[...starters];
+ for(const change of fixture.matchRecord?.substitutions||[])if(change.side===side){const slot=active.indexOf(change.outPid);if(slot>=0)active[slot]=change.inPid;}
+ const players=active.map(pid=>{const source=club.roster.find(item=>item.pid===pid);if(!source)throw Error('Ein Elfmeterschütze fehlt.');const copy={...source};return {...v42Player(copy,copy),pid};});
+ if(!players.length||!players.some(player=>player.keeper))throw Error('Der Elfmetertormann fehlt.');
+ return v42Sorted(players);
+}
+function v119SimulateShootout(career,fixture){
+ const squads=[v119ShootoutSquad(career,fixture,0),v119ShootoutSquad(career,fixture,1)],keepers=squads.map(players=>players.find(player=>player.keeper));
+ const random=v61Random(`${career.world.seed}:${fixture.id}:penalties`),score=[0,0],taken=[0,0],kicks=[];
+ const chance=side=>v42PenaltyChance(squads[side][taken[side]%squads[side].length],keepers[1-side]);
+ const kick=(side,goal)=>{const player=squads[side][taken[side]%squads[side].length];taken[side]++;score[side]+=Number(goal);kicks.push({side,pid:player.pid,goal});};
+ for(let round=0;round<5;round++)for(const side of [0,1]){
+  kick(side,random()<chance(side));
+  if(score[0]>score[1]+5-taken[1]||score[1]>score[0]+5-taken[0])return {score,kicks,conditioned:false};
+ }
+ if(score[0]!==score[1])return {score,kicks,conditioned:false};
+ for(let pair=0;pair<100;pair++){
+  for(const side of [0,1])kick(side,random()<chance(side));
+  if(score[0]!==score[1])return {score,kicks,conditioned:false};
+ }
+ // A pathological run of tied pairs is bounded. Sample a deciding pair from
+ // the same per-shot law conditioned on different outcomes, symmetrically.
+ const home=chance(0),away=chance(1),homeOnly=home*(1-away),awayOnly=(1-home)*away,homeWins=random()<homeOnly/(homeOnly+awayOnly);
+ kick(0,homeWins);kick(1,!homeWins);
+ return {score,kicks,conditioned:true};
+}
 function v62ResolveSingle(career,fixture){
  fixture.result=fixture.result||v62Score(career,fixture);
  const result=fixture.result;
  if(result.homeGoals!==result.awayGoals)result.winnerId=result.homeGoals>result.awayGoals?fixture.homeId:fixture.awayId;
- else{if(!result.penalties){const random=v61Random(`${career.world.seed}:${fixture.id}:penalties`),home=3+Math.floor(random()*3),away=3+Math.floor(random()*3);result.penalties=home===away?(random()<.5?[home+1,away]:[home,away+1]):[home,away]}result.winnerId=result.penalties[0]>result.penalties[1]?fixture.homeId:fixture.awayId}
+ else{if(!result.penalties)result.penalties=v119SimulateShootout(career,fixture).score;result.winnerId=result.penalties[0]>result.penalties[1]?fixture.homeId:fixture.awayId}
 }
 function v62ResolveLeague(career,fixture){fixture.result=fixture.result||v62Score(career,fixture)}
 function v62ResolveSecondLeg(career,fixture,competition){
@@ -110,7 +142,7 @@ function v62ResolveSecondLeg(career,fixture,competition){
  const first=competition.fixtures.find(item=>item.pair===fixture.pair&&item.round===fixture.round&&item.leg===1);
  const homeTotal=fixture.result.homeGoals+first.result.awayGoals,awayTotal=fixture.result.awayGoals+first.result.homeGoals;
  fixture.result.aggregate=[homeTotal,awayTotal];
- if(homeTotal===awayTotal&&!fixture.result.penalties){const random=v61Random(`${career.world.seed}:${fixture.id}:penalties`),home=3+Math.floor(random()*3),away=3+Math.floor(random()*3);fixture.result.penalties=home===away?(random()<.5?[home+1,away]:[home,away+1]):[home,away]}
+ if(homeTotal===awayTotal&&!fixture.result.penalties)fixture.result.penalties=v119SimulateShootout(career,fixture).score;
  fixture.result.winnerId=homeTotal>awayTotal?fixture.homeId:awayTotal>homeTotal?fixture.awayId:fixture.result.penalties[0]>fixture.result.penalties[1]?fixture.homeId:fixture.awayId;
 }
 function v62CupProgress(career,competition,day){
@@ -222,6 +254,10 @@ const v62AwardSprites={
  EU:{europe:['trophies/eu-europe.png','trophies/eu-europe-small.png'],'man-of-the-match':['trophies/eu-man-of-the-match.png','trophies/eu-man-of-the-match-small.png']}
 };
 function v62AwardIcon(country,kind,compact=false){
+ if(typeof v119TrophyArt==='function'){
+  const art=v119TrophyArt(country,kind),safeKind=art.key.slice(art.key.indexOf('-')+1);
+  return`<img class="v62-award-icon v62-award-icon-${safeKind}${compact?' v62-award-icon-small':''}" data-v119-award="${art.key}" src="${art.src}" width="${compact?24:320}" height="${compact?24:320}" style="image-rendering:auto" title="${escapeHTML(art.label)}" alt="" aria-hidden="true">`;
+ }
  const sprites=(kind==='europe'?v62AwardSprites.EU:v62AwardSprites[country])?.[kind]||v62AwardSprites.EU['man-of-the-match'];
  return`<img class="v62-award-icon v62-award-icon-${kind}${compact?' v62-award-icon-small':''}" src="${sprites[compact?1:0]}" width="${compact?24:320}" height="${compact?24:320}" alt="" aria-hidden="true">`;
 }
@@ -296,10 +332,17 @@ let v62CompetitionArea='own';
 let v62OtherCountry=null;
 let v62CompetitionSeason=null;
 let v62CalendarSeason=null;
+function v119CalendarOutcome(fixture,managed){
+ const result=fixture.result;if(!result)return '';
+ const home=fixture.homeId===managed,own=home?result.homeGoals:result.awayGoals,other=home?result.awayGoals:result.homeGoals;
+ if(own!==other)return own>other?'win':'loss';
+ if(result.penalties){const ownPenalty=result.penalties[home?0:1],otherPenalty=result.penalties[home?1:0];if(ownPenalty!==otherPenalty)return ownPenalty>otherPenalty?'win':'loss'}
+ return 'draw';
+}
 function v62CalendarHTML(career){
  const season=Number.isInteger(v62CalendarSeason)&&v62CalendarSeason>=1&&v62CalendarSeason<=career.world.season?v62CalendarSeason:career.world.season,managed=career.manager.managedClubId;
  const games=career.world.competitions.filter(item=>item.season===season).flatMap(competition=>competition.fixtures.filter(fixture=>fixture.homeId===managed||fixture.awayId===managed).map(fixture=>({fixture,competition}))).sort((a,b)=>a.fixture.day-b.fixture.day||a.fixture.id.localeCompare(b.fixture.id));
- return`<section class="v62-season v62-calendar"><div class="v62-competition-heading"><div><p class="eyebrow">Dein Spielplan</p><h2>Kalender · Saison ${season}</h2></div><label>Saison auswählen <select data-v62-calendar-season-choice>${Array.from({length:career.world.season},(_,index)=>career.world.season-index).map(value=>`<option value="${value}" ${value===season?'selected':''}>Saison ${value}${value===career.world.season?' · aktuell':''}</option>`).join('')}</select></label></div>${games.length?`<div class="v62-calendar-columns" aria-hidden="true"><span>Datum</span><span>Wettbewerb</span><span>Gegner</span><span>Ergebnis</span></div><ol class="v62-calendar-list">${games.map(({fixture,competition})=>{const home=fixture.homeId===managed,opponent=career.world.clubs.find(club=>club.id===(home?fixture.awayId:fixture.homeId)),result=fixture.result,ownGoals=result?(home?result.homeGoals:result.awayGoals):null,otherGoals=result?(home?result.awayGoals:result.homeGoals):null,label=competition.type==='league'?`${v61CountryNames[competition.country]} · Liga 1`:competition.type==='cup'?`${v61CountryNames[competition.country]} · Nationaler Pokal`:'Europacup',shootout=result?.penalties?(home?result.penalties:[...result.penalties].reverse()):null;return`<li data-fl-calendar-type="${escapeHTML(competition.type)}" ${result?`data-fl-fixture-id="${escapeHTML(fixture.id)}"`:''} class="${result?'played':'upcoming'}"><time>${v62Date(fixture.day)}</time><span class="v62-calendar-competition">${escapeHTML(label)}<small>${escapeHTML(fixture.round)}</small></span><strong class="v62-calendar-opponent"><button type="button" class="v68-club-link" data-v68-club="${escapeHTML(opponent?.id||'')}" aria-label="Vereinsprofil ${escapeHTML(opponent?.name||'Gegner')} öffnen">${v61CrestSVG(opponent)}<span>${escapeHTML(opponent?.name||'Gegner')}</span></button><small>${home?'Heim':'Auswärts'}</small></strong><b class="v62-calendar-result">${result?`${ownGoals}:${otherGoals}${shootout?`<small>i. E. ${shootout[0]}:${shootout[1]}</small>`:''}`:'–'}</b></li>`}).join('')}</ol>`:'<p class="v62-explainer">Für diese Saison sind keine Spiele angesetzt.</p>'}</section>`;
+ return`<section class="v62-season v62-calendar"><div class="v62-competition-heading"><div><p class="eyebrow">Dein Spielplan</p><h2>Kalender · Saison ${season}</h2></div><label>Saison auswählen <select data-v62-calendar-season-choice>${Array.from({length:career.world.season},(_,index)=>career.world.season-index).map(value=>`<option value="${value}" ${value===season?'selected':''}>Saison ${value}${value===career.world.season?' · aktuell':''}</option>`).join('')}</select></label></div>${games.length?`<div class="v62-calendar-columns" aria-hidden="true"><span>Datum</span><span>Wettbewerb</span><span>Gegner</span><span>Ergebnis</span></div><ol class="v62-calendar-list">${games.map(({fixture,competition})=>{const home=fixture.homeId===managed,opponent=career.world.clubs.find(club=>club.id===(home?fixture.awayId:fixture.homeId)),result=fixture.result,ownGoals=result?(home?result.homeGoals:result.awayGoals):null,otherGoals=result?(home?result.awayGoals:result.homeGoals):null,label=competition.type==='league'?`${v61CountryNames[competition.country]} · Liga 1`:competition.type==='cup'?`${v61CountryNames[competition.country]} · Nationaler Pokal`:'Europacup',shootout=result?.penalties?(home?result.penalties:[...result.penalties].reverse()):null;return`<li data-fl-calendar-type="${escapeHTML(competition.type)}" ${result?`data-fl-fixture-id="${escapeHTML(fixture.id)}"`:''} class="${result?'played':'upcoming'}"><time>${v62Date(fixture.day)}</time><span class="v62-calendar-competition">${escapeHTML(label)}<small>${escapeHTML(fixture.round)}</small></span><strong class="v62-calendar-opponent"><button type="button" class="v68-club-link" data-v68-club="${escapeHTML(opponent?.id||'')}" aria-label="Vereinsprofil ${escapeHTML(opponent?.name||'Gegner')} öffnen">${v61CrestSVG(opponent)}<span>${escapeHTML(opponent?.name||'Gegner')}</span></button><small>${home?'Heim':'Auswärts'}</small></strong><b class="v62-calendar-result" data-v119-outcome="${v119CalendarOutcome(fixture,managed)}"><span class="v119-calendar-score">${result?`${ownGoals}:${otherGoals}${shootout?`<small>i. E. ${shootout[0]}:${shootout[1]}</small>`:''}`:'–'}</span></b></li>`}).join('')}</ol>`:'<p class="v62-explainer">Für diese Saison sind keine Spiele angesetzt.</p>'}</section>`;
 }
 function v62AwardOverviewHTML(career,season){
  const players=[...career.world.clubs.flatMap(club=>club.roster),...career.world.market.freePlayers];

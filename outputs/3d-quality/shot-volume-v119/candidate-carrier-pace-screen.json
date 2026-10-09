@@ -1,0 +1,2140 @@
+{
+  "scope": "Private Stage8 mobility single-variable trial: actual STOCK baseline vs Stage6 ordinary-pass lead consistency plus fresh owner multiplier1.65 replacing1.28. No shot/defender/accel/brake/RNG/fatigue changes. 2seed x4cfg +4JSON.",
+  "parameters": {
+    "freshOnly": "paceRevision119",
+    "passlead": "Stage6 existing ordinary ground targets",
+    "ownerMultiplier": 1.65,
+    "unmarkedMultiplier": 1.28,
+    "techFactorUnchanged": ".78+tec*.009",
+    "existingMovementMaxSpeed": true,
+    "accuracyOutcomeDefenseRNGUnchanged": true,
+    "noQuota": true
+  },
+  "productionHashes": {
+    "ai-career-v60.js": "ff6bf2c2d024730547a45d290205b6e56185c16cf9981e2ba5b65a9c724a686e",
+    "awards-v40.js": "1cd9c6c8ab187f261463d5515b8afb7ad28a7c4e03b3e0e3bbc06f5ecb628a23",
+    "club-history-v22.js": "1a19d7420fb403b88d4d71d99167690b4916ce725d1752cbce0247c2e7e4d476",
+    "club-identity-v44.js": "5aaebc6fa7c0b27841e5401e61595847d85ca1f871c4ef64f2349cc78cd75903",
+    "club-records-v43.js": "f63051751819ff6a5861fb36646d365581621c6b9ee06ba78df1cd173e0b0033",
+    "cup-v41.js": "edefc9f122a807c67a38b7b136155fbd8373356c0632665ebd8bd2b464e30657",
+    "dashboard-layout-v32.js": "ac0e805da387004c4f648e649e3253adeb75d012bb0aca6aef3fa6babb4ecce6",
+    "dashboard-order-v27.js": "fe4dcebb41771aeac92d22fa19b336e1f1737731cfbe00416c0fe0d2e81f2a8c",
+    "dashboard-v19.js": "cf2037e947164ec4e043540c622f3151e8f1c84850e56d61b7655136e301a984",
+    "finance-v15.js": "ddc667a1c18b0db944fd5f4c39538b0bafd686612a87df83f9df30824dd9d740",
+    "formation-label-v23.js": "1a19d7420fb403b88d4d71d99167690b4916ce725d1752cbce0247c2e7e4d476",
+    "game.js": "0e17309bdeedd788836364d3bebc6263df13c2fbbecefa4be5b1365301f6ea1d",
+    "goal-banner-preview-pair-a.html": "f5151e56e9e2c2900b6a74e354d25b5f4d61a78225e0c49788f0ea681847067b",
+    "goal-banner-preview-pair-a2.html": "2f4a833fbbbfd0bd9631cd2f6fc23f61dab504a78c616153c7be23e6408661ac",
+    "goal-banner-preview-pair-b.html": "c9e8984dd483164bd10cc97a9208717ecd210e3fb930a7ad4eb07937d16ce77e",
+    "goal-banner-preview-pair-b2.html": "ebf44f0192f6a36be6b3077a587cb58e5f5223bb5345c3931c5093fd527bf32b",
+    "goal-banner-preview-pair-c.html": "8bb83302e078d1b995609d14dbfdff1b6630ddb9ec62431238271a63292e1b98",
+    "goal-banner-preview-pair-c2.html": "fb615dcb1e0b3b19dfa5f58308fa8aab6c83a020795ad1f2ca0de1a74b85dbcd",
+    "goal-banner-preview-pair-d.html": "ee6e0b29f21d6f638e6a4c4bcd872c7c29a08a3d7a8b95ed0e14f84cc0cfbaaa",
+    "goal-banner-preview-pair-d2.html": "9a0c2400c9db37ce2b3e85911917c3bae33126ae25e386c0f1cf92f0f1d50e15",
+    "goal-banner-preview-pair-e.html": "7ac20a424786b401315133f5cc54455e6d2f9e024e5f956052a7c98b154c7cc8",
+    "goal-banner-preview-pair-g.html": "fde47fcfc1f5dc6ee08e687460727cdc5705d1ce85eae8afaa8c8e94e7e5cd0d",
+    "goal-banner-preview-pair-j.html": "e67ec360054d47f9084f33e29b2ac3484e310921e2980397ebe031cba46dc40f",
+    "goal-banner-preview-pair-l.html": "bbcba01f1f0f36f59707cdc46e4c51426417abf2eb2edd34768a205ae8f4e3ef",
+    "goal-banner-preview-pair.html": "b52ce57c4fc79ddbeaddcbac477da5bda3b33062fba7aca89677ea11763d82cc",
+    "goal-banner-preview.html": "8bb83302e078d1b995609d14dbfdff1b6630ddb9ec62431238271a63292e1b98",
+    "halftime-v14.js": "8a8233f08ebd8587c8102cff2f4fdd7724353fb418894e7380368e4384e63bef",
+    "i18n-v75.js": "4b9ea35107eea892333a2b3d4175015eb53a03b3d9c8263b71923e19e3d3bdc3",
+    "identity-v12.js": "abe11489a8d5d78ca69f6e36107f8c0f23f75d184efd28daccbebc6f12e169df",
+    "index.html": "ee1bd108b736ab709519b7b1c9d1baa2797839ff9c73391da8bb69ca6a19635b",
+    "keeper-logo-v45.js": "1e837cd6ea56c05f074128fbc9bb8fccbd8172d558e7c01de882ad64336167ac",
+    "legal-v38.js": "8d6ac71932f18157718cc3d5c66834ee3bfd35fa5badebd1ba664e1875bbabe4",
+    "lineup-ux-v24.js": "6c44f1e128a5ed9fcf4c9f72bb7fd83acff3da7abde3d454ef6ea728a0f861c0",
+    "live-player-v59.js": "a0723b59638455afe7c91876ce9b44e02408daa2bea4982f5286ac05c5ea45b2",
+    "main-menu-v46.js": "78e67dfe9d7b24f5f890f8e08ec011af52cdde1c43cf061d91d219d75807ef0d",
+    "manager-v11.js": "afcc18d4fb2a9e790bb7c0d9bcaa4b7a6e761791ef000f051ed06e663e168fb7",
+    "manager.css": "2a4746fad538714befe560f04051cebd6aec9d2df5d6cdcfe4b4b8789ae660ac",
+    "manager.js": "fc76303b9a0f4731e14df254a447cc06d074007b22c1ea6f4abf263e713de73b",
+    "match-ball-events-v117.js": "594c885c83ee9a973e74cc1df7ca0481ce83bab0ae3ae3742447c697342c1a93",
+    "match-clock-v21.js": "1a19d7420fb403b88d4d71d99167690b4916ce725d1752cbce0247c2e7e4d476",
+    "match-presentation-v74.js": "c51ea7a59c492b5005a12208dfded6f13571cd891c5cfa72c5d3b7e3c2898f9b",
+    "match-report-v47.js": "ad3f73056e9ceedae4fedf505afa3fc95b80c0670a1ff176283f49ab7d48c1e0",
+    "match-shot-choice-v159.js": "03439209ae9203b1eb56dc0f74a7b31b8efe4cef95232dd6d45467cdbe429dab",
+    "next-match-v49.js": "5e3318b7a036d3766610035732477e3cfb12631e9f7f6da4974b3eb0699dd38d",
+    "opponent-profile-v54.js": "876562863eeafe53b7fe029fa4e479334b7d248004ce8c0583cd33fd1bf2de92",
+    "penalties-v42.js": "92bdbca73b2f68b10cf11d7a3690ab4d842d85835b92f227b231fa23af0f9d04",
+    "pitch-motion-v102.js": "66cc8e4dac75fc717fd2951934c685ac4316ff58646310c0096b402379a57fcd",
+    "pitch-scene-v98.js": "76cb5d11e1590fb81f33a9319ae835b85b20e35db04f68fcd0c82b8923e7bf11",
+    "pitch-v55.js": "0a6de1e6b9c3bff1a69e350982e91ffa20c7128919ecb6767ade509e8fd4797c",
+    "pitch-v56.js": "b3587a87f24bb7b948caa4f62524be98acadb3795f079571fe84d1606cc959e2",
+    "pitch-v57.js": "b6d1fb8f1746f363a30f1ce63ff40d006745acdbee96218cf366c35f9824df4a",
+    "player-aging.js": "8903eeb54a0970bc750ffa2a00f9baf9d9f1931548fcc685baeac625810ba382",
+    "player-ball-events-v111.js": "b3b62667710c9a0ec5b915f5fbb40ba0424a4abf57c80bee7f831e1c725db383",
+    "player-card-v18.js": "ac087369266527ac8abbf4af0c54ede4a310f45c4a5fe13e0cdd140de778eb2d",
+    "player-creation-demo-v90.html": "11d46fe62a337e201a68e51be023ca92a92870dc1d06aa994310a02c1147dfe2",
+    "player-creation-demo-v90.js": "097b16ade775255d003645b5524d0e84cb1c5c3c16d9e1c92ff3d81d0ca36301",
+    "player-creation-demo-v90.template.html": "f24894f7efe493dcda22f5ebd684b88b0cc4e69e21e919dc57d47f141d6ddb5b",
+    "player-development.js": "9985f7f18b170046909adc994f862189d25a3fff9dbe292ca2a19767a155466a",
+    "player-effective-abilities.js": "659e6c9a40c0a9acfc4342c579b616a9ff3984fad65e1654018d480380cccb45",
+    "player-foundation-preview-v153.js": "1e3a275923162b518f502e0b4902698a3f37311dc00c0e87d5d4243bf5859e14",
+    "player-freshness.js": "0ed90ab51932f747f4f386921efd03b7fd8ac18f32ebe02ea75221a062a8cb79",
+    "player-generation.js": "da657cbe0e09fab5335ebd62cb7c247974a0f785923e941cd6e71bb339a3e51b",
+    "player-load-candidate-v158.js": "76a605c8e047b45f84dd5510347791bb1205a68f2793c8cc90435424cdf6dad7",
+    "player-mask-variants-v87.html": "edf62ed9c5123f7fff15d50682bf3e419480a77830c2de8e0abdf87544b36b64",
+    "player-match-ratings.js": "adfc258b0066eddf7b5476e608d32475fe49fe039691fae86a2a8afc8c59284a",
+    "player-meshy-v106.js": "38efffdfe5b4e69e17f0a7aee593d1dd2ffcb6b58e07e77e819fce9d42a444e6",
+    "player-model-v105.js": "34203a1729bf2ce234da15cd24d03ce9a32fc65e162d870a1c5ec387278993b6",
+    "player-pair-preview.html": "e62e50fdbad865e7ec821f9276fafdb2b3e74f9494d645c7fc88ed5bb88e01bd",
+    "player-pool-preview-v88.html": "24149e7b0955f019bcadabd30445ef842a566213e7cceaccebe12f5ecd793bf6",
+    "player-pool-preview-v89.html": "564024a401da1b646b6e27d0acd6d490f3269a40a09e878af0c76a30c467b17d",
+    "player-position-routine.js": "2a974ab054b34b8a8d2fa05dc8516d01a1f0b782f79ced2ebc4d818346960188",
+    "player-reference-v92.js": "22b764cf8435216e84ea9b66846b8aac807ee2107c3c497d56284fa630b874e1",
+    "player-role-suitability.js": "45a09bbdce6232a0bd0d9df188cbb5f1dce481db1b63849d6f38b5709191c632",
+    "player-status-v51.js": "410d514c8c5851f46ea1e0c533e5b400d09dcb13f17c253c8345a47edd8cf794",
+    "player-tactic-transitions.js": "bea74b38dcf900710044dc014804a09a84670dd064d82bae4b2b0a4cfc23a0cb",
+    "player-tactics-ui.css": "9112723381ca780a8284edacbaa4fea84681663a589527d3f3851439c19e22d9",
+    "player-tactics-ui.js": "5a41b67f6f839c3fd41334ddab3f199a5be6489ea4943d8836da2d641c0c4c4b",
+    "player-user-ball-actions-v111.js": "430abc25ab23cb0a3673148ba3750a3199c9141a934e10d2bd98289187b5f196",
+    "player-user-bootstrap-v112.js": "a329bcd35a7096775e785c4aad461ed7aee2460295ff688f353bc2854623cbc0",
+    "player-user-meshy-v107.js": "d6973b3ced7a4e485c9e5a90155745890c081f8ef6d5db87fd033f6017aad00d",
+    "player-user-motion-v108.js": "f967eca08a51cb67f54c961864995ee4f4b88332fb06cd60602ef89d8256c0af",
+    "presentation-v25.js": "79a7e6a5a745e1ed7f4466831bb5d6d06b36e2bac742bd446534b2fa25c20742",
+    "progress-v58.css": "181b5b64f08810734cb127d91519cdd5f07a6bf9e2a7985004dc43817bbbe77b",
+    "progress-v58.js": "f87fbd19144134dcf58f9a29d00207c88e53ef984a49ada43030a20e8e7a1aa5",
+    "qol-v17.js": "85417ceab8ee0fe1c5c27bb7afac7e64dc6cf6affa125e335bcf85e20e9148f9",
+    "sale-profile-v30.js": "8c96775813978a1e57ef7533329435dcb3e181a5ffebf27022ee3b714825f3f0",
+    "screen-wake-v20.js": "a2e1f7678ff4be0f107c06ed66375bb0f39af8d2886c321728fe2c8919e7da56",
+    "season-finale-v31.js": "d271a4de014aeefe5b7295a66b7bcd69139e1b176a469b3048dd95ced53facb3",
+    "season-roster-v34.js": "9e288ddeedfa0cca8cf67239b49dfb32522c47d67f3468c1b4ff8b3f70e9fcc8",
+    "season-v13.js": "572c371a30d51464da5a9546873861e154222d13526ccbcb897d64f1f6b47864",
+    "set-pieces-v50.js": "89ff8bbb371afec822b2c02a4609723cb6a3dfa1e28b51f45c91ee177a00a40c",
+    "sponsor-fix-v26.js": "7c899aab56b5d6f4ca1e919ca5a7a35e223029d2c7ee206ea1da21be2f296e6c",
+    "status-icons-v51.js": "0acaf925a75db25505f475d7280ae251bacb7c37cca3f13b79ebcbbf82c94c60",
+    "strength-v53.js": "22864f31c1efaa4c9bafcf1d1e46a09c5485b7b898a9adf2a29fcce82a9a8c21",
+    "strength-v55.js": "8545e5d6e3fd8bb161769e72f93ebf1ac4db81bd91801b32d074bf49f6888f8c",
+    "style.css": "fc7abde1213ae3495dc367506858284f5e76f18c84b255fbcd76910e78df380d",
+    "transfer-actions-v29.js": "acc239a169a573bbd14cdb0b53d454d533a07377d3505e13b32af3a005404af2",
+    "transfer-order-v37.js": "7f6b6921b1338cef2cd14f205e9f603e44326475989dbad145efedcbef3e688f",
+    "transfer-result-v28.js": "04b838039ce34c1377fd467d4ad14e9a0a2f44cd72258c108ba4f5be9e3ad44e",
+    "transfer-sections-v35.js": "0ee15b40d540d50c3f5143146f096e37e654938c08a987eae7d5995b6f2a40d8",
+    "transfer-v16.js": "7f5901a1e412eb022786bdf27ee70dd5f24e4696131664532ad36adf9ab617d6",
+    "trophy-art-v119.js": "f67b8cf1fec6c2fb49c65d46be7aa2ddb4f9f7aa764b16b84d05af3b5f0c041a",
+    "world-3d-documentation-data-v134.js": "4b726bbc2ff797f02f3ea716b435c98004b57fadfd180c652ec118db06751382",
+    "world-3d-help-v134.js": "a6efc0768ce2e6a304152591afb0d13002546cedf4f6a2f78aa5d775b63a65c2",
+    "world-attack-flow-v152.js": "b3ba99ae4e5b476e9d65c1d85859c45aa0c793600d6462f50b1e7ea506d5922f",
+    "world-backpedal-v108.js": "0332d0c9cc1ff6ffd4f667e2505f1cd5315537435e27786bf0c7b8e4df3f2139",
+    "world-ball-motion-v110.js": "bb193d058d603f896b8f229df793e47ded1f43611a756fad104aeacd9849eed1",
+    "world-career-plan-v64.js": "64d0efa086c9fad59edb407c4025d6522400213db8ab65d20bab71858dd2808a",
+    "world-catalog-v61.js": "1c3aeb25200ee737b61f00989a52a1b58e67f4f93035109afebe4a562757ef50",
+    "world-coaches-v63.js": "14b8f86c6139e4707fe1be3fbd3a81933f88dfa389819389adeac836e9ced551",
+    "world-competition-v62.js": "6d9a6192d0f6c59c1db4c586232f5390e81635ddc895e27ff4601b7c7e0622ca",
+    "world-corner-ball-v109.js": "2174d116134bb25938754d4595e0986d1f2a6eef5fa6e9dd50c592a75e5e25f8",
+    "world-economy-v66.css": "d0b6dc985cfdf4a51adf1416d011d25788abe3be14c7544f859e82885c0947e2",
+    "world-economy-v66.js": "99a60c08f9559abeffe3114015f737a820ea09ca6ffa06015c93ccc80bcc7ec0",
+    "world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d",
+    "world-foundation-v61.js": "a57163a790638315a046361b519a0047af697ca486c37970b4ed6d30677e9198",
+    "world-goal-banner-v84.js": "76c6635ca95c3794bad1ed00a35ff6a85142e9fe3b9f0c8b14ac4730ae194ab1",
+    "world-goal-replay-v103.js": "fe51f7038a89f9a5f004f80bf0e31a84d00d6dd9511273c79e55705f3919253b",
+    "world-goal-scene-v83.js": "25d33e8b000b879137fa8425aef952566a2f6478ee3804f1aedf4af34d4b1669",
+    "world-grid-touch-v71.js": "ca8e19206566bc464380798548d331f6f54602c8c88dcf3d6802d4f8bff8dff0",
+    "world-honours-v74.js": "2e2171c6167eb51f0da4b4dcdc83d2c4740d4b923189702061ae3dc23d69c2db",
+    "world-kits-ui-v81.js": "9a97db3df6bbfe7cebff3ffd5c288c0527ca251937782df23c9c019e37977375",
+    "world-market-ui-v66.js": "082bbea9b45b54e6a04e12299c7883412dbef3897b4bb9ce36e66ded8fdba6e5",
+    "world-match-ui-v64.js": "3deb3425da0c30ba686caa64517e6ccc044052d1fa1260eb621d16af8982ad9a",
+    "world-match-v64.js": "8656bc3b0eef950fcfecd529689ba39b349baa6ec78621c3c2c1726fb7c8489f",
+    "world-nationalities-v79.js": "69b825a31b316cb066dae5aee86ee1f87f3979f25b1c9b67744e5d687169569e",
+    "world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "world-payments-ui-v124.js": "39c7ebd63dad1da06e873a24baacf3aa523fc0a9ba41baa08666725d71863933",
+    "world-payments-v124.js": "655b5cb7fc4f635995a00eccb310f7e3922ad332734fe356c4f154710ed72e01",
+    "world-physical-v65.js": "23ef31850a4b320d120e8122a711103e4c00dd079c9917a4e48c4733e7b0d173",
+    "world-pitch-actions-v99.js": "596b0cfb28a68782ca829a2b55f2702e844ec3e7c04e698d5f9543069f2c9877",
+    "world-pitch-layout-v92.js": "66b91358c2f03244883a9bf69c2c9815949f8f833412ed7bfcce662bc9f48729",
+    "world-pitch3d-v98.js": "a6ee4296956afdacc4ef4ea6ec6145fd85276eed8677ee337ef8e9c49e11f8a5",
+    "world-player-foundation-v153.js": "7cb83f733e9fbcb7e392c36a9fc69388c9a88c52b3efccfa2e6bb0740d90cda4",
+    "world-player-load-v158.js": "12c3ff94c67a468c259b4f26aefb0c7dfdd1185a7cf25d1886f6f2c8972e69b5",
+    "world-player-performance-v155.js": "262ad562b2f8730aef2c816f56bb832796cf53169349a9a8b25a10d5437a8271",
+    "world-player-roles-v154.js": "d0218175b825d961321f422086dba6b676f73666b7e91ddf363521dc520c00d0",
+    "world-space-passes-v150.js": "fa609dda3dae2fb6c2ceff40d43e910d7982990517270e9a772c9cafe794b4a5",
+    "world-sprites-v82.js": "11f799f3c179db2b04ca848766f3f188e259ef018cf8f1e06a72b71c9e1516eb",
+    "world-sprites-v85.js": "6526d40e592acb8f4720df2f5d67c2905dbdd2365844c8907ae89df2d017bec6",
+    "world-sprites-v86.js": "2d183a51b61004b5cae2906c54d79f77a009793db4eafc57953c6033c7932261",
+    "world-sprites-v87.js": "1684940edf6dea6506966667916f4618b13dcf837db65bfe8f4f6e4b6e243976",
+    "world-sprites-v88.js": "26ce1f347e56158f55fe53a4b4b62f6bffe2e45e7518d47db3dacd1b1435c475",
+    "world-sprites-v89.js": "e44161036ae12d72e83ca85eb7b5b60f7d1da73cc422c27e2eb56934b35acdf2",
+    "world-start-v61.css": "4dedba96952b53072944591994808e8a71adc91b4939b84e60458d838f3a0590",
+    "world-tactics-layout-v156.css": "4eb557c24bfcbc9e69277f35d0c12c0843077947db88f0de733adbeb153d159b",
+    "world-tactics-ui-v156.js": "0783083c0cc364c75cc00fd93e19be753cc17655ac7e7294a2782e79763bf1bf",
+    "world-transfer-list-ui-v72.js": "92459d9aeba26ea532010e9e3ca7381110640a3707f74f2250b6d73ba95094dc",
+    "world-transfer-list-v72.js": "a09dd52fd5cb1a9a39d44195548705ce21657ae372ddc02e93d47f6381d0563d",
+    "world-unity-v151.js": "32d6820249920179b1182f0e145e0e341b6872583c818a10872d085ff99b7242",
+    "world-views-v68.css": "24b150d7252760a3bcc7bbc6b8dc999f09f78000445da6e0c2d9f3411e933417",
+    "world-views-v68.js": "e3f7006c3a7567ec372e306fa9c0fcd674d9fa8c3a00749ac065729c492d9f4a",
+    "world-youth-manager-v67.js": "8068a168e5c2c9b23274fd7be7eab06f48f3061d8570e3b4d069a4ecc85e611d",
+    "world-youth-ui-v67.js": "99f500bdafc9c5692922bdda93b1bc4d713f8015153a4b3e4347d8eb04869375",
+    "world-youth-v67.css": "8f489907a1173c18f3171cfd431e19ad59c82ab7c762ec879e3a9dca2750c6a7",
+    "youth-direct-v36.js": "6e9f12880cdff4dbb111958f54169e52b02d695a988ba35f3ffe82b12be432ff",
+    "youth-v33.js": "a0b1842d029167a89f0fcf2cef9787f48ce2f1982339084ea89cf1b1eeead613"
+  },
+  "sourceHashes": {
+    "world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d"
+  },
+  "candidateHashes": {
+    "world-offensive-quality-v157.js": "57893052c594edac8539c1dca2ba8c5b68a0d514efd94f1cbeb70d49da91782b",
+    "world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d"
+  },
+  "matches": [
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 0,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4371,
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "shots": 6,
+        "onTarget": 2,
+        "passes": 57,
+        "passComplete": 49,
+        "goals": 1,
+        "saves": 1,
+        "interceptions": 5,
+        "tackleAttempts": 32,
+        "tacklesWon": 6,
+        "duels": 64,
+        "duelsWon": 22,
+        "fouls": 10
+      },
+      "metrics": {
+        "decisions": 334,
+        "windowDecisions": 15,
+        "carry": 10,
+        "shots": [
+          {
+            "team": 0,
+            "range": 20.76506323378357,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 21.698600474165744,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 8.346207275933782,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 23.104466508102778,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 19.460954632495152,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 24.86492169662839,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 1030,
+          "forwardMetres": 109.86885363953823,
+          "reverseMetres": 15.980709327043211,
+          "lateralMetres": 53.85333680537608,
+          "totalMetres": 151.8515392395593
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 673,
+          "sum": 3403.819522064441,
+          "min": 4.1672814498854835,
+          "max": 5.632281566659725
+        },
+        "turns": {
+          "queued": 80,
+          "continued": 234,
+          "waited": 167,
+          "released": 17,
+          "aborted": 50,
+          "prepareCancelled": 8
+        }
+      },
+      "rng": 1791790654,
+      "draws": 374,
+      "digestSha256": "0ad1b006c281cd47845065aea27eaf3680d6f7a67bc313e6727bee00603319bb"
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 0,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3416,
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "shots": 7,
+        "onTarget": 2,
+        "passes": 50,
+        "passComplete": 44,
+        "goals": 1,
+        "saves": 1,
+        "interceptions": 4,
+        "tackleAttempts": 23,
+        "tacklesWon": 2,
+        "duels": 50,
+        "duelsWon": 19,
+        "fouls": 6
+      },
+      "metrics": {
+        "decisions": 293,
+        "windowDecisions": 23,
+        "carry": 18,
+        "shots": [
+          {
+            "team": 1,
+            "range": 17.49568721231325,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 9.644652077448503,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 20.118227837779212,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 21.713083173818195,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 21.158660508091316,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 11.107659688999073,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 19.659824081129162,
+            "pressure": 2,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 808,
+          "forwardMetres": 98.6335452086674,
+          "reverseMetres": 15.854864660819214,
+          "lateralMetres": 48.31879040197011,
+          "totalMetres": 132.09709146262253
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 525,
+          "sum": 3402.936455393745,
+          "min": 5.478598198624875,
+          "max": 7.473153993145364
+        },
+        "turns": {
+          "queued": 33,
+          "continued": 197,
+          "waited": 172,
+          "released": 16,
+          "aborted": 9,
+          "prepareCancelled": 4
+        }
+      },
+      "rng": 1956514500,
+      "draws": 300,
+      "digestSha256": "54cc9df54e17405a2d8d8616dc14defade1d7d8cebfc9f03deb4021f896e4494"
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 0,
+      "mode": "candidate-json",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3416,
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "shots": 7,
+        "onTarget": 2,
+        "passes": 50,
+        "passComplete": 44,
+        "goals": 1,
+        "saves": 1,
+        "interceptions": 4,
+        "tackleAttempts": 23,
+        "tacklesWon": 2,
+        "duels": 50,
+        "duelsWon": 19,
+        "fouls": 6
+      },
+      "metrics": {
+        "decisions": 293,
+        "windowDecisions": 23,
+        "carry": 18,
+        "shots": [
+          {
+            "team": 1,
+            "range": 17.49568721231325,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 9.644652077448503,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 20.118227837779212,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 21.713083173818195,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 21.158660508091316,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 11.107659688999073,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 19.659824081129162,
+            "pressure": 2,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 808,
+          "forwardMetres": 98.6335452086674,
+          "reverseMetres": 15.854864660819214,
+          "lateralMetres": 48.31879040197011,
+          "totalMetres": 132.09709146262253
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 525,
+          "sum": 3402.936455393745,
+          "min": 5.478598198624875,
+          "max": 7.473153993145364
+        },
+        "turns": {
+          "queued": 33,
+          "continued": 197,
+          "waited": 172,
+          "released": 16,
+          "aborted": 9,
+          "prepareCancelled": 4
+        }
+      },
+      "rng": 1956514500,
+      "draws": 300,
+      "digestSha256": "54cc9df54e17405a2d8d8616dc14defade1d7d8cebfc9f03deb4021f896e4494"
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 1,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4439,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 7,
+        "onTarget": 2,
+        "passes": 55,
+        "passComplete": 50,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 4,
+        "tackleAttempts": 27,
+        "tacklesWon": 1,
+        "duels": 54,
+        "duelsWon": 16,
+        "fouls": 10
+      },
+      "metrics": {
+        "decisions": 321,
+        "windowDecisions": 10,
+        "carry": 10,
+        "shots": [
+          {
+            "team": 1,
+            "range": 14.507761712023994,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 9.462833723435072,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 23.00365383044703,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 25.275034426297516,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 23.566589792107337,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 12.817308064634465,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 18.977155340264567,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 978,
+          "forwardMetres": 107.06060988399733,
+          "reverseMetres": 11.169449860185901,
+          "lateralMetres": 56.3500474196361,
+          "totalMetres": 146.93841845694126
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 677,
+          "sum": 3425.857897340044,
+          "min": 4.280758408640587,
+          "max": 5.605479365916604
+        },
+        "turns": {
+          "queued": 44,
+          "continued": 204,
+          "waited": 171,
+          "released": 18,
+          "aborted": 15,
+          "prepareCancelled": 7
+        }
+      },
+      "rng": 570497247,
+      "draws": 345,
+      "digestSha256": "a50af366cd547b9c9775c7306a3da49d79dd79f2f15e996d1ef007471da8a057"
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 1,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4988,
+      "score": [
+        2,
+        1
+      ],
+      "stats": {
+        "shots": 6,
+        "onTarget": 3,
+        "passes": 57,
+        "passComplete": 48,
+        "goals": 3,
+        "saves": 0,
+        "interceptions": 4,
+        "tackleAttempts": 26,
+        "tacklesWon": 2,
+        "duels": 52,
+        "duelsWon": 17,
+        "fouls": 9
+      },
+      "metrics": {
+        "decisions": 327,
+        "windowDecisions": 17,
+        "carry": 15,
+        "shots": [
+          {
+            "team": 1,
+            "range": 18.086452483207943,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 12.579667569399804,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 17.406552160837823,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 19.529245589676947,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 22.271779694399864,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 892,
+          "forwardMetres": 100.08919073648805,
+          "reverseMetres": 9.710429214266897,
+          "lateralMetres": 52.64756657750518,
+          "totalMetres": 135.69021159931842
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 578,
+          "sum": 3828.014467702783,
+          "min": 5.652706870276275,
+          "max": 7.178935041774139
+        },
+        "turns": {
+          "queued": 34,
+          "continued": 224,
+          "waited": 201,
+          "released": 19,
+          "aborted": 4,
+          "prepareCancelled": 7
+        }
+      },
+      "rng": 333890721,
+      "draws": 339,
+      "digestSha256": "036e301268d79889f53e53fe4afadb5eed7475a5cea6c77808499d5cc0512a30"
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 0,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4207,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 5,
+        "onTarget": 2,
+        "passes": 49,
+        "passComplete": 44,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 1,
+        "tackleAttempts": 23,
+        "tacklesWon": 5,
+        "duels": 46,
+        "duelsWon": 15,
+        "fouls": 8
+      },
+      "metrics": {
+        "decisions": 387,
+        "windowDecisions": 15,
+        "carry": 14,
+        "shots": [
+          {
+            "team": 0,
+            "range": 18.775864445009013,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 18.087345221246316,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 11.527110280734679,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 19.45543427101202,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 12.73568622533112,
+            "pressure": 2,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 1001,
+          "forwardMetres": 108.55615394610507,
+          "reverseMetres": 16.69477801006106,
+          "lateralMetres": 61.041627475202304,
+          "totalMetres": 155.05026865336342
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 689,
+          "sum": 3417.5054665781918,
+          "min": 3.8521302588564,
+          "max": 5.710778136296137
+        },
+        "turns": {
+          "queued": 65,
+          "continued": 273,
+          "waited": 220,
+          "released": 22,
+          "aborted": 31,
+          "prepareCancelled": 9
+        }
+      },
+      "rng": 4011987662,
+      "draws": 326,
+      "digestSha256": "ece2a099922fe10ae685140c4041dfea2187978086f407c928c262a8148a88b0"
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 0,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3523,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 0,
+        "passes": 44,
+        "passComplete": 34,
+        "goals": 0,
+        "saves": 0,
+        "interceptions": 6,
+        "tackleAttempts": 22,
+        "tacklesWon": 4,
+        "duels": 46,
+        "duelsWon": 16,
+        "fouls": 7
+      },
+      "metrics": {
+        "decisions": 308,
+        "windowDecisions": 44,
+        "carry": 30,
+        "shots": [
+          {
+            "team": 1,
+            "range": 21.28996272028981,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 12.305470026403071,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 18.122498931936406,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 11.745105909569327,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 811,
+          "forwardMetres": 84.05218778452118,
+          "reverseMetres": 17.496440196919934,
+          "lateralMetres": 51.69690992262637,
+          "totalMetres": 129.12989684812447
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 530,
+          "sum": 3407.2984076855896,
+          "min": 5.73060582489982,
+          "max": 7.231065630590483
+        },
+        "turns": {
+          "queued": 38,
+          "continued": 217,
+          "waited": 189,
+          "released": 18,
+          "aborted": 10,
+          "prepareCancelled": 5
+        }
+      },
+      "rng": 862981263,
+      "draws": 265,
+      "digestSha256": "f7863139155f3074436c22e3098a99ae1c3c706d0e1910e484fec818b70bafb4"
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 0,
+      "mode": "candidate-json",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3523,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 0,
+        "passes": 44,
+        "passComplete": 34,
+        "goals": 0,
+        "saves": 0,
+        "interceptions": 6,
+        "tackleAttempts": 22,
+        "tacklesWon": 4,
+        "duels": 46,
+        "duelsWon": 16,
+        "fouls": 7
+      },
+      "metrics": {
+        "decisions": 308,
+        "windowDecisions": 44,
+        "carry": 30,
+        "shots": [
+          {
+            "team": 1,
+            "range": 21.28996272028981,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 12.305470026403071,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 18.122498931936406,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 11.745105909569327,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 811,
+          "forwardMetres": 84.05218778452118,
+          "reverseMetres": 17.496440196919934,
+          "lateralMetres": 51.69690992262637,
+          "totalMetres": 129.12989684812447
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 530,
+          "sum": 3407.2984076855896,
+          "min": 5.73060582489982,
+          "max": 7.231065630590483
+        },
+        "turns": {
+          "queued": 38,
+          "continued": 217,
+          "waited": 189,
+          "released": 18,
+          "aborted": 10,
+          "prepareCancelled": 5
+        }
+      },
+      "rng": 862981263,
+      "draws": 265,
+      "digestSha256": "f7863139155f3074436c22e3098a99ae1c3c706d0e1910e484fec818b70bafb4"
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 1,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4809,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 7,
+        "onTarget": 2,
+        "passes": 53,
+        "passComplete": 49,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 3,
+        "tackleAttempts": 25,
+        "tacklesWon": 5,
+        "duels": 50,
+        "duelsWon": 14,
+        "fouls": 11
+      },
+      "metrics": {
+        "decisions": 369,
+        "windowDecisions": 28,
+        "carry": 26,
+        "shots": [
+          {
+            "team": 1,
+            "range": 23.033296316890794,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 9.180192904725173,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 23.063428558205604,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 10.827046225090198,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 18.72008559307961,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 18.47542334257675,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 15.402289711225398,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 950,
+          "forwardMetres": 91.6452778027487,
+          "reverseMetres": 17.163194305664806,
+          "lateralMetres": 55.22529830854679,
+          "totalMetres": 131.59076155511084
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 625,
+          "sum": 3099.779857512966,
+          "min": 4.2885851885835615,
+          "max": 5.592383409808713
+        },
+        "turns": {
+          "queued": 65,
+          "continued": 263,
+          "waited": 209,
+          "released": 19,
+          "aborted": 35,
+          "prepareCancelled": 6
+        }
+      },
+      "rng": 1266242187,
+      "draws": 357,
+      "digestSha256": "20fae1c20d2ca453dcc1c048ad524333c1d8fb3f44aa6e275ea309ba3bac5c2d"
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 1,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4801,
+      "score": [
+        2,
+        1
+      ],
+      "stats": {
+        "shots": 7,
+        "onTarget": 4,
+        "passes": 54,
+        "passComplete": 48,
+        "goals": 3,
+        "saves": 1,
+        "interceptions": 5,
+        "tackleAttempts": 30,
+        "tacklesWon": 4,
+        "duels": 62,
+        "duelsWon": 21,
+        "fouls": 10
+      },
+      "metrics": {
+        "decisions": 374,
+        "windowDecisions": 10,
+        "carry": 8,
+        "shots": [
+          {
+            "team": 0,
+            "range": 19.398037604339986,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 13.437058669553815,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 10.414378270201482,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 1.2817280308099608,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 23.233805451334806,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 25.580675476606054,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 23.65326924787525,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 844,
+          "forwardMetres": 82.07561012438816,
+          "reverseMetres": 11.606097464228169,
+          "lateralMetres": 61.06198912024342,
+          "totalMetres": 124.93289951898139
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 530,
+          "sum": 3404.3157469609564,
+          "min": 5.566831141360495,
+          "max": 7.2386530243767035
+        },
+        "turns": {
+          "queued": 42,
+          "continued": 284,
+          "waited": 252,
+          "released": 20,
+          "aborted": 12,
+          "prepareCancelled": 7
+        }
+      },
+      "rng": 2699724442,
+      "draws": 354,
+      "digestSha256": "5c5d7c5c2f0dd11b84909fff79ef1e61bad145bad0bdc53d6c7ba5294607c533"
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 0,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3810,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 0,
+        "passes": 47,
+        "passComplete": 42,
+        "goals": 0,
+        "saves": 0,
+        "interceptions": 2,
+        "tackleAttempts": 24,
+        "tacklesWon": 3,
+        "duels": 48,
+        "duelsWon": 17,
+        "fouls": 7
+      },
+      "metrics": {
+        "decisions": 329,
+        "windowDecisions": 5,
+        "carry": 14,
+        "shots": [
+          {
+            "team": 0,
+            "range": 10.498790816742769,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 11.39304990750991,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 30.28363444555518,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 16.483577029073622,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 938,
+          "forwardMetres": 101.26096754601632,
+          "reverseMetres": 20.63685023505707,
+          "lateralMetres": 55.617321390038875,
+          "totalMetres": 147.89066792872492
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 646,
+          "sum": 3291.6584107976623,
+          "min": 4.206550760206439,
+          "max": 5.7285381449421555
+        },
+        "turns": {
+          "queued": 52,
+          "continued": 230,
+          "waited": 185,
+          "released": 18,
+          "aborted": 27,
+          "prepareCancelled": 5
+        }
+      },
+      "rng": 887607872,
+      "draws": 280,
+      "digestSha256": "be9314c21e4f30170c1e4b74676709f2e25b0741d6afa9153a85aac4c190e42c"
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 0,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3012,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 2,
+        "onTarget": 0,
+        "passes": 46,
+        "passComplete": 43,
+        "goals": 0,
+        "saves": 0,
+        "interceptions": 3,
+        "tackleAttempts": 21,
+        "tacklesWon": 5,
+        "duels": 42,
+        "duelsWon": 17,
+        "fouls": 4
+      },
+      "metrics": {
+        "decisions": 423,
+        "windowDecisions": 7,
+        "carry": 18,
+        "shots": [
+          {
+            "team": 0,
+            "range": 12.0238757947413,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 13.192473765281155,
+            "pressure": 2,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 1069,
+          "forwardMetres": 130.67822927007546,
+          "reverseMetres": 15.006315906942197,
+          "lateralMetres": 71.57871882808261,
+          "totalMetres": 180.11775763172923
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 718,
+          "sum": 4674.898658444535,
+          "min": 5.746156918755707,
+          "max": 7.384558027680694
+        },
+        "turns": {
+          "queued": 47,
+          "continued": 294,
+          "waited": 255,
+          "released": 24,
+          "aborted": 15,
+          "prepareCancelled": 6
+        }
+      },
+      "rng": 3199102357,
+      "draws": 263,
+      "digestSha256": "8006167aabdf0beb01635f2448c74e29b4d9f3079200ff7680ae77b44ee9787d"
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 0,
+      "mode": "candidate-json",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3012,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 2,
+        "onTarget": 0,
+        "passes": 46,
+        "passComplete": 43,
+        "goals": 0,
+        "saves": 0,
+        "interceptions": 3,
+        "tackleAttempts": 21,
+        "tacklesWon": 5,
+        "duels": 42,
+        "duelsWon": 17,
+        "fouls": 4
+      },
+      "metrics": {
+        "decisions": 423,
+        "windowDecisions": 7,
+        "carry": 18,
+        "shots": [
+          {
+            "team": 0,
+            "range": 12.0238757947413,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 13.192473765281155,
+            "pressure": 2,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 1069,
+          "forwardMetres": 130.67822927007546,
+          "reverseMetres": 15.006315906942197,
+          "lateralMetres": 71.57871882808261,
+          "totalMetres": 180.11775763172923
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 718,
+          "sum": 4674.898658444535,
+          "min": 5.746156918755707,
+          "max": 7.384558027680694
+        },
+        "turns": {
+          "queued": 47,
+          "continued": 294,
+          "waited": 255,
+          "released": 24,
+          "aborted": 15,
+          "prepareCancelled": 6
+        }
+      },
+      "rng": 3199102357,
+      "draws": 263,
+      "digestSha256": "8006167aabdf0beb01635f2448c74e29b4d9f3079200ff7680ae77b44ee9787d"
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 1,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3394,
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "shots": 6,
+        "onTarget": 1,
+        "passes": 52,
+        "passComplete": 45,
+        "goals": 1,
+        "saves": 0,
+        "interceptions": 5,
+        "tackleAttempts": 22,
+        "tacklesWon": 4,
+        "duels": 44,
+        "duelsWon": 17,
+        "fouls": 5
+      },
+      "metrics": {
+        "decisions": 349,
+        "windowDecisions": 34,
+        "carry": 8,
+        "shots": [
+          {
+            "team": 0,
+            "range": 21.13769342900046,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 21.37049176112291,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 21.78875358819871,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 28.761394143459427,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 21.7854389718515,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 11.82113591350215,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 867,
+          "forwardMetres": 94.52672040209745,
+          "reverseMetres": 19.432816679853968,
+          "lateralMetres": 61.421878164960546,
+          "totalMetres": 142.95098277973682
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 608,
+          "sum": 3097.2255601717998,
+          "min": 4.413272873192566,
+          "max": 5.6133035442965555
+        },
+        "turns": {
+          "queued": 35,
+          "continued": 249,
+          "waited": 221,
+          "released": 24,
+          "aborted": 4,
+          "prepareCancelled": 6
+        }
+      },
+      "rng": 977811142,
+      "draws": 286,
+      "digestSha256": "2965a7989fd79d624aba1fc2b83482df979919a2bfdc44d5316e5c92cf768c0e"
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 1,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4270,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 2,
+        "passes": 45,
+        "passComplete": 35,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 5,
+        "tackleAttempts": 20,
+        "tacklesWon": 5,
+        "duels": 40,
+        "duelsWon": 13,
+        "fouls": 7
+      },
+      "metrics": {
+        "decisions": 322,
+        "windowDecisions": 15,
+        "carry": 14,
+        "shots": [
+          {
+            "team": 0,
+            "range": 12.375545877740679,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 28.73953999052515,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 10.887990308453883,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 30.32516010692744,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 945,
+          "forwardMetres": 131.0817423748814,
+          "reverseMetres": 21.667373208948476,
+          "lateralMetres": 66.67079578313316,
+          "totalMetres": 184.0109617809647
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 700,
+          "sum": 4671.576579552796,
+          "min": 5.58041991556176,
+          "max": 7.194540581081571
+        },
+        "turns": {
+          "queued": 30,
+          "continued": 197,
+          "waited": 173,
+          "released": 18,
+          "aborted": 6,
+          "prepareCancelled": 5
+        }
+      },
+      "rng": 1226111418,
+      "draws": 258,
+      "digestSha256": "2a662e0b6f89e9d2d271ddc25ba4a938bd7323d1ffcf1f3d60ae4bcdae4bbaf4"
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 0,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3390,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 2,
+        "onTarget": 1,
+        "passes": 51,
+        "passComplete": 42,
+        "goals": 0,
+        "saves": 1,
+        "interceptions": 4,
+        "tackleAttempts": 25,
+        "tacklesWon": 5,
+        "duels": 52,
+        "duelsWon": 21,
+        "fouls": 5
+      },
+      "metrics": {
+        "decisions": 338,
+        "windowDecisions": 3,
+        "carry": 7,
+        "shots": [
+          {
+            "team": 0,
+            "range": 20.507101485010583,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 14.598955294269736,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 926,
+          "forwardMetres": 87.60212598090239,
+          "reverseMetres": 23.177404199302746,
+          "lateralMetres": 53.21384921822957,
+          "totalMetres": 136.9665499664024
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 641,
+          "sum": 3118.557106677391,
+          "min": 3.7247606474574746,
+          "max": 5.713737260593039
+        },
+        "turns": {
+          "queued": 42,
+          "continued": 238,
+          "waited": 201,
+          "released": 22,
+          "aborted": 15,
+          "prepareCancelled": 5
+        }
+      },
+      "rng": 3527024799,
+      "draws": 281,
+      "digestSha256": "3ca7b11de8c6de39859546eb7e15aebbe39bf2cf68295a46af34558028f63a54"
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 0,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3420,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 2,
+        "passes": 48,
+        "passComplete": 40,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 4,
+        "tackleAttempts": 21,
+        "tacklesWon": 5,
+        "duels": 42,
+        "duelsWon": 18,
+        "fouls": 3
+      },
+      "metrics": {
+        "decisions": 313,
+        "windowDecisions": 10,
+        "carry": 12,
+        "shots": [
+          {
+            "team": 1,
+            "range": 13.931188046003264,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 20.229513734189947,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 14.97370039329882,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 17.227398555899075,
+            "pressure": 0,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 880,
+          "forwardMetres": 92.8994553619544,
+          "reverseMetres": 14.638183711608242,
+          "lateralMetres": 69.17242275260166,
+          "totalMetres": 144.1559997131406
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 630,
+          "sum": 4036.546517478713,
+          "min": 4.945767750690243,
+          "max": 7.443776592592991
+        },
+        "turns": {
+          "queued": 39,
+          "continued": 206,
+          "waited": 175,
+          "released": 20,
+          "aborted": 11,
+          "prepareCancelled": 8
+        }
+      },
+      "rng": 687437999,
+      "draws": 297,
+      "digestSha256": "234d77a0b37e49f07519e261e723e8cd80fdf3c7cdd22e4e8083c29b3334bda7"
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 0,
+      "mode": "candidate-json",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3420,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 2,
+        "passes": 48,
+        "passComplete": 40,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 4,
+        "tackleAttempts": 21,
+        "tacklesWon": 5,
+        "duels": 42,
+        "duelsWon": 18,
+        "fouls": 3
+      },
+      "metrics": {
+        "decisions": 313,
+        "windowDecisions": 10,
+        "carry": 12,
+        "shots": [
+          {
+            "team": 1,
+            "range": 13.931188046003264,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 20.229513734189947,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 14.97370039329882,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 17.227398555899075,
+            "pressure": 0,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 880,
+          "forwardMetres": 92.8994553619544,
+          "reverseMetres": 14.638183711608242,
+          "lateralMetres": 69.17242275260166,
+          "totalMetres": 144.1559997131406
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 630,
+          "sum": 4036.546517478713,
+          "min": 4.945767750690243,
+          "max": 7.443776592592991
+        },
+        "turns": {
+          "queued": 39,
+          "continued": 206,
+          "waited": 175,
+          "released": 20,
+          "aborted": 11,
+          "prepareCancelled": 8
+        }
+      },
+      "rng": 687437999,
+      "draws": 297,
+      "digestSha256": "234d77a0b37e49f07519e261e723e8cd80fdf3c7cdd22e4e8083c29b3334bda7"
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 1,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4187,
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "shots": 2,
+        "onTarget": 1,
+        "passes": 53,
+        "passComplete": 43,
+        "goals": 1,
+        "saves": 0,
+        "interceptions": 8,
+        "tackleAttempts": 33,
+        "tacklesWon": 7,
+        "duels": 66,
+        "duelsWon": 25,
+        "fouls": 8
+      },
+      "metrics": {
+        "decisions": 366,
+        "windowDecisions": 7,
+        "carry": 9,
+        "shots": [
+          {
+            "team": 0,
+            "range": 19.986735461433575,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 27.372118493447907,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 936,
+          "forwardMetres": 78.0513502402733,
+          "reverseMetres": 24.47477028867661,
+          "lateralMetres": 54.79680771160295,
+          "totalMetres": 128.38816491903472
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 595,
+          "sum": 3020.7677615490206,
+          "min": 4.37813709973036,
+          "max": 5.55153385390159
+        },
+        "turns": {
+          "queued": 44,
+          "continued": 269,
+          "waited": 235,
+          "released": 22,
+          "aborted": 12,
+          "prepareCancelled": 7
+        }
+      },
+      "rng": 4011987662,
+      "draws": 326,
+      "digestSha256": "0a6d681bd503e4b639cfc9d5289c1b9f5203ada809395e1edb2e8d7a7027c239"
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 1,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4530,
+      "score": [
+        1,
+        0
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 2,
+        "passes": 48,
+        "passComplete": 43,
+        "goals": 1,
+        "saves": 1,
+        "interceptions": 3,
+        "tackleAttempts": 26,
+        "tacklesWon": 4,
+        "duels": 54,
+        "duelsWon": 17,
+        "fouls": 10
+      },
+      "metrics": {
+        "decisions": 315,
+        "windowDecisions": 14,
+        "carry": 21,
+        "shots": [
+          {
+            "team": 1,
+            "range": 10.751062981114918,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 11.718431905019246,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 22.32499662818184,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 21.39310583033421,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true,
+        "ownerMovement": {
+          "samples": 929,
+          "forwardMetres": 111.18448348552188,
+          "reverseMetres": 17.66041334482332,
+          "lateralMetres": 44.763782052769784,
+          "totalMetres": 150.28954026810527
+        },
+        "ownerSelectedMaxSpeed": {
+          "samples": 628,
+          "sum": 4120.441334841602,
+          "min": 5.687893806477098,
+          "max": 7.210767193797604
+        },
+        "turns": {
+          "queued": 42,
+          "continued": 203,
+          "waited": 173,
+          "released": 21,
+          "aborted": 9,
+          "prepareCancelled": 8
+        }
+      },
+      "rng": 3910139707,
+      "draws": 277,
+      "digestSha256": "1b93b45cce7e24b40ac4c631142b5ebdc57b9be9fccb2d84c35b456b95d7eeee"
+    }
+  ],
+  "errors": [],
+  "summary": [
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "before",
+      "n": 2,
+      "shots": 6.5,
+      "onTarget": 2,
+      "goals": 1.5,
+      "min": 6,
+      "max": 7,
+      "passes": 56,
+      "completed": 49.5,
+      "turns": {
+        "queued": 62,
+        "continued": 219,
+        "waited": 169,
+        "released": 17.5,
+        "aborted": 32.5,
+        "prepareCancelled": 7.5
+      },
+      "pressureAtShot": 0.6153846153846154
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 6.5,
+      "onTarget": 2.5,
+      "goals": 2,
+      "min": 6,
+      "max": 7,
+      "passes": 53.5,
+      "completed": 46,
+      "turns": {
+        "queued": 33.5,
+        "continued": 210.5,
+        "waited": 186.5,
+        "released": 17.5,
+        "aborted": 6.5,
+        "prepareCancelled": 5.5
+      },
+      "pressureAtShot": 0.5
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "before",
+      "n": 2,
+      "shots": 6,
+      "onTarget": 2,
+      "goals": 2,
+      "min": 5,
+      "max": 7,
+      "passes": 51,
+      "completed": 46.5,
+      "turns": {
+        "queued": 65,
+        "continued": 268,
+        "waited": 214.5,
+        "released": 20.5,
+        "aborted": 33,
+        "prepareCancelled": 7.5
+      },
+      "pressureAtShot": 0.5833333333333334
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 5.5,
+      "onTarget": 2,
+      "goals": 1.5,
+      "min": 4,
+      "max": 7,
+      "passes": 49,
+      "completed": 41,
+      "turns": {
+        "queued": 40,
+        "continued": 250.5,
+        "waited": 220.5,
+        "released": 19,
+        "aborted": 11,
+        "prepareCancelled": 6
+      },
+      "pressureAtShot": 0.8181818181818182
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "before",
+      "n": 2,
+      "shots": 5,
+      "onTarget": 0.5,
+      "goals": 0.5,
+      "min": 4,
+      "max": 6,
+      "passes": 49.5,
+      "completed": 43.5,
+      "turns": {
+        "queued": 43.5,
+        "continued": 239.5,
+        "waited": 203,
+        "released": 21,
+        "aborted": 15.5,
+        "prepareCancelled": 5.5
+      },
+      "pressureAtShot": 0.4
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 3,
+      "onTarget": 1,
+      "goals": 1,
+      "min": 2,
+      "max": 4,
+      "passes": 45.5,
+      "completed": 39,
+      "turns": {
+        "queued": 38.5,
+        "continued": 245.5,
+        "waited": 214,
+        "released": 21,
+        "aborted": 10.5,
+        "prepareCancelled": 5.5
+      },
+      "pressureAtShot": 0.5
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "before",
+      "n": 2,
+      "shots": 2,
+      "onTarget": 1,
+      "goals": 0.5,
+      "min": 2,
+      "max": 2,
+      "passes": 52,
+      "completed": 42.5,
+      "turns": {
+        "queued": 43,
+        "continued": 253.5,
+        "waited": 218,
+        "released": 22,
+        "aborted": 13.5,
+        "prepareCancelled": 6
+      },
+      "pressureAtShot": 0.75
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 4,
+      "onTarget": 2,
+      "goals": 1.5,
+      "min": 4,
+      "max": 4,
+      "passes": 48,
+      "completed": 41.5,
+      "turns": {
+        "queued": 40.5,
+        "continued": 204.5,
+        "waited": 174,
+        "released": 20.5,
+        "aborted": 10,
+        "prepareCancelled": 8
+      },
+      "pressureAtShot": 0.625
+    }
+  ],
+  "pass": true
+}

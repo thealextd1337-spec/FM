@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-10",
+  "phase": "read-only package preflight",
+  "providerInstanceId": "claudeAgent",
+  "model": "claude-opus-5-5",
+  "taskId": "node:delegated-task:command%3Amcp%3A4f709f9a-7716-4f92-a860-643691ad462b%3Adelegate-task%3Ad6-claude-next-unity-readonly-20261010-r1",
+  "status": "failed",
+  "result": "Claude API rate limit reached. Try again later.",
+  "package": "docs/agentenauftraege/07-unity-qualitaet-claude.md",
+  "auditCompleted": false,
+  "implementationStarted": false,
+  "knownResetTime": null
+}

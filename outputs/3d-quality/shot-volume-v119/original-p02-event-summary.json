@@ -1,0 +1,41 @@
+{
+  "status": "actual-failure-before-root-halfclock-fix",
+  "source": "Exact actual pending/ledger facts extracted from p02-failure.json by diagnostic tool before root rerun overwrote that path; original candidate-sectors.json retains stack and completed rows.",
+  "elapsed": 41.666666666666664,
+  "careerMinute": 49,
+  "virtualBoundary": 50,
+  "queuedEventMinute": 50.0468,
+  "causeId": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:618",
+  "players": [
+    {
+      "pid": "shot119-5:GER-2:11",
+      "id": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:618:shot119-5:GER-2:11:intense-duel",
+      "type": "intense-duel",
+      "minute": 50.0468,
+      "units": 1,
+      "pendingIntervals": [],
+      "playedRanges": [
+        {
+          "startMinute": 0,
+          "endMinute": 50
+        }
+      ]
+    },
+    {
+      "pid": "shot119-5:GER-5:Y1:1",
+      "id": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:contact:618:shot119-5:GER-5:Y1:1:intense-duel",
+      "type": "intense-duel",
+      "minute": 50.0468,
+      "units": 1,
+      "pendingIntervals": [],
+      "playedRanges": [
+        {
+          "startMinute": 0,
+          "endMinute": 50
+        }
+      ]
+    }
+  ],
+  "error": "actual event must occur within played virtual minutes",
+  "originalSetPiecesSha256": "6006a16d2700dc55cbda50b044f27fc03ce07f6bc908bf9e57b41fb52c31c0f6"
+}

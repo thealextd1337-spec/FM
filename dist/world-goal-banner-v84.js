@@ -1,7 +1,7 @@
 'use strict';
 
 function v84CompetitionLabel(competition){
- return competition?.type==='league'?'Liga 1':competition?.type==='cup'?'Nationaler Pokal':'Europacup';
+ return competition?.type==='league'?'Liga'+(Number.isInteger(competition.division)&&competition.division>0?' '+competition.division:/^S\d+:(?:GER|ENG|ESP|ITA|FRA|POR):LEAGUE$/.test(competition.id||'')?' 1':''):competition?.type==='cup'?'Nationaler Pokal':'Europacup';
 }
 function v84SeasonGoals(player,career,fixture,physical){
  const completed=(player.history||[]).filter(entry=>entry.season===career.world.season&&entry.competitionId===fixture.competitionId&&entry.fixtureId!==fixture.id).reduce((total,entry)=>total+(entry.goals||0),0);
@@ -11,7 +11,7 @@ function v84BannerHTML(player,club,competition,count,score,ownGoal=false){
  const goals=ownGoal?`Eigentor - ${v84CompetitionLabel(competition)}`:`${count} ${count===1?'Tor':'Tore'} - ${v84CompetitionLabel(competition)}`;
  const number=Number.isInteger(player.n)&&player.n>0?`<b class="v84-shirt-number" aria-label="Rückennummer ${player.n}">#${player.n}</b> `: "";
  const scoreClass=score.some(value=>value>9)?' v84-score-long':'';
- return `<div class="v84-goal-decor" aria-hidden="true"><i class="v84-pattern v84-pattern-tl"></i><i class="v84-pattern v84-pattern-tr"></i><i class="v84-pattern v84-pattern-br"></i><i class="v84-accent v84-accent-left"></i><i class="v84-accent v84-accent-right"></i><i class="v84-corner v84-corner-tl"></i><i class="v84-corner v84-corner-tr"></i><i class="v84-corner v84-corner-bl"></i><i class="v84-corner v84-corner-br"></i></div><div class="v84-goal-details"><span class="v84-score${scoreClass}" aria-label="Spielstand ${score[0]} zu ${score[1]}">${score[0]}:${score[1]}</span><span class="v84-scorer">${number}${escapeHTML(player.name)}${ownGoal?' (Eigentor)':''}</span><span class="v84-goals">${escapeHTML(goals)}</span></div><div class="v84-goal-logo">${v61CrestSVG(club)}</div><div class="v84-goal-strips" aria-hidden="true"><i></i><b></b><i></i></div>`;
+ return `<div class="v84-goal-decor" aria-hidden="true"><i class="v84-pattern v84-pattern-tl"></i><i class="v84-pattern v84-pattern-tr"></i><i class="v84-pattern v84-pattern-br"></i><i class="v84-accent v84-accent-left"></i><i class="v84-accent v84-accent-right"></i><i class="v84-corner v84-corner-tl"></i><i class="v84-corner v84-corner-tr"></i><i class="v84-corner v84-corner-bl"></i><i class="v84-corner v84-corner-br"></i></div><div class="v84-goal-details"><span class="v84-score${scoreClass}" aria-label="Spielstand ${score[0]} zu ${score[1]}">${score[0]}:${score[1]}</span><span class="v84-scorer">${number}${escapeHTML(player.name)}${ownGoal?' (Eigentor)':''}</span><span class="v84-goals">${escapeHTML(goals)}</span></div><div class="v84-goal-logo">${v61CrestSVG(club)}<span class="v119-goal-club">${escapeHTML(club?.name||'')}</span></div><div class="v84-goal-strips" aria-hidden="true"><i></i><b></b><i></i></div>`;
 }
 
 let v84PendingGoal=null;
@@ -113,3 +113,11 @@ v84Style.textContent=`
  @media(prefers-reduced-motion:reduce){.v65-world-match #match-area .match-overlay.goal.v84-goal-banner,.v65-world-match #match-area .match-overlay.goal.v84-goal-banner.fade-out,.v84-goal-banner *{animation:none!important;transition:none!important}}
 `;
 document.head.append(v84Style);
+
+v84Style.textContent+=`
+.v65-world-match #match-area .v84-goal-banner .v84-goal-logo{display:flex;flex-direction:column;height:auto;gap:6px}
+.v65-world-match #match-area .v84-goal-banner .v84-goal-logo .v61-crest{width:112px;height:132px}
+.v65-world-match #match-area .v84-goal-banner .v84-goal-logo .v119-goal-club{display:block;margin:0;max-width:100%;color:#f8f9f0;text-align:center;font:700 12px/1.2 Arial,sans-serif;overflow-wrap:anywhere;text-shadow:1px 1px 0 #06132d}
+@media(max-width:700px){.v65-world-match #match-area .v84-goal-banner .v84-goal-logo .v61-crest{width:80px;height:96px}.v65-world-match #match-area .v84-goal-banner .v84-goal-logo .v119-goal-club{font-size:11px}}
+@media(max-width:520px){.v65-world-match #match-area .v84-goal-banner .v84-goal-logo .v61-crest{width:52px;height:64px}.v65-world-match #match-area .v84-goal-banner .v84-goal-logo .v119-goal-club{font-size:10px}}
+`;

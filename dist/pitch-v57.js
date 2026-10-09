@@ -1,4 +1,18 @@
 // Free-kick players move into a visible restart shape while the banner is shown.
+function v119FreeKickWall(m,piece){
+ const depth=piece.team===0?piece.spot.y:1-piece.spot.y;
+ // The existing native direct-shot eligibility is a threat, not a predicted
+ // random shot decision. Pass restarts and offside restarts keep their shape.
+ if(piece.type!=='freeKick'||depth>=.38||piece.spot.x<=.18||piece.spot.x>=.82)return null;
+ const s=v150Scale(m),dx=(.5-piece.spot.x)*s.x,dy=((piece.team===0?v55Field.top:v55Field.bottom)-piece.spot.y)*s.y,d=Math.hypot(dx,dy);
+ if(d<9.8)return null; // A direct foul in this central penalty area is a penalty.
+ const ux=dx/d,uy=dy/d,centre={x:piece.spot.x+ux*9.15/s.x,y:piece.spot.y+uy*9.15/s.y};
+ const targets=[-.55,.55].map(offset=>({x:centre.x-uy*offset/s.x,y:centre.y+ux*offset/s.y}));
+ if(targets.some(p=>p.x<v55Field.left||p.x>v55Field.right||p.y<v55Field.top||p.y>v55Field.bottom))return null;
+ const rivals=m.people.filter(p=>p.t!==piece.team&&!p.keeper).sort((a,b)=>v122Metres(a,centre)-v122Metres(b,centre)||a.n-b.n);
+ if(rivals.length<2)return null;
+ return{version:119,players:rivals.slice(0,2).map((p,i)=>({pid:p.pid,...targets[i]}))};
+}
 function v57PositionFreeKick(realDelta){
  const m=match,piece=m?.setPiece;
  if(m&&typeof v114PositionRestart==='function')v114PositionRestart(m,realDelta);
@@ -28,6 +42,7 @@ function v57PositionFreeKick(realDelta){
   x:clamp(laneX+(player.bx-.5)*.65+(index%2?-.012:.012),.08,.92),
   y:clamp(spot.y+forward*{def:.24,mid:.12,att:-.09}[line(player)],.1,.9)
  }));
+ if(piece.wall?.version===119)for(const point of piece.wall.players){const player=rivals.find(p=>p.pid===point.pid);if(player)targets.set(player,{x:point.x,y:point.y});}
  const fraction=Math.min(1,realDelta*3.4);
  const world=typeof v65WorldActive!=='undefined'&&v65WorldActive;
  for(const[player,target]of targets){if(typeof v113FoulLocked==='function'&&v113FoulLocked(m,player))continue;const foul=typeof v113Fouls!=='undefined'&&v113Fouls.get(m)?.piece===piece;if(world||foul)v55Approach(player,target,realDelta*(foul?.6:1));else{player.x+=(target.x-player.x)*fraction;player.y+=(target.y-player.y)*fraction;player.tx=player.x;player.ty=player.y}}

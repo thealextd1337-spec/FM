@@ -15,9 +15,48 @@ function v161UnitySlide(current,person,turned){
  const remaining=Math.max(0,(person.recoverUntil||0)-current.elapsed);
  return {id:'slide:'+person.pid,kind:slide?'slide':'slideRecovery',progress:slide?Math.max(0,Math.min(1,slide.progress)):Math.max(0,Math.min(1,1-remaining/.6)),duration:slide ? .65 : .6/MATCH_SPEED,contactWorld:{...b,height:.29},facing:{x:b.x-a.x,z:b.z-a.z}};
 }
+function v119TravelFacing(current,person,turned){
+ const motion=person.offenseMotion,defensive=typeof v108MovementMode==='function'&&v108MovementMode(current,person);
+ if(person.keeper||person.slideActive||current.attackFlow?.pendingTurn?.playerId===person.pid||defensive?.mode==='backpedal'||!motion||!Number.isFinite(motion.vx)||!Number.isFinite(motion.vy)||Math.hypot(motion.vx,motion.vy)<=.2)return null;
+ const scale=v150Scale(current);
+ return v98PitchPoint({x:person.x+motion.vx/scale.x,y:person.y+motion.vy/scale.y},turned);
+}
+// Native miss geometry remains authoritative. The old presentation turns most
+// lateral misses into steep central lobs; over a short shot this keeps rising
+// many metres behind the goal. Render an actual wide native miss at its real
+// lateral target with a restrained height, without changing native goal/reach
+// tests (which continue to use v101ShotPoint/v109FlightPoint).
+function v119VisibleShotBall(current){
+ if(typeof v159ShotActive!=='function'||!v159ShotActive(current))return null;
+ const flying=current.flight&&v99Flights.get(current.flight),miss=!current.flight&&v99Actions.get(current)?.miss,pose=flying||miss;
+ if(!pose||pose.kind!=='shot'||pose.onTarget!==false||pose.blocked||!Number.isFinite(pose.endHeight)||!pose.flight||miss&&miss.age>=1.15)return null;
+ const view={...pose,over:false,endHeight:Math.min(pose.endHeight,1.35)},q=flying?Math.max(0,Math.min(1,current.flight.progress)):1,end=v101ShotPoint(view,q);
+ if(flying)return end;
+ const time=Math.max(0,miss.age);
+ return {x:end.x+end.vx*time,y:end.y+end.vy*time,elevation:Math.max(.29,end.elevation+end.vh*time-4.9*time*time),opacity:Math.max(0,Math.min(1,(1.1-time)/.45))};
+}
+// Visible goal-tail contact uses the flat Unity net, without replacing native ball facts.
+function v119VisibleGoalView(current){
+ const state=v99Actions.get(current),source=state?.goalTravel,scene=current.goalScene||(current.postBanner?.kind==='goal'&&source?{team:source.direction<0?0:1,elapsed:v83GoalSceneDuration}:null);
+ if(current.finished||!scene||!source||!(current.goalPause>0||current.postBanner?.kind==='goal'))return null;
+ const length=v160PitchLength(current),width=v160PitchWidth(current),sx=width/(v55Field.right-v55Field.left),sy=length/(v55Field.bottom-v55Field.top),radius=.1764;
+ const goalWidth=current.geometry?.goalWidth||44*.2/(v55Field.right-v55Field.left),goalHeight=current.geometry?.goalHeight||goalWidth/3;
+ const rear=(2.2-radius)/Math.max(.001,Math.abs(source.vy)*sy),edge=source.vx?((.5+Math.sign(source.vx)*(goalWidth/2-radius)/sx)-source.x)/source.vx:Infinity;
+ const C=source.elevation-(goalHeight-radius),B=source.vh,disc=B*B+19.6*C,root=disc>=0?(B-Math.sqrt(disc))/9.8:Infinity;
+ const roof=C>=0?0:B>0&&root>=0?root:Infinity,impact=Math.max(.001,Math.min(rear,edge>=0?edge:Infinity,roof));
+ const travel={...source,impact,hit:roof<=Math.min(rear,edge)?'roof':edge>=0&&edge<rear?'side':'rear'};
+ const time=current.postBanner?.kind==='goal'?v83GoalSceneDuration:Math.max(0,scene.elapsed),contact=v101GoalBall(travel,impact),age=Math.max(0,time-impact);
+ const pulse=age/.06,bulge=travel.hit==='rear'&&time>=impact?.6*pulse*Math.exp(1-pulse):0;
+ const ball=v101GoalBall(travel,time),line=scene.team===0?v55Field.top:v55Field.bottom,direction=scene.team===0?-1:1;
+ // The post-goal tail settles inside the visible enclosure after any secondary contact.
+ ball.x=clamp(ball.x,.5-(goalWidth/2-radius)/sx,.5+(goalWidth/2-radius)/sx);
+ const depth=clamp((ball.y-line)*direction*sy,0,2.2-radius);ball.y=line+direction*depth/sy;
+ ball.elevation=clamp(ball.elevation,.29,goalHeight-radius);
+ return {ball,contact,impact,hit:travel.hit,age,bulge,height:contact.elevation-(.29-radius)*clamp(1-(contact.elevation-.29),0,1)};
+}
 function v98PitchFrame(current){
  const turned=Boolean(current.halftimeBreakDone),scene=current.goalPause>0&&current.goalScene;
- const actionBall=typeof v99BallView==='function'?v99BallView(current):null;
+ const actionBall=v119VisibleGoalView(current)?.ball||v119VisibleShotBall(current)||(typeof v99BallView==='function'?v99BallView(current):null);
  const rawBall=actionBall||(scene?v83GoalPosition(scene):current.ball);
  const height=actionBall?Math.max(0,actionBall.elevation-.29):scene?rawBall.height*68/688:current.flight?.aerial?Math.sin(Math.PI*Math.min(1,current.flight.progress))*5.34:0;
  const ball=v98PitchPoint(rawBall,turned);
@@ -34,7 +73,7 @@ function v98PitchFrame(current){
  return {
   elapsed:current.elapsed,clock:typeof v102Clock==='function'?v102Clock(current):0,turned,broadcast:typeof v132Broadcast==='function'?v132Broadcast(current):null,
   celebration:scene?{id:current.goals.length,team:scene.team,time:Math.max(0,v83GoalSceneDuration-current.goalPause)}:null,
-  players:current.people.map(person=>{const mode=restartFacing&&person!==restartTaker?{mode:'restart',facing:rawBall}:(typeof v157Movement==='function'&&v157Movement(current,person))||(typeof v108MovementMode==='function'?v108MovementMode(current,person):null);return {id:person.pid,person,...(typeof v65WorldActive!=='undefined'&&v65WorldActive?.state.playerLoad&&current===match?{freshness:clamp(v65WorldActive.state.fresh[person.pid]/100,0,1)}:{}),team:person.t,number:person.n,keeper:person.keeper,slideActive:Boolean(person.slideActive),unityAction:v161UnitySlide(current,person,turned),action:typeof v102PlayerAction==='function'?v102PlayerAction(current,person):null,movement:mode?{...mode,facing:v98PitchPoint(mode.facing,turned)}:null,...v98PitchPoint(person,turned)}}),
+  players:current.people.map(person=>{const mode=restartFacing&&person!==restartTaker?{mode:'restart',facing:rawBall}:(typeof v157Movement==='function'&&v157Movement(current,person))||(typeof v108MovementMode==='function'?v108MovementMode(current,person):null);return {id:person.pid,person,...(typeof v65WorldActive!=='undefined'&&v65WorldActive?.state.playerLoad&&current===match?{freshness:clamp(v65WorldActive.state.fresh[person.pid]/100,0,1)}:{}),team:person.t,number:person.n,keeper:person.keeper,slideActive:Boolean(person.slideActive),unityAction:v161UnitySlide(current,person,turned),action:typeof v102PlayerAction==='function'?v102PlayerAction(current,person):null,movement:mode?{...mode,facing:v98PitchPoint(mode.facing,turned),travelFacing:mode.mode==='run'?v119TravelFacing(current,person,turned):null}:null,...v98PitchPoint(person,turned)}}),
   ball:{...ball,height:.29+Math.max(0,height),opacity:actionBall?.opacity??1},
   owner:current.owner?.pid||null,ballInFlight:Boolean(current.flight),carrying:Boolean(current.owner&&!scene&&!current.flight&&!current.rebound&&!current.setPiece&&!current.throwIn&&!current.kickoff&&!current.postBanner&&!current.halftimePause&&!current.finished),
   outOfPlayBall:Boolean(v99Actions.get(current)?.miss&&v99Actions.get(current).miss.age<1.15||v99Actions.get(current)?.outBall&&v102Clock(current)-v99Actions.get(current).outBall.at<1.15),

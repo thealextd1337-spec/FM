@@ -1,0 +1,45 @@
+'use strict';
+// Isolated native candidate. Route replacements never alter production files.
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict'),crypto=require('node:crypto');
+const {chromium}=require('C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const root=path.resolve(__dirname,'..'),out=path.join(root,'outputs/3d-quality/shot-volume-v119/candidate.json'),hash=s=>crypto.createHash('sha256').update(s).digest('hex');
+const files=['world-offensive-quality-v157.js','world-football-flow-v159.js'],source=Object.fromEntries(files.map(f=>[f,fs.readFileSync(path.join(root,'dist',f),'utf8')])),candidate={...source};
+const change=(file,a,b)=>{assert(candidate[file].includes(a),a);candidate[file]=candidate[file].replace(a,b);};
+change(files[0],'function v157ShotQuality(p,rivals){','function v157ShotQuality(p,rivals){\n const fresh=v119PaceActive(match),limit=fresh?26:22;');
+change(files[0],'if(depth<1||range>22||lateral>depth*.85+1)return 0;','if(depth<1||range>limit||lateral>depth*.85+1)return 0;');
+change(files[0],'return clamp((22-range)/12,0,1)*','return clamp((limit-range)/(fresh?14:12),0,1)*');
+change(files[0],'if(shot>0&&(range<=14||random()<','if(shot>0&&(range<=(v119PaceActive(m)?18:14)||random()<');
+change(files[1],"if(p===m.owner&&line==='att'&&!v159Cover(p)&&range>12&&range<30){","if(p===m.owner&&line==='att'&&!v159Cover(p)&&range>12&&range<30&&!(v119PaceActive(m)&&range<=24&&v157ShotQuality(p,rivals)>.18)){");
+const report={scope:'Private intercepted-source physical candidate only. 8 fixture seeds per all4configurations; same native accuracy/keeper/outcome/controller. No production edits or fixed shot/goal quota.',parameters:{maxUsefulRange:26,qualityDenominator:14,automaticUsefulRange:18,carryBypassRange:24,carryBypassQuality:.18,freshOnly:'paceRevision119'},sourceHashes:Object.fromEntries(files.map(f=>[f,hash(source[f])])),candidateHashes:Object.fromEntries(files.map(f=>[f,hash(candidate[f])])),matches:[],errors:[]};
+(async()=>{const server=require('./ui-redesign/serve.cjs').createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true,args:['--disable-gpu']});try{
+ for(const size of ['standard','large'])for(const count of [5,6])for(let seed=0;seed<8;seed++)for(const mode of seed===0?['before','candidate','candidate-json']:['before','candidate']){
+  const context=await browser.newContext(),p=await context.newPage();p.on('pageerror',e=>report.errors.push(e.message));if(mode!=='before')for(const[f,body]of Object.entries(candidate))await p.route('**/'+f+'*',r=>r.fulfill({body,contentType:'text/javascript'}));
+  await p.goto(`http://127.0.0.1:${server.address().port}/source/index.html?engine=browser&players=wave3`);await p.waitForFunction(()=>window.userMeshyMatchReady,null,{timeout:60000});
+  const row=await p.evaluate(async({size,count,seed,mode})=>{
+   let rng=169032,draws=0;Math.random=()=>{draws++;rng=(Math.imul(rng,1664525)+1013904223)>>>0;return rng/4294967296};Date.now=()=>1791540000000;
+   const c=v61CreateCareer('GER-2','shot119-'+seed,'Shot experiment',undefined,{fieldSize:size,fieldPlayers:count}),club=v66Own(c);v66ChooseSponsor(c,club.id,club.sponsors[0].id);v124SetYouthBudget(c,0);while(c.world.market.phase==='open')await v66NextMarketDay(c);
+   const f=v62Fixtures(c).filter(f=>!f.result&&[f.homeId,f.awayId].includes(club.id)).sort((a,b)=>a.day-b.day)[0],state=v64MakeState(c,f);c.world.activeMatch={fixtureId:f.id,state};v61CurrentCareer=c;state.phase='paused';match=null;v65WorldActive=null;v98View='2d';v65Show(v65Context());clearInterval(v65WorldFrame);v103CanReplay=()=>false;draw=()=>{};
+   const metrics={decisions:0,windowDecisions:0,carry:0,shots:[],ranges:[],pressures:[],unmarkedQualityExact:true},oldDecision=v157Decide,oldShoot=v55Shoot,oldFlow=v159Decide;
+   // Existing unmarked formula remains identical, including angle/block gates.
+   delete match.attackFlow.paceRevision;for(const person of match.people.filter(q=>!q.keeper)){const rivals=match.people.filter(q=>q.t!==person.t),s=v150Scale(),depth=Math.abs((person.t===0?v55Field.top:v55Field.bottom)-person.y)*s.y,lateral=Math.abs(person.x-.5)*s.x,range=v115GoalDistance(person),blocked=rivals.some(r=>!r.keeper&&!r.slideActive&&(()=>{const lane=passLaneGeometry(r,person,{x:.5,y:person.t===0?v55Field.top:v55Field.bottom});return lane&&v122Metres(r,lane)<1.4;})()),expected=depth<1||range>22||lateral>depth*.85+1||blocked?0:clamp((22-range)/12,0,1)*(.55+(ability(person,'fin')+ability(person,'tec'))/80);if(v157ShotQuality(person,rivals)!==expected)metrics.unmarkedQualityExact=false;}match.attackFlow.paceRevision=119;
+   v157Decide=function(m,p,a,r){metrics.decisions++;if(v157ShotQuality(p,r)>0)metrics.windowDecisions++;return oldDecision(m,p,a,r)};
+   v159Decide=function(m,p){const r=oldFlow(m,p);if(r&&m.attackFlow.carry?.playerId===p.pid)metrics.carry++;return r};
+   v55Shoot=function(p,...args){metrics.shots.push({team:p.t,range:v115GoalDistance(p),pressure:match.people.filter(q=>q.t!==p.t&&!q.keeper&&v122Metres(q,p)<2.5).length,kind:args[0]||'shot'});return oldShoot(p,...args)};
+   let ticks=0,checkpoint=false;
+   while(!match.finished&&ticks++<10000){const ctx=v65Context();if(state.phase==='paused'){v65Resume();clearInterval(v65WorldFrame);}
+    if(!checkpoint&&state.minute>=20&&!match.flight&&!match.slide&&!match.setPiece&&!match.kickoff&&!match.throwIn&&!match.rebound&&!match.goalPause&&!match.halftimePause){checkpoint=true;if(mode==='candidate-json'){v65Snapshot(ctx);state.physicalSnapshot=JSON.parse(JSON.stringify(state.physicalSnapshot));match=null;if(!v65Restore(ctx))throw Error('Actual candidate JSON restore failed');}}
+    step(.05*MATCH_SPEED,.05);if(state.phase==='live'&&!match.finished)v65AfterStep(ctx);
+    if(v65PauseRequested&&!match.flight&&!match.slide&&state.phase==='live'){v65PauseRequested=false;v65Pause();clearInterval(v65WorldFrame)}
+   }
+   const people=[...match.people,...match.exitedPeople],stats=Object.fromEntries(['shots','onTarget','passes','passComplete','goals','saves','interceptions'].map(k=>[k,people.reduce((n,p)=>n+(p.stats[k]||0),0)]));
+   const canonical=v=>Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;
+   const runtime=m=>{const{people,exitedPeople,owner,lastPass,breakawayCarrier,nativeContactClock,...rest}=m;const player=p=>{const{playerModel,history,honours,...physical}=p;return physical};return{...rest,people:people.map(player),exitedPeople:(exitedPeople||[]).map(player),ownerPid:owner?.pid||null,lastPass:lastPass?{passerPid:lastPass.passer?.pid,receiverPid:lastPass.receiver?.pid,at:lastPass.at}:null,breakawayCarrierPid:breakawayCarrier?.pid||null}};
+   const digest=JSON.stringify(canonical({rng,draws,score:state.score,stats:state.stats,events:state.events,load:state.playerLoad,match:runtime(match),continuation:v160SnapshotContinuation(match)}));running=false;clearInterval(v65WorldFrame);
+   return{size,count,seed,mode,finished:match.finished,checkpoint,ticks,score:state.score,stats,metrics,rng,draws,digest};
+  },{size,count,seed,mode});row.digestSha256=hash(row.digest);delete row.digest;report.matches.push(row);assert(row.finished&&row.metrics.unmarkedQualityExact);console.log(JSON.stringify({size,count,seed,mode,shots:row.stats.shots,onTarget:row.stats.onTarget,score:row.score}));await context.close();
+ }
+ assert.deepEqual(report.errors,[]);for(const[f,s]of Object.entries(source))assert.equal(hash(fs.readFileSync(path.join(root,'dist',f),'utf8')),hash(s),'Production changed during candidate measurement');
+ for(const row of report.matches.filter(r=>r.mode==='candidate-json')){const twin=report.matches.find(r=>r.mode==='candidate'&&r.size===row.size&&r.count===row.count&&r.seed===row.seed);assert(row.checkpoint);assert.equal(row.digestSha256,twin.digestSha256,'Full candidate JSON continuation '+row.size+'/'+row.count);}
+ report.summary=[];for(const size of ['standard','large'])for(const count of [5,6])for(const mode of ['before','candidate']){const rows=report.matches.filter(r=>r.size===size&&r.count===count&&r.mode===mode),mean=k=>rows.reduce((n,r)=>n+r.stats[k],0)/rows.length;report.summary.push({size,count,mode,n:rows.length,shots:mean('shots'),onTarget:mean('onTarget'),goals:mean('goals'),min:Math.min(...rows.map(r=>r.stats.shots)),max:Math.max(...rows.map(r=>r.stats.shots)),passes:mean('passes'),completed:mean('passComplete'),pressureAtShot:rows.flatMap(r=>r.metrics.shots).reduce((n,s)=>n+s.pressure,0)/Math.max(1,rows.flatMap(r=>r.metrics.shots).length)});}
+ report.pass=true;console.log(JSON.stringify({pass:true,summary:report.summary}));
+}catch(e){report.pass=false;report.failure=e.stack;throw e;}finally{await browser.close();await new Promise(r=>server.close(r));fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(report,null,2)+'\n');}})().catch(e=>{console.error(e);process.exitCode=1});

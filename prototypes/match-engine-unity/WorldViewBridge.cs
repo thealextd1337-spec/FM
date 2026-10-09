@@ -84,6 +84,7 @@ public partial class ProbeBridge {
         camera.fieldOfView=(float)f.camera.fov;camera.transform.position=V(f.camera.position);camera.transform.LookAt(V(f.camera.target));UpdateStadiumVisibility(camera.transform.position);SetReplayGrade(f.replay);
         worldBallMotion.Sample(f);ballView.rotation=worldBallMotion.Rotation;
         var ball=V(f.ball);ball.y=DisplayHeight(f.ball[1]);ballView.position=ball;ballView.gameObject.SetActive(f.ballOpacity>.01);ballShadow.position=new Vector3(ballView.position.x,.045f,ballView.position.z);
+        int heldIndex=-1;
         for(int i=0;i<f.players.Length;i++){
             var p=f.players[i];var identity=worldView.Players[p.id];var position=V(p.position);position.y=football[i].RootHeight;
             float movement=lastWorldClock>=0&&f.clock>lastWorldClock?Vector3.ProjectOnPlane(position-actors[i].position,Vector3.up).magnitude/(float)(f.clock-lastWorldClock):0;
@@ -95,8 +96,13 @@ public partial class ProbeBridge {
             if(lastWorldClock<0||f.clock<lastWorldClock)animationTimes[i]=f.clock;
             if(lastWorldClock>=0&&f.clock>lastWorldClock)animationTimes[i]+=(f.clock-lastWorldClock)*Math.Clamp(runSpeeds[i]/3.2,.5,1.65);
             var pose=WorldFootballPose(p,f,i);football[i].Sample(pose,f.clock,lastWorldClock<0||f.clock<lastWorldClock);
-            renderedPoses[i]=new WorldRenderedPose{id=p.id,clip=pose.clip.name,baseClip=pose.baseClip?.name,kind=pose.kind,time=pose.time,contact=pose.contact,reachable=football[i].rig.reachable,contactError=football[i].rig.contactError,plantError=football[i].rig.plantError,actionWeight=football[i].Weight(pose.clip),speed=worldLocomotion[i].Speed,motion=worldLocomotion[i].Mode,stridePhase=worldLocomotion[i].StridePhase};
+            if(pose.ballHeld)heldIndex=i;
+            renderedPoses[i]=new WorldRenderedPose{id=p.id,clip=pose.clip.name,baseClip=pose.baseClip?.name,kind=pose.kind,time=pose.time,contact=pose.contact,ballHeld=pose.ballHeld,reachable=football[i].rig.reachable,contactError=football[i].rig.contactError,plantError=football[i].rig.plantError,actionWeight=football[i].Weight(pose.clip),speed=worldLocomotion[i].Speed,motion=worldLocomotion[i].Mode,stridePhase=worldLocomotion[i].StridePhase};
         }
+        // Attach after every actor sampled against the same native ball picture.
+        if(heldIndex>=0&&ballView.gameObject.activeSelf)ballView.position=football[heldIndex].rig.HeldBallCentre;
+        UpdateWorldBallShadow(f);
+        UpdateWorldOffside(f);
         RenderWorldNet(f.netActive?f.net:null);UpdateCrowd(f);lastWorldClock=f.clock;
     }
     void RenderWorldNet(WorldNet net){

@@ -1,0 +1,120 @@
+{
+  "sourceId": "c208e7cf6723a7ac9e2adf30fd21bb32e26b1af05eec70321a40fc042c68415d",
+  "unity": "6000.6.4f1",
+  "project": "G:/unity/My project",
+  "build": {
+    "exitCode": 0,
+    "totalBytes": 90699060,
+    "seconds": 106.4,
+    "errors": 0,
+    "warnings": 3,
+    "manifest": "outputs/platform/unity-web/probe-build.json",
+    "manifestSha256": "63a1a933b0400ad0238540a882a3cb46842e0a3f310e2901bd236d434b6e579c",
+    "files": [
+      {
+        "file": "unity-web.data",
+        "bytes": 55090117,
+        "sha256": "e9ab4aa6d9d59986ddf9d32b7f2a93a01a21fce1c2d762528e628456a5601597"
+      },
+      {
+        "file": "unity-web.framework.js",
+        "bytes": 300906,
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      },
+      {
+        "file": "unity-web.loader.js",
+        "bytes": 27914,
+        "sha256": "57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03"
+      },
+      {
+        "file": "unity-web.wasm",
+        "bytes": 35259619,
+        "sha256": "b94595e703d0ba8cdfde9140a56127e7d669d0a09298ab9dc57f937a62ed7255"
+      }
+    ]
+  },
+  "tests": {
+    "exitCode": 0,
+    "existingSuites": [
+      {
+        "file": "actions-tests.json",
+        "passed": 22,
+        "sha256": "6541b33bcdd7474c5a78f1dcaec105f218f0a0f892277bc06ee3c57124e3c03d"
+      },
+      {
+        "file": "club-stadium-profile-tests.json",
+        "passed": 396,
+        "sha256": "aa0a63c7212e8fd646012d2fc4d0982ad97dfb54409dc27ede8c440f0aedbce5"
+      },
+      {
+        "file": "duel-tests.json",
+        "passed": 34,
+        "sha256": "37c1b0c915a66019ea6aa2b2d6e20deef4d1cd60e9b4a1d168dab7ce9b9d4536"
+      },
+      {
+        "file": "final-motion-tests.json",
+        "passed": 42,
+        "sha256": "886b73b1be03f98075f388f0cc900a6f776bdd97c41bf8b5533b11b68fd7b5a9"
+      },
+      {
+        "file": "gait-tests.json",
+        "passed": 75,
+        "sha256": "c07e7cba2d3b75f544a8880144b96aa5a0a4f5757940edbb5f020d8f3d230191"
+      },
+      {
+        "file": "iteration-tests.json",
+        "passed": 106,
+        "sha256": "e0652232a6c27300e2000b19040f20dee899631e7d37d59a3d80b4734ae7a387"
+      },
+      {
+        "file": "keeper-tests.json",
+        "passed": 160,
+        "sha256": "57490807bb5633a2b491319e6645d888044bba6aa2eb7cdbb5f24e94ae346b0a"
+      },
+      {
+        "file": "locomotion-tests.json",
+        "passed": 215,
+        "sha256": "3de15252d816a5ff138ba8fc2c8d5f37c450244df66e2b37bd2b7a5690523faf"
+      },
+      {
+        "file": "momentum-tests.json",
+        "passed": 72,
+        "sha256": "499a0606adc3d789e8086c15c7dcf9fbfc91ca305060752d57235d07f5928a50"
+      },
+      {
+        "file": "rig-tests.json",
+        "passed": 23,
+        "sha256": "dff5ebbd20b46240cf6978c564d34386d23fe1fa49728ff18713b7e59402d3c4"
+      },
+      {
+        "file": "stadium-architecture-tests.json",
+        "passed": 706,
+        "sha256": "b5a86630c66f797eeb231bc68e1e3058ccfe26dd46e8d5bdbeea6d0bc79182f7"
+      },
+      {
+        "file": "world-tests.json",
+        "passed": 24,
+        "sha256": "90869446bd00294714a6dfebec3b98cf760da2c505f826d50ad6aa4072677a75"
+      }
+    ],
+    "newPresentationChecks": 383,
+    "newReport": "outputs/3d-quality/iteration-119/presentation-tests.json",
+    "newReportSha256": "35bea73d99b5feb1d028f7e06cdce122d4239340ca196b20712d74e1d50231b2"
+  },
+  "renders": {
+    "exitCode": 0,
+    "images": 162,
+    "shots": 144,
+    "heldSnapshots": 18,
+    "largestShadowGroundError": 0,
+    "device": "Direct3D11",
+    "report": "outputs/3d-quality/iteration-119/renders/renders.json",
+    "reportSha256": "3c07d3b6487fdbacac9a95dc3b8ce1e23e919c2660436f33060e2243ab6fa2b9"
+  },
+  "limits": [
+    "Desktop Editor evidence; browser/device/GPU acceptance owned by root.",
+    "9 native recorded keeper chains contain no natural catches; additional9 sequences are controlled view diagnostics.",
+    "Visible held attachment is pure rendering; native ball/owner/action clocks/RNG/root remain unchanged.",
+    "No new clips or packages; existing Playable clips receive directional bone poses."
+  ]
+}

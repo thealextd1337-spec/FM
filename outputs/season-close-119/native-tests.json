@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "suites": [
+    "./test-finance-close-v130.cjs",
+    "./test-world-payments-v124.cjs",
+    "./test-world-youth-manager-v67.cjs"
+  ],
+  "sourceHashes": {
+    "dist/world-payments-ui-v124.js": "39c7ebd63dad1da06e873a24baacf3aa523fc0a9ba41baa08666725d71863933",
+    "dist/world-payments-v124.js": "655b5cb7fc4f635995a00eccb310f7e3922ad332734fe356c4f154710ed72e01",
+    "dist/world-economy-v66.js": "99a60c08f9559abeffe3114015f737a820ea09ca6ffa06015c93ccc80bcc7ec0",
+    "dist/world-youth-manager-v67.js": "8068a168e5c2c9b23274fd7be7eab06f48f3061d8570e3b4d069a4ecc85e611d",
+    "dist/world-competition-v62.js": "6d9a6192d0f6c59c1db4c586232f5390e81635ddc895e27ff4601b7c7e0622ca",
+    "dist/penalties-v42.js": "92bdbca73b2f68b10cf11d7a3690ab4d842d85835b92f227b231fa23af0f9d04"
+  },
+  "note": "Existing native suites with actual pure shootout helpers; no production simulation stub."
+}

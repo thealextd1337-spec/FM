@@ -1,0 +1,381 @@
+{
+    "passed": 75,
+    "failed": 0,
+    "checks": [
+        {
+            "name": "Diagnostic: keeper_ready measured by an earlier suite on this mesh = True",
+            "passed": true,
+            "measured": 1.0
+        },
+        {
+            "name": "Standing reference sole measured on the actual skinned mesh",
+            "passed": true,
+            "measured": -0.051915306597948074
+        },
+        {
+            "name": "Standing players rest on the pitch instead of about 3 cm above it",
+            "passed": true,
+            "measured": -7.450580596923828e-9
+        },
+        {
+            "name": "The previous fixed root height floated measurably",
+            "passed": true,
+            "measured": 0.028084691613912582
+        },
+        {
+            "name": "Measured ground contact within 2 cm for keeper_ready_meshy (offset 0,157 m)",
+            "passed": true,
+            "measured": 0.00003339722752571106
+        },
+        {
+            "name": "Measured ground contact within 2 cm for pass_inside_meshy (offset 0,131 m)",
+            "passed": true,
+            "measured": -0.0008577220141887665
+        },
+        {
+            "name": "Measured ground contact within 2 cm for walking (offset 0,069 m)",
+            "passed": true,
+            "measured": -0.0005746074020862579
+        },
+        {
+            "name": "Measured ground contact within 2 cm for run_fast6 (offset 0,056 m)",
+            "passed": true,
+            "measured": 0.0018297992646694183
+        },
+        {
+            "name": "Measured ground contact within 2 cm for run_fast4 (offset 0,059 m)",
+            "passed": true,
+            "measured": -0.0020232796669006348
+        },
+        {
+            "name": "Measured ground contact within 2 cm for sprint_forward (offset 0,064 m)",
+            "passed": true,
+            "measured": -0.005425266921520233
+        },
+        {
+            "name": "Measured ground contact within 2 cm for running (offset 0,060 m)",
+            "passed": true,
+            "measured": 0.0016948319971561432
+        },
+        {
+            "name": "Measured ground contact within 2 cm for back_left (offset 0,076 m)",
+            "passed": true,
+            "measured": 0.0013254210352897644
+        },
+        {
+            "name": "Measured ground contact within 2 cm for celebrate_arms (offset 0,057 m)",
+            "passed": true,
+            "measured": -0.00017194822430610657
+        },
+        {
+            "name": "Diagnostic bones differing for keeper_ready_meshy: Hips 0,0deg/0,108",
+            "passed": true,
+            "measured": 1.0
+        },
+        {
+            "name": "Diagnostic same time via measuring path 0,1569 vs sampling path 0,1569 for keeper_ready_meshy",
+            "passed": true,
+            "measured": 1.9371509552001953e-7
+        },
+        {
+            "name": "Diagnostic unshifted skinned sole of keeper_ready_meshy at 0,33 s; stored offset 0,157",
+            "passed": true,
+            "measured": 0.1568613499403
+        },
+        {
+            "name": "Diagnostic bones differing for keeper_rise_meshy: ",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Diagnostic same time via measuring path -0,0028 vs sampling path -0,0028 for keeper_rise_meshy",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Diagnostic unshifted skinned sole of keeper_rise_meshy at 5,96 s; stored offset 0,000",
+            "passed": true,
+            "measured": -0.0028234831988811493
+        },
+        {
+            "name": "Diagnostic bones differing for pass_inside_meshy: Hips 0,0deg/0,090",
+            "passed": true,
+            "measured": 1.0
+        },
+        {
+            "name": "Diagnostic same time via measuring path 0,1300 vs sampling path 0,1300 for pass_inside_meshy",
+            "passed": true,
+            "measured": 1.1920928955078125e-7
+        },
+        {
+            "name": "Diagnostic unshifted skinned sole of pass_inside_meshy at 1,91 s; stored offset 0,131",
+            "passed": true,
+            "measured": 0.12997467815876007
+        },
+        {
+            "name": "A lying pose below the standing sole is never lifted",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Grounding moves only bones, never the game-owned root",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Stride measured for walking = 2,17 m",
+            "passed": true,
+            "measured": 2.1666619777679443
+        },
+        {
+            "name": "Stride measured for run_fast6 = 2,48 m",
+            "passed": true,
+            "measured": 2.4796440601348877
+        },
+        {
+            "name": "Stride measured for run_fast4 = 4,20 m",
+            "passed": true,
+            "measured": 4.197944164276123
+        },
+        {
+            "name": "Stride measured for sprint_forward = 3,28 m",
+            "passed": true,
+            "measured": 3.282442092895508
+        },
+        {
+            "name": "Stride measured for running = 4,68 m",
+            "passed": true,
+            "measured": 4.679008960723877
+        },
+        {
+            "name": "Stride measured for back_walk = 1,33 m",
+            "passed": true,
+            "measured": 1.3286722898483276
+        },
+        {
+            "name": "Left foot is planted at the shared footfall cycle in walking",
+            "passed": true,
+            "measured": -0.018462860956788063
+        },
+        {
+            "name": "Left foot is planted at the shared footfall cycle in run_fast6",
+            "passed": true,
+            "measured": 0.007812642492353916
+        },
+        {
+            "name": "Left foot is planted at the shared footfall cycle in run_fast4",
+            "passed": true,
+            "measured": 0.01034120749682188
+        },
+        {
+            "name": "Left foot is planted at the shared footfall cycle in sprint_forward",
+            "passed": true,
+            "measured": 0.001782140927389264
+        },
+        {
+            "name": "Left foot is planted at the shared footfall cycle in running",
+            "passed": true,
+            "measured": -0.007102781441062689
+        },
+        {
+            "name": "Stance foot slip walking at 1,6 m/s: measured cadence 0,10 m/s, previous 0,22 m/s",
+            "passed": true,
+            "measured": 0.101523257791996
+        },
+        {
+            "name": "Stance foot slip run_fast6 at 3 m/s: measured cadence 0,45 m/s, previous 0,77 m/s",
+            "passed": true,
+            "measured": 0.4453425407409668
+        },
+        {
+            "name": "Stance foot slip run_fast4 at 4,8 m/s: measured cadence 0,83 m/s, previous 1,44 m/s",
+            "passed": true,
+            "measured": 0.8344421982765198
+        },
+        {
+            "name": "Stance foot slip sprint_forward at 5,6 m/s: measured cadence 1,39 m/s, previous 1,52 m/s",
+            "passed": true,
+            "measured": 1.389235258102417
+        },
+        {
+            "name": "Stance foot slip running at 3,6 m/s: measured cadence 0,25 m/s, previous 2,00 m/s",
+            "passed": true,
+            "measured": 0.24847687780857086
+        },
+        {
+            "name": "A 3 m/s run uses the measured jog clip",
+            "passed": true,
+            "measured": 2.999983072280884
+        },
+        {
+            "name": "A 4.6 m/s run uses the measured fast run clip",
+            "passed": true,
+            "measured": 4.600003719329834
+        },
+        {
+            "name": "Speed noise near the jog/fast boundary keeps one clip",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Native pass contact reaches the actual point",
+            "passed": true,
+            "measured": 4.182955137821409e-7
+        },
+        {
+            "name": "Contact releases over 0.1 s instead of popping back to the authored foot",
+            "passed": true,
+            "measured": 0.2118525207042694
+        },
+        {
+            "name": "Release ends within the documented native time",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Paused native clock freezes a releasing limb",
+            "passed": true,
+            "measured": 0.7839999794960022
+        },
+        {
+            "name": "Central keeper save meets the actual ball with both palms",
+            "passed": true,
+            "measured": 4.622363292128284e-7
+        },
+        {
+            "name": "An unreachable central ball stays unreachable",
+            "passed": true,
+            "measured": 6.307340145111084
+        },
+        {
+            "name": "Header turns the actual head toward the contact within 22 degrees",
+            "passed": true,
+            "measured": 0.20040088891983032
+        },
+        {
+            "name": "Keeper palms and headers keep the game-owned root",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Throw-in hands hold the actual ball above the head where reachable (shoulder 1,96 m, arm 0,65 m, reachable True)",
+            "passed": true,
+            "measured": 2.544403230331227e-7
+        },
+        {
+            "name": "A legacy picture without celebration fields is read as no celebration",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Invalid celebration team is rejected atomically",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A stationary native pivot uses turn_idle_right",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A walking native turn uses turn_walk_left over the walking stride",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Without a native goal the player stays in the authored idle",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "The actual scorer celebrates the booked goal",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "The conceding team never celebrates",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Native foul victim falls and rises within measured windows",
+            "passed": true,
+            "measured": 5.367272727272727
+        },
+        {
+            "name": "Carrier stride shows smooth partial reaches at measured footfalls",
+            "passed": true,
+            "measured": 18.0
+        },
+        {
+            "name": "Shirt number of Bremen home reads at contrast 4,4:1 with a 16,4:1 edge",
+            "passed": true,
+            "measured": 4.390994071960449
+        },
+        {
+            "name": "Shirt number of Koeln away reads at contrast 8,6:1 with a 16,4:1 edge",
+            "passed": true,
+            "measured": 8.629093170166016
+        },
+        {
+            "name": "Shirt number of Koeln home reads at contrast 6,3:1 with a 8,8:1 edge",
+            "passed": true,
+            "measured": 6.329184532165527
+        },
+        {
+            "name": "Shirt number of Bremen keeper reads at contrast 5,4:1 with a 16,4:1 edge",
+            "passed": true,
+            "measured": 5.42524528503418
+        },
+        {
+            "name": "Shirt number of Koeln keeper reads at contrast 10,1:1 with a 16,4:1 edge",
+            "passed": true,
+            "measured": 10.138067245483398
+        },
+        {
+            "name": "Shirt number of Opponent keeper reads at contrast 5,7:1 with a 16,4:1 edge",
+            "passed": true,
+            "measured": 5.706957817077637
+        },
+        {
+            "name": "Shorts use the mask's green channel and the club accent colour",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Kit regions use the mesh's z-up, front -y bind pose (measured in kit-regions.json)",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A camera wobbling at a stand front hides that stand once, without flicker",
+            "passed": true,
+            "measured": 1.0
+        },
+        {
+            "name": "Behind-goal camera hides only its own end stand",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Pages without a quality field remain valid (platform decides)",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A reduced quality request is carried by the match view configuration",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Reduced quality disables MSAA and bloom and uses 1024 hard shadows",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Replay grading follows only the received replay flag",
+            "passed": true,
+            "measured": 0.0
+        }
+    ]
+}

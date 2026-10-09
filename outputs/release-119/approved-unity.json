@@ -1,0 +1,29 @@
+{
+  "release": 119,
+  "checkedAt": "2026-10-09T21:36:10.720Z",
+  "sourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+  "compiled": true,
+  "testsPassed": true,
+  "buildPassed": true,
+  "unity": "6000.6.4f1",
+  "totalChecks": 2311,
+  "newPresentationChecks": 436,
+  "buildErrors": 0,
+  "buildWarnings": 3,
+  "evidenceHashes": {
+    "outputs/3d-quality/iteration-119/unity-handoff.json": "bd7e1df6f7b6b57cc42c519835b0c1b29dc0746618d82691b02ffb9b416d2003",
+    "outputs/3d-quality/iteration-119/source-freeze.json": "9c9edc38502e6ff1eb084cb9aaa4be79fd1d8a9f353482fa3d85a3e6e7bc5c94",
+    "outputs/3d-quality/iteration-119/presentation-tests.json": "dc91222a28174614e3d7db1f9773bb5552f04946db57f930ac98a086aa16fd75",
+    "outputs/3d-quality/iteration-119/renders/renders.json": "623e555564c3bf4fcbaebb3226386d7571adf66652afb2873cc0e2da334a4322",
+    "outputs/3d-quality/iteration-119/offside/render-evidence.json": "154779c18c0f9249a5b6d445322b9fba047f68e54e1d38fd0046344085e34563"
+  },
+  "independentManifestChecks": 49,
+  "independentReview": "outputs/release-119/source-review.json",
+  "limitation": [
+    "Desktop Editor evidence; browser/device/GPU acceptance owned by root.",
+    "9 native recorded keeper chains contain no natural catches; additional9 sequences are controlled view diagnostics.",
+    "Visible held attachment is pure rendering; native ball/owner/action clocks/RNG/root remain unchanged.",
+    "No new clips or packages; existing Playable clips receive directional bone poses.",
+    "Offside uses optional received native lineX only; no rule decision, timer, save mutation or predictive interpolation. Omitted/null objects are hidden with explicit JsonUtility presence handling."
+  ]
+}

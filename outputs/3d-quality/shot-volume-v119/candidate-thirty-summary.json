@@ -1,0 +1,105 @@
+{
+  "scope": "Completed 2-seed standard5/6 private pilot, deliberately no large-field or full8seed run after rejection. Original screen retains raw-cache digest failure.",
+  "productionChanged": false,
+  "accepted": false,
+  "target": "10?16 total shots both teams average",
+  "summary": [
+    {
+      "count": 5,
+      "mode": "before",
+      "n": 2,
+      "shots": 6.5,
+      "onTarget": 2,
+      "goals": 1.5,
+      "passes": 56,
+      "passComplete": 49.5,
+      "decisions": [
+        334,
+        321
+      ],
+      "positiveWindows": [
+        15,
+        10
+      ]
+    },
+    {
+      "count": 5,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 7,
+      "onTarget": 1.5,
+      "goals": 1,
+      "passes": 54.5,
+      "passComplete": 47,
+      "decisions": [
+        306,
+        293
+      ],
+      "positiveWindows": [
+        80,
+        81
+      ]
+    },
+    {
+      "count": 6,
+      "mode": "before",
+      "n": 2,
+      "shots": 6,
+      "onTarget": 2,
+      "goals": 2,
+      "passes": 51,
+      "passComplete": 46.5,
+      "decisions": [
+        387,
+        369
+      ],
+      "positiveWindows": [
+        15,
+        28
+      ]
+    },
+    {
+      "count": 6,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 5.5,
+      "onTarget": 2.5,
+      "goals": 1.5,
+      "passes": 54,
+      "passComplete": 48,
+      "decisions": [
+        265,
+        310
+      ],
+      "positiveWindows": [
+        63,
+        81
+      ]
+    }
+  ],
+  "narrowJSON": {
+    "pass": true,
+    "differences": [],
+    "hashes": [
+      "21e452b6c9ff86df8ff61087f2efd459c38fce56ae1682ba0fcd23c1d9a8e53e",
+      "21e452b6c9ff86df8ff61087f2efd459c38fce56ae1682ba0fcd23c1d9a8e53e"
+    ],
+    "rng": [
+      1322797112,
+      1322797112
+    ],
+    "draws": [
+      304,
+      304
+    ],
+    "authority": "Whole physical match/whistleAttackCarrier plus all authoritative roster skills/development/routine/history/freshness/load and P02 exactly compared"
+  },
+  "sourceHashes": {
+    "world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d"
+  },
+  "candidateHashes": {
+    "world-offensive-quality-v157.js": "5420862aaee455fd0e42f656ac33df794b4b0fab580b4a5fe15ace39d7b2d50a",
+    "world-football-flow-v159.js": "2f639a3f6d9b7e4f009258b13842496d1199b78e93806c25ff1b2faf8dc2bb46"
+  }
+}

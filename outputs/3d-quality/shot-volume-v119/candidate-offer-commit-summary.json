@@ -1,0 +1,284 @@
+{
+  "pass": true,
+  "screenOnly": true,
+  "acceptedForShotTarget": false,
+  "overall": [
+    {
+      "mode": "before",
+      "n": 8,
+      "shots": 4.875,
+      "onTarget": 1.375,
+      "goals": 1.125,
+      "passes": 52.125,
+      "passComplete": 45.5,
+      "depthRuns": 458,
+      "sameOwnerExpiryCount": 75,
+      "sameOwnerExpiryPerFixture": 9.375,
+      "wishResidualMetres": 7.901990988571635,
+      "expiryInitialDistanceMetres": 11.392171652460835,
+      "expiryDurationSeconds": 1.056666666666699,
+      "expiryResetNoNewDepth": 61
+    },
+    {
+      "mode": "candidate",
+      "n": 8,
+      "shots": 4.125,
+      "onTarget": 1.125,
+      "goals": 0.875,
+      "passes": 50.25,
+      "passComplete": 43.25,
+      "depthRuns": 392,
+      "sameOwnerExpiryCount": 16,
+      "sameOwnerExpiryPerFixture": 2,
+      "wishResidualMetres": 3.515005641032675,
+      "expiryInitialDistanceMetres": 10.938527712437011,
+      "expiryDurationSeconds": 2.2156250000000517,
+      "expiryResetNoNewDepth": 9
+    }
+  ],
+  "groups": [
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "before",
+      "n": 2,
+      "shots": 6.5,
+      "onTarget": 2,
+      "goals": 1.5,
+      "passes": 56,
+      "passComplete": 49.5,
+      "depthRuns": 82,
+      "sameOwnerExpiryCount": 17,
+      "sameOwnerExpiryPerFixture": 8.5,
+      "wishResidualMetres": 7.423883433769275,
+      "expiryInitialDistanceMetres": 10.517247581520929,
+      "expiryDurationSeconds": 1.0588235294117958,
+      "expiryResetNoNewDepth": 24
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 4,
+      "onTarget": 1,
+      "goals": 0.5,
+      "passes": 52.5,
+      "passComplete": 45.5,
+      "depthRuns": 67,
+      "sameOwnerExpiryCount": 4,
+      "sameOwnerExpiryPerFixture": 2,
+      "wishResidualMetres": 3.714695210963563,
+      "expiryInitialDistanceMetres": 7.856052546539003,
+      "expiryDurationSeconds": 2.2000000000000792,
+      "expiryResetNoNewDepth": 3
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "before",
+      "n": 2,
+      "shots": 6,
+      "onTarget": 2,
+      "goals": 2,
+      "passes": 51,
+      "passComplete": 46.5,
+      "depthRuns": 151,
+      "sameOwnerExpiryCount": 23,
+      "sameOwnerExpiryPerFixture": 11.5,
+      "wishResidualMetres": 7.853963596239383,
+      "expiryInitialDistanceMetres": 11.375052434851696,
+      "expiryDurationSeconds": 1.0586956521739446,
+      "expiryResetNoNewDepth": 9
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 4.5,
+      "onTarget": 2.5,
+      "goals": 2,
+      "passes": 54,
+      "passComplete": 46,
+      "depthRuns": 142,
+      "sameOwnerExpiryCount": 3,
+      "sameOwnerExpiryPerFixture": 1.5,
+      "wishResidualMetres": 3.114047323847758,
+      "expiryInitialDistanceMetres": 12.727641150001118,
+      "expiryDurationSeconds": 2.200000000000088,
+      "expiryResetNoNewDepth": 1
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "before",
+      "n": 2,
+      "shots": 5,
+      "onTarget": 0.5,
+      "goals": 0.5,
+      "passes": 49.5,
+      "passComplete": 43.5,
+      "depthRuns": 77,
+      "sameOwnerExpiryCount": 14,
+      "sameOwnerExpiryPerFixture": 7,
+      "wishResidualMetres": 8.651523132475377,
+      "expiryInitialDistanceMetres": 12.621186805359327,
+      "expiryDurationSeconds": 1.053571428571465,
+      "expiryResetNoNewDepth": 17
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 4,
+      "onTarget": 0,
+      "goals": 0,
+      "passes": 47,
+      "passComplete": 41.5,
+      "depthRuns": 71,
+      "sameOwnerExpiryCount": 5,
+      "sameOwnerExpiryPerFixture": 2.5,
+      "wishResidualMetres": 4.038504868320485,
+      "expiryInitialDistanceMetres": 13.93794791164736,
+      "expiryDurationSeconds": 2.210000000000062,
+      "expiryResetNoNewDepth": 4
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "before",
+      "n": 2,
+      "shots": 2,
+      "onTarget": 1,
+      "goals": 0.5,
+      "passes": 52,
+      "passComplete": 42.5,
+      "depthRuns": 148,
+      "sameOwnerExpiryCount": 21,
+      "sameOwnerExpiryPerFixture": 10.5,
+      "wishResidualMetres": 7.841943771458747,
+      "expiryInitialDistanceMetres": 11.299849703432724,
+      "expiryDurationSeconds": 1.0547619047619368,
+      "expiryResetNoNewDepth": 11
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 4,
+      "onTarget": 1,
+      "goals": 1,
+      "passes": 47.5,
+      "passComplete": 40,
+      "depthRuns": 112,
+      "sameOwnerExpiryCount": 4,
+      "sameOwnerExpiryPerFixture": 2,
+      "wishResidualMetres": 2.9616607748807104,
+      "expiryInitialDistanceMetres": 8.929892551149015,
+      "expiryDurationSeconds": 2.2499999999999827,
+      "expiryResetNoNewDepth": 1
+    }
+  ],
+  "observationNeutrality": [
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 0,
+      "digestExact": true
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 1,
+      "digestExact": true
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 0,
+      "digestExact": true
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 1,
+      "digestExact": true
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 0,
+      "digestExact": true
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 1,
+      "digestExact": true
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 0,
+      "digestExact": true
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 1,
+      "digestExact": true
+    }
+  ],
+  "sourceHashes": {
+    "world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d"
+  },
+  "candidateHashes": {
+    "world-offensive-quality-v157.js": "0f55ea46c53ed36c55f56665a6056a22c22b4b2a068efa9ce91fa28ee24b683e",
+    "world-football-flow-v159.js": "d34d67d6da2484d94450ff4ed417c536fed772e5438342f8409158132f68b0c5"
+  },
+  "JSON": [
+    {
+      "size": "standard",
+      "count": 5,
+      "digest": "e014b3128a62f64bb98e099009ed328ac68f28cb795296a1c35ff768d646a7ee",
+      "identicalToUninterrupted": true,
+      "rng": 687437999,
+      "draws": 297
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "digest": "02508e007e1b1c7fb61c2063d4d23bf584ee9aac83db788072be4800624a8b58",
+      "identicalToUninterrupted": true,
+      "rng": 880421625,
+      "draws": 363
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "digest": "603032fa85dda3db768ae38b6629f7b8dc98f4a3c796ab926cece1ef03feba84",
+      "identicalToUninterrupted": true,
+      "rng": 687437999,
+      "draws": 297
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "digest": "c39c718c3c55671f63e4cf1d2f5ed0e8f827737b048b20563984897da0a21143",
+      "identicalToUninterrupted": true,
+      "rng": 2233835474,
+      "draws": 250
+    }
+  ],
+  "wholeProductionFreeze": 157,
+  "limit": "Residual is uncapped wish target, not available legal space. Many wish targets were beyond actual formation/offside limits in neutral Unity-agent stock diagnosis; all existing caps remain untouched. Owner changes and owner=null flights frequently terminate offers.",
+  "supplementalStage6Reference": {
+    "scope": "Historical identical157 production hashes/fixture reference",
+    "overallShots": 4,
+    "overallStage9Shots": 4.125
+  }
+}

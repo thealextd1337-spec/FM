@@ -138,3 +138,15 @@
  .fl-shell .fl-overview .v67-show-grid{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){.fl-shell .fl-overview{scroll-behavior:auto}}
+.fl-shell .fl-overview.v67-showing>:not(.v67-season-show){display:none!important}
+.fl-shell .fl-overview .v119-season-close{max-width:900px;margin-inline:auto}
+.fl-shell .fl-overview .v119-season-close :is(.v130-club-name,.v130-paid){color:var(--fl-muted)}
+.fl-shell .fl-overview .v119-season-close :is(details,.v130-total,.v130-new-season){border-color:var(--fl-line)}
+.fl-shell .fl-overview .v119-season-close summary>span:before{color:var(--fl-accent)}
+.fl-shell .fl-overview .v119-season-close .v130-funding-label select{background:var(--fl-control);color:var(--fl-ink);border-color:var(--fl-control-line)}
+.fl-shell .fl-overview .v119-season-close .v130-negative{color:var(--fl-alert-ink)}
+.fl-shell .fl-overview .v119-season-close h2{font-size:clamp(26px,4vw,40px);line-height:1.15}
+.fl-shell .fl-overview .v119-close-progress{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none;margin:16px 0 24px}
+.fl-shell .fl-overview .v119-close-progress li{padding:7px 10px;background:var(--fl-subtle);border:1px solid var(--fl-line);border-radius:var(--fl-radius);color:var(--fl-muted);font-size:12px}
+.fl-shell .fl-overview .v119-close-progress [aria-current=step]{background:var(--fl-tint);color:var(--fl-accent);border-color:var(--fl-accent);font-weight:700}
+.fl-shell .fl-overview .v119-season-close .v130-new-season>.v67-transition{margin-bottom:0}

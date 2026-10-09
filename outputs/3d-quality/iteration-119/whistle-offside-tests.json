@@ -1,0 +1,31 @@
+{
+  "pass": true,
+  "checks": [
+    "Half-time contact clock stays within played time; fresh=false, pending=false",
+    "Half-time contact clock stays within played time; fresh=false, pending=true",
+    "Half-time contact clock stays within played time; fresh=true, pending=false",
+    "Half-time contact clock stays within played time; fresh=true, pending=true",
+    "Released goal survives direct halftime at attack cap and settles once",
+    "Released save survives direct halftime at attack cap and settles once",
+    "Released miss survives direct halftime at attack cap and settles once",
+    "Under-cap dangerous attack keeps prior attacking continuation semantics",
+    "Nondangerous released flight also drains rather than vanishing",
+    "Existing set-piece deferral remains active",
+    "Legacy non-world halftime behavior remains unchanged",
+    "Final whistle waits before interrupt ledger or destructive completion",
+    "Finished or absent match creates no new pending state",
+    "Offside line uses received turned coordinate and actual length false/1",
+    "Offside line uses received turned coordinate and actual length false/1.2",
+    "Offside line uses received turned coordinate and actual length true/1",
+    "Offside line uses received turned coordinate and actual length true/1.2",
+    "Missing or nonfinite offside fact does not invent a line"
+  ],
+  "note": "Controlled native transition regressions and pure picture projection. Screenshot alone does not establish a lost goal.",
+  "sourceHashes": {
+    "dist/halftime-v14.js": "8a8233f08ebd8587c8102cff2f4fdd7724353fb418894e7380368e4384e63bef",
+    "dist/set-pieces-v50.js": "89ff8bbb371afec822b2c02a4609723cb6a3dfa1e28b51f45c91ee177a00a40c",
+    "dist/world-physical-v65.js": "23ef31850a4b320d120e8122a711103e4c00dd079c9917a4e48c4733e7b0d173",
+    "dist/match-ball-events-v117.js": "594c885c83ee9a973e74cc1df7ca0481ce83bab0ae3ae3742447c697342c1a93",
+    "dist/world-unity-v151.js": "32d6820249920179b1182f0e145e0e341b6872583c818a10872d085ff99b7242"
+  }
+}

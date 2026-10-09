@@ -196,6 +196,8 @@ public partial class ProbeBridge {
         if(!identity.keeper&&locomotionAction){
             pose.forwardLean=locomotion.ForwardLean;pose.turnLean=locomotion.TurnLean;pose.recoveryLean=locomotion.RecoveryLean;
         }
+        if(identity.keeper&&FootballKeeperTiming.VisualHeld(p,f)){pose.ballHeld=true;pose.kind="two-hands";pose.contact=false;pose.baseClip=null;}
+        if(locomotionAction&&!pose.contact){pose.strideYaw=pose.clip==keeperShuffleClip?0:locomotion.StrideYaw;pose.turnLean+=-locomotion.Lateral*Mathf.Clamp01(locomotion.Speed/4)*5;}
         return pose;
     }
     // Native header distance; the goal-kick ball has left its kicker beyond GoalKickGone.

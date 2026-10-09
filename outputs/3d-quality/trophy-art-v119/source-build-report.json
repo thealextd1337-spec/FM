@@ -1,0 +1,57 @@
+{
+  "scope": "isolated source/built app SVG imagery; no Unity or hardware claim",
+  "checks": [
+    "built HTML contains current dist/trophy-art-v119.js executable code",
+    "built HTML contains current dist/world-competition-v62.js executable code",
+    "built HTML contains current dist/ui-flutlicht/adapter.js executable code",
+    "source actual Flutlicht wrapper retains all 32 identities",
+    "source all SVGs parse as valid XML",
+    "source native career unchanged by art lookups",
+    "source final and personal awards use shared imagery",
+    "source real club profile, archive and celebration retain national identity",
+    "source celebration pixelated CSS is overridden by vector rendering",
+    "source all 32 light/dark 24/64/256 SVG images decode smoothly",
+    "build actual Flutlicht wrapper retains all 32 identities",
+    "build all SVGs parse as valid XML",
+    "build native career unchanged by art lookups",
+    "build final and personal awards use shared imagery",
+    "build real club profile, archive and celebration retain national identity",
+    "build celebration pixelated CSS is overridden by vector rendering",
+    "build all 32 light/dark 24/64/256 SVG images decode smoothly",
+    "no app JavaScript errors",
+    "reviewed art sources unchanged during proof",
+    "built HTML unchanged during proof"
+  ],
+  "views": [
+    {
+      "mode": "source",
+      "identities": 32,
+      "images": 192,
+      "sizes": [
+        24,
+        64,
+        256
+      ],
+      "xmlValid": true
+    },
+    {
+      "mode": "build",
+      "identities": 32,
+      "images": 192,
+      "sizes": [
+        24,
+        64,
+        256
+      ],
+      "xmlValid": true
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "dist/trophy-art-v119.js": "f67b8cf1fec6c2fb49c65d46be7aa2ddb4f9f7aa764b16b84d05af3b5f0c041a",
+    "dist/world-competition-v62.js": "6d9a6192d0f6c59c1db4c586232f5390e81635ddc895e27ff4601b7c7e0622ca",
+    "dist/ui-flutlicht/adapter.js": "3050b696b8daaf5fa0eddf3d52175e8249379ec834c3dcf4125c49ccb9996911"
+  },
+  "buildComparison": "exact code; historical v62AwardSprites PNG registry is inlined by official build",
+  "buildSha256": "ecd3d875e5561f5e488c3e8d480a32a4cf43abb90108c5837db9293ad5d8950f"
+}

@@ -8,8 +8,27 @@ public partial class ProbeBridge {
     FootballLocomotion[] worldLocomotion;
     WorldBallMotion worldBallMotion;
     Transform[] teamGroundRings;Material teamRingMaterial;
+    Material worldBallShadowMaterial;static readonly int BallShadowStrength=Shader.PropertyToID("_Strength");
+    Transform worldOffsideLine;
+    void UpdateWorldOffside(WorldFrame frame){
+        if(worldOffsideLine==null)return;
+        worldOffsideLine.gameObject.SetActive(frame.offsideKnown&&frame.offside!=null);
+        if(frame.offsideKnown&&frame.offside!=null)worldOffsideLine.position=new Vector3((float)frame.offside.lineX,.04f,0);
+    }
+    // A small ball-specific turf reference, separate from player shadows. Height
+    // is the actual rendered sphere centre, including confirmed glove attachment.
+    public static (float diameter,float strength) BallShadowStyle(float height){
+        float above=Mathf.Max(0,height-WorldBallMotion.Radius);
+        return (.54f+.32f*Mathf.Sqrt(Mathf.Clamp01(above/8)),Mathf.Clamp(.82f/(1+above*.12f),.35f,.82f));
+    }
+    void UpdateWorldBallShadow(WorldFrame frame){
+        bool visible=ballView.gameObject.activeSelf&&frame.ballOpacity>.01;ballShadow.gameObject.SetActive(visible);
+        ballShadow.position=new Vector3(ballView.position.x,.045f,ballView.position.z);
+        var style=BallShadowStyle(ballView.position.y);ballShadow.localScale=new Vector3(style.diameter,.003f,style.diameter);
+        if(worldBallShadowMaterial!=null)worldBallShadowMaterial.SetFloat(BallShadowStrength,style.strength*(float)frame.ballOpacity);
+    }
     [Serializable] class WorldMarker {public string id;public float x,y,depth;public bool visible,featured;}
-    [Serializable] class WorldRenderedPose {public string id,clip,baseClip,kind,motion;public double time,stridePhase;public bool contact,reachable;public float contactError,plantError,actionWeight,speed;}
+    [Serializable] class WorldRenderedPose {public string id,clip,baseClip,kind,motion;public double time,stridePhase;public bool contact,reachable,ballHeld;public float contactError,plantError,actionWeight,speed;}
     WorldRenderedPose[] renderedPoses;
     // The rendered ball in the same frame and camera: normalised viewport x/y
     // (y down, like markers), view depth in metres and the projected sphere
@@ -39,6 +58,9 @@ public partial class ProbeBridge {
         worldLocomotion=new FootballLocomotion[actors.Count];for(int i=0;i<actors.Count;i++)worldLocomotion[i]=new FootballLocomotion();
         for(int i=0;i<actors.Count;i++)foreach(var t in actors[i].GetComponentsInChildren<Transform>())if(t.name=="mixamorig:Head")labelHeads[i]=t;
         DecorateWorldPitch();BuildStadium();BuildTeamGroundRings();
+        worldOffsideLine=Box("Native offside line",new Vector3(0,.04f,0),new Vector3(.14f,.018f,(float)worldView.Config.geometry.width),Mat(new Color(1f,.68f,.12f)));
+        var offsideRenderer=worldOffsideLine.GetComponent<Renderer>();offsideRenderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;offsideRenderer.receiveShadows=false;
+        worldOffsideLine.gameObject.SetActive(false);
     }
     void SendWorldProjection(){
         if(worldView==null||displayed==null)return;
@@ -118,6 +140,6 @@ public partial class ProbeBridge {
         ballShadow.localScale=new Vector3(.31f,.003f,.31f);
     }
     Texture2D worldBallTexture;
-    void ClearWorldPresentation(){ClearStadium();if(worldBallTexture!=null)DestroyVisual(worldBallTexture);if(teamRingMaterial!=null)DestroyVisual(teamRingMaterial);teamRingMaterial=null;teamGroundRings=null;worldBallTexture=null;playback=null;displayed=null;labelHeads=null;}
+    void ClearWorldPresentation(){ClearStadium();if(worldBallTexture!=null)DestroyVisual(worldBallTexture);if(teamRingMaterial!=null)DestroyVisual(teamRingMaterial);teamRingMaterial=null;teamGroundRings=null;worldBallShadowMaterial=null;worldOffsideLine=null;worldBallTexture=null;playback=null;displayed=null;labelHeads=null;}
 }
 }

@@ -1,0 +1,771 @@
+{
+  "pass": true,
+  "scope": "Six total completed stock fixtures: two configs, baseline+observed pair and one extra lane observer each. No private candidate, production edit, extra matrix, clock, RNG sequence or movement-controller change.",
+  "provenNeutral": "Both original and additional observed runs equal existing unobserved native digests including score/stats/events/playerLoad/physical runtime/continuation/PRNG endpoint and draw count. All loaded source hashes equal baseline.",
+  "inputs": {
+    "outputs/3d-quality/shot-volume-v119/pass-preparation-diagnosis.json": "d2ce080b26073e989995870b2fa04b843c4be8736c66771c8b1fb6172684bf70",
+    "outputs/3d-quality/shot-volume-v119/pass-lane-diagnosis.json": "b8ba570ba99bcdf830687459d177a6f9c9de8ec9970cae85049fb7d6083d9c56"
+  },
+  "runners": {
+    "work/diagnose-pass-preparation-v119.cjs": "b612bdbc59931c0c46d09c08f928b2ff5a1580942789f37f9b044f269087b137",
+    "work/diagnose-pass-lanes-v119.cjs": "c07660863420092869f57a2b79675b240875c4d3e62f145724695b0b4baff92a"
+  },
+  "sources": {
+    "dist/pitch-v55.js": "0a6de1e6b9c3bff1a69e350982e91ffa20c7128919ecb6767ade509e8fd4797c",
+    "dist/world-physical-v65.js": "23ef31850a4b320d120e8122a711103e4c00dd079c9917a4e48c4733e7b0d173",
+    "dist/world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "dist/world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d"
+  },
+  "rows": [
+    {
+      "fieldSize": "standard",
+      "fieldPlayers": 5,
+      "careerSeed": "shot119-0",
+      "rngSeed": 169032,
+      "fixtureId": "S1:GER:LEAGUE:R1:GER-6-GER-2:1",
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "shots": 6,
+        "onTarget": 2,
+        "passes": 57,
+        "passComplete": 49,
+        "goals": 1,
+        "saves": 1
+      },
+      "draws": 374,
+      "rng": 1791790654,
+      "digestSha256": "bf4382f66869c9e645c20336063d03716d91cd9c1e0b65cd89c944e9135541c7",
+      "totalSimulatedStepSeconds": 218.55,
+      "nativeClockFinishedAt": 107.76880341880457,
+      "preparation": {
+        "episodes": 80,
+        "closedEpisodeDurationSeconds": 18.50000000000053,
+        "pendingMoveSeconds": 17.85000000000001,
+        "waitingMoveSeconds": 14.799999999999994,
+        "headingOnlySeconds": 3.9500000000000006,
+        "brakeOnlySeconds": 2.05,
+        "bothSeconds": 8.799999999999994,
+        "readySeconds": 3.0500000000000003,
+        "headingOnlyWaitDecisions": 52,
+        "brakeOnlyWaitDecisions": 27,
+        "bothWaitDecisions": 88,
+        "completedPivots": 17,
+        "completedPivotSeconds": {
+          "samples": 17,
+          "average": 0.5205882352941291,
+          "min": 0.20000000000000284,
+          "max": 1.5499999999999883
+        },
+        "completedHeadingReadySeconds": {
+          "samples": 16,
+          "average": 0.37500000000000927,
+          "min": 0.20000000000000284,
+          "max": 0.6000000000000227
+        },
+        "completedBrakeReadySeconds": {
+          "samples": 17,
+          "average": 0.3235294117647134,
+          "min": 0.05000000000000426,
+          "max": 0.8500000000000298
+        },
+        "completedReleaseSpeedMetresPerSecond": {
+          "samples": 17,
+          "average": 0.5239522149073104,
+          "min": 0,
+          "max": 1.1832187498299436
+        },
+        "expiry2_2Seconds": 0,
+        "ownerChanged": 8,
+        "replaced": 4,
+        "openAtWhistle": 1,
+        "restarts": 40,
+        "sameReceiverRestarts": 33,
+        "restartChains": [
+          {
+            "ids": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "episodes": 7,
+            "nativePreparationSeconds": 0.3500000000000014,
+            "observedPendingMoveSeconds": 0.35,
+            "sameReceiverRestarts": 6
+          },
+          {
+            "ids": [
+              9,
+              10
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 2.299999999999989,
+            "observedPendingMoveSeconds": 2.3000000000000007,
+            "sameReceiverRestarts": 0
+          },
+          {
+            "ids": [
+              14,
+              15,
+              16,
+              17
+            ],
+            "episodes": 4,
+            "nativePreparationSeconds": 0.45000000000001705,
+            "observedPendingMoveSeconds": 0.44999999999999996,
+            "sameReceiverRestarts": 2
+          },
+          {
+            "ids": [
+              20,
+              21,
+              22,
+              23,
+              24,
+              25
+            ],
+            "episodes": 6,
+            "nativePreparationSeconds": 0.30000000000001137,
+            "observedPendingMoveSeconds": 0.3,
+            "sameReceiverRestarts": 5
+          },
+          {
+            "ids": [
+              26,
+              27,
+              28,
+              29,
+              30,
+              31,
+              32,
+              33
+            ],
+            "episodes": 8,
+            "nativePreparationSeconds": 0.4000000000000128,
+            "observedPendingMoveSeconds": 0.39999999999999997,
+            "sameReceiverRestarts": 7
+          },
+          {
+            "ids": [
+              34,
+              35
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.10000000000000142,
+            "observedPendingMoveSeconds": 0.1,
+            "sameReceiverRestarts": 1
+          },
+          {
+            "ids": [
+              36,
+              37
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.650000000000027,
+            "observedPendingMoveSeconds": 0.6,
+            "sameReceiverRestarts": 0
+          },
+          {
+            "ids": [
+              38,
+              39,
+              40
+            ],
+            "episodes": 3,
+            "nativePreparationSeconds": 1.2500000000000426,
+            "observedPendingMoveSeconds": 1.2499999999999998,
+            "sameReceiverRestarts": 0
+          },
+          {
+            "ids": [
+              41,
+              42
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.4000000000000199,
+            "observedPendingMoveSeconds": 0.4,
+            "sameReceiverRestarts": 1
+          },
+          {
+            "ids": [
+              54,
+              55,
+              56,
+              57
+            ],
+            "episodes": 4,
+            "nativePreparationSeconds": 0.20000000000001705,
+            "observedPendingMoveSeconds": 0.2,
+            "sameReceiverRestarts": 3
+          },
+          {
+            "ids": [
+              60,
+              61,
+              62,
+              63
+            ],
+            "episodes": 4,
+            "nativePreparationSeconds": 0.20000000000001705,
+            "observedPendingMoveSeconds": 0.2,
+            "sameReceiverRestarts": 3
+          },
+          {
+            "ids": [
+              64,
+              65,
+              66,
+              67,
+              68,
+              69
+            ],
+            "episodes": 6,
+            "nativePreparationSeconds": 1.7500000000000568,
+            "observedPendingMoveSeconds": 1.75,
+            "sameReceiverRestarts": 3
+          },
+          {
+            "ids": [
+              73,
+              74
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.09999999999999432,
+            "observedPendingMoveSeconds": 0.1,
+            "sameReceiverRestarts": 1
+          },
+          {
+            "ids": [
+              76,
+              77
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.30000000000001137,
+            "observedPendingMoveSeconds": 0.25,
+            "sameReceiverRestarts": 1
+          }
+        ]
+      },
+      "invalidTarget": {
+        "total": 50,
+        "currentQLaneBlocked": 50,
+        "offsideAlso": 1,
+        "slide": 0,
+        "missingReceiver": 0,
+        "ownerMismatch": 0,
+        "currentQBlockedLeadLaneOpen1_2": 45,
+        "currentQBlockedLeadLaneOpen1_4": 43,
+        "sameReceiverRestartAfterStrictLeadOpen": 32,
+        "actualSameFrameOptionLeadOpenRestart": 32,
+        "examples": [
+          {
+            "episodeId": 2,
+            "at": 3.4000000000000012,
+            "kind": "ground",
+            "playerId": "shot119-0:GER-2:6",
+            "receiverId": "shot119-0:GER-2:10",
+            "ownerMismatch": false,
+            "missingReceiver": false,
+            "slide": false,
+            "actualCurrentLane": false,
+            "actualOffside": false,
+            "restart": false,
+            "ball": {
+              "x": 0.726560847698792,
+              "y": 0.46664212952435624
+            },
+            "passer": {
+              "x": 0.7148015989269312,
+              "y": 0.46985746944457646
+            },
+            "receiver": {
+              "x": 0.6090217392322301,
+              "y": 0.448419425619589,
+              "vx": 3.103231277001509,
+              "vy": -5.065488368058918
+            },
+            "lead": {
+              "x": 0.635255737906493,
+              "y": 0.42000594066402636
+            },
+            "counterfactualLeadLane1_2": true,
+            "counterfactualLeadLane1_4": true,
+            "currentQHeadingError": 2.4542632343540554,
+            "leadHeadingError": 1.993834675672692
+          },
+          {
+            "episodeId": 3,
+            "at": 3.4500000000000015,
+            "kind": "ground",
+            "playerId": "shot119-0:GER-2:6",
+            "receiverId": "shot119-0:GER-2:10",
+            "ownerMismatch": false,
+            "missingReceiver": false,
+            "slide": false,
+            "actualCurrentLane": false,
+            "actualOffside": false,
+            "restart": false,
+            "ball": {
+              "x": 0.7282000416294752,
+              "y": 0.4651866674721941
+            },
+            "passer": {
+              "x": 0.7176969882668922,
+              "y": 0.46994592515148587
+            },
+            "receiver": {
+              "x": 0.6125112397639492,
+              "y": 0.4453378155390736,
+              "vx": 3.3868681631390305,
+              "vy": -4.507750559637601
+            },
+            "lead": {
+              "x": 0.6411430389985666,
+              "y": 0.4200528097502295
+            },
+            "counterfactualLeadLane1_2": true,
+            "counterfactualLeadLane1_4": true,
+            "currentQHeadingError": 2.2034416945123163,
+            "leadHeadingError": 1.7659791290984386
+          },
+          {
+            "episodeId": 4,
+            "at": 3.5000000000000018,
+            "kind": "ground",
+            "playerId": "shot119-0:GER-2:6",
+            "receiverId": "shot119-0:GER-2:10",
+            "ownerMismatch": false,
+            "missingReceiver": false,
+            "slide": false,
+            "actualCurrentLane": false,
+            "actualOffside": false,
+            "restart": false,
+            "ball": {
+              "x": 0.7287626118169429,
+              "y": 0.46388739347051217
+            },
+            "passer": {
+              "x": 0.7200205433877174,
+              "y": 0.4700169110143952
+            },
+            "receiver": {
+              "x": 0.6161985384547343,
+              "y": 0.4426633296030554,
+              "vx": 3.5788487292914377,
+              "vy": -3.9122131482685045
+            },
+            "lead": {
+              "x": 0.6464532969432275,
+              "y": 0.4207188296152136
+            },
+            "counterfactualLeadLane1_2": true,
+            "counterfactualLeadLane1_4": true,
+            "currentQHeadingError": 1.9506425396775768,
+            "leadHeadingError": 1.5382841393667734
+          }
+        ]
+      },
+      "passContact": {
+        "actualReleaseToContact": {
+          "samples": 43,
+          "average": 0.6441860465116481,
+          "min": 0.44999999999999574,
+          "max": 1.2000000000000455
+        },
+        "firstTouchSeconds": {
+          "samples": 42,
+          "average": 0.25925854122256015,
+          "min": 0.18601778360719123,
+          "max": 0.355710627908536
+        },
+        "nextRecordedRecipientReleaseSeconds": {
+          "samples": 39,
+          "average": 2.3385641025641783,
+          "min": 0,
+          "max": 33.950000000001275
+        },
+        "nextReleaseLimit": "This records the next release by the recipient; continuity of possession was not instrumented, so long delays may include loss/reacquisition or stoppages and cannot be read as preparation time."
+      }
+    },
+    {
+      "fieldSize": "standard",
+      "fieldPlayers": 6,
+      "careerSeed": "shot119-0",
+      "rngSeed": 169032,
+      "fixtureId": "S1:GER:LEAGUE:R1:GER-6-GER-2:1",
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 5,
+        "onTarget": 2,
+        "passes": 49,
+        "passComplete": 44,
+        "goals": 2,
+        "saves": 0
+      },
+      "draws": 326,
+      "rng": 4011987662,
+      "digestSha256": "705994afcc1f1031b6e1e57ba609fb49466377365896ad45ce65eccbae6201d8",
+      "totalSimulatedStepSeconds": 210.35000000000002,
+      "nativeClockFinishedAt": 106.86880341880453,
+      "preparation": {
+        "episodes": 65,
+        "closedEpisodeDurationSeconds": 16.550000000000487,
+        "pendingMoveSeconds": 15.599999999999998,
+        "waitingMoveSeconds": 14.949999999999996,
+        "headingOnlySeconds": 4.549999999999999,
+        "brakeOnlySeconds": 1.9000000000000004,
+        "bothSeconds": 8.499999999999996,
+        "readySeconds": 0.65,
+        "headingOnlyWaitDecisions": 82,
+        "brakeOnlyWaitDecisions": 37,
+        "bothWaitDecisions": 101,
+        "completedPivots": 22,
+        "completedPivotSeconds": {
+          "samples": 22,
+          "average": 0.43409090909092246,
+          "min": 0.20000000000000995,
+          "max": 0.8500000000000227
+        },
+        "completedHeadingReadySeconds": {
+          "samples": 22,
+          "average": 0.34545454545455606,
+          "min": 0.20000000000000284,
+          "max": 0.6000000000000227
+        },
+        "completedBrakeReadySeconds": {
+          "samples": 22,
+          "average": 0.2590909090909175,
+          "min": 0.04999999999999716,
+          "max": 0.8500000000000227
+        },
+        "completedReleaseSpeedMetresPerSecond": {
+          "samples": 22,
+          "average": 0.3903231414519372,
+          "min": 0,
+          "max": 1.1844908985816724
+        },
+        "expiry2_2Seconds": 0,
+        "ownerChanged": 9,
+        "replaced": 3,
+        "openAtWhistle": 0,
+        "restarts": 24,
+        "sameReceiverRestarts": 14,
+        "restartChains": [
+          {
+            "ids": [
+              1,
+              2
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.2999999999999994,
+            "observedPendingMoveSeconds": 0.25,
+            "sameReceiverRestarts": 0
+          },
+          {
+            "ids": [
+              4,
+              5
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.8499999999999979,
+            "observedPendingMoveSeconds": 0.8500000000000001,
+            "sameReceiverRestarts": 0
+          },
+          {
+            "ids": [
+              7,
+              8
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.15000000000000036,
+            "observedPendingMoveSeconds": 0.15000000000000002,
+            "sameReceiverRestarts": 1
+          },
+          {
+            "ids": [
+              18,
+              19,
+              20,
+              21,
+              22,
+              23
+            ],
+            "episodes": 6,
+            "nativePreparationSeconds": 0.7000000000000313,
+            "observedPendingMoveSeconds": 0.7,
+            "sameReceiverRestarts": 3
+          },
+          {
+            "ids": [
+              27,
+              28,
+              29,
+              30
+            ],
+            "episodes": 4,
+            "nativePreparationSeconds": 0.20000000000000995,
+            "observedPendingMoveSeconds": 0.2,
+            "sameReceiverRestarts": 3
+          },
+          {
+            "ids": [
+              31,
+              32
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.7500000000000284,
+            "observedPendingMoveSeconds": 0.7500000000000001,
+            "sameReceiverRestarts": 1
+          },
+          {
+            "ids": [
+              36,
+              37
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.3500000000000085,
+            "observedPendingMoveSeconds": 0.35,
+            "sameReceiverRestarts": 0
+          },
+          {
+            "ids": [
+              38,
+              39
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.850000000000037,
+            "observedPendingMoveSeconds": 0.8499999999999999,
+            "sameReceiverRestarts": 0
+          },
+          {
+            "ids": [
+              41,
+              42,
+              43,
+              44
+            ],
+            "episodes": 4,
+            "nativePreparationSeconds": 0.5500000000000256,
+            "observedPendingMoveSeconds": 0.3,
+            "sameReceiverRestarts": 2
+          },
+          {
+            "ids": [
+              48,
+              49
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.25,
+            "observedPendingMoveSeconds": 0.25,
+            "sameReceiverRestarts": 1
+          },
+          {
+            "ids": [
+              50,
+              51
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.9000000000000341,
+            "observedPendingMoveSeconds": 0.9000000000000001,
+            "sameReceiverRestarts": 0
+          },
+          {
+            "ids": [
+              52,
+              53,
+              54,
+              55
+            ],
+            "episodes": 4,
+            "nativePreparationSeconds": 0.25,
+            "observedPendingMoveSeconds": 0.2,
+            "sameReceiverRestarts": 3
+          },
+          {
+            "ids": [
+              59,
+              60
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.6000000000000227,
+            "observedPendingMoveSeconds": 0.6,
+            "sameReceiverRestarts": 0
+          },
+          {
+            "ids": [
+              62,
+              63
+            ],
+            "episodes": 2,
+            "nativePreparationSeconds": 0.5500000000000114,
+            "observedPendingMoveSeconds": 0.55,
+            "sameReceiverRestarts": 0
+          }
+        ]
+      },
+      "invalidTarget": {
+        "total": 31,
+        "currentQLaneBlocked": 31,
+        "offsideAlso": 0,
+        "slide": 0,
+        "missingReceiver": 0,
+        "ownerMismatch": 0,
+        "currentQBlockedLeadLaneOpen1_2": 20,
+        "currentQBlockedLeadLaneOpen1_4": 19,
+        "sameReceiverRestartAfterStrictLeadOpen": 13,
+        "actualSameFrameOptionLeadOpenRestart": 12,
+        "examples": [
+          {
+            "episodeId": 3,
+            "at": 4.050000000000003,
+            "kind": "ground",
+            "playerId": "shot119-0:GER-2:10",
+            "receiverId": "shot119-0:GER-2:7",
+            "ownerMismatch": false,
+            "missingReceiver": false,
+            "slide": false,
+            "actualCurrentLane": false,
+            "actualOffside": false,
+            "restart": false,
+            "ball": {
+              "x": 0.24874875093845766,
+              "y": 0.3257270404428398
+            },
+            "passer": {
+              "x": 0.25248579117989933,
+              "y": 0.3176171483297418
+            },
+            "receiver": {
+              "x": 0.2889315375117807,
+              "y": 0.41883943565929754,
+              "vx": -3.4474093754221617,
+              "vy": -4.555055204624907
+            },
+            "lead": {
+              "x": 0.2597879368866112,
+              "y": 0.39328908727739764
+            },
+            "counterfactualLeadLane1_2": true,
+            "counterfactualLeadLane1_4": true,
+            "currentQHeadingError": 0.5312315113320676,
+            "leadHeadingError": 0.3606635404753578
+          },
+          {
+            "episodeId": 7,
+            "at": 10.799999999999965,
+            "kind": "ground",
+            "playerId": "shot119-0:GER-2:11",
+            "receiverId": "shot119-0:GER-2:6",
+            "ownerMismatch": false,
+            "missingReceiver": false,
+            "slide": false,
+            "actualCurrentLane": false,
+            "actualOffside": false,
+            "restart": false,
+            "ball": {
+              "x": 0.859587428145836,
+              "y": 0.22846909683432537
+            },
+            "passer": {
+              "x": 0.8710792412491837,
+              "y": 0.23225216596330897
+            },
+            "receiver": {
+              "x": 0.8056524000714446,
+              "y": 0.26305195224327194,
+              "vx": -2.402606986246027,
+              "vy": -3.0188766307439954
+            },
+            "lead": {
+              "x": 0.7853413169243142,
+              "y": 0.24611838148014065
+            },
+            "counterfactualLeadLane1_2": true,
+            "counterfactualLeadLane1_4": true,
+            "currentQHeadingError": 1.0776123413534642,
+            "leadHeadingError": 0.6996347093236166
+          },
+          {
+            "episodeId": 8,
+            "at": 10.899999999999965,
+            "kind": "ground",
+            "playerId": "shot119-0:GER-2:11",
+            "receiverId": "shot119-0:GER-2:6",
+            "ownerMismatch": false,
+            "missingReceiver": false,
+            "slide": false,
+            "actualCurrentLane": false,
+            "actualOffside": false,
+            "restart": false,
+            "ball": {
+              "x": 0.8527127978793199,
+              "y": 0.2292158309558173
+            },
+            "passer": {
+              "x": 0.865540466668689,
+              "y": 0.2293099728186363
+            },
+            "receiver": {
+              "x": 0.8000302127875922,
+              "y": 0.2591697054160967,
+              "vx": -2.8116363050291664,
+              "vy": -2.7654944220704842
+            },
+            "lead": {
+              "x": 0.7762612904886665,
+              "y": 0.24365741352107004
+            },
+            "counterfactualLeadLane1_2": true,
+            "counterfactualLeadLane1_4": true,
+            "currentQHeadingError": 0.6129725859295239,
+            "leadHeadingError": 0.2486829339133332
+          }
+        ]
+      },
+      "passContact": {
+        "actualReleaseToContact": {
+          "samples": 36,
+          "average": 0.7736111111111355,
+          "min": 0.44999999999999574,
+          "max": 1.7999999999999856
+        },
+        "firstTouchSeconds": {
+          "samples": 35,
+          "average": 0.26194968294102156,
+          "min": 0.19256109294597934,
+          "max": 0.354267958557557
+        },
+        "nextRecordedRecipientReleaseSeconds": {
+          "samples": 31,
+          "average": 2.1537741935484522,
+          "min": 0,
+          "max": 34.91700000000107
+        },
+        "nextReleaseLimit": "This records the next release by the recipient; continuity of possession was not instrumented, so long delays may include loss/reacquisition or stoppages and cannot be read as preparation time."
+      }
+    }
+  ],
+  "seams": {
+    "optionFilter": "dist/world-offensive-quality-v157.js:191-193 uses observed v157PassLead then v157Lane clearance1.4.",
+    "pendingTarget": "dist/world-offensive-quality-v157.js:45-46 aims at current receiver q, or fixed space target.",
+    "pendingValidation": "dist/world-offensive-quality-v157.js:151-154 uses current q for lane and heading, .30rad heading and1.2m/s speed thresholds.",
+    "actualGroundPass": "dist/pitch-v55.js:194 computes v157PassLead again for actual nominal target; native errors/contact remain authoritative.",
+    "guardedRelease": "dist/world-offensive-quality-v157.js:155-156 preserves releaseGuard and v55GroundPass/v55HighPass/v150SpacePass dispatch."
+  },
+  "conclusion": "The repeated abort mechanism is demonstrated for moving ground-pass receivers. Aligning pending validation/facing with the same native lead target is the narrow candidate seam. A blanket speed-gate increase is not supported by these data; pure heading waits exceed pure brake waits and many valid pivots last about0.4-0.5s.",
+  "limits": [
+    "Two configurations of one stock seed/fixture are diagnostic evidence, not a population balance result.",
+    "The first raw report has one unclosed episode; additional observer identifies it as open-at-final-whistle with no fabricated duration.",
+    "Counterfactual lead-lane checks are read-only existing native geometry APIs, with initialized receiver bodies, and retain exact baseline digest. Their openness does not guarantee a completed pass or eliminate other valid offside/lane rechecks.",
+    "Owned-possession time was not instrumented and is not reported. Total simulated dt includes normal native pauses/restarts."
+  ]
+}

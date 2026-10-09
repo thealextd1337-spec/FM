@@ -1,0 +1,216 @@
+{
+  "scope": "Private intercepted-source physical candidate only. 8 fixture seeds per all4configurations; same native accuracy/keeper/outcome/controller. No production edits or fixed shot/goal quota.",
+  "parameters": {
+    "maxUsefulRange": 26,
+    "qualityDenominator": 14,
+    "automaticUsefulRange": 22,
+    "carryBypassRange": 24,
+    "carryBypassQuality": 0.18,
+    "freshOnly": "paceRevision119",
+    "sectorAuthority": "v159ShotWindow",
+    "retainSquare": "recipient<10m and quality>.4better; otherwise usefulshot<=22m precedes square"
+  },
+  "sourceHashes": {
+    "world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d"
+  },
+  "candidateHashes": {
+    "world-offensive-quality-v157.js": "f9a5666f1960ef8aca972462afda8dd746b2b02bdd7182dfe0f060dd009536d7",
+    "world-football-flow-v159.js": "4471724700b95a8b96cdf64ac0de1b3f40ccd013bb6a932d475532455df0f4f2"
+  },
+  "matches": [
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 5,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4127,
+      "score": [
+        0,
+        2
+      ],
+      "stats": {
+        "shots": 7,
+        "onTarget": 3,
+        "passes": 56,
+        "passComplete": 51,
+        "goals": 2,
+        "saves": 1,
+        "interceptions": 4
+      },
+      "metrics": {
+        "decisions": 319,
+        "windowDecisions": 29,
+        "carry": 8,
+        "shots": [
+          {
+            "team": 1,
+            "range": 19.06086509843294,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 19.870358606542656,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 6.892759991993562,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 19.693966677025113,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 13.030853521481559,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 11.027708636881737,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 6.010752992203771,
+            "pressure": 0,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 4001085484,
+      "draws": 372,
+      "digestSha256": "399d5776f7cd3dec027ec4a5bdcef5a5517f955a2eb688da624c31e1fb2eb03e"
+    }
+  ],
+  "errors": [],
+  "summary": [
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "before",
+      "n": 0,
+      "shots": null,
+      "onTarget": null,
+      "goals": null,
+      "min": null,
+      "max": null,
+      "passes": null,
+      "completed": null,
+      "pressureAtShot": 0
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "candidate",
+      "n": 1,
+      "shots": 7,
+      "onTarget": 3,
+      "goals": 2,
+      "min": 7,
+      "max": 7,
+      "passes": 56,
+      "completed": 51,
+      "pressureAtShot": 0.8571428571428571
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "before",
+      "n": 0,
+      "shots": null,
+      "onTarget": null,
+      "goals": null,
+      "min": null,
+      "max": null,
+      "passes": null,
+      "completed": null,
+      "pressureAtShot": 0
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "candidate",
+      "n": 0,
+      "shots": null,
+      "onTarget": null,
+      "goals": null,
+      "min": null,
+      "max": null,
+      "passes": null,
+      "completed": null,
+      "pressureAtShot": 0
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "before",
+      "n": 0,
+      "shots": null,
+      "onTarget": null,
+      "goals": null,
+      "min": null,
+      "max": null,
+      "passes": null,
+      "completed": null,
+      "pressureAtShot": 0
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "candidate",
+      "n": 0,
+      "shots": null,
+      "onTarget": null,
+      "goals": null,
+      "min": null,
+      "max": null,
+      "passes": null,
+      "completed": null,
+      "pressureAtShot": 0
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "before",
+      "n": 0,
+      "shots": null,
+      "onTarget": null,
+      "goals": null,
+      "min": null,
+      "max": null,
+      "passes": null,
+      "completed": null,
+      "pressureAtShot": 0
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "candidate",
+      "n": 0,
+      "shots": null,
+      "onTarget": null,
+      "goals": null,
+      "min": null,
+      "max": null,
+      "passes": null,
+      "completed": null,
+      "pressureAtShot": 0
+    }
+  ],
+  "pass": true
+}

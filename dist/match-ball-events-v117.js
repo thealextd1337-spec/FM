@@ -116,7 +116,7 @@ v50FinishPenalty=function(setPiece){
  try{return v117Penalty.apply(this,arguments)}finally{v117Settle(current,event,before);v117Incoming=previous;}
 };
 const v117Finish=v65Finish;
-v65Finish=function(...args){if(v65Context()&&!match?.finished)v117Interrupt(match,'final-whistle');return v117Finish.apply(this,args)};
+v65Finish=function(...args){if(v119DeferFinalWhistle(match))return;if(v65Context()&&!match?.finished)v117Interrupt(match,'final-whistle');return v117Finish.apply(this,args)};
 const v117Report=v65WorldReport;
 v65WorldReport=function(...args){const report=v117Report.apply(this,args);if(v117Ledger())report.ballAccounting=structuredClone(match.ballAccounting);return report};
 const v117Halftime=beginHalftimeBreak;

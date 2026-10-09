@@ -12,7 +12,7 @@ public static class FootballMotionTests {
     [Serializable] class Report {public string phase;public int failed;public Check[] checks;public ClipPoint[] keeper;}
     [Serializable] class Check {public string name;public bool passed;public double measured;}
     [Serializable] class ClipPoint {public string clip;public float time,x,y,z,length;}
-    public static string Run(string repository,string phase="final") {
+    public static string Run(string repository,string phase="final",string outputFolder=null) {
         var checks=new List<Check>();var points=new List<ClipPoint>();
         void Check(bool ok,string name,double measured=0){checks.Add(new Check{name=name,passed=ok,measured=measured});}
         const string asset="Assets/Doppel6EngineProbe/Art/football-v130.fbx";
@@ -42,7 +42,7 @@ public static class FootballMotionTests {
             ValidateMotion(actor,graph,animation,run,idle,dive,Check);
             ValidateBridge(repository,scene,actor,animation,run,idle,dive,high,low,Check);
         } finally {if(graph.IsValid())graph.Destroy();EditorSceneManager.ClosePreviewScene(scene);}
-        var report=new Report{phase=phase,failed=checks.FindAll(c=>!c.passed).Count,checks=checks.ToArray(),keeper=points.ToArray()};var json=JsonUtility.ToJson(report,true);File.WriteAllText(Path.Combine(repository,"outputs/platform/football-v159/unity/"+phase+"-motion-tests.json"),json);return json;
+        var report=new Report{phase=phase,failed=checks.FindAll(c=>!c.passed).Count,checks=checks.ToArray(),keeper=points.ToArray()};var json=JsonUtility.ToJson(report,true);var folder=Path.Combine(repository,outputFolder??"outputs/platform/football-v159/unity");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,phase+"-motion-tests.json"),json);return json;
     }
     static void ValidateBall(WorldFrame template,Action<bool,string,double> check){
         foreach(int frequency in new[]{30,60,120}){

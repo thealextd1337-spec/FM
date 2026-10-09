@@ -16,6 +16,8 @@
 #v61-world-screen .fl-content .fl-market :is(.v72-sale-prices b,.v72-own-offer strong,.v66-player-pick b){color:var(--fl-ink);font-size:14px}
 #v61-world-screen .fl-content .fl-market .v72-sale-list .section-heading>span{color:var(--fl-accent);white-space:normal}
 #v61-world-screen .fl-content .fl-market :is(.v66-player-name,.v72-own-name,.v72-player-name,.v72-sale-top button),#v61-world-screen .fl-content .fl-market-youth .v67-profile{color:var(--fl-accent);background:transparent;border:0;padding:0;text-align:left;font-size:15px;font-weight:700;line-height:1.4;white-space:normal!important;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+#v61-world-screen .fl-content .fl-market .v66-player-identity{display:flex;align-items:flex-start;flex-wrap:nowrap!important}
+#v61-world-screen .fl-content .fl-market .v66-player-identity .v66-player-name{display:grid;align-content:start;min-height:44px}
 #v61-world-screen .fl-content .fl-market .v66-player-list :is(strong,small){overflow:visible;text-overflow:clip;white-space:normal;overflow-wrap:anywhere}
 #v61-world-screen .fl-content .fl-market .v66-player-pick{min-width:0;max-width:100%;white-space:normal;background:transparent}
 #v61-world-screen .fl-content .fl-market .v66-player-pick small{color:var(--fl-accent)!important}

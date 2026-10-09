@@ -1,0 +1,64 @@
+{
+  "rngSame": true,
+  "drawsSame": true,
+  "scoreSame": true,
+  "diffs": [
+    {
+      "path": ".match.slide.victim.history.0",
+      "a": {
+        "assists": 0,
+        "cleanSheet": 0,
+        "clubId": "GER-2",
+        "competitionId": "S1:GER:LEAGUE",
+        "conceded": 0,
+        "fixtureId": "S1:GER:LEAGUE:R1:GER-6-GER-2:1",
+        "fouls": 0,
+        "goals": 0,
+        "minutes": 100,
+        "penaltiesMissed": 0,
+        "penaltiesScored": 0,
+        "rating": 6.786725838373215,
+        "season": 1,
+        "shots": 0,
+        "tackleAttempts": 0,
+        "tacklesWon": 0
+      }
+    },
+    {
+      "path": ".match.slide.victim.playerModel.development.processedAppearances.0",
+      "a": {
+        "id": "S1:GER:LEAGUE:R1:GER-6-GER-2:1:shot119-0:GER-2:10",
+        "seasonId": 1,
+        "worldId": "shot119-0"
+      }
+    },
+    {
+      "path": ".match.slide.victim.playerModel.development.ratedWindow.0",
+      "a": {
+        "id": "S1:GER:LEAGUE:R1:GER-6-GER-2:1:shot119-0:GER-2:10",
+        "minutes": 100,
+        "rating": 6.786725838373215,
+        "seasonId": 1,
+        "worldId": "shot119-0"
+      }
+    },
+    {
+      "path": ".match.slide.victim.playerModel.development.seasonMinutes",
+      "a": 100,
+      "b": 0
+    },
+    {
+      "path": ".match.slide.victim.playerModel.freshnessState.freshness",
+      "a": 43.60278639142257,
+      "b": 100
+    },
+    {
+      "path": ".match.slide.victim.playerModel.loadPlayedDays.0",
+      "a": 7
+    },
+    {
+      "path": ".match.slide.victim.playerModel.roleModel.processedFixtures.0",
+      "a": "S1:GER:LEAGUE:R1:GER-6-GER-2:1"
+    }
+  ]
+}

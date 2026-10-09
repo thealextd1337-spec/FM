@@ -1,0 +1,1476 @@
+{
+  "scope": "Private intercepted-source physical candidate only. 8 fixture seeds per all4configurations; same native accuracy/keeper/outcome/controller. No production edits or fixed shot/goal quota.",
+  "parameters": {
+    "maxUsefulRange": 26,
+    "qualityDenominator": 14,
+    "automaticUsefulRange": 22,
+    "carryBypassRange": 24,
+    "carryBypassQuality": 0.18,
+    "freshOnly": "paceRevision119",
+    "sectorAuthority": "v159ShotWindow",
+    "shotTurn": {
+      "range": 24,
+      "minQuality": 0.18,
+      "headingTolerance": 0.3,
+      "maxReleaseSpeed": 1.2,
+      "keepActualPivot": true
+    },
+    "retainSquare": "recipient<10m and quality>.4better; otherwise usefulshot<=22m precedes square"
+  },
+  "sourceHashes": {
+    "world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d"
+  },
+  "candidateHashes": {
+    "world-offensive-quality-v157.js": "ed38a7d90b92e3233a05a5ffa75aed7bcd10ee53118c9bb087e2a41fdbe31bd3",
+    "world-football-flow-v159.js": "4471724700b95a8b96cdf64ac0de1b3f40ccd013bb6a932d475532455df0f4f2"
+  },
+  "matches": [
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 0,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4371,
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "shots": 6,
+        "onTarget": 2,
+        "passes": 57,
+        "passComplete": 49,
+        "goals": 1,
+        "saves": 1,
+        "interceptions": 5
+      },
+      "metrics": {
+        "decisions": 334,
+        "windowDecisions": 15,
+        "carry": 10,
+        "shots": [
+          {
+            "team": 0,
+            "range": 20.76506323378357,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 21.698600474165744,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 8.346207275933782,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 23.104466508102778,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 19.460954632495152,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 24.86492169662839,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 1791790654,
+      "draws": 374,
+      "digestSha256": "0ad1b006c281cd47845065aea27eaf3680d6f7a67bc313e6727bee00603319bb"
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 0,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3472,
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "shots": 6,
+        "onTarget": 3,
+        "passes": 50,
+        "passComplete": 42,
+        "goals": 1,
+        "saves": 2,
+        "interceptions": 5
+      },
+      "metrics": {
+        "decisions": 329,
+        "windowDecisions": 36,
+        "carry": 21,
+        "shots": [
+          {
+            "team": 0,
+            "range": 24.23293743915644,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 20.551788442375845,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 21.9096475824144,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 19.994010751561014,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 21.753501737695448,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 21.876448319044727,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 2343875230,
+      "draws": 342,
+      "digestSha256": "64268e67e9b7950c103f6712014fbda47847f9e2eff2f67bae2b867b2f2b73c7"
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 0,
+      "mode": "candidate-json",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3472,
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "shots": 6,
+        "onTarget": 3,
+        "passes": 50,
+        "passComplete": 42,
+        "goals": 1,
+        "saves": 2,
+        "interceptions": 5
+      },
+      "metrics": {
+        "decisions": 329,
+        "windowDecisions": 36,
+        "carry": 21,
+        "shots": [
+          {
+            "team": 0,
+            "range": 24.23293743915644,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 20.551788442375845,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 21.9096475824144,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 19.994010751561014,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 21.753501737695448,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 21.876448319044727,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 2343875230,
+      "draws": 342,
+      "digestSha256": "64268e67e9b7950c103f6712014fbda47847f9e2eff2f67bae2b867b2f2b73c7"
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 1,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4439,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 7,
+        "onTarget": 2,
+        "passes": 55,
+        "passComplete": 50,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 4
+      },
+      "metrics": {
+        "decisions": 321,
+        "windowDecisions": 10,
+        "carry": 10,
+        "shots": [
+          {
+            "team": 1,
+            "range": 14.507761712023994,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 9.462833723435072,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 23.00365383044703,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 25.275034426297516,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 23.566589792107337,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 12.817308064634465,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 18.977155340264567,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 570497247,
+      "draws": 345,
+      "digestSha256": "a50af366cd547b9c9775c7306a3da49d79dd79f2f15e996d1ef007471da8a057"
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "seed": 1,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4332,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 5,
+        "onTarget": 2,
+        "passes": 63,
+        "passComplete": 59,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 2
+      },
+      "metrics": {
+        "decisions": 426,
+        "windowDecisions": 43,
+        "carry": 0,
+        "shots": [
+          {
+            "team": 0,
+            "range": 20.009065568613405,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 13.819668008677542,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 21.098938025496594,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 22.13211459792764,
+            "pressure": 4,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 18.558808547980128,
+            "pressure": 0,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 1791790654,
+      "draws": 374,
+      "digestSha256": "12e9b308e2acf458c7cd8293dd4fd6ae93a5850d6f38716d9be6b8aad5998af6"
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 0,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4207,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 5,
+        "onTarget": 2,
+        "passes": 49,
+        "passComplete": 44,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 1
+      },
+      "metrics": {
+        "decisions": 387,
+        "windowDecisions": 15,
+        "carry": 14,
+        "shots": [
+          {
+            "team": 0,
+            "range": 18.775864445009013,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 18.087345221246316,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 11.527110280734679,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 19.45543427101202,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 12.73568622533112,
+            "pressure": 2,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 4011987662,
+      "draws": 326,
+      "digestSha256": "ece2a099922fe10ae685140c4041dfea2187978086f407c928c262a8148a88b0"
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 0,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4633,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 7,
+        "onTarget": 4,
+        "passes": 54,
+        "passComplete": 52,
+        "goals": 2,
+        "saves": 2,
+        "interceptions": 1
+      },
+      "metrics": {
+        "decisions": 364,
+        "windowDecisions": 50,
+        "carry": 11,
+        "shots": [
+          {
+            "team": 0,
+            "range": 20.71723815269886,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 24.196072678383015,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 21.863799322054966,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 20.914136783464993,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 21.58143526751662,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 16.0298926364864,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 21.573247348585333,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 3403645167,
+      "draws": 361,
+      "digestSha256": "9ad380385e325bb90a4610977d5257eed0b157d5ed6c5cf58a9fa73080d52ad6"
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 0,
+      "mode": "candidate-json",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4633,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 7,
+        "onTarget": 4,
+        "passes": 54,
+        "passComplete": 52,
+        "goals": 2,
+        "saves": 2,
+        "interceptions": 1
+      },
+      "metrics": {
+        "decisions": 364,
+        "windowDecisions": 50,
+        "carry": 11,
+        "shots": [
+          {
+            "team": 0,
+            "range": 20.71723815269886,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 24.196072678383015,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 21.863799322054966,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 20.914136783464993,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 21.58143526751662,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 16.0298926364864,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 21.573247348585333,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 3403645167,
+      "draws": 361,
+      "digestSha256": "9ad380385e325bb90a4610977d5257eed0b157d5ed6c5cf58a9fa73080d52ad6"
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 1,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4809,
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "shots": 7,
+        "onTarget": 2,
+        "passes": 53,
+        "passComplete": 49,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 3
+      },
+      "metrics": {
+        "decisions": 369,
+        "windowDecisions": 28,
+        "carry": 26,
+        "shots": [
+          {
+            "team": 1,
+            "range": 23.033296316890794,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 9.180192904725173,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 23.063428558205604,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 10.827046225090198,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 18.72008559307961,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 18.47542334257675,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 15.402289711225398,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 1266242187,
+      "draws": 357,
+      "digestSha256": "20fae1c20d2ca453dcc1c048ad524333c1d8fb3f44aa6e275ea309ba3bac5c2d"
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 1,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3705,
+      "score": [
+        2,
+        0
+      ],
+      "stats": {
+        "shots": 9,
+        "onTarget": 2,
+        "passes": 51,
+        "passComplete": 48,
+        "goals": 2,
+        "saves": 0,
+        "interceptions": 1
+      },
+      "metrics": {
+        "decisions": 241,
+        "windowDecisions": 44,
+        "carry": 11,
+        "shots": [
+          {
+            "team": 0,
+            "range": 11.288648551482517,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 23.843737180200755,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 21.109227257167078,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 20.69972185630703,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 17.55610732445528,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 22.047019985133442,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 25.904768264962566,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 10.788148949359297,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 22.5683280697691,
+            "pressure": 0,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 2216424655,
+      "draws": 329,
+      "digestSha256": "3afbec41d40858b2744ec9cac843d06b79857082fad065754f3395f270cf630e"
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 0,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3810,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 0,
+        "passes": 47,
+        "passComplete": 42,
+        "goals": 0,
+        "saves": 0,
+        "interceptions": 2
+      },
+      "metrics": {
+        "decisions": 329,
+        "windowDecisions": 5,
+        "carry": 14,
+        "shots": [
+          {
+            "team": 0,
+            "range": 10.498790816742769,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 11.39304990750991,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 30.28363444555518,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 16.483577029073622,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 887607872,
+      "draws": 280,
+      "digestSha256": "be9314c21e4f30170c1e4b74676709f2e25b0741d6afa9153a85aac4c190e42c"
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 0,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3174,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 0,
+        "passes": 50,
+        "passComplete": 41,
+        "goals": 0,
+        "saves": 0,
+        "interceptions": 6
+      },
+      "metrics": {
+        "decisions": 339,
+        "windowDecisions": 7,
+        "carry": 2,
+        "shots": [
+          {
+            "team": 0,
+            "range": 22.231729491757665,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 26.323295032058095,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 14.608028275944754,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 20.245263908636428,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 3699490892,
+      "draws": 276,
+      "digestSha256": "2e2ca7db71cebbd3fb770fd2dba13926ca7bd6687b127505ef2128c31c14d6cd"
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 0,
+      "mode": "candidate-json",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3174,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 0,
+        "passes": 50,
+        "passComplete": 41,
+        "goals": 0,
+        "saves": 0,
+        "interceptions": 6
+      },
+      "metrics": {
+        "decisions": 339,
+        "windowDecisions": 7,
+        "carry": 2,
+        "shots": [
+          {
+            "team": 0,
+            "range": 22.231729491757665,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 26.323295032058095,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 14.608028275944754,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 20.245263908636428,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 3699490892,
+      "draws": 276,
+      "digestSha256": "2e2ca7db71cebbd3fb770fd2dba13926ca7bd6687b127505ef2128c31c14d6cd"
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 1,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3394,
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "shots": 6,
+        "onTarget": 1,
+        "passes": 52,
+        "passComplete": 45,
+        "goals": 1,
+        "saves": 0,
+        "interceptions": 5
+      },
+      "metrics": {
+        "decisions": 349,
+        "windowDecisions": 34,
+        "carry": 8,
+        "shots": [
+          {
+            "team": 0,
+            "range": 21.13769342900046,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 21.37049176112291,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 0,
+            "range": 21.78875358819871,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 28.761394143459427,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 21.7854389718515,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 11.82113591350215,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 977811142,
+      "draws": 286,
+      "digestSha256": "2965a7989fd79d624aba1fc2b83482df979919a2bfdc44d5316e5c92cf768c0e"
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "seed": 1,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3432,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 2,
+        "passes": 45,
+        "passComplete": 36,
+        "goals": 0,
+        "saves": 2,
+        "interceptions": 4
+      },
+      "metrics": {
+        "decisions": 327,
+        "windowDecisions": 17,
+        "carry": 3,
+        "shots": [
+          {
+            "team": 0,
+            "range": 21.502545139006223,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 14.016591729264892,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 19.19912201290946,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 20.846419385528836,
+            "pressure": 0,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 1751199003,
+      "draws": 245,
+      "digestSha256": "25b235aafdfc60dba3f3bcf8b984d0d248afcb5c1ae4bd1581c54d587245fd8e"
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 0,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3390,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 2,
+        "onTarget": 1,
+        "passes": 51,
+        "passComplete": 42,
+        "goals": 0,
+        "saves": 1,
+        "interceptions": 4
+      },
+      "metrics": {
+        "decisions": 338,
+        "windowDecisions": 3,
+        "carry": 7,
+        "shots": [
+          {
+            "team": 0,
+            "range": 20.507101485010583,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 14.598955294269736,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 3527024799,
+      "draws": 281,
+      "digestSha256": "605496bb71600e9585a0cd6ddbabf5a18de8c13caaf56fca4b2c2a6c0324c147"
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 0,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3405,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 5,
+        "onTarget": 1,
+        "passes": 46,
+        "passComplete": 41,
+        "goals": 0,
+        "saves": 1,
+        "interceptions": 4
+      },
+      "metrics": {
+        "decisions": 291,
+        "windowDecisions": 27,
+        "carry": 19,
+        "shots": [
+          {
+            "team": 0,
+            "range": 20.507101485010583,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 22.620854261918726,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 14.27280740007099,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 21.517575124605756,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 11.574291620515623,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 3527024799,
+      "draws": 281,
+      "digestSha256": "7962715593e386e164c7c686dc554c9647b4bfb12022586a1f52a99ae4aae707"
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 0,
+      "mode": "candidate-json",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3405,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 5,
+        "onTarget": 1,
+        "passes": 46,
+        "passComplete": 41,
+        "goals": 0,
+        "saves": 1,
+        "interceptions": 4
+      },
+      "metrics": {
+        "decisions": 291,
+        "windowDecisions": 27,
+        "carry": 19,
+        "shots": [
+          {
+            "team": 0,
+            "range": 20.507101485010583,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 22.620854261918726,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 14.27280740007099,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 21.517575124605756,
+            "pressure": 2,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 11.574291620515623,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 3527024799,
+      "draws": 281,
+      "digestSha256": "7962715593e386e164c7c686dc554c9647b4bfb12022586a1f52a99ae4aae707"
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 1,
+      "mode": "before",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 4187,
+      "score": [
+        0,
+        1
+      ],
+      "stats": {
+        "shots": 2,
+        "onTarget": 1,
+        "passes": 53,
+        "passComplete": 43,
+        "goals": 1,
+        "saves": 0,
+        "interceptions": 8
+      },
+      "metrics": {
+        "decisions": 366,
+        "windowDecisions": 7,
+        "carry": 9,
+        "shots": [
+          {
+            "team": 0,
+            "range": 19.986735461433575,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 27.372118493447907,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 4011987662,
+      "draws": 326,
+      "digestSha256": "0a6d681bd503e4b639cfc9d5289c1b9f5203ada809395e1edb2e8d7a7027c239"
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "seed": 1,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 2901,
+      "score": [
+        0,
+        0
+      ],
+      "stats": {
+        "shots": 4,
+        "onTarget": 0,
+        "passes": 52,
+        "passComplete": 43,
+        "goals": 0,
+        "saves": 0,
+        "interceptions": 6
+      },
+      "metrics": {
+        "decisions": 368,
+        "windowDecisions": 36,
+        "carry": 9,
+        "shots": [
+          {
+            "team": 0,
+            "range": 21.2728059740372,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 21.88343378297404,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 29.46716109377535,
+            "pressure": 0,
+            "kind": "direct-free-kick"
+          },
+          {
+            "team": 1,
+            "range": 21.574240610134158,
+            "pressure": 2,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 769890131,
+      "draws": 301,
+      "digestSha256": "3570dd65742cb594e8f4347ee22b5d0c0c9b4c543227e19ecaaa4f0d7923a38d"
+    }
+  ],
+  "errors": [],
+  "summary": [
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "before",
+      "n": 2,
+      "shots": 6.5,
+      "onTarget": 2,
+      "goals": 1.5,
+      "min": 6,
+      "max": 7,
+      "passes": 56,
+      "completed": 49.5,
+      "pressureAtShot": 0.6153846153846154
+    },
+    {
+      "size": "standard",
+      "count": 5,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 5.5,
+      "onTarget": 2.5,
+      "goals": 1.5,
+      "min": 5,
+      "max": 6,
+      "passes": 56.5,
+      "completed": 50.5,
+      "pressureAtShot": 1.1818181818181819
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "before",
+      "n": 2,
+      "shots": 6,
+      "onTarget": 2,
+      "goals": 2,
+      "min": 5,
+      "max": 7,
+      "passes": 51,
+      "completed": 46.5,
+      "pressureAtShot": 0.5833333333333334
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 8,
+      "onTarget": 3,
+      "goals": 2,
+      "min": 7,
+      "max": 9,
+      "passes": 52.5,
+      "completed": 50,
+      "pressureAtShot": 0.5
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "before",
+      "n": 2,
+      "shots": 5,
+      "onTarget": 0.5,
+      "goals": 0.5,
+      "min": 4,
+      "max": 6,
+      "passes": 49.5,
+      "completed": 43.5,
+      "pressureAtShot": 0.4
+    },
+    {
+      "size": "large",
+      "count": 5,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 4,
+      "onTarget": 1,
+      "goals": 0,
+      "min": 4,
+      "max": 4,
+      "passes": 47.5,
+      "completed": 38.5,
+      "pressureAtShot": 0.625
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "before",
+      "n": 2,
+      "shots": 2,
+      "onTarget": 1,
+      "goals": 0.5,
+      "min": 2,
+      "max": 2,
+      "passes": 52,
+      "completed": 42.5,
+      "pressureAtShot": 0.75
+    },
+    {
+      "size": "large",
+      "count": 6,
+      "mode": "candidate",
+      "n": 2,
+      "shots": 4.5,
+      "onTarget": 0.5,
+      "goals": 0,
+      "min": 4,
+      "max": 5,
+      "passes": 49,
+      "completed": 42,
+      "pressureAtShot": 1
+    }
+  ],
+  "pass": true
+}

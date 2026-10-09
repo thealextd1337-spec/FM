@@ -108,6 +108,9 @@ function v50Restart(type,team,spot,description){
  const taker=v50BestTaker(team,type,spot);
  m.owner=null;m.flight=null;m.rebound=null;m.lastPass=null;m.next=Infinity;
  m.ball={...spot};m.setPiece={type,team,spot,taker,phase:'waiting',wait:type==='penalty'?2.5:type==='corner'?2:type==='offside'?v50OffsideFreezeSeconds+1.1:1.8};
+ if(typeof v119FreeKickWall==='function'&&typeof v65WorldActive!=='undefined'&&v65WorldActive&&v119PaceActive(m)){
+  const wall=v119FreeKickWall(m,m.setPiece);if(wall)m.setPiece.wall=wall;
+ }
  if(type==='corner'){
   const allies=v50Outfield(team).filter(player=>player!==taker),opponents=v50Outfield(1-team),goalY=team===0?.1:.9;
   v50Spot(taker,positions?{x:spot.x+(spot.x<.5?-.35:.35)*(v55Field.right-v55Field.left)/v160PitchWidth(),y:spot.y+(team===0?-.54:.54)*(v55Field.bottom-v55Field.top)/v160PitchLength()}:{x:spot.x,y:team===0?.05:.95});
@@ -335,18 +338,37 @@ function v50FinishPenalty(setPiece){
 }
 
 const v50BaseKickoff=kickoff;
+function v119SpaceKickoff(current){
+ const restart=current.kickoff,sx=v160PitchWidth()/(v55Field.right-v55Field.left),sy=v160PitchLength()/(v55Field.bottom-v55Field.top),clearance=2.2;
+ // Base setup clamps multiple forward rows onto the same half-way row. Resolve
+ // actual future restart destinations before remembering travel, without RNG or
+ // changing tactical anchors. Existing saved restart targets are never rebuilt.
+ const fixed=[restart.kicker,restart.support,...current.people.filter(p=>p.keeper)],gap=(a,b)=>Math.hypot((a.x-b.x)*sx,(a.y-b.y)*sy);
+ for(const p of current.people.filter(p=>!fixed.includes(p))){
+  const origin={x:p.x,y:p.y},ownSide=p.t===0?1:-1;
+  const valid=point=>point.x>=v55Field.left+.4/sx&&point.x<=v55Field.right-.4/sx&&point.y>=v55Field.top+.4/sy&&point.y<=v55Field.bottom-.4/sy&&(point.y-.5)*ownSide>=.1/sy&&(p.t===restart.t||Math.hypot(point.x-.5,point.y-.5)>=.15)&&fixed.every(q=>gap(point,q)>=clearance-1e-9);
+  let target=valid(origin)?origin:null;
+  for(let ring=1;!target&&ring<=12;ring++)for(const [dx,dy]of [[-1,0],[1,0],[0,1],[-.7071067811865476,.7071067811865476],[.7071067811865476,.7071067811865476],[0,-1],[-.7071067811865476,-.7071067811865476],[.7071067811865476,-.7071067811865476]]){
+   const point={x:origin.x+dx*ring*clearance/sx,y:origin.y+dy*ownSide*ring*clearance/sy};if(valid(point)){target=point;break;}
+  }
+  if(target)v50Spot(p,target);fixed.push(p);
+ }
+}
 kickoff=function(team){
  const m=match,moving=typeof v65WorldActive!=='undefined'&&v65WorldActive&&m?.elapsed>0&&!m.halftimePause,positions=moving?new Map(m.people.map(p=>[p,{x:p.x,y:p.y}])):null;
  const travel=moving&&m.pendingKickoff!=null&&v99Actions.get(m)?.goalTravel,source=moving?(travel?v101GoalBall(travel,v83GoalSceneDuration):v99BallView(m)||m.ball):null;
  if(m){m.setPiece=null;m.rebound=null;v50ClearPenaltyScene()}const result=v50BaseKickoff(team);
- if(typeof v65WorldActive!=='undefined'&&v65WorldActive){const kicker=m.kickoff.kicker,side=team===0?1:-1;kicker.y=.5+side*.65*(v55Field.bottom-v55Field.top)/v160PitchLength();kicker.ty=kicker.y;}
+ if(typeof v65WorldActive!=='undefined'&&v65WorldActive){const kicker=m.kickoff.kicker,side=team===0?1:-1;kicker.y=.5+side*.65*(v55Field.bottom-v55Field.top)/v160PitchLength();kicker.ty=kicker.y;v119SpaceKickoff(m);}
  if(positions){m.countdown=Math.max(m.countdown,v114RememberRestart(m,m.kickoff,positions));v114KickoffBalls.set(m,{kickoff:m.kickoff,start:{...source,elevation:source.elevation??.29},at:v102Clock(m)})}
  return result;
 };
 const v50BaseHalftime=beginHalftimeBreak;
 beginHalftimeBreak=function(){
  if(!match?.halftimeBreakDone&&typeof v65WorldActive!=='undefined'&&v65WorldActive&&(match.halftimeExtension||0)<20*MATCH_SPEED&&(v15ClearChance(match)||v131DangerousFlight(match)!==null)){match.halftimePending=true;match.halftimeAttackTeam=match.owner?.t??v131DangerousFlight(match);return;}
- if(match?.setPiece){match.halftimePending=true;match.elapsed=37.499;return}
+ // A released ball must settle through its existing native callback even
+ // when the attacking-extension cap has expired. Never infer its outcome.
+ if(!match?.halftimeBreakDone&&typeof v65WorldActive!=='undefined'&&v65WorldActive&&(match.flight||match.goalPause>0)){match.halftimePending=true;match.next=Infinity;return;}
+ if(match?.setPiece){match.halftimePending=true;if(typeof v119PaceActive!=='function'||!v119PaceActive(match))match.elapsed=37.499;return}
  if(!match?.halftimeBreakDone&&typeof v65WorldActive!=='undefined'&&v65WorldActive)match.throwIn=null;
  return v50BaseHalftime();
 };

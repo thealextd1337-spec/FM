@@ -1,0 +1,159 @@
+{
+  "sourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+  "unity": "6000.6.4f1",
+  "project": "G:/unity/My project",
+  "build": {
+    "exitCode": 0,
+    "totalBytes": 90700798,
+    "seconds": 118.9,
+    "errors": 0,
+    "warnings": 3,
+    "manifest": "outputs/platform/unity-web/probe-build.json",
+    "manifestSha256": "832f4c33f46010fa6d59d3723ccc51fa09d414a55cccbd2e53d67e88ba6b0fc7",
+    "files": [
+      {
+        "file": "unity-web.data",
+        "bytes": 55090735,
+        "sha256": "a0191474d2c1ba2b774a42851c5415dff80f8835d27297e9c4014ad7a9c15fba"
+      },
+      {
+        "file": "unity-web.framework.js",
+        "bytes": 300906,
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      },
+      {
+        "file": "unity-web.loader.js",
+        "bytes": 27914,
+        "sha256": "57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03"
+      },
+      {
+        "file": "unity-web.wasm",
+        "bytes": 35260739,
+        "sha256": "902b92b0a9768aa2538a7082f9343121ceec5e0f4d66cb02d4d37d819ef6fdcd"
+      }
+    ]
+  },
+  "tests": {
+    "exitCode": 0,
+    "existingSuites": [
+      {
+        "file": "actions-tests.json",
+        "passed": 22,
+        "sha256": "6541b33bcdd7474c5a78f1dcaec105f218f0a0f892277bc06ee3c57124e3c03d"
+      },
+      {
+        "file": "club-stadium-profile-tests.json",
+        "passed": 396,
+        "sha256": "aa0a63c7212e8fd646012d2fc4d0982ad97dfb54409dc27ede8c440f0aedbce5"
+      },
+      {
+        "file": "duel-tests.json",
+        "passed": 34,
+        "sha256": "37c1b0c915a66019ea6aa2b2d6e20deef4d1cd60e9b4a1d168dab7ce9b9d4536"
+      },
+      {
+        "file": "final-motion-tests.json",
+        "sha256": "886b73b1be03f98075f388f0cc900a6f776bdd97c41bf8b5533b11b68fd7b5a9",
+        "passed": 42
+      },
+      {
+        "file": "gait-tests.json",
+        "passed": 75,
+        "sha256": "c07e7cba2d3b75f544a8880144b96aa5a0a4f5757940edbb5f020d8f3d230191"
+      },
+      {
+        "file": "iteration-tests.json",
+        "passed": 106,
+        "sha256": "e0652232a6c27300e2000b19040f20dee899631e7d37d59a3d80b4734ae7a387"
+      },
+      {
+        "file": "keeper-tests.json",
+        "passed": 160,
+        "sha256": "57490807bb5633a2b491319e6645d888044bba6aa2eb7cdbb5f24e94ae346b0a"
+      },
+      {
+        "file": "locomotion-tests.json",
+        "passed": 215,
+        "sha256": "3de15252d816a5ff138ba8fc2c8d5f37c450244df66e2b37bd2b7a5690523faf"
+      },
+      {
+        "file": "momentum-tests.json",
+        "passed": 72,
+        "sha256": "499a0606adc3d789e8086c15c7dcf9fbfc91ca305060752d57235d07f5928a50"
+      },
+      {
+        "file": "rig-tests.json",
+        "passed": 23,
+        "sha256": "dff5ebbd20b46240cf6978c564d34386d23fe1fa49728ff18713b7e59402d3c4"
+      },
+      {
+        "file": "stadium-architecture-tests.json",
+        "passed": 706,
+        "sha256": "b5a86630c66f797eeb231bc68e1e3058ccfe26dd46e8d5bdbeea6d0bc79182f7"
+      },
+      {
+        "file": "world-tests.json",
+        "passed": 24,
+        "sha256": "90869446bd00294714a6dfebec3b98cf760da2c505f826d50ad6aa4072677a75"
+      }
+    ],
+    "newPresentationChecks": 436,
+    "newReport": "outputs/3d-quality/iteration-119/presentation-tests.json",
+    "newReportSha256": "dc91222a28174614e3d7db1f9773bb5552f04946db57f930ac98a086aa16fd75",
+    "totalChecks": 2311
+  },
+  "renders": {
+    "exitCode": 0,
+    "images": 162,
+    "shots": 144,
+    "heldSnapshots": 18,
+    "largestShadowGroundError": 0,
+    "device": "Direct3D11",
+    "report": "outputs/3d-quality/iteration-119/renders/renders.json",
+    "reportSha256": "623e555564c3bf4fcbaebb3226386d7571adf66652afb2873cc0e2da334a4322"
+  },
+  "limits": [
+    "Desktop Editor evidence; browser/device/GPU acceptance owned by root.",
+    "9 native recorded keeper chains contain no natural catches; additional9 sequences are controlled view diagnostics.",
+    "Visible held attachment is pure rendering; native ball/owner/action clocks/RNG/root remain unchanged.",
+    "No new clips or packages; existing Playable clips receive directional bone poses.",
+    "Offside uses optional received native lineX only; no rule decision, timer, save mutation or predictive interpolation. Omitted/null objects are hidden with explicit JsonUtility presence handling."
+  ],
+  "offside": {
+    "checks": 53,
+    "images": 6,
+    "report": "outputs\\3d-quality\\iteration-119\\offside\\render-evidence.json",
+    "reportSha256": "154779c18c0f9249a5b6d445322b9fba047f68e54e1d38fd0046344085e34563",
+    "files": [
+      {
+        "file": "line-44--1.png",
+        "sha256": "7f9530e16639253ab24dea9980dbbd8f9f1e03b6aa673c8c2ac5d81c91f54363"
+      },
+      {
+        "file": "line-44-1.png",
+        "sha256": "cb9413941d3e7744ce30c18f6bf08cda81aadf29ee5a8f50eb666fdb68dacbf2"
+      },
+      {
+        "file": "clear-44.png",
+        "sha256": "71499547470fccb57479a9dcfc5902df6fd3219a4d70785c2f6af69ef40f3b59"
+      },
+      {
+        "file": "line-52,8--1.png",
+        "sha256": "ec5d660279ec78cfd90171f10157f2ec1ba86f06b6c584b5364f46a8bb0ffdca"
+      },
+      {
+        "file": "line-52,8-1.png",
+        "sha256": "4a65543216156e392708db9c1bb95921799e687b54be3785a7292c670f5e34de"
+      },
+      {
+        "file": "clear-52,8.png",
+        "sha256": "92527a8799ce35b725b0c5617bbcfc48743db91b5d9b4bcf9d6be4cdd0519348"
+      }
+    ]
+  },
+  "sourceFreeze": {
+    "files": 15,
+    "report": "outputs\\3d-quality\\iteration-119\\source-freeze.json",
+    "sha256": "9c9edc38502e6ff1eb084cb9aaa4be79fd1d8a9f353482fa3d85a3e6e7bc5c94"
+  }
+}

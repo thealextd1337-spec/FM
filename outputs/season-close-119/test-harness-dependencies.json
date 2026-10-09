@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "files": {
+    "work/test-world-coaches-v63.cjs": "0a72d53950df0995f4003dbb02f05eeb85c3cc60fe6419fbaab1cccf3b6d1bb3",
+    "work/test-world-career-events.cjs": "862ebd7876dc3099b0d504caffa7cb02db8e6d71fb5109152cbb610238120577",
+    "work/test-world-economy-v66.cjs": "01a5af206b865577efbc2488252fb8f00cf0f94e1efba464baa96c0e12d5de00",
+    "work/test-world-views-v68.cjs": "d0e60da158fb3a7c6b96ac0aed22070afe380738b83395648eae1ea23670dbdd",
+    "work/test-native-career-v160.cjs": "abad8d833c75a055072d68fab0da9f5fe84412c83197c8d42be9f80be31ab549"
+  },
+  "dependencies": {
+    "dist/penalties-v42.js": "92bdbca73b2f68b10cf11d7a3690ab4d842d85835b92f227b231fa23af0f9d04",
+    "dist/world-competition-v62.js": "6d9a6192d0f6c59c1db4c586232f5390e81635ddc895e27ff4601b7c7e0622ca"
+  },
+  "nativeEvidence": "outputs/season-close-119/test-harness-native-career.json",
+  "nativeEvidenceSha256": "39a837119e8abd52e7246aabe714f7b868efc30a7f82e4fa9242fed1a9228664",
+  "historicalEvidenceRestoredSha256": "8f31ceee00fd13d42f76c17057892518968cc2c17f4299dcd6c7ffe60c74df6e",
+  "note": "Five existing suites passed unchanged assertions after loading actual pure v42 helpers. clamp supplied only where originally absent. No production edits."
+}

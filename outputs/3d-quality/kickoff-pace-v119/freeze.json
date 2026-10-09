@@ -1,0 +1,107 @@
+{
+  "status": "native-final-matrix-verified-integration-review-pending",
+  "baselineCommit": "1b2c3c8e18e6a0e8ea39e8de40251ee54a6eb114",
+  "ownedProduction": [
+    "dist/set-pieces-v50.js",
+    "dist/pitch-v57.js",
+    "dist/world-offensive-quality-v157.js",
+    "dist/world-football-flow-v159.js",
+    "dist/world-competition-v62.js"
+  ],
+  "rootIntegration": [
+    "dist/world-physical-v65.js",
+    "dist/world-pitch-actions-v99.js",
+    "dist/match-ball-events-v117.js",
+    "dist/penalties-v42.js"
+  ],
+  "checks": {
+    "kickoff": 1356,
+    "oldOverlaps": 948,
+    "movementRows": 48,
+    "defence": 4,
+    "walls": 8,
+    "wallGuards": 5,
+    "actualSwap": 2,
+    "fullMatches": 12,
+    "naturalKeeperJsonRestores": 4,
+    "large6ImmediateAnd178StepsExact": true
+  },
+  "sha256": {
+    "dist/set-pieces-v50.js": "6006a16d2700dc55cbda50b044f27fc03ce07f6bc908bf9e57b41fb52c31c0f6",
+    "dist/pitch-v57.js": "b6d1fb8f1746f363a30f1ce63ff40d006745acdbee96218cf366c35f9824df4a",
+    "dist/world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "dist/world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d",
+    "dist/world-competition-v62.js": "6d9a6192d0f6c59c1db4c586232f5390e81635ddc895e27ff4601b7c7e0622ca",
+    "dist/world-physical-v65.js": "23ef31850a4b320d120e8122a711103e4c00dd079c9917a4e48c4733e7b0d173",
+    "dist/world-pitch-actions-v99.js": "596b0cfb28a68782ca829a2b55f2702e844ec3e7c04e698d5f9543069f2c9877",
+    "dist/match-ball-events-v117.js": "594c885c83ee9a973e74cc1df7ca0481ce83bab0ae3ae3742447c697342c1a93",
+    "dist/penalties-v42.js": "92bdbca73b2f68b10cf11d7a3690ab4d842d85835b92f227b231fa23af0f9d04",
+    "work/test-kickoff-pace-v119.cjs": "e4bbee7df2b37b7c77af9d81fd23a4d893097beb713b73576842fe77558a3348",
+    "docs/platform/kickoff-pace-v119.md": "3dc9878ffe16a17ddc8b496aa5c2dcd2263accdfa035ec05e7662a300ab071e5",
+    "outputs/3d-quality/kickoff-pace-v119/native.json": "4240d2188caa074bcd7464bd6a844f9100a0133f2603e451acb496993e5cfef3"
+  },
+  "competitionNativeHash": "5a7dad7a123c9597a49e81caffcd4b970ab4114b97101dc300245cdf083dc2c0",
+  "competitionWholeFileHashAtMeasurement": "68be6dcdce8ad4abbd5b7c8996c8b090444df837ddf7b7d5040a54e9cd9b5f00",
+  "newBaselines": [
+    {
+      "config": {
+        "seed": "pace119-a",
+        "size": "standard",
+        "count": 5
+      },
+      "score": [
+        0,
+        2
+      ],
+      "ticks": 4291,
+      "digestSha256": "f50f7c5e9c19456eea6abc08964b88d52aeedba778489bf9c750293714c60947"
+    },
+    {
+      "config": {
+        "seed": "pace119-b",
+        "size": "standard",
+        "count": 6
+      },
+      "score": [
+        0,
+        2
+      ],
+      "ticks": 4037,
+      "digestSha256": "7e4573fb04304bd544e11fc50313acd2147c2df7e6f5f6c7f872e8dbdf54617f"
+    },
+    {
+      "config": {
+        "seed": "pace119-c",
+        "size": "large",
+        "count": 5
+      },
+      "score": [
+        0,
+        0
+      ],
+      "ticks": 3354,
+      "digestSha256": "f6e3d452fa61632db30f469422cb8920e93c9f5674bea3f55f19629903753f1d"
+    },
+    {
+      "config": {
+        "seed": "pace119-d",
+        "size": "large",
+        "count": 6
+      },
+      "score": [
+        0,
+        0
+      ],
+      "ticks": 3788,
+      "digestSha256": "fde95c155037dbe89d57f48a70d237bcb1ce982afb58fc8031398796b7dcb236"
+    }
+  ],
+  "limits": [
+    "Four seeds are not broad balance acceptance.",
+    "Native pass/shot/tackle outcomes intentionally differ from118.",
+    "No final Unity/build/live/physical-device approval by this native worker.",
+    "Authoritative career metadata compared from roster; physical shallow-copy caches are not a second booking ledger.",
+    "v62 UI completed after native measurement; native controller function hash unchanged."
+  ],
+  "competitionWholeFileHashAfterUiFreeze": "6d9a6192d0f6c59c1db4c586232f5390e81635ddc895e27ff4601b7c7e0622ca"
+}

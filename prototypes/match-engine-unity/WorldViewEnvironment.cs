@@ -187,7 +187,7 @@ public partial class ProbeBridge {
         var blob=new Material(Resources.Load<Shader>("D6Blob"));blob.SetFloat("_Strength",.42f);materials.Add(blob);
         foreach(var actor in actors)foreach(var r in actor.GetComponentsInChildren<Renderer>())r.shadowCastingMode=ShadowCastingMode.On;
         foreach(var ring in rings){ring.localScale=new Vector3(1.05f,.004f,1.05f);ring.GetComponent<Renderer>().sharedMaterial=blob;ring.GetComponent<Renderer>().shadowCastingMode=ShadowCastingMode.Off;}
-        var ballBlob=new Material(blob);ballBlob.SetFloat("_Strength",.5f);materials.Add(ballBlob);ballShadow.localScale=new Vector3(.42f,.003f,.42f);ballShadow.GetComponent<Renderer>().sharedMaterial=ballBlob;
+        var ballBlob=new Material(blob);ballBlob.SetFloat("_Strength",.82f);materials.Add(ballBlob);worldBallShadowMaterial=ballBlob;ballShadow.localScale=new Vector3(.54f,.003f,.54f);ballShadow.GetComponent<Renderer>().sharedMaterial=ballBlob;
         ballView.GetComponent<Renderer>().shadowCastingMode=ShadowCastingMode.On;
         // Stands, roofs and masts stay out of the shadow map: their long
         // shadows would cross the pitch and hide the play.

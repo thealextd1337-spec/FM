@@ -253,9 +253,10 @@ function v66ResolveFreeDecisions(career,day){
   for(const bid of offers)if(v66TryBid(career,bid))break;
  }
 }
-function v66CloseBid(career,bid,status,reason){
+function v66CloseBid(career,bid,status,reason,notify=true){
  bid.status=status;bid.reason=reason||'';
  if(status==='rejected'||status==='expired')career.world.market.decisions.push({pid:bid.pid,buyerId:bid.buyerId,season:career.world.season,status,atPlayed:v62Fixtures(career).filter(fixture=>fixture.result).length});
+ if(notify&&status==='rejected'&&bid.buyerId===career.manager.managedClubId&&!career.world.market.negotiations?.some(item=>item.id===bid.id))v66QueueLegacyResult(career,bid,'rejected',bid.reason);
 }
 function v66Consent(career,bid){
  const player=v66Player(career,bid.pid),buyer=v66Club(career,bid.buyerId),seller=bid.sellerId&&v66Club(career,bid.sellerId);
@@ -283,7 +284,7 @@ function v66Transfer(career,bid){
  v66CloseBid(career,bid,'completed',`${player.name} wechselt zu ${buyer.name}.`);
  if((buyer.id===career.manager.managedClubId||seller?.id===career.manager.managedClubId)&&!market.negotiations?.some(item=>item.id===bid.id))v66QueueLegacyResult(career,bid,'completed',bid.reason);
  for(const other of market.pendingBids.filter(item=>item!==bid&&item.pid===bid.pid&&['pending','counter'].includes(item.status))){
-  v66CloseBid(career,other,'rejected','Der Spieler hat einen anderen Verein gewählt.');
+  v66CloseBid(career,other,'rejected','Der Spieler hat einen anderen Verein gewählt.',false);
   if(other.buyerId===career.manager.managedClubId&&!market.negotiations?.some(item=>item.id===other.id))v66QueueLegacyResult(career,{...other,buyerId:buyer.id,sellerId:seller?.id,price:bid.price},'lost',`${player.name} wechselt zu ${buyer.name}.`);
  }
  return player;

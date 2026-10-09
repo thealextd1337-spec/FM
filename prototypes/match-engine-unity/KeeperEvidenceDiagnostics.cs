@@ -14,7 +14,7 @@ public static class KeeperEvidenceDiagnostics {
     const int Tile=320;
     [Serializable] class Fixture {public Seq[] sequences;}
     [Serializable] class Seq {public string name,source,keeper;public bool turned;public string[] steps;}
-    [Serializable] class Shot {public string sequence,origin,file,clip,kind,action,actionId,phase;public int step,pictureSequence;public double progress,recovery,time;public bool contact,turned,controlled,rawSaved,rawParry,rawBallInFlight,savedKnown,parryKnown,ballInFlightKnown,held,reachable;public float hips;}
+    [Serializable] class Shot {public string sequence,origin,file,clip,kind,action,actionId,phase;public int step,pictureSequence;public double progress,recovery,time;public bool contact,turned,controlled,rawSaved,rawParry,rawBallInFlight,savedKnown,parryKnown,ballInFlightKnown,held,reachable,visualHeld;public float hips,gloveError,shadowDiameter,shadowStrength,shadowGroundError;}
     [Serializable] class Listing {public string sourceId,unity,device,note;public string[] files;public Shot[] shots;}
     static string N(double v){return v.ToString("0.###",System.Globalization.CultureInfo.InvariantCulture);}
     static string Step(int sequence,double clock,string owner,bool? flight,double[] ball,string pose){
@@ -33,23 +33,27 @@ public static class KeeperEvidenceDiagnostics {
             if(k<8){double q=k/7.0;return Step(k,10+k*.05,"",true,new[]{-24+(chest[0]+24)*q,1.35,chest[2]*q},Pose("save",q,0,chest,",\"saved\":false,\"parry\":false,\"goal\":false"));}
             double r=(k-7)/12.0;return Step(k,10+k*.05,owner,flightKnown?false:(bool?)null,chest,Pose("save",1,r,chest,after));
         }
-        Make("controlled-catch-held",k=>Catch(k,",\"saved\":true,\"parry\":false,\"goal\":false",true,"@keeper"),20);
+        Make("controlled-catch-held",k=>Catch(k,",\"saved\":true,\"parry\":false,\"goal\":false,\"ballHeld\":true",true,"@keeper"),20);
         // Negative guards: a parry (ball away, other owner) and a picture without the facts.
         Make("controlled-guard-parry",k=>k<8?Catch(k,"",true,""):Step(k,10+k*.05,"",false,new[]{chest[0]+(k-7)*.5,Math.Max(.29,1.35-(k-7)*.12),chest[2]+(k-7)*.4},Pose("save",1,(k-7)/12.0,chest,",\"saved\":true,\"parry\":true,\"goal\":false")),20);
         Make("controlled-guard-unknown",k=>Catch(k,"",false,"@keeper"),20);
         // Pickup: native pickup:<at> starts complete (progress 1) with the ball at the keeper's feet.
         var ground=new[]{-30.4,.29,0};
-        Make("controlled-pickup",k=>Step(k,20+k*.05,"@keeper",false,ground,Pose("pickup:20",1,k/11.0,ground,",\"saved\":true,\"parry\":false,\"goal\":false,\"smother\":false")),12);
+        Make("controlled-pickup",k=>Step(k,20+k*.05,"@keeper",false,ground,Pose("pickup:20",1,k/11.0,ground,",\"saved\":true,\"parry\":false,\"goal\":false,\"smother\":false,\"ballHeld\":true")),12);
         // Smother: the attacker still owns the ball during the 0.55 s challenge, then the keeper holds it.
         var smother=new[]{-29.9,.35,.4};
-        Make("controlled-smother",k=>k<6?Step(k,30+k*.05,"@other",false,new[]{-28.6+(smother[0]+28.6)*k/5.0,.29,smother[2]},Pose("smother:30",k/5.0,0,smother,",\"saved\":false,\"parry\":false,\"goal\":false,\"smother\":true")):Step(k,30+k*.05,"@keeper",false,smother,Pose("smother:30",1,(k-5)/10.0,smother,",\"saved\":true,\"parry\":false,\"goal\":false,\"smother\":true")),16);
+        Make("controlled-smother",k=>k<6?Step(k,30+k*.05,"@other",false,new[]{-28.6+(smother[0]+28.6)*k/5.0,.29,smother[2]},Pose("smother:30",k/5.0,0,smother,",\"saved\":false,\"parry\":false,\"goal\":false,\"smother\":true")):Step(k,30+k*.05,"@keeper",false,smother,Pose("smother:30",1,(k-5)/10.0,smother,",\"saved\":true,\"parry\":false,\"goal\":false,\"smother\":true,\"ballHeld\":true")),16);
+        foreach(int side in new[]{-1,1}){
+            Make("controlled-diagonal-"+(side<0?"left":"right"),k=>Step(k,40+k*.05,"",false,new[]{-20,.29,0},"{\"id\":\"controlled-keeper\",\"position\":["+N(-31+k*.14)+",0,"+N(side*k*.14)+"],\"facing\":[1,0,0],\"moving\":true,\"action\":\"run\",\"duration\":1,\"number\":1}"),24);
+        }
+        foreach(double height in new[]{.29,5.0})Make("controlled-shadow-"+(height<1?"ground":"high"),k=>Step(k,50+k*.05,"",height>1,new[]{-29,height,0},"{\"id\":\"controlled-keeper\",\"position\":[-31,0,0],\"facing\":[1,0,0],\"moving\":false,\"action\":\"idle\",\"duration\":1,\"number\":1}"),8);
         return list.ToArray();
     }
-    public static string Run(string repository){
+    public static string Run(string repository,string outputFolder=null){
         var bridge=UnityEngine.Object.FindFirstObjectByType<ProbeBridge>()??throw new InvalidOperationException("ProbeBridge is missing in the open scene");
         var flags=BindingFlags.NonPublic|BindingFlags.Instance;var raw=File.ReadAllText(Path.Combine(repository,"outputs/platform/world-unity/contract-fixture.json"));
         var fixture=JsonUtility.FromJson<Fixture>(File.ReadAllText(Path.Combine(repository,"outputs/3d-quality/keeper-next/keeper-fixtures.json")));
-        var folder=Path.Combine(repository,"outputs/3d-quality/keeper-next/renders");Directory.CreateDirectory(folder);var written=new List<string>();var shots=new List<Shot>();
+        var folder=Path.Combine(repository,outputFolder??"outputs/3d-quality/keeper-next/renders");Directory.CreateDirectory(folder);var written=new List<string>();var shots=new List<Shot>();
         var camera=Camera.main;int sequence=1;bool log=Debug.unityLogger.logEnabled;string goalieId=null;int goalieIndex=-1;
         void Drop(){var world=(Transform)typeof(ProbeBridge).GetField("world",flags).GetValue(bridge);if(world!=null)UnityEngine.Object.DestroyImmediate(world.gameObject);}
         void Send(string json){Debug.unityLogger.logEnabled=false;try{bridge.WorldCommand(json);}finally{Debug.unityLogger.logEnabled=log;}}
@@ -75,7 +79,7 @@ public static class KeeperEvidenceDiagnostics {
         }
         void Save(Texture2D tex,string name){File.WriteAllBytes(Path.Combine(folder,name),tex.EncodeToPNG());written.Add(name);UnityEngine.Object.DestroyImmediate(tex);}
         // One actual step as a received picture: the keeper's captured JSON spliced in.
-        void Show(WorldConfig config,string step){
+        void Show(WorldConfig config,string step,bool shadowView=false){
             var s=WorldPhasePresence.ParseFrame(step);var kp=s.players[0];
             var f=JsonUtility.FromJson<WorldFrame>(JsonUtility.ToJson(config.initial));f.sequence=++sequence;f.clock=s.clock;f.phase="paused";f.ball=s.ball;f.ballOpacity=1;
             f.owner=step.Contains("\"owner\":\"@keeper\"")?goalieId:step.Contains("\"owner\":\"@other\"")?config.initial.players[goalieIndex==0?1:0].id:"";f.ballInFlight=s.ballInFlight;
@@ -83,6 +87,7 @@ public static class KeeperEvidenceDiagnostics {
             var face=new Vector3((float)kp.facing[0],0,(float)kp.facing[2]).normalized;var right=new Vector3(face.z,0,-face.x);var at=new Vector3((float)kp.position[0],0,(float)kp.position[2]);
             // Field side of the keeper, never through the goal net.
             var eye=at+right*5.2f+face*4.4f+Vector3.up*1.7f;var look=at+face*.4f+Vector3.up*1.05f;
+            if(shadowView){eye=at+right*9+face*7+Vector3.up*6;look=at+face+Vector3.up*2.3f;}
             f.camera.position=new double[]{eye.x,eye.y,eye.z};f.camera.target=new double[]{look.x,look.y,look.z};f.camera.fov=40;
             var json=JsonUtility.ToJson(new WorldCommand{kind="frame",frame=f});
             if(!s.ballInFlightKnown)json=json.Replace(",\"ballInFlight\":false","").Replace(",\"ballInFlight\":true","");
@@ -106,7 +111,7 @@ public static class KeeperEvidenceDiagnostics {
                 // Every step is received in order (actual cadence), the picked ones captured.
                 int tile=0;
                 for(int k=0;k<n;k++){
-                    Show(config,seq.steps[k]);if(!picks.Contains(k))continue;
+                    Show(config,seq.steps[k],seq.name.StartsWith("controlled-shadow"));if(!picks.Contains(k))continue;
                     var rp=((Array)typeof(ProbeBridge).GetField("renderedPoses",flags).GetValue(bridge)).GetValue(goalieIndex);T R<T>(string name)=>(T)rp.GetType().GetField(name).GetValue(rp);var p=WorldPhasePresence.ParseFrame(seq.steps[k]).players[0];
                     var tex=Capture(Tile,Tile);sheet.SetPixels(tile*Tile,0,Tile,Tile,tex.GetPixels());
                     var file=$"{seq.name}-{tile:00}.png";Save(tex,file);
@@ -116,6 +121,16 @@ public static class KeeperEvidenceDiagnostics {
                     shot.rawSaved=seq.steps[k].Contains("\"saved\":");shot.rawParry=seq.steps[k].Contains("\"parry\":");shot.rawBallInFlight=seq.steps[k].Contains("\"ballInFlight\":");
                     shot.savedKnown=sp.savedKnown;shot.parryKnown=sp.parryKnown;shot.ballInFlightKnown=shown.ballInFlightKnown;shot.held=FootballKeeperTiming.Held(sp,shown);
                     var animations=(List<FootballAnimation>)typeof(ProbeBridge).GetField("football",flags).GetValue(bridge);shot.reachable=animations[goalieIndex].rig.reachable;
+                    var ball=(Transform)typeof(ProbeBridge).GetField("ballView",flags).GetValue(bridge);var shadow=(Transform)typeof(ProbeBridge).GetField("ballShadow",flags).GetValue(bridge);
+                    var expected=ProbeBridge.BallShadowStyle(ball.position.y);shot.shadowDiameter=shadow.localScale.x;shot.shadowStrength=shadow.GetComponent<Renderer>().sharedMaterial.GetFloat("_Strength");shot.shadowGroundError=Vector3.Distance(shadow.position,new Vector3(ball.position.x,.045f,ball.position.z));
+                    if(Math.Abs(shot.shadowDiameter-expected.diameter)>1e-6||Math.Abs(shot.shadowStrength-expected.strength)>1e-6||shot.shadowGroundError>1e-6)throw new Exception("actual ball shadow differs from rendered sphere height/ground projection");
+                    shot.visualHeld=FootballKeeperTiming.VisualHeld(sp,shown);
+                    if(shot.visualHeld){
+                        var visible=(Transform)typeof(ProbeBridge).GetField("ballView",flags).GetValue(bridge);shot.gloveError=Vector3.Distance(visible.position,animations[goalieIndex].rig.HeldBallCentre);
+                        if(shot.gloveError>.0001f||!shot.reachable)throw new Exception("visible held ball did not follow bounded glove midpoint");
+                        // The view attachment must never write the received ball array.
+                        for(int axis=0;axis<3;axis++)if(Math.Abs(shown.ball[axis]-WorldPhasePresence.ParseFrame(seq.steps[k]).ball[axis])>1e-6)throw new Exception("native ball picture was mutated");
+                    }
                     if(shot.rawSaved!=shot.savedKnown||shot.rawParry!=shot.parryKnown||shot.rawBallInFlight!=shot.ballInFlightKnown)throw new Exception("received presence differs from the sent keys ("+seq.name+" step "+k+")");
                     tile++;
                 }

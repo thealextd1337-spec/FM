@@ -1,0 +1,239 @@
+{
+  "scope": "actual source market first name line; no hardware or Unity claim",
+  "baseline": false,
+  "checks": [
+    "320/light flag aligned to first name line",
+    "320/light profile target remains at least44px",
+    "320/dark flag aligned to first name line",
+    "320/dark profile target remains at least44px",
+    "390/light flag aligned to first name line",
+    "390/light profile target remains at least44px",
+    "390/dark flag aligned to first name line",
+    "390/dark profile target remains at least44px",
+    "844/light flag aligned to first name line",
+    "844/light profile target remains at least44px",
+    "844/dark flag aligned to first name line",
+    "844/dark profile target remains at least44px",
+    "1366/light flag aligned to first name line",
+    "1366/light profile target remains at least44px",
+    "1366/dark flag aligned to first name line",
+    "1366/dark profile target remains at least44px",
+    "actual mobile fixture wraps long name",
+    "no JavaScript errors"
+  ],
+  "measurements": [
+    {
+      "width": 320,
+      "theme": "light",
+      "rows": [
+        {
+          "text": "Alexandros Konstantinos van der Meer",
+          "flagCenter": 1384.1875,
+          "firstTextCenter": 1385.1875,
+          "difference": 1,
+          "lines": 2,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 320
+        },
+        {
+          "text": "Leo",
+          "flagCenter": 1839.90625,
+          "firstTextCenter": 1840.90625,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 320
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "rows": [
+        {
+          "text": "Alexandros Konstantinos van der Meer",
+          "flagCenter": 252.1875,
+          "firstTextCenter": 253.1875,
+          "difference": 1,
+          "lines": 2,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 320
+        },
+        {
+          "text": "Leo",
+          "flagCenter": 707.90625,
+          "firstTextCenter": 708.90625,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 320
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "rows": [
+        {
+          "text": "Alexandros Konstantinos van der Meer",
+          "flagCenter": 160.6875,
+          "firstTextCenter": 161.6875,
+          "difference": 1,
+          "lines": 2,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 390
+        },
+        {
+          "text": "Leo",
+          "flagCenter": 575.40625,
+          "firstTextCenter": 576.40625,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 390
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "rows": [
+        {
+          "text": "Alexandros Konstantinos van der Meer",
+          "flagCenter": 160.6875,
+          "firstTextCenter": 161.6875,
+          "difference": 1,
+          "lines": 2,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 390
+        },
+        {
+          "text": "Leo",
+          "flagCenter": 575.40625,
+          "firstTextCenter": 576.40625,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 390
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "theme": "light",
+      "rows": [
+        {
+          "text": "Alexandros Konstantinos van der Meer",
+          "flagCenter": -202.0625,
+          "firstTextCenter": -201.0625,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 844
+        },
+        {
+          "text": "Leo",
+          "flagCenter": 153.0625,
+          "firstTextCenter": 154.0625,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 844
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "theme": "dark",
+      "rows": [
+        {
+          "text": "Alexandros Konstantinos van der Meer",
+          "flagCenter": 23.9375,
+          "firstTextCenter": 24.9375,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 844
+        },
+        {
+          "text": "Leo",
+          "flagCenter": 379.0625,
+          "firstTextCenter": 380.0625,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 844
+        }
+      ]
+    },
+    {
+      "width": 1366,
+      "theme": "light",
+      "rows": [
+        {
+          "text": "Alexandros Konstantinos van der Meer",
+          "flagCenter": -93.5,
+          "firstTextCenter": -92.5,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 1366
+        },
+        {
+          "text": "Leo",
+          "flagCenter": -93.5,
+          "firstTextCenter": -92.5,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 1366
+        }
+      ]
+    },
+    {
+      "width": 1366,
+      "theme": "dark",
+      "rows": [
+        {
+          "text": "Alexandros Konstantinos van der Meer",
+          "flagCenter": 24.5,
+          "firstTextCenter": 25.5,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 1366
+        },
+        {
+          "text": "Leo",
+          "flagCenter": 24.5,
+          "firstTextCenter": 25.5,
+          "difference": 1,
+          "lines": 1,
+          "targetHeight": 44,
+          "flagHeight": 14,
+          "width": 1366
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "dist/ui-flutlicht/views/market.css": "b5dff4a85800027ec4499ad0586cff7798acec61c0e117587ddd1a5925cb3f61",
+    "dist/world-market-ui-v66.js": "082bbea9b45b54e6a04e12299c7883412dbef3897b4bb9ce36e66ded8fdba6e5"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "mode": "probe",
+  "status": "blocked",
+  "pass": false,
+  "hardwarePass": false,
+  "started": "2026-10-09T22:53:06.155Z",
+  "prerequisites": {
+    "nodeMajor": 24,
+    "nodeSupported": true,
+    "buildAvailable": true,
+    "nativeWebSocketAvailable": true,
+    "adbSelection": "explicit path",
+    "adbVersion": "Android Debug Bridge version 1.0.41",
+    "adbAvailable": true,
+    "devices": {
+      "physicalUsbCandidates": 0,
+      "unauthorized": 0,
+      "offline": 0
+    }
+  },
+  "samples": [],
+  "manual": [
+    "Real app switch and return; wake-lock reacquisition and unchanged native match state",
+    "Visual readability of names, team rings and ball in landscape; interaction and keeper animations"
+  ],
+  "limitations": [
+    "No GPU presentation or per-frame GPU timing measurement",
+    "No performance acceptance threshold or full device acceptance is inferred from loop counters"
+  ],
+  "buildBefore": {
+    "sourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+    "htmlSha256": "ecd3d875e5561f5e488c3e8d480a32a4cf43abb90108c5837db9293ad5d8950f",
+    "manifestSha256": "832f4c33f46010fa6d59d3723ccc51fa09d414a55cccbd2e53d67e88ba6b0fc7",
+    "assets": [
+      {
+        "file": "unity-web.data",
+        "sha256": "a0191474d2c1ba2b774a42851c5415dff80f8835d27297e9c4014ad7a9c15fba",
+        "bytes": 55090735,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+        "bytes": 300906,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.loader.js",
+        "sha256": "57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03",
+        "bytes": 27914,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.wasm",
+        "sha256": "902b92b0a9768aa2538a7082f9343121ceec5e0f4d66cb02d4d37d819ef6fdcd",
+        "bytes": 35260739,
+        "manifestMatches": true
+      }
+    ],
+    "valid": true
+  },
+  "reason": "Need exactly one authorized physical USB device, or select one with --serial; emulators/network devices are rejected",
+  "cleanup": {
+    "failures": [],
+    "ownTargetCreationVerified": true
+  },
+  "buildAfter": {
+    "sourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+    "htmlSha256": "ecd3d875e5561f5e488c3e8d480a32a4cf43abb90108c5837db9293ad5d8950f",
+    "manifestSha256": "832f4c33f46010fa6d59d3723ccc51fa09d414a55cccbd2e53d67e88ba6b0fc7",
+    "assets": [
+      {
+        "file": "unity-web.data",
+        "sha256": "a0191474d2c1ba2b774a42851c5415dff80f8835d27297e9c4014ad7a9c15fba",
+        "bytes": 55090735,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+        "bytes": 300906,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.loader.js",
+        "sha256": "57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03",
+        "bytes": 27914,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.wasm",
+        "sha256": "902b92b0a9768aa2538a7082f9343121ceec5e0f4d66cb02d4d37d819ef6fdcd",
+        "bytes": 35260739,
+        "manifestMatches": true
+      }
+    ],
+    "valid": true
+  },
+  "buildUnchanged": true,
+  "finished": "2026-10-09T22:53:07.031Z"
+}

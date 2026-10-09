@@ -1,0 +1,530 @@
+{
+    "phase": "final",
+    "failed": 0,
+    "checks": [
+        {
+            "name": "An already observed keeper contact has its authored action pose immediately",
+            "passed": true,
+            "measured": 1.0
+        },
+        {
+            "name": "Known keeper launch is presented on the arrival frame, rather than one display frame later",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "The actual world ball renderer applies a travel-derived orientation",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Observed half-circumference rolls the ball by 180 degrees / 30",
+            "passed": true,
+            "measured": 180.00000858306885
+        },
+        {
+            "name": "Real panel orientation changes at 30 Hz",
+            "passed": true,
+            "measured": 180.0
+        },
+        {
+            "name": "A stationary ball does not spin at 30 Hz",
+            "passed": true,
+            "measured": 180.00000858306885
+        },
+        {
+            "name": "A paused native clock freezes the ball orientation / 30",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Replay seek resets ball orientation / 30",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A restart cut cannot turn a teleport into rolling / 30",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Observed half-circumference rolls the ball by 180 degrees / 60",
+            "passed": true,
+            "measured": 180.0000081062317
+        },
+        {
+            "name": "Real panel orientation changes at 60 Hz",
+            "passed": true,
+            "measured": 180.0
+        },
+        {
+            "name": "A stationary ball does not spin at 60 Hz",
+            "passed": true,
+            "measured": 180.0000081062317
+        },
+        {
+            "name": "A paused native clock freezes the ball orientation / 60",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Replay seek resets ball orientation / 60",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A restart cut cannot turn a teleport into rolling / 60",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Observed half-circumference rolls the ball by 180 degrees / 120",
+            "passed": true,
+            "measured": 180.00000727176666
+        },
+        {
+            "name": "Real panel orientation changes at 120 Hz",
+            "passed": true,
+            "measured": 179.99998474121094
+        },
+        {
+            "name": "A stationary ball does not spin at 120 Hz",
+            "passed": true,
+            "measured": 180.00000727176666
+        },
+        {
+            "name": "A paused native clock freezes the ball orientation / 120",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Replay seek resets ball orientation / 120",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A restart cut cannot turn a teleport into rolling / 120",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Walk, run and sprint share the measured left footfall at one cycle value / walking",
+            "passed": true,
+            "measured": 10.37
+        },
+        {
+            "name": "Walk, run and sprint share the measured left footfall at one cycle value / run_fast4",
+            "passed": true,
+            "measured": 10.37
+        },
+        {
+            "name": "Walk, run and sprint share the measured left footfall at one cycle value / sprint_forward",
+            "passed": true,
+            "measured": 10.37
+        },
+        {
+            "name": "Threshold jitter cannot alternate walk/run clips / 30",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Paused stride phase remains frozen / 30",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Threshold jitter cannot alternate walk/run clips / 60",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Paused stride phase remains frozen / 60",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Threshold jitter cannot alternate walk/run clips / 120",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Paused stride phase remains frozen / 120",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Observed lateral dive banks the actual body, rather than leaving it upright",
+            "passed": true,
+            "measured": 55.71428298950195
+        },
+        {
+            "name": "A repeated observed dive cannot accumulate body displacement",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Dive presentation cannot move or turn the game-owned root",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "The left hand can reach an actual left-side native contact without stretching",
+            "passed": true,
+            "measured": 1.3328003944934608e-7
+        },
+        {
+            "name": "Left-hand correction retains the game-owned root",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Actual RenderWorld rotates the rendered ball Transform from received travel",
+            "passed": true,
+            "measured": 12.992252349853516
+        },
+        {
+            "name": "Actual RenderWorld keeps the received ball path; only the documented ground display height applies",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "A native ground ball rests on the pitch instead of floating",
+            "passed": true,
+            "measured": 0.17640002071857452
+        },
+        {
+            "name": "Ball display height is monotonic and unchanged from 1.29 m, so crossbar heights stay native",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Actual rendering cannot mutate the authoritative received match picture",
+            "passed": true,
+            "measured": 0.0
+        },
+        {
+            "name": "Actual low save uses the measured contact window on the received contact frame",
+            "passed": true,
+            "measured": 1.18
+        },
+        {
+            "name": "Actual low save contact is not delayed by the visual mixer",
+            "passed": true,
+            "measured": 1.0
+        }
+    ],
+    "keeper": [
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 0.0,
+            "x": 0.2761073112487793,
+            "y": 0.8732119202613831,
+            "z": 0.33095410466194153,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 0.2222222238779068,
+            "x": 0.2910739779472351,
+            "y": 0.7469643354415894,
+            "z": 0.2300415188074112,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 0.4444444477558136,
+            "x": 0.25219491124153137,
+            "y": 1.2438633441925049,
+            "z": 0.5220301747322083,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 0.6666666865348816,
+            "x": 0.44450336694717407,
+            "y": 1.9110782146453857,
+            "z": 0.09344398975372314,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 0.8888888955116272,
+            "x": 0.42543238401412964,
+            "y": 2.0102970600128174,
+            "z": 0.1661323457956314,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 1.1111111640930176,
+            "x": 0.19266849756240845,
+            "y": 1.3802168369293213,
+            "z": 0.22433996200561523,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 1.3333333730697632,
+            "x": 0.08752858638763428,
+            "y": 0.882046639919281,
+            "z": 0.3797229826450348,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 1.5555555820465088,
+            "x": 0.09983699023723602,
+            "y": 0.9008470773696899,
+            "z": 0.34203091263771057,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 1.7777777910232544,
+            "x": 0.1238982155919075,
+            "y": 0.9392181634902954,
+            "z": 0.29616016149520874,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 2.0,
+            "x": 0.10895951092243195,
+            "y": 0.9099945425987244,
+            "z": 0.2676636576652527,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 2.222222328186035,
+            "x": 0.10554889589548111,
+            "y": 0.9603493809700012,
+            "z": 0.240500345826149,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 2.444444417953491,
+            "x": 0.15297137200832367,
+            "y": 0.9387001395225525,
+            "z": 0.2664063274860382,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_dive_meshy",
+            "time": 2.6656668186187744,
+            "x": 0.13633455336093903,
+            "y": 0.9514116644859314,
+            "z": 0.275956392288208,
+            "length": 2.6666667461395264
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 0.0,
+            "x": 0.36692357063293457,
+            "y": 0.9119539856910706,
+            "z": 0.2954300045967102,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 0.34444448351860046,
+            "x": 0.31469184160232544,
+            "y": 0.8883723616600037,
+            "z": 0.32882991433143616,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 0.6888889670372009,
+            "x": 0.5265915393829346,
+            "y": 1.1429542303085327,
+            "z": -0.2022184282541275,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 1.033333420753479,
+            "x": 0.4319603741168976,
+            "y": 0.6339214444160461,
+            "z": 0.4339543282985687,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 1.3777779340744019,
+            "x": 0.30236804485321045,
+            "y": 2.08272647857666,
+            "z": -0.37801530957221985,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 1.7222223281860352,
+            "x": -0.06187867000699043,
+            "y": 2.038926839828491,
+            "z": -0.2257986217737198,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 2.066666841506958,
+            "x": -0.1171770915389061,
+            "y": 1.2446386814117432,
+            "z": 0.004490375518798828,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 2.411111354827881,
+            "x": -0.33014553785324097,
+            "y": 0.5288887023925781,
+            "z": 0.13396139442920685,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 2.7555558681488037,
+            "x": -0.08665154129266739,
+            "y": 0.5130310654640198,
+            "z": 0.3310166895389557,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 3.1000003814697266,
+            "x": -0.5278074741363525,
+            "y": 0.44338756799697876,
+            "z": 0.13128817081451416,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 3.4444446563720703,
+            "x": -0.44247734546661377,
+            "y": 0.44509658217430115,
+            "z": 0.2033408135175705,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 3.788889169692993,
+            "x": -0.4254206717014313,
+            "y": 0.44456782937049866,
+            "z": 0.22330240905284882,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_high_meshy",
+            "time": 4.132333755493164,
+            "x": -0.429299533367157,
+            "y": 0.4550751745700836,
+            "z": 0.21097801625728607,
+            "length": 4.133333683013916
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 0.0,
+            "x": 0.2866188585758209,
+            "y": 0.9295154809951782,
+            "z": 0.03269118443131447,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 0.5972222685813904,
+            "x": 0.28614571690559387,
+            "y": 0.8970726132392883,
+            "z": 0.02211683988571167,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 1.1944445371627808,
+            "x": 0.37533333897590637,
+            "y": 0.3409525752067566,
+            "z": 0.3288637101650238,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 1.7916667461395264,
+            "x": 0.38431212306022644,
+            "y": 0.3693307042121887,
+            "z": 0.3963697850704193,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 2.3888890743255615,
+            "x": 0.3155604302883148,
+            "y": 1.129867672920227,
+            "z": 0.3651559352874756,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 2.9861111640930176,
+            "x": 0.2613596022129059,
+            "y": 1.3543872833251953,
+            "z": 0.22922660410404205,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 3.5833334922790527,
+            "x": 0.25019505620002747,
+            "y": 1.3519575595855713,
+            "z": 0.1819249540567398,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 4.180555820465088,
+            "x": 0.25037267804145813,
+            "y": 1.3372482061386108,
+            "z": 0.17422713339328766,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 4.777778148651123,
+            "x": 0.251605361700058,
+            "y": 1.3258554935455322,
+            "z": 0.17035377025604248,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 5.375,
+            "x": 0.2708810567855835,
+            "y": 1.0683400630950928,
+            "z": 0.15407223999500275,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 5.972222328186035,
+            "x": 0.3019855320453644,
+            "y": 0.9355871677398682,
+            "z": -0.05094093456864357,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 6.56944465637207,
+            "x": 0.2856837213039398,
+            "y": 0.9285395741462708,
+            "z": 0.020554842427372932,
+            "length": 7.1666669845581055
+        },
+        {
+            "clip": "keeper_low_meshy",
+            "time": 7.1656670570373535,
+            "x": 0.2872009873390198,
+            "y": 0.9299607872962952,
+            "z": 0.033372167497873306,
+            "length": 7.1666669845581055
+        }
+    ]
+}

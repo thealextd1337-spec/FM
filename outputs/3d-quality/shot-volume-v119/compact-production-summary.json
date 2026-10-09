@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "newActualFullMatches": 48,
+  "markedJsonContinuationCases": 48,
+  "unmarkedOldRouteCases": 48,
+  "allResolvedDrawsMatched": true,
+  "oldCheckpointsNotBackfilled": true,
+  "exactCandidateMetricMatch": true,
+  "productionUnchanged": true,
+  "originalFunctionsRestored": true,
+  "means": [
+    {
+      "configuration": "standard/5",
+      "totalShots": 12.833333333333334,
+      "onTarget": 6.666666666666667,
+      "goals": 1.3333333333333333,
+      "shotRange": [
+        8,
+        18
+      ]
+    },
+    {
+      "configuration": "standard/6",
+      "totalShots": 12.5,
+      "onTarget": 6.666666666666667,
+      "goals": 1.25,
+      "shotRange": [
+        8,
+        18
+      ]
+    },
+    {
+      "configuration": "large/5",
+      "totalShots": 12.916666666666666,
+      "onTarget": 6.916666666666667,
+      "goals": 1.3333333333333333,
+      "shotRange": [
+        8,
+        18
+      ]
+    },
+    {
+      "configuration": "large/6",
+      "totalShots": 12.25,
+      "onTarget": 6.583333333333333,
+      "goals": 1.25,
+      "shotRange": [
+        7,
+        17
+      ]
+    }
+  ],
+  "marker": "playerPerformance.shotBalanceRevision=119 only through normal new-match initialization",
+  "scope": "Current source, native full compact controllers and saved minute-27 JSON continuation. No production edits, historical evidence replacement, physical/device claim or fabricated outcomes.",
+  "sourceSha256": "262ad562b2f8730aef2c816f56bb832796cf53169349a9a8b25a10d5437a8271",
+  "runnerSha256": "43c630b817951adddab519636c65d7b4e158c7eeb7c721e13894091734be4d87",
+  "evidenceSha256": "2615ff4907320331f7afd64aaac4afaa304885b8f116274d1698f879dcd3a7e7",
+  "halftimeSourceSha256": "8a8233f08ebd8587c8102cff2f4fdd7724353fb418894e7380368e4384e63bef",
+  "finalVerification": "2026-10-10: final frozen-source repetition; 153 source files unchanged after both owned runners"
+}

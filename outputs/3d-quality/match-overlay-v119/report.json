@@ -1,0 +1,694 @@
+{
+  "scope": "isolated Edge source-app overlay fixture; no Unity/camera/device claim",
+  "checks": [
+    "sidebar derives actual first league",
+    "explicit division follows current metadata",
+    "projection changes no career data",
+    "sponsor has accessible identity and financial detail",
+    "wordmark has no duplicate displayed name",
+    "all 13 actual competitions have distinct identities",
+    "all 13 designs differ by palette/motif",
+    "1920/de compact strip",
+    "1920/de no overflow",
+    "1920/de all actions/markers retained",
+    "1920 fullscreen TV readable and clear of top controls",
+    "1920/en compact strip",
+    "1920/en no overflow",
+    "1920/en all actions/markers retained",
+    "1280/de compact strip",
+    "1280/de no overflow",
+    "1280/de all actions/markers retained",
+    "1280 fullscreen TV readable and clear of top controls",
+    "1280/en compact strip",
+    "1280/en no overflow",
+    "1280/en all actions/markers retained",
+    "931/de compact strip",
+    "931/de no overflow",
+    "931/de all actions/markers retained",
+    "931 fullscreen TV readable and clear of top controls",
+    "931/en compact strip",
+    "931/en no overflow",
+    "931/en all actions/markers retained",
+    "844/de compact strip",
+    "844/de no overflow",
+    "844/de all actions/markers retained",
+    "844 fullscreen TV readable and clear of top controls",
+    "844/en compact strip",
+    "844/en no overflow",
+    "844/en all actions/markers retained",
+    "568/de compact strip",
+    "568/de no overflow",
+    "568/de all actions/markers retained",
+    "568/en compact strip",
+    "568/en no overflow",
+    "568/en all actions/markers retained",
+    "320/de compact strip",
+    "320/de no overflow",
+    "320/de all actions/markers retained",
+    "320/en compact strip",
+    "320/en no overflow",
+    "320/en all actions/markers retained",
+    "event menu opens on tap/click",
+    "Escape closes menu and preserves focus",
+    "event seeks 3 seconds before and pauses native game {\"time\":2,\"running\":false,\"phase\":\"paused\",\"trace\":[{\"time\":2,\"before\":4,\"context\":true,\"review\":{\"time\":2}}]}",
+    "review play/pause keeps native match unchanged",
+    "Live returns to current native state",
+    "goal caption is actual club and safely escaped",
+    "goal club caption is visible below the actual badge",
+    "historical broadcast uses recorded competition identity",
+    "unknown competition gets neutral fallback",
+    "replay explicitly describes available session recording",
+    "13 actual rendered scoreboard designs differ",
+    "Taktik exits fullscreen and preserves native in-flight pause deferral",
+    "native pause completion opens existing tactics overview",
+    "no page errors"
+  ],
+  "views": [
+    {
+      "width": 1920,
+      "language": "de",
+      "height": 54,
+      "barWidth": 680,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Ereignisse (5)",
+      "buttons": [
+        {
+          "label": "Spiel fortsetzen",
+          "height": 44
+        },
+        {
+          "label": "Zurück zu Live",
+          "height": 44
+        },
+        {
+          "label": "Ereignisse (5)",
+          "height": 44
+        }
+      ],
+      "tv": {
+        "width": 282.78125,
+        "right": 294.78125,
+        "score": 30,
+        "time": 22
+      }
+    },
+    {
+      "width": 1920,
+      "language": "en",
+      "height": 54,
+      "barWidth": 680,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Events (5)",
+      "buttons": [
+        {
+          "label": "Resume match",
+          "height": 44
+        },
+        {
+          "label": "Return to live",
+          "height": 44
+        },
+        {
+          "label": "Events (5)",
+          "height": 44
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "de",
+      "height": 54,
+      "barWidth": 680,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Ereignisse (5)",
+      "buttons": [
+        {
+          "label": "Spiel fortsetzen",
+          "height": 44
+        },
+        {
+          "label": "Zurück zu Live",
+          "height": 44
+        },
+        {
+          "label": "Ereignisse (5)",
+          "height": 44
+        }
+      ],
+      "tv": {
+        "width": 255.765625,
+        "right": 267.765625,
+        "score": 25.6,
+        "time": 18.56
+      }
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "height": 54,
+      "barWidth": 680,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Events (5)",
+      "buttons": [
+        {
+          "label": "Resume match",
+          "height": 44
+        },
+        {
+          "label": "Return to live",
+          "height": 44
+        },
+        {
+          "label": "Events (5)",
+          "height": 44
+        }
+      ]
+    },
+    {
+      "width": 931,
+      "language": "de",
+      "height": 54,
+      "barWidth": 680,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Ereignisse (5)",
+      "buttons": [
+        {
+          "label": "Spiel fortsetzen",
+          "height": 44
+        },
+        {
+          "label": "Zurück zu Live",
+          "height": 44
+        },
+        {
+          "label": "Ereignisse (5)",
+          "height": 44
+        }
+      ],
+      "tv": {
+        "width": 228,
+        "right": 240,
+        "score": 21,
+        "time": 15
+      }
+    },
+    {
+      "width": 931,
+      "language": "en",
+      "height": 54,
+      "barWidth": 680,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Events (5)",
+      "buttons": [
+        {
+          "label": "Resume match",
+          "height": 44
+        },
+        {
+          "label": "Return to live",
+          "height": 44
+        },
+        {
+          "label": "Events (5)",
+          "height": 44
+        }
+      ]
+    },
+    {
+      "width": 844,
+      "language": "de",
+      "height": 54,
+      "barWidth": 680,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Ereignisse (5)",
+      "buttons": [
+        {
+          "label": "Spiel fortsetzen",
+          "height": 44
+        },
+        {
+          "label": "Zurück zu Live",
+          "height": 44
+        },
+        {
+          "label": "Ereignisse (5)",
+          "height": 44
+        }
+      ],
+      "tv": {
+        "width": 228,
+        "right": 240,
+        "score": 21,
+        "time": 15
+      }
+    },
+    {
+      "width": 844,
+      "language": "en",
+      "height": 54,
+      "barWidth": 680,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Events (5)",
+      "buttons": [
+        {
+          "label": "Resume match",
+          "height": 44
+        },
+        {
+          "label": "Return to live",
+          "height": 44
+        },
+        {
+          "label": "Events (5)",
+          "height": 44
+        }
+      ]
+    },
+    {
+      "width": 568,
+      "language": "de",
+      "height": 54,
+      "barWidth": 552,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Ereignisse (5)",
+      "buttons": [
+        {
+          "label": "Spiel fortsetzen",
+          "height": 44
+        },
+        {
+          "label": "Zurück zu Live",
+          "height": 44
+        },
+        {
+          "label": "Ereignisse (5)",
+          "height": 44
+        }
+      ]
+    },
+    {
+      "width": 568,
+      "language": "en",
+      "height": 54,
+      "barWidth": 552,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Events (5)",
+      "buttons": [
+        {
+          "label": "Resume match",
+          "height": 44
+        },
+        {
+          "label": "Return to live",
+          "height": 44
+        },
+        {
+          "label": "Events (5)",
+          "height": 44
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "language": "de",
+      "height": 102,
+      "barWidth": 304,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Ereignisse (5)",
+      "buttons": [
+        {
+          "label": "Spiel fortsetzen",
+          "height": 44
+        },
+        {
+          "label": "Zurück zu Live",
+          "height": 44
+        },
+        {
+          "label": "Ereignisse (5)",
+          "height": 44
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "language": "en",
+      "height": 102,
+      "barWidth": 304,
+      "overflow": false,
+      "events": 5,
+      "markers": 5,
+      "menu": "Events (5)",
+      "buttons": [
+        {
+          "label": "Resume match",
+          "height": 44
+        },
+        {
+          "label": "Return to live",
+          "height": 44
+        },
+        {
+          "label": "Events (5)",
+          "height": 44
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "projection": {
+    "first": "Italien · Liga 1",
+    "second": "Italien · Liga 2",
+    "third": "Italien · Liga 3",
+    "unchanged": true,
+    "brand": {
+      "name": "Retelia",
+      "label": "Retelia",
+      "wordmark": true,
+      "duplicateText": false,
+      "fixed": true
+    },
+    "competitions": [
+      {
+        "id": "S1:ENG:LEAGUE",
+        "type": "league",
+        "country": "ENG",
+        "division": 1
+      },
+      {
+        "id": "S1:ENG:CUP",
+        "type": "cup",
+        "country": "ENG",
+        "division": null
+      },
+      {
+        "id": "S1:ESP:LEAGUE",
+        "type": "league",
+        "country": "ESP",
+        "division": 1
+      },
+      {
+        "id": "S1:ESP:CUP",
+        "type": "cup",
+        "country": "ESP",
+        "division": null
+      },
+      {
+        "id": "S1:ITA:LEAGUE",
+        "type": "league",
+        "country": "ITA",
+        "division": 1
+      },
+      {
+        "id": "S1:ITA:CUP",
+        "type": "cup",
+        "country": "ITA",
+        "division": null
+      },
+      {
+        "id": "S1:GER:LEAGUE",
+        "type": "league",
+        "country": "GER",
+        "division": 1
+      },
+      {
+        "id": "S1:GER:CUP",
+        "type": "cup",
+        "country": "GER",
+        "division": null
+      },
+      {
+        "id": "S1:FRA:LEAGUE",
+        "type": "league",
+        "country": "FRA",
+        "division": 1
+      },
+      {
+        "id": "S1:FRA:CUP",
+        "type": "cup",
+        "country": "FRA",
+        "division": null
+      },
+      {
+        "id": "S1:POR:LEAGUE",
+        "type": "league",
+        "country": "POR",
+        "division": 1
+      },
+      {
+        "id": "S1:POR:CUP",
+        "type": "cup",
+        "country": "POR",
+        "division": null
+      },
+      {
+        "id": "S1:EUROPE",
+        "type": "europe",
+        "country": null,
+        "division": null
+      }
+    ],
+    "themes": [
+      {
+        "accent": "#dfb5fa",
+        "ink": "#2d153b",
+        "base": "#291638",
+        "motif": "block",
+        "font": "Arial,sans-serif",
+        "key": "ENG-league-1"
+      },
+      {
+        "accent": "#dfb5fa",
+        "ink": "#2d153b",
+        "base": "#291638",
+        "motif": "cup",
+        "font": "Arial,sans-serif",
+        "key": "ENG-cup"
+      },
+      {
+        "accent": "#ffba91",
+        "ink": "#3a1f14",
+        "base": "#35201e",
+        "motif": "stripe",
+        "font": "Arial,sans-serif",
+        "key": "ESP-league-1"
+      },
+      {
+        "accent": "#ffba91",
+        "ink": "#3a1f14",
+        "base": "#35201e",
+        "motif": "cup",
+        "font": "Arial,sans-serif",
+        "key": "ESP-cup"
+      },
+      {
+        "accent": "#a8caff",
+        "ink": "#10263d",
+        "base": "#122944",
+        "motif": "line",
+        "font": "Arial,sans-serif",
+        "key": "ITA-league-1"
+      },
+      {
+        "accent": "#a8caff",
+        "ink": "#10263d",
+        "base": "#122944",
+        "motif": "cup",
+        "font": "Arial,sans-serif",
+        "key": "ITA-cup"
+      },
+      {
+        "accent": "#f1c95b",
+        "ink": "#2d2510",
+        "base": "#20292e",
+        "motif": "rails",
+        "font": "Arial,sans-serif",
+        "key": "GER-league-1"
+      },
+      {
+        "accent": "#f1c95b",
+        "ink": "#2d2510",
+        "base": "#20292e",
+        "motif": "cup",
+        "font": "Arial,sans-serif",
+        "key": "GER-cup"
+      },
+      {
+        "accent": "#e6f79b",
+        "ink": "#243010",
+        "base": "#202d36",
+        "motif": "step",
+        "font": "Arial,sans-serif",
+        "key": "FRA-league-1"
+      },
+      {
+        "accent": "#e6f79b",
+        "ink": "#243010",
+        "base": "#202d36",
+        "motif": "cup",
+        "font": "Arial,sans-serif",
+        "key": "FRA-cup"
+      },
+      {
+        "accent": "#a6ebcc",
+        "ink": "#143b2c",
+        "base": "#16352d",
+        "motif": "double",
+        "font": "Georgia,serif",
+        "key": "POR-league-1"
+      },
+      {
+        "accent": "#a6ebcc",
+        "ink": "#143b2c",
+        "base": "#16352d",
+        "motif": "cup",
+        "font": "Georgia,serif",
+        "key": "POR-cup"
+      },
+      {
+        "key": "europe",
+        "accent": "#c6bcff",
+        "ink": "#201a40",
+        "base": "#1a2040",
+        "motif": "stars",
+        "font": "Arial,sans-serif"
+      }
+    ]
+  },
+  "selected": {
+    "time": 2,
+    "running": false,
+    "phase": "paused",
+    "trace": [
+      {
+        "time": 2,
+        "before": 4,
+        "context": true,
+        "review": {
+          "time": 2
+        }
+      }
+    ]
+  },
+  "banner": {
+    "club": "FC Bremen Weser",
+    "shown": "FC Bremen Weser",
+    "escaped": true
+  },
+  "designs": [
+    {
+      "id": "S1:ENG:LEAGUE",
+      "key": "ENG-league-1",
+      "motif": "block",
+      "clockBackground": "rgb(223, 181, 250)",
+      "caption": "England · Liga 1 · Spieltag 3"
+    },
+    {
+      "id": "S1:ENG:CUP",
+      "key": "ENG-cup",
+      "motif": "cup",
+      "clockBackground": "rgb(223, 181, 250)",
+      "caption": "England · Pokal · Finale"
+    },
+    {
+      "id": "S1:ESP:LEAGUE",
+      "key": "ESP-league-1",
+      "motif": "stripe",
+      "clockBackground": "rgb(255, 186, 145)",
+      "caption": "Spanien · Liga 1 · Spieltag 3"
+    },
+    {
+      "id": "S1:ESP:CUP",
+      "key": "ESP-cup",
+      "motif": "cup",
+      "clockBackground": "rgb(255, 186, 145)",
+      "caption": "Spanien · Pokal · Finale"
+    },
+    {
+      "id": "S1:ITA:LEAGUE",
+      "key": "ITA-league-1",
+      "motif": "line",
+      "clockBackground": "rgb(168, 202, 255)",
+      "caption": "Italien · Liga 1 · Spieltag 3"
+    },
+    {
+      "id": "S1:ITA:CUP",
+      "key": "ITA-cup",
+      "motif": "cup",
+      "clockBackground": "rgb(168, 202, 255)",
+      "caption": "Italien · Pokal · Finale"
+    },
+    {
+      "id": "S1:GER:LEAGUE",
+      "key": "GER-league-1",
+      "motif": "rails",
+      "clockBackground": "rgb(241, 201, 91)",
+      "caption": "Deutschland · Liga 1 · Spieltag 3"
+    },
+    {
+      "id": "S1:GER:CUP",
+      "key": "GER-cup",
+      "motif": "cup",
+      "clockBackground": "rgb(241, 201, 91)",
+      "caption": "Deutschland · Pokal · Finale"
+    },
+    {
+      "id": "S1:FRA:LEAGUE",
+      "key": "FRA-league-1",
+      "motif": "step",
+      "clockBackground": "rgb(230, 247, 155)",
+      "caption": "Frankreich · Liga 1 · Spieltag 3"
+    },
+    {
+      "id": "S1:FRA:CUP",
+      "key": "FRA-cup",
+      "motif": "cup",
+      "clockBackground": "rgb(230, 247, 155)",
+      "caption": "Frankreich · Pokal · Finale"
+    },
+    {
+      "id": "S1:POR:LEAGUE",
+      "key": "POR-league-1",
+      "motif": "double",
+      "clockBackground": "rgb(166, 235, 204)",
+      "caption": "Portugal · Liga 1 · Spieltag 3"
+    },
+    {
+      "id": "S1:POR:CUP",
+      "key": "POR-cup",
+      "motif": "cup",
+      "clockBackground": "rgb(166, 235, 204)",
+      "caption": "Portugal · Pokal · Finale"
+    },
+    {
+      "id": "S1:EUROPE",
+      "key": "europe",
+      "motif": "stars",
+      "clockBackground": "rgb(198, 188, 255)",
+      "caption": "Europacup · Finale"
+    }
+  ],
+  "status": "passed"
+}

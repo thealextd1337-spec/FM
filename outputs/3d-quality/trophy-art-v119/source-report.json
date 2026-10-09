@@ -1,0 +1,33 @@
+{
+  "scope": "isolated source/built app SVG imagery; no Unity or hardware claim",
+  "checks": [
+    "source actual Flutlicht wrapper retains all 32 identities",
+    "source all SVGs parse as valid XML",
+    "source native career unchanged by art lookups",
+    "source final and personal awards use shared imagery",
+    "source real club profile, archive and celebration retain national identity",
+    "source celebration pixelated CSS is overridden by vector rendering",
+    "source all 32 light/dark 24/64/256 SVG images decode smoothly",
+    "no app JavaScript errors",
+    "reviewed art sources unchanged during proof"
+  ],
+  "views": [
+    {
+      "mode": "source",
+      "identities": 32,
+      "images": 192,
+      "sizes": [
+        24,
+        64,
+        256
+      ],
+      "xmlValid": true
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "dist/trophy-art-v119.js": "f67b8cf1fec6c2fb49c65d46be7aa2ddb4f9f7aa764b16b84d05af3b5f0c041a",
+    "dist/world-competition-v62.js": "68be6dcdce8ad4abbd5b7c8996c8b090444df837ddf7b7d5040a54e9cd9b5f00",
+    "dist/ui-flutlicht/adapter.js": "3050b696b8daaf5fa0eddf3d52175e8249379ec834c3dcf4125c49ccb9996911"
+  }
+}

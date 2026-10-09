@@ -59,6 +59,20 @@ function v99FlushSwaps(){
 function v99ActionState(current){
  let state=v99Actions.get(current);if(!state){state={keepers:new Map(),throws:new Map(),kicks:new Map(),goalHeight:0,miss:null};v99Actions.set(current,state)}return state;
 }
+// Existing restart/recovery observations also lock native movement. Preserve
+// them in new safe checkpoints using player IDs, never flight callbacks or
+// another action clock. Missing old facts are not reconstructed.
+function v119SnapshotActionLocks(current){
+ const state=v99Actions.get(current);if(!state)return null;
+ const fields=['kind','phase','age','completed','saved','parry','goal','blocked','onTarget','keeperContact','over','startHeight','endHeight','target','displayTarget','visualStart','keeperStart','diveAt','held','start'];
+ const read=pose=>{const record=Object.fromEntries(fields.filter(k=>pose[k]!==undefined).map(k=>[k,structuredClone(pose[k])]));for(const k of ['keeper','shooter','taker'])if(pose[k]?.pid)record[k+'Pid']=pose[k].pid;if(pose.flight)record.flight=Object.fromEntries(['x','y','duration','progress','team','target'].filter(k=>pose.flight[k]!==undefined).map(k=>[k,structuredClone(pose.flight[k])]));return record;};
+ const maps=Object.fromEntries(['kicks','keepers','throws'].map(k=>[k,[...state[k]].map(([id,pose])=>[id,read(pose)])]));
+ return Object.values(maps).some(items=>items.length)?maps:null;
+}
+function v119RestoreActionLocks(current,saved,find){
+ if(!saved)return;const state=v99ActionState(current);
+ for(const key of ['kicks','keepers','throws'])if(Array.isArray(saved[key]))for(const [id,record]of saved[key]){if(!find(id))continue;const pose=structuredClone(record);for(const k of ['keeper','shooter','taker'])if(pose[k+'Pid']){pose[k]=find(pose[k+'Pid']);delete pose[k+'Pid'];}state[key].set(id,pose);}
+}
 function v101KeeperWaiting(current,person){return current.owner===person&&!current.flight&&v99Actions.get(current)?.kicks.get(person.pid)?.phase==='waiting'}
 function v131KeeperContactProgress(release){const start=release.visualStart||release.flight;return release.goal?clamp((release.keeperStart.y-start.y)/(release.target.y-start.y),0,1):1;}
 function v131KeeperSetting(current,person){const release=current.flight&&v99Flights.get(current.flight);if(release?.keeper!==person||!release.onTarget||release.blocked)return false;const seconds=current.flight.duration/MATCH_SPEED,remaining=(v131KeeperContactProgress(release)-current.flight.progress)*seconds;return remaining>.30;}
@@ -231,7 +245,7 @@ function v99BallView(current){
 function v99PlayerAction(current,person){
  if(current.finished)return null;
  const native=current.attackFlow?.flowVersion===159||typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeBall;
- const smother=typeof v115KeeperChallengeAction==='function'&&v115KeeperChallengeAction(current,person);if(smother)return smother;
+ const smother=typeof v115KeeperChallengeAction==='function'&&v115KeeperChallengeAction(current,person);if(smother)return {...smother,parry:false};
  if(v65WorldActive&&current.kickoff?.kicker===person&&current.kickoff.phase!=='rolling'&&v115KickoffReady(current))return {kind:'passReady',progress:current.postBanner?Math.min(1,Math.max(0,1-current.postBanner.wait/.35)):0,target:current.kickoff.support};
  if(current.throwIn?.taker===person&&current.throwIn.ready>0)return {kind:'throw',progress:Math.min(1,current.throwIn.ready/.55),holding:true,pickup:Math.min(1,current.throwIn.ready/.35),target:{x:person.x+(person.x<.5?.15:-.15),y:person.y}};
  const state=v99Actions.get(current),throwPose=state?.throws.get(person.pid);

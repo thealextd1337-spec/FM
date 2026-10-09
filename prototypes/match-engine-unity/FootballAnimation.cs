@@ -80,6 +80,9 @@ public static class FootballKeeperTiming {
     // conceded, the keeper owns the ball and it is not in flight. An older
     // picture without these facts never shows a held ball.
     public static bool Held(WorldPose p,WorldFrame f){return p!=null&&f!=null&&p.action=="save"&&p.savedKnown&&p.saved&&p.parryKnown&&!p.parry&&!(p.goalKnown&&p.goal)&&f.owner==p.id&&f.ballInFlightKnown&&!f.ballInFlight;}
+    // Explicit view attachment requires every native fact. Missing old picture
+    // fields and an old catch-origin goalKick.held never imply possession here.
+    public static bool VisualHeld(WorldPose p,WorldFrame f){return Held(p,f)&&p.ballHeldKnown&&p.ballHeld&&p.goalKnown&&!p.goal&&(p.recovery>0||p.progress>=1);}
     // A ball between MidSave and HighSave that needs no dive is met upright:
     // keeper_low_meshy scoops (hands 0.83 m at its 1.18 s contact), then gathers
     // to the chest (hands 1.24 m at 2.0 s, 1.45 m at 2.3 s, upright by 3.0 s).
@@ -144,7 +147,7 @@ public sealed class FootballAnimation {
     // air*: aerial take-off/flight/landing (FootballAirTiming); airReach is the
     // received contact height or NaN. loft/volley: kick follow-through after the
     // native contact. throw*: native throw-in phases (FootballThrowTiming).
-    public struct Pose {public AnimationClip clip,baseClip;public double time,baseTime;public bool loop,baseLoop,plant,contact,urgent,leftLead;public float actionWeight,forwardLean,turnLean,recoveryLean,keeperDive,contactWeight,slide,lunge,airLift,airReach,airTuck,airCrouch,airArms,loft,volley,throwBend,throwRaise,throwArch,throwRelease;public string key,kind;public Vector3 target;}
+    public struct Pose {public AnimationClip clip,baseClip;public double time,baseTime;public bool loop,baseLoop,plant,contact,urgent,leftLead,ballHeld;public float actionWeight,forwardLean,turnLean,recoveryLean,strideYaw,keeperDive,contactWeight,slide,lunge,airLift,airReach,airTuck,airCrouch,airArms,loft,volley,throwBend,throwRaise,throwArch,throwRelease;public string key,kind;public Vector3 target;}
     // A native contact releases over this much match time instead of popping.
     public const double ContactRelease=.10;
     readonly PlayableGraph graph;readonly AnimationMixerPlayable mixer;
@@ -224,7 +227,7 @@ public sealed class FootballAnimation {
         GroundShift=shift;if(shift>0&&hips!=null)hips.position-=root.up*shift;
         // Bone-only response to observed motion. Contacts and planted actions
         // always retain their authored pose and the root remains game-owned.
-        if(!pose.contact&&!pose.plant)rig.Lean(pose.forwardLean,pose.turnLean,pose.recoveryLean);
+        if(!pose.contact&&!pose.plant){rig.StrideDirection(pose.strideYaw);rig.Lean(pose.forwardLean,pose.turnLean,pose.recoveryLean);}
         if(pose.keeperDive!=0)rig.KeeperDive(pose.keeperDive,pose.target);
         if(pose.lunge>0)rig.Lunge(pose.lunge);
         if(pose.airLift>0||pose.airCrouch>0||pose.airTuck>0||pose.airArms>0)rig.Air(pose.airLift,pose.airReach,pose.airTuck,pose.airCrouch,pose.airArms);else rig.ClearAir();
@@ -235,7 +238,8 @@ public sealed class FootballAnimation {
         if(pose.plant)rig.Plant(pose.kind=="left-foot");else rig.Release();
         if(pose.slide>0)rig.Slide(pose.slide,pose.target,pose.leftLead);
         ReleaseWeight=0;
-        if(pose.contact){
+        if(pose.ballHeld){rig.GatherBall();releaseFrom=-1;}
+        else if(pose.contact){
             rig.Contact(pose.target,pose.kind,full?1:pose.contactWeight);
             // Only a full native contact releases gradually; the next frames keep
             // the limb near the actual contact point and return within 0.1 s.
@@ -313,7 +317,8 @@ public sealed class FootballGround {
     }
 }
 // Bounded two-bone correction. An unreachable point remains unreachable; the
-// renderer never stretches a limb, teleports an actor or attracts the ball.
+// solver never stretches a limb or teleports an actor. Confirmed possession
+// may separately attach the view ball to the sampled glove midpoint.
 public sealed class FootballRig {
     readonly Transform root,hips,spine,head,leftUpper,leftLower,leftFoot,rightUpper,rightLower,rightFoot,arm,forearm,hand,leftArm,leftForearm,leftHand;
     readonly Vector3 restLeft,restRight;Vector3 anchor;bool planted,plantRight;
@@ -329,6 +334,25 @@ public sealed class FootballRig {
         restLeftFootRotation=Quaternion.Inverse(root.rotation)*leftFoot.rotation;restRightFootRotation=Quaternion.Inverse(root.rotation)*rightFoot.rotation;
     }
     public void Release(){planted=false;plantError=0;reachable=false;contactError=0;}
+    // Directional in-place stride from the observed movement relative to facing.
+    // Both thighs swivel the sampled gait; the received actor root never turns.
+    public void StrideDirection(float degrees){
+        float yaw=Mathf.Clamp(degrees,-75,75);if(Mathf.Abs(yaw)<.001f)return;
+        var q=Quaternion.AngleAxis(yaw,root.up);leftUpper.rotation=q*leftUpper.rotation;rightUpper.rotation=q*rightUpper.rotation;
+        if(spine!=null)spine.rotation=Quaternion.AngleAxis(yaw*.18f,root.up)*spine.rotation;
+    }
+    public Vector3 HeldBallCentre=>(hand.position+leftHand.position)*.5f;
+    // Gather from the sampled body (including a dive/rise), not the old native
+    // contact. Bounded IK preserves limb lengths. The visible ball follows the
+    // resulting glove midpoint; no simulation ball/root is written.
+    public Vector3 GatherBall(){
+        var centre=(arm.position+leftArm.position)*.5f+root.forward*.30f-root.up*.22f;
+        var side=root.right*(WorldBallMotion.Radius*.92f);
+        bool right=CanReach(arm,forearm,hand,centre+side),left=CanReach(leftArm,leftForearm,leftHand,centre-side);
+        if(right)Solve(arm,forearm,hand,centre+side,-root.forward);
+        if(left)Solve(leftArm,leftForearm,leftHand,centre-side,-root.forward);
+        var middle=HeldBallCentre;reachable=right&&left;contactError=Vector3.Distance(middle,centre);return middle;
+    }
     public void Lean(float forward,float turn,float recovery){
         if(spine==null)return;
         // Transform axes are taken from the actor, so the effect is consistent

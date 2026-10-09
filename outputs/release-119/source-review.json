@@ -1,0 +1,179 @@
+{
+  "reviewType": "independent read-only source review and in-memory pure view probes",
+  "findings": [],
+  "resolvedDuringReview": [
+    {
+      "severity": "P2",
+      "finding": "Side/roof hits emitted a zero-bulge net object; existing C# still adds an independent rear tail after age0.6.",
+      "resolution": "JS owner now omits frame.net for visible side/roof contacts; netActive=false causes existing C# to restore rear vertices. Missing-travel legacy fallback preserved."
+    }
+  ],
+  "goalView": {
+    "sourceHashes": {
+      "dist/world-pitch3d-v98.js": "a6ee4296956afdacc4ef4ea6ec6145fd85276eed8677ee337ef8e9c49e11f8a5",
+      "dist/world-unity-v151.js": "32d6820249920179b1182f0e145e0e341b6872583c818a10872d085ff99b7242",
+      "dist/world-pitch-actions-v99.js": "596b0cfb28a68782ca829a2b55f2702e844ec3e7c04e698d5f9543069f2c9877",
+      "dist/world-goal-scene-v83.js": "25d33e8b000b879137fa8425aef952566a2f6478ee3804f1aedf4af34d4b1669"
+    },
+    "checks": [
+      "Stored goalTravel is shallow-copied and never rewritten.",
+      "Actual current goal-scene elapsed is used; existing native scene cap and post-goal duration are preserved.",
+      "Primary rear/side/roof contact uses actual geometry and visible sphere radius0.1764.",
+      "Secondary visible tail remains within posts, rear depth0..2.0236 and native-height range0.29..goalHeight-radius.",
+      "Contact height applies same low-ball display lift as existing C# presentation.",
+      "Only rear contacts emit net data, preventing autonomous C# rear tail for side/roof contacts.",
+      "Native ball/score/goal/flight/outcome and RNG are never assigned or called by the helper.",
+      "Existing native post-goal banner can outlive goalScene; a local view-only scene uses received goalTravel.direction and existing final scene time."
+    ],
+    "pureProbe": {
+      "pass": true,
+      "cases": 120,
+      "sizes": [
+        "68x44",
+        "81.6x52.8"
+      ],
+      "teams": [
+        0,
+        1
+      ],
+      "hitTypes": [
+        "rear",
+        "side",
+        "roof"
+      ],
+      "times": [
+        0,
+        0.01,
+        0.1,
+        0.2,
+        0.3,
+        0.7,
+        1,
+        2.45,
+        4.05
+      ],
+      "frozenNativeInputsUnchanged": true,
+      "postBannerWithoutGoalSceneCases": 12
+    },
+    "limits": [
+      "Pure mathematical production-helper fixtures; not natural/native scoring or rendered GPU evidence.",
+      "Native worker owns the separate controlled36-shot and side/roof browser QA; its current result is not asserted by this review."
+    ]
+  },
+  "csharp": {
+    "sourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+    "manifestSha256": "832f4c33f46010fa6d59d3723ccc51fa09d414a55cccbd2e53d67e88ba6b0fc7",
+    "sourceFreezeSha256": "9c9edc38502e6ff1eb084cb9aaa4be79fd1d8a9f353482fa3d85a3e6e7bc5c94",
+    "reviewedSourceHashes": {
+      "prototypes/match-engine-unity/D6Cli.cs": "b87677cc336d488db3dfd40fba32a41fe489c8c9147904fdf9381bfb3b4a7ef8",
+      "prototypes/match-engine-unity/FootballAnimation.cs": "abc057ddeffd832f65e6930970e65e185b4f977605423d250fae7b87373cb7c7",
+      "prototypes/match-engine-unity/FootballGaitTests.cs": "3dfbac8996d715f8a4b951fa251ea2d46ae308ca249cd1b654d7721287299990",
+      "prototypes/match-engine-unity/FootballLocomotion.cs": "70c7e18ae47c6b11b7918d58eb0362419ba280b10817d3805c9f44d51228161b",
+      "prototypes/match-engine-unity/FootballMotionTests.cs": "0989cf049df1324bbfa3e5fb0c8daf054db51d1d63d82102d034b673ca2af7c2",
+      "prototypes/match-engine-unity/FootballPresentation.cs": "4a9cd86b0db2e7bcbb0acef4951acc89bfd1850609b74f18105d4cdb7efcbd3b",
+      "prototypes/match-engine-unity/FootballPresentation119Tests.cs": "5388b04792d223032d8653d6446c599f34052f096b3d99aa8ad534e8818a01ff",
+      "prototypes/match-engine-unity/KeeperEvidenceDiagnostics.cs": "09dd5948015f66706a796deb06974697bcfc92a5639d71b7b2ef7991e11de0c6",
+      "prototypes/match-engine-unity/WorldViewBridge.cs": "fb1cfaa96a7089e91a8f33cf9becc336a42c805d82561a619fffc06732c4206f",
+      "prototypes/match-engine-unity/WorldViewContract.cs": "d33bac2e9c5ddbe1620877bee1fafded78a8aa8fe8d8955f2674730ee2a1a028",
+      "prototypes/match-engine-unity/WorldViewPlayback.cs": "5add927ee4786f6c087975b9529cbffeee90bb579f415a5feae5cfdefbf83427",
+      "prototypes/match-engine-unity/WorldViewPresentation.cs": "3e6e492e989863657a712e62df117ee67b5910c0d8baaea1f9ca37b7fe4ac432",
+      "prototypes/match-engine-unity/WorldViewEnvironment.cs": "12bb1971459945285ec2bb1e29b339d12107d6fb02576e01675de75fe7e29c5c",
+      "prototypes/match-engine-unity/ProbeBuildIdentity.cs": "3dc670bfb68918afd6b4a1f64d2489c20cdad973c13b308611fc2a7768568c44",
+      "prototypes/match-engine-unity/OffsidePresentation119Tests.cs": "10bbe93b20cde7c82be30da417b73f7588f6d84eb0ffb604f89d9b7586082e7e"
+    },
+    "sourceAndAssetBindingsVerified": true,
+    "previousReviewFindings": [],
+    "recordedChecks": {
+      "existingSuites": 12,
+      "existingChecks": 1875,
+      "newPresentationChecks": 436,
+      "totalChecks": 2311,
+      "offsideChecksIncluded": 53
+    },
+    "reviewScope": "Previously independently reviewed held-ball gates/rig/root authority, diagonal stride, fixed keeper lateral stride, ball shadow lifecycle, optional offside presence/discrete playback/owned geometry; current15 source freeze and all manifest sources/assets still match."
+  },
+  "limits": [
+    "No production edits, Unity compilation, Editor, build, publishing, hardware access or external jobs performed.",
+    "Recorded Unity checks were independently hash-verified, not rerun by this reviewer.",
+    "Final UI proofs use isolated source/build browser fixtures, not hardware or natural Unity match evidence."
+  ],
+  "finalUiBuildProof": {
+    "buildSha256": "2c3f50525fd1421fdfbbd32fe4ce747628da96867590f90aebdb7d321efdebcf",
+    "trophy": {
+      "checks": 20,
+      "report": "outputs/3d-quality/trophy-art-v119/source-build-report.json",
+      "sha256": "05601637acca8ddcf8bd0eb6ff37ffa6b385725d0ac7ed9ae0dfaaf5e51eb936"
+    },
+    "calendarAndVictory": {
+      "checks": 153,
+      "report": "outputs/3d-quality/calendar-colors-v119/source-build-report.json",
+      "sha256": "836138b9724ddd390c591f7a7645c13edf3e215d95085d6b94874bc21afce616"
+    },
+    "flag": "Source proof unchanged; runner has no build mode, no repeat claimed.",
+    "status": "Proof binds the recorded pre-compact-balance HTML hash; no repeat on a later balance build claimed."
+  },
+  "compactShotBalance": {
+    "findings": [],
+    "reviewedSource": {
+      "path": "dist/world-player-performance-v155.js",
+      "sha256": "262ad562b2f8730aef2c816f56bb832796cf53169349a9a8b25a10d5437a8271"
+    },
+    "marker": "playerPerformance.shotBalanceRevision=119",
+    "checks": [
+      "Only v64MakeState invokes v155Initialize; storage load and existing activeMatch continuation do not invoke initialization or backfill marker.",
+      "Exact numeric marker119 selects .09; missing or other revision preserves .22.",
+      "The conditional adds no RNG call: same single shot draw and same old early-return relation are retained.",
+      "Gate remains after actual pass/contact resolution and before shot stats, placement, outcomes and event booking. No outcome correction or score rewrite.",
+      "New state marker is a JSON-safe primitive on the existing serialized performance ledger."
+    ],
+    "recordedEvidence": {
+      "path": "outputs/3d-quality/shot-volume-v119/compact-production.json",
+      "sha256": "b363a261b7acd61f80b849ab258351f99c9e62ff4fa019a4f1c1aad36be04bb7",
+      "runnerSha256": "43c630b817951adddab519636c65d7b4e158c7eeb7c721e13894091734be4d87",
+      "newActualFullMatches": 48,
+      "markedJsonContinuationCases": 48,
+      "unmarkedOldRouteCases": 48,
+      "allExactAndNoBackfill": true,
+      "currentFrozenSourceCount": 153,
+      "currentHashMismatches": []
+    },
+    "limits": [
+      "Existing compact QA evidence independently inspected and source/hash-bound, not rerun by this reviewer.",
+      "Deterministic fixture sample establishes compatibility, not population balance or physical Unity quality."
+    ]
+  },
+  "halftimePlayedTime": {
+    "findings": [],
+    "sourceHashes": {
+      "dist/halftime-v14.js": "8a8233f08ebd8587c8102cff2f4fdd7724353fb418894e7380368e4384e63bef",
+      "dist/set-pieces-v50.js": "89ff8bbb371afec822b2c02a4609723cb6a3dfa1e28b51f45c91ee177a00a40c",
+      "dist/match-presentation-v74.js": "c51ea7a59c492b5005a12208dfded6f13571cd891c5cfa72c5d3b7e3c2898f9b",
+      "dist/world-player-load-v158.js": "12c3ff94c67a468c259b4f26aefb0c7dfdd1185a7cf25d1886f6f2c8972e69b5"
+    },
+    "checks": [
+      "Fresh paceRevision119 adopts already-played elapsed into firstHalfEnd and halftimeExtension before half-time clamp.",
+      "Stored extension remains in existing v74 firstHalfEnd/fullTimeEnd recomputation, with no repeated addition of previous overshoot.",
+      "Fresh pending clock advances monotonically while existing flight and goal-pause gates preserve callback completion.",
+      "Fresh set-piece halftime deferral keeps current time; unmarked set-piece retains exact legacy37.499 behaviour.",
+      "P02 uses actual elapsed for action minute and native interval end: preserving played time keeps contact inside its recorded interval.",
+      "Half bookkeeping/recovery remains existing v65AfterStep keyed by actual halftimePause and one halftimeAiDone."
+    ],
+    "independentInMemoryCases": 11,
+    "caseScope": "Actual helper/halftime+v74 wrappers and actual P02 interval/end helpers; addedMinutes0/1/5, first transition/pending, monotonic continuation, one half break, marked/unmarked set-piece and contact inclusion.",
+    "focusedReport": {
+      "path": "outputs/3d-quality/iteration-119/whistle-offside-tests.json",
+      "sha256": "44035582fd9ae449c323c4193fe812c9679e4f6fdb82c549f25b76c6da9381a8",
+      "checks": 18,
+      "halftimeSourceHashBound": true
+    },
+    "diagnostic": {
+      "path": "outputs/3d-quality/shot-volume-v119/p02-failure.json",
+      "sha256": "2aeb91f46d8e02b7a76e3099030ed11b4ead1a99594d6b49431bc62476893b30",
+      "description": "Existing private candidate standard5 seed5 completed with7shots/3onTarget/2goals; no final production parity claimed."
+    },
+    "limits": [
+      "No product edits or browser/Unity/device execution; existing focused tests independently inspected, not rerun.",
+      "Ongoing broader native candidate study not asserted."
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "reviewType": "read-only JavaScript source review plus independent in-memory JSON continuation probe",
+  "scope": [
+    "PID-only defensive movement checkpoint and restored object identity",
+    "released-flight halftime deferral and post-settlement ledger order",
+    "flight/goal-pause final-whistle guards before ledger or destructive finish",
+    "saved AI shootout lineup/substitutions and deterministic shared calm/chance"
+  ],
+  "sourceHashes": {
+    "dist/world-physical-v65.js": "23ef31850a4b320d120e8122a711103e4c00dd079c9917a4e48c4733e7b0d173",
+    "dist/set-pieces-v50.js": "6006a16d2700dc55cbda50b044f27fc03ce07f6bc908bf9e57b41fb52c31c0f6",
+    "dist/match-ball-events-v117.js": "594c885c83ee9a973e74cc1df7ca0481ce83bab0ae3ae3742447c697342c1a93",
+    "dist/world-competition-v62.js": "6d9a6192d0f6c59c1db4c586232f5390e81635ddc895e27ff4601b7c7e0622ca",
+    "dist/penalties-v42.js": "92bdbca73b2f68b10cf11d7a3690ab4d842d85835b92f227b231fa23af0f9d04"
+  },
+  "findings": [],
+  "probe": {
+    "pass": true,
+    "modes": [
+      "backpedal",
+      "pursuit"
+    ],
+    "nativeSourceUnchanged": true,
+    "restoredFocusIsActualRestoredPlayer": true,
+    "storedFieldsOnlyPidModeSpeed": true
+  },
+  "limits": [
+    "No production files modified for this review.",
+    "No Unity compiler, Editor, build, hardware or natural match execution performed.",
+    "Half/final/shootout findings are source review; existing Root test scripts were read, not rerun or rewritten."
+  ]
+}

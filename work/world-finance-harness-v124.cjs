@@ -1,8 +1,10 @@
 const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
 function harness(modern=true){
  let nextId=0;
- const context=vm.createContext({crypto:{randomUUID:()=>`finance-${++nextId}`}});
+ const context=vm.createContext({clamp:(v,a,b)=>Math.max(a,Math.min(b,v)),crypto:{randomUUID:()=>`finance-${++nextId}`}});
  for(const file of ['world-catalog-v61.js','world-nationalities-v79.js','world-competition-v62.js','world-coaches-v63.js','world-match-v64.js'])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);
+ const penaltySource=fs.readFileSync('dist/penalties-v42.js','utf8');
+ vm.runInContext(penaltySource.slice(penaltySource.indexOf('function v42Composure('),penaltySource.indexOf('function v42OrderHTML(')),context);
  const source=fs.readFileSync('dist/world-foundation-v61.js','utf8');
  vm.runInContext(source.slice(0,source.indexOf('const v61Panel=')),context);
  for(const file of ['world-economy-v66.js','world-transfer-list-v72.js','world-youth-manager-v67.js','world-honours-v74.js',...(modern?['world-payments-v124.js']:[])])vm.runInContext(fs.readFileSync(`dist/${file}`,'utf8'),context);

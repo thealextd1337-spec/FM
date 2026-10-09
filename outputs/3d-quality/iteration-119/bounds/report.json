@@ -1,0 +1,219 @@
+{
+  "pass": true,
+  "checks": [
+    "Old hidden-canvas scroll reproduces clipped bottom 931",
+    "Unity surface fills stage after fix 931",
+    "Control reveal and attempted scroll retain origin 931",
+    "2D fallback retains original layout 931",
+    "Old hidden-canvas scroll reproduces clipped bottom 844",
+    "Unity surface fills stage after fix 844",
+    "Control reveal and attempted scroll retain origin 844",
+    "2D fallback retains original layout 844",
+    "Old hidden-canvas scroll reproduces clipped bottom 1280",
+    "Unity surface fills stage after fix 1280",
+    "Control reveal and attempted scroll retain origin 1280",
+    "2D fallback retains original layout 1280"
+  ],
+  "results": [
+    {
+      "size": {
+        "width": 931,
+        "height": 448
+      },
+      "old": {
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 931,
+          "height": 448
+        },
+        "host": {
+          "x": 0,
+          "y": -71,
+          "width": 931,
+          "height": 448
+        },
+        "scrollTop": 71,
+        "overflow": "hidden",
+        "projection": {
+          "width": 931,
+          "height": 448
+        }
+      },
+      "fixed": {
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 931,
+          "height": 448
+        },
+        "host": {
+          "x": 0,
+          "y": 0,
+          "width": 931,
+          "height": 448
+        },
+        "scrollTop": 0,
+        "overflow": "clip",
+        "projection": {
+          "width": 931,
+          "height": 448
+        }
+      },
+      "focus": {
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 931,
+          "height": 448
+        },
+        "host": {
+          "x": 0,
+          "y": 0,
+          "width": 931,
+          "height": 448
+        },
+        "scrollTop": 0,
+        "overflow": "clip",
+        "projection": {
+          "width": 931,
+          "height": 448
+        }
+      }
+    },
+    {
+      "size": {
+        "width": 844,
+        "height": 390
+      },
+      "old": {
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "host": {
+          "x": 0,
+          "y": -71,
+          "width": 844,
+          "height": 390
+        },
+        "scrollTop": 71,
+        "overflow": "hidden",
+        "projection": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "fixed": {
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "host": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "scrollTop": 0,
+        "overflow": "clip",
+        "projection": {
+          "width": 844,
+          "height": 390
+        }
+      },
+      "focus": {
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "host": {
+          "x": 0,
+          "y": 0,
+          "width": 844,
+          "height": 390
+        },
+        "scrollTop": 0,
+        "overflow": "clip",
+        "projection": {
+          "width": 844,
+          "height": 390
+        }
+      }
+    },
+    {
+      "size": {
+        "width": 1280,
+        "height": 720
+      },
+      "old": {
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "host": {
+          "x": 0,
+          "y": -71,
+          "width": 1280,
+          "height": 720
+        },
+        "scrollTop": 71,
+        "overflow": "hidden",
+        "projection": {
+          "width": 1280,
+          "height": 720
+        }
+      },
+      "fixed": {
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "host": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "scrollTop": 0,
+        "overflow": "clip",
+        "projection": {
+          "width": 1280,
+          "height": 720
+        }
+      },
+      "focus": {
+        "stage": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "host": {
+          "x": 0,
+          "y": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "scrollTop": 0,
+        "overflow": "clip",
+        "projection": {
+          "width": 1280,
+          "height": 720
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "note": "Real source/Unity in isolated Edge software WebGL; old hidden-canvas scroll deliberately reproduced. Pixel119 repetition remains separate."
+}

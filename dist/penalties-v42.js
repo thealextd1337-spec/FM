@@ -10,7 +10,7 @@ v42Style.textContent+=`.v42-goal-scene{position:relative;isolation:isolate;width
 
 v42Style.textContent+=`.v42-goal-scene:is(.goal,.save,.wide,.high) .v42-keeper{animation:v42KeeperDive .75s ease-out both}@keyframes v42KeeperDive{to{transform:translateX(calc(-50% + var(--dive-x))) rotate(var(--dive-angle))}}@media(prefers-reduced-motion:reduce){.v42-goal-scene:is(.goal,.save,.wide,.high) .v42-keeper{animation:none;transform:translateX(calc(-50% + var(--dive-x))) rotate(var(--dive-angle))}}`;
 
-function v42Composure(player){if(Number.isFinite(player.composure))return player.composure;const hash=[...String(player.pid||player.name||'')].reduce((sum,char)=>sum*31+char.charCodeAt(0),0)>>>0;player.composure=clamp(Math.round(10+hash%7+((player.age||25)-25)*.08),1,20);return player.composure}
+function v42Composure(player){if(Number.isFinite(player.calm))return player.calm;if(Number.isFinite(player.composure))return player.composure;const hash=[...String(player.pid||player.name||'')].reduce((sum,char)=>sum*31+char.charCodeAt(0),0)>>>0;player.composure=clamp(Math.round(10+hash%7+((player.age||25)-25)*.08),1,20);return player.composure}
 function v42PenaltyChance(shooter,keeper){const finish=shooter.fin??Math.round((shooter.pas||11)*.72);return clamp(.50+(finish-12)*.025+(v42Composure(shooter)-12)*.015+(shooter.form||0)*.02-(100-(shooter.fresh??100))*.0012-((keeper.gk||14)-12)*.015-(v42Composure(keeper)-12)*.005,.25,.9)}
 v41PenaltyChance=v42PenaltyChance;
 function v42Level(value){return value>=16?'sehr gut':value>=13?'gut':value>=10?'ordentlich':value>=8?'schwach':'sehr schwach'}

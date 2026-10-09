@@ -2,7 +2,7 @@
 // Both match adapters emit resolved actions. Intent plans never earn credit.
 function v155Initialize(career,state){
  if(!v154Active(career))return;
- state.playerPerformance={version:155,parameters:career.world.playerFoundation.ratings,events:[],phases:{},sequence:0};
+ state.playerPerformance={version:155,shotBalanceRevision:119,parameters:career.world.playerFoundation.ratings,events:[],phases:{},sequence:0};
  v155SyncPhases(state);
 }
 function v155SyncPhases(state){
@@ -98,7 +98,8 @@ function v155CompactActions(career,fixture,state,side,random){
  if(state.playerLoad&&v158CompactContact(career,fixture,state,side,scorer,random))return false;
  // Compact actions are resolved abstract actions, not reconstructed 3D runs.
  // No credit for support/cover unless that action was actually simulated.
- if(random()>.22)return false;
+ const shotChance=state.playerPerformance?.shotBalanceRevision===119 ? .09 : .22;
+ if(random()>shotChance)return false;
  state.stats[scorer].shots++;
  const goalPoint={x:(state.geometry?.width||44)/2,y:side?(state.geometry?.length||68):0},shotDistance=Math.hypot(to.x-goalPoint.x,to.y-goalPoint.y),shotDifficulty=clamp(shotDistance/35+receiverPressure*.3+Math.abs(to.x-goalPoint.x)/22*.15,0,1);
  const keeper=rivals.find(pid=>state.roles[pid]==='gk'),k=v64Player(career,fixture,1-side,keeper),onTarget=random()<clamp(.48+(finishing-10)*.013-receiverPressure*.13,.25,.8);

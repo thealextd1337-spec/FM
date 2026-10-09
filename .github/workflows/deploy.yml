@@ -105,9 +105,14 @@ jobs:
           node work/test-native-career-v160.cjs
           node work/platform/qa/test-unity-integration-v160.cjs
           node work/platform/qa/test-world-unity-contract.cjs
-          node work/test-unity-label-layout.cjs outputs/3d-quality/iteration-118/label-layout
-          node work/test-unity-3d-quality-v117.cjs outputs/3d-quality/iteration-118
-          node work/test-keeper-picture-v118.cjs
+          node work/test-unity-label-layout.cjs outputs/3d-quality/iteration-119/label-layout
+          node work/test-unity-3d-quality-v117.cjs outputs/3d-quality/iteration-119/guide-legacy
+          node work/test-keeper-picture-v118.cjs outputs/3d-quality/iteration-119/keeper-legacy
+          node work/test-keeper-picture-v119.cjs
+          node work/test-3d-contacts-v119.cjs
+          node work/test-whistle-offside-v119.cjs
+          node work/test-shootout-quality-v119.cjs
+          node work/test-trophy-art-v119.cjs
           node work/platform/qa/test-world-unity-slides.cjs
           DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs
           DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs

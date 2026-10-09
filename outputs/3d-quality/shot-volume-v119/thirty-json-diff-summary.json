@@ -1,0 +1,212 @@
+{
+  "scope": "Exact original canonical difference before physical reference normalization; raw report retained separately",
+  "differences": [
+    {
+      "path": "root.match.whistleAttackCarrier.history.0",
+      "before": {
+        "assists": 0,
+        "cleanSheet": 0,
+        "clubId": "GER-6",
+        "competitionId": "S1:GER:LEAGUE",
+        "conceded": 0,
+        "fixtureId": "S1:GER:LEAGUE:R1:GER-6-GER-2:1",
+        "fouls": 0,
+        "goals": 0,
+        "minutes": 100,
+        "penaltiesMissed": 0,
+        "penaltiesScored": 0,
+        "rating": 6.118432302827389,
+        "season": 1,
+        "shots": 0,
+        "tackleAttempts": 0,
+        "tacklesWon": 0
+      }
+    },
+    {
+      "path": "root.match.whistleAttackCarrier.playerModel.development.processedAppearances.0",
+      "before": {
+        "id": "S1:GER:LEAGUE:R1:GER-6-GER-2:1:shot119-0:GER-6:6",
+        "seasonId": 1,
+        "worldId": "shot119-0"
+      }
+    },
+    {
+      "path": "root.match.whistleAttackCarrier.playerModel.development.ratedWindow.0",
+      "before": {
+        "id": "S1:GER:LEAGUE:R1:GER-6-GER-2:1:shot119-0:GER-6:6",
+        "minutes": 100,
+        "rating": 6.118432302827389,
+        "seasonId": 1,
+        "worldId": "shot119-0"
+      }
+    },
+    {
+      "path": "root.match.whistleAttackCarrier.playerModel.development.seasonMinutes",
+      "before": 100,
+      "after": 0
+    },
+    {
+      "path": "root.match.whistleAttackCarrier.playerModel.freshnessState.freshness",
+      "before": 45.743402537020806,
+      "after": 100
+    },
+    {
+      "path": "root.match.whistleAttackCarrier.playerModel.loadPlayedDays.0",
+      "before": 7
+    },
+    {
+      "path": "root.match.whistleAttackCarrier.playerModel.roleModel.processedFixtures.0",
+      "before": "S1:GER:LEAGUE:R1:GER-6-GER-2:1"
+    },
+    {
+      "path": "root.match.whistleAttackCarrier.playerModel.roleModel.routine.att",
+      "before": 5.555555555555555,
+      "after": 0
+    }
+  ],
+  "matches": [
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 0,
+      "mode": "candidate",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3773,
+      "score": [
+        0,
+        2
+      ],
+      "stats": {
+        "shots": 6,
+        "onTarget": 3,
+        "passes": 55,
+        "passComplete": 53,
+        "goals": 2,
+        "saves": 1,
+        "interceptions": 0
+      },
+      "metrics": {
+        "decisions": 265,
+        "windowDecisions": 63,
+        "carry": 3,
+        "shots": [
+          {
+            "team": 0,
+            "range": 16.20324813372087,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 20.522649588981015,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 20.593798517372843,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 24.703670207102004,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 14.544192841237853,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 22.66996801304843,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 1322797112,
+      "draws": 304,
+      "digestSha256": "714b97619463931545362a5693292bfc171c11b57c175e476d391390e83b6441"
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "seed": 0,
+      "mode": "candidate-json",
+      "finished": true,
+      "checkpoint": true,
+      "ticks": 3773,
+      "score": [
+        0,
+        2
+      ],
+      "stats": {
+        "shots": 6,
+        "onTarget": 3,
+        "passes": 55,
+        "passComplete": 53,
+        "goals": 2,
+        "saves": 1,
+        "interceptions": 0
+      },
+      "metrics": {
+        "decisions": 265,
+        "windowDecisions": 63,
+        "carry": 3,
+        "shots": [
+          {
+            "team": 0,
+            "range": 16.20324813372087,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 20.522649588981015,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 1,
+            "range": 20.593798517372843,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 24.703670207102004,
+            "pressure": 1,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 14.544192841237853,
+            "pressure": 0,
+            "kind": "shot"
+          },
+          {
+            "team": 0,
+            "range": 22.66996801304843,
+            "pressure": 1,
+            "kind": "shot"
+          }
+        ],
+        "ranges": [],
+        "pressures": [],
+        "unmarkedQualityExact": true
+      },
+      "rng": 1322797112,
+      "draws": 304,
+      "digestSha256": "828c3acef911afc3ae998e8378347744cd0bf838810b39fda6decf4da9b6afa3"
+    }
+  ],
+  "rawEvidenceSha256": "68a888b0f774b4524804cc961a45c77e0d61a1e7fdf592dfe290ead5636c5995"
+}

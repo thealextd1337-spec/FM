@@ -16,6 +16,7 @@ public sealed class FootballLocomotion {
     public float RecoveryLean {get;private set;}
     // Share of the observed travel along the received right-hand axis (-1..1).
     public float Lateral {get;private set;}
+    public float StrideYaw {get;private set;}
     // Smoothed observed speed that selects and paces the stride clip.
     public float StrideSpeed=>strideSpeed;
     // Within run or backward motion: the faster of two measured clips, with
@@ -29,7 +30,7 @@ public sealed class FootballLocomotion {
         if(clock>=0&&nativeClock==clock)return;
         double dt=nativeClock-clock;
         var travel=point-position;travel.y=0;
-        if(clock<0||dt<0||dt>1||travel.magnitude>7){position=point;forward=facing;clock=nativeClock;Speed=strideSpeed=slowTurnAngle=Acceleration=ForwardLean=TurnLean=0;RecoveryLean=Recovery(freshness,carrying,keeper);Phase=StridePhase=nativeClock;Mode=StrideMode="idle";MotionWeight=1;Lateral=0;brakeUntil=turnUntil=0;FastStride=false;return;}
+        if(clock<0||dt<0||dt>1||travel.magnitude>7){position=point;forward=facing;clock=nativeClock;Speed=strideSpeed=slowTurnAngle=Acceleration=ForwardLean=TurnLean=0;RecoveryLean=Recovery(freshness,carrying,keeper);Phase=StridePhase=nativeClock;Mode=StrideMode="idle";MotionWeight=1;Lateral=StrideYaw=0;brakeUntil=turnUntil=0;FastStride=false;return;}
         float actual=travel.magnitude/(float)Math.Max(.0001,dt);
         Acceleration=Mathf.Lerp(Acceleration,Mathf.Clamp((actual-Speed)/(float)dt,-16,16),1-(float)Math.Exp(-dt/.12));
         if(Speed>2&&(actual<.3||Acceleration< -4&&actual<Speed)){if(nativeClock>=brakeUntil)transitionAt=nativeClock;brakeUntil=nativeClock+.20;}
@@ -47,6 +48,9 @@ public sealed class FootballLocomotion {
         bool backward=travel.sqrMagnitude>.00001&&Vector3.Dot(travel.normalized,facing.normalized)<-.45f;
         var side=facing;side.y=0;Lateral=actual>.12f&&side.sqrMagnitude>.0001f?Vector3.Dot(travel.normalized,Vector3.Cross(Vector3.up,side.normalized)):0;
         strideSpeed=Mathf.Lerp(strideSpeed,actual,1-(float)Math.Exp(-dt/.08));
+        // Back clips already step against the facing; swivel their diagonal
+        // component relative to that backward axis rather than reversing twice.
+        StrideYaw=actual>.2f?Mathf.Clamp(Vector3.SignedAngle(backward?-side:side,travel,Vector3.up),-75,75):0;
         float walkLimit=StrideMode=="walk"?1.95f:1.65f,sprintLimit=StrideMode=="sprint"?4.35f:4.9f;
         StrideMode=actual<.2?"idle":backward?"back":strideSpeed<walkLimit?"walk":(strideSpeed>sprintLimit||actual>5.2f)&&!carrying&&!keeper?"sprint":"run";
         FastStride=StrideMode=="run"?(FastStride?strideSpeed>FastRunOff:strideSpeed>FastRunOn):StrideMode=="back"?(FastStride?strideSpeed>FastBackOff:strideSpeed>FastBackOn):false;

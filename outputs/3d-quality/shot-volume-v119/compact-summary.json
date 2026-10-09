@@ -1,0 +1,265 @@
+{
+  "passed": true,
+  "experiment": "192 actual compact full matches, 12 fresh career/fixture seeds per geometry, paired identical initial JSON snapshots",
+  "recommendedProbability": 0.09,
+  "reason": "Every geometry mean and its approximate 95% Student-t mean interval lie inside the 10-16 total-shot target. Individual games are not capped.",
+  "summaries": [
+    {
+      "configuration": "standard/5",
+      "probability": 0.22,
+      "shotsAverage": 30.25,
+      "shotsRange": [
+        23,
+        36
+      ],
+      "shotsMean95Ci": [
+        27.635544720025823,
+        32.86445527997418
+      ],
+      "onTargetAverage": 14.583333333333334,
+      "goalsAverage": 3.0833333333333335
+    },
+    {
+      "configuration": "standard/5",
+      "probability": 0.07,
+      "shotsAverage": 10.25,
+      "shotsRange": [
+        7,
+        15
+      ],
+      "shotsMean95Ci": [
+        8.787886652380234,
+        11.712113347619766
+      ],
+      "onTargetAverage": 5.583333333333333,
+      "goalsAverage": 0.9166666666666666
+    },
+    {
+      "configuration": "standard/5",
+      "probability": 0.08,
+      "shotsAverage": 11.083333333333334,
+      "shotsRange": [
+        8,
+        16
+      ],
+      "shotsMean95Ci": [
+        9.49297419503701,
+        12.673692471629657
+      ],
+      "onTargetAverage": 5.916666666666667,
+      "goalsAverage": 1.0833333333333333
+    },
+    {
+      "configuration": "standard/5",
+      "probability": 0.09,
+      "shotsAverage": 12.833333333333334,
+      "shotsRange": [
+        8,
+        18
+      ],
+      "shotsMean95Ci": [
+        10.737678883469922,
+        14.928987783196746
+      ],
+      "onTargetAverage": 6.666666666666667,
+      "goalsAverage": 1.3333333333333333
+    },
+    {
+      "configuration": "standard/6",
+      "probability": 0.22,
+      "shotsAverage": 29.75,
+      "shotsRange": [
+        25,
+        37
+      ],
+      "shotsMean95Ci": [
+        27.107619171790734,
+        32.39238082820926
+      ],
+      "onTargetAverage": 13.916666666666666,
+      "goalsAverage": 3
+    },
+    {
+      "configuration": "standard/6",
+      "probability": 0.07,
+      "shotsAverage": 10.166666666666666,
+      "shotsRange": [
+        7,
+        14
+      ],
+      "shotsMean95Ci": [
+        8.816567765500794,
+        11.516765567832538
+      ],
+      "onTargetAverage": 5.666666666666667,
+      "goalsAverage": 0.9166666666666666
+    },
+    {
+      "configuration": "standard/6",
+      "probability": 0.08,
+      "shotsAverage": 10.916666666666666,
+      "shotsRange": [
+        8,
+        15
+      ],
+      "shotsMean95Ci": [
+        9.523094972224467,
+        12.310238361108865
+      ],
+      "onTargetAverage": 6,
+      "goalsAverage": 1.0833333333333333
+    },
+    {
+      "configuration": "standard/6",
+      "probability": 0.09,
+      "shotsAverage": 12.5,
+      "shotsRange": [
+        8,
+        18
+      ],
+      "shotsMean95Ci": [
+        10.42782701340751,
+        14.57217298659249
+      ],
+      "onTargetAverage": 6.666666666666667,
+      "goalsAverage": 1.25
+    },
+    {
+      "configuration": "large/5",
+      "probability": 0.22,
+      "shotsAverage": 30.916666666666668,
+      "shotsRange": [
+        25,
+        37
+      ],
+      "shotsMean95Ci": [
+        28.441622640555845,
+        33.391710692777494
+      ],
+      "onTargetAverage": 15.166666666666666,
+      "goalsAverage": 3.1666666666666665
+    },
+    {
+      "configuration": "large/5",
+      "probability": 0.07,
+      "shotsAverage": 10.5,
+      "shotsRange": [
+        7,
+        15
+      ],
+      "shotsMean95Ci": [
+        8.908679629135833,
+        12.091320370864167
+      ],
+      "onTargetAverage": 5.833333333333333,
+      "goalsAverage": 0.9166666666666666
+    },
+    {
+      "configuration": "large/5",
+      "probability": 0.08,
+      "shotsAverage": 11.25,
+      "shotsRange": [
+        8,
+        16
+      ],
+      "shotsMean95Ci": [
+        9.64433019203917,
+        12.85566980796083
+      ],
+      "onTargetAverage": 6.166666666666667,
+      "goalsAverage": 1.0833333333333333
+    },
+    {
+      "configuration": "large/5",
+      "probability": 0.09,
+      "shotsAverage": 12.916666666666666,
+      "shotsRange": [
+        8,
+        18
+      ],
+      "shotsMean95Ci": [
+        10.792745152614525,
+        15.040588180718807
+      ],
+      "onTargetAverage": 6.916666666666667,
+      "goalsAverage": 1.3333333333333333
+    },
+    {
+      "configuration": "large/6",
+      "probability": 0.22,
+      "shotsAverage": 28.75,
+      "shotsRange": [
+        22,
+        37
+      ],
+      "shotsMean95Ci": [
+        25.99875,
+        31.50125
+      ],
+      "onTargetAverage": 14,
+      "goalsAverage": 3.25
+    },
+    {
+      "configuration": "large/6",
+      "probability": 0.07,
+      "shotsAverage": 9.833333333333334,
+      "shotsRange": [
+        7,
+        13
+      ],
+      "shotsMean95Ci": [
+        8.510696940450627,
+        11.15596972621604
+      ],
+      "onTargetAverage": 5.5,
+      "goalsAverage": 0.8333333333333334
+    },
+    {
+      "configuration": "large/6",
+      "probability": 0.08,
+      "shotsAverage": 10.666666666666666,
+      "shotsRange": [
+        7,
+        14
+      ],
+      "shotsMean95Ci": [
+        9.276390771149318,
+        12.056942562184014
+      ],
+      "onTargetAverage": 5.833333333333333,
+      "goalsAverage": 1
+    },
+    {
+      "configuration": "large/6",
+      "probability": 0.09,
+      "shotsAverage": 12.25,
+      "shotsRange": [
+        7,
+        17
+      ],
+      "shotsMean95Ci": [
+        10.390167826384555,
+        14.109832173615445
+      ],
+      "onTargetAverage": 6.583333333333333,
+      "goalsAverage": 1.25
+    }
+  ],
+  "limits": [
+    "12 independent seeds per configuration; configurations share seed labels and are paired, not 48 wholly independent seeds.",
+    "On-target counts use the actual resolved P03 shot success events because compact raw stats lack a dedicated onTarget field.",
+    "Changing shot volume also naturally changes goals, native stoppages, AI decisions and load outcomes; no outcome parity claim.",
+    "At .09 unchanged native conversion gives about 1.25-1.33 total goals per match in this sample. If a higher scoring target is desired, that requires a separate explicit balance decision.",
+    "This is a read-only private-browser compact experiment, not physical match validation or a production change."
+  ],
+  "controls": {
+    "onlyCopiedPrivateShotGateChanged": true,
+    "exactFunctionRestored": true,
+    "productionUnchanged": true,
+    "aiLoadRolesRatingsAndClockNative": true,
+    "shotP03GoalSaveReconciliation": true,
+    "jsonValidationAndIdempotence": true
+  },
+  "matrixSha256": "e95eb8bc7cdd17746b7b452b1b37a00857c13625745a2427fb75ee5ad605902a",
+  "runnerSha256": "b622c4d20b67fc631a8259786aba7944935f43ccfa3fbac380311597753134c8"
+}

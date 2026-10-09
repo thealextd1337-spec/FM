@@ -1,0 +1,14 @@
+[D6Cli] FootballTests: {
+[D6Cli] FootballLocomotionTests: {
+[D6Cli] FootballMomentumTests: {
+[D6Cli] FootballActionTests: {
+[D6Cli] FootballMotionTests: {
+[D6Cli] WorldViewTests: {
+[D6Cli] FootballGaitTests: {
+[D6Cli] ClubStadiumProfilesTests: {
+[D6Cli] StadiumArchitectureTests: passed=706
+[D6Cli] FootballDuelTests: passed=34
+[D6Cli] FootballIterationTests: passed=106
+[D6Cli] FootballKeeperTests: passed=160
+[D6Cli] FootballPresentation119Tests: passed=436
+[D6Cli] OK tests finished

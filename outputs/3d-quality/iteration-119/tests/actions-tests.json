@@ -1,0 +1,53 @@
+{
+    "passed": 22,
+    "checks": [
+        "pass retains full native contact priority",
+        "pass returns to moving stride promptly",
+        "pass keeps longer standing follow-through",
+        "receive retains full native contact priority",
+        "receive returns to moving stride promptly",
+        "receive keeps longer standing follow-through",
+        "shot retains full native contact priority",
+        "shot returns to moving stride promptly",
+        "shot keeps longer standing follow-through",
+        "Preparation retains the run until native release approaches",
+        "Moving reception reaches the actual right foot",
+        "Reception rejoins the observed run within 0.23 native seconds",
+        "Running action blend is normalized",
+        "Paused native clock freezes both blended clips",
+        "A quick reception-to-pass retains bounded real-foot contact",
+        "Completed pass follows straight into the actual off-ball run",
+        "Running reception and one-two never change authoritative root",
+        "Controlled stride can reach with left foot direction 1",
+        "Controlled stride can reach with left foot direction -1",
+        "Unreachable carrier ball remains unreachable",
+        "Carrier reach cannot attract ball or reposition player",
+        "Action iteration reuses cached graph nodes"
+    ],
+    "measurements": [
+        {
+            "stage": "receive-contact",
+            "foot": "right",
+            "actionWeight": 1.0,
+            "strideWeight": 0.0,
+            "contactError": 8.17800923869072e-7,
+            "reachable": true
+        },
+        {
+            "stage": "carrier-reach",
+            "foot": "left",
+            "actionWeight": 1.0,
+            "strideWeight": 0.0,
+            "contactError": 0.0000018997665165443323,
+            "reachable": true
+        },
+        {
+            "stage": "carrier-reach",
+            "foot": "left",
+            "actionWeight": 1.0,
+            "strideWeight": 0.0,
+            "contactError": 0.0000018997665165443323,
+            "reachable": true
+        }
+    ]
+}

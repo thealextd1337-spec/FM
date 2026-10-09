@@ -1,0 +1,269 @@
+{
+  "scope": "Read-only three complete physical fixtures with transparent decision instrumentation and compact independent copies, no quota/calibration/production edits.",
+  "target": "10–16 total shots from both teams per full match as population average, not a per-match quota",
+  "hashes": {
+    "dist/pitch-v55.js": "0a6de1e6b9c3bff1a69e350982e91ffa20c7128919ecb6767ade509e8fd4797c",
+    "dist/world-offensive-quality-v157.js": "d359796c693c2c95585c133026e4f43669cc3ba460ed47c72033f069cbc0dd72",
+    "dist/world-football-flow-v159.js": "b5c8feae06ce7a95d0b0f3403916de12e6c3a395c9f655e8c33832162cdb7c2d",
+    "dist/world-player-performance-v155.js": "262ad562b2f8730aef2c816f56bb832796cf53169349a9a8b25a10d5437a8271",
+    "dist/world-physical-v65.js": "23ef31850a4b320d120e8122a711103e4c00dd079c9917a4e48c4733e7b0d173"
+  },
+  "matches": [
+    {
+      "config": {
+        "fieldSize": "standard",
+        "fieldPlayers": 5
+      },
+      "result": {
+        "ticks": 3158,
+        "minute": 100,
+        "finished": true,
+        "score": [
+          0,
+          0
+        ]
+      },
+      "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-4:1",
+      "shots": 6,
+      "onTarget": 0,
+      "compact": {
+        "shots": 17,
+        "goals": [
+          2,
+          0
+        ],
+        "minute": 97
+      },
+      "stats": {
+        "passes": 48,
+        "passComplete": 43,
+        "passLost": 7,
+        "tackles": 0,
+        "interceptions": 2,
+        "dribbles": 0,
+        "fouls": 4
+      },
+      "metrics": {
+        "decisions": 310,
+        "receiptWait": 0,
+        "clearCarryBeforeShot": 12,
+        "passes": 74,
+        "highPasses": 5,
+        "dribbles": 0,
+        "decisionsIn22": 29,
+        "decisionsIn30": 120,
+        "positiveShotWindow": 18,
+        "windowOutcomes": {
+          "carry-before-shot": 4,
+          "pass": 1,
+          "turn-wait": 6,
+          "carry-fallback": 3,
+          "shot": 4
+        },
+        "windowRanges": {
+          "in14": 1,
+          "in18": 8,
+          "in22": 9
+        },
+        "noWindow": {
+          "far": 281,
+          "angle": 10,
+          "blocked": 1
+        },
+        "actionKinds": {
+          "pass": 64,
+          "carry-fallback": 36,
+          "turn-wait": 188,
+          "carry-before-shot": 12,
+          "high": 5,
+          "shot": 5
+        },
+        "ownedSeconds": 41.54999999999978,
+        "ownedIn14": 1.5000000000000007,
+        "ownedIn22": 7.299999999999982,
+        "ownedIn30": 19.000000000000135,
+        "looseSeconds": 19.200000000000138,
+        "pausedSeconds": 53.64999999999909,
+        "flightSeconds": 43.499999999999666,
+        "carrierDeltaMetres": 48.54361571189463,
+        "shots": [
+          {
+            "at": 6.4999999999999964,
+            "minute": 6,
+            "range": 14.903158024062803,
+            "line": "att",
+            "type": "direct-free-kick",
+            "quality": 0
+          },
+          {
+            "at": 39.73200000000072,
+            "minute": 37,
+            "range": 11.451287299368094,
+            "line": "mid",
+            "type": "shot",
+            "quality": 0
+          },
+          {
+            "at": 70.33200000000187,
+            "minute": 65,
+            "range": 18.77618903341574,
+            "line": "att",
+            "type": "shot",
+            "quality": 0.21107377347863715
+          },
+          {
+            "at": 82.63200000000234,
+            "minute": 77,
+            "range": 21.197162454810652,
+            "line": "att",
+            "type": "shot",
+            "quality": 0.05179999306373823
+          },
+          {
+            "at": 94.38200000000278,
+            "minute": 88,
+            "range": 20.496244376562707,
+            "line": "att",
+            "type": "shot",
+            "quality": 0.10389745382265717
+          },
+          {
+            "at": 105.33200000000319,
+            "minute": 98,
+            "range": 11.257638324502697,
+            "line": "att",
+            "type": "shot",
+            "quality": 0.6815597463704244
+          }
+        ],
+        "turnWait": 188,
+        "turnRelease": 23,
+        "ownerSupportBackwardTarget": 0,
+        "ownerSupportTargetSamples": 82,
+        "ownerReverseMetres": 17.01650074051481,
+        "ownerForwardMetres": 73.81367509387789,
+        "ownerSupportReverseMetres": 3.4355420935853416,
+        "ownerSupportForwardMetres": 0.3088940547741252,
+        "finalOwnerReverseTargets": 44,
+        "finalOwnerTargetSamples": 828
+      }
+    },
+    {
+      "config": {
+        "fieldSize": "large",
+        "fieldPlayers": 5
+      },
+      "result": {
+        "ticks": 3832,
+        "minute": 100,
+        "finished": true,
+        "score": [
+          0,
+          1
+        ]
+      },
+      "fixtureId": "S1:GER:LEAGUE:R1:GER-4-GER-2:1",
+      "shots": 3,
+      "onTarget": 2,
+      "compact": {
+        "shots": 16,
+        "goals": [
+          2,
+          1
+        ],
+        "minute": 97
+      },
+      "stats": {
+        "passes": 51,
+        "passComplete": 42,
+        "passLost": 16,
+        "tackles": 0,
+        "interceptions": 5,
+        "dribbles": 0,
+        "fouls": 7
+      },
+      "metrics": {
+        "decisions": 368,
+        "receiptWait": 0,
+        "clearCarryBeforeShot": 5,
+        "passes": 94,
+        "highPasses": 4,
+        "dribbles": 0,
+        "decisionsIn22": 28,
+        "decisionsIn30": 64,
+        "positiveShotWindow": 23,
+        "windowOutcomes": {
+          "carry-fallback": 2,
+          "pass": 3,
+          "turn-wait": 14,
+          "carry-before-shot": 3,
+          "shot": 1
+        },
+        "windowRanges": {
+          "in14": 0,
+          "in18": 1,
+          "in22": 22
+        },
+        "noWindow": {
+          "far": 340,
+          "angle": 4,
+          "blocked": 1
+        },
+        "actionKinds": {
+          "pass": 85,
+          "carry-fallback": 49,
+          "turn-wait": 224,
+          "high": 4,
+          "carry-before-shot": 5,
+          "shot": 1
+        },
+        "ownedSeconds": 47.549999999999436,
+        "ownedIn14": 0.65,
+        "ownedIn22": 3.949999999999994,
+        "ownedIn30": 10.350000000000012,
+        "looseSeconds": 15.600000000000087,
+        "pausedSeconds": 86.84999999999721,
+        "flightSeconds": 41.599999999999774,
+        "carrierDeltaMetres": 71.71247090691804,
+        "shots": [
+          {
+            "at": 60.19300000000146,
+            "minute": 56,
+            "range": 16.8025880422169,
+            "line": "att",
+            "type": "shot",
+            "quality": 0.4055690152859531
+          },
+          {
+            "at": 71.9430000000019,
+            "minute": 67,
+            "range": 29.568557762430668,
+            "line": "att",
+            "type": "direct-free-kick",
+            "quality": 0
+          },
+          {
+            "at": 106.44300000000321,
+            "minute": 99,
+            "range": 14.43473261254647,
+            "line": "att",
+            "type": "shot",
+            "quality": 0.577051050801401
+          }
+        ],
+        "turnWait": 224,
+        "turnRelease": 25,
+        "ownerSupportBackwardTarget": 0,
+        "ownerSupportTargetSamples": 169,
+        "ownerReverseMetres": 21.144639234568572,
+        "ownerForwardMetres": 102.92501818604609,
+        "ownerSupportReverseMetres": 5.029406961981601,
+        "ownerSupportForwardMetres": 11.129545871983812,
+        "finalOwnerReverseTargets": 48,
+        "finalOwnerTargetSamples": 927
+      }
+    }
+  ],
+  "errors": [],
+  "pass": true
+}

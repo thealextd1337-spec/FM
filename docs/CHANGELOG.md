@@ -2,6 +2,12 @@
 
 ## Noch nicht veröffentlicht
 
+- Release 119 ist lokal in Arbeit: Torwart-Ballkontakte und Blickrichtung, Laufdarstellung, Ballschatten, sichtbare Abseitslinie, Anstoßabstände, schnellere Anschlussläufe und gezielte Abwehr gegen durchgebrochene Angreifer. Direkte Freistöße erhalten eine tatsächlich angelaufene Zweiermauer; Halbzeit und Abpfiff warten auf bereits laufende Schüsse und Torpausen. Gespeicherte native Bewegungsmodi und Aktionssperren werden beim Fortsetzen an die vorhandenen Spieler gebunden. Neue Tempoentscheidungen gelten nur für neue Partien.
+- Kompakte Matchsteuerung, größere Vollbild-Spielstandanzeige, Taktikknopf, Vereinsname im Torbanner und eigene Wettbewerbsdesigns. Rollenoptionen zeigen überall ihre qualitativen Farben; Sponsorenlogos verzichten auf doppelte Namen. Alle 32 Trophäen und Medaillen erhalten neue skalierbare Vektorgrafiken. Kalenderergebnisse zeigen Siege zart grün und Niederlagen zart rot, einschließlich Elfmeterschießen aus Sicht des eigenen Vereins.
+- Finanzabschluss, Vereinsentscheidung, Sponsorwahl und Jugendförderung bleiben nach dem Rückblick im Saisonabschluss; die nächste Saison verwendet weiterhin die bestehenden Buchungs- und Speicherregeln. Direkte Transfergebote erzeugen bei endgültiger Vereins- oder Spielerabsage ebenfalls eine beim Tageswechsel freigegebene, gespeicherte Ergebnisbestätigung. Bestätigte Absagen werden nicht wiederholt.
+- Vollständige 3D-Partien werden auf Schüsse, Schüsse aufs Tor und Tore geprüft und mit demselben Ausgangskader in der kompakten Simulation verglichen. Der [Unity-Auftrag für Claude](agentenauftraege/07-unity-qualitaet-claude.md) ist vorbereitet; neue Laufanimationen in allen acht Richtungen bleiben dessen nächste Priorität. Live-Veröffentlichung und Android-Abnahme dieses Standes stehen noch aus.
+- Auf Nutzerwahl werden durchschnittlich 10–16 Schüsse insgesamt je vollständiger Partie angestrebt. Neue kompakte Partien ergeben in 48 Tests durchschnittlich 12,6; unmarkierte laufende Partien behalten ihren bisherigen Verlauf. Die 3D-Abstimmung bleibt separat. Ein dabei nachgewiesener Halbzeitfehler ist behoben: Bereits tatsächlich gespielte Zeit und Kontakte werden vor dem Halbzeitbeginn erhalten, statt die Uhr nach einem Kontakt zurückzustellen.
+
 ## 9. Oktober 2026 – Release 118
 
 Auf Nutzerauftrag umgesetzt, veröffentlicht und live abgenommen. Produktionslauf, 65 Release-/Live-Prüfungen, mobile Bedienung und vollständige native/Unity-Livevergleichspartie mit identischen 14 Zustands-/Buchungsteilen bestanden. [Releasebericht](release-118.md).

@@ -1,0 +1,65 @@
+{
+  "status": "stopped-early-rejected",
+  "scope": "Observed finished rows from stdout only, not completed64matrix or JSON parity proof",
+  "reason": "First useful-window scalar candidate did not approach10?16 totalshotaverage, parent instructed stop early",
+  "summary": [
+    {
+      "size": "standard",
+      "count": 5,
+      "n": 8,
+      "beforeShots": [
+        4,
+        7,
+        6,
+        6,
+        7,
+        5,
+        2,
+        5
+      ],
+      "candidateShots": [
+        5,
+        6,
+        6,
+        7,
+        5,
+        7,
+        4,
+        7
+      ],
+      "beforeMean": 5.25,
+      "candidateMean": 5.875
+    },
+    {
+      "size": "standard",
+      "count": 6,
+      "n": 7,
+      "beforeShots": [
+        4,
+        7,
+        5,
+        4,
+        12,
+        6,
+        9
+      ],
+      "candidateShots": [
+        5,
+        5,
+        3,
+        4,
+        4,
+        7,
+        5
+      ],
+      "beforeMean": 6.714285714285714,
+      "candidateMean": 4.714285714285714
+    }
+  ],
+  "limits": [
+    "Large geometry cells unobserved",
+    "JSON trial output matched visible score/shot count but canonical comparison was not completed",
+    "No production change"
+  ],
+  "runner": "work/experiment-shot-volume-v119.cjs"
+}
