@@ -1,0 +1,1447 @@
+{
+  "cases": [
+    {
+      "viewportWidth": 844,
+      "viewportHeight": 390,
+      "mode": "follow",
+      "name": "centre",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": 0,
+        "elevation": 0.29,
+        "caseId": 1
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.4940412640571594,
+        "depth": 37.34435272216797,
+        "diameter": 5.613929748535156,
+        "visible": true
+      },
+      "width": 844,
+      "height": 390,
+      "camera": {
+        "position": [
+          0,
+          20.999999853,
+          30.999999782999996
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 36.33441372402474
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        0
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 0,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 844,
+      "viewportHeight": 390,
+      "mode": "follow",
+      "name": "near",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 2
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.8506131172180176,
+        "depth": 25.225387573242188,
+        "diameter": 8.311015129089355,
+        "visible": true
+      },
+      "width": 844,
+      "height": 390,
+      "camera": {
+        "position": [
+          0,
+          20.999999706,
+          39.974999657000005
+        ],
+        "target": [
+          0,
+          0,
+          15.475
+        ],
+        "fov": 36.33441372402474
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 844,
+      "viewportHeight": 390,
+      "mode": "follow",
+      "name": "corner",
+      "input": {
+        "mode": "follow",
+        "x": 31,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 3
+      },
+      "ball": {
+        "x": 0.2530902028083801,
+        "y": 0.5853146314620972,
+        "depth": 33.032588958740234,
+        "diameter": 6.346719264984131,
+        "visible": true
+      },
+      "width": 844,
+      "height": 390,
+      "camera": {
+        "position": [
+          13.562097268040722,
+          20.999999559,
+          39.9749994855
+        ],
+        "target": [
+          29.292581626203265,
+          0,
+          15.475
+        ],
+        "fov": 36.33441372402474
+      },
+      "pictureBall": [
+        37.199999999999996,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 31,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 844,
+      "viewportHeight": 390,
+      "mode": "follow",
+      "name": "far",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": -20.5,
+        "elevation": 0.29,
+        "caseId": 4
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.2786012887954712,
+        "depth": 57.551544189453125,
+        "diameter": 3.642796516418457,
+        "visible": true
+      },
+      "width": 844,
+      "height": 390,
+      "camera": {
+        "position": [
+          0,
+          20.999999411999998,
+          29.699998949999998
+        ],
+        "target": [
+          0,
+          0,
+          -7.8
+        ],
+        "fov": 36.33441372402474
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        -24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": -20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 844,
+      "viewportHeight": 390,
+      "mode": "follow",
+      "name": "high",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 6,
+        "caseId": 5
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.6523697972297668,
+        "depth": 21.632110595703125,
+        "diameter": 9.691545486450195,
+        "visible": true
+      },
+      "width": 844,
+      "height": 390,
+      "camera": {
+        "position": [
+          0,
+          20.999999298642,
+          39.9749991425
+        ],
+        "target": [
+          0,
+          0.9611999999999999,
+          15.475
+        ],
+        "fov": 36.33441372402474
+      },
+      "pictureBall": [
+        0,
+        5.63,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 5.63,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 844,
+      "viewportHeight": 390,
+      "mode": "sideline",
+      "name": "centre",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": 0,
+        "elevation": 0.29,
+        "caseId": 6
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.492611289024353,
+        "depth": 33.54724884033203,
+        "diameter": 6.249351978302002,
+        "visible": true
+      },
+      "width": 844,
+      "height": 390,
+      "camera": {
+        "position": [
+          0,
+          12.999999453999997,
+          30.999998697999995
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 36.33441372402474
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        0
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 0,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 844,
+      "viewportHeight": 390,
+      "mode": "sideline",
+      "name": "near",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 7
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.8205102682113647,
+        "depth": 19.59210968017578,
+        "diameter": 10.700663566589355,
+        "visible": true
+      },
+      "width": 844,
+      "height": 390,
+      "camera": {
+        "position": [
+          0,
+          12.999999362999999,
+          39.9749987995
+        ],
+        "target": [
+          0,
+          0,
+          15.475
+        ],
+        "fov": 36.33441372402474
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 844,
+      "viewportHeight": 390,
+      "mode": "sideline",
+      "name": "corner",
+      "input": {
+        "mode": "sideline",
+        "x": 31,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 8
+      },
+      "ball": {
+        "x": 0.1871693730354309,
+        "y": 0.6639314889907837,
+        "depth": 23.566940307617188,
+        "diameter": 8.895875930786133,
+        "visible": true
+      },
+      "width": 844,
+      "height": 390,
+      "camera": {
+        "position": [
+          20.748912463672813,
+          12.999999271999998,
+          39.974998628
+        ],
+        "target": [
+          29.292581626203265,
+          0,
+          15.475
+        ],
+        "fov": 36.33441372402474
+      },
+      "pictureBall": [
+        37.199999999999996,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 31,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 844,
+      "viewportHeight": 390,
+      "mode": "sideline",
+      "name": "far",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": -20.5,
+        "elevation": 0.29,
+        "caseId": 9
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.34436601400375366,
+        "depth": 55.5048828125,
+        "diameter": 3.7771196365356445,
+        "visible": true
+      },
+      "width": 844,
+      "height": 390,
+      "camera": {
+        "position": [
+          0,
+          12.999999180999998,
+          29.699997637499994
+        ],
+        "target": [
+          0,
+          0,
+          -7.8
+        ],
+        "fov": 36.33441372402474
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        -24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": -20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 844,
+      "viewportHeight": 390,
+      "mode": "sideline",
+      "name": "high",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 6,
+        "caseId": 10
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.4851644039154053,
+        "depth": 17.04933738708496,
+        "diameter": 12.296581268310547,
+        "visible": true
+      },
+      "width": 844,
+      "height": 390,
+      "camera": {
+        "position": [
+          0,
+          12.999999157283998,
+          39.974998285
+        ],
+        "target": [
+          0,
+          0.9611999999999999,
+          15.475
+        ],
+        "fov": 36.33441372402474
+      },
+      "pictureBall": [
+        0,
+        5.63,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 5.63,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 931,
+      "viewportHeight": 448,
+      "mode": "follow",
+      "name": "centre",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": 0,
+        "elevation": 0.29,
+        "caseId": 11
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.49427783489227295,
+        "depth": 37.3443489074707,
+        "diameter": 6.192617416381836,
+        "visible": true
+      },
+      "width": 931,
+      "height": 448,
+      "camera": {
+        "position": [
+          0,
+          20.999998382999998,
+          30.999997612999994
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 37.73321996946893
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        0
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 0,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 931,
+      "viewportHeight": 448,
+      "mode": "follow",
+      "name": "near",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 12
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.8366837501525879,
+        "depth": 25.225387573242188,
+        "diameter": 9.167718887329102,
+        "visible": true
+      },
+      "width": 931,
+      "height": 448,
+      "camera": {
+        "position": [
+          0,
+          20.999998236,
+          39.974997941999995
+        ],
+        "target": [
+          0,
+          0,
+          15.475
+        ],
+        "fov": 37.73321996946893
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 931,
+      "viewportHeight": 448,
+      "mode": "follow",
+      "name": "corner",
+      "input": {
+        "mode": "follow",
+        "x": 31,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 13
+      },
+      "ball": {
+        "x": 0.2530900835990906,
+        "y": 0.5819250345230103,
+        "depth": 33.032588958740234,
+        "diameter": 7.000942230224609,
+        "visible": true
+      },
+      "width": 931,
+      "height": 448,
+      "camera": {
+        "position": [
+          13.562098369174649,
+          20.999998088999998,
+          39.9749977705
+        ],
+        "target": [
+          29.292581626203265,
+          0,
+          15.475
+        ],
+        "fov": 37.73321996946893
+      },
+      "pictureBall": [
+        37.199999999999996,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 31,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 931,
+      "viewportHeight": 448,
+      "mode": "follow",
+      "name": "far",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": -20.5,
+        "elevation": 0.29,
+        "caseId": 14
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.28739720582962036,
+        "depth": 57.551544189453125,
+        "diameter": 4.018298149108887,
+        "visible": true
+      },
+      "width": 931,
+      "height": 448,
+      "camera": {
+        "position": [
+          0,
+          20.999997941999997,
+          29.699996324999997
+        ],
+        "target": [
+          0,
+          0,
+          -7.8
+        ],
+        "fov": 37.73321996946893
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        -24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": -20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 931,
+      "viewportHeight": 448,
+      "mode": "follow",
+      "name": "high",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 6,
+        "caseId": 15
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.6463165283203125,
+        "depth": 21.632110595703125,
+        "diameter": 10.69055461883545,
+        "visible": true
+      },
+      "width": 931,
+      "height": 448,
+      "camera": {
+        "position": [
+          0,
+          20.999997895926,
+          39.9749974275
+        ],
+        "target": [
+          0,
+          0.9611999999999999,
+          15.475
+        ],
+        "fov": 37.73321996946893
+      },
+      "pictureBall": [
+        0,
+        5.63,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 5.63,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 931,
+      "viewportHeight": 448,
+      "mode": "sideline",
+      "name": "centre",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": 0,
+        "elevation": 0.29,
+        "caseId": 16
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.4929049015045166,
+        "depth": 33.547245025634766,
+        "diameter": 6.8935394287109375,
+        "visible": true
+      },
+      "width": 931,
+      "height": 448,
+      "camera": {
+        "position": [
+          0,
+          12.999998543999999,
+          30.999996527999993
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 37.73321996946893
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        0
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 0,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 931,
+      "viewportHeight": 448,
+      "mode": "sideline",
+      "name": "near",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 17
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.807776689529419,
+        "depth": 19.59210968017578,
+        "diameter": 11.803693771362305,
+        "visible": true
+      },
+      "width": 931,
+      "height": 448,
+      "camera": {
+        "position": [
+          0,
+          12.999998453,
+          39.974997084499996
+        ],
+        "target": [
+          0,
+          0,
+          15.475
+        ],
+        "fov": 37.73321996946893
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 931,
+      "viewportHeight": 448,
+      "mode": "sideline",
+      "name": "corner",
+      "input": {
+        "mode": "sideline",
+        "x": 31,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 18
+      },
+      "ball": {
+        "x": 0.1871693730354309,
+        "y": 0.6574187278747559,
+        "depth": 23.566940307617188,
+        "diameter": 9.812867164611816,
+        "visible": true
+      },
+      "width": 931,
+      "height": 448,
+      "camera": {
+        "position": [
+          20.748913061729688,
+          12.999998362,
+          39.974996913000005
+        ],
+        "target": [
+          29.292581626203265,
+          0,
+          15.475
+        ],
+        "fov": 37.73321996946893
+      },
+      "pictureBall": [
+        37.199999999999996,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 31,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 931,
+      "viewportHeight": 448,
+      "mode": "sideline",
+      "name": "far",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": -20.5,
+        "elevation": 0.29,
+        "caseId": 19
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.35054922103881836,
+        "depth": 55.504886627197266,
+        "diameter": 4.16646671295166,
+        "visible": true
+      },
+      "width": 931,
+      "height": 448,
+      "camera": {
+        "position": [
+          0,
+          12.999998270999999,
+          29.699995012499993
+        ],
+        "target": [
+          0,
+          0,
+          -7.8
+        ],
+        "fov": 37.73321996946893
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        -24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": -20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 931,
+      "viewportHeight": 448,
+      "mode": "sideline",
+      "name": "high",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 6,
+        "caseId": 20
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.48575377464294434,
+        "depth": 17.049335479736328,
+        "diameter": 13.56412124633789,
+        "visible": true
+      },
+      "width": 931,
+      "height": 448,
+      "camera": {
+        "position": [
+          0,
+          12.999998314568,
+          39.97499657
+        ],
+        "target": [
+          0,
+          0.9611999999999999,
+          15.475
+        ],
+        "fov": 37.73321996946893
+      },
+      "pictureBall": [
+        0,
+        5.63,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 5.63,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "mode": "follow",
+      "name": "centre",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": 0,
+        "elevation": 0.29,
+        "caseId": 21
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.494905948638916,
+        "depth": 37.344356536865234,
+        "diameter": 8.85989761352539,
+        "visible": true
+      },
+      "width": 1280,
+      "height": 720,
+      "camera": {
+        "position": [
+          0,
+          20.999996913,
+          30.999995443
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 42
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        0
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 0,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "mode": "follow",
+      "name": "near",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 22
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.7997245788574219,
+        "depth": 25.225379943847656,
+        "diameter": 13.116439819335938,
+        "visible": true
+      },
+      "width": 1280,
+      "height": 720,
+      "camera": {
+        "position": [
+          0,
+          20.999996766,
+          39.974996227
+        ],
+        "target": [
+          0,
+          0,
+          15.475
+        ],
+        "fov": 42
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "mode": "follow",
+      "name": "corner",
+      "input": {
+        "mode": "follow",
+        "x": 31,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 23
+      },
+      "ball": {
+        "x": 0.24305948615074158,
+        "y": 0.5729317665100098,
+        "depth": 33.032588958740234,
+        "diameter": 10.016386032104492,
+        "visible": true
+      },
+      "width": 1280,
+      "height": 720,
+      "camera": {
+        "position": [
+          13.562099470308576,
+          20.999996619,
+          39.9749960555
+        ],
+        "target": [
+          29.292581626203265,
+          0,
+          15.475
+        ],
+        "fov": 42
+      },
+      "pictureBall": [
+        37.199999999999996,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 31,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "mode": "follow",
+      "name": "far",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": -20.5,
+        "elevation": 0.29,
+        "caseId": 24
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.3107355833053589,
+        "depth": 57.551544189453125,
+        "diameter": 5.749057769775391,
+        "visible": true
+      },
+      "width": 1280,
+      "height": 720,
+      "camera": {
+        "position": [
+          0,
+          20.999996471999996,
+          29.699993699999997
+        ],
+        "target": [
+          0,
+          0,
+          -7.8
+        ],
+        "fov": 42
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        -24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": -20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "mode": "follow",
+      "name": "high",
+      "input": {
+        "mode": "follow",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 6,
+        "caseId": 25
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.6302547454833984,
+        "depth": 21.632102966308594,
+        "diameter": 15.295191764831543,
+        "visible": true
+      },
+      "width": 1280,
+      "height": 720,
+      "camera": {
+        "position": [
+          0,
+          20.99999649321,
+          39.9749957125
+        ],
+        "target": [
+          0,
+          0.9611999999999999,
+          15.475
+        ],
+        "fov": 42
+      },
+      "pictureBall": [
+        0,
+        5.63,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 5.63,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "mode": "sideline",
+      "name": "centre",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": 0,
+        "elevation": 0.29,
+        "caseId": 26
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.49368375539779663,
+        "depth": 33.547245025634766,
+        "diameter": 9.86272144317627,
+        "visible": true
+      },
+      "width": 1280,
+      "height": 720,
+      "camera": {
+        "position": [
+          0,
+          12.999997634,
+          30.999994358
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "fov": 42
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        0
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 0,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "mode": "sideline",
+      "name": "near",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 27
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.7739907503128052,
+        "depth": 19.59210205078125,
+        "diameter": 16.88778305053711,
+        "visible": true
+      },
+      "width": 1280,
+      "height": 720,
+      "camera": {
+        "position": [
+          0,
+          12.999997543,
+          39.9749953695
+        ],
+        "target": [
+          0,
+          0,
+          15.475
+        ],
+        "fov": 42
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "mode": "sideline",
+      "name": "corner",
+      "input": {
+        "mode": "sideline",
+        "x": 31,
+        "z": 20.5,
+        "elevation": 0.29,
+        "caseId": 28
+      },
+      "ball": {
+        "x": 0.17446058988571167,
+        "y": 0.6401382684707642,
+        "depth": 23.56694221496582,
+        "diameter": 14.039460182189941,
+        "visible": true
+      },
+      "width": 1280,
+      "height": 720,
+      "camera": {
+        "position": [
+          20.748913659786563,
+          12.999997452,
+          39.974995198
+        ],
+        "target": [
+          29.292581626203265,
+          0,
+          15.475
+        ],
+        "fov": 42
+      },
+      "pictureBall": [
+        37.199999999999996,
+        0.29,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 31,
+        "z": 20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "mode": "sideline",
+      "name": "far",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": -20.5,
+        "elevation": 0.29,
+        "caseId": 29
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.366955041885376,
+        "depth": 55.504886627197266,
+        "diameter": 5.961045742034912,
+        "visible": true
+      },
+      "width": 1280,
+      "height": 720,
+      "camera": {
+        "position": [
+          0,
+          12.999997360999998,
+          29.699992387499993
+        ],
+        "target": [
+          0,
+          0,
+          -7.8
+        ],
+        "fov": 42
+      },
+      "pictureBall": [
+        0,
+        0.29,
+        -24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": -20.5,
+        "height": 0.29,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    },
+    {
+      "viewportWidth": 1280,
+      "viewportHeight": 720,
+      "mode": "sideline",
+      "name": "high",
+      "input": {
+        "mode": "sideline",
+        "x": 0,
+        "z": 20.5,
+        "elevation": 6,
+        "caseId": 30
+      },
+      "ball": {
+        "x": 0.5,
+        "y": 0.48731762170791626,
+        "depth": 17.049333572387695,
+        "diameter": 19.406455993652344,
+        "visible": true
+      },
+      "width": 1280,
+      "height": 720,
+      "camera": {
+        "position": [
+          0,
+          12.999997471852,
+          39.974994855
+        ],
+        "target": [
+          0,
+          0.9611999999999999,
+          15.475
+        ],
+        "fov": 42
+      },
+      "pictureBall": [
+        0,
+        5.63,
+        24.599999999999998
+      ],
+      "frameBall": {
+        "x": 0,
+        "z": 20.5,
+        "height": 5.63,
+        "opacity": 1
+      },
+      "clock": 0,
+      "error": null
+    }
+  ],
+  "errors": [],
+  "sourceId": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+  "passed": true
+}
