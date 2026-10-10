@@ -24,7 +24,7 @@ function v63Init(career){
   const coach=v63Coach(career,`coach:${club.id}:S1`,club.countryId,1);
   career.world.coaches.push(coach);v63StartJob(career,coach,club,-1,'Karrierestart');
  }
- for(let index=0;index<10;index++)career.world.coaches.push(v63Coach(career,`candidate:S1:${index+1}`,v61Countries[index%6][0],1));
+ for(let index=0;index<(career.world.rules?.variant==='expansion12'?24:10);index++)career.world.coaches.push(v63Coach(career,`candidate:S1:${index+1}`,career.world.countries[index%career.world.countries.length].id,1));
 }
 function v63Validate(career){
  const world=career.world,coaches=world.coaches,clubs=world.clubs,managed=career.manager.managedClubId;
@@ -124,7 +124,7 @@ function v63NextSeason(career){
   if(!coach.retiredSeason)coach.age++;
   if(!coach.currentClubId&&!coach.retiredSeason&&!coach.interim&&season-coach.unemployedSinceSeason>=3)coach.retiredSeason=season;
  }
- for(let index=0;index<10;index++)career.world.coaches.push(v63Coach(career,`candidate:S${season}:${index+1}`,v61Countries[(season+index-1)%6][0],season));
+ for(let index=0;index<(career.world.rules?.variant==='expansion12'?24:10);index++)career.world.coaches.push(v63Coach(career,`candidate:S${season}:${index+1}`,career.world.countries[(season+index-1)%career.world.countries.length].id,season));
  for(const club of career.world.clubs)if(club.coachId&&career.world.coaches.find(coach=>coach.id===club.coachId)?.interim)v63FillJob(career,club,0);
 }
 function v63ArchiveSeason(career){

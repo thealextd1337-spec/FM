@@ -1,0 +1,30 @@
+{
+  "pass": true,
+  "source": "outputs/ligaexpansion-ap11/ap11-a-closed-career.json",
+  "jsonBytes": 22892885,
+  "season": 10,
+  "imported": {
+    "id": "expansion-test-1",
+    "milliseconds": 3733.2999999970198,
+    "indexedDb": true,
+    "before": {
+      "quota": 10737491968,
+      "usage": 73728,
+      "usageDetails": {
+        "indexedDB": 73728
+      }
+    },
+    "after": {
+      "quota": 10744725504,
+      "usage": 7307264,
+      "usageDetails": {
+        "indexedDB": 7307264
+      }
+    }
+  },
+  "restored": {
+    "valid": true,
+    "count": 1
+  },
+  "sourceHash": "d348d353cdb413ba7552748c9974f5fcff6b6dd2930596a6d4ce306455362b52"
+}

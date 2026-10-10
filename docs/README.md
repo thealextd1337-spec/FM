@@ -1,5 +1,24 @@
 # Entwicklungsdokumentation
 
+- [Release 122 – zwölf Länder, Crown und Horizon](release-122.md): lokal geprüfter und zur Veröffentlichung beauftragter Expansionsstand mit 64 detaillierten transparenten Trophäenmotiven.
+
+- [AP11 – Gesamtprüfung](ligaexpansion-ap11.md): aktuelle Langzeit-, Browser-/Speicher- und Gerätebelege; 64 freigegebene, freigestellte und lokal integrierte Trophäenmotive. [Veröffentlichungsplan](ligaexpansion-veroeffentlichungsplan.md).
+
+- [AP09 / AP10 – Awards und Karriereoberfläche](ligaexpansion-ap09-ap10.md): zwölf Landes-Sets, zwei Cupidentitäten, neuer Startablauf, Navigation, Erinnerungen und Sprachen; lokale Prüfungen und verbleibende Gesamt-/Geräteabnahme.
+
+- [AP08 – Storyereignisse und Vereinsbüro](ligaexpansion-ap08.md): gespeicherte Meilensteine, lesbare Vereinsnachrichten, Lesestatus und Links; lokale Prüfungen und getrennte Legendenentwürfe.
+
+
+- [Ligaexpansion AP07](ligaexpansion-ap07.md): Drei-Saisons-Länderwertung, 26/32 Folgequalifikation und mehrjährige Karriere; vier native und 15 synthetische Saisons, Saisonwechsel und mobile Vertrags-/Finanzansicht geprüft. Nur neue Expansionskarrieren; nicht veröffentlicht.
+
+- [Ligaexpansion AP06](ligaexpansion-ap06.md): Horizon Cup und aktive erste Saison mit 26 Wettbewerben; 991 native Ergebnisse, Speicherung und mobiler Match-/Pause-/Neuladeablauf geprüft. Folgejahr und Länderwertung folgen AP07.
+
+- [Ligaexpansion AP05](ligaexpansion-ap05.md): Crown Cup mit fünf ausländischen Gegnern, 13/13 Heimverteilung und Top-8-K.-o.-Weg; Vorschau und Nachweise.
+
+- [Ligaexpansion AP04](ligaexpansion-ap04.md): zwölf Ligen, zwölf Pokale und gemeinsame Kalenderfenster; gespeicherte Vorschau und Prüfungen über 480 Ländersaisons.
+
+- [Ligaexpansion AP03](ligaexpansion-ap03.md): speicherbare 192er-Weltvorschau auf Basis 121; Nachweise, Übergabe an Wettbewerbe und offene Grafik-/Stadionabnahme.
+
 - [Release 121 – natürliche Bewegung und mobile Kamera](release-121.md): veröffentlicht und live abgenommen; 95 Produktionskommandos, Version 121 und alle acht Live-Dateihashes bestätigt. Acht Live-Integrationsprüfungen und 30 tatsächliche WebGL-Kamerafälle bestanden. Android-Hardwareprüfung sowie native Spielzeit-/Schussabstimmung bleiben offen. Claude-r2 ist am Providerlimit beendet; ein neuer einmaliger r3-Versuch ist auf Nutzerauftrag für 16:38 Uhr Europe/Paris vorgesehen, ohne Quota-Retryloop. [Live-Browsernachweis](../outputs/release-121/live-browser/checks.json).
 
 - [Release 120 – mobile Statistikranglisten](release-120.md): veröffentlicht und live abgenommen; Produktionslauf, Version 120 und alle acht Dateihashes bestätigt. Acht Live-Browserfälle mit jeweils 18 Kategorien, Profilaktion und unveränderter Karriere bestanden. Physische Android-Prüfung durch den Nutzer steht aus. [Live-Browsernachweis](../outputs/release-120/live-browser.json).

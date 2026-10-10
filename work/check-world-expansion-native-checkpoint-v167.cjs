@@ -1,0 +1,7 @@
+'use strict';
+const fs=require('node:fs'),assert=require('node:assert/strict'),{harness}=require('./world-expansion-harness-v167.cjs'),{call,context}=harness();
+const career=JSON.parse(fs.readFileSync('outputs/ligaexpansion-ap07/closed-career.json','utf8'));context.v61CurrentCareer=career;assert(call('v61ValidateCareer',career));assert.equal(career.world.season,4);
+// The deterministic test UUID source starts anew when loading this fixture.
+context.crypto.randomUUID();context.crypto.randomUUID();
+if(career.world.transition.choice===null)call('v67ChooseOffer',career);call('v62NextSeason',career);assert.equal(career.world.season,5);assert(call('v61ValidateCareer',career));assert(career.world.contracts.every(c=>c.renewalOffers===0));assert.equal(career.world.countrySeasonValues.length,4);assert.equal(career.world.qualifications.at(-1).horizon.length,32);
+(async()=>{await call('v61SaveCareers',[career]);const restored=await call('v61ImportCareerData',await call('v61ExportCareerData',career.id));assert.equal(JSON.stringify(restored.world),JSON.stringify(career.world));fs.writeFileSync('outputs/ligaexpansion-ap07/native-checkpoint.json',JSON.stringify({pass:true,closedNativeSeasons:4,nextSeason:5,renewalReset:true,horizon:32,rankingPreserved:true,saveRoundtrip:true},null,2)+'\n');console.log('Latest AP07 code loads four native seasons, starts season 5, resets renewals and preserves export/import.');})().catch(error=>{console.error(error);process.exitCode=1;});

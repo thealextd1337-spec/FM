@@ -1,0 +1,864 @@
+{
+  "version": 174,
+  "style": "Approved detailed trophies with true alpha; 320px large and 96px compact sources",
+  "source": "Meshy originals and image_gen cutouts approved 2026-10-10",
+  "rights": "Original project artwork; repository licensing applies",
+  "entries": [
+    {
+      "key": "eng-league",
+      "country": "ENG",
+      "kind": "league",
+      "label": "Meisterschaft · England",
+      "variants": {
+        "large": "trophies-expansion/eng-league.webp",
+        "small": "trophies-expansion/eng-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "eng-cup",
+      "country": "ENG",
+      "kind": "cup",
+      "label": "Nationaler Pokal · England",
+      "variants": {
+        "large": "trophies-expansion/eng-cup.webp",
+        "small": "trophies-expansion/eng-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "eng-top-scorer",
+      "country": "ENG",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · England",
+      "variants": {
+        "large": "trophies-expansion/eng-top-scorer.webp",
+        "small": "trophies-expansion/eng-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "eng-player-of-season",
+      "country": "ENG",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · England",
+      "variants": {
+        "large": "trophies-expansion/eng-player-of-season.webp",
+        "small": "trophies-expansion/eng-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "eng-man-of-the-match",
+      "country": "ENG",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · England",
+      "variants": {
+        "large": "trophies-expansion/eng-man-of-the-match.webp",
+        "small": "trophies-expansion/eng-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "esp-league",
+      "country": "ESP",
+      "kind": "league",
+      "label": "Meisterschaft · Spanien",
+      "variants": {
+        "large": "trophies-expansion/esp-league.webp",
+        "small": "trophies-expansion/esp-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "esp-cup",
+      "country": "ESP",
+      "kind": "cup",
+      "label": "Nationaler Pokal · Spanien",
+      "variants": {
+        "large": "trophies-expansion/esp-cup.webp",
+        "small": "trophies-expansion/esp-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "esp-top-scorer",
+      "country": "ESP",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · Spanien",
+      "variants": {
+        "large": "trophies-expansion/esp-top-scorer.webp",
+        "small": "trophies-expansion/esp-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "esp-player-of-season",
+      "country": "ESP",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · Spanien",
+      "variants": {
+        "large": "trophies-expansion/esp-player-of-season.webp",
+        "small": "trophies-expansion/esp-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "esp-man-of-the-match",
+      "country": "ESP",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Spanien",
+      "variants": {
+        "large": "trophies-expansion/esp-man-of-the-match.webp",
+        "small": "trophies-expansion/esp-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ger-league",
+      "country": "GER",
+      "kind": "league",
+      "label": "Meisterschaft · Deutschland",
+      "variants": {
+        "large": "trophies-expansion/ger-league.webp",
+        "small": "trophies-expansion/ger-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ger-cup",
+      "country": "GER",
+      "kind": "cup",
+      "label": "Nationaler Pokal · Deutschland",
+      "variants": {
+        "large": "trophies-expansion/ger-cup.webp",
+        "small": "trophies-expansion/ger-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ger-top-scorer",
+      "country": "GER",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · Deutschland",
+      "variants": {
+        "large": "trophies-expansion/ger-top-scorer.webp",
+        "small": "trophies-expansion/ger-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ger-player-of-season",
+      "country": "GER",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · Deutschland",
+      "variants": {
+        "large": "trophies-expansion/ger-player-of-season.webp",
+        "small": "trophies-expansion/ger-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ger-man-of-the-match",
+      "country": "GER",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Deutschland",
+      "variants": {
+        "large": "trophies-expansion/ger-man-of-the-match.webp",
+        "small": "trophies-expansion/ger-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ita-league",
+      "country": "ITA",
+      "kind": "league",
+      "label": "Meisterschaft · Italien",
+      "variants": {
+        "large": "trophies-expansion/ita-league.webp",
+        "small": "trophies-expansion/ita-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ita-cup",
+      "country": "ITA",
+      "kind": "cup",
+      "label": "Nationaler Pokal · Italien",
+      "variants": {
+        "large": "trophies-expansion/ita-cup.webp",
+        "small": "trophies-expansion/ita-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ita-top-scorer",
+      "country": "ITA",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · Italien",
+      "variants": {
+        "large": "trophies-expansion/ita-top-scorer.webp",
+        "small": "trophies-expansion/ita-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ita-player-of-season",
+      "country": "ITA",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · Italien",
+      "variants": {
+        "large": "trophies-expansion/ita-player-of-season.webp",
+        "small": "trophies-expansion/ita-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ita-man-of-the-match",
+      "country": "ITA",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Italien",
+      "variants": {
+        "large": "trophies-expansion/ita-man-of-the-match.webp",
+        "small": "trophies-expansion/ita-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "fra-league",
+      "country": "FRA",
+      "kind": "league",
+      "label": "Meisterschaft · Frankreich",
+      "variants": {
+        "large": "trophies-expansion/fra-league.webp",
+        "small": "trophies-expansion/fra-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "fra-cup",
+      "country": "FRA",
+      "kind": "cup",
+      "label": "Nationaler Pokal · Frankreich",
+      "variants": {
+        "large": "trophies-expansion/fra-cup.webp",
+        "small": "trophies-expansion/fra-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "fra-top-scorer",
+      "country": "FRA",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · Frankreich",
+      "variants": {
+        "large": "trophies-expansion/fra-top-scorer.webp",
+        "small": "trophies-expansion/fra-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "fra-player-of-season",
+      "country": "FRA",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · Frankreich",
+      "variants": {
+        "large": "trophies-expansion/fra-player-of-season.webp",
+        "small": "trophies-expansion/fra-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "fra-man-of-the-match",
+      "country": "FRA",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Frankreich",
+      "variants": {
+        "large": "trophies-expansion/fra-man-of-the-match.webp",
+        "small": "trophies-expansion/fra-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "por-league",
+      "country": "POR",
+      "kind": "league",
+      "label": "Meisterschaft · Portugal",
+      "variants": {
+        "large": "trophies-expansion/por-league.webp",
+        "small": "trophies-expansion/por-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "por-cup",
+      "country": "POR",
+      "kind": "cup",
+      "label": "Nationaler Pokal · Portugal",
+      "variants": {
+        "large": "trophies-expansion/por-cup.webp",
+        "small": "trophies-expansion/por-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "por-top-scorer",
+      "country": "POR",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · Portugal",
+      "variants": {
+        "large": "trophies-expansion/por-top-scorer.webp",
+        "small": "trophies-expansion/por-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "por-player-of-season",
+      "country": "POR",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · Portugal",
+      "variants": {
+        "large": "trophies-expansion/por-player-of-season.webp",
+        "small": "trophies-expansion/por-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "por-man-of-the-match",
+      "country": "POR",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Portugal",
+      "variants": {
+        "large": "trophies-expansion/por-man-of-the-match.webp",
+        "small": "trophies-expansion/por-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ned-league",
+      "country": "NED",
+      "kind": "league",
+      "label": "Meisterschaft · Niederlande",
+      "variants": {
+        "large": "trophies-expansion/ned-league.webp",
+        "small": "trophies-expansion/ned-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ned-cup",
+      "country": "NED",
+      "kind": "cup",
+      "label": "Nationaler Pokal · Niederlande",
+      "variants": {
+        "large": "trophies-expansion/ned-cup.webp",
+        "small": "trophies-expansion/ned-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ned-top-scorer",
+      "country": "NED",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · Niederlande",
+      "variants": {
+        "large": "trophies-expansion/ned-top-scorer.webp",
+        "small": "trophies-expansion/ned-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ned-player-of-season",
+      "country": "NED",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · Niederlande",
+      "variants": {
+        "large": "trophies-expansion/ned-player-of-season.webp",
+        "small": "trophies-expansion/ned-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "ned-man-of-the-match",
+      "country": "NED",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Niederlande",
+      "variants": {
+        "large": "trophies-expansion/ned-man-of-the-match.webp",
+        "small": "trophies-expansion/ned-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "bel-league",
+      "country": "BEL",
+      "kind": "league",
+      "label": "Meisterschaft · Belgien",
+      "variants": {
+        "large": "trophies-expansion/bel-league.webp",
+        "small": "trophies-expansion/bel-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "bel-cup",
+      "country": "BEL",
+      "kind": "cup",
+      "label": "Nationaler Pokal · Belgien",
+      "variants": {
+        "large": "trophies-expansion/bel-cup.webp",
+        "small": "trophies-expansion/bel-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "bel-top-scorer",
+      "country": "BEL",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · Belgien",
+      "variants": {
+        "large": "trophies-expansion/bel-top-scorer.webp",
+        "small": "trophies-expansion/bel-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "bel-player-of-season",
+      "country": "BEL",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · Belgien",
+      "variants": {
+        "large": "trophies-expansion/bel-player-of-season.webp",
+        "small": "trophies-expansion/bel-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "bel-man-of-the-match",
+      "country": "BEL",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Belgien",
+      "variants": {
+        "large": "trophies-expansion/bel-man-of-the-match.webp",
+        "small": "trophies-expansion/bel-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "aut-league",
+      "country": "AUT",
+      "kind": "league",
+      "label": "Meisterschaft · Österreich",
+      "variants": {
+        "large": "trophies-expansion/aut-league.webp",
+        "small": "trophies-expansion/aut-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "aut-cup",
+      "country": "AUT",
+      "kind": "cup",
+      "label": "Nationaler Pokal · Österreich",
+      "variants": {
+        "large": "trophies-expansion/aut-cup.webp",
+        "small": "trophies-expansion/aut-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "aut-top-scorer",
+      "country": "AUT",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · Österreich",
+      "variants": {
+        "large": "trophies-expansion/aut-top-scorer.webp",
+        "small": "trophies-expansion/aut-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "aut-player-of-season",
+      "country": "AUT",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · Österreich",
+      "variants": {
+        "large": "trophies-expansion/aut-player-of-season.webp",
+        "small": "trophies-expansion/aut-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "aut-man-of-the-match",
+      "country": "AUT",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Österreich",
+      "variants": {
+        "large": "trophies-expansion/aut-man-of-the-match.webp",
+        "small": "trophies-expansion/aut-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "sui-league",
+      "country": "SUI",
+      "kind": "league",
+      "label": "Meisterschaft · Schweiz",
+      "variants": {
+        "large": "trophies-expansion/sui-league.webp",
+        "small": "trophies-expansion/sui-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "sui-cup",
+      "country": "SUI",
+      "kind": "cup",
+      "label": "Nationaler Pokal · Schweiz",
+      "variants": {
+        "large": "trophies-expansion/sui-cup.webp",
+        "small": "trophies-expansion/sui-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "sui-top-scorer",
+      "country": "SUI",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · Schweiz",
+      "variants": {
+        "large": "trophies-expansion/sui-top-scorer.webp",
+        "small": "trophies-expansion/sui-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "sui-player-of-season",
+      "country": "SUI",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · Schweiz",
+      "variants": {
+        "large": "trophies-expansion/sui-player-of-season.webp",
+        "small": "trophies-expansion/sui-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "sui-man-of-the-match",
+      "country": "SUI",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Schweiz",
+      "variants": {
+        "large": "trophies-expansion/sui-man-of-the-match.webp",
+        "small": "trophies-expansion/sui-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "tur-league",
+      "country": "TUR",
+      "kind": "league",
+      "label": "Meisterschaft · Türkei",
+      "variants": {
+        "large": "trophies-expansion/tur-league.webp",
+        "small": "trophies-expansion/tur-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "tur-cup",
+      "country": "TUR",
+      "kind": "cup",
+      "label": "Nationaler Pokal · Türkei",
+      "variants": {
+        "large": "trophies-expansion/tur-cup.webp",
+        "small": "trophies-expansion/tur-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "tur-top-scorer",
+      "country": "TUR",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · Türkei",
+      "variants": {
+        "large": "trophies-expansion/tur-top-scorer.webp",
+        "small": "trophies-expansion/tur-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "tur-player-of-season",
+      "country": "TUR",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · Türkei",
+      "variants": {
+        "large": "trophies-expansion/tur-player-of-season.webp",
+        "small": "trophies-expansion/tur-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "tur-man-of-the-match",
+      "country": "TUR",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Türkei",
+      "variants": {
+        "large": "trophies-expansion/tur-man-of-the-match.webp",
+        "small": "trophies-expansion/tur-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "gre-league",
+      "country": "GRE",
+      "kind": "league",
+      "label": "Meisterschaft · Griechenland",
+      "variants": {
+        "large": "trophies-expansion/gre-league.webp",
+        "small": "trophies-expansion/gre-league-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "gre-cup",
+      "country": "GRE",
+      "kind": "cup",
+      "label": "Nationaler Pokal · Griechenland",
+      "variants": {
+        "large": "trophies-expansion/gre-cup.webp",
+        "small": "trophies-expansion/gre-cup-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "gre-top-scorer",
+      "country": "GRE",
+      "kind": "top-scorer",
+      "label": "Torschützenkönig · Griechenland",
+      "variants": {
+        "large": "trophies-expansion/gre-top-scorer.webp",
+        "small": "trophies-expansion/gre-top-scorer-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "gre-player-of-season",
+      "country": "GRE",
+      "kind": "player-of-season",
+      "label": "Spieler der Saison · Griechenland",
+      "variants": {
+        "large": "trophies-expansion/gre-player-of-season.webp",
+        "small": "trophies-expansion/gre-player-of-season-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "gre-man-of-the-match",
+      "country": "GRE",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Griechenland",
+      "variants": {
+        "large": "trophies-expansion/gre-man-of-the-match.webp",
+        "small": "trophies-expansion/gre-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "crown-europe",
+      "country": "crown",
+      "kind": "europe",
+      "label": "Crown Cup · Titel",
+      "variants": {
+        "large": "trophies-expansion/crown-europe.webp",
+        "small": "trophies-expansion/crown-europe-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "crown-man-of-the-match",
+      "country": "crown",
+      "kind": "man-of-the-match",
+      "label": "Crown Cup · Man of the Match",
+      "variants": {
+        "large": "trophies-expansion/crown-man-of-the-match.webp",
+        "small": "trophies-expansion/crown-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "horizon-europe",
+      "country": "horizon",
+      "kind": "europe",
+      "label": "Horizon Cup · Titel",
+      "variants": {
+        "large": "trophies-expansion/horizon-europe.webp",
+        "small": "trophies-expansion/horizon-europe-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "horizon-man-of-the-match",
+      "country": "horizon",
+      "kind": "man-of-the-match",
+      "label": "Horizon Cup · Man of the Match",
+      "variants": {
+        "large": "trophies-expansion/horizon-man-of-the-match.webp",
+        "small": "trophies-expansion/horizon-man-of-the-match-small.webp"
+      },
+      "source": "Approved Meshy design, image-generator cutout; world-expansion-awards-v171",
+      "rights": "Original project artwork; repository licensing applies",
+      "format": "webp-alpha"
+    },
+    {
+      "key": "eu-europe",
+      "country": "EU",
+      "kind": "europe",
+      "label": "Europacup · Europa",
+      "variants": {
+        "large": "trophies-expansion/eu-europe.svg",
+        "small": "trophies-expansion/eu-europe-small.svg"
+      },
+      "source": "trophy-art-v119.js (unaltered geometry)",
+      "rights": "Original project artwork; repository licensing applies"
+    },
+    {
+      "key": "eu-man-of-the-match",
+      "country": "EU",
+      "kind": "man-of-the-match",
+      "label": "Man of the Match · Europa",
+      "variants": {
+        "large": "trophies-expansion/eu-man-of-the-match.svg",
+        "small": "trophies-expansion/eu-man-of-the-match-small.svg"
+      },
+      "source": "trophy-art-v119.js (unaltered geometry)",
+      "rights": "Original project artwork; repository licensing applies"
+    }
+  ]
+}

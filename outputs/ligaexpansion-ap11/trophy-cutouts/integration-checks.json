@@ -1,0 +1,583 @@
+{
+  "count": 64,
+  "variants": 128,
+  "bytes": 2130132,
+  "checks": [
+    {
+      "key": "eng-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 950219,
+      "nearOpaquePixels": 579211,
+      "bytes": 38252,
+      "sourceSha256": "e077201657e8ae721e012faa84bf890f5baae9864e011bf3c42ee59cc07da2e6"
+    },
+    {
+      "key": "eng-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 913797,
+      "nearOpaquePixels": 599951,
+      "bytes": 45134,
+      "sourceSha256": "515e730fd44527c944cd026ab3dc91095553cc097eaa76231d747213076b804f"
+    },
+    {
+      "key": "eng-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 904314,
+      "nearOpaquePixels": 647309,
+      "bytes": 33686,
+      "sourceSha256": "4c843c47eb8a7444892e18e2228f38817c329c2ae7120e22da0348597beb1247"
+    },
+    {
+      "key": "eng-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 887776,
+      "nearOpaquePixels": 629665,
+      "bytes": 41366,
+      "sourceSha256": "8fa5d474d58e254b8debdbc7599e65939d3efbcd4f02695b65acfce26d180323"
+    },
+    {
+      "key": "eng-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 996015,
+      "nearOpaquePixels": 556306,
+      "bytes": 30874,
+      "sourceSha256": "23d9083b7d4306238665a7131bf4f1d3d5d7a4f9ac7bd26bd2022be173e0bf05"
+    },
+    {
+      "key": "esp-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1154263,
+      "nearOpaquePixels": 387047,
+      "bytes": 27946,
+      "sourceSha256": "b25c120f75fd1d2edc8ca22de0dbecc3acd2b5feab03a5c06044b089df1eda4a"
+    },
+    {
+      "key": "esp-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1041684,
+      "nearOpaquePixels": 478336,
+      "bytes": 38502,
+      "sourceSha256": "dc074bb2cd06ea57af628d261748a746c05629ffc82a783de985fae9727601d4"
+    },
+    {
+      "key": "esp-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1000168,
+      "nearOpaquePixels": 549450,
+      "bytes": 30126,
+      "sourceSha256": "238fdeed2346640ac4f3f7523663f8412e55862b09f15d6e4a8b6d428317e12e"
+    },
+    {
+      "key": "esp-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 939943,
+      "nearOpaquePixels": 584414,
+      "bytes": 37042,
+      "sourceSha256": "f5766c6589492b56f7c86d67c0c44eb532b338a4ca84e82de58cef3de50147ad"
+    },
+    {
+      "key": "esp-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 954097,
+      "nearOpaquePixels": 603284,
+      "bytes": 31162,
+      "sourceSha256": "3153b46b11761159893027295381203ca3d5ac88dd979bcfb3d96a1e80d32765"
+    },
+    {
+      "key": "ger-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 805342,
+      "nearOpaquePixels": 749553,
+      "bytes": 34214,
+      "sourceSha256": "469a213bf1bd8091a9113024602f4a3388ea8b1e6b18653d965042f3ef0f6b10"
+    },
+    {
+      "key": "ger-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1083435,
+      "nearOpaquePixels": 457794,
+      "bytes": 30788,
+      "sourceSha256": "72c6548833d9d9c7fdf537b5e191bbe385d24670b769a0565a9e61cbb22a2158"
+    },
+    {
+      "key": "ger-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1001312,
+      "nearOpaquePixels": 535311,
+      "bytes": 31146,
+      "sourceSha256": "1d172b7d5a91aeec5a26193f2047dc5144a7f39e26bcc5015f86e2dede6c42ac"
+    },
+    {
+      "key": "ger-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 938798,
+      "nearOpaquePixels": 604387,
+      "bytes": 35302,
+      "sourceSha256": "09efe5dc70b16bb8cc1b5c3c866e2ad218a848c2265e98e44300042bdfb6df33"
+    },
+    {
+      "key": "ger-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1018792,
+      "nearOpaquePixels": 534774,
+      "bytes": 29604,
+      "sourceSha256": "84bf4bedb048c19bdebad818f747b572857e5a55722a6ec198d3df3275f8357f"
+    },
+    {
+      "key": "ita-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1266982,
+      "nearOpaquePixels": 287086,
+      "bytes": 20308,
+      "sourceSha256": "f76d7673dc412a17c28b8d305394b90a484dce55d5a8de04a525509521f0d0e9"
+    },
+    {
+      "key": "ita-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1177185,
+      "nearOpaquePixels": 362811,
+      "bytes": 29300,
+      "sourceSha256": "92ea6f91d3614855511f036f7e6b88c789c6251d47776f914a98414bfbae4016"
+    },
+    {
+      "key": "ita-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1020049,
+      "nearOpaquePixels": 531634,
+      "bytes": 31732,
+      "sourceSha256": "48a9bf2f89e9fdb872f5aea70daa454d8d8f26a6ed558f12c0635bfb6920e1cb"
+    },
+    {
+      "key": "ita-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 890106,
+      "nearOpaquePixels": 642477,
+      "bytes": 39972,
+      "sourceSha256": "fe74303c4f0dbb2753c806a5ddb73cfdf27624e1c66128e865a8c6fbf1e96802"
+    },
+    {
+      "key": "ita-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 964743,
+      "nearOpaquePixels": 589570,
+      "bytes": 32970,
+      "sourceSha256": "4bd6c24e29fc1977c366a65bebf5cb548ac2ec4a40df4354c6e2cfa983492166"
+    },
+    {
+      "key": "fra-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1239660,
+      "nearOpaquePixels": 311225,
+      "bytes": 21958,
+      "sourceSha256": "7e409779ade0c735cfee27cacedff914b00e072216c6f6122c25cd214eca24e4"
+    },
+    {
+      "key": "fra-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1189255,
+      "nearOpaquePixels": 346943,
+      "bytes": 28792,
+      "sourceSha256": "327651b74616e4228bcc997d5125b4b0a23efdcd8820a390e3a3e36de69ce569"
+    },
+    {
+      "key": "fra-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 979830,
+      "nearOpaquePixels": 571303,
+      "bytes": 34376,
+      "sourceSha256": "d68e70cc42232e855ac23cf8dc5c77ad7f060b831f3cc0e649a9d8a6b49e478d"
+    },
+    {
+      "key": "fra-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 891981,
+      "nearOpaquePixels": 636191,
+      "bytes": 39502,
+      "sourceSha256": "71dff83389b287b74b7ccb8e6d8b95acbc8d2ce6067d17b4ee6c1d881892a54a"
+    },
+    {
+      "key": "fra-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 964650,
+      "nearOpaquePixels": 584376,
+      "bytes": 30052,
+      "sourceSha256": "56cad52a72c65ff3420e27e8c82fc63c06ee5306f2964cbf1fb2c3934e26aba7"
+    },
+    {
+      "key": "por-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1008874,
+      "nearOpaquePixels": 506585,
+      "bytes": 43570,
+      "sourceSha256": "2ae8852d5c3ec4249524e44ba004bd865b9c355b3cbc5a4a7041e8673b853979"
+    },
+    {
+      "key": "por-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1082154,
+      "nearOpaquePixels": 432861,
+      "bytes": 39662,
+      "sourceSha256": "210128c83b826d753fd4e19772e40d76f2d9d66b58bdb6a18ca11304a4ef5b98"
+    },
+    {
+      "key": "por-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 969429,
+      "nearOpaquePixels": 582893,
+      "bytes": 32640,
+      "sourceSha256": "c1793d943dca64a7e785752f5007325f4e87b1089491a4e706b750c412ba4275"
+    },
+    {
+      "key": "por-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 929883,
+      "nearOpaquePixels": 593534,
+      "bytes": 43214,
+      "sourceSha256": "0d8a974ca40a3e35d7b57136fbf7fd2fb9c1fa0f132489662f2702580b576dcf"
+    },
+    {
+      "key": "por-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1015096,
+      "nearOpaquePixels": 538107,
+      "bytes": 30802,
+      "sourceSha256": "27338ebdab35cb340675234643c5e3cf190e8a0798c5a64d5ae0e23a5131296b"
+    },
+    {
+      "key": "ned-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1227178,
+      "nearOpaquePixels": 330309,
+      "bytes": 22062,
+      "sourceSha256": "dcdceb74899963912e0cf980c7287bf9b43dc781f0d42c1a30863fd3d722e77e"
+    },
+    {
+      "key": "ned-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1026158,
+      "nearOpaquePixels": 483717,
+      "bytes": 38320,
+      "sourceSha256": "0d8129a2119f9108d3bedf12fc5fee56517d221a6db1dc15c98c7796a8cb8136"
+    },
+    {
+      "key": "ned-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1104341,
+      "nearOpaquePixels": 446421,
+      "bytes": 29118,
+      "sourceSha256": "be374e4686c0d3322a4dd344b3a32218d32864bd4772d46b24439d0bf9d73f1f"
+    },
+    {
+      "key": "ned-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 972799,
+      "nearOpaquePixels": 561244,
+      "bytes": 37392,
+      "sourceSha256": "fe7955aa824b16ec56503bd7fde7d9dad329e63234ec9a83dde52e7e5bb165f5"
+    },
+    {
+      "key": "ned-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 979841,
+      "nearOpaquePixels": 575756,
+      "bytes": 28764,
+      "sourceSha256": "3cd560defc5fa93c35869318051e2038f35b3c9caddaff9750c5a35f3f0abfe1"
+    },
+    {
+      "key": "bel-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1048548,
+      "nearOpaquePixels": 508483,
+      "bytes": 29984,
+      "sourceSha256": "2581b4b4d964dd836387e136a250db0b5cb58e385578842562b5243254b22d68"
+    },
+    {
+      "key": "bel-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1051908,
+      "nearOpaquePixels": 489607,
+      "bytes": 34382,
+      "sourceSha256": "81a644f3a3c3a5473452175bed66f2c5f2f4134a6759b6f4180bfb3653cf86e5"
+    },
+    {
+      "key": "bel-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 991916,
+      "nearOpaquePixels": 561459,
+      "bytes": 30582,
+      "sourceSha256": "fb4840ae67d55d0a856ca5cee13b0915aa3abd1cdb8776aa97a96f9df886e714"
+    },
+    {
+      "key": "bel-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 999704,
+      "nearOpaquePixels": 535257,
+      "bytes": 35170,
+      "sourceSha256": "13adab570ab393adb3c12a291d9e272568312dc53a8f33fbc3d450cd3022bd58"
+    },
+    {
+      "key": "bel-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 891006,
+      "nearOpaquePixels": 658834,
+      "bytes": 33928,
+      "sourceSha256": "56d64f2d787b5d725531144922cddc8244d06a57427163605d9b303fd05f2eae"
+    },
+    {
+      "key": "aut-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1184563,
+      "nearOpaquePixels": 371606,
+      "bytes": 25478,
+      "sourceSha256": "50a7f842e9f54a903782cb4b91cd7f19412bf0996aeff9ddcea77bbd0cf85a89"
+    },
+    {
+      "key": "aut-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1082689,
+      "nearOpaquePixels": 452002,
+      "bytes": 34178,
+      "sourceSha256": "b007768db9b89566cce8a53cb0995b54af4c8e651c888e3b8ba439c89834d90a"
+    },
+    {
+      "key": "aut-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 911675,
+      "nearOpaquePixels": 641874,
+      "bytes": 34854,
+      "sourceSha256": "65d1b5bc4c739367ebb9e48fb3a24057e9dd651c7cfcf30eb4813289e05abbba"
+    },
+    {
+      "key": "aut-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 916667,
+      "nearOpaquePixels": 593229,
+      "bytes": 44454,
+      "sourceSha256": "f22aeb5057f1bf20d43c595c5450d42ebf8f88763b0638d857f74bcdbac301b5"
+    },
+    {
+      "key": "aut-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 926560,
+      "nearOpaquePixels": 627723,
+      "bytes": 32338,
+      "sourceSha256": "6da52930cef3d20c764e2e07647ce1942598715226e1c30c9dc9fe99d4431fee"
+    },
+    {
+      "key": "sui-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1093809,
+      "nearOpaquePixels": 455226,
+      "bytes": 28854,
+      "sourceSha256": "78789f2e144e9349d7004e8a5c17826f64fc00000758217f4f866a3d6dd507df"
+    },
+    {
+      "key": "sui-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 976324,
+      "nearOpaquePixels": 547494,
+      "bytes": 39580,
+      "sourceSha256": "0210eb4921b8a86116b58ab8649745cf5ff690b7987327ebe7e7217483ef4d72"
+    },
+    {
+      "key": "sui-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 983334,
+      "nearOpaquePixels": 569575,
+      "bytes": 32508,
+      "sourceSha256": "2bead5aee104ad88f43def39b627852636aa54c826eccf0abae9428c9398b650"
+    },
+    {
+      "key": "sui-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 914721,
+      "nearOpaquePixels": 604891,
+      "bytes": 39834,
+      "sourceSha256": "79bfc0e300d5193a51520690950f2b0c8e4b5516e8f1752ccd0d95306a76b3e5"
+    },
+    {
+      "key": "sui-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 953847,
+      "nearOpaquePixels": 601861,
+      "bytes": 30578,
+      "sourceSha256": "c5b2cc8c9293c1b095d9094284ff899229ccd47cdc0f6669268ad88370b1ad2a"
+    },
+    {
+      "key": "tur-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1180825,
+      "nearOpaquePixels": 365522,
+      "bytes": 28350,
+      "sourceSha256": "b0741025d1c5cd480ee01968264877ccec2b481b921332a5de0506b1e4dd9a04"
+    },
+    {
+      "key": "tur-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1258102,
+      "nearOpaquePixels": 279803,
+      "bytes": 24830,
+      "sourceSha256": "fe3a72af8f69b6791a91b4234d5ff9e505f3232f6af0e166f4a4b320b1371287"
+    },
+    {
+      "key": "tur-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 959031,
+      "nearOpaquePixels": 590638,
+      "bytes": 33024,
+      "sourceSha256": "1eb1a9598231a2024bb08fe2503409f700d5abc373998fc178bc123a19b2d018"
+    },
+    {
+      "key": "tur-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 935761,
+      "nearOpaquePixels": 587157,
+      "bytes": 37870,
+      "sourceSha256": "c04ed47bafffa219bf3529c87877de8fb2dc0b718a072243b3d265415e0c395e"
+    },
+    {
+      "key": "tur-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 929068,
+      "nearOpaquePixels": 626294,
+      "bytes": 32138,
+      "sourceSha256": "c0e43f3ef0a365f062e271d39b4dad30fc1a61e511e9e7a784a251503448d424"
+    },
+    {
+      "key": "gre-league",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1087856,
+      "nearOpaquePixels": 430511,
+      "bytes": 35952,
+      "sourceSha256": "d8327ef2952e7b61edf0c59aa70a81a8c2c86df7640c10e6a561b7ed600013d8"
+    },
+    {
+      "key": "gre-cup",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1037956,
+      "nearOpaquePixels": 492646,
+      "bytes": 38840,
+      "sourceSha256": "fbf3f0cf2a5cfcc6f42575c205412290d95a22e4b2c07e402b43bfe339dac86c"
+    },
+    {
+      "key": "gre-top-scorer",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1002348,
+      "nearOpaquePixels": 552743,
+      "bytes": 30228,
+      "sourceSha256": "cc0983539a906f510e88d503b7bd5be9da581ff102a5e577408ed83a5eb3b1f4"
+    },
+    {
+      "key": "gre-player-of-season",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 917093,
+      "nearOpaquePixels": 608536,
+      "bytes": 40414,
+      "sourceSha256": "8e0d9ccaeade29f0f5da2c278df3f55be96a9ed73b568a81c9d0da1a7b5f0629"
+    },
+    {
+      "key": "gre-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 989092,
+      "nearOpaquePixels": 564038,
+      "bytes": 30276,
+      "sourceSha256": "4d691958aa4647df340ea85245a294cfc664abe4c05328b3b92a2352b2bf25c8"
+    },
+    {
+      "key": "crown-europe",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1147339,
+      "nearOpaquePixels": 387150,
+      "bytes": 30616,
+      "sourceSha256": "eee302da380e12cc795c72abdb11a207e68d0e5b5436436b2babc3da5c9ca859"
+    },
+    {
+      "key": "crown-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 986541,
+      "nearOpaquePixels": 567389,
+      "bytes": 31578,
+      "sourceSha256": "6be75777f08dca19f192ac8c434f2d80e367e72abc8aac97b99ef68a983af1e2"
+    },
+    {
+      "key": "horizon-europe",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 1096112,
+      "nearOpaquePixels": 463613,
+      "bytes": 25732,
+      "sourceSha256": "506de6335d09ee41f71059687906a1f924445a20b48902e91ee0ab0852418c06"
+    },
+    {
+      "key": "horizon-man-of-the-match",
+      "width": 1254,
+      "height": 1254,
+      "transparentPixels": 931507,
+      "nearOpaquePixels": 620934,
+      "bytes": 33932,
+      "sourceSha256": "7dbabacb4097b4f541b738e7b9489d1aa1d255ef10261b7188eb4b4c2e900c3d"
+    }
+  ]
+}

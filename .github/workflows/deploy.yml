@@ -95,6 +95,17 @@ jobs:
           node work/test-mobile-performance-v135.cjs
           node work/test-world-storage-v67.cjs
           node work/test-world-storage-recovery.cjs
+          node work/test-expansion-assets-v161.cjs
+          node work/test-world-expansion-v161.cjs
+          node work/test-world-expansion-domestic-v164.cjs
+          node work/test-world-expansion-crown-v165.cjs
+          node work/test-world-expansion-horizon-v166.cjs
+          node work/test-world-expansion-active-validation-v166.cjs
+          node work/test-world-expansion-rules-v167.cjs
+          node work/test-world-expansion-contracts-v168.cjs
+          node work/test-world-expansion-stories-v170.cjs
+          node work/test-world-expansion-presentation-v172.cjs
+          node work/platform/qa/test-android-3d-acceptance.cjs
           node work/test-world-save-management-v70.cjs
           node work/test-world-views-v68.cjs
           node work/test-world-honours-v74.cjs

@@ -236,7 +236,7 @@ function v64UiAggregateText(career,fixture,score,reverse=false){
  return`(${prior[0]+score[0]}:${prior[1]+score[1]})`;
 }
 function v64UiScreenHTML(career,fixture,state){
- const competition=v62Current(career).find(item=>item.id===fixture.competitionId),label=competition.type==='league'?v62LeagueLabel(competition.country):competition.type==='cup'?'Nationaler Pokal':'Europacup',home=career.world.clubs.find(club=>club.id===fixture.homeId),away=career.world.clubs.find(club=>club.id===fixture.awayId),side=v64UiOwnSide(fixture),phase=state.phase;
+ const competition=v62Current(career).find(item=>item.id===fixture.competitionId),label=competition.type==='league'?v62LeagueLabel(competition.country):competition.type==='cup'?'Nationaler Pokal':competition.name||'Europacup',home=career.world.clubs.find(club=>club.id===fixture.homeId),away=career.world.clubs.find(club=>club.id===fixture.awayId),side=v64UiOwnSide(fixture),phase=state.phase;
  const ranks=v62FixtureRankLabels(career,fixture);
  const round=v62FixtureRoundLabel(fixture);
  const boardClub=club=>`${v61CrestSVG(club)}<span class="v64-board-club"><strong>${escapeHTML(club.name)}${ranks.has(club.id)?` ${ranks.get(club.id)}`:''}</strong></span>`;

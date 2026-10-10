@@ -1,0 +1,29 @@
+{
+  "pass": true,
+  "results": [
+    {
+      "width": 390,
+      "awards": 66,
+      "images": 264,
+      "broken": 0,
+      "overflow": false,
+      "compact": true
+    },
+    {
+      "width": 1440,
+      "awards": 66,
+      "images": 264,
+      "broken": 0,
+      "overflow": false,
+      "compact": true
+    }
+  ],
+  "offline": {
+    "count": 128,
+    "inline": true,
+    "broken": 0,
+    "alt": true,
+    "large": 64,
+    "small": 64
+  }
+}

@@ -3,6 +3,19 @@
  'use strict';
  const key='doppel6.language';
  const labels=new Map(`
+Niederlande	Netherlands
+Belgien	Belgium
+Österreich	Austria
+Schweiz	Switzerland
+Türkei	Turkey
+Griechenland	Greece
+Crown Cup-Sieger	Crown Cup winner
+Horizon Cup-Sieger	Horizon Cup winner
+Titel	Title
+Finanzen und Jahresabrechnung	Finances and annual accounts
+Verträge und Einsatz-Zusagen	Contracts and appearance promises
+Bis zu 14 Einsätze pro Saison. Internationale Einsätze zählen mit höherem Gewicht. Bei einem Einstieg während der Saison zählen die verbleibenden Ligatermine.	Up to 14 appearances per season. International appearances carry more weight. Joining during a season uses the remaining league fixtures.
+Übernahmen sind ab Beginn der neuen Saison wieder möglich.	Promotions become available at the start of the next season.
 Regeln dieser Vereinswelt	Rules of this club world
 Spielfeld	Pitch
 Größer (+20 % Länge und Breite)	Larger (+20% length and width)
@@ -1727,6 +1740,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   const select=document.querySelector('#language-select');if(select)select.value=next;
   try{localStorage.setItem(key,next)}catch{}
   apply(document.body);
+  document.dispatchEvent(new CustomEvent('doppel6-language-change',{detail:next}));
  }
  const select=document.querySelector('#language-select');
  if(select)select.addEventListener('change',event=>setLanguage(event.target.value));

@@ -1,0 +1,22 @@
+{
+  "pass": true,
+  "currentCareer172": true,
+  "physicalPauseReload": true,
+  "startElapsed": 18.399999999999967,
+  "completed": {
+    "finished": true,
+    "result": true,
+    "valid": true,
+    "uniqueLedger": true,
+    "fixtureId": "S1:AUT:LEAGUE:R1:AUT-4-AUT-5:1",
+    "matchId": null
+  },
+  "legacy": {
+    "unchanged": true,
+    "valid": true,
+    "clubs": 48
+  },
+  "errors": [],
+  "network": [],
+  "sourceHash": "c052d4917128e3ae22ff63e6b0fb2b8fe30b09652beb600bdbb9f5dbca91390b"
+}

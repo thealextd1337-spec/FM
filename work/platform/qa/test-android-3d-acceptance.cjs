@@ -31,7 +31,7 @@ test('Late target-creation response after timeout cannot claim verified cleanup'
  await assert.rejects(p.init(),/Target.createTarget/);s.reply({id:1,result:{targetId:'late-owned-target'}});assert.equal(p.targetId,null);assert.equal(p.creationUncertain,true);await p.close();assert.equal(p.creationUncertain,true);assert.equal(s.sent.length,1);r.close();
 });
 test('Screenshot uses only owned session and manual window is optional/bounded',async()=>{
- const calls=[],p=new OwnedPage({send:async(...args)=>{calls.push(args);return {data:'png'};}},'http://localhost:4444');p.sessionId='own-session';await p.send('Page.captureScreenshot',{format:'png'});assert.equal(calls[0][2],'own-session');assert.equal(parseOptions(['--run'])['manual-seconds'],0);assert.equal(parseOptions(['--run','--manual-seconds','180'])['manual-seconds'],180);for(const value of ['-1','181','1.5','NaN'])assert.throws(()=>parseOptions(['--run','--manual-seconds',value]),/manual-seconds/);
+ const calls=[],p=new OwnedPage({send:async(...args)=>{calls.push(args);return {data:'png'};}},'http://localhost:4444');p.sessionId='own-session';await p.send('Page.captureScreenshot',{format:'png'});assert.equal(calls[0][2],'own-session');assert.equal(parseOptions(['--run'])['manual-seconds'],0);assert.equal(parseOptions(['--run']).expansion,false);assert.equal(parseOptions(['--run','--expansion']).expansion,true);assert.equal(parseOptions(['--run','--manual-seconds','180'])['manual-seconds'],180);for(const value of ['-1','181','1.5','NaN'])assert.throws(()=>parseOptions(['--run','--manual-seconds',value]),/manual-seconds/);
 });
 const controller=(id,state)=>`Display Power Controller:\n  mDisplayId=${id}\nDisplay Power Controller Locked State:\nDisplay Power Controller Configuration:\nDisplay Power Controller Thread State:\n  mDisplayId=${id}\nDisplay Power State:\n  mScreenState=${state}\nHistorical events:\n  state=ON\n`;
 test('Display parser uses current default-display controller, rejects history/ambiguity',()=>{
@@ -46,3 +46,27 @@ test('Sanitized current physical-device display fixture decodes ON when present'
  const fixture=path.resolve(__dirname,'../../../outputs/3d-quality/android-device-prerequisites/display-current-fields.txt');
  if(fs.existsSync(fixture))assert.equal(displayState(fs.readFileSync(fixture,'utf8')),'ON');
 });
+
+test('Manual fullscreen option uses an explicit manual-input mode',()=>{assert.equal(parseOptions(['--run','--manual-fullscreen']).manualFullscreen,true);assert.equal(parseOptions(['--run']).manualFullscreen,undefined);});
+
+test('Foreground activation addresses only the created QA target',async()=>{const calls=[],rpc={send:async(method,params)=>{calls.push({method,params});return {};}};const p=new OwnedPage(rpc,'http://localhost:1');p.targetId='owned-test';p.sessionId='owned-session';await p.bringToFront();assert.deepEqual(calls.map(c=>c.method),['Target.activateTarget','Page.bringToFront']);assert.equal(calls[0].params.targetId,'owned-test');});
+
+
+
+test('Visible Android launch connects directly to its exact nonce tab and cleans up only that tab',async()=>{
+ const http=[],cdp=[];let launched,connected,closed=false;
+ const launch=async url=>{launched=url;};const request=async url=>{http.push(url);return {ok:true,json:async()=>[{id:'foreign',type:'page',url:'https://example.com/'},{id:'android-77',type:'page',url:launched,webSocketDebuggerUrl:'ws://127.0.0.1:4322/devtools/page/android-77'}]};};
+ const direct={send:async(method,params,session)=>{cdp.push({method,params,session});return {};},close:()=>{closed=true;}};
+ const p=new OwnedPage({send:()=>{throw Error('Browser attachment forbidden');}},'http://localhost:4321');
+ await p.initAndroid('http://127.0.0.1:4322',launch,request,async url=>{connected=url;return direct;});await p.bringToFront();await p.close();
+ assert.match(launched,/qaRun=[a-f0-9]{24}$/);assert.equal(connected,'ws://127.0.0.1:4322/devtools/page/android-77');assert(cdp.every(c=>c.session===undefined));assert(closed);
+ assert.deepEqual(http,['http://127.0.0.1:4322/json/list','http://127.0.0.1:4322/json/activate/android-77','http://127.0.0.1:4322/json/close/android-77']);assert.equal(p.targetId,null);
+});
+test('Native tab rejects foreign endpoints/sockets and preserves ownership for cleanup',async()=>{
+ const p=new OwnedPage({},'http://localhost:1');let launched,requests=0;
+ const launch=async url=>{launched=url;};const request=async()=>{requests++;return {ok:true,json:async()=>[{id:'owned-9',type:'page',url:launched,webSocketDebuggerUrl:'ws://evil.example/devtools/page/owned-9'}]};};
+ for(const endpoint of ['http://example.com:2','http://127.0.0.1:2/foreign','http://user@127.0.0.1:2'])await assert.rejects(p.initAndroid(endpoint,launch,request),/outside/);assert.equal(requests,0);
+ await assert.rejects(p.initAndroid('http://127.0.0.1:2',launch,request),/socket outside/);assert.equal(p.targetId,'owned-9');assert.equal(p.creationUncertain,false);await p.close();assert.equal(requests,2);
+});
+
+test('Paused wake and large Android storage scopes require explicit flags',()=>{assert.equal(parseOptions(['--run','--wake-paused','--storage-large']).wakePaused,true);assert.equal(parseOptions(['--run','--wake-paused','--storage-large']).storageLarge,true);assert.equal(parseOptions(['--run']).wakePaused,undefined);});

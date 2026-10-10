@@ -1,0 +1,3273 @@
+{
+  "version": 1,
+  "status": "ap03-identity-assets",
+  "newVectorAssets": 144,
+  "preservedCrests": 48,
+  "artReview": "draft; small-size and palette review required before release",
+  "entries": [
+    {
+      "clubId": "ENG-1",
+      "crest": "crests/eng-1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#c43743",
+        "#f3f5f2",
+        "#1d2329"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ENG-1",
+        "city": "London",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-2",
+      "crest": "crests/eng-2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#68b8d9",
+        "#f3f5f2",
+        "#24385b"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ENG-2",
+        "city": "Manchester",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-3",
+      "crest": "crests/eng-3.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#7750a0",
+        "#f1e5cc",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ENG-3",
+        "city": "Liverpool",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-4",
+      "crest": "crests/eng-4.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#d9ab45",
+        "#1d2329",
+        "#f3f5f2"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ENG-4",
+        "city": "Birmingham",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-5",
+      "crest": "crests/eng-5.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#3caaa8",
+        "#732e49",
+        "#f1e5cc"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ENG-5",
+        "city": "Bristol",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-6",
+      "crest": "crests/eng-6.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#315b42",
+        "#f3f5f2",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ENG-6",
+        "city": "London",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-7",
+      "crest": "crests-expansion/eng-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#24385b",
+        "#f3f5f2",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Doppelter Flussbogen",
+      "stadium": {
+        "clubId": "ENG-7",
+        "city": "Leeds",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-8",
+      "crest": "crests-expansion/eng-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offene Brücke mit drei Pfeilern",
+      "stadium": {
+        "clubId": "ENG-8",
+        "city": "Newcastle",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-C1",
+      "crest": "crests/eng-c1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#a85240",
+        "#f3edda",
+        "#1c3045"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ENG-C1",
+        "city": "Sheffield",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-C2",
+      "crest": "crests/eng-c2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#24385b",
+        "#df8a3b",
+        "#f1e5cc"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ENG-C2",
+        "city": "Plymouth",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-C3",
+      "crest": "crests-expansion/eng-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei offene Werkstattwinkel",
+      "stadium": {
+        "clubId": "ENG-C3",
+        "city": "Sheffield",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-C4",
+      "crest": "crests-expansion/eng-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Flussgabel im Torrahmen",
+      "stadium": {
+        "clubId": "ENG-C4",
+        "city": "Bristol",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-C5",
+      "crest": "crests-expansion/eng-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#eedfc5",
+        "#248f8e"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei versetzte Uferpfosten",
+      "stadium": {
+        "clubId": "ENG-C5",
+        "city": "Norwich",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-C6",
+      "crest": "crests-expansion/eng-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3b477f",
+        "#f1e5cc",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offenes Ausbildungsrad",
+      "stadium": {
+        "clubId": "ENG-C6",
+        "city": "Coventry",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-C7",
+      "crest": "crests-expansion/eng-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#24385b",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei ungleiche Hügelbögen",
+      "stadium": {
+        "clubId": "ENG-C7",
+        "city": "Brighton",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ENG-C8",
+      "crest": "crests-expansion/eng-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilte Flussmündung",
+      "stadium": {
+        "clubId": "ENG-C8",
+        "city": "Plymouth",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-1",
+      "crest": "crests/esp-1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#f3f5f2",
+        "#d9ab45",
+        "#24385b"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ESP-1",
+        "city": "Madrid",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-2",
+      "crest": "crests/esp-2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#326db7",
+        "#a43e50",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ESP-2",
+        "city": "Barcelona",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-3",
+      "crest": "crests/esp-3.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#a98bbb",
+        "#bec8cb",
+        "#732e49"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ESP-3",
+        "city": "Valencia",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-4",
+      "crest": "crests/esp-4.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#df7770",
+        "#f1e5cc",
+        "#24385b"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ESP-4",
+        "city": "Sevilla",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-5",
+      "crest": "crests/esp-5.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#275744",
+        "#bd904a",
+        "#f3edda"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ESP-5",
+        "city": "Barcelona",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-6",
+      "crest": "crests/esp-6.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#586b79",
+        "#f3f5f2",
+        "#dc9a32"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ESP-6",
+        "city": "Vigo",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-7",
+      "crest": "crests-expansion/esp-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei verschränkte Hafenlinien",
+      "stadium": {
+        "clubId": "ESP-7",
+        "city": "Bilbao",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-8",
+      "crest": "crests-expansion/esp-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#eedfc5",
+        "#3caaa8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Treppenbogen über einer Wasserlinie",
+      "stadium": {
+        "clubId": "ESP-8",
+        "city": "Zaragoza",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-C1",
+      "crest": "crests/esp-c1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#727b47",
+        "#823b52",
+        "#f3edda"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ESP-C1",
+        "city": "Córdoba",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-C2",
+      "crest": "crests/esp-c2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#9ccbd9",
+        "#76543b",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ESP-C2",
+        "city": "Gijón",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-C3",
+      "crest": "crests-expansion/esp-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei Flussterrassen",
+      "stadium": {
+        "clubId": "ESP-C3",
+        "city": "Valladolid",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-C4",
+      "crest": "crests-expansion/esp-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#2d777c",
+        "#f1e5cc",
+        "#ba674d"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offene Buchtlinie",
+      "stadium": {
+        "clubId": "ESP-C4",
+        "city": "Santander",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-C5",
+      "crest": "crests-expansion/esp-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#eedfc5",
+        "#3caaa8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteiltes Bewässerungsband",
+      "stadium": {
+        "clubId": "ESP-C5",
+        "city": "Murcia",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-C6",
+      "crest": "crests-expansion/esp-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#24385b",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Doppelsteg",
+      "stadium": {
+        "clubId": "ESP-C6",
+        "city": "Salamanca",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-C7",
+      "crest": "crests-expansion/esp-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei versetzte Weglinien",
+      "stadium": {
+        "clubId": "ESP-C7",
+        "city": "Logroño",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ESP-C8",
+      "crest": "crests-expansion/esp-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Hafenwinkel",
+      "stadium": {
+        "clubId": "ESP-C8",
+        "city": "Almería",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-1",
+      "crest": "crests/ger-1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#c43743",
+        "#f3f5f2",
+        "#1d2329"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "GER-1",
+        "city": "München",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-2",
+      "crest": "crests/ger-2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#398b5b",
+        "#f3f5f2",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "GER-2",
+        "city": "Bremen",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-3",
+      "crest": "crests/ger-3.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#204938",
+        "#f1e5cc",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "GER-3",
+        "city": "Hamburg",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-4",
+      "crest": "crests/ger-4.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#dc9a32",
+        "#315b42",
+        "#f1e5cc"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "GER-4",
+        "city": "Freiburg",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-5",
+      "crest": "crests/ger-5.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#1c3045",
+        "#f3f5f2",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "GER-5",
+        "city": "Köln",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-6",
+      "crest": "crests/ger-6.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#4ba68b",
+        "#bd904a",
+        "#24385b"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "GER-6",
+        "city": "München",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-7",
+      "crest": "crests-expansion/ger-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Versetzte Stahlbögen",
+      "stadium": {
+        "clubId": "GER-7",
+        "city": "Dortmund",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-8",
+      "crest": "crests-expansion/ger-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Mainlinien",
+      "stadium": {
+        "clubId": "GER-8",
+        "city": "Frankfurt",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-C1",
+      "crest": "crests/ger-c1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#74468d",
+        "#c7d0d0",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "GER-C1",
+        "city": "Jena",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-C2",
+      "crest": "crests/ger-c2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#b94d43",
+        "#24385b",
+        "#f1e5cc"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "GER-C2",
+        "city": "Lübeck",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-C3",
+      "crest": "crests-expansion/ger-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei versetzte Auenlinien",
+      "stadium": {
+        "clubId": "GER-C3",
+        "city": "Erfurt",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-C4",
+      "crest": "crests-expansion/ger-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#24385b",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Fördebogen",
+      "stadium": {
+        "clubId": "GER-C4",
+        "city": "Kiel",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-C5",
+      "crest": "crests-expansion/ger-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#1c3045",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Doppelter Hasebogen",
+      "stadium": {
+        "clubId": "GER-C5",
+        "city": "Osnabrück",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-C6",
+      "crest": "crests-expansion/ger-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f1e5cc",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Hofrahmen",
+      "stadium": {
+        "clubId": "GER-C6",
+        "city": "Regensburg",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-C7",
+      "crest": "crests-expansion/ger-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#bec8cb",
+        "#4b9dc8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilte Mündung im Rundfeld",
+      "stadium": {
+        "clubId": "GER-C7",
+        "city": "Rostock",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GER-C8",
+      "crest": "crests-expansion/ger-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Versetzter offener Westbogen",
+      "stadium": {
+        "clubId": "GER-C8",
+        "city": "Aachen",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-1",
+      "crest": "crests/ita-1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#1d2329",
+        "#f3f5f2",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ITA-1",
+        "city": "Turin",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-2",
+      "crest": "crests/ita-2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#326db7",
+        "#1d2329",
+        "#f3f5f2"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ITA-2",
+        "city": "Mailand",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-3",
+      "crest": "crests/ita-3.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#a98bbb",
+        "#f3edda",
+        "#732e49"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ITA-3",
+        "city": "Rom",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-4",
+      "crest": "crests/ita-4.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#727b47",
+        "#f3f5f2",
+        "#24385b"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ITA-4",
+        "city": "Bologna",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-5",
+      "crest": "crests/ita-5.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#3267b0",
+        "#dc9a32",
+        "#f1e5cc"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ITA-5",
+        "city": "Mailand",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-6",
+      "crest": "crests/ita-6.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#ba674d",
+        "#1d2329",
+        "#f3edda"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ITA-6",
+        "city": "Neapel",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-7",
+      "crest": "crests-expansion/ita-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Werkstattbogen",
+      "stadium": {
+        "clubId": "ITA-7",
+        "city": "Florenz",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-8",
+      "crest": "crests-expansion/ita-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#2d777c",
+        "#f1e5cc",
+        "#ba674d"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteiltes Leuchtfeuer",
+      "stadium": {
+        "clubId": "ITA-8",
+        "city": "Genua",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-C1",
+      "crest": "crests/ita-c1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#526948",
+        "#d9c6a5",
+        "#3267b0"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ITA-C1",
+        "city": "Parma",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-C2",
+      "crest": "crests/ita-c2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#d9c6a5",
+        "#415caf",
+        "#dc9a32"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "ITA-C2",
+        "city": "Lecce",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-C3",
+      "crest": "crests-expansion/ita-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#1c3045",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilter Brunnenbogen",
+      "stadium": {
+        "clubId": "ITA-C3",
+        "city": "Perugia",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-C4",
+      "crest": "crests-expansion/ita-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#2d777c",
+        "#f1e5cc",
+        "#ba674d"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei gestaffelte Uferlinien",
+      "stadium": {
+        "clubId": "ITA-C4",
+        "city": "Pisa",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-C5",
+      "crest": "crests-expansion/ita-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#eedfc5",
+        "#3caaa8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offene Salzfeldkacheln",
+      "stadium": {
+        "clubId": "ITA-C5",
+        "city": "Cagliari",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-C6",
+      "crest": "crests-expansion/ita-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#24385b",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei schmale Stege",
+      "stadium": {
+        "clubId": "ITA-C6",
+        "city": "Triest",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-C7",
+      "crest": "crests-expansion/ita-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#283039",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei versetzte Werkzeugbögen",
+      "stadium": {
+        "clubId": "ITA-C7",
+        "city": "Modena",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "ITA-C8",
+      "crest": "crests-expansion/ita-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#1c3045",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Küstenfächer",
+      "stadium": {
+        "clubId": "ITA-C8",
+        "city": "Bari",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-1",
+      "crest": "crests/fra-1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#193653",
+        "#c43743",
+        "#f3f5f2"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "FRA-1",
+        "city": "Paris",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-2",
+      "crest": "crests/fra-2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#732e49",
+        "#f1e5cc",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "FRA-2",
+        "city": "Marseille",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-3",
+      "crest": "crests/fra-3.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#398b5b",
+        "#f3edda",
+        "#df7770"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "FRA-3",
+        "city": "Lyon",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-4",
+      "crest": "crests/fra-4.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#2d777c",
+        "#d9c6a5",
+        "#732e49"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "FRA-4",
+        "city": "Bordeaux",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-5",
+      "crest": "crests/fra-5.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#7750a0",
+        "#8b979b",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "FRA-5",
+        "city": "Lille",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-6",
+      "crest": "crests/fra-6.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#85d0bd",
+        "#283039",
+        "#df7770"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "FRA-6",
+        "city": "Paris",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-7",
+      "crest": "crests-expansion/fra-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#318579",
+        "#f1e5cc",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Blatt über Flussgabel",
+      "stadium": {
+        "clubId": "FRA-7",
+        "city": "Nantes",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-8",
+      "crest": "crests-expansion/fra-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#bec8cb",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei Uferpfeiler",
+      "stadium": {
+        "clubId": "FRA-8",
+        "city": "Straßburg",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-C1",
+      "crest": "crests/fra-c1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#b8794a",
+        "#3caaa8",
+        "#24385b"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "FRA-C1",
+        "city": "Toulouse",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-C2",
+      "crest": "crests/fra-c2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#bd904a",
+        "#204938",
+        "#f1e5cc"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "FRA-C2",
+        "city": "Metz",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-C3",
+      "crest": "crests-expansion/fra-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#823b52",
+        "#eedfc5",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei schmale Uferfelder",
+      "stadium": {
+        "clubId": "FRA-C3",
+        "city": "Dijon",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-C4",
+      "crest": "crests-expansion/fra-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei offene Meeresbögen",
+      "stadium": {
+        "clubId": "FRA-C4",
+        "city": "Brest",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-C5",
+      "crest": "crests-expansion/fra-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilte Garteninsel",
+      "stadium": {
+        "clubId": "FRA-C5",
+        "city": "Amiens",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-C6",
+      "crest": "crests-expansion/fra-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#f3f5f2",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Flussfächer",
+      "stadium": {
+        "clubId": "FRA-C6",
+        "city": "Tours",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-C7",
+      "crest": "crests-expansion/fra-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#24385b",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei gestufte Hügelwinkel",
+      "stadium": {
+        "clubId": "FRA-C7",
+        "city": "Clermont-Ferrand",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "FRA-C8",
+      "crest": "crests-expansion/fra-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#283039",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilte Mündungslinie",
+      "stadium": {
+        "clubId": "FRA-C8",
+        "city": "Le Havre",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-1",
+      "crest": "crests/por-1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#c43743",
+        "#f3f5f2",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "POR-1",
+        "city": "Lissabon",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-2",
+      "crest": "crests/por-2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#326db7",
+        "#f3f5f2",
+        "#1d2329"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "POR-2",
+        "city": "Porto",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-3",
+      "crest": "crests/por-3.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#318579",
+        "#a43e50",
+        "#f1e5cc"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "POR-3",
+        "city": "Lissabon",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-4",
+      "crest": "crests/por-4.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#3b477f",
+        "#bd904a",
+        "#f1e5cc"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "POR-4",
+        "city": "Braga",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-5",
+      "crest": "crests/por-5.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#3caaa8",
+        "#bec8cb",
+        "#732e49"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "POR-5",
+        "city": "Coimbra",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-6",
+      "crest": "crests/por-6.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#694766",
+        "#f1e5cc",
+        "#d9ab45"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "POR-6",
+        "city": "Aveiro",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-7",
+      "crest": "crests-expansion/por-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#24385b",
+        "#d9ab45",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offenes Tor mit schräger Zinne",
+      "stadium": {
+        "clubId": "POR-7",
+        "city": "Guimarães",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-8",
+      "crest": "crests-expansion/por-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#1c3045",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei Sado-Wellen",
+      "stadium": {
+        "clubId": "POR-8",
+        "city": "Setúbal",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-C1",
+      "crest": "crests/por-c1.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#727b47",
+        "#b8794a",
+        "#f1e5cc"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "POR-C1",
+        "city": "Évora",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-C2",
+      "crest": "crests/por-c2.png",
+      "format": "existing-authored-png",
+      "colors": [
+        "#68b8d9",
+        "#ba674d",
+        "#24385b"
+      ],
+      "source": "existing-48-manifest",
+      "motif": "Bestehendes eigenes Wappen erhalten",
+      "stadium": {
+        "clubId": "POR-C2",
+        "city": "Faro",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-C3",
+      "crest": "crests-expansion/por-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Doppelbogen",
+      "stadium": {
+        "clubId": "POR-C3",
+        "city": "Coimbra",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-C4",
+      "crest": "crests-expansion/por-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#24385b",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei Lagunenfelder",
+      "stadium": {
+        "clubId": "POR-C4",
+        "city": "Aveiro",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-C5",
+      "crest": "crests-expansion/por-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#1c3045",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilte Uferstufe",
+      "stadium": {
+        "clubId": "POR-C5",
+        "city": "Leiria",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-C6",
+      "crest": "crests-expansion/por-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f1e5cc",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offenes Blattfenster",
+      "stadium": {
+        "clubId": "POR-C6",
+        "city": "Viseu",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-C7",
+      "crest": "crests-expansion/por-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#eedfc5",
+        "#3caaa8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei versetzte Kaibögen",
+      "stadium": {
+        "clubId": "POR-C7",
+        "city": "Portimão",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "POR-C8",
+      "crest": "crests-expansion/por-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Flussstege",
+      "stadium": {
+        "clubId": "POR-C8",
+        "city": "Viana do Castelo",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-1",
+      "crest": "crests-expansion/ned-1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Doppelbogen mit kleinem Stern",
+      "stadium": {
+        "clubId": "NED-1",
+        "city": "Amsterdam",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-2",
+      "crest": "crests-expansion/ned-2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#2d777c",
+        "#f3f5f2",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Dreiteiliger Hafenrahmen",
+      "stadium": {
+        "clubId": "NED-2",
+        "city": "Rotterdam",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-3",
+      "crest": "crests-expansion/ned-3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3b477f",
+        "#f1e5cc",
+        "#dc9a32"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Versetzte Lichtstrahlen",
+      "stadium": {
+        "clubId": "NED-3",
+        "city": "Eindhoven",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-4",
+      "crest": "crests-expansion/ned-4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#eedfc5",
+        "#df7770"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Kanalring",
+      "stadium": {
+        "clubId": "NED-4",
+        "city": "Utrecht",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-5",
+      "crest": "crests-expansion/ned-5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#823b52",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteiltes Feldtor",
+      "stadium": {
+        "clubId": "NED-5",
+        "city": "Enschede",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-6",
+      "crest": "crests-expansion/ned-6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#24385b",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Rheinlinie mit offenem Blatt",
+      "stadium": {
+        "clubId": "NED-6",
+        "city": "Arnhem",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-7",
+      "crest": "crests-expansion/ned-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#1c3045",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei gestaffelte Torpfosten",
+      "stadium": {
+        "clubId": "NED-7",
+        "city": "Groningen",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-8",
+      "crest": "crests-expansion/ned-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#bec8cb",
+        "#4b9dc8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offene Hafenecke",
+      "stadium": {
+        "clubId": "NED-8",
+        "city": "Amsterdam",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-C1",
+      "crest": "crests-expansion/ned-c1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilter Kanalsteg",
+      "stadium": {
+        "clubId": "NED-C1",
+        "city": "Haarlem",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-C2",
+      "crest": "crests-expansion/ned-c2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Flusstorrahmen",
+      "stadium": {
+        "clubId": "NED-C2",
+        "city": "Zwolle",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-C3",
+      "crest": "crests-expansion/ned-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#24385b",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Versetzter IJsselbogen",
+      "stadium": {
+        "clubId": "NED-C3",
+        "city": "Deventer",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-C4",
+      "crest": "crests-expansion/ned-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f1e5cc",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Feldwinkel",
+      "stadium": {
+        "clubId": "NED-C4",
+        "city": "Breda",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-C5",
+      "crest": "crests-expansion/ned-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#bec8cb",
+        "#4b9dc8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilter Schienenbogen",
+      "stadium": {
+        "clubId": "NED-C5",
+        "city": "Tilburg",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-C6",
+      "crest": "crests-expansion/ned-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Seefächer",
+      "stadium": {
+        "clubId": "NED-C6",
+        "city": "Leeuwarden",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-C7",
+      "crest": "crests-expansion/ned-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#1c3045",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Doppelter Singelrahmen",
+      "stadium": {
+        "clubId": "NED-C7",
+        "city": "Alkmaar",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "NED-C8",
+      "crest": "crests-expansion/ned-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei schmale Jekerlinien",
+      "stadium": {
+        "clubId": "NED-C8",
+        "city": "Maastricht",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-1",
+      "crest": "crests-expansion/aut-1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilte Torhalle",
+      "stadium": {
+        "clubId": "AUT-1",
+        "city": "Wien",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-2",
+      "crest": "crests-expansion/aut-2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei abstrakte Flügellinien",
+      "stadium": {
+        "clubId": "AUT-2",
+        "city": "Salzburg",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-3",
+      "crest": "crests-expansion/aut-3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#1d2329",
+        "#f3f5f2",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei versetzte offene Quadrate",
+      "stadium": {
+        "clubId": "AUT-3",
+        "city": "Graz",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-4",
+      "crest": "crests-expansion/aut-4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3b477f",
+        "#f3edda",
+        "#dc9a32"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei verzahnte offene Ringe",
+      "stadium": {
+        "clubId": "AUT-4",
+        "city": "Linz",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-5",
+      "crest": "crests-expansion/aut-5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#2d777c",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei ungleich hohe offene Säulen",
+      "stadium": {
+        "clubId": "AUT-5",
+        "city": "Innsbruck",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-6",
+      "crest": "crests-expansion/aut-6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#1c3045",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei versetzte Seebögen",
+      "stadium": {
+        "clubId": "AUT-6",
+        "city": "Klagenfurt",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-7",
+      "crest": "crests-expansion/aut-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f1e5cc",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offenes Blatt mit drei Linien",
+      "stadium": {
+        "clubId": "AUT-7",
+        "city": "St. Pölten",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-8",
+      "crest": "crests-expansion/aut-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#bec8cb",
+        "#4b9dc8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Versetzter offener Glücksring",
+      "stadium": {
+        "clubId": "AUT-8",
+        "city": "Wien",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-C1",
+      "crest": "crests-expansion/aut-c1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Auenfelder",
+      "stadium": {
+        "clubId": "AUT-C1",
+        "city": "Dornbirn",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-C2",
+      "crest": "crests-expansion/aut-c2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilter Seebogen",
+      "stadium": {
+        "clubId": "AUT-C2",
+        "city": "Bregenz",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-C3",
+      "crest": "crests-expansion/aut-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#24385b",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei offene Hofwinkel",
+      "stadium": {
+        "clubId": "AUT-C3",
+        "city": "Wels",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-C4",
+      "crest": "crests-expansion/aut-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f1e5cc",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei versetzte Brückenpfosten",
+      "stadium": {
+        "clubId": "AUT-C4",
+        "city": "Steyr",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-C5",
+      "crest": "crests-expansion/aut-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#bec8cb",
+        "#4b9dc8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Südring",
+      "stadium": {
+        "clubId": "AUT-C5",
+        "city": "Wiener Neustadt",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-C6",
+      "crest": "crests-expansion/aut-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilter Hainbogen",
+      "stadium": {
+        "clubId": "AUT-C6",
+        "city": "Krems",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-C7",
+      "crest": "crests-expansion/aut-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#1c3045",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei schmale Murstege",
+      "stadium": {
+        "clubId": "AUT-C7",
+        "city": "Leoben",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "AUT-C8",
+      "crest": "crests-expansion/aut-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Doppelter Feldrahmen",
+      "stadium": {
+        "clubId": "AUT-C8",
+        "city": "Amstetten",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-1",
+      "crest": "crests-expansion/bel-1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#24385b",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei Kanalbögen im Rundfeld",
+      "stadium": {
+        "clubId": "BEL-1",
+        "city": "Brügge",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-2",
+      "crest": "crests-expansion/bel-2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f1e5cc",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Vier versetzte Quartierfelder",
+      "stadium": {
+        "clubId": "BEL-2",
+        "city": "Brüssel",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-3",
+      "crest": "crests-expansion/bel-3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilte Kaikante",
+      "stadium": {
+        "clubId": "BEL-3",
+        "city": "Antwerpen",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-4",
+      "crest": "crests-expansion/bel-4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#318579",
+        "#f3f5f2",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Flussgabel mit schmalem Steg",
+      "stadium": {
+        "clubId": "BEL-4",
+        "city": "Gent",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-5",
+      "crest": "crests-expansion/bel-5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#a43e50",
+        "#eedfc5",
+        "#1c3045"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei ansteigende Uferstufen",
+      "stadium": {
+        "clubId": "BEL-5",
+        "city": "Lüttich",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-6",
+      "crest": "crests-expansion/bel-6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#283039",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Baumring",
+      "stadium": {
+        "clubId": "BEL-6",
+        "city": "Genk",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-7",
+      "crest": "crests-expansion/bel-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#24385b",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei ineinanderlaufende Bögen",
+      "stadium": {
+        "clubId": "BEL-7",
+        "city": "Charleroi",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-8",
+      "crest": "crests-expansion/bel-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#bec8cb",
+        "#1c3045"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Vierblättriger offener Parkbogen",
+      "stadium": {
+        "clubId": "BEL-8",
+        "city": "Brüssel",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-C1",
+      "crest": "crests-expansion/bel-c1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilter Flussring",
+      "stadium": {
+        "clubId": "BEL-C1",
+        "city": "Mechelen",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-C2",
+      "crest": "crests-expansion/bel-c2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Kanalfelder",
+      "stadium": {
+        "clubId": "BEL-C2",
+        "city": "Leuven",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-C3",
+      "crest": "crests-expansion/bel-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#24385b",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei versetzte Flusstore",
+      "stadium": {
+        "clubId": "BEL-C3",
+        "city": "Namur",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-C4",
+      "crest": "crests-expansion/bel-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f1e5cc",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Blattsteg",
+      "stadium": {
+        "clubId": "BEL-C4",
+        "city": "Mons",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-C5",
+      "crest": "crests-expansion/bel-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#bec8cb",
+        "#4b9dc8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Doppelter Leiebogen",
+      "stadium": {
+        "clubId": "BEL-C5",
+        "city": "Kortrijk",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-C6",
+      "crest": "crests-expansion/bel-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilte Ufertreppe",
+      "stadium": {
+        "clubId": "BEL-C6",
+        "city": "Hasselt",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-C7",
+      "crest": "crests-expansion/bel-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#1c3045",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Dünenlinien",
+      "stadium": {
+        "clubId": "BEL-C7",
+        "city": "Ostende",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "BEL-C8",
+      "crest": "crests-expansion/bel-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Versetzter Wasserrahmen",
+      "stadium": {
+        "clubId": "BEL-C8",
+        "city": "Tournai",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-1",
+      "crest": "crests-expansion/tur-1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei verbindende Wasserlinien",
+      "stadium": {
+        "clubId": "TUR-1",
+        "city": "Istanbul",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-2",
+      "crest": "crests-expansion/tur-2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#24385b",
+        "#d9ab45",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilte Hafenstufe",
+      "stadium": {
+        "clubId": "TUR-2",
+        "city": "Istanbul",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-3",
+      "crest": "crests-expansion/tur-3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Segelwinkel",
+      "stadium": {
+        "clubId": "TUR-3",
+        "city": "Istanbul",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-4",
+      "crest": "crests-expansion/tur-4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#1c3045",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei geschwungene Küstenfelder",
+      "stadium": {
+        "clubId": "TUR-4",
+        "city": "Trabzon",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-5",
+      "crest": "crests-expansion/tur-5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3b477f",
+        "#f1e5cc",
+        "#dc9a32"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Abstrakte gestufte Torlinie",
+      "stadium": {
+        "clubId": "TUR-5",
+        "city": "Ankara",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-6",
+      "crest": "crests-expansion/tur-6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#a43e50",
+        "#eedfc5",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offene Golfkurve",
+      "stadium": {
+        "clubId": "TUR-6",
+        "city": "Izmir",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-7",
+      "crest": "crests-expansion/tur-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteiltes Blattband",
+      "stadium": {
+        "clubId": "TUR-7",
+        "city": "Bursa",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-8",
+      "crest": "crests-expansion/tur-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#24385b",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Versetzte Küstenbögen",
+      "stadium": {
+        "clubId": "TUR-8",
+        "city": "Antalya",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-C1",
+      "crest": "crests-expansion/tur-c1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Küstenfelder",
+      "stadium": {
+        "clubId": "TUR-C1",
+        "city": "Samsun",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-C2",
+      "crest": "crests-expansion/tur-c2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilter Porsukbogen",
+      "stadium": {
+        "clubId": "TUR-C2",
+        "city": "Eskişehir",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-C3",
+      "crest": "crests-expansion/tur-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#24385b",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei offene Gartenwinkel",
+      "stadium": {
+        "clubId": "TUR-C3",
+        "city": "Konya",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-C4",
+      "crest": "crests-expansion/tur-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f1e5cc",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei versetzte Höhenfelder",
+      "stadium": {
+        "clubId": "TUR-C4",
+        "city": "Kayseri",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-C5",
+      "crest": "crests-expansion/tur-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#bec8cb",
+        "#4b9dc8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Parksteg",
+      "stadium": {
+        "clubId": "TUR-C5",
+        "city": "Adana",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-C6",
+      "crest": "crests-expansion/tur-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilte Uferhalle",
+      "stadium": {
+        "clubId": "TUR-C6",
+        "city": "Gaziantep",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-C7",
+      "crest": "crests-expansion/tur-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#1c3045",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Blattfelder",
+      "stadium": {
+        "clubId": "TUR-C7",
+        "city": "Denizli",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "TUR-C8",
+      "crest": "crests-expansion/tur-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Doppeltes offenes Hafentor",
+      "stadium": {
+        "clubId": "TUR-C8",
+        "city": "Mersin",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-1",
+      "crest": "crests-expansion/sui-1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#a43e50",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Ufertorbogen",
+      "stadium": {
+        "clubId": "SUI-1",
+        "city": "Basel",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-2",
+      "crest": "crests-expansion/sui-2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Doppelter Aarebogen",
+      "stadium": {
+        "clubId": "SUI-2",
+        "city": "Bern",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-3",
+      "crest": "crests-expansion/sui-3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#f3f5f2",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei Limmatlinien im offenen Schild",
+      "stadium": {
+        "clubId": "SUI-3",
+        "city": "Zürich",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-4",
+      "crest": "crests-expansion/sui-4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#eedfc5",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Versetzte Flussterrassen",
+      "stadium": {
+        "clubId": "SUI-4",
+        "city": "Genf",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-5",
+      "crest": "crests-expansion/sui-5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei gestaffelte Brückenfelder",
+      "stadium": {
+        "clubId": "SUI-5",
+        "city": "St. Gallen",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-6",
+      "crest": "crests-expansion/sui-6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offene Seeschale",
+      "stadium": {
+        "clubId": "SUI-6",
+        "city": "Lausanne",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-7",
+      "crest": "crests-expansion/sui-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#24385b",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Schmaler Flusssteg",
+      "stadium": {
+        "clubId": "SUI-7",
+        "city": "Luzern",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-8",
+      "crest": "crests-expansion/sui-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#bec8cb",
+        "#4b9dc8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei offene Nachbarschaftsbögen",
+      "stadium": {
+        "clubId": "SUI-8",
+        "city": "Zürich",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-C1",
+      "crest": "crests-expansion/sui-c1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#732e49",
+        "#f3edda",
+        "#2d777c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Versetzter Flussbogen",
+      "stadium": {
+        "clubId": "SUI-C1",
+        "city": "Winterthur",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-C2",
+      "crest": "crests-expansion/sui-c2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#1c3045",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Uferfenster",
+      "stadium": {
+        "clubId": "SUI-C2",
+        "city": "Schaffhausen",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-C3",
+      "crest": "crests-expansion/sui-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#b8794a",
+        "#24385b",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilter Aaresteg",
+      "stadium": {
+        "clubId": "SUI-C3",
+        "city": "Thun",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-C4",
+      "crest": "crests-expansion/sui-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f1e5cc",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Doppelmäander",
+      "stadium": {
+        "clubId": "SUI-C4",
+        "city": "Sion",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-C5",
+      "crest": "crests-expansion/sui-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#bec8cb",
+        "#4b9dc8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei schmale Seyonlinien",
+      "stadium": {
+        "clubId": "SUI-C5",
+        "city": "Neuenburg",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-C6",
+      "crest": "crests-expansion/sui-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#283039",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Geteilter Seefächer",
+      "stadium": {
+        "clubId": "SUI-C6",
+        "city": "Lugano",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-C7",
+      "crest": "crests-expansion/sui-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#1c3045",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei offene Ticinohöfe",
+      "stadium": {
+        "clubId": "SUI-C7",
+        "city": "Bellinzona",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "SUI-C8",
+      "crest": "crests-expansion/sui-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Doppelter offener Flussrahmen",
+      "stadium": {
+        "clubId": "SUI-C8",
+        "city": "Biel",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-1",
+      "crest": "crests-expansion/gre-1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#d9ab45",
+        "#732e49",
+        "#f3edda"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Sonne über einem geschlossenen Torbogen.",
+      "stadium": {
+        "clubId": "GRE-1",
+        "city": "Athen",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-2",
+      "crest": "crests-expansion/gre-2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#24385b",
+        "#f3f5f2",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Schiffsrumpf und stilisierte Welle.",
+      "stadium": {
+        "clubId": "GRE-2",
+        "city": "Piräus",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-3",
+      "crest": "crests-expansion/gre-3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#283039",
+        "#bec8cb",
+        "#3caaa8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Schräges Windband und dreiteiliger Schild.",
+      "stadium": {
+        "clubId": "GRE-3",
+        "city": "Thessaloniki",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-4",
+      "crest": "crests-expansion/gre-4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#f3f5f2",
+        "#1c3045"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offener Sternring.",
+      "stadium": {
+        "clubId": "GRE-4",
+        "city": "Athen",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-5",
+      "crest": "crests-expansion/gre-5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3caaa8",
+        "#283039",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei ineinandergreifende Bögen.",
+      "stadium": {
+        "clubId": "GRE-5",
+        "city": "Thessaloniki",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-6",
+      "crest": "crests-expansion/gre-6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#df7770",
+        "#24385b",
+        "#eedfc5"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Schmaler Bogen mit Fußball.",
+      "stadium": {
+        "clubId": "GRE-6",
+        "city": "Patras",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-7",
+      "crest": "crests-expansion/gre-7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#315b42",
+        "#f3edda",
+        "#d9ab45"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Tor mit zwei schmalen Türmen.",
+      "stadium": {
+        "clubId": "GRE-7",
+        "city": "Iraklio",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-8",
+      "crest": "crests-expansion/gre-8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#694766",
+        "#bec8cb",
+        "#4b9dc8"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Drei versetzte Spitzen im offenen Schild.",
+      "stadium": {
+        "clubId": "GRE-8",
+        "city": "Volos",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-C1",
+      "crest": "crests-expansion/gre-c1.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#823b52",
+        "#eedfc5",
+        "#80949c"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Fließendes Band im Rundschild",
+      "stadium": {
+        "clubId": "GRE-C1",
+        "city": "Larisa",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-C2",
+      "crest": "crests-expansion/gre-c2.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#2d777c",
+        "#f3edda",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Spiegelbogen über einer Wasserlinie",
+      "stadium": {
+        "clubId": "GRE-C2",
+        "city": "Ioannina",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-C3",
+      "crest": "crests-expansion/gre-c3.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#3267b0",
+        "#f1e5cc",
+        "#ba674d"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Offene Bucht und schmaler Steg",
+      "stadium": {
+        "clubId": "GRE-C3",
+        "city": "Kavala",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-C4",
+      "crest": "crests-expansion/gre-c4.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#727b47",
+        "#d9ab45",
+        "#283039"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Bergsilhouette in einem sechseckigen Schild",
+      "stadium": {
+        "clubId": "GRE-C4",
+        "city": "Kalamata",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-C5",
+      "crest": "crests-expansion/gre-c5.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#a43e50",
+        "#f3f5f2",
+        "#24385b"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Stern über einem Wellenbogen",
+      "stadium": {
+        "clubId": "GRE-C5",
+        "city": "Rhodos",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-C6",
+      "crest": "crests-expansion/gre-c6.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#4b9dc8",
+        "#f3f5f2",
+        "#315b42"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Zwei helle Spitzen über einem Tor",
+      "stadium": {
+        "clubId": "GRE-C6",
+        "city": "Chania",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-C7",
+      "crest": "crests-expansion/gre-c7.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#dc9a32",
+        "#1d2329",
+        "#f1e5cc"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Gewundene Linie im länglichen Schild",
+      "stadium": {
+        "clubId": "GRE-C7",
+        "city": "Serres",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    },
+    {
+      "clubId": "GRE-C8",
+      "crest": "crests-expansion/gre-c8.svg",
+      "format": "own-vector-draft",
+      "colors": [
+        "#7750a0",
+        "#eedfc5",
+        "#b8794a"
+      ],
+      "source": "work/install-expansion-assets-v161.cjs / v161Crest",
+      "motif": "Verzweigter Blattbogen",
+      "stadium": {
+        "clubId": "GRE-C8",
+        "city": "Tripoli",
+        "status": "identity-only; existing-neutral-fallback"
+      }
+    }
+  ]
+}

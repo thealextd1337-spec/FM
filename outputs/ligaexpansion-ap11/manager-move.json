@@ -1,0 +1,18 @@
+{
+  "pass": true,
+  "from": "AUT-5",
+  "to": "SUI-8",
+  "actualAvailableOffers": [
+    "SUI-8",
+    "AUT-4",
+    "GRE-1"
+  ],
+  "season": 11,
+  "stations": 2,
+  "storyCount": 331,
+  "source": "ap11-a synthetic transaction career after season 10",
+  "qualifications": {
+    "crown": 26,
+    "horizon": 32
+  }
+}

@@ -32,7 +32,7 @@ window.D6QA160=(()=>{
   o={config:null,unity:true,seed:160112,...options};rng=o.seed;halftime=halftimeShown=false;checkpoints=0;Object.assign(stats,{pictures:0,maxError:0,outside:0,labels:0,visibleLabels:0,lastSequence:0,ballOutside:0,keeperContacts:[],netMax:0});
   if(!window.D6QA160Base){window.D6QA160Base=v98PitchFrame;v98PitchFrame=function(current){const f=window.D6QA160Base(current);f.qaNative=new Map(current.people.map(p=>[p.pid,{x:p.x,y:p.y,keeper:p.keeper}]));return f;};}
   const name=o.config?`unity-v160-${o.config.fieldSize}-${o.config.fieldPlayers}`:'unity-v160-default';
-  c=await seeded(()=>v61CreateCareer('GER-2',name,'Unity QA',undefined,o.config||undefined));const club=v66Own(c);seeded(()=>{v66ChooseSponsor(c,club.id,club.sponsors[0].id);v124SetYouthBudget(c,0)});
+  c=await seeded(()=>o.expansion?D6Expansion.createCareer('AUT-5',name,'Unity QA',o.config||undefined):v61CreateCareer('GER-2',name,'Unity QA',undefined,o.config||undefined));const club=v66Own(c);seeded(()=>{v66ChooseSponsor(c,club.id,club.sponsors[0].id);v124SetYouthBudget(c,0)});
   while(c.world.market.phase==='open'){const original=Math.random;Math.random=()=>{rng=(Math.imul(rng,1664525)+1013904223)>>>0;return rng/4294967296};try{await v66NextMarketDay(c)}finally{Math.random=original}}
   const f=v62Fixtures(c).filter(f=>!f.result&&[f.homeId,f.awayId].includes(club.id)).sort((a,b)=>a.day-b.day)[0];fixtureId=f.id;
   const oldSession=window.D6UnityMatch?.session;

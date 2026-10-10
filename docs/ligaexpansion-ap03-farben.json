@@ -1,0 +1,2666 @@
+[
+  {
+    "id": "ENG-7",
+    "colors": [
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Weiß",
+        "hex": "#f3f5f2"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ENG-8",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ENG-C3",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ENG-C4",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ENG-C5",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#248f8e"
+      }
+    ],
+    "changes": [
+      "Sand",
+      "Petrol"
+    ]
+  },
+  {
+    "id": "ENG-C6",
+    "colors": [
+      {
+        "name": "Indigo",
+        "hex": "#3b477f"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ENG-C7",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "ENG-C8",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ESP-7",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ESP-8",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "ESP-C3",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ESP-C4",
+    "colors": [
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Terrakotta",
+        "hex": "#ba674d"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ESP-C5",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "ESP-C6",
+    "colors": [
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ESP-C7",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ESP-C8",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GER-7",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GER-8",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GER-C3",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GER-C4",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GER-C5",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GER-C6",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GER-C7",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Eisblau",
+        "hex": "#4b9dc8"
+      }
+    ],
+    "changes": [
+      "Eisblau"
+    ]
+  },
+  {
+    "id": "GER-C8",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ITA-7",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ITA-8",
+    "colors": [
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Terrakotta",
+        "hex": "#ba674d"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ITA-C3",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ITA-C4",
+    "colors": [
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Terrakotta",
+        "hex": "#ba674d"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ITA-C5",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "ITA-C6",
+    "colors": [
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ITA-C7",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "ITA-C8",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "FRA-7",
+    "colors": [
+      {
+        "name": "Seegrün",
+        "hex": "#318579"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "FRA-8",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "FRA-C3",
+    "colors": [
+      {
+        "name": "Weinrot",
+        "hex": "#823b52"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "FRA-C4",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "FRA-C5",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "FRA-C6",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Weiß",
+        "hex": "#f3f5f2"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "FRA-C7",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "FRA-C8",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "POR-7",
+    "colors": [
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Gold",
+        "hex": "#d9ab45"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "POR-8",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "POR-C3",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "POR-C4",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "POR-C5",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "POR-C6",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "POR-C7",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "POR-C8",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-1",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-2",
+    "colors": [
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      },
+      {
+        "name": "Weiß",
+        "hex": "#f3f5f2"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-3",
+    "colors": [
+      {
+        "name": "Indigo",
+        "hex": "#3b477f"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-4",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "NED-5",
+    "colors": [
+      {
+        "name": "Weinrot",
+        "hex": "#823b52"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-6",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-7",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-8",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Eisblau",
+        "hex": "#4b9dc8"
+      }
+    ],
+    "changes": [
+      "Eisblau"
+    ]
+  },
+  {
+    "id": "NED-C1",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-C2",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-C3",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-C4",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-C5",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Eisblau",
+        "hex": "#4b9dc8"
+      }
+    ],
+    "changes": [
+      "Eisblau"
+    ]
+  },
+  {
+    "id": "NED-C6",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "NED-C7",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "NED-C8",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-1",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-2",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-3",
+    "colors": [
+      {
+        "name": "Schwarz",
+        "hex": "#1d2329"
+      },
+      {
+        "name": "Weiß",
+        "hex": "#f3f5f2"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-4",
+    "colors": [
+      {
+        "name": "Indigo",
+        "hex": "#3b477f"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-5",
+    "colors": [
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-6",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "AUT-7",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-8",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Eisblau",
+        "hex": "#4b9dc8"
+      }
+    ],
+    "changes": [
+      "Eisblau"
+    ]
+  },
+  {
+    "id": "AUT-C1",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-C2",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-C3",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-C4",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-C5",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Eisblau",
+        "hex": "#4b9dc8"
+      }
+    ],
+    "changes": [
+      "Eisblau"
+    ]
+  },
+  {
+    "id": "AUT-C6",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "AUT-C7",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "AUT-C8",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-1",
+    "colors": [
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-2",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-3",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-4",
+    "colors": [
+      {
+        "name": "Seegrün",
+        "hex": "#318579"
+      },
+      {
+        "name": "Weiß",
+        "hex": "#f3f5f2"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-5",
+    "colors": [
+      {
+        "name": "Karmin",
+        "hex": "#a43e50"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "BEL-6",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-7",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-8",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-C1",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-C2",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-C3",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-C4",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-C5",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Eisblau",
+        "hex": "#4b9dc8"
+      }
+    ],
+    "changes": [
+      "Eisblau"
+    ]
+  },
+  {
+    "id": "BEL-C6",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "BEL-C7",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "BEL-C8",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-1",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-2",
+    "colors": [
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Gold",
+        "hex": "#d9ab45"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-3",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-4",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-5",
+    "colors": [
+      {
+        "name": "Indigo",
+        "hex": "#3b477f"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-6",
+    "colors": [
+      {
+        "name": "Karmin",
+        "hex": "#a43e50"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "TUR-7",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-8",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "TUR-C1",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-C2",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-C3",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-C4",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-C5",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Eisblau",
+        "hex": "#4b9dc8"
+      }
+    ],
+    "changes": [
+      "Eisblau"
+    ]
+  },
+  {
+    "id": "TUR-C6",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "TUR-C7",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "TUR-C8",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-1",
+    "colors": [
+      {
+        "name": "Karmin",
+        "hex": "#a43e50"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-2",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-3",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Weiß",
+        "hex": "#f3f5f2"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-4",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "SUI-5",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-6",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-7",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-8",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Eisblau",
+        "hex": "#4b9dc8"
+      }
+    ],
+    "changes": [
+      "Eisblau"
+    ]
+  },
+  {
+    "id": "SUI-C1",
+    "colors": [
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-C2",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-C3",
+    "colors": [
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-C4",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-C5",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Eisblau",
+        "hex": "#4b9dc8"
+      }
+    ],
+    "changes": [
+      "Eisblau"
+    ]
+  },
+  {
+    "id": "SUI-C6",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "SUI-C7",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "SUI-C8",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-1",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#d9ab45"
+      },
+      {
+        "name": "Bordeaux",
+        "hex": "#732e49"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-2",
+    "colors": [
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Weiß",
+        "hex": "#f3f5f2"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-3",
+    "colors": [
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-4",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Weiß",
+        "hex": "#f3f5f2"
+      },
+      {
+        "name": "Nachtblau",
+        "hex": "#1c3045"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-5",
+    "colors": [
+      {
+        "name": "Türkis",
+        "hex": "#3caaa8"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-6",
+    "colors": [
+      {
+        "name": "Koralle",
+        "hex": "#df7770"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  },
+  {
+    "id": "GRE-7",
+    "colors": [
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Gold",
+        "hex": "#d9ab45"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-8",
+    "colors": [
+      {
+        "name": "Pflaume",
+        "hex": "#694766"
+      },
+      {
+        "name": "Silber",
+        "hex": "#bec8cb"
+      },
+      {
+        "name": "Eisblau",
+        "hex": "#4b9dc8"
+      }
+    ],
+    "changes": [
+      "Eisblau"
+    ]
+  },
+  {
+    "id": "GRE-C1",
+    "colors": [
+      {
+        "name": "Weinrot",
+        "hex": "#823b52"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Silber",
+        "hex": "#80949c"
+      }
+    ],
+    "changes": [
+      "Sand",
+      "Silber"
+    ]
+  },
+  {
+    "id": "GRE-C2",
+    "colors": [
+      {
+        "name": "Petrol",
+        "hex": "#2d777c"
+      },
+      {
+        "name": "Elfenbein",
+        "hex": "#f3edda"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-C3",
+    "colors": [
+      {
+        "name": "Kobaltblau",
+        "hex": "#3267b0"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      },
+      {
+        "name": "Terrakotta",
+        "hex": "#ba674d"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-C4",
+    "colors": [
+      {
+        "name": "Oliv",
+        "hex": "#727b47"
+      },
+      {
+        "name": "Gold",
+        "hex": "#d9ab45"
+      },
+      {
+        "name": "Anthrazit",
+        "hex": "#283039"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-C5",
+    "colors": [
+      {
+        "name": "Karmin",
+        "hex": "#a43e50"
+      },
+      {
+        "name": "Weiß",
+        "hex": "#f3f5f2"
+      },
+      {
+        "name": "Marineblau",
+        "hex": "#24385b"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-C6",
+    "colors": [
+      {
+        "name": "Eisblau",
+        "hex": "#4b9dc8"
+      },
+      {
+        "name": "Weiß",
+        "hex": "#f3f5f2"
+      },
+      {
+        "name": "Waldgrün",
+        "hex": "#315b42"
+      }
+    ],
+    "changes": [
+      "Eisblau"
+    ]
+  },
+  {
+    "id": "GRE-C7",
+    "colors": [
+      {
+        "name": "Bernstein",
+        "hex": "#dc9a32"
+      },
+      {
+        "name": "Schwarz",
+        "hex": "#1d2329"
+      },
+      {
+        "name": "Creme",
+        "hex": "#f1e5cc"
+      }
+    ],
+    "changes": []
+  },
+  {
+    "id": "GRE-C8",
+    "colors": [
+      {
+        "name": "Violett",
+        "hex": "#7750a0"
+      },
+      {
+        "name": "Sand",
+        "hex": "#eedfc5"
+      },
+      {
+        "name": "Kupfer",
+        "hex": "#b8794a"
+      }
+    ],
+    "changes": [
+      "Sand"
+    ]
+  }
+]

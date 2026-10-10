@@ -65,5 +65,7 @@ function v74HonourLabel(honour){
  if(honour.kind==='man-of-the-match')return'Man of the Match';
  if(honour.kind==='top-scorer')return'Torschützenkönig';
  if(honour.kind==='player-of-season')return'Spieler der Saison';
+ if(honour.competitionId.endsWith(':CROWN'))return'Crown Cup-Sieger';
+ if(honour.competitionId.endsWith(':HORIZON'))return'Horizon Cup-Sieger';
  return honour.competitionId.endsWith(':LEAGUE')?'Meister':honour.competitionId.endsWith(':CUP')?'Pokalsieger':'Europacupsieger';
 }

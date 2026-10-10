@@ -1,5 +1,39 @@
 # Entwicklung und Veröffentlichung
 
+## AP11: aktuelle Gesamtprüfung
+
+[AP11](ligaexpansion-ap11.md) trennt synthetische/native Langzeitnachweise, echte Browser-Speicherung und physische Geräteabnahme. [Veröffentlichungsplan](ligaexpansion-veroeffentlichungsplan.md); Release 122 ist zur Veröffentlichung beauftragt; [Releasebericht](release-122.md).
+
+## AP09 / AP10: Präsentation und künftige Statistikarchive
+
+`world-expansion-awards-v171.js` erweitert den bestehenden Awardrenderer; vorhandene Motive behalten ihre Geometrie. Das Manifest liefert 66 Zuordnungen: 64 freigegebene detaillierte Motive mit je zwei transparenten WebP-Varianten und zwei alte EU-Motive mit SVG-Varianten; alle Produktvarianten sind offline eingebettet. `work/integrate-detailed-trophies-v174.cjs` paketiert die 64 Bildgenerator-PNGs unter Erhalt ihres Alphas. Der frühere SVG-Generator ist der historische Entwurfsweg; für den aktuellen Produktstand anschließend die detaillierte Integration ausführen. `world-expansion-interface-v172.js` ersetzt die Expansionsansicht und verbindet den regulären Spielstart mit der vorhandenen neuen Weltkonstruktion. Nur neu erzeugte Karrieren erhalten `world.presentationVersion: 172`; deren künftige Saisonabschlüsse sichern validierte Wettbewerbs-Spielerstatistiken vor der nativen Historienverdichtung. Bestehende Spielstände werden nicht ergänzt. [Vertrag, Browsernachweise und offene AP11-Abnahme](ligaexpansion-ap09-ap10.md).
+
+## AP08: additives Storyprotokoll
+
+`storyLog.version: 170` wird nur bei neuer AP07-Expansionskonstruktion gesetzt. `world-expansion-stories-v170.js` speichert fachlich deduplizierte Meilensteine an Qualifikations-, Fixture-, Rundenschluss- und Wertungshooks; Leser verändern nichts. Herkunft verwendet bestehende Nachwuchsabschlüsse, keine zweite Transferhistorie. Import validiert Referenzen und vorhandene Ergebnisbelege. `world-expansion-office-v170.js` verbindet Büro, Lesestatus und native Profile. [Datenvertrag, Prüfungen und Grenzen](ligaexpansion-ap08.md).
+
+
+## AP07: gespeicherte mehrjährige Karriere
+
+Nur die neue Konstruktion setzt `world.progressionVersion: 167`, `rules.progressionVersion: 167` und `economyVersion: 1`; Laden erzeugt keine fehlenden Wertungsdaten. `qualifications` enthält pro Saison die tatsächliche Qualifikationsquelle, `countrySeasonValues` die Vereinsbeiträge mit festen Nennern und exakten Bruchwerten. Der Validator rekonstruiert alle Qualifikationen und Wertungen aus den gespeicherten Wettbewerbsergebnissen. Archivierte Matchberichte bleiben nach dem bestehenden Verfahren verdichtet. Neue Vertragsjahre setzen Verlängerungsversuche zurück; Kalender-/Minutenzusagen und Wirtschaftsänderungen gelten ausschließlich für diese Kennung. [Implementierung, konkrete Parameter und Nachweise](ligaexpansion-ap07.md).
+
+## AP06: aktive erste Expansionssaison
+
+`rules.stage: active` verbindet 26 Wettbewerbe auf dem gespeicherten AP04-Kalender. `format: horizon` mit `S{season}:HORIZON` verwendet die gemeinsame Match- und Buchungskette; `v62IsLeagueFixture` verhindert die Behandlung von R32/R16 als Ligaphase. Der Validator rekonstruiert Paarungen und Rundenschlüsse, prüft Ergebnisse gegen Matchberichte und verarbeitet keine alten Welten rückwirkend. Saison 1 endet an Tag 224; der nächste Saisonstart bleibt bis AP07 gesperrt. Frühere Vorbereitungsstände behalten ihre Sperren. [Lieferung und Nachweise](ligaexpansion-ap06.md).
+
+## AP05: Crown-Vorbereitung
+
+`rules.stage: crown-prepared` speichert 25 ungespielte Wettbewerbe einschließlich Crown-Ligaphase. `format: crown` und `S{season}:CROWN` unterscheiden den neuen Cup vom bisherigen `EUROPE`. Der Validator prüft den deterministischen Plan; Fortschritt bleibt bis AP06 gesperrt. `v62EuropeProgress` verwendet für Crown den neuen Kalender und idempotente Rundenschlüsse. [Vertrag und Prüfgrenzen](ligaexpansion-ap05.md).
+
+## AP04: national vorbereitete Welt
+
+`rules.stage: domestic-prepared` ergänzt den AP03-Vertrag um den gespeicherten Kalender und 24 ungespielte nationale Wettbewerbe. Der Validator vergleicht diese mit der reproduzierbaren Erzeugung; alte Vorbereitungsstände werden nicht ergänzt. `v62CupProgress` verarbeitet den neuen Ablauf nur bei `format: domestic16`. Gemeinsamer Karrierefortschritt bleibt gesperrt, bis AP05/06 den gesamten Saisonlauf auf diesen Kalender umstellen. [Lieferung, Prüfungen und Integrationsbedingungen](ligaexpansion-ap04.md).
+
+## AP03: gespeicherter Vorbereitungsstand
+
+Neue Vorschauwelten verwenden Schema 15 / Modell 11 mit `rules.variant: expansion12` und `rules.stage: foundation`. Regeln, AP01-Ausgangsquelle und native Erzeugungsparameter gehören zur gespeicherten Welt. Der Validator erlaubt zunächst nur Saison 1 ohne Wettbewerbe; AP04–06 erweitern diesen Vertrag zusammen mit dem Kalender. Weltfortschritt ist gesperrt. Alte 14/10-Welten bleiben im bisherigen Pfad und werden nicht migriert. Gemeinsame Exporthüllen übernehmen die tatsächliche Schema-/Modellkennung. [Implementierung, Prüfbefehle und offene Abnahme](ligaexpansion-ap03.md).
+
+
 ## Spielstände beim neuen Weltmodell
 
 Für künftige Änderungen an Spielregeln, Statistiken oder Datenformaten gelten neue Berechnungen ab ihrer Einführung für neue Ereignisse. Für bereits gespeicherte Partien und Saisons keine neue rückwirkende Berechnung, Umrechnung oder zusätzliche Kompatibilitätsvariante nur für Altstände einführen. Fehlende alte Werte werden als nicht erfasst behandelt. Die Expansion auf sechs Länder darf bisherige Spielstände inkompatibel machen.

@@ -4,7 +4,7 @@
 function v124Payments(career){return career.world.paymentSchedule===1}
 function v124LeagueRemaining(career,club){
  if(!club.leagueId)return 0;
- return club.ledger.some(row=>row.id===`S${career.world.season}:${club.id}:league-prize`)?0:v66LeaguePrizes[5];
+ return club.ledger.some(row=>row.id===`S${career.world.season}:${club.id}:league-prize`)?0:v66LeaguePrize(career,career.world.rules?.variant==='expansion12'?7:5);
 }
 function v124Book(career,clubId,id,amount,label,day){
  const booked=v66Book(career,clubId,id,amount,label);
@@ -29,13 +29,13 @@ v64ArchiveSeason=function(career){
  for(const club of career.world.clubs.filter(item=>item.simulationOnly)){
   const retired=club.roster.filter(player=>player.age>=player.retirementAge);
   if(!retired.length)continue;
-  const generated=v61GenerateRoster(v61Catalog.find(item=>item.id===club.id),`${career.world.seed}:S${career.world.season+1}:replacement`);
+  const generated=v61GenerateRoster((career.world.rules?.variant==='expansion12'?v161Catalog:v61Catalog).find(item=>item.id===club.id),`${career.world.seed}:S${career.world.season+1}:replacement`);
   const names=new Set([...club.roster,...club.retiredPlayers].map(player=>player.name));
   for(const old of retired){
    old.retiredSeason=career.world.season;club.retiredPlayers.push(old);
    const slot=club.roster.indexOf(old),player=generated[slot];
    player.age=18+Math.floor(v61Random(`${player.pid}:age`)()*6);player.n=old.n;
-   if(career.world.playerFoundation)v153Generate(player,{...career.world.playerFoundation,season:career.world.season+1},'cup',club.policy.startingSquad,club.policy.youth);
+   if(career.world.playerFoundation)v153Generate(player,{...career.world.playerFoundation,season:career.world.season+1},'cup',club.policy.startingSquad,club.policy.youth,club.id);
    player.name=v79PlayerName(player.nation,player.pid,names);names.add(player.name);
    player.retirementAge=v124RetirementAge(career,player);
    player.appearance=v61GenerateAppearance(player.pid,player.nation,player.age,club.roster);
@@ -80,7 +80,7 @@ v62AdvanceDay=function(career){
 function v124PayLeague(career,competition,day){
  if(competition.type!=='league'||!competition.fixtures.every(item=>item.result))return;
  const ids=career.world.clubs.filter(club=>club.leagueId===`${competition.country}-LEAGUE`).map(club=>club.id);
- v62Table(competition,ids).forEach((row,rank)=>v124Book(career,row.clubId,`S${career.world.season}:${row.clubId}:league-prize`,v66LeaguePrizes[rank],`Ligaprämie · Platz ${rank+1}`,day));
+ v62Table(competition,ids).forEach((row,rank)=>v124Book(career,row.clubId,`S${career.world.season}:${row.clubId}:league-prize`,v66LeaguePrize(career,rank),`Ligaprämie · Platz ${rank+1}`,day));
 }
 const v124BaseAfterFixture=v66AfterFixture;
 v66AfterFixture=function(career,fixture){
@@ -92,14 +92,15 @@ v66AfterFixture=function(career,fixture){
  for(const clubId of [fixture.homeId,fixture.awayId]){
   const row=v66Club(career,clubId).ledger.find(item=>item.id===`${fixture.id}:match-credit`);
   if(row){row.day=fixture.day;row.balanceAfter=v66Club(career,clubId).balance}
-  if(competition.type==='europe')v124Book(career,clubId,`${fixture.id}:${clubId}:europe-prize`,42,'Europacup · Spielprämie',fixture.day);
-  if(competition.type==='cup'&&fixture.round==='QF')v124Book(career,clubId,`S${season}:${clubId}:cup-prize:QF`,40,'Nationaler Pokal · Viertelfinale',fixture.day);
+  if(competition.type==='europe')v124Book(career,clubId,`${fixture.id}:${clubId}:europe-prize`,v66Prize(career,competition,'match'),(competition.name||'Europacup')+' · Spielprämie',fixture.day);
+  if(competition.type==='cup'&&fixture.round==='R16'&&typeof v167Active==='function'&&v167Active(career))v124Book(career,clubId,`S${season}:${clubId}:cup-prize:R16`,v66Prize(career,competition,'R16'),'Nationaler Pokal: Achtelfinale',fixture.day);
+  if(competition.type==='cup'&&fixture.round==='QF')v124Book(career,clubId,`S${season}:${clubId}:cup-prize:QF`,v66Prize(career,competition,'QF'),'Nationaler Pokal · Viertelfinale',fixture.day);
  }
  if(competition.type==='cup'){
   const next={QF:['SF',50,'Halbfinale erreicht'],SF:['F',60,'Finale erreicht'],F:['winner',120,'Pokalsieg']}[fixture.round];
-  if(next&&fixture.result.winnerId)v124Book(career,fixture.result.winnerId,`S${season}:${fixture.result.winnerId}:cup-prize:${next[0]}`,next[1],`Nationaler Pokal · ${next[2]}`,fixture.day);
+  if(next&&fixture.result.winnerId)v124Book(career,fixture.result.winnerId,`S${season}:${fixture.result.winnerId}:cup-prize:${next[0]}`,v66Prize(career,competition,next[0]),`Nationaler Pokal · ${next[2]}`,fixture.day);
  }
- if(competition.type==='europe'&&fixture.round==='F'&&fixture.result.winnerId)v124Book(career,fixture.result.winnerId,`S${season}:${fixture.result.winnerId}:europe-prize:winner`,350,'Europacup · Titelbonus',fixture.day);
+ if(competition.type==='europe'&&fixture.round==='F'&&fixture.result.winnerId)v124Book(career,fixture.result.winnerId,`S${season}:${fixture.result.winnerId}:europe-prize:winner`,v66Prize(career,competition,'title'),(competition.name||'Europacup')+' · Titelbonus',fixture.day);
  v124PayLeague(career,competition,fixture.day);
 };
 function v124FinancePlan(career,clubId){
@@ -110,11 +111,12 @@ function v124FinancePlan(career,clubId){
  if(!done){
   const sponsor=club.sponsors.find(item=>item.id===club.sponsorId);
   if(!sponsor)add('Sponsorfixum · mindestens',Math.min(...club.sponsors.map(item=>item.fixed)),0);
-  if(club.leagueId){const league=competitions.find(item=>item.type==='league'&&item.country===club.countryId);if(!club.ledger.some(row=>row.id===`S${season}:${club.id}:league-prize`))add('Ligaprämie · mindestens Platz 6',v66LeaguePrizes[5],Math.max(...league.fixtures.map(item=>item.day)))}
+  if(club.leagueId){const league=competitions.find(item=>item.type==='league'&&item.country===club.countryId);if(!club.ledger.some(row=>row.id===`S${season}:${club.id}:league-prize`))add(career.world.rules?.variant==='expansion12'?'Ligaprämie · mindestens Platz 8':'Ligaprämie · mindestens Platz 6',v66LeaguePrize(career,career.world.rules?.variant==='expansion12'?7:5),Math.max(...league.fixtures.map(item=>item.day)))}
   const cup=competitions.find(item=>item.type==='cup'&&item.country===club.countryId),first=cup.fixtures.find(item=>item.round==='QF'&&(item.homeId===club.id||item.awayId===club.id));
-  if(first&&!first.result)add('Nationaler Pokal · Viertelfinale',40,first.day);
-  const europe=competitions.find(item=>item.type==='europe');
-  for(const fixture of europe.fixtures.filter(item=>!item.result&&(item.homeId===club.id||item.awayId===club.id)))add('Europacup · Spielprämie',42,fixture.day);
+  if(typeof v167Active==='function'&&v167Active(career)){const opening=cup.fixtures.find(f=>f.round==='R16'&&(f.homeId===club.id||f.awayId===club.id));if(opening&&!opening.result)add('Nationaler Pokal: Achtelfinale',v66Prize(career,cup,'R16'),opening.day);}
+  if(first&&!first.result)add('Nationaler Pokal · Viertelfinale',v66Prize(career,cup,'QF'),first.day);
+  const europe=competitions.find(item=>item.type==='europe'&&item.fixtures.some(f=>f.homeId===club.id||f.awayId===club.id));
+  for(const fixture of (europe?.fixtures||[]).filter(item=>!item.result&&(item.homeId===club.id||item.awayId===club.id)))add((europe.name||'Europacup')+' · Spielprämie',v66Prize(career,europe,'match'),fixture.day);
   for(const goal of sponsor?.goals||[]){
    const competition=goal.kind==='league'?competitions.find(item=>item.type==='league'&&item.country===club.countryId):goal.kind==='cup'?cup:competitions.find(item=>item.id===goal.competition);
    const final=goal.kind!=='league'||competition?.fixtures.every(item=>item.result),met=Boolean(final&&v66SponsorMet(career,club,goal));

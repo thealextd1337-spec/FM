@@ -1,0 +1,32 @@
+{
+  "pass": true,
+  "source": "outputs/ligaexpansion-ap11/ap11-native-closed-career.json",
+  "jsonBytes": 67415506,
+  "season": 10,
+  "imported": {
+    "id": "expansion-test-1",
+    "worldHash": "7a70b13024a1cac24a9ee776f592b3ab78da14723be465dd554efdefe3b36824",
+    "milliseconds": 4369.60000000149,
+    "indexedDb": true,
+    "before": {
+      "quota": 10737491968,
+      "usage": 73728,
+      "usageDetails": {
+        "indexedDB": 73728
+      }
+    },
+    "after": {
+      "quota": 10757849088,
+      "usage": 20430848,
+      "usageDetails": {
+        "indexedDB": 20430848
+      }
+    }
+  },
+  "restored": {
+    "valid": true,
+    "worldHash": "7a70b13024a1cac24a9ee776f592b3ab78da14723be465dd554efdefe3b36824",
+    "count": 1
+  },
+  "sourceHash": "d348d353cdb413ba7552748c9974f5fcff6b6dd2930596a6d4ce306455362b52"
+}

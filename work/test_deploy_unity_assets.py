@@ -66,7 +66,9 @@ class DeployTests(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as folder:
             unity, runtime = self.fixture(Path(folder))
-            with mock.patch.object(deploy, "UNITY", unity), mock.patch.object(deploy, "RUNTIME", runtime), mock.patch.dict(os.environ, secrets, clear=True), mock.patch.object(deploy, "FTP_TLS", FakeFTP), mock.patch.object(deploy, "urlopen", side_effect=live):
+            # Fake FTPS does not use TLS; keep this offline test independent of
+            # the host OpenSSL configuration removed by the clean environment.
+            with mock.patch.object(deploy, "UNITY", unity), mock.patch.object(deploy, "RUNTIME", runtime), mock.patch.dict(os.environ, secrets, clear=True), mock.patch.object(deploy.ssl, "create_default_context", return_value=object()), mock.patch.object(deploy, "FTP_TLS", FakeFTP), mock.patch.object(deploy, "urlopen", side_effect=live):
                 deploy.publish()
         self.assertEqual(len(FakeFTP.instance.files), 9)
         self.assertEqual(FakeFTP.instance.calls[-1], "/site/unity/probe-build.json")

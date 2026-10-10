@@ -203,7 +203,7 @@ function v72SubmitContract(career,id,annual,years,promise){
  const market=v72Market(career),item=v72Negotiation(career,id),player=item&&v66Player(career,item.pid);
  if(!item||item.buyerId!==career.manager.managedClubId||!['contract','contract-counter'].includes(item.stage)||!player||!['open','deadline'].includes(market.phase))throw Error('Dieses Vertragsangebot kann nicht mehr geändert werden.');
  annual=Number(annual);years=Number(years);promise=Number(promise);
- if(!Number.isInteger(annual)||annual<60||!Number.isInteger(years)||years<1||years>3||!Number.isInteger(promise)||promise<0||promise>10||!v66CanAfford(career,item.buyerId,item.agreedPrice,annual))throw Error('Der Vertrag ist ungültig oder nicht finanzierbar.');
+ if(!Number.isInteger(annual)||annual<60||!Number.isInteger(years)||years<1||years>3||!Number.isInteger(promise)||promise<0||promise>v66PromiseLimit(career)||!v66CanAfford(career,item.buyerId,item.agreedPrice,annual))throw Error('Der Vertrag ist ungültig oder nicht finanzierbar.');
  if(item.stage==='contract-counter'&&annual<=item.annual)throw Error('Das neue Gehalt muss höher sein.');
  item.annual=annual;item.years=years;item.promise=promise;item.answerDay=market.day;
  const minimum=v66Consent(career,item).minimum;

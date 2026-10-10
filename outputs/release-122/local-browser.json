@@ -1,0 +1,65 @@
+{
+  "pass": true,
+  "url": "http://127.0.0.1:59401/release122.html?engine=2d",
+  "rows": [
+    {
+      "width": 390,
+      "regularStart": true,
+      "initial": {
+        "id": "b579aa24-5b98-4937-86af-0c14a14c4907",
+        "clubs": 192,
+        "own": "Innsbruck Sport",
+        "valid": true,
+        "countries": 12
+      },
+      "marketProgress": true,
+      "languages": 2,
+      "careerTabs": 6,
+      "crownAndHorizon": true,
+      "archivedStatistics": true,
+      "momentsAtMost3": true,
+      "rankingUnchangedOnReload": true,
+      "awards": {
+        "count": 128,
+        "inline": true,
+        "broken": 0
+      },
+      "legacy": {
+        "valid": true,
+        "unchanged": true,
+        "clubs": 48
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "regularStart": true,
+      "initial": {
+        "id": "8ffabaec-aa7b-4971-a208-0b533fd5cf4c",
+        "clubs": 192,
+        "own": "Innsbruck Sport",
+        "valid": true,
+        "countries": 12
+      },
+      "marketProgress": true,
+      "languages": 2,
+      "careerTabs": 6,
+      "crownAndHorizon": true,
+      "archivedStatistics": true,
+      "momentsAtMost3": true,
+      "rankingUnchangedOnReload": true,
+      "awards": {
+        "count": 128,
+        "inline": true,
+        "broken": 0
+      },
+      "legacy": {
+        "valid": true,
+        "unchanged": true,
+        "clubs": 48
+      },
+      "errors": []
+    }
+  ],
+  "buildSha256": "012d5247313adc52b058d1c063158c8212b60b29949a3165839aea1ae597ce58"
+}

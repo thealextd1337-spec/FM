@@ -1,0 +1,463 @@
+{
+  "status": "local-checks-passed-device-acceptance-outstanding",
+  "synthetic": {
+    "pass": true,
+    "seasons": 20,
+    "matches": 19820,
+    "artifact": "scenarios.json"
+  },
+  "browser": {
+    "pass": true,
+    "currentCareer172": true,
+    "physicalPauseReload": true,
+    "startElapsed": 17.39999999999997,
+    "completed": {
+      "finished": true,
+      "result": true,
+      "valid": true,
+      "uniqueLedger": true,
+      "fixtureId": "S1:AUT:LEAGUE:R1:AUT-4-AUT-5:1",
+      "matchId": null
+    },
+    "legacy": {
+      "unchanged": true,
+      "valid": true,
+      "clubs": 48
+    },
+    "errors": [],
+    "network": [],
+    "sourceHash": "d348d353cdb413ba7552748c9974f5fcff6b6dd2930596a6d4ce306455362b52"
+  },
+  "storage": {
+    "pass": true,
+    "source": "outputs/ligaexpansion-ap11/ap11-a-closed-career.json",
+    "jsonBytes": 22892885,
+    "season": 10,
+    "imported": {
+      "id": "expansion-test-1",
+      "milliseconds": 3733.2999999970198,
+      "indexedDb": true,
+      "before": {
+        "quota": 10737491968,
+        "usage": 73728,
+        "usageDetails": {
+          "indexedDB": 73728
+        }
+      },
+      "after": {
+        "quota": 10744725504,
+        "usage": 7307264,
+        "usageDetails": {
+          "indexedDB": 7307264
+        }
+      }
+    },
+    "restored": {
+      "valid": true,
+      "count": 1
+    },
+    "sourceHash": "d348d353cdb413ba7552748c9974f5fcff6b6dd2930596a6d4ce306455362b52"
+  },
+  "managerMove": {
+    "pass": true,
+    "from": "AUT-5",
+    "to": "SUI-8",
+    "actualAvailableOffers": [
+      "SUI-8",
+      "AUT-4",
+      "GRE-1"
+    ],
+    "season": 11,
+    "stations": 2,
+    "storyCount": 331,
+    "source": "ap11-a synthetic transaction career after season 10",
+    "qualifications": {
+      "crown": 26,
+      "horizon": 32
+    }
+  },
+  "nativeTenSeasons": {
+    "pass": true,
+    "seasons": 10,
+    "matches": 9910,
+    "artifact": "native.json",
+    "jsonBytes": 67415506,
+    "nativeStatistics": 29478
+  },
+  "androidAcceptance": {
+    "visibleNativeMatch": true,
+    "manualUserConfirmed": true,
+    "pausedFullscreenWake": true,
+    "singleNativeCareerStorage": true,
+    "fiveSimultaneousCareersMeasured": false,
+    "gpuFrameTimesMeasured": false
+  },
+  "graphicApproval": true,
+  "assets": {
+    "count": 64,
+    "credits": 594,
+    "originalDimensions": [
+      1024,
+      1024
+    ],
+    "zipEntries": 65,
+    "hashesVerified": true,
+    "revisionsCreated": [
+      "ger-cup",
+      "tur-cup"
+    ]
+  },
+  "build": {
+    "identicalOutputs": true,
+    "sha256": "44cdcee33901e185bad659518e7f0b378e2a9e45ef92eb971a8d8dbbfef75d0c",
+    "scope": "After detailed trophy integration; desktop/mobile viewport and offline decoding tested, no repeated physical Android run"
+  },
+  "activeSourcesUnchanged": true,
+  "cliChecksPassed": [
+    "test-world-storage-recovery.cjs",
+    "test-world-expansion-active-validation-v166.cjs",
+    "test-world-expansion-rules-v167.cjs",
+    "test-world-expansion-stories-v170.cjs",
+    "test-world-expansion-presentation-v172.cjs",
+    "platform/qa/test-world-unity-contract.cjs",
+    "platform/qa/test-unity-integration-v160.cjs",
+    "platform/qa/test-android-3d-acceptance.cjs",
+    "test-expansion-assets-v161.cjs",
+    "build.cjs"
+  ],
+  "unityExpansionParity": {
+    "pass": true,
+    "compared": [
+      "score",
+      "events",
+      "stats",
+      "fresh",
+      "minutes",
+      "report",
+      "ratings",
+      "ballAccounting",
+      "geometry",
+      "people",
+      "finances",
+      "development",
+      "fixtures",
+      "world"
+    ],
+    "rows": [
+      {
+        "unity": true,
+        "setup": {
+          "config": {
+            "fieldSize": "large",
+            "fieldPlayers": 6
+          },
+          "unity": true,
+          "people": 14,
+          "perTeam": [
+            7,
+            7
+          ],
+          "keepers": [
+            1,
+            1
+          ],
+          "geometry": {
+            "version": 1,
+            "length": 81.6,
+            "width": 52.8,
+            "goalWidth": 9.705882352941178,
+            "goalHeight": 3.2352941176470593,
+            "penaltyDepth": 10.5953488372093,
+            "penaltyWidth": 24.264705882352942,
+            "ballRadius": 0.1764
+          },
+          "expectedPerTeam": 7,
+          "unityReady": true,
+          "ack": {
+            "players": 14,
+            "ids": 14,
+            "allReal": true
+          },
+          "error": null
+        },
+        "world": {
+          "clubs": 192,
+          "presentation": 172
+        },
+        "end": {
+          "ticks": 3955,
+          "minute": 100,
+          "phase": "finished",
+          "score": [
+            0,
+            0
+          ],
+          "finished": true,
+          "halftime": true,
+          "unityError": null,
+          "stats": {
+            "pictures": 134,
+            "maxPositionError": 0,
+            "playersOutside": 0,
+            "visibleBallOutside": 0,
+            "netMaxZ": 0,
+            "labels": 14,
+            "visibleLabels": 13,
+            "domLabels": 14,
+            "keeperContactSamples": 0,
+            "keeperContactMetres": []
+          }
+        },
+        "digest": {
+          "score": [
+            0,
+            0
+          ],
+          "phase": "finished",
+          "finished": true,
+          "valid": true,
+          "booked": true,
+          "balanceOwn": 4166,
+          "checkpoints": 0,
+          "hashes": {
+            "score": "13ca43dd:5",
+            "events": "a8f8ab5a:273",
+            "stats": "714ced48:9856",
+            "fresh": "0b54cf59:993",
+            "minutes": "c02d76da:749",
+            "report": "26503636:33488",
+            "ratings": "5d034201:708",
+            "ballAccounting": "746c800e:20084",
+            "geometry": "44a0621d:188",
+            "people": "34dcd2cd:9249",
+            "finances": "7176a105:54873",
+            "development": "b242df51:3820703",
+            "fixtures": "394503a8:478050",
+            "world": "1a529813:9984251"
+          },
+          "all": "78a82049"
+        }
+      },
+      {
+        "unity": false,
+        "setup": {
+          "config": {
+            "fieldSize": "large",
+            "fieldPlayers": 6
+          },
+          "unity": false,
+          "people": 14,
+          "perTeam": [
+            7,
+            7
+          ],
+          "keepers": [
+            1,
+            1
+          ],
+          "geometry": {
+            "version": 1,
+            "length": 81.6,
+            "width": 52.8,
+            "goalWidth": 9.705882352941178,
+            "goalHeight": 3.2352941176470593,
+            "penaltyDepth": 10.5953488372093,
+            "penaltyWidth": 24.264705882352942,
+            "ballRadius": 0.1764
+          },
+          "expectedPerTeam": 7
+        },
+        "world": {
+          "clubs": 192,
+          "presentation": 172
+        },
+        "end": {
+          "ticks": 3955,
+          "minute": 100,
+          "phase": "finished",
+          "score": [
+            0,
+            0
+          ],
+          "finished": true,
+          "halftime": true,
+          "unityError": null,
+          "stats": {
+            "pictures": 0,
+            "maxPositionError": 0,
+            "playersOutside": 0,
+            "visibleBallOutside": 0,
+            "netMaxZ": 0,
+            "labels": 0,
+            "visibleLabels": 0,
+            "domLabels": 0,
+            "keeperContactSamples": 0,
+            "keeperContactMetres": []
+          }
+        },
+        "digest": {
+          "score": [
+            0,
+            0
+          ],
+          "phase": "finished",
+          "finished": true,
+          "valid": true,
+          "booked": true,
+          "balanceOwn": 4166,
+          "checkpoints": 0,
+          "hashes": {
+            "score": "13ca43dd:5",
+            "events": "a8f8ab5a:273",
+            "stats": "714ced48:9856",
+            "fresh": "0b54cf59:993",
+            "minutes": "c02d76da:749",
+            "report": "26503636:33488",
+            "ratings": "5d034201:708",
+            "ballAccounting": "746c800e:20084",
+            "geometry": "44a0621d:188",
+            "people": "34dcd2cd:9249",
+            "finances": "7176a105:54873",
+            "development": "b242df51:3820703",
+            "fixtures": "394503a8:478050",
+            "world": "1a529813:9984251"
+          },
+          "all": "78a82049"
+        }
+      }
+    ],
+    "sourceHash": "d348d353cdb413ba7552748c9974f5fcff6b6dd2930596a6d4ce306455362b52"
+  },
+  "graphicRevisionsRequested": [
+    "ger-cup",
+    "tur-cup"
+  ],
+  "nativeBrowserStorage": {
+    "pass": true,
+    "source": "outputs/ligaexpansion-ap11/ap11-native-closed-career.json",
+    "jsonBytes": 67415506,
+    "season": 10,
+    "imported": {
+      "id": "expansion-test-1",
+      "worldHash": "7a70b13024a1cac24a9ee776f592b3ab78da14723be465dd554efdefe3b36824",
+      "milliseconds": 4369.60000000149,
+      "indexedDb": true,
+      "before": {
+        "quota": 10737491968,
+        "usage": 73728,
+        "usageDetails": {
+          "indexedDB": 73728
+        }
+      },
+      "after": {
+        "quota": 10757849088,
+        "usage": 20430848,
+        "usageDetails": {
+          "indexedDB": 20430848
+        }
+      }
+    },
+    "restored": {
+      "valid": true,
+      "worldHash": "7a70b13024a1cac24a9ee776f592b3ab78da14723be465dd554efdefe3b36824",
+      "count": 1
+    },
+    "sourceHash": "d348d353cdb413ba7552748c9974f5fcff6b6dd2930596a6d4ce306455362b52"
+  },
+  "allIndependentChecksComplete": true,
+  "latestAndroidAttempt": {
+    "artifact": "outputs/3d-quality/android-device-prerequisites/run-2026-10-10T21-41-38-560Z/report.json",
+    "status": "paused-wake-and-native-storage-passed",
+    "wake": {
+      "status": "passed",
+      "screenOffTimeoutMs": 60000,
+      "observedMs": 75013,
+      "continuousEligibleScope": true,
+      "awakeThroughout": true,
+      "wakeLockHeldThroughout": true,
+      "note": "Observed scope stayed visible and fullscreen in live/paused play, excluding native half/full-time. No touches after fullscreen entry; dumpsys power read only; global charging stay-awake excluded. Other OS wake policies can still affect attribution."
+    },
+    "storage": {
+      "status": "passed",
+      "bytes": 67415506,
+      "season": 10,
+      "expectedWorldHash": "7a70b13024a1cac24a9ee776f592b3ab78da14723be465dd554efdefe3b36824",
+      "imported": {
+        "id": "expansion-test-1",
+        "worldHash": "7a70b13024a1cac24a9ee776f592b3ab78da14723be465dd554efdefe3b36824",
+        "milliseconds": 6986.600000023842,
+        "indexedDb": true,
+        "before": {
+          "quota": 10793046773,
+          "usage": 55628533,
+          "usageDetails": {
+            "caches": 55559936,
+            "indexedDB": 68597
+          }
+        },
+        "after": {
+          "quota": 10817688520,
+          "usage": 80270280,
+          "usageDetails": {
+            "caches": 55559936,
+            "indexedDB": 24710344
+          }
+        }
+      },
+      "restored": {
+        "valid": true,
+        "worldHash": "7a70b13024a1cac24a9ee776f592b3ab78da14723be465dd554efdefe3b36824",
+        "count": 1
+      },
+      "note": "One large career plus backup in fresh isolated origin; not five simultaneous careers or a peak RAM measurement"
+    },
+    "cleanup": {
+      "failures": [],
+      "ownTargetCreationVerified": true
+    },
+    "buildUnchanged": true
+  },
+  "graphicIntegration": "complete",
+  "buildBeforeGraphics": {
+    "identicalOutputs": true,
+    "sha256": "8ee765cdb0ff09d37b23a87aa3a5933346e2906231ebe58ee9277e023d5dc439"
+  },
+  "graphics": {
+    "approved": 64,
+    "generator": "image_gen",
+    "cutoutManifest": "trophy-cutouts/generation-manifest.json",
+    "productVariants": 128,
+    "bytes": 2130132,
+    "browser": {
+      "pass": true,
+      "results": [
+        {
+          "width": 390,
+          "awards": 66,
+          "images": 264,
+          "broken": 0,
+          "overflow": false,
+          "compact": true
+        },
+        {
+          "width": 1440,
+          "awards": 66,
+          "images": 264,
+          "broken": 0,
+          "overflow": false,
+          "compact": true
+        }
+      ],
+      "offline": {
+        "count": 128,
+        "inline": true,
+        "broken": 0,
+        "alt": true,
+        "large": 64,
+        "small": 64
+      }
+    },
+    "presentation991FixturesPassed": true,
+    "fullGalleryVisuallyInspected": true
+  }
+}

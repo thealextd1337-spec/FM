@@ -114,7 +114,7 @@ function v47ReportHTML(report,shootout){
  const ranks=v47CurrentReportRanks(report);
  const winner=shootout?.winner??(report.score[0]===report.score[1]?null:report.score[0]>report.score[1]?0:1);
  const matchWinner=report.players.find(player=>player.pid&&player.pid===report.manOfMatchPid);
- const matchCountry=report.competition?.type==='europe'?'EU':report.competition?.country;
+ const matchCountry=report.competition?.type==='europe'?(report.competition.id?.endsWith(':CROWN')?'crown':report.competition.id?.endsWith(':HORIZON')?'horizon':'EU'):report.competition?.country;
  const matchAward=matchWinner?`<div class="v47-match-award">${typeof v62AwardIcon==='function'?v62AwardIcon(matchCountry,'man-of-the-match'):'★'}<span><small>Man of the Match</small><button type="button" class="v47-award-player" data-v47-award-profile="${escapeHTML(matchWinner.pid)}" aria-label="Profil von ${escapeHTML(matchWinner.name)} öffnen">${escapeHTML(matchWinner.name)}</button><em>${escapeHTML(matchWinner.team===0?report.ownName:report.opponentName)} · Note ${Number(matchWinner.stats.rating).toFixed(1).replace('.',',')}</em></span></div>`:'';
  const scoreSide=(side,name)=>{
   const club=report.clubIds&&typeof v61CurrentCareer!=='undefined'&&v61CurrentCareer?.world.clubs.find(item=>item.id===report.clubIds[side]);

@@ -114,7 +114,7 @@ function v61ValidAppearance(appearance){
 function v61GenerateRoster(entry,seed,foundation=null){
  const random=v61Random(`${seed}:${entry.id}`),home=entry.id.slice(0,3),quality=entry.profile[5]-(entry.id.includes('-C')?1:0),used=new Set(),legacyUsed=new Set(),roster=[];
  return v61Layout.map((line,index)=>{
-  const legacyNation=random()<.79?home:v61Countries[Math.floor(random()*v61Countries.length)][0],names=v61Names[legacyNation];
+  const legacyNation=random()<.79?home:v61Countries[Math.floor(random()*v61Countries.length)][0],names=v61Names[legacyNation]||[v79NationByCode[legacyNation].given,v79NationByCode[legacyNation].family];
   let legacyName,attempt=0;
   do{legacyName=`${names[0][Math.floor(random()*names[0].length)]} ${names[1][Math.floor(random()*names[1].length)]}`;attempt++}while(legacyUsed.has(legacyName)&&attempt<30);
   legacyUsed.add(legacyName);
@@ -122,7 +122,7 @@ function v61GenerateRoster(entry,seed,foundation=null){
   used.add(name);
   const player={pid,n:index+1,name,nation,age:19+Math.floor(random()*16),line,assignedLine:line,keeper:line==='gk',type:v61PositionNames[line],foot:random()<.2?'Links':'Rechts',form:0,fresh:100,history:[],seasons:[],honours:[]};
   for(const [key,base]of Object.entries(v61SkillBases[line]))player[key]=Math.max(1,Math.min(20,Math.round(base+(quality-3)*1.1+(random()-.5)*3)));
-  if(foundation)v153Generate(player,foundation,entry.id.includes('FREE')?'free':entry.id.includes('-C')?'cup':'start',entry.profile[5],entry.profile[2]);
+  if(foundation)v153Generate(player,foundation,entry.id.includes('FREE')?'free':entry.id.includes('-C')?'cup':'start',entry.profile[5],entry.profile[2],entry.id);
   player.appearance=v61GenerateAppearance(pid,nation,player.age,roster);roster.push(player);
   return player;
  });
@@ -137,13 +137,16 @@ function v61ClubRecord(entry,seed,foundation=null){
 function v61ManagerName(value){return typeof value==='string'?value.replace(/\s+/g,' ').trim():''}
 function v61ValidManagerName(value){return typeof value==='string'&&value===v61ManagerName(value)&&value.length>=2&&value.length<=32&&!/[\u0000-\u001f\u007f]/.test(value)}
 function v61ValidateCareer(career){
- if(career?.schema!==14||career.modelVersion!==10||!career.manager?.id||!career.world?.seed)return false;
+ const expansion=career?.schema===15&&career.modelVersion===11;
+ if(expansion&&!(typeof v161ValidateRules==='function'&&v161ValidateRules(career)))return false;
+ if(!expansion&&(career?.schema!==14||career.modelVersion!==10||career.world?.rules!==undefined)||!career.manager?.id||!career.world?.seed)return false;
+ const countries=expansion?v161Countries.map(c=>[c.id,c.name]):v61Countries,clubCount=expansion?192:48;
  if(career.manager.name!==undefined&&!v61ValidManagerName(career.manager.name))return false;
  if(career.world.matchConfig!==undefined){try{v160MatchConfig(career.world.matchConfig)}catch{return false}}
  const clubs=career.world.clubs;
- if(!Array.isArray(clubs)||clubs.length!==48||new Set(clubs.map(club=>club.id)).size!==48)return false;
- if(!Array.isArray(career.world.countries)||career.world.countries.length!==6)return false;
- if(!Array.isArray(career.world.competitions)||v62Current(career).length!==13||!Number.isInteger(career.world.calendarCursor))return false;
+ if(!Array.isArray(clubs)||clubs.length!==clubCount||new Set(clubs.map(club=>club.id)).size!==clubCount)return false;
+ if(!Array.isArray(career.world.countries)||career.world.countries.length!==countries.length||new Set(career.world.countries.map(c=>c.id)).size!==countries.length||!countries.every(([id])=>career.world.countries.some(c=>c.id===id)))return false;
+ if(!Array.isArray(career.world.competitions)||v62Current(career).length!==(expansion?({foundation:0,'domestic-prepared':24,'crown-prepared':25,active:26}[career.world.rules.stage]):13)||!Number.isInteger(career.world.calendarCursor))return false;
  if(!Array.isArray(career.world.transfers)||new Set(career.world.transfers.map(item=>item.id)).size!==career.world.transfers.length)return false;
  const managed=clubs.find(club=>club.id===career.manager.managedClubId);
  if(!managed?.leagueId)return false;
@@ -154,22 +157,29 @@ function v61ValidateCareer(career){
  if([...players,...clubs.flatMap(club=>club.youthPool||[]),...(career.world.market?.freePlayers||[])].some(player=>player.appearance&&!v61ValidAppearance(player.appearance)))return false;
  const marketOpen=career.world.seasonFinished||['sponsor','open','deadline',...(career.world.paymentSchedule===1?['budget']:[])].includes(career.world.market?.phase);
  if(clubs.some(club=>!Array.isArray(club.roster)||club.roster.length>14||!marketOpen&&(club.roster.length<10||club.roster.filter(player=>player.keeper).length<1))||new Set(players.map(player=>player.pid)).size!==players.length)return false;
- if(!v61Countries.every(([id])=>clubs.filter(club=>club.countryId===id&&club.leagueId).length===6&&clubs.filter(club=>club.countryId===id&&!club.leagueId).length===2))return false;
+ if(!countries.every(([id])=>clubs.filter(club=>club.countryId===id&&club.leagueId).length===(expansion?8:6)&&clubs.filter(club=>club.countryId===id&&!club.leagueId).length===(expansion?8:2)))return false;
+ if(expansion&&!v161ValidateClubs(career))return false;
  return (typeof v66Validate!=='function'||v66Validate(career))&&(typeof v67Validate!=='function'||v67Validate(career));
 }
 
-function v61CreateCareer(clubId,seed=crypto.randomUUID(),managerName=null,playerOptions=undefined,matchOptions=undefined){
- const foundation=typeof v153Options==='function'?v153Options(playerOptions===undefined?v153PreviewOptions():playerOptions,seed):null;
- if(!v61Catalog.some(club=>club.id===clubId&&!club.id.includes('-C')))throw Error('Nur ein Ligaverein kann übernommen werden.');
+function v61CreateCareer(clubId,seed=crypto.randomUUID(),managerName=null,playerOptions=undefined,matchOptions=undefined,worldOptions=undefined){
+ const expansion=worldOptions?.variant==='expansion12';
+ if(worldOptions&&!expansion)throw Error('Unbekannte Weltvariante.');
+ const catalog=expansion?v161Catalog:v61Catalog;
+ const foundation=typeof v153Options==='function'?v153Options(playerOptions===undefined?v153PreviewOptions():playerOptions,seed,catalog):null;
+ if(expansion&&!foundation)throw Error('Die Expansion benötigt das native Spielermodell.');
+ if(expansion)foundation.expansionGeneration=v161GenerationPolicy();
+ if(!catalog.some(club=>club.id===clubId&&!club.id.includes('-C')))throw Error('Nur ein Ligaverein kann übernommen werden.');
  const name=managerName===null?null:v61ManagerName(managerName);
  if(name!==null&&!v61ValidManagerName(name))throw Error('Der Managername muss 2 bis 32 Zeichen enthalten.');
  const now=new Date().toISOString();
- const career={schema:14,modelVersion:10,id:crypto.randomUUID(),created:now,updated:now,phase:'world-matches',manager:{id:crypto.randomUUID(),...(name===null?{}:{name}),managedClubId:clubId,stationHistory:[{clubId,fromSeason:1}]},world:{season:1,calendarCursor:null,seed,matchConfig:v160MatchConfig(matchOptions),...(foundation?{playerFoundation:foundation}:{}),countries:v61Countries.map(([id,name])=>({id,name,leagueId:`${id}-LEAGUE`,cupId:`${id}-CUP`})),clubs:v61Catalog.map(entry=>v61ClubRecord(entry,seed,foundation)),coaches:[],contracts:[],competitions:[],transfers:[],market:{freePlayers:[],pendingBids:[]},eventLog:{processedEventIds:[],visibleNews:[]}}};
- v62PrepareSeason(career);
+ const career={schema:expansion?15:14,modelVersion:expansion?11:10,id:crypto.randomUUID(),created:now,updated:now,phase:'world-matches',manager:{id:crypto.randomUUID(),...(name===null?{}:{name}),managedClubId:clubId,stationHistory:[{clubId,fromSeason:1}]},world:{season:1,calendarCursor:null,seed,matchConfig:v160MatchConfig(matchOptions),...(foundation?{playerFoundation:foundation}:{}),...(expansion?{...(worldOptions.progressionVersion===167?{progressionVersion:167}:{}),rules:v161Rules(),opening:JSON.parse(JSON.stringify(v161Opening))}:{}),countries:(expansion?v161Countries.map(c=>[c.id,c.name]):v61Countries).map(([id,name])=>({id,name,leagueId:`${id}-LEAGUE`,cupId:`${id}-CUP`})),clubs:catalog.map(entry=>expansion?v161ClubRecord(entry,seed,foundation):v61ClubRecord(entry,seed,foundation)),coaches:[],contracts:[],competitions:[],transfers:[],market:{freePlayers:[],pendingBids:[]},eventLog:{processedEventIds:[],visibleNews:[]}}};
+ if(expansion)career.world.calendarCursor=0;else v62PrepareSeason(career);
  v63Init(career);
  if(typeof v66Init==='function')v66Init(career);
  if(typeof v67Init==='function')v67Init(career);
  if(typeof v158SeasonStart==='function')v158SeasonStart(career);
+ if(expansion){v161StartFunds(career);career.phase='world-foundation';}
  if(!v61ValidateCareer(career))throw Error('Die Vereinswelt ist unvollständig.');
  return career;
 }
@@ -265,7 +275,7 @@ function v61IsWorldExport(raw){
 }
 async function v61ImportCareerData(raw){
  const candidate=raw?.save||raw;
- if(candidate?.schema!==14||candidate?.modelVersion!==10||raw?.format&&raw.format!=='world')throw Error('Diese Vereinswelt-Datei hat ein nicht unterstütztes Format.');
+ if(!((candidate?.schema===14&&candidate?.modelVersion===10)||(candidate?.schema===15&&candidate?.modelVersion===11))||raw?.format&&raw.format!=='world'||raw?.schema!==undefined&&raw.schema!==candidate.schema||raw?.modelVersion!==undefined&&raw.modelVersion!==candidate.modelVersion)throw Error('Diese Vereinswelt-Datei hat ein nicht unterstütztes Format.');
  let valid=false;
  try{valid=typeof candidate.id==='string'&&candidate.id.length>0&&v61ValidateCareer(candidate)}catch{}
  if(!valid)throw Error('Die Vereinswelt-Datei ist unvollständig oder beschädigt.');
@@ -276,12 +286,12 @@ async function v61ExportCareerData(id){
  v61ReadCareers();
  const career=v61StorageConfirmed.find(item=>item.id===id);
  if(!career)throw Error('Diese Vereinswelt wurde nicht gefunden.');
- return{game:'Doppel 6',format:'world',schema:14,modelVersion:10,exported:new Date().toISOString(),save:JSON.parse(JSON.stringify(career))};
+ return{game:'Doppel 6',format:'world',schema:career.schema,modelVersion:career.modelVersion,exported:new Date().toISOString(),save:JSON.parse(JSON.stringify(career))};
 }
 function v61RescueCareerData(id){
  const career=v61StorageCache.find(item=>item.id===id);
  if(!career||!v61ValidCareers([career]))throw Error('Die Vereinswelt-Datei ist unvollständig oder beschädigt.');
- return{game:'Doppel 6',format:'world',schema:14,modelVersion:10,rescue:true,exported:new Date().toISOString(),save:v61StorageClone(career)};
+ return{game:'Doppel 6',format:'world',schema:career.schema,modelVersion:career.modelVersion,rescue:true,exported:new Date().toISOString(),save:v61StorageClone(career)};
 }
 async function v61DeleteCareer(id){
  await v61WaitForStorage();
@@ -1346,6 +1356,7 @@ function v61RenderSaves(){
 
 const v61CareerTabs=[...v46Tabs.slice(0,4),['calendar',v46Icon('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 4h3m3 0h3m-9 4h3"/>'),'Kalender'],...v46Tabs.slice(4)];
 function v61RenderCareer(career){
+ if(career?.phase==='world-foundation'){v161RenderFoundation(career);return;}
  const club=career.world.clubs.find(item=>item.id===career.manager.managedClubId),views=v62CareerViewsHTML(career),honours=career.world.competitions.filter(item=>item.winnerId===club.id).map(item=>`<li>Saison ${item.season} · ${item.type==='league'?'Meister':item.type==='cup'?'Pokalsieger':'Europacupsieger'}</li>`).join('');
  views.overview+=v63NewsHTML(career);
  const hero=`<section class="v61-club-hero">${v61CrestSVG(club)}<div><p>${v61FlagSVG(club.countryId)} ${escapeHTML(v61CountryNames[club.countryId])} · ${escapeHTML(club.city)}</p><h2>${escapeHTML(club.name)}</h2><p>${escapeHTML(club.historyText)}</p><small>Vereinsfarben: ${escapeHTML(v61ClubColorLabel(club))}</small></div></section>${v63LeagueCoachesHTML(career)}`;
@@ -1420,7 +1431,7 @@ v61InitStorage();
 const v61BaseProgressState=v58State;
 function v61NextFixtureContext(career,fixture){
  const competition=v62Current(career).find(item=>item.id===fixture.competitionId);
- const label=competition?.type==='league'?`${v61CountryNames[competition.country]} · Liga 1`:competition?.type==='cup'?`${v61CountryNames[competition.country]} · Nationaler Pokal`:'Europacup';
+ const label=competition?.type==='league'?`${v61CountryNames[competition.country]} · Liga 1`:competition?.type==='cup'?`${v61CountryNames[competition.country]} · Nationaler Pokal`:competition?.name||'Europacup';
  return`${v62Date(fixture.day)} · ${label} · ${v62Name(career,fixture.homeId)} gegen ${v62Name(career,fixture.awayId)}`;
 }
 v58State=function(){

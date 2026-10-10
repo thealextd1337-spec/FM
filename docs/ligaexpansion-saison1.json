@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "status": "ap01-editorial-opening-data",
+  "scope": "new-expansion12-careers-only",
+  "countryOrder": ["ENG", "ESP", "GER", "ITA", "FRA", "POR", "NED", "AUT", "BEL", "TUR", "SUI", "GRE"],
+  "countryTiers": {
+    "A": ["ENG", "ESP", "GER", "ITA", "FRA"],
+    "B": ["POR", "NED"],
+    "C": ["AUT", "BEL", "TUR"],
+    "D": ["SUI", "GRE"]
+  },
+  "previousInternationalWinners": {"crown": "ESP-1", "horizon": "POR-4"},
+  "nationalPreviousSeason": {
+    "ENG": {"leagueOrder": ["ENG-2", "ENG-1", "ENG-7", "ENG-4", "ENG-3", "ENG-8", "ENG-5", "ENG-6"], "cupWinner": "ENG-1", "cupFinalist": "ENG-3"},
+    "ESP": {"leagueOrder": ["ESP-1", "ESP-2", "ESP-3", "ESP-7", "ESP-4", "ESP-8", "ESP-5", "ESP-6"], "cupWinner": "ESP-2", "cupFinalist": "ESP-4"},
+    "GER": {"leagueOrder": ["GER-1", "GER-7", "GER-2", "GER-3", "GER-8", "GER-4", "GER-5", "GER-6"], "cupWinner": "GER-7", "cupFinalist": "GER-2"},
+    "ITA": {"leagueOrder": ["ITA-2", "ITA-1", "ITA-6", "ITA-7", "ITA-4", "ITA-3", "ITA-8", "ITA-5"], "cupWinner": "ITA-1", "cupFinalist": "ITA-6"},
+    "FRA": {"leagueOrder": ["FRA-1", "FRA-2", "FRA-3", "FRA-5", "FRA-7", "FRA-4", "FRA-8", "FRA-6"], "cupWinner": "FRA-1", "cupFinalist": "FRA-2"},
+    "POR": {"leagueOrder": ["POR-2", "POR-1", "POR-3", "POR-4", "POR-7", "POR-5", "POR-8", "POR-6"], "cupWinner": "POR-1", "cupFinalist": "POR-3"},
+    "NED": {"leagueOrder": ["NED-3", "NED-1", "NED-2", "NED-4", "NED-5", "NED-6", "NED-7", "NED-8"], "cupWinner": "NED-1", "cupFinalist": "NED-2"},
+    "AUT": {"leagueOrder": ["AUT-2", "AUT-3", "AUT-1", "AUT-4", "AUT-5", "AUT-6", "AUT-7", "AUT-8"], "cupWinner": "AUT-3", "cupFinalist": "AUT-1"},
+    "BEL": {"leagueOrder": ["BEL-1", "BEL-3", "BEL-2", "BEL-4", "BEL-6", "BEL-5", "BEL-7", "BEL-8"], "cupWinner": "BEL-3", "cupFinalist": "BEL-2"},
+    "TUR": {"leagueOrder": ["TUR-2", "TUR-1", "TUR-3", "TUR-4", "TUR-5", "TUR-6", "TUR-7", "TUR-8"], "cupWinner": "TUR-1", "cupFinalist": "TUR-4"},
+    "SUI": {"leagueOrder": ["SUI-2", "SUI-1", "SUI-3", "SUI-4", "SUI-5", "SUI-7", "SUI-6", "SUI-8"], "cupWinner": "SUI-1", "cupFinalist": "SUI-3"},
+    "GRE": {"leagueOrder": ["GRE-1", "GRE-2", "GRE-3", "GRE-4", "GRE-5", "GRE-7", "GRE-6", "GRE-8"], "cupWinner": "GRE-2", "cupFinalist": "GRE-3"}
+  },
+  "rules": {
+    "crownLeague": {"matchesPerClub": 5, "nationalDuels": false, "threeHomeClubs": 13, "twoHomeClubs": 13},
+    "crownKnockout": {"nationalDuels": true, "quarterSeededRanks": [1, 2, 3, 4], "quarterUnseededRanks": [5, 6, 7, 8], "semifinalFixedBracket": true},
+    "horizon": {"seeded": false, "redrawEachRound": true, "nationalDuelsForbiddenRounds": ["R32", "R16"], "nationalDuelsAllowedRounds": ["QF", "SF", "F"]},
+    "horizonPlaces": {"ranks1to8": 3, "ranks9to12": 2}
+  },
+  "historyPolicy": {"playedMatches": [], "countrySeasonValues": [], "careerHonours": [], "openingPayments": [], "fictionalSourceLabel": "Fiktive Ausgangslage vor Karrierebeginn"}
+}

@@ -210,14 +210,14 @@ function v65BookWorldMatch(context){
  v64CompleteOwnMatch(context.career);state.postMatchReport.manOfMatchPid=context.fixture.matchRecord?.manOfMatchPid||null;
  const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
  if(v65VictoryCompetition(context,competition))state.postMatchStep='celebration';
- if(competition?.type==='europe'&&['QF','SF'].includes(context.fixture.round)){state.postMatchReport.leg=context.fixture.leg;state.postMatchReport.aggregate=[...state.postMatchReport.score]}
+ if(competition?.type==='europe'&&(['QF','SF'].includes(context.fixture.round)||competition.format==='horizon'&&['R32','R16'].includes(context.fixture.round))){state.postMatchReport.leg=context.fixture.leg;state.postMatchReport.aggregate=[...state.postMatchReport.score]}
  const firstLeg=v64UiFirstLegScore(context.career,context.fixture,context.ownSide===1);
  if(firstLeg){state.postMatchReport.firstLeg=firstLeg;state.postMatchReport.aggregate=[firstLeg[0]+state.postMatchReport.score[0],firstLeg[1]+state.postMatchReport.score[1]]}
  v64UiSave();
 }
 function v65VictoryCompetition(context,competition){
  if(!competition||competition.winnerId!==context.career.manager.managedClubId)return false;
- if(competition.type==='league')return context.fixture.day===v62Days.league.at(-1);
+ if(competition.type==='league')return context.fixture.day===(context.career.world.rules?.variant==='expansion12'?Math.max(...competition.fixtures.map(f=>f.day)):v62Days.league.at(-1));
  return(competition.type==='cup'||competition.type==='europe')&&context.fixture.round==='F';
 }
 function v65ConfettiHTML(club){
@@ -233,8 +233,8 @@ function v65ShowCelebration(context){
   v65CelebrationDialog.addEventListener('cancel',event=>event.preventDefault());
  }
  if(v65CelebrationDialog.open)return true;
- const club=v66Club(context.career,context.career.manager.managedClubId),kind=competition.type,label={league:'Meister',cup:'Pokalsieger',europe:'Europacupsieger'}[kind],name=kind==='league'?'Meisterschaft':kind==='cup'?'Nationaler Pokal':'Europacup',country=kind==='europe'?'':` · ${v61CountryNames[competition.country]}`;
- v65CelebrationDialog.innerHTML=`${v65ConfettiHTML(club)}<div class="v65-victory-content"><h2 id="v65-victory-title">Herzlichen Glückwunsch!</h2><strong class="v65-victory-title">${label}</strong><p class="v65-victory-context">${name}${country} · Saison ${competition.season}</p>${v62AwardIcon(competition.country,kind)}<div class="v65-victory-club">${v61CrestSVG(club)}<strong>${escapeHTML(club.name)}</strong></div><p class="v61-error" role="alert"></p><button type="button" class="primary" autofocus>Weiter zum Spielbericht</button></div>`;
+ const club=v66Club(context.career,context.career.manager.managedClubId),kind=competition.type,label={league:'Meister',cup:'Pokalsieger',europe:'Europacupsieger'}[kind],name=competition.name||(kind==='league'?'Meisterschaft':kind==='cup'?'Nationaler Pokal':'Europacup'),country=kind==='europe'?'':` · ${v61CountryNames[competition.country]}`;
+ v65CelebrationDialog.innerHTML=`${v65ConfettiHTML(club)}<div class="v65-victory-content"><h2 id="v65-victory-title">Herzlichen Glückwunsch!</h2><strong class="v65-victory-title">${label}</strong><p class="v65-victory-context">${name}${country} · Saison ${competition.season}</p>${v62AwardIcon(competition.format||competition.country,kind)}<div class="v65-victory-club">${v61CrestSVG(club)}<strong>${escapeHTML(club.name)}</strong></div><p class="v61-error" role="alert"></p><button type="button" class="primary" autofocus>Weiter zum Spielbericht</button></div>`;
  const button=v65CelebrationDialog.querySelector('button');
  button.onclick=async()=>{
   if(button.disabled)return;button.disabled=true;
@@ -361,10 +361,10 @@ function v65WorldReport(context,people){
  return{ownName:v65Club(context,0).name,opponentName:v65Club(context,1).name,clubIds:[v65Club(context,0).id,v65Club(context,1).id],fixtureId:context.fixture.id,competition:{id:competition?.id,type:competition?.type,country:competition?.country,round:context.fixture.round},score:[...match.score],goals:(match.goals||[]).map(goal=>({...goal})),shots:[...match.shots],possession:[...match.possession],setPieceStats:match.setPieceStats?structuredClone(match.setPieceStats):null,players:people.map(person=>{const change=context.state.substitutions.find(item=>item.outPid===person.pid||item.inPid===person.pid);return{pid:person.pid,name:person.name,n:person.n,nation:flagCodes[person.nation]||person.nation,keeper:Boolean(person.keeper),team:person.t,minutes:context.state.minutes[person.pid]||0,...(context.state.playerLoad?{freshnessAtWhistle:context.state.playerLoad.finalFresh[person.pid],freshnessAfterRecovery:context.state.fresh[person.pid]}:{}),substitution:change?{minute:change.minute,direction:change.inPid===person.pid?'in':'out'}:null,stats:{...person.stats,rating:context.state.ratings[person.pid]??0}}})};
 }
 function v65CompetitionResultsHTML(context){
- const {career,fixture}=context,competition=v62Current(career).find(item=>item.id===fixture.competitionId),type=competition.type,label=type==='league'?v62LeagueLabel(competition.country):type==='cup'?`Nationaler Pokal · ${escapeHTML(v61CountryNames[competition.country])}`:'Europacup';
+ const {career,fixture}=context,competition=v62Current(career).find(item=>item.id===fixture.competitionId),type=competition.type,label=type==='league'?v62LeagueLabel(competition.country):type==='cup'?`Nationaler Pokal · ${escapeHTML(v61CountryNames[competition.country])}`:competition.name||'Europacup';
  const games=competition.fixtures.filter(item=>item.round===fixture.round&&item.result).sort((a,b)=>a.day-b.day||a.id.localeCompare(b.id));
  const results=`<section class="v47-competition-section"><h3>${escapeHTML(fixture.round)} · Alle Ergebnisse</h3>${games.map(item=>v62ResultHTML(career,item)).join('')||'<p>In dieser Runde liegen noch keine weiteren Ergebnisse vor.</p>'}</section>`;
- const table=type==='cup'?'':`<section class="v47-competition-section"><h3>${type==='league'?'Ligatabelle':'Europacup-Tabelle'}</h3>${v62TableHTML(career,competition)}</section>`;
+ const table=type==='cup'||competition.format==='horizon'?'':`<section class="v47-competition-section"><h3>${type==='league'?'Ligatabelle':'Europacup-Tabelle'}</h3>${v62TableHTML(career,competition)}</section>`;
  const leaders=type==='league'?`<div class="v47-leaders">${[['goals','Ligatorschützenliste'],['assists','Liga-Assistliste']].map(([key,title])=>{const rows=v62StatLeaders(career,competition,key);return`<section class="v47-competition-section"><h3>${title}</h3>${rows.map((entry,index)=>`<div class="v47-leader-row"><span>${index+1}.</span><b><button type="button" class="v47-leader-player" data-v47-leader-profile="${escapeHTML(entry.player.pid)}" aria-label="Profil von ${escapeHTML(entry.player.name)} öffnen">${escapeHTML(entry.player.name)}</button><small>${escapeHTML(entry.club?.name||'Vereinslos')}</small></b><strong>${entry.value}</strong></div>`).join('')||'<p class="help">Noch keine Einträge.</p>'}</section>`}).join('')}</div>`:'';
  return`<div class="v47-competition-body"><div class="v47-competition-head"><div><h2 id="v47-competition-title">${label}</h2><p>Saison ${career.world.season} · ${v62Date(fixture.day)}${type==='league'?' · Spieltag '+escapeHTML(String(fixture.round).replace(/^R/,'')):''} · Ergebnisse nach deinem Spiel</p></div><div class="v47-competition-head-actions"><button type="button" class="v47-competition-done">Zur Vereinszentrale</button><button type="button" class="v47-competition-back">← Spielbericht</button><button type="button" class="v47-competition-close" aria-label="Ergebnisübersicht schließen">×</button></div></div><div class="v47-competition-grid ${type==='cup'?'cup':''}">${results}${table}</div>${leaders}</div>`;
 }
@@ -400,7 +400,7 @@ function v65Show(context){
  let adboards=$('#v65-adboards');if(!adboards){adboards=document.createElement('div');adboards.id='v65-adboards';$('#match-area .v42-pitch-stage').append(adboards)}
  const home=v66Club(context.career,context.fixture.homeId),sponsor=home.sponsors?.find(item=>item.id===home.sponsorId);
  adboards.innerHTML=sponsor?['top-left','top-right','bottom-left','bottom-right'].map(position=>`<div class="v65-adboard ${position}">${v66SponsorLogoSVG(home.countryId,sponsor,true)}<span translate="no">${escapeHTML(sponsor.name)}</span></div>`).join(''):'';adboards.hidden=!sponsor;
- $('#heading').textContent='Dein Spiel läuft.';$('#subtitle').textContent=`${competition.type==='league'?`${v61CountryNames[competition.country]} · Liga 1`:competition.type==='cup'?'Pokal':'Europacup'} · ${own.name} gegen ${other.name}`;
+ $('#heading').textContent='Dein Spiel läuft.';$('#subtitle').textContent=`${competition.type==='league'?`${v61CountryNames[competition.country]} · Liga 1`:competition.type==='cup'?'Pokal':competition.name||'Europacup'} · ${own.name} gegen ${other.name}`;
  $('#game-screen .board-top strong').textContent=own.name;
  $('#board-label').textContent=context.state.phase==='paused'?'PAUSE':'LIVE';
  const labels=$$('#game-screen .scoreboard span');labels[0].textContent=own.name;labels[1].textContent=other.name;

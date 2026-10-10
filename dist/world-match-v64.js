@@ -292,7 +292,7 @@ function v64Step(career,fixture,state){
   const random=v61Random(`${career.world.seed}:${fixture.id}:minute:${state.minute}:side:${side}`),strength=v64TeamStrength(career,fixture,state,side),opponent=v64TeamStrength(career,fixture,state,1-side),ownTactics=state.tactics[side],otherTactics=state.tactics[1-side];
   const lineEffect=(ownTactics.defense==='Hoch'?.0015:ownTactics.defense==='Tief'?-.001:0)+(otherTactics.defense==='Tief'?-.002:otherTactics.defense==='Hoch'?(ownTactics.passing==='Direkt'?.003:.001):0);
   const riskEffect=otherTactics.aggression==='Aggressiv'?.001:0;
-  const chance=Math.max(.003,Math.min(.045,.014+(strength-opponent)*.002+(side===0?.002:0)+lineEffect+riskEffect));
+  const chance=Math.max(.003,Math.min(.045,.014+(strength-opponent)*.002+(side===0&&!fixture.neutral ? .002 : 0)+lineEffect+riskEffect));
   if(state.playerPerformance){if(v155CompactActions(career,fixture,state,side,random)){goal=true;stoppage=true;}}else if(random()<.12){const attackers=v64Active(state,side).filter(pid=>state.roles[pid]!=='gk'),scorer=v64PickAttacker(attackers,pid=>1+(v64HasInstruction(state,pid,'shoot')?.55:0)+(v64HasInstruction(state,pid,'deep')?.2:0),random);state.stats[scorer].shots++;
    if(random()<chance/.12){state.score[side]++;state.stats[scorer].goals++;const helpers=attackers.filter(pid=>pid!==scorer),helper=v64PickAttacker(helpers,pid=>{const focus=ownTactics.focus||'Variabel';return 1+(v64HasInstruction(state,pid,'support')?.2:0)+(v64HasInstruction(state,pid,'wing')?(focus==='Außen'?.55:.25):0)},random),assist=helper&&random()<.68?helper:null;if(assist)state.stats[assist].assists++;state.events.push({minute:state.minute,type:'goal',side,scorerPid:scorer,assistPid:assist});goal=true;stoppage=true;}
   }
@@ -381,7 +381,7 @@ function v64CompleteOwnMatch(career){
  const record=v64FinishFixture(career,fixture,state);
  fixture.result={homeGoals:record.score[0],awayGoals:record.score[1],penalties:state.penaltyShootout||null,winnerId:null};
  const competition=v62Current(career).find(item=>item.id===fixture.competitionId);
- if(competition.type==='league'||competition.type==='europe'&&fixture.round.startsWith('R'))v62ResolveLeague(career,fixture);
+ if(v62IsLeagueFixture(competition,fixture))v62ResolveLeague(career,fixture);
  else if(competition.type==='europe'&&fixture.leg===2)v62ResolveSecondLeg(career,fixture,competition);
  else if(competition.type==='europe'&&fixture.round==='F')v62ResolveSingle(career,fixture);
  else if(competition.type==='cup')v62ResolveSingle(career,fixture);

@@ -91,9 +91,9 @@
   function ageFactor(age) {
     return age <= 19 ? 1 : age <= 21 ? 0.8 : age <= 23 ? 0.5 : age <= 29 ? 0.2 : 0.1;
   }
-  function eligibleMinutes(alreadyPlayed, minutes) {
-    var full = Math.min(minutes, Math.max(0, 900 - alreadyPlayed));
-    var quarter = Math.min(minutes - full, Math.max(0, 1800 - Math.max(900, alreadyPlayed + full)));
+  function eligibleMinutes(alreadyPlayed, minutes, fullSeasonMinutes=900) {
+    var full = Math.min(minutes, Math.max(0, fullSeasonMinutes - alreadyPlayed));
+    var quarter = Math.min(minutes - full, Math.max(0, fullSeasonMinutes*2 - Math.max(fullSeasonMinutes, alreadyPlayed + full)));
     return full + quarter * 0.25;
   }
   function positiveDelta(player, weights, budget) {
@@ -135,6 +135,7 @@
     validatePlayer(player); validateLedger(ledger);
     if (ledger.playerId !== player.id) throw new TypeError('Ledger belongs to another player');
     if (!appearance || typeof appearance !== 'object') throw new TypeError('appearance is required');
+    if (appearance.fullSeasonMinutes !== undefined && (!Number.isFinite(appearance.fullSeasonMinutes) || appearance.fullSeasonMinutes <= 0)) throw new TypeError('Invalid full season minutes');
     requireId(appearance.id, 'appearance.id'); requireId(appearance.worldId, 'appearance.worldId'); requireId(appearance.seasonId, 'appearance.seasonId');
     if (!nonnegative(appearance.minutes) || !nonnegative(ledger.seasonMinutes + appearance.minutes) || !nonnegative(ledger.weakSeriesMinutes + appearance.minutes)) throw new TypeError('Invalid appearance minutes');
     if (ledger.processedAppearances.some(function (entry) {
@@ -157,7 +158,7 @@
     var rating = next.ratedWindow.reduce(function (sum, entry) { return sum + entry.rating * entry.minutes; }, 0) / minutes;
     var delta = zeroDelta(), budget = 0;
     if (rating >= 6.5) {
-      budget = 0.5 * (player.talent / 19) * ageFactor(player.age) * eligibleMinutes(ledger.seasonMinutes, appearance.minutes) / 90;
+      budget = 0.5 * (player.talent / 19) * ageFactor(player.age) * eligibleMinutes(ledger.seasonMinutes, appearance.minutes, appearance.fullSeasonMinutes || 900) / 90;
       delta = positiveDelta(player, weights, budget);
     } else if (player.age < 24 && next.ratedWindow.length === 3 && next.weakSeriesMinutes >= 90 && next.ratedWindow.every(function (entry) { return entry.rating < 5.5; })) {
       budget = 0.1 * appearance.minutes / 90;

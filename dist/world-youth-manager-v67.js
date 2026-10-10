@@ -20,7 +20,7 @@ function v67Youth(career,club,season,slot,start=false){
   player[key]=Math.max(1,Math.min(20,Math.round(base-2.8+quality+(random()-.5)*3)));
   player.potential[key]=Math.min(20,player[key]+1+Math.floor(random()*(smooth>1000?6:smooth>250?5:4)));
  }
- if(career.world.playerFoundation)v153Generate(player,{...career.world.playerFoundation,season:career.world.season},'youth',club.policy.startingSquad,club.policy.youth);
+ if(career.world.playerFoundation)v153Generate(player,{...career.world.playerFoundation,season:career.world.season},'youth',club.policy.startingSquad,club.policy.youth,club.id);
  player.appearance=v61GenerateAppearance(pid,nation,player.age,[...(club.roster||[]),...(club.youthPool||[])]);
  return player;
 }

@@ -1,5 +1,13 @@
 # Änderungen
 
+## 11. Oktober 2026 – Release 122
+
+Neue Vereinswelten mit 192 Vereinen in zwölf Ländern, Crown Cup und Horizon Cup, gespeicherter Drei-Saisons-Länderwertung und Folgequalifikation. Österreich steht in der Startwertung vor Belgien; Innsbruck Sport ist enthalten. Crown-Ligaphase ohne nationale Duelle, Horizon ohne Setzung mit neuer Auslosung jeder Runde und nationalen Duellen ab Viertelfinale.
+
+Sechs Karrierebereiche mit Vereinsbüro, Chronik, Saisonmomenten und künftigen Statistikarchiven. Alle 64 freigegebenen detaillierten Trophäenmotive als 128 transparente große/kompakte WebP-Varianten integriert. Bestehende Spielstände behalten ihre gespeicherten Regeln.
+
+106 lokale Produktionskommandos bestanden, dazu regulärer Start, Deutsch/Englisch, beide Cups, Archiv-Neuladen und alle Trophäen im Release-Build bei 390/1440 Pixeln sowie native Pause/Neuladen/Abschluss. Vorherige Zehn-Saisons- und Androidbelege gelten mit den dokumentierten Grenzen. Veröffentlichung vom Nutzer beauftragt; Live-Abnahme folgt. [Releasebericht](release-122.md), [AP11](ligaexpansion-ap11.md).
+
 ## 10. Oktober 2026 – Release 121
 
 Natürliche Laufdarstellung in acht Richtungen, stabilere Schrittphasen und Übergänge, weniger Fußgleiten, bessere Kurven-, Arm- und Fangposen. Die Kamera hält nahe Seitenlinienaktionen in zwei Ansichten über der unteren Bedienleiste. Auf Nutzerauftrag veröffentlicht und live abgenommen: [Produktionslauf](https://github.com/thealextd1337-spec/FM/actions/runs/38048077381) erfolgreich, alle 95 Produktionskommandos sowie Version 121 und acht Live-Dateihashes bestätigt. Acht Live-Integrationsprüfungen und 30 tatsächliche WebGL-Kamerafälle bestanden; kleinster Abstand zum unteren Rand 14,94 %, keine Browserfehler. Die lokale Vollmatch-Parität bleibt separat dokumentiert. Native Spielregeln, gewünschte 4–6 Minuten Spielzeit und durchschnittlich 10–16 Schüsse sind durch diesen Darstellungsrelease nicht geändert. Android-Hardwareprüfung bleibt beim Nutzer. Claude-r2 endete am Providerlimit; ein neuer einmaliger Versuch ist für 16:38 Uhr Europe/Paris vorgesehen, ohne Quota-Retryloop. [Prüfungen und offene Grenzen](release-121.md).
@@ -77,6 +85,8 @@ Release 114 ist live veröffentlicht. Deployment, sieben bytegenaue Live-Dateiab
 - Stürmerentwicklung auf Nutzerfrage durchgerechnet: Start mit 17 und Positionsqualität 10, mittlerer Talentwert 16, sechs volle Einsätze je Saison mit guten Noten. Bis zum Beginn der Saison mit 24 ergeben sich 14,15 verteilte Fähigkeitspunkte und im illustrativen Rollenprofil Qualität 11,76; Folgejahr nur geistige Entwicklung. Voraussetzungen, vollständiges Fähigkeitsprofil und Beispieldaten dokumentiert und rechnerisch geprüft. Keine Änderung von Entwicklungsregeln, Laufzeit oder alten Spielständen.
 
 ## Noch nicht veröffentlicht
+
+- AP08 lokal umgesetzt: Neue Expansionskarrieren erhalten ein Vereinsbüro mit belegten Meilensteinen, chronologischen Karten, dauerhaftem Lesestatus und Vereins-/Spieler-/Partielinks. Internationale Erstleistungen gelten innerhalb der Karriere; Eigengewächs-Tore und Länderbeiträge benötigen gespeicherte Nachweise. Alte Karrieren werden nicht nachberechnet. Eine 991-Partien-Testsaison, Speicherung/Folgejahr, Faktenprüfungen und der mobile Browserpfad bestanden; Gründungslegenden bleiben Entwürfe. [Details](ligaexpansion-ap08.md).
 
 - Fußballerlebnis v159 lokal iteriert: Stürmer nutzen freie Vorwärtswege, Annahme-/Doppelpassfenster folgen tatsächlichen Kontakten, Verteidiger lesen Ballflug und Empfänger. Schüsse wählen und streuen ein echtes Torziel; ein herausgelaufener Keeper zieht sie nicht mehr zu sich. Keeper halten bei gedeckten Angreifern den Torwinkel. 20 gepaarte vollständige Partien zeigen 8 → 33 Tore und 14 → 1 torlose Spiele; breite Balancefreigabe bleibt offen. Unity ergänzt Ballrotation, durchgehende Schrittphasen, frühere Keeperkontaktposen und fünf Kameras mit gespeichertem Nähe-Regler. Flutlicht-Spielberichte zeigen aktuelle Tabellenplätze bei Tabellenformaten, die Übersicht die letzten fünf Spiele aller Wettbewerbe. Tatsächliche JSON-Fortsetzung, zusätzliche Autosaves, vergrößerte Halbzeit, native/Unity-Vollpartie und Quell-/Build-Gleichheit geprüft. [Umfang, Messungen und Grenzen](platform/football-experience-v159.md). Neue physische Partien; historische Ergebnisse bleiben erhalten, keine Veröffentlichung oder Versionsanhebung.
 

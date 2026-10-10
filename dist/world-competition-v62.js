@@ -136,6 +136,7 @@ function v62ResolveSingle(career,fixture){
  if(result.homeGoals!==result.awayGoals)result.winnerId=result.homeGoals>result.awayGoals?fixture.homeId:fixture.awayId;
  else{if(!result.penalties)result.penalties=v119SimulateShootout(career,fixture).score;result.winnerId=result.penalties[0]>result.penalties[1]?fixture.homeId:fixture.awayId}
 }
+function v62IsLeagueFixture(competition,fixture){return competition.type==='league'||competition.type==='europe'&&competition.format!=='horizon'&&fixture.round.startsWith('R');}
 function v62ResolveLeague(career,fixture){fixture.result=fixture.result||v62Score(career,fixture)}
 function v62ResolveSecondLeg(career,fixture,competition){
  fixture.result=fixture.result||v62Score(career,fixture);
@@ -175,6 +176,7 @@ function v62EuropeProgress(career,competition,day){
  }else if(day===v62Days.europeFinal){competition.winnerId=competition.fixtures.find(fixture=>fixture.round==='F').result.winnerId}
 }
 function v62AdvanceDay(career){
+ if(career.world.rules?.stage==='foundation')throw Error('Die Wettbewerbe dieser Welt sind noch nicht vorbereitet.');
  const world=career.world,fixtures=v62Fixtures(career),freeDays=(world.market?.phase==='closed'?world.market.pendingBids.filter(bid=>bid.status==='pending'&&!bid.sellerId).map(bid=>bid.placedDay+1):[]),days=[...new Set([...fixtures.filter(fixture=>!fixture.result).map(fixture=>fixture.day),...freeDays,world.pendingMatchDay,v62Days.seasonEnd])].filter(day=>Number.isInteger(day)&&day>world.calendarCursor).sort((a,b)=>a-b);
  if(!days.length)return[];
  const day=days[0],todays=fixtures.filter(fixture=>fixture.day===day&&!fixture.result),playedToday=fixtures.filter(fixture=>fixture.day===day),byId=new Map(v62Current(career).map(competition=>[competition.id,competition]));
@@ -184,7 +186,7 @@ function v62AdvanceDay(career){
   const competition=byId.get(fixture.competitionId);
   v64PrepareFixture(career,fixture);
   v63BeforeFixture(career,fixture);
-  if(competition.type==='league'||competition.type==='europe'&&fixture.round.startsWith('R'))v62ResolveLeague(career,fixture);
+  if(v62IsLeagueFixture(competition,fixture))v62ResolveLeague(career,fixture);
   else if(competition.type==='europe'&&fixture.leg===2)v62ResolveSecondLeg(career,fixture,competition);
   else if(competition.type==='europe'&&fixture.round==='F')v62ResolveSingle(career,fixture);
   else if(competition.type==='europe')fixture.result=v62Score(career,fixture);
@@ -276,12 +278,13 @@ function v62FormHTML(career,clubId){
  return`<div class="v49-form" aria-label="Form der letzten fünf Spiele: ${escapeHTML(results.map(({code})=>names[code]).join(', ')||'Noch keine Spiele')}">${[...Array(5-results.length).fill({code:'–',detail:names['–']}),...results].map(({code,detail})=>`<b class="${{S:'win',N:'loss',U:'draw','–':'empty'}[code]}" title="${escapeHTML(detail)}" aria-label="${escapeHTML(detail)}">${code}</b>`).join('')}</div>`;
 }
 function v62FixtureRoundLabel(fixture){
+ if(fixture?.round==='R32')return 'Sechzehntelfinale';if(fixture?.round==='R16')return 'Achtelfinale';
  const day=/^R(\d+)$/.exec(fixture?.round);
  return day?`Spieltag ${day[1]}`:{QF:'Viertelfinale',SF:'Halbfinale',F:'Finale'}[fixture?.round]||'';
 }
 function v62FixtureRankLabels(career,fixture){
  const competition=v62Current(career).find(item=>item.id===fixture?.competitionId);
- if(!competition||competition.type!=='league'&&!(competition.type==='europe'&&/^R\d+$/.test(fixture.round)))return new Map();
+ if(!competition||competition.type!=='league'&&!(competition.type==='europe'&&competition.format!=='horizon'&&/^R\d+$/.test(fixture.round)))return new Map();
  const ids=competition.type==='europe'?competition.entrants:[...new Set(competition.fixtures.flatMap(game=>[game.homeId,game.awayId]))];
  return new Map(v62Table(competition,ids).map((row,index)=>[row.clubId,`(${index+1}.)`]));
 }
@@ -294,9 +297,9 @@ function v62NextOpponentHTML(career,fixture){
  const prior=first?.result?[first.result.awayGoals,first.result.homeGoals]:null;
  const ranks=v62FixtureRankLabels(career,fixture);
  const round=v62FixtureRoundLabel(fixture);
- const trophy=fixture.round==='F'&&['cup','europe'].includes(competition.type)?`<div class="v129-final-trophy" role="img" aria-label="${competition.type==='europe'?'Europacup':'Nationaler Pokal'}">${v62AwardIcon(competition.country,competition.type)}</div>`:'';
+ const trophy=fixture.round==='F'&&['cup','europe'].includes(competition.type)?`<div class="v129-final-trophy" role="img" aria-label="${competition.type==='europe'?competition.name||'Europacup':'Nationaler Pokal'}">${v62AwardIcon(competition.format||competition.country,competition.type)}</div>`:'';
  const side=(id,label)=>{const team=club(id),rank=ranks.get(id);return`<div class="v49-club"><span class="v49-side">${label}</span><strong>${v61FlagSVG(team.countryId)}<span>${escapeHTML(team.name)}${rank?` ${rank}`:''}</span></strong>${v62FormHTML(career,id)}</div>`};
- return`<section class="v49-match-preview v62-next-opponent"><p>Nächster Gegner · ${competition.type==='league'?v62LeagueLabel(competition.country):competition.type==='cup'?'Nationaler Pokal':'Europacup'}${round?` · <span>${round}</span>`:""} · ${v62Date(fixture.day)}</p>${trophy}<div class="v49-fixture">${side(fixture.homeId,'Heim')}${prior?`<span class="v62-first-leg-score" aria-label="Hinspiel ${prior[0]} zu ${prior[1]}"><small>Hinspiel</small><strong>${prior[0]} : ${prior[1]}</strong></span>`:'<span>gegen</span>'}${side(fixture.awayId,'Auswärts')}</div>${duels.length?`<div class="v62-duels"><h4>Letzte Duelle</h4>${duels.map(({fixture:game,season})=>{const home=game.homeId===managed,ownGoals=home?game.result.homeGoals:game.result.awayGoals,otherGoals=home?game.result.awayGoals:game.result.homeGoals,outcome=ownGoals>otherGoals?'Sieg':ownGoals<otherGoals?'Niederlage':'Remis';return`<div class="${outcome==='Sieg'?'win':outcome==='Niederlage'?'loss':'draw'}"><small>S${season} · ${v62ShortDate(game.day)} · <abbr title="${home?'Heim':'Auswärts'}">${home?'H':'A'}</abbr></small><strong aria-label="${outcome} ${ownGoals} zu ${otherGoals}">${ownGoals}:${otherGoals}</strong></div>`}).join('')}</div>`:''}</section>`;
+ return`<section class="v49-match-preview v62-next-opponent"><p>Nächster Gegner · ${competition.type==='league'?v62LeagueLabel(competition.country):competition.type==='cup'?'Nationaler Pokal':competition.name||'Europacup'}${round?` · <span>${round}</span>`:""} · ${v62Date(fixture.day)}</p>${trophy}<div class="v49-fixture">${side(fixture.homeId,'Heim')}${prior?`<span class="v62-first-leg-score" aria-label="Hinspiel ${prior[0]} zu ${prior[1]}"><small>Hinspiel</small><strong>${prior[0]} : ${prior[1]}</strong></span>`:'<span>gegen</span>'}${side(fixture.awayId,'Auswärts')}</div>${duels.length?`<div class="v62-duels"><h4>Letzte Duelle</h4>${duels.map(({fixture:game,season})=>{const home=game.homeId===managed,ownGoals=home?game.result.homeGoals:game.result.awayGoals,otherGoals=home?game.result.awayGoals:game.result.homeGoals,outcome=ownGoals>otherGoals?'Sieg':ownGoals<otherGoals?'Niederlage':'Remis';return`<div class="${outcome==='Sieg'?'win':outcome==='Niederlage'?'loss':'draw'}"><small>S${season} · ${v62ShortDate(game.day)} · <abbr title="${home?'Heim':'Auswärts'}">${home?'H':'A'}</abbr></small><strong aria-label="${outcome} ${ownGoals} zu ${otherGoals}">${ownGoals}:${otherGoals}</strong></div>`}).join('')}</div>`:''}</section>`;
 }
 function v62StatLeaders(career,competition,key,keepersOnly=false){
  if(!competition)return[];

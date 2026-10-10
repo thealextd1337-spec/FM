@@ -1,0 +1,334 @@
+{
+  "events": [
+    {
+      "type": "warning",
+      "text": "Scripts \"build/three.js\" and \"build/three.min.js\" are deprecated with r150+, and will be removed with r160. Please use ES Modules or alternatives: https://threejs.org/docs/index.html#manual/en/introduction/Installation"
+    },
+    {
+      "type": "warning",
+      "text": "WARNING: Multiple instances of Three.js being imported."
+    },
+    {
+      "type": "warning",
+      "text": "[UnityCache] Response is served without Content-Length header. Please reconfigure server to include valid Content-Length for better download performance."
+    },
+    {
+      "type": "log",
+      "text": "[UnityMemory] Configuration Parameters - Can be set up in boot.config\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-bucket-allocator-granularity=16\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-bucket-allocator-bucket-count=8\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-bucket-allocator-block-size=4194304\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-bucket-allocator-block-count=1\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-main-allocator-block-size=16777216\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-thread-allocator-block-size=16777216\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-main-allocator-mimalloc-enabled=1\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-gfx-main-allocator-block-size=16777216\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-gfx-thread-allocator-block-size=16777216\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-cache-allocator-block-size=4194304\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-typetree-allocator-block-size=2097152\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-bucket-allocator-granularity=16\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-bucket-allocator-bucket-count=8\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-bucket-allocator-block-size=4194304\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-bucket-allocator-block-count=1\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-allocator-block-size=16777216\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-profiler-editor-allocator-block-size=1048576\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-temp-allocator-size-main=4194304\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-job-temp-allocator-block-size=2097152\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-job-temp-allocator-block-size-background=1048576\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-job-temp-allocator-reduction-small-platforms=262144\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-temp-allocator-size-background-worker=32768\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-allocator-temp-initial-block-size-main=262144\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-allocator-temp-initial-block-size-worker=262144\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-temp-allocator-size-audio-worker=65536\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-temp-allocator-size-cloud-worker=32768\"\n"
+    },
+    {
+      "type": "log",
+      "text": "    \"memorysetup-remapper-allocator-initial-capacity=32768\"\n"
+    },
+    {
+      "type": "log",
+      "text": "CodeReloadManager initialized\n"
+    },
+    {
+      "type": "log",
+      "text": "Input System module state changed to: Initialized.\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Initialized fallback backend.\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Id: 0xdecafbad\n"
+    },
+    {
+      "type": "log",
+      "text": "Loading player data from data.unity3d\n"
+    },
+    {
+      "type": "log",
+      "text": "Initialize engine version: 6000.6.4f1 (12bfff696524)\n"
+    },
+    {
+      "type": "log",
+      "text": "[EntityIdStore] init: page-table path, blockCount=1048576, entitiesPerBlock=256, top-level=8388608 bytes, sizeof(Block)=4128 (lazily allocated per committed block)\n"
+    },
+    {
+      "type": "log",
+      "text": "[Subsystems] Discovering subsystems at path UnitySubsystems\n"
+    },
+    {
+      "type": "log",
+      "text": "Creating WebGL 2.0 context."
+    },
+    {
+      "type": "log",
+      "text": "Renderer: WebKit WebGL\n"
+    },
+    {
+      "type": "log",
+      "text": "Vendor:   WebKit\n"
+    },
+    {
+      "type": "log",
+      "text": "Version:  OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))\n"
+    },
+    {
+      "type": "log",
+      "text": "GLES:     3\n"
+    },
+    {
+      "type": "log",
+      "text": " EXT_clip_control EXT_color_buffer_float EXT_color_buffer_half_float EXT_conservative_depth EXT_depth_clamp EXT_disjoint_timer_query_webgl2 EXT_float_blend EXT_polygon_offset_clamp EXT_texture_compression_bptc EXT_texture_compression_rgtc EXT_texture_filter_anisotropic NV_shader_noperspective_interpolation OES_texture_float_linear WEBGL_clip_cull_distance WEBGL_compressed_texture_astc WEBGL_compressed_texture_etc WEBGL_compressed_texture_etc1 WEBGL_compressed_texture_s3tc WEBGL_compressed_texture_s3tc_srgb WEBGL_debug_renderer_info WEBGL_debug_shaders WEBGL_lose_context WEBGL_multi_draw WEBGL_polygon_mode GL_EXT_clip_control GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_conservative_depth GL_EXT_depth_clamp GL_EXT_disjoint_timer_query_webgl2 GL_EXT_float_blend GL_EXT_polygon_offset_clamp GL_EXT_texture_compression_bptc GL_EXT_texture_compression_rgtc GL_EXT_texture_filter_anisotropic GL_NV_shader_noperspective_interpolation GL_OES_texture_float_linear GL_WEBGL_clip_cull_distance GL_WEBGL_co\n"
+    },
+    {
+      "type": "log",
+      "text": "mpressed_texture_astc GL_WEBGL_compressed_texture_etc GL_WEBGL_compressed_texture_etc1 GL_WEBGL_compressed_texture_s3tc GL_WEBGL_compressed_texture_s3tc_srgb GL_WEBGL_debug_renderer_info GL_WEBGL_debug_shaders GL_WEBGL_lose_context GL_WEBGL_multi_draw GL_WEBGL_polygon_mode\n"
+    },
+    {
+      "type": "log",
+      "text": "OPENGL LOG: Creating OpenGL ES 3.0 graphics device ; Context level  <OpenGL ES 3.0> ; Context handle 1\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Selected backend (deferred post-plugins).\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Name: PhysX\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Id: 0xf2b8ea05\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] SDK Version: 4.1.2\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Integration Version: 1.0.0\n"
+    },
+    {
+      "type": "log",
+      "text": "[Physics::Module] Threading Mode: Single-Threaded\n"
+    },
+    {
+      "type": "log",
+      "text": "Input System initialize...\n"
+    },
+    {
+      "type": "log",
+      "text": "UnloadTime: 2.700001 ms\n"
+    },
+    {
+      "type": "warning",
+      "text": "Manual synchronization of Unity Application.persistentDataPath via JS_FileSystem_Sync() is deprecated and will be later removed in a future Unity version. The persistent data directory will be automatically synchronized instead on file modification. Pass config.autoSyncPersistentDataPath = true; to configuration in createUnityInstance() to opt in to the new behavior."
+    },
+    {
+      "type": "log",
+      "text": "[UnityCache] 'http://127.0.0.1:4191/unity/Build/unity-web.data?v=8065e1385bfa93644f8608327d708c802f1d406ca5b389fdac64fc411010b2b0' successfully downloaded and stored in the browser cache"
+    },
+    {
+      "type": "log",
+      "text": "Shader 'Hidden/Universal Render Pipeline/GaussianDepthOfField' is not supported or has been stripped from the build (in 'DepthOfFieldGaussianPostProcessPass'). PostProcessing render passes will not execute.\n"
+    },
+    {
+      "type": "log",
+      "text": "Shader 'Hidden/Universal Render Pipeline/GaussianDepthOfField' is not supported or has been stripped from the build (in 'DepthOfFieldGaussianPostProcessPass'). PostProcessing render passes will not execute.\n"
+    },
+    {
+      "type": "log",
+      "text": "Shader 'Hidden/Universal Render Pipeline/BokehDepthOfField' is not supported or has been stripped from the build (in 'DepthOfFieldBokehPostProcessPass'). PostProcessing render passes will not execute.\n"
+    },
+    {
+      "type": "log",
+      "text": "Shader 'Hidden/Universal Render Pipeline/PaniniProjection' is not supported or has been stripped from the build (in 'PaniniProjectionPostProcessPass'). PostProcessing render passes will not execute.\n"
+    },
+    {
+      "type": "warning",
+      "text": "Shader 'Hidden/Universal Render Pipeline/LensFlareScreenSpace' is not supported or has been stripped from the build (in 'LensFlareScreenSpacePostProcessPass'). PostProcessing render passes will not execute.\n"
+    },
+    {
+      "type": "warning",
+      "text": "Shader 'Hidden/Universal Render Pipeline/LensFlareDataDriven' is not supported or has been stripped from the build (in 'LensFlareDataDrivenPostProcessPass'). PostProcessing render passes will not execute.\n"
+    },
+    {
+      "type": "warning",
+      "text": "Shader 'Hidden/Universal Render Pipeline/Edge Adaptive Spatial Upsampling' is not supported or has been stripped from the build (in 'Blit FSR Upscaling'). PostProcessing render passes will not execute.\n"
+    }
+  ],
+  "samples": [
+    {
+      "ready": false,
+      "error": null,
+      "ack": null,
+      "iframe": "http://127.0.0.1:4191/source/unity-match/runtime.html",
+      "body": ""
+    },
+    {
+      "result": {
+        "config": {
+          "fieldSize": "large",
+          "fieldPlayers": 6
+        },
+        "unity": true,
+        "people": 14,
+        "perTeam": [
+          7,
+          7
+        ],
+        "keepers": [
+          1,
+          1
+        ],
+        "geometry": {
+          "version": 1,
+          "length": 81.6,
+          "width": 52.8,
+          "goalWidth": 9.705882352941178,
+          "goalHeight": 3.2352941176470593,
+          "penaltyDepth": 10.5953488372093,
+          "penaltyWidth": 24.264705882352942,
+          "ballRadius": 0.1764
+        },
+        "expectedPerTeam": 7,
+        "unityReady": true,
+        "ack": {
+          "players": 14,
+          "ids": 14,
+          "allReal": true
+        },
+        "error": null
+      },
+      "ready": true,
+      "error": null,
+      "ack": {
+        "channel": "d6-world-view-1",
+        "session": "S1:GER:LEAGUE:R1:GER-4-GER-2:1:9450bcf4-7c46-454b-802f-02af5b394f9f",
+        "kind": "ack",
+        "message": "",
+        "sequence": 18,
+        "players": 14,
+        "clock": 0,
+        "ids": [
+          "unity-v160-large-6:GER-2:1",
+          "unity-v160-large-6:GER-2:2",
+          "unity-v160-large-6:GER-2:4",
+          "unity-v160-large-6:GER-2:8",
+          "unity-v160-large-6:GER-2:7",
+          "unity-v160-large-6:GER-2:10",
+          "unity-v160-large-6:GER-2:11",
+          "unity-v160-large-6:GER-4:1",
+          "unity-v160-large-6:GER-4:3",
+          "unity-v160-large-6:GER-4:Y0:1",
+          "unity-v160-large-6:GER-4:8",
+          "unity-v160-large-6:GER-4:6",
+          "unity-v160-large-6:GER-4:9",
+          "unity-v160-large-6:GER-4:10"
+        ]
+      },
+      "iframe": "http://127.0.0.1:4191/source/unity-match/runtime.html",
+      "body": ""
+    }
+  ]
+}
