@@ -105,6 +105,7 @@ jobs:
           node work/test-native-career-v160.cjs
           node work/platform/qa/test-unity-integration-v160.cjs
           node work/platform/qa/test-world-unity-contract.cjs
+          node work/test-world-pitch3d-v98.cjs
           node work/test-unity-label-layout.cjs outputs/3d-quality/iteration-119/label-layout
           node work/test-unity-3d-quality-v117.cjs outputs/3d-quality/iteration-119/guide-legacy
           node work/test-keeper-picture-v118.cjs outputs/3d-quality/iteration-119/keeper-legacy

@@ -101,6 +101,13 @@ function v98CameraAim(ball,mode,aspect,near=60){
  // A view preference only: move along the sightline, leaving the focus intact.
  const distance=1.42-limit(Number.isFinite(near)?near:60,0,100)*.007;
  for(const axis of ['x','y','z'])pose.position[axis]=pose.target[axis]+(pose.position[axis]-pose.target[axis])*distance;
+ // Keep near-touchline action above the bottom controls without zooming the
+ // whole pitch out. Both endpoints move together; the existing camera blend
+ // supplies the transition and leaves the native ball and player data intact.
+ if(mode==='follow'||mode==='sideline'){
+  const pan=Math.max(0,ball.z-13)*.65;
+  pose.position.z+=pan;pose.target.z+=pan;
+ }
  return pose;
 }
 function v98BlendCamera(previous,desired,dt){

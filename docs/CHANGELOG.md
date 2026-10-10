@@ -1,5 +1,9 @@
 # Änderungen
 
+## 10. Oktober 2026 – Release 121 (Integrationskandidat)
+
+Natürliche Laufdarstellung in acht Richtungen, stabilere Schrittphasen und Übergänge, weniger Fußgleiten, bessere Kurven-, Arm- und Fangposen. Die Kamera hält nahe Seitenlinienaktionen in zwei Ansichten über der unteren Bedienleiste. Der lokale WebGL-Kandidat ist quellengebunden; Produktions- und Live-Abnahme folgen vor Veröffentlichung. Native Spielregeln, Spielzeit und Schussbalance bleiben unverändert. [Prüfungen und offene Grenzen](release-121.md).
+
 ## 10. Oktober 2026 – Release 120
 
 Statistikranglisten auf mobilen Bildschirmen kompakt angeordnet: Rang links, Spieler mit Flagge und Verein in der Mitte, Statistikwert rechts. Lange Namen, Tabellenbeschriftungen und Profilaktionen bleiben erhalten. Auf Nutzerauftrag veröffentlicht und live abgenommen: [Produktionslauf](https://github.com/thealextd1337-spec/FM/actions/runs/38042109660) erfolgreich, Version 120 und alle acht Live-Dateihashes bestätigt. Zusätzlich zu 28 lokalen Layoutfällen bestehen acht echte Live-Browserfälle mit jeweils allen 18 Wettbewerbskategorien, Profilaktion und unveränderter Karriere. Die Unity-Laufzeit aus Release 119 bleibt unverändert; die physische Android-Prüfung übernimmt der Nutzer. [Releasebericht und Nachweise](release-120.md), [Umfang und Prüfgrenzen](ui-redesign/mobile-statistics.md).

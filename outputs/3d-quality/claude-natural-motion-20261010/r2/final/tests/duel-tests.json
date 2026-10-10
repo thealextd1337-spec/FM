@@ -1,0 +1,81 @@
+{
+    "passed": 34,
+    "checks": [
+        "slide drops within its first fifth and stays down",
+        "recovery hands the low pose to the measured rise window",
+        "tackle and offender envelopes end at their native windows",
+        "duel envelopes are monotonic in native progress",
+        "lead leg follows the contact side, else the squad number",
+        "full slide lowers the pelvis toward the turf (0,34 m)",
+        "right lead foot slides low and ahead of the body",
+        "a reachable native contact is met by the lead foot (0,034 m; foot=(0.25, 0.21, 0.85) hips=(-0.01, 0.34, -0.08) reachable=True)",
+        "trailing leg folds under the body",
+        "both slide knees bend above the turf rather than through it",
+        "slide never moves the received root or heading",
+        "left-lead slide mirrors onto the left leg",
+        "a contact behind the slider stays unreached; the foot keeps the slide line",
+        "an out-of-reach contact is not stretched toward",
+        "a half-weighted slide lies between run and full slide",
+        "paused slide picture freezes every bone",
+        "a replayed slide picture shows the identical pose",
+        "actual world-player mesh keeps both boots above turf through slide entry (-0,029 m)",
+        "slide recovery rises from the turf to standing (0,34 -> 1,35 m)",
+        "standing tackle lunges lower at the native contact",
+        "offender stumble window stays upright (1,76 m)",
+        "slide picture selects the procedural slide on the contact side",
+        "the same slide picture selects the same pose",
+        "recovery picture rises with keeper_rise_meshy from the slide pose",
+        "winning slide preserves recovery while its new carrier is still moving",
+        "standing tackle reaches with the contact-side foot and lunges",
+        "standing tackle follow-through releases the lunge",
+        "foul offender stumbles in the upright window and settles to standing",
+        "foul offender is standing at the end of the 2.7 s window",
+        "without the stumble clip the offender keeps a procedural lunge",
+        "keeper moving to its left side-steps on its ready stance (procedural, left foot leads)",
+        "keeper moving right advances the mirrored side step (right foot leads)",
+        "forward keeper movement keeps the ordinary stride",
+        "duel poses reuse cached graph nodes"
+    ],
+    "measurements": [
+        {
+            "stage": "slide-right",
+            "hips": 0.3399999737739563,
+            "leadFoot": 0.21373839676380157,
+            "leadForward": 0.8499997854232788,
+            "trailFoot": 0.21373844146728516,
+            "contactError": 0.0337383896112442,
+            "value": 0.0,
+            "reachable": true
+        },
+        {
+            "stage": "slide-left",
+            "hips": 0.3399999737739563,
+            "leadFoot": 0.2137385606765747,
+            "leadForward": 0.8500001430511475,
+            "trailFoot": 0.21373869478702545,
+            "contactError": 0.033738553524017334,
+            "value": 0.0,
+            "reachable": true
+        },
+        {
+            "stage": "recovery",
+            "hips": 0.3399999737739563,
+            "leadFoot": 0.0,
+            "leadForward": 0.0,
+            "trailFoot": 0.0,
+            "contactError": 0.0,
+            "value": 1.3507412672042847,
+            "reachable": false
+        },
+        {
+            "stage": "offender-stumble",
+            "hips": 1.7596287727355957,
+            "leadFoot": 0.0,
+            "leadForward": 0.0,
+            "trailFoot": 0.0,
+            "contactError": 0.0,
+            "value": 0.0,
+            "reachable": false
+        }
+    ]
+}

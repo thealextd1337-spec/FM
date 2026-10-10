@@ -5,7 +5,7 @@ const {createServer}=require('../../ui-redesign/serve.cjs');
 const freshnessCandidate=process.argv.includes('--freshness');
 const roleCandidate=process.argv.includes('--roles')||freshnessCandidate;
 const offenseCandidate=process.argv.includes('--offense');
-const out=freshnessCandidate?path.resolve('outputs/platform/freshness-v158/unity-world'):offenseCandidate?path.resolve('outputs/platform/offensive-quality',roleCandidate?'unity-roles':'unity-normal'):path.resolve('outputs/platform/world-unity',roleCandidate?'roles-wave4':'');fs.mkdirSync(out,{recursive:true});
+const out=process.env.D6_QA_OUTPUT?path.resolve(process.env.D6_QA_OUTPUT):freshnessCandidate?path.resolve('outputs/platform/freshness-v158/unity-world'):offenseCandidate?path.resolve('outputs/platform/offensive-quality',roleCandidate?'unity-roles':'unity-normal'):path.resolve('outputs/platform/world-unity',roleCandidate?'roles-wave4':'');fs.mkdirSync(out,{recursive:true});
 const server=createServer();const port=4361,url=`http://127.0.0.1:${port}/source/index.html`;
 const httpBuild=process.argv.includes('--http-build');
 const sourceHashes=Object.fromEntries(['dist/world-unity-v151.js','dist/world-offensive-quality-v157.js','dist/pitch-v56.js','dist/world-pitch3d-v98.js','dist/pitch-motion-v102.js','dist/unity-match/runtime.js','dist/game.js','dist/pitch-v55.js','dist/world-match-v64.js','dist/world-physical-v65.js','dist/world-player-roles-v154.js','dist/world-player-performance-v155.js','outputs/index.html'].map(file=>[file,require('node:crypto').createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
@@ -134,7 +134,13 @@ async function fullMatch(page,engine){
    // An ACK precedes endFrameRendering. Let the real post-render head
    // projection catch up after resizing, before capturing the enlarged view.
    await page.waitForTimeout(350);
-   check('Rendered head projections use actual actor IDs and the enlarged viewport',await page.evaluate(()=>{const p=D6UnityMatch.projection,rect=document.querySelector('#d6-unity-host').getBoundingClientRect();return p?.markers.length===match.people.length&&p.markers.every(m=>match.people.some(person=>person.pid===m.id))&&Math.abs(p.width-rect.width)<=2&&Math.abs(p.height-rect.height)<=2&&p.sequence>=D6UnityMatch.lastAck.sequence-1;}));
+   report.enlargedProjectionBeforeWait=await page.evaluate(()=>{const p=D6UnityMatch.projection,rect=document.querySelector('#d6-unity-host').getBoundingClientRect();return {width:p?.width,height:p?.height,hostWidth:rect.width,hostHeight:rect.height,markers:p?.markers.length,actors:match.people.length,sequence:p?.sequence,ack:D6UnityMatch.lastAck.sequence};});
+   console.log('Enlarged projection before bounded render wait',JSON.stringify(report.enlargedProjectionBeforeWait));
+   const enlargedProjection=await page.waitForFunction(()=>{const p=D6UnityMatch.projection,rect=document.querySelector('#d6-unity-host').getBoundingClientRect();const matches=p?.markers.length===match.people.length&&p.markers.every(m=>match.people.some(person=>person.pid===m.id))&&Math.abs(p.width-rect.width)<=2&&Math.abs(p.height-rect.height)<=2&&p.sequence>=D6UnityMatch.lastAck.sequence-1;return matches?{matches,width:p.width,height:p.height,hostWidth:rect.width,hostHeight:rect.height,sequence:p.sequence,ack:D6UnityMatch.lastAck.sequence}:false;},{},{timeout:15000});
+   // Assert the same post-render observation. A second browser round trip can
+   // receive a newer ACK and compare it to an earlier projection incorrectly.
+   report.enlargedProjection=await enlargedProjection.jsonValue();await enlargedProjection.dispose();
+   check('Rendered head projections use actual actor IDs and the enlarged viewport',report.enlargedProjection.matches);
    await page.screenshot({path:path.join(out,'expanded-second-half.png')});
   }
   const native=await fullMatch(page,'browser');console.log('Reference match complete');

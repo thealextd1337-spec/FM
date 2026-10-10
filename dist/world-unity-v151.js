@@ -52,7 +52,16 @@
   if(!g||g.length===legacy.length&&g.width===legacy.width)return aim(ball);
   const sx=g.length/legacy.length,sz=g.width/legacy.width,pose=aim({...ball,x:ball.x/sx,z:ball.z/sz}),k=['wide','goal'].includes(mode)?Math.max(sx,sz):1;
   const target={x:pose.target.x*sx,y:pose.target.y,z:pose.target.z*sz};
-  return {position:{x:target.x+(pose.position.x-pose.target.x)*k,y:target.y+(pose.position.y-pose.target.y)*k,z:target.z+(pose.position.z-pose.target.z)*k},target,fov:pose.fov};
+  const position={x:target.x+(pose.position.x-pose.target.x)*k,y:target.y+(pose.position.y-pose.target.y)*k,z:target.z+(pose.position.z-pose.target.z)*k};
+  // Following cameras keep their viewing distance on a larger field. Keep
+  // the near-side ball-to-focus gap at the authored size as well, otherwise
+  // scaling that gap pushes the ball back into the bottom controls.
+  if((mode==='follow'||mode==='sideline')&&ball.z/sz>13){
+   const ramp=Math.min(1,(ball.z/sz-13)/3),weight=ramp*ramp*(3-2*ramp);
+   const pan=Math.max(0,sz-1)*Math.max(0,ball.z/sz-pose.target.z)*weight;
+   position.z+=pan;target.z+=pan;
+  }
+  return {position,target,fov:pose.fov};
  }
  // Screen-space decoration only. Keep the whole name inside the viewport and
  // find room for crowded groups without changing any received player position.
