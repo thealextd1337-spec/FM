@@ -1,8 +1,8 @@
 # Änderungen
 
-## 10. Oktober 2026 – Release 121 (Integrationskandidat)
+## 10. Oktober 2026 – Release 121
 
-Natürliche Laufdarstellung in acht Richtungen, stabilere Schrittphasen und Übergänge, weniger Fußgleiten, bessere Kurven-, Arm- und Fangposen. Die Kamera hält nahe Seitenlinienaktionen in zwei Ansichten über der unteren Bedienleiste. Der lokale WebGL-Kandidat ist quellengebunden; Produktions- und Live-Abnahme folgen vor Veröffentlichung. Native Spielregeln, Spielzeit und Schussbalance bleiben unverändert. [Prüfungen und offene Grenzen](release-121.md).
+Natürliche Laufdarstellung in acht Richtungen, stabilere Schrittphasen und Übergänge, weniger Fußgleiten, bessere Kurven-, Arm- und Fangposen. Die Kamera hält nahe Seitenlinienaktionen in zwei Ansichten über der unteren Bedienleiste. Auf Nutzerauftrag veröffentlicht und live abgenommen: [Produktionslauf](https://github.com/thealextd1337-spec/FM/actions/runs/38048077381) erfolgreich, alle 95 Produktionskommandos sowie Version 121 und acht Live-Dateihashes bestätigt. Acht Live-Integrationsprüfungen und 30 tatsächliche WebGL-Kamerafälle bestanden; kleinster Abstand zum unteren Rand 14,94 %, keine Browserfehler. Die lokale Vollmatch-Parität bleibt separat dokumentiert. Native Spielregeln, gewünschte 4–6 Minuten Spielzeit und durchschnittlich 10–16 Schüsse sind durch diesen Darstellungsrelease nicht geändert. Android-Hardwareprüfung bleibt beim Nutzer. Claude-r2 endete am Providerlimit; ein neuer einmaliger Versuch ist für 16:38 Uhr Europe/Paris vorgesehen, ohne Quota-Retryloop. [Prüfungen und offene Grenzen](release-121.md).
 
 ## 10. Oktober 2026 – Release 120
 

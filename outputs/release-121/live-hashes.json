@@ -1,0 +1,188 @@
+{
+  "checkedAt": "2026-10-10T11:38:13.325301+00:00",
+  "productCommit": "7e7f161244badbebc50457f9a7e95ee99f49bf83",
+  "version": 121,
+  "sourceId": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+  "requestHeaders": {
+    "Cache-Control": "no-cache",
+    "Pragma": "no-cache"
+  },
+  "ci": {
+    "id": 38048077381,
+    "url": "https://github.com/thealextd1337-spec/FM/actions/runs/38048077381",
+    "headSha": "7e7f161244badbebc50457f9a7e95ee99f49bf83",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 114201541035,
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-10T11:20:54Z",
+            "completed_at": "2026-10-10T11:20:55Z"
+          },
+          {
+            "name": "Quellcode laden",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-10T11:20:55Z",
+            "completed_at": "2026-10-10T11:21:21Z"
+          },
+          {
+            "name": "Node.js einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-10T11:21:21Z",
+            "completed_at": "2026-10-10T11:21:26Z"
+          },
+          {
+            "name": "Spieltests ausf\u00fchren",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-10T11:21:26Z",
+            "completed_at": "2026-10-10T11:36:22Z"
+          },
+          {
+            "name": "Einzeldatei bauen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-10T11:36:22Z",
+            "completed_at": "2026-10-10T11:36:32Z"
+          },
+          {
+            "name": "Unity-Laufzeit vor der neuen Spielseite hochladen und pr\u00fcfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-10T11:36:32Z",
+            "completed_at": "2026-10-10T11:37:20Z"
+          },
+          {
+            "name": "Per FTPS zu World4You hochladen und Live-Datei pr\u00fcfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-10T11:37:20Z",
+            "completed_at": "2026-10-10T11:37:37Z"
+          },
+          {
+            "name": "Post Node.js einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-10T11:37:37Z",
+            "completed_at": "2026-10-10T11:37:37Z"
+          },
+          {
+            "name": "Post Quellcode laden",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-10T11:37:37Z",
+            "completed_at": "2026-10-10T11:37:38Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-10T11:37:38Z",
+            "completed_at": "2026-10-10T11:37:38Z"
+          }
+        ]
+      }
+    ]
+  },
+  "files": [
+    {
+      "file": "outputs/index.html",
+      "url": "https://fussball.cakamper.at/",
+      "bytes": 50875346,
+      "sha256": "255f01480a66b5c9bb2b1f963636ba7fdf1e104457fcb70815b634a633eab16a",
+      "httpStatus": 200,
+      "liveBytes": 50875346,
+      "liveSha256": "255f01480a66b5c9bb2b1f963636ba7fdf1e104457fcb70815b634a633eab16a",
+      "matches": true
+    },
+    {
+      "file": "outputs/platform/unity-web/probe-build.json",
+      "url": "https://fussball.cakamper.at/unity/probe-build.json",
+      "bytes": 5656,
+      "sha256": "b7d544824c39a514a2fff3c085e5e10d26323b677e311b4e44c92538a0541f52",
+      "httpStatus": 200,
+      "liveBytes": 5656,
+      "liveSha256": "b7d544824c39a514a2fff3c085e5e10d26323b677e311b4e44c92538a0541f52",
+      "matches": true
+    },
+    {
+      "file": "outputs/platform/unity-web/Build/unity-web.data",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.data",
+      "bytes": 55558795,
+      "sha256": "8065e1385bfa93644f8608327d708c802f1d406ca5b389fdac64fc411010b2b0",
+      "httpStatus": 200,
+      "liveBytes": 55558795,
+      "liveSha256": "8065e1385bfa93644f8608327d708c802f1d406ca5b389fdac64fc411010b2b0",
+      "matches": true
+    },
+    {
+      "file": "outputs/platform/unity-web/Build/unity-web.framework.js",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.framework.js",
+      "bytes": 300906,
+      "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "httpStatus": 200,
+      "liveBytes": 300906,
+      "liveSha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "matches": true
+    },
+    {
+      "file": "outputs/platform/unity-web/Build/unity-web.loader.js",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.loader.js",
+      "bytes": 27914,
+      "sha256": "aed089a2e2daaa427d3f95f5b0502eca6942a388fe7e7d82d348fa5f6be5d577",
+      "httpStatus": 200,
+      "liveBytes": 27914,
+      "liveSha256": "aed089a2e2daaa427d3f95f5b0502eca6942a388fe7e7d82d348fa5f6be5d577",
+      "matches": true
+    },
+    {
+      "file": "outputs/platform/unity-web/Build/unity-web.wasm",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.wasm",
+      "bytes": 35422698,
+      "sha256": "6617c13f764dbeef8b9f1b144807213d5c52cc102a90901c2ee06eedac879d35",
+      "httpStatus": 200,
+      "liveBytes": 35422698,
+      "liveSha256": "6617c13f764dbeef8b9f1b144807213d5c52cc102a90901c2ee06eedac879d35",
+      "matches": true
+    },
+    {
+      "file": "dist/unity-match/runtime.html",
+      "url": "https://fussball.cakamper.at/unity-match/runtime.html",
+      "bytes": 440,
+      "sha256": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "httpStatus": 200,
+      "liveBytes": 440,
+      "liveSha256": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "matches": true
+    },
+    {
+      "file": "dist/unity-match/runtime.js",
+      "url": "https://fussball.cakamper.at/unity-match/runtime.js",
+      "bytes": 2920,
+      "sha256": "ee10dde678e548fc3ccede93c5884a96d02bbdedfaa3e8e0db0c8f2b133ad9a7",
+      "httpStatus": 200,
+      "liveBytes": 2920,
+      "liveSha256": "ee10dde678e548fc3ccede93c5884a96d02bbdedfaa3e8e0db0c8f2b133ad9a7",
+      "matches": true
+    }
+  ],
+  "htmlVersion": "PROTOTYP 121",
+  "passed": true
+}

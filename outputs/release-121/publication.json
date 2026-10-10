@@ -1,0 +1,76 @@
+{
+  "status": "published-and-live-verified",
+  "completedAt": "2026-10-10T11:41:36.642197+00:00",
+  "productCommit": "7e7f161244badbebc50457f9a7e95ee99f49bf83",
+  "version": 121,
+  "liveUrl": "https://fussball.cakamper.at/",
+  "ci": {
+    "id": 38048077381,
+    "url": "https://github.com/thealextd1337-spec/FM/actions/runs/38048077381",
+    "headSha": "7e7f161244badbebc50457f9a7e95ee99f49bf83",
+    "conclusion": "success",
+    "productionCommands": 95,
+    "unityBeforeHtml": true
+  },
+  "frozenPackage": {
+    "sourceId": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+    "manifestSha256": "b7d544824c39a514a2fff3c085e5e10d26323b677e311b4e44c92538a0541f52",
+    "identitySources": 41,
+    "manifestSourceFiles": 32,
+    "unchangedAfterLiveVerification": true
+  },
+  "live": {
+    "fileHashChecks": 8,
+    "integrationChecks": 8,
+    "actualWebGLCameraCases": 30,
+    "viewports": [
+      [
+        844,
+        390
+      ],
+      [
+        931,
+        448
+      ],
+      [
+        1280,
+        720
+      ]
+    ],
+    "fieldSize": "large",
+    "minimumBottomMargin": 0.14938688278198242,
+    "pageErrors": 0
+  },
+  "localFullMatchProof": {
+    "path": "outputs/release-121/world-unity/runtime-tests.json",
+    "integrationChecks": 33,
+    "identicalTicksPerMatch": 2771,
+    "score": [
+      1,
+      0
+    ],
+    "minute": 97,
+    "repeatedFullMatchesLive": false
+  },
+  "evidence": {
+    "prepublication": "outputs/release-121/prepublication.json",
+    "liveHashes": "outputs/release-121/live-hashes.json",
+    "liveBrowser": "outputs/release-121/live-browser/checks.json"
+  },
+  "claude": {
+    "r2Status": "failed-after-delivery",
+    "providerError": "Claude API rate limit reached. Try again later.",
+    "r3NewOnceAttemptAt": "2026-10-10T14:38:22.309Z",
+    "r3LocalTime": "16:38 Europe/Paris",
+    "automaticQuotaRetryLoop": false,
+    "r3IncludedInRelease": false
+  },
+  "limits": [
+    "Physical Android hardware, Wake Lock and app switching remain unverified; user will test.",
+    "Native four-six minute full-match duration and 10-16 average total shots remain pending.",
+    "Held-ball to goal-kick-point native placement jumps remain.",
+    "Late stop episode at 1874 degrees/second lies outside movement gates; native root-facing peaks are not validated.",
+    "Natural parry-rebound-pickup chain was not observed.",
+    "48 existing stadium profiles preserved; Editor checked Roma/Milano/Torino/Bologna, no new 32 stadium models."
+  ]
+}

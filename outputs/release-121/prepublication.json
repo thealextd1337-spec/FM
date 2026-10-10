@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-10-10T11:20:22.449751+00:00",
+  "productCommit": "7e7f161244badbebc50457f9a7e95ee99f49bf83",
+  "manifestSha256": "b7d544824c39a514a2fff3c085e5e10d26323b677e311b4e44c92538a0541f52",
+  "sourceId": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+  "identitySources": 41,
+  "manifestSourceFiles": 32,
+  "files": [
+    {
+      "file": "outputs/index.html",
+      "url": "https://fussball.cakamper.at/",
+      "bytes": 50875346,
+      "sha256": "255f01480a66b5c9bb2b1f963636ba7fdf1e104457fcb70815b634a633eab16a"
+    },
+    {
+      "file": "outputs/platform/unity-web/probe-build.json",
+      "url": "https://fussball.cakamper.at/unity/probe-build.json",
+      "bytes": 5656,
+      "sha256": "b7d544824c39a514a2fff3c085e5e10d26323b677e311b4e44c92538a0541f52"
+    },
+    {
+      "file": "outputs/platform/unity-web/Build/unity-web.data",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.data",
+      "bytes": 55558795,
+      "sha256": "8065e1385bfa93644f8608327d708c802f1d406ca5b389fdac64fc411010b2b0"
+    },
+    {
+      "file": "outputs/platform/unity-web/Build/unity-web.framework.js",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.framework.js",
+      "bytes": 300906,
+      "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+    },
+    {
+      "file": "outputs/platform/unity-web/Build/unity-web.loader.js",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.loader.js",
+      "bytes": 27914,
+      "sha256": "aed089a2e2daaa427d3f95f5b0502eca6942a388fe7e7d82d348fa5f6be5d577"
+    },
+    {
+      "file": "outputs/platform/unity-web/Build/unity-web.wasm",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.wasm",
+      "bytes": 35422698,
+      "sha256": "6617c13f764dbeef8b9f1b144807213d5c52cc102a90901c2ee06eedac879d35"
+    },
+    {
+      "file": "dist/unity-match/runtime.html",
+      "url": "https://fussball.cakamper.at/unity-match/runtime.html",
+      "bytes": 440,
+      "sha256": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa"
+    },
+    {
+      "file": "dist/unity-match/runtime.js",
+      "url": "https://fussball.cakamper.at/unity-match/runtime.js",
+      "bytes": 2920,
+      "sha256": "ee10dde678e548fc3ccede93c5884a96d02bbdedfaa3e8e0db0c8f2b133ad9a7"
+    }
+  ]
+}
