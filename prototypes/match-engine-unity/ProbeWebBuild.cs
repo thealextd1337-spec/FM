@@ -31,7 +31,12 @@ public static class ProbeWebBuild {
         var softQuality=so.FindProperty("m_SoftShadowQuality");if(softQuality!=null)softQuality.intValue=2;
         so.FindProperty("m_MSAA").intValue=4;so.FindProperty("m_RenderScale").floatValue=1;so.ApplyModifiedPropertiesWithoutUndo();EditorUtility.SetDirty(pipeline);EditorUtility.SetDirty(renderer);AssetDatabase.SaveAssets();
         GraphicsSettings.defaultRenderPipeline=pipeline;for(int i=0;i<previous.pipelines.Length;i++){QualitySettings.SetQualityLevel(i,false);QualitySettings.renderPipeline=pipeline;}QualitySettings.SetQualityLevel(previous.quality,false);
-        File.WriteAllText(Path.Combine(repository,"prototypes/match-engine-unity/pipeline-validation.json"),JsonUtility.ToJson(pipeline,true));return AssetDatabase.GetAssetPath(pipeline);
+        WriteEvidence(Path.Combine(repository,"prototypes/match-engine-unity/pipeline-validation.json"),JsonUtility.ToJson(pipeline,true));return AssetDatabase.GetAssetPath(pipeline);
+    }
+    // A watcher of the working tree can briefly map the evidence file
+    // (Win32 1224); at most 40 bounded attempts (10 s), then the error stands.
+    static void WriteEvidence(string path,string text){
+        for(int attempt=1;;attempt++){try{File.WriteAllText(path,text);return;}catch(IOException)when(attempt<40){System.Threading.Thread.Sleep(250);}}
     }
     public static void Restore(string repository){var p=JsonUtility.FromJson<Previous>(File.ReadAllText(Path.Combine(repository,"prototypes/match-engine-unity/pipeline-settings-before.json")));GraphicsSettings.defaultRenderPipeline=AssetDatabase.LoadAssetAtPath<RenderPipelineAsset>(p.graphics);for(int i=0;i<p.pipelines.Length;i++){QualitySettings.SetQualityLevel(i,false);QualitySettings.renderPipeline=AssetDatabase.LoadAssetAtPath<RenderPipelineAsset>(p.pipelines[i]);}QualitySettings.SetQualityLevel(p.quality,false);AssetDatabase.SaveAssets();}
 }

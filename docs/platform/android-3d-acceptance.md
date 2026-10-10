@@ -1,5 +1,7 @@
 # Android-Abnahme des 3D-Modus
 
+Aktueller Nutzerentscheid vom 10. Oktober 2026: **„Android-Test später“**. Der vorgeschlagene abschließende Release-119-Test über 75 Sekunden mit anschließendem manuellen Appwechsel wird jetzt nicht gestartet. Software-/Live-Prüfungen sind bestanden; die physische Pixel-Abnahme bleibt offen und benötigt später erneut bestätigte Gerätebereitschaft.
+
 `work/platform/qa/android-3d-acceptance.cjs` prüft ein echtes, per USB verbundenes Android-Gerät mit stabilem Chrome. Eine Desktop-Touchsimulation ersetzt diese Abnahme nicht. Der Runner lädt den aktuellen lokalen HTML-/Unity-Build auf einem eigenen Loopback-Ursprung und legt eine neue QA-Seite an. Bestehende Chrome-Tabs werden weder ausgelesen noch geschlossen; Live-Spielstände werden nicht angefasst.
 
 ## Voraussetzungen und Aufruf

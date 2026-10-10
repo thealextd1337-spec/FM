@@ -15,7 +15,10 @@ public static class KeeperEvidenceDiagnostics {
     [Serializable] class Fixture {public Seq[] sequences;}
     [Serializable] class Seq {public string name,source,keeper;public bool turned;public string[] steps;}
     [Serializable] class Shot {public string sequence,origin,file,clip,kind,action,actionId,phase;public int step,pictureSequence;public double progress,recovery,time;public bool contact,turned,controlled,rawSaved,rawParry,rawBallInFlight,savedKnown,parryKnown,ballInFlightKnown,held,reachable,visualHeld;public float hips,gloveError,shadowDiameter,shadowStrength,shadowGroundError;}
-    [Serializable] class Listing {public string sourceId,unity,device,note;public string[] files;public Shot[] shots;}
+    // Per received step of a sequence: the visible ball against the received
+    // native ball. attach* is the first picture with a view-held ball.
+    [Serializable] class Track {public string sequence,origin;public bool controlled;public int steps,heldSteps,attachStep=-1,maxVisibleStepAt=-1;public float attachVisibleJump,attachNativeJump,attachGloveFromNative,maxVisibleStep,maxVisibleStepNative,maxGloveError;public double contactClock=-1,attachClock=-1,releaseClock=-1;}
+    [Serializable] class Listing {public string sourceId,unity,device,note,fixture;public string[] files;public Shot[] shots;public Track[] tracks;}
     static string N(double v){return v.ToString("0.###",System.Globalization.CultureInfo.InvariantCulture);}
     static string Step(int sequence,double clock,string owner,bool? flight,double[] ball,string pose){
         return "{\"sequence\":"+sequence+",\"clock\":"+N(clock)+",\"owner\":\""+owner+"\""+(flight.HasValue?",\"ballInFlight\":"+(flight.Value?"true":"false"):"")+",\"ball\":["+N(ball[0])+","+N(ball[1])+","+N(ball[2])+"],\"players\":["+pose+"]}";
@@ -49,10 +52,11 @@ public static class KeeperEvidenceDiagnostics {
         foreach(double height in new[]{.29,5.0})Make("controlled-shadow-"+(height<1?"ground":"high"),k=>Step(k,50+k*.05,"",height>1,new[]{-29,height,0},"{\"id\":\"controlled-keeper\",\"position\":[-31,0,0],\"facing\":[1,0,0],\"moving\":false,\"action\":\"idle\",\"duration\":1,\"number\":1}"),8);
         return list.ToArray();
     }
-    public static string Run(string repository,string outputFolder=null){
+    // fixturePath: repository-relative keeper fixture (default keeper-next/keeper-fixtures.json).
+    public static string Run(string repository,string outputFolder=null,string fixturePath=null){
         var bridge=UnityEngine.Object.FindFirstObjectByType<ProbeBridge>()??throw new InvalidOperationException("ProbeBridge is missing in the open scene");
         var flags=BindingFlags.NonPublic|BindingFlags.Instance;var raw=File.ReadAllText(Path.Combine(repository,"outputs/platform/world-unity/contract-fixture.json"));
-        var fixture=JsonUtility.FromJson<Fixture>(File.ReadAllText(Path.Combine(repository,"outputs/3d-quality/keeper-next/keeper-fixtures.json")));
+        fixturePath??="outputs/3d-quality/keeper-next/keeper-fixtures.json";var fixture=JsonUtility.FromJson<Fixture>(File.ReadAllText(Path.Combine(repository,fixturePath)));var tracks=new List<Track>();
         var folder=Path.Combine(repository,outputFolder??"outputs/3d-quality/keeper-next/renders");Directory.CreateDirectory(folder);var written=new List<string>();var shots=new List<Shot>();
         var camera=Camera.main;int sequence=1;bool log=Debug.unityLogger.logEnabled;string goalieId=null;int goalieIndex=-1;
         void Drop(){var world=(Transform)typeof(ProbeBridge).GetField("world",flags).GetValue(bridge);if(world!=null)UnityEngine.Object.DestroyImmediate(world.gameObject);}
@@ -107,13 +111,28 @@ public static class KeeperEvidenceDiagnostics {
                 int n=seq.steps.Length;var picks=new List<int>();for(int k=0;k<8;k++)picks.Add(Math.Min(n-1,(int)Math.Round(k*(n-1)/7.0)));
                 // Goal kick: show the wait, wind-up, release and follow-through explicitly.
                 if(seq.name.StartsWith("goalkick")){picks.Clear();var parsed=Array.ConvertAll(seq.steps,WorldPhasePresence.ParseFrame);int release=Array.FindIndex(parsed,x=>x.players[0].phase=="follow");foreach(var k in new[]{2,release-6,release-3,release-1,release,release+2,release+5,n-1})picks.Add(Math.Clamp(k,0,n-1));}
+                // Natural catch chain: contact, first held picture, hold, rise, goal-kick wait, release, follow-through.
+                if(seq.name.StartsWith("natural-catch")){picks.Clear();var parsed=Array.ConvertAll(seq.steps,WorldPhasePresence.ParseFrame);int contact=Array.FindIndex(parsed,x=>x.players[0].action=="save"&&x.players[0].progress>=1),held=Array.FindIndex(parsed,x=>x.players[0].ballHeldKnown&&x.players[0].ballHeld),wait=Array.FindIndex(parsed,x=>x.players[0].action=="goalKick"),release=Array.FindIndex(parsed,x=>x.players[0].phase=="follow");
+                    foreach(var k in new[]{Math.Max(0,contact-2),contact,held,held+6,(held+wait)/2,wait,release,release+4})picks.Add(Math.Clamp(k,0,n-1));}
                 var sheet=new Texture2D(Tile*picks.Count,Tile,TextureFormat.RGB24,false);
                 // Every step is received in order (actual cadence), the picked ones captured.
-                int tile=0;
+                int tile=0;var track=new Track{sequence=seq.name,origin=seq.source,controlled=controlled,steps=n};Vector3? lastVisible=null,lastNative=null;
+                var football=(List<FootballAnimation>)typeof(ProbeBridge).GetField("football",flags).GetValue(bridge);var view=(Transform)typeof(ProbeBridge).GetField("ballView",flags).GetValue(bridge);
                 for(int k=0;k<n;k++){
-                    Show(config,seq.steps[k],seq.name.StartsWith("controlled-shadow"));if(!picks.Contains(k))continue;
+                    Show(config,seq.steps[k],seq.name.StartsWith("controlled-shadow"));
+                    {
+                        var shownNow=(WorldFrame)typeof(ProbeBridge).GetField("displayed",flags).GetValue(bridge);var me=Array.Find(shownNow.players,q=>q.id==goalieId);
+                        var native=new Vector3((float)shownNow.ball[0],ProbeBridge.DisplayHeight(shownNow.ball[1]),(float)shownNow.ball[2]);var visible=view.position;bool viewHeld=FootballKeeperTiming.VisualHeld(me,shownNow);
+                        if(me.action=="save"&&me.progress>=1&&track.contactClock<0)track.contactClock=shownNow.clock;if(me.phase=="follow"&&track.releaseClock<0)track.releaseClock=shownNow.clock;
+                        if(viewHeld){track.heldSteps++;track.maxGloveError=Mathf.Max(track.maxGloveError,Vector3.Distance(visible,football[goalieIndex].rig.HeldBallCentre));}
+                        if(lastVisible.HasValue){float step=Vector3.Distance(visible,lastVisible.Value),nativeStep=Vector3.Distance(native,lastNative.Value);
+                            if(viewHeld&&track.attachStep<0){track.attachStep=k;track.attachClock=shownNow.clock;track.attachVisibleJump=step;track.attachNativeJump=nativeStep;track.attachGloveFromNative=Vector3.Distance(visible,native);}
+                            if(step>track.maxVisibleStep){track.maxVisibleStep=step;track.maxVisibleStepAt=k;track.maxVisibleStepNative=nativeStep;}}
+                        lastVisible=visible;lastNative=native;
+                    }
+                    if(!picks.Contains(k))continue;
                     var rp=((Array)typeof(ProbeBridge).GetField("renderedPoses",flags).GetValue(bridge)).GetValue(goalieIndex);T R<T>(string name)=>(T)rp.GetType().GetField(name).GetValue(rp);var p=WorldPhasePresence.ParseFrame(seq.steps[k]).players[0];
-                    var tex=Capture(Tile,Tile);sheet.SetPixels(tile*Tile,0,Tile,Tile,tex.GetPixels());
+                    if(tile>=picks.Count)continue;var tex=Capture(Tile,Tile);sheet.SetPixels(tile*Tile,0,Tile,Tile,tex.GetPixels());
                     var file=$"{seq.name}-{tile:00}.png";Save(tex,file);
                     shots.Add(new Shot{sequence=seq.name,origin=seq.source,controlled=controlled,file=file,step=k,pictureSequence=sequence,action=p.action,actionId=p.actionId,phase=p.phase,progress=p.progress,recovery=p.recovery,clip=R<string>("clip"),time=R<double>("time"),kind=R<string>("kind"),contact=R<bool>("contact"),turned=seq.turned,hips=Hips()});
                     // Raw keys of the sent keeper JSON and the facts Unity actually received.
@@ -134,7 +153,7 @@ public static class KeeperEvidenceDiagnostics {
                     if(shot.rawSaved!=shot.savedKnown||shot.rawParry!=shot.parryKnown||shot.rawBallInFlight!=shot.ballInFlightKnown)throw new Exception("received presence differs from the sent keys ("+seq.name+" step "+k+")");
                     tile++;
                 }
-                sheet.Apply();Save(sheet,$"{seq.name}-sheet.png");
+                sheet.Apply();Save(sheet,$"{seq.name}-sheet.png");tracks.Add(track);
             }
             foreach(var seq in fixture.sequences)Render(seq,false);
             // Controlled diagnostic JSON, not a captured native chain: the five
@@ -145,7 +164,7 @@ public static class KeeperEvidenceDiagnostics {
         }finally{
             Drop();typeof(ProbeBridge).GetMethod("RestoreProbeLighting",flags).Invoke(bridge,null);camera.targetTexture=null;
         }
-        File.WriteAllText(Path.Combine(folder,"renders.json"),JsonUtility.ToJson(new Listing{sourceId=ProbeBuildIdentity.SourceId,unity=Application.unityVersion,device=SystemInfo.graphicsDeviceType.ToString(),note="Sequences without controlled=true are actual captured native keeper pictures replayed through ProbeBridge.WorldCommand (paused pictures show the exact received step). Sequences named controlled-* (controlled=true) are hand-built diagnostic JSON in the bridge shape, not naturally occurred native chains. Live bones baked per capture; not a WebGL or device acceptance.",files=written.ToArray(),shots=shots.ToArray()},true));
+        File.WriteAllText(Path.Combine(folder,"renders.json"),JsonUtility.ToJson(new Listing{sourceId=ProbeBuildIdentity.SourceId,unity=Application.unityVersion,device=SystemInfo.graphicsDeviceType.ToString(),note="Sequences without controlled=true are actual captured native keeper pictures replayed through ProbeBridge.WorldCommand (paused pictures show the exact received step). Sequences named controlled-* (controlled=true) are hand-built diagnostic JSON in the bridge shape, not naturally occurred native chains. Tracks measure every received step: visible ball step against the received native ball step; attach = first view-held picture. Live bones baked per capture; not a WebGL or device acceptance.",fixture=fixturePath,files=written.ToArray(),shots=shots.ToArray(),tracks=tracks.ToArray()},true));
         return "renders="+written.Count+" shots="+shots.Count+" device="+SystemInfo.graphicsDeviceType;
     }
 }

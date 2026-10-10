@@ -6,6 +6,9 @@ public partial class ProbeBridge {
     public AnimationClip passClip,receiveClip,keeperHighClip,keeperDiveClip,keeperRiseClip;
     public AnimationClip walkClip,fastRunClip,sprintClip,backClip,brakeClip,turnLeftClip,turnRightClip;
     // Further existing clips of the same rig (football-v130.fbx); all optional.
+    // readyClip: idle_ready (side-step base of field players); backRunClip:
+    // back_right, the fastest measured backward stride.
+    public AnimationClip readyClip,backRunClip;
     public AnimationClip jogClip,fastBackClip,turnIdleLeftClip,turnIdleRightClip,turnWalkLeftClip,turnWalkRightClip,celebrateArmsClip,celebrateFistClip,celebrateVictoryClip,foulFallClip,foulStumbleClip,keeperShuffleClip;
     readonly List<FootballAnimation> football=new List<FootballAnimation>();
     const double PassContact=.8,ReceiveContact=.7,ShotContact=.46;
@@ -13,23 +16,33 @@ public partial class ProbeBridge {
     // 1.0 s of foul_fall_meshy) followed by the measured rise window of
     // keeper_rise_meshy (hips 0.37 m -> 1.30 m between 4.4 s and 6.3 s).
     const double FoulWindow=2.7,FoulFall=1.6,RiseFrom=4.4,RiseLength=1.9;
-    AnimationClip[] FootballClips(){return new[]{idleClip,runClip,keeperClip,keeperActionClip,shotClip,passClip,receiveClip,keeperHighClip,keeperDiveClip,keeperRiseClip,walkClip,fastRunClip,sprintClip,backClip,brakeClip,turnLeftClip,turnRightClip,jogClip,fastBackClip,turnIdleLeftClip,turnIdleRightClip,turnWalkLeftClip,turnWalkRightClip,celebrateArmsClip,celebrateFistClip,celebrateVictoryClip,foulFallClip,foulStumbleClip,keeperShuffleClip};}
+    AnimationClip[] FootballClips(){return new[]{idleClip,runClip,keeperClip,keeperActionClip,shotClip,passClip,receiveClip,keeperHighClip,keeperDiveClip,keeperRiseClip,walkClip,fastRunClip,sprintClip,backClip,brakeClip,turnLeftClip,turnRightClip,jogClip,fastBackClip,turnIdleLeftClip,turnIdleRightClip,turnWalkLeftClip,turnWalkRightClip,celebrateArmsClip,celebrateFistClip,celebrateVictoryClip,foulFallClip,foulStumbleClip,keeperShuffleClip,readyClip,backRunClip};}
     // The clip whose measured stride matches the observed speed band.
-    AnimationClip StrideClip(string mode,bool carrying,bool keeper,bool fast){
+    AnimationClip StrideClip(string mode,bool carrying,bool keeper,bool fast,bool fastest=false){
         if(mode=="walk")return walkClip;if(mode=="sprint")return sprintClip;
-        if(mode=="back")return fast&&fastBackClip!=null?fastBackClip:backClip;
+        if(mode=="back")return fastest&&backRunClip!=null?backRunClip:fast&&fastBackClip!=null?fastBackClip:backClip;
+        // A lateral side step stands on the ready stance; its legs are procedural.
+        if(mode=="side")return keeper?keeperClip:readyClip??idleClip;
         if(mode=="run")return !fast&&jogClip!=null?jogClip:carrying?runClip:fastRunClip;
         return keeper?keeperClip:idleClip;
     }
     AnimationClip LocomotionClip(FootballLocomotion m,bool carrying,bool keeper){
-        if(m.Mode=="brake")return brakeClip;
+        if(m.Mode=="brake"&&m.BrakeFrom>=FootballLocomotion.BrakeClipSpeed)return brakeClip;
+        if(m.Mode=="brake")return StrideClip(m.StrideMode,carrying,keeper,m.FastStride,m.FastestBack);
+        if(m.Mode.StartsWith("turn-")&&m.Speed>=FootballLocomotion.TurnClipSpeed)return StrideClip(m.StrideMode,carrying,keeper,m.FastStride,m.FastestBack);
         if(m.Mode.StartsWith("turn-")){
             bool left=m.Mode=="turn-left";
             // A stationary pivot, a walking and a running turn use their own clips.
             var clip=m.Speed<.2f?(left?turnIdleLeftClip:turnIdleRightClip):m.StrideSpeed<2?(left?turnWalkLeftClip:turnWalkRightClip):null;
             return clip??(left?turnLeftClip:turnRightClip);
         }
-        return StrideClip(m.StrideMode,carrying,keeper,m.FastStride);
+        return StrideClip(m.StrideMode,carrying,keeper,m.FastStride,m.FastestBack);
+    }
+    // A turn or brake begins on the foot the stride already stands on: the
+    // measured clip time near the tuned entry where that foot is planted.
+    double TransitionTime(AnimationClip clip,FootballLocomotion m,FootballAnimation a){
+        double preferred=TurnTime(clip,m.Mode=="brake"?.55:.45);
+        return a.SupportStart(clip,m.TransitionRight,preferred)+TurnTime(clip,m.Phase)-preferred;
     }
     // The existing turn window was tuned on turn_run_*; other turns keep its share of the clip.
     double TurnTime(AnimationClip clip,double phase){return clip==brakeClip||turnLeftClip==null?phase:phase*clip.length/Math.Max(.001,turnLeftClip.length);}
@@ -45,20 +58,22 @@ public partial class ProbeBridge {
         var locomotion=worldLocomotion[i];
         bool carrying=f.owner==p.id&&!identity.keeper;
         // Cadence follows the measured stride of the clip that shows this speed band.
-        var preview=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride);
-        locomotion.Sample(V(p.position),V(p.facing),f.clock,f.owner==p.id,identity.keeper,p.freshness,football[i].StrideLength(preview));
+        var preview=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack);double cycleOffset=i*.09;
+        bool previewStride=locomotion.StrideMode!="idle"&&locomotion.StrideMode!="side"&&preview!=null;
+        locomotion.Sample(V(p.position),V(p.facing),f.clock,f.owner==p.id,identity.keeper,p.freshness,football[i].StrideLength(preview),football[i].Heading(preview),cycleOffset,previewStride?1f/Mathf.Max(.2f,preview.length):0);
+        // A start from rest enters the new stride at its support foot's measured mid-stance.
+        if(locomotion.Started){var first=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack);if(first!=null&&locomotion.StrideMode!="side"&&locomotion.StrideMode!="idle")locomotion.AlignStart(football[i].MidStance(first,!locomotion.StartRightSwings),cycleOffset);}
         pose.clip=LocomotionClip(locomotion,carrying,identity.keeper);
-        bool turnOrBrake=locomotion.Mode=="brake"||locomotion.Mode.StartsWith("turn-");
-        pose.time=locomotion.Mode=="idle"?f.clock+i*.09:turnOrBrake?TurnTime(pose.clip,locomotion.Phase):football[i].StrideTime(locomotion.StridePhase+i*.09,pose.clip);
+        bool turnOrBrake=pose.clip==brakeClip&&locomotion.Mode=="brake"||locomotion.Mode.StartsWith("turn-")&&pose.clip!=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack);
+        // Idle and the side-step stance loop on native time; strides on the shared footfall cycle.
+        bool stance=locomotion.StrideMode=="idle"||locomotion.StrideMode=="side";
+        pose.time=stance&&!turnOrBrake?f.clock+cycleOffset:turnOrBrake?TransitionTime(pose.clip,locomotion,football[i]):football[i].StrideTime(locomotion.StridePhase+cycleOffset,pose.clip);
         pose.loop=!turnOrBrake;
-        // Keeper side steps from observed lateral travel relative to the received
-        // facing. keeper_shuffle_meshy steps to the keeper's left; the right uses
-        // the same cycle reversed. Its measured cadence is slow, so 0.55 cycles
-        // per stride cycle keeps the steps readable.
-        if(identity.keeper&&keeperShuffleClip!=null&&!turnOrBrake&&Math.Abs(locomotion.Lateral)>.72f&&locomotion.Speed>.12f&&locomotion.Speed<4.1f){
-            double cycle=locomotion.StridePhase*.55*keeperShuffleClip.length;pose.clip=keeperShuffleClip;pose.time=locomotion.Lateral<0?cycle:-cycle;pose.loop=true;
-        }
-        var strideClip=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride);double strideTime=locomotion.StrideMode=="idle"?f.clock+i*.09:football[i].StrideTime(locomotion.StridePhase+i*.09,strideClip);bool strideLoop=true;
+        // The measured keeper_shuffle_meshy portrays about 0.19 m/s of lateral
+        // travel on this rig, far below a keeper's native side steps; keepers
+        // and slow lateral field players use the procedural side step instead
+        // (FootballRig.SideStep on the ready stance), never a rotated forward clip.
+        var strideClip=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack);double strideTime=stance?f.clock+cycleOffset:football[i].StrideTime(locomotion.StridePhase+cycleOffset,strideClip);bool strideLoop=true;
         bool locomotionAction=string.IsNullOrEmpty(p.action)||p.action=="idle"||p.action=="run"||p.action=="running";
         if(locomotionAction&&pose.clip!=strideClip&&locomotion.Speed>.2f){pose.baseClip=strideClip;pose.baseTime=strideTime;pose.baseLoop=true;pose.actionWeight=locomotion.MotionWeight;}
         // A native goal-kick follow-through counts its progress over 0.45 s; the
@@ -179,7 +194,7 @@ public partial class ProbeBridge {
         if(FootballActionTiming.IsFootAction(p.action)){
             // Contacts override the stride. The following native motion is already
             // known, so its legs return promptly instead of holding a static kick.
-            pose.baseClip=strideClip;pose.baseTime=strideLoop?strideTime:locomotion.Phase;pose.baseLoop=strideLoop;
+            pose.baseClip=strideClip;pose.baseTime=strideLoop?strideTime:locomotion.Phase;pose.baseLoop=strideLoop;pose.actionOverStride=true;
             pose.actionWeight=FootballActionTiming.Weight(p.action=="goalKick"&&p.phase=="waiting"?"kickReady":p.action,age,progress,locomotion.Speed);
         }else if(locomotionAction&&carrying&&locomotion.Speed>.2f&&locomotion.Mode!="back"&&locomotion.Mode!="brake"&&!locomotion.Mode.StartsWith("turn-")){
             // Only a visual reach during an observed carrier stride: no extra ball
@@ -196,8 +211,26 @@ public partial class ProbeBridge {
         if(!identity.keeper&&locomotionAction){
             pose.forwardLean=locomotion.ForwardLean;pose.turnLean=locomotion.TurnLean;pose.recoveryLean=locomotion.RecoveryLean;
         }
-        if(identity.keeper&&FootballKeeperTiming.VisualHeld(p,f)){pose.ballHeld=true;pose.kind="two-hands";pose.contact=false;pose.baseClip=null;}
-        if(locomotionAction&&!pose.contact){pose.strideYaw=pose.clip==keeperShuffleClip?0:locomotion.StrideYaw;pose.turnLean+=-locomotion.Lateral*Mathf.Clamp01(locomotion.Speed/4)*5;}
+        if(identity.keeper&&FootballKeeperTiming.VisualHeld(p,f)){pose.ballHeld=true;pose.kind="two-hands";pose.contact=false;pose.baseClip=null;pose.gatherKnown=true;pose.gatherFrom=ballView.position;pose.gather=FootballKeeperTiming.Gather(p.recovery);}
+        // Natural motion from the received travel: direction, side step,
+        // acceleration drive, planted feet and the shared stride cycle. A partial
+        // carrier reach keeps all of it; full contacts, held balls, celebrations
+        // and procedural actions keep their authored bodies.
+        bool partial=pose.contact&&pose.contactWeight>0&&pose.contactWeight<1,celebration=pose.key!=null&&pose.key.StartsWith("celebration:");
+        bool footAction=FootballActionTiming.IsFootAction(p.action);
+        if((locomotionAction||footAction)&&!celebration&&!pose.ballHeld&&(!pose.contact||partial||footAction)){
+            // FootballAnimation applies the faded stride share of the mix.
+            float share=pose.contact&&!partial?0:1;
+            pose.strideScale=locomotion.StrideMode=="side"?1:locomotion.StrideScale;pose.pelvisYaw=locomotion.PelvisYaw;pose.legYaw=locomotion.LegYaw;pose.directionWeight=locomotion.DirectionWeight*share;
+            if(locomotionAction){pose.sidePhase=locomotion.SidePhase;pose.sideLength=locomotion.SideLength;pose.sideWeight=locomotion.SideWeight;pose.keeperStance=identity.keeper;pose.support=locomotion.SupportWeight;}
+            if(locomotionAction&&locomotion.Mode=="brake"&&pose.clip!=brakeClip)pose.brake=locomotion.BrakeWeight;
+            if(locomotionAction)pose.brake=Mathf.Max(pose.brake,.45f*locomotion.CutWeight);
+
+            pose.drive=locomotionAction&&!stance&&!turnOrBrake?Mathf.Clamp01((locomotion.Acceleration-1f)/5f)*locomotion.DirectionWeight:0;
+            pose.lockFeet=true;pose.settle=locomotion.Mode=="idle";pose.cycles=locomotion.StridePhase+cycleOffset;pose.cyclesKnown=true;pose.cycleClip=stance?null:strideClip;
+            if(locomotion.Mode=="idle"&&locomotion.StoppedFor<.4)pose.fade=.26f;
+            if(locomotionAction)pose.turnLean+=-locomotion.Lateral*Mathf.Clamp01(locomotion.Speed/4)*5*(1-locomotion.SideWeight);
+        }
         return pose;
     }
     // Native header distance; the goal-kick ball has left its kicker beyond GoalKickGone.

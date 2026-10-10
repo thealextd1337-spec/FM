@@ -1,13 +1,13 @@
 {
-  "sourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+  "sourceId": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
   "schema": "d6-probe-1",
   "worldView": "d6-world-view-1",
   "engine": "unity",
   "unity": "6000.6.4f1",
-  "loaderUrl": "/unity/Build/unity-web.loader.js?v=57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03",
-  "dataUrl": "/unity/Build/unity-web.data?v=a0191474d2c1ba2b774a42851c5415dff80f8835d27297e9c4014ad7a9c15fba",
+  "loaderUrl": "/unity/Build/unity-web.loader.js?v=aed089a2e2daaa427d3f95f5b0502eca6942a388fe7e7d82d348fa5f6be5d577",
+  "dataUrl": "/unity/Build/unity-web.data?v=8065e1385bfa93644f8608327d708c802f1d406ca5b389fdac64fc411010b2b0",
   "frameworkUrl": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
-  "codeUrl": "/unity/Build/unity-web.wasm?v=902b92b0a9768aa2538a7082f9343121ceec5e0f4d66cb02d4d37d819ef6fdcd",
+  "codeUrl": "/unity/Build/unity-web.wasm?v=6617c13f764dbeef8b9f1b144807213d5c52cc102a90901c2ee06eedac879d35",
   "assetHash": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
   "catalogHash": "a954db935e549cd202383f41f9b8c83d66dd1e41cae62b0f49e3698a47356c7e",
   "sourceFiles": [
@@ -25,7 +25,7 @@
     },
     {
       "file": "WorldViewBridge.cs",
-      "sha256": "fb1cfaa96a7089e91a8f33cf9becc336a42c805d82561a619fffc06732c4206f"
+      "sha256": "305522617258513a666e1c7ea97294277643381961408fb032dc0489332d1869"
     },
     {
       "file": "WorldViewPlayback.cs",
@@ -61,19 +61,23 @@
     },
     {
       "file": "FootballAnimation.cs",
-      "sha256": "abc057ddeffd832f65e6930970e65e185b4f977605423d250fae7b87373cb7c7"
+      "sha256": "63e75f30e04954292997175ceb9147997267f911515ae854ce4ac3a8ed3bb9b2"
     },
     {
       "file": "FootballPresentation.cs",
-      "sha256": "4a9cd86b0db2e7bcbb0acef4951acc89bfd1850609b74f18105d4cdb7efcbd3b"
+      "sha256": "f27b3a1b034ca6e11bbf4782749c159cf3fd5cbf1284189e9c474fbc78101564"
     },
     {
       "file": "FootballLocomotion.cs",
-      "sha256": "70c7e18ae47c6b11b7918d58eb0362419ba280b10817d3805c9f44d51228161b"
+      "sha256": "a1715c255913213175468653b34fd4914024a0621982c363ccc7c6dde6c3cb8e"
     },
     {
       "file": "FootballSetup.cs",
-      "sha256": "1048b095d26926d076a4d89f21a2eb0d3644eb7db32bdd11e9b792454f9611e6"
+      "sha256": "58efa51beeca2dc150aa69c6c334e4860d1d6c845de9debab96022dc4f5225b9"
+    },
+    {
+      "file": "FootballSoleContour.cs",
+      "sha256": "833069a2189ec9edea9d0fdc56c96c152429f1914d32a83ca89af5cd03528218"
     },
     {
       "file": "ProbeCamera.cs",
@@ -85,7 +89,7 @@
     },
     {
       "file": "ProbeWebBuild.cs",
-      "sha256": "392eb4653f0ce269114aa66a7fbee1c478f66898dabc90db138907bdc57c0797"
+      "sha256": "2222be8bf64dea539629795ba9d9f5b716a95e5f2c2250140651974cc064df30"
     },
     {
       "file": "link.xml",
@@ -121,7 +125,7 @@
     },
     {
       "file": "D6Cli.cs",
-      "sha256": "b87677cc336d488db3dfd40fba32a41fe489c8c9147904fdf9381bfb3b4a7ef8"
+      "sha256": "dc7a0b45229e86ad519fad4c99fb12d80e207f3faf90f2228511b6d65b15a577"
     },
     {
       "file": "ClubStadiumProfiles.cs",
@@ -139,8 +143,8 @@
   "files": [
     {
       "file": "unity-web.data",
-      "bytes": 55090735,
-      "sha256": "a0191474d2c1ba2b774a42851c5415dff80f8835d27297e9c4014ad7a9c15fba"
+      "bytes": 55558795,
+      "sha256": "8065e1385bfa93644f8608327d708c802f1d406ca5b389fdac64fc411010b2b0"
     },
     {
       "file": "unity-web.framework.js",
@@ -150,12 +154,12 @@
     {
       "file": "unity-web.loader.js",
       "bytes": 27914,
-      "sha256": "57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03"
+      "sha256": "aed089a2e2daaa427d3f95f5b0502eca6942a388fe7e7d82d348fa5f6be5d577"
     },
     {
       "file": "unity-web.wasm",
-      "bytes": 35260739,
-      "sha256": "902b92b0a9768aa2538a7082f9343121ceec5e0f4d66cb02d4d37d819ef6fdcd"
+      "bytes": 35422698,
+      "sha256": "6617c13f764dbeef8b9f1b144807213d5c52cc102a90901c2ee06eedac879d35"
     }
   ]
 }

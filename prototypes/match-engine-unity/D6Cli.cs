@@ -32,7 +32,9 @@ public static class D6Cli {
             Debug.Log("[D6Cli] FootballDuelTests: "+FootballDuelTests.Run(repo,output));
             Debug.Log("[D6Cli] FootballIterationTests: "+FootballIterationTests.Run(repo,output));
             Debug.Log("[D6Cli] FootballKeeperTests: "+FootballKeeperTests.Run(repo,output));
-            Debug.Log("[D6Cli] FootballPresentation119Tests: "+FootballPresentation119Tests.Run(repo));
+            Debug.Log("[D6Cli] FootballPresentation119Tests: "+FootballPresentation119Tests.Run(repo,output));
+            // Natural-motion quality gates on the actual rig (controlled fixtures at 30/60/120 Hz and captured native pictures; no rendering).
+            Debug.Log("[D6Cli] NaturalMotionGates: "+NaturalMotionDiagnostics.Run(repo,output,"natural-motion-gates",false));
             Done(true,"tests finished");
         }catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
@@ -78,16 +80,39 @@ public static class D6Cli {
         try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,FootballKeeperTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
     // Keeper iteration renders from actual captured native pictures; needs a graphics device.
+    // -d6output <folder> [-d6fixture <repository-relative keeper fixture json>].
     public static void KeeperEvidence(){
         string repo=null,message=null;bool ok=false;
-        try{repo=Repo();ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=KeeperEvidenceDiagnostics.Run(repo,Arg("-d6output"));ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        try{repo=Repo();ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=KeeperEvidenceDiagnostics.Run(repo,Arg("-d6output"),Arg("-d6fixture"));ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
         finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
         Done(ok,message);
     }
-    public static void OffsideTests(){try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,"checks="+OffsidePresentation119Tests.Run(Repo()).Length);}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}}
+    public static void OffsideTests(){try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,"checks="+OffsidePresentation119Tests.Run(Repo(),false,Arg("-d6output")).Length);}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}}
     public static void OffsideEvidence(){
         string repo=null;bool ok=false;string message=null;
-        try{repo=Repo();ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message="checks="+OffsidePresentation119Tests.Run(repo,true).Length;ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
+        try{repo=Repo();ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message="checks="+OffsidePresentation119Tests.Run(repo,true,Arg("-d6output")).Length;ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
+        Done(ok,message);
+    }
+    // Natural-motion evidence on the actual rig (controlled and captured native
+    // pictures): -d6output <folder> -d6label <name> [-d6gates report]. Renders
+    // images and GIF recordings only with a graphics device; quality gates fail
+    // the run unless -d6gates report.
+    public static void NaturalMotion(){
+        string repo=null,message=null;bool ok=false,render=SystemInfo.graphicsDeviceType!=UnityEngine.Rendering.GraphicsDeviceType.Null;
+        try{repo=Repo();if(render)ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=NaturalMotionDiagnostics.Run(repo,Arg("-d6output"),Arg("-d6label","candidate"),render,Arg("-d6gates","enforce")!="report");ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        finally{if(repo!=null&&render)ProbeWebBuild.Restore(repo);}
+        Done(ok,message);
+    }
+    // Writes prototypes/match-engine-unity/FootballSoleContour.cs from the rig's boots.
+    public static void SoleContour(){
+        try{Done(true,FootballSetup.GenerateSoleContour(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+    // Small mobile views: four home stadium types, five match cameras,
+    // standard/reduced at 844x390, 931x448 and 1280x720 (-d6output <folder>).
+    public static void SmallViews(){
+        string repo=null,message=null;bool ok=false,render=SystemInfo.graphicsDeviceType!=UnityEngine.Rendering.GraphicsDeviceType.Null;
+        try{repo=Repo();if(render)ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=SmallViewDiagnostics.Run(repo,Arg("-d6output"),render);ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        finally{if(repo!=null&&render)ProbeWebBuild.Restore(repo);}
         Done(ok,message);
     }
     public static void TeamRings(){

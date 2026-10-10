@@ -23,14 +23,27 @@ public static class FootballMomentumTests {
             bool braking=false;for(int frame=1;frame<=frequency*2/3;frame++){float speed=Mathf.Max(0,4-frame*6f/frequency);point+=Vector3.forward*speed/frequency;launch.Sample(point,Vector3.forward,2+(double)frame/frequency,false,false);braking|=launch.Mode=="brake"&&launch.ForwardLean<0;}
             Require(braking,"Progressive real deceleration produces braking and recoil at "+frequency+" Hz");
             foreach(int direction in new[]{-1,1}){
-                var turn=new FootballLocomotion();point=Vector3.zero;turn.Sample(point,Vector3.forward,10,false,false);bool seen=false;
-                for(int frame=1;frame<=frequency/3;frame++){var facing=Facing(direction*180f*frame/frequency);point+=facing*3/frequency;turn.Sample(point,facing,10+(double)frame/frequency,false,false);seen|=turn.Mode==(direction<0?"turn-left":"turn-right");}
-                Require(seen&&turn.StrideMode=="run"&&turn.MotionWeight>0&&turn.MotionWeight<1,"Incremental moving turn retains its stride at "+frequency+" Hz / "+direction);
+                // Natural-motion contract: a moving direction change shows one
+                // turn episode over the retained stride (blend weight strictly
+                // between 0 and 1), then banks without restarting the turn.
+                var turn=new FootballLocomotion();point=Vector3.zero;turn.Sample(point,Vector3.forward,10,false,false);bool seen=false;float blend=1;int episodes=0;string previous="";
+                for(int frame=1;frame<=frequency/3;frame++){var facing=Facing(direction*180f*frame/frequency);point+=facing*3/frequency;turn.Sample(point,facing,10+(double)frame/frequency,false,false);
+                    bool turning=turn.Mode.StartsWith("turn-");if(turning){seen|=turn.Mode==(direction<0?"turn-left":"turn-right");blend=Mathf.Min(blend,turn.MotionWeight);if(!previous.StartsWith("turn-"))episodes++;}previous=turn.Mode;}
+                Require(seen&&episodes==1&&turn.StrideMode=="run"&&blend>0&&blend<1,"Incremental moving turn retains its stride at "+frequency+" Hz / "+direction);
                 Require(turn.TurnLean*direction< -1&&Mathf.Abs(turn.TurnLean)<=6,"Observed momentum banks toward the turn at "+frequency+" Hz / "+direction);
                 var phase=turn.StridePhase;var lean=turn.TurnLean;var forwardLean=turn.ForwardLean;var mode=turn.Mode;double clock=10+(double)(frequency/3)/frequency;
                 turn.Sample(point+Vector3.one,Facing(-90),clock,false,false,0);
                 Require(turn.StridePhase==phase&&turn.TurnLean==lean&&turn.ForwardLean==forwardLean&&turn.Mode==mode,"Paused native time freezes stride and momentum at "+frequency+" Hz / "+direction);
                 turn.Sample(point,Facing(0),2,false,false,1);Require(turn.Mode=="idle"&&turn.Acceleration==0&&turn.TurnLean==0&&turn.ForwardLean==0,"Replay seek clears momentum at "+frequency+" Hz / "+direction);
+            }
+            // A steady arc (150 deg/s at 4 m/s for 2 s) starts at most one turn
+            // episode and keeps banking; the stride never restarts.
+            foreach(int direction in new[]{-1,1}){
+                var arc=new FootballLocomotion();point=Vector3.zero;arc.Sample(point,Vector3.forward,20,false,false);for(int frame=1;frame<=frequency/2;frame++){point+=Vector3.forward*4f/frequency;arc.Sample(point,Vector3.forward,20+(double)frame/frequency,false,false);}
+                int episodes=0;string previous=arc.Mode;double stride=arc.StridePhase;bool monotonic=true;float bank=0;
+                for(int frame=1;frame<=frequency*2;frame++){var facing=Facing(direction*150f*frame/frequency);point+=facing*4f/frequency;arc.Sample(point,facing,20.5+(double)frame/frequency,false,false);
+                    if(arc.Mode.StartsWith("turn-")&&!previous.StartsWith("turn-"))episodes++;previous=arc.Mode;monotonic&=arc.StridePhase>stride;stride=arc.StridePhase;if(frame>frequency)bank=Mathf.Max(bank,-arc.TurnLean*direction);}
+                Require(episodes<=1&&monotonic&&arc.StrideMode=="run"&&bank>1,"Steady moving arc keeps one stride and banks without restarting turns at "+frequency+" Hz / "+direction);
             }
         }
         var absent=new FootballLocomotion();absent.Sample(Vector3.zero,Vector3.forward,0,false,false);absent.Sample(Vector3.zero,Vector3.forward,.2,false,false);Require(absent.RecoveryLean==0,"Missing freshness never fabricates a tired stance");

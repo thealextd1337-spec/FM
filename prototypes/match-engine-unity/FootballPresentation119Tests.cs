@@ -12,7 +12,9 @@ using Doppel6.Probe;
 // strides. All inputs are controlled view pictures, not simulated match events.
 public static class FootballPresentation119Tests {
     [Serializable] class Report {public int passed;public string sourceId;public string[] checks;public float largestHoldError,largestRootError,diagonalJointChange;}
-    public static string Run(string repo){
+    // outputFolder: repository-relative evidence folder (-d6output); without it the
+    // historical iteration-119 folder remains the default.
+    public static string Run(string repo,string outputFolder=null){
         var checks=new List<string>();void Require(bool ok,string name){if(!ok)throw new Exception("Presentation119: "+name);checks.Add(name);}
         var groundShadow=ProbeBridge.BallShadowStyle(WorldBallMotion.Radius);var airShadow=ProbeBridge.BallShadowStyle(5);
         Require(Math.Abs(groundShadow.diameter-.54f)<1e-6f&&groundShadow.strength>.8f,"ground ball has a compact strong turf shadow");
@@ -61,10 +63,18 @@ public static class FootballPresentation119Tests {
             var diagonal=forward;diagonal.strideYaw=motion.StrideYaw;animation.Sample(diagonal,10,true);report.diagonalJointChange=Vector3.Distance(foot,Bone("RightFoot").position);Require(report.diagonalJointChange>.04f,"actual diagonal rig stride differs from straight running");
             var heldFoot=Bone("RightFoot").position;animation.Sample(diagonal,10);Require(Vector3.Distance(heldFoot,Bone("RightFoot").position)<.0001f,"pause freezes directional joints");
             animation.Sample(forward,11,true);animation.Sample(diagonal,10,true);Require(Vector3.Distance(heldFoot,Bone("RightFoot").position)<.0001f,"seek restores directional joints");
-            motion.Sample(new Vector3(.6f,0,0),Vector3.forward,.2,false,false);Require(motion.StrideMode=="back"&&Math.Abs(motion.StrideYaw)>40,"diagonal retreat uses backward clip plus observed diagonal component");
+            // A sustained diagonal retreat (smoothed travel, hysteresis) selects the
+            // backward family; the stride direction is relative to the measured
+            // backward clip axis (about 180 deg).
+            var retreat=new Vector3(.3f,0,.3f);for(int k=2;k<=8;k++){retreat+=new Vector3(.3f,0,-.3f);motion.Sample(retreat,Vector3.forward,k*.1,false,false,-1,0,180);}
+            Require(motion.StrideMode=="back"&&Math.Abs(motion.StrideYaw)>40&&Math.Abs(motion.StrideYaw)<50,"sustained diagonal retreat uses backward clip plus observed diagonal component");
+            // Travel that flutters around the old 117 deg boundary keeps one stride family.
+            var flutter=new FootballLocomotion();var at=Vector3.zero;int switches=0;string family=null;
+            for(int k=0;k<=80;k++){float angle=117+9*Mathf.Sin(k*.41f)+5*Mathf.Sin(k*.97f+1);at+=Quaternion.AngleAxis(angle,Vector3.up)*Vector3.forward*(2.6f*.05f);flutter.Sample(at,Vector3.forward,k*.05,false,false,-1,0,flutter.StrideMode=="back"?180:0);if(k>8){if(family!=null&&flutter.StrideMode!=family)switches++;family=flutter.StrideMode;}}
+            Require(switches<=1,"travel fluttering around the backward boundary keeps its stride family (switches="+switches+")");
             motion.Sample(Vector3.zero,Vector3.forward,-1,false,false);Require(motion.StrideYaw==0,"seek resets stale directional travel");
         }finally{graph.Destroy();EditorSceneManager.ClosePreviewScene(scene);}
-        checks.AddRange(OffsidePresentation119Tests.Run(repo));report.passed=checks.Count;report.checks=checks.ToArray();report.sourceId=ProbeBuildIdentity.SourceId;var folder=Path.Combine(repo,"outputs/3d-quality/iteration-119");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"presentation-tests.json"),JsonUtility.ToJson(report,true));return "passed="+checks.Count;
+        checks.AddRange(OffsidePresentation119Tests.Run(repo,false,outputFolder));report.passed=checks.Count;report.checks=checks.ToArray();report.sourceId=ProbeBuildIdentity.SourceId;var folder=Path.Combine(repo,outputFolder??"outputs/3d-quality/iteration-119");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"presentation-tests.json"),JsonUtility.ToJson(report,true));return "passed="+checks.Count;
     }
 }
 #endif

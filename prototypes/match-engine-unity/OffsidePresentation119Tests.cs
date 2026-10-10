@@ -8,7 +8,7 @@ using Doppel6.Probe;
 // Actual inbox, playback, renderer and lateral keeper rig; controlled view facts.
 public static class OffsidePresentation119Tests {
     [Serializable] class Report {public string sourceId;public int passed;public string[] checks,images;}
-    public static string[] Run(string repo,bool capture=false){
+    public static string[] Run(string repo,bool capture=false,string outputFolder=null){
         var checks=new List<string>();var images=new List<string>();
         void Require(bool ok,string name){if(!ok)throw new Exception("Offside119: "+name);checks.Add(name);}
         var bridge=UnityEngine.Object.FindFirstObjectByType<ProbeBridge>()??throw new Exception("No ProbeBridge");
@@ -17,7 +17,7 @@ public static class OffsidePresentation119Tests {
         foreach(string missing in new[]{"{}","{\"offside\":null}"}){var parsed=WorldPhasePresence.ParseFrame(missing);Require(!parsed.offsideKnown&&parsed.offside==null,"missing or null wire offside stays hidden");}
         var zero=WorldPhasePresence.ParseFrame("{\"offside\":{\"lineX\":0}}");Require(zero.offsideKnown&&zero.offside.lineX==0,"explicit midfield offside is known");
         var raw=File.ReadAllText(Path.Combine(repo,"outputs/platform/world-unity/contract-fixture.json"));
-        var folder=Path.Combine(repo,"outputs/3d-quality/iteration-119/offside");Directory.CreateDirectory(folder);
+        var folder=Path.Combine(repo,outputFolder??"outputs/3d-quality/iteration-119","offside");Directory.CreateDirectory(folder);
         bool logging=Debug.unityLogger.logEnabled;
         void Send(WorldCommand c){var json=JsonUtility.ToJson(c);if(c.frame!=null&&c.frame.offside==null||c.config!=null&&c.config.initial.offside==null)json=json.Replace("\"offside\":{\"lineX\":0.0}","\"offside\":null").Replace("\"offside\":{\"lineX\":0}","\"offside\":null");bridge.WorldCommand(json);}
         void Shot(string name){
@@ -49,11 +49,15 @@ public static class OffsidePresentation119Tests {
                 f.clock=2;f.sequence=++sequence;p.position[0]=-20;Send(new WorldCommand{kind="frame",frame=f});
                 for(int tick=0;tick<8;tick++){f.clock+=.05;f.sequence=++sequence;p.position[0]+=sign*.1;Send(new WorldCommand{kind="frame",frame=f});}
                 var pose=(FootballAnimation.Pose)typeof(ProbeBridge).GetMethod("WorldFootballPose",flags).Invoke(bridge,new object[]{p,Field<WorldFrame>("displayed"),index});
-                Require(pose.clip==bridge.keeperShuffleClip&&pose.strideYaw==0,"keeper side clip avoids duplicate swivel / "+width+" / "+sign);
+                // The side step is procedural on the ready stance; it adds no pelvis or leg swivel on top.
+                Require(pose.clip==bridge.keeperClip&&pose.strideYaw==0&&Mathf.Abs(pose.pelvisYaw)<1&&Mathf.Abs(pose.legYaw)<1&&pose.sideWeight>.5f&&Math.Sign(pose.sidePhase)==sign,"keeper side step avoids duplicate swivel / "+width+" / "+sign);
                 var actor=Field<List<Transform>>("actors")[index];var bone=Array.Find(actor.GetComponentsInChildren<Transform>(),t=>t.name=="mixamorig:RightFoot");var foot=bone.position;var root=actor.position;var rot=actor.rotation;
-                var anim=Field<List<FootballAnimation>>("football")[index];anim.Sample(pose,f.clock,true);Require(Vector3.Distance(foot,bone.position)<.0001f,"actual rendered foot matches authored lateral pose / "+width+" / "+sign);
-                anim.Sample(pose,f.clock);Require(Vector3.Distance(foot,bone.position)<.0001f,"pause freezes lateral joints / "+width+" / "+sign);
-                var wrong=pose;wrong.strideYaw=sign*75;anim.Sample(wrong,f.clock,true);Require(Vector3.Distance(foot,bone.position)>.025f,"actual rig detects old extra swivel / "+width+" / "+sign);anim.Sample(pose,f.clock,true);
+                // The rendered foot is the authored lateral pose plus at most the
+                // planted-foot lock of the received sequence (frame memory by design).
+                var anim=Field<List<FootballAnimation>>("football")[index];float lockOffset=anim.FootLockOffset;anim.Sample(pose,f.clock,true);var pure=bone.position;
+                Require(Vector3.Distance(foot,pure)<=lockOffset+.02f,"actual rendered foot matches authored lateral pose up to the planted-foot lock / "+width+" / "+sign);
+                anim.Sample(pose,f.clock);Require(Vector3.Distance(pure,bone.position)<.0001f,"pause freezes lateral joints / "+width+" / "+sign);
+                var wrong=pose;wrong.pelvisYaw=sign*45;wrong.legYaw=sign*30;anim.Sample(wrong,f.clock,true);Require(Vector3.Distance(pure,bone.position)>.025f,"actual rig detects an extra swivel / "+width+" / "+sign);anim.Sample(pose,f.clock,true);
                 Require(root==actor.position&&Quaternion.Angle(rot,actor.rotation)<.001f,"presentation retains native root and facing / "+width+" / "+sign);
             }
             var oldLine=line;config.initial.sequence=1;Send(new WorldCommand{kind="load",config=config});Require(!oldLine||!oldLine.gameObject.activeInHierarchy,"reload retires old line hierarchy / "+width);

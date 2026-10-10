@@ -132,11 +132,18 @@ public static class FootballDuelTests {
             // Keeper side steps: two received pictures with lateral travel.
             var locomotion=new FootballLocomotion();((FootballLocomotion[])typeof(ProbeBridge).GetField("worldLocomotion",flags).GetValue(bridge))[0]=locomotion;
             WorldPose Keeper(double x){return new WorldPose{id=goalie.id,number=goalie.number,position=new[]{x,0,0},facing=new double[]{0,0,1},action="idle",actionId="idle",duration=1};}
-            select.Invoke(bridge,new object[]{Keeper(0),Frame(30),0});var left=(FootballAnimation.Pose)select.Invoke(bridge,new object[]{Keeper(-.08),Frame(30.05),0});
-            Require(left.clip==c["shuffle"]&&locomotion.Lateral<-.9f,"keeper moving to its left side-steps with keeper_shuffle_meshy");
-            var right=(FootballAnimation.Pose)select.Invoke(bridge,new object[]{Keeper(0),Frame(30.1),0});Require(right.clip==c["shuffle"]&&right.time<=0,"keeper moving right plays the side step reversed");
-            var forward=new WorldPose{id=goalie.id,number=goalie.number,position=new[]{0,0,.1},facing=new double[]{0,0,1},action="idle",actionId="idle",duration=1};
-            var straight=(FootballAnimation.Pose)select.Invoke(bridge,new object[]{forward,Frame(30.15),0});Require(straight.clip!=c["shuffle"],"forward keeper movement keeps the ordinary stride");
+            // Natural-motion contract: keeper_shuffle_meshy portrays only about
+            // 0.19 m/s of lateral travel on this rig, so sustained side steps use
+            // the keeper ready stance with the procedural side step, whose cycles
+            // follow the received lateral distance (right leads to the right;
+            // mirrored, never a reversed clip). A rotated forward clip is never used.
+            select.Invoke(bridge,new object[]{Keeper(0),Frame(30),0});FootballAnimation.Pose left=default;double x=0;
+            for(int k=1;k<=6;k++){x-=.08;left=(FootballAnimation.Pose)select.Invoke(bridge,new object[]{Keeper(x),Frame(30+k*.05),0});}
+            Require(left.clip==c["keeper"]&&locomotion.Lateral<-.9f&&locomotion.StrideMode=="side"&&left.sideWeight>.5f&&left.sidePhase<0&&left.keeperStance,"keeper moving to its left side-steps on its ready stance (procedural, left foot leads)");
+            double before=left.sidePhase;FootballAnimation.Pose right=default;for(int k=1;k<=8;k++){x+=.08;right=(FootballAnimation.Pose)select.Invoke(bridge,new object[]{Keeper(x),Frame(30.3+k*.05),0});}
+            Require(right.clip==c["keeper"]&&right.sidePhase>before&&locomotion.Lateral>.9f&&right.sideWeight>.5f,"keeper moving right advances the mirrored side step (right foot leads)");
+            FootballAnimation.Pose straight=default;double z=0;for(int k=1;k<=10;k++){z+=.1;var forward=new WorldPose{id=goalie.id,number=goalie.number,position=new[]{x,0,z},facing=new double[]{0,0,1},action="idle",actionId="idle",duration=1};straight=(FootballAnimation.Pose)select.Invoke(bridge,new object[]{forward,Frame(30.7+k*.05),0});}
+            Require(straight.clip!=c["shuffle"]&&locomotion.StrideMode!="side"&&straight.sideWeight<.2f,"forward keeper movement keeps the ordinary stride");
         }finally{UnityEngine.Object.DestroyImmediate(host);UnityEngine.Object.DestroyImmediate(ballView.gameObject);}
     }
 }

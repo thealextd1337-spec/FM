@@ -176,6 +176,8 @@ Belege: `candidate-offer-commit-screen.json`, `candidate-offer-commit-summary.js
 
 ## Diagnostischer Dauerpilot: globale Konstante nur auf isolierten Seiten
 
+Nach diesem Pilot hat der Nutzer am 10. Oktober **4–6 Minuten** pro vollständiger 3D-Partie ohne Taktikpausen gewählt. Etwa fünf Minuten ist die nächste Kalibrierungsmitte. Die folgenden `.39`-Versuche sind historische Diagnose und keine Umsetzung dieses gewählten Bereichs. Die neue Dauereinstellung muss Spielminuten und Periodengrenzen konsistent abbilden, ohne laufende Ball-/Laufaktionen einfach langsamer abzuspielen. Neue Partien erhalten ihren gespeicherten Vertrag; alte aktive Partien und frühere Ergebnisse werden nicht umgerechnet. Ziel 10–16 Schüsse insgesamt bleibt separat zu messen.
+
 Die Dauerfrage wird zunächst unabhängig von sämtlichen Stage6–9-Kandidaten geprüft. Auf einer isolierten Seite ersetzt ausschließlich eine Request-Route in `game.js` die lexikalische Konstante `MATCH_SPEED=.78` durch `.39`. Alle anderen Quellen bleiben Stock. Der Versuch umfasst einen Seed auf Standard5 und Standard6, jeweils Stock, hypothetischen Kandidaten und tatsächliche JSON-Fortsetzung: sechs volle Partien. Jede Partie wird neu mit den vorhandenen 119-Markern erzeugt. Dies ist keine Implementierung einer nur für neue Partien geltenden Dauer und enthält keine Freigabe für alte Spielstände.
 
 | Standardfeld, Seed0 | Simulation Stock / .39 | Abschlüsse | Aufs Tor | Tore | Pässe | Bestätigte Pässe |

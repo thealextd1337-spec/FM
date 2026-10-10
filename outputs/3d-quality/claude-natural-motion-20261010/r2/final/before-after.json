@@ -1,0 +1,532 @@
+{
+ "note": "baseline (HEAD sources) / r1 candidate-19 / r2 final, same controlled fixtures at 60 Hz. glide = old definition (any low sole); supportGlide = weight-bearing sole only (r2 metric). doubleFloatSlow: r2 measures heel, toe base and toe tip (baseline/candidate-19: heel and toe base only). native-*: locomotion pictures of the captured native match.",
+ "rows": [
+  {
+   "case": "walk-fwd/cruise",
+   "glide": [
+    0.159,
+    0.054,
+    0.051
+   ],
+   "supportGlideFinal": 0,
+   "jointSpeed": [
+    454,
+    476,
+    444
+   ],
+   "doubleFloatSlow": [
+    0,
+    4,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "jog-fwd/cruise",
+   "glide": [
+    0.414,
+    0.071,
+    0.071
+   ],
+   "supportGlideFinal": 0.071,
+   "jointSpeed": [
+    526,
+    575,
+    575
+   ],
+   "doubleFloatSlow": [
+    0,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "walk-right/cruise",
+   "glide": [
+    0.466,
+    0.142,
+    0.138
+   ],
+   "supportGlideFinal": 0.136,
+   "jointSpeed": [
+    453,
+    826,
+    860
+   ],
+   "doubleFloatSlow": [
+    0,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "jog-right/cruise",
+   "glide": [
+    0.979,
+    0.052,
+    0.052
+   ],
+   "supportGlideFinal": 0.052,
+   "jointSpeed": [
+    526,
+    703,
+    703
+   ],
+   "doubleFloatSlow": [
+    0,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "jog-right/stop",
+   "glide": [
+    3.302,
+    0.575,
+    0.502
+   ],
+   "supportGlideFinal": 0.502,
+   "jointSpeed": [
+    4578,
+    2542,
+    1269
+   ],
+   "doubleFloatSlow": [
+    0,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    1
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "jog-left/stop",
+   "glide": [
+    3.209,
+    0.375,
+    0.251
+   ],
+   "supportGlideFinal": 0.251,
+   "jointSpeed": [
+    4503,
+    2427,
+    1151
+   ],
+   "doubleFloatSlow": [
+    0,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    1
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "walk-left/cruise",
+   "glide": [
+    0.47,
+    0.135,
+    0.094
+   ],
+   "supportGlideFinal": 0.09,
+   "jointSpeed": [
+    453,
+    917,
+    940
+   ],
+   "doubleFloatSlow": [
+    0,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "walk-back/cruise",
+   "glide": [
+    0.663,
+    0.218,
+    0.163
+   ],
+   "supportGlideFinal": 0.052,
+   "jointSpeed": [
+    530,
+    526,
+    589
+   ],
+   "doubleFloatSlow": [
+    37,
+    34,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "walk-back-right/cruise",
+   "glide": [
+    0.657,
+    0.327,
+    0.181
+   ],
+   "supportGlideFinal": 0.035,
+   "jointSpeed": [
+    530,
+    506,
+    667
+   ],
+   "doubleFloatSlow": [
+    37,
+    31,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "jog-back-left/stop",
+   "glide": [
+    3.134,
+    0,
+    1.07
+   ],
+   "supportGlideFinal": 0.434,
+   "jointSpeed": [
+    2775,
+    2430,
+    830
+   ],
+   "doubleFloatSlow": [
+    3,
+    9,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "sprint-right/stop",
+   "glide": [
+    1.865,
+    0.297,
+    0.143
+   ],
+   "supportGlideFinal": 0.143,
+   "jointSpeed": [
+    4527,
+    750,
+    750
+   ],
+   "doubleFloatSlow": [
+    0,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "curve-150/cruise",
+   "glide": [
+    3.555,
+    0.144,
+    0.144
+   ],
+   "supportGlideFinal": 0.144,
+   "jointSpeed": [
+    1819,
+    1152,
+    1146
+   ],
+   "doubleFloatSlow": [
+    0,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    5.83,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "noise-117/cruise",
+   "glide": [
+    3.654,
+    0,
+    0
+   ],
+   "supportGlideFinal": 0,
+   "jointSpeed": [
+    8125,
+    587,
+    580
+   ],
+   "doubleFloatSlow": [
+    0,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    7,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "direction-changes/whole",
+   "glide": [
+    1.67,
+    0.346,
+    0.339
+   ],
+   "supportGlideFinal": 0.343,
+   "jointSpeed": [
+    6488,
+    1748,
+    1874
+   ],
+   "doubleFloatSlow": [
+    0,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    0.92,
+    0.46,
+    0.46
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "keeper-shuffle-1.1/cruise",
+   "glide": [
+    1.497,
+    0.027,
+    0.027
+   ],
+   "supportGlideFinal": 0.003,
+   "jointSpeed": [
+    2222,
+    290,
+    290
+   ],
+   "doubleFloatSlow": [
+    45,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "carrier-diag-right/cruise",
+   "glide": [
+    0.46,
+    0.068,
+    0.068
+   ],
+   "supportGlideFinal": 0.068,
+   "jointSpeed": [
+    2817,
+    613,
+    613
+   ],
+   "doubleFloatSlow": [
+    0,
+    0,
+    0
+   ],
+   "turnStartsPerS": [
+    0,
+    0,
+    0
+   ],
+   "familySwitches": [
+    0,
+    0,
+    0
+   ],
+   "handsHighFinal": 0,
+   "soleBelowFinal": 0
+  },
+  {
+   "case": "native-160112-field-1/cruise",
+   "glide": [
+    0,
+    0.874,
+    0.889
+   ],
+   "supportGlideFinal": 0.799,
+   "jointSpeed": [
+    0,
+    5737,
+    4264
+   ],
+   "doubleFloatSlow": [
+    0,
+    84,
+    4
+   ],
+   "turnStartsPerS": [
+    0,
+    0.68,
+    0.68
+   ],
+   "familySwitches": [
+    0,
+    13,
+    24
+   ],
+   "handsHighFinal": 53,
+   "soleBelowFinal": 0
+  }
+ ]
+}

@@ -93,7 +93,8 @@ public partial class ProbeBridge {
             if(teamGroundRings!=null)teamGroundRings[i].position=new Vector3(position.x,.045f,position.z);
             var direction=V(p.facing);direction.y=0;if(direction.sqrMagnitude>.0001)actors[i].rotation=Quaternion.LookRotation(direction);
             var desired=runSpeeds[i]>.2?runClip:identity.keeper?keeperClip:idleClip;
-            if(lastWorldClock<0||f.clock<lastWorldClock)animationTimes[i]=f.clock;
+            // A seek starts from rest: no stale speed from the abandoned time.
+            if(lastWorldClock<0||f.clock<lastWorldClock){animationTimes[i]=f.clock;runSpeeds[i]=0;}
             if(lastWorldClock>=0&&f.clock>lastWorldClock)animationTimes[i]+=(f.clock-lastWorldClock)*Math.Clamp(runSpeeds[i]/3.2,.5,1.65);
             var pose=WorldFootballPose(p,f,i);football[i].Sample(pose,f.clock,lastWorldClock<0||f.clock<lastWorldClock);
             if(pose.ballHeld)heldIndex=i;

@@ -1,5 +1,5 @@
 {
-  "sourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+  "sourceId": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
   "sources": [
     "prototypes/match-engine-unity/ProbeSimulation.cs",
     "prototypes/match-engine-unity/ProbeBridge.cs",
@@ -17,6 +17,7 @@
     "prototypes/match-engine-unity/FootballPresentation.cs",
     "prototypes/match-engine-unity/FootballLocomotion.cs",
     "prototypes/match-engine-unity/FootballSetup.cs",
+    "prototypes/match-engine-unity/FootballSoleContour.cs",
     "work/platform/assets/contact-pilot-manifest.json",
     "work/platform/engine-probe/web/play.js",
     "work/platform/engine-probe/web/play-catalog.json",

@@ -1,0 +1,50 @@
+{
+ "recomputed": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+ "sourceIdentity": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+ "probeBuildIdentity": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+ "manifest": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+ "sources": 41,
+ "build": {
+  "loaderUrl": {
+   "file": "outputs/platform/unity-web/Build/unity-web.loader.js",
+   "sha256": "aed089a2e2daaa427d3f95f5b0502eca6942a388fe7e7d82d348fa5f6be5d577",
+   "bytes": 27914,
+   "matches": true
+  },
+  "dataUrl": {
+   "file": "outputs/platform/unity-web/Build/unity-web.data",
+   "sha256": "8065e1385bfa93644f8608327d708c802f1d406ca5b389fdac64fc411010b2b0",
+   "bytes": 55558795,
+   "matches": true
+  },
+  "frameworkUrl": {
+   "file": "outputs/platform/unity-web/Build/unity-web.framework.js",
+   "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+   "bytes": 300906,
+   "matches": true
+  },
+  "codeUrl": {
+   "file": "outputs/platform/unity-web/Build/unity-web.wasm",
+   "sha256": "6617c13f764dbeef8b9f1b144807213d5c52cc102a90901c2ee06eedac879d35",
+   "bytes": 35422698,
+   "matches": true
+  }
+ },
+ "sourceFiles": {
+  "ok": 32,
+  "bad": []
+ },
+ "unityProject": {
+  "identical": 59,
+  "differ": []
+ },
+ "evidence": {
+  "naturalMotion": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+  "keeperChains": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+  "smallViews": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+  "presentationTests": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+  "gatesInTests": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032"
+ },
+ "manifestSha256": "b7d544824c39a514a2fff3c085e5e10d26323b677e311b4e44c92538a0541f52",
+ "consistent": true
+}

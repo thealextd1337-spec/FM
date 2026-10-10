@@ -83,6 +83,19 @@
  .fl-competition-report-teamstats>div{grid-template-columns:minmax(0,1fr) 42px 42px;gap:8px}
 }
 
+/* Leaderboards remain compact ranking rows instead of generic mobile cards. */
+@media(max-width:900px){
+ #v61-world-screen .fl-content .fl-competitions .v46-leader-table tbody tr{grid-template-columns:26px minmax(0,1fr) minmax(36px,max-content);grid-template-rows:auto auto;gap:0 8px;padding:8px 10px;align-items:center}
+ #v61-world-screen .fl-content .fl-competitions .v46-leader-table tbody :is(td,th){width:auto}
+ #v61-world-screen .fl-content .fl-competitions .v46-leader-table tbody :is(td,th)::before{display:none}
+ #v61-world-screen .fl-content .fl-competitions .v46-leader-table tbody td:first-child{grid-column:1;grid-row:1/3;align-self:center;font-weight:650;color:var(--fl-muted)}
+ #v61-world-screen .fl-content .fl-competitions .v46-leader-table tbody th[scope=row]{grid-column:2;grid-row:1;font-size:14px}
+ #v61-world-screen .fl-content .fl-competitions .v46-leader-table tbody td:nth-child(3){grid-column:2;grid-row:2;font-size:12px;line-height:1.4;color:var(--fl-muted)}
+ #v61-world-screen .fl-content .fl-competitions .v46-leader-table tbody td:last-child{grid-column:3;grid-row:1/3;align-self:center;text-align:right!important;font-size:18px;font-weight:750;font-variant-numeric:tabular-nums}
+ #v61-world-screen .fl-content .fl-competitions .v46-leader-player{display:flex;align-items:center;gap:6px;min-height:44px;padding:4px 0;text-align:left;line-height:1.35}
+ #v61-world-screen .fl-content .fl-competitions .v46-leader-player .flag-icon{width:20px;height:auto;align-self:center}
+}
+
 /* Subtle outcome colour belongs to the displayed match score, including shootouts. */
 .fl-shell .fl-competitions .v119-calendar-score{display:inline-grid;text-align:center;padding:4px 8px;border-radius:5px}
 .fl-shell .fl-competitions [data-v119-outcome="win"] .v119-calendar-score{background:rgba(84,173,113,.16);color:var(--fl-ink)}

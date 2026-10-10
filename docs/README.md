@@ -1,6 +1,8 @@
 # Entwicklungsdokumentation
 
-- [Unity-Arbeitspaket für Claude](agentenauftraege/07-unity-qualitaet-claude.md): nächste 3D-Iteration mit natürlichen Bewegungen in acht Richtungen, flüssigen Übergängen, Keeperkontakten, kleinen Bildschirmen und Vereinsstadien. Vorabcheck nach dem Refresh abgeschlossen; [Quellbefunde](agentenauftraege/d6-claude-animation-vorabcheck-20261010.md) sind vorbereitet. Einmaliger Timer deaktiviert; Implementierung im getrennten Arbeitsbaum `work/claude-natural-motion` gestartet, Abschluss noch offen.
+- [Mobile Statistikranglisten](ui-redesign/mobile-statistics.md): kompakte Rang-/Spieler-/Wertansicht lokal umgesetzt und gebaut; 28 Layoutfälle und echte Quellseite geprüft. Noch nicht veröffentlicht, Android-Geräteabnahme separat.
+
+- [Unity-Arbeitspaket für Claude](agentenauftraege/07-unity-qualitaet-claude.md): natürliche Bewegungen in acht Richtungen, Übergänge, Keeperkontakte, kleine Bildschirme und Vereinsstadien. Vorabcheck abgeschlossen; begonnene Implementierung durch Providerlimit unterbrochen. [Gesicherter Zwischenstand, unabhängige Prüfung und konkrete Fortsetzung](agentenauftraege/d6-claude-animation-zwischenstand-20261010.md). Keine neue Animationsfreigabe; Timer deaktiviert.
 
 - [Release 119](release-119.md): veröffentlicht und live abgenommen; Keeperkontakte, Abwehrverfolgung, kompakte Matchsteuerung, Wettbewerbsdesigns und Saisonabschluss verbessert. 73 Release-/Live-Prüfungen, zwei vollständige native/Unity-Livepartien mit 14 identischen Zustands-/Buchungsteilen sowie neun mobile und 18 Beschriftungsprüfungen bestanden. Sechs lokale Vergleichspartien separat geprüft; physische Schussbalance und Android-Geräteabnahme bleiben offen.
 
