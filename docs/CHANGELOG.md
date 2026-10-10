@@ -2,7 +2,7 @@
 
 ## 10. Oktober 2026 – Release 120
 
-Statistikranglisten auf mobilen Bildschirmen kompakt angeordnet: Rang links, Spieler mit Flagge und Verein in der Mitte, Statistikwert rechts. Lange Namen, Tabellenbeschriftungen und Profilaktionen bleiben erhalten. 28 Layoutfälle, gezielte echte Quellseitenprüfung, Wettbewerbsprüfung und Build bestanden. Veröffentlichung auf Nutzerauftrag gestartet; Live-Abnahme folgt separat. [Umfang und Prüfgrenzen](ui-redesign/mobile-statistics.md).
+Statistikranglisten auf mobilen Bildschirmen kompakt angeordnet: Rang links, Spieler mit Flagge und Verein in der Mitte, Statistikwert rechts. Lange Namen, Tabellenbeschriftungen und Profilaktionen bleiben erhalten. Auf Nutzerauftrag veröffentlicht und live abgenommen: [Produktionslauf](https://github.com/thealextd1337-spec/FM/actions/runs/38042109660) erfolgreich, Version 120 und alle acht Live-Dateihashes bestätigt. Zusätzlich zu 28 lokalen Layoutfällen bestehen acht echte Live-Browserfälle mit jeweils allen 18 Wettbewerbskategorien, Profilaktion und unveränderter Karriere. Die Unity-Laufzeit aus Release 119 bleibt unverändert; die physische Android-Prüfung übernimmt der Nutzer. [Releasebericht und Nachweise](release-120.md), [Umfang und Prüfgrenzen](ui-redesign/mobile-statistics.md).
 
 ## 10. Oktober 2026 – Release 119
 

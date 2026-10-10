@@ -1,0 +1,97 @@
+{
+  "url": "https://fussball.cakamper.at/",
+  "version": 120,
+  "checkedAt": "2026-10-10T09:51:14.686Z",
+  "scope": "Actual live page in isolated Chromium; mobile viewport checks, no physical Android result",
+  "runnerCorrection": "The initial runner measured hidden default-filter categories at zero height. Select all competitions and categories through the real UI before checking every row; retain all 44px/layout assertions.",
+  "cases": [
+    {
+      "width": 320,
+      "theme": "light",
+      "rows": 76,
+      "categories": 18,
+      "firstRowHeight": 98.46875,
+      "maxRowHeight": 98.46875,
+      "status": "PASS"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "rows": 76,
+      "categories": 18,
+      "firstRowHeight": 98.46875,
+      "maxRowHeight": 98.46875,
+      "status": "PASS"
+    },
+    {
+      "width": 412,
+      "theme": "light",
+      "rows": 76,
+      "categories": 18,
+      "firstRowHeight": 79.578125,
+      "maxRowHeight": 79.578125,
+      "status": "PASS"
+    },
+    {
+      "width": 412,
+      "theme": "dark",
+      "rows": 76,
+      "categories": 18,
+      "firstRowHeight": 79.578125,
+      "maxRowHeight": 79.578125,
+      "status": "PASS"
+    },
+    {
+      "width": 844,
+      "theme": "light",
+      "rows": 76,
+      "categories": 18,
+      "firstRowHeight": 77.796875,
+      "maxRowHeight": 77.796875,
+      "status": "PASS"
+    },
+    {
+      "width": 844,
+      "theme": "dark",
+      "rows": 76,
+      "categories": 18,
+      "firstRowHeight": 77.796875,
+      "maxRowHeight": 77.796875,
+      "status": "PASS"
+    },
+    {
+      "width": 1280,
+      "theme": "light",
+      "rows": 76,
+      "categories": 18,
+      "firstRowHeight": 65,
+      "maxRowHeight": 65,
+      "status": "PASS"
+    },
+    {
+      "width": 1280,
+      "theme": "dark",
+      "rows": 76,
+      "categories": 18,
+      "firstRowHeight": 65,
+      "maxRowHeight": 65,
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "versionCheck": {
+    "footer": "Doppel 6 / PROTOTYP 1203D-Hilfe",
+    "help": 120
+  },
+  "visibleCompetitionTypes": [
+    "league",
+    "cup",
+    "europe"
+  ],
+  "profileAction": "PASS",
+  "status": "PASS",
+  "completedAt": "2026-10-10T09:51:23.840Z",
+  "layoutCases": 8,
+  "categoryLayoutChecks": 144,
+  "careerUnchanged": "PASS"
+}

@@ -1,6 +1,6 @@
 # Entwicklungsdokumentation
 
-- [Release 120 – mobile Statistikranglisten](release-120.md): kompakte Rang-/Spieler-/Wertansicht, lokal geprüft und zur Veröffentlichung vorbereitet. Live-Nachweis folgt separat.
+- [Release 120 – mobile Statistikranglisten](release-120.md): veröffentlicht und live abgenommen; Produktionslauf, Version 120 und alle acht Dateihashes bestätigt. Acht Live-Browserfälle mit jeweils 18 Kategorien, Profilaktion und unveränderter Karriere bestanden. Physische Android-Prüfung durch den Nutzer steht aus. [Live-Browsernachweis](../outputs/release-120/live-browser.json).
 
 - [Unity-Arbeitspaket für Claude](agentenauftraege/07-unity-qualitaet-claude.md): nächste 3D-Iteration mit natürlichen Bewegungen in acht Richtungen, flüssigen Übergängen, Keeperkontakten, kleinen Bildschirmen und Vereinsstadien. Vorabcheck nach dem Refresh abgeschlossen; [Quellbefunde](agentenauftraege/d6-claude-animation-vorabcheck-20261010.md) sind vorbereitet. Einmaliger Timer deaktiviert; Implementierung im getrennten Arbeitsbaum `work/claude-natural-motion` gestartet, Abschluss noch offen.
 
