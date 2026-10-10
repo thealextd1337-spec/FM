@@ -1,0 +1,23 @@
+{
+  "status": "prepared",
+  "version": 120,
+  "htmlSha256": "10544c64fd8c8696c85e842ba70595c866ae921e86db9fb4a1bea742a869d0ad",
+  "htmlBytes": 50874506,
+  "unitySourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+  "unityManifestSha256": "832f4c33f46010fa6d59d3723ccc51fa09d414a55cccbd2e53d67e88ba6b0fc7",
+  "scope": "Compact mobile statistics only; frozen Release 119 Unity runtime",
+  "localChecks": [
+    "28 layout cases",
+    "real source ranking and player profile",
+    "U01-D competition browser suite",
+    "statistics menu",
+    "world competition",
+    "progress footer",
+    "DE/EN documentation",
+    "26 exact embedded assets",
+    "4 FTPS and 6 Unity deployment tests",
+    "frozen Unity runtime hashes"
+  ],
+  "androidHardware": "User will check; no hardware result claimed",
+  "liveVerified": false
+}
