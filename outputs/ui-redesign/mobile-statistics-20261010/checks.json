@@ -1,0 +1,323 @@
+{
+  "scope": "Production renderer and adapter in an isolated browser layout fixture; not physical Android acceptance",
+  "cases": 28,
+  "results": [
+    {
+      "width": 320,
+      "height": 844,
+      "theme": "light",
+      "language": "de",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 115.265625,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 844,
+      "theme": "light",
+      "language": "en",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 115.265625,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 844,
+      "theme": "dark",
+      "language": "de",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 115.265625,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 320,
+      "height": 844,
+      "theme": "dark",
+      "language": "en",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 115.265625,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "language": "de",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 115.265625,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "language": "en",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 115.265625,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": "dark",
+      "language": "de",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 115.265625,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "theme": "dark",
+      "language": "en",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 115.265625,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 412,
+      "height": 844,
+      "theme": "light",
+      "language": "de",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 79.578125,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 412,
+      "height": 844,
+      "theme": "light",
+      "language": "en",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 79.578125,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 412,
+      "height": 844,
+      "theme": "dark",
+      "language": "de",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 79.578125,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 412,
+      "height": 844,
+      "theme": "dark",
+      "language": "en",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 79.578125,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 448,
+      "height": 844,
+      "theme": "light",
+      "language": "de",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 79.578125,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 448,
+      "height": 844,
+      "theme": "light",
+      "language": "en",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 79.578125,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 448,
+      "height": 844,
+      "theme": "dark",
+      "language": "de",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 79.578125,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 448,
+      "height": 844,
+      "theme": "dark",
+      "language": "en",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 79.578125,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "theme": "light",
+      "language": "de",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 77.796875,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "theme": "light",
+      "language": "en",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 77.796875,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "theme": "dark",
+      "language": "de",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 77.796875,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "theme": "dark",
+      "language": "en",
+      "firstRowBefore": 192.53125,
+      "firstRowAfter": 77.796875,
+      "maxRowAfter": 77.796875,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 931,
+      "height": 844,
+      "theme": "light",
+      "language": "de",
+      "firstRowBefore": 65,
+      "firstRowAfter": 65,
+      "maxRowAfter": 65,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 931,
+      "height": 844,
+      "theme": "light",
+      "language": "en",
+      "firstRowBefore": 65,
+      "firstRowAfter": 65,
+      "maxRowAfter": 65,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 931,
+      "height": 844,
+      "theme": "dark",
+      "language": "de",
+      "firstRowBefore": 65,
+      "firstRowAfter": 65,
+      "maxRowAfter": 65,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 931,
+      "height": 844,
+      "theme": "dark",
+      "language": "en",
+      "firstRowBefore": 65,
+      "firstRowAfter": 65,
+      "maxRowAfter": 65,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 1280,
+      "height": 844,
+      "theme": "light",
+      "language": "de",
+      "firstRowBefore": 65,
+      "firstRowAfter": 65,
+      "maxRowAfter": 65,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 1280,
+      "height": 844,
+      "theme": "light",
+      "language": "en",
+      "firstRowBefore": 65,
+      "firstRowAfter": 65,
+      "maxRowAfter": 65,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 1280,
+      "height": 844,
+      "theme": "dark",
+      "language": "de",
+      "firstRowBefore": 65,
+      "firstRowAfter": 65,
+      "maxRowAfter": 65,
+      "rows": 21,
+      "checks": "PASS"
+    },
+    {
+      "width": 1280,
+      "height": 844,
+      "theme": "dark",
+      "language": "en",
+      "firstRowBefore": 65,
+      "firstRowAfter": 65,
+      "maxRowAfter": 65,
+      "rows": 21,
+      "checks": "PASS"
+    }
+  ],
+  "errors": [],
+  "sourceHashes": {
+    "dist/manager.css": "2a4746fad538714befe560f04051cebd6aec9d2df5d6cdcfe4b4b8789ae660ac",
+    "dist/ui-flutlicht/tokens.css": "acbe428025b4ceba28aaeff0bce20f07d8639a5447fc23101064d2243d035922",
+    "dist/ui-flutlicht/components.css": "6fcc7f21bf16481f69b6f53855b5565a84bdecb5ae41c1945451d90a6c452aae",
+    "dist/ui-flutlicht/views/competitions.css": "3bf7caf70636de745bc256ff1d546fe0cc1644b1da624b8b3429a6d5b1e4ae3b",
+    "dist/world-competition-v62.js": "6d9a6192d0f6c59c1db4c586232f5390e81635ddc895e27ff4601b7c7e0622ca",
+    "dist/ui-flutlicht/adapter.js": "3050b696b8daaf5fa0eddf3d52175e8249379ec834c3dcf4125c49ccb9996911"
+  }
+}

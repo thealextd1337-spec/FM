@@ -1,0 +1,104 @@
+{
+  "scope": "Real source page in isolated desktop Chromium with mobile viewport; no Android hardware test",
+  "checks": [
+    {
+      "name": "baseline source layout",
+      "rowHeight": 192.53125,
+      "cells": [
+        {
+          "x": 46,
+          "y": 766.4375,
+          "right": 78,
+          "bottom": 804.78125
+        },
+        {
+          "x": 46,
+          "y": 814.78125,
+          "right": 366,
+          "bottom": 877.625
+        },
+        {
+          "x": 46,
+          "y": 887.625,
+          "right": 199,
+          "bottom": 925.96875
+        },
+        {
+          "x": 213,
+          "y": 887.625,
+          "right": 265,
+          "bottom": 925.96875
+        }
+      ],
+      "labels": [
+        "block",
+        "block",
+        "block",
+        "block"
+      ],
+      "role": "table",
+      "overflow": false,
+      "buttons": 7,
+      "theme": "light",
+      "status": "PASS"
+    },
+    {
+      "name": "player profile remains reachable",
+      "pid": "u01-d-source-fixture:GER-2:1",
+      "status": "PASS"
+    },
+    {
+      "name": "corrected source layout",
+      "rowHeight": 77.796875,
+      "cells": [
+        {
+          "x": 44,
+          "y": 779.078125,
+          "right": 70,
+          "bottom": 798.578125
+        },
+        {
+          "x": 78,
+          "y": 758.4375,
+          "right": 324,
+          "bottom": 802.4375
+        },
+        {
+          "x": 78,
+          "y": 802.4375,
+          "right": 324,
+          "bottom": 819.234375
+        },
+        {
+          "x": 332,
+          "y": 775.328125,
+          "right": 368,
+          "bottom": 802.328125
+        }
+      ],
+      "labels": [
+        "none",
+        "none",
+        "none",
+        "none"
+      ],
+      "role": "table",
+      "overflow": false,
+      "buttons": 7,
+      "theme": "light",
+      "status": "PASS"
+    }
+  ],
+  "legacySourceCheck": [
+    {
+      "before": true,
+      "legacyHeaderCount": 0,
+      "expectedByLegacyRunner": 9
+    },
+    {
+      "before": false,
+      "legacyHeaderCount": 0,
+      "expectedByLegacyRunner": 9
+    }
+  ]
+}

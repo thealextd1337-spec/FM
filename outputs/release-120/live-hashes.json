@@ -1,0 +1,239 @@
+{
+  "checkedAt": "2026-10-10T09:49:34.763966+00:00",
+  "productCommit": "4dee33b512e944f86e34a542db7424db7f403955",
+  "version": 120,
+  "requestHeaders": {
+    "Cache-Control": "no-cache",
+    "Pragma": "no-cache"
+  },
+  "ci": {
+    "id": 38042109660,
+    "url": "https://github.com/thealextd1337-spec/FM/actions/runs/38042109660",
+    "headSha": "4dee33b512e944f86e34a542db7424db7f403955",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "id": 114184248651,
+        "conclusion": "success",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-10T09:38:41Z",
+            "completed_at": "2026-10-10T09:38:42Z"
+          },
+          {
+            "name": "Quellcode laden",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-10T09:38:42Z",
+            "completed_at": "2026-10-10T09:39:03Z"
+          },
+          {
+            "name": "Node.js einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-10T09:39:03Z",
+            "completed_at": "2026-10-10T09:39:09Z"
+          },
+          {
+            "name": "Spieltests ausführen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-10T09:39:09Z",
+            "completed_at": "2026-10-10T09:47:33Z"
+          },
+          {
+            "name": "Einzeldatei bauen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-10T09:47:33Z",
+            "completed_at": "2026-10-10T09:47:41Z"
+          },
+          {
+            "name": "Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-10T09:47:41Z",
+            "completed_at": "2026-10-10T09:48:23Z"
+          },
+          {
+            "name": "Per FTPS zu World4You hochladen und Live-Datei prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-10T09:48:23Z",
+            "completed_at": "2026-10-10T09:48:39Z"
+          },
+          {
+            "name": "Post Node.js einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-10T09:48:39Z",
+            "completed_at": "2026-10-10T09:48:39Z"
+          },
+          {
+            "name": "Post Quellcode laden",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-10T09:48:39Z",
+            "completed_at": "2026-10-10T09:48:39Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-10T09:48:39Z",
+            "completed_at": "2026-10-10T09:48:39Z"
+          }
+        ]
+      }
+    ]
+  },
+  "localHtmlsIdentical": true,
+  "files": [
+    {
+      "url": "https://fussball.cakamper.at/",
+      "localPath": "outputs/index.html",
+      "expectedSha256": "10544c64fd8c8696c85e842ba70595c866ae921e86db9fb4a1bea742a869d0ad",
+      "actualSha256": "10544c64fd8c8696c85e842ba70595c866ae921e86db9fb4a1bea742a869d0ad",
+      "expectedBytes": 50874506,
+      "actualBytes": 50874506,
+      "httpStatus": 200,
+      "responseHeaders": {
+        "Date": "Sat, 10 Oct 2026 09:49:35 GMT",
+        "Last-Modified": "Sat, 10 Oct 2026 09:48:33 GMT",
+        "ETag": "\"308488a-65d795e38786d\"",
+        "Content-Length": "50874506"
+      },
+      "status": "PASS"
+    },
+    {
+      "url": "https://fussball.cakamper.at/unity/probe-build.json",
+      "localPath": "outputs/platform/unity-web/probe-build.json",
+      "expectedSha256": "832f4c33f46010fa6d59d3723ccc51fa09d414a55cccbd2e53d67e88ba6b0fc7",
+      "actualSha256": "832f4c33f46010fa6d59d3723ccc51fa09d414a55cccbd2e53d67e88ba6b0fc7",
+      "expectedBytes": 5520,
+      "actualBytes": 5520,
+      "httpStatus": 200,
+      "responseHeaders": {
+        "Date": "Sat, 10 Oct 2026 09:49:39 GMT",
+        "Last-Modified": "Sat, 10 Oct 2026 09:48:11 GMT",
+        "ETag": "\"1590-65d795ce2e2d4\"",
+        "Content-Length": "5520",
+        "Cache-Control": "no-cache"
+      },
+      "status": "PASS"
+    },
+    {
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.data",
+      "localPath": "outputs/platform/unity-web/Build/unity-web.data",
+      "expectedSha256": "a0191474d2c1ba2b774a42851c5415dff80f8835d27297e9c4014ad7a9c15fba",
+      "actualSha256": "a0191474d2c1ba2b774a42851c5415dff80f8835d27297e9c4014ad7a9c15fba",
+      "expectedBytes": 55090735,
+      "actualBytes": 55090735,
+      "httpStatus": 200,
+      "responseHeaders": {
+        "Date": "Sat, 10 Oct 2026 09:49:39 GMT",
+        "Last-Modified": "Sat, 10 Oct 2026 09:47:52 GMT",
+        "ETag": "\"3489e2f-65d795bcaa66e\"",
+        "Content-Length": "55090735"
+      },
+      "status": "PASS"
+    },
+    {
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.framework.js",
+      "localPath": "outputs/platform/unity-web/Build/unity-web.framework.js",
+      "expectedSha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "actualSha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "expectedBytes": 300906,
+      "actualBytes": 300906,
+      "httpStatus": 200,
+      "responseHeaders": {
+        "Date": "Sat, 10 Oct 2026 09:49:42 GMT",
+        "Last-Modified": "Sat, 10 Oct 2026 09:47:54 GMT",
+        "ETag": "\"4976a-65d795beb5dad\"",
+        "Content-Length": "300906"
+      },
+      "status": "PASS"
+    },
+    {
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.loader.js",
+      "localPath": "outputs/platform/unity-web/Build/unity-web.loader.js",
+      "expectedSha256": "57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03",
+      "actualSha256": "57b283b95f68f80f429cb416f625cf9fcfec048e07a77ef0152f85a9bc943e03",
+      "expectedBytes": 27914,
+      "actualBytes": 27914,
+      "httpStatus": 200,
+      "responseHeaders": {
+        "Date": "Sat, 10 Oct 2026 09:49:42 GMT",
+        "Last-Modified": "Sat, 10 Oct 2026 09:47:56 GMT",
+        "ETag": "\"6d0a-65d795c045095\"",
+        "Content-Length": "27914"
+      },
+      "status": "PASS"
+    },
+    {
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.wasm",
+      "localPath": "outputs/platform/unity-web/Build/unity-web.wasm",
+      "expectedSha256": "902b92b0a9768aa2538a7082f9343121ceec5e0f4d66cb02d4d37d819ef6fdcd",
+      "actualSha256": "902b92b0a9768aa2538a7082f9343121ceec5e0f4d66cb02d4d37d819ef6fdcd",
+      "expectedBytes": 35260739,
+      "actualBytes": 35260739,
+      "httpStatus": 200,
+      "responseHeaders": {
+        "Date": "Sat, 10 Oct 2026 09:49:43 GMT",
+        "Last-Modified": "Sat, 10 Oct 2026 09:48:03 GMT",
+        "ETag": "\"21a0943-65d795c6e909b\"",
+        "Content-Length": "35260739"
+      },
+      "status": "PASS"
+    },
+    {
+      "url": "https://fussball.cakamper.at/unity-match/runtime.html",
+      "localPath": "dist/unity-match/runtime.html",
+      "expectedSha256": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "actualSha256": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "expectedBytes": 440,
+      "actualBytes": 440,
+      "httpStatus": 200,
+      "responseHeaders": {
+        "Date": "Sat, 10 Oct 2026 09:49:46 GMT",
+        "Last-Modified": "Sat, 10 Oct 2026 09:48:05 GMT",
+        "ETag": "\"1b8-65d795c86c419\"",
+        "Content-Length": "440",
+        "Cache-Control": "no-cache"
+      },
+      "status": "PASS"
+    },
+    {
+      "url": "https://fussball.cakamper.at/unity-match/runtime.js",
+      "localPath": "dist/unity-match/runtime.js",
+      "expectedSha256": "ee10dde678e548fc3ccede93c5884a96d02bbdedfaa3e8e0db0c8f2b133ad9a7",
+      "actualSha256": "ee10dde678e548fc3ccede93c5884a96d02bbdedfaa3e8e0db0c8f2b133ad9a7",
+      "expectedBytes": 2920,
+      "actualBytes": 2920,
+      "httpStatus": 200,
+      "responseHeaders": {
+        "Date": "Sat, 10 Oct 2026 09:49:46 GMT",
+        "Last-Modified": "Sat, 10 Oct 2026 09:48:06 GMT",
+        "ETag": "\"b68-65d795c9da3be\"",
+        "Content-Length": "2920",
+        "Cache-Control": "no-cache"
+      },
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "completedAt": "2026-10-10T09:49:46.075625+00:00"
+}

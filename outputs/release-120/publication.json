@@ -1,0 +1,160 @@
+{
+  "status": "published",
+  "version": 120,
+  "htmlSha256": "10544c64fd8c8696c85e842ba70595c866ae921e86db9fb4a1bea742a869d0ad",
+  "htmlBytes": 50874506,
+  "unitySourceId": "00700557d9800dc579ee021530d76b316eee9cba0498b153aaae07a5cb9d271a",
+  "unityManifestSha256": "832f4c33f46010fa6d59d3723ccc51fa09d414a55cccbd2e53d67e88ba6b0fc7",
+  "scope": "Compact mobile statistics only; frozen Release 119 Unity runtime",
+  "localChecks": [
+    "28 layout cases",
+    "real source ranking and player profile",
+    "U01-D competition browser suite",
+    "statistics menu",
+    "world competition",
+    "progress footer",
+    "DE/EN documentation",
+    "26 exact embedded assets",
+    "4 FTPS and 6 Unity deployment tests",
+    "frozen Unity runtime hashes"
+  ],
+  "androidHardware": "User will check; no hardware result claimed",
+  "liveVerified": true,
+  "productCommit": "4dee33b512e944f86e34a542db7424db7f403955",
+  "checkedAt": "2026-10-10T09:53:38.776662+00:00",
+  "publishedAt": "2026-10-10T09:48:39Z",
+  "ci": {
+    "id": 38042109660,
+    "jobId": 114184248651,
+    "url": "https://github.com/thealextd1337-spec/FM/actions/runs/38042109660",
+    "conclusion": "success",
+    "headSha": "4dee33b512e944f86e34a542db7424db7f403955",
+    "productionCommands": 94,
+    "commandCountScope": "91 game/deployment test commands plus 3 build/asset-check commands; two upload commands recorded separately in CI steps",
+    "completedAt": "2026-10-10T09:48:42Z",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-10-10T09:38:41Z",
+        "completed_at": "2026-10-10T09:38:42Z"
+      },
+      {
+        "name": "Quellcode laden",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-10-10T09:38:42Z",
+        "completed_at": "2026-10-10T09:39:03Z"
+      },
+      {
+        "name": "Node.js einrichten",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-10-10T09:39:03Z",
+        "completed_at": "2026-10-10T09:39:09Z"
+      },
+      {
+        "name": "Spieltests ausführen",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-10-10T09:39:09Z",
+        "completed_at": "2026-10-10T09:47:33Z"
+      },
+      {
+        "name": "Einzeldatei bauen",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-10-10T09:47:33Z",
+        "completed_at": "2026-10-10T09:47:41Z"
+      },
+      {
+        "name": "Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6,
+        "started_at": "2026-10-10T09:47:41Z",
+        "completed_at": "2026-10-10T09:48:23Z"
+      },
+      {
+        "name": "Per FTPS zu World4You hochladen und Live-Datei prüfen",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7,
+        "started_at": "2026-10-10T09:48:23Z",
+        "completed_at": "2026-10-10T09:48:39Z"
+      },
+      {
+        "name": "Post Node.js einrichten",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 13,
+        "started_at": "2026-10-10T09:48:39Z",
+        "completed_at": "2026-10-10T09:48:39Z"
+      },
+      {
+        "name": "Post Quellcode laden",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 14,
+        "started_at": "2026-10-10T09:48:39Z",
+        "completed_at": "2026-10-10T09:48:39Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 15,
+        "started_at": "2026-10-10T09:48:39Z",
+        "completed_at": "2026-10-10T09:48:39Z"
+      }
+    ]
+  },
+  "liveHtml": {
+    "url": "https://fussball.cakamper.at/",
+    "version": 120,
+    "sha256": "10544c64fd8c8696c85e842ba70595c866ae921e86db9fb4a1bea742a869d0ad",
+    "bytes": 50874506,
+    "status": "PASS"
+  },
+  "liveHashes": {
+    "status": "PASS",
+    "files": 8,
+    "evidence": "live-hashes.json"
+  },
+  "liveBrowser": {
+    "status": "PASS",
+    "layoutCases": 8,
+    "categoriesPerCase": 18,
+    "categoryLayoutChecks": 144,
+    "rowsPerCase": 76,
+    "rowMeasurements": 608,
+    "widths": [
+      320,
+      412,
+      844,
+      1280
+    ],
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "profileAction": "PASS",
+    "careerUnchanged": "PASS",
+    "pageErrors": [],
+    "evidence": "live-browser.json",
+    "completedAt": "2026-10-10T09:51:23.840Z",
+    "runnerCorrection": "The initial runner measured hidden default-filter categories at zero height. Select all competitions and categories through the real UI before checking every row; retain all 44px/layout assertions."
+  },
+  "androidUserCheckPending": true,
+  "limitations": [
+    "Physical Android acceptance is pending user testing.",
+    "The existing U01-D/source-check.cjs header-selector failure is documented separately and remains a failure.",
+    "No extra native/Unity live matches were run for this CSS-only release; frozen runtime verified byte-for-byte."
+  ]
+}

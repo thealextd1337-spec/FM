@@ -1,6 +1,6 @@
 # Doppel 6's 3D system
 
-System state: small-pitch iteration v162 with Unity presentation, game version 119. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
+System state: small-pitch iteration v162 with Unity presentation, game version 120. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
 
 ## Unity presentation
 
