@@ -371,7 +371,8 @@
     {
       "command": "node work/test-world-expansion-contracts-v168.cjs",
       "exitCode": 0,
-      "seconds": 3.62
+      "seconds": 10.32,
+      "fixtureGeneratedInMemory": true
     },
     {
       "command": "node work/test-world-expansion-stories-v170.cjs",
