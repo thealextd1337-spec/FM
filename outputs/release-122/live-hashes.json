@@ -1,0 +1,46 @@
+{
+  "version": 122,
+  "identicalOutputs": true,
+  "sourceSha256": "c052d4917128e3ae22ff63e6b0fb2b8fe30b09652beb600bdbb9f5dbca91390b",
+  "buildSha256": "012d5247313adc52b058d1c063158c8212b60b29949a3165839aea1ae597ce58",
+  "unitySourceId": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+  "assets": [
+    {
+      "file": "unity-web.data",
+      "sha256": "8065e1385bfa93644f8608327d708c802f1d406ca5b389fdac64fc411010b2b0",
+      "bytes": 55558795,
+      "liveMatches": true
+    },
+    {
+      "file": "unity-web.framework.js",
+      "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "bytes": 300906,
+      "liveMatches": true
+    },
+    {
+      "file": "unity-web.loader.js",
+      "sha256": "aed089a2e2daaa427d3f95f5b0502eca6942a388fe7e7d82d348fa5f6be5d577",
+      "bytes": 27914,
+      "liveMatches": true
+    },
+    {
+      "file": "unity-web.wasm",
+      "sha256": "6617c13f764dbeef8b9f1b144807213d5c52cc102a90901c2ee06eedac879d35",
+      "bytes": 35422698,
+      "liveMatches": true
+    }
+  ],
+  "previousNativeTenSeasons": {
+    "pass": true,
+    "sourceFiles": 144,
+    "unchangedFiles": 140,
+    "changedPresentationFiles": [
+      "dist/index.html",
+      "dist/progress-v58.js",
+      "dist/world-3d-documentation-data-v134.js",
+      "dist/world-expansion-awards-v171.js"
+    ]
+  },
+  "liveHtmlMatches": true,
+  "liveRuntimeMatches": true
+}

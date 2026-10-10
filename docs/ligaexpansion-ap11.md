@@ -2,7 +2,7 @@
 
 Geprüfter Quell-/Buildstand ausschließlich im isolierten Arbeitsbaum `F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/ligaexpansion-ap03` (Branch `codex/ligaexpansion-ap03`). Die Dokumentation im Hauptverzeichnis ist ein Spiegel; sie ersetzt keinen dortigen Quell- oder Livestand. Prüfbefehle aus diesem Arbeitsbaum ausführen.
 
-Stand: 11. Oktober 2026. Lokale Abnahme auf dem kumulierten AP03–AP10-Arbeitsstand, Basisversion 121. Kein Deployment oder Versionswechsel. Die lokalen Langzeit-, Browser- und Integrationsprüfungen sind abgeschlossen. Sichtbare Android-Partie, Nutzer-Sichtprüfung, pausiertes Vollbild-Wachhalten und ein nativer Zehn-Jahres-Spielstand auf dem Gerät sind inzwischen geprüft. Alle 64 Grafikmotive sind freigegeben, mit dem Bildgenerator freigestellt und als 128 transparente Produktvarianten integriert; Quellgalerie und Offline-Build sind geprüft.
+Stand: 11. Oktober 2026. Lokale Abnahme auf dem kumulierten AP03–AP10-Arbeitsstand, Basisversion 121. Historischer AP11-Prüfstand vor der Veröffentlichung; die anschließende Veröffentlichung als [Release 122](release-122.md) ist abgeschlossen. Die lokalen Langzeit-, Browser- und Integrationsprüfungen sind abgeschlossen. Sichtbare Android-Partie, Nutzer-Sichtprüfung, pausiertes Vollbild-Wachhalten und ein nativer Zehn-Jahres-Spielstand auf dem Gerät sind inzwischen geprüft. Alle 64 Grafikmotive sind freigegeben, mit dem Bildgenerator freigestellt und als 128 transparente Produktvarianten integriert; Quellgalerie und Offline-Build sind geprüft.
 
 ## Nachgewiesene Prüfungen
 

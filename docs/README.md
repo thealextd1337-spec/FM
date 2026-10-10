@@ -1,6 +1,6 @@
 # Entwicklungsdokumentation
 
-- [Release 122 – zwölf Länder, Crown und Horizon](release-122.md): lokal geprüfter und zur Veröffentlichung beauftragter Expansionsstand mit 64 detaillierten transparenten Trophäenmotiven.
+- [Release 122 – zwölf Länder, Crown und Horizon](release-122.md): veröffentlicht und live abgenommener Expansionsstand mit 64 detaillierten transparenten Trophäenmotiven.
 
 - [AP11 – Gesamtprüfung](ligaexpansion-ap11.md): aktuelle Langzeit-, Browser-/Speicher- und Gerätebelege; 64 freigegebene, freigestellte und lokal integrierte Trophäenmotive. [Veröffentlichungsplan](ligaexpansion-veroeffentlichungsplan.md).
 

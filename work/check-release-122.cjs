@@ -12,7 +12,7 @@ const {createServer}=require('./ui-redesign/serve.cjs');
   const context=await browser.newContext({viewport:{width,height:844}}),page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   if(!live)await page.route('**/release122.html*',r=>r.fulfill({path:'outputs/index.html',contentType:'text/html'}));
-  await page.goto(url);await page.waitForFunction(()=>window.D6Expansion?.seasonMoments);
+  await page.goto(url,{timeout:120000});await page.waitForFunction(()=>window.D6Expansion?.seasonMoments);
   assert((await page.locator('footer').first().textContent()).includes('122'));
   await page.locator('#v61-begin').click();await page.locator('#v172-name').fill('Release QA');
   await page.locator('[data-v172-start="name"]').click();assert.equal(await page.locator('[data-v172-country]').count(),12);

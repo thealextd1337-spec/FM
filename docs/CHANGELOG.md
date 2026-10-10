@@ -6,7 +6,7 @@ Neue Vereinswelten mit 192 Vereinen in zwölf Ländern, Crown Cup und Horizon Cu
 
 Sechs Karrierebereiche mit Vereinsbüro, Chronik, Saisonmomenten und künftigen Statistikarchiven. Alle 64 freigegebenen detaillierten Trophäenmotive als 128 transparente große/kompakte WebP-Varianten integriert. Bestehende Spielstände behalten ihre gespeicherten Regeln.
 
-106 lokale Produktionskommandos bestanden, dazu regulärer Start, Deutsch/Englisch, beide Cups, Archiv-Neuladen und alle Trophäen im Release-Build bei 390/1440 Pixeln sowie native Pause/Neuladen/Abschluss. Vorherige Zehn-Saisons- und Androidbelege gelten mit den dokumentierten Grenzen. Veröffentlichung vom Nutzer beauftragt; Live-Abnahme folgt. [Releasebericht](release-122.md), [AP11](ligaexpansion-ap11.md).
+106 lokale Produktionskommandos bestanden, dazu regulärer Start, Deutsch/Englisch, beide Cups, Archiv-Neuladen und alle Trophäen im Release-Build bei 390/1440 Pixeln sowie native Pause/Neuladen/Abschluss. Vorherige Zehn-Saisons- und Androidbelege gelten mit den dokumentierten Grenzen. Auf Nutzerauftrag veröffentlicht: 106 Produktionskommandos, sämtliche Live-Dateiprüfungen, zwei Live-Browserfälle und native Live-Pause/Neuladen/Abschluss bestanden. [Releasebericht](release-122.md), [AP11](ligaexpansion-ap11.md).
 
 ## 10. Oktober 2026 – Release 121
 

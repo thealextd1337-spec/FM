@@ -1,6 +1,6 @@
 # Ligaexpansion – Veröffentlichungsplan
 
-Stand: 11. Oktober 2026. Auftrag: AP11 ausführen und anschließend Veröffentlichung planen. Die Veröffentlichung ist durch den neuen Nutzerauftrag vom 11. Oktober 2026 jetzt beauftragt; Umsetzung und Nachweise siehe [Release 122](release-122.md). Der lokale Arbeitsbaum enthält die kumulierten AP03–AP10-Änderungen; finale Abnahme siehe [AP11](ligaexpansion-ap11.md).
+Stand: 11. Oktober 2026. Auftrag: AP11 ausführen und anschließend Veröffentlichung planen. Die Veröffentlichung wurde auf den Nutzerauftrag vom 11. Oktober 2026 als Release 122 ausgeführt und live abgenommen; Umsetzung und Nachweise siehe [Release 122](release-122.md). Der lokale Arbeitsbaum enthält die kumulierten AP03–AP10-Änderungen; finale Abnahme siehe [AP11](ligaexpansion-ap11.md).
 
 ## 1. Offene Abnahme abschließen
 

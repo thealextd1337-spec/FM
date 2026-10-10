@@ -1,0 +1,65 @@
+{
+  "pass": true,
+  "url": "https://fussball.cakamper.at/?release122=acceptance&engine=2d",
+  "rows": [
+    {
+      "width": 390,
+      "regularStart": true,
+      "initial": {
+        "id": "45da2cd8-9d25-4b99-91ac-24ad8f83a8c0",
+        "clubs": 192,
+        "own": "Innsbruck Sport",
+        "valid": true,
+        "countries": 12
+      },
+      "marketProgress": true,
+      "languages": 2,
+      "careerTabs": 6,
+      "crownAndHorizon": true,
+      "archivedStatistics": true,
+      "momentsAtMost3": true,
+      "rankingUnchangedOnReload": true,
+      "awards": {
+        "count": 128,
+        "inline": true,
+        "broken": 0
+      },
+      "legacy": {
+        "valid": true,
+        "unchanged": true,
+        "clubs": 48
+      },
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "regularStart": true,
+      "initial": {
+        "id": "9f5e3f7d-6548-4fdf-8863-c8384a66f213",
+        "clubs": 192,
+        "own": "Innsbruck Sport",
+        "valid": true,
+        "countries": 12
+      },
+      "marketProgress": true,
+      "languages": 2,
+      "careerTabs": 6,
+      "crownAndHorizon": true,
+      "archivedStatistics": true,
+      "momentsAtMost3": true,
+      "rankingUnchangedOnReload": true,
+      "awards": {
+        "count": 128,
+        "inline": true,
+        "broken": 0
+      },
+      "legacy": {
+        "valid": true,
+        "unchanged": true,
+        "clubs": 48
+      },
+      "errors": []
+    }
+  ],
+  "buildSha256": "012d5247313adc52b058d1c063158c8212b60b29949a3165839aea1ae597ce58"
+}

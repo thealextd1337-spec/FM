@@ -2,7 +2,7 @@
 
 ## AP11: aktuelle Gesamtprüfung
 
-[AP11](ligaexpansion-ap11.md) trennt synthetische/native Langzeitnachweise, echte Browser-Speicherung und physische Geräteabnahme. [Veröffentlichungsplan](ligaexpansion-veroeffentlichungsplan.md); Release 122 ist zur Veröffentlichung beauftragt; [Releasebericht](release-122.md).
+[AP11](ligaexpansion-ap11.md) trennt synthetische/native Langzeitnachweise, echte Browser-Speicherung und physische Geräteabnahme. [Veröffentlichungsplan](ligaexpansion-veroeffentlichungsplan.md); Release 122 ist veröffentlicht und live abgenommen; [Releasebericht](release-122.md).
 
 ## AP09 / AP10: Präsentation und künftige Statistikarchive
 
