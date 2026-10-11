@@ -1,0 +1,1543 @@
+{
+  "rows": [
+    {
+      "width": 320,
+      "lang": "de",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 320,
+      "lang": "de",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 320,
+      "lang": "en",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 320,
+      "lang": "en",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 360,
+      "lang": "de",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 360,
+      "lang": "de",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 360,
+      "lang": "en",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 360,
+      "lang": "en",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 390,
+      "lang": "de",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 390,
+      "lang": "de",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 440,
+      "lang": "de",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 440,
+      "lang": "de",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 440,
+      "lang": "en",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 440,
+      "lang": "en",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 768,
+      "lang": "de",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 768,
+      "lang": "de",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 768,
+      "lang": "en",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 768,
+      "lang": "en",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 1440,
+      "lang": "de",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 1440,
+      "lang": "de",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "theme": "light",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "theme": "dark",
+      "spills": [],
+      "escaped": [],
+      "documentOverflow": false
+    }
+  ],
+  "coverage": [
+    {
+      "id": "ENG-1",
+      "name": "Regent Vale FC",
+      "image": "embedded PNG",
+      "imageSha256": "d0f276c6b91a919356d031016113749c8c13d826ba90563e0d1c008419785724",
+      "embedded": true
+    },
+    {
+      "id": "ENG-2",
+      "name": "Irwell FC",
+      "image": "embedded PNG",
+      "imageSha256": "68318ee17c5487455c50761e2a781d5ecc9f78240810a39af95005907f02e7c6",
+      "embedded": true
+    },
+    {
+      "id": "ENG-3",
+      "name": "Mersey Dock FC",
+      "image": "embedded PNG",
+      "imageSha256": "5f9d90eda4514428b7f6e9e3b30bfea310abef6c870a23d3fdfeef3ca115b843",
+      "embedded": true
+    },
+    {
+      "id": "ENG-4",
+      "name": "Birmingham Works FC",
+      "image": "embedded PNG",
+      "imageSha256": "78d6d7e36e4610380794668fea05c31d6eebc2be70bc00a61cad56384c2b7fa7",
+      "embedded": true
+    },
+    {
+      "id": "ENG-5",
+      "name": "Bristol Quay FC",
+      "image": "embedded PNG",
+      "imageSha256": "41c32119efc791551f6cd3704babf6275470d91f533d37f31024c3de46372790",
+      "embedded": true
+    },
+    {
+      "id": "ENG-6",
+      "name": "Wandle Town",
+      "image": "embedded PNG",
+      "imageSha256": "90466dcddb83d4d8ffe2e28ec8d30589e6edf5744a766761b54fecd427c03ed0",
+      "embedded": true
+    },
+    {
+      "id": "ENG-7",
+      "name": "Leeds Aire FC",
+      "image": "embedded PNG",
+      "imageSha256": "106e2c4178ef351d1654e938e02c3672204f16b47bc530a12944a2d5868289ea",
+      "embedded": true
+    },
+    {
+      "id": "ENG-8",
+      "name": "Newcastle Tyne FC",
+      "image": "embedded PNG",
+      "imageSha256": "72d28f0c806b4d9d67d301f1de6f82eee39bf9754864586fbe6d9b23f6acc92f",
+      "embedded": true
+    },
+    {
+      "id": "ENG-C1",
+      "name": "Sheffield Forge FC",
+      "image": "embedded PNG",
+      "imageSha256": "179aaede9832120074acc1578842ee19735bdf74f8b630326b44965bc48e5887",
+      "embedded": true
+    },
+    {
+      "id": "ENG-C2",
+      "name": "Plymouth Bay AFC",
+      "image": "embedded PNG",
+      "imageSha256": "d5a78f03ffba665670799a07cf2a4490e67c49d2104f18304434caf57330f6cc",
+      "embedded": true
+    },
+    {
+      "id": "ENG-C3",
+      "name": "Sheffield Sheaf FC",
+      "image": "embedded PNG",
+      "imageSha256": "27cb94f35776ec5c9e013b2aa2279d925e85da64d9ee19248374a9404e08fd50",
+      "embedded": true
+    },
+    {
+      "id": "ENG-C4",
+      "name": "Bristol Avon Gate FC",
+      "image": "embedded PNG",
+      "imageSha256": "01800ff8ed29842e1a808a3518605183e91ff0292f8803b99a323a369f3e459d",
+      "embedded": true
+    },
+    {
+      "id": "ENG-C5",
+      "name": "Norwich Wensum FC",
+      "image": "embedded PNG",
+      "imageSha256": "6da20f989c37b470dfb5d80fee8126343c98a126d322c6dbaefec8803cf6f741",
+      "embedded": true
+    },
+    {
+      "id": "ENG-C6",
+      "name": "Coventry Spon FC",
+      "image": "embedded PNG",
+      "imageSha256": "0aa80bbd9e17b95efe407eff71d800851daf8e5bc165c2ced66f75a71ab1d2e0",
+      "embedded": true
+    },
+    {
+      "id": "ENG-C7",
+      "name": "Brighton Downs FC",
+      "image": "embedded PNG",
+      "imageSha256": "49dfc1d4e9876526a4323ce1a2613b9b3696554a1ff19f74ad834ce38d6843ea",
+      "embedded": true
+    },
+    {
+      "id": "ENG-C8",
+      "name": "Plymouth Tamar FC",
+      "image": "embedded PNG",
+      "imageSha256": "7d472cc99639abf2f1b1d95342c85d60a88815f85d702c0884d5374c46f0a5c2",
+      "embedded": true
+    },
+    {
+      "id": "ESP-1",
+      "name": "Madrid Central CF",
+      "image": "embedded PNG",
+      "imageSha256": "31649c06a305990a9f1bbb2e696ed5528a0bf47e1b7243ca04c88f5574821ff6",
+      "embedded": true
+    },
+    {
+      "id": "ESP-2",
+      "name": "Barcelona Mar FC",
+      "image": "embedded PNG",
+      "imageSha256": "d851af7cc87838791fa9dd77385414d49f89f80307598cbbbd11a2b7cc6c9a61",
+      "embedded": true
+    },
+    {
+      "id": "ESP-3",
+      "name": "Turia CF",
+      "image": "embedded PNG",
+      "imageSha256": "6cd5097b2c0d98b1c7c9b2f0093e23d892e9ca354e58700f2c222ff479ae6d3d",
+      "embedded": true
+    },
+    {
+      "id": "ESP-4",
+      "name": "Sevilla Union FC",
+      "image": "embedded PNG",
+      "imageSha256": "48996ccc8b1bccab2f2794726159ece0da838275f52f04a0f4f5b0e611cc9119",
+      "embedded": true
+    },
+    {
+      "id": "ESP-5",
+      "name": "Barcelona Delta FC",
+      "image": "embedded PNG",
+      "imageSha256": "5f10bb73d1944615ac324d64851cb12846ffb3d38276f90baf4b79e5c2c2c344",
+      "embedded": true
+    },
+    {
+      "id": "ESP-6",
+      "name": "Vigo Atlantic FC",
+      "image": "embedded PNG",
+      "imageSha256": "61dcb3a13392a0ad1d76262c4196ccc2c91f55d25e2c6ad7144c10402d0e95ea",
+      "embedded": true
+    },
+    {
+      "id": "ESP-7",
+      "name": "Bilbao Nervión CF",
+      "image": "embedded PNG",
+      "imageSha256": "72ea573cc477723fff2d14796410173b7f0d026f78b6e9afca794a1c8d09c466",
+      "embedded": true
+    },
+    {
+      "id": "ESP-8",
+      "name": "Zaragoza Ebro CF",
+      "image": "embedded PNG",
+      "imageSha256": "8492ce7a16f4d6add4aaa0fffbf659aca267f856c3c4274cf29f1231b956e127",
+      "embedded": true
+    },
+    {
+      "id": "ESP-C1",
+      "name": "Córdoba Norte CF",
+      "image": "embedded PNG",
+      "imageSha256": "b634af83442fe6e7771bf48e099d3421701dc435f8835629a2b2600121d96654",
+      "embedded": true
+    },
+    {
+      "id": "ESP-C2",
+      "name": "Gijón Costa FC",
+      "image": "embedded PNG",
+      "imageSha256": "635d377a65010476b9d94ffc02727ab9f634af52ff2516ed39f1a97b3ecc21d0",
+      "embedded": true
+    },
+    {
+      "id": "ESP-C3",
+      "name": "Valladolid Pisuerga CF",
+      "image": "embedded PNG",
+      "imageSha256": "426410e5e7f530bdf3f957d9a279b3e060e10352d15e377945ac192091460f1e",
+      "embedded": true
+    },
+    {
+      "id": "ESP-C4",
+      "name": "Santander Bahía CF",
+      "image": "embedded PNG",
+      "imageSha256": "0dc7e3193566bd4dce87c042151428ba766851931772ef19059549ab0b3d797a",
+      "embedded": true
+    },
+    {
+      "id": "ESP-C5",
+      "name": "Murcia Segura CF",
+      "image": "embedded PNG",
+      "imageSha256": "784918910d336273badf8d9e92968e84767dd527b6e51de886b05e22b51b9815",
+      "embedded": true
+    },
+    {
+      "id": "ESP-C6",
+      "name": "Salamanca Tormes CF",
+      "image": "embedded PNG",
+      "imageSha256": "fe21becb9a3e681b0776c0c1ca0cde703b9772f1db2adae05e275e2c71d0cf7d",
+      "embedded": true
+    },
+    {
+      "id": "ESP-C7",
+      "name": "Logroño Senda CF",
+      "image": "embedded PNG",
+      "imageSha256": "7631c85af3d2924e074ece15a057274fe11061badde83b518ad81e376f3f4738",
+      "embedded": true
+    },
+    {
+      "id": "ESP-C8",
+      "name": "Almería Dársena CF",
+      "image": "embedded PNG",
+      "imageSha256": "0e7d5c068ff86e35e03485007d0ac257bec71e13ab989b3e0cceacb3cc50aa25",
+      "embedded": true
+    },
+    {
+      "id": "GER-1",
+      "name": "FC München Isar",
+      "image": "embedded PNG",
+      "imageSha256": "78f89fd48bc3dd57d07831381f3183819f08d6c199e33327474ceeeeae1e691b",
+      "embedded": true
+    },
+    {
+      "id": "GER-2",
+      "name": "FC Bremen Weser",
+      "image": "embedded PNG",
+      "imageSha256": "c81d9ae64b3207244e3f297f28ec43742148fc441d8749f2f9f58c07fc7d4096",
+      "embedded": true
+    },
+    {
+      "id": "GER-3",
+      "name": "FC Hamburg Elbe",
+      "image": "embedded PNG",
+      "imageSha256": "74e703d1a2e48d40d17ae11c562b205102a394d7431fe76a2c1dc9649e520f02",
+      "embedded": true
+    },
+    {
+      "id": "GER-4",
+      "name": "SC Freiburg Tal",
+      "image": "embedded PNG",
+      "imageSha256": "a6635ca7ccaa764ccf4db3034bf12fed537d0571cbbfa9f7fd0c31c22b06d9d5",
+      "embedded": true
+    },
+    {
+      "id": "GER-5",
+      "name": "FC Köln Rhein",
+      "image": "embedded PNG",
+      "imageSha256": "1776bb39e6ac8fe278822643a407bd573c2d4f3053ab97f028848cdb11f3f3f6",
+      "embedded": true
+    },
+    {
+      "id": "GER-6",
+      "name": "SV München Au",
+      "image": "embedded PNG",
+      "imageSha256": "7249419850cc2a8fccb0b1c8372098343446f924eada064ae2c14d1c896dafce",
+      "embedded": true
+    },
+    {
+      "id": "GER-7",
+      "name": "FC Dortmund Emscher",
+      "image": "embedded PNG",
+      "imageSha256": "2abad024acc3c8cb2fb58ded8dad8c8e70306532f480191e8a2bd115c2e37e05",
+      "embedded": true
+    },
+    {
+      "id": "GER-8",
+      "name": "FC Frankfurt Mainbogen",
+      "image": "embedded PNG",
+      "imageSha256": "9e0d3fad175caa63cbed93fedb49d82abd5c4686c3606cda7da69077806c4b62",
+      "embedded": true
+    },
+    {
+      "id": "GER-C1",
+      "name": "FC Jena Süd",
+      "image": "embedded PNG",
+      "imageSha256": "d48cb259d7b81c5e8674edf7ac9bd9b6c6beb02fb6ade7bef75af7c8168b296c",
+      "embedded": true
+    },
+    {
+      "id": "GER-C2",
+      "name": "SC Lübeck Nord",
+      "image": "embedded PNG",
+      "imageSha256": "523df677436f6bd2f050b2e213a00a27b8e00bfe1e990c7177dda90ebcf8796a",
+      "embedded": true
+    },
+    {
+      "id": "GER-C3",
+      "name": "FC Erfurt Geraauen",
+      "image": "embedded PNG",
+      "imageSha256": "98d79ba096e6606f92d744e1bb61e1d23eead9bdfe6cc81dca97d153eb8f742c",
+      "embedded": true
+    },
+    {
+      "id": "GER-C4",
+      "name": "Kieler SC Fördeblick",
+      "image": "embedded PNG",
+      "imageSha256": "5bc49fcc3bccbf62971735272f639ecc7e8176c5d5c4ecd44fbbaa6075edba2b",
+      "embedded": true
+    },
+    {
+      "id": "GER-C5",
+      "name": "FC Osnabrück Hasebogen",
+      "image": "embedded PNG",
+      "imageSha256": "d81cb2cc5a3c80d7441ddf685c9fc81e9fffe695dd700608e9b0e6403bd15dbc",
+      "embedded": true
+    },
+    {
+      "id": "GER-C6",
+      "name": "SC Regensburg Donauhof",
+      "image": "embedded PNG",
+      "imageSha256": "d0c13fbbfe3947f8f5997967b9c693a6d7a21bb1ca477e0a2bb84067ccb74ae6",
+      "embedded": true
+    },
+    {
+      "id": "GER-C7",
+      "name": "Rostocker SC Warnowfeld",
+      "image": "embedded PNG",
+      "imageSha256": "25a1e1b914527c300a300b9fe84923f6ff0c909b600bb454966b0d5ad709aba3",
+      "embedded": true
+    },
+    {
+      "id": "GER-C8",
+      "name": "FC Aachen Westbogen",
+      "image": "embedded PNG",
+      "imageSha256": "251739cf9f3bd27a5c6df4ae4004e069f6b7605dc4af240816c3326c841a7bae",
+      "embedded": true
+    },
+    {
+      "id": "ITA-1",
+      "name": "Torino Centrale FC",
+      "image": "embedded PNG",
+      "imageSha256": "77c8bed20872e346c4a74ca38e50c20fbff594955bf92a05ac2a9a8b4b573a68",
+      "embedded": true
+    },
+    {
+      "id": "ITA-2",
+      "name": "Milano Ferro FC",
+      "image": "embedded PNG",
+      "imageSha256": "ff7c96bce97122bebe9b9b5e79ceae31d7e48336c9a7c03a05dac2e965bb03c1",
+      "embedded": true
+    },
+    {
+      "id": "ITA-3",
+      "name": "Roma Capitol FC",
+      "image": "embedded PNG",
+      "imageSha256": "793f301b76745ce8232351540374ca2bd3cbd62aaef38bb371a865d5bcfc7cb8",
+      "embedded": true
+    },
+    {
+      "id": "ITA-4",
+      "name": "Bologna Collina AC",
+      "image": "embedded PNG",
+      "imageSha256": "9df01b9b86e8fdab0730d65cec3d66f59b49481f6240e6963a22e1607822c2df",
+      "embedded": true
+    },
+    {
+      "id": "ITA-5",
+      "name": "Navigli FC",
+      "image": "embedded PNG",
+      "imageSha256": "56375238d523133cb25c706cb3a07a92a082ff764040c7c6e65f9b44b868eb9b",
+      "embedded": true
+    },
+    {
+      "id": "ITA-6",
+      "name": "Napoli Sud AC",
+      "image": "embedded PNG",
+      "imageSha256": "6ff38ab120c7a646890b6c3b981d4bf2543c5f1ae6bf8f4f3a58692771a72994",
+      "embedded": true
+    },
+    {
+      "id": "ITA-7",
+      "name": "Firenze Arno AC",
+      "image": "embedded PNG",
+      "imageSha256": "a2a6b91c2ea54086e79ad4e19fd5e39fdc39b88e8a8960cc2d7a01817bf06e03",
+      "embedded": true
+    },
+    {
+      "id": "ITA-8",
+      "name": "Genova Lanterna FC",
+      "image": "embedded PNG",
+      "imageSha256": "0d96e6bd9a0e427c17ece5db2dd295e36f501ecbea4f8d66d7b64a5cbefeca7c",
+      "embedded": true
+    },
+    {
+      "id": "ITA-C1",
+      "name": "Parma Ovest FC",
+      "image": "embedded PNG",
+      "imageSha256": "27d8ba68cf462578281d644a0e95988a1d69445963b376ce07f724c4d21cda85",
+      "embedded": true
+    },
+    {
+      "id": "ITA-C2",
+      "name": "Lecce Marina FC",
+      "image": "embedded PNG",
+      "imageSha256": "2810e187a2cc15ab072753ccb989c25372ace0090c5c6cb4b2e399f94b845fff",
+      "embedded": true
+    },
+    {
+      "id": "ITA-C3",
+      "name": "Perugia Fonte AC",
+      "image": "embedded PNG",
+      "imageSha256": "5595cab731d00c07996bcfffcc547ba39b0e85fc3d59ab8adcf1a9b834a563b1",
+      "embedded": true
+    },
+    {
+      "id": "ITA-C4",
+      "name": "Pisa Lungarno FC",
+      "image": "embedded PNG",
+      "imageSha256": "66d3e5e88d5c79d682e66e952c10c10d43797359886c5b55d2ff44e91b860d02",
+      "embedded": true
+    },
+    {
+      "id": "ITA-C5",
+      "name": "Cagliari Salina FC",
+      "image": "embedded PNG",
+      "imageSha256": "d76560297ba5e11b67bd6403be84fb3af49b713ed2afee894d4c564301868466",
+      "embedded": true
+    },
+    {
+      "id": "ITA-C6",
+      "name": "Trieste Molo FC",
+      "image": "embedded PNG",
+      "imageSha256": "e39c389e85f30ec048c287260e36f4a86c9e35737390c391c26ec2b17c264e22",
+      "embedded": true
+    },
+    {
+      "id": "ITA-C7",
+      "name": "Modena Officina FC",
+      "image": "embedded PNG",
+      "imageSha256": "8d24bf67720893b96421a33cb8d9365c1ea1982fe886faa5a4f6c06501c39766",
+      "embedded": true
+    },
+    {
+      "id": "ITA-C8",
+      "name": "Bari Levante FC",
+      "image": "embedded PNG",
+      "imageSha256": "e32398ad96ebc5552284cfb0d08c1d1e6845ed7a29e3a5e263f551c9f3fd2b3a",
+      "embedded": true
+    },
+    {
+      "id": "FRA-1",
+      "name": "Paris Central FC",
+      "image": "embedded PNG",
+      "imageSha256": "705ac94f22c5b09d3dff031d54efeaa13527cb951dd06053bb76b6070013a484",
+      "embedded": true
+    },
+    {
+      "id": "FRA-2",
+      "name": "Marseille Union",
+      "image": "embedded PNG",
+      "imageSha256": "0eaab72683a5c76b59787baa9e1d6beb35bd653e3851647a175880f1ffeb0100",
+      "embedded": true
+    },
+    {
+      "id": "FRA-3",
+      "name": "Lyon Rive FC",
+      "image": "embedded PNG",
+      "imageSha256": "43b5a056783b64d3303f88b6c8bbf81f81143ba37599d3268530d6d60258cdfd",
+      "embedded": true
+    },
+    {
+      "id": "FRA-4",
+      "name": "Bordeaux Atlantic FC",
+      "image": "embedded PNG",
+      "imageSha256": "037fe860f3f8897b966f86215b118699c084648eda2ec95224cdf0e125137ab8",
+      "embedded": true
+    },
+    {
+      "id": "FRA-5",
+      "name": "Lille Union",
+      "image": "embedded PNG",
+      "imageSha256": "d54506f4e47005d42a16cce46a106678cc9629be7c23ae89c2cd45e7a1b16a60",
+      "embedded": true
+    },
+    {
+      "id": "FRA-6",
+      "name": "Paris Valmy FC",
+      "image": "embedded PNG",
+      "imageSha256": "cb1281dd687548e8877f29cff870c0b3f1e15359bf3c696e01af56000f9992d3",
+      "embedded": true
+    },
+    {
+      "id": "FRA-7",
+      "name": "Nantes Loire FC",
+      "image": "embedded PNG",
+      "imageSha256": "2508898ff383e0b1dc6a716263f7737b36207972c28bd243abaad993075f7374",
+      "embedded": true
+    },
+    {
+      "id": "FRA-8",
+      "name": "Strasbourg Rives FC",
+      "image": "embedded PNG",
+      "imageSha256": "7d64d94ec165922812050e448aa8ea646049f23588ab611b1be548af05d8dfef",
+      "embedded": true
+    },
+    {
+      "id": "FRA-C1",
+      "name": "Toulouse Garonne FC",
+      "image": "embedded PNG",
+      "imageSha256": "a39f5794acdcdf1fa0e4b04e73562ff376663b8b0adbedcb3caf694302557167",
+      "embedded": true
+    },
+    {
+      "id": "FRA-C2",
+      "name": "Metz Nord FC",
+      "image": "embedded PNG",
+      "imageSha256": "d8504a10f8743b2b3692b2317f4e4ab075f57701e672a57fda5df399b60a5c53",
+      "embedded": true
+    },
+    {
+      "id": "FRA-C3",
+      "name": "Dijon Ouche FC",
+      "image": "embedded PNG",
+      "imageSha256": "b354c4d0a4ea1009d2351a5b55409a8ddea392ff9e1e16bc5f7b692f2e8e7027",
+      "embedded": true
+    },
+    {
+      "id": "FRA-C4",
+      "name": "Brest Iroise FC",
+      "image": "embedded PNG",
+      "imageSha256": "eb834437a595fc17c08431c82771619077500b8e47b1aa7c9868f4fd28f35856",
+      "embedded": true
+    },
+    {
+      "id": "FRA-C5",
+      "name": "Amiens Hortillon FC",
+      "image": "embedded PNG",
+      "imageSha256": "31f23e2d8987721389d60af8eb0c5db83572ccd9d19343efa34a4d5c5b4c1a38",
+      "embedded": true
+    },
+    {
+      "id": "FRA-C6",
+      "name": "Tours Cher FC",
+      "image": "embedded PNG",
+      "imageSha256": "aedb8cd2d032bc3d9cca5d91d6b3fbd9976c6ff5c2c3cc093568ac77805905ee",
+      "embedded": true
+    },
+    {
+      "id": "FRA-C7",
+      "name": "Clermont Dôme FC",
+      "image": "embedded PNG",
+      "imageSha256": "1d187c2c1a90761371f869b850a00866ef98be58eb9b9841886d92bfae849715",
+      "embedded": true
+    },
+    {
+      "id": "FRA-C8",
+      "name": "Le Havre Estuaire FC",
+      "image": "embedded PNG",
+      "imageSha256": "c7e806b28c34a93605666743df7044cd6e2f1c29ddc0f80bdae05069b9e8c102",
+      "embedded": true
+    },
+    {
+      "id": "POR-1",
+      "name": "Lisboa Central FC",
+      "image": "embedded PNG",
+      "imageSha256": "79529061575c84b71a3f49757cce32a4d2bc7a4e24da0f4f0b22aff035c97be5",
+      "embedded": true
+    },
+    {
+      "id": "POR-2",
+      "name": "Porto Ribeira FC",
+      "image": "embedded PNG",
+      "imageSha256": "0280b2a0d172887da3d29b2ae5a6972f2a527fb649bb5b845b903207d006eb64",
+      "embedded": true
+    },
+    {
+      "id": "POR-3",
+      "name": "Tejo Union",
+      "image": "embedded PNG",
+      "imageSha256": "95f4d9cff9becbe099ffd31db3e2997993e8124628200a3b9b2d4eb39c4e9aff",
+      "embedded": true
+    },
+    {
+      "id": "POR-4",
+      "name": "Braga Norte FC",
+      "image": "embedded PNG",
+      "imageSha256": "4d13a527304eb5d8d0ecc4ee584bf8d5bb91fc44f27d6d8652fa8406f256d31a",
+      "embedded": true
+    },
+    {
+      "id": "POR-5",
+      "name": "Coimbra Athletic",
+      "image": "embedded PNG",
+      "imageSha256": "852ea66f684936b08c4cb0118a36dded90c914888ad6ad464dafdf5ee46ef076",
+      "embedded": true
+    },
+    {
+      "id": "POR-6",
+      "name": "Aveiro Costa FC",
+      "image": "embedded PNG",
+      "imageSha256": "772627a980a86b9f707342aaeb7f1c42637cd41e3ef8172443cdc6cf90bd631a",
+      "embedded": true
+    },
+    {
+      "id": "POR-7",
+      "name": "Guimarães Castelo FC",
+      "image": "embedded PNG",
+      "imageSha256": "eb4c132c1c908337dc2dddc90c9d35841f533bfd8c44e0e0fdf5e9f6344a89b3",
+      "embedded": true
+    },
+    {
+      "id": "POR-8",
+      "name": "Setúbal Sado FC",
+      "image": "embedded PNG",
+      "imageSha256": "d9bb701a5ead9965902814c3929ca5ce5ac2e287b562f96b9a42a8c6325d0738",
+      "embedded": true
+    },
+    {
+      "id": "POR-C1",
+      "name": "Évora Central FC",
+      "image": "embedded PNG",
+      "imageSha256": "fa8e89e7a016023d96f9462fbe21a09c4f486646b7f88237caff32197084503d",
+      "embedded": true
+    },
+    {
+      "id": "POR-C2",
+      "name": "Faro Sul FC",
+      "image": "embedded PNG",
+      "imageSha256": "2302cb1e6794af232b1685dc5c93bfe8f9f033b2f461ad6a04ff78420839f2c9",
+      "embedded": true
+    },
+    {
+      "id": "POR-C3",
+      "name": "Coimbra Mondego FC",
+      "image": "embedded PNG",
+      "imageSha256": "5e412e4928203d64c5b372797dc56e3a9f0a2a736cbf97ededbe12584965d68d",
+      "embedded": true
+    },
+    {
+      "id": "POR-C4",
+      "name": "Aveiro Ria FC",
+      "image": "embedded PNG",
+      "imageSha256": "fd8fe01689bc14d27e08c3665eeac0be83cd905cb5ee9a72f839c84e84edb498",
+      "embedded": true
+    },
+    {
+      "id": "POR-C5",
+      "name": "Leiria Lis FC",
+      "image": "embedded PNG",
+      "imageSha256": "97f2b70555ea53f971f66d13e627c91511d086ca6fd24e49c2dead7974defd91",
+      "embedded": true
+    },
+    {
+      "id": "POR-C6",
+      "name": "Viseu Fontelo FC",
+      "image": "embedded PNG",
+      "imageSha256": "388c03fee747b64f1f0a32c52f636f4e0286d1baf50b0abfab7b3a248299466e",
+      "embedded": true
+    },
+    {
+      "id": "POR-C7",
+      "name": "Portimão Arade FC",
+      "image": "embedded PNG",
+      "imageSha256": "ed489f0c046ae3834a43a52a03041eefe264b327fb1803f8b88d0468db7ea6c0",
+      "embedded": true
+    },
+    {
+      "id": "POR-C8",
+      "name": "Viana Lima FC",
+      "image": "embedded PNG",
+      "imageSha256": "08b3d96ece9ac99e9dd269975f8b0ac43d85717d7c0feb913934ad1e44fe180e",
+      "embedded": true
+    },
+    {
+      "id": "NED-1",
+      "name": "Amsterdam Amstel FC",
+      "image": "embedded PNG",
+      "imageSha256": "9406d3da10f0a787eff430fc4098104db6c37bc925f8a5bd59d4e95412968263",
+      "embedded": true
+    },
+    {
+      "id": "NED-2",
+      "name": "Rotterdam Maaspoort FC",
+      "image": "embedded PNG",
+      "imageSha256": "0ae59bc5c8ea95a43596a84c3b58c4d14eef94385ee11d2191bd90da685b2ead",
+      "embedded": true
+    },
+    {
+      "id": "NED-3",
+      "name": "Eindhoven Lichtstad FC",
+      "image": "embedded PNG",
+      "imageSha256": "37121f9304aea44a8f90c8782f56be0518bd4999d025d16024aedafbdcb9a9a9",
+      "embedded": true
+    },
+    {
+      "id": "NED-4",
+      "name": "Utrecht Singel FC",
+      "image": "embedded PNG",
+      "imageSha256": "d5711164a7a061e91906cf64c1bd11ba3c59df0b4bbd8f0fecce50de00f8e1d5",
+      "embedded": true
+    },
+    {
+      "id": "NED-5",
+      "name": "Enschede Veld FC",
+      "image": "embedded PNG",
+      "imageSha256": "375719a0585ab0a87112465bcb9d649ddad058460e5f2b612ad682ea455f151e",
+      "embedded": true
+    },
+    {
+      "id": "NED-6",
+      "name": "Arnhem Rijnpark FC",
+      "image": "embedded PNG",
+      "imageSha256": "77d0ed74b67b75a71e31093b8cf8ef9bda67cdccd5e286bd7bc2b4221b135e10",
+      "embedded": true
+    },
+    {
+      "id": "NED-7",
+      "name": "Groningen Noorderpoort FC",
+      "image": "embedded PNG",
+      "imageSha256": "1002acd68646d6c60521f3069d9302fa2a065094e6edb950f974abc3808f962c",
+      "embedded": true
+    },
+    {
+      "id": "NED-8",
+      "name": "Amsterdam Westhaven FC",
+      "image": "embedded PNG",
+      "imageSha256": "0ce008bd12606e8b58e21a29598910333cb1862d821cb27541ac5f4a4ed8bc00",
+      "embedded": true
+    },
+    {
+      "id": "NED-C1",
+      "name": "Haarlem Spaarne FC",
+      "image": "embedded PNG",
+      "imageSha256": "75b5ebb7c90432b0833528868817f914585f6be63dde3c0bbc0561d842d732f5",
+      "embedded": true
+    },
+    {
+      "id": "NED-C2",
+      "name": "Zwolle Vechtpoort FC",
+      "image": "embedded PNG",
+      "imageSha256": "ccf7f4dc396edfea421221680e1dce58083d86e3515967ec05ad80cf15400c35",
+      "embedded": true
+    },
+    {
+      "id": "NED-C3",
+      "name": "Deventer IJsselboog FC",
+      "image": "embedded PNG",
+      "imageSha256": "15183ed7a5a3da9099347cb79d4a36f21d6c3c7561b0afae4a18f097dba4d534",
+      "embedded": true
+    },
+    {
+      "id": "NED-C4",
+      "name": "Breda Markveld FC",
+      "image": "embedded PNG",
+      "imageSha256": "a8224d006dac17fa4beaee1bdaf542ff91885a70a71ac14ba11433db9c1b3ea7",
+      "embedded": true
+    },
+    {
+      "id": "NED-C5",
+      "name": "Tilburg Spoor FC",
+      "image": "embedded PNG",
+      "imageSha256": "1eb39818e454d387d9644652ea595f09875021a211de2216c2194446cdd09d15",
+      "embedded": true
+    },
+    {
+      "id": "NED-C6",
+      "name": "Leeuwarden Middelzee FC",
+      "image": "embedded PNG",
+      "imageSha256": "13f3f720f61cdbef15869e3395177b8ec8c62145b432ea4a59624e5d96d949ee",
+      "embedded": true
+    },
+    {
+      "id": "NED-C7",
+      "name": "Alkmaar Singelpoort FC",
+      "image": "embedded PNG",
+      "imageSha256": "db3b5ff10d3d95245a4471e1726f5c14f662f07d986a3a4470c7966fb7b86c9b",
+      "embedded": true
+    },
+    {
+      "id": "NED-C8",
+      "name": "Maastricht Jeker FC",
+      "image": "embedded PNG",
+      "imageSha256": "1d2829a465a86530dbfcf2e51283e24735e1ce205944eb13367c307f7244d749",
+      "embedded": true
+    },
+    {
+      "id": "AUT-1",
+      "name": "Wiener SC Kronau",
+      "image": "embedded PNG",
+      "imageSha256": "fba383b5cdaae74cb6bbc7da8e7a0f09e71290101a379749f077f6503d057849",
+      "embedded": true
+    },
+    {
+      "id": "AUT-2",
+      "name": "FC Salzburg Falken",
+      "image": "embedded PNG",
+      "imageSha256": "9913b51bb74fa31d8519f5fe0eae3ce7259640f6cbb1ef315df7cb6b8eb897f8",
+      "embedded": true
+    },
+    {
+      "id": "AUT-3",
+      "name": "Schwarz Weiß Graz",
+      "image": "embedded PNG",
+      "imageSha256": "cbbe3fa53363ccb151681cb373b327a6aeda1cd1110ea017751954735614d55b",
+      "embedded": true
+    },
+    {
+      "id": "AUT-4",
+      "name": "Linzer SC Union",
+      "image": "embedded PNG",
+      "imageSha256": "df64bdd3c31bdce236cc1199fe929953e3417693a7d7be4c13a0caee08e664c0",
+      "embedded": true
+    },
+    {
+      "id": "AUT-5",
+      "name": "Innsbruck Sport",
+      "image": "embedded PNG",
+      "imageSha256": "722aedd65a9544dd9614baaf8706baaf7de01d27969669e2a6910a64ee8587f5",
+      "embedded": true
+    },
+    {
+      "id": "AUT-6",
+      "name": "SC Klagenfurt Seestadt",
+      "image": "embedded PNG",
+      "imageSha256": "01844a985536bb3d06a526d4d27253025c3a2fdc1960b67200a7f8759897f28e",
+      "embedded": true
+    },
+    {
+      "id": "AUT-7",
+      "name": "SV St. Pölten Westpark",
+      "image": "embedded PNG",
+      "imageSha256": "76789eef49db6b36e39e9d7c20ba563d6560382568738eaa087b4008a54975a0",
+      "embedded": true
+    },
+    {
+      "id": "AUT-8",
+      "name": "Wiener SC Fortuna",
+      "image": "embedded PNG",
+      "imageSha256": "4de17f4b4b116abd5c136b854a2de4d00808089e1ecdc3087ff0d16cafd33d0a",
+      "embedded": true
+    },
+    {
+      "id": "AUT-C1",
+      "name": "Dornbirner SC Achfeld",
+      "image": "embedded PNG",
+      "imageSha256": "7b2e46a84baa272e067e15488dd980e78b3ab13329c70df78dcbf5df89856b5a",
+      "embedded": true
+    },
+    {
+      "id": "AUT-C2",
+      "name": "SC Bregenz Uferbogen",
+      "image": "embedded PNG",
+      "imageSha256": "5f4375c2cbd003dbf6cd463ac72e7035f9daf7ffa61b5d4fdbda7ee2c89d3a5c",
+      "embedded": true
+    },
+    {
+      "id": "AUT-C3",
+      "name": "Welser SC Traunhof",
+      "image": "embedded PNG",
+      "imageSha256": "1f94a55b2b0e777383d8e6a35e0f4c7cf9fa61588f9ff18136530048b55bc58d",
+      "embedded": true
+    },
+    {
+      "id": "AUT-C4",
+      "name": "SC Steyr Brückenfeld",
+      "image": "embedded PNG",
+      "imageSha256": "be2752e3a3a5ecf29735072cb122321e850729b1f15ed836446c697cfe895beb",
+      "embedded": true
+    },
+    {
+      "id": "AUT-C5",
+      "name": "SC Wiener Neustadt Südring",
+      "image": "embedded PNG",
+      "imageSha256": "9174b2a9e7b13429178f499c761a4e5c60a491f0028b428272990d6e5cca0764",
+      "embedded": true
+    },
+    {
+      "id": "AUT-C6",
+      "name": "Kremser SC Donauhain",
+      "image": "embedded PNG",
+      "imageSha256": "22b39ddeca48fadcdd4b34036253491e41a62f22e32cdebb52197b6c1ad87bd9",
+      "embedded": true
+    },
+    {
+      "id": "AUT-C7",
+      "name": "SC Leoben Mursteg",
+      "image": "embedded PNG",
+      "imageSha256": "8453943bcea6d13049680bb764dc8f8a1b96f9f9f82fb7641427d09988579c97",
+      "embedded": true
+    },
+    {
+      "id": "AUT-C8",
+      "name": "SC Amstetten Ybbsfeld",
+      "image": "embedded PNG",
+      "imageSha256": "6e30b6551966942de233d357f254f86ce51df77251b59a0001f8e773e18edc7b",
+      "embedded": true
+    },
+    {
+      "id": "BEL-1",
+      "name": "Brugge Reie FC",
+      "image": "embedded PNG",
+      "imageSha256": "2c4870a0ca218c8836d8a36c74480ec2cccc9095a1aae2d32bd76512ab69c1f1",
+      "embedded": true
+    },
+    {
+      "id": "BEL-2",
+      "name": "Bruxelles Senne Union",
+      "image": "embedded PNG",
+      "imageSha256": "79b074aa751296786166ce515117ddbe6852128151772414b5e59bc2fde36a5b",
+      "embedded": true
+    },
+    {
+      "id": "BEL-3",
+      "name": "Antwerpen Schelde FC",
+      "image": "embedded PNG",
+      "imageSha256": "49de0eb80e3ca8f0ed41948b04dcbf60567f37867a4eadebdbfafa6509bee498",
+      "embedded": true
+    },
+    {
+      "id": "BEL-4",
+      "name": "Gent Leie FC",
+      "image": "embedded PNG",
+      "imageSha256": "8e59422598c0082390bc89d79df96d8b2a42235255174378aa659cd90d4c85ec",
+      "embedded": true
+    },
+    {
+      "id": "BEL-5",
+      "name": "Liège Meuse FC",
+      "image": "embedded PNG",
+      "imageSha256": "3bff884bd459b79c9a37be33178bdf4a9e45f6e191dca9e70d7467c31b36f44f",
+      "embedded": true
+    },
+    {
+      "id": "BEL-6",
+      "name": "Genk Kempen FC",
+      "image": "embedded PNG",
+      "imageSha256": "553fa0ba467f5b87e65e2775dd78ba374ef14950d62971c107debea10a9129de",
+      "embedded": true
+    },
+    {
+      "id": "BEL-7",
+      "name": "Charleroi Sambre FC",
+      "image": "embedded PNG",
+      "imageSha256": "9f7a17a12705f89404f4ac3b3edd38b2a16aae5cf9930ee1bbc1626ef44c2518",
+      "embedded": true
+    },
+    {
+      "id": "BEL-8",
+      "name": "Bruxelles Parc FC",
+      "image": "embedded PNG",
+      "imageSha256": "cb90612175146f9a79d61da0b8597b5861a539fb5b0a0d681d63bb038fadcca0",
+      "embedded": true
+    },
+    {
+      "id": "BEL-C1",
+      "name": "Mechelen Dijle FC",
+      "image": "embedded PNG",
+      "imageSha256": "7f4aeb62ce7b0bef40f364dc4de47bb89abb669dfa493862ffb94bf59a701f3e",
+      "embedded": true
+    },
+    {
+      "id": "BEL-C2",
+      "name": "Leuven Vaart FC",
+      "image": "embedded PNG",
+      "imageSha256": "7e8e7c036ae54f6f0cc0f77fc333f5fd9a3c67ebeab5301b0870fa3fa82718ee",
+      "embedded": true
+    },
+    {
+      "id": "BEL-C3",
+      "name": "Namur Sambreporte FC",
+      "image": "embedded PNG",
+      "imageSha256": "8136a578623ae54b64cb19ed11b72a9cf28fb4fa7f0ffeac7d61d37001d25b21",
+      "embedded": true
+    },
+    {
+      "id": "BEL-C4",
+      "name": "Mons Trouille FC",
+      "image": "embedded PNG",
+      "imageSha256": "6ce77dc736bf9f46ac7c83c149a0d249db959487a699736a2160f4412e911f2f",
+      "embedded": true
+    },
+    {
+      "id": "BEL-C5",
+      "name": "Kortrijk Leieboog FC",
+      "image": "embedded PNG",
+      "imageSha256": "25101611289ba43d30d30569ad271b58c17b9692062d62564c9bd4299115ba34",
+      "embedded": true
+    },
+    {
+      "id": "BEL-C6",
+      "name": "Hasselt Demer FC",
+      "image": "embedded PNG",
+      "imageSha256": "3721b50e41f07ded12d13dfc804b2e04c585998350a84c355f9792d3685b0ab0",
+      "embedded": true
+    },
+    {
+      "id": "BEL-C7",
+      "name": "Oostende Duin FC",
+      "image": "embedded PNG",
+      "imageSha256": "a47780c48d7bd25c28dbe203610cb168fe68591d09f47de00d5ab6a4dc93123f",
+      "embedded": true
+    },
+    {
+      "id": "BEL-C8",
+      "name": "Tournai Escaut FC",
+      "image": "embedded PNG",
+      "imageSha256": "19b696ca6997390e2f51ae71d0979f81d9885a84bd38b0751d48a6db1e0553e3",
+      "embedded": true
+    },
+    {
+      "id": "TUR-1",
+      "name": "Istanbul Bosporus SK",
+      "image": "embedded PNG",
+      "imageSha256": "0388ca56bd00ff3d35e37b1645a2e54c1ef123da3ced087fd557fcd8184b4168",
+      "embedded": true
+    },
+    {
+      "id": "TUR-2",
+      "name": "Istanbul Haliç SK",
+      "image": "embedded PNG",
+      "imageSha256": "bd9a7e43512956a1d4f32052e87976470fa1c340a23a02262c5e6145f4463c00",
+      "embedded": true
+    },
+    {
+      "id": "TUR-3",
+      "name": "Istanbul Marmara SK",
+      "image": "embedded PNG",
+      "imageSha256": "69f62922dcaea0ab6df26096049233fa77fbf7243db3545ebf122c99351d9a28",
+      "embedded": true
+    },
+    {
+      "id": "TUR-4",
+      "name": "Trabzon Karadeniz SK",
+      "image": "embedded PNG",
+      "imageSha256": "91fea5cb62b3d8091823fe76c0de86a13e4b01ce66a1eea7b578d2d5935ccb79",
+      "embedded": true
+    },
+    {
+      "id": "TUR-5",
+      "name": "Ankara Kale SK",
+      "image": "embedded PNG",
+      "imageSha256": "7b92b960d0bd497d0b3e06aa492cad9d2406b04c90da4217ce4e497ed11e6b56",
+      "embedded": true
+    },
+    {
+      "id": "TUR-6",
+      "name": "Izmir Körfez SK",
+      "image": "embedded PNG",
+      "imageSha256": "c380593a78fd19a81c29792dff4a4b3640377a536ebfd4e7e65495ef34f3a53f",
+      "embedded": true
+    },
+    {
+      "id": "TUR-7",
+      "name": "Bursa Yeşilova SK",
+      "image": "embedded PNG",
+      "imageSha256": "e9ffd192241ec9913b78c1cd88af1bd3b2f50ee29948db9c6dc054a2c28cb78d",
+      "embedded": true
+    },
+    {
+      "id": "TUR-8",
+      "name": "Antalya Kıyı SK",
+      "image": "embedded PNG",
+      "imageSha256": "6648b81af530abec17fb0dae9dd5de07dd8d7e9993f86e4b206f7b51f5d5f747",
+      "embedded": true
+    },
+    {
+      "id": "TUR-C1",
+      "name": "Samsun Kıyıova SK",
+      "image": "embedded PNG",
+      "imageSha256": "8e44871dd3383b1daaeac56c30707ad60a15565a9e1628f8ca150b4665619a87",
+      "embedded": true
+    },
+    {
+      "id": "TUR-C2",
+      "name": "Eskişehir Porsuk SK",
+      "image": "embedded PNG",
+      "imageSha256": "3f9098f313fdf6fb6c86f9cda08b48d05cf50368ef8bf951adec4c82f7d0e395",
+      "embedded": true
+    },
+    {
+      "id": "TUR-C3",
+      "name": "Konya Meram SK",
+      "image": "embedded PNG",
+      "imageSha256": "301d9a40d465cb0431d35bd01973e01b3e4906658f4f00217215c4ffb2149305",
+      "embedded": true
+    },
+    {
+      "id": "TUR-C4",
+      "name": "Kayseri Erciyesova SK",
+      "image": "embedded PNG",
+      "imageSha256": "f7cdce98d1382c51c5c8d19a6833c4c1bc25bcf57e71cce05dd7535103e3bfe5",
+      "embedded": true
+    },
+    {
+      "id": "TUR-C5",
+      "name": "Adana Seyhanpark SK",
+      "image": "embedded PNG",
+      "imageSha256": "ceaa8a994bd0e915733b2ba4bef6e248702d356d5ef8444d6469c346195a8ba4",
+      "embedded": true
+    },
+    {
+      "id": "TUR-C6",
+      "name": "Gaziantep Alleben SK",
+      "image": "embedded PNG",
+      "imageSha256": "6008e8def367a06720feb79f9900361cbb1476db3bf34596136f2443554f5d78",
+      "embedded": true
+    },
+    {
+      "id": "TUR-C7",
+      "name": "Denizli Çınarova SK",
+      "image": "embedded PNG",
+      "imageSha256": "a347eb3054e82d0f3a62ec52219b00ed6b761e9e986908518096c43697fe8d83",
+      "embedded": true
+    },
+    {
+      "id": "TUR-C8",
+      "name": "Mersin Akdenizkapı SK",
+      "image": "embedded PNG",
+      "imageSha256": "819f40e12537ae5d2005e5f18f6effec2f9bacba5ce3bc72f6eac075d52270a7",
+      "embedded": true
+    },
+    {
+      "id": "SUI-1",
+      "name": "Basel Rheintor FC",
+      "image": "embedded PNG",
+      "imageSha256": "76313b07a810176aea49e982b903d21398d12ad0598409febe06afb75c99e3a7",
+      "embedded": true
+    },
+    {
+      "id": "SUI-2",
+      "name": "Bern Aarebogen FC",
+      "image": "embedded PNG",
+      "imageSha256": "d8c9d30f1b86d9ea57d475263e1d5ed9d9bf20b3f12da6b6285cb81034219eed",
+      "embedded": true
+    },
+    {
+      "id": "SUI-3",
+      "name": "Zürich Limmat FC",
+      "image": "embedded PNG",
+      "imageSha256": "18bb7128b52bf6ec60bdcc81b9308804581edca8f53959e45e8d8b5d28cf45e4",
+      "embedded": true
+    },
+    {
+      "id": "SUI-4",
+      "name": "Genève Rhône FC",
+      "image": "embedded PNG",
+      "imageSha256": "e3295080b103cbe17ea7fb1c22a1c1082b4b834adb928061be4adcbc7f3fcb74",
+      "embedded": true
+    },
+    {
+      "id": "SUI-5",
+      "name": "St. Gallen Sitter FC",
+      "image": "embedded PNG",
+      "imageSha256": "5b96f95e39def6cd47afa69a5e99c5041ec0862c1da713cace59ea7f31b5d9f2",
+      "embedded": true
+    },
+    {
+      "id": "SUI-6",
+      "name": "Lausanne Léman FC",
+      "image": "embedded PNG",
+      "imageSha256": "10858d207ac063a42ab617f0df5e1f9024b6d1de5f1a5d9f018a73150b493247",
+      "embedded": true
+    },
+    {
+      "id": "SUI-7",
+      "name": "Luzern Reuss FC",
+      "image": "embedded PNG",
+      "imageSha256": "220f22f3e769dd5e0d85d15000eab2d5106c091d040367829811b52b4c9b7cd3",
+      "embedded": true
+    },
+    {
+      "id": "SUI-8",
+      "name": "Zürich Sihl FC",
+      "image": "embedded PNG",
+      "imageSha256": "523e589de926227ba195dea3b4974db0fa45cfb7fbe49a0d25eceea6176230c7",
+      "embedded": true
+    },
+    {
+      "id": "SUI-C1",
+      "name": "Winterthur Eulachbogen FC",
+      "image": "embedded PNG",
+      "imageSha256": "c32baa17e92ee2d41ea11ef23f355377954fe3a36f84470deeef0ae5aa58bbbf",
+      "embedded": true
+    },
+    {
+      "id": "SUI-C2",
+      "name": "Schaffhausen Uferfeld FC",
+      "image": "embedded PNG",
+      "imageSha256": "b7715302e4d51c434e8bab581dac8a96a4f67efcf0cd382dcc43baebaf552198",
+      "embedded": true
+    },
+    {
+      "id": "SUI-C3",
+      "name": "Thun Aaresteg FC",
+      "image": "embedded PNG",
+      "imageSha256": "29f6d3dc7beab276ebce5ea267d69c9beb9969b63e2b0d3e48b81ab20e6081be",
+      "embedded": true
+    },
+    {
+      "id": "SUI-C4",
+      "name": "Sion Rhônebogen FC",
+      "image": "embedded PNG",
+      "imageSha256": "8d9a1fe0b2e72229b83593ecefaebfd3975760825b6a53b49a970d0bb8b56cd6",
+      "embedded": true
+    },
+    {
+      "id": "SUI-C5",
+      "name": "Neuchâtel Seyon FC",
+      "image": "embedded PNG",
+      "imageSha256": "ffc1f08756325406e2d0fdcec718a620f81ff014b0b75c77b6c811189e39d89c",
+      "embedded": true
+    },
+    {
+      "id": "SUI-C6",
+      "name": "Lugano Ceresio FC",
+      "image": "embedded PNG",
+      "imageSha256": "ddb2b3b41a05a78746b82ee14fc2286bf4fd514ee675f3431c8f1a5ba203ef6a",
+      "embedded": true
+    },
+    {
+      "id": "SUI-C7",
+      "name": "Bellinzona Ticino FC",
+      "image": "embedded PNG",
+      "imageSha256": "064c256788a68b3e676579240811beb0d224838a7d5db5e3117ccb82fffd84f2",
+      "embedded": true
+    },
+    {
+      "id": "SUI-C8",
+      "name": "Biel Schüss FC",
+      "image": "embedded PNG",
+      "imageSha256": "411dd505e22392e970e149753c9cb8b7f1b83de25448d35d02bf149e72e247c9",
+      "embedded": true
+    },
+    {
+      "id": "GRE-1",
+      "name": "Athina Helios FC",
+      "image": "embedded PNG",
+      "imageSha256": "d5561879906d560e948a5449e4cf8b89bbcef315699e90f04e19cf36da5674ca",
+      "embedded": true
+    },
+    {
+      "id": "GRE-2",
+      "name": "Piräus Nautilos FC",
+      "image": "embedded PNG",
+      "imageSha256": "1bdee49b75dca2b807305dc8b3ab6db429604698fad84ebb2be5aecb106d35ab",
+      "embedded": true
+    },
+    {
+      "id": "GRE-3",
+      "name": "Thessaloniki Vardaris FC",
+      "image": "embedded PNG",
+      "imageSha256": "50fc66d76e6de1451ab4bddb80c3ddb55b60bdf3f3cf8f0b3cd5c66d684ca1a1",
+      "embedded": true
+    },
+    {
+      "id": "GRE-4",
+      "name": "Athina Kallisto FC",
+      "image": "embedded PNG",
+      "imageSha256": "cb0061db71401c129b8e18b942e2f003cf2b794a6ad95027da75f52ab447070e",
+      "embedded": true
+    },
+    {
+      "id": "GRE-5",
+      "name": "Thessaloniki Therma FC",
+      "image": "embedded PNG",
+      "imageSha256": "559f80ca56e5856d06cdb02aaf597361180ff5847fca6503b0f513dd100365e8",
+      "embedded": true
+    },
+    {
+      "id": "GRE-6",
+      "name": "Patras Achaia FC",
+      "image": "embedded PNG",
+      "imageSha256": "575a7ac454be6a0ebd6f989338503ce7265a7844bc4255d10d146957d3b1f2ae",
+      "embedded": true
+    },
+    {
+      "id": "GRE-7",
+      "name": "Iraklio Candia FC",
+      "image": "embedded PNG",
+      "imageSha256": "b405f1989373ea4ca7ad5010b3fd39c6715d81cbe7baba6184d02fdd64a7d8b0",
+      "embedded": true
+    },
+    {
+      "id": "GRE-8",
+      "name": "Volos Pelion FC",
+      "image": "embedded PNG",
+      "imageSha256": "4e54b89351f462b5f8b0c9556244aa20a3feca56a44e9dfebbb7fbbb36fea516",
+      "embedded": true
+    },
+    {
+      "id": "GRE-C1",
+      "name": "Larisa Pinios FC",
+      "image": "embedded PNG",
+      "imageSha256": "bd526897b634767256905680e7791ceed2b30448b0ada2a0ba111f993754581d",
+      "embedded": true
+    },
+    {
+      "id": "GRE-C2",
+      "name": "Ioannina Pamvotis FC",
+      "image": "embedded PNG",
+      "imageSha256": "ab3cc6eb9d425a71fbcdd29e71be0a2b5040b51321e8931bc96e559338ed7b0d",
+      "embedded": true
+    },
+    {
+      "id": "GRE-C3",
+      "name": "Kavala Ormos FC",
+      "image": "embedded PNG",
+      "imageSha256": "d710a39661307abcf0e8c0d438e114e85aefce777d44c15234c7e6de48433435",
+      "embedded": true
+    },
+    {
+      "id": "GRE-C4",
+      "name": "Kalamata Taygetos FC",
+      "image": "embedded PNG",
+      "imageSha256": "ee9d09d1cf1cd47f90506fee1c57269022679b95aafefc49b73d5d593f5e69ac",
+      "embedded": true
+    },
+    {
+      "id": "GRE-C5",
+      "name": "Rhodos Asteri FC",
+      "image": "embedded PNG",
+      "imageSha256": "f693e5a969fc0acd76b90ca0ca342a009950d8b0ac14e69fc044e9d2017422dd",
+      "embedded": true
+    },
+    {
+      "id": "GRE-C6",
+      "name": "Chania Lefka FC",
+      "image": "embedded PNG",
+      "imageSha256": "ad37d8046d6e0c5d2ff0b132dbe61a8d9be2188c4f55d9d47cd1172b94bb6fa4",
+      "embedded": true
+    },
+    {
+      "id": "GRE-C7",
+      "name": "Serres Strymon FC",
+      "image": "embedded PNG",
+      "imageSha256": "2824dddd709b4b15186197235f864017ed00051004df7c200ff7224bce243680",
+      "embedded": true
+    },
+    {
+      "id": "GRE-C8",
+      "name": "Tripoli Karyes FC",
+      "image": "embedded PNG",
+      "imageSha256": "1ae39dac0213a290de5bc14f0914cfd098b79ba130f51e590dfe8f36df70511f",
+      "embedded": true
+    }
+  ],
+  "errors": []
+}
