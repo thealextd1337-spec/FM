@@ -1,9 +1,10 @@
 # Änderungen
 
-## Noch nicht veröffentlicht – Release 127
+## 12. Oktober 2026 – Release 127
 
 - Jugendförderung mit 0/500/1.000/1.500 Credits, kumulativem sportlichem/finanziellem Jugendstatus, bekannten Bewertungsfarben und Trendpfeil. Kontinuierliche neue Jahrgangsqualität, wechselnde Positionen, konsistenter Länderrahmen und normalisierte hohe Talentgewichte. Neue Karrieren ausschließlich.
 - Gemeinsame Karriereenden ab 33 mit 40 Prozent, jährlich +10 Prozentpunkte; Risikohinweis, verbindlicher Saisonmitte-Entscheid und Abschiedsgeschichte im Abschluss. Spielerprofile und letzte Saison bleiben archiviert. [Regeln und Prüfstand](release-127.md).
+- Veröffentlicht und live abgenommen: drei native 20-Saison-Welten mit 59.460 Partien, 110 Produktionskommandos, 24 lokale und zwölf Live-Ansichtsfälle sowie native Live-Pause/Neuladen/Fortsetzung bestanden. Quelle, beide Builds und öffentliche Seite zeigen Version 127; die Live-Datei ist bytegleich.
 
 
 ## 11. Oktober 2026 – Release 126

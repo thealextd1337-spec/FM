@@ -11,6 +11,8 @@
   "buildBytes": 95808680,
   "controls": true,
   "browserCases": 24,
+  "liveChecked": true,
+  "liveBrowserCases": 12,
   "nativePauseReload": true,
   "gates": 110,
   "final": {

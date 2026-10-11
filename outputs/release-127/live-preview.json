@@ -1,0 +1,9 @@
+{
+  "pass": true,
+  "url": "https://fussball.cakamper.at/",
+  "footer": "Doppel 6 / PROTOTYP 127",
+  "budgets": [0, 500, 1000, 1500],
+  "newWorldMarker": 1,
+  "status": "Jugendstatus: Normal →",
+  "nativeValidation": true
+}

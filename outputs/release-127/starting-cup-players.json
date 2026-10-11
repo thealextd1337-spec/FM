@@ -1,0 +1,21 @@
+{
+  "pass": true,
+  "seasons": 20,
+  "rows": [
+    {
+      "seed": "youth20-a",
+      "initialCupPlayers": 1056,
+      "remainingAfter20": 0
+    },
+    {
+      "seed": "youth20-b",
+      "initialCupPlayers": 1056,
+      "remainingAfter20": 0
+    },
+    {
+      "seed": "youth20-c",
+      "initialCupPlayers": 1056,
+      "remainingAfter20": 0
+    }
+  ]
+}

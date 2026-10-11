@@ -1,0 +1,249 @@
+{
+  "pass": true,
+  "url": "https://fussball.cakamper.at/?youth127=qa&engine=2d",
+  "rows": [
+    {
+      "width": 320,
+      "theme": "light",
+      "language": "de",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Jugendstatus: Normal→",
+          "aria": "Stabil",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "Keine Förderung · 0 Credits",
+        "Grundförderung · 500 Credits",
+        "Schwerpunkt Jugend · 1.000 Credits",
+        "Maximale Förderung · 1.500 Credits"
+      ],
+      "valid": true
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "language": "en",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Academy status: Normal→",
+          "aria": "Stable",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "No funding · 0 Credits",
+        "Basic funding · 500 Credits",
+        "Youth priority · 1.000 Credits",
+        "Maximum funding · 1.500 Credits"
+      ],
+      "valid": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "language": "de",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Jugendstatus: Normal→",
+          "aria": "Stabil",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "Keine Förderung · 0 Credits",
+        "Grundförderung · 500 Credits",
+        "Schwerpunkt Jugend · 1.000 Credits",
+        "Maximale Förderung · 1.500 Credits"
+      ],
+      "valid": true
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "language": "en",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Academy status: Normal→",
+          "aria": "Stable",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "No funding · 0 Credits",
+        "Basic funding · 500 Credits",
+        "Youth priority · 1.000 Credits",
+        "Maximum funding · 1.500 Credits"
+      ],
+      "valid": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "language": "de",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Jugendstatus: Normal→",
+          "aria": "Stabil",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "Keine Förderung · 0 Credits",
+        "Grundförderung · 500 Credits",
+        "Schwerpunkt Jugend · 1.000 Credits",
+        "Maximale Förderung · 1.500 Credits"
+      ],
+      "valid": true
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "language": "en",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Academy status: Normal→",
+          "aria": "Stable",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "No funding · 0 Credits",
+        "Basic funding · 500 Credits",
+        "Youth priority · 1.000 Credits",
+        "Maximum funding · 1.500 Credits"
+      ],
+      "valid": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "language": "de",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Jugendstatus: Normal→",
+          "aria": "Stabil",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "Keine Förderung · 0 Credits",
+        "Grundförderung · 500 Credits",
+        "Schwerpunkt Jugend · 1.000 Credits",
+        "Maximale Förderung · 1.500 Credits"
+      ],
+      "valid": true
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "language": "en",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Academy status: Normal→",
+          "aria": "Stable",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "No funding · 0 Credits",
+        "Basic funding · 500 Credits",
+        "Youth priority · 1.000 Credits",
+        "Maximum funding · 1.500 Credits"
+      ],
+      "valid": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "language": "de",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Jugendstatus: Normal→",
+          "aria": "Stabil",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "Keine Förderung · 0 Credits",
+        "Grundförderung · 500 Credits",
+        "Schwerpunkt Jugend · 1.000 Credits",
+        "Maximale Förderung · 1.500 Credits"
+      ],
+      "valid": true
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "language": "en",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Academy status: Normal→",
+          "aria": "Stable",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "No funding · 0 Credits",
+        "Basic funding · 500 Credits",
+        "Youth priority · 1.000 Credits",
+        "Maximum funding · 1.500 Credits"
+      ],
+      "valid": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "language": "de",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Jugendstatus: Normal→",
+          "aria": "Stabil",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "Keine Förderung · 0 Credits",
+        "Grundförderung · 500 Credits",
+        "Schwerpunkt Jugend · 1.000 Credits",
+        "Maximale Förderung · 1.500 Credits"
+      ],
+      "valid": true
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "language": "en",
+      "overflow": false,
+      "status": [
+        {
+          "text": "Academy status: Normal→",
+          "aria": "Stable",
+          "color": "rgb(233, 207, 89)"
+        }
+      ],
+      "options": [
+        "No funding · 0 Credits",
+        "Basic funding · 500 Credits",
+        "Youth priority · 1.000 Credits",
+        "Maximum funding · 1.500 Credits"
+      ],
+      "valid": true
+    }
+  ],
+  "reload": true,
+  "retirementNotices": true,
+  "errors": []
+}
