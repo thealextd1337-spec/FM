@@ -1,5 +1,11 @@
 # Produktregeln
 
+## Wappen und Sponsoren der neuen Länder
+
+Die 36 Sponsoren dieser Länder haben individuelle Wortmarken und passende kompakte Symbole im gemeinsamen Grafikfinish. Bei der Sponsorwahl nach der Klubwahl sind Fixum, jedes Bonusziel mit Betrag, mögliche Bonussumme, maximaler Gesamtbetrag und Auszahlungstermine sichtbar.
+
+Die Vereine der Niederlande, Österreichs, Belgiens, der Türkei, der Schweiz und Griechenlands erhalten individuelle Bildwappen im Stil der ursprünglichen Vereinslogos: Schriftlogos, freie Bildzeichen, Tiermotive, historische Siegel und geometrische Monogramme mit unterschiedlichen Formen und den hinterlegten Vereinsfarben. Alle teilen einen matten Druckfinish. Der gemeinsame Wappenrenderer verwendet sie in allen Ansichten, einschließlich der Pokalvereine, und übernimmt gespeicherte Farbänderungen ohne Spielstandmigration. [96 Motive und Quellen](wappen-expansion/README.md).
+
 ## Detaillierte Awardentwürfe
 
 Auf Nutzerauftrag entstehen mit Meshy alle zwölf Landes-Fünfersets sowie Crown-/Horizon-Trophäen und Matchmedaillen (64 Motive). Finale Grafikfreigabe bleibt ausdrücklich offen; die lokale Erstellung ersetzt sie nicht. [Abnahme und Nachweise](ligaexpansion-ap11.md).

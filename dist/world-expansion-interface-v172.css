@@ -1,4 +1,17 @@
+.v172-career .sponsor-offers [data-v166-sponsor] .v97-sponsor-wordmark{width:100%;max-width:310px;height:90px}
 /* Expand the existing dark pitch palette; no new visual identity. */
+@media(max-width:600px){.v172-career .v172-hero{display:grid;grid-template-columns:60px minmax(0,1fr);gap:12px}.v172-career .v172-hero>svg,.v172-career .v172-hero>img{width:60px;height:60px}.v172-career .v172-hero>button{grid-column:1/-1;justify-self:start}.v172-career .v172-hero h1{font-size:1.6rem}}
+.v172-career .sponsor-offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
+.v172-career .sponsor-offers>button{align-items:stretch;text-align:left;white-space:normal;min-width:0;padding:18px}
+.v172-career .v66-sponsor-goals{margin:0;padding:0;list-style:none;width:100%;font-size:.875rem}
+.v172-career .v66-sponsor-goals li{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:8px 0}
+.v172-career .v66-sponsor-goals strong{flex:none;white-space:nowrap;color:#d5f08d}
+.v172-start .v172-start-header{display:flex;align-items:center;justify-content:flex-start;gap:16px;height:auto;min-height:44px;margin:0 0 24px;padding:0;background:transparent;border:0}
+.v172-start-header h1{flex:1;min-width:0;margin:0;font-size:clamp(1.5rem,4vw,2.4rem);line-height:1.15;text-align:left;overflow-wrap:anywhere}
+.v172-career .v172-start-back{display:inline-flex;align-items:center;gap:7px;flex:none;margin:0;padding:9px 10px;background:transparent;border-color:transparent;color:var(--v172-muted)}
+.v172-start-back svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.v172-career .v172-start-back:hover{background:#20383e;color:var(--v172-text)}
+@media(max-width:480px){.v172-start .v172-start-header{gap:12px}.v172-career .v172-start-back{padding:9px 4px;font-size:.875rem}}
 .v172-career .v172-hero{height:auto;min-height:0;justify-content:flex-start}.v172-career .v172-competition>header{height:auto;justify-content:flex-start}.v172-career .v172-competition>header h3{text-align:left}
 .v172-career{--v172-bg:#101f24;--v172-line:#56747b;--v172-text:#eff6ee;--v172-muted:#c6d7d5;color:var(--v172-text);max-width:1100px;padding:24px 20px 72px;font-size:16px;line-height:1.5}
 .v172-hero{display:flex;align-items:center;gap:18px;margin:0 0 24px}.v172-hero>svg,.v172-hero>img{width:76px;height:76px;flex:none}.v172-hero>div{flex:1;min-width:0}.v172-hero h1{font-size:clamp(1.55rem,4vw,2.4rem);line-height:1.15;margin:0 0 8px;overflow-wrap:anywhere}.v172-hero p{margin:0;color:var(--v172-muted)}

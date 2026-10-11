@@ -1,5 +1,7 @@
 work/*
 !work/*.cjs
+!work/prepare-expansion-crests.py
+!work/package-expansion-sponsors.py
 !work/generate-world-sprite-pair-v87.py
 !work/generate-world-sprite-mask-qa.py
 !work/test-world-sprite-masks-v87.py

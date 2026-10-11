@@ -137,6 +137,8 @@ jobs:
         run: |
           node work/build.cjs
           node work/test-club-crests.cjs
+          node work/test-expansion-crests.cjs
+          node work/test-expansion-sponsors.cjs
           node work/test-no-player-images.cjs
 
       - name: Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen

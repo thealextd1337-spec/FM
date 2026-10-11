@@ -1,0 +1,686 @@
+{
+  "exp-aut-1": {
+    "name": "Traunlicht",
+    "image": "sprites/sponsor-exp-aut-1.png",
+    "symbol": "sprites/sponsor-exp-aut-1-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      34,
+      125,
+      482,
+      270
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      0,
+      0,
+      512,
+      256
+    ]
+  },
+  "exp-aut-2": {
+    "name": "Murquelle",
+    "image": "sprites/sponsor-exp-aut-2.png",
+    "symbol": "sprites/sponsor-exp-aut-2-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      536,
+      124,
+      972,
+      267
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      512,
+      0,
+      1024,
+      256
+    ]
+  },
+  "exp-aut-3": {
+    "name": "Innwerk",
+    "image": "sprites/sponsor-exp-aut-3.png",
+    "symbol": "sprites/sponsor-exp-aut-3-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      1031,
+      123,
+      1494,
+      267
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      1024,
+      0,
+      1536,
+      256
+    ]
+  },
+  "exp-aut-4": {
+    "name": "Aarell",
+    "image": "sprites/sponsor-exp-aut-4.png",
+    "symbol": "sprites/sponsor-exp-aut-4-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      29,
+      329,
+      494,
+      491
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      0,
+      256,
+      512,
+      512
+    ]
+  },
+  "exp-aut-5": {
+    "name": "Donaufaden",
+    "image": "sprites/sponsor-exp-aut-5.png",
+    "symbol": "sprites/sponsor-exp-aut-5-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      558,
+      339,
+      965,
+      487
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      512,
+      256,
+      1024,
+      512
+    ]
+  },
+  "exp-aut-6": {
+    "name": "Westpark Mobil",
+    "image": "sprites/sponsor-exp-aut-6.png",
+    "symbol": "sprites/sponsor-exp-aut-6-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      1022,
+      349,
+      1506,
+      476
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      1024,
+      256,
+      1536,
+      512
+    ]
+  },
+  "exp-ned-1": {
+    "name": "Amstelstroom",
+    "image": "sprites/sponsor-exp-ned-1.png",
+    "symbol": "sprites/sponsor-exp-ned-1-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      30,
+      571,
+      501,
+      702
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      0,
+      512,
+      512,
+      768
+    ]
+  },
+  "exp-ned-2": {
+    "name": "Kanaalglas",
+    "image": "sprites/sponsor-exp-ned-2.png",
+    "symbol": "sprites/sponsor-exp-ned-2-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      542,
+      565,
+      992,
+      707
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      512,
+      512,
+      1024,
+      768
+    ]
+  },
+  "exp-ned-3": {
+    "name": "Noorderlijn",
+    "image": "sprites/sponsor-exp-ned-3.png",
+    "symbol": "sprites/sponsor-exp-ned-3-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      1035,
+      567,
+      1510,
+      701
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      1024,
+      512,
+      1536,
+      768
+    ]
+  },
+  "exp-ned-4": {
+    "name": "Veldhaven",
+    "image": "sprites/sponsor-exp-ned-4.png",
+    "symbol": "sprites/sponsor-exp-ned-4-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      30,
+      766,
+      494,
+      924
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      0,
+      768,
+      512,
+      1024
+    ]
+  },
+  "exp-ned-5": {
+    "name": "Lichtweef",
+    "image": "sprites/sponsor-exp-ned-5.png",
+    "symbol": "sprites/sponsor-exp-ned-5-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      536,
+      765,
+      988,
+      920
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      512,
+      768,
+      1024,
+      1024
+    ]
+  },
+  "exp-ned-6": {
+    "name": "Rijnkompas",
+    "image": "sprites/sponsor-exp-ned-6.png",
+    "symbol": "sprites/sponsor-exp-ned-6-symbol.png",
+    "source": "group-0.png",
+    "box": [
+      1020,
+      751,
+      1508,
+      932
+    ],
+    "symbolSource": "group-0-symbols.png",
+    "symbolBox": [
+      1024,
+      768,
+      1536,
+      1024
+    ]
+  },
+  "exp-bel-1": {
+    "name": "Senneflux",
+    "image": "sprites/sponsor-exp-bel-1.png",
+    "symbol": "sprites/sponsor-exp-bel-1-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      22,
+      94,
+      491,
+      258
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      0,
+      0,
+      512,
+      256
+    ]
+  },
+  "exp-bel-2": {
+    "name": "Reiebron",
+    "image": "sprites/sponsor-exp-bel-2.png",
+    "symbol": "sprites/sponsor-exp-bel-2-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      522,
+      105,
+      1003,
+      269
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      512,
+      0,
+      1024,
+      256
+    ]
+  },
+  "exp-bel-3": {
+    "name": "Kempenwerk",
+    "image": "sprites/sponsor-exp-bel-3.png",
+    "symbol": "sprites/sponsor-exp-bel-3-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      1042,
+      103,
+      1521,
+      269
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      1024,
+      0,
+      1536,
+      256
+    ]
+  },
+  "exp-bel-4": {
+    "name": "Leievonk",
+    "image": "sprites/sponsor-exp-bel-4.png",
+    "symbol": "sprites/sponsor-exp-bel-4-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      14,
+      291,
+      511,
+      506
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      0,
+      256,
+      512,
+      512
+    ]
+  },
+  "exp-bel-5": {
+    "name": "Maasroute",
+    "image": "sprites/sponsor-exp-bel-5.png",
+    "symbol": "sprites/sponsor-exp-bel-5-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      533,
+      315,
+      978,
+      468
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      512,
+      256,
+      1024,
+      512
+    ]
+  },
+  "exp-bel-6": {
+    "name": "Scheldekern",
+    "image": "sprites/sponsor-exp-bel-6.png",
+    "symbol": "sprites/sponsor-exp-bel-6-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      1028,
+      322,
+      1522,
+      489
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      1024,
+      256,
+      1536,
+      512
+    ]
+  },
+  "exp-tur-1": {
+    "name": "Kıyı Akım",
+    "image": "sprites/sponsor-exp-tur-1.png",
+    "symbol": "sprites/sponsor-exp-tur-1-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      13,
+      564,
+      500,
+      710
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      0,
+      512,
+      512,
+      768
+    ]
+  },
+  "exp-tur-2": {
+    "name": "Porsuk Kaynak",
+    "image": "sprites/sponsor-exp-tur-2.png",
+    "symbol": "sprites/sponsor-exp-tur-2-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      535,
+      546,
+      1006,
+      707
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      512,
+      512,
+      1024,
+      768
+    ]
+  },
+  "exp-tur-3": {
+    "name": "Marmara Örgü",
+    "image": "sprites/sponsor-exp-tur-3.png",
+    "symbol": "sprites/sponsor-exp-tur-3-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      1035,
+      546,
+      1505,
+      715
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      1024,
+      512,
+      1536,
+      768
+    ]
+  },
+  "exp-tur-4": {
+    "name": "Seyhan Rota",
+    "image": "sprites/sponsor-exp-tur-4.png",
+    "symbol": "sprites/sponsor-exp-tur-4-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      24,
+      768,
+      510,
+      951
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      0,
+      768,
+      512,
+      1024
+    ]
+  },
+  "exp-tur-5": {
+    "name": "Alleben Işık",
+    "image": "sprites/sponsor-exp-tur-5.png",
+    "symbol": "sprites/sponsor-exp-tur-5-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      529,
+      757,
+      1007,
+      937
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      512,
+      768,
+      1024,
+      1024
+    ]
+  },
+  "exp-tur-6": {
+    "name": "Kale Hat",
+    "image": "sprites/sponsor-exp-tur-6.png",
+    "symbol": "sprites/sponsor-exp-tur-6-symbol.png",
+    "source": "group-1.png",
+    "box": [
+      1034,
+      783,
+      1516,
+      925
+    ],
+    "symbolSource": "group-1-symbols.png",
+    "symbolBox": [
+      1024,
+      768,
+      1536,
+      1024
+    ]
+  },
+  "exp-sui-1": {
+    "name": "Limmatfaden",
+    "image": "sprites/sponsor-exp-sui-1.png",
+    "symbol": "sprites/sponsor-exp-sui-1-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      49,
+      89,
+      490,
+      241
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      0,
+      0,
+      512,
+      256
+    ]
+  },
+  "exp-sui-2": {
+    "name": "Reussklar",
+    "image": "sprites/sponsor-exp-sui-2.png",
+    "symbol": "sprites/sponsor-exp-sui-2-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      545,
+      111,
+      988,
+      232
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      512,
+      0,
+      1024,
+      256
+    ]
+  },
+  "exp-sui-3": {
+    "name": "Sitterwerk",
+    "image": "sprites/sponsor-exp-sui-3.png",
+    "symbol": "sprites/sponsor-exp-sui-3-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      1049,
+      90,
+      1486,
+      237
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      1024,
+      0,
+      1536,
+      256
+    ]
+  },
+  "exp-sui-4": {
+    "name": "Rhônelinie",
+    "image": "sprites/sponsor-exp-sui-4.png",
+    "symbol": "sprites/sponsor-exp-sui-4-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      36,
+      320,
+      496,
+      490
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      0,
+      256,
+      512,
+      512
+    ]
+  },
+  "exp-sui-5": {
+    "name": "Ceresio Licht",
+    "image": "sprites/sponsor-exp-sui-5.png",
+    "symbol": "sprites/sponsor-exp-sui-5-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      540,
+      319,
+      988,
+      484
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      512,
+      256,
+      1024,
+      512
+    ]
+  },
+  "exp-sui-6": {
+    "name": "Aarekompass",
+    "image": "sprites/sponsor-exp-sui-6.png",
+    "symbol": "sprites/sponsor-exp-sui-6-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      1031,
+      323,
+      1497,
+      482
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      1024,
+      256,
+      1536,
+      512
+    ]
+  },
+  "exp-gre-1": {
+    "name": "Pinios Ropi",
+    "image": "sprites/sponsor-exp-gre-1.png",
+    "symbol": "sprites/sponsor-exp-gre-1-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      41,
+      554,
+      505,
+      741
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      0,
+      512,
+      512,
+      768
+    ]
+  },
+  "exp-gre-2": {
+    "name": "Therma Nima",
+    "image": "sprites/sponsor-exp-gre-2.png",
+    "symbol": "sprites/sponsor-exp-gre-2-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      540,
+      573,
+      1000,
+      729
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      512,
+      512,
+      1024,
+      768
+    ]
+  },
+  "exp-gre-3": {
+    "name": "Candia Nero",
+    "image": "sprites/sponsor-exp-gre-3.png",
+    "symbol": "sprites/sponsor-exp-gre-3-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      1031,
+      541,
+      1504,
+      740
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      1024,
+      512,
+      1536,
+      768
+    ]
+  },
+  "exp-gre-4": {
+    "name": "Achaia Fos",
+    "image": "sprites/sponsor-exp-gre-4.png",
+    "symbol": "sprites/sponsor-exp-gre-4-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      27,
+      793,
+      498,
+      956
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      0,
+      768,
+      512,
+      1024
+    ]
+  },
+  "exp-gre-5": {
+    "name": "Pelion Dromos",
+    "image": "sprites/sponsor-exp-gre-5.png",
+    "symbol": "sprites/sponsor-exp-gre-5-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      534,
+      802,
+      989,
+      960
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      512,
+      768,
+      1024,
+      1024
+    ]
+  },
+  "exp-gre-6": {
+    "name": "Strymon Dikti",
+    "image": "sprites/sponsor-exp-gre-6.png",
+    "symbol": "sprites/sponsor-exp-gre-6-symbol.png",
+    "source": "group-2.png",
+    "box": [
+      1031,
+      818,
+      1502,
+      959
+    ],
+    "symbolSource": "group-2-symbols.png",
+    "symbolBox": [
+      1024,
+      768,
+      1536,
+      1024
+    ]
+  }
+}

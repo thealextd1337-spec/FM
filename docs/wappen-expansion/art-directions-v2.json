@@ -1,0 +1,1154 @@
+[
+  {
+    "id": "NED-1",
+    "countryId": "NED",
+    "name": "Amsterdam Amstel FC",
+    "motif": "Doppelbogen mit kleinem Stern",
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "artDirection": "old Dutch civic style: ornate BURGUNDY shield with three ivory canal crosses and one teal diagonal ribbon, AMSTEL serif"
+  },
+  {
+    "id": "NED-2",
+    "countryId": "NED",
+    "name": "Rotterdam Maaspoort FC",
+    "motif": "Dreiteiliger Hafenrahmen",
+    "palette": [
+      "#2d777c",
+      "#f3f5f2",
+      "#b8794a"
+    ],
+    "artDirection": "contemporary maritime: standalone angular M shaped by TWO copper dock cranes, teal/ivory, no shield"
+  },
+  {
+    "id": "NED-3",
+    "countryId": "NED",
+    "name": "Eindhoven Lichtstad FC",
+    "motif": "Versetzte Lichtstrahlen",
+    "palette": [
+      "#3b477f",
+      "#f1e5cc",
+      "#dc9a32"
+    ],
+    "artDirection": "1930s art-deco SUNBURST hexagon, luminous gold L over cobalt field, tall narrow LICHTSTAD lettering"
+  },
+  {
+    "id": "NED-4",
+    "countryId": "NED",
+    "name": "Utrecht Singel FC",
+    "motif": "Offener Kanalring",
+    "palette": [
+      "#315b42",
+      "#eedfc5",
+      "#df7770"
+    ],
+    "artDirection": "calligraphic SCRIPT 'Singel' across a ROUND ivory disk, green border, single coral canal curve, no buildings"
+  },
+  {
+    "id": "NED-5",
+    "countryId": "NED",
+    "name": "Enschede Veld FC",
+    "motif": "Geteiltes Feldtor",
+    "palette": [
+      "#823b52",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "artDirection": "agricultural woodcut: burgundy SCALLOPED shield with a strong running horse above three field furrows, ivory/teal"
+  },
+  {
+    "id": "NED-6",
+    "countryId": "NED",
+    "name": "Arnhem Rijnpark FC",
+    "motif": "Rheinlinie mit offenem Blatt",
+    "palette": [
+      "#3caaa8",
+      "#24385b",
+      "#f1e5cc"
+    ],
+    "artDirection": "naturalist linocut: detailed heron with one oak leaf in an UPRIGHT OVAL, teal/navy/cream"
+  },
+  {
+    "id": "NED-7",
+    "countryId": "NED",
+    "name": "Groningen Noorderpoort FC",
+    "motif": "Drei gestaffelte Torpfosten",
+    "palette": [
+      "#b8794a",
+      "#1c3045",
+      "#f3edda"
+    ],
+    "artDirection": "traditional north gate seal: BROAD HORIZONTAL oval, copper three-part gateway and ivory N in navy, minimal masonry"
+  },
+  {
+    "id": "NED-8",
+    "countryId": "NED",
+    "name": "Amsterdam Westhaven FC",
+    "motif": "Offene Hafenecke",
+    "palette": [
+      "#694766",
+      "#bec8cb",
+      "#4b9dc8"
+    ],
+    "artDirection": "industrial stencil mark: HUGE W and H ligature on a CUT-CORNER square, plum/silver/blue, no dock scenery"
+  },
+  {
+    "id": "NED-C1",
+    "countryId": "NED",
+    "name": "Haarlem Spaarne FC",
+    "motif": "Geteilter Kanalsteg",
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "artDirection": "historic ornate Haarlem H monogram with a single canal swan, round burgundy/ivory/teal medallion"
+  },
+  {
+    "id": "NED-C2",
+    "countryId": "NED",
+    "name": "Zwolle Vechtpoort FC",
+    "motif": "Offener Flusstorrahmen",
+    "palette": [
+      "#3caaa8",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "artDirection": "modern sport badge: stylized Z formed by three gates, teal TRIANGULAR crest with negative space, dark/ivory"
+  },
+  {
+    "id": "NED-C3",
+    "countryId": "NED",
+    "name": "Deventer IJsselboog FC",
+    "motif": "Versetzter IJsselbogen",
+    "palette": [
+      "#b8794a",
+      "#24385b",
+      "#f3edda"
+    ],
+    "artDirection": "engraved historic arch as a DOUBLE-LOBED copper crest, navy IJ serif ligature, ivory highlight, no waves"
+  },
+  {
+    "id": "NED-C4",
+    "countryId": "NED",
+    "name": "Breda Markveld FC",
+    "motif": "Drei offene Feldwinkel",
+    "palette": [
+      "#315b42",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "artDirection": "minimal agrarian monogram MV formed by three green blades of grass, open silhouette with copper baseline, no frame"
+  },
+  {
+    "id": "NED-C5",
+    "countryId": "NED",
+    "name": "Tilburg Spoor FC",
+    "motif": "Geteilter Schienenbogen",
+    "palette": [
+      "#694766",
+      "#bec8cb",
+      "#4b9dc8"
+    ],
+    "artDirection": "railway-workers club insignia: riveted plum DIAMOND with silver railway wheel and blue bolt, bold TS letters"
+  },
+  {
+    "id": "NED-C6",
+    "countryId": "NED",
+    "name": "Leeuwarden Middelzee FC",
+    "motif": "Offener Seefächer",
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f3edda"
+    ],
+    "artDirection": "Frisian illustrated seal: gold circular badge, ONE black rampant lion with stylized shell beneath, ivory keyline"
+  },
+  {
+    "id": "NED-C7",
+    "countryId": "NED",
+    "name": "Alkmaar Singelpoort FC",
+    "motif": "Doppelter Singelrahmen",
+    "palette": [
+      "#df7770",
+      "#1c3045",
+      "#eedfc5"
+    ],
+    "artDirection": "retro varsity sport: salmon WIDE pentagon, bold SP slab lettering and a minimal ivory gate outline, navy stripe"
+  },
+  {
+    "id": "NED-C8",
+    "countryId": "NED",
+    "name": "Maastricht Jeker FC",
+    "motif": "Drei schmale Jekerlinien",
+    "palette": [
+      "#7750a0",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "artDirection": "art-nouveau winding J lettermark intertwined with one river reed, purple/ivory/copper elongated OVAL, no cityscape"
+  },
+  {
+    "id": "AUT-1",
+    "countryId": "AUT",
+    "name": "Wiener SC Kronau",
+    "motif": "Geteilte Torhalle",
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "artDirection": "historic civic heraldry, tall BURGUNDY scalloped shield, crowned K monogram framed by ONE finely engraved gate, no foliage"
+  },
+  {
+    "id": "AUT-2",
+    "countryId": "AUT",
+    "name": "FC Salzburg Falken",
+    "motif": "Zwei abstrakte Flügellinien",
+    "palette": [
+      "#3caaa8",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "artDirection": "bold contemporary falcon silhouette in full flight, wings create a WIDE standalone emblem, no shield, ivory wing facets and teal accent disk"
+  },
+  {
+    "id": "AUT-3",
+    "countryId": "AUT",
+    "name": "Schwarz Weiß Graz",
+    "motif": "Drei versetzte offene Quadrate",
+    "palette": [
+      "#1d2329",
+      "#f3f5f2",
+      "#b8794a"
+    ],
+    "artDirection": "1930s black-and-white geometric SWG ligature inside a SQUARE checkerboard crest, tiny copper accent, absolutely no architecture"
+  },
+  {
+    "id": "AUT-4",
+    "countryId": "AUT",
+    "name": "Linzer SC Union",
+    "motif": "Zwei verzahnte offene Ringe",
+    "palette": [
+      "#3b477f",
+      "#f3edda",
+      "#dc9a32"
+    ],
+    "artDirection": "industrial sports emblem: TWO interlocked angular links create an L in a CUT-CORNER hexagon, cobalt/gold, heavy slab UNION word"
+  },
+  {
+    "id": "AUT-5",
+    "countryId": "AUT",
+    "name": "Innsbruck Sport",
+    "motif": "Drei ungleich hohe offene Säulen",
+    "palette": [
+      "#2d777c",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "artDirection": "vintage mountaineering club badge: VERTICAL OVAL, distinctive three snowy peaks above sporty INNSBRUCK hand lettering, petrol/ivory/copper"
+  },
+  {
+    "id": "AUT-6",
+    "countryId": "AUT",
+    "name": "SC Klagenfurt Seestadt",
+    "motif": "Zwei versetzte Seebögen",
+    "palette": [
+      "#df7770",
+      "#1c3045",
+      "#eedfc5"
+    ],
+    "artDirection": "midcentury resort badge: HORIZONTAL lozenge, salmon field, graceful waterbird and a single lake ripple, SEESTADT small lettering"
+  },
+  {
+    "id": "AUT-7",
+    "countryId": "AUT",
+    "name": "SV St. Pölten Westpark",
+    "motif": "Offenes Blatt mit drei Linien",
+    "palette": [
+      "#315b42",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "artDirection": "historic botanical seal: circular ivory disk, finely drawn sprawling oak leaf and SP ornate initials, forest green, thin copper rim"
+  },
+  {
+    "id": "AUT-8",
+    "countryId": "AUT",
+    "name": "Wiener SC Fortuna",
+    "motif": "Versetzter offener Glücksring",
+    "palette": [
+      "#694766",
+      "#bec8cb",
+      "#4b9dc8"
+    ],
+    "artDirection": "Viennese art-nouveau lettermark: ornate F with three asymmetric clover petals in a HORSESHOE frame, plum/silver/sky blue"
+  },
+  {
+    "id": "AUT-C1",
+    "countryId": "AUT",
+    "name": "Dornbirner SC Achfeld",
+    "motif": "Drei offene Auenfelder",
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "artDirection": "rural folk woodcut: upright stag with antlers over a diagonal meadow, broad FIVE-SIDED burgundy crest, no banner"
+  },
+  {
+    "id": "AUT-C2",
+    "countryId": "AUT",
+    "name": "SC Bregenz Uferbogen",
+    "motif": "Geteilter Seebogen",
+    "palette": [
+      "#3caaa8",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "artDirection": "1920s rowing-club pennant: angled triangular teal pennant, sail and BU bold diagonal lettering, dark/cream edges"
+  },
+  {
+    "id": "AUT-C3",
+    "countryId": "AUT",
+    "name": "Welser SC Traunhof",
+    "motif": "Zwei offene Hofwinkel",
+    "palette": [
+      "#b8794a",
+      "#24385b",
+      "#f3edda"
+    ],
+    "artDirection": "craft guild stamp: COPPER octagonal seal, ornamental key crossed with a sheaf, TRAUNHOF engraved serif, no scenery"
+  },
+  {
+    "id": "AUT-C4",
+    "countryId": "AUT",
+    "name": "SC Steyr Brückenfeld",
+    "motif": "Drei versetzte Brückenpfosten",
+    "palette": [
+      "#315b42",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "artDirection": "modern architectural linework: asymmetric green bridge B emblem, open contour silhouette, no enclosing shield"
+  },
+  {
+    "id": "AUT-C5",
+    "countryId": "AUT",
+    "name": "SC Wiener Neustadt Südring",
+    "motif": "Offener Südring",
+    "palette": [
+      "#694766",
+      "#bec8cb",
+      "#4b9dc8"
+    ],
+    "artDirection": "1960s sports typography: HUGE rounded intertwined SN monogram, two concentric silver/plum oval rings, sky-blue stripe, no tower"
+  },
+  {
+    "id": "AUT-C6",
+    "countryId": "AUT",
+    "name": "Kremser SC Donauhain",
+    "motif": "Geteilter Hainbogen",
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f3edda"
+    ],
+    "artDirection": "wine-growing illustrated seal: gold ROUND MEDALLION, black vine leaves and bunch of grapes, small DONAUHAIN word, no bridge"
+  },
+  {
+    "id": "AUT-C7",
+    "countryId": "AUT",
+    "name": "SC Leoben Mursteg",
+    "motif": "Drei schmale Murstege",
+    "palette": [
+      "#df7770",
+      "#1c3045",
+      "#eedfc5"
+    ],
+    "artDirection": "traditional mining badge: dark coral inverted shield, two crossed hammers and copper-like coral angular M ribbon, minimal ivory accent"
+  },
+  {
+    "id": "AUT-C8",
+    "countryId": "AUT",
+    "name": "SC Amstetten Ybbsfeld",
+    "motif": "Doppelter Feldrahmen",
+    "palette": [
+      "#7750a0",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "artDirection": "handwritten athletic wordmark 'Ybbs' on an ivory WIDE ribbon, purple/copper diagonal ball swoosh, no shield"
+  },
+  {
+    "id": "BEL-1",
+    "countryId": "BEL",
+    "name": "Brugge Reie FC",
+    "motif": "Zwei Kanalbögen im Rundfeld",
+    "palette": [
+      "#24385b",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "artDirection": "medieval guild circular seal, navy engraved canal bridge and copper fleur-de-lis on ivory ground, REIE serif"
+  },
+  {
+    "id": "BEL-2",
+    "countryId": "BEL",
+    "name": "Bruxelles Senne Union",
+    "motif": "Vier versetzte Quartierfelder",
+    "palette": [
+      "#732e49",
+      "#f1e5cc",
+      "#2d777c"
+    ],
+    "artDirection": "vintage quarters shield: burgundy/ivory/teal four fields, giant SU blackletter ligature, no lion and no foliage"
+  },
+  {
+    "id": "BEL-3",
+    "countryId": "BEL",
+    "name": "Antwerpen Schelde FC",
+    "motif": "Geteilte Kaikante",
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f3edda"
+    ],
+    "artDirection": "industrial 1950s port badge: angular gold A combined with an anchor, standalone silhouette, black/ivory accents"
+  },
+  {
+    "id": "BEL-4",
+    "countryId": "BEL",
+    "name": "Gent Leie FC",
+    "motif": "Flussgabel mit schmalem Steg",
+    "palette": [
+      "#318579",
+      "#f3f5f2",
+      "#b8794a"
+    ],
+    "artDirection": "script lettermark 'Leie' with a graceful heron neck flourish in GREEN horizontal oval, white/copper double rim"
+  },
+  {
+    "id": "BEL-5",
+    "countryId": "BEL",
+    "name": "Liège Meuse FC",
+    "motif": "Drei ansteigende Uferstufen",
+    "palette": [
+      "#a43e50",
+      "#eedfc5",
+      "#1c3045"
+    ],
+    "artDirection": "bold modern ascending LM monogram in burgundy CUT-CORNER square, ivory steps and navy diagonal, no architecture"
+  },
+  {
+    "id": "BEL-6",
+    "countryId": "BEL",
+    "name": "Genk Kempen FC",
+    "motif": "Offener Baumring",
+    "palette": [
+      "#3caaa8",
+      "#283039",
+      "#f1e5cc"
+    ],
+    "artDirection": "botanical engraving: teal oval, old spreading oak tree in cream, dark ring KEMPEN letters, no bridge"
+  },
+  {
+    "id": "BEL-7",
+    "countryId": "BEL",
+    "name": "Charleroi Sambre FC",
+    "motif": "Zwei ineinanderlaufende Bögen",
+    "palette": [
+      "#b8794a",
+      "#24385b",
+      "#f3edda"
+    ],
+    "artDirection": "steelworkers emblem: copper HEXAGON, two intersecting dark arches enclosing C and a small ivory furnace flame"
+  },
+  {
+    "id": "BEL-8",
+    "countryId": "BEL",
+    "name": "Bruxelles Parc FC",
+    "motif": "Vierblättriger offener Parkbogen",
+    "palette": [
+      "#7750a0",
+      "#bec8cb",
+      "#1c3045"
+    ],
+    "artDirection": "art-nouveau four-lobed plum seal, silver curving PARK initials with tiny dark iris flower, no pavilion"
+  },
+  {
+    "id": "BEL-C1",
+    "countryId": "BEL",
+    "name": "Mechelen Dijle FC",
+    "motif": "Geteilter Flussring",
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "artDirection": "baroque ecclesiastical seal: burgundy vertical OVAL, ornate ivory M letter with split teal river flourish, no gate"
+  },
+  {
+    "id": "BEL-C2",
+    "countryId": "BEL",
+    "name": "Leuven Vaart FC",
+    "motif": "Drei offene Kanalfelder",
+    "palette": [
+      "#3caaa8",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "artDirection": "rowing club flag badge: teal SWALLOWTAIL pennant with cream V and three navy canal strokes, no buildings"
+  },
+  {
+    "id": "BEL-C3",
+    "countryId": "BEL",
+    "name": "Namur Sambreporte FC",
+    "motif": "Zwei versetzte Flusstore",
+    "palette": [
+      "#b8794a",
+      "#24385b",
+      "#f3edda"
+    ],
+    "artDirection": "heraldic fortress: copper tall NOTCHED shield, two navy narrow turrets, single large ivory N between them"
+  },
+  {
+    "id": "BEL-C4",
+    "countryId": "BEL",
+    "name": "Mons Trouille FC",
+    "motif": "Offener Blattsteg",
+    "palette": [
+      "#315b42",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "artDirection": "folk botanical woodcut: forest green rounded-square, ivy branch shaped T, ivory/copper details, no landscape"
+  },
+  {
+    "id": "BEL-C5",
+    "countryId": "BEL",
+    "name": "Kortrijk Leieboog FC",
+    "motif": "Doppelter Leiebogen",
+    "palette": [
+      "#694766",
+      "#bec8cb",
+      "#4b9dc8"
+    ],
+    "artDirection": "modern interlocking KL monogram, two silver sweeping arcs in plum CIRCULAR ring with blue baseline"
+  },
+  {
+    "id": "BEL-C6",
+    "countryId": "BEL",
+    "name": "Hasselt Demer FC",
+    "motif": "Geteilte Ufertreppe",
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f3edda"
+    ],
+    "artDirection": "1970s sport crest: gold DIAMOND, black staggered HD letters and ivory stair band, no trees"
+  },
+  {
+    "id": "BEL-C7",
+    "countryId": "BEL",
+    "name": "Oostende Duin FC",
+    "motif": "Drei offene Dünenlinien",
+    "palette": [
+      "#df7770",
+      "#1c3045",
+      "#eedfc5"
+    ],
+    "artDirection": "coastal poster style: salmon HORIZONTAL OVAL, bold navy tern in flight over ivory dunes, DUIN type"
+  },
+  {
+    "id": "BEL-C8",
+    "countryId": "BEL",
+    "name": "Tournai Escaut FC",
+    "motif": "Versetzter Wasserrahmen",
+    "palette": [
+      "#7750a0",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "artDirection": "historic serif E monogram within a purple SCALLOPED shield, single ivory river snake line, copper rim, no towers"
+  },
+  {
+    "id": "TUR-1",
+    "countryId": "TUR",
+    "name": "Istanbul Bosporus SK",
+    "motif": "Drei verbindende Wasserlinien",
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "artDirection": "traditional ornate civic shield: burgundy TALL pointed crest, interlaced ivory B with three teal water ribbons, no crescent"
+  },
+  {
+    "id": "TUR-2",
+    "countryId": "TUR",
+    "name": "Istanbul Haliç SK",
+    "motif": "Geteilte Hafenstufe",
+    "palette": [
+      "#24385b",
+      "#d9ab45",
+      "#f1e5cc"
+    ],
+    "artDirection": "art-deco HALIÇ typography, gold H and stylized gull on navy HORIZONTAL oval, ivory rim"
+  },
+  {
+    "id": "TUR-3",
+    "countryId": "TUR",
+    "name": "Istanbul Marmara SK",
+    "motif": "Drei offene Segelwinkel",
+    "palette": [
+      "#3caaa8",
+      "#283039",
+      "#f3edda"
+    ],
+    "artDirection": "modern sailing mark: three ivory sails form an M, dark outlines, standalone teal TRIANGULAR silhouette"
+  },
+  {
+    "id": "TUR-4",
+    "countryId": "TUR",
+    "name": "Trabzon Karadeniz SK",
+    "motif": "Zwei geschwungene Küstenfelder",
+    "palette": [
+      "#b8794a",
+      "#1c3045",
+      "#f3edda"
+    ],
+    "artDirection": "Black Sea fisherfolk seal: copper circular disk, dark engraved anchovy pair circling K, ivory water curl"
+  },
+  {
+    "id": "TUR-5",
+    "countryId": "TUR",
+    "name": "Ankara Kale SK",
+    "motif": "Abstrakte gestufte Torlinie",
+    "palette": [
+      "#3b477f",
+      "#f1e5cc",
+      "#dc9a32"
+    ],
+    "artDirection": "bold fortress badge: cobalt CUT-CORNER pentagon with one ivory crenellated K, gold rising ray, no building scene"
+  },
+  {
+    "id": "TUR-6",
+    "countryId": "TUR",
+    "name": "Izmir Körfez SK",
+    "motif": "Offene Golfkurve",
+    "palette": [
+      "#a43e50",
+      "#eedfc5",
+      "#2d777c"
+    ],
+    "artDirection": "Aegean hand-lettered 'Körfez' across burgundy wide ribbon, ivory curling wave and petrol accent, no shield"
+  },
+  {
+    "id": "TUR-7",
+    "countryId": "TUR",
+    "name": "Bursa Yeşilova SK",
+    "motif": "Geteiltes Blattband",
+    "palette": [
+      "#315b42",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "artDirection": "botanical art-nouveau: forest green UPRIGHT OVAL, ivory plane-tree leaf with copper veins, ornate BY initials"
+  },
+  {
+    "id": "TUR-8",
+    "countryId": "TUR",
+    "name": "Antalya Kıyı SK",
+    "motif": "Versetzte Küstenbögen",
+    "palette": [
+      "#df7770",
+      "#24385b",
+      "#eedfc5"
+    ],
+    "artDirection": "midcentury seaside emblem: salmon ROUND sun with navy palm silhouette and cream AK lettering, no lighthouse"
+  },
+  {
+    "id": "TUR-C1",
+    "countryId": "TUR",
+    "name": "Samsun Kıyıova SK",
+    "motif": "Drei offene Küstenfelder",
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "artDirection": "coastal club varsity badge: giant ivory SK in burgundy squared shield, teal diagonal sea band, no horse"
+  },
+  {
+    "id": "TUR-C2",
+    "countryId": "TUR",
+    "name": "Eskişehir Porsuk SK",
+    "motif": "Geteilter Porsukbogen",
+    "palette": [
+      "#3caaa8",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "artDirection": "railworkers modern mark: P formed by teal locomotive wheel and ivory river swoosh, dark HEXAGON, no bridge"
+  },
+  {
+    "id": "TUR-C3",
+    "countryId": "TUR",
+    "name": "Konya Meram SK",
+    "motif": "Zwei offene Gartenwinkel",
+    "palette": [
+      "#b8794a",
+      "#24385b",
+      "#f3edda"
+    ],
+    "artDirection": "Seljuk-inspired ornamental seal: copper EIGHT-POINT star outline, navy geometric tulip with ivory center, MERAM tiny lettering"
+  },
+  {
+    "id": "TUR-C4",
+    "countryId": "TUR",
+    "name": "Kayseri Erciyesova SK",
+    "motif": "Drei versetzte Höhenfelder",
+    "palette": [
+      "#315b42",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "artDirection": "alpine woodcut: forest green BROAD shield, single strong Erciyes peak and ivory mountain goat, copper line"
+  },
+  {
+    "id": "TUR-C5",
+    "countryId": "TUR",
+    "name": "Adana Seyhanpark SK",
+    "motif": "Offener Parksteg",
+    "palette": [
+      "#694766",
+      "#bec8cb",
+      "#4b9dc8"
+    ],
+    "artDirection": "urban parks 1960s badge: silver/blue concentric CIRCLES, plum SP rounded monogram, three tree silhouettes, no bridge"
+  },
+  {
+    "id": "TUR-C6",
+    "countryId": "TUR",
+    "name": "Gaziantep Alleben SK",
+    "motif": "Geteilte Uferhalle",
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f3edda"
+    ],
+    "artDirection": "craft guild stamp: gold OCTAGON, dark stone arch with stylized pistachio branch, ivory A letter, no water"
+  },
+  {
+    "id": "TUR-C7",
+    "countryId": "TUR",
+    "name": "Denizli Çınarova SK",
+    "motif": "Drei offene Blattfelder",
+    "palette": [
+      "#df7770",
+      "#1c3045",
+      "#eedfc5"
+    ],
+    "artDirection": "Denizli sports emblem: large navy rooster silhouette with coral wing and ivory crest, standalone, no enclosing shield"
+  },
+  {
+    "id": "TUR-C8",
+    "countryId": "TUR",
+    "name": "Mersin Akdenizkapı SK",
+    "motif": "Doppeltes offenes Hafentor",
+    "palette": [
+      "#7750a0",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "artDirection": "maritime vintage: purple tall OVAL, ivory anchor entwined with copper rope, tiny AK serif, no gate scene"
+  },
+  {
+    "id": "SUI-1",
+    "countryId": "SUI",
+    "name": "Basel Rheintor FC",
+    "motif": "Offener Ufertorbogen",
+    "palette": [
+      "#a43e50",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "artDirection": "medieval Basel heraldic shield: burgundy ASYMMETRIC scalloped outline, ivory R monogram and petrol crozier, no towers"
+  },
+  {
+    "id": "SUI-2",
+    "countryId": "SUI",
+    "name": "Bern Aarebogen FC",
+    "motif": "Doppelter Aarebogen",
+    "palette": [
+      "#dc9a32",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "artDirection": "Bern historic guild stamp: gold circular seal, dark walking bear on a SINGLE ivory river curve, AARE serif"
+  },
+  {
+    "id": "SUI-3",
+    "countryId": "SUI",
+    "name": "Zürich Limmat FC",
+    "motif": "Drei Limmatlinien im offenen Schild",
+    "palette": [
+      "#7750a0",
+      "#f3f5f2",
+      "#b8794a"
+    ],
+    "artDirection": "Swiss modernist 1960s typography: bold white ZL ligature on purple cut-corner SQUARE, copper diagonal accent"
+  },
+  {
+    "id": "SUI-4",
+    "countryId": "SUI",
+    "name": "Genève Rhône FC",
+    "motif": "Versetzte Flussterrassen",
+    "palette": [
+      "#732e49",
+      "#eedfc5",
+      "#2d777c"
+    ],
+    "artDirection": "art-nouveau script 'Rhône' in ivory on burgundy HORIZONTAL OVAL, petrol vine flourish, no buildings"
+  },
+  {
+    "id": "SUI-5",
+    "countryId": "SUI",
+    "name": "St. Gallen Sitter FC",
+    "motif": "Drei gestaffelte Brückenfelder",
+    "palette": [
+      "#315b42",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "artDirection": "botanical woodcut: forest green tall shield, ivory bear paw holding copper branch, SITTER serif, no bridges"
+  },
+  {
+    "id": "SUI-6",
+    "countryId": "SUI",
+    "name": "Lausanne Léman FC",
+    "motif": "Offene Seeschale",
+    "palette": [
+      "#3caaa8",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "artDirection": "rowing club badge: teal vertical OVAL, cream sail and dark crossed oars, LEMAN curved letters"
+  },
+  {
+    "id": "SUI-7",
+    "countryId": "SUI",
+    "name": "Luzern Reuss FC",
+    "motif": "Schmaler Flusssteg",
+    "palette": [
+      "#b8794a",
+      "#24385b",
+      "#f3edda"
+    ],
+    "artDirection": "historic craftsman seal: copper octagonal badge, navy covered wooden beam bridge in one minimal strip, REUSS slab type"
+  },
+  {
+    "id": "SUI-8",
+    "countryId": "SUI",
+    "name": "Zürich Sihl FC",
+    "motif": "Zwei offene Nachbarschaftsbögen",
+    "palette": [
+      "#694766",
+      "#bec8cb",
+      "#4b9dc8"
+    ],
+    "artDirection": "modern open monogram S made from two blue river curves and silver angular rooftop, plum backdrop DIAMOND"
+  },
+  {
+    "id": "SUI-C1",
+    "countryId": "SUI",
+    "name": "Winterthur Eulachbogen FC",
+    "motif": "Versetzter Flussbogen",
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "artDirection": "1930s ornate E ligature with ivory fox silhouette in burgundy DOUBLE-LOBED crest, teal accent"
+  },
+  {
+    "id": "SUI-C2",
+    "countryId": "SUI",
+    "name": "Schaffhausen Uferfeld FC",
+    "motif": "Drei offene Uferfenster",
+    "palette": [
+      "#3caaa8",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "artDirection": "Swiss industrial emblem: teal rounded-square with large dark UF and three cream window slots, no masonry"
+  },
+  {
+    "id": "SUI-C3",
+    "countryId": "SUI",
+    "name": "Thun Aaresteg FC",
+    "motif": "Geteilter Aaresteg",
+    "palette": [
+      "#b8794a",
+      "#24385b",
+      "#f3edda"
+    ],
+    "artDirection": "alpine typography badge: copper HORIZONTAL lozenge, bold navy 'THUN' and ivory peak above tiny water stripe"
+  },
+  {
+    "id": "SUI-C4",
+    "countryId": "SUI",
+    "name": "Sion Rhônebogen FC",
+    "motif": "Offener Doppelmäander",
+    "palette": [
+      "#315b42",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "artDirection": "wine-growing seal: green ROUND seal, ivory grape vine and copper bunch, tall S serif, no cityscape"
+  },
+  {
+    "id": "SUI-C5",
+    "countryId": "SUI",
+    "name": "Neuchâtel Seyon FC",
+    "motif": "Drei schmale Seyonlinien",
+    "palette": [
+      "#694766",
+      "#bec8cb",
+      "#4b9dc8"
+    ],
+    "artDirection": "modern fluid typography: three silver river strokes form stylized S in plum vertical OVAL, blue inlay, no fish"
+  },
+  {
+    "id": "SUI-C6",
+    "countryId": "SUI",
+    "name": "Lugano Ceresio FC",
+    "motif": "Geteilter Seefächer",
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f3edda"
+    ],
+    "artDirection": "Ticino sports mark: gold split-circle disk, dark leaping lake fish and ivory LC geometric initials, no mountains"
+  },
+  {
+    "id": "SUI-C7",
+    "countryId": "SUI",
+    "name": "Bellinzona Ticino FC",
+    "motif": "Drei offene Ticinohöfe",
+    "palette": [
+      "#df7770",
+      "#1c3045",
+      "#eedfc5"
+    ],
+    "artDirection": "traditional castle crest: salmon TALL shield with one navy crenellated tower above ivory T, no foliage"
+  },
+  {
+    "id": "SUI-C8",
+    "countryId": "SUI",
+    "name": "Biel Schüss FC",
+    "motif": "Doppelter offener Flussrahmen",
+    "palette": [
+      "#7750a0",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "artDirection": "bilingual Swiss varsity mark: purple BROAD pentagon, cream BS slab monogram interlocked with copper rowboat oar"
+  },
+  {
+    "id": "GRE-1",
+    "countryId": "GRE",
+    "name": "Athina Helios FC",
+    "motif": "Sonne über einem geschlossenen Torbogen.",
+    "palette": [
+      "#d9ab45",
+      "#732e49",
+      "#f3edda"
+    ],
+    "artDirection": "classical Greek sun medallion, gold circular radiating SUN face with burgundy H initials, ivory narrow keyline, no gate"
+  },
+  {
+    "id": "GRE-2",
+    "countryId": "GRE",
+    "name": "Piräus Nautilos FC",
+    "motif": "Schiffsrumpf und stilisierte Welle.",
+    "palette": [
+      "#24385b",
+      "#f3f5f2",
+      "#b8794a"
+    ],
+    "artDirection": "nautical woodcut emblem: navy pointed shield with ivory ancient sailboat and copper rope rim, no modern buildings"
+  },
+  {
+    "id": "GRE-3",
+    "countryId": "GRE",
+    "name": "Thessaloniki Vardaris FC",
+    "motif": "Schräges Windband und dreiteiliger Schild.",
+    "palette": [
+      "#283039",
+      "#bec8cb",
+      "#3caaa8"
+    ],
+    "artDirection": "contemporary wind logo: standalone dark angular V with silver feather and teal diagonal gust, no shield"
+  },
+  {
+    "id": "GRE-4",
+    "countryId": "GRE",
+    "name": "Athina Kallisto FC",
+    "motif": "Offener Sternring.",
+    "palette": [
+      "#7750a0",
+      "#f3f5f2",
+      "#1c3045"
+    ],
+    "artDirection": "art-nouveau astronomical seal: purple UPRIGHT OVAL, ivory eight-point star integrated into ornate K, navy inner field"
+  },
+  {
+    "id": "GRE-5",
+    "countryId": "GRE",
+    "name": "Thessaloniki Therma FC",
+    "motif": "Zwei ineinandergreifende Bögen.",
+    "palette": [
+      "#3caaa8",
+      "#283039",
+      "#f1e5cc"
+    ],
+    "artDirection": "Byzantine-inspired interlocking T monogram on cream ROUNDED square, teal/dark split arcs, subtle mosaic details"
+  },
+  {
+    "id": "GRE-6",
+    "countryId": "GRE",
+    "name": "Patras Achaia FC",
+    "motif": "Schmaler Bogen mit Fußball.",
+    "palette": [
+      "#df7770",
+      "#24385b",
+      "#eedfc5"
+    ],
+    "artDirection": "retro football 1950s badge: coral HORIZONTAL OVAL, navy football and bold ivory ACHAIA script, no architecture"
+  },
+  {
+    "id": "GRE-7",
+    "countryId": "GRE",
+    "name": "Iraklio Candia FC",
+    "motif": "Tor mit zwei schmalen Türmen.",
+    "palette": [
+      "#315b42",
+      "#f3edda",
+      "#d9ab45"
+    ],
+    "artDirection": "medieval Candia crest: green SCALLOPED shield, gold lion rampant with one ivory turret, strong heraldic style"
+  },
+  {
+    "id": "GRE-8",
+    "countryId": "GRE",
+    "name": "Volos Pelion FC",
+    "motif": "Drei versetzte Spitzen im offenen Schild.",
+    "palette": [
+      "#694766",
+      "#bec8cb",
+      "#4b9dc8"
+    ],
+    "artDirection": "alpine sport badge: plum HEXAGON, silver three peaks forming P, sky-blue single diagonal trail"
+  },
+  {
+    "id": "GRE-C1",
+    "countryId": "GRE",
+    "name": "Larisa Pinios FC",
+    "motif": "Fließendes Band im Rundschild",
+    "palette": [
+      "#823b52",
+      "#eedfc5",
+      "#80949c"
+    ],
+    "artDirection": "historic rural circular seal: burgundy horse head engraving and ivory P river flourish, slate accent, no trees"
+  },
+  {
+    "id": "GRE-C2",
+    "countryId": "GRE",
+    "name": "Ioannina Pamvotis FC",
+    "motif": "Spiegelbogen über einer Wasserlinie",
+    "palette": [
+      "#2d777c",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "artDirection": "lakeside rowing seal: teal VERTICAL oval, cream kingfisher with copper reed, single reflected white wave"
+  },
+  {
+    "id": "GRE-C3",
+    "countryId": "GRE",
+    "name": "Kavala Ormos FC",
+    "motif": "Offene Bucht und schmaler Steg",
+    "palette": [
+      "#3267b0",
+      "#f1e5cc",
+      "#ba674d"
+    ],
+    "artDirection": "midcentury seaside pennant: sky-blue TRIANGULAR badge, ivory lighthouse beam shaped O and rust sail, no landscape"
+  },
+  {
+    "id": "GRE-C4",
+    "countryId": "GRE",
+    "name": "Kalamata Taygetos FC",
+    "motif": "Bergsilhouette in einem sechseckigen Schild",
+    "palette": [
+      "#727b47",
+      "#d9ab45",
+      "#283039"
+    ],
+    "artDirection": "folk woodcut silhouette: olive open mountain-goat emblem leaping over gold three-point peak, dark outline, no enclosing shield"
+  },
+  {
+    "id": "GRE-C5",
+    "countryId": "GRE",
+    "name": "Rhodos Asteri FC",
+    "motif": "Stern über einem Wellenbogen",
+    "palette": [
+      "#a43e50",
+      "#f3f5f2",
+      "#24385b"
+    ],
+    "artDirection": "contemporary island mark: burgundy eight-point star with white R monogram and navy asymmetric wave cutout, no circle"
+  },
+  {
+    "id": "GRE-C6",
+    "countryId": "GRE",
+    "name": "Chania Lefka FC",
+    "motif": "Zwei helle Spitzen über einem Tor",
+    "palette": [
+      "#4b9dc8",
+      "#f3f5f2",
+      "#315b42"
+    ],
+    "artDirection": "Cretan heritage seal: blue DOUBLE-LOBED shield with white cypress and green paired peak stripes, no gate"
+  },
+  {
+    "id": "GRE-C7",
+    "countryId": "GRE",
+    "name": "Serres Strymon FC",
+    "motif": "Gewundene Linie im länglichen Schild",
+    "palette": [
+      "#dc9a32",
+      "#1d2329",
+      "#f1e5cc"
+    ],
+    "artDirection": "varsity sport monogram: black elongated gold DIAMOND, ivory S formed by curling river, one small wheat head"
+  },
+  {
+    "id": "GRE-C8",
+    "countryId": "GRE",
+    "name": "Tripoli Karyes FC",
+    "motif": "Verzweigter Blattbogen",
+    "palette": [
+      "#7750a0",
+      "#eedfc5",
+      "#b8794a"
+    ],
+    "artDirection": "botanical engraved medallion: plum circle with ivory walnut branch and copper nuts, ornate TK serif, no surrounding laurel"
+  }
+]

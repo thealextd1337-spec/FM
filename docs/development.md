@@ -1,5 +1,11 @@
 # Entwicklung und Veröffentlichung
 
+## Neue Länderwappen und Sponsoren
+
+`work/package-expansion-sponsors.py` paketiert 36 transparente Wortmarken (480 × 180) und separate Symbole (192 × 192). `world-expansion-v161.js` erweitert den gemeinsamen Sponsorrenderer anhand unveränderter Marken-IDs; ursprüngliche Marken verwenden den vorhandenen Renderer. `v172Controls` verwendet die vollständige native Sponsorangebotsansicht mit den Expansionsaktionen. Angebote, Zahlungen und Spielstände werden nicht umgerechnet. [Quellen und Prüfung](wappen-expansion/sponsors/README.md).
+
+96 Bildwappen der sechs neuen Länder werden über `world-expansion-v161.js` im vorhandenen `v61CrestAssets`-Vertrag registriert und mit dem gemeinsamen Renderer dargestellt. `work/prepare-expansion-crests.py` extrahiert die transparenten Originaltafeln und erstellt feste Farbmasken; der reguläre Build bettet alle PNGs ein. Keine Spielstandfelder oder Migration. [Quellen, Reproduktion und Prüfung](wappen-expansion/README.md).
+
 ## AP11: aktuelle Gesamtprüfung
 
 [AP11](ligaexpansion-ap11.md) trennt synthetische/native Langzeitnachweise, echte Browser-Speicherung und physische Geräteabnahme. [Veröffentlichungsplan](ligaexpansion-veroeffentlichungsplan.md); Release 122 ist veröffentlicht und live abgenommen; [Releasebericht](release-122.md).

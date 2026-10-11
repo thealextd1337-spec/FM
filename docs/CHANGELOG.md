@@ -1,5 +1,17 @@
 # Änderungen
 
+## Noch nicht veröffentlicht
+
+## 11. Oktober 2026 – Release 123
+
+Neue Vereinswappen und Sponsorenlogos, eingebettete Zurücknavigation und vollständige Bonusziele bei der Sponsorwahl. Veröffentlichung vom Nutzer beauftragt. [Releasebericht](release-123.md).
+
+- Alle 96 neuen Vereinswappen individuell überarbeitet: Schriftzeichen, freie Tiermotive, historische Siegel, geometrische Monogramme und unterschiedliche Wappenformen teilen denselben matten Druckfinish.
+- 36 Sponsoren der sechs neuen Länder erhalten individuelle Wortmarken und separate kompakte Bildzeichen. Die Auswahl nach der Klubwahl zeigt wieder jedes Bonusziel mit Betrag, mögliche Boni, maximale Gesamtsumme und Auszahlungstermine. Mobile/Desktop-Ansicht, Deutsch/Englisch, Auswahlklick mit einmaliger Fixumbuchung und Offline-Assets geprüft. [Sponsorenquellen](wappen-expansion/sponsors/README.md).
+
+- Zurücknavigation im neuen Karriereablauf direkt neben der Überschrift mit Pfeil und kompakter Gestaltung eingebettet. Die Bedienfläche bleibt mindestens 44 Pixel hoch; Deutsch/Englisch und schmale Bildschirme geprüft.
+- Alle 96 Vereine der sechs neuen Länder erhalten eigene detaillierte Bildwappen im Stil der ursprünglichen Logos, einschließlich der Pokalvereine. Vereinsauswahl, Profile und übrige Ansichten verwenden dieselben transparenten Bilder mit Farbmasken; vorhandene Vereinsfarben und Spielstände bleiben erhalten. 96 Motive/576 PNG-Assets, Umfärbung, Offline-Einbettung, ursprüngliche Wappen sowie Expansions- und Präsentationsregression geprüft. [Motive und Herkunft](wappen-expansion/README.md).
+
 ## 11. Oktober 2026 – Release 122
 
 Neue Vereinswelten mit 192 Vereinen in zwölf Ländern, Crown Cup und Horizon Cup, gespeicherter Drei-Saisons-Länderwertung und Folgequalifikation. Österreich steht in der Startwertung vor Belgien; Innsbruck Sport ist enthalten. Crown-Ligaphase ohne nationale Duelle, Horizon ohne Setzung mit neuer Auslosung jeder Runde und nationalen Duellen ab Viertelfinale.

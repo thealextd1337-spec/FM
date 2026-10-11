@@ -1,5 +1,7 @@
 # Entwicklungsdokumentation
 
+- [Wappen der sechs neuen Länder](wappen-expansion/README.md): 96 individuelle Vereinsmotive und 36 Sponsoren mit Wortmarken/Symbolen, transparente Originaltafeln, Farbmasken und interaktive Vorschau; Release 123.
+
 - [Release 122 – zwölf Länder, Crown und Horizon](release-122.md): veröffentlicht und live abgenommener Expansionsstand mit 64 detaillierten transparenten Trophäenmotiven.
 
 - [AP11 – Gesamtprüfung](ligaexpansion-ap11.md): aktuelle Langzeit-, Browser-/Speicher- und Gerätebelege; 64 freigegebene, freigestellte und lokal integrierte Trophäenmotive. [Veröffentlichungsplan](ligaexpansion-veroeffentlichungsplan.md).
