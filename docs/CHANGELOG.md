@@ -1,5 +1,10 @@
 # Änderungen
 
+## 11. Oktober 2026 – Release 126
+
+- Alle 192 Teams auf verbliebene Platzhalter geprüft. Die 48 fehlenden Bildwappen der zusätzlichen Teams in England, Spanien, Deutschland, Italien, Frankreich und Portugal individuell gestaltet, einschließlich Dortmund und Leeds sowie aller Pokalvereine. [Quellen und vollständige Prüfung](wappen-completion/README.md).
+- Interner Überlauf der Sponsorbeträge auf kleinen Bildschirmen korrigiert: Fixum und Boni stehen bei schmalen Karten untereinander. Bonusziele, Beträge und Auszahlungstermine bleiben vollständig sichtbar. [Releasebericht](release-126.md).
+
 ## 11. Oktober 2026 – Release 125
 
 - Vertraute Flutlicht-Oberfläche auch für die erweiterte Vereinswelt wiederhergestellt: eigenständige Kader-, Matchplan-, Transfer-, Statistik- und Vereinsansichten mit den vorhandenen Unterbereichen. Crown, Horizon und Länderwertung sind in das Wettbewerbsmenü integriert; beide Cups erscheinen getrennt im Saisonrückblick und Archiv. Der Länderfilter für Vereinsangebote umfasst zwölf Länder. Spielregeln und freigegebene Grafiken bleiben erhalten. [Umsetzung und Prüfung](ui-expansion-restoration.md).

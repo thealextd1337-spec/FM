@@ -1,5 +1,8 @@
 # Entwicklungsdokumentation
 
+- [Release 126 – vollständige Vereinswappen und mobile Sponsorbeträge](release-126.md): alle 192 Teams geprüft, 48 fehlende Bildwappen ergänzt und interner Kartenüberlauf korrigiert.
+
+
 - [Release 125 – vertraute Menüs und durchgängige Gestaltung](release-125.md): wiederhergestellte Karriereansichten, Startablauf, Kontraste und kompakte mobile Bedienung.
 
 - [Layout- und Typografieprüfung](ui-layout-audit.md): 226 Ansichtsprüfungen und zwölf Nachprüfungen; verbliebener alter Startstil, Kontrastfehler und getrennte Gestaltungsvorschläge.

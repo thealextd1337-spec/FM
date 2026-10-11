@@ -84,3 +84,5 @@ outputs/3d-quality/iteration-119/**/*.log
 !outputs/3d-quality/iteration-119/final-*-summary.log
 /tmp/
 !outputs/platform/unity-native-v160/
+
+!work/prepare-completed-crests.py

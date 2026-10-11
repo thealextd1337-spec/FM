@@ -4,6 +4,10 @@
 
 Auf Nutzerauftrag vom 11. Oktober 2026 behalten auch neue zwölf Länder umfassende Vereinswelten die vertraute Flutlicht-Oberfläche mit Übersicht, Kader, Matchplan, Transfers, Wettbewerben, Kalender, Statistik, Verein und Hilfe/Einstellungen. Crown, Horizon und Länderwertung werden in das Wettbewerbsmenü integriert. Vereinsprofil, Finanzen, Sponsor, Chronik und Managerlaufbahn stehen in den vorhandenen Vereinsansichten; das Vereinsbüro und höchstens drei Saisonmomente ergänzen die Übersicht. Beide Cups erscheinen getrennt im Saisonrückblick und Archiv. Die Ligaerweiterung und alle freigegebenen Grafikmotive bleiben bestehen. [Umsetzung](ui-expansion-restoration.md).
 
+## Wappen aller Vereine
+
+Alle 192 Teams einschließlich der Pokalvereine verwenden individuelle Bildwappen. Die 48 zusätzlichen Teams der ursprünglichen sechs Länder erhalten eigene Motive im gemeinsamen matten Druckfinish. [Ergänzte Motive](wappen-completion/README.md).
+
 ## Wappen und Sponsoren der neuen Länder
 
 Die 36 Sponsoren dieser Länder haben individuelle Wortmarken und passende kompakte Symbole im gemeinsamen Grafikfinish. Bei der Sponsorwahl nach der Klubwahl sind Fixum, jedes Bonusziel mit Betrag, mögliche Bonussumme, maximaler Gesamtbetrag und Auszahlungstermine sichtbar.

@@ -1,0 +1,1538 @@
+[
+  {
+    "id": "ENG-1",
+    "name": "Regent Vale FC",
+    "country": "ENG",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/eng-1.png"
+  },
+  {
+    "id": "ENG-2",
+    "name": "Irwell FC",
+    "country": "ENG",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/eng-2.png"
+  },
+  {
+    "id": "ENG-3",
+    "name": "Mersey Dock FC",
+    "country": "ENG",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/eng-3.png"
+  },
+  {
+    "id": "ENG-4",
+    "name": "Birmingham Works FC",
+    "country": "ENG",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/eng-4.png"
+  },
+  {
+    "id": "ENG-5",
+    "name": "Bristol Quay FC",
+    "country": "ENG",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/eng-5.png"
+  },
+  {
+    "id": "ENG-6",
+    "name": "Wandle Town",
+    "country": "ENG",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/eng-6.png"
+  },
+  {
+    "id": "ENG-7",
+    "name": "Leeds Aire FC",
+    "country": "ENG",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ENG-8",
+    "name": "Newcastle Tyne FC",
+    "country": "ENG",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ENG-C1",
+    "name": "Sheffield Forge FC",
+    "country": "ENG",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/eng-c1.png"
+  },
+  {
+    "id": "ENG-C2",
+    "name": "Plymouth Bay AFC",
+    "country": "ENG",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/eng-c2.png"
+  },
+  {
+    "id": "ENG-C3",
+    "name": "Sheffield Sheaf FC",
+    "country": "ENG",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ENG-C4",
+    "name": "Bristol Avon Gate FC",
+    "country": "ENG",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ENG-C5",
+    "name": "Norwich Wensum FC",
+    "country": "ENG",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ENG-C6",
+    "name": "Coventry Spon FC",
+    "country": "ENG",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ENG-C7",
+    "name": "Brighton Downs FC",
+    "country": "ENG",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ENG-C8",
+    "name": "Plymouth Tamar FC",
+    "country": "ENG",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ESP-1",
+    "name": "Madrid Central CF",
+    "country": "ESP",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/esp-1.png"
+  },
+  {
+    "id": "ESP-2",
+    "name": "Barcelona Mar FC",
+    "country": "ESP",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/esp-2.png"
+  },
+  {
+    "id": "ESP-3",
+    "name": "Turia CF",
+    "country": "ESP",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/esp-3.png"
+  },
+  {
+    "id": "ESP-4",
+    "name": "Sevilla Union FC",
+    "country": "ESP",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/esp-4.png"
+  },
+  {
+    "id": "ESP-5",
+    "name": "Barcelona Delta FC",
+    "country": "ESP",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/esp-5.png"
+  },
+  {
+    "id": "ESP-6",
+    "name": "Vigo Atlantic FC",
+    "country": "ESP",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/esp-6.png"
+  },
+  {
+    "id": "ESP-7",
+    "name": "Bilbao Nervión CF",
+    "country": "ESP",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ESP-8",
+    "name": "Zaragoza Ebro CF",
+    "country": "ESP",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ESP-C1",
+    "name": "Córdoba Norte CF",
+    "country": "ESP",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/esp-c1.png"
+  },
+  {
+    "id": "ESP-C2",
+    "name": "Gijón Costa FC",
+    "country": "ESP",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/esp-c2.png"
+  },
+  {
+    "id": "ESP-C3",
+    "name": "Valladolid Pisuerga CF",
+    "country": "ESP",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ESP-C4",
+    "name": "Santander Bahía CF",
+    "country": "ESP",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ESP-C5",
+    "name": "Murcia Segura CF",
+    "country": "ESP",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ESP-C6",
+    "name": "Salamanca Tormes CF",
+    "country": "ESP",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ESP-C7",
+    "name": "Logroño Senda CF",
+    "country": "ESP",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ESP-C8",
+    "name": "Almería Dársena CF",
+    "country": "ESP",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "GER-1",
+    "name": "FC München Isar",
+    "country": "GER",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ger-1.png"
+  },
+  {
+    "id": "GER-2",
+    "name": "FC Bremen Weser",
+    "country": "GER",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ger-2.png"
+  },
+  {
+    "id": "GER-3",
+    "name": "FC Hamburg Elbe",
+    "country": "GER",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ger-3.png"
+  },
+  {
+    "id": "GER-4",
+    "name": "SC Freiburg Tal",
+    "country": "GER",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ger-4.png"
+  },
+  {
+    "id": "GER-5",
+    "name": "FC Köln Rhein",
+    "country": "GER",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ger-5.png"
+  },
+  {
+    "id": "GER-6",
+    "name": "SV München Au",
+    "country": "GER",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ger-6.png"
+  },
+  {
+    "id": "GER-7",
+    "name": "FC Dortmund Emscher",
+    "country": "GER",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "GER-8",
+    "name": "FC Frankfurt Mainbogen",
+    "country": "GER",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "GER-C1",
+    "name": "FC Jena Süd",
+    "country": "GER",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/ger-c1.png"
+  },
+  {
+    "id": "GER-C2",
+    "name": "SC Lübeck Nord",
+    "country": "GER",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/ger-c2.png"
+  },
+  {
+    "id": "GER-C3",
+    "name": "FC Erfurt Geraauen",
+    "country": "GER",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "GER-C4",
+    "name": "Kieler SC Fördeblick",
+    "country": "GER",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "GER-C5",
+    "name": "FC Osnabrück Hasebogen",
+    "country": "GER",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "GER-C6",
+    "name": "SC Regensburg Donauhof",
+    "country": "GER",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "GER-C7",
+    "name": "Rostocker SC Warnowfeld",
+    "country": "GER",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "GER-C8",
+    "name": "FC Aachen Westbogen",
+    "country": "GER",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ITA-1",
+    "name": "Torino Centrale FC",
+    "country": "ITA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ita-1.png"
+  },
+  {
+    "id": "ITA-2",
+    "name": "Milano Ferro FC",
+    "country": "ITA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ita-2.png"
+  },
+  {
+    "id": "ITA-3",
+    "name": "Roma Capitol FC",
+    "country": "ITA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ita-3.png"
+  },
+  {
+    "id": "ITA-4",
+    "name": "Bologna Collina AC",
+    "country": "ITA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ita-4.png"
+  },
+  {
+    "id": "ITA-5",
+    "name": "Navigli FC",
+    "country": "ITA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ita-5.png"
+  },
+  {
+    "id": "ITA-6",
+    "name": "Napoli Sud AC",
+    "country": "ITA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/ita-6.png"
+  },
+  {
+    "id": "ITA-7",
+    "name": "Firenze Arno AC",
+    "country": "ITA",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ITA-8",
+    "name": "Genova Lanterna FC",
+    "country": "ITA",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ITA-C1",
+    "name": "Parma Ovest FC",
+    "country": "ITA",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/ita-c1.png"
+  },
+  {
+    "id": "ITA-C2",
+    "name": "Lecce Marina FC",
+    "country": "ITA",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/ita-c2.png"
+  },
+  {
+    "id": "ITA-C3",
+    "name": "Perugia Fonte AC",
+    "country": "ITA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ITA-C4",
+    "name": "Pisa Lungarno FC",
+    "country": "ITA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ITA-C5",
+    "name": "Cagliari Salina FC",
+    "country": "ITA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ITA-C6",
+    "name": "Trieste Molo FC",
+    "country": "ITA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ITA-C7",
+    "name": "Modena Officina FC",
+    "country": "ITA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "ITA-C8",
+    "name": "Bari Levante FC",
+    "country": "ITA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "FRA-1",
+    "name": "Paris Central FC",
+    "country": "FRA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/fra-1.png"
+  },
+  {
+    "id": "FRA-2",
+    "name": "Marseille Union",
+    "country": "FRA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/fra-2.png"
+  },
+  {
+    "id": "FRA-3",
+    "name": "Lyon Rive FC",
+    "country": "FRA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/fra-3.png"
+  },
+  {
+    "id": "FRA-4",
+    "name": "Bordeaux Atlantic FC",
+    "country": "FRA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/fra-4.png"
+  },
+  {
+    "id": "FRA-5",
+    "name": "Lille Union",
+    "country": "FRA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/fra-5.png"
+  },
+  {
+    "id": "FRA-6",
+    "name": "Paris Valmy FC",
+    "country": "FRA",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/fra-6.png"
+  },
+  {
+    "id": "FRA-7",
+    "name": "Nantes Loire FC",
+    "country": "FRA",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "FRA-8",
+    "name": "Strasbourg Rives FC",
+    "country": "FRA",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "FRA-C1",
+    "name": "Toulouse Garonne FC",
+    "country": "FRA",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/fra-c1.png"
+  },
+  {
+    "id": "FRA-C2",
+    "name": "Metz Nord FC",
+    "country": "FRA",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/fra-c2.png"
+  },
+  {
+    "id": "FRA-C3",
+    "name": "Dijon Ouche FC",
+    "country": "FRA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "FRA-C4",
+    "name": "Brest Iroise FC",
+    "country": "FRA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "FRA-C5",
+    "name": "Amiens Hortillon FC",
+    "country": "FRA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "FRA-C6",
+    "name": "Tours Cher FC",
+    "country": "FRA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "FRA-C7",
+    "name": "Clermont Dôme FC",
+    "country": "FRA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "FRA-C8",
+    "name": "Le Havre Estuaire FC",
+    "country": "FRA",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "POR-1",
+    "name": "Lisboa Central FC",
+    "country": "POR",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/por-1.png"
+  },
+  {
+    "id": "POR-2",
+    "name": "Porto Ribeira FC",
+    "country": "POR",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/por-2.png"
+  },
+  {
+    "id": "POR-3",
+    "name": "Tejo Union",
+    "country": "POR",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/por-3.png"
+  },
+  {
+    "id": "POR-4",
+    "name": "Braga Norte FC",
+    "country": "POR",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/por-4.png"
+  },
+  {
+    "id": "POR-5",
+    "name": "Coimbra Athletic",
+    "country": "POR",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/por-5.png"
+  },
+  {
+    "id": "POR-6",
+    "name": "Aveiro Costa FC",
+    "country": "POR",
+    "kind": "league",
+    "origin": "preserved48",
+    "asset": "crests/por-6.png"
+  },
+  {
+    "id": "POR-7",
+    "name": "Guimarães Castelo FC",
+    "country": "POR",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "POR-8",
+    "name": "Setúbal Sado FC",
+    "country": "POR",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "POR-C1",
+    "name": "Évora Central FC",
+    "country": "POR",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/por-c1.png"
+  },
+  {
+    "id": "POR-C2",
+    "name": "Faro Sul FC",
+    "country": "POR",
+    "kind": "cup",
+    "origin": "preserved48",
+    "asset": "crests/por-c2.png"
+  },
+  {
+    "id": "POR-C3",
+    "name": "Coimbra Mondego FC",
+    "country": "POR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "POR-C4",
+    "name": "Aveiro Ria FC",
+    "country": "POR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "POR-C5",
+    "name": "Leiria Lis FC",
+    "country": "POR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "POR-C6",
+    "name": "Viseu Fontelo FC",
+    "country": "POR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "POR-C7",
+    "name": "Portimão Arade FC",
+    "country": "POR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "POR-C8",
+    "name": "Viana Lima FC",
+    "country": "POR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": null
+  },
+  {
+    "id": "NED-1",
+    "name": "Amsterdam Amstel FC",
+    "country": "NED",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-1.png"
+  },
+  {
+    "id": "NED-2",
+    "name": "Rotterdam Maaspoort FC",
+    "country": "NED",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-2.png"
+  },
+  {
+    "id": "NED-3",
+    "name": "Eindhoven Lichtstad FC",
+    "country": "NED",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-3.png"
+  },
+  {
+    "id": "NED-4",
+    "name": "Utrecht Singel FC",
+    "country": "NED",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-4.png"
+  },
+  {
+    "id": "NED-5",
+    "name": "Enschede Veld FC",
+    "country": "NED",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-5.png"
+  },
+  {
+    "id": "NED-6",
+    "name": "Arnhem Rijnpark FC",
+    "country": "NED",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-6.png"
+  },
+  {
+    "id": "NED-7",
+    "name": "Groningen Noorderpoort FC",
+    "country": "NED",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-7.png"
+  },
+  {
+    "id": "NED-8",
+    "name": "Amsterdam Westhaven FC",
+    "country": "NED",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-8.png"
+  },
+  {
+    "id": "NED-C1",
+    "name": "Haarlem Spaarne FC",
+    "country": "NED",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-c1.png"
+  },
+  {
+    "id": "NED-C2",
+    "name": "Zwolle Vechtpoort FC",
+    "country": "NED",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-c2.png"
+  },
+  {
+    "id": "NED-C3",
+    "name": "Deventer IJsselboog FC",
+    "country": "NED",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-c3.png"
+  },
+  {
+    "id": "NED-C4",
+    "name": "Breda Markveld FC",
+    "country": "NED",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-c4.png"
+  },
+  {
+    "id": "NED-C5",
+    "name": "Tilburg Spoor FC",
+    "country": "NED",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-c5.png"
+  },
+  {
+    "id": "NED-C6",
+    "name": "Leeuwarden Middelzee FC",
+    "country": "NED",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-c6.png"
+  },
+  {
+    "id": "NED-C7",
+    "name": "Alkmaar Singelpoort FC",
+    "country": "NED",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-c7.png"
+  },
+  {
+    "id": "NED-C8",
+    "name": "Maastricht Jeker FC",
+    "country": "NED",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-ned-c8.png"
+  },
+  {
+    "id": "AUT-1",
+    "name": "Wiener SC Kronau",
+    "country": "AUT",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-1.png"
+  },
+  {
+    "id": "AUT-2",
+    "name": "FC Salzburg Falken",
+    "country": "AUT",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-2.png"
+  },
+  {
+    "id": "AUT-3",
+    "name": "Schwarz Weiß Graz",
+    "country": "AUT",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-3.png"
+  },
+  {
+    "id": "AUT-4",
+    "name": "Linzer SC Union",
+    "country": "AUT",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-4.png"
+  },
+  {
+    "id": "AUT-5",
+    "name": "Innsbruck Sport",
+    "country": "AUT",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-5.png"
+  },
+  {
+    "id": "AUT-6",
+    "name": "SC Klagenfurt Seestadt",
+    "country": "AUT",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-6.png"
+  },
+  {
+    "id": "AUT-7",
+    "name": "SV St. Pölten Westpark",
+    "country": "AUT",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-7.png"
+  },
+  {
+    "id": "AUT-8",
+    "name": "Wiener SC Fortuna",
+    "country": "AUT",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-8.png"
+  },
+  {
+    "id": "AUT-C1",
+    "name": "Dornbirner SC Achfeld",
+    "country": "AUT",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-c1.png"
+  },
+  {
+    "id": "AUT-C2",
+    "name": "SC Bregenz Uferbogen",
+    "country": "AUT",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-c2.png"
+  },
+  {
+    "id": "AUT-C3",
+    "name": "Welser SC Traunhof",
+    "country": "AUT",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-c3.png"
+  },
+  {
+    "id": "AUT-C4",
+    "name": "SC Steyr Brückenfeld",
+    "country": "AUT",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-c4.png"
+  },
+  {
+    "id": "AUT-C5",
+    "name": "SC Wiener Neustadt Südring",
+    "country": "AUT",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-c5.png"
+  },
+  {
+    "id": "AUT-C6",
+    "name": "Kremser SC Donauhain",
+    "country": "AUT",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-c6.png"
+  },
+  {
+    "id": "AUT-C7",
+    "name": "SC Leoben Mursteg",
+    "country": "AUT",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-c7.png"
+  },
+  {
+    "id": "AUT-C8",
+    "name": "SC Amstetten Ybbsfeld",
+    "country": "AUT",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-aut-c8.png"
+  },
+  {
+    "id": "BEL-1",
+    "name": "Brugge Reie FC",
+    "country": "BEL",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-1.png"
+  },
+  {
+    "id": "BEL-2",
+    "name": "Bruxelles Senne Union",
+    "country": "BEL",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-2.png"
+  },
+  {
+    "id": "BEL-3",
+    "name": "Antwerpen Schelde FC",
+    "country": "BEL",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-3.png"
+  },
+  {
+    "id": "BEL-4",
+    "name": "Gent Leie FC",
+    "country": "BEL",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-4.png"
+  },
+  {
+    "id": "BEL-5",
+    "name": "Liège Meuse FC",
+    "country": "BEL",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-5.png"
+  },
+  {
+    "id": "BEL-6",
+    "name": "Genk Kempen FC",
+    "country": "BEL",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-6.png"
+  },
+  {
+    "id": "BEL-7",
+    "name": "Charleroi Sambre FC",
+    "country": "BEL",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-7.png"
+  },
+  {
+    "id": "BEL-8",
+    "name": "Bruxelles Parc FC",
+    "country": "BEL",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-8.png"
+  },
+  {
+    "id": "BEL-C1",
+    "name": "Mechelen Dijle FC",
+    "country": "BEL",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-c1.png"
+  },
+  {
+    "id": "BEL-C2",
+    "name": "Leuven Vaart FC",
+    "country": "BEL",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-c2.png"
+  },
+  {
+    "id": "BEL-C3",
+    "name": "Namur Sambreporte FC",
+    "country": "BEL",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-c3.png"
+  },
+  {
+    "id": "BEL-C4",
+    "name": "Mons Trouille FC",
+    "country": "BEL",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-c4.png"
+  },
+  {
+    "id": "BEL-C5",
+    "name": "Kortrijk Leieboog FC",
+    "country": "BEL",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-c5.png"
+  },
+  {
+    "id": "BEL-C6",
+    "name": "Hasselt Demer FC",
+    "country": "BEL",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-c6.png"
+  },
+  {
+    "id": "BEL-C7",
+    "name": "Oostende Duin FC",
+    "country": "BEL",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-c7.png"
+  },
+  {
+    "id": "BEL-C8",
+    "name": "Tournai Escaut FC",
+    "country": "BEL",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-bel-c8.png"
+  },
+  {
+    "id": "TUR-1",
+    "name": "Istanbul Bosporus SK",
+    "country": "TUR",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-1.png"
+  },
+  {
+    "id": "TUR-2",
+    "name": "Istanbul Haliç SK",
+    "country": "TUR",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-2.png"
+  },
+  {
+    "id": "TUR-3",
+    "name": "Istanbul Marmara SK",
+    "country": "TUR",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-3.png"
+  },
+  {
+    "id": "TUR-4",
+    "name": "Trabzon Karadeniz SK",
+    "country": "TUR",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-4.png"
+  },
+  {
+    "id": "TUR-5",
+    "name": "Ankara Kale SK",
+    "country": "TUR",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-5.png"
+  },
+  {
+    "id": "TUR-6",
+    "name": "Izmir Körfez SK",
+    "country": "TUR",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-6.png"
+  },
+  {
+    "id": "TUR-7",
+    "name": "Bursa Yeşilova SK",
+    "country": "TUR",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-7.png"
+  },
+  {
+    "id": "TUR-8",
+    "name": "Antalya Kıyı SK",
+    "country": "TUR",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-8.png"
+  },
+  {
+    "id": "TUR-C1",
+    "name": "Samsun Kıyıova SK",
+    "country": "TUR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-c1.png"
+  },
+  {
+    "id": "TUR-C2",
+    "name": "Eskişehir Porsuk SK",
+    "country": "TUR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-c2.png"
+  },
+  {
+    "id": "TUR-C3",
+    "name": "Konya Meram SK",
+    "country": "TUR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-c3.png"
+  },
+  {
+    "id": "TUR-C4",
+    "name": "Kayseri Erciyesova SK",
+    "country": "TUR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-c4.png"
+  },
+  {
+    "id": "TUR-C5",
+    "name": "Adana Seyhanpark SK",
+    "country": "TUR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-c5.png"
+  },
+  {
+    "id": "TUR-C6",
+    "name": "Gaziantep Alleben SK",
+    "country": "TUR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-c6.png"
+  },
+  {
+    "id": "TUR-C7",
+    "name": "Denizli Çınarova SK",
+    "country": "TUR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-c7.png"
+  },
+  {
+    "id": "TUR-C8",
+    "name": "Mersin Akdenizkapı SK",
+    "country": "TUR",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-tur-c8.png"
+  },
+  {
+    "id": "SUI-1",
+    "name": "Basel Rheintor FC",
+    "country": "SUI",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-1.png"
+  },
+  {
+    "id": "SUI-2",
+    "name": "Bern Aarebogen FC",
+    "country": "SUI",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-2.png"
+  },
+  {
+    "id": "SUI-3",
+    "name": "Zürich Limmat FC",
+    "country": "SUI",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-3.png"
+  },
+  {
+    "id": "SUI-4",
+    "name": "Genève Rhône FC",
+    "country": "SUI",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-4.png"
+  },
+  {
+    "id": "SUI-5",
+    "name": "St. Gallen Sitter FC",
+    "country": "SUI",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-5.png"
+  },
+  {
+    "id": "SUI-6",
+    "name": "Lausanne Léman FC",
+    "country": "SUI",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-6.png"
+  },
+  {
+    "id": "SUI-7",
+    "name": "Luzern Reuss FC",
+    "country": "SUI",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-7.png"
+  },
+  {
+    "id": "SUI-8",
+    "name": "Zürich Sihl FC",
+    "country": "SUI",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-8.png"
+  },
+  {
+    "id": "SUI-C1",
+    "name": "Winterthur Eulachbogen FC",
+    "country": "SUI",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-c1.png"
+  },
+  {
+    "id": "SUI-C2",
+    "name": "Schaffhausen Uferfeld FC",
+    "country": "SUI",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-c2.png"
+  },
+  {
+    "id": "SUI-C3",
+    "name": "Thun Aaresteg FC",
+    "country": "SUI",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-c3.png"
+  },
+  {
+    "id": "SUI-C4",
+    "name": "Sion Rhônebogen FC",
+    "country": "SUI",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-c4.png"
+  },
+  {
+    "id": "SUI-C5",
+    "name": "Neuchâtel Seyon FC",
+    "country": "SUI",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-c5.png"
+  },
+  {
+    "id": "SUI-C6",
+    "name": "Lugano Ceresio FC",
+    "country": "SUI",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-c6.png"
+  },
+  {
+    "id": "SUI-C7",
+    "name": "Bellinzona Ticino FC",
+    "country": "SUI",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-c7.png"
+  },
+  {
+    "id": "SUI-C8",
+    "name": "Biel Schüss FC",
+    "country": "SUI",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-sui-c8.png"
+  },
+  {
+    "id": "GRE-1",
+    "name": "Athina Helios FC",
+    "country": "GRE",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-1.png"
+  },
+  {
+    "id": "GRE-2",
+    "name": "Piräus Nautilos FC",
+    "country": "GRE",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-2.png"
+  },
+  {
+    "id": "GRE-3",
+    "name": "Thessaloniki Vardaris FC",
+    "country": "GRE",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-3.png"
+  },
+  {
+    "id": "GRE-4",
+    "name": "Athina Kallisto FC",
+    "country": "GRE",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-4.png"
+  },
+  {
+    "id": "GRE-5",
+    "name": "Thessaloniki Therma FC",
+    "country": "GRE",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-5.png"
+  },
+  {
+    "id": "GRE-6",
+    "name": "Patras Achaia FC",
+    "country": "GRE",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-6.png"
+  },
+  {
+    "id": "GRE-7",
+    "name": "Iraklio Candia FC",
+    "country": "GRE",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-7.png"
+  },
+  {
+    "id": "GRE-8",
+    "name": "Volos Pelion FC",
+    "country": "GRE",
+    "kind": "league",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-8.png"
+  },
+  {
+    "id": "GRE-C1",
+    "name": "Larisa Pinios FC",
+    "country": "GRE",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-c1.png"
+  },
+  {
+    "id": "GRE-C2",
+    "name": "Ioannina Pamvotis FC",
+    "country": "GRE",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-c2.png"
+  },
+  {
+    "id": "GRE-C3",
+    "name": "Kavala Ormos FC",
+    "country": "GRE",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-c3.png"
+  },
+  {
+    "id": "GRE-C4",
+    "name": "Kalamata Taygetos FC",
+    "country": "GRE",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-c4.png"
+  },
+  {
+    "id": "GRE-C5",
+    "name": "Rhodos Asteri FC",
+    "country": "GRE",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-c5.png"
+  },
+  {
+    "id": "GRE-C6",
+    "name": "Chania Lefka FC",
+    "country": "GRE",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-c6.png"
+  },
+  {
+    "id": "GRE-C7",
+    "name": "Serres Strymon FC",
+    "country": "GRE",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-c7.png"
+  },
+  {
+    "id": "GRE-C8",
+    "name": "Tripoli Karyes FC",
+    "country": "GRE",
+    "kind": "cup",
+    "origin": "ap02-editorial",
+    "asset": "crests/new-gre-c8.png"
+  }
+]

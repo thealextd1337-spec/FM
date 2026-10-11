@@ -1,0 +1,818 @@
+{
+  "ENG-7": {
+    "image": "crests/new-eng-7.png",
+    "edge": "crests/new-eng-7-edge.png",
+    "detail": "crests/new-eng-7-detail.png",
+    "masks": [
+      "crests/new-eng-7-0.png",
+      "crests/new-eng-7-1.png",
+      "crests/new-eng-7-2.png"
+    ],
+    "palette": [
+      "#24385b",
+      "#f3f5f2",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/eng-7.png"
+  },
+  "ENG-8": {
+    "image": "crests/new-eng-8.png",
+    "edge": "crests/new-eng-8-edge.png",
+    "detail": "crests/new-eng-8-detail.png",
+    "masks": [
+      "crests/new-eng-8-0.png",
+      "crests/new-eng-8-1.png",
+      "crests/new-eng-8-2.png"
+    ],
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "neutralForeground": null,
+    "source": "source/eng-8.png"
+  },
+  "ENG-C3": {
+    "image": "crests/new-eng-c3.png",
+    "edge": "crests/new-eng-c3-edge.png",
+    "detail": "crests/new-eng-c3-detail.png",
+    "masks": [
+      "crests/new-eng-c3-0.png",
+      "crests/new-eng-c3-1.png",
+      "crests/new-eng-c3-2.png"
+    ],
+    "palette": [
+      "#b8794a",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "neutralForeground": null,
+    "source": "source/eng-c3.png"
+  },
+  "ENG-C4": {
+    "image": "crests/new-eng-c4.png",
+    "edge": "crests/new-eng-c4-edge.png",
+    "detail": "crests/new-eng-c4-detail.png",
+    "masks": [
+      "crests/new-eng-c4-0.png",
+      "crests/new-eng-c4-1.png",
+      "crests/new-eng-c4-2.png"
+    ],
+    "palette": [
+      "#3caaa8",
+      "#283039",
+      "#f3edda"
+    ],
+    "neutralForeground": null,
+    "source": "source/eng-c4.png"
+  },
+  "ENG-C5": {
+    "image": "crests/new-eng-c5.png",
+    "edge": "crests/new-eng-c5-edge.png",
+    "detail": "crests/new-eng-c5-detail.png",
+    "masks": [
+      "crests/new-eng-c5-0.png",
+      "crests/new-eng-c5-1.png",
+      "crests/new-eng-c5-2.png"
+    ],
+    "palette": [
+      "#694766",
+      "#eedfc5",
+      "#248f8e"
+    ],
+    "neutralForeground": null,
+    "source": "source/eng-c5.png"
+  },
+  "ENG-C6": {
+    "image": "crests/new-eng-c6.png",
+    "edge": "crests/new-eng-c6-edge.png",
+    "detail": "crests/new-eng-c6-detail.png",
+    "masks": [
+      "crests/new-eng-c6-0.png",
+      "crests/new-eng-c6-1.png",
+      "crests/new-eng-c6-2.png"
+    ],
+    "palette": [
+      "#3b477f",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/eng-c6.png"
+  },
+  "ENG-C7": {
+    "image": "crests/new-eng-c7.png",
+    "edge": "crests/new-eng-c7-edge.png",
+    "detail": "crests/new-eng-c7-detail.png",
+    "masks": [
+      "crests/new-eng-c7-0.png",
+      "crests/new-eng-c7-1.png",
+      "crests/new-eng-c7-2.png"
+    ],
+    "palette": [
+      "#df7770",
+      "#24385b",
+      "#eedfc5"
+    ],
+    "neutralForeground": null,
+    "source": "source/eng-c7.png"
+  },
+  "ENG-C8": {
+    "image": "crests/new-eng-c8.png",
+    "edge": "crests/new-eng-c8-edge.png",
+    "detail": "crests/new-eng-c8-detail.png",
+    "masks": [
+      "crests/new-eng-c8-0.png",
+      "crests/new-eng-c8-1.png",
+      "crests/new-eng-c8-2.png"
+    ],
+    "palette": [
+      "#315b42",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/eng-c8.png"
+  },
+  "ESP-7": {
+    "image": "crests/new-esp-7.png",
+    "edge": "crests/new-esp-7-edge.png",
+    "detail": "crests/new-esp-7-detail.png",
+    "masks": [
+      "crests/new-esp-7-0.png",
+      "crests/new-esp-7-1.png",
+      "crests/new-esp-7-2.png"
+    ],
+    "palette": [
+      "#315b42",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/esp-7.png"
+  },
+  "ESP-8": {
+    "image": "crests/new-esp-8.png",
+    "edge": "crests/new-esp-8-edge.png",
+    "detail": "crests/new-esp-8-detail.png",
+    "masks": [
+      "crests/new-esp-8-0.png",
+      "crests/new-esp-8-1.png",
+      "crests/new-esp-8-2.png"
+    ],
+    "palette": [
+      "#694766",
+      "#eedfc5",
+      "#3caaa8"
+    ],
+    "neutralForeground": null,
+    "source": "source/esp-8.png"
+  },
+  "ESP-C3": {
+    "image": "crests/new-esp-c3.png",
+    "edge": "crests/new-esp-c3-edge.png",
+    "detail": "crests/new-esp-c3-detail.png",
+    "masks": [
+      "crests/new-esp-c3-0.png",
+      "crests/new-esp-c3-1.png",
+      "crests/new-esp-c3-2.png"
+    ],
+    "palette": [
+      "#7750a0",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/esp-c3.png"
+  },
+  "ESP-C4": {
+    "image": "crests/new-esp-c4.png",
+    "edge": "crests/new-esp-c4-edge.png",
+    "detail": "crests/new-esp-c4-detail.png",
+    "masks": [
+      "crests/new-esp-c4-0.png",
+      "crests/new-esp-c4-1.png",
+      "crests/new-esp-c4-2.png"
+    ],
+    "palette": [
+      "#2d777c",
+      "#f1e5cc",
+      "#ba674d"
+    ],
+    "neutralForeground": null,
+    "source": "source/esp-c4.png"
+  },
+  "ESP-C5": {
+    "image": "crests/new-esp-c5.png",
+    "edge": "crests/new-esp-c5-edge.png",
+    "detail": "crests/new-esp-c5-detail.png",
+    "masks": [
+      "crests/new-esp-c5-0.png",
+      "crests/new-esp-c5-1.png",
+      "crests/new-esp-c5-2.png"
+    ],
+    "palette": [
+      "#732e49",
+      "#eedfc5",
+      "#3caaa8"
+    ],
+    "neutralForeground": null,
+    "source": "source/esp-c5.png"
+  },
+  "ESP-C6": {
+    "image": "crests/new-esp-c6.png",
+    "edge": "crests/new-esp-c6-edge.png",
+    "detail": "crests/new-esp-c6-detail.png",
+    "masks": [
+      "crests/new-esp-c6-0.png",
+      "crests/new-esp-c6-1.png",
+      "crests/new-esp-c6-2.png"
+    ],
+    "palette": [
+      "#24385b",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/esp-c6.png"
+  },
+  "ESP-C7": {
+    "image": "crests/new-esp-c7.png",
+    "edge": "crests/new-esp-c7-edge.png",
+    "detail": "crests/new-esp-c7-detail.png",
+    "masks": [
+      "crests/new-esp-c7-0.png",
+      "crests/new-esp-c7-1.png",
+      "crests/new-esp-c7-2.png"
+    ],
+    "palette": [
+      "#dc9a32",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "neutralForeground": null,
+    "source": "source/esp-c7.png"
+  },
+  "ESP-C8": {
+    "image": "crests/new-esp-c8.png",
+    "edge": "crests/new-esp-c8-edge.png",
+    "detail": "crests/new-esp-c8-detail.png",
+    "masks": [
+      "crests/new-esp-c8-0.png",
+      "crests/new-esp-c8-1.png",
+      "crests/new-esp-c8-2.png"
+    ],
+    "palette": [
+      "#df7770",
+      "#283039",
+      "#f3edda"
+    ],
+    "neutralForeground": null,
+    "source": "source/esp-c8.png"
+  },
+  "GER-7": {
+    "image": "crests/new-ger-7.png",
+    "edge": "crests/new-ger-7-edge.png",
+    "detail": "crests/new-ger-7-detail.png",
+    "masks": [
+      "crests/new-ger-7-0.png",
+      "crests/new-ger-7-1.png",
+      "crests/new-ger-7-2.png"
+    ],
+    "palette": [
+      "#dc9a32",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "neutralForeground": null,
+    "source": "source/ger-7.png"
+  },
+  "GER-8": {
+    "image": "crests/new-ger-8.png",
+    "edge": "crests/new-ger-8-edge.png",
+    "detail": "crests/new-ger-8-detail.png",
+    "masks": [
+      "crests/new-ger-8-0.png",
+      "crests/new-ger-8-1.png",
+      "crests/new-ger-8-2.png"
+    ],
+    "palette": [
+      "#3caaa8",
+      "#283039",
+      "#f3edda"
+    ],
+    "neutralForeground": null,
+    "source": "source/ger-8.png"
+  },
+  "GER-C3": {
+    "image": "crests/new-ger-c3.png",
+    "edge": "crests/new-ger-c3-edge.png",
+    "detail": "crests/new-ger-c3-detail.png",
+    "masks": [
+      "crests/new-ger-c3-0.png",
+      "crests/new-ger-c3-1.png",
+      "crests/new-ger-c3-2.png"
+    ],
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "neutralForeground": null,
+    "source": "source/ger-c3.png"
+  },
+  "GER-C4": {
+    "image": "crests/new-ger-c4.png",
+    "edge": "crests/new-ger-c4-edge.png",
+    "detail": "crests/new-ger-c4-detail.png",
+    "masks": [
+      "crests/new-ger-c4-0.png",
+      "crests/new-ger-c4-1.png",
+      "crests/new-ger-c4-2.png"
+    ],
+    "palette": [
+      "#3caaa8",
+      "#24385b",
+      "#f1e5cc"
+    ],
+    "neutralForeground": null,
+    "source": "source/ger-c4.png"
+  },
+  "GER-C5": {
+    "image": "crests/new-ger-c5.png",
+    "edge": "crests/new-ger-c5-edge.png",
+    "detail": "crests/new-ger-c5-detail.png",
+    "masks": [
+      "crests/new-ger-c5-0.png",
+      "crests/new-ger-c5-1.png",
+      "crests/new-ger-c5-2.png"
+    ],
+    "palette": [
+      "#b8794a",
+      "#1c3045",
+      "#f3edda"
+    ],
+    "neutralForeground": null,
+    "source": "source/ger-c5.png"
+  },
+  "GER-C6": {
+    "image": "crests/new-ger-c6.png",
+    "edge": "crests/new-ger-c6-edge.png",
+    "detail": "crests/new-ger-c6-detail.png",
+    "masks": [
+      "crests/new-ger-c6-0.png",
+      "crests/new-ger-c6-1.png",
+      "crests/new-ger-c6-2.png"
+    ],
+    "palette": [
+      "#315b42",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/ger-c6.png"
+  },
+  "GER-C7": {
+    "image": "crests/new-ger-c7.png",
+    "edge": "crests/new-ger-c7-edge.png",
+    "detail": "crests/new-ger-c7-detail.png",
+    "masks": [
+      "crests/new-ger-c7-0.png",
+      "crests/new-ger-c7-1.png",
+      "crests/new-ger-c7-2.png"
+    ],
+    "palette": [
+      "#694766",
+      "#bec8cb",
+      "#4b9dc8"
+    ],
+    "neutralForeground": null,
+    "source": "source/ger-c7.png"
+  },
+  "GER-C8": {
+    "image": "crests/new-ger-c8.png",
+    "edge": "crests/new-ger-c8-edge.png",
+    "detail": "crests/new-ger-c8-detail.png",
+    "masks": [
+      "crests/new-ger-c8-0.png",
+      "crests/new-ger-c8-1.png",
+      "crests/new-ger-c8-2.png"
+    ],
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f3edda"
+    ],
+    "neutralForeground": null,
+    "source": "source/ger-c8.png"
+  },
+  "ITA-7": {
+    "image": "crests/new-ita-7.png",
+    "edge": "crests/new-ita-7-edge.png",
+    "detail": "crests/new-ita-7-detail.png",
+    "masks": [
+      "crests/new-ita-7-0.png",
+      "crests/new-ita-7-1.png",
+      "crests/new-ita-7-2.png"
+    ],
+    "palette": [
+      "#7750a0",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/ita-7.png"
+  },
+  "ITA-8": {
+    "image": "crests/new-ita-8.png",
+    "edge": "crests/new-ita-8-edge.png",
+    "detail": "crests/new-ita-8-detail.png",
+    "masks": [
+      "crests/new-ita-8-0.png",
+      "crests/new-ita-8-1.png",
+      "crests/new-ita-8-2.png"
+    ],
+    "palette": [
+      "#2d777c",
+      "#f1e5cc",
+      "#ba674d"
+    ],
+    "neutralForeground": null,
+    "source": "source/ita-8.png"
+  },
+  "ITA-C3": {
+    "image": "crests/new-ita-c3.png",
+    "edge": "crests/new-ita-c3-edge.png",
+    "detail": "crests/new-ita-c3-detail.png",
+    "masks": [
+      "crests/new-ita-c3-0.png",
+      "crests/new-ita-c3-1.png",
+      "crests/new-ita-c3-2.png"
+    ],
+    "palette": [
+      "#b8794a",
+      "#1c3045",
+      "#f3edda"
+    ],
+    "neutralForeground": null,
+    "source": "source/ita-c3.png"
+  },
+  "ITA-C4": {
+    "image": "crests/new-ita-c4.png",
+    "edge": "crests/new-ita-c4-edge.png",
+    "detail": "crests/new-ita-c4-detail.png",
+    "masks": [
+      "crests/new-ita-c4-0.png",
+      "crests/new-ita-c4-1.png",
+      "crests/new-ita-c4-2.png"
+    ],
+    "palette": [
+      "#2d777c",
+      "#f1e5cc",
+      "#ba674d"
+    ],
+    "neutralForeground": null,
+    "source": "source/ita-c4.png"
+  },
+  "ITA-C5": {
+    "image": "crests/new-ita-c5.png",
+    "edge": "crests/new-ita-c5-edge.png",
+    "detail": "crests/new-ita-c5-detail.png",
+    "masks": [
+      "crests/new-ita-c5-0.png",
+      "crests/new-ita-c5-1.png",
+      "crests/new-ita-c5-2.png"
+    ],
+    "palette": [
+      "#694766",
+      "#eedfc5",
+      "#3caaa8"
+    ],
+    "neutralForeground": null,
+    "source": "source/ita-c5.png"
+  },
+  "ITA-C6": {
+    "image": "crests/new-ita-c6.png",
+    "edge": "crests/new-ita-c6-edge.png",
+    "detail": "crests/new-ita-c6-detail.png",
+    "masks": [
+      "crests/new-ita-c6-0.png",
+      "crests/new-ita-c6-1.png",
+      "crests/new-ita-c6-2.png"
+    ],
+    "palette": [
+      "#24385b",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/ita-c6.png"
+  },
+  "ITA-C7": {
+    "image": "crests/new-ita-c7.png",
+    "edge": "crests/new-ita-c7-edge.png",
+    "detail": "crests/new-ita-c7-detail.png",
+    "masks": [
+      "crests/new-ita-c7-0.png",
+      "crests/new-ita-c7-1.png",
+      "crests/new-ita-c7-2.png"
+    ],
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f1e5cc"
+    ],
+    "neutralForeground": null,
+    "source": "source/ita-c7.png"
+  },
+  "ITA-C8": {
+    "image": "crests/new-ita-c8.png",
+    "edge": "crests/new-ita-c8-edge.png",
+    "detail": "crests/new-ita-c8-detail.png",
+    "masks": [
+      "crests/new-ita-c8-0.png",
+      "crests/new-ita-c8-1.png",
+      "crests/new-ita-c8-2.png"
+    ],
+    "palette": [
+      "#df7770",
+      "#1c3045",
+      "#eedfc5"
+    ],
+    "neutralForeground": null,
+    "source": "source/ita-c8.png"
+  },
+  "FRA-7": {
+    "image": "crests/new-fra-7.png",
+    "edge": "crests/new-fra-7-edge.png",
+    "detail": "crests/new-fra-7-detail.png",
+    "masks": [
+      "crests/new-fra-7-0.png",
+      "crests/new-fra-7-1.png",
+      "crests/new-fra-7-2.png"
+    ],
+    "palette": [
+      "#318579",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/fra-7.png"
+  },
+  "FRA-8": {
+    "image": "crests/new-fra-8.png",
+    "edge": "crests/new-fra-8-edge.png",
+    "detail": "crests/new-fra-8-detail.png",
+    "masks": [
+      "crests/new-fra-8-0.png",
+      "crests/new-fra-8-1.png",
+      "crests/new-fra-8-2.png"
+    ],
+    "palette": [
+      "#732e49",
+      "#bec8cb",
+      "#2d777c"
+    ],
+    "neutralForeground": null,
+    "source": "source/fra-8.png"
+  },
+  "FRA-C3": {
+    "image": "crests/new-fra-c3.png",
+    "edge": "crests/new-fra-c3-edge.png",
+    "detail": "crests/new-fra-c3-detail.png",
+    "masks": [
+      "crests/new-fra-c3-0.png",
+      "crests/new-fra-c3-1.png",
+      "crests/new-fra-c3-2.png"
+    ],
+    "palette": [
+      "#823b52",
+      "#eedfc5",
+      "#2d777c"
+    ],
+    "neutralForeground": null,
+    "source": "source/fra-c3.png"
+  },
+  "FRA-C4": {
+    "image": "crests/new-fra-c4.png",
+    "edge": "crests/new-fra-c4-edge.png",
+    "detail": "crests/new-fra-c4-detail.png",
+    "masks": [
+      "crests/new-fra-c4-0.png",
+      "crests/new-fra-c4-1.png",
+      "crests/new-fra-c4-2.png"
+    ],
+    "palette": [
+      "#3caaa8",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "neutralForeground": null,
+    "source": "source/fra-c4.png"
+  },
+  "FRA-C5": {
+    "image": "crests/new-fra-c5.png",
+    "edge": "crests/new-fra-c5-edge.png",
+    "detail": "crests/new-fra-c5-detail.png",
+    "masks": [
+      "crests/new-fra-c5-0.png",
+      "crests/new-fra-c5-1.png",
+      "crests/new-fra-c5-2.png"
+    ],
+    "palette": [
+      "#315b42",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/fra-c5.png"
+  },
+  "FRA-C6": {
+    "image": "crests/new-fra-c6.png",
+    "edge": "crests/new-fra-c6-edge.png",
+    "detail": "crests/new-fra-c6-detail.png",
+    "masks": [
+      "crests/new-fra-c6-0.png",
+      "crests/new-fra-c6-1.png",
+      "crests/new-fra-c6-2.png"
+    ],
+    "palette": [
+      "#7750a0",
+      "#f3f5f2",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/fra-c6.png"
+  },
+  "FRA-C7": {
+    "image": "crests/new-fra-c7.png",
+    "edge": "crests/new-fra-c7-edge.png",
+    "detail": "crests/new-fra-c7-detail.png",
+    "masks": [
+      "crests/new-fra-c7-0.png",
+      "crests/new-fra-c7-1.png",
+      "crests/new-fra-c7-2.png"
+    ],
+    "palette": [
+      "#b8794a",
+      "#24385b",
+      "#f3edda"
+    ],
+    "neutralForeground": null,
+    "source": "source/fra-c7.png"
+  },
+  "FRA-C8": {
+    "image": "crests/new-fra-c8.png",
+    "edge": "crests/new-fra-c8-edge.png",
+    "detail": "crests/new-fra-c8-detail.png",
+    "masks": [
+      "crests/new-fra-c8-0.png",
+      "crests/new-fra-c8-1.png",
+      "crests/new-fra-c8-2.png"
+    ],
+    "palette": [
+      "#df7770",
+      "#283039",
+      "#eedfc5"
+    ],
+    "neutralForeground": null,
+    "source": "source/fra-c8.png"
+  },
+  "POR-7": {
+    "image": "crests/new-por-7.png",
+    "edge": "crests/new-por-7-edge.png",
+    "detail": "crests/new-por-7-detail.png",
+    "masks": [
+      "crests/new-por-7-0.png",
+      "crests/new-por-7-1.png",
+      "crests/new-por-7-2.png"
+    ],
+    "palette": [
+      "#24385b",
+      "#d9ab45",
+      "#f1e5cc"
+    ],
+    "neutralForeground": null,
+    "source": "source/por-7.png"
+  },
+  "POR-8": {
+    "image": "crests/new-por-8.png",
+    "edge": "crests/new-por-8-edge.png",
+    "detail": "crests/new-por-8-detail.png",
+    "masks": [
+      "crests/new-por-8-0.png",
+      "crests/new-por-8-1.png",
+      "crests/new-por-8-2.png"
+    ],
+    "palette": [
+      "#df7770",
+      "#1c3045",
+      "#eedfc5"
+    ],
+    "neutralForeground": null,
+    "source": "source/por-8.png"
+  },
+  "POR-C3": {
+    "image": "crests/new-por-c3.png",
+    "edge": "crests/new-por-c3-edge.png",
+    "detail": "crests/new-por-c3-detail.png",
+    "masks": [
+      "crests/new-por-c3-0.png",
+      "crests/new-por-c3-1.png",
+      "crests/new-por-c3-2.png"
+    ],
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "neutralForeground": null,
+    "source": "source/por-c3.png"
+  },
+  "POR-C4": {
+    "image": "crests/new-por-c4.png",
+    "edge": "crests/new-por-c4-edge.png",
+    "detail": "crests/new-por-c4-detail.png",
+    "masks": [
+      "crests/new-por-c4-0.png",
+      "crests/new-por-c4-1.png",
+      "crests/new-por-c4-2.png"
+    ],
+    "palette": [
+      "#3caaa8",
+      "#24385b",
+      "#f1e5cc"
+    ],
+    "neutralForeground": null,
+    "source": "source/por-c4.png"
+  },
+  "POR-C5": {
+    "image": "crests/new-por-c5.png",
+    "edge": "crests/new-por-c5-edge.png",
+    "detail": "crests/new-por-c5-detail.png",
+    "masks": [
+      "crests/new-por-c5-0.png",
+      "crests/new-por-c5-1.png",
+      "crests/new-por-c5-2.png"
+    ],
+    "palette": [
+      "#b8794a",
+      "#1c3045",
+      "#f3edda"
+    ],
+    "neutralForeground": null,
+    "source": "source/por-c5.png"
+  },
+  "POR-C6": {
+    "image": "crests/new-por-c6.png",
+    "edge": "crests/new-por-c6-edge.png",
+    "detail": "crests/new-por-c6-detail.png",
+    "masks": [
+      "crests/new-por-c6-0.png",
+      "crests/new-por-c6-1.png",
+      "crests/new-por-c6-2.png"
+    ],
+    "palette": [
+      "#315b42",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "neutralForeground": null,
+    "source": "source/por-c6.png"
+  },
+  "POR-C7": {
+    "image": "crests/new-por-c7.png",
+    "edge": "crests/new-por-c7-edge.png",
+    "detail": "crests/new-por-c7-detail.png",
+    "masks": [
+      "crests/new-por-c7-0.png",
+      "crests/new-por-c7-1.png",
+      "crests/new-por-c7-2.png"
+    ],
+    "palette": [
+      "#694766",
+      "#eedfc5",
+      "#3caaa8"
+    ],
+    "neutralForeground": null,
+    "source": "source/por-c7.png"
+  },
+  "POR-C8": {
+    "image": "crests/new-por-c8.png",
+    "edge": "crests/new-por-c8-edge.png",
+    "detail": "crests/new-por-c8-detail.png",
+    "masks": [
+      "crests/new-por-c8-0.png",
+      "crests/new-por-c8-1.png",
+      "crests/new-por-c8-2.png"
+    ],
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f3edda"
+    ],
+    "neutralForeground": null,
+    "source": "source/por-c8.png"
+  }
+}

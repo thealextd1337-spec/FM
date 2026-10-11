@@ -8,6 +8,10 @@ Reguläre AP07-Expansionskarrieren verwenden wieder den gemeinsamen Karriere-Ren
 
 `v61StartStorage` wartet bei laufendem Parser auf `DOMContentLoaded`, bevor IndexedDB gelesen wird. Alle nachgeladenen Expansionsvalidatoren müssen vor der ersten Weltprüfung installiert sein. Bei bereits geladener Seite beginnt das Lesen sofort. Keine nachträgliche Validierungsschleife oder Änderung gespeicherter Daten. [Regression und Live-Abnahme](release-124.md).
 
+## Vollständige Wappenabdeckung
+
+Alle 192 Vereinskennungen müssen ein Bildwappen in `v61CrestAssets` besitzen. `work/prepare-completed-crests.py` paketiert die 48 zusätzlichen Teams der ursprünglichen sechs Länder aus individuellen transparenten PNGs. `test-completed-crests.cjs` prüft vollständige Abdeckung, Umfärbung und Offline-Einbettung. Sponsorangebote werden auch auf internen Kartenüberlauf geprüft. [Quellen und Prüfungen](wappen-completion/README.md).
+
 ## Neue Länderwappen und Sponsoren
 
 `work/package-expansion-sponsors.py` paketiert 36 transparente Wortmarken (480 × 180) und separate Symbole (192 × 192). `world-expansion-v161.js` erweitert den gemeinsamen Sponsorrenderer anhand unveränderter Marken-IDs; ursprüngliche Marken verwenden den vorhandenen Renderer. `v172Controls` verwendet die vollständige native Sponsorangebotsansicht mit den Expansionsaktionen. Angebote, Zahlungen und Spielstände werden nicht umgerechnet. [Quellen und Prüfung](wappen-expansion/sponsors/README.md).

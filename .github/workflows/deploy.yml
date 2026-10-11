@@ -140,6 +140,7 @@ jobs:
           node work/build.cjs
           node work/test-club-crests.cjs
           node work/test-expansion-crests.cjs
+          node work/test-completed-crests.cjs
           node work/test-expansion-sponsors.cjs
           node work/test-no-player-images.cjs
 

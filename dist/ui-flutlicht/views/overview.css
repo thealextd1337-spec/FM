@@ -45,7 +45,8 @@
 .fl-shell .fl-overview .sponsor-offers>button:hover{border-color:var(--fl-accent);background:var(--fl-hover)}
 .fl-shell .fl-overview :is(.v66-sponsor-brand,.v66-sponsor-brand strong,.v66-sponsor-money,.v66-sponsor-money strong,.v66-sponsor-total,.v66-sponsor-goals strong){color:var(--fl-ink);font-family:var(--fl-font)}
 .fl-shell .fl-overview :is(.v66-sponsor-brand small,.v66-sponsor-money small){color:var(--fl-muted)}
-.fl-shell .fl-overview .v66-sponsor-money>span{background:var(--fl-subtle)}
+.fl-shell .fl-overview .v66-sponsor-money{grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr))}
+.fl-shell .fl-overview .v66-sponsor-money>span{min-width:0;background:var(--fl-subtle);overflow-wrap:anywhere}
 .fl-shell .fl-overview .v66-sponsor-money>span:last-child strong{color:var(--fl-accent)}
 .fl-shell .fl-overview .v66-sponsor-total{border-color:var(--fl-line)}
 .fl-shell .fl-overview :is(.v66-sponsor-main,.v66-sponsor-money,.v66-sponsor-goals){min-width:0}

@@ -1,0 +1,14 @@
+{
+  "version": 126,
+  "artifacts": {
+    "outputs/index.html": {
+      "bytes": 95786071,
+      "sha256": "25efdec257f0d973b4cedf7630b89f6d6e1208f8f4b3bd81158596585a2e446b"
+    },
+    "outputs/Doppel-6-Fussballmanager.html": {
+      "bytes": 95786071,
+      "sha256": "25efdec257f0d973b4cedf7630b89f6d6e1208f8f4b3bd81158596585a2e446b"
+    }
+  },
+  "localTests": "passed"
+}

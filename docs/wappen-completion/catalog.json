@@ -1,0 +1,674 @@
+[
+  {
+    "id": "ENG-7",
+    "country": "ENG",
+    "name": "Leeds Aire FC",
+    "city": "Leeds",
+    "colors": "Marineblau/Weiß/Kupfer",
+    "concept": "Doppelter Flussbogen",
+    "palette": [
+      "#24385b",
+      "#f3f5f2",
+      "#b8794a"
+    ],
+    "direction": "A distinctive vintage sports pennant whose flowing L A monogram forms two river arches. Very clearly lettered LEEDS. Copper outline, navy field, white lettering."
+  },
+  {
+    "id": "ENG-8",
+    "country": "ENG",
+    "name": "Newcastle Tyne FC",
+    "city": "Newcastle",
+    "colors": "Bordeaux/Elfenbein/Petrol",
+    "concept": "Offene Brücke mit drei Pfeilern",
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "direction": "A grand civic shield with an ivory three-pier Tyne bridge, two small maritime stars and a burgundy banner NEWCASTLE."
+  },
+  {
+    "id": "ENG-C3",
+    "country": "ENG",
+    "name": "Sheffield Sheaf FC",
+    "city": "Sheffield",
+    "colors": "Kupfer/Nachtblau/Creme",
+    "concept": "Zwei offene Werkstattwinkel",
+    "palette": [
+      "#b8794a",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "direction": "A free industrial owl with spread wings made from cut steel blades, tiny SHEAF on copper ribbon. No circular frame."
+  },
+  {
+    "id": "ENG-C4",
+    "country": "ENG",
+    "name": "Bristol Avon Gate FC",
+    "city": "Bristol",
+    "colors": "Türkis/Anthrazit/Elfenbein",
+    "concept": "Flussgabel im Torrahmen",
+    "palette": [
+      "#3caaa8",
+      "#283039",
+      "#f3edda"
+    ],
+    "direction": "A modern interlocking AG gate monogram in turquoise, river split integrated into negative space, asymmetrical rectangular badge."
+  },
+  {
+    "id": "ENG-C5",
+    "country": "ENG",
+    "name": "Norwich Wensum FC",
+    "city": "Norwich",
+    "colors": "Pflaume/Sand/Petrol",
+    "concept": "Drei versetzte Uferpfosten",
+    "palette": [
+      "#694766",
+      "#eedfc5",
+      "#248f8e"
+    ],
+    "direction": "Traditional medieval seal with a delicate plum heron standing among three river reeds, engraved WENSUM around edge."
+  },
+  {
+    "id": "ENG-C6",
+    "country": "ENG",
+    "name": "Coventry Spon FC",
+    "city": "Coventry",
+    "colors": "Indigo/Creme/Kupfer",
+    "concept": "Offenes Ausbildungsrad",
+    "palette": [
+      "#3b477f",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "direction": "Handlettered italic SPON script with a copper open training-wheel motif behind, ivory letters indigo shadow. Free wordmark."
+  },
+  {
+    "id": "ENG-C7",
+    "country": "ENG",
+    "name": "Brighton Downs FC",
+    "city": "Brighton",
+    "colors": "Koralle/Marineblau/Sand",
+    "concept": "Zwei ungleiche Hügelbögen",
+    "palette": [
+      "#df7770",
+      "#24385b",
+      "#eedfc5"
+    ],
+    "direction": "Free coral gull in flight over two sand chalk downs, navy compact ribbon BRIGHTON. No enclosing shield."
+  },
+  {
+    "id": "ENG-C8",
+    "country": "ENG",
+    "name": "Plymouth Tamar FC",
+    "city": "Plymouth",
+    "colors": "Waldgrün/Elfenbein/Kupfer",
+    "concept": "Geteilte Flussmündung",
+    "palette": [
+      "#315b42",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "direction": "Woodcut green sailing ship over a split Tamar river estuary in a pointed ivory shield with copper rope outline."
+  },
+  {
+    "id": "ESP-7",
+    "country": "ESP",
+    "name": "Bilbao Nervión CF",
+    "city": "Bilbao",
+    "colors": "Waldgrün/Elfenbein/Kupfer",
+    "concept": "Zwei verschränkte Hafenlinien",
+    "palette": [
+      "#315b42",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "direction": "Basque inspired free copper dock crane with two interlocking green lines, ivory NERVIÓN lettering below in block serif."
+  },
+  {
+    "id": "ESP-8",
+    "country": "ESP",
+    "name": "Zaragoza Ebro CF",
+    "city": "Zaragoza",
+    "colors": "Pflaume/Sand/Türkis",
+    "concept": "Treppenbogen über einer Wasserlinie",
+    "palette": [
+      "#694766",
+      "#eedfc5",
+      "#3caaa8"
+    ],
+    "direction": "Traditional stepped arch over turquoise Ebro wave and sand ZARAGOZA ribbon in a plum scalloped shield."
+  },
+  {
+    "id": "ESP-C3",
+    "country": "ESP",
+    "name": "Valladolid Pisuerga CF",
+    "city": "Valladolid",
+    "colors": "Violett/Elfenbein/Kupfer",
+    "concept": "Drei Flussterrassen",
+    "palette": [
+      "#7750a0",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "direction": "Elegant violet P monogram formed from three river terraces, narrow ivory book-shaped civic badge with copper accents."
+  },
+  {
+    "id": "ESP-C4",
+    "country": "ESP",
+    "name": "Santander Bahía CF",
+    "city": "Santander",
+    "colors": "Petrol/Creme/Terrakotta",
+    "concept": "Offene Buchtlinie",
+    "palette": [
+      "#2d777c",
+      "#f1e5cc",
+      "#ba674d"
+    ],
+    "direction": "A free stylized terracotta seabird curving around a teal bay, cream nautical BAHÍA ribbon, no shield."
+  },
+  {
+    "id": "ESP-C5",
+    "country": "ESP",
+    "name": "Murcia Segura CF",
+    "city": "Murcia",
+    "colors": "Bordeaux/Sand/Türkis",
+    "concept": "Geteiltes Bewässerungsband",
+    "palette": [
+      "#732e49",
+      "#eedfc5",
+      "#3caaa8"
+    ],
+    "direction": "Woodcut burgundy orange blossom above two turquoise irrigation ribbons in a sand garden seal."
+  },
+  {
+    "id": "ESP-C6",
+    "country": "ESP",
+    "name": "Salamanca Tormes CF",
+    "city": "Salamanca",
+    "colors": "Marineblau/Elfenbein/Kupfer",
+    "concept": "Offener Doppelsteg",
+    "palette": [
+      "#24385b",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "direction": "Collegiate ivory TORMES calligraphy flowing over a copper double footbridge, navy shadow, free text badge."
+  },
+  {
+    "id": "ESP-C7",
+    "country": "ESP",
+    "name": "Logroño Senda CF",
+    "city": "Logroño",
+    "colors": "Bernstein/Nachtblau/Creme",
+    "concept": "Zwei versetzte Weglinien",
+    "palette": [
+      "#dc9a32",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "direction": "Art deco amber trail star built from two staggered paths in a tall navy diamond, cream SENDA lettering."
+  },
+  {
+    "id": "ESP-C8",
+    "country": "ESP",
+    "name": "Almería Dársena CF",
+    "city": "Almería",
+    "colors": "Koralle/Anthrazit/Elfenbein",
+    "concept": "Drei offene Hafenwinkel",
+    "palette": [
+      "#df7770",
+      "#283039",
+      "#f3edda"
+    ],
+    "direction": "Coral ship bow and three charcoal dock angles on ivory diagonal pennant with compact DÁRSENA monogram."
+  },
+  {
+    "id": "GER-7",
+    "country": "GER",
+    "name": "FC Dortmund Emscher",
+    "city": "Dortmund",
+    "colors": "Bernstein/Nachtblau/Creme",
+    "concept": "Versetzte Stahlbögen",
+    "palette": [
+      "#dc9a32",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "direction": "Bold industrial E monogram built from staggered riveted steel arches, amber and cream lettering EMSCHER in a dark tapered guild shield. No BVB references."
+  },
+  {
+    "id": "GER-8",
+    "country": "GER",
+    "name": "FC Frankfurt Mainbogen",
+    "city": "Frankfurt",
+    "colors": "Türkis/Anthrazit/Elfenbein",
+    "concept": "Drei offene Mainlinien",
+    "palette": [
+      "#3caaa8",
+      "#283039",
+      "#f3edda"
+    ],
+    "direction": "Elegant handlettered MAINBOGEN flowing over three turquoise river lines, cream letter strokes with charcoal outline. Free wordmark."
+  },
+  {
+    "id": "GER-C3",
+    "country": "GER",
+    "name": "FC Erfurt Geraauen",
+    "city": "Erfurt",
+    "colors": "Bordeaux/Elfenbein/Petrol",
+    "concept": "Zwei versetzte Auenlinien",
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "direction": "Historic burgundy stork in flight above two teal meadow terraces, ivory pointed heraldic shield with ribbon GERA."
+  },
+  {
+    "id": "GER-C4",
+    "country": "GER",
+    "name": "Kieler SC Fördeblick",
+    "city": "Kiel",
+    "colors": "Türkis/Marineblau/Creme",
+    "concept": "Offener Fördebogen",
+    "palette": [
+      "#3caaa8",
+      "#24385b",
+      "#f1e5cc"
+    ],
+    "direction": "Free turquoise sailboat with billowing cream sail, navy ropes, wave base, small FÖRDE pennant. No enclosing shield."
+  },
+  {
+    "id": "GER-C5",
+    "country": "GER",
+    "name": "FC Osnabrück Hasebogen",
+    "city": "Osnabrück",
+    "colors": "Kupfer/Nachtblau/Elfenbein",
+    "concept": "Doppelter Hasebogen",
+    "palette": [
+      "#b8794a",
+      "#1c3045",
+      "#f3edda"
+    ],
+    "direction": "Copper H monogram formed from paired stone bridge arches, narrow ornate civic crest, ivory accents on deep navy."
+  },
+  {
+    "id": "GER-C6",
+    "country": "GER",
+    "name": "SC Regensburg Donauhof",
+    "city": "Regensburg",
+    "colors": "Waldgrün/Creme/Kupfer",
+    "concept": "Drei offene Hofrahmen",
+    "palette": [
+      "#315b42",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "direction": "Traditional hexagonal craft badge with three arched courtyard windows, green field, cream engraving, copper serif DONAUHOF."
+  },
+  {
+    "id": "GER-C7",
+    "country": "GER",
+    "name": "Rostocker SC Warnowfeld",
+    "city": "Rostock",
+    "colors": "Pflaume/Silber/Eisblau",
+    "concept": "Geteilte Mündung im Rundfeld",
+    "palette": [
+      "#694766",
+      "#bec8cb",
+      "#4b9dc8"
+    ],
+    "direction": "Retro plum football-and-wave seal, silver dynamic W initial, light blue river channels, no tiny text."
+  },
+  {
+    "id": "GER-C8",
+    "country": "GER",
+    "name": "FC Aachen Westbogen",
+    "city": "Aachen",
+    "colors": "Bernstein/Anthrazit/Elfenbein",
+    "concept": "Versetzter offener Westbogen",
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f3edda"
+    ],
+    "direction": "Amber and charcoal curving A monogram with gateway cutout and ivory block-serif AACHEN, strong horizontal free badge."
+  },
+  {
+    "id": "ITA-7",
+    "country": "ITA",
+    "name": "Firenze Arno AC",
+    "city": "Florenz",
+    "colors": "Violett/Elfenbein/Kupfer",
+    "concept": "Offener Werkstattbogen",
+    "palette": [
+      "#7750a0",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "direction": "Florentine copper iris and violet A intertwined in ornate ivory heraldic crest, elegant ARNO band."
+  },
+  {
+    "id": "ITA-8",
+    "country": "ITA",
+    "name": "Genova Lanterna FC",
+    "city": "Genua",
+    "colors": "Petrol/Creme/Terrakotta",
+    "concept": "Geteiltes Leuchtfeuer",
+    "palette": [
+      "#2d777c",
+      "#f1e5cc",
+      "#ba674d"
+    ],
+    "direction": "Bold teal lighthouse with split terracotta beam, cream angular Genoese shield, LANTERNA in elegant uppercase."
+  },
+  {
+    "id": "ITA-C3",
+    "country": "ITA",
+    "name": "Perugia Fonte AC",
+    "city": "Perugia",
+    "colors": "Kupfer/Nachtblau/Elfenbein",
+    "concept": "Geteilter Brunnenbogen",
+    "palette": [
+      "#b8794a",
+      "#1c3045",
+      "#f3edda"
+    ],
+    "direction": "Copper engraved griffin guarding a fountain, navy square guild seal, cream FONTE lettering."
+  },
+  {
+    "id": "ITA-C4",
+    "country": "ITA",
+    "name": "Pisa Lungarno FC",
+    "city": "Pisa",
+    "colors": "Petrol/Creme/Terrakotta",
+    "concept": "Zwei gestaffelte Uferlinien",
+    "palette": [
+      "#2d777c",
+      "#f1e5cc",
+      "#ba674d"
+    ],
+    "direction": "Free leaning arched ivory L monogram over teal river terraces, terracotta serif LUNGARNO ribbon."
+  },
+  {
+    "id": "ITA-C5",
+    "country": "ITA",
+    "name": "Cagliari Salina FC",
+    "city": "Cagliari",
+    "colors": "Pflaume/Sand/Türkis",
+    "concept": "Offene Salzfeldkacheln",
+    "palette": [
+      "#694766",
+      "#eedfc5",
+      "#3caaa8"
+    ],
+    "direction": "Modern plum flamingo over turquoise salt-pan tiles, sand free emblem, SALINA handwritten small on base."
+  },
+  {
+    "id": "ITA-C6",
+    "country": "ITA",
+    "name": "Trieste Molo FC",
+    "city": "Triest",
+    "colors": "Marineblau/Elfenbein/Kupfer",
+    "concept": "Drei schmale Stege",
+    "palette": [
+      "#24385b",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "direction": "Navy M monogram created from three narrow copper piers with ivory TRIeste nautical badge, wide horizontal."
+  },
+  {
+    "id": "ITA-C7",
+    "country": "ITA",
+    "name": "Modena Officina FC",
+    "city": "Modena",
+    "colors": "Bernstein/Anthrazit/Creme",
+    "concept": "Zwei versetzte Werkzeugbögen",
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f1e5cc"
+    ],
+    "direction": "Vintage amber and charcoal toothed gear surrounding cursive OFFICINA, cream industrial serif lettering, round emblem."
+  },
+  {
+    "id": "ITA-C8",
+    "country": "ITA",
+    "name": "Bari Levante FC",
+    "city": "Bari",
+    "colors": "Koralle/Nachtblau/Sand",
+    "concept": "Offener Küstenfächer",
+    "palette": [
+      "#df7770",
+      "#1c3045",
+      "#eedfc5"
+    ],
+    "direction": "Free coral rising sun above navy coastal fan, sand italic LEVANTE script interwoven through sunrays."
+  },
+  {
+    "id": "FRA-7",
+    "country": "FRA",
+    "name": "Nantes Loire FC",
+    "city": "Nantes",
+    "colors": "Seegrün/Creme/Kupfer",
+    "concept": "Blatt über Flussgabel",
+    "palette": [
+      "#318579",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "direction": "Elegant botanical cream Loire leaf sprig over green river fork, copper italic LOIRE wordmark. Free badge."
+  },
+  {
+    "id": "FRA-8",
+    "country": "FRA",
+    "name": "Strasbourg Rives FC",
+    "city": "Straßburg",
+    "colors": "Bordeaux/Silber/Petrol",
+    "concept": "Zwei Uferpfeiler",
+    "palette": [
+      "#732e49",
+      "#bec8cb",
+      "#2d777c"
+    ],
+    "direction": "Burgundy otter balancing between two teal river piers, silver civic shield, RIVES serif at foot."
+  },
+  {
+    "id": "FRA-C3",
+    "country": "FRA",
+    "name": "Dijon Ouche FC",
+    "city": "Dijon",
+    "colors": "Weinrot/Sand/Petrol",
+    "concept": "Drei schmale Uferfelder",
+    "palette": [
+      "#823b52",
+      "#eedfc5",
+      "#2d777c"
+    ],
+    "direction": "Modern burgundy O letter enclosing three teal river fields, sand DIJON wordmark in wide outlined badge."
+  },
+  {
+    "id": "FRA-C4",
+    "country": "FRA",
+    "name": "Brest Iroise FC",
+    "city": "Brest",
+    "colors": "Türkis/Nachtblau/Creme",
+    "concept": "Zwei offene Meeresbögen",
+    "palette": [
+      "#3caaa8",
+      "#1c3045",
+      "#f1e5cc"
+    ],
+    "direction": "Free teal lighthouse with two navy curling sea arches, cream small IROISE nautical script below."
+  },
+  {
+    "id": "FRA-C5",
+    "country": "FRA",
+    "name": "Amiens Hortillon FC",
+    "city": "Amiens",
+    "colors": "Waldgrün/Elfenbein/Kupfer",
+    "concept": "Geteilte Garteninsel",
+    "palette": [
+      "#315b42",
+      "#f3edda",
+      "#b8794a"
+    ],
+    "direction": "Historic green kingfisher on a copper garden island, ivory rounded shield with HORTILLON ribbon."
+  },
+  {
+    "id": "FRA-C6",
+    "country": "FRA",
+    "name": "Tours Cher FC",
+    "city": "Tours",
+    "colors": "Violett/Weiß/Kupfer",
+    "concept": "Offener Flussfächer",
+    "palette": [
+      "#7750a0",
+      "#f3f5f2",
+      "#b8794a"
+    ],
+    "direction": "Collegiate violet CHER italic handlettering with white strokes and copper split river fan above, free wordmark."
+  },
+  {
+    "id": "FRA-C7",
+    "country": "FRA",
+    "name": "Clermont Dôme FC",
+    "city": "Clermont-Ferrand",
+    "colors": "Kupfer/Marineblau/Elfenbein",
+    "concept": "Drei gestufte Hügelwinkel",
+    "palette": [
+      "#b8794a",
+      "#24385b",
+      "#f3edda"
+    ],
+    "direction": "Copper mountain ram above three navy volcano peaks, ivory hexagonal CLERMONT seal."
+  },
+  {
+    "id": "FRA-C8",
+    "country": "FRA",
+    "name": "Le Havre Estuaire FC",
+    "city": "Le Havre",
+    "colors": "Koralle/Anthrazit/Sand",
+    "concept": "Geteilte Mündungslinie",
+    "palette": [
+      "#df7770",
+      "#283039",
+      "#eedfc5"
+    ],
+    "direction": "Abstract coral H monogram shaped from estuary channels, charcoal asymmetric flag badge with sand ESTUAIRE typography."
+  },
+  {
+    "id": "POR-7",
+    "country": "POR",
+    "name": "Guimarães Castelo FC",
+    "city": "Guimarães",
+    "colors": "Marineblau/Gold/Creme",
+    "concept": "Offenes Tor mit schräger Zinne",
+    "palette": [
+      "#24385b",
+      "#d9ab45",
+      "#f1e5cc"
+    ],
+    "direction": "Golden gatehouse with slanted battlements on a navy elongated shield, cream CASTELO serif banner."
+  },
+  {
+    "id": "POR-8",
+    "country": "POR",
+    "name": "Setúbal Sado FC",
+    "city": "Setúbal",
+    "colors": "Koralle/Nachtblau/Sand",
+    "concept": "Drei Sado-Wellen",
+    "palette": [
+      "#df7770",
+      "#1c3045",
+      "#eedfc5"
+    ],
+    "direction": "Free coral dolphin riding three sand Sado waves, navy outlines, flowing SADO letters."
+  },
+  {
+    "id": "POR-C3",
+    "country": "POR",
+    "name": "Coimbra Mondego FC",
+    "city": "Coimbra",
+    "colors": "Bordeaux/Elfenbein/Petrol",
+    "concept": "Offener Doppelbogen",
+    "palette": [
+      "#732e49",
+      "#f3edda",
+      "#2d777c"
+    ],
+    "direction": "Woodcut burgundy owl with two teal Mondego arches in ivory book-shaped academic seal."
+  },
+  {
+    "id": "POR-C4",
+    "country": "POR",
+    "name": "Aveiro Ria FC",
+    "city": "Aveiro",
+    "colors": "Türkis/Marineblau/Creme",
+    "concept": "Drei Lagunenfelder",
+    "palette": [
+      "#3caaa8",
+      "#24385b",
+      "#f1e5cc"
+    ],
+    "direction": "Art nouveau cream water lily above three turquoise lagoon panels, navy rounded RIA seal."
+  },
+  {
+    "id": "POR-C5",
+    "country": "POR",
+    "name": "Leiria Lis FC",
+    "city": "Leiria",
+    "colors": "Kupfer/Nachtblau/Elfenbein",
+    "concept": "Geteilte Uferstufe",
+    "palette": [
+      "#b8794a",
+      "#1c3045",
+      "#f3edda"
+    ],
+    "direction": "Copper L monogram shaped from stepped riverbanks, deep navy diagonal pennant, ivory LIS lettering."
+  },
+  {
+    "id": "POR-C6",
+    "country": "POR",
+    "name": "Viseu Fontelo FC",
+    "city": "Viseu",
+    "colors": "Waldgrün/Creme/Kupfer",
+    "concept": "Offenes Blattfenster",
+    "palette": [
+      "#315b42",
+      "#f1e5cc",
+      "#b8794a"
+    ],
+    "direction": "Hand-drawn green oak leaves surrounding cream cursive FONTelo script, copper botanical seal."
+  },
+  {
+    "id": "POR-C7",
+    "country": "POR",
+    "name": "Portimão Arade FC",
+    "city": "Portimão",
+    "colors": "Pflaume/Sand/Türkis",
+    "concept": "Zwei versetzte Kaibögen",
+    "palette": [
+      "#694766",
+      "#eedfc5",
+      "#3caaa8"
+    ],
+    "direction": "Plum seahorse curling around two turquoise quay arches, sand nautical shield, ARADE in tall block letters."
+  },
+  {
+    "id": "POR-C8",
+    "country": "POR",
+    "name": "Viana Lima FC",
+    "city": "Viana do Castelo",
+    "colors": "Bernstein/Anthrazit/Elfenbein",
+    "concept": "Drei offene Flussstege",
+    "palette": [
+      "#dc9a32",
+      "#283039",
+      "#f3edda"
+    ],
+    "direction": "Amber sailing boat crossing three charcoal river piers, ivory Viana script in free elongated sports wordmark."
+  }
+]
