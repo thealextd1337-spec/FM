@@ -1,5 +1,12 @@
 # Produktregeln
 
+## Jugendförderung und Karriereenden ab Release 127
+
+Für neu gestartete mehrjährige Expansionskarrieren gelten vier Jahresbudgets 0/500/1.000/1.500 Credits. Ein vereinsgebundener, kumulativer Jugendstatus verbindet Förderung (65 Prozent) und belegten sportlichen Erfolg relativ zur eingefrorenen Saisonerwartung (35 Prozent). Aufstieg und Rückgang bleiben allmählich. Sichtbar sind ausschließlich bestehende Bewertungsfarben, qualitative Bezeichnung und Trendpfeil. Der Status prägt kontinuierlich neue Jahrgänge; bereits vorhandene Spieler, Talent und Entwicklungsregeln werden nicht nachberechnet. Alle Förderstufen können alle Positionen hervorbringen. Ein kleiner fester Länderrahmen gilt bei der Neuerzeugung für Jugend, freie und Pokalersatzspieler, nicht bei Transfers. [Parameter und Grenzen](jugend-legacy-release127.md).
+
+Karriereenden werden ab 33 mit 40 Prozent entschieden, jährlich plus zehn Prozentpunkte bis 100 Prozent mit 39. Zu Beginn gibt es einen Risikohinweis, zur Saisonmitte einen gespeicherten verbindlichen Entscheid, ausgeführt und mit belegter Abschiedsgeschichte gezeigt am Saisonende. Ausgeschiedene Spieler bleiben archiviert; Pokalvereine erhalten regulären Ersatz. Bestehende Welten ohne neue Kennung behalten ihren bisherigen Ablauf. Vorauswahl, bezahlte Sichtung und Akademietraining sind weiterhin eigenständige offene Vorhaben.
+
+
 ## Vertraute Karriereoberfläche
 
 Auf Nutzerauftrag vom 11. Oktober 2026 behalten auch neue zwölf Länder umfassende Vereinswelten die vertraute Flutlicht-Oberfläche mit Übersicht, Kader, Matchplan, Transfers, Wettbewerben, Kalender, Statistik, Verein und Hilfe/Einstellungen. Crown, Horizon und Länderwertung werden in das Wettbewerbsmenü integriert. Vereinsprofil, Finanzen, Sponsor, Chronik und Managerlaufbahn stehen in den vorhandenen Vereinsansichten; das Vereinsbüro und höchstens drei Saisonmomente ergänzen die Übersicht. Beide Cups erscheinen getrennt im Saisonrückblick und Archiv. Die Ligaerweiterung und alle freigegebenen Grafikmotive bleiben bestehen. [Umsetzung](ui-expansion-restoration.md).

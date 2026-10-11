@@ -1,0 +1,147 @@
+{
+  "pass": true,
+  "oldWorldUnchanged": true,
+  "rows": [
+    {
+      "amount": 0,
+      "count": 87,
+      "positions": {
+        "gk": 8,
+        "def": 33,
+        "mid": 29,
+        "att": 17
+      }
+    },
+    {
+      "amount": 500,
+      "count": 207,
+      "positions": {
+        "gk": 25,
+        "def": 69,
+        "mid": 76,
+        "att": 37
+      }
+    },
+    {
+      "amount": 1000,
+      "count": 300,
+      "positions": {
+        "gk": 42,
+        "def": 100,
+        "mid": 110,
+        "att": 48
+      }
+    },
+    {
+      "amount": 1500,
+      "count": 360,
+      "positions": {
+        "gk": 50,
+        "def": 121,
+        "mid": 130,
+        "att": 59
+      }
+    }
+  ],
+  "retirementReloadStable": true,
+  "retirementIdempotent": true,
+  "highExpected": 0.04999999999999999,
+  "countryControls": [
+    {
+      "country": "ENG",
+      "kind": "free"
+    },
+    {
+      "country": "ENG",
+      "kind": "cup"
+    },
+    {
+      "country": "ESP",
+      "kind": "free"
+    },
+    {
+      "country": "ESP",
+      "kind": "cup"
+    },
+    {
+      "country": "GER",
+      "kind": "free"
+    },
+    {
+      "country": "GER",
+      "kind": "cup"
+    },
+    {
+      "country": "ITA",
+      "kind": "free"
+    },
+    {
+      "country": "ITA",
+      "kind": "cup"
+    },
+    {
+      "country": "FRA",
+      "kind": "free"
+    },
+    {
+      "country": "FRA",
+      "kind": "cup"
+    },
+    {
+      "country": "POR",
+      "kind": "free"
+    },
+    {
+      "country": "POR",
+      "kind": "cup"
+    },
+    {
+      "country": "NED",
+      "kind": "free"
+    },
+    {
+      "country": "NED",
+      "kind": "cup"
+    },
+    {
+      "country": "AUT",
+      "kind": "free"
+    },
+    {
+      "country": "AUT",
+      "kind": "cup"
+    },
+    {
+      "country": "BEL",
+      "kind": "free"
+    },
+    {
+      "country": "BEL",
+      "kind": "cup"
+    },
+    {
+      "country": "TUR",
+      "kind": "free"
+    },
+    {
+      "country": "TUR",
+      "kind": "cup"
+    },
+    {
+      "country": "SUI",
+      "kind": "free"
+    },
+    {
+      "country": "SUI",
+      "kind": "cup"
+    },
+    {
+      "country": "GRE",
+      "kind": "free"
+    },
+    {
+      "country": "GRE",
+      "kind": "cup"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
+const root=process.cwd(),out=path.join(root,'outputs/release-127/longterm'),arg=n=>process.argv.find(a=>a.startsWith('--'+n+'='))?.split('=').slice(1).join('='),seed=arg('seed')||'youth20-a',seasons=Number(arg('seasons')||20);
+fs.mkdirSync(out,{recursive:true});
+const frozen=path.join(out,'source'),frozenDist=path.join(frozen,'dist');
+if(!fs.existsSync(frozenDist)||process.argv.includes('--freeze')){
+ fs.mkdirSync(frozenDist,{recursive:true});const manifest={};
+ for(const file of fs.readdirSync(path.join(root,'dist')).filter(f=>f.endsWith('.js'))){const bytes=fs.readFileSync(path.join(root,'dist',file));fs.writeFileSync(path.join(frozenDist,file),bytes);manifest[file]=require('node:crypto').createHash('sha256').update(bytes).digest('hex');}
+ fs.writeFileSync(path.join(out,'source-manifest.json'),JSON.stringify(manifest,null,2));
+}
+if(process.argv.includes('--freeze')){console.log('Native sources frozen');process.exit(0);}
+process.chdir(frozen);
+const {harness}=require(path.join(root,'work/youth-native-harness-v176.cjs')),{call,run,evaluate,context}=harness();run('world-expansion-stories-v170.js');run('world-youth-legacy-v176.js');
+const G=evaluate('D6PlayerGeneration'),q=p=>G.positionQuality(p,p.line),mean=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:null,births=new Map();
+context.auditBirth=(p,k,id)=>births.set(p.pid,{pid:p.pid,kind:k,clubId:id,country:id?.split('-')[0],age:p.age,season:context.auditSeason||1,quality:q(p),talent:p.playerModel.talent,minutes:0});
+context.auditRename=(old,p)=>{const b=births.get(old);if(b){births.delete(old);b.pid=p.pid;births.set(p.pid,b);}};
+context.auditAge24=p=>{const b=births.get(p.pid);if(b&&p.age===24)b.at24={quality:q(p),minutes:b.minutes};};
+evaluate(`const auditGen=v153Generate;v153Generate=function(p,...a){const r=auditGen(p,...a);auditBirth(p,a[1],a[4]);return r;};const auditRenameBase=v153ReidentifyNewPlayer;v153ReidentifyNewPlayer=function(p){const old=p.playerModel.development.playerId,r=auditRenameBase(p);auditRename(old,p);return r;};const auditAgeBase=v153AgePlayer;v153AgePlayer=function(c,p,s){const r=auditAgeBase(c,p,s);auditAge24(p);return r;};`);
+context.auditSeason=1;const c=call('v167CreateCareer','AUT-5',seed,'Nachwuchsanalyse');context.v61CurrentCareer=c;
+const ai=c.world.clubs.filter(club=>!club.simulationOnly&&club.id!=='AUT-5'),initial=new Set([...births.values()].filter(b=>b.kind==='start').map(b=>b.pid)),initialAdult=new Set([...births.values()].filter(b=>b.kind==='start'&&b.age>=18).map(b=>b.pid));
+const metrics=()=>ai.map(club=>{const side=call('v64BuildSide',club,'2–2–1');return{clubId:club.id,country:club.countryId,tier:club.expansionTier,quality:mean(club.roster.map(q)),startingQuality:mean(side.starters.map(pid=>{const p=club.roster.find(p=>p.pid===pid);return G.positionQuality(p,side.roles[pid]);})),players:club.roster.length,age:mean(club.roster.map(p=>p.age)),status:club.youthLegacy.status,balance:club.balance};});
+const rows=[],initialMetrics=metrics();context.auditBeforeRetirement=()=>{context.beforeRetirement=metrics();};evaluate('const auditClose=v176CloseRetirements;v176CloseRetirements=function(c){auditBeforeRetirement();return auditClose(c);};');
+function repair(){const own=ai.find(c=>c.id===c.manager?.managedClubId)||call('v66Club',c,'AUT-5');for(const ct of c.world.contracts.filter(t=>t.clubId===own.id&&t.endSeason===c.world.season)){const p=own.roster.find(p=>p.pid===ct.pid);if(p)try{call('v66Renew',c,p.pid,Math.ceil(Math.max(ct.annual,call('v66Salary',p))*1.25/10)*10,3,ct.promise);}catch{}}
+ for(let day=0;day<5;day++){while(own.roster.length<10||!own.roster.some(p=>p.keeper)||own.roster.filter(p=>!p.keeper).length<5){const keeper=!own.roster.some(p=>p.keeper),p=own.youthPool.filter(p=>keeper?p.keeper:!p.keeper).sort((a,b)=>q(b)-q(a))[0];if(p)try{call('v67Promote',c,own.id,p.pid);continue;}catch{}const free=c.world.market.freePlayers.filter(p=>keeper?p.keeper:!p.keeper).sort((a,b)=>call('v66Salary',a)-call('v66Salary',b))[0];assert(free);if(!c.world.market.pendingBids.some(b=>b.pid===free.pid&&b.buyerId===own.id&&b.status==='pending'))call('v66MakeBid',c,own.id,free.pid,0,Math.ceil(call('v66Salary',free)*1.5/10)*10,2,0);break;}call('v66NextMarketDay',c);}
+ assert.equal(c.world.market.phase,'closed');}
+for(let season=1;season<=seasons;season++){
+ context.auditSeason=season;const start=Date.now(),own=call('v66Club',c,'AUT-5');call('v66ChooseSponsor',c,own.id,own.sponsors[0].id);call('v124SetYouthBudget',c,own.balance>=1000?1000:own.balance>=500?500:0);repair();const opening=metrics();assert(opening.every(r=>r.players>=10));
+ let heartbeat=Date.now();while(!c.world.seasonFinished){call('v62AdvanceDay',c);if(Date.now()-heartbeat>45000){console.log(JSON.stringify({seed,season,day:c.world.calendarCursor}));heartbeat=Date.now();}}
+ const fixtures=call('v62Fixtures',c);assert.equal(fixtures.length,991);assert(fixtures.every(f=>f.result&&f.matchRecord));for(const f of fixtures)for(const p of f.matchRecord.players){const b=births.get(p.pid);if(b)b.minutes+=p.minutes;}
+ const closing=ai.map(club=>({clubId:club.id,country:club.countryId,tier:club.expansionTier,quality:mean(club.roster.map(q)),players:club.roster.length,age:mean(club.roster.map(p=>p.age)),status:club.youthLegacy.status,balance:club.balance}));
+ const annual=ai.map(club=>{const ledger=club.ledger.filter(r=>r.season===season),sum=filter=>ledger.filter(filter).reduce((s,r)=>s+Math.abs(r.amount),0);return{clubId:club.id,country:club.countryId,expenses:sum(r=>r.amount<0),income:sum(r=>r.amount>0),salary:sum(r=>r.id.endsWith(':salary')),funding:sum(r=>r.id.endsWith(':youth-budget')),promotionFees:sum(r=>r.id.endsWith(':youth-promotion')),transferFees:c.world.transfers.filter(r=>r.season===season&&r.buyerId===club.id).reduce((s,r)=>s+r.price,0),generated:[...births.values()].filter(b=>b.kind==='youth'&&!b.pid.includes(':Y0:')&&b.season===season&&b.clubId===club.id).length,promoted:c.world.careerEvents.events.filter(e=>e.season===season&&e.clubId===club.id&&e.type==='youth-promotion').length};});
+ assert(annual.every(r=>Math.abs(r.expenses-r.salary-r.funding-r.promotionFees-r.transferFees)<1e-7));assert(closing.every(r=>r.balance>=0));const active=[...c.world.clubs.flatMap(club=>club.roster),...c.world.market.freePlayers];assert(active.every(p=>p.age<39));
+ const valid=[1,10,20].includes(season)?call('v61ValidateCareer',c):call('v67Validate',c);assert(valid,`invalid season ${season}`);
+ const row={season,fixtures:fixtures.length,opening,beforeRetirement:context.beforeRetirement,closing,annual,initialRemaining:active.filter(p=>initial.has(p.pid)).length,initialAdultsRemaining:active.filter(p=>initialAdult.has(p.pid)).length,maxAge:Math.max(...active.map(p=>p.age)),retired:(c.world.retirements||[]).filter(p=>p.season===season&&p.kind==='age').length,valid};rows.push(row);
+ fs.writeFileSync(path.join(out,seed+'.json'),JSON.stringify({seed,initialMetrics,rows,births:[...births.values()]},null,2));fs.writeFileSync(path.join(out,seed+'-checkpoint.json'),JSON.stringify(c));console.log(JSON.stringify({seed,completed:season,ms:Date.now()-start,valid,players:mean(closing.map(r=>r.players))}));
+ if(season<seasons){if(c.world.transition.choice===null)call('v67ChooseOffer',c);context.auditSeason=season+1;call('v62NextSeason',c);if(global.gc)global.gc();}
+}

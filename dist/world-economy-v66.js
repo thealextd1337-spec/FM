@@ -99,7 +99,7 @@ function v66ValidateCareerEvents(career){
   if(event.type==='free-agent')return club(event.fromClubId)&&['contract-expiry','release'].includes(event.reason);
   if(event.type==='youth-release')return club(event.fromClubId);
   if(event.type==='youth-promotion')return club(event.clubId)&&money(event.compensation)&&contract(event.contract);
-  if(event.type==='retirement')return club(event.clubId)&&event.reason==='released-youth-unplaced';
+  if(event.type==='retirement')return club(event.clubId)&&event.reason==='released-youth-unplaced'||event.reason==='age'&&career.world.youthSystem?.version===1&&(event.clubId===null||club(event.clubId));
   if(event.type==='youth-expiry')return club(event.clubId);
   return event.type==='free-agent-entry'||event.type==='pool-exit'&&event.reason==='free-agent-pool-expired';
  });
@@ -534,7 +534,7 @@ function v66SeasonEnd(career){
   else if(club.balance<0&&!club.restructuring)throw Error(`KI-Verein ${club.name} ist zahlungsunfähig.`);
  }
  const market=career.world.market;
- for(const contract of [...career.world.contracts].filter(item=>!item.simulationOnly&&item.endSeason===season)){
+ for(const contract of [...career.world.contracts].filter(item=>!item.simulationOnly&&item.endSeason===season&&!(typeof v176Retiring==='function'&&v176Retiring(career,item.pid)))){
   const club=v66Club(career,contract.clubId),player=club.roster.find(item=>item.pid===contract.pid),random=v61Random(`${career.world.seed}:S${season}:${contract.pid}:ai-renewal`);
   const renewedAnnual=Math.round(Math.max(contract.annual,v66Salary(player))*1.035/10)*10;
   const futureWages=career.world.contracts.filter(item=>item.clubId===club.id&&item.pid!==contract.pid&&item.endSeason>season).reduce((sum,item)=>sum+item.annual,renewedAnnual);

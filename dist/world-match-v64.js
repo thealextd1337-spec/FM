@@ -341,7 +341,7 @@ function v64ArchiveSeason(career){
   if(fixture.matchRecord)fixture.switches=fixture.matchRecord.substitutions.map(item=>[item.minute,item.side,item.outPid,item.inPid]);
   delete fixture.plan;delete fixture.matchRecord;delete fixture.coachExpectations;delete fixture.managerExpectation;
  }
- for(const player of [...career.world.clubs.flatMap(club=>club.roster),...(career.world.market?.freePlayers||[])]){
+ for(const player of [...career.world.clubs.flatMap(club=>club.roster),...(career.world.market?.freePlayers||[]),...(career.world.youthSystem?.version===1?[...career.world.clubs.flatMap(club=>club.retiredPlayers||[]),...(career.world.retiredFreePlayers||[])]:[])]){
   const played=player.history.filter(item=>item.season===season);
   if(!played.length)continue;
   for(const clubId of [...new Set(played.map(item=>item.clubId))]){

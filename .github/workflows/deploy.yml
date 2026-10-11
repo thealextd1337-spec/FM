@@ -29,6 +29,7 @@ jobs:
 
       - name: Spieltests ausführen
         run: |
+          node work/test-youth-legacy-v176.cjs
           node work/test-progress-v58.cjs
           node work/test-live-player-v59.cjs
           node work/test-progress-menu.cjs

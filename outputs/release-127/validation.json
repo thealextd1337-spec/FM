@@ -1,0 +1,38 @@
+{
+  "pass": true,
+  "version": 127,
+  "nativeFixtures": 59460,
+  "sourceBuildEmbedded": [
+    "world-youth-legacy-v176.js",
+    "world-youth-legacy-ui-v176.js",
+    "world-youth-legacy-v176.css"
+  ],
+  "buildSha256": "259c91b09e7f19fc316dfb3d6aac978b522f65e6565c1303540e9e2f98f6f4cc",
+  "buildBytes": 95808680,
+  "controls": true,
+  "browserCases": 24,
+  "nativePauseReload": true,
+  "gates": 110,
+  "final": {
+    "season": 20,
+    "startingChangePct": 7.131959886817807,
+    "closingChangePct": 8.25491145638697,
+    "playersOpening": 11.677192982456141,
+    "playersClosing": 10.624561403508771,
+    "minClosing": 8,
+    "age": 24.208956998167533,
+    "expenses": 3060.3964912280703,
+    "income": 3559.4561403508774,
+    "salary": 1633.659649122807,
+    "funding": 968.421052631579,
+    "promotionFees": 78.7719298245614,
+    "transferFees": 379.5438596491228,
+    "cash": 14908.154385964912,
+    "generatedPerWorld": 458.3333333333333,
+    "promotedPerWorld": 103.33333333333333,
+    "countryGapADPct": 2.58212703153764,
+    "initialAdultsRemaining": 0,
+    "maxAge": 36,
+    "nativeValidation": true
+  }
+}

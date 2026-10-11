@@ -1,5 +1,10 @@
 # Entwicklung und Veröffentlichung
 
+## Jugend-/Karriereendstand v176
+
+Neue mehrjährige Expansionskarrieren setzen ausschließlich während v67Init die Kennung world.youthSystem.version: 1. Die separaten Module world-youth-legacy-v176.js und world-youth-legacy-ui-v176.js verwenden vorhandene Generatoren, Buchungen, Archive und Renderer. Laden setzt keine Kennung. Altersentscheidungen sind saisonweise gespeichert und idempotent; neue Pokalersatzspieler werden nicht vor ihrem ersten Jahr erneut gealtert. Der native Jahresarchiver berücksichtigt die neuen Karrierearchive. [Vertrag und Grenzen](jugend-legacy-release127.md), [Release](release-127.md).
+
+
 ## Vertraute Oberfläche für Expansionskarrieren
 
 Reguläre AP07-Expansionskarrieren verwenden wieder den gemeinsamen Karriere-Renderer mit den vorhandenen Dekoratoren und der Flutlicht-Oberfläche. `world-expansion-flutlicht-v175.js` liefert Wettbewerbs-/Statistikinhalte für zwölf Länder und beide Cups; Unterbereiche verwenden tatsächliche Formatkennungen. Die frühere globale Sperre im Flutlicht-Adapter gilt nur noch für Vorbereitungsstände. Keine neue Weltkennung, Migration oder Nachberechnung. Bestehende Spielstände sind für diese Korrektur auf Nutzerwahl keine Abnahmebedingung. [Verhalten und lokale Prüfung](ui-expansion-restoration.md).
