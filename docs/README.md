@@ -1,5 +1,7 @@
 # Entwicklungsdokumentation
 
+- [Release 124 – Wappen, Sponsoren und zuverlässiger Speicherstart](release-124.md): veröffentlicht und live abgenommen; vollständige Bonusziele und unveränderte Spielstände nach Neuladen.
+
 - [Wappen der sechs neuen Länder](wappen-expansion/README.md): 96 individuelle Vereinsmotive und 36 Sponsoren mit Wortmarken/Symbolen, transparente Originaltafeln, Farbmasken und interaktive Vorschau; Release 123.
 
 - [Release 122 – zwölf Länder, Crown und Horizon](release-122.md): veröffentlicht und live abgenommener Expansionsstand mit 64 detaillierten transparenten Trophäenmotiven.

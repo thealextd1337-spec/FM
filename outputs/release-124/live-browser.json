@@ -1,0 +1,114 @@
+{
+  "version": 124,
+  "assets": {
+    "decoded": 264,
+    "failed": 0,
+    "valid": true,
+    "phase": "sponsor"
+  },
+  "desktop": [
+    {
+      "width": 1440,
+      "lang": "de",
+      "goals": [
+        "Liga: Platz 6 oder besser\n+ 160 Credits",
+        "Nationaler Pokal: Finale erreichen\n+ 190 Credits",
+        "Liga: Platz 3 oder besser\n+ 380 Credits",
+        "Nationaler Pokal: Halbfinale erreichen\n+ 160 Credits",
+        "Liga: Platz 3 oder besser\n+ 390 Credits",
+        "Liga: mindestens 19 Tore\n+ 250 Credits"
+      ],
+      "offers": 3,
+      "overflow": false,
+      "unchanged": true
+    },
+    {
+      "width": 1440,
+      "lang": "en",
+      "goals": [
+        "League: finish 6th or better\n+ 160 Credits",
+        "National cup: reach the final\n+ 190 Credits",
+        "League: finish 3rd or better\n+ 380 Credits",
+        "National cup: reach the semi-final\n+ 160 Credits",
+        "League: finish 3rd or better\n+ 390 Credits",
+        "League: at least 19 goals\n+ 250 Credits"
+      ],
+      "offers": 3,
+      "overflow": false,
+      "unchanged": true
+    }
+  ],
+  "mobile": [
+    {
+      "width": 390,
+      "lang": "de",
+      "goals": [
+        "Liga: Platz 6 oder besser\n+ 160 Credits",
+        "Nationaler Pokal: Finale erreichen\n+ 190 Credits",
+        "Liga: Platz 3 oder besser\n+ 380 Credits",
+        "Nationaler Pokal: Halbfinale erreichen\n+ 160 Credits",
+        "Liga: Platz 3 oder besser\n+ 390 Credits",
+        "Liga: mindestens 19 Tore\n+ 250 Credits"
+      ],
+      "offers": 3,
+      "overflow": false,
+      "unchanged": true
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "goals": [
+        "League: finish 6th or better\n+ 160 Credits",
+        "National cup: reach the final\n+ 190 Credits",
+        "League: finish 3rd or better\n+ 380 Credits",
+        "National cup: reach the semi-final\n+ 160 Credits",
+        "League: finish 3rd or better\n+ 390 Credits",
+        "League: at least 19 goals\n+ 250 Credits"
+      ],
+      "offers": 3,
+      "overflow": false,
+      "unchanged": true
+    }
+  ],
+  "sponsorChoice": {
+    "phase": "budget",
+    "delta": 550,
+    "expected": 550,
+    "valid": true
+  },
+  "existingWorld": {
+    "before": {
+      "id": "0c1bd6bf-9d74-41ef-94fd-68ced936e8ff",
+      "balance": 4270,
+      "sha": "a3b5088fbc1e221fdd23507685e9a780a5d41cb2f03b63220ed61fa61719944f"
+    },
+    "after": {
+      "version": "Doppel 6 / PROTOTYP 124",
+      "storageError": null,
+      "valid": true,
+      "balance": 4270,
+      "phase": "budget",
+      "sha": "a3b5088fbc1e221fdd23507685e9a780a5d41cb2f03b63220ed61fa61719944f"
+    },
+    "unchanged": true
+  },
+  "newWorld": {
+    "before": {
+      "id": "17dbb942-a9e7-4d85-b46e-dfe0c21d41bb",
+      "balance": 4060,
+      "sha": "6f8bacfec65695041578723607d2b06aa48e2916df80da513394f57e76833086"
+    },
+    "after": {
+      "id": "17dbb942-a9e7-4d85-b46e-dfe0c21d41bb",
+      "valid": true,
+      "balance": 4060,
+      "storageError": null,
+      "sha": "6f8bacfec65695041578723607d2b06aa48e2916df80da513394f57e76833086"
+    },
+    "unchanged": true
+  },
+  "diagnostics": {
+    "errors": [],
+    "failed": []
+  }
+}

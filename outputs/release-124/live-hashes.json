@@ -1,0 +1,10 @@
+{
+  "version": 124,
+  "commit": "22e117857df71beb477b845205c2a009e8e683fa",
+  "buildSha256": "6ff813fffc343bfebd41b156751d5777a0a27341bdea69f417e26c6072e0c405",
+  "liveSha256": "6ff813fffc343bfebd41b156751d5777a0a27341bdea69f417e26c6072e0c405",
+  "sourceSha256": "6747570911549a1460e1ef3454cc032b99482457edfab21e36ac91ddc02886f8",
+  "identicalOutputs": true,
+  "embeddedAssets": 648,
+  "liveMatches": true
+}
