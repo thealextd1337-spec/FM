@@ -4,7 +4,7 @@
 
 - [Layout- und Typografieprüfung](ui-layout-audit.md): 226 Ansichtsprüfungen und zwölf Nachprüfungen; verbliebener alter Startstil, Kontrastfehler und getrennte Gestaltungsvorschläge.
 
-- [Vertraute Oberfläche der erweiterten Vereinswelt](ui-expansion-restoration.md): bisherige Karriereansichten und Flutlicht-Gestaltung wieder angebunden, mit Crown/Horizon und Länderwertung; lokale Korrektur, noch nicht veröffentlicht.
+- [Vertraute Oberfläche der erweiterten Vereinswelt](ui-expansion-restoration.md): bisherige Karriereansichten und Flutlicht-Gestaltung wieder angebunden, mit Crown/Horizon und Länderwertung; veröffentlicht mit Release 125.
 
 - [Release 124 – Wappen, Sponsoren und zuverlässiger Speicherstart](release-124.md): veröffentlicht und live abgenommen; vollständige Bonusziele und unveränderte Spielstände nach Neuladen.
 

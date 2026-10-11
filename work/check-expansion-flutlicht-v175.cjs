@@ -16,7 +16,8 @@ const {createServer}=require('./ui-redesign/serve.cjs');
   const context=await browser.newContext({viewport:{width,height:844}}),page=await context.newPage(),errors=[];
   page.on('pageerror',e=>errors.push(e.message));
   await page.goto(live?'https://fussball.cakamper.at/?engine=2d&qa=125':`http://127.0.0.1:${server.address().port}/${built?'restored.html':'source/index.html'}?engine=2d`,{timeout:120000});
-  console.log(JSON.stringify({stage:'loaded',built,width}));
+  console.log(JSON.stringify({stage:'loaded',built,live,width}));
+  assert((await page.locator('footer').first().textContent()).includes('PROTOTYP 125'));
   await page.locator('#v61-begin').click();await page.locator('#v172-name').fill('Oberflächenprüfung');
   await page.locator('[data-v172-start="name"]').click();assert.equal(await page.locator('[data-v172-country]').count(),12);
   await page.locator('[data-v172-country="AUT"]').click();await page.locator('[data-v172-club="AUT-5"]').click();
@@ -94,9 +95,9 @@ const {createServer}=require('./ui-redesign/serve.cjs');
   await page.locator('[data-v172-start="create"]').click();await page.locator('#v61-world-screen .fl-shell').waitFor();
   assert.equal(await page.evaluate(()=>v61CareerTab),'overview','New career starts at overview, independent of previous route');
   assert(await page.locator('[data-v46-view="overview"] .v66-sponsors').isVisible());
-  assert.deepEqual(errors,[]);rows.push({width,built,menus,views,phase:'season-2-sponsor',reviewPages:4,archiveCups:2,startAgain:true,valid:true,errors});await context.close();
+  assert.deepEqual(errors,[]);rows.push({width,built,live,url:page.url(),menus,views,phase:'season-2-sponsor',reviewPages:4,archiveCups:2,startAgain:true,valid:true,errors});await context.close();
   console.log(JSON.stringify({stage:'accepted',built,width}));
  }
- fs.writeFileSync(`${out}/${live?'live':built?'build':'source'}-browser.json`,JSON.stringify({pass:true,rows},null,2)+'\n');console.log(JSON.stringify({pass:true,built,cases:rows.length}));
+ fs.writeFileSync(`${out}/${live?'live':built?'build':'source'}-browser.json`,JSON.stringify({pass:true,live,rows},null,2)+'\n');console.log(JSON.stringify({pass:true,built,cases:rows.length}));
  }finally{await browser.close();await new Promise(r=>server.close(r));}
 })().catch(e=>{console.error(e);process.exitCode=1;});

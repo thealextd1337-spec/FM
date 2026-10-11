@@ -26,6 +26,6 @@ node work/check-expansion-flutlicht-v175.cjs --build
 node work/ui-redesign/shared/verify-build.cjs
 ```
 
-Die Einzeldatei wird für die Abnahme über HTTP gestreamt. Die Übertragung ihrer rund 92 MB mit Playwright `route.fulfill` schloss den Browser beim Laden; regulärer HTTP-Abruf funktioniert. Quelle, gebaute Einzeldatei und Veröffentlichung sind getrennte Nachweise. Lokale Berichte und Ansichten stehen unter `outputs/ui-restore/`. Noch nicht veröffentlicht; die Fußversion bleibt beim veröffentlichten Stand 124.
+Die Einzeldatei wird für die Abnahme über HTTP gestreamt. Die Übertragung ihrer rund 92 MB mit Playwright `route.fulfill` schloss den Browser beim Laden; regulärer HTTP-Abruf funktioniert. Quelle, gebaute Einzeldatei und Veröffentlichung sind getrennte Nachweise. Die ursprünglichen lokalen Berichte und Ansichten stehen unter `outputs/ui-restore/`; der abschließende veröffentlichte Stand 125 ist unter `outputs/release-125/` dokumentiert.
 
 Lokale Abnahme bestanden: beide Browserberichte bestätigen 390/1440 Pixel, Deutsch/Englisch, sämtliche Haupt- und Unterbereiche, Matchvorbereitung, vier Rückblickseiten, Saison 2, beide Cuparchive und den erneuten regulären Karrierebeginn. Die Einzeldateien sind identisch; alle 26 Flutlicht-Assets sind exakt eingebettet. Die native Matchlogik und die Expansionsregeln/-wirtschaft bleiben bytegleich zum Ausgangsstand. Veröffentlichung zusammen mit den Layoutkorrekturen in [Release 125](release-125.md).
