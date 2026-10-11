@@ -1,6 +1,8 @@
 'use strict';
 const assert=require('node:assert/strict'),vm=require('node:vm');
 const {harness}=require('./world-expansion-harness-v167.cjs');
+const source=require('node:fs').readFileSync('dist/world-foundation-v61.js','utf8');
+assert(source.includes('v61StartStorage();\nconst v61BaseProgressState'),'The actual page startup must use the deferred storage entry point');
 async function check(readyState){
  const {context,call}=harness();
  const career=call('v167CreateCareer','AUT-5','storage-startup','QA'),before=JSON.stringify(career);
