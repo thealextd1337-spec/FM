@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## 11. Oktober 2026 – Release 124
+
+- Speicherstart wartet auf vollständig geladene Module, damit gültige Expansionsspielstände beim Neuladen zuverlässig mit den richtigen Validatoren geprüft werden. Keine Migration oder Nachberechnung. Enthält die neuen Wappen, Sponsoren und Bonusangaben aus Release 123. [Releasebericht](release-124.md).
+
 ## 11. Oktober 2026 – Release 123
 
 Neue Vereinswappen und Sponsorenlogos, eingebettete Zurücknavigation und vollständige Bonusziele bei der Sponsorwahl. Veröffentlichung vom Nutzer beauftragt. [Releasebericht](release-123.md).

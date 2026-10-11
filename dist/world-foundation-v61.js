@@ -299,6 +299,11 @@ async function v61DeleteCareer(id){
  if(!careers.some(item=>item.id===id))throw Error('Diese Vereinswelt wurde nicht gefunden.');
  await v61SaveCareers(careers.filter(item=>item.id!==id));
 }
+function v61StartStorage(){
+ // Expansion validators must be installed before saved worlds are read.
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',v61InitStorage,{once:true});
+ else v61InitStorage();
+}
 function v61InitStorage(){
  if(typeof indexedDB==='undefined')return;
  const request=indexedDB.open('doppel6-world-v9',1);

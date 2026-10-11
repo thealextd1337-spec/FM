@@ -1,5 +1,9 @@
 # Entwicklung und Veröffentlichung
 
+## Speicherstart
+
+`v61StartStorage` wartet bei laufendem Parser auf `DOMContentLoaded`, bevor IndexedDB gelesen wird. Alle nachgeladenen Expansionsvalidatoren müssen vor der ersten Weltprüfung installiert sein. Bei bereits geladener Seite beginnt das Lesen sofort. Keine nachträgliche Validierungsschleife oder Änderung gespeicherter Daten. [Regression und Live-Abnahme](release-124.md).
+
 ## Neue Länderwappen und Sponsoren
 
 `work/package-expansion-sponsors.py` paketiert 36 transparente Wortmarken (480 × 180) und separate Symbole (192 × 192). `world-expansion-v161.js` erweitert den gemeinsamen Sponsorrenderer anhand unveränderter Marken-IDs; ursprüngliche Marken verwenden den vorhandenen Renderer. `v172Controls` verwendet die vollständige native Sponsorangebotsansicht mit den Expansionsaktionen. Angebote, Zahlungen und Spielstände werden nicht umgerechnet. [Quellen und Prüfung](wappen-expansion/sponsors/README.md).

@@ -94,6 +94,7 @@ jobs:
           node work/test-3d-documentation-v134.cjs
           node work/test-mobile-performance-v135.cjs
           node work/test-world-storage-v67.cjs
+          node work/test-world-storage-startup.cjs
           node work/test-world-storage-recovery.cjs
           node work/test-expansion-assets-v161.cjs
           node work/test-world-expansion-v161.cjs
