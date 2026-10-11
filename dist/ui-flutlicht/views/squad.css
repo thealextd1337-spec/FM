@@ -31,7 +31,9 @@
 .fl-squad-profile .player-card-head{display:flex;align-items:start;justify-content:space-between;gap:16px}
 .fl-squad-profile .player-card-head h2{overflow-wrap:anywhere;margin:8px 0}
 .fl-squad-profile .player-card-head span{color:var(--fl-muted)}
-.fl-squad-profile section h3{font-family:var(--fl-font);text-transform:none;letter-spacing:normal}
+.fl-squad-profile section h3{font:700 16px/1.4 var(--fl-font);color:var(--fl-ink);text-transform:none;letter-spacing:normal}
+#v61-world-screen .fl-content .fl-squad .v66-roster-composition b{color:var(--fl-ink)}
+#v61-world-screen .fl-content :is(.fl-squad-table,.v66-contract-table) thead button{min-width:44px;min-height:44px;font-size:12px}
 .fl-squad-profile .player-card-head [data-v61-close]{flex:none;width:44px;height:44px}
 .fl-squad-profile .player-card-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
 .fl-squad-profile .player-card-facts>span{display:grid;gap:5px;padding:12px}

@@ -12,6 +12,12 @@
     select(root,'.v72-transfer-dialog,.v67-promote-dialog').forEach(node=>node.classList.add('fl-market-dialog'));
     for(const market of select(root,'.v66-market')){
       market.classList.add('fl-market');
+      for(const note of market.querySelectorAll('p.v66-note')){
+        if(note.textContent.length<240||note.closest('.fl-market-help'))continue;
+        const help=root.ownerDocument.createElement('details'),summary=root.ownerDocument.createElement('summary');
+        help.className='fl-market-help';summary.textContent=t('Mehr zur Spielersuche');
+        note.before(help);help.append(summary,note);
+      }
       const sections=[
         [market.querySelector('.v66-filters'),'search',t('Spieler suchen')],
         [market.querySelector('.v72-open-deals'),'deals',t('Angebote & Ergebnisse')],

@@ -1,0 +1,195 @@
+{
+  "pass": true,
+  "rows": [
+    {
+      "width": 390,
+      "built": true,
+      "menus": [
+        "overview",
+        "squad",
+        "matchplan",
+        "transfers",
+        "competition",
+        "calendar",
+        "statistics",
+        "club",
+        "settings"
+      ],
+      "views": [
+        {
+          "lang": "de",
+          "route": "overview"
+        },
+        {
+          "lang": "de",
+          "route": "squad"
+        },
+        {
+          "lang": "de",
+          "route": "matchplan"
+        },
+        {
+          "lang": "de",
+          "route": "transfers"
+        },
+        {
+          "lang": "de",
+          "route": "competition"
+        },
+        {
+          "lang": "de",
+          "route": "calendar"
+        },
+        {
+          "lang": "de",
+          "route": "statistics"
+        },
+        {
+          "lang": "de",
+          "route": "club"
+        },
+        {
+          "lang": "de",
+          "route": "settings"
+        },
+        {
+          "lang": "en",
+          "route": "overview"
+        },
+        {
+          "lang": "en",
+          "route": "squad"
+        },
+        {
+          "lang": "en",
+          "route": "matchplan"
+        },
+        {
+          "lang": "en",
+          "route": "transfers"
+        },
+        {
+          "lang": "en",
+          "route": "competition"
+        },
+        {
+          "lang": "en",
+          "route": "calendar"
+        },
+        {
+          "lang": "en",
+          "route": "statistics"
+        },
+        {
+          "lang": "en",
+          "route": "club"
+        },
+        {
+          "lang": "en",
+          "route": "settings"
+        }
+      ],
+      "phase": "season-2-sponsor",
+      "reviewPages": 4,
+      "archiveCups": 2,
+      "startAgain": true,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "built": true,
+      "menus": [
+        "overview",
+        "squad",
+        "matchplan",
+        "transfers",
+        "competition",
+        "calendar",
+        "statistics",
+        "club",
+        "settings"
+      ],
+      "views": [
+        {
+          "lang": "de",
+          "route": "overview"
+        },
+        {
+          "lang": "de",
+          "route": "squad"
+        },
+        {
+          "lang": "de",
+          "route": "matchplan"
+        },
+        {
+          "lang": "de",
+          "route": "transfers"
+        },
+        {
+          "lang": "de",
+          "route": "competition"
+        },
+        {
+          "lang": "de",
+          "route": "calendar"
+        },
+        {
+          "lang": "de",
+          "route": "statistics"
+        },
+        {
+          "lang": "de",
+          "route": "club"
+        },
+        {
+          "lang": "de",
+          "route": "settings"
+        },
+        {
+          "lang": "en",
+          "route": "overview"
+        },
+        {
+          "lang": "en",
+          "route": "squad"
+        },
+        {
+          "lang": "en",
+          "route": "matchplan"
+        },
+        {
+          "lang": "en",
+          "route": "transfers"
+        },
+        {
+          "lang": "en",
+          "route": "competition"
+        },
+        {
+          "lang": "en",
+          "route": "calendar"
+        },
+        {
+          "lang": "en",
+          "route": "statistics"
+        },
+        {
+          "lang": "en",
+          "route": "club"
+        },
+        {
+          "lang": "en",
+          "route": "settings"
+        }
+      ],
+      "phase": "season-2-sponsor",
+      "reviewPages": 4,
+      "archiveCups": 2,
+      "startAgain": true,
+      "valid": true,
+      "errors": []
+    }
+  ]
+}

@@ -19,3 +19,17 @@
 #v61-world-screen .fl-content [data-v46-view="matchplan"] :is(.v64-bench-player strong,.compact-bench-head h3,.v64-individual h3,.plan-card h3){color:var(--fl-ink)}
 #v61-world-screen .fl-content [data-v46-view="matchplan"] .v64-bench-chip :is(.bench-select,.bench-title b){color:var(--fl-ink)}
 #v61-world-screen .fl-content [data-v46-view="matchplan"] :is(.v64-bench-chip .bench-meta,.compact-bench-head>span){color:var(--fl-muted)}
+/* Names on preparation/pause pitches remain readable on small screens. */
+#v61-world-screen .v64-prematch-field :is(.player-label,.player-label span),
+.fl-match .v64-prematch-field :is(.player-label,.player-label span){font-family:var(--fl-font);font-size:12px;line-height:1.25;flex-shrink:0}
+#v61-world-screen .v64-prematch-field .position-label,
+.fl-match .v64-prematch-field .position-label{font-family:var(--fl-font);font-size:10px;line-height:1.2}
+@media(max-width:600px),(max-width:899px) and (orientation:portrait){
+ #v61-world-screen .v64-prematch-field .v64-zone-name,.fl-match .v64-prematch-field .v64-zone-name{display:none}
+ #v61-world-screen .v64-prematch-field .d6-pitch-role,.fl-match .v64-prematch-field .d6-pitch-role{display:none}
+ #v61-world-screen .v64-prematch-field .position-label,.fl-match .v64-prematch-field .position-label{display:none}
+ #v61-world-screen .v64-prematch-field .v64-raster .cell,.fl-match .v64-prematch-field .v64-raster .cell{padding-top:2px}
+ #v61-world-screen .v64-prematch-field .player-label,.fl-match .v64-prematch-field .player-label{flex-shrink:0;margin-top:2px;letter-spacing:0}
+ #v61-world-screen .v64-prematch-field .player-label .flag-icon,.fl-match .v64-prematch-field .player-label .flag-icon{display:none}
+ #v61-world-screen .v64-prematch-field .v64-keeper-choice,.fl-match .v64-prematch-field .v64-keeper-choice{min-height:60px;aspect-ratio:auto}
+}

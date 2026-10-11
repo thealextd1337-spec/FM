@@ -1,5 +1,9 @@
 # Entwicklung und Veröffentlichung
 
+## Vertraute Oberfläche für Expansionskarrieren
+
+Reguläre AP07-Expansionskarrieren verwenden wieder den gemeinsamen Karriere-Renderer mit den vorhandenen Dekoratoren und der Flutlicht-Oberfläche. `world-expansion-flutlicht-v175.js` liefert Wettbewerbs-/Statistikinhalte für zwölf Länder und beide Cups; Unterbereiche verwenden tatsächliche Formatkennungen. Die frühere globale Sperre im Flutlicht-Adapter gilt nur noch für Vorbereitungsstände. Keine neue Weltkennung, Migration oder Nachberechnung. Bestehende Spielstände sind für diese Korrektur auf Nutzerwahl keine Abnahmebedingung. [Verhalten und lokale Prüfung](ui-expansion-restoration.md).
+
 ## Speicherstart
 
 `v61StartStorage` wartet bei laufendem Parser auf `DOMContentLoaded`, bevor IndexedDB gelesen wird. Alle nachgeladenen Expansionsvalidatoren müssen vor der ersten Weltprüfung installiert sein. Bei bereits geladener Seite beginnt das Lesen sofort. Keine nachträgliche Validierungsschleife oder Änderung gespeicherter Daten. [Regression und Live-Abnahme](release-124.md).
@@ -299,3 +303,5 @@ Bei Änderungen an der Spiellogik `node work/test-v55.cjs`, `node work/build.cjs
 Der ausdrückliche Gesamtstart vom 7. Oktober 2026 umfasst U01 lokal. `dist/ui-flutlicht/adapter.js` bindet nach den bisherigen Renderern an, projiziert ausschließlich sichtbare Werte und verschiebt vorhandene DOM-Knoten ohne Klonen in den Rahmen. Spielphasen, Finanzen, Kader und Speicherung bleiben bei den bestehenden Controllern. Ansichtsdateien unter `views/` konsumieren nur den Vertrag in `docs/ui-redesign/contracts.md`. Quellen und Offline-Build laden dieselben Module; `work/ui-redesign/shared/assets.cjs` enthält deren Buildliste. Jede neue Ansicht muss im Quell-Loader und dieser Liste stehen.
 
 Prüfzugang: `node work/ui-redesign/serve.cjs` (Port 4200, `/` isolierte Fixture, `/source/index.html` echte Quelle). `node work/ui-redesign/run.cjs --package I00 --target fixture|source|build` startet einen eigenen Testserver und ein isoliertes Browserprofil, wartet auf echte Speicherung und prüft Sponsorwahl/Neuladen bei Quelle und Build. Browserprüfungen benötigen Node 20+; der Runner verwendet bei Bedarf die gebündelte Laufzeit. Unabhängige Prüfungen: `node work/ui-redesign/qa/acceptance.cjs --target source|build --mode all`. Nachweise je Lauf unter `outputs/ui-redesign/`; veränderte Quellhashes machen einen Lauf als Schlussnachweis ungültig. Reale Geräte/Screenreader bleiben getrennt von lokalen Browserbelegen.
+
+Die gezielte Layoutregression für Release 125 läuft mit `node work/check-layout-release125.cjs` im dokumentierten isolierten Edge/Playwright-Prüfzugang. `work/check-expansion-flutlicht-v175.cjs --live` prüft den veröffentlichten Karriereablauf; Quelle und Build werden vorher getrennt geprüft.

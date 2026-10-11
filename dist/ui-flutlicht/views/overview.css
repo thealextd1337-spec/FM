@@ -150,3 +150,10 @@
 .fl-shell .fl-overview .v119-close-progress li{padding:7px 10px;background:var(--fl-subtle);border:1px solid var(--fl-line);border-radius:var(--fl-radius);color:var(--fl-muted);font-size:12px}
 .fl-shell .fl-overview .v119-close-progress [aria-current=step]{background:var(--fl-tint);color:var(--fl-accent);border-color:var(--fl-accent);font-weight:700}
 .fl-shell .fl-overview .v119-season-close .v130-new-season>.v67-transition{margin-bottom:0}
+/* Native season review cards use the same palette as their surrounding view. */
+.fl-shell .fl-overview :is(.v67-season-departures,.v67-winner-line){background:var(--fl-subtle);color:var(--fl-ink);border-color:var(--fl-line)}
+.fl-shell .fl-overview :is(.v67-season-departures,.v67-winner-line) :is(h3,strong){color:var(--fl-ink);font-family:var(--fl-font)}
+.fl-shell .fl-overview .v67-winner-line :is(span,small){color:var(--fl-muted)}
+.fl-shell .fl-overview .v67-winner-line a{color:var(--fl-accent)}
+.fl-shell .fl-overview .v67-show-grid strong{font:750 clamp(24px,3vw,30px)/1.3 var(--fl-font)}
+.fl-shell .fl-overview .v62-award-icon{image-rendering:auto}

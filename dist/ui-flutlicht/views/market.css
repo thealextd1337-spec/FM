@@ -84,3 +84,6 @@
  .fl-dialog.v72-transfer-dialog .v66-fields{grid-template-columns:minmax(0,1fr)}
  .fl-dialog.v72-transfer-dialog .v72-confirm-actions>*{flex:1;white-space:normal}
 }
+.fl-shell .fl-market-help{margin:12px 0 20px;border-bottom:1px solid var(--fl-line)}
+.fl-shell .fl-market-help>summary{cursor:pointer;color:var(--fl-accent);font-size:14px;font-weight:600}
+.fl-shell .fl-market-help .v66-note{margin-top:8px}

@@ -56,6 +56,26 @@ body.fl-start-active>header.fl-start-header{display:flex;position:relative;width
 .fl-start-header .v64-match-menu-panel{border-color:var(--fl-line);background:var(--fl-surface);color:var(--fl-ink);max-width:calc(100vw - 24px);box-shadow:0 8px 24px #0003}.fl-start-header .v64-match-menu-panel :is(button,label,p){font-family:var(--fl-font);color:var(--fl-ink)}.fl-start-header .v64-match-menu-panel button{background:var(--fl-control);border-color:var(--fl-control-line)}.fl-start-header .v64-match-menu-panel button:hover{background:var(--fl-hover)}.fl-start-header .v64-match-menu-panel .language-control{border-color:var(--fl-line)}
 body.fl-start-active>.fl-start-legal{display:flex;justify-content:center;flex-wrap:wrap;min-height:0;padding:12px 24px 32px;gap:12px;background:var(--fl-paper)}.fl-start-active>.fl-start-legal button{min-height:44px;padding:10px 12px;border:0;background:transparent;color:var(--fl-accent);font:13px/1.4 var(--fl-font);text-underline-offset:3px}
 #v61-world-screen.fl-start-flow{padding-top:28px;padding-bottom:36px}
+/* Expansion creation shares the career's surface, controls and lettering. */
+#v61-world-screen.fl-start-flow>.v172-start{--v172-bg:var(--fl-paper);--v172-text:var(--fl-ink);--v172-muted:var(--fl-muted);--v172-line:var(--fl-line);padding:0;margin:0;max-width:none;border:0;background:var(--fl-paper);color:var(--fl-ink);font-family:var(--fl-font);box-shadow:none}
+.fl-start-flow .v172-start-header{height:auto;padding:0;margin:0 0 24px;border:0;display:flex;align-items:flex-start;justify-content:flex-start;gap:20px;flex-wrap:wrap}
+.fl-start-flow .v172-start-header h1{flex:1;min-width:180px;margin:0;font:750 clamp(26px,3vw,36px)/1.25 var(--fl-font);letter-spacing:-.025em}
+.fl-start-flow .v172-start-header .v172-start-back{min-height:44px;margin:0;color:var(--fl-accent);background:transparent;border:1px solid var(--fl-control-line);font:600 14px/1.4 var(--fl-font)}
+.fl-start-flow .v172-start :is(h2,h3,.v61-shirt){font-family:var(--fl-font)}
+.fl-start-flow .v172-start :is(input,select){width:100%;background:var(--fl-control);border-color:var(--fl-control-line);color:var(--fl-ink);font:400 16px/1.4 var(--fl-font);caret-color:var(--fl-accent)}
+.fl-start-flow .v172-start>label{max-width:560px;color:var(--fl-ink);font-size:15px;gap:8px;margin:20px 0}
+.fl-start-flow .v172-start .v61-country-grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.fl-start-flow .v172-start .v61-country-grid button{min-height:80px;white-space:normal;color:var(--fl-ink);background:var(--fl-surface);border-color:var(--fl-line);font:650 16px/1.4 var(--fl-font);text-align:left}
+.fl-start-flow .v172-start .v61-country-grid button:hover{background:var(--fl-hover);border-color:var(--fl-accent)}
+.fl-start-flow .v172-start .v61-country-grid :is(svg,img){width:30px;height:22px;flex:none}
+.fl-start-flow .v172-start .v61-club-choice{grid-template-columns:60px minmax(0,1fr);min-height:104px}
+.fl-start-flow .v172-start .v172-hero{display:flex;align-items:center;gap:20px;margin:24px 0}
+.fl-start-flow .v172-start .v172-hero>.v61-crest{width:64px;height:76px;flex:none}
+.fl-start-flow .v172-start .v172-hero h2{margin:0 0 8px}
+.fl-start-flow .v172-start .v172-hero p{margin:0}
+.fl-start-flow .v172-start>button.primary{width:min(100%,460px);margin:24px 0}
+.fl-start-flow .v172-start #v172-start-status:empty{display:none}
+.fl-start-flow .v172-start #v172-start-status:not(:empty){padding:12px;color:var(--fl-alert-ink);background:var(--fl-alert);border:1px solid var(--fl-line);border-radius:6px}
 .fl-start-flow .v61-steps{gap:8px;margin:0 0 30px;font:600 12px/1.4 var(--fl-font);color:var(--fl-muted)}.fl-start-flow .v61-steps span{padding:8px 12px;border-color:var(--fl-line);background:var(--fl-subtle);border-radius:5px}.fl-start-flow .v61-steps span.current{background:var(--fl-gold);border-color:#916a25;color:#15191e}
 .fl-start-flow .v61-flow-head{margin-bottom:26px}.fl-start-flow .v61-flow-head .menu-action{min-height:44px;padding:10px 14px;margin:0 0 24px}.fl-start-flow .v61-flow-head h1{line-height:1.25;gap:12px}.fl-start-flow .v61-flow-head p{margin:0;max-width:72ch;color:var(--fl-muted);font-size:14px}
 .fl-start-flow :is(.v61-manager-step,.v61-summary,.v61-club-hero){padding:26px;border-color:var(--fl-line);background:var(--fl-surface);color:var(--fl-ink);border-radius:var(--fl-radius)}

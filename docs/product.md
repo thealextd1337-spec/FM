@@ -1,5 +1,9 @@
 # Produktregeln
 
+## Vertraute Karriereoberfläche
+
+Auf Nutzerauftrag vom 11. Oktober 2026 behalten auch neue zwölf Länder umfassende Vereinswelten die vertraute Flutlicht-Oberfläche mit Übersicht, Kader, Matchplan, Transfers, Wettbewerben, Kalender, Statistik, Verein und Hilfe/Einstellungen. Crown, Horizon und Länderwertung werden in das Wettbewerbsmenü integriert. Vereinsprofil, Finanzen, Sponsor, Chronik und Managerlaufbahn stehen in den vorhandenen Vereinsansichten; das Vereinsbüro und höchstens drei Saisonmomente ergänzen die Übersicht. Beide Cups erscheinen getrennt im Saisonrückblick und Archiv. Die Ligaerweiterung und alle freigegebenen Grafikmotive bleiben bestehen. [Umsetzung](ui-expansion-restoration.md).
+
 ## Wappen und Sponsoren der neuen Länder
 
 Die 36 Sponsoren dieser Länder haben individuelle Wortmarken und passende kompakte Symbole im gemeinsamen Grafikfinish. Bei der Sponsorwahl nach der Klubwahl sind Fixum, jedes Bonusziel mit Betrag, mögliche Bonussumme, maximaler Gesamtbetrag und Auszahlungstermine sichtbar.
@@ -12,7 +16,7 @@ Auf Nutzerauftrag entstehen mit Meshy alle zwölf Landes-Fünfersets sowie Crown
 
 ## AP09 / AP10: Awards und neue Karrierezentrale
 
-Lokal umgesetzt, nicht veröffentlicht: Neue Starts verwenden zwölf Länder und 96 spielbare Ligavereine. Zentrale, Wettbewerbe, Kalender, Länderwertung, Verein und Büro sind getrennt erreichbar; beide Cups besitzen eigene Kalender, Statistiken und Siegeransichten. Höchstens drei belegte Saisonmomente, Chronik und Managerstationen ergänzen den Rückblick. Neue Texte und Awardbeschriftungen unterstützen Deutsch/Englisch. Zwölf nationale Awardsets sowie eigene Crown-/Horizon-Trophäen und Matchmedaillen sind integriert; endgültige Grafikfreigabe bleibt vor Veröffentlichung offen. Künftige neue Karrieren behalten Wettbewerbsstatistiken nach Saisonwechsel; alte Archive werden nicht nachberechnet. [Lieferung und Prüfgrenzen](ligaexpansion-ap09-ap10.md).
+Neue Starts verwenden zwölf Länder und 96 spielbare Ligavereine. Die damals eingeführte separate Expansionsnavigation wird auf Nutzerauftrag durch die oben festgelegte vertraute Karriereoberfläche ersetzt. Beide Cups besitzen eigene Kalender, Statistiken und Siegeransichten. Höchstens drei belegte Saisonmomente, Chronik und Managerstationen ergänzen den Rückblick. Neue Texte und Awardbeschriftungen unterstützen Deutsch/Englisch. Zwölf nationale Awardsets sowie eigene Crown-/Horizon-Trophäen und Matchmedaillen sind integriert und gemäß der späteren Grafikfreigabe veröffentlicht. Künftige neue Karrieren behalten Wettbewerbsstatistiken nach Saisonwechsel; alte Archive werden nicht nachberechnet. [Historische Lieferung und Prüfgrenzen](ligaexpansion-ap09-ap10.md).
 
 ## AP08: belegte Vereinsgeschichten
 
@@ -441,3 +445,5 @@ Für die Abstimmung der ausgespielten und kompakten Matchsimulation gilt auf Nut
 ### Trophäenfreigabe vom 10. Oktober 2026
 
 Alle 64 detaillierten Motive (zwölf nationale Fünfer-Sets und vier Crown-/Horizon-Awards) sind einschließlich der überarbeiteten deutschen und türkischen Pokale für die Integration freigegeben. Transparente Varianten wurden auf Nutzerwahl mit dem Bildgenerator erstellt und als große sowie kompakte WebP-Darstellungen integriert. Hintergrundtransparenz, vollständige Identitätszuordnung, helle/dunkle Darstellung, mobile Ansichtsbreite und Offline-Einbettung sind lokal geprüft. Die Freigabe ersetzt keine Veröffentlichung.
+
+Auf schmalen Bildschirmen werden die Unterbereiche von Kader, Transfers, Wettbewerben und Verein über eine beschriftete Auswahl bedient; am Desktop bleiben Reiter. Die aktive Auswahl bleibt beim Wechsel der Bildschirmbreite erhalten. Ausführliche Transferhilfe ist aufklappbar. Der gesamte Karrierebeginn folgt der gewählten Flutlicht-Darstellung.

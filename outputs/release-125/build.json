@@ -1,0 +1,32 @@
+{
+  "version": 125,
+  "bytes": 92154187,
+  "sha256": "d2326a1935629908be1b5bcfb918e2637fd6d708338bbf6dec07679803c3cfde",
+  "nativeUnchanged": [
+    {
+      "file": "dist/world-match-v64.js",
+      "sha256": "a06e7109e094b56ca422519dcf10c691b83fc65b941e186058bea7df25fc9bd3",
+      "unchanged": true
+    },
+    {
+      "file": "dist/world-physical-v65.js",
+      "sha256": "a383621fff9471ab0c6221a2fcf1be92732dd34356642b16f8eaf9c945358bad",
+      "unchanged": true
+    },
+    {
+      "file": "dist/world-expansion-v161.js",
+      "sha256": "a4267b0778f78438accbbb39dd7d8c8e081c8b44b988d8307955e97f5735fc8f",
+      "unchanged": true
+    },
+    {
+      "file": "dist/world-expansion-progression-v167.js",
+      "sha256": "d3da8b9a50d3319c282982aaf4f04286655acd07dc6c1cef6e981f3a7ea2f850",
+      "unchanged": true
+    },
+    {
+      "file": "dist/world-expansion-economy-v168.js",
+      "sha256": "8a6d430a6539fb2041c7cabdcf74cb6ca846c89d5bc360eeb89f07859ca4abba",
+      "unchanged": true
+    }
+  ]
+}

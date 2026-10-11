@@ -8,6 +8,7 @@
   competition:{label:'Wettbewerbsbereiche',sections:[['league','Liga'],['cup','Nationaler Pokal'],['europe','Europacup'],['countries','Andere Länder'],['archive','Titelarchiv']]}
  };
  const competitionChoices=[['league','Liga'],['cup','Nationaler Pokal'],['europe','Europacup']];
+ const choices=projection=>projection.navigation?.expansion?[['league','Liga'],['cup','Nationaler Pokal'],['crown','Crown Cup'],['horizon','Horizon Cup']]:competitionChoices;
  const categories=[['goals','Tore'],['assists','Vorlagen'],['cleanSheet','Zu-null-Spiele'],['fouls','Fouls'],['penaltiesScored','Elfmeter verwandelt'],['penaltiesMissed','Elfmeter verschossen']];
  let sequence=0;
  const setText=(node,value)=>{if(node.textContent!==value)node.textContent=value;};
@@ -15,6 +16,7 @@
  function select(route,section,{focus=false}={}){
   const state=routes.get(route);if(!state?.view.isConnected||!state.nav.isConnected||!state.panels.has(section))return false;
   state.active=section;remembered.set(route,section);state.view.dataset.flSection=section;
+  state.picker.input.value=section;
   for(const [key,panel] of state.panels){panel.hidden=key!==section;const button=state.buttons.get(key);button.setAttribute('aria-selected',String(key===section));button.tabIndex=key===section?0:-1;}
   if(route==='competition'){
    const area=section==='countries'?'other':'own',button=state.view.querySelector(`[data-v62-area="${area}"]`);
@@ -25,12 +27,13 @@
   if(focus)state.buttons.get(section).focus({preventScroll:true});
   return true;
  }
- function create(view,route,host,anchor,actions){
+ function create(view,route,host,anchor,actions,definition=definitions[route]){
   let state=states.get(view);if(state){state.actions=actions;routes.set(route,state);return state;}
   const prefix=`fl-section-${++sequence}`,nav=document.createElement('div'),bodies=document.createElement('div');
   nav.className='fl-section-tabs';nav.setAttribute('role','tablist');bodies.className='fl-section-panels';
-  state={view,route,host,nav,bodies,actions,panels:new Map(),buttons:new Map(),active:definitions[route].sections[0][0]};
-  for(const [key] of definitions[route].sections){
+  state={view,route,host,nav,bodies,actions,panels:new Map(),buttons:new Map(),definition,active:definition.sections[0][0]};
+  state.picker=ns.components.sectionPicker(view.ownerDocument,key=>{if(select(route,key))state.actions.setSection?.(route,key);});
+  for(const [key] of definition.sections){
    const button=document.createElement('button'),panel=document.createElement('section');button.type='button';button.id=`${prefix}-tab-${key}`;button.dataset.flSectionTab=key;button.setAttribute('role','tab');button.setAttribute('aria-controls',`${prefix}-panel-${key}`);
    panel.id=`${prefix}-panel-${key}`;panel.dataset.flSectionPanel=key;panel.className='fl-section-panel';panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',button.id);panel.tabIndex=0;
    nav.append(button);bodies.append(panel);state.buttons.set(key,button);state.panels.set(key,panel);
@@ -42,7 +45,7 @@
    event.preventDefault();const keys=[...state.panels.keys()],index=keys.indexOf(button.dataset.flSectionTab),key=keys[event.key==='Home'?0:event.key==='End'?keys.length-1:(index+(event.key==='ArrowRight'?1:-1)+keys.length)%keys.length];
    select(route,key,{focus:true});state.actions.setSection?.(route,key);
   });
-  if(anchor)anchor.after(nav);else host.prepend(nav);nav.after(bodies);view.classList.add('fl-navigation-view');states.set(view,state);routes.set(route,state);return state;
+  if(anchor)anchor.after(nav);else host.prepend(nav);nav.after(state.picker.node);state.picker.node.after(bodies);view.classList.add('fl-navigation-view');states.set(view,state);routes.set(route,state);return state;
  }
  function empty(state,key,label,t){
   const panel=state.panels.get(key);let message=panel.querySelector(':scope > .fl-navigation-empty');
@@ -52,7 +55,7 @@
  function squad(view,projection,actions,t){
   const state=create(view,'squad',view,view.querySelector(':scope > .v46-view-heading'),actions);
   for(const node of [...view.children]){
-   if(node===state.nav||node===state.bodies||node.matches('.v46-view-heading'))continue;
+   if(node===state.nav||node===state.picker.node||node===state.bodies||node.matches('.v46-view-heading'))continue;
    const key=node.matches('.v66-contracts')?'contracts':node.matches('.v67-youth')?'youth':'roster';state.panels.get(key).append(node);
   }
   for(const key of ['roster','contracts','youth'])empty(state,key,'Bereich nicht verfügbar.',t);
@@ -62,7 +65,7 @@
   const market=view.querySelector('.v66-market');if(!market)return null;
   const state=create(view,'transfers',market,market.querySelector(':scope > .v62-season-head'),actions);
   for(const node of [...market.children]){
-   if(node===state.nav||node===state.bodies||node.matches('.v62-season-head,.fl-market-jumps,#v66-message'))continue;
+   if(node===state.nav||node===state.picker.node||node===state.bodies||node.matches('.v62-season-head,.fl-market-jumps,#v66-message'))continue;
    if(node.matches('.v66-recovery,.v66-deadline')){state.nav.before(node);continue;}
    // The phase/roster notice remains visible above all transfer destinations.
    if(node.matches('p')&&!node.classList.contains('v66-note')){state.nav.before(node);continue;}
@@ -78,17 +81,19 @@
  }
  function competition(view,projection,actions,t){
   const heading=view.querySelector('.v62-competition-heading'),host=heading?.parentElement;if(!host)return null;
-  const state=create(view,'competition',host,heading,actions),own=view.querySelector('[data-v62-competition-area="own"]'),other=view.querySelector('[data-v62-competition-area="other"]');
+  const definition=projection.navigation?.expansion?{label:definitions.competition.label,sections:[['league','Liga'],['cup','Nationaler Pokal'],['crown','Crown Cup'],['horizon','Horizon Cup'],['countries','Andere Länder'],['ranking','Länderwertung'],['archive','Titelarchiv']]}:definitions.competition;
+  const state=create(view,'competition',host,heading,actions,definition),own=view.querySelector('[data-v62-competition-area="own"]'),other=view.querySelector('[data-v62-competition-area="other"]');
   view.querySelector('.v62-competition-tabs')?.classList.add('fl-navigation-native-tabs');own?.classList.add('fl-navigation-native-area');
   const groups=own?.querySelector('.v62-competitions');
   if(groups){
-   const details=[...groups.children].filter(node=>node.matches('details'));
-   details.forEach((node,index)=>{const key=['league','cup','europe'][index];if(key){let group=state.panels.get(key).querySelector(':scope > .fl-navigation-competition-group');if(!group){group=document.createElement('div');group.className='fl-navigation-competition-group fl-competition-groups';state.panels.get(key).append(group);}group.append(node);}});
+   const details=[...groups.children].filter(node=>node.matches('details,[data-fl-expansion-section]'));
+   details.forEach((node,index)=>{const key=node.dataset.flExpansionSection||['league','cup','europe'][index];if(key){let group=state.panels.get(key).querySelector(':scope > .fl-navigation-competition-group');if(!group){group=document.createElement('div');group.className='fl-navigation-competition-group fl-competition-groups';state.panels.get(key).append(group);}group.append(node);}});
   }
   if(other&&!state.panels.get('countries').contains(other))state.panels.get('countries').append(other);
   const awards=host.querySelector(':scope > .v62-awards-overview');if(awards)state.panels.get('league').append(awards);
   const archive=view.querySelector('.v68-archive');if(archive&&!state.panels.get('archive').contains(archive)){state.panels.get('archive').append(archive);archive.open=true;}
-  for(const key of ['league','cup','europe','countries'])empty(state,key,'Bereich nicht verfügbar.',t);empty(state,'archive','Noch keine Titel archiviert.',t);return state;
+  for(const container of view.querySelectorAll('.v68-competition-summary'))if(!container.children.length)container.remove();
+  for(const key of [...state.panels.keys()].filter(key=>key!=='archive'))empty(state,key,'Bereich nicht verfügbar.',t);empty(state,'archive','Noch keine Titel archiviert.',t);return state;
  }
  function controls(view,kind,choices,actions,projection){
   let state=filterStates.get(view);if(state){state.actions=actions;return state;}
@@ -102,6 +107,7 @@
   for(const [name,label,options] of state.choices){const input=state.inputs.get(name);setText(state.node.querySelector(`[data-fl-filter-label="${name}"]`),t(label));setHTML(input,options.map(([value,text])=>`<option value="${value}">${ns.components.escape(t(text))}</option>`).join(''));if(input.value!==state.remember[name])input.value=state.remember[name];}
  }
  function calendar(view,projection,actions,t){
+  const competitionChoices=choices(projection);
   const calendar=view.querySelector('.v62-calendar');if(!calendar)return;
   const state=controls(view,'calendar',[['competition','Wettbewerb',[['all','Alle Wettbewerbe'],...competitionChoices]],['time','Zeitraum',[['all','Alle Termine'],['upcoming','Anstehend'],['played','Abgeschlossen']]]],actions,projection);
   if(!state.node.isConnected){const heading=calendar.querySelector('.v62-competition-heading');if(heading)heading.after(state.node);else calendar.prepend(state.node);}
@@ -109,12 +115,13 @@
   state.apply=()=>{const rows=[...calendar.querySelectorAll('.v62-calendar-list > li')];let shown=0;for(const row of rows){const type=row.dataset.flCalendarType,known=competitionChoices.some(([key])=>key===type),showType=state.remember.competition==='all'||!known||state.remember.competition===type,showTime=state.remember.time==='all'||row.classList.contains(state.remember.time);row.hidden=!(showType&&showTime);if(!row.hidden)shown++;}empty.hidden=!rows.length||shown>0;};state.apply();
  }
  function statistics(view,projection,actions,t){
+  const competitionChoices=choices(projection),availableCategories=projection.navigation?.expansion?[...categories,['rating','Durchschnittsnote']]:categories;
   if(!view.querySelector('.v62-stat-board'))return;
-  const state=controls(view,'statistics',[['competition','Wettbewerb',[['all','Alle Wettbewerbe'],...competitionChoices],'league'],['category','Bestenliste',[['all','Alle Kategorien'],...categories],'goals']],actions,projection);
+  const state=controls(view,'statistics',[['competition','Wettbewerb',[['all','Alle Wettbewerbe'],...competitionChoices],'league'],['category','Bestenliste',[['all','Alle Kategorien'],...availableCategories],'goals']],actions,projection);
   if(!state.node.isConnected){const heading=view.querySelector(':scope > .v62-season > .v46-view-heading');if(heading)heading.after(state.node);else view.prepend(state.node);}
   translateFilters(state,t);
   state.apply=()=>{
-   for(const board of view.querySelectorAll('.v62-stat-board')){const type=board.dataset.flStatType,known=competitionChoices.some(([key])=>key===type);board.hidden=state.remember.competition!=='all'&&known&&type!==state.remember.competition;for(const category of board.querySelectorAll('.v46-stat-category')){const key=category.dataset.flStatCategory;category.hidden=state.remember.category!=='all'&&categories.some(([name])=>name===key)&&key!==state.remember.category;}}
+   for(const board of view.querySelectorAll('.v62-stat-board')){const type=board.dataset.flStatType,known=competitionChoices.some(([key])=>key===type);board.hidden=state.remember.competition!=='all'&&known&&type!==state.remember.competition;for(const category of board.querySelectorAll('.v46-stat-category')){const key=category.dataset.flStatCategory;category.hidden=state.remember.category!=='all'&&availableCategories.some(([name])=>name===key)&&key!==state.remember.category;}}
    for(const card of view.querySelectorAll('.v62-stat-card[data-fl-stat-type]'))card.hidden=state.remember.competition!=='all'&&card.dataset.flStatType!==state.remember.competition;
   };state.apply();
  }
@@ -124,8 +131,9 @@
   for(const [route,build] of [['squad',squad],['transfers',transfers],['competition',competition]]){
    const view=root.querySelector(`:scope > [data-v46-view="${route}"]`);if(!view)continue;
    const state=build(view,projection,actions,t);if(!state)continue;
-   state.nav.setAttribute('aria-label',t(definitions[route].label));for(const [key,label] of definitions[route].sections)setText(state.buttons.get(key),t(label));
-   const external=projection.navigation?.[route];select(route,state.panels.has(external)?external:remembered.get(route)||definitions[route].sections[0][0]);
+   state.nav.setAttribute('aria-label',t(state.definition.label));for(const [key,label] of state.definition.sections)setText(state.buttons.get(key),t(label));
+   const external=projection.navigation?.[route];select(route,state.panels.has(external)?external:(state.panels.has(remembered.get(route))?remembered.get(route):state.definition.sections[0][0]));
+   state.picker.update(state.definition.label,state.definition.sections,state.active,t);
   }
   const calendarView=root.querySelector(':scope > [data-v46-view="calendar"]');if(calendarView)calendar(calendarView,projection,actions,t);
   const stats=root.querySelector(':scope > [data-v46-view="statistics"]');if(stats)statistics(stats,projection,actions,t);

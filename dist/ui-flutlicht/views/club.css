@@ -70,3 +70,8 @@
  #v61-world-screen .fl-content .fl-club-finances :is(.v130-annual,.v130-new-season){padding:12px}
  #v61-world-screen .fl-content .fl-club-finances .v130-account-row{flex-wrap:wrap;gap:4px}#v61-world-screen .fl-content .fl-club-finances .v130-account-row>:last-child{margin-left:auto}
 }
+/* Sponsor amounts and goals share the current light/dark surface. */
+.fl-shell :is(.fl-club,.fl-overview) .v66-sponsor-selected .v66-sponsor-main p,
+.fl-shell :is(.fl-club,.fl-overview) .v66-sponsor-bonuses .v66-sponsor-goals li{background:var(--fl-subtle);border-color:var(--fl-line);color:var(--fl-ink)}
+.fl-shell :is(.fl-club,.fl-overview) .v66-sponsor-selected .v66-sponsor-main p :is(small,span){color:var(--fl-muted)}
+#v61-world-screen .fl-content :is(.fl-club,.fl-overview) .v66-sponsor-selected :is(.v66-sponsor-main p strong,.v66-sponsor-goals strong){color:var(--fl-accent)}

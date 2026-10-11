@@ -27,7 +27,7 @@
  function releaseDialog(dialog){const previous=dialogs.get(dialog);dialog.classList.remove('fl-start-dialog');if(!previous.hadDialog&&!doc.body.classList.contains('fl-active'))dialog.classList.remove('fl-dialog');dialogs.delete(dialog);}
  function refresh(){
   if(disposed)return;
-  const flow=!world.hidden&&!!world.querySelector(':scope > .v61-steps'),active=!home.hidden||flow;
+  const flow=!world.hidden&&!!world.querySelector(':scope > .v61-steps,:scope > .v172-start'),active=!home.hidden||flow;
   const selected=preference(),theme=ns.theme.resolve();
   doc.querySelector('meta[name="theme-color"]').content=theme==='dark'?'#11151a':'#f1f3f5';
   if(options)options.querySelector('#fl-start-theme').value=selected;

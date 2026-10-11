@@ -1,5 +1,11 @@
 # Entwicklungsdokumentation
 
+- [Release 125 – vertraute Menüs und durchgängige Gestaltung](release-125.md): wiederhergestellte Karriereansichten, Startablauf, Kontraste und kompakte mobile Bedienung.
+
+- [Layout- und Typografieprüfung](ui-layout-audit.md): 226 Ansichtsprüfungen und zwölf Nachprüfungen; verbliebener alter Startstil, Kontrastfehler und getrennte Gestaltungsvorschläge.
+
+- [Vertraute Oberfläche der erweiterten Vereinswelt](ui-expansion-restoration.md): bisherige Karriereansichten und Flutlicht-Gestaltung wieder angebunden, mit Crown/Horizon und Länderwertung; lokale Korrektur, noch nicht veröffentlicht.
+
 - [Release 124 – Wappen, Sponsoren und zuverlässiger Speicherstart](release-124.md): veröffentlicht und live abgenommen; vollständige Bonusziele und unveränderte Spielstände nach Neuladen.
 
 - [Wappen der sechs neuen Länder](wappen-expansion/README.md): 96 individuelle Vereinsmotive und 36 Sponsoren mit Wortmarken/Symbolen, transparente Originaltafeln, Farbmasken und interaktive Vorschau; Release 123.

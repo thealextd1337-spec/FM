@@ -75,5 +75,15 @@
     },true);on(win,'resize',hide);on(win,'hashchange',hide);
     return ()=>{hide();off.forEach(remove=>remove());tip.remove();};
   }
-  ns.components = Object.freeze({escape,icon,skill,form,freshness,award,status,result,installTooltips});
+  function sectionPicker(doc,notify){
+    const node=doc.createElement('label'),caption=doc.createElement('span'),input=doc.createElement('select');
+    node.className='fl-section-picker';input.dataset.flSectionSelect='';node.append(caption,input);
+    input.addEventListener('change',()=>notify(input.value));
+    return {node,input,update(label,sections,active,t){
+      caption.textContent=t(label);input.setAttribute('aria-label',t(label));
+      for(const [key,text] of sections){let option=[...input.options].find(item=>item.value===key);if(!option){option=doc.createElement('option');option.value=key;input.append(option);}option.textContent=t(text);}
+      input.value=active;
+    }};
+  }
+  ns.components = Object.freeze({escape,icon,skill,form,freshness,award,status,result,installTooltips,sectionPicker});
 })();

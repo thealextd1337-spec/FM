@@ -106,6 +106,7 @@ jobs:
           node work/test-world-expansion-contracts-v168.cjs
           node work/test-world-expansion-stories-v170.cjs
           node work/test-world-expansion-presentation-v172.cjs
+          node work/test-world-expansion-flutlicht-v175.cjs
           node work/platform/qa/test-android-3d-acceptance.cjs
           node work/test-world-save-management-v70.cjs
           node work/test-world-views-v68.cjs

@@ -5,6 +5,12 @@
 #v61-world-screen .fl-content .fl-section-tabs>[aria-selected=true],#v61-world-screen .fl-content .fl-section-tabs>[aria-selected=true]:hover{background:var(--fl-gold);color:#15191e}
 .fl-section-tabs>[role=tab]:focus-visible{outline:3px solid var(--fl-accent);outline-offset:3px}
 .fl-section-panels,.fl-section-panel{min-width:0}.fl-section-panel[hidden]{display:none!important}.fl-section-panel{outline:none;scroll-margin-top:20px}
+.fl-section-picker{display:none}
+@media(max-width:700px){
+ .fl-shell .fl-section-tabs,.fl-shell .fl-club-tabs{display:none}
+ #v61-world-screen .fl-content .fl-section-picker{display:grid;gap:6px;margin:0 0 20px;color:var(--fl-muted);font-size:13px;font-weight:600}
+ #v61-world-screen .fl-content .fl-section-picker select{width:100%;max-width:100%;min-width:0;min-height:44px;padding:10px 12px;border:1px solid var(--fl-control-line);border-radius:6px;background:var(--fl-control);color:var(--fl-ink);font:400 16px/1.4 var(--fl-font)}
+}
 .fl-navigation-view .fl-market-jumps,.fl-navigation-native-tabs,.fl-navigation-native-area{display:none!important}
 .fl-navigation-empty{padding:18px;border:1px solid var(--fl-line);border-radius:var(--fl-radius);background:var(--fl-surface);color:var(--fl-muted);line-height:1.6}
 .fl-section-panel>.v62-season:first-child,.fl-section-panel>.v72-sale-list:first-child,.fl-section-panel>.v72-own-sales:first-child{margin-top:0}

@@ -3,6 +3,7 @@
  'use strict';
  const key='doppel6.language';
  const labels=new Map(`
+Länderwertung	Country ranking
 Niederlande	Netherlands
 Belgien	Belgium
 Österreich	Austria
@@ -209,7 +210,9 @@ Scouting:	Scouting:
 Fähigkeiten werden bewusst nur ungefähr beschrieben. Alter, Form und Frische sind bekannt.	Abilities are shown as colour levels. Age, form and fitness are known.
 Ausrichtung	Orientation
 Defensiv	Defensive
-Balance	Balanced
+Balance	Balance
+Spiele	Matches
+Mehr zur Spielersuche	More about player search
 Offensiv	Attacking
 Teamtaktik	Team tactics
 Matchplan	Match plan

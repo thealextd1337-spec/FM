@@ -134,3 +134,7 @@ body.fl-active #v61-world-screen{width:100%;max-width:none;margin:0;padding:0}
 }
 @media(max-width:360px){.fl-mobile-head{padding-inline:12px;gap:8px}.fl-mobile-head .fl-brand{font-size:15px}.fl-content{padding-inline:12px}.fl-page-context{padding-inline:12px}.fl-lead-wrap{max-width:68%}.fl-lead-wrap .fl-button{gap:5px}.fl-lead-wrap .fl-icon{display:none}}
 @media(max-width:900px) and (max-height:500px){.fl-shell{padding-bottom:calc(66px + env(safe-area-inset-bottom))}.fl-shell .fl-mobile-nav .fl-nav-link{flex-direction:row;min-height:46px;gap:6px}.fl-menu-links{grid-template-columns:1fr 1fr}.fl-menu-panel{max-height:calc(100dvh - 12px)}}
+/* Readable UI lettering and comfortable disclosure/sort controls. */
+.fl-shell .fl-content :is(h1,h2,h3,h4),.fl-dialog :is(h1,h2,h3,h4){font-family:var(--fl-font)}
+.fl-shell .fl-content details>summary{box-sizing:border-box;min-height:44px;padding-block:12px}
+.fl-shell .fl-content table thead button{min-width:44px;min-height:44px}

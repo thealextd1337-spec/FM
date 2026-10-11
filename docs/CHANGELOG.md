@@ -1,6 +1,9 @@
 # Änderungen
 
-## Noch nicht veröffentlicht
+## 11. Oktober 2026 – Release 125
+
+- Vertraute Flutlicht-Oberfläche auch für die erweiterte Vereinswelt wiederhergestellt: eigenständige Kader-, Matchplan-, Transfer-, Statistik- und Vereinsansichten mit den vorhandenen Unterbereichen. Crown, Horizon und Länderwertung sind in das Wettbewerbsmenü integriert; beide Cups erscheinen getrennt im Saisonrückblick und Archiv. Der Länderfilter für Vereinsangebote umfasst zwölf Länder. Spielregeln und freigegebene Grafiken bleiben erhalten. [Umsetzung und Prüfung](ui-expansion-restoration.md).
+- Alle vier Schritte des Karrierebeginns verwenden dieselbe Gestaltung und Hell-/Dunkelwahl. Kontraste in Kader, Spielerprofil, Sponsor und Saisonrückblick korrigiert; Überschriften und Kennzahlen vereinheitlicht. Leere Wettbewerbskarte entfernt, Touchflächen vergrößert und Namen auf kleinen Taktikfeldern lesbar gehalten. Mobile Unterbereiche nutzen eine kompakte Auswahl, die ausführliche Transferhilfe ist aufklappbar. Englische Beschriftungen korrigiert. [Release und Nachweise](release-125.md).
 
 ## 11. Oktober 2026 – Release 124
 
