@@ -1,5 +1,14 @@
 # Änderungen
 
+## 13. Oktober 2026 – Bugliste
+
+- Offene Probleme mit Browserleistung, Laufdynamik, Abwehrverfolgung, Freistoßausrichtung, Rückwärtslaufen und Kontaktübergängen mit nächster Abnahme dokumentiert. Native Spielzeit-/Schussziele, Android-Prüfung und lokale Korrekturen getrennt erfasst. [Bugliste](Bugliste.md).
+
+## 12. Oktober 2026 – Release 130 vorbereitet
+
+- Vollständige Kaderauswahl in Matchplan und Spielvorbereitung mit zusätzlichen Spielern, echten Start-/Banktauschen und qualitativen Positionsfarben. Keeperjagd 180, beobachtete Restart-/Passausrichtung und eingefrorene R21-Foulpräsentation integriert. [Umfang und offene Abnahme](release-130.md).
+- Der Quellbaum liegt isoliert auf Release 129. Produktive Bildzeitplanung mit Schutz gegen doppelte Callbacks und eingefrorene Browserrückkehr ergänzt; 17 Scheduler-, 56 native Keeper-/Restart- und 96 Kaderprüfungen sowie Standardbuild bestehen. Paket-/Live-Abnahme folgt; keine neue Gerätefreigabe.
+
 ## 12. Oktober 2026 – Release 129
 
 - Release 129 ergänzt neue Startstärken mit strikter Ligaspitze, kleiner gespeicherter Schwankung, Alters-/Positionsmix, Elite-Grenzen und mindestens zehn Prozent Pokalabstand. Sportliche Wechselpräferenz berücksichtigt erreichte Qualität.

@@ -83,6 +83,29 @@ public static class FootballDuelTests {
             // Offender stumble window stays upright on this rig.
             float lowest=float.MaxValue;for(int k=0;k<=27;k++){animation.Sample(new FootballAnimation.Pose{clip=stumble,time=k*.1,key="foul:offender"},10+k*.1,k==0);lowest=Mathf.Min(lowest,hips.position.y);}
             measurements.Add(new Measurement{stage="offender-stumble",hips=lowest});Require(lowest>standingHips*.6f,"offender stumble window stays upright ("+lowest.ToString("0.00")+" m)");
+            // r21: the offender as the selector builds it (stumble over the standing clip, lunge, turfStand) through the whole
+            // 2.7 s window and 0.5 s of the following standing pose, at both mirrored headings: the skinned boots stay on the
+            // turf (foul_stumble_meshy alone floats 0.74 m on this rig) and the pelvis moves continuously.
+            // The rig's own standing boot height (idle_stand_meshy) is the turf reference of the skinned boot.
+            animation.Sample(new FootballAnimation.Pose{clip=idle,time=.3,loop=true,key="r21-stand"},29,true);float standBoot=LowestBoot(actor.transform);
+            foreach(float yaw in new[]{0f,180f}){
+                actor.transform.rotation=Quaternion.Euler(0,yaw,0);float bootLow=float.MaxValue,bootHigh=float.MinValue,pelvisStep=0;float? before=null;
+                // Entered from a sprint stride with the selector's 0.3 s crossfade (the turf stand reads the skinned mesh only then).
+                animation.Sample(new FootballAnimation.Pose{clip=sprint,time=animation.StrideTime(.25,sprint),loop=true,key="r21-run-"+yaw},30+yaw-1/30.0,true);int bakes=FootballAnimation.TurfBakes;
+                for(int k=0;k<=96;k++){double t=k/30.0;FootballAnimation.Pose p;
+                    if(t<=FootballDuelTiming.StumbleLength)p=new FootballAnimation.Pose{clip=stumble,time=t,loop=false,baseClip=idle,baseTime=20+t,baseLoop=true,actionWeight=FootballDuelTiming.OffenderStumble(t),lunge=FootballDuelTiming.OffenderLunge(t),key="foul:offender-r21-"+yaw,kind="foot",turfStand=true,fade=.3f};
+                    else p=new FootballAnimation.Pose{clip=idle,time=20+t,loop=true,key="idle",kind="foot"};
+                    animation.Sample(p,30+yaw+t);float boot=LowestBoot(actor.transform);bootLow=Mathf.Min(bootLow,boot);bootHigh=Mathf.Max(bootHigh,boot);
+                    if(before.HasValue)pelvisStep=Mathf.Max(pelvisStep,Mathf.Abs(hips.position.y-before.Value));before=hips.position.y;}
+                measurements.Add(new Measurement{stage="offender-turf-"+yaw,leadFoot=bootLow,trailFoot=bootHigh,value=pelvisStep,contactError=FootballAnimation.TurfBakes-bakes});
+                Require(FootballAnimation.TurfBakes-bakes>0&&FootballAnimation.TurfBakes-bakes<=10,"r21 offender turf stand reads the skinned mesh only during its 0.3 s entry crossfade ("+(FootballAnimation.TurfBakes-bakes)+" pictures at 30 Hz)");
+                Require(bootLow>standBoot-.02f&&bootHigh<standBoot+.05f,"r21 offender boots stay on the turf through stumble, exit and standing at heading "+yaw+" ("+bootLow.ToString("0.000")+" .. "+bootHigh.ToString("0.000")+" m, standing "+standBoot.ToString("0.000")+" m)");
+                Require(pelvisStep<.05f,"r21 offender pelvis moves at most 5 cm per 1/30 s at heading "+yaw+" ("+pelvisStep.ToString("0.000")+" m)");
+                Require(actor.transform.position==root&&Mathf.Abs(Mathf.DeltaAngle(actor.transform.eulerAngles.y,yaw))<.001f,"r21 offender turf stand never moves the received root or heading");
+            }
+            actor.transform.rotation=heading;
+            // r21: cost of one skinned-mesh read of the turf stand (editor CPU; recorded, not a device measurement).
+            {var watch=System.Diagnostics.Stopwatch.StartNew();for(int k=0;k<200;k++)FootballGround.LowestVertex(actor.transform);watch.Stop();measurements.Add(new Measurement{stage="turf-bake-ms",value=(float)(watch.Elapsed.TotalMilliseconds/200)});}
             Bridge(repository,actor,animation,new Dictionary<string,AnimationClip>{{"run",run},{"sprint",sprint},{"idle",idle},{"rise",rise},{"stumble",stumble},{"shuffle",shuffle},{"receive",receive},{"keeper",keeper}},Require);
             Require(graph.GetPlayableCount()<=12,"duel poses reuse cached graph nodes");
             var json=JsonUtility.ToJson(new Report{passed=checks.Count,checks=checks.ToArray(),measurements=measurements.ToArray()},true);
@@ -127,6 +150,7 @@ public static class FootballDuelTests {
             var follow=Select(Pose(field,"tackle",1,.48,new[]{-.3,.29,.8}),Frame(23));Require(follow.lunge==0&&!follow.contact,"standing tackle follow-through releases the lunge");
             var offender=Select(Pose(field,"foulOffender",.2,1,null),Frame(24));
             Require(offender.clip==c["stumble"]&&Math.Abs(offender.time-.2*2.7)<1e-9&&offender.lunge==FootballDuelTiming.OffenderLunge(.54)&&offender.baseClip==c["idle"],"foul offender stumbles in the upright window and settles to standing");
+            Require(offender.turfStand,"r21 foul offender pose stands on the turf (turfStand)");
             var settled=Select(Pose(field,"foulOffender",1,1,null),Frame(25));Require(settled.actionWeight==0&&settled.lunge==0,"foul offender is standing at the end of the 2.7 s window");
             bridge.foulStumbleClip=null;var fallback=Select(Pose(field,"foulOffender",0,1,null),Frame(26));Require(fallback.clip==c["idle"]&&fallback.lunge==1,"without the stumble clip the offender keeps a procedural lunge");bridge.foulStumbleClip=c["stumble"];
             // Keeper side steps: two received pictures with lateral travel.

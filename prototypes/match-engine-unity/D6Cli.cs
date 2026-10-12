@@ -62,7 +62,7 @@ public static class D6Cli {
         Done(ok,message);
     }
     public static void DuelTests(){
-        try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,FootballDuelTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+        try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,FootballDuelTests.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
     // Iteration 117: aerial/throw/kick/keeper poses, ball marker and optional picture fields.
     public static void IterationTests(){
@@ -94,12 +94,12 @@ public static class D6Cli {
         Done(ok,message);
     }
     // Natural-motion evidence on the actual rig (controlled and captured native
-    // pictures): -d6output <folder> -d6label <name> [-d6gates report]. Renders
+    // pictures): -d6output <folder> -d6label <name> [-d6gates report] [-d6only <case regex>]. Renders
     // images and GIF recordings only with a graphics device; quality gates fail
     // the run unless -d6gates report.
     public static void NaturalMotion(){
         string repo=null,message=null;bool ok=false,render=SystemInfo.graphicsDeviceType!=UnityEngine.Rendering.GraphicsDeviceType.Null;
-        try{repo=Repo();if(render)ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=NaturalMotionDiagnostics.Run(repo,Arg("-d6output"),Arg("-d6label","candidate"),render,Arg("-d6gates","enforce")!="report");ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        try{repo=Repo();if(render)ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=NaturalMotionDiagnostics.Run(repo,Arg("-d6output"),Arg("-d6label","candidate"),render,Arg("-d6gates","enforce")!="report",Arg("-d6only"));ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
         finally{if(repo!=null&&render)ProbeWebBuild.Restore(repo);}
         Done(ok,message);
     }

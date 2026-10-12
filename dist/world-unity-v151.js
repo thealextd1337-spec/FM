@@ -15,15 +15,31 @@
    const a=['foulVictim','foulOffender'].includes(p.action?.kind)?p.action:p.unityAction||p.action;
    // Keeper attention belongs to the received action/ball, never a stale
    // outfield running heading. Targets are projected with the same pitch map.
-   const aimedKick=['freeKick','shot','volley','kickReady','passReady'].includes(a?.kind);
+   // The generic pass countdown carries the opposing goal as a placeholder,
+   // while the native body turns toward the actual receiver. It is no aim.
+   const aimedKick=['freeKick','shot','volley','kickReady','passReady'].includes(a?.kind)&&!(a?.kind==='passReady'&&a?.id==='kick-ready');
    const focus=p.keeper?(a?.kind==='goalKick'?a.targetWorld:a?.kind==='save'?a.contactWorld:frame.ball):aimedKick?a.targetWorld:null;
    const focusDirection=focus&&[focus.x-p.x,0,focus.z-p.z];
    const travel=p.movement?.travelFacing;
-   const direction=a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:focusDirection&&Math.hypot(focusDirection[0],focusDirection[2])>.00001?focusDirection:travel?[travel.x-p.x,0,travel.z-p.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0];
+   // A released foot pass can leave a small velocity in the old direction.
+   // Keep the observed body facing when it already agrees with the actual
+   // release target; sample speed in the frame so replay never reads live state.
+   const bodyDirection=p.movement?.facing&&[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z],passTarget=a?.targetWorld&&[a.targetWorld.x-p.x,0,a.targetWorld.z-p.z];
+   const bodyLength=bodyDirection&&Math.hypot(bodyDirection[0],bodyDirection[2]),passLength=passTarget&&Math.hypot(passTarget[0],passTarget[2]);
+   const settledPass=!p.keeper&&['pass','highPass','cross'].includes(a?.kind)&&Number.isFinite(p.movement?.bodySpeed)&&p.movement.bodySpeed<1.5&&Number.isFinite(p.movement?.positionSpeed)&&p.movement.positionSpeed<1.2&&bodyLength>.00001&&passLength>.00001&&(bodyDirection[0]*passTarget[0]+bodyDirection[2]*passTarget[2])/(bodyLength*passLength)>=Math.cos(Math.PI/6);
+   // Restart attention points at the ball while the native body is locked.
+   // Preserve that observed body heading for outfield players at the restart.
+   const restartHeading=!p.keeper&&p.movement?.mode==='restart'&&Number.isFinite(p.person?.offenseMotion?.heading)?p.person.offenseMotion.heading:null;
+   const flip=frame.turned?-1:1;
+   const restartDirection=restartHeading!==null?[-Math.cos(restartHeading)*flip,0,Math.sin(restartHeading)*flip]:null;
+   const direction=a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:focusDirection&&Math.hypot(focusDirection[0],focusDirection[2])>.00001?focusDirection:settledPass?bodyDirection:restartDirection|| (travel?[travel.x-p.x,0,travel.z-p.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0]);
    const keeperFacts=Object.fromEntries(['saved','parry','goal','smother','held'].filter(k=>typeof a?.[k]==='boolean').map(k=>[k,a[k]]));
    const holdingKnown=p.keeper&&a?.kind==='save'&&['saved','parry','goal'].every(k=>typeof a[k]==='boolean')&&typeof frame.ballInFlight==='boolean';
    const ballHeld=holdingKnown?{ballHeld:a.saved&&!a.parry&&!a.goal&&frame.owner===p.id&&!frame.ballInFlight&&(a.progress??0)>=1}:{};
-   return {id:p.id,position:[p.x,0,p.z],facing:direction,moving:!['idle','restart'].includes(p.movement?.mode),action:a?.kind||'idle',actionId:String(a?.id??a?.kind??'idle'),contactPoint:a?.contactWorld?point(a.contactWorld):null,recovery:a?.recovery||0,progress:a?.progress??0,duration:a?.duration||1,number:p.number,...keeperFacts,...ballHeld,...(a?.kind==='goalKick'&&['waiting','follow'].includes(a.phase)?{phase:a.phase}:{}),...(typeof a?.holding==='boolean'?{holding:a.holding}:{}),...(Number.isFinite(a?.pickup)?{pickup:Math.max(0,Math.min(1,a.pickup))}:{}),...(a?.aerial===true?{aerial:true}:{}),...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})};
+   // Preserve an observed native action time and a real duration when present.
+   // The legacy duration fallback is not evidence of an action's start time.
+   const timing={...(Number.isFinite(a?.at)&&a.at>=0&&a.at<=frame.clock+1e-6?{actionAt:a.at,actionAtKnown:true}:{}),...(Number.isFinite(a?.duration)&&a.duration>0?{durationKnown:true}:{})};
+   return {id:p.id,position:[p.x,0,p.z],facing:direction,moving:!['idle','restart'].includes(p.movement?.mode),action:a?.kind||'idle',actionId:String(a?.id??a?.kind??'idle'),contactPoint:a?.contactWorld?point(a.contactWorld):null,recovery:a?.recovery||0,progress:a?.progress??0,duration:a?.duration||1,number:p.number,...timing,...keeperFacts,...ballHeld,...(a?.kind==='goalKick'&&['waiting','follow'].includes(a.phase)?{phase:a.phase}:{}),...(typeof a?.holding==='boolean'?{holding:a.holding}:{}),...(Number.isFinite(a?.pickup)?{pickup:Math.max(0,Math.min(1,a.pickup))}:{}),...(a?.aerial===true?{aerial:true}:{}),...(Number.isFinite(p.freshness)?{freshness:p.freshness}:{})};
   }),netActive:Boolean(frame.net),net:frame.net?{...frame.net}:null,...(frame.offside&&Number.isFinite(frame.offside.lineX)?{offside:{lineX:frame.offside.lineX}}:{}),...celebration};
  }
  const legacy={length:68,width:44};
@@ -56,7 +72,7 @@
   // Following cameras keep their viewing distance on a larger field. Keep
   // the near-side ball-to-focus gap at the authored size as well, otherwise
   // scaling that gap pushes the ball back into the bottom controls.
-  if((mode==='follow'||mode==='sideline')&&ball.z/sz>13){
+   if((mode==='follow'||mode==='sideline'||mode==='wide')&&ball.z/sz>13){
    const ramp=Math.min(1,(ball.z/sz-13)/3),weight=ramp*ramp*(3-2*ramp);
    const pan=Math.max(0,sz-1)*Math.max(0,ball.z/sz-pose.target.z)*weight;
    position.z+=pan;target.z+=pan;
@@ -132,6 +148,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  `;document.head.append(style);
  function post(kind,body){iframe.contentWindow.postMessage({channel,session,kind,...body},origin);}
  function dispose(){
+  window.D6ViewFramePump?.setEnabled(false);
   v100PitchMenu(false);
   if(loop)cancelAnimationFrame(loop);loop=0;
   host?.remove();host=iframe=labels=message=ballGuide=null;current=null;session='';ready=loaded=loading=false;pending=null;lastPicture=null;lastProjection=null;suspendedAt=null;cameraPose=null;labelMap.clear();
@@ -146,7 +163,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   host=document.createElement('div');host.id='d6-unity-host';
   iframe=document.createElement('iframe');iframe.title=v98Text('Unity-Spielfelddarstellung','Unity pitch view');iframe.src=runtimeUrl.href;iframe.setAttribute('tabindex','-1');iframe.addEventListener('error',()=>fail('Unity runtime unavailable'));
   message=document.createElement('div');message.id='d6-unity-message';message.setAttribute('role','status');message.textContent=v98Text('Unity wird vorbereitet …','Preparing Unity …');
-  labels=document.createElement('div');labels.id='d6-unity-labels';ballGuide=document.createElement('div');ballGuide.id='d6-unity-ball-guide';ballGuide.hidden=true;ballGuide.setAttribute('aria-hidden','true');host.append(iframe,message,ballGuide,labels);$('#match-area .v42-pitch-stage').prepend(host);
+  labels=document.createElement('div');labels.id='d6-unity-labels';ballGuide=document.createElement('div');ballGuide.id='d6-unity-ball-guide';ballGuide.hidden=true;ballGuide.setAttribute('aria-hidden','true');host.append(iframe,message,ballGuide,labels);$('#match-area .v42-pitch-stage').prepend(host);window.D6ViewFramePump?.setEnabled(true);
   labels.addEventListener('click',event=>{const id=event.target.closest('[data-player]')?.dataset.player,person=match?.people.find(p=>p.pid===id);if(person)v59OpenLivePlayer(person);});
   loadCount++;
  }
@@ -198,7 +215,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  function paint(now){
   loop=0;if(!v98IsWorld()){dispose();return;}if(v98View!=='3d'||!v98Orientation.matches||failed){if(host){host.hidden=true;if(suspendedAt===null)suspendedAt=now;}return;}
   if(current!==match||!host)create();host.hidden=false;document.body.classList.add('v98-pitch3d');
-  const rect=host.getBoundingClientRect(),visible=!document.hidden&&rect.width>0&&rect.height>0&&!v65PauseView;
+  const rect=host.getBoundingClientRect(),visible=!document.hidden&&rect.width>0&&rect.height>0&&!v65PauseView;window.D6ViewFramePump?.setEnabled(visible);
   // A hidden tactical/halftime view suspends the iframe. Its waiting time must
   // not count as an unresponsive renderer or consume the startup deadline.
   if(!visible){if(suspendedAt===null)suspendedAt=now;if(!document.hidden)loop=requestAnimationFrame(render);return;}
@@ -252,9 +269,9 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  const baseRender=v98RenderScene;
  v98RenderScene=function(captureOnly=false){
   if(!v98IsWorld()){dispose();return baseRender(captureOnly);}
-  if(v98View!=='3d'||!v98Orientation.matches||v98Failed){if(host){host.hidden=true;if(suspendedAt===null)suspendedAt=performance.now();}if(loop)cancelAnimationFrame(loop);loop=0;return baseRender(captureOnly);}
+  if(v98View!=='3d'||!v98Orientation.matches||v98Failed){window.D6ViewFramePump?.setEnabled(false);if(host){host.hidden=true;if(suspendedAt===null)suspendedAt=performance.now();}if(loop)cancelAnimationFrame(loop);loop=0;return baseRender(captureOnly);}
   if(failed){failed=false;v98Failed=false;}
-  if(!loop)render();v98Toolbar();v98SyncAudio();
+  window.D6ViewFramePump?.setEnabled(true);if(!loop)render();v98Toolbar();v98SyncAudio();
  };
  const baseToolbar=v98Toolbar;
  v98Toolbar=function(){const toolbar=baseToolbar();if(v98IsWorld()){toolbar.querySelector('[data-v98-view="3d"]').textContent='Unity · TV';const status=toolbar.querySelector('#v98-status');if(failed)status.textContent=window.D6UnityMatch.lastError;else if(!loaded&&v98View==='3d')status.textContent=v98Text('Unity wird geladen','Loading Unity');toolbar.dataset.status=String(Boolean(status.textContent));let button=toolbar.querySelector('#d6-ball-guide-toggle');if(!button){button=document.createElement('button');button.id='d6-ball-guide-toggle';button.type='button';toolbar.querySelector('#v98-sound').after(button);button.addEventListener('click',()=>{ballGuideEnabled=!ballGuideEnabled;try{localStorage.setItem('d6-ball-guide',ballGuideEnabled?'on':'off')}catch{}if(lastProjection)paintLabels(lastProjection);v98Toolbar();});}button.textContent=v98Text('Ballhilfe','Ball guide');button.setAttribute('aria-pressed',String(ballGuideEnabled));button.disabled=v98View!=='3d'||!v98Orientation.matches;}return toolbar;};

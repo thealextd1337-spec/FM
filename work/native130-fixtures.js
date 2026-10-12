@@ -1,0 +1,42 @@
+'use strict';
+(function(){
+let testRng=1,testDraws=0,testContext=null;
+function resetMatch({marker=true,kind='ordinary',team=0,size='standard',spd=12,fresh=100,diagonal=false,rolling=false}={}){
+ testRng=15432;testDraws=0;Math.random=()=>{testDraws++;testRng=(Math.imul(testRng,1664525)+1013904223)>>>0;return testRng/4294967296;};
+ const geometry=v160WorldGeometry({world:{matchConfig:{version:1,fieldSize:size,fieldPlayers:5}}}),s={x:geometry.width/(v55Field.right-v55Field.left),y:geometry.length/(v55Field.bottom-v55Field.top)},goal=team===0?v55Field.bottom:v55Field.top,dir=team===0?-1:1;
+ const person=(pid,t,x,y,keeper=false)=>{const p={pid,n:keeper?1:2,name:pid,t,x,y,tx:x,ty:y,bx:x,by:y,initialBy:y,line:keeper?'gk':'mid',assignedLine:keeper?'gk':'mid',role:0,keeper,instructions:[],heightCm:178,fresh,form:0,motionX:0,motionY:0,stats:emptyStats()};for(const key of D6PlayerGeneration.SKILL_KEYS)p[key]=12;p.spd=spd;p.playerModel={loadParameterId:D6LoadCandidate.PARAMETER_ID,freshnessState:D6Freshness.createState(pid,fresh)};return p;};
+ const k=person('keeper',team,.5,goal+dir*3/s.y,true),remote=person('remote',1-team,.85,.5),passer=person('passer',1-team,.15,.5),people=[k,remote,passer],point={x:k.x+(diagonal?3:0)/s.x,y:k.y+dir*(diagonal?4:5)/s.y},parameters=D6LoadCandidate.createParameters();
+ const state={phase:'live',minute:10,fresh:{},playerLoad:{version:158,parameterId:D6LoadCandidate.PARAMETER_ID,parameters,startFresh:{},players:{},meta:{},pending:{},sequence:0,day:1,compactPositions:{}}};
+ for(const p of people){state.fresh[p.pid]=fresh;state.playerLoad.startFresh[p.pid]=fresh;state.playerLoad.players[p.pid]=D6Freshness.createState(p.pid,fresh);state.playerLoad.meta[p.pid]={stamina:p.sta,keeper:p.keeper};}
+ const career={world:{matchConfig:{version:1,fieldSize:size,fieldPlayers:5},playerFoundation:{loadParameters:parameters},clubs:[{id:'a',name:'A',roster:[k]},{id:'b',name:'B',roster:[remote,passer]}]}};
+ testContext={career,fixture:{id:'native-test',day:1,homeId:'a',awayId:'b'},state,ownSide:0};v65WorldActive=testContext;
+ match={geometry,people,exitedPeople:[],owner:null,flight:null,slide:null,breakawayCarrier:null,ball:{...point},rebound:{...point,delay:0,vx:rolling?(diagonal?.5:0)/s.x:0,vy:rolling?dir*2/s.y:0},elapsed:10,firstHalfEnd:500,fullTimeEnd:1000,score:[0,0],shots:[0,0],possession:[0,0],goals:[],aggression:[0,0],defenseLines:[0,0],teamDirect:[0,0],lastTouch:1-team,next:Infinity,attackFlow:{version:152,qualityVersion:157,flowVersion:159,paceVersion:162,paceRevision:119,...marker?{keeperChaseRevision:180}:{},intents:{}},ballAccounting:{version:117,sequence:0,events:[]}};
+ v157Body(k).heading=Math.atan2((point.x-k.x)*s.x,(point.y-k.y)*s.y);
+ if(kind==='space'){const velocity={vx:match.rebound.vx,vy:match.rebound.vy},plan={passer,runner:null,from:{...point},intended:{...point},snapshot:{lineY:.5,ball:{...point},offside:new Set(),positions:new Map(people.map(p=>[p,{x:p.x,y:p.y}]))},age:1,flight:null,targets:new Map(),settled:false,eventId:null};v150SpacePasses.set(match,plan);v150Arrive(match,plan);Object.assign(match.rebound,velocity);}
+ return{k,point,s,dir};
+}
+function canonical(value){return Array.isArray(value)?value.map(canonical):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(key=>[key,canonical(value[key])])):value;}
+function nativeState(){const plain={...match,owner:match.owner?.pid||null,lastPass:match.lastPass?{passer:match.lastPass.passer?.pid,receiver:match.lastPass.receiver?.pid,at:match.lastPass.at}:null};delete plain.nativeContactClock;return JSON.stringify(canonical({match:plain,continuation:v160SnapshotContinuation(match),clock:v102Clock(match),load:testContext.state.playerLoad,fresh:testContext.state.fresh,rng:testRng,draws:testDraws}));}
+function advance(dt=.05){const at=v102Clock(match);step(dt*MATCH_SPEED,dt);if(Math.abs(v102Clock(match)-at-dt)>1e-8)throw Error('Native clock did not advance exactly once');
+ for(const p of match.people){if(![p.x,p.y,p.tx,p.ty].every(Number.isFinite))throw Error('Nonfinite physical player');if(p.offenseMotion&&![p.offenseMotion.vx,p.offenseMotion.vy,p.offenseMotion.heading].every(Number.isFinite))throw Error('Nonfinite native body');}
+ if(!Object.values(testContext.state.fresh).every(f=>Number.isFinite(f)&&f>=0&&f<=100))throw Error('Invalid authoritative P02 freshness');}
+function pickup(config,json=false){let {k}=resetMatch(config),ticks=0,halfSecondTravel=0,restored=false;while(!match.owner&&ticks++<200){const before={x:k.x,y:k.y};advance();if(ticks<=10)halfSecondTravel+=v122Metres(before,k);if(json&&!restored&&ticks===5){if(!v65Snapshot(testContext))throw Error('Snapshot failed');testContext.state.physicalSnapshot=JSON.parse(JSON.stringify(testContext.state.physicalSnapshot));match=null;if(!v65Restore(testContext))throw Error('Restore failed');k=match.people.find(p=>p.pid==='keeper');restored=true;}}
+ if(match.owner!==k)throw Error('Keeper did not reach controlled ball');return{seconds:ticks*.05,halfSecondTravel,held:!!v99Actions.get(match)?.kicks.get(k.pid)?.held,draws:testDraws,state:nativeState()};}
+function formation(marker){const {k,s}=resetMatch({marker,spd:18});match.rebound=null;match.ball={x:k.x+5/s.x,y:k.y};for(let i=0;i<10;i++)advance();return JSON.stringify({x:k.x,y:k.y,body:k.offenseMotion});}
+function guardedPickup(kind,lock){const {k,point}=resetMatch({kind});k.x=point.x;k.y=point.y;
+ if(lock==='slide'){k.slideActive=true;k.recoverUntil=1000;}
+ if(lock==='recovery')v99ActionState(match).keepers.set(k.pid,{completed:true,age:.1});
+ if(lock==='restart')v99ActionState(match).throws.set(k.pid,{completed:true,age:.01,kind:'throw'});
+ if(lock==='air')v124AirBalls.set(match,{rebound:match.rebound,height:1.5,vh:0,impacts:0,settled:false});
+ if(lock==='air-metadata')v102State(match).loose={at:0,start:{...point},target:{...point},duration:3,drop:false,free:true,startHeight:2.65};
+ if(lock==='held'){match.rebound=null;v50GoalKick(k,'held fixture',{held:true});}
+ const before={x:k.x,y:k.y},body={...k.offenseMotion};advance();return{owner:match.owner?.pid||null,travel:v122Metres(before,k),bodyBefore:body,bodyAfter:{...k.offenseMotion},clock:v102Clock(match)};}
+function handling(team,feet){const {k,s,dir}=resetMatch({team});if(feet){k.y=(team===0?v55Field.bottom:v55Field.top)+dir*20/s.y;k.by=k.y;}match.ball={x:k.x,y:k.y+dir*.3/s.y};match.rebound={...match.ball,delay:0,vx:0,vy:0};advance();return{claimed:match.owner===k,held:!!v99Actions.get(match)?.kicks.get(k.pid)?.held};}
+function flight(marker,team,nullRebound){const {k,point}=resetMatch({marker,team,spd:18}),passer=match.people.find(p=>p.pid==='passer');passer.x=point.x;passer.y=point.y;match.rebound=null;match.owner=passer;match.attackFlow.releaseGuard=passer.pid;v150SpacePass(passer,{target:{x:k.x,y:k.y}});delete match.attackFlow.releaseGuard;const plan=v150SpacePasses.get(match);if(nullRebound)plan.rebound=null;const trace=[];
+ for(let i=0;i<30&&match.flight;i++){advance(.025);trace.push({target:plan.targets.get(k)||null,x:k.x,y:k.y,pace:v157Pace(match,k),ball:{...match.ball},owner:match.owner?.pid||null});}return{trace,owner:match.owner?.pid||null,held:!!v99Actions.get(match)?.kicks.get(k.pid)?.held,rng:testRng,draws:testDraws};}
+function createAndRestoreFlag(){const {k}=resetMatch({marker:false}),old={v64Active,v65PhysicalPlayer,v65Club,v65ApplyTactics,kickoff,v55RefereeImage,v55RefereeAsset},oldKits=typeof v61SelectMatchKits==='function'?v61SelectMatchKits:null;
+ // Only roster/UI transport is simplified; invoke the actual fresh constructor.
+ v64Active=()=>['keeper'];v65PhysicalPlayer=()=>k;v65Club=()=>({name:'Fixture'});v65ApplyTactics=()=>{};kickoff=()=>{};v55RefereeImage=()=>{};v55RefereeAsset=()=>'';globalThis.v61SelectMatchKits=()=>({});v65CreateMatch(testContext);const created={keeper:match.attackFlow.keeperChaseRevision,pace:match.attackFlow.paceRevision};Object.assign(globalThis,old);if(oldKits)globalThis.v61SelectMatchKits=oldKits;
+ resetMatch({marker:false});v65Snapshot(testContext);testContext.state.physicalSnapshot=JSON.parse(JSON.stringify(testContext.state.physicalSnapshot));v65Restore(testContext);return{created,restoredUnmarked:!Object.hasOwn(match.attackFlow,'keeperChaseRevision')};}
+globalThis.Native130={reset:resetMatch,state:nativeState,advance,pickup,formation,guardedPickup,handling,flight,createAndRestoreFlag,context:()=>testContext,rng:()=>({value:testRng,draws:testDraws})};
+})();

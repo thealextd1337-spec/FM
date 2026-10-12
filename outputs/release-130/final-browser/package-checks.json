@@ -1,0 +1,67 @@
+{
+  "checkedAt": "2026-10-12T22:20:17.345Z",
+  "passed": true,
+  "scope": "Final release130 HTTP package, own isolated Chrome, SwiftShader for contract checks; no hardware/FPS/live claim.",
+  "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+  "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+  "checks": [
+    "Packaged footer is Version 130",
+    "Packaged world retains 192 clubs and 12 countries",
+    "Packaged squad retains 11 pros, two keepers and 6/3/2 roles",
+    "Actual packaged Unity fixture confirms all 12 native actors",
+    "Paused native facts and P02 survive rendering and foreign messages",
+    "Packaged browser has no uncaught page errors",
+    "Fresh physical match has keeper revision180 and retained pace119",
+    "Production frame scheduler is scoped to actual Unity surfaces without local opt-in code"
+  ],
+  "setup": {
+    "clubs": 192,
+    "countries": 12,
+    "roster": 11,
+    "keepers": 2,
+    "roles": {
+      "starter": 6,
+      "rotation": 3,
+      "reserve": 2
+    },
+    "fixtureId": "S1:AUT:LEAGUE:R5:AUT-5-AUT-8:1",
+    "players": 12
+  },
+  "runtime": {
+    "ready": true,
+    "active": true,
+    "ids": [
+      "local-129-r20-http:AUT-5:1",
+      "local-129-r20-http:AUT-5:3",
+      "local-129-r20-http:AUT-5:4",
+      "local-129-r20-http:AUT-5:7",
+      "local-129-r20-http:AUT-5:6",
+      "local-129-r20-http:AUT-5:9",
+      "local-129-r20-http:AUT-8:1",
+      "local-129-r20-http:AUT-8:4",
+      "local-129-r20-http:AUT-8:6",
+      "local-129-r20-http:AUT-8:9",
+      "local-129-r20-http:AUT-8:11",
+      "local-129-r20-http:AUT-8:7"
+    ],
+    "players": [
+      "local-129-r20-http:AUT-5:1",
+      "local-129-r20-http:AUT-5:3",
+      "local-129-r20-http:AUT-5:4",
+      "local-129-r20-http:AUT-5:7",
+      "local-129-r20-http:AUT-5:6",
+      "local-129-r20-http:AUT-5:9",
+      "local-129-r20-http:AUT-8:1",
+      "local-129-r20-http:AUT-8:4",
+      "local-129-r20-http:AUT-8:6",
+      "local-129-r20-http:AUT-8:9",
+      "local-129-r20-http:AUT-8:11",
+      "local-129-r20-http:AUT-8:7"
+    ],
+    "session": "S1:AUT:LEAGUE:R5:AUT-5-AUT-8:1:92970c54-2650-4adc-964c-65ca042f2d4a",
+    "lastError": null,
+    "labels": 12
+  },
+  "errors": []
+}

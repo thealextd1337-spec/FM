@@ -12,14 +12,24 @@ public partial class ProbeBridge {
     public AnimationClip jogClip,fastBackClip,turnIdleLeftClip,turnIdleRightClip,turnWalkLeftClip,turnWalkRightClip,celebrateArmsClip,celebrateFistClip,celebrateVictoryClip,foulFallClip,foulStumbleClip,keeperShuffleClip;
     readonly List<FootballAnimation> football=new List<FootballAnimation>();
     const double PassContact=.8,ReceiveContact=.7,ShotContact=.46;
+    // Clip time at the last visible picture of a ready phase (FootballActionTiming.ReadyPhase):
+    // where the clip's own boot reaches a ball 0.45-0.65 m ahead of the root (native contact
+    // points: 0.65 m; measured on this rig). shot_meshy meets it at its contact (0.46 s);
+    // pass_inside_meshy at 0.70 s, 0.1 s before PassContact, by which its swing has passed 0.69 m
+    // beyond the ball (the contact picture keeps PassContact and holds the boot at the ball).
+    // Played to 0.8 s, the visible countdown ran its fastest swing (1008 deg/s authored at
+    // 0.72 s) 2.67x fast before the contact: 2454 deg/s at the foot.
+    const double PassReadyEnd=.70,ShotReadyEnd=ShotContact;
     // Native foul windows last 2.7 s: measured fall (hips reach the ground near
     // 1.0 s of foul_fall_meshy) followed by the measured rise window of
     // keeper_rise_meshy (hips 0.37 m -> 1.30 m between 4.4 s and 6.3 s).
     const double FoulWindow=2.7,FoulFall=1.6,RiseFrom=4.4,RiseLength=1.9;
+    // r21: crossfade seconds from the stride into the foul offender pose.
+    const float OffenderEntry=.3f;
     AnimationClip[] FootballClips(){return new[]{idleClip,runClip,keeperClip,keeperActionClip,shotClip,passClip,receiveClip,keeperHighClip,keeperDiveClip,keeperRiseClip,walkClip,fastRunClip,sprintClip,backClip,brakeClip,turnLeftClip,turnRightClip,jogClip,fastBackClip,turnIdleLeftClip,turnIdleRightClip,turnWalkLeftClip,turnWalkRightClip,celebrateArmsClip,celebrateFistClip,celebrateVictoryClip,foulFallClip,foulStumbleClip,keeperShuffleClip,readyClip,backRunClip};}
     // The clip whose measured stride matches the observed speed band.
     AnimationClip StrideClip(string mode,bool carrying,bool keeper,bool fast,bool fastest=false){
-        if(mode=="walk")return walkClip;if(mode=="sprint")return sprintClip;
+        if(mode=="walk")return walkClip;if(mode=="sprint")return fast&&runClip!=null?runClip:sprintClip;
         if(mode=="back")return fastest&&backRunClip!=null?backRunClip:fast&&fastBackClip!=null?fastBackClip:backClip;
         // A lateral side step stands on the ready stance; its legs are procedural.
         if(mode=="side")return keeper?keeperClip:readyClip??idleClip;
@@ -27,7 +37,10 @@ public partial class ProbeBridge {
         return keeper?keeperClip:idleClip;
     }
     AnimationClip LocomotionClip(FootballLocomotion m,bool carrying,bool keeper){
-        if(m.Mode=="brake"&&m.BrakeFrom>=FootballLocomotion.BrakeClipSpeed)return brakeClip;
+        // brake_meshy portrays a forward stop: a backward or lateral run stops on
+        // its own stride under the braking posture (brake_meshy's planted feet
+        // slid 2-8 m/s under a backward sprint's travel; FootballLocomotion.BrakeForward).
+        if(m.Mode=="brake"&&m.BrakeFrom>=FootballLocomotion.BrakeClipSpeed&&m.BrakeMoving&&m.BrakeForward)return brakeClip;
         if(m.Mode=="brake")return StrideClip(m.StrideMode,carrying,keeper,m.FastStride,m.FastestBack);
         if(m.Mode.StartsWith("turn-")&&m.Speed>=FootballLocomotion.TurnClipSpeed)return StrideClip(m.StrideMode,carrying,keeper,m.FastStride,m.FastestBack);
         if(m.Mode.StartsWith("turn-")){
@@ -53,6 +66,30 @@ public partial class ProbeBridge {
     static Vector3 Display(double[] p){return new Vector3((float)p[0],DisplayHeight(p[1]),(float)p[2]);}
     // Reach weight shortly before a measured footfall (a share of the cycle).
     static float Reach(double phase,float footfall){double d=((footfall-phase)%1+1)%1;return d>=.05&&d<=.17?(float)Math.Sin(Math.PI*(d-.05)/.12):0;}
+    // Received countdown rate of each actor's current ready phase (progress per
+    // second of match time). The picture's duration is no measure: the bridge
+    // sends 1 for a missing one (115 native passReady pictures, whose progress
+    // ran in 0.25-0.35 s), and native countdowns last 0.25 or 0.35 s. The rate
+    // is read from the displayed pictures (the display buffer blends progress
+    // linearly between two received pictures), the largest seen for this action
+    // (a native countdown may hold its progress over a picture); the duration
+    // only until a second picture shows it. Pause keeps it, a seek, restart or
+    // another action starts over. Presentation state only; the received
+    // progress stays the only clock.
+    sealed class ReadyRate {public string session,id;public double clock=-1,progress,rate;}
+    ReadyRate[] readyRates=new ReadyRate[0];
+    // r16: the visible countdown plays the end of the wind-up at the clip's own speed, the pace of
+    // the contact that follows it: the clip reaches end at the countdown's last visible picture (as
+    // before) and starts the visible seconds before it (at most at 0; the action weight blends it in
+    // from the stride). Played from 0, a native 0.25 s passReady ran the 0.7 s wind-up 3.5x fast
+    // into its fastest swing (2544 deg/s shin at 120 Hz) and the contact slowed it to 1x at once.
+    double ReadyClipTime(double phase,double end,int i){double rate=Math.Max(.001,Math.Abs(readyRates[i].rate)),visible=Math.Max(.5,1-FootballActionTiming.PictureInterval*rate)/rate;return end-(1-phase)*Math.Min(end,visible);}
+    double ReadyPhase(WorldPose p,WorldFrame f,int i,double progress){
+        if(readyRates.Length<=i)Array.Resize(ref readyRates,i+1);var r=readyRates[i]??(readyRates[i]=new ReadyRate());string id=p.actionId??p.action;
+        if(r.session!=f.session||r.id!=id||f.clock<r.clock||f.clock-r.clock>1||progress<r.progress){r.session=f.session;r.id=id;r.rate=-1/Math.Max(.001,p.duration);r.clock=f.clock;r.progress=progress;}
+        else if(f.clock>r.clock){double rate=(progress-r.progress)/(f.clock-r.clock);if(rate>1e-6)r.rate=r.rate<0?rate:Math.Max(r.rate,rate);r.clock=f.clock;r.progress=progress;}
+        return FootballActionTiming.ReadyPhaseAtRate(progress,Math.Abs(r.rate));
+    }
     FootballAnimation.Pose WorldFootballPose(WorldPose p,WorldFrame f,int i){
         var identity=worldView.Players[p.id];var pose=new FootballAnimation.Pose{clip=runSpeeds[i]>.2?runClip:identity.keeper?keeperClip:idleClip,time=runSpeeds[i]>.2?animationTimes[i]+i*.09:f.clock+i*.09,loop=true,key=p.actionId??p.action,kind="foot"};
         var locomotion=worldLocomotion[i];
@@ -85,6 +122,7 @@ public partial class ProbeBridge {
             bool scorer=p.id==f.celebrationScorer;var clip=scorer?celebrateVictoryClip:i%2==0?celebrateArmsClip:celebrateFistClip;
             if(clip!=null){pose.clip=clip;pose.time=f.celebrationTime+(scorer?0:i*.37);pose.loop=true;pose.baseClip=null;pose.key="celebration:"+f.celebrationTeam+":"+f.celebrationScorer;}
         }
+        bool readyReach=false;double readyPhase=0;
         if(p.action=="pass"||p.action=="highPass"||p.action=="cross"){
             pose.clip=passClip;pose.time=PassContact+age;pose.loop=false;pose.plant=runSpeeds[i]<.4&&age<.7;pose.contact=age<.09;
             // A lofted delivery swings through higher once the native contact is over.
@@ -96,7 +134,7 @@ public partial class ProbeBridge {
             // chest-high ball is not forced onto the foot.
             if(p.aerial){AirPose(ref pose,p.action,progress,contactPoint,identity.keeper,i,false);pose.plant=false;if(contactPoint.HasValue&&contactPoint.Value.y>.9f)pose.contact=false;}
         }
-        else if(p.action=="passReady"){pose.clip=passClip;pose.time=progress*PassContact;pose.loop=false;pose.plant=runSpeeds[i]<.4;}
+        else if(p.action=="passReady"){pose.clip=passClip;readyPhase=ReadyPhase(p,f,i,progress);pose.time=ReadyClipTime(readyPhase,PassReadyEnd,i);pose.loop=false;pose.ready=true;pose.plant=runSpeeds[i]<.4;readyReach=ReadyReach(ref pose,p,f,i,readyPhase);}
         else if(p.action=="goalKick"&&p.phase=="waiting"){
             // Native goal-kick wait: the keeper stands behind the placed ball and
             // winds up over the native countdown (progress); the contact belongs
@@ -110,7 +148,7 @@ public partial class ProbeBridge {
             if(p.action=="volley")pose.volley=FootballKickTiming.FollowThrough(age);
             else if(p.action=="goalKick"&&Horizontal(ballView.position-actors[i].position)>GoalKickGone)pose.loft=FootballKickTiming.FollowThrough(age);
         }
-        else if(p.action=="kickReady"){pose.clip=shotClip;pose.time=progress*ShotContact;pose.loop=false;pose.plant=runSpeeds[i]<.4;}
+        else if(p.action=="kickReady"){pose.clip=shotClip;readyPhase=ReadyPhase(p,f,i,progress);pose.time=ReadyClipTime(readyPhase,ShotReadyEnd,i);pose.loop=false;pose.ready=true;pose.plant=runSpeeds[i]<.4;readyReach=ReadyReach(ref pose,p,f,i,readyPhase);}
         else if(p.action=="foulVictim"&&foulFallClip!=null&&keeperRiseClip!=null){
             double foul=progress*FoulWindow;
             if(foul<FoulFall){pose.clip=foulFallClip;pose.time=foul*1.15;}else{pose.clip=keeperRiseClip;pose.time=RiseFrom+(foul-FoulFall)/(FoulWindow-FoulFall)*RiseLength;}
@@ -138,6 +176,11 @@ public partial class ProbeBridge {
             if(foulStumbleClip!=null){pose.clip=foulStumbleClip;pose.time=Math.Min(foul,FootballDuelTiming.StumbleLength);pose.loop=false;pose.baseClip=stand;pose.baseTime=f.clock+i*.09;pose.baseLoop=true;pose.actionWeight=FootballDuelTiming.OffenderStumble(foul);}
             else{pose.clip=stand;pose.time=f.clock+i*.09;pose.loop=true;pose.baseClip=null;}
             pose.lunge=FootballDuelTiming.OffenderLunge(foul);
+            // r21: the stumble clip floats 0.74 m on this rig; the offender stands on the turf (FootballAnimation.TurfShift).
+            pose.turfStand=true;
+            // The body comes out of its stride over OffenderEntry instead of the 0.12 s default: from a 5.7 m/s sprint that stops
+            // dead in one native picture, the 0.12 s crossfade dropped the pelvis 3.1 m/s (native 160112 field-11, 52.100).
+            pose.fade=OffenderEntry;
         }
         else if(identity.keeper&&p.action=="save"){
             // High, diving, upright (mid) or low save relative to the keeper's received facing.
@@ -195,7 +238,8 @@ public partial class ProbeBridge {
             // Contacts override the stride. The following native motion is already
             // known, so its legs return promptly instead of holding a static kick.
             pose.baseClip=strideClip;pose.baseTime=strideLoop?strideTime:locomotion.Phase;pose.baseLoop=strideLoop;pose.actionOverStride=true;
-            pose.actionWeight=FootballActionTiming.Weight(p.action=="goalKick"&&p.phase=="waiting"?"kickReady":p.action,age,progress,locomotion.Speed);
+            // A ready phase (passReady/kickReady) completes its mix at its last visible picture (FootballActionTiming.ReadyPhase).
+            pose.actionWeight=FootballActionTiming.Weight(p.action=="goalKick"&&p.phase=="waiting"?"kickReady":p.action,age,p.action=="passReady"||p.action=="kickReady"?readyPhase:progress,locomotion.Speed);
         }else if(locomotionAction&&carrying&&locomotion.Speed>.2f&&locomotion.Mode!="back"&&locomotion.Mode!="brake"&&!locomotion.Mode.StartsWith("turn-")){
             // Only a visual reach during an observed carrier stride: no extra ball
             // impulse, gameplay touch or predicted action is emitted. The swing leg
@@ -208,6 +252,9 @@ public partial class ProbeBridge {
         // A contact correction is permitted only close to the native ball/contact,
         // never merely because an old kick animation is still following through.
         if(pose.kind=="foot"||pose.kind=="left-foot")pose.contact&=Vector3.Distance(pose.target,actors[i].position)<1.4f&&Vector3.Distance(pose.target,ballView.position)<1;
+        // The received contact point of a full native foot contact is the ball centre: the boot meets the ball's surface (FootballAnimation.Pose.ballContact);
+        // the ready reach aims at the surface of the actual carried ball the same way.
+        pose.ballContact=(pose.kind=="foot"||pose.kind=="left-foot")&&pose.contact&&(contactPoint.HasValue&&(pose.contactWeight<=0||pose.contactWeight>=1)||readyReach);
         if(!identity.keeper&&locomotionAction){
             pose.forwardLean=locomotion.ForwardLean;pose.turnLean=locomotion.TurnLean;pose.recoveryLean=locomotion.RecoveryLean;
         }
@@ -220,18 +267,72 @@ public partial class ProbeBridge {
         bool footAction=FootballActionTiming.IsFootAction(p.action);
         if((locomotionAction||footAction)&&!celebration&&!pose.ballHeld&&(!pose.contact||partial||footAction)){
             // FootballAnimation applies the faded stride share of the mix.
-            float share=pose.contact&&!partial?0:1;
+            float share=1;
             pose.strideScale=locomotion.StrideMode=="side"?1:locomotion.StrideScale;pose.pelvisYaw=locomotion.PelvisYaw;pose.legYaw=locomotion.LegYaw;pose.directionWeight=locomotion.DirectionWeight*share;
-            if(locomotionAction){pose.sidePhase=locomotion.SidePhase;pose.sideLength=locomotion.SideLength;pose.sideWeight=locomotion.SideWeight;pose.keeperStance=identity.keeper;pose.support=locomotion.SupportWeight;}
+            if(locomotionAction){pose.sidePhase=locomotion.SidePhase;pose.sideLength=locomotion.SideLength;pose.sideWeight=locomotion.SideWeight;pose.keeperStance=identity.keeper;pose.support=locomotion.SupportWeight;pose.limitHands=true;pose.handLimit=locomotion.Mode=="brake"||locomotion.Mode.StartsWith("turn-")?1:0;}
+            // A slow body under a kick, pass or receive clip (outside its contact
+            // pictures) keeps the walking support: the kicker lands on a sole
+            // instead of hanging both feet in the air after a shot into a stop
+            // (five pictures under 1.9 m/s with both soles up).
+            else if(!pose.contact)pose.support=locomotion.SupportWeight;
             if(locomotionAction&&locomotion.Mode=="brake"&&pose.clip!=brakeClip)pose.brake=locomotion.BrakeWeight;
             if(locomotionAction)pose.brake=Mathf.Max(pose.brake,.45f*locomotion.CutWeight);
 
             pose.drive=locomotionAction&&!stance&&!turnOrBrake?Mathf.Clamp01((locomotion.Acceleration-1f)/5f)*locomotion.DirectionWeight:0;
-            pose.lockFeet=true;pose.settle=locomotion.Mode=="idle";pose.cycles=locomotion.StridePhase+cycleOffset;pose.cyclesKnown=true;pose.cycleClip=stance?null:strideClip;
+            pose.lockFeet=true;pose.settle=locomotion.Mode=="idle";pose.startStep=locomotionAction&&locomotion.Started&&(!stance||locomotion.StrideMode=="side");pose.startRight=locomotion.StartRightSwings;pose.braking=locomotionAction&&locomotion.Mode=="brake";pose.kick=footAction&&!p.action.EndsWith("Ready");pose.paceFade=locomotionAction&&!pose.contact;pose.cycles=locomotion.StridePhase+cycleOffset;pose.cyclesKnown=true;pose.cycleClip=stance?null:strideClip;
             if(locomotion.Mode=="idle"&&locomotion.StoppedFor<.4)pose.fade=.26f;
             if(locomotionAction)pose.turnLean+=-locomotion.Lateral*Mathf.Clamp01(locomotion.Speed/4)*5*(1-locomotion.SideWeight);
         }
+        LeadReach(ref pose,p,i,identity.keeper,locomotionAction,strideClip,strideTime);
         return pose;
+    }
+    // R20: contact preparation within the received interval. The display blends toward a received picture whose
+    // foot contact lies ahead of the shown clock (WorldViewPlayback.Blend lead: already received, never predicted).
+    // Until its native event the shown action stays the earlier one; the contact foot only moves toward the boot
+    // surface of the received contact point as a partial reach (weight below 1: no contact picture, no ball, no
+    // plant, no time of its own), eased in over the received interval up to LeadWindow before the event. At the
+    // event the full contact meets the same point. Without it the leg reached the point within one display picture
+    // (plant-edge receive at 120 Hz: knee 123 -> 146 degrees, 2103 deg/s thigh). Outfield only; ready countdowns
+    // keep their own reach; aerial, high, distant or planted contacts keep the earlier rule.
+    public const double LeadWindow=.1;
+    void LeadReach(ref FootballAnimation.Pose pose,WorldPose p,int i,bool keeper,bool locomotionAction,AnimationClip strideClip,double strideTime){
+        if(keeper||string.IsNullOrEmpty(p.leadAction)||p.leadAerial||p.leadContact?.Length!=3||!(p.leadIn>0)||!(p.leadSpan>0)||pose.plant||pose.ballHeld)return;
+        bool shownFoot=FootballActionTiming.IsFootAction(p.action)&&!p.action.EndsWith("Ready")&&p.action!="goalKick";
+        if(!locomotionAction&&!(shownFoot&&!pose.contact))return;
+        var target=Display(p.leadContact);if(target.y>.45f||Horizontal(target-actors[i].position)>1.4f)return;
+        double span=Math.Min(p.leadSpan,LeadWindow);float w=FootballEnvelope.Smooth(1-p.leadIn/span);if(w<=0)return;
+        pose.contact=true;pose.kind=p.leadAction=="tackle"&&actors[i].InverseTransformPoint(target).x<0?"left-foot":"foot";pose.contactWeight=Mathf.Clamp(w,.001f,.999f);pose.target=target;pose.ballContact=true;pose.lead=true;pose.leadIn=p.leadIn;pose.lockFeet=true;
+        // A kick ahead also brings in its own clip over the lead: its authored approach at real time, up to the end of the
+        // wind-up (as a countdown shows it) at the native event, weighted like the reach over the stride.
+        var kick=p.leadAction=="pass"||p.leadAction=="highPass"||p.leadAction=="cross"?passClip:p.leadAction=="shot"||p.leadAction=="freeKick"||p.leadAction=="volley"?shotClip:null;
+        if(kick!=null&&strideClip!=null){double end=kick==passClip?PassReadyEnd:ShotReadyEnd;pose.clip=kick;pose.time=Math.Max(0,end-p.leadIn);pose.loop=false;pose.baseClip=strideClip;pose.baseTime=strideTime;pose.baseLoop=true;pose.actionOverStride=true;pose.actionWeight=Mathf.Clamp01((float)(1-p.leadIn/span));pose.fade=.001f;}
+    }
+    // Native ready phase before the carrier's own kick (passReady/kickReady count
+    // down to the native contact at progress 1): the kicking foot reaches toward
+    // the actual received ball as a partial visual contact, so the native contact
+    // picture continues the motion instead of cutting to the ball. Only the
+    // current ball near the carrier's feet; no contact time, ball or root changes.
+    // The reach aimed at the ball centre, which a standing kicker's leg does not
+    // reach (0.96 m from the hip with the ball 0.55 m ahead): it never acted, and
+    // the contact solve moved the boot 0.72 m in one picture (R11 shot: 50 m/s,
+    // 5048 deg/s shin). It now aims at the boot-surface point of the actual ball
+    // (FootballRig.BallContactTarget, as the contact itself) during the swing
+    // toward the ball: from ReadyReachFrom of the ready phase (shot_meshy: the
+    // measured end of its backswing, 0.33 of 0.46 s; pass_inside_meshy: 0.50 of
+    // 0.70 s, its foot held back before the swing from 0.61 s) to its last
+    // visible picture (FootballActionTiming.ReadyPhase).
+    // Reaching during the wind-up (R11 v4) pulled the foot against the backswing.
+    public const double ReadyReachFrom=.72;
+    bool ReadyReach(ref FootballAnimation.Pose pose,WorldPose p,WorldFrame f,int i,double phase){
+        // r16: or at the received contact point of a countdown for a ball still on its way (a one-touch
+        // pass or shot: native sends the point with the countdown). Without the reach the boot stood
+        // planted 0.35 m from that point and the receive there after an aborted passReady pulled it
+        // over in one picture (1613 deg/s thigh, R11 1377). The point is received, never predicted.
+        var aim=p.contactPoint?.Length==3?Display(p.contactPoint):(Vector3?)null;
+        bool carried=f.owner==p.id&&ballView.gameObject.activeSelf&&ballView.position.y<=.45f&&Horizontal(ballView.position-actors[i].position)<=1.2f;
+        if(!carried&&!(aim.HasValue&&f.owner!=p.id&&aim.Value.y<=.45f&&Horizontal(aim.Value-actors[i].position)<=1.2f))return false;
+        float reach=FootballEnvelope.Smooth((phase-ReadyReachFrom)/(1-ReadyReachFrom));if(reach<=0)return false;
+        pose.contact=true;pose.kind="foot";pose.contactWeight=Mathf.Clamp(reach,.001f,.999f);return true;
     }
     // Native header distance; the goal-kick ball has left its kicker beyond GoalKickGone.
     const float HeaderReach=2.6f,GoalKickGone=1.5f;

@@ -203,10 +203,12 @@ function v64SetPrematchSlot(career,fixture,state,side,slot,inPid){
  const plan=side===0?fixture.plan.home:fixture.plan.away,active=v64Active(state,side),bench=v64Bench(state,side),outPid=plan.starters[slot];
  if(outPid===inPid)return;
  const out=v64Player(career,fixture,side,outPid),incoming=v64Player(career,fixture,side,inPid);
- if(!out||!incoming||!bench.includes(inPid)||out.keeper!==incoming.keeper)throw Error('Dieser Startelftausch ist nicht zulässig.');
+ if(!out||!incoming||active.includes(inPid)||!v129RosterEligible(incoming)||out.keeper!==incoming.keeper)throw Error('Dieser Startelftausch ist nicht zulässig.');
  const role=state.roles[outPid],benchIndex=bench.indexOf(inPid);
+ v129RosterInitialize(career,fixture,state,inPid);
  if(state.playerPerformance)v155SyncPhases(state);
- plan.starters[slot]=inPid;plan.bench[benchIndex]=outPid;active[slot]=inPid;bench[benchIndex]=outPid;
+ plan.starters[slot]=inPid;active[slot]=inPid;
+ if(benchIndex>=0){plan.bench[benchIndex]=outPid;bench[benchIndex]=outPid;}
  if(state.roleAssignments)v154Transition(state,{type:'substitution',outPlayerId:outPid,inPlayerId:inPid});
  v64TransferInstructions(state,outPid,inPid);
  delete state.roles[outPid];state.roles[inPid]=role;delete plan.roles[outPid];plan.roles[inPid]=role;
@@ -393,4 +395,30 @@ function v64CompleteOwnMatch(career){
  v62AdvanceDay(career);
  career.updated=new Date().toISOString();
  return fixture;
+}
+
+// Explicit prematch selection event; no load/restore migration or live admission.
+function v129RosterEligible(player){return Boolean(player&&!player.injured&&!player.suspended&&player.matchEligible!==false);}
+function v129RosterInitialize(career,fixture,state,pid){
+ if(state.phase!=='prematch'||state.minute!==0)throw Error('Der Spieltagskader ist nach Anpfiff gesperrt.');
+ const player=career.world.clubs.flatMap(c=>c.roster).find(p=>p.pid===pid);
+ if(!v129RosterEligible(player))throw Error('Dieser Spieler ist nicht verfügbar.');
+ let additions=null;
+ if(state.playerLoad&&!state.playerLoad.players[pid]){
+  const freshState={fresh:{[pid]:player.fresh}};v158Initialize(career,fixture,freshState);
+  if(!freshState.playerLoad?.players[pid])throw Error('Die Belastungsdaten dieses Spielers fehlen.');
+  additions=freshState.playerLoad;
+ }
+ if(state.fresh[pid]===undefined)state.fresh[pid]=player.fresh;
+ if(state.minutes[pid]===undefined)state.minutes[pid]=0;
+ if(state.stats[pid]===undefined)state.stats[pid]={goals:0,assists:0,shots:0};
+ if(additions){state.playerLoad.players[pid]=additions.players[pid];state.playerLoad.meta[pid]=additions.meta[pid];state.playerLoad.startFresh[pid]=additions.startFresh[pid];state.fresh[pid]=additions.players[pid].freshness;}
+}
+function v129RosterBench(career,fixture,state,side,outPid,inPid){
+ if(state.phase!=='prematch')throw Error('Die Ersatzbank ist nach Anpfiff gesperrt.');
+ const plan=side===0?fixture.plan.home:fixture.plan.away,bench=v64Bench(state,side),active=v64Active(state,side),index=bench.indexOf(outPid),incoming=v64Player(career,fixture,side,inPid);
+ if(index<0||!incoming||active.includes(inPid)||outPid===inPid||!v129RosterEligible(incoming))throw Error('Dieser Banktausch ist nicht zulässig.');
+ v129RosterInitialize(career,fixture,state,inPid);
+ const other=bench.indexOf(inPid);bench[index]=inPid;plan.bench[index]=inPid;
+ if(other>=0){bench[other]=outPid;plan.bench[other]=outPid;}
 }

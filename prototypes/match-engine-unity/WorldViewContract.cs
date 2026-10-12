@@ -15,7 +15,16 @@ namespace Doppel6.Probe {
     // Set from the received JSON, never serialised: the picture states holding
     // explicitly (native release sends holding:false without pickup). The same
     // applies to the keeper outcome facts: an omitted fact is unknown, not false.
-    [NonSerialized] public bool holdingKnown,savedKnown,parryKnown,goalKnown,ballHeldKnown;}
+    [NonSerialized] public bool holdingKnown,savedKnown,parryKnown,goalKnown,ballHeldKnown;
+    // R20, optional native timing (bridge): actionAt is the native clock at which this action was observed to
+    // start (a foot contact's own contact), actionAtKnown only with a real one; durationKnown: duration is the
+    // native one, not the bridge's fallback 1. Older pictures omit them (unknown, never computed).
+    public double actionAt=-1;public bool actionAtKnown,durationKnown;
+    // R20, display lead (WorldViewPlayback.Blend only, never a received fact): a foot contact of the received
+    // picture the display blends toward that is still ahead of the displayed clock: its action, id and received
+    // contact point, the seconds until its native event (leadIn > 0) and from the start of the received interval
+    // to it (leadSpan), and its native aerial flag. A received picture's lead is cleared (ProbeBridge.WorldCommand).
+    public string leadAction,leadId;public double[] leadContact;public double leadIn=-1,leadSpan=-1;public bool leadAerial;}
 [Serializable] public class WorldNet {public int sign;public double z,height,age,bulge;}
 [Serializable] public class WorldOffside {public double lineX;}
 // Optional celebration fields describe an already booked native goal scene;
@@ -79,7 +88,11 @@ public sealed class WorldViewState {
     public bool Accept(WorldFrame candidate){Validate(candidate);if(candidate.sequence<=Frame.sequence)return false;Frame=candidate;return true;}
     public void Validate(WorldFrame f){
         if(f==null||f.schema!=Schema||f.session!=Config.session||f.sequence<1||!Finite(f.clock)||f.clock<0||!Finite(f.elapsed)||f.elapsed<0||!new HashSet<string>{"live","paused","finished","replay","prematch","preparation"}.Contains(f.phase)||!Vector(f.ball)||f.ball[1]<0||!Finite(f.ballOpacity)||f.ballOpacity<0||f.ballOpacity>1||f.score?.Length!=2||Array.Exists(f.score,n=>n<0||n>1000)||f.camera==null||!Vector(f.camera.position)||!Vector(f.camera.target)||!Finite(f.camera.fov)||f.camera.fov<5||f.camera.fov>100||f.players==null||f.players.Length<1||f.players.Length>24)throw new ArgumentException("Invalid match picture");
-        var ids=new HashSet<string>();foreach(var p in f.players){if(p==null||!Players.TryGetValue(p.id??"",out var identity)||!ids.Add(p.id)||!Vector(p.position)||!Vector(p.facing)||(p.contactPoint?.Length??0)>0&&!Vector(p.contactPoint)||p.actionId!=null&&p.actionId.Length>160||!Finite(p.recovery)||p.recovery<0||p.recovery>1||!Finite(p.freshness)||p.freshness!= -1&&(p.freshness<0||p.freshness>1)||!Finite(p.progress)||Math.Abs(p.progress)>100||!Finite(p.duration)||p.duration<=0||p.duration>30||p.number!=identity.number||!Finite(p.pickup)||p.pickup!= -1&&(p.pickup<0||p.pickup>1)||p.holding&&p.action!="throw"||!string.IsNullOrEmpty(p.phase)&&(p.action!="goalKick"||p.phase!="waiting"&&p.phase!="follow"))throw new ArgumentException("Invalid match picture player");}
+        var ids=new HashSet<string>();foreach(var p in f.players){if(p==null||!Players.TryGetValue(p.id??"",out var identity)||!ids.Add(p.id)||!Vector(p.position)||!Vector(p.facing)||(p.contactPoint?.Length??0)>0&&!Vector(p.contactPoint)||p.actionId!=null&&p.actionId.Length>160||!Finite(p.recovery)||p.recovery<0||p.recovery>1||!Finite(p.freshness)||p.freshness!= -1&&(p.freshness<0||p.freshness>1)||!Finite(p.progress)||Math.Abs(p.progress)>100||!Finite(p.duration)||p.duration<=0||p.duration>30||p.number!=identity.number||!Finite(p.pickup)||p.pickup!= -1&&(p.pickup<0||p.pickup>1)||p.holding&&p.action!="throw"||!string.IsNullOrEmpty(p.phase)&&(p.action!="goalKick"||p.phase!="waiting"&&p.phase!="follow"))throw new ArgumentException("Invalid match picture player");
+            // R20: a known native action time is finite, not negative and not after its own picture; a display lead
+            // (WorldViewPlayback.Blend) names a foot contact, a received contact point and a time within one interval.
+            if(p.actionAtKnown&&(!Finite(p.actionAt)||p.actionAt<0||p.actionAt>f.clock+1e-6))throw new ArgumentException("Invalid match picture action time");
+            if(!string.IsNullOrEmpty(p.leadAction)&&(!WorldViewPlayback.FootContact(p.leadAction)||p.leadId!=null&&p.leadId.Length>160||!Vector(p.leadContact)||!Finite(p.leadIn)||p.leadIn<=0||p.leadIn>1||!Finite(p.leadSpan)||p.leadSpan<p.leadIn||p.leadSpan>1))throw new ArgumentException("Invalid match picture display lead");}
         if(!string.IsNullOrEmpty(f.owner)&&!ids.Contains(f.owner))throw new ArgumentException("Invalid match picture owner");
         if(f.offside!=null&&(!Finite(f.offside.lineX)||Math.Abs(f.offside.lineX)>Config.geometry.length/2+.001))throw new ArgumentException("Invalid match offside picture");
         if(f.celebrating&&(f.celebrationTeam<0||f.celebrationTeam>1||!Finite(f.celebrationTime)||f.celebrationTime<0||f.celebrationTime>60||f.celebrationScorer!=null&&f.celebrationScorer.Length>160))throw new ArgumentException("Invalid match celebration picture");

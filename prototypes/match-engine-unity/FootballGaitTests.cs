@@ -36,7 +36,11 @@ public static class FootballGaitTests {
             var bones=actor.GetComponentsInChildren<Transform>();Transform Bone(string n)=>Array.Find(bones,t=>t.name=="mixamorig:"+n);
             Ground(animation,actor.transform,C,Check);
             Gait(animation,actor.transform,C,Check);
+            NaturalMotionR5(animation,actor.transform,C,Bone,Check);
             Release(animation,actor.transform,C,Bone,Check);
+            BallContact(animation,actor.transform,C,Bone,Check);
+            ReadyEntry(animation,actor.transform,C,Bone,Check);
+            R18(animation,actor.transform,C,Bone,Check);
             Reach(animation,actor.transform,C,Bone,Check);
             Bridge(repository,scene,actor,animation,clips,names,Check);
             Kits(Check);
@@ -46,6 +50,39 @@ public static class FootballGaitTests {
         var folder=Path.Combine(repository,outputFolder??"outputs/platform/unity-phases");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"gait-tests.json"),json);
         if(failed>0)throw new Exception(failed+" gait checks failed; see outputs/platform/unity-phases/gait-tests.json");
         return json;
+    }
+    // r18: a foot contact turns thigh and shin least from the leg shown in the last picture (FootballRig.LeastLeg). A
+    // second receive whose point lies 0.43 m from the boot while the first receive releases (native 160112-field-2
+    // 77.117) meets its point, turns the leg no more than the R16 solve of the same picture (swivelPole) and by its
+    // twist-free bound (swivelDirect), keeps the knee in front and allocates nothing (the solve cost per call in the
+    // editor on this machine is reported, no device figure). A full foot contact that changes its limb within one action
+    // (a tackle's side of the received facing) releases the old boot from its contact point instead of dropping it to
+    // the clip in one picture, and that release ends within MaxBallRelease.
+    static void R18(FootballAnimation a,Transform actor,Func<string,AnimationClip> C,Func<string,Transform> Bone,Action<bool,string,double> check){
+        var receive=C("receive_ground_meshy");float radius=WorldBallMotion.Radius;var thigh=Bone("RightUpLeg");var shin=Bone("RightLeg");
+        var first=actor.position+actor.forward*.45f+actor.right*.10f;first.y=radius;
+        var pose=new FootballAnimation.Pose{clip=receive,time=.7,key="r18-first",contact=true,kind="foot",target=first,ballContact=true,lockFeet=true};
+        a.Sample(pose,800,true);for(int k=1;k<=10;k++){pose.time=.7+k/60.0;pose.contact=k<7;a.Sample(pose,800+k/60.0);}
+        var unturn=Quaternion.Inverse(actor.rotation);var u0=unturn*thigh.rotation;var l0=unturn*shin.rotation;
+        var second=first+actor.right*.40f+actor.forward*.16f;
+        var next=new FootballAnimation.Pose{clip=receive,time=.7,key="r18-second",contact=true,kind="foot",target=second,ballContact=true,lockFeet=true};a.Sample(next,800+11/60.0);
+        float turn=Mathf.Max(Quaternion.Angle(u0,unturn*thigh.rotation),Quaternion.Angle(l0,unturn*shin.rotation)),front=Vector3.Dot(a.rig.KneeBend(1).normalized,actor.forward);
+        check(a.rig.reachable&&a.rig.contactError<.03f&&a.rig.swivelPole>=0&&turn<=a.rig.swivelPole+.5f&&Mathf.Abs(turn-a.rig.swivelDirect)<1&&front>-.2f,"A second receive 0.43 m from the releasing boot turns the leg least from its shown pose: "+turn.ToString("0.0")+" deg (R16 solve "+a.rig.swivelPole.ToString("0.0")+", twist-free bound "+a.rig.swivelDirect.ToString("0.0")+", chord "+a.rig.swivelChord.ToString("0.0")+"), boot "+(a.rig.contactError*100).ToString("0.0")+" cm from its point, knee forward "+front.ToString("0.00"),turn);
+        var shownLeg=a.rig.Leg(1);var aim=a.rig.Ankle(1).position;for(int k=0;k<20;k++)a.rig.Contact(aim,"foot",1,false,false,null,shownLeg);
+        const int calls=5000;var none=default(FootballRig.ShownLeg);for(int k=0;k<20;k++)a.rig.Contact(aim,"foot",1,false,false,null,none);
+        var clock=System.Diagnostics.Stopwatch.StartNew();for(int k=0;k<calls;k++)a.rig.Contact(aim,"foot",1,false,false,null,none);clock.Stop();double r16=clock.Elapsed.TotalMilliseconds*1000/calls;
+        long evaluations=FootballRig.LegEvaluations;long before=GC.GetAllocatedBytesForCurrentThread();clock.Restart();for(int k=0;k<calls;k++)a.rig.Contact(aim,"foot",1,false,false,null,shownLeg);clock.Stop();long bytes=GC.GetAllocatedBytesForCurrentThread()-before;
+        double micro=clock.Elapsed.TotalMilliseconds*1000/calls;double per=(FootballRig.LegEvaluations-evaluations)/(double)calls;bool ran=per>=1.5;
+        long half=FootballRig.LegEvaluations;before=GC.GetAllocatedBytesForCurrentThread();clock.Restart();for(int k=0;k<calls;k++)a.rig.Contact(aim,"foot",.5f,false,false,null,shownLeg);clock.Stop();bytes+=GC.GetAllocatedBytesForCurrentThread()-before;double release=clock.Elapsed.TotalMilliseconds*1000/calls,perRelease=(FootballRig.LegEvaluations-half)/(double)calls;
+        check(bytes==0&&ran,"The least-rotation foot solve allocates nothing ("+bytes+" B over "+calls+" solves; "+micro.ToString("0.00",System.Globalization.CultureInfo.InvariantCulture)+" us per solve against "+r16.ToString("0.00",System.Globalization.CultureInfo.InvariantCulture)+" us for the R16 solve in the editor on this machine, "+per.ToString("0.0",System.Globalization.CultureInfo.InvariantCulture)+" two-bone solves per call (the applied one and the R16 diagnostic); a release at weight 0.5 "+release.ToString("0.00",System.Globalization.CultureInfo.InvariantCulture)+" us, "+perRelease.ToString("0.0",System.Globalization.CultureInfo.InvariantCulture)+" solves; no device figure)",micro);
+        // Limb switch within one contact: right boot at the ball, then the left foot takes the contact.
+        var ball=actor.position+actor.forward*.45f;ball.y=radius;var tackle=new FootballAnimation.Pose{clip=receive,time=.7,key="r18-tackle",contact=true,kind="foot",target=ball,ballContact=true,lockFeet=true};
+        a.Sample(tackle,900,true);a.Sample(tackle,900+1/60.0);var boot=a.rig.Ankle(1).position;
+        tackle.kind="left-foot";tackle.time=.7+2/60.0;a.Sample(tackle,900+2/60.0);float drop=Vector3.Distance(boot,a.rig.Ankle(1).position);
+        var free=new FootballAnimation.Pose{clip=receive,time=.7+2/60.0,key="r18-free",lockFeet=true};a.Sample(free,950,true);a.Sample(free,950+1/60.0);float clip=Vector3.Distance(boot,a.rig.Ankle(1).position);
+        tackle.kind="foot";tackle.time=.7;a.Sample(tackle,1000,true);a.Sample(tackle,1000+1/60.0);tackle.kind="left-foot";var last=a.rig.Ankle(1).position;float largest=0;
+        for(int k=2;k<=20;k++){tackle.time=.7+k/60.0;a.Sample(tackle,1000+k/60.0);float step=Vector3.Distance(last,a.rig.Ankle(1).position);largest=Mathf.Max(largest,step);last=a.rig.Ankle(1).position;}
+        check(drop<clip*.5f+.01f&&largest<clip*.6f+.01f,"A contact handed to the other foot releases the old boot (moved "+(drop*100).ToString("0.0")+" cm in the switch picture, largest step "+(largest*100).ToString("0.0")+" cm; the clip boot is "+(clip*100).ToString("0.0")+" cm away)",drop);
     }
     static float Lowest(Transform actor){return FootballGround.LowestVertex(actor)+actor.position.y;}
     static void Ground(FootballAnimation a,Transform actor,Func<string,AnimationClip> C,Action<bool,string,double> check){
@@ -105,6 +142,101 @@ public static class FootballGaitTests {
         for(int i=1;i<=240;i++){float v=i<60?3f:i<120?4.6f:4f+(i%2==0?.15f:-.15f);p+=Vector3.forward*v/60;m.Sample(p,Vector3.forward,i/60.0,false,false);if(i==59)check(m.StrideMode=="run"&&!m.FastStride,"A 3 m/s run uses the measured jog clip",m.StrideSpeed);if(i==119)check(m.FastStride,"A 4.6 m/s run uses the measured fast run clip",m.StrideSpeed);if(i>125){if(m.FastStride!=fast)changes++;}fast=m.FastStride;}
         check(changes==0,"Speed noise near the jog/fast boundary keeps one clip",changes);
     }
+    // r5 natural-motion mechanisms on the actual rig: the measured stride sync
+    // marker, a forward-only knee, toe-off instead of sliding, received
+    // repositions and snap stops, the top-speed stride band, continuous brake
+    // weights and the pose-distance crossfade.
+    static void NaturalMotionR5(FootballAnimation a,Transform actor,Func<string,AnimationClip> C,Func<string,Transform> Bone,Action<bool,string,double> check){
+        var toes=new[]{Bone("LeftToeBase"),Bone("RightToeBase")};
+        // 1. Neighbouring bands at equal cycle values: feet at the sync marker vs at the first-threshold footfall.
+        Vector3[] Feet(AnimationClip clip,double time,int key){a.Sample(new FootballAnimation.Pose{clip=clip,time=time,loop=true,key="sync"+key},500+key,true);var unturn=Quaternion.Inverse(actor.rotation);return new[]{unturn*(toes[0].position-actor.position),unturn*(toes[1].position-actor.position)};}
+        foreach(var (x,y) in new[]{("run_fast6","run_fast4"),("run_fast4","sprint_forward"),("sprint_forward","running")}){
+            AnimationClip p=C(x),q=C(y);double sync=0,fall=0;int key=0;
+            for(int k=0;k<40;k++){double c=k/40.0;
+                var ps=Feet(p,a.StrideTime(c,p),key++);var qs=Feet(q,a.StrideTime(c,q),key++);var pf=Feet(p,(c+a.Footfall(p))*(p.length-.001),key++);var qf=Feet(q,(c+a.Footfall(q))*(q.length-.001),key++);
+                for(int f=0;f<2;f++){sync+=(ps[f]-qs[f]).sqrMagnitude;fall+=(pf[f]-qf[f]).sqrMagnitude;}}
+            sync=Math.Sqrt(sync/80);fall=Math.Sqrt(fall/80);
+            check(sync<fall,"Stride sync marker keeps "+x+"/"+y+" toes closer together at equal cycle values than the first-threshold footfall: "+sync.ToString("0.00")+" m RMS vs "+fall.ToString("0.00")+" m",sync);
+        }
+        // 2. A knee never bends backward: a sampled leg slightly past straight is solved with the knee in front.
+        {
+            a.Sample(new FootballAnimation.Pose{clip=C("idle_stand_meshy"),time=0,loop=true,key="knee"},600,true);
+            var hip=Bone("LeftUpLeg");var knee=Bone("LeftLeg");var foot=Bone("LeftFoot");var right=actor.right;
+            float Ahead(){var line=foot.position-hip.position;var bend=Vector3.ProjectOnPlane(knee.position-(hip.position+foot.position)*.5f,line.normalized);return Vector3.Dot(bend,actor.forward);}
+            knee.rotation=Quaternion.AngleAxis(-30,right)*knee.rotation;float before=Ahead();
+            var target=foot.position+actor.forward*.06f+Vector3.up*.08f;a.rig.PlaceFoot(0,target);float ahead=Ahead();
+            check(before<0&&ahead>0,"A leg sampled past straight (knee "+(-before*100).ToString("0.0")+" cm behind the hip-ankle line) is solved with its knee in front ("+(ahead*100).ToString("0.0")+" cm ahead)",ahead);
+        }
+        // 3. Sprinting at 6 m/s with planted feet: a sole within 3 cm of the turf does not slide.
+        {
+            var m=new FootballLocomotion();var clip=C("sprint_forward");var start=actor.position;var p=Vector3.zero;float stride=a.StrideLength(clip);
+            m.Sample(p,Vector3.forward,0,false,false,-1,stride,a.Heading(clip),0,1f/clip.length);float glide=0;int n=0;Vector3[] last=null;float[] lastClear=null;
+            for(int frame=1;frame<=150;frame++){
+                double clock=frame/60.0;p+=Vector3.forward*6f/60;m.Sample(p,Vector3.forward,clock,false,false,-1,stride,a.Heading(clip),0,1f/clip.length);actor.position=start+p;
+                a.Sample(new FootballAnimation.Pose{clip=clip,time=a.StrideTime(m.StridePhase,clip),loop=true,key="toeoff",lockFeet=true,cycleClip=clip,cycles=m.StridePhase,cyclesKnown=true,strideScale=m.StrideScale},clock,frame==1);
+                // As the natural-motion gate: a sole (ankle or toe base) within 3 cm in both
+                // pictures that is also the lower foot; its slide is the slower of heel and toe.
+                var now=new[]{toes[0].position,toes[1].position,a.rig.Ankle(0).position,a.rig.Ankle(1).position};var clear=new[]{Mathf.Min(a.ground.AnkleClearance(0),a.ground.ToeClearance(0)),Mathf.Min(a.ground.AnkleClearance(1),a.ground.ToeClearance(1)),a.ground.SupportClearance(0),a.ground.SupportClearance(1)};
+                if(last!=null&&frame>40){int f=clear[2]<=clear[3]?0:1;if(clear[f]<.03f&&lastClear[f]<.03f&&clear[2+f]<=clear[3-f]+.01f){glide+=Mathf.Min(Vector3.ProjectOnPlane(now[f]-last[f],Vector3.up).magnitude,Vector3.ProjectOnPlane(now[2+f]-last[2+f],Vector3.up).magnitude)*60;n++;}}
+                last=now;lastClear=clear;
+            }
+            actor.position=start;float mean=n>0?glide/n:0;
+            check(n>0&&mean<.25f,"A 6 m/s sprint with planted feet: the supporting sole stays put or lifts off (mean slide "+mean.ToString("0.00")+" m/s over "+n+" pictures)",mean);
+        }
+        // 3b. r9: a backward run braking to a stop under the walking support: below
+        // 1.9 m/s a moving body always shows a sole within 3 cm (its only planted
+        // foot waits for the landing foot and stays on the turf), and that sole
+        // does not slide (as the natural-motion support gates, actual rig).
+        {
+            var m=new FootballLocomotion();var clip=C("back_left");var start=actor.position;var p=Vector3.zero;float stride=a.StrideLength(clip);
+            m.Sample(p,Vector3.forward,0,false,false,-1,stride,a.Heading(clip),0,1f/clip.length);int slowFloat=0,slow=0,n=0;float glide=0;Vector3[] last=null;float[] lastClear=null;var at=new System.Text.StringBuilder();
+            for(int frame=1;frame<=150;frame++){
+                double clock=frame/60.0;float v=frame<=60?4f:Mathf.Max(0,4f-(frame-60)*4f/45);p-=Vector3.forward*v/60;m.Sample(p,Vector3.forward,clock,false,false,-1,stride,a.Heading(clip),0,1f/clip.length);actor.position=start+p;
+                a.Sample(new FootballAnimation.Pose{clip=clip,time=a.StrideTime(m.StridePhase,clip),loop=true,key="backstop",lockFeet=true,cycleClip=clip,cycles=m.StridePhase,cyclesKnown=true,strideScale=m.StrideScale,support=m.SupportWeight,braking=frame>60},clock,frame==1);
+                var now=new[]{toes[0].position,toes[1].position,a.rig.Ankle(0).position,a.rig.Ankle(1).position};var clear=new[]{Mathf.Min(a.ground.AnkleClearance(0),a.ground.ToeClearance(0)),Mathf.Min(a.ground.AnkleClearance(1),a.ground.ToeClearance(1)),a.ground.SupportClearance(0),a.ground.SupportClearance(1)};
+                if(frame>60&&v>.2f&&v<1.9f){slow++;if(clear[2]>.03f&&clear[3]>.03f){slowFloat++;at.Append(" "+frame+":"+a.FootLockState+" L"+clear[2].ToString("0.000")+"/"+clear[0].ToString("0.000")+" R"+clear[3].ToString("0.000")+"/"+clear[1].ToString("0.000")+" drop"+a.SupportDrop.ToString("0.000")+" v"+v.ToString("0.0")+" s"+m.SupportWeight.ToString("0.00")+" "+m.Mode+";");}}
+                if(last!=null&&frame>60&&v>.5f){int f=clear[2]<=clear[3]?0:1;if(clear[f]<.03f&&lastClear[f]<.03f&&clear[2+f]<=clear[3-f]+.01f){glide+=Mathf.Min(Vector3.ProjectOnPlane(now[f]-last[f],Vector3.up).magnitude,Vector3.ProjectOnPlane(now[2+f]-last[2+f],Vector3.up).magnitude)*60;n++;}}
+                last=now;lastClear=clear;
+            }
+            actor.position=start;float mean=n>0?glide/n:0;
+            check(slow>0&&slowFloat==0&&n>0&&mean<.25f,"A braking backward run keeps a sole down below 1.9 m/s ("+slowFloat+" of "+slow+" slow pictures without one) and its support does not slide (mean "+mean.ToString("0.00")+" m/s over "+n+" pictures)"+at,slowFloat+mean);
+        }
+        // 4. A received 6.8 m reposition within one picture is no 136 m/s stride: the stride resets, no turn or brake.
+        {
+            var m=new FootballLocomotion();var p=Vector3.zero;double t=10;m.Sample(p,Vector3.forward,t,false,false);
+            for(int i=0;i<30;i++){t+=.05;p+=Vector3.forward*5*.05f;m.Sample(p,Vector3.forward,t,false,false);}
+            t+=.05;p+=new Vector3(4.8f,0,-4.8f);m.Sample(p,-Vector3.forward,t,false,false);bool reset=m.Mode=="idle"&&m.Speed==0;
+            t+=.05;m.Sample(p,-Vector3.forward,t,false,false);
+            check(reset&&m.Mode=="idle","A 6.8 m reposition within one picture resets the stride instead of a sprint, turn and brake (mode "+m.Mode+")",m.Speed);
+        }
+        // 5. A run that stops within one picture: a brake posture without brake_meshy steps; a decelerating run steps.
+        {
+            var m=new FootballLocomotion();var p=Vector3.zero;double t=20;m.Sample(p,Vector3.forward,t,false,false);
+            for(int i=0;i<30;i++){t+=.05;p+=Vector3.forward*5*.05f;m.Sample(p,Vector3.forward,t,false,false);}
+            t+=.05;m.Sample(p,Vector3.forward,t,false,false);bool snap=m.Mode=="brake"&&!m.BrakeMoving;
+            var d=new FootballLocomotion();p=Vector3.zero;t=30;d.Sample(p,Vector3.forward,t,false,false);float v=5;
+            for(int i=0;i<40;i++){t+=.05;if(i>=30)v=Mathf.Max(0,v-1.2f);p+=Vector3.forward*v*.05f;d.Sample(p,Vector3.forward,t,false,false);if(d.Mode=="brake")break;}
+            check(snap&&d.Mode=="brake"&&d.BrakeMoving,"A stop within one picture brakes without stepping; a decelerating run takes braking steps",snap?1:0);
+        }
+        // 6. Top-speed stride band with hysteresis; 7. brake/turn weight continuity.
+        {
+            var m=new FootballLocomotion();var p=Vector3.zero;double t=40;m.Sample(p,Vector3.forward,t,false,false);bool top=false,back=true;
+            for(int i=0;i<80;i++){t+=.05;float v=i<40?7.4f:6.4f;p+=Vector3.forward*v*.05f;m.Sample(p,Vector3.forward,t,false,false);if(i==39)top=m.StrideMode=="sprint"&&m.FastStride;if(i==79)back=m.FastStride;}
+            check(top&&back,"7.4 m/s uses the measured top-speed stride and 6.4 m/s keeps it (hysteresis 6.2/6.6 m/s)",top?1:0);
+            var b=new FootballLocomotion();p=Vector3.zero;t=50;b.Sample(p,Vector3.forward,t,false,false);float largest=0,last=-1;int braking=0;
+            for(int i=0;i<60;i++){t+=.05;float v=i<30?5:Mathf.Max(.4f,5-(i-29)*.9f+(i%2==0?.6f:-.6f));p+=Vector3.forward*v*.05f;b.Sample(p,Vector3.forward,t,false,false);if(b.Mode=="brake"){braking++;if(last>=0)largest=Mathf.Max(largest,Mathf.Abs(b.MotionWeight-last));}last=b.Mode=="brake"?b.MotionWeight:-1;}
+            check(braking>2&&largest<=.05f/(float)FootballLocomotion.BrakePostureTime+1e-4f,"Within a brake the clip share over the stride changes at most 1/0.15 per second (largest step "+largest.ToString("0.000")+")",largest);
+        }
+        // 8. Pose-distance crossfade: a forward/backward exchange blends longer than a phase-synced band change.
+        {
+            float Fade(string from,string to,int key){
+                AnimationClip p=C(from),q=C(to);var pose=new FootballAnimation.Pose{clip=p,time=a.StrideTime(3,p),loop=true,key="fade",paceFade=true,cycleClip=p,cycles=3,cyclesKnown=true};
+                a.Sample(pose,700+key,true);a.Sample(pose,700+key+1/60.0);pose.clip=q;pose.cycleClip=q;pose.time=a.StrideTime(3+1/60.0,q);pose.cycles=3+1/60.0;a.Sample(pose,700+key+2/60.0);return a.ChangeFade;
+            }
+            float family=Fade("run_fast6","back_left",0),band=Fade("walking","run_fast6",10);
+            check(family>band&&family>.12f&&family<=FootballAnimation.MaxChangeFade,"A forward-to-backward stride exchange crossfades over its pose distance ("+family.ToString("0.00")+" s) and longer than a walk-to-jog band change ("+band.ToString("0.00")+" s)",family);
+        }
+    }
     static void Release(FootballAnimation a,Transform actor,Func<string,AnimationClip> C,Func<string,Transform> Bone,Action<bool,string,double> check){
         var foot=Bone("RightFoot");var pass=C("pass_inside_meshy");var target=actor.position+actor.forward*.55f+actor.right*.12f+Vector3.up*.25f;
         var pose=new FootballAnimation.Pose{clip=pass,time=.8,key="pass-release",contact=true,kind="foot",target=target};a.Sample(pose,60,true);a.Sample(pose,60+1/60.0);
@@ -119,6 +251,64 @@ public static class FootballGaitTests {
         pose.contact=true;pose.key="pause-release";pose.time=.8;a.Sample(pose,90,true);a.Sample(pose,90.01);pose.contact=false;a.Sample(pose,90.04);var held=foot.position;a.Sample(pose,90.04);
         check(held==foot.position&&a.ReleaseWeight>0,"Paused native clock freezes a releasing limb",a.ReleaseWeight);
     }
+    // r11: a native ground-ball contact (received point = ball centre) is met by
+    // the boot at the ball's surface: the displayed ball centre lies below this
+    // rig's standing ankle, so the ankle solved into it cut the boot and, through
+    // the reach drop, the standing sole into the turf (R9 shot -0.148 m, pass
+    // -0.155 m, receive -0.065 m). Through the contact and its release both
+    // soles stay on or above the turf, the standing foot keeps its point, and
+    // the release ends within MaxBallRelease and freezes on a paused clock.
+    static void BallContact(FootballAnimation a,Transform actor,Func<string,AnimationClip> C,Func<string,Transform> Bone,Action<bool,string,double> check){
+        float stand=actor.position.y+a.ground.ankle*actor.lossyScale.y-FootballGround.PitchSurface,radius=WorldBallMotion.Radius;var tip=Bone("RightToe_End");
+        check(stand>radius+.03f,"The displayed ground-ball centre ("+radius.ToString("0.000")+" m) lies "+((stand-radius)*100).ToString("0.0")+" cm below the standing ankle ("+stand.ToString("0.000")+" m): an ankle solved into it cuts the boot into the turf",stand-radius);
+        foreach(var (name,time) in new[]{("shot_meshy",.46),("pass_inside_meshy",.8),("receive_ground_meshy",.7)}){
+            var centre=actor.position+actor.forward*.45f+actor.right*.1f;centre.y=radius;
+            var pose=new FootballAnimation.Pose{clip=C(name),time=time,key="ball-"+name,contact=true,kind="foot",target=centre,ballContact=true,lockFeet=true};
+            a.Sample(pose,300,true);a.Sample(pose,300+1/60.0);
+            var ankle=a.rig.Ankle(1).position;var toe=a.rig.Toe(1).position;var end=tip!=null?tip.position:toe;var standingPoint=a.rig.Ankle(0).position;
+            float surface=Mathf.Min(FootballRig.SegmentDistance(centre,ankle,toe),FootballRig.SegmentDistance(centre,toe,end))-radius,kick=a.ground.SupportClearance(1),standing=a.ground.SupportClearance(0);
+            check(a.rig.reachable&&a.rig.contactError<.03f&&Mathf.Abs(surface-FootballAnimation.BootHalf)<.03f&&kick>-.005f&&standing>-.01f,name+" ground-ball contact: boot bones "+(surface*100).ToString("0.0")+" cm from the ball surface (boot "+(FootballAnimation.BootHalf*100).ToString("0")+" cm), kicking sole "+(kick*100).ToString("0.0")+" cm, standing sole "+(standing*100).ToString("0.0")+" cm above the turf",surface);
+            pose.contact=false;float lowest=float.MaxValue,standingMoved=0;int release=0;
+            for(int f=2;f<=24;f++){pose.time=time+f/60.0;a.Sample(pose,300+f/60.0);lowest=Mathf.Min(lowest,Mathf.Min(a.ground.SupportClearance(0),a.ground.SupportClearance(1)));if(a.ReleaseWeight>0){release++;standingMoved=Mathf.Max(standingMoved,Vector3.ProjectOnPlane(a.rig.Ankle(0).position-standingPoint,Vector3.up).magnitude);}}
+            check(lowest>-.01f&&release>0&&release<=Mathf.CeilToInt((float)FootballAnimation.MaxBallRelease*60),name+" release keeps both soles on or above the turf (lowest "+(lowest*100).ToString("0.0")+" cm) and ends within "+FootballAnimation.MaxBallRelease+" s ("+release+" pictures; standing ankle moved "+(standingMoved*100).ToString("0.0")+" cm)",lowest);
+            pose.contact=true;pose.time=time;a.Sample(pose,400,true);a.Sample(pose,400.01);pose.contact=false;a.Sample(pose,400.04);var held=a.rig.Ankle(1).position;a.Sample(pose,400.04);
+            check(held==a.rig.Ankle(1).position&&a.ReleaseWeight>0,name+" paused native clock freezes the releasing boot",a.ReleaseWeight);
+        }
+    }
+    // r13: the visible part of a native ready countdown closes at its last picture
+    // (FootballActionTiming.ReadyPhase: a 0.35 s countdown is last shown at
+    // progress 0.857-0.923) and its reach brings the boot to the ball surface
+    // during the swing, so the native contact picture continues the motion
+    // (R11 shot: the boot moved 0.72 m and the shin 84 degrees into the contact
+    // picture). A countdown first shown late eases its reach in; a paused clock
+    // freezes the reaching boot.
+    static void ReadyEntry(FootballAnimation a,Transform actor,Func<string,AnimationClip> C,Func<string,Transform> Bone,Action<bool,string,double> check){
+        double last=FootballActionTiming.ReadyPhase(.857,.35),late=FootballActionTiming.ReadyPhase(.923,.35),mid=FootballActionTiming.ReadyPhase(.5,.35),missing=FootballActionTiming.ReadyPhaseAtRate(.857,1/.35);
+        check(Math.Abs(last-1)<1e-3&&late==1&&Math.Abs(mid-.5/.857)<1e-3&&Math.Abs(missing-1)<1e-3,"A 0.35 s ready countdown reaches its contact phase at its last visible picture (progress 0.857 -> "+last.ToString("0.000")+", 0.5 -> "+mid.ToString("0.000")+")",last);
+        float radius=WorldBallMotion.Radius;var shin=Bone("RightLeg");
+        var centre=actor.position+actor.forward*.55f+actor.right*.1f;centre.y=radius;
+        Vector3 boot=Vector3.zero;Quaternion turn=Quaternion.identity;float step=0,turnStep=0,lowest=float.MaxValue;int n=0;
+        for(double u=.6;u<=1+1e-9;u+=1/18.0){
+            float x=Mathf.Clamp01((float)((u-FootballPresentationReadyFrom)/(1-FootballPresentationReadyFrom))),w=x*x*(3-2*x);
+            var pose=new FootballAnimation.Pose{clip=C("shot_meshy"),time=Math.Min(1,u)*.46,key="ready-entry",lockFeet=true,target=centre,kind="foot"};
+            if(w>0){pose.contact=true;pose.contactWeight=Mathf.Clamp(w,.001f,.999f);pose.ballContact=true;}
+            a.Sample(pose,500+n/60.0,n==0);
+            if(n>0){step=Mathf.Max(step,Vector3.Distance(boot,a.rig.Ankle(1).position));turnStep=Mathf.Max(turnStep,Quaternion.Angle(turn,Quaternion.Inverse(actor.rotation)*shin.rotation));}
+            if(w>0)lowest=Mathf.Min(lowest,a.ground.SupportClearance(1));boot=a.rig.Ankle(1).position;turn=Quaternion.Inverse(actor.rotation)*shin.rotation;n++;
+        }
+        var contact=new FootballAnimation.Pose{clip=C("shot_meshy"),time=.46,key="ready-contact",lockFeet=true,target=centre,kind="foot",contact=true,ballContact=true};
+        a.Sample(contact,500+n/60.0);float entry=Vector3.Distance(boot,a.rig.Ankle(1).position),entryTurn=Quaternion.Angle(turn,Quaternion.Inverse(actor.rotation)*shin.rotation);
+        check(a.rig.reachable&&a.rig.contactError<.03f&&entry<.12f&&entryTurn<FootballAnimationJointStep,"Shot ready reach meets the contact picture: boot "+(entry*100).ToString("0.0")+" cm and shin "+entryTurn.ToString("0.0")+" deg into the contact (largest ready step "+(step*100).ToString("0.0")+" cm, "+turnStep.ToString("0.0")+" deg)",entry);
+        check(lowest>FootballAnimation.SwingClear*.5f-.005f,"The reaching boot stays above the contact band until the contact picture (lowest sole "+(lowest*100).ToString("0.0")+" cm)",lowest);
+        // A countdown first shown at its end: the reach eases in instead of popping to the ball.
+        var late0=new FootballAnimation.Pose{clip=C("shot_meshy"),time=.46,key="late-ready",lockFeet=true,target=centre,kind="foot"};a.Sample(late0,600,true);a.Sample(late0,600+1/60.0);var before=a.rig.Ankle(1).position;
+        late0.contact=true;late0.contactWeight=.999f;late0.ballContact=true;a.Sample(late0,600+2/60.0);float pop=Vector3.Distance(before,a.rig.Ankle(1).position);
+        float full=0;for(int k=3;k<=9;k++){a.Sample(late0,600+k/60.0);}full=a.rig.contactError;
+        check(pop<.12f&&full<.03f,"A ready reach first shown at its end eases in ("+(pop*100).ToString("0.0")+" cm in its first picture) and meets the ball within "+FootballAnimation.ReadyReachEase+" s",pop);
+        var held=a.rig.Ankle(1).position;a.Sample(late0,600+9/60.0);check(held==a.rig.Ankle(1).position,"A paused native clock freezes the reaching boot",0);
+    }
+    // ReadyReachFrom of FootballPresentation and one 1/60 s step at the 1600 deg/s joint limit.
+    const double FootballPresentationReadyFrom=ProbeBridge.ReadyReachFrom;const float FootballAnimationJointStep=1600f/60;
     static void Reach(FootballAnimation a,Transform actor,Func<string,AnimationClip> C,Func<string,Transform> Bone,Action<bool,string,double> check){
         var root=actor.position;var rotation=actor.rotation;
         var chest=actor.position+actor.forward*.55f+Vector3.up*1.7f;

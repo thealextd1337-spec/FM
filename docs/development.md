@@ -1,5 +1,11 @@
 # Entwicklung und Veröffentlichung
 
+## Veröffentlichung 130 in Abnahme
+
+[Release 130](release-130.md) integriert die geprüften R21-/Keeper-/Taktik-Kandidaten in einen neuen Worktree auf dem veröffentlichten Quellstand 129. Quellen und Unity-Payload sind hashgebunden; Standardbuild, produktive Bildzeitplanung und lokale Produktionskommandos sind geprüft. Abschließende Paket-/Live-Abnahme folgt. Der ältere parallele Root-Stand wurde nicht als Releasebasis verwendet. Offene Fehler und konkrete Folgeprüfungen stehen in der [Bugliste](Bugliste.md).
+
+`view-frame-scheduler-v130.js` ist im Elternbuild und bytegleich im Runtime-Präfix eingebunden. Der Timer-Ersatz ist auf sichtbare Unity-Ansichten begrenzt; 2D verwendet native Browsercallbacks. Pause, Verbergen, Verlassen der Ansicht und Rückkehr aus dem Browsercache erhalten Callback- und native Matchzuständigkeit. `work/test-view-frame-scheduler-v130.cjs` prüft 17 Scheduling-/Lifecycle-Fälle. `work/run-native130-tests.cjs` ergänzt 56 Keeper-/Restartprüfungen; `work/test-tactics-roster-v130.cjs` prüft 96 native Kaderfälle. Alle drei Befehle gehören zum Produktionsworkflow. Die Positionsbeobachtung in `world-pitch3d-v98.js` hängt sich nur ein, wenn `step` vorhanden ist; reine Projektionsleser benötigen keinen Ersatzcontroller.
+
 ## Veröffentlichung 129
 
 [Release 129](release-129.md) baut auf der veröffentlichten UI 128 auf. Quelle, Laufzeitfuß, Hilfedaten, Builds und öffentliche Seite zeigen 129; beide Builds und Live-Datei sind bytegleich. Die vollständige Produktionspipeline und tatsächliche Rollen-/Vertrags-/Neulade-/Matchprüfung auf der Live-Seite sind bestanden. Lokaler veröffentlichter Quellstand: `work/release-129/dist/`; parallele Arbeitsstände bleiben erhalten.

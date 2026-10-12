@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-12",
+  "reviewScope": "Read-only Unity R21 release-risk review; only report files written",
+  "mainCommit": "a29556e",
+  "mainUnitySourceId": "affd013bcc8e6b8528ba407f9d24f860221dad19af14416509ac5e0461371032",
+  "candidateUnitySourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "candidateSourceRecomputed": true,
+  "decision": "no_proven_unity_blocker_for_completed_r21_changes",
+  "fullAnimationPackageComplete": false,
+  "candidatePublished": false,
+  "reportedChecks": {
+    "regularSuiteChecks": 2387,
+    "determinism": [26, 26],
+    "historicalR15": [362, 367],
+    "activeR20": [804, 804],
+    "activeR21": [52, 52],
+    "keeperFacts": [252, 252],
+    "webglCases": 400,
+    "fullNativeParityTicks": [3037, 3037],
+    "fullNativeParityDigest": "a6d98d83"
+  },
+  "historicalFailuresStillReported": true,
+  "contactWindowsWorseThanUnpublishedR18": 15,
+  "allWindowRegressionAgainstLive129ProvenAbsent": false,
+  "releaseConditionsOwnedByRoot": [
+    "Preserve full latest Main 129; never publish old Root product checkout wholesale",
+    "Production-visible scheduler final validation and frozen artifact consistency",
+    "Bump release version and verify source/build/live equality",
+    "State remaining contact quality limitations; do not claim all animations complete"
+  ],
+  "outstandingSeparateWork": [
+    "Native 4-6 minute match duration",
+    "Native 10-16 total shots average",
+    "Android hardware acceptance",
+    "Known ready-to-kick and tackle contact transition spikes"
+  ],
+  "report": "outputs/release-130/review/unity-release-review.md"
+}

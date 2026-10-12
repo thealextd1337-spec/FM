@@ -1,0 +1,18 @@
+{
+  "pass": true,
+  "at": "2026-10-12T22:23:52.731Z",
+  "release": 130,
+  "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "identitySources": 41,
+  "manifestSources": 32,
+  "buildAssets": 4,
+  "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+  "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+  "sourceIndexSha256": "0ecdc47f3e88861ae04b89cd402c9c8415e7d8b42bf08cd58b0a845f62e21d7a",
+  "bridgeSha256": "e55fbec96aad13a881c213fa98a891940a454a47180de076c1577dd080d16024",
+  "cameraSha256": "3c2b6074fc578d05183b3151019beed16517f227a523b26f78b2bb546c990dba",
+  "schedulerSha256": "a707b64ed619f7782d95eeae62bbbe4820c839c530696cf60350c18731ccb3a1",
+  "runtimeSha256": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+  "twoBuildsByteIdentical": true,
+  "buglisteLinks": 4
+}

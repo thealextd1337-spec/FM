@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-12",
+  "scope": "Independent read-only scheduler/bridge/runtime review; only these report files written",
+  "decision": "no_remaining_scheduler_blocker_after_root_bfcache_fix",
+  "canonicalSha256": "a707b64ed619f7782d95eeae62bbbe4820c839c530696cf60350c18731ccb3a1",
+  "runtimePrefixEqual": true,
+  "blockers": [],
+  "closedFindings": [
+    {
+      "file": "dist/view-frame-scheduler-v130.js",
+      "line": 21,
+      "kind": "lifecycle",
+      "problem": "Unconditional pagehide queue deletion loses parent renderer and iframe Unity recursive RAF chains on BFCache return; no pageshow recovery exists",
+      "affectedConsumers": ["dist/world-unity-v151.js:274", "dist/world-unity-v151.js:279", "dist/unity-match/runtime.js scheduler prefix"],
+      "evidence": "In-memory persisted pagehide after pending recursive RAF: pending=0, native RAF=0, timer=0, pageshow handler absent",
+      "narrowRemedy": "Root implemented away guard, retained pending callbacks/scope, stopped race arms, and re-armed on pageshow with fresh presentation deadline",
+      "closed": true,
+      "recheck": "Corrected in-memory persisted pagehide keeps pending=1 with no arms; pageshow delivers callback exactlyonce and pending=0"
+    }
+  ],
+  "nonblockingLimits": [
+    "Fallback deadline tolerance can produce adjacent render batches at16.000 and16.667ms; current tests do not cover regular60Hz RAF competing with timers",
+    "No browser/device/session changes or new production-suite/fullmatch result claimed"
+  ],
+  "preservedContractsInspected": [
+    "cancel pending callback and cancellation within dispatch",
+    "generation-token race exclusion",
+    "same-batch timestamp and deferred nested requests",
+    "callback exception isolation",
+    "explicit visible Unity scope and same-origin iframe inheritance",
+    "native-only inactive callbacks",
+    "no Matchclock, saved-state or RNG writers",
+    "single canonical scheduler prefix and duplicate-load guard"
+  ],
+  "report": "outputs/release-130/review/frame-scheduler-review.md"
+}

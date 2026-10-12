@@ -1,0 +1,116 @@
+{
+  "pass": true,
+  "scope": "Own Chrome profile and actual packaged130; trusted same-origin navigation. Render counters prove callback progress, not GPU/FPS delivery or Android acceptance.",
+  "checks": [
+    "Actual Unity lifecycle scene is ready",
+    "Native controller pauses before navigation",
+    "Real Unity render counter advances while native match remains paused",
+    "Trusted navigation produced actual pagehide and return pageshow",
+    "BFCache retained the actual native paused match in memory",
+    "Navigation return retains native pause, clock, score, events and P02",
+    "Actual Unity render counter resumes after navigation return",
+    "2D view disables production fallback scheduling",
+    "Returning from 2D retains paused native facts",
+    "Lifecycle run has no uncaught browser errors"
+  ],
+  "lifecycle": {
+    "events": [
+      {
+        "type": "pageshow",
+        "persisted": false,
+        "hidden": false
+      },
+      {
+        "type": "pageshow",
+        "persisted": false,
+        "hidden": false
+      },
+      {
+        "type": "pagehide",
+        "persisted": true,
+        "hidden": false
+      },
+      {
+        "type": "pagehide",
+        "persisted": true,
+        "hidden": false
+      },
+      {
+        "type": "visibilitychange",
+        "persisted": false,
+        "hidden": true
+      },
+      {
+        "type": "visibilitychange",
+        "persisted": false,
+        "hidden": true
+      },
+      {
+        "type": "pageshow",
+        "persisted": false,
+        "hidden": false
+      },
+      {
+        "type": "visibilitychange",
+        "persisted": false,
+        "hidden": false
+      },
+      {
+        "type": "visibilitychange",
+        "persisted": false,
+        "hidden": false
+      },
+      {
+        "type": "pageshow",
+        "persisted": true,
+        "hidden": false
+      },
+      {
+        "type": "pageshow",
+        "persisted": true,
+        "hidden": false
+      },
+      {
+        "type": "pagehide",
+        "persisted": true,
+        "hidden": false
+      },
+      {
+        "type": "visibilitychange",
+        "persisted": false,
+        "hidden": true
+      }
+    ],
+    "current": [
+      {
+        "type": "pageshow",
+        "persisted": false,
+        "hidden": false
+      },
+      {
+        "type": "pagehide",
+        "persisted": true,
+        "hidden": false
+      },
+      {
+        "type": "visibilitychange",
+        "persisted": false,
+        "hidden": true
+      },
+      {
+        "type": "visibilitychange",
+        "persisted": false,
+        "hidden": false
+      },
+      {
+        "type": "pageshow",
+        "persisted": true,
+        "hidden": false
+      }
+    ],
+    "bfcacheRestored": true,
+    "notRestoredReasons": null,
+    "hasCurrentMatch": true
+  },
+  "errors": []
+}

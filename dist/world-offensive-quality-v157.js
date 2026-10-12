@@ -5,6 +5,17 @@
 function v157Active(m){return Boolean(v152Active(m)&&m.attackFlow.qualityVersion===157);}
 function v162Active(m){return Boolean(v157Active(m)&&m.attackFlow.flowVersion===159&&m.attackFlow.paceVersion===162);}
 function v119PaceActive(m){return Boolean(v162Active(m)&&m.attackFlow.paceRevision===119);}
+// Faster actual grounded loose-ball pursuit in newly created matches only.
+// Ordinary rebounds retain their existing nearest-three chase; space passes
+// retain their existing target planning and swept contact. No new action clock.
+function v180KeeperChaseActive(m){return Boolean(v157Active(m)&&m.attackFlow.keeperChaseRevision===180);}
+function v180KeeperGroundEligible(m,p){
+ if(!v180KeeperChaseActive(m)||!p.keeper||!m.rebound||m.owner||m.flight||p.slideActive||v121PositioningPaused(m)||v115RestartLocked(m,p)||v101KeeperWaiting(m,p)||v113KeeperReacting(m,p)||m.rebound.delay>0)return false;
+ const air=typeof v124AirBalls!=='undefined'&&v124AirBalls.get(m),loose=typeof v102Motion!=='undefined'&&v102Motion.get(m)?.loose;
+ return !(air?.rebound===m.rebound&&!air.settled)&&!(loose&&(!loose.drop||loose.free));
+}
+function v180KeeperGroundPace(m,p){const pace=5+ability(p,'spd')*.11;return typeof v158Movement==='function'?v158Movement(p,pace,1).maxSpeed:pace;}
+function v180KeeperSpaceChasing(m,p){const plan=typeof v150SpacePasses!=='undefined'&&v150SpacePasses.get(m);return Boolean(v180KeeperGroundEligible(m,p)&&plan?.rebound===m.rebound&&plan.targets.has(p));}
 function v157Angle(a,b){return Math.atan2(Math.sin(b-a),Math.cos(b-a));}
 function v157InitialBody(p){
   const s=v150Scale(),dx=(p.motionX||0)*s.x,dy=(p.motionY||0)*s.y;
@@ -22,7 +33,7 @@ function v157Boundary(before,after,min,max){
 }
 function v157Pace(m,p){
  const base=p.keeper?2.6+ability(p,'spd')*.065:3+ability(p,'spd')*.14;
- if(p.keeper)return typeof v158Movement==='function'?v158Movement(p,base,1).maxSpeed:base;
+ if(p.keeper)return v180KeeperSpaceChasing(m,p)?v180KeeperGroundPace(m,p):typeof v158Movement==='function'?v158Movement(p,base,1).maxSpeed:base;
  if(v162Active(m)){
   const intent=m.attackFlow.intents[p.pid],now=v152Seconds(m),read=m.attackFlow.defenseReads?.[p.pid],target=m.flight?m.ball:m.rebound;
   const contest=target&&m.people.filter(q=>q.t===p.t&&!q.keeper&&!q.slideActive).sort((a,b)=>v122Metres(a,target)-v122Metres(b,target)||a.n-b.n).slice(0,2).includes(p);

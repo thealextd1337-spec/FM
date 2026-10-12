@@ -1,0 +1,118 @@
+{
+  "at": "2026-10-12T22:08:51.323Z",
+  "finished": true,
+  "pass": true,
+  "rows": [
+    {
+      "command": "node work/test-world-pitch3d-v98.cjs",
+      "exitCode": 0,
+      "elapsedMs": 46
+    },
+    {
+      "command": "node work/test-unity-label-layout.cjs outputs/3d-quality/iteration-119/label-layout",
+      "exitCode": 0,
+      "elapsedMs": 51
+    },
+    {
+      "command": "node work/test-unity-3d-quality-v117.cjs outputs/3d-quality/iteration-119/guide-legacy",
+      "exitCode": 0,
+      "elapsedMs": 38
+    },
+    {
+      "command": "node work/test-keeper-picture-v118.cjs outputs/3d-quality/iteration-119/keeper-legacy",
+      "exitCode": 0,
+      "elapsedMs": 41
+    },
+    {
+      "command": "node work/test-keeper-picture-v119.cjs",
+      "exitCode": 0,
+      "elapsedMs": 39
+    },
+    {
+      "command": "node work/test-3d-contacts-v119.cjs",
+      "exitCode": 0,
+      "elapsedMs": 41
+    },
+    {
+      "command": "node work/test-whistle-offside-v119.cjs",
+      "exitCode": 0,
+      "elapsedMs": 44
+    },
+    {
+      "command": "node work/test-shootout-quality-v119.cjs",
+      "exitCode": 0,
+      "elapsedMs": 393
+    },
+    {
+      "command": "node work/test-trophy-art-v119.cjs",
+      "exitCode": 0,
+      "elapsedMs": 37
+    },
+    {
+      "command": "node work/platform/qa/test-world-unity-slides.cjs",
+      "exitCode": 0,
+      "elapsedMs": 37
+    },
+    {
+      "command": "DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+      "exitCode": 0,
+      "elapsedMs": 17214
+    },
+    {
+      "command": "DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+      "exitCode": 0,
+      "elapsedMs": 16960
+    },
+    {
+      "command": "DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs",
+      "exitCode": 0,
+      "elapsedMs": 13361
+    },
+    {
+      "command": "node work/audit-world-balance-v68.cjs",
+      "exitCode": 0,
+      "elapsedMs": 85361
+    },
+    {
+      "command": "python3 work/test_deploy_ftps.py",
+      "exitCode": 0,
+      "elapsedMs": 168
+    },
+    {
+      "command": "python3 work/test_deploy_unity_assets.py",
+      "exitCode": 0,
+      "elapsedMs": 186
+    },
+    {
+      "command": "node work/build.cjs",
+      "exitCode": 0,
+      "elapsedMs": 37645
+    },
+    {
+      "command": "node work/test-club-crests.cjs",
+      "exitCode": 0,
+      "elapsedMs": 1861
+    },
+    {
+      "command": "node work/test-expansion-crests.cjs",
+      "exitCode": 0,
+      "elapsedMs": 5543
+    },
+    {
+      "command": "node work/test-completed-crests.cjs",
+      "exitCode": 0,
+      "elapsedMs": 4545
+    },
+    {
+      "command": "node work/test-expansion-sponsors.cjs",
+      "exitCode": 0,
+      "elapsedMs": 3072
+    },
+    {
+      "command": "node work/test-no-player-images.cjs",
+      "exitCode": 0,
+      "elapsedMs": 267
+    }
+  ],
+  "total": 22
+}

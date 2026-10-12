@@ -1,6 +1,34 @@
 'use strict';
 
 // Read-only projection of the existing physical match. No match clock or rules.
+// Restart positioners move outside the live body mover. Observe their actual
+// completed native step without changing body state, rules, clocks or saves.
+const v181PositioningSteps=new WeakMap();
+function v181PositioningKey(current){return current.setPiece||current.throwIn||current.kickoff||current.postBanner||(current.halftimePause>0?'half':current.goalPause>0?'goal':null);}
+if(typeof step==='function'){
+const v181PositioningBaseStep=step;
+step=function(delta,realDelta){
+ const current=match,key=current&&v181PositioningKey(current),clock=current&&v102Clock(current),prior=current&&v181PositioningSteps.get(current);
+ const before=current&&running&&realDelta>0&&typeof v157Active==='function'&&v157Active(current)?new Map(current.people.map(p=>[p,{x:p.x,y:p.y}])):null;
+ const result=v181PositioningBaseStep(delta,realDelta);
+ if(!before||match!==current||v181PositioningKey(current)!==key){if(current)v181PositioningSteps.delete(current);return result;}
+ const after=v102Clock(current),continuous=prior?.key===key&&Math.abs(prior.clock-clock)<1e-9;
+ if(!(after>clock)||Math.abs(after-clock-realDelta)>1e-8){v181PositioningSteps.delete(current);return result;}
+ const directions=new Map(),speeds=new Map(),s=v150Scale(current);
+ for(const p of current.people){const old=before.get(p);if(!old)continue;const dx=p.x-old.x,dy=p.y-old.y,travel=Math.hypot(dx*s.x,dy*s.y),moved=travel>.005,previous=continuous&&prior.directions.get(p);speeds.set(p,travel/realDelta);
+  if(moved)directions.set(p,{x:dx,y:dy,moved:true});else if(previous)directions.set(p,{x:previous.x,y:previous.y,moved:false});}
+ v181PositioningSteps.set(current,{key,clock:after,directions,speeds});return result;
+};
+}
+function v181ObservedSpeed(current,person){const state=v181PositioningSteps.get(current);return state?.key===v181PositioningKey(current)&&Math.abs(state.clock-v102Clock(current))<1e-9?state.speeds.get(person):null;}
+function v181PositioningMovement(current,person){
+ if(typeof v157Active!=='function'||!v157Active(current)||person.keeper||person.slideActive||!v121PositioningPaused(current)||!v181PositioningKey(current))return null;
+ const state=v181PositioningSteps.get(current),dir=state?.key===v181PositioningKey(current)&&Math.abs(state.clock-v102Clock(current))<1e-9?state.directions.get(person):null;
+ if(dir)return {mode:dir.moved?'run':'idle',facing:{x:person.x+dir.x,y:person.y+dir.y}};
+ // No observed step (initial picture, restore or seek) is evidence of travel.
+ const facing=typeof v157Movement==='function'&&v157Movement(current,person)?.facing;
+ return {mode:'idle',facing:facing||{x:person.x,y:person.y+(person.t===0?-1:1)}};
+}
 function v98PitchPoint(point,turned=false){
  const x=turned?1-point.x:point.x,y=turned?1-point.y:point.y;
  return {x:(.5-y)*68/(v55Field.bottom-v55Field.top),z:(x-.5)*44/(v55Field.right-v55Field.left)};
@@ -73,7 +101,7 @@ function v98PitchFrame(current){
  return {
   elapsed:current.elapsed,clock:typeof v102Clock==='function'?v102Clock(current):0,turned,broadcast:typeof v132Broadcast==='function'?v132Broadcast(current):null,
   celebration:scene?{id:current.goals.length,team:scene.team,time:Math.max(0,v83GoalSceneDuration-current.goalPause)}:null,
-  players:current.people.map(person=>{const mode=restartFacing&&person!==restartTaker?{mode:'restart',facing:rawBall}:(typeof v157Movement==='function'&&v157Movement(current,person))||(typeof v108MovementMode==='function'?v108MovementMode(current,person):null);return {id:person.pid,person,...(typeof v65WorldActive!=='undefined'&&v65WorldActive?.state.playerLoad&&current===match?{freshness:clamp(v65WorldActive.state.fresh[person.pid]/100,0,1)}:{}),team:person.t,number:person.n,keeper:person.keeper,slideActive:Boolean(person.slideActive),unityAction:v161UnitySlide(current,person,turned),action:typeof v102PlayerAction==='function'?v102PlayerAction(current,person):null,movement:mode?{...mode,facing:v98PitchPoint(mode.facing,turned),travelFacing:mode.mode==='run'?v119TravelFacing(current,person,turned):null}:null,...v98PitchPoint(person,turned)}}),
+  players:current.people.map(person=>{const observed=v181PositioningMovement(current,person),positionSpeed=v181ObservedSpeed(current,person);const mode=observed||(restartFacing&&person!==restartTaker?{mode:'restart',facing:rawBall}:(typeof v157Movement==='function'&&v157Movement(current,person))||(typeof v108MovementMode==='function'?v108MovementMode(current,person):null));return {id:person.pid,person,...(typeof v65WorldActive!=='undefined'&&v65WorldActive?.state.playerLoad&&current===match?{freshness:clamp(v65WorldActive.state.fresh[person.pid]/100,0,1)}:{}),team:person.t,number:person.n,keeper:person.keeper,slideActive:Boolean(person.slideActive),unityAction:v161UnitySlide(current,person,turned),action:typeof v102PlayerAction==='function'?v102PlayerAction(current,person):null,movement:mode?{...mode,...(Number.isFinite(person.offenseMotion?.vx)&&Number.isFinite(person.offenseMotion?.vy)?{bodySpeed:Math.hypot(person.offenseMotion.vx,person.offenseMotion.vy)}:{}),...(Number.isFinite(positionSpeed)?{positionSpeed}:{}),facing:v98PitchPoint(mode.facing,turned),travelFacing:!observed&&mode.mode==='run'?v119TravelFacing(current,person,turned):null}:null,...v98PitchPoint(person,turned)}}),
   ball:{...ball,height:.29+Math.max(0,height),opacity:actionBall?.opacity??1},
   owner:current.owner?.pid||null,ballInFlight:Boolean(current.flight),carrying:Boolean(current.owner&&!scene&&!current.flight&&!current.rebound&&!current.setPiece&&!current.throwIn&&!current.kickoff&&!current.postBanner&&!current.halftimePause&&!current.finished),
   outOfPlayBall:Boolean(v99Actions.get(current)?.miss&&v99Actions.get(current).miss.age<1.15||v99Actions.get(current)?.outBall&&v102Clock(current)-v99Actions.get(current).outBall.at<1.15),
@@ -104,7 +132,7 @@ function v98CameraAim(ball,mode,aspect,near=60){
  // Keep near-touchline action above the bottom controls without zooming the
  // whole pitch out. Both endpoints move together; the existing camera blend
  // supplies the transition and leaves the native ball and player data intact.
- if(mode==='follow'||mode==='sideline'){
+ if(mode==='follow'||mode==='sideline'||mode==='wide'){
   const pan=Math.max(0,ball.z-13)*.65;
   pose.position.z+=pan;pose.target.z+=pan;
  }

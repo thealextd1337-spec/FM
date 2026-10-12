@@ -1,0 +1,30 @@
+/* Position accents sit beside role/ability bands and preserve club jerseys. */
+:is(.fl-shell,.fl-match) [data-v129-position="gk"]{--v129-position:#9b78b8}
+:is(.fl-shell,.fl-match) [data-v129-position="def"]{--v129-position:#4c90b0}
+:is(.fl-shell,.fl-match) [data-v129-position="mid"]{--v129-position:#5e9d80}
+:is(.fl-shell,.fl-match) [data-v129-position="att"]{--v129-position:#bd8560}
+:is(.fl-shell,.fl-match) .v129-roster-overflow{border-top:1px solid var(--fl-line);margin-top:16px;padding-top:12px}
+:is(.fl-shell,.fl-match) .v129-roster-divider{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+:is(.fl-shell,.fl-match) .v129-roster-divider h3{font:600 14px var(--fl-font);margin:0;color:var(--fl-ink)}
+:is(.fl-shell,.fl-match) .v129-roster-divider span,.v129-roster-help{font:400 12px/1.5 var(--fl-font);color:var(--fl-muted)}
+:is(.fl-shell,.fl-match) .v64-bench-chip[data-v129-position]{border-top:2px solid var(--v129-position);min-width:0}
+:is(.fl-shell,.fl-match) [data-v129-roster-pick]{min-height:44px;padding:8px 12px;background:var(--fl-control);color:var(--fl-ink);border:1px solid var(--fl-control-line);border-radius:6px;font:600 13px var(--fl-font);cursor:pointer}
+:is(.fl-shell,.fl-match) [data-v129-roster-pick]:hover{border-color:var(--fl-accent)}
+:is(.fl-shell,.fl-match) [data-v129-roster-pick]:focus-visible{outline:2px solid var(--fl-accent);outline-offset:2px}
+:is(.fl-shell,.fl-match) [data-v129-roster-pick][aria-pressed="true"]{background:var(--fl-subtle);border-color:var(--fl-accent)}
+:is(.fl-shell,.fl-match) [data-v129-roster-pick]:disabled{opacity:.6;cursor:default}
+:is(.fl-shell,.fl-match) .v129-position{font-weight:600}
+:is(.fl-shell,.fl-match) .v129-position-legend{display:flex;gap:8px 14px;flex-wrap:wrap;list-style:none;padding:0;margin:10px 0;font:400 12px var(--fl-font);color:var(--fl-muted)}
+:is(.fl-shell,.fl-match) .v129-position-legend li{display:flex;align-items:center;gap:6px}
+:is(.fl-shell,.fl-match) .v129-position-legend i{width:8px;height:8px;background:var(--v129-position);border-radius:2px}
+:is(.fl-shell,.fl-match) [data-v129-position]>.position-label{border-bottom:2px solid var(--v129-position)}
+:is(.fl-shell,.fl-match) .v129-card-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+:is(.fl-shell,.fl-match) .v129-roster-overflow .bench-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:8px;overflow:visible}
+:is(.fl-shell,.fl-match) .v129-roster-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;width:auto;max-width:none;padding:10px}
+:is(.fl-shell,.fl-match) .v129-roster-card .bench-select{min-width:0;grid-column:1}
+:is(.fl-shell,.fl-match) .v129-roster-card .bench-title{display:flex;align-items:flex-start;gap:5px;min-width:0}
+:is(.fl-shell,.fl-match) .v129-roster-card .bench-title b{min-width:0;overflow-wrap:anywhere}
+:is(.fl-shell,.fl-match) .v129-roster-card .bench-title .flag-icon{flex:none;margin-top:3px}
+:is(.fl-shell,.fl-match) .v129-roster-card .bench-skills .v55-skill-list{display:grid;gap:3px}
+:is(.fl-shell,.fl-match) .v129-roster-card .v129-card-actions{grid-column:2;display:flex;flex-direction:column;justify-content:center;align-items:stretch}
+@media(max-width:600px){:is(.fl-shell,.fl-match) .v129-roster-overflow .bench-strip{display:grid;grid-template-columns:minmax(0,1fr);overflow:visible}:is(.fl-shell,.fl-match) .v129-roster-card{width:auto;max-width:100%}}

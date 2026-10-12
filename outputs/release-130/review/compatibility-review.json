@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-13",
+  "scope": "Read-only narrow step-registration and real source-script/scheduler compatibility review",
+  "decision": "no_blockers_found",
+  "blockers": [],
+  "worldPitchSourceSha256": "3c2b6074fc578d05183b3151019beed16517f227a523b26f78b2bb546c990dba",
+  "guard": "Only native step wrapper registration depends on typeof step === function; projection helpers remain available without a fake controller",
+  "scriptOrder": {
+    "view-frame-scheduler-v130.js": 0,
+    "game.js": 1,
+    "pitch-motion-v102.js": 111,
+    "world-attack-flow-v152.js": 116,
+    "world-pitch3d-v98.js": 121,
+    "world-unity-v151.js": 123
+  },
+  "eachRelevantScriptLoadedOnce": true,
+  "runtimeSchedulerPrefixEqual": true,
+  "nativeStepCalledOnceAndReturnPreserved": true,
+  "observationStorage": "private WeakMap only",
+  "reportedRootPassesNotRerunHere": {"cameraProjections": 90, "native130Cases": 56, "unityAdapterContract": true},
+  "remainingRootChecks": ["ongoing full production suite", "final source/build/live version and artifacts"],
+  "report": "outputs/release-130/review/compatibility-review.md"
+}

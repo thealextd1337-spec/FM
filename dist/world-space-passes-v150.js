@@ -3,7 +3,7 @@
 // Only future physical world actions. Pursuit is transient; new loose intents can resume.
 const v150SpacePasses=new WeakMap();
 function v150Scale(m=match){return v160PitchScale(m)}
-function v150Pace(p){if(typeof v157Active==='function'&&v157Active(match))return v157Pace(match,p);return p.keeper?2.6+ability(p,'spd')*.065:3+ability(p,'spd')*.14}
+function v150Pace(p){const plan=v150SpacePasses.get(match);if(typeof v180KeeperGroundEligible==='function'&&v180KeeperGroundEligible(match,p)&&plan?.rebound===match.rebound)return v180KeeperGroundPace(match,p);if(typeof v157Active==='function'&&v157Active(match))return v157Pace(match,p);return p.keeper?2.6+ability(p,'spd')*.065:3+ability(p,'spd')*.14}
 function v150Delay(p){return .08+(20-ability(p,'pos'))*.018+(typeof v158ReactionLoss==='function'?v158ReactionLoss(p):0)}
 function v150KeeperArea(p,point){if(match?.geometry)return v160KeeperHands(match,p,point);const s=v150Scale(),goal=p.t===0?v55Field.bottom:v55Field.top;return Math.abs(point.y-goal)*s.y<=16.5&&Math.abs(point.x-.5)*s.x<=12}
 function v150Candidates(p,allies,rivals){
@@ -102,7 +102,7 @@ function v150Prepare(m,seconds){
  for(const team of [0,1]){
   const choices=[];
   for(const p of m.people){
-   if(p.t!==team||p.slideActive||p===plan.passer&&plan.age<.25)continue;
+   if(p.t!==team||p.slideActive||p===plan.passer&&plan.age<.25||p.keeper&&r&&r===plan.rebound&&typeof v180KeeperChaseActive==='function'&&v180KeeperChaseActive(m)&&!v180KeeperGroundEligible(m,p))continue;
    let best=null;
    for(let i=1;i<=12;i++){
     const time=remaining*i/12,point=flight?{x:m.ball.x+(flight.target.x-m.ball.x)*i/12,y:m.ball.y+(flight.target.y-m.ball.y)*i/12}:{x:r.x+(r.vx||0)*MATCH_SPEED*(1-Math.exp(-2.3*time))/2.3,y:r.y+(r.vy||0)*MATCH_SPEED*(1-Math.exp(-2.3*time))/2.3};
@@ -120,7 +120,7 @@ function v150RunTarget(m,p){const plan=v150SpacePasses.get(m),target=plan?.targe
 function v150Contact(m,plan,from,to){
  const s=v150Scale(),contacts=[];
  for(const p of m.people){
-  if(p.slideActive||p===plan.passer&&plan.age<.25)continue;
+  if(p.slideActive||p===plan.passer&&plan.age<.25||p.keeper&&m.rebound&&m.rebound===plan.rebound&&typeof v180KeeperChaseActive==='function'&&v180KeeperChaseActive(m)&&!v180KeeperGroundEligible(m,p))continue;
   const before=plan.before?.get(p)||p,ax=(from.x-before.x)*s.x,ay=(from.y-before.y)*s.y,dx=((to.x-from.x)-(p.x-before.x))*s.x,dy=((to.y-from.y)-(p.y-before.y))*s.y;
   const a=dx*dx+dy*dy,b=2*(ax*dx+ay*dy),c=ax*ax+ay*ay-.8*.8,disc=b*b-4*a*c;
   const q=c<=0?0:a>1e-10&&disc>=0?(-b-Math.sqrt(disc))/(2*a):Infinity;

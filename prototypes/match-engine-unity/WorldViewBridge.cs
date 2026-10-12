@@ -12,6 +12,7 @@ public partial class ProbeBridge {
     WorldPose[] worldActors;
     readonly Dictionary<string,Material> kitMaterials=new Dictionary<string,Material>();
     double lastWorldClock=-1;
+    static bool acceptDisplayLead;
     bool liveNetMoved;
     [Serializable] class WorldReply {public string channel=WorldViewState.Schema,kind,session,message;public int sequence,players;public double clock;public string[] ids;}
     void ReplyWorld(string kind,int sequence=0,string error=null){
@@ -26,6 +27,10 @@ public partial class ProbeBridge {
     public void WorldCommand(string json){
         try{
             var command=JsonUtility.FromJson<WorldCommand>(json);WorldPhasePresence.MarkCommand(command,json);
+            // R20: the display lead belongs to this display buffer (WorldViewPlayback.Blend); a received picture
+            // never sets it. Only the Editor natural-motion harness, which sends exact blended display pictures,
+            // keeps it (acceptDisplayLead, set by reflection for its run).
+            if(!acceptDisplayLead){WorldViewPlayback.StripLead(command?.frame);WorldViewPlayback.StripLead(command?.config?.initial);}
             if(command?.kind=="load"){
                 // Validate the entire message before disposing the visible world.
                 var candidate=new WorldViewState(command.config);
@@ -96,7 +101,7 @@ public partial class ProbeBridge {
             // A seek starts from rest: no stale speed from the abandoned time.
             if(lastWorldClock<0||f.clock<lastWorldClock){animationTimes[i]=f.clock;runSpeeds[i]=0;}
             if(lastWorldClock>=0&&f.clock>lastWorldClock)animationTimes[i]+=(f.clock-lastWorldClock)*Math.Clamp(runSpeeds[i]/3.2,.5,1.65);
-            var pose=WorldFootballPose(p,f,i);football[i].Sample(pose,f.clock,lastWorldClock<0||f.clock<lastWorldClock);
+            var pose=WorldFootballPose(p,f,i);football[i].Sample(pose,f.clock,lastWorldClock<0||f.clock<lastWorldClock);worldLocomotion[i].WarpTime=football[i].ChangeFade;
             if(pose.ballHeld)heldIndex=i;
             renderedPoses[i]=new WorldRenderedPose{id=p.id,clip=pose.clip.name,baseClip=pose.baseClip?.name,kind=pose.kind,time=pose.time,contact=pose.contact,ballHeld=pose.ballHeld,reachable=football[i].rig.reachable,contactError=football[i].rig.contactError,plantError=football[i].rig.plantError,actionWeight=football[i].Weight(pose.clip),speed=worldLocomotion[i].Speed,motion=worldLocomotion[i].Mode,stridePhase=worldLocomotion[i].StridePhase};
         }

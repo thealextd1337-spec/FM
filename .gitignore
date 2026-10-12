@@ -1,5 +1,6 @@
 work/*
 !work/*.cjs
+!work/native130-fixtures.js
 !work/prepare-expansion-crests.py
 !work/package-expansion-sponsors.py
 !work/generate-world-sprite-pair-v87.py

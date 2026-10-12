@@ -1,0 +1,55 @@
+{
+  "version": 130,
+  "published": false,
+  "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+  "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+  "createdAt": "2026-10-12T22:15:55.230Z",
+  "files": [
+    {
+      "file": "index.html",
+      "sha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+      "bytes": 95887102
+    },
+    {
+      "file": "unity-match/runtime.html",
+      "sha256": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "bytes": 440
+    },
+    {
+      "file": "unity-match/runtime.js",
+      "sha256": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+      "bytes": 5781
+    },
+    {
+      "file": "unity-match/.htaccess",
+      "sha256": "e6341a7c0465a7f21a828d0296457bcc43bf6cace7105ce9b0cf871c3b9bacc4",
+      "bytes": 75
+    },
+    {
+      "file": "unity/probe-build.json",
+      "sha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+      "bytes": 5656
+    },
+    {
+      "file": "unity/Build/unity-web.data",
+      "sha256": "dfcb23f3cbc1f9e2c3dc3e7560daf4d18bb95fa8ff04dcc9cb326d8cb0d3b303",
+      "bytes": 55572425
+    },
+    {
+      "file": "unity/Build/unity-web.framework.js",
+      "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "bytes": 300906
+    },
+    {
+      "file": "unity/Build/unity-web.loader.js",
+      "sha256": "a6a10198f2bb3b69a339e89a4b940747cc08e39b90a0af3853a8f4654595462d",
+      "bytes": 27914
+    },
+    {
+      "file": "unity/Build/unity-web.wasm",
+      "sha256": "d7a649fce05ae4d7b5b4a8293c100b6f022c86a8b7c95485fb2000c46079f273",
+      "bytes": 35497794
+    }
+  ]
+}

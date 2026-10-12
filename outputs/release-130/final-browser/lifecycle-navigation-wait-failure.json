@@ -1,0 +1,11 @@
+{
+  "pass": false,
+  "checks": [
+    "Actual Unity lifecycle scene is ready",
+    "Native controller pauses before navigation",
+    "Real Unity render counter advances while native match remains paused"
+  ],
+  "lifecycle": null,
+  "errors": [],
+  "error": "page.goBack: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for navigation until \"domcontentloaded\"\u001b[22m\n\u001b[2m    - navigated to \"http://127.0.0.1:4548/?engine=unity\"\u001b[22m\n\n    at F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\release-130\\outputs\\release-130\\final-browser\\check-lifecycle.cjs:16:64)"
+}

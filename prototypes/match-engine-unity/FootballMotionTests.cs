@@ -62,8 +62,8 @@ public static class FootballMotionTests {
         AnimationClip Clip(string name)=>Array.Find(AssetDatabase.LoadAllAssetsAtPath(asset),a=>a is AnimationClip&&a.name==name) as AnimationClip;
         double cycles=10.37;
         foreach(var clip in new[]{Clip("walking"),run,Clip("sprint_forward")}){
-            double length=clip.length-.001,normalized=animation.StrideTime(cycles,clip)/length-animation.Footfall(clip);
-            check(Math.Abs(normalized-cycles)<1e-9,"Walk, run and sprint share the measured left footfall at one cycle value / "+clip.name,normalized);
+            double length=clip.length-.001,normalized=animation.StrideTime(cycles,clip)/length-animation.Sync(clip);
+            check(Math.Abs(normalized-cycles)<1e-9,"Walk, run and sprint share the measured stride sync marker at one cycle value / "+clip.name,normalized);
         }
         foreach(int frequency in new[]{30,60,120}){
             var motion=new FootballLocomotion();var point=Vector3.zero;motion.Sample(point,Vector3.forward,30,false,false);
