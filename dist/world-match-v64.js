@@ -4,7 +4,7 @@
 const v64Formations=['1–1–3','1–2–2','1–3–1','2–1–2','2–2–1','3–1–1'];
 const v160SixFormations=['1–2–3','1–3–2','2–1–3','2–2–2','2–3–1','3–1–2','3–2–1'];
 // Only career construction writes this configuration. Missing old data stays old.
-function v160MatchConfig(options={fieldSize:'large',fieldPlayers:5}){
+function v160MatchConfig(options={fieldSize:'standard',fieldPlayers:5}){
  if(!options||!['standard','large'].includes(options.fieldSize)||![5,6].includes(options.fieldPlayers)||options.version!==undefined&&options.version!==1)throw Error('Ungültige Spielfeld- oder Mannschaftsauswahl.');
  return {version:1,fieldSize:options.fieldSize,fieldPlayers:options.fieldPlayers};
 }

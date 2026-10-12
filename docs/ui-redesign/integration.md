@@ -1,5 +1,9 @@
 # Flutlicht – lokale Integration
 
+**Modernisierung 12. Oktober 2026:** Auf Nutzerauftrag sind die acht Astra-Vorschläge lokal integriert. U01-B lieferte Kader/Profile, U01-C Markt/Verträge und U01-D responsive Tabellen in getrennten Fachslots. Nach Übergabe liegen diese Dateien wieder bei I00. I00 übernimmt Übersicht/Büro, native Einstiegsaktionen, gemeinsame Typografie, Übersetzungen, UI-Vertrag v1.3 und Quellen-/Buildprüfung. Q01 hat die relevanten Diffs unabhängig geprüft; der gefundene Fokusverlust durch erneutes Verschieben und Ersetzen ist behoben und im gemeinsamen Browserlauf geprüft. Veröffentlichung bleibt separat.
+
+Nachweise: `outputs/ui-modernization/source/checks.json` und `outputs/ui-modernization/build/checks.json`, Paketbelege unter U01-B/C/D sowie der native Speicher-/Importprüfweg unter I00-save-check. Die gemeinsame Prüfung umfasst tatsächliche Büro-Vertragsnavigation, mögliche/bestätigte Abschiede, Sortierung, Filter, Rücknavigation, DE/EN, Hell/Dunkel, Mobil/Desktop und unveränderte Karriere bei Darstellung/Neuladen. Physische Geräte und vollständiger Screenreaderlauf bleiben separate Prüfungen.
+
 **Nachprüfung 8. Oktober 2026:** Nutzerfeedback zu Sponsorfläche, Angebotsdialog, Übersichtskennzahlen/Vereinsbüro/Finanzen, Vereinsregisterkarten und Ladeanzeige sowie der Rundgang durch alle Menüs einschließlich Start/Erstellung sind lokal umgesetzt und geprüft. [Aktueller Umfang und Abschlussbelege](feedback-2026-10-08.md) ersetzen die untenstehende Einschätzung des ersten Integrationsstands. P05 bleibt geplant; die drei später vorgesehenen Besichtigungspunkte bleiben offen.
 
 Start: 7. Oktober 2026, ausdrücklicher Nutzerauftrag zur Umsetzung mit GPT-6 Astra und Denkaufwand hoch. Der Auftrag umfasst das lokale Redesign einschließlich Integration, Korrekturen, Prüfungen und Offline-Build. Veröffentlichung und andere Ausbaupakete sind nicht gestartet.

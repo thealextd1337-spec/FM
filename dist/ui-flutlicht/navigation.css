@@ -6,11 +6,7 @@
 .fl-section-tabs>[role=tab]:focus-visible{outline:3px solid var(--fl-accent);outline-offset:3px}
 .fl-section-panels,.fl-section-panel{min-width:0}.fl-section-panel[hidden]{display:none!important}.fl-section-panel{outline:none;scroll-margin-top:20px}
 .fl-section-picker{display:none}
-@media(max-width:700px){
- .fl-shell .fl-section-tabs,.fl-shell .fl-club-tabs{display:none}
- #v61-world-screen .fl-content .fl-section-picker{display:grid;gap:6px;margin:0 0 20px;color:var(--fl-muted);font-size:13px;font-weight:600}
- #v61-world-screen .fl-content .fl-section-picker select{width:100%;max-width:100%;min-width:0;min-height:44px;padding:10px 12px;border:1px solid var(--fl-control-line);border-radius:6px;background:var(--fl-control);color:var(--fl-ink);font:400 16px/1.4 var(--fl-font)}
-}
+
 .fl-navigation-view .fl-market-jumps,.fl-navigation-native-tabs,.fl-navigation-native-area{display:none!important}
 .fl-navigation-empty{padding:18px;border:1px solid var(--fl-line);border-radius:var(--fl-radius);background:var(--fl-surface);color:var(--fl-muted);line-height:1.6}
 .fl-section-panel>.v62-season:first-child,.fl-section-panel>.v72-sale-list:first-child,.fl-section-panel>.v72-own-sales:first-child{margin-top:0}
@@ -20,3 +16,16 @@
 #v61-world-screen .fl-content .fl-navigation-filters select{width:100%;max-width:100%;min-width:0;min-height:44px;font-size:16px;color:var(--fl-ink);background:var(--fl-control);border:1px solid var(--fl-control-line);border-radius:6px;padding:9px 12px}
 @media(max-width:700px){.fl-section-tabs{gap:4px;margin-bottom:16px}#v61-world-screen .fl-content .fl-section-tabs>[role=tab]{flex:1 1 120px;padding:10px 8px;font-size:13px}.fl-navigation-filters{gap:12px;padding:14px}}
 @media(max-width:420px){.fl-navigation-filters{grid-template-columns:minmax(0,1fr)}}
+
+/* One contextual row; the original tab nodes keep their controller and ARIA links. */
+.fl-bottom-dock{position:fixed;z-index:60;inset:auto 0 0 228px;background:var(--fl-frame);box-shadow:0 -4px 18px rgb(0 0 0 / .08);padding-bottom:env(safe-area-inset-bottom)}
+.fl-subnav-host[hidden],.fl-subnav-parking[hidden]{display:none!important}
+.fl-shell .fl-subnav-host>.fl-section-tabs,.fl-shell .fl-subnav-host>.fl-club-tabs,.fl-overview-subnav{display:flex;flex-wrap:nowrap;gap:4px;margin:0;padding:6px max(12px,env(safe-area-inset-right)) 6px max(12px,env(safe-area-inset-left));border:0;border-top:1px solid var(--fl-line);border-radius:0;background:var(--fl-frame);overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--fl-control-line) var(--fl-frame);overscroll-behavior-x:contain}
+#v61-world-screen .fl-subnav-host button{flex:1 0 auto;min-height:44px;padding:9px 14px;border:0;border-radius:6px;background:transparent;color:var(--fl-ink);font:600 13px/1.4 var(--fl-font);white-space:nowrap}
+#v61-world-screen .fl-subnav-host button:hover{background:var(--fl-subtle)}
+#v61-world-screen .fl-subnav-host button[aria-selected=true]{background:var(--fl-gold);color:#15191e}
+#v61-world-screen .fl-subnav-host button:focus-visible{outline:2px solid var(--fl-accent);outline-offset:-2px}
+.fl-shell .fl-content{padding-bottom:calc(32px + var(--fl-dock-height,0px))}
+.fl-content [class^="fl-overview-"]{scroll-margin-bottom:var(--fl-dock-height,0px)}
+@media(max-width:1100px) and (min-width:901px){.fl-bottom-dock{left:200px}}
+@media(max-width:900px){.fl-bottom-dock{left:0}.fl-shell{padding-bottom:0}.fl-shell .fl-bottom-dock .fl-mobile-nav{position:static;padding-bottom:6px}.fl-shell .fl-subnav-host button{padding-inline:12px}.fl-shell .fl-content{padding-bottom:calc(28px + var(--fl-dock-height,86px))}}

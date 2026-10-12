@@ -10,7 +10,6 @@
   function select(panel, section, {focus = false} = {}) {
     const state = tabsByPanel.get(panel);if (!state || !panel.isConnected || !state.nav.isConnected || !state.panels.has(section)) return false;
     state.active = section;selectedByClub.set(state.id, section);panel.dataset.flClubActive = section;
-    state.picker.input.value = section;
     for (const [key, body] of state.panels) {
       body.hidden = key !== section;
       const button = state.buttons.get(key);button.setAttribute('aria-selected', String(key === section));button.tabIndex = key === section ? 0 : -1;
@@ -33,26 +32,25 @@
       for (const [key] of sections) {
         const button = document.createElement('button'), body = document.createElement('section');
         button.type = 'button';button.id = `${prefix}-tab-${key}`;button.dataset.flClubTab = key;button.setAttribute('role', 'tab');button.setAttribute('aria-controls', `${prefix}-panel-${key}`);
-        body.id = `${prefix}-panel-${key}`;body.className = 'fl-club-tab-panel';body.dataset.flClubSection = key;body.setAttribute('role', 'tabpanel');body.setAttribute('aria-labelledby', button.id);
+        body.id = `${prefix}-panel-${key}`;body.className = 'fl-club-tab-panel';body.dataset.flClubSection = key;body.setAttribute('role', 'tabpanel');body.setAttribute('aria-labelledby', button.id);body.tabIndex = 0;
         nav.append(button);bodies.append(body);state.buttons.set(key, button);state.panels.set(key, body);
       }
       const notify = key => { if (select(panel, key)) state.actions.setClubSection?.(key); };
-      state.picker = ns.components.sectionPicker(panel.ownerDocument, notify);
       nav.addEventListener('click', event => {const button = event.target.closest('[data-fl-club-tab]');if (button && nav.contains(button)) notify(button.dataset.flClubTab);});
       nav.addEventListener('keydown', event => {
         if (!nav.isConnected || !panel.isConnected) return;
         const button = event.target.closest('[data-fl-club-tab]');if (!button || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
         event.preventDefault();const keys = sections.map(([key]) => key), index = keys.indexOf(button.dataset.flClubTab), key = keys[event.key === 'Home' ? 0 : event.key === 'End' ? keys.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + keys.length) % keys.length];
-        notify(key);state.buttons.get(key).focus({preventScroll: true});
+        notify(key);state.buttons.get(key).focus({preventScroll: true});state.buttons.get(key).scrollIntoView({block: "nearest", inline: "nearest"});
       });
       state.panels.get('sponsor').addEventListener('click', event => {if (panel.isConnected && event.currentTarget.isConnected && event.target.closest('[data-fl-club-sponsor-select]')) state.actions.navigate?.('overview', {section: 'sponsor'});});
-      const heading = panel.querySelector(':scope > .v46-view-heading');if (heading) heading.after(nav);else panel.prepend(nav);nav.after(state.picker.node);state.picker.node.after(bodies);tabsByPanel.set(panel, state);
+      const heading = panel.querySelector(':scope > .v46-view-heading');if (heading) heading.after(nav);else panel.prepend(nav);nav.after(bodies);tabsByPanel.set(panel, state);
     }
     state.actions = actions;state.nav.setAttribute('aria-label', t('Vereinsbereiche'));
     for (const [key, label] of sections) state.buttons.get(key).textContent = t(label);
     // Move, never clone, the controller-owned nodes. Kit/filter values and listeners survive a tab switch.
     for (const node of [...panel.children]) {
-      if (node === state.nav || node === state.picker.node || node === state.bodies || node.matches('.v46-view-heading')) continue;
+      if (node === state.nav || node === state.bodies || node.matches('.v46-view-heading')) continue;
       let key = 'profile';
       if (node.matches('.v66-finance')) key = 'finances';
       else if (node.matches('.v67-manager')) key = 'manager';
@@ -69,7 +67,6 @@
       else {const message = empty || body.appendChild(document.createElement('p'));message.className = 'fl-club-empty-panel';message.textContent = t(label);}
     }
     select(panel, state.panels.has(data.activeSection) ? data.activeSection : selectedByClub.get(data.ownId) || 'profile');
-    state.picker.update('Vereinsbereiche', sections, state.active, t);
   }
   function enhance(root, projection, actions = {}) {
     const data = projection?.club;if (!data || !ns.components) return;
@@ -105,6 +102,6 @@
     }
     for (const panel of within(root, '.v66-finance, #v124-budget, .v130-finance-close')) panel.classList.add('fl-club-finances');
   }
-  ns.clubView = Object.freeze({select});
+  ns.clubView = Object.freeze({select,tablist:panel=>tabsByPanel.get(panel)?.nav});
   ns.registry.register({ id: 'U01-E', enhance });
 })();

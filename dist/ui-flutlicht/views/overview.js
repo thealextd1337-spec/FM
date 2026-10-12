@@ -4,12 +4,13 @@
   const ns = window.D6Flutlicht;
   const c = ns.components;
   const navigation = new WeakMap();
+  const rendered = new WeakMap();
   function element(parent, selector, tag, className) {
     let node = parent.querySelector(selector);
     if (!node) { node = parent.ownerDocument.createElement(tag); node.className = className; parent.append(node); }
     return node;
   }
-  function markup(node, html) { if (node.innerHTML !== html) node.innerHTML = html; }
+  function markup(node, html) { if (rendered.get(node) !== html) { node.innerHTML = html;rendered.set(node, html); } }
   function goalStatus(goal, t) {
     const achieved = goal.achieved === true, onCourse = goal.onCourse === true;
     const known = typeof goal.onCourse === 'boolean' || typeof goal.achieved === 'boolean';
@@ -33,10 +34,14 @@
     }
     main.classList.add('fl-overview-main');
     const aside = element(grid, '.fl-overview-aside', 'div', 'fl-overview-aside');
-    const office = element(aside, '.fl-overview-office', 'section', 'fl-overview-office');
+    const office = grid.querySelector('.fl-overview-office') || element(aside, '.fl-overview-office', 'section', 'fl-overview-office');
     office.setAttribute('aria-label', t('Im Vereinsbüro'));
     const tasks = data.office || [];
-    markup(office, `<h3>${c.escape(t('Im Vereinsbüro'))}</h3>${tasks.length ? `<ul>${tasks.map(item => `<li>${item.route?`<button type="button" class="fl-overview-task" data-fl-overview-route="${c.escape(item.route)}"${item.section ? ` data-fl-overview-section="${c.escape(item.section)}"` : ''}>`:'<div class="fl-overview-task">'}<span class="fl-overview-task-icon">${c.icon(item.route)}</span><span class="fl-overview-task-copy"><strong>${c.escape(item.title)}</strong>${item.route?`<span>${c.escape(item.actionLabel || t('Ansehen'))}</span>`:''}</span>${item.detail?`<b class="fl-overview-task-count">${c.escape(item.detail)}</b>`:''}${item.route?c.icon('arrow')+'</button>':'</div>'}</li>`).join('')}</ul>` : `<p class="fl-overview-empty">${c.escape(t('Aktuell keine offenen Aufgaben.'))}</p>`}<p class="fl-overview-office-note">${c.escape(t('Fristen und offene Entscheidungen bleiben hier sichtbar.'))}</p>`);
+    markup(office, `<h3>${c.escape(t('Im Vereinsbüro'))}</h3>${tasks.length ? `<ul>${tasks.map(item => `<li>${item.route?`<button type="button" class="fl-overview-task" data-fl-overview-route="${c.escape(item.route)}"${item.section ? ` data-fl-overview-section="${c.escape(item.section)}"` : ''}>`:'<div class="fl-overview-task">'}<span class="fl-overview-task-icon">${c.icon(item.route)}</span><span class="fl-overview-task-copy"><strong>${c.escape(item.title)}</strong>${item.names?.length?`<span class="fl-overview-task-names">${item.names.map(c.escape).join(' · ')}</span>`:''}${item.description?`<span class="fl-overview-task-description">${c.escape(item.description)}</span>`:''}${item.route?`<span>${c.escape(item.actionLabel || t('Ansehen'))}</span>`:''}</span>${item.detail?`<b class="fl-overview-task-count">${c.escape(item.detail)}</b>`:''}${item.route?c.icon('arrow')+'</button>':'</div>'}</li>`).join('')}</ul>` : `<p class="fl-overview-empty">${c.escape(t('Aktuell keine offenen Aufgaben.'))}</p>`}<p class="fl-overview-office-note">${c.escape(t('Fristen und offene Entscheidungen bleiben hier sichtbar.'))}</p>`);
+    view.querySelectorAll('.v176-retirement-notice').forEach(node => node.remove());
+    const fixture = main.querySelector('.v62-next-opponent');
+    if (view.ownerDocument.defaultView.matchMedia('(max-width:1100px)').matches && fixture) { if (fixture.nextElementSibling !== office) fixture.after(office); }
+    else if (aside.firstElementChild !== office) aside.prepend(office);
     const finance = element(aside, '.fl-overview-finance', 'section', 'fl-overview-finance');
     finance.setAttribute('aria-label', t('Dein finanzieller Spielraum'));
     const money = data.finance;
@@ -81,7 +86,7 @@
     const header = fixture.querySelector(':scope > p');
     if (header) {
       header.classList.add('fl-overview-fixture-heading');
-      markup(header, `<strong>${c.escape(t('Nächste Begegnung'))}</strong><span>${c.escape([match.dateLabel,match.seasonLabel].filter(Boolean).join(' · '))}</span><small>${c.escape([match.competitionLabel,match.roundLabel].filter(Boolean).join(' · '))}</small>`);
+      markup(header, `<strong>${c.escape(t('Nächste Begegnung'))}</strong><span>${c.escape([match.dateLabel,match.seasonLabel,match.competitionLabel,match.roundLabel].filter(Boolean).join(' · '))}</span>`);
     }
     const teams = fixture.querySelector('.v49-fixture');
     if (!teams) return cleanup;
@@ -112,7 +117,7 @@
       markup(identity, `${sponsor.logoHTML || `<strong>${c.escape(sponsor.name)}</strong>`}<small>${c.escape(t('präsentiert'))}</small>`);
       const compact = element(fixture, '.fl-overview-goals', 'div', 'fl-overview-goals');
       markup(compact, (sponsor.goals || []).map(goal => `<a class="fl-overview-goal" href="#${c.escape(contract.id)}"><span>${c.escape(goal.label)} <b>${c.escape(goal.bonusLabel)}</b></span>${goalStatus(goal,t)}</a>`).join(''));
-      teams.after(compact);
+      if (teams.nextElementSibling !== compact) teams.after(compact);
     } else {
       center.querySelector('.fl-overview-sponsor')?.remove();
       fixture.querySelector('.fl-overview-goals')?.remove();

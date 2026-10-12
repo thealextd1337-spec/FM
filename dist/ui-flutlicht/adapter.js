@@ -15,11 +15,16 @@
  window.addEventListener('storage',event=>{if(event.key===themeKey||event.key===null)applyPreference(event.key===null?'system':event.newValue,false);});
  const t=text=>window.doppel6Language?.localize(String(text??''))??String(text??'');
  const bandMap={'very-weak':'violetgray',weak:'bluegray',normal:'yellow',good:'orange','very-good':'pink'};
- function playerRow(player,season,fixtures){
+ function retirementStatus(career,player){
+  if(typeof v176Active!=='function'||!v176Active(career)||career.world.seasonFinished||player.retiredSeason)return null;
+  return career.world.retirementDecisions?.season===career.world.season?(v176Retiring(career,player.pid)?'confirmed':null):player.age>=33?'possible':null;
+ }
+ function playerRow(player,season,fixtures,career){
   const records=(player.history||[]).filter(r=>r.season===season),rated=records.filter(r=>Number.isFinite(r.rating)),fresh=Number.isFinite(player.fresh)?Math.max(0,Math.min(100,player.fresh)):100;
   const formKey=v51FormKeys[v51EffectiveForm(player,fresh)+2],freshKey={fresh:'very-good',ready:'good','slightly-tired':'normal',tired:'weak',exhausted:'very-weak'}[v51FreshnessKey(fresh)];
   let covered=0,substitutions=0;for(const row of records){const fixture=fixtures.get(row.fixtureId),side=fixture?.homeId===row.clubId?0:fixture?.awayId===row.clubId?1:null,record=fixture?.matchRecord,starters=record?.starters?.[side===0?'home':'away'];if(side===null||!record?.players?.some(p=>p.pid===player.pid)||!Array.isArray(starters)||!Array.isArray(record.substitutions))continue;const sub=record.substitutions.some(s=>s.side===side&&s.inPid===player.pid);if(!starters.includes(player.pid)&&!sub)continue;covered++;if(sub)substitutions++;}
-  return {id:player.pid,name:player.name,number:player.n,nationCode:player.nation,nationLabel:v79NationName(player.nation),positionCode:player.line,positionLabel:v61PositionNames[player.line],age:player.age,
+  const contract=v66Contract(career,player.pid),status=retirementStatus(career,player),retirementLabel=status?t(status==='confirmed'?'Abschied bestätigt':'Mögliches Karriereende'):null;
+  return {id:player.pid,name:player.name,number:player.n,nationCode:player.nation,nationLabel:v79NationName(player.nation),positionCode:player.line,positionLabel:v61PositionNames[player.line],age:player.age,retirementStatus:status,contract:contract?{remaining:contract.endSeason-season+1,retirementStatus:status,retirementLabel,negotiating:!!contract.renewalNegotiation}:null,
    skills:v55SkillEntries({...player}).map(s=>({key:s.key,label:t(s.label),band:bandMap[v55SkillBand(s.value)],colorLabel:t({'very-weak':'Violettgrau',weak:'Blaugrau',normal:'Gelb',good:'Orange','very-good':'Pink'}[v55SkillBand(s.value)])})),
    form:{band:bandMap[formKey],label:t(v55SkillBandNames[formKey])},formRatings:Array.isArray(player.formRatings)?player.formRatings.slice(-5).filter(r=>Number.isFinite(r)&&r>=1&&r<=10):null,freshness:{percent:Math.round(fresh),band:bandMap[freshKey],label:t('Frische')},
    stats:{appearances:records.length,substitutions:covered===records.length?substitutions:null,goals:records.reduce((s,r)=>s+(r.goals||0),0),assists:records.reduce((s,r)=>s+(r.assists||0),0),averageRating:rated.length?rated.reduce((s,r)=>s+r.rating,0)/rated.length:null,ratedGames:rated.length,substitutionCoverage:covered===records.length?'complete':covered?'partial':'missing'}};
@@ -39,13 +44,17 @@
    {id:'contracts',title:t('Auslaufende Verträge'),detail:String(expiring),route:'squad',section:'contracts',actionLabel:t('Verträge prüfen')},
    {id:'youth',title:t('Nachwuchs'),detail:String(youth),route:'squad',section:'youth',actionLabel:t('Nachwuchs ansehen')}
   ].filter((item,index)=>[offers,expiring,youth][index]>0);
+  for(const status of ['confirmed','possible']){
+   const players=club.roster.filter(player=>retirementStatus(career,player)===status);
+   if(players.length)office.unshift({id:'retirement-'+status,title:t(status==='confirmed'?'Abschied bestätigt':'Mögliches Karriereende'),detail:String(players.length),names:players.map(player=>player.name),description:t(status==='confirmed'?'Die Entscheidung steht fest. Die Spieler bleiben bis Saisonende verfügbar.':'Die Entscheidung fällt zur Saisonmitte. Die Spieler bleiben verfügbar.'),route:'squad',section:'contracts',actionLabel:t('Verträge prüfen')});
+  }
   const plan=v124Payments(career)?v124FinancePlan(career,club.id):null;
   const salary=plan?.salary??v66SalaryDue(career,club.id),financeRows=[{label:t('Gehälter zum Saisonende'),valueLabel:'− '+v66Credits(salary)}];
   if(plan)financeRows.push({label:t('Noch sichere Einnahmen'),valueLabel:'+ '+v66Credits(plan.payments.filter(p=>p.safe&&p.amount>0).reduce((sum,p)=>sum+p.amount,0))},{label:t('Sichere Schlussprognose'),valueLabel:v66Credits(plan.safe),tone:'total'},{label:t('Mit möglichen Sponsorboni'),valueLabel:v66Credits(plan.withSponsorBonuses)});
   return {kpis:[{label:t('Ligaplatz'),value:rank>=0?String(rank+1)+'.':'–',detail:rows.length?t('von')+' '+rows.length:t('Nicht erfasst')},{label:t('Ligapunkte'),value:row?String(row.points):'–',detail:row?t('Spiele')+': '+row.played:t('Nicht erfasst')},{label:t('Kontostand'),value:v66Credits(club.balance)},{label:t('Profikader'),value:String(club.roster.length),detail:t('von')+' 14'}],office,finance:{balanceLabel:v66Credits(club.balance),rows:financeRows,note:t(plan?'Die Prognose berücksichtigt noch unbezahlte sichere Einnahmen und vereinbarte Gehälter. Weitere sportliche Erfolge und künftige Transfers sind nicht enthalten.':'Gehälter werden am Saisonende fällig.')}};
  }
  function project(career){
-  const fixtures=new Map(career.world.competitions.flatMap(c=>c.fixtures).map(f=>[f.id,f]));const club=v66Own(career),lead=v58State(),allRaw=[...career.world.clubs.flatMap(c=>[...(c.roster||[]),...(c.youthPool||[]),...(c.retiredPlayers||[])]),...(career.world.market?.freePlayers||[])],all=[...new Map(allRaw.map(p=>[p.pid,p])).values()].map(p=>playerRow(p,career.world.season,fixtures));
+  const fixtures=new Map(career.world.competitions.flatMap(c=>c.fixtures).map(f=>[f.id,f]));const club=v66Own(career),lead=v58State(),allRaw=[...career.world.clubs.flatMap(c=>[...(c.roster||[]),...(c.youthPool||[]),...(c.retiredPlayers||[])]),...(career.world.market?.freePlayers||[])],all=[...new Map(allRaw.map(p=>[p.pid,p])).values()].map(p=>playerRow(p,career.world.season,fixtures,career));
   const titles=[],latest=new Map();for(const c of career.world.competitions){if(c.winnerId){const key=c.type+':'+c.country+':'+(c.format||'');if(!latest.has(key)||latest.get(key).season<c.season)latest.set(key,c);}}
   for(const c of latest.values())if(c.winnerId===club.id)titles.push({kind:c.type,label:t(`${c.type==='league'?'Meister':c.type==='cup'?'Pokalsieger':c.name||'Europacupsieger'} · ${v61CountryNames[c.country]||'Europa'} · Saison ${c.season}`)});
   const league=v62Current(career).find(c=>c.type==='league'&&c.fixtures.some(f=>f.homeId===club.id||f.awayId===club.id));const division=Number.isInteger(league?.division)&&league.division>0?league.division:league?.id===`S${career.world.season}:${club.countryId}:LEAGUE`?1:null;const leagueLabel=league?t('Liga')+(division?' '+division:''):t('Pokalverein');
@@ -88,12 +97,24 @@
  function syncViews(){if(!shell)return;for(const view of shell.content.querySelectorAll(':scope > [data-v46-view]'))view.hidden=v68Stack.length>0||view.dataset.v46View!==v61CareerTab;}
  function tables(root){for(const table of root.querySelectorAll('table')){if(table.closest('[data-v46-view=matchplan]')||table.matches('.v62-table'))continue;table.classList.add('fl-data-table');table.setAttribute('role','table');const headers=[...table.querySelectorAll('thead th')].map(th=>th.textContent.trim());for(const row of table.rows){row.setAttribute('role','row');[...row.cells].forEach((cell,index)=>{cell.setAttribute('role',cell.tagName==='TH'?(cell.closest('thead')?'columnheader':'rowheader'):'cell');if(!cell.closest('thead'))cell.dataset.flLabel=headers[index]||'';});}}}
  const dialogCleanups=new Map();
+ let overviewNav=null;
+ function subnavigation(projection,detail){
+  if(!overviewNav){
+   overviewNav=document.createElement('nav');overviewNav.className='fl-overview-subnav';
+   for(const [key,label] of [['fixture','Nächste Begegnung'],['office','Im Vereinsbüro'],['finance','Finanzen']]){const button=document.createElement('button');button.type='button';button.dataset.flOverviewAnchor=key;button.dataset.flLabel=label;overviewNav.append(button);}
+   overviewNav.addEventListener('click',event=>{const key=event.target.closest('[data-fl-overview-anchor]')?.dataset.flOverviewAnchor;if(key)shell.content.querySelector(`.fl-overview-${key}`)?.scrollIntoView({block:'start',behavior:'auto'});});
+  }
+  overviewNav.setAttribute('aria-label',t('Übersicht'));for(const button of overviewNav.children)button.textContent=t(button.dataset.flLabel);
+  const tabs=['squad','transfers','competition'].map(route=>ns.navigation?.tablist(route)),club=ns.clubView?.tablist(shell.content.querySelector('[data-v46-view="club"]'));
+  const route=projection.frame.activeRoute,active=detail?null:route==='overview'?overviewNav:route==='club'?club:ns.navigation?.tablist(route);
+  shell.updateSubnavigation(active,[...tabs,club,overviewNav]);
+ }
  function dialogs(projection){for(const [dialog,cleanup] of dialogCleanups)if(!dialog.isConnected||!dialog.open){cleanup();ns.registry.dispose(dialog);dialogCleanups.delete(dialog);}for(const dialog of document.querySelectorAll('dialog[open]')){if(dialog.classList.contains('fl-menu-panel'))continue;dialog.classList.add('fl-dialog');dialog.dataset.flTheme=host?.dataset.flTheme||'light';tables(dialog);ns.registry.enhance(dialog,projection,actions);if(!dialogCleanups.has(dialog))dialogCleanups.set(dialog,ns.components.installTooltips(dialog));}}
  function refresh(){
   if(busy)return;busy=true;
   try{progressBusy();const career=v61CurrentCareer;if(!career||v61WorldScreen.hidden||career.world.activeMatch||career.world.rules?.variant==='expansion12'&&!v167Active(career)){document.body.classList.remove('fl-active');return;}
    if(!host?.isConnected){shell?.unmount();const nodes=[...v61WorldScreen.childNodes];host=document.createElement('div');v61WorldScreen.append(host);shell=ns.shell.mount(host,project(career).frame,actions);nodes.forEach(node=>shell.content.append(node));host.addEventListener('fl-theme-applied',()=>{for(const dialog of document.querySelectorAll('.fl-dialog'))dialog.dataset.flTheme=host.dataset.flTheme;});}
-   document.body.classList.add('fl-active');const projection=project(career);shell.update(projection.frame);syncViews();tables(shell.content);const detail=shell.content.querySelector('[data-v68-detail]'),current=v68Stack.at(-1);if(detail&&current?.type==='club')detail.dataset.flClubId=current.id;ns.registry.enhance(shell.content,projection,actions);dialogs(projection);
+   document.body.classList.add('fl-active');const projection=project(career);shell.update(projection.frame);syncViews();tables(shell.content);const detail=shell.content.querySelector('[data-v68-detail]'),current=v68Stack.at(-1);if(detail&&current?.type==='club')detail.dataset.flClubId=current.id;ns.registry.enhance(shell.content,projection,actions);subnavigation(projection,detail);dialogs(projection);
   }finally{observer.takeRecords();busy=false;}
  }
  function schedule(){if(queued||busy)return;queued=true;requestAnimationFrame(()=>{queued=false;refresh();});}
@@ -112,5 +133,6 @@
  observer.observe(v61WorldScreen,{subtree:true,childList:true});observer.observe(document.body,{childList:true});observer.observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
  document.addEventListener('click',event=>{const contract=event.target.closest('[data-v67-contract-open]'),sale=event.target.closest('[data-v72-go-sale]'),listed=event.target.closest('[data-v72-open]');if(contract)sections.squad='contracts';if(sale)sections.transfers='own';if(listed)sections.transfers='listed';},true);
  document.addEventListener('click',schedule);document.addEventListener('change',schedule);
+ matchMedia('(max-width:1100px)').addEventListener('change',schedule);
  ns.adapter=Object.freeze({project,refresh});schedule();
 })();

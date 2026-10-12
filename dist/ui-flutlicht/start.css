@@ -1,4 +1,16 @@
 /* The approved Flutlicht palette extends the native start page and creation flow. */
+.fl-start .fl-start-group{margin:0;padding:0 20px;border-top:1px solid var(--fl-line)}
+.fl-start .fl-start-group>summary{min-height:48px;padding:12px 0;font-size:14px;font-weight:650;color:var(--fl-ink);cursor:pointer}
+#start-screen.fl-start .v81-options{display:flex;border:0;background:transparent;margin:12px 0}
+#start-screen.fl-start .v81-options>button{margin:0;min-height:44px}
+#start-screen.fl-start .v61-start-panel:has(#v61-saves:not(:has(.v61-saved))){grid-template-columns:1fr;max-width:760px}
+.fl-start-steps{display:flex;flex-wrap:wrap;gap:4px 16px;padding:0;margin:16px 0 24px;list-style:none;font-size:14px;color:var(--fl-muted)}
+.fl-start-steps li{display:flex;align-items:center;min-height:44px;gap:16px}
+.fl-start-steps li:not(:last-child)::after{content:'›';color:var(--fl-muted)}
+.fl-start-steps li[aria-current=step]{font-weight:750;color:var(--fl-accent)}
+.fl-start-steps li button{min-height:44px;padding:0;border:0;background:transparent;font-size:14px;text-decoration:underline;text-underline-offset:3px}
+.fl-start-steps li button:hover{text-decoration-thickness:2px}
+@media(max-width:700px){.fl-start-steps{gap:2px 10px;margin:8px 0 18px;font-size:13px}.fl-start-steps li{gap:10px}.fl-start-steps li button{font-size:13px}}
 body.fl-start-active{min-height:100dvh;background:#f1f3f5;color:#202a35;color-scheme:light}
 body.fl-start-active[data-fl-start-theme=dark]{background:#11151a;color:#edf0f3;color-scheme:dark}
 :root:has(body.fl-start-active){scrollbar-color:#7b8a9c #f1f3f5}

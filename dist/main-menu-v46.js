@@ -87,9 +87,14 @@ showCenter=function(){v46ActiveTab='overview';return v46BaseShowCenter()};
 const v46BaseOpenSlot=openSlot;
 openSlot=function(raw){v46ActiveTab='overview';return v46BaseOpenSlot(raw)};
 
-const v46Extras=document.createElement('details');v46Extras.className='v46-extras';v46Extras.innerHTML='<summary>Extras & Einstellungen</summary>';
-const v46LegacyMenu=startScreen.querySelector('.menu-layout');v46LegacyMenu.insertAdjacentElement('afterend',v46Extras);v46Extras.append(v46LegacyMenu);
-for(const node of[startScreen.querySelector('.v42-demo-card'),startScreen.querySelector('#share-yes')?.closest('.panel'),startScreen.querySelector('.legal-intro'),startScreen.querySelector('.save-tools')])if(node)v46Extras.append(node);
+const v46Extras=document.createElement('details');v46Extras.className='v46-extras';v46Extras.innerHTML='<summary>Weitere Bereiche</summary>';
+const v46LegacyMenu=startScreen.querySelector('.menu-layout');v46LegacyMenu.insertAdjacentElement('afterend',v46Extras);
+for(const [label,nodes] of [
+ ['Spielstände & Sicherungen',[startScreen.querySelector('.save-tools')]],
+ ['Alte Liga',[v46LegacyMenu]],
+ ['Tests & Werkzeuge',[startScreen.querySelector('.v42-demo-card')]],
+ ['Datenschutz',[startScreen.querySelector('#share-yes')?.closest('.panel'),startScreen.querySelector('.legal-intro')]]
+]){const content=nodes.filter(Boolean);if(!content.length)continue;const group=document.createElement('details');group.className='fl-start-group';const summary=document.createElement('summary');summary.textContent=label;group.append(summary,...content);v46Extras.append(group);}
 startScreen.querySelector('footer').textContent='Doppel 6 / PROTOTYP 46';
 const v46BaseShowRecords=v43ShowRecords;
 v43ShowRecords=function(){v46BaseShowRecords();const label=clubCenter.querySelector('footer span:first-child');if(label)label.textContent='Doppel 6 / PROTOTYP 46'};

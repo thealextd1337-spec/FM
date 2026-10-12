@@ -32,20 +32,36 @@
       squad.classList.add('fl-squad');
       table.classList.add('fl-squad-table');
       const stateKey = String(data.ownClubId || 'squad');
-      if (!filters.has(stateKey)) filters.set(stateKey, { query: '', position: 'all' });
+      if (!filters.has(stateKey)) filters.set(stateKey, { position: 'all' });
       const state = filters.get(stateKey), players = new Map((data.roster || []).map(player => [player.id, player]));
       let tools = squad.querySelector('.fl-squad-tools');
       if (!tools) {
         tools = document.createElement('div');tools.className = 'fl-squad-tools';
-        tools.innerHTML = '<label><span data-fl-squad-search-label></span><input type="search" data-fl-squad-search autocomplete="off"></label><label><span data-fl-squad-position-label></span><select data-fl-squad-position></select></label><p class="fl-squad-count" role="status" aria-live="polite"></p>';
+        tools.innerHTML = '<label><span data-fl-squad-position-label></span><select data-fl-squad-position></select></label><p class="fl-squad-count" role="status" aria-live="polite"></p>';
         table.parentElement.before(tools);
       }
-      const input = tools.querySelector('[data-fl-squad-search]'), select = tools.querySelector('[data-fl-squad-position]');
-      setText(tools.querySelector('[data-fl-squad-search-label]'), t('Spieler suchen'));
-      input.placeholder = t('Name oder Nationalität');if (input.value !== state.query) input.value = state.query;
+      const select = tools.querySelector('[data-fl-squad-position]');
       setText(tools.querySelector('[data-fl-squad-position-label]'), t('Position'));
       setHTML(select, [['all', 'Alle Positionen'], ['gk', 'Torwart'], ['def', 'Abwehr'], ['mid', 'Mittelfeld'], ['att', 'Angriff']].map(([value, label]) => `<option value="${value}">${C.escape(t(label))}</option>`).join(''));
       if (select.value !== state.position) select.value = state.position;
+      let sortLabel = tools.querySelector('.fl-squad-sort');
+      if (!sortLabel) {
+        sortLabel = document.createElement('label');sortLabel.className = 'fl-squad-sort';
+        sortLabel.innerHTML = '<span></span><select data-fl-squad-sort></select>';
+        tools.querySelector('.fl-squad-count').before(sortLabel);
+      }
+      setText(sortLabel.querySelector('span'), t('Sortierung'));
+      const sortSelect = sortLabel.querySelector('select');
+      const sortButtons = [...table.querySelectorAll('[data-v61-roster-sort]')];
+      setHTML(sortSelect, sortButtons.map(button => {
+        const key = button.dataset.v61RosterSort, label = button.textContent.replace(/[▲▼↑↓]/g, '').trim();
+        return ['ascending','descending'].map(direction => `<option value="${C.escape(key)}:${direction}">${C.escape(label)} · ${C.escape(t(direction === 'ascending' ? 'Aufsteigend' : 'Absteigend'))}</option>`).join('');
+      }).join(''));
+      const syncSort = () => {
+        const current = sortButtons.find(button => button.closest('th').hasAttribute('aria-sort'));
+        if (current) sortSelect.value = `${current.dataset.v61RosterSort}:${current.closest('th').getAttribute('aria-sort')}`;
+      };
+      syncSort();
       let empty = squad.querySelector('.fl-squad-empty');
       if (!empty) { empty = document.createElement('p');empty.className = 'fl-squad-empty';table.parentElement.after(empty); }
       setText(empty, t('Keine Spieler in dieser Auswahl.'));
@@ -58,7 +74,10 @@
         if (!identity) { identity = document.createElement('div');identity.className = 'fl-squad-identity';button.before(identity);identity.append(button); }
         const flag = button.querySelector('.flag-icon');if (flag && button.lastChild !== flag) button.append(flag);
         let form = identity.querySelector('.fl-squad-form');
-        if (!form) { form = document.createElement('span');form.className = 'fl-squad-form';identity.append(form); }
+        if (!form) form = nameCell.querySelector('.fl-squad-form');
+        if (!form) { form = document.createElement('span');form.className = 'fl-squad-form'; }
+        let header = nameCell.querySelector('.fl-squad-player-head');
+        if (!header) { header = document.createElement('div');header.className = 'fl-squad-player-head';identity.before(header);header.append(identity,form); }
         setHTML(form, formHTML(player,true));
         let details = nameCell.querySelector('.fl-squad-player-detail');
         if (!details) { details = document.createElement('div');details.className = 'fl-squad-player-detail';nameCell.append(details); }
@@ -86,18 +105,27 @@
           const player = players.get(row.querySelector('[data-v61-player]')?.dataset.v61Player);
           if (!player) continue;
           total++;
-          const haystack = normalize(`${player.name} ${player.nationLabel} ${player.nationCode}`);
-          row.hidden = !(haystack.includes(normalize(state.query)) && (state.position === 'all' || player.positionCode === state.position));
+          row.hidden = !(state.position === 'all' || player.positionCode === state.position);
           if (!row.hidden) visible++;
         }
         setText(tools.querySelector('.fl-squad-count'), `${visible} / ${total} ${t('Spieler')}`);
         empty.hidden = visible !== 0;
       };
       const prior = bindings.get(tools);if (prior) prior();
-      const onInput = () => { state.query = input.value;applyFilter(); };
       const onChange = () => { state.position = validPositions.has(select.value) ? select.value : 'all';applyFilter(); };
-      input.addEventListener('input', onInput);select.addEventListener('change', onChange);
-      bindings.set(tools, () => { input.removeEventListener('input', onInput);select.removeEventListener('change', onChange); });
+      const onSortChange = () => {
+        const [key, direction] = sortSelect.value.split(':');
+        const button = sortButtons.find(item => item.dataset.v61RosterSort === key);
+        if (!button) return;
+        // The native handler owns row ordering, datasets and the active direction.
+        if (button.closest('th').getAttribute('aria-sort') !== direction) button.click();
+        if (button.closest('th').getAttribute('aria-sort') !== direction) button.click();
+        syncSort();
+      };
+      const onTableClick = event => { if (event.target.closest('[data-v61-roster-sort]')) queueMicrotask(syncSort); };
+      select.addEventListener('change', onChange);
+      sortSelect.addEventListener('change', onSortChange);table.addEventListener('click', onTableClick);
+      bindings.set(tools, () => { select.removeEventListener('change', onChange);sortSelect.removeEventListener('change', onSortChange);table.removeEventListener('click', onTableClick); });
       applyFilter();
     }
     const doc = root.ownerDocument || document;
@@ -106,9 +134,42 @@
       const player = all.get(dialog.dataset.flPlayerId);if (!player) continue;
       dialog.classList.add('fl-squad-profile');
       const overview = dialog.querySelector('[data-v74-profile-panel="overview"]') || dialog;
+      const facts = overview.querySelector('.player-card-facts');
       let status = overview.querySelector('.fl-squad-profile-status');
-      if (!status) { status = document.createElement('div');status.className = 'fl-squad-profile-status';const facts = overview.querySelector('.player-card-facts');if (facts) facts.after(status);else overview.append(status); }
-      setHTML(status, formHTML(player) + freshHTML(player));
+      if (!status) { status = document.createElement('div');status.className = 'fl-squad-profile-status';if (facts) facts.after(status);else overview.prepend(status); }
+      if (facts) {
+        const contractLabels = new Set(['Jahresgehalt','Beginn','Vertrag bis','Restlaufzeit','Einsatz-Zusage'].map(label => normalize(t(label))));
+        const coreLabels = new Set(['Nationalität','Rückennummer','Form','Fitness'].map(label => normalize(t(label))));
+        let contract = overview.querySelector('.fl-squad-profile-contract');
+        let other = overview.querySelector('.fl-squad-profile-details');
+        for (const fact of [...facts.children]) {
+          const label = [...fact.childNodes].filter(node => node.nodeType === 3).map(node => node.textContent).join('').trim();
+          if ([normalize(t('Form')),normalize(t('Fitness'))].includes(normalize(label))) {
+            const value = fact.querySelector('b');
+            fact.dataset.flProfileSport = normalize(label) === normalize(t('Form')) ? 'form' : 'freshness';
+            if (value) value.dataset.flSportLabel = value.textContent;
+            status.append(fact);
+          } else if (contractLabels.has(normalize(label))) {
+            if (!contract) { contract = document.createElement('section');contract.className = 'fl-squad-profile-contract';contract.innerHTML = '<h3></h3><div class="player-card-facts"></div>';overview.append(contract); }
+            contract.querySelector('.player-card-facts').append(fact);
+          } else if (!coreLabels.has(normalize(label))) {
+            if (!other) { other = document.createElement('div');other.className = 'player-card-facts fl-squad-profile-details';overview.append(other); }
+            other.append(fact);
+          }
+        }
+        if (contract) setText(contract.querySelector('h3'), t('Vertrag'));
+        facts.classList.add('fl-squad-profile-core');facts.hidden = facts.children.length === 0;
+      }
+      const sportFacts = [...status.querySelectorAll('[data-fl-profile-sport]')];
+      if (sportFacts.length) {
+        for (const fact of sportFacts) {
+          const value = fact.querySelector('b');if (!value) continue;
+          const component = fact.dataset.flProfileSport === 'form'
+            ? C.form({...(localized(player.form) || {band:'unknown'}),label:value.dataset.flSportLabel})
+            : C.freshness({...(localized(player.freshness) || {band:'unknown'}),label:value.dataset.flSportLabel});
+          setHTML(value, component);
+        }
+      } else setHTML(status, formHTML(player) + freshHTML(player));
       const groups = overview.querySelector('.v55-skill-groups');
       if (groups) {
         let skills = overview.querySelector('.fl-squad-profile-skills');
@@ -117,6 +178,12 @@
         for (const skill of skills.querySelectorAll('.fl-skill')) skill.setAttribute('role', 'listitem');
         groups.hidden = true;
         const legend = groups.nextElementSibling;if (legend?.classList.contains('v55-skill-legend')) legend.hidden = true;
+        const section = groups.closest('section');
+        if (section && status.nextElementSibling !== section) status.after(section);
+        const other = overview.querySelector('.fl-squad-profile-details');
+        const contract = overview.querySelector('.fl-squad-profile-contract');
+        if (other && section) section.after(other);
+        if (contract) (other || section || status).after(contract);
       }
     }
   }

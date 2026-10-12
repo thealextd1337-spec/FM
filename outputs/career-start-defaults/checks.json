@@ -1,0 +1,41 @@
+{
+  "pass": true,
+  "results": [
+    {
+      "target": "source",
+      "pass": true,
+      "checks": [
+        "selectors absent",
+        "back navigation",
+        "DE/EN summary",
+        "mobile/desktop overflow",
+        "actual start",
+        "storage/export",
+        "reload"
+      ],
+      "config": {
+        "version": 1,
+        "fieldSize": "standard",
+        "fieldPlayers": 5
+      }
+    },
+    {
+      "target": "build",
+      "pass": true,
+      "checks": [
+        "selectors absent",
+        "back navigation",
+        "DE/EN summary",
+        "mobile/desktop overflow",
+        "actual start",
+        "storage/export",
+        "reload"
+      ],
+      "config": {
+        "version": 1,
+        "fieldSize": "standard",
+        "fieldPlayers": 5
+      }
+    }
+  ]
+}

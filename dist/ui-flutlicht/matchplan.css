@@ -1,4 +1,8 @@
 /* Management controls use Flutlicht; the pitch keeps its football colours. */
+@media(min-width:701px){
+ #v61-world-screen .fl-content [data-v46-view="matchplan"] .v64-prematch-field .player-label{font-size:14px;line-height:1.25}
+ #v61-world-screen .fl-content [data-v46-view="matchplan"] .v64-prematch-field .token{font-size:18px;font-weight:750}
+}
 #v61-world-screen .fl-content [data-v46-view="matchplan"] :is(.v64-controls,.v64-individual,.v64-selection,.v64-plan-store,.v64-bench-section,.v64-bench-player,.v64-bench-chip,.plan-card,.v140-match-presets){background:var(--fl-surface);border-color:var(--fl-line);color:var(--fl-ink)}
 #v61-world-screen .fl-content [data-v46-view="matchplan"] :is(.segmented,.prematch-tabs){background:var(--fl-subtle);border:1px solid var(--fl-line)}
 #v61-world-screen .fl-content [data-v46-view="matchplan"] .prematch-tabs button{background:var(--fl-control);color:var(--fl-ink)}

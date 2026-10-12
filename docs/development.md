@@ -1,5 +1,19 @@
 # Entwicklung und Veröffentlichung
 
+## UI-Modernisierung vom 12. Oktober 2026
+
+Die Shell besitzt eine gemeinsame untere Leiste mit einer verborgenen, inerten Ablage für inaktive Tabknoten. Adapter, Navigation und Vereinsansicht verschieben die originalen Tablisten; native Listener und ARIA-Ziele bleiben erhalten. Bereichs-Picker und Transfer-Sprungliste werden nicht mehr erzeugt. `ResizeObserver` hält den Inhaltsabstand passend zur Leistenhöhe einschließlich Safe Area. Profil-/Detailansichten zeigen nur die Hauptnavigation.
+
+Die bestehenden Flutlicht-Dekoratoren modernisieren Übersicht, Kader/Profile, Verträge/Transfers und Wettbewerbstabellen. Der Adapter ergänzt ausschließlich sichtbare Vertrags-/Karriereenddaten; Büro, Sortierung und Filter verwenden vorhandene Navigation und Controller. Wiederholtes Rendern darf bereits platzierte Knoten nicht erneut verschieben oder fokussierte Büroinhalte ersetzen. Der native Start bietet Einstellungen direkt an, gruppiert gemeinsame Spielstandsübertragung getrennt von der alten Liga und zeigt nur rückwärts bedienbare Karriereschritte.
+
+`node work/check-ui-modernization.cjs` und derselbe Aufruf mit `--build` prüfen echte Quellen-/Buildansichten, DE/EN, Hell/Dunkel, Mobil/Desktop, lange Namen, mögliche/bestätigte Abschiede, Fokus, Büro-Vertragsnavigation, native Sortierung, Filter und Speicherung/Neuladen. Belege und Quellhashes stehen unter `outputs/ui-modernization/`. Paketprüfungen U01-B/C/D und der native Speicher-/Importprüfweg ergänzen die Integrationsprüfung. Keine Spielstandmigration oder Matchregeländerung.
+
+
+
+## Fester Karrierestart
+
+Neue Vereinswelten verwenden als Konstruktorvorgabe `v160MatchConfig()` mit `fieldSize: standard` und `fieldPlayers: 5`. Beide Startrenderer enthalten keine Feld-/Spielerzahlauswahl; der aktive Expansionsstart speichert dieselbe Vorschau ohne erneute Regelauswahl. Explizite vorhandene Matchkonfigurationen bleiben validierbar und beim Laden unverändert. `work/test-world-local-start.cjs` prüft Konstruktion/Export; `work/check-career-start-defaults.cjs` prüft Quelle und Build über echte Startaktionen, DE/EN, Rücknavigation, Speicherung und Neuladen.
+
 ## Jugend-/Karriereendstand v176
 
 Neue mehrjährige Expansionskarrieren setzen ausschließlich während v67Init die Kennung world.youthSystem.version: 1. Die separaten Module world-youth-legacy-v176.js und world-youth-legacy-ui-v176.js verwenden vorhandene Generatoren, Buchungen, Archive und Renderer. Laden setzt keine Kennung. Altersentscheidungen sind saisonweise gespeichert und idempotent; neue Pokalersatzspieler werden nicht vor ihrem ersten Jahr erneut gealtert. Der native Jahresarchiver berücksichtigt die neuen Karrierearchive. [Vertrag und Grenzen](jugend-legacy-release127.md), [Release](release-127.md).

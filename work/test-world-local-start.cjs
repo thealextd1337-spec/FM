@@ -17,6 +17,9 @@ const call=(name,...args)=>vm.runInContext(name,context)(...args),copy=value=>JS
  assert.equal(call('v61ReadCareers').length,0,'invalid names do not allocate a save');
  const career=call('v61CreateCareer',clubId,seed,'  Alex   Nord  ');
  assert.equal(career.manager.name,'Alex Nord');
+ assert.deepEqual(copy(career.world.matchConfig),{version:1,fieldSize:'standard',fieldPlayers:5},'new careers use standard pitch and five outfield players');
+ assert.equal(call('v160WorldGeometry',career).length,68);
+ assert.equal(call('v160WorldGeometry',career).width,44);
  const originalPlayers=roster=>copy(roster).map(({marketValue,marketValueStamp,...player})=>player);
  assert.deepEqual(originalPlayers(career.world.clubs.find(club=>club.id===clubId).roster),preview,'identity, appearance and skills match the preview; only the initial market valuation is added');
  assert.equal(call('v61ValidateCareer',career),true);
@@ -29,6 +32,7 @@ const call=(name,...args)=>vm.runInContext(name,context)(...args),copy=value=>JS
  assert.equal(call('v61ReadCareers').length,1,'retry replaces the unconfirmed attempt, not adds a phantom career');
  const exported=await call('v61ExportCareerData',career.id);
  assert.equal(exported.save.manager.name,'Alex Nord');
+ assert.deepEqual(copy(exported.save.world.matchConfig),{version:1,fieldSize:'standard',fieldPlayers:5},'saved and exported careers retain fixed start rules');
  assert.deepEqual(originalPlayers(exported.save.world.clubs.find(club=>club.id===clubId).roster),preview);
  const corrupt=copy(exported.save);corrupt.manager.name='';
  assert.equal(call('v61ValidateCareer',corrupt),false,'new manager names are checked on import');

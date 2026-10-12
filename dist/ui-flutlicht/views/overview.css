@@ -158,3 +158,41 @@
 .fl-shell .fl-overview .v67-winner-line a{color:var(--fl-accent)}
 .fl-shell .fl-overview .v67-show-grid strong{font:750 clamp(24px,3vw,30px)/1.3 var(--fl-font)}
 .fl-shell .fl-overview .v62-award-icon{image-rendering:auto}
+
+/* Compact preview preserves metadata, result actions and both sponsor statuses. */
+.fl-shell .fl-overview .fl-overview-fixture{padding:16px;margin:12px 0}
+.fl-shell .fl-overview .fl-overview-fixture-heading{display:block;margin:0 0 12px}
+.fl-shell .fl-overview-fixture-heading>strong{display:block;font-size:20px}
+.fl-shell .fl-overview-fixture-heading>span{display:block;margin-top:4px;font-size:13px;line-height:1.45}
+.fl-shell .fl-overview .fl-overview-teams{gap:10px}
+.fl-shell .fl-overview .fl-overview-team{gap:4px}
+.fl-shell .fl-overview-team .fl-overview-team-crest{min-width:44px;min-height:44px}
+.fl-shell .fl-overview-team-crest :is(svg,img){max-width:42px!important;max-height:46px!important}
+.fl-shell .fl-overview-sponsor>svg{max-height:42px;max-width:135px}
+.fl-shell .fl-overview-sponsor{gap:2px}
+.fl-shell .fl-overview .fl-overview-goals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:12px}
+.fl-shell .fl-overview-goal{padding:8px;gap:4px;font-size:13px}
+.fl-shell .fl-overview-goal-state{gap:4px}
+.fl-shell .fl-overview-goal-state>small{font-size:12px}
+.fl-shell .fl-overview :is(.fl-overview-office,.fl-overview-finance){padding:18px}
+.fl-shell .fl-overview :is(.fl-overview-office,.fl-overview-finance) h3{margin-bottom:12px;font-size:18px}
+.fl-shell .fl-overview-office li strong{font-size:14px}
+.fl-shell .fl-overview-task-copy>span{font-size:13px;line-height:1.45}
+.fl-shell .fl-overview-task-copy .fl-overview-task-names{font-size:14px;color:var(--fl-ink);overflow-wrap:anywhere}
+.fl-shell .fl-overview-task-copy .fl-overview-task-description{font-size:12px;color:var(--fl-muted)}
+.fl-shell .fl-overview .fl-overview-finance dl>div,.fl-shell .fl-overview .fl-overview-finance-note{font-size:14px}
+.fl-shell .fl-overview-office .fl-overview-office-note{margin:10px -18px -18px;padding:10px 18px;font-size:12px}
+@media(max-width:1100px){
+ .fl-shell .fl-overview-main>.fl-overview-office{order:2;margin:0}
+ .fl-shell .fl-overview-aside{order:4}
+}
+@media(max-width:700px){
+ .fl-shell .fl-overview-kpis{padding-block:12px;gap:10px;margin-bottom:12px}
+ .fl-shell .fl-overview .fl-overview-fixture{padding:14px 12px;margin:0}
+ .fl-shell .fl-overview .fl-overview-teams{gap:8px 4px}
+ .fl-shell .fl-overview .fl-overview-versus{padding-top:47px}
+ .fl-shell .fl-overview-team>strong{font-size:14px;line-height:1.3}
+ .fl-shell .fl-overview .fl-overview-goals{grid-template-columns:1fr}
+ .fl-shell .fl-overview .fl-overview-goal{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px 8px}
+ .fl-shell .fl-overview .fl-overview-goal>span:first-child{flex:1 1 145px}
+}

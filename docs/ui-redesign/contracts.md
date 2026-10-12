@@ -1,6 +1,16 @@
-# Flutlicht – UI-Vertrag v1.2
+# Flutlicht – UI-Vertrag v1.3
 
 Freigabe: I00, 7. Oktober 2026. Browser-Integration in den bestehenden Vereinswelt-Code, klassische Scripts unter `window.D6Flutlicht`. Neue Namen sind ab dieser Lieferung verbindlich; einzelne Produzenten werden vor Paketstart ergänzt. Keine zweite Fach- oder Speicherautorität.
+
+## Erweiterung v1.3: Modernisierung vom 12. Oktober 2026
+
+Die anschließende Nutzerpräzisierung entfernt ausschließlich den Namensfilter im Kader. Positionsfilter und native Sortierung bleiben. Mobile Wettbewerbszellen tragen zusätzlich eine sprachabhängige Kurzbeschriftung für die kompakte Zeile; vollständige Spaltenbezeichnungen und Werte bleiben in der zugänglichen Beschriftung erhalten. Die Transfersuche ist unverändert erreichbar.
+
+Spielerzeilen ergänzen `retirementStatus:null|possible|confirmed` und `contract:null|{remaining,retirementStatus,retirementLabel,negotiating}`. Restlaufzeit ist eine sichtbare Saisonanzahl; Status und Beschriftung lesen ausschließlich die vorhandenen saisonbezogenen Karriereenddaten. Verhandlungsstatus ist die Existenz einer nativen Vertragsverhandlung. Keine Wahrscheinlichkeiten, Fähigkeitswerte oder Rohverträge werden projiziert.
+
+Büroeinträge dürfen `names:[string]` und `description:string` ergänzen. Karriereendmeldungen führen über `navigate(squad,{section:contracts})` zur Vertragsübersicht. Die Standalone-Meldung wird in der Übersicht durch denselben Inhalt im Büro ersetzt. Mobil folgt der Büroknoten im DOM unmittelbar auf die Begegnung; der Wechsel zum Desktop positioniert denselben Knoten wieder in der Seitenleiste. Wiederholte Aktualisierung verschiebt unveränderte Knoten nicht und erhält den Fokus.
+
+Sortierung, „Weitere Filter“ und „Handlungsbedarf“ ändern ausschließlich Anzeige oder vorhandene native Filter-/Sortieraktionen. Die mobile Tabellenform enthält sämtliche neun Originalspalten mit zugänglichen Beschriftungen; Desktop behält die Tabelle. Vorhandene Profil- und Vertragsknoten werden verschoben, nicht geklont. Sprache, Farbschema und Datenzustand bleiben bei den bestehenden Controllern.
 
 ## Rahmen und Komponenten
 

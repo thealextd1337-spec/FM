@@ -16,7 +16,6 @@
  function select(route,section,{focus=false}={}){
   const state=routes.get(route);if(!state?.view.isConnected||!state.nav.isConnected||!state.panels.has(section))return false;
   state.active=section;remembered.set(route,section);state.view.dataset.flSection=section;
-  state.picker.input.value=section;
   for(const [key,panel] of state.panels){panel.hidden=key!==section;const button=state.buttons.get(key);button.setAttribute('aria-selected',String(key===section));button.tabIndex=key===section?0:-1;}
   if(route==='competition'){
    const area=section==='countries'?'other':'own',button=state.view.querySelector(`[data-v62-area="${area}"]`);
@@ -24,7 +23,7 @@
    if(button&&button.getAttribute('aria-selected')!=='true')button.click();
    const other=state.view.querySelector('[data-v62-competition-area="other"]');if(other)other.hidden=section!=='countries';
   }
-  if(focus)state.buttons.get(section).focus({preventScroll:true});
+  if(focus){const button=state.buttons.get(section);button.focus({preventScroll:true});button.scrollIntoView({block:"nearest",inline:"nearest"});}
   return true;
  }
  function create(view,route,host,anchor,actions,definition=definitions[route]){
@@ -32,7 +31,6 @@
   const prefix=`fl-section-${++sequence}`,nav=document.createElement('div'),bodies=document.createElement('div');
   nav.className='fl-section-tabs';nav.setAttribute('role','tablist');bodies.className='fl-section-panels';
   state={view,route,host,nav,bodies,actions,panels:new Map(),buttons:new Map(),definition,active:definition.sections[0][0]};
-  state.picker=ns.components.sectionPicker(view.ownerDocument,key=>{if(select(route,key))state.actions.setSection?.(route,key);});
   for(const [key] of definition.sections){
    const button=document.createElement('button'),panel=document.createElement('section');button.type='button';button.id=`${prefix}-tab-${key}`;button.dataset.flSectionTab=key;button.setAttribute('role','tab');button.setAttribute('aria-controls',`${prefix}-panel-${key}`);
    panel.id=`${prefix}-panel-${key}`;panel.dataset.flSectionPanel=key;panel.className='fl-section-panel';panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',button.id);panel.tabIndex=0;
@@ -45,7 +43,7 @@
    event.preventDefault();const keys=[...state.panels.keys()],index=keys.indexOf(button.dataset.flSectionTab),key=keys[event.key==='Home'?0:event.key==='End'?keys.length-1:(index+(event.key==='ArrowRight'?1:-1)+keys.length)%keys.length];
    select(route,key,{focus:true});state.actions.setSection?.(route,key);
   });
-  if(anchor)anchor.after(nav);else host.prepend(nav);nav.after(state.picker.node);state.picker.node.after(bodies);view.classList.add('fl-navigation-view');states.set(view,state);routes.set(route,state);return state;
+  if(anchor)anchor.after(nav);else host.prepend(nav);nav.after(bodies);view.classList.add('fl-navigation-view');states.set(view,state);routes.set(route,state);return state;
  }
  function empty(state,key,label,t){
   const panel=state.panels.get(key);let message=panel.querySelector(':scope > .fl-navigation-empty');
@@ -55,7 +53,7 @@
  function squad(view,projection,actions,t){
   const state=create(view,'squad',view,view.querySelector(':scope > .v46-view-heading'),actions);
   for(const node of [...view.children]){
-   if(node===state.nav||node===state.picker.node||node===state.bodies||node.matches('.v46-view-heading'))continue;
+   if(node===state.nav||node===state.bodies||node.matches('.v46-view-heading'))continue;
    const key=node.matches('.v66-contracts')?'contracts':node.matches('.v67-youth')?'youth':'roster';state.panels.get(key).append(node);
   }
   for(const key of ['roster','contracts','youth'])empty(state,key,'Bereich nicht verfügbar.',t);
@@ -65,10 +63,10 @@
   const market=view.querySelector('.v66-market');if(!market)return null;
   const state=create(view,'transfers',market,market.querySelector(':scope > .v62-season-head'),actions);
   for(const node of [...market.children]){
-   if(node===state.nav||node===state.picker.node||node===state.bodies||node.matches('.v62-season-head,.fl-market-jumps,#v66-message'))continue;
-   if(node.matches('.v66-recovery,.v66-deadline')){state.nav.before(node);continue;}
+   if(node===state.nav||node===state.bodies||node.matches('.v62-season-head,.fl-market-jumps,#v66-message'))continue;
+   if(node.matches('.v66-recovery,.v66-deadline')){state.bodies.before(node);continue;}
    // The phase/roster notice remains visible above all transfer destinations.
-   if(node.matches('p')&&!node.classList.contains('v66-note')){state.nav.before(node);continue;}
+   if(node.matches('p')&&!node.classList.contains('v66-note')){state.bodies.before(node);continue;}
    let key='search';
    if(node.matches('.v72-sale-list'))key='listed';else if(node.matches('.v72-own-sales'))key='own';else if(node.matches('.v72-open-deals,.v66-bids'))key='offers';
    else if(node.matches('h3')&&node.nextElementSibling?.matches('.v66-bids'))key='offers';
@@ -133,10 +131,9 @@
    const state=build(view,projection,actions,t);if(!state)continue;
    state.nav.setAttribute('aria-label',t(state.definition.label));for(const [key,label] of state.definition.sections)setText(state.buttons.get(key),t(label));
    const external=projection.navigation?.[route];select(route,state.panels.has(external)?external:(state.panels.has(remembered.get(route))?remembered.get(route):state.definition.sections[0][0]));
-   state.picker.update(state.definition.label,state.definition.sections,state.active,t);
   }
   const calendarView=root.querySelector(':scope > [data-v46-view="calendar"]');if(calendarView)calendar(calendarView,projection,actions,t);
   const stats=root.querySelector(':scope > [data-v46-view="statistics"]');if(stats)statistics(stats,projection,actions,t);
  }
- ns.navigation=Object.freeze({select});ns.registry.register({id:'navigation',enhance});
+ ns.navigation=Object.freeze({select,tablist:route=>routes.get(route)?.nav});ns.registry.register({id:'navigation',enhance});
 })();

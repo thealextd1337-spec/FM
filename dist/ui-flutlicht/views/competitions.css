@@ -23,15 +23,17 @@
 .fl-shell .fl-competitions .v62-cup-round-games{gap:12px}
 .fl-shell .fl-competitions .v62-cup-slide-controls button{min-width:44px;min-height:44px}
 .fl-shell .fl-competitions .v62-table-wrap{max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-color:var(--fl-control-line) var(--fl-surface);border-radius:0 0 var(--fl-radius) var(--fl-radius)}
-.fl-shell .fl-competitions .v62-table{width:100%;min-width:400px;table-layout:auto;font-size:12px}
+.fl-shell .fl-competitions .v62-table{width:100%;min-width:400px;table-layout:auto;font-size:14px;font-variant-numeric:tabular-nums}
 .fl-shell .fl-competitions .fl-competition-table{min-width:570px}
 .fl-shell .fl-competitions .v62-table :is(th,td){padding:10px 8px;text-align:right;white-space:nowrap;vertical-align:middle}
 .fl-shell .fl-competitions .v62-table :is(th,td):nth-child(2){text-align:left;min-width:150px;white-space:normal}
-.fl-shell .fl-competitions .v62-table .v68-club-link{min-height:44px;max-width:240px;white-space:normal;font-size:12px}
+.fl-shell .fl-competitions .v62-table .v68-club-link{min-height:44px;max-width:280px;white-space:normal;font-size:14px;line-height:1.4}
 .fl-shell .fl-competitions .v62-table .v68-table-club{min-width:0}
 .fl-shell .fl-competitions .v62-table .v61-crest{width:20px;height:24px}
 .fl-shell .fl-competitions .v62-table .v62-award-icon-small{width:23px;height:23px}
 .fl-shell .fl-overview .v62-table .v68-club-link{font-size:12px}
+.fl-shell .fl-competitions .fl-competition-table [data-fl-standing-field=points]{font-weight:750;color:var(--fl-ink)}
+.fl-shell .fl-competitions .fl-competition-table tbody [data-fl-standing-field=rank]{color:var(--fl-muted);font-weight:650}
 .fl-shell .fl-competitions .v62-calendar-columns{color:var(--fl-muted);border-color:var(--fl-line);grid-template-columns:105px minmax(130px,1fr) minmax(170px,1.4fr) 155px;padding-inline:10px}
 .fl-shell .fl-competitions .v62-calendar-list{display:block}
 .fl-shell .fl-competitions .v62-calendar-list li{grid-template-columns:105px minmax(130px,1fr) minmax(170px,1.4fr) 155px;background:var(--fl-surface);border:0;border-bottom:1px solid var(--fl-line);border-radius:0;color:var(--fl-ink);padding:8px 10px;min-width:0;min-height:60px;gap:8px;align-items:center}
@@ -101,3 +103,23 @@
 .fl-shell .fl-competitions [data-v119-outcome="win"] .v119-calendar-score{background:rgba(84,173,113,.16);color:var(--fl-ink)}
 .fl-shell .fl-competitions [data-v119-outcome="loss"] .v119-calendar-score{background:rgba(218,102,102,.16);color:var(--fl-ink)}
 #v65-victory-dialog .v65-victory-content :is(h2,.v65-victory-context){color:#f1f4f7}
+
+/* One semantic table, adapted to readable standings on narrow screens. */
+@media(max-width:900px){
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table-wrap{overflow-x:visible}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table{display:block;width:100%;min-width:0;table-layout:auto}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table tbody{display:block;width:100%}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table tbody tr{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:2px 4px;align-items:center;padding:4px 8px;border-bottom:1px solid var(--fl-line)}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table tbody :is(td,th){display:block;width:auto;min-width:0;max-width:100%;border:0;padding:0;text-align:left;white-space:normal;font-size:14px;line-height:1.4;overflow-wrap:anywhere;background:transparent}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table tbody [data-fl-standing-field]::before{content:attr(data-fl-short-label);display:inline;margin-right:3px;color:var(--fl-muted);font-size:10px;font-weight:400;line-height:1.35}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table tbody [data-fl-standing-field=rank]{grid-column:1;grid-row:1}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table tbody [data-fl-standing-field=rank]::before{display:none}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table tbody [data-fl-standing-field=club]{grid-column:2/6;grid-row:1;font-size:14px}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table tbody [data-fl-standing-field=club]::before{display:none}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table tbody [data-fl-standing-field=points]{grid-column:6;grid-row:1;font-size:16px;font-weight:700;text-align:right}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table tbody :is([data-fl-standing-field=played],[data-fl-standing-field=wins],[data-fl-standing-field=draws],[data-fl-standing-field=losses],[data-fl-standing-field=goals],[data-fl-standing-field=difference]){grid-column:span 1;grid-row:2;align-self:start;font-size:12px;line-height:1.4}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table .v68-table-club{max-width:100%;gap:3px 5px}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table .v68-club-link{max-width:100%;padding:4px 0;min-height:44px;white-space:normal;overflow-wrap:anywhere;font-size:13px;line-height:1.3}
+ #v61-world-screen .fl-content .fl-competitions .fl-competition-table .v68-club-link .v61-crest{align-self:center;flex:none}
+}

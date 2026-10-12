@@ -18,7 +18,32 @@ Verträge und Einsatz-Zusagen	Contracts and appearance promises
 Bis zu 14 Einsätze pro Saison. Internationale Einsätze zählen mit höherem Gewicht. Bei einem Einstieg während der Saison zählen die verbleibenden Ligatermine.	Up to 14 appearances per season. International appearances carry more weight. Joining during a season uses the remaining league fixtures.
 Übernahmen sind ab Beginn der neuen Saison wieder möglich.	Promotions become available at the start of the next season.
 Regeln dieser Vereinswelt	Rules of this club world
+Standardfeldgröße · 5 Feldspieler plus Torwart	Standard pitch size · 5 outfield players plus goalkeeper
 Spielfeld	Pitch
+Weitere Filter	More filters
+Aktive Filter	Active filters
+Keine weiteren Filter aktiv	No additional filters active
+Transferregeln	Transfer rules
+Handlungsbedarf	Needs attention
+Alle Verträge	All contracts
+Keine Verträge mit Handlungsbedarf.	No contracts need attention.
+Vertragsübersicht	Contract overview
+Aufsteigend	Ascending
+Absteigend	Descending
+Platz	Position
+Siege	Wins
+Niederlagen	Losses
+Tordifferenz	Goal difference
+Punkte	Points
+Abschied bestätigt	Retirement confirmed
+Mögliches Karriereende	Possible retirement
+Die Entscheidung steht fest. Die Spieler bleiben bis Saisonende verfügbar.	The decision is final. The players remain available until the end of the season.
+Die Entscheidung fällt zur Saisonmitte. Die Spieler bleiben verfügbar.	The decision is made at mid-season. The players remain available.
+Weitere Bereiche	More sections
+Spielstände & Sicherungen	Saved games & backups
+Tests & Werkzeuge	Tests & tools
+Alte Liga	Legacy league
+Unter Hauptmenü → Einstellungen zuerst erlauben.	Enable this first under Main menu → Settings.
 Größer (+20 % Länge und Breite)	Larger (+20% length and width)
 Bisherige Größe	Original size
 Feldspieler pro Mannschaft	Outfield players per team

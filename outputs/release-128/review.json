@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "scope": "read-only Q01 final diff review",
+  "findings": [],
+  "resolved": [
+    "Dock DOM precedes its panels",
+    "Club panels are keyboard focusable",
+    "Embedded DE/EN help matches fixed standard/five start"
+  ],
+  "browserEvidence": [
+    "outputs/ui-modernization/source/checks.json",
+    "outputs/ui-modernization/build/checks.json"
+  ]
+}

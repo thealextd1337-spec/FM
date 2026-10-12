@@ -33,10 +33,9 @@ const out=path.join(base,'outputs/ui-redesign/U01-B',new Date().toISOString().re
   await page.evaluate(()=>{window.focusedTip=document.activeElement;window.preservedSkill=document.querySelector('.fl-squad-skills .fl-skill');refresh()});
   assert.equal(await page.evaluate(()=>document.activeElement===focusedTip&&document.querySelector('.fl-squad-skills .fl-skill')===preservedSkill),true);
   assert.equal(await page.locator('.fl-tooltip').isVisible(),true);await page.keyboard.press('Escape');
-  await page.locator('[data-fl-squad-search]').fill('frankreich');assert.equal(await page.locator('tbody tr:visible').count(),1);
-  await page.evaluate(()=>refresh());assert.equal(await page.locator('[data-fl-squad-search]').inputValue(),'frankreich');
-  await page.locator('[data-fl-squad-search]').fill('does not exist');assert.equal(await page.locator('.fl-squad-empty').isVisible(),true);
-  await page.locator('[data-fl-squad-search]').fill('');await page.locator('[data-fl-squad-position]').selectOption('gk');assert.equal(await page.locator('tbody tr:visible').count(),1);
+  assert.equal(await page.locator('[data-fl-squad-search]').count(),0);
+  await page.locator('[data-fl-squad-position]').selectOption('gk');assert.equal(await page.locator('tbody tr:visible').count(),1);
+  await page.evaluate(()=>refresh());assert.equal(await page.locator('[data-fl-squad-position]').inputValue(),'gk');
   await page.locator('[data-fl-squad-position]').selectOption('all');await page.locator('[data-v61-roster-sort="age"]').click();assert.equal(await page.locator('tbody tr').first().getAttribute('data-number'),'11');
   await page.locator('[data-native-contract]').click();assert.equal(await page.evaluate(()=>nativeClicks),1);
   for(const width of [320,390,768,1440])for(const theme of ['light','dark']){

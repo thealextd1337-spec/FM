@@ -138,3 +138,7 @@ body.fl-active #v61-world-screen{width:100%;max-width:none;margin:0;padding:0}
 .fl-shell .fl-content :is(h1,h2,h3,h4),.fl-dialog :is(h1,h2,h3,h4){font-family:var(--fl-font)}
 .fl-shell .fl-content details>summary{box-sizing:border-box;min-height:44px;padding-block:12px}
 .fl-shell .fl-content table thead button{min-width:44px;min-height:44px}
+.fl-shell .fl-nav-link{font-size:14px}
+.fl-shell .fl-content :is(p,.v62-calendar-row,.v66-note),.fl-dialog p{font-size:14px;line-height:1.5}
+.fl-shell .fl-content> :is(h1,h2,h3,h4){margin-top:24px;margin-bottom:12px}
+.fl-shell .fl-content> :is(h1,h2,h3,h4):first-child{margin-top:0}

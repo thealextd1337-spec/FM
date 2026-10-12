@@ -7,8 +7,9 @@
     if(root.children.length)throw new Error('Flutlicht shell requires an empty host');
     const c=ns.components,doc=root.ownerDocument,win=doc.defaultView,id=`fl-content-${++sequence}`;
     root.classList.add('fl-shell');
-    root.innerHTML=`<a class="fl-skip" href="#${id}"></a><aside class="fl-sidebar"></aside><div class="fl-workspace"><div class="fl-topbar"></div><div class="fl-content" id="${id}" tabindex="-1"></div></div><nav class="fl-mobile-nav"></nav><dialog class="fl-menu-panel" hidden><div class="fl-menu-head"></div><nav class="fl-menu-links"></nav></dialog>`;
+    root.innerHTML=`<a class="fl-skip" href="#${id}"></a><aside class="fl-sidebar"></aside><div class="fl-workspace"><div class="fl-topbar"></div><div class="fl-bottom-dock"><div class="fl-subnav-host" hidden></div><nav class="fl-mobile-nav"></nav></div><div class="fl-content" id="${id}" tabindex="-1"></div></div><div class="fl-subnav-parking" hidden inert></div><dialog class="fl-menu-panel" hidden><div class="fl-menu-head"></div><nav class="fl-menu-links"></nav></dialog>`;
     const content=root.querySelector('.fl-content'),sidebar=root.querySelector('.fl-sidebar'),topbar=root.querySelector('.fl-topbar'),mobile=root.querySelector('.fl-mobile-nav'),menu=root.querySelector('.fl-menu-panel'),skip=root.querySelector('.fl-skip');
+    const dock=root.querySelector('.fl-bottom-dock'),subnav=root.querySelector('.fl-subnav-host'),parking=root.querySelector('.fl-subnav-parking');
     const media=win.matchMedia('(prefers-color-scheme: dark)');
     let projection={},controlSignature='',menuTrigger=null,disposed=false,leadPending=false,leadProcessing='',leadError='',paintFrame=0,paintResolve=null;
     const cleanups=[];
@@ -16,6 +17,19 @@
     const navButton=item=>`<button type="button" class="fl-nav-link" data-fl-route="${c.escape(item.id)}" ${item.id===projection.activeRoute||item.active?'aria-current="page"':''} ${item.disabled?'disabled':''}>${c.icon(item.icon||item.id)}<span>${c.escape(item.label)}</span></button>`;
     const identity=()=>`<div class="fl-club-identity">${projection.clubCrestHTML?`<span class="fl-crest">${projection.clubCrestHTML}</span>`:''}<div><strong>${c.escape(projection.clubName)}</strong><small>${c.escape(projection.clubMeta)}</small><span class="fl-titles">${(projection.titles||[]).map(item=>`<button type="button" class="fl-title-help" data-fl-tooltip="${c.escape(item.label)}" aria-label="${c.escape(item.label)}">${c.award({kind:item.kind})}</button>`).join('')}</span></div></div>`;
     const brand=()=>`<div class="fl-brand"><b aria-hidden="true">66</b><span>${c.escape(projection.labels?.brand||'Doppel 6')}</span></div>`;
+    function measureDock(){root.style.setProperty('--fl-dock-height',`${dock.getBoundingClientRect().height}px`);}
+    function updateSubnavigation(active,candidates=[]){
+      const retained=new Set(candidates.filter(Boolean));if(active)retained.add(active);
+      for(const node of [...subnav.children,...parking.children]){
+        if(!retained.has(node))node.remove();else if(node!==active&&node.parentElement!==parking)parking.append(node);
+      }
+      for(const node of retained)if(node!==active&&node.parentElement!==parking)parking.append(node);
+      if(active&&active.parentElement!==subnav)subnav.append(active);
+      subnav.hidden=!active;
+      const selected=active?.querySelector('[aria-selected="true"]');if(selected){const item=selected.getBoundingClientRect(),row=active.getBoundingClientRect();if(item.left<row.left)active.scrollLeft-=row.left-item.left;else if(item.right>row.right)active.scrollLeft+=item.right-row.right;}
+      measureDock();
+    }
+    const dockObserver=new win.ResizeObserver(measureDock);dockObserver.observe(dock);cleanups.push(()=>dockObserver.disconnect());
     function applyTheme() {
       const preference=['light','dark'].includes(projection.themePreference)?projection.themePreference:'system';
       root.dataset.flThemePreference=preference;
@@ -89,7 +103,7 @@
     on(media,'change',()=>{if(!['light','dark'].includes(projection.themePreference))applyTheme();});
     on(win,'resize',()=>{if(win.innerWidth>900&&menu.open)closeMenu(false);});
     cleanups.push(c.installTooltips(root));update(initial);
-    return {content,update,unmount(){if(disposed)return;disposed=true;if(paintFrame)win.cancelAnimationFrame(paintFrame);paintFrame=0;paintResolve?.(false);paintResolve=null;closeMenu(false);cleanups.forEach(fn=>fn());root.replaceChildren();root.classList.remove('fl-shell');delete root.dataset.flTheme;delete root.dataset.flThemePreference;}};
+    return {content,update,updateSubnavigation,unmount(){if(disposed)return;disposed=true;if(paintFrame)win.cancelAnimationFrame(paintFrame);paintFrame=0;paintResolve?.(false);paintResolve=null;closeMenu(false);cleanups.forEach(fn=>fn());root.replaceChildren();root.classList.remove('fl-shell');root.style.removeProperty('--fl-dock-height');delete root.dataset.flTheme;delete root.dataset.flThemePreference;}};
   }
   ns.shell=Object.freeze({mount});
 })();

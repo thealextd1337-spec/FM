@@ -1,0 +1,176 @@
+{
+  "passed": true,
+  "stableHashes": true,
+  "results": [
+    {
+      "target": "source",
+      "passed": true,
+      "checks": [
+        {
+          "case": "native footer light",
+          "height": 44,
+          "contrast": 5.931204417207852
+        },
+        {
+          "case": "native footer dark",
+          "height": 44,
+          "contrast": 11.191969225008249
+        },
+        {
+          "case": "Q-PHASE05 controlled sponsor write failure",
+          "backend": "indexedDB",
+          "confirmedUnchanged": true,
+          "storageStatusVisible": true,
+          "nativeRetryVisible": true,
+          "balanceBefore": 4040,
+          "balanceAfter": 4730,
+          "ledgerBefore": 1,
+          "ledgerAfter": 2,
+          "error": "Die Vereinswelt konnte nicht gespeichert werden.",
+          "status": "Nicht gespeichert"
+        },
+        {
+          "case": "mobile failure and actual rescue export",
+          "panel": {
+            "x": 40,
+            "y": 56.5,
+            "width": 190,
+            "height": 443
+          },
+          "worldIdentical": true
+        },
+        {
+          "case": "native retry action",
+          "errorCleared": true,
+          "careerRemainsOpen": true
+        },
+        {
+          "case": "Q-SAVE02 settings save error and retry",
+          "errorVisible": true,
+          "error": "Die Vereinswelt konnte nicht gespeichert werden.",
+          "careerRetained": true,
+          "retrySaved": true,
+          "worldUnchangedOnRetry": true,
+          "sponsorEntries": 1
+        },
+        {
+          "case": "Q-SAVE01 native export/import",
+          "download": "doppel-6-welt-ger-2-1f5c0625.json",
+          "bytes": 1992203,
+          "sourceId": "1f5c0625-ca7d-46a3-bd61-4e7dd84fff00",
+          "importId": "dbd66384-e94b-4e56-b465-74f0aed8e9a5",
+          "uniqueIds": true,
+          "worldIdentical": true,
+          "managerIdentical": true
+        },
+        {
+          "case": "Q-SAVE02 invalid import",
+          "visibleError": "Die Vereinswelt-Datei ist unvollständig oder beschädigt.",
+          "storedCareersUnchanged": true
+        },
+        {
+          "case": "Q-SAVE01 reload imported save",
+          "worldIdentical": true,
+          "importedCareerIdPreserved": true
+        }
+      ],
+      "findings": [],
+      "pageErrors": [],
+      "httpRequests": 546,
+      "exportWorldSHA256": "5a3c0be26b7f284cfbfa846a784b3c75da90772a486c0ecb37dd0518879b19db",
+      "confirmedWorldSHA256": "5a3c0be26b7f284cfbfa846a784b3c75da90772a486c0ecb37dd0518879b19db",
+      "reloadWorldSHA256": "5a3c0be26b7f284cfbfa846a784b3c75da90772a486c0ecb37dd0518879b19db",
+      "limitations": [
+        "isolated synthetic career; no real user saves",
+        "initial creation uses native domain API; export/import/retry use actual UI",
+        "controlled IndexedDB/localStorage write exception; no real disk exhaustion",
+        "desktop Edge; no Safari or physical-device proof"
+      ]
+    },
+    {
+      "target": "offline",
+      "passed": true,
+      "checks": [
+        {
+          "case": "native footer light",
+          "height": 44,
+          "contrast": 5.931204417207852
+        },
+        {
+          "case": "native footer dark",
+          "height": 44,
+          "contrast": 11.191969225008249
+        },
+        {
+          "case": "Q-PHASE05 controlled sponsor write failure",
+          "backend": "indexedDB",
+          "confirmedUnchanged": true,
+          "storageStatusVisible": true,
+          "nativeRetryVisible": true,
+          "balanceBefore": 4040,
+          "balanceAfter": 4730,
+          "ledgerBefore": 1,
+          "ledgerAfter": 2,
+          "error": "Die Vereinswelt konnte nicht gespeichert werden.",
+          "status": "Nicht gespeichert"
+        },
+        {
+          "case": "mobile failure and actual rescue export",
+          "panel": {
+            "x": 40,
+            "y": 56.5,
+            "width": 190,
+            "height": 443
+          },
+          "worldIdentical": true
+        },
+        {
+          "case": "native retry action",
+          "errorCleared": true,
+          "careerRemainsOpen": true
+        },
+        {
+          "case": "Q-SAVE02 settings save error and retry",
+          "errorVisible": true,
+          "error": "Die Vereinswelt konnte nicht gespeichert werden.",
+          "careerRetained": true,
+          "retrySaved": true,
+          "worldUnchangedOnRetry": true,
+          "sponsorEntries": 1
+        },
+        {
+          "case": "Q-SAVE01 native export/import",
+          "download": "doppel-6-welt-ger-2-a8458e48.json",
+          "bytes": 1992203,
+          "sourceId": "a8458e48-705a-4993-9c93-fbd6e170b258",
+          "importId": "5bb54a50-1727-427d-9df5-2af2502fbd76",
+          "uniqueIds": true,
+          "worldIdentical": true,
+          "managerIdentical": true
+        },
+        {
+          "case": "Q-SAVE02 invalid import",
+          "visibleError": "Die Vereinswelt-Datei ist unvollständig oder beschädigt.",
+          "storedCareersUnchanged": true
+        },
+        {
+          "case": "Q-SAVE01 reload imported save",
+          "worldIdentical": true,
+          "importedCareerIdPreserved": true
+        }
+      ],
+      "findings": [],
+      "pageErrors": [],
+      "httpRequests": 0,
+      "exportWorldSHA256": "5a3c0be26b7f284cfbfa846a784b3c75da90772a486c0ecb37dd0518879b19db",
+      "confirmedWorldSHA256": "5a3c0be26b7f284cfbfa846a784b3c75da90772a486c0ecb37dd0518879b19db",
+      "reloadWorldSHA256": "5a3c0be26b7f284cfbfa846a784b3c75da90772a486c0ecb37dd0518879b19db",
+      "limitations": [
+        "isolated synthetic career; no real user saves",
+        "initial creation uses native domain API; export/import/retry use actual UI",
+        "controlled IndexedDB/localStorage write exception; no real disk exhaustion",
+        "desktop Edge; no Safari or physical-device proof"
+      ]
+    }
+  ]
+}

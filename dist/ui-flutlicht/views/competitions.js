@@ -4,6 +4,31 @@
   const ns = window.D6Flutlicht, c = ns.components, states = new WeakMap();
   const text = value => c.escape(value == null ? '' : value);
   function fact(value, t) { return text(value == null ? t('Nicht erfasst') : value); }
+  function standingColumns(table, t) {
+    // Only the native competition table has this schema. Ranking/statistic tables
+    // retain their own labels and never inherit club points from this decorator.
+    const columns = [['rank','Platz'],['club','Verein'],['played','Spiele'],['wins','Siege'],['draws','Unentschieden'],['losses','Niederlagen'],['goals','Tore'],['difference','Tordifferenz'],['points','Punkte']];
+    const shortLabels=['','',t('Sp.'),t('S'),t('U'),t('N'),t('T'),t('TD'),t('Pkt.')];
+    if (table.tHead?.rows[0]?.cells.length !== columns.length) return;
+    table.setAttribute('role','table');
+    table.setAttribute('aria-colcount',String(columns.length));
+    table.tHead.setAttribute('role','rowgroup');
+    [...table.tBodies].forEach(body => body.setAttribute('role','rowgroup'));
+    [...table.rows].forEach(row => {
+      row.setAttribute('role','row');
+      [...row.cells].forEach((cell,index) => {
+        const [key,label] = columns[index];
+        cell.dataset.flStandingField=key;
+        cell.dataset.flLabel=t(label);
+        cell.dataset.flShortLabel=shortLabels[index];
+        if (!cell.closest('thead') && key !== 'club') cell.setAttribute('aria-label',`${t(label)}: ${cell.textContent.trim()}`);
+        cell.setAttribute('aria-colindex',String(index+1));
+        cell.setAttribute('role',cell.closest('thead')?'columnheader':key==='club'?'rowheader':'cell');
+        if (cell.closest('thead')) { cell.scope='col';cell.setAttribute('aria-label',t(label)); }
+      });
+    });
+    table.closest('.v62-table-wrap')?.classList.add('fl-competition-table-wrap');
+  }
   function reportHTML(report, t) {
     const player = item => item?.id ? `<button type="button" class="fl-competition-player" data-fl-report-player="${text(item.id)}">${text(item.name)}</button>` : text(item?.name || t('Nicht erfasst'));
     const missing = () => `<p class="fl-competition-missing">${text(t('Nicht erfasst'))}</p>`;
@@ -49,6 +74,7 @@
           cell.textContent=value==null?'–':String(value);if(value==null)cell.setAttribute('aria-label',t('Nicht erfasst'));else cell.removeAttribute('aria-label');
         }
       });
+      standingColumns(table,t);
     });
     root.querySelectorAll('[data-fl-fixture-id]').forEach(node => {
       if (node.querySelector('[data-fl-report-open]')) return;

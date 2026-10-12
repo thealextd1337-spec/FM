@@ -1,5 +1,29 @@
 # Produktregeln
 
+## Modernisierung der Vereinsoberfläche
+
+Nutzerentscheid vom 12. Oktober 2026: Eine kontextabhängige untere Subnavigation ersetzt die bisherigen Bereichs-Dropdowns und die Transfer-Sprungliste. Mobil steht sie unmittelbar oberhalb der Hauptnavigation; Desktop erhält dieselbe Bereichsleiste zusätzlich zur Hauptnavigation in der Seitenleiste. Kader, Transfers, Wettbewerbe und Verein verwenden ihre vorhandenen Unterbereiche. Die Übersicht bietet Sprünge zu Begegnung, Vereinsbüro und Finanzen. Alle Aktionen und Profilrückwege bleiben erreichbar.
+
+Weitere Nutzerpräzisierung vom 12. Oktober 2026, lokal umgesetzt: Das Namenssuchfeld im Kader entfällt; Positionsfilter und Sortierung bleiben. Die allgemeine Transfersuche bleibt erhalten. Mobile Tabellen sind deutlich kompakter: Rang, vollständiger Vereinsname und Punkte stehen oben, alle sechs Zusatzwerte mit kurzen sprachabhängigen Beschriftungen in einer schmalen Zeile darunter. Die vollständigen Spaltenbezeichnungen bleiben zugänglich, Vereinsprofile per Klick erreichbar. Desktoptabellen und Spielregeln bleiben erhalten.
+
+Nutzerauftrag vom 12. Oktober 2026: Die acht Vorschläge aus dem unabhängigen Astra-Review sind lokal umgesetzt. Flutlicht mit Hell/Dunkel, Gold, Vereinswappen und qualitativen Fähigkeitsfarben bleibt die Gestaltung. Begegnung und Vereinsbüro werden kompakter; mobil folgen beide unmittelbar aufeinander.
+
+Mobile Kaderkarten bündeln Nummer, vollständigen Namen und Flagge, nutzen die ganze Breite für dauerhaft sichtbare Fähigkeiten und bieten eine beschriftete Sortierauswahl. Spielerprofile zeigen sportliche Angaben und Fähigkeiten früh, Vertragsfakten zusammenhängend. „Handlungsbedarf“ in der Vertragsübersicht umfasst auslaufende Verträge, vorhandene Verhandlungen und bestätigte Karriereenden; mögliche Abschiede sind davon unterscheidbar. Die vollständige Vertragsliste bleibt erreichbar.
+
+Transfers zeigen Position und Ablöse direkt; weitere Filter sind aufklappbar, ihre aktiven Werte bleiben sichtbar. Mobile Liga-/Crown-Tabellen zeigen Rang, Vereinsname und Punkte zuerst sowie alle übrigen Originalwerte beschriftet darunter. Desktop behält die Tabelle. Einstellungen sind beim Einstieg direkt erreichbar; Spielstandsübertragung, alte Liga und Tests haben getrennte Zugänge. Der Karrierestart zeigt Manager → Land → Verein → Prüfen und erlaubt nur Sprünge zu früheren Schritten. Informationen, Aktionen und gespeicherte Spielregeln bleiben erhalten. Veröffentlichung steht noch aus.
+
+
+
+## Feste Regeln beim Karrierestart
+
+Nutzerentscheidung vom 12. Oktober 2026: Beim Start einer neuen Karriere entfällt vorerst die Auswahl von Feldgröße und Spieleranzahl. Neue Vereinswelten verwenden immer die Standardfeldgröße (das bisherige Grundfeld) mit fünf Feldspielern plus Torwart je Mannschaft. Die Zusammenfassung nennt diese festen Regeln. Dieser Entscheid ersetzt die frühere Voreinstellung des größeren Feldes und die freie Auswahl beim Karrierestart. Bestehende Karrieren behalten ihre gespeicherten Regeln.
+
+## Vereinsbüro und kompakte Begegnungsvorschau
+
+Nutzerentscheidung vom 12. Oktober 2026, inzwischen lokal umgesetzt: Das Vereinsbüro nennt die Spieler des eigenen Vereins mit bevorstehendem Karriereende. Ein Klick auf den Hinweis führt direkt zur Spielervertragsübersicht im Bereich Kader → Verträge. Bereits gespeicherte verbindliche Karriereenden und mögliche Abschiede dürfen sprachlich nicht vermischt werden; die Darstellung verwendet den vorhandenen Karriereendstatus ohne neue Berechnung.
+
+Mobil steht das Vereinsbüro unmittelbar unter der vollständigen Karte „Nächste Begegnung“. Die Begegnungskarte wird durch gebündelte Angaben und kleinere Abstände kompakter, ohne vorhandene Informationen oder Bedienmöglichkeiten zu verlieren. Vollständige Vereinsnamen, Begegnungsdaten, Heim-/Auswärtsangaben, Ergebnisfolgen, Sponsorinformationen einschließlich Ziel-/Zahlungsstatus sowie gegebenenfalls Hinspielergebnis bleiben erhalten. Details müssen auch per Tastatur und auf Touchgeräten erreichbar bleiben. Lokal umgesetzt; Veröffentlichung steht noch aus.
+
 ## Jugendförderung und Karriereenden ab Release 127
 
 Für neu gestartete mehrjährige Expansionskarrieren gelten vier Jahresbudgets 0/500/1.000/1.500 Credits. Ein vereinsgebundener, kumulativer Jugendstatus verbindet Förderung (65 Prozent) und belegten sportlichen Erfolg relativ zur eingefrorenen Saisonerwartung (35 Prozent). Aufstieg und Rückgang bleiben allmählich. Sichtbar sind ausschließlich bestehende Bewertungsfarben, qualitative Bezeichnung und Trendpfeil. Der Status prägt kontinuierlich neue Jahrgänge; bereits vorhandene Spieler, Talent und Entwicklungsregeln werden nicht nachberechnet. Alle Förderstufen können alle Positionen hervorbringen. Ein kleiner fester Länderrahmen gilt bei der Neuerzeugung für Jugend, freie und Pokalersatzspieler, nicht bei Transfers. [Parameter und Grenzen](jugend-legacy-release127.md).
