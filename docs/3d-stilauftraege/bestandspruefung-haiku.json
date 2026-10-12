@@ -73,18 +73,18 @@
     },
     {
       "claim": "Manifest-Hash 3262df2786... (basis-release130.json:manifestSha256)",
-      "result": "NICHT reproduziert. Arbeitskopie CRLF 31dcbf08... (41.083 Byte); Git-Blob f2ee3c48... (LF, 39.408 Byte); Anker-Kopie claude-natural-motion ebenfalls 31dcbf08...",
-      "source": "work/platform/assets/manifest.json"
+      "result": "Root verifiziert: WebGL-Manifest hashgleich zur Release130-Basis. Urspruenglich wurde versehentlich das andere Assetmanifest verglichen.",
+      "source": "outputs/platform/unity-web/probe-build.json"
     },
     {
       "claim": "Live-HTML-Hash 358d343b... (liveProof.htmlSha256)",
-      "result": "NICHT reproduziert: kein dist/*.html im Checkout hat diesen Hash; dist/index.html = 0ecdc47f... (identisch zu 1063ed6f). Live-Seite nicht abgerufen.",
-      "source": "docs/3d-stilauftraege/basis-release130.json:liveProof"
+      "result": "Root verifiziert: gebautes Offline-HTML hashgleich zum bereits dokumentierten Live-Artefakt. dist/index.html ist die unabhaengige Quell-Loaderdatei.",
+      "source": "outputs/index.html; basis-release130.json:liveProof"
     },
     {
       "claim": "buildFiles unity-web.data/framework/loader/wasm mit Hashes",
-      "result": "NICHT lokal auffindbar (keine Kopie in work/release-130 oder dist bis Tiefe 4); nur aus Basis-JSON",
-      "source": "basis-release130.json:buildFiles"
+      "result": "Root verifiziert: alle vier Laufzeitdateien lokal vorhanden, Bytes und SHA256 stimmen mit Basisdatei ueberein.",
+      "source": "outputs/platform/unity-web/Build/unity-web.*"
     }
   ],
   "assets": [
@@ -542,9 +542,6 @@
     ]
   },
   "openItems": [
-    "manifestSha256 3262df2786... nicht reproduziert (Arbeitskopie 31dcbf08..., Blob f2ee3c48...); Herkunft des Werts unklar",
-    "liveProof.htmlSha256 358d343b... nicht im Checkout gefunden; Live-Seite nicht abgerufen",
-    "buildFiles unity-web.* lokal nicht vorhanden; Hashes nur aus Basis-JSON",
     "Unity-Shader-GUID von Player.mat nicht im Editor verifiziert (vermutlich URP Lit)",
     "Konzeptbilder nur als Dateiliste geprueft (07-flutlicht.png, 12-low-poly.png vorhanden); keine Bildbewertung",
     "Desktop-Viewportgroesse fehlt in den Quellen",
@@ -557,7 +554,37 @@
     "Pilot-Clips pass_inside_meshy / receive_ground_meshy: sollen sie ins Manifest aufgenommen werden (34 vs. 36 Clips)?",
     "image-2 und metallic-smoothness.png: entfernen oder als Altbestand dokumentiert lassen?"
   ],
-  "blockers": [
-    "keine fuer diesen Audit-Auftrag; Hash-Abweichungen (manifestSha256, liveProof.htmlSha256, buildFiles) muessen vom Root vor einer Kandidatenbindung geklaert werden"
-  ]
+  "blockers": [],
+  "rootVerification": {
+    "reviewer": "Codex/root",
+    "correctedOriginalAuditCommit": "1f844af0",
+    "manifestPath": "outputs/platform/unity-web/probe-build.json",
+    "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+    "builtHtmlPath": "outputs/index.html",
+    "builtHtmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+    "buildFiles": [
+      {
+        "file": "outputs/platform/unity-web/Build/unity-web.data",
+        "sha256": "dfcb23f3cbc1f9e2c3dc3e7560daf4d18bb95fa8ff04dcc9cb326d8cb0d3b303",
+        "bytes": 55572425
+      },
+      {
+        "file": "outputs/platform/unity-web/Build/unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+        "bytes": 300906
+      },
+      {
+        "file": "outputs/platform/unity-web/Build/unity-web.loader.js",
+        "sha256": "a6a10198f2bb3b69a339e89a4b940747cc08e39b90a0af3853a8f4654595462d",
+        "bytes": 27914
+      },
+      {
+        "file": "outputs/platform/unity-web/Build/unity-web.wasm",
+        "sha256": "d7a649fce05ae4d7b5b4a8293c100b6f022c86a8b7c95485fb2000c46079f273",
+        "bytes": 35497794
+      }
+    ],
+    "liveScope": "Hashgleich zum bereits dokumentierten Release130-Livebefund; kein neuer Live-Browserlauf.",
+    "note": "Die urspruenglichen drei offenen Hashpunkte beruhten auf falschen Dateipfaden, nicht auf einer defekten Quellenbindung."
+  }
 }

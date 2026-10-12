@@ -5,10 +5,10 @@ Lesende Prüfung durch Haiku 5.5 am 13. Oktober 2026. Checkout `work/demo-low-po
 ## Ergebnis in Kürze
 
 - **Quellen und Importe sind belegt:** 41/41 Quellen hashgleich zum Checkout; 166/166 Importdateien hashgleich zur Nighttime-Unitykopie; `sourceId 3442dee8…` reproduziert sich exakt nach dem Algorithmus aus `generate-identity.cjs`.
-- **Hash-Bindung teilweise offen:** `manifestSha256 3262df…`, `liveProof.htmlSha256 358d343b…` und die vier `buildFiles` sind lokal nicht reproduzierbar (siehe Abschnitt „Offen“). Vor einer Kandidatenbindung muss der Root das klären.
+- **Hash-Bindung durch Root geprüft:** WebGL-Manifest, gebautes Offline-HTML und alle vier Laufzeitdateien stimmen mit der Release-130-Basis überein. Die ursprüngliche Auditmeldung verglich andere Dateipfade; siehe „Root-Verifikation“.
 - **Der Matchshader nutzt nur zwei Texturen.** Normal-, Metallic-/Roughness- und `metallic-smoothness`-Daten erreichen den Matchpfad nicht. Nighttime-Materialwirkung muss daher über den Shader laufen.
 - **Zusatzlichter sind im Web-Pfad aus.** Nighttime-Lichter sind nur über Hauptlicht, Umgebungslicht und Emission möglich.
-- **„Low-Poly“ ist im Asset nicht vorhanden.** Das Mesh `low_poly_unwrapped` hat 12.668 Dreiecke, und das Manifest nennt „Full master, no decimation“.
+- **Kein gezielt vereinfachter Low-Poly-Kandidat:** Das Mesh `low_poly_unwrapped` hat 12.668 Dreiecke, und das Manifest nennt „Full master, no decimation“. Ein Meshname oder eine Dreieckzahl allein entscheidet nicht über den Stil; Silhouette und Facetten sind visuell zu prüfen.
 
 ## Assettabelle
 
@@ -99,9 +99,6 @@ Quelle: `docs/Bugliste.md` und `docs/release-130.md:32`.
 
 ## Offen
 
-- **`manifestSha256 3262df2786…` nicht reproduziert.** Arbeitskopie `work/platform/assets/manifest.json` hat `31dcbf08…` (41.083 B, CRLF). Git-Blob `f2ee3c48…` (LF, 39.408 B) ergibt `9439eff5…`. Auch der Anker `claude-natural-motion` hat `31dcbf08…`. Herkunft von `3262df…` unklar.
-- **`liveProof.htmlSha256 358d343b…` nicht gefunden.** Kein `dist/*.html` im Checkout hat diesen Hash; `dist/index.html` ist `0ecdc47f…`. Live-Seite nicht abgerufen.
-- **`buildFiles` (unity-web.data/framework/loader/wasm) lokal nicht vorhanden.** Hashes nur aus Basis-JSON.
 - **Unity-Shader-GUID von `Player.mat`** (`933532a4…`) nicht im Editor verifiziert; vermutlich URP Lit.
 - **Konzeptbilder** nur als Dateiliste geprüft (`07-flutlicht.png`, `12-low-poly.png` vorhanden). Keine Bildbewertung.
 - **Desktop-Viewport** fehlt in den Quellen.
@@ -114,3 +111,9 @@ Quelle: `docs/Bugliste.md` und `docs/release-130.md:32`.
 3. **Low-Poly-Zwischenstand:** Genügt der Facettenprototyp am bestehenden 12.668-Dreieck-Mesh, oder ist echte Retopologie mit Neugenerierung von `WorldPlayer.asset` und Kalibrierung Pflicht?
 4. **Manifest:** Sollen `pass_inside_meshy` und `receive_ground_meshy` ins Manifest (34 vs. 36 Clips)?
 5. **Altbestand:** `image-2` und `metallic-smoothness.png` entfernen oder als Altbestand belassen?
+
+## Root-Verifikation nach Übergabe
+
+Root hat die drei Hashmeldungen des ursprünglichen Commits `1f844af0` korrigiert. `basis-release130.json:manifestSha256` bezeichnet **outputs/platform/unity-web/probe-build.json**, nicht `work/platform/assets/manifest.json`. Sein SHA-256 ist `3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0`. `liveProof.htmlSha256` bezeichnet **outputs/index.html**, nicht den Quell-Loader `dist/index.html`: SHA-256 `358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db`. Alle vier Dateien liegen unter **outputs/platform/unity-web/Build/**; ihre tatsächlichen Dateihashes und Größen stimmen mit `basis-release130.json:buildFiles` überein. Dies ist eine lokale Prüfung gegen den dokumentierten Livebefund, kein erneuter Live-Browserlauf. Die Asset-/Quellmanifestdateien haben unterschiedliche Zwecke; die beobachteten LF/CRLF-Werte waren kein Beleg für eine beschädigte WebGL-Bindung.
+
+Umsetzungsentscheidungen: vorhandene Modelle/Rig/Original- und Pilotclips zunächst erhalten; Glanzparameter dürfen gezielt additiv ergänzt werden, wenn die tatsächliche Shaderwirkung nachgewiesen wird. Kein vorsorgliches Löschen von Alttexturen. Der Low-Poly-Facettenvergleich ist ein Zwischenstand; für den vollständigen Kandidaten gilt der vorhandene Low-Poly-Stilauftrag mit kontrollierter Meshvereinfachung.
