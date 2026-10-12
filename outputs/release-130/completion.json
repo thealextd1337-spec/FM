@@ -1,0 +1,53 @@
+{
+  "release": 130,
+  "published": true,
+  "liveAccepted": true,
+  "at": "2026-10-12T23:08:11.381Z",
+  "url": "https://fussball.cakamper.at/",
+  "productCommit": "05d5b83ce52d6237b4b2353d21cd6598fe7acb92",
+  "deployedHead": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+  "ciRun": 38316574115,
+  "ciUrl": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+  "ciConclusion": "success",
+  "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+  "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+  "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "publicFiles": 8,
+  "productionCommands": 119,
+  "livePackageChecks": 12,
+  "mobileTacticsViews": 2,
+  "parties": [
+    {
+      "unity": false,
+      "ticks": 3037,
+      "minute": 98,
+      "valid": true,
+      "digest": "a6d98d83",
+      "payloadSha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772",
+      "reloaded": {
+        "fullCareerIdentical": true,
+        "strictValidator": true,
+        "careerId": "96f5013a-7837-471e-b802-a370886b8dbd",
+        "P02Retained": true
+      }
+    },
+    {
+      "unity": true,
+      "ticks": 3037,
+      "minute": 98,
+      "valid": true,
+      "digest": "a6d98d83",
+      "payloadSha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772",
+      "reloaded": {
+        "fullCareerIdentical": true,
+        "strictValidator": true,
+        "careerId": "aa9846bd-a24b-443a-bd2b-3ac4edc26474",
+        "P02Retained": true
+      }
+    }
+  ],
+  "physicalAndroidAccepted": false,
+  "knownOpen": "docs/Bugliste.md",
+  "historicalNavigationTimeoutsPreserved": true,
+  "scope": "Root independently resumed after bounded child handoff; same source/build, current CI successful, all public hashes and actual live/browser/save/full-match checks passed. QA readiness fixes only; navigation-timeout cause remains open."
+}

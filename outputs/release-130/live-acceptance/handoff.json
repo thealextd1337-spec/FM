@@ -1,0 +1,582 @@
+{
+  "checkedAt": "2026-10-12T23:05:02.387Z",
+  "pass": true,
+  "acceptanceStatus": "pass",
+  "release": 130,
+  "expectedPackage": {
+    "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+    "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+    "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+  },
+  "CI": {
+    "url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+    "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+    "status": "completed",
+    "conclusion": "success",
+    "pollStartedAt": "2026-10-12T22:29:18.640Z",
+    "pollEndedAt": "2026-10-12T22:51:14.315Z",
+    "jobs": [
+      {
+        "id": 115034509241,
+        "name": "deploy",
+        "status": "completed",
+        "conclusion": "success",
+        "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115/job/115034509241",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-12T22:25:33Z",
+            "completed_at": "2026-10-12T22:25:34Z"
+          },
+          {
+            "name": "Quellcode laden",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-12T22:25:34Z",
+            "completed_at": "2026-10-12T22:26:01Z"
+          },
+          {
+            "name": "Node.js einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-12T22:26:01Z",
+            "completed_at": "2026-10-12T22:26:06Z"
+          },
+          {
+            "name": "Spieltests ausführen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-12T22:26:06Z",
+            "completed_at": "2026-10-12T22:46:52Z"
+          },
+          {
+            "name": "Einzeldatei bauen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5,
+            "started_at": "2026-10-12T22:46:52Z",
+            "completed_at": "2026-10-12T22:47:55Z"
+          },
+          {
+            "name": "Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6,
+            "started_at": "2026-10-12T22:47:55Z",
+            "completed_at": "2026-10-12T22:48:40Z"
+          },
+          {
+            "name": "Per FTPS zu World4You hochladen und Live-Datei prüfen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7,
+            "started_at": "2026-10-12T22:48:40Z",
+            "completed_at": "2026-10-12T22:49:05Z"
+          },
+          {
+            "name": "Post Node.js einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 13,
+            "started_at": "2026-10-12T22:49:05Z",
+            "completed_at": "2026-10-12T22:49:05Z"
+          },
+          {
+            "name": "Post Quellcode laden",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14,
+            "started_at": "2026-10-12T22:49:05Z",
+            "completed_at": "2026-10-12T22:49:05Z"
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15,
+            "started_at": "2026-10-12T22:49:05Z",
+            "completed_at": "2026-10-12T22:49:05Z"
+          }
+        ]
+      }
+    ],
+    "inProgressHandoff": false,
+    "jobsCheckedAt": "2026-10-12T22:51:14.315Z",
+    "waitEndedAt": "2026-10-12T22:47:09.062Z",
+    "pollerStopped": true,
+    "stopReason": "Only own read-only CI polling process interrupted at the conservative waiting bound. Earlier initial REST read preceded persisted poller. GitHub CI was not cancelled, retried, or modified."
+  },
+  "liveFooter": "Doppel 6 / PROTOTYP 130",
+  "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+  "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+  "files": [
+    {
+      "file": "index.html",
+      "url": "https://fussball.cakamper.at/index.html?releasecheck=130-358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+      "bytes": 95887102,
+      "sha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+      "pass": true
+    },
+    {
+      "file": "unity-match/runtime.html",
+      "url": "https://fussball.cakamper.at/unity-match/runtime.html?releasecheck=130-0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "bytes": 440,
+      "sha256": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "pass": true
+    },
+    {
+      "file": "unity-match/runtime.js",
+      "url": "https://fussball.cakamper.at/unity-match/runtime.js?releasecheck=130-734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+      "bytes": 5781,
+      "sha256": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+      "pass": true
+    },
+    {
+      "file": "unity/probe-build.json",
+      "url": "https://fussball.cakamper.at/unity/probe-build.json?releasecheck=130-3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+      "bytes": 5656,
+      "sha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+      "pass": true
+    },
+    {
+      "file": "unity/Build/unity-web.data",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.data?releasecheck=130-dfcb23f3cbc1f9e2c3dc3e7560daf4d18bb95fa8ff04dcc9cb326d8cb0d3b303",
+      "bytes": 55572425,
+      "sha256": "dfcb23f3cbc1f9e2c3dc3e7560daf4d18bb95fa8ff04dcc9cb326d8cb0d3b303",
+      "pass": true
+    },
+    {
+      "file": "unity/Build/unity-web.framework.js",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.framework.js?releasecheck=130-36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "bytes": 300906,
+      "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "pass": true
+    },
+    {
+      "file": "unity/Build/unity-web.loader.js",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.loader.js?releasecheck=130-a6a10198f2bb3b69a339e89a4b940747cc08e39b90a0af3853a8f4654595462d",
+      "bytes": 27914,
+      "sha256": "a6a10198f2bb3b69a339e89a4b940747cc08e39b90a0af3853a8f4654595462d",
+      "pass": true
+    },
+    {
+      "file": "unity/Build/unity-web.wasm",
+      "url": "https://fussball.cakamper.at/unity/Build/unity-web.wasm?releasecheck=130-d7a649fce05ae4d7b5b4a8293c100b6f022c86a8b7c95485fb2000c46079f273",
+      "bytes": 35497794,
+      "sha256": "d7a649fce05ae4d7b5b4a8293c100b6f022c86a8b7c95485fb2000c46079f273",
+      "pass": true
+    }
+  ],
+  "checks": {
+    "CIExactHead": true,
+    "CISuccess": true,
+    "publicEightFiles": true,
+    "livePackage": true,
+    "mobileRosterBoth": true,
+    "fullGenuineMatches": true,
+    "allCareersValidateStrictly": true,
+    "fullDigestPartsIdentical": true,
+    "fullSavedCareersAndP02Reloaded": true,
+    "inputArtifactsStable": true
+  },
+  "checkStates": {
+    "CIExactHead": "pass",
+    "CISuccess": "pass",
+    "publicEightFiles": "pass",
+    "livePackage": "pass",
+    "mobileRosterBoth": "pass",
+    "fullGenuineMatches": "pass",
+    "allCareersValidateStrictly": "pass",
+    "fullDigestPartsIdentical": "pass",
+    "fullSavedCareersAndP02Reloaded": "pass",
+    "inputArtifactsStable": "pass"
+  },
+  "packageChecks": [
+    "Live footer is Version 130",
+    "Packaged world retains 192 clubs and 12 countries",
+    "Packaged squad retains 11 pros, two keepers and 6/3/2 roles",
+    "Actual packaged Unity fixture confirms all 12 native actors",
+    "Paused native facts and P02 survive rendering and foreign messages",
+    "Packaged browser has no uncaught page errors",
+    "Fresh physical match has keeper revision180 and retained pace119",
+    "Production frame scheduler is scoped to actual Unity surfaces without local opt-in code",
+    "Real reload and native reopen preserve complete saved career, pause and P02",
+    "Actual child pictures advance with identical paused parent and child clocks",
+    "Live 2D disables parent and child timer fallback",
+    "Final reopened paused Unity task has no browser errors"
+  ],
+  "roster": [
+    {
+      "view": "career",
+      "pass": true,
+      "roster": 13,
+      "selected": "roster-overflow-5:S1:ENG:FREE2",
+      "matchSquad": 11,
+      "saveReload": {
+        "fullCareerIdentical": true,
+        "strictValidator": true,
+        "starterRetained": true,
+        "P02Retained": true
+      },
+      "errors": []
+    },
+    {
+      "view": "prematch",
+      "pass": true,
+      "roster": 13,
+      "selected": "roster-overflow-5:S1:ENG:FREE2",
+      "matchSquad": 11,
+      "saveReload": {
+        "fullCareerIdentical": true,
+        "strictValidator": true,
+        "starterRetained": true,
+        "P02Retained": true
+      },
+      "errors": []
+    }
+  ],
+  "parties": [
+    {
+      "unity": false,
+      "setup": {
+        "config": {
+          "fieldSize": "standard",
+          "fieldPlayers": 5
+        },
+        "unity": false,
+        "people": 12,
+        "perTeam": [
+          6,
+          6
+        ],
+        "keepers": [
+          1,
+          1
+        ],
+        "geometry": {
+          "version": 1,
+          "length": 68,
+          "width": 44,
+          "goalWidth": 9.705882352941178,
+          "goalHeight": 3.2352941176470593,
+          "penaltyDepth": 10.5953488372093,
+          "penaltyWidth": 24.264705882352942,
+          "ballRadius": 0.1764
+        },
+        "expectedPerTeam": 6
+      },
+      "keeperPace": {
+        "keeper": 180,
+        "pace": 119
+      },
+      "ticks": 3037,
+      "minute": 98,
+      "finished": true,
+      "score": [
+        0,
+        0
+      ],
+      "valid": true,
+      "digest": "a6d98d83",
+      "allDigestParts": {
+        "score": "13ca43dd:5",
+        "events": "213ef0a5:286",
+        "stats": "22b41ea3:8774",
+        "fresh": "35cc2c98:993",
+        "minutes": "ea7ffc03:767",
+        "report": "a8d6f9aa:34613",
+        "ratings": "53bd923f:684",
+        "ballAccounting": "ba2173d7:22798",
+        "geometry": "708a8f7b:184",
+        "people": "c5dc9753:7919",
+        "finances": "b43879fd:50683",
+        "development": "888bf9b1:3686725",
+        "fixtures": "42568bf3:460406",
+        "world": "217ae501:9560018"
+      },
+      "fullPayloadSha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772",
+      "matchElapsedMs": 6293,
+      "totalQAElapsedMs": 23176,
+      "pictures": 0,
+      "reloaded": {
+        "fullCareerIdentical": true,
+        "strictValidator": true,
+        "careerId": "96f5013a-7837-471e-b802-a370886b8dbd",
+        "P02Retained": true
+      }
+    },
+    {
+      "unity": true,
+      "setup": {
+        "config": {
+          "fieldSize": "standard",
+          "fieldPlayers": 5
+        },
+        "unity": true,
+        "people": 12,
+        "perTeam": [
+          6,
+          6
+        ],
+        "keepers": [
+          1,
+          1
+        ],
+        "geometry": {
+          "version": 1,
+          "length": 68,
+          "width": 44,
+          "goalWidth": 9.705882352941178,
+          "goalHeight": 3.2352941176470593,
+          "penaltyDepth": 10.5953488372093,
+          "penaltyWidth": 24.264705882352942,
+          "ballRadius": 0.1764
+        },
+        "expectedPerTeam": 6,
+        "unityReady": true,
+        "ack": {
+          "players": 12,
+          "ids": 12,
+          "allReal": true
+        },
+        "error": null
+      },
+      "keeperPace": {
+        "keeper": 180,
+        "pace": 119
+      },
+      "ticks": 3037,
+      "minute": 98,
+      "finished": true,
+      "score": [
+        0,
+        0
+      ],
+      "valid": true,
+      "digest": "a6d98d83",
+      "allDigestParts": {
+        "score": "13ca43dd:5",
+        "events": "213ef0a5:286",
+        "stats": "22b41ea3:8774",
+        "fresh": "35cc2c98:993",
+        "minutes": "ea7ffc03:767",
+        "report": "a8d6f9aa:34613",
+        "ratings": "53bd923f:684",
+        "ballAccounting": "ba2173d7:22798",
+        "geometry": "708a8f7b:184",
+        "people": "c5dc9753:7919",
+        "finances": "b43879fd:50683",
+        "development": "888bf9b1:3686725",
+        "fixtures": "42568bf3:460406",
+        "world": "217ae501:9560018"
+      },
+      "fullPayloadSha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772",
+      "matchElapsedMs": 7754,
+      "totalQAElapsedMs": 27692,
+      "pictures": 65,
+      "reloaded": {
+        "fullCareerIdentical": true,
+        "strictValidator": true,
+        "careerId": "aa9846bd-a24b-443a-bd2b-3ac4edc26474",
+        "P02Retained": true
+      }
+    }
+  ],
+  "failures": [],
+  "limits": [
+    "No publication/retry/upload was performed by this test agent.",
+    "Own blank isolated Chrome/Edge profiles; no user saves or tabs accessed.",
+    "Complete native games are fixed .05-second steps using unchanged current QA160 helper and identical fixture/seed/call sequence; wall times are QA execution times, not human real-time game-duration/FPS measurements.",
+    "Unity picture/render counters prove rendering progress, not GPU FPS or physical Android acceptance.",
+    "BFCache was genuinely proved locally in final-browser; not redundantly repeated on live.",
+    "15 contact windows, five historical diagnostic gates, direct-free-kick preparation, situational pace choice, defender pursuit, Pixel hardware and 4–6 minute / 10–16 total-shot goals remain open in Bugliste."
+  ],
+  "artifacts": [
+    {
+      "file": "2d-digest-parts.json",
+      "bytes": 15533931,
+      "sha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772"
+    },
+    {
+      "file": "bind-inputs.cjs",
+      "bytes": 1804,
+      "sha256": "2aa01098d1dfc919c8fe629ad95790cdfd64166d9988d3bbe922a7b4de08f1d9"
+    },
+    {
+      "file": "check-package.cjs",
+      "bytes": 9699,
+      "sha256": "a7e4043d34d26f34184c36d37626803c90f2a17dd622f6fa27515861bb9fffd8"
+    },
+    {
+      "file": "check-parity.cjs",
+      "bytes": 4563,
+      "sha256": "31936833aabb4cf75799b0cd9d3f7b0fd1d7fb7a4d185ed47c9528bf7078f919"
+    },
+    {
+      "file": "check-roster.cjs",
+      "bytes": 7299,
+      "sha256": "9da7ea142c9652fa925515997123a18d604e8a6454dc51eafa10501ccfee3cf9"
+    },
+    {
+      "file": "ci.json",
+      "bytes": 9763,
+      "sha256": "3254fadd187122733348d5595687389f0c18d44142af203350b49a287896f360"
+    },
+    {
+      "file": "finalize-wait.cjs",
+      "bytes": 1243,
+      "sha256": "e9e76c9a7512fb479f28d456ec897414a64ad3459ee6ee3d8683c960a8a7405f"
+    },
+    {
+      "file": "inputs-after.json",
+      "bytes": 3016,
+      "sha256": "b506381efb3e2334c23a69de8d4898e332d596fa7dfd507eb53fc8962203d0d0"
+    },
+    {
+      "file": "inputs-before.json",
+      "bytes": 3016,
+      "sha256": "c6e36fc42bfbe559d1c402c6242027294533f0fdb3d96eeca3b966b9dd15fe5b"
+    },
+    {
+      "file": "package-checks.json",
+      "bytes": 3328,
+      "sha256": "15bf5df86dc166d31aa6641fb75609f728c7bf0208ea9e2416a2ca0861073fac"
+    },
+    {
+      "file": "package-extra.txt",
+      "bytes": 3910,
+      "sha256": "f3ac8955852c7b1a5814ccfc3802844cd03ab31f5ed98f901db3958c44693964"
+    },
+    {
+      "file": "package-match.png",
+      "bytes": 257657,
+      "sha256": "9c7580da0a9a7fbf7ea75ad97fc3b368df0e31178d69dfa65c7d166f0275ba76"
+    },
+    {
+      "file": "parity-dom-navigation-timeout.json",
+      "bytes": 2730,
+      "sha256": "e2d385e7a2eb7157dcbe990e32ff7a0c8aa5f3e66e11dac17970cff1b3ed38c3"
+    },
+    {
+      "file": "parity-early-read-failure.json",
+      "bytes": 498,
+      "sha256": "42511a8ebfaada484998bfde1a66536d59de6f1f1560889bd86a82c492122fec"
+    },
+    {
+      "file": "parity-extra.txt",
+      "bytes": 706,
+      "sha256": "74a4debcec70490e2eccd02bb6cdca2dbfd27719b85f452f66df29907232b9f9"
+    },
+    {
+      "file": "parity.json",
+      "bytes": 6144,
+      "sha256": "56d8af8454a379e795e6445d3cd70f3c810bff0965d3f3a21b67fa11dd90c302"
+    },
+    {
+      "file": "poll-ci.cjs",
+      "bytes": 1595,
+      "sha256": "5edae02352e6d15aa7f21a4dc58bd1b00ff4409d89121b567435a06dc3599cc9"
+    },
+    {
+      "file": "pre-upload-handoff.json",
+      "bytes": 7547,
+      "sha256": "031d00f3e7f558535905764eeff3f9bfa6b82b1c91972b14d3c62d67f3ec4b7d"
+    },
+    {
+      "file": "pre-upload-handoff.md",
+      "bytes": 2972,
+      "sha256": "4935892c4054f0b41c1692b7068c8d3193749cf0f2c23d0cbc11daa44addaf66"
+    },
+    {
+      "file": "prepare.cjs",
+      "bytes": 4729,
+      "sha256": "514eb405b2b3afd2939ad5d9138d54716d3178b623de1660d7150f5cabfae490"
+    },
+    {
+      "file": "refresh-ci.cjs",
+      "bytes": 1402,
+      "sha256": "b24aaa0b64ec516a86d3cd921c6112e755f800df5857fd48759c2aa7f1fd808d"
+    },
+    {
+      "file": "resolved-parity-failure.json",
+      "bytes": 498,
+      "sha256": "42511a8ebfaada484998bfde1a66536d59de6f1f1560889bd86a82c492122fec"
+    },
+    {
+      "file": "resolved-roster-failure.json",
+      "bytes": 200,
+      "sha256": "18ae3bf637a0f31aa30c15eee4d84f96801379bb048db18ea58bf9a76d11a64d"
+    },
+    {
+      "file": "roster-career-extras.png",
+      "bytes": 20034,
+      "sha256": "97ebe82b97d5a9d32a58c9dc1b7de3463385941eda8c1a3eb8dc3598f74c42a9"
+    },
+    {
+      "file": "roster-career.png",
+      "bytes": 151412,
+      "sha256": "f51ac53a9749547301e5398298cabf6cf864fd4660f84e76fb13575af0b7e1a4"
+    },
+    {
+      "file": "roster-checks.json",
+      "bytes": 891,
+      "sha256": "a50f4c69196fee2976ee1260807502a9f130cfc585c150d67c2d8d84530f3c2a"
+    },
+    {
+      "file": "roster-extra.txt",
+      "bytes": 1162,
+      "sha256": "f257a1496db6038d9bc05142420b29986efbdb65d82e89ab080d58beca26e796"
+    },
+    {
+      "file": "roster-load-timeout.json",
+      "bytes": 200,
+      "sha256": "18ae3bf637a0f31aa30c15eee4d84f96801379bb048db18ea58bf9a76d11a64d"
+    },
+    {
+      "file": "roster-prematch-extras.png",
+      "bytes": 20420,
+      "sha256": "4f6694d6486864f02361e8451575910f365ae6e147ed58e3f7dbd3fe1a35197e"
+    },
+    {
+      "file": "roster-prematch.png",
+      "bytes": 139529,
+      "sha256": "d1ec5a9dd49fda0ca274c8725b5cbb40aed6c0842167fbb618f81710660b6357"
+    },
+    {
+      "file": "t3-footer.json",
+      "bytes": 321,
+      "sha256": "bcdecb19e97e005a96ad0cc2fdd46a7cf643f21bd4d43d3fd7cd86531a493dd1"
+    },
+    {
+      "file": "unity-digest-parts.json",
+      "bytes": 15533931,
+      "sha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772"
+    },
+    {
+      "file": "write-handoff.cjs",
+      "bytes": 8058,
+      "sha256": "8daf83d44d649412a002c136bd6cf2607efb5356856c8ea92f5c98ba61652f3f"
+    }
+  ],
+  "localOnlyArtifacts": [
+    {
+      "file": "ci-job-observation.json",
+      "bytes": 3351,
+      "sha256": "0273f99a3bfee873e17ac2e86556e9d2025bb6597ed1d2b5c5077368f12d73cc"
+    }
+  ],
+  "continuedByRoot": true,
+  "resolvedQAObservations": [
+    "roster-load-timeout.json",
+    "parity-dom-navigation-timeout.json",
+    "parity-early-read-failure.json"
+  ],
+  "finalReadiness": "Navigation commit followed by actual storage/model readiness, real actor ACK, strict career validation and byte-identical complete save restoration. No production source changes."
+}

@@ -1,8 +1,8 @@
 # Entwicklungsdokumentation
 
-- [Bugliste](Bugliste.md): priorisierte offene 3D-/Browserfehler, native Matchabstimmung, Android-Prüfungen und separat gekennzeichnete lokale Korrekturen.
+- [Bugliste](Bugliste.md): priorisierte offene 3D-/Browserfehler, native Matchabstimmung, Android-Prüfungen und separat gekennzeichnete veröffentlichte Korrekturen.
 
-- [Release 130 in Abnahme: 3D-Bewegung und vollständige Kaderauswahl](release-130.md): auf 129 integrierte Kandidaten, produktive Bildzeitplanung und lokal geprüfter Standardbuild; Paket-/Live-Abnahme folgt.
+- [Release 130: 3D-Bewegung und vollständige Kaderauswahl](release-130.md): veröffentlicht und live abgenommen; Foulpose, Torwartjagd, vollständige Kaderauswahl und produktive Bildzeitplanung. Acht öffentliche Dateihashes, zwölf Live-Integrationsprüfungen, beide mobilen Taktikansichten und vollständige native/Unity-Partien samt Neuladen bestanden.
 
 - [Release 129: Startstärken und Kaderrollen](release-129.md): aktuelle Startkader, sportliche Wechselpräferenz, kompakte Matchabstimmung und Vertragsrollen; veröffentlicht und mit bytegleichen Builds und vollständiger Live-Partie abgenommen.
 - [Kadermechanik, Stärkezusammensetzung und Matchagenda](kadermechanik-und-matchagenda.md): vollständiger Fachvertrag und drei getrennte offene Matchdiagnosen.

@@ -1,0 +1,10 @@
+{
+  "pass": true,
+  "scope": "Root's own T3 collaborative browser, actual public site; read-only DOM footer",
+  "url": "https://fussball.cakamper.at/",
+  "title": "Doppel 6 · Fußballmanager",
+  "ready": "complete",
+  "footer": "Doppel 6 / PROTOTYP 1303D-Hilfe",
+  "release": 130,
+  "physicalAndroidAcceptance": false
+}

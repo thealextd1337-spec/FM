@@ -1,0 +1,277 @@
+{
+  "startedAt": "2026-10-12T22:29:18.640Z",
+  "checkedAt": "2026-10-12T22:51:14.315Z",
+  "expectedHead": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+  "url": "https://api.github.com/repos/thealextd1337-spec/FM/actions/runs/38316574115",
+  "rows": [
+    {
+      "checkedAt": "2026-10-12T22:29:19.059Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:30:19.408Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:31:19.774Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:32:20.143Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:33:20.558Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:34:20.909Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:35:21.279Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:36:21.666Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:37:22.048Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:38:22.372Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:39:22.742Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:40:23.092Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:41:23.468Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:42:23.814Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:43:24.188Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:44:24.547Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:45:24.971Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:46:25.353Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "in_progress",
+      "conclusion": null,
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+      "updated_at": "2026-10-12T22:25:33Z"
+    },
+    {
+      "checkedAt": "2026-10-12T22:51:14.315Z",
+      "id": 38316574115,
+      "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115"
+    }
+  ],
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 115034509241,
+      "name": "deploy",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115/job/115034509241",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-12T22:25:33Z",
+          "completed_at": "2026-10-12T22:25:34Z"
+        },
+        {
+          "name": "Quellcode laden",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-12T22:25:34Z",
+          "completed_at": "2026-10-12T22:26:01Z"
+        },
+        {
+          "name": "Node.js einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-12T22:26:01Z",
+          "completed_at": "2026-10-12T22:26:06Z"
+        },
+        {
+          "name": "Spieltests ausführen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-12T22:26:06Z",
+          "completed_at": "2026-10-12T22:46:52Z"
+        },
+        {
+          "name": "Einzeldatei bauen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-12T22:46:52Z",
+          "completed_at": "2026-10-12T22:47:55Z"
+        },
+        {
+          "name": "Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-12T22:47:55Z",
+          "completed_at": "2026-10-12T22:48:40Z"
+        },
+        {
+          "name": "Per FTPS zu World4You hochladen und Live-Datei prüfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-12T22:48:40Z",
+          "completed_at": "2026-10-12T22:49:05Z"
+        },
+        {
+          "name": "Post Node.js einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-12T22:49:05Z",
+          "completed_at": "2026-10-12T22:49:05Z"
+        },
+        {
+          "name": "Post Quellcode laden",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14,
+          "started_at": "2026-10-12T22:49:05Z",
+          "completed_at": "2026-10-12T22:49:05Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-10-12T22:49:05Z",
+          "completed_at": "2026-10-12T22:49:05Z"
+        }
+      ]
+    }
+  ],
+  "jobsCheckedAt": "2026-10-12T22:51:14.315Z",
+  "waitEndedAt": "2026-10-12T22:47:09.062Z",
+  "inProgressHandoff": false,
+  "pollerStopped": true,
+  "stopReason": "Only own read-only CI polling process interrupted at the conservative waiting bound. Earlier initial REST read preceded persisted poller. GitHub CI was not cancelled, retried, or modified.",
+  "completedAfterBoundedChildWait": true
+}

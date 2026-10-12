@@ -1,0 +1,10 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const site=path.join(__dirname,'site');fs.mkdirSync(site,{recursive:true});
+const copies=[['outputs/index.html','index.html'],['dist/unity-match/runtime.html','unity-match/runtime.html'],['dist/unity-match/runtime.js','unity-match/runtime.js'],['dist/unity-match/.htaccess','unity-match/.htaccess'],['outputs/platform/unity-web/probe-build.json','unity/probe-build.json'],...['data','framework.js','loader.js','wasm'].map(x=>['outputs/platform/unity-web/Build/unity-web.'+x,'unity/Build/unity-web.'+x])];
+const files=copies.map(([src,file])=>{const dest=path.join(site,file);fs.mkdirSync(path.dirname(dest),{recursive:true});fs.copyFileSync(src,dest);const b=fs.readFileSync(dest);return{file,sha256:crypto.createHash('sha256').update(b).digest('hex'),bytes:b.length};});
+assert(fs.readFileSync('outputs/index.html').equals(fs.readFileSync('outputs/Doppel-6-Fussballmanager.html')));
+const html=fs.readFileSync('outputs/index.html','utf8');assert(html.includes('PROTOTYP 130'));assert(!html.includes('local-preview-frame.js'));
+const manifest=JSON.parse(fs.readFileSync('outputs/platform/unity-web/probe-build.json'));assert.equal(manifest.sourceId,'3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82');
+fs.writeFileSync(path.join(__dirname,'package.json'),JSON.stringify({version:130,published:false,sourceId:manifest.sourceId,manifestSha256:files.find(x=>x.file==='unity/probe-build.json').sha256,htmlSha256:files[0].sha256,createdAt:new Date().toISOString(),files},null,2));
+console.log(JSON.stringify({version:130,files:files.length,htmlSha256:files[0].sha256}));

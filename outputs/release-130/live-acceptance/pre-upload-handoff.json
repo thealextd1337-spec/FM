@@ -1,0 +1,217 @@
+{
+  "checkedAt": "2026-10-12T22:47:34.874Z",
+  "pass": false,
+  "acceptanceStatus": "in_progress",
+  "release": 130,
+  "expectedPackage": {
+    "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+    "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+    "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+  },
+  "CI": {
+    "url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115",
+    "head": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+    "status": "in_progress",
+    "conclusion": null,
+    "pollStartedAt": "2026-10-12T22:29:18.640Z",
+    "pollEndedAt": "2026-10-12T22:46:25.353Z",
+    "jobs": [
+      {
+        "id": 115034509241,
+        "name": "deploy",
+        "status": "in_progress",
+        "conclusion": null,
+        "html_url": "https://github.com/thealextd1337-spec/FM/actions/runs/38316574115/job/115034509241",
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1,
+            "started_at": "2026-10-12T22:25:33Z",
+            "completed_at": "2026-10-12T22:25:34Z"
+          },
+          {
+            "name": "Quellcode laden",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2,
+            "started_at": "2026-10-12T22:25:34Z",
+            "completed_at": "2026-10-12T22:26:01Z"
+          },
+          {
+            "name": "Node.js einrichten",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3,
+            "started_at": "2026-10-12T22:26:01Z",
+            "completed_at": "2026-10-12T22:26:06Z"
+          },
+          {
+            "name": "Spieltests ausführen",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4,
+            "started_at": "2026-10-12T22:26:06Z",
+            "completed_at": "2026-10-12T22:46:52Z"
+          },
+          {
+            "name": "Einzeldatei bauen",
+            "status": "in_progress",
+            "conclusion": null,
+            "number": 5,
+            "started_at": "2026-10-12T22:46:52Z",
+            "completed_at": null
+          },
+          {
+            "name": "Unity-Laufzeit vor der neuen Spielseite hochladen und prüfen",
+            "status": "pending",
+            "conclusion": null,
+            "number": 6,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Per FTPS zu World4You hochladen und Live-Datei prüfen",
+            "status": "pending",
+            "conclusion": null,
+            "number": 7,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Post Node.js einrichten",
+            "status": "pending",
+            "conclusion": null,
+            "number": 13,
+            "started_at": null,
+            "completed_at": null
+          },
+          {
+            "name": "Post Quellcode laden",
+            "status": "pending",
+            "conclusion": null,
+            "number": 14,
+            "started_at": null,
+            "completed_at": null
+          }
+        ]
+      }
+    ],
+    "inProgressHandoff": true,
+    "jobsCheckedAt": "2026-10-12T22:47:09.062Z",
+    "waitEndedAt": "2026-10-12T22:47:09.062Z",
+    "pollerStopped": true,
+    "stopReason": "Only own read-only CI polling process interrupted at the conservative waiting bound. Earlier initial REST read preceded persisted poller. GitHub CI was not cancelled, retried, or modified."
+  },
+  "checks": {
+    "CIExactHead": true,
+    "CISuccess": false,
+    "publicEightFiles": false,
+    "livePackage": false,
+    "mobileRosterBoth": false,
+    "fullGenuineMatches": false,
+    "allCareersValidateStrictly": false,
+    "fullDigestPartsIdentical": false,
+    "fullSavedCareersAndP02Reloaded": false,
+    "inputArtifactsStable": true
+  },
+  "checkStates": {
+    "CIExactHead": "pass",
+    "CISuccess": "in_progress",
+    "publicEightFiles": "not_run_pending_ci",
+    "livePackage": "not_run_pending_ci",
+    "mobileRosterBoth": "not_run_pending_ci",
+    "fullGenuineMatches": "not_run_pending_ci",
+    "allCareersValidateStrictly": "not_run_pending_ci",
+    "fullDigestPartsIdentical": "not_run_pending_ci",
+    "fullSavedCareersAndP02Reloaded": "not_run_pending_ci",
+    "inputArtifactsStable": "pass"
+  },
+  "failures": [],
+  "limits": [
+    "No publication/retry/upload was performed by this test agent.",
+    "Own blank isolated Chrome/Edge profiles; no user saves or tabs accessed.",
+    "Complete native games are fixed .05-second steps using unchanged current QA160 helper and identical fixture/seed/call sequence; wall times are QA execution times, not human real-time game-duration/FPS measurements.",
+    "Unity picture/render counters prove rendering progress, not GPU FPS or physical Android acceptance.",
+    "BFCache was genuinely proved locally in final-browser; not redundantly repeated on live.",
+    "15 contact windows, five historical diagnostic gates, direct-free-kick preparation, situational pace choice, defender pursuit, Pixel hardware and 4–6 minute / 10–16 total-shot goals remain open in Bugliste."
+  ],
+  "artifacts": [
+    {
+      "file": "bind-inputs.cjs",
+      "bytes": 1804,
+      "sha256": "2aa01098d1dfc919c8fe629ad95790cdfd64166d9988d3bbe922a7b4de08f1d9"
+    },
+    {
+      "file": "check-package.cjs",
+      "bytes": 9496,
+      "sha256": "bf1f638ff1a6718504d78515d74010d52fa58f97daa9a6543bf4c3de32c35aa4"
+    },
+    {
+      "file": "check-parity.cjs",
+      "bytes": 3860,
+      "sha256": "280587e08e760ff5b82f756667f8b65f4ce60e0b080d35b077a836cc047ba387"
+    },
+    {
+      "file": "check-roster.cjs",
+      "bytes": 6937,
+      "sha256": "46740fe9f1518799984f9c446076ba0244129f1723a1cf1dba83eb8a84b19f6d"
+    },
+    {
+      "file": "ci-job-observation.json",
+      "bytes": 3351,
+      "sha256": "0273f99a3bfee873e17ac2e86556e9d2025bb6597ed1d2b5c5077368f12d73cc"
+    },
+    {
+      "file": "ci.json",
+      "bytes": 8988,
+      "sha256": "7e133a531ee26050eaa70ddc8a81e9119385937c6ecf5f9e428b5264ba35614c"
+    },
+    {
+      "file": "finalize-wait.cjs",
+      "bytes": 1243,
+      "sha256": "e9e76c9a7512fb479f28d456ec897414a64ad3459ee6ee3d8683c960a8a7405f"
+    },
+    {
+      "file": "inputs-after.json",
+      "bytes": 3016,
+      "sha256": "a42172f03547807cf95f1861d540d65f368aafd2ab60b66824997417e0f4a44f"
+    },
+    {
+      "file": "inputs-before.json",
+      "bytes": 3016,
+      "sha256": "c6e36fc42bfbe559d1c402c6242027294533f0fdb3d96eeca3b966b9dd15fe5b"
+    },
+    {
+      "file": "package-extra.txt",
+      "bytes": 3910,
+      "sha256": "f3ac8955852c7b1a5814ccfc3802844cd03ab31f5ed98f901db3958c44693964"
+    },
+    {
+      "file": "parity-extra.txt",
+      "bytes": 706,
+      "sha256": "74a4debcec70490e2eccd02bb6cdca2dbfd27719b85f452f66df29907232b9f9"
+    },
+    {
+      "file": "poll-ci.cjs",
+      "bytes": 1595,
+      "sha256": "5edae02352e6d15aa7f21a4dc58bd1b00ff4409d89121b567435a06dc3599cc9"
+    },
+    {
+      "file": "prepare.cjs",
+      "bytes": 4729,
+      "sha256": "514eb405b2b3afd2939ad5d9138d54716d3178b623de1660d7150f5cabfae490"
+    },
+    {
+      "file": "roster-extra.txt",
+      "bytes": 1162,
+      "sha256": "f257a1496db6038d9bc05142420b29986efbdb65d82e89ab080d58beca26e796"
+    },
+    {
+      "file": "write-handoff.cjs",
+      "bytes": 8058,
+      "sha256": "8daf83d44d649412a002c136bd6cf2607efb5356856c8ea92f5c98ba61652f3f"
+    }
+  ]
+}

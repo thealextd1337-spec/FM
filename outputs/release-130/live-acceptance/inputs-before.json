@@ -1,0 +1,87 @@
+{
+  "checkedAt": "2026-10-12T22:30:06.554Z",
+  "cwd": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\release-130",
+  "node": "v24.19.0",
+  "packageVersion": 130,
+  "productionCommands": 119,
+  "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+  "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+  "rows": [
+    {
+      "file": "AGENTS.md",
+      "bytes": 2023,
+      "sha256": "71c4d360b58640f3028a1d30609f9923d58309db13cfb6693c137d5a7b77f16f"
+    },
+    {
+      "file": "docs/development.md",
+      "bytes": 130179,
+      "sha256": "d6fcb7545e36545b199fe2d78fb0eaf25b853a0dfe502c4a4efe37876885da6c"
+    },
+    {
+      "file": "docs/product.md",
+      "bytes": 233048,
+      "sha256": "98dc7b864cb82ceebb80df26d16a2046b57a82f22707349abea2ccc89fd22b56"
+    },
+    {
+      "file": "docs/release-130.md",
+      "bytes": 6688,
+      "sha256": "540f60449517f768043b5711a306e4165f375f33827ca2c0263cc256961d3696"
+    },
+    {
+      "file": "docs/Bugliste.md",
+      "bytes": 7276,
+      "sha256": "13838d219b3e787ce7c23f94307082931799da2db54a08220bcfa91a494c0e4f"
+    },
+    {
+      "file": "outputs/release-130/package.json",
+      "bytes": 1799,
+      "sha256": "22998ff8d1346ade5d110c8c6b9f4a4191afac991a9ea97c1e1bd38a26bc0151"
+    },
+    {
+      "file": "outputs/release-130/artifact-verification.json",
+      "bytes": 891,
+      "sha256": "f4f7b6aaa04c2eeb7478723ee67d5aa0aff4abb7dd99696b6454681da6b70317"
+    },
+    {
+      "file": "outputs/release-130/production-checks.json",
+      "bytes": 14827,
+      "sha256": "9bbca92a06da18b08cf89ab500295b888c75fc5aa0e4bb4d5c5770c2c780a040"
+    },
+    {
+      "file": "outputs/release-130/final-browser/handoff.md",
+      "bytes": 4399,
+      "sha256": "6cc0afb452c2389c776d8c7f9dc131fc7be7ee47c2a01771ef0ac8cb97f4d6b9"
+    },
+    {
+      "file": "outputs/release-130/final-browser/manifest.json",
+      "bytes": 4862,
+      "sha256": "fc1d9333eb656e629d0dc3700a3d609d94846b5726f695b12e25d1a65b731b3d"
+    },
+    {
+      "file": "outputs/release-130/final-browser/check-package.cjs",
+      "bytes": 4931,
+      "sha256": "46870fa5f106fa48493e39313c5955ba04b05a15c70bc05596e6b58ba01f7e98"
+    },
+    {
+      "file": "outputs/release-130/final-browser/check-roster.cjs",
+      "bytes": 5693,
+      "sha256": "24d242800e02ba983ceef229ba37ac513ac452f45b3c931ae213ca0dd099a4f6"
+    },
+    {
+      "file": "outputs/release-130/final-browser/check-parity.cjs",
+      "bytes": 2565,
+      "sha256": "6f9fed6d0cdc43a38d0eb49e2f30d6a34b1f4eccadf58673d1a4093d8ff3fc4a"
+    },
+    {
+      "file": "work/platform/qa/unity-integration-v160.js",
+      "bytes": 13052,
+      "sha256": "68b3775417dcee14611360766b9ae2a11e0607872d9e42cd1b58396b07079408"
+    },
+    {
+      "file": "outputs/release-130/verify-live.cjs",
+      "bytes": 1425,
+      "sha256": "8d438e93bd6e4dfbad4af3e8bae2b15a2c89d5eaf5c5740f57bafca1b508693d"
+    }
+  ]
+}

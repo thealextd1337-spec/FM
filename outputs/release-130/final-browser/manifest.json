@@ -1,0 +1,143 @@
+{
+  "pass": true,
+  "version": 130,
+  "published": false,
+  "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+  "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+  "packageChecks": 8,
+  "mobileTacticsViews": 2,
+  "lifecycleChecks": 10,
+  "actualBFCachePersisted": true,
+  "fullNativeParity": {
+    "ticks": [
+      3037,
+      3037
+    ],
+    "validCareers": true,
+    "digest": "a6d98d83",
+    "payloadSha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772"
+  },
+  "httpFilesBeforeAfter": 9,
+  "errors": [],
+  "sourceBindings": {
+    "qaHelper": {
+      "file": "work/platform/qa/unity-integration-v160.js",
+      "sha256": "68b3775417dcee14611360766b9ae2a11e0607872d9e42cd1b58396b07079408"
+    },
+    "packageMetadataSha256": "22998ff8d1346ade5d110c8c6b9f4a4191afac991a9ea97c1e1bd38a26bc0151"
+  },
+  "artifacts": [
+    {
+      "file": "check-inputs.cjs",
+      "sha256": "9069da6f56c3a6ab977318ddb3167407995a5fa7ad84fa3d75e08b175f2b2269",
+      "bytes": 1450
+    },
+    {
+      "file": "check-lifecycle.cjs",
+      "sha256": "f760f4cb81d637899aee1db2977dc96a0dd3e835eca235ff45b57b074446c00d",
+      "bytes": 5830
+    },
+    {
+      "file": "check-package.cjs",
+      "sha256": "46870fa5f106fa48493e39313c5955ba04b05a15c70bc05596e6b58ba01f7e98",
+      "bytes": 4931
+    },
+    {
+      "file": "check-parity.cjs",
+      "sha256": "6f9fed6d0cdc43a38d0eb49e2f30d6a34b1f4eccadf58673d1a4093d8ff3fc4a",
+      "bytes": 2565
+    },
+    {
+      "file": "check-roster.cjs",
+      "sha256": "24d242800e02ba983ceef229ba37ac513ac452f45b3c931ae213ca0dd099a4f6",
+      "bytes": 5693
+    },
+    {
+      "file": "handoff.md",
+      "sha256": "6cc0afb452c2389c776d8c7f9dc131fc7be7ee47c2a01771ef0ac8cb97f4d6b9",
+      "bytes": 4399
+    },
+    {
+      "file": "inputs-after.json",
+      "sha256": "bd584bfeb4d861a7dcfb0badc2785c84b2841e956468ade9e5a2a8452a0423c2",
+      "bytes": 1751
+    },
+    {
+      "file": "inputs-before.json",
+      "sha256": "bd584bfeb4d861a7dcfb0badc2785c84b2841e956468ade9e5a2a8452a0423c2",
+      "bytes": 1751
+    },
+    {
+      "file": "lifecycle-navigation-wait-failure.json",
+      "sha256": "34f88c8f34c7cfca8ef08e571f383762dde3681ef86eeae3098bd5f11f091173",
+      "bytes": 603
+    },
+    {
+      "file": "lifecycle.json",
+      "sha256": "b46a1b4c601f39a05e451a609601b4979d78a7ccdd995a1ba6de66ddbe72a8dd",
+      "bytes": 2784
+    },
+    {
+      "file": "package-checks.json",
+      "sha256": "5660d6a04f9529fcd4ceef8a69c608dc02509c32b7c1042b42bda4b2ec57bf6b",
+      "bytes": 2338
+    },
+    {
+      "file": "package-match.png",
+      "sha256": "43931b85ea925ec4a9f98b1b96ade4dd8c7a72c5fea50bcc35f33bf96c989ecc",
+      "bytes": 257797
+    },
+    {
+      "file": "parity.json",
+      "sha256": "5df92da17d0d91313fa1218089cf79002ea3193d8ce9aa426efb13fad1870b55",
+      "bytes": 4817
+    },
+    {
+      "file": "README.md",
+      "sha256": "6cc0afb452c2389c776d8c7f9dc131fc7be7ee47c2a01771ef0ac8cb97f4d6b9",
+      "bytes": 4399
+    },
+    {
+      "file": "roster-career-extras.png",
+      "sha256": "97ebe82b97d5a9d32a58c9dc1b7de3463385941eda8c1a3eb8dc3598f74c42a9",
+      "bytes": 20034
+    },
+    {
+      "file": "roster-career.png",
+      "sha256": "d8885da5bc6b455b2eef0c22b9a94f53241b929ae2a9f540d9a34ab67014c43a",
+      "bytes": 151398
+    },
+    {
+      "file": "roster-checks.json",
+      "sha256": "7fced65bed41d217e13e5aa54014c22f70fb95b6d2a752fe7de6a38e8ea7529c",
+      "bytes": 576
+    },
+    {
+      "file": "roster-prematch-extras.png",
+      "sha256": "4f6694d6486864f02361e8451575910f365ae6e147ed58e3f7dbd3fe1a35197e",
+      "bytes": 20420
+    },
+    {
+      "file": "roster-prematch.png",
+      "sha256": "d1ec5a9dd49fda0ca274c8725b5cbb40aed6c0842167fbb618f81710660b6357",
+      "bytes": 139529
+    }
+  ],
+  "scope": "Final standard release130 HTTP package, isolated own profiles; native fixed-step parity, pause and actual BFCache return. No private saves/user tabs/source/build changes.",
+  "historicalFailure": "lifecycle-navigation-wait-failure.json records wrong DOMContentLoaded wait during BFCache; corrected commit/pageshow run passes.",
+  "limits": [
+    "No live publication acceptance",
+    "No physical Android acceptance",
+    "Render counter advancement is not GPU/FPS delivery",
+    "Documented contact/presentation gaps remain open"
+  ],
+  "commands": [
+    "node outputs/release-130/final-browser/check-inputs.cjs",
+    "node outputs/release-130/final-browser/check-package.cjs",
+    "node outputs/release-130/final-browser/check-roster.cjs",
+    "node outputs/release-130/final-browser/check-parity.cjs",
+    "node outputs/release-130/final-browser/check-lifecycle.cjs",
+    "node outputs/release-130/final-browser/check-inputs.cjs --after"
+  ]
+}

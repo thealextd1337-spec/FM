@@ -1,0 +1,99 @@
+{
+  "checkedAt": "2026-10-12T22:51:39.391Z",
+  "passed": true,
+  "scope": "Actual public Live release130, own isolated Chrome, SwiftShader for contract checks; no hardware/FPS claim.",
+  "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+  "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+  "liveUrl": "https://fussball.cakamper.at/?engine=unity",
+  "liveFooter": "Doppel 6 / PROTOTYP 130",
+  "checks": [
+    "Live footer is Version 130",
+    "Packaged world retains 192 clubs and 12 countries",
+    "Packaged squad retains 11 pros, two keepers and 6/3/2 roles",
+    "Actual packaged Unity fixture confirms all 12 native actors",
+    "Paused native facts and P02 survive rendering and foreign messages",
+    "Packaged browser has no uncaught page errors",
+    "Fresh physical match has keeper revision180 and retained pace119",
+    "Production frame scheduler is scoped to actual Unity surfaces without local opt-in code",
+    "Real reload and native reopen preserve complete saved career, pause and P02",
+    "Actual child pictures advance with identical paused parent and child clocks",
+    "Live 2D disables parent and child timer fallback",
+    "Final reopened paused Unity task has no browser errors"
+  ],
+  "setup": {
+    "clubs": 192,
+    "countries": 12,
+    "roster": 11,
+    "keepers": 2,
+    "roles": {
+      "starter": 6,
+      "rotation": 3,
+      "reserve": 2
+    },
+    "fixtureId": "S1:AUT:LEAGUE:R5:AUT-5-AUT-8:1",
+    "players": 12
+  },
+  "runtime": {
+    "ready": true,
+    "active": true,
+    "ids": [
+      "local-129-r20-http:AUT-5:1",
+      "local-129-r20-http:AUT-5:3",
+      "local-129-r20-http:AUT-5:4",
+      "local-129-r20-http:AUT-5:7",
+      "local-129-r20-http:AUT-5:6",
+      "local-129-r20-http:AUT-5:9",
+      "local-129-r20-http:AUT-8:1",
+      "local-129-r20-http:AUT-8:4",
+      "local-129-r20-http:AUT-8:6",
+      "local-129-r20-http:AUT-8:9",
+      "local-129-r20-http:AUT-8:11",
+      "local-129-r20-http:AUT-8:7"
+    ],
+    "players": [
+      "local-129-r20-http:AUT-5:1",
+      "local-129-r20-http:AUT-5:3",
+      "local-129-r20-http:AUT-5:4",
+      "local-129-r20-http:AUT-5:7",
+      "local-129-r20-http:AUT-5:6",
+      "local-129-r20-http:AUT-5:9",
+      "local-129-r20-http:AUT-8:1",
+      "local-129-r20-http:AUT-8:4",
+      "local-129-r20-http:AUT-8:6",
+      "local-129-r20-http:AUT-8:9",
+      "local-129-r20-http:AUT-8:11",
+      "local-129-r20-http:AUT-8:7"
+    ],
+    "session": "S1:AUT:LEAGUE:R5:AUT-5-AUT-8:1:da68eef3-145f-4b05-a268-50da59b93549",
+    "lastError": null,
+    "labels": 12
+  },
+  "saveReload": {
+    "id": "4cd4f084-8f12-4dfc-80d1-ee196439f5f9",
+    "fullCareerIdentical": true,
+    "strictValidator": true,
+    "nativeFactsIdentical": true,
+    "phase": "paused"
+  },
+  "scheduler": {
+    "parentEnabled": true,
+    "childVersion": 130,
+    "nativeFactsIdentical": true,
+    "childClockIdentical": true,
+    "pauseClocks": {
+      "parentElapsed": 0,
+      "childElapsed": 0,
+      "parentNative": 0,
+      "childNative": 0
+    },
+    "childPhase": "paused",
+    "renderAdvanced": true,
+    "twoD": {
+      "disabled": true,
+      "parentStable": true,
+      "childStable": true
+    }
+  },
+  "errors": []
+}
