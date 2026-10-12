@@ -115,6 +115,15 @@ public static class D6Cli {
         finally{if(repo!=null&&render)ProbeWebBuild.Restore(repo);}
         Done(ok,message);
     }
+    // Nighttime style evidence: identical fixture, layout and cameras for a
+    // baseline and a candidate (-d6output <folder> -d6label <name> [-d6compare <folder of another label>]).
+    public static void Nighttime(){
+        string repo=null,message=null;bool ok=false;
+        try{repo=Repo();if(SystemInfo.graphicsDeviceType==UnityEngine.Rendering.GraphicsDeviceType.Null)throw new InvalidOperationException("Nighttime evidence needs a graphics device");
+            ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=NighttimeDiagnostics.Run(repo,Arg("-d6output"),Arg("-d6label","candidate"),Arg("-d6compare"));ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
+        Done(ok,message);
+    }
     public static void TeamRings(){
         try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,TeamGroundRingTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }

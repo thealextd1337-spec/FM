@@ -1,7 +1,7 @@
 Shader "Doppel6/Pitch" {
  Properties {
   _ColorA("Stripe A",Color)=(.20,.42,.17,1) _ColorB("Stripe B",Color)=(.16,.36,.14,1) _Apron("Apron",Color)=(.12,.27,.11,1) _Wear("Wear",Color)=(.33,.36,.20,1)
-  _Size("Pitch length/width",Vector)=(68,44,0,0) _Stripes("Stripe count",Float)=12 _Pattern("Mowing pattern 0 stripes 1 checks 2 diagonal",Float)=0 _WearAmount("Wear amount",Float)=1
+  _Size("Pitch length/width",Vector)=(68,44,0,0) _Stripes("Stripe count",Float)=12 _Pattern("Mowing pattern 0 stripes 1 checks 2 diagonal",Float)=0 _WearAmount("Wear amount",Float)=1 _Grain("Close blade grain",Float)=0 _Pools("Light bank pools",Float)=0 _Sheen("Turf sheen",Float)=0
  }
  SubShader { Tags {"RenderPipeline"="UniversalPipeline" "RenderType"="Opaque" "Queue"="Geometry"}
  Pass { Tags {"LightMode"="UniversalForward"}
@@ -12,7 +12,7 @@ Shader "Doppel6/Pitch" {
   #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
   #include "../D6Common.hlsl"
   CBUFFER_START(UnityPerMaterial)
-  float4 _ColorA,_ColorB,_Apron,_Wear,_Size;float _Stripes,_Pattern,_WearAmount;
+  float4 _ColorA,_ColorB,_Apron,_Wear,_Size;float _Stripes,_Pattern,_WearAmount,_Grain,_Pools,_Sheen;
   CBUFFER_END
   struct Input {float4 position:POSITION;float3 normal:NORMAL;};
   struct Output {float4 position:SV_POSITION;float3 world:TEXCOORD0;float3 normal:TEXCOORD1;};
@@ -30,13 +30,22 @@ Shader "Doppel6/Pitch" {
    half3 turf=lerp(stripe>.5?_ColorA.rgb:_ColorB.rgb,(_ColorA.rgb+_ColorB.rgb)*.5,blend*.5);
    float cut=fmod(floor((p.y+half_.y)/(_Size.y/6))+64,2);turf*=lerp(.975,1.025,cut);
    float n=D6Noise(p*2.7)*.5+D6Noise(p*.55)*.35+D6Noise(p*11)*.15;turf*=lerp(.88,1.10,n);
+   // Blade grain only where a texel is small on screen (close cameras); it
+   // fades out before it can shimmer from the elevated match camera.
+   float grain=D6Noise(p*41)*.6+D6Noise(p*97)*.4;float fade=saturate(1.6-fwidth(p.x*41)*1.4);turf*=lerp(1,lerp(.9,1.07,grain),fade*_Grain);
    if(!inside)turf=_Apron.rgb*lerp(.85,1.08,n);
    // Worn turf in the goal mouths and at kick-off.
    float gx=abs(p.x)-(half_.x-2.4);float wear=exp(-(gx*gx/5+p.y*p.y/4))+.45*exp(-dot(p,p)/3);
    turf=lerp(turf,_Wear.rgb*lerp(.85,1.1,n),saturate(wear*.55*_WearAmount*(inside?1:0)));
    half3 color=D6Light(turf,i.world,i.normal,.0,.0,.0);
-   // Floodlight pools: slightly brighter centre, darker run-off.
+   // Floodlight pools: slightly brighter centre, darker run-off. _Pools adds
+   // the overlapping lobes of four light banks (0 = previous single falloff).
    float2 r=p/(half_+8);color*=lerp(1.05,.93,saturate(dot(r,r)));
+   float2 q=abs(p)-half_*float2(.42,.30);color*=1+_Pools*(exp(-dot(q,q)/(half_.y*half_.y*.55))-.35);
+   // A faint broad sheen of the key light on the cut turf (no wet look, no
+   // friction cue); stripes catch it differently like real mown grass.
+   Light key=GetMainLight();half3 v=normalize(GetWorldSpaceViewDir(i.world));half sheen=pow(saturate(normalize(key.direction+v).y),10)*_Sheen*(stripe>.5?1:.55);
+   color+=sheen*key.color*turf*(inside?1:.3);
    return half4(color,1);
   }
   ENDHLSL

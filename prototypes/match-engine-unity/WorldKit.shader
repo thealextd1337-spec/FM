@@ -50,6 +50,10 @@ Shader "Doppel6/World Kit" {
   float collar=Band(b.y,1.35)*(1-Band(abs(b.x),.12)),sockBand=Band(b.y,.42)*(1-Band(b.y,.46)),glove=Band(abs(b.x),.615)*Band(b.y,1.15);
   // Actual squad number: large on the back, small on the left chest.
   float2 back=Number(float2(b.x,b.y),float2(0,1.15),.17)*step(b.z,-.02),chest=Number(float2(-b.x,b.y),float2(.075,1.24),.065)*step(.02,b.z),mark=max(back,chest);
+  // Fine knit for close cameras only: it fades with its screen-space size, so
+  // the elevated match camera sees calm matte fabric instead of moire.
+  float2 knit=i.uv*1300;float knitFade=saturate(1.4-max(fwidth(knit.x),fwidth(knit.y))*1.1);float weave=sin(knit.x)*sin(knit.y*1.3)*knitFade;
+  half skinRegion=0,hairRegion=0,gloveRegion=0;
   if(shorts)color=_Accent.rgb*(.78+.22*pigment);
   else if(shirt||socks){
    stripe=shirt?max(styleBand,collar):sockBand;
@@ -58,21 +62,40 @@ Shader "Doppel6/World Kit" {
   }else{
    bool skin=color.r>color.g*1.12&&color.g>color.b*1.12&&pigment>.18;
    bool eye=b.y>1.47&&b.y<1.57&&b.z>.065;
-   if(skin&&!eye&&b.y>.5)color=_Skin.rgb*(.65+.65*pigment);
-   if((b.y>1.62||(b.y>1.49&&b.z<-.025&&pigment<.24))&&pigment<.35)color=_Hair.rgb*(.7+pigment*2);
+   if(skin&&!eye&&b.y>.5){color=_Skin.rgb*(.65+.65*pigment);skinRegion=1;}
+   if((b.y>1.62||(b.y>1.49&&b.z<-.025&&pigment<.24))&&pigment<.35){color=_Hair.rgb*(.7+pigment*2);hairRegion=1;skinRegion=0;}
    // Keepers wear gloves over the actual hand geometry (bind pose |x| > 0.62 m).
-   if(_Keeper>.5)color=lerp(color,_Glove.rgb*(.8+.2*pigment),glove);
+   if(_Keeper>.5){color=lerp(color,_Glove.rgb*(.8+.2*pigment),glove);gloveRegion=glove;skinRegion*=1-glove;}
   }
-  // Floodlight key light with shadow map, ambient and a rim that keeps
-  // small figures readable against the turf. Fabric gets a faint sheen.
+  half fabric=shirt||shorts||socks?1:0;
   // Cull Off shows inner faces (sleeves, collar, thin silhouettes); their
   // normal points away from the camera and gave a full white fresnel rim as
-  // speckles. Light the side that faces the camera, and tint the rim with the
-  // kit colour so team colours stay distinct instead of reading as white.
-  half fabric=shirt||shorts||socks?.12:.05;
+  // speckles. Light the side that faces the camera.
   float3 n=normalize(i.normal),view=normalize(GetWorldSpaceViewDir(i.world));if(dot(n,view)<0)n=-n;
-  half rim=pow(1-saturate(dot(n,view)),3)*.3;
-  return half4(D6Light(color,i.world,n,.35,0,fabric)+rim*lerp(SampleSH(n)*2,color*1.4,.65),1);
+  half nv=saturate(dot(n,view));
+  if(_D6NightRim.w<=0){
+   // Previous floodlight response: faint sheen and a kit-tinted rim.
+   half rim=pow(1-nv,3)*.3;
+   return half4(D6Light(color,i.world,n,.35,0,fabric>0?.12:.05)+rim*lerp(SampleSH(n)*2,color*1.4,.65),1);
+  }
+  // Nighttime material response. Fabric: matte knit, no hot spot, a soft
+  // grazing sheen in its own colour. Skin: wider wrap, a warm terminator and a
+  // broad low highlight. Hair: a faint narrow sheen. Gloves: matte latex.
+  color*=1+weave*.05*fabric;
+  Light light=GetMainLight(TransformWorldToShadowCoord(i.world));half shadow=light.shadowAttenuation*light.distanceAttenuation;
+  half wrap=.35+.2*skinRegion;half nl=dot(n,light.direction);half ndl=saturate((nl+wrap)/(1+wrap));
+  // Players get a little more of the sky fill than the stadium: dark kits stay drawn.
+  half3 ambient=SampleSH(n)*1.18;
+  half3 lit=color*(light.color*ndl*shadow+ambient);
+  half3 hv=normalize(light.direction+view);half nh=saturate(dot(n,hv));
+  lit+=fabric*pow(1-nv,2.2)*.16*(color*.7+.08)*(ndl*shadow*.75+.25);
+  lit+=skinRegion*color*half3(.16,.05,.02)*saturate(1-abs(nl)*1.6)*shadow;
+  lit+=light.color*shadow*(skinRegion*pow(nh,14)*.05+hairRegion*pow(nh,40)*.06+gloveRegion*pow(nh,18)*.04);
+  // The opposite floodlight bank as a cool back rim: separates small figures
+  // from the turf; tinted with the kit so team colours do not turn white.
+  half backLit=saturate(dot(n,_D6NightRim.xyz)*.6+.4);half edge=pow(1-nv,2.6);
+  lit+=edge*backLit*_D6NightRim.w*lerp(_D6NightRimColor.rgb,color*1.5,.55);
+  return half4(lit,1);
  }
  ENDHLSL
  }

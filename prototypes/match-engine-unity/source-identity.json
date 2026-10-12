@@ -1,5 +1,5 @@
 {
-  "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "sourceId": "ed54411ffaffdb5b25d0609a0a6259f888badb3b5fa69178706f0b38d69bb5c0",
   "sources": [
     "prototypes/match-engine-unity/ProbeSimulation.cs",
     "prototypes/match-engine-unity/ProbeBridge.cs",
@@ -36,6 +36,7 @@
     "prototypes/match-engine-unity/D6Env.shader",
     "prototypes/match-engine-unity/D6Blob.shader",
     "prototypes/match-engine-unity/D6TeamRing.shader",
+    "prototypes/match-engine-unity/D6Glow.shader",
     "prototypes/match-engine-unity/ClubStadiumProfiles.cs",
     "prototypes/match-engine-unity/StadiumArchitecture.cs",
     "prototypes/match-engine-unity/FootballDuel.cs",

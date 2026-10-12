@@ -1,13 +1,14 @@
 Shader "Doppel6/Environment" {
  // Stadium surfaces: tinted texture, real shadows, optional LED emission.
  // _VertexTint=1 multiplies baked vertex shading (stadium architecture meshes).
- Properties { _BaseMap("Texture",2D)="white"{} _BaseColor("Color",Color)=(1,1,1,1) _Emission("Emission",Color)=(0,0,0,0) _Gloss("Gloss",Float)=0 _VertexTint("Vertex tint",Float)=0 }
+ // _Rim adds a fresnel edge from the sky fill (metal rails, masts, goal frames).
+ Properties { _BaseMap("Texture",2D)="white"{} _BaseColor("Color",Color)=(1,1,1,1) _Emission("Emission",Color)=(0,0,0,0) _Gloss("Gloss",Float)=0 _VertexTint("Vertex tint",Float)=0 _Rim("Edge rim",Float)=0 }
  SubShader { Tags {"RenderPipeline"="UniversalPipeline" "RenderType"="Opaque" "Queue"="Geometry"}
  HLSLINCLUDE
  #include "../D6Common.hlsl"
  TEXTURE2D(_BaseMap);SAMPLER(sampler_BaseMap);
  CBUFFER_START(UnityPerMaterial)
- float4 _BaseMap_ST,_BaseColor,_Emission;float _Gloss,_VertexTint;
+ float4 _BaseMap_ST,_BaseColor,_Emission;float _Gloss,_VertexTint,_Rim;
  CBUFFER_END
  ENDHLSL
  Pass { Tags {"LightMode"="UniversalForward"}
@@ -21,7 +22,8 @@ Shader "Doppel6/Environment" {
   Output vert(Input i){Output o;o.world=TransformObjectToWorld(i.position.xyz);o.position=TransformWorldToHClip(o.world);o.normal=TransformObjectToWorldNormal(i.normal);o.uv=TRANSFORM_TEX(i.uv,_BaseMap);o.tint=lerp(half3(1,1,1),(half3)i.color.rgb,_VertexTint);return o;}
   half4 frag(Output i):SV_Target {
    half4 tex=SAMPLE_TEXTURE2D(_BaseMap,sampler_BaseMap,i.uv);half3 albedo=tex.rgb*_BaseColor.rgb*i.tint;
-   return half4(D6Light(albedo,i.world,i.normal,.2,.0,_Gloss)+tex.rgb*_Emission.rgb,1);
+   // _Rim: small edge reflections that keep painted metal readable at night.
+   return half4(D6Light(albedo,i.world,i.normal,.2,_Rim,_Gloss)+tex.rgb*_Emission.rgb,1);
   }
   ENDHLSL
  }
