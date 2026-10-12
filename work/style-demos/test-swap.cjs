@@ -1,13 +1,14 @@
 'use strict';
 // Fault-injection test for swap.cjs on disposable directories. No runtime flag exists in the tools; faults are injected
-// here by wrapping fs.renameSync. usage: node work/style-demos/test-swap.cjs [--dir ABS_DIR_UNDER_outputs/style-demos]
+// here by wrapping fs.renameSync. usage: node work/style-demos/test-swap.cjs [--dir ABS_DIR_UNDER_outputs/style-demos/support]
 const fs=require('node:fs'),path=require('node:path');
 const lib=require('./lib.cjs');lib.requireNode();
 const {swapIn}=require('./swap.cjs');
 
 const arg=process.argv.indexOf('--dir');
 const base=path.resolve(arg>0?process.argv[arg+1]:path.join(lib.OWN_REPO,'outputs','style-demos','support','round2','swap-tests'));
-if(path.relative(path.join(lib.OWN_REPO,'outputs','style-demos'),base).startsWith('..'))throw new Error('--dir muss unter outputs/style-demos des eigenen Checkouts liegen: '+base);
+const testRoot=path.join(lib.OWN_REPO,'outputs','style-demos','support'),testRelative=path.relative(testRoot,base);
+if(!testRelative||testRelative.startsWith('..')||path.isAbsolute(testRelative))throw new Error('--dir muss strikt unter outputs/style-demos/support des eigenen Checkouts liegen: '+base);
 fs.rmSync(base,{recursive:true,force:true});
 
 let passed=0,failed=0;

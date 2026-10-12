@@ -1,5 +1,9 @@
 # Änderungen
 
+## Noch nicht veröffentlicht
+
+- Lokale Stildemos lassen sich mit einem eigenen Startbefehl als hashgebundenes Browserpaket bereitstellen. Quellenstand, Git-Commit, HTML und Unity-Dateien werden vor der Auslieferung geprüft; ein fehlgeschlagener Paketaustausch stellt den bisherigen Stand wieder her oder bewahrt dessen Sicherung mit genauer Fehlermeldung. Standardbuild am Release-130-Anker reproduziert, 103 Datei-/HTTP-Prüfungen, 29 Rollback-Prüfungen und zwei zusätzliche Pfadgrenzen bestanden. Dies ist Demo-Infrastruktur; tatsächliche Nighttime-Gestaltung, Match- und Geräteabnahme folgen getrennt. [Start und Prüfung](3d-stilauftraege/demo-start-und-pruefung.md).
+
 ## 13. Oktober 2026 – Bugliste
 
 - Offene Probleme mit Browserleistung, Laufdynamik, Abwehrverfolgung, Freistoßausrichtung, Rückwärtslaufen und Kontaktübergängen mit nächster Abnahme dokumentiert. Native Spielzeit-/Schussziele, Android-Prüfung und lokale Korrekturen getrennt erfasst. [Bugliste](Bugliste.md).
