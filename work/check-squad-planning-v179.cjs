@@ -1,18 +1,18 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),os=require('node:os'),assert=require('node:assert/strict'),crypto=require('node:crypto');
 const runtime=path.join(os.homedir(),'.cache/codex-runtimes/codex-primary-runtime/dependencies/node');
-if(Number(process.versions.node.split('.')[0])<20){const r=require('node:child_process').spawnSync(path.join(runtime,'bin/node.exe'),[__filename],{stdio:'inherit'});process.exit(r.status??1);}
+if(Number(process.versions.node.split('.')[0])<20){const r=require('node:child_process').spawnSync(path.join(runtime,'bin/node.exe'),[__filename,...process.argv.slice(2)],{stdio:'inherit'});process.exit(r.status??1);}
 const {chromium}=require(path.join(runtime,'node_modules/playwright')),{createServer}=require('./ui-redesign/serve.cjs');
-const out='outputs/squad-planning-v179',results=[],digests=[];
+const live=process.argv.includes('--live'),out=live?'outputs/release-129/live-squad':'outputs/squad-planning-v179',results=[],digests=[];
 const files=['world-squad-planning-v179.js','world-squad-ui-v179.js','world-match-v64.js','world-market-ui-v66.js','world-transfer-list-ui-v72.js','world-economy-v66.css','i18n-v75.js','ui-flutlicht/adapter.js','ui-flutlicht/views/squad.js','ui-flutlicht/views/market.js'];
 const hashes=()=>Object.fromEntries(files.map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync('dist/'+f)).digest('hex')]));
 (async()=>{
  const server=createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));
  const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true}),before=hashes();fs.mkdirSync(out,{recursive:true});
  try{
-  for(const target of ['source','build']){
+  for(const target of live?['live']:['source','build']){
    console.log('START '+target);const context=await browser.newContext(),errors=[];let page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
-   await page.goto(target==='source'?`http://127.0.0.1:${server.address().port}/source/index.html`:require('node:url').pathToFileURL(path.resolve('outputs/index.html')).href);await page.waitForFunction(()=>v61StorageReady);
+   await page.goto(target==='live'?'https://fussball.cakamper.at/?squad-release=129':target==='source'?`http://127.0.0.1:${server.address().port}/source/index.html`:require('node:url').pathToFileURL(path.resolve('outputs/index.html')).href);await page.waitForFunction(()=>v61StorageReady);
    await page.evaluate(async()=>{v61CurrentCareer=await v61StoreNewCareer(v167CreateCareer('GER-2','squad-ui-v179','Kader QA'));v61RenderCareer(v61CurrentCareer);v61SetCareerTab('squad',false);window.v179Frozen=JSON.stringify(v61CurrentCareer);});
    for(const width of [320,390,1280])for(const lang of ['de','en']){
     await page.setViewportSize({width,height:844});await page.evaluate(({lang,dark})=>{D6Flutlicht.theme.set(dark?'dark':'light');doppel6Language.set(lang);},{lang,dark:width===390});
@@ -39,7 +39,7 @@ const hashes=()=>Object.fromEntries(files.map(f=>[f,crypto.createHash('sha256').
    await page.locator('[data-fl-section-tab=contracts]').click();await page.locator('[data-fl-contract-filter=attention]').click();assert.equal(await page.locator(`.v66-contract:has([data-v61-player="${pid}"])`).isVisible(),true);assert.match(await page.locator(`.v66-contract:has([data-v61-player="${pid}"])`).innerText(),/Zu wenig Spielzeit/);
    results.push({target,reload:true,renewal:true,attention:true});
    // Match parity starts in a clean profile, separately from deliberately altered UI fixtures.
-   await context.close();const matchContext=await browser.newContext();page=await matchContext.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(target==='source'?`http://127.0.0.1:${server.address().port}/source/index.html`:require('node:url').pathToFileURL(path.resolve('outputs/index.html')).href);await page.waitForFunction(()=>v61StorageReady);
+   await context.close();const matchContext=await browser.newContext();page=await matchContext.newPage();page.on('pageerror',e=>errors.push(e.message));await page.goto(target==='live'?'https://fussball.cakamper.at/?squad-release=129':target==='source'?`http://127.0.0.1:${server.address().port}/source/index.html`:require('node:url').pathToFileURL(path.resolve('outputs/index.html')).href);await page.waitForFunction(()=>v61StorageReady);
    // Complete real physical native 2D match, including halftime and JSON continuation.
    await page.evaluate(fs.readFileSync('work/platform/qa/unity-integration-v160.js','utf8').replace('saved=v65Snapshot(context)','saved=seeded(()=>v65Snapshot(context))').replace('const restored=v65Restore(context)','const restored=seeded(()=>v65Restore(context))'));
    console.log('PASS '+target+' UI and contract actions; starting native match');const setup=await page.evaluate(()=>D6QA160.setup({unity:false,expansion:true,replays:false,seed:179003}));assert.deepEqual(setup.perTeam,[6,6]);console.log('MATCH '+target+' ready');
@@ -48,7 +48,7 @@ const hashes=()=>Object.fromEntries(files.map(f=>[f,crypto.createHash('sha256').
    const end=await drive({finished:true});console.log('MATCH '+target+' end '+JSON.stringify(end));assert(end.finished,'Native match must reach its final whistle');const digest=await page.evaluate(()=>D6QA160.digest());assert(digest.valid&&digest.booked&&digest.finished);digests.push({target,digest});fs.writeFileSync(`${out}/browser-partial.json`,JSON.stringify({results,digests,sourceHashes:before},null,2));
    assert.deepEqual(errors,[],`${target} page errors`);console.log('PASS '+target+' UI, native contracts, reload and complete match');await matchContext.close();
   }
-  assert.deepEqual(digests[0].digest,digests[1].digest,'Source and build must complete the same native match');assert.deepEqual(hashes(),before,'Browser checks must not modify source files');
+  if(live)assert.deepEqual(digests[0].digest,JSON.parse(fs.readFileSync('outputs/squad-planning-v179/browser-checks.json','utf8')).digests[0].digest,'Live native match must match validated source/build');else assert.deepEqual(digests[0].digest,digests[1].digest,'Source and build must complete the same native match');assert.deepEqual(hashes(),before,'Browser checks must not modify source files');
   fs.writeFileSync(`${out}/browser-checks.json`,JSON.stringify({results,digests,sourceHashes:before},null,2));
  }finally{await browser.close();await new Promise(r=>server.close(r));}
 })().catch(e=>{console.error(e);process.exitCode=1;});

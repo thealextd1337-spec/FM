@@ -15,6 +15,13 @@ vm.runInContext(ui.slice(0,ui.indexOf('const v66BaseSetCareerTab=')),context);
 context.v58State=()=>({});
 const transferUI=fs.readFileSync('dist/world-transfer-list-ui-v72.js','utf8');
 vm.runInContext(transferUI.slice(0,transferUI.indexOf("v61WorldScreen.addEventListener('change'")),context);
+// Load the real pure squad helpers consumed by the contract renderer. This
+// legacy VM deliberately excludes construction/UI hooks and DOM listeners.
+const progression=fs.readFileSync('dist/world-expansion-progression-v167.js','utf8');
+vm.runInContext(progression.slice(progression.indexOf('function v167Active('),progression.indexOf('function v167Rules(')),context);
+const squad=fs.readFileSync('dist/world-squad-planning-v179.js','utf8'),squadUI=fs.readFileSync('dist/world-squad-ui-v179.js','utf8');
+vm.runInContext(squad.slice(0,squad.indexOf('const v179BaseInit=')),context);
+vm.runInContext(squadUI.slice(0,squadUI.indexOf('const v179BaseDecorate=')),context);
 const dialog={open:false,innerHTML:'',showModal(){this.open=true}};
 context.testDialog=dialog;
 vm.runInContext('v72EnsureDialog=()=>v72Dialog=testDialog',context);
