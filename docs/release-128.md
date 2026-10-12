@@ -18,4 +18,8 @@ Der Release wird isoliert von `origin/main` (Release 127, `bd7ad964`) gebaut. Pa
 
 ## Veröffentlichung
 
-Vorbereitet als Version 128. Deployment und Live-Abnahme werden nach Abschluss hier ergänzt.
+Veröffentlicht am 12. Oktober 2026: [Deployment 38249906943](https://github.com/thealextd1337-spec/FM/actions/runs/38249906943) zu Quellcommit `ae9932ffaa9573ebe05e1007c693f3e3b1d31f10` erfolgreich. Alle 111 lokalen Produktionskommandos bestanden; der erste lokale native Karrieretest erreichte nach fünf erfolgreichen Saisons die anfängliche Harness-Zeitgrenze von 300 Sekunden. Die Wiederholung bestand alle sechs Saisons; die serverseitige Prüfung bestand ebenfalls.
+
+Quelle, beide Builds und Live-Seite zeigen Version 128. Die öffentliche Datei ist mit beiden Builds bytegleich: 95.840.954 Bytes, SHA-256 `e95a81711e77be78c2dfa1023be018d13ede6c0097957a9361e211f5b60ccbe3`. [Dateiprüfung](../outputs/release-128/live-bytes.json), [Deploymentnachweis](../outputs/release-128/deployment.json).
+
+Auch `node work/check-ui-modernization.cjs --live` bestand alle 24 Live-Ansichtsfälle sowie Unterbereiche, Tastatur, Fokus, Scrollposition, Vertragsnavigation, Filter, native Sortierung und Speicherung/Neuladen ohne Karrieredatenänderung. Zusammen mit Quelle und Build sind 72 Bildschirmfälle bestanden. [Live-Prüfung](../outputs/ui-modernization/live/checks.json), [unabhängige Schlussprüfung](../outputs/release-128/review.json), [native Mehrjahresprüfung](../outputs/release-128/native-multiseason.json).

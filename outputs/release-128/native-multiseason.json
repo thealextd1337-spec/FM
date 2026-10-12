@@ -1,0 +1,47 @@
+{
+  "pass": true,
+  "rows": [
+    {
+      "fieldPlayers": 5,
+      "season": 1,
+      "players": 517,
+      "bytes": 6858103,
+      "matches": 259
+    },
+    {
+      "fieldPlayers": 5,
+      "season": 2,
+      "players": 537,
+      "bytes": 8134251,
+      "matches": 259
+    },
+    {
+      "fieldPlayers": 5,
+      "season": 3,
+      "players": 505,
+      "bytes": 9773848,
+      "matches": 259
+    },
+    {
+      "fieldPlayers": 6,
+      "season": 1,
+      "players": 520,
+      "bytes": 7422867,
+      "matches": 259
+    },
+    {
+      "fieldPlayers": 6,
+      "season": 2,
+      "players": 529,
+      "bytes": 8758600,
+      "matches": 259
+    },
+    {
+      "fieldPlayers": 6,
+      "season": 3,
+      "players": 496,
+      "bytes": 10507291,
+      "matches": 259
+    }
+  ]
+}

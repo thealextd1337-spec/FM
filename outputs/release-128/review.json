@@ -5,10 +5,12 @@
   "resolved": [
     "Dock DOM precedes its panels",
     "Club panels are keyboard focusable",
-    "Embedded DE/EN help matches fixed standard/five start"
+    "Embedded DE/EN help matches fixed standard/five start",
+    "Keyboard reveal keeps horizontally scrolled active tabs visible; final read-only follow-up found no issue."
   ],
   "browserEvidence": [
     "outputs/ui-modernization/source/checks.json",
     "outputs/ui-modernization/build/checks.json"
-  ]
+  ],
+  "sourceCommit": "ae9932ffaa9573ebe05e1007c693f3e3b1d31f10"
 }

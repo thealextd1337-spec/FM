@@ -1,6 +1,6 @@
 # Entwicklungsdokumentation
 
-- [Release 128 – kompakte Vereinsoberfläche und Subnavigation](release-128.md): gemeinsame untere Bereichsleiste, weniger redundante Navigation, mobile Tabellen, Vereinsbüro und vereinfachter Karrierestart.
+- [Release 128 – kompakte Vereinsoberfläche und Subnavigation](release-128.md): veröffentlicht und live abgenommen: gemeinsame untere Bereichsleiste, weniger redundante Navigation, mobile Tabellen, Vereinsbüro und vereinfachter Karrierestart.
 
 - [Release 127 – wirksame Jugendförderung und Karriereenden](release-127.md): vier Stufen, Jugendstatus mit Trend, Positionsvielfalt, Länderrahmen und native 20-Saison-Prüfung.
 

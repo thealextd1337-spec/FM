@@ -6,7 +6,7 @@ Die Shell besitzt eine gemeinsame untere Leiste mit einer verborgenen, inerten A
 
 Die bestehenden Flutlicht-Dekoratoren modernisieren Übersicht, Kader/Profile, Verträge/Transfers und Wettbewerbstabellen. Der Adapter ergänzt ausschließlich sichtbare Vertrags-/Karriereenddaten; Büro, Sortierung und Filter verwenden vorhandene Navigation und Controller. Wiederholtes Rendern darf bereits platzierte Knoten nicht erneut verschieben oder fokussierte Büroinhalte ersetzen. Der native Start bietet Einstellungen direkt an, gruppiert gemeinsame Spielstandsübertragung getrennt von der alten Liga und zeigt nur rückwärts bedienbare Karriereschritte.
 
-`node work/check-ui-modernization.cjs` und derselbe Aufruf mit `--build` prüfen echte Quellen-/Buildansichten, DE/EN, Hell/Dunkel, Mobil/Desktop, lange Namen, mögliche/bestätigte Abschiede, Fokus, Büro-Vertragsnavigation, native Sortierung, Filter und Speicherung/Neuladen. Belege und Quellhashes stehen unter `outputs/ui-modernization/`. Paketprüfungen U01-B/C/D und der native Speicher-/Importprüfweg ergänzen die Integrationsprüfung. Keine Spielstandmigration oder Matchregeländerung.
+`node work/check-ui-modernization.cjs` sowie die Aufrufe mit `--build` und `--live` prüfen echte Quellen-/Buildansichten, DE/EN, Hell/Dunkel, Mobil/Desktop, lange Namen, mögliche/bestätigte Abschiede, Fokus, Büro-Vertragsnavigation, native Sortierung, Filter und Speicherung/Neuladen. Belege und Quellhashes stehen unter `outputs/ui-modernization/`. Paketprüfungen U01-B/C/D und der native Speicher-/Importprüfweg ergänzen die Integrationsprüfung. Keine Spielstandmigration oder Matchregeländerung.
 
 
 

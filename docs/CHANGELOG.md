@@ -117,10 +117,12 @@ Release 114 ist live veröffentlicht. Deployment, sieben bytegenaue Live-Dateiab
 
 ## Noch nicht veröffentlicht
 
+## 12. Oktober 2026 – Release 128
+
 - Kontextabhängige Subnavigation am unteren Bildschirmrand: Kader, Transfers, Wettbewerbe und Verein verwenden eine gemeinsame Leiste; die Übersicht bietet direkte Sprünge zu Begegnung, Vereinsbüro und Finanzen. Bereichs-Dropdowns und zusätzliche Transfer-Sprungliste entfernt. Native Aktionen, Tastaturbedienung, Fokus und Filter bleiben erhalten.
 - Die Astra-UI-Vorschläge umgesetzt: kompakte Begegnung und mobiles Vereinsbüro direkt darunter, Karriereendhinweise mit Spielernamen und Vertragslink, übersichtliche Kader-/Spielerprofile, Vertragsfilter „Handlungsbedarf“, kompakte Transferfilter und deutlich verdichtete mobile Tabellen. Das Namenssuchfeld im Kader entfällt, die allgemeine Transfersuche bleibt.
 - Karrierestart verwendet fest das Standardfeld mit fünf Feldspielern plus Torwart. Einstellungen sind direkt erreichbar, der Startablauf erlaubt Rücksprünge zu früheren Schritten. Bestehende Spielstände behalten ihre Regeln.
-- Quellen-/Buildprüfung umfasst alle Unterbereiche, Tastatur, DE/EN, Hell/Dunkel, Mobil/Desktop, Fokus, Scrollposition und unveränderte Karrieredaten. Neue Karrieren, Export/Import und Neuladen werden über native Speicherwege geprüft. [Release und Nachweise](release-128.md).
+- 111 Produktionsprüfungen, unabhängige Q01-Prüfung sowie 72 Quellen-/Build-/Live-Bildschirmfälle mit DE/EN, Hell/Dunkel, Mobil/Desktop, Tastatur, Fokus, Sortierung, Filtern und unveränderten Karrieredaten bestanden. Native Speicherung, Export/Import und Neuladen geprüft. Veröffentlicht und live abgenommen: Version 128, bytegleiche Build- und Live-Dateien. [Release und Nachweise](release-128.md).
 
 - AP08 lokal umgesetzt: Neue Expansionskarrieren erhalten ein Vereinsbüro mit belegten Meilensteinen, chronologischen Karten, dauerhaftem Lesestatus und Vereins-/Spieler-/Partielinks. Internationale Erstleistungen gelten innerhalb der Karriere; Eigengewächs-Tore und Länderbeiträge benötigen gespeicherte Nachweise. Alte Karrieren werden nicht nachberechnet. Eine 991-Partien-Testsaison, Speicherung/Folgejahr, Faktenprüfungen und der mobile Browserpfad bestanden; Gründungslegenden bleiben Entwürfe. [Details](ligaexpansion-ap08.md).
 
