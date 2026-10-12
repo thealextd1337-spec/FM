@@ -20,4 +20,16 @@ Enthalten ist außerdem die bereits geprüfte kompakte Matchabstimmung v178: erh
 - Aktuelle Produktionspipeline einschließlich der neuen Kader-/Matchregressionen; Upload erst nach erfolgreichen Prüfungen.
 - Version 129 in Quellfuß, Laufzeitfuß und Build; anschließend öffentlicher Dateivergleich und tatsächliche Live-Funktionsprüfung.
 
-Die endgültigen Produktions- und Live-Nachweise werden nach der Veröffentlichung ergänzt. Mobilgerätehardware und Unity-Leistung werden in diesem Release nicht neu gemessen.
+Mobilgerätehardware und Unity-Leistung werden in diesem Release nicht neu gemessen.
+
+## Veröffentlichung und Live-Abnahme
+
+Am 12. Oktober 2026 als Version 129 veröffentlicht: [Produktionslauf 38276353104](https://github.com/thealextd1337-spec/FM/actions/runs/38276353104) für Commit `d2b0b19be3ca604530b02613d1915830b00c80ac` vollständig erfolgreich. Die Produktionspipeline prüft 115 Kommandos sowie den Build und Upload. [Produktionsnachweis](../outputs/release-129/production.json).
+
+Der erste Produktionslauf hielt vor dem Upload an: Die isolierte ältere Direkttransferprüfung lud den neuen Formularhelfer nicht. Der Prüflader verwendet jetzt die echten reinen Rollen-/Formularfunktionen. Die Spielregeln und der geprüfte Build blieben dabei unverändert. Alle 69 anschließenden lokalen Produktionskommandos inklusive Build bestehen ebenfalls. [Lokale Folgeprüfung](../outputs/release-129/remaining-gates.json).
+
+Quelle, Laufzeitfuß, Hilfedaten, beide Builds und öffentliche Seite zeigen 129. Die öffentliche Datei ist bytegleich mit beiden Builds: 95.861.220 Bytes, SHA-256 `a3964c96ebd26f77905284ef785b96bb1c129123a7788c3e1dd8b721c3dad4e6`. [Dateivergleich](../outputs/release-129/live-hash.json), [gemeinsamer Browser](../outputs/release-129/live-preview.json).
+
+Die Live-Funktionsprüfung besteht sechs DE/EN-/Bildschirmfälle bei 320/390/1280 Pixeln, Hell/Dunkel, tatsächliche Verlängerung mit Rollenwahl, Spielzeit-Handlungsbedarf und Neuladen. Die vollständige physische 2D-Livepartie erreicht Minute 100 mit Halbzeit, JSON-Fortsetzung und einmaliger Buchung. Der vollständige Zustandsvergleich `65541a03` ist mit Quelle und Build identisch. [Live-Abnahme](../outputs/release-129/live-squad/browser-checks.json).
+
+[Spiel öffnen](https://fussball.cakamper.at/). Der vollständige veröffentlichte Quellstand liegt lokal im Checkout `work/release-129`; die parallelen Arbeitsstände wurden nicht überschrieben.

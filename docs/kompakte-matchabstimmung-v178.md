@@ -1,5 +1,7 @@
 # Kompakte Matchabstimmung v178 – lokal umgesetzt
 
+Aktueller Veröffentlichungsstand: Die beschriebenen Regeln sind als [Release 129 veröffentlicht und live abgenommen](release-129.md). Die folgenden lokalen Mess-/Prüfberichte dokumentieren den vorausgehenden Nachweis.
+
 Nutzerauftrag „Führe die Vorschläge aus“. Neue Partien speichern `shotBalanceRevision:178` und die unveränderlich verwendeten Matchparameter `compactBalance`. Gewählt: Torbasis 0.32, Deckel 0.48, Heim-Schussfaktor 1.03. Die Schussentstehung bleibt bei 0,09 vor dem kleinen Heimaufschlag; keine garantierten Tore oder Siegquoten. Fähigkeiten bleiben qualitative Farbstufen. Lokal gebaut, noch nicht veröffentlicht.
 
 ## Nachweis und Auswahl

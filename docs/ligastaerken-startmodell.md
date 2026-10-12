@@ -1,5 +1,7 @@
 # Ligastärken, Karrierestart und Wechselpräferenzen
 
+Aktueller Veröffentlichungsstand: Die beschriebenen Regeln sind als [Release 129 veröffentlicht und live abgenommen](release-129.md). Die folgenden lokalen Mess-/Prüfberichte dokumentieren den vorausgehenden Nachweis.
+
 ## Nutzerentscheid vom 12. Oktober 2026
 
 Die Startkader sollen eine erkennbare Hierarchie der Ligaspitzen bilden. Die stärksten Vereine aus England, Spanien, Deutschland, Italien und Frankreich stehen zu Karrierebeginn über den Spitzenvereinen aus Österreich, Schweiz und Türkei. Ab ungefähr der dritten Position innerhalb einer Liga sollen sich die Kaderstärken deutlich stärker überschneiden. Die bestehenden Länderstufen bleiben die Grundlage: A England/Spanien/Deutschland/Italien/Frankreich, B Portugal/Niederlande, C Österreich/Belgien/Türkei, D Schweiz/Griechenland.

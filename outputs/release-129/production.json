@@ -1,0 +1,81 @@
+{
+  "runId": 38276353104,
+  "jobId": 114902662031,
+  "url": "https://github.com/thealextd1337-spec/FM/actions/runs/38276353104",
+  "commit": "d2b0b19be3ca604530b02613d1915830b00c80ac",
+  "passed": true,
+  "jobs": [
+    {
+      "id": 114902662031,
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Quellcode laden",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Node.js einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Spieltests ausf\u00fchren",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Einzeldatei bauen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Unity-Laufzeit vor der neuen Spielseite hochladen und pr\u00fcfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Per FTPS zu World4You hochladen und Live-Datei pr\u00fcfen",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Node.js einrichten",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Quellcode laden",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    }
+  ],
+  "previousFailedRun": 38274682610,
+  "correction": "Legacy transfer VM now loads the real pure squad form helpers.",
+  "testCommands": 115,
+  "localRemainingCommands": 69,
+  "localRemainingPassed": true
+}

@@ -1,5 +1,9 @@
 # Entwicklung und Veröffentlichung
 
+## Veröffentlichung 129
+
+[Release 129](release-129.md) baut auf der veröffentlichten UI 128 auf. Quelle, Laufzeitfuß, Hilfedaten, Builds und öffentliche Seite zeigen 129; beide Builds und Live-Datei sind bytegleich. Die vollständige Produktionspipeline und tatsächliche Rollen-/Vertrags-/Neulade-/Matchprüfung auf der Live-Seite sind bestanden. Lokaler veröffentlichter Quellstand: `work/release-129/dist/`; parallele Arbeitsstände bleiben erhalten.
+
 ## Kaderrollen v179
 
 `world-squad-planning-v179.js` leitet Rollen und Fortschritt aus dem bestehenden `contract.promise` und den nativen Einsatzgutschriften ab. Die Konstruktion neuer AP07-Karrieren differenziert Anfangszusagen; Laden ergänzt keine Daten. `v64BuildSide` erhält optional die Karriere und verwendet einen begrenzten Zusagebonus nur für KI-Vereine; vorhandene Fixturepläne bleiben maßgeblich. `world-squad-ui-v179.js` ergänzt Vertragsfakten, gruppierte Zusageauswahl und die Kader-Tiefe. Flutlicht projiziert nur qualitative Rolle und Spielzeitstatus. [Vertrag, Stärkezusammensetzung und offene Matchagenda](kadermechanik-und-matchagenda.md). Prüfung: `node work/test-squad-planning-v179.cjs`, `node work/check-squad-planning-v179.cjs`; vorhandene Match-/Wirtschafts-/Start-/v55-Gates und lokaler Build ergänzen die Abnahme.

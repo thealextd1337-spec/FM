@@ -1,6 +1,6 @@
 # Entwicklungsdokumentation
 
-- [Release 129: Startstärken und Kaderrollen](release-129.md): aktuelle Startkader, sportliche Wechselpräferenz, kompakte Matchabstimmung und Vertragsrollen; Veröffentlichung beauftragt.
+- [Release 129: Startstärken und Kaderrollen](release-129.md): aktuelle Startkader, sportliche Wechselpräferenz, kompakte Matchabstimmung und Vertragsrollen; veröffentlicht und mit bytegleichen Builds und vollständiger Live-Partie abgenommen.
 - [Kadermechanik, Stärkezusammensetzung und Matchagenda](kadermechanik-und-matchagenda.md): vollständiger Fachvertrag und drei getrennte offene Matchdiagnosen.
 
 - [Release 128 – kompakte Vereinsoberfläche und Subnavigation](release-128.md): veröffentlicht und live abgenommen: gemeinsame untere Bereichsleiste, weniger redundante Navigation, mobile Tabellen, Vereinsbüro und vereinfachter Karrierestart.

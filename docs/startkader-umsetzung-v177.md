@@ -1,5 +1,7 @@
 # Startkader und sportliche Wechselpräferenz – lokal umgesetzt
 
+Aktueller Veröffentlichungsstand: Die beschriebenen Regeln sind als [Release 129 veröffentlicht und live abgenommen](release-129.md). Die folgenden lokalen Mess-/Prüfberichte dokumentieren den vorausgehenden Nachweis.
+
 Nutzerauftrag „Setze das um“ vom 12. Oktober 2026. Alle fünf vorgeschlagenen Kaderergänzungen sowie die zuvor beschlossene strikte Ligaabstufung, kleine Startschwankung und sportliche Wechselpräferenz sind im Produktionscheckout umgesetzt. Der lokale Einzeldatei-Build ist geprüft; Veröffentlichung steht aus.
 
 Aktuelle Ergänzung: [Mindestabstand der Pokalvereine](startkader-pokalabstand.md), neue Erzeugungskennung 3. Die folgenden Liga-/Transferregeln gelten weiter; reine Pokalvereine erhalten keine anfänglichen Elite-Spieler. Kennungen 1 und 2 bleiben beim Laden unverändert.

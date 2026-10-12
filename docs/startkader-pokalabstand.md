@@ -1,5 +1,7 @@
 # Mindestabstand der Pokalvereine beim Start
 
+Aktueller Veröffentlichungsstand: Die beschriebenen Regeln sind als [Release 129 veröffentlicht und live abgenommen](release-129.md). Die folgenden lokalen Mess-/Prüfberichte dokumentieren den vorausgehenden Nachweis.
+
 Nutzerpräzisierung vom 12. Oktober 2026, lokal umgesetzt und gebaut: Jeder reine Pokalverein liegt bei Kaderqualität und bester zulässiger Startelf mindestens zehn Prozent unter jedem Ligaverein. Es zählt die interne gemittelte Positionsqualität; die lineare Prozent-Rangliste beschreibt ausschließlich den Rang. Die Regel gilt beim Anlegen und garantiert keine Spielergebnisse.
 
 Neue Expansionswelten erhalten Erzeugungskennung 3. Pokal-Budgets werden proportional abgesenkt; ein konservativer persönlicher Qualitätsdeckel mit Reserve für Stamm-/Ersatzspieler sichert auch die Startelfgrenze. Vorhandene Reihenfolge, Alters-/Positionsmix und kleine gespeicherte Startvariation bleiben erhalten. Keine anfänglichen Pokal-Elites. Ligakader werden identisch zu Kennung 2 erzeugt. Die Konstruktion prüft die tatsächlichen Kader und optimalen Startelfzuordnungen gegen den jeweils schwächsten Ligaverein.

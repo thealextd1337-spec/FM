@@ -1,10 +1,11 @@
 # Änderungen
 
-## Noch nicht veröffentlicht
+## 12. Oktober 2026 – Release 129
 
 - Release 129 ergänzt neue Startstärken mit strikter Ligaspitze, kleiner gespeicherter Schwankung, Alters-/Positionsmix, Elite-Grenzen und mindestens zehn Prozent Pokalabstand. Sportliche Wechselpräferenz berücksichtigt erreichte Qualität.
 - Kaderrollen Stammspieler, Rotation und Ersatz folgen der bestehenden Vertragszusage. Spielzeitstatus, anteilige Ziele, Positionsreserve und Handlungsbedarf sind sichtbar; KI wählt bei ähnlicher Eignung zusagebewusst. Bestehende Verträge und vorbereitete Spiele bleiben erhalten.
 - Neue kompakte Partien verwenden die bereits geprüfte Torverwertung und einen kleinen Heimfaktor; alte Fortsetzungen behalten ihren Ablauf. Die veröffentlichte UI aus Release 128 bleibt erhalten. [Releaseumfang und Abnahme](release-129.md).
+- Veröffentlicht und live abgenommen: vollständige Produktionspipeline, Rollen-/Vertrags-/Neuladeprüfung und identische vollständige Quellen-/Build-/Livepartien mit JSON-Fortsetzung bestanden. Quelle, Laufzeit und beide Builds zeigen 129; die öffentliche Datei ist bytegleich.
 
 ## 12. Oktober 2026 – Release 127
 

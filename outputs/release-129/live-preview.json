@@ -1,0 +1,15 @@
+{
+  "toolIcon": {
+    "_tag": "website",
+    "pageUrl": "https://fussball.cakamper.at/?release129-verify=1"
+  },
+  "value": {
+    "footer": [
+      "Doppel 6 / PROTOTYP 1293D-Hilfe",
+      "Doppel 6 / PROTOTYP 129Deine Farben. Dein Fußball."
+    ],
+    "guideVersion": 129,
+    "roles": "function",
+    "strengthGenerator": "function"
+  }
+}

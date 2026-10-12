@@ -1,6 +1,6 @@
 # Kadermechanik, Stärkezusammensetzung und Matchagenda
 
-Stand: 12. Oktober 2026. Nutzerauftrag: bestehende Stärkezusammensetzung und die drei vorgeschlagenen Matchthemen zusammenführen; Kaderrollen und Tiefe mit Spielzeiterwartungen entwickeln. Die Startkaderregeln v177 und der Pokalabstand bleiben erhalten. Die zusätzliche Rollenmechanik v179 setzt auf den vorhandenen Profiverträgen auf. Lokale Umsetzung; keine Veröffentlichung.
+Stand: 12. Oktober 2026. Nutzerauftrag: bestehende Stärkezusammensetzung und die drei vorgeschlagenen Matchthemen zusammenführen; Kaderrollen und Tiefe mit Spielzeiterwartungen entwickeln. Die Startkaderregeln v177 und der Pokalabstand bleiben erhalten. Die zusätzliche Rollenmechanik v179 setzt auf den vorhandenen Profiverträgen auf. Als [Release 129 veröffentlicht und live abgenommen](release-129.md).
 
 ## Stärkezusammensetzung der neuen Startwelt
 
@@ -62,7 +62,7 @@ Abnahme bestanden: Acht native Prüfgruppen sichern Anfangsrollen inklusive Ersa
 
 Die tatsächliche Quellen- und Buildoberfläche ist bei 320, 390 und 1.280 Pixeln in DE/EN geprüft, einschließlich Hell/Dunkel, fehlendem Seitenüberlauf, unveränderten Karrieredaten, Neuladen, Rollen-Auswahl in der Vertragsverlängerung und Spielzeit-Handlungsbedarf. Zwölf Bildschirmfälle und je ein integrierter Vertrags-/Neuladefall bestanden. Eine vollständige physische native 2D-Partie je Fassung erreicht Minute 100 mit 0:0, gültigem Weltzustand und einmaliger Buchung. Halbzeit und echter JSON-Checkpoint sind enthalten; beide vollständigen Zustandsvergleiche ergeben `65541a03`. Der Matchvergleich verwendet frische Profile getrennt von absichtlich veränderten UI-Fixtures; Snapshot und Wiederherstellung laufen ebenfalls unter dem kontrollierten Zufallsstream. Der zunächst gemischte Prüflauf ist kein Paritätsnachweis. [Finaler Browsernachweis](../outputs/squad-planning-v179/browser-checks.json).
 
-Bestehende Weltmatch-, Wirtschafts-/Vertrags-, lokale Start-/Export-, native Kontakt-/Leistungs- und v55-Prüfungen einschließlich vollständiger Partie bestanden. Der lokale Build enthält die aktuellen Quellen und beide Offline-Dateien sind identisch. Keine Veröffentlichung; physische Mobilgeräte und Unity-Leistungsabnahme sind durch diese Prüfung nicht abgedeckt.
+Bestehende Weltmatch-, Wirtschafts-/Vertrags-, lokale Start-/Export-, native Kontakt-/Leistungs- und v55-Prüfungen einschließlich vollständiger Partie bestanden. Der Build enthält die aktuellen Quellen und beide Offline-Dateien sind identisch. Die Veröffentlichung und zusätzliche Live-Abnahme stehen im [Releasebericht](release-129.md); physische Mobilgeräte und Unity-Leistungsabnahme sind durch diese Prüfung nicht abgedeckt.
 
 Die ursprüngliche Startkaderprüfung wurde abschließend über alle 60 Seeds wiederholt: Kaderbudget, Startschwankung, Alters-/Positionsmix, Elite-Grenzen, strikte Kader-/Startelfhierarchie, Pokalabstand, Transfers und Erhalt alter Stände bestehen auch mit der zusätzlichen Rollenmechanik. [60-Welten-Nachweis](../outputs/start-rosters-v177/checks.json).
 

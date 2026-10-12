@@ -1,5 +1,7 @@
 # Produktregeln
 
+Die Startstärken, Kaderrollen und kompakte Matchabstimmung sind am 12. Oktober 2026 als [Release 129 veröffentlicht und live abgenommen](release-129.md). Frühere lokale Prüfstände in den verlinkten Fachberichten bleiben historische Nachweise; die drei weiteren Matchdiagnosen sind weiterhin offene Vorhaben.
+
 ## Kaderrollen, Tiefe und Stärkezusammensetzung
 
 Nutzerauftrag vom 12. Oktober 2026: Stammspieler, Rotation und Ersatz erhalten Spielzeiterwartungen auf Basis der bestehenden Vertragszusage. In der 14-Spiele-Welt stehen 9–14 Einsätze für Stammspieler, 5–8 für Rotation und 0–4 für Ersatz. Neue Startkader erhalten normalerweise sechs Stammspieler mit zehn, drei Rotationsspieler mit sechs und zwei Ersatzspieler mit zwei Einsätzen; der zweite Torwart gehört zum Ersatz. Rollen werden bei angenommenen Vertragsverhandlungen aus der Zusage abgeleitet. Die Übersicht zeigt angerechnete Spielzeit, anteilige Ziele, Rückstände und direkte Positionsreserve. Bestehende Formfolgen gelten weiter; keine zweite Zufriedenheit oder neuen Spieler-Transferforderungen. KI-Vorauswahl berücksichtigt Zusagen mit einem kleinen Bonus bei ähnlicher Eignung; gespeicherte Aufstellungen bleiben erhalten. Bestehende Vertragszahlen werden nicht umgerechnet. [Gemeinsamer Vertrag einschließlich neuer Stärkezusammensetzung und drei offener Matchthemen](kadermechanik-und-matchagenda.md).

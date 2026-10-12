@@ -1,0 +1,490 @@
+{
+  "first": 47,
+  "passed": true,
+  "complete": true,
+  "rows": [
+    {
+      "command": "node work/test-world-direct-transfer.cjs",
+      "exit": 0,
+      "ms": 233,
+      "output": "Direkttransfer: getrennte Ablöse/Vertrag, Tageswechsel, Speichern/Fortsetzen, Abschluss, Torwartschutz und sichtbare Ablehnung geprüft.\nAngebotsübersicht und bestätigungspflichtige Absagen geprüft.\nPASS direct club/player refusals, day release, JSON resume and acknowledgement\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-navigation.cjs",
+      "exit": 0,
+      "ms": 47,
+      "output": "Navigation: Menü, Logo, Speichern vor Start, Fehlerfall und Übergabe laufender Partien geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-swap-banner.cjs",
+      "exit": 0,
+      "ms": 44,
+      "output": "Wechselbanner: Teams, mehrere Wechsel, sichere Namen, Richtung, Minute und Ausblenden geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-goal-scene-v83.cjs",
+      "exit": 0,
+      "ms": 47,
+      "output": "Torszene: Torlinie, Netzausbuchtung, Ballweg, Uhrstopp, Wiederaufnahme und Elfmeterszene geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-goal-banner-v84.cjs",
+      "exit": 0,
+      "ms": 46,
+      "output": "Torbanner: Torschütze, Saisonwettbewerbe, Spielstand, Wappen, Animation, Aufräumen und reduzierte Bewegung geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-i18n-v75.cjs",
+      "exit": 0,
+      "ms": 70,
+      "output": "PASS: transfer buttons, tactics, next match, statistics and cup rounds translate\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-live-ranks.cjs",
+      "exit": 0,
+      "ms": 45,
+      "output": "Live-Tabelle: Plätze in Liga und Ligaphase, Heim- und Auswärtssicht sowie K.-o.-Ausnahmen geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-grid-v71.cjs",
+      "exit": 0,
+      "ms": 144,
+      "output": "PASS: Weltkarriere nutzt eindeutige Rasterfelder, freie Ziele, Positionstausch, Zonenregeln und Feldübergabe bei Wechseln\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-player-instructions.cjs",
+      "exit": 0,
+      "ms": 148,
+      "output": "PASS: zone rules, AI choices, position changes, substitutions, save round trip and instruction controls\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-physical-instructions.cjs",
+      "exit": 0,
+      "ms": 201,
+      "output": "PASS: cup bracket, ten league rounds, separate cup statistics, winner award, single prize, penalty order\nPASS: wide runs, support, onside depth, crosses, early shots and attacking focus\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-career-plan.cjs",
+      "exit": 0,
+      "ms": 159,
+      "output": "PASS: saved full plans, squad reconciliation, match application and drag-only career controls\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-economy-v66.cjs",
+      "exit": 0,
+      "ms": 12251,
+      "output": "Karriereprotokoll nach 4 Saisons: 835 Ereignisse, 363009 Bytes; Spielstand 5139896 Bytes.\nWeltwirtschaft: Sponsoren, Verträge, Transfers, Buchungen, Neuladen, Kadergrenzen und Saisonabschluss geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-sponsors-v97.cjs",
+      "exit": 0,
+      "ms": 294,
+      "output": "Sponsoren: 36 nationale Identitäten, unveränderte Finanzen, Darstellung alter Verträge, einmalige Buchungen und DE/EN geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-career-events.cjs",
+      "exit": 0,
+      "ms": 2834,
+      "output": "Career events: renewals, transfers, free agency, youth, idempotence, partial coverage, validation and export/import passed (63 events).\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-playable-rosters.cjs",
+      "exit": 0,
+      "ms": 440,
+      "output": "Spielfähige Kader, KI-Torwartlimit und ausgewogene Nachwuchsauffüllung: OK\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-transfer-list-v72.cjs",
+      "exit": 0,
+      "ms": 675,
+      "output": "KI-Verkaufsliste: feste öffentliche Ablöse, Gegenforderung, Vertrag, Tageswechsel, Buchung und Speicherstand geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-human-sale-v73.cjs",
+      "exit": 0,
+      "ms": 529,
+      "output": "Eigene Verkaufsangebote: Profil-Einstieg, KI-Gebote, Gegenforderung, Rücknahme, Vertrag, Tageswechsel und Buchung geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-youth-manager-v67.cjs",
+      "exit": 0,
+      "ms": 6144,
+      "output": "Karriereprotokoll: 819 Ereignisse, 340193 Bytes.\nNachwuchs und Managerwechsel: Entwicklung, Buchung, Übergang, Wechsel, Neuladen und 3 Saisons geprüft (5204995 Bytes, 0 natürliche Angebote).\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-finance-close-v130.cjs",
+      "exit": 0,
+      "ms": 2222,
+      "output": "Financial accounts reconcile all clubs, separate seasons/salaries, include other entries and preserve career data. Funding is affordable and paid once.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-payments-v124.cjs",
+      "exit": 0,
+      "ms": 4791,
+      "output": "Zahlungszeitpunkte, Jugendbudgetfolge, Gehaltsfälligkeit, reine Simulationsteams, Kaderfortführung, Karriereenden mit Statistikarchiv, Transfersperren und bestehende Karrieren geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-3d-documentation-v134.cjs",
+      "exit": 0,
+      "ms": 81,
+      "output": "PASS: DE/EN documentation, escaped markup, deterministic source hashes and source/build/server integration.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-mobile-performance-v135.cjs",
+      "exit": 0,
+      "ms": 53,
+      "output": "Mobile performance: quality budget, 120 Hz live/review cadence, fresh capture, animation time, pause/resume and desktop rendering passed.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-storage-v67.cjs",
+      "exit": 0,
+      "ms": 272,
+      "output": "Weltenspeicher: IndexedDB-Laden, Schreibabschluss, zusammengefasste Folgespeicherung, Export nach Schreibabschluss und Neuladen geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-storage-startup.cjs",
+      "exit": 0,
+      "ms": 7141,
+      "output": "Saved expansion world waits for installed validators, loads once after parsing and remains unchanged; already loaded startup passed.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-storage-recovery.cjs",
+      "exit": 0,
+      "ms": 1265,
+      "output": "PASS: abort, queued failure, retry, immutable snapshots, export, recovery, deletion and match continuation\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-expansion-assets-v161.cjs",
+      "exit": 0,
+      "ms": 722,
+      "output": "192 Assetzuordnungen, 144 eigene sichere SVGs, alle drei Farben und Offline-Einbettung geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-expansion-v161.cjs",
+      "exit": 0,
+      "ms": 17942,
+      "output": "{\"pass\":true,\"rows\":[{\"seed\":\"ap03-expansion-one\",\"players\":2112,\"youth\":582,\"bytes\":6995534},{\"seed\":\"ap03-expansion-two\",\"players\":2112,\"youth\":582,\"bytes\":6995740}],\"legacyUnchanged\":true,\"mixedStorage\":true}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-expansion-domestic-v164.cjs",
+      "exit": 0,
+      "ms": 8691,
+      "output": "{\n  pass: true,\n  countrySeasons: 480,\n  preparedCompetitions: 24,\n  preparedFixtures: 768,\n  completedSeasonFixtures: 852,\n  sharedCalendar: true,\n  shootout: true,\n  saveRoundtrip: true\n}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-expansion-crown-v165.cjs",
+      "exit": 0,
+      "ms": 10948,
+      "output": "{\n  pass: true,\n  draws: 300,\n  knockoutSeasons: 25,\n  leagueFixtures: 65,\n  totalFixtures: 78,\n  preparedWorldFixtures: 833,\n  nativePauseResume: true,\n  onceOnlyBooking: true,\n  tiedAggregatePenalties: true,\n  saveRoundtrip: true,\n  legacyUnchanged: true\n}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-expansion-horizon-v166.cjs",
+      "exit": 0,
+      "ms": 229190,
+      "output": "Managed match 1 S1:AUT:LEAGUE:R1:AUT-5-AUT-4:1 world matches 48\nManaged match 2 S1:AUT:CUP:R16:2:1 world matches 144\nManaged match 3 S1:AUT:LEAGUE:R2:AUT-5-AUT-3:1 world matches 192\nManaged match 4 S1:HORIZON:R32:12:1 world matches 221\nManaged match 5 S1:AUT:LEAGUE:R3:AUT-5-AUT-6:1 world matches 269\nManaged match 6 S1:AUT:LEAGUE:R4:AUT-5-AUT-2:1 world matches 317\nManaged match 7 S1:HORIZON:R32:12:2 world matches 346\nManaged match 8 S1:AUT:LEAGUE:R5:AUT-5-AUT-1:1 world matches 394\nManaged match 9 S1:AUT:LEAGUE:R6:AUT-7-AUT-5:1 world matches 511\nManaged match 10 S1:AUT:LEAGUE:R7:AUT-8-AUT-5:1 world matches 580\nManaged match 11 S1:AUT:LEAGUE:R8:AUT-4-AUT-5:1 world matches 645\nManaged match 12 S1:AUT:LEAGUE:R9:AUT-3-AUT-5:1 world matches 701\nManaged match 13 S1:AUT:LEAGUE:R10:AUT-6-AUT-5:1 world matches 777\nManaged match 14 S1:AUT:LEAGUE:R11:AUT-2-AUT-5:1 world matches 833\nManaged match 15 S1:AUT:LEAGUE:R12:AUT-1-AUT-5:1 world matches 881\nManaged match 16 S1:AUT:LEAGUE:R13:AUT-5-AUT-7:1 world matches 930\nManaged match 17 S1:AUT:LEAGUE:R14:AUT-5-AUT-8:1 world matches 991\n{\n  pass: true,\n  knockoutSeasons: 80,\n  maxCountryDraws: 30,\n  fullNativeSeasonMatches: 991,\n  ownGames: 17,\n  checkpoint: true,\n  competitions: 26,\n  seasonClosed: true,\n  saveRoundtrip: true,\n  legacyUnchanged: true\n}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-expansion-active-validation-v166.cjs",
+      "exit": 0,
+      "ms": 14456,
+      "output": "Active season: native results, corruption rejection, onboarding guard, pending match, Horizon reports and final league celebration validated.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-expansion-rules-v167.cjs",
+      "exit": 0,
+      "ms": 8597,
+      "output": "AP07: native creation, preserved AP06, 18,336 title overlaps, 8/9 switch and exact three-season tie-breaks passed.\nAP07: draw/penalty points, round bonuses, fixed 58-participant denominator and actual-minute growth window passed.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-expansion-contracts-v168.cjs",
+      "exit": 0,
+      "ms": 22234,
+      "output": "AP07: weighted promises, signing dates, exact salary sections, closed-season guard, history corruption, manager move and scoped renewal reset passed.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-expansion-stories-v170.cjs",
+      "exit": 0,
+      "ms": 24015,
+      "output": "AP08 passed: native transaction season, factual milestones, youth goal, reunion, immutable readers, deduplication, corruption rejection, next season, export/import.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-expansion-presentation-v172.cjs",
+      "exit": 0,
+      "ms": 20548,
+      "output": "AP09/AP10: 66 awards / 132 assets, preserved legacy world, 991 transaction fixtures, archive statistics, season 2, max 3 memories, export/import passed.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-expansion-flutlicht-v175.cjs",
+      "exit": 0,
+      "ms": 6313,
+      "output": "Expansion uses native career views, separate Crown/Horizon/ranking sections and read-only statistics.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/platform/qa/test-android-3d-acceptance.cjs",
+      "exit": 0,
+      "ms": 100,
+      "output": "ach retains its own target for cleanup; evaluation exceptions are failures\n  ---\n  duration_ms: 0.2958\n  ...\n# Subtest: Late target-creation response after timeout cannot claim verified cleanup\nok 5 - Late target-creation response after timeout cannot claim verified cleanup\n  ---\n  duration_ms: 13.2433\n  ...\n# Subtest: Screenshot uses only owned session and manual window is optional/bounded\nok 6 - Screenshot uses only owned session and manual window is optional/bounded\n  ---\n  duration_ms: 0.3741\n  ...\n# Subtest: Display parser uses current default-display controller, rejects history/ambiguity\nok 7 - Display parser uses current default-display controller, rejects history/ambiguity\n  ---\n  duration_ms: 0.9278\n  ...\n# Subtest: Sanitized current physical-device display fixture decodes ON when present\nok 8 - Sanitized current physical-device display fixture decodes ON when present\n  ---\n  duration_ms: 1.0427\n  ...\n# Subtest: Manual fullscreen option uses an explicit manual-input mode\nok 9 - Manual fullscreen option uses an explicit manual-input mode\n  ---\n  duration_ms: 0.0895\n  ...\n# Subtest: Foreground activation addresses only the created QA target\nok 10 - Foreground activation addresses only the created QA target\n  ---\n  duration_ms: 0.1713\n  ...\n# Subtest: Visible Android launch connects directly to its exact nonce tab and cleans up only that tab\nok 11 - Visible Android launch connects directly to its exact nonce tab and cleans up only that tab\n  ---\n  duration_ms: 1.045\n  ...\n# Subtest: Native tab rejects foreign endpoints/sockets and preserves ownership for cleanup\nok 12 - Native tab rejects foreign endpoints/sockets and preserves ownership for cleanup\n  ---\n  duration_ms: 0.5684\n  ...\n# Subtest: Paused wake and large Android storage scopes require explicit flags\nok 13 - Paused wake and large Android storage scopes require explicit flags\n  ---\n  duration_ms: 0.0821\n  ...\n1..13\n# tests 13\n# pass 13\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 49.6851\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-save-management-v70.cjs",
+      "exit": 0,
+      "ms": 1441,
+      "output": "Weltspielstände: Export, Import, doppelte ID, Löschung, Fehler und Grenze von fünf Karrieren geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-views-v68.cjs",
+      "exit": 0,
+      "ms": 514,
+      "output": "Weltansichten: 48-Vereine-Zugriff, Trainerstationen, Kaderprofile, Ergebnislinks, Nachrichtenfilter, Fortschritt und Siegerarchiv geprüft.\nFremde Vereinsprofile: gespeicherte Trikots ohne Bearbeitungsfelder geprüft.\nErgebnisfenster: Vereinslink, gespeicherter Abschluss, Rückreiter und Fehlerfall geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-honours-v74.cjs",
+      "exit": 0,
+      "ms": 163,
+      "output": "PASS: persönliche Awards, Titel mit Einsatz, einmalige Vergabe und gedeckelte Gehaltswirkung\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-match-presentation-v74.cjs",
+      "exit": 0,
+      "ms": 173,
+      "output": "PASS: cup bracket, ten league rounds, separate cup statistics, winner award, single prize, penalty order\nPASS: sichtbarer Seitenwechsel und begrenzte Nachspielzeit aus Unterbrechungen\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-player-ui-projection.cjs",
+      "exit": 0,
+      "ms": 55,
+      "output": "PASS every renderer reads an allowlist and excludes hidden raw values even in ARIA/title\nPASS profile recommendations stay fixed and grouped by their playable position with best highlight\nPASS all valid zone roles remain selectable independently of profile recommendation or low suitability\nPASS keeper role selection has two real options and no orientation editor\nPASS important abilities retain actual skill bands and the existing Flutlicht component contract\nPASS localized DE/EN controls, positions, color names and long role labels pass through safely\nPASS one approximate zone geometry is bounded, omits routes and exposes no exact limits in text\nPASS pitch role shows the actual chosen role above a token with only a band dot and safe tooltip\nPASS malformed input is empty/disabled and never introduces arbitrary classes or unsupported roles\nPASS text and identity escaping prevents executable markup and keeps inputs unchanged\nPASS renderers have no storage, DOM, simulation, clock or random dependencies\n11 player UI projection groups passed\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-player-aging.cjs",
+      "exit": 0,
+      "ms": 48,
+      "output": "PASS new-season ages 29/30/32/33 use the approved exact losses\nPASS physical floors clamp immediately at one with unchanged technical/mental/keeper values\nPASS 29→30 and 32→33 transition once; field player and keeper calculation identical\nPASS serialization, transfer and historical replay never age twice\nPASS under-30 and floor-only transitions are still recorded as completed\nPASS pure immutable aging leaves height/foot/talent/caps and retirement decisions untouched\nPASS browser UMD exports only D6Aging and agrees with Node\nPASS invalid permanent skills, age and ledger do not silently calculate\nAging: 8 scenario groups passed (pure season transitions; retirement logic untouched).\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-player-load-candidate-v158.cjs",
+      "exit": 0,
+      "ms": 64,
+      "output": "PASS numeric candidate survives JSON and materializes without saved functions\nPASS continuous positive field/keeper stamina factors preserve all references\nPASS controlled normal field workload reproduces 70/80/60 and half-time references\nPASS observed quiet/intense load changes cost; no automatic normal action quota\nPASS keeper normal reference includes actual jump/dive costs inside 40\nPASS overlapping active minutes/actions deduplicate causes and partial delivery\nPASS save/restore and repeated delivery preserve cost and recovery exactly\nPASS explicit linear fatigue curves preserve approved maxima and base skill exemptions\nPASS raw bounded form matches existing half-point impact without fatigue-derived form loss\nPASS materialization is deterministic, isolates mutable restore input and rejects invalid parameters\nPASS UMD browser export has no DOM/clock/random dependency and matches Node\n11 player load candidate v158 groups passed\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-native-career-v160.cjs",
+      "exit": 0,
+      "ms": 336009,
+      "output": "PASS 5 Feldspieler, Saison 1: 259 Partien, JSON und einmalige Buchungen\nPASS 5 Feldspieler, Saison 2: 259 Partien, JSON und einmalige Buchungen\nPASS 5 Feldspieler, Saison 3: 259 Partien, JSON und einmalige Buchungen\nPASS 6 Feldspieler, Saison 1: 259 Partien, JSON und einmalige Buchungen\nPASS 6 Feldspieler, Saison 2: 259 Partien, JSON und einmalige Buchungen\nPASS 6 Feldspieler, Saison 3: 259 Partien, JSON und einmalige Buchungen\n{\"pass\":true,\"rows\":[{\"fieldPlayers\":5,\"season\":1,\"players\":517,\"bytes\":6908057,\"matches\":259},{\"fieldPlayers\":5,\"season\":2,\"players\":537,\"bytes\":8177101,\"matches\":259},{\"fieldPlayers\":5,\"season\":3,\"players\":505,\"bytes\":9821386,\"matches\":259},{\"fieldPlayers\":6,\"season\":1,\"players\":520,\"bytes\":7457091,\"matches\":259},{\"fieldPlayers\":6,\"season\":2,\"players\":530,\"bytes\":8793186,\"matches\":259},{\"fieldPlayers\":6,\"season\":3,\"players\":498,\"bytes\":10532621,\"matches\":259}]}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/platform/qa/test-unity-integration-v160.cjs",
+      "exit": 0,
+      "ms": 53,
+      "output": "Unity v160 adapter: 4 combinations, native metres, fixed body/goal sizes, goal scene and 5 cameras passed.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/platform/qa/test-world-unity-contract.cjs",
+      "exit": 0,
+      "ms": 47,
+      "output": "Whitelisted identities, kit colors, camera/ball projection, optional geometry, celebration and read-only frame passed.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-world-pitch3d-v98.cjs",
+      "exit": 0,
+      "ms": 51,
+      "output": "3D projection: pitch bounds, side change, flight/goal/offside, immutable match and independent random stream passed.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-unity-label-layout.cjs outputs/3d-quality/iteration-119/label-layout",
+      "exit": 0,
+      "ms": 63,
+      "output": "{\"pass\":true,\"cases\":31}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-unity-3d-quality-v117.cjs outputs/3d-quality/iteration-119/guide-legacy",
+      "exit": 0,
+      "ms": 47,
+      "output": "{\"pass\":true,\"checks\":18}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-keeper-picture-v118.cjs outputs/3d-quality/iteration-119/keeper-legacy",
+      "exit": 0,
+      "ms": 49,
+      "output": "{\"pass\":true,\"checks\":13}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-keeper-picture-v119.cjs",
+      "exit": 0,
+      "ms": 50,
+      "output": "{\"pass\":true,\"checks\":27}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-3d-contacts-v119.cjs",
+      "exit": 0,
+      "ms": 52,
+      "output": "{\"pass\":true,\"checks\":19}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-whistle-offside-v119.cjs",
+      "exit": 0,
+      "ms": 54,
+      "output": "{\"pass\":true,\"checks\":18}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-shootout-quality-v119.cjs",
+      "exit": 0,
+      "ms": 633,
+      "output": "{\"pass\":true,\"checks\":12,\"metrics\":{\"weakShooter\":{\"goals\":1613,\"kicks\":5189,\"rate\":0.3108498747350164,\"wins\":301},\"strongShooter\":{\"goals\":3091,\"kicks\":5074,\"rate\":0.6091840756799369,\"wins\":738},\"weakKeeper\":{\"goals\":2795,\"kicks\":5157,\"rate\":0.5419817723482645,\"wins\":633},\"strongKeeper\":{\"goals\":1950,\"kicks\":5243,\"rate\":0.3719244707228686,\"wins\":385}}}\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-trophy-art-v119.cjs",
+      "exit": 0,
+      "ms": 53,
+      "output": "PASS: all 32 original vector identities, full/compact mappings, cache, safe fallback and decorative accessibility.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/platform/qa/test-world-unity-slides.cjs",
+      "exit": 0,
+      "ms": 47,
+      "output": "Native slide, recovery, foul precedence, half-time heading, scaling, buffered phases and pause purity passed.\n",
+      "error": ""
+    },
+    {
+      "command": "DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+      "exit": 0,
+      "ms": 25593,
+      "output": "Karriereprotokoll nach 10 Saisons: 2761 Ereignisse, 1185447 Bytes; Spielstand 8129601 Bytes.\nWeltwirtschaft: Sponsoren, Verträge, Transfers, Buchungen, Neuladen, Kadergrenzen und Saisonabschluss geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+      "exit": 0,
+      "ms": 26750,
+      "output": "Karriereprotokoll nach 10 Saisons: 2763 Ereignisse, 1183316 Bytes; Spielstand 8140516 Bytes.\nWeltwirtschaft: Sponsoren, Verträge, Transfers, Buchungen, Neuladen, Kadergrenzen und Saisonabschluss geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs",
+      "exit": 0,
+      "ms": 20863,
+      "output": "Karriereprotokoll: 4380 Ereignisse, 1648008 Bytes.\nNachwuchs und Managerwechsel: Entwicklung, Buchung, Übergang, Wechsel, Neuladen und 10 Saisons geprüft (9516688 Bytes, 0 natürliche Angebote).\n",
+      "error": ""
+    },
+    {
+      "command": "node work/audit-world-balance-v68.cjs",
+      "exit": 0,
+      "ms": 134324,
+      "output": "1\",\n      \"titles\": 34,\n      \"expectedRank\": 1.35,\n      \"actualRank\": 1.85,\n      \"rankVariance\": 1.33\n    },\n    {\n      \"clubId\": \"GER-1\",\n      \"titles\": 31,\n      \"expectedRank\": 1.12,\n      \"actualRank\": 1.82,\n      \"rankVariance\": 1.02\n    },\n    {\n      \"clubId\": \"ITA-2\",\n      \"titles\": 28,\n      \"expectedRank\": 1.3,\n      \"actualRank\": 2.27,\n      \"rankVariance\": 2.2\n    },\n    {\n      \"clubId\": \"ENG-1\",\n      \"titles\": 24,\n      \"expectedRank\": 2.03,\n      \"actualRank\": 2.4,\n      \"rankVariance\": 2.14\n    },\n    {\n      \"clubId\": \"FRA-1\",\n      \"titles\": 22,\n      \"expectedRank\": 1.25,\n      \"actualRank\": 2.53,\n      \"rankVariance\": 2.48\n    },\n    {\n      \"clubId\": \"POR-2\",\n      \"titles\": 22,\n      \"expectedRank\": 1.67,\n      \"actualRank\": 2.1,\n      \"rankVariance\": 1.32\n    }\n  ],\n  \"rankVarianceMean\": 2.13,\n  \"titleByStartingStrength\": {\n    \"topTwo\": 249,\n    \"middleTwo\": 82,\n    \"bottomTwo\": 29\n  },\n  \"meanRankDistance\": 1.24,\n  \"longestTitleRun\": 8,\n  \"longestTitleClub\": \"Seed 3, ESP-1\",\n  \"cupOnlyWinners\": 26,\n  \"coachDismissals\": 72,\n  \"coachRetirements\": 34,\n  \"naturalOffers\": 17,\n  \"transferSignings\": 1699,\n  \"transferFees\": 547490,\n  \"youthMinutes\": 2752726,\n  \"rosterRange\": [\n    10,\n    14\n  ],\n  \"lowestAiBalance\": 414,\n  \"maxSalaryShare\": 1.4,\n  \"cupQualityRatio\": {\n    \"start\": {\n      \"min\": 0.72,\n      \"median\": 0.75,\n      \"max\": 0.78\n    },\n    \"final\": {\n      \"min\": 0.75,\n      \"median\": 0.82,\n      \"max\": 0.91\n    },\n    \"medianBySeason\": {\n      \"1\": 0.75,\n      \"2\": 0.75,\n      \"3\": 0.76,\n      \"4\": 0.76,\n      \"5\": 0.77,\n      \"6\": 0.79,\n      \"7\": 0.79,\n      \"8\": 0.82,\n      \"9\": 0.82,\n      \"10\": 0.82\n    }\n  },\n  \"finalClubAverages\": {\n    \"league\": {\n      \"quality\": 12.8,\n      \"balance\": 5131.2,\n      \"annual\": 2436.9,\n      \"youthBudget\": 381.9\n    },\n    \"cup\": {\n      \"quality\": 10.7,\n      \"balance\": 11559,\n      \"annual\": 1389.2,\n      \"youthBudget\": 106.3\n    }\n  },\n  \"saveMaxMB\": 8.58,\n  \"maxWorldStepMs\": 159.91\n}\n",
+      "error": ""
+    },
+    {
+      "command": "python3 work/test_deploy_ftps.py",
+      "exit": 0,
+      "ms": 153,
+      "output": "Deployment verified at https://fussball.cakamper.at/\r\n",
+      "error": "....\r\n----------------------------------------------------------------------\r\nRan 4 tests in 0.008s\r\n\r\nOK\r\n"
+    },
+    {
+      "command": "python3 work/test_deploy_unity_assets.py",
+      "exit": 0,
+      "ms": 169,
+      "output": "Unity runtime verified at https://fussball.cakamper.at/unity/probe-build.json\r\n",
+      "error": "......\r\n----------------------------------------------------------------------\r\nRan 6 tests in 0.030s\r\n\r\nOK\r\n"
+    },
+    {
+      "command": "node work/build.cjs",
+      "exit": 0,
+      "ms": 35791,
+      "output": "",
+      "error": ""
+    },
+    {
+      "command": "node work/test-club-crests.cjs",
+      "exit": 0,
+      "ms": 410,
+      "output": "48 Wappen mit Konturen und Detailerhalt, 144 Farbmasken, vier Ersatzmotive, eindeutige SVG-IDs, unveränderte Spielstände und Offline-Build geprüft.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-expansion-crests.cjs",
+      "exit": 0,
+      "ms": 5121,
+      "output": "96 unique expansion crests: PNGs, masks, tinting, labels, SVG IDs, unchanged clubs and offline coverage passed.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-completed-crests.cjs",
+      "exit": 0,
+      "ms": 4619,
+      "output": "All 192 clubs have authored artwork; 48 completed crests: PNGs, masks, tinting, labels, SVG IDs, unchanged clubs and offline coverage passed.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-expansion-sponsors.cjs",
+      "exit": 0,
+      "ms": 3650,
+      "output": "36 sponsor wordmarks/symbols, offline assets, all six bonus conditions, amounts, totals, payout timing, actions and unchanged offers passed.\n",
+      "error": ""
+    },
+    {
+      "command": "node work/test-no-player-images.cjs",
+      "exit": 0,
+      "ms": 356,
+      "output": "Release: no player portrait or celebration renderer; youth, goal scene and banner remain.\n",
+      "error": ""
+    }
+  ]
+}
