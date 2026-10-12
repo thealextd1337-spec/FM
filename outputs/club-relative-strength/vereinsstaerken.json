@@ -1,0 +1,1545 @@
+{
+  "generationVersion": 3,
+  "worldCount": 30,
+  "clubCount": 192,
+  "scale": "Linear rank index: 100 - 50 * (rank - 1) / 191; not a ratio of underlying quality or win probability.",
+  "ranking": "Mean initial squad position quality across thirty generation-version-3 worlds; youth pools and free players excluded.",
+  "rows": [
+    {
+      "rank": 1,
+      "clubId": "ESP-1",
+      "name": "Madrid Central CF",
+      "country": "Spanien",
+      "type": "Liga",
+      "relative": 100
+    },
+    {
+      "rank": 2,
+      "clubId": "GER-1",
+      "name": "FC München Isar",
+      "country": "Deutschland",
+      "type": "Liga",
+      "relative": 99.7
+    },
+    {
+      "rank": 3,
+      "clubId": "ENG-8",
+      "name": "Newcastle Tyne FC",
+      "country": "England",
+      "type": "Liga",
+      "relative": 99.5
+    },
+    {
+      "rank": 4,
+      "clubId": "GER-7",
+      "name": "FC Dortmund Emscher",
+      "country": "Deutschland",
+      "type": "Liga",
+      "relative": 99.2
+    },
+    {
+      "rank": 5,
+      "clubId": "ESP-2",
+      "name": "Barcelona Mar FC",
+      "country": "Spanien",
+      "type": "Liga",
+      "relative": 99
+    },
+    {
+      "rank": 6,
+      "clubId": "FRA-1",
+      "name": "Paris Central FC",
+      "country": "Frankreich",
+      "type": "Liga",
+      "relative": 98.7
+    },
+    {
+      "rank": 7,
+      "clubId": "ITA-2",
+      "name": "Milano Ferro FC",
+      "country": "Italien",
+      "type": "Liga",
+      "relative": 98.4
+    },
+    {
+      "rank": 8,
+      "clubId": "ENG-2",
+      "name": "Irwell FC",
+      "country": "England",
+      "type": "Liga",
+      "relative": 98.2
+    },
+    {
+      "rank": 9,
+      "clubId": "FRA-2",
+      "name": "Marseille Union",
+      "country": "Frankreich",
+      "type": "Liga",
+      "relative": 97.9
+    },
+    {
+      "rank": 10,
+      "clubId": "ITA-1",
+      "name": "Torino Centrale FC",
+      "country": "Italien",
+      "type": "Liga",
+      "relative": 97.6
+    },
+    {
+      "rank": 11,
+      "clubId": "NED-1",
+      "name": "Amsterdam Amstel FC",
+      "country": "Niederlande",
+      "type": "Liga",
+      "relative": 97.4
+    },
+    {
+      "rank": 12,
+      "clubId": "POR-2",
+      "name": "Porto Ribeira FC",
+      "country": "Portugal",
+      "type": "Liga",
+      "relative": 97.1
+    },
+    {
+      "rank": 13,
+      "clubId": "NED-3",
+      "name": "Eindhoven Lichtstad FC",
+      "country": "Niederlande",
+      "type": "Liga",
+      "relative": 96.9
+    },
+    {
+      "rank": 14,
+      "clubId": "POR-1",
+      "name": "Lisboa Central FC",
+      "country": "Portugal",
+      "type": "Liga",
+      "relative": 96.6
+    },
+    {
+      "rank": 15,
+      "clubId": "BEL-2",
+      "name": "Bruxelles Senne Union",
+      "country": "Belgien",
+      "type": "Liga",
+      "relative": 96.3
+    },
+    {
+      "rank": 16,
+      "clubId": "BEL-1",
+      "name": "Brugge Reie FC",
+      "country": "Belgien",
+      "type": "Liga",
+      "relative": 96.1
+    },
+    {
+      "rank": 17,
+      "clubId": "AUT-2",
+      "name": "FC Salzburg Falken",
+      "country": "Österreich",
+      "type": "Liga",
+      "relative": 95.8
+    },
+    {
+      "rank": 18,
+      "clubId": "TUR-2",
+      "name": "Istanbul Haliç SK",
+      "country": "Türkei",
+      "type": "Liga",
+      "relative": 95.5
+    },
+    {
+      "rank": 19,
+      "clubId": "AUT-1",
+      "name": "Wiener SC Kronau",
+      "country": "Österreich",
+      "type": "Liga",
+      "relative": 95.3
+    },
+    {
+      "rank": 20,
+      "clubId": "TUR-1",
+      "name": "Istanbul Bosporus SK",
+      "country": "Türkei",
+      "type": "Liga",
+      "relative": 95
+    },
+    {
+      "rank": 21,
+      "clubId": "NED-2",
+      "name": "Rotterdam Maaspoort FC",
+      "country": "Niederlande",
+      "type": "Liga",
+      "relative": 94.8
+    },
+    {
+      "rank": 22,
+      "clubId": "TUR-3",
+      "name": "Istanbul Marmara SK",
+      "country": "Türkei",
+      "type": "Liga",
+      "relative": 94.5
+    },
+    {
+      "rank": 23,
+      "clubId": "GRE-1",
+      "name": "Athina Helios FC",
+      "country": "Griechenland",
+      "type": "Liga",
+      "relative": 94.2
+    },
+    {
+      "rank": 24,
+      "clubId": "SUI-2",
+      "name": "Bern Aarebogen FC",
+      "country": "Schweiz",
+      "type": "Liga",
+      "relative": 94
+    },
+    {
+      "rank": 25,
+      "clubId": "GRE-2",
+      "name": "Piräus Nautilos FC",
+      "country": "Griechenland",
+      "type": "Liga",
+      "relative": 93.7
+    },
+    {
+      "rank": 26,
+      "clubId": "SUI-1",
+      "name": "Basel Rheintor FC",
+      "country": "Schweiz",
+      "type": "Liga",
+      "relative": 93.5
+    },
+    {
+      "rank": 27,
+      "clubId": "ENG-7",
+      "name": "Leeds Aire FC",
+      "country": "England",
+      "type": "Liga",
+      "relative": 93.2
+    },
+    {
+      "rank": 28,
+      "clubId": "GER-8",
+      "name": "FC Frankfurt Mainbogen",
+      "country": "Deutschland",
+      "type": "Liga",
+      "relative": 92.9
+    },
+    {
+      "rank": 29,
+      "clubId": "ITA-7",
+      "name": "Firenze Arno AC",
+      "country": "Italien",
+      "type": "Liga",
+      "relative": 92.7
+    },
+    {
+      "rank": 30,
+      "clubId": "POR-7",
+      "name": "Guimarães Castelo FC",
+      "country": "Portugal",
+      "type": "Liga",
+      "relative": 92.4
+    },
+    {
+      "rank": 31,
+      "clubId": "NED-4",
+      "name": "Utrecht Singel FC",
+      "country": "Niederlande",
+      "type": "Liga",
+      "relative": 92.1
+    },
+    {
+      "rank": 32,
+      "clubId": "ESP-7",
+      "name": "Bilbao Nervión CF",
+      "country": "Spanien",
+      "type": "Liga",
+      "relative": 91.9
+    },
+    {
+      "rank": 33,
+      "clubId": "POR-3",
+      "name": "Tejo Union",
+      "country": "Portugal",
+      "type": "Liga",
+      "relative": 91.6
+    },
+    {
+      "rank": 34,
+      "clubId": "TUR-4",
+      "name": "Trabzon Karadeniz SK",
+      "country": "Türkei",
+      "type": "Liga",
+      "relative": 91.4
+    },
+    {
+      "rank": 35,
+      "clubId": "ENG-1",
+      "name": "Regent Vale FC",
+      "country": "England",
+      "type": "Liga",
+      "relative": 91.1
+    },
+    {
+      "rank": 36,
+      "clubId": "AUT-4",
+      "name": "Linzer SC Union",
+      "country": "Österreich",
+      "type": "Liga",
+      "relative": 90.8
+    },
+    {
+      "rank": 37,
+      "clubId": "AUT-3",
+      "name": "Schwarz Weiß Graz",
+      "country": "Österreich",
+      "type": "Liga",
+      "relative": 90.6
+    },
+    {
+      "rank": 38,
+      "clubId": "BEL-3",
+      "name": "Antwerpen Schelde FC",
+      "country": "Belgien",
+      "type": "Liga",
+      "relative": 90.3
+    },
+    {
+      "rank": 39,
+      "clubId": "GRE-3",
+      "name": "Thessaloniki Vardaris FC",
+      "country": "Griechenland",
+      "type": "Liga",
+      "relative": 90.1
+    },
+    {
+      "rank": 40,
+      "clubId": "GRE-4",
+      "name": "Athina Kallisto FC",
+      "country": "Griechenland",
+      "type": "Liga",
+      "relative": 89.8
+    },
+    {
+      "rank": 41,
+      "clubId": "SUI-3",
+      "name": "Zürich Limmat FC",
+      "country": "Schweiz",
+      "type": "Liga",
+      "relative": 89.5
+    },
+    {
+      "rank": 42,
+      "clubId": "ENG-3",
+      "name": "Mersey Dock FC",
+      "country": "England",
+      "type": "Liga",
+      "relative": 89.3
+    },
+    {
+      "rank": 43,
+      "clubId": "ESP-3",
+      "name": "Turia CF",
+      "country": "Spanien",
+      "type": "Liga",
+      "relative": 89
+    },
+    {
+      "rank": 44,
+      "clubId": "GER-2",
+      "name": "FC Bremen Weser",
+      "country": "Deutschland",
+      "type": "Liga",
+      "relative": 88.7
+    },
+    {
+      "rank": 45,
+      "clubId": "ITA-3",
+      "name": "Roma Capitol FC",
+      "country": "Italien",
+      "type": "Liga",
+      "relative": 88.5
+    },
+    {
+      "rank": 46,
+      "clubId": "FRA-5",
+      "name": "Lille Union",
+      "country": "Frankreich",
+      "type": "Liga",
+      "relative": 88.2
+    },
+    {
+      "rank": 47,
+      "clubId": "ITA-4",
+      "name": "Bologna Collina AC",
+      "country": "Italien",
+      "type": "Liga",
+      "relative": 88
+    },
+    {
+      "rank": 48,
+      "clubId": "FRA-3",
+      "name": "Lyon Rive FC",
+      "country": "Frankreich",
+      "type": "Liga",
+      "relative": 87.7
+    },
+    {
+      "rank": 49,
+      "clubId": "FRA-8",
+      "name": "Strasbourg Rives FC",
+      "country": "Frankreich",
+      "type": "Liga",
+      "relative": 87.4
+    },
+    {
+      "rank": 50,
+      "clubId": "ITA-6",
+      "name": "Napoli Sud AC",
+      "country": "Italien",
+      "type": "Liga",
+      "relative": 87.2
+    },
+    {
+      "rank": 51,
+      "clubId": "ITA-8",
+      "name": "Genova Lanterna FC",
+      "country": "Italien",
+      "type": "Liga",
+      "relative": 86.9
+    },
+    {
+      "rank": 52,
+      "clubId": "ENG-4",
+      "name": "Birmingham Works FC",
+      "country": "England",
+      "type": "Liga",
+      "relative": 86.6
+    },
+    {
+      "rank": 53,
+      "clubId": "ESP-4",
+      "name": "Sevilla Union FC",
+      "country": "Spanien",
+      "type": "Liga",
+      "relative": 86.4
+    },
+    {
+      "rank": 54,
+      "clubId": "FRA-7",
+      "name": "Nantes Loire FC",
+      "country": "Frankreich",
+      "type": "Liga",
+      "relative": 86.1
+    },
+    {
+      "rank": 55,
+      "clubId": "GER-4",
+      "name": "SC Freiburg Tal",
+      "country": "Deutschland",
+      "type": "Liga",
+      "relative": 85.9
+    },
+    {
+      "rank": 56,
+      "clubId": "POR-4",
+      "name": "Braga Norte FC",
+      "country": "Portugal",
+      "type": "Liga",
+      "relative": 85.6
+    },
+    {
+      "rank": 57,
+      "clubId": "GER-3",
+      "name": "FC Hamburg Elbe",
+      "country": "Deutschland",
+      "type": "Liga",
+      "relative": 85.3
+    },
+    {
+      "rank": 58,
+      "clubId": "BEL-7",
+      "name": "Charleroi Sambre FC",
+      "country": "Belgien",
+      "type": "Liga",
+      "relative": 85.1
+    },
+    {
+      "rank": 59,
+      "clubId": "NED-6",
+      "name": "Arnhem Rijnpark FC",
+      "country": "Niederlande",
+      "type": "Liga",
+      "relative": 84.8
+    },
+    {
+      "rank": 60,
+      "clubId": "TUR-5",
+      "name": "Ankara Kale SK",
+      "country": "Türkei",
+      "type": "Liga",
+      "relative": 84.6
+    },
+    {
+      "rank": 61,
+      "clubId": "SUI-7",
+      "name": "Luzern Reuss FC",
+      "country": "Schweiz",
+      "type": "Liga",
+      "relative": 84.3
+    },
+    {
+      "rank": 62,
+      "clubId": "BEL-4",
+      "name": "Gent Leie FC",
+      "country": "Belgien",
+      "type": "Liga",
+      "relative": 84
+    },
+    {
+      "rank": 63,
+      "clubId": "BEL-6",
+      "name": "Genk Kempen FC",
+      "country": "Belgien",
+      "type": "Liga",
+      "relative": 83.8
+    },
+    {
+      "rank": 64,
+      "clubId": "AUT-6",
+      "name": "SC Klagenfurt Seestadt",
+      "country": "Österreich",
+      "type": "Liga",
+      "relative": 83.5
+    },
+    {
+      "rank": 65,
+      "clubId": "SUI-5",
+      "name": "St. Gallen Sitter FC",
+      "country": "Schweiz",
+      "type": "Liga",
+      "relative": 83.2
+    },
+    {
+      "rank": 66,
+      "clubId": "GRE-5",
+      "name": "Thessaloniki Therma FC",
+      "country": "Griechenland",
+      "type": "Liga",
+      "relative": 83
+    },
+    {
+      "rank": 67,
+      "clubId": "SUI-4",
+      "name": "Genève Rhône FC",
+      "country": "Schweiz",
+      "type": "Liga",
+      "relative": 82.7
+    },
+    {
+      "rank": 68,
+      "clubId": "GRE-6",
+      "name": "Patras Achaia FC",
+      "country": "Griechenland",
+      "type": "Liga",
+      "relative": 82.5
+    },
+    {
+      "rank": 69,
+      "clubId": "ENG-5",
+      "name": "Bristol Quay FC",
+      "country": "England",
+      "type": "Liga",
+      "relative": 82.2
+    },
+    {
+      "rank": 70,
+      "clubId": "ITA-5",
+      "name": "Navigli FC",
+      "country": "Italien",
+      "type": "Liga",
+      "relative": 81.9
+    },
+    {
+      "rank": 71,
+      "clubId": "FRA-4",
+      "name": "Bordeaux Atlantic FC",
+      "country": "Frankreich",
+      "type": "Liga",
+      "relative": 81.7
+    },
+    {
+      "rank": 72,
+      "clubId": "ESP-5",
+      "name": "Barcelona Delta FC",
+      "country": "Spanien",
+      "type": "Liga",
+      "relative": 81.4
+    },
+    {
+      "rank": 73,
+      "clubId": "GER-5",
+      "name": "FC Köln Rhein",
+      "country": "Deutschland",
+      "type": "Liga",
+      "relative": 81.2
+    },
+    {
+      "rank": 74,
+      "clubId": "ESP-8",
+      "name": "Zaragoza Ebro CF",
+      "country": "Spanien",
+      "type": "Liga",
+      "relative": 80.9
+    },
+    {
+      "rank": 75,
+      "clubId": "POR-8",
+      "name": "Setúbal Sado FC",
+      "country": "Portugal",
+      "type": "Liga",
+      "relative": 80.6
+    },
+    {
+      "rank": 76,
+      "clubId": "NED-5",
+      "name": "Enschede Veld FC",
+      "country": "Niederlande",
+      "type": "Liga",
+      "relative": 80.4
+    },
+    {
+      "rank": 77,
+      "clubId": "POR-5",
+      "name": "Coimbra Athletic",
+      "country": "Portugal",
+      "type": "Liga",
+      "relative": 80.1
+    },
+    {
+      "rank": 78,
+      "clubId": "AUT-5",
+      "name": "Innsbruck Sport",
+      "country": "Österreich",
+      "type": "Liga",
+      "relative": 79.8
+    },
+    {
+      "rank": 79,
+      "clubId": "AUT-7",
+      "name": "SV St. Pölten Westpark",
+      "country": "Österreich",
+      "type": "Liga",
+      "relative": 79.6
+    },
+    {
+      "rank": 80,
+      "clubId": "NED-7",
+      "name": "Groningen Noorderpoort FC",
+      "country": "Niederlande",
+      "type": "Liga",
+      "relative": 79.3
+    },
+    {
+      "rank": 81,
+      "clubId": "TUR-7",
+      "name": "Bursa Yeşilova SK",
+      "country": "Türkei",
+      "type": "Liga",
+      "relative": 79.1
+    },
+    {
+      "rank": 82,
+      "clubId": "SUI-6",
+      "name": "Lausanne Léman FC",
+      "country": "Schweiz",
+      "type": "Liga",
+      "relative": 78.8
+    },
+    {
+      "rank": 83,
+      "clubId": "BEL-5",
+      "name": "Liège Meuse FC",
+      "country": "Belgien",
+      "type": "Liga",
+      "relative": 78.5
+    },
+    {
+      "rank": 84,
+      "clubId": "TUR-6",
+      "name": "Izmir Körfez SK",
+      "country": "Türkei",
+      "type": "Liga",
+      "relative": 78.3
+    },
+    {
+      "rank": 85,
+      "clubId": "GRE-7",
+      "name": "Iraklio Candia FC",
+      "country": "Griechenland",
+      "type": "Liga",
+      "relative": 78
+    },
+    {
+      "rank": 86,
+      "clubId": "FRA-6",
+      "name": "Paris Valmy FC",
+      "country": "Frankreich",
+      "type": "Liga",
+      "relative": 77.7
+    },
+    {
+      "rank": 87,
+      "clubId": "ENG-6",
+      "name": "Wandle Town",
+      "country": "England",
+      "type": "Liga",
+      "relative": 77.5
+    },
+    {
+      "rank": 88,
+      "clubId": "ESP-6",
+      "name": "Vigo Atlantic FC",
+      "country": "Spanien",
+      "type": "Liga",
+      "relative": 77.2
+    },
+    {
+      "rank": 89,
+      "clubId": "GER-6",
+      "name": "SV München Au",
+      "country": "Deutschland",
+      "type": "Liga",
+      "relative": 77
+    },
+    {
+      "rank": 90,
+      "clubId": "POR-6",
+      "name": "Aveiro Costa FC",
+      "country": "Portugal",
+      "type": "Liga",
+      "relative": 76.7
+    },
+    {
+      "rank": 91,
+      "clubId": "NED-8",
+      "name": "Amsterdam Westhaven FC",
+      "country": "Niederlande",
+      "type": "Liga",
+      "relative": 76.4
+    },
+    {
+      "rank": 92,
+      "clubId": "AUT-8",
+      "name": "Wiener SC Fortuna",
+      "country": "Österreich",
+      "type": "Liga",
+      "relative": 76.2
+    },
+    {
+      "rank": 93,
+      "clubId": "BEL-8",
+      "name": "Bruxelles Parc FC",
+      "country": "Belgien",
+      "type": "Liga",
+      "relative": 75.9
+    },
+    {
+      "rank": 94,
+      "clubId": "TUR-8",
+      "name": "Antalya Kıyı SK",
+      "country": "Türkei",
+      "type": "Liga",
+      "relative": 75.7
+    },
+    {
+      "rank": 95,
+      "clubId": "GRE-8",
+      "name": "Volos Pelion FC",
+      "country": "Griechenland",
+      "type": "Liga",
+      "relative": 75.4
+    },
+    {
+      "rank": 96,
+      "clubId": "SUI-8",
+      "name": "Zürich Sihl FC",
+      "country": "Schweiz",
+      "type": "Liga",
+      "relative": 75.1
+    },
+    {
+      "rank": 97,
+      "clubId": "ITA-C8",
+      "name": "Bari Levante FC",
+      "country": "Italien",
+      "type": "Pokalverein",
+      "relative": 74.9
+    },
+    {
+      "rank": 98,
+      "clubId": "ESP-C6",
+      "name": "Salamanca Tormes CF",
+      "country": "Spanien",
+      "type": "Pokalverein",
+      "relative": 74.6
+    },
+    {
+      "rank": 99,
+      "clubId": "GER-C3",
+      "name": "FC Erfurt Geraauen",
+      "country": "Deutschland",
+      "type": "Pokalverein",
+      "relative": 74.3
+    },
+    {
+      "rank": 100,
+      "clubId": "ENG-C8",
+      "name": "Plymouth Tamar FC",
+      "country": "England",
+      "type": "Pokalverein",
+      "relative": 74.1
+    },
+    {
+      "rank": 101,
+      "clubId": "GER-C6",
+      "name": "SC Regensburg Donauhof",
+      "country": "Deutschland",
+      "type": "Pokalverein",
+      "relative": 73.8
+    },
+    {
+      "rank": 102,
+      "clubId": "ITA-C5",
+      "name": "Cagliari Salina FC",
+      "country": "Italien",
+      "type": "Pokalverein",
+      "relative": 73.6
+    },
+    {
+      "rank": 103,
+      "clubId": "FRA-C5",
+      "name": "Amiens Hortillon FC",
+      "country": "Frankreich",
+      "type": "Pokalverein",
+      "relative": 73.3
+    },
+    {
+      "rank": 104,
+      "clubId": "FRA-C8",
+      "name": "Le Havre Estuaire FC",
+      "country": "Frankreich",
+      "type": "Pokalverein",
+      "relative": 73
+    },
+    {
+      "rank": 105,
+      "clubId": "NED-C4",
+      "name": "Breda Markveld FC",
+      "country": "Niederlande",
+      "type": "Pokalverein",
+      "relative": 72.8
+    },
+    {
+      "rank": 106,
+      "clubId": "NED-C3",
+      "name": "Deventer IJsselboog FC",
+      "country": "Niederlande",
+      "type": "Pokalverein",
+      "relative": 72.5
+    },
+    {
+      "rank": 107,
+      "clubId": "NED-C6",
+      "name": "Leeuwarden Middelzee FC",
+      "country": "Niederlande",
+      "type": "Pokalverein",
+      "relative": 72.3
+    },
+    {
+      "rank": 108,
+      "clubId": "NED-C7",
+      "name": "Alkmaar Singelpoort FC",
+      "country": "Niederlande",
+      "type": "Pokalverein",
+      "relative": 72
+    },
+    {
+      "rank": 109,
+      "clubId": "AUT-C6",
+      "name": "Kremser SC Donauhain",
+      "country": "Österreich",
+      "type": "Pokalverein",
+      "relative": 71.7
+    },
+    {
+      "rank": 110,
+      "clubId": "TUR-C6",
+      "name": "Gaziantep Alleben SK",
+      "country": "Türkei",
+      "type": "Pokalverein",
+      "relative": 71.5
+    },
+    {
+      "rank": 111,
+      "clubId": "TUR-C8",
+      "name": "Mersin Akdenizkapı SK",
+      "country": "Türkei",
+      "type": "Pokalverein",
+      "relative": 71.2
+    },
+    {
+      "rank": 112,
+      "clubId": "BEL-C8",
+      "name": "Tournai Escaut FC",
+      "country": "Belgien",
+      "type": "Pokalverein",
+      "relative": 70.9
+    },
+    {
+      "rank": 113,
+      "clubId": "TUR-C3",
+      "name": "Konya Meram SK",
+      "country": "Türkei",
+      "type": "Pokalverein",
+      "relative": 70.7
+    },
+    {
+      "rank": 114,
+      "clubId": "ITA-C6",
+      "name": "Trieste Molo FC",
+      "country": "Italien",
+      "type": "Pokalverein",
+      "relative": 70.4
+    },
+    {
+      "rank": 115,
+      "clubId": "GER-C5",
+      "name": "FC Osnabrück Hasebogen",
+      "country": "Deutschland",
+      "type": "Pokalverein",
+      "relative": 70.2
+    },
+    {
+      "rank": 116,
+      "clubId": "FRA-C3",
+      "name": "Dijon Ouche FC",
+      "country": "Frankreich",
+      "type": "Pokalverein",
+      "relative": 69.9
+    },
+    {
+      "rank": 117,
+      "clubId": "ENG-C3",
+      "name": "Sheffield Sheaf FC",
+      "country": "England",
+      "type": "Pokalverein",
+      "relative": 69.6
+    },
+    {
+      "rank": 118,
+      "clubId": "ENG-C6",
+      "name": "Coventry Spon FC",
+      "country": "England",
+      "type": "Pokalverein",
+      "relative": 69.4
+    },
+    {
+      "rank": 119,
+      "clubId": "GER-C4",
+      "name": "Kieler SC Fördeblick",
+      "country": "Deutschland",
+      "type": "Pokalverein",
+      "relative": 69.1
+    },
+    {
+      "rank": 120,
+      "clubId": "FRA-C4",
+      "name": "Brest Iroise FC",
+      "country": "Frankreich",
+      "type": "Pokalverein",
+      "relative": 68.8
+    },
+    {
+      "rank": 121,
+      "clubId": "ESP-C5",
+      "name": "Murcia Segura CF",
+      "country": "Spanien",
+      "type": "Pokalverein",
+      "relative": 68.6
+    },
+    {
+      "rank": 122,
+      "clubId": "FRA-C7",
+      "name": "Clermont Dôme FC",
+      "country": "Frankreich",
+      "type": "Pokalverein",
+      "relative": 68.3
+    },
+    {
+      "rank": 123,
+      "clubId": "ITA-C3",
+      "name": "Perugia Fonte AC",
+      "country": "Italien",
+      "type": "Pokalverein",
+      "relative": 68.1
+    },
+    {
+      "rank": 124,
+      "clubId": "ITA-C4",
+      "name": "Pisa Lungarno FC",
+      "country": "Italien",
+      "type": "Pokalverein",
+      "relative": 67.8
+    },
+    {
+      "rank": 125,
+      "clubId": "GER-C8",
+      "name": "FC Aachen Westbogen",
+      "country": "Deutschland",
+      "type": "Pokalverein",
+      "relative": 67.5
+    },
+    {
+      "rank": 126,
+      "clubId": "ENG-C5",
+      "name": "Norwich Wensum FC",
+      "country": "England",
+      "type": "Pokalverein",
+      "relative": 67.3
+    },
+    {
+      "rank": 127,
+      "clubId": "ESP-C8",
+      "name": "Almería Dársena CF",
+      "country": "Spanien",
+      "type": "Pokalverein",
+      "relative": 67
+    },
+    {
+      "rank": 128,
+      "clubId": "ESP-C3",
+      "name": "Valladolid Pisuerga CF",
+      "country": "Spanien",
+      "type": "Pokalverein",
+      "relative": 66.8
+    },
+    {
+      "rank": 129,
+      "clubId": "NED-C1",
+      "name": "Haarlem Spaarne FC",
+      "country": "Niederlande",
+      "type": "Pokalverein",
+      "relative": 66.5
+    },
+    {
+      "rank": 130,
+      "clubId": "POR-C5",
+      "name": "Leiria Lis FC",
+      "country": "Portugal",
+      "type": "Pokalverein",
+      "relative": 66.2
+    },
+    {
+      "rank": 131,
+      "clubId": "NED-C2",
+      "name": "Zwolle Vechtpoort FC",
+      "country": "Niederlande",
+      "type": "Pokalverein",
+      "relative": 66
+    },
+    {
+      "rank": 132,
+      "clubId": "POR-C8",
+      "name": "Viana Lima FC",
+      "country": "Portugal",
+      "type": "Pokalverein",
+      "relative": 65.7
+    },
+    {
+      "rank": 133,
+      "clubId": "NED-C8",
+      "name": "Maastricht Jeker FC",
+      "country": "Niederlande",
+      "type": "Pokalverein",
+      "relative": 65.4
+    },
+    {
+      "rank": 134,
+      "clubId": "NED-C5",
+      "name": "Tilburg Spoor FC",
+      "country": "Niederlande",
+      "type": "Pokalverein",
+      "relative": 65.2
+    },
+    {
+      "rank": 135,
+      "clubId": "BEL-C2",
+      "name": "Leuven Vaart FC",
+      "country": "Belgien",
+      "type": "Pokalverein",
+      "relative": 64.9
+    },
+    {
+      "rank": 136,
+      "clubId": "AUT-C1",
+      "name": "Dornbirner SC Achfeld",
+      "country": "Österreich",
+      "type": "Pokalverein",
+      "relative": 64.7
+    },
+    {
+      "rank": 137,
+      "clubId": "BEL-C1",
+      "name": "Mechelen Dijle FC",
+      "country": "Belgien",
+      "type": "Pokalverein",
+      "relative": 64.4
+    },
+    {
+      "rank": 138,
+      "clubId": "TUR-C2",
+      "name": "Eskişehir Porsuk SK",
+      "country": "Türkei",
+      "type": "Pokalverein",
+      "relative": 64.1
+    },
+    {
+      "rank": 139,
+      "clubId": "TUR-C4",
+      "name": "Kayseri Erciyesova SK",
+      "country": "Türkei",
+      "type": "Pokalverein",
+      "relative": 63.9
+    },
+    {
+      "rank": 140,
+      "clubId": "TUR-C7",
+      "name": "Denizli Çınarova SK",
+      "country": "Türkei",
+      "type": "Pokalverein",
+      "relative": 63.6
+    },
+    {
+      "rank": 141,
+      "clubId": "BEL-C4",
+      "name": "Mons Trouille FC",
+      "country": "Belgien",
+      "type": "Pokalverein",
+      "relative": 63.4
+    },
+    {
+      "rank": 142,
+      "clubId": "BEL-C6",
+      "name": "Hasselt Demer FC",
+      "country": "Belgien",
+      "type": "Pokalverein",
+      "relative": 63.1
+    },
+    {
+      "rank": 143,
+      "clubId": "BEL-C3",
+      "name": "Namur Sambreporte FC",
+      "country": "Belgien",
+      "type": "Pokalverein",
+      "relative": 62.8
+    },
+    {
+      "rank": 144,
+      "clubId": "AUT-C8",
+      "name": "SC Amstetten Ybbsfeld",
+      "country": "Österreich",
+      "type": "Pokalverein",
+      "relative": 62.6
+    },
+    {
+      "rank": 145,
+      "clubId": "AUT-C4",
+      "name": "SC Steyr Brückenfeld",
+      "country": "Österreich",
+      "type": "Pokalverein",
+      "relative": 62.3
+    },
+    {
+      "rank": 146,
+      "clubId": "TUR-C1",
+      "name": "Samsun Kıyıova SK",
+      "country": "Türkei",
+      "type": "Pokalverein",
+      "relative": 62
+    },
+    {
+      "rank": 147,
+      "clubId": "AUT-C3",
+      "name": "Welser SC Traunhof",
+      "country": "Österreich",
+      "type": "Pokalverein",
+      "relative": 61.8
+    },
+    {
+      "rank": 148,
+      "clubId": "BEL-C7",
+      "name": "Oostende Duin FC",
+      "country": "Belgien",
+      "type": "Pokalverein",
+      "relative": 61.5
+    },
+    {
+      "rank": 149,
+      "clubId": "AUT-C5",
+      "name": "SC Wiener Neustadt Südring",
+      "country": "Österreich",
+      "type": "Pokalverein",
+      "relative": 61.3
+    },
+    {
+      "rank": 150,
+      "clubId": "GRE-C1",
+      "name": "Larisa Pinios FC",
+      "country": "Griechenland",
+      "type": "Pokalverein",
+      "relative": 61
+    },
+    {
+      "rank": 151,
+      "clubId": "SUI-C3",
+      "name": "Thun Aaresteg FC",
+      "country": "Schweiz",
+      "type": "Pokalverein",
+      "relative": 60.7
+    },
+    {
+      "rank": 152,
+      "clubId": "SUI-C6",
+      "name": "Lugano Ceresio FC",
+      "country": "Schweiz",
+      "type": "Pokalverein",
+      "relative": 60.5
+    },
+    {
+      "rank": 153,
+      "clubId": "GRE-C4",
+      "name": "Kalamata Taygetos FC",
+      "country": "Griechenland",
+      "type": "Pokalverein",
+      "relative": 60.2
+    },
+    {
+      "rank": 154,
+      "clubId": "SUI-C2",
+      "name": "Schaffhausen Uferfeld FC",
+      "country": "Schweiz",
+      "type": "Pokalverein",
+      "relative": 59.9
+    },
+    {
+      "rank": 155,
+      "clubId": "SUI-C7",
+      "name": "Bellinzona Ticino FC",
+      "country": "Schweiz",
+      "type": "Pokalverein",
+      "relative": 59.7
+    },
+    {
+      "rank": 156,
+      "clubId": "GRE-C7",
+      "name": "Serres Strymon FC",
+      "country": "Griechenland",
+      "type": "Pokalverein",
+      "relative": 59.4
+    },
+    {
+      "rank": 157,
+      "clubId": "GRE-C6",
+      "name": "Chania Lefka FC",
+      "country": "Griechenland",
+      "type": "Pokalverein",
+      "relative": 59.2
+    },
+    {
+      "rank": 158,
+      "clubId": "SUI-C8",
+      "name": "Biel Schüss FC",
+      "country": "Schweiz",
+      "type": "Pokalverein",
+      "relative": 58.9
+    },
+    {
+      "rank": 159,
+      "clubId": "GRE-C3",
+      "name": "Kavala Ormos FC",
+      "country": "Griechenland",
+      "type": "Pokalverein",
+      "relative": 58.6
+    },
+    {
+      "rank": 160,
+      "clubId": "ENG-C2",
+      "name": "Plymouth Bay AFC",
+      "country": "England",
+      "type": "Pokalverein",
+      "relative": 58.4
+    },
+    {
+      "rank": 161,
+      "clubId": "FRA-C2",
+      "name": "Metz Nord FC",
+      "country": "Frankreich",
+      "type": "Pokalverein",
+      "relative": 58.1
+    },
+    {
+      "rank": 162,
+      "clubId": "GER-C7",
+      "name": "Rostocker SC Warnowfeld",
+      "country": "Deutschland",
+      "type": "Pokalverein",
+      "relative": 57.9
+    },
+    {
+      "rank": 163,
+      "clubId": "FRA-C1",
+      "name": "Toulouse Garonne FC",
+      "country": "Frankreich",
+      "type": "Pokalverein",
+      "relative": 57.6
+    },
+    {
+      "rank": 164,
+      "clubId": "ITA-C1",
+      "name": "Parma Ovest FC",
+      "country": "Italien",
+      "type": "Pokalverein",
+      "relative": 57.3
+    },
+    {
+      "rank": 165,
+      "clubId": "ESP-C7",
+      "name": "Logroño Senda CF",
+      "country": "Spanien",
+      "type": "Pokalverein",
+      "relative": 57.1
+    },
+    {
+      "rank": 166,
+      "clubId": "ESP-C1",
+      "name": "Córdoba Norte CF",
+      "country": "Spanien",
+      "type": "Pokalverein",
+      "relative": 56.8
+    },
+    {
+      "rank": 167,
+      "clubId": "FRA-C6",
+      "name": "Tours Cher FC",
+      "country": "Frankreich",
+      "type": "Pokalverein",
+      "relative": 56.5
+    },
+    {
+      "rank": 168,
+      "clubId": "ITA-C2",
+      "name": "Lecce Marina FC",
+      "country": "Italien",
+      "type": "Pokalverein",
+      "relative": 56.3
+    },
+    {
+      "rank": 169,
+      "clubId": "ENG-C1",
+      "name": "Sheffield Forge FC",
+      "country": "England",
+      "type": "Pokalverein",
+      "relative": 56
+    },
+    {
+      "rank": 170,
+      "clubId": "ESP-C4",
+      "name": "Santander Bahía CF",
+      "country": "Spanien",
+      "type": "Pokalverein",
+      "relative": 55.8
+    },
+    {
+      "rank": 171,
+      "clubId": "ENG-C4",
+      "name": "Bristol Avon Gate FC",
+      "country": "England",
+      "type": "Pokalverein",
+      "relative": 55.5
+    },
+    {
+      "rank": 172,
+      "clubId": "ENG-C7",
+      "name": "Brighton Downs FC",
+      "country": "England",
+      "type": "Pokalverein",
+      "relative": 55.2
+    },
+    {
+      "rank": 173,
+      "clubId": "ITA-C7",
+      "name": "Modena Officina FC",
+      "country": "Italien",
+      "type": "Pokalverein",
+      "relative": 55
+    },
+    {
+      "rank": 174,
+      "clubId": "ESP-C2",
+      "name": "Gijón Costa FC",
+      "country": "Spanien",
+      "type": "Pokalverein",
+      "relative": 54.7
+    },
+    {
+      "rank": 175,
+      "clubId": "GER-C1",
+      "name": "FC Jena Süd",
+      "country": "Deutschland",
+      "type": "Pokalverein",
+      "relative": 54.5
+    },
+    {
+      "rank": 176,
+      "clubId": "GER-C2",
+      "name": "SC Lübeck Nord",
+      "country": "Deutschland",
+      "type": "Pokalverein",
+      "relative": 54.2
+    },
+    {
+      "rank": 177,
+      "clubId": "POR-C7",
+      "name": "Portimão Arade FC",
+      "country": "Portugal",
+      "type": "Pokalverein",
+      "relative": 53.9
+    },
+    {
+      "rank": 178,
+      "clubId": "POR-C6",
+      "name": "Viseu Fontelo FC",
+      "country": "Portugal",
+      "type": "Pokalverein",
+      "relative": 53.7
+    },
+    {
+      "rank": 179,
+      "clubId": "POR-C4",
+      "name": "Aveiro Ria FC",
+      "country": "Portugal",
+      "type": "Pokalverein",
+      "relative": 53.4
+    },
+    {
+      "rank": 180,
+      "clubId": "POR-C2",
+      "name": "Faro Sul FC",
+      "country": "Portugal",
+      "type": "Pokalverein",
+      "relative": 53.1
+    },
+    {
+      "rank": 181,
+      "clubId": "POR-C3",
+      "name": "Coimbra Mondego FC",
+      "country": "Portugal",
+      "type": "Pokalverein",
+      "relative": 52.9
+    },
+    {
+      "rank": 182,
+      "clubId": "POR-C1",
+      "name": "Évora Central FC",
+      "country": "Portugal",
+      "type": "Pokalverein",
+      "relative": 52.6
+    },
+    {
+      "rank": 183,
+      "clubId": "BEL-C5",
+      "name": "Kortrijk Leieboog FC",
+      "country": "Belgien",
+      "type": "Pokalverein",
+      "relative": 52.4
+    },
+    {
+      "rank": 184,
+      "clubId": "AUT-C7",
+      "name": "SC Leoben Mursteg",
+      "country": "Österreich",
+      "type": "Pokalverein",
+      "relative": 52.1
+    },
+    {
+      "rank": 185,
+      "clubId": "TUR-C5",
+      "name": "Adana Seyhanpark SK",
+      "country": "Türkei",
+      "type": "Pokalverein",
+      "relative": 51.8
+    },
+    {
+      "rank": 186,
+      "clubId": "AUT-C2",
+      "name": "SC Bregenz Uferbogen",
+      "country": "Österreich",
+      "type": "Pokalverein",
+      "relative": 51.6
+    },
+    {
+      "rank": 187,
+      "clubId": "SUI-C5",
+      "name": "Neuchâtel Seyon FC",
+      "country": "Schweiz",
+      "type": "Pokalverein",
+      "relative": 51.3
+    },
+    {
+      "rank": 188,
+      "clubId": "SUI-C4",
+      "name": "Sion Rhônebogen FC",
+      "country": "Schweiz",
+      "type": "Pokalverein",
+      "relative": 51
+    },
+    {
+      "rank": 189,
+      "clubId": "SUI-C1",
+      "name": "Winterthur Eulachbogen FC",
+      "country": "Schweiz",
+      "type": "Pokalverein",
+      "relative": 50.8
+    },
+    {
+      "rank": 190,
+      "clubId": "GRE-C5",
+      "name": "Rhodos Asteri FC",
+      "country": "Griechenland",
+      "type": "Pokalverein",
+      "relative": 50.5
+    },
+    {
+      "rank": 191,
+      "clubId": "GRE-C2",
+      "name": "Ioannina Pamvotis FC",
+      "country": "Griechenland",
+      "type": "Pokalverein",
+      "relative": 50.3
+    },
+    {
+      "rank": 192,
+      "clubId": "GRE-C8",
+      "name": "Tripoli Karyes FC",
+      "country": "Griechenland",
+      "type": "Pokalverein",
+      "relative": 50
+    }
+  ]
+}

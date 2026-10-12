@@ -124,7 +124,7 @@ function v176CloseRetirements(career){
  const world=career.world,ids=new Set(world.retirementDecisions.players.filter(p=>p.retire).map(p=>p.pid));
  for(const club of world.clubs){
   const retired=club.roster.filter(p=>ids.has(p.pid));let replacements,names;
-  if(club.simulationOnly&&retired.length){replacements=v61GenerateRoster(v161Catalog.find(c=>c.id===club.id),`${world.seed}:S${world.season+1}:replacement`);names=new Set([...club.roster,...club.retiredPlayers].map(p=>p.name));}
+  if(club.simulationOnly&&retired.length){replacements=v61GenerateRoster(v161Catalog.find(c=>c.id===club.id),`${world.seed}:S${world.season+1}:replacement`,null,world.playerFoundation?.expansionGeneration?.version>=2?v177RosterLayout:undefined);names=new Set([...club.roster,...club.retiredPlayers].map(p=>p.name));}
   for(const old of retired){const slot=club.roster.indexOf(old);v176Retire(career,old,club);
    if(!club.simulationOnly){club.roster.splice(slot,1);continue;}
    const p=replacements[slot];p.age=18+Math.floor(v61Random(`${p.pid}:age`)()*6);p.n=old.n;

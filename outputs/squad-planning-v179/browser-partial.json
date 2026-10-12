@@ -1,0 +1,214 @@
+{
+  "results": [
+    {
+      "target": "source",
+      "width": 320,
+      "lang": "de",
+      "theme": "light",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "source",
+      "width": 320,
+      "lang": "en",
+      "theme": "light",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "source",
+      "width": 390,
+      "lang": "de",
+      "theme": "dark",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "source",
+      "width": 390,
+      "lang": "en",
+      "theme": "dark",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "source",
+      "width": 1280,
+      "lang": "de",
+      "theme": "light",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "source",
+      "width": 1280,
+      "lang": "en",
+      "theme": "light",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "source",
+      "reload": true,
+      "renewal": true,
+      "attention": true
+    },
+    {
+      "target": "build",
+      "width": 320,
+      "lang": "de",
+      "theme": "light",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "build",
+      "width": 320,
+      "lang": "en",
+      "theme": "light",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "build",
+      "width": 390,
+      "lang": "de",
+      "theme": "dark",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "build",
+      "width": 390,
+      "lang": "en",
+      "theme": "dark",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "build",
+      "width": 1280,
+      "lang": "de",
+      "theme": "light",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "build",
+      "width": 1280,
+      "lang": "en",
+      "theme": "light",
+      "roles": true,
+      "status": true,
+      "noOverflow": true,
+      "readOnly": true
+    },
+    {
+      "target": "build",
+      "reload": true,
+      "renewal": true,
+      "attention": true
+    }
+  ],
+  "digests": [
+    {
+      "target": "source",
+      "digest": {
+        "score": [
+          0,
+          0
+        ],
+        "phase": "finished",
+        "finished": true,
+        "valid": true,
+        "booked": true,
+        "balanceOwn": 4026,
+        "checkpoints": 1,
+        "hashes": {
+          "score": "13ca43dd:5",
+          "events": "90e14fe2:275",
+          "stats": "42485c5c:8707",
+          "fresh": "7851b396:930",
+          "minutes": "2dc8a3fe:711",
+          "report": "057759dc:32629",
+          "ratings": "7bb1d52d:630",
+          "ballAccounting": "ec8535cd:20855",
+          "geometry": "708a8f7b:184",
+          "people": "af2162c4:7888",
+          "finances": "736493cf:47476",
+          "development": "e42632e6:3638151",
+          "fixtures": "babf2c09:445108",
+          "world": "8bf044f2:9418304"
+        },
+        "all": "65541a03"
+      }
+    },
+    {
+      "target": "build",
+      "digest": {
+        "score": [
+          0,
+          0
+        ],
+        "phase": "finished",
+        "finished": true,
+        "valid": true,
+        "booked": true,
+        "balanceOwn": 4026,
+        "checkpoints": 1,
+        "hashes": {
+          "score": "13ca43dd:5",
+          "events": "90e14fe2:275",
+          "stats": "42485c5c:8707",
+          "fresh": "7851b396:930",
+          "minutes": "2dc8a3fe:711",
+          "report": "057759dc:32629",
+          "ratings": "7bb1d52d:630",
+          "ballAccounting": "ec8535cd:20855",
+          "geometry": "708a8f7b:184",
+          "people": "af2162c4:7888",
+          "finances": "736493cf:47476",
+          "development": "e42632e6:3638151",
+          "fixtures": "babf2c09:445108",
+          "world": "8bf044f2:9418304"
+        },
+        "all": "65541a03"
+      }
+    }
+  ],
+  "sourceHashes": {
+    "world-squad-planning-v179.js": "7aae8857ec76dfe7df7dc09db1f83cfc2d1fd318c7f2c4b32f3e433339ba88bd",
+    "world-squad-ui-v179.js": "7f8f824011ad366b20476d18ae6e3baee092365dcc3bca1b48a3df32809befca",
+    "world-match-v64.js": "e1afc86e3e8164e06876f812e74c5182ab632ec37242ea2e197623656bf0b1f0",
+    "world-market-ui-v66.js": "d5b8ddbfc063f9d4e1bb7b7453f0a1621d50b7ed08a81460c8c1f0e05d10e76c",
+    "world-transfer-list-ui-v72.js": "5117940bd9a3bed221b1bf8f8a887253067b271590a9c15bac8f64812ebf56fe",
+    "world-economy-v66.css": "807d76316182e93c27226b852d2ea215f0c6b933d948c162c0b6dcba0e75ed6a",
+    "i18n-v75.js": "48a6c7cdb019519b36e9c0aed06b9c3ed231e98608abd7b7e419bc109e687c8c",
+    "ui-flutlicht/adapter.js": "9c65627c32b4a79b6d0da4c695d668250ead78d2dd0b07263c403ee973d8938a",
+    "ui-flutlicht/views/squad.js": "c7e26fcd355efdea33b34e10041370c7b9b6f0cc0b1bd777890aa5f6abd431f2",
+    "ui-flutlicht/views/market.js": "7c0e646d06cacca31f2cf14510d0c3f5954e39a7a850305396cb7f906c0d6f2b"
+  }
+}

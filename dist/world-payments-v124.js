@@ -29,7 +29,7 @@ v64ArchiveSeason=function(career){
  for(const club of career.world.clubs.filter(item=>item.simulationOnly)){
   const retired=club.roster.filter(player=>player.age>=player.retirementAge);
   if(!retired.length)continue;
-  const generated=v61GenerateRoster((career.world.rules?.variant==='expansion12'?v161Catalog:v61Catalog).find(item=>item.id===club.id),`${career.world.seed}:S${career.world.season+1}:replacement`);
+  const generated=v61GenerateRoster((career.world.rules?.variant==='expansion12'?v161Catalog:v61Catalog).find(item=>item.id===club.id),`${career.world.seed}:S${career.world.season+1}:replacement`,null,career.world.playerFoundation?.expansionGeneration?.version>=2?v177RosterLayout:undefined);
   const names=new Set([...club.roster,...club.retiredPlayers].map(player=>player.name));
   for(const old of retired){
    old.retiredSeason=career.world.season;club.retiredPlayers.push(old);

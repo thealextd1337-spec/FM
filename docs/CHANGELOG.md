@@ -1,5 +1,11 @@
 # Änderungen
 
+## Noch nicht veröffentlicht
+
+- Release 129 ergänzt neue Startstärken mit strikter Ligaspitze, kleiner gespeicherter Schwankung, Alters-/Positionsmix, Elite-Grenzen und mindestens zehn Prozent Pokalabstand. Sportliche Wechselpräferenz berücksichtigt erreichte Qualität.
+- Kaderrollen Stammspieler, Rotation und Ersatz folgen der bestehenden Vertragszusage. Spielzeitstatus, anteilige Ziele, Positionsreserve und Handlungsbedarf sind sichtbar; KI wählt bei ähnlicher Eignung zusagebewusst. Bestehende Verträge und vorbereitete Spiele bleiben erhalten.
+- Neue kompakte Partien verwenden die bereits geprüfte Torverwertung und einen kleinen Heimfaktor; alte Fortsetzungen behalten ihren Ablauf. Die veröffentlichte UI aus Release 128 bleibt erhalten. [Releaseumfang und Abnahme](release-129.md).
+
 ## 12. Oktober 2026 – Release 127
 
 - Jugendförderung mit 0/500/1.000/1.500 Credits, kumulativem sportlichem/finanziellem Jugendstatus, bekannten Bewertungsfarben und Trendpfeil. Kontinuierliche neue Jahrgangsqualität, wechselnde Positionen, konsistenter Länderrahmen und normalisierte hohe Talentgewichte. Neue Karrieren ausschließlich.

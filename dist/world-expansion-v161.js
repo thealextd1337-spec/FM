@@ -32,17 +32,103 @@ v66SponsorLogoSVG=function(countryId,sponsor,compact=false){
 };
 // END AUTHORED EXPANSION SPONSORS
 function v161Rules(){return{version:1,variant:'expansion12',stage:'foundation',countries:v161Countries.map(c=>c.id),clubsPerLeague:8,cupOnlyClubs:8,leagueRounds:14,nationalCup:{participants:16,firstRound:'R16'},international:JSON.parse(JSON.stringify(v161Opening.rules)),calendar:null};}
-function v161GenerationPolicy(){const tierOffsets={A:0,B:-.25,C:-.5,D:-.75};return{version:1,tierOffsets,clubOffsets:Object.fromEntries(v161Catalog.map(c=>[c.id,tierOffsets[v161Countries.find(n=>n.id===c.countryId).tier]+(c.profile[5]-3)*.2]))};}
+function v161GenerationPolicy(seed,version=3){
+ const tierOffsets={A:0,B:-.25,C:-.5,D:-.75},legacy={version:1,tierOffsets,clubOffsets:Object.fromEntries(v161Catalog.map(c=>[c.id,tierOffsets[v161Countries.find(n=>n.id===c.countryId).tier]+(c.profile[5]-3)*.2]))};
+ if(seed===undefined)return legacy;
+ const startClubs={};
+ for(const country of v161Countries){
+  const order=v161Opening.nationalPreviousSeason[country.id].leagueOrder;
+  const leaders=v161Catalog.filter(c=>c.countryId===country.id&&c.playable).sort((a,b)=>b.profile[5]-a.profile[5]||order.indexOf(a.id)-order.indexOf(b.id)).slice(0,2).map(c=>c.id);
+  for(const entry of v161Catalog.filter(c=>c.countryId===country.id)){
+   const peak=leaders.includes(entry.id),r=v61Random(`${seed}:${entry.id}:start-roster-v177`),variation=(r()-.5)*.05;
+   const base=entry.playable?(peak?{A:14.8,B:13.1,C:12.1,D:11.7}[country.tier]+(entry.profile[5]-4)*.05:[6.8,8.2,9.1,10.4,11.5,12][entry.profile[5]]+{A:.1,B:.05,C:0,D:-.05}[country.tier]):[5.9,6.8,7.7,8.7,9.6,10.2][entry.profile[5]]+tierOffsets[country.tier];
+   startClubs[entry.id]={peak,base,target:base*(1+variation),variation,eliteLimit:entry.playable&&peak&&country.tier==='A'?3:2,style:['passing','counter','physical'][Math.floor(r()*3)]};
+  }
+ }
+ if(version===3){
+  // Bound every cup player's initial position quality below even the weakest
+  // possible league squad. The spread allowance preserves core/bench depth.
+  const league=v161Catalog.filter(c=>c.playable),cup=v161Catalog.filter(c=>!c.playable),ceiling=.9*Math.min(...league.map(c=>startClubs[c.id].base))*.975;
+  const factor=(ceiling-1.2)/(Math.max(...cup.map(c=>startClubs[c.id].base))*1.025);
+  for(const entry of cup){const p=startClubs[entry.id];p.base*=factor;p.target=p.base*(1+p.variation);p.eliteLimit=0;p.playerCeiling=ceiling;}
+ }
+ return{...legacy,version,startClubs};
+}
+const v177RosterLayout=['gk','gk','def','def','def','mid','mid','mid','att','att','att'];
+function v177Mean(values){return values.length?values.reduce((a,b)=>a+b,0)/values.length:0;}
+function v177Quality(player){return Math.max(...player.playerModel.playablePositions.map(pos=>D6PlayerGeneration.positionQuality(player,pos)));}
+function v177StartingQuality(club,formation='2–2–1'){
+ const roles=v64RoleList(formation),size=1<<roles.length;let dp=Array(size).fill(-Infinity);dp[0]=0;
+ for(const player of club.roster){const next=[...dp];for(let mask=0;mask<size;mask++)if(Number.isFinite(dp[mask]))for(let slot=0;slot<roles.length;slot++)if(!(mask&(1<<slot))&&player.playerModel.playablePositions.includes(roles[slot]))next[mask|(1<<slot)]=Math.max(next[mask|(1<<slot)],dp[mask]+D6PlayerGeneration.positionQuality(player,roles[slot]));dp=next;}
+ return dp[size-1]/roles.length;
+}
+function v177CheckInitialRosters(career){
+ const plans=career.world.playerFoundation.expansionGeneration.startClubs,clubs=career.world.clubs;
+ for(const club of clubs){const p=plans[club.id];if(club.roster.length!==11||Math.abs(v177Mean(club.roster.map(v177Quality))-p.target)>1e-8||club.roster.filter(x=>D6PlayerGeneration.eliteQuality(x,x.playerModel.playablePositions)).length>p.eliteLimit)throw Error('Startkadergrenzen verletzt.');}
+ const leaders=v161Countries.flatMap(country=>clubs.filter(c=>c.countryId===country.id&&!c.simulationOnly).sort((a,b)=>v177Mean(b.roster.map(v177Quality))-v177Mean(a.roster.map(v177Quality))).slice(0,2));
+ const large=leaders.filter(c=>c.expansionTier==='A'),small=leaders.filter(c=>['AUT','SUI','TUR'].includes(c.countryId));
+ const best=club=>Math.max(...v63Formations.map(f=>v177StartingQuality(club,f)));
+ const strengths=new Map([...large,...small].map(c=>[c.id,{squad:v177Mean(c.roster.map(v177Quality)),starting:best(c)}]));
+ for(const a of large)for(const b of small)if(strengths.get(a.id).squad<=strengths.get(b.id).squad||strengths.get(a.id).starting<=strengths.get(b.id).starting)throw Error('Die Startabstufung der Ligaspitzen ist verletzt.');
+ if(career.world.playerFoundation.expansionGeneration.version===3){
+  const league=clubs.filter(c=>!c.simulationOnly),squadLimit=.9*Math.min(...league.map(c=>v177Mean(c.roster.map(v177Quality)))),startingLimit=.9*Math.min(...league.map(best));
+  for(const club of clubs.filter(c=>c.simulationOnly))if(v177Mean(club.roster.map(v177Quality))>squadLimit+1e-8||best(club)>startingLimit+1e-8)throw Error('Pokalvereine müssen beim Start mindestens zehn Prozent schwächer sein.');
+ }
+}
+function v177GenerateStartRoster(entry,seed,foundation){
+ const plan=foundation.expansionGeneration.startClubs[entry.id],r=v61Random(`${seed}:${entry.id}:roster-slots-v177`),core=[0,2,3,5,6,8],ticket=r();
+ const ceiling=plan.playerCeiling??15.85;
+ const eliteCount=plan.eliteLimit===0?0:!entry.playable?(ticket<.02?1:0):plan.eliteLimit===3?(ticket<.2?0:ticket<.65?1:ticket<.93?2:3):(ticket<.84?0:ticket<.99?1:2);
+ const eliteSlots=v62Shuffle(core,`${seed}:${entry.id}:elite-slots-v177`).slice(0,eliteCount),qualities=Array(11),raw=Array(11).fill(0),ageSlots=[1,4,7],veterans=[9,10];
+ for(let i=0;i<11;i++)raw[i]=(core.includes(i)?(plan.eliteLimit===3?.7:.9):(plan.eliteLimit===3?-.84:-1.08))+(r()-.5)*.3;
+ for(const i of eliteSlots)qualities[i]=16.2+r()*.7;
+ const ordinary=raw.map((_,i)=>i).filter(i=>!eliteSlots.includes(i)),center=v177Mean(ordinary.map(i=>raw[i])),mean=(11*plan.target-eliteSlots.reduce((s,i)=>s+qualities[i],0))/ordinary.length;
+ for(const i of ordinary)qualities[i]=Math.max(1,Math.min(ceiling,mean+raw[i]-center));
+ // Bounded redistribution preserves the complete squad budget, including elites.
+ for(let pass=0;pass<12;pass++){
+  const rest=11*plan.target-qualities.reduce((a,b)=>a+b,0);if(Math.abs(rest)<1e-10)break;
+  const available=ordinary.filter(i=>rest>0?qualities[i]<ceiling-1e-10:qualities[i]>1+1e-10);
+  if(!available.length)throw Error('Startkaderbudget ist nicht erfüllbar.');
+  for(const i of available)qualities[i]=Math.max(1,Math.min(ceiling,qualities[i]+rest/available.length));
+ }
+ const used=new Set(),roster=[];
+ for(const [i,line]of v177RosterLayout.entries()){
+  const pid=`${seed}:${entry.id}:${i+1}`,nation=v79ProfessionalNation(entry.countryId,pid),age=ageSlots.includes(i)?18+Math.floor(r()*5):veterans.includes(i)?30+Math.floor(r()*3):24+Math.floor(r()*6);
+  const p={pid,n:i+1,name:v79PlayerName(nation,pid,used),nation,age,line,assignedLine:line,keeper:line==='gk',type:v61PositionNames[line],form:0,fresh:100,history:[],seasons:[],honours:[]};used.add(p.name);
+  v153Generate(p,{...foundation,startRosterPlayer:{quality:qualities[i],style:plan.style}},entry.playable?'start':'cup',entry.profile[5],entry.profile[2],entry.id);
+  p.appearance=v61GenerateAppearance(pid,nation,age,roster);roster.push(p);
+ }
+ if(Math.abs(v177Mean(roster.map(v177Quality))-plan.target)>1e-8||roster.filter(p=>D6PlayerGeneration.eliteQuality(p,p.playerModel.playablePositions)).length>plan.eliteLimit)throw Error('Startkadergrenzen verletzt.');
+ return roster;
+}
+function v177StartParameters(foundation){
+ const {quality,style}=foundation.startRosterPlayer,params=foundation.parameters,boost={passing:{tec:.6,pas:1.2,dec:.5},counter:{spd:1.5,ant:.7,fin:.5},physical:{str:1.3,tak:.8,air:.6,pos:.5}}[style];
+ const fixed=rows=>rows.map(row=>({...row,byQuality:Object.fromEntries(Object.keys(row.byQuality).map(id=>[id,[{distribution:'uniform',min:quality,max:quality,weight:1}]]))}));
+ return{...params,profilesByPosition:Object.fromEntries(Object.entries(params.profilesByPosition).map(([pos,profiles])=>[pos,profiles.map(profile=>({...profile,offsets:Object.fromEntries(Object.entries(profile.offsets).map(([key,value])=>[key,value+(boost[key]||0)]))}))])),qualityByKind:{...params.qualityByKind,start:fixed(params.qualityByKind.start),cup:fixed(params.qualityByKind.cup)}};
+}
+function v177TransferSport(career,bid){
+ if(!(career.world.playerFoundation?.expansionGeneration?.version>=2))return{appeal:0,salaryFactor:0};
+ const player=v66Player(career,bid.pid),buyer=v66Club(career,bid.buyerId),seller=bid.sellerId&&v66Club(career,bid.sellerId);
+ if(!player?.playerModel||!buyer)return{appeal:0,salaryFactor:0};
+ const ambition=Math.max(0,Math.min(1,(v177Quality(player)-11)/5));
+ const attraction=club=>club?(.65*({A:1,B:.65,C:.35,D:.15}[club.expansionTier]||0)+.35*Math.max(0,Math.min(1,(v177Mean(club.roster.map(v177Quality))-10)/5))):0;
+ const destination=attraction(buyer),origin=attraction(seller);
+ return{appeal:v66Salary(player)*.18*ambition*destination,salaryFactor:ambition*(.08*(origin-destination)-.035*destination)};
+}
+const v177CoachInitBase=v63Init;
+v63Init=function(career){const result=v177CoachInitBase(career);if(career.world.playerFoundation?.expansionGeneration?.version>=2)for(const club of career.world.clubs){const coach=career.world.coaches.find(c=>c.id===club.coachId),style=career.world.playerFoundation.expansionGeneration.startClubs[club.id].style;if(coach)Object.assign(coach.style,{passing:{passing:'Kurz',counter:'Direkt',physical:'Variabel'}[style],pressing:style==='physical'?'Früh':style==='counter'?'Abwartend':'Ausgewogen',defense:style==='counter'?'Tief':'Neutral'});}return result;};
 function v61Rules(career){return career?.world?.rules||{version:1,variant:'legacy6',countries:v61Countries.map(([id])=>id),clubsPerLeague:6,cupOnlyClubs:2,leagueRounds:10};}
 function v161ValidateRules(career){
  const r=career?.world?.rules;
- return r?.version===1&&r.variant==='expansion12'&&r.stage==='foundation'&&career.phase==='world-foundation'&&v161SameData(r,v161Rules())&&v161SameData(career.world.opening,v161Opening)&&career.world.season===1&&career.world.calendarCursor===0&&Array.isArray(career.world.competitions)&&career.world.competitions.length===0&&career.world.playerFoundation?.parameterId==='native-player-v160-1'&&v161SameData(career.world.playerFoundation.expansionGeneration,v161GenerationPolicy());
+ const generation=career.world.playerFoundation?.expansionGeneration;
+ return r?.version===1&&r.variant==='expansion12'&&r.stage==='foundation'&&career.phase==='world-foundation'&&v161SameData(r,v161Rules())&&v161SameData(career.world.opening,v161Opening)&&career.world.season===1&&career.world.calendarCursor===0&&Array.isArray(career.world.competitions)&&career.world.competitions.length===0&&career.world.playerFoundation?.parameterId==='native-player-v160-1'&&[1,2,3].includes(generation?.version)&&v161SameData(generation,v161GenerationPolicy(generation.version>=2?career.world.seed:undefined,generation.version));
 }
 function v161SameData(a,b){if(a===b)return true;if(!a||!b||typeof a!=='object'||typeof b!=='object'||Array.isArray(a)!==Array.isArray(b))return false;const keys=Object.keys(a);return keys.length===Object.keys(b).length&&keys.every(k=>Object.hasOwn(b,k)&&v161SameData(a[k],b[k]));}
 function v161ValidateClubs(career){
  return v161Catalog.every(entry=>{const club=career.world.clubs.find(c=>c.id===entry.id);return club&&club.countryId===entry.countryId&&club.leagueId===(entry.playable?`${entry.countryId}-LEAGUE`:null)&&club.cupId===`${entry.countryId}-CUP`&&club.simulationOnly===!entry.playable&&club.expansionTier===v161Countries.find(c=>c.id===entry.countryId).tier&&club.roster.every(p=>p.playerModel?.parameterId==='native-player-v160-1'&&D6PlayerGeneration.SKILL_KEYS.every(k=>Number.isFinite(p[k])&&p[k]>=1&&p[k]<=20))&&(career.world.rules.stage==='active'||club.roster.some(p=>p.line==='gk')&&['def','mid','att'].every(line=>club.roster.some(p=>p.line===line)))&&club.assetIdentity?.crestId===club.id&&club.assetIdentity?.stadium?.clubId===club.id;});
 }
 function v161GenerationParameters(foundation,kind,clubId){
+ if(foundation.expansionGeneration?.version>=2&&foundation.startRosterPlayer&&['start','cup'].includes(kind))return v177StartParameters(foundation);
  const offset=kind==='youth'?0:foundation.expansionGeneration?.clubOffsets?.[clubId]||0;
  if(!offset)return foundation.parameters;
  const rows=foundation.parameters.qualityByKind[kind].map(row=>({...row,byQuality:Object.fromEntries(Object.entries(row.byQuality).map(([quality,bands])=>[quality,bands.map(band=>({...band,min:Math.max(1,band.min+offset),max:Math.min(20,band.max+offset)}))]))}));

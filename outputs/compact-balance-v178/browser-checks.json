@@ -1,0 +1,176 @@
+{
+  "passed": true,
+  "engine": "Full physical native 2D match, same expansion seed in source and actual single-file build",
+  "source": {
+    "balance": {
+      "goalBase": 0.32,
+      "goalCeiling": 0.48,
+      "homeShotFactor": 1.03,
+      "version": 178
+    },
+    "digest": {
+      "all": "4d7552e2",
+      "balanceOwn": 4026,
+      "booked": true,
+      "checkpoints": 0,
+      "finished": true,
+      "hashes": {
+        "ballAccounting": "18f9e95b:21631",
+        "development": "776ccd0a:3638104",
+        "events": "8164e0e4:532",
+        "finances": "736493cf:47476",
+        "fixtures": "363dcefe:446159",
+        "fresh": "ef407c60:914",
+        "geometry": "708a8f7b:184",
+        "minutes": "896a86ba:710",
+        "people": "8bedad77:7889",
+        "ratings": "7a601f13:646",
+        "report": "8027010b:33687",
+        "score": "3d90604d:5",
+        "stats": "2ea93cdb:8709",
+        "world": "a9c24631:9547106"
+      },
+      "phase": "finished",
+      "score": [
+        1,
+        1
+      ],
+      "valid": true
+    },
+    "end": {
+      "finished": true,
+      "halftime": true,
+      "minute": 101,
+      "phase": "finished",
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "domLabels": 0,
+        "keeperContactMetres": [],
+        "keeperContactSamples": 0,
+        "labels": 0,
+        "maxPositionError": 0,
+        "netMaxZ": 0,
+        "pictures": 0,
+        "playersOutside": 0,
+        "visibleBallOutside": 0,
+        "visibleLabels": 0
+      },
+      "ticks": 4619,
+      "unityError": null
+    },
+    "revision": 178,
+    "setup": {
+      "config": null,
+      "expectedPerTeam": 6,
+      "geometry": {
+        "ballRadius": 0.1764,
+        "goalHeight": 3.2352941176470593,
+        "goalWidth": 9.705882352941178,
+        "length": 68,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "version": 1,
+        "width": 44
+      },
+      "keepers": [
+        1,
+        1
+      ],
+      "people": 12,
+      "perTeam": [
+        6,
+        6
+      ],
+      "unity": false
+    }
+  },
+  "build": {
+    "balance": {
+      "goalBase": 0.32,
+      "goalCeiling": 0.48,
+      "homeShotFactor": 1.03,
+      "version": 178
+    },
+    "digest": {
+      "all": "4d7552e2",
+      "balanceOwn": 4026,
+      "booked": true,
+      "checkpoints": 0,
+      "finished": true,
+      "hashes": {
+        "ballAccounting": "18f9e95b:21631",
+        "development": "776ccd0a:3638104",
+        "events": "8164e0e4:532",
+        "finances": "736493cf:47476",
+        "fixtures": "363dcefe:446159",
+        "fresh": "ef407c60:914",
+        "geometry": "708a8f7b:184",
+        "minutes": "896a86ba:710",
+        "people": "8bedad77:7889",
+        "ratings": "7a601f13:646",
+        "report": "8027010b:33687",
+        "score": "3d90604d:5",
+        "stats": "2ea93cdb:8709",
+        "world": "a9c24631:9547106"
+      },
+      "phase": "finished",
+      "score": [
+        1,
+        1
+      ],
+      "valid": true
+    },
+    "end": {
+      "finished": true,
+      "halftime": true,
+      "minute": 101,
+      "phase": "finished",
+      "score": [
+        1,
+        1
+      ],
+      "stats": {
+        "domLabels": 0,
+        "keeperContactMetres": [],
+        "keeperContactSamples": 0,
+        "labels": 0,
+        "maxPositionError": 0,
+        "netMaxZ": 0,
+        "pictures": 0,
+        "playersOutside": 0,
+        "visibleBallOutside": 0,
+        "visibleLabels": 0
+      },
+      "ticks": 4619,
+      "unityError": null
+    },
+    "revision": 178,
+    "setup": {
+      "config": null,
+      "expectedPerTeam": 6,
+      "geometry": {
+        "ballRadius": 0.1764,
+        "goalHeight": 3.2352941176470593,
+        "goalWidth": 9.705882352941178,
+        "length": 68,
+        "penaltyDepth": 10.5953488372093,
+        "penaltyWidth": 24.264705882352942,
+        "version": 1,
+        "width": 44
+      },
+      "keepers": [
+        1,
+        1
+      ],
+      "people": 12,
+      "perTeam": [
+        6,
+        6
+      ],
+      "unity": false
+    }
+  }
+}

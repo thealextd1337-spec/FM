@@ -17,6 +17,12 @@ function v153Generate(player,foundation,kind,quality,youthQuality,clubId=null){
  if(player.history?.length||player.seasons?.length||player.playerModel)throw Error('Spielergrundlagen dürfen nur bei Neuerzeugung entstehen.');
  const context={id:player.pid,age:kind==='youth'?17:player.age,mainPosition:player.line,kind,clubQuality:foundation.qualityMapping[quality],youthQuality:foundation.qualityMapping[youthQuality]||'normal'};
  const created=D6PlayerGeneration.generatePlayer(context,typeof v161GenerationParameters==='function'?v161GenerationParameters(foundation,kind,clubId):foundation.parameters,v61Random(`${player.pid}:player-foundation-2`));
+ if(foundation.expansionGeneration?.version>=2&&foundation.startRosterPlayer){
+  // The main position owns the initial squad quality budget. Keep useful side
+  // positions whose quality fits it; role/routine generation follows below.
+  created.playablePositions=created.playablePositions.filter(pos=>pos===player.line||D6PlayerGeneration.positionQuality(created.skills,pos)<=foundation.startRosterPlayer.quality+1e-10);
+  created.recommendedRoles=created.recommendedRoles.filter(role=>created.playablePositions.includes(role.position));
+ }
  Object.assign(player,created.skills,{age:created.age,heightCm:created.heightCm,foot:{right:'Rechts',left:'Links',both:'Beidfüßig'}[created.preferredFoot]});
  player.playerModel={version:2,parameterId:foundation.parameterId,playablePositions:created.playablePositions,caps:created.caps,talent:created.talent,preferredFoot:created.preferredFoot,recommendedRoles:created.recommendedRoles,development:D6Development.createLedger(player.pid,foundation.worldId,foundation.season||1),aging:D6Aging.createLedger(player.pid,foundation.worldId)};
  if(typeof v154GenerateRoles==='function')v154GenerateRoles(player,created,foundation);

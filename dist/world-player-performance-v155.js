@@ -1,8 +1,13 @@
 'use strict';
 // Both match adapters emit resolved actions. Intent plans never earn credit.
+const v178CompactBalance=Object.freeze({version:178,goalBase:.32,goalCeiling:.48,homeShotFactor:1.03});
+function v178CompactShotChance(fixture,state,side){
+ const balance=state.playerPerformance?.shotBalanceRevision===178?state.playerPerformance.compactBalance:null;
+ return(balance||state.playerPerformance?.shotBalanceRevision===119 ? .09 : .22)*(balance&&side===0&&!fixture.neutral?balance.homeShotFactor:1);
+}
 function v155Initialize(career,state){
- if(!v154Active(career))return;
- state.playerPerformance={version:155,shotBalanceRevision:119,parameters:career.world.playerFoundation.ratings,events:[],phases:{},sequence:0};
+ if(!v154Active(career)||state.playerPerformance)return;
+ state.playerPerformance={version:155,shotBalanceRevision:178,compactBalance:{...v178CompactBalance},parameters:career.world.playerFoundation.ratings,events:[],phases:{},sequence:0};
  v155SyncPhases(state);
 }
 function v155SyncPhases(state){
@@ -98,14 +103,15 @@ function v155CompactActions(career,fixture,state,side,random){
  if(state.playerLoad&&v158CompactContact(career,fixture,state,side,scorer,random))return false;
  // Compact actions are resolved abstract actions, not reconstructed 3D runs.
  // No credit for support/cover unless that action was actually simulated.
- const shotChance=state.playerPerformance?.shotBalanceRevision===119 ? .09 : .22;
+ const balance=state.playerPerformance?.shotBalanceRevision===178?state.playerPerformance.compactBalance:null;
+ const shotChance=v178CompactShotChance(fixture,state,side);
  if(random()>shotChance)return false;
  state.stats[scorer].shots++;
  const goalPoint={x:(state.geometry?.width||44)/2,y:side?(state.geometry?.length||68):0},shotDistance=Math.hypot(to.x-goalPoint.x,to.y-goalPoint.y),shotDifficulty=clamp(shotDistance/35+receiverPressure*.3+Math.abs(to.x-goalPoint.x)/22*.15,0,1);
  const keeper=rivals.find(pid=>state.roles[pid]==='gk'),k=v64Player(career,fixture,1-side,keeper),onTarget=random()<clamp(.48+(finishing-10)*.013-receiverPressure*.13,.25,.8);
  // New candidate shots specify their placement before the keeper outcome.
  if(state.playerLoad){const height=.29+random()*2.3,lateral=(random()-.5)*5.5;v158CompactKeeper(career,fixture,state,1-side,keeper,`${fixture.id}:compact-shot:${scorer}:${state.stats[scorer].shots}`,onTarget,height,Math.abs(lateral));}
- const keeping=state.playerLoad?v158Ability(k,'gk',state,false):k.gk,goal=onTarget&&random()<clamp(.27+(finishing-keeping)*.012-shotDifficulty*.08,.08,.48);
+ const keeping=state.playerLoad?v158Ability(k,'gk',state,false):k.gk,goal=onTarget&&random()<clamp((balance?balance.goalBase:.27)+(finishing-keeping)*.012-shotDifficulty*.08,.08,balance?balance.goalCeiling:.48);
  v155Event(state,scorer,'shot',onTarget,{difficulty:shotDifficulty,usefulness:onTarget?1:.25,pressure:receiverPressure});
  // The abstract result has no observed shot placement, pace or keeper reach.
  // A successful save is known; its difficulty is deliberately not invented.

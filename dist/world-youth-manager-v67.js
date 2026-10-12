@@ -196,7 +196,7 @@ function v67StartSeason(career){
   v67FundYouth(career,club,amount);
  }
  for(const club of career.world.clubs){
-  if(club.simulationOnly||club.id===career.manager.managedClubId||club.roster.length>=12)continue;
+  if(club.simulationOnly||club.id===career.manager.managedClubId||club.roster.length>=12||season===1&&career.world.playerFoundation?.expansionGeneration?.version>=2)continue;
   v67AiFillOutfieldFromYouth(career,club);
   const candidates=[...club.youthPool].sort((a,b)=>v67AiTalentScore(club,b)-v67AiTalentScore(club,a)||a.pid.localeCompare(b.pid));
   for(const player of candidates){if(club.roster.length>=12)break;if(player.keeper&&club.roster.filter(item=>item.keeper).length>=3||v67AiTalentScore(club,player)<0)continue;try{v67Promote(career,club.id,player.pid)}catch{continue}}

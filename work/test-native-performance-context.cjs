@@ -9,13 +9,13 @@ const source = Object.fromEntries(files.map(file => [file, fs.readFileSync(file,
 const hashes = Object.fromEntries(files.map(file => [file, crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 const physical = source[files[2]], pitch = source[files[3]], game = source[files[4]];
 function slice(text, start, end) { const a = text.indexOf(start), b = text.indexOf(end, a); assert(a >= 0 && b > a, start); return text.slice(a, b); }
-const geometry = pitch.match(/^const v55Field=.*$/m)[0] + '\n' + pitch.match(/^function v122Metres\(.*$/m)[0] + '\n' + game.match(/^function passLaneGeometry\(.*$/m)[0];
-const checkpoints = slice(physical, 'function v65Snapshot(context){', 'function v65SyncMinute(context,target){');
+const geometry = pitch.match(/^const v55Field=.*$/m)[0] + '\n' + ['v160PitchWidth', 'v160PitchLength', 'v160PitchScale', 'v122Metres'].map(name => pitch.split(/\r?\n/).find(line => line.startsWith('function ' + name + '('))).join('\n') + '\n' + game.match(/^function passLaneGeometry\(.*$/m)[0];
+const checkpoints = slice(physical, 'function v160RestoreContinuation(m,find){', 'function v65SyncMinute(context,target){');
 const checks = [], check = (label, value) => { assert(value, label); checks.push(label); };
 const json = value => JSON.parse(JSON.stringify(value));
 
 function fixture({ marked = true } = {}) {
-  const sandbox = vm.createContext({ performance: { now: () => 1234 } });
+  const sandbox = vm.createContext({ structuredClone, performance: { now: () => 1234 } });
   vm.runInContext(`
     var MATCH_SPEED=.78, saveResult=true, v65LastSaved=0, v65ProcessedGoals=0;
     var randomValues=[.23,.82], randomIndex=0;

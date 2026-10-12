@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "generationVersion": 3,
+  "stressWorlds": 60,
+  "players": 63360,
+  "elitePlayers": 1662,
+  "eliteShare": 0.026231060606060605,
+  "constraints": [
+    "elite cap",
+    "squad budget",
+    "seed variation",
+    "two keepers",
+    "position coverage",
+    "age mix",
+    "style",
+    "strict squad and optimal starting hierarchy",
+    "all cup squads and optimal lineups at least ten percent below every league club"
+  ],
+  "transfers": [
+    "actual quality",
+    "wages",
+    "free offers",
+    "paid offers",
+    "idempotence"
+  ],
+  "legacyUnchanged": true,
+  "previousVersion2Unchanged": true,
+  "leagueGenerationUnchanged": true,
+  "serializedPolicyValid": true,
+  "replacementKeepsPosition": true
+}

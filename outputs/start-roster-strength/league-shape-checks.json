@@ -1,0 +1,92 @@
+{
+  "checkedAt": "2026-10-12T11:17:00.422Z",
+  "nativeWorldCount": 30,
+  "allMeasurementChecksPassed": true,
+  "sourceChangedByTask": false,
+  "previews": [
+    {
+      "width": 728,
+      "appearance": "light",
+      "results": [
+        {
+          "width": 728,
+          "contentHeight": 975,
+          "capturedHeight": 975,
+          "consoleMessages": [
+            {
+              "level": "log",
+              "text": "PASS rendered top"
+            },
+            {
+              "level": "log",
+              "text": "PASS rendered top"
+            },
+            {
+              "level": "log",
+              "text": "PASS interactive top"
+            },
+            {
+              "level": "log",
+              "text": "PASS rendered middle"
+            },
+            {
+              "level": "log",
+              "text": "PASS interactive middle"
+            },
+            {
+              "level": "log",
+              "text": "PASS rendered top"
+            }
+          ],
+          "screenshot": {
+            "mimeType": "image/png",
+            "width": 728,
+            "height": 975
+          }
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "appearance": "dark",
+      "results": [
+        {
+          "width": 390,
+          "contentHeight": 1208,
+          "capturedHeight": 1208,
+          "consoleMessages": [
+            {
+              "level": "log",
+              "text": "PASS rendered top"
+            },
+            {
+              "level": "log",
+              "text": "PASS rendered top"
+            },
+            {
+              "level": "log",
+              "text": "PASS interactive top"
+            },
+            {
+              "level": "log",
+              "text": "PASS rendered middle"
+            },
+            {
+              "level": "log",
+              "text": "PASS interactive middle"
+            },
+            {
+              "level": "log",
+              "text": "PASS rendered top"
+            }
+          ],
+          "screenshot": {
+            "mimeType": "image/png",
+            "width": 390,
+            "height": 1208
+          }
+        }
+      ]
+    }
+  ]
+}

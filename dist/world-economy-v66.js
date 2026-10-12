@@ -265,10 +265,11 @@ function v66Consent(career,bid){
  const player=v66Player(career,bid.pid),buyer=v66Club(career,bid.buyerId),seller=bid.sellerId&&v66Club(career,bid.sellerId);
  const reference=v66Salary(player),attractiveness=(buyer.policy.tradition-buyer.policy.risk)*.02;
  const role=buyer.leagueId?(bid.promise>=5?-.04:bid.promise<=2?.08:0):0,term=(bid.years-1)*-.025;
- const minimum=Math.round(reference*(1.03-attractiveness+role+term+(seller&&seller.policy.tradition>buyer.policy.tradition?.05:0))/10)*10;
+ const sport=typeof v177TransferSport==='function'?v177TransferSport(career,bid):{salaryFactor:0};
+ const minimum=Math.round(reference*(1.03-attractiveness+role+term+(seller&&seller.policy.tradition>buyer.policy.tradition?.05:0)+sport.salaryFactor)/10)*10;
  return{accepted:bid.annual>=minimum,minimum};
 }
-function v66BidAppeal(career,bid){const club=v66Club(career,bid.buyerId);return bid.annual+bid.years*12+bid.promise*4+club.policy.tradition*5}
+function v66BidAppeal(career,bid){const club=v66Club(career,bid.buyerId);return bid.annual+bid.years*12+bid.promise*4+club.policy.tradition*5+(typeof v177TransferSport==='function'?v177TransferSport(career,bid).appeal:0)}
 function v66Transfer(career,bid){
  if(career.world.transfers.some(event=>event.id===bid.id))return v66Player(career,bid.pid);
  const world=career.world,market=world.market,buyer=v66Club(career,bid.buyerId),seller=bid.sellerId&&v66Club(career,bid.sellerId),player=v66Player(career,bid.pid),old=v66Contract(career,bid.pid);
@@ -354,7 +355,7 @@ function v66ResolveDay(career){
  }
  for(const bids of groups.values()){
   const ordered=bids.sort((a,b)=>{
-   const sa=a.sellerId?b.price-a.price:v66BidAppeal(career,b)-v66BidAppeal(career,a);
+   const sa=career.world.playerFoundation?.expansionGeneration?.version>=2?v66BidAppeal(career,b)-v66BidAppeal(career,a)||b.price-a.price:a.sellerId?b.price-a.price:v66BidAppeal(career,b)-v66BidAppeal(career,a);
    return sa||b.annual-a.annual||a.id.localeCompare(b.id);
   });
   for(const bid of ordered){

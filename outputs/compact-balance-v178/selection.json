@@ -1,0 +1,18 @@
+{
+  "selected": {
+    "version": 178,
+    "goalBase": 0.32,
+    "goalCeiling": 0.48,
+    "homeShotFactor": 1.03
+  },
+  "reason": [
+    "Base32 reduces scoreless games more than Base30 in the paired screening without exceeding the shot corridor",
+    "Ceiling52 alone has no effect on this sample; keep ceiling48",
+    "Home03 increases home shots and goals in the paired isolated series, a small effect without guaranteed win rates",
+    "Shot difficulty varies across the range; no blind geometry change"
+  ],
+  "homePairs": 500,
+  "diagnosticGames": 500,
+  "diagnosticShots": 6214,
+  "changesApply": "new match states only; saved119/unmarked states keep their old behavior"
+}

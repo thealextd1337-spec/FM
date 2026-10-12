@@ -68,11 +68,13 @@ function v64RoleList(formation){
  if(parts.length!==3||parts.some(n=>!Number.isInteger(n)||n<0)||![5,6].includes(parts.reduce((a,b)=>a+b,0)))throw Error('Ungültige Grundordnung.');
  return['gk',...Array(parts[0]).fill('def'),...Array(parts[1]).fill('mid'),...Array(parts[2]).fill('att')];
 }
-function v64BuildSide(club,formation){
+function v64BuildSide(club,formation,career=null){
  const roles=v64RoleList(formation),chosen=new Set(),starters=[],assigned={};
+ const priorities=new Map(club.roster.map(p=>[p.pid,career&&club.id!==career.manager.managedClubId&&typeof v179LineupBonus==='function'?v179LineupBonus(career,p):0]));
+ const rating=(player,role)=>v64Rating(player,role)+priorities.get(player.pid);
  for(const role of roles){
   const possible=club.roster.filter(player=>!chosen.has(player.pid)&&(role==='gk'?player.keeper:!player.keeper));
-  const player=possible.sort((a,b)=>v64Rating(b,role)-v64Rating(a,role)||a.pid.localeCompare(b.pid))[0];
+  const player=possible.sort((a,b)=>rating(b,role)-rating(a,role)||a.pid.localeCompare(b.pid))[0];
   if(!player)throw Error(`Für ${club.name} fehlt ein Spieler der Startelf.`);
   chosen.add(player.pid);starters.push(player.pid);assigned[player.pid]=role;
  }
@@ -89,7 +91,7 @@ function v64PrepareFixture(career,fixture){
  for(const club of [home,away])v64RecoverClub(career,club,fixture.day);
  const side=club=>{
   const coach=career.world.coaches.find(item=>item.id===club.coachId),tactics=v64CoachTactics(coach,career);
-  return{...v64BuildSide(club,tactics.formation),coachId:coach?.id||null,tactics};
+  return{...v64BuildSide(club,tactics.formation,career),coachId:coach?.id||null,tactics};
  };
  fixture.plan={home:side(home),away:side(away)};
  return fixture.plan;

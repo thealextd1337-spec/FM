@@ -1,4 +1,9 @@
-# Flutlicht – UI-Vertrag v1.3
+# Flutlicht – UI-Vertrag v1.4
+
+## Erweiterung v1.4: Kaderrollen vom 12. Oktober 2026
+
+`players.roster/all[].contract` ergänzt `roleLabel:null|string` und `playingTimeStatus:null|none|fulfilled|pending|behind|on-track`. Die Rolle liest die bestehende Einsatz-Zusage, der Status die native Minutengutschrift und fällige Erwartung; keine exakten Fähigkeiten, Vertragsobjekte oder Zufriedenheitswerte werden projiziert. `behind` ist zusätzlich Handlungsbedarf im Vertragsfilter. Die Kaderkarte zeigt die qualitative Rolle; Vertrags-/Tiefeninformationen stammen aus dem nativen Renderer. Zusageauswahlen behalten IDs, numerische Payloads und Vertragsaktionen; die Optionen sind jetzt nach Kaderrolle gruppiert. [Fachvertrag und Abnahme](../kadermechanik-und-matchagenda.md).
+
 
 Freigabe: I00, 7. Oktober 2026. Browser-Integration in den bestehenden Vereinswelt-Code, klassische Scripts unter `window.D6Flutlicht`. Neue Namen sind ab dieser Lieferung verbindlich; einzelne Produzenten werden vor Paketstart ergänzt. Keine zweite Fach- oder Speicherautorität.
 

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "sourceSha256": "18e8e16ade337d0697ef0357e2c47782e609cf574155ea2346aa3239ca3dc196",
+  "checks": [
+    "relative home bonus only on home side and non-neutral pitch; old119/unmarked gates unchanged",
+    "full old 119 match equals frozen source and resumes exactly",
+    "full old undefined match equals frozen source and resumes exactly",
+    "new match stores parameters; saved settings survive reload/init; full continuation and booking idempotent",
+    "start policy retained; preceding model remains unmarked"
+  ]
+}

@@ -111,9 +111,10 @@ function v61ValidAppearance(appearance){
  return !!appearance&&v61SkinTones.includes(appearance.skinTone)&&v61HairColors.includes(appearance.hairColor)&&v61Hairstyles.includes(appearance.hairstyle)&&v61FaceShapes.includes(appearance.faceShape)&&v61EyeBrows.includes(appearance.eyeBrows)&&v61Noses.includes(appearance.nose)&&v61Mouths.includes(appearance.mouth)&&v61FacialHair.includes(appearance.facialHair)&&v61StoredJubelPoses.includes(appearance.pose);
 }
 
-function v61GenerateRoster(entry,seed,foundation=null){
+function v61GenerateRoster(entry,seed,foundation=null,layout=v61Layout){
+ if(foundation?.expansionGeneration?.version>=2&&seed===foundation.worldId&&foundation.expansionGeneration.startClubs[entry.id])return v177GenerateStartRoster(entry,seed,foundation);
  const random=v61Random(`${seed}:${entry.id}`),home=entry.id.slice(0,3),quality=entry.profile[5]-(entry.id.includes('-C')?1:0),used=new Set(),legacyUsed=new Set(),roster=[];
- return v61Layout.map((line,index)=>{
+ return layout.map((line,index)=>{
   const legacyNation=random()<.79?home:v61Countries[Math.floor(random()*v61Countries.length)][0],names=v61Names[legacyNation]||[v79NationByCode[legacyNation].given,v79NationByCode[legacyNation].family];
   let legacyName,attempt=0;
   do{legacyName=`${names[0][Math.floor(random()*names[0].length)]} ${names[1][Math.floor(random()*names[1].length)]}`;attempt++}while(legacyUsed.has(legacyName)&&attempt<30);
@@ -168,7 +169,7 @@ function v61CreateCareer(clubId,seed=crypto.randomUUID(),managerName=null,player
  const catalog=expansion?v161Catalog:v61Catalog;
  const foundation=typeof v153Options==='function'?v153Options(playerOptions===undefined?v153PreviewOptions():playerOptions,seed,catalog):null;
  if(expansion&&!foundation)throw Error('Die Expansion benötigt das native Spielermodell.');
- if(expansion)foundation.expansionGeneration=v161GenerationPolicy();
+ if(expansion)foundation.expansionGeneration=v161GenerationPolicy(seed);
  if(!catalog.some(club=>club.id===clubId&&!club.id.includes('-C')))throw Error('Nur ein Ligaverein kann übernommen werden.');
  const name=managerName===null?null:v61ManagerName(managerName);
  if(name!==null&&!v61ValidManagerName(name))throw Error('Der Managername muss 2 bis 32 Zeichen enthalten.');
@@ -179,6 +180,7 @@ function v61CreateCareer(clubId,seed=crypto.randomUUID(),managerName=null,player
  if(typeof v66Init==='function')v66Init(career);
  if(typeof v67Init==='function')v67Init(career);
  if(typeof v158SeasonStart==='function')v158SeasonStart(career);
+ if(expansion&&foundation.expansionGeneration.version>=2)v177CheckInitialRosters(career);
  if(expansion){v161StartFunds(career);career.phase='world-foundation';}
  if(!v61ValidateCareer(career))throw Error('Die Vereinswelt ist unvollständig.');
  return career;

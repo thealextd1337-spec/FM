@@ -29,6 +29,10 @@ jobs:
 
       - name: Spieltests ausführen
         run: |
+          node work/test-squad-planning-v179.cjs
+          node work/test-start-rosters-v177.cjs --worlds=60
+          node work/test-compact-balance-v178.cjs
+          node work/test-native-performance-context.cjs
           node work/test-youth-legacy-v176.cjs
           node work/test-progress-v58.cjs
           node work/test-live-player-v59.cjs

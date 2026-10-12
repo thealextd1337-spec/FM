@@ -3,6 +3,27 @@
  'use strict';
  const key='doppel6.language';
  const labels=new Map(`
+Kaderrollen und Tiefe	Squad roles and depth
+Kaderrolle	Squad role
+Stammspieler	Regular starter
+Rotation	Rotation
+Ersatz	Backup
+Keine Einsatz-Zusage	No appearance promise
+Zusage erfüllt	Promise fulfilled
+Bewertung ab vier Spielen	Assessment after four matches
+Zu wenig Spielzeit	Too little playing time
+Spielzeit im Plan	Playing time on track
+Anrechenbare Einsätze	Credited appearances
+Bisher erwartet	Expected so far
+Einsätze pro Saison	Appearances per season
+Grundordnung	Formation
+Kader / Startplätze	Squad / starting places
+Position unterbesetzt	Position understaffed
+Ohne direkten Ersatz	No direct backup
+Mit Ersatz besetzt	Backup available
+Mehr Stammspieler zugesagt als Startplätze verfügbar. Prüfe deine Spielzeitplanung.	More regular starters promised than starting places available. Review your playing time plan.
+Die Kaderrolle folgt der Einsatz-Zusage. Ändere sie bei einer Vertragsverhandlung. Stammspieler: 9–14, Rotation: 5–8, Ersatz: 0–4 Einsätze pro Saison.	The squad role follows the appearance promise. Change it in contract negotiations. Regular starter: 9–14, rotation: 5–8, backup: 0–4 appearances per season.
+Ein anrechenbarer Einsatz braucht 45 gewichtete Minuten. Kürzere Einsätze werden addiert; Europacup zählt 1,5-fach, Pokal vor dem Finale 0,75-fach. Spielzeitlücken von mindestens zwei Einsätzen können bei der Vertragsprüfung die Form senken.	A credited appearance needs 45 weighted minutes. Shorter appearances are added together; European cups count 1.5 times, domestic cup rounds before the final 0.75 times. A shortfall of at least two appearances may reduce form at a contract check.
 Länderwertung	Country ranking
 Niederlande	Netherlands
 Belgien	Belgium
@@ -1723,7 +1744,7 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
  let language='de';
  try{if(localStorage.getItem(key)==='en')language='en'}catch{}
  const originalText=new WeakMap(),renderedText=new WeakMap(),originalAttributes=new WeakMap(),renderedAttributes=new WeakMap();
- const attributes=['aria-label','title','placeholder','alt'];
+ const attributes=['aria-label','title','placeholder','alt','label'];
  function oldMatch(element){return element.closest('#game-screen')&&!document.body.classList.contains('v65-world-match')}
  function applyText(node){
   if(!node.parentElement||node.parentElement.closest('script,style,textarea,#language-select option,[contenteditable="true"],[translate="no"]')||oldMatch(node.parentElement))return;

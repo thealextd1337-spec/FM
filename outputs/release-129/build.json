@@ -1,0 +1,10 @@
+{
+  "version": 129,
+  "bytes": 95861220,
+  "sha256": "a3964c96ebd26f77905284ef785b96bb1c129123a7788c3e1dd8b721c3dad4e6",
+  "sourceFooter": 129,
+  "runtimeFooter": 129,
+  "offlineArtifactsEqual": true,
+  "baseCommit": "80b125b4",
+  "sourceBuildProof": "65541a03"
+}

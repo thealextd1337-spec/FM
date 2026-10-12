@@ -1,5 +1,23 @@
 # Entwicklung und Veröffentlichung
 
+## Kaderrollen v179
+
+`world-squad-planning-v179.js` leitet Rollen und Fortschritt aus dem bestehenden `contract.promise` und den nativen Einsatzgutschriften ab. Die Konstruktion neuer AP07-Karrieren differenziert Anfangszusagen; Laden ergänzt keine Daten. `v64BuildSide` erhält optional die Karriere und verwendet einen begrenzten Zusagebonus nur für KI-Vereine; vorhandene Fixturepläne bleiben maßgeblich. `world-squad-ui-v179.js` ergänzt Vertragsfakten, gruppierte Zusageauswahl und die Kader-Tiefe. Flutlicht projiziert nur qualitative Rolle und Spielzeitstatus. [Vertrag, Stärkezusammensetzung und offene Matchagenda](kadermechanik-und-matchagenda.md). Prüfung: `node work/test-squad-planning-v179.cjs`, `node work/check-squad-planning-v179.cjs`; vorhandene Match-/Wirtschafts-/Start-/v55-Gates und lokaler Build ergänzen die Abnahme.
+
+## Kompakte Matchabstimmung v178
+
+`v155Initialize` setzt ausschließlich für neue Matchzustände `shotBalanceRevision:178` und kopiert `compactBalance` mit Torbasis 0,32, Deckel 0,48 und Heim-Schussfaktor 1,03. Bestehende Performancezustände werden nicht neu initialisiert oder ummarkiert. Der Aktionsweg liest gespeicherte Werte; Kennung119/unmarkierte Partien verwenden ihre bisherigen Regeln. Keine Welt-/Spielermigration oder rückwirkende Buchung. `v178CompactShotChance` wendet den relativen Bonus nur auf die Heimseite eines nichtneutralen Spiels an; der komplette alte v64-Chancewert wird nicht zusätzlich eingebunden.
+
+`work/experiment-compact-balance-v178.cjs` vergleicht drei isolierte Kandidaten und alte Kennung in 2.000 Spielen; `work/experiment-home-balance-v178.cjs` prüft 500 gepaarte Fälle je Heimfaktor mit gemeinsamem Neutralvergleich, 1.500 Spiele. `work/validate-compact-balance-v178.cjs` prüft die gewählte Kombination auf der bisherigen vollständigen 1.700-Fixture-Matrix. `work/test-compact-balance-v178.cjs` prüft Heim-/Neutralzweig, eingefrorene alte Controller, gespeicherte Einstellungen, exakte JSON-Fortsetzung und idempotente Buchung. Der kontrollierte native Kontakt-Test lädt zusätzlich seine bestehenden produktiven Geometrie-/Restore-Helfer und stellt `structuredClone` bereit. [Umsetzung, Grenzen und Reproduktion](kompakte-matchabstimmung-v178.md).
+
+## Pokalabstand und Matchmessung der Startkader
+
+`node work/measure-strength-followup.cjs` und `node work/render-strength-followup.cjs` ergänzen auf Nutzerauftrag 1.200 native kompakte Vergleichsspiele und fünf exakte Replays. Top-/Schwachreferenzen, stärkste Pokalclubs, A-Rang 3/4 gegen AUT/SUI/TUR-Top 2 sowie Heimspiegel/Neutralzwillinge verwenden unveränderte Controller und volle eigene Startkopien. 100 Heim-/Neutralpaare stimmen in Ergebnis und erfasstem Verlauf überein; der berechnete v64-Heimterm wird im aktuellen v155-Zweig nicht verwendet. Hashumfang ist ausdrücklich dokumentiert, keine behauptete Ganzzustands- oder physische 3D-Prüfung. [Messung und Grenzen](startkader-fable-pruefreihe.md).
+
+Neue Welten speichern `expansionGeneration.version: 3`. Der Generator senkt Pokal-Budgets proportional ab und deckelt anfängliche Positionsqualität; `v177CheckInitialRosters` prüft Kader und beste Startelf gegen 90 Prozent des jeweils schwächsten Ligavereins. Der Validator rekonstruiert gespeicherte Kennungen 1, 2 oder 3 ausdrücklich; Laden verändert keine Werte. Kennung 2 bleibt als Validierungsvertrag erhalten. 60 Stress- und 30 Messwelten sowie vollständige aktuelle Quellen-/Build-Browserpartien bestanden. [Pokalvertrag](startkader-pokalabstand.md).
+
+`node work/measure-top-bottom-matches.cjs` misst feste Top 10 und letzte 10 der 96 Ligavereine über 500 native kompakte Spiele. Jedes Paar spielt fünfmal, jede Partie auf einer unabhängigen Startkopie; native KI-/Rollen-/Belastungs-/Notenadapter bleiben aktiv. Je Verein 25 Heim- und 25 Auswärtsspiele, exakte Replays, unveränderte Quellen und Torbuchhaltung geprüft. `node work/render-top-bottom-matches.cjs` erzeugt Bericht und CSV-Verweise. [Befund und Grenzen](startkader-matchvergleich-20261012.md).
+
 ## UI-Modernisierung vom 12. Oktober 2026
 
 Die Shell besitzt eine gemeinsame untere Leiste mit einer verborgenen, inerten Ablage für inaktive Tabknoten. Adapter, Navigation und Vereinsansicht verschieben die originalen Tablisten; native Listener und ARIA-Ziele bleiben erhalten. Bereichs-Picker und Transfer-Sprungliste werden nicht mehr erzeugt. `ResizeObserver` hält den Inhaltsabstand passend zur Leistenhöhe einschließlich Safe Area. Profil-/Detailansichten zeigen nur die Hauptnavigation.

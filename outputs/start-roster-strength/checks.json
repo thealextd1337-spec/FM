@@ -1,0 +1,109 @@
+{
+  "checkedAt": "2026-10-12T10:58:32.804Z",
+  "measurementChecks": 5,
+  "nativeWorlds": 30,
+  "sourceHashesUnchanged": true,
+  "fullRosterSeedReplay": true,
+  "previews": [
+    {
+      "width": 728,
+      "appearance": "light",
+      "results": [
+        {
+          "width": 728,
+          "contentHeight": 1493,
+          "capturedHeight": 1493,
+          "consoleMessages": [
+            {
+              "level": "log",
+              "text": "Start roster chart verified league 33654"
+            },
+            {
+              "level": "log",
+              "text": "Start roster chart verified league 33654"
+            },
+            {
+              "level": "log",
+              "text": "PASS view league totals, curve, countries, layout"
+            },
+            {
+              "level": "log",
+              "text": "Start roster chart verified cup 31680"
+            },
+            {
+              "level": "log",
+              "text": "PASS view cup totals, curve, countries, layout"
+            },
+            {
+              "level": "log",
+              "text": "Start roster chart verified all 65334"
+            },
+            {
+              "level": "log",
+              "text": "PASS view all totals, curve, countries, layout"
+            },
+            {
+              "level": "log",
+              "text": "Start roster chart verified league 33654"
+            }
+          ],
+          "screenshot": {
+            "mimeType": "image/png",
+            "width": 728,
+            "height": 1493
+          }
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "appearance": "dark",
+      "results": [
+        {
+          "width": 390,
+          "contentHeight": 1672,
+          "capturedHeight": 1672,
+          "consoleMessages": [
+            {
+              "level": "log",
+              "text": "Start roster chart verified league 33654"
+            },
+            {
+              "level": "log",
+              "text": "Start roster chart verified league 33654"
+            },
+            {
+              "level": "log",
+              "text": "PASS view league totals, curve, countries, layout"
+            },
+            {
+              "level": "log",
+              "text": "Start roster chart verified cup 31680"
+            },
+            {
+              "level": "log",
+              "text": "PASS view cup totals, curve, countries, layout"
+            },
+            {
+              "level": "log",
+              "text": "Start roster chart verified all 65334"
+            },
+            {
+              "level": "log",
+              "text": "PASS view all totals, curve, countries, layout"
+            },
+            {
+              "level": "log",
+              "text": "Start roster chart verified league 33654"
+            }
+          ],
+          "screenshot": {
+            "mimeType": "image/png",
+            "width": 390,
+            "height": 1672
+          }
+        }
+      ]
+    }
+  ]
+}

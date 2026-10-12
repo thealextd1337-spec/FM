@@ -33,7 +33,7 @@
     for(const row of rows){
       const id=row.querySelector('[data-v61-player]')?.dataset.v61Player,contract=players.get(String(id))?.contract;
       const remaining=contract?.remaining??(row.cells.length>=7?Number.parseInt(row.cells[4]?.textContent,10):null);
-      const attention=(remaining!==null&&Number.isFinite(remaining)&&remaining<=1)||contract?.retirementStatus==='confirmed'||Boolean(row.querySelector('[data-v66-renew-open]'));
+      const attention=(remaining!==null&&Number.isFinite(remaining)&&remaining<=1)||contract?.retirementStatus==='confirmed'||contract?.playingTimeStatus==='behind'||Boolean(row.querySelector('[data-v66-renew-open]'));
       row.dataset.flContractAttention=String(attention);if(attention)count++;
       let retirement=row.querySelector('.fl-market-retirement');
       if(contract?.retirementLabel){if(!retirement){retirement=node.ownerDocument.createElement('span');retirement.className='fl-market-retirement';row.cells[0].append(retirement);}retirement.textContent=contract.retirementLabel;}else retirement?.remove();

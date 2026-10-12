@@ -81,7 +81,7 @@
         setHTML(form, formHTML(player,true));
         let details = nameCell.querySelector('.fl-squad-player-detail');
         if (!details) { details = document.createElement('div');details.className = 'fl-squad-player-detail';nameCell.append(details); }
-        setHTML(details, `<div class="fl-squad-skills" role="list" aria-label="${C.escape(t('Alle Fähigkeiten'))}">${skillsHTML(player)}</div><div class="fl-squad-freshness">${freshHTML(player)}</div>`);
+        setHTML(details, `${player.contract?.roleLabel?`<span class="v179-role">${C.escape(t(player.contract.roleLabel))}</span>`:''}<div class="fl-squad-skills" role="list" aria-label="${C.escape(t('Alle Fähigkeiten'))}">${skillsHTML(player)}</div><div class="fl-squad-freshness">${freshHTML(player)}</div>`);
         for (const skill of details.querySelectorAll('.fl-skill')) skill.setAttribute('role', 'listitem');
         [...row.cells].forEach((cell, index) => { cell.dataset.flSquadLabel = headings[index] || ''; });
         const appearance = row.cells[4], stats = player.stats;

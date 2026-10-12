@@ -1,5 +1,21 @@
 # Produktregeln
 
+## Kaderrollen, Tiefe und Stärkezusammensetzung
+
+Nutzerauftrag vom 12. Oktober 2026: Stammspieler, Rotation und Ersatz erhalten Spielzeiterwartungen auf Basis der bestehenden Vertragszusage. In der 14-Spiele-Welt stehen 9–14 Einsätze für Stammspieler, 5–8 für Rotation und 0–4 für Ersatz. Neue Startkader erhalten normalerweise sechs Stammspieler mit zehn, drei Rotationsspieler mit sechs und zwei Ersatzspieler mit zwei Einsätzen; der zweite Torwart gehört zum Ersatz. Rollen werden bei angenommenen Vertragsverhandlungen aus der Zusage abgeleitet. Die Übersicht zeigt angerechnete Spielzeit, anteilige Ziele, Rückstände und direkte Positionsreserve. Bestehende Formfolgen gelten weiter; keine zweite Zufriedenheit oder neuen Spieler-Transferforderungen. KI-Vorauswahl berücksichtigt Zusagen mit einem kleinen Bonus bei ähnlicher Eignung; gespeicherte Aufstellungen bleiben erhalten. Bestehende Vertragszahlen werden nicht umgerechnet. [Gemeinsamer Vertrag einschließlich neuer Stärkezusammensetzung und drei offener Matchthemen](kadermechanik-und-matchagenda.md).
+
+## Kompakte Weltpartien: Verwertung und Heimfaktor
+
+Auf Nutzerauftrag „Führe die Vorschläge aus“ wird die kompakte Weltpartien-Simulation für neue Partien behutsam abgestimmt: höhere Torverwertung bei weiter 10–16 Schüssen im Serienmittel und kleiner relativer Heimaufschlag auf die Schusschance. Neutraler Platz und Gäste erhalten keinen Heimaufschlag. Keine erzwungenen Tore oder Siegquoten. Startkader, strikte Ligaspitzen, seltene Elite-Spieler, Startvariation und mindestens zehn Prozent Pokalabstand bleiben erhalten. Laufende gespeicherte Partien behalten ihre Regeln. Lokal umgesetzt und gebaut; noch nicht veröffentlicht. [Auswahl, Werte und Nachweise](kompakte-matchabstimmung-v178.md).
+
+## Mindestabstand der Pokalvereine beim Start
+
+Nutzerentscheidung vom 12. Oktober 2026, lokal umgesetzt: Jeder reine Pokalverein startet bei gesamter Kaderqualität und bester zulässiger Startelf mindestens zehn Prozent unter jedem Ligaverein. Interne Positionsqualität ist maßgeblich; die Prozent-Rangliste ist keine Qualitätsskala oder Siegchance. Neue Erzeugungskennung 3, bestehende Kennungen 1/2 unverändert. Pokalerzeugung erhält Alters-/Positionsmix und Startvariation; Liga-Erzeugung unverändert, keine anfänglichen Pokal-Elites. Lokal gebaut und geprüft, noch nicht veröffentlicht. [Vertrag und Nachweise](startkader-pokalabstand.md).
+
+## Lokal umgesetzt: Startkader und sportliche Wechselpräferenz
+
+Auf Nutzerauftrag vom 12. Oktober 2026 starten neue Vereinswelten mit zwei Torhütern und je drei Spielern pro Feldposition, einem Mix aus drei jungen Profis, sechs Spielern im besten Fußballalter und zwei Routiniers. Höchstens drei Elite-Spieler sind bei den beiden Spitzenvereinen der fünf großen Ligen erlaubt, höchstens zwei bei allen anderen; keine garantierten Elite-Spieler. Die Top 2 jeder großen Liga liegen zum Start strikt über den Top 2 Österreichs/Schweiz/Türkei, sowohl als Kader als auch als beste Startelf. Ab ungefähr Rang drei überschneiden sich die Ligen. Die gesamte Kaderqualität schwankt gespeichert um höchstens ±2,5 Prozent; Passspiel, Konter oder körperliches Spiel prägen Profile und ersten KI-Trainer innerhalb des Vereinsbudgets. Mit hoher tatsächlich erreichter Qualität bevorzugen Spieler sportlich passende Top-Vereine; Gehalt und zugesagte Spielzeit bleiben wirksam. Nur neue Karrieren, bestehende Werte bleiben erhalten. Lokal umgesetzt und im Build geprüft; Veröffentlichung steht aus. [Regeln und Nachweise](startkader-umsetzung-v177.md).
+
 ## Modernisierung der Vereinsoberfläche
 
 Nutzerentscheid vom 12. Oktober 2026: Eine kontextabhängige untere Subnavigation ersetzt die bisherigen Bereichs-Dropdowns und die Transfer-Sprungliste. Mobil steht sie unmittelbar oberhalb der Hauptnavigation; Desktop erhält dieselbe Bereichsleiste zusätzlich zur Hauptnavigation in der Seitenleiste. Kader, Transfers, Wettbewerbe und Verein verwenden ihre vorhandenen Unterbereiche. Die Übersicht bietet Sprünge zu Begegnung, Vereinsbüro und Finanzen. Alle Aktionen und Profilrückwege bleiben erreichbar.
