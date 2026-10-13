@@ -33,6 +33,67 @@ function v162RecoverTarget(m,p,dt){
  const limit=v121PositioningPlans.get(m)?.get(p)?.limit;if(limit!=null)p.ty=p.t===0?Math.max(p.ty,limit):Math.min(p.ty,limit);
  return true;
 }
+// Loose balls in matches created with looseBallRevision 182. One chaser per team
+// runs with its native body to the interception point of the decelerating ball
+// (no position overwrite after the step). The choice is plain rebound data and
+// changes only for a clearly earlier arrival; a falling ball adds one supporter.
+function v182LooseActive(m){return Boolean(v162Active(m)&&m.attackFlow.looseBallRevision===182);}
+function v182LooseBall(m){
+ const r=m.rebound;if(!v182LooseActive(m)||!r||m.owner||m.flight||v121PositioningPaused(m)||!Number.isFinite(r.vx)||!Number.isFinite(r.vy))return null;
+ const plan=typeof v150SpacePasses!=='undefined'&&v150SpacePasses.get(m);return plan?.rebound===r?null:r;
+}
+function v182Airborne(m,r){const air=v124AirBalls.get(m),loose=v102Motion.get(m)?.loose;return Boolean(air?.rebound===r&&!air.settled||loose&&(!loose.drop||loose.free));}
+function v182BallAt(r,seconds){const s=v150Scale(),travel=(1-Math.exp(-2.3*seconds))/2.3*MATCH_SPEED;return v159Point({x:r.x+r.vx*travel,y:r.y+r.vy*travel},s,.3);}
+function v182ChasePace(p){const pace=(3+ability(p,'spd')*.14)*1.58;return typeof v158Movement==='function'?v158Movement(p,pace,1).maxSpeed:pace;}
+function v182Arrival(p,point){
+ const s=v150Scale(),body=v157Body(p),dx=(point.x-p.x)*s.x,dy=(point.y-p.y)*s.y,d=Math.hypot(dx,dy),speed=Math.hypot(body.vx,body.vy),along=d>.01?(body.vx*dx+body.vy*dy)/d:speed,pace=v182ChasePace(p),accel=(6.2+ability(p,'spd')*.08)*1.4/(body.massKg/74);
+ // Current momentum away from the ball costs a turn; a standing start costs acceleration.
+ return Math.max(0,d-.8)/pace+(speed-along)/accel+Math.max(0,pace-Math.max(0,along))/(2*accel);
+}
+function v182Intercept(p,r){
+ for(let i=0;i<=60;i++){const t=i*.05,point=v182BallAt(r,t);if(v182Arrival(p,point)<=t)return {t,point};}
+ const point=v182BallAt(r,6);return {t:Math.max(3,v182Arrival(p,point)),point};
+}
+function v182LooseChasers(m,r){
+ const now=v152Seconds(m),chase=r.chase;
+ if(chase&&Array.isArray(chase.pids)&&now-chase.at<.3)return chase;
+ const ready=m.people.filter(p=>!p.keeper&&!p.slideActive&&!v115RestartLocked(m,p)),times=new Map(ready.map(p=>[p,v182Intercept(p,r).t]));
+ const pids=[0,1].map(team=>{
+  const best=ready.filter(p=>p.t===team).sort((a,b)=>times.get(a)-times.get(b)||a.n-b.n)[0],current=ready.find(p=>p.t===team&&p.pid===chase?.pids?.[team]);
+  return (current&&(!best||times.get(best)>=times.get(current)-.4)?current:best)?.pid||null;
+ });
+ // A nearby teammate covers goal-side for the second ball instead of turning away.
+ const cover=[0,1].map(team=>{
+  const near=ready.filter(p=>p.t===team&&p.pid!==pids[team]&&v122Metres(p,r)<10),best=near.sort((a,b)=>v122Metres(a,r)-v122Metres(b,r)||a.n-b.n)[0],current=near.find(p=>p.pid===chase?.cover?.[team]);
+  return (current&&(!best||v122Metres(best,r)>=v122Metres(current,r)-1.5)?current:best)?.pid||null;
+ });
+ r.chase={...chase,pids,cover,at:now};return r.chase;
+}
+function v182CoverTarget(m,p,r,chase){
+ if(!chase.cover.includes(p.pid))return false;
+ const s=v150Scale(),point={x:r.x,y:r.y},goal={x:.5,y:p.t===0?v55Field.bottom:v55Field.top},gx=(goal.x-point.x)*s.x,gy=(goal.y-point.y)*s.y,g=Math.hypot(gx,gy)||1,depth=clamp(v122Metres(p,point),2.5,4.5);
+ const target=v159Point({x:point.x+gx/g*depth/s.x,y:point.y+gy/g*depth/s.y},s,.5);p.tx=target.x;p.ty=target.y;return true;
+}
+function v182AirTarget(m,p,r){
+ // The existing single falling-ball runner keeps its landing target; one
+ // teammate per side now waits a few metres goal-side for the second ball.
+ if(typeof v132FallingBallTarget==='function'&&v132FallingBallTarget(m,p))return true;
+ const air=v124AirBalls.get(m),runners=v132AirChasers.get(m)?.runners;if(air?.rebound!==r||!runners)return false;
+ const seconds=clamp((air.vh+Math.sqrt(air.vh*air.vh+19.6*Math.max(0,air.height-.29)))/9.8,0,1.5),landing={x:clamp(r.x+r.vx*MATCH_SPEED*seconds,v55Field.left,v55Field.right),y:clamp(r.y+r.vy*MATCH_SPEED*seconds,v55Field.top,v55Field.bottom)};
+ const chase=r.chase||(r.chase={pids:[null,null],at:-Infinity});
+ if(!Array.isArray(chase.support))chase.support=[0,1].map(team=>m.people.filter(q=>q.t===team&&!q.keeper&&!q.slideActive&&!runners.includes(q)&&v122Metres(q,landing)<20).sort((a,b)=>v122Metres(a,landing)/(3+ability(a,'spd')*.14)-ability(a,'pos')*.01-(v122Metres(b,landing)/(3+ability(b,'spd')*.14)-ability(b,'pos')*.01)||a.n-b.n)[0]?.pid||null);
+ if(!chase.support.includes(p.pid))return false;
+ const s=v150Scale(),point=v159Point({x:landing.x,y:landing.y+(p.t===0?1:-1)*3.5/s.y},s,.5);p.tx=point.x;p.ty=point.y;return true;
+}
+function v182LooseTarget(m,p){
+ if(p.keeper||p.slideActive)return false;
+ const r=v182LooseBall(m);if(!r)return false;
+ if(v182Airborne(m,r))return v182AirTarget(m,p,r);
+ if(r.delay>0)return false;
+ const chase=v182LooseChasers(m,r);if(!chase.pids.includes(p.pid))return v182CoverTarget(m,p,r,chase);
+ const point=v182Intercept(p,r).point;p.tx=point.x;p.ty=point.y;return true;
+}
+function v182LooseChasing(m,p){const r=v182LooseBall(m);return Boolean(r&&(r.chase?.pids?.includes(p.pid)||v182Airborne(m,r)&&r.chase?.support?.includes(p.pid)));}
 function v159Contact(m,p,point){
  if(!v159Active(m)||m.owner!==p||p.keeper||v121PositioningPaused(m)||v122Metres(p,point)>.8)return false;
  const combo=m.attackFlow.combination,pass=m.lastPass;

@@ -36,7 +36,7 @@ function v157Pace(m,p){
  if(p.keeper)return v180KeeperSpaceChasing(m,p)?v180KeeperGroundPace(m,p):typeof v158Movement==='function'?v158Movement(p,base,1).maxSpeed:base;
  if(v162Active(m)){
   const intent=m.attackFlow.intents[p.pid],now=v152Seconds(m),read=m.attackFlow.defenseReads?.[p.pid],target=m.flight?m.ball:m.rebound;
-  const contest=target&&m.people.filter(q=>q.t===p.t&&!q.keeper&&!q.slideActive).sort((a,b)=>v122Metres(a,target)-v122Metres(b,target)||a.n-b.n).slice(0,2).includes(p);
+  const contest=!m.flight&&typeof v182LooseBall==='function'&&v182LooseBall(m)?v182LooseChasing(m,p):target&&m.people.filter(q=>q.t===p.t&&!q.keeper&&!q.slideActive).sort((a,b)=>v122Metres(a,target)-v122Metres(b,target)||a.n-b.n).slice(0,2).includes(p);
   const purposeful=intent&&intent.until>=now&&intent.team===v123PossessionTeam(m)&&['depth','follow'].includes(intent.type)||read&&read.nextAt>=now&&['press','ball'].includes(read.purpose)||p.interceptTarget&&m.flight||contest;
   const revised=v119PaceActive(m),support=revised&&intent&&intent.until>=now&&intent.team===v123PossessionTeam(m)&&intent.type==='support';
   const pace=base*(m.owner===p?1.28*(.78+ability(p,'tec')*.009):purposeful?(revised?1.58:1.48):support?1.35:revised?1.15:1.08);
@@ -110,6 +110,7 @@ function v157Target(m,p,dt){
  if(!v157Active(m)||v121PositioningPaused(m)||p.keeper||p.slideActive)return;
  if(m.owner===p&&m.attackFlow.pendingTurn?.playerId===p.pid){p.tx=p.x;p.ty=p.y;return;}
  if(m.owner===p){if(typeof v159CarrierTarget==='function')v159CarrierTarget(m,p);return;}
+ if(typeof v182LooseTarget==='function'&&v182LooseTarget(m,p))return;
  if(typeof v159DefensiveTarget==='function'&&v159DefensiveTarget(m,p))return;
  const intent=m.attackFlow.intents[p.pid];if(!intent||intent.team!==v123PossessionTeam(m)||intent.until<v152Seconds(m)){if(v162Active(m))v162RecoverTarget(m,p,dt);return;}
  const last=p.offenseCoord||(p.offenseCoord={x:p.tx,y:p.ty}),blend=Math.min(1,dt*(3+4*clamp(p.positionRoutine??.7,0,1)));
