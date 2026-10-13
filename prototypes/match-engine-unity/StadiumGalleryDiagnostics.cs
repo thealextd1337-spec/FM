@@ -39,7 +39,7 @@ public static class StadiumGalleryDiagnostics {
         label=label??"prototype";
         var bridge=UnityEngine.Object.FindFirstObjectByType<ProbeBridge>()??throw new InvalidOperationException("ProbeBridge is missing in the open scene");
         var flags=BindingFlags.NonPublic|BindingFlags.Instance;var raw=File.ReadAllText(Path.Combine(repository,"outputs/platform/world-unity/contract-fixture.json"));
-        var folder=Path.Combine(repository,outputFolder??"outputs/lowpoly-live-rollout-20261013/gallery/editor/"+label);Directory.CreateDirectory(folder);
+        var folder=Path.Combine(repository,outputFolder??"outputs/lowpoly-live-rollout-20261013/root-slots/stadium-gallery/"+label);Directory.CreateDirectory(folder);
         var shots=new List<Shot>();var checks=new List<string>();var camera=Camera.main;int sequence=1;bool log=Debug.unityLogger.logEnabled;
         void Drop(){var world=(Transform)typeof(ProbeBridge).GetField("world",flags).GetValue(bridge);if(world!=null)UnityEngine.Object.DestroyImmediate(world.gameObject);}
         void Send(WorldCommand c){Debug.unityLogger.logEnabled=false;try{bridge.WorldCommand(JsonUtility.ToJson(c).Replace("\"offside\":{\"lineX\":0.0}","\"offside\":null").Replace("\"offside\":{\"lineX\":0}","\"offside\":null"));}finally{Debug.unityLogger.logEnabled=log;}}
