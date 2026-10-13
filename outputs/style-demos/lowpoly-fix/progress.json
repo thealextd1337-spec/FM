@@ -1,0 +1,100 @@
+{
+ "round": "lowpoly-opus-r3-ground-fix-validation",
+ "date": "2026-10-13",
+ "status": "validated and built locally; awaiting Root/Sonnet full browser acceptance (not accepted yet)",
+ "checkout": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/demo-low-poly-fix",
+ "branch": "codex/demo-low-poly-fix-20261013",
+ "startCommit": "e7754f4c",
+ "unityProject": "G:/unity/Doppel6-LowPoly-Demo",
+ "steps": [
+  {
+   "step": "sync --base d8ae8785",
+   "result": "15 files copied, 0 conflicts"
+  },
+  {
+   "step": "40-ping",
+   "result": "OK, compiled 6000.6.4f1"
+  },
+  {
+   "step": "41-matchmesh-original",
+   "result": "OK match mesh=WorldPlayer ground=WorldPlayer vertices=9725 triangles=12668 hash=2fef73517f87"
+  },
+  {
+   "step": "42-tests-original-fix",
+   "result": "OK; all 7 gate sets 0 differing vs old tests-original (name-bijective, value/passed/limit); r15 341/342 lock 2102.81884765625 (historical 1600 fail, r15BeyondR18=0); only timings + new groundSole trace column differ"
+  },
+  {
+   "step": "43-matchmesh-lowpoly",
+   "result": "OK match=WorldPlayerLowPoly-v4 (guid a279102b) ground=WorldPlayer (guid adb35185) serialized in Probe.unity"
+  },
+  {
+   "step": "44-lowpoly-ground",
+   "result": "OK checks=25 failed=0 profile 0/3231 differ (legacy 13) poses exact 342/342; Of(walking) release=candidate=0.06938185 legacy=0.0693369359 (delta 4.49e-5 m, Fable inference confirmed); visibleViolations 0; releaseAlsoViolates 1 (slide right 1.00 clip sample: drawn -0.0645 release -0.0616)"
+  },
+  {
+   "step": "45-tests-v4-ground",
+   "result": "OK tests finished; all 7 gate sets 0 differing vs original (fix and old); lock 2102.81884765625; visible sole/boot measurements differ within limits"
+  },
+  {
+   "step": "46-natural-motion-ground",
+   "result": "OK gates enforced, identical gate summary, images=55 recordings=84"
+  },
+  {
+   "step": "47-keeper-evidence-ground",
+   "result": "OK renders=162 shots=144; all numbers identical to original mesh (old low-poly: 27 hip diffs <=0.75 mm)"
+  },
+  {
+   "step": "48-lowpoly-editor-groundfix",
+   "result": "OK 79 shots, 16 scenes, 8 archetypes; census identical to old candidate + 12 disabled ground skins; probes identical"
+  },
+  {
+   "step": "49-webbuild-groundfix",
+   "result": "OK 0 errors; WorldPlayer.asset 950.9 KB now in build (absent in d8ae8785 build)"
+  },
+  {
+   "step": "50-lowpoly-ground-r2",
+   "result": "OK 28/28 incl. scene-wide leak checks (24 skins/12 ground/12 graphs per load, 0 ground after drop)"
+  },
+  {
+   "step": "webgl check-lowpoly-webgl",
+   "result": "mesh line with ground=WorldPlayer vertices=9725; parity identical to old candidate and baseline; 0 errors"
+  },
+  {
+   "step": "perf same session",
+   "result": "vsync frame median 14.7-14.9 ms both, draws 129/113 both, wasm 289 MB both; unthrottled inconclusive"
+  },
+  {
+   "step": "package+server",
+   "result": "3b29d9ee, fingerprint 1d6f25f0..., demo-package ae688c86..., verify 103/103, server 4413 PID 85396"
+  },
+  {
+   "step": "browser smoke (Sonnet harness build,viewports)",
+   "result": "44/44 pass"
+  }
+ ],
+ "commits": [
+  "e7754f4c",
+  "2e1d0fdc",
+  "3b29d9ee"
+ ],
+ "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+ "build": {
+  "manifest": "f6978979682daa5340c64b899e82865c26d40fe309e4c291b3063ef7f5e3fd0b",
+  "data": "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f",
+  "wasm": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab",
+  "loader": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+  "framework": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+  "downloadBytes": 91901243
+ },
+ "server": {
+  "url": "http://127.0.0.1:4413/",
+  "pid": 85396
+ },
+ "open": [
+  "full 344-check browser acceptance (Root/Sonnet)",
+  "browser CPU profile for frame cost",
+  "no Android/mobile device acceptance",
+  "diagnostic clip sample slide right 1.00 below -2 cm on both meshes (inherited)"
+ ],
+ "handoff": "docs/3d-stilauftraege/low-poly-ground-fix-validation.md"
+}

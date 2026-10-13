@@ -3,7 +3,7 @@
   "style": "lowpoly",
   "url": "http://127.0.0.1:4413",
   "repo": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\demo-low-poly-fix",
-  "startedAt": "2026-10-13T03:31:54.822Z",
+  "startedAt": "2026-10-13T03:36:19.012Z",
   "gpu": true,
   "harness": {
     "file": "work/style-demos/acceptance-browser.cjs",
@@ -30,7 +30,7 @@
       "id": "build-clean",
       "name": "Quelle sauber und committed",
       "ok": true,
-      "detail": "{\"commit\":\"2e1d0fdc5601cd4f03b51c87a2e113128f90f117\",\"dirty\":false}"
+      "detail": "{\"commit\":\"3b29d9ee10e26fcbf8eaf53dd89ecf27b7b274ee\",\"dirty\":false}"
     },
     {
       "id": "vp-1280x720-standard-unity",
@@ -252,7 +252,7 @@
       "id": "build-unchanged",
       "name": "/__build vor und nach dem Lauf identisch (Fingerprint, sourceId, HTML-, Manifest-, Paket-Hash, alle Dateihashes)",
       "ok": true,
-      "detail": "{\"before\":\"0f9b8f5213cf1eab047d1207cf9eb20597e883cc78b73a731ecf7b2821efa44a\",\"after\":\"0f9b8f5213cf1eab047d1207cf9eb20597e883cc78b73a731ecf7b2821efa44a\"}"
+      "detail": "{\"before\":\"ae688c8694298d272314cfa886550f54a69f5cc8e3506b5e718588d186473deb\",\"after\":\"ae688c8694298d272314cfa886550f54a69f5cc8e3506b5e718588d186473deb\"}"
     },
     {
       "id": "network-payload",
@@ -286,7 +286,7 @@
     },
     "viewports": {
       "status": "pass",
-      "seconds": 62
+      "seconds": 61
     }
   },
   "shots": [
@@ -359,21 +359,21 @@
       ],
       "count": 6
     },
-    "/unity/Build/unity-web.data?v=cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f": {
-      "status": {
-        "200": 6
-      },
-      "sha": [
-        "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f"
-      ],
-      "count": 6
-    },
     "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb": {
       "status": {
         "200": 6
       },
       "sha": [
         "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      ],
+      "count": 6
+    },
+    "/unity/Build/unity-web.data?v=cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f": {
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f"
       ],
       "count": 6
     },
@@ -428,13 +428,13 @@
   "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 (0x00002786) Direct3D11 vs_5_0 ps_5_0, D3D11)",
   "scope": "Functional lifecycle on the served package with real Unity WebGL; not an FPS, Android or visual-quality claim.",
   "buildBefore": {
-    "sourceCommit": "2e1d0fdc5601cd4f03b51c87a2e113128f90f117",
+    "sourceCommit": "3b29d9ee10e26fcbf8eaf53dd89ecf27b7b274ee",
     "sourceDirty": false,
-    "sourceFingerprint": "7d987d3ad62794ceec7a91d63c7139d2c17330f83b524db827c67a7141096bc8",
+    "sourceFingerprint": "1d6f25f0b6676ca27ddf57ffd9a812f5eb88fd1d26dd4549ce39c195e4e430f0",
     "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
     "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
     "unityManifestSha256": "f6978979682daa5340c64b899e82865c26d40fe309e4c291b3063ef7f5e3fd0b",
-    "packageManifestSha256": "0f9b8f5213cf1eab047d1207cf9eb20597e883cc78b73a731ecf7b2821efa44a",
+    "packageManifestSha256": "ae688c8694298d272314cfa886550f54a69f5cc8e3506b5e718588d186473deb",
     "freshness": "fresh",
     "files": {
       "index.html": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
@@ -474,13 +474,13 @@
     "codeUrl": "/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
   },
   "buildAfter": {
-    "sourceCommit": "2e1d0fdc5601cd4f03b51c87a2e113128f90f117",
+    "sourceCommit": "3b29d9ee10e26fcbf8eaf53dd89ecf27b7b274ee",
     "sourceDirty": false,
-    "sourceFingerprint": "7d987d3ad62794ceec7a91d63c7139d2c17330f83b524db827c67a7141096bc8",
+    "sourceFingerprint": "1d6f25f0b6676ca27ddf57ffd9a812f5eb88fd1d26dd4549ce39c195e4e430f0",
     "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
     "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
     "unityManifestSha256": "f6978979682daa5340c64b899e82865c26d40fe309e4c291b3063ef7f5e3fd0b",
-    "packageManifestSha256": "0f9b8f5213cf1eab047d1207cf9eb20597e883cc78b73a731ecf7b2821efa44a",
+    "packageManifestSha256": "ae688c8694298d272314cfa886550f54a69f5cc8e3506b5e718588d186473deb",
     "freshness": "fresh",
     "files": {
       "index.html": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
@@ -572,16 +572,6 @@
       ]
     },
     {
-      "url": "/unity/Build/unity-web.data?v=cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f",
-      "count": 6,
-      "status": {
-        "200": 6
-      },
-      "sha": [
-        "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f"
-      ]
-    },
-    {
       "url": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
       "count": 6,
       "status": {
@@ -589,6 +579,16 @@
       },
       "sha": [
         "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.data?v=cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f",
+      "count": 6,
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f"
       ]
     },
     {
@@ -612,7 +612,7 @@
       ]
     }
   ],
-  "finishedAt": "2026-10-13T03:32:57.609Z",
-  "seconds": 63,
+  "finishedAt": "2026-10-13T03:37:20.254Z",
+  "seconds": 61,
   "pass": true
 }

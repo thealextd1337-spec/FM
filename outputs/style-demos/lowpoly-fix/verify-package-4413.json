@@ -1,6 +1,6 @@
 {
   "schema": "d6-style-demo-verify-1",
-  "checkedAt": "2026-10-13T03:31:48.937Z",
+  "checkedAt": "2026-10-13T03:36:18.633Z",
   "pass": true,
   "style": "lowpoly",
   "url": "http://127.0.0.1:4413",
@@ -9,10 +9,10 @@
     "requireClean": true,
     "allowStale": false
   },
-  "packageManifestSha256": "0f9b8f5213cf1eab047d1207cf9eb20597e883cc78b73a731ecf7b2821efa44a",
-  "sourceCommit": "2e1d0fdc5601cd4f03b51c87a2e113128f90f117",
+  "packageManifestSha256": "ae688c8694298d272314cfa886550f54a69f5cc8e3506b5e718588d186473deb",
+  "sourceCommit": "3b29d9ee10e26fcbf8eaf53dd89ecf27b7b274ee",
   "sourceDirty": false,
-  "sourceFingerprint": "7d987d3ad62794ceec7a91d63c7139d2c17330f83b524db827c67a7141096bc8",
+  "sourceFingerprint": "1d6f25f0b6676ca27ddf57ffd9a812f5eb88fd1d26dd4549ce39c195e4e430f0",
   "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
   "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
   "unityManifestSha256": "f6978979682daa5340c64b899e82865c26d40fe309e4c291b3063ef7f5e3fd0b",
@@ -157,7 +157,7 @@
     {
       "name": "Quellenfingerprint des Checkouts = Paketfingerprint (kein Arbeitsstand seit dem Paketieren verändert)",
       "ok": true,
-      "detail": "Paket 7d987d3ad627 / jetzt 7d987d3ad627"
+      "detail": "Paket 1d6f25f0b667 / jetzt 1d6f25f0b667"
     },
     {
       "name": "Build-Ausgabe outputs/index.html = Paketdatei",
@@ -277,7 +277,7 @@
     {
       "name": "--require-clean: Checkout ist sauber und auf dem Paketcommit",
       "ok": true,
-      "detail": "2e1d0fdc56 (codex/demo-low-poly-fix-20261013) · sauber, committed"
+      "detail": "3b29d9ee10 (codex/demo-low-poly-fix-20261013) · sauber, committed"
     },
     {
       "name": "/__build liefert JSON mit Stil lowpoly",
