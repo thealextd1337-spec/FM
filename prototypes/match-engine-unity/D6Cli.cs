@@ -19,6 +19,10 @@ public static class D6Cli {
         try{Done(true,Doppel6.Probe.WorldPresentationTests.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
 
+    public static void NetTests(){
+        try{Done(true,Doppel6.Probe.WorldNetTests.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+
     public static void Tests(){
         try{
             var repo=Repo();var output=Arg("-d6output");if(output!=null)Directory.CreateDirectory(Path.Combine(repo,output));
@@ -31,6 +35,7 @@ public static class D6Cli {
             Debug.Log("[D6Cli] FootballMotionTests: "+FootballMotionTests.Run(repo,"final",output));
             Debug.Log("[D6Cli] WorldViewTests: "+WorldViewTests.Run(repo,output));
             Debug.Log("[D6Cli] WorldPresentationTests: "+Doppel6.Probe.WorldPresentationTests.Run(repo,output));
+            Debug.Log("[D6Cli] WorldNetTests: "+Doppel6.Probe.WorldNetTests.Run(repo,output));
             Debug.Log("[D6Cli] FootballGaitTests: "+FootballGaitTests.Run(repo,output));
             Debug.Log("[D6Cli] ClubStadiumProfilesTests: "+Doppel6.Probe.ClubStadiumProfilesTests.Run(repo,output));
             Debug.Log("[D6Cli] StadiumArchitectureTests: "+StadiumArchitectureTests.Run(repo,output));
