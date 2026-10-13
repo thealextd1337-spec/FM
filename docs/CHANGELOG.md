@@ -1,5 +1,10 @@
 # Änderungen
 
+## 13. Oktober 2026 – Feste Stadionzuordnung statt weiterer Einzelentwürfe geplant
+
+- Auf Nutzerentscheidung werden die zusätzlichen 91 individuellen Ligastadien vorerst zurückgestellt. Die fünf ausgearbeiteten Vorlagen werden nach fester Vereinsgröße zugeordnet; Farben, Banner und Fanblöcke bleiben klubbezogen. Die vollständige geplante Tabelle umfasst 14 große, 52 mittlere und 30 kleine Stadien. Opus setzt die Zuordnung im laufenden Kandidaten um; noch nicht veröffentlicht.
+- [Planungsdokument](stadionerweiterung-plan.md) für den jetzigen Umfang, Abnahme und spätere individuelle Erweiterung ergänzt. Pokal-Standardstadien und neutrale Finalarenen bleiben vorgesehen.
+
 ## 13. Oktober 2026 – Stadion- und Fanblock-Prototypen integriert (lokal)
 
 - Opus 5.5 mit maximaler Denkintensität hat fünf individuelle Ligastadien, Länder-Standardstadien für Pokalvereine und neutrale Finalarenen umgesetzt. Heim- und Gästefanblöcke mit geometrischen Fans, Fahnen und Bannern folgen Vereinsfarben und der empfangenen Matchzeit; Tageslicht und Flutlicht werden von der Stadionkulisse übernommen.

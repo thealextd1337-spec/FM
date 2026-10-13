@@ -1,0 +1,789 @@
+{
+  "schema": "d6-stadium-assignment-plan-1",
+  "status": "Zuordnung für die Umsetzung geplant; noch nicht als Live-Stand veröffentlicht",
+  "basis": "Current AP02 catalogue profile[1]=Fans; 5 large,3-4 medium,1-2 small. Fan4 medium alternatives alternate once by fixed club id order within country; explicit table frozen, no runtime season/strength/budget reevaluation.",
+  "templates": [
+    "GER-1",
+    "GER-2",
+    "GER-3",
+    "GER-5",
+    "GER-6"
+  ],
+  "counts": {
+    "GER-2": 16,
+    "GER-5": 25,
+    "GER-3": 11,
+    "GER-6": 30,
+    "GER-1": 14
+  },
+  "clubs": [
+    {
+      "clubId": "AUT-1",
+      "clubName": "Wiener SC Kronau",
+      "country": "AUT",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "AUT-2",
+      "clubName": "FC Salzburg Falken",
+      "country": "AUT",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "AUT-3",
+      "clubName": "Schwarz Weiß Graz",
+      "country": "AUT",
+      "size": "medium",
+      "templateId": "GER-3",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "AUT-4",
+      "clubName": "Linzer SC Union",
+      "country": "AUT",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "AUT-5",
+      "clubName": "Innsbruck Sport",
+      "country": "AUT",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "AUT-6",
+      "clubName": "SC Klagenfurt Seestadt",
+      "country": "AUT",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "AUT-7",
+      "clubName": "SV St. Pölten Westpark",
+      "country": "AUT",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "AUT-8",
+      "clubName": "Wiener SC Fortuna",
+      "country": "AUT",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 1
+    },
+    {
+      "clubId": "BEL-1",
+      "clubName": "Brugge Reie FC",
+      "country": "BEL",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "BEL-2",
+      "clubName": "Bruxelles Senne Union",
+      "country": "BEL",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "BEL-3",
+      "clubName": "Antwerpen Schelde FC",
+      "country": "BEL",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "BEL-4",
+      "clubName": "Gent Leie FC",
+      "country": "BEL",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "BEL-5",
+      "clubName": "Liège Meuse FC",
+      "country": "BEL",
+      "size": "medium",
+      "templateId": "GER-3",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "BEL-6",
+      "clubName": "Genk Kempen FC",
+      "country": "BEL",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "BEL-7",
+      "clubName": "Charleroi Sambre FC",
+      "country": "BEL",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "BEL-8",
+      "clubName": "Bruxelles Parc FC",
+      "country": "BEL",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 1
+    },
+    {
+      "clubId": "ENG-1",
+      "clubName": "Regent Vale FC",
+      "country": "ENG",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "ENG-2",
+      "clubName": "Irwell FC",
+      "country": "ENG",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "ENG-3",
+      "clubName": "Mersey Dock FC",
+      "country": "ENG",
+      "size": "medium",
+      "templateId": "GER-3",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "ENG-4",
+      "clubName": "Birmingham Works FC",
+      "country": "ENG",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "ENG-5",
+      "clubName": "Bristol Quay FC",
+      "country": "ENG",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "ENG-6",
+      "clubName": "Wandle Town",
+      "country": "ENG",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 1
+    },
+    {
+      "clubId": "ENG-7",
+      "clubName": "Leeds Aire FC",
+      "country": "ENG",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "ENG-8",
+      "clubName": "Newcastle Tyne FC",
+      "country": "ENG",
+      "size": "medium",
+      "templateId": "GER-3",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "ESP-1",
+      "clubName": "Madrid Central CF",
+      "country": "ESP",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "ESP-2",
+      "clubName": "Barcelona Mar FC",
+      "country": "ESP",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "ESP-3",
+      "clubName": "Turia CF",
+      "country": "ESP",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "ESP-4",
+      "clubName": "Sevilla Union FC",
+      "country": "ESP",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "ESP-5",
+      "clubName": "Barcelona Delta FC",
+      "country": "ESP",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "ESP-6",
+      "clubName": "Vigo Atlantic FC",
+      "country": "ESP",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 1
+    },
+    {
+      "clubId": "ESP-7",
+      "clubName": "Bilbao Nervión CF",
+      "country": "ESP",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "ESP-8",
+      "clubName": "Zaragoza Ebro CF",
+      "country": "ESP",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "FRA-1",
+      "clubName": "Paris Central FC",
+      "country": "FRA",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "FRA-2",
+      "clubName": "Marseille Union",
+      "country": "FRA",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "FRA-3",
+      "clubName": "Lyon Rive FC",
+      "country": "FRA",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "FRA-4",
+      "clubName": "Bordeaux Atlantic FC",
+      "country": "FRA",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "FRA-5",
+      "clubName": "Lille Union",
+      "country": "FRA",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "FRA-6",
+      "clubName": "Paris Valmy FC",
+      "country": "FRA",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 1
+    },
+    {
+      "clubId": "FRA-7",
+      "clubName": "Nantes Loire FC",
+      "country": "FRA",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "FRA-8",
+      "clubName": "Strasbourg Rives FC",
+      "country": "FRA",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "GER-1",
+      "clubName": "FC München Isar",
+      "country": "GER",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "GER-2",
+      "clubName": "FC Bremen Weser",
+      "country": "GER",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "GER-3",
+      "clubName": "FC Hamburg Elbe",
+      "country": "GER",
+      "size": "medium",
+      "templateId": "GER-3",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "GER-4",
+      "clubName": "SC Freiburg Tal",
+      "country": "GER",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "GER-5",
+      "clubName": "FC Köln Rhein",
+      "country": "GER",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "GER-6",
+      "clubName": "SV München Au",
+      "country": "GER",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 1
+    },
+    {
+      "clubId": "GER-7",
+      "clubName": "FC Dortmund Emscher",
+      "country": "GER",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "GER-8",
+      "clubName": "FC Frankfurt Mainbogen",
+      "country": "GER",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "GRE-1",
+      "clubName": "Athina Helios FC",
+      "country": "GRE",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "GRE-2",
+      "clubName": "Piräus Nautilos FC",
+      "country": "GRE",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "GRE-3",
+      "clubName": "Thessaloniki Vardaris FC",
+      "country": "GRE",
+      "size": "medium",
+      "templateId": "GER-3",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "GRE-4",
+      "clubName": "Athina Kallisto FC",
+      "country": "GRE",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "GRE-5",
+      "clubName": "Thessaloniki Therma FC",
+      "country": "GRE",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "GRE-6",
+      "clubName": "Patras Achaia FC",
+      "country": "GRE",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "GRE-7",
+      "clubName": "Iraklio Candia FC",
+      "country": "GRE",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "GRE-8",
+      "clubName": "Volos Pelion FC",
+      "country": "GRE",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 1
+    },
+    {
+      "clubId": "ITA-1",
+      "clubName": "Torino Centrale FC",
+      "country": "ITA",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "ITA-2",
+      "clubName": "Milano Ferro FC",
+      "country": "ITA",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "ITA-3",
+      "clubName": "Roma Capitol FC",
+      "country": "ITA",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "ITA-4",
+      "clubName": "Bologna Collina AC",
+      "country": "ITA",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "ITA-5",
+      "clubName": "Navigli FC",
+      "country": "ITA",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "ITA-6",
+      "clubName": "Napoli Sud AC",
+      "country": "ITA",
+      "size": "medium",
+      "templateId": "GER-3",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "ITA-7",
+      "clubName": "Firenze Arno AC",
+      "country": "ITA",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "ITA-8",
+      "clubName": "Genova Lanterna FC",
+      "country": "ITA",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "NED-1",
+      "clubName": "Amsterdam Amstel FC",
+      "country": "NED",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "NED-2",
+      "clubName": "Rotterdam Maaspoort FC",
+      "country": "NED",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "NED-3",
+      "clubName": "Eindhoven Lichtstad FC",
+      "country": "NED",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "NED-4",
+      "clubName": "Utrecht Singel FC",
+      "country": "NED",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "NED-5",
+      "clubName": "Enschede Veld FC",
+      "country": "NED",
+      "size": "medium",
+      "templateId": "GER-3",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "NED-6",
+      "clubName": "Arnhem Rijnpark FC",
+      "country": "NED",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "NED-7",
+      "clubName": "Groningen Noorderpoort FC",
+      "country": "NED",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "NED-8",
+      "clubName": "Amsterdam Westhaven FC",
+      "country": "NED",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 1
+    },
+    {
+      "clubId": "POR-1",
+      "clubName": "Lisboa Central FC",
+      "country": "POR",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "POR-2",
+      "clubName": "Porto Ribeira FC",
+      "country": "POR",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "POR-3",
+      "clubName": "Tejo Union",
+      "country": "POR",
+      "size": "medium",
+      "templateId": "GER-3",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "POR-4",
+      "clubName": "Braga Norte FC",
+      "country": "POR",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "POR-5",
+      "clubName": "Coimbra Athletic",
+      "country": "POR",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "POR-6",
+      "clubName": "Aveiro Costa FC",
+      "country": "POR",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 1
+    },
+    {
+      "clubId": "POR-7",
+      "clubName": "Guimarães Castelo FC",
+      "country": "POR",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "POR-8",
+      "clubName": "Setúbal Sado FC",
+      "country": "POR",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "SUI-1",
+      "clubName": "Basel Rheintor FC",
+      "country": "SUI",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "SUI-2",
+      "clubName": "Bern Aarebogen FC",
+      "country": "SUI",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "SUI-3",
+      "clubName": "Zürich Limmat FC",
+      "country": "SUI",
+      "size": "medium",
+      "templateId": "GER-3",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "SUI-4",
+      "clubName": "Genève Rhône FC",
+      "country": "SUI",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "SUI-5",
+      "clubName": "St. Gallen Sitter FC",
+      "country": "SUI",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "SUI-6",
+      "clubName": "Lausanne Léman FC",
+      "country": "SUI",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "SUI-7",
+      "clubName": "Luzern Reuss FC",
+      "country": "SUI",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "SUI-8",
+      "clubName": "Zürich Sihl FC",
+      "country": "SUI",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 1
+    },
+    {
+      "clubId": "TUR-1",
+      "clubName": "Istanbul Bosporus SK",
+      "country": "TUR",
+      "size": "large",
+      "templateId": "GER-1",
+      "initialCatalogueFans": 5
+    },
+    {
+      "clubId": "TUR-2",
+      "clubName": "Istanbul Haliç SK",
+      "country": "TUR",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "TUR-3",
+      "clubName": "Istanbul Marmara SK",
+      "country": "TUR",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "TUR-4",
+      "clubName": "Trabzon Karadeniz SK",
+      "country": "TUR",
+      "size": "medium",
+      "templateId": "GER-3",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "TUR-5",
+      "clubName": "Ankara Kale SK",
+      "country": "TUR",
+      "size": "medium",
+      "templateId": "GER-5",
+      "initialCatalogueFans": 3
+    },
+    {
+      "clubId": "TUR-6",
+      "clubName": "Izmir Körfez SK",
+      "country": "TUR",
+      "size": "medium",
+      "templateId": "GER-2",
+      "initialCatalogueFans": 4
+    },
+    {
+      "clubId": "TUR-7",
+      "clubName": "Bursa Yeşilova SK",
+      "country": "TUR",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 2
+    },
+    {
+      "clubId": "TUR-8",
+      "clubName": "Antalya Kıyı SK",
+      "country": "TUR",
+      "size": "small",
+      "templateId": "GER-6",
+      "initialCatalogueFans": 1
+    }
+  ]
+}

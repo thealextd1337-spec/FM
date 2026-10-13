@@ -1,5 +1,7 @@
 # Entwicklungsdokumentation
 
+- [Stadionerweiterung und feste Vereinszuordnung](stadionerweiterung-plan.md): vorhandene fünf Low-Poly-Ligastadien nach Größe fest für alle 96 Ligavereine einsetzen; zusätzliche Einzelentwürfe vorerst zurückgestellt. Vollständige geplante Zuordnung und spätere Erweiterungsfolge.
+
 - [Bugliste](Bugliste.md): priorisierte offene 3D-/Browserfehler, native Matchabstimmung, Android-Prüfungen und separat gekennzeichnete veröffentlichte Korrekturen.
 
 - [Release 130: 3D-Bewegung und vollständige Kaderauswahl](release-130.md): veröffentlicht und live abgenommen; Foulpose, Torwartjagd, vollständige Kaderauswahl und produktive Bildzeitplanung. Acht öffentliche Dateihashes, zwölf Live-Integrationsprüfungen, beide mobilen Taktikansichten und vollständige native/Unity-Partien samt Neuladen bestanden.

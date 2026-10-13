@@ -1,5 +1,7 @@
 # Priorisierte Agenda: 3D-Erlebnis und Vereinsstadien
 
+Aktuelle Nutzerentscheidung vom 13. Oktober 2026: Die vorhandenen fünf Low-Poly-Stadionvorlagen werden zunächst nach Vereinsgröße fest zugeordnet; zusätzliche Einzelstadien sind zurückgestellt. [Aktueller Stadionerweiterungsplan und vollständige geplante Zuordnung](stadionerweiterung-plan.md) haben für diesen Umfang Vorrang. Die folgenden Abschnitte beschreiben die damalige Agenda.
+
 Stand: 9. Oktober 2026. Nutzerauftrag: vorrangig das 3D-Erlebnis verbessern und schönere, unterschiedliche Stadien je Verein einplanen. Spielerporträts und Jubelbilder entfallen. Der erste umgesetzte Umfang wurde auf den späteren Nutzerauftrag „Veröffentliche“ als [Release 115 veröffentlicht](release-115.md). Dienste oder kostenpflichtige Assetgenerierung wurden nicht beauftragt.
 
 ## Verbindliche Prioritäten
