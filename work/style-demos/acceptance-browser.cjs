@@ -3,26 +3,30 @@
 // Only drives the page and its documented QA helper work/platform/qa/unity-integration-v160.js; no second match
 // authority, no source or package writes. The package server is read-only here (/__build is compared before/after).
 //   node work/style-demos/acceptance-browser.cjs --style nighttime --repo <checkout> --url http://127.0.0.1:4411 --out <dir>
-//        [--only build,viewports,flow,goal,parity,reload,fallback] [--software] [--edge PATH] [--playwright DIR]
+//        [--only build,viewports,flow,goal,parity,reload,fallback,architectures] [--software] [--edge PATH] [--playwright DIR]
+//        [--expectMesh NAME] [--archViewports 1280x720,844x390]   (architectures is opt-in: not part of the default section list)
 // Output: <out>/acceptance.json (d6-style-demo-acceptance-1) and <out>/shots/*.png. Exit 2 if a check fails.
 // Scope: functional lifecycle on one desktop GPU (or --software). Not an FPS, Android or visual-quality claim.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),os=require('node:os'),crypto=require('node:crypto');
 const lib=require('./lib.cjs');
 lib.requireNode();
-const args=lib.parseArgs(process.argv.slice(2),{style:'string',repo:'string',url:'string',out:'string',only:'string',software:'boolean',edge:'string',playwright:'string',seed:'string'});
+const args=lib.parseArgs(process.argv.slice(2),{style:'string',repo:'string',url:'string',out:'string',only:'string',software:'boolean',edge:'string',playwright:'string',seed:'string',expectMesh:'string',archViewports:'string'});
 const style=lib.requireStyle(args),repo=lib.resolveRepo(args),base=(args.url||'http://127.0.0.1:'+lib.STYLES[style].port).replace(/\/$/,'');
 if(!args.out)throw lib.fail('--out ist Pflicht (unter outputs/style-demos des Repos oder des Support-Checkouts)');
 const out=path.resolve(args.out);
 for(const root of [repo,lib.OWN_REPO]){const rel=path.relative(path.join(root,'outputs','style-demos'),out);if(rel&&!rel.startsWith('..')&&!path.isAbsolute(rel))break;if(root===lib.OWN_REPO)throw lib.fail('--out muss unter outputs/style-demos liegen: '+out);}
 const only=args.only?args.only.split(','):['build','viewports','flow','goal','parity','reload','fallback'];
+// Player mesh the Unity runtime must report on load (WorldViewBridge logs '[D6] match mesh <name> ...'); styles without an expectation only record it.
+const expectMesh=args.expectMesh||({lowpoly:'WorldPlayerLowPoly-v4'})[style]||null;
+let scenario='-';
 const {chromium}=require(args.playwright||'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const edge=args.edge||'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
 const launchArgs=args.software?['--enable-webgl','--use-angle=swiftshader','--enable-unsafe-swiftshader']:['--enable-webgl','--ignore-gpu-blocklist','--use-angle=d3d11'];
-const helper=fs.readFileSync(path.join(repo,'work/platform/qa/unity-integration-v160.js'),'utf8');
+const helper=fs.readFileSync(path.join(repo,'work/platform/qa/unity-integration-v160.js'),'utf8'),labelHelper=fs.readFileSync(path.join(repo,'work/platform/qa/unity-label-readability.js'),'utf8');
 fs.mkdirSync(path.join(out,'shots'),{recursive:true});
 
 const harnessState=lib.sourceState(lib.OWN_REPO,['work/style-demos']);
-const report={schema:'d6-style-demo-acceptance-1',style,url:base,repo,startedAt:new Date().toISOString(),gpu:!args.software,harness:{file:'work/style-demos/acceptance-browser.cjs',sha256:lib.sha256File(__filename),commit:harnessState.commit,branch:harnessState.branch,dirty:harnessState.dirty,node:process.version},checks:[],sections:{},shots:[],network:{},pageErrors:[],consoleErrors:[],renderer:null,
+const report={schema:'d6-style-demo-acceptance-1',style,url:base,repo,startedAt:new Date().toISOString(),gpu:!args.software,harness:{file:'work/style-demos/acceptance-browser.cjs',sha256:lib.sha256File(__filename),commit:harnessState.commit,branch:harnessState.branch,dirty:harnessState.dirty,node:process.version},checks:[],sections:{},shots:[],network:{},pageErrors:[],consoleErrors:[],d6Console:[],expectMesh,renderer:null,
  scope:'Functional lifecycle on the served package with real Unity WebGL; not an FPS, Android or visual-quality claim.'};
 const check=(id,name,ok,detail)=>{report.checks.push({id,name,ok:Boolean(ok),...(detail===undefined?{}:{detail:typeof detail==='string'?detail:JSON.stringify(detail)})});console.log((ok?'PASS ':'FAIL ')+id+' '+name+(ok||detail===undefined?'':' · '+(typeof detail==='string'?detail:JSON.stringify(detail)).slice(0,300)));return Boolean(ok);};
 const getJson=url=>new Promise((resolve,reject)=>http.get(url,res=>{let t='';res.on('data',c=>t+=c);res.on('end',()=>{try{resolve(JSON.parse(t));}catch(e){reject(e);}});}).on('error',reject));
@@ -39,10 +43,13 @@ const PAGE=`window.D6Acc={
  ack:()=>D6UnityMatch.ready&&D6UnityMatch.lastAck&&D6UnityMatch.picture&&D6UnityMatch.lastAck.sequence>=D6UnityMatch.picture.sequence-1,
  stopGoalReplay:()=>{const s=v103ReplayState(match);return Boolean(s.active&&!s.active.penalty&&match.goals.length>0)}
 };'D6Acc ready'`;
-const INIT=`(()=>{window.__d6Loads=[];window.addEventListener('message',e=>{const d=e.data;if(d&&d.kind==='load'&&d.config)window.__d6Loads.push({quality:d.config.quality,session:d.config.session,fixtureId:d.config.fixtureId,teams:(d.config.teams||[]).map(t=>t.id),schema:d.config.schema});},true);})();`;
+const INIT=`(()=>{window.__d6Loads=[];window.addEventListener('message',e=>{const d=e.data;if(d&&d.kind==='load'&&d.config)window.__d6Loads.push({quality:d.config.quality,session:d.config.session,fixtureId:d.config.fixtureId,teams:(d.config.teams||[]).map(t=>t.id),home:(d.config.teams||[]).filter(t=>t.home).map(t=>t.id),schema:d.config.schema});},true);})();`;
 const loadsOf=async page=>{const frame=page.frames().find(f=>f.url().includes('unity-match'));return frame?frame.evaluate(()=>window.__d6Loads):[];};
 
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const consoleOf=new WeakMap();
+// '[D6] match mesh <name> vertices=.. base=.. mask=..' is logged once per Unity runtime; wait for it (the console event reaches Node asynchronously).
+const meshLines=async page=>{const lines=consoleOf.get(page)||[];for(let i=0;i<40&&!lines.some(l=>l.includes('match mesh '));i++)await wait(250);return lines.filter(l=>l.includes('match mesh '));};
 const withTimeout=(promise,ms,label)=>{let timer;return Promise.race([promise,new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error('Zeitüberschreitung '+label+' nach '+ms/1000+' s')),ms);})]).finally(()=>clearTimeout(timer));};
 async function newContext(browser,viewport,extra={}){
   const context=await browser.newContext({viewport,deviceScaleFactor:1,...extra});await wireContext(context);return context;
@@ -51,14 +58,15 @@ async function wireContext(context){
   await context.addInitScript(INIT);
   context.on('response',res=>{const url=res.url();if(!url.startsWith(base))return;const p=new URL(url).pathname,key=p.startsWith('/unity/')||p==='/'||p.endsWith('runtime.html')||p.endsWith('runtime.js')?p+(new URL(url).search):'(other)';
     const entry=report.network[key]||(report.network[key]={status:{},sha:new Set(),count:0});entry.count++;entry.status[res.status()]=(entry.status[res.status()]||0)+1;const sha=res.headers()['x-d6-sha256'];if(sha)entry.sha.add(sha);});
-  context.on('page',page=>{page.on('pageerror',e=>report.pageErrors.push(String(e.message).slice(0,300)));page.on('console',m=>{if(m.type()==='error'&&report.consoleErrors.length<60)report.consoleErrors.push(m.text().slice(0,240));});});
+  context.on('page',page=>{const lines=[];consoleOf.set(page,lines);page.on('pageerror',e=>report.pageErrors.push(String(e.message).slice(0,300)));page.on('console',m=>{const text=m.text();if(m.type()==='error'&&report.consoleErrors.length<60)report.consoleErrors.push({scenario,text:text.slice(0,240)});if(text.startsWith('[D6]')){lines.push(text.slice(0,300));if(report.d6Console.length<400)report.d6Console.push({scenario,text:text.slice(0,300)});}});});
 }
-async function openMatch(context,{quality,config=null,replays=true,seed,route}={}){
+async function openMatch(context,{quality,config=null,replays=true,seed,route,club=null}={}){
   const page=await context.newPage();if(route)await page.route(route.pattern,route.handler);
   await page.goto(base+'/?engine=unity'+(quality?'&quality='+quality:''));
   await page.waitForFunction(()=>window.D6WorldUnityContract&&window.userMeshyMatchReady,{},{timeout:120000});
   await page.evaluate(helper);await page.evaluate(PAGE);
-  const setup=await page.evaluate(o=>D6QA160.setup(o),{config,unity:true,replays,...(seed?{seed}:{})});
+  // club: career for another real league club; the unchanged QA helper creates it by the documented native constructor (one-shot id substitution), fixture = its earliest real fixture.
+  const setup=await page.evaluate(async([o,club])=>{const original=v61CreateCareer;if(club)v61CreateCareer=function(id,...rest){v61CreateCareer=original;return original(club,...rest);};try{return await D6QA160.setup(o);}finally{v61CreateCareer=original;}},[{config,unity:true,replays,...(seed?{seed}:{})},club]);
   return {page,setup};
 }
 const shot=async(page,name)=>{const file=path.join(out,'shots',name+'.png');await page.waitForTimeout(250);await page.screenshot({path:file});report.shots.push('shots/'+name+'.png');return file;};
@@ -75,6 +83,7 @@ async function bindingChecks(prefix,page,setup,label){
   check(prefix+'-unity','Unity aktiv und bereit, kein lastError ('+label+')',s.ready&&s.active&&!s.error&&!s.failure&&setup?.unityReady===true&&!setup?.error,{ready:s.ready,active:s.active,error:s.error,failure:s.failure});
   check(prefix+'-no-three','Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden ('+label+')',s.view==='3d'&&!s.failed&&!s.threeScene&&Boolean(s.iframe&&s.iframe.includes('/unity-match/runtime.html')),{view:s.view,failed:s.failed,threeScene:s.threeScene,iframe:s.iframe});
   check(prefix+'-players','12 echte Spieler im Unity-ACK, 12 Labels ('+label+')',s.ackPlayers===12&&s.ackAllReal&&s.labels===12,{ack:s.ackPlayers,real:s.ackAllReal,labels:s.labels});
+  if(expectMesh){const mesh=await meshLines(page);check(prefix+'-mesh','Unity meldet beim Laden das Spielermesh '+expectMesh+' (kein Originalmesh, kein anderes Mesh) ('+label+')',mesh.length>0&&mesh.every(l=>l.includes('match mesh '+expectMesh+' ')),mesh);}
   return s;
 }
 
@@ -239,14 +248,45 @@ async fallback(browser){
     check('fb-forced-error','Fehler aus dem Unity-Frame: sichtbarer 2D-Rückfall (Meldung gesetzt), Spiel läuft nativ weiter, kein THREE',fb.after.view==='2d'&&Boolean(fb.after.error)&&!fb.after.active&&fb.playsOn2D.to>fb.playsOn2D.from,fb);
   }finally{await context.close();}
   // 3) Missing Unity build: playable 2D, never silent THREE.
-  context=await newContext(browser,{width:1280,height:720});
+  scenario='missing-build';context=await newContext(browser,{width:1280,height:720});
   try{
     const r=await openMatch(context,{quality:'standard',route:{pattern:'**/unity/probe-build.json',handler:route=>route.fulfill({status:404,body:'Not available'})}}).catch(error=>({error}));
     const p=r.page||(context.pages()[0]);await p.waitForFunction(()=>v98View==='2d'&&D6UnityMatch.lastError,{},{timeout:150000});await p.waitForTimeout(500);
     const s=await p.evaluate(()=>({...D6Acc.snap(),status:document.querySelector('#v98-status')?.textContent,people:match.people.length,phase:v65Context().state.phase}));await shot(p,'fallback-missing-build');
     const m=await nativePlays(p);
     check('fb-missing-build','Fehlender Unity-Build: 2D mit Meldung „'+(s.error||'')+'“, 12 Spieler, Partie spielbar, kein v98Scene',s.view==='2d'&&Boolean(s.error)&&!s.active&&s.people===12&&!s.threeScene&&m.to>m.from,{error:s.error,status:s.status,view:s.view,m});
-  }finally{await context.close();}
+  }finally{await context.close();scenario='-';}
+},
+async architectures(browser){
+  // Real league clubs whose earliest native fixture is a home match, so the stadium Unity builds is their own ClubStadiumProfiles entry.
+  // (Only the six league clubs per country can be taken over; sun-terraces clubs ESP-3/ITA-6/POR-3 open their season away, so that type is not reachable without choosing another fixture.)
+  const owns=['ENG-1','ENG-2','ITA-1','ESP-4','ESP-5','ITA-4'],sizes=(args.archViewports||'1280x720').split(',').map(s=>s.split('x').map(Number));
+  const source=fs.readFileSync(path.join(repo,'prototypes/match-engine-unity/ClubStadiumProfiles.cs'),'utf8');
+  const catalog=Object.fromEntries([...source.matchAll(/Plan\("([A-Z0-9-]+)",\s*"([^"]*)",\s*"([^"]+)",\s*"([^"]+)"/g)].map(m=>[m[1],{name:m[2],archetype:m[3],facade:m[4]}]));
+  const labelsOf=page=>page.evaluate(()=>{const pr=D6UnityMatch.projection,buttons=[...document.querySelectorAll('#d6-unity-labels [data-player]')],vw=innerWidth,vh=innerHeight;
+    return {markers:pr?pr.markers.length:0,visibleMarkers:pr?pr.markers.filter(m=>m.visible).length:0,buttons:buttons.length,named:buttons.filter(b=>(b.textContent||'').trim().length>0).length,
+     inViewport:buttons.filter(b=>{const r=b.getBoundingClientRect();return r.width>0&&r.height>0&&r.left>=0&&r.top>=0&&r.right<=vw&&r.bottom<=vh;}).length,texts:buttons.map(b=>(b.textContent||'').trim())};});
+  const rows=[];
+  for(const own of owns)for(const quality of ['standard','reduced'])for(const [w,h] of sizes){
+    const label=own+'-'+w+'x'+h+'-'+quality,context=await newContext(browser,{width:w,height:h});
+    try{
+      const {page,setup}=await openMatch(context,{quality,club:own}),id='arch-'+label;
+      const s=await bindingChecks(id,page,setup,label);
+      const loads=await loadsOf(page),last=loads.at(-1)||{},home=last.home||[],profile=catalog[home[0]];
+      check(id+'-home','Echtes Heimspiel von '+own+': Ladebefehl nennt genau diesen Heimverein, Profil '+(profile?profile.archetype+'/'+profile.facade:'?')+', Qualität '+quality,home.length===1&&home[0]===own&&Boolean(profile)&&last.quality===quality&&/-/.test(String(last.fixtureId||'')),{home,teams:last.teams,fixture:last.fixtureId,quality:last.quality});
+      await screenLayout(page,true);const kickoff=await labelsOf(page);await shot(page,'arch-'+label+'-kickoff');
+      await page.evaluate(()=>D6QA160.run({minute:5,sampleEvery:3}));await settle(page);const live=await labelsOf(page);await shot(page,'arch-'+label+'-live-m5');
+      // Repository label QA (work/platform/qa/unity-label-readability.js) on the actually rendered heads, run paused after the screenshot: no overlap, nothing outside the viewport, accessible names, ring patterns, native state untouched.
+      await page.evaluate(()=>D6QA160.pause());await settle(page);await page.evaluate(labelHelper);
+      const lq=await page.evaluate(()=>D6LabelQA().then(r=>({pass:r.pass,checks:r.checks.length}),e=>({pass:false,error:String(e&&e.message||e).slice(0,300)})));
+      check(id+'-label-qa','Repository-Labelprüfung auf den echt gerenderten Köpfen ('+label+'): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert',lq.pass,lq);
+      const e=await page.evaluate(()=>({...D6Acc.snap(),fixture:v65Context().fixture.id,home:v65Context().fixture.homeId}));
+      check(id+'-play','Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild ('+label+')',e.minute>=5&&!e.error&&e.active&&kickoff.buttons===12&&kickoff.named===12&&live.buttons===12&&live.named===12,{minute:e.minute,kickoff:{visible:kickoff.visibleMarkers,inViewport:kickoff.inViewport},live:{visible:live.visibleMarkers,inViewport:live.inViewport}});
+      rows.push({labelQA:lq,own,home:home[0],archetype:profile&&profile.archetype,facade:profile&&profile.facade,viewport:w+'x'+h,quality,fixture:e.fixture,iframe:e.iframe,session:e.session,loads:e.loads,mesh:consoleOf.get(page).filter(l=>l.includes('match mesh ')),kickoff,live,minute:e.minute});
+    }finally{await context.close();}
+  }
+  const types=[...new Set(rows.map(r=>r.archetype))];report.sections.architectures={rows:rows.map(r=>({own:r.own,home:r.home,archetype:r.archetype,facade:r.facade,viewport:r.viewport,quality:r.quality,fixture:r.fixture,mesh:r.mesh,labelQA:r.labelQA,kickoffVisible:r.kickoff.visibleMarkers,kickoffInViewport:r.kickoff.inViewport,liveVisible:r.live.visibleMarkers,liveInViewport:r.live.inViewport})),types};
+  check('arch-types','Mindestens 3 weitere bestehende Architekturtypen (zusätzlich zu dockside-ground aus GER-2) im echten WebGL-Spiel: '+types.join(', '),types.length>=3,types);
 }
 };
 
@@ -258,7 +298,7 @@ async fallback(browser){
       if(!sections[name]){report.sections[name]={status:'unknown'};continue;}
       const started=Date.now(),failuresBefore=report.checks.filter(c=>!c.ok).length;
       console.log('--- '+name);
-      try{await withTimeout(sections[name](browser),name==='parity'||name==='flow'?900000:600000,name);report.sections[name]={...(report.sections[name]||{}),status:report.checks.filter(c=>!c.ok).length>failuresBefore?'fail':'pass',seconds:Math.round((Date.now()-started)/1000)};}
+      try{await withTimeout(sections[name](browser),name==='architectures'?2400000:name==='parity'||name==='flow'?900000:600000,name);report.sections[name]={...(report.sections[name]||{}),status:report.checks.filter(c=>!c.ok).length>failuresBefore?'fail':'pass',seconds:Math.round((Date.now()-started)/1000)};}
       catch(error){report.sections[name]={...(report.sections[name]||{}),status:'error',error:String(error&&error.stack||error).slice(0,1200),seconds:Math.round((Date.now()-started)/1000)};console.error('FEHLER in '+name+': '+(error&&error.message));}
     }
     const after=await getJson(base+'/__build'),beforeBuild=report.buildBefore||buildOf(after),afterBuild=buildOf(after);
@@ -269,8 +309,10 @@ async fallback(browser){
     const net=Object.entries(report.network).map(([k,v])=>({url:k,count:v.count,status:v.status,sha:[...v.sha]}));
     const fetched=wanted.map(f=>{const hit=net.find(n=>n.url.startsWith('/unity/Build/'+f));return {file:f,url:hit&&hit.url,sha:hit&&hit.sha[0],expected:shas['unity/Build/'+f]||shas['Build/'+f]||Object.entries(shas).find(([k])=>k.endsWith('/'+f)||k===f)?.[1]};});
     report.fetchedBuild=fetched;report.networkSummary=net;
-    if(only.some(n=>['viewports','flow','goal','parity','reload','fallback'].includes(n)))check('network-payload','Der Browser lud alle vier WebGL-Dateien über die hashgebundenen URLs; X-D6-Sha256 = Paketmanifest',fetched.every(f=>f.url&&f.sha&&f.sha===f.expected&&/\?v=[0-9a-f]{8,}/.test(f.url)),fetched);
-    if(only.some(n=>['viewports','flow','goal','parity','reload','fallback'].includes(n))){const badStatus=net.filter(n=>Object.keys(n.status).some(s=>Number(s)>=400)&&!/probe-build\.json/.test(n.url));check('network-status','Keine HTTP-Fehler außer dem bewusst blockierten probe-build.json',badStatus.length===0,badStatus);}
+    if(only.some(n=>['viewports','flow','goal','parity','reload','fallback','architectures'].includes(n)))check('network-payload','Der Browser lud alle vier WebGL-Dateien über die hashgebundenen URLs; X-D6-Sha256 = Paketmanifest',fetched.every(f=>f.url&&f.sha&&f.sha===f.expected&&/\?v=[0-9a-f]{8,}/.test(f.url)),fetched);
+    if(only.some(n=>['viewports','flow','goal','parity','reload','fallback','architectures'].includes(n))){const badStatus=net.filter(n=>Object.keys(n.status).some(s=>Number(s)>=400)&&!/probe-build\.json/.test(n.url));check('network-status','Keine HTTP-Fehler außer dem bewusst blockierten probe-build.json',badStatus.length===0,badStatus);}
+    const unexpectedConsole=report.consoleErrors.filter(e=>!(e.scenario==='missing-build'&&/status of 404/.test(e.text)));
+    check('console-errors','Keine Konsolenfehler außer dem erwarteten 404 des bewusst blockierten probe-build.json (Szenario missing-build)',unexpectedConsole.length===0,unexpectedConsole.slice(0,5));
     check('page-errors','Keine unbehandelten Seitenfehler (pageerror)',report.pageErrors.length===0,report.pageErrors.slice(0,5));
   }finally{await browser.close();}
   report.finishedAt=new Date().toISOString();report.seconds=Math.round((Date.now()-t0)/1000);
