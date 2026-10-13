@@ -41,7 +41,9 @@ Shader "Doppel6/Pitch" {
    // Floodlight pools: slightly brighter centre, darker run-off. _Pools adds
    // the overlapping lobes of four light banks (0 = previous single falloff).
    float2 r=p/(half_+8);color*=lerp(1.05,.93,saturate(dot(r,r)));
-   float2 q=abs(p)-half_*float2(.42,.30);color*=1+_Pools*(exp(-dot(q,q)/(half_.y*half_.y*.55))-.35);
+   // Each bank throws a soft ellipse toward its half; between them and toward
+   // the corners the turf falls off a little (never below ~85 %).
+   float2 q=abs(p)-half_*float2(.42,.30);color*=1+_Pools*(exp(-dot(q,q)/(half_.y*half_.y*.55))-.35)-_Pools*.6*saturate(dot(r,r)-.35);
    // A faint broad sheen of the key light on the cut turf (no wet look, no
    // friction cue); stripes catch it differently like real mown grass.
    Light key=GetMainLight();half3 v=normalize(GetWorldSpaceViewDir(i.world));half sheen=pow(saturate(normalize(key.direction+v).y),10)*_Sheen*(stripe>.5?1:.55);

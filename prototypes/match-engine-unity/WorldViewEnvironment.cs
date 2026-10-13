@@ -44,10 +44,10 @@ public partial class ProbeBridge {
             matchProfile=ScriptableObject.CreateInstance<VolumeProfile>();
             // Static grading (no auto exposure): calm contrast, cool shadows,
             // neutral highlights so kits keep their colours under the lights.
-            var grade=matchProfile.Add<ColorAdjustments>(true);grade.contrast.Override(12);grade.saturation.Override(-2);grade.postExposure.Override(.16f);
+            var grade=matchProfile.Add<ColorAdjustments>(true);grade.contrast.Override(15);grade.saturation.Override(-2);grade.postExposure.Override(.16f);
             var balance=matchProfile.Add<WhiteBalance>(true);balance.temperature.Override(-6);
             var tones=matchProfile.Add<ShadowsMidtonesHighlights>(true);tones.shadows.Override(new Vector4(.96f,.99f,1.08f,-.02f));tones.highlights.Override(new Vector4(1.01f,1f,.98f,0));
-            var vignette=matchProfile.Add<Vignette>(true);vignette.intensity.Override(.24f);vignette.smoothness.Override(.5f);vignette.color.Override(new Color(.01f,.02f,.05f));
+            var vignette=matchProfile.Add<Vignette>(true);vignette.intensity.Override(.27f);vignette.smoothness.Override(.5f);vignette.color.Override(new Color(.01f,.02f,.05f));
             // Optional glow around lamps only; reduced shows the halos without it.
             var bloom=matchProfile.Add<Bloom>(true);bloom.threshold.Override(.95f);bloom.intensity.Override(.42f);bloom.scatter.Override(.62f);matchBloom=bloom;
             var go=new GameObject("D6 match grading");go.transform.SetParent(transform,false);matchVolume=go.AddComponent<Volume>();matchVolume.isGlobal=true;matchVolume.priority=10;matchVolume.sharedProfile=matchProfile;
@@ -121,9 +121,9 @@ public partial class ProbeBridge {
         var pitch=new Material(Resources.Load<Shader>("D6Pitch"));pitch.SetVector("_Size",new Vector4(L,W,0,0));
         pitch.SetColor("_ColorA",turfA.linear);pitch.SetColor("_ColorB",turfB.linear);pitch.SetColor("_Apron",(turfB*.74f).linear);pitch.SetColor("_Wear",new Color(.42f,.43f,.29f).linear);
         pitch.SetFloat("_Stripes",plan.PitchStripes);pitch.SetFloat("_Pattern",plan.PitchPattern);pitch.SetFloat("_WearAmount",plan.Wear*.8f);
-        pitch.SetFloat("_Grain",1);pitch.SetFloat("_Pools",.09f);pitch.SetFloat("_Sheen",.10f);materials.Add(pitch);
+        pitch.SetFloat("_Grain",1);pitch.SetFloat("_Pools",.18f);pitch.SetFloat("_Sheen",.14f);materials.Add(pitch);
         // Floodlit bowl: pitch plus stands; the surroundings fall to dim sky light.
-        Shader.SetGlobalVector(NightId,new Vector4(L/2+3,W/2+3,22,.34f));
+        Shader.SetGlobalVector(NightId,new Vector4(L/2+2,W/2+2,17,.30f));
         foreach(var r in world.GetComponentsInChildren<MeshRenderer>())if(r.name=="Grass")r.sharedMaterial=pitch;
         Box("Apron",new Vector3(0,-.075f,0),new Vector3(L+40,.1f,W+40),pitch);
 
@@ -144,7 +144,8 @@ public partial class ProbeBridge {
             if(ly>=10)return Color.Lerp(seat,Color.black,.35f);
             if(ly<3)return Color.Lerp(seat,Color.black,.2f);
             float light=.72f+.04f*ly-(lx==0?.12f:0);return Color.Lerp(shirt,new Color(.2f,.2f,.22f),.25f)*light;}));
-        crowdMaterial.SetFloat("_VertexTint",1);
+        // Night crowd: in the stands' half light, still in club colours.
+        crowdMaterial.SetFloat("_VertexTint",1);crowdMaterial.SetColor("_BaseColor",new Color(.8f,.8f,.84f).linear);
 
         // Surface textures. Mesh UVs are metres; tiling is one repeat per N metres.
         Texture2D Noise(int size,float low,float high,int salt,Func<int,int,float,float> shape=null)=>StadiumTexture(size,size,(x,y)=>{float n=Mathf.Lerp(low,high,Grain(x,y,seed+salt)*.4f+Grain(x/4,y/4,seed+salt+1)*.6f);if(shape!=null)n=shape(x,y,n);return new Color(n,n,n);});
@@ -185,7 +186,7 @@ public partial class ProbeBridge {
         // darker vegetation and ground beyond the floodlit bowl.
         Color Cool(Color c,float value,float blue=.04f){var o=c*value;o.b=Mathf.Min(1,o.b+blue*value);return o;}
         Slot(StadiumSlot.Concrete,concreteTex,4,color:Cool(plan.Colors[StadiumSlot.Concrete],.92f));Slot(StadiumSlot.Seat,seatTex,1,color:Color.Lerp(seat,new Color(.2f,.22f,.26f),.18f),gloss:.06f);
-        Slot(StadiumSlot.Roof,roofTex,3,gloss:.08f,color:Cool(plan.Colors[StadiumSlot.Roof],.64f,.02f));Slot(StadiumSlot.Steel,null,1,gloss:.28f,color:Cool(plan.Colors[StadiumSlot.Steel],.9f,.03f),rim:.22f);
+        Slot(StadiumSlot.Roof,roofTex,3,gloss:.08f,color:Cool(plan.Colors[StadiumSlot.Roof],.5f,.02f));Slot(StadiumSlot.Steel,null,1,gloss:.28f,color:Cool(plan.Colors[StadiumSlot.Steel],.9f,.03f),rim:.22f);
         Slot(StadiumSlot.Cladding,claddingTex,4,color:Cool(plan.Colors[StadiumSlot.Cladding],.9f));Slot(StadiumSlot.Brick,brickTex,2.4f,color:plan.Colors[StadiumSlot.Brick]*.9f);Slot(StadiumSlot.Trim,null,1,gloss:.08f);
         Slot(StadiumSlot.Glass,windows,3,new Color(.9f,.82f,.66f),.5f);Slot(StadiumSlot.Lamp,lampTex,1,new Color(2.3f,2.25f,2.1f),color:new Color(.9f,.9f,.88f));
         Slot(StadiumSlot.Shade);Slot(StadiumSlot.Grass,leafTex,6,color:Cool(plan.Colors[StadiumSlot.Grass],.62f,.03f));Slot(StadiumSlot.Foliage,leafTex,3,color:Cool(plan.Colors[StadiumSlot.Foliage],.55f,.04f));
