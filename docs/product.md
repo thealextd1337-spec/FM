@@ -500,3 +500,10 @@ Für die Abstimmung der ausgespielten und kompakten Matchsimulation gilt auf Nut
 Alle 64 detaillierten Motive (zwölf nationale Fünfer-Sets und vier Crown-/Horizon-Awards) sind einschließlich der überarbeiteten deutschen und türkischen Pokale für die Integration freigegeben. Transparente Varianten wurden auf Nutzerwahl mit dem Bildgenerator erstellt und als große sowie kompakte WebP-Darstellungen integriert. Hintergrundtransparenz, vollständige Identitätszuordnung, helle/dunkle Darstellung, mobile Ansichtsbreite und Offline-Einbettung sind lokal geprüft. Die Freigabe ersetzt keine Veröffentlichung.
 
 Auf schmalen Bildschirmen werden die Unterbereiche von Kader, Transfers, Wettbewerben und Verein über eine beschriftete Auswahl bedient; am Desktop bleiben Reiter. Die aktive Auswahl bleibt beim Wechsel der Bildschirmbreite erhalten. Ausführliche Transferhilfe ist aufklappbar. Der gesamte Karrierebeginn folgt der gewählten Flutlicht-Darstellung.
+
+
+## Low-Poly-Ausbau: best?tigter Auftrag vom 13. Oktober 2026
+
+Low-Poly soll nach dem laufenden Ausbau die Live-Darstellung werden. Jeder Ligaverein erh?lt ein baulich individuell erkennbares Stadionprofil, gepr?gt von Klubidentit?t, Land und Vereinsgr??e. Pokalvereine d?rfen ein gemeinsames Standardstadion verwenden; Vereinsfarben, Banner und Heim-/G?stefanbl?cke bleiben korrekt zugeordnet. Fahnen und zusammenh?ngende Fanbewegung sind in echten Matches sichtbar.
+
+Europacup-Partien werden als Abendspiele mit klarer Nacht-/Flutlichtdarstellung gezeigt. Liga und nationaler Pokal erhalten wechselnde klare Tag- und Nachtspiele. Die Zuordnung bleibt pro Partie bei Wiederherstellung und R?ckschau stabil. Verbesserte Schatten und weich ausschwingende Tornetze geh?ren zur Darstellung; native Matchzust?nde, Regeln, Zufallsfolge und Spielst?nde erhalten keine neue Autorit?t oder Migration. Qualit?t und Ger?teabnahme gehen vor dem Ver?ffentlichungstermin. Der Auftrag ist best?tigt, die neue Darstellung noch nicht ver?ffentlicht.

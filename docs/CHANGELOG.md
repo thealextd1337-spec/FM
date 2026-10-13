@@ -1,5 +1,10 @@
 # Änderungen
 
+## 13. Oktober 2026 ? Low-Poly-Ausbau begonnen (lokal)
+
+- Gepr?fte Low-Poly-Quellen und versionierte Mesh-/Texturassets isoliert auf den ver?ffentlichten Stand 130 ?bernommen. 46 Identit?tseingaben sind bytegleich zur abgenommenen Demo; produktive Browser-/Matchquellen und bisherige Release-Nachweise bleiben erhalten.
+- Beauftragter Ausbau: bessere Schatten, klare Tag-/Nachtspiele, individuell erkennbare Ligastadien, Standardstadien f?r Pokalvereine, Heim-/G?stefanbl?cke mit Fahnen und nat?rliche Tornetzbewegung. Umsetzung und erneute Abnahme laufen; noch nicht ver?ffentlicht.
+
 ## 13. Oktober 2026 – Bugliste
 
 - Offene Probleme mit Browserleistung, Laufdynamik, Abwehrverfolgung, Freistoßausrichtung, Rückwärtslaufen und Kontaktübergängen mit nächster Abnahme dokumentiert. Native Spielzeit-/Schussziele, Android-Prüfung und lokale Korrekturen getrennt erfasst. [Bugliste](Bugliste.md).
