@@ -1,5 +1,11 @@
 # Änderungen
 
+## 13. Oktober 2026 – Stadion- und Fanblock-Prototypen integriert (lokal)
+
+- Opus 5.5 mit maximaler Denkintensität hat fünf individuelle Ligastadien, Länder-Standardstadien für Pokalvereine und neutrale Finalarenen umgesetzt. Heim- und Gästefanblöcke mit geometrischen Fans, Fahnen und Bannern folgen Vereinsfarben und der empfangenen Matchzeit; Tageslicht und Flutlicht werden von der Stadionkulisse übernommen.
+- In Unity bestehen 583 Profil-, 1.627 Architektur- und 613 Fanblockprüfungen. Ein Quelltext-Test verwechselte die API-Erwähnung in Kommentaren mit ausführbaren Zufallsquellen; diese Testkorrektur ist separat geprüft, der erste fehlgeschlagene Lauf bleibt erhalten.
+- Fünf der 96 Ligavereine sind individuell ausgearbeitet; 31 ältere Profile und 60 Länder-Standardvarianten bleiben für die weitere Autorenschaft offen. Die gerenderte Prototypenabnahme geht dem vollständigen Katalog voraus. Browser-/Gerätebudgets und tatsächliche Sichtbarkeit der Fanblöcke bleiben zu messen. Noch nicht veröffentlicht.
+
 ## 13. Oktober 2026 – Tageslicht und Flutlicht integriert (lokal)
 
 - Opus 5.5 mit maximaler Denkintensität hat getrennte Tag-/Nachtbeleuchtung, angepasste Spieler-/Ballschatten und lichtabhängige Kontaktschatten umgesetzt. Ohne neuen Darstellungsvertrag bleibt der bisherige Nachtlook erhalten. Licht, Kamera, Schattenqualität und Bias werden nach der Ansicht zurückgesetzt; Trikotgeometrie, native Regeln und Spielstände bleiben unverändert.
