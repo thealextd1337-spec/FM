@@ -1,0 +1,118 @@
+{
+  "schema": "d6-lowpoly-live-lane-handoff-1",
+  "lane": "lighting (B)",
+  "implementer": "claude-opus-5-5, effort max",
+  "createdAt": "2026-10-13",
+  "worktree": "work/lowpoly-live-lighting",
+  "branch": "codex/lowpoly-live-lighting-20261013",
+  "base": "acb5408f8c5cd0b698855bc9a5240e5b42df1331",
+  "sourceCommit": "e443e48ae09a411671552e282917c676d9f7f59c",
+  "pushed": false,
+  "unityRun": false,
+  "changedPaths": {
+    "prototypes/match-engine-unity/WorldViewLighting.cs": "1fc7885feca44aed9e2b572e11d29d37a539b4388c51f9c4f514d74d5a6fa964",
+    "prototypes/match-engine-unity/D6Common.hlsl": "06635e107176b147e98a0c4609f508503bfdad80226ddda05e66b20b95e106cd",
+    "prototypes/match-engine-unity/D6Pitch.shader": "89456224f0af5872bb615570fd6f6a15799be29a860dde004a3e36a8b1b07c8a",
+    "prototypes/match-engine-unity/D6Blob.shader": "ed232c6fc9bf332ea90cbed9f403e74a7f459f38f6469747825dcd774235e002",
+    "prototypes/match-engine-unity/WorldKit.shader": "9ad1592b1f61f9ee7ee19c2eeca6f7d5d8399aad1bbf4d0f949ddd5aafc73ae0",
+    "prototypes/match-engine-unity/MatchLightingTests.cs": "6503084eb510ed7425d4acea058317f2d76e1dcba99f29fa40f87e8cb0fecd26 (new, Editor)"
+  },
+  "unchangedOwned": {"prototypes/match-engine-unity/D6Env.shader": "fd5dd8ef6f8d32cef97428be7d81ec4fc517bef97cb352a1c2cf71ffd266e496 (no change needed)"},
+  "ownershipCheck": "git diff --name-only acb5408f..e443e48a lists exactly the six paths above; MatchLightCondition.cs, WorldViewContract.cs, WorldViewEnvironment.cs, generate-identity.cjs, D6Cli.cs, FootballGaitTests.cs, docs and native files untouched.",
+
+  "looks": {
+    "selection": "MatchLighting.Resolve(WorldConfig.presentation): no or empty schema (JsonUtility default object) -> Legacy; lighting 'day' -> Day; otherwise Night. WorldViewState already rejects European day, so every Europe fixture (legacy EUROPE, CROWN, HORIZON, neutral finals) is Night. No hash, Time.*, Random, DateTime or session use; same fixture -> identical light on every apply (tested).",
+    "legacy": {
+      "rule": "Exactly the Release 130 / G0 picture. C#: the same light, ambient, camera, URP and grading state as G0; settings G0 never touched (pipeline cascades, fade, depth/normal bias) are reset to the captured defaults, so a legacy fixture after a day fixture is identical to a first legacy fixture (tested). Shaders: the global keyword _D6_LOOK is off, and every changed shader compiles its Release 130 statements verbatim in the #else branch.",
+      "proof": "FXC disassembly of all 60 legacy stage/variant programs (WorldKit forward+caster, D6Pitch, D6Blob, D6Env; vertex+fragment; 5 shadow keyword variants) is identical to HEAD acb5408f; negative control with _D6_LOOK differs in exactly the 25 changed programs."
+    },
+    "night": {
+      "keyLight": "Release 130 floodlight key unchanged: Euler(54,-32,0), colour (1,.96,.90), intensity 1.45, shadow strength .78; SH sky (.30,.36,.47) horizon (.20,.24,.27) turf (.07,.11,.07); background (.05,.09,.14).",
+      "grading": "Release 130: contrast 6, saturation -6, postExposure .1, vignette .2/.5, bloom .93/.35/.6 (standard only).",
+      "lightLook": "Release 130 night values (identical to Root's seam values)."
+    },
+    "day": {
+      "sun": "Euler(55,135,0): 55 deg elevation, shadows toward +x/-z, i.e. away from the follow, wide, sideline and diagonal cameras (+z side) and from the behind-goal camera (-x). Least dot(shadow, camera view) over the five v98 cameras and a 9x5 ball grid = 0.178 (follow camera, ball at the far-left corner), > 0 everywhere. Colour (1,.962,.89), intensity 1.5, shadow strength .86.",
+      "ambient": "SH sky (.50,.58,.72) horizon (.36,.39,.43) turf bounce (.13,.16,.09): about 1.6x the evening sky ambient upward; turf stays within ~6 % of the night brightness (broadcast exposure), surroundings brighter, shadows bluer.",
+      "background": "(.60,.72,.86) sRGB.",
+      "grading": "contrast 4, saturation 4, postExposure 0, vignette .15/.5, bloom off. With HDR off (ProbeWeb m_SupportsHDR false) any bloom threshold above ~1.4 is identical to off; off also saves the bloom passes.",
+      "lightLook": "skyTop (.29,.50,.80), skyHorizon (.74,.82,.90), skyGround (.44,.50,.47) sRGB; lampEmission 0; windowLit 1; crowdLight .86; bannerLight .92."
+    }
+  },
+
+  "lightLookContractForStadiumLane": {
+    "struct": "MatchLightCondition.cs unchanged (frozen fields). Values: MatchLighting.NightLook / DayLook; ProbeBridge.LightLook is set as the first statement of ApplyMatchLighting, which BuildStadium calls before any stadium texture is built.",
+    "light": "MatchLight.Night for legacy and night presentation, Day for day presentation. Lane C must not infer 'legacy' from it; legacy = string.IsNullOrEmpty(presentation?.schema) (or ProbeBridge.Look == MatchLook.Legacy).",
+    "skyTop/skyHorizon/skyGround": "sRGB colours for the generated sky dome texture, same space as the existing skyTex code (night values reproduce it exactly).",
+    "lampEmission": "multiplier on the existing lamp emission (1.6,1.5,1.3); night 1, day 0 (lamps off, panels lit by the sun as albedo).",
+    "windowLit": "GRAIN THRESHOLD, not a fraction: a generated window cell is lit when its stable grain in [0,1] exceeds windowLit (existing code: lit>.45f). .45 = Release 130 (~55 % lit); 1 = no lit windows (grain never exceeds 1).",
+    "crowdLight/bannerLight": "multipliers on the spectator/supporter and banner base colours (1 = Release 130). Day < 1 because the sunlit far stand faces the sun (about 2.5x the evening light on the crowd); keeps crowds below the kits."
+  },
+
+  "shadows": {
+    "keyLights": "One shadow-casting light in every look (the scene's directional light). No additional lights.",
+    "map": "Received looks: standard 2048 soft, reduced 1024 hard; one cascade; shadowDistance = MatchLighting.ShadowDistance(length,width) = (follow-camera far-corner distance + 5 m)/(1-0.12): 91.9 m on 68x44, 107.6 m on 81.6x52.8; cascadeBorder (fade) .12. Set once per load, never per frame (stable sphere fit).",
+    "fade": "URP's GetMainLight(shadowCoord) used by the D6 shaders has no distance fade, so a shorter distance would make far shadows pop at the cascade sphere. Received looks apply URP's own fade (GetMainLightShadowFade) in D6Pitch, WorldKit and D6Blob, like URP Lit already does for lines/ball/posts.",
+    "bias": "Received looks: depth 1 / normal 1 shadow texels (URP defaults) set on BOTH the light and the pipeline asset, so the effective bias no longer depends on whether the Sun has UniversalAdditionalLightData (URP uses the light's bias only with usePipelineSettings=false; ProbeSetup created the Sun via AddComponent, so G0 most likely ran on the pipeline's 1/1 and the light's .04/.35 was inert). MatchLightingTests reports the actual source.",
+    "figures": "WorldKit's caster (only with _D6_LOOK) scales URP's per-light _ShadowBias by .3 depth / .12 normal (D6ShadowClipScaled): with the full normal bias (2.5 texels x ~7 cm soft kernel) the flat-shaded low-poly facets part and the limbs vanish from the map, and the full depth bias lifts the shadow off the boots. Kit self-shadow acne is handled on the receiver: the kit looks its shadow up 12 cm along its normal and takes 30 % of it (standard); reduced skips the lookup (weight 0, cheaper, no hard-shadow banding).",
+    "ball": "The 35 cm ball would vanish under the full normal bias, so received looks give it a shadow-only twin (MeshRenderer 'Ball shadow caster', 0.88 scale, child of the ball, WorldKit material from matchKitShader) that casts with the figures' bias share; the visible ball no longer casts. 0.88 keeps the ball's own lit side out of its twin's shadow. Null-safe: without matchKitShader the ball keeps casting itself.",
+    "casters": "Received looks: only figures, ball (twin), goal posts, crossbar, net supports and rear crossbar cast; pitch markings, net mesh, turf/apron boxes, blobs and all D6Env stadium parts are Off. Legacy: Release 130 casters unchanged. The hidden ground skin (FootballGround.IsGroundSkin) is never touched.",
+    "contactBlobs": "D6Blob _Model 1 (received looks) splits the turf light like D6Pitch into the shadowable key (light strength k, raw shadow), its unshadowed rest and the sky: the core blocks _Contact of the key (what the map cannot resolve at the boots), the disc blocks _Occlusion of rest+sky. In a cast shadow only the occlusion term remains, so nothing darkens twice. Players: strength 1, contact .7/.78, occlusion .34/.30, core .55/.50 (night/day). Ball: contact .95, occlusion .50/.45, core .75/.70; its _Strength stays driven per frame by WorldViewPresentation.BallShadowStyle (native-height logic untouched). Disc sizes unchanged (players 1.05, ball from BallShadowStyle).",
+    "kitsHighlight": "Received looks apply a soft shoulder above knee .82 (night) / .62 (day) to the lit kit colour: front-lit white/bright kits in the sun keep distinct facet tones instead of clipping to one white in the LDR picture (slope 1 at the knee; darker kits, skin and the night camera-facing sides are below the knee and unchanged)."
+  },
+
+  "quality": {
+    "reduced": "MSAA off (camera and pipeline), bloom off, 1024 hard shadows, kit shadow lookup skipped. Standard: pipeline MSAA (4 in ProbeWeb), bloom only at night.",
+    "restore": "RestoreProbeLighting restores ambient, light (rotation, colour, intensity, shadows, strength, depth AND normal bias), camera (background, MSAA, far, renderPostProcessing and renderShadows to their captured values instead of the old forced false), pipeline (resolution, distance, MSAA, cascade count, cascade border, depth and normal bias), _D6LowPoly 0 and the _D6_LOOK keyword off."
+  },
+
+  "contractDeviationsForRootReview": [
+    "Shadow distance: the contract expected 55-75 m; measured from the actual follow-camera rig the far pitch corner is 75.9 m (68x44) / 89.7 m (81.6x52.8), so full-strength coverage needs 91.9/107.6 m incl. margin and fade. Still below G0's 110 m standard (finer texels). Reduced follows the same rule as the contract demands, which makes reduced texels ~30 % coarser than G0's 70 m reduced; if the Pixel shows a regression, a reduced-only constant is a one-line change in ApplyMatchLighting.",
+    "One cascade instead of up to two: URP does not blend cascades, the seam would cross the pitch and move with the camera, and two cascades at 2048 halve each tile.",
+    "Day bloom off instead of a raised threshold (identical picture in LDR, cheaper).",
+    "Kits receive 30 % of the shadow map (standard) with a 12 cm receiver offset instead of full self-shadowing; players in another player's shadow darken less than the turf.",
+    "Ball casts through a shadow-only twin; the visible ball's own renderer is Off in received looks.",
+    "Pitch markings and the net stop casting in received looks (sub-texel; only cost shadow passes).",
+    "Night keeps the Release 130 key direction, so night shadows still fall toward the broadcast camera, as the contract's night base requires."
+  ],
+
+  "requestsToRoot": [
+    {"id": "lighting-1", "file": "prototypes/match-engine-unity/D6Cli.cs", "what": "Register the behavioural test in D6Cli.Tests after OpenScene (e.g. after WorldPresentationTests).", "code": "Debug.Log(\"[D6Cli] MatchLightingTests: \"+Doppel6.Probe.MatchLightingTests.Run(repo,output));"},
+    {"id": "lighting-2", "file": "prototypes/match-engine-unity/D6Cli.cs", "what": "Optional GPU entry for the lighting evidence (graphics device required, like D6Cli.LowPoly).", "code": "public static void MatchLighting(){string repo=null,message=null;bool ok=false;try{repo=Repo();if(SystemInfo.graphicsDeviceType==UnityEngine.Rendering.GraphicsDeviceType.Null)throw new InvalidOperationException(\"Match lighting evidence needs a graphics device\");ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=Doppel6.Probe.MatchLightingTests.Evidence(repo,Arg(\"-d6output\"));ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}finally{if(repo!=null)ProbeWebBuild.Restore(repo);}Done(ok,message);}"},
+    {"id": "lighting-3", "file": "prototypes/match-engine-unity/FootballGaitTests.cs:354", "what": "Replace the source-string check 'Reduced quality disables MSAA and bloom and uses 1024 hard shadows' with the behavioural coverage: MatchLightingTests asserts it on the real bridge for legacy, night and day reduced (pipeline MSAA 1, camera MSAA off, bloom inactive, 1024, hard). Note: the old string check still PASSES against e443e48a (all three literals plus 'SetReplayGrade(bool replay)' remain), so integration is not blocked; delete line 354 or keep it until MatchLightingTests is registered. Line 355 (replay grading) stays valid."},
+    {"id": "lighting-4", "file": "prototypes/match-engine-unity/generate-identity.cjs", "what": "No new runtime files or shaders. Regenerate identity: WorldViewLighting.cs, D6Common.hlsl, D6Pitch.shader, D6Blob.shader and WorldKit.shader are already identity inputs. MatchLightingTests.cs is Editor-only (sync-unity.cjs routes *Tests.cs to Editor) and not an identity input, like the other test classes."},
+    {"id": "lighting-5", "to": "stadium lane (C) via Root", "what": "(a) Consume LightLook with the semantics in lightLookContractForStadiumLane, especially windowLit as a THRESHOLD. (b) ApplyMatchShadows runs before BuildSupporters, so supporter/flag/banner renderers must set ShadowCastingMode.Off themselves. (c) WorldViewEnvironment.cs:12 comment ('1024 hard shadows over 70 m') is only true for legacy now. (d) Until lane C merges, a day fixture shows the sun and ambient with the old night sky dome, lit windows and glowing lamps: judge the day look only after C."},
+    {"id": "lighting-6", "file": "docs (Root, G5)", "what": "CHANGELOG/product/development: received day/night looks, shadow rule, legacy = Release 130 when presentation is absent."}
+  ],
+
+  "rootValidation": {
+    "compile": "sync-unity.cjs into G:/unity/Doppel6-LowPoly-Demo-Release131, D6Cli.Ping. Shaders gained one global keyword (_D6_LOOK): +~60 variants before URP stripping (WorldKit 15->30 and caster 1->2, D6Pitch 15->30, D6Blob 1->30, where the 15 legacy D6Blob variants are the same code). Record WebGL build size delta.",
+    "tests": "D6Cli.Tests with lighting-1 registered: MatchLightingTests writes match-lighting-tests.json (8 cases: legacy standard/reduced/empty-object, night standard/reduced(cup), Europe night, day standard/reduced(cup); plus fixture switching and pristine restore); every check throws with its name on failure. All existing reports must stay byte/value-identical except editor timings (legacy picture path unchanged; StadiumArchitectureTests bridge wiring runs legacy).",
+    "g0Identity": "Absent presentation == G0: LowPolyDiagnostics/SmallViews on the contract fixture (no presentation) must reproduce the G0 images pixel-for-pixel; FXC-level identity is proven offline, browser/driver identity follows from identical DXBC.",
+    "evidence": "D6Cli.MatchLighting (lighting-2): 39 PNGs (legacy/night/day x standard/reduced x follow/wide/sideline/diagonal/goal/close at 1280x720, reduced follow also 931x448) + match-lighting-evidence.json: turf/sky luma, teamVsTurf, ballVsTurf, contactShade (turf beside the boots / open turf), castShade (1 m down the shadow / open turf), repeatIdentical (must be true), pans (largest luma change at fixed turf points inside / at the edge of / outside a cast shadow during a 16-step 0.07 m follow pan at one pose clock; legacy pans are the G0 baseline).",
+    "measureInBrowser": [
+      "Desktop 4070 Chrome+Edge 2752x1018 and Pixel 9 Pro XL reduced 931x448, day and night, 12 and 14 players, 68x44 and 81.6x52.8: loop FPS >= 90 % of G0 in the same session, no console errors, no new long tasks; note the one-time variant compile at the first received-look match.",
+      "Grounding: boots and ball touch the turf (no gap), legs keep their shadow, flighted ball shows its real shadow offset along the light, no double-dark blotch at the shadow root, no acne on players/ball/posts.",
+      "Stability: identical shadow pixels over 120 paused frames, no crawl in a slow broadcast pan, no flicker at stand visibility switches or the 92 m fade edge (wide/goal cameras).",
+      "Readability: kit facets visible (white kits in day), ball, HTML labels (day pitch is ~6 % brighter than night), crowd below kits after lane C.",
+      "Replay/review grading unchanged on both looks; halftime/pause/seek keep the light (set once per load)."
+    ]
+  },
+
+  "offlineVerificationDone": {
+    "csharp": "All 60 C# files of prototypes/match-engine-unity (runtime, Editor tests and diagnostics) type-check together with the editor-bundled Roslyn (DotNetSdk 8.0.318, langversion 9, UNITY_EDITOR) against Unity 6000.6.4f1 UnityEngine/UnityEditor module assemblies plus a stub of only the URP/Core-package members used, whose signatures were checked against com.unity.render-pipelines.universal/core 17.6.0 sources (shadowDepthBias, shadowNormalBias, shadowCascadeCount, cascadeBorder setters public; supportsSoftShadows/softShadowQuality internal and not used). Negative control: a deliberately missing member fails.",
+    "geometryHarness": "Compiled MatchLighting.ShadowDistance and the test's v98 camera port executed in .NET 8: far corner 75.851 m -> reach 91.878 m (full strength 80.852 >= 80.801); 81.6x52.8: 89.681 -> 107.594 (94.682 >= 94.631); day sun elevation 55.00, least shadow-away dot 0.178.",
+    "shaders": "168 stage/variant programs (5 shaders x 6 shadow variants x _D6_LOOK on/off x vertex/fragment) preprocess (DXC) and compile (FXC /Gec, Unity's D3D11 path and the DXBC that HLSLcc translates for WebGL) against URP/Core 17.6 shader libraries with zero errors and zero warnings in D6 code; HEAD control compiles identically. Legacy identity: 60/60 legacy programs disassemble identically to HEAD.",
+    "notDone": "No Unity Editor, play mode, rendering, WebGL build or GPU run (forbidden for lanes): pictures, visual tuning and performance are unverified until Root's slot."
+  },
+
+  "risksAndTuning": [
+    "All look values are reasoned, not yet seen: expect a tuning round on day sun/sky intensity, kit knee, kit shadow share, blob contact/occlusion and crowdLight once Root renders. Every value is one constant in WorldViewLighting.cs (or a blob material float).",
+    "Night key direction and grading are Release 130; the night improvement is only in shadows, blobs, kit receive and casters. If Opus review wants a softer multi-floodlight night shadow, lower night shadow strength (.78) slightly and raise blob occlusion.",
+    "Reduced: coarser shadow texels than G0 (same distance rule), no kit self-shadow. Decide with the physical Pixel run.",
+    "Stability relies on URP's native stable sphere fit with a fixed distance/resolution per load; camera mode changes re-fit while the page blends the FOV (transient, as in G0).",
+    "Kit receiver offset and caster share are tuned to the low-poly v4 mesh scale (1.45x); a different player mesh would need re-checking (no rig/skin/vertex path was changed)."
+  ],
+
+  "toolingJson": "outputs/lowpoly-live-rollout-20261013/lane-lighting/offline-checks.json carries the offline check scripts (C# stub/harness, FXC shader and legacy-identity checks) so Root can repeat the checks without a Unity slot."
+}
