@@ -1,0 +1,1060 @@
+{
+ "schema": "d6-lowpoly-browser-acceptance-summary-1",
+ "style": "lowpoly",
+ "url": "http://127.0.0.1:4412",
+ "harness": {
+  "file": "work/style-demos/acceptance-browser.cjs",
+  "sha256": "b1aa5bf27756adffee4baccb0c4e150dd82d2121824ea16de0792662394bf5e1",
+  "commit": "531396c974e317aa67431724fb6ba4b002f94f3e",
+  "branch": "codex/demo-style-support-20261013",
+  "dirty": false,
+  "node": "v24.19.0"
+ },
+ "startedAt": "2026-10-13T02:22:25.668Z",
+ "finishedAt": "2026-10-13T02:30:29.112Z",
+ "seconds": 483,
+ "gpu": true,
+ "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 (0x00002786) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+ "build": {
+  "before": {
+   "sourceCommit": "d8ae87854aff9f51e3ff0a54338938184c5283ed",
+   "sourceDirty": false,
+   "sourceFingerprint": "7280ec2dce54f27c7b5d3fa3514978a2c776d68c68123dc5177f3cb61734a9b2",
+   "sourceId": "46a6e081054ba81328e69ba8a01f66daaf0470bb2263b3de17f3f14369f3a4b8",
+   "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+   "unityManifestSha256": "dc0481f10c25efbcc529a4ddc05b36ff7927199f57301d3dfaca9b10d233336d",
+   "packageManifestSha256": "023c93bd87c1d0d6ced39050db948b0544063d327a754b01072acd2835b72cc1",
+   "freshness": "fresh",
+   "files": {
+    "index.html": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+    "unity-match/runtime.html": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+    "unity-match/runtime.js": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+    "unity-match/.htaccess": "e6341a7c0465a7f21a828d0296457bcc43bf6cace7105ce9b0cf871c3b9bacc4",
+    "unity/probe-build.json": "dc0481f10c25efbcc529a4ddc05b36ff7927199f57301d3dfaca9b10d233336d",
+    "unity/Build/unity-web.data": "eaa475e7efaeed967b96ba92dff1c8f79e24f1ff6017ce792d1addac21bd3f66",
+    "unity/Build/unity-web.framework.js": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+    "unity/Build/unity-web.loader.js": "2909e971e5efe53176965433a410d0e296ff3b44b77cf358c66a4ffacdaf1968",
+    "unity/Build/unity-web.wasm": "0f956190890ca9dc61e08c33914bb8bf4203242fd9c249a34b89b5ee51636057"
+   }
+  },
+  "afterEqualsBefore": true
+ },
+ "result": {
+  "pass": true,
+  "checks": 344,
+  "failed": [],
+  "groups": {
+   "build": {
+    "pass": 4,
+    "fail": 0
+   },
+   "vp": {
+    "pass": 36,
+    "fail": 0
+   },
+   "flow": {
+    "pass": 16,
+    "fail": 0
+   },
+   "goal": {
+    "pass": 3,
+    "fail": 0
+   },
+   "parity": {
+    "pass": 2,
+    "fail": 0
+   },
+   "reload": {
+    "pass": 17,
+    "fail": 0
+   },
+   "fb": {
+    "pass": 9,
+    "fail": 0
+   },
+   "arch": {
+    "pass": 253,
+    "fail": 0
+   },
+   "network": {
+    "pass": 2,
+    "fail": 0
+   },
+   "console": {
+    "pass": 1,
+    "fail": 0
+   },
+   "page": {
+    "pass": 1,
+    "fail": 0
+   }
+  },
+  "sections": {
+   "build": {
+    "status": "pass",
+    "seconds": 0
+   },
+   "viewports": {
+    "status": "pass",
+    "seconds": 61
+   },
+   "flow": {
+    "status": "pass",
+    "seconds": 37
+   },
+   "goal": {
+    "status": "pass",
+    "seconds": 11
+   },
+   "parity": {
+    "status": "pass",
+    "seconds": 22
+   },
+   "reload": {
+    "status": "pass",
+    "seconds": 23
+   },
+   "fallback": {
+    "status": "pass",
+    "seconds": 17
+   },
+   "architectures": {
+    "status": "pass",
+    "seconds": 312
+   }
+  }
+ },
+ "meshLoad": {
+  "expected": "WorldPlayerLowPoly-v4",
+  "uniqueLines": [
+   "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask"
+  ],
+  "pagesLogged": 50
+ },
+ "fetchedBuild": [
+  {
+   "file": "unity-web.data",
+   "url": "/unity/Build/unity-web.data?v=eaa475e7efaeed967b96ba92dff1c8f79e24f1ff6017ce792d1addac21bd3f66",
+   "sha": "eaa475e7efaeed967b96ba92dff1c8f79e24f1ff6017ce792d1addac21bd3f66",
+   "expected": "eaa475e7efaeed967b96ba92dff1c8f79e24f1ff6017ce792d1addac21bd3f66"
+  },
+  {
+   "file": "unity-web.framework.js",
+   "url": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+   "sha": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+   "expected": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+  },
+  {
+   "file": "unity-web.loader.js",
+   "url": "/unity/Build/unity-web.loader.js?v=2909e971e5efe53176965433a410d0e296ff3b44b77cf358c66a4ffacdaf1968",
+   "sha": "2909e971e5efe53176965433a410d0e296ff3b44b77cf358c66a4ffacdaf1968",
+   "expected": "2909e971e5efe53176965433a410d0e296ff3b44b77cf358c66a4ffacdaf1968"
+  },
+  {
+   "file": "unity-web.wasm",
+   "url": "/unity/Build/unity-web.wasm?v=0f956190890ca9dc61e08c33914bb8bf4203242fd9c249a34b89b5ee51636057",
+   "sha": "0f956190890ca9dc61e08c33914bb8bf4203242fd9c249a34b89b5ee51636057",
+   "expected": "0f956190890ca9dc61e08c33914bb8bf4203242fd9c249a34b89b5ee51636057"
+  }
+ ],
+ "unityRequests": [
+  {
+   "url": "/unity/probe-build.json",
+   "count": 51,
+   "status": {
+    "200": 50,
+    "404": 1
+   }
+  },
+  {
+   "url": "/unity/Build/unity-web.loader.js",
+   "count": 50,
+   "status": {
+    "200": 50
+   }
+  },
+  {
+   "url": "/unity/Build/unity-web.framework.js",
+   "count": 50,
+   "status": {
+    "200": 50
+   }
+  },
+  {
+   "url": "/unity/Build/unity-web.data",
+   "count": 50,
+   "status": {
+    "200": 50
+   }
+  },
+  {
+   "url": "/unity/Build/unity-web.wasm",
+   "count": 50,
+   "status": {
+    "200": 50
+   }
+  }
+ ],
+ "consoleErrors": [
+  {
+   "scenario": "missing-build",
+   "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  }
+ ],
+ "pageErrors": 0,
+ "goal": {
+  "seed": 160112,
+  "attempts": [
+   {
+    "seed": 160112,
+    "stopped": "when",
+    "score": [
+     0,
+     1
+    ]
+   }
+  ],
+  "status": "pass",
+  "seconds": 11
+ },
+ "flowDigest": {
+  "all": "fe17ef2e",
+  "score": [
+   0,
+   0
+  ],
+  "booked": true,
+  "valid": true
+ },
+ "parityAcceptance": {
+  "unity": {
+   "all": "38893eb6",
+   "score": [
+    0,
+    0
+   ],
+   "ticks": 1194,
+   "hashes": {
+    "score": "13ca43dd:5",
+    "events": "254eb5f7:287",
+    "stats": "6ea83f04:8773",
+    "fresh": "9fb3d00b:991",
+    "minutes": "4b848943:777",
+    "report": "71a72f82:34230",
+    "ratings": "2624d9b9:704",
+    "ballAccounting": "87ab0066:22404",
+    "geometry": "708a8f7b:184",
+    "people": "a7c268bd:7925",
+    "finances": "61a7e3da:20245",
+    "development": "1ee3f606:1002007",
+    "fixtures": "318fc3fd:190271",
+    "world": "aae3f6b5:3906811"
+   },
+   "payloadSha256": "e08fb8a7ac4dfdb20fd0db723421ca6f96ef31c6beec033883090f9bd8fd4c74"
+  },
+  "native2d": {
+   "all": "38893eb6",
+   "score": [
+    0,
+    0
+   ],
+   "ticks": 1194,
+   "payloadSha256": "e08fb8a7ac4dfdb20fd0db723421ca6f96ef31c6beec033883090f9bd8fd4c74"
+  }
+ },
+ "parityFull": {
+  "pass": true,
+  "ticks": [
+   3037,
+   3037
+  ],
+  "score": [
+   0,
+   0
+  ],
+  "digest": "a6d98d83",
+  "payloadSha256": [
+   "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772",
+   "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772"
+  ],
+  "build": {
+   "sourceCommit": "d8ae87854aff9f51e3ff0a54338938184c5283ed",
+   "sourceDirty": false,
+   "sourceFingerprint": "7280ec2dce54f27c7b5d3fa3514978a2c776d68c68123dc5177f3cb61734a9b2",
+   "sourceId": "46a6e081054ba81328e69ba8a01f66daaf0470bb2263b3de17f3f14369f3a4b8",
+   "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+   "unityManifestSha256": "dc0481f10c25efbcc529a4ddc05b36ff7927199f57301d3dfaca9b10d233336d",
+   "packageManifestSha256": "023c93bd87c1d0d6ced39050db948b0544063d327a754b01072acd2835b72cc1"
+  }
+ },
+ "verify": {
+  "before": {
+   "pass": true,
+   "checks": 103
+  },
+  "after": {
+   "pass": true,
+   "checks": 103
+  }
+ },
+ "legacyWorldUnity": {
+  "recordedChecks": 21,
+  "errors": [],
+  "names": [
+   "Unity loaded the real fixture",
+   "Unity displays exactly the actual starting players",
+   "Visible labels identify real players",
+   "Rendering a paused match does not advance its clock or ball",
+   "Checkpoint restoration starts a fresh Unity session",
+   "Checkpoint keeps the original clock, score and lineup",
+   "Substitution changes the Unity identity without a second substitute",
+   "Unity consumes actual movement and the authoritative clock",
+   "Unity review uses the existing recorded match timeline",
+   "Seeking review does not change live results or events",
+   "Actual goal pictures carry the animated net impact",
+   "Goal replay retains net motion and never books a second goal",
+   "Full match, halftime, events, stats, career records and finances are identical",
+   "Away fixture keeps physical team and real home/away identities",
+   "2D remains usable while retaining the Unity session",
+   "Return to Unity restores the same fixture",
+   "Leaving a match removes the renderer and stream",
+   "Missing Unity build falls back to a playable 2D match",
+   "Locally opened offline build streams its actual match to Unity",
+   "Foreign window messages cannot fail the renderer or change a match",
+   "No uncaught page errors"
+  ]
+ },
+ "architectures": {
+  "types": [
+   "civic-bowl",
+   "modern-ring",
+   "industrial-shed",
+   "urban-court",
+   "garden-ground",
+   "hillside-ground"
+  ],
+  "runs": 36,
+  "rows": [
+   {
+    "own": "ENG-1",
+    "home": "ENG-1",
+    "archetype": "civic-bowl",
+    "facade": "brick-arcade",
+    "viewport": "1280x720",
+    "quality": "standard",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ENG-1",
+    "home": "ENG-1",
+    "archetype": "civic-bowl",
+    "facade": "brick-arcade",
+    "viewport": "844x390",
+    "quality": "standard",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ENG-1",
+    "home": "ENG-1",
+    "archetype": "civic-bowl",
+    "facade": "brick-arcade",
+    "viewport": "931x448",
+    "quality": "standard",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ENG-1",
+    "home": "ENG-1",
+    "archetype": "civic-bowl",
+    "facade": "brick-arcade",
+    "viewport": "1280x720",
+    "quality": "reduced",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ENG-1",
+    "home": "ENG-1",
+    "archetype": "civic-bowl",
+    "facade": "brick-arcade",
+    "viewport": "844x390",
+    "quality": "reduced",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ENG-1",
+    "home": "ENG-1",
+    "archetype": "civic-bowl",
+    "facade": "brick-arcade",
+    "viewport": "931x448",
+    "quality": "reduced",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ENG-2",
+    "home": "ENG-2",
+    "archetype": "modern-ring",
+    "facade": "metal-fins",
+    "viewport": "1280x720",
+    "quality": "standard",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ENG-2",
+    "home": "ENG-2",
+    "archetype": "modern-ring",
+    "facade": "metal-fins",
+    "viewport": "844x390",
+    "quality": "standard",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 9,
+    "kickoffInViewport": 9,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ENG-2",
+    "home": "ENG-2",
+    "archetype": "modern-ring",
+    "facade": "metal-fins",
+    "viewport": "931x448",
+    "quality": "standard",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 9,
+    "kickoffInViewport": 9,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ENG-2",
+    "home": "ENG-2",
+    "archetype": "modern-ring",
+    "facade": "metal-fins",
+    "viewport": "1280x720",
+    "quality": "reduced",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ENG-2",
+    "home": "ENG-2",
+    "archetype": "modern-ring",
+    "facade": "metal-fins",
+    "viewport": "844x390",
+    "quality": "reduced",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 9,
+    "kickoffInViewport": 9,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ENG-2",
+    "home": "ENG-2",
+    "archetype": "modern-ring",
+    "facade": "metal-fins",
+    "viewport": "931x448",
+    "quality": "reduced",
+    "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 9,
+    "kickoffInViewport": 9,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ITA-1",
+    "home": "ITA-1",
+    "archetype": "industrial-shed",
+    "facade": "steel-truss",
+    "viewport": "1280x720",
+    "quality": "standard",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ITA-1",
+    "home": "ITA-1",
+    "archetype": "industrial-shed",
+    "facade": "steel-truss",
+    "viewport": "844x390",
+    "quality": "standard",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ITA-1",
+    "home": "ITA-1",
+    "archetype": "industrial-shed",
+    "facade": "steel-truss",
+    "viewport": "931x448",
+    "quality": "standard",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ITA-1",
+    "home": "ITA-1",
+    "archetype": "industrial-shed",
+    "facade": "steel-truss",
+    "viewport": "1280x720",
+    "quality": "reduced",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ITA-1",
+    "home": "ITA-1",
+    "archetype": "industrial-shed",
+    "facade": "steel-truss",
+    "viewport": "844x390",
+    "quality": "reduced",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ITA-1",
+    "home": "ITA-1",
+    "archetype": "industrial-shed",
+    "facade": "steel-truss",
+    "viewport": "931x448",
+    "quality": "reduced",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ESP-4",
+    "home": "ESP-4",
+    "archetype": "urban-court",
+    "facade": "tiled-parapet",
+    "viewport": "1280x720",
+    "quality": "standard",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ESP-4",
+    "home": "ESP-4",
+    "archetype": "urban-court",
+    "facade": "tiled-parapet",
+    "viewport": "844x390",
+    "quality": "standard",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ESP-4",
+    "home": "ESP-4",
+    "archetype": "urban-court",
+    "facade": "tiled-parapet",
+    "viewport": "931x448",
+    "quality": "standard",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ESP-4",
+    "home": "ESP-4",
+    "archetype": "urban-court",
+    "facade": "tiled-parapet",
+    "viewport": "1280x720",
+    "quality": "reduced",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ESP-4",
+    "home": "ESP-4",
+    "archetype": "urban-court",
+    "facade": "tiled-parapet",
+    "viewport": "844x390",
+    "quality": "reduced",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ESP-4",
+    "home": "ESP-4",
+    "archetype": "urban-court",
+    "facade": "tiled-parapet",
+    "viewport": "931x448",
+    "quality": "reduced",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ESP-5",
+    "home": "ESP-5",
+    "archetype": "garden-ground",
+    "facade": "tiled-parapet",
+    "viewport": "1280x720",
+    "quality": "standard",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ESP-5",
+    "home": "ESP-5",
+    "archetype": "garden-ground",
+    "facade": "tiled-parapet",
+    "viewport": "844x390",
+    "quality": "standard",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 11,
+    "liveInViewport": 11
+   },
+   {
+    "own": "ESP-5",
+    "home": "ESP-5",
+    "archetype": "garden-ground",
+    "facade": "tiled-parapet",
+    "viewport": "931x448",
+    "quality": "standard",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ESP-5",
+    "home": "ESP-5",
+    "archetype": "garden-ground",
+    "facade": "tiled-parapet",
+    "viewport": "1280x720",
+    "quality": "reduced",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ESP-5",
+    "home": "ESP-5",
+    "archetype": "garden-ground",
+    "facade": "tiled-parapet",
+    "viewport": "844x390",
+    "quality": "reduced",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ESP-5",
+    "home": "ESP-5",
+    "archetype": "garden-ground",
+    "facade": "tiled-parapet",
+    "viewport": "931x448",
+    "quality": "reduced",
+    "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ITA-4",
+    "home": "ITA-4",
+    "archetype": "hillside-ground",
+    "facade": "limestone-step",
+    "viewport": "1280x720",
+    "quality": "standard",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ITA-4",
+    "home": "ITA-4",
+    "archetype": "hillside-ground",
+    "facade": "limestone-step",
+    "viewport": "844x390",
+    "quality": "standard",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ITA-4",
+    "home": "ITA-4",
+    "archetype": "hillside-ground",
+    "facade": "limestone-step",
+    "viewport": "931x448",
+    "quality": "standard",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ITA-4",
+    "home": "ITA-4",
+    "archetype": "hillside-ground",
+    "facade": "limestone-step",
+    "viewport": "1280x720",
+    "quality": "reduced",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ITA-4",
+    "home": "ITA-4",
+    "archetype": "hillside-ground",
+    "facade": "limestone-step",
+    "viewport": "844x390",
+    "quality": "reduced",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   },
+   {
+    "own": "ITA-4",
+    "home": "ITA-4",
+    "archetype": "hillside-ground",
+    "facade": "limestone-step",
+    "viewport": "931x448",
+    "quality": "reduced",
+    "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+    "mesh": [
+     "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask\n"
+    ],
+    "labelQA": {
+     "pass": true,
+     "checks": 18
+    },
+    "kickoffVisible": 10,
+    "kickoffInViewport": 10,
+    "liveVisible": 10,
+    "liveInViewport": 10
+   }
+  ]
+ }
+}
