@@ -3,17 +3,19 @@
 // chosen Unity build (baseline copy or candidate). The native match runs with
 // a seeded Math.random and fixed 0.05 s ticks (D6QAWorldTick), so baseline and
 // candidate consume identical simulation steps; the renderer only displays.
-//   node work/platform/qa/check-lowpoly-webgl.cjs --build <repo-relative unity-web dir> --label <name> [--out <dir>] [--gpu|--software] [--only shots|parity|perf|video]
+//   node work/platform/qa/check-lowpoly-webgl.cjs --build <repo-relative unity-web dir> --label <name> [--out <dir>] [--gpu|--software] [--only shots|parity|perf|video] [--unthrottled] [--port N]
 // Node >= 20 (Playwright). Writes images, webm videos and <label>.json.
+// --unthrottled: no vsync and no frame-rate cap, so perf frame times show the actual
+// frame cost instead of the display interval (compare builds only within one mode).
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto');
 const {chromium}=require('C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const repo=path.resolve(__dirname,'../../..'),arg=(n,d)=>{const i=process.argv.indexOf(n);return i>0?process.argv[i+1]:d;};
 const buildDir=path.resolve(repo,arg('--build','outputs/platform/unity-web')),label=arg('--label','candidate'),only=arg('--only',null);
 const out=path.resolve(repo,arg('--out','outputs/style-demos/lowpoly/webgl/'+label));fs.mkdirSync(out,{recursive:true});
-const gpu=!process.argv.includes('--software'),port=Number(arg('--port',4372));
+const gpu=!process.argv.includes('--software'),unthrottled=process.argv.includes('--unthrottled'),port=Number(arg('--port',4372));
 const sha=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 const manifest=JSON.parse(fs.readFileSync(path.join(buildDir,'probe-build.json'),'utf8'));
-const report={label,build:path.relative(repo,buildDir).replace(/\\/g,'/'),sourceId:manifest.sourceId,buildFiles:manifest.files,downloadBytes:manifest.files.reduce((s,f)=>s+f.bytes,0),renderer:null,gpu,shots:[],parity:null,perf:[],videos:[],errors:[],meshLog:[]};
+const report={label,build:path.relative(repo,buildDir).replace(/\\/g,'/'),sourceId:manifest.sourceId,buildFiles:manifest.files,downloadBytes:manifest.files.reduce((s,f)=>s+f.bytes,0),renderer:null,gpu,unthrottled,shots:[],parity:null,perf:[],videos:[],errors:[],meshLog:[]};
 for(const f of manifest.files){const actual=sha(path.join(buildDir,'Build',f.file));if(actual!==f.sha256)throw Error('Build file hash differs from its manifest: '+f.file);}
 
 function server(){return http.createServer((req,res)=>{
@@ -30,6 +32,8 @@ function server(){return http.createServer((req,res)=>{
 // Counts WebGL draw calls per animation frame inside the Unity iframe.
 const drawCounter=`(()=>{if(!location.pathname.includes('unity-match'))return;const counts={draws:0,frames:0,perFrame:[]};window.D6DrawStats=counts;
  for(const C of [window.WebGL2RenderingContext,window.WebGLRenderingContext])if(C)for(const name of ['drawElements','drawArrays','drawElementsInstanced','drawArraysInstanced','drawRangeElements']){const f=C.prototype[name];if(f)C.prototype[name]=function(...a){counts.draws++;return f.apply(this,a);};}
+ // Wasm linear memory of the Unity runtime (exported memory), for the perf heap figure.
+ const wrap=n=>{const f=WebAssembly[n];if(f)WebAssembly[n]=async(...a)=>{const r=await f.apply(WebAssembly,a);try{for(const v of Object.values((r.instance||r).exports||{}))if(v instanceof WebAssembly.Memory)window.D6WasmMemory=v;}catch{}return r;};};wrap('instantiate');wrap('instantiateStreaming');
  const tick=()=>{counts.perFrame.push(counts.draws);if(counts.perFrame.length>2000)counts.perFrame.shift();counts.draws=0;counts.frames++;requestAnimationFrame(tick);};requestAnimationFrame(tick);})();`;
 
 async function prepare(page,quality,seed=12345,near=60){
@@ -62,6 +66,7 @@ async function pause(page){await page.evaluate(()=>{v65Pause();clearInterval(v65
 (async()=>{
  const srv=server();await new Promise(r=>srv.listen(port,'127.0.0.1',r));
  const args=gpu?['--enable-webgl','--ignore-gpu-blocklist','--use-angle=d3d11','--enable-gpu-rasterization']:['--enable-webgl','--use-angle=swiftshader','--enable-unsafe-swiftshader'];
+ if(unthrottled)args.push('--disable-gpu-vsync','--disable-frame-rate-limit');
  const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true,args});
  const newPage=async(viewport,video)=>{const context=await browser.newContext({viewport,deviceScaleFactor:1,...(video?{recordVideo:{dir:out,size:viewport}}:{})});await context.addInitScript(drawCounter);const page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));page.on('console',m=>{const t=m.text();if(t.includes('[D6] match mesh')&&!report.meshLog.includes(t))report.meshLog.push(t);});return {context,page};};
  try{
@@ -90,7 +95,7 @@ async function pause(page){await page.evaluate(()=>{v65Pause();clearInterval(v65
     await frame.evaluate(()=>{window.D6FrameTimes=[];let last=performance.now();const loop=t=>{window.D6FrameTimes.push(t-last);last=t;if(window.D6FrameTimes.length<100000)requestAnimationFrame(loop);};requestAnimationFrame(loop);window.D6DrawStats.perFrame.length=0;});
     await play(page,12);
     const m=await frame.evaluate(()=>{const t=window.D6FrameTimes.slice(30).sort((a,b)=>a-b),d=window.D6DrawStats.perFrame.slice(30).filter(x=>x>0).sort((a,b)=>a-b),q=(a,p)=>a.length?a[Math.min(a.length-1,Math.floor(a.length*p))]:null;
-     return {frames:t.length,frameMedianMs:q(t,.5),frameP95Ms:q(t,.95),drawsMedian:q(d,.5),drawsP95:q(d,.95),jsHeapMB:performance.memory?Math.round(performance.memory.usedJSHeapSize/1048576):null};});
+     return {frames:t.length,frameMedianMs:q(t,.5),frameP95Ms:q(t,.95),drawsMedian:q(d,.5),drawsP95:q(d,.95),jsHeapMB:performance.memory?Math.round(performance.memory.usedJSHeapSize/1048576):null,wasmMemoryMB:window.D6WasmMemory?Math.round(window.D6WasmMemory.buffer.byteLength/1048576):null};});
     report.perf.push({quality,...m});await context.close();
    }
   }
