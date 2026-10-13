@@ -1,6 +1,6 @@
 {
   "version": 131,
-  "published": false,
+  "published": true,
   "sourceId": "319e2f7223bb42c5da2bf41c52aa7ac1ea960f0b9f1b46c38fc017f1ae327982",
   "htmlSha256": "9108286b173c60e0a8f14b581a0df15b2b3cc8a943c1f011f514c8d47ae241ff",
   "manifestSha256": "5adf4088de5b9315ad7d8af40b0f7ce71eb010e91852c272ac545a655da3f12d",
@@ -51,5 +51,7 @@
       "bytes": 35794719,
       "sha256": "483c43a812919aa7ea64a885ff2464d47a113684d83ed74c660a7d31f6ed6122"
     }
-  ]
+  ],
+  "liveAccepted": true,
+  "deployedHead": "4f8e0e261c7e9b7b2a2832dc173fb63b7c4428b4"
 }

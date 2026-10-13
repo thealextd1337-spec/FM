@@ -1,0 +1,1195 @@
+{
+    "schema": "d6-net-deformation-tests-2",
+    "passed": true,
+    "captureRequired": true,
+    "checks": 102,
+    "failed": 0,
+    "recordedLegacy": 8,
+    "recordedCurrent": 3,
+    "parameters": "depth 2.2, fixed 0.03, ramps 0.8/0.7/0.6, pocket 0.6 m per bulge, radius 3, rest below bulge 0.00002, ripple 0.14 m 2.2 Hz 4.5 m/s decay 0.32 s onset 0.12 s spread 0.6, sway 0.1 m 1.5 Hz decay 0.4 s onset 0.1, fade 1.2-1.6 s, scene hold 2.45-3.25 s, roof/side 0.09 m per bulge radii 3/2, step 0.04",
+    "items": [
+        {
+            "kind": "controlled-producer",
+            "name": "The replicated net placement, native rear-net producer, goal-scene clock and picture scene time are the current source (replica not stale)",
+            "detail": "35 source pins present",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled-producer",
+            "name": "The display scene hold starts at the pinned native scene-time cap and has eased out well before the goal pause ends",
+            "detail": "hold 2.45-3.25 s; native cap 2.45 s, goal pause 4.05 s",
+            "passed": true,
+            "value": 3.25,
+            "limit": 3.55
+        },
+        {
+            "kind": "controlled-producer",
+            "name": "New flowing facts preserve the full pause clock and fade only during its final 200 ms",
+            "detail": "",
+            "passed": true,
+            "value": 4.05,
+            "limit": 4.05
+        },
+        {
+            "kind": "golden",
+            "name": "Golden offsets of the look (20 points: pocket, ripple, sway, fade, post ramp, roof, sides, fallback, spline between nodes, scene hold) match the independent evaluation within 1 nm",
+            "detail": "largest difference 1.11E-16 m at scene hold half eased, scene time 2.85 (live goal 9.7059 x 3.2353)",
+            "passed": true,
+            "value": 1.1102230246251565e-16,
+            "limit": 1e-9
+        },
+        {
+            "kind": "golden",
+            "name": "The display constants are the ones the golden offsets were evaluated with",
+            "detail": "depth 2.2, fixed 0.03, ramps 0.8/0.7/0.6, pocket 0.6 m per bulge, radius 3, rest below bulge 0.00002, ripple 0.14 m 2.2 Hz 4.5 m/s decay 0.32 s onset 0.12 s spread 0.6, sway 0.1 m 1.5 Hz decay 0.4 s onset 0.1, fade 1.2-1.6 s, scene hold 2.45-3.25 s, roof/side 0.09 m per bulge radii 3/2, step 0.04",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Actual GoalNet meshes (live 68 x 44): two goals, back/roof/left/right tags, back panel 2.2 m behind the goal line",
+            "detail": "2 meshes, 7140 vertices each",
+            "passed": true,
+            "value": 2.200000762939453,
+            "limit": 2.2
+        },
+        {
+            "kind": "controlled",
+            "name": "Every vertex within the strand half-width of a post, crossbar, ground line, rear support, rear crossbar or roof support stays exactly at rest (live 68 x 44, 910 facts on both goals)",
+            "detail": "3096 frame vertices per fact checked bitwise",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "No vertex moves toward the field past the goal plane (strands at the goal line: past their rest); only the back net recoils, 2.2 m behind it (live 68 x 44, 910 facts on both goals)",
+            "detail": "largest back-net recoil toward the field 0.038 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Back net moves only along its normal; roof and side nets only outward along theirs (never inward, never along x) (live 68 x 44, 910 facts on both goals)",
+            "detail": "off-axis 0, inward roof/side 0",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Displacements stay within pocket*bulge+ripple+sway (back) and the bulge-scaled roof/side limit; all finite (live 68 x 44, 910 facts on both goals)",
+            "detail": "largest back displacement 0.921 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "A fact of the other goal leaves this goal's net untouched (live 68 x 44, 910 facts on both goals)",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Back-net recoil toward the field stays within 6 cm for every impact position and age (live 68 x 44; bulge 0 bounds every fact)",
+            "detail": "largest 0.0554 m (bulge 0 (age-driven motion only), impact z 0 m height 1.5 m, age 0.4 s); the back net stays at least 2.14 m behind the goal plane",
+            "passed": true,
+            "value": 0.055423736572265625,
+            "limit": 0.06
+        },
+        {
+            "kind": "controlled",
+            "name": "Rear-hit pocket (central impact, native bulge peak .6) shows a clear but bounded bulge",
+            "detail": "largest outward displacement 0.391 m (release 130: ~.40 m broad dome)",
+            "passed": true,
+            "value": 0.3905067443847656,
+            "limit": 0.55
+        },
+        {
+            "kind": "controlled",
+            "name": "Recoil past rest of the central rear hit stays gentle (no trampoline; all impact positions: Recoil)",
+            "detail": "largest inward displacement 0.044 m over the back net (release 130: 6.9 cm inward at 0.9 s)",
+            "passed": true,
+            "value": 0.044437408447265625,
+            "limit": 0.06
+        },
+        {
+            "kind": "controlled",
+            "name": "No second inflation after the pocket has released (age >= .35 s)",
+            "detail": "release 130 re-inflated to 11.6 cm at 0.7 s",
+            "passed": true,
+            "value": 0.033237457275390625,
+            "limit": 0.035
+        },
+        {
+            "kind": "controlled",
+            "name": "After the fade the net is exactly at rest and is not re-uploaded",
+            "detail": "at the fade start the largest displacement is 5.3 mm",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "The fade starts below 1 cm",
+            "detail": "",
+            "passed": true,
+            "value": 0.005340576171875,
+            "limit": 0.01
+        },
+        {
+            "kind": "controlled",
+            "name": "C1 in age, age only (bulge 0): curvature at 1/960 s steps stays that of 1/240 s steps (a kink or pop grows with finer steps)",
+            "detail": "worst at panel centre (release 130 tail at .6 s: ratio 4.2)",
+            "passed": true,
+            "value": 1.0108376114357227,
+            "limit": 1.25
+        },
+        {
+            "kind": "controlled",
+            "name": "Age-driven motion (ripple, sway) stays below 3 m/s",
+            "detail": "",
+            "passed": true,
+            "value": 1.7120576883489425,
+            "limit": 3.0
+        },
+        {
+            "kind": "controlled",
+            "name": "C1 in age, rear-hit bulge: curvature at 1/960 s steps stays that of 1/240 s steps (a kink or pop grows with finer steps)",
+            "detail": "worst at 1.6 m (release 130 tail at .6 s: ratio 4.2)",
+            "passed": true,
+            "value": 1.0977128912417198,
+            "limit": 1.25
+        },
+        {
+            "kind": "controlled",
+            "name": "C1 in age, rear-hit bulge around .6 s: curvature at 1/960 s steps stays that of 1/240 s steps (a kink or pop grows with finer steps)",
+            "detail": "worst at impact (release 130 tail at .6 s: ratio 4.2)",
+            "passed": true,
+            "value": 1.0418133946731871,
+            "limit": 1.25
+        },
+        {
+            "kind": "controlled",
+            "name": "No jump across .6 s (release 130 started its tail there)",
+            "detail": "",
+            "passed": true,
+            "value": 0.000007141639330443192,
+            "limit": 0.0001
+        },
+        {
+            "kind": "controlled",
+            "name": "The age-driven motion starts from rest at the impact (age 0)",
+            "detail": "",
+            "passed": true,
+            "value": 7.574720723874793e-13,
+            "limit": 0.000001
+        },
+        {
+            "kind": "controlled",
+            "name": "Scene-hold share: 1 without a scene time and up to the native cap, 1/2 midway, exactly 0 from HoldEnd",
+            "detail": "HoldStart 2.45 s, HoldEnd 3.25 s",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "The scene hold scales the whole shown deformation by its share (pocket, ripple, sway, roof, sides)",
+            "detail": "",
+            "passed": true,
+            "value": 2.220446049250313e-16,
+            "limit": 1e-12
+        },
+        {
+            "kind": "controlled",
+            "name": "C1 in the picture's goal-scene time: curvature at 1/960 s steps stays that of 1/240 s steps across the hold",
+            "detail": "",
+            "passed": true,
+            "value": 1.0001611670273143,
+            "limit": 1.25
+        },
+        {
+            "kind": "controlled",
+            "name": "No jump at the start or the end of the scene hold",
+            "detail": "",
+            "passed": true,
+            "value": 7.105427357601002e-15,
+            "limit": 0.0001
+        },
+        {
+            "kind": "controlled",
+            "name": "A held pocket eases to exact rest by HoldEnd (bitwise Displace, frame at rest, no upload once at rest) and the fact's end then changes nothing",
+            "detail": "differ 0, frame 0, uploads after HoldEnd 0, moved after HoldEnd 0, end changes False",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Flowing share: late impact preserved through 3.85 s, half at 3.95 s, exactly rest at 4.05 s",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "New late rear impact at scene time 2.8 s has its full moving shape",
+            "detail": "unfaded displacement 0.3758 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Absent flowing marker keeps the legacy hold at 2.8 s",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 1e-12
+        },
+        {
+            "kind": "controlled",
+            "name": "Flowing Field: exact Displace, full shape scaled, pause idempotent, backward seeks deterministic, exact end rest",
+            "detail": "",
+            "passed": true,
+            "value": 1.1102230246251565e-16,
+            "limit": 1e-12
+        },
+        {
+            "kind": "controlled",
+            "name": "Flowing fade has no jump at start or end",
+            "detail": "",
+            "passed": true,
+            "value": 4.699585154973198e-13,
+            "limit": 0.0001
+        },
+        {
+            "kind": "controlled",
+            "name": "Flowing fade curvature remains continuous with four times finer steps",
+            "detail": "",
+            "passed": true,
+            "value": 1.0013101466193353,
+            "limit": 1.25
+        },
+        {
+            "kind": "controlled",
+            "name": "Playback retains flowing for new fact pairs and legacy default for mixed pairs",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Mirroring the impact across the goal centre mirrors the net (left/right swap)",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.000002
+        },
+        {
+            "kind": "controlled",
+            "name": "Both goals deform identically (mirrored along the pitch)",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.000001
+        },
+        {
+            "kind": "controlled",
+            "name": "The per-goal field equals the pure Displace for every vertex (bitwise, with and without a scene time)",
+            "detail": "71 facts, 6 of them with the impact on a back vertex (12 vertices within one radial step)",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Displace is deterministic (bitwise repeat)",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "30/60/120 Hz playback, a seek and a pause show identical vertices for the same picture (no integrated state; scene time none)",
+            "detail": "unchanged picture: no upload",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "30/60/120 Hz playback, a seek and a pause show identical vertices for the same picture (no integrated state; scene time 2.7 s)",
+            "detail": "unchanged picture: no upload",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "RenderWorldNet uploads the hit goal exactly as Displace (vertices, normals, bounds) and leaves the other goal at rest",
+            "detail": "largest 0.376 m, stat 0.376, normals turned >1 deg: 1626, bounds x 33.99..36.58",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "A fact of the other goal restores this goal; an inactive fact restores every vertex, normal and bound exactly",
+            "detail": "switch True, reset True",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "RenderWorldNet eases a held fact by the goal-scene time of the picture that carries it, ignores another picture's time, and is exactly at rest before the fact ends",
+            "detail": "held 0, foreign 0, eased True, fields at rest True, end True",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "RenderWorldNet and the field allocate nothing per picture",
+            "detail": "302 calls",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Editor timing of a moving goal (RenderWorldNet incl. upload, normals, bounds); not a WebGL or RTX 4070 figure",
+            "detail": "median 265 us per picture, deformation alone 224 us (7140 vertices)",
+            "passed": true,
+            "value": 264.9,
+            "limit": 2000.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Reload while a goal is deformed (same geometry): fresh fields on the new GoalNet meshes, the fact shown exactly on them, old buffers untouched, exact rest after an inactive fact",
+            "detail": "deformed before True, idle after load True, fresh fields True, wrong vertices 0, old buffer writes 0, restored True (7140 vertices per goal)",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Reload while a goal is deformed (changed geometry 81.6 x 52.8): fresh fields on the new GoalNet meshes, the fact shown exactly on them, old buffers untouched, exact rest after an inactive fact",
+            "detail": "deformed before True, idle after load True, fresh fields True, wrong vertices 0, old buffer writes 0, restored True (7140 vertices per goal)",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Reload while a goal is deformed (changed goal 9.7 x 2.44): fresh fields on the new GoalNet meshes, the fact shown exactly on them, old buffers untouched, exact rest after an inactive fact",
+            "detail": "deformed before True, idle after load True, fresh fields True, wrong vertices 0, old buffer writes 0, restored True (5916 vertices per goal)",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Actual GoalNet meshes (large 81.6 x 52.8): two goals, back/roof/left/right tags, back panel 2.2 m behind the goal line",
+            "detail": "2 meshes, 7140 vertices each",
+            "passed": true,
+            "value": 2.2000000000002333,
+            "limit": 2.2
+        },
+        {
+            "kind": "controlled",
+            "name": "Every vertex within the strand half-width of a post, crossbar, ground line, rear support, rear crossbar or roof support stays exactly at rest (large 81.6 x 52.8, 910 facts on both goals)",
+            "detail": "3096 frame vertices per fact checked bitwise",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "No vertex moves toward the field past the goal plane (strands at the goal line: past their rest); only the back net recoils, 2.2 m behind it (large 81.6 x 52.8, 910 facts on both goals)",
+            "detail": "largest back-net recoil toward the field 0.038 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Back net moves only along its normal; roof and side nets only outward along theirs (never inward, never along x) (large 81.6 x 52.8, 910 facts on both goals)",
+            "detail": "off-axis 0, inward roof/side 0",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Displacements stay within pocket*bulge+ripple+sway (back) and the bulge-scaled roof/side limit; all finite (large 81.6 x 52.8, 910 facts on both goals)",
+            "detail": "largest back displacement 0.921 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "A fact of the other goal leaves this goal's net untouched (large 81.6 x 52.8, 910 facts on both goals)",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Actual GoalNet meshes (contract fixture goal 9.7 x 2.44): two goals, back/roof/left/right tags, back panel 2.2 m behind the goal line",
+            "detail": "2 meshes, 5916 vertices each",
+            "passed": true,
+            "value": 2.200000762939453,
+            "limit": 2.2
+        },
+        {
+            "kind": "controlled",
+            "name": "Every vertex within the strand half-width of a post, crossbar, ground line, rear support, rear crossbar or roof support stays exactly at rest (contract fixture goal 9.7 x 2.44, 910 facts on both goals)",
+            "detail": "2880 frame vertices per fact checked bitwise",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "No vertex moves toward the field past the goal plane (strands at the goal line: past their rest); only the back net recoils, 2.2 m behind it (contract fixture goal 9.7 x 2.44, 910 facts on both goals)",
+            "detail": "largest back-net recoil toward the field 0.041 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Back net moves only along its normal; roof and side nets only outward along theirs (never inward, never along x) (contract fixture goal 9.7 x 2.44, 910 facts on both goals)",
+            "detail": "off-axis 0, inward roof/side 0",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Displacements stay within pocket*bulge+ripple+sway (back) and the bulge-scaled roof/side limit; all finite (contract fixture goal 9.7 x 2.44, 910 facts on both goals)",
+            "detail": "largest back displacement 0.937 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "A fact of the other goal leaves this goal's net untouched (contract fixture goal 9.7 x 2.44, 910 facts on both goals)",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Back-net recoil toward the field stays within 6 cm for every impact position and age (contract fixture goal 9.7 x 2.44; bulge 0 bounds every fact)",
+            "detail": "largest 0.0550 m (bulge 0 (age-driven motion only), impact z 0 m height 1.1 m, age 0.4333 s); the back net stays at least 2.14 m behind the goal plane",
+            "passed": true,
+            "value": 0.05504608154296875,
+            "limit": 0.06
+        },
+        {
+            "kind": "controlled-producer",
+            "name": "Ball envelope on the replicated rear-net goal tail incl. slow rear hits (0.5-2.4 m/s) and the native scene hold: the shown ball never passes the displaced back net by more than 3 cm",
+            "detail": "416 rear-hit shots (176 slow), 267904 shown pictures (20/60 Hz pictures, 4-step display blend); worst at speed 0.83 m/s, elevation 0.29, vertical 0 m/s, z 0, lateral 0, 20 Hz, age 0.012, scene time 3.250; against the rest net -0.0003 m; smallest gap after impact 0.0017 m",
+            "passed": true,
+            "value": -0.0017103987236879448,
+            "limit": 0.03
+        },
+        {
+            "kind": "controlled-producer",
+            "name": "With the picture's goal-scene time the net is exactly at rest when the fact ends, for every replicated rear hit incl. impacts after 0.85 s held by the native scene-time cap (no reset pop)",
+            "detail": "round-1 display (no scene time) left up to 0.3007 m held until the fact ended",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled-producer",
+            "name": "Goals at rest before the native cap (impact <= 0.85 s) are shown exactly as without the scene time",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled-producer",
+            "name": "Current flowing-clock envelope incl. .5/.6/.7/.8 m/s: ball penetrates the displaced net by no more than 3 cm",
+            "detail": "272 rear hits, 64 slow, 175168 interpolated samples; worst speed 0.6, elevation 0.29, vh 0, z 0, rate 60, scene 3.7208",
+            "passed": true,
+            "value": -0.0024518659671883825,
+            "limit": 0.03
+        },
+        {
+            "kind": "controlled-producer",
+            "name": "Current flowing facts: last received picture leaves at most 3 cm of deformation and 4.05 s is exact rest",
+            "detail": "last picture speed 0.6, rate 20, scene 4; exact end residual 0 m",
+            "passed": true,
+            "value": 0.001422882080078125,
+            "limit": 0.03
+        },
+        {
+            "kind": "controlled-producer",
+            "name": "Current full-pause tail reaches the banner continuously",
+            "detail": "1 us before 4.05 s versus the banner's 4.05 s picture",
+            "passed": true,
+            "value": 8.825347208585299e-8,
+            "limit": 0.00003
+        },
+        {
+            "kind": "controlled",
+            "name": "Capture gate parses nested pictures with different key orders and requires an observed flowing end",
+            "detail": "",
+            "passed": true,
+            "value": 1.0,
+            "limit": 1.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Capture gate rejects complete or truncated JSON ending while a flowing fact is active",
+            "detail": "",
+            "passed": true,
+            "value": 1.0,
+            "limit": 1.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Capture gate rejects a later truncated goal even after a complete goal",
+            "detail": "",
+            "passed": true,
+            "value": 1.0,
+            "limit": 1.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Capture gate rejects a complete legacy fact with the flowing marker absent",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "controlled",
+            "name": "Capture gate rejects session changes and unordered pictures as fact endings",
+            "detail": "",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160114-large-6-01.json: the deformation adds no more than 3 cm of ball penetration",
+            "detail": "43 net pictures (0 with rear-hit v119 facts, 0 shown samples in the native scene hold), 172 shown samples; penetration -0.2660 m, at rest -0.2385 m; largest 0.601 m, inward 0.017 m, largest step 0.032 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160114-large-6-01.json: the net is at rest when the fact ends (no reset pop)",
+            "detail": "without the picture's goal-scene time (round 1) 0.0000 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.001
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160114-large-6-03.json: the deformation adds no more than 3 cm of ball penetration",
+            "detail": "43 net pictures (0 with rear-hit v119 facts, 0 shown samples in the native scene hold), 172 shown samples; penetration -0.3353 m, at rest -0.2386 m; largest 0.610 m, inward 0.013 m, largest step 0.033 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160114-large-6-03.json: the net is at rest when the fact ends (no reset pop)",
+            "detail": "without the picture's goal-scene time (round 1) 0.0000 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.001
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160114-large-6-05.json: the deformation adds no more than 3 cm of ball penetration",
+            "detail": "43 net pictures (0 with rear-hit v119 facts, 0 shown samples in the native scene hold), 172 shown samples; penetration -0.9490 m, at rest -0.9490 m; largest 0.572 m, inward 0.005 m, largest step 0.027 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160114-large-6-05.json: the net is at rest when the fact ends (no reset pop)",
+            "detail": "without the picture's goal-scene time (round 1) 0.0000 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.001
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160115-large-6-01.json: the deformation adds no more than 3 cm of ball penetration",
+            "detail": "43 net pictures (0 with rear-hit v119 facts, 0 shown samples in the native scene hold), 172 shown samples; penetration -0.2678 m, at rest -0.2403 m; largest 0.598 m, inward 0.015 m, largest step 0.030 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160115-large-6-01.json: the net is at rest when the fact ends (no reset pop)",
+            "detail": "without the picture's goal-scene time (round 1) 0.0000 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.001
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160115-large-6-03.json: the deformation adds no more than 3 cm of ball penetration",
+            "detail": "43 net pictures (0 with rear-hit v119 facts, 0 shown samples in the native scene hold), 172 shown samples; penetration 0.0295 m, at rest 0.0295 m; largest 0.583 m, inward 0.005 m, largest step 0.028 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160115-large-6-03.json: the net is at rest when the fact ends (no reset pop)",
+            "detail": "without the picture's goal-scene time (round 1) 0.0000 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.001
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160116-standard-5-00.json: the deformation adds no more than 3 cm of ball penetration",
+            "detail": "43 net pictures (0 with rear-hit v119 facts, 0 shown samples in the native scene hold), 172 shown samples; penetration -0.8717 m, at rest -0.8717 m; largest 0.602 m, inward 0.017 m, largest step 0.033 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160116-standard-5-00.json: the net is at rest when the fact ends (no reset pop)",
+            "detail": "without the picture's goal-scene time (round 1) 0.0000 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.001
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160116-standard-5-02.json: the deformation adds no more than 3 cm of ball penetration",
+            "detail": "43 net pictures (0 with rear-hit v119 facts, 0 shown samples in the native scene hold), 172 shown samples; penetration -0.2543 m, at rest -0.2297 m; largest 0.597 m, inward 0.012 m, largest step 0.030 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160116-standard-5-02.json: the net is at rest when the fact ends (no reset pop)",
+            "detail": "without the picture's goal-scene time (round 1) 0.0000 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.001
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160116-standard-5-05.json: the deformation adds no more than 3 cm of ball penetration",
+            "detail": "43 net pictures (0 with rear-hit v119 facts, 0 shown samples in the native scene hold), 172 shown samples; penetration -0.2800 m, at rest -0.2101 m; largest 0.612 m, inward 0.009 m, largest step 0.032 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded windows-160116-standard-5-05.json: the net is at rest when the fact ends (no reset pop)",
+            "detail": "without the picture's goal-scene time (round 1) 0.0000 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.001
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded native-large-160115.json: current flowing capture includes every observed fact ending",
+            "detail": "82 flowing net pictures; 1 observed endings; 0 unclosed flowing facts",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded native-large-160115.json: the deformation adds no more than 3 cm of ball penetration",
+            "detail": "82 net pictures (15 with rear-hit v119 facts, 128 shown samples in the native scene hold), 325 shown samples; penetration -0.3604 m, at rest -0.1018 m; largest 0.396 m, inward 0.043 m, largest step 0.064 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded native-large-160115.json: the shown ball passes the displaced back net by no more than 3 cm",
+            "detail": "82 net pictures (15 with rear-hit v119 facts, 128 shown samples in the native scene hold), 325 shown samples; penetration -0.3604 m, at rest -0.1018 m; largest 0.396 m, inward 0.043 m, largest step 0.064 m",
+            "passed": true,
+            "value": -0.3604130790367961,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded native-large-160115.json: the net is at rest when the fact ends (no reset pop)",
+            "detail": "without the picture's goal-scene time (round 1) 0.0000 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.001
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded native-standard-160114.json: current flowing capture includes every observed fact ending",
+            "detail": "82 flowing net pictures; 1 observed endings; 0 unclosed flowing facts",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded native-standard-160114.json: the deformation adds no more than 3 cm of ball penetration",
+            "detail": "82 net pictures (15 with rear-hit v119 facts, 128 shown samples in the native scene hold), 325 shown samples; penetration -0.3097 m, at rest -0.0835 m; largest 0.332 m, inward 0.027 m, largest step 0.053 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded native-standard-160114.json: the shown ball passes the displaced back net by no more than 3 cm",
+            "detail": "82 net pictures (15 with rear-hit v119 facts, 128 shown samples in the native scene hold), 325 shown samples; penetration -0.3097 m, at rest -0.0835 m; largest 0.332 m, inward 0.027 m, largest step 0.053 m",
+            "passed": true,
+            "value": -0.30968522325609626,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded native-standard-160114.json: the net is at rest when the fact ends (no reset pop)",
+            "detail": "without the picture's goal-scene time (round 1) 0.0000 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.001
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded wire-standard-160114.json: current flowing capture includes every observed fact ending",
+            "detail": "12 flowing net pictures; 1 observed endings; 0 unclosed flowing facts",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.0
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded wire-standard-160114.json: the deformation adds no more than 3 cm of ball penetration",
+            "detail": "12 net pictures (2 with rear-hit v119 facts, 19 shown samples in the native scene hold), 45 shown samples; penetration -0.6124 m, at rest -0.5499 m; largest 0.097 m, inward 0.012 m, largest step 0.079 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded wire-standard-160114.json: the shown ball passes the displaced back net by no more than 3 cm",
+            "detail": "12 net pictures (2 with rear-hit v119 facts, 19 shown samples in the native scene hold), 45 shown samples; penetration -0.6124 m, at rest -0.5499 m; largest 0.097 m, inward 0.012 m, largest step 0.079 m",
+            "passed": true,
+            "value": -0.6124115526383704,
+            "limit": 0.03
+        },
+        {
+            "kind": "recorded",
+            "name": "Recorded wire-standard-160114.json: the net is at rest when the fact ends (no reset pop)",
+            "detail": "without the picture's goal-scene time (round 1) 0.0000 m",
+            "passed": true,
+            "value": 0.0,
+            "limit": 0.001
+        },
+        {
+            "kind": "recorded",
+            "name": "Complete flowing current-producer rear-net goal captures are present (final release requirement)",
+            "detail": "3 capture file(s) with flowing pictures and observed fact endings; folders: F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\lowpoly-live-release131\\outputs\\lowpoly-live-rollout-20261013\\net-recordings, F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\lowpoly-live-release131\\outputs\\release-131\\wire-goals",
+            "passed": true,
+            "value": 3.0,
+            "limit": 1.0
+        }
+    ],
+    "measurements": [
+        {
+            "kind": "controlled",
+            "name": "Largest back-net recoil toward the field, bulge 0 (age-driven motion only) (live 68 x 44)",
+            "unit": "m",
+            "detail": "impact z 0 m height 1.5 m, age 0.4 s; 72 impact positions x 49 ages (0-1.6 s)",
+            "value": 0.055423736572265625
+        },
+        {
+            "kind": "controlled",
+            "name": "Largest back-net recoil toward the field, rear-hit bulge (live 68 x 44)",
+            "unit": "m",
+            "detail": "impact z 0 m height 1.5 m, age 0.4333 s; 72 impact positions x 49 ages (0-1.6 s)",
+            "value": 0.050567626953125
+        },
+        {
+            "kind": "controlled",
+            "name": "Largest back-net recoil toward the field, fallback bulge (live 68 x 44)",
+            "unit": "m",
+            "detail": "impact z -1.5 m height 1.5 m, age 0.5 s; 72 impact positions x 17 ages (0-1.6 s)",
+            "value": 0.022975921630859375
+        },
+        {
+            "kind": "controlled",
+            "name": "Largest back-net recoil toward the field, bulge 0 (age-driven motion only) (contract fixture goal 9.7 x 2.44)",
+            "unit": "m",
+            "detail": "impact z 0 m height 1.1 m, age 0.4333 s; 72 impact positions x 49 ages (0-1.6 s)",
+            "value": 0.05504608154296875
+        },
+        {
+            "kind": "controlled",
+            "name": "Largest back-net recoil toward the field, rear-hit bulge (contract fixture goal 9.7 x 2.44)",
+            "unit": "m",
+            "detail": "impact z 0 m height 1.1 m, age 0.4333 s; 72 impact positions x 49 ages (0-1.6 s)",
+            "value": 0.0504608154296875
+        },
+        {
+            "kind": "controlled",
+            "name": "Largest back-net recoil toward the field, fallback bulge (contract fixture goal 9.7 x 2.44)",
+            "unit": "m",
+            "detail": "impact z -1.5 m height 1.1 m, age 0.5 s; 72 impact positions x 17 ages (0-1.6 s)",
+            "value": 0.02259063720703125
+        },
+        {
+            "kind": "inherited-native",
+            "name": "Native scene-time cap, rear speed 0.5 m/s: largest held displacement the round-1 display showed (contact height 0.18 m)",
+            "unit": "m",
+            "detail": "impact at scene time 4.047 s, the ball holds short of the net (no net motion); no held net motion; the native ball jumps 79.8 cm at the banner (not changed by the display)",
+            "value": 0.0
+        },
+        {
+            "kind": "inherited-native",
+            "name": "Native scene-time cap, rear speed 0.7 m/s: largest held displacement the round-1 display showed (contact height 0.18 m)",
+            "unit": "m",
+            "detail": "impact at scene time 2.891 s, the ball holds short of the net (no net motion); no held net motion; the native ball jumps 29.1 cm at the banner (not changed by the display)",
+            "value": 0.0
+        },
+        {
+            "kind": "inherited-native",
+            "name": "Native scene-time cap, rear speed 0.83 m/s: largest held displacement the round-1 display showed (contact height 0.18 m)",
+            "unit": "m",
+            "detail": "impact at scene time 2.438 s, native age held at 0.012 s from 2.45 s to 4.05 s; round-1 display held up to 133.2 mm and reset it when the fact ended; round 2 eases it to rest by 3.25 s; the native ball jumps 2.0 cm at the banner (not changed by the display)",
+            "value": 0.1331634521484375
+        },
+        {
+            "kind": "inherited-native",
+            "name": "Native scene-time cap, rear speed 0.85 m/s: largest held displacement the round-1 display showed (contact height 0.18 m)",
+            "unit": "m",
+            "detail": "impact at scene time 2.381 s, native age held at 0.069 s from 2.45 s to 4.05 s; round-1 display held up to 300.7 mm and reset it when the fact ended; round 2 eases it to rest by 3.25 s; the native ball jumps 1.3 cm at the banner (not changed by the display)",
+            "value": 0.3007354736328125
+        },
+        {
+            "kind": "inherited-native",
+            "name": "Native scene-time cap, rear speed 0.9 m/s: largest held displacement the round-1 display showed (contact height 0.18 m)",
+            "unit": "m",
+            "detail": "impact at scene time 2.248 s, native age held at 0.202 s from 2.45 s to 4.05 s; round-1 display held up to 155.2 mm and reset it when the fact ended; round 2 eases it to rest by 3.25 s; the native ball jumps 0.6 cm at the banner (not changed by the display)",
+            "value": 0.15520095825195313
+        },
+        {
+            "kind": "inherited-native",
+            "name": "Native scene-time cap, rear speed 1 m/s: largest held displacement the round-1 display showed (contact height 0.18 m)",
+            "unit": "m",
+            "detail": "impact at scene time 2.024 s, native age held at 0.426 s from 2.45 s to 4.05 s; round-1 display held up to 24.8 mm and reset it when the fact ended; round 2 eases it to rest by 3.25 s; the native ball jumps 0.1 cm at the banner (not changed by the display)",
+            "value": 0.024784088134765625
+        },
+        {
+            "kind": "inherited-native",
+            "name": "Native scene-time cap, rear speed 1.2 m/s: largest held displacement the round-1 display showed (contact height 0.18 m)",
+            "unit": "m",
+            "detail": "impact at scene time 1.686 s, native age held at 0.764 s from 2.45 s to 4.05 s; round-1 display held up to 9.8 mm and reset it when the fact ended; round 2 eases it to rest by 3.25 s; the native ball jumps 0.0 cm at the banner (not changed by the display)",
+            "value": 0.009769439697265625
+        },
+        {
+            "kind": "inherited-native",
+            "name": "Native scene-time cap, rear speed 1.45 m/s: largest held displacement the round-1 display showed (contact height 0.59 m)",
+            "unit": "m",
+            "detail": "impact at scene time 1.396 s, native age held at 1.054 s from 2.45 s to 4.05 s; round-1 display held up to 4.9 mm and reset it when the fact ended; round 2 eases it to rest by 3.25 s; the native ball jumps 0.0 cm at the banner (not changed by the display)",
+            "value": 0.004917144775390625
+        },
+        {
+            "kind": "inherited-native",
+            "name": "Native scene-time cap, rear speed 1.65 m/s: largest held displacement the round-1 display showed (contact height 1.65 m)",
+            "unit": "m",
+            "detail": "impact at scene time 1.226 s, native age held at 1.224 s from 2.45 s to 4.05 s; round-1 display held up to 6.7 mm and reset it when the fact ended; round 2 eases it to rest by 3.25 s; the native ball jumps 0.0 cm at the banner (not changed by the display)",
+            "value": 0.00665283203125
+        },
+        {
+            "kind": "inherited-native",
+            "name": "Native scene-time cap, rear speed 2 m/s: largest held displacement the round-1 display showed (contact height 2.45 m)",
+            "unit": "m",
+            "detail": "impact at scene time 1.012 s, native age held at 1.438 s from 2.45 s to 4.05 s; round-1 display held up to 0.7 mm and reset it when the fact ended; round 2 eases it to rest by 3.25 s; the native ball jumps 0.0 cm at the banner (not changed by the display)",
+            "value": 0.00069427490234375
+        },
+        {
+            "kind": "inherited-native",
+            "name": "Native scene-time cap, rear speed 2.4 m/s: largest held displacement the round-1 display showed (contact height 0.18 m)",
+            "unit": "m",
+            "detail": "impact at scene time 0.843 s, native age held at 1.607 s from 2.45 s to 4.05 s; no held net motion; the native ball jumps 0.0 cm at the banner (not changed by the display)",
+            "value": 0.0
+        },
+        {
+            "kind": "controlled-producer",
+            "name": "Current flowing tail: maximum remaining deformation in last 20/60 Hz picture",
+            "unit": "m",
+            "detail": "speed 0.6, rate 20, scene 4",
+            "value": 0.001422882080078125
+        }
+    ],
+    "recordings": [
+        {
+            "file": "windows-160114-large-6-01.json",
+            "source": "keeper-next capture (release 118, pre-v119: today's fallback net facts)",
+            "geometry": "capture metadata 81.6 x 52.8, goal 9.706 x 3.235",
+            "pictures": 56,
+            "netPictures": 43,
+            "v119Facts": 0,
+            "samples": 172,
+            "heldSamples": 0,
+            "flowingNetPictures": 0,
+            "flowingEnds": 0,
+            "openFlowingFacts": 0,
+            "penetration": -0.2660366054436487,
+            "restPenetration": -0.2385263976339118,
+            "added": 0.0,
+            "largest": 0.6012077331542969,
+            "inward": 0.017024993896484375,
+            "largestStep": 0.03249359130859375,
+            "endStep": 0.0,
+            "endStepWithoutHold": 0.0
+        },
+        {
+            "file": "windows-160114-large-6-03.json",
+            "source": "keeper-next capture (release 118, pre-v119: today's fallback net facts)",
+            "geometry": "capture metadata 81.6 x 52.8, goal 9.706 x 3.235",
+            "pictures": 56,
+            "netPictures": 43,
+            "v119Facts": 0,
+            "samples": 172,
+            "heldSamples": 0,
+            "flowingNetPictures": 0,
+            "flowingEnds": 0,
+            "openFlowingFacts": 0,
+            "penetration": -0.33532303243364225,
+            "restPenetration": -0.238574680382861,
+            "added": 0.0,
+            "largest": 0.6098899841308594,
+            "inward": 0.013397216796875,
+            "largestStep": 0.03266143798828125,
+            "endStep": 0.0,
+            "endStepWithoutHold": 0.0
+        },
+        {
+            "file": "windows-160114-large-6-05.json",
+            "source": "keeper-next capture (release 118, pre-v119: today's fallback net facts)",
+            "geometry": "capture metadata 81.6 x 52.8, goal 9.706 x 3.235",
+            "pictures": 57,
+            "netPictures": 43,
+            "v119Facts": 0,
+            "samples": 172,
+            "heldSamples": 0,
+            "flowingNetPictures": 0,
+            "flowingEnds": 0,
+            "openFlowingFacts": 0,
+            "penetration": -0.9490377425722913,
+            "restPenetration": -0.9490377425722913,
+            "added": 0.0,
+            "largest": 0.5718879699707031,
+            "inward": 0.004711151123046875,
+            "largestStep": 0.02706146240234375,
+            "endStep": 0.0,
+            "endStepWithoutHold": 0.0
+        },
+        {
+            "file": "windows-160115-large-6-01.json",
+            "source": "keeper-next capture (release 118, pre-v119: today's fallback net facts)",
+            "geometry": "capture metadata 81.6 x 52.8, goal 9.706 x 3.235",
+            "pictures": 57,
+            "netPictures": 43,
+            "v119Facts": 0,
+            "samples": 172,
+            "heldSamples": 0,
+            "flowingNetPictures": 0,
+            "flowingEnds": 0,
+            "openFlowingFacts": 0,
+            "penetration": -0.26776569068102063,
+            "restPenetration": -0.24034703560565873,
+            "added": 0.0,
+            "largest": 0.5979728698730469,
+            "inward": 0.01544952392578125,
+            "largestStep": 0.030193328857421875,
+            "endStep": 0.0,
+            "endStepWithoutHold": 0.0
+        },
+        {
+            "file": "windows-160115-large-6-03.json",
+            "source": "keeper-next capture (release 118, pre-v119: today's fallback net facts)",
+            "geometry": "capture metadata 81.6 x 52.8, goal 9.706 x 3.235",
+            "pictures": 57,
+            "netPictures": 43,
+            "v119Facts": 0,
+            "samples": 172,
+            "heldSamples": 0,
+            "flowingNetPictures": 0,
+            "flowingEnds": 0,
+            "openFlowingFacts": 0,
+            "penetration": 0.029499371266290098,
+            "restPenetration": 0.029499371266290098,
+            "added": 0.0,
+            "largest": 0.5825271606445313,
+            "inward": 0.00496673583984375,
+            "largestStep": 0.02751922607421875,
+            "endStep": 0.0,
+            "endStepWithoutHold": 0.0
+        },
+        {
+            "file": "windows-160116-standard-5-00.json",
+            "source": "keeper-next capture (release 118, pre-v119: today's fallback net facts)",
+            "geometry": "capture metadata 68 x 44, goal 9.706 x 3.235",
+            "pictures": 57,
+            "netPictures": 43,
+            "v119Facts": 0,
+            "samples": 172,
+            "heldSamples": 0,
+            "flowingNetPictures": 0,
+            "flowingEnds": 0,
+            "openFlowingFacts": 0,
+            "penetration": -0.8716932679340745,
+            "restPenetration": -0.8716932679340745,
+            "added": 0.0,
+            "largest": 0.6022415161132813,
+            "inward": 0.01674652099609375,
+            "largestStep": 0.03266143798828125,
+            "endStep": 0.0,
+            "endStepWithoutHold": 0.0
+        },
+        {
+            "file": "windows-160116-standard-5-02.json",
+            "source": "keeper-next capture (release 118, pre-v119: today's fallback net facts)",
+            "geometry": "capture metadata 68 x 44, goal 9.706 x 3.235",
+            "pictures": 56,
+            "netPictures": 43,
+            "v119Facts": 0,
+            "samples": 172,
+            "heldSamples": 0,
+            "flowingNetPictures": 0,
+            "flowingEnds": 0,
+            "openFlowingFacts": 0,
+            "penetration": -0.2542821016014791,
+            "restPenetration": -0.22966343431908598,
+            "added": 0.0,
+            "largest": 0.5967483520507813,
+            "inward": 0.01200103759765625,
+            "largestStep": 0.02957916259765625,
+            "endStep": 0.0,
+            "endStepWithoutHold": 0.0
+        },
+        {
+            "file": "windows-160116-standard-5-05.json",
+            "source": "keeper-next capture (release 118, pre-v119: today's fallback net facts)",
+            "geometry": "capture metadata 68 x 44, goal 9.706 x 3.235",
+            "pictures": 57,
+            "netPictures": 43,
+            "v119Facts": 0,
+            "samples": 172,
+            "heldSamples": 0,
+            "flowingNetPictures": 0,
+            "flowingEnds": 0,
+            "openFlowingFacts": 0,
+            "penetration": -0.2800160759218713,
+            "restPenetration": -0.21011556322655878,
+            "added": 0.0,
+            "largest": 0.6123313903808594,
+            "inward": 0.008884429931640625,
+            "largestStep": 0.0319061279296875,
+            "endStep": 0.0,
+            "endStepWithoutHold": 0.0
+        },
+        {
+            "file": "native-large-160115.json",
+            "source": "capture F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\lowpoly-live-release131\\outputs\\lowpoly-live-rollout-20261013\\net-recordings",
+            "geometry": "configuration 81.6 x 52.8, goal 9.706 x 3.235",
+            "pictures": 83,
+            "netPictures": 82,
+            "v119Facts": 15,
+            "samples": 325,
+            "heldSamples": 128,
+            "flowingNetPictures": 82,
+            "flowingEnds": 1,
+            "openFlowingFacts": 0,
+            "penetration": -0.3604130790367961,
+            "restPenetration": -0.10181475140007734,
+            "added": 0.0,
+            "largest": 0.3956184387207031,
+            "inward": 0.042598724365234375,
+            "largestStep": 0.06412887573242188,
+            "endStep": 0.0,
+            "endStepWithoutHold": 0.0
+        },
+        {
+            "file": "native-standard-160114.json",
+            "source": "capture F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\lowpoly-live-release131\\outputs\\lowpoly-live-rollout-20261013\\net-recordings",
+            "geometry": "configuration 68 x 44, goal 9.706 x 3.235",
+            "pictures": 166,
+            "netPictures": 82,
+            "v119Facts": 15,
+            "samples": 325,
+            "heldSamples": 128,
+            "flowingNetPictures": 82,
+            "flowingEnds": 1,
+            "openFlowingFacts": 0,
+            "penetration": -0.30968522325609626,
+            "restPenetration": -0.08346604601000251,
+            "added": 0.0,
+            "largest": 0.3321495056152344,
+            "inward": 0.0268402099609375,
+            "largestStep": 0.052898406982421875,
+            "endStep": 0.0,
+            "endStepWithoutHold": 0.0
+        },
+        {
+            "file": "wire-standard-160114.json",
+            "source": "capture F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\lowpoly-live-release131\\outputs\\release-131\\wire-goals",
+            "geometry": "configuration 68 x 44, goal 9.706 x 3.235",
+            "pictures": 25,
+            "netPictures": 12,
+            "v119Facts": 2,
+            "samples": 45,
+            "heldSamples": 19,
+            "flowingNetPictures": 12,
+            "flowingEnds": 1,
+            "openFlowingFacts": 0,
+            "penetration": -0.6124115526383704,
+            "restPenetration": -0.5498992857064593,
+            "added": 0.0,
+            "largest": 0.09691238403320313,
+            "inward": 0.01153564453125,
+            "largestStep": 0.0793304443359375,
+            "endStep": 0.0,
+            "endStepWithoutHold": 0.0
+        }
+    ],
+    "notes": [
+        "Editor medians on this machine: RenderWorldNet 265 us, WorldNetDeformation.Field.Update 224 us per moving picture; the 0.3 ms target for the RTX 4070 standard run needs Root's measurement.",
+        "Controlled producer replica: impact-point displacement between -0.042 and 0.476 m over 416 rear-hit shots; the native tail clamps the ball to 2.2-R behind the line, so only an inward net motion could pass it. Slow rear hits (impact after 0.85 s) are held by the native scene-time cap at 2.45 s; the round-2 display eases the held picture to rest by 3.25 s from the picture's goal-scene time.",
+        "The legacy capped-fact envelope/goldens remain unchanged. New flowing facts use 4.05-goalPause and fade at 3.85-4.05 s; controlled projection and C# shape checks do not establish full-match reachability or frequency.",
+        "keeper-next captures predate v119: their ball path was not clamped to the rest net, so a ground ball can rest up to 2.9 cm beyond it with any net (inherited, not caused by the deformation; the current producer clamps the ball to 2.2-R). They carry no goal-scene time, so they show the round-1 shape."
+    ]
+}

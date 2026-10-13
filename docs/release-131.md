@@ -1,6 +1,6 @@
 # Release 131: Low-Poly, Tag/Nacht und feste Stadionzuordnung
 
-Der Kandidat basiert auf dem veröffentlichten Release 130. Opus hat Licht, Stadien/Fanblöcke und Tornetz vorbereitet; Codex High hat nach dem Claude-API-Ratenlimit die feste Zuordnung, Nachbesserungen und Prüfung übernommen. Veröffentlichung und abschließender Live-Abgleich werden separat dokumentiert.
+Am 13. Oktober 2026 veröffentlicht und auf https://fussball.cakamper.at/ live abgenommen. Der Stand basiert auf Release 130. Opus hat Licht, Stadien/Fanblöcke und Tornetz vorbereitet; Codex High hat nach dem Claude-API-Ratenlimit die feste Zuordnung, Nachbesserungen und Prüfung übernommen.
 
 Die facettierten Spieler behalten ihr vorhandenes Rig und die ursprüngliche Bodenreferenz. Europacup, Crown und Horizon finden immer am Abend statt. Liga und nationaler Pokal verwenden eine feste, aus der Spielkennung abgeleitete Tag-/Nachtzuordnung. Laden und Rückschau ziehen dafür keinen neuen Zufall und ergänzen keine Spielstanddaten.
 
@@ -17,6 +17,8 @@ Fahnen und Fanbewegungen folgen ausschließlich der empfangenen Matchzeit. Jubel
 - Das HTTP-Paket besteht acht Integrationsprüfungen, zwei mobile Taktikansichten und zehn echte Browserrückkehrprüfungen einschließlich Browsercache-Rückkehr. Zwei vollständige 2D-/Unity-Partien mit je 3.037 Schritten sind exakt gleich: Digest `a6d98d83`, vollständige Nutzdaten-SHA256 `d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772`.
 - Auf dem angeschlossenen Android-Telefon sind 14 native Spieler bestätigt, reduzierte Qualität und echte 931 × 448 Darstellung aktiv. Der 75-Sekunden-Wachhaltnachweis besteht; Buildhashes bleiben gleich. Der Nutzer bestätigt flüssige und gut erkennbare Darstellung. Die beobachteten Unity-Zähler sind keine gelieferten GPU-FPS; manueller Appwechsel wurde in diesem Lauf nicht nachgewiesen.
 
-Die Produktionspipeline und der öffentliche Datei-/Versionsabgleich bilden den abschließenden Veröffentlichungsnachweis. Desktop- und Gerätewerte sind einzelne Beobachtungen und kein allgemeines Leistungsversprechen.
+Die [Produktionspipeline](https://github.com/thealextd1337-spec/FM/actions/runs/38394911919) besteht auf Commit `4f8e0e261c7e9b7b2a2832dc173fb63b7c4428b4`. Alle 122 Kommandos, acht direkt geprüfte öffentliche Dateihashes und die tatsächliche Live-Browserabnahme bestehen. Die Live-Partien liefern erneut identischen nativen Zustand, P02 und Zufall. [Abnahmeübersicht](../outputs/release-131/completion.json). Desktop- und Gerätewerte sind einzelne Beobachtungen und kein allgemeines Leistungsversprechen.
+
+Die erste Produktionsausführung wurde vor dem Upload bewusst gestoppt, weil der Unity-Lader in seinen Produktmetadaten noch 130 meldete. Die Korrektur verändert ausschließlich diese Versionsangabe. `work/test-release-version.cjs` erkennt den alten Fehler und besteht mit 131; die Browserprüfung wurde auf dem korrigierten Paket wiederholt. Eine zusätzliche echte Unity-Nachrichtenaufzeichnung bestätigt die vollständige Netz-Datenübertragung; der verpflichtende Schlusslauf besteht jetzt 102 Checks mit drei aktuellen vollständigen Aufzeichnungen.
 
 Ein separater Edge-Lauf mit dem tatsächlichen Unity-Canvas bestätigt die RTX 4070 über Direct3D11. In beiden Qualitäten liegen die beobachteten Browser-rAF-Abstände bei 6,9 ms im Median und 7 ms am 95. Perzentil; diese Werte beschreiben Browsercallbacks und sind keine zugesicherten GPU-FPS. Die Messung enthält keine Laufzeitfehler.

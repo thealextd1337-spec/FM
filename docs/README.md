@@ -1,8 +1,8 @@
 # Entwicklungsdokumentation
 
-- [Release 131: Low-Poly, Tag/Nacht und feste Stadionzuordnung](release-131.md): Quellstand, Geräteprüfung und Veröffentlichungsnachweise.
+- [Release 131: Low-Poly, Tag/Nacht und feste Stadionzuordnung](release-131.md): veröffentlicht und live abgenommen; Quellstand, Geräteprüfung und Veröffentlichungsnachweise.
 
-- [Stadionerweiterung und feste Vereinszuordnung](stadionerweiterung-plan.md): vorhandene fünf Low-Poly-Ligastadien nach Größe fest für alle 96 Ligavereine einsetzen; zusätzliche Einzelentwürfe vorerst zurückgestellt. Vollständige geplante Zuordnung und spätere Erweiterungsfolge.
+- [Stadionerweiterung und feste Vereinszuordnung](stadionerweiterung-plan.md): fünf Low-Poly-Ligastadien nach Größe fest für alle 96 Ligavereine veröffentlicht; zusätzliche Einzelentwürfe vorerst zurückgestellt. Vollständige Zuordnung und spätere Erweiterungsfolge.
 
 - [Bugliste](Bugliste.md): priorisierte offene 3D-/Browserfehler, native Matchabstimmung, Android-Prüfungen und separat gekennzeichnete veröffentlichte Korrekturen.
 

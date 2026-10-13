@@ -1,0 +1,49 @@
+{
+  "release": 131,
+  "published": true,
+  "liveAccepted": true,
+  "at": "2026-10-13T12:46:01.826Z",
+  "url": "https://fussball.cakamper.at/",
+  "deployedHead": "4f8e0e261c7e9b7b2a2832dc173fb63b7c4428b4",
+  "ciRun": 38394911919,
+  "ciUrl": "https://github.com/thealextd1337-spec/FM/actions/runs/38394911919",
+  "ciConclusion": "success",
+  "sourceId": "319e2f7223bb42c5da2bf41c52aa7ac1ea960f0b9f1b46c38fc017f1ae327982",
+  "htmlSha256": "9108286b173c60e0a8f14b581a0df15b2b3cc8a943c1f011f514c8d47ae241ff",
+  "manifestSha256": "5adf4088de5b9315ad7d8af40b0f7ce71eb010e91852c272ac545a655da3f12d",
+  "publicFiles": 8,
+  "productionCommands": 122,
+  "livePackageChecks": 8,
+  "mobileTacticsViews": 2,
+  "parties": [
+    {
+      "unity": false,
+      "ticks": 3037,
+      "digest": "a6d98d83",
+      "payloadSha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772"
+    },
+    {
+      "unity": true,
+      "ticks": 3037,
+      "digest": "a6d98d83",
+      "payloadSha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772"
+    }
+  ],
+  "fixedTemplates": 5,
+  "leagueAssignments": 96,
+  "sizeCounts": {
+    "large": 14,
+    "medium": 52,
+    "small": 30
+  },
+  "physicalAndroidVisualAccepted": true,
+  "physicalAndroidWakePassed": true,
+  "wireNetChecks": 102,
+  "currentCompleteCaptureFiles": 3,
+  "limits": [
+    "Historical R15 original1600 failure unchanged; accepted R18 lock unchanged",
+    "Device observations do not establish universal GPU FPS",
+    "Manual Android app switching unmeasured",
+    "Additional91individualstadiums deferred"
+  ]
+}

@@ -1,11 +1,12 @@
 # Änderungen
 
-## Noch nicht veröffentlicht
+## 13. Oktober 2026 – Release 131
 
-- Low-Poly-Kandidat 131: Die 96 Ligavereine erhalten eine feste Zuordnung zu den fünf fertig ausgearbeiteten Stadionvorlagen – 14 große, 52 mittlere und 30 kleine. Vereinsnamen, Farben, Banner sowie Heim- und Gästefanblöcke bleiben klubbezogen. Weitere Einzelstadien sind im [Erweiterungsplan](stadionerweiterung-plan.md) zurückgestellt.
+- Low-Poly 131: Die 96 Ligavereine erhalten eine feste Zuordnung zu den fünf fertig ausgearbeiteten Stadionvorlagen – 14 große, 52 mittlere und 30 kleine. Vereinsnamen, Farben, Banner sowie Heim- und Gästefanblöcke bleiben klubbezogen. Weitere Einzelstadien sind im [Erweiterungsplan](stadionerweiterung-plan.md) zurückgestellt.
 - Fanbewegung und Fahnen folgen der empfangenen Matchzeit; die Jubelbewegung klingt innerhalb der tatsächlichen 4,05 Sekunden weich aus. Die sichtbare Torballbewegung läuft über die volle Torpause weiter. Eine optionale Netzkennung erhält späte Aufpralle, während ältere Bilder ihre bisherige Dämpfung behalten. Native Tore, Zufallsfolge und Spielstände werden nicht verändert.
 - Codex High übernimmt nach dem Claude-API-Ratenlimit die Nachbesserungen. Lichtwerte einschließlich Shaderkennung werden auch beim Schließen korrekt zurückgesetzt. Galeriebilder synchronisieren zuerst die tatsächlichen Knochenpositionen und berücksichtigen Figurenskalierung und Materialwerte.
-- In Unity bestehen 1.511 Profil-, 966 Architektur-, 277 Fanblock-, 198 Licht- und 98 Tornetzprüfungen. Der vollständige Vergleich zeigt in neun bestehenden Controllergruppen keine neuen Änderungen an Werten, Ergebnissen oder Grenzen; der historische R15-Fehler bleibt separat dokumentiert. Zwei vollständige aktuelle Toraufzeichnungen bestehen den verpflichtenden Schlussnachweis. Zielbuild, Geräteabnahme und Live-Auslieferung werden getrennt geprüft.
+- In Unity bestehen 1.511 Profil-, 966 Architektur-, 277 Fanblock-, 198 Licht- und zunächst 98 Tornetzprüfungen. Die zusätzliche Aufzeichnung tatsächlicher Unity-Nachrichten erweitert den Tornetz-Schlusslauf auf 102 Checks mit drei vollständigen aktuellen Aufzeichnungen. Der vollständige Vergleich zeigt in neun bestehenden Controllergruppen keine neuen Änderungen an Werten, Ergebnissen oder Grenzen; der historische R15-Fehler bleibt separat dokumentiert.
+- Veröffentlicht und live abgenommen: 122 Produktionskommandos, acht öffentliche Dateihashes, echte Browserprüfungen und vollständige 2D-/Unity-Parität bestehen. Android-Wachhaltung und Nutzer-Sichtprüfung sind bestätigt. Quelle, Produktmetadaten, Build und Live zeigen 131; eine neue Versionsbindung prüft diesen Zusammenhang. [Releasebericht](release-131.md).
 
 ## 13. Oktober 2026 – Gesicherten Lichtentwurf lokal geprüft
 

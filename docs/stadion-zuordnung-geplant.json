@@ -1,6 +1,6 @@
 {
   "schema": "d6-stadium-assignment-plan-1",
-  "status": "Feste Zuordnung im lokalen Release-131-Kandidaten implementiert; Unity-, Build- und Live-Abnahme noch ausstehend",
+  "status": "Feste Zuordnung als Release 131 veröffentlicht; Unity-, Build- und Live-Abnahme bestanden",
   "basis": "Current AP02 catalogue profile[1]=Fans; 5 large,3-4 medium,1-2 small. Fan4 medium alternatives alternate once by fixed club id order within country; explicit table frozen, no runtime season/strength/budget reevaluation.",
   "runtimeContract": {
     "ownerFields": "ClubId and Venue retain the actual home club ID; DisplayName is the frozen actual club name.",
