@@ -293,11 +293,11 @@ function v66Transfer(career,bid){
  }
  return player;
 }
-function v66QueueLegacyResult(career,bid,kind,message){
- const market=career.world.market,id=`${bid.id}:${kind}`;
+function v66QueueLegacyResult(career,bid,kind,message,reply=null){
+ const market=career.world.market,id=`${bid.id}:${kind}${reply?`:${bid.annual}:${reply.counter}`:''}`;
  if(!Array.isArray(market.transferResults))market.transferResults=[];
  if(market.transferResults.some(item=>item.id===id))return;
- market.transferResults.push({id,negotiationId:bid.id,pid:bid.pid,buyerId:bid.buyerId,sellerId:bid.sellerId,kind,price:bid.price,message,day:market.day,released:false,seen:false});
+ market.transferResults.push({id,negotiationId:bid.id,pid:bid.pid,buyerId:bid.buyerId,sellerId:bid.sellerId,kind,price:bid.price,message,day:market.day,released:false,seen:false,...reply});
 }
 function v66TryBid(career,bid){
  if(bid.status!=='pending')return false;
@@ -322,6 +322,12 @@ function v66ImproveBid(career,id,annual){
  bid.annual=Number(annual);bid.improved=true;bid.status='pending';bid.reason='';
  v66TryBid(career,bid);
  if(career.world.market.day===5&&typeof v72ReleaseResults==='function')v72ReleaseResults(career);
+ return bid;
+}
+function v66WithdrawBid(career,id){
+ const bid=career.world.market.pendingBids.find(item=>item.id===id&&item.buyerId===career.manager.managedClubId&&['pending','counter'].includes(item.status));
+ if(!bid)throw Error('Dieses Angebot kann nicht mehr zurückgezogen werden.');
+ bid.status='rejected';bid.reason='Du hast das Angebot zurückgezogen.';
  return bid;
 }
 function v66RespondBid(career,id,accept){
@@ -349,8 +355,8 @@ function v66AiPropose(career){
  }
 }
 function v66ResolveDay(career){
- const market=career.world.market,day=market.day,groups=new Map();
- for(const bid of market.pendingBids.filter(item=>item.status==='pending'&&item.placedDay<=day)){
+ const market=career.world.market,day=market.day,groups=new Map(),own=career.manager.managedClubId,waiting=market.pendingBids.filter(item=>item.status==='pending'&&item.placedDay<=day);
+ for(const bid of waiting){
   if(!groups.has(bid.pid))groups.set(bid.pid,[]);groups.get(bid.pid).push(bid);
  }
  for(const bids of groups.values()){
@@ -368,6 +374,7 @@ function v66ResolveDay(career){
    }
   }
  }
+ for(const bid of waiting)if(bid.status==='counter'&&bid.buyerId===own&&!bid.sellerId)v66QueueLegacyResult(career,bid,'contract-counter',bid.reason,{announce:true,counter:bid.counter});
  for(const bid of market.pendingBids.filter(item=>item.status==='pending'&&item.expiresDay<=day))v66CloseBid(career,bid,'expired','Die Angebotsfrist ist abgelaufen.');
  const managed=career.manager.managedClubId;
  market.pendingBids=market.pendingBids.filter(item=>['pending','counter'].includes(item.status)||item.buyerId===managed||item.sellerId===managed);
@@ -390,7 +397,7 @@ function v66ReleaseSurplusKeeper(career,clubId,pid){
 }
 function v66NextMarketDay(career){
  const market=career.world.market;if(!['open','deadline'].includes(market.phase))throw Error('Die Transferphase ist nicht offen.');
- if(typeof v72ResolveDay==='function')v72ResolveDay(career,market.day,market.phase==='deadline');
+ if(typeof v72ResolveDay==='function')v72ResolveDay(career,market.day,market.phase==='deadline',true);
  if(market.phase==='open')v66ResolveDay(career);
  if(market.day===5){
   if(typeof v72HasPending==='function'&&v72HasPending(career)){if(market.phase==='deadline')throw Error('Bitte öffne die laufenden Verhandlungen und schließe sie ab.');market.phase='deadline';if(typeof v72ReleaseResults==='function')v72ReleaseResults(career);return}

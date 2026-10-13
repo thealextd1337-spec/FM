@@ -97,15 +97,16 @@ function v72SaleBlockReason(career,sellerId,pid){
  return '';
 }
 function v72CanCommitSale(career,sellerId,pid){return !v72SaleBlockReason(career,sellerId,pid)}
-function v72Queue(career,negotiation,kind,message){
- const market=v72Market(career),id=`${negotiation.id}:${kind}`;
+function v72Queue(career,negotiation,kind,message,reply=null){
+ const market=v72Market(career),id=`${negotiation.id}:${kind}${reply?`:${negotiation.price}:${negotiation.annual}:${reply.counter}`:''}`;
  if(market.transferResults.some(item=>item.id===id))return;
- market.transferResults.push({id,negotiationId:negotiation.id,pid:negotiation.pid,buyerId:negotiation.buyerId,sellerId:negotiation.sellerId,kind,price:negotiation.agreedPrice??negotiation.price,message,day:market.day,released:false,seen:false});
+ market.transferResults.push({id,negotiationId:negotiation.id,pid:negotiation.pid,buyerId:negotiation.buyerId,sellerId:negotiation.sellerId,kind,price:negotiation.agreedPrice??negotiation.price,message,day:market.day,released:false,seen:false,...reply});
 }
 function v72ReleaseResults(career){for(const result of v72Market(career).transferResults)result.released=true}
-function v72Reject(career,negotiation,reason){
+function v72Reject(career,negotiation,reason,silent=false){
  if(['rejected','completed'].includes(negotiation.stage))return;
  negotiation.stage='rejected';negotiation.lastChange=reason;
+ if(silent)return;
  const market=v72Market(career);
  if(!market.decisions.some(item=>item.negotiationId===negotiation.id))market.decisions.push({negotiationId:negotiation.id,pid:negotiation.pid,buyerId:negotiation.buyerId,season:career.world.season,status:'rejected',atPlayed:v62Fixtures(career).filter(fixture=>fixture.result).length});
  if(negotiation.buyerId===career.manager.managedClubId||negotiation.sellerId===career.manager.managedClubId)v72Queue(career,negotiation,'rejected',reason);
@@ -142,20 +143,21 @@ function v72SubmitFee(career,id,amount){
  if(market.day===5||market.phase==='deadline'){item.feeCountered=true;v72ResolveFee(career,item,true);v72ReleaseResults(career)}
  return item;
 }
-function v72ResolveFee(career,item,deadline=false){
+function v72ResolveFee(career,item,deadline=false,announce=false){
  const listing=v72FeeTerms(career,item),seller=v66Club(career,item.sellerId);
  if(item.stage==='refusal-wait'){v72Reject(career,item,'Der Spieler hat den Wechsel abgelehnt.');return}
  const blocked=v72SaleBlockReason(career,item.sellerId,item.pid);
  if(!listing||blocked){v72Reject(career,item,blocked||'Der Verein kann diesen Spieler nicht mehr abgeben.');return}
  if(item.price>=v72Floor(listing)){
   item.stage='contract';item.agreedPrice=item.price;item.lastChange=`${seller.name} stimmt ${item.price} Credits Ablöse zu. Jetzt folgt der Spielervertrag.`;
-  if(item.buyerId===career.manager.managedClubId)v72Queue(career,item,'fee-agreed',item.lastChange);
+  if(announce&&item.buyerId===career.manager.managedClubId)v72Queue(career,item,'fee-agreed',item.lastChange,{announce:true});
   return;
  }
  if(((career.world.market.day===5||deadline)&&item.feeCountered)||item.price<=item.previousPrice){v72Reject(career,item,'Der Verein hat das Ablösegebot abgelehnt.');return}
  item.previousPrice=item.price;item.stage='fee-counter';item.counter=Math.max(v72Floor(listing),Math.round((listing.ask+item.price)/20)*10);
  item.counterDay=career.world.market.day;item.lastChange=`${seller.name} fordert ${item.counter} Credits.`;
  if(career.world.market.day===5||deadline)item.feeCountered=true;
+ if(announce&&item.buyerId===career.manager.managedClubId)v72Queue(career,item,'fee-counter',item.lastChange,{announce:true,counter:item.counter});
 }
 function v72ResolveSellerContract(career,item){
  const consent=v66Consent(career,item);
@@ -216,12 +218,14 @@ function v72SubmitContract(career,id,annual,years,promise){
  return item;
 }
 function v72Cancel(career,id){
- const item=v72Negotiation(career,id);
- if(!item||item.buyerId!==career.manager.managedClubId||!['fee-wait','fee-counter'].includes(item.stage))throw Error('Nach der Ablöseeinigung kann die Verhandlung nicht mehr beendet werden.');
- v72Reject(career,item,'Du hast die Verhandlung beendet.');return item;
+ const market=v72Market(career),item=v72Negotiation(career,id);
+ if(!item||item.buyerId!==career.manager.managedClubId||!['refusal-wait','fee-wait','fee-counter','contract','contract-wait','contract-counter','ready'].includes(item.stage)||!['open','deadline'].includes(market.phase))throw Error('Dieses Angebot kann nicht mehr zurückgezogen werden.');
+ v72Reject(career,item,'Du hast das Angebot zurückgezogen.',true);
+ for(const result of market.transferResults.filter(entry=>entry.negotiationId===item.id&&!entry.seen))result.seen=true;
+ return item;
 }
 function v72HasPending(career){const own=career.manager.managedClubId;return v72Market(career).negotiations.some(item=>(item.buyerId===own||item.sellerId===own)&&!['rejected','ready','completed'].includes(item.stage))}
-function v72ResolveDay(career,day,deadline=false){
+function v72ResolveDay(career,day,deadline=false,announce=false){
  const market=v72Market(career);
  const own=career.manager.managedClubId;
  for(const item of market.negotiations.filter(entry=>entry.buyerId===own||entry.sellerId===own)){
@@ -231,15 +235,15 @@ function v72ResolveDay(career,day,deadline=false){
    else if(item.stage==='contract-wait'&&item.answerDay<=day)v72ResolveSellerContract(career,item);
    continue;
   }
-  if(item.stage==='refusal-wait'&&item.answerDay<=day)v72ResolveFee(career,item,deadline||day===5);
-  else if(item.stage==='fee-wait'&&item.answerDay<=day)v72ResolveFee(career,item,deadline||day===5);
+  if(item.stage==='refusal-wait'&&item.answerDay<=day)v72ResolveFee(career,item,deadline||day===5,announce);
+  else if(item.stage==='fee-wait'&&item.answerDay<=day)v72ResolveFee(career,item,deadline||day===5,announce);
   else if(item.stage==='fee-counter'&&day===5&&market.phase==='deadline')v72Reject(career,item,'Das Ablöseangebot blieb bis zum Transferschluss offen.');
   else if(deadline&&['contract','contract-counter'].includes(item.stage))v72Reject(career,item,'Mit dem Spieler kam kein Vertrag zustande.');
   else if(item.stage==='contract-wait'&&item.answerDay<=day){
    const consent=v66Consent(career,item);
    if(consent.accepted){item.stage='ready';item.lastChange='Der Spieler hat dem Vertrag zugestimmt. Die Transferentscheidung folgt beim Tageswechsel.'}
    else if(day===5&&item.contractCountered)v72Reject(career,item,'Der Spieler hat das Vertragsangebot abgelehnt.');
-   else{item.stage='contract-counter';item.counter=consent.minimum;item.counterDay=day;item.lastChange=`Der Spieler fordert ${consent.minimum} Credits Jahresgehalt.`;if(day===5)item.contractCountered=true}
+   else{item.stage='contract-counter';item.counter=consent.minimum;item.counterDay=day;item.lastChange=`Der Spieler fordert ${consent.minimum} Credits Jahresgehalt.`;if(day===5)item.contractCountered=true;if(announce)v72Queue(career,item,'contract-counter',item.lastChange,{announce:true,counter:item.counter})}
   }
  }
  v72Finalize(career);
