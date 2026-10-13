@@ -1,0 +1,1204 @@
+{
+ "a": "validation-r6/tests/natural-motion-gates",
+ "b": "validation-r6/motion/qa-final",
+ "onlyA": [],
+ "onlyB": [],
+ "files": {
+  "clip-detail.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "peaks/jog-right@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "peaks/plant-edge@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "peaks/ready-abort-receive+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "peaks/ready-abort-receive@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "peaks/receive-sprint+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "peaks/stop-restart-pass+timing@60Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "peaks/stop-restart-pass@60Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "peaks/walk-right@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-carrier-diag-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-carrier-diag-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-carrier-straight.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-curve-150.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-curve-150@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-curve-150@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-curve-250.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-curve-90.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-curve-sprint-120.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-curve-tight-300.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-cut-diagonal.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-cut-stop-90.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-cut-stop-90@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-cut-stop-90@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-direction-changes.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-direction-changes@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-direction-changes@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-back-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-back-left@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-back-left@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-back-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-back.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-fwd-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-fwd-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-fwd.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-fwd@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-fwd@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-right@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-right@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-jog-stop-abrupt.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-keeper-shuffle-1.1.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-keeper-shuffle-1.1@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-keeper-shuffle-1.1@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-keeper-shuffle-2.2.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-noise-117.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-pass-jog+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-pass-jog+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-pass-jog+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-pass-jog.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-pass-jog@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-pass-jog@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-plant-edge+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-plant-edge+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-plant-edge+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-plant-edge.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-plant-edge@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-plant-edge@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-abort-receive+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-abort-receive+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-abort-receive+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-abort-receive.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-abort-receive@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-abort-receive@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-change-pass+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-change-pass+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-change-pass+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-change-pass.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-change-pass@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-ready-change-pass@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-receive-sprint+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-receive-sprint+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-receive-sprint+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-receive-sprint.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-reverse-stop.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-s-curve-180.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-short-sprint-fwd-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-short-sprint-fwd-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-short-sprint-fwd.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-short-sprint-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-short-sprint-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-shot-stop+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-shot-stop+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-shot-stop+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-shot-stop.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-sprint-back-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-sprint-back-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-sprint-back.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-sprint-fwd-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-sprint-fwd-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-sprint-fwd.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-sprint-fwd@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-sprint-fwd@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-sprint-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-sprint-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-sprint-stop.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-stop-restart-pass+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-stop-restart-pass+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-stop-restart-pass+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-stop-restart-pass.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-stop-restart-pass@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-stop-restart-pass@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-back-left-stop-abrupt.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-back-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-back-left@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-back-left@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-back-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-back.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-fwd-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-fwd-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-fwd.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-right@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "trace-walk-right@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "visible-surface.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  }
+ },
+ "gateSets": {
+  "determinism": {
+   "countA": 2,
+   "countB": 2,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "gates": {
+   "countA": 2020,
+   "countB": 2020,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "supportGates": {
+   "countA": 675,
+   "countB": 675,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "contactGates": {
+   "countA": 285,
+   "countB": 285,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "continuityGates": {
+   "countA": 20,
+   "countB": 20,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "r15Gates": {
+   "countA": 342,
+   "countB": 342,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 1,
+   "failedB": 1,
+   "largest": null,
+   "sample": []
+  },
+  "r20Gates": {
+   "countA": 642,
+   "countB": 642,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "r20Checks": {
+   "countA": 15,
+   "countB": 15,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "r21Gates": {
+   "countA": 0,
+   "countB": 0,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  }
+ },
+ "meta": {
+  "/label": [
+   "natural-motion-gates",
+   "qa-final"
+  ]
+ }
+}

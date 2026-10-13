@@ -1,0 +1,19 @@
+VBCSCompilerPreWarmer: watching VBCSCompiler (PID 88892)
+VBCSCompilerPreWarmer: pre-warm launched (dotnet PID 83272)
+VBCSCompiler prewarm took 17.47 ms
+exit=0 seconds=111 log=F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/demo-low-poly-fix/outputs/style-demos/lowpoly-fix/validation-r6/logs/02-tests.log
+417:[D6Cli] FootballTests: {
+493:[D6Cli] FootballLocomotionTests: {
+723:[D6Cli] FootballMomentumTests: {
+850:[D6Cli] FootballActionTests: {
+913:[D6Cli] FootballMotionTests: {
+1453:[D6Cli] WorldViewTests: {
+1524:[D6Cli] FootballGaitTests: {
+2060:[D6Cli] ClubStadiumProfilesTests: {
+2471:[D6Cli] StadiumArchitectureTests: passed=706
+2482:[D6Cli] FootballDuelTests: passed=43
+2493:[D6Cli] FootballIterationTests: passed=106
+2504:[D6Cli] FootballKeeperTests: passed=161
+2530:[D6Cli] FootballPresentation119Tests: passed=437
+2541:[D6Cli] NaturalMotionGates: cases=106 checks=2 gates=2020/2020 failed=0 supportGates=675/675 supportFailed=0 contactGates=285/285 contactFailed=0 continuityGates=20/20 continuityFailed=0 r15Gates=341/342 r15Failed=1 r15BeyondR18=0 r20Gates=642/642 r20Failed=0 r20Checks=15/15 r21Gates=0/0 r21Failed=0 images=0 recordings=0 visible pictures=14670 failed=0 inherited=0 paired-beyond-limit=152 shape-failed=0; boot right surface to received ball surface m [action, paired: 152 of 356 beyond 0.0300 (candidate only 1, candidate worse 17)]: candidate worst -0.0504 (release -0.0504) at pass-jog+timing@120Hz 12.075 pass, worst candidate excess 0.0020 at receive-sprint+timing@120Hz 11.600 receive inherited 0 failed 0 shape 0 of 356 beyond 0.0100, worst shift 0.0042 at plant-edge+timing@120Hz 11.242 receive
+2552:[D6Cli] OK tests finished

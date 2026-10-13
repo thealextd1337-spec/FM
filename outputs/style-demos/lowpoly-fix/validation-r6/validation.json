@@ -1,0 +1,64 @@
+{
+  "round": "Sonnet 5.5 round 6 - final Unity diagnostic validation (no feature scope, no source change)",
+  "testedCommit": "d85a2e5d6f1de72e2d9de75b151bfaf8b7abdb96",
+  "branch": "codex/demo-low-poly-fix-20261013",
+  "unityProject": "G:/unity/Doppel6-LowPoly-Demo",
+  "unity": "6000.6.4f1",
+  "mode": "-batchmode -nographics, serial, no -d6gates report, no -d6only; device Null (no rendering)",
+  "preconditions": {
+    "ownUnityProcessOnProject": 0, "lockfile": false,
+    "syncBase": "a6289dc3", "syncedFiles": ["Editor/LowPolyGroundDiagnostics.cs", "Editor/NaturalMotionDiagnostics.cs"], "secondSync": "0 files",
+    "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9", "identityFiles": 46, "identityBeforePass": true, "identityAfterPass": true,
+    "sceneSha256": "0cb721ddf9d2cb71f11e822d103225f700e4efef7429d6aa20b2dae9a0f8dc40",
+    "sceneMeshes": {"matchPlayerMesh": "WorldPlayerLowPoly-v4 (a279102b...)", "groundPlayerMesh": "WorldPlayer.asset (adb35185...)"},
+    "sceneChanged": false, "sceneResaved": false
+  },
+  "integrity": {
+    "originalAssets": "3/3 equal", "importsEqualBasis": "148/166, the 18 differing files identical set before and after (synced sources + Probe.unity, as in round 4)",
+    "webFilesBeforeAfter": "unity-web.data 00058f63..., framework 36ef3791..., loader c49fdcbc..., wasm 2de6a7d5..., probe-build.json f51e0226... byte identical; index.html 0293b761... unchanged",
+    "gitStatusAfter": "clean (no pipeline-validation or other tracked file written; WebBuild not run)",
+    "servers": {"4411": 92924, "4412": 90676, "4413": 78116, "note": "listening PIDs unchanged, not touched"},
+    "leftoverOwnUnity": 0
+  },
+  "run1_LowPolyGround": {
+    "log": "logs/01-lowpolyground.log", "seconds": 15, "exit": 0, "checks": "52/52", "profile": "0/3231 differ", "poses": "342/342 exact", "slides": "150/150 exact",
+    "coverage": {"gallery": "342/342", "slides": "150/150"},
+    "galleryShapeFailed": 0, "slidesShapeFailed": 0,
+    "shiftWorstMm": {"galleryBootRight_action": 5.08, "galleryBootLeft_action": 3.83, "galleryBootLeft_keeper": 4.62, "slidesBoots": 0.92},
+    "sentinels": {
+      "bootsLower4cm": "refused both feet (shift -56.8 / -56.3 mm), ball boot gap shift -55.8 mm",
+      "bootsHigher4cm_float": "pictures 1, shapeFailed 2: left +56.3 mm, right +56.3 mm while the absolute limit still passes (status 'passed, shape shift'); float sentinel real mesh/rig/ground skin, float unit: metres, +0.04 in bind-space z",
+      "rightGloveInflated8cm_ofTwo": "pictures 1, right glove shift -63.7 mm FAILS, measured as its own quantity; left glove ALSO fails (shift -47.5 mm, candidate gap 0.9205 vs release 0.9680 at ~0.95 m ball distance, left glove mesh NOT modified)",
+      "scalarCounterexample": "candidate +0.05 / release -0.05 fails; 10.3 mm fails, 10.0 mm and 5.1 mm pass (check 'shape rules' ok)"
+    },
+    "actualCandidateOnSentinelPictures": "3 pictures, failed 0, shape-failed 0",
+    "galleryPaired": "1 picture beyond limit: body slide right 1.00 candidate -0.0645 vs release -0.0616 (2.9 mm), unchanged"
+  },
+  "run2_Tests": {
+    "log": "logs/02-tests.log", "seconds": 111, "exit": 0,
+    "referenceReport": "outputs/style-demos/lowpoly-fix/tests-v4-r4b (tests-v4-r4 is empty; r4b is the actual R4 report) ",
+    "compare": "reports/compare-r4b-vs-r6-tests.json",
+    "gateSets": {"determinism": "2/2", "gates": "2020/2020", "supportGates": "675/675", "contactGates": "285/285", "continuityGates": "20/20", "r15Gates": "342/342, 1 failed (historic 1600 gate, r15BeyondR18=0)", "r20Gates": "642/642", "r20Checks": "15/15", "r21Gates": "0/0", "missing": 0, "extra": 0, "duplicate": 0, "valueDifferences": 0, "passedDifferences": 0, "limitDifferences": 0},
+    "suites": {"StadiumArchitecture": 706, "Duel": 43, "Iteration": 106, "Keeper": "161 (same as r4b)", "Presentation119": 437},
+    "otherDifferences": ["wall-clock only: duel turf-bake-ms 0.593->0.617, gait solve us 16.44->17.22 (name text + measured)", "natural-motion.json device Direct3D11 -> Null", "keeper check 160 text now carries shape-failed=0 and paired-beyond 23 (was 22)", "visible-surface*.json: new fields shift/shape/shapeFailed, per-hand glove quantities, new note text"],
+    "visibleNaturalMotion": {"pictures": 14670, "failed": 0, "shapeFailed": 0, "pairedBeyond": 152, "shiftWorstMm": {"bootLeft_locomotion": 3.87, "bootRight_locomotion": 3.75, "bootLeft_action": 3.92, "bootRight_action": 3.50, "bootRightBall": 4.16}},
+    "visibleKeeper": {"pictures": 561, "failed": 0, "shapeFailed": 0, "pairedBeyond": 23, "shiftWorstMm": {"bootLeft": 3.34, "bootRight": 4.14, "leftGloveCatch": -0.77, "rightGloveCatch": 0.29}, "perHandCatch": "left candidate -0.0804 / release -0.0796 (paired candidate-worse 0.77 mm, within tolerance); right candidate -0.0906 / release -0.0909. Old aggregate reported only the larger-|gap| hand (-0.0906), which is why pairedBeyond is 23 instead of 22."}
+  },
+  "run3_NaturalMotion": {
+    "log": "logs/03-naturalmotion.log", "seconds": 89, "exit": 0, "label": "qa-final", "enforced": true, "filter": null, "device": "Null (no rendering, images=0)",
+    "compare": {"vsR4b": "reports/compare-r4b-vs-r6-motion.json", "vsR6Tests": "reports/compare-r6tests-vs-r6motion.json"},
+    "gateSets": "identical to R4 and to run 2 (same names, counts, values, limits, passed); vsR6Tests: 0 differing files",
+    "r18Lock": {"name": "r15/plant-edge@120Hz/receive 11.158 entry root-relative joint speed deg/s", "value": 2102.81884765625, "limit": 1600, "passed": false, "note": "historic 1600 gate fails in the original too; lock value exact"},
+    "coverageGuard": "visible pictures 14670 > 0 with WorldPlayerLowPoly-v4 + ground WorldPlayer: guard passed (positive path only; the failing path was not run)",
+    "visible": {"pictures": 14670, "failed": 0, "shapeFailed": 0, "pairedBeyond": 152, "candidateOnlyBootBall": 1, "candidateWorseBootBall": 17}
+  },
+  "notProven": [
+    "left native foot-ball contact (Unity derives foot geometry from the bones; the control fixtures only have the right foot)",
+    "glove-ball: one controlled-catch picture (both hands near); per-hand masking is proven only as 'each hand is its own quantity'; sentinelHands does NOT isolate the unmodified hand (its left glove also failed at ~0.95 m ball distance)",
+    "coverage guard failing path (scene with replacement mesh but no ground skin) not executed",
+    "native replays measure every 6th picture; compared shapes are selected, so this is no all-frame contact proof",
+    "no rendering, no browser, no GPU, no WebBuild"
+  ],
+  "sourceChanges": "none; no Runtime/sourceId/mesh/scene/production data change",
+  "verdict": "0 new regressions; all three diagnostics exit 0; the QA bounds hold on the actual candidate with margin of 2x or more (max 5.08 mm vs 10 mm)."
+}

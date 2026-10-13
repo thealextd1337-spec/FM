@@ -1,0 +1,10 @@
+{
+  "repo": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\demo-low-poly-fix",
+  "ref": "HEAD",
+  "files": 46,
+  "expected": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+  "git": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+  "working": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+  "different": [],
+  "pass": true
+}

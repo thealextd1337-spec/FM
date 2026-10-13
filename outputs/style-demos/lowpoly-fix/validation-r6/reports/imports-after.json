@@ -1,0 +1,44 @@
+{
+ "originalAssets": [
+  {
+   "path": "dist/players/football-v130.glb",
+   "equal": true,
+   "sha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1"
+  },
+  {
+   "path": "dist/players/calibration-v130.json",
+   "equal": true,
+   "sha256": "3c3d05ac3b7580730f3b0bb13cb63a77ddc76c82f5e0b04225a8fef6734a8305"
+  },
+  {
+   "path": "dist/players/cloth-mask.png",
+   "equal": true,
+   "sha256": "a12f08d37d1344f3c8428794d62660d12b044f7359de777f093d8956083e6333"
+  }
+ ],
+ "imports": {
+  "total": 166,
+  "equal": 148,
+  "differing": [
+   "Assets/Doppel6EngineProbe/Art/D6Common.hlsl",
+   "Assets/Doppel6EngineProbe/Art/Resources/D6Pitch.shader",
+   "Assets/Doppel6EngineProbe/Art/WorldKit.shader",
+   "Assets/Doppel6EngineProbe/Editor/D6Cli.cs",
+   "Assets/Doppel6EngineProbe/Editor/FootballDuelTests.cs",
+   "Assets/Doppel6EngineProbe/Editor/FootballIterationTests.cs",
+   "Assets/Doppel6EngineProbe/Editor/FootballKeeperTests.cs",
+   "Assets/Doppel6EngineProbe/Editor/FootballPresentation119Tests.cs",
+   "Assets/Doppel6EngineProbe/Editor/FootballSetup.cs",
+   "Assets/Doppel6EngineProbe/Editor/NaturalMotionDiagnostics.cs",
+   "Assets/Doppel6EngineProbe/Editor/WorldViewSetup.cs",
+   "Assets/Doppel6EngineProbe/Probe.unity",
+   "Assets/Doppel6EngineProbe/Runtime/FootballAnimation.cs",
+   "Assets/Doppel6EngineProbe/Runtime/FootballSoleContour.cs",
+   "Assets/Doppel6EngineProbe/Runtime/ProbeBridge.cs",
+   "Assets/Doppel6EngineProbe/Runtime/ProbeBuildIdentity.cs",
+   "Assets/Doppel6EngineProbe/Runtime/WorldViewBridge.cs",
+   "Assets/Doppel6EngineProbe/Runtime/WorldViewEnvironment.cs"
+  ],
+  "missing": []
+ }
+}
