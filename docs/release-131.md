@@ -1,0 +1,22 @@
+# Release 131: Low-Poly, Tag/Nacht und feste Stadionzuordnung
+
+Der Kandidat basiert auf dem veröffentlichten Release 130. Opus hat Licht, Stadien/Fanblöcke und Tornetz vorbereitet; Codex High hat nach dem Claude-API-Ratenlimit die feste Zuordnung, Nachbesserungen und Prüfung übernommen. Veröffentlichung und abschließender Live-Abgleich werden separat dokumentiert.
+
+Die facettierten Spieler behalten ihr vorhandenes Rig und die ursprüngliche Bodenreferenz. Europacup, Crown und Horizon finden immer am Abend statt. Liga und nationaler Pokal verwenden eine feste, aus der Spielkennung abgeleitete Tag-/Nachtzuordnung. Laden und Rückschau ziehen dafür keinen neuen Zufall und ergänzen keine Spielstanddaten.
+
+Alle 96 Ligavereine erhalten dauerhaft eine der fünf fertigen Stadionvorlagen: 14 große, 52 mittlere und 30 kleine. Architektur und Detailzufall gehören zur Vorlage, Vereinsnamen, Farben, Banner und Heim-/Gästefanblöcke zum tatsächlichen Verein. Pokalvereine nutzen Standardstadien; neutrale Finalarenen behalten ihre Zuordnung. Die zusätzlichen 91 Einzelstadien sind zurückgestellt. [Feste Tabelle und weiterer Ausbau](stadionerweiterung-plan.md).
+
+Fahnen und Fanbewegungen folgen ausschließlich der empfangenen Matchzeit. Jubelbewegungen laufen innerhalb der vorhandenen 4,05 Sekunden weich aus. Die sichtbare Torballbewegung folgt der vollen Torpause; eine optionale Netzkennung erhält auch späte Aufpralle. Ältere Bilder ohne Kennung behalten ihre bisherige Dämpfung. Licht-, Kamera-, Pipeline- und Shaderwerte werden beim Schließen zurückgesetzt.
+
+## Lokale Prüfung
+
+- Tatsächliche Unity-Prüfung: 1.511 Profil-, 966 Architektur-, 277 Fanblock-, 198 Licht- und 98 Tornetzprüfungen. Der Tornetz-Schlusslauf verlangt vollständige aktuelle Aufzeichnungen; zwei Dateien aus echten nativen Partien erfüllen ihn. Zusätzlich bestehen 272 kontrollierte Projektionen mit 64 langsamen Fällen und 72 native Schuss-/Projektionsfälle.
+- Der vollständige Unity-Lauf liefert 136 Berichte. Alle neun bestehenden Controllergruppen behalten gegenüber den 132 Berichten der abgenommenen Demo dieselben Werte, Ergebnisse und Grenzen. Profil-/Architekturberichte ändern sich durch die neue Zuordnung; drei sonstige Unterschiede sind Editorlaufzeiten. Der historische R15-Fehler gegen die ursprüngliche 1.600-Grenze bleibt erhalten; der tatsächlich abgenommene R18-Wert 2.102,81884765625 bleibt unverändert.
+- 127 neu synchronisierte Direct3D11-Galeriebilder zeigen alle fünf Vorlagen, Standards und neutrale Arenen in beiden Qualitäten und Tageszeiten. Der Pausenvergleich ist pixelgleich. Die vorherige Lichtserie umfasst 39 pixelgleiche Wiederholungen und sechs gültige Rasen-/Schattenmessungen. Frustumüberlappungen sind ausdrücklich Sichtbarkeitsobergrenzen, kein Nachweis gegen Verdeckung im tatsächlichen Spiel.
+- Der frische WebGL-Build besteht ohne Fehler; die ursprüngliche Bodenreferenz mit 9.725 Vertices und identischen 28 Bindposes ist durch den Buildvorlauf gesichert. Unity-Quellenkennung: `319e2f7223bb42c5da2bf41c52aa7ac1ea960f0b9f1b46c38fc017f1ae327982`.
+- Das HTTP-Paket besteht acht Integrationsprüfungen, zwei mobile Taktikansichten und zehn echte Browserrückkehrprüfungen einschließlich Browsercache-Rückkehr. Zwei vollständige 2D-/Unity-Partien mit je 3.037 Schritten sind exakt gleich: Digest `a6d98d83`, vollständige Nutzdaten-SHA256 `d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772`.
+- Auf dem angeschlossenen Android-Telefon sind 14 native Spieler bestätigt, reduzierte Qualität und echte 931 × 448 Darstellung aktiv. Der 75-Sekunden-Wachhaltnachweis besteht; Buildhashes bleiben gleich. Der Nutzer bestätigt flüssige und gut erkennbare Darstellung. Die beobachteten Unity-Zähler sind keine gelieferten GPU-FPS; manueller Appwechsel wurde in diesem Lauf nicht nachgewiesen.
+
+Die Produktionspipeline und der öffentliche Datei-/Versionsabgleich bilden den abschließenden Veröffentlichungsnachweis. Desktop- und Gerätewerte sind einzelne Beobachtungen und kein allgemeines Leistungsversprechen.
+
+Ein separater Edge-Lauf mit dem tatsächlichen Unity-Canvas bestätigt die RTX 4070 über Direct3D11. In beiden Qualitäten liegen die beobachteten Browser-rAF-Abstände bei 6,9 ms im Median und 7 ms am 95. Perzentil; diese Werte beschreiben Browsercallbacks und sind keine zugesicherten GPU-FPS. Die Messung enthält keine Laufzeitfehler.

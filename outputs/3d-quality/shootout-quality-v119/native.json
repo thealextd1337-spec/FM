@@ -41,8 +41,8 @@
     }
   },
   "hashes": {
-    "dist/world-competition-v62.js": "6d9a6192d0f6c59c1db4c586232f5390e81635ddc895e27ff4601b7c7e0622ca",
+    "dist/world-competition-v62.js": "ea39bb00a3e7911f4d8eb6cc67ff97aa00f9d2da581736bea768b1a5c0e2782e",
     "dist/penalties-v42.js": "92bdbca73b2f68b10cf11d7a3690ab4d842d85835b92f227b231fa23af0f9d04",
-    "dist/world-foundation-v61.js": "a57163a790638315a046361b519a0047af697ca486c37970b4ed6d30677e9198"
+    "dist/world-foundation-v61.js": "34e5b6b4bfc1a2d304cd9e93a6cc4845dabeba254eb97f1b5d7336a2318c3490"
   }
 }

@@ -28,7 +28,7 @@ public static class StadiumGalleryDiagnostics {
         // The managed club (physical team 0, GER-1) is flagged away: GER-5 takes the x- end.
         new Fixture{name="europe-final",home="GER-1",away="GER-5",competition="europe",venue="neutral",homeFirst=false},
         new Fixture{name="clash-kit",home="GER-2",away="GER-3",awayKit="#f4f4f4"},new Fixture{name="legacy-page",home="GER-2",away="GER-3",presented=false}};
-    [Serializable] public class Block {public string club,role;public int side;public float screenShare;}
+    [Serializable] public class Block {public string club,role;public int side;public float projectedBoundsScreenShare;}
     [Serializable] public class Shot {public string file,fixture,venue,venueSource,stadiumClub,home,away,competition,venueKind,requestedLight,appliedLight,quality,camera;public float lampEmission,windowLit,crowdLight,bannerLight;public double clock;public bool celebrating;public Block[] blocks;}
     [Serializable] class Report {public string label,sourceId,unity,device,note;public Shot[] shots;public string[] checks;}
     static readonly Vector3[] Layout={new Vector3(-31.2f,0,.6f),new Vector3(-14,0,-8),new Vector3(-12,0,9),new Vector3(-3,0,-2),new Vector3(4,0,12),new Vector3(8,0,-10),
@@ -69,23 +69,42 @@ public static class StadiumGalleryDiagnostics {
         }
         Texture2D Capture(int w,int h,bool reduced){
             var baked=new List<(SkinnedMeshRenderer skin,GameObject go,Mesh mesh)>();
-            foreach(var skin in UnityEngine.Object.FindObjectsByType<SkinnedMeshRenderer>(FindObjectsSortMode.None)){
-                if(!skin.enabled||!skin.gameObject.activeInHierarchy)continue;var mesh=new Mesh();skin.BakeMesh(mesh);var go=new GameObject("D6 gallery capture",typeof(MeshFilter),typeof(MeshRenderer));go.transform.SetParent(skin.transform,false);
-                go.GetComponent<MeshFilter>().sharedMesh=mesh;var r=go.GetComponent<MeshRenderer>();r.sharedMaterials=skin.sharedMaterials;r.shadowCastingMode=skin.shadowCastingMode;skin.enabled=false;baked.Add((skin,go,mesh));
+            var skins=new List<SkinnedMeshRenderer>();foreach(var skin in UnityEngine.Object.FindObjectsByType<SkinnedMeshRenderer>(FindObjectsSortMode.None))if(skin.enabled&&skin.gameObject.activeInHierarchy&&skin.sharedMesh!=null)skins.Add(skin);
+            // Synchronize every bone before the first bake. Otherwise a first paused capture can
+            // contain the previous pose even though a second capture of that frame is correct.
+            foreach(var skin in skins){foreach(var bone in skin.bones)if(bone!=null)_=bone.position;if(skin.rootBone!=null)_=skin.rootBone.position;}
+            RenderTexture rt=null;var previous=RenderTexture.active;var target=camera.targetTexture;float aspect=camera.aspect;
+            try{
+                foreach(var skin in skins){
+                    var mesh=new Mesh();var go=new GameObject("D6 gallery capture",typeof(MeshFilter),typeof(MeshRenderer));baked.Add((skin,go,mesh));
+                    skin.BakeMesh(mesh,false);go.layer=skin.gameObject.layer;
+                    // BakeMesh already carries the figure scale; parenting under its scaled skin
+                    // would apply that scale a second time (same placement as lighting captures).
+                    go.transform.SetPositionAndRotation(skin.transform.position,skin.transform.rotation);
+                    go.GetComponent<MeshFilter>().sharedMesh=mesh;var r=go.GetComponent<MeshRenderer>();r.sharedMaterials=skin.sharedMaterials;
+                    r.shadowCastingMode=skin.shadowCastingMode;r.receiveShadows=skin.receiveShadows;r.lightProbeUsage=skin.lightProbeUsage;r.reflectionProbeUsage=skin.reflectionProbeUsage;r.probeAnchor=skin.probeAnchor;r.renderingLayerMask=skin.renderingLayerMask;
+                    if(skin.HasPropertyBlock()){var block=new MaterialPropertyBlock();skin.GetPropertyBlock(block);if(!block.isEmpty)r.SetPropertyBlock(block);
+                        for(int k=0;k<skin.sharedMaterials.Length;k++){block.Clear();skin.GetPropertyBlock(block,k);if(!block.isEmpty)r.SetPropertyBlock(block,k);}}
+                    skin.enabled=false;
+                }
+                // Same MSAA as the page's quality: 4x standard, none reduced.
+                rt=RenderTexture.GetTemporary(new RenderTextureDescriptor(w,h,RenderTextureFormat.ARGB32,24){msaaSamples=reduced?1:4,sRGB=true});camera.aspect=(float)w/h;camera.targetTexture=rt;camera.Render();
+                RenderTexture.active=rt;var tex=new Texture2D(w,h,TextureFormat.RGB24,false);tex.ReadPixels(new Rect(0,0,w,h),0,0);tex.Apply();return tex;
+            }finally{
+                RenderTexture.active=previous;camera.targetTexture=target;camera.aspect=aspect;if(rt!=null)RenderTexture.ReleaseTemporary(rt);
+                foreach(var item in baked){item.skin.enabled=true;UnityEngine.Object.DestroyImmediate(item.go);UnityEngine.Object.DestroyImmediate(item.mesh);}
             }
-            // Same MSAA as the page's quality: 4x standard, none reduced.
-            var desc=new RenderTextureDescriptor(w,h,RenderTextureFormat.ARGB32,24){msaaSamples=reduced?1:4,sRGB=true};
-            var rt=RenderTexture.GetTemporary(desc);float aspect=camera.aspect;camera.aspect=(float)w/h;camera.targetTexture=rt;camera.Render();camera.targetTexture=null;camera.aspect=aspect;
-            var previous=RenderTexture.active;RenderTexture.active=rt;var tex=new Texture2D(w,h,TextureFormat.RGB24,false);tex.ReadPixels(new Rect(0,0,w,h),0,0);tex.Apply();RenderTexture.active=previous;RenderTexture.ReleaseTemporary(rt);
-            foreach(var item in baked){item.skin.enabled=true;UnityEngine.Object.DestroyImmediate(item.go);UnityEngine.Object.DestroyImmediate(item.mesh);}return tex;
         }
-        // Screen share of each supporter block (projected figure bounds clipped to the frame).
+        // Projected rest-bounds area clipped to the frame; an informational upper bound on
+        // visible rest geometry. No roof/flag/figure occlusion or animated pixel coverage test.
         Block[] Blocks(int w,int h){
             var list=new List<Block>();var sp=bridge.Supporters;if(sp==null)return list.ToArray();float saved=camera.aspect;camera.aspect=(float)w/h;
-            foreach(var bp in sp.Blocks){var b=bp.FigureBounds;b.Expand(-StadiumSupporters.FigureReach*2);float x0=1,x1=0,y0=1,y1=0;bool any=false;
-                for(int k=0;k<8;k++){var c=new Vector3((k&1)==0?b.min.x:b.max.x,(k&2)==0?b.min.y:b.max.y,(k&4)==0?b.min.z:b.max.z);var v=camera.WorldToViewportPoint(c);if(v.z<=0)continue;any=true;x0=Mathf.Min(x0,v.x);x1=Mathf.Max(x1,v.x);y0=Mathf.Min(y0,v.y);y1=Mathf.Max(y1,v.y);}
-                float share=any&&bridge.StandShown(bp.Block.Side)?Mathf.Max(0,Mathf.Min(1,x1)-Mathf.Max(0,x0))*Mathf.Max(0,Mathf.Min(1,y1)-Mathf.Max(0,y0)):0;
-                list.Add(new Block{club=bp.ClubId,role=bp.Block.Role==0?"home":"away",side=bp.Block.Side,screenShare=share});}
+            foreach(var bp in sp.Blocks){var b=bp.FigureBounds;b.Expand(-StadiumSupporters.FigureReach*2);float x0=1,x1=0,y0=1,y1=0;bool any=false,behind=false;
+                for(int k=0;k<8;k++){var c=new Vector3((k&1)==0?b.min.x:b.max.x,(k&2)==0?b.min.y:b.max.y,(k&4)==0?b.min.z:b.max.z);var v=camera.WorldToViewportPoint(c);if(v.z<=0){behind=true;continue;}any=true;x0=Mathf.Min(x0,v.x);x1=Mathf.Max(x1,v.x);y0=Mathf.Min(y0,v.y);y1=Mathf.Max(y1,v.y);}
+                // A box crossing the eye plane cannot be bounded by its forward corners alone;
+                // use the full frame as its conservative upper bound.
+                float share=any&&bridge.StandShown(bp.Block.Side)?behind?1:Mathf.Max(0,Mathf.Min(1,x1)-Mathf.Max(0,x0))*Mathf.Max(0,Mathf.Min(1,y1)-Mathf.Max(0,y0)):0;
+                list.Add(new Block{club=bp.ClubId,role=bp.Block.Role==0?"home":"away",side=bp.Block.Side,projectedBoundsScreenShare=share});}
             camera.aspect=saved;return list.ToArray();
         }
         Shot Save(Texture2D tex,Fixture f,string quality,string light,string mode,double clock,bool celebrating,string suffix=""){
@@ -123,7 +142,7 @@ public static class StadiumGalleryDiagnostics {
             }
         }finally{Drop();typeof(ProbeBridge).GetMethod("RestoreProbeLighting",flags).Invoke(bridge,null);camera.targetTexture=null;}
         var report=new Report{label=label,sourceId=ProbeBuildIdentity.SourceId,unity=Application.unityVersion,device=SystemInfo.graphicsDeviceType.ToString(),
-            note="Paused display-only layout of the contract fixture through ProbeBridge.WorldCommand with a received WorldPresentation per fixture (clubs' catalogue colours). requestedLight is presentation.lighting; appliedLight and the lamp/window/crowd/banner values are the light look the bridge actually applied (night everywhere until the lighting lane is merged). Cameras from SmallViewDiagnostics.Aim (1:1 v98CameraAim, near 60). blocks.screenShare: projected rest bounds of each supporter block clipped to the frame (0 when its stand is hidden). Editor images, not WebGL or device GPU evidence.",
+            note="Paused display-only layout of the contract fixture through ProbeBridge.WorldCommand with a received WorldPresentation per fixture (clubs' catalogue colours). Figures are baked only after all drawn skins' bones and root bones have been read; copies retain renderer and per-material property blocks, and are placed at the skin position/rotation without applying figure scale twice. requestedLight is presentation.lighting; appliedLight and lamp/window/crowd/banner values are the actual bridge look. Cameras from SmallViewDiagnostics.Aim (1:1 v98CameraAim, near 60). blocks.projectedBoundsScreenShare: projected rest-bounds area clipped to the frame (0 when its stand is hidden), an upper bound for rest geometry only; occlusion and animated pixel coverage are unmeasured. Editor images, not WebGL or device GPU evidence.",
             shots=shots.ToArray(),checks=checks.ToArray()};
         File.WriteAllText(Path.Combine(folder,"stadium-gallery-"+label+".json"),JsonUtility.ToJson(report,true));
         return "label="+label+" shots="+shots.Count+" checks="+string.Join("; ",checks)+" device="+SystemInfo.graphicsDeviceType;

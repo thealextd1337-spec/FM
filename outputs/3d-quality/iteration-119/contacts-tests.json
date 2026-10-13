@@ -23,8 +23,8 @@
   ],
   "sourceHashes": {
     "dist/world-pitch-actions-v99.js": "596b0cfb28a68782ca829a2b55f2702e844ec3e7c04e698d5f9543069f2c9877",
-    "dist/world-pitch3d-v98.js": "a6ee4296956afdacc4ef4ea6ec6145fd85276eed8677ee337ef8e9c49e11f8a5",
-    "dist/world-unity-v151.js": "32d6820249920179b1182f0e145e0e341b6872583c818a10872d085ff99b7242",
-    "dist/world-physical-v65.js": "23ef31850a4b320d120e8122a711103e4c00dd079c9917a4e48c4733e7b0d173"
+    "dist/world-pitch3d-v98.js": "1bf59e8f49ee88941f856a3c742ba2059295b1eba395ec6eb654aafc5e44d316",
+    "dist/world-unity-v151.js": "6bf98c94c8881c35d9d3f5afb4b3d55097164e7969fbbb1b176d034b58b7812f",
+    "dist/world-physical-v65.js": "0b4fdd1c22e98e5aa8f43db86561263ed0067e3bf4631e37d86ea77fdc1ad9ef"
   }
 }

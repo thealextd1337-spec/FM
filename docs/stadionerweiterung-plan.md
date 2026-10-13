@@ -6,7 +6,7 @@ Die spätere Erweiterung soll jedem Ligaverein ein eigenes, durch Klub, Land und
 
 ## Fester Stadionbestand für den nächsten Release
 
-| Vorlage | Größenklasse | Erscheinungsbild | Geplante Ligavereine |
+| Vorlage | Größenklasse | Erscheinungsbild | Fest zugeordnete Ligavereine |
 | --- | --- | --- | ---: |
 | GER-1 | Groß | Geschlossene Arena mit mehreren Rängen und umlaufendem Dach | 14 |
 | GER-2 | Mittel | Hafenstadion mit Tonnendächern und großer offener Heimtribüne | 16 |
@@ -24,7 +24,11 @@ Grundlage ist die feste Fanbasis des bestehenden [Vereinskatalogs](ligaexpansion
 
 Für die einmalige Zuordnung gilt: Fanbasis 5 erhält die große Arena; 3 und 4 erhalten ein mittleres Stadion; 1 und 2 erhalten den kleinen Vereinsplatz. Fanbasis 3 nutzt die Stadtstadion-Vorlage GER-5. Vereine mit Fanbasis 4 werden innerhalb jedes Landes einmal nach ihrer festen Vereinskennung geordnet und abwechselnd GER-2 oder GER-3 zugeordnet. Die ursprünglichen fünf Vorlagenvereine bleiben ausdrücklich bei ihrem Stadion.
 
-Die vollständige [geplante Zuordnung aller 96 Ligavereine](stadion-zuordnung-geplant.json) enthält 14 große, 52 mittlere und 30 kleine Stadien. Opus übernimmt diese Tabelle in die Darstellung. Danach bleibt sie fest: Saisonergebnisse, Transfers, Budget, Karriere-Zufall und spätere Änderungen am Katalog berechnen sie nicht neu. Ein Wechsel erfolgt durch eine bewusste Änderung der Stadionzuordnung.
+Die vollständige [eingefrorene Zuordnung aller 96 Ligavereine](stadion-zuordnung-geplant.json) enthält 14 große, 52 mittlere und 30 kleine Stadien. `ClubStadiumProfiles.cs` übernimmt die 96 Einträge ausdrücklich in den lokalen Release-131-Kandidaten. Die Unity-, Build- und Live-Abnahme steht noch aus. Die Tabelle bleibt fest: Saisonergebnisse, Transfers, Budget, Karriere-Zufall und spätere Änderungen am Katalog berechnen sie nicht neu. Ein Wechsel erfolgt durch eine bewusste Änderung der Stadionzuordnung.
+
+`ClubId` und `Venue` nennen bei Ligastadien den tatsächlichen Heimverein; `DisplayName` trägt seinen festgeschriebenen Vereinsnamen. `TemplateId` nennt getrennt die Architekturvorlage. Geometrie, Umfeld, Fanblockanordnung, Materialtöne, `Identity.Country` und `DetailSeed` bleiben exakt bei dieser Vorlage. Die Architektur wird daher nicht durch den anderen Vereinsnamen oder dessen Landeskennung neu angeordnet. `Coverage` unterscheidet fünf ursprüngliche Vorlagenvereine von 91 zugeordneten Vereinen; es behauptet keine 91 zusätzlichen Einzelentwürfe. `ResolveLegacy`, Pokal-Standardstadien und neutrale Finalarenen bleiben auf ihren bestehenden Wegen.
+
+`ClubStadiumProfilesTests.cs` enthält ein unabhängiges festes Prüfverzeichnis aller 96 Namen, Kennungen, Vorlagen und Größenklassen. Es prüft zudem die exakten Vorlagendaten, fünf feste Seeds, eigene Kopien aller veränderlichen Unterobjekte, Heim-/Pokalspielauswahl, die Legacy-Auswahl und die Übereinstimmung des JSON-Dokuments. Die Unity-Nachweise gehören zur Release-Abnahme.
 
 Die Darstellung benötigt dafür keine neuen Spielstandfelder. Heimverein, Vereinsfarben und Fanrollen stammen aus den vorhandenen Matchdaten. Speichern, Laden, Halbzeit und Rückschau behalten dieselbe Zuordnung.
 
@@ -63,6 +67,8 @@ Ein eigenes Stadion muss seine Größenklasse erkennen lassen und mehrere bewuss
 Besondere Fanblöcke gehören zur Vereinsidentität. Neue Dächer und Ecken dürfen ihre Sichtbarkeit und die Matchkamera nicht unbeabsichtigt verschlechtern. Anzahl und Größe der Fahnen bleiben an den gemessenen Browser- und Gerätebudgets orientiert.
 
 Opus 5.5 mit Denkintensität High gestaltet und implementiert Stadien. Sonnet prüft Zuordnung, Geometrie, Regressionen und Nachweise unabhängig. Haiku kann Inventare und Zuordnungstabellen prüfen. Fable untersucht größere reproduzierbare Probleme ebenfalls mit High. Eine zuständige Instanz integriert Änderungen und führt Unity-Builds seriell aus.
+
+Für den aktuellen Release-Kandidaten ist wegen des Claude-API-Ratenlimits ausdrücklich Codex mit High beauftragt: feste Zuordnung, Nachbesserungen und unabhängige Quellprüfungen laufen damit weiter. Die zusätzlichen 91 Einzelstadien bleiben auch bei diesem Modellwechsel zurückgestellt.
 
 ## Erweiterungsdaten je Verein
 

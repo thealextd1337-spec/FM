@@ -30,7 +30,7 @@
     "Free kick follows projected goal rather than old running direction true"
   ],
   "sourceHashes": {
-    "dist/world-unity-v151.js": "32d6820249920179b1182f0e145e0e341b6872583c818a10872d085ff99b7242",
+    "dist/world-unity-v151.js": "6bf98c94c8881c35d9d3f5afb4b3d55097164e7969fbbb1b176d034b58b7812f",
     "dist/world-pitch-actions-v99.js": "596b0cfb28a68782ca829a2b55f2702e844ec3e7c04e698d5f9543069f2c9877"
   }
 }

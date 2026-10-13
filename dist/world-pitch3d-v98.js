@@ -73,7 +73,9 @@ function v119VisibleGoalView(current){
  const C=source.elevation-(goalHeight-radius),B=source.vh,disc=B*B+19.6*C,root=disc>=0?(B-Math.sqrt(disc))/9.8:Infinity;
  const roof=C>=0?0:B>0&&root>=0?root:Infinity,impact=Math.max(.001,Math.min(rear,edge>=0?edge:Infinity,roof));
  const travel={...source,impact,hit:roof<=Math.min(rear,edge)?'roof':edge>=0&&edge<rear?'side':'rear'};
- const time=current.postBanner?.kind==='goal'?v83GoalSceneDuration:Math.max(0,scene.elapsed),contact=v101GoalBall(travel,impact),age=Math.max(0,time-impact);
+ // The native scene pose caps at 2.45 s; the visible tail follows the already
+ // received goal pause through its full duration, including pause/replay/seek.
+ const time=current.postBanner?.kind==='goal'?v83GoalSceneDuration:clamp(v83GoalSceneDuration-current.goalPause,0,v83GoalSceneDuration),contact=v101GoalBall(travel,impact),age=Math.max(0,time-impact);
  const pulse=age/.06,bulge=travel.hit==='rear'&&time>=impact?.6*pulse*Math.exp(1-pulse):0;
  const ball=v101GoalBall(travel,time),line=scene.team===0?v55Field.top:v55Field.bottom,direction=scene.team===0?-1:1;
  // The post-goal tail settles inside the visible enclosure after any secondary contact.

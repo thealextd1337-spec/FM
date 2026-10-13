@@ -1,0 +1,35 @@
+{
+  "rawReport": "outputs/3d-quality/android-device-prerequisites/run-2026-10-13T11-34-36-202Z/report.json",
+  "sourceId": "319e2f7223bb42c5da2bf41c52aa7ac1ea960f0b9f1b46c38fc017f1ae327982",
+  "physicalUsb": true,
+  "actors": 14,
+  "quality": "reduced",
+  "viewport": {
+    "width": 931,
+    "height": 448,
+    "devicePixelRatio": 2.25
+  },
+  "wake": {
+    "status": "passed",
+    "screenOffTimeoutMs": 60000,
+    "observedMs": 75017.69999998808,
+    "continuousEligibleScope": true,
+    "awakeThroughout": true,
+    "wakeLockHeldThroughout": true,
+    "note": "Observed scope stayed visible and fullscreen in live/paused play, excluding native half/full-time. No touches after fullscreen entry; dumpsys power read only; global charging stay-awake excluded. Other OS wake policies can still affect attribution."
+  },
+  "buildUnchanged": true,
+  "cleanup": {
+    "failures": [],
+    "ownTargetCreationVerified": true
+  },
+  "userVisualAcceptance": {
+    "accepted": true,
+    "statement": "Ja, flüssig und gut erkennbar"
+  },
+  "limits": [
+    "Raw instrumented report intentionally leaves manual performance acceptance separate",
+    "Manual app switch unmeasured",
+    "Unity counter rates and host rAF are not delivered GPU FPS"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "sourceId": "319e2f7223bb42c5da2bf41c52aa7ac1ea960f0b9f1b46c38fc017f1ae327982",
+  "controllerGroups": 9,
+  "controllerDifferences": 0,
+  "profileChecks": 1511,
+  "architectureChecks": 966,
+  "supporterChecks": 277,
+  "lightingChecks": 198,
+  "netChecks": 98,
+  "currentCompleteFlowingCaptureFiles": 2,
+  "baselineReports": 132,
+  "candidateReports": 136,
+  "meaningfulChangedReports": [
+    "club-stadium-profile-tests.json",
+    "stadium-architecture-tests.json"
+  ],
+  "timingOnlyDifferences": [
+    "duel turf-bake-ms",
+    "gait foot-solve microseconds and timing label"
+  ],
+  "knownHistoricalFailure": "Original1600 R15 gate unchanged; R18 actual lock2102.81884765625 unchanged",
+  "scope": "Actual Unity source/rig/controller regression; WebGL/GPU/device/live acceptance remains separate"
+}

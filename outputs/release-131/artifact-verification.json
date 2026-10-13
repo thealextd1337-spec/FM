@@ -1,0 +1,64 @@
+{
+  "passed": true,
+  "version": 131,
+  "sourceId": "319e2f7223bb42c5da2bf41c52aa7ac1ea960f0b9f1b46c38fc017f1ae327982",
+  "checkedAt": "2026-10-13T11:49:40.940Z",
+  "packageFiles": 9,
+  "files": [
+    {
+      "file": "index.html",
+      "bytes": 95889956,
+      "sha256": "9108286b173c60e0a8f14b581a0df15b2b3cc8a943c1f011f514c8d47ae241ff"
+    },
+    {
+      "file": "unity-match/runtime.html",
+      "bytes": 440,
+      "sha256": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa"
+    },
+    {
+      "file": "unity-match/runtime.js",
+      "bytes": 5781,
+      "sha256": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b"
+    },
+    {
+      "file": "unity-match/.htaccess",
+      "bytes": 75,
+      "sha256": "e6341a7c0465a7f21a828d0296457bcc43bf6cace7105ce9b0cf871c3b9bacc4"
+    },
+    {
+      "file": "unity/probe-build.json",
+      "bytes": 7250,
+      "sha256": "5adf4088de5b9315ad7d8af40b0f7ce71eb010e91852c272ac545a655da3f12d"
+    },
+    {
+      "file": "unity/Build/unity-web.data",
+      "bytes": 56158505,
+      "sha256": "7e52ab78f067ae933675ee4da2b2899a4c63dcaa51f9e0323ef2b09e0626dbe4"
+    },
+    {
+      "file": "unity/Build/unity-web.framework.js",
+      "bytes": 300906,
+      "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+    },
+    {
+      "file": "unity/Build/unity-web.loader.js",
+      "bytes": 27907,
+      "sha256": "2909e971e5efe53176965433a410d0e296ff3b44b77cf358c66a4ffacdaf1968"
+    },
+    {
+      "file": "unity/Build/unity-web.wasm",
+      "bytes": 35794719,
+      "sha256": "483c43a812919aa7ea64a885ff2464d47a113684d83ed74c660a7d31f6ed6122"
+    }
+  ],
+  "productionCommands": 121,
+  "androidVisualAccepted": true,
+  "androidWakePassed": true,
+  "browserChecks": 8,
+  "rosterViews": 2,
+  "lifecycleChecks": 10,
+  "nativeParityDigest": "a6d98d83",
+  "nativePayloadSha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772",
+  "runtimeIdentityInputs": 53,
+  "scope": "Local release candidate; Git object equality and public deployment verified separately"
+}

@@ -9,10 +9,10 @@ using Doppel6.Probe;
 // five match cameras, built identity features, supporter block reservations, structural
 // fingerprints, mesh budgets and the real ProbeBridge wiring of WorldConfig.teams[].home and
 // WorldConfig.presentation (venue, club colours, light look). Every distinct venue design is
-// checked: the legacy catalogue, the authored prototypes, the country cup and league standards
-// and the neutral arenas.
+// checked: the authored templates, fixed reuse by all league owners, the legacy catalogue,
+// country cup standards and neutral arenas.
 public static class StadiumArchitectureTests {
-    [Serializable] public class Venue {public string id,venue,source,archetype,sizeClass,signature,fingerprint;public int pieces,reducedPieces,triangles,reducedTriangles,renderers,reducedRenderers,blocks,people,flags,banners,reducedFlags,reducedBanners,supporterTriangles,reducedSupporterTriangles;public float tallest;}
+    [Serializable] public class Venue {public string id,venue,templateId,source,archetype,sizeClass,signature,fingerprint,measuredGeometry;public int pieces,reducedPieces,triangles,reducedTriangles,renderers,reducedRenderers,blocks,people,flags,banners,reducedFlags,reducedBanners,supporterTriangles,reducedSupporterTriangles;public float tallest;}
     [Serializable] public class Pair {public string a,b;public int groups,silhouette,required,requiredSilhouette;public string differing;}
     [Serializable] class Report {public int passed;public string note;public string[] checks;public Venue[] venues;public Pair[] pairs;}
     static readonly Color Home=new Color(.8f,.1f,.15f),Trim=Color.white;
@@ -51,11 +51,12 @@ public static class StadiumArchitectureTests {
         for(int g=0;g<StadiumBlueprint.Groups;g++)foreach(StadiumSlot slot in Enum.GetValues(typeof(StadiumSlot))){var mesh=StadiumArchitecture.BuildMesh(plan,g,slot);if(mesh==null)continue;renderers++;count+=mesh.triangles.Length/3;UnityEngine.Object.DestroyImmediate(mesh);}
         return count;
     }
-    // Every distinct venue design: legacy catalogue IDs (cup IDs resolve to their country's cup
-    // standard), one league standard and one cup standard per live country, the neutral arenas.
+    // Every distinct presentation design: the five league templates, country cup standards and
+    // neutral arenas. Shared league owners are checked separately; legacy pages keep their test.
     public static List<(string id,ClubStadiumProfile profile)> Venues(){
         var list=new List<(string,ClubStadiumProfile)>();var seen=new HashSet<string>();
-        void Add(string id,ClubStadiumProfile p){if(seen.Add(p.Venue))list.Add((id,p));}
+        void Add(string id,ClubStadiumProfile p){if(seen.Add(p.TemplateId??p.Venue))list.Add((id,p));}
+        foreach(var id in ClubStadiumProfiles.AuthoredClubIds)Add(id,ClubStadiumProfiles.Resolve(id));
         foreach(var id in ClubStadiumProfiles.KnownClubIds)Add(id,ClubStadiumProfiles.Resolve(id));
         foreach(var c in ClubStadiumProfiles.Countries){Add(c+"-8",ClubStadiumProfiles.Resolve(c+"-8"));Add(c+"-C3",ClubStadiumProfiles.Resolve(c+"-C3"));Add("NEUTRAL-CUP-"+c,ClubStadiumProfiles.NeutralCup(c));}
         Add("NEUTRAL-EUROPE",ClubStadiumProfiles.NeutralEurope());
@@ -90,7 +91,7 @@ public static class StadiumArchitectureTests {
             int StandRoofs(StadiumBlueprint b){int n=0;for(int g=0;g<4;g++)n+=b.Count(StadiumSlot.Roof,g);return n;}
             Require(reduced.Pieces.Count<plan.Pieces.Count&&reduced.Count(StadiumSlot.Crowd)==plan.Count(StadiumSlot.Crowd)&&StandRoofs(reduced)==StandRoofs(plan),id+" reduced quality drops details, keeps crowd and stand roofs");
             // Both qualities keep the silhouette identity: declared structure and stand heights.
-            string Silhouette(StadiumBlueprint b){var s="";foreach(var f in b.StructuralFeatures())if(f.Group!="skyline")s+=f+";";return s;}
+            string Silhouette(StadiumBlueprint b){var s=b.StructuralFingerprint();foreach(var f in b.MeasuredFeatures())if(f.Group=="heights")s+=";"+f;return s;}
             Require(Silhouette(reduced)==Silhouette(plan),id+" reduced quality keeps the silhouette identity");
             // Supporters: two blocks on the ends, reserved before the crowd was laid out.
             bool neutral=profile.Identity.Supporters.Neutral;
@@ -119,11 +120,11 @@ public static class StadiumArchitectureTests {
                 Require(large.Fronts[0]>=W/2+4.5f&&large.Fronts[2]>=L/2+5.3f&&large.Blocks.Count==2,id+" scales its stands and blocks with a "+L+" x "+W+" pitch");}
             // Colours never change the structure.
             Require(StadiumArchitecture.Plan(Same(profile),68,44,Color.blue,Color.yellow).StructuralFingerprint()==plan.StructuralFingerprint(),id+" structural fingerprint ignores colours");
-            if(profile.Identity.Source!="standard"||profile.Venue==profile.ClubId)signatures.Add(plan.Signature());
+            if(Array.IndexOf(ClubStadiumProfiles.AuthoredClubIds,id)>=0)signatures.Add(plan.Signature());
             float tallest=0;for(int g=0;g<4;g++)tallest=Mathf.Max(tallest,plan.Top(g));
-            venues.Add(new Venue{id=id,venue=plan.Venue,source=plan.Source,archetype=plan.Archetype,sizeClass=plan.SizeClass,signature=plan.Signature(),fingerprint=plan.StructuralFingerprint(),pieces=plan.Pieces.Count,reducedPieces=reduced.Pieces.Count,triangles=tris,reducedTriangles=reducedTris,renderers=calls,reducedRenderers=reducedCalls,blocks=plan.Blocks.Count,people=sp.People,flags=sp.Flags,banners=sp.Banners,reducedFlags=spr.Flags,reducedBanners=spr.Banners,supporterTriangles=sp.Triangles,reducedSupporterTriangles=spr.Triangles,tallest=tallest});
+            var measured=new List<string>();foreach(var f in plan.MeasuredFeatures())measured.Add(f.ToString());
+            venues.Add(new Venue{id=id,venue=plan.Venue,templateId=profile.TemplateId,source=plan.Source,archetype=plan.Archetype,sizeClass=plan.SizeClass,signature=plan.Signature(),fingerprint=plan.StructuralFingerprint(),measuredGeometry=string.Join(";",measured),pieces=plan.Pieces.Count,reducedPieces=reduced.Pieces.Count,triangles=tris,reducedTriangles=reducedTris,renderers=calls,reducedRenderers=reducedCalls,blocks=plan.Blocks.Count,people=sp.People,flags=sp.Flags,banners=sp.Banners,reducedFlags=spr.Flags,reducedBanners=spr.Banners,supporterTriangles=sp.Triangles,reducedSupporterTriangles=spr.Triangles,tallest=tallest});
         }
-        Require(identities.Count>=5,"club identity patterns differ across the venues ("+identities.Count+" patterns)");
         // Pages without a presentation: the Release 130 stadium of every catalogue ID (and the
         // garden ground for an unknown one), no supporter blocks, sight lines kept.
         var legacyIds=new List<string>(ClubStadiumProfiles.KnownClubIds){"XYZ-9"};
@@ -141,8 +142,9 @@ public static class StadiumArchitectureTests {
         if(sightLines)Require(true,"legacy pages keep every sight line clear ("+legacyIds.Count*5*3*6+" cameras)");
         if(sightLines)Require(sights==designs*5*3*15,"all camera sight lines checked ("+sights+" over "+designs+" venue designs)");
         Require(StadiumArchitecture.AccentOf(new Color(.8f,.1f,.1f),new Color(.78f,.12f,.1f))!=new Color(.78f,.12f,.1f)&&StadiumArchitecture.AccentOf(new Color(.8f,.1f,.1f),Color.white)==Color.white,"accent falls back to white or ink when the trim is too close to the home colour");
-        int leagueGrounds=0;foreach(var v in venues)if(v.venue==v.id&&v.source!="standard")leagueGrounds++;
-        Require(leagueGrounds==36&&signatures.Count>=36,"every league ground has its own structural signature ("+signatures.Count+")");
+        Require(signatures.Count==ClubStadiumProfiles.AuthoredClubIds.Length,"the five authored templates have distinct built signatures ("+signatures.Count+")");
+        SharedTemplates(Require,identities);
+        Require(identities.Count>=5,"club identity patterns differ across the league owners ("+identities.Count+" patterns)");
         Built(Require);
         Fingerprints(Require,pairs);
         // Mesh output: finite, consistent and with outward faces where tested.
@@ -160,6 +162,20 @@ public static class StadiumArchitectureTests {
     static ClubStadiumProfile Same(ClubStadiumProfile p){
         if(p.Venue=="NEUTRAL-EUROPE")return ClubStadiumProfiles.NeutralEurope();if(p.Venue.StartsWith("NEUTRAL-CUP"))return ClubStadiumProfiles.NeutralCup(p.Identity.Country);
         return ClubStadiumProfiles.Resolve(p.ClubId);
+    }
+    static bool SameGeometry(StadiumBlueprint a,StadiumBlueprint b){
+        if(a.Pieces.Count!=b.Pieces.Count)return false;
+        for(int i=0;i<a.Pieces.Count;i++){var x=a.Pieces[i];var y=b.Pieces[i];if(x.center!=y.center||x.size!=y.size||x.rotation!=y.rotation||x.slot!=y.slot||x.shape!=y.shape||x.group!=y.group||x.detail!=y.detail||x.sides!=y.sides)return false;}
+        return true;
+    }
+    static void SharedTemplates(Action<bool,string> Require,HashSet<int> identities){
+        foreach(var id in ClubStadiumProfiles.LiveLeagueClubIds)foreach(var detailed in new[]{true,false}){
+            var profile=ClubStadiumProfiles.Resolve(id);var template=ClubStadiumProfiles.Resolve(profile.TemplateId);
+            var plan=StadiumArchitecture.Plan(profile,68,44,Home,Trim,detailed);var original=StadiumArchitecture.Plan(template,68,44,Home,Trim,detailed);
+            identities.Add(plan.Identity);
+            Require(profile.ClubId==id&&profile.Venue==id&&Array.IndexOf(ClubStadiumProfiles.AuthoredClubIds,profile.TemplateId)>=0&&profile.DetailSeed==template.DetailSeed&&SameGeometry(plan,original)&&plan.StructuralFingerprint()==original.StructuralFingerprint(),
+                id+(detailed?" standard":" reduced")+" keeps its venue owner and the fixed geometry of template "+profile.TemplateId);
+        }
     }
     // The authored identity is actually built (not only declared).
     static void Built(Action<bool,string> Require){
@@ -185,6 +201,16 @@ public static class StadiumArchitectureTests {
     // Structural fingerprint pairs of the authored prototypes (contracts.json reviewCriteria).
     static void Fingerprints(Action<bool,string> Require,List<Pair> pairs){
         var ids=ClubStadiumProfiles.AuthoredClubIds;var plans=new List<StadiumBlueprint>();foreach(var id in ids)plans.Add(StadiumArchitecture.Plan(ClubStadiumProfiles.Resolve(id),68,44,Home,Trim));
+        foreach(var id in ids)foreach(var detailed in new[]{true,false}){
+            var profile=ClubStadiumProfiles.Resolve(id);var plan=StadiumArchitecture.Plan(profile,68,44,Home,Trim,detailed);
+            Require(plan.StructuralFeatures().Count==11,id+" acceptance has exactly eleven declared groups");
+            foreach(var offset in new[]{1,173}){
+                var changed=ClubStadiumProfiles.Resolve(id);changed.DetailSeed=unchecked(profile.DetailSeed+offset);var other=StadiumArchitecture.Plan(changed,68,44,Home,Trim,detailed);
+                Require(!SameGeometry(plan,other),id+(detailed?" standard":" reduced")+" seed +"+offset+" changes built geometry (seed-invariance control)");
+                int distance=StadiumFingerprint.Distance(plan.StructuralFeatures(),other.StructuralFeatures(),out int silhouette);
+                Require(distance==0&&silhouette==0&&plan.StructuralFingerprint()==other.StructuralFingerprint(),id+(detailed?" standard":" reduced")+" acceptance fingerprint ignores seed +"+offset+" despite changed geometry");
+            }
+        }
         int Rows(StadiumBlueprint b){int s=0;foreach(var r in b.Rows)s+=r;return s;}
         for(int a=0;a<plans.Count;a++)for(int b=a+1;b<plans.Count;b++){
             var fa=plans[a].StructuralFeatures();var fb=plans[b].StructuralFeatures();int d=StadiumFingerprint.Distance(fa,fb,out int sil);
@@ -199,7 +225,7 @@ public static class StadiumArchitectureTests {
         var checks=new List<string>();var venues=new List<Venue>();var pairs=new List<Pair>();void Require(bool ok,string name){if(!ok)throw new Exception("Stadium architecture: "+name);checks.Add(name);}
         CheckPlans(Require,venues,pairs);
         BridgeWiring(repository,Require);
-        var json=JsonUtility.ToJson(new Report{passed=checks.Count,note="Budgets are the contracts' engineering targets measured on generated meshes (triangles, renderers); delivered GPU frame rates are measured separately by Root. Legacy-derived and standard venues are reported, not individually authored.",checks=checks.ToArray(),venues=venues.ToArray(),pairs=pairs.ToArray()},true);
+        var json=JsonUtility.ToJson(new Report{passed=checks.Count,note="Acceptance fingerprints and pair distances use only the eleven declared identity groups of the five authored templates; measuredGeometry (height/skyline bands) is informational and may depend on seed or quality. All 96 league owners reuse a fixed template; they are not 96 authored designs. Budgets are engineering targets measured on generated meshes (triangles, renderers); GPU frame rates are measured separately. Legacy-derived and standard venues are reported, not individually authored.",checks=checks.ToArray(),venues=venues.ToArray(),pairs=pairs.ToArray()},true);
         var folder=Path.Combine(repository,outputFolder??"outputs/3d-quality/unity");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"stadium-architecture-tests.json"),json);
         return "passed="+checks.Count;
     }

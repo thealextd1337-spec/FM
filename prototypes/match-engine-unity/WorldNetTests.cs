@@ -10,8 +10,8 @@ namespace Doppel6.Probe {
 // Goal-net display deformation (WorldNetDeformation, ProbeBridge.RenderWorldNet). Check kinds: "controlled" = analytic
 // net facts on the actual ProbeBridge.GoalNet meshes and the actual RenderWorldNet upload, reset and reload; "golden" =
 // offsets evaluated independently of this code (the documented model, sampling and spline in 40-digit arithmetic);
-// "controlled-producer" = a replica of the native rear-net goal tail and goal-scene clock, pinned to the current source
-// text, for the ball envelope and the native scene hold; "recorded" = native pictures captured from the bridge: the
+// "controlled-producer" = pinned rear-net physics with separate legacy capped and current flowing clock sweeps,
+// for the ball envelope and final fade; "recorded" = native pictures captured from the bridge: the
 // keeper-next captures (release 118, before v119; their net facts are today's fallback path) and any capture in
 // outputs/lowpoly-live-rollout-20261013/net-recordings, -d6netrecordings <folder> or D6_NET_RECORDINGS (WorldConfig and
 // WorldFrame JSON objects in any nesting and key order). Measurements carry no pass/fail; "inherited-native" ones
@@ -22,7 +22,7 @@ namespace Doppel6.Probe {
 public static class WorldNetTests {
     [Serializable] class Item {public string kind,name,detail;public bool passed;public double value,limit;}
     [Serializable] class Measurement {public string kind,name,unit,detail;public double value;}
-    [Serializable] class Recording {public string file,source,geometry;public int pictures,netPictures,v119Facts,samples,heldSamples;public double penetration,restPenetration,added,largest,inward,largestStep,endStep,endStepWithoutHold;}
+    [Serializable] class Recording {public string file,source,geometry;public int pictures,netPictures,v119Facts,samples,heldSamples,flowingNetPictures,flowingEnds,openFlowingFacts;public double penetration,restPenetration,added,largest,inward,largestStep,endStep,endStepWithoutHold;}
     [Serializable] class Report {public string schema="d6-net-deformation-tests-2";public bool passed,captureRequired;public int checks,failed,recordedLegacy,recordedCurrent;public string parameters;public Item[] items;public Measurement[] measurements;public Recording[] recordings;public string[] notes;}
     delegate void Checker(string kind,string name,bool passed,double value,double limit,string detail=null);
     delegate void Meter(string kind,string name,double value,string unit,string detail=null);
@@ -45,13 +45,15 @@ public static class WorldNetTests {
         var live=Live(1);
         Pins(repo,Check);
         GoldenOffsets(live,Check);
-        Rigged(live,"live 68 x 44",Check,rig=>{Edges(rig,live,"live 68 x 44",Check);Recoil(rig,live,"live 68 x 44",Check,Measure);Shape(rig,live,Check);Smoothness(rig,live,Check);Hold(rig,live,Check);Symmetry(rig,live,Check);Determinism(rig,live,Check);Integration(rig,live,Check,notes);Reload(rig,live,Check);});
+        Rigged(live,"live 68 x 44",Check,rig=>{Edges(rig,live,"live 68 x 44",Check);Recoil(rig,live,"live 68 x 44",Check,Measure);Shape(rig,live,Check);Smoothness(rig,live,Check);Hold(rig,live,Check);FlowingHold(rig,live,Check);Symmetry(rig,live,Check);Determinism(rig,live,Check);Integration(rig,live,Check,notes);Reload(rig,live,Check);});
         var large=Live(1.2);Rigged(large,"large 81.6 x 52.8",Check,rig=>Edges(rig,large,"large 81.6 x 52.8",Check));
         var fixture=Fixture();Rigged(fixture,"contract fixture goal 9.7 x 2.44",Check,rig=>{Edges(rig,fixture,"contract fixture goal 9.7 x 2.44",Check);Recoil(rig,fixture,"contract fixture goal 9.7 x 2.44",Check,Measure);});
         Envelope(live,Check,Measure,notes);
+        CurrentEnvelope(live,Check,Measure,notes);
+        CaptureGateTests(Check);
         int legacy=Recordings(Path.Combine(repo,"outputs/3d-quality/keeper-next/pictures"),"keeper-next capture (release 118, pre-v119: today's fallback net facts)",false,Check,recordings,notes);
         var folders=Folders(repo);int current=0;foreach(var folder in folders)current+=Recordings(folder,"capture "+folder,true,Check,recordings,notes);
-        if(requireCapture)Check(Recorded,"Current-producer rear-net goal captures are present (final release requirement)",current>0,current,1,current+" capture file(s) with net pictures; folders: "+(folders.Count>0?string.Join(", ",folders):"none found"));
+        if(requireCapture)Check(Recorded,"Complete flowing current-producer rear-net goal captures are present (final release requirement)",current>0,current,1,current+" capture file(s) with flowing pictures and observed fact endings; folders: "+(folders.Count>0?string.Join(", ",folders):"none found"));
         else if(current==0)notes.Add("No current-producer goal capture found (outputs/lowpoly-live-rollout-20261013/net-recordings, -d6netrecordings, D6_NET_RECORDINGS): the 3 cm envelope and the end-at-rest check on recorded rear-net goals of the current producer are still unproven here; only the pinned controlled replica covers them. The final release run must pass requireCapture (-d6requirenetcapture or D6_REQUIRE_NET_CAPTURE=1), which fails without one.");
         var failedItems=items.FindAll(i=>!i.passed);
         var report=new Report{passed=failedItems.Count==0,captureRequired=requireCapture,checks=items.Count,failed=failedItems.Count,recordedLegacy=legacy,recordedCurrent=current,parameters=Parameters(),items=items.ToArray(),measurements=measurements.ToArray(),recordings=recordings.ToArray(),notes=notes.ToArray()};
@@ -101,7 +103,7 @@ public static class WorldNetTests {
             ("dist/world-pitch3d-v98.js","const depth=clamp((ball.y-line)*direction*sy,0,2.2-radius)"),
             ("dist/world-pitch3d-v98.js","ball.elevation=clamp(ball.elevation,.29,goalHeight-radius)"),
             ("dist/world-pitch3d-v98.js","height:contact.elevation-(.29-radius)*clamp(1-(contact.elevation-.29),0,1)"),
-            ("dist/world-pitch3d-v98.js","const time=current.postBanner?.kind==='goal'?v83GoalSceneDuration:Math.max(0,scene.elapsed),contact=v101GoalBall(travel,impact),age=Math.max(0,time-impact);"),
+            ("dist/world-pitch3d-v98.js","const time=current.postBanner?.kind==='goal'?v83GoalSceneDuration:clamp(v83GoalSceneDuration-current.goalPause,0,v83GoalSceneDuration),contact=v101GoalBall(travel,impact),age=Math.max(0,time-impact);"),
             ("dist/world-pitch3d-v98.js","const turned=Boolean(current.halftimeBreakDone),scene=current.goalPause>0&&current.goalScene;"),
             ("dist/world-pitch3d-v98.js","celebration:scene?{id:current.goals.length,team:scene.team,time:Math.max(0,v83GoalSceneDuration-current.goalPause)}:null"),
             ("dist/world-pitch-actions-v99.js","fall=Math.max(0,time-travel.impact),damp=(1-Math.exp(-7*fall))/7"),
@@ -109,7 +111,9 @@ public static class WorldNetTests {
             ("dist/world-pitch-actions-v99.js","y:travel.y+travel.vy*t+travel.vy*(travel.hit==='rear'?-.18:.12)*damp"),
             ("dist/world-pitch-actions-v99.js","elevation:Math.max(.29,travel.elevation+travel.vh*t-4.9*t*t+(travel.hit==='roof'?-Math.abs(vh)*.18:vh)*fall-4.9*fall*fall)"),
             ("dist/world-unity-v151.js","if(current.goalScene&&current.goalPause>0){const view=typeof v119VisibleGoalView==='function'?v119VisibleGoalView(current):null"),
-            ("dist/world-unity-v151.js","if(!view||view.hit==='rear')frame.net={sign:Math.sign(spot.x),z:spot.z,height:view?.height??.8,age:view?.age??current.goalScene.elapsed,bulge:view?.bulge??p.bulge};"),
+            ("dist/world-unity-v151.js","if(!view||view.hit==='rear')frame.net={sign:Math.sign(spot.x),z:spot.z,height:view?.height??.8,age:view?.age??current.goalScene.elapsed,bulge:view?.bulge??p.bulge,...(view?{flowing:true}:{})};"),
+            ("prototypes/match-engine-unity/WorldViewContract.cs","public bool flowing;"),
+            ("prototypes/match-engine-unity/WorldViewPlayback.cs","flowing=a.net.flowing&&b.net.flowing"),
             ("dist/world-unity-v151.js","celebrationTime:Math.max(0,frame.celebration.time)"),
             ("dist/world-unity-v151.js","now-lastSent>=50"),
             ("dist/world-goal-scene-v83.js","const v83GoalSceneDuration="+N(SceneDuration)+";"),
@@ -131,6 +135,7 @@ public static class WorldNetTests {
         }
         check(Producer,"The replicated net placement, native rear-net producer, goal-scene clock and picture scene time are the current source (replica not stale)",missing.Count==0,missing.Count,0,missing.Count==0?pins.Length+" source pins present":string.Join(" | ",missing));
         check(Producer,"The display scene hold starts at the pinned native scene-time cap and has eased out well before the goal pause ends",WorldNetDeformation.HoldStart==SceneCap&&WorldNetDeformation.HoldEnd>SceneCap&&WorldNetDeformation.HoldEnd<=SceneDuration-.5,WorldNetDeformation.HoldEnd,SceneDuration-.5,"hold "+F(WorldNetDeformation.HoldStart)+"-"+F(WorldNetDeformation.HoldEnd)+" s; native cap "+F(SceneCap)+" s, goal pause "+F(SceneDuration)+" s");
+        check(Producer,"New flowing facts preserve the full pause clock and fade only during its final 200 ms",WorldNetDeformation.FlowingHoldStart==3.85&&WorldNetDeformation.FlowingHoldEnd==SceneDuration,WorldNetDeformation.FlowingHoldEnd,SceneDuration);
     }
 
     // Golden offsets of the look, evaluated independently of this code: the documented model in 40-digit arithmetic (series
@@ -490,6 +495,40 @@ public static class WorldNetTests {
         rig.Rebuild(g);
     }
 
+    // A flowing fact never uses the legacy cap fade. It keeps the actual age-driven
+    // shape through late impacts, then fades using only received celebrationTime.
+    static void FlowingHold(Rig rig,Geometry g,Checker check){
+        var net=Goal(rig,1);var fact=Fact(1,1.2,1.1,.06,V119(.06));fact.flowing=true;
+        bool shares=WorldNetDeformation.Hold(double.NaN,true)==1&&WorldNetDeformation.Hold(2.8,true)==1&&WorldNetDeformation.Hold(3.85,true)==1&&Math.Abs(WorldNetDeformation.Hold(3.95,true)-.5)<1e-12&&WorldNetDeformation.Hold(4.05,true)==0;
+        check(Controlled,"Flowing share: late impact preserved through 3.85 s, half at 3.95 s, exactly rest at 4.05 s",shares,shares?0:1,0);
+        int index=Nearest(net,"back",g,WorldNetDeformation.Depth,1.1,1.2);var rest=net.rest[index];
+        double free=WorldNetDeformation.Offset(rest,"back",fact,g),late=WorldNetDeformation.Offset(rest,"back",fact,g,2.8);
+        check(Controlled,"New late rear impact at scene time 2.8 s has its full moving shape",free>.01&&late==free,Math.Abs(late-free),0,"unfaded displacement "+F(free)+" m");
+        var legacy=Fact(1,fact.z,fact.height,fact.age,fact.bulge);
+        double oldDifference=Math.Abs(WorldNetDeformation.Offset(rest,"back",legacy,g,2.8)-free*WorldNetDeformation.Hold(2.8));
+        check(Controlled,"Absent flowing marker keeps the legacy hold at 2.8 s",oldDifference<=1e-12,oldDifference,1e-12);
+        var field=new WorldNetDeformation.Field(net.rest,net.tags,1,g);var output=(Vector3[])net.rest.Clone();double wrong=0,linear=0,jump=0;
+        foreach(double t in new[]{2.8,3.85,3.9,3.95,4.0,4.025,4.05,1.0,3.95,4.05}){
+            field.Update(fact,t,output,out float largest);for(int k=0;k<output.Length;k++){
+                if(!Same(output[k],WorldNetDeformation.Displace(net.rest[k],net.tags[k],fact,g,t)))wrong++;
+                linear=Math.Max(linear,Math.Abs(WorldNetDeformation.Offset(net.rest[k],net.tags[k],fact,g,t)-WorldNetDeformation.Hold(t,true)*WorldNetDeformation.Offset(net.rest[k],net.tags[k],fact,g)));
+                if(t==4.05&&!Same(output[k],net.rest[k]))wrong++;
+            }
+            if(field.Update(fact,t,output,out _))wrong++;
+        }
+        check(Controlled,"Flowing Field: exact Displace, full shape scaled, pause idempotent, backward seeks deterministic, exact end rest",wrong==0&&linear<=1e-12,wrong+linear,1e-12);
+        foreach(double edge in new[]{3.85,4.05})jump=Math.Max(jump,Math.Abs(WorldNetDeformation.Offset(rest,"back",fact,g,edge+1e-5)-WorldNetDeformation.Offset(rest,"back",fact,g,edge-1e-5)));
+        check(Controlled,"Flowing fade has no jump at start or end",jump<=1e-4,jump,1e-4);
+        double Shown(double t)=>WorldNetDeformation.Offset(rest,"back",fact,g,t);
+        double Curvature(double h){double worst=0;int n=(int)Math.Round(.4/h);for(int s=1;s<n;s++){double t=3.75+s*h;worst=Math.Max(worst,Math.Abs(Shown(t+h)-2*Shown(t)+Shown(t-h))/(h*h));}return worst;}
+        double ratio=(Curvature(1/960.0)+1e-3)/(Curvature(1/240.0)+1e-3);
+        check(Controlled,"Flowing fade curvature remains continuous with four times finer steps",ratio<=1.25,ratio,1.25);
+        WorldFrame Frame(WorldNet n)=>new WorldFrame{schema="d6-world-view-1",session="flowing-test",sequence=1,clock=1,elapsed=1,ball=new[]{0.0,.29,0.0},score=new[]{1,0},players=Array.Empty<WorldPose>(),camera=new WorldCamera{position=new[]{0.0,20,30},target=new[]{0.0,0,0},fov=42},netActive=true,net=n,celebrating=true,celebrationTeam=0,celebrationTime=2.8};
+        var a=Frame(fact);var b=Frame(fact);b.sequence=2;b.clock=1.05;b.celebrationTime=2.85;
+        var blend=WorldViewPlayback.Blend(a,b,.5);var mixed=Frame(legacy);mixed.sequence=2;mixed.clock=1.05;
+        check(Controlled,"Playback retains flowing for new fact pairs and legacy default for mixed pairs",blend.net.flowing&&!WorldViewPlayback.Blend(a,mixed,.5).net.flowing&&!JsonUtility.FromJson<WorldNet>("{\"sign\":1,\"age\":0.06,\"bulge\":0.6}").flowing,blend.net.flowing?0:1,0);
+    }
+
     // Depth (m) by which the shown ball passes the back net (> 0: through it); rest: against the undeformed net.
     static double Penetration(double[] ball,WorldNet net,Geometry g,double sceneTime,bool rest){
         int s=net.sign>=0?1:-1;double half=g.length/2,radius=R,depth=s*ball[0]-half,cy=ProbeBridge.DisplayHeight(ball[1]),cz=ball[2],worst=double.NegativeInfinity;
@@ -502,9 +541,9 @@ public static class WorldNetTests {
         return double.IsNegativeInfinity(worst)?depth+radius-planeDepth:worst;
     }
 
-    // Controlled replica of the native rear-net goal tail and goal scene (pinned in Pins), metres on the 68 x 44 picture:
+    // Controlled replica of the rear-net tail with both received clock contracts, metres on the 68 x 44 picture:
     // the ball crosses the goal line at scene time 0 (speed toward the net, lateral speed, crossing z, native elevation,
-    // vertical speed). The scene time stops at SceneCap, holding ball and net facts, while the goal pause and the
+    // vertical speed). In the legacy contract scene time stops at SceneCap, holding ball and net facts, while the goal pause and the
     // picture's goal-scene time run on; the net fact ends with the goal pause at SceneDuration and the post-goal banner
     // shows the ball at SceneDuration.
     struct Shot {public double speed,lateral,z0,elevation,vh;}
@@ -515,13 +554,13 @@ public static class WorldNetTests {
         impact=Math.Max(.001,Math.Min(rear,Math.Min(edge>=0?edge:inf,roof)));
         return !(roof<=Math.Min(rear,edge))&&!(edge>=0&&edge<rear);
     }
-    static void Tail(in Shot s,Geometry g,double impact,double sceneTime,bool banner,double[] ball,WorldNet net){
-        double W=g.goalWidth,H=g.goalHeight,time=banner?SceneDuration:Math.Min(sceneTime,SceneCap),t=Math.Min(time,impact),fall=Math.Max(0,time-impact),damp=(1-Math.Exp(-7*fall))/7,vh=s.vh-9.8*t;
+    static void Tail(in Shot s,Geometry g,double impact,double sceneTime,bool banner,double[] ball,WorldNet net,bool flowing=false){
+        double W=g.goalWidth,H=g.goalHeight,time=banner?SceneDuration:Math.Min(sceneTime,flowing?SceneDuration:SceneCap),t=Math.Min(time,impact),fall=Math.Max(0,time-impact),damp=(1-Math.Exp(-7*fall))/7,vh=s.vh-9.8*t;
         double depth=Math.Clamp(s.speed*t+s.speed*-.18*damp,0,2.2-R),z=Math.Clamp(s.z0+s.lateral*t+s.lateral*.12*damp,-(W/2-R),W/2-R);
         double elevation=Math.Clamp(Math.Max(.29,s.elevation+s.vh*t-4.9*t*t+vh*fall-4.9*fall*fall),.29,H-R),contact=Math.Max(.29,s.elevation+s.vh*impact-4.9*impact*impact);
         double age=Math.Max(0,time-impact),pulse=age/.06;
         ball[0]=g.length/2+depth;ball[1]=elevation;ball[2]=z;
-        net.sign=1;net.z=s.z0+s.lateral*impact;net.height=contact-(.29-R)*Math.Clamp(1-(contact-.29),0,1);net.age=age;net.bulge=time>=impact?.6*pulse*Math.Exp(1-pulse):0;
+        net.sign=1;net.z=s.z0+s.lateral*impact;net.height=contact-(.29-R)*Math.Clamp(1-(contact-.29),0,1);net.age=age;net.bulge=time>=impact?.6*pulse*Math.Exp(1-pulse):0;net.flowing=flowing;
     }
     static void Envelope(Geometry g,Checker check,Meter measure,List<string> notes){
         double worst=-1,worstRest=double.NegativeInfinity,gap=double.PositiveInfinity,outward=0,inward=0,endHold=0,endRound1=0;int cases=0,slowCases=0,samples=0,changedFast=0;string at="",endAt="";
@@ -568,6 +607,35 @@ public static class WorldNetTests {
         notes.Add("Controlled producer replica: impact-point displacement between "+(-inward).ToString("0.000",C)+" and "+outward.ToString("0.000",C)+" m over "+cases+" rear-hit shots; the native tail clamps the ball to 2.2-R behind the line, so only an inward net motion could pass it. Slow rear hits (impact after "+F(SceneCap-WorldNetDeformation.FadeEnd)+" s) are held by the native scene-time cap at "+F(SceneCap)+" s; the round-2 display eases the held picture to rest by "+F(WorldNetDeformation.HoldEnd)+" s from the picture's goal-scene time.");
     }
 
+    // Current producer clock: independent controlled sweep alongside the unchanged
+    // capped-fact envelope above. JS also executes the actual production functions
+    // in work/test-lowpoly-goal-tail.cjs; this sweep exercises the real C# net shape.
+    static void CurrentEnvelope(Geometry g,Checker check,Meter measure,List<string> notes){
+        double worst=double.NegativeInfinity,lastMaximum=0,exactEnd=0,ballEndStep=0;int cases=0,samples=0,slow=0;string at="",lastAt="";
+        var a=new double[3];var b=new double[3];var shown=new double[3];var na=new WorldNet();var nb=new WorldNet();var mix=new WorldNet{flowing=true};
+        foreach(double rate in new[]{20.0,60.0})foreach(double speed in new[]{.5,.6,.7,.8,.83,.85,.9,1,1.2,1.45,1.65,2,2.4,4,7,12,20})foreach(var (elevation,vh) in new[]{(.29,0.0),(.7,0.0),(.44,7.0),(.89,6.5)})foreach(double z in new[]{0,3.0}){
+            var shot=new Shot{speed=speed,z0=z,elevation=elevation,vh=vh};if(!RearHit(shot,g,out double impact))continue;cases++;if(speed<=.8)slow++;
+            Tail(shot,g,impact,0,false,a,na,true);double ta=0;int count=(int)Math.Floor(SceneDuration*rate);
+            for(int f=1;f<count;f++){
+                double tb=f/rate;Tail(shot,g,impact,tb,false,b,nb,true);
+                for(int q=0;q<4;q++){
+                    double w=q/4.0,time=ta+(tb-ta)*w;for(int k=0;k<3;k++)shown[k]=a[k]+(b[k]-a[k])*w;
+                    mix.sign=1;mix.z=na.z+(nb.z-na.z)*w;mix.height=na.height+(nb.height-na.height)*w;mix.age=na.age+(nb.age-na.age)*w;mix.bulge=na.bulge+(nb.bulge-na.bulge)*w;
+                    double p=Penetration(shown,mix,g,time,false);samples++;if(p>worst){worst=p;at="speed "+F(speed)+", elevation "+F(elevation)+", vh "+F(vh)+", z "+F(z)+", rate "+F(rate)+", scene "+F(time);}
+                }
+                Array.Copy(b,a,3);na.z=nb.z;na.height=nb.height;na.age=nb.age;na.bulge=nb.bulge;ta=tb;
+            }
+            double last=Largest(na,g,ta);if(last>lastMaximum){lastMaximum=last;lastAt="speed "+F(speed)+", rate "+F(rate)+", scene "+F(ta);}
+            Tail(shot,g,impact,SceneDuration,false,b,nb,true);exactEnd=Math.Max(exactEnd,Largest(nb,g,SceneDuration));
+            Tail(shot,g,impact,SceneDuration-1e-6,false,a,na,true);ballEndStep=Math.Max(ballEndStep,Math.Sqrt((a[0]-b[0])*(a[0]-b[0])+(a[1]-b[1])*(a[1]-b[1])+(a[2]-b[2])*(a[2]-b[2])));
+        }
+        check(Producer,"Current flowing-clock envelope incl. .5/.6/.7/.8 m/s: ball penetrates the displaced net by no more than 3 cm",cases==272&&slow==64&&worst<=.03,worst,.03,cases+" rear hits, "+slow+" slow, "+samples+" interpolated samples; worst "+at);
+        check(Producer,"Current flowing facts: last received picture leaves at most 3 cm of deformation and 4.05 s is exact rest",lastMaximum<=.03&&exactEnd==0,lastMaximum,.03,"last picture "+lastAt+"; exact end residual "+F(exactEnd)+" m");
+        check(Producer,"Current full-pause tail reaches the banner continuously",ballEndStep<=3e-5,ballEndStep,3e-5,"1 us before 4.05 s versus the banner's 4.05 s picture");
+        measure(Producer,"Current flowing tail: maximum remaining deformation in last 20/60 Hz picture",lastMaximum,"m",lastAt);
+        notes.Add("The legacy capped-fact envelope/goldens remain unchanged. New flowing facts use 4.05-goalPause and fade at 3.85-4.05 s; controlled projection and C# shape checks do not establish full-match reachability or frequency.");
+    }
+
     // Recorded pictures: shown as WorldViewPlayback blends them and RenderWorldNet receives them (with the picture's
     // goal-scene time); penetration with and without the deformation.
     static List<string> Folders(string repo){
@@ -609,18 +677,58 @@ public static class WorldNetTests {
         var meta=Path.Combine(folder,"capture-"+parts[1]+"-"+parts[2]+"-"+parts[3]+".json");if(!File.Exists(meta))return null;
         var text=File.ReadAllText(meta);return Live(text.Contains("\"fieldSize\": \"large\"")||text.Contains("\"fieldSize\":\"large\"")?1.2:1);
     }
+    static List<WorldFrame> CapturePictures(string text,out Geometry geometry){
+        geometry=null;var pictures=new List<WorldFrame>();
+        foreach(var json in ViewObjects(text)){
+            if(json.Contains("\"fixtureId\"")){var config=JsonUtility.FromJson<WorldConfig>(json);if(config?.geometry!=null&&config.geometry.goalWidth>0)geometry=config.geometry;continue;}
+            var f=JsonUtility.FromJson<WorldFrame>(json);if(f?.ball!=null&&f.ball.Length==3)pictures.Add(f);
+        }
+        return pictures;
+    }
+    sealed class CaptureCoverage {
+        public int flowingPictures,flowingEnds,openFlowingFacts;
+        public bool Complete=>flowingPictures>0&&flowingEnds>0&&openFlowingFacts==0;
+    }
+    // An ending is an observed inactive picture in the same ordered session. EOF, a
+    // different session or a backwards sequence cannot stand in for the missing end.
+    static CaptureCoverage CaptureCoverageOf(List<WorldFrame> pictures){
+        var result=new CaptureCoverage();WorldFrame previous=null;bool active=false,flowing=false;
+        foreach(var f in pictures){
+            bool ordered=previous!=null&&previous.session==f.session&&previous.sequence<f.sequence;
+            if(active&&!ordered){if(flowing)result.openFlowingFacts++;active=flowing=false;}
+            bool next=f.netActive&&f.net!=null;
+            if(active&&!next){if(flowing)result.flowingEnds++;active=flowing=false;}
+            if(next){active=true;flowing|=f.net.flowing;if(f.net.flowing)result.flowingPictures++;}
+            previous=f;
+        }
+        if(active&&flowing)result.openFlowingFacts++;
+        return result;
+    }
+    static void CaptureGateTests(Checker check){
+        const string active="{\"schema\":\"d6-world-view-1\",\"session\":\"capture-proof\",\"sequence\":1,\"ball\":[0,0.29,0],\"netActive\":true,\"net\":{\"sign\":1,\"age\":0.06,\"bulge\":0.6,\"flowing\":true}}";
+        const string ended="{\"net\":null,\"ball\":[0,0.29,0],\"netActive\":false,\"sequence\":2,\"session\":\"capture-proof\",\"schema\":\"d6-world-view-1\"}";
+        CaptureCoverage Read(string text)=>CaptureCoverageOf(CapturePictures(text,out _));
+        var full=Read("{\"frames\":["+active+","+ended+"]}");
+        check(Controlled,"Capture gate parses nested pictures with different key orders and requires an observed flowing end",full.Complete&&full.flowingPictures==1&&full.flowingEnds==1,full.flowingEnds,1);
+        var truncated=Read("{\"frames\":["+active+"]}");
+        var truncatedJson=Read("{\"frames\":["+active+",{\"netActive\":false,");
+        check(Controlled,"Capture gate rejects complete or truncated JSON ending while a flowing fact is active",!truncated.Complete&&!truncatedJson.Complete&&truncated.openFlowingFacts==1&&truncatedJson.openFlowingFacts==1,truncated.openFlowingFacts,1);
+        var partial=Read("{\"frames\":["+active+","+ended+","+active.Replace("\"sequence\":1","\"sequence\":3")+"]}");
+        check(Controlled,"Capture gate rejects a later truncated goal even after a complete goal",!partial.Complete&&partial.flowingEnds==1&&partial.openFlowingFacts==1,partial.openFlowingFacts,1);
+        var legacy=Read("["+active.Replace(",\"flowing\":true","")+","+ended+"]");
+        check(Controlled,"Capture gate rejects a complete legacy fact with the flowing marker absent",!legacy.Complete&&legacy.flowingPictures==0,legacy.flowingPictures,0);
+        var otherSession=Read("["+active+","+ended.Replace("capture-proof","next-session")+"]");
+        var backwards=Read("["+active+","+ended.Replace("\"sequence\":2","\"sequence\":1")+"]");
+        check(Controlled,"Capture gate rejects session changes and unordered pictures as fact endings",!otherSession.Complete&&!backwards.Complete&&otherSession.openFlowingFacts==1&&backwards.openFlowingFacts==1,otherSession.flowingEnds+backwards.flowingEnds,0);
+    }
     static int Recordings(string folder,string source,bool current,Checker check,List<Recording> recordings,List<string> notes){
         if(!Directory.Exists(folder))return 0;int files=0;bool blendFailed=false;
         foreach(var file in Directory.GetFiles(folder,"*.json")){
             string name=Path.GetFileName(file);if(name.StartsWith("capture-",StringComparison.Ordinal))continue;
             var text=File.ReadAllText(file);if(text.IndexOf("\"netActive\":true",StringComparison.Ordinal)<0&&text.IndexOf("\"netActive\": true",StringComparison.Ordinal)<0)continue;
-            Geometry g=null;var pictures=new List<WorldFrame>();
-            foreach(var json in ViewObjects(text)){
-                if(json.Contains("\"fixtureId\"")){var config=JsonUtility.FromJson<WorldConfig>(json);if(config?.geometry!=null&&config.geometry.goalWidth>0)g=config.geometry;continue;}
-                var f=JsonUtility.FromJson<WorldFrame>(json);if(f?.ball!=null&&f.ball.Length==3)pictures.Add(f);
-            }
+            var pictures=CapturePictures(text,out Geometry g);var coverage=CaptureCoverageOf(pictures);
             string geometryNote=g!=null?"configuration":"capture metadata";g??=CaptureGeometry(folder,name);if(g==null){g=Live(1);geometryNote="default 68 x 44 (no configuration or capture metadata)";}
-            var rec=new Recording{file=name,source=source,geometry=geometryNote+" "+g.length.ToString("0.#",C)+" x "+g.width.ToString("0.#",C)+", goal "+g.goalWidth.ToString("0.###",C)+" x "+g.goalHeight.ToString("0.###",C),pictures=pictures.Count,penetration=double.NegativeInfinity,restPenetration=double.NegativeInfinity,added=double.NegativeInfinity};
+            var rec=new Recording{file=name,source=source,geometry=geometryNote+" "+g.length.ToString("0.#",C)+" x "+g.width.ToString("0.#",C)+", goal "+g.goalWidth.ToString("0.###",C)+" x "+g.goalHeight.ToString("0.###",C),pictures=pictures.Count,flowingNetPictures=coverage.flowingPictures,flowingEnds=coverage.flowingEnds,openFlowingFacts=coverage.openFlowingFacts,penetration=double.NegativeInfinity,restPenetration=double.NegativeInfinity,added=double.NegativeInfinity};
             double[] last=null;WorldNet previous=null;double previousScene=double.NaN;
             for(int p=0;p<pictures.Count;p++){
                 var b=pictures[p];if(b.netActive&&b.net!=null){rec.netPictures++;if(b.net.bulge>1e-4&&Math.Abs(b.net.bulge-V119(b.net.age))<1e-9)rec.v119Facts++;}
@@ -635,10 +743,11 @@ public static class WorldNetTests {
                     rec.penetration=Math.Max(rec.penetration,shown);rec.restPenetration=Math.Max(rec.restPenetration,rest);rec.added=Math.Max(rec.added,Math.Max(0,shown)-Math.Max(0,rest));
                     var grid=Grid(f.net,g,scene);rec.largest=Math.Max(rec.largest,Max(grid));rec.inward=Math.Max(rec.inward,-Min(grid));
                     if(last!=null)for(int k=0;k<grid.Length;k++)rec.largestStep=Math.Max(rec.largestStep,Math.Abs(grid[k]-last[k]));
-                    last=grid;previous=new WorldNet{sign=f.net.sign,z=f.net.z,height=f.net.height,age=f.net.age,bulge=f.net.bulge};previousScene=scene;
+                    last=grid;previous=new WorldNet{sign=f.net.sign,z=f.net.z,height=f.net.height,age=f.net.age,bulge=f.net.bulge,flowing=f.net.flowing};previousScene=scene;
                 }
             }
-            if(rec.netPictures==0)continue;files++;recordings.Add(rec);
+            if(rec.netPictures==0)continue;if(!current||coverage.Complete)files++;recordings.Add(rec);
+            if(current)check(Recorded,"Recorded "+name+": current flowing capture includes every observed fact ending",coverage.Complete,coverage.openFlowingFacts,0,coverage.flowingPictures+" flowing net pictures; "+coverage.flowingEnds+" observed endings; "+coverage.openFlowingFacts+" unclosed flowing facts");
             string detail=rec.netPictures+" net pictures ("+rec.v119Facts+" with rear-hit v119 facts, "+rec.heldSamples+" shown samples in the native scene hold), "+rec.samples+" shown samples; penetration "+rec.penetration.ToString("0.0000",C)+" m, at rest "+rec.restPenetration.ToString("0.0000",C)+" m; largest "+rec.largest.ToString("0.000",C)+" m, inward "+rec.inward.ToString("0.000",C)+" m, largest step "+rec.largestStep.ToString("0.000",C)+" m";
             check(Recorded,"Recorded "+name+": the deformation adds no more than 3 cm of ball penetration",rec.added<=.03,rec.added,.03,detail);
             if(current)check(Recorded,"Recorded "+name+": the shown ball passes the displaced back net by no more than 3 cm",rec.penetration<=.03,rec.penetration,.03,detail);

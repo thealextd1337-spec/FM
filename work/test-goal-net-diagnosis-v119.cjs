@@ -8,7 +8,7 @@ const files=['dist/pitch-v55.js','dist/world-pitch-actions-v99.js','dist/world-c
 const report={scope:'Controlled native goal and received-picture contact geometry. Screenshot alone has no flight/score facts; no claim of reproducing the exact Ross event.',hashes:Object.fromEntries(files.map(f=>[f,hash(fs.readFileSync(path.join(root,f)))])),cases:[],errors:[]};
 const old={};if(baseline){
  const f='dist/world-pitch3d-v98.js',source=fs.readFileSync(path.join(root,f),'utf8');old[f]=source.slice(0,source.indexOf('// Visible goal-tail contact'))+source.slice(source.indexOf('function v98PitchFrame('));old[f]=old[f].replace('v119VisibleGoalView(current)?.ball||','');
- const b='dist/world-unity-v151.js';old[b]=fs.readFileSync(path.join(root,b),'utf8').replace(/const view=.*?,p=view\?\.contact\|\|v83GoalPosition\(current\.goalScene\)/,"const p=v83GoalPosition(current.goalScene)").replace("if(!view||view.hit==='rear')frame.net=","frame.net=").replace('height:view?.height??.8,age:view?.age??current.goalScene.elapsed,bulge:view?.bulge??p.bulge','height:.8,age:current.goalScene.elapsed,bulge:p.bulge');
+ const b='dist/world-unity-v151.js';old[b]=fs.readFileSync(path.join(root,b),'utf8').replace(/const view=.*?,p=view\?\.contact\|\|v83GoalPosition\(current\.goalScene\)/,"const p=v83GoalPosition(current.goalScene)").replace("if(!view||view.hit==='rear')frame.net=","frame.net=").replace('height:view?.height??.8,age:view?.age??current.goalScene.elapsed,bulge:view?.bulge??p.bulge,...(view?{flowing:true}:{})','height:.8,age:current.goalScene.elapsed,bulge:p.bulge');
  assert.equal(hash(old[f]),'90e1e3604eb3b8c213e83bbe416aac5fac9341beaed14a78709cdd9c156a8d12','Exact pre-fix v98 source reconstruction');assert.equal(hash(old[b]),'25756fc16b98d66ac6752bad45e9d147f73a37c28b6f368edadf9f5307a8e0a7','Exact pre-fix v151 source reconstruction');report.loadedBeforeHashes=Object.fromEntries(Object.entries(old).map(([f,s])=>[f,hash(s)]));
 }
 (async()=>{
@@ -35,12 +35,12 @@ const old={};if(baseline){
      const nativeBefore=JSON.stringify({score:m.score,goals:m.goals,flight,release,ball:m.ball,travel}),drawsBefore=draws;
      const samples=[];
      for(const t of [0,impact,impact+.04,.6,1.5,2.45,4.05]){
-      m.goalScene.elapsed=t;
+      m.goalScene.elapsed=Math.min(t,2.45);m.goalPause=Math.max(1e-9,v83GoalSceneDuration-t);
       const view=v99BallView(m),frame=v98PitchFrame(m),scaled=D6WorldUnityContract.scaled(frame,g),packet=D6WorldUnityContract.picture(scaled,'controlled',1,{position:{x:0,z:30},target:{x:0,z:0},fov:42},'goal',m.score);
       const depth=Math.abs(packet.ball[0])-g.length/2,y=packet.ball[1]-(.29-rad)*Math.max(0,Math.min(1,1-(packet.ball[1]-.29)));
       samples.push({t,ball:packet.ball,depth,net:packet.net,contactClearance:{rear:2.2-depth-rad,side:g.goalWidth/2-Math.abs(packet.ball[2])-rad,roof:g.goalHeight-y-rad},native:view});
      }
-     m.goalScene.elapsed=0;
+     m.goalScene.elapsed=0;m.goalPause=v83GoalSceneDuration;
      const readOnly=JSON.stringify({score:m.score,goals:m.goals,flight,release,ball:m.ball,travel})===nativeBefore;
      m.goalPause=0;m.goalScene=null;m.postBanner={kind:'goal'};
      const postFrame=D6WorldUnityContract.scaled(v98PitchFrame(m),g),postDepth=Math.abs(postFrame.ball.x)-g.length/2,postY=postFrame.ball.height-(.29-rad)*Math.max(0,Math.min(1,1-(postFrame.ball.height-.29))),postClearance={rear:2.2-postDepth-rad,side:g.goalWidth/2-Math.abs(postFrame.ball.z)-rad,roof:g.goalHeight-postY-rad};

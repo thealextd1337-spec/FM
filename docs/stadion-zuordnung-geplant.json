@@ -1,7 +1,13 @@
 {
   "schema": "d6-stadium-assignment-plan-1",
-  "status": "Zuordnung für die Umsetzung geplant; noch nicht als Live-Stand veröffentlicht",
+  "status": "Feste Zuordnung im lokalen Release-131-Kandidaten implementiert; Unity-, Build- und Live-Abnahme noch ausstehend",
   "basis": "Current AP02 catalogue profile[1]=Fans; 5 large,3-4 medium,1-2 small. Fan4 medium alternatives alternate once by fixed club id order within country; explicit table frozen, no runtime season/strength/budget reevaluation.",
+  "runtimeContract": {
+    "ownerFields": "ClubId and Venue retain the actual home club ID; DisplayName is the frozen actual club name.",
+    "templateField": "TemplateId identifies the shared architectural source GER-1, GER-2, GER-3, GER-5 or GER-6.",
+    "fixedTemplateData": "Geometry, environment, Identity.Country, supporter layout and DetailSeed remain exact deep copies of that template.",
+    "scope": "Only presentation Resolve/ResolveVenue uses the mapping; ResolveLegacy, cup standards and neutral finals remain unchanged. No runtime fan, strength, budget or season reevaluation; no save fields or migration."
+  },
   "templates": [
     "GER-1",
     "GER-2",

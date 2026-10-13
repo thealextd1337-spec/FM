@@ -1,5 +1,12 @@
 # Änderungen
 
+## Noch nicht veröffentlicht
+
+- Low-Poly-Kandidat 131: Die 96 Ligavereine erhalten eine feste Zuordnung zu den fünf fertig ausgearbeiteten Stadionvorlagen – 14 große, 52 mittlere und 30 kleine. Vereinsnamen, Farben, Banner sowie Heim- und Gästefanblöcke bleiben klubbezogen. Weitere Einzelstadien sind im [Erweiterungsplan](stadionerweiterung-plan.md) zurückgestellt.
+- Fanbewegung und Fahnen folgen der empfangenen Matchzeit; die Jubelbewegung klingt innerhalb der tatsächlichen 4,05 Sekunden weich aus. Die sichtbare Torballbewegung läuft über die volle Torpause weiter. Eine optionale Netzkennung erhält späte Aufpralle, während ältere Bilder ihre bisherige Dämpfung behalten. Native Tore, Zufallsfolge und Spielstände werden nicht verändert.
+- Codex High übernimmt nach dem Claude-API-Ratenlimit die Nachbesserungen. Lichtwerte einschließlich Shaderkennung werden auch beim Schließen korrekt zurückgesetzt. Galeriebilder synchronisieren zuerst die tatsächlichen Knochenpositionen und berücksichtigen Figurenskalierung und Materialwerte.
+- In Unity bestehen 1.511 Profil-, 966 Architektur-, 277 Fanblock-, 198 Licht- und 98 Tornetzprüfungen. Der vollständige Vergleich zeigt in neun bestehenden Controllergruppen keine neuen Änderungen an Werten, Ergebnissen oder Grenzen; der historische R15-Fehler bleibt separat dokumentiert. Zwei vollständige aktuelle Toraufzeichnungen bestehen den verpflichtenden Schlussnachweis. Zielbuild, Geräteabnahme und Live-Auslieferung werden getrennt geprüft.
+
 ## 13. Oktober 2026 – Gesicherten Lichtentwurf lokal geprüft
 
 - Der zweite Opus-Lichtauftrag wurde am Claude-API-Ratenlimit unterbrochen. Vier geänderte Dateien sind samt unverändertem Ausgangsstand und Patch gesichert; der Entwurf enthält präzisere Aufnahmeprüfungen, Shader-Rücksetzung und Schutz gegen doppelte Ballschattenobjekte.

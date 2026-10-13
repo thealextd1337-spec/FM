@@ -5,42 +5,42 @@
       "fieldPlayers": 5,
       "season": 1,
       "players": 517,
-      "bytes": 7008133,
+      "bytes": 6908057,
       "matches": 259
     },
     {
       "fieldPlayers": 5,
       "season": 2,
-      "players": 536,
-      "bytes": 8266142,
+      "players": 537,
+      "bytes": 8177101,
       "matches": 259
     },
     {
       "fieldPlayers": 5,
       "season": 3,
-      "players": 499,
-      "bytes": 9925541,
+      "players": 505,
+      "bytes": 9821386,
       "matches": 259
     },
     {
       "fieldPlayers": 6,
       "season": 1,
       "players": 520,
-      "bytes": 7589576,
+      "bytes": 7457091,
       "matches": 259
     },
     {
       "fieldPlayers": 6,
       "season": 2,
       "players": 530,
-      "bytes": 8928815,
+      "bytes": 8793186,
       "matches": 259
     },
     {
       "fieldPlayers": 6,
       "season": 3,
       "players": 498,
-      "bytes": 10673445,
+      "bytes": 10532621,
       "matches": 259
     }
   ]

@@ -29,6 +29,8 @@ jobs:
 
       - name: Spieltests ausführen
         run: |
+          node work/test-lowpoly-goal-tail.cjs
+          node work/platform/qa/test-presentation-v131.cjs
           node work/test-tactics-roster-v130.cjs
           node work/run-native130-tests.cjs
           node work/test-view-frame-scheduler-v130.cjs

@@ -27,12 +27,16 @@ public static class WorldNetDeformation {
     public const double RippleAmplitude=.14,RippleFrequency=2.2,RippleSpeed=4.5,RippleDecay=.32,RippleOnset=.12,RippleSpread=.6;
     public const double SwayAmplitude=.10,SwayFrequency=1.5,SwayDecay=.4,SwayOnset=.1;
     public const double FadeStart=1.2,FadeEnd=1.6;
-    // Native scene hold: the goal scene caps its scene time at HoldStart (world-goal-scene-v83.js), so the rear-hit
-    // age and bulge (world-pitch3d-v98.js v119VisibleGoalView) stop there while the goal pause runs on to 4.05 s and
-    // the fact then ends. With the picture's goal-scene time (WorldFrame.celebrationTime = 4.05 - goalPause, sent with
+    // Legacy scene hold: the native scene pose caps at HoldStart (world-goal-scene-v83.js). Older rear-hit facts
+    // cap their age and bulge there while the goal pause runs on to 4.05 s and the fact then ends.
+    // With the picture's goal-scene time (WorldFrame.celebrationTime = 4.05 - goalPause, sent with
     // every goal-scene picture) whatever the held fact shows eases to exact rest between HoldStart and HoldEnd, well
     // before the fact ends: no frozen ripple, no reset pop. Goals that reach rest before HoldStart are unchanged.
     public const double HoldStart=2.45,HoldEnd=3.25;
+    // New flowing facts use the full received pause clock. Preserve late impacts
+    // until the final 200 ms, then reach exact rest when the goal fact ends.
+    // The absent/default marker retains the legacy capped-fact fade above.
+    public const double FlowingHoldStart=3.85,FlowingHoldEnd=4.05;
     // Roof and side panels: outward only, per unit of bulge; roof by impact height, sides by lateral proximity.
     public const double SympathyAmplitude=.09,RoofRadius=3.0,SideRadius=2.0;
     // Radial profile samples (m); a uniform Catmull-Rom spline keeps the profile C1 between samples.
@@ -43,6 +47,7 @@ public static class WorldNetDeformation {
     // Share of the shown deformation at a picture's goal-scene time: 1 until HoldStart, smootherstep to exactly 0 at
     // HoldEnd; 1 for a picture without one (NaN).
     public static double Hold(double sceneTime)=>Finite(sceneTime)?1-Smoother((sceneTime-HoldStart)/(HoldEnd-HoldStart)):1;
+    public static double Hold(double sceneTime,bool flowing)=>flowing&&Finite(sceneTime)?1-Smoother((sceneTime-FlowingHoldStart)/(FlowingHoldEnd-FlowingHoldStart)):Hold(sceneTime);
 
     // The displaced position of a rest vertex of a goal net as ProbeBridge.GoalNet builds it (tags "back", "roof",
     // "left", "right"). Rest for a null or invalid fact, the other goal, an unknown tag, a fact at rest and a hold that
@@ -56,7 +61,7 @@ public static class WorldNetDeformation {
     static double Amount(Vector3 rest,Panel panel,int sign,WorldNet net,Geometry geometry,double sceneTime){
         if(net==null||geometry==null||panel==Panel.None||net.sign!=sign)return 0;
         var goal=new Goal(geometry);if(!goal.Valid)return 0;
-        var i=Prepare(net,goal,Hold(sceneTime));if(!i.Moving)return 0;
+        var i=Prepare(net,goal,Hold(sceneTime,net.flowing));if(!i.Moving)return 0;
         double window=Window(panel,rest,sign,goal);if(window==0)return 0;
         switch(panel){
             case Panel.Back:return BackAmount(window,Mode(rest.z,rest.y,goal),rest,i,null,goal.Last);
@@ -90,7 +95,7 @@ public static class WorldNetDeformation {
         // as long as the rest vertices). True when output changed and needs an upload; an unchanged picture or an
         // undisturbed net writes nothing. largest: the largest displacement shown (m).
         public bool Update(WorldNet net,double sceneTime,Vector3[] output,out float largest){
-            double share=Hold(sceneTime);var i=net!=null&&net.sign==sign&&goal.Valid?Prepare(net,goal,share):default;
+            double share=Hold(sceneTime,net?.flowing??false);var i=net!=null&&net.sign==sign&&goal.Valid?Prepare(net,goal,share):default;
             if(!i.Moving){
                 shown=false;largest=this.largest=0;if(!deformed)return false;
                 Array.Copy(rest,output,rest.Length);for(int r=0;r<runs.Length;r++)runs[r].dirty=false;deformed=false;return true;
@@ -121,7 +126,7 @@ public static class WorldNetDeformation {
             Last=Valid?(int)Math.Ceiling(Math.Sqrt((Width+.2)*(Width+.2)+(Height+.2)*(Height+.2))/Step)+1:1;
         }
     }
-    // Per-picture constants of one fact; share scales every motion (the eased native scene hold).
+    // Per-picture constants of one fact; share scales every motion (the received scene's final fade).
     struct Impact {public bool Moving;public double Z,H,Age,Main,Ripple,Sway,Roof,Left,Right;}
     static Impact Prepare(WorldNet net,in Goal goal,double share){
         var i=new Impact();

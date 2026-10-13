@@ -103,11 +103,13 @@ public sealed class StadiumBlueprint {
             for(int k=0;k<bins;k++){float a=-range/2+k*range/bins,c=a+range/bins;if(hi>=a&&lo<=c)top[k]=Mathf.Max(top[k],b.max.y);}}
         return top;
     }
-    // Structural fingerprint: the declared identity groups plus measured stand heights (1.5 m
-    // bands) and the far and end skylines (6 m bands) of the built pieces. Colours, names, IDs and
-    // seeds are excluded; StadiumFingerprint.Distance counts the groups that differ.
-    public List<StadiumFeature> StructuralFeatures(){
-        var list=StadiumFingerprint.Declared(Structure);var heights=new string[4];for(int g=0;g<4;g++)heights[g]=Mathf.FloorToInt(StructuralTop(g)/1.5f).ToString();
+    // Acceptance uses only the eleven declared identity groups: colours, names, IDs and seeds
+    // cannot improve the structural distance between authored templates.
+    public List<StadiumFeature> StructuralFeatures()=>StadiumFingerprint.Declared(Structure);
+    // Informational geometry measurements, separate from acceptance. Surrounding geometry and
+    // thus these bands may vary with the detail seed and quality.
+    public List<StadiumFeature> MeasuredFeatures(){
+        var list=new List<StadiumFeature>();var heights=new string[4];for(int g=0;g<4;g++)heights[g]=Mathf.FloorToInt(StructuralTop(g)/1.5f).ToString();
         list.Add(new StadiumFeature{Group="heights",Value=string.Join("|",heights),Silhouette=true});
         string Band(float[] v){var s=new string[v.Length];for(int i=0;i<v.Length;i++)s[i]=Mathf.FloorToInt(v[i]/6).ToString();return string.Join(",",s);}
         list.Add(new StadiumFeature{Group="skyline",Value=Band(Skyline(false,8))+"/"+Band(Skyline(true,5)),Silhouette=true});
@@ -206,8 +208,9 @@ public static class StadiumArchitecture {
         var b=new Builder{plan=plan,random=new System.Random(profile.DetailSeed),detailed=detailed,legacy=legacy,legacyCorners=profile.CornerBuildings,id=id,style=style,archetype=archetype,motif=legacy?motif:MotifOf(id.Facade),L=length,W=width,depth=depth};
         float L=length,W=width;
         Palette(plan,b,motif,home,trim);
-        // The club's own pattern (also on a shared standard ground); league grounds: seed == DetailSeed.
-        plan.Identity=IdentityOf(motif,ClubStadiumProfiles.Seed(profile.ClubId??""));plan.Accent=AccentOf(home,trim);plan.Colors[StadiumSlot.Accent]=plan.Accent;
+        // Shared league owners retain their template's panel geometry. Colours still
+        // belong to the actual club; legacy and standard grounds keep their old seed.
+        plan.Identity=IdentityOf(motif,ClubStadiumProfiles.Seed(profile.TemplateId??profile.ClubId??""));plan.Accent=AccentOf(home,trim);plan.Colors[StadiumSlot.Accent]=plan.Accent;
         // Authored grounds sit as close as the boards allow for their size; legacy keeps the archetype gaps.
         float gapLong=legacy?style.gapLong:id.SizeClass=="S"?4.7f:5.5f,gapEnd=legacy?style.gapEnd:id.SizeClass=="S"?5.6f:6.5f;
         var sides=new Side[4];b.sides=sides;

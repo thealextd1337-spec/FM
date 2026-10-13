@@ -103,22 +103,26 @@ public sealed class ClubStadiumProfile {
     public float StandDepth, MastHeight, RoofOverhang;
     public int DetailSeed;
     public bool CornerBuildings;
-    // The stadium actually built: a club ID, CUP-STANDARD-<country>, LEAGUE-STANDARD-<country>,
-    // NEUTRAL-EUROPE or NEUTRAL-CUP-<country>; and its structural identity.
-    public string Venue;
+    // Venue identifies the actual ground/owner. TemplateId identifies the shared architectural
+    // source for a mapped league club; null on unchanged legacy, cup and neutral profiles.
+    // Identity.Country is the template architecture country, not the owner country.
+    public string Venue, TemplateId;
     public StadiumIdentity Identity;
 }
 
 public static class ClubStadiumProfiles {
-    // Clubs whose stadium is individually authored (prototype round: Germany). The full live
-    // world has 96 league clubs (LiveLeagueClubIds); Coverage() reports every gap honestly.
+    // Five authored architectural templates. All 96 live league clubs use a frozen assignment;
+    // sharing a template does not imply a new individually authored stadium.
     public static readonly string[] AuthoredClubIds = {"GER-1","GER-2","GER-3","GER-5","GER-6"};
     public static readonly string[] Countries = {"ENG","ESP","ITA","GER","FRA","POR","NED","AUT","BEL","TUR","SUI","GRE"};
     // Declared after the arrays above: static initialisers run in textual order.
     static readonly Dictionary<string, ClubStadiumProfile> catalog = CreateCatalog(true);
     // Release 130 profiles (legacy fields and derived identity, no authored overrides).
     static readonly Dictionary<string, ClubStadiumProfile> legacyCatalog = CreateCatalog(false);
+    static readonly Dictionary<string, ClubStadiumProfile> leagueCatalog = CreateLeagueCatalog();
 
+    // Historical 48-entry catalogue inventory, kept stable for legacy consumers.
+    // LiveLeagueClubIds is the full league inventory for the presentation path.
     public static string[] KnownClubIds {
         get {
             var ids = new string[catalog.Count];
@@ -131,10 +135,11 @@ public static class ClubStadiumProfiles {
     public static string[] LiveLeagueClubIds {
         get {var ids=new List<string>();foreach(var c in Countries)for(int i=1;i<=8;i++)ids.Add(c+"-"+i);ids.Sort(StringComparer.Ordinal);return ids.ToArray();}
     }
-    // authored | legacy-derived | league-standard | cup-standard
+    // authored | shared-template | legacy-derived | league-standard | cup-standard
     public static string Coverage(string clubId) {
         if (IsCupId(clubId)) return "cup-standard";
         ClubStadiumProfile p;
+        if (clubId != null && leagueCatalog.TryGetValue(clubId, out p)) return p.TemplateId == clubId ? "authored" : "shared-template";
         if (clubId != null && catalog.TryGetValue(clubId, out p)) return p.Identity.Source;
         return "league-standard";
     }
@@ -160,6 +165,7 @@ public static class ClubStadiumProfiles {
             catalog.TryGetValue(clubId, out profile);
             return CupStandard(clubId, CountryOf(clubId), profile?.DisplayName);
         }
+        if (clubId != null && leagueCatalog.TryGetValue(clubId, out profile)) return Copy(profile);
         if (clubId != null && catalog.TryGetValue(clubId, out profile)) return Copy(profile);
         // Missing identity and league clubs without a profile get the standard league ground in
         // their country's facade; an unfamiliar identity remains visible for diagnostics. Neither
@@ -195,7 +201,7 @@ public static class ClubStadiumProfiles {
             ClubId=p.ClubId, DisplayName=p.DisplayName, Archetype=p.Archetype, FacadeMotif=p.FacadeMotif,
             TierCounts=(int[])p.TierCounts.Clone(), RoofSides=(bool[])p.RoofSides.Clone(),
             StandDepth=p.StandDepth, MastHeight=p.MastHeight, RoofOverhang=p.RoofOverhang,
-            DetailSeed=p.DetailSeed, CornerBuildings=p.CornerBuildings, Venue=p.Venue, Identity=p.Identity.Clone()
+            DetailSeed=p.DetailSeed, CornerBuildings=p.CornerBuildings, Venue=p.Venue, TemplateId=p.TemplateId, Identity=p.Identity.Clone()
         };
     }
 
@@ -362,6 +368,116 @@ public static class ClubStadiumProfiles {
             Surroundings=new[] {SurroundingKind.UrbanBlocks, style.local},
             Supporters=new SupporterSpec {HomeEnd=2, HomeForm=HomeBlockForm.LowerTier, AwayPosition=AwayBlockPosition.UpperTier, AwayWidth=.3f, Banners=BannerStyle.Fence, FlagDensity=.85f, Tifo=TifoStyle.None, Neutral=true},
             ArenaPrimary=style.primary, ArenaSecondary=style.secondary});
+    }
+
+    // Frozen editorial table from docs/stadion-zuordnung-geplant.json (13 October 2026).
+    // No catalogue fan values, match results, seasons, budgets or random generators are read.
+    // Only the owner label and venue change: geometry, environment, supporter layout and
+    // DetailSeed remain exact copies of the selected template, including its GER country.
+    static Dictionary<string, ClubStadiumProfile> CreateLeagueCatalog() {
+        var result = new Dictionary<string, ClubStadiumProfile>(StringComparer.Ordinal);
+        void Add(string clubId, string clubName, string templateId) {
+            var p = Copy(catalog[templateId]);
+            p.ClubId = clubId; p.DisplayName = clubName; p.Venue = clubId; p.TemplateId = templateId;
+            result.Add(clubId, p);
+        }
+        Add("AUT-1", "Wiener SC Kronau", "GER-2");
+        Add("AUT-2", "FC Salzburg Falken", "GER-5");
+        Add("AUT-3", "Schwarz Weiß Graz", "GER-3");
+        Add("AUT-4", "Linzer SC Union", "GER-5");
+        Add("AUT-5", "Innsbruck Sport", "GER-5");
+        Add("AUT-6", "SC Klagenfurt Seestadt", "GER-6");
+        Add("AUT-7", "SV St. Pölten Westpark", "GER-6");
+        Add("AUT-8", "Wiener SC Fortuna", "GER-6");
+        Add("BEL-1", "Brugge Reie FC", "GER-2");
+        Add("BEL-2", "Bruxelles Senne Union", "GER-1");
+        Add("BEL-3", "Antwerpen Schelde FC", "GER-5");
+        Add("BEL-4", "Gent Leie FC", "GER-5");
+        Add("BEL-5", "Liège Meuse FC", "GER-3");
+        Add("BEL-6", "Genk Kempen FC", "GER-6");
+        Add("BEL-7", "Charleroi Sambre FC", "GER-6");
+        Add("BEL-8", "Bruxelles Parc FC", "GER-6");
+        Add("ENG-1", "Regent Vale FC", "GER-1");
+        Add("ENG-2", "Irwell FC", "GER-2");
+        Add("ENG-3", "Mersey Dock FC", "GER-3");
+        Add("ENG-4", "Birmingham Works FC", "GER-5");
+        Add("ENG-5", "Bristol Quay FC", "GER-6");
+        Add("ENG-6", "Wandle Town", "GER-6");
+        Add("ENG-7", "Leeds Aire FC", "GER-2");
+        Add("ENG-8", "Newcastle Tyne FC", "GER-3");
+        Add("ESP-1", "Madrid Central CF", "GER-1");
+        Add("ESP-2", "Barcelona Mar FC", "GER-1");
+        Add("ESP-3", "Turia CF", "GER-5");
+        Add("ESP-4", "Sevilla Union FC", "GER-2");
+        Add("ESP-5", "Barcelona Delta FC", "GER-6");
+        Add("ESP-6", "Vigo Atlantic FC", "GER-6");
+        Add("ESP-7", "Bilbao Nervión CF", "GER-5");
+        Add("ESP-8", "Zaragoza Ebro CF", "GER-5");
+        Add("FRA-1", "Paris Central FC", "GER-1");
+        Add("FRA-2", "Marseille Union", "GER-1");
+        Add("FRA-3", "Lyon Rive FC", "GER-5");
+        Add("FRA-4", "Bordeaux Atlantic FC", "GER-2");
+        Add("FRA-5", "Lille Union", "GER-5");
+        Add("FRA-6", "Paris Valmy FC", "GER-6");
+        Add("FRA-7", "Nantes Loire FC", "GER-6");
+        Add("FRA-8", "Strasbourg Rives FC", "GER-5");
+        Add("GER-1", "FC München Isar", "GER-1");
+        Add("GER-2", "FC Bremen Weser", "GER-2");
+        Add("GER-3", "FC Hamburg Elbe", "GER-3");
+        Add("GER-4", "SC Freiburg Tal", "GER-6");
+        Add("GER-5", "FC Köln Rhein", "GER-5");
+        Add("GER-6", "SV München Au", "GER-6");
+        Add("GER-7", "FC Dortmund Emscher", "GER-1");
+        Add("GER-8", "FC Frankfurt Mainbogen", "GER-5");
+        Add("GRE-1", "Athina Helios FC", "GER-1");
+        Add("GRE-2", "Piräus Nautilos FC", "GER-2");
+        Add("GRE-3", "Thessaloniki Vardaris FC", "GER-3");
+        Add("GRE-4", "Athina Kallisto FC", "GER-5");
+        Add("GRE-5", "Thessaloniki Therma FC", "GER-6");
+        Add("GRE-6", "Patras Achaia FC", "GER-6");
+        Add("GRE-7", "Iraklio Candia FC", "GER-6");
+        Add("GRE-8", "Volos Pelion FC", "GER-6");
+        Add("ITA-1", "Torino Centrale FC", "GER-1");
+        Add("ITA-2", "Milano Ferro FC", "GER-2");
+        Add("ITA-3", "Roma Capitol FC", "GER-1");
+        Add("ITA-4", "Bologna Collina AC", "GER-6");
+        Add("ITA-5", "Navigli FC", "GER-6");
+        Add("ITA-6", "Napoli Sud AC", "GER-3");
+        Add("ITA-7", "Firenze Arno AC", "GER-5");
+        Add("ITA-8", "Genova Lanterna FC", "GER-5");
+        Add("NED-1", "Amsterdam Amstel FC", "GER-1");
+        Add("NED-2", "Rotterdam Maaspoort FC", "GER-2");
+        Add("NED-3", "Eindhoven Lichtstad FC", "GER-5");
+        Add("NED-4", "Utrecht Singel FC", "GER-5");
+        Add("NED-5", "Enschede Veld FC", "GER-3");
+        Add("NED-6", "Arnhem Rijnpark FC", "GER-6");
+        Add("NED-7", "Groningen Noorderpoort FC", "GER-5");
+        Add("NED-8", "Amsterdam Westhaven FC", "GER-6");
+        Add("POR-1", "Lisboa Central FC", "GER-1");
+        Add("POR-2", "Porto Ribeira FC", "GER-2");
+        Add("POR-3", "Tejo Union", "GER-3");
+        Add("POR-4", "Braga Norte FC", "GER-5");
+        Add("POR-5", "Coimbra Athletic", "GER-6");
+        Add("POR-6", "Aveiro Costa FC", "GER-6");
+        Add("POR-7", "Guimarães Castelo FC", "GER-2");
+        Add("POR-8", "Setúbal Sado FC", "GER-6");
+        Add("SUI-1", "Basel Rheintor FC", "GER-2");
+        Add("SUI-2", "Bern Aarebogen FC", "GER-5");
+        Add("SUI-3", "Zürich Limmat FC", "GER-3");
+        Add("SUI-4", "Genève Rhône FC", "GER-5");
+        Add("SUI-5", "St. Gallen Sitter FC", "GER-2");
+        Add("SUI-6", "Lausanne Léman FC", "GER-6");
+        Add("SUI-7", "Luzern Reuss FC", "GER-6");
+        Add("SUI-8", "Zürich Sihl FC", "GER-6");
+        Add("TUR-1", "Istanbul Bosporus SK", "GER-1");
+        Add("TUR-2", "Istanbul Haliç SK", "GER-2");
+        Add("TUR-3", "Istanbul Marmara SK", "GER-5");
+        Add("TUR-4", "Trabzon Karadeniz SK", "GER-3");
+        Add("TUR-5", "Ankara Kale SK", "GER-5");
+        Add("TUR-6", "Izmir Körfez SK", "GER-2");
+        Add("TUR-7", "Bursa Yeşilova SK", "GER-6");
+        Add("TUR-8", "Antalya Kıyı SK", "GER-6");
+        return result;
     }
 
     static Dictionary<string, ClubStadiumProfile> CreateCatalog(bool authored) {

@@ -1,0 +1,734 @@
+{
+  "passed": true,
+  "completed": 121,
+  "total": 121,
+  "node": "v24.19.0",
+  "rows": [
+    {
+      "command": "node work/test-lowpoly-goal-tail.cjs",
+      "exitCode": 0,
+      "ms": 364,
+      "log": "001.log"
+    },
+    {
+      "command": "node work/platform/qa/test-presentation-v131.cjs",
+      "exitCode": 0,
+      "ms": 44,
+      "log": "002.log"
+    },
+    {
+      "command": "node work/test-tactics-roster-v130.cjs",
+      "exitCode": 0,
+      "ms": 10122,
+      "log": "003.log"
+    },
+    {
+      "command": "node work/run-native130-tests.cjs",
+      "exitCode": 0,
+      "ms": 652,
+      "log": "004.log"
+    },
+    {
+      "command": "node work/test-view-frame-scheduler-v130.cjs",
+      "exitCode": 0,
+      "ms": 45,
+      "log": "005.log"
+    },
+    {
+      "command": "node work/test-squad-planning-v179.cjs",
+      "exitCode": 0,
+      "ms": 3411,
+      "log": "006.log"
+    },
+    {
+      "command": "node work/test-start-rosters-v177.cjs --worlds=60",
+      "exitCode": 0,
+      "ms": 98761,
+      "log": "007.log"
+    },
+    {
+      "command": "node work/test-compact-balance-v178.cjs",
+      "exitCode": 0,
+      "ms": 11672,
+      "log": "008.log"
+    },
+    {
+      "command": "node work/test-native-performance-context.cjs",
+      "exitCode": 0,
+      "ms": 96,
+      "log": "009.log"
+    },
+    {
+      "command": "node work/test-youth-legacy-v176.cjs",
+      "exitCode": 0,
+      "ms": 7315,
+      "log": "010.log"
+    },
+    {
+      "command": "node work/test-progress-v58.cjs",
+      "exitCode": 0,
+      "ms": 37,
+      "log": "011.log"
+    },
+    {
+      "command": "node work/test-live-player-v59.cjs",
+      "exitCode": 0,
+      "ms": 204,
+      "log": "012.log"
+    },
+    {
+      "command": "node work/test-progress-menu.cjs",
+      "exitCode": 0,
+      "ms": 38,
+      "log": "013.log"
+    },
+    {
+      "command": "node work/test-transfer-confirmations.cjs",
+      "exitCode": 0,
+      "ms": 38,
+      "log": "014.log"
+    },
+    {
+      "command": "node work/test-transfer-deadline-dialog.cjs",
+      "exitCode": 0,
+      "ms": 35,
+      "log": "015.log"
+    },
+    {
+      "command": "node work/test-tactics-replacement.cjs",
+      "exitCode": 0,
+      "ms": 35,
+      "log": "016.log"
+    },
+    {
+      "command": "node work/test-quick-lineup-cells.cjs",
+      "exitCode": 0,
+      "ms": 36,
+      "log": "017.log"
+    },
+    {
+      "command": "node work/test-v24.cjs",
+      "exitCode": 0,
+      "ms": 37,
+      "log": "018.log"
+    },
+    {
+      "command": "node work/test-mobile-drag-scroll.cjs",
+      "exitCode": 0,
+      "ms": 137,
+      "log": "019.log"
+    },
+    {
+      "command": "node work/test-v20-wake-lifecycle.cjs",
+      "exitCode": 0,
+      "ms": 44,
+      "log": "020.log"
+    },
+    {
+      "command": "node work/test-v31.cjs",
+      "exitCode": 0,
+      "ms": 1651,
+      "log": "021.log"
+    },
+    {
+      "command": "node work/test-v41.cjs",
+      "exitCode": 0,
+      "ms": 139,
+      "log": "022.log"
+    },
+    {
+      "command": "node work/test-v42.cjs",
+      "exitCode": 0,
+      "ms": 207,
+      "log": "023.log"
+    },
+    {
+      "command": "node work/test-v44.cjs",
+      "exitCode": 0,
+      "ms": 150,
+      "log": "024.log"
+    },
+    {
+      "command": "node work/test-v45.cjs",
+      "exitCode": 0,
+      "ms": 158,
+      "log": "025.log"
+    },
+    {
+      "command": "node work/test-v47.cjs",
+      "exitCode": 0,
+      "ms": 194,
+      "log": "026.log"
+    },
+    {
+      "command": "node work/test-statistics-menu.cjs",
+      "exitCode": 0,
+      "ms": 173,
+      "log": "027.log"
+    },
+    {
+      "command": "node work/test-player-seasons.cjs",
+      "exitCode": 0,
+      "ms": 152,
+      "log": "028.log"
+    },
+    {
+      "command": "node work/test-v49.cjs",
+      "exitCode": 0,
+      "ms": 147,
+      "log": "029.log"
+    },
+    {
+      "command": "node work/test-v50.cjs",
+      "exitCode": 0,
+      "ms": 446,
+      "log": "030.log"
+    },
+    {
+      "command": "node work/test-v50-balance.cjs",
+      "exitCode": 0,
+      "ms": 25061,
+      "log": "031.log"
+    },
+    {
+      "command": "node work/test-v51.cjs",
+      "exitCode": 0,
+      "ms": 694,
+      "log": "032.log"
+    },
+    {
+      "command": "node work/test-v52.cjs",
+      "exitCode": 0,
+      "ms": 204,
+      "log": "033.log"
+    },
+    {
+      "command": "node work/test-v53.cjs",
+      "exitCode": 0,
+      "ms": 200,
+      "log": "034.log"
+    },
+    {
+      "command": "node work/test-v54.cjs",
+      "exitCode": 0,
+      "ms": 40842,
+      "log": "035.log"
+    },
+    {
+      "command": "node work/test-v55.cjs",
+      "exitCode": 0,
+      "ms": 532,
+      "log": "036.log"
+    },
+    {
+      "command": "node work/test-ai-season-stats.cjs",
+      "exitCode": 0,
+      "ms": 164,
+      "log": "037.log"
+    },
+    {
+      "command": "node work/test-ai-career-v60.cjs",
+      "exitCode": 0,
+      "ms": 781,
+      "log": "038.log"
+    },
+    {
+      "command": "node work/test-breakaway.cjs",
+      "exitCode": 0,
+      "ms": 161,
+      "log": "039.log"
+    },
+    {
+      "command": "node work/test-v56.cjs",
+      "exitCode": 0,
+      "ms": 5785,
+      "log": "040.log"
+    },
+    {
+      "command": "node work/test-duel-streaks.cjs",
+      "exitCode": 0,
+      "ms": 549,
+      "log": "041.log"
+    },
+    {
+      "command": "node work/test-v57.cjs",
+      "exitCode": 0,
+      "ms": 549,
+      "log": "042.log"
+    },
+    {
+      "command": "node work/test-world-foundation-v61.cjs",
+      "exitCode": 0,
+      "ms": 143,
+      "log": "043.log"
+    },
+    {
+      "command": "node work/test-world-local-start.cjs",
+      "exitCode": 0,
+      "ms": 1048,
+      "log": "044.log"
+    },
+    {
+      "command": "node work/test-world-competition-v62.cjs",
+      "exitCode": 0,
+      "ms": 12737,
+      "log": "045.log"
+    },
+    {
+      "command": "node work/test-world-coaches-v63.cjs",
+      "exitCode": 0,
+      "ms": 1453,
+      "log": "046.log"
+    },
+    {
+      "command": "node work/test-world-match-v64.cjs",
+      "exitCode": 0,
+      "ms": 384,
+      "log": "047.log"
+    },
+    {
+      "command": "node work/test-world-penalties-v65.cjs",
+      "exitCode": 0,
+      "ms": 37,
+      "log": "048.log"
+    },
+    {
+      "command": "node work/test-world-victory-popup.cjs",
+      "exitCode": 0,
+      "ms": 36,
+      "log": "049.log"
+    },
+    {
+      "command": "node work/test-world-nationalities-v79.cjs",
+      "exitCode": 0,
+      "ms": 2920,
+      "log": "050.log"
+    },
+    {
+      "command": "node work/test-world-market-nationalities-v79.cjs",
+      "exitCode": 0,
+      "ms": 143,
+      "log": "051.log"
+    },
+    {
+      "command": "node work/test-world-kits-v81.cjs",
+      "exitCode": 0,
+      "ms": 2330,
+      "log": "052.log"
+    },
+    {
+      "command": "node work/test-world-direct-transfer.cjs",
+      "exitCode": 0,
+      "ms": 200,
+      "log": "053.log"
+    },
+    {
+      "command": "node work/test-world-navigation.cjs",
+      "exitCode": 0,
+      "ms": 38,
+      "log": "054.log"
+    },
+    {
+      "command": "node work/test-world-swap-banner.cjs",
+      "exitCode": 0,
+      "ms": 36,
+      "log": "055.log"
+    },
+    {
+      "command": "node work/test-world-goal-scene-v83.cjs",
+      "exitCode": 0,
+      "ms": 40,
+      "log": "056.log"
+    },
+    {
+      "command": "node work/test-world-goal-banner-v84.cjs",
+      "exitCode": 0,
+      "ms": 38,
+      "log": "057.log"
+    },
+    {
+      "command": "node work/test-i18n-v75.cjs",
+      "exitCode": 0,
+      "ms": 50,
+      "log": "058.log"
+    },
+    {
+      "command": "node work/test-world-live-ranks.cjs",
+      "exitCode": 0,
+      "ms": 40,
+      "log": "059.log"
+    },
+    {
+      "command": "node work/test-world-grid-v71.cjs",
+      "exitCode": 0,
+      "ms": 119,
+      "log": "060.log"
+    },
+    {
+      "command": "node work/test-world-player-instructions.cjs",
+      "exitCode": 0,
+      "ms": 122,
+      "log": "061.log"
+    },
+    {
+      "command": "node work/test-world-physical-instructions.cjs",
+      "exitCode": 0,
+      "ms": 163,
+      "log": "062.log"
+    },
+    {
+      "command": "node work/test-world-career-plan.cjs",
+      "exitCode": 0,
+      "ms": 125,
+      "log": "063.log"
+    },
+    {
+      "command": "node work/test-world-economy-v66.cjs",
+      "exitCode": 0,
+      "ms": 9070,
+      "log": "064.log"
+    },
+    {
+      "command": "node work/test-world-sponsors-v97.cjs",
+      "exitCode": 0,
+      "ms": 263,
+      "log": "065.log"
+    },
+    {
+      "command": "node work/test-world-career-events.cjs",
+      "exitCode": 0,
+      "ms": 2474,
+      "log": "066.log"
+    },
+    {
+      "command": "node work/test-world-playable-rosters.cjs",
+      "exitCode": 0,
+      "ms": 424,
+      "log": "067.log"
+    },
+    {
+      "command": "node work/test-world-transfer-list-v72.cjs",
+      "exitCode": 0,
+      "ms": 662,
+      "log": "068.log"
+    },
+    {
+      "command": "node work/test-world-human-sale-v73.cjs",
+      "exitCode": 0,
+      "ms": 527,
+      "log": "069.log"
+    },
+    {
+      "command": "node work/test-world-youth-manager-v67.cjs",
+      "exitCode": 0,
+      "ms": 4929,
+      "log": "070.log"
+    },
+    {
+      "command": "node work/test-finance-close-v130.cjs",
+      "exitCode": 0,
+      "ms": 1680,
+      "log": "071.log"
+    },
+    {
+      "command": "node work/test-world-payments-v124.cjs",
+      "exitCode": 0,
+      "ms": 3565,
+      "log": "072.log"
+    },
+    {
+      "command": "node work/test-3d-documentation-v134.cjs",
+      "exitCode": 0,
+      "ms": 73,
+      "log": "073.log"
+    },
+    {
+      "command": "node work/test-mobile-performance-v135.cjs",
+      "exitCode": 0,
+      "ms": 41,
+      "log": "074.log"
+    },
+    {
+      "command": "node work/test-world-storage-v67.cjs",
+      "exitCode": 0,
+      "ms": 215,
+      "log": "075.log"
+    },
+    {
+      "command": "node work/test-world-storage-startup.cjs",
+      "exitCode": 0,
+      "ms": 5811,
+      "log": "076.log"
+    },
+    {
+      "command": "node work/test-world-storage-recovery.cjs",
+      "exitCode": 0,
+      "ms": 994,
+      "log": "077.log"
+    },
+    {
+      "command": "node work/test-expansion-assets-v161.cjs",
+      "exitCode": 0,
+      "ms": 1045,
+      "log": "078.log"
+    },
+    {
+      "command": "node work/test-world-expansion-v161.cjs",
+      "exitCode": 0,
+      "ms": 14847,
+      "log": "079.log"
+    },
+    {
+      "command": "node work/test-world-expansion-domestic-v164.cjs",
+      "exitCode": 0,
+      "ms": 7286,
+      "log": "080.log"
+    },
+    {
+      "command": "node work/test-world-expansion-crown-v165.cjs",
+      "exitCode": 0,
+      "ms": 9336,
+      "log": "081.log"
+    },
+    {
+      "command": "node work/test-world-expansion-horizon-v166.cjs",
+      "exitCode": 0,
+      "ms": 183415,
+      "log": "082.log"
+    },
+    {
+      "command": "node work/test-world-expansion-active-validation-v166.cjs",
+      "exitCode": 0,
+      "ms": 11351,
+      "log": "083.log"
+    },
+    {
+      "command": "node work/test-world-expansion-rules-v167.cjs",
+      "exitCode": 0,
+      "ms": 6963,
+      "log": "084.log"
+    },
+    {
+      "command": "node work/test-world-expansion-contracts-v168.cjs",
+      "exitCode": 0,
+      "ms": 15272,
+      "log": "085.log"
+    },
+    {
+      "command": "node work/test-world-expansion-stories-v170.cjs",
+      "exitCode": 0,
+      "ms": 16288,
+      "log": "086.log"
+    },
+    {
+      "command": "node work/test-world-expansion-presentation-v172.cjs",
+      "exitCode": 0,
+      "ms": 14166,
+      "log": "087.log"
+    },
+    {
+      "command": "node work/test-world-expansion-flutlicht-v175.cjs",
+      "exitCode": 0,
+      "ms": 5661,
+      "log": "088.log"
+    },
+    {
+      "command": "node work/platform/qa/test-android-3d-acceptance.cjs",
+      "exitCode": 0,
+      "ms": 98,
+      "log": "089.log"
+    },
+    {
+      "command": "node work/test-world-save-management-v70.cjs",
+      "exitCode": 0,
+      "ms": 1236,
+      "log": "090.log"
+    },
+    {
+      "command": "node work/test-world-views-v68.cjs",
+      "exitCode": 0,
+      "ms": 416,
+      "log": "091.log"
+    },
+    {
+      "command": "node work/test-world-honours-v74.cjs",
+      "exitCode": 0,
+      "ms": 142,
+      "log": "092.log"
+    },
+    {
+      "command": "node work/test-match-presentation-v74.cjs",
+      "exitCode": 0,
+      "ms": 150,
+      "log": "093.log"
+    },
+    {
+      "command": "node work/test-player-ui-projection.cjs",
+      "exitCode": 0,
+      "ms": 46,
+      "log": "094.log"
+    },
+    {
+      "command": "node work/test-player-aging.cjs",
+      "exitCode": 0,
+      "ms": 42,
+      "log": "095.log"
+    },
+    {
+      "command": "node work/test-player-load-candidate-v158.cjs",
+      "exitCode": 0,
+      "ms": 60,
+      "log": "096.log"
+    },
+    {
+      "command": "node work/test-native-career-v160.cjs",
+      "exitCode": 0,
+      "ms": 268376,
+      "log": "097.log"
+    },
+    {
+      "command": "node work/platform/qa/test-unity-integration-v160.cjs",
+      "exitCode": 0,
+      "ms": 40,
+      "log": "098.log"
+    },
+    {
+      "command": "node work/platform/qa/test-world-unity-contract.cjs",
+      "exitCode": 0,
+      "ms": 39,
+      "log": "099.log"
+    },
+    {
+      "command": "node work/test-world-pitch3d-v98.cjs",
+      "exitCode": 0,
+      "ms": 43,
+      "log": "100.log"
+    },
+    {
+      "command": "node work/test-unity-label-layout.cjs outputs/3d-quality/iteration-119/label-layout",
+      "exitCode": 0,
+      "ms": 59,
+      "log": "101.log"
+    },
+    {
+      "command": "node work/test-unity-3d-quality-v117.cjs outputs/3d-quality/iteration-119/guide-legacy",
+      "exitCode": 0,
+      "ms": 45,
+      "log": "102.log"
+    },
+    {
+      "command": "node work/test-keeper-picture-v118.cjs outputs/3d-quality/iteration-119/keeper-legacy",
+      "exitCode": 0,
+      "ms": 42,
+      "log": "103.log"
+    },
+    {
+      "command": "node work/test-keeper-picture-v119.cjs",
+      "exitCode": 0,
+      "ms": 41,
+      "log": "104.log"
+    },
+    {
+      "command": "node work/test-3d-contacts-v119.cjs",
+      "exitCode": 0,
+      "ms": 49,
+      "log": "105.log"
+    },
+    {
+      "command": "node work/test-whistle-offside-v119.cjs",
+      "exitCode": 0,
+      "ms": 52,
+      "log": "106.log"
+    },
+    {
+      "command": "node work/test-shootout-quality-v119.cjs",
+      "exitCode": 0,
+      "ms": 415,
+      "log": "107.log"
+    },
+    {
+      "command": "node work/test-trophy-art-v119.cjs",
+      "exitCode": 0,
+      "ms": 43,
+      "log": "108.log"
+    },
+    {
+      "command": "node work/platform/qa/test-world-unity-slides.cjs",
+      "exitCode": 0,
+      "ms": 38,
+      "log": "109.log"
+    },
+    {
+      "command": "DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+      "exitCode": 0,
+      "ms": 18512,
+      "log": "110.log"
+    },
+    {
+      "command": "DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+      "exitCode": 0,
+      "ms": 17855,
+      "log": "111.log"
+    },
+    {
+      "command": "DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs",
+      "exitCode": 0,
+      "ms": 14229,
+      "log": "112.log"
+    },
+    {
+      "command": "node work/audit-world-balance-v68.cjs",
+      "exitCode": 0,
+      "ms": 90207,
+      "log": "113.log"
+    },
+    {
+      "command": "python3 work/test_deploy_ftps.py",
+      "exitCode": 0,
+      "ms": 240,
+      "log": "114.log"
+    },
+    {
+      "command": "python3 work/test_deploy_unity_assets.py",
+      "exitCode": 0,
+      "ms": 219,
+      "log": "115.log"
+    },
+    {
+      "command": "node work/build.cjs",
+      "exitCode": 0,
+      "ms": 38797,
+      "log": "116.log"
+    },
+    {
+      "command": "node work/test-club-crests.cjs",
+      "exitCode": 0,
+      "ms": 1806,
+      "log": "117.log"
+    },
+    {
+      "command": "node work/test-expansion-crests.cjs",
+      "exitCode": 0,
+      "ms": 6471,
+      "log": "118.log"
+    },
+    {
+      "command": "node work/test-completed-crests.cjs",
+      "exitCode": 0,
+      "ms": 5131,
+      "log": "119.log"
+    },
+    {
+      "command": "node work/test-expansion-sponsors.cjs",
+      "exitCode": 0,
+      "ms": 3105,
+      "log": "120.log"
+    },
+    {
+      "command": "node work/test-no-player-images.cjs",
+      "exitCode": 0,
+      "ms": 274,
+      "log": "121.log"
+    }
+  ]
+}

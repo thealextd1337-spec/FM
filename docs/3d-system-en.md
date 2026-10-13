@@ -1,6 +1,8 @@
 # Doppel 6's 3D system
 
-System state: small-pitch iteration v162 with Unity presentation, game version 122. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
+System state: small-pitch iteration v162 with Unity presentation, game version 131. The authoritative implementation is in dist/. This document describes the regular club-world game. The camera prototype and freekickdemo are separate projects.
+
+The low-poly look combines faceted players, smoother goal-net motion and distinct day and night matches. European matches always take place in the evening; league and domestic cup matches use a stable mix. The 96 league clubs have fixed assignments to five stadium templates according to club size. Club colours, banners, home and away supporter sections and waving flags remain club-specific. Additional individual stadium designs are planned for a later expansion.
 
 ## Unity presentation
 

@@ -48,9 +48,12 @@ public static class StadiumSupporters {
     public const int AtlasWidth=256,AtlasHeight=128;
 
     public static float PresentTime(double clock){double t=clock%TimeWrap;if(t<0)t+=TimeWrap;return (float)t;}
-    // Only the block of the scoring club celebrates, from the received celebration time.
+    // The native goal scene ends at 4.05 s. Ease back to ordinary motion before its flag clears;
+    // use only the received celebration time, including when the displayed clock is paused.
+    public const double CelebrationEnd=4.05;
     public static float Celebration(bool celebrating,int celebrationTeam,double celebrationTime,int team){
-        if(!celebrating||celebrationTeam!=team)return 0;float t=(float)celebrationTime;return Mathf.Clamp01(t/.35f)*Mathf.Clamp01(1-(t-9)/2);
+        if(!celebrating||celebrationTeam!=team||celebrationTime<=0||celebrationTime>=CelebrationEnd)return 0;
+        float t=(float)celebrationTime;return Mathf.SmoothStep(0,1,t/.35f)*Mathf.SmoothStep(0,1,(float)((CelebrationEnd-celebrationTime)/1.2));
     }
     // FNV-1a 32 over UTF-16 code units (same algorithm as the page's d6PresentationHash).
     public static uint Hash(string text){unchecked{uint h=2166136261u;foreach(char c in text??""){h^=c;h*=16777619u;}return h;}}

@@ -42,7 +42,7 @@ public static class MatchLightingTests {
         string R(float v)=>v.ToString("F5",CultureInfo.InvariantCulture);
         return string.Join("|",new object[]{RenderSettings.ambientMode,C(RenderSettings.ambientLight),F(RenderSettings.ambientIntensity),probe,R(q.x)+","+R(q.y)+","+R(q.z)+","+R(q.w),C(sun.color),F(sun.intensity),sun.shadows,F(sun.shadowStrength),F(sun.shadowBias),F(sun.shadowNormalBias),
             C(camera.backgroundColor),camera.allowMSAA,F(camera.farClipPlane),data.renderPostProcessing,data.renderShadows,urp.mainLightShadowmapResolution,F(urp.shadowDistance),urp.msaaSampleCount,urp.shadowCascadeCount,F(urp.cascadeBorder),F(urp.shadowDepthBias),F(urp.shadowNormalBias),
-            string.Join(",",Array.ConvertAll(ProbeBridge.LookGlobals,n=>F(Shader.GetGlobalFloat(n))))});
+            string.Join(",",Array.ConvertAll(ProbeBridge.LookGlobals,n=>F(Shader.GetGlobalFloat(n)))),F(Shader.GetGlobalFloat("_D6LowPoly")),Shader.IsKeywordEnabled(ProbeBridge.LookKeyword)});
     }
     // dist/world-pitch3d-v98.js v98CameraAim for a landscape page at the default near 60.
     static (Vector3 position,Vector3 target) Aim(string mode,Vector3 ball){
@@ -118,6 +118,7 @@ public static class MatchLightingTests {
             report.biasSource=sunData==null?"pipeline (no additional light data)":sunData.usePipelineSettings?"pipeline (light uses pipeline settings)":"light (own bias)";
             var pristine=State(sun,camera,urp);report.pristine=pristine;
             int pristineResolution=urp.mainLightShadowmapResolution,pristineMsaa=urp.msaaSampleCount,pristineCascades=urp.shadowCascadeCount;
+            float pristineLowPoly=G("_D6LowPoly");bool pristineKeyword=Shader.IsKeywordEnabled(ProbeBridge.LookKeyword);
             float pristineDistance=urp.shadowDistance,pristineFade=urp.cascadeBorder,pristineDepth=urp.shadowDepthBias,pristineNormal=urp.shadowNormalBias,pristineFar=camera.farClipPlane;
 
             // The fixture rule itself: presentation absent or JsonUtility-empty is legacy; Europe is night only.
@@ -199,7 +200,7 @@ public static class MatchLightingTests {
                 cases.Add(new Case{name=name,look=bridge.Look.ToString(),quality=quality,shadows=sun.shadows.ToString(),shadowResolution=urp.mainLightShadowmapResolution,msaa=urp.msaaSampleCount,cascades=urp.shadowCascadeCount,shadowDistance=urp.shadowDistance,shadowFade=urp.cascadeBorder,depthBias=urp.shadowDepthBias,normalBias=urp.shadowNormalBias,shadowStrength=sun.shadowStrength,keyIntensity=sun.intensity,keyElevation=elevation,
                     kitShadow=legacy?1:G("_D6KitShadow"),kitDepthBias=legacy?1:G("_D6KitDepthBias"),kitNormalBias=legacy?1:G("_D6KitNormalBias"),kitKnee=legacy?1:G("_D6KitKnee"),leastShadowAway=least,bloom=bloom.active,cameraMsaa=camera.allowMSAA,keyDirection=new[]{forward.x,forward.y,forward.z}});
                 Invoke(bridge,"RestoreProbeLighting");
-                Require(State(sun,camera,urp)==pristine&&G("_D6LowPoly")==0&&!Shader.IsKeywordEnabled(ProbeBridge.LookKeyword)&&!((Volume)Get(bridge,"matchVolume")).enabled&&!bridge.ReplayGraded,name+": RestoreProbeLighting returns every touched light, ambient, camera and URP setting, including bias, cascades and fade");
+                Require(State(sun,camera,urp)==pristine&&Near(G("_D6LowPoly"),pristineLowPoly)&&Shader.IsKeywordEnabled(ProbeBridge.LookKeyword)==pristineKeyword&&!((Volume)Get(bridge,"matchVolume")).enabled&&!bridge.ReplayGraded,name+": RestoreProbeLighting returns every touched light, ambient, camera and URP setting, including bias, cascades and fade");
                 Dispose(bridge);
             }
             // Fixtures change on the same view: nothing of a day look survives into a legacy fixture.
@@ -219,9 +220,39 @@ public static class MatchLightingTests {
                 Invoke(bridge,"ApplyMatchLighting");Invoke(bridge,"ApplyMatchShadows");var used=new List<Material>((List<Material>)Get(bridge,"materials"));
                 Require(State(sun,camera,urp)!=pristine&&Shader.IsKeywordEnabled(ProbeBridge.LookKeyword)&&used.Count>0,"lifecycle: a reduced day fixture has changed the light, pipeline asset and shader globals");
                 Invoke(bridge,"OnDestroy");
-                Require(State(sun,camera,urp)==pristine&&G("_D6LowPoly")==0&&!Shader.IsKeywordEnabled(ProbeBridge.LookKeyword)&&!((Volume)Get(bridge,"matchVolume")).enabled,"lifecycle: OnDestroy returns the light, ambient, camera, pipeline asset (resolution, distance, MSAA, cascades, fade, bias) and shader globals found before the fixture");
+                Require(State(sun,camera,urp)==pristine&&Near(G("_D6LowPoly"),pristineLowPoly)&&Shader.IsKeywordEnabled(ProbeBridge.LookKeyword)==pristineKeyword&&!((Volume)Get(bridge,"matchVolume")).enabled,"lifecycle: OnDestroy returns the light, ambient, camera, pipeline asset (resolution, distance, MSAA, cascades, fade, bias) and shader globals found before the fixture");
                 Require((UnityEngine.Object)Get(bridge,"world")==null&&used.TrueForAll(m=>m==null),"lifecycle: OnDestroy disposes the match world and its materials");
                 Dispose(bridge);
+            }
+            // Global state may be supplied by another view or an Editor diagnostic. An unused
+            // bridge cannot own it, and an applied match must restore its actual baseline.
+            {
+                var originalGlobals=Array.ConvertAll(ProbeBridge.LookGlobals,n=>G(n));var seededBridges=new List<ProbeBridge>();
+                try{
+                    Shader.SetGlobalFloat("_D6LowPoly",.37f);Shader.EnableKeyword(ProbeBridge.LookKeyword);
+                    for(int i=0;i<ProbeBridge.LookGlobals.Length;i++)Shader.SetGlobalFloat(ProbeBridge.LookGlobals[i],.13f+i*.07f);
+                    var seeded=State(sun,camera,urp);
+                    var unused=Bridge(Config("standard",Display("day","league")),new Dictionary<string,Renderer>());
+                    seededBridges.Add(unused);
+                    Require(Get(unused,"lightingDefaults")==null,"lifecycle: an unused bridge has no lighting snapshot");
+                    Invoke(unused,"RestoreProbeLighting");
+                    Require(State(sun,camera,urp)==seeded,"lifecycle: restoring an unused bridge leaves nondefault shader globals and keyword untouched");
+                    Invoke(unused,"OnDestroy");
+                    Require(State(sun,camera,urp)==seeded,"lifecycle: unused bridge OnDestroy leaves all preexisting lighting and shader state untouched");
+                    Dispose(unused);
+                    var applied=Bridge(Config("reduced",Display("day","league")),new Dictionary<string,Renderer>());
+                    seededBridges.Add(applied);Invoke(applied,"ApplyMatchLighting");
+                    Require(State(sun,camera,urp)!=seeded&&Near(G("_D6LowPoly"),ProbeBridge.LowPolyStyle?1:0),"lifecycle: a received match replaces the nondefault shader baseline while active");
+                    Invoke(applied,"RestoreProbeLighting");
+                    Require(State(sun,camera,urp)==seeded&&Near(G("_D6LowPoly"),.37f)&&Shader.IsKeywordEnabled(ProbeBridge.LookKeyword),"lifecycle: Apply/Restore returns the captured nondefault LowPoly float, enabled look keyword and six look globals");
+                    Invoke(applied,"ApplyMatchLighting");Invoke(applied,"OnDestroy");
+                    Require(State(sun,camera,urp)==seeded,"lifecycle: applied bridge OnDestroy restores the nondefault shader baseline and all light, camera and pipeline values");
+                    Dispose(applied);
+                }finally{
+                    foreach(var b in seededBridges)if(b!=null){Invoke(b,"RestoreProbeLighting");Dispose(b);}
+                    Shader.SetGlobalFloat("_D6LowPoly",pristineLowPoly);if(pristineKeyword)Shader.EnableKeyword(ProbeBridge.LookKeyword);else Shader.DisableKeyword(ProbeBridge.LookKeyword);
+                    for(int i=0;i<ProbeBridge.LookGlobals.Length;i++)Shader.SetGlobalFloat(ProbeBridge.LookGlobals[i],originalGlobals[i]);
+                }
             }
             Require(State(sun,camera,urp)==pristine,"the probe scene's light, camera, pipeline and shader globals end exactly as found");
         }finally{

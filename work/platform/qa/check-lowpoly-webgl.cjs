@@ -50,7 +50,13 @@ async function prepare(page,quality,seed=12345,near=60){
   v103CanReplay=()=>false;
   return {fixtureId:fixture.id,home:club.id};
  },{seed,near});
- await waitPicture(page);return info;
+ await waitPicture(page);
+ if(!report.renderer)report.renderer=await page.frames().find(f=>f.url().includes('unity-match'))?.evaluate(()=>{
+  const canvas=document.querySelector('canvas'),gl=canvas&&(canvas.getContext('webgl2')||canvas.getContext('webgl'));
+  const debug=gl&&gl.getExtension('WEBGL_debug_renderer_info');
+  return gl?{vendor:gl.getParameter(debug?debug.UNMASKED_VENDOR_WEBGL:gl.VENDOR),renderer:gl.getParameter(debug?debug.UNMASKED_RENDERER_WEBGL:gl.RENDERER),source:'existing Unity canvas context'}:null;
+ });
+ return info;
 }
 async function waitPicture(page){await page.waitForFunction(()=>D6UnityMatch?.ready&&D6UnityMatch.lastAck?.sequence>=D6UnityMatch.picture?.sequence-1,{},{timeout:180000});}
 async function resume(page){await page.evaluate(()=>{v65Resume();clearInterval(v65WorldFrame);});}

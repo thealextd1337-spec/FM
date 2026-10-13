@@ -34,7 +34,7 @@ public static class MatchLighting {
 public partial class ProbeBridge {
     public MatchLightLook LightLook {get;private set;}
     public MatchLook Look {get;private set;}
-    class LightingDefaults {public AmbientMode mode;public Color flat;public float intensity;public SphericalHarmonicsL2 probe;public Quaternion sunRotation;public Color sunColor,background;public float sunIntensity,shadowStrength,sunBias,sunNormalBias,far;public LightShadows shadows;public bool msaa,postProcessing,cameraShadows;public int shadowResolution,pipelineMsaa,cascades;public float shadowDistance,cascadeBorder,depthBias,normalBias;public float[] look;}
+    class LightingDefaults {public AmbientMode mode;public Color flat;public float intensity;public SphericalHarmonicsL2 probe;public Quaternion sunRotation;public Color sunColor,background;public float sunIntensity,shadowStrength,sunBias,sunNormalBias,far;public LightShadows shadows;public bool msaa,postProcessing,cameraShadows,lookKeyword;public float lowPoly;public int shadowResolution,pipelineMsaa,cascades;public float shadowDistance,cascadeBorder,depthBias,normalBias;public float[] look;}
 
     LightingDefaults lightingDefaults;Light sun;Volume matchVolume,replayVolume;VolumeProfile matchProfile,replayProfile;ColorAdjustments matchGrade;Vignette matchVignette;Bloom matchBloom;
 
@@ -63,7 +63,7 @@ public partial class ProbeBridge {
         bool legacy=Look==MatchLook.Legacy,day=Look==MatchLook.Day;
         var light=FindSun();var camera=Camera.main;var urp=GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;var data=camera.GetUniversalAdditionalCameraData();
         ReducedQuality=worldView?.Config.quality=="reduced"||string.IsNullOrEmpty(worldView?.Config.quality)&&Application.isMobilePlatform;
-        if(lightingDefaults==null)lightingDefaults=new LightingDefaults{shadowResolution=urp!=null?urp.mainLightShadowmapResolution:0,pipelineMsaa=urp!=null?urp.msaaSampleCount:1,shadowDistance=urp!=null?urp.shadowDistance:0,cascades=urp!=null?urp.shadowCascadeCount:1,cascadeBorder=urp!=null?urp.cascadeBorder:0,depthBias=urp!=null?urp.shadowDepthBias:0,normalBias=urp!=null?urp.shadowNormalBias:0,mode=RenderSettings.ambientMode,flat=RenderSettings.ambientLight,intensity=RenderSettings.ambientIntensity,probe=RenderSettings.ambientProbe,sunRotation=light!=null?light.transform.rotation:Quaternion.identity,sunColor=light!=null?light.color:Color.white,sunIntensity=light!=null?light.intensity:1,shadowStrength=light!=null?light.shadowStrength:1,sunBias=light!=null?light.shadowBias:0,sunNormalBias=light!=null?light.shadowNormalBias:0,shadows=light!=null?light.shadows:LightShadows.None,background=camera.backgroundColor,msaa=camera.allowMSAA,far=camera.farClipPlane,postProcessing=data!=null&&data.renderPostProcessing,cameraShadows=data==null||data.renderShadows,look=Array.ConvertAll(LookGlobals,n=>Shader.GetGlobalFloat(n))};
+        if(lightingDefaults==null)lightingDefaults=new LightingDefaults{shadowResolution=urp!=null?urp.mainLightShadowmapResolution:0,pipelineMsaa=urp!=null?urp.msaaSampleCount:1,shadowDistance=urp!=null?urp.shadowDistance:0,cascades=urp!=null?urp.shadowCascadeCount:1,cascadeBorder=urp!=null?urp.cascadeBorder:0,depthBias=urp!=null?urp.shadowDepthBias:0,normalBias=urp!=null?urp.shadowNormalBias:0,mode=RenderSettings.ambientMode,flat=RenderSettings.ambientLight,intensity=RenderSettings.ambientIntensity,probe=RenderSettings.ambientProbe,sunRotation=light!=null?light.transform.rotation:Quaternion.identity,sunColor=light!=null?light.color:Color.white,sunIntensity=light!=null?light.intensity:1,shadowStrength=light!=null?light.shadowStrength:1,sunBias=light!=null?light.shadowBias:0,sunNormalBias=light!=null?light.shadowNormalBias:0,shadows=light!=null?light.shadows:LightShadows.None,background=camera.backgroundColor,msaa=camera.allowMSAA,far=camera.farClipPlane,postProcessing=data!=null&&data.renderPostProcessing,cameraShadows=data==null||data.renderShadows,look=Array.ConvertAll(LookGlobals,n=>Shader.GetGlobalFloat(n)),lowPoly=Shader.GetGlobalFloat("_D6LowPoly"),lookKeyword=Shader.IsKeywordEnabled(LookKeyword)};
         var d=lightingDefaults;
         Shader.SetGlobalFloat("_D6LowPoly",LowPolyStyle?1:0);
         // Ambient: sky over horizon and a turf bounce (linear colours). Evening:
@@ -123,8 +123,10 @@ public partial class ProbeBridge {
     void SetReplayGrade(bool replay){if(replayVolume!=null&&replayVolume.enabled!=replay)replayVolume.enabled=replay;}
 
     void RestoreProbeLighting(){
-        Shader.SetGlobalFloat("_D6LowPoly",0);Shader.DisableKeyword(LookKeyword);
-        if(matchVolume!=null)matchVolume.enabled=false;if(replayVolume!=null)replayVolume.enabled=false;if(lightingDefaults==null)return;var d=lightingDefaults;var light=FindSun();var camera=Camera.main;SetLookGlobals(d.look);
+        // An unused bridge owns no lighting snapshot and must not alter global state.
+        if(lightingDefaults==null)return;var d=lightingDefaults;
+        Shader.SetGlobalFloat("_D6LowPoly",d.lowPoly);if(d.lookKeyword)Shader.EnableKeyword(LookKeyword);else Shader.DisableKeyword(LookKeyword);
+        if(matchVolume!=null)matchVolume.enabled=false;if(replayVolume!=null)replayVolume.enabled=false;var light=FindSun();var camera=Camera.main;SetLookGlobals(d.look);
         if(GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset urp&&d.shadowResolution>0){urp.mainLightShadowmapResolution=d.shadowResolution;urp.shadowDistance=d.shadowDistance;urp.msaaSampleCount=d.pipelineMsaa;urp.shadowCascadeCount=d.cascades;urp.cascadeBorder=d.cascadeBorder;urp.shadowDepthBias=d.depthBias;urp.shadowNormalBias=d.normalBias;}
         RenderSettings.ambientMode=d.mode;RenderSettings.ambientLight=d.flat;RenderSettings.ambientIntensity=d.intensity;RenderSettings.ambientProbe=d.probe;
         if(light!=null){light.transform.rotation=d.sunRotation;light.color=d.sunColor;light.intensity=d.sunIntensity;light.shadows=d.shadows;light.shadowStrength=d.shadowStrength;light.shadowBias=d.sunBias;light.shadowNormalBias=d.sunNormalBias;}

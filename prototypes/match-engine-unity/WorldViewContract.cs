@@ -25,7 +25,7 @@ namespace Doppel6.Probe {
     // contact point, the seconds until its native event (leadIn > 0) and from the start of the received interval
     // to it (leadSpan), and its native aerial flag. A received picture's lead is cleared (ProbeBridge.WorldCommand).
     public string leadAction,leadId;public double[] leadContact;public double leadIn=-1,leadSpan=-1;public bool leadAerial;}
-[Serializable] public class WorldNet {public int sign;public double z,height,age,bulge;}
+[Serializable] public class WorldNet {public int sign;public double z,height,age,bulge;public bool flowing;}
 [Serializable] public class WorldOffside {public double lineX;}
 // Optional celebration fields describe an already booked native goal scene;
 // older pictures omit them and remain valid (celebrating=false).

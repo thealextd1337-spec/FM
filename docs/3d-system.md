@@ -1,6 +1,8 @@
 # Das 3D-System von Doppel 6
 
-Systemstand: Kleinfelditeration v162 mit Unity-Darstellung, Spielversion 122. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
+Systemstand: Kleinfelditeration v162 mit Unity-Darstellung, Spielversion 131. Maßgeblich ist der Quellcode unter dist/. Dieses Dokument beschreibt das reguläre Vereinswelt-Spiel; der Kameraprototyp und freekickdemo sind getrennte Projekte.
+
+Der Low-Poly-Look zeigt facettierte Spieler, weichere Tornetzbewegungen und klar getrennte Tag- und Nachtspiele. Europacupspiele finden immer am Abend statt; Liga und Pokal wechseln nach fester Spielzuordnung. Die 96 Ligavereine nutzen fünf feste Stadionvorlagen nach Vereinsgröße. Vereinsfarben, Banner sowie Heim- und Gästefanblöcke mit bewegten Fahnen bleiben klubbezogen. Weitere individuelle Stadionentwürfe sind für eine spätere Erweiterung geplant.
 
 ## Unity-Darstellung
 

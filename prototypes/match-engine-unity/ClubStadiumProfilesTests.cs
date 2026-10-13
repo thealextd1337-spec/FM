@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Doppel6.Probe {
 // No Unity dependency: callable by D6Cli and standalone C# compilers alike.
-// Covers the legacy catalogue (48 IDs), the authored prototype identities (Germany), the
-// standard and neutral venues and the honest coverage of the 96 live league clubs.
+// Covers the frozen 96-club mapping, the five authored architectural templates, ownership,
+// exact template geometry/seed sharing, and unchanged legacy/standard/neutral paths.
 public static class ClubStadiumProfilesTests {
     static void Require(bool condition, string name, List<string> checks) {
         if (!condition) throw new InvalidOperationException("Club stadium profile: " + name);
@@ -29,16 +30,208 @@ public static class ClubStadiumProfilesTests {
         return string.Join(";", parts);
     }
     // Coverage of the live world, written into the report (not hidden behind passing checks).
-    public sealed class Coverage { public int league, authored, legacyDerived, leagueStandard; public string[] authoredIds, legacyDerivedIds, leagueStandardIds; }
+    public sealed class Coverage { public int league, authored, sharedTemplate, legacyDerived, leagueStandard; public string[] authoredIds, sharedTemplateIds, legacyDerivedIds, leagueStandardIds; }
     public static Coverage LiveCoverage() {
-        var authored = new List<string>(); var derived = new List<string>(); var standard = new List<string>();
+        var authored = new List<string>(); var shared = new List<string>(); var derived = new List<string>(); var standard = new List<string>();
         foreach (var id in ClubStadiumProfiles.LiveLeagueClubIds) {
             var c = ClubStadiumProfiles.Coverage(id);
-            if (c == "authored") authored.Add(id); else if (c == "legacy-derived") derived.Add(id); else standard.Add(id);
+            if (c == "authored") authored.Add(id); else if (c == "shared-template") shared.Add(id); else if (c == "legacy-derived") derived.Add(id); else standard.Add(id);
         }
-        return new Coverage { league = ClubStadiumProfiles.LiveLeagueClubIds.Length, authored = authored.Count, legacyDerived = derived.Count, leagueStandard = standard.Count,
-            authoredIds = authored.ToArray(), legacyDerivedIds = derived.ToArray(), leagueStandardIds = standard.ToArray() };
+        return new Coverage { league = ClubStadiumProfiles.LiveLeagueClubIds.Length, authored = authored.Count, sharedTemplate = shared.Count, legacyDerived = derived.Count, leagueStandard = standard.Count,
+            authoredIds = authored.ToArray(), sharedTemplateIds = shared.ToArray(), legacyDerivedIds = derived.ToArray(), leagueStandardIds = standard.ToArray() };
     }
+
+    // Independent acceptance fixture: literal rows frozen from the approved table, never read
+    // from ClubStadiumProfiles or recomputed from fan values. Columns: owner, name, template, size.
+    const string FrozenLeagueRows = @"AUT-1|Wiener SC Kronau|GER-2|M
+AUT-2|FC Salzburg Falken|GER-5|M
+AUT-3|Schwarz Weiß Graz|GER-3|M
+AUT-4|Linzer SC Union|GER-5|M
+AUT-5|Innsbruck Sport|GER-5|M
+AUT-6|SC Klagenfurt Seestadt|GER-6|S
+AUT-7|SV St. Pölten Westpark|GER-6|S
+AUT-8|Wiener SC Fortuna|GER-6|S
+BEL-1|Brugge Reie FC|GER-2|M
+BEL-2|Bruxelles Senne Union|GER-1|L
+BEL-3|Antwerpen Schelde FC|GER-5|M
+BEL-4|Gent Leie FC|GER-5|M
+BEL-5|Liège Meuse FC|GER-3|M
+BEL-6|Genk Kempen FC|GER-6|S
+BEL-7|Charleroi Sambre FC|GER-6|S
+BEL-8|Bruxelles Parc FC|GER-6|S
+ENG-1|Regent Vale FC|GER-1|L
+ENG-2|Irwell FC|GER-2|M
+ENG-3|Mersey Dock FC|GER-3|M
+ENG-4|Birmingham Works FC|GER-5|M
+ENG-5|Bristol Quay FC|GER-6|S
+ENG-6|Wandle Town|GER-6|S
+ENG-7|Leeds Aire FC|GER-2|M
+ENG-8|Newcastle Tyne FC|GER-3|M
+ESP-1|Madrid Central CF|GER-1|L
+ESP-2|Barcelona Mar FC|GER-1|L
+ESP-3|Turia CF|GER-5|M
+ESP-4|Sevilla Union FC|GER-2|M
+ESP-5|Barcelona Delta FC|GER-6|S
+ESP-6|Vigo Atlantic FC|GER-6|S
+ESP-7|Bilbao Nervión CF|GER-5|M
+ESP-8|Zaragoza Ebro CF|GER-5|M
+FRA-1|Paris Central FC|GER-1|L
+FRA-2|Marseille Union|GER-1|L
+FRA-3|Lyon Rive FC|GER-5|M
+FRA-4|Bordeaux Atlantic FC|GER-2|M
+FRA-5|Lille Union|GER-5|M
+FRA-6|Paris Valmy FC|GER-6|S
+FRA-7|Nantes Loire FC|GER-6|S
+FRA-8|Strasbourg Rives FC|GER-5|M
+GER-1|FC München Isar|GER-1|L
+GER-2|FC Bremen Weser|GER-2|M
+GER-3|FC Hamburg Elbe|GER-3|M
+GER-4|SC Freiburg Tal|GER-6|S
+GER-5|FC Köln Rhein|GER-5|M
+GER-6|SV München Au|GER-6|S
+GER-7|FC Dortmund Emscher|GER-1|L
+GER-8|FC Frankfurt Mainbogen|GER-5|M
+GRE-1|Athina Helios FC|GER-1|L
+GRE-2|Piräus Nautilos FC|GER-2|M
+GRE-3|Thessaloniki Vardaris FC|GER-3|M
+GRE-4|Athina Kallisto FC|GER-5|M
+GRE-5|Thessaloniki Therma FC|GER-6|S
+GRE-6|Patras Achaia FC|GER-6|S
+GRE-7|Iraklio Candia FC|GER-6|S
+GRE-8|Volos Pelion FC|GER-6|S
+ITA-1|Torino Centrale FC|GER-1|L
+ITA-2|Milano Ferro FC|GER-2|M
+ITA-3|Roma Capitol FC|GER-1|L
+ITA-4|Bologna Collina AC|GER-6|S
+ITA-5|Navigli FC|GER-6|S
+ITA-6|Napoli Sud AC|GER-3|M
+ITA-7|Firenze Arno AC|GER-5|M
+ITA-8|Genova Lanterna FC|GER-5|M
+NED-1|Amsterdam Amstel FC|GER-1|L
+NED-2|Rotterdam Maaspoort FC|GER-2|M
+NED-3|Eindhoven Lichtstad FC|GER-5|M
+NED-4|Utrecht Singel FC|GER-5|M
+NED-5|Enschede Veld FC|GER-3|M
+NED-6|Arnhem Rijnpark FC|GER-6|S
+NED-7|Groningen Noorderpoort FC|GER-5|M
+NED-8|Amsterdam Westhaven FC|GER-6|S
+POR-1|Lisboa Central FC|GER-1|L
+POR-2|Porto Ribeira FC|GER-2|M
+POR-3|Tejo Union|GER-3|M
+POR-4|Braga Norte FC|GER-5|M
+POR-5|Coimbra Athletic|GER-6|S
+POR-6|Aveiro Costa FC|GER-6|S
+POR-7|Guimarães Castelo FC|GER-2|M
+POR-8|Setúbal Sado FC|GER-6|S
+SUI-1|Basel Rheintor FC|GER-2|M
+SUI-2|Bern Aarebogen FC|GER-5|M
+SUI-3|Zürich Limmat FC|GER-3|M
+SUI-4|Genève Rhône FC|GER-5|M
+SUI-5|St. Gallen Sitter FC|GER-2|M
+SUI-6|Lausanne Léman FC|GER-6|S
+SUI-7|Luzern Reuss FC|GER-6|S
+SUI-8|Zürich Sihl FC|GER-6|S
+TUR-1|Istanbul Bosporus SK|GER-1|L
+TUR-2|Istanbul Haliç SK|GER-2|M
+TUR-3|Istanbul Marmara SK|GER-5|M
+TUR-4|Trabzon Karadeniz SK|GER-3|M
+TUR-5|Ankara Kale SK|GER-5|M
+TUR-6|Izmir Körfez SK|GER-2|M
+TUR-7|Bursa Yeşilova SK|GER-6|S
+TUR-8|Antalya Kıyı SK|GER-6|S";
+    static string[][] FrozenRows() {
+        var result = new List<string[]>();
+        foreach (var row in FrozenLeagueRows.Split(new[] {'\n'}, StringSplitOptions.RemoveEmptyEntries)) result.Add(row.Trim().Split('|'));
+        return result.ToArray();
+    }
+    // Exact authored fields, not the intentionally binned visual fingerprint. This detects a
+    // changed span, roof coverage, landmark, supporter layout or material tone below a band.
+    static string Exact(object value) {
+        if (value == null) return "null";
+        if (value is string text) return text.Length + ":" + text;
+        if (value is float single) return single.ToString("R", CultureInfo.InvariantCulture);
+        if (value is double number) return number.ToString("R", CultureInfo.InvariantCulture);
+        var type = value.GetType();
+        if (type.IsPrimitive || type.IsEnum) return value is IFormattable form ? form.ToString(null, CultureInfo.InvariantCulture) : value.ToString();
+        var b = new StringBuilder();
+        if (value is Array array) { foreach (var item in array) b.Append("[").Append(Exact(item)).Append("]"); return b.ToString(); }
+        var fields = type.GetFields(); Array.Sort(fields, (a, c) => StringComparer.Ordinal.Compare(a.Name, c.Name));
+        foreach (var field in fields) b.Append(field.Name).Append("=").Append(Exact(field.GetValue(value))).Append(";");
+        return b.ToString();
+    }
+    static string Architecture(ClubStadiumProfile p) => Shape(p) + "/" + Exact(p.Identity);
+    static bool OwnsNestedFields(ClubStadiumProfile a, ClubStadiumProfile b) {
+        if (ReferenceEquals(a,b) || ReferenceEquals(a.TierCounts,b.TierCounts) || ReferenceEquals(a.RoofSides,b.RoofSides) ||
+            ReferenceEquals(a.Identity,b.Identity) || ReferenceEquals(a.Identity.Stands,b.Identity.Stands) ||
+            ReferenceEquals(a.Identity.Corners,b.Identity.Corners) || ReferenceEquals(a.Identity.Landmarks,b.Identity.Landmarks) ||
+            ReferenceEquals(a.Identity.Floodlights,b.Identity.Floodlights) || ReferenceEquals(a.Identity.Surroundings,b.Identity.Surroundings) ||
+            ReferenceEquals(a.Identity.Supporters,b.Identity.Supporters)) return false;
+        for (int i=0; i<4; i++) if (ReferenceEquals(a.Identity.Stands[i],b.Identity.Stands[i]) || ReferenceEquals(a.Identity.Stands[i].Roof,b.Identity.Stands[i].Roof)) return false;
+        for (int i=0; i<a.Identity.Landmarks.Length; i++) if (ReferenceEquals(a.Identity.Landmarks[i],b.Identity.Landmarks[i])) return false;
+        return true;
+    }
+    static void MutateNestedFields(ClubStadiumProfile p) {
+        p.ClubId="changed"; p.DisplayName="changed"; p.Venue="changed"; p.TemplateId="changed"; p.DetailSeed=-1;
+        for (int i=0; i<4; i++) { p.TierCounts[i]=99; p.RoofSides[i]=!p.RoofSides[i]; p.Identity.Stands[i].Rows=99;
+            p.Identity.Stands[i].Roof.Coverage=-1; p.Identity.Corners[i]=CornerForm.Tower; }
+        foreach (var l in p.Identity.Landmarks) { l.Kind=LandmarkKind.ClockTower; l.Place=LandmarkPlace.FarCentre; }
+        p.Identity.Floodlights.Height=-1; p.Identity.Supporters.HomeEnd=9;
+        for (int i=0; i<p.Identity.Surroundings.Length; i++) p.Identity.Surroundings[i]=SurroundingKind.Forest;
+        p.Identity.Country="changed"; p.Identity.Steel="#000000";
+    }
+    static void CheckFrozenAssignments(List<string> checks) {
+        var ids = new HashSet<string>(StringComparer.Ordinal);
+        var counts = new Dictionary<string,int>(StringComparer.Ordinal);
+        var seeds = new Dictionary<string,int> {{"GER-1",938718175},{"GER-2",955495794},{"GER-3",972273413},{"GER-5",871607699},{"GER-6",888385318}};
+        var sizes = new Dictionary<string,int>(StringComparer.Ordinal);
+        foreach (var row in FrozenRows()) {
+            string id=row[0], name=row[1], template=row[2], size=row[3];
+            Require(ids.Add(id), id + " frozen assignment occurs once", checks);
+            var p=ClubStadiumProfiles.Resolve(id); var repeated=ClubStadiumProfiles.Resolve(id); var source=ClubStadiumProfiles.Resolve(template);
+            string architecture=Architecture(p), sourceArchitecture=Architecture(source);
+            Require(p.ClubId==id && p.Venue==id && p.DisplayName==name && p.TemplateId==template,
+                id + " preserves actual club name and owner; architectural template " + template, checks);
+            Require(p.DetailSeed==seeds[template] && p.DetailSeed==source.DetailSeed && architecture==sourceArchitecture,
+                id + " copies exact template geometry, environment, supporter layout, material tones and fixed seed", checks);
+            Require(p.Identity.Source=="authored" && p.Identity.Country=="GER" && p.Identity.SizeClass==size && ClubStadiumProfiles.SizeClassOf(p.TierCounts)==size && Problems(p).Count==0,
+                id + " frozen size class " + size + " and template architectural country", checks);
+            Require(ClubStadiumProfiles.Coverage(id)==(id==template?"authored":"shared-template"), id + " original owner or explicit shared-template coverage", checks);
+            Require(OwnsNestedFields(p,repeated) && OwnsNestedFields(p,source), id + " owns every mutable nested template field", checks);
+            MutateNestedFields(p);
+            var later=ClubStadiumProfiles.Resolve(id); var laterSource=ClubStadiumProfiles.Resolve(template);
+            Require(Architecture(repeated)==architecture && Architecture(later)==architecture && Architecture(source)==sourceArchitecture && Architecture(laterSource)==sourceArchitecture &&
+                later.DetailSeed==seeds[template] && later.ClubId==id && later.DisplayName==name && later.Venue==id && later.TemplateId==template,
+                id + " consumer mutation leaves same-template peers, catalog and template unchanged", checks);
+            var home=ClubStadiumProfiles.ResolveVenue(id,"league","home","league",id.Substring(0,3));
+            var cupTie=ClubStadiumProfiles.ResolveVenue(id,"league","home","cup",id.Substring(0,3));
+            Require(Architecture(home)==architecture && Architecture(cupTie)==architecture && home.ClubId==id && home.Venue==id && home.TemplateId==template && cupTie.TemplateId==template && cupTie.Venue==id,
+                id + " league and home cup fixtures reuse the same frozen home assignment", checks);
+            var legacy=ClubStadiumProfiles.ResolveLegacy(id);
+            Require(legacy.TemplateId==null && legacy.DetailSeed==ClubStadiumProfiles.Seed(id) && legacy.Identity.Source=="legacy-derived",
+                id + " legacy lookup remains outside the frozen presentation mapping", checks);
+            counts[template]=counts.TryGetValue(template,out var count)?count+1:1;
+            sizes[size]=sizes.TryGetValue(size,out var sizeCount)?sizeCount+1:1;
+        }
+        Require(ids.Count==96 && ids.SetEquals(ClubStadiumProfiles.LiveLeagueClubIds), "frozen literal fixture covers every one of 96 live league owners exactly once", checks);
+        Require(counts.Count==5 && counts["GER-1"]==14 && counts["GER-2"]==16 && counts["GER-3"]==11 && counts["GER-5"]==25 && counts["GER-6"]==30,
+            "frozen assignment totals: GER-1 14; GER-2 16; GER-3 11; GER-5 25; GER-6 30", checks);
+        Require(sizes.Count==3 && sizes["L"]==14 && sizes["M"]==52 && sizes["S"]==30, "frozen size totals: large 14, medium 52, small 30", checks);
+    }
+    static void CheckAssignmentDocument(string repository, List<string> checks) {
+        string json=File.ReadAllText(Path.Combine(repository,"docs/stadion-zuordnung-geplant.json"));
+        var blocks=Regex.Matches(json,@"\{[^{}]*""clubId""[^{}]*\}");
+        var actual=new Dictionary<string,string>(StringComparer.Ordinal);
+        foreach (Match block in blocks) {
+            string Read(string key) => Regex.Match(block.Value,"\""+key+"\"\\s*:\\s*\"([^\"]*)\"").Groups[1].Value;
+            actual.Add(Read("clubId"),Read("clubName")+"|"+Read("templateId")+"|"+Read("size"));
+        }
+        Require(actual.Count==96,"assignment document contains exactly 96 unique literal club rows",checks);
+        foreach (var row in FrozenRows()) {
+            string size=row[3]=="L"?"large":row[3]=="M"?"medium":"small";
+            Require(actual.TryGetValue(row[0],out var value) && value==row[1]+"|"+row[2]+"|"+size, row[0]+" assignment document agrees with the independent frozen fixture",checks);
+        }
+    }
+
     // Problems of an identity against its profile (empty when valid).
     public static List<string> Problems(ClubStadiumProfile p) {
         var list = new List<string>(); var id = p.Identity;
@@ -133,25 +326,26 @@ public static class ClubStadiumProfilesTests {
                 continue;
             }
             Require(later.Venue==id, id + " plays in its own ground", checks);
-            Require(shapes.Add(Shape(later)), id + " unique architecture dimensions without color or seed", checks);
-            Require(later.DetailSeed>=0 && seeds.Add(later.DetailSeed), id + " deterministic distinct detail seed", checks);
+            shapes.Add(Shape(later));
+            Require(later.DetailSeed>=0, id + " deterministic template detail seed", checks); seeds.Add(later.DetailSeed);
             archetypes.Add(later.Archetype); roofPatterns.Add(roofPattern.ToString());
         }
-        Require(archetypes.SetEquals(new[] {"civic-bowl", "modern-ring", "industrial-shed", "dockside-ground",
-            "urban-court", "garden-ground", "sun-terraces", "hillside-ground"}), "eight architectural silhouettes covered by the league grounds", checks);
-        Require(roofPatterns.Count>=8, "at least eight visible roof arrangements", checks);
+        Require(archetypes.SetEquals(new[] {"civic-bowl", "modern-ring", "industrial-shed", "dockside-ground", "urban-court"}) && shapes.Count==5 && seeds.Count==5,
+            "league grounds share exactly five authored architectural shapes and template seeds", checks);
+        Require(roofPatterns.Count==4, "five authored templates retain four roof arrangements", checks);
         ids[0]="changed";
         Require(new HashSet<string>(ClubStadiumProfiles.KnownClubIds, StringComparer.Ordinal).SetEquals(expected),
             "mutating KnownClubIds does not alter catalog", checks);
 
-        // Live world coverage: 96 league clubs; the prototype round authors Germany's five.
+        // Live world coverage: five original template owners and 91 explicit shared assignments.
+        CheckFrozenAssignments(checks);
         var coverage = LiveCoverage();
         Require(coverage.league==96 && new HashSet<string>(ClubStadiumProfiles.LiveLeagueClubIds).Count==96, "96 live league club IDs (12 countries x 8)", checks);
-        Require(coverage.authored + coverage.legacyDerived + coverage.leagueStandard==96, "every live league club has exactly one coverage class", checks);
+        Require(coverage.authored + coverage.sharedTemplate + coverage.legacyDerived + coverage.leagueStandard==96, "every live league club has exactly one coverage class", checks);
         Require(new HashSet<string>(coverage.authoredIds).SetEquals(ClubStadiumProfiles.AuthoredClubIds) && coverage.authored==5,
-            "authored prototype coverage is exactly GER-1, GER-2, GER-3, GER-5, GER-6 (" + coverage.authored + " of 96)", checks);
-        Require(coverage.legacyDerived==31 && coverage.leagueStandard==60,
-            "reported gap: " + coverage.legacyDerived + " legacy-derived and " + coverage.leagueStandard + " league-standard grounds are not yet individual", checks);
+            "original authored template owners are exactly GER-1, GER-2, GER-3, GER-5, GER-6 (" + coverage.authored + " of 96)", checks);
+        Require(coverage.sharedTemplate==91 && coverage.legacyDerived==0 && coverage.leagueStandard==0,
+            "91 other league clubs share frozen authored templates; no league standard or derived gaps", checks);
 
         // Authored prototypes: identity, size class, structure.
         var authored = new List<ClubStadiumProfile>();
@@ -207,8 +401,8 @@ public static class ClubStadiumProfilesTests {
         Require(unknown.ClubId=="unknown-club" && other.ClubId=="other-unknown" && unknown.Identity.Source=="standard" && other.Identity.Source=="standard" &&
             unknown.Archetype!="garden-ground" && unknown.DisplayName!="Neutral Community Ground" && unknown.Venue=="LEAGUE-STANDARD" && ClubStadiumProfiles.Resolve("XYZ-9").Venue=="LEAGUE-STANDARD",
             "unknown IDs preserve identity on a standard league ground, never the garden ground", checks);
-        Require(ClubStadiumProfiles.Resolve("NED-1").Venue=="LEAGUE-STANDARD-NED" && ClubStadiumProfiles.Resolve("ENG-7").Venue=="LEAGUE-STANDARD-ENG" &&
-            ClubStadiumProfiles.Coverage("NED-1")=="league-standard", "expansion league clubs without a profile use their country's standard league ground", checks);
+        Require(ClubStadiumProfiles.Resolve("NED-9").Venue=="LEAGUE-STANDARD-NED" && ClubStadiumProfiles.Resolve("ENG-9").Venue=="LEAGUE-STANDARD-ENG" &&
+            ClubStadiumProfiles.Coverage("NED-9")=="league-standard", "unknown league IDs still use their country's standard league ground", checks);
         Require(ClubStadiumProfiles.Resolve("eng-1").Venue!="ENG-1" && ClubStadiumProfiles.Resolve(" ENG-1 ").Venue!="ENG-1",
             "case and whitespace aliases do not impersonate a known club", checks);
         string unknownBefore = Shape(ClubStadiumProfiles.Resolve("unknown-club"));
@@ -216,11 +410,11 @@ public static class ClubStadiumProfilesTests {
         Require(Shape(ClubStadiumProfiles.Resolve("unknown-club"))==unknownBefore && Shape(unknown)!=unknownBefore, "fallback arrays are independent", checks);
         Require(ClubStadiumProfiles.Resolve(new string('x',8192)).DetailSeed>=0 && ClubStadiumProfiles.Seed(new string('x',8192))>=0,
             "long unknown ID hashes without checked overflow", checks);
-        Require(ClubStadiumProfiles.Resolve("ENG-1").DetailSeed==439681357 &&
+        Require(ClubStadiumProfiles.Seed("ENG-1")==439681357 && ClubStadiumProfiles.Resolve("ENG-1").DetailSeed==938718175 &&
             ClubStadiumProfiles.Resolve("GER-1").DetailSeed==938718175 && ClubStadiumProfiles.Seed("NEUTRAL")==1965144888,
             "seed algorithm has fixed cross-process reference vectors", checks);
         var england = ClubStadiumProfiles.Resolve("ENG-1");
-        Require(england.TierCounts[0]==13 && england.TierCounts[1]==12 && england.TierCounts[2]==11 && england.TierCounts[3]==10,
+        Require(england.TierCounts[0]==14 && england.TierCounts[1]==12 && england.TierCounts[2]==12 && england.TierCounts[3]==11,
             "side mapping remains z-minus z-plus x-minus x-plus", checks);
         Require(ClubStadiumProfiles.IsCupId("GER-C1") && ClubStadiumProfiles.IsCupId("NED-C12") && !ClubStadiumProfiles.IsCupId("GER-1") &&
             !ClubStadiumProfiles.IsCupId("GER-C") && !ClubStadiumProfiles.IsCupId("C1") && !ClubStadiumProfiles.IsCupId(null) && !ClubStadiumProfiles.IsCupId("GER-Cx"),
@@ -255,13 +449,14 @@ public static class ClubStadiumProfilesTests {
     static bool IsFinite(float value) { return !float.IsNaN(value) && !float.IsInfinity(value); }
 
     public static string Run(string repository, string outputFolder=null) {
-        var checks = Check(); var coverage = LiveCoverage();
+        var checkList = new List<string>(Check()); CheckAssignmentDocument(repository, checkList);
+        var checks = checkList.ToArray(); var coverage = LiveCoverage();
         string List(string[] values) { var q = new List<string>(); foreach (var v in values) q.Add("\"" + v + "\""); return "[" + string.Join(", ", q) + "]"; }
         var json = new StringBuilder("{\n  \"passed\": ").Append(checks.Length).Append(",\n");
         json.Append("  \"coverage\": {\"leagueClubs\": ").Append(coverage.league).Append(", \"authored\": ").Append(coverage.authored)
-            .Append(", \"legacyDerived\": ").Append(coverage.legacyDerived).Append(", \"leagueStandard\": ").Append(coverage.leagueStandard)
-            .Append(",\n    \"authoredIds\": ").Append(List(coverage.authoredIds)).Append(",\n    \"legacyDerivedIds\": ").Append(List(coverage.legacyDerivedIds))
-            .Append(",\n    \"leagueStandardIds\": ").Append(List(coverage.leagueStandardIds)).Append(",\n    \"note\": \"Only authored grounds are individual. Legacy-derived grounds keep their Release 130 archetype through a derived identity; league-standard grounds are one shared design per country. The full 96 authoring round follows the prototype review.\"},\n");
+            .Append(", \"sharedTemplate\": ").Append(coverage.sharedTemplate).Append(", \"legacyDerived\": ").Append(coverage.legacyDerived).Append(", \"leagueStandard\": ").Append(coverage.leagueStandard)
+            .Append(",\n    \"authoredIds\": ").Append(List(coverage.authoredIds)).Append(",\n    \"sharedTemplateIds\": ").Append(List(coverage.sharedTemplateIds)).Append(",\n    \"legacyDerivedIds\": ").Append(List(coverage.legacyDerivedIds))
+            .Append(",\n    \"leagueStandardIds\": ").Append(List(coverage.leagueStandardIds)).Append(",\n    \"note\": \"All 96 league clubs use the explicit frozen five-template table: five original authored owners and 91 shared assignments. Owner IDs/names remain actual clubs; template geometry, country and detail seeds remain fixed. The 91 additional individual designs are deferred. Legacy pages, cup standards and neutral venues keep their existing paths.\"},\n");
         json.Append("  \"checks\": [\n");
         for (int i=0; i<checks.Length; i++) {
             json.Append("    \"").Append(checks[i].Replace("\\", "\\\\").Replace("\"", "\\\"")).Append("\"");

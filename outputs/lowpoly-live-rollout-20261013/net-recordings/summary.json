@@ -1,0 +1,154 @@
+{
+  "passed": true,
+  "sourceHashes": {
+    "dist/world-pitch3d-v98.js": "1bf59e8f49ee88941f856a3c742ba2059295b1eba395ec6eb654aafc5e44d316",
+    "dist/world-unity-v151.js": "6bf98c94c8881c35d9d3f5afb4b3d55097164e7969fbbb1b176d034b58b7812f",
+    "dist/world-pitch-actions-v99.js": "596b0cfb28a68782ca829a2b55f2702e844ec3e7c04e698d5f9543069f2c9877",
+    "dist/world-goal-scene-v83.js": "25d33e8b000b879137fa8425aef952566a2f6478ee3804f1aedf4af34d4b1669"
+  },
+  "nativeParity": true,
+  "results": [
+    {
+      "size": "standard",
+      "seed": 160112,
+      "frames": 0,
+      "goals": 0,
+      "flowingNetFrames": 0,
+      "digest": "38893eb6",
+      "events": []
+    },
+    {
+      "size": "standard",
+      "seed": 160113,
+      "frames": 0,
+      "goals": 0,
+      "flowingNetFrames": 0,
+      "digest": "1dd43378",
+      "events": []
+    },
+    {
+      "size": "standard",
+      "seed": 160114,
+      "frames": 166,
+      "goals": 2,
+      "flowingNetFrames": 82,
+      "digest": "6ece056b",
+      "events": [
+        {
+          "minute": 19,
+          "score": [
+            1,
+            0
+          ],
+          "travel": {
+            "x": 0.4342796807169583,
+            "y": 0.03513513513513514,
+            "elevation": 2.7,
+            "vx": -0.022648352191650366,
+            "vy": -0.3445468686609473,
+            "vh": -0.09080213548484561,
+            "direction": -1,
+            "impact": 0.07579365765266351,
+            "hit": "rear"
+          }
+        },
+        {
+          "minute": 72,
+          "score": [
+            2,
+            0
+          ],
+          "travel": {
+            "x": 0.4231522376118779,
+            "y": 0.03513513513513514,
+            "elevation": 0.3500000000000001,
+            "vx": -0.2865151298693014,
+            "vy": -0.3142838918636233,
+            "vh": -3.806882722467312,
+            "direction": -1,
+            "impact": 0.05994964399944833,
+            "hit": "side"
+          }
+        }
+      ]
+    },
+    {
+      "size": "large",
+      "seed": 160112,
+      "frames": 0,
+      "goals": 0,
+      "flowingNetFrames": 0,
+      "digest": "cb4cb00b",
+      "events": []
+    },
+    {
+      "size": "large",
+      "seed": 160113,
+      "frames": 83,
+      "goals": 1,
+      "flowingNetFrames": 0,
+      "digest": "8b80c334",
+      "events": [
+        {
+          "minute": 36,
+          "score": [
+            0,
+            1
+          ],
+          "travel": {
+            "x": 0.5766494260429296,
+            "y": 0.9648648648648649,
+            "elevation": 1.35,
+            "vx": 0.16634932744460237,
+            "vy": 0.28714824171774056,
+            "vh": 1.080243406117456,
+            "direction": 1,
+            "impact": 0.010244161108335224,
+            "hit": "side"
+          }
+        }
+      ]
+    },
+    {
+      "size": "large",
+      "seed": 160114,
+      "frames": 0,
+      "goals": 0,
+      "flowingNetFrames": 0,
+      "digest": "264d7f58",
+      "events": []
+    },
+    {
+      "size": "large",
+      "seed": 160115,
+      "frames": 83,
+      "goals": 1,
+      "flowingNetFrames": 82,
+      "digest": "ce8dec98",
+      "events": [
+        {
+          "minute": 50,
+          "score": [
+            0,
+            1
+          ],
+          "travel": {
+            "x": 0.5410830909953549,
+            "y": 0.9648648648648649,
+            "elevation": 1.35,
+            "vx": -0.09995443193303168,
+            "vy": 0.30039703475542695,
+            "vh": 2.303157602875909,
+            "direction": 1,
+            "impact": 0.07244431088189271,
+            "hit": "rear"
+          }
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Not a GPU/browser frame delivery test",
+    "Slow roller frequency is not established by these two seeded matches"
+  ]
+}

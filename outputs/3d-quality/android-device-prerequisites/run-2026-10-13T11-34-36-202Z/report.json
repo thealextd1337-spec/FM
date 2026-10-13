@@ -1,0 +1,1068 @@
+{
+  "schema": 1,
+  "mode": "run",
+  "status": "measured-manual-acceptance-outstanding",
+  "pass": false,
+  "hardwarePass": false,
+  "started": "2026-10-13T11:34:36.203Z",
+  "prerequisites": {
+    "nodeMajor": 24,
+    "nodeSupported": true,
+    "buildAvailable": true,
+    "nativeWebSocketAvailable": true,
+    "adbSelection": "explicit path",
+    "adbVersion": "Android Debug Bridge version 1.0.41",
+    "adbAvailable": true,
+    "devices": {
+      "physicalUsbCandidates": 1,
+      "unauthorized": 0,
+      "offline": 0
+    },
+    "physicalUsb": true,
+    "chromeInstalled": true,
+    "chromeDebugSocket": true,
+    "screenOffTimeoutMs": 60000,
+    "chargingPolicyKnown": true,
+    "chargingStayAwake": false,
+    "initialPower": {
+      "wakefulness": "Awake",
+      "displayState": "ON",
+      "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+    }
+  },
+  "samples": [
+    {
+      "hostTime": 14258.199999988079,
+      "elapsed": 0,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 61,
+      "renderFrame": 388,
+      "renderTime": 6.739,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 16729.19999998808,
+      "elapsed": 0.25061400000929834,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 102,
+      "renderFrame": 663,
+      "renderTime": 9.176,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 19167.899999976158,
+      "elapsed": 2.1489,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 145,
+      "renderFrame": 934,
+      "renderTime": 11.618,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 21497.19999998808,
+      "elapsed": 3.952805999990701,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 185,
+      "renderFrame": 1183,
+      "renderTime": 13.937000000000001,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 23940.600000023842,
+      "elapsed": 5.8412640000092955,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 228,
+      "renderFrame": 1454,
+      "renderTime": 16.402,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 26331.600000023842,
+      "elapsed": 7.702655999944204,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 270,
+      "renderFrame": 1714,
+      "renderTime": 18.806,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 28749.899999976158,
+      "elapsed": 9.572471999981394,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 312,
+      "renderFrame": 1975,
+      "renderTime": 21.219,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 31146.100000023842,
+      "elapsed": 11.4387779999721,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 353,
+      "renderFrame": 2251,
+      "renderTime": 23.632,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 33577,
+      "elapsed": 13.33994999999999,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 394,
+      "renderFrame": 2519,
+      "renderTime": 26.054000000000002,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 35958.39999997616,
+      "elapsed": 15.194633999962793,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 434,
+      "renderFrame": 2779,
+      "renderTime": 28.428000000000004,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 38350.19999998808,
+      "elapsed": 17.024279999906998,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 475,
+      "renderFrame": 3042,
+      "renderTime": 30.823000000000004,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 40773.19999998808,
+      "elapsed": 18.92061599994418,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 519,
+      "renderFrame": 3318,
+      "renderTime": 33.25899999999999,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 43189.10000002384,
+      "elapsed": 20.7691379999721,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 560,
+      "renderFrame": 3570,
+      "renderTime": 35.629,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 45620.5,
+      "elapsed": 22.6729620000279,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 602,
+      "renderFrame": 3845,
+      "renderTime": 38.096999999999994,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 48017.60000002384,
+      "elapsed": 23.352622800009303,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 643,
+      "renderFrame": 4112,
+      "renderTime": 40.492999999999995,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 50416.39999997616,
+      "elapsed": 24.53040563993827,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 686,
+      "renderFrame": 4378,
+      "renderTime": 42.891,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 52815.39999997616,
+      "elapsed": 26.396477639966175,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 728,
+      "renderFrame": 4635,
+      "renderTime": 45.300999999999995,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 55248.39999997616,
+      "elapsed": 28.295309639947583,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 770,
+      "renderFrame": 4896,
+      "renderTime": 47.715999999999994,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 57613.80000001192,
+      "elapsed": 30.128543639956884,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 811,
+      "renderFrame": 5151,
+      "renderTime": 50.06099999999999,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 60014.30000001192,
+      "elapsed": 30.529307639919693,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 854,
+      "renderFrame": 5427,
+      "renderTime": 52.498999999999995,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 62445,
+      "elapsed": 30.529307639919693,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 894,
+      "renderFrame": 5692,
+      "renderTime": 54.897999999999996,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 64885.89999997616,
+      "elapsed": 30.529307639919693,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 935,
+      "renderFrame": 5963,
+      "renderTime": 57.334999999999994,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 67228.89999997616,
+      "elapsed": 30.529307639919693,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 975,
+      "renderFrame": 6231,
+      "renderTime": 59.702,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 69630.69999998808,
+      "elapsed": 30.529307639919693,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 1016,
+      "renderFrame": 6504,
+      "renderTime": 62.098,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 72084.30000001192,
+      "elapsed": 30.529307639919693,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 1058,
+      "renderFrame": 6783,
+      "renderTime": 64.55000000000001,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 74502.5,
+      "elapsed": 32.36176163988249,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 1099,
+      "renderFrame": 7045,
+      "renderTime": 66.971,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 76904.5,
+      "elapsed": 34.22596163992899,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 1141,
+      "renderFrame": 7310,
+      "renderTime": 69.38400000000001,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 79298,
+      "elapsed": 35.901635639845324,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 1183,
+      "renderFrame": 7575,
+      "renderTime": 71.78300000000002,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 81695.69999998808,
+      "elapsed": 35.901635639845324,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 1224,
+      "renderFrame": 7842,
+      "renderTime": 74.15100000000001,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 84049,
+      "elapsed": 35.901635639845324,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 1264,
+      "renderFrame": 8112,
+      "renderTime": 76.528,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 86360.5,
+      "elapsed": 35.901635639845324,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 1303,
+      "renderFrame": 8377,
+      "renderTime": 78.84300000000002,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 88692.10000002384,
+      "elapsed": 35.901635639845324,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 1342,
+      "renderFrame": 8635,
+      "renderTime": 81.14600000000002,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    },
+    {
+      "hostTime": 89275.89999997616,
+      "elapsed": 35.901635639845324,
+      "phase": "live",
+      "halftimePause": 0,
+      "finished": false,
+      "visible": "visible",
+      "unityActive": true,
+      "clockHeld": false,
+      "unityError": null,
+      "sequence": 1352,
+      "renderFrame": 8703,
+      "renderTime": 81.73,
+      "wakeHeld": true,
+      "nativeFullscreen": true,
+      "viewportFullscreen": true,
+      "power": {
+        "wakefulness": "Awake",
+        "displayState": "ON",
+        "displayStateSource": "dumpsys-display/DisplayPowerController[0]"
+      }
+    }
+  ],
+  "manual": [
+    "Real app switch and return; wake-lock reacquisition and unchanged native match state",
+    "Visual readability of names, team rings and ball in landscape; interaction and keeper animations"
+  ],
+  "limitations": [
+    "No GPU presentation or per-frame GPU timing measurement",
+    "No performance acceptance threshold or full device acceptance is inferred from loop counters"
+  ],
+  "buildBefore": {
+    "sourceId": "319e2f7223bb42c5da2bf41c52aa7ac1ea960f0b9f1b46c38fc017f1ae327982",
+    "htmlSha256": "9108286b173c60e0a8f14b581a0df15b2b3cc8a943c1f011f514c8d47ae241ff",
+    "manifestSha256": "5adf4088de5b9315ad7d8af40b0f7ce71eb010e91852c272ac545a655da3f12d",
+    "assets": [
+      {
+        "file": "unity-web.data",
+        "sha256": "7e52ab78f067ae933675ee4da2b2899a4c63dcaa51f9e0323ef2b09e0626dbe4",
+        "bytes": 56158505,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+        "bytes": 300906,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.loader.js",
+        "sha256": "2909e971e5efe53176965433a410d0e296ff3b44b77cf358c66a4ffacdaf1968",
+        "bytes": 27907,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.wasm",
+        "sha256": "483c43a812919aa7ea64a885ff2464d47a113684d83ed74c660a7d31f6ed6122",
+        "bytes": 35794719,
+        "manifestMatches": true
+      }
+    ],
+    "valid": true
+  },
+  "device": {
+    "model": "Pixel 9 Pro XL",
+    "androidRelease": "17",
+    "androidSdk": 37,
+    "chromeVersion": "154.0.8037.126",
+    "transport": "Authorized physical USB only; serial omitted"
+  },
+  "reason": "Raw physical-device observations; manual app-switch/readability and product performance acceptance remain outstanding",
+  "cdp": {
+    "transport": "Node native WebSocket",
+    "scope": "Only newly launched nonce URL; tab metadata filtered to exact QA URL and discarded; no foreign content/session inspection"
+  },
+  "ownedResources": {
+    "targetId": "12745",
+    "forward": {
+      "local": "tcp:58474",
+      "remote": "localabstract:chrome_devtools_remote"
+    },
+    "reverse": {
+      "local": "tcp:58468",
+      "remote": "tcp:58468"
+    },
+    "origin": "http://localhost:58468"
+  },
+  "load": {
+    "navigationToDomMs": 3424,
+    "profile": "Existing Chrome profile/process; fresh QA origin; no cache/profile reset; no cold-start claim",
+    "harnessSetupToAckMs": 8159,
+    "setupTimingNote": "Includes QA career/market creation and Unity readiness; not isolated asset download or cold start"
+  },
+  "setupWake": {
+    "held": true,
+    "scope": "QA preparation only; excluded from product wake evidence",
+    "release": {
+      "released": true,
+      "productWakeHeld": true
+    }
+  },
+  "setupFullscreenTap": true,
+  "setup": {
+    "done": true,
+    "people": 14,
+    "unityReady": true,
+    "ack": {
+      "players": 14,
+      "ids": 14,
+      "allReal": true
+    }
+  },
+  "world": {
+    "clubs": 192,
+    "presentationVersion": 172,
+    "expansion": true
+  },
+  "unityDiagnostics": {
+    "ready": true,
+    "error": null,
+    "active": true,
+    "iframe": "http://localhost:58468/unity-match/runtime.html?v=131",
+    "frameReady": "complete",
+    "canvas": true,
+    "status": "Unity lädt · 100 %",
+    "visibility": "visible",
+    "landscape": true,
+    "view": "3d",
+    "viewport": {
+      "width": 931,
+      "height": 448
+    },
+    "resources": [
+      {
+        "path": "/unity-match/runtime.html",
+        "duration": 12.199999988079071,
+        "bytes": 740
+      }
+    ]
+  },
+  "presentation": {
+    "viewport": {
+      "width": 931,
+      "height": 448,
+      "devicePixelRatio": 2.25
+    },
+    "coarse": true,
+    "loadConfiguration": {
+      "quality": "reduced",
+      "fieldPlayers": 6
+    },
+    "projection": {
+      "width": 931,
+      "height": 448
+    }
+  },
+  "fullscreenTap": {
+    "isTrusted": true,
+    "active": true
+  },
+  "measurement": {
+    "requestedSeconds": 60,
+    "actualSeconds": 75,
+    "nativeTimer": true,
+    "scope": "natural-live-match",
+    "acceleratedRun": false
+  },
+  "wake": {
+    "status": "passed",
+    "screenOffTimeoutMs": 60000,
+    "observedMs": 75017.69999998808,
+    "continuousEligibleScope": true,
+    "awakeThroughout": true,
+    "wakeLockHeldThroughout": true,
+    "note": "Observed scope stayed visible and fullscreen in live/paused play, excluding native half/full-time. No touches after fullscreen entry; dumpsys power read only; global charging stay-awake excluded. Other OS wake policies can still affect attribution."
+  },
+  "native": {
+    "elapsedDelta": 35.901635639845324,
+    "visibleThroughout": true,
+    "activeThroughout": true,
+    "phases": [
+      "live"
+    ]
+  },
+  "unityLoop": {
+    "status": "measured",
+    "averageFramesPerSecond": 110.87997226333827,
+    "frameDelta": 8315,
+    "seconds": 74.991,
+    "note": "Unity frame counter / Unity realtime across all observed phases, including pauses; not a gameplay benchmark, delivered GPU FPS or per-frame p95"
+  },
+  "liveIntervalUnityLoop": {
+    "status": "measured",
+    "averageFramesPerSecond": 110.0334006378201,
+    "seconds": 52.992999999999995,
+    "intervals": 22,
+    "note": "Only polling intervals with live, advancing native time and visible active Unity at both ends; intermediate transitions are not observed; not GPU presentation FPS"
+  },
+  "hostRafIntervalMs": {
+    "samples": 6585,
+    "p50": 16.599999999998545,
+    "p95": 22.599999999998545,
+    "max": 58.59999998807325
+  },
+  "hostRafIntervalMsNote": "Host document rAF intervals; never Unity FPS",
+  "projectionObservations": {
+    "changedPolls": 32,
+    "pollCount": 33,
+    "note": "Latest projection sampled approximately every 2 seconds; not projection rate or Unity FPS"
+  },
+  "automatedChecksPassed": true,
+  "screenshots": [
+    {
+      "name": "automatic-fullscreen",
+      "status": "captured",
+      "at": "2026-10-13T11:36:08.574Z",
+      "layout": {
+        "nativeFullscreen": true,
+        "fullscreenElement": "match-area",
+        "viewportFullscreen": true,
+        "viewport": {
+          "width": 931,
+          "height": 448,
+          "devicePixelRatio": 2.25
+        },
+        "visualViewport": {
+          "width": 931.111083984375,
+          "height": 448,
+          "offsetTop": 0,
+          "offsetLeft": 0
+        },
+        "body": {
+          "x": 0,
+          "y": -671.1111450195312,
+          "width": 931.1111450195312,
+          "height": 1782.1458740234375,
+          "bottom": 1111.0347290039062
+        },
+        "matchArea": {
+          "x": 0,
+          "y": 0,
+          "width": 931.1111450195312,
+          "height": 448,
+          "bottom": 448
+        },
+        "pitchStage": {
+          "x": 0,
+          "y": 0,
+          "width": 931.1111450195312,
+          "height": 448,
+          "bottom": 448
+        },
+        "unityHost": {
+          "x": 0,
+          "y": 0,
+          "width": 931.1111450195312,
+          "height": 448,
+          "bottom": 448
+        },
+        "iframe": {
+          "x": 0,
+          "y": 0,
+          "width": 931.1111450195312,
+          "height": 448,
+          "bottom": 448
+        },
+        "canvas": {
+          "css": {
+            "x": 0,
+            "y": 0,
+            "width": 931.1111450195312,
+            "height": 448,
+            "bottom": 448
+          },
+          "renderWidth": 931,
+          "renderHeight": 448
+        },
+        "projection": {
+          "width": 931,
+          "height": 448,
+          "sequence": 1360
+        },
+        "backgrounds": {
+          "body": "rgb(17, 21, 26)",
+          "matchArea": "rgb(16, 40, 44)",
+          "iframe": "rgba(0, 0, 0, 0)"
+        }
+      },
+      "file": "automatic-fullscreen.png",
+      "note": "Only owned QA page pixels; Chrome/Android system bars are outside this capture"
+    }
+  ],
+  "cleanup": {
+    "failures": [],
+    "ownTargetCreationVerified": true
+  },
+  "buildAfter": {
+    "sourceId": "319e2f7223bb42c5da2bf41c52aa7ac1ea960f0b9f1b46c38fc017f1ae327982",
+    "htmlSha256": "9108286b173c60e0a8f14b581a0df15b2b3cc8a943c1f011f514c8d47ae241ff",
+    "manifestSha256": "5adf4088de5b9315ad7d8af40b0f7ce71eb010e91852c272ac545a655da3f12d",
+    "assets": [
+      {
+        "file": "unity-web.data",
+        "sha256": "7e52ab78f067ae933675ee4da2b2899a4c63dcaa51f9e0323ef2b09e0626dbe4",
+        "bytes": 56158505,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+        "bytes": 300906,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.loader.js",
+        "sha256": "2909e971e5efe53176965433a410d0e296ff3b44b77cf358c66a4ffacdaf1968",
+        "bytes": 27907,
+        "manifestMatches": true
+      },
+      {
+        "file": "unity-web.wasm",
+        "sha256": "483c43a812919aa7ea64a885ff2464d47a113684d83ed74c660a7d31f6ed6122",
+        "bytes": 35794719,
+        "manifestMatches": true
+      }
+    ],
+    "valid": true
+  },
+  "buildUnchanged": true,
+  "finished": "2026-10-13T11:36:09.271Z"
+}

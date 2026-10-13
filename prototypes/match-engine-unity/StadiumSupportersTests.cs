@@ -9,9 +9,10 @@ using Doppel6.Probe;
 // and home flag, colours from presentation.clubs, determinism of the time functions, pause/replay
 // equality, the seamless 600 s wrap, frame-rate independence, celebration of the scoring club only,
 // budgets, inflated bounds, no intrusion into the pitch or in front of the stands, follow-camera
-// visibility and the real bridge wiring (renderers under stand sides, uniforms from the frame).
+// frustum overlap (an upper bound on visibility) and the real bridge wiring (renderers under
+// stand sides, uniforms from the frame).
 public static class StadiumSupportersTests {
-    [Serializable] public class Block {public string venue,club;public int side,role,team,people,flags,banners,figureTriangles,clothTriangles;public float followVisibleShare,ownHalfVisibleShare,maxReach;}
+    [Serializable] public class Block {public string venue,club;public int side,role,team,people,flags,banners,figureTriangles,clothTriangles;public float followFrustumOverlapShare,ownHalfFrustumOverlapShare,maxReach;}
     [Serializable] class Report {public int passed;public string note;public string[] checks;public Block[] blocks;}
     static readonly Color HomeColor=new Color(.77f,.22f,.26f),AwayColor=new Color(.22f,.55f,.36f);
     static SupporterSetup Setup(int homeTeam,bool neutral)=>new SupporterSetup{ClubIds=new[]{"GER-2","GER-3"},Primary=new[]{HomeColor,AwayColor},Secondary=new[]{Color.white,new Color(.95f,.9f,.8f)},Patterns=new[]{2,4},HomeTeam=homeTeam,Neutral=neutral};
@@ -19,12 +20,13 @@ public static class StadiumSupportersTests {
         var p=venue=="NEUTRAL-EUROPE"?ClubStadiumProfiles.NeutralEurope():venue.StartsWith("NEUTRAL-CUP-")?ClubStadiumProfiles.NeutralCup(venue.Substring(12)):ClubStadiumProfiles.Resolve(venue);
         return StadiumArchitecture.Plan(p,68,44,HomeColor,Color.white,detailed);
     }
-    // Same follow camera as the page (SmallViewDiagnostics.Aim, 16:9): does any figure project into the frame?
-    static bool Visible(StadiumBlueprint plan,SupporterBlockPlan bp,Vector3 ball){
+    // Same follow camera as the page (SmallViewDiagnostics.Aim, 16:9). Conservative intersection
+    // of the motion-inflated block bounds with its view cone. No depth/occlusion test.
+    static bool FrustumOverlap(StadiumBlueprint plan,SupporterBlockPlan bp,Vector3 ball){
         var aim=SmallViewDiagnostics.Aim(ball,.29f,"follow",16f/9);if(!plan.SideVisible(bp.Block.Side,aim.position))return false;
         var f=(aim.target-aim.position).normalized;var r=Vector3.Cross(Vector3.up,f).normalized;var u=Vector3.Cross(f,r);float th=Mathf.Tan(aim.fov*.5f*Mathf.Deg2Rad),aspect=16f/9;
-        var v=bp.Figures.Vertices;for(int i=0;i<v.Count;i+=7){var d=v[i]-aim.position;float z=Vector3.Dot(d,f);if(z<.5f)continue;if(Mathf.Abs(Vector3.Dot(d,r)/z/th/aspect)<=1&&Mathf.Abs(Vector3.Dot(d,u)/z/th)<=1)return true;}
-        return false;
+        var planes=new[]{new Plane(f,aim.position+f*.5f),new Plane(f*th*aspect+r,aim.position),new Plane(f*th*aspect-r,aim.position),new Plane(f*th+u,aim.position),new Plane(f*th-u,aim.position)};
+        return GeometryUtility.TestPlanesAABB(planes,bp.FigureBounds);
     }
 
     public static void CheckPlans(Action<bool,string> Require,List<Block> blocks){
@@ -68,7 +70,8 @@ public static class StadiumSupportersTests {
         }
         // Celebration: only the scoring club's block, from the received celebration time.
         Require(StadiumSupporters.Celebration(true,0,1,0)==1&&StadiumSupporters.Celebration(true,0,1,1)==0&&StadiumSupporters.Celebration(false,0,1,0)==0&&
-            StadiumSupporters.Celebration(true,1,0,1)==0&&StadiumSupporters.Celebration(true,1,.175,1)>0&&StadiumSupporters.Celebration(true,1,12,1)==0,"only the scoring club's block celebrates, ramping in and out with the celebration time");
+            StadiumSupporters.Celebration(true,1,0,1)==0&&StadiumSupporters.Celebration(true,1,.175,1)>0&&StadiumSupporters.Celebration(true,1,4.05,1)==0&&StadiumSupporters.Celebration(true,1,12,1)==0,"only the scoring club's block celebrates, returning to zero by the native 4.05 s end");
+        CelebrationContinuity(Require);
         // Budgets, bounds and clearance for every venue design, both qualities.
         foreach(var (id,profile) in StadiumArchitectureTests.Venues())foreach(var detailed in new[]{true,false}){
             var plan=StadiumArchitecture.Plan(profile,68,44,HomeColor,Color.white,detailed);bool neutral=profile.Identity.Supporters.Neutral;var sp=StadiumSupporters.Plan(plan,Setup(0,neutral),detailed);
@@ -87,12 +90,30 @@ public static class StadiumSupportersTests {
             Require(intrusions==0,id+(detailed?" standard":" reduced")+" supporters stay on or behind the pitch wall ("+margin.ToString("0.00")+" m from the stand front), "+boards.ToString("0.0")+" m behind the boards, off the pitch");
             if(!detailed)continue;
             foreach(var bp in sp.Blocks){int all=0,seen=0,own=0,ownSeen=0;
-                for(float bx=-32;bx<=32;bx+=2)for(float bz=-18;bz<=18;bz+=4){bool vis=Visible(plan,bp,new Vector3(bx,0,bz));all++;if(vis)seen++;if(bp.Block.Side==2?bx<=-10:bx>=10){own++;if(vis)ownSeen++;}}
+                for(float bx=-32;bx<=32;bx+=2)for(float bz=-18;bz<=18;bz+=4){bool overlaps=FrustumOverlap(plan,bp,new Vector3(bx,0,bz));all++;if(overlaps)seen++;if(bp.Block.Side==2?bx<=-10:bx>=10){own++;if(overlaps)ownSeen++;}}
                 float share=seen/(float)all,ownShare=ownSeen/(float)own;
-                blocks.Add(new Block{venue=plan.Venue,club=bp.ClubId,side=bp.Block.Side,role=bp.Block.Role,team=bp.Team,people=bp.People,flags=bp.Flags,banners=bp.Banners,figureTriangles=bp.Figures.TriangleCount,clothTriangles=bp.Cloth.TriangleCount,followVisibleShare=share,ownHalfVisibleShare=ownShare,maxReach=reach});
-                Require(ownShare>=.95f,id+" block on side "+bp.Block.Side+" is on screen in the follow camera whenever play is in its half ("+(ownShare*100).ToString("0")+" %; whole pitch "+(share*100).ToString("0")+" %)");
+                blocks.Add(new Block{venue=plan.Venue,club=bp.ClubId,side=bp.Block.Side,role=bp.Block.Role,team=bp.Team,people=bp.People,flags=bp.Flags,banners=bp.Banners,figureTriangles=bp.Figures.TriangleCount,clothTriangles=bp.Cloth.TriangleCount,followFrustumOverlapShare=share,ownHalfFrustumOverlapShare=ownShare,maxReach=reach});
+                Require(ownShare>=.95f,id+" block bounds on side "+bp.Block.Side+" overlap the follow frustum at >=95 % of own-half ball-grid points ("+(ownShare*100).ToString("0")+" %; whole pitch "+(share*100).ToString("0")+" %); visibility upper bound, occlusion unmeasured");
             }
         }
+    }
+
+    static void CelebrationContinuity(Action<bool,string> Require){
+        float At(double t)=>StadiumSupporters.Celebration(true,0,t,0);
+        Require(At(.175)>0&&At(.175)<1&&At(.35)==1&&At(2.85)==1&&At(3.45)>0&&At(3.45)<1&&At(4.05)==0,"celebration rises, holds and fades within the native goal scene");
+        bool monotone=true;float before=0;for(int i=0;i<=350;i++){float v=At(i*.001);monotone&=v>=before;before=v;}
+        before=1;for(int i=0;i<=1200;i++){float v=At(2.85+i*.001);monotone&=v<=before;before=v;}
+        Require(monotone,"celebration amplitude rises and falls monotonically without overshoot");
+        const double dt=.001;foreach(double boundary in new[]{0,.35,2.85,4.05}){
+            float value=At(boundary),left=(value-At(boundary-dt))/(float)dt,right=(At(boundary+dt)-value)/(float)dt;
+            Require(Mathf.Abs(left)<.03f&&Mathf.Abs(right)<.03f&&Mathf.Abs(left-right)<.06f,"celebration amplitude and slope are continuous at "+boundary.ToString("0.00")+" s");
+        }
+        var supporters=StadiumSupporters.Plan(Stadium("GER-2"),Setup(0,false),true);float jump=0;
+        foreach(var bp in supporters.Blocks)foreach(var mesh in new[]{bp.Figures,bp.Cloth})for(int i=0;i<mesh.Vertices.Count;i+=11){
+            Vector3 Pose(float amplitude)=>StadiumSupporters.Displace(mesh.Vertices[i],mesh.Normals[i],mesh.Motion[i],mesh.Pivots[i],mesh.Axes[i],31.7f,amplitude);
+            jump=Mathf.Max(jump,(Pose(At(4.05-dt))-Pose(StadiumSupporters.Celebration(false,0,0,0))).magnitude);
+        }
+        Require(jump<.0002f,"native celebration flag clearing changes sampled figure/cloth positions by <0.2 mm (max "+(jump*1000).ToString("0.000")+" mm)");
     }
 
     public static string Run(string repository,string outputFolder=null){
@@ -100,7 +121,7 @@ public static class StadiumSupportersTests {
         CheckPlans(Require,blocks);
         Sources(repository,Require);
         BridgeWiring(repository,Require);
-        var json=JsonUtility.ToJson(new Report{passed=checks.Count,note="followVisibleShare: share of a uniform ball grid (x -32..32, z -18..18) at which any figure of the block projects into the default follow camera (near 60, 16:9). End blocks cannot be on screen together in this camera: each shows while play is in its half (ownHalfVisibleShare, |x| >= 10 m). The contracts' 95 % over all frames is not reachable for end blocks; Root measures the recorded match.",checks=checks.ToArray(),blocks=blocks.ToArray()},true);
+        var json=JsonUtility.ToJson(new Report{passed=checks.Count,note="followFrustumOverlapShare: fraction of a uniform ball grid (x -32..32, z -18..18) where the motion-inflated block bounds intersect the default follow camera view cone (near 60, 16:9), excluding hidden stands. ownHalfFrustumOverlapShare restricts play to the block's half (|x| >= 10 m). These are conservative visibility upper bounds: roofs, flags, other figures and all other occluders are unmeasured. The >=95 % own-half gate does not prove visible fans at 95 % of recorded frames; recorded-match visibility needs separate image/depth evidence.",checks=checks.ToArray(),blocks=blocks.ToArray()},true);
         var folder=Path.Combine(repository,outputFolder??"outputs/3d-quality/unity");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"stadium-supporters-tests.json"),json);
         return "passed="+checks.Count;
     }
@@ -144,8 +165,11 @@ public static class StadiumSupportersTests {
             frame.celebrating=true;frame.celebrationTeam=1;frame.celebrationTime=1.5;updateCrowd.Invoke(bridge,new object[]{frame});bool celebrate=true;
             for(int k=0;k<materials.Count;k++)celebrate&=Team(k)==1?Value(k,"_D6Celebrate")>0:Value(k,"_D6Celebrate")==0;
             Require(celebrate,"only the scoring club's (team 1) block celebrates");
-            var paused=new float[materials.Count];for(int k=0;k<materials.Count;k++)paused[k]=Value(k,"_D6PresentTime");updateCrowd.Invoke(bridge,new object[]{frame});updateCrowd.Invoke(bridge,new object[]{frame});
-            bool still=true;for(int k=0;k<materials.Count;k++)still&=Value(k,"_D6PresentTime")==paused[k];Require(still,"a paused frame keeps an identical supporter picture");
+            var paused=new float[materials.Count];var pausedCelebration=new float[materials.Count];for(int k=0;k<materials.Count;k++){paused[k]=Value(k,"_D6PresentTime");pausedCelebration[k]=Value(k,"_D6Celebrate");}updateCrowd.Invoke(bridge,new object[]{frame});updateCrowd.Invoke(bridge,new object[]{frame});
+            bool still=true;for(int k=0;k<materials.Count;k++)still&=Value(k,"_D6PresentTime")==paused[k]&&Value(k,"_D6Celebrate")==pausedCelebration[k];Require(still,"a paused frame keeps identical supporter time and celebration uniforms");
+            frame.celebrationTime=4.05;updateCrowd.Invoke(bridge,new object[]{frame});bool ended=true;for(int k=0;k<materials.Count;k++)ended&=Value(k,"_D6Celebrate")==0;
+            frame.celebrating=false;frame.celebrationTime=0;updateCrowd.Invoke(bridge,new object[]{frame});for(int k=0;k<materials.Count;k++)ended&=Value(k,"_D6Celebrate")==0;
+            Require(ended,"the real bridge returns every block to ordinary motion by 4.05 s and when the native flag clears");
             typeof(ProbeBridge).GetMethod("ClearStadium",flags).Invoke(bridge,null);Require(bridge.Supporters==null&&materials.Count==0,"a new fixture clears the supporter state");
         }finally{
             if(bridge!=null){foreach(var m in (List<Mesh>)typeof(ProbeBridge).GetField("stadiumMeshes",flags).GetValue(bridge))if(m!=null)UnityEngine.Object.DestroyImmediate(m);foreach(var t in (List<Texture2D>)typeof(ProbeBridge).GetField("stadiumTextures",flags).GetValue(bridge))if(t!=null)UnityEngine.Object.DestroyImmediate(t);
