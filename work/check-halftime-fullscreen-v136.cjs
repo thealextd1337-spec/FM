@@ -11,7 +11,7 @@ if(baseline){
  try{
   const page=await browser.newPage({viewport:{width:915,height:412},deviceScaleFactor:3,isMobile:true,hasTouch:true}),errors=[],cases=[];
   page.on('pageerror',error=>errors.push(error.message));
-  await page.goto(liveUrl||pathToFileURL(path.resolve(fixture)).href,{timeout:120000});
+  await page.goto(liveUrl||pathToFileURL(path.resolve(fixture)).href+'?engine=browser',{timeout:120000});
   if(liveUrl){
    await page.waitForFunction(()=>window.D6UserModelStatus==='ready',null,{timeout:60000});
    assert((await page.locator('footer span').first().textContent()).includes('PROTOTYP 109'));

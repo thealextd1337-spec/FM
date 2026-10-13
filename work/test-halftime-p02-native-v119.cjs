@@ -14,7 +14,7 @@ const prefix=candidateScript.slice(candidateScript.indexOf('const files='),candi
 const candidate=new Function('fs','path','assert','root',prefix+'\nreturn candidate;')(fs,path,assert,root);
 const report={scope:'Current production and separately labeled private stage2, actual native std5 shot119-5 fixture, complete P02 facts, JSON around halftime. No wall-clock override, shortened intervals, forced outcomes, production edits or Unity/build operations.',sourceHashes:Object.fromEntries([...frozen].map(([f,b])=>['dist/'+f,hash(b)])),candidateScriptSha256:hash(candidateScript),candidateHashes:Object.fromEntries(Object.entries(candidate).map(([f,s])=>[f,hash(s)])),rows:[],errors:[]};
 async function main(){
- const server=require('./ui-redesign/serve.cjs').createServer();await new Promise(r=>server.listen(0,'127.0.0.1',r));let browser;
+ const server=require('./ui-redesign/serve.cjs').createServer();await new Promise(r=>server.listen(4213,'127.0.0.1',r));let browser;
  try{
   browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true,args:['--disable-gpu']});
   for(const route of ['production','private-stage2'])for(const marked of [true,false])for(const json of marked?[false,true]:[false]){

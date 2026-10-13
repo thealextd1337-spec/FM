@@ -268,6 +268,7 @@ function v65Finish(){
  const context=v65Context();if(!context||match.finished)return;
  if(context.state.playerLoad){v158EndNative(match);v158RecoverMatch(context.career,context.fixture,context.state,'final-whistle');}
  const state=context.state;state.addedMinutes=[...(match.addedMinutes||[0,0])];state.firstHalfEnd=45+state.addedMinutes[0];state.fullTimeEnd=90+state.addedMinutes[0]+state.addedMinutes[1];v65SyncMinute(context,Math.floor(match.elapsed/75*90));running=false;clearInterval(v65WorldFrame);v65PauseRequested=false;match.finished=true;match.flight=null;hideOverlay();
+ if(typeof v132ClearVisualTails==='function')v132ClearVisualTails(match);
  if(state.playerPerformance)v155ObserveNative(context);
  const everyone=[...match.people,...match.exitedPeople];state.ratings={};
  for(const person of everyone){
@@ -310,6 +311,7 @@ function v65PausePending(context){
 }
 function v65PausePitch(context){
  const {career,fixture,state,ownSide}=context;
+ v25UpdateLiveBoard();
  const replacements=Object.fromEntries(state.pending[ownSide].map(item=>[item.outPid,item.inPid]));
  const ratings=Object.fromEntries((match?.people||[]).filter(person=>person.t===0&&(!state.playerPerformance||state.minutes[person.pid]>=20)).map(person=>[person.pid,performanceRating(person)]));
  const meta=$('#match-area .match-meta').cloneNode(true),clock=$('#match-area #retro-clock')?.cloneNode(true),scoreboard=$('#match-area .scoreboard').cloneNode(true);
@@ -403,7 +405,7 @@ function v65Show(context){
  $('#heading').textContent='Dein Spiel läuft.';$('#subtitle').textContent=`${competition.type==='league'?`${v61CountryNames[competition.country]} · Liga 1`:competition.type==='cup'?'Pokal':competition.name||'Europacup'} · ${own.name} gegen ${other.name}`;
  $('#game-screen .board-top strong').textContent=own.name;
  $('#board-label').textContent=context.state.phase==='paused'?'PAUSE':'LIVE';
- const labels=$$('#game-screen .scoreboard span');labels[0].textContent=own.name;labels[1].textContent=other.name;
+ const labels=$$('#game-screen .scoreboard>.score-team'),sides=v25DisplaySides(context);for(const [side,physical]of sides.entries())if(labels[side])labels[side].textContent=v65Club(context,physical).name;
  const round=/^R(\d+)$/.exec(context.fixture.round);
  const europeRound=round?`Spieltag ${round[1]}`:{QF:'Viertelfinale',SF:'Halbfinale',F:'Finale'}[context.fixture.round];
  $('#match-area .match-meta span:last-child').textContent=competition.type==='league'?'LIGASPIEL':competition.type==='cup'?`POKALSPIEL${europeRound?` · ${europeRound}`:''}`:`EUROPACUP${europeRound?` · ${europeRound}`:''}`;
@@ -469,13 +471,15 @@ ability=function(person,key){
 const v65BaseLiveBoard=v25UpdateLiveBoard;
 v25UpdateLiveBoard=function(){
  v65BaseLiveBoard();const context=v65WorldActive&&v65Context();if(!context)return;
- const aggregate=v64UiAggregateText(context.career,context.fixture,match.score,context.ownSide===1);
+ const sides=v25DisplaySides(context),aggregate=v64UiAggregateText(context.career,context.fixture,sides.map(t=>match.score[t]));
  if(aggregate){const label=document.createElement('small');label.className='v65-aggregate';label.textContent=aggregate;$('#score')?.append(label)}
  const names=$$('#match-area .score-name-text'),formations=$$('#match-area .score-team small'),ranks=v65LiveRankLabels(context);
- for(const physical of [0,1])if(names[physical])names[physical].textContent=`${v65Club(context,physical).name}${ranks[physical]?` ${ranks[physical]}`:''}`;
- for(const physical of [0,1])if(formations[physical])formations[physical].textContent=context.state.tactics[v65Side(physical,context.ownSide)].formation;
- for(const node of $$('#match-info [data-stat-home]'))node.textContent=v65Club(context,0).name;
- for(const node of $$('#match-info [data-stat-away]'))node.textContent=v65Club(context,1).name;
+ for(const [side,physical]of sides.entries()){
+  if(names[side])names[side].textContent=`${v65Club(context,physical).name}${ranks[physical]?` ${ranks[physical]}`:''}`;
+  if(formations[side])formations[side].textContent=context.state.tactics[v65Side(physical,context.ownSide)].formation;
+ }
+ for(const node of $$('#match-info [data-stat-home]'))node.textContent=v65Club(context,sides[0]).name;
+ for(const node of $$('#match-info [data-stat-away]'))node.textContent=v65Club(context,sides[1]).name;
 };
 const v65BaseLivePlayerHTML=v59LivePlayerHTML;
 v59LivePlayerHTML=function(person){const html=v65BaseLivePlayerHTML(person),context=v65WorldActive&&v65Context(),previous=escapeHTML(activeSave?.club||'FC Viertel');return context&&person.t===0?html.replace(`${previous} · Live im Spiel`,`${escapeHTML(v65Club(context,0).name)} · Live im Spiel`):html};

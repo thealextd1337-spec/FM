@@ -53,9 +53,15 @@ function v25EnsureScoreboard(){
  if(!scoreboard.querySelector('.score-team'))scoreboard.innerHTML='<span class="score-team home-team"></span><strong id="score">0 : 0</strong><span class="score-team away-team"></span>';return{clock,scoreboard};
 }
 function v25ClockParts(){const total=Math.min(90*60,Math.floor(((match?.elapsed||0)/75)*90*60)),minutes=Math.floor(total/60),seconds=total%60;return[String(minutes).padStart(2,'0'),String(seconds).padStart(2,'0')]}
+// Fixture order is presentation only; physical team 0 remains the manager.
+function v25DisplaySides(context){
+ if(context===undefined)context=typeof v65WorldActive!=='undefined'&&v65WorldActive&&typeof v65Context==='function'?v65Context():null;
+ return context?[context.ownSide,1-context.ownSide]:[0,1];
+}
 function v25UpdateLiveBoard(){
  if(!match)return;const ui=v25EnsureScoreboard();if(!ui)return;const[minutes,seconds,added]=v25ClockParts();ui.clock.innerHTML=`<span>${minutes}</span><span class="clock-colon">:</span><span>${seconds}</span>${added?`<span class="clock-added"> +${added}</span>`:''}`;ui.clock.setAttribute('aria-label',`${minutes} Minuten ${seconds} Sekunden${added?` plus ${added} Minuten Nachspielzeit`:''}`);$('#score').textContent=match.score.join(' : ');
- const home=ui.scoreboard.querySelector('.home-team'),away=ui.scoreboard.querySelector('.away-team'),homeName=activeSave?.club||'FC Viertel',awayName=match.opponentName||match.cupOpponentName||(activeSave?activeOpponent().name:'SC Hafen');home.innerHTML=`<b class="score-name"><span class="score-shirt" aria-hidden="true">${v44ShirtSVG(null,matchKit(0),'Spieltrikot')}</span><span class="score-name-text">${escapeHTML(homeName)}</span></b><small>${escapeHTML(v25Formation(0))}</small><div class="goal-list">${v25Scorers(0)}</div>`;away.innerHTML=`<b class="score-name"><span class="score-name-text">${escapeHTML(awayName)}</span><span class="score-shirt" aria-hidden="true">${v44ShirtSVG(null,matchKit(1),'Spieltrikot')}</span></b><small>${escapeHTML(v25Formation(1))}</small><div class="goal-list">${v25Scorers(1)}</div>`;
+ const sides=v25DisplaySides(),names=[activeSave?.club||'FC Viertel',match.opponentName||match.cupOpponentName||(activeSave?activeOpponent().name:'SC Hafen')];$('#score').textContent=sides.map(t=>match.score[t]).join(' : ');
+ for(const [side,physical]of sides.entries()){const node=ui.scoreboard.querySelector(side===0?'.home-team':'.away-team'),shirt=`<span class="score-shirt" aria-hidden="true">${v44ShirtSVG(null,matchKit(physical),'Spieltrikot')}</span>`,name=`<span class="score-name-text">${escapeHTML(names[physical])}</span>`;node.innerHTML=`<b class="score-name">${side===0?shirt+name:name+shirt}</b><small>${escapeHTML(v25Formation(physical))}</small><div class="goal-list">${v25Scorers(physical)}</div>`;}
 }
 const v24UpdateTeamStatsV25=updateTeamStats;
 updateTeamStats=function(){v24UpdateTeamStatsV25();v25UpdateLiveBoard()};

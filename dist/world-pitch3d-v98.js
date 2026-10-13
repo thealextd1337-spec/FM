@@ -55,6 +55,7 @@ function v119TravelFacing(current,person,turned){
 // lateral target with a restrained height, without changing native goal/reach
 // tests (which continue to use v101ShotPoint/v109FlightPoint).
 function v119VisibleShotBall(current){
+ if(current.finished||current.halftimePause>0||current.kickoff||current.pendingKickoff!=null)return null;
  if(typeof v159ShotActive!=='function'||!v159ShotActive(current))return null;
  const flying=current.flight&&v99Flights.get(current.flight),miss=!current.flight&&v99Actions.get(current)?.miss,pose=flying||miss;
  if(!pose||pose.kind!=='shot'||pose.onTarget!==false||pose.blocked||!Number.isFinite(pose.endHeight)||!pose.flight||miss&&miss.age>=1.15)return null;
@@ -106,7 +107,7 @@ function v98PitchFrame(current){
   players:current.people.map(person=>{const observed=v181PositioningMovement(current,person),positionSpeed=v181ObservedSpeed(current,person);const mode=observed||(restartFacing&&person!==restartTaker?{mode:'restart',facing:rawBall}:(typeof v157Movement==='function'&&v157Movement(current,person))||(typeof v108MovementMode==='function'?v108MovementMode(current,person):null));return {id:person.pid,person,...(typeof v65WorldActive!=='undefined'&&v65WorldActive?.state.playerLoad&&current===match?{freshness:clamp(v65WorldActive.state.fresh[person.pid]/100,0,1)}:{}),team:person.t,number:person.n,keeper:person.keeper,slideActive:Boolean(person.slideActive),unityAction:v161UnitySlide(current,person,turned),action:typeof v102PlayerAction==='function'?v102PlayerAction(current,person):null,movement:mode?{...mode,...(Number.isFinite(person.offenseMotion?.vx)&&Number.isFinite(person.offenseMotion?.vy)?{bodySpeed:Math.hypot(person.offenseMotion.vx,person.offenseMotion.vy)}:{}),...(Number.isFinite(positionSpeed)?{positionSpeed}:{}),facing:v98PitchPoint(mode.facing,turned),travelFacing:!observed&&mode.mode==='run'?v119TravelFacing(current,person,turned):null}:null,...v98PitchPoint(person,turned)}}),
   ball:{...ball,height:.29+Math.max(0,height),opacity:actionBall?.opacity??1},
   owner:current.owner?.pid||null,ballInFlight:Boolean(current.flight),carrying:Boolean(current.owner&&!scene&&!current.flight&&!current.rebound&&!current.setPiece&&!current.throwIn&&!current.kickoff&&!current.postBanner&&!current.halftimePause&&!current.finished),
-  outOfPlayBall:Boolean(v99Actions.get(current)?.miss&&v99Actions.get(current).miss.age<1.15||v99Actions.get(current)?.outBall&&v102Clock(current)-v99Actions.get(current).outBall.at<1.15),
+  outOfPlayBall:Boolean(!current.finished&&!current.halftimePause&&!current.kickoff&&current.pendingKickoff==null&&(v99Actions.get(current)?.miss&&v99Actions.get(current).miss.age<1.15||v99Actions.get(current)?.outBall&&v102Clock(current)-v99Actions.get(current).outBall.at<1.15)),
   offside:current.offsideVisual?{...v98PitchPoint(current.offsideVisual,turned),lineX:v98PitchPoint({x:.5,y:current.offsideVisual.lineY},turned).x,signal:v55OffsideSignal(turned?{...current.offsideVisual,x:1-current.offsideVisual.x}:current.offsideVisual,current.setPiece?.positionElapsed||0)}:null
  };
 }

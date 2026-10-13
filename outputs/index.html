@@ -2285,7 +2285,7 @@ function performanceText(v){return v<5.25?'enttäuschend':v<5.85?'schwach':v<6.5
 function finishMatch(){const m=match;m.finished=true;running=false;m.flight=null;hideOverlay();m.people.forEach(p=>{p.stats.cleanSheet=m.score[1-p.t]===0?1:0;p.stats.rating=performanceRating(p)});m.people.filter(p=>p.t===0).forEach(person=>{const source=person.keeper?homeKeeper:players.find(p=>p.name===person.name);if(!source)return;const workload=typeof v51Workload==='function'?v51Workload(person,Boolean(press)):person.keeper?9:20+(100-(person.sta||70))*.12+(press?6:0)+(person.age>=33?3:0);updateForm(source,person.stats.rating);source.fresh=clamp(source.fresh-workload,0,100)});$('#board-label').textContent='ABPFIFF';$('#back').hidden=false;const[h,a]=m.score;$('#match-title').textContent=h>a?'Sieg für FC Viertel!':h<a?'SC Hafen gewinnt.':'Unentschieden.';note(`Abpfiff! FC Viertel ${h} : ${a} SC Hafen.`,'major');renderMatchReport()}
 function renderMatchReport(){const panel=$('#player-stats'),people=match.people.filter(p=>p.t===0);panel.innerHTML=`<h3>Spielerstatistik</h3><div class="stat-row stat-head"><span>Spieler</span><span>Leistung</span><span>Werte</span></div>${people.map(p=>{const s=p.stats,details=p.keeper?`${s.saves} Paraden · ${s.cleanSheet?'zu null':s.conceded+' GT'}`:`${s.passComplete}/${s.passes} Pässe · ${s.goals} Tore · ${s.assists} Vorlagen · ${s.duelsWon}/${s.duels} ZK`;return `<div class="stat-row"><b>${p.name}</b><span>${performanceText(s.rating)}</span><span>${details}</span></div>`}).join('')}`;panel.hidden=false}
 function teamShortCode(name){const words=String(name||'').trim().split(/\s+/).filter(word=>/\p{L}/u.test(word));return(words.length>1?words.slice(0,2).map(word=>word[0]).join(''):words[0]?.slice(0,3)||'TEAM').toUpperCase()}
-function updateTeamStats(){const m=match;$('#score').textContent=m.score.join(' : ');$('#clock').textContent=String(displayMatchMinute(m.elapsed)).padStart(2,'0')+'′';const possession=m.possession[0]+m.possession[1]?Math.round(m.possession[0]/(m.possession[0]+m.possession[1])*100):50,homeName=typeof activeSave!=='undefined'&&activeSave?.club||'FC Viertel',awayName=m.opponentName||m.cupOpponentName||(typeof activeSave!=='undefined'&&activeSave&&typeof activeOpponent==='function'?activeOpponent().name:'SC Hafen');for(const label of document.querySelectorAll('[data-stat-home]'))label.textContent=homeName;for(const label of document.querySelectorAll('[data-stat-away]'))label.textContent=awayName;const passes=[{total:0,complete:0},{total:0,complete:0}];for(const player of m.people){passes[player.t].total+=player.stats.passes;passes[player.t].complete+=player.stats.passComplete}for(const[id,values]of[['#shots',m.shots.map(String)],['#possession',[`${possession} %`,`${100-possession} %`]],['#pass-rate',passes.map(team=>team.total?`${Math.round(team.complete/team.total*100)} %`:'–')]]){const root=$(id);if(!root)continue;root.querySelector('[data-stat-value="home"]').textContent=values[0];root.querySelector('[data-stat-value="away"]').textContent=values[1]}}
+function updateTeamStats(){const m=match;$('#score').textContent=m.score.join(' : ');$('#clock').textContent=String(displayMatchMinute(m.elapsed)).padStart(2,'0')+'′';const possession=m.possession[0]+m.possession[1]?Math.round(m.possession[0]/(m.possession[0]+m.possession[1])*100):50,homeName=typeof activeSave!=='undefined'&&activeSave?.club||'FC Viertel',awayName=m.opponentName||m.cupOpponentName||(typeof activeSave!=='undefined'&&activeSave&&typeof activeOpponent==='function'?activeOpponent().name:'SC Hafen');for(const label of document.querySelectorAll('[data-stat-home]'))label.textContent=homeName;for(const label of document.querySelectorAll('[data-stat-away]'))label.textContent=awayName;const passes=[{total:0,complete:0},{total:0,complete:0}];for(const player of m.people){passes[player.t].total+=player.stats.passes;passes[player.t].complete+=player.stats.passComplete}for(const[id,values]of[['#shots',m.shots.map(String)],['#possession',[`${possession} %`,`${100-possession} %`]],['#pass-rate',passes.map(team=>team.total?`${Math.round(team.complete/team.total*100)} %`:'–')]]){const root=$(id);if(!root)continue;const sides=typeof v25DisplaySides==='function'?v25DisplaySides():[0,1];root.querySelector('[data-stat-value="home"]').textContent=values[sides[0]];root.querySelector('[data-stat-value="away"]').textContent=values[sides[1]]}}
 
 function draw(){const c=$('#canvas'),ctx=c.getContext('2d'),w=600,h=740;ctx.clearRect(0,0,w,h);for(let i=0;i<10;i++){ctx.fillStyle=i%2?'#245446':'#214e43';ctx.fillRect(0,i*h/10,w,h/10)}ctx.strokeStyle='#b5d7ba88';ctx.lineWidth=2;ctx.strokeRect(28,26,w-56,h-52);ctx.beginPath();ctx.moveTo(28,h/2);ctx.lineTo(w-28,h/2);ctx.stroke();ctx.beginPath();ctx.arc(w/2,h/2,70,0,Math.PI*2);ctx.stroke();ctx.strokeRect(w*.25,26,w*.5,105);ctx.strokeRect(w*.25,h-131,w*.5,105);ctx.strokeRect(w*.4,10,w*.2,16);ctx.strokeRect(w*.4,h-26,w*.2,16);for(const p of match.people){const x=p.x*w,y=p.y*h;if(p===match.owner){ctx.strokeStyle='#fff8';ctx.lineWidth=3;ctx.beginPath();ctx.arc(x,y,23+Math.sin(match.elapsed*6)*2,0,Math.PI*2);ctx.stroke()}ctx.fillStyle='#0003';ctx.beginPath();ctx.ellipse(x,y+9,19,13,0,0,Math.PI*2);ctx.fill();ctx.fillStyle=p.keeper?'#e5b56a':p.t===0?'#c7f36b':'#7bb7e9';ctx.strokeStyle=p.t===0?'#e5ffb0':'#bedfff';ctx.beginPath();ctx.arc(x,y,17,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#142629';ctx.font='bold 16px Arial';ctx.textAlign='center';ctx.fillText(p.n,x,y+6);ctx.fillStyle='#edf7ee';ctx.font='12px Arial';ctx.fillText(p.name,x,y+33)}const b=match.ball;ctx.fillStyle='#0005';ctx.beginPath();ctx.arc(b.x*w+2,b.y*h+3,7,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.strokeStyle='#17292b';ctx.beginPath();ctx.arc(b.x*w,b.y*h,6,0,Math.PI*2);ctx.fill();ctx.stroke()}
 $('#start').onclick=start;
@@ -2549,9 +2549,11 @@ function v119KeepPlayedHalfTime(current){
  return true;
 }
 function beginHalftimeBreak(){
+ if(!match.halftimeBreakDone&&typeof v132ClearVisualTails==='function')v132ClearVisualTails(match);
  if(match.halftimeBreakDone)return;match.halftimeBreakDone=true;match.halftimePending=false;match.halftimePause=2;match.elapsed=match.firstHalfEnd||37.5;match.owner=null;match.flight=null;match.kickoff=null;match.pendingKickoff=null;match.countdown=0;match.goalPause=0;match.ball={x:.5,y:.5};match.next=Infinity;$('#board-label').textContent='HALBZEIT';note('Halbzeitpfiff. Kurze Pause vor der zweiten Hälfte.','major');showOverlay('HALBZEIT','Kurze Pause · Der Gegner stößt danach an',false);updateTeamStats();
 }
 function startSecondHalf(){
+ if(typeof v132ClearVisualTails==='function')v132ClearVisualTails(match);
  // A new half starts already in kickoff formation. Preserve the half-time
  // marker while arranging it, so the post-goal walk-back is not reused here.
  const world=typeof v65WorldActive!=='undefined'&&v65WorldActive;
@@ -3343,9 +3345,15 @@ function v25EnsureScoreboard(){
  if(!scoreboard.querySelector('.score-team'))scoreboard.innerHTML='<span class="score-team home-team"></span><strong id="score">0 : 0</strong><span class="score-team away-team"></span>';return{clock,scoreboard};
 }
 function v25ClockParts(){const total=Math.min(90*60,Math.floor(((match?.elapsed||0)/75)*90*60)),minutes=Math.floor(total/60),seconds=total%60;return[String(minutes).padStart(2,'0'),String(seconds).padStart(2,'0')]}
+// Fixture order is presentation only; physical team 0 remains the manager.
+function v25DisplaySides(context){
+ if(context===undefined)context=typeof v65WorldActive!=='undefined'&&v65WorldActive&&typeof v65Context==='function'?v65Context():null;
+ return context?[context.ownSide,1-context.ownSide]:[0,1];
+}
 function v25UpdateLiveBoard(){
  if(!match)return;const ui=v25EnsureScoreboard();if(!ui)return;const[minutes,seconds,added]=v25ClockParts();ui.clock.innerHTML=`<span>${minutes}</span><span class="clock-colon">:</span><span>${seconds}</span>${added?`<span class="clock-added"> +${added}</span>`:''}`;ui.clock.setAttribute('aria-label',`${minutes} Minuten ${seconds} Sekunden${added?` plus ${added} Minuten Nachspielzeit`:''}`);$('#score').textContent=match.score.join(' : ');
- const home=ui.scoreboard.querySelector('.home-team'),away=ui.scoreboard.querySelector('.away-team'),homeName=activeSave?.club||'FC Viertel',awayName=match.opponentName||match.cupOpponentName||(activeSave?activeOpponent().name:'SC Hafen');home.innerHTML=`<b class="score-name"><span class="score-shirt" aria-hidden="true">${v44ShirtSVG(null,matchKit(0),'Spieltrikot')}</span><span class="score-name-text">${escapeHTML(homeName)}</span></b><small>${escapeHTML(v25Formation(0))}</small><div class="goal-list">${v25Scorers(0)}</div>`;away.innerHTML=`<b class="score-name"><span class="score-name-text">${escapeHTML(awayName)}</span><span class="score-shirt" aria-hidden="true">${v44ShirtSVG(null,matchKit(1),'Spieltrikot')}</span></b><small>${escapeHTML(v25Formation(1))}</small><div class="goal-list">${v25Scorers(1)}</div>`;
+ const sides=v25DisplaySides(),names=[activeSave?.club||'FC Viertel',match.opponentName||match.cupOpponentName||(activeSave?activeOpponent().name:'SC Hafen')];$('#score').textContent=sides.map(t=>match.score[t]).join(' : ');
+ for(const [side,physical]of sides.entries()){const node=ui.scoreboard.querySelector(side===0?'.home-team':'.away-team'),shirt=`<span class="score-shirt" aria-hidden="true">${v44ShirtSVG(null,matchKit(physical),'Spieltrikot')}</span>`,name=`<span class="score-name-text">${escapeHTML(names[physical])}</span>`;node.innerHTML=`<b class="score-name">${side===0?shirt+name:name+shirt}</b><small>${escapeHTML(v25Formation(physical))}</small><div class="goal-list">${v25Scorers(physical)}</div>`;}
 }
 const v24UpdateTeamStatsV25=updateTeamStats;
 updateTeamStats=function(){v24UpdateTeamStatsV25();v25UpdateLiveBoard()};
@@ -13190,6 +13198,7 @@ function v65Finish(){
  const context=v65Context();if(!context||match.finished)return;
  if(context.state.playerLoad){v158EndNative(match);v158RecoverMatch(context.career,context.fixture,context.state,'final-whistle');}
  const state=context.state;state.addedMinutes=[...(match.addedMinutes||[0,0])];state.firstHalfEnd=45+state.addedMinutes[0];state.fullTimeEnd=90+state.addedMinutes[0]+state.addedMinutes[1];v65SyncMinute(context,Math.floor(match.elapsed/75*90));running=false;clearInterval(v65WorldFrame);v65PauseRequested=false;match.finished=true;match.flight=null;hideOverlay();
+ if(typeof v132ClearVisualTails==='function')v132ClearVisualTails(match);
  if(state.playerPerformance)v155ObserveNative(context);
  const everyone=[...match.people,...match.exitedPeople];state.ratings={};
  for(const person of everyone){
@@ -13232,6 +13241,7 @@ function v65PausePending(context){
 }
 function v65PausePitch(context){
  const {career,fixture,state,ownSide}=context;
+ v25UpdateLiveBoard();
  const replacements=Object.fromEntries(state.pending[ownSide].map(item=>[item.outPid,item.inPid]));
  const ratings=Object.fromEntries((match?.people||[]).filter(person=>person.t===0&&(!state.playerPerformance||state.minutes[person.pid]>=20)).map(person=>[person.pid,performanceRating(person)]));
  const meta=$('#match-area .match-meta').cloneNode(true),clock=$('#match-area #retro-clock')?.cloneNode(true),scoreboard=$('#match-area .scoreboard').cloneNode(true);
@@ -13325,7 +13335,7 @@ function v65Show(context){
  $('#heading').textContent='Dein Spiel läuft.';$('#subtitle').textContent=`${competition.type==='league'?`${v61CountryNames[competition.country]} · Liga 1`:competition.type==='cup'?'Pokal':competition.name||'Europacup'} · ${own.name} gegen ${other.name}`;
  $('#game-screen .board-top strong').textContent=own.name;
  $('#board-label').textContent=context.state.phase==='paused'?'PAUSE':'LIVE';
- const labels=$$('#game-screen .scoreboard span');labels[0].textContent=own.name;labels[1].textContent=other.name;
+ const labels=$$('#game-screen .scoreboard>.score-team'),sides=v25DisplaySides(context);for(const [side,physical]of sides.entries())if(labels[side])labels[side].textContent=v65Club(context,physical).name;
  const round=/^R(\d+)$/.exec(context.fixture.round);
  const europeRound=round?`Spieltag ${round[1]}`:{QF:'Viertelfinale',SF:'Halbfinale',F:'Finale'}[context.fixture.round];
  $('#match-area .match-meta span:last-child').textContent=competition.type==='league'?'LIGASPIEL':competition.type==='cup'?`POKALSPIEL${europeRound?` · ${europeRound}`:''}`:`EUROPACUP${europeRound?` · ${europeRound}`:''}`;
@@ -13391,13 +13401,15 @@ ability=function(person,key){
 const v65BaseLiveBoard=v25UpdateLiveBoard;
 v25UpdateLiveBoard=function(){
  v65BaseLiveBoard();const context=v65WorldActive&&v65Context();if(!context)return;
- const aggregate=v64UiAggregateText(context.career,context.fixture,match.score,context.ownSide===1);
+ const sides=v25DisplaySides(context),aggregate=v64UiAggregateText(context.career,context.fixture,sides.map(t=>match.score[t]));
  if(aggregate){const label=document.createElement('small');label.className='v65-aggregate';label.textContent=aggregate;$('#score')?.append(label)}
  const names=$$('#match-area .score-name-text'),formations=$$('#match-area .score-team small'),ranks=v65LiveRankLabels(context);
- for(const physical of [0,1])if(names[physical])names[physical].textContent=`${v65Club(context,physical).name}${ranks[physical]?` ${ranks[physical]}`:''}`;
- for(const physical of [0,1])if(formations[physical])formations[physical].textContent=context.state.tactics[v65Side(physical,context.ownSide)].formation;
- for(const node of $$('#match-info [data-stat-home]'))node.textContent=v65Club(context,0).name;
- for(const node of $$('#match-info [data-stat-away]'))node.textContent=v65Club(context,1).name;
+ for(const [side,physical]of sides.entries()){
+  if(names[side])names[side].textContent=`${v65Club(context,physical).name}${ranks[physical]?` ${ranks[physical]}`:''}`;
+  if(formations[side])formations[side].textContent=context.state.tactics[v65Side(physical,context.ownSide)].formation;
+ }
+ for(const node of $$('#match-info [data-stat-home]'))node.textContent=v65Club(context,sides[0]).name;
+ for(const node of $$('#match-info [data-stat-away]'))node.textContent=v65Club(context,sides[1]).name;
 };
 const v65BaseLivePlayerHTML=v59LivePlayerHTML;
 v59LivePlayerHTML=function(person){const html=v65BaseLivePlayerHTML(person),context=v65WorldActive&&v65Context(),previous=escapeHTML(activeSave?.club||'FC Viertel');return context&&person.t===0?html.replace(`${previous} · Live im Spiel`,`${escapeHTML(v65Club(context,0).name)} · Live im Spiel`):html};
@@ -19584,6 +19596,13 @@ function v99FlushSwaps(){
 function v99ActionState(current){
  let state=v99Actions.get(current);if(!state){state={keepers:new Map(),throws:new Map(),kicks:new Map(),goalHeight:0,miss:null};v99Actions.set(current,state)}return state;
 }
+// Only called after the native whistle actually takes effect. Keep action
+// locks, keeper recovery, poses and contact clocks authoritative and intact.
+function v132ClearVisualTails(current){
+ const state=v99Actions.get(current);if(state){state.miss=null;state.outBall=null;state.goalTravel=null;state.goalHeight=0;state.goalLateral=0;}
+ if(typeof v102Motion!=='undefined'){const motion=v102Motion.get(current);if(motion)motion.loose=null;}
+ for(const map of [v115OffsideBalls,typeof v109CornerBalls!=='undefined'?v109CornerBalls:null,typeof v114KickoffBalls!=='undefined'?v114KickoffBalls:null])map?.delete(current);
+}
 // Existing restart/recovery observations also lock native movement. Preserve
 // them in new safe checkpoints using player IDs, never flight callbacks or
 // another action clock. Missing old facts are not reconstructed.
@@ -19722,7 +19741,7 @@ step=function(delta,realDelta){
  v99FlushSwaps();return result;
 };
 function v99BallView(current){
- if(current.finished)return null;
+ if(current.finished||current.halftimePause>0)return null;
  const state=v99Actions.get(current),release=current.flight&&v99Flights.get(current.flight);
  if(current.postBanner?.kind==='goal'&&state?.goalTravel)return v101GoalBall(state.goalTravel,typeof v83GoalSceneDuration==='number'?v83GoalSceneDuration:4.05);
  if(current.goalScene&&(current.goalPause>0||current.postBanner?.kind==='goal')){
@@ -19768,7 +19787,8 @@ function v99BallView(current){
  return null;
 }
 function v99PlayerAction(current,person){
- if(current.finished)return null;
+ if(current.finished||current.halftimePause>0)return null;
+ if(person.keeper&&(current.kickoff||current.pendingKickoff!=null))return null;
  const native=current.attackFlow?.flowVersion===159||typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeBall;
  const smother=typeof v115KeeperChallengeAction==='function'&&v115KeeperChallengeAction(current,person);if(smother)return {...smother,parry:false};
  if(v65WorldActive&&current.kickoff?.kicker===person&&current.kickoff.phase!=='rolling'&&v115KickoffReady(current))return {kind:'passReady',progress:current.postBanner?Math.min(1,Math.max(0,1-current.postBanner.wait/.35)):0,target:current.kickoff.support};
@@ -19883,13 +19903,14 @@ function v102FlightBall(meta,q){
 const v102BallView=v99BallView;
 v99BallView=function(current){
  const existing=v102BallView(current),meta=current.flight&&v102Flights.get(current.flight);
- if(current.finished||current.goalPause>0||current.setPiece||current.throwIn)return existing;
+ if(current.finished||current.halftimePause>0||current.goalPause>0||current.setPiece||current.throwIn)return existing;
  if(meta&&!meta.shot&&v99Flights.get(current.flight)?.kind!=='goalKick')return v102FlightBall(meta,Math.max(0,Math.min(1,current.flight.progress)));
  const state=v102Motion.get(current),loose=state?.loose;
  if(loose&&!current.flight){const time=Math.max(0,state.clock-loose.at),q=Math.max(0,Math.min(1,time/loose.duration));if(loose.free)return {...current.ball,elevation:Math.max(.29,loose.startHeight-4.9*time*time)};return {x:loose.start.x+(loose.target.x-loose.start.x)*q,y:loose.start.y+(loose.target.y-loose.start.y)*q,elevation:loose.drop?Math.max(.29,loose.startHeight+(.29-loose.startHeight)*q):2.65*(1-q)+.29*q+1.1*Math.sin(Math.PI*q)}}
  return existing;
 };
 function v102PlayerAction(current,person){
+ if(current.finished||current.halftimePause>0||person.keeper&&(current.kickoff||current.pendingKickoff!=null))return null;
  const existing=v99PlayerAction(current,person);if(existing)return {...existing,id:existing.id??existing.kind};
  const state=v102Motion.get(current),pose=state?.poses.get(person.pid);
  if(pose){const progress=Math.max(0,Math.min(1,(state.clock-pose.at)/pose.duration));return {...pose,progress}}
@@ -20361,13 +20382,15 @@ v50Restart=function(type,...args){
 };
 const v110BaseBallView=v99BallView;
 v99BallView=function(current){
+ if(current.finished||current.halftimePause>0)return null;
  const existing=v110BaseBallView(current),r=current.rebound;
  const air=v124AirBalls.get(current);
  return v65WorldActive&&r&&!current.owner&&!current.flight&&!current.setPiece&&!current.throwIn&&!current.finished&&Number.isFinite(r.vx)?{x:r.x,y:r.y,elevation:air?.rebound===r?air.height:existing?.elevation??.29}:existing;
 };
-function v110RollingBallView(current){const r=current.rebound;return v65WorldActive&&r&&Number.isFinite(r.vx)?{x:r.x,y:r.y}:null}
+function v110RollingBallView(current){const r=current.rebound;return v65WorldActive&&r&&!current.finished&&!current.halftimePause&&Number.isFinite(r.vx)?{x:r.x,y:r.y}:null}
 const v110BasePlayerAction=v102PlayerAction;
 v102PlayerAction=function(current,person){
+ if(current.finished||current.halftimePause>0||person.keeper&&(current.kickoff||current.pendingKickoff!=null))return null;
  const block=current.flight&&v110Blocks.get(current.flight);if(block?.player===person&&current.flight.progress>.55)return {id:'block-ready',kind:'block',target:block.point,contact:block.point,progress:-Math.min(.15,(1-current.flight.progress)*.3),duration:.48};
  const existing=v110BasePlayerAction(current,person);if(existing)return existing;
  if((current.attackFlow?.flowVersion===159||window.D6UserMeshyPlayer?.nativeShot)&&current.owner===person&&!person.keeper&&!current.flight&&!current.setPiece&&!current.kickoff&&!current.throwIn&&current.goalPause<=0&&!current.postBanner&&!current.halftimePause){const remaining=(current.next-current.elapsed)/MATCH_SPEED;if(remaining>=0&&remaining<.35)return {id:'kick-ready',kind:'kickReady',target:{x:.5,y:person.t===0?v55Field.top:v55Field.bottom},progress:1-remaining/.35,duration:.35}}
@@ -21288,6 +21311,7 @@ function v119TravelFacing(current,person,turned){
 // lateral target with a restrained height, without changing native goal/reach
 // tests (which continue to use v101ShotPoint/v109FlightPoint).
 function v119VisibleShotBall(current){
+ if(current.finished||current.halftimePause>0||current.kickoff||current.pendingKickoff!=null)return null;
  if(typeof v159ShotActive!=='function'||!v159ShotActive(current))return null;
  const flying=current.flight&&v99Flights.get(current.flight),miss=!current.flight&&v99Actions.get(current)?.miss,pose=flying||miss;
  if(!pose||pose.kind!=='shot'||pose.onTarget!==false||pose.blocked||!Number.isFinite(pose.endHeight)||!pose.flight||miss&&miss.age>=1.15)return null;
@@ -21339,7 +21363,7 @@ function v98PitchFrame(current){
   players:current.people.map(person=>{const observed=v181PositioningMovement(current,person),positionSpeed=v181ObservedSpeed(current,person);const mode=observed||(restartFacing&&person!==restartTaker?{mode:'restart',facing:rawBall}:(typeof v157Movement==='function'&&v157Movement(current,person))||(typeof v108MovementMode==='function'?v108MovementMode(current,person):null));return {id:person.pid,person,...(typeof v65WorldActive!=='undefined'&&v65WorldActive?.state.playerLoad&&current===match?{freshness:clamp(v65WorldActive.state.fresh[person.pid]/100,0,1)}:{}),team:person.t,number:person.n,keeper:person.keeper,slideActive:Boolean(person.slideActive),unityAction:v161UnitySlide(current,person,turned),action:typeof v102PlayerAction==='function'?v102PlayerAction(current,person):null,movement:mode?{...mode,...(Number.isFinite(person.offenseMotion?.vx)&&Number.isFinite(person.offenseMotion?.vy)?{bodySpeed:Math.hypot(person.offenseMotion.vx,person.offenseMotion.vy)}:{}),...(Number.isFinite(positionSpeed)?{positionSpeed}:{}),facing:v98PitchPoint(mode.facing,turned),travelFacing:!observed&&mode.mode==='run'?v119TravelFacing(current,person,turned):null}:null,...v98PitchPoint(person,turned)}}),
   ball:{...ball,height:.29+Math.max(0,height),opacity:actionBall?.opacity??1},
   owner:current.owner?.pid||null,ballInFlight:Boolean(current.flight),carrying:Boolean(current.owner&&!scene&&!current.flight&&!current.rebound&&!current.setPiece&&!current.throwIn&&!current.kickoff&&!current.postBanner&&!current.halftimePause&&!current.finished),
-  outOfPlayBall:Boolean(v99Actions.get(current)?.miss&&v99Actions.get(current).miss.age<1.15||v99Actions.get(current)?.outBall&&v102Clock(current)-v99Actions.get(current).outBall.at<1.15),
+  outOfPlayBall:Boolean(!current.finished&&!current.halftimePause&&!current.kickoff&&current.pendingKickoff==null&&(v99Actions.get(current)?.miss&&v99Actions.get(current).miss.age<1.15||v99Actions.get(current)?.outBall&&v102Clock(current)-v99Actions.get(current).outBall.at<1.15)),
   offside:current.offsideVisual?{...v98PitchPoint(current.offsideVisual,turned),lineX:v98PitchPoint({x:.5,y:current.offsideVisual.lineY},turned).x,signal:v55OffsideSignal(turned?{...current.offsideVisual,x:1-current.offsideVisual.x}:current.offsideVisual,current.setPiece?.positionElapsed||0)}:null
  };
 }
@@ -21967,7 +21991,8 @@ function v132Broadcast(current){
  const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId),firstEnd=current.firstHalfEnd||37.5,period=current.halftimeBreakDone?1:0;
  const added=current.halftimePause>0?current.addedMinutes?.[0]||0:current.elapsed>=(period?firstEnd+37.5:37.5)?current.addedMinutes?.[period]||0:0;
  const seconds=current.halftimePause>0?2700:added?(period?5400:2700):Math.max(0,(period?37.5+Math.max(0,current.elapsed-firstEnd):current.elapsed)*72);
- return {score:[...current.score],aggregate:v64UiAggregateText(context.career,context.fixture,current.score,context.ownSide===1),seconds,added,period,type:competition?.type||'league',country:competition?.country||null,division:v119LeagueDivision(competition),round:context.fixture.round,names:[0,1].map(t=>v65Club(context,t)?.name||''),colours:[current.kits?.user?.main||'#c7f36b',current.kits?.opponent?.main||'#8cc4ec']};
+ const sides=v25DisplaySides(context),score=sides.map(t=>current.score[t]),colours=[current.kits?.user?.main||'#c7f36b',current.kits?.opponent?.main||'#8cc4ec'];
+ return {score,aggregate:v64UiAggregateText(context.career,context.fixture,score),seconds,added,period,type:competition?.type||'league',country:competition?.country||null,division:v119LeagueDivision(competition),round:context.fixture.round,names:sides.map(t=>v65Club(context,t)?.name||''),colours:sides.map(t=>colours[t])};
 }
 // Presentation identity only. The current schedule has six canonical first divisions.
 function v119LeagueDivision(competition){

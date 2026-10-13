@@ -1,0 +1,38 @@
+{
+  "base": "f2458c1fb981a68d13c50df6d4356c9fdb30a957",
+  "browser": "Edge / Playwright, Node 24.19.0, engine=browser",
+  "tests": [
+    {
+      "test": "work/check-fullscreen-tv-v132.cjs",
+      "exitCode": 1,
+      "newHomeAwayAndAggregateChecks": "passed; outputs/r132-display/homeaway-fullscreen.json",
+      "failure": "Canvas boundary assertion in fallback fullscreen",
+      "baseline": "Same failure with original test and all nine changed production modules restored from base",
+      "baselineGeometry": {
+        "viewport": [
+          844,
+          390
+        ],
+        "canvas": {
+          "x": 0,
+          "y": -66,
+          "width": 844,
+          "height": 390
+        },
+        "tv": {
+          "x": 12,
+          "y": -54,
+          "width": 228,
+          "height": 80
+        }
+      }
+    },
+    {
+      "test": "work/check-match-additions-v148.cjs",
+      "exitCode": 1,
+      "newHomeAwayAndAggregateChecks": "passed; outputs/r132-display/homeaway-additions.json",
+      "failure": "page.evaluate: Error: No restart focus throw",
+      "baseline": "Same failure with original test and all nine changed production modules restored from base"
+    }
+  ]
+}

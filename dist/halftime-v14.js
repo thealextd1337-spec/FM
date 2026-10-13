@@ -9,9 +9,11 @@ function v119KeepPlayedHalfTime(current){
  return true;
 }
 function beginHalftimeBreak(){
+ if(!match.halftimeBreakDone&&typeof v132ClearVisualTails==='function')v132ClearVisualTails(match);
  if(match.halftimeBreakDone)return;match.halftimeBreakDone=true;match.halftimePending=false;match.halftimePause=2;match.elapsed=match.firstHalfEnd||37.5;match.owner=null;match.flight=null;match.kickoff=null;match.pendingKickoff=null;match.countdown=0;match.goalPause=0;match.ball={x:.5,y:.5};match.next=Infinity;$('#board-label').textContent='HALBZEIT';note('Halbzeitpfiff. Kurze Pause vor der zweiten Hälfte.','major');showOverlay('HALBZEIT','Kurze Pause · Der Gegner stößt danach an',false);updateTeamStats();
 }
 function startSecondHalf(){
+ if(typeof v132ClearVisualTails==='function')v132ClearVisualTails(match);
  // A new half starts already in kickoff formation. Preserve the half-time
  // marker while arranging it, so the post-goal walk-back is not reused here.
  const world=typeof v65WorldActive!=='undefined'&&v65WorldActive;
