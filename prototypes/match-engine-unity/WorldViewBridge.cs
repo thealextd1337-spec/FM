@@ -8,6 +8,8 @@ public partial class ProbeBridge {
     public Shader matchKitShader;
     public Texture2D clothMask;
     public Mesh matchPlayerMesh;
+    // Optional BaseColor of a replacement match mesh with its own unwrap (Klares Low-Poly); null keeps Player.mat.
+    public Texture2D matchPlayerBase;
     WorldViewState worldView;
     WorldPose[] worldActors;
     readonly Dictionary<string,Material> kitMaterials=new Dictionary<string,Material>();
@@ -55,7 +57,7 @@ public partial class ProbeBridge {
         if(worldView==null)return playerMaterial;
         var p=worldView.Players[worldActors[i].id];var key=p.team+":"+p.keeper+":"+p.skin+":"+p.hair+":"+p.number;
         if(kitMaterials.TryGetValue(key,out var cached))return cached;
-        var material=new Material(matchKitShader);material.SetTexture("_BaseMap",playerMaterial.GetTexture("_BaseMap"));material.SetTexture("_ClothMask",clothMask);
+        var material=new Material(matchKitShader);material.SetTexture("_BaseMap",matchPlayerBase!=null?matchPlayerBase:playerMaterial.GetTexture("_BaseMap"));material.SetTexture("_ClothMask",clothMask);
         Color ColorOf(string code){ColorUtility.TryParseHtmlString(code,out var c);return c.linear;}
         material.SetColor("_Main",ColorOf(p.kit.main));material.SetColor("_Trim",ColorOf(p.kit.trim));material.SetColor("_Accent",ColorOf(p.kit.accent));
         material.SetFloat("_Style",Math.Max(0,Array.IndexOf(new[]{"plain","stripe","stripes","hoops","halves","pinstripes","diagonal"},p.kit.style)));

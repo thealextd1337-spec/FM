@@ -115,6 +115,24 @@ public static class D6Cli {
         finally{if(repo!=null&&render)ProbeWebBuild.Restore(repo);}
         Done(ok,message);
     }
+    // Low-Poly style evidence: identical fixture, layout and cameras for a
+    // baseline and a candidate (-d6output <folder> -d6label <name> [-d6compare <folder of another label>]).
+    public static void LowPoly(){
+        string repo=null,message=null;bool ok=false;
+        try{repo=Repo();if(SystemInfo.graphicsDeviceType==UnityEngine.Rendering.GraphicsDeviceType.Null)throw new InvalidOperationException("Low-Poly evidence needs a graphics device");
+            ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=LowPolyDiagnostics.Run(repo,Arg("-d6output"),Arg("-d6label","candidate"),Arg("-d6compare"));ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
+        Done(ok,message);
+    }
+    // Builds WorldPlayerLowPoly-<version>.asset from the installed low-poly FBX
+    // and assigns it to the probe scene (LowPolySetup).
+    public static void LowPolyMesh(){
+        try{var repo=Repo();var built=LowPolySetup.Build(repo);Done(true,built+"; "+LowPolySetup.Assign("lowpoly"));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+    // Player mesh of the probe scene and WebGL build: -d6mesh lowpoly|original.
+    public static void MatchMesh(){
+        try{Done(true,LowPolySetup.Assign(Arg("-d6mesh","lowpoly")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
     public static void TeamRings(){
         try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,TeamGroundRingTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
