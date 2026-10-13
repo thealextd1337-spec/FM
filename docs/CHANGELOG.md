@@ -1,5 +1,10 @@
 # Änderungen
 
+## 13. Oktober 2026 – Gesicherten Lichtentwurf lokal geprüft
+
+- Der zweite Opus-Lichtauftrag wurde am Claude-API-Ratenlimit unterbrochen. Vier geänderte Dateien sind samt unverändertem Ausgangsstand und Patch gesichert; der Entwurf enthält präzisere Aufnahmeprüfungen, Shader-Rücksetzung und Schutz gegen doppelte Ballschattenobjekte.
+- Der übernommene Entwurf kompiliert in Unity und besteht 192 gezielte Prüfungen. Seine neue GPU-Bildmessung wird separat geprüft; der Entwurf ist damit noch nicht für die Live-Veröffentlichung freigegeben. Die neue feste Stadionzuordnung bleibt vorbereitet und wartet auf Umsetzung.
+
 ## 13. Oktober 2026 – Tornetz während gehaltener Torszenen geglättet (lokal)
 
 - Die vorhandene Jubelzeit lässt langsame Netzaufpralle sanft zur Ruhe kommen, obwohl die bestehende Torszenenzeit früher anhält. Keine zusätzliche Uhr, native Balländerung oder Spielstanddaten. Netz-Neuaufbau, Rücksetzung, unabhängige Referenzwerte und Rückschwunggrenzen sind zusätzlich geprüft.
