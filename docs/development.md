@@ -1,5 +1,13 @@
 # Entwicklung und Veröffentlichung
 
+## Low-Poly-Ausbau für die nächste Veröffentlichung (lokal)
+
+Der isolierte Kandidat `work/lowpoly-live-release131` basiert auf dem tatsächlich veröffentlichten Release 130. Opus 5.5 mit Reasoning Max implementiert Licht/Schatten, Stadien/Fanblöcke und Tornetz in getrennten Worktrees. Eine zuständige Instanz integriert seriell und verwendet ausschließlich `G:/unity/Doppel6-LowPoly-Demo-Release131` für Unity. Bestehende Demos und Unity-Projekte bleiben erhalten.
+
+`WorldConfig.presentation` ist ein optionaler Darstellungsvertrag (`d6-presentation-1`). Die native Fixturekennung bestimmt den stabilen Tageszeitmix; Europacup einschließlich Crown/Horizon bleibt Nacht. Ohne Kennung gilt der bisherige Nachtlook. `WorldViewLighting.cs` setzt die empfangene Tageszeit, das Lichtprofil für die Stadionmodule und die Schatten. Alle geänderten Licht-, Kamera- und Pipelinewerte werden zurückgesetzt. `D6Cli.LightingTests` prüft reale Einstellungen und Rücksetzung; die bisherige Quelltextprüfung in `FootballGaitTests` verwendet jetzt diese Verhaltensprüfungen.
+
+Die Lichtumsetzung besteht 181 gezielte Unity-Prüfungen. Die erste Direct3D11-Bildserie umfasst 39 Bilder und sechs Kameraschwenks; identische Wiederholungsbilder sind bislang nicht bestätigt (`repeatIdentical=false`). Die Stadionkulisse verwendet noch nicht alle Tageslichtwerte. Beides bleibt vor der visuellen Freigabe zu klären; diese Bildserie belegt weder WebGL-Leistung noch Geräteabnahme. Tornetzprüfung und Grenzen stehen im Changelog; aktuelle aufgezeichnete Tore, Zielbuild, native Parität und identischer Git-/Build-/Live-Stand sind vor Veröffentlichung erforderlich.
+
 ## Veröffentlichung 130
 
 [Release 130](release-130.md) integriert die geprüften R21-/Keeper-/Taktik-Kandidaten in einen neuen Worktree auf dem veröffentlichten Quellstand 129. Quellen und Unity-Payload sind hashgebunden; Standardbuild, produktive Bildzeitplanung, 119 Produktionskommandos und die Live-Abnahme bestehen. Acht öffentliche Dateien stimmen mit dem Paket überein; vollständige native/Unity-Partien und gespeicherte Karrieren sind nach Neuladen identisch. Der ältere parallele Root-Stand wurde nicht als Releasebasis verwendet. Offene Fehler und konkrete Folgeprüfungen stehen in der [Bugliste](Bugliste.md).

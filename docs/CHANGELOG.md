@@ -1,5 +1,10 @@
 # Änderungen
 
+## 13. Oktober 2026 – Tageslicht und Flutlicht integriert (lokal)
+
+- Opus 5.5 mit maximaler Denkintensität hat getrennte Tag-/Nachtbeleuchtung, angepasste Spieler-/Ballschatten und lichtabhängige Kontaktschatten umgesetzt. Ohne neuen Darstellungsvertrag bleibt der bisherige Nachtlook erhalten. Licht, Kamera, Schattenqualität und Bias werden nach der Ansicht zurückgesetzt; Trikotgeometrie, native Regeln und Spielstände bleiben unverändert.
+- 181 Prüfungen der tatsächlichen Unity-Einstellungen bestehen. Erste 39 Direct3D11-Bilder sind erzeugt und teilweise visuell gesichtet; Wiederholungsstabilität, integrierte Stadionbeleuchtung, Zielbrowser-/Gerätewerte und unabhängige Sonnet-Abnahme bleiben offen. Noch nicht veröffentlicht.
+
 ## 13. Oktober 2026 – Natürlichere Tornetzbewegung (lokal)
 
 - Opus 5.5 mit maximaler Denkintensität hat die Tornetzdarstellung aus bestehenden Aufprallfakten umgesetzt: weichere lokale Ausbeulung, gedämpfte Wellen, feste Befestigungspunkte und exakte Rückkehr zur Ruhe. Unveränderte Bilder laden keine neuen Meshdaten hoch; Ball und Matchsimulation bleiben unverändert.
