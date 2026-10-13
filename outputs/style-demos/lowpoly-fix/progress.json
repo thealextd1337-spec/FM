@@ -1,7 +1,7 @@
 {
  "round": "lowpoly-opus-r3-ground-fix-validation",
  "date": "2026-10-13",
- "status": "validated and built locally; awaiting Root/Sonnet full browser acceptance (not accepted yet)",
+ "status": "both P2 findings closed with code, negative proof and measurements; rebuilt WebGL; awaiting Sonnet fresh review + full 344 browser acceptance (not accepted yet)",
  "checkout": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/demo-low-poly-fix",
  "branch": "codex/demo-low-poly-fix-20261013",
  "startCommit": "e7754f4c",
@@ -96,5 +96,58 @@
   "no Android/mobile device acceptance",
   "diagnostic clip sample slide right 1.00 below -2 cm on both meshes (inherited)"
  ],
- "handoff": "docs/3d-stilauftraege/low-poly-ground-fix-validation.md"
+ "handoff": "docs/3d-stilauftraege/low-poly-ground-fix-validation.md",
+ "round4": {
+  "round": "lowpoly-opus-r4-review-findings",
+  "date": "2026-10-13",
+  "status": "both P2 findings closed with code, negative proof and measurements; rebuilt WebGL; awaiting Sonnet fresh review + full 344 browser acceptance (not accepted yet)",
+  "startCommit": "833dba25",
+  "commits": [
+   "b43df36a test: build ground preflight + VisibleSurfaceProbe + hooks",
+   "16e93a65 build: paired gates, WebGL data, manifest",
+   "61d10ce4 docs: validation round 4 + CHANGELOG"
+  ],
+  "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9 (unchanged, 46 files; verify-git-identity HEAD pass)",
+  "build": {
+   "data": "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8 56050907 B",
+   "wasm": "2de6a7d5 (unchanged)",
+   "framework": "36ef3791 (unchanged)",
+   "loader": "c49fdcbc (unchanged)",
+   "probeBuildSha256": "f51e0226ad2c29e5c81709d9c70d9bcf375ed4012b9f5a31076e2fcaa9766169",
+   "dataNote": "boot.config build guid + data.unity3d -8 B; build report differs only by one InputSystem MonoScript entry (InputEventStream.cs 0.1 kB)"
+  },
+  "package": {
+   "dir": "outputs/style-demos/lowpoly-fix/package",
+   "sourceCommit": "61d10ce4635d3e8c969b606cf433017655d31835",
+   "fingerprint": "b1ccfc9d81d5ada0a16b2e2d5c34a0c66616249d5a4568e8af288591c3098979",
+   "packageManifestSha256": "235f5d86966b1d3e2070d87e04d518f6fc3d6c6be8109784c9a9038f7800d9c6",
+   "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+   "verify": "103/103 deep require-clean, local and via http://127.0.0.1:4413"
+  },
+  "server": {
+   "url": "http://127.0.0.1:4413/",
+   "pid": 88384,
+   "previousPidStopped": 85396,
+   "untouched": {
+    "4411": "listening PID 92924 (not mine; brief said 62324)",
+    "4412": 90676
+   }
+  },
+  "steps": {
+   "60-ping": "OK",
+   "66-lowpolyground": "OK 48/48",
+   "67-tests-v4": "OK; all gate sets 0 diff vs r3; visible 14670 pictures 0 failed",
+   "69-tests-original": "OK; 0 diff vs r3 original; no visible files",
+   "72-webbuild-negative": "refused before build; unity-web and scene byte-identical after",
+   "73-webbuild": "OK preflight + build",
+   "webgl": "mesh line lowpoly+ground WorldPlayer 9725; parity identical to r3; 0 errors",
+   "smoke-4413": "37/37 build,viewports"
+  },
+  "gaps": [
+   "left-foot ball contacts not measurable (controlled fixtures right foot only, no native captures locally)",
+   "no new close-up renders (runtime/mesh unchanged since r3)",
+   "no Android/device or new perf measurement"
+  ],
+  "next": "Root: Sonnet fresh review of b43df36a..61d10ce4 and full browser acceptance (344) against 4413; Bugliste entries for inherited Release-130 surface errors"
+ }
 }
