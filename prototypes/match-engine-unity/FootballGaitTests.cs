@@ -44,7 +44,7 @@ public static class FootballGaitTests {
             Reach(animation,actor.transform,C,Bone,Check);
             Bridge(repository,scene,actor,animation,clips,names,Check);
             Kits(Check);
-            Presentation(repository,scene,Check);
+            Presentation(repository,scene,Check,outputFolder);
         }finally{if(graph.IsValid())graph.Destroy();EditorSceneManager.ClosePreviewScene(scene);}
         int failed=checks.FindAll(c=>!c.passed).Count;var json=JsonUtility.ToJson(new Report{passed=checks.Count-failed,failed=failed,checks=checks.ToArray()},true);
         var folder=Path.Combine(repository,outputFolder??"outputs/platform/unity-phases");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"gait-tests.json"),json);
@@ -339,7 +339,7 @@ public static class FootballGaitTests {
         check(shader.Contains("o.body=float3(i.rest.x,i.rest.z,-i.rest.y)"),"Kit regions use the mesh's z-up, front -y bind pose (measured in kit-regions.json)",0);
     }
     // Phase 4: stand occlusion without flicker and the conservative quality field.
-    static void Presentation(string repository,UnityEngine.SceneManagement.Scene scene,Action<bool,string,double> check){
+    static void Presentation(string repository,UnityEngine.SceneManagement.Scene scene,Action<bool,string,double> check,string outputFolder){
         var go=new GameObject("D6 presentation bridge");UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(go,scene);var bridge=go.AddComponent<ProbeBridge>();var flags=BindingFlags.NonPublic|BindingFlags.Instance;
         var sides=(Transform[])typeof(ProbeBridge).GetField("standSides",flags).GetValue(bridge);for(int i=0;i<4;i++){var stand=new GameObject("stand "+i);UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(stand,scene);sides[i]=stand.transform;}
         typeof(ProbeBridge).GetField("standHalf",flags).SetValue(bridge,new Vector2(34,22));var update=typeof(ProbeBridge).GetMethod("UpdateStadiumVisibility",flags);
@@ -351,7 +351,9 @@ public static class FootballGaitTests {
         check(string.IsNullOrEmpty(config.quality),"Pages without a quality field remain valid (platform decides)",0);
         config.quality="reduced";check(new WorldViewState(config).Config.quality=="reduced","A reduced quality request is carried by the match view configuration",0);
         var env=File.ReadAllText("Assets/Doppel6EngineProbe/Runtime/WorldViewLighting.cs");
-        check(env.Contains("urp.msaaSampleCount=ReducedQuality?1:")&&env.Contains("mainLightShadowmapResolution=ReducedQuality?1024:")&&env.Contains("matchBloom.active=!ReducedQuality"),"Reduced quality disables MSAA and bloom and uses 1024 hard shadows",0);
+        // Exercise the real bridge, light and pipeline in legacy, night and day;
+        // source literals cannot prove the reduced settings or their restoration.
+        check(MatchLightingTests.Run(repository,outputFolder).StartsWith("passed=",StringComparison.Ordinal),"Reduced quality disables MSAA and bloom and uses 1024 hard shadows",0);
         check(env.Contains("SetReplayGrade(bool replay)")&&File.ReadAllText("Assets/Doppel6EngineProbe/Runtime/WorldViewBridge.cs").Contains("SetReplayGrade(f.replay)"),"Replay grading follows only the received replay flag",0);
     }
     static void Bridge(string repository,UnityEngine.SceneManagement.Scene scene,GameObject actor,FootballAnimation animation,AnimationClip[] clips,string[] names,Action<bool,string,double> check){

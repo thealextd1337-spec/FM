@@ -47,7 +47,6 @@ public static class D6Cli {
             Debug.Log("[D6Cli] WorldViewTests: "+WorldViewTests.Run(repo,output));
             Debug.Log("[D6Cli] WorldPresentationTests: "+Doppel6.Probe.WorldPresentationTests.Run(repo,output));
             Debug.Log("[D6Cli] WorldNetTests: "+Doppel6.Probe.WorldNetTests.Run(repo,output));
-            Debug.Log("[D6Cli] MatchLightingTests: "+Doppel6.Probe.MatchLightingTests.Run(repo,output));
             Debug.Log("[D6Cli] FootballGaitTests: "+FootballGaitTests.Run(repo,output));
             Debug.Log("[D6Cli] ClubStadiumProfilesTests: "+Doppel6.Probe.ClubStadiumProfilesTests.Run(repo,output));
             Debug.Log("[D6Cli] StadiumArchitectureTests: "+StadiumArchitectureTests.Run(repo,output));
