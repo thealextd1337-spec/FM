@@ -23,17 +23,22 @@ Shader "Doppel6/Pitch" {
    // Mowing stripes along the length with soft edges, a faint cross cut and
    // multi-scale noise so the turf never reads as flat plastic.
    // Club patterns: 1 adds cross bands (checks), 2 mows diagonally.
+   // Klares Low-Poly (_D6LowPoly): half as many, broad bands of the same club
+   // pattern with crisp antialiased edges, no cross cut, little soft variation.
+   float lp=_D6LowPoly,stripes=lerp(_Stripes,max(6,floor(_Stripes*.5+.5)),lp),soft=lerp(.47,.493,lp);
    float along=_Pattern>1.5?(p.x+p.y)*.7071+half_.x:p.x+half_.x;
-   float band=along/(_Size.x/_Stripes);float edge=abs(frac(band)-.5);
-   float stripe=fmod(floor(band)+64,2);float blend=smoothstep(.47,.5,edge);
-   if(_Pattern>.5&&_Pattern<1.5){float across=(p.y+half_.y)/(_Size.y/max(2,round(_Stripes*_Size.y/_Size.x)));stripe=fmod(floor(band)+floor(across)+64,2);blend=max(blend,smoothstep(.47,.5,abs(frac(across)-.5)));}
-   half3 turf=lerp(stripe>.5?_ColorA.rgb:_ColorB.rgb,(_ColorA.rgb+_ColorB.rgb)*.5,blend*.5);
-   float cut=fmod(floor((p.y+half_.y)/(_Size.y/6))+64,2);turf*=lerp(.975,1.025,cut);
-   float n=D6Noise(p*2.7)*.5+D6Noise(p*.55)*.35+D6Noise(p*11)*.15;turf*=lerp(.88,1.10,n);
+   float band=along/(_Size.x/stripes);float edge=abs(frac(band)-.5);
+   float stripe=fmod(floor(band)+64,2);float blend=smoothstep(soft,.5,edge);
+   if(_Pattern>.5&&_Pattern<1.5){float across=(p.y+half_.y)/(_Size.y/max(2,round(stripes*_Size.y/_Size.x)));stripe=fmod(floor(band)+floor(across)+64,2);blend=max(blend,smoothstep(soft,.5,abs(frac(across)-.5)));}
+   // Low-Poly keeps the two mown tones a little further apart: broad, clearly two-tone.
+   half3 mid=(_ColorA.rgb+_ColorB.rgb)*.5,spread=lerp(1,1.3,lp);
+   half3 turf=lerp(mid+((stripe>.5?_ColorA.rgb:_ColorB.rgb)-mid)*spread,mid,blend*.5);
+   float cut=fmod(floor((p.y+half_.y)/(_Size.y/6))+64,2);turf*=lerp(.975,1.025,lerp(cut,.5,lp));
+   float n=D6Noise(p*2.7)*.5+D6Noise(p*.55)*.35+D6Noise(p*11)*.15*(1-lp);turf*=lerp(lerp(.88,.965,lp),lerp(1.10,1.025,lp),n);
    if(!inside)turf=_Apron.rgb*lerp(.85,1.08,n);
    // Worn turf in the goal mouths and at kick-off.
    float gx=abs(p.x)-(half_.x-2.4);float wear=exp(-(gx*gx/5+p.y*p.y/4))+.45*exp(-dot(p,p)/3);
-   turf=lerp(turf,_Wear.rgb*lerp(.85,1.1,n),saturate(wear*.55*_WearAmount*(inside?1:0)));
+   turf=lerp(turf,_Wear.rgb*lerp(.85,1.1,n),saturate(wear*.55*_WearAmount*lerp(1,.55,lp)*(inside?1:0)));
    half3 color=D6Light(turf,i.world,i.normal,.0,.0,.0);
    // Floodlight pools: slightly brighter centre, darker run-off.
    float2 r=p/(half_+8);color*=lerp(1.05,.93,saturate(dot(r,r)));

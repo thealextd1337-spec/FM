@@ -1,0 +1,196 @@
+{
+ "version": "v4",
+ "mesh": "d6_lowpoly_v4",
+ "blender": "5.2.2 LTS",
+ "source": {
+  "path": "dist/players/football-v130.glb",
+  "sha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+  "vertices_welded": 6334,
+  "triangles": 12668
+ },
+ "decimate": {
+  "type": "COLLAPSE",
+  "ratio": 0.2046875,
+  "symmetry": "X",
+  "permissionGroup": "joints .62, sole .9, boot .35, fingers .25, face .4",
+  "target": 2600
+ },
+ "triangles": 2592,
+ "vertices_welded": 1296,
+ "smoothFaces": 167,
+ "smoothBend": 0.45,
+ "flatFaces": 2425,
+ "bounds": {
+  "min": [
+   -0.8409557938575745,
+   -0.1717451810836792,
+   -0.0003103555063717067
+  ],
+  "max": [
+   0.8407561779022217,
+   0.1757696568965912,
+   1.695686936378479
+  ]
+ },
+ "distanceToOriginal": {
+  "max": 0.00865964125841856,
+  "mean": 0.0007298460477577001,
+  "p95": 0.003204297972843051
+ },
+ "originalToLow": {
+  "max": 0.018441004678606987,
+  "mean": 0.002446406055156567,
+  "p95": 0.00813685730099678
+ },
+ "trianglesByDominantBone": {
+  "headfront": 7,
+  "mixamorig:Head": 283,
+  "mixamorig:Hips": 22,
+  "mixamorig:LeftArm": 108,
+  "mixamorig:LeftFoot": 376,
+  "mixamorig:LeftForeArm": 74,
+  "mixamorig:LeftHand": 152,
+  "mixamorig:LeftHandMiddle4": 40,
+  "mixamorig:LeftLeg": 112,
+  "mixamorig:LeftShoulder": 56,
+  "mixamorig:LeftToeBase": 78,
+  "mixamorig:LeftUpLeg": 126,
+  "mixamorig:RightArm": 96,
+  "mixamorig:RightFoot": 346,
+  "mixamorig:RightForeArm": 56,
+  "mixamorig:RightHand": 186,
+  "mixamorig:RightHandMiddle4": 8,
+  "mixamorig:RightLeg": 120,
+  "mixamorig:RightShoulder": 67,
+  "mixamorig:RightToeBase": 134,
+  "mixamorig:RightUpLeg": 132,
+  "mixamorig:Spine": 6,
+  "mixamorig:Spine1": 7
+ },
+ "originalTrianglesByDominantBone": {
+  "headfront": 22,
+  "mixamorig:Head": 3282,
+  "mixamorig:Hips": 329,
+  "mixamorig:LeftArm": 456,
+  "mixamorig:LeftFoot": 996,
+  "mixamorig:LeftForeArm": 216,
+  "mixamorig:LeftHand": 340,
+  "mixamorig:LeftHandMiddle4": 160,
+  "mixamorig:LeftLeg": 688,
+  "mixamorig:LeftShoulder": 300,
+  "mixamorig:LeftToeBase": 190,
+  "mixamorig:LeftUpLeg": 1016,
+  "mixamorig:RightArm": 416,
+  "mixamorig:RightFoot": 896,
+  "mixamorig:RightForeArm": 196,
+  "mixamorig:RightHand": 448,
+  "mixamorig:RightHandMiddle4": 40,
+  "mixamorig:RightLeg": 636,
+  "mixamorig:RightShoulder": 324,
+  "mixamorig:RightToeBase": 300,
+  "mixamorig:RightUpLeg": 1136,
+  "mixamorig:Spine": 237,
+  "mixamorig:Spine1": 44
+ },
+ "sole": {
+  "left": {
+   "min": -0.0003103555063717067,
+   "count": 228,
+   "below1cm": 93
+  },
+  "right": {
+   "min": -0.0001323754695476964,
+   "count": 241,
+   "below1cm": 99
+  },
+  "originalLeft": {
+   "min": 6.72189926262945e-05,
+   "count": 594,
+   "below1cm": 183
+  },
+  "originalRight": {
+   "min": 1.0287021012800324e-07,
+   "count": 599,
+   "below1cm": 182
+  }
+ },
+ "weights": {
+  "maxInfluences": 4,
+  "unweighted": 0,
+  "sumMin": 0.9999998975545168,
+  "sumMax": 1.000000150874257
+ },
+ "uv": {
+  "islands": {
+   "original": 420,
+   "used": 295
+  },
+  "layers": [
+   "UVMap"
+  ],
+  "outside01": 0
+ },
+ "bones": [
+  "mixamorig:Hips",
+  "mixamorig:Spine",
+  "mixamorig:Spine1",
+  "mixamorig:Spine2",
+  "mixamorig:Neck",
+  "mixamorig:Head",
+  "mixamorig:HeadTop_End",
+  "headfront",
+  "mixamorig:LeftShoulder",
+  "mixamorig:LeftArm",
+  "mixamorig:LeftForeArm",
+  "mixamorig:LeftHand",
+  "mixamorig:LeftHandMiddle4",
+  "mixamorig:RightShoulder",
+  "mixamorig:RightArm",
+  "mixamorig:RightForeArm",
+  "mixamorig:RightHand",
+  "mixamorig:RightHandMiddle4",
+  "mixamorig:LeftUpLeg",
+  "mixamorig:LeftLeg",
+  "mixamorig:LeftFoot",
+  "mixamorig:LeftToeBase",
+  "mixamorig:LeftToe_End",
+  "mixamorig:RightUpLeg",
+  "mixamorig:RightLeg",
+  "mixamorig:RightFoot",
+  "mixamorig:RightToeBase",
+  "mixamorig:RightToe_End"
+ ],
+ "textures": {
+  "size": 1024,
+  "base": "d6_lowpoly_v4_base.png",
+  "mask": "d6_lowpoly_v4_mask.png",
+  "bake": "Cycles EMIT selected-to-active, cage .02 m, ray .06 m, margin 12 px extend; mask nearest + threshold .5; face/hair texel density x2"
+ },
+ "files": {
+  "d6_lowpoly_v4.fbx": {
+   "bytes": 201420,
+   "sha256": "54a3e7634a06d8c40be66dba7987bceb7764898e25d17a6ce3be0083cc39b61f"
+  },
+  "d6_lowpoly_v4.glb": {
+   "bytes": 417556,
+   "sha256": "2dd64b26d68d2d9449e663de1c6bbcfe2c97d4e5a73649000cfbf5cc9ed510f8"
+  },
+  "d6_lowpoly_v4_base.png": {
+   "bytes": 1069124,
+   "sha256": "e128bcc14f6799c06bc881b8f5d664906da177f8012e777d58ae47c466b042e3"
+  },
+  "d6_lowpoly_v4_mask.png": {
+   "bytes": 50426,
+   "sha256": "b399ac5ec6f84a937c7c646a3080705eae83874ad6c39f8e372c6d0e5ae4da78"
+  }
+ },
+ "roundTrip": {
+  "bones": 28,
+  "mesh": "d6_lowpoly_v4",
+  "object": "d6_lowpoly_v4",
+  "vertices": 1296,
+  "triangles": 2592,
+  "vertexGroups": 27,
+  "passed": true
+ }
+}

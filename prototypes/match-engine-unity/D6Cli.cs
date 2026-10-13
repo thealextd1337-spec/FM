@@ -115,6 +115,31 @@ public static class D6Cli {
         finally{if(repo!=null&&render)ProbeWebBuild.Restore(repo);}
         Done(ok,message);
     }
+    // Low-Poly style evidence: identical fixture, layout and cameras for a
+    // baseline and a candidate (-d6output <folder> -d6label <name> [-d6compare <folder of another label>]
+    // [-d6style on|off] [-d6facet 0..1: derivative facet normals, the intermediate on an unchanged mesh]).
+    public static void LowPoly(){
+        string repo=null,message=null;bool ok=false;
+        try{repo=Repo();if(SystemInfo.graphicsDeviceType==UnityEngine.Rendering.GraphicsDeviceType.Null)throw new InvalidOperationException("Low-Poly evidence needs a graphics device");
+            ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Doppel6.Probe.ProbeBridge.LowPolyStyle=Arg("-d6style","on")!="off";Shader.SetGlobalFloat("_D6Facet",float.Parse(Arg("-d6facet","0"),System.Globalization.CultureInfo.InvariantCulture));
+            message=LowPolyDiagnostics.Run(repo,Arg("-d6output"),Arg("-d6label","candidate"),Arg("-d6compare"))+" style="+Doppel6.Probe.ProbeBridge.LowPolyStyle+" facet="+Shader.GetGlobalFloat("_D6Facet");ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        finally{Shader.SetGlobalFloat("_D6Facet",0);Doppel6.Probe.ProbeBridge.LowPolyStyle=true;if(repo!=null)ProbeWebBuild.Restore(repo);}
+        Done(ok,message);
+    }
+    // Builds WorldPlayerLowPoly-<version>.asset from the installed low-poly FBX
+    // and assigns it to the probe scene (LowPolySetup).
+    public static void LowPolyMesh(){
+        try{var repo=Repo();var built=LowPolySetup.Build(repo);Done(true,built+"; "+LowPolySetup.Assign("lowpoly"));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+    // Hidden ground skin of the low-poly match mesh (LowPolyGroundDiagnostics; the
+    // probe scene must show the low-poly mesh): -d6output <folder>. No rendering.
+    public static void LowPolyGround(){
+        try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,LowPolyGroundDiagnostics.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+    // Player mesh of the probe scene and WebGL build: -d6mesh lowpoly|original.
+    public static void MatchMesh(){
+        try{Done(true,LowPolySetup.Assign(Arg("-d6mesh","lowpoly")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
     public static void TeamRings(){
         try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,TeamGroundRingTests.Run(Repo()));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
@@ -126,9 +151,11 @@ public static class D6Cli {
         var compression=PlayerSettings.WebGL.compressionFormat;var width=PlayerSettings.defaultWebScreenWidth;var height=PlayerSettings.defaultWebScreenHeight;var background=PlayerSettings.runInBackground;
         string repo=null;bool ok=false;string message;
         try{
-            repo=Repo();
+            var repository=Repo();
             if(!File.Exists(Scene))throw new FileNotFoundException(Scene);
-            ProbeWebBuild.Configure(repo);
+            // Before any setting changes (repo stays null, so nothing is restored): the saved scene ships its mesh references.
+            Debug.Log("[D6Cli] WebBuild preflight: "+WebBuildPreflight(Scene));
+            repo=repository;ProbeWebBuild.Configure(repo);
             PlayerSettings.WebGL.compressionFormat=WebGLCompressionFormat.Disabled;
             PlayerSettings.defaultWebScreenWidth=1280;PlayerSettings.defaultWebScreenHeight=720;PlayerSettings.runInBackground=true;
             var output=Path.Combine(repo,"outputs/platform/unity-web");
@@ -145,6 +172,32 @@ public static class D6Cli {
             }catch(Exception e){Debug.LogException(e);}
         }
         Done(ok,message);
+    }
+    // The player meshes of the scene file the build ships (opened from disk). A replacement match
+    // mesh needs WorldPlayer.asset as its ground mesh on the same rig, also as a saved dependency of
+    // the scene (otherwise the build measures the ground on the replacement: the d8ae8785 path);
+    // the release mesh needs no ground mesh (or itself). Throws before any build work.
+    public static string WebBuildPreflight(string scene){
+        var opened=UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene,UnityEditor.SceneManagement.OpenSceneMode.Single);
+        Doppel6.Probe.ProbeBridge bridge=null;foreach(var root in opened.GetRootGameObjects()){bridge=root.GetComponentInChildren<Doppel6.Probe.ProbeBridge>(true);if(bridge!=null)break;}
+        if(bridge==null)throw new InvalidOperationException("ProbeBridge is missing in "+scene);
+        return GroundPreflight(bridge,scene);
+    }
+    public static string GroundPreflight(Doppel6.Probe.ProbeBridge bridge,string scene){
+        var original=AssetDatabase.LoadAssetAtPath<Mesh>(LowPolySetup.Original)??throw new FileNotFoundException(LowPolySetup.Original);
+        var match=bridge.matchPlayerMesh;var ground=bridge.groundPlayerMesh;
+        if(match==null)throw new InvalidOperationException("Build preflight: "+scene+" has no match player mesh");
+        if(match==original){
+            if(ground!=null&&ground!=original)throw new InvalidOperationException("Build preflight: release match mesh with ground mesh "+ground.name+" (expected none or "+LowPolySetup.Original+")");
+            return "match mesh "+match.name+" (release), ground "+(ground==null?"none":ground.name);
+        }
+        if(ground==null)throw new InvalidOperationException("Build preflight: match mesh "+match.name+" has no ground mesh; the build would measure the ground on the replacement (run D6Cli.MatchMesh -d6mesh lowpoly)");
+        if(ground!=original)throw new InvalidOperationException("Build preflight: ground mesh "+ground.name+" ("+AssetDatabase.GetAssetPath(ground)+") is not "+LowPolySetup.Original);
+        var a=match.bindposes;var b=ground.bindposes;bool same=a.Length==b.Length&&a.Length>0;for(int i=0;same&&i<a.Length;i++)same=a[i]==b[i];
+        if(!same)throw new InvalidOperationException("Build preflight: ground mesh "+ground.name+" is not on the rig of "+match.name);
+        var saved=AssetDatabase.GetDependencies(scene,true);
+        foreach(var need in new[]{LowPolySetup.Original,AssetDatabase.GetAssetPath(match)})if(Array.IndexOf(saved,need)<0)throw new InvalidOperationException("Build preflight: the saved scene "+scene+" does not reference "+need);
+        return "match mesh "+match.name+", ground "+ground.name+" ("+ground.vertexCount+" vertices, "+b.Length+" bind poses), both saved scene dependencies";
     }
 }
 #endif

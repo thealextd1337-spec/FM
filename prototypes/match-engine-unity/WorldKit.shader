@@ -50,16 +50,18 @@ Shader "Doppel6/World Kit" {
   float collar=Band(b.y,1.35)*(1-Band(abs(b.x),.12)),sockBand=Band(b.y,.42)*(1-Band(b.y,.46)),glove=Band(abs(b.x),.615)*Band(b.y,1.15);
   // Actual squad number: large on the back, small on the left chest.
   float2 back=Number(float2(b.x,b.y),float2(0,1.15),.17)*step(b.z,-.02),chest=Number(float2(-b.x,b.y),float2(.075,1.24),.065)*step(.02,b.z),mark=max(back,chest);
-  if(shorts)color=_Accent.rgb*(.78+.22*pigment);
+  // Low-Poly: fewer painted micro folds on cloth and skin; the facets carry the form.
+  float lp=_D6LowPoly,fold=lerp(.78+.22*pigment,.9+.13*pigment,lp);
+  if(shorts)color=_Accent.rgb*fold;
   else if(shirt||socks){
    stripe=shirt?max(styleBand,collar):sockBand;
-   color=lerp(_Main.rgb,_Trim.rgb,stripe)*(.78+.22*pigment);
+   color=lerp(_Main.rgb,_Trim.rgb,stripe)*fold;
    if(shirt&&b.y>.95){color=lerp(color,_NumberEdge.rgb,mark.y);color=lerp(color,_NumberColor.rgb,mark.x);}
   }else{
    bool skin=color.r>color.g*1.12&&color.g>color.b*1.12&&pigment>.18;
    bool eye=b.y>1.47&&b.y<1.57&&b.z>.065;
-   if(skin&&!eye&&b.y>.5)color=_Skin.rgb*(.65+.65*pigment);
-   if((b.y>1.62||(b.y>1.49&&b.z<-.025&&pigment<.24))&&pigment<.35)color=_Hair.rgb*(.7+pigment*2);
+   if(skin&&!eye&&b.y>.5)color=_Skin.rgb*lerp(.65+.65*pigment,.93+.3*pigment,lp);
+   if((b.y>1.62||(b.y>1.49&&b.z<-.025&&pigment<.24))&&pigment<.35)color=_Hair.rgb*lerp(.7+pigment*2,.85+pigment,lp);
    // Keepers wear gloves over the actual hand geometry (bind pose |x| > 0.62 m).
    if(_Keeper>.5)color=lerp(color,_Glove.rgb*(.8+.2*pigment),glove);
   }
@@ -70,9 +72,11 @@ Shader "Doppel6/World Kit" {
   // speckles. Light the side that faces the camera, and tint the rim with the
   // kit colour so team colours stay distinct instead of reading as white.
   half fabric=shirt||shorts||socks?.12:.05;
-  float3 n=normalize(i.normal),view=normalize(GetWorldSpaceViewDir(i.world));if(dot(n,view)<0)n=-n;
+  float3 n=normalize(i.normal),view=normalize(GetWorldSpaceViewDir(i.world));
+  float3 face=D6FaceNormal(i.world,n);n=normalize(lerp(n,face,_D6Facet));if(dot(n,view)<0)n=-n;
   half rim=pow(1-saturate(dot(n,view)),3)*.3;
-  return half4(D6Light(color,i.world,n,.35,0,fabric)+rim*lerp(SampleSH(n)*2,color*1.4,.65),1);
+  // Low-Poly: less wrap so neighbouring facets keep distinct tones; matte cloth.
+  return half4(D6Light(color,i.world,n,lerp(.35,.25,lp),0,lerp(fabric,.04,lp))+rim*lerp(SampleSH(n)*2,color*1.4,.65),1);
  }
  ENDHLSL
  }

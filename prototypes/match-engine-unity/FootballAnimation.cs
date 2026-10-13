@@ -1088,7 +1088,7 @@ public sealed class FootballGround {
     public FootballGround(Transform root){
         this.root=root;Transform Find(string name){return Array.Find(root.GetComponentsInChildren<Transform>(),t=>t.name=="mixamorig:"+name);}
         ankles=new[]{Find("LeftFoot"),Find("RightFoot")};toes=new[]{Find("LeftToeBase"),Find("RightToeBase")};toeEnds=new[]{Find("LeftToe_End"),Find("RightToe_End")};
-        var mesh=root.GetComponentInChildren<SkinnedMeshRenderer>()?.sharedMesh;
+        var mesh=MeasuredSkin(root)?.sharedMesh;
         if(mesh==null)profile=unnamed;else if(!profiles.TryGetValue(mesh,out profile)){profile=new Profile();profiles.Add(mesh,profile);}
     }
     public bool Calibrated=>profile.calibrated;public bool SoleKnown=>profile.soleKnown;
@@ -1115,7 +1115,7 @@ public sealed class FootballGround {
     // skinned feet the points under the ankle and toe joints remain.
     void MeasureSolePoints(){
         if(!Valid||profile.solePoints)return;
-        var known=FootballSoleContour.Find(root.GetComponentInChildren<SkinnedMeshRenderer>()?.sharedMesh?.name);
+        var known=FootballSoleContour.Find(MeasuredSkin(root)?.sharedMesh?.name);
         if(known!=null&&known.Length==2){
             // Exact bind-pose data of the known boots (works without a readable mesh).
             for(int f=0;f<2;f++){var list=profile.corners[f];var names=profile.soleBones[f];list.Clear();names.Clear();names.AddRange(known[f].bones);var d=known[f].points;
@@ -1123,10 +1123,10 @@ public sealed class FootballGround {
             profile.solePoints=true;return;
         }
         // Other meshes: the standing pose (editor-readable meshes only).
-        if(!Application.isEditor&&!(root.GetComponentInChildren<SkinnedMeshRenderer>()?.sharedMesh?.isReadable??false)){profile.solePoints=true;return;}
+        if(!Application.isEditor&&!(MeasuredSkin(root)?.sharedMesh?.isReadable??false)){profile.solePoints=true;return;}
         float pitch=root.position.y+profile.sole;var up=Vector3.up;
         var found=new[]{new List<(Vector3 p,BoneWeight w,Transform[] bones,int vertex)>(),new List<(Vector3 p,BoneWeight w,Transform[] bones,int vertex)>()};var mesh=new Mesh();standing.Clear();
-        foreach(var r in root.GetComponentsInChildren<SkinnedMeshRenderer>()){
+        foreach(var r in Skins(root,false).ToArray()){
             if(r.sharedMesh==null)continue;foreach(var bone in r.bones)if(bone!=null)_=bone.position;r.BakeMesh(mesh,false);
             var v=mesh.vertices;var w=r.sharedMesh.boneWeights;var bones=r.bones;var origin=r.transform.position;var turn=r.transform.rotation;
             for(int i=0;i<v.Length&&i<w.Length;i++){
@@ -1257,11 +1257,69 @@ public sealed class FootballGround {
     // Cycle 0 of the shared stride cycle as a clip fraction (FootballStride.Gait.sync; the left footfall without one).
     public float Sync(AnimationClip clip){return clip!=null&&profile.gaits.TryGetValue(clip,out var g)&&g.syncKnown?g.sync:Footfall(clip);}
     public float RightFootfall(AnimationClip clip){return clip!=null&&profile.gaits.TryGetValue(clip,out var g)&&g.right>=0?g.right:(Footfall(clip)+.5f)%1;}
+    // Klares Low-Poly: a drawn skin other than the release mesh gets one never-drawn
+    // ground skin of the release mesh on the same bones (AttachGroundSkin). The
+    // standing sole, the clip offsets, the sole contour and the turf stand are
+    // measured on it alone, so the motion stays that of the release mesh;
+    // VisibleLowestVertex reads the drawn skin for surface checks. Without a
+    // ground skin every path below is the unchanged release path.
+    public const string GroundSkinName="d6-ground";
+    public static bool IsGroundSkin(Component skin)=>skin!=null&&skin.gameObject.name==GroundSkinName;
+    static readonly List<SkinnedMeshRenderer> skinScratch=new List<SkinnedMeshRenderer>();
+    static readonly HashSet<(Mesh,Mesh)> sameRig=new HashSet<(Mesh,Mesh)>();
+    // The attached ground skin of an actor, or null.
+    public static SkinnedMeshRenderer GroundSkin(Transform actor){
+        actor.GetComponentsInChildren(skinScratch);foreach(var r in skinScratch)if(IsGroundSkin(r)&&r.sharedMesh!=null)return r;return null;
+    }
+    // The skin the ground profile belongs to: the ground skin, else the first skin as before.
+    static SkinnedMeshRenderer MeasuredSkin(Transform actor){var ground=GroundSkin(actor);return ground!=null?ground:actor.GetComponentInChildren<SkinnedMeshRenderer>();}
+    // measured: the ground skin alone when attached, else every skin; drawn: every skin except the ground skin.
+    static List<SkinnedMeshRenderer> Skins(Transform actor,bool drawn){
+        var ground=drawn?null:GroundSkin(actor);actor.GetComponentsInChildren(skinScratch);
+        if(ground!=null){skinScratch.Clear();skinScratch.Add(ground);}
+        else if(drawn)for(int i=skinScratch.Count-1;i>=0;i--)if(IsGroundSkin(skinScratch[i]))skinScratch.RemoveAt(i);
+        return skinScratch;
+    }
+    // Attaches (or updates) the ground skin when the actor's one drawn skin shows
+    // another mesh than ground, and removes it otherwise; idempotent. Same parent,
+    // local transform, bones, root bone and skin quality as the drawn skin, the
+    // renderer disabled and without materials: no draw, shadow or skinning per frame.
+    public static SkinnedMeshRenderer AttachGroundSkin(Transform actor,Mesh ground){
+        SkinnedMeshRenderer drawn=null,skin=null;int count=0;
+        actor.GetComponentsInChildren(skinScratch);foreach(var r in skinScratch){if(IsGroundSkin(r))skin=r;else{count++;if(drawn==null)drawn=r;}}
+        if(drawn==null||drawn.sharedMesh==null||ground==null||drawn.sharedMesh==ground){
+            if(skin!=null){skin.sharedMesh=null;// ignored by GroundSkin until the deferred Destroy
+                #if UNITY_EDITOR
+                if(!Application.isPlaying){UnityEngine.Object.DestroyImmediate(skin.gameObject);return null;}
+                #endif
+                UnityEngine.Object.Destroy(skin.gameObject);}
+            return null;
+        }
+        if(count!=1)throw new InvalidOperationException("A ground skin needs exactly one drawn skin ("+count+" on "+actor.name+")");
+        var bones=drawn.bones;
+        if(!sameRig.Contains((drawn.sharedMesh,ground))){
+            var a=drawn.sharedMesh.bindposes;var b=ground.bindposes;bool same=a.Length==b.Length&&a.Length==bones.Length;for(int i=0;same&&i<a.Length;i++)same=a[i]==b[i];
+            if(!same)throw new InvalidOperationException("Ground mesh "+ground.name+" is not on the rig of "+drawn.sharedMesh.name);
+            sameRig.Add((drawn.sharedMesh,ground));
+        }
+        if(skin==null){var go=new GameObject(GroundSkinName);UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(go,actor.gameObject.scene);skin=go.AddComponent<SkinnedMeshRenderer>();skin.enabled=false;}
+        var place=skin.transform;var source=drawn.transform;
+        if(source==actor){place.SetParent(actor,false);place.localPosition=Vector3.zero;place.localRotation=Quaternion.identity;place.localScale=Vector3.one;}
+        else{place.SetParent(source.parent,false);place.localPosition=source.localPosition;place.localRotation=source.localRotation;place.localScale=source.localScale;}
+        skin.gameObject.layer=drawn.gameObject.layer;skin.enabled=false;skin.sharedMaterials=Array.Empty<Material>();
+        skin.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;skin.receiveShadows=false;skin.skinnedMotionVectors=false;skin.updateWhenOffscreen=false;
+        skin.sharedMesh=ground;skin.bones=bones;skin.rootBone=drawn.rootBone;skin.quality=drawn.quality;
+        return skin;
+    }
     static Mesh bakeMesh;static readonly List<Vector3> bakeVertices=new List<Vector3>();
-    // Lowest skinned vertex relative to the actor root, in metres.
-    public static float LowestVertex(Transform actor){
+    // Lowest skinned vertex relative to the actor root, in metres: the ground
+    // measurement (the ground skin when attached).
+    public static float LowestVertex(Transform actor)=>LowestSkinned(actor,false);
+    // The same on the drawn skin only (surface checks of what is rendered).
+    public static float VisibleLowestVertex(Transform actor)=>LowestSkinned(actor,true);
+    static float LowestSkinned(Transform actor,bool drawn){
         float lowest=float.MaxValue;var mesh=bakeMesh??(bakeMesh=new Mesh());
-        foreach(var r in actor.GetComponentsInChildren<SkinnedMeshRenderer>()){if(r.sharedMesh==null)continue;
+        foreach(var r in Skins(actor,drawn)){if(r.sharedMesh==null)continue;
             // Reading the bones completes the animation write; otherwise a bake
             // directly after PlayableGraph.Evaluate can use the previous pose.
             foreach(var bone in r.bones)if(bone!=null)_=bone.position;

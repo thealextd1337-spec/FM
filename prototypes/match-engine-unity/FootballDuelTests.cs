@@ -18,6 +18,7 @@ public static class FootballDuelTests {
     static AnimationClip Clip(string name){return Array.Find(AssetDatabase.LoadAllAssetsAtPath(Asset),a=>a is AnimationClip&&a.name==name) as AnimationClip??AssetDatabase.LoadAssetAtPath<AnimationClip>("Assets/Doppel6EngineProbe/Art/"+name+".anim")??throw new Exception("Missing clip "+name);}
     static float LowestBoot(Transform actor){
         float lowest=float.MaxValue;foreach(var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>()){
+            if(FootballGround.IsGroundSkin(skin))continue;// the drawn boots only
             var mesh=new Mesh();skin.BakeMesh(mesh);var vertices=mesh.vertices;var weights=skin.sharedMesh.boneWeights;
             for(int i=0;i<vertices.Length;i++){var weight=weights[i];var name=skin.bones[weight.boneIndex0].name;
                 if(name.EndsWith("Foot")||name.EndsWith("ToeBase"))lowest=Mathf.Min(lowest,skin.transform.TransformPoint(vertices[i]).y);
@@ -35,7 +36,7 @@ public static class FootballDuelTests {
         Require(FootballDuelTiming.LeftLead(new Vector3(-.3f,0,1),7)&&!FootballDuelTiming.LeftLead(new Vector3(.3f,0,1),8)&&FootballDuelTiming.LeftLead(Vector3.forward,8)&&!FootballDuelTiming.LeftLead(Vector3.forward,7),"lead leg follows the contact side, else the squad number");
 
         var scene=EditorSceneManager.NewPreviewScene();var actor=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(Asset));UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(actor,scene);actor.transform.localScale=Vector3.one*1.45f;
-        foreach(var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>())skin.sharedMesh=AssetDatabase.LoadAssetAtPath<Mesh>("Assets/Doppel6EngineProbe/Art/WorldPlayer.asset");
+        LowPolySetup.Skin(actor);
         var animator=actor.GetComponent<Animator>();if(animator==null)animator=actor.AddComponent<Animator>();animator.applyRootMotion=false;
         var run=Clip("running");var sprint=Clip("sprint_forward");var idle=Clip("idle_stand_meshy");var rise=Clip("keeper_rise_meshy");var stumble=Clip("foul_stumble_meshy");var shuffle=Clip("keeper_shuffle_meshy");var receive=Clip("receive_ground_meshy");var keeper=Clip("keeper_ready_meshy");
         var graph=PlayableGraph.Create("D6 duel validation");graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);var initial=AnimationClipPlayable.Create(graph,idle);AnimationPlayableOutput.Create(graph,"Character",animator).SetSourcePlayable(initial);graph.Play();graph.Evaluate(0);
