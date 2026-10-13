@@ -10,6 +10,7 @@ public partial class ProbeBridge {
     public Mesh matchPlayerMesh;
     // Optional BaseColor of a replacement match mesh with its own unwrap (Klares Low-Poly); null keeps Player.mat.
     public Texture2D matchPlayerBase;
+    static string loggedMesh;
     WorldViewState worldView;
     WorldPose[] worldActors;
     readonly Dictionary<string,Material> kitMaterials=new Dictionary<string,Material>();
@@ -38,6 +39,8 @@ public partial class ProbeBridge {
                 var candidate=new WorldViewState(command.config);
                 if(matchKitShader==null||clothMask==null||matchPlayerMesh==null)throw new InvalidOperationException("Match view assets are unavailable");
                 worldView=candidate;simulation=null;accumulator=0;worldActors=worldView.Frame.players;BuildWorld();InitWorldPresentation();lastWorldClock=-1;RenderWorld();ReplyWorld("ack",candidate.Frame.sequence);
+                // Display identity of the loaded player skin (console only): proves which match mesh a build really renders.
+                if(matchPlayerMesh.name!=loggedMesh){loggedMesh=matchPlayerMesh.name;Debug.Log("[D6] match mesh "+matchPlayerMesh.name+" vertices="+matchPlayerMesh.vertexCount+" base="+(matchPlayerBase!=null?matchPlayerBase.name:"Player.mat")+" mask="+clothMask.name);}
             }else if(command?.kind=="frame"&&worldView!=null){
                 if(worldView.Accept(command.frame)){
                     bool changed=worldActors.Length!=command.frame.players.Length;

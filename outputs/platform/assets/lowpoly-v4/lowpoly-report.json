@@ -1,6 +1,6 @@
 {
- "version": "v3",
- "mesh": "d6_lowpoly_v3",
+ "version": "v4",
+ "mesh": "d6_lowpoly_v4",
  "blender": "5.2.2 LTS",
  "source": {
   "path": "dist/players/football-v130.glb",
@@ -17,8 +17,9 @@
  },
  "triangles": 2592,
  "vertices_welded": 1296,
- "smoothFaces": 775,
- "flatFaces": 1817,
+ "smoothFaces": 167,
+ "smoothBend": 0.45,
+ "flatFaces": 2425,
  "bounds": {
   "min": [
    -0.8409557938575745,
@@ -42,9 +43,9 @@
   "p95": 0.00813685730099678
  },
  "trianglesByDominantBone": {
-  "headfront": 10,
-  "mixamorig:Head": 282,
-  "mixamorig:Hips": 24,
+  "headfront": 7,
+  "mixamorig:Head": 283,
+  "mixamorig:Hips": 22,
   "mixamorig:LeftArm": 108,
   "mixamorig:LeftFoot": 376,
   "mixamorig:LeftForeArm": 74,
@@ -53,24 +54,24 @@
   "mixamorig:LeftLeg": 112,
   "mixamorig:LeftShoulder": 56,
   "mixamorig:LeftToeBase": 78,
-  "mixamorig:LeftUpLeg": 128,
+  "mixamorig:LeftUpLeg": 126,
   "mixamorig:RightArm": 96,
   "mixamorig:RightFoot": 346,
   "mixamorig:RightForeArm": 56,
   "mixamorig:RightHand": 186,
   "mixamorig:RightHandMiddle4": 8,
   "mixamorig:RightLeg": 120,
-  "mixamorig:RightShoulder": 58,
+  "mixamorig:RightShoulder": 67,
   "mixamorig:RightToeBase": 134,
   "mixamorig:RightUpLeg": 132,
-  "mixamorig:Spine": 12,
-  "mixamorig:Spine1": 4
+  "mixamorig:Spine": 6,
+  "mixamorig:Spine1": 7
  },
  "originalTrianglesByDominantBone": {
   "headfront": 22,
   "mixamorig:Head": 3282,
-  "mixamorig:Hips": 324,
-  "mixamorig:LeftArm": 458,
+  "mixamorig:Hips": 329,
+  "mixamorig:LeftArm": 456,
   "mixamorig:LeftFoot": 996,
   "mixamorig:LeftForeArm": 216,
   "mixamorig:LeftHand": 340,
@@ -78,18 +79,18 @@
   "mixamorig:LeftLeg": 688,
   "mixamorig:LeftShoulder": 300,
   "mixamorig:LeftToeBase": 190,
-  "mixamorig:LeftUpLeg": 1019,
+  "mixamorig:LeftUpLeg": 1016,
   "mixamorig:RightArm": 416,
   "mixamorig:RightFoot": 896,
   "mixamorig:RightForeArm": 196,
   "mixamorig:RightHand": 448,
   "mixamorig:RightHandMiddle4": 40,
   "mixamorig:RightLeg": 636,
-  "mixamorig:RightShoulder": 318,
+  "mixamorig:RightShoulder": 324,
   "mixamorig:RightToeBase": 300,
-  "mixamorig:RightUpLeg": 1138,
-  "mixamorig:Spine": 239,
-  "mixamorig:Spine1": 46
+  "mixamorig:RightUpLeg": 1136,
+  "mixamorig:Spine": 237,
+  "mixamorig:Spine1": 44
  },
  "sole": {
   "left": {
@@ -161,32 +162,32 @@
  ],
  "textures": {
   "size": 1024,
-  "base": "d6_lowpoly_v3_base.png",
-  "mask": "d6_lowpoly_v3_mask.png",
+  "base": "d6_lowpoly_v4_base.png",
+  "mask": "d6_lowpoly_v4_mask.png",
   "bake": "Cycles EMIT selected-to-active, cage .02 m, ray .06 m, margin 12 px extend; mask nearest + threshold .5; face/hair texel density x2"
  },
  "files": {
-  "d6_lowpoly_v3.fbx": {
-   "bytes": 200940,
-   "sha256": "b0fd06e3a91f4cb7a9902895b1a662c1fe4ca93fc6d2c3fc1537affd209acfdd"
+  "d6_lowpoly_v4.fbx": {
+   "bytes": 201420,
+   "sha256": "54a3e7634a06d8c40be66dba7987bceb7764898e25d17a6ce3be0083cc39b61f"
   },
-  "d6_lowpoly_v3.glb": {
-   "bytes": 365296,
-   "sha256": "8c83351836f85a1f114a4631a87f80e61134b91ac65f670cf3065f50a7aed123"
+  "d6_lowpoly_v4.glb": {
+   "bytes": 417556,
+   "sha256": "2dd64b26d68d2d9449e663de1c6bbcfe2c97d4e5a73649000cfbf5cc9ed510f8"
   },
-  "d6_lowpoly_v3_base.png": {
-   "bytes": 1069661,
-   "sha256": "60c5492b6f2b13c398c9faa5bda17badda5b27161b0e8da231bd3ce844d375aa"
+  "d6_lowpoly_v4_base.png": {
+   "bytes": 1069124,
+   "sha256": "e128bcc14f6799c06bc881b8f5d664906da177f8012e777d58ae47c466b042e3"
   },
-  "d6_lowpoly_v3_mask.png": {
-   "bytes": 50431,
-   "sha256": "c47410f02f4ee8173ff9bb7a4e0ab182ce5d405c54a42daee529242afae1a78c"
+  "d6_lowpoly_v4_mask.png": {
+   "bytes": 50426,
+   "sha256": "b399ac5ec6f84a937c7c646a3080705eae83874ad6c39f8e372c6d0e5ae4da78"
   }
  },
  "roundTrip": {
   "bones": 28,
-  "mesh": "d6_lowpoly_v3",
-  "object": "d6_lowpoly_v3",
+  "mesh": "d6_lowpoly_v4",
+  "object": "d6_lowpoly_v4",
   "vertices": 1296,
   "triangles": 2592,
   "vertexGroups": 27,

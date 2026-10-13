@@ -625,7 +625,7 @@ public static class NaturalMotionDiagnostics {
         var scene=UnityEditor.SceneManagement.EditorSceneManager.NewPreviewScene();var graph=UnityEngine.Playables.PlayableGraph.Create("D6 clip detail");var list=new List<ClipDetail>();
         try{
             var actor=UnityEngine.Object.Instantiate(UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>(asset));UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(actor,scene);actor.transform.localScale=Vector3.one*1.45f;
-            foreach(var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>())skin.sharedMesh=UnityEditor.AssetDatabase.LoadAssetAtPath<Mesh>("Assets/Doppel6EngineProbe/Art/WorldPlayer.asset");
+            foreach(var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>())skin.sharedMesh=LowPolySetup.MatchMesh();
             var animator=actor.GetComponent<Animator>();if(animator==null)animator=actor.AddComponent<Animator>();animator.applyRootMotion=false;graph.SetTimeUpdateMode(UnityEngine.Playables.DirectorUpdateMode.Manual);
             UnityEngine.Animations.AnimationPlayableOutput.Create(graph,"rig",animator).SetSourcePlayable(UnityEngine.Animations.AnimationClipPlayable.Create(graph,clips[0]));graph.Play();graph.Evaluate(0);
             var anim=new FootballAnimation(graph,actor.transform,clips);actor.transform.position=Vector3.up*anim.RootHeight;var b=BoneSet(actor.transform);

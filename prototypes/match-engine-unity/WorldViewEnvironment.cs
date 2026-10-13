@@ -17,12 +17,17 @@ public partial class ProbeBridge {
     readonly List<Texture2D> stadiumTextures=new List<Texture2D>();
     readonly Transform[] standSides=new Transform[4];Vector2 standHalf;
 
+    // Klares Low-Poly demo style: shader global _D6LowPoly (players, turf, gloss)
+    // and calmer generated stadium textures. false restores the Release 130 look.
+    public static bool LowPolyStyle=true;
+
     Light FindSun(){if(sun!=null)return sun;foreach(var light in FindObjectsByType<Light>())if(light.type==LightType.Directional){sun=light;break;}return sun;}
 
     void ApplyMatchLighting(){
         var light=FindSun();var camera=Camera.main;var urp=GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
         ReducedQuality=worldView?.Config.quality=="reduced"||string.IsNullOrEmpty(worldView?.Config.quality)&&Application.isMobilePlatform;
         if(lightingDefaults==null)lightingDefaults=new LightingDefaults{shadowResolution=urp!=null?urp.mainLightShadowmapResolution:0,pipelineMsaa=urp!=null?urp.msaaSampleCount:1,shadowDistance=urp!=null?urp.shadowDistance:0,mode=RenderSettings.ambientMode,flat=RenderSettings.ambientLight,intensity=RenderSettings.ambientIntensity,probe=RenderSettings.ambientProbe,sunRotation=light!=null?light.transform.rotation:Quaternion.identity,sunColor=light!=null?light.color:Color.white,sunIntensity=light!=null?light.intensity:1,shadowStrength=light!=null?light.shadowStrength:1,shadows=light!=null?light.shadows:LightShadows.None,background=camera.backgroundColor,msaa=camera.allowMSAA,far=camera.farClipPlane};
+        Shader.SetGlobalFloat("_D6LowPoly",LowPolyStyle?1:0);
         // Evening floodlight: one high key light with soft real shadows, a cool
         // sky fill and a darker turf bounce. Colours are linear.
         var sky=new Color(.30f,.36f,.47f);var horizon=new Color(.20f,.24f,.27f);var ground=new Color(.07f,.11f,.07f);
@@ -57,6 +62,7 @@ public partial class ProbeBridge {
     void SetReplayGrade(bool replay){if(replayVolume!=null&&replayVolume.enabled!=replay)replayVolume.enabled=replay;}
 
     void RestoreProbeLighting(){
+        Shader.SetGlobalFloat("_D6LowPoly",0);
         if(matchVolume!=null)matchVolume.enabled=false;if(replayVolume!=null)replayVolume.enabled=false;if(lightingDefaults==null)return;var d=lightingDefaults;var light=FindSun();var camera=Camera.main;
         if(GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset urp&&d.shadowResolution>0){urp.mainLightShadowmapResolution=d.shadowResolution;urp.shadowDistance=d.shadowDistance;urp.msaaSampleCount=d.pipelineMsaa;}
         RenderSettings.ambientMode=d.mode;RenderSettings.ambientLight=d.flat;RenderSettings.ambientIntensity=d.intensity;RenderSettings.ambientProbe=d.probe;
@@ -123,15 +129,17 @@ public partial class ProbeBridge {
             if(ly>=10&&ly<=13&&lx>=1)return ly==13?hairs[hair[c]]:faces[face[c]]*(lx==3?.85f:1);
             if(ly>=10)return Color.Lerp(seat,Color.black,.35f);
             if(ly<3)return Color.Lerp(seat,Color.black,.2f);
-            float light=.72f+.04f*ly-(lx==0?.12f:0);return Color.Lerp(shirt,new Color(.2f,.2f,.22f),.25f)*light;}));
+            float light=LowPolyStyle?.86f-(lx==0?.06f:0):.72f+.04f*ly-(lx==0?.12f:0);return Color.Lerp(shirt,new Color(.2f,.2f,.22f),.25f)*light;}));
         crowdMaterial.SetFloat("_VertexTint",1);
 
         // Surface textures. Mesh UVs are metres; tiling is one repeat per N metres.
-        Texture2D Noise(int size,float low,float high,int salt,Func<int,int,float,float> shape=null)=>StadiumTexture(size,size,(x,y)=>{float n=Mathf.Lerp(low,high,Grain(x,y,seed+salt)*.4f+Grain(x/4,y/4,seed+salt+1)*.6f);if(shape!=null)n=shape(x,y,n);return new Color(n,n,n);});
+        // Low-Poly: the same surfaces with a third of the mottling; form carries the information.
+        float Calm(float v,float mid)=>LowPolyStyle?Mathf.Lerp(v,mid,.65f):v;
+        Texture2D Noise(int size,float low,float high,int salt,Func<int,int,float,float> shape=null)=>StadiumTexture(size,size,(x,y)=>{float n=Calm(Mathf.Lerp(low,high,Grain(x,y,seed+salt)*.4f+Grain(x/4,y/4,seed+salt+1)*.6f),(low+high)/2);if(shape!=null)n=shape(x,y,n);return new Color(n,n,n);});
         var concreteTex=Noise(64,.86f,1.04f,11,(x,y,n)=>y%32==0?n*.78f:n);
-        var brickTex=StadiumTexture(64,64,(x,y)=>{int row=y/8;int bx=(x+(row%2)*8)%16;float n=.85f+.25f*Grain(x/16+row*5,row,seed+21);return y%8==0||bx==0?new Color(.82f,.80f,.74f):new Color(n,n*.97f,n*.95f);});
+        var brickTex=StadiumTexture(64,64,(x,y)=>{int row=y/8;int bx=(x+(row%2)*8)%16;float n=Calm(.85f+.25f*Grain(x/16+row*5,row,seed+21),.97f);return y%8==0||bx==0?new Color(.82f,.80f,.74f):new Color(n,n*.97f,n*.95f);});
         string motif=plan.Motif;
-        var claddingTex=StadiumTexture(64,64,(x,y)=>{float n=.9f+.12f*Grain(x,y,seed+31);
+        var claddingTex=StadiumTexture(64,64,(x,y)=>{float n=Calm(.9f+.12f*Grain(x,y,seed+31),.96f);
             if(motif.Contains("fins")||motif.Contains("truss"))n*=x%16<2?.7f:1-.15f*(x%16)/16f;
             else if(motif.Contains("slat"))n*=y%8<2?.72f:1;
             else if(motif.Contains("timber"))n*=(x%10==0?.65f:1)*(.92f+.1f*Grain(x/10,y/6,seed+32));

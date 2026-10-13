@@ -39,7 +39,7 @@ public static class FootballPresentation119Tests {
         var blended=WorldViewPlayback.Blend(p,p,.5);Require(blended.players[0].ballHeldKnown&&blended.players[0].ballHeld,"display buffer preserves explicit attachment presence");
         const string asset="Assets/Doppel6EngineProbe/Art/football-v130.fbx";
         var scene=EditorSceneManager.NewPreviewScene();var actor=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(asset));UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(actor,scene);actor.transform.localScale=Vector3.one*1.45f;
-        foreach(var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>())skin.sharedMesh=AssetDatabase.LoadAssetAtPath<Mesh>("Assets/Doppel6EngineProbe/Art/WorldPlayer.asset");
+        foreach(var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>())skin.sharedMesh=LowPolySetup.MatchMesh();
         var animator=actor.GetComponent<Animator>();if(animator==null)animator=actor.AddComponent<Animator>();animator.applyRootMotion=false;
         AnimationClip Clip(string n)=>Array.Find(AssetDatabase.LoadAllAssetsAtPath(asset),a=>a is AnimationClip&&a.name==n) as AnimationClip??AssetDatabase.LoadAssetAtPath<AnimationClip>("Assets/Doppel6EngineProbe/Art/"+n+".anim")??throw new Exception("Missing "+n);
         var clips=new[]{Clip("idle_stand_meshy"),Clip("running"),Clip("keeper_ready_meshy"),Clip("keeper_rise_meshy"),Clip("keeper_low_meshy")};

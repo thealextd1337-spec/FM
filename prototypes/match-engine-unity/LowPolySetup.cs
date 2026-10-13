@@ -17,7 +17,7 @@ using Doppel6.Probe;
 // WorldPlayer.asset stays untouched; Assign switches the probe scene between
 // both, with their textures (rollback: -d6mesh original).
 public static class LowPolySetup {
-    public const string Art="Assets/Doppel6EngineProbe/Art",Version="v3";
+    public const string Art="Assets/Doppel6EngineProbe/Art",Version="v4";
     public const string Fbx=Art+"/d6_lowpoly_"+Version+".fbx",Asset=Art+"/WorldPlayerLowPoly-"+Version+".asset",Original=Art+"/WorldPlayer.asset",Base=Art+"/d6_lowpoly_"+Version+"_base.png",Mask=Art+"/d6_lowpoly_"+Version+"_mask.png";
     [Serializable] class Report {public string version,fbx,asset,meshName,meshHash;public int vertices,triangles,originalVertices,originalTriangles,bones,maxInfluences;public float bindposeMaxDifference,weightSumMin,weightSumMax,restDistanceMean,restDistanceP95,restDistanceMax,soleLow,soleOriginal;public Vector3 boundsMin,boundsMax,originalBoundsMin,originalBoundsMax;public Region[] regions;public float regionAgreement;public string[] notes;}
     [Serializable] class Region {public string name;public int lowVertices,originalVertices,agree;}
@@ -87,6 +87,12 @@ public static class LowPolySetup {
             for(int i=0;i<lv.Length;i++){var c=Classify(lowMask,lowBase,lu[i],lv[i]);var r=R(c);r.lowVertices++;int best=0;float bd=float.MaxValue;for(int k=0;k<ov.Length;k++){float d=(lv[i]-ov[k]).sqrMagnitude;if(d<bd){bd=d;best=k;}}if(originalClass[best]==c){r.agree++;agree++;}}
             agreement=(float)agree/lv.Length;var list=new List<Region>(regions.Values);list.Sort((a,b)=>string.CompareOrdinal(a.name,b.name));return list.ToArray();
         }finally{foreach(var ti in restore){ti.isReadable=false;ti.SaveAndReimport();}}
+    }
+    // The match mesh the open probe scene actually uses (suites skin their
+    // test actors with it); WorldPlayer.asset when no bridge is loaded.
+    public static Mesh MatchMesh(){
+        var bridge=UnityEngine.Object.FindFirstObjectByType<ProbeBridge>();
+        return bridge!=null&&bridge.matchPlayerMesh!=null?bridge.matchPlayerMesh:AssetDatabase.LoadAssetAtPath<Mesh>(Original);
     }
     // Which player mesh the probe scene (and therefore the WebGL build) uses.
     public static string Assign(string variant){

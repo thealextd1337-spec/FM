@@ -116,12 +116,14 @@ public static class D6Cli {
         Done(ok,message);
     }
     // Low-Poly style evidence: identical fixture, layout and cameras for a
-    // baseline and a candidate (-d6output <folder> -d6label <name> [-d6compare <folder of another label>]).
+    // baseline and a candidate (-d6output <folder> -d6label <name> [-d6compare <folder of another label>]
+    // [-d6style on|off] [-d6facet 0..1: derivative facet normals, the intermediate on an unchanged mesh]).
     public static void LowPoly(){
         string repo=null,message=null;bool ok=false;
         try{repo=Repo();if(SystemInfo.graphicsDeviceType==UnityEngine.Rendering.GraphicsDeviceType.Null)throw new InvalidOperationException("Low-Poly evidence needs a graphics device");
-            ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=LowPolyDiagnostics.Run(repo,Arg("-d6output"),Arg("-d6label","candidate"),Arg("-d6compare"));ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
-        finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
+            ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Doppel6.Probe.ProbeBridge.LowPolyStyle=Arg("-d6style","on")!="off";Shader.SetGlobalFloat("_D6Facet",float.Parse(Arg("-d6facet","0"),System.Globalization.CultureInfo.InvariantCulture));
+            message=LowPolyDiagnostics.Run(repo,Arg("-d6output"),Arg("-d6label","candidate"),Arg("-d6compare"))+" style="+Doppel6.Probe.ProbeBridge.LowPolyStyle+" facet="+Shader.GetGlobalFloat("_D6Facet");ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        finally{Shader.SetGlobalFloat("_D6Facet",0);Doppel6.Probe.ProbeBridge.LowPolyStyle=true;if(repo!=null)ProbeWebBuild.Restore(repo);}
         Done(ok,message);
     }
     // Builds WorldPlayerLowPoly-<version>.asset from the installed low-poly FBX

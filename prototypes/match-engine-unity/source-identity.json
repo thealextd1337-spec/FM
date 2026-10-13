@@ -1,5 +1,5 @@
 {
-  "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "sourceId": "46a6e081054ba81328e69ba8a01f66daaf0470bb2263b3de17f3f14369f3a4b8",
   "sources": [
     "prototypes/match-engine-unity/ProbeSimulation.cs",
     "prototypes/match-engine-unity/ProbeBridge.cs",
@@ -41,6 +41,11 @@
     "prototypes/match-engine-unity/FootballDuel.cs",
     "docs/match-contracts/shared.md",
     "work/match-next/contacts/catalog.json",
-    "work/platform/assets/manifest.json"
+    "work/platform/assets/manifest.json",
+    "prototypes/match-engine-unity/LowPolySetup.cs",
+    "work/platform/assets/lowpoly/build_lowpoly.py",
+    "outputs/platform/assets/lowpoly-v4/d6_lowpoly_v4.fbx",
+    "outputs/platform/assets/lowpoly-v4/d6_lowpoly_v4_base.png",
+    "outputs/platform/assets/lowpoly-v4/d6_lowpoly_v4_mask.png"
   ]
 }
