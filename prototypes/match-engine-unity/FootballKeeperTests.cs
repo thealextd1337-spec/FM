@@ -41,9 +41,10 @@ public static class FootballKeeperTests {
             var animation=new FootballAnimation(graph,actor.transform,c.Values);
             Selector(raw,fixture,actor,animation,c,Require,m);
             Require(graph.GetPlayableCount()<=16,"keeper poses reuse cached graph nodes");
-            // Klares Low-Poly (a ground skin only): drawn boots and gloves against the release reference in the same pose.
+            // Klares Low-Poly (a ground skin only): drawn gloves, boots and body against the release reference in the same
+            // pose, paired (no existing limit holds for the drawn release surface in keeper saves; VisibleSurfaceProbe).
             var visible=VisibleSurfaceProbe.Current;var line=visible?.Finish(folder,"visible-surface-keeper.json");
-            if(line!=null)Require(visible.Failed==0,"drawn low-poly boots and gloves are no worse than the release reference on the actual keeper pictures ("+line+")");
+            if(line!=null)Require(visible.Failed==0,"drawn low-poly gloves, boots and body stay within 0.01 m of the release reference on the actual keeper pictures ("+line+")");
         }finally{if(graph.IsValid())graph.Destroy();EditorSceneManager.ClosePreviewScene(scene);}
         var json=JsonUtility.ToJson(new Report{passed=checks.Count,checks=checks.ToArray(),measurements=m.ToArray()},true);
         Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"keeper-tests.json"),json);return "passed="+checks.Count;
@@ -143,7 +144,7 @@ public static class FootballKeeperTests {
                     if(first){var f0=WorldPhasePresence.ParseFrame(json);pivot=V(f0.players[0].position);}
                     var f=Step(json,rotate,pivot);var pose=Select(f);if(before)pose=Before(pose,f.players[0]);
                     animation.Sample(pose,1000+f.clock,first);first=false;
-                    if(!before)VisibleSurfaceProbe.Current?.Picture(actor.transform,s.name+(rotate==Quaternion.identity?"":" turned")+" seq "+f.sequence+" "+f.players[0].action,"keeper",false,-1,pose.contact&&animation.rig.reachable?(pose.kind=="two-hands"?3:pose.kind=="left-hand"?2:pose.kind=="hand"?1:0):0,pose.target);list.Add((f,pose,hips.position.y-animation.RootHeight));hands[list.Count-1]=(leftHand.position.y+rightHand.position.y)/2-animation.RootHeight;
+                    if(!before)VisibleSurfaceProbe.Current?.Picture(actor.transform,s.name+(rotate==Quaternion.identity?"":" turned")+" seq "+f.sequence+" "+f.players[0].action,"keeper",false,-1,pose.contact&&animation.rig.reachable?(pose.kind=="two-hands"?3:pose.kind=="left-hand"?2:pose.kind=="hand"?1:0):0,pose.target,false);list.Add((f,pose,hips.position.y-animation.RootHeight));hands[list.Count-1]=(leftHand.position.y+rightHand.position.y)/2-animation.RootHeight;
                 }
                 return list;
             }
@@ -239,7 +240,7 @@ public static class FootballKeeperTests {
                 var near=Catch("");var np=WorldPhasePresence.ParseFrame(near).players[0];var close=new[]{np.position[0]+.45*np.facing[0],1.15,np.position[2]+.45*np.facing[2]};
                 int bs=near.IndexOf("\"ball\":[",StringComparison.Ordinal)+8,be=near.IndexOf("]",bs);near=near.Substring(0,bs)+string.Join(",",Array.ConvertAll(close,v=>v.ToString(System.Globalization.CultureInfo.InvariantCulture)))+near.Substring(be);
                 var reach=P(near);animation.Sample(reach,3000,true);
-                VisibleSurfaceProbe.Current?.Picture(actor.transform,"controlled catch within reach (two hands on the actual ball)","keeper",false,-1,3,reach.target);
+                VisibleSurfaceProbe.Current?.Picture(actor.transform,"controlled catch within reach (two hands on the actual ball)","keeper",false,-1,3,reach.target,false);
                 m.Add(new Measurement{stage="controlled-catch-within-reach",value=animation.rig.reachable?1:0,detail="ball 0.45 m ahead at 1.15 m: contact error "+animation.rig.contactError.ToString("0.00")+" m"});
                 Require(reach.kind=="two-hands"&&reach.contact&&Vector3.Distance(reach.target,ballView.position)<1e-4f&&animation.rig.reachable,"a known catch within arm reach holds the actual ball with both hands");
                 {var g=Step(Catch("",flight:null),Quaternion.identity,Vector3.zero);Require(!FootballKeeperTiming.Held(g.players[0],g)&&!P(Catch("",flight:null)).contact,"a catch without the ballInFlight fact shows no held ball");}

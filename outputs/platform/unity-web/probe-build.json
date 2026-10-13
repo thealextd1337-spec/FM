@@ -5,7 +5,7 @@
   "engine": "unity",
   "unity": "6000.6.4f1",
   "loaderUrl": "/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
-  "dataUrl": "/unity/Build/unity-web.data?v=cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f",
+  "dataUrl": "/unity/Build/unity-web.data?v=00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8",
   "frameworkUrl": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
   "codeUrl": "/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab",
   "assetHash": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
@@ -125,7 +125,7 @@
     },
     {
       "file": "D6Cli.cs",
-      "sha256": "58e19bb346da0f5812f0b817dfb799a80913eef8eba5ee7e31a7305825464d34"
+      "sha256": "7115b7f9fecde642481761af40e5f80fc6cb96ca3b3dadfaf35f6f9335917226"
     },
     {
       "file": "ClubStadiumProfiles.cs",
@@ -161,8 +161,8 @@
   "files": [
     {
       "file": "unity-web.data",
-      "bytes": 56050915,
-      "sha256": "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f"
+      "bytes": 56050907,
+      "sha256": "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8"
     },
     {
       "file": "unity-web.framework.js",
