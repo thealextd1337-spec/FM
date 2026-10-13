@@ -1,0 +1,3787 @@
+{
+  "schema": "d6-style-demo-acceptance-1",
+  "style": "lowpoly",
+  "url": "http://127.0.0.1:4413",
+  "repo": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\demo-low-poly-fix",
+  "startedAt": "2026-10-13T04:49:34.116Z",
+  "gpu": true,
+  "harness": {
+    "file": "work/style-demos/acceptance-browser.cjs",
+    "sha256": "d9b330d7be7e4bddd9e845f76f3597a8734a6a2b2363ef5054f84c039825ca8b",
+    "commit": "7c5f6e8e0e318e4085647d8034fd08eb380c4bdb",
+    "branch": "codex/demo-style-support-20261013",
+    "dirty": false,
+    "node": "v24.19.0"
+  },
+  "checks": [
+    {
+      "id": "build-style",
+      "name": "Server meldet Stil lowpoly mit frischem Paket",
+      "ok": true,
+      "detail": "{\"style\":\"lowpoly\",\"fresh\":\"fresh\"}"
+    },
+    {
+      "id": "build-source-id",
+      "name": "probe-build.json trägt dieselbe sourceId wie /__build",
+      "ok": true,
+      "detail": "{\"manifest\":\"644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9\",\"build\":\"644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9\"}"
+    },
+    {
+      "id": "build-clean",
+      "name": "Quelle sauber und committed",
+      "ok": true,
+      "detail": "{\"commit\":\"a6289dc32046875ca13974f7457ff3e608fbaa8d\",\"dirty\":false}"
+    },
+    {
+      "id": "vp-1280x720-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-1280x720-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (1280x720-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-1280x720-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-1280x720-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (1280x720-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-1280x720-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (1280x720-standard)",
+      "ok": true
+    },
+    {
+      "id": "vp-1280x720-standard-quality",
+      "name": "Unity erhielt Qualität standard im Ladebefehl",
+      "ok": true,
+      "detail": "[\"standard\"]"
+    },
+    {
+      "id": "vp-1280x720-standard-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-844x390-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (844x390-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-844x390-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (844x390-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-844x390-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (844x390-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-844x390-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (844x390-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-844x390-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (844x390-standard)",
+      "ok": true
+    },
+    {
+      "id": "vp-844x390-standard-quality",
+      "name": "Unity erhielt Qualität standard im Ladebefehl",
+      "ok": true,
+      "detail": "[\"standard\"]"
+    },
+    {
+      "id": "vp-844x390-standard-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-931x448-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (931x448-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-931x448-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (931x448-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-931x448-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (931x448-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-931x448-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (931x448-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-931x448-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (931x448-standard)",
+      "ok": true
+    },
+    {
+      "id": "vp-931x448-standard-quality",
+      "name": "Unity erhielt Qualität standard im Ladebefehl",
+      "ok": true,
+      "detail": "[\"standard\"]"
+    },
+    {
+      "id": "vp-931x448-standard-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-1280x720-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-1280x720-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-1280x720-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-1280x720-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (1280x720-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-1280x720-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (1280x720-reduced)",
+      "ok": true
+    },
+    {
+      "id": "vp-1280x720-reduced-quality",
+      "name": "Unity erhielt Qualität reduced im Ladebefehl",
+      "ok": true,
+      "detail": "[\"reduced\"]"
+    },
+    {
+      "id": "vp-1280x720-reduced-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-844x390-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-844x390-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (844x390-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-844x390-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-844x390-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (844x390-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-844x390-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (844x390-reduced)",
+      "ok": true
+    },
+    {
+      "id": "vp-844x390-reduced-quality",
+      "name": "Unity erhielt Qualität reduced im Ladebefehl",
+      "ok": true,
+      "detail": "[\"reduced\"]"
+    },
+    {
+      "id": "vp-844x390-reduced-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-931x448-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-931x448-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (931x448-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-931x448-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-931x448-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (931x448-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-931x448-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (931x448-reduced)",
+      "ok": true
+    },
+    {
+      "id": "vp-931x448-reduced-quality",
+      "name": "Unity erhielt Qualität reduced im Ladebefehl",
+      "ok": true,
+      "detail": "[\"reduced\"]"
+    },
+    {
+      "id": "vp-931x448-reduced-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "flow-unity",
+      "name": "Unity aktiv und bereit, kein lastError (1280x720)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "flow-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (1280x720)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "flow-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (1280x720)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "flow-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (1280x720)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "flow-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (1280x720)",
+      "ok": true
+    },
+    {
+      "id": "flow-pause-ui",
+      "name": "Sichtbare Pause-Taste hält nativ (Phase paused) und Unity zeigt das Bild als paused",
+      "ok": true,
+      "detail": "{\"native\":\"paused\",\"picture\":\"paused\"}"
+    },
+    {
+      "id": "flow-resume-ui",
+      "name": "Sichtbare Fortsetzen-Taste: Echtzeit-Schleife lief (Uhr >1,5 s, Unity-ACKs)",
+      "ok": true,
+      "detail": "{\"elapsed\":1.5110939999860524,\"ack\":123}"
+    },
+    {
+      "id": "flow-pause-frozen",
+      "name": "Pausiert: Uhr, Stand, Positionen, Ball und Ereignisse unverändert über 1,5 s",
+      "ok": true,
+      "detail": "{\"a\":1.5110939999860524,\"b\":1.5110939999860524,\"pos\":true}"
+    },
+    {
+      "id": "flow-resume-session",
+      "name": "Nach Fortsetzen gleiche Unity-Sitzung, keine Neuladung, weiter 3D",
+      "ok": true,
+      "detail": "{\"loads\":[1,1]}"
+    },
+    {
+      "id": "flow-halftime",
+      "name": "Echte Halbzeitpause erreicht (native Pause, Taste „2. Halbzeit starten“)",
+      "ok": true,
+      "detail": "{\"half\":true,\"phase\":\"paused\",\"planView\":true,\"label\":\"2. Halbzeit starten\",\"minute\":50,\"score\":[0,1],\"state\":{\"elapsed\":42.42458999993118,\"clock\":76.0791999998369,\"score\":[0,1],\"goals\":1,\"events\":\"20bfe5591f84d0e1feeba09b6641148df40edb034a0cbec60d7ae482ed1f8f0a\",\"eventCount\":2,\"lineup\":\"a8cb204d2cff5b70f6723d10a7e134b22fbc7313c55b1932c20e507ad88e3511\",\"positions\":\"9533bff83671a4eb11bdb0861c8d8f198b74c351dfdf88ff7bd361c6b30e0068\",\"ball\":\"81445eb5c1fb814b96a28a965ffe426cef322c5852d4d79f93cc6306e48dd664\",\"minute\":50,\"phase\":\"paused\",\"half\":true,\"randomless\":true}}"
+    },
+    {
+      "id": "flow-second-half",
+      "name": "Zweite Halbzeit per Taste gestartet: Uhr läuft, Unity aktiv, gleiche Sitzung, kein Fehler",
+      "ok": true,
+      "detail": "{\"minute\":[50,54],\"session\":true}"
+    },
+    {
+      "id": "flow-review-history",
+      "name": "Rückschau nutzt die echte aufgezeichnete Zeitleiste (≥ 2 Bilder), Unity zeigt replay-Bild, Labels gesperrt",
+      "ok": true,
+      "detail": "{\"timeline\":32,\"span\":[58.07919999983792,103.52919999983534],\"markers\":2,\"rv\":{\"review\":true,\"picture\":true,\"disabled\":true,\"panel\":true,\"phase\":\"paused\"}}"
+    },
+    {
+      "id": "flow-review-readonly",
+      "name": "Rückschau ändert Uhr, Stand, Aufstellung, Positionen, Ball und Ereignisse nicht",
+      "ok": true,
+      "detail": "{\"before\":50.02958999993147,\"after\":50.02958999993147}"
+    },
+    {
+      "id": "flow-review-scrub",
+      "name": "Zurückspulen zeigt eine frühere Spielzeit im Unity-Bild",
+      "ok": true,
+      "detail": "{\"early\":34.23458999993087,\"mid\":44.413589999931254}"
+    },
+    {
+      "id": "flow-review-return",
+      "name": "Zurück zu Live: kein replay-Bild, gleicher Spielstand, gleiche Sitzung, kein Fehler",
+      "ok": true,
+      "detail": "{\"back\":{\"phase\":\"live\",\"replay\":false,\"error\":null}}"
+    },
+    {
+      "id": "flow-complete",
+      "name": "Vollständige Partie beendet: Ergebnis gebucht, Karriere valide, Unity-Bild finished, kein Fehler",
+      "ok": true,
+      "detail": "{\"ticks\":1212,\"score\":[0,1],\"all\":\"fd35a898\",\"picture\":\"finished\",\"booked\":true,\"valid\":true}"
+    },
+    {
+      "id": "flow-leave",
+      "name": "Verlassen der Partie entfernt Renderer und Stream",
+      "ok": true
+    },
+    {
+      "id": "goal-real",
+      "name": "Echtes Tor durch die native Simulation (nicht erzeugt): Seed 160112, Tor im Spielstand und in den Ereignissen",
+      "ok": true,
+      "detail": "{\"score\":[0,1],\"goals\":1}"
+    },
+    {
+      "id": "goal-replay",
+      "name": "Tor-Wiederholung: HUD sichtbar, Unity zeigt replay-Bild, kein Fehler",
+      "ok": true,
+      "detail": "{\"hud\":true,\"replay\":true,\"net\":false}"
+    },
+    {
+      "id": "goal-replay-no-double",
+      "name": "Wiederholung endet und bucht kein zweites Tor (Stand und Torliste gleich)",
+      "ok": true,
+      "detail": "{\"before\":[0,1],\"after\":[0,1],\"goals\":[1,1]}"
+    },
+    {
+      "id": "parity-sequence",
+      "name": "Identische Aufrufsequenz (20′, Pause, Fortsetzen, Halbzeit, 60′, Checkpoint, Abpfiff): Unity-Digest = natives 2D, gleiche Nutzdaten-SHA256",
+      "ok": true,
+      "detail": "{\"unity\":\"38893eb6\",\"native\":\"38893eb6\",\"payload\":[\"e08fb8a7ac4d\",\"e08fb8a7ac4d\"]}"
+    },
+    {
+      "id": "parity-complete",
+      "name": "Beide Partien vollständig, gebucht und valide; Unity ohne Fehler",
+      "ok": true,
+      "detail": "{\"unity\":true,\"native\":true}"
+    },
+    {
+      "id": "reload-saved",
+      "name": "Checkpoint im isolierten Profil gespeichert (Pause bei Minute 25, physicalSnapshot, Spielstand)",
+      "ok": true,
+      "detail": "{\"minute\":25,\"elapsed\":20.842380000000148,\"snap\":\"ceb027233f14\",\"id\":\"c86cbb7b-3844-41a1-901a-a35a76bec0c2\"}"
+    },
+    {
+      "id": "reload-persisted-page.reload",
+      "name": "Nach page.reload liegt derselbe Checkpoint im Speicher (physicalSnapshot-SHA256 gleich)",
+      "ok": true,
+      "detail": "{\"stored\":\"ceb027233f14\",\"saved\":\"ceb027233f14\"}"
+    },
+    {
+      "id": "reload-open-page.reload",
+      "name": "Gespeicherte Karriere über die sichtbare Öffnen-Schaltfläche erreichbar",
+      "ok": true
+    },
+    {
+      "id": "reload-restored-page.reload",
+      "name": "Wiederhergestellte Partie: Uhr, Stand, Aufstellung, Positionen, Ball, Ereignisse wie vor dem Neuladen",
+      "ok": true,
+      "detail": "{\"saved\":20.842380000000148,\"restored\":20.842380000000148,\"pos\":true}"
+    },
+    {
+      "id": "reload-page.reload-unity",
+      "name": "Unity aktiv und bereit, kein lastError (nach page.reload)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "reload-page.reload-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (nach page.reload)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "reload-page.reload-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (nach page.reload)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "reload-page.reload-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (nach page.reload)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\",\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "reload-page.reload-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (nach page.reload)",
+      "ok": true
+    },
+    {
+      "id": "reload-resume-page.reload",
+      "name": "Sichtbares Fortsetzen nach page.reload: Uhr läuft weiter, Unity ohne Fehler",
+      "ok": true,
+      "detail": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:50137a45-9e9a-41c0-8b4f-3c30aaf57fdc"
+    },
+    {
+      "id": "reload-persisted-browser restart",
+      "name": "Nach browser restart liegt derselbe Checkpoint im Speicher (physicalSnapshot-SHA256 gleich)",
+      "ok": true,
+      "detail": "{\"stored\":\"ad9e120de466\",\"saved\":\"ad9e120de466\"}"
+    },
+    {
+      "id": "reload-open-browser restart",
+      "name": "Gespeicherte Karriere über die sichtbare Öffnen-Schaltfläche erreichbar",
+      "ok": true
+    },
+    {
+      "id": "reload-restored-browser restart",
+      "name": "Wiederhergestellte Partie: Uhr, Stand, Aufstellung, Positionen, Ball, Ereignisse wie vor dem Neuladen",
+      "ok": true,
+      "detail": "{\"saved\":22.12087799997226,\"restored\":22.12087799997226,\"pos\":true}"
+    },
+    {
+      "id": "reload-browser-restart-unity",
+      "name": "Unity aktiv und bereit, kein lastError (nach browser restart)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "reload-browser-restart-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (nach browser restart)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "reload-browser-restart-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (nach browser restart)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "reload-browser-restart-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (nach browser restart)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "reload-browser-restart-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (nach browser restart)",
+      "ok": true
+    },
+    {
+      "id": "reload-resume-browser restart",
+      "name": "Sichtbares Fortsetzen nach browser restart: Uhr läuft weiter, Unity ohne Fehler",
+      "ok": true,
+      "detail": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:59b21865-ec2f-4639-935c-8a1b5dcf7d7f"
+    },
+    {
+      "id": "fb-unity",
+      "name": "Unity aktiv und bereit, kein lastError (Ausgang)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "fb-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (Ausgang)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "fb-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (Ausgang)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "fb-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (Ausgang)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "fb-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (Ausgang)",
+      "ok": true
+    },
+    {
+      "id": "fb-2d-switch",
+      "name": "Wechsel auf 2D: Ansicht 2d, Unity-Host verborgen, native Partie läuft weiter",
+      "ok": true,
+      "detail": "{\"view\":\"2d\",\"hostVisible\":false,\"m2\":{\"from\":4.1730000000000045,\"to\":5.849999999999992,\"phase\":\"live\"}}"
+    },
+    {
+      "id": "fb-return-3d",
+      "name": "Rückkehr in 3D: Unity aktiv, 12 echte Spieler, kein Fehler, kein THREE",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"session\":[\"S1:GER:LEAGUE:R1:GER-2-GER-5:1:c8f7c460-3a4e-4825-a981-4989ae2a6fc8\",\"S1:GER:LEAGUE:R1:GER-2-GER-5:1:c8f7c460-3a4e-4825-a981-4989ae2a6fc8\"],\"loads\":[1,1]}"
+    },
+    {
+      "id": "fb-foreign-message",
+      "name": "Fremde window-Nachricht stört den Renderer nicht",
+      "ok": true,
+      "detail": "{\"error\":null,\"active\":true}"
+    },
+    {
+      "id": "fb-forced-error",
+      "name": "Fehler aus dem Unity-Frame: sichtbarer 2D-Rückfall (Meldung gesetzt), Spiel läuft nativ weiter, kein THREE",
+      "ok": true,
+      "detail": "{\"foreign\":{\"error\":null,\"active\":true},\"after\":{\"error\":\"Unity ist nicht verfügbar · 2D ist aktiv\",\"failure\":\"QA forced runtime error\",\"active\":false,\"view\":\"2d\",\"host\":false,\"status\":\"Unity ist nicht verfügbar · 2D ist aktiv\"},\"playsOn2D\":{\"from\":11.300000000000026,\"to\":13.335099999994073,\"phase\":\"live\"}}"
+    },
+    {
+      "id": "fb-missing-build",
+      "name": "Fehlender Unity-Build: 2D mit Meldung „Unity ist nicht verfügbar · 2D ist aktiv“, 12 Spieler, Partie spielbar, kein v98Scene",
+      "ok": true,
+      "detail": "{\"error\":\"Unity ist nicht verfügbar · 2D ist aktiv\",\"status\":\"Unity ist nicht verfügbar · 2D ist aktiv\",\"view\":\"2d\",\"m\":{\"from\":0,\"to\":2.041,\"phase\":\"live\"}}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-1-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-1-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-1-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-1-1280x720-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-1-1280x720-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-1-1280x720-standard-home",
+      "name": "Echtes Heimspiel von ENG-1: Ladebefehl nennt genau diesen Heimverein, Profil civic-bowl/brick-arcade, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-1\"],\"teams\":[\"ENG-1\",\"ENG-4\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-1-1280x720-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-1-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-1-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-1-844x390-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-1-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-1-844x390-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-1-844x390-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-1-844x390-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-1-844x390-standard-home",
+      "name": "Echtes Heimspiel von ENG-1: Ladebefehl nennt genau diesen Heimverein, Profil civic-bowl/brick-arcade, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-1\"],\"teams\":[\"ENG-1\",\"ENG-4\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-1-844x390-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-1-844x390-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-1-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-1-931x448-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-1-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-1-931x448-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-1-931x448-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-1-931x448-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-1-931x448-standard-home",
+      "name": "Echtes Heimspiel von ENG-1: Ladebefehl nennt genau diesen Heimverein, Profil civic-bowl/brick-arcade, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-1\"],\"teams\":[\"ENG-1\",\"ENG-4\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-1-931x448-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-1-931x448-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-1-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-1-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-1-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-1-1280x720-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-1-1280x720-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-1-1280x720-reduced-home",
+      "name": "Echtes Heimspiel von ENG-1: Ladebefehl nennt genau diesen Heimverein, Profil civic-bowl/brick-arcade, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-1\"],\"teams\":[\"ENG-1\",\"ENG-4\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-1-1280x720-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-1-1280x720-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-1-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-1-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-1-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-1-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-1-844x390-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-1-844x390-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-1-844x390-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-1-844x390-reduced-home",
+      "name": "Echtes Heimspiel von ENG-1: Ladebefehl nennt genau diesen Heimverein, Profil civic-bowl/brick-arcade, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-1\"],\"teams\":[\"ENG-1\",\"ENG-4\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-1-844x390-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-1-844x390-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-1-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-1-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-1-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-1-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-1-931x448-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-1-931x448-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-1-931x448-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-1-931x448-reduced-home",
+      "name": "Echtes Heimspiel von ENG-1: Ladebefehl nennt genau diesen Heimverein, Profil civic-bowl/brick-arcade, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-1\"],\"teams\":[\"ENG-1\",\"ENG-4\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-1-931x448-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-1-931x448-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-1-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-2-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-2-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-2-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-2-1280x720-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-2-1280x720-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-2-1280x720-standard-home",
+      "name": "Echtes Heimspiel von ENG-2: Ladebefehl nennt genau diesen Heimverein, Profil modern-ring/metal-fins, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-2\"],\"teams\":[\"ENG-2\",\"ENG-6\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-2-1280x720-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-2-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-2-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-2-844x390-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-2-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-2-844x390-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-2-844x390-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-2-844x390-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-2-844x390-standard-home",
+      "name": "Echtes Heimspiel von ENG-2: Ladebefehl nennt genau diesen Heimverein, Profil modern-ring/metal-fins, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-2\"],\"teams\":[\"ENG-2\",\"ENG-6\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-2-844x390-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-2-844x390-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":9,\"inViewport\":9},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-2-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-2-931x448-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-2-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-2-931x448-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-2-931x448-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-2-931x448-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-2-931x448-standard-home",
+      "name": "Echtes Heimspiel von ENG-2: Ladebefehl nennt genau diesen Heimverein, Profil modern-ring/metal-fins, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-2\"],\"teams\":[\"ENG-2\",\"ENG-6\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-2-931x448-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-2-931x448-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":9,\"inViewport\":9},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-2-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-2-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-2-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-2-1280x720-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-2-1280x720-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-2-1280x720-reduced-home",
+      "name": "Echtes Heimspiel von ENG-2: Ladebefehl nennt genau diesen Heimverein, Profil modern-ring/metal-fins, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-2\"],\"teams\":[\"ENG-2\",\"ENG-6\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-2-1280x720-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-2-1280x720-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-2-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-2-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-2-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-2-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-2-844x390-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-2-844x390-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-2-844x390-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-2-844x390-reduced-home",
+      "name": "Echtes Heimspiel von ENG-2: Ladebefehl nennt genau diesen Heimverein, Profil modern-ring/metal-fins, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-2\"],\"teams\":[\"ENG-2\",\"ENG-6\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-2-844x390-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-2-844x390-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-2-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":9,\"inViewport\":9},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ENG-2-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ENG-2-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ENG-2-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ENG-2-931x448-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ENG-2-931x448-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ENG-2-931x448-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ENG-2-931x448-reduced-home",
+      "name": "Echtes Heimspiel von ENG-2: Ladebefehl nennt genau diesen Heimverein, Profil modern-ring/metal-fins, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ENG-2\"],\"teams\":[\"ENG-2\",\"ENG-6\"],\"fixture\":\"S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ENG-2-931x448-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ENG-2-931x448-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ENG-2-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":9,\"inViewport\":9},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-1-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-1-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-1-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-1-1280x720-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-1-1280x720-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-1-1280x720-standard-home",
+      "name": "Echtes Heimspiel von ITA-1: Ladebefehl nennt genau diesen Heimverein, Profil industrial-shed/steel-truss, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-1\"],\"teams\":[\"ITA-1\",\"ITA-6\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-1-1280x720-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-1-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-1-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-1-844x390-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-1-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-1-844x390-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-1-844x390-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-1-844x390-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-1-844x390-standard-home",
+      "name": "Echtes Heimspiel von ITA-1: Ladebefehl nennt genau diesen Heimverein, Profil industrial-shed/steel-truss, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-1\"],\"teams\":[\"ITA-1\",\"ITA-6\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-1-844x390-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-1-844x390-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-1-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-1-931x448-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-1-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-1-931x448-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-1-931x448-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-1-931x448-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-1-931x448-standard-home",
+      "name": "Echtes Heimspiel von ITA-1: Ladebefehl nennt genau diesen Heimverein, Profil industrial-shed/steel-truss, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-1\"],\"teams\":[\"ITA-1\",\"ITA-6\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-1-931x448-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-1-931x448-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-1-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-1-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-1-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-1-1280x720-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-1-1280x720-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-1-1280x720-reduced-home",
+      "name": "Echtes Heimspiel von ITA-1: Ladebefehl nennt genau diesen Heimverein, Profil industrial-shed/steel-truss, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-1\"],\"teams\":[\"ITA-1\",\"ITA-6\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-1-1280x720-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-1-1280x720-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-1-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-1-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-1-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-1-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-1-844x390-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-1-844x390-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-1-844x390-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-1-844x390-reduced-home",
+      "name": "Echtes Heimspiel von ITA-1: Ladebefehl nennt genau diesen Heimverein, Profil industrial-shed/steel-truss, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-1\"],\"teams\":[\"ITA-1\",\"ITA-6\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-1-844x390-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-1-844x390-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-1-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-1-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-1-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-1-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-1-931x448-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-1-931x448-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-1-931x448-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-1-931x448-reduced-home",
+      "name": "Echtes Heimspiel von ITA-1: Ladebefehl nennt genau diesen Heimverein, Profil industrial-shed/steel-truss, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-1\"],\"teams\":[\"ITA-1\",\"ITA-6\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-1-931x448-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-1-931x448-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-1-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-4-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-4-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-4-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-4-1280x720-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-4-1280x720-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-4-1280x720-standard-home",
+      "name": "Echtes Heimspiel von ESP-4: Ladebefehl nennt genau diesen Heimverein, Profil urban-court/tiled-parapet, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-4\"],\"teams\":[\"ESP-4\",\"ESP-2\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-4-1280x720-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-4-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-4-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-4-844x390-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-4-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-4-844x390-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-4-844x390-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-4-844x390-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-4-844x390-standard-home",
+      "name": "Echtes Heimspiel von ESP-4: Ladebefehl nennt genau diesen Heimverein, Profil urban-court/tiled-parapet, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-4\"],\"teams\":[\"ESP-4\",\"ESP-2\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-4-844x390-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-4-844x390-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-4-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-4-931x448-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-4-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-4-931x448-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-4-931x448-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-4-931x448-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-4-931x448-standard-home",
+      "name": "Echtes Heimspiel von ESP-4: Ladebefehl nennt genau diesen Heimverein, Profil urban-court/tiled-parapet, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-4\"],\"teams\":[\"ESP-4\",\"ESP-2\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-4-931x448-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-4-931x448-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-4-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-4-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-4-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-4-1280x720-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-4-1280x720-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-4-1280x720-reduced-home",
+      "name": "Echtes Heimspiel von ESP-4: Ladebefehl nennt genau diesen Heimverein, Profil urban-court/tiled-parapet, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-4\"],\"teams\":[\"ESP-4\",\"ESP-2\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-4-1280x720-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-4-1280x720-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-4-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-4-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-4-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-4-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-4-844x390-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-4-844x390-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-4-844x390-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-4-844x390-reduced-home",
+      "name": "Echtes Heimspiel von ESP-4: Ladebefehl nennt genau diesen Heimverein, Profil urban-court/tiled-parapet, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-4\"],\"teams\":[\"ESP-4\",\"ESP-2\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-4-844x390-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-4-844x390-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-4-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-4-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-4-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-4-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-4-931x448-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-4-931x448-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-4-931x448-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-4-931x448-reduced-home",
+      "name": "Echtes Heimspiel von ESP-4: Ladebefehl nennt genau diesen Heimverein, Profil urban-court/tiled-parapet, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-4\"],\"teams\":[\"ESP-4\",\"ESP-2\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-4-931x448-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-4-931x448-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-4-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-5-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-5-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-5-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-5-1280x720-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-5-1280x720-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-5-1280x720-standard-home",
+      "name": "Echtes Heimspiel von ESP-5: Ladebefehl nennt genau diesen Heimverein, Profil garden-ground/tiled-parapet, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-5\"],\"teams\":[\"ESP-5\",\"ESP-1\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-5-1280x720-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-5-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-5-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-5-844x390-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-5-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-5-844x390-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-5-844x390-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-5-844x390-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-5-844x390-standard-home",
+      "name": "Echtes Heimspiel von ESP-5: Ladebefehl nennt genau diesen Heimverein, Profil garden-ground/tiled-parapet, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-5\"],\"teams\":[\"ESP-5\",\"ESP-1\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-5-844x390-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-5-844x390-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-5-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-5-931x448-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-5-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-5-931x448-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-5-931x448-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-5-931x448-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-5-931x448-standard-home",
+      "name": "Echtes Heimspiel von ESP-5: Ladebefehl nennt genau diesen Heimverein, Profil garden-ground/tiled-parapet, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-5\"],\"teams\":[\"ESP-5\",\"ESP-1\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-5-931x448-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-5-931x448-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-5-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-5-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-5-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-5-1280x720-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-5-1280x720-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-5-1280x720-reduced-home",
+      "name": "Echtes Heimspiel von ESP-5: Ladebefehl nennt genau diesen Heimverein, Profil garden-ground/tiled-parapet, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-5\"],\"teams\":[\"ESP-5\",\"ESP-1\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-5-1280x720-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-5-1280x720-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-5-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-5-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-5-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-5-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-5-844x390-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-5-844x390-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-5-844x390-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-5-844x390-reduced-home",
+      "name": "Echtes Heimspiel von ESP-5: Ladebefehl nennt genau diesen Heimverein, Profil garden-ground/tiled-parapet, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-5\"],\"teams\":[\"ESP-5\",\"ESP-1\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-5-844x390-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-5-844x390-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-5-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ESP-5-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ESP-5-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ESP-5-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ESP-5-931x448-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ESP-5-931x448-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ESP-5-931x448-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ESP-5-931x448-reduced-home",
+      "name": "Echtes Heimspiel von ESP-5: Ladebefehl nennt genau diesen Heimverein, Profil garden-ground/tiled-parapet, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ESP-5\"],\"teams\":[\"ESP-5\",\"ESP-1\"],\"fixture\":\"S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ESP-5-931x448-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ESP-5-931x448-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ESP-5-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":11,\"inViewport\":11}}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-4-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-4-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-4-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-4-1280x720-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-4-1280x720-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-4-1280x720-standard-home",
+      "name": "Echtes Heimspiel von ITA-4: Ladebefehl nennt genau diesen Heimverein, Profil hillside-ground/limestone-step, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-4\"],\"teams\":[\"ITA-4\",\"ITA-5\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-4-1280x720-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-4-1280x720-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-4-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-4-844x390-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-4-844x390-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-4-844x390-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-4-844x390-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-4-844x390-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-4-844x390-standard-home",
+      "name": "Echtes Heimspiel von ITA-4: Ladebefehl nennt genau diesen Heimverein, Profil hillside-ground/limestone-step, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-4\"],\"teams\":[\"ITA-4\",\"ITA-5\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-4-844x390-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-4-844x390-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-4-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-4-931x448-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-4-931x448-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-4-931x448-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-4-931x448-standard-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-4-931x448-standard)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-4-931x448-standard-home",
+      "name": "Echtes Heimspiel von ITA-4: Ladebefehl nennt genau diesen Heimverein, Profil hillside-ground/limestone-step, Qualität standard",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-4\"],\"teams\":[\"ITA-4\",\"ITA-5\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1\",\"quality\":\"standard\"}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-standard-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-4-931x448-standard): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-standard-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-4-931x448-standard)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-4-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-4-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-4-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-4-1280x720-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-4-1280x720-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-4-1280x720-reduced-home",
+      "name": "Echtes Heimspiel von ITA-4: Ladebefehl nennt genau diesen Heimverein, Profil hillside-ground/limestone-step, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-4\"],\"teams\":[\"ITA-4\",\"ITA-5\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-4-1280x720-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-4-1280x720-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-4-1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-4-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-4-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-4-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-4-844x390-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-4-844x390-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-4-844x390-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-4-844x390-reduced-home",
+      "name": "Echtes Heimspiel von ITA-4: Ladebefehl nennt genau diesen Heimverein, Profil hillside-ground/limestone-step, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-4\"],\"teams\":[\"ITA-4\",\"ITA-5\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-4-844x390-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-4-844x390-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-4-844x390-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (ITA-4-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (ITA-4-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (ITA-4-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (ITA-4-931x448-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "arch-ITA-4-931x448-reduced-ground",
+      "name": "Ladezeile nennt das Spielermesh WorldPlayerLowPoly-v4 (6926 Vertices) mit separatem Boden-Mesh WorldPlayer (9725 Vertices), nicht ground=drawn (ITA-4-931x448-reduced)",
+      "ok": true
+    },
+    {
+      "id": "arch-ITA-4-931x448-reduced-home",
+      "name": "Echtes Heimspiel von ITA-4: Ladebefehl nennt genau diesen Heimverein, Profil hillside-ground/limestone-step, Qualität reduced",
+      "ok": true,
+      "detail": "{\"home\":[\"ITA-4\"],\"teams\":[\"ITA-4\",\"ITA-5\"],\"fixture\":\"S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1\",\"quality\":\"reduced\"}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-reduced-label-qa",
+      "name": "Repository-Labelprüfung auf den echt gerenderten Köpfen (ITA-4-931x448-reduced): keine Überlappung, nichts außerhalb, Namen/Ringmuster, Nativzustand unverändert",
+      "ok": true,
+      "detail": "{\"pass\":true,\"checks\":18}"
+    },
+    {
+      "id": "arch-ITA-4-931x448-reduced-play",
+      "name": "Spiel bis Minute 5 ohne Fehler; 12 Labels mit Text, Bildpunkte stammen vom Unity-Bild (ITA-4-931x448-reduced)",
+      "ok": true,
+      "detail": "{\"minute\":5,\"kickoff\":{\"visible\":10,\"inViewport\":10},\"live\":{\"visible\":10,\"inViewport\":10}}"
+    },
+    {
+      "id": "arch-types",
+      "name": "Mindestens 3 weitere bestehende Architekturtypen (zusätzlich zu dockside-ground aus GER-2) im echten WebGL-Spiel: civic-bowl, modern-ring, industrial-shed, urban-court, garden-ground, hillside-ground",
+      "ok": true,
+      "detail": "[\"civic-bowl\",\"modern-ring\",\"industrial-shed\",\"urban-court\",\"garden-ground\",\"hillside-ground\"]"
+    },
+    {
+      "id": "build-unchanged",
+      "name": "/__build vor und nach dem Lauf identisch (Fingerprint, sourceId, HTML-, Manifest-, Paket-Hash, alle Dateihashes)",
+      "ok": true,
+      "detail": "{\"before\":\"b91ff0e6ce37809efbd53926480bc3cf38879263da819c65ad9b9ca24f80cdd2\",\"after\":\"b91ff0e6ce37809efbd53926480bc3cf38879263da819c65ad9b9ca24f80cdd2\"}"
+    },
+    {
+      "id": "network-payload",
+      "name": "Der Browser lud alle vier WebGL-Dateien über die hashgebundenen URLs; X-D6-Sha256 = Paketmanifest",
+      "ok": true,
+      "detail": "[{\"file\":\"unity-web.data\",\"url\":\"/unity/Build/unity-web.data?v=00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8\",\"sha\":\"00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8\",\"expected\":\"00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8\"},{\"file\":\"unity-web.framework.js\",\"url\":\"/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb\",\"sha\":\"36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb\",\"expected\":\"36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb\"},{\"file\":\"unity-web.loader.js\",\"url\":\"/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f\",\"sha\":\"c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f\",\"expected\":\"c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f\"},{\"file\":\"unity-web.wasm\",\"url\":\"/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab\",\"sha\":\"2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab\",\"expected\":\"2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab\"}]"
+    },
+    {
+      "id": "network-status",
+      "name": "Keine HTTP-Fehler außer dem bewusst blockierten probe-build.json",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "id": "console-errors",
+      "name": "Keine Konsolenfehler außer dem erwarteten 404 des bewusst blockierten probe-build.json (Szenario missing-build)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "id": "page-errors",
+      "name": "Keine unbehandelten Seitenfehler (pageerror)",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "sections": {
+    "build": {
+      "status": "pass",
+      "seconds": 0
+    },
+    "viewports": {
+      "status": "pass",
+      "seconds": 62
+    },
+    "flow": {
+      "status": "pass",
+      "seconds": 30
+    },
+    "goal": {
+      "seed": 160112,
+      "attempts": [
+        {
+          "seed": 160112,
+          "stopped": "when",
+          "score": [
+            0,
+            1
+          ]
+        }
+      ],
+      "status": "pass",
+      "seconds": 11
+    },
+    "parity": {
+      "status": "pass",
+      "seconds": 22
+    },
+    "reload": {
+      "status": "pass",
+      "seconds": 45
+    },
+    "fallback": {
+      "status": "pass",
+      "seconds": 17
+    },
+    "architectures": {
+      "rows": [
+        {
+          "own": "ENG-1",
+          "home": "ENG-1",
+          "archetype": "civic-bowl",
+          "facade": "brick-arcade",
+          "viewport": "1280x720",
+          "quality": "standard",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ENG-1",
+          "home": "ENG-1",
+          "archetype": "civic-bowl",
+          "facade": "brick-arcade",
+          "viewport": "844x390",
+          "quality": "standard",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ENG-1",
+          "home": "ENG-1",
+          "archetype": "civic-bowl",
+          "facade": "brick-arcade",
+          "viewport": "931x448",
+          "quality": "standard",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ENG-1",
+          "home": "ENG-1",
+          "archetype": "civic-bowl",
+          "facade": "brick-arcade",
+          "viewport": "1280x720",
+          "quality": "reduced",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ENG-1",
+          "home": "ENG-1",
+          "archetype": "civic-bowl",
+          "facade": "brick-arcade",
+          "viewport": "844x390",
+          "quality": "reduced",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ENG-1",
+          "home": "ENG-1",
+          "archetype": "civic-bowl",
+          "facade": "brick-arcade",
+          "viewport": "931x448",
+          "quality": "reduced",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-1-ENG-4:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ENG-2",
+          "home": "ENG-2",
+          "archetype": "modern-ring",
+          "facade": "metal-fins",
+          "viewport": "1280x720",
+          "quality": "standard",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ENG-2",
+          "home": "ENG-2",
+          "archetype": "modern-ring",
+          "facade": "metal-fins",
+          "viewport": "844x390",
+          "quality": "standard",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 9,
+          "kickoffInViewport": 9,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ENG-2",
+          "home": "ENG-2",
+          "archetype": "modern-ring",
+          "facade": "metal-fins",
+          "viewport": "931x448",
+          "quality": "standard",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 9,
+          "kickoffInViewport": 9,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ENG-2",
+          "home": "ENG-2",
+          "archetype": "modern-ring",
+          "facade": "metal-fins",
+          "viewport": "1280x720",
+          "quality": "reduced",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ENG-2",
+          "home": "ENG-2",
+          "archetype": "modern-ring",
+          "facade": "metal-fins",
+          "viewport": "844x390",
+          "quality": "reduced",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 9,
+          "kickoffInViewport": 9,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ENG-2",
+          "home": "ENG-2",
+          "archetype": "modern-ring",
+          "facade": "metal-fins",
+          "viewport": "931x448",
+          "quality": "reduced",
+          "fixture": "S1:ENG:LEAGUE:R1:ENG-2-ENG-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 9,
+          "kickoffInViewport": 9,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ITA-1",
+          "home": "ITA-1",
+          "archetype": "industrial-shed",
+          "facade": "steel-truss",
+          "viewport": "1280x720",
+          "quality": "standard",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ITA-1",
+          "home": "ITA-1",
+          "archetype": "industrial-shed",
+          "facade": "steel-truss",
+          "viewport": "844x390",
+          "quality": "standard",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ITA-1",
+          "home": "ITA-1",
+          "archetype": "industrial-shed",
+          "facade": "steel-truss",
+          "viewport": "931x448",
+          "quality": "standard",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ITA-1",
+          "home": "ITA-1",
+          "archetype": "industrial-shed",
+          "facade": "steel-truss",
+          "viewport": "1280x720",
+          "quality": "reduced",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ITA-1",
+          "home": "ITA-1",
+          "archetype": "industrial-shed",
+          "facade": "steel-truss",
+          "viewport": "844x390",
+          "quality": "reduced",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ITA-1",
+          "home": "ITA-1",
+          "archetype": "industrial-shed",
+          "facade": "steel-truss",
+          "viewport": "931x448",
+          "quality": "reduced",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-1-ITA-6:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ESP-4",
+          "home": "ESP-4",
+          "archetype": "urban-court",
+          "facade": "tiled-parapet",
+          "viewport": "1280x720",
+          "quality": "standard",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ESP-4",
+          "home": "ESP-4",
+          "archetype": "urban-court",
+          "facade": "tiled-parapet",
+          "viewport": "844x390",
+          "quality": "standard",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ESP-4",
+          "home": "ESP-4",
+          "archetype": "urban-court",
+          "facade": "tiled-parapet",
+          "viewport": "931x448",
+          "quality": "standard",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ESP-4",
+          "home": "ESP-4",
+          "archetype": "urban-court",
+          "facade": "tiled-parapet",
+          "viewport": "1280x720",
+          "quality": "reduced",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ESP-4",
+          "home": "ESP-4",
+          "archetype": "urban-court",
+          "facade": "tiled-parapet",
+          "viewport": "844x390",
+          "quality": "reduced",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ESP-4",
+          "home": "ESP-4",
+          "archetype": "urban-court",
+          "facade": "tiled-parapet",
+          "viewport": "931x448",
+          "quality": "reduced",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-4-ESP-2:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ESP-5",
+          "home": "ESP-5",
+          "archetype": "garden-ground",
+          "facade": "tiled-parapet",
+          "viewport": "1280x720",
+          "quality": "standard",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ESP-5",
+          "home": "ESP-5",
+          "archetype": "garden-ground",
+          "facade": "tiled-parapet",
+          "viewport": "844x390",
+          "quality": "standard",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ESP-5",
+          "home": "ESP-5",
+          "archetype": "garden-ground",
+          "facade": "tiled-parapet",
+          "viewport": "931x448",
+          "quality": "standard",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ESP-5",
+          "home": "ESP-5",
+          "archetype": "garden-ground",
+          "facade": "tiled-parapet",
+          "viewport": "1280x720",
+          "quality": "reduced",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ESP-5",
+          "home": "ESP-5",
+          "archetype": "garden-ground",
+          "facade": "tiled-parapet",
+          "viewport": "844x390",
+          "quality": "reduced",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ESP-5",
+          "home": "ESP-5",
+          "archetype": "garden-ground",
+          "facade": "tiled-parapet",
+          "viewport": "931x448",
+          "quality": "reduced",
+          "fixture": "S1:ESP:LEAGUE:R1:ESP-5-ESP-1:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 11,
+          "liveInViewport": 11
+        },
+        {
+          "own": "ITA-4",
+          "home": "ITA-4",
+          "archetype": "hillside-ground",
+          "facade": "limestone-step",
+          "viewport": "1280x720",
+          "quality": "standard",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ITA-4",
+          "home": "ITA-4",
+          "archetype": "hillside-ground",
+          "facade": "limestone-step",
+          "viewport": "844x390",
+          "quality": "standard",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ITA-4",
+          "home": "ITA-4",
+          "archetype": "hillside-ground",
+          "facade": "limestone-step",
+          "viewport": "931x448",
+          "quality": "standard",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ITA-4",
+          "home": "ITA-4",
+          "archetype": "hillside-ground",
+          "facade": "limestone-step",
+          "viewport": "1280x720",
+          "quality": "reduced",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ITA-4",
+          "home": "ITA-4",
+          "archetype": "hillside-ground",
+          "facade": "limestone-step",
+          "viewport": "844x390",
+          "quality": "reduced",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        },
+        {
+          "own": "ITA-4",
+          "home": "ITA-4",
+          "archetype": "hillside-ground",
+          "facade": "limestone-step",
+          "viewport": "931x448",
+          "quality": "reduced",
+          "fixture": "S1:ITA:LEAGUE:R1:ITA-4-ITA-5:1",
+          "mesh": [
+            "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+          ],
+          "labelQA": {
+            "pass": true,
+            "checks": 18
+          },
+          "kickoffVisible": 10,
+          "kickoffInViewport": 10,
+          "liveVisible": 10,
+          "liveInViewport": 10
+        }
+      ],
+      "types": [
+        "civic-bowl",
+        "modern-ring",
+        "industrial-shed",
+        "urban-court",
+        "garden-ground",
+        "hillside-ground"
+      ],
+      "status": "pass",
+      "seconds": 308
+    }
+  },
+  "shots": [
+    "shots/page-1280x720-standard-kickoff.png",
+    "shots/screen-1280x720-standard-kickoff.png",
+    "shots/screen-1280x720-standard-live-m10.png",
+    "shots/screen-1280x720-standard-paused.png",
+    "shots/page-844x390-standard-kickoff.png",
+    "shots/screen-844x390-standard-kickoff.png",
+    "shots/screen-844x390-standard-live-m10.png",
+    "shots/screen-844x390-standard-paused.png",
+    "shots/screen-931x448-standard-kickoff.png",
+    "shots/screen-931x448-standard-live-m10.png",
+    "shots/screen-931x448-standard-paused.png",
+    "shots/page-1280x720-reduced-kickoff.png",
+    "shots/screen-1280x720-reduced-kickoff.png",
+    "shots/screen-1280x720-reduced-live-m10.png",
+    "shots/screen-1280x720-reduced-paused.png",
+    "shots/page-844x390-reduced-kickoff.png",
+    "shots/screen-844x390-reduced-kickoff.png",
+    "shots/screen-844x390-reduced-live-m10.png",
+    "shots/screen-844x390-reduced-paused.png",
+    "shots/screen-931x448-reduced-kickoff.png",
+    "shots/screen-931x448-reduced-live-m10.png",
+    "shots/screen-931x448-reduced-paused.png",
+    "shots/flow-01-setup.png",
+    "shots/flow-02-realtime-live.png",
+    "shots/flow-03-halftime.png",
+    "shots/flow-04-second-half.png",
+    "shots/flow-05-review-screen.png",
+    "shots/flow-06-full-time.png",
+    "shots/goal-replay-160112.png",
+    "shots/reload-page.reload-paused.png",
+    "shots/reload-browser-restart-paused.png",
+    "shots/fallback-2d-switch.png",
+    "shots/fallback-return-3d.png",
+    "shots/fallback-forced-error.png",
+    "shots/fallback-missing-build.png",
+    "shots/arch-ENG-1-1280x720-standard-kickoff.png",
+    "shots/arch-ENG-1-1280x720-standard-live-m5.png",
+    "shots/arch-ENG-1-844x390-standard-kickoff.png",
+    "shots/arch-ENG-1-844x390-standard-live-m5.png",
+    "shots/arch-ENG-1-931x448-standard-kickoff.png",
+    "shots/arch-ENG-1-931x448-standard-live-m5.png",
+    "shots/arch-ENG-1-1280x720-reduced-kickoff.png",
+    "shots/arch-ENG-1-1280x720-reduced-live-m5.png",
+    "shots/arch-ENG-1-844x390-reduced-kickoff.png",
+    "shots/arch-ENG-1-844x390-reduced-live-m5.png",
+    "shots/arch-ENG-1-931x448-reduced-kickoff.png",
+    "shots/arch-ENG-1-931x448-reduced-live-m5.png",
+    "shots/arch-ENG-2-1280x720-standard-kickoff.png",
+    "shots/arch-ENG-2-1280x720-standard-live-m5.png",
+    "shots/arch-ENG-2-844x390-standard-kickoff.png",
+    "shots/arch-ENG-2-844x390-standard-live-m5.png",
+    "shots/arch-ENG-2-931x448-standard-kickoff.png",
+    "shots/arch-ENG-2-931x448-standard-live-m5.png",
+    "shots/arch-ENG-2-1280x720-reduced-kickoff.png",
+    "shots/arch-ENG-2-1280x720-reduced-live-m5.png",
+    "shots/arch-ENG-2-844x390-reduced-kickoff.png",
+    "shots/arch-ENG-2-844x390-reduced-live-m5.png",
+    "shots/arch-ENG-2-931x448-reduced-kickoff.png",
+    "shots/arch-ENG-2-931x448-reduced-live-m5.png",
+    "shots/arch-ITA-1-1280x720-standard-kickoff.png",
+    "shots/arch-ITA-1-1280x720-standard-live-m5.png",
+    "shots/arch-ITA-1-844x390-standard-kickoff.png",
+    "shots/arch-ITA-1-844x390-standard-live-m5.png",
+    "shots/arch-ITA-1-931x448-standard-kickoff.png",
+    "shots/arch-ITA-1-931x448-standard-live-m5.png",
+    "shots/arch-ITA-1-1280x720-reduced-kickoff.png",
+    "shots/arch-ITA-1-1280x720-reduced-live-m5.png",
+    "shots/arch-ITA-1-844x390-reduced-kickoff.png",
+    "shots/arch-ITA-1-844x390-reduced-live-m5.png",
+    "shots/arch-ITA-1-931x448-reduced-kickoff.png",
+    "shots/arch-ITA-1-931x448-reduced-live-m5.png",
+    "shots/arch-ESP-4-1280x720-standard-kickoff.png",
+    "shots/arch-ESP-4-1280x720-standard-live-m5.png",
+    "shots/arch-ESP-4-844x390-standard-kickoff.png",
+    "shots/arch-ESP-4-844x390-standard-live-m5.png",
+    "shots/arch-ESP-4-931x448-standard-kickoff.png",
+    "shots/arch-ESP-4-931x448-standard-live-m5.png",
+    "shots/arch-ESP-4-1280x720-reduced-kickoff.png",
+    "shots/arch-ESP-4-1280x720-reduced-live-m5.png",
+    "shots/arch-ESP-4-844x390-reduced-kickoff.png",
+    "shots/arch-ESP-4-844x390-reduced-live-m5.png",
+    "shots/arch-ESP-4-931x448-reduced-kickoff.png",
+    "shots/arch-ESP-4-931x448-reduced-live-m5.png",
+    "shots/arch-ESP-5-1280x720-standard-kickoff.png",
+    "shots/arch-ESP-5-1280x720-standard-live-m5.png",
+    "shots/arch-ESP-5-844x390-standard-kickoff.png",
+    "shots/arch-ESP-5-844x390-standard-live-m5.png",
+    "shots/arch-ESP-5-931x448-standard-kickoff.png",
+    "shots/arch-ESP-5-931x448-standard-live-m5.png",
+    "shots/arch-ESP-5-1280x720-reduced-kickoff.png",
+    "shots/arch-ESP-5-1280x720-reduced-live-m5.png",
+    "shots/arch-ESP-5-844x390-reduced-kickoff.png",
+    "shots/arch-ESP-5-844x390-reduced-live-m5.png",
+    "shots/arch-ESP-5-931x448-reduced-kickoff.png",
+    "shots/arch-ESP-5-931x448-reduced-live-m5.png",
+    "shots/arch-ITA-4-1280x720-standard-kickoff.png",
+    "shots/arch-ITA-4-1280x720-standard-live-m5.png",
+    "shots/arch-ITA-4-844x390-standard-kickoff.png",
+    "shots/arch-ITA-4-844x390-standard-live-m5.png",
+    "shots/arch-ITA-4-931x448-standard-kickoff.png",
+    "shots/arch-ITA-4-931x448-standard-live-m5.png",
+    "shots/arch-ITA-4-1280x720-reduced-kickoff.png",
+    "shots/arch-ITA-4-1280x720-reduced-live-m5.png",
+    "shots/arch-ITA-4-844x390-reduced-kickoff.png",
+    "shots/arch-ITA-4-844x390-reduced-live-m5.png",
+    "shots/arch-ITA-4-931x448-reduced-kickoff.png",
+    "shots/arch-ITA-4-931x448-reduced-live-m5.png"
+  ],
+  "network": {
+    "/?engine=unity&quality=standard": {
+      "status": {
+        "200": 28
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ],
+      "count": 28
+    },
+    "/unity-match/runtime.html?v=130": {
+      "status": {
+        "200": 51
+      },
+      "sha": [
+        "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa"
+      ],
+      "count": 51
+    },
+    "/unity-match/runtime.js": {
+      "status": {
+        "200": 51
+      },
+      "sha": [
+        "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b"
+      ],
+      "count": 51
+    },
+    "/unity/probe-build.json": {
+      "status": {
+        "200": 50,
+        "404": 1
+      },
+      "sha": [
+        "f51e0226ad2c29e5c81709d9c70d9bcf375ed4012b9f5a31076e2fcaa9766169"
+      ],
+      "count": 51
+    },
+    "/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f": {
+      "status": {
+        "200": 50
+      },
+      "sha": [
+        "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f"
+      ],
+      "count": 50
+    },
+    "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb": {
+      "status": {
+        "200": 50
+      },
+      "sha": [
+        "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      ],
+      "count": 50
+    },
+    "/unity/Build/unity-web.data?v=00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8": {
+      "status": {
+        "200": 50
+      },
+      "sha": [
+        "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8"
+      ],
+      "count": 50
+    },
+    "/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab": {
+      "status": {
+        "200": 50
+      },
+      "sha": [
+        "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+      ],
+      "count": 50
+    },
+    "/?engine=unity&quality=reduced": {
+      "status": {
+        "200": 21
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ],
+      "count": 21
+    },
+    "/?engine=unity": {
+      "status": {
+        "200": 1
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ],
+      "count": 1
+    },
+    "/?engine=browser": {
+      "status": {
+        "200": 1
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ],
+      "count": 1
+    }
+  },
+  "pageErrors": [],
+  "consoleErrors": [
+    {
+      "scenario": "missing-build",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ],
+  "d6Console": [
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    }
+  ],
+  "expectMesh": "WorldPlayerLowPoly-v4",
+  "expectGround": {
+    "mesh": "WorldPlayerLowPoly-v4",
+    "vertices": 6926,
+    "groundMesh": "WorldPlayer",
+    "groundVertices": 9725
+  },
+  "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 (0x00002786) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "scope": "Functional lifecycle on the served package with real Unity WebGL; not an FPS, Android or visual-quality claim.",
+  "buildBefore": {
+    "sourceCommit": "a6289dc32046875ca13974f7457ff3e608fbaa8d",
+    "sourceDirty": false,
+    "sourceFingerprint": "b1ccfc9d81d5ada0a16b2e2d5c34a0c66616249d5a4568e8af288591c3098979",
+    "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+    "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+    "unityManifestSha256": "f51e0226ad2c29e5c81709d9c70d9bcf375ed4012b9f5a31076e2fcaa9766169",
+    "packageManifestSha256": "b91ff0e6ce37809efbd53926480bc3cf38879263da819c65ad9b9ca24f80cdd2",
+    "freshness": "fresh",
+    "files": {
+      "index.html": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+      "unity-match/runtime.html": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "unity-match/runtime.js": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+      "unity-match/.htaccess": "e6341a7c0465a7f21a828d0296457bcc43bf6cace7105ce9b0cf871c3b9bacc4",
+      "unity/probe-build.json": "f51e0226ad2c29e5c81709d9c70d9bcf375ed4012b9f5a31076e2fcaa9766169",
+      "unity/Build/unity-web.data": "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8",
+      "unity/Build/unity-web.framework.js": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "unity/Build/unity-web.loader.js": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+      "unity/Build/unity-web.wasm": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+    }
+  },
+  "unityManifest": {
+    "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+    "files": [
+      {
+        "file": "unity-web.data",
+        "sha256": "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8"
+      },
+      {
+        "file": "unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      },
+      {
+        "file": "unity-web.loader.js",
+        "sha256": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f"
+      },
+      {
+        "file": "unity-web.wasm",
+        "sha256": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+      }
+    ],
+    "loaderUrl": "/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+    "dataUrl": "/unity/Build/unity-web.data?v=00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8",
+    "frameworkUrl": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+    "codeUrl": "/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+  },
+  "flowDigest": {
+    "score": [
+      0,
+      1
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4730,
+    "checkpoints": 0,
+    "hashes": {
+      "score": "4fcce0e8:5",
+      "events": "20c29616:401",
+      "stats": "36be9603:8709",
+      "fresh": "954bfebc:927",
+      "minutes": "a90069b9:713",
+      "report": "1a124a77:33606",
+      "ratings": "f653077b:665",
+      "ballAccounting": "9b5f2430:21679",
+      "geometry": "708a8f7b:184",
+      "people": "28cc247b:7894",
+      "finances": "677637ab:20541",
+      "development": "6fce1d73:991065",
+      "fixtures": "67dc90f1:185730",
+      "world": "7865e830:3888500"
+    },
+    "all": "fd35a898"
+  },
+  "parity": {
+    "unity": {
+      "all": "38893eb6",
+      "score": [
+        0,
+        0
+      ],
+      "ticks": 1194,
+      "hashes": {
+        "score": "13ca43dd:5",
+        "events": "254eb5f7:287",
+        "stats": "6ea83f04:8773",
+        "fresh": "9fb3d00b:991",
+        "minutes": "4b848943:777",
+        "report": "71a72f82:34230",
+        "ratings": "2624d9b9:704",
+        "ballAccounting": "87ab0066:22404",
+        "geometry": "708a8f7b:184",
+        "people": "a7c268bd:7925",
+        "finances": "61a7e3da:20245",
+        "development": "1ee3f606:1002007",
+        "fixtures": "318fc3fd:190271",
+        "world": "aae3f6b5:3906811"
+      },
+      "payloadSha256": "e08fb8a7ac4dfdb20fd0db723421ca6f96ef31c6beec033883090f9bd8fd4c74"
+    },
+    "native2d": {
+      "all": "38893eb6",
+      "score": [
+        0,
+        0
+      ],
+      "ticks": 1194,
+      "payloadSha256": "e08fb8a7ac4dfdb20fd0db723421ca6f96ef31c6beec033883090f9bd8fd4c74"
+    }
+  },
+  "buildAfter": {
+    "sourceCommit": "a6289dc32046875ca13974f7457ff3e608fbaa8d",
+    "sourceDirty": false,
+    "sourceFingerprint": "b1ccfc9d81d5ada0a16b2e2d5c34a0c66616249d5a4568e8af288591c3098979",
+    "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+    "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+    "unityManifestSha256": "f51e0226ad2c29e5c81709d9c70d9bcf375ed4012b9f5a31076e2fcaa9766169",
+    "packageManifestSha256": "b91ff0e6ce37809efbd53926480bc3cf38879263da819c65ad9b9ca24f80cdd2",
+    "freshness": "fresh",
+    "files": {
+      "index.html": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+      "unity-match/runtime.html": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "unity-match/runtime.js": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+      "unity-match/.htaccess": "e6341a7c0465a7f21a828d0296457bcc43bf6cace7105ce9b0cf871c3b9bacc4",
+      "unity/probe-build.json": "f51e0226ad2c29e5c81709d9c70d9bcf375ed4012b9f5a31076e2fcaa9766169",
+      "unity/Build/unity-web.data": "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8",
+      "unity/Build/unity-web.framework.js": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "unity/Build/unity-web.loader.js": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+      "unity/Build/unity-web.wasm": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+    }
+  },
+  "fetchedBuild": [
+    {
+      "file": "unity-web.data",
+      "url": "/unity/Build/unity-web.data?v=00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8",
+      "sha": "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8",
+      "expected": "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8"
+    },
+    {
+      "file": "unity-web.framework.js",
+      "url": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "sha": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "expected": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+    },
+    {
+      "file": "unity-web.loader.js",
+      "url": "/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+      "sha": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+      "expected": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f"
+    },
+    {
+      "file": "unity-web.wasm",
+      "url": "/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab",
+      "sha": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab",
+      "expected": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+    }
+  ],
+  "networkSummary": [
+    {
+      "url": "/?engine=unity&quality=standard",
+      "count": 28,
+      "status": {
+        "200": 28
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ]
+    },
+    {
+      "url": "/unity-match/runtime.html?v=130",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "sha": [
+        "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa"
+      ]
+    },
+    {
+      "url": "/unity-match/runtime.js",
+      "count": 51,
+      "status": {
+        "200": 51
+      },
+      "sha": [
+        "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b"
+      ]
+    },
+    {
+      "url": "/unity/probe-build.json",
+      "count": 51,
+      "status": {
+        "200": 50,
+        "404": 1
+      },
+      "sha": [
+        "f51e0226ad2c29e5c81709d9c70d9bcf375ed4012b9f5a31076e2fcaa9766169"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "sha": [
+        "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "sha": [
+        "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.data?v=00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "sha": [
+        "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab",
+      "count": 50,
+      "status": {
+        "200": 50
+      },
+      "sha": [
+        "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+      ]
+    },
+    {
+      "url": "/?engine=unity&quality=reduced",
+      "count": 21,
+      "status": {
+        "200": 21
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ]
+    },
+    {
+      "url": "/?engine=unity",
+      "count": 1,
+      "status": {
+        "200": 1
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ]
+    },
+    {
+      "url": "/?engine=browser",
+      "count": 1,
+      "status": {
+        "200": 1
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ]
+    }
+  ],
+  "finishedAt": "2026-10-13T04:57:50.214Z",
+  "seconds": 496,
+  "pass": true
+}

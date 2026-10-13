@@ -141,6 +141,8 @@ Release 114 ist live veröffentlicht. Deployment, sieben bytegenaue Live-Dateiab
 
 ## Noch nicht veröffentlicht
 
+- Klares Low-Poly ist als getrennte lokale Demo funktional abgenommen: echtes reduziertes Spielermesh auf unverändertem Rig, bewegungsneutrale Bodenmessung, 390 Browserprüfungen, sieben Stadiontypen in WebGL und vollständige native 2D-/Unity-Parität. Die verschärfte Sichtflächen-QA prüft beide Stiefelrichtungen und Handschuhe einzeln; bekannte Originalfehler, Vergleichstoleranzen und Geräte-/Bediengrenzen sind benannt. Quellen, Git-Objekte und finaler Payload sind hashgebunden. [Lokale Abnahme](3d-stilauftraege/low-poly-abnahme.md).
+
 ## 12. Oktober 2026 – Release 128
 
 - Kontextabhängige Subnavigation am unteren Bildschirmrand: Kader, Transfers, Wettbewerbe und Verein verwenden eine gemeinsame Leiste; die Übersicht bietet direkte Sprünge zu Begegnung, Vereinsbüro und Finanzen. Bereichs-Dropdowns und zusätzliche Transfer-Sprungliste entfernt. Native Aktionen, Tastaturbedienung, Fokus und Filter bleiben erhalten.
