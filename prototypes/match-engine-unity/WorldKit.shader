@@ -7,6 +7,7 @@ Shader "Doppel6/World Kit" {
  #pragma fragment frag
  #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE
  #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
+ #pragma multi_compile_fragment _ _D6_LOOK
  #include "D6Common.hlsl"
  TEXTURE2D(_BaseMap);SAMPLER(sampler_BaseMap);TEXTURE2D(_ClothMask);SAMPLER(sampler_ClothMask);
  CBUFFER_START(UnityPerMaterial)
@@ -76,7 +77,16 @@ Shader "Doppel6/World Kit" {
   float3 face=D6FaceNormal(i.world,n);n=normalize(lerp(n,face,_D6Facet));if(dot(n,view)<0)n=-n;
   half rim=pow(1-saturate(dot(n,view)),3)*.3;
   // Low-Poly: less wrap so neighbouring facets keep distinct tones; matte cloth.
+  #if defined(_D6_LOOK)
+  // Received night/day look: only a share of the shadow map, looked up off
+  // the surface, reaches the figure (its own coarse self-shadow read as
+  // smudges across the facets), and a highlight shoulder keeps the lit facets
+  // of white and bright kits apart instead of clipping them to one white.
+  half shadow=D6ShadowAt(i.world,n,_D6KitShadowOffset,_D6KitShadow);
+  return half4(D6Shoulder(D6LightShadow(color,i.world,n,lerp(.35,.25,lp),0,lerp(fabric,.04,lp),shadow)+rim*lerp(SampleSH(n)*2,color*1.4,.65),_D6KitKnee),1);
+  #else
   return half4(D6Light(color,i.world,n,lerp(.35,.25,lp),0,lerp(fabric,.04,lp))+rim*lerp(SampleSH(n)*2,color*1.4,.65),1);
+  #endif
  }
  ENDHLSL
  }
@@ -84,12 +94,19 @@ Shader "Doppel6/World Kit" {
  HLSLPROGRAM
  #pragma vertex shadowVert
  #pragma fragment shadowFrag
+ #pragma multi_compile_vertex _ _D6_LOOK
  #include "D6Common.hlsl"
  CBUFFER_START(UnityPerMaterial)
  float4 _BaseMap_ST,_Main,_Trim,_Accent,_Skin,_Hair,_NumberColor,_NumberEdge,_Glove;float _Style,_Number,_Keeper;
  CBUFFER_END
  struct ShadowInput {float4 position:POSITION;float3 normal:NORMAL;};
+ // Received night/day look: the figure casts with its share of the light's
+ // bias, so the shadow starts at the boots and keeps the limbs and facets.
+ #if defined(_D6_LOOK)
+ float4 shadowVert(ShadowInput i):SV_POSITION{return D6ShadowClipScaled(i.position.xyz,i.normal,_D6KitDepthBias,_D6KitNormalBias);}
+ #else
  float4 shadowVert(ShadowInput i):SV_POSITION{return D6ShadowClip(i.position.xyz,i.normal);}
+ #endif
  half4 shadowFrag():SV_Target{return 0;}
  ENDHLSL
  }

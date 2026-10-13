@@ -10,6 +10,7 @@ Shader "Doppel6/Pitch" {
   #pragma fragment frag
   #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE
   #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
+  #pragma multi_compile_fragment _ _D6_LOOK
   #include "../D6Common.hlsl"
   CBUFFER_START(UnityPerMaterial)
   float4 _ColorA,_ColorB,_Apron,_Wear,_Size;float _Stripes,_Pattern,_WearAmount;
@@ -39,9 +40,16 @@ Shader "Doppel6/Pitch" {
    // Worn turf in the goal mouths and at kick-off.
    float gx=abs(p.x)-(half_.x-2.4);float wear=exp(-(gx*gx/5+p.y*p.y/4))+.45*exp(-dot(p,p)/3);
    turf=lerp(turf,_Wear.rgb*lerp(.85,1.1,n),saturate(wear*.55*_WearAmount*lerp(1,.55,lp)*(inside?1:0)));
+   #if defined(_D6_LOOK)
+   // Received night/day look: shadows fade out at the shadow distance instead
+   // of ending at the map's edge; the pools only under floodlights.
+   half3 color=D6LightShadow(turf,i.world,i.normal,0,0,0,D6ShadowAt(i.world,i.normal,0,1));
+   float2 r=p/(half_+8);color*=lerp(1,lerp(1.05,.93,saturate(dot(r,r))),_D6Pool);
+   #else
    half3 color=D6Light(turf,i.world,i.normal,.0,.0,.0);
    // Floodlight pools: slightly brighter centre, darker run-off.
    float2 r=p/(half_+8);color*=lerp(1.05,.93,saturate(dot(r,r)));
+   #endif
    return half4(color,1);
   }
   ENDHLSL
