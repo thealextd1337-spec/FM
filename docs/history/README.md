@@ -5,7 +5,7 @@ Stand: 13. Oktober 2026. Frühere Statusaussagen und Auftragspläne sind histori
 - [Navigierbarer früherer Index](index-before-cleanup-20261013-links.md): ursprünglicher Text mit angepassten relativen Links.
 - [Unveränderter früherer Index](index-before-cleanup-20261013.md): bytegleicher Snapshot. Relative Links darin beziehen sich auf seinen ursprünglichen Ort `docs/README.md`; zum Navigieren die angepasste Kopie verwenden.
 - [Historischer Auftragskatalog](../agentenauftraege/README.md): bestätigte Präferenzen und damalige Planungen.
-- [Paketstatus vom 13. Oktober 2026](status-2026-10-13.md): unveränderter Abgleich aus Release 130; historische Einordnung, kein aktueller Auftrag.
+- [Paketstatus vom 13. Oktober 2026](status-2026-10-13.md): inhaltlich erhaltener Abgleich aus Release 130 mit angepassten relativen Links; historische Einordnung, kein aktueller Auftrag. Die bytegleiche Originalfassung bleibt im externen Archiv.
 - [Releasehistorie](../CHANGELOG.md) und [Release 131](../release-131.md).
 
 Aktueller Umfang: [Entscheidungen](../entscheidungen.md). Rohbelege, abweichende Worktreefassungen und lokale Outputs bleiben in externen Sicherungen mit Manifest erhalten; sie werden nicht zu neuen Produktaufträgen.
