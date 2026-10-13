@@ -151,9 +151,11 @@ public static class D6Cli {
         var compression=PlayerSettings.WebGL.compressionFormat;var width=PlayerSettings.defaultWebScreenWidth;var height=PlayerSettings.defaultWebScreenHeight;var background=PlayerSettings.runInBackground;
         string repo=null;bool ok=false;string message;
         try{
-            repo=Repo();
+            var repository=Repo();
             if(!File.Exists(Scene))throw new FileNotFoundException(Scene);
-            ProbeWebBuild.Configure(repo);
+            // Before any setting changes (repo stays null, so nothing is restored): the saved scene ships its mesh references.
+            Debug.Log("[D6Cli] WebBuild preflight: "+WebBuildPreflight(Scene));
+            repo=repository;ProbeWebBuild.Configure(repo);
             PlayerSettings.WebGL.compressionFormat=WebGLCompressionFormat.Disabled;
             PlayerSettings.defaultWebScreenWidth=1280;PlayerSettings.defaultWebScreenHeight=720;PlayerSettings.runInBackground=true;
             var output=Path.Combine(repo,"outputs/platform/unity-web");
@@ -170,6 +172,32 @@ public static class D6Cli {
             }catch(Exception e){Debug.LogException(e);}
         }
         Done(ok,message);
+    }
+    // The player meshes of the scene file the build ships (opened from disk). A replacement match
+    // mesh needs WorldPlayer.asset as its ground mesh on the same rig, also as a saved dependency of
+    // the scene (otherwise the build measures the ground on the replacement: the d8ae8785 path);
+    // the release mesh needs no ground mesh (or itself). Throws before any build work.
+    public static string WebBuildPreflight(string scene){
+        var opened=UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene,UnityEditor.SceneManagement.OpenSceneMode.Single);
+        Doppel6.Probe.ProbeBridge bridge=null;foreach(var root in opened.GetRootGameObjects()){bridge=root.GetComponentInChildren<Doppel6.Probe.ProbeBridge>(true);if(bridge!=null)break;}
+        if(bridge==null)throw new InvalidOperationException("ProbeBridge is missing in "+scene);
+        return GroundPreflight(bridge,scene);
+    }
+    public static string GroundPreflight(Doppel6.Probe.ProbeBridge bridge,string scene){
+        var original=AssetDatabase.LoadAssetAtPath<Mesh>(LowPolySetup.Original)??throw new FileNotFoundException(LowPolySetup.Original);
+        var match=bridge.matchPlayerMesh;var ground=bridge.groundPlayerMesh;
+        if(match==null)throw new InvalidOperationException("Build preflight: "+scene+" has no match player mesh");
+        if(match==original){
+            if(ground!=null&&ground!=original)throw new InvalidOperationException("Build preflight: release match mesh with ground mesh "+ground.name+" (expected none or "+LowPolySetup.Original+")");
+            return "match mesh "+match.name+" (release), ground "+(ground==null?"none":ground.name);
+        }
+        if(ground==null)throw new InvalidOperationException("Build preflight: match mesh "+match.name+" has no ground mesh; the build would measure the ground on the replacement (run D6Cli.MatchMesh -d6mesh lowpoly)");
+        if(ground!=original)throw new InvalidOperationException("Build preflight: ground mesh "+ground.name+" ("+AssetDatabase.GetAssetPath(ground)+") is not "+LowPolySetup.Original);
+        var a=match.bindposes;var b=ground.bindposes;bool same=a.Length==b.Length&&a.Length>0;for(int i=0;same&&i<a.Length;i++)same=a[i]==b[i];
+        if(!same)throw new InvalidOperationException("Build preflight: ground mesh "+ground.name+" is not on the rig of "+match.name);
+        var saved=AssetDatabase.GetDependencies(scene,true);
+        foreach(var need in new[]{LowPolySetup.Original,AssetDatabase.GetAssetPath(match)})if(Array.IndexOf(saved,need)<0)throw new InvalidOperationException("Build preflight: the saved scene "+scene+" does not reference "+need);
+        return "match mesh "+match.name+", ground "+ground.name+" ("+ground.vertexCount+" vertices, "+b.Length+" bind poses), both saved scene dependencies";
     }
 }
 #endif
