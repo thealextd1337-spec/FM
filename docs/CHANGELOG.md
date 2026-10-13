@@ -1,18 +1,23 @@
 # Änderungen
 
-## 13. Oktober 2026 ? Stabile Tageszeit und Vereinsdarstellung angebunden (lokal)
+## 13. Oktober 2026 – Natürlichere Tornetzbewegung (lokal)
 
-- Reine Darstellungsdaten aus bestehender Fixturekennung und Wettbewerb erg?nzt: Europacup immer Nacht, Liga und nationaler Pokal mit stabilem Tag-/Nachtmix, neutrale Finalorte und Vereinsfarben unabh?ngig von Ausweichtrikots. Keine gespeicherten Match-/Karrieredaten oder native Zufallsziehung ver?ndert. Je zehn JS- und Unity-Vertragspr?fungen bestehen; Licht- und Stadionmodule folgen im laufenden Ausbau.
-- Die aktuelle Vereinswelt enth?lt 96 Ligavereine und 96 Pokalvereine in zw?lf L?ndern. Alle Ligavereine erhalten individuelle Stadionprofile; Pokalvereine d?rfen Standardvarianten verwenden.
+- Opus 5.5 mit maximaler Denkintensität hat die Tornetzdarstellung aus bestehenden Aufprallfakten umgesetzt: weichere lokale Ausbeulung, gedämpfte Wellen, feste Befestigungspunkte und exakte Rückkehr zur Ruhe. Unveränderte Bilder laden keine neuen Meshdaten hoch; Ball und Matchsimulation bleiben unverändert.
+- In Unity 6000.6.4f1 kompiliert und 56 gezielte Prüfungen bestanden, einschließlich acht älterer aufgezeichneter Tore. Aktuelle Spielszenen, visuelle Abnahme und WebGL-Leistungsbudget bleiben offen; unabhängige Sonnet-Prüfung läuft. Noch nicht veröffentlicht.
 
-## 13. Oktober 2026 ? Rendering-Zust?ndigkeiten getrennt (lokal)
+## 13. Oktober 2026 – Stabile Tageszeit und Vereinsdarstellung angebunden (lokal)
 
-- Licht/Schatten und Tornetzdarstellung in eigene Unity-Module verschoben; leere Schnittstellen f?r Fanbl?cke erg?nzt. Die urspr?nglichen Methoden bleiben unver?ndert. Der vollst?ndige Unity-Lauf besteht; alle neun Bewegungs-/Kontakt-Gruppen sind gegen?ber der gepr?ften Low-Poly-Basis exakt gleich. Lediglich gemessene Editor-Laufzeiten schwanken.
+- Reine Darstellungsdaten aus bestehender Fixturekennung und Wettbewerb ergänzt: Europacup immer Nacht, Liga und nationaler Pokal mit stabilem Tag-/Nachtmix, neutrale Finalorte und Vereinsfarben unabhängig von Ausweichtrikots. Keine gespeicherten Match-/Karrieredaten oder native Zufallsziehung verändert. Je zehn JS- und Unity-Vertragsprüfungen bestehen; Licht- und Stadionmodule folgen im laufenden Ausbau.
+- Die aktuelle Vereinswelt enthält 96 Ligavereine und 96 Pokalvereine in zwölf Ländern. Alle Ligavereine erhalten individuelle Stadionprofile; Pokalvereine dürfen Standardvarianten verwenden.
 
-## 13. Oktober 2026 ? Low-Poly-Ausbau begonnen (lokal)
+## 13. Oktober 2026 – Rendering-Zuständigkeiten getrennt (lokal)
 
-- Gepr?fte Low-Poly-Quellen und versionierte Mesh-/Texturassets isoliert auf den ver?ffentlichten Stand 130 ?bernommen. 46 Identit?tseingaben sind bytegleich zur abgenommenen Demo; produktive Browser-/Matchquellen und bisherige Release-Nachweise bleiben erhalten.
-- Beauftragter Ausbau: bessere Schatten, klare Tag-/Nachtspiele, individuell erkennbare Ligastadien, Standardstadien f?r Pokalvereine, Heim-/G?stefanbl?cke mit Fahnen und nat?rliche Tornetzbewegung. Umsetzung und erneute Abnahme laufen; noch nicht ver?ffentlicht.
+- Licht/Schatten und Tornetzdarstellung in eigene Unity-Module verschoben; leere Schnittstellen für Fanblöcke ergänzt. Die ursprünglichen Methoden bleiben unverändert. Der vollständige Unity-Lauf besteht; alle neun Bewegungs-/Kontakt-Gruppen sind gegenüber der geprüften Low-Poly-Basis exakt gleich. Lediglich gemessene Editor-Laufzeiten schwanken.
+
+## 13. Oktober 2026 – Low-Poly-Ausbau begonnen (lokal)
+
+- Geprüfte Low-Poly-Quellen und versionierte Mesh-/Texturassets isoliert auf den veröffentlichten Stand 130 übernommen. 46 Identitätseingaben sind bytegleich zur abgenommenen Demo; produktive Browser-/Matchquellen und bisherige Release-Nachweise bleiben erhalten.
+- Beauftragter Ausbau: bessere Schatten, klare Tag-/Nachtspiele, individuell erkennbare Ligastadien, Standardstadien für Pokalvereine, Heim-/Gästefanblöcke mit Fahnen und natürliche Tornetzbewegung. Umsetzung und erneute Abnahme laufen; noch nicht veröffentlicht.
 
 ## 13. Oktober 2026 – Bugliste
 
