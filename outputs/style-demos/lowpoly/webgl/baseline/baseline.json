@@ -1,0 +1,396 @@
+{
+ "label": "baseline",
+ "build": "outputs/style-demos/lowpoly/baseline-unity-web",
+ "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+ "buildFiles": [
+  {
+   "file": "unity-web.data",
+   "bytes": 55572425,
+   "sha256": "dfcb23f3cbc1f9e2c3dc3e7560daf4d18bb95fa8ff04dcc9cb326d8cb0d3b303"
+  },
+  {
+   "file": "unity-web.framework.js",
+   "bytes": 300906,
+   "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+  },
+  {
+   "file": "unity-web.loader.js",
+   "bytes": 27914,
+   "sha256": "a6a10198f2bb3b69a339e89a4b940747cc08e39b90a0af3853a8f4654595462d"
+  },
+  {
+   "file": "unity-web.wasm",
+   "bytes": 35497794,
+   "sha256": "d7a649fce05ae4d7b5b4a8293c100b6f022c86a8b7c95485fb2000c46079f273"
+  }
+ ],
+ "downloadBytes": 91399039,
+ "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 (0x00002786) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+ "gpu": true,
+ "shots": [
+  {
+   "quality": "standard",
+   "size": "1280x720",
+   "kickoff": "baseline-kickoff-standard-1280x720.png",
+   "plays": [
+    "baseline-play260-standard-1280x720.png",
+    "baseline-play520-standard-1280x720.png",
+    "baseline-play780-standard-1280x720.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  },
+  {
+   "quality": "standard",
+   "size": "844x390",
+   "kickoff": "baseline-kickoff-standard-844x390.png",
+   "plays": [
+    "baseline-play260-standard-844x390.png",
+    "baseline-play520-standard-844x390.png",
+    "baseline-play780-standard-844x390.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  },
+  {
+   "quality": "standard",
+   "size": "931x448",
+   "kickoff": "baseline-kickoff-standard-931x448.png",
+   "plays": [
+    "baseline-play260-standard-931x448.png",
+    "baseline-play520-standard-931x448.png",
+    "baseline-play780-standard-931x448.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  },
+  {
+   "quality": "reduced",
+   "size": "1280x720",
+   "kickoff": "baseline-kickoff-reduced-1280x720.png",
+   "plays": [
+    "baseline-play260-reduced-1280x720.png",
+    "baseline-play520-reduced-1280x720.png",
+    "baseline-play780-reduced-1280x720.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  },
+  {
+   "quality": "reduced",
+   "size": "844x390",
+   "kickoff": "baseline-kickoff-reduced-844x390.png",
+   "plays": [
+    "baseline-play260-reduced-844x390.png",
+    "baseline-play520-reduced-844x390.png",
+    "baseline-play780-reduced-844x390.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  },
+  {
+   "quality": "reduced",
+   "size": "931x448",
+   "kickoff": "baseline-kickoff-reduced-931x448.png",
+   "plays": [
+    "baseline-play260-reduced-931x448.png",
+    "baseline-play520-reduced-931x448.png",
+    "baseline-play780-reduced-931x448.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  }
+ ],
+ "parity": {
+  "states": [
+   {
+    "ticks": 600,
+    "elapsed": 9.788999999999962,
+    "score": [
+     1,
+     0
+    ],
+    "ball": {
+     "x": 0.4610553571893222,
+     "y": 0.5603963065082049
+    },
+    "events": 1,
+    "randomCalls": 37,
+    "eventLog": "f4e5fc51f81889c4cdbae9d909a47dd3cf8fc348b1f4c1a280521e3ff255c402",
+    "goals": "88b350161595fda05627a93b8a655a52698cc1cff99453551d02d0e9ef2b3192"
+   },
+   {
+    "ticks": 1200,
+    "elapsed": 20.67000000000009,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.5723664487808374,
+     "y": 0.11802128649689937
+    },
+    "events": 2,
+    "randomCalls": 94,
+    "eventLog": "6dcf4faf0348e7a8a910a235f847f7a68cd88ec52ecd32c1342d144b930cc0ab",
+    "goals": "801ea36641b4cc3b188e9c20ede450b5c0e86646dee97eaf5cfeea4eef34c4bc"
+   },
+   {
+    "ticks": 2400,
+    "elapsed": 43.61682000000067,
+    "score": [
+     2,
+     2
+    ],
+    "ball": {
+     "x": 0.46035684687811185,
+     "y": 0.5396778718905141
+    },
+    "events": 5,
+    "randomCalls": 172,
+    "eventLog": "9372274b7d1400304213c271d8a281a4f6744bfbec21df9fe3ea506bf264c0b8",
+    "goals": "1a8aceac1f42eeeef14a06db237cf145225f162da2ba505fbc183d754c866bfb"
+   },
+   {
+    "ticks": 4213,
+    "elapsed": 83.33348666666726,
+    "score": [
+     2,
+     2
+    ],
+    "ball": {
+     "x": 0.3304446888215579,
+     "y": 0.39982222793461336
+    },
+    "events": 7,
+    "randomCalls": 311,
+    "eventLog": "ee24cbd57012f6891f0bde9565c93295e07910009c7bb632bb8049ca6684af4b",
+    "goals": "1a8aceac1f42eeeef14a06db237cf145225f162da2ba505fbc183d754c866bfb"
+   }
+  ]
+ },
+ "perf": [
+  {
+   "quality": "standard",
+   "frames": 1335,
+   "frameMedianMs": 14.699999999999818,
+   "frameP95Ms": 17.699999982118243,
+   "drawsMedian": 130,
+   "drawsP95": 142,
+   "jsHeapMB": 113
+  },
+  {
+   "quality": "reduced",
+   "frames": 1339,
+   "frameMedianMs": 14.799999994040263,
+   "frameP95Ms": 17.699999982118243,
+   "drawsMedian": 113,
+   "drawsP95": 126,
+   "jsHeapMB": 123
+  }
+ ],
+ "videos": [
+  {
+   "name": "sprint-pass",
+   "quality": "standard",
+   "file": "baseline-sprint-pass-standard.webp",
+   "sheet": "baseline-sprint-pass-standard-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 33,
+   "actionTick": 73,
+   "frames": 50,
+   "secondsAtRealPace": 5
+  },
+  {
+   "name": "shot",
+   "quality": "standard",
+   "file": "baseline-shot-standard.webp",
+   "sheet": "baseline-shot-standard-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 193,
+   "actionTick": 253,
+   "frames": 60,
+   "secondsAtRealPace": 6
+  },
+  {
+   "name": "slide",
+   "quality": "standard",
+   "file": "baseline-slide-standard.webp",
+   "sheet": "baseline-slide-standard-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 102,
+   "actionTick": 150,
+   "frames": 60,
+   "secondsAtRealPace": 6
+  },
+  {
+   "name": "slide",
+   "quality": "reduced",
+   "file": "baseline-slide-reduced.webp",
+   "sheet": "baseline-slide-reduced-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 102,
+   "actionTick": 150,
+   "frames": 60,
+   "secondsAtRealPace": 6
+  },
+  {
+   "name": "keeper",
+   "quality": "standard",
+   "file": "baseline-keeper-standard.webp",
+   "sheet": "baseline-keeper-standard-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 189,
+   "actionTick": 261,
+   "frames": 70,
+   "secondsAtRealPace": 7
+  },
+  {
+   "name": "keeper",
+   "quality": "reduced",
+   "file": "baseline-keeper-reduced.webp",
+   "sheet": "baseline-keeper-reduced-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 189,
+   "actionTick": 261,
+   "frames": 70,
+   "secondsAtRealPace": 7
+  },
+  {
+   "name": "tackle",
+   "quality": "standard",
+   "file": "baseline-tackle-standard.webp",
+   "sheet": "baseline-tackle-standard-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 116,
+   "actionTick": 164,
+   "frames": 50,
+   "secondsAtRealPace": 5
+  },
+  {
+   "name": "header",
+   "quality": "standard",
+   "file": "baseline-header-standard.webp",
+   "sheet": "baseline-header-standard-sheet.png",
+   "seed": 777,
+   "cameraNear": 100,
+   "startTick": 3407,
+   "actionTick": 3455,
+   "frames": 50,
+   "secondsAtRealPace": 5
+  }
+ ],
+ "errors": [],
+ "meshLog": [],
+ "videoMarks": {
+  "pass": {
+   "seed": 12345,
+   "tick": 73
+  },
+  "slide": {
+   "seed": 12345,
+   "tick": 150
+  },
+  "tackle": {
+   "seed": 12345,
+   "tick": 164
+  },
+  "shot": {
+   "seed": 12345,
+   "tick": 253
+  },
+  "keeper": {
+   "seed": 12345,
+   "tick": 261
+  },
+  "header": {
+   "seed": 777,
+   "tick": 3455
+  }
+ }
+}

@@ -1,0 +1,203 @@
+{
+  "checkedAt": "2026-10-13T02:10:37.679Z",
+  "pass": true,
+  "style": "lowpoly",
+  "url": "http://127.0.0.1:4412",
+  "scope": "Complete fixed-native-tick 2D versus Unity native/P02/RNG parity on the served package. Not a visual, FPS, Android or live claim.",
+  "build": {
+    "sourceCommit": "d494cb5b19c99eb9956a1a7fa30956606d8ba853",
+    "sourceDirty": false,
+    "sourceFingerprint": "7280ec2dce54f27c7b5d3fa3514978a2c776d68c68123dc5177f3cb61734a9b2",
+    "sourceId": "46a6e081054ba81328e69ba8a01f66daaf0470bb2263b3de17f3f14369f3a4b8",
+    "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+    "unityManifestSha256": "dc0481f10c25efbcc529a4ddc05b36ff7927199f57301d3dfaca9b10d233336d",
+    "packageManifestSha256": "a33c6303ca0a6cd1db33aeafae833eec44005f3a887e6494ba9c59ae15895be9"
+  },
+  "results": [
+    {
+      "unity": false,
+      "setup": {
+        "config": {
+          "fieldSize": "standard",
+          "fieldPlayers": 5
+        },
+        "unity": false,
+        "people": 12,
+        "perTeam": [
+          6,
+          6
+        ],
+        "keepers": [
+          1,
+          1
+        ],
+        "geometry": {
+          "version": 1,
+          "length": 68,
+          "width": 44,
+          "goalWidth": 9.705882352941178,
+          "goalHeight": 3.2352941176470593,
+          "penaltyDepth": 10.5953488372093,
+          "penaltyWidth": 24.264705882352942,
+          "ballRadius": 0.1764
+        },
+        "expectedPerTeam": 6
+      },
+      "flags": {
+        "keeper": 180,
+        "pace": 119
+      },
+      "end": {
+        "ticks": 3037,
+        "minute": 98,
+        "phase": "finished",
+        "score": [
+          0,
+          0
+        ],
+        "finished": true,
+        "halftime": true,
+        "unityError": null,
+        "stats": {
+          "pictures": 0,
+          "maxPositionError": 0,
+          "playersOutside": 0,
+          "visibleBallOutside": 0,
+          "netMaxZ": 0,
+          "labels": 0,
+          "visibleLabels": 0,
+          "domLabels": 0,
+          "keeperContactSamples": 0,
+          "keeperContactMetres": []
+        }
+      },
+      "digest": {
+        "score": [
+          0,
+          0
+        ],
+        "phase": "finished",
+        "finished": true,
+        "valid": true,
+        "booked": true,
+        "balanceOwn": 4046,
+        "checkpoints": 0,
+        "hashes": {
+          "score": "13ca43dd:5",
+          "events": "213ef0a5:286",
+          "stats": "22b41ea3:8774",
+          "fresh": "35cc2c98:993",
+          "minutes": "ea7ffc03:767",
+          "report": "a8d6f9aa:34613",
+          "ratings": "53bd923f:684",
+          "ballAccounting": "ba2173d7:22798",
+          "geometry": "708a8f7b:184",
+          "people": "c5dc9753:7919",
+          "finances": "b43879fd:50683",
+          "development": "888bf9b1:3686725",
+          "fixtures": "42568bf3:460406",
+          "world": "217ae501:9560018"
+        },
+        "all": "a6d98d83"
+      },
+      "partsSha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772"
+    },
+    {
+      "unity": true,
+      "setup": {
+        "config": {
+          "fieldSize": "standard",
+          "fieldPlayers": 5
+        },
+        "unity": true,
+        "people": 12,
+        "perTeam": [
+          6,
+          6
+        ],
+        "keepers": [
+          1,
+          1
+        ],
+        "geometry": {
+          "version": 1,
+          "length": 68,
+          "width": 44,
+          "goalWidth": 9.705882352941178,
+          "goalHeight": 3.2352941176470593,
+          "penaltyDepth": 10.5953488372093,
+          "penaltyWidth": 24.264705882352942,
+          "ballRadius": 0.1764
+        },
+        "expectedPerTeam": 6,
+        "unityReady": true,
+        "ack": {
+          "players": 12,
+          "ids": 12,
+          "allReal": true
+        },
+        "error": null
+      },
+      "flags": {
+        "keeper": 180,
+        "pace": 119
+      },
+      "end": {
+        "ticks": 3037,
+        "minute": 98,
+        "phase": "finished",
+        "score": [
+          0,
+          0
+        ],
+        "finished": true,
+        "halftime": true,
+        "unityError": null,
+        "stats": {
+          "pictures": 64,
+          "maxPositionError": 0,
+          "playersOutside": 0,
+          "visibleBallOutside": 0,
+          "netMaxZ": 0,
+          "labels": 12,
+          "visibleLabels": 11,
+          "domLabels": 12,
+          "keeperContactSamples": 2,
+          "keeperContactMetres": [
+            "goalKick:0.65"
+          ]
+        }
+      },
+      "digest": {
+        "score": [
+          0,
+          0
+        ],
+        "phase": "finished",
+        "finished": true,
+        "valid": true,
+        "booked": true,
+        "balanceOwn": 4046,
+        "checkpoints": 0,
+        "hashes": {
+          "score": "13ca43dd:5",
+          "events": "213ef0a5:286",
+          "stats": "22b41ea3:8774",
+          "fresh": "35cc2c98:993",
+          "minutes": "ea7ffc03:767",
+          "report": "a8d6f9aa:34613",
+          "ratings": "53bd923f:684",
+          "ballAccounting": "ba2173d7:22798",
+          "geometry": "708a8f7b:184",
+          "people": "c5dc9753:7919",
+          "finances": "b43879fd:50683",
+          "development": "888bf9b1:3686725",
+          "fixtures": "42568bf3:460406",
+          "world": "217ae501:9560018"
+        },
+        "all": "a6d98d83"
+      },
+      "partsSha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772"
+    }
+  ]
+}

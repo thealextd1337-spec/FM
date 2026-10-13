@@ -4,7 +4,7 @@
  "base": "7288d6a87384273465f6615f37bbd7bc8fcff833",
  "unityProject": "G:/unity/Doppel6-LowPoly-Demo",
  "updated": "2026-10-13",
- "phase": "WebGL candidate built (sourceId 46a6e081, data eaa475e7, wasm 0f956190, loader 2909e971, framework 36ef3791 unchanged); browser harness running",
+ "phase": "candidate handed over (local, unpublished); server 4412 running",
  "done": [
   "baseline editor evidence 79 shots (sourceId 3442dee8, WorldPlayer 9725v/12668t)",
   "Blender build_lowpoly.py v3: 2592 tris, 28 bones, weights re-transferred, sole within 0.3 mm",
@@ -12,13 +12,16 @@
   "Unity LowPolySetup: WorldPlayerLowPoly-v3 bindpose diff 0, region agreement 95.6%, editor evidence meshv3",
   "v4 mesh (167 smooth crease faces) + _D6LowPoly style; editor candidate 79 shots, facet intermediate 79 shots",
   "suites original vs meshv3: all gates equal except historical R15 plant-edge receive 2102.82 -> 2103.88 deg/s exceeds exact R18 lock (+0.05%)",
-  "WebGL build 91,229,907 B (baseline 91,399,039)"
+  "WebGL build 91,229,907 B (baseline 91,399,039)",
+  "WebGL harness baseline vs candidate: identical native parity at 4 ticks, 12/12 names, no errors, perf equal",
+  "v4 suites + natural-motion report + keeper evidence",
+  "package d494cb5b, verify 103/103",
+  "parity-full 3037/3037 digest a6d98d83 payload d0a8785e"
  ],
  "next": [
-  "browser evidence candidate + baseline (check-lowpoly-webgl.cjs)",
-  "suites on v4",
-  "handoff doc + changelog",
-  "commit build"
+  "Root/Sonnet browser acceptance (pause/halftime/review/reload/fallback)",
+  "Root decision on R15 historical gate +0.05% over exact R18 lock",
+  "design feedback"
  ],
  "blockers": []
 }

@@ -1,0 +1,499 @@
+{
+  "schema": "d6-style-demo-verify-1",
+  "checkedAt": "2026-10-13T02:09:57.434Z",
+  "pass": true,
+  "style": "lowpoly",
+  "url": "http://127.0.0.1:50483",
+  "flags": {
+    "deep": true,
+    "requireClean": true,
+    "allowStale": false
+  },
+  "packageManifestSha256": "a33c6303ca0a6cd1db33aeafae833eec44005f3a887e6494ba9c59ae15895be9",
+  "sourceCommit": "d494cb5b19c99eb9956a1a7fa30956606d8ba853",
+  "sourceDirty": false,
+  "sourceFingerprint": "7280ec2dce54f27c7b5d3fa3514978a2c776d68c68123dc5177f3cb61734a9b2",
+  "sourceId": "46a6e081054ba81328e69ba8a01f66daaf0470bb2263b3de17f3f14369f3a4b8",
+  "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+  "unityManifestSha256": "dc0481f10c25efbcc529a4ddc05b36ff7927199f57301d3dfaca9b10d233336d",
+  "scope": "Statische Datei-/HTTP-Identität. Keine Browser-, Unity-Runtime- oder Matchabnahme.",
+  "checks": [
+    {
+      "name": "Paketstil = --style lowpoly",
+      "ok": true,
+      "detail": "lowpoly"
+    },
+    {
+      "name": "Paketschema d6-style-demo-package-1",
+      "ok": true,
+      "detail": "d6-style-demo-package-1"
+    },
+    {
+      "name": "Stil bekannt",
+      "ok": true,
+      "detail": "lowpoly"
+    },
+    {
+      "name": "Pflichtdateien im Manifest (HTML, Runtime, Unity-Manifest, 4 WebGL-Dateien)",
+      "ok": true,
+      "detail": "Dateien: 9"
+    },
+    {
+      "name": "Dateisatz von site/ entspricht dem Manifest exakt",
+      "ok": true,
+      "detail": "extra:  fehlt: "
+    },
+    {
+      "name": "Datei index.html sha256/Größe",
+      "ok": true,
+      "detail": "sha 358d343b7dc0 erwartet 358d343b7dc0"
+    },
+    {
+      "name": "Datei unity-match/runtime.html sha256/Größe",
+      "ok": true,
+      "detail": "sha 0a11e8eaba95 erwartet 0a11e8eaba95"
+    },
+    {
+      "name": "Datei unity-match/runtime.js sha256/Größe",
+      "ok": true,
+      "detail": "sha 734e9dc9af36 erwartet 734e9dc9af36"
+    },
+    {
+      "name": "Datei unity-match/.htaccess sha256/Größe",
+      "ok": true,
+      "detail": "sha e6341a7c0465 erwartet e6341a7c0465"
+    },
+    {
+      "name": "Datei unity/probe-build.json sha256/Größe",
+      "ok": true,
+      "detail": "sha dc0481f10c25 erwartet dc0481f10c25"
+    },
+    {
+      "name": "Datei unity/Build/unity-web.data sha256/Größe",
+      "ok": true,
+      "detail": "sha eaa475e7efae erwartet eaa475e7efae"
+    },
+    {
+      "name": "Datei unity/Build/unity-web.framework.js sha256/Größe",
+      "ok": true,
+      "detail": "sha 36ef37912793 erwartet 36ef37912793"
+    },
+    {
+      "name": "Datei unity/Build/unity-web.loader.js sha256/Größe",
+      "ok": true,
+      "detail": "sha 2909e971e5ef erwartet 2909e971e5ef"
+    },
+    {
+      "name": "Datei unity/Build/unity-web.wasm sha256/Größe",
+      "ok": true,
+      "detail": "sha 0f956190890c erwartet 0f956190890c"
+    },
+    {
+      "name": "Manifest sourceId = Unity-Manifest sourceId",
+      "ok": true,
+      "detail": "46a6e081054ba81328e69ba8a01f66daaf0470bb2263b3de17f3f14369f3a4b8"
+    },
+    {
+      "name": "Manifest htmlSha256/unityManifestSha256 stimmen",
+      "ok": true
+    },
+    {
+      "name": "probe-build.json: Schema d6-probe-1 und Weltansicht d6-world-view-1",
+      "ok": true
+    },
+    {
+      "name": "WebGL unity-web.data: Manifestzeile, Bytes und hashgebundene URL",
+      "ok": true,
+      "detail": "/unity/Build/unity-web.data?v=eaa475e7efaeed967b96ba92dff1c8f79e24f1ff6017ce792d1addac21bd3f66"
+    },
+    {
+      "name": "WebGL unity-web.framework.js: Manifestzeile, Bytes und hashgebundene URL",
+      "ok": true,
+      "detail": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+    },
+    {
+      "name": "WebGL unity-web.loader.js: Manifestzeile, Bytes und hashgebundene URL",
+      "ok": true,
+      "detail": "/unity/Build/unity-web.loader.js?v=2909e971e5efe53176965433a410d0e296ff3b44b77cf358c66a4ffacdaf1968"
+    },
+    {
+      "name": "WebGL unity-web.wasm: Manifestzeile, Bytes und hashgebundene URL",
+      "ok": true,
+      "detail": "/unity/Build/unity-web.wasm?v=0f956190890ca9dc61e08c33914bb8bf4203242fd9c249a34b89b5ee51636057"
+    },
+    {
+      "name": "probe-build.json listet genau 4 WebGL-Dateien",
+      "ok": true
+    },
+    {
+      "name": "Manifestquellen im Unity-Manifest vorhanden",
+      "ok": true,
+      "detail": "33"
+    },
+    {
+      "name": "HTML trägt PROTOTYP 130",
+      "ok": true
+    },
+    {
+      "name": "HTML bindet Unity-Runtime unity-match/runtime.html?v=130",
+      "ok": true
+    },
+    {
+      "name": "HTML ohne lokalen Vorschau-Frame",
+      "ok": true
+    },
+    {
+      "name": "Runtime beginnt mit Frame-Scheduler",
+      "ok": true
+    },
+    {
+      "name": "Frame-Scheduler der Runtime ist bytegleich im Eltern-HTML eingebettet",
+      "ok": true
+    },
+    {
+      "name": "runtime.html lädt runtime.js und runtime.js holt /unity/probe-build.json",
+      "ok": true
+    },
+    {
+      "name": "Quellenfingerprint des Checkouts = Paketfingerprint (kein Arbeitsstand seit dem Paketieren verändert)",
+      "ok": true,
+      "detail": "Paket 7280ec2dce54 / jetzt 7280ec2dce54"
+    },
+    {
+      "name": "Build-Ausgabe outputs/index.html = Paketdatei",
+      "ok": true,
+      "detail": "Ausgabe neuer gebaut oder gelöscht"
+    },
+    {
+      "name": "Build-Ausgabe outputs/platform/unity-web/probe-build.json = Paketdatei",
+      "ok": true,
+      "detail": "Ausgabe neuer gebaut oder gelöscht"
+    },
+    {
+      "name": "Build-Ausgabe outputs/platform/unity-web/Build/unity-web.data = Paketdatei",
+      "ok": true,
+      "detail": "Ausgabe neuer gebaut oder gelöscht"
+    },
+    {
+      "name": "Build-Ausgabe outputs/platform/unity-web/Build/unity-web.framework.js = Paketdatei",
+      "ok": true,
+      "detail": "Ausgabe neuer gebaut oder gelöscht"
+    },
+    {
+      "name": "Build-Ausgabe outputs/platform/unity-web/Build/unity-web.loader.js = Paketdatei",
+      "ok": true,
+      "detail": "Ausgabe neuer gebaut oder gelöscht"
+    },
+    {
+      "name": "Build-Ausgabe outputs/platform/unity-web/Build/unity-web.wasm = Paketdatei",
+      "ok": true,
+      "detail": "Ausgabe neuer gebaut oder gelöscht"
+    },
+    {
+      "name": "Unity sourceId aus 46 Identitätsdateien neu berechnet = source-identity.json",
+      "ok": true,
+      "detail": "46a6e081054ba81328e69ba8a01f66daaf0470bb2263b3de17f3f14369f3a4b8"
+    },
+    {
+      "name": "ProbeBuildIdentity.cs trägt sourceId",
+      "ok": true
+    },
+    {
+      "name": "Unity-Manifest sourceId = Quellen-sourceId (WebGL passt zu den Quellen)",
+      "ok": true,
+      "detail": "46a6e081054ba81328e69ba8a01f66daaf0470bb2263b3de17f3f14369f3a4b8"
+    },
+    {
+      "name": "Alle 33 Manifestquellen entsprechen den aktuellen Dateien",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Alle 3 Originalassets entsprechen dem Assetmanifest",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "assetHash und catalogHash des Unity-Manifests aktuell",
+      "ok": true
+    },
+    {
+      "name": "Build-Ordner enthält genau die 4 WebGL-Dateien",
+      "ok": true,
+      "detail": "unity-web.data,unity-web.framework.js,unity-web.loader.js,unity-web.wasm"
+    },
+    {
+      "name": "WebGL unity-web.data entspricht dem Unity-Manifest",
+      "ok": true
+    },
+    {
+      "name": "WebGL unity-web.framework.js entspricht dem Unity-Manifest",
+      "ok": true
+    },
+    {
+      "name": "WebGL unity-web.loader.js entspricht dem Unity-Manifest",
+      "ok": true
+    },
+    {
+      "name": "WebGL unity-web.wasm entspricht dem Unity-Manifest",
+      "ok": true
+    },
+    {
+      "name": "outputs/index.html = outputs/Doppel-6-Fussballmanager.html",
+      "ok": true
+    },
+    {
+      "name": "build.cjs nennt die Versionsnummer",
+      "ok": true,
+      "detail": "130"
+    },
+    {
+      "name": "HTML trägt PROTOTYP 130 und Runtime-Adresse ?v=130",
+      "ok": true
+    },
+    {
+      "name": "Alle 174 vom Standardbuild eingebetteten Quelldateien stecken unverändert im HTML (kein alter Build)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "Genau ein Frame-Scheduler in dist/",
+      "ok": true,
+      "detail": "view-frame-scheduler-v130.js"
+    },
+    {
+      "name": "dist/unity-match/runtime.js trägt view-frame-scheduler-v130.js bytegleich im Präfix",
+      "ok": true
+    },
+    {
+      "name": "Tiefenprüfung: sourceId und Version des Repo-Builds = Paket",
+      "ok": true
+    },
+    {
+      "name": "--require-clean: Paket stammt aus committetem Stand",
+      "ok": true,
+      "detail": "0 Pfade offen"
+    },
+    {
+      "name": "--require-clean: Checkout ist sauber und auf dem Paketcommit",
+      "ok": true,
+      "detail": "d494cb5b19 (codex/demo-low-poly-20261013) · sauber, committed"
+    },
+    {
+      "name": "/__build liefert JSON mit Stil lowpoly",
+      "ok": true
+    },
+    {
+      "name": "/__build: sourceId, Fingerprint, Commit, HTML- und Unity-Manifest-Hash = Paketmanifest",
+      "ok": true
+    },
+    {
+      "name": "/__build: Dateiliste und demo-package.json-Hash = lokales Paket",
+      "ok": true
+    },
+    {
+      "name": "/__build: Integritätsprüfung des Servers bestanden",
+      "ok": true,
+      "detail": "{\"state\":\"checked-by-verifier\",\"detail\":\"\"}"
+    },
+    {
+      "name": "HTTP GET /index.html = Manifest (sha256, Größe)",
+      "ok": true,
+      "detail": "200 358d343b7dc0"
+    },
+    {
+      "name": "HTTP /index.html: Content-Type, no-store, Content-Length, X-D6-Sha256",
+      "ok": true,
+      "detail": "text/html; charset=utf-8 / no-store"
+    },
+    {
+      "name": "HTTP HEAD /index.html ohne Body mit gleicher Größe",
+      "ok": true
+    },
+    {
+      "name": "HTTP GET /unity-match/runtime.html = Manifest (sha256, Größe)",
+      "ok": true,
+      "detail": "200 0a11e8eaba95"
+    },
+    {
+      "name": "HTTP /unity-match/runtime.html: Content-Type, no-store, Content-Length, X-D6-Sha256",
+      "ok": true,
+      "detail": "text/html; charset=utf-8 / no-store"
+    },
+    {
+      "name": "HTTP HEAD /unity-match/runtime.html ohne Body mit gleicher Größe",
+      "ok": true
+    },
+    {
+      "name": "HTTP GET /unity-match/runtime.js = Manifest (sha256, Größe)",
+      "ok": true,
+      "detail": "200 734e9dc9af36"
+    },
+    {
+      "name": "HTTP /unity-match/runtime.js: Content-Type, no-store, Content-Length, X-D6-Sha256",
+      "ok": true,
+      "detail": "text/javascript; charset=utf-8 / no-store"
+    },
+    {
+      "name": "HTTP HEAD /unity-match/runtime.js ohne Body mit gleicher Größe",
+      "ok": true
+    },
+    {
+      "name": "HTTP GET /unity-match/.htaccess = Manifest (sha256, Größe)",
+      "ok": true,
+      "detail": "200 e6341a7c0465"
+    },
+    {
+      "name": "HTTP /unity-match/.htaccess: Content-Type, no-store, Content-Length, X-D6-Sha256",
+      "ok": true,
+      "detail": "text/plain; charset=utf-8 / no-store"
+    },
+    {
+      "name": "HTTP HEAD /unity-match/.htaccess ohne Body mit gleicher Größe",
+      "ok": true
+    },
+    {
+      "name": "HTTP GET /unity/probe-build.json = Manifest (sha256, Größe)",
+      "ok": true,
+      "detail": "200 dc0481f10c25"
+    },
+    {
+      "name": "HTTP /unity/probe-build.json: Content-Type, no-store, Content-Length, X-D6-Sha256",
+      "ok": true,
+      "detail": "application/json; charset=utf-8 / no-store"
+    },
+    {
+      "name": "HTTP HEAD /unity/probe-build.json ohne Body mit gleicher Größe",
+      "ok": true
+    },
+    {
+      "name": "HTTP GET /unity/Build/unity-web.data = Manifest (sha256, Größe)",
+      "ok": true,
+      "detail": "200 eaa475e7efae"
+    },
+    {
+      "name": "HTTP /unity/Build/unity-web.data: Content-Type, no-store, Content-Length, X-D6-Sha256",
+      "ok": true,
+      "detail": "application/octet-stream / no-store"
+    },
+    {
+      "name": "HTTP HEAD /unity/Build/unity-web.data ohne Body mit gleicher Größe",
+      "ok": true
+    },
+    {
+      "name": "HTTP GET /unity/Build/unity-web.framework.js = Manifest (sha256, Größe)",
+      "ok": true,
+      "detail": "200 36ef37912793"
+    },
+    {
+      "name": "HTTP /unity/Build/unity-web.framework.js: Content-Type, no-store, Content-Length, X-D6-Sha256",
+      "ok": true,
+      "detail": "text/javascript; charset=utf-8 / no-store"
+    },
+    {
+      "name": "HTTP HEAD /unity/Build/unity-web.framework.js ohne Body mit gleicher Größe",
+      "ok": true
+    },
+    {
+      "name": "HTTP GET /unity/Build/unity-web.loader.js = Manifest (sha256, Größe)",
+      "ok": true,
+      "detail": "200 2909e971e5ef"
+    },
+    {
+      "name": "HTTP /unity/Build/unity-web.loader.js: Content-Type, no-store, Content-Length, X-D6-Sha256",
+      "ok": true,
+      "detail": "text/javascript; charset=utf-8 / no-store"
+    },
+    {
+      "name": "HTTP HEAD /unity/Build/unity-web.loader.js ohne Body mit gleicher Größe",
+      "ok": true
+    },
+    {
+      "name": "HTTP GET /unity/Build/unity-web.wasm = Manifest (sha256, Größe)",
+      "ok": true,
+      "detail": "200 0f956190890c"
+    },
+    {
+      "name": "HTTP /unity/Build/unity-web.wasm: Content-Type, no-store, Content-Length, X-D6-Sha256",
+      "ok": true,
+      "detail": "application/wasm / no-store"
+    },
+    {
+      "name": "HTTP HEAD /unity/Build/unity-web.wasm ohne Body mit gleicher Größe",
+      "ok": true
+    },
+    {
+      "name": "HTTP GET / = index.html des Manifests",
+      "ok": true
+    },
+    {
+      "name": "Hash-URL aus probe-build.json (loader) liefert dasselbe Payload",
+      "ok": true
+    },
+    {
+      "name": "Hash-URL aus probe-build.json (data) liefert dasselbe Payload",
+      "ok": true
+    },
+    {
+      "name": "Hash-URL aus probe-build.json (framework) liefert dasselbe Payload",
+      "ok": true
+    },
+    {
+      "name": "Hash-URL aus probe-build.json (wasm) liefert dasselbe Payload",
+      "ok": true
+    },
+    {
+      "name": "HTTP-Ablehnung /%2e%2e/demo-package.json → 400",
+      "ok": true,
+      "detail": "400"
+    },
+    {
+      "name": "HTTP-Ablehnung /unity/Build/../probe-build.json → 400",
+      "ok": true,
+      "detail": "400"
+    },
+    {
+      "name": "HTTP-Ablehnung /..%5cdemo-package.json → 400",
+      "ok": true,
+      "detail": "400"
+    },
+    {
+      "name": "HTTP-Ablehnung //127.0.0.1/index.html → 400",
+      "ok": true,
+      "detail": "400"
+    },
+    {
+      "name": "HTTP-Ablehnung /index.html%00 → 400",
+      "ok": true,
+      "detail": "400"
+    },
+    {
+      "name": "HTTP-Ablehnung /demo-package.json → 404",
+      "ok": true,
+      "detail": "404"
+    },
+    {
+      "name": "HTTP-Ablehnung /unity-match/ → 404",
+      "ok": true,
+      "detail": "404"
+    },
+    {
+      "name": "HTTP-Ablehnung /unity/ → 404",
+      "ok": true,
+      "detail": "404"
+    },
+    {
+      "name": "HTTP-Ablehnung POST → 405 mit Allow",
+      "ok": true
+    },
+    {
+      "name": "HTTP-Ablehnung fremder Host-Header → 403",
+      "ok": true
+    },
+    {
+      "name": "Paketdateien nach der HTTP-Prüfung unverändert",
+      "ok": true,
+      "detail": "0 Abweichungen"
+    }
+  ]
+}

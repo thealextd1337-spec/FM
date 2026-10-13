@@ -1,0 +1,81 @@
+{
+    "version": "v4",
+    "fbx": "Assets/Doppel6EngineProbe/Art/d6_lowpoly_v4.fbx",
+    "asset": "Assets/Doppel6EngineProbe/Art/WorldPlayerLowPoly-v4.asset",
+    "meshName": "WorldPlayerLowPoly-v4",
+    "meshHash": "4f4c39459c09e94c6c037f7a4247b2347c5083ce63c30beb4c27c56489c62096",
+    "vertices": 6926,
+    "triangles": 2592,
+    "originalVertices": 9725,
+    "originalTriangles": 12668,
+    "bones": 28,
+    "maxInfluences": 4,
+    "bindposeMaxDifference": 0.0,
+    "weightSumMin": 0.9999998807907104,
+    "weightSumMax": 1.0000001192092896,
+    "restDistanceMean": 0.002885509515181184,
+    "restDistanceP95": 0.009241640567779541,
+    "restDistanceMax": 0.020870523527264595,
+    "soleLow": -0.0003103555063717067,
+    "soleOriginal": 1.0287021012800324e-7,
+    "boundsMin": {
+        "x": -0.8407561779022217,
+        "y": -0.1717451810836792,
+        "z": -0.0003103017807006836
+    },
+    "boundsMax": {
+        "x": 0.8409557342529297,
+        "y": 0.1757696568965912,
+        "z": 1.695686936378479
+    },
+    "originalBoundsMin": {
+        "x": -0.8379608392715454,
+        "y": -0.17129282653331757,
+        "z": 1.1920928955078125e-7
+    },
+    "originalBoundsMax": {
+        "x": 0.8398870229721069,
+        "y": 0.17501996457576752,
+        "z": 1.700000286102295
+    },
+    "regions": [
+        {
+            "name": "hair",
+            "lowVertices": 240,
+            "originalVertices": 1362,
+            "agree": 239
+        },
+        {
+            "name": "other",
+            "lowVertices": 2765,
+            "originalVertices": 2104,
+            "agree": 2689
+        },
+        {
+            "name": "shirt",
+            "lowVertices": 650,
+            "originalVertices": 1533,
+            "agree": 624
+        },
+        {
+            "name": "shorts",
+            "lowVertices": 279,
+            "originalVertices": 1063,
+            "agree": 244
+        },
+        {
+            "name": "skin",
+            "lowVertices": 2603,
+            "originalVertices": 2904,
+            "agree": 2465
+        },
+        {
+            "name": "socks",
+            "lowVertices": 389,
+            "originalVertices": 759,
+            "agree": 371
+        }
+    ],
+    "regionAgreement": 0.9575512409210205,
+    "notes": []
+}
