@@ -1,5 +1,13 @@
 # Änderungen
 
+## Noch nicht veröffentlicht
+
+### 13. Oktober 2026 — Dokumentation und Git-Bereinigung
+
+- Aktuellen Dokumentationsweg auf den übernommenen Release-131-Stand ausgerichtet: kurzer Index, Anbieter-unabhängige Entwicklungsregeln, Übergabe- und Sicherungsprozess. Historische Auftragspläne sind ausdrücklich inaktiv; der frühere Index bleibt als unveränderter Snapshot und navigierbare Archivkopie erhalten.
+- Spätere Nutzerbeobachtungen B09–B18 und Prüfungen P05–P07 erhalten, B11 wieder geöffnet. Transfer-/Taktikwünsche B16–B18 und Finanzhinweis B15 als noch nicht umgesetzt gekennzeichnet. Aktueller Low-Poly-Umfang, zurückgestellte Nighttime-Idee und verworfene Licht-/Stadionfortsetzungen zentral eingeordnet.
+- Historische Finanzbelege auf die gesicherte Finance-106-Variante mit Archiv-/Hashzuordnung verwiesen. Markdownziele im aktuellen Index und neuen Dokumenten geprüft; fehlende historische Outputs separat ausgewiesen. Keine Produktcodeänderung, neue Tests, Versionsanhebung oder Veröffentlichung.
+
 ## 13. Oktober 2026 – Release 131
 
 - Low-Poly 131: Die 96 Ligavereine erhalten eine feste Zuordnung zu den fünf fertig ausgearbeiteten Stadionvorlagen – 14 große, 52 mittlere und 30 kleine. Vereinsnamen, Farben, Banner sowie Heim- und Gästefanblöcke bleiben klubbezogen. Weitere Einzelstadien sind im [Erweiterungsplan](stadionerweiterung-plan.md) zurückgestellt.

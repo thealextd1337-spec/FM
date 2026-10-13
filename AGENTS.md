@@ -1,24 +1,20 @@
 # Doppel 6: Hinweise für Entwicklungsinstanzen
 
-Doppel 6 ist ein mobil spielbarer Fußballmanager im Browser. Der aktuelle Quellstand liegt in `dist/`; der Code ist für den Implementierungsstand maßgeblich. Neue Nutzerentscheidungen haben Vorrang vor der Dokumentation.
+Doppel 6 ist ein mobil spielbarer Fußballmanager im Browser. Maßgeblich sind der aktuelle Nutzerauftrag, der tatsächlich gewählte Checkout mit seinem Git-Status und dessen `dist/`. Der Hauptcheckout enthält den übernommenen Release-131-Quellstand; neue Nutzerentscheidungen haben Vorrang vor älteren Dokumenten.
 
-`freekickdemo/` ist ein eigenständiges Projekt. Änderungen und Veröffentlichungen von Doppel 6 beziehen diesen Ordner nicht ein.
+`freekickdemo/` ist eigenständig. Die bisherige Sechserliga wird nicht weiterentwickelt; neue Produktfunktionen gehören zur Vereinswelt.
 
-Die bisherige Sechserliga wird nicht weiterentwickelt. Neue Produktfunktionen gehören zur Vereinswelt; Details stehen in `docs/product.md`.
+Lies nur aufgabenrelevante Dateien:
 
-Lies nur die für die Aufgabe relevanten Dateien:
+- Spielregeln, Karriere, Transfers, Pokal, Auszeichnungen und UI: `docs/product.md`.
+- Codeänderungen, Tests, Build, Git-Übergabe und Veröffentlichung: `docs/development.md`.
+- Offene Fehler oder Wünsche: `docs/Bugliste.md`; aktueller Umfang und zurückgestellte Ideen: `docs/entscheidungen.md`.
+- Abgeschlossene Änderungen: `docs/CHANGELOG.md` ergänzen; Format in `docs/README.md`.
 
-- Bei Spielregeln, Karriere, Transfers, Pokal, Auszeichnungen oder UI: `docs/product.md`.
-- Beim Flutlicht-Redesign oder dessen Integration: `docs/agentenauftraege/06-ui-redesign.md` und die dort verlinkte UI-Referenz.
-- Bei Codeänderungen, Tests, Build oder Veröffentlichung: `docs/development.md`.
-- Bei abgeschlossenen Änderungen und neuen Features: Eintrag in `docs/CHANGELOG.md` ergänzen; Format in `docs/README.md`.
+Historische Pläne und Agentenaufträge sind inaktiv; sie starten keine Umsetzung oder Fortsetzung. Nutze sie als Referenz nur innerhalb eines aktuellen Nutzerauftrags.
 
-Bei jeder Veröffentlichung die Versionsnummer im Seitenfuß anheben und den gleichen Stand in Quellcode, Build und Live-Seite prüfen.
+Bei jeder Veröffentlichung die Fußversion anheben und denselben Stand in Quelle, Build und Live-Seite prüfen. Bestehende Spielstände werden gemäß `docs/development.md` nicht rückwirkend umgerechnet. Spielerfähigkeiten einschließlich zugänglicher Beschriftungen nur als Farbstufen zeigen; genaue Werte und Entwicklungspunkte bleiben intern.
 
-Für künftige Änderungen gilt: Bestehende Spielstände nicht rückwirkend berechnen oder umrechnen, wenn dafür Zusatzlogik nötig wäre. Details und Ausnahmen stehen in `docs/development.md`.
+Bei beauftragter 3D-Modellierung, Texturierung, Rigging oder Animation darf der verfügbare Meshy-Funktionsumfang genutzt werden. Verwende dafür den Meshy-Plugin-Skill und `docs/meshy-workflow.md`. Verfügbarkeit und Credits starten keinen Assetauftrag.
 
-Spielerfähigkeiten in allen Ansichten einschließlich zugänglicher Beschriftungen nur als Farbstufen zeigen. Exakte Fähigkeitswerte und Entwicklungspunkte bleiben intern; Details stehen in `docs/product.md`.
-
-Halte diese Datei als Wegweiser kurz. Pflege feste Produktentscheidungen in `docs/product.md` und Entwicklungsregeln in `docs/development.md`.
-
-Für 3D-Modellierung, Texturen, Rigging und Animationen darfst du den vollen verfügbaren Funktionsumfang von meshy.ai nutzen, einschließlich Beratung, Generierung und Bearbeitung. Nutze dafür den Meshy-Plugin-Skill; projektspezifische Abläufe stehen in `docs/meshy-workflow.md`.
+Halte diesen Wegweiser kurz; feste Fachregeln stehen in `docs/product.md`, Entwicklungsregeln in `docs/development.md`.

@@ -1,6 +1,10 @@
-# Agentenplan für Doppel 6
+# Historischer Agentenplan für Doppel 6
 
-[Neues Unity-Arbeitspaket für Claude nach dem Token-Refresh](07-unity-qualitaet-claude.md): aktuelle 3D-Fortsetzung mit Dateieigentum und Prüfkriterien; der Auftrag liest den integrierten Release-119-Stand vor Umsetzung.
+**Historischer Katalog — kein aktiver Auftrag.** Stand der Einordnung: 13. Oktober 2026. Alle nachfolgenden Paket-, Wellen-, Timer- und Fortsetzungsangaben sowie die verlinkten Einzelprompts dokumentieren frühere Aufträge. Sie starten keine Arbeiten, auch wenn ihr damaliger Text „aktuell“, „nächster Schritt“ oder eine Modellzuweisung nennt. Geltende Präferenzen bleiben als Referenz erhalten; aktuelle Regeln und Umsetzungsstände stehen in [Produktregeln](../product.md), [Entwicklung](../development.md) und [Entscheidungen](../entscheidungen.md). Die [Bugliste](../Bugliste.md) ist ein Backlog, keine Startfreigabe.
+
+Die historischen IDs P01–P06 in diesem Katalog sind Paketkennungen. Insbesondere historisches P05 ist nicht die gleichnamige aktuelle Prüfkennung P05 der Bugliste.
+
+[Damals geplantes Unity-Arbeitspaket](07-unity-qualitaet-claude.md): historische Dateizuständigkeiten und Prüfkriterien auf Basis von Release 119. Kein aktueller Fortsetzungsauftrag.
 
 Stand: 8. Oktober 2026. Ziel dieses Dokuments ist eine vollständige, verteilbare Aufgabenplanung. **U01, Welle 0 und die lokale Welle-1-PC-Vergleichsdemo einschließlich Unity sind geliefert. P01–P03-Rechner sowie P04–P06 mit vollständiger Rollen-/Taktikoberfläche sind auf Nutzerauftrag in neue lokale Prüfkarrieren integriert. Der schnelle offensive Matchfluss und die nächste Unity-Aktionsiteration sind lokal umgesetzt. Produktionsgates bleiben offen.** [Spielergrundlagen](../player-contracts/integration.md), [Rollen, Taktik und Unity](../platform/roles-tactics-football.md). Kein Fachagent beginnt weitere Pakete allein aufgrund dieser Planung; ein passender Nutzerauftrag ist erforderlich.
 

@@ -2,6 +2,12 @@
 
 Stand: 5. Oktober 2026. Der bestätigte Zahlungsplan und die reinen Pokal-Simulationsteams sind als Prototyp 106 veröffentlicht. Dieser vollständige Lauf ersetzt die vorherige Auswertung mit wirtschaftenden Pokalvereinen.
 
+## Historische Belege: Archivvariante Finance 106
+
+Archivhinweis vom 13. Oktober 2026: Die nachfolgenden Ergebnisse beschreiben den Lauf vom 5. Oktober 2026 und keinen aktuellen Release-131-Test. Die ursprünglichen relativen `outputs/finance-v124/`-Ziele fehlen im Release-131-Bestand. Für diesen Bericht ist die gesicherte Variante aus dem damaligen Worktree `work/releases/finance-106` maßgeblich: Von zehn Belegdateien unterscheiden sich sieben von den ebenfalls gesicherten Root-Ausgaben; beide Varianten dürfen nicht still vertauscht werden.
+
+Archiv auf zweiter Platte: `H:/Doppel6-Sicherung-20261013/artifacts/sol61-r2/local-historical-and-external-supplement.zip`. Die zehn Finance-106-Dateien sind im ZIP unter `worktrees/22/outputs/finance-v124/` abgelegt. Exakte Namen, SHA-256, Root-Vergleich und Archivmitglied stehen in `H:/Doppel6-Sicherung-20261013/nachtrag-abschlussliste/abschlussliste/FINANZ-BELEGVARIANTE.json`; zusätzlicher Coverage-Nachweis: `H:/Doppel6-Sicherung-20261013/audit/sol61-r2/coverage.json`. Zum Öffnen gewünschte Belegdateien gemeinsam in einen lokalen Ordner extrahieren und gegen dieses Manifest prüfen. Die Rohoutputs werden nicht ins Repository kopiert.
+
 ## Ergebnis
 
 Die lokale Auswertung wurde um eine separate Jahrestabelle für Jugendübernahmen und Transfers ergänzt: tatsächliche Anzahl der Jugendübernahmen, Ausbildungsentschädigungen, Transfereinnahmen, Transferausgaben und Transfersaldo. CSV/JSON enthalten die Übernahmeanzahl zusätzlich zu den Geldbeträgen. Beim Durchschnitt mehrerer Welten werden diese Anzahlen gemittelt. Die neue Abrechnungsansicht im Spiel ist in [Finanzabschluss v130](finanzabschluss-v130.md) dokumentiert.
@@ -47,10 +53,10 @@ In Saison 10 lagen die Schlusskontostände dieser 20 Fälle zwischen 1.071 und 5
 
 ## Grafiken und vollständige Vereinsbilanzen
 
-Der [interaktive Finanzbericht](../outputs/finance-v124/finance-report.html) zeigt feste Gruppen, auswählbare Vereine und Welten, Kontostände, gestapelte Einnahmen und Ausgaben sowie Jahresbilanzen. Die Startansicht ist auf Ligavereine ohne Europacup gefiltert. Alle 48 Vereine sind auswählbar; bei den zwölf Simulationsteams erscheint eine Erklärung statt irreführender Finanzgrafiken. Finanzvergleiche enthalten ausschließlich wirtschaftende Ligavereine. Die CSV kennzeichnet die Simulationsteams ausdrücklich.
+Der interaktive Finanzbericht (`finance-report.html` in der oben genannten Archivvariante) zeigt feste Gruppen, auswählbare Vereine und Welten, Kontostände, gestapelte Einnahmen und Ausgaben sowie Jahresbilanzen. Die Startansicht ist auf Ligavereine ohne Europacup gefiltert. Alle 48 Vereine sind auswählbar; bei den zwölf Simulationsteams erscheint eine Erklärung statt irreführender Finanzgrafiken. Finanzvergleiche enthalten ausschließlich wirtschaftende Ligavereine. Die CSV kennzeichnet die Simulationsteams ausdrücklich.
 
-- [Sämtliche Vereinsjahre als CSV](../outputs/finance-v124/finance-clubs.csv)
-- [Messdaten und Quellenprüfsummen als JSON](../outputs/finance-v124/finance-data.json)
+- Sämtliche Vereinsjahre als CSV (`finance-clubs.csv` in der oben genannten Archivvariante)
+- Messdaten und Quellenprüfsummen als JSON (`finance-data.json` in der oben genannten Archivvariante)
 
 Die Grafikvergleiche mit dem bisherigen Ablauf verwenden für einen ausgewählten Verein dieselben Welt-Seeds. Die neuen und bisherigen Gruppen können unterschiedlich groß sein, da die sportlichen Ergebnisse und damit Qualifikationen abweichen können.
 

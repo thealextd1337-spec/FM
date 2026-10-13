@@ -1,8 +1,22 @@
 # Entwicklung und Veröffentlichung
 
-## Veröffentlichung 131
+## Aktueller Arbeitsstand und Abschluss
 
-Der veröffentlichte Quellstand liegt in `work/lowpoly-live-release131/dist/` und basiert auf Release 130. Opus 5.5 hat Licht/Schatten, Stadien/Fanblöcke und Tornetz vorbereitet. Nach dem Claude-API-Ratenlimit hat Codex mit Denkintensität High auf ausdrücklichen Nutzerauftrag die feste Zuordnung und offenen Korrekturen übernommen. Unity wurde ausschließlich in `G:/unity/Doppel6-LowPoly-Demo-Release131` seriell geprüft und gebaut. Bestehende Demos und Unity-Projekte bleiben erhalten; der ältere Root-Stand ist keine Veröffentlichungsquelle.
+Stand dieser Dokumentationsbereinigung: 13. Oktober 2026. Der Hauptcheckout übernimmt Release 131 (`1f907440e194fba098af52f77eed52f97e71cd01`); `dist/` ist seine aktuelle Quelle. Release 131 ist laut Nutzer bereits live. Diese Bereinigung veröffentlicht nichts und prüft die Live-Seite nicht erneut. Vor Arbeit Branch, Commit und `git status` des tatsächlich verwendeten Checkouts prüfen. Die [Entscheidungsliste](entscheidungen.md) grenzt aktive Anforderungen und historische Pläne ab.
+
+1. Für eine neue Aufgabe einen passenden Aufgabenbranch vom vereinbarten aktuellen Stand verwenden. Einen eigenen Worktree einsetzen, wenn parallele Arbeit oder Isolation ihn sinnvoll macht; Dateien und Zuständigkeiten bei paralleler Arbeit festlegen.
+2. Nur den aktuellen Nutzerauftrag umsetzen. [Bugliste](Bugliste.md), historische Prompts, Terminangaben und Restpläne dienen der Einordnung und starten keine Folgearbeit. Bestandsspielstände nach den untenstehenden Fachregeln erhalten.
+3. Änderungen passend zum betroffenen Verhalten prüfen. Eine Übergabe nennt Basiscommit, Branch/Checkout, tatsächlichen Status, geänderte Dateien, ausgeführte Prüfungen mit Belegen, verbleibende Grenzen und den nächsten erforderlichen Schritt. Wichtige Entfernungen und ihre Sicherungsnachweise gezielt durch eine zweite Instanz prüfen lassen.
+4. Vor Entfernen eines Arbeitsstands dessen abweichende Dateien und lokale Nachweise sichern. SHA-256-Manifeste, Archivzuordnung und Wiederherstellungsweg zusammen mit dem Archiv auf einer zweiten Platte erhalten. Eine Repositorykopie ersetzt keine Prüfung ignorierter oder externer Dateien.
+5. Fertige Änderungen im [Changelog](CHANGELOG.md) dokumentieren. Auftrag und vorhandene Autorisierung bestimmen den Abschluss; routinemäßige reversible Schritte benötigen keine erneuten pauschalen Bestätigungsrunden. Ein Push auf `main` löst das Deployment aus und gehört nur zu einer entsprechend autorisierten Veröffentlichung.
+
+## Historische Releaseberichte und Fachreferenzen
+
+Die folgenden datierten Release- und Integrationsabschnitte behalten ihre Fachregeln und Nachweise. Alte Worktrees, frühere Quellenangaben und damalige offene Schritte sind Herkunftsangaben; sie sind inaktiv und ersetzen weder den aktuellen Checkout noch einen aktuellen Nutzerauftrag. Historische Belegpfade dürfen auf externe Archive verweisen; ein fehlender lokaler Output macht den damaligen Test nicht zu einer aktuellen Prüfung.
+
+## Veröffentlichung 131 — historischer Bericht vom 13. Oktober 2026
+
+Historischer Releasebericht vom 13. Oktober 2026: Release 131 basiert auf Release 130. Licht/Schatten, Stadien/Fanblöcke und Tornetz wurden integriert; feste Vereinszuordnung und offene Korrekturen sind enthalten. Der damalige Veröffentlichungsworktree hieß `work/lowpoly-live-release131`; gebaut wurde seriell in `G:/unity/Doppel6-LowPoly-Demo-Release131`. Diese Pfade dokumentieren die Herkunft und sind keine aktuelle Arbeitsanweisung. Der übernommene Quellstand liegt heute im Hauptcheckout unter `dist/`; Einzelheiten und damalige Nachweise stehen in [Release 131](release-131.md).
 
 Die aktuelle Nutzerentscheidung begrenzt den Stadionumfang auf die fünf ausgearbeiteten Vorlagen mit fester Größen-Zuordnung für alle 96 Ligavereine. Die einmal aus der Katalog-Fanbasis abgeleitete Tabelle ist im Laufzeitcode festgeschrieben und wird später nicht durch Karriereverlauf oder Katalogänderungen neu berechnet. Die zusätzlichen 91 Einzelentwürfe sind zurückgestellt; [Zuordnung und Erweiterungsplan](stadionerweiterung-plan.md). Die tatsächliche Vereinskennung bleibt getrennt von `TemplateId`; Geometrie und Detailzufall gehören zur Vorlage.
 
@@ -10,15 +24,15 @@ Die aktuelle Nutzerentscheidung begrenzt den Stadionumfang auf die fünf ausgear
 
 Die integrierte Fassung besteht 1.511 Profil-, 966 Architektur-, 277 Fanblock- und 198 Lichtprüfungen. Der Tornetz-Schlusslauf umfasst nach der tatsächlichen Unity-Nachrichtenaufzeichnung 102 Checks und drei vollständige aktuelle Aufzeichnungen; neun bestehende Controllergruppen behalten ihre Werte, Ergebnisse und Grenzen. Die neue Galerie umfasst 127 knochensynchronisierte Bilder mit pixelgleichem Pausenvergleich. Frischer WebGL-Build, vollständige Browserparität und physische Android-Beobachtungen sind im [Releasebericht 131](release-131.md) getrennt festgehalten. Alle 122 Produktionskommandos, acht öffentliche Datei- und Versionsabgleiche sowie die echte Live-Browserabnahme bestehen. `work/test-release-version.cjs` bindet Footer, Unity-Produktmetadaten, Laufzeitcache und Hilfedaten an dieselbe Veröffentlichung.
 
-## Veröffentlichung 130
+## Veröffentlichung 130 — historischer Bericht vom 12./13. Oktober 2026
 
 [Release 130](release-130.md) integriert die geprüften R21-/Keeper-/Taktik-Kandidaten in einen neuen Worktree auf dem veröffentlichten Quellstand 129. Quellen und Unity-Payload sind hashgebunden; Standardbuild, produktive Bildzeitplanung, 119 Produktionskommandos und die Live-Abnahme bestehen. Acht öffentliche Dateien stimmen mit dem Paket überein; vollständige native/Unity-Partien und gespeicherte Karrieren sind nach Neuladen identisch. Der ältere parallele Root-Stand wurde nicht als Releasebasis verwendet. Offene Fehler und konkrete Folgeprüfungen stehen in der [Bugliste](Bugliste.md).
 
 `view-frame-scheduler-v130.js` ist im Elternbuild und bytegleich im Runtime-Präfix eingebunden. Der Timer-Ersatz ist auf sichtbare Unity-Ansichten begrenzt; 2D verwendet native Browsercallbacks. Pause, Verbergen, Verlassen der Ansicht und Rückkehr aus dem Browsercache erhalten Callback- und native Matchzuständigkeit. `work/test-view-frame-scheduler-v130.cjs` prüft 17 Scheduling-/Lifecycle-Fälle. `work/run-native130-tests.cjs` ergänzt 56 Keeper-/Restartprüfungen; `work/test-tactics-roster-v130.cjs` prüft 96 native Kaderfälle. Alle drei Befehle gehören zum Produktionsworkflow. Die Positionsbeobachtung in `world-pitch3d-v98.js` hängt sich nur ein, wenn `step` vorhanden ist; reine Projektionsleser benötigen keinen Ersatzcontroller.
 
-## Veröffentlichung 129
+## Veröffentlichung 129 — historischer Bericht vom 12. Oktober 2026
 
-[Release 129](release-129.md) baut auf der veröffentlichten UI 128 auf. Quelle, Laufzeitfuß, Hilfedaten, Builds und öffentliche Seite zeigen 129; beide Builds und Live-Datei sind bytegleich. Die vollständige Produktionspipeline und tatsächliche Rollen-/Vertrags-/Neulade-/Matchprüfung auf der Live-Seite sind bestanden. Lokaler veröffentlichter Quellstand: `work/release-129/dist/`; parallele Arbeitsstände bleiben erhalten.
+[Release 129](release-129.md) baut auf der veröffentlichten UI 128 auf. Quelle, Laufzeitfuß, Hilfedaten, Builds und öffentliche Seite zeigen 129; beide Builds und Live-Datei sind bytegleich. Die vollständige Produktionspipeline und tatsächliche Rollen-/Vertrags-/Neulade-/Matchprüfung auf der Live-Seite sind bestanden. Damals verwendeter Veröffentlichungsworktree: `work/release-129/dist/` (historische Herkunft). Der heutige Quellstand liegt in `dist/`.
 
 ## Kaderrollen v179
 
@@ -359,7 +373,7 @@ Die Fähigkeitszahlen bleiben intern und im Spielstand erhalten. Oberflächen ei
 
 Bei Änderungen an der Spiellogik `node work/test-v55.cjs`, `node work/build.cjs` und einen vollständigen Browser-Match prüfen. Besonders prüfen: Ball außerhalb der Seitenlinie während des Einwurfs, verlangsamte Uhr bei weiterlaufender Bewegung, Abseitslinie und Wiederanstoß, Kurzpass nach Abseits, tatsächlicher Landepunkt hoher Bälle und keine doppelten Schüsse oder Vorlagen.
 
-### Flutlicht: lokale Vereinswelt-Oberfläche
+### Flutlicht: historische lokale Integration vom 7. Oktober 2026
 
 Der ausdrückliche Gesamtstart vom 7. Oktober 2026 umfasst U01 lokal. `dist/ui-flutlicht/adapter.js` bindet nach den bisherigen Renderern an, projiziert ausschließlich sichtbare Werte und verschiebt vorhandene DOM-Knoten ohne Klonen in den Rahmen. Spielphasen, Finanzen, Kader und Speicherung bleiben bei den bestehenden Controllern. Ansichtsdateien unter `views/` konsumieren nur den Vertrag in `docs/ui-redesign/contracts.md`. Quellen und Offline-Build laden dieselben Module; `work/ui-redesign/shared/assets.cjs` enthält deren Buildliste. Jede neue Ansicht muss im Quell-Loader und dieser Liste stehen.
 
