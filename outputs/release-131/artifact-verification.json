@@ -2,7 +2,7 @@
   "passed": true,
   "version": 131,
   "sourceId": "319e2f7223bb42c5da2bf41c52aa7ac1ea960f0b9f1b46c38fc017f1ae327982",
-  "checkedAt": "2026-10-13T11:49:40.940Z",
+  "checkedAt": "2026-10-13T12:06:17.561Z",
   "packageFiles": 9,
   "files": [
     {
@@ -18,7 +18,7 @@
     {
       "file": "unity-match/runtime.js",
       "bytes": 5781,
-      "sha256": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b"
+      "sha256": "940d6515f3f029ea0d8743f89fce25eab3d5c22b05a1becdd31c9cb389f06b1f"
     },
     {
       "file": "unity-match/.htaccess",
@@ -51,7 +51,7 @@
       "sha256": "483c43a812919aa7ea64a885ff2464d47a113684d83ed74c660a7d31f6ed6122"
     }
   ],
-  "productionCommands": 121,
+  "productionCommands": 122,
   "androidVisualAccepted": true,
   "androidWakePassed": true,
   "browserChecks": 8,

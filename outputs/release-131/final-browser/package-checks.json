@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-13T11:32:46.781Z",
+  "checkedAt": "2026-10-13T12:04:18.864Z",
   "passed": true,
   "scope": "Final release131 HTTP package, own isolated Chrome, SwiftShader for contract checks; no hardware/FPS/live claim.",
   "sourceId": "319e2f7223bb42c5da2bf41c52aa7ac1ea960f0b9f1b46c38fc017f1ae327982",
@@ -59,7 +59,7 @@
       "local-129-r20-http:AUT-8:11",
       "local-129-r20-http:AUT-8:7"
     ],
-    "session": "S1:AUT:LEAGUE:R5:AUT-5-AUT-8:1:cbe2ca93-0429-476f-92bc-dbe057576961",
+    "session": "S1:AUT:LEAGUE:R5:AUT-5-AUT-8:1:9598dee0-e08f-4a54-a85e-e49ece14b751",
     "lastError": null,
     "labels": 12
   },

@@ -1,9 +1,15 @@
 {
   "passed": true,
-  "completed": 121,
-  "total": 121,
+  "completed": 122,
+  "total": 122,
   "node": "v24.19.0",
   "rows": [
+    {
+      "command": "node work/test-release-version.cjs",
+      "exitCode": 0,
+      "ms": 38,
+      "log": "version-binding.log"
+    },
     {
       "command": "node work/test-lowpoly-goal-tail.cjs",
       "exitCode": 0,
@@ -730,5 +736,6 @@
       "ms": 274,
       "log": "121.log"
     }
-  ]
+  ],
+  "scope": "121 full local production commands plus the added cross-file version-binding regression after the runtime metadata-only correction; final CI executes all122 on the final commit"
 }
