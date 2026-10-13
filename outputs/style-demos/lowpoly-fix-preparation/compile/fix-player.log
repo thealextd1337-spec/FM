@@ -1,0 +1,2 @@
+prototypes\match-engine-unity\ProbeBridge.cs(33,21): warning CS0618: "RenderPipelineManager.endFrameRendering" ist veraltet: "endFrameRendering is deprecated. Use endContextRendering instead. #from 2023.3"
+prototypes\match-engine-unity\ProbeBridge.cs(34,22): warning CS0618: "RenderPipelineManager.endFrameRendering" ist veraltet: "endFrameRendering is deprecated. Use endContextRendering instead. #from 2023.3"

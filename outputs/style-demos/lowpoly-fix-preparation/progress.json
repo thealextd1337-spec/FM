@@ -1,0 +1,62 @@
+{
+  "round": "lowpoly-opus-r2-ground-fix-preparation",
+  "date": "2026-10-13",
+  "status": "source-only preparation committed; not Unity-validated, not built, not accepted",
+  "checkout": "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/demo-low-poly-fix",
+  "branch": "codex/demo-low-poly-fix-20261013",
+  "base": "d8ae87854aff9f51e3ff0a54338938184c5283ed",
+  "commit": "see git log of the branch (this file is part of the commit)",
+  "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+  "sourceIdFiles": 46,
+  "previousSourceId": "46a6e081054ba81328e69ba8a01f66daaf0470bb2263b3de17f3f14369f3a4b8",
+  "webgl": "none for this sourceId; frozen d8ae8785 payload untouched and not associated",
+  "approach": "Fable option A: hidden disabled ground skin (WorldPlayer.asset) on the same bones; FootballGround measures sole, clip offsets, contour and turf stand on it; drawn skin stays WorldPlayerLowPoly-v4; no ground skin = unchanged release path",
+  "changedFiles": [
+    "prototypes/match-engine-unity/FootballAnimation.cs",
+    "prototypes/match-engine-unity/WorldViewBridge.cs",
+    "prototypes/match-engine-unity/ProbeBridge.cs",
+    "prototypes/match-engine-unity/WorldViewEnvironment.cs",
+    "prototypes/match-engine-unity/WorldViewSetup.cs",
+    "prototypes/match-engine-unity/LowPolySetup.cs",
+    "prototypes/match-engine-unity/D6Cli.cs",
+    "prototypes/match-engine-unity/LowPolyGroundDiagnostics.cs (new, Editor)",
+    "prototypes/match-engine-unity/LowPolyDiagnostics.cs",
+    "prototypes/match-engine-unity/NaturalMotionDiagnostics.cs",
+    "prototypes/match-engine-unity/FootballDuelTests.cs",
+    "prototypes/match-engine-unity/FootballIterationTests.cs",
+    "prototypes/match-engine-unity/FootballKeeperTests.cs",
+    "prototypes/match-engine-unity/FootballPresentation119Tests.cs",
+    "prototypes/match-engine-unity/ProbeBuildIdentity.cs",
+    "prototypes/match-engine-unity/source-identity.json",
+    "docs/3d-stilauftraege/low-poly-ground-fix-preparation.md",
+    "outputs/style-demos/lowpoly-fix-preparation/*"
+  ],
+  "staticChecks": {
+    "compile": "Unity-bundled Roslyn vs 6000.6.4f1 reference assemblies + LowPoly project URP/Core script assemblies (read only): base d8ae8785 editor 0 errors/player 0 errors; fix editor 0 errors (54 files)/player 0 errors (20 files); new warnings only 2x CS0618 FindFirstObjectByType (existing pattern)",
+    "identity": "generate-identity.cjs run twice with Node 24.19.0, identical 644d9d92...",
+    "syncMapping": "evaluated from sync-unity.cjs rule, LowPolyGroundDiagnostics.cs -> Editor; no sync executed",
+    "manifestCoverage": "all build-relevant changed files already in build-manifest.cjs sourceFiles; diagnostics follow the existing exclusion convention"
+  },
+  "notRun": ["Unity Editor/batch", "PlayMode", "GPU", "WebGL build", "browser", "perf", "sync into any Unity project"],
+  "unknownUntilUnity": [
+    "BakeMesh on a disabled SkinnedMeshRenderer (checked directly by D6Cli.LowPolyGround)",
+    "GetComponentsInChildren returns the disabled ground skin",
+    "per-frame cost/memory of a disabled skin; download growth by WorldPlayer.asset; draw calls unchanged",
+    "MoveGameObjectToScene+SetParent in suite preview scenes",
+    "drawn low-poly sole under original motion vs existing -1/-2 cm limits"
+  ],
+  "prerequisitesForUnity": [
+    "Sonnet browser proof of frozen d8ae8785 finished (Root decides)",
+    "copy ignored outputs/platform/world-unity/contract-fixture.json (sha256 73ca92d6fdfb36f14fdb6277493c91dffcee6e4b45c707dae440227fc47022f2) into the validation checkout",
+    "first sync from this checkout with --base d8ae8785 into G:/unity/Doppel6-LowPoly-Demo",
+    "D6Cli.MatchMesh -d6mesh lowpoly must run again to serialize groundPlayerMesh"
+  ],
+  "nextStep": "docs/3d-stilauftraege/low-poly-ground-fix-preparation.md section 'Nächster Unity-Lauf'",
+  "artifacts": [
+    "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/demo-low-poly-fix/docs/3d-stilauftraege/low-poly-ground-fix-preparation.md",
+    "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/demo-low-poly-fix/outputs/style-demos/lowpoly-fix-preparation/progress.json",
+    "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/demo-low-poly-fix/outputs/style-demos/lowpoly-fix-preparation/compile-check.sh",
+    "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/demo-low-poly-fix/outputs/style-demos/lowpoly-fix-preparation/compile-fix.txt",
+    "F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/demo-low-poly-fix/outputs/style-demos/lowpoly-fix-preparation/compile/"
+  ]
+}

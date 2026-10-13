@@ -10,6 +10,9 @@ public partial class ProbeBridge {
     public Mesh matchPlayerMesh;
     // Optional BaseColor of a replacement match mesh with its own unwrap (Klares Low-Poly); null keeps Player.mat.
     public Texture2D matchPlayerBase;
+    // The release mesh (WorldPlayer.asset) the ground is measured on when matchPlayerMesh is another skin
+    // (FootballGround.AttachGroundSkin); this reference also keeps it in the build. Null: the drawn mesh.
+    public Mesh groundPlayerMesh;
     static string loggedMesh;
     WorldViewState worldView;
     WorldPose[] worldActors;
@@ -40,7 +43,7 @@ public partial class ProbeBridge {
                 if(matchKitShader==null||clothMask==null||matchPlayerMesh==null)throw new InvalidOperationException("Match view assets are unavailable");
                 worldView=candidate;simulation=null;accumulator=0;worldActors=worldView.Frame.players;BuildWorld();InitWorldPresentation();lastWorldClock=-1;RenderWorld();ReplyWorld("ack",candidate.Frame.sequence);
                 // Display identity of the loaded player skin (console only): proves which match mesh a build really renders.
-                if(matchPlayerMesh.name!=loggedMesh){loggedMesh=matchPlayerMesh.name;Debug.Log("[D6] match mesh "+matchPlayerMesh.name+" vertices="+matchPlayerMesh.vertexCount+" base="+(matchPlayerBase!=null?matchPlayerBase.name:"Player.mat")+" mask="+clothMask.name);}
+                if(matchPlayerMesh.name!=loggedMesh){loggedMesh=matchPlayerMesh.name;Debug.Log("[D6] match mesh "+matchPlayerMesh.name+" vertices="+matchPlayerMesh.vertexCount+" base="+(matchPlayerBase!=null?matchPlayerBase.name:"Player.mat")+" mask="+clothMask.name+" ground="+(groundPlayerMesh!=null&&groundPlayerMesh!=matchPlayerMesh?groundPlayerMesh.name+" vertices="+groundPlayerMesh.vertexCount:"drawn"));}
             }else if(command?.kind=="frame"&&worldView!=null){
                 if(worldView.Accept(command.frame)){
                     bool changed=worldActors.Length!=command.frame.players.Length;
@@ -87,6 +90,11 @@ public partial class ProbeBridge {
     void WorldMesh(GameObject go){
         if(worldView==null)return;
         foreach(var r in go.GetComponentsInChildren<SkinnedMeshRenderer>())r.sharedMesh=matchPlayerMesh;
+    }
+    // After the materials: the hidden ground skin of a replacement match mesh (none for the release mesh).
+    void WorldGround(GameObject go){
+        if(worldView==null)return;
+        FootballGround.AttachGroundSkin(go.transform,groundPlayerMesh);
     }
     void RenderWorld(){
         if(worldView==null||world==null||playback==null)return;var f=playback.Sample(Time.realtimeSinceStartupAsDouble);displayed=f;var camera=Camera.main;

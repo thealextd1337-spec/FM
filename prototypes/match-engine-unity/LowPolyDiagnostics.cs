@@ -33,7 +33,7 @@ public static class LowPolyDiagnostics {
     static readonly Vector3 Ball=new Vector3(-2.1f,.29f,-1.4f);
 
     [Serializable] public class Shot {public string file,club,archetype,kits,quality,mode,size;public float sky,pitch,teamVsTurf0,teamVsTurf1,teamVsTeam,ballVsTurf,keeperVsTurf,darkKitLuma,lightKitLuma;}
-    [Serializable] public class Scene {public string club,archetype,quality,playerMesh,playerMeshHash;public int renderers,materials,shadowCasters,triangles,stadiumTextures,players,playerVertices,playerTriangles,playerBones,playerTriangleSum;public long stadiumTextureBytes;}
+    [Serializable] public class Scene {public string club,archetype,quality,playerMesh,playerMeshHash,groundMesh;public int renderers,materials,shadowCasters,triangles,stadiumTextures,players,playerVertices,playerTriangles,playerBones,playerTriangleSum,groundSkins,groundSkinsEnabled;public long stadiumTextureBytes;}
     [Serializable] class Report {public string label,sourceId,unity,device,note;public Shot[] shots;public Scene[] scenes;public string[] comparisons;}
 
     // SHA-256 over positions, UV0, rest coordinates (TEXCOORD2), weights and indices.
@@ -114,8 +114,8 @@ public static class LowPolyDiagnostics {
             var world=(Transform)typeof(ProbeBridge).GetField("world",flags).GetValue(bridge);var s=new Scene{club=club,archetype=bridge.StadiumArchetype,quality=quality};var mats=new HashSet<Material>();
             foreach(var r in world.GetComponentsInChildren<Renderer>()){if(!r.enabled||!r.gameObject.activeInHierarchy)continue;s.renderers++;if(r.shadowCastingMode!=UnityEngine.Rendering.ShadowCastingMode.Off)s.shadowCasters++;foreach(var m in r.sharedMaterials)if(m!=null)mats.Add(m);
                 var mesh=r is SkinnedMeshRenderer skin?skin.sharedMesh:r.GetComponent<MeshFilter>()?.sharedMesh;if(mesh!=null)for(int k=0;k<mesh.subMeshCount;k++)s.triangles+=(int)(mesh.GetIndexCount(k)/3);}
-            // The player mesh the bridge actually skinned (name, size and a hash of its vertex/index data).
-            foreach(var skin in world.GetComponentsInChildren<SkinnedMeshRenderer>()){if(skin.sharedMesh==null)continue;s.players++;s.playerTriangleSum+=(int)(skin.sharedMesh.triangles.Length/3);
+            // The player mesh the bridge actually skinned (name, size and a hash of its vertex/index data); hidden ground skins apart.
+            foreach(var skin in world.GetComponentsInChildren<SkinnedMeshRenderer>()){if(skin.sharedMesh==null)continue;if(FootballGround.IsGroundSkin(skin)){s.groundSkins++;if(skin.enabled)s.groundSkinsEnabled++;s.groundMesh=skin.sharedMesh.name;continue;}s.players++;s.playerTriangleSum+=(int)(skin.sharedMesh.triangles.Length/3);
                 if(s.playerMesh==null){var m=skin.sharedMesh;s.playerMesh=m.name;s.playerVertices=m.vertexCount;s.playerTriangles=m.triangles.Length/3;s.playerBones=skin.bones.Length;s.playerMeshHash=MeshHash(m);}}
             s.materials=mats.Count;var textures=(List<Texture2D>)typeof(ProbeBridge).GetField("stadiumTextures",flags).GetValue(bridge);foreach(var t in textures)if(t!=null){s.stadiumTextures++;s.stadiumTextureBytes+=Profiler.GetRuntimeMemorySizeLong(t);}
             return s;

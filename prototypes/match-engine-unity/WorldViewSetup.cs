@@ -18,7 +18,7 @@ public static class WorldViewSetup {
             ProbeBridge bridge=null;
             if(bridge==null){foreach(var rootObject in scene.GetRootGameObjects()){bridge=rootObject.GetComponentInChildren<ProbeBridge>();if(bridge!=null)break;}}
             if(bridge==null)throw new InvalidOperationException("ProbeBridge is missing");
-            bridge.matchKitShader=AssetDatabase.LoadAssetAtPath<Shader>(root+"/WorldKit.shader");bridge.clothMask=AssetDatabase.LoadAssetAtPath<Texture2D>(root+"/cloth-mask.png");bridge.matchPlayerMesh=mesh;
+            bridge.matchKitShader=AssetDatabase.LoadAssetAtPath<Shader>(root+"/WorldKit.shader");bridge.clothMask=AssetDatabase.LoadAssetAtPath<Texture2D>(root+"/cloth-mask.png");bridge.matchPlayerMesh=mesh;bridge.groundPlayerMesh=mesh;
             if(bridge.matchKitShader==null||bridge.clothMask==null)throw new InvalidOperationException("Match view assets are missing");
             EditorUtility.SetDirty(bridge);EditorSceneManager.SaveScene(scene);
             return "World view assets assigned; mesh vertices="+mesh.vertexCount;

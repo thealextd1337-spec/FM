@@ -131,6 +131,11 @@ public static class D6Cli {
     public static void LowPolyMesh(){
         try{var repo=Repo();var built=LowPolySetup.Build(repo);Done(true,built+"; "+LowPolySetup.Assign("lowpoly"));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
+    // Hidden ground skin of the low-poly match mesh (LowPolyGroundDiagnostics; the
+    // probe scene must show the low-poly mesh): -d6output <folder>. No rendering.
+    public static void LowPolyGround(){
+        try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,LowPolyGroundDiagnostics.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
     // Player mesh of the probe scene and WebGL build: -d6mesh lowpoly|original.
     public static void MatchMesh(){
         try{Done(true,LowPolySetup.Assign(Arg("-d6mesh","lowpoly")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}

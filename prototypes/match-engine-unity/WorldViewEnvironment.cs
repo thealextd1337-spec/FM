@@ -193,7 +193,7 @@ public partial class ProbeBridge {
 
         // Real shadow maps for players; soft contact blobs keep feet grounded.
         var blob=new Material(Resources.Load<Shader>("D6Blob"));blob.SetFloat("_Strength",.42f);materials.Add(blob);
-        foreach(var actor in actors)foreach(var r in actor.GetComponentsInChildren<Renderer>())r.shadowCastingMode=ShadowCastingMode.On;
+        foreach(var actor in actors)foreach(var r in actor.GetComponentsInChildren<Renderer>())if(!FootballGround.IsGroundSkin(r))r.shadowCastingMode=ShadowCastingMode.On;
         foreach(var ring in rings){ring.localScale=new Vector3(1.05f,.004f,1.05f);ring.GetComponent<Renderer>().sharedMaterial=blob;ring.GetComponent<Renderer>().shadowCastingMode=ShadowCastingMode.Off;}
         var ballBlob=new Material(blob);ballBlob.SetFloat("_Strength",.82f);materials.Add(ballBlob);worldBallShadowMaterial=ballBlob;ballShadow.localScale=new Vector3(.54f,.003f,.54f);ballShadow.GetComponent<Renderer>().sharedMaterial=ballBlob;
         ballView.GetComponent<Renderer>().shadowCastingMode=ShadowCastingMode.On;

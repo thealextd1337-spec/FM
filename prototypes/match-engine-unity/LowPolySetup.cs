@@ -15,7 +15,9 @@ using Doppel6.Probe;
 // the original bind poses are reused after checking they are equal. TEXCOORD2
 // holds the bind-pose coordinates the kit shader needs. The original
 // WorldPlayer.asset stays untouched; Assign switches the probe scene between
-// both, with their textures (rollback: -d6mesh original).
+// both, with their textures (rollback: -d6mesh original), and keeps
+// WorldPlayer.asset as the ground mesh: soles, clip offsets and the turf stand
+// are measured on a hidden release skin, so the motion is the release motion.
 public static class LowPolySetup {
     public const string Art="Assets/Doppel6EngineProbe/Art",Version="v4";
     public const string Fbx=Art+"/d6_lowpoly_"+Version+".fbx",Asset=Art+"/WorldPlayerLowPoly-"+Version+".asset",Original=Art+"/WorldPlayer.asset",Base=Art+"/d6_lowpoly_"+Version+"_base.png",Mask=Art+"/d6_lowpoly_"+Version+"_mask.png";
@@ -94,6 +96,21 @@ public static class LowPolySetup {
         var bridge=UnityEngine.Object.FindFirstObjectByType<ProbeBridge>();
         return bridge!=null&&bridge.matchPlayerMesh!=null?bridge.matchPlayerMesh:AssetDatabase.LoadAssetAtPath<Mesh>(Original);
     }
+    // The mesh the ground is measured on (ProbeBridge.groundPlayerMesh). A scene with a
+    // replacement match mesh but no ground mesh predates the ground skin: refuse it
+    // instead of silently measuring the ground on the replacement.
+    public static Mesh GroundMesh(){
+        var bridge=UnityEngine.Object.FindFirstObjectByType<ProbeBridge>();var original=AssetDatabase.LoadAssetAtPath<Mesh>(Original);
+        if(bridge==null)return original;
+        if(bridge.groundPlayerMesh==null&&bridge.matchPlayerMesh!=null&&bridge.matchPlayerMesh!=original)throw new InvalidOperationException("Probe scene has match mesh "+bridge.matchPlayerMesh.name+" without a ground mesh (run D6Cli.MatchMesh -d6mesh lowpoly)");
+        return bridge.groundPlayerMesh;
+    }
+    // Skins a test actor like the match view (ProbeBridge.WorldMesh and WorldGround):
+    // the scene's match mesh on the drawn skin, the ground skin for a replacement.
+    public static SkinnedMeshRenderer Skin(GameObject actor){
+        var mesh=MatchMesh();foreach(var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>())if(!FootballGround.IsGroundSkin(skin))skin.sharedMesh=mesh;
+        return FootballGround.AttachGroundSkin(actor.transform,GroundMesh());
+    }
     // Which player mesh the probe scene (and therefore the WebGL build) uses.
     public static string Assign(string variant){
         var path=variant=="lowpoly"?Asset:variant=="original"?Original:throw new ArgumentException("-d6mesh lowpoly|original");
@@ -101,10 +118,10 @@ public static class LowPolySetup {
         var scene=EditorSceneManager.OpenScene("Assets/Doppel6EngineProbe/Probe.unity",OpenSceneMode.Single);
         ProbeBridge bridge=null;foreach(var root in scene.GetRootGameObjects()){bridge=root.GetComponentInChildren<ProbeBridge>();if(bridge!=null)break;}
         if(bridge==null)throw new InvalidOperationException("ProbeBridge is missing");
-        bridge.matchPlayerMesh=mesh;bool low=variant=="lowpoly";
+        bridge.matchPlayerMesh=mesh;bridge.groundPlayerMesh=AssetDatabase.LoadAssetAtPath<Mesh>(Original)??throw new FileNotFoundException(Original);bool low=variant=="lowpoly";
         bridge.clothMask=AssetDatabase.LoadAssetAtPath<Texture2D>(low?Mask:Art+"/cloth-mask.png")??throw new FileNotFoundException("cloth mask");
         bridge.matchPlayerBase=low?AssetDatabase.LoadAssetAtPath<Texture2D>(Base)??throw new FileNotFoundException(Base):null;EditorUtility.SetDirty(bridge);EditorSceneManager.SaveScene(scene);
-        return "match mesh="+mesh.name+" mask="+bridge.clothMask.name+" base="+(bridge.matchPlayerBase!=null?bridge.matchPlayerBase.name:"Player.mat")+" vertices="+mesh.vertexCount+" triangles="+mesh.triangles.Length/3+" hash="+LowPolyDiagnostics.MeshHash(mesh).Substring(0,12);
+        return "match mesh="+mesh.name+" ground="+bridge.groundPlayerMesh.name+" mask="+bridge.clothMask.name+" base="+(bridge.matchPlayerBase!=null?bridge.matchPlayerBase.name:"Player.mat")+" vertices="+mesh.vertexCount+" triangles="+mesh.triangles.Length/3+" hash="+LowPolyDiagnostics.MeshHash(mesh).Substring(0,12);
     }
 }
 #endif

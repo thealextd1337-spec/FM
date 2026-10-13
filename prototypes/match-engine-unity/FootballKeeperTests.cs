@@ -31,7 +31,7 @@ public static class FootballKeeperTests {
         Projection(Require);
 
         var scene=EditorSceneManager.NewPreviewScene();var actor=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(Asset));UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(actor,scene);actor.transform.localScale=Vector3.one*1.45f;
-        foreach(var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>())skin.sharedMesh=LowPolySetup.MatchMesh();
+        LowPolySetup.Skin(actor);
         var animator=actor.GetComponent<Animator>();if(animator==null)animator=actor.AddComponent<Animator>();animator.applyRootMotion=false;
         var c=new Dictionary<string,AnimationClip>();foreach(var n in new[]{"idle_stand_meshy","running","sprint_forward","keeper_ready_meshy","keeper_low_meshy","keeper_high_meshy","keeper_dive_meshy","keeper_rise_meshy","pass_inside_meshy","shot_meshy","receive_ground_meshy"})c[n]=Clip(n);
         var graph=PlayableGraph.Create("D6 keeper validation");graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);var initial=AnimationClipPlayable.Create(graph,c["idle_stand_meshy"]);AnimationPlayableOutput.Create(graph,"Character",animator).SetSourcePlayable(initial);graph.Play();graph.Evaluate(0);
