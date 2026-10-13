@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+### 13. Oktober 2026 — B08 gestrichen
+
+- B08 auf Nutzerwunsch aus der Bugliste entfernt und den Verweis bei P06 angepasst. Übrige Kennungen bleiben erhalten; 17 Fehler-/Qualitätspunkte und sieben Abstimmungs-/Prüfpunkte bleiben offen. Dokumentationsdiff geprüft.
+
 ### 13. Oktober 2026 — Dokumentation und Git-Bereinigung
 
 - Aktuellen Dokumentationsweg auf den übernommenen Release-131-Stand ausgerichtet: kurzer Index, Anbieter-unabhängige Entwicklungsregeln, Übergabe- und Sicherungsprozess. Historische Auftragspläne sind ausdrücklich inaktiv; der frühere Index bleibt als unveränderter Snapshot und navigierbare Archivkopie erhalten.
