@@ -1,0 +1,590 @@
+{
+  "schema": "d6-style-audit-haiku/1",
+  "createdAt": "2026-10-13",
+  "auditor": "Haiku 5.5 (lesend, Research-Subagent)",
+  "checkout": {
+    "path": "work/demo-low-poly",
+    "branch": "codex/demo-low-poly-20261013",
+    "headAtStart": "f7744f19",
+    "productBase": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+    "productBaseIsAncestor": true
+  },
+  "scope": "Bestandspruefung Release 130 fuer Nighttime (primaer) und Klares Low-Poly (sekundaer). Keine Modelle, Texturen, Builds, Meshy-/Blender-/Unity-MCP-Aufrufe.",
+  "verifiedFacts": [
+    {
+      "claim": "41 Quellen des Basisdatensatzes hashgleich zum Checkout",
+      "result": "verifiziert: 41/41",
+      "source": "docs/3d-stilauftraege/basis-release130.json:sources; prototypes/match-engine-unity/*"
+    },
+    {
+      "claim": "166 Importdateien hashgleich zur Nighttime-Unitykopie",
+      "result": "verifiziert: 166/166 (0 Abweichungen, 0 fehlend)",
+      "source": "G:/unity/Doppel6-Nighttime-Demo/Assets/Doppel6EngineProbe/... (nur lesend)"
+    },
+    {
+      "claim": "sourceId 3442dee8...",
+      "result": "verifiziert: Recompute nach generate-identity.cjs-Algorithmus (Datei+NUL+Inhalt, SHA-256 ueber alle 41 Quellen in Listenreihenfolge)",
+      "source": "prototypes/match-engine-unity/generate-identity.cjs:4"
+    },
+    {
+      "claim": "Original-GLB 5a2ae8bd... 21.445.448 Byte",
+      "result": "verifiziert (Dateihash und Groesse)",
+      "source": "dist/players/football-v130.glb"
+    },
+    {
+      "claim": "calibration-v130.json 3c3d05ac...",
+      "result": "verifiziert",
+      "source": "dist/players/calibration-v130.json"
+    },
+    {
+      "claim": "cloth-mask.png a12f08d3... 75.111 Byte",
+      "result": "verifiziert; 2048x2048, 8 Bit, Farbtyp 2 (RGB)",
+      "source": "dist/players/cloth-mask.png"
+    },
+    {
+      "claim": "Mesh 9.725 Vertices, 12.668 Dreiecke, 1 Materialslot",
+      "result": "verifiziert aus GLB-Binaer-JSON (POSITION-Count 9725, Indexcount 38004 = 12668 Dreiecke) und Manifest",
+      "source": "dist/players/football-v130.glb; work/platform/assets/manifest.json:meshes"
+    },
+    {
+      "claim": "28 Rig-Gelenke, 34 Originalclips, 30 kalibriert",
+      "result": "verifiziert (1 Skin mit 28 Joints; 34 Animationen; calibrated=true bei 30)",
+      "source": "GLB-JSON; manifest.json:skins[0].joints, clips[]"
+    },
+    {
+      "claim": "Zwei Pilotclips pass_inside_meshy / receive_ground_meshy",
+      "result": "verifiziert in Unity-Copy (Strings im Pilot-FBX und .anim-Dateien), NICHT im GLB-Manifest",
+      "source": "G:/unity/.../Art/football-contact-pilot.fbx; Art/pass_inside_meshy.anim; Art/receive_ground_meshy.anim"
+    },
+    {
+      "claim": "Im Match-Shader nur BaseColor und Kleidungsmaske ausgewertet",
+      "result": "verifiziert: genau zwei SAMPLE_TEXTURE2D-Aufrufe",
+      "source": "prototypes/match-engine-unity/WorldKit.shader:41-42"
+    },
+    {
+      "claim": "Zusatzlichter im WebGL-Pfad aus",
+      "result": "verifiziert (m_AdditionalLightsRenderingMode 0, Zusatzlicht-Schatten aus)",
+      "source": "Rendering/ProbeWeb.asset:47,49; prototypes/match-engine-unity/ProbeWebBuild.cs:25-26"
+    },
+    {
+      "claim": "8 Architekturtypen im StadiumArchitecture",
+      "result": "verifiziert (Archetypes-Array mit 8 Eintraegen)",
+      "source": "prototypes/match-engine-unity/StadiumArchitecture.cs:63"
+    },
+    {
+      "claim": "Manifest-Hash 3262df2786... (basis-release130.json:manifestSha256)",
+      "result": "Root verifiziert: WebGL-Manifest hashgleich zur Release130-Basis. Urspruenglich wurde versehentlich das andere Assetmanifest verglichen.",
+      "source": "outputs/platform/unity-web/probe-build.json"
+    },
+    {
+      "claim": "Live-HTML-Hash 358d343b... (liveProof.htmlSha256)",
+      "result": "Root verifiziert: gebautes Offline-HTML hashgleich zum bereits dokumentierten Live-Artefakt. dist/index.html ist die unabhaengige Quell-Loaderdatei.",
+      "source": "outputs/index.html; basis-release130.json:liveProof"
+    },
+    {
+      "claim": "buildFiles unity-web.data/framework/loader/wasm mit Hashes",
+      "result": "Root verifiziert: alle vier Laufzeitdateien lokal vorhanden, Bytes und SHA256 stimmen mit Basisdatei ueberein.",
+      "source": "outputs/platform/unity-web/Build/unity-web.*"
+    }
+  ],
+  "assets": [
+    {
+      "asset": "Spieler-/Keepermodell (GLB)",
+      "originalPath": "dist/players/football-v130.glb",
+      "sha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+      "bytes": 21445448,
+      "nighttime": "uebernehmen; Materialwirkung ueber Shader (BaseMap + ClothMask sind die einzigen ausgewerteten Kanaele)",
+      "nighttimeReplacementCondition": "nur bei im Nighttime-Capture belegter Silhouetten-, Hand-/Schuh- oder Materialluecke; Ersatz muss Rig, Clips und Bindpose erhalten",
+      "lowPoly": "nicht als Low-Poly-Asset uebernehmen: Vertrag 'Full master, no decimation'; zuerst Facetten-Prototyp am gleichen Mesh; echte Vereinfachung = neues Mesh am bestehenden Rig",
+      "lowPolyRequiredRegeneration": "WorldPlayer.asset, calibration-v130.json (Sohlen/Vertexdaten), FootballSoleContour, Masken, Manifest",
+      "reason": "Rig, 34 Clips, Mesh und Maske bilden den getesteten Vertrag; das Mesh ist mit 12.668 Dreiecken nicht bereits niedrig aufgeloest, obwohl der Mesh-Name 'low_poly_unwrapped' lautet."
+    },
+    {
+      "asset": "Kalibrierung Browser",
+      "originalPath": "dist/players/calibration-v130.json",
+      "sha256": "3c3d05ac3b7580730f3b0bb13cb63a77ddc76c82f5e0b04225a8fef6734a8305",
+      "bytes": 341831,
+      "nighttime": "uebernehmen unveraendert",
+      "nighttimeReplacementCondition": "bei Mesh-Aenderung ungueltig",
+      "lowPoly": "bei jeder Mesh-/Vertexaenderung neu erzeugen",
+      "reason": "enthaelt Sohlen-SampleVertices (z. B. 7643 ...), Scale 1.45, rootScale 1.12, ground 0.105 (manifest:calibration)."
+    },
+    {
+      "asset": "Kleidungsmaske",
+      "originalPath": "dist/players/cloth-mask.png",
+      "sha256": "a12f08d37d1344f3c8428794d62660d12b044f7359de777f093d8956083e6333",
+      "bytes": 75111,
+      "channels": "R = Trikot, G = Hose, B = Stutzen (WorldKit.shader:46); 2048x2048, 8 Bit RGB; UV0",
+      "nighttime": "uebernehmen",
+      "nighttimeReplacementCondition": "nicht noetig",
+      "lowPoly": "uebernehmen, solange UV0 unveraendert; sonst neu erzeugen und Abdeckung pruefen",
+      "reason": "Maskenkanaele sind belegt und vom Match-Shader ausgewertet."
+    },
+    {
+      "asset": "BaseColor (GLB textures/image-0.png, Unity Player.mat _BaseMap)",
+      "originalPath": "Unity Art/textures/image-0.png (GLB index 0)",
+      "sha256": "cfd59dfe39aaff42ebe949156c6cccf78fb31999ac5414131e4904f5fc0ac843",
+      "bytes": 9834749,
+      "dimensions": "4096x4096 PNG",
+      "nighttime": "uebernehmen; Tonwerte ueber Shader/Parameter, nicht durch Texturneuschreibung",
+      "nighttimeReplacementCondition": "nicht noetig, solange Trikot- und Hautfarben lesbar bleiben",
+      "lowPoly": "uebernehmen; Pigmentberuhigung nur als eigener, gemessener Schritt (Dateigroesse 9,8 MB als Downloadrisiko)",
+      "reason": "einzige Textur, die der Matchpfad ueber WorldViewBridge.cs:58 aus Player.mat liest."
+    },
+    {
+      "asset": "MetallicRoughness laut GLB (image-1.jpg)",
+      "originalPath": "Unity Art/textures/image-1.jpg (GLB index 1)",
+      "sha256": "ce490897b7515208dc2663726292d89735cdd75b6e0022d63b2d3e4c3c9288fc",
+      "bytes": 1214077,
+      "dimensions": "2048x2048 JPG",
+      "nighttime": "nicht verwenden, solange der Matchshader sie nicht auswertet",
+      "nighttimeReplacementCondition": "nur mit additiver Shader-Erweiterung und sichtbarem WebGL-Nachweis",
+      "lowPoly": "nicht noetig",
+      "reason": "GLB-Material referenziert sie; Unity-Player.mat referenziert image-1 nicht; WorldKit wertet sie nicht aus."
+    },
+    {
+      "asset": "image-2.jpg (unbenannt)",
+      "originalPath": "Unity Art/textures/image-2.jpg (GLB index 2)",
+      "sha256": "e3126b5f044537ec14cff6918baf385f0bdb13f88b8b21775e69c902460c0ca9",
+      "bytes": 1935304,
+      "dimensions": "2048x2048 JPG",
+      "nighttime": "nicht verwenden",
+      "nighttimeReplacementCondition": "nicht relevant",
+      "lowPoly": "nicht verwenden",
+      "reason": "keine GLB-Materialreferenz; GUID 253550bb... in den durchsuchten Unity-Dateitypen (.mat/.prefab/.asset/.unity/.shader/.cs) nicht gefunden. Status: ungenutzt, Entfernung erst nach Import-Check."
+    },
+    {
+      "asset": "Normal (image-3.png, texture_0_normal)",
+      "originalPath": "Unity Art/textures/image-3.png (GLB normalTexture index 3; Player.mat _BumpMap)",
+      "sha256": "03c2426b8c99f6d35daee294657acc2db2cc7e029f1ef8dfdca81746cd7bec13",
+      "bytes": 2961306,
+      "dimensions": "2048x2048 PNG",
+      "nighttime": "nicht verwenden, solange der Matchshader keine Normalmap wertet",
+      "nighttimeReplacementCondition": "nur mit Shader-Erweiterung und WebGL-Nachweis",
+      "lowPoly": "nicht verwenden; Facettenwirkung soll aus Geometrie/Normalen kommen",
+      "reason": "Im Matchpfad nicht ausgewertet (WorldKit nur zwei Samples)."
+    },
+    {
+      "asset": "metallic-smoothness.png (nur Unity)",
+      "originalPath": "Unity Art/textures/metallic-smoothness.png (Player.mat _MetallicGlossMap, Zeile 71-72)",
+      "sha256": "59f5bc76828e836a247cf887f72effd60cb9c3944789d99283a7545afa0a5171",
+      "bytes": 2941102,
+      "nighttime": "nicht verwenden, solange nicht im Matchshader ausgewertet",
+      "nighttimeReplacementCondition": "nur mit Shader-Erweiterung",
+      "lowPoly": "nicht noetig",
+      "reason": "nur in Player.mat, das im Matchpfad nur BaseMap liefert; Gewicht 2,9 MB ohne Nutzen im Matchbild."
+    },
+    {
+      "asset": "Unity-Import Spielerfbx",
+      "originalPath": "Unity Art/football-v130.fbx (Import-Meta)",
+      "sha256": "e79f62f49cc2fe00968cce77044aeba534a7aaf119a42ebd82f0f1516ed13695",
+      "bytes": 10858636,
+      "nighttime": "uebernehmen; Importeinstellungen unveraendert",
+      "nighttimeReplacementCondition": "nicht noetig",
+      "lowPoly": "bei neuem Mesh ersetzen; Exportreproduktion nicht geprueft",
+      "reason": "Meta: animationType 2 (Generic, Zeile 107), animationCompression 0 (Zeile 26), importAnimation 1 (Zeile 88), materialImportMode 2 (Zeile 8)."
+    },
+    {
+      "asset": "Pilot-FBX (Kontakt)",
+      "originalPath": "Unity Art/football-contact-pilot.fbx",
+      "sha256": "cbbac9f598635ff85eb996fa6291dafa98d9147cbfe85abe1a7cac5621179f44",
+      "bytes": 572620,
+      "nighttime": "uebernehmen",
+      "nighttimeReplacementCondition": "nicht noetig",
+      "lowPoly": "pruefen, falls Rig/Mesh aendert; nicht im GLB-Manifest",
+      "reason": "enthaelt pass_inside_meshy / receive_ground_meshy; Manifest fuehrt nur 34 Clips."
+    },
+    {
+      "asset": "WorldKit.shader",
+      "originalPath": "prototypes/match-engine-unity/WorldKit.shader (= Unity Art/WorldKit.shader)",
+      "sha256": "c1e92e7e5e60d3536a7fb55440a30ada73fcf2afa270816d2006cd34e3ea0ea3",
+      "bytes": 6489,
+      "nighttime": "additive Parameter fuer Material (Glanz/Rauheit-Ersatz, Tonung) und Lichtreaktion; bestehende Regionen erhalten",
+      "nighttimeReplacementCondition": "nicht noetig",
+      "lowPoly": "unveraendert; TEXCOORD2 Bindpose bleibt Pflichtkanal",
+      "reason": "Alle Kleidungs-, Haut-, Haar- und Handschuhregionen haengen an Maske, Pigment und Bindposeposition."
+    },
+    {
+      "asset": "WorldPlayer.asset",
+      "originalPath": "Unity Art/WorldPlayer.asset",
+      "sha256": "98b1a13998a24ce441a3c2790503822e1650de648f34d065bb188ee352cc2325",
+      "bytes": 1956767,
+      "nighttime": "uebernehmen",
+      "nighttimeReplacementCondition": "nicht noetig",
+      "lowPoly": "bei neuem Mesh neu erzeugen; WorldViewSetup.cs:15 aktualisiert vorhandenes Asset nicht",
+      "reason": "Bindpose in TEXCOORD2 (Fable, historisch; Abschnitt bestaetigt durch kompatibilitaet.md Schritt 3)."
+    },
+    {
+      "asset": "Umgebung/Stadion/Ball/Netz (prozedural)",
+      "originalPath": "prototypes/match-engine-unity/StadiumArchitecture.cs, WorldViewEnvironment.cs, D6Env.shader, D6Pitch.shader, D6Blob.shader, D6TeamRing.shader, D6Common.hlsl",
+      "sha256": "siehe basis-release130.json:sources",
+      "bytes": null,
+      "nighttime": "uebernehmen; Licht-, Himmel-, Emissions- und Materialparameter anpassen",
+      "nighttimeReplacementCondition": "nicht noetig",
+      "lowPoly": "Geometrie vereinfachen optional; Ballanker, Rotation, Netzverhalten erhalten",
+      "reason": "prozedural und bereits mit Nachtfarben (Hintergrund 0.05/0.09/0.14) belegt."
+    }
+  ],
+  "rigAndClips": {
+    "skinCount": 1,
+    "skinName": "Armature",
+    "jointCount": 28,
+    "nodeCount": 30,
+    "rootNode": "target_character",
+    "unityRigType": "Generic (animationType 2)",
+    "clipCountGlb": 34,
+    "clipCountCalibrated": 30,
+    "clipsUncalibrated": [
+      "Charged_Spell_Cast",
+      "celebrate_fist",
+      "celebrate_arms",
+      "celebrate_victory"
+    ],
+    "pilotClipsUnityOnly": [
+      "pass_inside_meshy",
+      "receive_ground_meshy"
+    ],
+    "source": "GLB-JSON; manifest.json:skins,clips; Unity .meta/.anim"
+  },
+  "meshAndMaterial": {
+    "meshName": "low_poly_unwrapped",
+    "vertices": 9725,
+    "triangles": 12668,
+    "primitives": 1,
+    "materialSlots": 1,
+    "materialName": "Doppel6_Meshy_2K",
+    "images": 4,
+    "contractGeometry": "Full master, no decimation (manifest.json:contract.geometry)",
+    "contractNote": "Mesh-Name 'low_poly' ist keine Geometrieaussage."
+  },
+  "shaderBindings": {
+    "shader": "Doppel6/World Kit (WorldKit.shader)",
+    "textureSamples": [
+      "_BaseMap (UV0, WorldKit.shader:41)",
+      "_ClothMask (UV0, WorldKit.shader:42)"
+    ],
+    "unusedByMatchShader": [
+      "Metallic/Roughness",
+      "Normal",
+      "metallic-smoothness.png",
+      "image-2"
+    ],
+    "bodyCoordinates": "TEXCOORD2 via o.body (WorldKit.shader:20,43)",
+    "colorProperties": [
+      "_Main",
+      "_Trim",
+      "_Accent",
+      "_Skin",
+      "_Hair",
+      "_NumberColor",
+      "_NumberEdge",
+      "_Glove"
+    ],
+    "floatProperties": [
+      "_Style",
+      "_Number",
+      "_Keeper"
+    ],
+    "runtimeBinding": "WorldViewBridge.cs:58-58 setzt _BaseMap aus Player.mat und _ClothMask",
+    "lightingCall": "D6Light(color, world, n, wrap .35, rim 0, fabric) (WorldKit.shader:75)",
+    "emission": "im Matchshader nicht vorhanden; Lampenemission nur in der Umgebung (WorldViewEnvironment.cs:69-70, 156)"
+  },
+  "lightingCapability": {
+    "mainLight": "ja: GetMainLight mit Schattenkoordinate (D6Common.hlsl:9)",
+    "ambient": "ja: SampleSH (D6Common.hlsl:13); Custom-Ambient-Probe (WorldViewEnvironment.cs:29-30)",
+    "additionalLights": "nein: m_AdditionalLightsRenderingMode 0 (ProbeWeb.asset:47), Zusatzlicht-Schatten aus (ProbeWeb.asset:49), per ProbeWebBuild.cs:25-26 erzwungen; D6Light kennt keine Zusatzlichter-Schleife",
+    "mainLightSettings": "Sonne Rotation (54,-32,0), Farbe (1,0.96,0.90), Intensitaet 1.45 (WorldViewEnvironment.cs:31); Hauptlicht-Schattenkarte 2048 (ProbeWeb.asset:46); reduced: 1024, 70 m, harte Schatten (WorldViewEnvironment.cs:31,34)",
+    "nightBackground": "Kamerahintergrund (0.05, 0.09, 0.14) (WorldViewEnvironment.cs:33)",
+    "grading": "ColorAdjustments Kontrast 6, Saettigung -6, PostExposure 0.1 (WorldViewEnvironment.cs:38)",
+    "bloom": "Schwelle 0.93, Intensitaet 0.35, Scatter 0.6; aus bei reduced (WorldViewEnvironment.cs:40,43)",
+    "reducedDetection": "worldView.Config.quality == 'reduced' oder leer und mobile (WorldViewEnvironment.cs:24)"
+  },
+  "stadiumProfiles": {
+    "resolveRule": "WorldViewEnvironment.cs:98-99 nutzt Heimverein-ID; unbekannte ID wird neutral 'garden-ground' (ClubStadiumProfiles.cs:33-34)",
+    "candidates": [
+      {
+        "homeClubId": "ENG-1",
+        "club": "Regent Vale FC (Rot/Weiss)",
+        "stadium": "Regent Vale Gardens",
+        "archetype": "civic-bowl",
+        "facade": "brick-arcade",
+        "tiers": [
+          13,
+          12,
+          11,
+          10
+        ],
+        "roofSides": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "sources": [
+          "dist/world-catalog-v61.js:5",
+          "prototypes/match-engine-unity/ClubStadiumProfiles.cs:71"
+        ]
+      },
+      {
+        "homeClubId": "ENG-2",
+        "club": "Irwell FC (Himmelblau/Weiss)",
+        "stadium": "Irwell Arena",
+        "archetype": "modern-ring",
+        "facade": "metal-fins",
+        "tiers": [
+          12,
+          12,
+          10,
+          11
+        ],
+        "roofSides": [
+          true,
+          true,
+          true,
+          true
+        ],
+        "sources": [
+          "dist/world-catalog-v61.js:20",
+          "prototypes/match-engine-unity/ClubStadiumProfiles.cs:72"
+        ]
+      },
+      {
+        "homeClubId": "ENG-4",
+        "club": "Birmingham Works FC (Gold/Schwarz)",
+        "stadium": "Works Assembly Park",
+        "archetype": "industrial-shed",
+        "facade": "steel-truss",
+        "tiers": [
+          10,
+          8,
+          7,
+          8
+        ],
+        "roofSides": [
+          true,
+          true,
+          false,
+          true
+        ],
+        "sources": [
+          "dist/world-catalog-v61.js:50",
+          "prototypes/match-engine-unity/ClubStadiumProfiles.cs:74"
+        ]
+      },
+      {
+        "homeClubId": "ENG-6",
+        "club": "Wandle Town (Waldgruen/Weiss)",
+        "stadium": "Wandle Meadow",
+        "archetype": "garden-ground",
+        "facade": "timber-rib",
+        "tiers": [
+          6,
+          4,
+          3,
+          4
+        ],
+        "roofSides": [
+          true,
+          false,
+          false,
+          false
+        ],
+        "sources": [
+          "dist/world-catalog-v61.js:80",
+          "prototypes/match-engine-unity/ClubStadiumProfiles.cs:76"
+        ]
+      }
+    ],
+    "alternates": [
+      {
+        "homeClubId": "ENG-3",
+        "archetype": "dockside-ground",
+        "sources": [
+          "ClubStadiumProfiles.cs:73"
+        ]
+      },
+      {
+        "homeClubId": "GER-4",
+        "archetype": "hillside-ground",
+        "sources": [
+          "ClubStadiumProfiles.cs:101"
+        ]
+      },
+      {
+        "homeClubId": "ESP-3",
+        "archetype": "sun-terraces",
+        "sources": [
+          "ClubStadiumProfiles.cs:82"
+        ]
+      }
+    ],
+    "archetypeCountSource": "StadiumArchitecture.cs:63 (8 Archetypen)"
+  },
+  "testMatrix": {
+    "stadiums": [
+      "ENG-1",
+      "ENG-2",
+      "ENG-4",
+      "ENG-6"
+    ],
+    "quality": [
+      "normal",
+      "reduced"
+    ],
+    "camera": [
+      "nah",
+      "weit"
+    ],
+    "viewports": [
+      "Desktop (Groesse nicht in den Quellen festgelegt, offen)",
+      "844x390 Querformat",
+      "931x448 Querformat"
+    ],
+    "combinations": 48,
+    "note": "Desktop-Groesse vom Root festlegen. Matrix ist eine Planungsvorlage; keine Ausfuehrung in diesem Audit."
+  },
+  "fixtures": {
+    "keeper": [
+      "outputs/3d-quality/keeper-next/keeper-fixtures.json (9 Sequenzen: goalkick-out, goalkick-out-turned, parry-mid, parry-high, parry-large, parry-central, goal-dive, goal-high, goal-central)",
+      "outputs/3d-quality/keeper-next/build-keeper-fixtures.cjs",
+      "docs/spieler-nutzer-rig/keeper-sidestep-qa-v130.json",
+      "docs/spieler-nutzer-rig/keeper-scenarios-qa-high-v131.json"
+    ],
+    "slide": [
+      "docs/spieler-nutzer-rig/slide-visual-baseline-v124.json (6 Faelle: 30/60/120 fps x heading 0 und pi/2)",
+      "prototypes/match-engine-unity/FootballDuelTests.cs:49-68 (slide-right, slide-left, Kontrollstufen)",
+      "prototypes/match-engine-unity/FootballDuel.cs:19 (Slide-Timing)"
+    ],
+    "action": [
+      "docs/spieler-nutzer-rig/ball-actions-qa-v130.json",
+      "docs/spieler-nutzer-rig/play-actions-qa-v133.json",
+      "docs/spieler-nutzer-rig/motion-actions-qa-v113.json",
+      "docs/spieler-nutzer-rig/pitch-actions-qa-v112.json"
+    ],
+    "runners": [
+      "prototypes/match-engine-unity/D6Cli.cs:23-37 (Batchmode-Suiten, u. a. FootballActionTests:26, FootballDuelTests:32, FootballKeeperTests:34, NaturalMotionGates:37)",
+      "prototypes/match-engine-unity/D6Cli.cs:65,80 (Einzel-Entry fuer Duel und Keeper)"
+    ],
+    "limit": "Dies sind vorhandene Dateien. Ob sie unter Nighttime/Low-Poly laufen, ist nicht ausgefuehrt; keine Laufzeitabnahme aus Quellen."
+  },
+  "inheritedBugs": [
+    {
+      "id": "B01",
+      "priority": "hoch",
+      "summary": "Browserpartien ruckeln unmittelbar nach Spielbeginn",
+      "source": "docs/Bugliste.md:9"
+    },
+    {
+      "id": "B02",
+      "priority": "hoch",
+      "summary": "Gehen/Traben/Sprint-Uebergaenge starr; keine situative Tempowahl",
+      "source": "docs/Bugliste.md:10"
+    },
+    {
+      "id": "B03",
+      "priority": "hoch",
+      "summary": "Verteidiger reagieren spaet, verlieren Verfolgung",
+      "source": "docs/Bugliste.md:11"
+    },
+    {
+      "id": "B04",
+      "priority": "hoch",
+      "summary": "Direkte Freistoss-Vorbereitung mit unpassender Koerperrichtung; direkte Schussvorbereitung vor nativem Ziel offen",
+      "source": "docs/Bugliste.md:12"
+    },
+    {
+      "id": "B05",
+      "priority": "hoch",
+      "summary": "Fusskontakte und Aktionsuebergaenge ruckeln; 15 Kontaktfenster gegenueber fruehrem Kandidat schlechter; 5 historische Diagnosefehler",
+      "source": "docs/Bugliste.md:13; docs/release-130.md:32"
+    },
+    {
+      "id": "B06",
+      "priority": "hoch",
+      "summary": "Grundlos wirkendes Rueckwaertslaufen beobachtet; Restart-Projektion nur teilweise",
+      "source": "docs/Bugliste.md:14"
+    },
+    {
+      "id": "B07",
+      "priority": "mittel",
+      "summary": "Positionssprung 0,32-3,70 m beim Uebergang gehaltener Torwartball -> Abstosspunkt",
+      "source": "docs/Bugliste.md:15"
+    },
+    {
+      "id": "B08",
+      "priority": "hoch",
+      "summary": "Physische Android-Abnahme (Kamera, Bedienbalken, mobile Leistung) offen",
+      "source": "docs/Bugliste.md:16"
+    },
+    {
+      "id": "R130-live-pursuit",
+      "priority": "offen",
+      "summary": "Echte Live-Verfolgung und bewusste Geh-/Traben-/Sprintwahl nicht umgesetzt",
+      "source": "docs/release-130.md:32"
+    }
+  ],
+  "fableFindingsStatus": {
+    "historical": true,
+    "verifiedHere": [
+      "9725/12668",
+      "28 Joints",
+      "34 Clips + 2 Pilot",
+      "30 kalibriert",
+      "nur BaseMap + ClothMask im Shader",
+      "Zusatzlichter aus",
+      "8 Architekturtypen"
+    ],
+    "notVerifiedHere": [
+      "R20/R21-Handoff-Lage",
+      "55 Quellen Anker-Hashgleichheit (claude-natural-motion)",
+      "ProbeSetup.cs:13 Generic-Import-Zeile",
+      "Rolle image-2 in Unity (nur Materialreferenzsuche)"
+    ]
+  },
+  "openItems": [
+    "Unity-Shader-GUID von Player.mat nicht im Editor verifiziert (vermutlich URP Lit)",
+    "Konzeptbilder nur als Dateiliste geprueft (07-flutlicht.png, 12-low-poly.png vorhanden); keine Bildbewertung",
+    "Desktop-Viewportgroesse fehlt in den Quellen",
+    "Laufzeit-, Animations- und GPU-Abnahme ausschliesslich aus Quellen nicht moeglich"
+  ],
+  "questionsForOpus": [
+    "Nighttime-Materialwirkung: soll WorldKit additiv Glanz-/Rauheitsparameter erhalten, obwohl Normal/MR-Texturen nicht ausgewertet werden?",
+    "Ersatzkriterium fuer das Spielermodell: welche konkrete Lücke im Nighttime-Capture rechtfertigt einen Mesh-Ersatz?",
+    "Low-Poly: genuegt der Facetten-Prototyp am bestehenden 12.668-Dreieck-Mesh als Zwischenstand, oder ist eine echte Retopologie mit Neugenerierung von WorldPlayer.asset und Kalibrierung Pflicht?",
+    "Pilot-Clips pass_inside_meshy / receive_ground_meshy: sollen sie ins Manifest aufgenommen werden (34 vs. 36 Clips)?",
+    "image-2 und metallic-smoothness.png: entfernen oder als Altbestand dokumentiert lassen?"
+  ],
+  "blockers": [],
+  "rootVerification": {
+    "reviewer": "Codex/root",
+    "correctedOriginalAuditCommit": "1f844af0",
+    "manifestPath": "outputs/platform/unity-web/probe-build.json",
+    "manifestSha256": "3262df2786a265c40c9fefb8bd748206120e229bb268d71c954d5fb9da7315a0",
+    "builtHtmlPath": "outputs/index.html",
+    "builtHtmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+    "buildFiles": [
+      {
+        "file": "outputs/platform/unity-web/Build/unity-web.data",
+        "sha256": "dfcb23f3cbc1f9e2c3dc3e7560daf4d18bb95fa8ff04dcc9cb326d8cb0d3b303",
+        "bytes": 55572425
+      },
+      {
+        "file": "outputs/platform/unity-web/Build/unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+        "bytes": 300906
+      },
+      {
+        "file": "outputs/platform/unity-web/Build/unity-web.loader.js",
+        "sha256": "a6a10198f2bb3b69a339e89a4b940747cc08e39b90a0af3853a8f4654595462d",
+        "bytes": 27914
+      },
+      {
+        "file": "outputs/platform/unity-web/Build/unity-web.wasm",
+        "sha256": "d7a649fce05ae4d7b5b4a8293c100b6f022c86a8b7c95485fb2000c46079f273",
+        "bytes": 35497794
+      }
+    ],
+    "liveScope": "Hashgleich zum bereits dokumentierten Release130-Livebefund; kein neuer Live-Browserlauf.",
+    "note": "Die urspruenglichen drei offenen Hashpunkte beruhten auf falschen Dateipfaden, nicht auf einer defekten Quellenbindung."
+  }
+}

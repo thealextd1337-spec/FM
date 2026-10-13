@@ -1,5 +1,9 @@
 # Änderungen
 
+## Noch nicht veröffentlicht
+
+- Lokale Stildemos besitzen einen eigenen Startbefehl, hashgebundene Paketierung und einen Loopback-Server mit prüfbarem Quellen-/Gitstand. Ein fehlgeschlagener Paketaustausch stellt den bisherigen Stand wieder her oder bewahrt dessen Sicherung mit genauer Fehlermeldung. Am Release-130-Anker bestehen 103 Datei-/HTTP-Prüfungen, 29 Rollback-Prüfungen und zwei weitere Pfadgrenzen; Standard-HTML unverändert reproduziert. Die Werkzeuge und die korrigierte Bestandsprüfung sind in den Nighttime-Checkout integriert. Browser-/Matchabnahme des Nighttime-Kandidaten folgt separat. [Start und Prüfung](3d-stilauftraege/demo-start-und-pruefung.md).
+
 ## 13. Oktober 2026 – Nighttime-Demo (lokal, nicht veröffentlicht)
 
 - Lokaler Unity/WebGL-Kandidat „Nighttime“ für die 3D-Matchansicht auf Basis von Release 130: helles Flutlichtfeld mit Lichtinseln, dunkle Ränge und Umgebung, ruhiger dunkelblauer Himmel, Lampen-Halos auch ohne Bloom, matte Trikots, eigene Haut-/Haar-/Handschuhreaktion, kühles Gegenlicht und hervorgehobener Ball. Modelle, Clips, Masken, Matchregeln, Speicherung und Spielstände bleiben unverändert.
