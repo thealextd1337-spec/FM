@@ -1,5 +1,10 @@
 # Änderungen
 
+## 13. Oktober 2026 ? Stabile Tageszeit und Vereinsdarstellung angebunden (lokal)
+
+- Reine Darstellungsdaten aus bestehender Fixturekennung und Wettbewerb erg?nzt: Europacup immer Nacht, Liga und nationaler Pokal mit stabilem Tag-/Nachtmix, neutrale Finalorte und Vereinsfarben unabh?ngig von Ausweichtrikots. Keine gespeicherten Match-/Karrieredaten oder native Zufallsziehung ver?ndert. Je zehn JS- und Unity-Vertragspr?fungen bestehen; Licht- und Stadionmodule folgen im laufenden Ausbau.
+- Die aktuelle Vereinswelt enth?lt 96 Ligavereine und 96 Pokalvereine in zw?lf L?ndern. Alle Ligavereine erhalten individuelle Stadionprofile; Pokalvereine d?rfen Standardvarianten verwenden.
+
 ## 13. Oktober 2026 ? Rendering-Zust?ndigkeiten getrennt (lokal)
 
 - Licht/Schatten und Tornetzdarstellung in eigene Unity-Module verschoben; leere Schnittstellen f?r Fanbl?cke erg?nzt. Die urspr?nglichen Methoden bleiben unver?ndert. Der vollst?ndige Unity-Lauf besteht; alle neun Bewegungs-/Kontakt-Gruppen sind gegen?ber der gepr?ften Low-Poly-Basis exakt gleich. Lediglich gemessene Editor-Laufzeiten schwanken.

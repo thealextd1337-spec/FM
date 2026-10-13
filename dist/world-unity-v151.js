@@ -107,7 +107,19 @@
   const diameter=marker.diameter*width/renderWidth;if(diameter>=9)return null;
   return {x:marker.x*width,y:marker.y*height,size:Math.max(12,Math.min(16,diameter+8)),opacity:Math.min(1,(9-diameter)/4)};
  }
- root.D6WorldUnityContract={schema,kit,player,picture,geometry,scaled,camera,labelPosition,labelLeader,ballGuide};
+ 
+ function presentation(context,teams){
+  const fixture=context.fixture,competitionId=String(fixture.competitionId||'');
+  const current=typeof root.v62Current==='function'?root.v62Current(context.career):[];
+  const info=(current||[]).find(c=>c.id===fixture.competitionId);
+  const suffix=competitionId.split(':').at(-1),fallback={LEAGUE:'league',CUP:'cup',EUROPE:'europe',CROWN:'europe',HORIZON:'europe'}[suffix];
+  const competition=['league','cup','europe'].includes(info?.type)?info.type:fallback||'other';
+  let hash=0x811c9dc5;const key='d6-light-1|'+fixture.id;for(let i=0;i<key.length;i++){hash^=key.charCodeAt(i);hash=Math.imul(hash,0x01000193)>>>0;}const bucket=hash%100;
+  const lighting=competition==='europe'?'night':competition==='league'?(bucket<60?'day':'night'):competition==='cup'?(bucket<40?'day':'night'):'night';
+  const isFinal=fixture.round==='F'&&(competition==='cup'||competition==='europe');
+  return {schema:'d6-presentation-1',competition,round:fixture.round||'',format:info?.format||'',venue:fixture.neutral===true||isFinal?'neutral':'home',lighting,lightRule:competition==='europe'?'europe-night':competition==='league'?'league-mix-60':competition==='cup'?'cup-mix-40':'fallback-night',lightBucket:bucket,venueCountry:info?.country||(competition==='cup'||competition==='league'?teams[0].id.split('-')[0]:''),clubs:teams.map(club=>{const colors=typeof root.v61ClubColors==='function'?root.v61ClubColors(club):['#22579a','#f2f3ed'];return {id:club.id,country:club.id.split('-')[0],kind:/-C\d+$/.test(club.id)?'cup':'league',primary:colors[0],secondary:colors[1]};})};
+ }
+ root.D6WorldUnityContract={schema,kit,player,picture,geometry,scaled,camera,labelPosition,labelLeader,ballGuide,presentation};
  if(typeof module==='object'&&module.exports)module.exports=root.D6WorldUnityContract;
 })(typeof window==='object'?window:globalThis);
 
@@ -175,7 +187,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
   // Touch devices start with the conservative Unity quality (no MSAA, smaller
   // hard shadows, no bloom), like the browser renderer since v135. ?quality= overrides.
   const requested=new URLSearchParams(location.search).get('quality'),quality=['standard','reduced'].includes(requested)?requested:matchMedia('(pointer:coarse)').matches?'reduced':'standard';
-  return {schema:channel,session,fixtureId:context.fixture.id,quality,geometry:{...C.geometry(match.geometry,base),fieldPlayers:match.people.filter(p=>p.t===0&&!p.keeper).length,attackDirection:1},teams:teams.map((club,team)=>({id:club.id,name:club.name,home:v65Side(team,context.ownSide)===0})),players:teams.flatMap((club,team)=>club.roster.map(p=>C.player(p,team,p.keeper?(team===0?match.kits.userKeeper:match.kits.opponentKeeper):(team===0?match.kits.user:match.kits.opponent)))),initial:frame};
+  return {schema:channel,session,fixtureId:context.fixture.id,quality,presentation:C.presentation(context,teams),geometry:{...C.geometry(match.geometry,base),fieldPlayers:match.people.filter(p=>p.t===0&&!p.keeper).length,attackDirection:1},teams:teams.map((club,team)=>({id:club.id,name:club.name,home:v65Side(team,context.ownSide)===0})),players:teams.flatMap((club,team)=>club.roster.map(p=>C.player(p,team,p.keeper?(team===0?match.kits.userKeeper:match.kits.opponentKeeper):(team===0?match.kits.user:match.kits.opponent)))),initial:frame};
  }
  function syncLabels(frame){
   const ids=new Set();

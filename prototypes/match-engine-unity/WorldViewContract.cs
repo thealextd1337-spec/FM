@@ -34,7 +34,10 @@ namespace Doppel6.Probe {
     public WorldOffside offside;
     [NonSerialized] public bool ballInFlightKnown,offsideKnown;}
 // quality: "standard" or "reduced"; older pages omit it (decided by platform).
-[Serializable] public class WorldConfig {public string schema,session,fixtureId,quality;public Geometry geometry;public WorldTeam[] teams;public WorldPlayer[] players;public WorldFrame initial;}
+// Display-only facts derived from the persisted fixture; no match/save authority.
+[Serializable] public class WorldPresentationClub {public string id,country,kind,primary,secondary;}
+[Serializable] public class WorldPresentation {public string schema,competition,round,format,venue,lighting,lightRule,venueCountry;public int lightBucket;public WorldPresentationClub[] clubs;}
+[Serializable] public class WorldConfig {public string schema,session,fixtureId,quality;public Geometry geometry;public WorldTeam[] teams;public WorldPlayer[] players;public WorldFrame initial;public WorldPresentation presentation;}
 [Serializable] public class WorldCommand {public string kind;public WorldConfig config;public WorldFrame frame;}
 
 // JsonUtility cannot tell an omitted bool from false. Two parses whose
@@ -83,6 +86,12 @@ public sealed class WorldViewState {
         if(g==null||!Finite(g.length)||g.length<20||g.length>120||!Finite(g.width)||g.width<15||g.width>90||!Finite(g.goalWidth)||g.goalWidth<2||g.goalWidth>g.width/2||!Finite(g.goalHeight)||g.goalHeight<1||g.goalHeight>5||!Finite(g.penaltyDepth)||g.penaltyDepth<=0||g.penaltyDepth>=g.length/2||!Finite(g.penaltyWidth)||g.penaltyWidth<=g.goalWidth||g.penaltyWidth>=g.width||g.fieldPlayers<1||g.fieldPlayers>11)throw new ArgumentException("Invalid match view geometry");
         if(!Text(config.teams[0]?.id)||!Text(config.teams[1]?.id)||config.teams[0].id==config.teams[1].id||!Text(config.teams[0].name)||!Text(config.teams[1].name)||config.teams[0].home==config.teams[1].home)throw new ArgumentException("Invalid match view teams");
         foreach(var p in config.players){if(p==null||!Text(p.id)||!Text(p.name)||p.team<0||p.team>1||p.number<0||p.number>99||p.kit==null||!Color(p.kit.main)||!Color(p.kit.trim)||!Color(p.kit.accent)||Players.ContainsKey(p.id))throw new ArgumentException("Invalid match view player");Players.Add(p.id,p);}
+        var display=config.presentation;
+        if(!string.IsNullOrEmpty(display?.schema)){
+            bool valid=display.schema=="d6-presentation-1"&&(display.competition=="league"||display.competition=="cup"||display.competition=="europe"||display.competition=="other")&&(display.venue=="home"||display.venue=="neutral")&&(display.lighting=="day"||display.lighting=="night")&&display.lightBucket>=0&&display.lightBucket<100&&display.clubs?.Length==2;
+            if(valid)for(int i=0;i<2;i++){var c=display.clubs[i];valid&=c!=null&&c.id==config.teams[i].id&&(c.kind=="league"||c.kind=="cup")&&Color(c.primary)&&Color(c.secondary);}
+            if(!valid||display.competition=="europe"&&display.lighting!="night")throw new ArgumentException("Invalid match view presentation");
+        }
         Config=config;Validate(config.initial);Frame=config.initial;
     }
     public bool Accept(WorldFrame candidate){Validate(candidate);if(candidate.sequence<=Frame.sequence)return false;Frame=candidate;return true;}

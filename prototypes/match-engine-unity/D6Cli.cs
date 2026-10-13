@@ -15,6 +15,10 @@ public static class D6Cli {
     // Compile check only: reaching this method means all scripts compiled.
     public static void Ping(){Done(true,"scripts compiled, Unity "+Application.unityVersion);}
 
+    public static void Presentation(){
+        try{Done(true,Doppel6.Probe.WorldPresentationTests.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+
     public static void Tests(){
         try{
             var repo=Repo();var output=Arg("-d6output");if(output!=null)Directory.CreateDirectory(Path.Combine(repo,output));
@@ -26,6 +30,7 @@ public static class D6Cli {
             Debug.Log("[D6Cli] FootballActionTests: "+FootballActionTests.Run(repo,output));
             Debug.Log("[D6Cli] FootballMotionTests: "+FootballMotionTests.Run(repo,"final",output));
             Debug.Log("[D6Cli] WorldViewTests: "+WorldViewTests.Run(repo,output));
+            Debug.Log("[D6Cli] WorldPresentationTests: "+Doppel6.Probe.WorldPresentationTests.Run(repo,output));
             Debug.Log("[D6Cli] FootballGaitTests: "+FootballGaitTests.Run(repo,output));
             Debug.Log("[D6Cli] ClubStadiumProfilesTests: "+Doppel6.Probe.ClubStadiumProfilesTests.Run(repo,output));
             Debug.Log("[D6Cli] StadiumArchitectureTests: "+StadiumArchitectureTests.Run(repo,output));

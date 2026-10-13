@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 namespace Doppel6.Probe {
 public partial class ProbeBridge {
+    public MatchLightLook LightLook {get;private set;}
     class LightingDefaults {public AmbientMode mode;public Color flat;public float intensity;public SphericalHarmonicsL2 probe;public Quaternion sunRotation;public Color sunColor,background;public float sunIntensity,shadowStrength,far;public LightShadows shadows;public bool msaa;public int shadowResolution,pipelineMsaa;public float shadowDistance;}
 
     LightingDefaults lightingDefaults;Light sun;Volume matchVolume,replayVolume;VolumeProfile matchProfile,replayProfile;Bloom matchBloom;
@@ -16,6 +17,8 @@ public partial class ProbeBridge {
     Light FindSun(){if(sun!=null)return sun;foreach(var light in FindObjectsByType<Light>())if(light.type==LightType.Directional){sun=light;break;}return sun;}
 
     void ApplyMatchLighting(){
+        // Legacy values until the lighting lane applies the received day/night look.
+        LightLook=new MatchLightLook{light=MatchLight.Night,skyTop=new Color(.035f,.06f,.13f),skyHorizon=new Color(.30f,.29f,.35f),skyGround=new Color(.02f,.03f,.04f),lampEmission=1,windowLit=.45f,crowdLight=1,bannerLight=1};
         var light=FindSun();var camera=Camera.main;var urp=GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
         ReducedQuality=worldView?.Config.quality=="reduced"||string.IsNullOrEmpty(worldView?.Config.quality)&&Application.isMobilePlatform;
         if(lightingDefaults==null)lightingDefaults=new LightingDefaults{shadowResolution=urp!=null?urp.mainLightShadowmapResolution:0,pipelineMsaa=urp!=null?urp.msaaSampleCount:1,shadowDistance=urp!=null?urp.shadowDistance:0,mode=RenderSettings.ambientMode,flat=RenderSettings.ambientLight,intensity=RenderSettings.ambientIntensity,probe=RenderSettings.ambientProbe,sunRotation=light!=null?light.transform.rotation:Quaternion.identity,sunColor=light!=null?light.color:Color.white,sunIntensity=light!=null?light.intensity:1,shadowStrength=light!=null?light.shadowStrength:1,shadows=light!=null?light.shadows:LightShadows.None,background=camera.backgroundColor,msaa=camera.allowMSAA,far=camera.farClipPlane};
