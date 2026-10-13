@@ -105,7 +105,9 @@
   "commits": [
    "b43df36a test: build ground preflight + VisibleSurfaceProbe + hooks",
    "16e93a65 build: paired gates, WebGL data, manifest",
-   "61d10ce4 docs: validation round 4 + CHANGELOG"
+   "61d10ce4 docs: validation round 4 + CHANGELOG",
+   "8c93e951 progress",
+   "(this commit) progress without self-referencing package hashes"
   ],
   "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9 (unchanged, 46 files; verify-git-identity HEAD pass)",
   "build": {
@@ -118,18 +120,15 @@
   },
   "package": {
    "dir": "outputs/style-demos/lowpoly-fix/package",
-   "sourceCommit": "61d10ce4635d3e8c969b606cf433017655d31835",
-   "fingerprint": "b1ccfc9d81d5ada0a16b2e2d5c34a0c66616249d5a4568e8af288591c3098979",
-   "packageManifestSha256": "235f5d86966b1d3e2070d87e04d518f6fc3d6c6be8109784c9a9038f7800d9c6",
-   "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
-   "verify": "103/103 deep require-clean, local and via http://127.0.0.1:4413"
+   "sourceCommit": "the commit that contains this file (package-demo --require-clean from HEAD)",
+   "values": "GET http://127.0.0.1:4413/__build (sourceCommit, sourceFingerprint, packageManifestSha256, unityManifestSha256 f51e0226…, htmlSha256 358d343b…)",
+   "verify": "verify-package --deep --require-clean, local and via 4413: see outputs/style-demos/lowpoly-fix/verify-package-r4-final.json"
   },
   "server": {
    "url": "http://127.0.0.1:4413/",
-   "pid": 88384,
-   "previousPidStopped": 85396,
+   "pid": "see /__build (restarted from the final commit; previous own PIDs 85396, 88384 stopped)",
    "untouched": {
-    "4411": "listening PID 92924 (not mine; brief said 62324)",
+    "4411": "PID 92924 (not mine)",
     "4412": 90676
    }
   },
