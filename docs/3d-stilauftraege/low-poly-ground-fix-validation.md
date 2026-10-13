@@ -2,9 +2,78 @@
 
 Stand 13. Oktober 2026, Opus 5.5, Runde 3. Branch `codex/demo-low-poly-fix-20261013` im Checkout `work/demo-low-poly-fix`, Unity-Projekt `G:/unity/Doppel6-LowPoly-Demo` (6000.6.4f1). Quellstand und Begründung: [Vorbereitung](low-poly-ground-fix-preparation.md) (Runde 2, historisch; dort steht „47“ Identitätsdateien für den alten Kandidaten, richtig sind 46). Ergebnisse sind Claims; die abschließende Browserabnahme macht Root/Sonnet. Der eingefrorene Kandidat `d8ae8785` (Quellkennung `46a6e081…`, Server 4412) und sein Paket blieben unberührt.
 
-**Ergebnis:** Die Korrektur funktioniert in Unity ohne Quelländerung gegenüber `e7754f4c`. Mit dem Low-Poly-Mesh sind alle 4.001 Bewegungs-, Support-, Kontakt-, Kontinuitäts-, R15-, R20- und Determinismusgates bitgleich zum Originallauf; die R18-Sperre steht wieder exakt auf `2102.81884765625`. Keine Grenze wurde verändert. Sichtbare Low-Poly-Sohlen werden weiter am gezeichneten Skin gemessen und bestehen dieselben Grenzen.
+**Runde 4 (unten):** Beide P2-Befunde aus Sonnets Review sind mit Code, Negativlauf und Messung geschlossen; Laufzeit und Quellkennung unverändert, WebGL neu gebaut. **Ergebnis Runde 3:** Die Korrektur funktioniert in Unity ohne Quelländerung gegenüber `e7754f4c`. Mit dem Low-Poly-Mesh sind alle 4.001 Bewegungs-, Support-, Kontakt-, Kontinuitäts-, R15-, R20- und Determinismusgates bitgleich zum Originallauf; die R18-Sperre steht wieder exakt auf `2102.81884765625`. Keine Grenze wurde verändert. Sichtbare Low-Poly-Sohlen werden weiter am gezeichneten Skin gemessen und bestehen dieselben Grenzen.
 
-## Ablauf
+## Runde 4: Antwort auf Sonnets Review (2 × P2)
+
+Stand 13. Oktober 2026, Opus 5.5, Start `833dba25`. Review: `outputs/style-demos-20261013/sonnet-ground-review-r2/review.md`. Laufzeitquellen unverändert: `sourceId` bleibt `644d9d92…` (46 Dateien; Git-Objekte = Arbeitsbytes, Roots `verify-git-identity.cjs HEAD` und `check-identity-git-objects.cjs HEAD` bestanden). Geändert sind nur Editor-Code (`D6Cli.cs`, `LowPolyGroundDiagnostics.cs`, `NaturalMotionDiagnostics.cs`, `FootballKeeperTests.cs`) und der damit neu gebaute WebGL-Stand. Logs `outputs/style-demos/lowpoly/logs/60…73-*.log`.
+
+### P2-1 Build ohne Bodenmesh – behoben
+
+- `D6Cli.WebBuild` ruft vor jeder Einstellungsänderung `D6Cli.WebBuildPreflight(Probe.unity)` auf. Die Prüfung öffnet die gespeicherte Szene von der Platte: Ein Ersatz-Matchmesh braucht `WorldPlayer.asset` als Bodenmesh mit identischen Bindposes, und beide Meshes müssen gespeicherte Szenenabhängigkeiten sein; das Releasemesh braucht keines (oder sich selbst). Sonst bricht der Build ab, bevor `BuildPipeline` startet. Der Originalpfad ohne Ersatzmesh ist unverändert.
+- **Echter Negativlauf** (`outputs/style-demos/lowpoly-fix/tools/webbuild-negative.sh`, Log 72): Szene in den d8ae8785-Zustand gesetzt (`groundPlayerMesh: {fileID: 0}`), echter `D6Cli.WebBuild`-Aufruf → `FAILED Build preflight: match mesh WorldPlayerLowPoly-v4 has no ground mesh …` nach 11 s, kein Buildschritt im Log, `outputs/platform/unity-web` bytegleich, Szene danach bytegleich zurückgesetzt (`0cb721dd…`).
+- In `LowPolyGround` zusätzlich: gespeicherte Szenenkopie im d8ae8785-Zustand verweigert; sieben Speichervarianten (ohne Boden, Boden = Matchmesh, fremdes Bodenmesh, Release mit fremdem Boden verweigert; Low-Poly mit `WorldPlayer`, Release ohne/mit sich selbst akzeptiert); Szene danach unverändert und nicht dirty.
+- Positiver Lauf (Log 73): `WebBuild preflight: match mesh WorldPlayerLowPoly-v4, ground WorldPlayer (9725 vertices, 28 bind poses), both saved scene dependencies`, danach Build erfolgreich.
+- Optionaler Laufzeitwurf nicht eingebaut (würde die Quellkennung ändern; der Build ist die maßgebliche Stelle).
+
+### P2-2 Sichtbare Oberfläche – neue gekoppelte Prüfung
+
+`VisibleSurfaceProbe` (in `LowPolyGroundDiagnostics.cs`) misst je Bild den gezeichneten Low-Poly-Skin gegen den Bodenskin desselben Akteurs. Der Bodenskin ist das Releasemesh auf denselben Knochen in derselben Pose (Bake bitgleich zum Releaseskin, Posen 342/342 und Rutschungen 150/150 bitgleich), also eine Releasereferenz im selben Bild. Regionen nach Hauptknochen: Stiefel (Foot/ToeBase/Toe_End), Handschuh (Hand und Finger), Körper (alles außer Stiefeln, Handschuhe eingeschlossen). Ohne Bodenskin (Originalpfad) wird nichts gemessen und keine Datei geschrieben.
+
+Zwei Gate-Arten, nur bestehende Grenzen:
+
+| Art | Größe | Grenze | Regel |
+| --- | --- | --- | --- |
+| absolut | tiefster Stiefelpunkt | Fortbewegung −1 cm (natural-motion), Rutschen −3,5 cm (Duel, Stiefel im Rutscheinstieg), sonst −2 cm (r11) | innerhalb besteht; außerhalb nur „geerbt“, wenn die Releasereferenz ebenfalls außerhalb liegt und der Kandidat höchstens 1e-4 m schlechter ist; Kandidat-allein und Kandidat-schlechter scheitern |
+| absolut | tiefster Körperpunkt (mit Handschuhen) | Fortbewegung −1 cm, sonst −2 cm (die r11-Hautsohle) | wie oben (natural-motion, Clipgalerie außer Rutschen) |
+| gekoppelt | Stiefelfläche zum angenommenen Ball (nächstes Dreieck zum Ballmittelpunkt minus Radius), Handschuhfläche zum gehaltenen/Kontaktball, Stiefel und Körper in Keeperparaden, Körper beim Rutschen | 3 cm bzw. −2 cm werden je Bild klassifiziert und berichtet | Kandidat höchstens 0,01 m schlechter als die Releasereferenz im selben Bild |
+
+Warum gekoppelt: Für diese Größen erfüllt schon die gezeichnete Releasefläche die bestehende Grenze nicht – die Grenze kann den Kandidaten dort nicht beurteilen. Die r11-Kontaktregel (3 cm) ist auf einem Knochenmodell definiert (Knochen + 4 cm Stiefel; die bestehende r11-Prüfung bleibt unverändert und besteht); die gezeichnete Releasestiefelfläche liegt in 152 von 356 nativen Kontaktbildern 3,0–5,2 cm im Ball. Der gehaltene Ball liegt im Original 9,1 cm in den Handschuhen. Releasestiefel in Paraden reichen bis 8,9 cm unter den Rasen, die Stützhand beim Rutschen bis 23,6 cm. 0,01 m ist die engste bestehende sichtbare Grenze (Fortbewegungssohle) und strenger als die 3-cm-Kontaktgrenze. Jede absolute Überschreitung bleibt je Bild mit Kandidat, Referenz, Mehrbetrag und Knochen im Bericht (`pairedBeyondEntries`) und in der Konsolenzeile.
+
+Antwort auf die Einzelpunkte:
+
+- **(b) Ausnahme `releaseAlsoViolates`:** entfernt. Sonnets Beispiel (Release −0,0101, Kandidat −0,035 bei −0,01) ist jetzt ein Fehler; als Zahlenregel in `LowPolyGround` geprüft. Für absolute Größen entschuldigt eine geerbte Verletzung höchstens 1e-4 m.
+- **Die Grätsche `slide right 1,00` (−6,45 cm):** Die neue Regionsmessung zeigt, dass der tiefste Punkt die Fingerspitze der Stützhand ist (`LeftHandMiddle4`), kein Stiefel. Die Stiefel liegen in dieser Pose bei +0,96/+3,17 cm. Release −6,16 cm, Kandidat −6,45 cm, Mehrbetrag 2,9 mm. Die Pose ist kein künstlicher Schnitt: Sie entspricht dem vollen Rutschen, das die Präsentation 80 % der Rutschdauer zeigt (`FootballDuelTiming.Slide`). Neu geprüft auf nativer Hüllkurve (beide Seiten, Einstieg, Halten, Aufstehen, 60 Hz, fortlaufende Uhr, 150 Bilder): Stiefel absolut bestanden (tiefste −0,69 cm bei −3,5 cm Grenze), Körper 50 Bilder unter −2 cm (Release ebenso; schlimmste Release −23,62 cm, Kandidat −23,77 cm im Aufstehen), Kandidat höchstens 2,9 mm tiefer. **Nicht als bestanden ausgewiesen:** `FAILED` bleibt je Bild als `paired candidate-worse` im Bericht stehen.
+- **(a) `bootDeviationMax` ≈ 4,4 cm:** entfernt, keine Grenze darauf gesetzt. Die Messung verglich Nächster-Vertex-Abstände zwischen verschieden zugeordneten Knochengruppen und war ein Auswahlartefakt. Ersetzt durch Flächenabstände (nächstes Dreieck) zum echten nativen Ball und tiefste Punkte je Region.
+- **(a) Handschuhabstand:** nur noch am echten gehaltenen Fang (`controlled catch within reach`, beide Hände auf dem Ball) und an Paradenkontakten. Release −9,09 cm (bekannter geerbter Fehler: Ball in den Handschuhen), Kandidat −9,06 cm, also 0,3 mm besser. Keine Prüfung auf geschnittenen Keeperposen ohne Ball.
+
+### Messergebnisse (gezeichnete Low-Poly-Oberfläche gegen Release im selben Bild)
+
+| Lauf | Bilder | gescheitert | absolute Ergebnisse | gekoppelt: über der bestehenden Grenze |
+| --- | --- | --- | --- | --- |
+| natural-motion (Tests, alle Raten) | 14.670 | 0 | Stiefel/Körper 0 Verletzungen, 0 geerbt (tiefste Stiefel −3,9 mm Fortbewegung, −3,2 mm Aktion) | rechter Stiefel am Ball: 152 von 356 (davon Release ebenso darüber: 151; 1 nur Kandidat: −3,117 statt −2,989 cm; 17 Kandidat tiefer, Mehrbetrag ≤ 2,0 mm, Median −0,6 mm) |
+| Keeper (9 native Sequenzen + Fang) | 561 | 0 | – | Stiefel 21 Bilder unter −2 cm (Release ebenso; Mehrbetrag ≤ 1,2 mm), Körper 0 (Mehrbetrag ≤ 8,0 mm, Körper > 4 cm über dem Rasen), Handschuh 1 (geerbt, Kandidat besser) |
+| Clipgalerie (`LowPolyGround`) | 342 | 0 | 0 Verletzungen, 0 geerbt | Körper beim Rutschen: 1 (Stützhand, siehe oben) |
+| native Rutsch-Hüllkurve | 150 | 0 | Stiefel 0 | Körper 50 (Stützhand, Mehrbetrag ≤ 2,9 mm) |
+
+**Wächter (Sentinel):** Ein Low-Poly-Mesh mit 4 cm tieferen Stiefeln und 8 cm entlang der Normalen aufgeblasenen Handschuhen wird auf demselben Rig und Bodenskin abgelehnt: Stiefel beidseitig (nur Kandidat), Stiefel am Ball, Handschuh am Ball und der geerbte Pfad (Grenze 1 mm über der Referenz → `candidate-worse`). Der echte Kandidat besteht dieselben drei Bilder.
+
+**Lücken:** Die Kontrollfixtures enthalten nur Kontakte mit dem rechten Fuß; native Spielaufzeichnungen (`native-motion`, `native-contract`, `native129-rig`) liegen in keinem lokalen Checkout. Linke Fußkontakte werden deshalb nur über die absolute Stiefelmessung, nicht am Ball geprüft. Für Rutschen und Keeper gibt es nur die Selector-/Hüllkurvenwege der bestehenden Suiten, keine aufgezeichneten Spielszenen. Neue Nahaufnahmen wurden nicht gerendert: Laufzeit und Mesh sind seit Runde 3 unverändert, deren Fuß-/Kontaktnahaufnahmen gelten weiter.
+
+**Neu gefundene geerbte Fehler aus Release 130** (nicht Low-Poly, keine Bewegungsänderung in dieser Runde): Stützhand beim Rutschen und Aufstehen bis 23,6 cm unter dem Rasen; Keeperstiefel in Paraden/Hechten bis 8,9 cm unter dem Rasen; gezeichneter Stiefel an nativen Kontaktbildern bis 5,2 cm im Ball; gehaltener Ball 9,1 cm in den Handschuhen. Für Root zur Bugliste.
+
+### Läufe Runde 4
+
+| Schritt | Ergebnis |
+| --- | --- |
+| 60 `Ping` (Sync: 4 Editor-Dateien) | kompiliert, 0 Fehler |
+| 61–66 `LowPolyGround` | iterativ; zuerst Regionsfehler entdeckt (Körper ohne Hände), Handschuh-Wächter falsch angelegt, eine falsche Erwartung in der Zahlenregel; Endstand 66: **48/48** Pflichtprüfungen |
+| 64/65 `Tests` | zeigten die gekoppelte Lage (Keeper-Stiefel, Ballkontakt) – Anlass für die gekoppelte Regel; keine Grenze gelockert |
+| 67 `Tests` (Low-Poly) | OK; alle Gatesätze gegen Runde 3 (`tests-v4-ground`) 0 Abweichungen bei gleichen Namen/Anzahlen/Grenzen, R18-Sperre `2102.81884765625`; anders nur Wanduhrzeiten, zwei neue Dateien `visible-surface*.json`, eine neue Keeperprüfung (161 statt 160) |
+| 68/69/70 `MatchMesh original` → `Tests` → `MatchMesh lowpoly` | Originalpfad gegen Runde 3 (`tests-original-fix`): alle Gatesätze 0 Abweichungen, keine Sichtbar-Datei, Keeper 160 Prüfungen, nur Wanduhrzeiten; Szene danach bytegleich `0cb721dd…` |
+| 71 `NaturalMotion` (Kontaktfälle, gerendert) | Gates bestanden; gleiche gekoppelte Werte |
+| 72 `WebBuild` negativ | verweigert, siehe P2-1 |
+| 73 `WebBuild` | erfolgreich, siehe Build |
+
+Vergleichsberichte: `outputs/style-demos/lowpoly-fix/compare/r3-v4-vs-r4-v4.json`, `r3-original-vs-r4-original.json`.
+
+### Build Runde 4
+
+`generate-identity.cjs` (unverändert `644d9d92…`) → Sync → `MatchMesh lowpoly` → `WebBuild` mit Vorprüfung → `build-manifest.cjs`. `unity-web.wasm` (`2de6a7d5…`), `framework.js` (`36ef3791…`) und `loader.js` (`c49fdcbc…`) sind bytegleich zu Runde 3. Neu ist `unity-web.data` `00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8` mit 56.050.907 B (Runde 3: 56.050.915 B). Im Datenpaket unterscheiden sich `boot.config` (neue Build-GUID) und `data.unity3d` (8 B). Unitys Buildbericht listet als einzige Änderung einen Skript-Metadateneintrag weniger (`InputSystem/…/InputEventStream.cs`, 0,1 kB); Meshes 2,3 MB, Shader 634,5 kB und Gesamtgröße sind gleich. `probe-build.json`: `D6Cli.cs`-Hash `7115b7f9…`. Alle 33 Quell-, 4 Build- und 3 Low-Poly-Asset-Hashes stimmen mit den Git-Objekten überein.
+
+Echtes WebGL (`check-lowpoly-webgl.cjs`, Edge headless, ANGLE D3D11, RTX 4070, `outputs/style-demos/lowpoly-fix/webgl/groundfix-r4/`): Konsole `match mesh WorldPlayerLowPoly-v4 vertices=6926 … ground=WorldPlayer vertices=9725`, 0 Fehler, 6 Bildsätze; native Parität an Tick 600/1200/2400/4213 identisch zu Runde 3. Angesehen: Spielbild 844×390 standard.
+
+## Ablauf (Runde 3)
 
 Alle Unity-Läufe seriell über `work/platform/qa/lowpoly-unity.sh` (fester Projektpfad `G:/unity/Doppel6-LowPoly-Demo`, Lockprüfung, Sync vor jedem Lauf, `-d6repo` = dieser Checkout). Kein Editor war auf dem Projekt offen (`Temp/` fehlte). Andere Unity-Prozesse auf dem Rechner wurden nicht angefasst. Logs: `outputs/style-demos/lowpoly/logs/40…49-*.log` in diesem Checkout.
 
@@ -43,7 +112,7 @@ Unabhängiger Vergleich `outputs/style-demos/lowpoly-fix/tools/compare-test-repo
 - Zwei echte `WorldCommand`-Loads: je 12 Akteure, 12 deaktivierte Bodenskins, 12 aktive Renderer.
 - **Fables Mechanismus jetzt direkt gemessen:** `Of(walking)` Release = Kandidat = `0.06938185`, Legacy `0.0693369359` (Δ = 4,49·10⁻⁵ m, wie gefolgert). Legacy wich außerdem bei `pass_inside`, `keeper_high`, `sprint_forward`, `run_fast6`, `back_left`, `turn_idle_left`, `turn_walk_left`, `celebrate_fist`, `foul_fall`, `keeper_shuffle` und in der Konturpunktzahl (77 statt 119/129) ab; Legacy-Knochen max. 1,8 mm (`keeper_shuffle`, Kopf).
 
-Sichtbare Oberfläche (Clipproben, gezeichneter Low-Poly-Skin): 0 Verletzungen nur des Kandidaten. **Eine Probe verletzt die Grenze bei beiden Meshes** und wird als `releaseAlsoViolates` geführt: `slide right 1,00` (statische Grätschenpose mit voller Gewichtung auf `sprint_forward`), gezeichnete Sohle −6,45 cm, Release-Skin −6,16 cm, Grenze −2 cm. Das ist eine Eigenschaft der geschnittenen Diagnosepose, die auch das Original zeigt; die maßgeblichen nativen Grätschenbilder liegen in Duel-/NaturalMotion-Gates (bestanden). Der Low-Poly-Fuß liegt dort 2,9 mm tiefer als der Originalfuß. Sohlenabweichung gezeichnet ↔ Release über alle Posen −6,3 … +5,1 mm; tiefster Stiefelpunkt je Fuß gegenüber dem Bodenskin −1,4 … +5,1 mm (Median 0). Die ausgewiesene „Stiefelabweichung“ von ≈ 4,4 cm ist über alle Posen konstant und stammt aus unterschiedlicher Knochengruppenzugehörigkeit der Vertices beider Meshes (Hauptgewicht Fuß/Zeh), nicht aus der Form. Handschuhabstand zum gehaltenen Ball gezeichnet vs. Release: Unterschiede ≤ 4 mm.
+Sichtbare Oberfläche (Clipproben, gezeichneter Low-Poly-Skin): 0 Verletzungen nur des Kandidaten. **Eine Probe verletzt die Grenze bei beiden Meshes** und wird als `releaseAlsoViolates` geführt: `slide right 1,00` (statische Grätschenpose mit voller Gewichtung auf `sprint_forward`), gezeichnete Sohle −6,45 cm, Release-Skin −6,16 cm, Grenze −2 cm. *(Runde 4 korrigiert diese Deutung: Der Punkt ist die Fingerspitze der Stützhand in der echten vollen Rutschpose, kein Stiefel und kein Schnittartefakt; die Ausnahme ist entfernt, siehe oben.)* Der Low-Poly-Fuß liegt dort 2,9 mm tiefer als der Originalfuß. Sohlenabweichung gezeichnet ↔ Release über alle Posen −6,3 … +5,1 mm; tiefster Stiefelpunkt je Fuß gegenüber dem Bodenskin −1,4 … +5,1 mm (Median 0). *(Runde 4: Messung entfernt.)* Die ausgewiesene „Stiefelabweichung“ von ≈ 4,4 cm ist über alle Posen konstant und stammt aus unterschiedlicher Knochengruppenzugehörigkeit der Vertices beider Meshes (Hauptgewicht Fuß/Zeh), nicht aus der Form. Handschuhabstand zum gehaltenen Ball gezeichnet vs. Release: Unterschiede ≤ 4 mm.
 
 ## Low-Poly mit Bodenskin (45)
 
@@ -110,17 +179,25 @@ Reihenfolge wie im aktuellen Pfad: `generate-identity.cjs` (unverändert `644d9d
 
 ## Geprüfte Grenze: maßgeblicher Boden gegenüber sichtbarer Oberfläche
 
-Bodenmaßgeblich (Bodenskin): Standsohle, `RootHeight`, `Of(clip)`, Gang, Kontur, Laufzeit-Bake. Sichtbar (gezeichneter Skin): `s.sole`/Tracespalte `sole`, `sole below turf frames`, die Skinanteile von `lowest sole incl. actions`, R20-Countdown-Sohle, `LowestBoot` (Duel/Iteration), alle Renderings. Keine Grenze wurde gelockert, keine sichtbare Messung auf den Bodenskin umgestellt.
+Bodenmaßgeblich (Bodenskin): Standsohle, `RootHeight`, `Of(clip)`, Gang, Kontur, Laufzeit-Bake. Sichtbar (gezeichneter Skin): `s.sole`/Tracespalte `sole`, `sole below turf frames`, die Skinanteile von `lowest sole incl. actions`, R20-Countdown-Sohle, `LowestBoot` (Duel/Iteration), alle Renderings. Keine Grenze wurde gelockert, keine sichtbare Messung auf den Bodenskin umgestellt. Runde 4: Die gekoppelte Prüfung `VisibleSurfaceProbe` liest beide Skins im selben Bild; der Bodenskin dient dort nur als Releasereferenz, gemessen und beurteilt wird der gezeichnete Skin.
 
 ## Offene und geerbte Grenzen
 
 - Geerbt aus Release 130: historisches R15-1600-Gate (scheitert auch im Original), Kontakt-/Übergangsruckler, Direktfreistoß-Vorbereitung, gehaltener Ball tief in `controlled-catch-held`, siehe [Bugliste](../Bugliste.md).
-- Diagnose-Clipprobe `slide right 1,00` unter −2 cm bei beiden Meshes (siehe oben).
+- Rutschen: Stützhand bei Release und Low-Poly unter dem Rasen (bis −23,6 / −23,8 cm), Low-Poly bis 2,9 mm tiefer; Keeperparaden: Stiefel bis −8,9 cm (beide); native Kontaktbilder: gezeichneter Stiefel bis 5,2 cm im Ball (beide); gehaltener Ball 9,1 cm in den Handschuhen (beide). Alle gekoppelt geprüft (Kandidat ≤ 0,01 m schlechter) und je Bild berichtet, nicht als bestanden gegen die absolute Grenze ausgewiesen.
+- Linke Fußkontakte am Ball nicht gemessen (Kontrollfixtures nur rechts, keine nativen Spielaufzeichnungen lokal).
 - Kein Android-/Mobilgerät verfügbar: keine Gerätefreigabe, keine mobile GPU-Messung.
 - Download wächst um `WorldPlayer.asset` (siehe Build); Laufzeit-Bake wieder auf Release-Niveau.
 - Abschließende Browserabnahme (344 Prüfungen, Lebenszyklus, Architekturen, volle Parität) durch Sonnet/Root steht aus.
 
-## Übergabe
+## Übergabe Runde 4
+
+- Commits auf `codex/demo-low-poly-fix-20261013` nach `833dba25`: `b43df36a` (Build-Vorprüfung, `VisibleSurfaceProbe`, Haken in natural-motion/Keeper), `16e93a65` (gekoppelte Gates, WebGL-Build, Manifest), danach dieses Dokument, CHANGELOG. Nicht gepusht, kein Main-/Deploy-Schritt.
+- Geänderte Dateien: `prototypes/match-engine-unity/D6Cli.cs` (im Buildmanifest), `LowPolyGroundDiagnostics.cs`, `NaturalMotionDiagnostics.cs`, `FootballKeeperTests.cs` (Editor; nicht in Quellkennung/Manifest), `outputs/platform/unity-web/Build/unity-web.data`, `outputs/platform/unity-web/probe-build.json`, `docs/CHANGELOG.md`, dieses Dokument. Nachweise (nicht versioniert, `outputs/*` ignoriert): `outputs/style-demos/lowpoly-fix/{unity-r4,tests-v4-r4b,tests-original-r4,motion-r4,preflight,webgl/groundfix-r4,compare}`, Logs `outputs/style-demos/lowpoly/logs/60…73`, Werkzeug `tools/webbuild-negative.sh`.
+- Paket, Server-PID und Fingerprint: `outputs/style-demos/lowpoly-fix/progress.json` (Paket aus dem Commit mit diesem Dokument, `--require-clean`).
+- Nächster Schritt: Sonnets frisches Review und volle Browserabnahme (344) gegen 4413, wie unten; danach Roots Entscheidung.
+
+## Übergabe Runde 3
 
 - Commits auf `codex/demo-low-poly-fix-20261013`: `e7754f4c` (Quellkorrektur, Runde 2, unverändert), `2e1d0fdc` (WebGL-Build + Messhelfer), `3b29d9ee` (Leckprüfung in `LowPolyGroundDiagnostics`, Nachweise, Doku, CHANGELOG), danach nur dieses Übergabedokument/`progress.json`. Nicht gepusht; kein Main-/Deploy-Schritt.
 - Geänderte Dateien dieser Runde: `outputs/platform/unity-web/Build/*` (data, loader, wasm), `outputs/platform/unity-web/probe-build.json`, `work/platform/qa/check-lowpoly-webgl.cjs` (`--unthrottled`, Wasm-Speicher), `prototypes/match-engine-unity/LowPolyGroundDiagnostics.cs` (Editor, nicht in Quellkennung/Manifest), `docs/CHANGELOG.md`, dieses Dokument, Nachweise unter `outputs/style-demos/lowpoly-fix/` (Werkzeuge `tools/compare-test-reports.cjs`, `tools/check-imports.cjs`). Laufzeitquellen gegenüber `e7754f4c` unverändert; `sourceId` `644d9d92…` gehört jetzt zu diesem Build.
