@@ -1,0 +1,955 @@
+{
+  "schema": "d6-style-demo-acceptance-1",
+  "style": "nighttime",
+  "url": "http://127.0.0.1:4411",
+  "repo": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\demo-nighttime",
+  "startedAt": "2026-10-13T01:01:13.261Z",
+  "gpu": true,
+  "harness": {
+    "file": "work/style-demos/acceptance-browser.cjs",
+    "sha256": "f44db7ecdb8123f0b57485425c1cfd10497c50050e7fcac3daf361808e14f03c",
+    "commit": "6b45ea370ab9ffd3a35e9e4d7267bbdd96d4462d",
+    "branch": "codex/demo-style-support-20261013",
+    "dirty": false,
+    "node": "v24.19.0"
+  },
+  "checks": [
+    {
+      "id": "build-style",
+      "name": "Server meldet Stil nighttime mit frischem Paket",
+      "ok": true,
+      "detail": "{\"style\":\"nighttime\",\"fresh\":\"fresh\"}"
+    },
+    {
+      "id": "build-source-id",
+      "name": "probe-build.json trägt dieselbe sourceId wie /__build",
+      "ok": true,
+      "detail": "{\"manifest\":\"3422e9fb1258deffd276c0a4c956f60a4aaabefc13323ce918f023a85eddf330\",\"build\":\"3422e9fb1258deffd276c0a4c956f60a4aaabefc13323ce918f023a85eddf330\"}"
+    },
+    {
+      "id": "build-clean",
+      "name": "Quelle sauber und committed",
+      "ok": true,
+      "detail": "{\"commit\":\"622885f78eb5125d423fd550e20fe7cb3667c5d0\",\"dirty\":false}"
+    },
+    {
+      "id": "vp-1280x720-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-1280x720-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (1280x720-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4411/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-1280x720-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-1280x720-standard-quality",
+      "name": "Unity erhielt Qualität standard im Ladebefehl",
+      "ok": true,
+      "detail": "[\"standard\"]"
+    },
+    {
+      "id": "vp-1280x720-standard-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-844x390-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (844x390-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-844x390-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (844x390-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4411/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-844x390-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (844x390-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-844x390-standard-quality",
+      "name": "Unity erhielt Qualität standard im Ladebefehl",
+      "ok": true,
+      "detail": "[\"standard\"]"
+    },
+    {
+      "id": "vp-844x390-standard-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-931x448-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (931x448-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-931x448-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (931x448-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4411/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-931x448-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (931x448-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-931x448-standard-quality",
+      "name": "Unity erhielt Qualität standard im Ladebefehl",
+      "ok": true,
+      "detail": "[\"standard\"]"
+    },
+    {
+      "id": "vp-931x448-standard-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-1280x720-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-1280x720-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4411/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-1280x720-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-1280x720-reduced-quality",
+      "name": "Unity erhielt Qualität reduced im Ladebefehl",
+      "ok": true,
+      "detail": "[\"reduced\"]"
+    },
+    {
+      "id": "vp-1280x720-reduced-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-844x390-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-844x390-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (844x390-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4411/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-844x390-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-844x390-reduced-quality",
+      "name": "Unity erhielt Qualität reduced im Ladebefehl",
+      "ok": true,
+      "detail": "[\"reduced\"]"
+    },
+    {
+      "id": "vp-844x390-reduced-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-931x448-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-931x448-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (931x448-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4411/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-931x448-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-931x448-reduced-quality",
+      "name": "Unity erhielt Qualität reduced im Ladebefehl",
+      "ok": true,
+      "detail": "[\"reduced\"]"
+    },
+    {
+      "id": "vp-931x448-reduced-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "flow-unity",
+      "name": "Unity aktiv und bereit, kein lastError (1280x720)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "flow-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (1280x720)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4411/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "flow-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (1280x720)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "flow-pause-ui",
+      "name": "Sichtbare Pause-Taste hält nativ (Phase paused) und Unity zeigt das Bild als paused",
+      "ok": true,
+      "detail": "{\"native\":\"paused\",\"picture\":\"paused\"}"
+    },
+    {
+      "id": "flow-resume-ui",
+      "name": "Sichtbare Fortsetzen-Taste: Echtzeit-Schleife lief (Uhr >1,5 s, Unity-ACKs)",
+      "ok": true,
+      "detail": "{\"elapsed\":1.5114840000557899,\"ack\":123}"
+    },
+    {
+      "id": "flow-pause-frozen",
+      "name": "Pausiert: Uhr, Stand, Positionen, Ball und Ereignisse unverändert über 1,5 s",
+      "ok": true,
+      "detail": "{\"a\":1.5383940000557899,\"b\":1.5383940000557899,\"pos\":true}"
+    },
+    {
+      "id": "flow-resume-session",
+      "name": "Nach Fortsetzen gleiche Unity-Sitzung, keine Neuladung, weiter 3D",
+      "ok": true,
+      "detail": "{\"loads\":[1,1]}"
+    },
+    {
+      "id": "flow-halftime",
+      "name": "Echte Halbzeitpause erreicht (native Pause, Taste „2. Halbzeit starten“)",
+      "ok": true,
+      "detail": "{\"half\":true,\"phase\":\"paused\",\"planView\":true,\"label\":\"2. Halbzeit starten\",\"minute\":51,\"score\":[1,0],\"state\":{\"elapsed\":42.82590000009395,\"clock\":92.12900000017568,\"score\":[1,0],\"goals\":1,\"events\":\"fa7861e96becf6f387a90e16fc5535f25dc8bff9d01e5b8865f286eec839b457\",\"eventCount\":2,\"lineup\":\"a8cb204d2cff5b70f6723d10a7e134b22fbc7313c55b1932c20e507ad88e3511\",\"positions\":\"688ebd77bad8b467b564183ce44fb3261f498b58e605cb8018159ac32b2952a7\",\"ball\":\"81445eb5c1fb814b96a28a965ffe426cef322c5852d4d79f93cc6306e48dd664\",\"minute\":51,\"phase\":\"paused\",\"half\":true,\"randomless\":true}}"
+    },
+    {
+      "id": "flow-second-half",
+      "name": "Zweite Halbzeit per Taste gestartet: Uhr läuft, Unity aktiv, gleiche Sitzung, kein Fehler",
+      "ok": true,
+      "detail": "{\"minute\":[51,55],\"session\":true}"
+    },
+    {
+      "id": "flow-review-history",
+      "name": "Rückschau nutzt die echte aufgezeichnete Zeitleiste (≥ 2 Bilder), Unity zeigt replay-Bild, Labels gesperrt",
+      "ok": true,
+      "detail": "{\"timeline\":35,\"span\":[53.37900000017788,102.97900000017506],\"markers\":1,\"rv\":{\"review\":true,\"picture\":true,\"disabled\":true,\"panel\":true,\"phase\":\"paused\"}}"
+    },
+    {
+      "id": "flow-review-readonly",
+      "name": "Rückschau ändert Uhr, Stand, Aufstellung, Positionen, Ball und Ereignisse nicht",
+      "ok": true,
+      "detail": "{\"before\":50.001900000094224,\"after\":50.001900000094224}"
+    },
+    {
+      "id": "flow-review-scrub",
+      "name": "Zurückspulen zeigt eine frühere Spielzeit im Unity-Bild",
+      "ok": true,
+      "detail": "{\"early\":26.95290000009335,\"mid\":36.1179000000937}"
+    },
+    {
+      "id": "flow-review-return",
+      "name": "Zurück zu Live: kein replay-Bild, gleicher Spielstand, gleiche Sitzung, kein Fehler",
+      "ok": true,
+      "detail": "{\"back\":{\"phase\":\"live\",\"replay\":false,\"error\":null}}"
+    },
+    {
+      "id": "flow-complete",
+      "name": "Vollständige Partie beendet: Ergebnis gebucht, Karriere valide, Unity-Bild finished, kein Fehler",
+      "ok": true,
+      "detail": "{\"ticks\":1392,\"score\":[2,0],\"all\":\"98bbda73\",\"picture\":\"finished\",\"booked\":true,\"valid\":true}"
+    },
+    {
+      "id": "flow-leave",
+      "name": "Verlassen der Partie entfernt Renderer und Stream",
+      "ok": true
+    },
+    {
+      "id": "goal-real",
+      "name": "Echtes Tor durch die native Simulation (nicht erzeugt): Seed 160112, Tor im Spielstand und in den Ereignissen",
+      "ok": true,
+      "detail": "{\"score\":[0,1],\"goals\":1}"
+    },
+    {
+      "id": "goal-replay",
+      "name": "Tor-Wiederholung: HUD sichtbar, Unity zeigt replay-Bild, kein Fehler",
+      "ok": true,
+      "detail": "{\"hud\":true,\"replay\":true,\"net\":false}"
+    },
+    {
+      "id": "goal-replay-no-double",
+      "name": "Wiederholung endet und bucht kein zweites Tor (Stand und Torliste gleich)",
+      "ok": true,
+      "detail": "{\"before\":[0,1],\"after\":[0,1],\"goals\":[1,1]}"
+    },
+    {
+      "id": "parity-sequence",
+      "name": "Identische Aufrufsequenz (20′, Pause, Fortsetzen, Halbzeit, 60′, Checkpoint, Abpfiff): Unity-Digest = natives 2D, gleiche Nutzdaten-SHA256",
+      "ok": true,
+      "detail": "{\"unity\":\"38893eb6\",\"native\":\"38893eb6\",\"payload\":[\"e08fb8a7ac4d\",\"e08fb8a7ac4d\"]}"
+    },
+    {
+      "id": "parity-complete",
+      "name": "Beide Partien vollständig, gebucht und valide; Unity ohne Fehler",
+      "ok": true,
+      "detail": "{\"unity\":true,\"native\":true}"
+    },
+    {
+      "id": "reload-saved",
+      "name": "Checkpoint im isolierten Profil gespeichert (Pause bei Minute 25, physicalSnapshot, Spielstand)",
+      "ok": true,
+      "detail": "{\"minute\":25,\"elapsed\":20.842380000000148,\"snap\":\"ceb027233f14\",\"id\":\"554dcc7a-0578-4b6c-8747-0a02891982c1\"}"
+    },
+    {
+      "id": "reload-persisted-page.reload",
+      "name": "Nach page.reload liegt derselbe Checkpoint im Speicher (physicalSnapshot-SHA256 gleich)",
+      "ok": true,
+      "detail": "{\"stored\":\"ceb027233f14\",\"saved\":\"ceb027233f14\"}"
+    },
+    {
+      "id": "reload-open-page.reload",
+      "name": "Gespeicherte Karriere über die sichtbare Öffnen-Schaltfläche erreichbar",
+      "ok": true
+    },
+    {
+      "id": "reload-restored-page.reload",
+      "name": "Wiederhergestellte Partie: Uhr, Stand, Aufstellung, Positionen, Ball, Ereignisse wie vor dem Neuladen",
+      "ok": true,
+      "detail": "{\"saved\":20.842380000000148,\"restored\":20.842380000000148,\"pos\":true}"
+    },
+    {
+      "id": "reload-page.reload-unity",
+      "name": "Unity aktiv und bereit, kein lastError (nach page.reload)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "reload-page.reload-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (nach page.reload)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4411/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "reload-page.reload-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (nach page.reload)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "reload-resume-page.reload",
+      "name": "Sichtbares Fortsetzen nach page.reload: Uhr läuft weiter, Unity ohne Fehler",
+      "ok": true,
+      "detail": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:8febb48c-df85-4342-ab3b-379a1ca1b46b"
+    },
+    {
+      "id": "reload-persisted-browser restart",
+      "name": "Nach browser restart liegt derselbe Checkpoint im Speicher (physicalSnapshot-SHA256 gleich)",
+      "ok": true,
+      "detail": "{\"stored\":\"0a379db0524a\",\"saved\":\"0a379db0524a\"}"
+    },
+    {
+      "id": "reload-open-browser restart",
+      "name": "Gespeicherte Karriere über die sichtbare Öffnen-Schaltfläche erreichbar",
+      "ok": true
+    },
+    {
+      "id": "reload-restored-browser restart",
+      "name": "Wiederhergestellte Partie: Uhr, Stand, Aufstellung, Positionen, Ball, Ereignisse wie vor dem Neuladen",
+      "ok": true,
+      "detail": "{\"saved\":21.90208800001875,\"restored\":21.90208800001875,\"pos\":true}"
+    },
+    {
+      "id": "reload-browser-restart-unity",
+      "name": "Unity aktiv und bereit, kein lastError (nach browser restart)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "reload-browser-restart-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (nach browser restart)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4411/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "reload-browser-restart-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (nach browser restart)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "reload-resume-browser restart",
+      "name": "Sichtbares Fortsetzen nach browser restart: Uhr läuft weiter, Unity ohne Fehler",
+      "ok": true,
+      "detail": "S1:GER:LEAGUE:R1:GER-2-GER-5:1:234b9940-d3b1-46e6-bfd1-c96dce12d49f"
+    },
+    {
+      "id": "fb-unity",
+      "name": "Unity aktiv und bereit, kein lastError (Ausgang)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "fb-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (Ausgang)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4411/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "fb-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (Ausgang)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "fb-2d-switch",
+      "name": "Wechsel auf 2D: Ansicht 2d, Unity-Host verborgen, native Partie läuft weiter",
+      "ok": true,
+      "detail": "{\"view\":\"2d\",\"hostVisible\":false,\"m2\":{\"from\":4.1730000000000045,\"to\":5.849999999999992,\"phase\":\"live\"}}"
+    },
+    {
+      "id": "fb-return-3d",
+      "name": "Rückkehr in 3D: Unity aktiv, 12 echte Spieler, kein Fehler, kein THREE",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"session\":[\"S1:GER:LEAGUE:R1:GER-2-GER-5:1:4a32b083-2a9d-4527-bc26-8c767d174550\",\"S1:GER:LEAGUE:R1:GER-2-GER-5:1:4a32b083-2a9d-4527-bc26-8c767d174550\"],\"loads\":[1,1]}"
+    },
+    {
+      "id": "fb-foreign-message",
+      "name": "Fremde window-Nachricht stört den Renderer nicht",
+      "ok": true,
+      "detail": "{\"error\":null,\"active\":true}"
+    },
+    {
+      "id": "fb-forced-error",
+      "name": "Fehler aus dem Unity-Frame: sichtbarer 2D-Rückfall (Meldung gesetzt), Spiel läuft nativ weiter, kein THREE",
+      "ok": true,
+      "detail": "{\"foreign\":{\"error\":null,\"active\":true},\"after\":{\"error\":\"Unity ist nicht verfügbar · 2D ist aktiv\",\"failure\":\"QA forced runtime error\",\"active\":false,\"view\":\"2d\",\"host\":false,\"status\":\"Unity ist nicht verfügbar · 2D ist aktiv\"},\"playsOn2D\":{\"from\":11.300000000000026,\"to\":13.335600000023875,\"phase\":\"live\"}}"
+    },
+    {
+      "id": "fb-missing-build",
+      "name": "Fehlender Unity-Build: 2D mit Meldung „Unity ist nicht verfügbar · 2D ist aktiv“, 12 Spieler, Partie spielbar, kein v98Scene",
+      "ok": true,
+      "detail": "{\"error\":\"Unity ist nicht verfügbar · 2D ist aktiv\",\"status\":\"Unity ist nicht verfügbar · 2D ist aktiv\",\"view\":\"2d\",\"m\":{\"from\":0,\"to\":2.0044000000357634,\"phase\":\"live\"}}"
+    },
+    {
+      "id": "build-unchanged",
+      "name": "/__build vor und nach dem Lauf identisch (Fingerprint, sourceId, HTML-, Manifest-, Paket-Hash, alle Dateihashes)",
+      "ok": true,
+      "detail": "{\"before\":\"c89a17667efe809e7ca70191b6e43bc3187840ad94b3efc113303e695f11dbb7\",\"after\":\"c89a17667efe809e7ca70191b6e43bc3187840ad94b3efc113303e695f11dbb7\"}"
+    },
+    {
+      "id": "network-payload",
+      "name": "Der Browser lud alle vier WebGL-Dateien über die hashgebundenen URLs; X-D6-Sha256 = Paketmanifest",
+      "ok": true,
+      "detail": "[{\"file\":\"unity-web.data\",\"url\":\"/unity/Build/unity-web.data?v=0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d\",\"sha\":\"0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d\",\"expected\":\"0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d\"},{\"file\":\"unity-web.framework.js\",\"url\":\"/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb\",\"sha\":\"36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb\",\"expected\":\"36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb\"},{\"file\":\"unity-web.loader.js\",\"url\":\"/unity/Build/unity-web.loader.js?v=06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8\",\"sha\":\"06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8\",\"expected\":\"06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8\"},{\"file\":\"unity-web.wasm\",\"url\":\"/unity/Build/unity-web.wasm?v=60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d\",\"sha\":\"60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d\",\"expected\":\"60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d\"}]"
+    },
+    {
+      "id": "network-status",
+      "name": "Keine HTTP-Fehler außer dem bewusst blockierten probe-build.json",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "id": "page-errors",
+      "name": "Keine unbehandelten Seitenfehler (pageerror)",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "sections": {
+    "build": {
+      "status": "pass",
+      "seconds": 0
+    },
+    "viewports": {
+      "status": "pass",
+      "seconds": 63
+    },
+    "flow": {
+      "status": "pass",
+      "seconds": 37
+    },
+    "goal": {
+      "seed": 160112,
+      "attempts": [
+        {
+          "seed": 160112,
+          "stopped": "when",
+          "score": [
+            0,
+            1
+          ]
+        }
+      ],
+      "status": "pass",
+      "seconds": 11
+    },
+    "parity": {
+      "status": "pass",
+      "seconds": 22
+    },
+    "reload": {
+      "status": "pass",
+      "seconds": 24
+    },
+    "fallback": {
+      "status": "pass",
+      "seconds": 17
+    }
+  },
+  "shots": [
+    "shots/page-1280x720-standard-kickoff.png",
+    "shots/screen-1280x720-standard-kickoff.png",
+    "shots/screen-1280x720-standard-live-m10.png",
+    "shots/screen-1280x720-standard-paused.png",
+    "shots/page-844x390-standard-kickoff.png",
+    "shots/screen-844x390-standard-kickoff.png",
+    "shots/screen-844x390-standard-live-m10.png",
+    "shots/screen-844x390-standard-paused.png",
+    "shots/screen-931x448-standard-kickoff.png",
+    "shots/screen-931x448-standard-live-m10.png",
+    "shots/screen-931x448-standard-paused.png",
+    "shots/page-1280x720-reduced-kickoff.png",
+    "shots/screen-1280x720-reduced-kickoff.png",
+    "shots/screen-1280x720-reduced-live-m10.png",
+    "shots/screen-1280x720-reduced-paused.png",
+    "shots/page-844x390-reduced-kickoff.png",
+    "shots/screen-844x390-reduced-kickoff.png",
+    "shots/screen-844x390-reduced-live-m10.png",
+    "shots/screen-844x390-reduced-paused.png",
+    "shots/screen-931x448-reduced-kickoff.png",
+    "shots/screen-931x448-reduced-live-m10.png",
+    "shots/screen-931x448-reduced-paused.png",
+    "shots/flow-01-setup.png",
+    "shots/flow-02-realtime-live.png",
+    "shots/flow-03-halftime.png",
+    "shots/flow-04-second-half.png",
+    "shots/flow-05-review-screen.png",
+    "shots/flow-06-full-time.png",
+    "shots/goal-replay-160112.png",
+    "shots/reload-page.reload-paused.png",
+    "shots/reload-browser-restart-paused.png",
+    "shots/fallback-2d-switch.png",
+    "shots/fallback-return-3d.png",
+    "shots/fallback-forced-error.png",
+    "shots/fallback-missing-build.png"
+  ],
+  "network": {
+    "/?engine=unity&quality=standard": {
+      "status": {
+        "200": 10
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ],
+      "count": 10
+    },
+    "/unity-match/runtime.html?v=130": {
+      "status": {
+        "200": 15
+      },
+      "sha": [
+        "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa"
+      ],
+      "count": 15
+    },
+    "/unity-match/runtime.js": {
+      "status": {
+        "200": 15
+      },
+      "sha": [
+        "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b"
+      ],
+      "count": 15
+    },
+    "/unity/probe-build.json": {
+      "status": {
+        "200": 14,
+        "404": 1
+      },
+      "sha": [
+        "2fc55ef32185185887991fe120dbbe0d130305b8b05410735076ac605bcc4899"
+      ],
+      "count": 15
+    },
+    "/unity/Build/unity-web.loader.js?v=06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8": {
+      "status": {
+        "200": 14
+      },
+      "sha": [
+        "06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8"
+      ],
+      "count": 14
+    },
+    "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb": {
+      "status": {
+        "200": 14
+      },
+      "sha": [
+        "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      ],
+      "count": 14
+    },
+    "/unity/Build/unity-web.data?v=0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d": {
+      "status": {
+        "200": 14
+      },
+      "sha": [
+        "0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d"
+      ],
+      "count": 14
+    },
+    "/unity/Build/unity-web.wasm?v=60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d": {
+      "status": {
+        "200": 14
+      },
+      "sha": [
+        "60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d"
+      ],
+      "count": 14
+    },
+    "/?engine=unity&quality=reduced": {
+      "status": {
+        "200": 3
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ],
+      "count": 3
+    },
+    "/?engine=unity": {
+      "status": {
+        "200": 1
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ],
+      "count": 1
+    },
+    "/?engine=browser": {
+      "status": {
+        "200": 1
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ],
+      "count": 1
+    }
+  },
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 (0x00002786) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "scope": "Functional lifecycle on the served package with real Unity WebGL; not an FPS, Android or visual-quality claim.",
+  "buildBefore": {
+    "sourceCommit": "622885f78eb5125d423fd550e20fe7cb3667c5d0",
+    "sourceDirty": false,
+    "sourceFingerprint": "4f6023d428521c2cbbc0fe4ccc3662cd2c3f5ff7b888d4b15aa4ad0f299a134e",
+    "sourceId": "3422e9fb1258deffd276c0a4c956f60a4aaabefc13323ce918f023a85eddf330",
+    "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+    "unityManifestSha256": "2fc55ef32185185887991fe120dbbe0d130305b8b05410735076ac605bcc4899",
+    "packageManifestSha256": "c89a17667efe809e7ca70191b6e43bc3187840ad94b3efc113303e695f11dbb7",
+    "freshness": "fresh",
+    "files": {
+      "index.html": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+      "unity-match/runtime.html": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "unity-match/runtime.js": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+      "unity-match/.htaccess": "e6341a7c0465a7f21a828d0296457bcc43bf6cace7105ce9b0cf871c3b9bacc4",
+      "unity/probe-build.json": "2fc55ef32185185887991fe120dbbe0d130305b8b05410735076ac605bcc4899",
+      "unity/Build/unity-web.data": "0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d",
+      "unity/Build/unity-web.framework.js": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "unity/Build/unity-web.loader.js": "06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8",
+      "unity/Build/unity-web.wasm": "60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d"
+    }
+  },
+  "unityManifest": {
+    "sourceId": "3422e9fb1258deffd276c0a4c956f60a4aaabefc13323ce918f023a85eddf330",
+    "files": [
+      {
+        "file": "unity-web.data",
+        "sha256": "0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d"
+      },
+      {
+        "file": "unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      },
+      {
+        "file": "unity-web.loader.js",
+        "sha256": "06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8"
+      },
+      {
+        "file": "unity-web.wasm",
+        "sha256": "60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d"
+      }
+    ],
+    "loaderUrl": "/unity/Build/unity-web.loader.js?v=06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8",
+    "dataUrl": "/unity/Build/unity-web.data?v=0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d",
+    "frameworkUrl": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+    "codeUrl": "/unity/Build/unity-web.wasm?v=60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d"
+  },
+  "flowDigest": {
+    "score": [
+      2,
+      0
+    ],
+    "phase": "finished",
+    "finished": true,
+    "valid": true,
+    "booked": true,
+    "balanceOwn": 4768,
+    "checkpoints": 0,
+    "hashes": {
+      "score": "3c54589b:5",
+      "events": "1c580142:531",
+      "stats": "2c142c1d:8709",
+      "fresh": "b93bb2ed:933",
+      "minutes": "1dbbbac1:713",
+      "report": "cbac0b7c:34512",
+      "ratings": "0234ddf6:648",
+      "ballAccounting": "d92a1907:22443",
+      "geometry": "708a8f7b:184",
+      "people": "e5f91fd2:7890",
+      "finances": "ea4231cf:20668",
+      "development": "7f920621:991079",
+      "fixtures": "ec9af416:186846",
+      "world": "f6f9efb0:3913246"
+    },
+    "all": "98bbda73"
+  },
+  "parity": {
+    "unity": {
+      "all": "38893eb6",
+      "score": [
+        0,
+        0
+      ],
+      "ticks": 1194,
+      "hashes": {
+        "score": "13ca43dd:5",
+        "events": "254eb5f7:287",
+        "stats": "6ea83f04:8773",
+        "fresh": "9fb3d00b:991",
+        "minutes": "4b848943:777",
+        "report": "71a72f82:34230",
+        "ratings": "2624d9b9:704",
+        "ballAccounting": "87ab0066:22404",
+        "geometry": "708a8f7b:184",
+        "people": "a7c268bd:7925",
+        "finances": "61a7e3da:20245",
+        "development": "1ee3f606:1002007",
+        "fixtures": "318fc3fd:190271",
+        "world": "aae3f6b5:3906811"
+      },
+      "payloadSha256": "e08fb8a7ac4dfdb20fd0db723421ca6f96ef31c6beec033883090f9bd8fd4c74"
+    },
+    "native2d": {
+      "all": "38893eb6",
+      "score": [
+        0,
+        0
+      ],
+      "ticks": 1194,
+      "payloadSha256": "e08fb8a7ac4dfdb20fd0db723421ca6f96ef31c6beec033883090f9bd8fd4c74"
+    }
+  },
+  "buildAfter": {
+    "sourceCommit": "622885f78eb5125d423fd550e20fe7cb3667c5d0",
+    "sourceDirty": false,
+    "sourceFingerprint": "4f6023d428521c2cbbc0fe4ccc3662cd2c3f5ff7b888d4b15aa4ad0f299a134e",
+    "sourceId": "3422e9fb1258deffd276c0a4c956f60a4aaabefc13323ce918f023a85eddf330",
+    "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+    "unityManifestSha256": "2fc55ef32185185887991fe120dbbe0d130305b8b05410735076ac605bcc4899",
+    "packageManifestSha256": "c89a17667efe809e7ca70191b6e43bc3187840ad94b3efc113303e695f11dbb7",
+    "freshness": "fresh",
+    "files": {
+      "index.html": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+      "unity-match/runtime.html": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "unity-match/runtime.js": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+      "unity-match/.htaccess": "e6341a7c0465a7f21a828d0296457bcc43bf6cace7105ce9b0cf871c3b9bacc4",
+      "unity/probe-build.json": "2fc55ef32185185887991fe120dbbe0d130305b8b05410735076ac605bcc4899",
+      "unity/Build/unity-web.data": "0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d",
+      "unity/Build/unity-web.framework.js": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "unity/Build/unity-web.loader.js": "06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8",
+      "unity/Build/unity-web.wasm": "60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d"
+    }
+  },
+  "fetchedBuild": [
+    {
+      "file": "unity-web.data",
+      "url": "/unity/Build/unity-web.data?v=0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d",
+      "sha": "0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d",
+      "expected": "0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d"
+    },
+    {
+      "file": "unity-web.framework.js",
+      "url": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "sha": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "expected": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+    },
+    {
+      "file": "unity-web.loader.js",
+      "url": "/unity/Build/unity-web.loader.js?v=06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8",
+      "sha": "06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8",
+      "expected": "06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8"
+    },
+    {
+      "file": "unity-web.wasm",
+      "url": "/unity/Build/unity-web.wasm?v=60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d",
+      "sha": "60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d",
+      "expected": "60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d"
+    }
+  ],
+  "networkSummary": [
+    {
+      "url": "/?engine=unity&quality=standard",
+      "count": 10,
+      "status": {
+        "200": 10
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ]
+    },
+    {
+      "url": "/unity-match/runtime.html?v=130",
+      "count": 15,
+      "status": {
+        "200": 15
+      },
+      "sha": [
+        "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa"
+      ]
+    },
+    {
+      "url": "/unity-match/runtime.js",
+      "count": 15,
+      "status": {
+        "200": 15
+      },
+      "sha": [
+        "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b"
+      ]
+    },
+    {
+      "url": "/unity/probe-build.json",
+      "count": 15,
+      "status": {
+        "200": 14,
+        "404": 1
+      },
+      "sha": [
+        "2fc55ef32185185887991fe120dbbe0d130305b8b05410735076ac605bcc4899"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.loader.js?v=06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8",
+      "count": 14,
+      "status": {
+        "200": 14
+      },
+      "sha": [
+        "06aad6b8bcf6270f29ccf24e8cce2bd16de9674dcae9d6ec5906cdab237134d8"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "count": 14,
+      "status": {
+        "200": 14
+      },
+      "sha": [
+        "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.data?v=0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d",
+      "count": 14,
+      "status": {
+        "200": 14
+      },
+      "sha": [
+        "0c4a9183c4cc39781a84b806875068e59065cc9c3388b942a9d35c0e8ba3452d"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.wasm?v=60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d",
+      "count": 14,
+      "status": {
+        "200": 14
+      },
+      "sha": [
+        "60ee45e0d2e149756dace26b68eb737e9c5acf3ad2432a12b611e6bc037fb85d"
+      ]
+    },
+    {
+      "url": "/?engine=unity&quality=reduced",
+      "count": 3,
+      "status": {
+        "200": 3
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ]
+    },
+    {
+      "url": "/?engine=unity",
+      "count": 1,
+      "status": {
+        "200": 1
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ]
+    },
+    {
+      "url": "/?engine=browser",
+      "count": 1,
+      "status": {
+        "200": 1
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ]
+    }
+  ],
+  "finishedAt": "2026-10-13T01:04:07.333Z",
+  "seconds": 174,
+  "pass": true
+}
