@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Doppel6.Probe {
 // Display shape of a goal net from the received native net fact (WorldNet: goal sign, impact z/height on the back
-// net, age since the rear impact, bulge). A pure function of (rest point, panel, fact, geometry): no clock, integrator,
-// randomness, saved state or ball authority, so live play, pause, replay and seek show the same net for the same
-// fact at any frame rate. Back panel: a C1 pocket at the impact scaled by the native bulge, an outward-travelling
-// damped ripple and a damped sway of the whole panel (both functions of the native age, smooth from age 0). Roof and
-// side panels follow the bulge gently and only outward. Points within Fixed of a frame line (posts, crossbar, ground,
-// rear supports, rear crossbar, roof supports) never move, nothing moves toward the field, and once FadeEnd has
-// passed and the native bulge has decayed the net is exactly at rest.
+// net, age since the rear impact, bulge) and the picture's native goal-scene time. A pure function of (rest point,
+// panel, fact, scene time, geometry): no clock of its own, integrator, randomness, saved state or ball authority, so
+// live play, pause, replay and seek show the same net for the same picture at any frame rate. Back panel: a C1 pocket
+// at the impact scaled by the native bulge, an outward-travelling damped ripple and a damped sway of the whole panel
+// (both functions of the native age, smooth from age 0). Roof and side panels follow the bulge gently and only
+// outward. Points within Fixed of a frame line (posts, crossbar, ground, rear supports, rear crossbar, roof supports)
+// never move. Only the back net, Depth behind the goal line, moves toward the field: its recoil past rest is bounded
+// by RippleAmplitude+SwayAmplitude (a few cm in practice), so no vertex comes near the goal plane. Once FadeEnd has
+// passed and the native bulge has decayed, or the native scene hold has eased out (HoldEnd), the net is exactly at rest.
 public static class WorldNetDeformation {
     public enum Panel:byte {None,Back,Roof,Left,Right}
     // ProbeBridge.BuildWorld places the back panel 2.2 m behind the goal line.
@@ -25,6 +27,12 @@ public static class WorldNetDeformation {
     public const double RippleAmplitude=.14,RippleFrequency=2.2,RippleSpeed=4.5,RippleDecay=.32,RippleOnset=.12,RippleSpread=.6;
     public const double SwayAmplitude=.10,SwayFrequency=1.5,SwayDecay=.4,SwayOnset=.1;
     public const double FadeStart=1.2,FadeEnd=1.6;
+    // Native scene hold: the goal scene caps its scene time at HoldStart (world-goal-scene-v83.js), so the rear-hit
+    // age and bulge (world-pitch3d-v98.js v119VisibleGoalView) stop there while the goal pause runs on to 4.05 s and
+    // the fact then ends. With the picture's goal-scene time (WorldFrame.celebrationTime = 4.05 - goalPause, sent with
+    // every goal-scene picture) whatever the held fact shows eases to exact rest between HoldStart and HoldEnd, well
+    // before the fact ends: no frozen ripple, no reset pop. Goals that reach rest before HoldStart are unchanged.
+    public const double HoldStart=2.45,HoldEnd=3.25;
     // Roof and side panels: outward only, per unit of bulge; roof by impact height, sides by lateral proximity.
     public const double SympathyAmplitude=.09,RoofRadius=3.0,SideRadius=2.0;
     // Radial profile samples (m); a uniform Catmull-Rom spline keeps the profile C1 between samples.
@@ -32,19 +40,23 @@ public static class WorldNetDeformation {
     const double PerStep=1/Step;
 
     public static Panel PanelOf(string tag){switch(tag){case "back":return Panel.Back;case "roof":return Panel.Roof;case "left":return Panel.Left;case "right":return Panel.Right;default:return Panel.None;}}
+    // Share of the shown deformation at a picture's goal-scene time: 1 until HoldStart, smootherstep to exactly 0 at
+    // HoldEnd; 1 for a picture without one (NaN).
+    public static double Hold(double sceneTime)=>Finite(sceneTime)?1-Smoother((sceneTime-HoldStart)/(HoldEnd-HoldStart)):1;
 
     // The displaced position of a rest vertex of a goal net as ProbeBridge.GoalNet builds it (tags "back", "roof",
-    // "left", "right"). Rest for a null or invalid fact, the other goal, an unknown tag and a fact at rest.
-    public static Vector3 Displace(Vector3 rest,string tag,WorldNet net,Geometry geometry){
-        var panel=PanelOf(tag);int sign=rest.x>0?1:-1;return Move(rest,panel,sign,Amount(rest,panel,sign,net,geometry));
+    // "left", "right"). Rest for a null or invalid fact, the other goal, an unknown tag, a fact at rest and a hold that
+    // has eased out. sceneTime: the picture's goal-scene time (celebrationTime), NaN without one.
+    public static Vector3 Displace(Vector3 rest,string tag,WorldNet net,Geometry geometry,double sceneTime=double.NaN){
+        var panel=PanelOf(tag);int sign=rest.x>0?1:-1;return Move(rest,panel,sign,Amount(rest,panel,sign,net,geometry,sceneTime));
     }
     // The same displacement in metres along the panel's outward normal (back: away from the field, roof: up, sides:
     // away from the goal centre), before the float vertex rounding.
-    public static double Offset(Vector3 rest,string tag,WorldNet net,Geometry geometry)=>Amount(rest,PanelOf(tag),rest.x>0?1:-1,net,geometry);
-    static double Amount(Vector3 rest,Panel panel,int sign,WorldNet net,Geometry geometry){
+    public static double Offset(Vector3 rest,string tag,WorldNet net,Geometry geometry,double sceneTime=double.NaN)=>Amount(rest,PanelOf(tag),rest.x>0?1:-1,net,geometry,sceneTime);
+    static double Amount(Vector3 rest,Panel panel,int sign,WorldNet net,Geometry geometry,double sceneTime){
         if(net==null||geometry==null||panel==Panel.None||net.sign!=sign)return 0;
         var goal=new Goal(geometry);if(!goal.Valid)return 0;
-        var i=Prepare(net,goal);if(!i.Moving)return 0;
+        var i=Prepare(net,goal,Hold(sceneTime));if(!i.Moving)return 0;
         double window=Window(panel,rest,sign,goal);if(window==0)return 0;
         switch(panel){
             case Panel.Back:return BackAmount(window,Mode(rest.z,rest.y,goal),rest,i,null,goal.Last);
@@ -60,7 +72,7 @@ public static class WorldNetDeformation {
         struct Run {public Panel panel;public int start,end;public bool dirty;}
         readonly Vector3[] rest;readonly double[] windows,modes,table;readonly Run[] runs;readonly Goal goal;readonly int sign;
         readonly double length,width,height;
-        bool deformed,shown;double z,h,age,bulge;float largest;
+        bool deformed,shown;double z,h,age,bulge,hold;float largest;
         public Field(Vector3[] rest,string[] tags,int goalSign,Geometry geometry){
             this.rest=rest;sign=goalSign>=0?1:-1;goal=new Goal(geometry);length=geometry.length;width=geometry.goalWidth;height=geometry.goalHeight;
             windows=new double[rest.Length];modes=new double[rest.Length];table=new double[goal.Last+3];var list=new List<Run>();
@@ -73,16 +85,17 @@ public static class WorldNetDeformation {
         // Built for these rest vertices and this goal size.
         public bool Uses(Vector3[] rest,Geometry geometry)=>ReferenceEquals(this.rest,rest)&&geometry!=null&&geometry.length==length&&geometry.goalWidth==width&&geometry.goalHeight==height;
         public bool Deformed=>deformed;
-        // Writes this goal's picture of the fact into output (the mesh vertex buffer, as long as the rest vertices).
-        // True when output changed and needs an upload; an unchanged fact or an undisturbed net writes nothing.
-        // largest: the largest displacement shown (m).
-        public bool Update(WorldNet net,Vector3[] output,out float largest){
-            var i=net!=null&&net.sign==sign&&goal.Valid?Prepare(net,goal):default;
+        public bool Update(WorldNet net,Vector3[] output,out float largest)=>Update(net,double.NaN,output,out largest);
+        // Writes this goal's picture of the fact at the picture's goal-scene time into output (the mesh vertex buffer,
+        // as long as the rest vertices). True when output changed and needs an upload; an unchanged picture or an
+        // undisturbed net writes nothing. largest: the largest displacement shown (m).
+        public bool Update(WorldNet net,double sceneTime,Vector3[] output,out float largest){
+            double share=Hold(sceneTime);var i=net!=null&&net.sign==sign&&goal.Valid?Prepare(net,goal,share):default;
             if(!i.Moving){
                 shown=false;largest=this.largest=0;if(!deformed)return false;
                 Array.Copy(rest,output,rest.Length);for(int r=0;r<runs.Length;r++)runs[r].dirty=false;deformed=false;return true;
             }
-            if(shown&&net.z==z&&net.height==h&&net.age==age&&net.bulge==bulge){largest=this.largest;return false;}
+            if(shown&&net.z==z&&net.height==h&&net.age==age&&net.bulge==bulge&&share==hold){largest=this.largest;return false;}
             for(int k=0;k<table.Length;k++)table[k]=Sample(i,k);
             double max=0;
             for(int r=0;r<runs.Length;r++){
@@ -96,7 +109,7 @@ public static class WorldNetDeformation {
                     output[k]=Move(p,run.panel,sign,amount);double m=amount<0?-amount:amount;if(m>max)max=m;
                 }
             }
-            deformed=shown=true;z=net.z;h=net.height;age=net.age;bulge=net.bulge;largest=this.largest=(float)max;return true;
+            deformed=shown=true;z=net.z;h=net.height;age=net.age;bulge=net.bulge;hold=share;largest=this.largest=(float)max;return true;
         }
     }
 
@@ -108,19 +121,19 @@ public static class WorldNetDeformation {
             Last=Valid?(int)Math.Ceiling(Math.Sqrt((Width+.2)*(Width+.2)+(Height+.2)*(Height+.2))/Step)+1:1;
         }
     }
-    // Per-picture constants of one fact.
+    // Per-picture constants of one fact; share scales every motion (the eased native scene hold).
     struct Impact {public bool Moving;public double Z,H,Age,Main,Ripple,Sway,Roof,Left,Right;}
-    static Impact Prepare(WorldNet net,in Goal goal){
+    static Impact Prepare(WorldNet net,in Goal goal,double share){
         var i=new Impact();
-        if(Math.Abs(net.sign)!=1||!Finite(net.z)||!Finite(net.height)||!Finite(net.age)||!Finite(net.bulge))return i;
+        if(!(share>0)||Math.Abs(net.sign)!=1||!Finite(net.z)||!Finite(net.height)||!Finite(net.age)||!Finite(net.bulge))return i;
         i.Z=Math.Clamp(net.z,-goal.Width/2,goal.Width/2);i.H=Math.Clamp(net.height,0,goal.Height);i.Age=Math.Max(0,net.age);
-        double bulge=Math.Clamp(net.bulge,0,1.5),settle=Smoother(bulge/RestBulge-1);i.Main=PocketAmplitude*bulge*settle;
+        double bulge=Math.Clamp(net.bulge,0,1.5),settle=Smoother(bulge/RestBulge-1);i.Main=PocketAmplitude*bulge*settle*share;
         if(i.Age>0&&i.Age<FadeEnd){
-            double fade=Fade(i.Age);i.Ripple=RippleAmplitude*Math.Exp(-i.Age/RippleDecay)*fade;
+            double fade=Fade(i.Age)*share;i.Ripple=RippleAmplitude*Math.Exp(-i.Age/RippleDecay)*fade;
             i.Sway=SwayAmplitude*Math.Exp(-i.Age/SwayDecay)*fade*Smoother(i.Age/SwayOnset)*Math.Sin(2*Math.PI*SwayFrequency*i.Age)*Mode(i.Z,i.H,goal);
         }
         if(i.Main>0){
-            double follow=SympathyAmplitude*bulge*settle,left=1-(i.Z+goal.Width/2)/goal.Width,right=1-(goal.Width/2-i.Z)/goal.Width;
+            double follow=SympathyAmplitude*bulge*settle*share,left=1-(i.Z+goal.Width/2)/goal.Width,right=1-(goal.Width/2-i.Z)/goal.Width;
             i.Roof=follow*Smooth(i.H/goal.Height);i.Left=follow*left*left;i.Right=follow*right*right;
         }
         i.Moving=i.Main>0||i.Ripple>0||i.Sway!=0;return i;
