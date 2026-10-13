@@ -4,18 +4,21 @@
  "base": "7288d6a87384273465f6615f37bbd7bc8fcff833",
  "unityProject": "G:/unity/Doppel6-LowPoly-Demo",
  "updated": "2026-10-13",
- "phase": "mesh v3 integrated in Unity editor (low-poly skin on unchanged rig, own unwrap, baked base/mask); style materials next",
+ "phase": "WebGL candidate built (sourceId 46a6e081, data eaa475e7, wasm 0f956190, loader 2909e971, framework 36ef3791 unchanged); browser harness running",
  "done": [
   "baseline editor evidence 79 shots (sourceId 3442dee8, WorldPlayer 9725v/12668t)",
   "Blender build_lowpoly.py v3: 2592 tris, 28 bones, weights re-transferred, sole within 0.3 mm",
   "v2 showed kit flecks from UV interpolation across concave islands -> v3 own unwrap + baked 1024 base/mask",
-  "Unity LowPolySetup: WorldPlayerLowPoly-v3 bindpose diff 0, region agreement 95.6%, editor evidence meshv3"
+  "Unity LowPolySetup: WorldPlayerLowPoly-v3 bindpose diff 0, region agreement 95.6%, editor evidence meshv3",
+  "v4 mesh (167 smooth crease faces) + _D6LowPoly style; editor candidate 79 shots, facet intermediate 79 shots",
+  "suites original vs meshv3: all gates equal except historical R15 plant-edge receive 2102.82 -> 2103.88 deg/s exceeds exact R18 lock (+0.05%)",
+  "WebGL build 91,229,907 B (baseline 91,399,039)"
  ],
  "next": [
-  "style pass: facet lighting, calm cloth pigment, broad mowing stripes, calm concrete/metal/crowd",
-  "sole contour for new mesh name",
-  "tests on loaded mesh",
-  "WebGL build + browser evidence"
+  "browser evidence candidate + baseline (check-lowpoly-webgl.cjs)",
+  "suites on v4",
+  "handoff doc + changelog",
+  "commit build"
  ],
  "blockers": []
 }

@@ -1,5 +1,10 @@
 # Änderungen
 
+## 13. Oktober 2026 – Klares-Low-Poly-Demo (lokal, nicht veröffentlicht)
+
+- Lokaler Unity/WebGL-Kandidat „Klares Low-Poly“ für die 3D-Matchansicht auf Basis von Release 130: neu gestaltete facettierte Spielerfigur mit 2.592 statt 12.668 Dreiecken auf dem unveränderten 28-Gelenk-Rig, ruhigere Trikot-/Hautflächen, breite zweifarbige Mähstreifen mit klaren Kanten, ruhigere Stadionoberflächen und Zuschauer. Vereinsfarben, Muster, Nummern, Keeperhandschuhe, Namen, Kamera, Ballhilfe, Clips und Matchregeln bleiben erhalten; Beleuchtung wie Release 130. Spielstände sind nicht betroffen.
+- Gewichte, eigene Abwicklung mit gebackener Farb-/Kleidungsmaske, Ruheposkoordinaten und eine eigene Sohlenkontur sind für das neue Mesh erzeugt; das Original bleibt als Rückweg erhalten. Editor- und WebGL-Vergleiche, native Parität, Suiten und Messgrenzen: [Übergabe](3d-stilauftraege/low-poly-handoff.md).
+
 ## 13. Oktober 2026 – Bugliste
 
 - Offene Probleme mit Browserleistung, Laufdynamik, Abwehrverfolgung, Freistoßausrichtung, Rückwärtslaufen und Kontaktübergängen mit nächster Abnahme dokumentiert. Native Spielzeit-/Schussziele, Android-Prüfung und lokale Korrekturen getrennt erfasst. [Bugliste](Bugliste.md).
