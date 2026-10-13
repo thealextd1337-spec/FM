@@ -8,8 +8,13 @@ let v99SwapQueue=null;
 const v100BaseGoalKick=v50GoalKick;
 v50GoalKick=function(...args){
  const current=match,incoming=typeof v109IncomingFlight!=='undefined'&&v109IncomingFlight?.current===current?v109IncomingFlight.flight:current?.flight,release=incoming&&v99Flights.get(incoming),rolling=current?.rebound;
+ const held=Boolean(release?.onTarget||args[2]?.held),revised=v65WorldActive&&held&&current?.attackFlow?.keeperHoldRevision===182;
+ // Only an already confirmed catch enters this path. Keep its real contact,
+ // not a former parry/outgoing ball or the generic carrier offset.
+ const challenge=revised&&v115KeeperChallenges.get(current),caught=challenge?.keeper===args[0]&&challenge.caught;
+ const hold=revised?(args[2]?.held&&caught?{...challenge.contact,elevation:challenge.pickup?.29:.35}:release?.onTarget?v101ShotPoint(release,v131KeeperContactProgress(release)):{...current.ball,elevation:.29}):null;
  let outgoing=null;
- if(v65WorldActive&&(incoming&&!release?.onTarget||rolling&&Number.isFinite(rolling.vx))){
+ if(v65WorldActive&&!revised&&(incoming&&!release?.onTarget||rolling&&Number.isFinite(rolling.vx))){
   const end=incoming?v109FlightPoint(incoming,1):{...current.ball,elevation:v99BallView(current)?.elevation??.29},before=incoming?v109FlightPoint(incoming,.98):null,seconds=incoming?incoming.duration/MATCH_SPEED*.02:1;
   outgoing={start:end,at:v102Clock(current),velocity:before?{x:(end.x-before.x)/seconds,y:(end.y-before.y)/seconds,height:(end.elevation-before.elevation)/seconds}:{x:rolling.vx*MATCH_SPEED,y:rolling.vy*MATCH_SPEED,height:0}};
   const speed=Math.hypot(outgoing.velocity.x*v160PitchWidth()/(v55Field.right-v55Field.left),outgoing.velocity.y*v160PitchLength()/(v55Field.bottom-v55Field.top));if(speed>18){outgoing.velocity.x*=18/speed;outgoing.velocity.y*=18/speed}
@@ -18,9 +23,22 @@ v50GoalKick=function(...args){
  // The existing movement step forms the build-up while the keeper waits.
  if(v65WorldActive){
   match.next=match.elapsed+2.4*MATCH_SPEED;
-  const held=Boolean(release?.onTarget||args[2]?.held);const state=v99ActionState(match);if(!held)state.keepers.delete(args[0].pid);
-  state.kicks.set(args[0].pid,{kind:'goalKick',keeper:args[0],phase:'waiting',age:0,held});
-  if(outgoing&&!release)v99ActionState(match).outBall=outgoing;
+  const state=v99ActionState(match);if(!held)state.keepers.delete(args[0].pid);
+  const kick={kind:'goalKick',keeper:args[0],phase:'waiting',age:0,held};
+  if(hold){
+   const point={...v101KickPoint(args[0],v101KickTarget(match,args[0])),elevation:.29},pace=v157Pace(match,args[0]),distance=Math.hypot(v122Metres(hold,point),hold.elevation-point.elevation);
+   // The existing elapsed/next clock owns placement and release. Smoothly put
+   // the secured ball down at no more than keeper pace; keep the keeper locked
+   // at the catch position. Only a distant contact/tired keeper that cannot
+   // complete placement within 2.4 seconds needs the physically required delay.
+   const placement=Math.max(.28,1.6*distance/Math.max(.1,pace));
+   match.next=match.elapsed+Math.max(2.4,placement)*MATCH_SPEED;
+   Object.assign(kick,{holdPoint:hold,kickPoint:point,holdRelease:match.next,holdPlacement:placement});
+   match.ball={...hold};state.outBall=null;state.miss=null;
+   const motion=typeof v102Motion!=='undefined'&&v102Motion.get(match);if(motion)motion.loose=null;
+  }
+  state.kicks.set(args[0].pid,kick);
+  if(outgoing&&!release&&!hold)state.outBall=outgoing;
  }
  return result;
 };
@@ -64,7 +82,7 @@ function v99ActionState(current){
 // another action clock. Missing old facts are not reconstructed.
 function v119SnapshotActionLocks(current){
  const state=v99Actions.get(current);if(!state)return null;
- const fields=['kind','phase','age','completed','saved','parry','goal','blocked','onTarget','keeperContact','over','startHeight','endHeight','target','displayTarget','visualStart','keeperStart','diveAt','held','start'];
+ const fields=['kind','phase','age','completed','saved','parry','goal','blocked','onTarget','keeperContact','over','startHeight','endHeight','target','displayTarget','visualStart','keeperStart','diveAt','held','start','holdPoint','kickPoint','holdRelease','holdPlacement'];
  const read=pose=>{const record=Object.fromEntries(fields.filter(k=>pose[k]!==undefined).map(k=>[k,structuredClone(pose[k])]));for(const k of ['keeper','shooter','taker'])if(pose[k]?.pid)record[k+'Pid']=pose[k].pid;if(pose.flight)record.flight=Object.fromEntries(['x','y','duration','progress','team','target'].filter(k=>pose.flight[k]!==undefined).map(k=>[k,structuredClone(pose.flight[k])]));return record;};
  const maps=Object.fromEntries(['kicks','keepers','throws'].map(k=>[k,[...state[k]].map(([id,pose])=>[id,read(pose)])]));
  return Object.values(maps).some(items=>items.length)?maps:null;
@@ -74,6 +92,15 @@ function v119RestoreActionLocks(current,saved,find){
  for(const key of ['kicks','keepers','throws'])if(Array.isArray(saved[key]))for(const [id,record]of saved[key]){if(!find(id))continue;const pose=structuredClone(record);for(const k of ['keeper','shooter','taker'])if(pose[k+'Pid']){pose[k]=find(pose[k+'Pid']);delete pose[k+'Pid'];}state[key].set(id,pose);}
 }
 function v101KeeperWaiting(current,person){return current.owner===person&&!current.flight&&v99Actions.get(current)?.kicks.get(person.pid)?.phase==='waiting'}
+function v182KeeperPlacement(current,kick){return clamp(1-(kick.holdRelease-current.elapsed)/MATCH_SPEED/kick.holdPlacement,0,1);}
+function v182KeeperHold(current){
+ if(!v65WorldActive||current.attackFlow?.keeperHoldRevision!==182||!current.owner?.keeper||current.flight||v121PositioningPaused(current))return null;
+ const kick=v99Actions.get(current)?.kicks.get(current.owner.pid);if(kick?.phase!=='waiting'||!kick.held||!kick.holdPoint)return null;
+ const q=v182KeeperPlacement(current,kick),blend=q*q*(3-2*q),a=kick.holdPoint,b=kick.kickPoint;
+ return {x:a.x+(b.x-a.x)*blend,y:a.y+(b.y-a.y)*blend,elevation:a.elevation+(b.elevation-a.elevation)*blend};
+}
+const v182BaseOwnedBall=v123OwnedBall;
+v123OwnedBall=function(current){return v182KeeperHold(current)||v182BaseOwnedBall(current);};
 function v131KeeperContactProgress(release){const start=release.visualStart||release.flight;return release.goal?clamp((release.keeperStart.y-start.y)/(release.target.y-start.y),0,1):1;}
 function v131KeeperSetting(current,person){const release=current.flight&&v99Flights.get(current.flight);if(release?.keeper!==person||!release.onTarget||release.blocked)return false;const seconds=current.flight.duration/MATCH_SPEED,remaining=(v131KeeperContactProgress(release)-current.flight.progress)*seconds;return remaining>.30;}
 function v113KeeperReacting(current,person){const release=current.flight&&v99Flights.get(current.flight),recover=v99Actions.get(current)?.keepers.get(person.pid);return release?.keeper===person&&release.onTarget&&!release.blocked&&!v131KeeperSetting(current,person)||recover?.completed&&recover.age<1.55;}
@@ -90,6 +117,12 @@ v55GroundPass=function(passer,...args){
  const previous=v99Release,kick=v65WorldActive&&v99Actions.get(match)?.kicks.get(passer.pid);
  if(kick?.phase==='waiting')v99Release={kind:'goalKick',keeper:passer};
  try{return v101BaseGroundPass(passer,...args)}finally{v99Release=previous}
+};
+const v182BaseHighPass=v55HighPass;
+v55HighPass=function(passer,...args){
+ const previous=v99Release,kick=v65WorldActive&&match.attackFlow?.keeperHoldRevision===182&&v99Actions.get(match)?.kicks.get(passer.pid);
+ if(kick?.phase==='waiting'&&kick.holdPoint)v99Release={kind:'goalKick',keeper:passer};
+ try{return v182BaseHighPass(passer,...args)}finally{v99Release=previous}
 };
 function v101ShotDuration(from,to,duration,kind='shot'){
  if(!v65WorldActive)return duration;
@@ -158,7 +191,8 @@ fly=function(target,duration,done){
    startHeight:.29,target:{...target},age:0,saved:false});
   if(keeper&&!blocked&&onTarget)state.keepers.set(keeper.pid,release);
  }else if(release.kind==='goalKick'){
-  Object.assign(release,{startHeight:.29,endHeight:.29,target:{...target},start:v101KickPoint(release.keeper,target),phase:'follow',age:0,held:state.kicks.get(release.keeper.pid)?.held||false});
+  const kick=state.kicks.get(release.keeper.pid),placed=current.attackFlow?.keeperHoldRevision===182&&kick?.holdPoint;
+  Object.assign(release,{startHeight:placed?current.ball.elevation??.29:.29,endHeight:.29,target:{...target},start:placed?{...current.ball}:v101KickPoint(release.keeper,target),phase:'follow',age:0,held:kick?.held||false});
   state.kicks.set(release.keeper.pid,release);
  }else{
   Object.assign(release,{startHeight:3.04,endHeight:.29,target:{...target},visualStart:v115ThrowPoint(release.taker,target,false,.45),age:0});
@@ -198,6 +232,7 @@ step=function(delta,realDelta){
 };
 function v99BallView(current){
  if(current.finished)return null;
+ const held=current.attackFlow?.keeperHoldRevision===182&&v182KeeperHold(current);if(held)return held;
  const state=v99Actions.get(current),release=current.flight&&v99Flights.get(current.flight);
  if(current.postBanner?.kind==='goal'&&state?.goalTravel)return v101GoalBall(state.goalTravel,typeof v83GoalSceneDuration==='number'?v83GoalSceneDuration:4.05);
  if(current.goalScene&&(current.goalPause>0||current.postBanner?.kind==='goal')){
@@ -215,7 +250,11 @@ function v99BallView(current){
  if(release){
   const q=Math.max(0,Math.min(1,current.flight.progress));
   if(release.kind==='shot')return v101ShotPoint(release,q);
-  if(release.kind==='goalKick')return {x:release.start.x+(release.target.x-release.start.x)*q,y:release.start.y+(release.target.y-release.start.y)*q,elevation:.29+.12*Math.sin(Math.PI*q)};
+  if(release.kind==='goalKick'){
+   const aerial=current.attackFlow?.keeperHoldRevision===182&&v102Flights.get(current.flight);
+   if(aerial?.high)return v102FlightBall({...aerial,start:release.start,startHeight:release.startHeight},q);
+   return {x:release.start.x+(release.target.x-release.start.x)*q,y:release.start.y+(release.target.y-release.start.y)*q,elevation:release.startHeight+(release.endHeight-release.startHeight)*q+.12*Math.sin(Math.PI*q)};
+  }
   const start=release.visualStart||{x:current.flight.x,y:current.flight.y},end=release.over?{x:.5+(release.shooter.n%2?-.045:.045),y:release.target.y}:release.displayTarget||release.target;
   return {x:start.x+(end.x-start.x)*q,y:start.y+(end.y-start.y)*q,
    elevation:release.startHeight*(1-q)+release.endHeight*q+Math.sin(Math.PI*q)*(release.kind==='throw'?1.35:release.blocked?.25:.75)};
@@ -245,6 +284,8 @@ function v99BallView(current){
 function v99PlayerAction(current,person){
  if(current.finished)return null;
  const native=current.attackFlow?.flowVersion===159||typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeBall;
+ const held=current.attackFlow?.keeperHoldRevision===182&&v99Actions.get(current)?.kicks.get(person.pid);
+ if(held?.holdPoint&&v101KeeperWaiting(current,person)&&v182KeeperPlacement(current,held)>0)return {kind:'goalKick',phase:'waiting',held:true,holding:false,progress:v182KeeperPlacement(current,held),target:v101KickTarget(current,person)};
  const smother=typeof v115KeeperChallengeAction==='function'&&v115KeeperChallengeAction(current,person);if(smother)return {...smother,parry:false};
  if(v65WorldActive&&current.kickoff?.kicker===person&&current.kickoff.phase!=='rolling'&&v115KickoffReady(current))return {kind:'passReady',progress:current.postBanner?Math.min(1,Math.max(0,1-current.postBanner.wait/.35)):0,target:current.kickoff.support};
  if(current.throwIn?.taker===person&&current.throwIn.ready>0)return {kind:'throw',progress:Math.min(1,current.throwIn.ready/.55),holding:true,pickup:Math.min(1,current.throwIn.ready/.35),target:{x:person.x+(person.x<.5?.15:-.15),y:person.y}};

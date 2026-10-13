@@ -1,0 +1,390 @@
+{
+  "base": "f2458c1fb981a68d13c50df6d4356c9fdb30a957",
+  "seeds": 128,
+  "scenarios": 512,
+  "dt": 0.025,
+  "threshold": "actual keeper pace * dt; horizontal metres (view3d includes elevation)",
+  "before": {
+    "smother": {
+      "attempts": 128,
+      "held": 92,
+      "keeper": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "native": {
+        "count": 92,
+        "min": 1.7866202984657553,
+        "max": 1.7866202984657578
+      },
+      "view": {
+        "count": 92,
+        "min": 0.45967690017265445,
+        "max": 0.5072627647505814
+      },
+      "view3d": {
+        "count": 92,
+        "min": 0.46357615615165165,
+        "max": 0.5107988963402366
+      },
+      "release": {
+        "count": 64,
+        "min": 0.08432010732646805,
+        "max": 0.21555437326134202
+      }
+    },
+    "run-out": {
+      "attempts": 128,
+      "held": 110,
+      "keeper": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "native": {
+        "count": 110,
+        "min": 1.7866202984657542,
+        "max": 1.7866202984657578
+      },
+      "view": {
+        "count": 5150,
+        "min": 0.10473876598064046,
+        "max": 20.31123949605777
+      },
+      "view3d": {
+        "count": 5150,
+        "min": 0.10473876598064046,
+        "max": 20.31123949605777
+      },
+      "release": {
+        "count": 79,
+        "min": 0.09314240573338672,
+        "max": 0.24047830600217035
+      }
+    },
+    "dive": {
+      "attempts": 128,
+      "held": 8,
+      "keeper": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "native": {
+        "count": 8,
+        "min": 1.7866202984657564,
+        "max": 1.7866202984657578
+      },
+      "view": {
+        "count": 16,
+        "min": 0.5540408402950516,
+        "max": 1.8126413465545195
+      },
+      "view3d": {
+        "count": 16,
+        "min": 0.6348710520372204,
+        "max": 1.8389585779019009
+      },
+      "release": {
+        "count": 5,
+        "min": 0.08332195487111585,
+        "max": 0.21258530028059242
+      }
+    },
+    "save": {
+      "attempts": 128,
+      "held": 21,
+      "keeper": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "native": {
+        "count": 21,
+        "min": 1.7866202984657542,
+        "max": 1.7866202984657578
+      },
+      "view": {
+        "count": 38,
+        "min": 0.7262637801678318,
+        "max": 3.143035291269177
+      },
+      "view3d": {
+        "count": 38,
+        "min": 0.7896575703326528,
+        "max": 3.143607933913439
+      },
+      "release": {
+        "count": 21,
+        "min": 0.12510152011045805,
+        "max": 0.19164167201333124
+      }
+    }
+  },
+  "after": {
+    "smother": {
+      "attempts": 128,
+      "held": 92,
+      "keeper": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "native": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "view": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "view3d": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "release": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      }
+    },
+    "run-out": {
+      "attempts": 128,
+      "held": 110,
+      "keeper": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "native": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "view": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "view3d": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "release": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      }
+    },
+    "dive": {
+      "attempts": 128,
+      "held": 8,
+      "keeper": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "native": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "view": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "view3d": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "release": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      }
+    },
+    "save": {
+      "attempts": 128,
+      "held": 21,
+      "keeper": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "native": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "view": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "view3d": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      },
+      "release": {
+        "count": 0,
+        "min": null,
+        "max": 0
+      }
+    }
+  },
+  "extremePlacement": [
+    {
+      "team": 0,
+      "size": "standard",
+      "duration": 2.563288329957278,
+      "maxSpeed": 2.1985093887880214,
+      "minPace": 2.3426257379199997,
+      "keeperTravel": 0,
+      "remaining": 0
+    },
+    {
+      "team": 0,
+      "size": "large",
+      "duration": 2.563288329957278,
+      "maxSpeed": 2.1985093887880525,
+      "minPace": 2.3426257379199997,
+      "keeperTravel": 0,
+      "remaining": 0
+    },
+    {
+      "team": 1,
+      "size": "standard",
+      "duration": 2.563288329957278,
+      "maxSpeed": 2.198509388788007,
+      "minPace": 2.3426257379199997,
+      "keeperTravel": 0,
+      "remaining": 0
+    },
+    {
+      "team": 1,
+      "size": "large",
+      "duration": 2.563288329957278,
+      "maxSpeed": 2.1985093887880525,
+      "minPace": 2.3426257379199997,
+      "keeperTravel": 0,
+      "remaining": 0
+    }
+  ],
+  "pass": true,
+  "checks": [
+    "Every unmarked scenario byte-identical to exact pre-fix native state, RNG and projection",
+    "Catch facts, random draws and 2.4-second release schedule preserved",
+    "Eight JSON checkpoints during holding/placement preserve native state, clock, projection and RNG",
+    "Constructor sets only new hold marker; old JSON restore adds no marker; keeper180/pace119 retained",
+    "Short and high outlets have continuous actual release origins; unmarked high path byte-identical",
+    "Unconfirmed goal kick/possession loss cannot create or retain a hand hold",
+    "Four tired-keeper/distant confirmed-contact boundaries extend only physical placement time, never exceed keeper pace",
+    "A fresh shot catch uses its own contact even after a previous pickup/smother",
+    "A confirmed hold cancels the previous loose/control projection immediately"
+  ],
+  "sourceHashes": {
+    "dist/world-physical-v65.js": "0e9aea895f04f063054e84d61321f8da49d5c09ca5ae6bb24c6b416f7c0e35e6",
+    "dist/world-pitch-actions-v99.js": "41bfb739ea84c9766296636996164c07c06d36feb867c4e5f7a0cc46e6f25065",
+    "work/test-keeper-hold-v182.cjs": "784a033a5102dde015d7acc5793cf83059ade61be37c112615efc99e6263b2b7"
+  },
+  "branch": "fix/r132-keeper",
+  "changedFiles": [
+    "dist/world-physical-v65.js",
+    "dist/world-pitch-actions-v99.js",
+    "work/test-keeper-hold-v182.cjs",
+    "work/keeper-hold-v182-evidence.json",
+    "outputs/index.html",
+    "outputs/Doppel-6-Fussballmanager.html"
+  ],
+  "validation": [
+    {
+      "command": "node work/test-keeper-hold-v182.cjs",
+      "result": "PASS: 512 Szenarien, 231 bestaetigte Faenge, Altpartien bytegleich, acht Keeper-Restorefenster, kurze/hohe Abspiele, vier Zeitgrenzen"
+    },
+    {
+      "command": "node work/run-native130-tests.cjs",
+      "result": "PASS: 56 Keeper-/Restartpruefungen"
+    },
+    {
+      "command": "node work/test-v55.cjs",
+      "result": "PASS"
+    },
+    {
+      "command": "node work/build.cjs",
+      "result": "PASS"
+    },
+    {
+      "command": "node work/ui-redesign/shared/verify-build.cjs",
+      "result": "PASS: 26 Einbettungen, identische Offlinekopien, Versionsabgleich"
+    },
+    {
+      "command": "node work/test-keeper-picture-v118.cjs; node work/test-keeper-picture-v119.cjs",
+      "result": "PASS: 13 + 27 Bilddatenpruefungen"
+    },
+    {
+      "command": "Native Keeperquellen exakt in beiden Builds enthalten; git diff --check",
+      "result": "PASS"
+    }
+  ],
+  "browser": {
+    "url": "http://127.0.0.1:4217",
+    "tool": "T3 Preview",
+    "nodeRuntimeAvailable": "24.19.0",
+    "completeMatch": {
+      "ticks": 7458,
+      "score": [
+        0,
+        0
+      ],
+      "shots": [
+        3,
+        3
+      ],
+      "restore": true,
+      "confirmedHoldWindows": 0
+    },
+    "additionalFullMatchParity": {
+      "script": "work/platform/qa/native-full-match-v160.js",
+      "pass": false,
+      "error": "Complete gameplay/report/model parity after JSON",
+      "marked": {
+        "ticks": [
+          3540,
+          4049
+        ],
+        "score": [
+          1,
+          0
+        ]
+      },
+      "unmarkedControl": {
+        "ticks": [
+          3540,
+          3676
+        ],
+        "score": [
+          1,
+          0
+        ]
+      },
+      "scope": "Beide Varianten erreichen den Abpfiff. Allgemeine Restoreparitaet ausserhalb der isolierten Keeperfenster offen; kein Gesamtparitaetsnachweis."
+    }
+  },
+  "timing": "2,4 s in der Seedreihe unveraendert; entfernter bestaetigter Kontakt bei muedem Keeper kontrolliert 2,563 s, um Keepertempo nicht zu ueberschreiten. Keine neue Balluhr.",
+  "unityHinweis": "Keine C#- oder G:/unity-Aenderung. Bei Integration Handschuhhaltung und Ablage an native Ballposition, holding=false und goalKick-Warteprogress binden; keinen eigenen Timer oder Root-Sprung einfuehren. Sichtbare Unity-Abnahme steht aus.",
+  "changelogVorschlag": "B07: Bestaetigte Torwartbaelle bleiben am Fangkontakt und werden ohne Positionssprung zum Abspielpunkt abgelegt. Nur neue Partien mit keeperHoldRevision 182; Altpartien und Torwartjagd 180 unveraendert.",
+  "buglisteStatus": "B07 nativ lokal behoben und regressionsgeprueft; vor endgueltigem Schliessen sichtbaren Unity-Uebergang abnehmen. Bugliste, Entscheidungen und CHANGELOG unveraendert.",
+  "scope": "Nur angegebener Worktree. Kein Push, Deploy, Versionsanstieg oder Unity-Assetauftrag.",
+  "buildHashes": {
+    "outputs/index.html": "9b61bbe4dd99645d9c175aa37f8637fd19f397aafc2e7a6864dff6c320bf64d7",
+    "outputs/Doppel-6-Fussballmanager.html": "9b61bbe4dd99645d9c175aa37f8637fd19f397aafc2e7a6864dff6c320bf64d7"
+  }
+}
