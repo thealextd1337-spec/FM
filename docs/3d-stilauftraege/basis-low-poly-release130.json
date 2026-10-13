@@ -1,0 +1,859 @@
+{
+  "release": 130,
+  "productCommit": "1063ed6f96d507bfa14b0b8a8cfd764646771bb6",
+  "sourceId": "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+  "identitySources": 41,
+  "unityVersion": "6000.6.4f1",
+  "unityProject": "G:\\unity\\Doppel6-LowPoly-Demo",
+  "originalAssets": [
+    {
+      "path": "dist/players/football-v130.glb",
+      "sha256": "5a2ae8bdc6606b00178d4861893fb008edadc05b4597c34459d7030ebb6e7fd1",
+      "bytes": 21445448
+    },
+    {
+      "path": "dist/players/calibration-v130.json",
+      "sha256": "3c3d05ac3b7580730f3b0bb13cb63a77ddc76c82f5e0b04225a8fef6734a8305",
+      "bytes": 341831
+    },
+    {
+      "path": "dist/players/cloth-mask.png",
+      "sha256": "a12f08d37d1344f3c8428794d62660d12b044f7359de777f093d8956083e6333",
+      "bytes": 75111
+    }
+  ],
+  "importedAssets": [
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/cloth-mask.png",
+      "bytes": 75111,
+      "sha256": "a12f08d37d1344f3c8428794d62660d12b044f7359de777f093d8956083e6333"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/cloth-mask.png.meta",
+      "bytes": 3069,
+      "sha256": "2ee15d060e07da65048a1c4a6893d4184846f5e08742d2b50c6303248476eb3e"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/D6Common.hlsl",
+      "bytes": 1946,
+      "sha256": "03a398ef35bed3767b601812c454159cdd9a3020bc4385eea18bf0d6d59d5ab7"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/D6Common.hlsl.meta",
+      "bytes": 161,
+      "sha256": "f54de6eb55ddee4a91240dcd0026b43d2ede9cf56f41544eadaf91fda810481c"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/football-contact-pilot.fbx",
+      "bytes": 572620,
+      "sha256": "cbbac9f598635ff85eb996fa6291dafa98d9147cbfe85abe1a7cac5621179f44"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/football-contact-pilot.fbx.meta",
+      "bytes": 3063,
+      "sha256": "c9bee09d60559aa0f51d05a804ab09c3fda21ec8d2c516141c9e59142818dfad"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/football-v130.fbx",
+      "bytes": 10858636,
+      "sha256": "e79f62f49cc2fe00968cce77044aeba534a7aaf119a42ebd82f0f1516ed13695"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/football-v130.fbx.meta",
+      "bytes": 3063,
+      "sha256": "221fe7473129c55fc376e322c11b915a4bd5d37f938e294072c8f5b320e1fd12"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/pass_inside_meshy.anim",
+      "bytes": 8160690,
+      "sha256": "545475ab372038f014538a21f735045cdbc88de0648d12c07a6ecb08508fde57"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/pass_inside_meshy.anim.meta",
+      "bytes": 188,
+      "sha256": "0073db72d8712e59d7c2b49ca865e8bd4c881edda611c277836afbaba7ff3dc4"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/Player.mat",
+      "bytes": 4143,
+      "sha256": "fecedf91ca29eb6438d91362525a8281509dc3092e1f23ec6a1b0c54974e187e"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/Player.mat.meta",
+      "bytes": 188,
+      "sha256": "6bf6f35d3fc621aa0bc5f1bd45c800a54da92465d96b0bbb37c286a22edf67ac"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/receive_ground_meshy.anim",
+      "bytes": 8166514,
+      "sha256": "920bbf73281f17373a9efbfe0fa02bb0f434c817fb0ec88bb5afa09f331d8e46"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/receive_ground_meshy.anim.meta",
+      "bytes": 188,
+      "sha256": "0317128485159bdfe8a1997f89c591f84cd46bf8acf383c1f5b3f0e33bc1ac32"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/Resources/D6Blob.shader",
+      "bytes": 1021,
+      "sha256": "16507160a368d3ea9eb208e4aa4fbb87be462f5ac4e37d63bfc428ffdb961bb9"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/Resources/D6Blob.shader.meta",
+      "bytes": 204,
+      "sha256": "65bc76a822eaae6fafffbb75f14f7826fcd907249a4d78b37533a21393367bcd"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/Resources/D6Env.shader",
+      "bytes": 2079,
+      "sha256": "fd5dd8ef6f8d32cef97428be7d81ec4fc517bef97cb352a1c2cf71ffd266e496"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/Resources/D6Env.shader.meta",
+      "bytes": 204,
+      "sha256": "70b27bdbe5417d6badfe751850260e096de6c7693ce86bdfaa19ff1f54d643ae"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/Resources/D6Pitch.shader",
+      "bytes": 2836,
+      "sha256": "928a5db7f9008928fa5a8f580173f9c89c0814e60c7513c6057de90a5d5d310f"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/Resources/D6Pitch.shader.meta",
+      "bytes": 204,
+      "sha256": "ea7ed1105eb1774e58b1f6c6d79f8da2d39d0488bbffbe685d40abe16e763db3"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/Resources/D6TeamRing.shader",
+      "bytes": 723,
+      "sha256": "d2a6580fab231a245dc1077d934202165a7d83b2e4a8d8233c94ef957aa5313e"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/Resources/D6TeamRing.shader.meta",
+      "bytes": 204,
+      "sha256": "d905ca2040297fc6b8e30432fcfa6dc803979c95f299799f67ed00413921ca5a"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/Resources.meta",
+      "bytes": 172,
+      "sha256": "bc2c7e439073f82ccfdc2c703325dda46ce2fee8b78b58d95a6b844b4022d8dd"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/textures/image-0.png",
+      "bytes": 9834749,
+      "sha256": "cfd59dfe39aaff42ebe949156c6cccf78fb31999ac5414131e4904f5fc0ac843"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/textures/image-0.png.meta",
+      "bytes": 3069,
+      "sha256": "da7b5e3ab957e057841831a747de84f33172b9c7f6e598ba6b31c356513a8435"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/textures/image-1.jpg",
+      "bytes": 1214077,
+      "sha256": "ce490897b7515208dc2663726292d89735cdd75b6e0022d63b2d3e4c3c9288fc"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/textures/image-1.jpg.meta",
+      "bytes": 3069,
+      "sha256": "76e77dba27713e0dde7693395ae2c179bb667b902ebb54366eef0198e153a28f"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/textures/image-2.jpg",
+      "bytes": 1935304,
+      "sha256": "e3126b5f044537ec14cff6918baf385f0bdb13f88b8b21775e69c902460c0ca9"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/textures/image-2.jpg.meta",
+      "bytes": 3069,
+      "sha256": "35a8f7adf28530595499fb14dec1b7aa902a35ea53c717d930a479e53121fd12"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/textures/image-3.png",
+      "bytes": 2961306,
+      "sha256": "03c2426b8c99f6d35daee294657acc2db2cc7e029f1ef8dfdca81746cd7bec13"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/textures/image-3.png.meta",
+      "bytes": 3069,
+      "sha256": "f5f66986ed3ec6b6487da7b18aa9de139e846596c8cc78bd763c7ea8fb15c18b"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/textures/metallic-smoothness.png",
+      "bytes": 2941102,
+      "sha256": "59f5bc76828e836a247cf887f72effd60cb9c3944789d99283a7545afa0a5171"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/textures/metallic-smoothness.png.meta",
+      "bytes": 3069,
+      "sha256": "dc983e0c47183a6c4b9f1ccaea55beb2393babc231ed0e35d74b621a75b819b9"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/textures.meta",
+      "bytes": 172,
+      "sha256": "b70c2d61a2fa69738b9a164cbcf4f38446ad1a40b7776fba32f796a22d647bdd"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/WorldKit.shader",
+      "bytes": 6489,
+      "sha256": "c1e92e7e5e60d3536a7fb55440a30ada73fcf2afa270816d2006cd34e3ea0ea3"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/WorldKit.shader.meta",
+      "bytes": 204,
+      "sha256": "fedc415b5f45c5cb61bcdbbdc98423ea9f3e93bba6cd99a59ce43089141dce18"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/WorldPlayer.asset",
+      "bytes": 1956767,
+      "sha256": "98b1a13998a24ce441a3c2790503822e1650de648f34d065bb188ee352cc2325"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art/WorldPlayer.asset.meta",
+      "bytes": 188,
+      "sha256": "779c5bf3181543e1e043cc5e5cc8d7bfa352b021efb68a31126b3561dbd13a3b"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Art.meta",
+      "bytes": 172,
+      "sha256": "eab954682728db64bf91a890bbcb784764ce49c28bf5d9f7ecbddbea2fa64b49"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/contact.png",
+      "bytes": 55139,
+      "sha256": "03d06561efbc9a1d8435d926fce7bb3b862e8422be058c12e410920c1999aa3f"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/contact.png.meta",
+      "bytes": 3069,
+      "sha256": "02934a016ae534baab56aecdca33ddb2774efdf6dffda37fd641c73b756a4146"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Data/default.json",
+      "bytes": 2340,
+      "sha256": "566a1f0eaebd9919e4fccdb3d83c052389aae6666f87966d2355551ddb6959b8"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Data/default.json.meta",
+      "bytes": 158,
+      "sha256": "9dc958ccbccd4bcac56fb8e56529b13f72907ad4c10d3a7af9f4e3a7e2634a54"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Data.meta",
+      "bytes": 172,
+      "sha256": "f2b6bf47c82d74e9a6bcf7721aa313eec18145fc8b76c6193874e5929bc98024"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ClubStadiumProfilesTests.cs",
+      "bytes": 8364,
+      "sha256": "b3124204cfdc24d4fe8d276d2e9a447f6eff3681331bcec03ab527a7059e3dca"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ClubStadiumProfilesTests.cs.meta",
+      "bytes": 59,
+      "sha256": "a89637376904be32553df8465db86de5586ac7b6b3e830b208b5b6297a7682fd"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/D6Cli.cs",
+      "bytes": 11117,
+      "sha256": "3acf1ee51b10308930a7c9644a2398584a4cc3a299ae8cb3286ca1a800ab9012"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/D6Cli.cs.meta",
+      "bytes": 59,
+      "sha256": "f72de8ecb522c5f0219465c994d172b41f13c714243c1c98c143e008b084d4a8"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballActionTests.cs",
+      "bytes": 6835,
+      "sha256": "6572cff87444e7d019427cf8247b6730efad3d0ec58caccc8e0b4ae9a73333cf"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballActionTests.cs.meta",
+      "bytes": 59,
+      "sha256": "80a12d5bb7c7b34e424a242a37964c7ac8378188dce21c8354849544b0e9e0c2"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballClipDiagnostics.cs",
+      "bytes": 7866,
+      "sha256": "eb87a4a44913867e23b9aa55ee4b0c08f2fedc2fbe6bbc85796516986eb35002"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballClipDiagnostics.cs.meta",
+      "bytes": 59,
+      "sha256": "9332d57c847a876b03832fd7c8197c7261206577a69c7919e372fa8ba40bee8d"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballDuelTests.cs",
+      "bytes": 23226,
+      "sha256": "71cca8778c5867b27272af510cfbdcc528b34641b523efbd68629fe9f14db708"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballDuelTests.cs.meta",
+      "bytes": 59,
+      "sha256": "a88d75d9b961b97e70aeaa9805d5fbc922ede96ff2a89e72a5bf7d4a000662b2"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballGaitTests.cs",
+      "bytes": 50976,
+      "sha256": "b0f31048694b7d08b65eaf835c2b9cc961a95f9a11377ce77a8fe7caf5b51903"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballGaitTests.cs.meta",
+      "bytes": 59,
+      "sha256": "50e03c95892911b315e09fdcb0fd28218d51a634b4ec69e9a3773777282787c2"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballIterationTests.cs",
+      "bytes": 29012,
+      "sha256": "25f7adfbc32187ba21542835525fb88ea3e46b9f630f6691bc4e5ba56b6aedae"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballIterationTests.cs.meta",
+      "bytes": 59,
+      "sha256": "a4cb8057b9ab2a51473f0b84c5610ff46f7a7b7047b15f3b696bbbe48ae2057c"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballKeeperTests.cs",
+      "bytes": 31372,
+      "sha256": "f252d138ee055d399591d513e47672987f2e35534bae82e1dd5f4a755f43b208"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballKeeperTests.cs.meta",
+      "bytes": 59,
+      "sha256": "5db860b15beda761112fd026aae0209a542b170c8d263d869dc967f5d4d70f7b"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballLocomotionTests.cs",
+      "bytes": 8881,
+      "sha256": "c11c82acc88ef87cf9b75430deac93256bb397b6721b05f12faed63ee9362cb7"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballLocomotionTests.cs.meta",
+      "bytes": 59,
+      "sha256": "d14717e658da9920c8e9c8713087e91bcbcaed494ae647bd3d615fe30a9c67c9"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballMomentumTests.cs",
+      "bytes": 14583,
+      "sha256": "07e2c4d3a01a072d366298a5c62eb2915bf251056515003e7c9d984665ed8d67"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballMomentumTests.cs.meta",
+      "bytes": 59,
+      "sha256": "be2958dc7a71df438175a449d6ebeb3e180a721b3b08058129f8b146c1eeb979"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballMotionTests.cs",
+      "bytes": 15112,
+      "sha256": "3470efdcf8a04357516db8a568aa8a6e4e8bd2556c7442d7e3235912a8ee766d"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballMotionTests.cs.meta",
+      "bytes": 59,
+      "sha256": "408178ddbefea8161f9edbe5d466df3fb29f239b561c3398b20120de4b112f6b"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballPresentation119Tests.cs",
+      "bytes": 10438,
+      "sha256": "021635782a50a812bccf9425c78f51ae9391cdda628e89e64a10dfbc4660ec0e"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballPresentation119Tests.cs.meta",
+      "bytes": 59,
+      "sha256": "43d84be918289705a7e8f553b13549e7dc9d3557b12c76ccc53f20cd09821499"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballSetup.cs",
+      "bytes": 11308,
+      "sha256": "58efa51beeca2dc150aa69c6c334e4860d1d6c845de9debab96022dc4f5225b9"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballSetup.cs.meta",
+      "bytes": 59,
+      "sha256": "609487e4de47f6b639ee92cdf750543594d1e3c6853e2dfa983cb564137053f8"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballTests.cs",
+      "bytes": 5863,
+      "sha256": "1e388e1aa28cbd383060de19b32b6590fb9bd9a78a5d041c734f1f04acd183ab"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/FootballTests.cs.meta",
+      "bytes": 59,
+      "sha256": "95972d37856457bdcca71347a01c36dda15b9b10a73f96efd4df5a0a00b7d6c5"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/IterationEvidenceDiagnostics.cs",
+      "bytes": 13545,
+      "sha256": "0c0f63edefd4b28cb0312b1e1bd3317bdd768f3c8758fb0c7f79fca115c3e03b"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/IterationEvidenceDiagnostics.cs.meta",
+      "bytes": 59,
+      "sha256": "f16ab377a8599b673a8a3686b68b3b044d8abc586a535942c4843fb0fcbc44c4"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/KeeperEvidenceDiagnostics.cs",
+      "bytes": 21069,
+      "sha256": "dd71267c48220d1491c3fadb2c434651c4d29d912a8be5d8ab91d85fb5431514"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/KeeperEvidenceDiagnostics.cs.meta",
+      "bytes": 59,
+      "sha256": "2e416a993cdec587e4b9f1c43930eb670bb79d8f185ff8b3b54312f092697a3f"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/NaturalMotionDiagnostics.cs",
+      "bytes": 179739,
+      "sha256": "2ab53b05c822da4f20906576dbe920c90052d090f491c342279acf8b166409a8"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/NaturalMotionDiagnostics.cs.meta",
+      "bytes": 59,
+      "sha256": "f825d005aeb6416fac546f900751027a04ce504d198e72b591a8cef984cfb9a2"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/OffsidePresentation119Tests.cs",
+      "bytes": 8141,
+      "sha256": "a43958d69b745b430758ebe8021deb52b08b2c205352860fa60c49664d7d3c35"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/OffsidePresentation119Tests.cs.meta",
+      "bytes": 59,
+      "sha256": "8b457d61fe9bfc823bc70aa67036d7b307a74d53207a7e92a6ed3d0743934529"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbeFollowThroughTests.cs",
+      "bytes": 5118,
+      "sha256": "f346f9c8c3e1d309d683bdc1359ebd646bb77c9fcc2687838cc82e007e2a2b04"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbeFollowThroughTests.cs.meta",
+      "bytes": 59,
+      "sha256": "29cb4d4fbfcbbe0065aa3c241cfa9543a4e69b82fae4d76179dbe12e5fb4e5e5"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbeNetTests.cs",
+      "bytes": 3156,
+      "sha256": "0f8205b13c08e96980d63ace4fa71cbf9069f842c4119d928323556a82a4fe4d"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbeNetTests.cs.meta",
+      "bytes": 59,
+      "sha256": "d70f69b53573c431d7e48d1c5da8e2645403aaea997a1e783839922e3fa0527f"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbePhysicsTests.cs",
+      "bytes": 3549,
+      "sha256": "e50500bf284467f10a184617165220790b46db3ae68f6e9a2da9552568f68af1"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbePhysicsTests.cs.meta",
+      "bytes": 59,
+      "sha256": "660fd83efd769ef86afc17db6bc64811e298653f65950807fe2c5de2cfc4b47b"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbePlayTests.cs",
+      "bytes": 4472,
+      "sha256": "e0aad8d566eb5910f5d7316e3fc560172ec965a11a2e27c5334da79718daaaab"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbePlayTests.cs.meta",
+      "bytes": 59,
+      "sha256": "6548b40b8e040be12ede94b547e21d36bd93ba26a59177ebe4da03de8c3eae96"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbeSetup.cs",
+      "bytes": 13198,
+      "sha256": "e6ba4686113b1451a56076aad5755cbdfc6a96860fafdb46b598e8acaea60d32"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbeSetup.cs.meta",
+      "bytes": 59,
+      "sha256": "a94397307165a741536993cafb322e8e63e398b0b1a08177c986bd6312a593e8"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbeWebBuild.cs",
+      "bytes": 4976,
+      "sha256": "2222be8bf64dea539629795ba9d9f5b716a95e5f2c2250140651974cc064df30"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/ProbeWebBuild.cs.meta",
+      "bytes": 59,
+      "sha256": "5e911b1e24a8340d89599031b9feb92ec5933a68da41a0c95851bc3461fe39c8"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/SmallViewDiagnostics.cs",
+      "bytes": 12995,
+      "sha256": "b8c38ba17e73f99c513a625fdee51f6f1c730608c5caf6ffff9e4521ed948b61"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/SmallViewDiagnostics.cs.meta",
+      "bytes": 59,
+      "sha256": "10fab1b422d4873d8f67abe6288602d4e6f24f148b0b4e86dc12af3b631dfb3b"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/StadiumArchitectureTests.cs",
+      "bytes": 18474,
+      "sha256": "6b00c97ffc1301487a63dd85ea0c43ad9b1a487faf210661a883491640dd2e12"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/StadiumArchitectureTests.cs.meta",
+      "bytes": 59,
+      "sha256": "ffa33a5172dbd9158c95138e854fcfafe7c6d73de17a29b3cce3c524662e18b2"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/TeamGroundRingTests.cs",
+      "bytes": 4275,
+      "sha256": "9d49ecf1cd48545cfaaa16c7b8bb96987266329c47abed9c7e72b31147f8c99a"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/TeamGroundRingTests.cs.meta",
+      "bytes": 59,
+      "sha256": "5211321e10b6bdbab77e94551d9bdd99bbda422f4b0bb9af61cabf5490cba735"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/UnityEvidenceDiagnostics.cs",
+      "bytes": 9029,
+      "sha256": "c68b2a4c8c4f800502e127d580cdc8c16e4e80798754367905ff63cb3f38b65f"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/UnityEvidenceDiagnostics.cs.meta",
+      "bytes": 59,
+      "sha256": "062a2e6488fb49982e92fc409f2c431f451ef7b429a5e6600083d19b2667f9f7"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/WorldKitDiagnostics.cs",
+      "bytes": 2999,
+      "sha256": "b84a3acec6425bd103b1f6d1db302d5ac64e41d43dcc6bcfedd28a6c0a32a4a5"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/WorldKitDiagnostics.cs.meta",
+      "bytes": 59,
+      "sha256": "a3cd6a89c4e4ded75d1f397b50b0419eb3b9135b10527d8088b32302cdebd8af"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/WorldViewSetup.cs",
+      "bytes": 2100,
+      "sha256": "b834f5b015234c4ed26a273b332bafca6121957bf24bc72225178975afa98bf3"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/WorldViewSetup.cs.meta",
+      "bytes": 59,
+      "sha256": "e6f36662f1dc7f0204817bcfcff5315e6e4b7dd32a4df6f6b69b42ac753e2182"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/WorldViewTests.cs",
+      "bytes": 14814,
+      "sha256": "77be92fb371ab9f2d13e1807e64c2a946c1922dee60efac6710d9421de638336"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor/WorldViewTests.cs.meta",
+      "bytes": 59,
+      "sha256": "2805c063203a5a556565081a2bb717ffb3b1fbef35224bd705773155fd1336d2"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Editor.meta",
+      "bytes": 172,
+      "sha256": "4daef2d7afb8b830589f34695a067f24185414ffd9251483996cd321c888d0ea"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/link.xml",
+      "bytes": 381,
+      "sha256": "ed89006c11fa1ecaa4e0cec5b37f504e9e41a02fb7a4c44e85a415ab18034c07"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/link.xml.meta",
+      "bytes": 158,
+      "sha256": "dad730b876ea6c13530cf7bf36451cf3c0ff2541ba17cc525ab46381d43c05d7"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/overview.png",
+      "bytes": 35475,
+      "sha256": "9a8ba7763fcafd574190c3b1b77a3cd253da91abdcbfac950c2328856ab8ffb7"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/overview.png.meta",
+      "bytes": 3069,
+      "sha256": "56c2dbb0f0593ca274f106fef31526cc2dc8569351325dffcddd83b2486595e8"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Plugins/D6Probe.jslib",
+      "bytes": 218,
+      "sha256": "270a00924ad2d577f2200db6fb45a85015ebeb5be228b8bef24b97ebf900fdcc"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Plugins/D6Probe.jslib.meta",
+      "bytes": 59,
+      "sha256": "5608c60213b46a775c29332c6c3c072f5c34a1e50ee82ed3557fce097b8f5d8b"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Plugins.meta",
+      "bytes": 172,
+      "sha256": "66d5f4d4d3cadf41a1b26aaedf02d8d4f8a147399fafbfbc0c85da769006e4b6"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Probe.unity",
+      "bytes": 12654,
+      "sha256": "299404d2ab14d2cc110ea302164386af79ff508182e3cc9a1a207e1393b519bf"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Probe.unity.meta",
+      "bytes": 155,
+      "sha256": "2282c171abae704aa1812044b8ae90f45a9e47ef7db62538306b089a8af34102"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Rendering/ProbeForward.asset",
+      "bytes": 1938,
+      "sha256": "53259e15a62ae2b3f31c82e0d8f6fd1faa41b5f4f8567a34422d861c11660300"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Rendering/ProbeForward.asset.meta",
+      "bytes": 189,
+      "sha256": "d5314b0dc99849efed8cd9f940a886b50674da3fb9b8b83ae350efc9549464e7"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Rendering/ProbeWeb.asset",
+      "bytes": 4914,
+      "sha256": "498c2897b6daed438dbb2b9bcd56e487431bdce12bac0087c6b92eb7ba0edb97"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Rendering/ProbeWeb.asset.meta",
+      "bytes": 189,
+      "sha256": "6fcdd78a5a9cb3a342e603c899c329e56d8847364ce3956f5016fcf253e19572"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Rendering.meta",
+      "bytes": 172,
+      "sha256": "3ae6aa6c2511a51fda037bbaf8d8c29c05f9d863ccf68b1047112eb15e976bce"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/restore-render.png",
+      "bytes": 35391,
+      "sha256": "d806e771a74e778aa1419d8d0ffaed42738515873e2b87a76d9dcc7880251be9"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/restore-render.png.meta",
+      "bytes": 3069,
+      "sha256": "a55d4a5b0af073a114acf799fd622010dc73a95402367287ca75babd446a86d9"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ClubStadiumProfiles.cs",
+      "bytes": 10045,
+      "sha256": "5a071f18df90594bbbbfc64c5c8b78924db0ea1629579ee94b12eade2de05974"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ClubStadiumProfiles.cs.meta",
+      "bytes": 59,
+      "sha256": "8a110d9de45a521e9279a9381b1015dc06e8d0b0a5f17badc9c8047bcdf7dd1f"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/FootballAnimation.cs",
+      "bytes": 176461,
+      "sha256": "47b38cfe1a83cf7e224b76c65bda479143fa245b6ca940db69ae53a518a9dd91"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/FootballAnimation.cs.meta",
+      "bytes": 59,
+      "sha256": "6de5f829af244550e7a34cd4a63861bf354e5bd363525e8ce8ea8e66c2a45b63"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/FootballDuel.cs",
+      "bytes": 2363,
+      "sha256": "32984fbc1c1d2cbcfdc08fa4e599952c9c32655fdce108ffb1a17e63dee05ea7"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/FootballDuel.cs.meta",
+      "bytes": 59,
+      "sha256": "50960b779025e7ee6b7ea33d79751bdd5244199fb7deb1420dc34518692e8ab3"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/FootballLocomotion.cs",
+      "bytes": 25351,
+      "sha256": "00ead4dcf48ee61a6b512e6012da99a6f570e583d0060b545036aff3088dce55"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/FootballLocomotion.cs.meta",
+      "bytes": 59,
+      "sha256": "7a5ac739afcdc5761eb0d1d16fffc911c5ff7eae4b0a1607bc85c903d2f645af"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/FootballPresentation.cs",
+      "bytes": 36527,
+      "sha256": "9638b91578a2b783c3b25bc738bb06dc36fb80df3f6ca31d24d67e3d0d735c5f"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/FootballPresentation.cs.meta",
+      "bytes": 59,
+      "sha256": "e70a54cdc62844db9e0c6efd1a152e2e64217c41216e7ab13c201b0327c456d8"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/FootballSoleContour.cs",
+      "bytes": 24845,
+      "sha256": "833069a2189ec9edea9d0fdc56c96c152429f1914d32a83ca89af5cd03528218"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/FootballSoleContour.cs.meta",
+      "bytes": 59,
+      "sha256": "bc90710b0c3321aadc45c229d5b860eef3348e18668e0dfd4ae23cc48617832a"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeBallPhysics.cs",
+      "bytes": 5498,
+      "sha256": "6f6a6abff02c4d6273371e6a50169291e67b1d4a71433bec4f16c901a0ccc205"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeBallPhysics.cs.meta",
+      "bytes": 59,
+      "sha256": "2a79b88437386d68ccb86354e5e58e9c4c898a80fc4831fee243875b10f87397"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeBridge.cs",
+      "bytes": 17460,
+      "sha256": "4c4761d57b764d5c9b45193cb49491874ebd80c8889360ccf53d43ae10f07463"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeBridge.cs.meta",
+      "bytes": 59,
+      "sha256": "a35f93962183e98b93fb5791cea2d4cb760f98cbb9a30838b0a4fb0e979c720c"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeBuildIdentity.cs",
+      "bytes": 244,
+      "sha256": "d93e1bf6020d1db488b47f68e265f7df61e8806e7411adf38292145a95398b9f"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeBuildIdentity.cs.meta",
+      "bytes": 59,
+      "sha256": "32f0dd4a67cb23247f0fbe65c557635b6237ae74e928920e4c2e653620303a19"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeCamera.cs",
+      "bytes": 2229,
+      "sha256": "b3cd4a8229588ca5a24b5a6c046daeeba54a821b9dd1100eb63bcf040a5a6b9a"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeCamera.cs.meta",
+      "bytes": 59,
+      "sha256": "12094e294ff8dde55d07602575715b55b8773e4a94c97b82dd57a327348057ba"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeNet.cs",
+      "bytes": 3310,
+      "sha256": "4df037b2278e9546110d1cdc20e94769b0d5317de67e58b12208de5abc3290f6"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeNet.cs.meta",
+      "bytes": 59,
+      "sha256": "58e80e6c89c7347845a8b2dde27adfb398116467a4adaa4a7a3fa8e98b1c1391"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbePlay.cs",
+      "bytes": 7466,
+      "sha256": "92dc9398dc1a48815d293e09b4bf4bac09eaa6e3945890eace2a147c8c1391be"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbePlay.cs.meta",
+      "bytes": 59,
+      "sha256": "653e0c8128fab6b89203318e862c9ec0074727bde796e7656093dfacad72716f"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbePose.cs",
+      "bytes": 2906,
+      "sha256": "46f800051c1d974c2bb5aae6086d1493ec34f80b5ed58ffd64849528fbcdc037"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbePose.cs.meta",
+      "bytes": 59,
+      "sha256": "c54dd7d0f54548cb9fe82a054848d7d838ede23ce8f8b91cc97d94f1b2c51345"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeSimulation.cs",
+      "bytes": 20782,
+      "sha256": "64c20afce12eb1ba94c6191615b97a8cca72a628d48b8d165bff8f8100a20894"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/ProbeSimulation.cs.meta",
+      "bytes": 59,
+      "sha256": "a1fbf4320e57da0f0e3256e12a3ee4b311a759955ba65e9dcde13918a0d2c71a"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/StadiumArchitecture.cs",
+      "bytes": 53053,
+      "sha256": "e54aa4d226ba4d641981bd6d962789478153130c408440a195562f1201ea6b18"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/StadiumArchitecture.cs.meta",
+      "bytes": 59,
+      "sha256": "0c67c4679b4d758b2ff7f472d01875c213429aabc1eb5d3b81399ab753ec4934"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/WorldViewBridge.cs",
+      "bytes": 11216,
+      "sha256": "df68eb22747ec9c1a2c1276d6d3428b0e4f8692a9bc8e47f5f7c1a4d3a15b7f0"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/WorldViewBridge.cs.meta",
+      "bytes": 59,
+      "sha256": "84344817fcb882873679b315e09ac34c82dd4fc870e073fcd6a5301eaa641801"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/WorldViewContract.cs",
+      "bytes": 11564,
+      "sha256": "77b32dab716b296bf391aa356860d8172ccce2fbbeb59482e87fe3beff1d768f"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/WorldViewContract.cs.meta",
+      "bytes": 59,
+      "sha256": "4c6c05d9d1e8a5fa245540fe5adda79f481a8674912d1b8e1b1175928851eb94"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/WorldViewEnvironment.cs",
+      "bytes": 20908,
+      "sha256": "12bb1971459945285ec2bb1e29b339d12107d6fb02576e01675de75fe7e29c5c"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/WorldViewEnvironment.cs.meta",
+      "bytes": 59,
+      "sha256": "261523551dc156d4295b9e666e60abe7ba6550d0f7d60377f028f212cf30e121"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/WorldViewPlayback.cs",
+      "bytes": 10486,
+      "sha256": "10062f785ef99c94258e652f15bd86cdac5431b8c30cf0d03d764bae5dbfc602"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/WorldViewPlayback.cs.meta",
+      "bytes": 59,
+      "sha256": "2d1db21a3f4313dff0669f28e17c8d4d006ae828e9b715aa2f0f0198586dadba"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/WorldViewPresentation.cs",
+      "bytes": 13354,
+      "sha256": "3e6e492e989863657a712e62df117ee67b5910c0d8baaea1f9ca37b7fe4ac432"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime/WorldViewPresentation.cs.meta",
+      "bytes": 59,
+      "sha256": "a866a5ba4e0660b383cf2f42fac9534e34ca04d69000b5ed1aa2ec8be45d4076"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/Runtime.meta",
+      "bytes": 172,
+      "sha256": "89ed17f9496f4663d094ab52a0b68dd5ea0c7ddb730a46daf78ed9aa3d5025f1"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/web-pipeline-render.png",
+      "bytes": 35320,
+      "sha256": "420f61b930c9ec77da0961d1ff73ff96b4383aaa8c9f0987257372798a45c9ae"
+    },
+    {
+      "file": "Assets/Doppel6EngineProbe/web-pipeline-render.png.meta",
+      "bytes": 3069,
+      "sha256": "d3a5a798d139dc931ec6d63c03027307b79780ff14e717fb1658e014b1117e3d"
+    }
+  ],
+  "sync": "0 differing mapped files against own release130 checkout",
+  "nighttimeCombined": false
+}
