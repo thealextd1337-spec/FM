@@ -1,26 +1,23 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 namespace Doppel6.Probe {
 public partial class ProbeBridge {
+    // One deformation field per goal net mesh (WorldNetDeformation.Field), rebuilt whenever BuildWorld makes new meshes.
+    readonly List<WorldNetDeformation.Field> netFields=new List<WorldNetDeformation.Field>();
     void RenderWorldNet(WorldNet net){
         if(net==null&&!liveNetMoved)return;
+        var g=worldView?.Config.geometry;if(g==null)return;
+        bool current=netFields.Count==netViews.Count;
+        for(int i=0;current&&i<netViews.Count;i++)current=netFields[i].Uses(netViews[i].rest,g);
+        if(!current){netFields.Clear();foreach(var view in netViews)netFields.Add(new WorldNetDeformation.Field(view.rest,view.tags,view.goalSign,g));}
+        // A display deformation derived from the native recorded goal picture: fixed edges stay attached and it never
+        // applies an impulse to the ball. Only a goal whose picture changed is uploaded; an inactive fact restores rest.
         netMaxDeformation=0;
-        foreach(var view in netViews){
-            Array.Copy(view.rest,view.vertices,view.rest.Length);
-            if(net!=null&&view.goalSign==net.sign){
-                var g=worldView.Config.geometry;
-                // A display deformation derived from the native recorded goal picture.
-                // Fixed edges stay attached; it never applies an impulse to the ball.
-                for(int i=0;i<view.rest.Length;i++){
-                    var p=view.rest[i];if(view.tags[i]!="back")continue;
-                    var anchor=Math.Sin(Math.PI*Math.Clamp(p.y/g.goalHeight,0,1))*Math.Sin(Math.PI*Math.Clamp((p.z+g.goalWidth/2)/g.goalWidth,0,1));
-                    var distance=(p.z-net.z)*(p.z-net.z)+(p.y-net.height)*(p.y-net.height);
-                    var tail=net.age>.6?.16*Math.Exp(-(net.age-.6)*2.2)*Math.Sin((net.age-.6)*17):0;
-                    var displacement=(float)((net.bulge*.75+tail)*Math.Exp(-distance/5)*anchor);
-                    view.vertices[i].x+=view.goalSign*displacement;netMaxDeformation=Math.Max(netMaxDeformation,Math.Abs(displacement));
-                }
-            }
-            view.mesh.vertices=view.vertices;view.mesh.RecalculateBounds();view.mesh.RecalculateNormals();
+        for(int i=0;i<netViews.Count;i++){
+            var view=netViews[i];
+            if(netFields[i].Update(net,view.vertices,out float largest)){view.mesh.vertices=view.vertices;view.mesh.RecalculateNormals();view.mesh.RecalculateBounds();}
+            netMaxDeformation=Math.Max(netMaxDeformation,largest);
         }
         liveNetMoved=net!=null;
     }
