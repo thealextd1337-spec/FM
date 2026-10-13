@@ -221,6 +221,7 @@ public static class StadiumArchitecture {
         for(int i=0;i<4;i++)plan.Terraces[i]=Layout(b,sides[i],rows[i],depth*(i<2?1:.88f));
         if(supporters)Reserve(plan,id);
         for(int i=0;i<4;i++)b.tops[i]=Stand(b,sides[i],plan.Terraces[i],overhang);
+        Fences(b,sides);
         Corners(b,sides,rows,depth);
         Floodlights(b,sides,depth,mast,overhang);
         Entrances(b,sides,depth);
@@ -329,6 +330,22 @@ public static class StadiumArchitecture {
             default:visitors.From=-width/2;visitors.To=width/2;visitors.LastRow=Mathf.Max(1,lower2-1);break;
         }
         Add(plan,visitors);
+    }
+    // The visitors' pen: see-through rail fences along the rake on its open sides (beside the
+    // empty strip) and a raised rail fence on its front wall; posts are detail. Neutral blocks stay open.
+    static void Fences(Builder b,Side[] sides){
+        foreach(var block in b.plan.Blocks){if(!block.Fenced)continue;var t=b.plan.Terraces[block.Side];var side=sides[block.Side];if(t.Rows<2)continue;
+            int r0=block.FirstRow,r1=Mathf.Min(block.LastRow,t.Rows-1);float z0=t.Out[r0],z1=t.Out[r1]+t.RowDepth,y0=t.Tread[r0],y1=t.Tread[r1];
+            float len=Mathf.Sqrt((z1-z0)*(z1-z0)+(y1-y0)*(y1-y0)),rake=Mathf.Atan2(y1-y0,z1-z0)*Mathf.Rad2Deg;var tilt=side.facing*Quaternion.Euler(-rake,0,0);
+            foreach(float x in new[]{block.From-block.Margin*.5f,block.To+block.Margin*.5f}){
+                if(Mathf.Abs(x)>t.Half-.4f)continue;
+                foreach(float h in new[]{1.15f,2.25f})b.Box(block.Side,StadiumSlot.Steel,side.At(x,(y0+y1)/2+h,(z0+z1)/2),new Vector3(.08f,.08f,len),tilt);
+                for(int r=r0;r<=r1;r++)b.Local(side,StadiumSlot.Steel,x,t.Tread[r]+1.12f,t.Out[r]+t.RowDepth*.5f,new Vector3(.07f,2.25f,.07f),-1);
+            }
+            if(r0==0){float w=block.To-block.From+block.Margin,cx=(block.From+block.To)/2;
+                foreach(float h in new[]{.7f,1.42f})b.Local(side,StadiumSlot.Steel,cx,t.Wall+h,side.front+.06f,new Vector3(w,.07f,.07f));
+                for(float x=-w/2;x<=w/2+.01f;x+=1.4f)b.Local(side,StadiumSlot.Steel,cx+x,t.Wall+.72f,side.front+.06f,new Vector3(.06f,1.44f,.06f),-1);}
+        }
     }
     static void Add(StadiumBlueprint plan,SupporterBlock block){
         if(block.LastRow-block.FirstRow<1)return;plan.Blocks.Add(block);
