@@ -107,9 +107,12 @@ public static class StadiumSupportersTests {
     // No other time or random source can reach the supporters' picture.
     static void Sources(string repository,Action<bool,string> Require){
         string Read(string file)=>File.ReadAllText(Path.Combine(repository,"prototypes/match-engine-unity",file));
-        foreach(var file in new[]{"StadiumSupporters.cs","WorldViewSupporters.cs","StadiumArchitecture.cs"}){var s=Read(file);
+        // API names in explanatory comments are not executable clock/random sources.
+        string Code(string text)=>System.Text.RegularExpressions.Regex.Replace(text,@"/\*[\s\S]*?\*/|//[^\r\n]*","");
+        Require(!Code("// UnityEngine.Random.value\n/* Time.time */").Contains("UnityEngine.Random")&&Code("float x=UnityEngine.Random.value;").Contains("UnityEngine.Random.value"),"source scan ignores comments and retains executable random references");
+        foreach(var file in new[]{"StadiumSupporters.cs","WorldViewSupporters.cs","StadiumArchitecture.cs"}){var s=Code(Read(file));
             Require(!s.Contains("UnityEngine.Random")&&!s.Contains("Random.Range")&&!s.Contains("Random.value")&&!s.Contains("Time.time")&&!s.Contains("Time.deltaTime")&&!s.Contains("realtimeSinceStartup")&&!s.Contains("DateTime"),file+" uses no Unity random state, real time or date");}
-        var shader=Read("D6Flag.shader");Require(!shader.Contains("_Time")&&shader.Contains("_D6PresentTime")&&shader.Contains("UnityPerMaterial"),"D6Flag.shader animates from _D6PresentTime only (no _Time) and keeps its properties SRP-batchable");
+        var shader=Code(Read("D6Flag.shader"));Require(!shader.Contains("_Time")&&shader.Contains("_D6PresentTime")&&shader.Contains("UnityPerMaterial"),"D6Flag.shader animates from _D6PresentTime only (no _Time) and keeps its properties SRP-batchable");
     }
     // The renderer builds the blocks under their stand sides and drives them from the displayed frame.
     static void BridgeWiring(string repository,Action<bool,string> Require){
