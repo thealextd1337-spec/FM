@@ -26,6 +26,7 @@ argv = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else []
 opt = {argv[i]: argv[i + 1] for i in range(0, len(argv) - 1, 2)}
 version = opt.get('--version', 'v1')
 target = int(opt.get('--target', '2600'))
+smooth_bend = float(opt.get('--smooth', '.45'))  # faces this blended stay smooth (joint creases)
 name = 'd6_lowpoly_' + version
 src_glb = root / 'dist/players/football-v130.glb'
 out = root / ('outputs/platform/assets/lowpoly-' + version)
@@ -182,7 +183,7 @@ for v in low.data.vertices:
 smooth_faces = 0
 for poly in low.data.polygons:
     b = sum(bend[i] for i in poly.vertices) / len(poly.vertices)
-    poly.use_smooth = b >= .3
+    poly.use_smooth = b >= smooth_bend
     smooth_faces += poly.use_smooth
 
 # 5 Measurements against the original surface.
@@ -215,7 +216,7 @@ report = {
     'source': {'path': 'dist/players/football-v130.glb', 'sha256': sha(src_glb), 'vertices_welded': len(source.data.vertices), 'triangles': src_tris},
     'decimate': {'type': 'COLLAPSE', 'ratio': ratio, 'symmetry': 'X', 'permissionGroup': 'joints .62, sole .9, boot .35, fingers .25, face .4', 'target': target},
     'triangles': sum(len(p.vertices) - 2 for p in low.data.polygons), 'vertices_welded': len(low.data.vertices),
-    'smoothFaces': smooth_faces, 'flatFaces': len(low.data.polygons) - smooth_faces,
+    'smoothFaces': smooth_faces, 'smoothBend': smooth_bend, 'flatFaces': len(low.data.polygons) - smooth_faces,
     'bounds': {'min': [min(c[i] for c in co) for i in range(3)], 'max': [max(c[i] for c in co) for i in range(3)]},
     'distanceToOriginal': {'max': max(dist), 'mean': sum(dist) / len(dist), 'p95': sorted(dist)[int(len(dist) * .95)]},
     'originalToLow': {'max': max(back), 'mean': sum(back) / len(back), 'p95': sorted(back)[int(len(back) * .95)]},
