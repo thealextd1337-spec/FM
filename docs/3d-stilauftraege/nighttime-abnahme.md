@@ -8,6 +8,8 @@ Getesteter eingefrorener Integrationscommit: `622885f78eb5125d423fd550e20fe7cb36
 
 Quellen, Originalassets, Shader und WebGL-Artefakte sind in der eigenen Branch `codex/demo-nighttime-20261013` enthalten. Das Buildmanifest und die Paketprüfung binden die lokale Laufzeit an die angegebenen Quellen. Bestehende Regeln, Modelle, Rig, Original- und Pilotclips, Masken, Sohlenkalibrierung und Spielstände bleiben erhalten.
 
+Der abschließende Git-Abgleich sichert zusätzlich elf zuvor automatisch normalisierte Identitätseingaben mit expliziten `-text`-Attributen. Im Arbeitsbaum ändern sich dabei keine Quellbytes; die gespeicherten Git-Objekte erhalten jetzt dieselben geprüften Bytes. Die aus Git-Objekten berechnete Unity-Quellkennung stimmt mit Arbeitsbaum und WebGL-Manifest überein. Alle neun ausgelieferten Dateien bleiben identisch zur bereits abgenommenen Demo; nur Git- und Paketmetadaten werden neu gebunden.
+
 ## Tatsächliche Nachweise
 
 - Sonnet-Harness `6b45ea37`, SHA-256 `f44db7ecdb8123f0b57485425c1cfd10497c50050e7fcac3daf361808e14f03c`: 80 Browserprüfungen ohne unbehandelte Seitenfehler. Die tatsächlich geladenen WebGL-Dateien stammen aus dem Nighttime-Paket; kein stiller THREE-Ersatz. Paketdaten vor und nach dem Lauf identisch.

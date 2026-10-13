@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- Die lokale Nighttime-Demo bewahrt zusätzlich alle bytegehashten Unity-Identitätseingaben unverändert in Git. Explizite Dateiattribute verhindern abweichende Zeilenenden beim Checkout; Git-Objekte, Arbeitsbaum und WebGL tragen dieselbe Quellkennung. Die abgenommenen Laufzeitdateien bleiben bytegleich. [Lokale Abnahme](3d-stilauftraege/nighttime-abnahme.md).
+
 - Nighttime ist als getrennte lokale Demo mit acht vorhandenen Stadionarchitekturen und unveränderten Modellen, Animationen und Spielregeln übergeben. 80 Browserfälle, 103 Paketprüfungen, zwei vollständige identische native 2D-/Unity-Partien und echte Pause-, Halbzeit-, Rückschau-, Neulade- und Rückfallpfade bestehen. Quellen und WebGL sind auf der Demo-Branch gebunden; physische Android-/Mobil-GPU-Prüfung bleibt offen. [Lokale Abnahme](3d-stilauftraege/nighttime-abnahme.md).
 
 - Lokale Stildemos besitzen einen eigenen Startbefehl, hashgebundene Paketierung und einen Loopback-Server mit prüfbarem Quellen-/Gitstand. Ein fehlgeschlagener Paketaustausch stellt den bisherigen Stand wieder her oder bewahrt dessen Sicherung mit genauer Fehlermeldung. Am Release-130-Anker bestehen 103 Datei-/HTTP-Prüfungen, 29 Rollback-Prüfungen und zwei weitere Pfadgrenzen; Standard-HTML unverändert reproduziert. Die Werkzeuge und die korrigierte Bestandsprüfung sind in den Nighttime-Checkout integriert. Browser-/Matchabnahme des Nighttime-Kandidaten folgt separat. [Start und Prüfung](3d-stilauftraege/demo-start-und-pruefung.md).
