@@ -180,4 +180,23 @@ function checkFreshness(repo,manifest,checks){
   return now;
 }
 
-module.exports={SCHEMA,STYLES,OWN_REPO,DEFAULT_INPUTS,RUNTIME_ASSETS,MIME,mimeOf,requireNode,sha256,sha256File,lf,readJson,fail,parseArgs,requireStyle,resolveRepo,resolveOut,git,gitBranch,sourceState,describeState,makeChecks,walk,checkPackage,checkRepoBuild,checkFreshness,buildDir};
+// '[D6] match mesh <name> vertices=<n> base=<b> mask=<m> ground=<name> vertices=<n>|drawn' (WorldViewBridge, logged once per Unity runtime).
+// expect: {mesh, vertices?, groundMesh?, groundVertices?}. Without groundMesh the ground part is not judged (historical packages do not log it);
+// with groundMesh the line must name exactly that separate ground mesh ('ground=drawn' = no separate ground mesh = fails).
+function matchMeshLines(lines,expect){
+  const parse=l=>{const m=/match mesh (\S+) vertices=(\d+) base=(\S*) mask=(\S*)(?: ground=(\S+)(?: vertices=(\d+))?)?/.exec(l);return m&&{mesh:m[1],vertices:Number(m[2]),ground:m[5]===undefined?null:m[5],groundVertices:m[6]===undefined?null:Number(m[6])};};
+  const parsed=lines.map(parse),problems=[];
+  if(!lines.length)problems.push('keine Zeile "match mesh"');
+  parsed.forEach((p,i)=>{
+    if(!p){problems.push('nicht lesbar: '+lines[i]);return;}
+    if(p.mesh!==expect.mesh)problems.push('Mesh '+p.mesh+' statt '+expect.mesh);
+    if(expect.vertices!=null&&p.vertices!==expect.vertices)problems.push('Vertices '+p.vertices+' statt '+expect.vertices);
+    if(expect.groundMesh){
+      if(p.ground!==expect.groundMesh)problems.push('ground='+p.ground+' statt '+expect.groundMesh);
+      if(expect.groundVertices!=null&&p.groundVertices!==expect.groundVertices)problems.push('Ground-Vertices '+p.groundVertices+' statt '+expect.groundVertices);
+    }
+  });
+  return{ok:problems.length===0,problems,parsed};
+}
+
+module.exports={matchMeshLines,SCHEMA,STYLES,OWN_REPO,DEFAULT_INPUTS,RUNTIME_ASSETS,MIME,mimeOf,requireNode,sha256,sha256File,lf,readJson,fail,parseArgs,requireStyle,resolveRepo,resolveOut,git,gitBranch,sourceState,describeState,makeChecks,walk,checkPackage,checkRepoBuild,checkFreshness,buildDir};

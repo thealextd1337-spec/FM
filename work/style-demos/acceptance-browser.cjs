@@ -4,13 +4,13 @@
 // authority, no source or package writes. The package server is read-only here (/__build is compared before/after).
 //   node work/style-demos/acceptance-browser.cjs --style nighttime --repo <checkout> --url http://127.0.0.1:4411 --out <dir>
 //        [--only build,viewports,flow,goal,parity,reload,fallback,architectures] [--software] [--edge PATH] [--playwright DIR]
-//        [--expectMesh NAME] [--archViewports 1280x720,844x390]   (architectures is opt-in: not part of the default section list)
+//        [--expectMesh NAME [--expectMeshVertices N]] [--expectGroundMesh NAME [--expectGroundVertices N]] [--archViewports 1280x720,844x390]   (architectures is opt-in: not part of the default section list)
 // Output: <out>/acceptance.json (d6-style-demo-acceptance-1) and <out>/shots/*.png. Exit 2 if a check fails.
 // Scope: functional lifecycle on one desktop GPU (or --software). Not an FPS, Android or visual-quality claim.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),os=require('node:os'),crypto=require('node:crypto');
 const lib=require('./lib.cjs');
 lib.requireNode();
-const args=lib.parseArgs(process.argv.slice(2),{style:'string',repo:'string',url:'string',out:'string',only:'string',software:'boolean',edge:'string',playwright:'string',seed:'string',expectMesh:'string',archViewports:'string'});
+const args=lib.parseArgs(process.argv.slice(2),{style:'string',repo:'string',url:'string',out:'string',only:'string',software:'boolean',edge:'string',playwright:'string',seed:'string',expectMesh:'string',expectMeshVertices:'string',expectGroundMesh:'string',expectGroundVertices:'string',archViewports:'string'});
 const style=lib.requireStyle(args),repo=lib.resolveRepo(args),base=(args.url||'http://127.0.0.1:'+lib.STYLES[style].port).replace(/\/$/,'');
 if(!args.out)throw lib.fail('--out ist Pflicht (unter outputs/style-demos des Repos oder des Support-Checkouts)');
 const out=path.resolve(args.out);
@@ -18,6 +18,9 @@ for(const root of [repo,lib.OWN_REPO]){const rel=path.relative(path.join(root,'o
 const only=args.only?args.only.split(','):['build','viewports','flow','goal','parity','reload','fallback'];
 // Player mesh the Unity runtime must report on load (WorldViewBridge logs '[D6] match mesh <name> ...'); styles without an expectation only record it.
 const expectMesh=args.expectMesh||({lowpoly:'WorldPlayerLowPoly-v4'})[style]||null;
+// Optional: the load line must also name the separate ground mesh (hidden ground skin, e.g. WorldPlayer under the low-poly match mesh). Not required by default.
+const expectGround=args.expectGroundMesh?{mesh:expectMesh,vertices:args.expectMeshVertices?Number(args.expectMeshVertices):null,groundMesh:args.expectGroundMesh,groundVertices:args.expectGroundVertices?Number(args.expectGroundVertices):null}:null;
+if(args.expectGroundMesh&&!expectMesh)throw lib.fail('--expectGroundMesh braucht --expectMesh (oder einen Stil mit Mesherwartung)');
 let scenario='-';
 const {chromium}=require(args.playwright||'C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const edge=args.edge||'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe';
@@ -26,7 +29,7 @@ const helper=fs.readFileSync(path.join(repo,'work/platform/qa/unity-integration-
 fs.mkdirSync(path.join(out,'shots'),{recursive:true});
 
 const harnessState=lib.sourceState(lib.OWN_REPO,['work/style-demos']);
-const report={schema:'d6-style-demo-acceptance-1',style,url:base,repo,startedAt:new Date().toISOString(),gpu:!args.software,harness:{file:'work/style-demos/acceptance-browser.cjs',sha256:lib.sha256File(__filename),commit:harnessState.commit,branch:harnessState.branch,dirty:harnessState.dirty,node:process.version},checks:[],sections:{},shots:[],network:{},pageErrors:[],consoleErrors:[],d6Console:[],expectMesh,renderer:null,
+const report={schema:'d6-style-demo-acceptance-1',style,url:base,repo,startedAt:new Date().toISOString(),gpu:!args.software,harness:{file:'work/style-demos/acceptance-browser.cjs',sha256:lib.sha256File(__filename),commit:harnessState.commit,branch:harnessState.branch,dirty:harnessState.dirty,node:process.version},checks:[],sections:{},shots:[],network:{},pageErrors:[],consoleErrors:[],d6Console:[],expectMesh,expectGround,renderer:null,
  scope:'Functional lifecycle on the served package with real Unity WebGL; not an FPS, Android or visual-quality claim.'};
 const check=(id,name,ok,detail)=>{report.checks.push({id,name,ok:Boolean(ok),...(detail===undefined?{}:{detail:typeof detail==='string'?detail:JSON.stringify(detail)})});console.log((ok?'PASS ':'FAIL ')+id+' '+name+(ok||detail===undefined?'':' · '+(typeof detail==='string'?detail:JSON.stringify(detail)).slice(0,300)));return Boolean(ok);};
 const getJson=url=>new Promise((resolve,reject)=>http.get(url,res=>{let t='';res.on('data',c=>t+=c);res.on('end',()=>{try{resolve(JSON.parse(t));}catch(e){reject(e);}});}).on('error',reject));
@@ -83,7 +86,8 @@ async function bindingChecks(prefix,page,setup,label){
   check(prefix+'-unity','Unity aktiv und bereit, kein lastError ('+label+')',s.ready&&s.active&&!s.error&&!s.failure&&setup?.unityReady===true&&!setup?.error,{ready:s.ready,active:s.active,error:s.error,failure:s.failure});
   check(prefix+'-no-three','Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden ('+label+')',s.view==='3d'&&!s.failed&&!s.threeScene&&Boolean(s.iframe&&s.iframe.includes('/unity-match/runtime.html')),{view:s.view,failed:s.failed,threeScene:s.threeScene,iframe:s.iframe});
   check(prefix+'-players','12 echte Spieler im Unity-ACK, 12 Labels ('+label+')',s.ackPlayers===12&&s.ackAllReal&&s.labels===12,{ack:s.ackPlayers,real:s.ackAllReal,labels:s.labels});
-  if(expectMesh){const mesh=await meshLines(page);check(prefix+'-mesh','Unity meldet beim Laden das Spielermesh '+expectMesh+' (kein Originalmesh, kein anderes Mesh) ('+label+')',mesh.length>0&&mesh.every(l=>l.includes('match mesh '+expectMesh+' ')),mesh);}
+  if(expectMesh){const mesh=await meshLines(page);check(prefix+'-mesh','Unity meldet beim Laden das Spielermesh '+expectMesh+' (kein Originalmesh, kein anderes Mesh) ('+label+')',mesh.length>0&&mesh.every(l=>l.includes('match mesh '+expectMesh+' ')),mesh);
+    if(expectGround){const r=lib.matchMeshLines(mesh,expectGround);check(prefix+'-ground','Ladezeile nennt das Spielermesh '+expectMesh+(expectGround.vertices!=null?' ('+expectGround.vertices+' Vertices)':'')+' mit separatem Boden-Mesh '+expectGround.groundMesh+(expectGround.groundVertices!=null?' ('+expectGround.groundVertices+' Vertices)':'')+', nicht ground=drawn ('+label+')',r.ok,r.ok?undefined:{problems:r.problems,mesh});}}
   return s;
 }
 
