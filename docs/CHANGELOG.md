@@ -1,5 +1,11 @@
 # Änderungen
 
+## 13. Oktober 2026 – Tornetz während gehaltener Torszenen geglättet (lokal)
+
+- Die vorhandene Jubelzeit lässt langsame Netzaufpralle sanft zur Ruhe kommen, obwohl die bestehende Torszenenzeit früher anhält. Keine zusätzliche Uhr, native Balländerung oder Spielstanddaten. Netz-Neuaufbau, Rücksetzung, unabhängige Referenzwerte und Rückschwunggrenzen sind zusätzlich geprüft.
+- Die zweite Unity-Prüfung besteht 73 Checks und 17 Messungen. Acht ältere Toraufnahmen sind separat berücksichtigt; aktuelle Matchaufnahmen und WebGL-Kosten bleiben vor Veröffentlichung erforderlich. Der Schlusslauf muss aktuelle Toraufnahmen ausdrücklich verlangen. Ein verbliebener Ballsprung sehr langsamer Treffer ist noch zu untersuchen.
+- Auf Nutzerentscheidung sind die laufenden Opus-Aufgaben und Folgeaufträge auf Denkintensität High gestellt. Frühere Max-Läufe bleiben in ihren Nachweisen historisch gekennzeichnet.
+
 ## 13. Oktober 2026 – Feste Stadionzuordnung statt weiterer Einzelentwürfe geplant
 
 - Auf Nutzerentscheidung werden die zusätzlichen 91 individuellen Ligastadien vorerst zurückgestellt. Die fünf ausgearbeiteten Vorlagen werden nach fester Vereinsgröße zugeordnet; Farben, Banner und Fanblöcke bleiben klubbezogen. Die vollständige geplante Tabelle umfasst 14 große, 52 mittlere und 30 kleine Stadien. Opus setzt die Zuordnung im laufenden Kandidaten um; noch nicht veröffentlicht.

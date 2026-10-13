@@ -2,7 +2,7 @@
 
 ## Low-Poly-Ausbau für die nächste Veröffentlichung (lokal)
 
-Der isolierte Kandidat `work/lowpoly-live-release131` basiert auf dem tatsächlich veröffentlichten Release 130. Opus 5.5 mit Reasoning Max implementiert Licht/Schatten, Stadien/Fanblöcke und Tornetz in getrennten Worktrees. Eine zuständige Instanz integriert seriell und verwendet ausschließlich `G:/unity/Doppel6-LowPoly-Demo-Release131` für Unity. Bestehende Demos und Unity-Projekte bleiben erhalten.
+Der isolierte Kandidat `work/lowpoly-live-release131` basiert auf dem tatsächlich veröffentlichten Release 130. Opus 5.5 implementiert Licht/Schatten, Stadien/Fanblöcke und Tornetz in getrennten Worktrees. Die Denkintensität ist auf Nutzerentscheidung inzwischen High. Eine zuständige Instanz integriert seriell und verwendet ausschließlich `G:/unity/Doppel6-LowPoly-Demo-Release131` für Unity. Bestehende Demos und Unity-Projekte bleiben erhalten.
 
 Die aktuelle Nutzerentscheidung begrenzt den Stadionumfang auf die fünf ausgearbeiteten Vorlagen mit fester Größen-Zuordnung für alle 96 Ligavereine. Die einmal aus der Katalog-Fanbasis abgeleitete Tabelle wird ausdrücklich festgeschrieben und später nicht durch Karriereverlauf oder Katalogänderungen neu berechnet. Die zusätzlichen 91 Einzelentwürfe sind zurückgestellt; [Zuordnung und Erweiterungsplan](stadionerweiterung-plan.md). Die geplante Tabelle ist bis zur implementierten und geprüften Übernahme als Planung gekennzeichnet.
 

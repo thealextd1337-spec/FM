@@ -62,7 +62,7 @@ Ein eigenes Stadion muss seine Größenklasse erkennen lassen und mehrere bewuss
 
 Besondere Fanblöcke gehören zur Vereinsidentität. Neue Dächer und Ecken dürfen ihre Sichtbarkeit und die Matchkamera nicht unbeabsichtigt verschlechtern. Anzahl und Größe der Fahnen bleiben an den gemessenen Browser- und Gerätebudgets orientiert.
 
-Opus 5.5 mit maximaler Denkintensität gestaltet und implementiert neue Stadien. Sonnet prüft Zuordnung, Geometrie, Regressionen und Nachweise unabhängig. Haiku kann Inventare und Zuordnungstabellen prüfen. Fable untersucht größere reproduzierbare Probleme. Eine zuständige Instanz integriert Änderungen und führt Unity-Builds seriell aus.
+Opus 5.5 mit Denkintensität High gestaltet und implementiert Stadien. Sonnet prüft Zuordnung, Geometrie, Regressionen und Nachweise unabhängig. Haiku kann Inventare und Zuordnungstabellen prüfen. Fable untersucht größere reproduzierbare Probleme ebenfalls mit High. Eine zuständige Instanz integriert Änderungen und führt Unity-Builds seriell aus.
 
 ## Erweiterungsdaten je Verein
 
