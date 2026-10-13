@@ -34,7 +34,7 @@ public static class MatchLighting {
 public partial class ProbeBridge {
     public MatchLightLook LightLook {get;private set;}
     public MatchLook Look {get;private set;}
-    class LightingDefaults {public AmbientMode mode;public Color flat;public float intensity;public SphericalHarmonicsL2 probe;public Quaternion sunRotation;public Color sunColor,background;public float sunIntensity,shadowStrength,sunBias,sunNormalBias,far;public LightShadows shadows;public bool msaa,postProcessing,cameraShadows;public int shadowResolution,pipelineMsaa,cascades;public float shadowDistance,cascadeBorder,depthBias,normalBias;}
+    class LightingDefaults {public AmbientMode mode;public Color flat;public float intensity;public SphericalHarmonicsL2 probe;public Quaternion sunRotation;public Color sunColor,background;public float sunIntensity,shadowStrength,sunBias,sunNormalBias,far;public LightShadows shadows;public bool msaa,postProcessing,cameraShadows;public int shadowResolution,pipelineMsaa,cascades;public float shadowDistance,cascadeBorder,depthBias,normalBias;public float[] look;}
 
     LightingDefaults lightingDefaults;Light sun;Volume matchVolume,replayVolume;VolumeProfile matchProfile,replayProfile;ColorAdjustments matchGrade;Vignette matchVignette;Bloom matchBloom;
 
@@ -47,8 +47,14 @@ public partial class ProbeBridge {
     // and the ball cast with a share of it (D6ShadowClipScaled); figures look
     // their own shadow up 12 cm off the surface, reduced quality skips that.
     const float ShadowBias=1,ShadowNormalBias=1,KitDepthBias=.3f,KitNormalBias=.12f,KitShadow=.3f,KitShadowOffset=.12f;
-    // Global shader keyword of the received looks (D6Common.hlsl).
+    // Global shader keyword of the received looks (D6Common.hlsl) and the
+    // globals only it reads. Legacy fixtures and RestoreProbeLighting give
+    // the globals back as they were found before the first match.
     public const string LookKeyword="_D6_LOOK";
+    public static readonly string[] LookGlobals={"_D6Pool","_D6KitShadow","_D6KitShadowOffset","_D6KitDepthBias","_D6KitNormalBias","_D6KitKnee"};
+    static void SetLookGlobals(float[] values){for(int i=0;i<LookGlobals.Length;i++)Shader.SetGlobalFloat(LookGlobals[i],values[i]);}
+    // Shadow-only copy of the ball in the received looks (ApplyMatchShadows).
+    public const string BallCasterName="Ball shadow caster";
 
     Light FindSun(){if(sun!=null)return sun;foreach(var light in FindObjectsByType<Light>())if(light.type==LightType.Directional){sun=light;break;}return sun;}
 
@@ -57,7 +63,7 @@ public partial class ProbeBridge {
         bool legacy=Look==MatchLook.Legacy,day=Look==MatchLook.Day;
         var light=FindSun();var camera=Camera.main;var urp=GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;var data=camera.GetUniversalAdditionalCameraData();
         ReducedQuality=worldView?.Config.quality=="reduced"||string.IsNullOrEmpty(worldView?.Config.quality)&&Application.isMobilePlatform;
-        if(lightingDefaults==null)lightingDefaults=new LightingDefaults{shadowResolution=urp!=null?urp.mainLightShadowmapResolution:0,pipelineMsaa=urp!=null?urp.msaaSampleCount:1,shadowDistance=urp!=null?urp.shadowDistance:0,cascades=urp!=null?urp.shadowCascadeCount:1,cascadeBorder=urp!=null?urp.cascadeBorder:0,depthBias=urp!=null?urp.shadowDepthBias:0,normalBias=urp!=null?urp.shadowNormalBias:0,mode=RenderSettings.ambientMode,flat=RenderSettings.ambientLight,intensity=RenderSettings.ambientIntensity,probe=RenderSettings.ambientProbe,sunRotation=light!=null?light.transform.rotation:Quaternion.identity,sunColor=light!=null?light.color:Color.white,sunIntensity=light!=null?light.intensity:1,shadowStrength=light!=null?light.shadowStrength:1,sunBias=light!=null?light.shadowBias:0,sunNormalBias=light!=null?light.shadowNormalBias:0,shadows=light!=null?light.shadows:LightShadows.None,background=camera.backgroundColor,msaa=camera.allowMSAA,far=camera.farClipPlane,postProcessing=data!=null&&data.renderPostProcessing,cameraShadows=data==null||data.renderShadows};
+        if(lightingDefaults==null)lightingDefaults=new LightingDefaults{shadowResolution=urp!=null?urp.mainLightShadowmapResolution:0,pipelineMsaa=urp!=null?urp.msaaSampleCount:1,shadowDistance=urp!=null?urp.shadowDistance:0,cascades=urp!=null?urp.shadowCascadeCount:1,cascadeBorder=urp!=null?urp.cascadeBorder:0,depthBias=urp!=null?urp.shadowDepthBias:0,normalBias=urp!=null?urp.shadowNormalBias:0,mode=RenderSettings.ambientMode,flat=RenderSettings.ambientLight,intensity=RenderSettings.ambientIntensity,probe=RenderSettings.ambientProbe,sunRotation=light!=null?light.transform.rotation:Quaternion.identity,sunColor=light!=null?light.color:Color.white,sunIntensity=light!=null?light.intensity:1,shadowStrength=light!=null?light.shadowStrength:1,sunBias=light!=null?light.shadowBias:0,sunNormalBias=light!=null?light.shadowNormalBias:0,shadows=light!=null?light.shadows:LightShadows.None,background=camera.backgroundColor,msaa=camera.allowMSAA,far=camera.farClipPlane,postProcessing=data!=null&&data.renderPostProcessing,cameraShadows=data==null||data.renderShadows,look=Array.ConvertAll(LookGlobals,n=>Shader.GetGlobalFloat(n))};
         var d=lightingDefaults;
         Shader.SetGlobalFloat("_D6LowPoly",LowPolyStyle?1:0);
         // Ambient: sky over horizon and a turf bounce (linear colours). Evening:
@@ -86,8 +92,8 @@ public partial class ProbeBridge {
         }
         // Shader terms of the received looks (D6Common.hlsl); without the
         // keyword every shader runs exactly its Release 130 code.
-        if(legacy)Shader.DisableKeyword(LookKeyword);else Shader.EnableKeyword(LookKeyword);Shader.SetGlobalFloat("_D6Pool",day?0:1);Shader.SetGlobalFloat("_D6KitShadow",ReducedQuality?0:KitShadow);Shader.SetGlobalFloat("_D6KitShadowOffset",KitShadowOffset);
-        Shader.SetGlobalFloat("_D6KitDepthBias",KitDepthBias);Shader.SetGlobalFloat("_D6KitNormalBias",KitNormalBias);Shader.SetGlobalFloat("_D6KitKnee",day?.62f:.82f);
+        if(legacy){Shader.DisableKeyword(LookKeyword);SetLookGlobals(d.look);}
+        else{Shader.EnableKeyword(LookKeyword);SetLookGlobals(new[]{day?0:1f,ReducedQuality?0:KitShadow,KitShadowOffset,KitDepthBias,KitNormalBias,day?.62f:.82f});}
         if(data!=null){data.renderPostProcessing=true;data.renderShadows=true;}
         if(matchVolume==null){
             matchProfile=ScriptableObject.CreateInstance<VolumeProfile>();
@@ -118,7 +124,7 @@ public partial class ProbeBridge {
 
     void RestoreProbeLighting(){
         Shader.SetGlobalFloat("_D6LowPoly",0);Shader.DisableKeyword(LookKeyword);
-        if(matchVolume!=null)matchVolume.enabled=false;if(replayVolume!=null)replayVolume.enabled=false;if(lightingDefaults==null)return;var d=lightingDefaults;var light=FindSun();var camera=Camera.main;
+        if(matchVolume!=null)matchVolume.enabled=false;if(replayVolume!=null)replayVolume.enabled=false;if(lightingDefaults==null)return;var d=lightingDefaults;var light=FindSun();var camera=Camera.main;SetLookGlobals(d.look);
         if(GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset urp&&d.shadowResolution>0){urp.mainLightShadowmapResolution=d.shadowResolution;urp.shadowDistance=d.shadowDistance;urp.msaaSampleCount=d.pipelineMsaa;urp.shadowCascadeCount=d.cascades;urp.cascadeBorder=d.cascadeBorder;urp.shadowDepthBias=d.depthBias;urp.shadowNormalBias=d.normalBias;}
         RenderSettings.ambientMode=d.mode;RenderSettings.ambientLight=d.flat;RenderSettings.ambientIntensity=d.intensity;RenderSettings.ambientProbe=d.probe;
         if(light!=null){light.transform.rotation=d.sunRotation;light.color=d.sunColor;light.intensity=d.sunIntensity;light.shadows=d.shadows;light.shadowStrength=d.shadowStrength;light.shadowBias=d.sunBias;light.shadowNormalBias=d.sunNormalBias;}
@@ -153,9 +159,14 @@ public partial class ProbeBridge {
         // map: a shadow-only twin on the ball casts it with the figures' share
         // (WorldKit's caster), so a flighted ball shows its real shadow too.
         // Slightly smaller, so the ball's own lit side never shadows itself.
+        // One twin per ball, also when the shadows are sorted again.
         if(matchKitShader!=null){
-            var twin=new GameObject("Ball shadow caster",typeof(MeshFilter),typeof(MeshRenderer));twin.transform.SetParent(ballView,false);twin.transform.localScale=Vector3.one*.88f;twin.GetComponent<MeshFilter>().sharedMesh=ballView.GetComponent<MeshFilter>().sharedMesh;
-            var caster=new Material(matchKitShader);materials.Add(caster);var renderer=twin.GetComponent<MeshRenderer>();renderer.sharedMaterial=caster;renderer.shadowCastingMode=ShadowCastingMode.ShadowsOnly;
+            var twin=ballView.Find(BallCasterName);
+            if(twin==null){
+                twin=new GameObject(BallCasterName,typeof(MeshFilter),typeof(MeshRenderer)).transform;twin.SetParent(ballView,false);twin.localScale=Vector3.one*.88f;twin.GetComponent<MeshFilter>().sharedMesh=ballView.GetComponent<MeshFilter>().sharedMesh;
+                var caster=new Material(matchKitShader);materials.Add(caster);twin.GetComponent<MeshRenderer>().sharedMaterial=caster;
+            }
+            twin.GetComponent<MeshRenderer>().shadowCastingMode=ShadowCastingMode.ShadowsOnly;
             ballView.GetComponent<Renderer>().shadowCastingMode=ShadowCastingMode.Off;
         }
     }

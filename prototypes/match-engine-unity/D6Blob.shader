@@ -13,7 +13,7 @@ Shader "Doppel6/Contact Shadow" {
   #pragma vertex vert
   #pragma fragment frag
   #pragma multi_compile _ _D6_LOOK
-  #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE
+  #pragma multi_compile_fragment _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE
   #pragma multi_compile_fragment _ _SHADOWS_SOFT _SHADOWS_SOFT_LOW _SHADOWS_SOFT_MEDIUM _SHADOWS_SOFT_HIGH
   #if defined(_D6_LOOK)
   #include "../D6Common.hlsl"
