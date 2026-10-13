@@ -23,6 +23,17 @@ public static class D6Cli {
         try{Done(true,Doppel6.Probe.WorldNetTests.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
 
+    public static void LightingTests(){
+        try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,Doppel6.Probe.MatchLightingTests.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+
+    public static void MatchLighting(){
+        string repo=null,message=null;bool ok=false;
+        try{repo=Repo();if(SystemInfo.graphicsDeviceType==UnityEngine.Rendering.GraphicsDeviceType.Null)throw new InvalidOperationException("Match lighting evidence needs a graphics device");ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=Doppel6.Probe.MatchLightingTests.Evidence(repo,Arg("-d6output"));ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
+        Done(ok,message);
+    }
+
     public static void Tests(){
         try{
             var repo=Repo();var output=Arg("-d6output");if(output!=null)Directory.CreateDirectory(Path.Combine(repo,output));
@@ -36,6 +47,7 @@ public static class D6Cli {
             Debug.Log("[D6Cli] WorldViewTests: "+WorldViewTests.Run(repo,output));
             Debug.Log("[D6Cli] WorldPresentationTests: "+Doppel6.Probe.WorldPresentationTests.Run(repo,output));
             Debug.Log("[D6Cli] WorldNetTests: "+Doppel6.Probe.WorldNetTests.Run(repo,output));
+            Debug.Log("[D6Cli] MatchLightingTests: "+Doppel6.Probe.MatchLightingTests.Run(repo,output));
             Debug.Log("[D6Cli] FootballGaitTests: "+FootballGaitTests.Run(repo,output));
             Debug.Log("[D6Cli] ClubStadiumProfilesTests: "+Doppel6.Probe.ClubStadiumProfilesTests.Run(repo,output));
             Debug.Log("[D6Cli] StadiumArchitectureTests: "+StadiumArchitectureTests.Run(repo,output));
