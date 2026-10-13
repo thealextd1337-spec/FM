@@ -350,7 +350,7 @@ public static class FootballGaitTests {
         var config=JsonUtility.FromJson<WorldConfig>(File.ReadAllText(Path.Combine(repository,"outputs/platform/world-unity/contract-fixture.json")));
         check(string.IsNullOrEmpty(config.quality),"Pages without a quality field remain valid (platform decides)",0);
         config.quality="reduced";check(new WorldViewState(config).Config.quality=="reduced","A reduced quality request is carried by the match view configuration",0);
-        var env=File.ReadAllText("Assets/Doppel6EngineProbe/Runtime/WorldViewEnvironment.cs");
+        var env=File.ReadAllText("Assets/Doppel6EngineProbe/Runtime/WorldViewLighting.cs");
         check(env.Contains("urp.msaaSampleCount=ReducedQuality?1:")&&env.Contains("mainLightShadowmapResolution=ReducedQuality?1024:")&&env.Contains("matchBloom.active=!ReducedQuality"),"Reduced quality disables MSAA and bloom and uses 1024 hard shadows",0);
         check(env.Contains("SetReplayGrade(bool replay)")&&File.ReadAllText("Assets/Doppel6EngineProbe/Runtime/WorldViewBridge.cs").Contains("SetReplayGrade(f.replay)"),"Replay grading follows only the received replay flag",0);
     }

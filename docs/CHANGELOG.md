@@ -1,5 +1,9 @@
 # Änderungen
 
+## 13. Oktober 2026 ? Rendering-Zust?ndigkeiten getrennt (lokal)
+
+- Licht/Schatten und Tornetzdarstellung in eigene Unity-Module verschoben; leere Schnittstellen f?r Fanbl?cke erg?nzt. Die urspr?nglichen Methoden bleiben unver?ndert. Der vollst?ndige Unity-Lauf besteht; alle neun Bewegungs-/Kontakt-Gruppen sind gegen?ber der gepr?ften Low-Poly-Basis exakt gleich. Lediglich gemessene Editor-Laufzeiten schwanken.
+
 ## 13. Oktober 2026 ? Low-Poly-Ausbau begonnen (lokal)
 
 - Gepr?fte Low-Poly-Quellen und versionierte Mesh-/Texturassets isoliert auf den ver?ffentlichten Stand 130 ?bernommen. 46 Identit?tseingaben sind bytegleich zur abgenommenen Demo; produktive Browser-/Matchquellen und bisherige Release-Nachweise bleiben erhalten.

@@ -1,5 +1,5 @@
 {
-  "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+  "sourceId": "a4986dc80dc221863a33f434123782012637b3e3ef25344a5d1839e274c65c85",
   "sources": [
     "prototypes/match-engine-unity/ProbeSimulation.cs",
     "prototypes/match-engine-unity/ProbeBridge.cs",
@@ -31,6 +31,10 @@
     "prototypes/match-engine-unity/ProbeWebBuild.cs",
     "prototypes/match-engine-unity/link.xml",
     "prototypes/match-engine-unity/WorldViewEnvironment.cs",
+    "prototypes/match-engine-unity/MatchLightCondition.cs",
+    "prototypes/match-engine-unity/WorldViewLighting.cs",
+    "prototypes/match-engine-unity/WorldViewNet.cs",
+    "prototypes/match-engine-unity/WorldViewSupporters.cs",
     "prototypes/match-engine-unity/D6Common.hlsl",
     "prototypes/match-engine-unity/D6Pitch.shader",
     "prototypes/match-engine-unity/D6Env.shader",
