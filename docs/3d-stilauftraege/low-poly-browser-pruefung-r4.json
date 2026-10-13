@@ -1,0 +1,253 @@
+{
+ "schema": "d6-lowpoly-browser-acceptance-summary-2",
+ "round": 4,
+ "style": "lowpoly",
+ "url": "http://127.0.0.1:4413",
+ "candidate": {
+  "checkout": "work/demo-low-poly-fix",
+  "branch": "codex/demo-low-poly-fix-20261013",
+  "commit": "a6289dc32046875ca13974f7457ff3e608fbaa8d",
+  "dirty": false,
+  "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+  "sourceFingerprint": "b1ccfc9d81d5ada0a16b2e2d5c34a0c66616249d5a4568e8af288591c3098979",
+  "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+  "unityManifestSha256": "f51e0226ad2c29e5c81709d9c70d9bcf375ed4012b9f5a31076e2fcaa9766169",
+  "packageManifestSha256": "b91ff0e6ce37809efbd53926480bc3cf38879263da819c65ad9b9ca24f80cdd2",
+  "serverPid": 78116,
+  "files": {
+   "index.html": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+   "unity-match/runtime.html": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+   "unity-match/runtime.js": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+   "unity-match/.htaccess": "e6341a7c0465a7f21a828d0296457bcc43bf6cace7105ce9b0cf871c3b9bacc4",
+   "unity/probe-build.json": "f51e0226ad2c29e5c81709d9c70d9bcf375ed4012b9f5a31076e2fcaa9766169",
+   "unity/Build/unity-web.data": "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8",
+   "unity/Build/unity-web.framework.js": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+   "unity/Build/unity-web.loader.js": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+   "unity/Build/unity-web.wasm": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+  }
+ },
+ "harness": {
+  "file": "work/style-demos/acceptance-browser.cjs",
+  "sha256": "d9b330d7be7e4bddd9e845f76f3597a8734a6a2b2363ef5054f84c039825ca8b",
+  "commit": "7c5f6e8e0e318e4085647d8034fd08eb380c4bdb",
+  "branch": "codex/demo-style-support-20261013",
+  "dirty": false,
+  "node": "v24.19.0",
+  "note": "test-mesh-line.cjs and contact-sheet.cjs are separate tools"
+ },
+ "expectGround": {
+  "mesh": "WorldPlayerLowPoly-v4",
+  "vertices": 6926,
+  "groundMesh": "WorldPlayer",
+  "groundVertices": 9725
+ },
+ "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 (0x00002786) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+ "startedAt": "2026-10-13T04:49:34.116Z",
+ "finishedAt": "2026-10-13T04:57:50.214Z",
+ "seconds": 496,
+ "result": {
+  "pass": true,
+  "checks": 390,
+  "failed": [],
+  "groups": {
+   "build": {
+    "pass": 4,
+    "fail": 0
+   },
+   "vp": {
+    "pass": 42,
+    "fail": 0
+   },
+   "flow": {
+    "pass": 17,
+    "fail": 0
+   },
+   "goal": {
+    "pass": 3,
+    "fail": 0
+   },
+   "parity": {
+    "pass": 2,
+    "fail": 0
+   },
+   "reload": {
+    "pass": 19,
+    "fail": 0
+   },
+   "fb": {
+    "pass": 10,
+    "fail": 0
+   },
+   "arch": {
+    "pass": 289,
+    "fail": 0
+   },
+   "network": {
+    "pass": 2,
+    "fail": 0
+   },
+   "console": {
+    "pass": 1,
+    "fail": 0
+   },
+   "page": {
+    "pass": 1,
+    "fail": 0
+   }
+  },
+  "sections": {
+   "build": "pass",
+   "viewports": "pass",
+   "flow": "pass",
+   "goal": "pass",
+   "parity": "pass",
+   "reload": "pass",
+   "fallback": "pass",
+   "architectures": "pass"
+  }
+ },
+ "buildUnchanged": true,
+ "meshConsole": {
+  "lines": 50,
+  "distinct": [
+   "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725"
+  ],
+  "pagesChecked": 46
+ },
+ "fetchedBuild": [
+  {
+   "file": "unity-web.data",
+   "url": "/unity/Build/unity-web.data?v=00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8",
+   "sha": "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8",
+   "expected": "00058f632661c735322a2d0f7d61918e83c28dab5226cc814014809ba94821f8"
+  },
+  {
+   "file": "unity-web.framework.js",
+   "url": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+   "sha": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+   "expected": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+  },
+  {
+   "file": "unity-web.loader.js",
+   "url": "/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+   "sha": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+   "expected": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f"
+  },
+  {
+   "file": "unity-web.wasm",
+   "url": "/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab",
+   "sha": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab",
+   "expected": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+  }
+ ],
+ "consoleErrors": [
+  {
+   "scenario": "missing-build",
+   "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  }
+ ],
+ "pageErrors": 0,
+ "flowDigest": "fd35a898",
+ "flowScore": [
+  0,
+  1
+ ],
+ "parity": {
+  "unity": {
+   "all": "38893eb6",
+   "score": [
+    0,
+    0
+   ],
+   "ticks": 1194,
+   "hashes": {
+    "score": "13ca43dd:5",
+    "events": "254eb5f7:287",
+    "stats": "6ea83f04:8773",
+    "fresh": "9fb3d00b:991",
+    "minutes": "4b848943:777",
+    "report": "71a72f82:34230",
+    "ratings": "2624d9b9:704",
+    "ballAccounting": "87ab0066:22404",
+    "geometry": "708a8f7b:184",
+    "people": "a7c268bd:7925",
+    "finances": "61a7e3da:20245",
+    "development": "1ee3f606:1002007",
+    "fixtures": "318fc3fd:190271",
+    "world": "aae3f6b5:3906811"
+   },
+   "payloadSha256": "e08fb8a7ac4dfdb20fd0db723421ca6f96ef31c6beec033883090f9bd8fd4c74"
+  },
+  "native2d": {
+   "all": "38893eb6",
+   "score": [
+    0,
+    0
+   ],
+   "ticks": 1194,
+   "payloadSha256": "e08fb8a7ac4dfdb20fd0db723421ca6f96ef31c6beec033883090f9bd8fd4c74"
+  }
+ },
+ "goal": {
+  "seed": 160112,
+  "attempts": [
+   {
+    "seed": 160112,
+    "stopped": "when",
+    "score": [
+     0,
+     1
+    ]
+   }
+  ],
+  "status": "pass",
+  "seconds": 11
+ },
+ "architectureTypes": [
+  "civic-bowl",
+  "modern-ring",
+  "industrial-shed",
+  "urban-court",
+  "garden-ground",
+  "hillside-ground"
+ ],
+ "parityFull": {
+  "pass": true,
+  "ticks": [
+   3037,
+   3037
+  ],
+  "score": [
+   0,
+   0
+  ],
+  "digest": "a6d98d83",
+  "payloadSha256": "d0a8785eb42bef9851f2005fce1fa86e1200eb92a113460ca3dd5d4cd2ee8772",
+  "report": "acceptance-sonnet-r4/parity-full-lowpoly-fix.json"
+ },
+ "verify": {
+  "before": "103/103",
+  "after": "103/103"
+ },
+ "legacyWorldUnity": {
+  "exit": 0,
+  "checks": 21,
+  "errors": [],
+  "port": 4361,
+  "note": "own short-lived server in the candidate checkout; not a proof for port 4413"
+ },
+ "negativeGround": {
+  "expected": "fb-ground fails",
+  "failed": [
+   "fb-ground"
+  ],
+  "exit": 2
+ },
+ "unproven": [
+  "sun-terraces in WebGL",
+  "left-foot contact from native 20 Hz pictures (no native foot field; foot side is derived in Unity)",
+  "mesh contact geometry",
+  "FPS/Android/memory",
+  "R15/R18 gate"
+ ]
+}
