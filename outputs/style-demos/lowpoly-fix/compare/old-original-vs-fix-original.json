@@ -1,0 +1,1560 @@
+{
+ "a": "../demo-low-poly/outputs/style-demos/lowpoly/tests-original",
+ "b": "outputs/style-demos/lowpoly-fix/tests-original-fix",
+ "onlyA": [],
+ "onlyB": [],
+ "files": {
+  "actions-tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "club-stadium-profile-tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "duel-tests.json": {
+   "differingLeaves": 1,
+   "largestNumeric": {
+    "d": 0.030447006225585938,
+    "p": "/measurements/6/value",
+    "a": 0.605628490447998,
+    "b": 0.636075496673584
+   },
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": [
+    {
+     "p": "/measurements/6/value",
+     "a": 0.605628490447998,
+     "b": 0.636075496673584
+    }
+   ]
+  },
+  "final-motion-tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "gait-tests.json": {
+   "differingLeaves": 2,
+   "largestNumeric": {
+    "d": 0.5055599999999991,
+    "p": "/checks/74/measured",
+    "a": 17.41186,
+    "b": 16.9063
+   },
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": [
+    {
+     "p": "/checks/74/name",
+     "a": "The least-rotation foot solve allocates nothing (0 B over 5000 solves; 17.41 us per solve against 1.37 us for the R16 solve in the editor on this machine, 2.0 t",
+     "b": "The least-rotation foot solve allocates nothing (0 B over 5000 solves; 16.91 us per solve against 1.37 us for the R16 solve in the editor on this machine, 2.0 t"
+    },
+    {
+     "p": "/checks/74/measured",
+     "a": 17.41186,
+     "b": 16.9063
+    }
+   ]
+  },
+  "iteration-tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "keeper-tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "locomotion-tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "momentum-tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion-gates/clip-detail.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion-gates/natural-motion.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion-gates/peaks/jog-right@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion-gates/peaks/plant-edge@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion-gates/peaks/ready-abort-receive+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion-gates/peaks/ready-abort-receive@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion-gates/peaks/receive-sprint+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion-gates/peaks/stop-restart-pass+timing@60Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion-gates/peaks/stop-restart-pass@60Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion-gates/peaks/walk-right@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "natural-motion-gates/trace-carrier-diag-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-carrier-diag-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-carrier-straight.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-curve-150.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-curve-150@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-curve-150@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-curve-250.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-curve-90.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-curve-sprint-120.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-curve-tight-300.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-cut-diagonal.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-cut-stop-90.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-cut-stop-90@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-cut-stop-90@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-direction-changes.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-direction-changes@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-direction-changes@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-back-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-back-left@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-back-left@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-back-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-back.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-fwd-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-fwd-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-fwd.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-fwd@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-fwd@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-right@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-right@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-jog-stop-abrupt.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-keeper-shuffle-1.1.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-keeper-shuffle-1.1@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-keeper-shuffle-1.1@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-keeper-shuffle-2.2.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-noise-117.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-pass-jog+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-pass-jog+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-pass-jog+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-pass-jog.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-pass-jog@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-pass-jog@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-plant-edge+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-plant-edge+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-plant-edge+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-plant-edge.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-plant-edge@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-plant-edge@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-abort-receive+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-abort-receive+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-abort-receive+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-abort-receive.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-abort-receive@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-abort-receive@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-change-pass+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-change-pass+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-change-pass+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-change-pass.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-change-pass@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-ready-change-pass@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-receive-sprint+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-receive-sprint+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-receive-sprint+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-receive-sprint.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-reverse-stop.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-s-curve-180.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-short-sprint-fwd-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-short-sprint-fwd-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-short-sprint-fwd.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-short-sprint-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-short-sprint-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-shot-stop+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-shot-stop+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-shot-stop+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-shot-stop.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-sprint-back-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-sprint-back-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-sprint-back.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-sprint-fwd-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-sprint-fwd-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-sprint-fwd.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-sprint-fwd@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-sprint-fwd@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-sprint-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-sprint-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-sprint-stop.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-stop-restart-pass+timing.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-stop-restart-pass+timing@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-stop-restart-pass+timing@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-stop-restart-pass.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-stop-restart-pass@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-stop-restart-pass@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-back-left-stop-abrupt.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-back-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-back-left@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-back-left@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-back-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-back.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-fwd-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-fwd-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-fwd.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-left.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-right.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-right@120Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "natural-motion-gates/trace-walk-right@30Hz.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [
+    "/groundSole"
+   ],
+   "onlyBCount": 1,
+   "sample": []
+  },
+  "offside/tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "presentation-tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "rig-tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "stadium-architecture-tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  },
+  "world-tests.json": {
+   "differingLeaves": 0,
+   "largestNumeric": null,
+   "onlyA": [],
+   "onlyACount": 0,
+   "onlyB": [],
+   "onlyBCount": 0,
+   "sample": []
+  }
+ },
+ "gateSets": {
+  "determinism": {
+   "countA": 2,
+   "countB": 2,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "gates": {
+   "countA": 2020,
+   "countB": 2020,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "supportGates": {
+   "countA": 675,
+   "countB": 675,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "contactGates": {
+   "countA": 285,
+   "countB": 285,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "continuityGates": {
+   "countA": 20,
+   "countB": 20,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "r15Gates": {
+   "countA": 342,
+   "countB": 342,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 1,
+   "failedB": 1,
+   "largest": null,
+   "sample": []
+  },
+  "r20Gates": {
+   "countA": 642,
+   "countB": 642,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "r20Checks": {
+   "countA": 15,
+   "countB": 15,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  },
+  "r21Gates": {
+   "countA": 0,
+   "countB": 0,
+   "missingInB": [],
+   "extraInB": [],
+   "duplicatesA": [],
+   "duplicatesB": [],
+   "valueDiffering": 0,
+   "passedDiffering": 0,
+   "limitDiffering": 0,
+   "failedA": 0,
+   "failedB": 0,
+   "largest": null,
+   "sample": []
+  }
+ },
+ "meta": {
+  "/sourceId": [
+   "3442dee81cd9a3abbca2083cb3d0c02fcf19efa20ec7a0868204134191d12d82",
+   "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9"
+  ]
+ }
+}

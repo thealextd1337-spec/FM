@@ -161,8 +161,12 @@ public static class LowPolyGroundDiagnostics {
              foreach(var a in actors){var g=FootballGround.GroundSkin(a);ok&=GroundSkins(a.gameObject)==1&&g!=null&&!g.enabled&&g.sharedMesh==ground&&Drawn(a.gameObject).sharedMesh==drawnMesh&&g.transform.parent==Drawn(a.gameObject).transform.parent;
                  foreach(var r in a.GetComponentsInChildren<Renderer>())if(r.enabled)enabled++;}
              Require(ok&&enabled==actors.Count,"match view load "+(round+1)+": one disabled ground skin and one drawn renderer per actor","actors="+actors.Count+" enabled renderers="+enabled);
+             // Scene-wide: nothing left over from the previous load (skins, ground skins, graphs).
+             var graphs=(List<PlayableGraph>)typeof(ProbeBridge).GetField("graphs",Hidden).GetValue(bridge);int valid=0;foreach(var g in graphs)if(g.IsValid())valid++;
+             var (skins,grounds)=SceneSkins();
+             Require(skins==2*actors.Count&&grounds==actors.Count&&graphs.Count==actors.Count&&valid==actors.Count,"match view load "+(round+1)+": scene-wide skins, ground skins and graphs match the actors (no leftovers)","skins="+skins+" ground="+grounds+" graphs="+graphs.Count+" valid="+valid);
          }
-         Drop(bridge);}
+         Drop(bridge);{var (skins,grounds)=SceneSkins();Require(grounds==0,"no ground skin left after dropping the match view","skins="+skins+" ground="+grounds);}}
 
         report.checks=checks.ToArray();
         var folder=Path.Combine(repository,outputFolder??"outputs/style-demos/lowpoly-fix/unity");Directory.CreateDirectory(folder);File.WriteAllText(Path.Combine(folder,"lowpoly-ground.json"),JsonUtility.ToJson(report,true));
@@ -171,6 +175,7 @@ public static class LowPolyGroundDiagnostics {
         if(failed>0||report.visibleViolations.Length>0)throw new InvalidOperationException("Low-poly ground: "+summary+"; first failure: "+(failed>0?checks.Find(c=>!c.ok).name:report.visibleViolations[0]));
         return summary;
     }
+    static (int skins,int grounds) SceneSkins(){int s=0,g=0;foreach(var r in UnityEngine.Object.FindObjectsByType<SkinnedMeshRenderer>(FindObjectsInactive.Include,FindObjectsSortMode.None)){s++;if(FootballGround.IsGroundSkin(r))g++;}return (s,g);}
     static void Drop(ProbeBridge bridge){var world=(Transform)typeof(ProbeBridge).GetField("world",Hidden).GetValue(bridge);if(world!=null)UnityEngine.Object.DestroyImmediate(world.gameObject);}
     // Every measured value of an actor's ground profile in catalogue order.
     static List<(string n,float v)> Profile(FootballAnimation a,AnimationClip[] clips){

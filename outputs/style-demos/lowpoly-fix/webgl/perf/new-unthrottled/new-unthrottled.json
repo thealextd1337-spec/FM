@@ -1,0 +1,60 @@
+{
+ "label": "new-unthrottled",
+ "build": "outputs/platform/unity-web",
+ "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+ "buildFiles": [
+  {
+   "file": "unity-web.data",
+   "bytes": 56050915,
+   "sha256": "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f"
+  },
+  {
+   "file": "unity-web.framework.js",
+   "bytes": 300906,
+   "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+  },
+  {
+   "file": "unity-web.loader.js",
+   "bytes": 27914,
+   "sha256": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f"
+  },
+  {
+   "file": "unity-web.wasm",
+   "bytes": 35521508,
+   "sha256": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+  }
+ ],
+ "downloadBytes": 91901243,
+ "renderer": null,
+ "gpu": true,
+ "unthrottled": true,
+ "shots": [],
+ "parity": null,
+ "perf": [
+  {
+   "quality": "standard",
+   "frames": 4219,
+   "frameMedianMs": 0.2000000000007276,
+   "frameP95Ms": 17.19999998807907,
+   "drawsMedian": 142,
+   "drawsP95": 142,
+   "jsHeapMB": 122,
+   "wasmMemoryMB": 289
+  },
+  {
+   "quality": "reduced",
+   "frames": 4121,
+   "frameMedianMs": 0.2000000000007276,
+   "frameP95Ms": 17.299999999999272,
+   "drawsMedian": 126,
+   "drawsP95": 126,
+   "jsHeapMB": 121,
+   "wasmMemoryMB": 289
+  }
+ ],
+ "videos": [],
+ "errors": [],
+ "meshLog": [
+  "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+ ]
+}

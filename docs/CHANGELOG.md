@@ -4,6 +4,7 @@
 
 - Lokaler Unity/WebGL-Kandidat „Klares Low-Poly“ für die 3D-Matchansicht auf Basis von Release 130: neu gestaltete facettierte Spielerfigur mit 2.592 statt 12.668 Dreiecken auf dem unveränderten 28-Gelenk-Rig, ruhigere Trikot-/Hautflächen, breite zweifarbige Mähstreifen mit klaren Kanten, ruhigere Stadionoberflächen und Zuschauer. Vereinsfarben, Muster, Nummern, Keeperhandschuhe, Namen, Kamera, Ballhilfe, Clips und Matchregeln bleiben erhalten; Beleuchtung wie Release 130. Spielstände sind nicht betroffen.
 - Gewichte, eigene Abwicklung mit gebackener Farb-/Kleidungsmaske, Ruheposkoordinaten und eine eigene Sohlenkontur sind für das neue Mesh erzeugt; das Original bleibt als Rückweg erhalten. Editor- und WebGL-Vergleiche, native Parität, Suiten und Messgrenzen: [Übergabe](3d-stilauftraege/low-poly-handoff.md).
+- Korrektur: Die Low-Poly-Figuren bewegen sich jetzt exakt wie in Release 130. Bodenhöhe, Clipversätze und Sohlenkontur werden an einem unsichtbaren Originalskin auf denselben Knochen gemessen, statt am gezeichneten Low-Poly-Mesh; dadurch verschob sich vorher die Hüfte um Bruchteile eines Millimeters und eine exakte Bewegungssperre schlug an. Alle Bewegungs- und Kontaktprüfungen sind wieder bitgleich zum Original, sichtbare Sohlen und Stiefel werden weiter am gezeichneten Mesh mit unveränderten Grenzen geprüft. Gleiche Draw Calls, rund 0,67 MB mehr Download. [Unity-Validierung, Build und Grenzen](3d-stilauftraege/low-poly-ground-fix-validation.md).
 
 ## 13. Oktober 2026 – Bugliste
 

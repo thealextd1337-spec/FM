@@ -1,0 +1,618 @@
+{
+  "schema": "d6-style-demo-acceptance-1",
+  "style": "lowpoly",
+  "url": "http://127.0.0.1:4413",
+  "repo": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\demo-low-poly-fix",
+  "startedAt": "2026-10-13T03:31:54.822Z",
+  "gpu": true,
+  "harness": {
+    "file": "work/style-demos/acceptance-browser.cjs",
+    "sha256": "b1aa5bf27756adffee4baccb0c4e150dd82d2121824ea16de0792662394bf5e1",
+    "commit": "af8b7621fb6f1a25750a20a429f5dec3e653f5eb",
+    "branch": "codex/demo-style-support-20261013",
+    "dirty": false,
+    "node": "v24.19.0"
+  },
+  "checks": [
+    {
+      "id": "build-style",
+      "name": "Server meldet Stil lowpoly mit frischem Paket",
+      "ok": true,
+      "detail": "{\"style\":\"lowpoly\",\"fresh\":\"fresh\"}"
+    },
+    {
+      "id": "build-source-id",
+      "name": "probe-build.json trägt dieselbe sourceId wie /__build",
+      "ok": true,
+      "detail": "{\"manifest\":\"644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9\",\"build\":\"644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9\"}"
+    },
+    {
+      "id": "build-clean",
+      "name": "Quelle sauber und committed",
+      "ok": true,
+      "detail": "{\"commit\":\"2e1d0fdc5601cd4f03b51c87a2e113128f90f117\",\"dirty\":false}"
+    },
+    {
+      "id": "vp-1280x720-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-1280x720-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (1280x720-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-1280x720-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (1280x720-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-1280x720-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (1280x720-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-1280x720-standard-quality",
+      "name": "Unity erhielt Qualität standard im Ladebefehl",
+      "ok": true,
+      "detail": "[\"standard\"]"
+    },
+    {
+      "id": "vp-1280x720-standard-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-844x390-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (844x390-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-844x390-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (844x390-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-844x390-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (844x390-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-844x390-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (844x390-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-844x390-standard-quality",
+      "name": "Unity erhielt Qualität standard im Ladebefehl",
+      "ok": true,
+      "detail": "[\"standard\"]"
+    },
+    {
+      "id": "vp-844x390-standard-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-931x448-standard-unity",
+      "name": "Unity aktiv und bereit, kein lastError (931x448-standard)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-931x448-standard-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (931x448-standard)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-931x448-standard-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (931x448-standard)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-931x448-standard-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (931x448-standard)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-931x448-standard-quality",
+      "name": "Unity erhielt Qualität standard im Ladebefehl",
+      "ok": true,
+      "detail": "[\"standard\"]"
+    },
+    {
+      "id": "vp-931x448-standard-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-1280x720-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-1280x720-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-1280x720-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (1280x720-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-1280x720-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (1280x720-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-1280x720-reduced-quality",
+      "name": "Unity erhielt Qualität reduced im Ladebefehl",
+      "ok": true,
+      "detail": "[\"reduced\"]"
+    },
+    {
+      "id": "vp-1280x720-reduced-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-844x390-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-844x390-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (844x390-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-844x390-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (844x390-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-844x390-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (844x390-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-844x390-reduced-quality",
+      "name": "Unity erhielt Qualität reduced im Ladebefehl",
+      "ok": true,
+      "detail": "[\"reduced\"]"
+    },
+    {
+      "id": "vp-844x390-reduced-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "vp-931x448-reduced-unity",
+      "name": "Unity aktiv und bereit, kein lastError (931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ready\":true,\"active\":true,\"error\":null,\"failure\":null}"
+    },
+    {
+      "id": "vp-931x448-reduced-no-three",
+      "name": "Kein stiller THREE-Fallback: 3D-Ansicht, kein v98Scene, Unity-iframe vorhanden (931x448-reduced)",
+      "ok": true,
+      "detail": "{\"view\":\"3d\",\"failed\":false,\"threeScene\":false,\"iframe\":\"http://127.0.0.1:4413/unity-match/runtime.html?v=130\"}"
+    },
+    {
+      "id": "vp-931x448-reduced-players",
+      "name": "12 echte Spieler im Unity-ACK, 12 Labels (931x448-reduced)",
+      "ok": true,
+      "detail": "{\"ack\":12,\"real\":true,\"labels\":12}"
+    },
+    {
+      "id": "vp-931x448-reduced-mesh",
+      "name": "Unity meldet beim Laden das Spielermesh WorldPlayerLowPoly-v4 (kein Originalmesh, kein anderes Mesh) (931x448-reduced)",
+      "ok": true,
+      "detail": "[\"[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\\n\"]"
+    },
+    {
+      "id": "vp-931x448-reduced-quality",
+      "name": "Unity erhielt Qualität reduced im Ladebefehl",
+      "ok": true,
+      "detail": "[\"reduced\"]"
+    },
+    {
+      "id": "vp-931x448-reduced-play",
+      "name": "Spiel lief bis Minute 10, Pause hält Unity-Bild im Zustand paused, Labels sichtbar",
+      "ok": true,
+      "detail": "{\"minute\":10,\"phase\":\"paused\",\"picture\":\"paused\",\"visible\":11,\"pause\":{\"steps\":14,\"ok\":true,\"phase\":\"paused\",\"picturePhase\":\"paused\"}}"
+    },
+    {
+      "id": "build-unchanged",
+      "name": "/__build vor und nach dem Lauf identisch (Fingerprint, sourceId, HTML-, Manifest-, Paket-Hash, alle Dateihashes)",
+      "ok": true,
+      "detail": "{\"before\":\"0f9b8f5213cf1eab047d1207cf9eb20597e883cc78b73a731ecf7b2821efa44a\",\"after\":\"0f9b8f5213cf1eab047d1207cf9eb20597e883cc78b73a731ecf7b2821efa44a\"}"
+    },
+    {
+      "id": "network-payload",
+      "name": "Der Browser lud alle vier WebGL-Dateien über die hashgebundenen URLs; X-D6-Sha256 = Paketmanifest",
+      "ok": true,
+      "detail": "[{\"file\":\"unity-web.data\",\"url\":\"/unity/Build/unity-web.data?v=cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f\",\"sha\":\"cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f\",\"expected\":\"cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f\"},{\"file\":\"unity-web.framework.js\",\"url\":\"/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb\",\"sha\":\"36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb\",\"expected\":\"36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb\"},{\"file\":\"unity-web.loader.js\",\"url\":\"/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f\",\"sha\":\"c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f\",\"expected\":\"c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f\"},{\"file\":\"unity-web.wasm\",\"url\":\"/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab\",\"sha\":\"2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab\",\"expected\":\"2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab\"}]"
+    },
+    {
+      "id": "network-status",
+      "name": "Keine HTTP-Fehler außer dem bewusst blockierten probe-build.json",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "id": "console-errors",
+      "name": "Keine Konsolenfehler außer dem erwarteten 404 des bewusst blockierten probe-build.json (Szenario missing-build)",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "id": "page-errors",
+      "name": "Keine unbehandelten Seitenfehler (pageerror)",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "sections": {
+    "build": {
+      "status": "pass",
+      "seconds": 0
+    },
+    "viewports": {
+      "status": "pass",
+      "seconds": 62
+    }
+  },
+  "shots": [
+    "shots/page-1280x720-standard-kickoff.png",
+    "shots/screen-1280x720-standard-kickoff.png",
+    "shots/screen-1280x720-standard-live-m10.png",
+    "shots/screen-1280x720-standard-paused.png",
+    "shots/page-844x390-standard-kickoff.png",
+    "shots/screen-844x390-standard-kickoff.png",
+    "shots/screen-844x390-standard-live-m10.png",
+    "shots/screen-844x390-standard-paused.png",
+    "shots/screen-931x448-standard-kickoff.png",
+    "shots/screen-931x448-standard-live-m10.png",
+    "shots/screen-931x448-standard-paused.png",
+    "shots/page-1280x720-reduced-kickoff.png",
+    "shots/screen-1280x720-reduced-kickoff.png",
+    "shots/screen-1280x720-reduced-live-m10.png",
+    "shots/screen-1280x720-reduced-paused.png",
+    "shots/page-844x390-reduced-kickoff.png",
+    "shots/screen-844x390-reduced-kickoff.png",
+    "shots/screen-844x390-reduced-live-m10.png",
+    "shots/screen-844x390-reduced-paused.png",
+    "shots/screen-931x448-reduced-kickoff.png",
+    "shots/screen-931x448-reduced-live-m10.png",
+    "shots/screen-931x448-reduced-paused.png"
+  ],
+  "network": {
+    "/?engine=unity&quality=standard": {
+      "status": {
+        "200": 3
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ],
+      "count": 3
+    },
+    "/unity-match/runtime.html?v=130": {
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa"
+      ],
+      "count": 6
+    },
+    "/unity-match/runtime.js": {
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b"
+      ],
+      "count": 6
+    },
+    "/unity/probe-build.json": {
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "f6978979682daa5340c64b899e82865c26d40fe309e4c291b3063ef7f5e3fd0b"
+      ],
+      "count": 6
+    },
+    "/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f": {
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f"
+      ],
+      "count": 6
+    },
+    "/unity/Build/unity-web.data?v=cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f": {
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f"
+      ],
+      "count": 6
+    },
+    "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb": {
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      ],
+      "count": 6
+    },
+    "/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab": {
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+      ],
+      "count": 6
+    },
+    "/?engine=unity&quality=reduced": {
+      "status": {
+        "200": 3
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ],
+      "count": 3
+    }
+  },
+  "pageErrors": [],
+  "consoleErrors": [],
+  "d6Console": [
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    },
+    {
+      "scenario": "-",
+      "text": "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+    }
+  ],
+  "expectMesh": "WorldPlayerLowPoly-v4",
+  "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 (0x00002786) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "scope": "Functional lifecycle on the served package with real Unity WebGL; not an FPS, Android or visual-quality claim.",
+  "buildBefore": {
+    "sourceCommit": "2e1d0fdc5601cd4f03b51c87a2e113128f90f117",
+    "sourceDirty": false,
+    "sourceFingerprint": "7d987d3ad62794ceec7a91d63c7139d2c17330f83b524db827c67a7141096bc8",
+    "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+    "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+    "unityManifestSha256": "f6978979682daa5340c64b899e82865c26d40fe309e4c291b3063ef7f5e3fd0b",
+    "packageManifestSha256": "0f9b8f5213cf1eab047d1207cf9eb20597e883cc78b73a731ecf7b2821efa44a",
+    "freshness": "fresh",
+    "files": {
+      "index.html": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+      "unity-match/runtime.html": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "unity-match/runtime.js": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+      "unity-match/.htaccess": "e6341a7c0465a7f21a828d0296457bcc43bf6cace7105ce9b0cf871c3b9bacc4",
+      "unity/probe-build.json": "f6978979682daa5340c64b899e82865c26d40fe309e4c291b3063ef7f5e3fd0b",
+      "unity/Build/unity-web.data": "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f",
+      "unity/Build/unity-web.framework.js": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "unity/Build/unity-web.loader.js": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+      "unity/Build/unity-web.wasm": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+    }
+  },
+  "unityManifest": {
+    "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+    "files": [
+      {
+        "file": "unity-web.data",
+        "sha256": "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f"
+      },
+      {
+        "file": "unity-web.framework.js",
+        "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      },
+      {
+        "file": "unity-web.loader.js",
+        "sha256": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f"
+      },
+      {
+        "file": "unity-web.wasm",
+        "sha256": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+      }
+    ],
+    "loaderUrl": "/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+    "dataUrl": "/unity/Build/unity-web.data?v=cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f",
+    "frameworkUrl": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+    "codeUrl": "/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+  },
+  "buildAfter": {
+    "sourceCommit": "2e1d0fdc5601cd4f03b51c87a2e113128f90f117",
+    "sourceDirty": false,
+    "sourceFingerprint": "7d987d3ad62794ceec7a91d63c7139d2c17330f83b524db827c67a7141096bc8",
+    "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+    "htmlSha256": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+    "unityManifestSha256": "f6978979682daa5340c64b899e82865c26d40fe309e4c291b3063ef7f5e3fd0b",
+    "packageManifestSha256": "0f9b8f5213cf1eab047d1207cf9eb20597e883cc78b73a731ecf7b2821efa44a",
+    "freshness": "fresh",
+    "files": {
+      "index.html": "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db",
+      "unity-match/runtime.html": "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa",
+      "unity-match/runtime.js": "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b",
+      "unity-match/.htaccess": "e6341a7c0465a7f21a828d0296457bcc43bf6cace7105ce9b0cf871c3b9bacc4",
+      "unity/probe-build.json": "f6978979682daa5340c64b899e82865c26d40fe309e4c291b3063ef7f5e3fd0b",
+      "unity/Build/unity-web.data": "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f",
+      "unity/Build/unity-web.framework.js": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "unity/Build/unity-web.loader.js": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+      "unity/Build/unity-web.wasm": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+    }
+  },
+  "fetchedBuild": [
+    {
+      "file": "unity-web.data",
+      "url": "/unity/Build/unity-web.data?v=cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f",
+      "sha": "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f",
+      "expected": "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f"
+    },
+    {
+      "file": "unity-web.framework.js",
+      "url": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "sha": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "expected": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+    },
+    {
+      "file": "unity-web.loader.js",
+      "url": "/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+      "sha": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+      "expected": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f"
+    },
+    {
+      "file": "unity-web.wasm",
+      "url": "/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab",
+      "sha": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab",
+      "expected": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+    }
+  ],
+  "networkSummary": [
+    {
+      "url": "/?engine=unity&quality=standard",
+      "count": 3,
+      "status": {
+        "200": 3
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ]
+    },
+    {
+      "url": "/unity-match/runtime.html?v=130",
+      "count": 6,
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "0a11e8eaba95b19006a1085a3d76124eb28db02d23514a4f2f1d6c8d1565fafa"
+      ]
+    },
+    {
+      "url": "/unity-match/runtime.js",
+      "count": 6,
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "734e9dc9af368164272616682eaf48afa05fbf316bdc04d1b4736bf1c502b60b"
+      ]
+    },
+    {
+      "url": "/unity/probe-build.json",
+      "count": 6,
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "f6978979682daa5340c64b899e82865c26d40fe309e4c291b3063ef7f5e3fd0b"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.loader.js?v=c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f",
+      "count": 6,
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.data?v=cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f",
+      "count": 6,
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.framework.js?v=36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb",
+      "count": 6,
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+      ]
+    },
+    {
+      "url": "/unity/Build/unity-web.wasm?v=2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab",
+      "count": 6,
+      "status": {
+        "200": 6
+      },
+      "sha": [
+        "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+      ]
+    },
+    {
+      "url": "/?engine=unity&quality=reduced",
+      "count": 3,
+      "status": {
+        "200": 3
+      },
+      "sha": [
+        "358d343b7dc044ffdde94cd78addfab8106e72365ae4b0302aacd609ac1f11db"
+      ]
+    }
+  ],
+  "finishedAt": "2026-10-13T03:32:57.609Z",
+  "seconds": 63,
+  "pass": true
+}

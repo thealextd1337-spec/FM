@@ -1,0 +1,401 @@
+{
+ "label": "groundfix",
+ "build": "outputs/platform/unity-web",
+ "sourceId": "644d9d928be9ea9d3ccd36f7049bbea40a333f9c5cd999dbddcbe5c9cd0211c9",
+ "buildFiles": [
+  {
+   "file": "unity-web.data",
+   "bytes": 56050915,
+   "sha256": "cb9d77d7ca75423c363ac0a1a500deed14c586fdc8106410d14abea5f00bf83f"
+  },
+  {
+   "file": "unity-web.framework.js",
+   "bytes": 300906,
+   "sha256": "36ef379127938ada50294ade1111a1380d507e81359591f4156963b0420e1dcb"
+  },
+  {
+   "file": "unity-web.loader.js",
+   "bytes": 27914,
+   "sha256": "c49fdcbccf2b061a7f611e0b6cc56ce24bb4b5cdeb6a08fc6f8444939dea620f"
+  },
+  {
+   "file": "unity-web.wasm",
+   "bytes": 35521508,
+   "sha256": "2de6a7d5d76fec7e6a7449f019b0127164723256fadfe06aaa5eb7ede1ca94ab"
+  }
+ ],
+ "downloadBytes": 91901243,
+ "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 (0x00002786) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+ "gpu": true,
+ "unthrottled": false,
+ "shots": [
+  {
+   "quality": "standard",
+   "size": "1280x720",
+   "kickoff": "groundfix-kickoff-standard-1280x720.png",
+   "plays": [
+    "groundfix-play260-standard-1280x720.png",
+    "groundfix-play520-standard-1280x720.png",
+    "groundfix-play780-standard-1280x720.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  },
+  {
+   "quality": "standard",
+   "size": "844x390",
+   "kickoff": "groundfix-kickoff-standard-844x390.png",
+   "plays": [
+    "groundfix-play260-standard-844x390.png",
+    "groundfix-play520-standard-844x390.png",
+    "groundfix-play780-standard-844x390.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  },
+  {
+   "quality": "standard",
+   "size": "931x448",
+   "kickoff": "groundfix-kickoff-standard-931x448.png",
+   "plays": [
+    "groundfix-play260-standard-931x448.png",
+    "groundfix-play520-standard-931x448.png",
+    "groundfix-play780-standard-931x448.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  },
+  {
+   "quality": "reduced",
+   "size": "1280x720",
+   "kickoff": "groundfix-kickoff-reduced-1280x720.png",
+   "plays": [
+    "groundfix-play260-reduced-1280x720.png",
+    "groundfix-play520-reduced-1280x720.png",
+    "groundfix-play780-reduced-1280x720.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  },
+  {
+   "quality": "reduced",
+   "size": "844x390",
+   "kickoff": "groundfix-kickoff-reduced-844x390.png",
+   "plays": [
+    "groundfix-play260-reduced-844x390.png",
+    "groundfix-play520-reduced-844x390.png",
+    "groundfix-play780-reduced-844x390.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  },
+  {
+   "quality": "reduced",
+   "size": "931x448",
+   "kickoff": "groundfix-kickoff-reduced-931x448.png",
+   "plays": [
+    "groundfix-play260-reduced-931x448.png",
+    "groundfix-play520-reduced-931x448.png",
+    "groundfix-play780-reduced-931x448.png"
+   ],
+   "state": {
+    "ticks": 780,
+    "elapsed": 11.30999999999995,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.588,
+     "y": 0.9819256756756757
+    },
+    "events": 2,
+    "randomCalls": 47
+   },
+   "labels": 12
+  }
+ ],
+ "parity": {
+  "states": [
+   {
+    "ticks": 600,
+    "elapsed": 9.788999999999962,
+    "score": [
+     1,
+     0
+    ],
+    "ball": {
+     "x": 0.4610553571893222,
+     "y": 0.5603963065082049
+    },
+    "events": 1,
+    "randomCalls": 37,
+    "eventLog": "f4e5fc51f81889c4cdbae9d909a47dd3cf8fc348b1f4c1a280521e3ff255c402",
+    "goals": "88b350161595fda05627a93b8a655a52698cc1cff99453551d02d0e9ef2b3192"
+   },
+   {
+    "ticks": 1200,
+    "elapsed": 20.67000000000009,
+    "score": [
+     1,
+     1
+    ],
+    "ball": {
+     "x": 0.5723664487808374,
+     "y": 0.11802128649689937
+    },
+    "events": 2,
+    "randomCalls": 94,
+    "eventLog": "6dcf4faf0348e7a8a910a235f847f7a68cd88ec52ecd32c1342d144b930cc0ab",
+    "goals": "801ea36641b4cc3b188e9c20ede450b5c0e86646dee97eaf5cfeea4eef34c4bc"
+   },
+   {
+    "ticks": 2400,
+    "elapsed": 43.61682000000067,
+    "score": [
+     2,
+     2
+    ],
+    "ball": {
+     "x": 0.46035684687811185,
+     "y": 0.5396778718905141
+    },
+    "events": 5,
+    "randomCalls": 172,
+    "eventLog": "9372274b7d1400304213c271d8a281a4f6744bfbec21df9fe3ea506bf264c0b8",
+    "goals": "1a8aceac1f42eeeef14a06db237cf145225f162da2ba505fbc183d754c866bfb"
+   },
+   {
+    "ticks": 4213,
+    "elapsed": 83.33348666666726,
+    "score": [
+     2,
+     2
+    ],
+    "ball": {
+     "x": 0.3304446888215579,
+     "y": 0.39982222793461336
+    },
+    "events": 7,
+    "randomCalls": 311,
+    "eventLog": "ee24cbd57012f6891f0bde9565c93295e07910009c7bb632bb8049ca6684af4b",
+    "goals": "1a8aceac1f42eeeef14a06db237cf145225f162da2ba505fbc183d754c866bfb"
+   }
+  ]
+ },
+ "perf": [
+  {
+   "quality": "standard",
+   "frames": 1335,
+   "frameMedianMs": 14.700000000000728,
+   "frameP95Ms": 17.6999999940399,
+   "drawsMedian": 130,
+   "drawsP95": 142,
+   "jsHeapMB": 120,
+   "wasmMemoryMB": 289
+  },
+  {
+   "quality": "reduced",
+   "frames": 1333,
+   "frameMedianMs": 14.700000017881393,
+   "frameP95Ms": 17.600000023841858,
+   "drawsMedian": 113,
+   "drawsP95": 126,
+   "jsHeapMB": 115,
+   "wasmMemoryMB": 289
+  }
+ ],
+ "videos": [
+  {
+   "name": "sprint-pass",
+   "quality": "standard",
+   "file": "groundfix-sprint-pass-standard.webp",
+   "sheet": "groundfix-sprint-pass-standard-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 33,
+   "actionTick": 73,
+   "frames": 50,
+   "secondsAtRealPace": 5
+  },
+  {
+   "name": "shot",
+   "quality": "standard",
+   "file": "groundfix-shot-standard.webp",
+   "sheet": "groundfix-shot-standard-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 193,
+   "actionTick": 253,
+   "frames": 60,
+   "secondsAtRealPace": 6
+  },
+  {
+   "name": "slide",
+   "quality": "standard",
+   "file": "groundfix-slide-standard.webp",
+   "sheet": "groundfix-slide-standard-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 102,
+   "actionTick": 150,
+   "frames": 60,
+   "secondsAtRealPace": 6
+  },
+  {
+   "name": "slide",
+   "quality": "reduced",
+   "file": "groundfix-slide-reduced.webp",
+   "sheet": "groundfix-slide-reduced-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 102,
+   "actionTick": 150,
+   "frames": 60,
+   "secondsAtRealPace": 6
+  },
+  {
+   "name": "keeper",
+   "quality": "standard",
+   "file": "groundfix-keeper-standard.webp",
+   "sheet": "groundfix-keeper-standard-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 189,
+   "actionTick": 261,
+   "frames": 70,
+   "secondsAtRealPace": 7
+  },
+  {
+   "name": "keeper",
+   "quality": "reduced",
+   "file": "groundfix-keeper-reduced.webp",
+   "sheet": "groundfix-keeper-reduced-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 189,
+   "actionTick": 261,
+   "frames": 70,
+   "secondsAtRealPace": 7
+  },
+  {
+   "name": "tackle",
+   "quality": "standard",
+   "file": "groundfix-tackle-standard.webp",
+   "sheet": "groundfix-tackle-standard-sheet.png",
+   "seed": 12345,
+   "cameraNear": 100,
+   "startTick": 116,
+   "actionTick": 164,
+   "frames": 50,
+   "secondsAtRealPace": 5
+  },
+  {
+   "name": "header",
+   "quality": "standard",
+   "file": "groundfix-header-standard.webp",
+   "sheet": "groundfix-header-standard-sheet.png",
+   "seed": 777,
+   "cameraNear": 100,
+   "startTick": 3407,
+   "actionTick": 3455,
+   "frames": 50,
+   "secondsAtRealPace": 5
+  }
+ ],
+ "errors": [],
+ "meshLog": [
+  "[D6] match mesh WorldPlayerLowPoly-v4 vertices=6926 base=d6_lowpoly_v4_base mask=d6_lowpoly_v4_mask ground=WorldPlayer vertices=9725\n"
+ ],
+ "videoMarks": {
+  "pass": {
+   "seed": 12345,
+   "tick": 73
+  },
+  "slide": {
+   "seed": 12345,
+   "tick": 150
+  },
+  "tackle": {
+   "seed": 12345,
+   "tick": 164
+  },
+  "shot": {
+   "seed": 12345,
+   "tick": 253
+  },
+  "keeper": {
+   "seed": 12345,
+   "tick": 261
+  },
+  "header": {
+   "seed": 777,
+   "tick": 3455
+  }
+ }
+}
