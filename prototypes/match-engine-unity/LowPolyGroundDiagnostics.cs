@@ -26,9 +26,11 @@ using Doppel6.Probe;
 // and like the release skin; candidate profile, pose, ground shift and ground
 // measurement bit-identical to the release actor; the drawn low-poly surface
 // (VisibleSurfaceProbe: boots, body, against the release reference in the same
-// pose) has no candidate-only or candidate-worse picture on the clip gallery and
-// on native-envelope slides; sentinel meshes with lowered boots and raised gloves
-// are refused. Reported apart: the legacy deltas (the R15 mechanism, Of(walking)).
+// pose) has no candidate-only or candidate-worse picture and no boot or ball-gap
+// shape shift beyond 1 cm in either direction on the clip gallery and on
+// native-envelope slides; sentinel meshes with lowered boots, raised boots, raised
+// gloves and one raised glove among two are refused. Reported apart: the legacy
+// deltas (the R15 mechanism, Of(walking)).
 // Native contact pictures (receive/pass/shot boots, keeper gloves) are measured by
 // the same probe inside NaturalMotionDiagnostics and FootballKeeperTests.
 public static class LowPolyGroundDiagnostics {
@@ -39,7 +41,7 @@ public static class LowPolyGroundDiagnostics {
         public float rootHeightRelease,rootHeightCandidate,rootHeightLegacy,walkingOffsetRelease,walkingOffsetCandidate,walkingOffsetLegacy;
         public int profileValues,profileCandidateDiffering,profileLegacyDiffering;public ProfileValue[] profileDiffering;
         public int poses,posesCandidateExact,slidePictures,slidePicturesExact;public float legacyBoneMax;public string legacyBoneMaxAt;
-        public VisibleSurfaceProbe.Snapshot gallery,slides,sentinel;}
+        public VisibleSurfaceProbe.Snapshot gallery,slides,sentinel,sentinelFloat,sentinelHands;}
     const BindingFlags Hidden=BindingFlags.NonPublic|BindingFlags.Instance;
     const string ProbeScene="Assets/Doppel6EngineProbe/Probe.unity",NegativeScene="Assets/Doppel6EngineProbe/D6PreflightNegative.unity";
     sealed class Rig {public string name;public GameObject go;public PlayableGraph graph;public FootballAnimation anim;public Transform[] bones;}
@@ -185,13 +187,21 @@ public static class LowPolyGroundDiagnostics {
                  &&C(.02f,.01f,.03f,false)=="passed"&&C(-.05f,.04f,.03f,false)=="candidate-worse"&&C(.04f,-.05f,.03f,false)=="inherited"&&C(.031f,.029f,.03f,false)=="candidate-only"&&C(-.05f,-.05f,-.02f,true)=="inherited"&&C(-.01f,-.05f,-.02f,true)=="passed"
                  &&VisibleSurfaceProbe.Fails(-.035f,-.0101f,-.01f,true,false)&&!VisibleSurfaceProbe.Fails(-.0101f,-.0101f,-.01f,true,false)
                  &&!P(-.0645f,-.0616f,true)&&P(-.075f,-.0616f,true)&&!P(-.048f,-.0463f,false)&&P(-.058f,-.0463f,false)&&!P(.02f,.035f,false),
-                 "surface rules: absolute inherited excuses no candidate excess beyond 1e-4 m (release -0.0101 / candidate -0.035 at -0.01 fails); paired fails beyond 0.01 m worse than the release reference");}
+                 "surface rules: absolute inherited excuses no candidate excess beyond 1e-4 m (release -0.0101 / candidate -0.035 at -0.01 fails); paired fails beyond 0.01 m worse than the release reference");
+             // Two-sided shape (QA pairing, apart from the absolute classification): |candidate - release| at most PairTolerance for
+             // boot lowest points and ball gaps. Scalar cases of the formula only; the one-sided |c|-|r| / r-c rule is blind to both.
+             bool S(float c,float r,float limit,bool higher,bool paired)=>VisibleSurfaceProbe.Fails(c,r,limit,higher,paired,true);
+             Require(S(.05f,-.05f,.03f,false,true)&&!VisibleSurfaceProbe.Fails(.05f,-.05f,.03f,false,true)&&VisibleSurfaceProbe.Excess(.05f,-.05f,false)<=VisibleSurfaceProbe.NotWorse
+                 &&S(-.05f,.05f,.03f,false,true)&&S(.0f,-.0201f,.03f,false,true)&&!S(-.03f,-.02f,.03f,false,true)&&!S(-.0309f,-.0289f,.03f,false,true)
+                 &&S(.036f,-.004f,-.01f,true,false)&&VisibleSurfaceProbe.Classify(.036f,-.004f,-.01f,true)=="passed"&&!VisibleSurfaceProbe.Fails(.036f,-.004f,-.01f,true,false)
+                 &&!S(-.0049f,-.01f,-.01f,true,false)&&!S(-.0039f,-.0049f,-.01f,true,false)&&S(-.0039f,-.0142f,-.01f,true,false),
+                 "shape rules: a ball gap with flipped sign (candidate +0.05 / release -0.05, equal |gap|) and a 4 cm floating boot above the absolute limit fail the two-sided shape bound that the one-sided rule passes; a 0.0103 m shift fails, 0.0100 m and the recorded 5.1 mm boot shift pass");}
 
             // Sentinel: the low-poly mesh with every boot vertex 4 cm lower (bind space, z up) and every glove vertex
             // 8 cm out along its (flat) normal, at least 3 cm into a ball touching the release glove, on the same rig and ground skin, must be refused; the actual candidate passes the same pictures.
             {sentinelMesh=UnityEngine.Object.Instantiate(drawnMesh);sentinelMesh.name="D6 sentinel "+drawnMesh.name;var v=sentinelMesh.vertices;var normals=sentinelMesh.normals;var region=VisibleSurfaceProbe.RegionsOf(drawnSkin);
              for(int i=0;i<v.Length;i++){if(region[i]<=1)v[i].z-=.04f;else if(region[i]<=3)v[i]+=normals[i].normalized*.08f;}sentinelMesh.vertices=v;sentinelMesh.RecalculateBounds();
-             var sentinel=Build("sentinel",sentinelMesh,ground);var probe=new VisibleSurfaceProbe("sentinel");var reference=new VisibleSurfaceProbe("sentinel-reference");
+             var sentinel=Build("sentinel",sentinelMesh,ground);var probe=new VisibleSurfaceProbe("sentinel");var reference=new VisibleSurfaceProbe("sentinel-reference");var floats=new VisibleSurfaceProbe("sentinel-float");var hands=new VisibleSurfaceProbe("sentinel-hands");Mesh floatMesh=null,handMesh=null;
              try{
                  var stand=new FootballAnimation.Pose{clip=bridge.idleClip,time=.2,key="sentinel",loop=true};var catchPose=new FootballAnimation.Pose{clip=Clip("keeper_ready_meshy"),time=.4,key="sentinel-keeper",loop=true};
                  foreach(var rig in rigs)rig.anim.Sample(stand,900,true);
@@ -206,14 +216,29 @@ public static class LowPolyGroundDiagnostics {
                  var sb=VisibleSurfaceProbe.LowestOf(sentinel.go.transform,1,false);var rb=VisibleSurfaceProbe.LowestOf(sentinel.go.transform,1,true);
                  probe.Judge("boot right lowest m (limit 1 mm above the release reference)","sentinel",false,rb+.001f,sb,rb,true,"standing keeper");
                  report.sentinel=probe.Result();
+                 // Two-sided shape and per-hand pairing: same rig and ground skin, only the drawn mesh swapped (bind space, z up).
+                 // Both gloves on the ball below the release right glove (the left glove is far from it), only the right glove inflated by 8 cm.
+                 var drawnSentinel=Drawn(sentinel.go);
+                 handMesh=UnityEngine.Object.Instantiate(drawnMesh);handMesh.name="D6 sentinel hand "+drawnMesh.name;
+                 {var hv=handMesh.vertices;var hn=handMesh.normals;for(int i=0;i<hv.Length;i++)if(region[i]==3)hv[i]+=hn[i].normalized*.08f;handMesh.vertices=hv;handMesh.RecalculateBounds();}
+                 drawnSentinel.sharedMesh=handMesh;hands.Picture(sentinel.go.transform,"both gloves on a ball, right glove inflated","keeper",false,-1,3,glove);
+                 report.sentinelHands=hands.Result();
+                 Require(hands.Pictures==1&&hands.Measured("left glove surface to held/contact ball surface m")&&hands.Measured("right glove surface to held/contact ball surface m")&&hands.Has("right glove surface to held/contact ball surface m","shape shift"),"sentinel: one inflated glove of two is refused for its own hand (each hand is paired with the same hand; the other hand's gap cannot hide it)",hands.Line());
+                 // Boots 4 cm higher in a standing pose: still above the absolute turf limit, so only the two-sided shape bound refuses them.
+                 floatMesh=UnityEngine.Object.Instantiate(drawnMesh);floatMesh.name="D6 sentinel float "+drawnMesh.name;
+                 {var fv=floatMesh.vertices;for(int i=0;i<fv.Length;i++)if(region[i]<=1)fv[i].z+=.04f;floatMesh.vertices=fv;floatMesh.RecalculateBounds();}
+                 drawnSentinel.sharedMesh=floatMesh;foreach(var rig in rigs)rig.anim.Sample(stand,902,true);floats.Picture(sentinel.go.transform,"standing, boots 4 cm higher","locomotion",true);
+                 report.sentinelFloat=floats.Result();
+                 Require(floats.Pictures==1&&floats.Has("boot left lowest m","passed, shape shift")&&floats.Has("boot right lowest m","passed, shape shift"),"sentinel: boots 4 cm higher (floating, absolute limit still passed) are refused by the two-sided shape bound",floats.Line());
                  Require(probe.Has("boot left lowest m","candidate-only")&&probe.Has("boot right lowest m","candidate-only"),"sentinel: boots 4 cm lower are refused on both feet (candidate-only)",probe.Line());
                  Require(probe.Has("boot right surface to received ball surface m","candidate-only"),"sentinel: a boot surface 4 cm off the ball is refused",probe.Line());
-                 Require(probe.Has("glove surface to held/contact ball surface m","candidate-only"),"sentinel: an inflated glove surface in the ball is refused",probe.Line());
+                 Require(probe.Has("right glove surface to held/contact ball surface m","candidate-only"),"sentinel: an inflated glove surface in the ball is refused",probe.Line());
                  Require(probe.Has("boot right lowest m (limit 1 mm above the release reference)","candidate-worse"),"sentinel: a candidate worse than an already failing release reference is refused (candidate-worse)",probe.Line());
                  Require(reference.Failed==0&&reference.Pictures==3,"the actual candidate passes the sentinel pictures",reference.Line());
-             }finally{probe.Dispose();reference.Dispose();VisibleSurfaceProbe.Forget(sentinelMesh);sentinel.graph.Destroy();rigs.Remove(sentinel);UnityEngine.Object.DestroyImmediate(sentinel.go);}}
+             }finally{probe.Dispose();reference.Dispose();floats.Dispose();hands.Dispose();VisibleSurfaceProbe.Forget(handMesh);VisibleSurfaceProbe.Forget(floatMesh);if(handMesh!=null)UnityEngine.Object.DestroyImmediate(handMesh);if(floatMesh!=null)UnityEngine.Object.DestroyImmediate(floatMesh);VisibleSurfaceProbe.Forget(sentinelMesh);sentinel.graph.Destroy();rigs.Remove(sentinel);UnityEngine.Object.DestroyImmediate(sentinel.go);}}
 
             report.gallery=gallery.Result();report.slides=slides.Result();
+            Require(gallery.Pictures==poses&&slides.Pictures==150,"the drawn surface was measured on every gallery and slide picture","gallery="+gallery.Pictures+"/"+poses+" slides="+slides.Pictures);
             Require(gallery.Failed==0,"clip gallery: no failing visible surface picture (absolute or paired)",gallery.Line());
             Require(slides.Failed==0,"native-envelope slides: no failing visible surface picture (absolute or paired)",slides.Line());
             Require(!groundSkin.enabled&&GroundSkins(candidate.go)==1,"ground skin still disabled and single after all samples");
@@ -287,17 +312,23 @@ public static class LowPolyGroundDiagnostics {
 //    PairTolerance (0.01 m: the tightest existing visible-surface limit, the locomotion sole; below
 //    the 0.03 m contact limit) worse than the release reference in the same picture; the absolute
 //    classification against the existing limit is reported with every picture (pairedBeyond).
+//  shape (additional QA bound, a controlled retopology allowance and not an existing controller gate):
+//    boot lowest points (absolute and paired) and every ball gap (foot, each glove against the same
+//    hand) also fail when the signed shift candidate - release exceeds PairTolerance in either
+//    direction, so a floating boot, a ball gap that changed sign and one hand hiding another are
+//    caught. The shift is reported with every entry apart from the absolute classification.
 public sealed class VisibleSurfaceProbe {
     public const float SlideBootLimit=.035f,NotWorse=1e-4f,PairTolerance=.01f,Radius=.1764f;
-    public const string Note="paired visible surface: drawn skin against the ground skin (release mesh, same bones and pose). Absolute (strict) where an existing limit holds for the drawn release surface: boot lowest -0.01 m locomotion / -0.035 m slide (Duel) / -0.02 m otherwise, body lowest (gloves included) -0.01 m locomotion / -0.02 m where gated; outside a limit only an equally failing release reference with a candidate excess <= 1e-4 m is inherited. Paired where the drawn release surface itself misses the limit: boot and glove surface on the ball (|gap| limit 0.03 m reported), boots and body in keeper saves, body in slides: candidate at most 0.01 m worse than the release reference, absolute crossings reported";
-    [Serializable] public class Entry {public string quantity,context,status,at,bone,releaseBone;public float candidate,release,excess,limit;}
+    public const string Note="paired visible surface: drawn skin against the ground skin (release mesh, same bones and pose). Absolute (strict) where an existing limit holds for the drawn release surface: boot lowest -0.01 m locomotion / -0.035 m slide (Duel) / -0.02 m otherwise, body lowest (gloves included) -0.01 m locomotion / -0.02 m where gated; outside a limit only an equally failing release reference with a candidate excess <= 1e-4 m is inherited. Paired where the drawn release surface itself misses the limit: boot and glove surface on the ball (|gap| limit 0.03 m reported), boots and body in keeper saves, body in slides: candidate at most 0.01 m worse than the release reference, absolute crossings reported. Shape (additional QA bound, not an existing controller gate): boot lowest points, the foot ball gap and each glove ball gap (per hand, against the same hand) also differ at most 0.01 m from the release reference in either direction (signed shift candidate - release)";
+    [Serializable] public class Entry {public string quantity,context,status,at,bone,releaseBone;public float candidate,release,excess,limit,shift;}
     // paired: pictures of a paired quantity; pairedBeyond / pairedCandidateOnly / pairedWorse: of those the candidate outside the
     // existing limit / with the release reference inside it / worse than an outside release reference (all within PairTolerance unless failed).
-    [Serializable] public class Summary {public string quantity,context,mode;public float limit;public int pictures,passed,inherited,failed,paired,pairedBeyond,pairedCandidateOnly,pairedWorse;public Entry candidateWorst,excessWorst;}
-    [Serializable] public class Snapshot {public string suite,sourceId,matchMesh,groundMesh,note,line;public int pictures,failed,inherited,pairedBeyond;public Summary[] summaries;public Entry[] failures,inheritedEntries,pairedBeyondEntries,all;}
+    // shape: pictures of a quantity with the two-sided shape bound; shapeFailed: of those beyond PairTolerance; shiftWorst: the largest |candidate - release| of them.
+    [Serializable] public class Summary {public string quantity,context,mode;public float limit;public int pictures,passed,inherited,failed,paired,pairedBeyond,pairedCandidateOnly,pairedWorse,shape,shapeFailed;public Entry candidateWorst,excessWorst,shiftWorst;}
+    [Serializable] public class Snapshot {public string suite,sourceId,matchMesh,groundMesh,note,line;public int pictures,failed,inherited,pairedBeyond,shapeFailed;public Summary[] summaries;public Entry[] failures,inheritedEntries,pairedBeyondEntries,all;}
     // Set by a suite for its run; null: not measured.
     public static VisibleSurfaceProbe Current;
-    public readonly string suite;public bool keepAll;public int Pictures,Failed,Inherited,PairedBeyond;
+    public readonly string suite;public bool keepAll;public int Pictures,Failed,Inherited,PairedBeyond,ShapeFailed;
     readonly Dictionary<string,Summary> sums=new Dictionary<string,Summary>();readonly List<Summary> order=new List<Summary>();
     readonly List<Entry> failures=new List<Entry>(),inherited=new List<Entry>(),beyond=new List<Entry>(),all=new List<Entry>(),fresh=new List<Entry>();
     string matchMesh,groundMesh;Mesh[] scratch;
@@ -347,8 +378,12 @@ public sealed class VisibleSurfaceProbe {
         if(Within(c))return "passed";if(Within(r))return "candidate-only";
         return Excess(c,r,higher)<=NotWorse?"inherited":"candidate-worse";
     }
-    // Gate result of a picture: absolute (strict) or paired (excess at most PairTolerance).
-    public static bool Fails(float c,float r,float limit,bool higher,bool paired){
+    // Two-sided shape (QA pairing, apart from Excess/Classify): the signed shift candidate - release, at most PairTolerance either way.
+    public static float Shift(float c,float r)=>c-r;
+    public static bool ShapeFails(float c,float r)=>Mathf.Abs(Shift(c,r))>PairTolerance+1e-6f;
+    // Gate result of a picture: absolute (strict) or paired (excess at most PairTolerance); shape: additionally the two-sided bound.
+    public static bool Fails(float c,float r,float limit,bool higher,bool paired,bool shape=false){
+        if(shape&&ShapeFails(c,r))return true;
         if(paired)return Excess(c,r,higher)>PairTolerance+1e-6f;var s=Classify(c,r,limit,higher);return s=="candidate-only"||s=="candidate-worse";
     }
     // One picture of an actor (false without a ground skin). foot: 0/1 the contact boot on ball (centre),
@@ -357,20 +392,23 @@ public sealed class VisibleSurfaceProbe {
         var ground=FootballGround.GroundSkin(actor);if(ground==null)return false;var drawn=DrawnOf(actor);if(drawn==null||drawn.sharedMesh==null)return false;
         if(scratch==null)scratch=new[]{new Mesh(),new Mesh()};matchMesh=drawn.sharedMesh.name;groundMesh=ground.sharedMesh.name;Pictures++;
         var c=Positions(drawn,scratch[0]);var g=Positions(ground,scratch[1]);var rc=Of(drawn);var rg=Of(ground);
-        void Lowest(string quantity,int region,bool absolute,float limit){int a=LowestIndex(c,rc,region),b=LowestIndex(g,rg,region);if(a<0||b<0)return;Judge(quantity,context,!absolute,limit,c[a].y-FootballGround.PitchSurface,g[b].y-FootballGround.PitchSurface,true,at,rc.bone[a],rg.bone[b]);}
-        Lowest("boot left lowest m",0,bootAbsolute,BootLimit(context));Lowest("boot right lowest m",1,bootAbsolute,BootLimit(context));Lowest("body lowest m",Body,bodyAbsolute&&context!="slide",BodyLimit(context));
-        if(foot==0||foot==1)Judge("boot "+(foot==0?"left":"right")+" surface to received ball surface m",context,true,NaturalMotionDiagnostics.ContactReachLimit,Gap(c,rc.tris[foot],ball),Gap(g,rg.tris[foot],ball),false,at);
-        if(gloves>0){float gc=0,gr=0;for(int h=0;h<2;h++){if((gloves&(h==0?2:1))==0)continue;float x=Gap(c,rc.tris[2+h],ball),y=Gap(g,rg.tris[2+h],ball);if(!(Mathf.Abs(x)<=Mathf.Abs(gc)))gc=x;if(!(Mathf.Abs(y)<=Mathf.Abs(gr)))gr=y;}
-            Judge("glove surface to held/contact ball surface m",context,true,NaturalMotionDiagnostics.ContactReachLimit,gc,gr,false,at);}
+        // Boot lowest points carry the two-sided shape bound (floating); the body keeps its absolute / one-sided rule.
+        void Lowest(string quantity,int region,bool absolute,float limit,bool shape){int a=LowestIndex(c,rc,region),b=LowestIndex(g,rg,region);if(a<0||b<0)return;Judge(quantity,context,!absolute,limit,c[a].y-FootballGround.PitchSurface,g[b].y-FootballGround.PitchSurface,true,at,rc.bone[a],rg.bone[b],shape);}
+        Lowest("boot left lowest m",0,bootAbsolute,BootLimit(context),true);Lowest("boot right lowest m",1,bootAbsolute,BootLimit(context),true);Lowest("body lowest m",Body,bodyAbsolute&&context!="slide",BodyLimit(context),false);
+        // Ball gaps: the foot, and each requested glove against the same glove (no worst-hand aggregate: one hand cannot hide another).
+        if(foot==0||foot==1)Judge("boot "+(foot==0?"left":"right")+" surface to received ball surface m",context,true,NaturalMotionDiagnostics.ContactReachLimit,Gap(c,rc.tris[foot],ball),Gap(g,rg.tris[foot],ball),false,at,null,null,true);
+        for(int h=0;h<2;h++){if((gloves&(h==0?2:1))==0)continue;
+            Judge((h==0?"left":"right")+" glove surface to held/contact ball surface m",context,true,NaturalMotionDiagnostics.ContactReachLimit,Gap(c,rc.tris[2+h],ball),Gap(g,rg.tris[2+h],ball),false,at,null,null,true);}
         return true;
     }
-    public void Judge(string quantity,string context,bool paired,float limit,float c,float r,bool higher,string at,string bone=null,string releaseBone=null){
+    public void Judge(string quantity,string context,bool paired,float limit,float c,float r,bool higher,string at,string bone=null,string releaseBone=null,bool shape=false){
         if(float.IsNaN(c)||float.IsNaN(r))return;
         var key=quantity+"|"+context;if(!sums.TryGetValue(key,out var s)){s=new Summary{quantity=quantity,context=context,mode=paired?"paired":"absolute",limit=limit};sums[key]=s;order.Add(s);}
-        var judged=Classify(c,r,limit,higher);bool fails=Fails(c,r,limit,higher,paired);
-        var status=paired?"paired "+judged+(fails?", beyond the pair tolerance":""):judged;
-        var e=new Entry{quantity=quantity,context=context,status=status,at=at,bone=bone,releaseBone=releaseBone,candidate=c,release=r,excess=Excess(c,r,higher),limit=limit};
+        var judged=Classify(c,r,limit,higher);bool pairFails=Fails(c,r,limit,higher,paired),shapeFails=shape&&ShapeFails(c,r),fails=pairFails||shapeFails;
+        var status=(paired?"paired "+judged+(pairFails?", beyond the pair tolerance":""):judged)+(shapeFails?", shape shift beyond the pair tolerance":"");
+        var e=new Entry{quantity=quantity,context=context,status=status,at=at,bone=bone,releaseBone=releaseBone,candidate=c,release=r,excess=Excess(c,r,higher),limit=limit,shift=Shift(c,r)};
         s.pictures++;
+        if(shape){s.shape++;if(shapeFails){s.shapeFailed++;ShapeFailed++;}if(s.shiftWorst==null||Mathf.Abs(e.shift)>Mathf.Abs(s.shiftWorst.shift)){s.shiftWorst=e;fresh.Add(e);}}
         if(paired){s.paired++;if(judged!="passed"){s.pairedBeyond++;PairedBeyond++;if(judged=="candidate-only")s.pairedCandidateOnly++;else if(judged=="candidate-worse")s.pairedWorse++;if(beyond.Count<300){beyond.Add(e);fresh.Add(e);}}}
         if(fails)s.failed++;else if(!paired&&judged=="inherited")s.inherited++;else s.passed++;
         if(s.candidateWorst==null||(higher?c<s.candidateWorst.candidate:Mathf.Abs(c)>Mathf.Abs(s.candidateWorst.candidate))){s.candidateWorst=e;fresh.Add(e);}
@@ -382,15 +420,17 @@ public sealed class VisibleSurfaceProbe {
     // Prefixes the pictures since the last label with a case name (suites that measure inside a shared sampler).
     public void Label(string name){foreach(var e in fresh)if(!e.at.StartsWith(name+" "))e.at=name+" "+e.at;fresh.Clear();}
     public bool Has(string quantity,string status)=>failures.Exists(e=>e.quantity==quantity&&e.status.Contains(status));
+    // A quantity was judged at least once (a picture with that quantity existed).
+    public bool Measured(string quantity)=>order.Exists(s=>s.quantity==quantity);
     static string F(float v)=>v.ToString("0.0000",System.Globalization.CultureInfo.InvariantCulture);
     public string Line(){
-        var sb=new System.Text.StringBuilder("visible pictures="+Pictures+" failed="+Failed+" inherited="+Inherited+" paired-beyond-limit="+PairedBeyond);
+        var sb=new System.Text.StringBuilder("visible pictures="+Pictures+" failed="+Failed+" inherited="+Inherited+" paired-beyond-limit="+PairedBeyond+" shape-failed="+ShapeFailed);
         foreach(var s in order){if(s.failed==0&&s.inherited==0&&s.pairedBeyond==0)continue;
-            sb.Append("; "+s.quantity+" ["+s.context+", "+s.mode+(s.mode=="paired"?": "+s.pairedBeyond+" of "+s.paired+" beyond "+F(s.limit)+" (candidate only "+s.pairedCandidateOnly+", candidate worse "+s.pairedWorse+")":"")+"]: candidate worst "+F(s.candidateWorst.candidate)+" (release "+F(s.candidateWorst.release)+") at "+s.candidateWorst.at+", worst candidate excess "+F(s.excessWorst.excess)+" at "+s.excessWorst.at+(s.excessWorst.bone!=null?" ("+s.excessWorst.bone+"/"+s.excessWorst.releaseBone+")":"")+" inherited "+s.inherited+" failed "+s.failed);}
+            sb.Append("; "+s.quantity+" ["+s.context+", "+s.mode+(s.mode=="paired"?": "+s.pairedBeyond+" of "+s.paired+" beyond "+F(s.limit)+" (candidate only "+s.pairedCandidateOnly+", candidate worse "+s.pairedWorse+")":"")+"]: candidate worst "+F(s.candidateWorst.candidate)+" (release "+F(s.candidateWorst.release)+") at "+s.candidateWorst.at+", worst candidate excess "+F(s.excessWorst.excess)+" at "+s.excessWorst.at+(s.excessWorst.bone!=null?" ("+s.excessWorst.bone+"/"+s.excessWorst.releaseBone+")":"")+" inherited "+s.inherited+" failed "+s.failed+(s.shiftWorst!=null?" shape "+s.shapeFailed+" of "+s.shape+" beyond "+F(PairTolerance)+", worst shift "+F(s.shiftWorst.shift)+" at "+s.shiftWorst.at:""));}
         if(failures.Count>0)sb.Append("; first failure: "+failures[0].quantity+" "+failures[0].status+" candidate "+F(failures[0].candidate)+" release "+F(failures[0].release)+" limit "+F(failures[0].limit)+" at "+failures[0].at);
         return sb.ToString();
     }
-    public Snapshot Result()=>new Snapshot{suite=suite,sourceId=ProbeBuildIdentity.SourceId,matchMesh=matchMesh,groundMesh=groundMesh,note=Note,line=Line(),pictures=Pictures,failed=Failed,inherited=Inherited,pairedBeyond=PairedBeyond,summaries=order.ToArray(),failures=failures.ToArray(),inheritedEntries=inherited.ToArray(),pairedBeyondEntries=beyond.ToArray(),all=all.ToArray()};
+    public Snapshot Result()=>new Snapshot{suite=suite,sourceId=ProbeBuildIdentity.SourceId,matchMesh=matchMesh,groundMesh=groundMesh,note=Note,line=Line(),pictures=Pictures,failed=Failed,inherited=Inherited,pairedBeyond=PairedBeyond,shapeFailed=ShapeFailed,summaries=order.ToArray(),failures=failures.ToArray(),inheritedEntries=inherited.ToArray(),pairedBeyondEntries=beyond.ToArray(),all=all.ToArray()};
     // Ends a suite's run: writes <folder>/<file> when anything was measured; returns its line or null.
     public string Finish(string folder,string file){
         Dispose();if(Current==this)Current=null;if(Pictures==0)return null;
