@@ -1,5 +1,5 @@
 {
-  "sourceId": "16a1e8b447cf2cc77d400965cc7d073e8dafda9e7fe977f5d27b4e0e0c61ae7c",
+  "sourceId": "72dfc40ff298e0f7cd3aefd77ed01234bb870321eec259f88c10950b8ae3b5cc",
   "sources": [
     "prototypes/match-engine-unity/ProbeSimulation.cs",
     "prototypes/match-engine-unity/ProbeBridge.cs",
@@ -43,6 +43,8 @@
     "prototypes/match-engine-unity/D6TeamRing.shader",
     "prototypes/match-engine-unity/ClubStadiumProfiles.cs",
     "prototypes/match-engine-unity/StadiumArchitecture.cs",
+    "prototypes/match-engine-unity/D6Flag.shader",
+    "prototypes/match-engine-unity/StadiumSupporters.cs",
     "prototypes/match-engine-unity/FootballDuel.cs",
     "docs/match-contracts/shared.md",
     "work/match-next/contacts/catalog.json",

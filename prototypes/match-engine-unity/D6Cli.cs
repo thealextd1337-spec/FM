@@ -27,6 +27,23 @@ public static class D6Cli {
         try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,Doppel6.Probe.MatchLightingTests.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
 
+    public static void StadiumTests(){
+        try{
+            var repo=Repo();var output=Arg("-d6output");UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);
+            Debug.Log("[D6Cli] ClubStadiumProfilesTests: "+Doppel6.Probe.ClubStadiumProfilesTests.Run(repo,output));
+            Debug.Log("[D6Cli] StadiumArchitectureTests: "+StadiumArchitectureTests.Run(repo,output));
+            Debug.Log("[D6Cli] StadiumSupportersTests: "+StadiumSupportersTests.Run(repo,output));
+            Done(true,"stadium tests finished");
+        }catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+
+    public static void StadiumGallery(){
+        string repo=null,message=null;bool ok=false;
+        try{repo=Repo();if(SystemInfo.graphicsDeviceType==UnityEngine.Rendering.GraphicsDeviceType.Null)throw new InvalidOperationException("Stadium gallery needs a graphics device");ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=StadiumGalleryDiagnostics.Run(repo,Arg("-d6output"),Arg("-d6label","prototype"),Arg("-d6only"));ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
+        finally{if(repo!=null)ProbeWebBuild.Restore(repo);}
+        Done(ok,message);
+    }
+
     public static void MatchLighting(){
         string repo=null,message=null;bool ok=false;
         try{repo=Repo();if(SystemInfo.graphicsDeviceType==UnityEngine.Rendering.GraphicsDeviceType.Null)throw new InvalidOperationException("Match lighting evidence needs a graphics device");ProbeWebBuild.Configure(repo);UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);message=Doppel6.Probe.MatchLightingTests.Evidence(repo,Arg("-d6output"));ok=true;}catch(Exception e){Debug.LogException(e);message=e.Message;}
@@ -50,6 +67,7 @@ public static class D6Cli {
             Debug.Log("[D6Cli] FootballGaitTests: "+FootballGaitTests.Run(repo,output));
             Debug.Log("[D6Cli] ClubStadiumProfilesTests: "+Doppel6.Probe.ClubStadiumProfilesTests.Run(repo,output));
             Debug.Log("[D6Cli] StadiumArchitectureTests: "+StadiumArchitectureTests.Run(repo,output));
+            Debug.Log("[D6Cli] StadiumSupportersTests: "+StadiumSupportersTests.Run(repo,output));
             Debug.Log("[D6Cli] FootballDuelTests: "+FootballDuelTests.Run(repo,output));
             Debug.Log("[D6Cli] FootballIterationTests: "+FootballIterationTests.Run(repo,output));
             Debug.Log("[D6Cli] FootballKeeperTests: "+FootballKeeperTests.Run(repo,output));
