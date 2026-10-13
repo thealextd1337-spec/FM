@@ -3,3 +3,17 @@
 dist/** -text
 prototypes/match-engine-unity/** -text
 outputs/** -text
+
+# Additional byte-hashed Unity identity inputs must survive Git checkout unchanged.
+work/platform/assets/contact-pilot-manifest.json -text
+work/platform/engine-probe/web/play.js -text
+work/platform/engine-probe/web/play-catalog.json -text
+work/platform/engine-probe/web/pose.js -text
+work/platform/engine-probe/web/net.js -text
+work/platform/engine-probe/web/physics-catalog.json -text
+work/platform/engine-probe/web/physics.js -text
+work/platform/engine-probe/web/camera.js -text
+docs/match-contracts/shared.md -text
+work/match-next/contacts/catalog.json -text
+work/platform/assets/manifest.json -text
+work/platform/assets/lowpoly/build_lowpoly.py -text
