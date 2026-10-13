@@ -1,5 +1,10 @@
 # Änderungen
 
+## 13. Oktober 2026 – Nighttime-Demo (lokal, nicht veröffentlicht)
+
+- Lokaler Unity/WebGL-Kandidat „Nighttime“ für die 3D-Matchansicht auf Basis von Release 130: helles Flutlichtfeld mit Lichtinseln, dunkle Ränge und Umgebung, ruhiger dunkelblauer Himmel, Lampen-Halos auch ohne Bloom, matte Trikots, eigene Haut-/Haar-/Handschuhreaktion, kühles Gegenlicht und hervorgehobener Ball. Modelle, Clips, Masken, Matchregeln, Speicherung und Spielstände bleiben unverändert.
+- Gleiche native Zustände, Ereignis-/Torlogs und Zufallsziehungen mit Basis- und Kandidatenbuild; acht Architekturtypen, normal/reduced und drei Fenstergrößen verglichen; Unity-Suiten identisch zur Basis. Offene Geräte- und Browser-Lebenszyklusprüfungen sind benannt. [Übergabe](3d-stilauftraege/nighttime-handoff.md).
+
 ## 13. Oktober 2026 – Bugliste
 
 - Offene Probleme mit Browserleistung, Laufdynamik, Abwehrverfolgung, Freistoßausrichtung, Rückwärtslaufen und Kontaktübergängen mit nächster Abnahme dokumentiert. Native Spielzeit-/Schussziele, Android-Prüfung und lokale Korrekturen getrennt erfasst. [Bugliste](Bugliste.md).
