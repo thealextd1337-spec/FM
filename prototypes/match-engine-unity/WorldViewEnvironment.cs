@@ -9,9 +9,9 @@ namespace Doppel6.Probe {
 public partial class ProbeBridge {
     
     
-    // Reduced: no MSAA, 1024 hard shadows over 70 m, no bloom, fewer stadium
-    // details. Chosen by the page for touch devices; without that field by
-    // Unity's mobile platform flag.
+    // Reduced quality (WorldViewLighting decides MSAA, shadows and bloom) builds
+    // fewer stadium and supporter details. Chosen by the page for touch devices;
+    // without that field by Unity's mobile platform flag.
     
     readonly bool[] standShown={true,true,true,true};
     readonly List<Texture2D> stadiumTextures=new List<Texture2D>();
@@ -44,28 +44,52 @@ public partial class ProbeBridge {
     // Stable texel noise from the profile seed; no Unity random state.
     static float Grain(int x,int y,int seed){unchecked{uint h=(uint)(x*374761393+y*668265263+seed*1442695041);h=(h^(h>>13))*1274126177u;return ((h^(h>>16))&1023)/1023f;}}
 
-    // Club stadium of the home side (WorldConfig.teams[].home). Presentation
-    // only: the profile is resolved by club ID, never from the session or match.
+    // Club stadium of the home side (WorldConfig.teams[].home), the country cup ground of a cup
+    // club or the neutral final venue named by WorldConfig.presentation. Presentation only: the
+    // profile is resolved by club ID and the received display facts, never from the session or match.
     public string StadiumClub {get;private set;}
     public string StadiumArchetype {get;private set;}
+    // Venue key: a club ID, CUP-STANDARD-<country>, LEAGUE-STANDARD-<country>, NEUTRAL-EUROPE or NEUTRAL-CUP-<country>.
+    public string StadiumVenue {get;private set;}
     public StadiumBlueprint StadiumPlan {get;private set;}
+    // The light look the stadium materials were built from (read, never written, here).
+    public MatchLightLook StadiumLook {get;private set;}
+    // Horizon gradient at height v (0 ground, 1 top): dark ground, a soft glow above the skyline,
+    // the sky colour above. The night look reproduces the Release 130 evening exactly.
+    public static Color SkyTexel(MatchLightLook look,float v){
+        var glow=look.skyHorizon;if(v<.58f)return Color.Lerp(look.skyGround,glow*.55f,Mathf.Pow(v/.58f,6));float t=(v-.58f)/.42f;return Color.Lerp(glow,look.skyTop,Mathf.Sqrt(t));
+    }
     readonly List<Mesh> stadiumMeshes=new List<Mesh>();
     readonly float[] standFronts=new float[4];
     Transform stadiumSurroundings;Material crowdMaterial;
 
+    // A club's identity pattern on banners and flags: the pattern its own ground shows.
+    static int ClubPattern(string clubId){var p=ClubStadiumProfiles.Resolve(clubId);return StadiumArchitecture.IdentityOf(p.FacadeMotif,ClubStadiumProfiles.Seed(clubId??""));}
+
     void BuildStadium(){
         var g=worldView.Config.geometry;float L=(float)g.length,W=(float)g.width;
-        ApplyMatchLighting();
-        // Club colours for crowd, seats and trims; home supporters dominate.
-        Color home=new Color(.85f,.2f,.2f),homeTrim=Color.white,away=new Color(.2f,.35f,.8f);
-        foreach(var team in worldView.Config.teams??Array.Empty<WorldTeam>())foreach(var p in worldView.Config.players){
-            int index=Array.IndexOf(worldView.Config.teams,team);if(p.team!=index||p.keeper||p.kit==null)continue;
-            if(team.home){home=Kit(p.kit.main,home);homeTrim=Kit(p.kit.trim,homeTrim);}else away=Kit(p.kit.main,away);break;
+        ApplyMatchLighting();var look=LightLook;StadiumLook=look;bool day=look.light==MatchLight.Day;
+        var config=worldView.Config;var teams=config.teams;
+        // Club colours per physical team (0 = managed club): the clubs' own colours from
+        // WorldConfig.presentation, never a clash kit. Pages without a presentation keep the
+        // Release 130 rule: the first outfield kit of each team.
+        var display=config.presentation;bool presented=!string.IsNullOrEmpty(display?.schema);
+        var primary=new[]{new Color(.85f,.2f,.2f),new Color(.2f,.35f,.8f)};var secondary=new[]{Color.white,Color.white};
+        for(int t=0;t<2;t++){
+            if(presented){primary[t]=Kit(display.clubs[t].primary,primary[t]);secondary[t]=Kit(display.clubs[t].secondary,secondary[t]);continue;}
+            var player=Array.Find(config.players,p=>p!=null&&p.team==t&&!p.keeper&&p.kit!=null);if(player!=null){primary[t]=Kit(player.kit.main,primary[t]);secondary[t]=Kit(player.kit.trim,secondary[t]);}
         }
-        var homeTeam=Array.Find(worldView.Config.teams,t=>t!=null&&t.home);
-        var profile=ClubStadiumProfiles.Resolve(homeTeam?.id);
-        var plan=StadiumArchitecture.Plan(profile,L,W,home,homeTrim,!ReducedQuality);
-        StadiumPlan=plan;StadiumClub=profile.ClubId;StadiumArchetype=plan.Archetype;int seed=profile.DetailSeed;
+        // Exactly one team is flagged home (validated), also at neutral venues. A page without a
+        // presentation keeps the Release 130 stadium of the home club and no supporter blocks.
+        int homeTeam=teams[1].home?1:0,awayTeam=1-homeTeam;
+        var profile=presented?ClubStadiumProfiles.ResolveVenue(teams[homeTeam].id,display.clubs[homeTeam].kind,display.venue,display.competition,display.venueCountry):ClubStadiumProfiles.ResolveLegacy(teams[homeTeam].id);
+        bool neutral=presented&&profile.Identity.Supporters.Neutral;
+        Color home=primary[homeTeam],homeTrim=secondary[homeTeam],away=primary[awayTeam];
+        // A neutral arena keeps its own seats, walls and boards; both clubs keep their blocks and banners.
+        if(neutral){home=Kit(profile.Identity.ArenaPrimary,home);homeTrim=Kit(profile.Identity.ArenaSecondary,homeTrim);}
+        var plan=StadiumArchitecture.Plan(profile,L,W,home,homeTrim,!ReducedQuality,presented);
+        StadiumPlan=plan;StadiumClub=profile.ClubId;StadiumVenue=profile.Venue;StadiumArchetype=plan.Archetype;int seed=profile.DetailSeed;
+        supporterSetup=presented?new SupporterSetup{ClubIds=new[]{teams[0].id,teams[1].id},Primary=primary,Secondary=secondary,Patterns=new[]{ClubPattern(teams[0].id),ClubPattern(teams[1].id)},HomeTeam=homeTeam,Neutral=neutral}:null;
 
         // Turf: one procedural material for the pitch and the run-off apron, mown per club.
         var pitch=new Material(Resources.Load<Shader>("D6Pitch"));pitch.SetVector("_Size",new Vector4(L,W,0,0));
@@ -75,23 +99,27 @@ public partial class ProbeBridge {
         Box("Apron",new Vector3(0,-.075f,0),new Vector3(L+40,.1f,W+40),pitch);
 
         // Crowd: 128 spectators x 8 rows, 4x16 texels each: head, hair, shirt and
-        // a dark gap between rows; some fans hold scarves in the home colours.
+        // a dark gap between rows; some fans hold scarves in their club's colours.
+        // Home grounds are mostly home colours with a small visitor share; a neutral
+        // final mixes both clubs evenly.
         var random=new System.Random(seed);
-        Color[] palette={home,home,home,homeTrim,home*.7f,new Color(.12f,.12f,.14f),new Color(.85f,.82f,.75f),new Color(.3f,.3f,.33f),away};
+        Color[] palette=neutral?new[]{primary[homeTeam],primary[homeTeam],secondary[homeTeam],primary[awayTeam],primary[awayTeam],secondary[awayTeam],new Color(.12f,.12f,.14f),new Color(.85f,.82f,.75f),new Color(.3f,.3f,.33f)}
+            :new[]{home,home,home,homeTrim,home*.7f,new Color(.12f,.12f,.14f),new Color(.85f,.82f,.75f),new Color(.3f,.3f,.33f),away};
         var faces=new[]{new Color(.88f,.68f,.53f),new Color(.72f,.52f,.38f),new Color(.55f,.38f,.27f),new Color(.36f,.25f,.18f)};
         var hairs=new[]{new Color(.12f,.10f,.09f),new Color(.30f,.21f,.14f),new Color(.62f,.50f,.33f),new Color(.45f,.44f,.42f)};
-        const int cols=128,rowsTex=8;var shirts=new Color[cols*rowsTex];var face=new int[shirts.Length];var hair=new int[shirts.Length];var scarf=new bool[shirts.Length];var lift=new int[shirts.Length];
-        for(int i=0;i<shirts.Length;i++){shirts[i]=palette[random.Next(palette.Length)];face[i]=random.Next(faces.Length);hair[i]=random.Next(hairs.Length);scarf[i]=random.NextDouble()<.09;lift[i]=random.Next(3);}
+        const int cols=128,rowsTex=8;var shirts=new Color[cols*rowsTex];var face=new int[shirts.Length];var hair=new int[shirts.Length];var scarf=new bool[shirts.Length];var lift=new int[shirts.Length];var club=new int[shirts.Length];
+        for(int i=0;i<shirts.Length;i++){int pick=random.Next(palette.Length);shirts[i]=palette[pick];club[i]=!neutral||pick<3?homeTeam:pick<6?awayTeam:i%2;face[i]=random.Next(faces.Length);hair[i]=random.Next(hairs.Length);scarf[i]=random.NextDouble()<.09;lift[i]=random.Next(3);}
         var seat=plan.SeatColor;
         crowdMaterial=EnvMaterial(Color.white,StadiumTexture(cols*4,rowsTex*16,(x,y)=>{
             int c=(y/16)*cols+x/4,lx=x%4,ly=y%16-lift[c];var shirt=shirts[c];
             if(ly<1)return Color.Lerp(seat,Color.black,.55f);
-            if(scarf[c]&&ly>=13&&lx<3)return (ly+lx)%2==0?home:homeTrim;
+            if(scarf[c]&&ly>=13&&lx<3)return neutral?((ly+lx)%2==0?primary[club[c]]:secondary[club[c]]):(ly+lx)%2==0?home:homeTrim;
             if(ly>=10&&ly<=13&&lx>=1)return ly==13?hairs[hair[c]]:faces[face[c]]*(lx==3?.85f:1);
             if(ly>=10)return Color.Lerp(seat,Color.black,.35f);
             if(ly<3)return Color.Lerp(seat,Color.black,.2f);
             float light=LowPolyStyle?.86f-(lx==0?.06f:0):.72f+.04f*ly-(lx==0?.12f:0);return Color.Lerp(shirt,new Color(.2f,.2f,.22f),.25f)*light;}));
-        crowdMaterial.SetFloat("_VertexTint",1);
+        // The received light look brightens or calms the crowd (linear factor; 1 = Release 130).
+        crowdMaterial.SetFloat("_VertexTint",1);crowdMaterial.SetColor("_BaseColor",Color.white*Mathf.Max(0,look.crowdLight));
 
         // Surface textures. Mesh UVs are metres; tiling is one repeat per N metres.
         // Low-Poly: the same surfaces with a third of the mottling; form carries the information.
@@ -108,13 +136,13 @@ public partial class ProbeBridge {
             else if(motif.Contains("stone"))n*=y%21==0||(x+(y/21)*13)%32==0?.72f:1;
             return new Color(n,n,n);});
         var roofTex=StadiumTexture(32,32,(x,y)=>{float n=x%8<1?.7f:.95f+.05f*Mathf.Sin(x*.8f);return new Color(n,n,n);});
-        var windows=StadiumTexture(64,64,(x,y)=>{bool frame=x%16<3||y%32<6||y%32>28;if(frame)return new Color(.12f,.12f,.13f);float lit=Grain(x/16,y/32,seed+41);return lit>.45f?new Color(1f,.86f,.62f)*(.7f+.3f*lit):new Color(.16f,.2f,.26f);});
+        // Windows: lit above the light look's threshold at night, all unlit by day.
+        var windows=StadiumTexture(64,64,(x,y)=>{bool frame=x%16<3||y%32<6||y%32>28;if(frame)return new Color(.12f,.12f,.13f);float lit=Grain(x/16,y/32,seed+41);return !day&&lit>look.windowLit?new Color(1f,.86f,.62f)*(.7f+.3f*lit):new Color(.16f,.2f,.26f);});
         var lampTex=StadiumTexture(16,8,(x,y)=>x%4==0||y%4==0?new Color(.25f,.25f,.25f):new Color(1,.97f,.88f),FilterMode.Point);
         var seatTex=StadiumTexture(32,16,(x,y)=>x%16<2||y<3?new Color(.35f,.35f,.37f):new Color(.95f,.95f,.95f)*(y>12?.85f:1));
         var leafTex=Noise(32,.6f,1.15f,51);var groundTex=Noise(64,.75f,1.08f,61);
-        // Evening horizon: dark ground, a soft glow above the skyline, deep blue above.
-        var skyTex=StadiumTexture(4,128,(x,y)=>{float v=y/127f;var glow=new Color(.30f,.29f,.35f);
-            if(v<.58f)return Color.Lerp(new Color(.02f,.03f,.04f),glow*.55f,Mathf.Pow(v/.58f,6));float t=(v-.58f)/.42f;return Color.Lerp(glow,new Color(.035f,.06f,.13f),Mathf.Sqrt(t));});
+        // Horizon from the received light look.
+        var skyTex=StadiumTexture(4,128,(x,y)=>SkyTexel(look,y/127f));
         skyTex.wrapMode=TextureWrapMode.Clamp;
 
         var slotMaterials=new Dictionary<StadiumSlot,Material>{{StadiumSlot.Crowd,crowdMaterial}};
@@ -122,9 +150,13 @@ public partial class ProbeBridge {
             var m=EnvMaterial(color??plan.Colors[slot],texture,new Vector2(1/metres,1/metres),emission,gloss);m.SetFloat("_VertexTint",1);slotMaterials[slot]=m;}
         Slot(StadiumSlot.Concrete,concreteTex,4);Slot(StadiumSlot.Seat,seatTex,1,color:seat);Slot(StadiumSlot.Roof,roofTex,3,gloss:.15f);Slot(StadiumSlot.Steel,null,1,gloss:.45f);
         Slot(StadiumSlot.Cladding,claddingTex,4);Slot(StadiumSlot.Brick,brickTex,2.4f);Slot(StadiumSlot.Trim,null,1,gloss:.1f);
-        Slot(StadiumSlot.Glass,windows,3,new Color(.75f,.72f,.66f),.6f);Slot(StadiumSlot.Lamp,lampTex,1,new Color(1.6f,1.5f,1.3f),color:new Color(.9f,.9f,.85f));
+        Slot(StadiumSlot.Glass,windows,3,day?new Color(.36f,.36f,.34f):new Color(.75f,.72f,.66f),.6f);Slot(StadiumSlot.Lamp,lampTex,1,new Color(1.6f,1.5f,1.3f),color:new Color(.9f,.9f,.85f));
+        // Floodlight heads glow with the light look (linear factor; off by day).
+        slotMaterials[StadiumSlot.Lamp].SetColor("_Emission",new Color(1.6f,1.5f,1.3f).linear*Mathf.Max(0,look.lampEmission));
         Slot(StadiumSlot.Shade);Slot(StadiumSlot.Grass,leafTex,6);Slot(StadiumSlot.Foliage,leafTex,3);Slot(StadiumSlot.Water,null,1,gloss:.8f);Slot(StadiumSlot.Ground,groundTex,8);
         Slot(StadiumSlot.Sky,skyTex,1,Color.white,color:Color.black);Slot(StadiumSlot.Accent,null,1,gloss:.1f);
+        // Distant skylines sit in the horizon haze of the received look (vertex shade layers them).
+        if(plan.Count(StadiumSlot.Haze)>0)Slot(StadiumSlot.Haze,null,1,color:Color.Lerp(look.skyHorizon,look.skyGround,.45f));
 
         // One renderer per stand side and surface; each side hides as a whole.
         standHalf=new Vector2(L/2,W/2);
