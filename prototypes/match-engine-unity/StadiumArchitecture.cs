@@ -415,6 +415,10 @@ public static class StadiumArchitecture {
         }else if(m==FacadeMaterial.Timber){
             int n=Mathf.Max(3,Mathf.RoundToInt(half*2/6));for(int i=0;i<n;i++){float x=-half+(i+.5f)*half*2/n;if(main&&Mathf.Abs(x)<2.2f)continue;b.Local(side,StadiumSlot.Shade,x,h*.4f,z-.02f,new Vector3(1.1f,h*.75f,.06f));}
             for(float x=-half+.7f;x<half;x+=1.4f)b.Local(side,StadiumSlot.Cladding,x,h/2,z-.04f,new Vector3(.08f,h,.05f),-.85f);
+        }else if(m==FacadeMaterial.Slat){
+            // Shipyard plinth: brick base with wide roller doors between steel posts.
+            b.Local(side,StadiumSlot.Brick,0,h/2,z+.02f,new Vector3(half*2,h,.12f));int n=Mathf.Max(3,Mathf.RoundToInt(half*2/7));float w=half*2/n;
+            for(int i=0;i<n;i++){float x=-half+(i+.5f)*w;if(main&&Mathf.Abs(x)<2.2f)continue;b.Local(side,StadiumSlot.Shade,x,h*.4f,z-.04f,new Vector3(w*.62f,h*.74f,.06f));b.Local(side,StadiumSlot.Steel,x-w/2,h/2,z-.06f,new Vector3(.22f,h,.1f));}
         }else{
             // Glass lounge band with mullions.
             b.Local(side,StadiumSlot.Glass,0,h*.48f,z-.02f,new Vector3(half*2-1,h*.72f,.06f));
