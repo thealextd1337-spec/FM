@@ -1,0 +1,13 @@
+'use strict';
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const source=process.argv[2]?require('node:child_process').execFileSync('git',['show',`${process.argv[2]}:work/audit-world-balance-v68.cjs`],{encoding:'utf8'}):fs.readFileSync('work/audit-world-balance-v68.cjs','utf8');
+const start=source.indexOf('function medianOf(');
+const definition=start>=0?source.slice(start,source.indexOf('const metrics=',start)):'const medianOf='+source.match(/medianOf=([^;\r\n]+);/)[1]+';';
+const ctx=vm.createContext({assert});
+vm.runInContext(definition+';globalThis.median=medianOf;',ctx);
+assert.equal(ctx.median([4,1,3,2]),2.5,'Even samples must average their two middle values');
+assert.equal(ctx.median([3,1,2]),2,'Odd samples must retain their middle value');
+const sample=Object.freeze([...Array(17).fill(.8),.8302690669550249,.8365509082906668,...Array(17).fill(.9)]);
+assert.equal(Number(ctx.median(sample).toFixed(2)),.83,'The 36-value audit regression must use the statistical median');
+assert.equal(ctx.median([7]),7,'A singleton keeps its value');
+console.log('PASS: even, odd, singleton, immutable input and 36-value boundary regression');

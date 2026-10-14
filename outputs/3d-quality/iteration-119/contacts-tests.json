@@ -22,9 +22,10 @@
     "Absent defensive observation is not inferred for older checkpoints"
   ],
   "sourceHashes": {
-    "dist/world-pitch-actions-v99.js": "596b0cfb28a68782ca829a2b55f2702e844ec3e7c04e698d5f9543069f2c9877",
-    "dist/world-pitch3d-v98.js": "1bf59e8f49ee88941f856a3c742ba2059295b1eba395ec6eb654aafc5e44d316",
+    "dist/pitch-v55.js": "8c2c6ac40a61002fc5ed8beaf5e51eeebb22a9dc3e7d5ad07030ad20249664b8",
+    "dist/world-pitch-actions-v99.js": "3e2b515b920e75ba717842de2d470ba30f4701d2b2168ea13a7061ffd607f01f",
+    "dist/world-pitch3d-v98.js": "affe1b20e96826f30c09da9601ae310c507c0219528f34fbdb2dde1b75257668",
     "dist/world-unity-v151.js": "6bf98c94c8881c35d9d3f5afb4b3d55097164e7969fbbb1b176d034b58b7812f",
-    "dist/world-physical-v65.js": "0b4fdd1c22e98e5aa8f43db86561263ed0067e3bf4631e37d86ea77fdc1ad9ef"
+    "dist/world-physical-v65.js": "95198f2c94c80e5a44948a9e409e063fc5345e27e1408d190f7aea8bec98eeca"
   }
 }

@@ -16,8 +16,8 @@
     "Wrong-type optional facts do not pass whitelist"
   ],
   "sourceHashes": {
-    "dist/world-pitch-actions-v99.js": "596b0cfb28a68782ca829a2b55f2702e844ec3e7c04e698d5f9543069f2c9877",
-    "dist/pitch-motion-v102.js": "66cc8e4dac75fc717fd2951934c685ac4316ff58646310c0096b402379a57fcd",
+    "dist/world-pitch-actions-v99.js": "3e2b515b920e75ba717842de2d470ba30f4701d2b2168ea13a7061ffd607f01f",
+    "dist/pitch-motion-v102.js": "58dd29d69557d94bb0f72c8f8f0caf486604e52803b2858adf0c953bf48b55c6",
     "dist/world-unity-v151.js": "6bf98c94c8881c35d9d3f5afb4b3d55097164e7969fbbb1b176d034b58b7812f"
   }
 }

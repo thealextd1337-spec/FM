@@ -6,6 +6,8 @@ const keeper={pid:'k',keeper:true,x:.5,y:.05},stale={completed:true,saved:true,p
 const current={owner:keeper,ball:{x:.56,y:.08},elapsed:10};
 let action={kind:'save',id:'pickup:10',saved:true,target:{x:.56,y:.08},height:.29};
 const ctx=vm.createContext({v99Actions:new WeakMap([[current,{keepers:new Map([['k',stale]])}]]),v99Flights:new WeakMap(),v115OffsideBalls:new WeakMap(),v101ShotPoint:()=>({x:.48,y:.04,elevation:1.35}),v115KeeperChallengeAction:()=>action,v101KeeperWaiting:()=>false,v102Clock:()=>10});
+// The ball reader now calls the marker-gated penalty projection before keeper pictures.
+vm.runInContext(source.slice(source.indexOf('function v182PenaltyFrameBall('),source.indexOf('function v100PenaltyWidePoint(')),ctx);
 vm.runInContext(source.slice(source.indexOf('function v99BallView('),source.indexOf('function v99PlayerAction(')),ctx);
 const frozen=JSON.stringify(current);
 check('Confirmed pickup uses its contact instead of stale parry',()=>assert.deepEqual(JSON.parse(JSON.stringify(ctx.v99BallView(current))),{x:.56,y:.08,elevation:.29}));
