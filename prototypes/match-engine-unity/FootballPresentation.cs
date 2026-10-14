@@ -328,8 +328,12 @@ public partial class ProbeBridge {
         // pass or shot: native sends the point with the countdown). Without the reach the boot stood
         // planted 0.35 m from that point and the receive there after an aborted passReady pulled it
         // over in one picture (1613 deg/s thigh, R11 1377). The point is received, never predicted.
-        var aim=p.contactPoint?.Length==3?Display(p.contactPoint):(Vector3?)null;
-        bool carried=f.owner==p.id&&ballView.gameObject.activeSelf&&ballView.position.y<=.45f&&Horizontal(ballView.position-actors[i].position)<=1.2f;
+        // B05 (r132): the received contact point of the countdown, else the received lead contact of the kick ahead in the display
+        // interval (WorldViewPlayback.Blend: received, never predicted); a ball at the feet that nobody owns (the kick-off pass:
+        // owner empty until the kick) counts as carried. Without a reach the boot stood in the clip pose through the countdown
+        // and met the ball in the contact picture alone (native 160112 field-5, 3.650: 3601 deg/s thigh).
+        var aim=p.contactPoint?.Length==3?Display(p.contactPoint):p.leadContact?.Length==3&&p.leadIn>0?Display(p.leadContact):(Vector3?)null;
+        bool carried=(f.owner==p.id||string.IsNullOrEmpty(f.owner))&&ballView.gameObject.activeSelf&&ballView.position.y<=.45f&&Horizontal(ballView.position-actors[i].position)<=1.2f;
         if(!carried&&!(aim.HasValue&&f.owner!=p.id&&aim.Value.y<=.45f&&Horizontal(aim.Value-actors[i].position)<=1.2f))return false;
         float reach=FootballEnvelope.Smooth((phase-ReadyReachFrom)/(1-ReadyReachFrom));if(reach<=0)return false;
         pose.contact=true;pose.kind="foot";pose.contactWeight=Mathf.Clamp(reach,.001f,.999f);return true;

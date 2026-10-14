@@ -15,3 +15,5 @@ const fouls=cases.flatMap(c=>(c.fouls||[]).map(f=>({c:c.name.replace('native132-
 console.log('fouls',fouls.length);for(const f of fouls)console.log(JSON.stringify(f));
 const r21=n.r21Gates||[];console.log('r21 gates',r21.length,'failed',r21.filter(g=>!g.passed).length);for(const g of r21.filter(g=>!g.passed))console.log('FAIL',g.name.slice(0,160),g.value,'limit',g.limit);
 module.exports={worst,fouls};
+// r132 (B02): stride band statistics per native field player.
+{const bands=cases.filter(c=>c.bands&&c.name.includes('-field-')).map(c=>c.bands);if(bands.length){const sum=k=>bands.reduce((s,b)=>s+(b[k]||0),0);const moving=sum('movingSeconds');console.log('B02 bands: field players',bands.length,'moving s',moving.toFixed(1),'band changes/min',(sum('changes')*60/moving).toFixed(1),'short dwells <0.25 s',sum('shortDwells'),'walk dwells',sum('walkDwells'),'walk short',sum('walkShort'),'walk dwell mean s',(bands.reduce((s,b)=>s+b.walkDwellMean*b.walkDwells,0)/Math.max(1,sum('walkDwells'))).toFixed(3));}}

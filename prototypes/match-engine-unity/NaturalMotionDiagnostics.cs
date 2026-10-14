@@ -41,7 +41,12 @@ public static class NaturalMotionDiagnostics {
         // r20: every received countdown end, classified by the R20 countdown semantics (Countdowns).
         public Countdown[] countdowns;
         // r21: foul offender windows, backward presentation (field players) and kick facing of a native player.
-        public FoulWindow[] fouls;public Reversal reversal;public KickFacing[] kicks;}
+        public FoulWindow[] fouls;public Reversal reversal;public KickFacing[] kicks;
+        // r132 (B02): stride band statistics of a native player over its moving pictures.
+        public Bands bands;}
+    // r132 (B02): changes of the Unity stride band (walk/run/sprint/back/side/idle) over the moving pictures of a native player, per
+    // minute of moving time; dwell of the walking band (mean seconds, share under 0.25 s) and of all bands.
+    [Serializable] public class Bands {public int changes,shortDwells,walkDwells,walkShort;public float movingSeconds,changesPerMinute,walkDwellMean,dwellMean;}
     // r21: one foul offender window of a native player: from its first received foulOffender picture to OffenderAfter after
     // its last one (the exit into the following action and the walk-off). floatMax: the largest lower-foot support clearance
     // (the lower foot's skinned sole contour above the turf, bones without a contour: both soles in the air, the floating offender);
@@ -138,14 +143,14 @@ public static class NaturalMotionDiagnostics {
     // r5: per-stage capture of the composed pose through FootballAnimation.Probe
     // (read by reflection, so the same suite still measures a source without it).
     sealed class StageTap {
-        public readonly Quaternion[][] cur=new Quaternion[9][],prev=new Quaternion[9][];public readonly bool[] got=new bool[9],had=new bool[9];public readonly Vector3[] ankle=new Vector3[2];public readonly float[] clear=new float[10];public readonly Vector3[] knee=new Vector3[10],foot=new Vector3[10],hip=new Vector3[10];readonly Transform actor;readonly Transform[] bones;readonly FootballAnimation anim;
-        public StageTap(Transform actor,FootballAnimation anim){this.actor=actor;this.anim=anim;bones=BoneSet(actor);for(int i=0;i<9;i++){cur[i]=new Quaternion[8];prev[i]=new Quaternion[8];}var field=typeof(FootballAnimation).GetField("Probe");if(field!=null)field.SetValue(anim,(Action<int>)Capture);}
-        void Capture(int st){if(st<0||st>8)return;var unturn=Quaternion.Inverse(actor.rotation);for(int k=0;k<8;k++)cur[st][k]=unturn*bones[k].rotation;got[st]=true;if(st>4)return;if(st==1){ankle[0]=bones[5].position;ankle[1]=bones[6].position;}for(int f=0;f<2;f++){clear[st*2+f]=Mathf.Min(anim.ground.AnkleClearance(f),anim.ground.ToeClearance(f));knee[st*2+f]=unturn*(bones[3+f].position-actor.position);hip[st*2+f]=unturn*(bones[1+f].position-actor.position);foot[st*2+f]=unturn*(bones[5+f].position-actor.position);}}
+        public readonly Quaternion[][] cur=new Quaternion[11][],prev=new Quaternion[11][];public readonly bool[] got=new bool[11],had=new bool[11];public readonly Vector3[] ankle=new Vector3[2];public readonly float[] clear=new float[10];public readonly Vector3[] knee=new Vector3[10],foot=new Vector3[10],hip=new Vector3[10];readonly Transform actor;readonly Transform[] bones;readonly FootballAnimation anim;
+        public StageTap(Transform actor,FootballAnimation anim){this.actor=actor;this.anim=anim;bones=BoneSet(actor);for(int i=0;i<11;i++){cur[i]=new Quaternion[8];prev[i]=new Quaternion[8];}var field=typeof(FootballAnimation).GetField("Probe");if(field!=null)field.SetValue(anim,(Action<int>)Capture);}
+        void Capture(int st){if(st<0||st>10)return;var unturn=Quaternion.Inverse(actor.rotation);for(int k=0;k<8;k++)cur[st][k]=unturn*bones[k].rotation;got[st]=true;if(st>4)return;if(st==1){ankle[0]=bones[5].position;ankle[1]=bones[6].position;}for(int f=0;f<2;f++){clear[st*2+f]=Mathf.Min(anim.ground.AnkleClearance(f),anim.ground.ToeClearance(f));knee[st*2+f]=unturn*(bones[3+f].position-actor.position);hip[st*2+f]=unturn*(bones[1+f].position-actor.position);foot[st*2+f]=unturn*(bones[5+f].position-actor.position);}}
         // Stage speeds against the previous picture (0 for a stage not sampled in both).
         public void Take(Sample s,Sample last){
             s.stage=new float[5];s.stageBone=new int[5];s.layerAnkle=new[]{ankle[0],ankle[1]};s.stageClear=(float[])clear.Clone();s.kneeMove=new float[4];for(int f=0;f<2;f++){s.kneeMove[f]=Vector3.Distance(knee[4+f],knee[6+f]);s.kneeMove[2+f]=Vector3.Distance(foot[4+f],foot[6+f]);}s.legGeometry=new Vector3[12];for(int f=0;f<2;f++){s.legGeometry[f*6]=hip[4+f];s.legGeometry[f*6+1]=knee[4+f];s.legGeometry[f*6+2]=foot[4+f];s.legGeometry[f*6+3]=hip[6+f];s.legGeometry[f*6+4]=knee[6+f];s.legGeometry[f*6+5]=foot[6+f];}double dt=last!=null?s.clock-last.clock:0;
-            s.subStage=new float[4];s.subStageBone=new int[4];
-            for(int st=0;st<9;st++){if(got[st]&&had[st]&&dt>0)for(int k=0;k<8;k++){float v=Quaternion.Angle(cur[st][k],prev[st][k])/(float)dt;if(st<5){if(v>s.stage[st]){s.stage[st]=v;s.stageBone[st]=k;}}else if(v>s.subStage[st-5]){s.subStage[st-5]=v;s.subStageBone[st-5]=k;}}
+            s.subStage=new float[6];s.subStageBone=new int[6];
+            for(int st=0;st<11;st++){if(got[st]&&had[st]&&dt>0)for(int k=0;k<8;k++){float v=Quaternion.Angle(cur[st][k],prev[st][k])/(float)dt;if(st<5){if(v>s.stage[st]){s.stage[st]=v;s.stageBone[st]=k;}}else if(v>s.subStage[st-5]){s.subStage[st-5]=v;s.subStageBone[st-5]=k;}}
                 if(got[st]){Array.Copy(cur[st],prev[st],8);had[st]=true;}got[st]=false;}
         }
     }
@@ -451,6 +456,14 @@ public static class NaturalMotionDiagnostics {
         }
         return list.ToArray();
     }
+    static Bands BandStats(List<Sample> all){
+        var b=new Bands();string cur=null;double since=-1,dwellSum=0;int dwells=0;double walkSum=0;
+        for(int i=0;i<all.Count;i++){var s=all[i];if(i>0&&s.clock>all[i-1].clock&&(s.moving||all[i-1].moving))b.movingSeconds+=(float)(s.clock-all[i-1].clock);
+            string band=s.stride??"";if(band==cur)continue;
+            if(cur!=null&&since>=0){double d=s.clock-since;dwells++;dwellSum+=d;if(d<.25)b.shortDwells++;if(cur=="walk"){b.walkDwells++;walkSum+=d;if(d<.25)b.walkShort++;}if(cur!="idle"&&band!="idle")b.changes++;}
+            cur=band;since=s.clock;}
+        b.changesPerMinute=b.movingSeconds>0?b.changes*60f/b.movingSeconds:0;b.dwellMean=dwells>0?(float)(dwellSum/dwells):0;b.walkDwellMean=b.walkDwells>0?(float)(walkSum/b.walkDwells):0;return b;
+    }
     static Reversal Reversals(List<Sample> all){
         var r=new Reversal();double runFrom=-1;
         foreach(var x in all){
@@ -604,8 +617,8 @@ public static class NaturalMotionDiagnostics {
         for(int i=0;i<n;i++){t.footContact[i]=S[i].footContact?1:0;if(i>0&&S[i].clock>S[i-1].clock){float dt=(float)(S[i].clock-S[i-1].clock);for(int k=0;k<8;k++)t.boneRoot[i*8+k]=Quaternion.Angle(S[i].rel[k],S[i-1].rel[k])/dt;}}
         t.kneeLeft=new float[n];t.kneeRight=new float[n];t.plantError=new float[n];t.progress=new float[n];t.actionWeight=new float[n];t.plant=new int[n];t.actionId=new string[n];
         for(int i=0;i<n;i++){var s=S[i];t.kneeLeft[i]=Vector3.Angle(s.thigh[0]-s.knee[0],s.ankle[0]-s.knee[0]);t.kneeRight[i]=Vector3.Angle(s.thigh[1]-s.knee[1],s.ankle[1]-s.knee[1]);t.plant[i]=s.plant;t.plantError[i]=s.plantError;t.progress[i]=s.progress;t.actionWeight[i]=s.actionWeight;t.actionId[i]=s.actionId;}
-        t.subStage=new float[n*4];t.subStageBone=new int[n*4];t.swivel=new float[n*5];t.releaseShift=new float[n*2];t.releaseTurn=new float[n*2];t.lifts=new float[n*6];
-        for(int i=0;i<n;i++){var s=S[i];if(s.subStage!=null)for(int k=0;k<4;k++){t.subStage[i*4+k]=s.subStage[k];t.subStageBone[i*4+k]=s.subStageBone[k];}for(int k=0;k<5;k++)t.swivel[i*5+k]=s.swivel!=null?s.swivel[k]:-1;if(s.releaseShift!=null)for(int f=0;f<2;f++){t.releaseShift[i*2+f]=s.releaseShift[f];t.releaseTurn[i*2+f]=s.releaseTurn[f];}if(s.lifts!=null)Array.Copy(s.lifts,0,t.lifts,i*6,6);}
+        t.subStage=new float[n*6];t.subStageBone=new int[n*6];t.swivel=new float[n*5];t.releaseShift=new float[n*2];t.releaseTurn=new float[n*2];t.lifts=new float[n*6];
+        for(int i=0;i<n;i++){var s=S[i];if(s.subStage!=null)for(int k=0;k<s.subStage.Length&&k<6;k++){t.subStage[i*6+k]=s.subStage[k];t.subStageBone[i*6+k]=s.subStageBone[k];}for(int k=0;k<5;k++)t.swivel[i*5+k]=s.swivel!=null?s.swivel[k]:-1;if(s.releaseShift!=null)for(int f=0;f<2;f++){t.releaseShift[i*2+f]=s.releaseShift[f];t.releaseTurn[i*2+f]=s.releaseTurn[f];}if(s.lifts!=null)Array.Copy(s.lifts,0,t.lifts,i*6,6);}
         t.leadIn=new float[n];t.actionAt=new double[n];for(int i=0;i<n;i++){t.leadIn[i]=S[i].leadIn;t.actionAt[i]=S[i].actionAtKnown?S[i].actionAt:-1;}
         File.WriteAllText(Path.Combine(folder,"trace-"+name+".json"),JsonUtility.ToJson(t));
     }
@@ -1359,7 +1372,9 @@ public static class NaturalMotionDiagnostics {
         }
         string prefix=family!=null?family+"-":contract?"native-contract-":"native-";
         // Two 30 s live windows per capture keep the run bounded.
-        var pictures=new List<WorldFrame>();var used=new List<NativePicture>();for(int i=0;i<capture.pictures.Length&&pictures.Count<1200;i++)if(capture.pictures[i].phase=="live"){pictures.Add(ToFrame(capture.pictures[i]));used.Add(capture.pictures[i]);}else if(pictures.Count>0)break;
+        // r132: -d6pictures <n> raises the 1200-picture (60 s) bound so later windows of a first half are replayed as well.
+        int bound=1200;{var args=Environment.GetCommandLineArgs();for(int k=0;k<args.Length-1;k++)if(args[k]=="-d6pictures"&&int.TryParse(args[k+1],out var b))bound=b;}
+        var pictures=new List<WorldFrame>();var used=new List<NativePicture>();for(int i=0;i<capture.pictures.Length&&pictures.Count<bound;i++)if(capture.pictures[i].phase=="live"){pictures.Add(ToFrame(capture.pictures[i]));used.Add(capture.pictures[i]);}else if(pictures.Count>0)break;
         InputTiming Timing(int k){if(!contract)return null;var t=new InputTiming();foreach(var np in used){var q=np.players[k];t.known.Add(q.durationKnown);if(q.actionAtKnown&&!t.events.ContainsKey(q.actionId??""))t.events[q.actionId??""]=q.actionAt;}return t;}
         config.initial=JsonUtility.FromJson<WorldFrame>(JsonUtility.ToJson(pictures[0]));config.initial.sequence=sequence=1;config.initial.phase="paused";
         Drop();Send(new WorldCommand{kind="load",config=config});
@@ -1383,7 +1398,7 @@ public static class NaturalMotionDiagnostics {
             NativeTrace((contract?"c":"")+capture.seed+"-"+i,all);
             var whole=Summarise("whole",all,0,all.Count);
             // cruise = locomotion-only pictures (idle/run actions) of the same player.
-            results.Add(new Case{name=prefix+capture.seed+"-"+role+"-"+i,group="native-player",origin=family!=null?"r21-native":contract?"r20-native":"native",note=Path.GetFileName(file)+"; cruise window = locomotion-only pictures",whole=whole,cruise=Summarise("locomotion",all,0,all.Count,true),transitions=Transitions(all,true),clips=new string[0],footActions=FootActions(all,Timing(i)),readyAborts=ReadyAborts(all),countdowns=Countdowns(pictures,i,all,Timing(i)).ToArray(),fouls=Fouls(pictures,i,all),reversal=isKeeper?null:Reversals(all),kicks=KickFacings(pictures,i,all)});
+            results.Add(new Case{name=prefix+capture.seed+"-"+role+"-"+i,group="native-player",origin=family!=null?"r21-native":contract?"r20-native":"native",note=Path.GetFileName(file)+"; cruise window = locomotion-only pictures",whole=whole,cruise=Summarise("locomotion",all,0,all.Count,true),transitions=Transitions(all,true),clips=new string[0],footActions=FootActions(all,Timing(i)),readyAborts=ReadyAborts(all),countdowns=Countdowns(pictures,i,all,Timing(i)).ToArray(),fouls=Fouls(pictures,i,all),bands=BandStats(all),reversal=isKeeper?null:Reversals(all),kicks=KickFacings(pictures,i,all)});
         }
         if(renderOn&&Want("recordings")&&contract)foreach(var (name,from,to) in ContractFocus){
             if(!name.StartsWith(prefix+capture.seed+"-"))continue;int who=int.Parse(name.Substring(name.LastIndexOf('-')+1));if(who>=n)continue;
