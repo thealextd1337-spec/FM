@@ -285,8 +285,10 @@ function v99PlayerAction(current,person){
  if(current.finished)return null;
  const native=current.attackFlow?.flowVersion===159||typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeBall;
  const held=current.attackFlow?.keeperHoldRevision===182&&v99Actions.get(current)?.kicks.get(person.pid);
- if(held?.holdPoint&&v101KeeperWaiting(current,person)&&v182KeeperPlacement(current,held)>0)return {kind:'goalKick',phase:'waiting',held:true,holding:false,progress:v182KeeperPlacement(current,held),target:v101KickTarget(current,person)};
- const smother=typeof v115KeeperChallengeAction==='function'&&v115KeeperChallengeAction(current,person);if(smother)return {...smother,parry:false};
+ const holding=Boolean(held?.holdPoint&&v101KeeperWaiting(current,person));
+ // v182 only decorates the existing keeper phases. Never replace an active
+ // catch/recovery with placement; both renderers receive the same hand fact.
+ const smother=typeof v115KeeperChallengeAction==='function'&&v115KeeperChallengeAction(current,person);if(smother)return {...smother,parry:false,...(holding?{holding:true}:{})};
  if(v65WorldActive&&current.kickoff?.kicker===person&&current.kickoff.phase!=='rolling'&&v115KickoffReady(current))return {kind:'passReady',progress:current.postBanner?Math.min(1,Math.max(0,1-current.postBanner.wait/.35)):0,target:current.kickoff.support};
  if(current.throwIn?.taker===person&&current.throwIn.ready>0)return {kind:'throw',progress:Math.min(1,current.throwIn.ready/.55),holding:true,pickup:Math.min(1,current.throwIn.ready/.35),target:{x:person.x+(person.x<.5?.15:-.15),y:person.y}};
  const state=v99Actions.get(current),throwPose=state?.throws.get(person.pid);
@@ -294,12 +296,15 @@ function v99PlayerAction(current,person){
  if(person.keeper&&state?.miss&&state.miss.age<1.05)return null;
  if(throwPose)return {kind:'throw',progress:throwPose.completed?1:Math.min(1,(current.flight?.progress||0)*4),holding:false,target:throwPose.target};
  const kick=state?.kicks.get(person.pid),keeper=state?.keepers.get(person.pid);
- if(kick&&(kick.phase==='follow'||v101KeeperWaiting(current,person))&&(!keeper||keeper.completed&&keeper.age>=(native?1.55:.95)))return {kind:'goalKick',phase:kick.phase,held:Boolean(kick.held),progress:kick.phase==='waiting'?Math.max(0,Math.min(1,1-(current.next-current.elapsed)/MATCH_SPEED/.28)):Math.min(1,kick.age/.45),target:kick.target||v101KickTarget(current,person)};
+ if(kick&&(kick.phase==='follow'||v101KeeperWaiting(current,person))&&(!keeper||keeper.completed&&keeper.age>=(native?1.55:.95))){
+  const progress=kick.phase==='waiting'?holding?v182KeeperPlacement(current,kick):Math.max(0,Math.min(1,1-(current.next-current.elapsed)/MATCH_SPEED/.28)):Math.min(1,kick.age/.45);
+  return {kind:'goalKick',phase:kick.phase,held:Boolean(kick.held),progress,target:kick.target||v101KickTarget(current,person),...(holding?{holding:progress<=.55}:current.attackFlow?.keeperHoldRevision===182&&kick.held&&kick.phase==='follow'?{holding:false}:{})};
+ }
  if(!keeper)return null;
  if(v131KeeperSetting(current,person))return null;
  const q=v131KeeperContactProgress(keeper),contact=v101ShotPoint(keeper,q),from=keeper.diveAt??(current.flight?.progress||0);
  return {kind:'save',progress:keeper.completed?1:clamp(((current.flight?.progress||0)-from)/Math.max(.1,q-from),0,1),recovery:keeper.completed?Math.min(1,keeper.age/(native?1.55:.95)):0,
-  target:{x:contact.x,y:contact.y},origin:keeper.keeperStart,height:contact.elevation,available:keeper.flight.duration/MATCH_SPEED,saved:keeper.saved,parry:Boolean(keeper.parry),goal:Boolean(keeper.goal)};
+  target:{x:contact.x,y:contact.y},origin:keeper.keeperStart,height:contact.elevation,available:keeper.flight.duration/MATCH_SPEED,saved:keeper.saved,parry:Boolean(keeper.parry),goal:Boolean(keeper.goal),...(holding?{holding:true}:{})};
 }
 
 // Keep the goal view visible before resolving a regular world-match penalty.

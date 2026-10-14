@@ -282,6 +282,8 @@
   "checks": [
     "Every unmarked scenario byte-identical to exact pre-fix native state, RNG and projection",
     "Catch facts, random draws and 2.4-second release schedule preserved",
+    "Original catch/recovery actions retained; explicit holding agrees with the hand-to-foot phase",
+    "Both review findings reproduced against the reviewed commit; corrected without changing any ball/body step or native state",
     "Eight JSON checkpoints during holding/placement preserve native state, clock, projection and RNG",
     "Constructor sets only new hold marker; old JSON restore adds no marker; keeper180/pace119 retained",
     "Short and high outlets have continuous actual release origins; unmarked high path byte-identical",
@@ -292,8 +294,10 @@
   ],
   "sourceHashes": {
     "dist/world-physical-v65.js": "0e9aea895f04f063054e84d61321f8da49d5c09ca5ae6bb24c6b416f7c0e35e6",
-    "dist/world-pitch-actions-v99.js": "41bfb739ea84c9766296636996164c07c06d36feb867c4e5f7a0cc46e6f25065",
-    "work/test-keeper-hold-v182.cjs": "784a033a5102dde015d7acc5793cf83059ade61be37c112615efc99e6263b2b7"
+    "dist/world-pitch-actions-v99.js": "9c8d06e92f2de2003f8231b413011bd5cdb584ef293267502cfdbfc1153b4755",
+    "dist/player-user-ball-actions-v111.js": "430abc25ab23cb0a3673148ba3750a3199c9141a934e10d2bd98289187b5f196",
+    "dist/world-unity-v151.js": "6bf98c94c8881c35d9d3f5afb4b3d55097164e7969fbbb1b176d034b58b7812f",
+    "work/test-keeper-hold-v182.cjs": "acb69532b500a7521fb89ccf1eeb75883f0c65742ba4348700932e7a1e77e1b2"
   },
   "branch": "fix/r132-keeper",
   "changedFiles": [
@@ -307,7 +311,7 @@
   "validation": [
     {
       "command": "node work/test-keeper-hold-v182.cjs",
-      "result": "PASS: 512 Szenarien, 231 bestaetigte Faenge, Altpartien bytegleich, acht Keeper-Restorefenster, kurze/hohe Abspiele, vier Zeitgrenzen"
+      "result": "PASS: 512 Szenarien, 231 bestaetigte Faenge, 14975 originale Erholungsframes, Browserplan/Unity-Holding/Position gemeinsam, acht Keeper-Restorefenster, Altpartien bytegleich"
     },
     {
       "command": "node work/run-native130-tests.cjs",
@@ -375,16 +379,76 @@
           0
         ]
       },
-      "scope": "Beide Varianten erreichen den Abpfiff. Allgemeine Restoreparitaet ausserhalb der isolierten Keeperfenster offen; kein Gesamtparitaetsnachweis."
-    }
+      "scope": "Historischer Zusatzlauf; vom Nutzer auf der Basis bestaetigter Gesamt-Restoreparitaetsfehler. Ausserhalb B07 und in Review-Runde 1 nicht erneut bearbeitet."
+    },
+    "historical": true
   },
-  "timing": "2,4 s in der Seedreihe unveraendert; entfernter bestaetigter Kontakt bei muedem Keeper kontrolliert 2,563 s, um Keepertempo nicht zu ueberschreiten. Keine neue Balluhr.",
-  "unityHinweis": "Keine C#- oder G:/unity-Aenderung. Bei Integration Handschuhhaltung und Ablage an native Ballposition, holding=false und goalKick-Warteprogress binden; keinen eigenen Timer oder Root-Sprung einfuehren. Sichtbare Unity-Abnahme steht aus.",
-  "changelogVorschlag": "B07: Bestaetigte Torwartbaelle bleiben am Fangkontakt und werden ohne Positionssprung zum Abspielpunkt abgelegt. Nur neue Partien mit keeperHoldRevision 182; Altpartien und Torwartjagd 180 unveraendert.",
-  "buglisteStatus": "B07 nativ lokal behoben und regressionsgeprueft; vor endgueltigem Schliessen sichtbaren Unity-Uebergang abnehmen. Bugliste, Entscheidungen und CHANGELOG unveraendert.",
+  "timing": "Review-Runde 1 aendert keine Uhr: Fang- und Abspieltick, jede native Ball-/Keeperposition sowie kompletter nativer Zustand inklusive RNG stimmen in den fuenf Vergleichsszenen mit cfb8b5e7 ueberein. 2,4 s Normalwartezeit und bereits bestehender kontrollierter 2,563-s-Grenzfall bleiben erhalten.",
+  "unityHinweis": "Keine C#- oder G:/unity-Aenderung. Fang-/Erholungsaktion und holding werden ueber die bestehende Unity-Bruecke weitergegeben. holding ist waehrend der Handschuhphase wahr und ab positiver Hand-Fuss-Uebergabe falsch. Tests pruefen den echten Browser-Animationsplan und die uebertragenen Vertragsdaten; sichtbare Unity-/Skelettabnahme bleibt offen.",
+  "changelogVorschlag": "B07: Sprungfreie Torwartball-Uebergabe fuer neue Partien mit Kennung 182; Fang-/Paradeerholung bleibt erhalten und die Handhaltung stimmt bis zur Fussuebergabe mit dem Aktionsvertrag ueberein. Altpartien, Fangzeitpunkt, Abspieluhr und Torwartjagd 180 bleiben unveraendert.",
+  "buglisteStatus": "B07 nativ lokal behoben, beide Review-Befunde korrigiert und regressionsgeprueft. Vor endgueltigem Schliessen sichtbaren Unity-Uebergang abnehmen; geschuetzte Dokumente unveraendert.",
   "scope": "Nur angegebener Worktree. Kein Push, Deploy, Versionsanstieg oder Unity-Assetauftrag.",
   "buildHashes": {
-    "outputs/index.html": "9b61bbe4dd99645d9c175aa37f8637fd19f397aafc2e7a6864dff6c320bf64d7",
-    "outputs/Doppel-6-Fussballmanager.html": "9b61bbe4dd99645d9c175aa37f8637fd19f397aafc2e7a6864dff6c320bf64d7"
+    "outputs/index.html": "065ffa712317b4493b4f56dab9fa567f5c8aad096cafc0f377c9ecbc3725fa0d",
+    "outputs/Doppel-6-Fussballmanager.html": "065ffa712317b4493b4f56dab9fa567f5c8aad096cafc0f377c9ecbc3725fa0d"
+  },
+  "poseChecks": {
+    "recoveryFrames": 14975,
+    "holdingFrames": 5781,
+    "transferFrames": 1420
+  },
+  "reviewRound1": {
+    "base": "cfb8b5e7071daa1e1eb1fcab34c9fe285c168a9f",
+    "cases": [
+      {
+        "path": "smother",
+        "seed": 0,
+        "prematureGoalKickBefore": 0,
+        "prematureGoalKickAfter": 0,
+        "handFlagMismatchBefore": 6,
+        "handFlagMismatchAfter": 0
+      },
+      {
+        "path": "run-out",
+        "seed": 0,
+        "prematureGoalKickBefore": 0,
+        "prematureGoalKickAfter": 0,
+        "handFlagMismatchBefore": 6,
+        "handFlagMismatchAfter": 0
+      },
+      {
+        "path": "dive",
+        "seed": 1,
+        "prematureGoalKickBefore": 0,
+        "prematureGoalKickAfter": 0,
+        "handFlagMismatchBefore": 18,
+        "handFlagMismatchAfter": 0
+      },
+      {
+        "path": "save",
+        "seed": 9,
+        "prematureGoalKickBefore": 0,
+        "prematureGoalKickAfter": 0,
+        "handFlagMismatchBefore": 27,
+        "handFlagMismatchAfter": 0
+      },
+      {
+        "path": "distant-recovery",
+        "seed": 0,
+        "prematureGoalKickBefore": 72,
+        "prematureGoalKickAfter": 0,
+        "handFlagMismatchBefore": 59,
+        "handFlagMismatchAfter": 0
+      }
+    ],
+    "changedFiles": [
+      "dist/world-pitch-actions-v99.js",
+      "work/test-keeper-hold-v182.cjs",
+      "work/keeper-hold-v182-evidence.json",
+      "outputs/index.html",
+      "outputs/Doppel-6-Fussballmanager.html"
+    ],
+    "summary": "Fang-/Paradeerholung behaelt ihre originale Aktion, Kennung, Ziel, Fortschritt und Erholung. holding bleibt waehrend der Erholung und bis zum Beginn der positiven Hand-Fuss-Uebergabe wahr; danach falsch. Browserplan und produktive Unity-Bruecke werden mit der nativen Ballposition gemeinsam geprueft.",
+    "integration": "Produktdelta ausschliesslich in v99PlayerAction; v99BallView und v132ClearVisualTails/Display-Sperren unveraendert. Beim Zusammenfuehren mit fix/r132-display dessen Phasensperren vor der Keeperdekoration erhalten."
   }
 }
