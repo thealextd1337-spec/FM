@@ -55,6 +55,6 @@
   const response=await fetch('/unity/probe-build.json',{cache:'no-store'});if(!response.ok)throw Error('Unity-Build ist lokal nicht verfügbar');
   const manifest=await response.json();if(!manifest.worldView||manifest.worldView!==channel)throw Error('Unity-Build unterstützt diese Partie noch nicht');
   await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=manifest.loaderUrl;script.onload=resolve;script.onerror=()=>reject(Error('Unity-Lader fehlt'));document.head.append(script);});
-  instance=await createUnityInstance(document.getElementById('unity-canvas'),{...manifest,devicePixelRatio:1,companyName:'Doppel 6',productName:'Vereinswelt',productVersion:'131',streamingAssetsUrl:'/unity/StreamingAssets',showBanner:(message,type)=>{if(type==='error')failure(message);}},progress=>send({kind:'progress',progress}));announce();
+  instance=await createUnityInstance(document.getElementById('unity-canvas'),{...manifest,devicePixelRatio:1,companyName:'Doppel 6',productName:'Vereinswelt',productVersion:'132',streamingAssetsUrl:'/unity/StreamingAssets',showBanner:(message,type)=>{if(type==='error')failure(message);}},progress=>send({kind:'progress',progress}));announce();
  }catch(error){failure(error);}
 })();
