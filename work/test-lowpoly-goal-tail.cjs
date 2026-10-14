@@ -16,7 +16,11 @@ vm.runInContext(actualFunction(sceneSource,'v83GoalLine')+'\n'+actualFunction(sc
 vm.runInContext(actualFunction(actions,'v101GoalBall'),context,{filename:'dist/world-pitch-actions-v99.js'});
 vm.runInContext(source.slice(0,source.indexOf('function v98HomeSponsor(')),context,{filename:'dist/world-pitch3d-v98.js'});
 vm.runInContext(unity.slice(0,unity.indexOf("if(typeof window==='object'&&typeof v98RenderScene")),context,{filename:'dist/world-unity-v151.js'});
-const wrapper=unity.split(/\r?\n/).find(s=>s.includes('const basePitchFrame=v98PitchFrame;v98PitchFrame='));assert(wrapper);
+// Release 132 split the wrapper into observation/preparation helpers and the
+// frame decorator. Load that complete production block, as the native harness
+// does, instead of assuming the decorator still occupies a single line.
+const wrapperStart=unity.indexOf('const basePitchFrame=v98PitchFrame;'),wrapperEnd=unity.indexOf('\n let shownGeometry=',wrapperStart);assert(wrapperStart>=0&&wrapperEnd>wrapperStart);
+const wrapper=unity.slice(wrapperStart,wrapperEnd);
 vm.runInContext('{'+wrapper+'}',context,{filename:'dist/world-unity-v151.js:actual-frame-wrapper'});
 const {v55Field:field,v99Actions:states,D6WorldUnityContract:C}=context;
 const clean=v=>JSON.parse(JSON.stringify(v)),radius=.1764,camera={position:{x:0,height:20,z:30},target:{x:0,height:0,z:0},fov:42};
