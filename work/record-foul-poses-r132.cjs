@@ -49,7 +49,7 @@ async function waitPicture(page){await page.waitForFunction(()=>D6UnityMatch?.re
    const page=await browser.newPage({viewport:{width:1440,height:950}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
    const first=await prepare(page,seedValue);console.log('seed',seedValue,'fixture',first.fixtureId,'motionRevision',first.motionRevision,'flowVersion',first.flowVersion);
    await waitPicture(page);console.log('Unity ready');
-   await page.evaluate(()=>{v103CanReplay=()=>false;v65Resume();});
+   await page.evaluate(({camera,near})=>{if(camera)v98CameraMode=camera;if(Number.isFinite(near))v98CameraNear=near;v103CanReplay=()=>false;v65Resume();},{camera:arg('--camera',null),near:Number(arg('--near','NaN'))});
    const started=Date.now();let shots=0;const counts={};const shotDir=path.join(out,'seed-'+seedValue);fs.mkdirSync(shotDir,{recursive:true});let lastShot=0;
    while(Date.now()-started<minutes*60000){
     await page.waitForTimeout(120);
