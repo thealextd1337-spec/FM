@@ -23,7 +23,8 @@ const server=createServer();const url=`http://127.0.0.1:${port}/source/index.htm
  try{
   for(const spec of specs){
    const page=await browser.newPage({viewport:{width:1280,height:800}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
-   await page.goto(url+'?engine=browser');await page.waitForFunction(()=>window.D6WorldUnityContract&&typeof v61CreateCareer==='function');await page.evaluate(helper);
+   await page.goto(url+'?engine=unity');// the Unity bridge wrapper (contactWorld/targetWorld) is installed by the URL switch; D6QA160 keeps the match in 2Dawait page.waitForFunction(()=>window.D6WorldUnityContract&&window.D6Flutlicht?.adapter&&window.userMeshyMatchReady,{},{timeout:60000});await page.waitForTimeout(500);
+   for(let attempt=0;attempt<3;attempt++){await page.evaluate(helper);if(await page.evaluate(()=>typeof D6QA160==='object'))break;await page.waitForTimeout(1000);}
    const setup=await page.evaluate(({size,players,seed})=>D6QA160.setup({config:{fieldSize:size,fieldPlayers:players},unity:false,seed,replays:false}),spec);
    await page.evaluate(()=>{
     const C=D6WorldUnityContract,camera={position:{x:0,y:30,height:30,z:-40},target:{x:0,y:0,height:0,z:0},fov:40};
