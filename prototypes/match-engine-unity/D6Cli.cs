@@ -19,6 +19,11 @@ public static class D6Cli {
         try{Done(true,Doppel6.Probe.WorldPresentationTests.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }
 
+    // B11: foul offender pose measurement (bind pose, clip scan, offender sequence): -d6output <folder>.
+    public static void FoulPose(){
+        try{UnityEditor.SceneManagement.EditorSceneManager.OpenScene(Scene);Done(true,FoulPoseDiagnostics.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
+    }
+
     public static void NetTests(){
         try{Done(true,Doppel6.Probe.WorldNetTests.Run(Repo(),Arg("-d6output")));}catch(Exception e){Debug.LogException(e);Done(false,e.Message);}
     }

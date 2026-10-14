@@ -48,7 +48,9 @@ public static class NaturalMotionDiagnostics {
     // sinkMin: the lowest support clearance; soleMin/soleMax: the skinned sole (lowest vertex, every sixth picture);
     // jointRootMax: the eight measured bones with the received root yaw removed; pelvisRateMax: the pelvis' vertical speed
     // (m/s, mean thigh height); turfShiftMax: the largest pelvis correction of FootballAnimation.TurfShift (0 without it).
-    [Serializable] public class FoulWindow {public float start,exit,end,floatMax=-9,sinkMin=9,soleMin=9,soleMax=-9,jointRootMax,pelvisRateMax,turfShiftMax;public string floatAt,sinkAt,soleAt,jointRootAt,pelvisAt,exitTo;public int frames,soleFrames;}
+    // B11 (r132): armMax: the largest upper-arm abduction of the offender pictures once the stumble carries half the mix (armSettledMax: at full weight;
+    // foul_stumble_meshy alone holds 55-85 deg, the T-pose the user saw); weightSumMin/Max and nanPictures: the mixer weights.
+    [Serializable] public class FoulWindow {public float start,exit,end,floatMax=-9,sinkMin=9,soleMin=9,soleMax=-9,jointRootMax,pelvisRateMax,turfShiftMax,armMax=-9,armSettledMax=-9,weightSumMin=9,weightSumMax=-9;public string floatAt,sinkAt,soleAt,jointRootAt,pelvisAt,exitTo,armAt;public int frames,soleFrames,nanPictures;}
     // r21: backward presentation of a native field player over display pictures moving at least ReverseSpeed: pictures whose
     // Unity stride is the backward family, split by the received travel relative to the received facing (backReceived: at
     // least FootballLocomotion.BackOff, the received data itself is backward; backUnity: below it, Unity holds a backward
@@ -104,7 +106,7 @@ public static class NaturalMotionDiagnostics {
         public string r21GateNote;public Check[] r21Gates;}
     // r7: the samples behind each support-transition gate window.
     [Serializable] public class SupportSample {public string window;public int frames,moving,slowMoving,stanceFrames,supportFrames,doubleFloatSlow,soleBelow;public float speedMean,supportGlideMean,supportGlideRatio,supportGlideP90,supportGlideMax,kneePoleMean,soleMin,supportDropMax;public string supportGlideMaxAt,doubleFloatAt;}
-    sealed class Sample {public double clock;public Vector3 root,facing,travel;public float speed,turfShift,turfClear=float.NaN;public Vector3[] ankle=new Vector3[2],toe=new Vector3[2],knee=new Vector3[2],thigh=new Vector3[2];public float[] ankleClear=new float[2],toeClear=new float[2],supportClear=new float[2];public Vector3 head,shoulderMid;public Vector3[] hand=new Vector3[2];public float supportDrop,solePredicted=float.NaN,groundSole=float.NaN;public Quaternion[] rot,rel,loc;public float rootYaw,strideScale;public Vector3[] ankleLocal=new Vector3[2];public Vector3 hipsRight,chestRight;public string clip,baseClip,mode,stride,action,soleBone,lockState;public float actionWeight;public Vector3 facingRaw;public int inertia;public bool contactPicture;public float rawStep,rawJump;public double phase;public float sole=float.NaN,lockOffset=-1;public bool moving;
+    sealed class Sample {public float abduction=float.NaN,weightSum=float.NaN;public bool nanWeights;public double clock;public Vector3 root,facing,travel;public float speed,turfShift,turfClear=float.NaN;public Vector3[] ankle=new Vector3[2],toe=new Vector3[2],knee=new Vector3[2],thigh=new Vector3[2];public float[] ankleClear=new float[2],toeClear=new float[2],supportClear=new float[2];public Vector3 head,shoulderMid;public Vector3[] hand=new Vector3[2];public float supportDrop,solePredicted=float.NaN,groundSole=float.NaN;public Quaternion[] rot,rel,loc;public float rootYaw,strideScale;public Vector3[] ankleLocal=new Vector3[2];public Vector3 hipsRight,chestRight;public string clip,baseClip,mode,stride,action,soleBone,lockState;public float actionWeight;public Vector3 facingRaw;public int inertia;public bool contactPicture;public float rawStep,rawJump;public double phase;public float sole=float.NaN,lockOffset=-1;public bool moving;
         // r5: largest root-relative joint speed per pose stage (FootballAnimation.Probe; empty without it) and the ankles after the motion layers (stage 1).
         // r18: sub-stages 5-8 of stage 3 (after the first support pass, the foot lock, the second support pass with the sole
         // lift, the swing clearance; stage 3 follows the turf plant), the rig's swivel diagnostics (FootballRig.swivel*: pole,
@@ -230,6 +232,8 @@ public static class NaturalMotionDiagnostics {
         var dropField=typeof(FootballAnimation).GetField("contactDrop",Flags);if(dropField!=null)s.contactDrop=(float)dropField.GetValue(anim);s.releaseWeight=anim.ReleaseWeight;
         var lockProp=typeof(FootballAnimation).GetProperty("FootLockOffset");if(lockProp!=null)s.lockOffset=(float)lockProp.GetValue(anim);var stateProp=typeof(FootballAnimation).GetProperty("FootLockState");if(stateProp!=null)s.lockState=(string)stateProp.GetValue(anim);var inertiaProp=typeof(FootballAnimation).GetProperty("InertiaEvents");if(inertiaProp!=null)s.inertia=(int)inertiaProp.GetValue(anim);var rawStepProp=typeof(FootballAnimation).GetProperty("RawStep");if(rawStepProp!=null){s.rawStep=(float)rawStepProp.GetValue(anim);s.rawJump=(float)typeof(FootballAnimation).GetProperty("RawJump").GetValue(anim);}
         {var ts=typeof(FootballAnimation).GetProperty("TurfShift");if(ts!=null)s.turfShift=(float)ts.GetValue(anim);}
+        // B11 (r132): upper-arm abduction (the more raised arm) and the mixer weights of the composed picture (sum, NaN).
+        {s.abduction=Mathf.Max(FootballAnimation.ArmAbduction(actor,false),FootballAnimation.ArmAbduction(actor,true));var wf=typeof(FootballAnimation).GetField("weights",Flags);if(wf!=null){float sum=0;bool nan=false;foreach(var w in (float[])wf.GetValue(anim)){sum+=w;nan|=float.IsNaN(w)||float.IsInfinity(w);}s.weightSum=sum;s.nanWeights=nan;}}
             // (r21 c10) the lowest point of the lower foot: sole contour, ankle and toe-base bones (a boot standing on its toe is
         // grounded; the toe-tip bone is not used, it read 0 on the raised pointed stumble boot).
         {float Foot(int f){float c=anim.ground.SolePointClearance(f),b=anim.ground.Clearance(f);return float.IsNaN(c)?b:Mathf.Min(c,b);}s.turfClear=Mathf.Min(Foot(0),Foot(1));}
@@ -435,6 +439,8 @@ public static class NaturalMotionDiagnostics {
                 // sinking, joints and pelvis over the whole window.
                 bool offender=x.action=="foulOffender";
                 if(offender&&low>w.floatMax){w.floatMax=low;w.floatAt=at;}if(low<w.sinkMin){w.sinkMin=low;w.sinkAt=at;}
+                if(offender&&!float.IsNaN(x.abduction)&&x.actionWeight>=.5f){if(x.abduction>w.armMax){w.armMax=x.abduction;w.armAt=at;}if(x.actionWeight>=.99f)w.armSettledMax=Mathf.Max(w.armSettledMax,x.abduction);}
+                if(!float.IsNaN(x.weightSum)){w.weightSumMin=Mathf.Min(w.weightSumMin,x.weightSum);w.weightSumMax=Mathf.Max(w.weightSumMax,x.weightSum);}if(x.nanWeights)w.nanPictures++;
                 if(!float.IsNaN(x.sole)){w.soleFrames++;if(x.sole<w.soleMin){w.soleMin=x.sole;w.soleAt=at+" "+x.soleBone;}if(offender)w.soleMax=Mathf.Max(w.soleMax,x.sole);}
                 w.turfShiftMax=Mathf.Max(w.turfShiftMax,Mathf.Abs(x.turfShift));
                 if(n==0)continue;var p=all[n-1];double dt=x.clock-p.clock;if(dt<=0||dt>.04)continue;
@@ -791,6 +797,11 @@ public static class NaturalMotionDiagnostics {
             var shot=Course(4.4,t=>t<2.0?Ramp(t,.4,1.1,0,4f):Ramp(t,2.0,2.8,4f,0),t=>0,t=>0);var shotPics=Pictures(baseConfig,subject,shot,new Vector3(-12,0,0),owner:true);
             Act(shotPics,subject,1.65,.35,"kickReady","kick-ready",false);Act(shotPics,subject,2.0,.95,"shot","shot-1",true,25);shotStop=shotPics;
             if(Want("shot-stop@60Hz"))cases.Add(Measured("shot-stop","actions","controlled",Play(baseConfig,shotPics,subject,true),0,4f,0,null,"run 4 m/s, kickReady, shot at 2.0 s (0.95 s) while braking to rest"));
+            // B11 (r132): a sprinting player stops dead at a native foul and shows foulOffender over its 2.7 s window (progress
+            // age/2.7, duration 1 as the bridge sends it), then stands. Origin r21-controlled: judged by the R21 foul-window gates only.
+            var foulPath=Straight(0,5.6f,0,idle:.6,accel:.5,cruise:1.4,brake:0,rest:4.2);var foulPics=Pictures(baseConfig,subject,foulPath,new Vector3(-12,0,0));
+            foreach(var w in foulPics){double t=w.clock-10;var pose=w.players[subject];if(t>=2.5-1e-9&&t<2.5+FootballDuelTiming.StumbleLength-1e-9){pose.action="foulOffender";pose.actionId="foul:1";pose.progress=Math.Clamp((t-2.5)/FootballDuelTiming.StumbleLength,0,1);pose.duration=1;pose.moving=false;}else if(t>=2.5){pose.action="idle";pose.actionId="idle";pose.moving=false;}}
+            if(Want("foul-offender-sprint@60Hz")){var foulRun=Play(baseConfig,foulPics,subject,true);var fc=Measured("foul-offender-sprint","actions","r21-controlled",foulRun,0,5.6f,0,null,"sprint 5.6 m/s, dead stop at 2.5 s into a 2.7 s foulOffender window, then standing (B11)");fc.fouls=Fouls(foulPics,subject,foulRun.samples);cases.Add(fc);}
         }
         // 5f. r15: interrupted preparation, action change, the plant edge and a stop with a restart, each at
         // 60, 30 and 120 Hz (origin "r15": gated apart from every earlier set, R15Gates). readyAbort: a 0.25 s
@@ -959,6 +970,10 @@ public static class NaturalMotionDiagnostics {
         // r21: further native129 captures of this run (its own folder native129-rig, read only), origin r21-native.
         var r21Folder=Path.Combine(repository,outputFolder??EvidenceFolder,"native129-rig");
         foreach(var file in Directory.Exists(r21Folder)&&Want("native129")?Directory.GetFiles(r21Folder,"motion-*.json"):new string[0]){if(file.EndsWith(".meta.json"))continue;cases.AddRange(Native(file,true,"native129"));}
+        // r132 (B05/B06/B11): fresh captures of the production bridge picture (work/capture-native-motion-r132.cjs) in the run
+        // folder's native132, family native132, origin r21-native (R21Gates incl. the B11 foul gates; foot actions measured).
+        var r132Folder=Path.Combine(repository,outputFolder??EvidenceFolder,"native132");
+        foreach(var file in Directory.Exists(r132Folder)&&Want("native132")?Directory.GetFiles(r132Folder,"motion-*.json"):new string[0]){if(file.EndsWith(".meta.json"))continue;cases.AddRange(Native(file,true,"native132"));}
         var gates=Gates(cases);var supportSamples=new List<SupportSample>();var supportGates=SupportGates(cases,supportSamples);var contactGates=ContactGates(cases);var continuityGates=ContinuityGates(cases);var r15SupportSamples=new List<SupportSample>();var r15Gates=R15Gates(cases,r15SupportSamples);var r20SupportSamples=new List<SupportSample>();var r20Gates=R20Gates(cases,r20SupportSamples);var r21Gates=R21Gates(cases);r20Checks.Add(new Check{name="every display picture of the run is accepted by the bridge (rejected pictures)",passed=rejected==0,value=rejected});
         var clipFields=new List<string>();foreach(var field in typeof(ProbeBridge).GetFields(Flags))if(field.FieldType==typeof(AnimationClip)){var clip=field.GetValue(bridge) as AnimationClip;clipFields.Add(field.Name+"="+(clip!=null?clip.name:"-"));}
         var report=new Report{clipFields=string.Join(",",clipFields),gateNote=GateNote,gates=gates.ToArray(),supportGateNote=SupportGateNote,supportGates=supportGates.ToArray(),supportSamples=supportSamples.ToArray(),contactGateNote=ContactGateNote,contactGates=contactGates.ToArray(),continuityGateNote=ContinuityGateNote,continuityGates=continuityGates.ToArray(),r15GateNote=R15GateNote,r15Gates=r15Gates.ToArray(),r15SupportSamples=r15SupportSamples.ToArray(),r20GateNote=R20GateNote,r20Gates=r20Gates.ToArray(),r20SupportSamples=r20SupportSamples.ToArray(),r20Checks=r20Checks.ToArray(),r15Enforcement=R15Enforcement,label=label,sourceId=ProbeBuildIdentity.SourceId,unity=Application.unityVersion,device=SystemInfo.graphicsDeviceType.ToString(),note="Controlled cases are hand-built native-shaped 20 Hz pictures; native cases replay actual captured native pictures. Both are blended to 60 Hz by WorldViewPlayback.Blend and rendered through ProbeBridge.WorldCommand on the actual rig. Glide: horizontal world speed of the lowest sole point while it is within 3 cm of the standing sole height (supportGlide: only while it is also the lower, weight-bearing foot; a low swing foot is excluded); foot axis: undirected angle foot/travel; knee pole: knee bend direction vs foot direction; chest: shoulder line forward vs received facing. Editor evidence, not a device or GPU measurement.",cases=cases.ToArray(),determinism=checks.ToArray(),images=images.ToArray(),recordings=recordings.ToArray(),r21GateNote=R21GateNote,r21Gates=r21Gates.ToArray()};
@@ -1006,7 +1021,7 @@ public static class NaturalMotionDiagnostics {
         var gates=new List<Check>();
         void Gate(string name,double value,double limit,bool atMost=true){gates.Add(new Check{name=name,value=value,limit=limit,passed=atMost?value<=limit+1e-6:value>=limit-1e-6});}
         foreach(var c in cases){
-            if(c.origin!="r20-native"&&c.origin!="r21-native")continue;
+            if(c.origin!="r20-native"&&c.origin!="r21-native"&&c.origin!="r21-controlled")continue;
             if(c.fouls!=null)foreach(var w in c.fouls){
                 string id="r21 "+c.name+" foul offender "+w.start.ToString("0.00",Inv)+" -> "+w.exitTo+" ";
                 Gate(id+"lower foot above the turf, window maximum (m)",w.floatMax,.05);
@@ -1014,6 +1029,12 @@ public static class NaturalMotionDiagnostics {
                 if(w.soleFrames>0){Gate(id+"skinned sole lowest (m)",w.soleMin,-.02,false);Gate(id+"skinned sole, highest lowest vertex (m)",w.soleMax,.05);}
                 Gate(id+"joint speed (deg/s)",w.jointRootMax,JointSpeedLimit);
                 Gate(id+"pelvis vertical speed (m/s)",w.pelvisRateMax,1.5);
+                // B11 (r132): no T-pose: upper arms within OffenderArmLimit at full stumble weight, below 60 deg over the whole window
+                // (stride crossfade included); mixer weights sum to 1 without NaN (a zero or NaN mix would show the bind pose).
+                if(w.armSettledMax>-9)Gate(id+"B11 upper-arm abduction at full stumble weight (deg)",w.armSettledMax,FootballAnimation.OffenderArmLimit+1);
+                if(w.armMax>-9)Gate(id+"B11 upper-arm abduction, window maximum (deg)",w.armMax,60);
+                if(w.weightSumMin<9){Gate(id+"B11 mixer weight sum, minimum",w.weightSumMin,.99,false);Gate(id+"B11 mixer weight sum, maximum",w.weightSumMax,1.01);}
+                Gate(id+"B11 pictures with NaN mixer weights",w.nanPictures,0);
             }
             if(c.reversal!=null)Gate("r21 "+c.name+" longest run of moving pictures with a Unity backward stride the received travel does not show (rel < 100 deg, s)",c.reversal.backUnityLongest,BackHoldLimit);
         }

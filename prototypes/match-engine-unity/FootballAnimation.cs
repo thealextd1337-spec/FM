@@ -296,11 +296,26 @@ public sealed class FootballAnimation {
     // foot constraints, 4 final), so a measured joint step names its stage.
     public Action<int> Probe;
     public float Weight(AnimationClip clip){return clip!=null&&indices.TryGetValue(clip,out var index)?weights[index]:0;}
+    // B11 diagnostics: angle (deg) between an upper arm (shoulder -> elbow bone) and the body's down axis (-root.up). A
+    // bind/T-pose holds both arms near 90; hanging or swinging arms stay far below. NaN without the bones.
+    public static float ArmAbduction(Transform actor,bool right){
+        string side=right?"Right":"Left";Transform arm=null,fore=null;
+        foreach(var t in actor.GetComponentsInChildren<Transform>()){if(t.name=="mixamorig:"+side+"Arm")arm=t;else if(t.name=="mixamorig:"+side+"ForeArm")fore=t;}
+        if(arm==null||fore==null)return float.NaN;return Vector3.Angle(fore.position-arm.position,-actor.up);
+    }
     public float GroundShift {get;private set;}
     // r21: metres the last picture's turf stand moved the pelvis down (negative: up); 0 without turfStand.
     public float TurfShift {get;private set;}
     // r21: skinned-mesh bakes made by the turf stand (cost accounting).
     public static int TurfBakes;
+    // B11 (r132): the foul offender's stumble clip (foul_stumble_meshy) holds both upper arms 55-85 degrees out from the body
+    // through its whole upright window (measured on this rig, FoulPoseDiagnostics; idle_stand_meshy: 9-16 degrees): on the
+    // standing offender this reads as a T-pose. A turf-standing offender's upper arms are kept within OffenderArmLimit of the
+    // body's down axis (FootballRig.LowerArms), weighted by the stumble clip's share of the mix, so the entry from the
+    // stride and the exit into the standing clip stay continuous. Bones only; root, heading, time and the native window stay.
+    public const float OffenderArmLimit=40;
+    // Diagnostics: degrees the last picture lowered the more raised upper arm (0 without turfStand or below the limit).
+    public float ArmLowered {get;private set;}
     // Pelvis drop of the walking support in the last sample (metres, diagnostics).
     public float SupportDrop {get;private set;}
     public const float SupportLimit=.07f;
@@ -517,6 +532,7 @@ public sealed class FootballAnimation {
         // field-11, 52.067: 3.6 m/s pelvis). A tackle keeps its full lunge at the native contact.
         float standShare=pose.turfStand?Mathf.Clamp01(weights[index]+(baseIndex>=0?weights[baseIndex]:0)):1;
         if(pose.lunge>0)rig.Lunge(pose.lunge*standShare);
+        ArmLowered=pose.turfStand?rig.LowerArms(OffenderArmLimit,FootballEnvelope.Smooth(weights[index])):0;
         // r21: foul_stumble_meshy keys its hips 0.31 rig units (0.45 m) above this rig's standing convention: over the
         // whole 2.1 s it plays at full weight the lower boot stood 0.74 m above the turf, straight legs hanging (the floating
         // offender). The constant clip offset cannot hold it (measured over the whole 11.4 s clip, whose later knees touch
@@ -1463,6 +1479,20 @@ public sealed class FootballRig {
             var line=end.position-upper.position;var bend=Vector3.ProjectOnPlane(lower.position-(upper.position+end.position)*.5f,line.sqrMagnitude>1e-8f?line.normalized:root.up);
             var local=end.localRotation;Solve(upper,lower,end,target,bend.sqrMagnitude>1e-8f?bend.normalized:-root.forward);end.localRotation=local;
         }
+    }
+    // B11: each upper arm whose abduction (angle between shoulder -> elbow and the body's down axis -root.up) exceeds limit
+    // is turned down about the shoulder on the shortest path toward hanging, by the excess times weight; the forearm and
+    // hand keep their pose on the upper arm. Returns the larger lowering (degrees). Bones only.
+    public float LowerArms(float limit,float weight){
+        weight=Mathf.Clamp01(weight);if(weight<=0||arm==null||forearm==null||leftArm==null||leftForearm==null)return 0;
+        var down=-root.up;float lowered=0;
+        for(int s=-1;s<=1;s+=2){
+            var upper=s>0?arm:leftArm;var lower=s>0?forearm:leftForearm;var dir=lower.position-upper.position;if(dir.sqrMagnitude<1e-8f)continue;
+            float abduction=Vector3.Angle(dir,down);if(abduction<=limit)continue;
+            var axis=Vector3.Cross(dir,down);if(axis.sqrMagnitude<1e-8f)axis=root.forward;
+            float by=(abduction-limit)*weight;upper.rotation=Quaternion.AngleAxis(by,axis.normalized)*upper.rotation;lowered=Mathf.Max(lowered,by);
+        }
+        return lowered;
     }
     // A lowered pelvis bends the knees: both feet keep their world point. Moving
     // the whole leg down with the hips set the swing foot of a starting stride
