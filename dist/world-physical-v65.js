@@ -17,10 +17,10 @@ function v65LineupPositions(context,physical){
  for(const pid of active)if(context.state.roles[pid]!=='gk')positions.set(pid,cells[pid]);
  return positions;
 }
-function v65PhysicalPlayer(context,physical,pid){
+function v65PhysicalPlayer(context,physical,pid,m=match){
  const side=v65Side(physical,context.ownSide),source=v64Player(context.career,context.fixture,side,pid),role=context.state.roles[pid],positions=v65LineupPositions(context,physical);
  const copy={...source,cell:positions.get(pid),assignedLine:role,role:v64Orientation(context.state,pid),instructions:v64PlayerInstructions(context.state,pid),matchEntryElapsed:0};
- const person=source.keeper?goalkeeper(copy,physical):team(copy,physical);
+ const person=source.keeper?goalkeeper(copy,physical):team(copy,physical,m);
  if(typeof v154PhysicalAssignment==='function')v154PhysicalAssignment(context,person,side);
  person.initialBy=person.by;person.motionX=0;person.motionY=physical===0?-1:1;person.recoverUntil=0;
  return person;
@@ -35,7 +35,7 @@ function v65ApplyTactics(context){
  for(const physical of [0,1]){
   const positions=v65LineupPositions(context,physical),side=v65Side(physical,context.ownSide);
   for(const person of match.people.filter(item=>item.t===physical&&!item.keeper)){
-   const cell=positions.get(person.pid),role=context.state.roles[person.pid],point=team({...person,cell},physical);
+   const cell=positions.get(person.pid),role=context.state.roles[person.pid],point=team({...person,cell},physical,match);
    if(typeof v154PhysicalAssignment==='function')v154PhysicalAssignment(context,person,side);
    person.cell=cell;person.assignedLine=role;person.role=v64Orientation(context.state,person.pid);person.instructions=v64PlayerInstructions(context.state,person.pid);person.bx=point.bx;person.by=point.by;person.initialBy=point.by;
   }
@@ -45,11 +45,13 @@ function v65ApplyTactics(context){
  $('#live-plan').textContent=`${own.formation} · ${pressLabel} Pressing · ${passLabel} Passspiel · Angriffsfokus: ${own.focus||'Variabel'} · Abwehrlinie: ${own.defense} · Zweikämpfe: ${own.aggression}`;
  $('#match-plan').textContent=own.formation;
 }
-function v65CreateMatch(context){
- const people=[];
- for(const physical of [0,1])for(const pid of v64Active(context.state,v65Side(physical,context.ownSide)))people.push(v65PhysicalPlayer(context,physical,pid));
+// options.si (harness only): {packages,params,clockRate} overrides or false for
+// a match without marker 183. Only this constructor writes match.si.
+function v65CreateMatch(context,options){
+ const geometry=v160WorldGeometry(context.career),si=typeof v183CreateSi==='function'?v183CreateSi(options?.si):null,people=[];
+ for(const physical of [0,1])for(const pid of v64Active(context.state,v65Side(physical,context.ownSide)))people.push(v65PhysicalPlayer(context,physical,pid,{geometry,si}));
  const own=v65Club(context,0),opponent=v65Club(context,1),kits=v61SelectMatchKits(own,opponent,context.ownSide===0);
- match={people,geometry:v160WorldGeometry(context.career),exitedPeople:[],attackFlow:{version:152,qualityVersion:157,flowVersion:159,paceVersion:162,paceRevision:119,keeperChaseRevision:180,keeperHoldRevision:182,setPieceRevision:182,looseBallRevision:182,pursuitRevision:182,motionRevision:182,intents:{},ownerPid:null,team:null},penaltyRevision:182,refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:opponent.name,kits};
+ match={people,geometry,exitedPeople:[],attackFlow:{version:152,qualityVersion:157,flowVersion:159,paceVersion:162,paceRevision:119,keeperChaseRevision:180,keeperHoldRevision:182,setPieceRevision:182,looseBallRevision:182,pursuitRevision:182,motionRevision:182,intents:{},ownerPid:null,team:null},penaltyRevision:182,refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:opponent.name,kits,...(si?{si}:{})};
  for(const pose of ['raised','far','middle','penalty'])v55RefereeImage(v55RefereeAsset(pose));
  v65ApplyTactics(context);kickoff(0);note('Bereit zum Anpfiff.','restart');
 }

@@ -39,7 +39,9 @@ function v157Pace(m,p){
   const contest=!m.flight&&typeof v182LooseBall==='function'&&v182LooseBall(m)?v182LooseChasing(m,p):target&&m.people.filter(q=>q.t===p.t&&!q.keeper&&!q.slideActive).sort((a,b)=>v122Metres(a,target)-v122Metres(b,target)||a.n-b.n).slice(0,2).includes(p);
   const purposeful=intent&&intent.until>=now&&intent.team===v123PossessionTeam(m)&&['depth','follow'].includes(intent.type)||read&&read.nextAt>=now&&['press','ball'].includes(read.purpose)||p.interceptTarget&&m.flight||contest;
   const revised=v119PaceActive(m),support=revised&&intent&&intent.until>=now&&intent.team===v123PossessionTeam(m)&&intent.type==='support';
-  const pace=base*(m.owner===p?1.28*(.78+ability(p,'tec')*.009):purposeful?(revised?1.58:1.48):support?1.35:revised?1.15:1.08);
+  const factor=m.owner===p?1.28*(.78+ability(p,'tec')*.009):purposeful?(revised?1.58:1.48):support?1.35:revised?1.15:1.08;
+  // SI 183 switch (match.si only): v183PaceFactor receives the exact legacy factor.
+  const pace=base*(m.si&&typeof v183PaceFactor==='function'?v183PaceFactor(m,p,m.owner===p?'carrier':purposeful?'purposeful':support?'support':'base',{factor,intent,read,now,contest}):factor);
   return typeof v158Movement==='function'?v158Movement(p,pace,1).maxSpeed:pace;
  }
  const intent=m.attackFlow.intents[p.pid],chase=Boolean(m.flight||m.rebound),purposeful=intent&&['depth','follow'].includes(intent.type);

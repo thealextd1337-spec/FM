@@ -73,7 +73,7 @@ v50ChaseLooseBall=function(delta,positions){
   r.x=target.x;r.y=target.y;current.ball={x:r.x,y:r.y};
  }
  const result=v110BaseChase(delta,positions),winner=current?.owner;
- if(v65WorldActive&&r&&!current.rebound&&winner&&!winner.keeper&&!current.flight&&v131OpenGoal(winner,{x:r.x,y:r.y})){
+ if(v65WorldActive&&r&&!current.rebound&&winner&&!winner.keeper&&!current.flight&&(current.si&&typeof v183ReboundFinish==='function'?v183ReboundFinish(current,winner,{x:r.x,y:r.y}):v131OpenGoal(winner,{x:r.x,y:r.y}))){
   const point={x:r.x,y:r.y},from={x:r.x-(r.vx||0)*.2,y:r.y-(r.vy||0)*.2};
   v127TryOneTouch(winner,point,from);
  }
