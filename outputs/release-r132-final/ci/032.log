@@ -1,0 +1,6 @@
+PASS: cup bracket, ten league rounds, separate cup statistics, winner award, single prize, penalty order
+Opponent fouls by style: cautious 15, normal 20, aggressive 54
+-1: 36 matches, own fouls 16, opponent fouls 31, corners 35, free kicks 44, penalties 3, mean 123.6 s
+0: 36 matches, own fouls 28, opponent fouls 29, corners 35, free kicks 54, penalties 3, mean 123.9 s
+1: 36 matches, own fouls 51, opponent fouls 29, corners 36, free kicks 74, penalties 6, mean 124.9 s
+PASS: both teams use aggression; corners, fouls, free kicks and match duration remain plausible

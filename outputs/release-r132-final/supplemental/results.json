@@ -1,0 +1,78 @@
+{
+  "root": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\release-r132",
+  "node": "C:\\Users\\alex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "python": "C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "timestamp": "2026-10-14T10:49:25.932640",
+  "results": [
+    {
+      "index": 1,
+      "command": "node work/build.cjs",
+      "exit": 0,
+      "seconds": 39.152,
+      "log": "01.log"
+    },
+    {
+      "index": 2,
+      "command": "node work/ui-redesign/shared/verify-build.cjs",
+      "exit": 0,
+      "seconds": 2.933,
+      "log": "02.log"
+    },
+    {
+      "index": 3,
+      "command": "node work/test-club-crests.cjs",
+      "exit": 0,
+      "seconds": 0.292,
+      "log": "03.log"
+    },
+    {
+      "index": 4,
+      "command": "node work/test-expansion-crests.cjs",
+      "exit": 0,
+      "seconds": 5.887,
+      "log": "04.log"
+    },
+    {
+      "index": 5,
+      "command": "node work/test-completed-crests.cjs",
+      "exit": 0,
+      "seconds": 5.084,
+      "log": "05.log"
+    },
+    {
+      "index": 6,
+      "command": "node work/test-expansion-sponsors.cjs",
+      "exit": 0,
+      "seconds": 3.133,
+      "log": "06.log"
+    },
+    {
+      "index": 7,
+      "command": "node work/test-no-player-images.cjs",
+      "exit": 0,
+      "seconds": 0.271,
+      "log": "07.log"
+    },
+    {
+      "index": 8,
+      "command": "py -3 work/test_deploy_unity_assets.py",
+      "exit": 0,
+      "seconds": 0.175,
+      "log": "08.log"
+    },
+    {
+      "index": 9,
+      "command": "py -3 work/check-release-r132-publication.py",
+      "exit": 0,
+      "seconds": 0.43,
+      "log": "09.log"
+    },
+    {
+      "index": 10,
+      "command": "node work/test-release-version.cjs",
+      "exit": 0,
+      "seconds": 0.034,
+      "log": "10.log"
+    }
+  ]
+}

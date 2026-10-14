@@ -2,15 +2,16 @@
 
 ## Noch nicht veröffentlicht
 
-### 13. Oktober 2026 — B08 gestrichen
+## 14. Oktober 2026 – Release 132
 
-- B08 auf Nutzerwunsch aus der Bugliste entfernt und den Verweis bei P06 angepasst. Übrige Kennungen bleiben erhalten; 17 Fehler-/Qualitätspunkte und sieben Abstimmungs-/Prüfpunkte bleiben offen. Dokumentationsdiff geprüft.
-
-### 13. Oktober 2026 — Dokumentation und Git-Bereinigung
-
-- Aktuellen Dokumentationsweg auf den übernommenen Release-131-Stand ausgerichtet: kurzer Index, Anbieter-unabhängige Entwicklungsregeln, Übergabe- und Sicherungsprozess. Historische Auftragspläne sind ausdrücklich inaktiv; der frühere Index bleibt als unveränderter Snapshot und navigierbare Archivkopie erhalten.
-- Spätere Nutzerbeobachtungen B09–B18 und Prüfungen P05–P07 erhalten, B11 wieder geöffnet. Transfer-/Taktikwünsche B16–B18 und Finanzhinweis B15 als noch nicht umgesetzt gekennzeichnet. Aktueller Low-Poly-Umfang, zurückgestellte Nighttime-Idee und verworfene Licht-/Stadionfortsetzungen zentral eingeordnet.
-- Historische Finanzbelege auf die gesicherte Finance-106-Variante mit Archiv-/Hashzuordnung verwiesen. Markdownziele im aktuellen Index und neuen Dokumenten geprüft; fehlende historische Outputs separat ausgewiesen. Keine Produktcodeänderung, neue Tests, Versionsanhebung oder Veröffentlichung.
+- B03/B12: Verteidiger verfolgen Durchbrüche und Richtungswechsel verlässlicher; freie Boden-/Luftbälle und Abpraller erhalten getrennte Hauptjäger und Unterstützung. Gespeicherte Reaktions-/Kontaktfenster verhindern Mehrfachversuche im selben Tick. Grätschen von hinten mit Körperkontakt bleiben Foul.
+- B04/B06/B11 und teilweise B05: Freistöße planen ihre Ausführung vor der Vorbereitung, die Unity-Darstellung folgt Ziel und beobachteter Bewegung. Foulpose und Knieflips korrigiert; extreme Tackling-/Passübergänge und die vorbestehende Beckengeschwindigkeitsgrenze bleiben offen. B02-Tempowahl wegen Nebenwirkungen zurückgenommen.
+- B07/B09/B10: Bestätigte Torwartbälle bleiben bei der Übergabe gebunden; Elfmeter zeigen gemäßigte Fähigkeitsunterschiede. Elfmeterschießen verwendet einheitlich drei Schützen je Team und bei Gleichstand Paarentscheidungen. Ecken haben eigene fähigkeitsabhängige Fehler; rund 16 % hoher Ecken rollen nach unerreichter Landung noch ins Seitenaus.
+- B13/B14: Der wirksame Pfiff entfernt alte Ballaktionen vor dem Seitenwechsel; beide Spielstandsanzeigen verwenden tatsächliches Heim-/Auswärtsrecht.
+- B15–B18: Finanzaktion führt sichtbar zur erforderlichen Bestätigung; eigene Transferangebote sind bis zum vollzogenen Wechsel zurückziehbar. Tatsächliche Vereins-/Spielerantworten erscheinen beim Tageswechsel, mehrere Antworten bleiben gespeichert. Zeigerklick markiert in Taktikplänen; Verschieben/Tauschen folgt Drag & Drop, Tastatur- und assistive Bedienung bleiben erhalten.
+- Neue Matchregeln gelten nur für neue Partien mit Kennung 182; keine rückwirkende Umrechnung oder Markierung gespeicherter Partien. B01 auf Nutzerentscheidung nicht behandelt, B08 gestrichen; technische Korrekturen warten auf Nutzerabnahme.
+- Fußversion, Runtime-Produktmetadaten, Cache und Hilfedaten auf 132; finaler Einzeldatei-Build versioniert. Integrierter Unity-WebGL-Build bleibt hashgebunden erhalten. Vollständiger erneuter Workflow, Branch-/Browserprüfungen und Offline-Uploadprobe sind im [Releasebericht](release-132.md) und [Prüfprotokoll](../outputs/release-r132-final/README.md) belegt. Lokal vorbereitet; Push/Deployment und Live-Abnahme erfolgen durch die Integration.
+- Dokumentationsweg und Backlog auf den aktuellen Stand gebracht; historische Pläne bleiben inaktiv. Gesamtpartie-Restore-Abweichung und fünf bereits auf Basis rote Altchecks ausdrücklich erhalten. Keine neue Android-/Leistungsfreigabe.
 
 ## 13. Oktober 2026 – Release 131
 

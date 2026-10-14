@@ -1,0 +1,126 @@
+{
+  "checkedAt": "2026-10-14T08:48:21.483Z",
+  "results": [
+    {
+      "label": "desktop/de/season 1",
+      "rect": {
+        "top": 588.21875,
+        "bottom": 632.21875,
+        "left": 304,
+        "right": 976
+      },
+      "dock": {
+        "top": 843,
+        "bottom": 900,
+        "visible": true
+      },
+      "booked": 1
+    },
+    {
+      "label": "desktop/de/season 2",
+      "rect": {
+        "top": 588.21875,
+        "bottom": 632.21875,
+        "left": 348,
+        "right": 1160
+      },
+      "dock": {
+        "top": 843,
+        "bottom": 900,
+        "visible": true
+      },
+      "booked": 1
+    },
+    {
+      "label": "desktop/en/season 1",
+      "rect": {
+        "top": 587.71875,
+        "bottom": 631.71875,
+        "left": 304,
+        "right": 976
+      },
+      "dock": {
+        "top": 843,
+        "bottom": 900,
+        "visible": true
+      },
+      "booked": 1
+    },
+    {
+      "label": "desktop/en/season 2",
+      "rect": {
+        "top": 588.21875,
+        "bottom": 632.21875,
+        "left": 348,
+        "right": 1160
+      },
+      "dock": {
+        "top": 843,
+        "bottom": 900,
+        "visible": true
+      },
+      "booked": 1
+    },
+    {
+      "label": "mobile/de/season 1",
+      "rect": {
+        "top": 473.75,
+        "bottom": 536.9375,
+        "left": 46,
+        "right": 344
+      },
+      "dock": {
+        "top": 718,
+        "bottom": 844,
+        "visible": true
+      },
+      "booked": 1
+    },
+    {
+      "label": "mobile/de/season 2",
+      "rect": {
+        "top": 473.25,
+        "bottom": 536.4375,
+        "left": 46,
+        "right": 344
+      },
+      "dock": {
+        "top": 718,
+        "bottom": 844,
+        "visible": true
+      },
+      "booked": 1
+    },
+    {
+      "label": "mobile/en/season 1",
+      "rect": {
+        "top": 492.75,
+        "bottom": 536.75,
+        "left": 46,
+        "right": 344
+      },
+      "dock": {
+        "top": 718,
+        "bottom": 844,
+        "visible": true
+      },
+      "booked": 1
+    },
+    {
+      "label": "mobile/en/season 2",
+      "rect": {
+        "top": 492.75,
+        "bottom": 536.75,
+        "left": 46,
+        "right": 344
+      },
+      "dock": {
+        "top": 718,
+        "bottom": 844,
+        "visible": true
+      },
+      "booked": 1
+    }
+  ],
+  "status": "passed"
+}

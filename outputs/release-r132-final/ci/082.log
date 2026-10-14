@@ -1,0 +1,13 @@
+{
+  pass: true,
+  draws: 300,
+  knockoutSeasons: 25,
+  leagueFixtures: 65,
+  totalFixtures: 78,
+  preparedWorldFixtures: 833,
+  nativePauseResume: true,
+  onceOnlyBooking: true,
+  tiedAggregatePenalties: true,
+  saveRoundtrip: true,
+  legacyUnchanged: true
+}

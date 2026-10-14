@@ -1,0 +1,12 @@
+PASS every renderer reads an allowlist and excludes hidden raw values even in ARIA/title
+PASS profile recommendations stay fixed and grouped by their playable position with best highlight
+PASS all valid zone roles remain selectable independently of profile recommendation or low suitability
+PASS keeper role selection has two real options and no orientation editor
+PASS important abilities retain actual skill bands and the existing Flutlicht component contract
+PASS localized DE/EN controls, positions, color names and long role labels pass through safely
+PASS one approximate zone geometry is bounded, omits routes and exposes no exact limits in text
+PASS pitch role shows the actual chosen role above a token with only a band dot and safe tooltip
+PASS malformed input is empty/disabled and never introduces arbitrary classes or unsupported roles
+PASS text and identity escaping prevents executable markup and keeps inputs unchanged
+PASS renderers have no storage, DOM, simulation, clock or random dependencies
+11 player UI projection groups passed

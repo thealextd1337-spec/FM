@@ -1,0 +1,5 @@
+PASS relative home bonus only on home side and non-neutral pitch; old119/unmarked gates unchanged
+PASS full old 119 match equals frozen source and resumes exactly
+PASS full old undefined match equals frozen source and resumes exactly
+PASS new match stores parameters; saved settings survive reload/init; full continuation and booking idempotent
+PASS start policy retained; preceding model remains unmarked

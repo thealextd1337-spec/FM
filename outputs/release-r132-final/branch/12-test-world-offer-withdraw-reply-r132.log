@@ -1,0 +1,14 @@
+B17 Vereinsantworten: Annahme, Gegenangebot, Ablehnung, Reihenfolge, Reload, Aktionen und überholte Antworten geprüft.
+B17 Spielerantworten (Ablöse): Gegenforderung, Annahme ohne Doppelmeldung, Reload und mehrere Runden geprüft.
+B17 Ablösefreie Spieler: Gegenforderung, Erfüllung, Reload geprüft.
+Tag 5: Sofortantworten gespeichert, nur beim Transferschluss angekündigt, genau einmal.
+B17 Tag 5 ohne Doppel-Popup, verkäuferseitig und Altbestand still geprüft.
+B16 Angebot zurückziehen: alle Stufen, ablösefrei, Reload, Tageswechsel, neues Angebot, vollzogen nicht zurückziehbar geprüft.
+Review 1.1: Neuangebot nach eigenem Rückzug am Transferschluss (Ablöse und ablösefrei, Reload) geprüft.
+Review 1.2: Ablösefreie Antworten bei Kalenderwechseln (Gegenforderung und Zusage) geprüft.
+Review 1.3: Popups nur zum Tageswechsel, Dialog unterdrückt sie nicht, Fokus geprüft.
+Review 1.4: Altgebote an Vereine: zurückziehen und Gegenforderungs-Popup geprüft.
+Review 2.1/2.2: seen nur durch Popup, sofortige Antworten als Ereignis gespeichert.
+Review 2.3: Tag-5-Abschlüsse erst beim Transferschluss, Altbestand nie.
+Review 2.5: Altgebot zurückgezogen, Neuangebot in der Spielersuche möglich.
+PASS test-world-offer-withdraw-reply-r132

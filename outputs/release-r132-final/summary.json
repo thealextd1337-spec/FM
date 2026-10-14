@@ -1,0 +1,1150 @@
+{
+  "status": "passed",
+  "base": "3085ab55",
+  "ci": 116,
+  "branch": 16,
+  "supplemental": 10,
+  "networkPublication": false,
+  "reusedPart1Results": false,
+  "nodeVersion": "v24.19.0",
+  "pythonVersion": "Python 3.13.7",
+  "commands": [
+    {
+      "index": 1,
+      "command": "node work/test-release-version.cjs",
+      "exit": 0,
+      "seconds": 0.036,
+      "log": "ci/001.log",
+      "group": "CI"
+    },
+    {
+      "index": 2,
+      "command": "node work/test-lowpoly-goal-tail.cjs",
+      "exit": 0,
+      "seconds": 0.328,
+      "log": "ci-targeted/002.log",
+      "group": "CI",
+      "rerun": true
+    },
+    {
+      "index": 3,
+      "command": "node work/platform/qa/test-presentation-v131.cjs",
+      "exit": 0,
+      "seconds": 0.037,
+      "log": "ci/003.log",
+      "group": "CI"
+    },
+    {
+      "index": 4,
+      "command": "node work/test-tactics-roster-v130.cjs",
+      "exit": 0,
+      "seconds": 8.457,
+      "log": "ci/004.log",
+      "group": "CI"
+    },
+    {
+      "index": 5,
+      "command": "node work/run-native130-tests.cjs",
+      "exit": 0,
+      "seconds": 0.603,
+      "log": "ci/005.log",
+      "group": "CI"
+    },
+    {
+      "index": 6,
+      "command": "node work/test-view-frame-scheduler-v130.cjs",
+      "exit": 0,
+      "seconds": 0.04,
+      "log": "ci/006.log",
+      "group": "CI"
+    },
+    {
+      "index": 7,
+      "command": "node work/test-squad-planning-v179.cjs",
+      "exit": 0,
+      "seconds": 3.179,
+      "log": "ci/007.log",
+      "group": "CI"
+    },
+    {
+      "index": 8,
+      "command": "node work/test-start-rosters-v177.cjs --worlds=60",
+      "exit": 0,
+      "seconds": 90.163,
+      "log": "ci/008.log",
+      "group": "CI"
+    },
+    {
+      "index": 9,
+      "command": "node work/test-compact-balance-v178.cjs",
+      "exit": 0,
+      "seconds": 6.325,
+      "log": "ci/009.log",
+      "group": "CI"
+    },
+    {
+      "index": 10,
+      "command": "node work/test-native-performance-context.cjs",
+      "exit": 0,
+      "seconds": 0.05,
+      "log": "ci/010.log",
+      "group": "CI"
+    },
+    {
+      "index": 11,
+      "command": "node work/test-youth-legacy-v176.cjs",
+      "exit": 0,
+      "seconds": 5.947,
+      "log": "ci/011.log",
+      "group": "CI"
+    },
+    {
+      "index": 12,
+      "command": "node work/test-progress-v58.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "ci/012.log",
+      "group": "CI"
+    },
+    {
+      "index": 13,
+      "command": "node work/test-live-player-v59.cjs",
+      "exit": 0,
+      "seconds": 0.169,
+      "log": "ci/013.log",
+      "group": "CI"
+    },
+    {
+      "index": 14,
+      "command": "node work/test-progress-menu.cjs",
+      "exit": 0,
+      "seconds": 0.032,
+      "log": "ci/014.log",
+      "group": "CI"
+    },
+    {
+      "index": 15,
+      "command": "node work/test-transfer-confirmations.cjs",
+      "exit": 0,
+      "seconds": 0.032,
+      "log": "ci/015.log",
+      "group": "CI"
+    },
+    {
+      "index": 16,
+      "command": "node work/test-transfer-deadline-dialog.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "ci/016.log",
+      "group": "CI"
+    },
+    {
+      "index": 17,
+      "command": "node work/test-tactics-replacement.cjs",
+      "exit": 0,
+      "seconds": 0.032,
+      "log": "ci/017.log",
+      "group": "CI"
+    },
+    {
+      "index": 18,
+      "command": "node work/test-quick-lineup-cells.cjs",
+      "exit": 0,
+      "seconds": 0.032,
+      "log": "ci/018.log",
+      "group": "CI"
+    },
+    {
+      "index": 19,
+      "command": "node work/test-v24.cjs",
+      "exit": 0,
+      "seconds": 0.032,
+      "log": "ci/019.log",
+      "group": "CI"
+    },
+    {
+      "index": 20,
+      "command": "node work/test-mobile-drag-scroll.cjs",
+      "exit": 0,
+      "seconds": 0.14,
+      "log": "ci/020.log",
+      "group": "CI"
+    },
+    {
+      "index": 21,
+      "command": "node work/test-v20-wake-lifecycle.cjs",
+      "exit": 0,
+      "seconds": 0.037,
+      "log": "ci/021.log",
+      "group": "CI"
+    },
+    {
+      "index": 22,
+      "command": "node work/test-v31.cjs",
+      "exit": 0,
+      "seconds": 1.51,
+      "log": "ci/022.log",
+      "group": "CI"
+    },
+    {
+      "index": 23,
+      "command": "node work/test-v41.cjs",
+      "exit": 0,
+      "seconds": 0.133,
+      "log": "ci/023.log",
+      "group": "CI"
+    },
+    {
+      "index": 24,
+      "command": "node work/test-v42.cjs",
+      "exit": 0,
+      "seconds": 0.191,
+      "log": "ci/024.log",
+      "group": "CI"
+    },
+    {
+      "index": 25,
+      "command": "node work/test-v44.cjs",
+      "exit": 0,
+      "seconds": 0.144,
+      "log": "ci/025.log",
+      "group": "CI"
+    },
+    {
+      "index": 26,
+      "command": "node work/test-v45.cjs",
+      "exit": 0,
+      "seconds": 0.138,
+      "log": "ci/026.log",
+      "group": "CI"
+    },
+    {
+      "index": 27,
+      "command": "node work/test-v47.cjs",
+      "exit": 0,
+      "seconds": 0.184,
+      "log": "ci/027.log",
+      "group": "CI"
+    },
+    {
+      "index": 28,
+      "command": "node work/test-statistics-menu.cjs",
+      "exit": 0,
+      "seconds": 0.154,
+      "log": "ci/028.log",
+      "group": "CI"
+    },
+    {
+      "index": 29,
+      "command": "node work/test-player-seasons.cjs",
+      "exit": 0,
+      "seconds": 0.137,
+      "log": "ci/029.log",
+      "group": "CI"
+    },
+    {
+      "index": 30,
+      "command": "node work/test-v49.cjs",
+      "exit": 0,
+      "seconds": 0.142,
+      "log": "ci/030.log",
+      "group": "CI"
+    },
+    {
+      "index": 31,
+      "command": "node work/test-v50.cjs",
+      "exit": 0,
+      "seconds": 0.422,
+      "log": "ci/031.log",
+      "group": "CI"
+    },
+    {
+      "index": 32,
+      "command": "node work/test-v50-balance.cjs",
+      "exit": 0,
+      "seconds": 22.48,
+      "log": "ci/032.log",
+      "group": "CI"
+    },
+    {
+      "index": 33,
+      "command": "node work/test-v51.cjs",
+      "exit": 0,
+      "seconds": 0.487,
+      "log": "ci/033.log",
+      "group": "CI"
+    },
+    {
+      "index": 34,
+      "command": "node work/test-v52.cjs",
+      "exit": 0,
+      "seconds": 0.184,
+      "log": "ci/034.log",
+      "group": "CI"
+    },
+    {
+      "index": 35,
+      "command": "node work/test-v53.cjs",
+      "exit": 0,
+      "seconds": 0.169,
+      "log": "ci/035.log",
+      "group": "CI"
+    },
+    {
+      "index": 36,
+      "command": "node work/test-v54.cjs",
+      "exit": 0,
+      "seconds": 39.802,
+      "log": "ci/036.log",
+      "group": "CI"
+    },
+    {
+      "index": 37,
+      "command": "node work/test-v55.cjs",
+      "exit": 0,
+      "seconds": 0.537,
+      "log": "ci/037.log",
+      "group": "CI"
+    },
+    {
+      "index": 38,
+      "command": "node work/test-ai-season-stats.cjs",
+      "exit": 0,
+      "seconds": 0.156,
+      "log": "ci/038.log",
+      "group": "CI"
+    },
+    {
+      "index": 39,
+      "command": "node work/test-ai-career-v60.cjs",
+      "exit": 0,
+      "seconds": 0.788,
+      "log": "ci/039.log",
+      "group": "CI"
+    },
+    {
+      "index": 40,
+      "command": "node work/test-breakaway.cjs",
+      "exit": 0,
+      "seconds": 0.16,
+      "log": "ci/040.log",
+      "group": "CI"
+    },
+    {
+      "index": 41,
+      "command": "node work/test-v56.cjs",
+      "exit": 0,
+      "seconds": 5.608,
+      "log": "ci/041.log",
+      "group": "CI"
+    },
+    {
+      "index": 42,
+      "command": "node work/test-duel-streaks.cjs",
+      "exit": 0,
+      "seconds": 0.534,
+      "log": "ci/042.log",
+      "group": "CI"
+    },
+    {
+      "index": 43,
+      "command": "node work/test-v57.cjs",
+      "exit": 0,
+      "seconds": 0.566,
+      "log": "ci/043.log",
+      "group": "CI"
+    },
+    {
+      "index": 44,
+      "command": "node work/test-world-foundation-v61.cjs",
+      "exit": 0,
+      "seconds": 0.12,
+      "log": "ci/044.log",
+      "group": "CI"
+    },
+    {
+      "index": 45,
+      "command": "node work/test-world-local-start.cjs",
+      "exit": 0,
+      "seconds": 0.93,
+      "log": "ci/045.log",
+      "group": "CI"
+    },
+    {
+      "index": 46,
+      "command": "node work/test-world-competition-v62.cjs",
+      "exit": 0,
+      "seconds": 11.873,
+      "log": "ci/046.log",
+      "group": "CI"
+    },
+    {
+      "index": 47,
+      "command": "node work/test-world-coaches-v63.cjs",
+      "exit": 0,
+      "seconds": 1.42,
+      "log": "ci/047.log",
+      "group": "CI"
+    },
+    {
+      "index": 48,
+      "command": "node work/test-world-match-v64.cjs",
+      "exit": 0,
+      "seconds": 0.373,
+      "log": "ci/048.log",
+      "group": "CI"
+    },
+    {
+      "index": 49,
+      "command": "node work/test-world-penalties-v65.cjs",
+      "exit": 0,
+      "seconds": 0.034,
+      "log": "ci/049.log",
+      "group": "CI"
+    },
+    {
+      "index": 50,
+      "command": "node work/test-world-victory-popup.cjs",
+      "exit": 0,
+      "seconds": 0.035,
+      "log": "ci/050.log",
+      "group": "CI"
+    },
+    {
+      "index": 51,
+      "command": "node work/test-world-nationalities-v79.cjs",
+      "exit": 0,
+      "seconds": 2.85,
+      "log": "ci/051.log",
+      "group": "CI"
+    },
+    {
+      "index": 52,
+      "command": "node work/test-world-market-nationalities-v79.cjs",
+      "exit": 0,
+      "seconds": 0.135,
+      "log": "ci/052.log",
+      "group": "CI"
+    },
+    {
+      "index": 53,
+      "command": "node work/test-world-kits-v81.cjs",
+      "exit": 0,
+      "seconds": 2.316,
+      "log": "ci/053.log",
+      "group": "CI"
+    },
+    {
+      "index": 54,
+      "command": "node work/test-world-direct-transfer.cjs",
+      "exit": 0,
+      "seconds": 0.182,
+      "log": "ci/054.log",
+      "group": "CI"
+    },
+    {
+      "index": 55,
+      "command": "node work/test-world-navigation.cjs",
+      "exit": 0,
+      "seconds": 0.034,
+      "log": "ci/055.log",
+      "group": "CI"
+    },
+    {
+      "index": 56,
+      "command": "node work/test-world-swap-banner.cjs",
+      "exit": 0,
+      "seconds": 0.031,
+      "log": "ci/056.log",
+      "group": "CI"
+    },
+    {
+      "index": 57,
+      "command": "node work/test-world-goal-scene-v83.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "ci/057.log",
+      "group": "CI"
+    },
+    {
+      "index": 58,
+      "command": "node work/test-world-goal-banner-v84.cjs",
+      "exit": 0,
+      "seconds": 0.031,
+      "log": "ci/058.log",
+      "group": "CI"
+    },
+    {
+      "index": 59,
+      "command": "node work/test-i18n-v75.cjs",
+      "exit": 0,
+      "seconds": 0.047,
+      "log": "ci/059.log",
+      "group": "CI"
+    },
+    {
+      "index": 60,
+      "command": "node work/test-world-live-ranks.cjs",
+      "exit": 0,
+      "seconds": 0.031,
+      "log": "ci/060.log",
+      "group": "CI"
+    },
+    {
+      "index": 61,
+      "command": "node work/test-world-grid-v71.cjs",
+      "exit": 0,
+      "seconds": 0.107,
+      "log": "ci/061.log",
+      "group": "CI"
+    },
+    {
+      "index": 62,
+      "command": "node work/test-world-player-instructions.cjs",
+      "exit": 0,
+      "seconds": 0.113,
+      "log": "ci/062.log",
+      "group": "CI"
+    },
+    {
+      "index": 63,
+      "command": "node work/test-world-physical-instructions.cjs",
+      "exit": 0,
+      "seconds": 0.155,
+      "log": "ci/063.log",
+      "group": "CI"
+    },
+    {
+      "index": 64,
+      "command": "node work/test-world-career-plan.cjs",
+      "exit": 0,
+      "seconds": 0.119,
+      "log": "ci/064.log",
+      "group": "CI"
+    },
+    {
+      "index": 65,
+      "command": "node work/test-world-economy-v66.cjs",
+      "exit": 0,
+      "seconds": 8.567,
+      "log": "ci/065.log",
+      "group": "CI"
+    },
+    {
+      "index": 66,
+      "command": "node work/test-world-sponsors-v97.cjs",
+      "exit": 0,
+      "seconds": 0.227,
+      "log": "ci/066.log",
+      "group": "CI"
+    },
+    {
+      "index": 67,
+      "command": "node work/test-world-career-events.cjs",
+      "exit": 0,
+      "seconds": 2.046,
+      "log": "ci/067.log",
+      "group": "CI"
+    },
+    {
+      "index": 68,
+      "command": "node work/test-world-playable-rosters.cjs",
+      "exit": 0,
+      "seconds": 0.35,
+      "log": "ci/068.log",
+      "group": "CI"
+    },
+    {
+      "index": 69,
+      "command": "node work/test-world-transfer-list-v72.cjs",
+      "exit": 0,
+      "seconds": 0.549,
+      "log": "ci/069.log",
+      "group": "CI"
+    },
+    {
+      "index": 70,
+      "command": "node work/test-world-human-sale-v73.cjs",
+      "exit": 0,
+      "seconds": 0.478,
+      "log": "ci/070.log",
+      "group": "CI"
+    },
+    {
+      "index": 71,
+      "command": "node work/test-world-youth-manager-v67.cjs",
+      "exit": 0,
+      "seconds": 4.231,
+      "log": "ci/071.log",
+      "group": "CI"
+    },
+    {
+      "index": 72,
+      "command": "node work/test-finance-close-v130.cjs",
+      "exit": 0,
+      "seconds": 1.52,
+      "log": "ci/072.log",
+      "group": "CI"
+    },
+    {
+      "index": 73,
+      "command": "node work/test-world-payments-v124.cjs",
+      "exit": 0,
+      "seconds": 3.366,
+      "log": "ci/073.log",
+      "group": "CI"
+    },
+    {
+      "index": 74,
+      "command": "node work/test-3d-documentation-v134.cjs",
+      "exit": 0,
+      "seconds": 0.066,
+      "log": "ci/074.log",
+      "group": "CI"
+    },
+    {
+      "index": 75,
+      "command": "node work/test-mobile-performance-v135.cjs",
+      "exit": 0,
+      "seconds": 0.038,
+      "log": "ci/075.log",
+      "group": "CI"
+    },
+    {
+      "index": 76,
+      "command": "node work/test-world-storage-v67.cjs",
+      "exit": 0,
+      "seconds": 0.198,
+      "log": "ci/076.log",
+      "group": "CI"
+    },
+    {
+      "index": 77,
+      "command": "node work/test-world-storage-startup.cjs",
+      "exit": 0,
+      "seconds": 5.563,
+      "log": "ci/077.log",
+      "group": "CI"
+    },
+    {
+      "index": 78,
+      "command": "node work/test-world-storage-recovery.cjs",
+      "exit": 0,
+      "seconds": 0.916,
+      "log": "ci/078.log",
+      "group": "CI"
+    },
+    {
+      "index": 79,
+      "command": "node work/test-expansion-assets-v161.cjs",
+      "exit": 0,
+      "seconds": 0.505,
+      "log": "ci/079.log",
+      "group": "CI"
+    },
+    {
+      "index": 80,
+      "command": "node work/test-world-expansion-v161.cjs",
+      "exit": 0,
+      "seconds": 13.933,
+      "log": "ci/080.log",
+      "group": "CI"
+    },
+    {
+      "index": 81,
+      "command": "node work/test-world-expansion-domestic-v164.cjs",
+      "exit": 0,
+      "seconds": 6.818,
+      "log": "ci/081.log",
+      "group": "CI"
+    },
+    {
+      "index": 82,
+      "command": "node work/test-world-expansion-crown-v165.cjs",
+      "exit": 0,
+      "seconds": 8.974,
+      "log": "ci/082.log",
+      "group": "CI"
+    },
+    {
+      "index": 83,
+      "command": "node work/test-world-expansion-horizon-v166.cjs",
+      "exit": 0,
+      "seconds": 163.827,
+      "log": "ci/083.log",
+      "group": "CI"
+    },
+    {
+      "index": 84,
+      "command": "node work/test-world-expansion-active-validation-v166.cjs",
+      "exit": 0,
+      "seconds": 10.717,
+      "log": "ci/084.log",
+      "group": "CI"
+    },
+    {
+      "index": 85,
+      "command": "node work/test-world-expansion-rules-v167.cjs",
+      "exit": 0,
+      "seconds": 6.341,
+      "log": "ci/085.log",
+      "group": "CI"
+    },
+    {
+      "index": 86,
+      "command": "node work/test-world-expansion-contracts-v168.cjs",
+      "exit": 0,
+      "seconds": 14.813,
+      "log": "ci/086.log",
+      "group": "CI"
+    },
+    {
+      "index": 87,
+      "command": "node work/test-world-expansion-stories-v170.cjs",
+      "exit": 0,
+      "seconds": 16.412,
+      "log": "ci/087.log",
+      "group": "CI"
+    },
+    {
+      "index": 88,
+      "command": "node work/test-world-expansion-presentation-v172.cjs",
+      "exit": 0,
+      "seconds": 13.248,
+      "log": "ci/088.log",
+      "group": "CI"
+    },
+    {
+      "index": 89,
+      "command": "node work/test-world-expansion-flutlicht-v175.cjs",
+      "exit": 0,
+      "seconds": 5.35,
+      "log": "ci/089.log",
+      "group": "CI"
+    },
+    {
+      "index": 90,
+      "command": "node work/platform/qa/test-android-3d-acceptance.cjs",
+      "exit": 0,
+      "seconds": 0.103,
+      "log": "ci/090.log",
+      "group": "CI"
+    },
+    {
+      "index": 91,
+      "command": "node work/test-world-save-management-v70.cjs",
+      "exit": 0,
+      "seconds": 1.282,
+      "log": "ci/091.log",
+      "group": "CI"
+    },
+    {
+      "index": 92,
+      "command": "node work/test-world-views-v68.cjs",
+      "exit": 0,
+      "seconds": 0.447,
+      "log": "ci/092.log",
+      "group": "CI"
+    },
+    {
+      "index": 93,
+      "command": "node work/test-world-honours-v74.cjs",
+      "exit": 0,
+      "seconds": 0.149,
+      "log": "ci/093.log",
+      "group": "CI"
+    },
+    {
+      "index": 94,
+      "command": "node work/test-match-presentation-v74.cjs",
+      "exit": 0,
+      "seconds": 0.165,
+      "log": "ci/094.log",
+      "group": "CI"
+    },
+    {
+      "index": 95,
+      "command": "node work/test-player-ui-projection.cjs",
+      "exit": 0,
+      "seconds": 0.041,
+      "log": "ci/095.log",
+      "group": "CI"
+    },
+    {
+      "index": 96,
+      "command": "node work/test-player-aging.cjs",
+      "exit": 0,
+      "seconds": 0.039,
+      "log": "ci/096.log",
+      "group": "CI"
+    },
+    {
+      "index": 97,
+      "command": "node work/test-player-load-candidate-v158.cjs",
+      "exit": 0,
+      "seconds": 0.055,
+      "log": "ci/097.log",
+      "group": "CI"
+    },
+    {
+      "index": 98,
+      "command": "node work/test-native-career-v160.cjs",
+      "exit": 0,
+      "seconds": 248.493,
+      "log": "ci/098.log",
+      "group": "CI"
+    },
+    {
+      "index": 99,
+      "command": "node work/platform/qa/test-unity-integration-v160.cjs",
+      "exit": 0,
+      "seconds": 0.037,
+      "log": "ci/099.log",
+      "group": "CI"
+    },
+    {
+      "index": 100,
+      "command": "node work/platform/qa/test-world-unity-contract.cjs",
+      "exit": 0,
+      "seconds": 0.036,
+      "log": "ci/100.log",
+      "group": "CI"
+    },
+    {
+      "index": 101,
+      "command": "node work/test-world-pitch3d-v98.cjs",
+      "exit": 0,
+      "seconds": 0.037,
+      "log": "ci/101.log",
+      "group": "CI"
+    },
+    {
+      "index": 102,
+      "command": "node work/test-unity-label-layout.cjs outputs/3d-quality/iteration-119/label-layout",
+      "exit": 0,
+      "seconds": 0.052,
+      "log": "ci/102.log",
+      "group": "CI"
+    },
+    {
+      "index": 103,
+      "command": "node work/test-unity-3d-quality-v117.cjs outputs/3d-quality/iteration-119/guide-legacy",
+      "exit": 0,
+      "seconds": 0.037,
+      "log": "ci/103.log",
+      "group": "CI"
+    },
+    {
+      "index": 104,
+      "command": "node work/test-keeper-picture-v118.cjs outputs/3d-quality/iteration-119/keeper-legacy",
+      "exit": 0,
+      "seconds": 0.04,
+      "log": "ci/104.log",
+      "group": "CI"
+    },
+    {
+      "index": 105,
+      "command": "node work/test-keeper-picture-v119.cjs",
+      "exit": 0,
+      "seconds": 0.037,
+      "log": "ci/105.log",
+      "group": "CI"
+    },
+    {
+      "index": 106,
+      "command": "node work/test-3d-contacts-v119.cjs",
+      "exit": 0,
+      "seconds": 0.04,
+      "log": "ci/106.log",
+      "group": "CI"
+    },
+    {
+      "index": 107,
+      "command": "node work/test-whistle-offside-v119.cjs",
+      "exit": 0,
+      "seconds": 0.046,
+      "log": "ci/107.log",
+      "group": "CI"
+    },
+    {
+      "index": 108,
+      "command": "node work/test-shootout-quality-v119.cjs",
+      "exit": 0,
+      "seconds": 0.39,
+      "log": "ci/108.log",
+      "group": "CI"
+    },
+    {
+      "index": 109,
+      "command": "node work/test-trophy-art-v119.cjs",
+      "exit": 0,
+      "seconds": 0.037,
+      "log": "ci/109.log",
+      "group": "CI"
+    },
+    {
+      "index": 110,
+      "command": "node work/platform/qa/test-world-unity-slides.cjs",
+      "exit": 0,
+      "seconds": 0.034,
+      "log": "ci/110.log",
+      "group": "CI"
+    },
+    {
+      "index": 111,
+      "command": "DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+      "exit": 0,
+      "seconds": 16.912,
+      "log": "ci/111.log",
+      "group": "CI"
+    },
+    {
+      "index": 112,
+      "command": "DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+      "exit": 0,
+      "seconds": 16.731,
+      "log": "ci/112.log",
+      "group": "CI"
+    },
+    {
+      "index": 113,
+      "command": "DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs",
+      "exit": 0,
+      "seconds": 13.116,
+      "log": "ci/113.log",
+      "group": "CI"
+    },
+    {
+      "index": 114,
+      "command": "node work/audit-world-balance-v68.cjs",
+      "exit": 0,
+      "seconds": 83.761,
+      "log": "ci/114.log",
+      "group": "CI"
+    },
+    {
+      "index": 115,
+      "command": "python3 work/test_deploy_ftps.py",
+      "exit": 0,
+      "seconds": 0.148,
+      "log": "ci/115.log",
+      "group": "CI"
+    },
+    {
+      "index": 116,
+      "command": "python3 work/test_deploy_unity_assets.py",
+      "exit": 0,
+      "seconds": 0.166,
+      "log": "ci/116.log",
+      "group": "CI"
+    },
+    {
+      "index": 1,
+      "command": "node work/test-freekick-plan-r132.cjs",
+      "exit": 0,
+      "seconds": 0.076,
+      "log": "branch/01-test-freekick-plan-r132.log",
+      "group": "Branch"
+    },
+    {
+      "index": 2,
+      "command": "node work/test-restart-facing-v130.cjs",
+      "exit": 0,
+      "seconds": 0.091,
+      "log": "branch/02-test-restart-facing-v130.log",
+      "group": "Branch"
+    },
+    {
+      "index": 3,
+      "command": "node work/test-observed-facing-r132.cjs",
+      "exit": 0,
+      "seconds": 0.088,
+      "log": "branch/03-test-observed-facing-r132.log",
+      "group": "Branch"
+    },
+    {
+      "index": 4,
+      "command": "node work/test-penalty-quality-v182.cjs",
+      "exit": 0,
+      "seconds": 1.006,
+      "log": "branch/04-test-penalty-quality-v182.log",
+      "group": "Branch"
+    },
+    {
+      "index": 5,
+      "command": "node work/test-corner-quality-v182.cjs",
+      "exit": 0,
+      "seconds": 100.895,
+      "log": "branch/05-test-corner-quality-v182.log",
+      "group": "Branch"
+    },
+    {
+      "index": 6,
+      "command": "node work/test-keeper-hold-v182.cjs",
+      "exit": 0,
+      "seconds": 41.882,
+      "log": "branch/06-test-keeper-hold-v182.log",
+      "group": "Branch"
+    },
+    {
+      "index": 7,
+      "command": "node work/test-loose-ball-v182.cjs",
+      "exit": 0,
+      "seconds": 11.428,
+      "log": "branch/07-test-loose-ball-v182.log",
+      "group": "Branch"
+    },
+    {
+      "index": 8,
+      "command": "node work/test-defensive-pursuit-v182.cjs",
+      "exit": 0,
+      "seconds": 45.112,
+      "log": "branch/08-test-defensive-pursuit-v182.log",
+      "group": "Branch"
+    },
+    {
+      "index": 9,
+      "command": "node work/test-review-fixes-v182.cjs",
+      "exit": 0,
+      "seconds": 0.936,
+      "log": "branch/09-test-review-fixes-v182.log",
+      "group": "Branch"
+    },
+    {
+      "index": 10,
+      "command": "node work/check-old-matches-v182.cjs work/tmp-base182",
+      "exit": 0,
+      "seconds": 16.941,
+      "log": "branch/10-check-old-matches-v182.log",
+      "group": "Branch"
+    },
+    {
+      "index": 11,
+      "command": "node work/test-whistle-offside-v119.cjs",
+      "exit": 0,
+      "seconds": 0.049,
+      "log": "branch/11-test-whistle-offside-v119.log",
+      "group": "Branch"
+    },
+    {
+      "index": 12,
+      "command": "node work/test-world-offer-withdraw-reply-r132.cjs",
+      "exit": 0,
+      "seconds": 2.024,
+      "log": "branch/12-test-world-offer-withdraw-reply-r132.log",
+      "group": "Branch"
+    },
+    {
+      "index": 13,
+      "command": "node work/check-audit-median-r132.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "branch/13-check-audit-median-r132.log",
+      "group": "Branch"
+    },
+    {
+      "index": 14,
+      "command": "node work/check-finance-guide-r132.cjs",
+      "exit": 0,
+      "seconds": 131.132,
+      "log": "branch/14-check-finance-guide-r132.log",
+      "group": "Branch"
+    },
+    {
+      "index": 15,
+      "command": "node work/check-tactics-pointer-r132.cjs",
+      "exit": 0,
+      "seconds": 117.585,
+      "log": "branch/15-check-tactics-pointer-r132.log",
+      "group": "Branch"
+    },
+    {
+      "index": 16,
+      "command": "node work/check-offer-withdraw-reply-browser-r132.cjs",
+      "exit": 0,
+      "seconds": 48.882,
+      "log": "branch/16-check-offer-withdraw-reply-browser-r132.log",
+      "group": "Branch"
+    },
+    {
+      "index": 1,
+      "command": "node work/build.cjs",
+      "exit": 0,
+      "seconds": 39.152,
+      "log": "supplemental/01.log",
+      "group": "Zusatz"
+    },
+    {
+      "index": 2,
+      "command": "node work/ui-redesign/shared/verify-build.cjs",
+      "exit": 0,
+      "seconds": 2.933,
+      "log": "supplemental/02.log",
+      "group": "Zusatz"
+    },
+    {
+      "index": 3,
+      "command": "node work/test-club-crests.cjs",
+      "exit": 0,
+      "seconds": 0.292,
+      "log": "supplemental/03.log",
+      "group": "Zusatz"
+    },
+    {
+      "index": 4,
+      "command": "node work/test-expansion-crests.cjs",
+      "exit": 0,
+      "seconds": 5.887,
+      "log": "supplemental/04.log",
+      "group": "Zusatz"
+    },
+    {
+      "index": 5,
+      "command": "node work/test-completed-crests.cjs",
+      "exit": 0,
+      "seconds": 5.084,
+      "log": "supplemental/05.log",
+      "group": "Zusatz"
+    },
+    {
+      "index": 6,
+      "command": "node work/test-expansion-sponsors.cjs",
+      "exit": 0,
+      "seconds": 3.133,
+      "log": "supplemental/06.log",
+      "group": "Zusatz"
+    },
+    {
+      "index": 7,
+      "command": "node work/test-no-player-images.cjs",
+      "exit": 0,
+      "seconds": 0.271,
+      "log": "supplemental/07.log",
+      "group": "Zusatz"
+    },
+    {
+      "index": 8,
+      "command": "py -3 work/test_deploy_unity_assets.py",
+      "exit": 0,
+      "seconds": 0.175,
+      "log": "supplemental/08.log",
+      "group": "Zusatz"
+    },
+    {
+      "index": 9,
+      "command": "py -3 work/check-release-r132-publication.py",
+      "exit": 0,
+      "seconds": 0.43,
+      "log": "supplemental/09.log",
+      "group": "Zusatz"
+    },
+    {
+      "index": 10,
+      "command": "node work/test-release-version.cjs",
+      "exit": 0,
+      "seconds": 0.034,
+      "log": "supplemental/10.log",
+      "group": "Zusatz"
+    }
+  ]
+}

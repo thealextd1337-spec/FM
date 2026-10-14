@@ -1,0 +1,121 @@
+{
+  "root": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\release-r132",
+  "base": "f2458c1f",
+  "node": "C:\\Users\\alex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "port": 4240,
+  "timestamp": "2026-10-14T10:51:08.117133",
+  "results": [
+    {
+      "index": 1,
+      "command": "node work/test-freekick-plan-r132.cjs",
+      "exit": 0,
+      "seconds": 0.076,
+      "log": "01-test-freekick-plan-r132.log"
+    },
+    {
+      "index": 2,
+      "command": "node work/test-restart-facing-v130.cjs",
+      "exit": 0,
+      "seconds": 0.091,
+      "log": "02-test-restart-facing-v130.log"
+    },
+    {
+      "index": 3,
+      "command": "node work/test-observed-facing-r132.cjs",
+      "exit": 0,
+      "seconds": 0.088,
+      "log": "03-test-observed-facing-r132.log"
+    },
+    {
+      "index": 4,
+      "command": "node work/test-penalty-quality-v182.cjs",
+      "exit": 0,
+      "seconds": 1.006,
+      "log": "04-test-penalty-quality-v182.log"
+    },
+    {
+      "index": 5,
+      "command": "node work/test-corner-quality-v182.cjs",
+      "exit": 0,
+      "seconds": 100.895,
+      "log": "05-test-corner-quality-v182.log"
+    },
+    {
+      "index": 6,
+      "command": "node work/test-keeper-hold-v182.cjs",
+      "exit": 0,
+      "seconds": 41.882,
+      "log": "06-test-keeper-hold-v182.log"
+    },
+    {
+      "index": 7,
+      "command": "node work/test-loose-ball-v182.cjs",
+      "exit": 0,
+      "seconds": 11.428,
+      "log": "07-test-loose-ball-v182.log"
+    },
+    {
+      "index": 8,
+      "command": "node work/test-defensive-pursuit-v182.cjs",
+      "exit": 0,
+      "seconds": 45.112,
+      "log": "08-test-defensive-pursuit-v182.log"
+    },
+    {
+      "index": 9,
+      "command": "node work/test-review-fixes-v182.cjs",
+      "exit": 0,
+      "seconds": 0.936,
+      "log": "09-test-review-fixes-v182.log"
+    },
+    {
+      "index": 10,
+      "command": "node work/check-old-matches-v182.cjs work/tmp-base182",
+      "exit": 0,
+      "seconds": 16.941,
+      "log": "10-check-old-matches-v182.log"
+    },
+    {
+      "index": 11,
+      "command": "node work/test-whistle-offside-v119.cjs",
+      "exit": 0,
+      "seconds": 0.049,
+      "log": "11-test-whistle-offside-v119.log"
+    },
+    {
+      "index": 12,
+      "command": "node work/test-world-offer-withdraw-reply-r132.cjs",
+      "exit": 0,
+      "seconds": 2.024,
+      "log": "12-test-world-offer-withdraw-reply-r132.log"
+    },
+    {
+      "index": 13,
+      "command": "node work/check-audit-median-r132.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "13-check-audit-median-r132.log"
+    },
+    {
+      "index": 14,
+      "command": "node work/check-finance-guide-r132.cjs",
+      "exit": 0,
+      "seconds": 131.132,
+      "log": "14-check-finance-guide-r132.log"
+    },
+    {
+      "index": 15,
+      "command": "node work/check-tactics-pointer-r132.cjs",
+      "exit": 0,
+      "seconds": 117.585,
+      "log": "15-check-tactics-pointer-r132.log"
+    },
+    {
+      "index": 16,
+      "command": "node work/check-offer-withdraw-reply-browser-r132.cjs",
+      "exit": 0,
+      "seconds": 48.882,
+      "log": "16-check-offer-withdraw-reply-browser-r132.log"
+    }
+  ]
+}

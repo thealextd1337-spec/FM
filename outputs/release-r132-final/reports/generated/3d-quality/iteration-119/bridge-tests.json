@@ -1,0 +1,36 @@
+{
+  "pass": true,
+  "checks": [
+    "Goal-kick target beats stale heading false/1",
+    "Ordinary keeper watches ball false/1",
+    "Save watches existing contact false/1",
+    "Goal-kick target beats stale heading false/1.2",
+    "Ordinary keeper watches ball false/1.2",
+    "Save watches existing contact false/1.2",
+    "Goal-kick target beats stale heading true/1",
+    "Ordinary keeper watches ball true/1",
+    "Save watches existing contact true/1",
+    "Goal-kick target beats stale heading true/1.2",
+    "Ordinary keeper watches ball true/1.2",
+    "Save watches existing contact true/1.2",
+    "Scaling preserves actual outlet and input",
+    "Completed confirmed owner catch explicitly anchors visible ball",
+    "Release or reject visual hold: parry",
+    "Release or reject visual hold: goal",
+    "Release or reject visual hold: flight",
+    "Release or reject visual hold: ownerchange",
+    "Release or reject visual hold: incomplete",
+    "Release or reject visual hold: follow",
+    "Release or reject visual hold: unknownparry",
+    "Release or reject visual hold: unknownflight",
+    "Release or reject visual hold: outfield",
+    "Real challenge producer states no parry without altering native event",
+    "Explicit action facing remains authoritative",
+    "Free kick follows projected goal rather than old running direction false",
+    "Free kick follows projected goal rather than old running direction true"
+  ],
+  "sourceHashes": {
+    "dist/world-unity-v151.js": "fbba282af8b005f05b956db9cdf70065135f60db285aaea0f49837b83b3dae5e",
+    "dist/world-pitch-actions-v99.js": "3e2b515b920e75ba717842de2d470ba30f4701d2b2168ea13a7061ffd607f01f"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "pass": true,
+  "checks": [
+    "Action checkpoint is plain IDs without callback or native object references",
+    "Actual waiting/recovery/throw lock restores against new player objects",
+    "Snapshot remains detached when restored action ages advance",
+    "Old checkpoint does not reconstruct unknown keeper facts",
+    "Missing players are not recreated by action restore",
+    "Running faces actual observed diagonal travel false/1",
+    "Running faces actual observed diagonal travel false/1.2",
+    "Running faces actual observed diagonal travel true/1",
+    "Running faces actual observed diagonal travel true/1.2",
+    "Keep genuine specialized facing keeper",
+    "Keep genuine specialized facing stationary",
+    "Keep genuine specialized facing slide",
+    "Keep genuine specialized facing defensiveback",
+    "Wide miss renders actual lateral target with restrained height",
+    "Miss continuation no longer rises many metres after short contact",
+    "Native shot geometry remains byte-equivalent before and after render reads",
+    "On-target, blocked and legacy shots retain existing native picture",
+    "Actual cached defensive mode survives JSON against new player IDs",
+    "Absent defensive observation is not inferred for older checkpoints"
+  ],
+  "sourceHashes": {
+    "dist/pitch-v55.js": "078625aa65a28cea02cde4f4d5c697ee3b5f6658a316dbf5d7188764ee5fd703",
+    "dist/world-pitch-actions-v99.js": "3e2b515b920e75ba717842de2d470ba30f4701d2b2168ea13a7061ffd607f01f",
+    "dist/world-pitch3d-v98.js": "affe1b20e96826f30c09da9601ae310c507c0219528f34fbdb2dde1b75257668",
+    "dist/world-unity-v151.js": "fbba282af8b005f05b956db9cdf70065135f60db285aaea0f49837b83b3dae5e",
+    "dist/world-physical-v65.js": "173a2f68e137f796aa57708883746eae6b2d61f291764b5086366925589958af"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "pass": true,
+  "checks": [
+    "Confirmed pickup uses its contact instead of stale parry",
+    "View never mutates the native match",
+    "Failed smother does not place a held ball",
+    "Parry alone never means a held ball",
+    "Ordinary confirmed catch retains its native contact",
+    "No catch picture for another owner",
+    "A flying ball is never replaced by held pickup",
+    "Native pickup identity survives action projection",
+    "Actions without an identity retain existing kind fallback",
+    "Keeper outcome and native flight facts cross whitelist without private skills",
+    "Keeper kick exposes existing phase and held truth",
+    "Old pictures omit optional outcomes and native flight",
+    "Wrong-type optional facts do not pass whitelist"
+  ],
+  "sourceHashes": {
+    "dist/world-pitch-actions-v99.js": "3e2b515b920e75ba717842de2d470ba30f4701d2b2168ea13a7061ffd607f01f",
+    "dist/pitch-motion-v102.js": "58dd29d69557d94bb0f72c8f8f0caf486604e52803b2858adf0c953bf48b55c6",
+    "dist/world-unity-v151.js": "fbba282af8b005f05b956db9cdf70065135f60db285aaea0f49837b83b3dae5e"
+  }
+}
