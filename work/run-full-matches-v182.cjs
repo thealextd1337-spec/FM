@@ -4,6 +4,7 @@
 //  old      = current dist, markers 182 removed right after creation (an old match)
 //  new      = current dist, fresh match with looseBallRevision/pursuitRevision 182
 //  new-json = like new with a JSON checkpoint at minute 20 (continuation must be identical)
+//  b12-only = current dist with looseBallRevision only (attribution; D6_MODES182=b12-only)
 // `old` must reproduce `base` byte-identically (same digest incl. RNG draws).
 // Usage: node work/run-full-matches-v182.cjs [--seeds=N] [--out=path]   (Node >= 20, port 4215)
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto'),assert=require('node:assert/strict');
@@ -25,6 +26,7 @@ async function play(browser,mode,size,count,seed){
   const f=v62Fixtures(c).filter(f=>!f.result&&[f.homeId,f.awayId].includes(club.id)).sort((a,b)=>a.day-b.day)[0],state=v64MakeState(c,f);c.world.activeMatch={fixtureId:f.id,state};v61CurrentCareer=c;state.phase='paused';match=null;v65WorldActive=null;v98View='2d';v65Show(v65Context());clearInterval(v65WorldFrame);v103CanReplay=()=>false;draw=()=>{};
   const markers={loose:match.attackFlow.looseBallRevision??null,pursuit:match.attackFlow.pursuitRevision??null};
   if(mode==='old'||mode==='old-json'){delete match.attackFlow.looseBallRevision;delete match.attackFlow.pursuitRevision;}
+  if(mode==='b12-only')delete match.attackFlow.pursuitRevision;
   let ticks=0,checkpoint=false;const t0=performance.now();
   while(!match.finished&&ticks++<30000){const ctx=v65Context();if(state.phase==='paused'){v65Resume();clearInterval(v65WorldFrame);}
    if(mode.endsWith('-json')&&!checkpoint&&state.minute>=20&&!match.flight&&!match.slide&&!match.setPiece&&!match.kickoff&&!match.throwIn&&!match.rebound&&!match.goalPause&&!match.halftimePause){checkpoint=true;v65Snapshot(ctx);state.physicalSnapshot=JSON.parse(JSON.stringify(state.physicalSnapshot));match=null;if(!v65Restore(ctx))throw Error('JSON restore failed');}
@@ -53,7 +55,7 @@ async function play(browser,mode,size,count,seed){
   const find=(mode,r)=>report.matches.find(x=>x.mode===mode&&x.size===r.size&&x.count===r.count&&x.seed===r.seed);
   report.oldIdentical=report.matches.filter(r=>r.mode==='old'&&find('base',r)).map(r=>({size:r.size,seed:r.seed,identical:r.digestSha256===find('base',r).digestSha256}));
   report.jsonIdentical=report.matches.filter(r=>r.mode.endsWith('-json')).map(r=>({mode:r.mode,size:r.size,seed:r.seed,checkpoint:r.checkpoint,identical:r.digestSha256===find(r.mode.slice(0,-5),r)?.digestSha256}));
-  report.summary=[];for(const mode of ['base','new'])for(const size of ['standard','large',null]){const rows=report.matches.filter(r=>r.mode===mode&&(!size||r.size===size)),mean=f=>Math.round(rows.reduce((n,r)=>n+f(r),0)/rows.length*100)/100;
+  report.summary=[];for(const mode of ['base','new','b12-only'].filter(m=>report.matches.some(r=>r.mode===m)))for(const size of ['standard','large',null]){const rows=report.matches.filter(r=>r.mode===mode&&(!size||r.size===size)),mean=f=>Math.round(rows.reduce((n,r)=>n+f(r),0)/rows.length*100)/100;
    report.summary.push({mode,size:size||'all',n:rows.length,minutes:mean(r=>r.simulationSeconds/60),shots:mean(r=>r.stats.shots),onTarget:mean(r=>r.stats.onTarget),goals:mean(r=>r.stats.goals),fouls:mean(r=>r.setPieces.fouls[0]+r.setPieces.fouls[1]),penalties:mean(r=>r.setPieces.penalties[0]+r.setPieces.penalties[1]),tackleAttempts:mean(r=>r.stats.tackleAttempts),tacklesWon:mean(r=>r.stats.tacklesWon),slides:mean(r=>r.stats.slideAttempts),passes:mean(r=>r.stats.passes),computeMs:mean(r=>r.computeMs)});}
   console.table(report.summary);console.log(JSON.stringify({oldIdentical:report.oldIdentical,jsonIdentical:report.jsonIdentical}));
   report.pass=report.matches.every(r=>r.finished&&!r.errors.length)&&report.oldIdentical.every(r=>r.identical)&&report.jsonIdentical.every(r=>r.identical&&r.checkpoint)&&report.oldIdentical.length>0&&report.matches.filter(r=>r.mode==='new').every(r=>r.markers.loose===182&&r.markers.pursuit===182);
