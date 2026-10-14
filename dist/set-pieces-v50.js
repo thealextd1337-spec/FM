@@ -312,6 +312,7 @@ function v50PenaltyVisual(setPiece,last){
 }
 function v50TakePenalty(setPiece){
  const keeper=v50Keeper(1-setPiece.team),shooter=setPiece.taker;
+ if(match?.penaltyRevision===182)return v182TakePenalty(setPiece,shooter,keeper);
  const goal=random()<v42PenaltyChance(v42Player(shooter),v42Player(keeper));
  const outcome=goal?'goal':random()<.45?'save':random()<.5?'wide':'high';
  setPiece.phase='result';setPiece.wait=2.15;setPiece.outcome=outcome;
@@ -320,6 +321,15 @@ function v50TakePenalty(setPiece){
  if(typeof v158PenaltyDive==='function')v158PenaltyDive(match,setPiece,keeper);
  v50PenaltyVisual(setPiece,{side:0,number:shooter.n,name:shooter.name,goal,outcome,shotSide:setPiece.shotSide,diveSide:setPiece.diveSide});
  note(`${shooter.name}: ${v42OutcomeText({goal,outcome})}`,'shot');
+}
+// Marked matches resolve side, target, keeper guess and finish together.
+function v182TakePenalty(setPiece,shooter,keeper){
+ const result=v182PenaltyOutcome(v42Player(shooter),v42Player(keeper),random),{goal,outcome}=result;
+ setPiece.phase='result';setPiece.wait=2.15;setPiece.outcome=outcome;if(result.frame)setPiece.frame=result.frame;
+ setPiece.shotSide=result.shotSide;setPiece.diveSide=result.diveSide;
+ if(typeof v158PenaltyDive==='function')v158PenaltyDive(match,setPiece,keeper);
+ v50PenaltyVisual(setPiece,{side:0,number:shooter.n,name:shooter.name,goal,outcome,...result.frame?{frame:result.frame}:{},shotSide:setPiece.shotSide,diveSide:setPiece.diveSide});
+ note(`${shooter.name}: ${v42OutcomeText(result)}`,'shot');
 }
 function v50FinishPenalty(setPiece){
  const m=match,shooter=setPiece.taker,keeper=v50Keeper(1-setPiece.team),outcome=setPiece.outcome;
@@ -333,7 +343,7 @@ function v50FinishPenalty(setPiece){
   keeper.stats.saves++;
   if(random()<.3)v50Deflect({x:.5,y:keeper.y},shooter.t,keeper,`Parade von ${keeper.name}`);
   else v50GoalKick(keeper,`${keeper.name} hält den Elfmeter fest.`);
- }else v50GoalKick(keeper,`${shooter.name} schießt den Elfmeter ${outcome==='high'?'über das Tor':'vorbei'}. Abstoß.`);
+ }else v50GoalKick(keeper,`${shooter.name} schießt den Elfmeter ${setPiece.frame==='post'?'an den Pfosten':setPiece.frame==='bar'?'an die Latte':outcome==='high'?'über das Tor':'vorbei'}. Abstoß.`);
  hideOverlay();
 }
 

@@ -13,6 +13,31 @@ v42Style.textContent+=`.v42-goal-scene:is(.goal,.save,.wide,.high) .v42-keeper{a
 function v42Composure(player){if(Number.isFinite(player.calm))return player.calm;if(Number.isFinite(player.composure))return player.composure;const hash=[...String(player.pid||player.name||'')].reduce((sum,char)=>sum*31+char.charCodeAt(0),0)>>>0;player.composure=clamp(Math.round(10+hash%7+((player.age||25)-25)*.08),1,20);return player.composure}
 function v42PenaltyChance(shooter,keeper){const finish=shooter.fin??Math.round((shooter.pas||11)*.72);return clamp(.50+(finish-12)*.025+(v42Composure(shooter)-12)*.015+(shooter.form||0)*.02-(100-(shooter.fresh??100))*.0012-((keeper.gk||14)-12)*.015-(v42Composure(keeper)-12)*.005,.25,.9)}
 v41PenaltyChance=v42PenaltyChance;
+// Release-132 penalty model, only for actions marked penaltyRevision 182.
+// Two stages: on target (finishing, calm, form, freshness), then keeper
+// (correct side and reach versus shot quality). Abilities stay internal.
+function v182PenaltyQuality(shooter){const finish=shooter.fin??Math.round((shooter.pas||11)*.72);return (finish-11)*.6+(v42Composure(shooter)-11)*.4}
+function v182KeeperQuality(keeper){return ((keeper?.gk??11)-11)*.7+((keeper?v42Composure(keeper):11)-11)*.3}
+function v182PenaltyParts(shooter,keeper){const quality=v182PenaltyQuality(shooter),reach=v182KeeperQuality(keeper);return{onTarget:clamp(.92+quality*.007+(shooter.form||0)*.008-(100-(shooter.fresh??100))*.0005,.8,.975),guess:clamp(.5+reach*.006,.42,.58),stop:clamp(.36-quality*.014+reach*.018,.15,.6)}}
+function v182PenaltyGoalChance(shooter,keeper){const part=v182PenaltyParts(shooter,keeper);return part.onTarget*(1-part.guess*part.stop)}
+// Exactly four draws per kick: side, target, keeper guess, finish/miss type.
+function v182PenaltyOutcome(shooter,keeper,draw){
+ const part=v182PenaltyParts(shooter,keeper),shotSide=draw()<.5?-1:1,onTarget=draw()<part.onTarget,guessed=draw()<part.guess,last=draw(),diveSide=guessed?shotSide:-shotSide;
+ if(onTarget){const saved=guessed&&last<part.stop;return{goal:!saved,outcome:saved?'save':'goal',shotSide,diveSide}}
+ return last<.15?{goal:false,outcome:'wide',frame:'post',shotSide,diveSide}:last<.25?{goal:false,outcome:'high',frame:'bar',shotSide,diveSide}:{goal:false,outcome:last<.65?'wide':'high',shotSide,diveSide};
+}
+// Three kickers each. Stop once a side can no longer be caught, then pairs.
+function v182ShootoutWinner(score,taken,rounds=3){
+ if(taken[0]<=rounds&&taken[1]<=rounds){if(score[0]>score[1]+rounds-taken[1])return 0;if(score[1]>score[0]+rounds-taken[0])return 1;return null}
+ return taken[0]===taken[1]&&score[0]!==score[1]?(score[0]>score[1]?0:1):null;
+}
+function v182NextKick(session){
+ const side=session.kicks.length%2,taken=[0,0];for(const kick of session.kicks)taken[kick.side]++;
+ const order=side===0?session.order:session.opponentOrder,roster=side===0?session.own:session.opponent,other=side===0?session.opponent:session.own,player=roster.find(item=>item.n===order[taken[side]%order.length]),keeper=other.find(item=>item.keeper);
+ const result=v182PenaltyOutcome(player,keeper,Math.random);taken[side]++;
+ session.score[side]+=Number(result.goal);session.last={side,name:player.name,number:player.n,goal:result.goal,outcome:result.outcome,...result.frame?{frame:result.frame}:{},shotSide:result.shotSide,diveSide:result.diveSide,score:[...session.score]};session.kicks.push(session.last);
+ const winner=v182ShootoutWinner(session.score,taken);if(winner!==null){session.winner=winner;session.phase='done';if(session.mode==='career')v42SettleCareer(session)}v42Save();v42RenderScreen();
+}
 function v42Level(value){return value>=16?'sehr gut':value>=13?'gut':value>=10?'ordentlich':value>=8?'schwach':'sehr schwach'}
 function v42LevelHTML(value){return escapeHTML(v42Level(value))}
 function v42Player(player,source=player){return{n:player.n,name:player.name,keeper:Boolean(player.keeper),fin:player.fin,pas:player.pas,gk:player.gk,form:source.form??player.form??0,fresh:source.fresh??player.fresh??100,composure:v42Composure(source),age:player.age}}
@@ -35,7 +60,7 @@ startScreen.querySelector('.menu-layout').insertAdjacentElement('afterend',v42De
 $('#v42-demo-start').onclick=()=>{const own=$('#v42-own-team').value,opp=$('#v42-opp-team').value;if(own===opp){$('#v42-demo-status').textContent='Wähle zwei unterschiedliche Mannschaften.';return}$('#v42-demo-status').textContent='';const first=v42Teams.find(team=>team.id===own),second=v42Teams.find(team=>team.id===opp),ours=v42DemoRoster(first),theirs=v42DemoRoster(second);v42Session={mode:'demo',ownName:first.name,opponentName:second.name,ownColour:v42Colour(own),opponentColour:v42Colour(opp),own:ours,opponent:theirs,order:v42Sorted(ours).map(player=>player.n),opponentOrder:v42Sorted(theirs).map(player=>player.n),score:[0,0],kicks:[],phase:'choose',ownId:own,opponentId:opp};v42RenderScreen(true)};
 
 function v42UpcomingShooter(session){if(session.phase!=='shooting')return null;const side=session.kicks.length%2,order=side===0?session.order:session.opponentOrder,roster=side===0?session.own:session.opponent;return{side,player:roster.find(item=>item.n===order[Math.floor(session.kicks.length/2)%6])}}
-function v42OutcomeText(kick){return kick.outcome==='save'?'Gehalten!':kick.outcome==='wide'?'Vorbei!':kick.outcome==='high'?'Drüber!':kick.goal?'Tor!':'Kein Tor.'}
+function v42OutcomeText(kick){return kick.frame==='post'?'Pfosten!':kick.frame==='bar'?'Latte!':kick.outcome==='save'?'Gehalten!':kick.outcome==='wide'?'Vorbei!':kick.outcome==='high'?'Drüber!':kick.goal?'Tor!':'Kein Tor.'}
 function v42Shirt(player,colour){return`<svg viewBox="0 0 80 85" role="img" aria-label="Trikot Nummer ${player.n}"><path d="M18 11 29 4h22l11 7 14 14-10 15-9-5v43H23V35l-9 5L4 25z" fill="${escapeHTML(colour.main)}" stroke="${escapeHTML(colour.trim)}" stroke-width="4" stroke-linejoin="round"/><text x="40" y="51" fill="${textColor(colour.main)}" font-family="Arial,sans-serif" font-weight="800" font-size="27" text-anchor="middle">${player.n}</text></svg>`}
 function v42FanBlock(session,side){
  const colour=side===0?session.ownColour:session.opponentColour,name=side===0?session.ownName:session.opponentName,celebrate=session.last?.goal&&session.last.side===side;
@@ -54,6 +79,7 @@ function v42RenderScreen(openDialog=false){const session=v42Session;if(!session)
 function v42Celebration(name,colour,ownWin){return`<div class="cup-celebration" style="--cup-colour:${escapeHTML(colour.main)}"><h2>${ownWin?'Glückwunsch zum Pokalsieg!':'Pokalsieger!'}</h2><p>${escapeHTML(name)} gewinnt den Pokal.</p>${Array.from({length:26},(_,index)=>`<i class="confetti" style="--left:${index*41%100}%;--delay:-${index%7*.31}s;--confetti:${escapeHTML(index%2?colour.main:colour.trim)}"></i>`).join('')}</div>`}
 function v42NextKick(){
  const session=v42Session;if(!session||session.phase!=='shooting')return;
+ if(session.penaltyRevision===182)return v182NextKick(session);
  const side=session.kicks.length%2,pair=Math.floor(session.kicks.length/2),order=side===0?session.order:session.opponentOrder,roster=side===0?session.own:session.opponent,other=side===0?session.opponent:session.own,player=roster.find(item=>item.n===order[pair%6]),keeper=other.find(item=>item.keeper),goal=Math.random()<v42PenaltyChance(player,keeper);
  const saveChance=clamp(.45+((keeper.gk??14)-12)*.02+(v42Composure(keeper)-12)*.01-((player.fin??12)-12)*.005,.2,.75);
  const outcome=goal?'goal':Math.random()<saveChance?'save':Math.random()<.5?'wide':'high',shotSide=Math.random()<.5?-1:1,diveSide=outcome==='save'?shotSide:-shotSide;
