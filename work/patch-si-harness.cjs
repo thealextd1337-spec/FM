@@ -110,4 +110,30 @@ rep(`const goals=ledger.filter(e=>e.kind==='goal').map(e=>({team:e.team,result:e
   const byId=new Map(ledger.map(e=>[e.id,e])),fromShot=e=>{let x=byId.get(e.parentId);for(let i=0;i<3&&x;i++){if(x.shot)return true;x=byId.get(x.parentId);}return false;},rebounds=ledger.filter(e=>e.kind==='loose-ball'&&fromShot(e)).length,shotResults={};for(const e of ledger.filter(e=>e.shot)){shotResults[e.result||'?']=(shotResults[e.result||'?']||0)+1;}
   const extras={rebounds,shotResults,corners:m.setPieceStats.corners[0]+m.setPieceStats.corners[1],freeKicks:m.setPieceStats.freeKicks[0]+m.setPieceStats.freeKicks[1],penalties:m.setPieceStats.penalties[0]+m.setPieceStats.penalties[1],flights:Object.fromEntries(['pass','highPass','cross','header','shot','block','goalKick','throw'].map(k=>[k,ledger.filter(e=>e.kind===k&&e.intent!=='space').length])),spacePasses:ledger.filter(e=>e.intent==='space').length,spaceReceived:ledger.filter(e=>e.intent==='space'&&e.result==='received').length,crossComplete:ledger.filter(e=>e.kind==='cross'&&(e.result==='received'||e.result==='goal')).length,crossProbe:window.__crossProbe?{...window.__crossProbe}:null};if(window.__crossProbe)window.__crossProbe=null;`);
 rep(`return{integrity,engineError,clubId,size,seed,fixtureId:fixture.id,`,`return{integrity,engineError,extras,clubId,size,seed,fixtureId:fixture.id,`);
+// Umsetzungsplan-Nachmessung (docs/spielerintelligenz-umsetzungsplan-2026-10-14.md): placement-coupled
+// shot outcome and rebound finishing on top of si-max42-norisk (same seeds, paired).
+rep(`variants['si-max42-norisk']=variants['si-max42'].filter(r=>!variants.risk.some(x=>x[1]===r[1]));`,
+`variants['si-max42-norisk']=variants['si-max42'].filter(r=>!variants.risk.some(x=>x[1]===r[1]));
+// place: on target = actual placement inside the mouth and no height miss (quality, pressure and calm coupled);
+// goal = placed point unreachable for the keeper (no blanket goal roll, no central-keeper rule); lateral scatter
+// grows with range; keeper reach uses a shot speed of 21+0.4 fin+0.2 tec m/s (flight visuals unchanged).
+variants.place=[
+ ['match-shot-choice-v159.js',"reaction=Math.max(.08,.30-ability(keeper,'gk')*.011),time=range*q/27,","reaction=Math.max(.08,.30-ability(keeper,'gk')*.011),time=range*q/(p.keeper?27:21+ability(p,'fin')*.4+ability(p,'tec')*.2),"],
+ ['match-shot-choice-v159.js',"const spread=(.012+(1-quality)*.085+Math.min(2,pressure)*.012+Math.max(0,range-16)*.001)*44/","const spread=(.012+(1-quality)*.085+Math.min(2,pressure)*.012*(1.4-(ability(p,'calm')||10)/20))*(.55+range/26)*44/"],
+ ['pitch-v55.js',"const onTarget=random()<clamp((.36+fin*.019+tech*.004-pressure*.004)*rangeAccuracy,world?.08:.22,.82)&&(!advanced||v159WithinMouth(goalPoint));","const vRoll=random(),shotQ=clamp((fin*.7+tech*.3)/20,0,1),overP=clamp(.16+(1-shotQ)*.5*Math.max(.6,range/18)+pressure*.003*(1.4-(ability(shooter,'calm')||10)/20),.08,.7),onTarget=advanced?vRoll>=overP&&v159WithinMouth(goalPoint):vRoll<clamp((.36+fin*.019+tech*.004-pressure*.004)*rangeAccuracy,world?.08:.22,.82)&&(!advanced||v159WithinMouth(goalPoint));"],
+ ['pitch-v55.js',"let goal=onTarget&&goalRoll<clamp(","let goal=!advanced&&onTarget&&goalRoll<clamp("]];
+// follow: a field player who wins a loose ball last touched by the opponent (parry, block, clearance) within 18 m
+// tries the native one-touch finish (shot or lay-off), not only with an open goal; keeper parries land wider and
+// further from the keeper (less immediate re-collection).
+variants.follow=[
+ ['world-ball-motion-v110.js',"const result=v110BaseChase(delta,positions),winner=current?.owner;","const touchBefore=current?.lastTouch,result=v110BaseChase(delta,positions),winner=current?.owner;"],
+ ['world-ball-motion-v110.js',"if(v65WorldActive&&r&&!current.rebound&&winner&&!winner.keeper&&!current.flight&&v131OpenGoal(winner,{x:r.x,y:r.y})){","if(v65WorldActive&&r&&!current.rebound&&winner&&!winner.keeper&&!current.flight&&(v131OpenGoal(winner,{x:r.x,y:r.y})||v115GoalDistance(winner)<18&&touchBefore!==undefined&&touchBefore!==winner.t)){"],
+ ['world-ball-motion-v110.js',"spread=.055+random()*.07,","spread=.07+random()*.08,"],
+ ['world-ball-motion-v110.js',"y:out?line:clamp(point.y+away*.075,","y:out?line:clamp(point.y+away*.10,"]];
+variants['si-place']=[...variants['si-max42-norisk'],...variants.place];
+variants['si-follow']=[...variants['si-max42-norisk'],...variants.follow];
+variants['si-place-follow']=[...variants['si-max42-norisk'],...variants.place,...variants.follow];
+// max36: si-max42-norisk with clock rate 0.36 (duration target about 5 min, same behaviour).
+variants.speed36=[['game.js','const MATCH_SPEED=.78;','const MATCH_SPEED=.36;']];
+variants['si-max36-norisk']=[...variants['si-max42-norisk'].filter(r=>r[2]!=='const MATCH_SPEED=.42;'),...variants.speed36];`);
 fs.writeFileSync(dst+'.tmp',t);fs.renameSync(dst+'.tmp',dst);console.log('written',dst);

@@ -315,6 +315,8 @@ Die Nutzerziele (4–6 min, 10–16 Schüsse, 2–3 Tore, ≈65 % Favoriten) err
 
 Beide Pakete liegen bei Dauer, Toren, Stärke, Fern­schüssen, Flanken, Abprallern und Freistoßtempo im oder am Zielbereich; **die Schussmenge bleibt mit 7,5 unter 10**. Die fehlenden Schüsse kommen nicht aus weiteren Schwellen (das drückt die Qualität, 5.4), sondern aus zwei noch nicht prototypisierten Quellen: (1) Abpraller werden kaum verwertet (2,3 freie Bälle aus Schüssen, 0,04 Abprallerschüsse — Jäger und Direktabschluss nach Parade, SI-3), (2) die Passdrehung bleibt der häufigste Zustand vor der Zone (10 Aufrufe je Partie bei 18–22 m — Körperstellung als Teil der Optionsbewertung, SI-1). Mit Uhrrate 0,40 statt 0,42 steigt die Dauer auf 4,4 min (90 % im Fenster) bei gleichen Ereigniszahlen; für ein Ziel von 5 min wäre ≈0,34 nötig (5.5).
 
+**Nachtrag** ([Umsetzungsplan](spielerintelligenz-umsetzungsplan-2026-10-14.md), Abschnitt 3): Quelle (1) ist kleiner als hier angenommen. Je Partie gibt es nur 0,9–1,2 Paraden/Blocks; eine Abschlussregel für gewonnene Abpraller ändert nichts (±0). Realistisch sind ≈+0,3 Schüsse über Nachsetzen und Paradenrichtung. Größere Quellen sind Flanke → Kopfball, Schussfreude guter Schützen, Schuss aus der Drehung und eine Uhr mit Takten in Echtzeit.
+
 Favoritenquoten streuen bei 134 Partien um ±8 Punkte: si-full42 (mit Risiko) 54 %, si-max42 54 %, si-max42-norisk 66 %, si-full40 62 %. Robust ist der Befund, dass alle Uhr-/Teleport-Pakete 50–66 % erreichen (Basis 37 %) und dass das Entfernen des pauschalen Risikohebels die Quote nicht senkt, sondern hebt (5.4, risk allein 25 %).
 
 ### 5.4 Einzelhebel (gepaart gegen die Basis)
@@ -436,6 +438,8 @@ Auf dem Standardfeld ist der Faktor rechnerisch 1,0; die dortigen Abweichungen (
 Bewertung: Formationen und Rollen funktionieren auf dem großen Feld, aber die Raumaufteilung nicht: Ein Feld von 1,44-facher Fläche mit 1,2-fach Spielern braucht entweder meter-skalierte Reichweiten (Passlänge ×1,2, Angebotsraster ×1,2, Zone bleibt) oder normalisierte Druckradien in Metern. Das Zielbild (Abschnitt 4) definiert alle Radien in Metern und skaliert Angebotsraster, Pass- und Laufreichweiten mit `v150Scale`. Für gleiche Kennzahlen braucht das große Feld entweder diese Skalierung oder eigene Parameter (etwa Ballführer 1,6× und Uhrrate 0,40) — Abschnitt 5.7 misst die Skalierung.
 
 ## 7. Umsetzungsplan in Paketen
+
+Nachtrag 14. Oktober 2026: Anforderungsprüfung, Nachmessung und paralleler Plan stehen im [Umsetzungsplan](spielerintelligenz-umsetzungsplan-2026-10-14.md). Er ergänzt das Fundament SI-F und das Paket SI-7 (Flanken, Ecken, Kopfball), setzt einen gemeinsamen Marker 183 mit gespeicherter Paketkonfiguration statt der Marker 183–187 und korrigiert den Abprallerhebel (unten).
 
 Jedes Paket: eigener Marker in `v65CreateMatch`, nur neue Partien; Prüfung mit ≥192 gepaarten Vollpartien (beide Feldgrößen, echte Welt, synchrones Setup, Simulation nur bei „live“), JSON-Fortsetzung bitgleich, Altpartien-Digest unverändert, Unity-Parität je einer Partie.
 
