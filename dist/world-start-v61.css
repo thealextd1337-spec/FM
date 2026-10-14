@@ -221,6 +221,7 @@
 .v64-prematch-field.pitch{height:auto;margin:0;aspect-ratio:600/740}
 .v64-prematch-field .v64-raster{inset:32px 18px 72px;grid-template-columns:repeat(5,minmax(0,1fr));grid-template-rows:repeat(7,minmax(0,1fr))}
 .v64-prematch-field .v64-raster .cell{border-color:#cae6c23d;cursor:pointer;touch-action:pan-y}
+.v64-prematch-field .v64-raster .cell:not([draggable=true]){cursor:default}
 .v64-prematch-field .v64-raster .cell[draggable=true]{cursor:grab}
 .v64-prematch-field .v64-raster .cell.v64-drag-over{border-color:#c7f36b;background:#c7f36b38}
 .v64-prematch-field .v64-raster .token{background:var(--v64-shirt,#c7f36b);border-color:var(--v64-shirt-edge,#e5ffb0);color:var(--v64-number,#102126);font-weight:800;text-shadow:none}

@@ -264,7 +264,7 @@ Teamtaktik	Team tactics
 Matchplan	Match plan
 Aufstellung & Taktik	Lineup & tactics
 Dieser Matchplan gilt für dein nächstes Spiel. Änderungen werden gespeichert.	This match plan applies to your next game. Changes are saved.
-Dieser Matchplan gilt für dein nächstes Spiel. Änderungen werden gespeichert. Spieler im Feld ziehen oder mit Alt + Pfeiltasten verschieben.	This match plan applies to your next game. Changes are saved. Drag players on the pitch or move them with Alt + arrow keys.
+Dieser Matchplan gilt für dein nächstes Spiel. Änderungen werden gespeichert. Spieler im Feld oder von der Bank ziehen, mit der Tastatur Alt + Pfeiltasten nutzen. Ein Klick markiert nur.	This match plan applies to your next game. Changes are saved. Drag players on the pitch or from the bench, or use Alt + arrow keys on the keyboard. A click only selects.
 Dauerhafter Matchplan	Saved match plan
 Dauerhafter Matchplan auf dem Spielfeld	Saved match plan on the pitch
 Ersatzbank	Bench
@@ -702,6 +702,7 @@ Ligaprämien	League prizes
 Nationale Pokalprämien	Domestic cup prizes
 Europacupprämien	European cup prizes
 Finanzabschluss und Jugendförderung	Financial statement and youth funding
+Jugendförderung und Saisonstart	Youth funding and season start
 Jahresabrechnung	Annual accounts
 Karrierestart	Career start
 Für deinen Verein liegt noch keine abgeschlossene Saisonabrechnung vor.	Your club has not completed a season yet.
@@ -742,6 +743,7 @@ Diese Gehälter werden erst am Ende der neuen Saison bezahlt. Neue Verträge und
 Rest nach vereinbarten Gehältern	Balance after agreed salaries
 Weitere Einnahmen, Sichtungen und Transfers der neuen Saison sind noch nicht enthalten. Mögliche Sponsorboni sind noch nicht verdient.	Further income, scouting and transfers for the new season are not included. Potential sponsor bonuses have not been earned yet.
 Jugendförderung bezahlen und Transfers öffnen	Pay youth funding and open transfers
+Bitte zuerst Jugendförderung bezahlen und Transfers öffnen bestätigen.	Please first confirm “Pay youth funding and open transfers”.
 Budget bezahlen und Transfers öffnen	Pay youth budget and open transfers
 Grundbetrag und Sponsorfixum sind eingegangen. Das Jugendbudget wird jetzt vollständig bezahlt. Danach beginnt die Transferphase.	The base income and sponsor payment have arrived. The full youth budget is paid now. The transfer window opens next.
 Die Gehälter bleiben am Saisonende fällig. Mögliche Erfolgsprämien sind noch nicht verdient.	Salaries remain due at season end. Possible performance bonuses have not been earned yet.
@@ -1175,7 +1177,8 @@ Hinspiel	First leg
 Aufstellung gültig · Änderungen werden automatisch gespeichert.	Valid lineup · Changes are saved automatically.
 Wähle Formation und Spielidee. Änderungen sind sofort auf dem Spielfeld sichtbar.	Choose a formation and playing style. Changes appear on the pitch immediately.
 Wähle Formation und Spielidee. Die Änderung gilt sofort.	Choose a formation and playing style. The change takes effect immediately.
-Wähle ein Trikot auf dem Feld. Für einen Wechsel ziehe einen Reservespieler auf das Feldtrikot.	Select a shirt on the pitch. To make a substitution, drag a reserve player onto the shirt.
+Ein Klick markiert nur ein Trikot. Zum Verschieben oder Wechseln Spieler ziehen oder mit der Tastatur Alt + Pfeiltasten nutzen.	A click only selects a shirt. To move or substitute players, drag them or use Alt + arrow keys on the keyboard.
+Ein Klick markiert nur ein Trikot. Zum Wechseln Ersatzspieler auf ein Trikot ziehen oder mit der Tastatur „Wählen“ nutzen; Positionen per Ziehen oder Alt + Pfeiltasten ändern. Wechsel erfolgen bei der nächsten Unterbrechung.	A click only selects a shirt. To substitute, drag a reserve onto a shirt or use “Select” with the keyboard; change positions by dragging or with Alt + arrow keys. Substitutions are made at the next stoppage.
 Spielpause	Match paused
 Taktikänderungen gelten sofort. Wechsel erfolgen bei der nächsten Unterbrechung.	Tactical changes take effect immediately. Substitutions happen at the next stoppage.
 Spiel fortsetzen	Resume match
@@ -1674,6 +1677,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^Sponsor für Saison (\d+) wählen$/,(_,n)=>`Choose sponsor for season ${n}`],
   [/^Jugendbudget für Saison (\d+)$/,(_,n)=>`Youth budget for season ${n}`],
   [/^Saison (\d+) vorbereiten$/,(_,n)=>`Prepare season ${n}`],
+  [/^Jugendförderung bezahlen und Saison (\d+) starten$/,(_,n)=>`Pay youth funding and start season ${n}`],
+  [/^Bitte zuerst Jugendförderung bezahlen und Saison (\d+) starten bestätigen\.$/,(_,n)=>`Please first confirm “Pay youth funding and start season ${n}”.`],
   [/^Ende Saison (\d+)$/,(_,n)=>`End of season ${n}`],
   [/^Transfertag (\d+) von (\d+) läuft$/,(_,day,total)=>`Transfer day ${day} of ${total} is in progress`],
   [/^Angebot für (?!.* planen$)(.+)$/,(_,name)=>`Offer for ${name}`],

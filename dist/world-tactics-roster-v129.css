@@ -28,3 +28,6 @@
 :is(.fl-shell,.fl-match) .v129-roster-card .bench-skills .v55-skill-list{display:grid;gap:3px}
 :is(.fl-shell,.fl-match) .v129-roster-card .v129-card-actions{grid-column:2;display:flex;flex-direction:column;justify-content:center;align-items:stretch}
 @media(max-width:600px){:is(.fl-shell,.fl-match) .v129-roster-overflow .bench-strip{display:grid;grid-template-columns:minmax(0,1fr);overflow:visible}:is(.fl-shell,.fl-match) .v129-roster-card{width:auto;max-width:100%}}
+/* Reserve selection is a keyboard-only path: shown on focus, never as a pointer button. */
+body :is(#v61-world-screen,#game-screen) [data-v129-roster-pick]:not(:focus-visible){position:absolute;width:1px;height:1px;min-width:0;min-height:0;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.v129-picked{outline:2px solid var(--fl-accent,#c7f36b);outline-offset:2px}

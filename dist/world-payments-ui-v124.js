@@ -98,8 +98,20 @@ v58State=function(){
  return v124BaseProgressState();
 };
 function v124NextSeason(){v67RunBusy('Neue Saison wird vorbereitet …',async()=>{v62NextSeason(v61CurrentCareer);await v64UiSave();v61CareerTab='overview';v61RenderCareer(v61CurrentCareer)})}
+// The top progress button only guides: it scrolls to the confirmation button, shows a DOM-only hint and focuses it. Funding and transfers start solely from that button.
+function v124GuideToBudgetConfirm(){
+ const career=v61CurrentCareer,section=v61WorldScreen.querySelector('#v124-budget'),button=section?.querySelector('[data-v124-budget]');
+ if(!career||!button)return;
+ section.querySelectorAll('.v124-budget-hint').forEach(hint=>hint.remove());
+ const hint=document.createElement('p');hint.className='v124-budget-hint';hint.id='v124-budget-hint';hint.setAttribute('role','status');
+ hint.textContent=`Bitte zuerst Jugendförderung bezahlen und ${career.world.season>1?`Saison ${career.world.season} starten`:'Transfers öffnen'} bestätigen.`;
+ button.before(hint);button.setAttribute('aria-describedby','v124-budget-hint');
+ const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+ button.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});
+ button.focus({preventScroll:true});
+}
 const v124BaseProgressClick=v58Button.onclick;
-v58Button.onclick=function(){const action=v58State()?.action;if(action==='v124-budget'){v61SetCareerTab('overview');v61WorldScreen.querySelector('#v124-budget')?.scrollIntoView({behavior:'smooth',block:'start'});return}if(action==='v124-next'){v124NextSeason();return}return v124BaseProgressClick()};
+v58Button.onclick=function(){const action=v58State()?.action;if(action==='v124-budget'){v61SetCareerTab('overview');v124GuideToBudgetConfirm();return}if(action==='v124-next'){v124NextSeason();return}return v124BaseProgressClick()};
 v61WorldScreen.addEventListener('click',event=>{
  const button=event.target.closest('button'),career=v61CurrentCareer;if(!button||!career||career.world.activeMatch||!v124Payments(career))return;
  if(button.hasAttribute('data-v124-next'))v124NextSeason();
