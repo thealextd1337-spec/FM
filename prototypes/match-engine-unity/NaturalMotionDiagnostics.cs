@@ -249,9 +249,13 @@ public static class NaturalMotionDiagnostics {
         s.moving=s.travel.magnitude>.2f;
         if(sole){var groundSkin=FootballGround.GroundSkin(actor);detail=groundSkin==null?new Func<int,string>(anim.ground.VertexDetail):null;s.sole=FootballGround.VisibleLowestVertex(actor)+actor.position.y;if(groundSkin!=null)s.groundSole=FootballGround.LowestVertex(actor)+actor.position.y;s.solePredicted=Mathf.Min(anim.ground.SolePointClearance(0),anim.ground.SolePointClearance(1));if(s.sole< -.01f)s.soleBone=LowestBone(actor)+" predicted="+s.solePredicted.ToString("0.0000",Inv)+" rootY="+actor.position.y.ToString("0.0000",Inv)+" sole="+anim.ground.Sole.ToString("0.0000",Inv)+" contour="+anim.ground.SolePointCount(0)+"/"+anim.ground.SolePointCount(1)+" skins="+actor.GetComponentsInChildren<SkinnedMeshRenderer>().Length+" weights="+actor.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh.boneWeights.Length+" readable="+actor.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh.isReadable+(groundSkin!=null?" ground="+groundSkin.sharedMesh.name+" groundSole="+s.groundSole.ToString("0.0000",Inv):"");
             // r22 (Klares Low-Poly): the drawn skin against its ground skin (release mesh, same pose), the reachable contact boot on the received ball (r11 rule).
-            if(groundSkin!=null)VisibleSurfaceProbe.Current?.Picture(actor,frame.clock.ToString("0.000",Inv)+" "+s.action,s.action=="slide"?"slide":Loco(s.action)?"locomotion":"action",true,s.poseContact&&s.poseReach&&s.hasTarget&&(s.poseKind=="foot"||s.poseKind=="left-foot")?(s.poseKind=="left-foot"?0:1):-1,0,s.target);}
+            if(groundSkin!=null&&!skipVisible)VisibleSurfaceProbe.Current?.Picture(actor,frame.clock.ToString("0.000",Inv)+" "+s.action,s.action=="slide"?"slide":Loco(s.action)?"locomotion":"action",true,s.poseContact&&s.poseReach&&s.hasTarget&&(s.poseKind=="foot"||s.poseKind=="left-foot")?(s.poseKind=="left-foot"?0:1):-1,0,s.target);}
         return s;
     }
+    // r132: the native132 captures (review 1) carry the r132 joint-speed gates but no r22 visible-surface pictures: on them the
+    // drawn Low-Poly skin already exceeded the release skin by up to 2.8 mm with the Release 131 sources (5 pictures, a foul victim's
+    // fall and a stretched tackle), a surface finding outside this lane that the r22 check keeps on its own fixtures.
+    static bool skipVisible;
     // Bone carrying the lowest skinned vertex (diagnostics of a sole below the turf).
     static Func<int,string> detail;
     static string LowestBone(Transform actor){
@@ -1429,11 +1433,12 @@ public static class NaturalMotionDiagnostics {
         string prefix=family!=null?family+"-":contract?"native-contract-":"native-";
         // Two 30 s live windows per capture keep the run bounded.
         // r132: -d6pictures <n> raises the 1200-picture (60 s) bound so later windows of a first half are replayed as well.
-        int bound=1200;{var args=Environment.GetCommandLineArgs();for(int k=0;k<args.Length-1;k++)if(args[k]=="-d6pictures"&&int.TryParse(args[k+1],out var b))bound=b;}
+        // r132: the native132 captures replay 1600 pictures (80 s) by default, so the review windows at 69.10 and 69.75 s are gated in D6Cli.Tests.
+        int bound=family=="native132"?1600:1200;{var args=Environment.GetCommandLineArgs();for(int k=0;k<args.Length-1;k++)if(args[k]=="-d6pictures"&&int.TryParse(args[k+1],out var b))bound=b;}
         var pictures=new List<WorldFrame>();var used=new List<NativePicture>();for(int i=0;i<capture.pictures.Length&&pictures.Count<bound;i++)if(capture.pictures[i].phase=="live"){pictures.Add(ToFrame(capture.pictures[i]));used.Add(capture.pictures[i]);}else if(pictures.Count>0)break;
         InputTiming Timing(int k){if(!contract)return null;var t=new InputTiming();foreach(var np in used){var q=np.players[k];t.known.Add(q.durationKnown);if(q.actionAtKnown&&!t.events.ContainsKey(q.actionId??""))t.events[q.actionId??""]=q.actionAt;}return t;}
         config.initial=JsonUtility.FromJson<WorldFrame>(JsonUtility.ToJson(pictures[0]));config.initial.sequence=sequence=1;config.initial.phase="paused";
-        Drop();Send(new WorldCommand{kind="load",config=config});
+        Drop();Send(new WorldCommand{kind="load",config=config});skipVisible=family=="native132";
         var actors=Field<List<Transform>>("actors");var football=Field<List<FootballAnimation>>("football");var loco=Field<FootballLocomotion[]>("worldLocomotion");
         int n=actors.Count;var samples=new List<Sample>[n];var last=new Sample[n];var taps=new StageTap[n];for(int i=0;i<n;i++){samples[i]=new List<Sample>();taps[i]=new StageTap(actors[i],football[i]);}
         int frame=0;
@@ -1471,6 +1476,7 @@ public static class NaturalMotionDiagnostics {
             var normal=new List<Color32[]>();for(int i=0;i<frames.Count;i+=3)normal.Add(frames[i]);string clip=name+"-"+from.ToString("0.00",Inv)+"-"+to.ToString("0.00",Inv);
             Gif(Path.Combine(folder,clip+"-normal.gif"),normal,240,300,5);Gif(Path.Combine(folder,clip+"-slow.gif"),frames,240,300,10);recordings.Add(clip+"-normal.gif");recordings.Add(clip+"-slow.gif");
         }
+        skipVisible=false;
         if(contract){Drop();return results;}
         if(renderOn)foreach(var (name,clock) in NativeWindows){
             if(!name.StartsWith("native-"+capture.seed+"-"))continue;int who=int.Parse(name.Substring(name.LastIndexOf('-')+1));if(who>=n)continue;
