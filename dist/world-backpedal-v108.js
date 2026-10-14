@@ -46,7 +46,12 @@ function v132FallingBallTarget(current,person){
  const r=current.rebound,air=typeof v124AirBalls!=='undefined'&&v124AirBalls.get(current);
  if(current.owner||current.flight||!r||air?.rebound!==r||air.settled||v121PositioningPaused(current)){v132AirChasers.delete(current);return false;}
  const seconds=clamp((air.vh+Math.sqrt(air.vh*air.vh+19.6*Math.max(0,air.height-.29)))/9.8,0,1.5),target={x:clamp(r.x+(r.vx||0)*MATCH_SPEED*seconds,v55Field.left,v55Field.right),y:clamp(r.y+(r.vy||0)*MATCH_SPEED*seconds,v55Field.top,v55Field.bottom)};
- let plan=v132AirChasers.get(current);if(plan?.source!==r){const runners=[];for(const team of [0,1]){const p=current.people.filter(p=>p.t===team&&!p.keeper&&!p.slideActive).sort((a,b)=>v122Metres(a,target)/(3+ability(a,'spd')*.14)-ability(a,'pos')*.01-(v122Metres(b,target)/(3+ability(b,'spd')*.14)-ability(b,'pos')*.01))[0];if(p)runners.push(p);}plan={source:r,runners};v132AirChasers.set(current,plan);}
+ let plan=v132AirChasers.get(current);if(plan?.source!==r){const runners=[];for(const team of [0,1]){const p=current.people.filter(p=>p.t===team&&!p.keeper&&!p.slideActive).sort((a,b)=>v122Metres(a,target)/(3+ability(a,'spd')*.14)-ability(a,'pos')*.01-(v122Metres(b,target)/(3+ability(b,'spd')*.14)-ability(b,'pos')*.01))[0];if(p)runners.push(p);}
+ // Only marked falling balls persist their original primary runners for JSON restore.
+ const marked=typeof v182LooseActive==='function'&&v182LooseActive(current),saved=marked&&r.chase?.airPids;
+ if(Array.isArray(saved)){runners.length=0;for(const team of [0,1]){const p=current.people.find(p=>p.t===team&&p.pid===saved[team]&&!p.keeper);if(p)runners.push(p);}}
+ else if(marked){const chase=r.chase||(r.chase={pids:[null,null],at:-1});chase.airPids=[0,1].map(team=>runners.find(p=>p.t===team)?.pid||null);}
+ plan={source:r,runners};v132AirChasers.set(current,plan);}
  if(person.keeper||person.slideActive||!plan.runners.includes(person))return false;
  person.tx=target.x;person.ty=target.y;return true;
 }

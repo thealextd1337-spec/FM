@@ -184,6 +184,8 @@ function v50ChaseLooseBall(delta,positions){
  const world=typeof v65WorldActive!=='undefined'&&v65WorldActive,width=world?v160PitchWidth()/(v55Field.right-v55Field.left):1,length=world?v160PitchLength()/(v55Field.bottom-v55Field.top):1,gap=player=>Math.hypot((player.x-r.x)*width,(player.y-r.y)*length);
  const candidates=[...m.people].sort((a,b)=>gap(a)-gap(b)).slice(0,3).filter(player=>!player.keeper||typeof v180KeeperChaseActive!=='function'||!v180KeeperChaseActive(m)||v180KeeperGroundEligible(m,player));
  for(const player of candidates){
+  // Matches marked 182 move field chasers with their native body in the step.
+  if(world&&!player.keeper&&typeof v182LooseActive==='function'&&v182LooseActive(m))continue;
   const start=positions.get(player),dx=r.x-start.x,dy=r.y-start.y,d=Math.hypot(dx,dy);
   if(world){const metres=Math.hypot(dx*width,dy*length),pace=player.keeper?(typeof v180KeeperChaseActive==='function'&&v180KeeperChaseActive(m)?v180KeeperGroundPace(m,player):2.6+ability(player,'spd')*.065):3+ability(player,'spd')*.14,portion=Math.min(1,pace*Math.max(0,delta)/MATCH_SPEED/Math.max(.00001,metres));player.x=start.x+dx*portion;player.y=start.y+dy*portion}
   else if(d>.014){const speed=(player.keeper?.17:.07+ability(player,'spd')*PLAYER_SPEED_FACTOR)*delta,portion=Math.min(1,speed/d);player.x=start.x+dx*portion;player.y=start.y+dy*portion}

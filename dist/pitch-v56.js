@@ -10,11 +10,12 @@ const v56BaseStart=start;
 start=function(){const result=v56BaseStart();if(match&&running){match.slide=null;for(const player of match.people){player.motionX=0;player.motionY=player.t===0?-1:1;player.recoverUntil=0}}return result};
 $('#start').onclick=()=>start();
 function v56Forward(player){const length=Math.hypot(player.motionX||0,player.motionY||0);return length>.0001?{x:player.motionX/length,y:player.motionY/length}:{x:0,y:player.t===0?-1:1}}
-function v56ApproachInfo(tackler,victim){const forward=v56Forward(victim),relative={x:tackler.x-victim.x,y:tackler.y-victim.y};return{behind:relative.x*forward.x+relative.y*forward.y<-0.012,body:v56Contact(tackler,victim),ball:v56Contact(tackler,match.ball)}}
+function v56ApproachInfo(tackler,victim){const forward=v56Forward(victim),relative={x:tackler.x-victim.x,y:tackler.y-victim.y},metres=typeof v182Behind==='function'?v182Behind(tackler,victim):null;return{behind:metres??(relative.x*forward.x+relative.y*forward.y<-0.012),body:v56Contact(tackler,victim),ball:v56Contact(tackler,match.ball)}}
 function v56StandingTackle(tackler,victim){
  const m=match,info=v56ApproachInfo(tackler,victim);
  const world=typeof v65WorldActive!=='undefined'&&v65WorldActive;
  if(info.behind||info.ball>(world?30.4:39)||info.body>(world?40:43))return false;
+ if(typeof v182ChallengeAttempt==='function'&&!v182ChallengeAttempt(m))return false;
  if(typeof v158Contact==='function')v158Contact(m,tackler,victim);
  if(world&&typeof v102Pose==='function')v102Pose(m,tackler,'tackle',m.ball,m.ball);
  tackler.stats.duels++;victim.stats.duels++;tackler.stats.tackleAttempts=(tackler.stats.tackleAttempts||0)+1;
@@ -28,6 +29,7 @@ function v56StartSlide(tackler,victim){
  const m=match,ball={...m.ball},forward=v56Forward(victim),behind=v56ApproachInfo(tackler,victim).behind;
  const world=typeof v65WorldActive!=='undefined'&&v65WorldActive;
  if(world&&v122Metres(tackler,ball)>2.6)return false;
+ if(typeof v182ChallengeAttempt==='function'&&!v182ChallengeAttempt(m))return false;
  tackler.stats.slideAttempts++;tackler.stats.duels++;victim.stats.duels++;tackler.stats.tackleAttempts=(tackler.stats.tackleAttempts||0)+1;
  // A small boot follow-through in metres; the legacy normalized lead put the
  // landing point metres beyond the ball and could make a frontal slide miss it.
@@ -48,7 +50,7 @@ function v56AdvanceSlide(delta){
  tackler.y=slide.from.y+(slide.target.y-slide.from.y)*eased;
  tackler.tx=tackler.x;tackler.ty=tackler.y;
  const ballGap=v56Contact(tackler,m.ball),bodyGap=v56Contact(tackler,victim);
- if(bodyGap<27&&(ballGap>23||slide.behind)){
+ if(bodyGap<27&&(ballGap>23||slide.behind||typeof v182Behind==='function'&&v182Behind(tackler,victim)===true)){
   m.slide=null;tackler.recoverUntil=m.elapsed+.58;
   v50Foul(victim,tackler);return;
  }
@@ -70,7 +72,7 @@ function v56MaybeChallenge(victim){
  const slider=rivals.filter(player=>{const info=v56ApproachInfo(player,victim);return info.ball>=25&&info.ball<(world?83.2:100)&&info.body<105&&(info.behind||info.ball<info.body)}).sort((a,b)=>v56Contact(a,m.ball)-v56Contact(b,m.ball))[0];
  if(!slider)return false;
  const behind=v56ApproachInfo(slider,victim).behind;
- const chance=behind?clamp(.09+(m.aggression?.[slider.t]??0)*.06,.03,.21):clamp(.18+(m.aggression?.[slider.t]??0)*.09,.08,.35);
+ const chance=behind?clamp(.09+(m.aggression?.[slider.t]??0)*.06,.03,.21)*(typeof v182Accompany==='function'&&v182Accompany(m,slider,victim)?.35:1):clamp(.18+(m.aggression?.[slider.t]??0)*.09,.08,.35);
  if(random()>=chance)return false;
  v56StartSlide(slider,victim);return true;
 }
@@ -116,6 +118,7 @@ step=function(delta,realDelta){
  if(typeof v158EndNative==='function')v158EndNative(m);
  if(m.finished)return result;
  for(const player of m.people){const old=before.get(player);if(old){const dx=player.x-old.x,dy=player.y-old.y;if(Math.hypot(dx,dy)>.0002){player.motionX=dx;player.motionY=dy}}if(player.slideActive&&!m.slide&&m.elapsed>=(player.recoverUntil||0))player.slideActive=false}
+ if(typeof v182ContactCheck==='function')v182ContactCheck(m);
  v56Separate();return result;
 };
 

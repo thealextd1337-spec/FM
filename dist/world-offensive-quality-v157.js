@@ -36,7 +36,7 @@ function v157Pace(m,p){
  if(p.keeper)return v180KeeperSpaceChasing(m,p)?v180KeeperGroundPace(m,p):typeof v158Movement==='function'?v158Movement(p,base,1).maxSpeed:base;
  if(v162Active(m)){
   const intent=m.attackFlow.intents[p.pid],now=v152Seconds(m),read=m.attackFlow.defenseReads?.[p.pid],target=m.flight?m.ball:m.rebound;
-  const contest=target&&m.people.filter(q=>q.t===p.t&&!q.keeper&&!q.slideActive).sort((a,b)=>v122Metres(a,target)-v122Metres(b,target)||a.n-b.n).slice(0,2).includes(p);
+  const contest=!m.flight&&typeof v182LooseBall==='function'&&v182LooseBall(m)?v182LooseChasing(m,p):target&&m.people.filter(q=>q.t===p.t&&!q.keeper&&!q.slideActive).sort((a,b)=>v122Metres(a,target)-v122Metres(b,target)||a.n-b.n).slice(0,2).includes(p);
   const purposeful=intent&&intent.until>=now&&intent.team===v123PossessionTeam(m)&&['depth','follow'].includes(intent.type)||read&&read.nextAt>=now&&['press','ball'].includes(read.purpose)||p.interceptTarget&&m.flight||contest;
   const revised=v119PaceActive(m),support=revised&&intent&&intent.until>=now&&intent.team===v123PossessionTeam(m)&&intent.type==='support';
   const pace=base*(m.owner===p?1.28*(.78+ability(p,'tec')*.009):purposeful?(revised?1.58:1.48):support?1.35:revised?1.15:1.08);
@@ -58,7 +58,8 @@ function v157Move(m,p,dt){
  const quick=v162Active(m)&&!p.keeper,revised=quick&&v119PaceActive(m),angularRate=(3.5+ability(p,'tec')*.055)*(revised?1.32:quick?1.22:1)/Math.sqrt(mass)/(1+speed*.055);
  body.heading+=clamp(v157Angle(body.heading,heading),-angularRate*dt,angularRate*dt);
  const factor=v108MoveFactor(m,p,p.tx-p.x,p.ty-p.y),brake=10.5*(revised?1.25:quick?1.18:1)/mass,baseAccel=(6.2+ability(p,'spd')*.08)*(revised?1.40:quick?1.24:1)/mass,accel=typeof v158Movement==='function'?v158Movement(p,1,baseAccel).acceleration:baseAccel;
- const desired=pivot?0:Math.min(v157Pace(m,p)*factor,Math.sqrt(2*brake*Math.max(0,d-.05)));
+ const follow=typeof v182Follow==='function'?v182Follow(m,p,dx,dy,d):0;
+ const desired=pivot?0:Math.min(v157Pace(m,p)*factor,Math.sqrt(2*brake*Math.max(0,d-.05))+follow);
  // Forward runners follow the body through a curve; defensive backpedalling
  // can retain its observed focus and its existing reduced speed.
  const alignment=focus?1:Math.max(0,Math.cos(v157Angle(body.heading,heading))),pace=desired*alignment;
@@ -110,6 +111,7 @@ function v157Target(m,p,dt){
  if(!v157Active(m)||v121PositioningPaused(m)||p.keeper||p.slideActive)return;
  if(m.owner===p&&m.attackFlow.pendingTurn?.playerId===p.pid){p.tx=p.x;p.ty=p.y;return;}
  if(m.owner===p){if(typeof v159CarrierTarget==='function')v159CarrierTarget(m,p);return;}
+ if(typeof v182LooseTarget==='function'&&v182LooseTarget(m,p))return;
  if(typeof v159DefensiveTarget==='function'&&v159DefensiveTarget(m,p))return;
  const intent=m.attackFlow.intents[p.pid];if(!intent||intent.team!==v123PossessionTeam(m)||intent.until<v152Seconds(m)){if(v162Active(m))v162RecoverTarget(m,p,dt);return;}
  const last=p.offenseCoord||(p.offenseCoord={x:p.tx,y:p.ty}),blend=Math.min(1,dt*(3+4*clamp(p.positionRoutine??.7,0,1)));
