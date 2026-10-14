@@ -246,22 +246,18 @@ function v66MakeBid(career,buyerId,pid,price,annual,years,promise=0,offerDay=nul
  const placedDay=live?market.day:offerDay??Math.max(0,career.world.calendarCursor);
  const bid={id:`S${career.world.season}:B${market.nextBid++}`,pid,buyerId,sellerId:seller?.id||null,price,annual,years,promise,placedDay,expiresDay:live?Math.min(5,market.day+1):placedDay+1,status:'pending',improved:false};
  market.pendingBids.push(bid);
- if(market.day===5&&live&&buyerId===career.manager.managedClubId&&!seller){v66TryBid(career,bid);if(typeof v72ReleaseResults==='function')v72ReleaseResults(career)}
+ if(market.day===5&&live&&buyerId===career.manager.managedClubId&&!seller){v66TryBid(career,bid)}
  return bid;
 }
-function v66AnnounceCounters(career,bids){
- for(const bid of bids)if(bid.status==='counter'&&bid.buyerId===career.manager.managedClubId)v66QueueLegacyResult(career,bid,'contract-counter',bid.reason,{announce:true,counter:bid.counter});
-}
 function v66ResolveFreeDecisions(career,day){
- const market=career.world.market,bids=market.pendingBids.filter(item=>item.status==='pending'&&!item.sellerId&&item.placedDay<day),groups=new Map(),known=Array.isArray(market.transferResults)?market.transferResults.length:0;
+ const market=career.world.market,bids=market.pendingBids.filter(item=>item.status==='pending'&&!item.sellerId&&item.placedDay<day),groups=new Map();
  for(const bid of bids){if(!groups.has(bid.pid))groups.set(bid.pid,[]);groups.get(bid.pid).push(bid)}
  for(const offers of groups.values()){
   offers.sort((a,b)=>v66BidAppeal(career,b)-v66BidAppeal(career,a)||a.id.localeCompare(b.id));
   for(const bid of offers)if(v66TryBid(career,bid))break;
  }
- v66AnnounceCounters(career,bids);
- // The market day stays at 5 while matches are played, so only answers created right now are released.
- if(Array.isArray(market.transferResults))for(const result of market.transferResults.slice(known))result.released=true;
+ // The market day stays at 5 while matches are played: each calendar change announces the replies stored since the last one.
+ if(typeof v72ReleaseResults==='function')v72ReleaseResults(career);
 }
 function v66CloseBid(career,bid,status,reason,notify=true){
  bid.status=status;bid.reason=reason||'';
@@ -304,7 +300,7 @@ function v66QueueLegacyResult(career,bid,kind,message,reply=null){
  const market=career.world.market,id=`${bid.id}:${kind}${reply?`:${bid.annual}:${reply.counter}`:''}`;
  if(!Array.isArray(market.transferResults))market.transferResults=[];
  if(market.transferResults.some(item=>item.id===id))return;
- market.transferResults.push({id,negotiationId:bid.id,pid:bid.pid,buyerId:bid.buyerId,sellerId:bid.sellerId,kind,price:bid.price,message,day:market.day,released:false,seen:false,...reply});
+ market.transferResults.push({id,negotiationId:bid.id,pid:bid.pid,buyerId:bid.buyerId,sellerId:bid.sellerId,kind,price:bid.price,message,day:market.day,released:false,seen:false,announce:true,...reply});
 }
 function v66TryBid(career,bid){
  if(bid.status!=='pending')return false;
@@ -318,7 +314,7 @@ function v66TryBid(career,bid){
  const consent=v66Consent(career,bid);
  if(!consent.accepted){
   if(bid.buyerId!==career.manager.managedClubId&&!bid.improved){bid.annual=consent.minimum;bid.improved=true;return v66TryBid(career,bid)}
-  if(bid.buyerId===career.manager.managedClubId&&!bid.improved){bid.status='counter';bid.counter=consent.minimum;bid.reason=`Der Spieler fordert mindestens ${consent.minimum} Credits Jahresgehalt.`;return false}
+  if(bid.buyerId===career.manager.managedClubId&&!bid.improved){bid.status='counter';bid.counter=consent.minimum;bid.reason=`Der Spieler fordert mindestens ${consent.minimum} Credits Jahresgehalt.`;v66QueueLegacyResult(career,bid,'contract-counter',bid.reason,{counter:bid.counter});return false}
   v66CloseBid(career,bid,'rejected','Der Spieler lehnt den Vertrag ab.');return false;
  }
  try{v66Transfer(career,bid);return true}catch(error){v66CloseBid(career,bid,'rejected',error.message);return false}
@@ -328,13 +324,13 @@ function v66ImproveBid(career,id,annual){
  if(!bid||career.world.seasonFinished||bid.sellerId&&career.world.market.phase!=='open'||bid.improved||!Number.isInteger(Number(annual))||Number(annual)<bid.counter)throw Error('Dieses Folgeangebot ist nicht gültig.');
  bid.annual=Number(annual);bid.improved=true;bid.status='pending';bid.reason='';
  v66TryBid(career,bid);
- if(career.world.market.day===5&&typeof v72ReleaseResults==='function')v72ReleaseResults(career);
  return bid;
 }
 function v66WithdrawBid(career,id){
  const bid=career.world.market.pendingBids.find(item=>item.id===id&&item.buyerId===career.manager.managedClubId&&['pending','counter'].includes(item.status));
  if(!bid)throw Error('Dieses Angebot kann nicht mehr zurückgezogen werden.');
  bid.status='rejected';bid.reason='Du hast das Angebot zurückgezogen.';
+ for(const result of career.world.market.transferResults||[])if(result.negotiationId===bid.id)result.seen=true;
  return bid;
 }
 function v66RespondBid(career,id,accept){
@@ -381,7 +377,6 @@ function v66ResolveDay(career){
    }
   }
  }
- v66AnnounceCounters(career,waiting);
  for(const bid of market.pendingBids.filter(item=>item.status==='pending'&&item.expiresDay<=day))v66CloseBid(career,bid,'expired','Die Angebotsfrist ist abgelaufen.');
  const managed=career.manager.managedClubId;
  market.pendingBids=market.pendingBids.filter(item=>['pending','counter'].includes(item.status)||item.buyerId===managed||item.sellerId===managed);
@@ -404,10 +399,10 @@ function v66ReleaseSurplusKeeper(career,clubId,pid){
 }
 function v66NextMarketDay(career){
  const market=career.world.market;if(!['open','deadline'].includes(market.phase))throw Error('Die Transferphase ist nicht offen.');
- if(typeof v72ResolveDay==='function')v72ResolveDay(career,market.day,market.phase==='deadline',true);
+ if(typeof v72ResolveDay==='function')v72ResolveDay(career,market.day,market.phase==='deadline');
  if(market.phase==='open')v66ResolveDay(career);
  if(market.day===5){
-  if(typeof v72HasPending==='function'&&v72HasPending(career)){if(market.phase==='deadline')throw Error('Bitte öffne die laufenden Verhandlungen und schließe sie ab.');market.phase='deadline';if(typeof v72ReleaseResults==='function')v72ReleaseResults(career);return}
+  if(typeof v72HasPending==='function'&&v72HasPending(career)){if(market.phase==='deadline'){if(typeof v72ReleaseResults==='function')v72ReleaseResults(career);throw Error('Bitte öffne die laufenden Verhandlungen und schließe sie ab.')}market.phase='deadline';if(typeof v72ReleaseResults==='function')v72ReleaseResults(career);return}
   const own=v66Club(career,career.manager.managedClubId);
   if(!v66PlayableRoster(own,career))throw Error(`Für den Saisonstart brauchst du mindestens zehn Profis, einen Torwart und ${v160WorldConfig(career).fieldPlayers===6?"sechs":"fünf"} Feldspieler. Der letzte Transfertag bleibt offen.`);
   for(const club of career.world.clubs.filter(item=>!item.simulationOnly&&item.id!==own.id)){

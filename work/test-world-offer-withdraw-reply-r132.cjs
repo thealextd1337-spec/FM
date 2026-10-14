@@ -78,13 +78,13 @@ function unseen(career){return career.world.market.transferResults.filter(item=>
  assert.equal(dealB.stage,'fee-wait');
  const dealC=call('v72Start',career,c.player.pid,call('v66Value',c.player));
  c.club.roster=c.club.roster.filter(item=>item.pid===c.player.pid||item.keeper);
- assert.equal(unseen(career).length,0,'Sofortantworten am Starttag erzeugen kein Popup');
- assert.equal(popup(career),null);
+ assert.equal(popup(career),null,'Sofortantworten am Starttag erzeugen kein Popup');
+ assert(market.transferResults.some(item=>item.negotiationId===dealB.id&&item.kind==='fee-counter'&&!item.released&&!item.seen),'die sofortige Gegenforderung wird als Ereignis gespeichert, aber nicht freigegeben');
  call('v66NextMarketDay',career);
  assert.equal(market.day,2);
  assert.equal(dealA.stage,'contract');assert.equal(dealB.stage,'fee-counter');assert.equal(dealC.stage,'rejected');
  const results=unseen(career);
- assert.deepEqual(results.map(item=>item.kind).sort(),['fee-agreed','fee-counter','rejected'],'drei Antworten, je genau eine');
+ assert.deepEqual(results.map(item=>item.kind).sort(),['fee-agreed','fee-counter','fee-counter','rejected'],'drei neue Antworten und die inzwischen überholte Sofortantwort');
  assert.equal(new Set(market.transferResults.map(item=>item.id)).size,market.transferResults.length,'keine doppelten Kennungen');
  // Reload mit drei ungesehenen: jedes erscheint genau einmal.
  let copy=roundtrip(career);
@@ -113,15 +113,15 @@ function unseen(career){return career.world.market.transferResults.filter(item=>
  assert.deepEqual(seenKinds,['fee-agreed','fee-counter','rejected'],'nacheinander in Reihenfolge und nach Reload genau einmal');
  assert.equal(popup(copy),null,'nichts erscheint erneut');
  assert.equal(popup(roundtrip(copy)),null,'auch nicht nach erneutem Reload');
- // Gegenangebot bearbeiten öffnet den Verhandlungsdialog und markiert die Antwort als gesehen.
- const counter=career.world.market.transferResults.find(item=>item.kind==='fee-counter');
+ // Gegenangebot bearbeiten öffnet den Verhandlungsdialog; die Ansicht setzt seen nicht (nur die Popup-Bestätigung).
+ const counter=career.world.market.transferResults.find(item=>item.kind==='fee-counter'&&item.counter===dealB.counter);
  call('v72OpenReply',career,counter);
  assert(dialog.innerHTML.includes('id="v72-fee"')&&dialog.innerHTML.includes('data-v72-fee='),'Gegenangebot lässt sich im Dialog bearbeiten');
- assert(counter.seen,'v72RenderDeal markiert die passende Antwort als gesehen');
+ assert(!counter.seen,'die Dialogansicht setzt seen nicht');
  const accepted=career.world.market.transferResults.find(item=>item.kind==='fee-agreed');
  call('v72OpenReply',career,accepted);
  assert(dialog.innerHTML.includes('id="v72-salary"'),'Annahme führt direkt in die Vertragsverhandlung');
- assert(accepted.seen);
+ assert(!accepted.seen);
  assert(own.roster.every(item=>item.pid!==a.player.pid)&&a.club.roster.some(item=>item.pid===a.player.pid),'Vereinsannahme vollzieht keinen Wechsel');
  assert.equal(own.balance,100000,'Vereinsannahme bucht nichts');
  // Überholte Antwort: wer schon handelt, bevor das Popup erscheint, sieht kein veraltetes Popup.
@@ -219,7 +219,7 @@ function unseen(career){return career.world.market.transferResults.filter(item=>
  assert(popup(reloaded),'nach Reload genau einmal');dismiss(reloaded);assert.equal(popup(reloaded),null);
  call('v72OpenReply',career,counterResult);
  assert(dialog.innerHTML.includes('data-v72-free-improve='),'Gegenforderung im ablösefreien Dialog bearbeiten');
- assert(counterResult.seen);
+ assert(!counterResult.seen,'die Dialogansicht setzt seen nicht');
  // Erfüllte Forderung führt zum Wechsel; die Meldung ist die vorhandene Erfolgsmeldung, keine zweite Antwort.
  call('v66ImproveBid',career,lowBid.id,lowBid.counter);
  assert.equal(lowBid.status,'completed');
@@ -228,29 +228,49 @@ function unseen(career){return career.world.market.transferResults.filter(item=>
  console.log('B17 Ablösefreie Spieler: Gegenforderung, Erfüllung, Reload geprüft.');
 }
 
-// ---------- B17: Sofortauswertung am letzten Tag, verkäuferseitige und alte Ergebnisse ----------
+// ---------- Sofortauswertung am letzten Tag: gespeichert, aber erst beim Transferschluss angekündigt ----------
 {
  const{career,own,market}=fresh('r132-day-five');
  const[a,b]=targets(career,own,2);
  for(let day=1;day<5;day++)call('v66NextMarketDay',career);
  assert.equal(market.day,5);
  for(const item of unseen(career))item.seen=true;
- const before=market.transferResults.length;
  const agreed=call('v72Start',career,a.player.pid,call('v66Value',a.player));
  assert.equal(agreed.stage,'contract','Tag 5 wertet sofort aus');
  const counter=call('v72Start',career,b.player.pid,10);
+ assert.equal(counter.stage,'fee-counter');
+ const first=market.transferResults.find(item=>item.negotiationId===counter.id&&item.kind==='fee-counter');
  call('v72SubmitFee',career,counter.id,floorOf(b.player)-10);
- assert.equal(replyResults(career).length,0,'Sofortauswertung an Tag 5 erzeugt keine Annahme-/Gegenangebots-Popups');
  assert.equal(counter.stage,'rejected','letzte Runde am Tag 5 endet sofort');
- assert.equal(market.transferResults.length-before,1,'nur die vorhandene Absage');
  const minimumA=call('v66Consent',career,{...agreed,annual:0}).minimum;
  call('v72SubmitContract',career,agreed.id,Math.max(60,minimumA-30),2,3);
- assert.equal(market.transferResults.filter(item=>item.kind==='contract-counter').length,0,'auch die Sofort-Gegenforderung bleibt still');
- // Freier Spieler am letzten Tag
- const free=market.freePlayers.find(player=>!market.pendingBids.some(bid=>bid.pid===player.pid));
+ assert.equal(agreed.stage,'contract-counter');
+ const free=market.freePlayers.find(player=>!market.pendingBids.some(bid=>bid.pid===player.pid)&&call('v66Consent',career,{pid:player.pid,buyerId:own.id,sellerId:null,annual:60,years:2,promise:3}).minimum>60);
  const freeBid=call('v66MakeBid',career,own.id,free.pid,0,60,2,3);
  assert.equal(freeBid.status,'counter');
- assert.equal(market.transferResults.filter(item=>item.kind==='contract-counter').length,0);
+ const stored=market.transferResults.filter(item=>!item.seen).map(item=>item.kind).sort();
+ assert.deepEqual(stored,['contract-counter','contract-counter','fee-agreed','fee-counter','rejected'],'jede Sofortantwort wird als Ereignis gespeichert');
+ assert(market.transferResults.every(item=>!item.released),'nichts ist freigegeben');
+ assert.equal(popup(career),null,'am letzten Tag erscheint nichts sofort, auch nicht nach Öffnen der Dialoge');
+ call('v72RenderDeal',career,agreed.id);call('v72OpenFreeAgent',career,free.pid);
+ assert.equal(popup(career),null);
+ assert(!first.seen,'die Dialogansicht setzt seen nicht');
+ // Ausdrücklicher Transferschluss (offene Vertragsverhandlung hält das Fenster als deadline offen).
+ call('v66NextMarketDay',career);
+ assert.equal(market.phase,'deadline');
+ const shown=[];
+ let copy=career;
+ for(let round=0;round<6;round++){
+  const html=popup(copy);if(!html)break;
+  const result=copy.world.market.transferResults.find(item=>!item.seen&&item.released);
+  shown.push(result.kind);
+  assert(html.length>0);
+  result.seen=true;dialog.open=false;
+  if(round===0)copy=roundtrip(copy);
+ }
+ assert.deepEqual(shown.sort(),['contract-counter','contract-counter','rejected'],'aktuelle Antworten erscheinen genau einmal, überholte werden nicht angezeigt');
+ assert.equal(popup(roundtrip(copy)),null,'nach Reload nicht erneut');
+ console.log('Tag 5: Sofortantworten gespeichert, nur beim Transferschluss angekündigt, genau einmal.');
 }
 {
  // Seller-side acceptance and legacy entries never reach the buyer popup.
@@ -367,7 +387,6 @@ function unseen(career){return career.world.market.transferResults.filter(item=>
   assert(!market.decisions.some(item=>item.pid===player.pid&&item.buyerId===own.id),'keine Sperre');
   assert.throws(()=>call('v66WithdrawBid',career,bid.id),/nicht mehr zurückgezogen/);
   assert(unseen(career).filter(item=>item.pid===player.pid&&item.kind!=='contract-counter').length===0,'kein Ergebnis-Popup');
-  call('v72MarkReplies',career,bid.id);
   assert.equal(popup(career),null,'auch eine ungesehene Gegenforderung erscheint nicht mehr');
   const saved=roundtrip(career);
   call('v66NextMarketDay',saved);call('v66NextMarketDay',saved);
@@ -521,6 +540,110 @@ function unseen(career){return career.world.market.transferResults.filter(item=>
  call('v72OpenReply',career,result);
  assert.equal(dialog.open,false,'Altgebot wird in der Transferübersicht bearbeitet');
  console.log('Review 1.4: Altgebote an Vereine: zurückziehen und Gegenforderungs-Popup geprüft.');
+}
+
+
+// ---------- Review 2: jede Antwort wird gespeichert und genau einmal zum Tageswechsel angekündigt ----------
+{
+ // P1/P2: Dialog öffnen setzt seen nicht; die erste sofortige Gegenforderung erscheint beim Tageswechsel genau einmal.
+ const{career,own,market}=fresh('r132-r2-first-counter');
+ const[a,b]=targets(career,own,2);
+ const first=call('v72Start',career,a.player.pid,10);
+ assert.equal(first.stage,'fee-counter');
+ const stored=market.transferResults.find(item=>item.negotiationId===first.id&&item.kind==='fee-counter');
+ assert(stored&&stored.announce===true&&!stored.released&&!stored.seen,'erste Gegenforderung ist gespeichert');
+ call('v72RenderDeal',career,first.id);
+ assert(!stored.seen,'Öffnen der Verhandlung setzt seen nicht');
+ assert.equal(popup(career),null,'vor dem Tageswechsel kein Popup');
+ call('v66NextMarketDay',career);
+ const html=popup(career);
+ assert(html&&html.includes('Gegenangebot bearbeiten')&&html.includes(credits(first.counter))&&html.includes(a.player.name),'Popup zum Tageswechsel');
+ const reloaded=roundtrip(career);
+ assert(popup(reloaded),'ungesehen nach Reload genau einmal');
+ dismiss(reloaded);assert.equal(popup(reloaded),null);
+ assert.equal(popup(roundtrip(reloaded)),null);
+ // Annahme: Dialog öffnen verhindert das Popup nicht.
+ const deal=call('v72Start',career,b.player.pid,call('v66Value',b.player));
+ dismiss(career,'fee-counter');
+ call('v66NextMarketDay',career);
+ assert.equal(deal.stage,'contract');
+ call('v72RenderDeal',career,deal.id);
+ const agreed=market.transferResults.find(item=>item.negotiationId===deal.id&&item.kind==='fee-agreed');
+ assert(!agreed.seen);
+ assert(popup(career).includes('Spielervertrag verhandeln'),'Annahme erscheint trotz geöffnetem Dialog');
+ call('v72OpenReply',career,agreed);
+ assert(!agreed.seen,'seen setzt nur die Popup-Bestätigung');
+ console.log('Review 2.1/2.2: seen nur durch Popup, sofortige Antworten als Ereignis gespeichert.');
+}
+{
+ // P3: Abschluss am Tag 5 wird nicht sofort freigegeben; Altbestand wird in der geschlossenen Phase nie angekündigt.
+ const{career,own,market}=fresh('r132-r2-day5-complete');
+ const[a]=targets(career,own,1);
+ for(let day=1;day<5;day++)call('v66NextMarketDay',career);
+ for(const item of unseen(career))item.seen=true;
+ const deal=call('v72Start',career,a.player.pid,call('v66Value',a.player));
+ const minimum=call('v66Consent',career,{...deal,annual:0}).minimum;
+ call('v72SubmitContract',career,deal.id,minimum+30,2,3);
+ assert.equal(deal.stage,'completed');
+ const done=market.transferResults.find(item=>item.negotiationId===deal.id&&item.kind==='completed');
+ assert(done&&!done.released,'Abschluss am Tag 5 wird nicht sofort freigegeben');
+ assert.equal(popup(career),null,'kein Popup ohne Tageswechsel');
+ call('v66NextMarketDay',career);
+ assert.equal(market.phase,'closed');
+ assert(popup(career).includes('Transfer abgeschlossen'),'Popup beim ausdrücklichen Transferschluss');
+ dismiss(career);assert.equal(popup(career),null);
+ // Sofortfälle am Tag 5 für Verkäufer und Gegenforderung führen ebenfalls zu keiner Freigabe.
+ const sellerSide=fresh('r132-r2-seller-day5');
+ const own2=sellerSide.own,sellerMarket=sellerSide.market;
+ for(let day=1;day<5;day++)call('v66NextMarketDay',sellerSide.career);
+ const ownPlayer=own2.roster.find(item=>!item.keeper);
+ call('v72ListOwn',sellerSide.career,ownPlayer.pid,call('v66Value',ownPlayer)*2);
+ const buyer=sellerSide.career.world.clubs.find(club=>club.id!==own2.id&&!club.simulationOnly&&club.roster.length<13&&club.leagueId);
+ const offer={id:'S1:N950',pid:ownPlayer.pid,buyerId:buyer.id,sellerId:own2.id,price:call('v66Value',ownPlayer),annual:200,years:2,promise:0,stage:'seller-offer',createdDay:5,answerDay:5,lastChange:'Gebot'};
+ sellerMarket.negotiations.push(offer);
+ call('v72SellerRespond',sellerSide.career,offer.id,'reject');
+ assert(sellerMarket.transferResults.filter(item=>item.negotiationId===offer.id).every(item=>!item.released),'Verkäuferantwort am Tag 5 nicht sofort freigegeben');
+ // Geschlossene Phase: Verbessern kündigt keinen Altbestand an.
+ const closed=fresh('r132-r2-closed');
+ const cm=closed.market;
+ cm.phase='closed';closed.career.phase='world-matches';
+ const ids=cm.freePlayers.filter(item=>call('v66Consent',closed.career,{pid:item.pid,buyerId:closed.own.id,sellerId:null,annual:60,years:2,promise:3}).minimum>60);
+ const history={id:'history:rejected',negotiationId:'old',pid:ids[2].pid,buyerId:closed.own.id,sellerId:null,kind:'rejected',price:0,message:'alt',day:5,released:false,seen:false};
+ cm.transferResults.push(history);
+ const bid=call('v66MakeBid',closed.career,closed.own.id,ids[0].pid,0,60,2,3);
+ call('v66ResolveFreeDecisions',closed.career,1);
+ assert.equal(bid.status,'counter');
+ const counterEvent=cm.transferResults.find(item=>item.negotiationId===bid.id&&item.kind==='contract-counter');
+ assert(counterEvent&&counterEvent.released,'Gegenforderung beim Kalenderwechsel angekündigt');
+ dismiss(closed.career,'contract-counter');
+ call('v66ImproveBid',closed.career,bid.id,bid.counter);
+ assert.equal(bid.status,'completed');
+ const completed=cm.transferResults.find(item=>item.id===`${bid.id}:completed`);
+ assert(completed&&!completed.released,'sofortiger Abschluss in der geschlossenen Phase nicht freigegeben');
+ assert.equal(history.released,false,'Altbestand wird nicht nachträglich angekündigt');
+ assert.equal(popup(closed.career),null,'nichts erscheint sofort');
+ call('v66ResolveFreeDecisions',closed.career,2);
+ assert(completed.released&&!history.released,'nächster Kalenderwechsel gibt nur gespeicherte neue Ereignisse frei');
+ assert(popup(closed.career).includes('Transfer abgeschlossen'));
+ dismiss(closed.career,'completed');assert.equal(popup(closed.career),null,'Altbestand erscheint nie');
+ call('v66ResolveFreeDecisions',closed.career,3);
+ assert.equal(popup(closed.career),null);
+ console.log('Review 2.3: Tag-5-Abschlüsse erst beim Transferschluss, Altbestand nie.');
+}
+{
+ // P5: selbst zurückgezogenes Altgebot blockiert das Neuangebot in der Spielersuche nicht.
+ const{career,own}=fresh('r132-r2-legacy-search');
+ const[a]=targets(career,own,1);
+ const bid=call('v66MakeBid',career,own.id,a.player.pid,Math.round(call('v66Value',a.player)*1.3/10)*10,60,2,3);
+ const filter=vm.runInContext('v66Filter',context);filter.selected=a.player.pid;
+ assert(call('v66OfferHTML',career).includes('data-v72-legacy-open='),'laufendes Altgebot zeigt Zurückziehen');
+ call('v66WithdrawBid',career,bid.id);
+ const html=call('v66OfferHTML',career);
+ assert(html.includes('data-v72-open=')&&!html.includes('Du hast das Angebot zurückgezogen.'),'Neuangebot-Button statt blockierender Altgebotskarte');
+ assert(!html.includes('data-v72-open="'+a.player.pid+'" disabled'));
+ const next=call('v72Start',career,a.player.pid,call('v66Value',a.player));
+ assert(next&&['fee-wait','contract','fee-counter'].includes(next.stage),'Neuangebot nach zurückgezogenem Altgebot');
+ console.log('Review 2.5: Altgebot zurückgezogen, Neuangebot in der Spielersuche möglich.');
 }
 
 console.log('PASS test-world-offer-withdraw-reply-r132');

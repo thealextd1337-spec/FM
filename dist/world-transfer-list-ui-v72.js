@@ -64,7 +64,7 @@ v66OfferHTML=function(career){
  const market=v72Market(career),pid=v66Filter.selected,own=career.manager.managedClubId;
  const deal=v72ActiveDeal(career,pid);
  if(deal)return`<section class="v66-offer" id="v66-offer"><h3>Angebot für ${escapeHTML(v66Player(career,pid)?.name||pid)}</h3><p role="status">${escapeHTML(deal.lastChange)}</p><button type="button" class="menu-action" data-v72-deal="${escapeHTML(deal.id)}">Verhandlung öffnen</button></section>`;
- const previous=[...market.pendingBids].reverse().find(item=>item.pid===pid&&item.buyerId===own&&item.sellerId);
+ const previous=[...market.pendingBids].reverse().find(item=>item.pid===pid&&item.buyerId===own&&item.sellerId&&!(item.status==='rejected'&&item.reason==='Du hast das Angebot zurückgezogen.'));
  if(previous)return`<section class="v66-offer" id="v66-offer"><h3>Angebot für ${escapeHTML(v66Player(career,pid)?.name||pid)}</h3>${v66BidHTML(career,previous,'outgoing')}</section>`;
  const listing=v72TransferTerms(career,v66Filter.selected);
  if(!listing)return v66Owner(career,pid)?v72BaseOfferHTML(career):'';
@@ -147,18 +147,12 @@ function v72ConfirmRetract(career,id,kind){
 function v72RetractButton(id,kind){return`<button type="button" class="menu-action v72-cancel" data-v72-retract="${escapeHTML(id)}" data-v72-kind="${kind}">Angebot zurückziehen</button>`}
 function v72NumberField(id,value,min=1){return`<span class="v72-number"><button type="button" data-v72-adjust="-1" data-v72-input="${id}" aria-label="Wert verringern">−</button><input id="${id}" type="number" min="${min}" step="10" value="${value}"><button type="button" data-v72-adjust="1" data-v72-input="${id}" aria-label="Wert erhöhen">+</button></span>`}
 const v72ReplyKinds=['fee-agreed','fee-counter','contract-counter'];
-function v72MarkReplies(career,id){
- let changed=false;
- for(const result of v72Market(career).transferResults)if(result.negotiationId===id&&!result.seen&&v72ReplyKinds.includes(result.kind)){result.seen=true;changed=true}
- if(changed&&typeof v64UiSave==='function')v64UiSave();
-}
 function v72OpenFreeAgent(career,pid){
  const player=v66Player(career,pid),owner=v66Owner(career,pid),own=career.manager.managedClubId;
  if(!player||owner&&owner.id!==own)return;
  const bid=[...career.world.market.pendingBids].reverse().find(item=>item.pid===pid&&item.buyerId===own&&!item.sellerId);
  const played=v62Fixtures(career).filter(fixture=>fixture.result).length;
  const blocked=career.world.market.decisions.some(item=>item.pid===pid&&item.buyerId===own&&item.season===career.world.season&&['rejected','expired'].includes(item.status)&&played<=item.atPlayed);
- if(bid)v72MarkReplies(career,bid.id);
  const active=bid&&['pending','counter','completed'].includes(bid.status),canOffer=!active&&!blocked&&!owner&&v66Own(career).roster.length<14&&!career.world.seasonFinished&&(['open','closed'].includes(career.world.market.phase)||v72CanOffer(career,pid));
  let action='';
  if(bid?.status==='counter')action=`<p class="v72-stage">Gegenforderung des Spielers</p><p>${escapeHTML(bid.reason)}</p><label>Neues Jahresgehalt${v72NumberField('v72-salary',bid.counter,60)}</label><button type="button" class="primary" data-v72-free-improve="${escapeHTML(bid.id)}">Vertragsangebot senden</button>${v72RetractButton(bid.id,'free')}`;
@@ -190,7 +184,6 @@ function v72OpenPlayerOffer(career,pid){
 }
 function v72RenderDeal(career,id){
  const item=v72Negotiation(career,id),player=item&&v66Player(career,item.pid),seller=item&&v66Club(career,item.sellerId);if(!item)return;
- v72MarkReplies(career,id);
  const stage={"refusal-wait":'Entscheidung am Tageswechsel',"fee-wait":'Vereinsantwort ausstehend',"fee-counter":'Ablöse: Gegenforderung',contract:'Spielervertrag',"contract-wait":'Spielerantwort ausstehend',"contract-counter":'Vertrag: Gegenforderung',ready:'Entscheidung ausstehend',completed:'Wechsel abgeschlossen',rejected:'Verhandlung beendet'}[item.stage];
  let action='';
  if(item.stage==='fee-counter')action=`<div class="v72-dialog-facts"><span>Dein letztes Gebot<b>${v66Credits(item.price)}</b></span><span>Gegenforderung<b>${v66Credits(item.counter)}</b></span></div><label>Neues Ablösegebot${v72NumberField('v72-fee',item.counter)}</label><button type="button" class="primary" data-v72-fee="${escapeHTML(id)}">Antwort senden</button>`;
@@ -244,8 +237,14 @@ function v72OpenReply(career,result){
   // Older offers to a club keep their salary form in the transfer overview.
   if(v72Dialog?.open)v72Dialog.close();
   if(typeof v61SetCareerTab==='function')v61SetCareerTab('transfers');
-  const input=typeof v61WorldScreen!=='undefined'?v61WorldScreen.querySelector(`[data-v66-counter-salary="${CSS.escape(target.bid.id)}"]`):null;
-  if(input){input.scrollIntoView({block:'center'});input.focus()}
+  if(typeof v61WorldScreen!=='undefined')v61WorldScreen.querySelector('[data-fl-section-tab="offers"]')?.click();
+  // The shell moves focus to its content after a route change, so the salary field is focused again once that settled.
+  const focusSalary=()=>{
+   const input=typeof v61WorldScreen!=='undefined'?v61WorldScreen.querySelector(`[data-v66-counter-salary="${CSS.escape(target.bid.id)}"]`):null;
+   if(input&&input.offsetParent!==null&&document.activeElement!==input){input.scrollIntoView({block:'center'});input.focus({preventScroll:true})}
+  };
+  focusSalary();
+  if(typeof requestAnimationFrame==='function')requestAnimationFrame(()=>{focusSalary();setTimeout(focusSalary,80)});
   return;
  }
  if(target.bid)v72OpenFreeAgent(career,target.bid.pid);else v72RenderDeal(career,target.item.id);
@@ -283,7 +282,7 @@ v61WorldScreen.addEventListener('click',async event=>{
  if(button.dataset.v72FreeOpen!==undefined){
   const career=v61CurrentCareer,pid=button.dataset.v72FreeOpen,market=v72Market(career);
   const pending=market.pendingBids.find(item=>item.pid===pid&&item.buyerId===career.manager.managedClubId&&!item.sellerId&&item.status==='pending');
-  if(market.day===5&&market.phase==='open'&&pending){v66TryBid(career,pending);v72ReleaseResults(career);await v64UiSave();v61RenderCareer(career)}
+  if(market.day===5&&market.phase==='open'&&pending){v66TryBid(career,pending);await v64UiSave();v61RenderCareer(career)}
   v72OpenFreeAgent(career,pid);return;
  }
  if(button.dataset.v72Open!==undefined){v72OpenListing(v61CurrentCareer,button.dataset.v72Open);return}
@@ -291,7 +290,7 @@ v61WorldScreen.addEventListener('click',async event=>{
  if(button.dataset.v72Deal!==undefined||button.dataset.v72SellerDeal!==undefined){
   const market=v72Market(v61CurrentCareer);
   if(market.day===5&&market.phase==='open'&&market.negotiations.some(item=>(item.buyerId===v61CurrentCareer.manager.managedClubId||item.sellerId===v61CurrentCareer.manager.managedClubId)&&['refusal-wait','fee-wait','seller-counter-wait','contract-wait'].includes(item.stage)&&item.answerDay<=5)){
-   v72ResolveDay(v61CurrentCareer,5,false);v72ReleaseResults(v61CurrentCareer);await v64UiSave();v61RenderCareer(v61CurrentCareer);
+   v72ResolveDay(v61CurrentCareer,5,false);await v64UiSave();v61RenderCareer(v61CurrentCareer);
   }
  }
  if(button.dataset.v72Deal!==undefined)v72RenderDeal(v61CurrentCareer,button.dataset.v72Deal);

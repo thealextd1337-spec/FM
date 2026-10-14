@@ -141,6 +141,7 @@ console.log('Angebotsübersicht und bestätigungspflichtige Absagen geprüft.');
 
 // Native direct-bid rejection must enter the persisted result queue as well.
 assert(blocked.world.market.transferResults.some(r=>r.id===keeperBid.id+':rejected'&&r.released),'direct club refusal released on day change');
+for(const r of blocked.world.market.transferResults)if(r.id!==keeperBid.id+':rejected')r.seen=true;
 context.v61CurrentCareer=blocked;dialog.open=false;call('v72ShowResults');assert(dialog.open&&dialog.innerHTML.includes(keeperBid.reason),'club refusal popup after actual day change');
 for(const r of blocked.world.market.transferResults)r.seen=true;
 const playerRefusal={id:'legacy-player-refusal',pid:freePlayer.pid,buyerId:own.id,sellerId:null,price:0,status:'pending'};

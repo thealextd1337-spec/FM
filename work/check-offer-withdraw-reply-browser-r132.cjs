@@ -106,6 +106,35 @@ const T={
    await dialog.locator('[data-v72-retract-confirm]').click();
    await page.waitForFunction(()=>!document.querySelector('#v72-transfer-dialog')?.open);
    assert.equal(await page.evaluate(()=>v61CurrentCareer.world.market.pendingBids.find(item=>item.id===window.__r132.legacy).status),'rejected');
+   // Altgebot mit Gehaltsforderung: Popup beim Tageswechsel, „Vertragsforderung bearbeiten“ fokussiert das sichtbare Gehaltsfeld
+   await page.evaluate(()=>{
+    const career=v61CurrentCareer,own=v66Own(career),market=career.world.market;
+    const club=career.world.clubs.find(item=>item.id!==own.id&&!item.simulationOnly&&item.roster.length===11&&!market.negotiations.some(entry=>entry.sellerId===item.id)&&!market.pendingBids.some(entry=>entry.sellerId===item.id||entry.buyerId===item.id)&&item.roster.some(player=>!player.keeper));
+    const player=club.roster.find(item=>!item.keeper&&!market.negotiations.some(entry=>entry.pid===item.pid)&&!market.pendingBids.some(entry=>entry.pid===item.pid));
+    window.__r132.counterBid=v66MakeBid(career,own.id,player.pid,Math.round(v66Value(player)*1.3/10)*10,60,2,3).id;
+    window.__r132.counterName=player.name;window.__r132.counterClub=club.name;
+    v61CareerTab='overview';v61RenderCareer(career);
+   });
+   assert.equal(await page.locator('#v72-transfer-dialog[open]').count(),0,'Abgeben des Gebots zeigt kein Popup');
+   await page.getByRole('button',{name:text.next}).click();
+   let reached=false;
+   for(let round=0;round<8&&!reached;round++){
+    await dialog.waitFor({state:'visible',timeout:5000}).catch(async error=>{console.log(label,'DEBUG',await page.evaluate(()=>JSON.stringify({day:v61CurrentCareer.world.market.day,phase:v61CurrentCareer.world.market.phase,results:v61CurrentCareer.world.market.transferResults.map(r=>[r.kind,r.released,r.seen,r.day,r.negotiationId]),bids:v61CurrentCareer.world.market.pendingBids.map(b=>[b.id,b.status,b.sellerId,b.reason,b.annual,b.price]),btn:document.querySelector('#career-progress-action')?.textContent})));throw error});
+    const current=await title();
+    if(current===text.titles[3]&&(await dialog.textContent()).includes(await page.evaluate(()=>window.__r132.counterName))){reached=true;break}
+    const next=dialog.getByRole('button',{name:text.later}).or(dialog.getByRole('button',{name:text.cont}));
+    await next.first().click();
+    await page.waitForFunction(previous=>{const d=document.querySelector('#v72-transfer-dialog');return !d?.open||d.querySelector('h2')?.textContent.trim()!==previous},current,{timeout:5000}).catch(()=>{});
+   }
+   assert(reached,'Popup mit Gehaltsforderung zum Altgebot');
+   assert((await dialog.textContent()).includes(await page.evaluate(()=>window.__r132.counterClub)),'Popup nennt den Verkäufer');
+   await shot('9-altgebot-forderung');
+   await dialog.getByRole('button',{name:text.contract}).click();
+   await page.waitForFunction(()=>!document.querySelector('#v72-transfer-dialog')?.open);
+   const focus=await page.evaluate(()=>{const el=document.activeElement;return{salary:el?.dataset?.v66CounterSalary||null,visible:!!el&&el.offsetParent!==null}});
+   if(!focus.salary)console.log(label,'FOCUSDEBUG',await page.evaluate(()=>{const el=document.querySelector('[data-v66-counter-salary]');let hidden=null,n=el;while(n){if(getComputedStyle(n).display==='none'){hidden=n.tagName+'#'+n.id+'.'+n.className;break}n=n.parentElement}return JSON.stringify({active:document.activeElement?.tagName+'#'+document.activeElement?.id,exists:!!el,hidden,tab:v61CareerTab,wsHidden:v61WorldScreen.hidden})}));
+   assert.equal(focus.salary,await page.evaluate(()=>window.__r132.counterBid),'Gehaltsfeld des Altgebots hat den Fokus');
+   assert(focus.visible,'Gehaltsfeld ist sichtbar (Unterbereich Angebote gewählt)');
    await context.close();
    console.log('OK',label);
   }
