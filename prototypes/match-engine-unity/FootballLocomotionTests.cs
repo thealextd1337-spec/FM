@@ -20,14 +20,6 @@ public static class FootballLocomotionTests {
         var phase=motion.Phase;motion.Sample(p+Vector3.one,f,10.3,false,false);Require(motion.Phase==phase&&motion.Mode=="sprint","Native pause freezes motion classification and phase");
         p.z+=.55f;motion.Sample(p,f,10.4,true,false);Require(motion.Mode=="run","Ball carrier preserves controlled running at fast pace");
         motion.Sample(p,f,10.5,false,false);Require(motion.Mode=="brake","Stopping from a run has a brief braking motion");
-        // B02 (r132): a run slowing through the walking band keeps its stride until the walking speed has lasted WalkHold.
-        {var m=new FootballLocomotion();var q=Vector3.zero;m.Sample(q,f,20,false,false);for(int k=1;k<=12;k++){q.z+=.15f;m.Sample(q,f,20+k*.05,false,false);}Require(m.StrideMode=="run","run established at 3 m/s");
-         q.z+=.07f;m.Sample(q,f,20.65,false,false);Require(m.StrideMode=="run","the first walking-speed picture of a slowing run keeps the run stride ("+m.StrideMode+")");
-         q.z+=.06f;m.Sample(q,f,20.70,false,false);q.z+=.05f;m.Sample(q,f,20.75,false,false);Require(m.StrideMode=="run","the run stride holds through the walking band while slowing");
-         m.Sample(q,f,20.80,false,false);Require(m.StrideMode=="idle","the stop goes straight from the held run stride to idle");
-         var w=new FootballLocomotion();q=Vector3.zero;w.Sample(q,f,30,false,false);for(int k=1;k<=12;k++){q.z+=.15f;w.Sample(q,f,30+k*.05,false,false);}
-         for(int k=1;k<=8;k++){q.z+=.06f;w.Sample(q,f,30.6+k*.05,false,false);}Require(w.StrideMode=="walk","a walking speed sustained beyond WalkHold shows the walking stride");
-         var u=new FootballLocomotion();q=Vector3.zero;u.Sample(q,f,40,false,false);q.z+=.06f;u.Sample(q,f,40.05,false,false);Require(u.StrideMode=="walk","a start from rest at walking speed walks at once");}
         motion.Sample(p,f,10.8,false,false);Require(motion.Mode=="idle","Braking completes in native time");
         p.z-=.2f;motion.Sample(p,f,10.9,false,false);Require(motion.Mode=="back","Retreat while facing play uses backward motion");
         p.z+=.3f;motion.Sample(p,Vector3.right,11,false,false);Require(motion.Mode=="turn-right","A substantial direction change uses a right turn");

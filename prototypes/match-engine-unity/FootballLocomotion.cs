@@ -126,7 +126,6 @@ public sealed class FootballLocomotion {
     public const double WarpFade=.12;
     // The crossfade time of the clip change in progress (FootballAnimation.ChangeFade); WarpFade by default.
     public double WarpTime=WarpFade;
-    public const double WalkHold=.25;double walkSince=-1;
     Vector3 position,forward,velocity;double cutAt=-1,clock=-1,brakeUntil,turnUntil,brakeAt,turnAt,calm,idleFor=1;bool brakeRight,turnRight;string turn;float strideSpeed,slowTurnAngle;bool turnLatch;int latchSign;bool wasMoving,restStart;float cadenceSpeed;string lastBrake,lastTurn,lastMode;float warpLength,warpFromScale=1,warpFromLength,warpFromNatural,warpNatural;double warpAt=-1;
     // strideLength: measured metres per cycle of the clip that shows this stride
     // (0 keeps the earlier fixed cadence references). clipHeading: its measured
@@ -143,7 +142,7 @@ public sealed class FootballLocomotion {
         // stride: it reset the stride instead of starting a 136 m/s sprint, a
         // turn and a brake_meshy stop on a standing body (measured 2045 deg/s).
         if(clock<0||dt<0||dt>1||travel.magnitude>7||travel.magnitude>RepositionStep&&travel.magnitude>RepositionSpeed*dt){
-            position=point;forward=facing;clock=nativeClock;Speed=strideSpeed=cadenceSpeed=slowTurnAngle=Acceleration=ForwardLean=TurnLean=0;RecoveryLean=Recovery(freshness,carrying,keeper);Phase=StridePhase=nativeClock;Mode=StrideMode="idle";MotionWeight=1;walkSince=-1;Lateral=StrideYaw=0;brakeUntil=turnUntil=0;FastStride=FastestBack=false;
+            position=point;forward=facing;clock=nativeClock;Speed=strideSpeed=cadenceSpeed=slowTurnAngle=Acceleration=ForwardLean=TurnLean=0;RecoveryLean=Recovery(freshness,carrying,keeper);Phase=StridePhase=nativeClock;Mode=StrideMode="idle";MotionWeight=1;Lateral=StrideYaw=0;brakeUntil=turnUntil=0;FastStride=FastestBack=false;
             cutAt=-1;velocity=Vector3.zero;TravelAngle=DirectionWeight=PelvisYaw=LegYaw=SideWeight=SupportWeight=0;SidePhase=0;Gait=Family.Forward;turnLatch=false;calm=0;idleFor=1;StoppedFor=1;wasMoving=false;Started=false;brakeRight=turnRight=false;lastBrake=lastTurn=null;BrakeWeight=0;lastMode=null;warpLength=warpFromLength=warpFromNatural=warpNatural=0;warpAt=-1;warpFromScale=StrideScale=1;return;
         }
         float actual=travel.magnitude/(float)Math.Max(.0001,dt);
@@ -197,15 +196,7 @@ public sealed class FootballLocomotion {
         }
         bool backward=Gait==Family.Back;
         float walkLimit=StrideMode=="walk"?1.95f:1.65f,sprintLimit=StrideMode=="sprint"?4.35f:4.9f;
-        string band=actual<.2?"idle":backward?"back":Gait==Family.Side?"side":strideSpeed<walkLimit?"walk":(strideSpeed>sprintLimit||actual>5.2f)&&!carrying&&!keeper?"sprint":"run";
-        // B02 (r132): a stop from a run or sprint passes the walking band in a few pictures (two recorded Unity matches: walk
-        // dwell 0.15 s mean, 85 % under 0.25 s, 22.5 band changes per field-player minute), two crossfades in 0.2 s. The
-        // walking clip takes over from a faster forward band only once the walking speed has lasted WalkHold while the body
-        // slows; until then the faster stride keeps stepping with its warped, shorter steps. A real walk, a start from rest
-        // and every backward or lateral band are unchanged.
-        if(band=="walk"&&(StrideMode=="run"||StrideMode=="sprint")&&Acceleration<0){if(walkSince<0)walkSince=nativeClock;if(nativeClock-walkSince<WalkHold)band=StrideMode;}
-        else if(band!="walk")walkSince=-1;
-        StrideMode=band;
+        StrideMode=actual<.2?"idle":backward?"back":Gait==Family.Side?"side":strideSpeed<walkLimit?"walk":(strideSpeed>sprintLimit||actual>5.2f)&&!carrying&&!keeper?"sprint":"run";
         // The top-speed stride takes over by the speed that paces the cycle
         // (cadenceSpeed): chosen by the slower band speed, sprint_forward (its
         // cadence capped by the authored stride) played at 1.22x before running

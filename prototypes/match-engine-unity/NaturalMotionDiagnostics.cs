@@ -108,7 +108,9 @@ public static class NaturalMotionDiagnostics {
         // apart from every set above; r20Checks: input identity checks; r15Enforcement: how the r15 set is enforced.
         public string r20GateNote,r15Enforcement;public Check[] r20Gates,r20Checks;public SupportSample[] r20SupportSamples;
         // r21: the R21 gates (user defects of 12.10.2026), reported apart from every set above.
-        public string r21GateNote;public Check[] r21Gates;}
+        public string r21GateNote;public Check[] r21Gates;
+        // r132: the native132 capture gates (every foot-action window of the fresh production-bridge captures, locked to Release 131).
+        public string r132GateNote;public Check[] r132Gates;}
     // r7: the samples behind each support-transition gate window.
     [Serializable] public class SupportSample {public string window;public int frames,moving,slowMoving,stanceFrames,supportFrames,doubleFloatSlow,soleBelow;public float speedMean,supportGlideMean,supportGlideRatio,supportGlideP90,supportGlideMax,kneePoleMean,soleMin,supportDropMax;public string supportGlideMaxAt,doubleFloatAt;}
     sealed class Sample {public float abduction=float.NaN,weightSum=float.NaN;public bool nanWeights;public double clock;public Vector3 root,facing,travel;public float speed,turfShift,turfClear=float.NaN;public Vector3[] ankle=new Vector3[2],toe=new Vector3[2],knee=new Vector3[2],thigh=new Vector3[2];public float[] ankleClear=new float[2],toeClear=new float[2],supportClear=new float[2];public Vector3 head,shoulderMid;public Vector3[] hand=new Vector3[2];public float supportDrop,solePredicted=float.NaN,groundSole=float.NaN;public Quaternion[] rot,rel,loc;public float rootYaw,strideScale;public Vector3[] ankleLocal=new Vector3[2];public Vector3 hipsRight,chestRight;public string clip,baseClip,mode,stride,action,soleBone,lockState;public float actionWeight;public Vector3 facingRaw;public int inertia;public bool contactPicture;public float rawStep,rawJump;public double phase;public float sole=float.NaN,lockOffset=-1;public bool moving;
@@ -987,9 +989,9 @@ public static class NaturalMotionDiagnostics {
         // folder's native132, family native132, origin r21-native (R21Gates incl. the B11 foul gates; foot actions measured).
         var r132Folder=Path.Combine(repository,outputFolder??EvidenceFolder,"native132");
         foreach(var file in Directory.Exists(r132Folder)&&Want("native132")?Directory.GetFiles(r132Folder,"motion-*.json"):new string[0]){if(file.EndsWith(".meta.json"))continue;cases.AddRange(Native(file,true,"native132"));}
-        var gates=Gates(cases);var supportSamples=new List<SupportSample>();var supportGates=SupportGates(cases,supportSamples);var contactGates=ContactGates(cases);var continuityGates=ContinuityGates(cases);var r15SupportSamples=new List<SupportSample>();var r15Gates=R15Gates(cases,r15SupportSamples);var r20SupportSamples=new List<SupportSample>();var r20Gates=R20Gates(cases,r20SupportSamples);var r21Gates=R21Gates(cases);r20Checks.Add(new Check{name="every display picture of the run is accepted by the bridge (rejected pictures)",passed=rejected==0,value=rejected});
+        var gates=Gates(cases);var supportSamples=new List<SupportSample>();var supportGates=SupportGates(cases,supportSamples);var contactGates=ContactGates(cases);var continuityGates=ContinuityGates(cases);var r15SupportSamples=new List<SupportSample>();var r15Gates=R15Gates(cases,r15SupportSamples);var r20SupportSamples=new List<SupportSample>();var r20Gates=R20Gates(cases,r20SupportSamples);var r21Gates=R21Gates(cases);var r132Gates=R132Gates(cases);r20Checks.Add(new Check{name="every display picture of the run is accepted by the bridge (rejected pictures)",passed=rejected==0,value=rejected});
         var clipFields=new List<string>();foreach(var field in typeof(ProbeBridge).GetFields(Flags))if(field.FieldType==typeof(AnimationClip)){var clip=field.GetValue(bridge) as AnimationClip;clipFields.Add(field.Name+"="+(clip!=null?clip.name:"-"));}
-        var report=new Report{clipFields=string.Join(",",clipFields),gateNote=GateNote,gates=gates.ToArray(),supportGateNote=SupportGateNote,supportGates=supportGates.ToArray(),supportSamples=supportSamples.ToArray(),contactGateNote=ContactGateNote,contactGates=contactGates.ToArray(),continuityGateNote=ContinuityGateNote,continuityGates=continuityGates.ToArray(),r15GateNote=R15GateNote,r15Gates=r15Gates.ToArray(),r15SupportSamples=r15SupportSamples.ToArray(),r20GateNote=R20GateNote,r20Gates=r20Gates.ToArray(),r20SupportSamples=r20SupportSamples.ToArray(),r20Checks=r20Checks.ToArray(),r15Enforcement=R15Enforcement,label=label,sourceId=ProbeBuildIdentity.SourceId,unity=Application.unityVersion,device=SystemInfo.graphicsDeviceType.ToString(),note="Controlled cases are hand-built native-shaped 20 Hz pictures; native cases replay actual captured native pictures. Both are blended to 60 Hz by WorldViewPlayback.Blend and rendered through ProbeBridge.WorldCommand on the actual rig. Glide: horizontal world speed of the lowest sole point while it is within 3 cm of the standing sole height (supportGlide: only while it is also the lower, weight-bearing foot; a low swing foot is excluded); foot axis: undirected angle foot/travel; knee pole: knee bend direction vs foot direction; chest: shoulder line forward vs received facing. Editor evidence, not a device or GPU measurement.",cases=cases.ToArray(),determinism=checks.ToArray(),images=images.ToArray(),recordings=recordings.ToArray(),r21GateNote=R21GateNote,r21Gates=r21Gates.ToArray()};
+        var report=new Report{clipFields=string.Join(",",clipFields),gateNote=GateNote,gates=gates.ToArray(),supportGateNote=SupportGateNote,supportGates=supportGates.ToArray(),supportSamples=supportSamples.ToArray(),contactGateNote=ContactGateNote,contactGates=contactGates.ToArray(),continuityGateNote=ContinuityGateNote,continuityGates=continuityGates.ToArray(),r15GateNote=R15GateNote,r15Gates=r15Gates.ToArray(),r15SupportSamples=r15SupportSamples.ToArray(),r20GateNote=R20GateNote,r20Gates=r20Gates.ToArray(),r20SupportSamples=r20SupportSamples.ToArray(),r20Checks=r20Checks.ToArray(),r15Enforcement=R15Enforcement,label=label,sourceId=ProbeBuildIdentity.SourceId,unity=Application.unityVersion,device=SystemInfo.graphicsDeviceType.ToString(),note="Controlled cases are hand-built native-shaped 20 Hz pictures; native cases replay actual captured native pictures. Both are blended to 60 Hz by WorldViewPlayback.Blend and rendered through ProbeBridge.WorldCommand on the actual rig. Glide: horizontal world speed of the lowest sole point while it is within 3 cm of the standing sole height (supportGlide: only while it is also the lower, weight-bearing foot; a low swing foot is excluded); foot axis: undirected angle foot/travel; knee pole: knee bend direction vs foot direction; chest: shoulder line forward vs received facing. Editor evidence, not a device or GPU measurement.",cases=cases.ToArray(),determinism=checks.ToArray(),r132GateNote=R132GateNote,r132Gates=r132Gates.ToArray(),images=images.ToArray(),recordings=recordings.ToArray(),r21GateNote=R21GateNote,r21Gates=r21Gates.ToArray()};
         File.WriteAllText(Path.Combine(folder,"natural-motion.json"),JsonUtility.ToJson(report,true));
         var visible=VisibleSurfaceProbe.Current;var visibleLine=visible?.Finish(folder,"visible-surface.json");
         typeof(ProbeBridge).GetField("acceptDisplayLead",BindingFlags.Static|BindingFlags.NonPublic)?.SetValue(null,false);
@@ -1018,21 +1020,75 @@ public static class NaturalMotionDiagnostics {
         // r21: the R21 gates (foul offender on the turf and continuous, Unity-held backward strides) are enforced the same way.
         var failedR21=r21Gates.FindAll(g=>!g.passed);
         if(enforce&&failedR21.Count>0)throw new Exception(failedR21.Count+" of "+r21Gates.Count+" r21 gates failed, first: "+failedR21[0].name+" = "+failedR21[0].value.ToString("0.###",Inv)+" (limit "+failedR21[0].limit.ToString("0.###",Inv)+")");
+        // r132: the native132 capture gates (Release 131 regression lock) are enforced the same way.
+        var failedR132=r132Gates.FindAll(g=>!g.passed);
+        if(enforce&&failedR132.Count>0)throw new Exception(failedR132.Count+" of "+r132Gates.Count+" r132 gates failed, first: "+failedR132[0].name+" = "+failedR132[0].value.ToString("0.###",Inv)+" (limit "+failedR132[0].limit.ToString("0.###",Inv)+")");
         // r22: the paired visible surface (actors with a ground skin only) is enforced the same way.
         if(enforce&&visibleLine!=null&&visible.Failed>0)throw new Exception("visible surface: "+visibleLine);
         // r22: a scene with a replacement match mesh and its ground mesh must have measured the drawn surface in an unfiltered enforced run
         // (no ground skin on the actors would otherwise measure nothing and pass); the release scene (no ground skin) stays a no-op.
         if(enforce&&only==null){var drawnMesh=LowPolySetup.MatchMesh();var groundMesh=LowPolySetup.GroundMesh();
             if(groundMesh!=null&&drawnMesh!=UnityEditor.AssetDatabase.LoadAssetAtPath<Mesh>(LowPolySetup.Original)&&(visible==null||visible.Pictures==0))throw new Exception("visible surface: replacement match mesh "+drawnMesh.name+" with ground mesh "+groundMesh.name+" but no picture was measured (the actors carry no ground skin)");}
-        return "cases="+cases.Count+" checks="+checks.Count+" gates="+(gates.Count-failedGates.Count)+"/"+gates.Count+" failed="+failedGates.Count+" supportGates="+(supportGates.Count-failedSupport.Count)+"/"+supportGates.Count+" supportFailed="+failedSupport.Count+" contactGates="+(contactGates.Count-failedContact.Count)+"/"+contactGates.Count+" contactFailed="+failedContact.Count+" continuityGates="+(continuityGates.Count-failedContinuity.Count)+"/"+continuityGates.Count+" continuityFailed="+failedContinuity.Count+" r15Gates="+(r15Gates.Count-failedR15.Count)+"/"+r15Gates.Count+" r15Failed="+failedR15.Count+" r15BeyondR18="+r15Regressions.Count+" r20Gates="+(r20Gates.Count-failedR20.Count)+"/"+r20Gates.Count+" r20Failed="+failedR20.Count+" r20Checks="+(r20Checks.Count-failedR20Checks.Count)+"/"+r20Checks.Count+" r21Gates="+(r21Gates.Count-failedR21.Count)+"/"+r21Gates.Count+" r21Failed="+failedR21.Count+(only!=null?" filter="+only:"")+" images="+images.Count+" recordings="+recordings.Count+(visibleLine!=null?" "+visibleLine:"");
+        return "cases="+cases.Count+" checks="+checks.Count+" gates="+(gates.Count-failedGates.Count)+"/"+gates.Count+" failed="+failedGates.Count+" supportGates="+(supportGates.Count-failedSupport.Count)+"/"+supportGates.Count+" supportFailed="+failedSupport.Count+" contactGates="+(contactGates.Count-failedContact.Count)+"/"+contactGates.Count+" contactFailed="+failedContact.Count+" continuityGates="+(continuityGates.Count-failedContinuity.Count)+"/"+continuityGates.Count+" continuityFailed="+failedContinuity.Count+" r15Gates="+(r15Gates.Count-failedR15.Count)+"/"+r15Gates.Count+" r15Failed="+failedR15.Count+" r15BeyondR18="+r15Regressions.Count+" r20Gates="+(r20Gates.Count-failedR20.Count)+"/"+r20Gates.Count+" r20Failed="+failedR20.Count+" r20Checks="+(r20Checks.Count-failedR20Checks.Count)+"/"+r20Checks.Count+" r21Gates="+(r21Gates.Count-failedR21.Count)+"/"+r21Gates.Count+" r21Failed="+failedR21.Count+" r132Gates="+(r132Gates.Count-failedR132.Count)+"/"+r132Gates.Count+" r132Failed="+failedR132.Count+(only!=null?" filter="+only:"")+" images="+images.Count+" recordings="+recordings.Count+(visibleLine!=null?" "+visibleLine:"");
+    }
+    // ---- r132 gates (review 1, item 5) --------------------------------------
+    // Every foot-action window (approach, entry, contact, return) of every native132 case (the fresh captures of the
+    // production bridge picture, seeds 160112 standard-5 and 160114 large-6, work/capture-native-motion-r132.cjs) is a gate:
+    // root-relative joint speed at most 1600 deg/s, or, for the 30 windows that already exceeded it with the Release 131
+    // FootballAnimation (R132Baseline, measured 14.10.2026 on identical captures), at most that value: a regression lock,
+    // no limit is loosened. A run without the captures has no r132 gates (like the r20 contract captures).
+    const string R132GateNote="r132 gates (review 1): every foot-action window of the native132 captures at most 1600 deg/s root-relative joint speed, or at most its Release 131 value for the 30 windows listed in R132Baseline (regression lock, measured on the same captures with the Release 131 FootballAnimation). Windows absent from the baseline that exceed 1600 fail.";
+    // Measurement tolerance of a Release 131 lock (0.5 %: float order and solver iteration jitter, e.g. 1927 against 1925 deg/s); the 1600 limit itself carries none.
+    public const double LockTolerance=.005;
+    static readonly (string name,string action,double entry,int window,float r131)[] R132Baseline={
+("native132-160112-field-1","receive",31.900,3,2359.1f),
+("native132-160112-field-1","pass",32.250,0,2359.1f),
+("native132-160112-field-1","pass",32.250,1,1924.5f),
+("native132-160112-field-2","pass",40.850,0,1768.0f),
+("native132-160112-field-4","receive",59.700,1,2034.3f),
+("native132-160112-field-5","pass",3.650,1,3601.4f),
+("native132-160112-field-5","receive",60.950,0,2366.1f),
+("native132-160112-field-5","tackle",69.450,0,2195.5f),
+("native132-160112-field-7","receive",26.200,1,3024.7f),
+("native132-160112-field-7","highPass",27.250,3,9133.4f),
+("native132-160112-field-7","receive",36.650,0,2760.2f),
+("native132-160112-field-7","receive",36.650,1,1923.8f),
+("native132-160112-field-7","tackle",39.100,1,4398.1f),
+("native132-160112-field-8","tackle",7.800,1,2241.0f),
+("native132-160112-field-8","tackle",7.800,2,7969.9f),
+("native132-160112-field-8","pass",69.750,1,2143.7f),
+("native132-160114-field-1","tackle",32.967,1,1723.9f),
+("native132-160114-field-5","pass",3.650,1,3601.4f),
+("native132-160114-field-5","pass",52.350,1,2044.9f),
+("native132-160114-field-5","pass",69.100,1,1893.3f),
+("native132-160114-field-8","highPass",31.050,3,8211.9f),
+("native132-160114-field-10","receive",70.900,0,3753.3f),
+("native132-160114-field-10","receive",70.900,1,2981.9f),
+("native132-160114-field-11","tackle",68.850,0,8846.3f),
+("native132-160114-field-11","tackle",68.850,1,9081.8f),
+("native132-160114-field-11","tackle",68.850,2,9180.2f),
+("native132-160114-field-12","receive",15.750,3,2738.9f),
+("native132-160114-field-12","receive",16.000,1,2738.9f),
+("native132-160114-field-12","highPass",16.550,0,1883.4f),
+("native132-160114-field-13","receive",35.850,0,2245.3f)};
+    static List<Check> R132Gates(List<Case> cases){
+        var gates=new List<Check>();
+        foreach(var c in cases){if(c.origin!="r21-native"||!c.name.StartsWith("native132-")||c.footActions==null)continue;
+            foreach(var a in c.footActions)for(int w=0;w<4;w++){if(a.frames[w]==0)continue;int k=Array.FindIndex(R132Baseline,b=>b.name==c.name&&b.action==a.action&&Math.Abs(b.entry-a.entryClock)<.02&&b.window==w);double limit=k>=0?Math.Max(1600,R132Baseline[k].r131*(1+LockTolerance)):1600;
+                gates.Add(new Check{name="r132 "+c.name+"/"+a.action+" "+a.entryClock.ToString("0.000",Inv)+" "+FootWindowNames[w]+" root-relative joint speed deg/s"+(k>=0?" (R131 lock)":""),value=a.jointRootMax[w],limit=limit,passed=a.jointRootMax[w]<=limit+1e-3});}}
+        return gates;
     }
     // ---- r21 gates ---------------------------------------------------------
     const string R21GateNote="r21 gates (reported apart from all earlier sets; user defects of 12.10.2026) on the genuine native129 inputs (the R20 contract captures, byte-identical to fresh native129 captures, and further native129 captures): every foul offender window from its first foulOffender picture to 1 s after its last (exit into the following action and walk-off): the lower foot's skinned sole contour (bones without a contour) at most 0.05 m above the turf (no floating offender) and at least -0.02 m; the skinned sole (lowest vertex, every sixth picture) between -0.02 and 0.05 m; the eight bones at most 1600 deg/s (received root yaw removed) and the pelvis at most 1.5 m/s vertically. The float limits apply to the offender pictures (the walk-off is a stride with flight, under the locomotion gates). Every native field player: no run longer than 0.1 s (two received pictures) of display pictures moving at least 1.2 m/s with a Unity backward stride while the received travel is less than FootballLocomotion.BackOff (100 deg) from the received facing (the smoothed travel following a received reversal within one picture). Received reversed travel and kick facing (native/bridge facts, Root) are reported per case, never gated or corrected by Unity.";
     // Two received pictures: the smoothed received travel may follow a received reversal for at most this long.
     public const float BackHoldLimit=.1f;
+    static readonly (string name,double r131)[] R21Native132Lock={("r21 native132-160112-field-11 foul offender 52.10 -> idle pelvis vertical speed (m/s)",1.566245)};
     static List<Check> R21Gates(List<Case> cases){
         var gates=new List<Check>();
-        void Gate(string name,double value,double limit,bool atMost=true){gates.Add(new Check{name=name,value=value,limit=limit,passed=atMost?value<=limit+1e-6:value>=limit-1e-6});}
+        // r132: on the native132 captures one r21 gate already failed with the Release 131 FootballAnimation (the foul offender's
+        // pelvis vertical speed at 160112 field-11 52.10: 1.566 m/s against 1.5, the sprint stopping dead in one native picture);
+        // it is locked to that value plus LockTolerance (R21Native132Lock) instead of loosened, like the R18 lock of the r15 set.
+        void Gate(string name,double value,double limit,bool atMost=true){int k=Array.FindIndex(R21Native132Lock,l=>l.name==name);if(k>=0&&atMost)limit=Math.Max(limit,R21Native132Lock[k].r131*(1+LockTolerance));gates.Add(new Check{name=name+(k>=0?" (R131 lock)":""),value=value,limit=limit,passed=atMost?value<=limit+1e-6:value>=limit-1e-6});}
         foreach(var c in cases){
             if(c.origin!="r20-native"&&c.origin!="r21-native"&&c.origin!="r21-controlled")continue;
             if(c.fouls!=null)foreach(var w in c.fouls){
