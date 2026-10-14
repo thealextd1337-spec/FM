@@ -108,9 +108,26 @@ v47Style.textContent+=`.v47-score{align-items:stretch}.v47-score>strong{align-se
 v47Style.textContent+=`.v47-score-total small{display:block;margin-top:6px;color:#b7cbc3;font:600 11px/1.4 Arial,sans-serif;white-space:normal}`;
 v47Style.textContent+=`.v47-award-player{padding:0;border:0;background:none;color:#edf5ef;font:inherit;font-weight:800;text-align:left;text-decoration:underline;text-underline-offset:3px;cursor:pointer}.v47-award-player:focus-visible{outline:2px solid #c7f36b;outline-offset:3px}`;
 v47Style.textContent+=`.v47-report-head-actions{display:flex;align-items:center;gap:8px}.v47-report-close{width:44px;min-width:44px;min-height:44px;border:1px solid #536b65;border-radius:7px;background:#254047;color:#fff;font-size:20px;cursor:pointer}.v47-report-close:hover{background:#385858}`;
+// Reports retain their original own/opponent indices, including player links.
+// Resolve historical identity from the report's clubs, never today's manager.
+function v47DisplaySides(report,career=typeof v61CurrentCareer!=='undefined'?v61CurrentCareer:null){
+ if(!career?.world?.competitions||!career.world.clubs)return [0,1];
+ const active=career.world.activeMatch,id=report.fixtureId||(active?.state?.postMatchReport===report?active.fixtureId:null);
+ const clubsFor=fixture=>Array.isArray(report.clubIds)&&report.clubIds.length===2?report.clubIds:[report.ownName,report.opponentName].map(name=>career.world.clubs.find(club=>[fixture.homeId,fixture.awayId].includes(club.id)&&club.name===name)?.id);
+ let fixture=id&&career.world.competitions.flatMap(item=>item.fixtures).find(item=>item.id===id);
+ if(!id&&report.competition?.id&&report.competition.round!==undefined){
+  const candidates=career.world.competitions.filter(item=>item.id===report.competition.id).flatMap(item=>item.fixtures).filter(item=>{const ids=clubsFor(item);return item.round===report.competition.round&&(report.leg===undefined||item.leg===undefined||item.leg===report.leg)&&ids.includes(item.homeId)&&ids.includes(item.awayId);});
+  if(candidates.length===1)fixture=candidates[0];
+ }
+ if(!fixture)return [0,1];const ids=clubsFor(fixture);
+ if(ids[0]===fixture.homeId&&ids[1]===fixture.awayId)return v25DisplaySides({ownSide:0});
+ if(ids[0]===fixture.awayId&&ids[1]===fixture.homeId)return v25DisplaySides({ownSide:1});
+ return [0,1];
+}
 function v47ReportHTML(report,shootout){
  v47ThemeReportDialogs();
- const [homeTime,awayTime]=report.possession,share=Math.round(homeTime/(homeTime+awayTime||1)*100),homeCode=teamShortCode(report.ownName),awayCode=teamShortCode(report.opponentName);
+ const sides=v47DisplaySides(report),names=[report.ownName,report.opponentName],displayPair=values=>sides.map(t=>values[t]).join(' : ');
+ const [homeTime,awayTime]=report.possession,share=Math.round(homeTime/(homeTime+awayTime||1)*100),homeCode=teamShortCode(names[sides[0]]),awayCode=teamShortCode(names[sides[1]]);
  const ranks=v47CurrentReportRanks(report);
  const winner=shootout?.winner??(report.score[0]===report.score[1]?null:report.score[0]>report.score[1]?0:1);
  const matchWinner=report.players.find(player=>player.pid&&player.pid===report.manOfMatchPid);
@@ -129,8 +146,8 @@ function v47ReportHTML(report,shootout){
  const rows=[['Schüsse',report.shots[0],report.shots[1]],['Aufs Tor',v47TeamTotal(report,0,'onTarget'),v47TeamTotal(report,1,'onTarget')],['Ballbesitz',`${share} %`,`${100-share} %`],['Passquote',v47Percent(v47TeamTotal(report,0,'passComplete'),v47TeamTotal(report,0,'passes')),v47Percent(v47TeamTotal(report,1,'passComplete'),v47TeamTotal(report,1,'passes'))],['Gewonnene Zweikämpfe',v47TeamTotal(report,0,'duelsWon'),v47TeamTotal(report,1,'duelsWon')]];
  rows.push(...[['Hohe Pässe','highPasses'],['Flanken','crosses'],['Kopfballschüsse','headers'],['Volleyschüsse','volleys']].map(([label,key])=>[label,v47TeamTotal(report,0,key),v47TeamTotal(report,1,key)]));
  if(report.setPieceStats)rows.push(...[['Ecken','corners'],['Fouls','fouls'],['Freistöße','freeKicks'],['Elfmeter','penalties']].map(([label,key])=>[label,...report.setPieceStats[key]]));
- const legDetail=report.firstLeg?`Hinspiel ${report.firstLeg.join(' : ')} · Gesamt ${report.aggregate.join(' : ')}`:report.leg===1?`Hinspiel · Gesamt ${report.score.join(' : ')}`:'';
- return`<div class="v47-body"><div class="v47-head"><div><h2 id="v47-report-title">Spielbericht</h2><p>Spielende · Noten von 1 bis 10 · T = Tore · V = Vorlagen</p></div><div class="v47-report-head-actions"><button type="button" class="primary v47-menu">Weiter →</button><button type="button" class="v47-report-close" aria-label="Spielbericht schließen">×</button></div></div><div class="v47-score">${scoreSide(0,report.ownName)}<strong class="v47-score-total">${report.score.join(' : ')}${legDetail?`<small>(${legDetail})</small>`:''}</strong>${scoreSide(1,report.opponentName)}</div>${ranks.size?'<p class="v47-rank-note">Tabellenplätze entsprechen dem aktuellen Stand.</p>':''}${matchAward}${shootout?`<p class="help">Elfmeterschießen: ${shootout.score.join(' : ')} · ${escapeHTML(shootout.winner===0?report.ownName:report.opponentName)} gewinnt</p>`:''}<table class="v47-stat-table"><caption>Teamstatistik</caption><thead><tr><th scope="col">Teamstatistik</th><th scope="col" title="${escapeHTML(report.ownName)}">${escapeHTML(homeCode)}</th><th scope="col" title="${escapeHTML(report.opponentName)}">${escapeHTML(awayCode)}</th></tr></thead><tbody>${rows.map(([label,home,away])=>`<tr><th scope="row">${label}</th><td>${home}</td><td>${away}</td></tr>`).join('')}</tbody></table><div class="v47-rosters">${[[0,report.ownName],[1,report.opponentName]].map(([team,name])=>`<section class="v47-roster"><h3>${escapeHTML(name)}</h3><div class="v47-player-head"><span>Spieler</span><span>Note</span><span>T</span><span>V</span></div>${v47PlayerRows(report,team)}</section>`).join('')}</div></div>`;
+ const legDetail=report.firstLeg?`Hinspiel ${displayPair(report.firstLeg)} · Gesamt ${displayPair(report.aggregate)}`:report.leg===1?`Hinspiel · Gesamt ${displayPair(report.score)}`:'';
+ return`<div class="v47-body"><div class="v47-head"><div><h2 id="v47-report-title">Spielbericht</h2><p>Spielende · Noten von 1 bis 10 · T = Tore · V = Vorlagen</p></div><div class="v47-report-head-actions"><button type="button" class="primary v47-menu">Weiter →</button><button type="button" class="v47-report-close" aria-label="Spielbericht schließen">×</button></div></div><div class="v47-score">${scoreSide(sides[0],names[sides[0]])}<strong class="v47-score-total">${displayPair(report.score)}${legDetail?`<small>(${legDetail})</small>`:''}</strong>${scoreSide(sides[1],names[sides[1]])}</div>${ranks.size?'<p class="v47-rank-note">Tabellenplätze entsprechen dem aktuellen Stand.</p>':''}${matchAward}${shootout?`<p class="help">Elfmeterschießen: ${displayPair(shootout.score)} · ${escapeHTML(shootout.winner===0?report.ownName:report.opponentName)} gewinnt</p>`:''}<table class="v47-stat-table"><caption>Teamstatistik</caption><thead><tr><th scope="col">Teamstatistik</th><th scope="col" title="${escapeHTML(names[sides[0]])}">${escapeHTML(homeCode)}</th><th scope="col" title="${escapeHTML(names[sides[1]])}">${escapeHTML(awayCode)}</th></tr></thead><tbody>${rows.map(([label,...values])=>`<tr><th scope="row">${label}</th><td>${values[sides[0]]}</td><td>${values[sides[1]]}</td></tr>`).join('')}</tbody></table><div class="v47-rosters">${sides.map(team=>[team,names[team]]).map(([team,name])=>`<section class="v47-roster"><h3>${escapeHTML(name)}</h3><div class="v47-player-head"><span>Spieler</span><span>Note</span><span>T</span><span>V</span></div>${v47PlayerRows(report,team)}</section>`).join('')}</div></div>`;
 }
 function v47ShowReport(report,shootout){
  if(!report)return;

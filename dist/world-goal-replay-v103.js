@@ -214,7 +214,8 @@ function v132Broadcast(current){
  const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId),firstEnd=current.firstHalfEnd||37.5,period=current.halftimeBreakDone?1:0;
  const added=current.halftimePause>0?current.addedMinutes?.[0]||0:current.elapsed>=(period?firstEnd+37.5:37.5)?current.addedMinutes?.[period]||0:0;
  const seconds=current.halftimePause>0?2700:added?(period?5400:2700):Math.max(0,(period?37.5+Math.max(0,current.elapsed-firstEnd):current.elapsed)*72);
- return {score:[...current.score],aggregate:v64UiAggregateText(context.career,context.fixture,current.score,context.ownSide===1),seconds,added,period,type:competition?.type||'league',country:competition?.country||null,division:v119LeagueDivision(competition),round:context.fixture.round,names:[0,1].map(t=>v65Club(context,t)?.name||''),colours:[current.kits?.user?.main||'#c7f36b',current.kits?.opponent?.main||'#8cc4ec']};
+ const sides=v25DisplaySides(context),score=sides.map(t=>current.score[t]),colours=[current.kits?.user?.main||'#c7f36b',current.kits?.opponent?.main||'#8cc4ec'];
+ return {score,aggregate:v64UiAggregateText(context.career,context.fixture,score),seconds,added,period,type:competition?.type||'league',country:competition?.country||null,division:v119LeagueDivision(competition),round:context.fixture.round,names:sides.map(t=>v65Club(context,t)?.name||''),colours:sides.map(t=>colours[t])};
 }
 // Presentation identity only. The current schedule has six canonical first divisions.
 function v119LeagueDivision(competition){

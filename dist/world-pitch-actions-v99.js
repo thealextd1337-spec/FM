@@ -77,6 +77,13 @@ function v99FlushSwaps(){
 function v99ActionState(current){
  let state=v99Actions.get(current);if(!state){state={keepers:new Map(),throws:new Map(),kicks:new Map(),goalHeight:0,miss:null};v99Actions.set(current,state)}return state;
 }
+// Only called after the native whistle actually takes effect. Keep action
+// locks, keeper recovery, poses and contact clocks authoritative and intact.
+function v132ClearVisualTails(current){
+ const state=v99Actions.get(current);if(state){state.miss=null;state.outBall=null;state.goalTravel=null;state.goalHeight=0;state.goalLateral=0;}
+ if(typeof v102Motion!=='undefined'){const motion=v102Motion.get(current);if(motion)motion.loose=null;}
+ for(const map of [v115OffsideBalls,typeof v109CornerBalls!=='undefined'?v109CornerBalls:null,typeof v114KickoffBalls!=='undefined'?v114KickoffBalls:null])map?.delete(current);
+}
 // Existing restart/recovery observations also lock native movement. Preserve
 // them in new safe checkpoints using player IDs, never flight callbacks or
 // another action clock. Missing old facts are not reconstructed.
@@ -231,7 +238,7 @@ step=function(delta,realDelta){
  v99FlushSwaps();return result;
 };
 function v99BallView(current){
- if(current.finished)return null;
+ if(current.finished||current.halftimePause>0)return null;
  const held=current.attackFlow?.keeperHoldRevision===182&&v182KeeperHold(current);if(held)return held;
  const state=v99Actions.get(current),release=current.flight&&v99Flights.get(current.flight);
  if(current.postBanner?.kind==='goal'&&state?.goalTravel)return v101GoalBall(state.goalTravel,typeof v83GoalSceneDuration==='number'?v83GoalSceneDuration:4.05);
@@ -282,7 +289,8 @@ function v99BallView(current){
  return null;
 }
 function v99PlayerAction(current,person){
- if(current.finished)return null;
+ if(current.finished||current.halftimePause>0)return null;
+ if(person.keeper&&(current.kickoff||current.pendingKickoff!=null))return null;
  const native=current.attackFlow?.flowVersion===159||typeof window!=='undefined'&&window.D6UserMeshyPlayer?.nativeBall;
  const held=current.attackFlow?.keeperHoldRevision===182&&v99Actions.get(current)?.kicks.get(person.pid);
  const holding=Boolean(held?.holdPoint&&v101KeeperWaiting(current,person));

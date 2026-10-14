@@ -1,0 +1,261 @@
+{
+  "rows": [
+    {
+      "viewport": {
+        "width": 1632,
+        "height": 956
+      },
+      "examples": [
+        {
+          "type": "league",
+          "round": "R2",
+          "expected": [
+            "Madrid Central CF (1.)",
+            "Turia CF (3.)"
+          ],
+          "preview": [
+            "Madrid Central CF (1.)",
+            "Turia CF (3.)"
+          ],
+          "preparation": [
+            "Madrid Central CF (1.)",
+            "Turia CF (3.)"
+          ],
+          "separateRank": 0,
+          "labels": [
+            "(1.)",
+            "(3.)"
+          ],
+          "expectedLabels": [
+            "(1.)",
+            "(3.)"
+          ],
+          "roundInHeader": "Nächster Gegner · Spanien Spanien · Liga 1 · Spieltag 2 · 29. August",
+          "unchanged": true
+        },
+        {
+          "type": "europe",
+          "round": "R2",
+          "expected": [
+            "Madrid Central CF (2.)",
+            "FC München Isar (7.)"
+          ],
+          "preview": [
+            "Madrid Central CF (2.)",
+            "FC München Isar (7.)"
+          ],
+          "preparation": [
+            "Madrid Central CF (2.)",
+            "FC München Isar (7.)"
+          ],
+          "separateRank": 0,
+          "labels": [
+            "(2.)",
+            "(7.)"
+          ],
+          "expectedLabels": [
+            "(2.)",
+            "(7.)"
+          ],
+          "roundInHeader": "Nächster Gegner · Europacup · Spieltag 2 · 2. September",
+          "unchanged": true
+        },
+        {
+          "type": "cup",
+          "round": "QF",
+          "expected": [
+            "Vigo Atlantic FC",
+            "Madrid Central CF"
+          ],
+          "preview": [
+            "Vigo Atlantic FC",
+            "Madrid Central CF"
+          ],
+          "preparation": [
+            "Vigo Atlantic FC",
+            "Madrid Central CF"
+          ],
+          "separateRank": 0,
+          "labels": [
+            "",
+            ""
+          ],
+          "expectedLabels": [
+            "",
+            ""
+          ],
+          "roundInHeader": "Nächster Gegner · Nationaler Pokal · Viertelfinale · 4. November",
+          "unchanged": true
+        },
+        {
+          "type": "europe",
+          "round": "QF",
+          "expected": [
+            "Madrid Central CF",
+            "FC München Isar"
+          ],
+          "preview": [
+            "Madrid Central CF",
+            "FC München Isar"
+          ],
+          "preparation": [
+            "Madrid Central CF",
+            "FC München Isar"
+          ],
+          "separateRank": 0,
+          "labels": [
+            "",
+            ""
+          ],
+          "expectedLabels": [
+            "",
+            ""
+          ],
+          "roundInHeader": "Nächster Gegner · Europacup · Viertelfinale · 2. September",
+          "unchanged": true
+        }
+      ],
+      "live": {
+        "names": [
+          "Madrid Central CF (1.)",
+          "Turia CF (3.)"
+        ],
+        "expected": [
+          "Madrid Central CF (1.)",
+          "Turia CF (3.)"
+        ]
+      },
+      "english": true,
+      "noPreparationOverflow": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "examples": [
+        {
+          "type": "league",
+          "round": "R2",
+          "expected": [
+            "Madrid Central CF (1.)",
+            "Turia CF (3.)"
+          ],
+          "preview": [
+            "Madrid Central CF (1.)",
+            "Turia CF (3.)"
+          ],
+          "preparation": [
+            "Madrid Central CF (1.)",
+            "Turia CF (3.)"
+          ],
+          "separateRank": 0,
+          "labels": [
+            "(1.)",
+            "(3.)"
+          ],
+          "expectedLabels": [
+            "(1.)",
+            "(3.)"
+          ],
+          "roundInHeader": "Nächster Gegner · Spanien Spanien · Liga 1 · Spieltag 2 · 29. August",
+          "unchanged": true
+        },
+        {
+          "type": "europe",
+          "round": "R2",
+          "expected": [
+            "Madrid Central CF (2.)",
+            "FC München Isar (7.)"
+          ],
+          "preview": [
+            "Madrid Central CF (2.)",
+            "FC München Isar (7.)"
+          ],
+          "preparation": [
+            "Madrid Central CF (2.)",
+            "FC München Isar (7.)"
+          ],
+          "separateRank": 0,
+          "labels": [
+            "(2.)",
+            "(7.)"
+          ],
+          "expectedLabels": [
+            "(2.)",
+            "(7.)"
+          ],
+          "roundInHeader": "Nächster Gegner · Europacup · Spieltag 2 · 2. September",
+          "unchanged": true
+        },
+        {
+          "type": "cup",
+          "round": "QF",
+          "expected": [
+            "Vigo Atlantic FC",
+            "Madrid Central CF"
+          ],
+          "preview": [
+            "Vigo Atlantic FC",
+            "Madrid Central CF"
+          ],
+          "preparation": [
+            "Vigo Atlantic FC",
+            "Madrid Central CF"
+          ],
+          "separateRank": 0,
+          "labels": [
+            "",
+            ""
+          ],
+          "expectedLabels": [
+            "",
+            ""
+          ],
+          "roundInHeader": "Nächster Gegner · Nationaler Pokal · Viertelfinale · 4. November",
+          "unchanged": true
+        },
+        {
+          "type": "europe",
+          "round": "QF",
+          "expected": [
+            "Madrid Central CF",
+            "FC München Isar"
+          ],
+          "preview": [
+            "Madrid Central CF",
+            "FC München Isar"
+          ],
+          "preparation": [
+            "Madrid Central CF",
+            "FC München Isar"
+          ],
+          "separateRank": 0,
+          "labels": [
+            "",
+            ""
+          ],
+          "expectedLabels": [
+            "",
+            ""
+          ],
+          "roundInHeader": "Nächster Gegner · Europacup · Viertelfinale · 2. September",
+          "unchanged": true
+        }
+      ],
+      "live": {
+        "names": [
+          "Madrid Central CF (1.)",
+          "Turia CF (3.)"
+        ],
+        "expected": [
+          "Madrid Central CF (1.)",
+          "Turia CF (3.)"
+        ]
+      },
+      "english": true,
+      "noPreparationOverflow": true
+    }
+  ],
+  "errors": []
+}

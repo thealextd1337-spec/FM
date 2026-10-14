@@ -1,0 +1,142 @@
+{
+  "branch": "fix/r132-display",
+  "worktree": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\fix-r132-display",
+  "base": "f2458c1fb981a68d13c50df6d4356c9fdb30a957",
+  "node": {
+    "ordinary": "18.14.2",
+    "browser": "24.19.0"
+  },
+  "port": 4213,
+  "bugs": {
+    "B13": {
+      "status": "Lokal behoben; noch nicht veroeffentlicht",
+      "before": "Acht echte Fehlschussfaelle (beide Teams, seitlich/hoch, Halbzeit/Abpfiff) behalten den visuellen Nachlauf. Native Fluege werden schon im Basisstand regulaer beendet. Zusaetzlich einzelne alte Keeper-/Toransichten beim Wiederanpfiff.",
+      "after": "Alle 16 Schussfaelle ohne alte Ansicht bei Pfiff und Wiederanpfiff; native Ball-/Zeit-/Score-/RNG-Traces exakt wie Basis.",
+      "authority": "Keine native Flug-/Ergebnisregel geaendert, kein neuer Matchmarker, keine Umrechnung."
+    },
+    "B14": {
+      "status": "Lokal behoben; noch nicht veroeffentlicht",
+      "before": "Auswaertsteam erscheint links mit physischem Score 2:1.",
+      "after": "Heim/Auswaerts 1:2: Namen, Shirts/Farben, Formationen, Rangausgabe, Schuetzen, Statistiken und Hinspielaggregat. Vor/nach Halbzeit, Pausenklon und echter persistierter Seiten-Neuladung. 2D und vorhandene Unity-WebGL-Laufzeit.",
+      "authority": "match.score, Spieler-Teamindizes, Unity-Teamzuordnung und gespeicherte Ergebniszuordnung bleiben nativ."
+    }
+  },
+  "checks": [
+    {
+      "command": "node work/build.cjs",
+      "result": "PASS"
+    },
+    {
+      "command": "node work/ui-redesign/shared/verify-build.cjs",
+      "result": "PASS: 26 Assets, beide Offline-Dateien gleich, Version 131"
+    },
+    {
+      "command": "node work/test-v55.cjs",
+      "result": "PASS"
+    },
+    {
+      "command": "node work/test-whistle-offside-v119.cjs",
+      "result": "PASS: 23 Checks"
+    },
+    {
+      "command": "work/check-display-whistle-r132.cjs --baseline --expect-clean",
+      "result": "EXPECTED FAIL: Stale picture after whistle: 0/half/high"
+    },
+    {
+      "command": "work/check-display-whistle-r132.cjs (source / --build / --unity)",
+      "result": "PASS: jeweils 16 echte Schussfaelle, Auswaerts-HUD, echte Speicherung/Reload und native/RNG-Erhaltung"
+    },
+    {
+      "command": "work/check-rank-labels-v129.cjs",
+      "result": "PASS: Desktop/Mobil, DE/EN, vier Wettbewerbskontexte"
+    },
+    {
+      "command": "work/check-half-time-throw-v118.cjs",
+      "result": "PASS: vier Einwurfvarianten, erster Anstosspass, Elfmeteraufschub"
+    },
+    {
+      "command": "work/test-halftime-p02-native-v119.cjs (Port 4213)",
+      "result": "PASS: sechs vollstaendige native Laeufe, exakte JSON-Fortsetzung und vollstaendige Belastungsereignisse; aktuelle Quellenhashes geprueft"
+    },
+    {
+      "command": "work/check-halftime-fullscreen-v136.cjs",
+      "result": "PASS: fuenf Szenarien inkl. Mobil und Fallback"
+    },
+    {
+      "command": "work/platform/qa/check-unity-parity-114.cjs http://127.0.0.1:4213/source/index.html all unity,native r132-display-parity",
+      "result": "PASS: alle fuenf Konfigurationen, exakte Gesamtdigests inkl. JSON-Fortsetzung"
+    },
+    {
+      "command": "work/check-fullscreen-tv-v132.cjs",
+      "result": "Neue B14-Checks PASS; Gesamtlauf FAIL an bestehender Canvas-Grenze, Basisvergleich bestaetigt"
+    },
+    {
+      "command": "work/check-match-additions-v148.cjs",
+      "result": "Neue B14-Checks PASS; Gesamtlauf FAIL: No restart focus throw, Basisvergleich bestaetigt"
+    }
+  ],
+  "limits": [
+    "Kein Push/Deploy, keine Fussversionserhoehung.",
+    "Keine Unity-C#-Aenderungen, Unity-Editor-Tests, Builds oder Synchronisierung. Vorhandene lokale WebGL-Laufzeit verwendet.",
+    "Gezielte Schussreproduktion nutzt echte native Schuesse mit kontrollierter Aufstellung und Zeitposition; P02-Buchung ist darin isoliert. Vollstaendige unabgekuerzte P02-/Paritaetslaeufe pruefen diese separat.",
+    "Keine physische Android-/Nutzerabnahme. Zwei belegte Altfehler bleiben offen.",
+    "docs/CHANGELOG.md, docs/Bugliste.md und docs/entscheidungen.md unveraendert."
+  ],
+  "changelogSuggestion": [
+    "Heim-/Auswaertszuordnung in Live-Anzeige, TV-HUD, Pausenansicht und Statistikspalten anhand der echten Paarung vereinheitlicht; Tore, Schuetzen, Trikots, Formationen und Hinspielaggregat folgen derselben Reihenfolge.",
+    "Visuelle Ball-/Keepernachlaeufe beim tatsaechlichen Halbzeituebergang und Abpfiff beendet. Native Fluege, Kontaktuhren, Teamindizes, Zufall und gespeicherte Ergebnisse bleiben unveraendert."
+  ],
+  "sourceHashes": {
+    "dist/game.js": "7d877f01e1ad0d49059a47ff74038df637cbcafd332ce8283c0868331711ce9a",
+    "dist/halftime-v14.js": "c152f6fa31af2f56f85c7a02b5d24168b425fe1ca207dd56bc84eafa130368b4",
+    "dist/presentation-v25.js": "eefca44b654f65dbf00faa20332b7bb0748cccc6c4daf1ac7f8d81fab52f153d",
+    "dist/world-physical-v65.js": "878bcc0f199ae5f52b8b812fa883f44f039f92bc2809faa2d889b09aa56a785b",
+    "dist/world-pitch-actions-v99.js": "1b46f17438cdba0cba0ef538966f2db17c0262d80701dee36d5044a9e5bd76af",
+    "dist/pitch-motion-v102.js": "58dd29d69557d94bb0f72c8f8f0caf486604e52803b2858adf0c953bf48b55c6",
+    "dist/world-ball-motion-v110.js": "fa6f54a7b0a60191105695223e569e1778d4505ce54b744e5ac060ddee5d925d",
+    "dist/world-pitch3d-v98.js": "4009724016c5fddeadf560922fe70fd8961122e7107da510d6dbd2896ddd3528",
+    "dist/world-goal-replay-v103.js": "0b7114372370e0bc80213ab0764f839ed737152c27dd27f47c69e617e9889573",
+    "work/check-display-whistle-r132.cjs": "50009171bcd51e3c1d67fc86d2937b8069ae077fcbf4e7859d40e19dbaf181a1"
+  },
+  "buildHashes": {
+    "outputs/index.html": "054ad25ba6060b54ca71c779f35656bd4d7a98168106577101a2d1479eaa6fd6",
+    "outputs/Doppel-6-Fussballmanager.html": "054ad25ba6060b54ca71c779f35656bd4d7a98168106577101a2d1479eaa6fd6"
+  },
+  "parityHash": "eaadad3390d4bc5e7dba6041f57511f3fdd4080d64cf901245fdf8d68ec79ca7",
+  "p02Hash": "4c1a6aec659b660f043eb6dbadaa19255a2371b46154c47e2bb972dd805a3aef",
+  "changedFiles": [
+    "dist/game.js",
+    "dist/halftime-v14.js",
+    "dist/pitch-motion-v102.js",
+    "dist/presentation-v25.js",
+    "dist/world-ball-motion-v110.js",
+    "dist/world-goal-replay-v103.js",
+    "dist/world-physical-v65.js",
+    "dist/world-pitch-actions-v99.js",
+    "dist/world-pitch3d-v98.js",
+    "outputs/3d-quality/iteration-119/whistle-offside-tests.json",
+    "outputs/3d-quality/shot-volume-v119/halftime-p02-native.json",
+    "outputs/Doppel-6-Fussballmanager.html",
+    "outputs/halftime-fullscreen-v136.json",
+    "outputs/index.html",
+    "outputs/r132-display/baseline.json",
+    "outputs/r132-display/build.json",
+    "outputs/r132-display/half-time-throw-v118.json",
+    "outputs/r132-display/homeaway-additions.json",
+    "outputs/r132-display/homeaway-fullscreen.json",
+    "outputs/r132-display/regression-failures.json",
+    "outputs/r132-display/source.json",
+    "outputs/r132-display/status.json",
+    "outputs/r132-display/unity.json",
+    "outputs/release-114/r132-display-parity.json",
+    "work/check-display-whistle-r132.cjs",
+    "work/check-fullscreen-tv-v132.cjs",
+    "work/check-half-time-throw-v118.cjs",
+    "work/check-halftime-fullscreen-v136.cjs",
+    "work/check-match-additions-v148.cjs",
+    "work/check-rank-labels-v129.cjs",
+    "work/match-display-assertions-r132.cjs",
+    "work/test-halftime-p02-native-v119.cjs",
+    "work/test-whistle-offside-v119.cjs"
+  ]
+}

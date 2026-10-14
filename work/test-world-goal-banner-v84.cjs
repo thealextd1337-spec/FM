@@ -25,9 +25,10 @@ const player={pid:'p7',n:7,name:'M. Berger',history:[
 ]};
 const club={id:'new-club',name:'SC Beispiel'};
 const physical={goalPause:2,goals:[{pid:'p7',team:0},{pid:'other',team:1},{pid:'p7',team:0}],score:[2,1]};
+let ownSide=0;
 const context=vm.createContext({
  match:physical,v65WorldActive:{},
- v65Context:()=>({career,fixture}),v65Club:()=>club,
+ v65Context:()=>({career,fixture,ownSide}),v65Club:()=>club,
  v66Player:(_career,pid)=>pid==='p7'?player:null,
  v62Current:career=>career.world.competitions,
  v61CrestSVG:club=>`<svg aria-label="Vereinslogo ${club.name}"></svg>`,
@@ -37,6 +38,7 @@ const context=vm.createContext({
  hideOverlay:()=>{overlay.hidden=true},draw:()=>{},step:()=>{},running:true,v47PlayerDialog:{open:false},
  document:{createElement:()=>({textContent:''}),head:{append:()=>{}}}
 });
+const projection=fs.readFileSync('dist/presentation-v25.js','utf8');vm.runInContext(projection.slice(projection.indexOf('function v25DisplaySides('),projection.indexOf('function v25UpdateLiveBoard(')),context);
 const source=fs.readFileSync('dist/world-goal-banner-v84.js','utf8');
 vm.runInContext(source,context);
 const goals=vm.runInContext('v84SeasonGoals',context);
@@ -71,6 +73,7 @@ assert(!classes.has('v84-goal-wait'),'new non-goal message cancels delay');
 assert(!classes.has('v84-goal-banner')&&!overlay.html&&!overlay.attributes.role,'andere Hinweise räumen den Banner ab');
 assert.strictEqual(overlay.parentElement,matchArea,'andere Hinweise nutzen wieder den normalen Matchbereich');
 context.showOverlay('TOR!','Treffer',true);context.hideOverlay();context.step(0,1);context.draw();assert(overlay.hidden&&!classes.has('v84-goal-wait'),'hidden goal cannot reappear from old delay');
+ownSide=1;physical.score=[2,1];const before=JSON.stringify(physical);context.showOverlay('TOR!','Auswaertstor',true);assert(overlay.html.includes('aria-label="Spielstand 1 zu 2"')&&overlay.html.includes('1:2'));assert(copy.textContent.includes('1 : 2'));assert.strictEqual(JSON.stringify(physical),before,'display preserves physical goals and scores');ownSide=0;
 assert(source.includes('prefers-reduced-motion:reduce')&&source.includes('v84GoalRun')&&source.includes('v84GoalBlink'));
 const css=vm.runInContext('v84Style.textContent',context);
 assert(css.includes('top:50%;bottom:auto;left:50%')&&css.includes('transform:translate(-50%,-50%)'),'Spielfeldmitte');

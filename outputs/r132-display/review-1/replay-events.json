@@ -1,0 +1,129 @@
+{
+  "homeAway": {
+    "score": "0 : 1",
+    "names": [
+      "FC Köln Rhein",
+      "FC Bremen Weser"
+    ],
+    "expected": [
+      "FC Köln Rhein",
+      "FC Bremen Weser"
+    ],
+    "native": [
+      1,
+      0
+    ],
+    "unchanged": true
+  },
+  "archive": {
+    "count": 91,
+    "first": 0,
+    "last": 900,
+    "markers": [
+      {
+        "kind": "corner",
+        "clock": 10
+      },
+      {
+        "kind": "freeKick",
+        "clock": 30
+      },
+      {
+        "kind": "offside",
+        "clock": 80
+      },
+      {
+        "kind": "penalty",
+        "clock": 140
+      },
+      {
+        "kind": "goal",
+        "clock": 200
+      }
+    ]
+  },
+  "views": [
+    {
+      "width": 1280,
+      "language": "de",
+      "markers": 5,
+      "events": 5,
+      "overflow": false,
+      "play": "▶",
+      "labels": [
+        "Eckball · 01′ · Adama Ouédraogo",
+        "Freistoß · 03′ · Adama Ouédraogo",
+        "Abseits · 08′ · Adama Ouédraogo",
+        "Elfmeter · 14′ · Dylan Evans",
+        "Tor · 20′ · Dylan Evans"
+      ]
+    },
+    {
+      "width": 1280,
+      "language": "en",
+      "markers": 5,
+      "events": 5,
+      "overflow": false,
+      "play": "▶",
+      "labels": [
+        "Corner · 01′ · Adama Ouédraogo",
+        "Free kick · 03′ · Adama Ouédraogo",
+        "Offside · 08′ · Adama Ouédraogo",
+        "Penalty · 14′ · Dylan Evans",
+        "Goal · 20′ · Dylan Evans"
+      ]
+    },
+    {
+      "width": 844,
+      "language": "de",
+      "markers": 5,
+      "events": 5,
+      "overflow": false,
+      "play": "▶",
+      "labels": [
+        "Eckball · 01′ · Adama Ouédraogo",
+        "Freistoß · 03′ · Adama Ouédraogo",
+        "Abseits · 08′ · Adama Ouédraogo",
+        "Elfmeter · 14′ · Dylan Evans",
+        "Tor · 20′ · Dylan Evans"
+      ]
+    },
+    {
+      "width": 844,
+      "language": "en",
+      "markers": 5,
+      "events": 5,
+      "overflow": false,
+      "play": "▶",
+      "labels": [
+        "Corner · 01′ · Adama Ouédraogo",
+        "Free kick · 03′ · Adama Ouédraogo",
+        "Offside · 08′ · Adama Ouédraogo",
+        "Penalty · 14′ · Dylan Evans",
+        "Goal · 20′ · Dylan Evans"
+      ]
+    }
+  ],
+  "selected": {
+    "time": 197,
+    "running": false,
+    "phase": "paused"
+  },
+  "playing": {
+    "playing": true,
+    "time": 197.20869999997618,
+    "running": false
+  },
+  "paused": {
+    "time": 197.32539999997618,
+    "playing": false
+  },
+  "matchUnchanged": true,
+  "safety": {
+    "end": true,
+    "seekStops": true,
+    "noSimulation": true
+  },
+  "resumed": true,
+  "errors": []
+}

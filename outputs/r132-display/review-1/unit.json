@@ -1,0 +1,28 @@
+{
+  "pass": true,
+  "checks": [
+    "Historical report identity: original",
+    "Historical report identity: json",
+    "Historical report identity: missing-club-ids",
+    "Historical report identity: empty-club-ids",
+    "Historical report identity: detached-old-report",
+    "Historical report identity: ambiguous-old-report",
+    "Historical report identity: manager-changed",
+    "Historical report identity: renamed-club",
+    "Historical report identity: active-old-report",
+    "Historical report identity: unknown-fixture",
+    "Historical report identity: conflicting-clubs",
+    "Historical report identity: no-world",
+    "Legacy league report retains its original own/opponent display",
+    "Statistics resolve fixture sides exactly once per update and preserve native state",
+    "Full-time title also reads a stored fixture score after the live match is released",
+    "Physical report serialization is byte-for-byte unchanged from review base"
+  ],
+  "sourceHashes": {
+    "dist/game.js": "e473be8a6a346f32da7ddf1a3447e9cfa4e8fdd3e76a60e6ae1b3fb06b098998",
+    "dist/match-report-v47.js": "491d7abbd851f6f1baf7bc770fe02a1eaa6fbc1a1177c195b8411eb3d57930e9",
+    "dist/world-goal-banner-v84.js": "c1433382ae2353345daf08d327e2030d34695f1cc41387c930e1ee7d1603ce5b",
+    "dist/world-physical-v65.js": "2ef09a92e4d80518d1a323fffb2b57c79ed2a2ca360172ecabe197a301b3d88e",
+    "work/test-report-display-r132.cjs": "79858d7d751382723d508acdf6cc3f09dc4cab6581f34b24ed46694698ab58b4"
+  }
+}

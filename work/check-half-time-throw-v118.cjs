@@ -4,7 +4,7 @@ const baseline=process.argv.includes('--baseline');
 (async()=>{
  const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true});
  try{
-  const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(pathToFileURL(path.resolve('outputs/spieler-nutzer-match.html')).href);await page.waitForFunction(()=>window.userMeshyMatchReady,null,{timeout:60000});
+  const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto(pathToFileURL(path.resolve('outputs/spieler-nutzer-match.html')).href+'?engine=browser');await page.waitForFunction(()=>window.userMeshyMatchReady,null,{timeout:60000});
   const cases=await page.evaluate(()=>{
    clearInterval(v65WorldFrame);v102StopPaint();const cases=[];
    for(const edge of ['left','right'])for(const ready of [0,.3]){

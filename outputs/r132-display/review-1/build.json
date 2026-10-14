@@ -1,0 +1,4442 @@
+{
+  "data": {
+    "rows": [
+      {
+        "ownSide": 1,
+        "expected": {
+          "names": [
+            "FC Hamburg Elbe",
+            "FC Bremen Weser"
+          ],
+          "score": "1 : 2",
+          "compact": "1:2",
+          "first": "0 : 3",
+          "aggregate": "1 : 5",
+          "penalties": "2 : 4",
+          "scorers": [
+            "Leon Braun",
+            "Oscar Andersson"
+          ],
+          "winner": "FC Bremen Weser"
+        },
+        "banners": [
+          {
+            "view": "2d",
+            "team": 0,
+            "score": "1:2",
+            "label": "Spielstand 1 zu 2",
+            "copy": "Oscar Andersson · 1 : 2",
+            "club": "FC Bremen Weser",
+            "unchanged": true
+          },
+          {
+            "view": "2d",
+            "team": 1,
+            "score": "1:2",
+            "label": "Spielstand 1 zu 2",
+            "copy": "Leon Braun · 1 : 2",
+            "club": "FC Hamburg Elbe",
+            "unchanged": true
+          },
+          {
+            "view": "3d",
+            "team": 0,
+            "score": "1:2",
+            "label": "Spielstand 1 zu 2",
+            "copy": "Oscar Andersson · 1 : 2",
+            "club": "FC Bremen Weser",
+            "unchanged": true
+          },
+          {
+            "view": "3d",
+            "team": 1,
+            "score": "1:2",
+            "label": "Spielstand 1 zu 2",
+            "copy": "Leon Braun · 1 : 2",
+            "club": "FC Hamburg Elbe",
+            "unchanged": true
+          }
+        ],
+        "restoredBanner": {
+          "score": "1:2",
+          "copy": "Oscar Andersson · 1 : 2",
+          "unchanged": true
+        },
+        "restoredFallback": "Oscar Andersson · 1 : 2",
+        "reports": [
+          {
+            "variant": "stored-report",
+            "score": "1 : 2",
+            "leg": "(Hinspiel 0 : 3 · Gesamt 1 : 5)",
+            "names": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "goals": [
+              "Leon Braun 7′",
+              "Oscar Andersson 12′, 19′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "4",
+                "9"
+              ],
+              [
+                "Aufs Tor",
+                "3",
+                "7"
+              ],
+              [
+                "Ballbesitz",
+                "70 %",
+                "30 %"
+              ],
+              [
+                "Passquote",
+                "40 %",
+                "80 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "3",
+                "8"
+              ],
+              [
+                "Fouls",
+                "5",
+                "2"
+              ],
+              [
+                "Freistöße",
+                "2",
+                "5"
+              ],
+              [
+                "Elfmeter",
+                "0",
+                "1"
+              ]
+            ],
+            "statNames": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "rosters": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "firstPlayer": "David Koch",
+            "detailText": "Deutschland> #1 David KochFC Hamburg Elbe · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              false,
+              true
+            ],
+            "shootout": "Elfmeterschießen: 2 : 4 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "old-report-with-fixture-and-names",
+            "score": "1 : 2",
+            "leg": "(Hinspiel 0 : 3 · Gesamt 1 : 5)",
+            "names": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "goals": [
+              "Leon Braun 7′",
+              "Oscar Andersson 12′, 19′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "4",
+                "9"
+              ],
+              [
+                "Aufs Tor",
+                "3",
+                "7"
+              ],
+              [
+                "Ballbesitz",
+                "70 %",
+                "30 %"
+              ],
+              [
+                "Passquote",
+                "40 %",
+                "80 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "3",
+                "8"
+              ],
+              [
+                "Fouls",
+                "5",
+                "2"
+              ],
+              [
+                "Freistöße",
+                "2",
+                "5"
+              ],
+              [
+                "Elfmeter",
+                "0",
+                "1"
+              ]
+            ],
+            "statNames": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "rosters": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "firstPlayer": "David Koch",
+            "detailText": "Deutschland> #1 David KochFC Hamburg Elbe · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              false,
+              true
+            ],
+            "shootout": "Elfmeterschießen: 2 : 4 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "old-report-with-empty-club-ids",
+            "score": "1 : 2",
+            "leg": "(Hinspiel 0 : 3 · Gesamt 1 : 5)",
+            "names": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "goals": [
+              "Leon Braun 7′",
+              "Oscar Andersson 12′, 19′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "4",
+                "9"
+              ],
+              [
+                "Aufs Tor",
+                "3",
+                "7"
+              ],
+              [
+                "Ballbesitz",
+                "70 %",
+                "30 %"
+              ],
+              [
+                "Passquote",
+                "40 %",
+                "80 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "3",
+                "8"
+              ],
+              [
+                "Fouls",
+                "5",
+                "2"
+              ],
+              [
+                "Freistöße",
+                "2",
+                "5"
+              ],
+              [
+                "Elfmeter",
+                "0",
+                "1"
+              ]
+            ],
+            "statNames": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "rosters": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "firstPlayer": "David Koch",
+            "detailText": "Deutschland> #1 David KochFC Hamburg Elbe · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              false,
+              true
+            ],
+            "shootout": "Elfmeterschießen: 2 : 4 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "old-active-report-with-club-ids",
+            "score": "1 : 2",
+            "leg": "(Hinspiel 0 : 3 · Gesamt 1 : 5)",
+            "names": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "goals": [
+              "Leon Braun 7′",
+              "Oscar Andersson 12′, 19′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "4",
+                "9"
+              ],
+              [
+                "Aufs Tor",
+                "3",
+                "7"
+              ],
+              [
+                "Ballbesitz",
+                "70 %",
+                "30 %"
+              ],
+              [
+                "Passquote",
+                "40 %",
+                "80 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "3",
+                "8"
+              ],
+              [
+                "Fouls",
+                "5",
+                "2"
+              ],
+              [
+                "Freistöße",
+                "2",
+                "5"
+              ],
+              [
+                "Elfmeter",
+                "0",
+                "1"
+              ]
+            ],
+            "statNames": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "rosters": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "firstPlayer": "David Koch",
+            "detailText": "Deutschland> #1 David KochFC Hamburg Elbe · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              false,
+              true
+            ],
+            "shootout": "Elfmeterschießen: 2 : 4 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "old-detached-report-with-unique-pairing",
+            "score": "1 : 2",
+            "leg": "(Hinspiel 0 : 3 · Gesamt 1 : 5)",
+            "names": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "goals": [
+              "Leon Braun 7′",
+              "Oscar Andersson 12′, 19′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "4",
+                "9"
+              ],
+              [
+                "Aufs Tor",
+                "3",
+                "7"
+              ],
+              [
+                "Ballbesitz",
+                "70 %",
+                "30 %"
+              ],
+              [
+                "Passquote",
+                "40 %",
+                "80 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "3",
+                "8"
+              ],
+              [
+                "Fouls",
+                "5",
+                "2"
+              ],
+              [
+                "Freistöße",
+                "2",
+                "5"
+              ],
+              [
+                "Elfmeter",
+                "0",
+                "1"
+              ]
+            ],
+            "statNames": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "rosters": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "firstPlayer": "David Koch",
+            "detailText": "Deutschland> #1 David KochFC Hamburg Elbe · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              false,
+              true
+            ],
+            "shootout": "Elfmeterschießen: 2 : 4 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "manager-changed",
+            "score": "1 : 2",
+            "leg": "(Hinspiel 0 : 3 · Gesamt 1 : 5)",
+            "names": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "goals": [
+              "Leon Braun 7′",
+              "Oscar Andersson 12′, 19′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "4",
+                "9"
+              ],
+              [
+                "Aufs Tor",
+                "3",
+                "7"
+              ],
+              [
+                "Ballbesitz",
+                "70 %",
+                "30 %"
+              ],
+              [
+                "Passquote",
+                "40 %",
+                "80 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "3",
+                "8"
+              ],
+              [
+                "Fouls",
+                "5",
+                "2"
+              ],
+              [
+                "Freistöße",
+                "2",
+                "5"
+              ],
+              [
+                "Elfmeter",
+                "0",
+                "1"
+              ]
+            ],
+            "statNames": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "rosters": [
+              "FC Hamburg Elbe",
+              "FC Bremen Weser"
+            ],
+            "firstPlayer": "David Koch",
+            "detailText": "Deutschland> #1 David KochFC Hamburg Elbe · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              false,
+              true
+            ],
+            "shootout": "Elfmeterschießen: 2 : 4 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "unknown-fixture-fallback",
+            "score": "2 : 1",
+            "leg": "(Hinspiel 3 : 0 · Gesamt 5 : 1)",
+            "names": [
+              "FC Bremen Weser",
+              "FC Hamburg Elbe"
+            ],
+            "goals": [
+              "Oscar Andersson 12′, 19′",
+              "Leon Braun 7′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "9",
+                "4"
+              ],
+              [
+                "Aufs Tor",
+                "7",
+                "3"
+              ],
+              [
+                "Ballbesitz",
+                "30 %",
+                "70 %"
+              ],
+              [
+                "Passquote",
+                "80 %",
+                "40 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "8",
+                "3"
+              ],
+              [
+                "Fouls",
+                "2",
+                "5"
+              ],
+              [
+                "Freistöße",
+                "5",
+                "2"
+              ],
+              [
+                "Elfmeter",
+                "1",
+                "0"
+              ]
+            ],
+            "statNames": [
+              "FC Bremen Weser",
+              "FC Hamburg Elbe"
+            ],
+            "rosters": [
+              "FC Bremen Weser",
+              "FC Hamburg Elbe"
+            ],
+            "firstPlayer": "Jules Simon",
+            "detailText": "Frankreich #1 Jules SimonFC Bremen Weser · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              true,
+              false
+            ],
+            "shootout": "Elfmeterschießen: 4 : 2 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          }
+        ],
+        "replay": {
+          "score": "1 : 2",
+          "names": [
+            "FC Hamburg Elbe",
+            "FC Bremen Weser"
+          ]
+        },
+        "penalties": {
+          "names": [
+            "FC Hamburg Elbe",
+            "FC Bremen Weser"
+          ],
+          "score": "2 : 4",
+          "kick": "1. FC Bremen WeserOscar Andersson · Tor · 2 : 4",
+          "unchanged": true
+        },
+        "results": "10. Oktober · R4Vereinslogo FC Hamburg ElbeFC Hamburg Elbe1:2Vereinslogo FC Bremen WeserFC Bremen Weser",
+        "fulltime": {
+          "title": "Abpfiff · FC Hamburg Elbe 1 : 2 FC Bremen Weser",
+          "nativeScore": [
+            2,
+            1
+          ],
+          "storedScore": [
+            1,
+            2
+          ],
+          "reportScore": [
+            2,
+            1
+          ]
+        },
+        "nativeReport": {
+          "ownName": "FC Bremen Weser",
+          "opponentName": "FC Hamburg Elbe",
+          "clubIds": [
+            "GER-2",
+            "GER-3"
+          ],
+          "fixtureId": "S1:GER:LEAGUE:R4:GER-3-GER-2:1",
+          "competition": {
+            "id": "S1:GER:LEAGUE",
+            "type": "league",
+            "country": "GER",
+            "round": "R4"
+          },
+          "score": [
+            2,
+            1
+          ],
+          "goals": [
+            {
+              "pid": "review-display-r132:GER-2:4",
+              "name": "Oscar Andersson",
+              "team": 0,
+              "minute": 12
+            },
+            {
+              "pid": "review-display-r132:GER-3:5",
+              "name": "Leon Braun",
+              "team": 1,
+              "minute": 7
+            },
+            {
+              "name": "Oscar Andersson",
+              "team": 0,
+              "minute": 19,
+              "pid": "review-display-r132:GER-2:4"
+            }
+          ],
+          "shots": [
+            9,
+            4
+          ],
+          "possession": [
+            30,
+            70
+          ],
+          "setPieceStats": {
+            "corners": [
+              8,
+              3
+            ],
+            "fouls": [
+              2,
+              5
+            ],
+            "freeKicks": [
+              5,
+              2
+            ],
+            "penalties": [
+              1,
+              0
+            ]
+          },
+          "players": [
+            {
+              "pid": "review-display-r132:GER-2:1",
+              "name": "Jules Simon",
+              "n": 1,
+              "nation": "FR",
+              "keeper": true,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:4",
+              "name": "Oscar Andersson",
+              "n": 4,
+              "nation": "SWE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 5,
+                "passComplete": 4,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 7,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 8,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:2",
+              "name": "Diogo Correia",
+              "n": 2,
+              "nation": "PT",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:7",
+              "name": "Leon Zimmermann",
+              "n": 7,
+              "nation": "DE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:6",
+              "name": "Ahmed Hassan",
+              "n": 6,
+              "nation": "EGY",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:10",
+              "name": "David Schäfer",
+              "n": 10,
+              "nation": "DE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:1",
+              "name": "David Koch",
+              "n": 1,
+              "nation": "DE",
+              "keeper": true,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:5",
+              "name": "Leon Braun",
+              "n": 5,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 5,
+                "passComplete": 2,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 3,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 8,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:3",
+              "name": "Florian Moser",
+              "n": 3,
+              "nation": "AUT",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:8",
+              "name": "Max Zimmermann",
+              "n": 8,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:9",
+              "name": "Santiago Díaz",
+              "n": 9,
+              "nation": "ARG",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:Y1:2",
+              "name": "Daler Karimov",
+              "n": 12,
+              "nation": "TJK",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            }
+          ],
+          "ballAccounting": {
+            "version": 117,
+            "sequence": 0,
+            "events": []
+          },
+          "leg": 2,
+          "firstLeg": [
+            3,
+            0
+          ],
+          "aggregate": [
+            5,
+            1
+          ],
+          "penaltyShootout": {
+            "score": [
+              4,
+              2
+            ],
+            "winner": 0
+          },
+          "manOfMatchPid": "review-display-r132:GER-2:4"
+        }
+      },
+      {
+        "ownSide": 0,
+        "expected": {
+          "names": [
+            "FC Bremen Weser",
+            "FC München Isar"
+          ],
+          "score": "2 : 1",
+          "compact": "2:1",
+          "first": "3 : 0",
+          "aggregate": "5 : 1",
+          "penalties": "4 : 2",
+          "scorers": [
+            "Oscar Andersson",
+            "Ibrahim Adebayo"
+          ],
+          "winner": "FC Bremen Weser"
+        },
+        "banners": [
+          {
+            "view": "2d",
+            "team": 0,
+            "score": "2:1",
+            "label": "Spielstand 2 zu 1",
+            "copy": "Oscar Andersson · 2 : 1",
+            "club": "FC Bremen Weser",
+            "unchanged": true
+          },
+          {
+            "view": "2d",
+            "team": 1,
+            "score": "2:1",
+            "label": "Spielstand 2 zu 1",
+            "copy": "Ibrahim Adebayo · 2 : 1",
+            "club": "FC München Isar",
+            "unchanged": true
+          },
+          {
+            "view": "3d",
+            "team": 0,
+            "score": "2:1",
+            "label": "Spielstand 2 zu 1",
+            "copy": "Oscar Andersson · 2 : 1",
+            "club": "FC Bremen Weser",
+            "unchanged": true
+          },
+          {
+            "view": "3d",
+            "team": 1,
+            "score": "2:1",
+            "label": "Spielstand 2 zu 1",
+            "copy": "Ibrahim Adebayo · 2 : 1",
+            "club": "FC München Isar",
+            "unchanged": true
+          }
+        ],
+        "restoredBanner": {
+          "score": "2:1",
+          "copy": "Oscar Andersson · 2 : 1",
+          "unchanged": true
+        },
+        "restoredFallback": "Oscar Andersson · 2 : 1",
+        "reports": [
+          {
+            "variant": "stored-report",
+            "score": "2 : 1",
+            "leg": "(Hinspiel 3 : 0 · Gesamt 5 : 1)",
+            "names": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "goals": [
+              "Oscar Andersson 12′, 19′",
+              "Ibrahim Adebayo 7′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "9",
+                "4"
+              ],
+              [
+                "Aufs Tor",
+                "7",
+                "3"
+              ],
+              [
+                "Ballbesitz",
+                "30 %",
+                "70 %"
+              ],
+              [
+                "Passquote",
+                "80 %",
+                "40 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "8",
+                "3"
+              ],
+              [
+                "Fouls",
+                "2",
+                "5"
+              ],
+              [
+                "Freistöße",
+                "5",
+                "2"
+              ],
+              [
+                "Elfmeter",
+                "1",
+                "0"
+              ]
+            ],
+            "statNames": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "rosters": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "firstPlayer": "Jules Simon",
+            "detailText": "Frankreich #1 Jules SimonFC Bremen Weser · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              true,
+              false
+            ],
+            "shootout": "Elfmeterschießen: 4 : 2 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "old-report-with-fixture-and-names",
+            "score": "2 : 1",
+            "leg": "(Hinspiel 3 : 0 · Gesamt 5 : 1)",
+            "names": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "goals": [
+              "Oscar Andersson 12′, 19′",
+              "Ibrahim Adebayo 7′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "9",
+                "4"
+              ],
+              [
+                "Aufs Tor",
+                "7",
+                "3"
+              ],
+              [
+                "Ballbesitz",
+                "30 %",
+                "70 %"
+              ],
+              [
+                "Passquote",
+                "80 %",
+                "40 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "8",
+                "3"
+              ],
+              [
+                "Fouls",
+                "2",
+                "5"
+              ],
+              [
+                "Freistöße",
+                "5",
+                "2"
+              ],
+              [
+                "Elfmeter",
+                "1",
+                "0"
+              ]
+            ],
+            "statNames": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "rosters": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "firstPlayer": "Jules Simon",
+            "detailText": "Frankreich #1 Jules SimonFC Bremen Weser · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              true,
+              false
+            ],
+            "shootout": "Elfmeterschießen: 4 : 2 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "old-report-with-empty-club-ids",
+            "score": "2 : 1",
+            "leg": "(Hinspiel 3 : 0 · Gesamt 5 : 1)",
+            "names": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "goals": [
+              "Oscar Andersson 12′, 19′",
+              "Ibrahim Adebayo 7′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "9",
+                "4"
+              ],
+              [
+                "Aufs Tor",
+                "7",
+                "3"
+              ],
+              [
+                "Ballbesitz",
+                "30 %",
+                "70 %"
+              ],
+              [
+                "Passquote",
+                "80 %",
+                "40 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "8",
+                "3"
+              ],
+              [
+                "Fouls",
+                "2",
+                "5"
+              ],
+              [
+                "Freistöße",
+                "5",
+                "2"
+              ],
+              [
+                "Elfmeter",
+                "1",
+                "0"
+              ]
+            ],
+            "statNames": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "rosters": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "firstPlayer": "Jules Simon",
+            "detailText": "Frankreich #1 Jules SimonFC Bremen Weser · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              true,
+              false
+            ],
+            "shootout": "Elfmeterschießen: 4 : 2 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "old-active-report-with-club-ids",
+            "score": "2 : 1",
+            "leg": "(Hinspiel 3 : 0 · Gesamt 5 : 1)",
+            "names": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "goals": [
+              "Oscar Andersson 12′, 19′",
+              "Ibrahim Adebayo 7′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "9",
+                "4"
+              ],
+              [
+                "Aufs Tor",
+                "7",
+                "3"
+              ],
+              [
+                "Ballbesitz",
+                "30 %",
+                "70 %"
+              ],
+              [
+                "Passquote",
+                "80 %",
+                "40 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "8",
+                "3"
+              ],
+              [
+                "Fouls",
+                "2",
+                "5"
+              ],
+              [
+                "Freistöße",
+                "5",
+                "2"
+              ],
+              [
+                "Elfmeter",
+                "1",
+                "0"
+              ]
+            ],
+            "statNames": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "rosters": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "firstPlayer": "Jules Simon",
+            "detailText": "Frankreich #1 Jules SimonFC Bremen Weser · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              true,
+              false
+            ],
+            "shootout": "Elfmeterschießen: 4 : 2 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "old-detached-report-with-unique-pairing",
+            "score": "2 : 1",
+            "leg": "(Hinspiel 3 : 0 · Gesamt 5 : 1)",
+            "names": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "goals": [
+              "Oscar Andersson 12′, 19′",
+              "Ibrahim Adebayo 7′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "9",
+                "4"
+              ],
+              [
+                "Aufs Tor",
+                "7",
+                "3"
+              ],
+              [
+                "Ballbesitz",
+                "30 %",
+                "70 %"
+              ],
+              [
+                "Passquote",
+                "80 %",
+                "40 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "8",
+                "3"
+              ],
+              [
+                "Fouls",
+                "2",
+                "5"
+              ],
+              [
+                "Freistöße",
+                "5",
+                "2"
+              ],
+              [
+                "Elfmeter",
+                "1",
+                "0"
+              ]
+            ],
+            "statNames": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "rosters": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "firstPlayer": "Jules Simon",
+            "detailText": "Frankreich #1 Jules SimonFC Bremen Weser · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              true,
+              false
+            ],
+            "shootout": "Elfmeterschießen: 4 : 2 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "manager-changed",
+            "score": "2 : 1",
+            "leg": "(Hinspiel 3 : 0 · Gesamt 5 : 1)",
+            "names": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "goals": [
+              "Oscar Andersson 12′, 19′",
+              "Ibrahim Adebayo 7′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "9",
+                "4"
+              ],
+              [
+                "Aufs Tor",
+                "7",
+                "3"
+              ],
+              [
+                "Ballbesitz",
+                "30 %",
+                "70 %"
+              ],
+              [
+                "Passquote",
+                "80 %",
+                "40 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "8",
+                "3"
+              ],
+              [
+                "Fouls",
+                "2",
+                "5"
+              ],
+              [
+                "Freistöße",
+                "5",
+                "2"
+              ],
+              [
+                "Elfmeter",
+                "1",
+                "0"
+              ]
+            ],
+            "statNames": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "rosters": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "firstPlayer": "Jules Simon",
+            "detailText": "Frankreich #1 Jules SimonFC Bremen Weser · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              true,
+              false
+            ],
+            "shootout": "Elfmeterschießen: 4 : 2 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          },
+          {
+            "variant": "unknown-fixture-fallback",
+            "score": "2 : 1",
+            "leg": "(Hinspiel 3 : 0 · Gesamt 5 : 1)",
+            "names": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "goals": [
+              "Oscar Andersson 12′, 19′",
+              "Ibrahim Adebayo 7′"
+            ],
+            "stats": [
+              [
+                "Schüsse",
+                "9",
+                "4"
+              ],
+              [
+                "Aufs Tor",
+                "7",
+                "3"
+              ],
+              [
+                "Ballbesitz",
+                "30 %",
+                "70 %"
+              ],
+              [
+                "Passquote",
+                "80 %",
+                "40 %"
+              ],
+              [
+                "Gewonnene Zweikämpfe",
+                "0",
+                "0"
+              ],
+              [
+                "Hohe Pässe",
+                "0",
+                "0"
+              ],
+              [
+                "Flanken",
+                "0",
+                "0"
+              ],
+              [
+                "Kopfballschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Volleyschüsse",
+                "0",
+                "0"
+              ],
+              [
+                "Ecken",
+                "8",
+                "3"
+              ],
+              [
+                "Fouls",
+                "2",
+                "5"
+              ],
+              [
+                "Freistöße",
+                "5",
+                "2"
+              ],
+              [
+                "Elfmeter",
+                "1",
+                "0"
+              ]
+            ],
+            "statNames": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "rosters": [
+              "FC Bremen Weser",
+              "FC München Isar"
+            ],
+            "firstPlayer": "Jules Simon",
+            "detailText": "Frankreich #1 Jules SimonFC Bremen Weser · Statistik dieses Spiels×Note0,0Tore0Vorlagen0Pässe0 / 0Passquote–Paraden0Schüsse aufs Tor0Gegentore0Zu nullNeinGrätschen gewonnen0 / 0Fouls0",
+            "winner": [
+              true,
+              false
+            ],
+            "shootout": "Elfmeterschießen: 4 : 2 · FC Bremen Weser gewinnt",
+            "award": "FC Bremen Weser · Note 8,0",
+            "unchanged": true
+          }
+        ],
+        "replay": {
+          "score": "2 : 1",
+          "names": [
+            "FC Bremen Weser",
+            "FC München Isar"
+          ]
+        },
+        "penalties": {
+          "names": [
+            "FC Bremen Weser",
+            "FC München Isar"
+          ],
+          "score": "4 : 2",
+          "kick": "1. FC Bremen WeserOscar Andersson · Tor · 4 : 2",
+          "unchanged": true
+        },
+        "results": "8. August · R1Vereinslogo FC Bremen WeserFC Bremen Weser2:1Vereinslogo FC München IsarFC München Isar",
+        "fulltime": {
+          "title": "Abpfiff · FC Bremen Weser 2 : 1 FC München Isar",
+          "nativeScore": [
+            2,
+            1
+          ],
+          "storedScore": [
+            2,
+            1
+          ],
+          "reportScore": [
+            2,
+            1
+          ]
+        },
+        "nativeReport": {
+          "ownName": "FC Bremen Weser",
+          "opponentName": "FC München Isar",
+          "clubIds": [
+            "GER-2",
+            "GER-1"
+          ],
+          "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-1:1",
+          "competition": {
+            "id": "S1:GER:LEAGUE",
+            "type": "league",
+            "country": "GER",
+            "round": "R1"
+          },
+          "score": [
+            2,
+            1
+          ],
+          "goals": [
+            {
+              "pid": "review-display-r132:GER-2:4",
+              "name": "Oscar Andersson",
+              "team": 0,
+              "minute": 12
+            },
+            {
+              "pid": "review-display-r132:GER-1:2",
+              "name": "Ibrahim Adebayo",
+              "team": 1,
+              "minute": 7
+            },
+            {
+              "name": "Oscar Andersson",
+              "team": 0,
+              "minute": 19,
+              "pid": "review-display-r132:GER-2:4"
+            }
+          ],
+          "shots": [
+            9,
+            4
+          ],
+          "possession": [
+            30,
+            70
+          ],
+          "setPieceStats": {
+            "corners": [
+              8,
+              3
+            ],
+            "fouls": [
+              2,
+              5
+            ],
+            "freeKicks": [
+              5,
+              2
+            ],
+            "penalties": [
+              1,
+              0
+            ]
+          },
+          "players": [
+            {
+              "pid": "review-display-r132:GER-2:1",
+              "name": "Jules Simon",
+              "n": 1,
+              "nation": "FR",
+              "keeper": true,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:4",
+              "name": "Oscar Andersson",
+              "n": 4,
+              "nation": "SWE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 5,
+                "passComplete": 4,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 7,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 8,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:2",
+              "name": "Diogo Correia",
+              "n": 2,
+              "nation": "PT",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:7",
+              "name": "Leon Zimmermann",
+              "n": 7,
+              "nation": "DE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:6",
+              "name": "Ahmed Hassan",
+              "n": 6,
+              "nation": "EGY",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:10",
+              "name": "David Schäfer",
+              "n": 10,
+              "nation": "DE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:1",
+              "name": "Max Hoffmann",
+              "n": 1,
+              "nation": "DE",
+              "keeper": true,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:2",
+              "name": "Ibrahim Adebayo",
+              "n": 2,
+              "nation": "NGA",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 5,
+                "passComplete": 2,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 3,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 8,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:5",
+              "name": "Julian Fischer",
+              "n": 5,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:7",
+              "name": "Tim Krüger",
+              "n": 7,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:4",
+              "name": "David Hoffmann",
+              "n": 4,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:9",
+              "name": "Max Krüger",
+              "n": 9,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            }
+          ],
+          "ballAccounting": {
+            "version": 117,
+            "sequence": 0,
+            "events": []
+          },
+          "leg": 2,
+          "firstLeg": [
+            3,
+            0
+          ],
+          "aggregate": [
+            5,
+            1
+          ],
+          "penaltyShootout": {
+            "score": [
+              4,
+              2
+            ],
+            "winner": 0
+          },
+          "manOfMatchPid": "review-display-r132:GER-2:4"
+        }
+      }
+    ],
+    "savedId": "6eeceabd-2b14-4aa3-96ea-d80596dbe0b5",
+    "saved": [
+      {
+        "careerId": "6eeceabd-2b14-4aa3-96ea-d80596dbe0b5-1",
+        "fixtureId": "S1:GER:LEAGUE:R4:GER-3-GER-2:1",
+        "report": {
+          "ownName": "FC Bremen Weser",
+          "opponentName": "FC Hamburg Elbe",
+          "clubIds": [
+            "GER-2",
+            "GER-3"
+          ],
+          "fixtureId": "S1:GER:LEAGUE:R4:GER-3-GER-2:1",
+          "competition": {
+            "id": "S1:GER:LEAGUE",
+            "type": "league",
+            "country": "GER",
+            "round": "R4"
+          },
+          "score": [
+            2,
+            1
+          ],
+          "goals": [
+            {
+              "pid": "review-display-r132:GER-2:4",
+              "name": "Oscar Andersson",
+              "team": 0,
+              "minute": 12
+            },
+            {
+              "pid": "review-display-r132:GER-3:5",
+              "name": "Leon Braun",
+              "team": 1,
+              "minute": 7
+            },
+            {
+              "name": "Oscar Andersson",
+              "team": 0,
+              "minute": 19,
+              "pid": "review-display-r132:GER-2:4"
+            }
+          ],
+          "shots": [
+            9,
+            4
+          ],
+          "possession": [
+            30,
+            70
+          ],
+          "setPieceStats": {
+            "corners": [
+              8,
+              3
+            ],
+            "fouls": [
+              2,
+              5
+            ],
+            "freeKicks": [
+              5,
+              2
+            ],
+            "penalties": [
+              1,
+              0
+            ]
+          },
+          "players": [
+            {
+              "pid": "review-display-r132:GER-2:1",
+              "name": "Jules Simon",
+              "n": 1,
+              "nation": "FR",
+              "keeper": true,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:4",
+              "name": "Oscar Andersson",
+              "n": 4,
+              "nation": "SWE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 5,
+                "passComplete": 4,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 7,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 8,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:2",
+              "name": "Diogo Correia",
+              "n": 2,
+              "nation": "PT",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:7",
+              "name": "Leon Zimmermann",
+              "n": 7,
+              "nation": "DE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:6",
+              "name": "Ahmed Hassan",
+              "n": 6,
+              "nation": "EGY",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:10",
+              "name": "David Schäfer",
+              "n": 10,
+              "nation": "DE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:1",
+              "name": "David Koch",
+              "n": 1,
+              "nation": "DE",
+              "keeper": true,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:5",
+              "name": "Leon Braun",
+              "n": 5,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 5,
+                "passComplete": 2,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 3,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 8,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:3",
+              "name": "Florian Moser",
+              "n": 3,
+              "nation": "AUT",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:8",
+              "name": "Max Zimmermann",
+              "n": 8,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:9",
+              "name": "Santiago Díaz",
+              "n": 9,
+              "nation": "ARG",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-3:Y1:2",
+              "name": "Daler Karimov",
+              "n": 12,
+              "nation": "TJK",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            }
+          ],
+          "ballAccounting": {
+            "version": 117,
+            "sequence": 0,
+            "events": []
+          },
+          "leg": 2,
+          "firstLeg": [
+            3,
+            0
+          ],
+          "aggregate": [
+            5,
+            1
+          ],
+          "penaltyShootout": {
+            "score": [
+              4,
+              2
+            ],
+            "winner": 0
+          },
+          "manOfMatchPid": "review-display-r132:GER-2:4"
+        },
+        "expected": {
+          "names": [
+            "FC Hamburg Elbe",
+            "FC Bremen Weser"
+          ],
+          "score": "1 : 2",
+          "compact": "1:2",
+          "first": "0 : 3",
+          "aggregate": "1 : 5",
+          "penalties": "2 : 4",
+          "scorers": [
+            "Leon Braun",
+            "Oscar Andersson"
+          ],
+          "winner": "FC Bremen Weser"
+        }
+      },
+      {
+        "careerId": "6eeceabd-2b14-4aa3-96ea-d80596dbe0b5-0",
+        "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-1:1",
+        "report": {
+          "ownName": "FC Bremen Weser",
+          "opponentName": "FC München Isar",
+          "clubIds": [
+            "GER-2",
+            "GER-1"
+          ],
+          "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-1:1",
+          "competition": {
+            "id": "S1:GER:LEAGUE",
+            "type": "league",
+            "country": "GER",
+            "round": "R1"
+          },
+          "score": [
+            2,
+            1
+          ],
+          "goals": [
+            {
+              "pid": "review-display-r132:GER-2:4",
+              "name": "Oscar Andersson",
+              "team": 0,
+              "minute": 12
+            },
+            {
+              "pid": "review-display-r132:GER-1:2",
+              "name": "Ibrahim Adebayo",
+              "team": 1,
+              "minute": 7
+            },
+            {
+              "name": "Oscar Andersson",
+              "team": 0,
+              "minute": 19,
+              "pid": "review-display-r132:GER-2:4"
+            }
+          ],
+          "shots": [
+            9,
+            4
+          ],
+          "possession": [
+            30,
+            70
+          ],
+          "setPieceStats": {
+            "corners": [
+              8,
+              3
+            ],
+            "fouls": [
+              2,
+              5
+            ],
+            "freeKicks": [
+              5,
+              2
+            ],
+            "penalties": [
+              1,
+              0
+            ]
+          },
+          "players": [
+            {
+              "pid": "review-display-r132:GER-2:1",
+              "name": "Jules Simon",
+              "n": 1,
+              "nation": "FR",
+              "keeper": true,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:4",
+              "name": "Oscar Andersson",
+              "n": 4,
+              "nation": "SWE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 5,
+                "passComplete": 4,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 7,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 8,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:2",
+              "name": "Diogo Correia",
+              "n": 2,
+              "nation": "PT",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:7",
+              "name": "Leon Zimmermann",
+              "n": 7,
+              "nation": "DE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:6",
+              "name": "Ahmed Hassan",
+              "n": 6,
+              "nation": "EGY",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-2:10",
+              "name": "David Schäfer",
+              "n": 10,
+              "nation": "DE",
+              "keeper": false,
+              "team": 0,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:1",
+              "name": "Max Hoffmann",
+              "n": 1,
+              "nation": "DE",
+              "keeper": true,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:2",
+              "name": "Ibrahim Adebayo",
+              "n": 2,
+              "nation": "NGA",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 5,
+                "passComplete": 2,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 3,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 8,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:5",
+              "name": "Julian Fischer",
+              "n": 5,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:7",
+              "name": "Tim Krüger",
+              "n": 7,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:4",
+              "name": "David Hoffmann",
+              "n": 4,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            },
+            {
+              "pid": "review-display-r132:GER-1:9",
+              "name": "Max Krüger",
+              "n": 9,
+              "nation": "DE",
+              "keeper": false,
+              "team": 1,
+              "minutes": 45,
+              "substitution": null,
+              "stats": {
+                "passes": 0,
+                "passComplete": 0,
+                "progressive": 0,
+                "passLost": 0,
+                "duels": 0,
+                "duelsWon": 0,
+                "interceptions": 0,
+                "shots": 0,
+                "onTarget": 0,
+                "goals": 0,
+                "assists": 0,
+                "saves": 0,
+                "faced": 0,
+                "conceded": 0,
+                "cleanSheet": 0,
+                "fouls": 0,
+                "penaltiesScored": 0,
+                "penaltiesMissed": 0,
+                "rating": 0,
+                "crosses": 0,
+                "crossComplete": 0,
+                "highPasses": 0,
+                "highComplete": 0,
+                "headers": 0,
+                "headerPasses": 0,
+                "volleys": 0,
+                "aerialDuels": 0,
+                "aerialWon": 0,
+                "slideAttempts": 0,
+                "slideWon": 0,
+                "tackleAttempts": 0,
+                "tacklesWon": 0,
+                "shotGoals": 0,
+                "nonShotGoals": 0,
+                "shotConceded": 0,
+                "nonShotConceded": 0,
+                "shotsInterrupted": 0,
+                "savesCaught": 0,
+                "savesParried": 0
+              }
+            }
+          ],
+          "ballAccounting": {
+            "version": 117,
+            "sequence": 0,
+            "events": []
+          },
+          "leg": 2,
+          "firstLeg": [
+            3,
+            0
+          ],
+          "aggregate": [
+            5,
+            1
+          ],
+          "penaltyShootout": {
+            "score": [
+              4,
+              2
+            ],
+            "winner": 0
+          },
+          "manOfMatchPid": "review-display-r132:GER-2:4"
+        },
+        "expected": {
+          "names": [
+            "FC Bremen Weser",
+            "FC München Isar"
+          ],
+          "score": "2 : 1",
+          "compact": "2:1",
+          "first": "3 : 0",
+          "aggregate": "5 : 1",
+          "penalties": "4 : 2",
+          "scorers": [
+            "Oscar Andersson",
+            "Ibrahim Adebayo"
+          ],
+          "winner": "FC Bremen Weser"
+        }
+      }
+    ],
+    "reloaded": [
+      {
+        "fixtureId": "S1:GER:LEAGUE:R4:GER-3-GER-2:1",
+        "score": "1 : 2",
+        "names": [
+          "FC Hamburg Elbe",
+          "FC Bremen Weser"
+        ],
+        "unchanged": true,
+        "nativeScore": [
+          2,
+          1
+        ]
+      },
+      {
+        "fixtureId": "S1:GER:LEAGUE:R1:GER-2-GER-1:1",
+        "score": "2 : 1",
+        "names": [
+          "FC Bremen Weser",
+          "FC München Isar"
+        ],
+        "unchanged": true,
+        "nativeScore": [
+          2,
+          1
+        ]
+      }
+    ],
+    "storedReportsEqualToReviewBase": true
+  },
+  "errors": [],
+  "sourceHashes": {
+    "dist/game.js": "e473be8a6a346f32da7ddf1a3447e9cfa4e8fdd3e76a60e6ae1b3fb06b098998",
+    "dist/world-physical-v65.js": "2ef09a92e4d80518d1a323fffb2b57c79ed2a2ca360172ecabe197a301b3d88e",
+    "dist/match-report-v47.js": "491d7abbd851f6f1baf7bc770fe02a1eaa6fbc1a1177c195b8411eb3d57930e9",
+    "dist/world-goal-banner-v84.js": "c1433382ae2353345daf08d327e2030d34695f1cc41387c930e1ee7d1603ce5b",
+    "work/check-report-display-r132.cjs": "6c2fc9d7e6e4f52cba0d879b720a90827ae95f0b5bc817a2c1322df7fb7ac406"
+  }
+}

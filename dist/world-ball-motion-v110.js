@@ -89,13 +89,15 @@ v50Restart=function(type,...args){
 };
 const v110BaseBallView=v99BallView;
 v99BallView=function(current){
+ if(current.finished||current.halftimePause>0)return null;
  const existing=v110BaseBallView(current),r=current.rebound;
  const air=v124AirBalls.get(current);
  return v65WorldActive&&r&&!current.owner&&!current.flight&&!current.setPiece&&!current.throwIn&&!current.finished&&Number.isFinite(r.vx)?{x:r.x,y:r.y,elevation:air?.rebound===r?air.height:existing?.elevation??.29}:existing;
 };
-function v110RollingBallView(current){const r=current.rebound;return v65WorldActive&&r&&Number.isFinite(r.vx)?{x:r.x,y:r.y}:null}
+function v110RollingBallView(current){const r=current.rebound;return v65WorldActive&&r&&!current.finished&&!current.halftimePause&&Number.isFinite(r.vx)?{x:r.x,y:r.y}:null}
 const v110BasePlayerAction=v102PlayerAction;
 v102PlayerAction=function(current,person){
+ if(current.finished||current.halftimePause>0||person.keeper&&(current.kickoff||current.pendingKickoff!=null))return null;
  const block=current.flight&&v110Blocks.get(current.flight);if(block?.player===person&&current.flight.progress>.55)return {id:'block-ready',kind:'block',target:block.point,contact:block.point,progress:-Math.min(.15,(1-current.flight.progress)*.3),duration:.48};
  const existing=v110BasePlayerAction(current,person);if(existing)return existing;
  if((current.attackFlow?.flowVersion===159||window.D6UserMeshyPlayer?.nativeShot)&&current.owner===person&&!person.keeper&&!current.flight&&!current.setPiece&&!current.kickoff&&!current.throwIn&&current.goalPause<=0&&!current.postBanner&&!current.halftimePause){const remaining=(current.next-current.elapsed)/MATCH_SPEED;if(remaining>=0&&remaining<.35)return {id:'kick-ready',kind:'kickReady',target:{x:.5,y:person.t===0?v55Field.top:v55Field.bottom},progress:1-remaining/.35,duration:.35}}

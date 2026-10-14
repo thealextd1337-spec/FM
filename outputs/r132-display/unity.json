@@ -1,0 +1,3827 @@
+{
+  "report": {
+    "unity": true,
+    "preparation": {
+      "names": [
+        "SV München Au (1.)",
+        "FC Bremen Weser (5.)"
+      ],
+      "crests": 2
+    },
+    "fixture": {
+      "homeId": "GER-6",
+      "awayId": "GER-2",
+      "managedClubId": "GER-2"
+    },
+    "expectedNames": [
+      "SV München Au",
+      "FC Bremen Weser"
+    ],
+    "expectedScorers": [
+      "Stojanović",
+      "Boudaoui"
+    ],
+    "shots": [
+      {
+        "team": 0,
+        "end": "half",
+        "kind": "high",
+        "attempt": 0,
+        "ticks": 30,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1729760524,
+            "view": {
+              "x": 0.495405786964583,
+              "y": 0.23165203352782673,
+              "elevation": 0.29,
+              "vx": 0.08394495977386768,
+              "vy": -0.3326316140691436,
+              "vh": 8.920677446758598
+            },
+            "shotView": {
+              "x": 0.495405786964583,
+              "y": 0.23165203352782673,
+              "elevation": 0.29,
+              "vx": -0.18306021022511634,
+              "vy": -0.3326316140691436,
+              "vh": 4.689086972991049
+            },
+            "frameBall": {
+              "x": 19.626845454767093,
+              "z": -0.22295445613053166,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1729760524,
+            "view": {
+              "x": 0.495405786964583,
+              "y": 0.23165203352782673,
+              "elevation": 0.29,
+              "vx": 0.08394495977386768,
+              "vy": -0.3326316140691436,
+              "vh": 8.920677446758598
+            },
+            "shotView": {
+              "x": 0.495405786964583,
+              "y": 0.23165203352782673,
+              "elevation": 0.29,
+              "vx": -0.18306021022511634,
+              "vy": -0.3326316140691436,
+              "vh": 4.689086972991049
+            },
+            "frameBall": {
+              "x": 19.626845454767093,
+              "z": -0.22295445613053166,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1729760524,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1729760524,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1729760524,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "resume",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1729760524,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "first-kickoff-pass",
+            "elapsed": 37.96699999999998,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1729760524,
+            "view": {
+              "x": 0.5,
+              "y": 0.48222575516693167,
+              "elevation": 0.29
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -1.2999999999999976,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 0,
+        "end": "half",
+        "kind": "save",
+        "attempt": 2,
+        "ticks": 47,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1079600131,
+            "view": {
+              "x": 0.49849645390882347,
+              "y": 0.23116904994522022,
+              "elevation": 0.29,
+              "vx": -0.05951302686182164,
+              "vy": -0.34954470029865575,
+              "vh": 3.1108087752628215
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": 19.662170649355403,
+              "z": -0.07296620736591998,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1079600131,
+            "view": {
+              "x": 0.49849645390882347,
+              "y": 0.23116904994522022,
+              "elevation": 0.29,
+              "vx": -0.05951302686182164,
+              "vy": -0.34954470029865575,
+              "vh": 3.1108087752628215
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": 19.662170649355403,
+              "z": -0.07296620736591998,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 38.23219999999996,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 132924205,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 38.23219999999996,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 132924205,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 38.23219999999996,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 132924205,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "resume",
+            "elapsed": 38.23219999999996,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 132924205,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "first-kickoff-pass",
+            "elapsed": 38.23219999999996,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 132924205,
+            "view": {
+              "x": 0.5,
+              "y": 0.48222575516693167,
+              "elevation": 0.29
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -1.2999999999999976,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 0,
+        "end": "half",
+        "kind": "wide",
+        "attempt": 5,
+        "ticks": 30,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 4194283641,
+            "view": {
+              "x": 0.5048872022802258,
+              "y": 0.23172560982345394,
+              "elevation": 0.29,
+              "vx": 0.1948075175058349,
+              "vy": -0.3298233461073649,
+              "vh": 2.9206341435247842
+            },
+            "shotView": {
+              "x": 0.5048872022802258,
+              "y": 0.23172560982345394,
+              "elevation": 0.29,
+              "vx": 0.1948075175058349,
+              "vy": -0.3298233461073649,
+              "vh": 2.9206341435247842
+            },
+            "frameBall": {
+              "x": 19.62146411872645,
+              "z": 0.2371730518344857,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 4194283641,
+            "view": {
+              "x": 0.5048872022802258,
+              "y": 0.23172560982345394,
+              "elevation": 0.29,
+              "vx": 0.1948075175058349,
+              "vy": -0.3298233461073649,
+              "vh": 2.9206341435247842
+            },
+            "shotView": {
+              "x": 0.5048872022802258,
+              "y": 0.23172560982345394,
+              "elevation": 0.29,
+              "vx": 0.1948075175058349,
+              "vy": -0.3298233461073649,
+              "vh": 2.9206341435247842
+            },
+            "frameBall": {
+              "x": 19.62146411872645,
+              "z": 0.2371730518344857,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 4194283641,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 4194283641,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 4194283641,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "resume",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 4194283641,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "first-kickoff-pass",
+            "elapsed": 37.96699999999998,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 4194283641,
+            "view": {
+              "x": 0.5,
+              "y": 0.48222575516693167,
+              "elevation": 0.29
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -1.2999999999999976,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 0,
+        "end": "half",
+        "kind": "goal",
+        "attempt": 6,
+        "ticks": 232,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2805626557,
+            "view": {
+              "x": 0.49772919979041713,
+              "y": 0.23124153278284543,
+              "elevation": 0.29,
+              "vx": -0.090292902461962,
+              "vy": -0.3482593593295876,
+              "vh": 4.641633452856806
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": 19.656869288324444,
+              "z": -0.11020059840622742,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2805626557,
+            "view": {
+              "x": 0.49772919979041713,
+              "y": 0.23124153278284543,
+              "elevation": 0.29,
+              "vx": -0.090292902461962,
+              "vy": -0.3482593593295876,
+              "vh": 4.641633452856806
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": 19.656869288324444,
+              "z": -0.11020059840622742,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 37.95139999999998,
+            "flight": false,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.44688486392229254,
+              "y": 0.03513513513513514
+            },
+            "score": [
+              1,
+              0
+            ],
+            "rng": 2805626557,
+            "view": {
+              "x": 0.44688486392229254,
+              "y": 0.03513513513513514,
+              "elevation": 1.35
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": 34,
+              "z": -2.57764630965345,
+              "height": 1.35,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 37.95139999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              1,
+              0
+            ],
+            "rng": 2805626557,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 37.95139999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              1,
+              0
+            ],
+            "rng": 2805626557,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "resume",
+            "elapsed": 37.95139999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              1,
+              0
+            ],
+            "rng": 2805626557,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "first-kickoff-pass",
+            "elapsed": 37.95139999999998,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              1,
+              0
+            ],
+            "rng": 2805626557,
+            "view": {
+              "x": 0.5,
+              "y": 0.48222575516693167,
+              "elevation": 0.29
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -1.2999999999999976,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 0,
+        "end": "final",
+        "kind": "goal",
+        "attempt": 0,
+        "ticks": 232,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3901759297,
+            "view": {
+              "x": 0.49757612933733875,
+              "y": 0.23125961253862876,
+              "elevation": 0.29,
+              "vx": -0.09638826601199284,
+              "vy": -0.34757250238325854,
+              "vh": 4.64345515787816
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -19.655546943395635,
+              "z": 0.11762901745267848,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3901759297,
+            "view": {
+              "x": 0.49757612933733875,
+              "y": 0.23125961253862876,
+              "elevation": 0.29,
+              "vx": -0.09638826601199284,
+              "vy": -0.34757250238325854,
+              "vh": 4.64345515787816
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -19.655546943395635,
+              "z": 0.11762901745267848,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 74.999,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.4431871941660921,
+              "y": 0.03513513513513514
+            },
+            "score": [
+              1,
+              0
+            ],
+            "rng": 3901759297,
+            "view": {
+              "x": 0.4431871941660921,
+              "y": 0.03513513513513514,
+              "elevation": 1.35
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -34,
+              "z": 2.757092047822001,
+              "height": 1.35,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 74.999,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.4551871941660921,
+              "y": 0.01891891891891892
+            },
+            "score": [
+              1,
+              0
+            ],
+            "rng": 3901759297,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": -35.1860465116279,
+              "z": 2.1747391066455304,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 74.999,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.4551871941660921,
+              "y": 0.01891891891891892
+            },
+            "score": [
+              1,
+              0
+            ],
+            "rng": 3901759297,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": -35.1860465116279,
+              "z": 2.1747391066455304,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 0,
+        "end": "final",
+        "kind": "high",
+        "attempt": 4,
+        "ticks": 30,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 179152849,
+            "view": {
+              "x": 0.4955019038506235,
+              "y": 0.23162902066421187,
+              "elevation": 0.29,
+              "vx": -0.06874397393818811,
+              "vy": -0.3335095208275311,
+              "vh": 9.693116353605404
+            },
+            "shotView": {
+              "x": 0.4955019038506235,
+              "y": 0.23162902066421187,
+              "elevation": 0.29,
+              "vx": -0.17920936502628199,
+              "vy": -0.3335095208275311,
+              "vh": 4.6860746138988105
+            },
+            "frameBall": {
+              "x": -19.628528604908226,
+              "z": 0.2182899601903337,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 179152849,
+            "view": {
+              "x": 0.4955019038506235,
+              "y": 0.23162902066421187,
+              "elevation": 0.29,
+              "vx": -0.06874397393818811,
+              "vy": -0.3335095208275311,
+              "vh": 9.693116353605404
+            },
+            "shotView": {
+              "x": 0.4955019038506235,
+              "y": 0.23162902066421187,
+              "elevation": 0.29,
+              "vx": -0.17920936502628199,
+              "vy": -0.3335095208275311,
+              "vh": 4.6860746138988105
+            },
+            "frameBall": {
+              "x": -19.628528604908226,
+              "z": 0.2182899601903337,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5054530890662827,
+              "y": 0.0842063754854411
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 179152849,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": -30.410952304611342,
+              "z": -0.2646352046872498,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5054530890662827,
+              "y": 0.0842063754854411
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 179152849,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": -30.410952304611342,
+              "z": -0.2646352046872498,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5054530890662827,
+              "y": 0.0842063754854411
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 179152849,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": -30.410952304611342,
+              "z": -0.2646352046872498,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 0,
+        "end": "final",
+        "kind": "save",
+        "attempt": 7,
+        "ticks": 47,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1889714584,
+            "view": {
+              "x": 0.49848945268200245,
+              "y": 0.23116957597705984,
+              "elevation": 0.29,
+              "vx": -0.05978997179411201,
+              "vy": -0.34952284974531783,
+              "vh": 7.219976969443227
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -19.662132175631324,
+              "z": 0.07330597278517233,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1889714584,
+            "view": {
+              "x": 0.49848945268200245,
+              "y": 0.23116957597705984,
+              "elevation": 0.29,
+              "vx": -0.05978997179411201,
+              "vy": -0.34952284974531783,
+              "vh": 7.219976969443227
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -19.662132175631324,
+              "z": 0.07330597278517233,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.40375234185386355,
+              "y": 0.12755002102434126
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 563385994,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": -27.240818229731325,
+              "z": 4.670842233562504,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.40375234185386355,
+              "y": 0.12755002102434126
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 563385994,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": -27.240818229731325,
+              "z": 4.670842233562504,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.40375234185386355,
+              "y": 0.12755002102434126
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 563385994,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": -27.240818229731325,
+              "z": 4.670842233562504,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 0,
+        "end": "final",
+        "kind": "wide",
+        "attempt": 8,
+        "ticks": 30,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3308461406,
+            "view": {
+              "x": 0.49585131861479853,
+              "y": 0.23154994397473586,
+              "elevation": 0.29,
+              "vx": -0.16522175740806758,
+              "vy": -0.336524542875439,
+              "vh": 2.8599178980841167
+            },
+            "shotView": {
+              "x": 0.49585131861479853,
+              "y": 0.23154994397473586,
+              "elevation": 0.29,
+              "vx": -0.16522175740806758,
+              "vy": -0.336524542875439,
+              "vh": 2.8599178980841167
+            },
+            "frameBall": {
+              "x": -19.634312237196646,
+              "z": 0.20133306722300978,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.24
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3308461406,
+            "view": {
+              "x": 0.49585131861479853,
+              "y": 0.23154994397473586,
+              "elevation": 0.29,
+              "vx": -0.16522175740806758,
+              "vy": -0.336524542875439,
+              "vh": 2.8599178980841167
+            },
+            "shotView": {
+              "x": 0.49585131861479853,
+              "y": 0.23154994397473586,
+              "elevation": 0.29,
+              "vx": -0.16522175740806758,
+              "vy": -0.336524542875439,
+              "vh": 2.8599178980841167
+            },
+            "frameBall": {
+              "x": -19.634312237196646,
+              "z": 0.20133306722300978,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.505869389362722,
+              "y": 0.0844575592066191
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3308461406,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": -30.39258084407402,
+              "z": -0.28483801319091895,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.505869389362722,
+              "y": 0.0844575592066191
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3308461406,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": -30.39258084407402,
+              "z": -0.28483801319091895,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.505869389362722,
+              "y": 0.0844575592066191
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3308461406,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": -30.39258084407402,
+              "z": -0.28483801319091895,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 1,
+        "end": "half",
+        "kind": "goal",
+        "attempt": 0,
+        "ticks": 232,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2883241842,
+            "view": {
+              "x": 0.49797059056431503,
+              "y": 0.7687845175020283,
+              "elevation": 0.29,
+              "vx": -0.08068386031732087,
+              "vy": 0.3492487866793989,
+              "vh": 4.639049954918123
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -19.65877459404369,
+              "z": -0.0984860461435353,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2883241842,
+            "view": {
+              "x": 0.49797059056431503,
+              "y": 0.7687845175020283,
+              "elevation": 0.29,
+              "vx": -0.08068386031732087,
+              "vy": 0.3492487866793989,
+              "vh": 4.639049954918123
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -19.65877459404369,
+              "z": -0.0984860461435353,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 37.95139999999998,
+            "flight": false,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.45267188098821654,
+              "y": 0.9648648648648649
+            },
+            "score": [
+              0,
+              1
+            ],
+            "rng": 2883241842,
+            "view": {
+              "x": 0.45267188098821654,
+              "y": 0.9648648648648649,
+              "elevation": 1.3500000000000003
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -34,
+              "z": -2.2968057755718445,
+              "height": 1.3500000000000003,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 37.95139999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              1
+            ],
+            "rng": 2883241842,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 37.95139999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              1
+            ],
+            "rng": 2883241842,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "resume",
+            "elapsed": 37.95139999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              1
+            ],
+            "rng": 2883241842,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "first-kickoff-pass",
+            "elapsed": 37.95139999999998,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              1
+            ],
+            "rng": 2883241842,
+            "view": {
+              "x": 0.5,
+              "y": 0.48222575516693167,
+              "elevation": 0.29
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -1.2999999999999976,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 1,
+        "end": "half",
+        "kind": "high",
+        "attempt": 1,
+        "ticks": 30,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2998806726,
+            "view": {
+              "x": 0.49582459409793966,
+              "y": 0.7684442589149042,
+              "elevation": 0.29,
+              "vx": -0.06989825638648513,
+              "vy": 0.33630359781022345,
+              "vh": 9.72764477582455
+            },
+            "shotView": {
+              "x": 0.49582459409793966,
+              "y": 0.7684442589149042,
+              "elevation": 0.29,
+              "vx": -0.1662909725212835,
+              "vy": 0.33630359781022345,
+              "vh": 4.676771377170534
+            },
+            "frameBall": {
+              "x": -19.633888239241248,
+              "z": -0.20262999230586926,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2998806726,
+            "view": {
+              "x": 0.49582459409793966,
+              "y": 0.7684442589149042,
+              "elevation": 0.29,
+              "vx": -0.06989825638648513,
+              "vy": 0.33630359781022345,
+              "vh": 9.72764477582455
+            },
+            "shotView": {
+              "x": 0.49582459409793966,
+              "y": 0.7684442589149042,
+              "elevation": 0.29,
+              "vx": -0.1662909725212835,
+              "vy": 0.33630359781022345,
+              "vh": 4.676771377170534
+            },
+            "frameBall": {
+              "x": -19.633888239241248,
+              "z": -0.20262999230586926,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2998806726,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2998806726,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2998806726,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "resume",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2998806726,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "first-kickoff-pass",
+            "elapsed": 37.96699999999998,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2998806726,
+            "view": {
+              "x": 0.5,
+              "y": 0.48222575516693167,
+              "elevation": 0.29
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -1.2999999999999976,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 1,
+        "end": "half",
+        "kind": "wide",
+        "attempt": 8,
+        "ticks": 30,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1252584722,
+            "view": {
+              "x": 0.49535632147901804,
+              "y": 0.7683359082333103,
+              "elevation": 0.29,
+              "vx": -0.18504255680257561,
+              "vy": 0.33217152431930097,
+              "vh": 2.899080194992688
+            },
+            "shotView": {
+              "x": 0.49535632147901804,
+              "y": 0.7683359082333103,
+              "elevation": 0.29,
+              "vx": -0.18504255680257561,
+              "vy": 0.33217152431930097,
+              "vh": 2.899080194992688
+            },
+            "frameBall": {
+              "x": -19.625963520785138,
+              "z": -0.22535498704765414,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1252584722,
+            "view": {
+              "x": 0.49535632147901804,
+              "y": 0.7683359082333103,
+              "elevation": 0.29,
+              "vx": -0.18504255680257561,
+              "vy": 0.33217152431930097,
+              "vh": 2.899080194992688
+            },
+            "shotView": {
+              "x": 0.49535632147901804,
+              "y": 0.7683359082333103,
+              "elevation": 0.29,
+              "vx": -0.18504255680257561,
+              "vy": 0.33217152431930097,
+              "vh": 2.899080194992688
+            },
+            "frameBall": {
+              "x": -19.625963520785138,
+              "z": -0.22535498704765414,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1252584722,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1252584722,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1252584722,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "resume",
+            "elapsed": 37.96699999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1252584722,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "first-kickoff-pass",
+            "elapsed": 37.96699999999998,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1252584722,
+            "view": {
+              "x": 0.5,
+              "y": 0.48222575516693167,
+              "elevation": 0.29
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -1.2999999999999976,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 1,
+        "end": "half",
+        "kind": "save",
+        "attempt": 16,
+        "ticks": 26,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2344575593,
+            "view": {
+              "x": 0.4993091566912852,
+              "y": 0.768875293015542,
+              "elevation": 0.29,
+              "vx": -0.027351559849460274,
+              "vy": 0.3513866386687803,
+              "vh": 7.208859542659537
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -19.665413872880922,
+              "z": -0.03352621939351102,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 37.499,
+            "flight": true,
+            "finished": false,
+            "half": false,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2344575593,
+            "view": {
+              "x": 0.4993091566912852,
+              "y": 0.768875293015542,
+              "elevation": 0.29,
+              "vx": -0.027351559849460274,
+              "vy": 0.3513866386687803,
+              "vh": 7.208859542659537
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -19.665413872880922,
+              "z": -0.03352621939351102,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 37.90459999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2344575593,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 37.90459999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2344575593,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 37.90459999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 2,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2344575593,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "resume",
+            "elapsed": 37.90459999999998,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2344575593,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 0,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "first-kickoff-pass",
+            "elapsed": 37.90459999999998,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 2344575593,
+            "view": {
+              "x": 0.5,
+              "y": 0.48222575516693167,
+              "elevation": 0.29
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": -1.2999999999999976,
+              "z": 0,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 1,
+        "end": "final",
+        "kind": "goal",
+        "attempt": 0,
+        "ticks": 233,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3100495789,
+            "view": {
+              "x": 0.49603460143634914,
+              "y": 0.7684887091815115,
+              "elevation": 0.29,
+              "vx": -0.15789141789250372,
+              "vy": 0.33799738090185416,
+              "vh": 4.671338939860513
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": 19.63713931106636,
+              "z": 0.19243845970658569,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3100495789,
+            "view": {
+              "x": 0.49603460143634914,
+              "y": 0.7684887091815115,
+              "elevation": 0.29,
+              "vx": -0.15789141789250372,
+              "vy": 0.33799738090185416,
+              "vh": 4.671338939860513
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": 19.63713931106636,
+              "z": 0.19243845970658569,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 74.999,
+            "flight": false,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.415,
+              "y": 0.9648648648648649
+            },
+            "score": [
+              0,
+              1
+            ],
+            "rng": 3100495789,
+            "view": {
+              "x": 0.40429983834915495,
+              "y": 0.9648648648648649,
+              "elevation": 1.3500000000000005
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": 34,
+              "z": 4.644272550702774,
+              "height": 1.3500000000000005,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 74.999,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.427,
+              "y": 0.981081081081081
+            },
+            "score": [
+              0,
+              1
+            ],
+            "rng": 3100495789,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 35.1860465116279,
+              "z": 3.542647058823527,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 74.999,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.427,
+              "y": 0.981081081081081
+            },
+            "score": [
+              0,
+              1
+            ],
+            "rng": 3100495789,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 35.1860465116279,
+              "z": 3.542647058823527,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 1,
+        "end": "final",
+        "kind": "high",
+        "attempt": 1,
+        "ticks": 30,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1270222641,
+            "view": {
+              "x": 0.495780209821155,
+              "y": 0.7684345398580612,
+              "elevation": 0.29,
+              "vx": -0.06974190031489193,
+              "vy": 0.33593314515855344,
+              "vh": 9.723040238164655
+            },
+            "shotView": {
+              "x": 0.495780209821155,
+              "y": 0.7684345398580612,
+              "elevation": 0.29,
+              "vx": -0.16806694977364525,
+              "vy": 0.33593314515855344,
+              "vh": 4.67798022422125
+            },
+            "frameBall": {
+              "x": 19.633177391944244,
+              "z": 0.20478393514983065,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1270222641,
+            "view": {
+              "x": 0.495780209821155,
+              "y": 0.7684345398580612,
+              "elevation": 0.29,
+              "vx": -0.06974190031489193,
+              "vy": 0.33593314515855344,
+              "vh": 9.723040238164655
+            },
+            "shotView": {
+              "x": 0.495780209821155,
+              "y": 0.7684345398580612,
+              "elevation": 0.29,
+              "vx": -0.16806694977364525,
+              "vy": 0.33593314515855344,
+              "vh": 4.67798022422125
+            },
+            "frameBall": {
+              "x": 19.633177391944244,
+              "z": 0.20478393514983065,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5057668951543814,
+              "y": 0.9158924183621332
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1270222641,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 30.4181780406723,
+              "z": -0.27986402955086426,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5057668951543814,
+              "y": 0.9158924183621332
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1270222641,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 30.4181780406723,
+              "z": -0.27986402955086426,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5057668951543814,
+              "y": 0.9158924183621332
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1270222641,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 30.4181780406723,
+              "z": -0.27986402955086426,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 1,
+        "end": "final",
+        "kind": "wide",
+        "attempt": 2,
+        "ticks": 30,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3153470709,
+            "view": {
+              "x": 0.5047521308775399,
+              "y": 0.7683089557611282,
+              "elevation": 0.29,
+              "vx": 0.18939016549826934,
+              "vy": 0.3311429224635609,
+              "vh": 2.9084841899777945
+            },
+            "shotView": {
+              "x": 0.5047521308775399,
+              "y": 0.7683089557611282,
+              "elevation": 0.29,
+              "vx": 0.18939016549826934,
+              "vy": 0.3311429224635609,
+              "vh": 2.9084841899777945
+            },
+            "frameBall": {
+              "x": 19.623992229505774,
+              "z": -0.23061811611590666,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3153470709,
+            "view": {
+              "x": 0.5047521308775399,
+              "y": 0.7683089557611282,
+              "elevation": 0.29,
+              "vx": 0.18939016549826934,
+              "vy": 0.3311429224635609,
+              "vh": 2.9084841899777945
+            },
+            "shotView": {
+              "x": 0.5047521308775399,
+              "y": 0.7683089557611282,
+              "elevation": 0.29,
+              "vx": 0.18939016549826934,
+              "vy": 0.3311429224635609,
+              "vh": 2.9084841899777945
+            },
+            "frameBall": {
+              "x": 19.623992229505774,
+              "z": -0.23061811611590666,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5268311475223352,
+              "y": 0.9162677939846768
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3153470709,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 30.445632839111827,
+              "z": -1.3020998062309717,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5268311475223352,
+              "y": 0.9162677939846768
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3153470709,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 30.445632839111827,
+              "z": -1.3020998062309717,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5268311475223352,
+              "y": 0.9162677939846768
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3153470709,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 30.445632839111827,
+              "z": -1.3020998062309717,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      },
+      {
+        "team": 1,
+        "end": "final",
+        "kind": "save",
+        "attempt": 15,
+        "ticks": 47,
+        "frozen": true,
+        "trace": [
+          {
+            "label": "release",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1655309812,
+            "view": {
+              "x": 0.49933948768573394,
+              "y": 0.7688763095553781,
+              "elevation": 0.29,
+              "vx": -0.026150855929979126,
+              "vy": 0.3514288641696611,
+              "vh": 4.580585675991406
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": 19.665488222131724,
+              "z": 0.032054274074673726,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "deferred-whistle",
+            "elapsed": 74.999,
+            "flight": true,
+            "finished": false,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.5,
+              "y": 0.76
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 1655309812,
+            "view": {
+              "x": 0.49933948768573394,
+              "y": 0.7688763095553781,
+              "elevation": 0.29,
+              "vx": -0.026150855929979126,
+              "vy": 0.3514288641696611,
+              "vh": 4.580585675991406
+            },
+            "shotView": null,
+            "frameBall": {
+              "x": 19.665488222131724,
+              "z": 0.032054274074673726,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "flight-end",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.37920727862067116,
+              "y": 0.8744031330678176
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3172058950,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 27.38367101158805,
+              "z": 5.861999713996839,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "whistle",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.37920727862067116,
+              "y": 0.8744031330678176
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3172058950,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 27.38367101158805,
+              "z": 5.861999713996839,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          },
+          {
+            "label": "tactics-pause",
+            "elapsed": 75,
+            "flight": false,
+            "finished": true,
+            "half": true,
+            "pause": 0,
+            "missAge": null,
+            "nativeBall": {
+              "x": 0.37920727862067116,
+              "y": 0.8744031330678176
+            },
+            "score": [
+              0,
+              0
+            ],
+            "rng": 3172058950,
+            "view": null,
+            "shotView": null,
+            "frameBall": {
+              "x": 27.38367101158805,
+              "z": 5.861999713996839,
+              "height": 0.29,
+              "opacity": 1
+            },
+            "outOfPlayBall": false
+          }
+        ],
+        "clean": true,
+        "releasedDrained": true
+      }
+    ],
+    "rows": [
+      {
+        "label": "before-half",
+        "unityPicture": {
+          "score": [
+            2,
+            1
+          ],
+          "players": [
+            "display-whistle-r132:GER-2:1",
+            "display-whistle-r132:GER-2:9",
+            "display-whistle-r132:GER-2:2",
+            "display-whistle-r132:GER-2:8",
+            "display-whistle-r132:GER-2:6",
+            "display-whistle-r132:GER-2:11",
+            "display-whistle-r132:GER-6:1",
+            "display-whistle-r132:GER-6:11",
+            "display-whistle-r132:GER-6:8",
+            "display-whistle-r132:GER-6:10",
+            "display-whistle-r132:GER-6:9",
+            "display-whistle-r132:GER-6:6"
+          ],
+          "expectedPlayers": [
+            "display-whistle-r132:GER-2:1",
+            "display-whistle-r132:GER-2:9",
+            "display-whistle-r132:GER-2:2",
+            "display-whistle-r132:GER-2:8",
+            "display-whistle-r132:GER-2:6",
+            "display-whistle-r132:GER-2:11",
+            "display-whistle-r132:GER-6:1",
+            "display-whistle-r132:GER-6:11",
+            "display-whistle-r132:GER-6:8",
+            "display-whistle-r132:GER-6:10",
+            "display-whistle-r132:GER-6:9",
+            "display-whistle-r132:GER-6:6"
+          ],
+          "ready": true,
+          "ack": 1
+        },
+        "names": [
+          "SV München Au (1.)",
+          "FC Bremen Weser (5.)"
+        ],
+        "score": "1 : 2",
+        "scorers": [
+          "Stojanović 7′",
+          "Boudaoui 12′, 19′"
+        ],
+        "formations": [
+          "2-2-1",
+          "1-2-2"
+        ],
+        "shirts": [
+          [
+            "#4ba68b",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#24385b",
+            "none",
+            "none"
+          ],
+          [
+            "#d9ab45",
+            "#f3f5f2",
+            "#398b5b",
+            "none",
+            "none"
+          ]
+        ],
+        "expectedShirts": [
+          [
+            "#4ba68b",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#24385b",
+            "none",
+            "none"
+          ],
+          [
+            "#d9ab45",
+            "#f3f5f2",
+            "#398b5b",
+            "none",
+            "none"
+          ]
+        ],
+        "expectedFormations": [
+          "2-2-1",
+          "1-2-2"
+        ],
+        "tv": {
+          "score": [
+            1,
+            2
+          ],
+          "aggregate": "",
+          "seconds": 864,
+          "added": 0,
+          "period": 0,
+          "type": "league",
+          "country": "GER",
+          "division": 1,
+          "round": "R1",
+          "names": [
+            "SV München Au",
+            "FC Bremen Weser"
+          ],
+          "colours": [
+            "#4ba68b",
+            "#d9ab45"
+          ]
+        },
+        "expectedTVColours": [
+          "#4ba68b",
+          "#d9ab45"
+        ],
+        "tvNames": [
+          "SV München Au",
+          "FC Bremen Weser"
+        ],
+        "pauseScore": "1 : 2",
+        "pauseNames": [
+          "SV München Au (1.)",
+          "FC Bremen Weser (5.)"
+        ],
+        "stats": [
+          [
+            "4",
+            "9"
+          ],
+          [
+            "70 %",
+            "30 %"
+          ],
+          [
+            "40 %",
+            "80 %"
+          ]
+        ],
+        "unchanged": true
+      },
+      {
+        "label": "half-pause",
+        "unityPicture": {
+          "score": [
+            2,
+            1
+          ],
+          "players": [
+            "display-whistle-r132:GER-2:1",
+            "display-whistle-r132:GER-2:9",
+            "display-whistle-r132:GER-2:2",
+            "display-whistle-r132:GER-2:8",
+            "display-whistle-r132:GER-2:6",
+            "display-whistle-r132:GER-2:11",
+            "display-whistle-r132:GER-6:1",
+            "display-whistle-r132:GER-6:11",
+            "display-whistle-r132:GER-6:8",
+            "display-whistle-r132:GER-6:10",
+            "display-whistle-r132:GER-6:9",
+            "display-whistle-r132:GER-6:6"
+          ],
+          "expectedPlayers": [
+            "display-whistle-r132:GER-2:1",
+            "display-whistle-r132:GER-2:9",
+            "display-whistle-r132:GER-2:2",
+            "display-whistle-r132:GER-2:8",
+            "display-whistle-r132:GER-2:6",
+            "display-whistle-r132:GER-2:11",
+            "display-whistle-r132:GER-6:1",
+            "display-whistle-r132:GER-6:11",
+            "display-whistle-r132:GER-6:8",
+            "display-whistle-r132:GER-6:10",
+            "display-whistle-r132:GER-6:9",
+            "display-whistle-r132:GER-6:6"
+          ],
+          "ready": true,
+          "ack": 3
+        },
+        "names": [
+          "SV München Au (1.)",
+          "FC Bremen Weser (5.)"
+        ],
+        "score": "1 : 2",
+        "scorers": [
+          "Stojanović 7′",
+          "Boudaoui 12′, 19′"
+        ],
+        "formations": [
+          "2-2-1",
+          "1-2-2"
+        ],
+        "shirts": [
+          [
+            "#4ba68b",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#24385b",
+            "none",
+            "none"
+          ],
+          [
+            "#d9ab45",
+            "#f3f5f2",
+            "#398b5b",
+            "none",
+            "none"
+          ]
+        ],
+        "expectedShirts": [
+          [
+            "#4ba68b",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#24385b",
+            "none",
+            "none"
+          ],
+          [
+            "#d9ab45",
+            "#f3f5f2",
+            "#398b5b",
+            "none",
+            "none"
+          ]
+        ],
+        "expectedFormations": [
+          "2-2-1",
+          "1-2-2"
+        ],
+        "tv": {
+          "score": [
+            1,
+            2
+          ],
+          "aggregate": "",
+          "seconds": 2700,
+          "added": 0,
+          "period": 1,
+          "type": "league",
+          "country": "GER",
+          "division": 1,
+          "round": "R1",
+          "names": [
+            "SV München Au",
+            "FC Bremen Weser"
+          ],
+          "colours": [
+            "#4ba68b",
+            "#d9ab45"
+          ]
+        },
+        "expectedTVColours": [
+          "#4ba68b",
+          "#d9ab45"
+        ],
+        "tvNames": [
+          "SV München Au",
+          "FC Bremen Weser"
+        ],
+        "pauseScore": "1 : 2",
+        "pauseNames": [
+          "SV München Au (1.)",
+          "FC Bremen Weser (5.)"
+        ],
+        "stats": [
+          [
+            "4",
+            "9"
+          ],
+          [
+            "70 %",
+            "30 %"
+          ],
+          [
+            "40 %",
+            "80 %"
+          ]
+        ],
+        "unchanged": true
+      },
+      {
+        "label": "second-half",
+        "unityPicture": {
+          "score": [
+            2,
+            1
+          ],
+          "players": [
+            "display-whistle-r132:GER-2:1",
+            "display-whistle-r132:GER-2:9",
+            "display-whistle-r132:GER-2:2",
+            "display-whistle-r132:GER-2:8",
+            "display-whistle-r132:GER-2:6",
+            "display-whistle-r132:GER-2:11",
+            "display-whistle-r132:GER-6:1",
+            "display-whistle-r132:GER-6:11",
+            "display-whistle-r132:GER-6:8",
+            "display-whistle-r132:GER-6:10",
+            "display-whistle-r132:GER-6:9",
+            "display-whistle-r132:GER-6:6"
+          ],
+          "expectedPlayers": [
+            "display-whistle-r132:GER-2:1",
+            "display-whistle-r132:GER-2:9",
+            "display-whistle-r132:GER-2:2",
+            "display-whistle-r132:GER-2:8",
+            "display-whistle-r132:GER-2:6",
+            "display-whistle-r132:GER-2:11",
+            "display-whistle-r132:GER-6:1",
+            "display-whistle-r132:GER-6:11",
+            "display-whistle-r132:GER-6:8",
+            "display-whistle-r132:GER-6:10",
+            "display-whistle-r132:GER-6:9",
+            "display-whistle-r132:GER-6:6"
+          ],
+          "ready": true,
+          "ack": 5
+        },
+        "names": [
+          "SV München Au (1.)",
+          "FC Bremen Weser (5.)"
+        ],
+        "score": "1 : 2",
+        "scorers": [
+          "Stojanović 7′",
+          "Boudaoui 12′, 19′"
+        ],
+        "formations": [
+          "2-2-1",
+          "1-2-2"
+        ],
+        "shirts": [
+          [
+            "#4ba68b",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#24385b",
+            "none",
+            "none"
+          ],
+          [
+            "#d9ab45",
+            "#f3f5f2",
+            "#398b5b",
+            "none",
+            "none"
+          ]
+        ],
+        "expectedShirts": [
+          [
+            "#4ba68b",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#24385b",
+            "none",
+            "none"
+          ],
+          [
+            "#d9ab45",
+            "#f3f5f2",
+            "#398b5b",
+            "none",
+            "none"
+          ]
+        ],
+        "expectedFormations": [
+          "2-2-1",
+          "1-2-2"
+        ],
+        "tv": {
+          "score": [
+            1,
+            2
+          ],
+          "aggregate": "",
+          "seconds": 2700,
+          "added": 0,
+          "period": 1,
+          "type": "league",
+          "country": "GER",
+          "division": 1,
+          "round": "R1",
+          "names": [
+            "SV München Au",
+            "FC Bremen Weser"
+          ],
+          "colours": [
+            "#4ba68b",
+            "#d9ab45"
+          ]
+        },
+        "expectedTVColours": [
+          "#4ba68b",
+          "#d9ab45"
+        ],
+        "tvNames": [
+          "SV München Au",
+          "FC Bremen Weser"
+        ],
+        "pauseScore": "1 : 2",
+        "pauseNames": [
+          "SV München Au (1.)",
+          "FC Bremen Weser (5.)"
+        ],
+        "stats": [
+          [
+            "4",
+            "9"
+          ],
+          [
+            "70 %",
+            "30 %"
+          ],
+          [
+            "40 %",
+            "80 %"
+          ]
+        ],
+        "unchanged": true
+      },
+      {
+        "label": "saved-reload",
+        "unityPicture": {
+          "score": [
+            2,
+            1
+          ],
+          "players": [
+            "display-whistle-r132:GER-2:1",
+            "display-whistle-r132:GER-2:9",
+            "display-whistle-r132:GER-2:2",
+            "display-whistle-r132:GER-2:8",
+            "display-whistle-r132:GER-2:6",
+            "display-whistle-r132:GER-2:11",
+            "display-whistle-r132:GER-6:1",
+            "display-whistle-r132:GER-6:11",
+            "display-whistle-r132:GER-6:8",
+            "display-whistle-r132:GER-6:10",
+            "display-whistle-r132:GER-6:9",
+            "display-whistle-r132:GER-6:6"
+          ],
+          "expectedPlayers": [
+            "display-whistle-r132:GER-2:1",
+            "display-whistle-r132:GER-2:9",
+            "display-whistle-r132:GER-2:2",
+            "display-whistle-r132:GER-2:8",
+            "display-whistle-r132:GER-2:6",
+            "display-whistle-r132:GER-2:11",
+            "display-whistle-r132:GER-6:1",
+            "display-whistle-r132:GER-6:11",
+            "display-whistle-r132:GER-6:8",
+            "display-whistle-r132:GER-6:10",
+            "display-whistle-r132:GER-6:9",
+            "display-whistle-r132:GER-6:6"
+          ],
+          "ready": true,
+          "ack": 1
+        },
+        "names": [
+          "SV München Au (1.)",
+          "FC Bremen Weser (5.)"
+        ],
+        "score": "1 : 2",
+        "scorers": [
+          "Stojanović 7′",
+          "Boudaoui 12′, 19′"
+        ],
+        "formations": [
+          "2-2-1",
+          "1-2-2"
+        ],
+        "shirts": [
+          [
+            "#4ba68b",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#24385b",
+            "none",
+            "none"
+          ],
+          [
+            "#d9ab45",
+            "#f3f5f2",
+            "#398b5b",
+            "none",
+            "none"
+          ]
+        ],
+        "expectedShirts": [
+          [
+            "#4ba68b",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#bd904a",
+            "#24385b",
+            "none",
+            "none"
+          ],
+          [
+            "#d9ab45",
+            "#f3f5f2",
+            "#398b5b",
+            "none",
+            "none"
+          ]
+        ],
+        "expectedFormations": [
+          "2-2-1",
+          "1-2-2"
+        ],
+        "tv": {
+          "score": [
+            1,
+            2
+          ],
+          "aggregate": "",
+          "seconds": 2700,
+          "added": 0,
+          "period": 1,
+          "type": "league",
+          "country": "GER",
+          "division": 1,
+          "round": "R1",
+          "names": [
+            "SV München Au",
+            "FC Bremen Weser"
+          ],
+          "colours": [
+            "#4ba68b",
+            "#d9ab45"
+          ]
+        },
+        "expectedTVColours": [
+          "#4ba68b",
+          "#d9ab45"
+        ],
+        "tvNames": [
+          "SV München Au",
+          "FC Bremen Weser"
+        ],
+        "pauseScore": "1 : 2",
+        "pauseNames": [
+          "SV München Au (1.)",
+          "FC Bremen Weser (5.)"
+        ],
+        "stats": [
+          [
+            "4",
+            "9"
+          ],
+          [
+            "70 %",
+            "30 %"
+          ],
+          [
+            "40 %",
+            "80 %"
+          ]
+        ],
+        "unchanged": true
+      }
+    ],
+    "persistentReload": {
+      "unityReady": true,
+      "unityScore": [
+        2,
+        1
+      ],
+      "names": [
+        "SV München Au",
+        "FC Bremen Weser"
+      ],
+      "score": "1 : 2",
+      "nativeScore": [
+        2,
+        1
+      ],
+      "tv": {
+        "score": [
+          1,
+          2
+        ],
+        "aggregate": "",
+        "seconds": 864,
+        "added": 0,
+        "period": 0,
+        "type": "league",
+        "country": "GER",
+        "division": 1,
+        "round": "R1",
+        "names": [
+          "SV München Au",
+          "FC Bremen Weser"
+        ],
+        "colours": [
+          "#4ba68b",
+          "#d9ab45"
+        ]
+      },
+      "phase": "paused"
+    },
+    "nativeTraceAndRngUnchanged": true
+  },
+  "errors": [],
+  "baselineReference": null,
+  "sourceHashes": {
+    "dist/game.js": "7d877f01e1ad0d49059a47ff74038df637cbcafd332ce8283c0868331711ce9a",
+    "dist/halftime-v14.js": "c152f6fa31af2f56f85c7a02b5d24168b425fe1ca207dd56bc84eafa130368b4",
+    "dist/presentation-v25.js": "eefca44b654f65dbf00faa20332b7bb0748cccc6c4daf1ac7f8d81fab52f153d",
+    "dist/world-physical-v65.js": "878bcc0f199ae5f52b8b812fa883f44f039f92bc2809faa2d889b09aa56a785b",
+    "dist/world-pitch-actions-v99.js": "1b46f17438cdba0cba0ef538966f2db17c0262d80701dee36d5044a9e5bd76af",
+    "dist/pitch-motion-v102.js": "58dd29d69557d94bb0f72c8f8f0caf486604e52803b2858adf0c953bf48b55c6",
+    "dist/world-ball-motion-v110.js": "fa6f54a7b0a60191105695223e569e1778d4505ce54b744e5ac060ddee5d925d",
+    "dist/world-pitch3d-v98.js": "4009724016c5fddeadf560922fe70fd8961122e7107da510d6dbd2896ddd3528",
+    "dist/world-goal-replay-v103.js": "0b7114372370e0bc80213ab0764f839ed737152c27dd27f47c69e617e9889573",
+    "work/check-display-whistle-r132.cjs": "50009171bcd51e3c1d67fc86d2937b8069ae077fcbf4e7859d40e19dbaf181a1"
+  }
+}

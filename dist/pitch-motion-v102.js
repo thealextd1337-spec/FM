@@ -88,13 +88,14 @@ function v102FlightBall(meta,q){
 const v102BallView=v99BallView;
 v99BallView=function(current){
  const existing=v102BallView(current),meta=current.flight&&v102Flights.get(current.flight);
- if(current.finished||current.goalPause>0||current.setPiece||current.throwIn)return existing;
+ if(current.finished||current.halftimePause>0||current.goalPause>0||current.setPiece||current.throwIn)return existing;
  if(meta&&!meta.shot&&v99Flights.get(current.flight)?.kind!=='goalKick')return v102FlightBall(meta,Math.max(0,Math.min(1,current.flight.progress)));
  const state=v102Motion.get(current),loose=state?.loose;
  if(loose&&!current.flight){const time=Math.max(0,state.clock-loose.at),q=Math.max(0,Math.min(1,time/loose.duration));if(loose.free)return {...current.ball,elevation:Math.max(.29,loose.startHeight-4.9*time*time)};return {x:loose.start.x+(loose.target.x-loose.start.x)*q,y:loose.start.y+(loose.target.y-loose.start.y)*q,elevation:loose.drop?Math.max(.29,loose.startHeight+(.29-loose.startHeight)*q):2.65*(1-q)+.29*q+1.1*Math.sin(Math.PI*q)}}
  return existing;
 };
 function v102PlayerAction(current,person){
+ if(current.finished||current.halftimePause>0||person.keeper&&(current.kickoff||current.pendingKickoff!=null))return null;
  const existing=v99PlayerAction(current,person);if(existing)return {...existing,id:existing.id??existing.kind};
  const state=v102Motion.get(current),pose=state?.poses.get(person.pid);
  if(pose){const progress=Math.max(0,Math.min(1,(state.clock-pose.at)/pose.duration));return {...pose,progress}}
