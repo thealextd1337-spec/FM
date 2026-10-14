@@ -12,6 +12,9 @@ function v117Event(current,kind,person,parentId=null){
  const event={id:++ledger.sequence,parentId,kind,actorPid:person?.pid||null,team:person?.t??null,at:current.elapsed,result:null};
  ledger.events.push(event);return event;
 }
+// SI 183: additive plain source tags (event.sources), written only through
+// v183LedgerSource for marked matches; older ledgers never contain the field.
+function v117AddSource(event,tag){const sources=event.sources||(event.sources=[]);if(!sources.includes(tag))sources.push(tag);return event;}
 function v117Origin(current){
  if(v117Incoming?.current===current)return v117Incoming.event;
  const id=current.rebound?.ballEventId??current.ballEventId;
