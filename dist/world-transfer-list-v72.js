@@ -13,6 +13,12 @@ function v72TransferTerms(career,pid){
  const seller=v66Owner(career,pid),player=v66Player(career,pid);
  return seller&&player?{pid,sellerId:seller.id,ask:v66Value(player),reason:'direct'}:null;
 }
+// A buyer's own withdrawal leaves no entry in market.decisions; it never blocks a new offer, even at the deadline.
+function v72Withdrawn(career,pid,buyerId=career.manager.managedClubId){
+ const market=v72Market(career);
+ return market.negotiations.some(item=>item.pid===pid&&item.buyerId===buyerId&&item.stage==='rejected'&&item.lastChange==='Du hast das Angebot zurückgezogen.'&&!market.decisions.some(entry=>entry.negotiationId===item.id))||market.pendingBids.some(bid=>bid.pid===pid&&bid.buyerId===buyerId&&bid.status==='rejected'&&bid.reason==='Du hast das Angebot zurückgezogen.');
+}
+function v72CanOffer(career,pid){const phase=v72Market(career).phase;return phase==='open'||phase==='deadline'&&v72Withdrawn(career,pid)}
 function v72FeeTerms(career,item){return item.directAsk?{ask:item.directAsk,reason:'direct'}:v72Listing(career,item.pid)}
 function v72ListOwn(career,pid,ask){
  const market=v72Market(career),club=v66Club(career,career.manager.managedClubId),player=club?.roster.find(item=>item.pid===pid);
@@ -97,15 +103,17 @@ function v72SaleBlockReason(career,sellerId,pid){
  return '';
 }
 function v72CanCommitSale(career,sellerId,pid){return !v72SaleBlockReason(career,sellerId,pid)}
-function v72Queue(career,negotiation,kind,message){
- const market=v72Market(career),id=`${negotiation.id}:${kind}`;
+// Every reply to an own offer is stored at once and announced (released) at the next market day change.
+function v72Queue(career,negotiation,kind,message,reply=null){
+ const market=v72Market(career),id=`${negotiation.id}:${kind}${reply?`:${negotiation.price}:${negotiation.annual}:${reply.counter}`:''}`;
  if(market.transferResults.some(item=>item.id===id))return;
- market.transferResults.push({id,negotiationId:negotiation.id,pid:negotiation.pid,buyerId:negotiation.buyerId,sellerId:negotiation.sellerId,kind,price:negotiation.agreedPrice??negotiation.price,message,day:market.day,released:false,seen:false});
+ market.transferResults.push({id,negotiationId:negotiation.id,pid:negotiation.pid,buyerId:negotiation.buyerId,sellerId:negotiation.sellerId,kind,price:negotiation.agreedPrice??negotiation.price,message,day:market.day,released:false,seen:false,announce:true,...reply});
 }
-function v72ReleaseResults(career){for(const result of v72Market(career).transferResults)result.released=true}
-function v72Reject(career,negotiation,reason){
+function v72ReleaseResults(career){for(const result of v72Market(career).transferResults)if(result.announce===true)result.released=true}
+function v72Reject(career,negotiation,reason,silent=false){
  if(['rejected','completed'].includes(negotiation.stage))return;
  negotiation.stage='rejected';negotiation.lastChange=reason;
+ if(silent)return;
  const market=v72Market(career);
  if(!market.decisions.some(item=>item.negotiationId===negotiation.id))market.decisions.push({negotiationId:negotiation.id,pid:negotiation.pid,buyerId:negotiation.buyerId,season:career.world.season,status:'rejected',atPlayed:v62Fixtures(career).filter(fixture=>fixture.result).length});
  if(negotiation.buyerId===career.manager.managedClubId||negotiation.sellerId===career.manager.managedClubId)v72Queue(career,negotiation,'rejected',reason);
@@ -113,7 +121,7 @@ function v72Reject(career,negotiation,reason){
 function v72Floor(listing){return Math.max(10,Math.round(listing.ask*(listing.reason==='finance'?.85:.9)/10)*10)}
 function v72Start(career,pid,amount){
  const market=v72Market(career),listing=v72TransferTerms(career,pid),buyerId=career.manager.managedClubId,player=v66Player(career,pid);
- if(market.phase!=='open'||!listing||!player||listing.sellerId===buyerId||v66Owner(career,pid)?.id!==listing.sellerId)throw Error('Dieses Verkaufsangebot ist nicht mehr verfügbar.');
+ if(!v72CanOffer(career,pid)||!listing||!player||listing.sellerId===buyerId||v66Owner(career,pid)?.id!==listing.sellerId)throw Error('Dieses Verkaufsangebot ist nicht mehr verfügbar.');
  if(v66Club(career,buyerId).roster.length>=14)throw Error('Der Kader hat bereits 14 Profis.');
  amount=Number(amount);
  if(!Number.isInteger(amount)||amount<1||!v66CanAfford(career,buyerId,amount,v66Salary(player)))throw Error('Diese Ablöse ist nicht finanzierbar.');
@@ -129,6 +137,7 @@ function v72Start(career,pid,amount){
   negotiation.stage='fee-counter';negotiation.counter=Math.max(v72Floor(listing),Math.round((listing.ask+amount)/20)*10);
   negotiation.counterDay=market.day;negotiation.lastChange=`${v66Club(career,listing.sellerId).name} fordert ${negotiation.counter} Credits.`;
   if(market.day===5)negotiation.feeCountered=true;
+  v72Queue(career,negotiation,'fee-counter',negotiation.lastChange,{counter:negotiation.counter});
  }else if(market.day===5)v72ResolveFee(career,negotiation);
  return negotiation;
 }
@@ -139,7 +148,7 @@ function v72SubmitFee(career,id,amount){
  amount=Number(amount);
  if(!Number.isInteger(amount)||amount<1||!v66CanAfford(career,item.buyerId,amount,v66Salary(v66Player(career,item.pid))))throw Error('Diese Ablöse ist nicht finanzierbar.');
  item.price=amount;item.stage='fee-wait';item.answerDay=market.day;item.lastChange=`Dein neues Ablösegebot: ${amount} Credits.`;
- if(market.day===5||market.phase==='deadline'){item.feeCountered=true;v72ResolveFee(career,item,true);v72ReleaseResults(career)}
+ if(market.day===5||market.phase==='deadline'){item.feeCountered=true;v72ResolveFee(career,item,true)}
  return item;
 }
 function v72ResolveFee(career,item,deadline=false){
@@ -156,6 +165,7 @@ function v72ResolveFee(career,item,deadline=false){
  item.previousPrice=item.price;item.stage='fee-counter';item.counter=Math.max(v72Floor(listing),Math.round((listing.ask+item.price)/20)*10);
  item.counterDay=career.world.market.day;item.lastChange=`${seller.name} fordert ${item.counter} Credits.`;
  if(career.world.market.day===5||deadline)item.feeCountered=true;
+ if(item.buyerId===career.manager.managedClubId)v72Queue(career,item,'fee-counter',item.lastChange,{counter:item.counter});
 }
 function v72ResolveSellerContract(career,item){
  const consent=v66Consent(career,item);
@@ -166,12 +176,12 @@ function v72ResolveSellerContract(career,item){
 function v72SellerRespond(career,id,response,amount){
  const market=v72Market(career),item=v72Negotiation(career,id),listing=item&&v72Listing(career,item.pid);
  if(!item||item.sellerId!==career.manager.managedClubId||item.stage!=='seller-offer'||!listing||!['open','deadline'].includes(market.phase))throw Error('Dieses Kaufangebot ist nicht mehr offen.');
- if(response==='reject'){v72Reject(career,item,'Du hast das Kaufangebot abgelehnt.');if(market.day===5)v72ReleaseResults(career);return item}
+ if(response==='reject'){v72Reject(career,item,'Du hast das Kaufangebot abgelehnt.');return item}
  if(response==='accept'){
   if(!v72CanCommitSale(career,item.sellerId,item.pid)||!v66CanAfford(career,item.buyerId,item.price,item.annual))throw Error('Der Wechsel ist inzwischen nicht mehr möglich.');
   item.agreedPrice=item.price;item.stage='contract-wait';item.answerDay=market.day;item.lastChange=`Du hast ${item.price} Credits Ablöse mit ${v66Club(career,item.buyerId).name} vereinbart. Der Spieler verhandelt jetzt den Vertrag.`;
   v72Queue(career,item,'fee-agreed',item.lastChange);
-  if(market.day===5){v72ResolveSellerContract(career,item);v72Finalize(career);v72ReleaseResults(career)}
+  if(market.day===5){v72ResolveSellerContract(career,item);v72Finalize(career)}
   return item;
  }
  if(response!=='counter')throw Error('Ungültige Antwort auf das Kaufangebot.');
@@ -182,7 +192,7 @@ function v72SellerRespond(career,id,response,amount){
  if(market.day===5||market.phase==='deadline'){
   item.sellerCountered=true;v72ResolveSellerCounter(career,item);
   if(item.stage==='contract-wait')v72ResolveSellerContract(career,item);
-  v72Finalize(career);v72ReleaseResults(career);
+  v72Finalize(career);
  }
  return item;
 }
@@ -208,17 +218,19 @@ function v72SubmitContract(career,id,annual,years,promise){
  item.annual=annual;item.years=years;item.promise=promise;item.answerDay=market.day;
  const minimum=v66Consent(career,item).minimum;
  if(market.day===5||market.phase==='deadline'){
-  if(annual>=minimum){item.stage='ready';item.lastChange='Der Spieler hat dem Vertrag zugestimmt.';v72Finalize(career);v72ReleaseResults(career)}
-  else if(item.stage==='contract-counter'||item.contractCountered){v72Reject(career,item,'Der Spieler hat das Vertragsangebot abgelehnt.');v72ReleaseResults(career)}
-  else{item.stage='contract-counter';item.contractCountered=true;item.counter=minimum;item.counterDay=market.day;item.lastChange=`Der Spieler fordert ${minimum} Credits Jahresgehalt.`}
+  if(annual>=minimum){item.stage='ready';item.lastChange='Der Spieler hat dem Vertrag zugestimmt.';v72Finalize(career)}
+  else if(item.stage==='contract-counter'||item.contractCountered){v72Reject(career,item,'Der Spieler hat das Vertragsangebot abgelehnt.')}
+  else{item.stage='contract-counter';item.contractCountered=true;item.counter=minimum;item.counterDay=market.day;item.lastChange=`Der Spieler fordert ${minimum} Credits Jahresgehalt.`;v72Queue(career,item,'contract-counter',item.lastChange,{counter:minimum})}
  }else if(annual>=minimum){item.stage='contract-wait';item.lastChange=`Dein Vertragsangebot: ${annual} Credits Gehalt für ${years} Saisons.`}
  else{item.stage='contract-wait';item.lastChange=`Dein neues Vertragsangebot: ${annual} Credits Jahresgehalt. Die Antwort folgt am nächsten Transfertag.`}
  return item;
 }
 function v72Cancel(career,id){
- const item=v72Negotiation(career,id);
- if(!item||item.buyerId!==career.manager.managedClubId||!['fee-wait','fee-counter'].includes(item.stage))throw Error('Nach der Ablöseeinigung kann die Verhandlung nicht mehr beendet werden.');
- v72Reject(career,item,'Du hast die Verhandlung beendet.');return item;
+ const market=v72Market(career),item=v72Negotiation(career,id);
+ if(!item||item.buyerId!==career.manager.managedClubId||!['refusal-wait','fee-wait','fee-counter','contract','contract-wait','contract-counter','ready'].includes(item.stage)||!['open','deadline'].includes(market.phase))throw Error('Dieses Angebot kann nicht mehr zurückgezogen werden.');
+ v72Reject(career,item,'Du hast das Angebot zurückgezogen.',true);
+ for(const result of market.transferResults.filter(entry=>entry.negotiationId===item.id&&!entry.seen))result.seen=true;
+ return item;
 }
 function v72HasPending(career){const own=career.manager.managedClubId;return v72Market(career).negotiations.some(item=>(item.buyerId===own||item.sellerId===own)&&!['rejected','ready','completed'].includes(item.stage))}
 function v72ResolveDay(career,day,deadline=false){
@@ -239,7 +251,7 @@ function v72ResolveDay(career,day,deadline=false){
    const consent=v66Consent(career,item);
    if(consent.accepted){item.stage='ready';item.lastChange='Der Spieler hat dem Vertrag zugestimmt. Die Transferentscheidung folgt beim Tageswechsel.'}
    else if(day===5&&item.contractCountered)v72Reject(career,item,'Der Spieler hat das Vertragsangebot abgelehnt.');
-   else{item.stage='contract-counter';item.counter=consent.minimum;item.counterDay=day;item.lastChange=`Der Spieler fordert ${consent.minimum} Credits Jahresgehalt.`;if(day===5)item.contractCountered=true}
+   else{item.stage='contract-counter';item.counter=consent.minimum;item.counterDay=day;item.lastChange=`Der Spieler fordert ${consent.minimum} Credits Jahresgehalt.`;if(day===5)item.contractCountered=true;v72Queue(career,item,'contract-counter',item.lastChange,{counter:item.counter})}
   }
  }
  v72Finalize(career);

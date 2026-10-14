@@ -40,3 +40,5 @@
 .v179-depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:.65rem}
 .v179-depth-grid>div{display:grid;gap:.3rem;padding:.65rem;border:1px solid var(--fl-line,#bbb);border-radius:.5rem}
 .v179-depth-grid [data-status="missing"],.v179-depth-grid [data-status="thin"]{border-color:#bc8230}
+.v72-reply{border-left:4px solid #9fb4aa;padding-left:10px}.v72-reply-accept{border-left-color:#8bd38b}.v72-reply-counter{border-left-color:#e6c36a}
+.v72-reply .v72-confirm-actions .primary{margin:0}

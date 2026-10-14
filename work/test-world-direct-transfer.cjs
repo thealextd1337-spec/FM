@@ -22,7 +22,7 @@ vm.runInContext(progression.slice(progression.indexOf('function v167Active('),pr
 const squad=fs.readFileSync('dist/world-squad-planning-v179.js','utf8'),squadUI=fs.readFileSync('dist/world-squad-ui-v179.js','utf8');
 vm.runInContext(squad.slice(0,squad.indexOf('const v179BaseInit=')),context);
 vm.runInContext(squadUI.slice(0,squadUI.indexOf('const v179BaseDecorate=')),context);
-const dialog={open:false,innerHTML:'',showModal(){this.open=true}};
+const dialog={open:false,innerHTML:'',showModal(){this.open=true},querySelector(){return null}};
 context.testDialog=dialog;
 vm.runInContext('v72EnsureDialog=()=>v72Dialog=testDialog',context);
 const call=(name,...args)=>vm.runInContext(name,context)(...args);
@@ -141,6 +141,7 @@ console.log('Angebotsübersicht und bestätigungspflichtige Absagen geprüft.');
 
 // Native direct-bid rejection must enter the persisted result queue as well.
 assert(blocked.world.market.transferResults.some(r=>r.id===keeperBid.id+':rejected'&&r.released),'direct club refusal released on day change');
+for(const r of blocked.world.market.transferResults)if(r.id!==keeperBid.id+':rejected')r.seen=true;
 context.v61CurrentCareer=blocked;dialog.open=false;call('v72ShowResults');assert(dialog.open&&dialog.innerHTML.includes(keeperBid.reason),'club refusal popup after actual day change');
 for(const r of blocked.world.market.transferResults)r.seen=true;
 const playerRefusal={id:'legacy-player-refusal',pid:freePlayer.pid,buyerId:own.id,sellerId:null,price:0,status:'pending'};

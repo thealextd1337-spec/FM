@@ -22,6 +22,10 @@ assert.equal(translate('29. August · Frankreich · Liga 1 · Paris Central FC g
 assert.equal(translate('1 S · 0 U · 2 N'),'1 W · 0 D · 2 L');
 assert.equal(translate('Tore 3:4'),'Goals 3:4');
 assert.equal(translate('Vorherige Runde'),'Previous round');
+assert.equal(translate('Du hast das Angebot zurückgezogen.'),'You withdrew the offer.');
+assert.equal(translate('Gegenangebot bearbeiten'),'Edit counteroffer');
+assert.equal(translate('Spielervertrag verhandeln'),'Negotiate player contract');
+assert.equal(translate('Angebot endgültig zurückziehen'),'Withdraw offer permanently');
 assert.equal(translate('Nachspielzeit: +5 Minuten.'),'Stoppage time: +5 minutes.');
 assert.equal(translate('Eckball für Paris Central FC nach Parade von Antoine Laurent.'),'Corner for Paris Central FC after a save by Antoine Laurent.');
 assert.equal(translate('Théo Laurent spielt eine Flanke auf Nathan Martin.'),'Théo Laurent sends a cross to Nathan Martin.');

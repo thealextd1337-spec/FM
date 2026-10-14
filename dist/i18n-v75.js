@@ -1308,6 +1308,26 @@ Entscheidung beim Tageswechsel	Decision on the next market day
 Vorherige Runde	Previous round
 Nächste Runde	Next round
 Angebot zurückziehen	Withdraw offer
+Angebot zurückziehen?	Withdraw offer?
+Dein Angebot wird zurückgezogen. Es findet kein Wechsel statt und es wird nichts bezahlt. Du kannst sofort ein neues Angebot abgeben.	Your offer will be withdrawn. No transfer takes place and nothing is paid. You can make a new offer right away.
+Die bereits vereinbarte Ablöse verfällt.	The transfer fee already agreed lapses.
+Angebot endgültig zurückziehen	Withdraw offer permanently
+Du hast das Angebot zurückgezogen.	You withdrew the offer.
+Dieses Angebot kann nicht mehr zurückgezogen werden.	This offer can no longer be withdrawn.
+Neues Angebot abgeben	Make a new offer
+Verein stimmt der Ablöse zu	Club agrees to the transfer fee
+Gegenangebot des Vereins	Club's counteroffer
+Vereinbarte Ablöse	Agreed transfer fee
+Dein Gebot	Your offer
+Forderung des Vereins	Club's demand
+Dein Gehaltsangebot	Your salary offer
+Forderung des Spielers	Player's demand
+Der Verein hat dein Ablöseangebot angenommen. Der Wechsel ist noch nicht vollzogen: Jetzt musst du dich mit dem Spieler über den Vertrag einigen.	The club has accepted your transfer fee offer. The transfer is not completed yet: now you must agree a contract with the player.
+Der Verein nimmt dein Ablöseangebot nicht an und fordert mehr. Der Wechsel ist noch nicht vollzogen.	The club does not accept your transfer fee offer and demands more. The transfer is not completed yet.
+Der Spieler verlangt ein höheres Jahresgehalt. Der Wechsel ist noch nicht vollzogen.	The player demands a higher annual salary. The transfer is not completed yet.
+Spielervertrag verhandeln	Negotiate player contract
+Gegenangebot bearbeiten	Edit counteroffer
+Vertragsforderung bearbeiten	Edit contract demand
 Deine Angebote & Ergebnisse	Your offers & results
 Transfer abgelehnt	Transfer rejected
 Laufende Verhandlungen	Ongoing negotiations

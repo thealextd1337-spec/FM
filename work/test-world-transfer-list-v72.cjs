@@ -36,7 +36,15 @@ call('v72SubmitFee',career,bid.id,bid.counter);
 assert.strictEqual(bid.stage,'fee-wait','die Antwort wartet bis zum Tageswechsel');
 call('v66NextMarketDay',career);
 assert.strictEqual(bid.stage,'contract','nach der Ablöse folgt der Spielervertrag');
-assert.throws(()=>call('v72Cancel',career,bid.id),/Ablöseeinigung/,'eine ausgehandelte Ablöse bleibt verbindlich');
+{
+ const clone=JSON.parse(JSON.stringify(career)),copy=clone.world.market.negotiations.find(entry=>entry.id===bid.id),cloneOwn=call('v66Club',clone,own.id),cash=cloneOwn.balance;
+ call('v72Cancel',clone,copy.id);
+ assert.strictEqual(copy.stage,'rejected','der Käufer darf auch nach der Ablöseeinigung zurückziehen');
+ assert(!clone.world.market.decisions.some(entry=>entry.negotiationId===copy.id),'zurückziehen sperrt kein neues Angebot');
+ assert(!clone.world.market.transferResults.some(entry=>entry.negotiationId===copy.id&&!entry.seen),'zurückgezogene Angebote erzeugen kein Popup');
+ for(let step=0;step<4&&clone.world.market.phase==='open';step++)call('v66NextMarketDay',clone);
+ assert(!cloneOwn.roster.some(player=>player.pid===playerId)&&cloneOwn.balance===cash,'nach dem Zurückziehen findet kein Wechsel und keine Zahlung statt');
+}
 assert.strictEqual(listing.ask,publicAsk);
 assert(!own.roster.some(player=>player.pid===playerId),'vor dem Vertrag findet kein Wechsel statt');
 const minimum=call('v66Consent',career,{...bid,annual:0}).minimum;
