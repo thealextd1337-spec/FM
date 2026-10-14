@@ -292,9 +292,8 @@ function v65RenderReport(context){
  panel.innerHTML=`<h3>Spielerstatistik · dieses Spiel</h3><div class="stat-row stat-head"><span>Spieler</span><span>Leistung</span><span title="Tore · Vorlagen · Schüsse · gewonnene/alle Zweikämpfe">Werte</span></div>${people.map(person=>`<div class="stat-row"><b>${escapeHTML(person.name)}</b><span>${state.phase==='finished'?(state.minutes[person.pid]>=20?performanceText(state.ratings[person.pid]):'ohne Note'):state.minutes[person.pid]>=(state.playerPerformance?20:10)&&state.liveRatings?.[person.pid]!==undefined?performanceText(state.liveRatings[person.pid]):'ohne Note'}</span><span aria-label="${person.stats.goals||0} Tore · ${person.stats.assists||0} Vorlagen · ${person.stats.shots||0} Schüsse · ${person.stats.duelsWon||0} von ${person.stats.duels||0} Zweikämpfen gewonnen">T ${person.stats.goals||0} · V ${person.stats.assists||0} · S ${person.stats.shots||0} · ZK ${person.stats.duelsWon||0}/${person.stats.duels||0}</span></div>`).join('')}`;panel.hidden=false;
 }
 function v65PauseSelection(context){
- const {career,fixture,state,ownSide}=context,active=v64Active(state,ownSide),roster=v64Side(career,fixture,ownSide),pid=active[v65SelectedSlot],player=roster.find(item=>item.pid===pid);
- const otherSlots=active.map((id,index)=>({id,index,player:roster.find(item=>item.pid===id)})).filter(item=>item.index!==v65SelectedSlot&&item.player.keeper===player.keeper);
- const controls=`${state.roleAssignments?v156Selection(career,fixture,state,ownSide,pid):v64OrientationHTML(state,pid)+v64InstructionHTML(state,pid)}${otherSlots.length?`<label>Position mit Mitspieler tauschen<select id="v65-swap-target">${otherSlots.map(item=>`<option value="${item.index}">${escapeHTML(item.player.name)} · ${v64Roles[state.roles[item.id]]}</option>`).join('')}</select></label><button type="button" class="menu-action" data-v65-swap>Positionen tauschen</button>`:''}`;
+ const {career,fixture,state,ownSide}=context,pid=v64Active(state,ownSide)[v65SelectedSlot];
+ const controls=`${state.roleAssignments?v156Selection(career,fixture,state,ownSide,pid):v64OrientationHTML(state,pid)+v64InstructionHTML(state,pid)}`;
  return controls?`<div class="v64-selection v65-selection-actions">${controls}</div>`:'';
 }
 function v65PauseBench(context){
@@ -349,7 +348,7 @@ function v65UpdateControls(context){
  let tabs=$('#v65-pause-tabs');if(!tabs){tabs=document.createElement('nav');tabs.id='v65-pause-tabs';tabs.className='prematch-tabs v64-prematch-tabs';tabs.setAttribute('aria-label','Während der Spielpause');$('#game-screen .workspace aside').prepend(tabs)}
  let pitch=$('#v65-plan-view');if(!pitch){pitch=document.createElement('div');pitch.id='v65-plan-view';$('#match-area').before(pitch)}
  const paused=state.phase==='paused',editing=paused&&v65PauseView;tabs.hidden=!editing;pitch.hidden=!editing;$('#match-area').hidden=editing;$('#heading').textContent=paused?'Dein Spiel pausiert.':'Dein Spiel läuft.';$('#match-title').textContent=paused?'Dein Team pausiert.':'Dein Team spielt.';
- if(editing){tabs.innerHTML=`<button type="button" data-v65-tab="lineup" class="${v65PauseTab==='lineup'?'active':''}" aria-pressed="${v65PauseTab==='lineup'}">Aufstellung</button><button type="button" data-v65-tab="tactics" class="${v65PauseTab==='tactics'?'active':''}" aria-pressed="${v65PauseTab==='tactics'}">Taktik</button><button type="button" class="v65-undo" data-v65-undo ${state.pauseUndo&&state.substitutions.length===state.pauseUndo.substitutionCount?'':'disabled'}>↶ Rückgängig</button>`;pitch.innerHTML=v65PausePitch(context);pitch.querySelectorAll('.v64-bench-chip').forEach(card=>{const selectable=card.querySelector('[data-v65-bench]');if(selectable){card.draggable=true;card.dataset.v65BenchCard=selectable.dataset.v65Bench}})}
+ if(editing){tabs.innerHTML=`<button type="button" data-v65-tab="lineup" class="${v65PauseTab==='lineup'?'active':''}" aria-pressed="${v65PauseTab==='lineup'}">Aufstellung</button><button type="button" data-v65-tab="tactics" class="${v65PauseTab==='tactics'?'active':''}" aria-pressed="${v65PauseTab==='tactics'}">Taktik</button><button type="button" class="v65-undo" data-v65-undo ${state.pauseUndo&&state.substitutions.length===state.pauseUndo.substitutionCount?'':'disabled'}>↶ Rückgängig</button>`;pitch.innerHTML=v65PausePitch(context);pitch.querySelectorAll('.v64-bench-chip').forEach(card=>{const selectable=card.querySelector('[data-v65-bench]');if(selectable){card.draggable=true;card.dataset.v65BenchCard=selectable.dataset.v65Bench;window.v129KeyboardPick?.(card,selectable.dataset.v65Bench)}})}
  if(editing)pitch.querySelector('.v65-pause-controls').append(tabs,panel);
  else{$('#game-screen .workspace aside').prepend(tabs);$('#match-info').insertBefore(panel,$('#match-info').querySelector('.match-stat-header'))}
  panel.hidden=state.phase==='live'||paused&&!editing;panel.innerHTML=editing?(v65PauseTab==='lineup'?`<h2>Aufstellung</h2><p>Spieler auf dem Feld wählen und einen Ersatz von der Bank antippen. Wechsel erfolgen bei der nächsten Unterbrechung.</p>${v65PauseSelection(context)}${v65PausePending(context)}`:v140TacticsHTML(state,ownSide))+`<p id="v65-error" role="alert" class="v61-error"></p>`:state.phase==='live'||paused?'':'<h2>Spiel beendet</h2><button type="button" class="primary" data-v65-continue>Zur Karriereübersicht →</button>';
@@ -509,18 +508,8 @@ $('#game-screen').addEventListener('click',event=>{
   if(button.dataset.v65PickSlot!==undefined&&context.state.phase==='paused'){v65SelectedSlot=Number(button.dataset.v65PickSlot);v65PauseTab='lineup';v65UpdateControls(context);$('#v65-plan-view')?.querySelector(`[data-v65-pick-slot="${v65SelectedSlot}"]`)?.focus();return}
   if(button.dataset.v64Orientation!==undefined&&context.state.phase==='paused'){const pid=v64Active(context.state,context.ownSide)[v65SelectedSlot],value=Number(button.dataset.v64Orientation);if(v64Orientation(context.state,pid)===value)return;const undo=v65UndoSnapshot(context);v64SetOrientation(context.state,pid,value);context.state.pauseUndo=undo;v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw();return}
   if(button.dataset.v64Instruction&&context.state.phase==='paused'){const pid=v64Active(context.state,context.ownSide)[v65SelectedSlot];if(button.dataset.v64Instruction==='standard'&&!v64PlayerInstructions(context.state,pid).length)return;const undo=v65UndoSnapshot(context);v64ToggleInstruction(context.state,pid,button.dataset.v64Instruction);context.state.pauseUndo=undo;v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw();return}
-  if(button.dataset.v64Cell!==undefined&&context.state.phase==='paused'){
-   const pid=v64Active(context.state,context.ownSide)[v65SelectedSlot],undo=v65UndoSnapshot(context);
-   if(v64MoveCell(context.career,context.fixture,context.state,context.ownSide,pid,Number(button.dataset.v64Cell))){context.state.pauseUndo=undo;v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw()}return;
-  }
+  // Pointer clicks only mark a shirt; positions change by drag and drop or the keyboard (Alt + arrows).
   if(button.dataset.v65Profile){v61OpenProfile(button.dataset.v65Profile,button);return}
-  if(button.hasAttribute('data-v65-swap')&&context.state.phase==='paused'){v65SwapPositions(context,Number($('#v65-swap-target')?.value));return}
-  if(button.dataset.v65Bench&&context.state.phase==='paused'){
-   const undo=v65UndoSnapshot(context);
-   v64QueueSubstitution(context.career,context.fixture,context.state,context.ownSide,v64Active(context.state,context.ownSide)[v65SelectedSlot],button.dataset.v65Bench);
-   context.state.pauseUndo=undo;
-   v65Snapshot(context);v65UpdateControls(context);return;
-  }
   if(button.dataset.v64TacticKey&&context.state.phase==='paused'){
    const key=button.dataset.v64TacticKey,value=button.dataset.v64TacticValue;
    if(context.state.tactics[context.ownSide][key]===value)return;
@@ -583,4 +572,17 @@ function v65DropAction(source,target){
  }catch(error){const message=$('#v65-error');if(message)message.textContent=error.message}finally{v65Drag=null}
 }
 $('#game-screen').addEventListener('dragend',()=>{v65Drag=null;$('#v65-plan-view')?.querySelectorAll('.v64-drag-over').forEach(item=>item.classList.remove('v64-drag-over'))});
+// Keyboard path: Alt + arrows move the focused shirt to the neighbouring cell or swap it with its occupant.
+$('#game-screen').addEventListener('keydown',event=>{
+ const button=event.target.closest?.('[data-v65-pick-slot][data-v64-cell]');
+ if(!v65WorldActive||!button||!v64AltArrow(event))return;
+ const context=v65Context();if(context?.state.phase!=='paused')return;
+ event.preventDefault();
+ const slot=Number(button.dataset.v65PickSlot),pid=v64Active(context.state,context.ownSide)[slot],destination=v64KeyboardDestination(button,event);
+ if(!pid||context.state.roles[pid]==='gk'||destination===null)return;
+ try{
+  const undo=v65UndoSnapshot(context);
+  if(v64MoveCell(context.career,context.fixture,context.state,context.ownSide,pid,destination)){context.state.pauseUndo=undo;v65SelectedSlot=slot;v65ApplyTactics(context);v65Snapshot(context);v65UpdateControls(context);draw();$('#v65-plan-view')?.querySelector(`[data-v65-pick-slot="${slot}"]`)?.focus()}
+ }catch(error){const message=$('#v65-error');if(message)message.textContent=error.message}
+});
 $('#game-screen').addEventListener('keydown',event=>{if((event.key==='Enter'||event.key===' ')&&event.target.matches('[data-v64-pitch-profile]')){event.preventDefault();event.stopPropagation();v61OpenProfile(event.target.dataset.v64PitchProfile,event.target)}});
