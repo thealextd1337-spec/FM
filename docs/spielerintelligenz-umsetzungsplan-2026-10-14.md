@@ -237,7 +237,7 @@ Für alle Pakete gilt dasselbe Marker-Gating: Neue Logik wirkt nur, wenn `v183Ac
 - **Ziel:** Marker 183, Konfiguration, Schnittstellen und Messwerkzeug, damit Welle 1 parallel arbeiten kann.
 - **Inhalt:** `match.si` im Konstruktor samt `v183RegisterDefaults`; die Schnittstellen aus 6.3 mit Stubs; die Weichen für nicht umhüllbare Teilformeln (`v183PaceFactor` in `world-offensive-quality-v157.js:42`, Formationsanker in `game.js:59`; weitere nur auf Antrag eines Pakets vor dessen Start); die sieben leeren Module samt Lade-/Buildlisten; `v183Personality` (Formel und Tests, siehe unten); `decisionTrace`; Ledger-Quellen (H16); das Szenenwerkzeug `work/native183-scenes.cjs` nach dem Muster von `native182-scenes.cjs`; `work/check-old-matches-v183.cjs` (markerlose **und** 182-Partien byteidentisch gegen `e4e531c0`); native Messharness `work/measure-si183.cjs` ohne Kopien (aus `measure-si-r132.cjs`, `--packages=`/`--params=` statt Ersetzungen, Ports 4250–4269).
 - **Persönlichkeit (Startformel, in SI-K kalibriert):** `shootWeight = rolle(Torjäger 1,25, Stoßstürmer 1,15, Dribbler/Flügel 1,0, Mittelfeld 0,9, Verteidiger 0,7) × (0,85 + 0,015·(calm−10) + 0,01·(dec−10))`; `riskWeight = rolle(Spielmacher 1,25, Box-to-Box/Flügel 1,1, Abräumer/Verteidiger 0,8) × (0,9 + 0,01·(dec−10))`. Ruhe dämpft nur Druckverluste (SI-3), Antizipation nur Lesefenster/Nachsetzen (SI-2), Entscheidungen nur das Bewertungsrauschen (SI-1). Rückfall 10 bei fehlenden Werten; es wird nichts geschrieben.
-- **Messkriterien:** mit allen Paketen aus: Partien mit `si` und `packages` alle `false` digestgleich zu 182 (abgesehen vom Feld `si`); Altpartien byteidentisch; Restore-Rundlauf bitgleich, sofern B19 gelöst ist (sonst B19-Abweichung unverändert).
+- **Messkriterien:** mit allen Paketen aus: Partien mit `si` und `packages` alle `false` digestgleich zu 182 (abgesehen vom Feld `si`); Altpartien byteidentisch; Restore-Rundlauf zustandsvollständig (Nutzerentscheidung B19: kein bitgleicher Verlauf gefordert).
 - **Dateien:** `world-physical-v65.js:52` (Konstruktor, einzige Markerstelle), `:86/:103` nur lesend prüfen; `dist/index.html`, `work/build.cjs`, `work/native130-harness.cjs:20`; `match-ball-events-v117.js` (Ledger-Quellenfeld, additiv).
 - **Unity:** keine.
 
@@ -339,7 +339,7 @@ Für alle Pakete gilt dasselbe Marker-Gating: Neue Logik wirkt nur, wenn `v183Ac
 
 | Paket | Inhalt | Lage |
 | --- | --- | --- |
-| **B19 Restore-Parität** | Ursache der Gesamtpartie-Abweichung (3.540 gegen 3.676 Ticks) isolieren und beheben, bevor neue Restore-Flächen hinzukommen; Eigentümer `v65Snapshot`/`v65Restore` (`world-physical-v65.js:86-103+`) und `nativeContinuation` | Welle 0 parallel zu SI-F; neue Partien profitieren, alte bleiben unverändert; Abnahme: Fortsetzung an fünf Zeitpunkten bitgleich |
+| **B19 Restore-Vollständigkeit** | Nutzerentscheidung 14. Oktober 2026: Fortsetzen am letzten sicheren Speicherpunkt bleibt, kein Zu-Ende-Simulieren; bitgleicher Gesamtverlauf (3.540 gegen 3.676 Ticks) ist nicht mehr gefordert. Stattdessen Zustandsvollständigkeit nachweisen und eine Prüfung bereitstellen, die SI-Pakete für ihren eigenen Zustand nutzen; Eigentümer `v65Snapshot`/`v65Restore` (`world-physical-v65.js:86-103+`) und `nativeContinuation` | Welle 0 parallel zu SI-F; Abnahme: Restore an fünf Zeitpunkten erhält Spielstand, Uhr, Marker, Absichten/Laufziele und `match.si`-Zustand vollständig, Fortsetzung läuft fehlerfrei zu Ende; abweichender Verlauf zulässig |
 | **B20 Altchecks** | Die fünf roten Altprüfungen einzeln einordnen (Produkt- oder Testursache), ohne sie pauschal abzuschwächen; besonders `check-free-ball-positioning-v124`, `check-match-additions-v148`, `test-goal-replay-v103`, weil SI-0/SI-3 diese Bereiche berühren | Welle 0, nur `work/`-Dateien; Ergebnis: grün oder begründet ausgewiesen, als Regressionsschutz für Welle 1 verfügbar |
 | **U-1 Unity-Bewegung (B02/B05)** | Clipwechsel und Laufzyklen für Ballführer 1,6×, Grundlinienläufe, Nachsetzen; Tacklewinkel und Passkontakte (B05-Messfehler ausdrücklich erhalten); Teleport-Neustart; nur `prototypes/match-engine-unity/` und Darstellungsprojektion in `dist/world-unity-v151.js` | Welle 2 nach SI-2/SI-4; Unity-Kopie `G:/unity/Doppel6-Fix-R132` (Digestfalle beim Sync beachten), Offline-C#-/Shaderprüfung; neuer WebGL-Build nur bei Bedarf |
 
@@ -369,7 +369,7 @@ Welle 4   SI-6 P02 (Endwerte aus SI-K)
 | SI-7 und SI-3 nutzen die Klärung von SI-4 | `v183Clearance` | heutige Klärung |
 | SI-2 und SI-4 teilen die Tempozeile | `v183PaceFactor` (Weiche SI-F) | heutige Faktoren |
 | alle Pakete nutzen die Echtzeit | `v183Seconds`/`v183ClockUnits` | `MATCH_SPEED`, ab SI-0-Merge echt |
-| Restore-Gates der Welle 1 | B19 | „keine neue Abweichung“ statt „bitgleich“, bis B19 gemergt ist |
+| Restore-Gates der Welle 1 | B19 | Zustandsvollständigkeit statt „bitgleich“ (Nutzerentscheidung); Prüfwerkzeug aus B19 nutzen, sobald gemergt |
 
 SI-1 entwickelt gegen die Stubs aus SI-F und wird **nach** SI-3, SI-7 und SI-2 gemergt, weil es deren Schätzungen konsumiert. Kalibrierte Gewichte entstehen erst in SI-K.
 
@@ -466,7 +466,7 @@ Nach jedem Merge laufen die Pflichtprüfungen (Abschnitt 9) und eine gepaarte 19
 
 **Vor dem Integrationsabschluss:** der vollständige Workflow-Block „Spieltests ausführen“ (alle Befehle in `deploy.yml`), Build, `run-full-matches-v182.cjs`-Muster als `run-full-matches-v183.cjs`, ein vollständiger Browser-Match (development.md: Spiellogikänderungen), Speichern/Laden einer laufenden neuen Partie an fünf Zeitpunkten.
 
-**Neue Prüfungen je Paket:** `test-si-<paket>-v183.cjs` mit Szenen aus `native183-scenes.cjs`. Jeder Test prüft den alten Pfad (Marker fehlt → bitgleich) und den neuen Pfad; Restore während der neuen Absicht ergibt dieselbe Fortsetzung.
+**Neue Prüfungen je Paket:** `test-si-<paket>-v183.cjs` mit Szenen aus `native183-scenes.cjs`. Jeder Test prüft den alten Pfad (Marker fehlt → bitgleich) und den neuen Pfad; Restore während der neuen Absicht erhält die gespeicherte Absicht vollständig und setzt sie fort (B19: Zustandsvollständigkeit, kein bitgleicher Verlauf gefordert).
 
 ## 10. Integration und Kalibrierung (SI-K), danach P02
 
@@ -480,7 +480,7 @@ Nach jedem Merge laufen die Pflichtprüfungen (Abschnitt 9) und eine gepaarte 19
 | Paket | Umsetzung | Review (anderes Modell) | Begründung |
 | --- | --- | --- | --- |
 | SI-F Fundament | Claude Opus 5.5 | Codex GPT-6.1-Sol | Querschnitt aus Schnittstellen, Marker, Harness und Restore-Regeln; Opus kennt die Analyse; Review prüft die Codegenauigkeit |
-| B19 Restore-Parität | Codex GPT-6.1-Sol | Claude Opus 5.5 | lange, systematische Fehlersuche mit vielen Läufen |
+| B19 Restore-Vollständigkeit | Codex GPT-6.1-Sol | Claude Opus 5.5 | systematischer Zustandsabgleich mit wenigen Läufen |
 | B20 Altchecks | Claude Sonnet 5.5 | GPT-6-Sol | abgegrenzte Einzelanalysen, kein Produktcode ohne Befund |
 | SI-0 Uhr/Stillstand | Codex GPT-6.1-Sol | Claude Sonnet 5.5 | 68 Stellen mechanisch, aber fehleranfällig; zweite Instanz prüft jede Einordnung einzeln |
 | SI-1 Optionsmodell | Claude Fable 5.1 | Codex GPT-6.1-Sol | schwierigstes Design (Nutzen-Risiko, Persönlichkeit, Körperstellung, Rauschen) mit starker Kalibrierkopplung |
@@ -497,14 +497,14 @@ Review-Runden je Paket: (1) Entwurfsreview der Moduldatei, der Umhüllungen und 
 
 ## 12. Aufwand und Risiken
 
-**Aufwand (Agenten-Arbeitstage, Richtwerte):** SI-F 1–1,5; B19 1–2; B20 1; SI-0 1,5–2; SI-1 3–4; SI-2 3; SI-3 2–3; SI-4 2; SI-7 2–3; SI-5 1,5–2; U-1 2–3; SI-K 2–3; SI-6 2. Summe ≈ 25–31 Agententage, mit den Wellen ≈ 10–13 Kalendertage. Messrechenzeit: ≈10 min je 192-Partien-Serie und Lane, Abnahmereihe A/B je ≈1 h auf drei Lanes.
+**Aufwand (Agenten-Arbeitstage, Richtwerte):** SI-F 1–1,5; B19 0,5–1; B20 1; SI-0 1,5–2; SI-1 3–4; SI-2 3; SI-3 2–3; SI-4 2; SI-7 2–3; SI-5 1,5–2; U-1 2–3; SI-K 2–3; SI-6 2. Summe ≈ 24–30 Agententage, mit den Wellen ≈ 10–13 Kalendertage. Messrechenzeit: ≈10 min je 192-Partien-Serie und Lane, Abnahmereihe A/B je ≈1 h auf drei Lanes.
 
 | Risiko | Wirkung | Gegenmaßnahme |
 | --- | --- | --- |
 | Textkonflikte in langen minifizierten Zeilen | Mergeaufwand, versteckte Regressionen | Module je Paket, Umhüllung statt Zeilenänderung, Weichen gesammelt durch SI-F, Dateibesitz 8.3 |
 | Kalibrierkopplung (Platzierung ↔ Optionswahl ↔ Uhr) | Pakete verfehlen ihre Zielwerte einzeln, erreichen sie aber gemeinsam (oder umgekehrt) | Paketkriterien als Richtung gegen SI-F-Basis; Endwerte nur in SI-K; Parameter in `match.si.params` |
 | Favoritenquote verrauscht (±8 Punkte bei 134 Partien) | Fehlentscheidungen zwischen Varianten | Abnahme mit 576 Partien, Tordifferenz je Stärkepunkt als zweite Größe |
-| B19 ungelöst | Restore-Gates neuer Absichten nicht belastbar | B19 in Welle 0; sonst Gate „neue Abweichung = 0“ statt „bitgleich“ ausdrücklich ausweisen |
+| Restore-Zustand unvollständig | Neue Absichten gehen nach Fortsetzen verloren | B19-Vollständigkeitsprüfung in Welle 0; jedes Paket weist seinen Zustand darin nach |
 | Mobile Rechenzeit des Optionsmodells | Ruckeln auf Geräten | Budget je Entscheidung, Takt 0,25 s, Angebote verteilt; Messung in SI-K, Geräte bleiben P06 |
 | Belastungsmodell v158 bei langsamer Uhr | Frische weicht von den Produktreferenzen ab | SI-0-Kriterium Frische 40 ± 5 |
 | Unity-Clips bei höherem Tempo (B02/B05) | sichtbar steife oder rutschende Bewegungen | U-1 nach SI-2; Messfehler ausdrücklich erhalten |

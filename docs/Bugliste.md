@@ -37,7 +37,7 @@ B08 wurde auf Nutzerwunsch gestrichen und wird nicht wieder eröffnet.
 
 | ID | Problem und Basisnachweis | Nächster Schritt |
 | --- | --- | --- |
-| B19 | Gesamtpartie-Restore-Parität weicht ab: 3.540 gegenüber 3.676 Ticks, beide 1:0. Bereits auf Basis `57f7e939` vorhanden. Einzelne markergebundene Restore-Gates schließen diese Gesamtpartie-Lücke nicht. | Ursache der vollständigen Fortsetzungsabweichung isolieren; nicht als Release-132-Regression oder bestandenes Gate ausweisen. |
+| B19 | Gesamtpartie-Restore-Parität weicht ab: 3.540 gegenüber 3.676 Ticks, beide 1:0. Bereits auf Basis `57f7e939` vorhanden. Einzelne markergebundene Restore-Gates schließen diese Gesamtpartie-Lücke nicht. **Nutzerentscheidung 14. Oktober 2026:** Unterbrochene Partien werden weiterhin am letzten sicheren Speicherpunkt fortgesetzt (kein automatisches Zu-Ende-Simulieren); ein bitgleicher Verlauf ist nicht mehr gefordert. | Zustandsvollständigkeit nach Restore nachweisen: Spielstand, Uhr, Marker, gespeicherte Absichten/Laufziele und Paketzustand bleiben erhalten, die Fortsetzung verläuft plausibel. Abweichender Verlauf gegenüber der ununterbrochenen Partie ist zulässig und wird nicht als Fehler gewertet. |
 | B20 | Alte Prüfungen bereits auf dem Basisstand rot: `check-free-ball-positioning-v124` (`retreat>0`), `check-pause-layout-v128` (shoot-Selektor), `check-fullscreen-tv-v132` (Canvas y=-66), `check-match-additions-v148` („No restart focus throw“), `test-goal-replay-v103` („v50Restart is not defined“). | Produkt- und Testursache jeweils gesondert untersuchen; keine pauschale Abschwächung. Diese Checks gehören nicht zum grünen Workflow-Schritt „Spieltests ausführen“. |
 
 ## Offene Abstimmung und Prüfungen
