@@ -107,6 +107,7 @@ async function runView(browser,view,mobile,lang){
  const firstSlot=await field(info0.first.pid),secondSlot=await field(info0.second.pid);
  await firstSlot.scrollIntoViewIfNeeded();await tap(firstSlot,true);
  check(`${tag}: clicking a shirt only marks it`,await firstSlot.evaluate(el=>el.getAttribute('aria-pressed')==='true'));
+ check(`${tag}: marking a shirt keeps focus on it`,await firstSlot.evaluate(el=>el===document.activeElement));
  if(info0.free!==undefined){await cell(info0.free).scrollIntoViewIfNeeded();await tap(cell(info0.free));}
  assert.equal(await snap(),before,`${tag}: click on a free cell after marking must not move the player`);check(`${tag}: marked + click on free cell changes nothing`,true);
  await secondSlot.scrollIntoViewIfNeeded();await tap(secondSlot,true);
@@ -199,6 +200,19 @@ async function runView(browser,view,mobile,lang){
  await page.keyboard.press('Shift');await page.locator(`${V.root} [data-v129-roster-pick="${spare}"]`).first().focus();await page.keyboard.press('Enter');await page.keyboard.press('Escape');
  await (await field((await info()).second.pid)).focus();await page.keyboard.press('Enter');await page.waitForTimeout(250);
  check(`${tag}: Escape cancels the keyboard selection`,(await snap())===escBefore);
+
+ // --- 5b. Assistive activation: a click without pointer sequence (screen reader) selects and swaps like the keyboard ---
+ if(view==='pause')await page.evaluate(()=>{for(let i=0;i<4;i++)document.querySelector('[data-v64-cancel]')?.click();});
+ await page.waitForTimeout(200);info0=await info();
+ const aBefore=JSON.parse(await snap()),aTarget=info0.second.pid,aReserve=info0.reserve;
+ await page.evaluate(([root,pid])=>document.querySelector(`${root} [data-v129-roster-pick="${pid}"]`).click(),[V.root,aReserve]);
+ check(`${tag}: assistive activation selects the reserve`,await page.locator(`${V.root} [data-v129-roster-pick="${aReserve}"]`).first().getAttribute('aria-pressed')==='true');
+ check(`${tag}: after selecting, focus moves to a valid shirt`,await page.evaluate(([root,attr])=>document.querySelector(root).contains(document.activeElement)&&document.activeElement.hasAttribute(attr),[V.root,V.slot]));
+ await page.evaluate(([root,attr,slot])=>document.querySelector(`${root} [${attr}="${slot}"]`).click(),[V.root,V.slot,await slotOf(aTarget)]);
+ await page.evaluate(()=>window.T.wait());after=JSON.parse(await snap());
+ if(view==='pause')check(`${tag}: assistive activation queues the substitution`,after.pending.flat().some(item=>item.outPid===aTarget&&item.inPid===aReserve),after.pending);
+ else check(`${tag}: assistive activation swaps reserve and field player`,after.starters.includes(aReserve)&&after.bench.includes(aTarget)&&JSON.stringify(aBefore.starters)!==JSON.stringify(after.starters));
+ if(view==='pause')check(`${tag}: pause help no longer asks to tap a reserve`,!(await page.evaluate(()=>document.body.innerText)).includes('antippen')&&!(await page.evaluate(()=>document.body.innerText)).includes('Tap a'));
  // --- 6. Touch: cancelled and released-outside drags change nothing ---
  if(mobile){
   info0=await info();const base=await snap(),from=await (await field(info0.first.pid)).boundingBox();

@@ -34,7 +34,7 @@
  const matchDrop=v64UiDropAction;v64UiDropAction=function(source,target){if(source.kind==='field'&&target?.dataset.v64Cell!==undefined)return matchDrop(source,target);if(!valid(source,target,'prematch'))return;const c=context('prematch');picked=null;try{v64UiRemember(c.fixture,c.state);mutate(c,source,target,'prematch');v64UiTab='lineup';v64UiSave();v64UiRender(c.career);}catch(error){v64UiError(error)}finally{v64UiDrag=null;}};
  const idleStatus='Spieler ziehen oder per Tastatur tauschen (Alt + Pfeiltasten, Eingabetaste).',pickedStatus='Jetzt mit der Eingabetaste einen Feld- oder Bankspieler zum Tauschen wählen.';
  function paint(){document.querySelectorAll('[data-v129-roster-pick]').forEach(n=>{const on=picked?.pid===n.dataset.v129RosterPick;n.setAttribute('aria-pressed',String(on));n.closest('article')?.classList.toggle('v129-picked',on)});document.querySelectorAll('[data-v129-roster-status]').forEach(n=>n.textContent=tr(picked?pickedStatus:idleStatus));}
- // Reserve selection is a keyboard-only way: Enter or Space on "Wählen", then Enter or Space on a shirt or another card. Pointer clicks never swap.
+ // Reserve selection is a keyboard/assistive way: activate "Wählen", then activate a shirt or another card. Real pointer clicks never swap.
  window.v129KeyboardPick=(card,pid)=>{
   if(!card.querySelector('[data-v129-roster-pick]')){const name=card.querySelector('.bench-title b')?.textContent||pid,button=document.createElement('button');button.type='button';button.dataset.v129RosterPick=pid;button.textContent=tr('Wählen');button.setAttribute('aria-pressed','false');button.setAttribute('aria-label',name+' · '+tr('mit der Eingabetaste wählen und danach mit der Eingabetaste auf einem Spieler im Feld oder auf der Bank tauschen'));card.append(button);}
   if(picked?.mode==='pause'&&picked.pid===pid)paint();
@@ -49,17 +49,27 @@
   if(valid(source,target,mode))return mode==='career'?v64CareerDropAction(source,target):v64UiDropAction(source,target);
   const status=document.querySelector('[data-v129-roster-status]');if(status)status.textContent=tr('Mit der Eingabetaste einen Feld- oder Bankspieler zum Tauschen wählen.');
  }
- let consumedKey='';
+ // Real pointer clicks (pointerdown before the click, detail > 0) never select or swap; keyboard and assistive-technology activation arrives as a click without that pointer sequence.
+ let pointerSequence=false;
+ document.addEventListener('pointerdown',()=>{pointerSequence=true;},true);
+ function focusFirstTarget(pid,mode){
+  const source={kind:'bench',pid},targets=[...document.querySelectorAll(slotSelector)].filter(element=>modeOf(element)===mode&&(mode==='pause'?(v65Drag=source,v65CanDrop(element)):valid(source,element,mode)));
+  v65Drag=null;targets[0]?.focus();
+ }
  document.addEventListener('keydown',event=>{
-  if(event.key==='Escape'&&picked){picked=null;paint();return;}
-  if(event.altKey||event.ctrlKey||event.metaKey||event.key!=='Enter'&&event.key!==' ')return;
-  const button=event.target.closest?.('[data-v129-roster-pick]'),slot=button?null:event.target.closest?.(slotSelector),element=button||slot;
-  if(!element)return;
-  const mode=modeOf(element);
-  if(slot&&(!picked||picked.mode!==mode))return;
-  event.preventDefault();event.stopImmediatePropagation();consumedKey=event.key;
+  pointerSequence=false;
+  if(event.key==='Escape'&&picked){const pid=picked.pid;picked=null;paint();document.querySelector(`[data-v129-roster-pick="${pid}"]`)?.focus();}
+ },true);
+ document.addEventListener('click',event=>{
+  const pointer=pointerSequence&&event.detail>0;pointerSequence=false;
+  const button=event.target.closest?.('[data-v129-roster-pick]'),slot=button?null:event.target.closest?.(slotSelector);
+  if(!button&&!(slot&&picked))return;
+  const element=button||slot,mode=modeOf(element);
+  if(pointer){if(button){event.preventDefault();event.stopImmediatePropagation();}return;}
+  if(slot&&picked.mode!==mode)return;
+  event.preventDefault();event.stopImmediatePropagation();
   if(button){
-   if(!picked||picked.mode!==mode){picked={pid:button.dataset.v129RosterPick,mode};paint();return;}
+   if(!picked||picked.mode!==mode){picked={pid:button.dataset.v129RosterPick,mode};paint();focusFirstTarget(picked.pid,mode);return;}
    const pid=picked.pid;picked=null;paint();
    if(pid!==button.dataset.v129RosterPick){const card=button.closest(cardSelector);if(card)swapReserve(pid,card,mode);}
    return;
@@ -68,8 +78,6 @@
   const focusSlot=()=>{const attribute=slot.hasAttribute('data-v64-career-slot')?'data-v64-career-slot':slot.hasAttribute('data-v65-pick-slot')?'data-v65-pick-slot':'data-v64-pick-slot';document.querySelector(`[${attribute}="${slot.getAttribute(attribute)}"]`)?.focus();};
   Promise.resolve(swapReserve(pid,slot,mode)).then(focusSlot);
  },true);
- document.addEventListener('keyup',event=>{if(consumedKey&&event.key===consumedKey){event.preventDefault();event.stopImmediatePropagation();consumedKey='';}},true);
- document.addEventListener('click',event=>{if(event.target.closest?.('[data-v129-roster-pick]')){event.preventDefault();event.stopImmediatePropagation();}},true);
  let renderedLanguage=document.documentElement.lang;
  document.addEventListener('doppel6-language-change',()=>{const language=document.documentElement.lang;if(language===renderedLanguage)return;renderedLanguage=language;const c=v61CurrentCareer;if(!c)return;if(!c.world.activeMatch)v64CareerRenderView(c);else if(c.world.activeMatch.state.phase==='prematch')v64UiRender(c);});
 })();

@@ -103,9 +103,9 @@ function v124GuideToBudgetConfirm(){
  const career=v61CurrentCareer,section=v61WorldScreen.querySelector('#v124-budget'),button=section?.querySelector('[data-v124-budget]');
  if(!career||!button)return;
  section.querySelectorAll('.v124-budget-hint').forEach(hint=>hint.remove());
- const hint=document.createElement('p');hint.className='v124-budget-hint';hint.setAttribute('role','status');
+ const hint=document.createElement('p');hint.className='v124-budget-hint';hint.id='v124-budget-hint';hint.setAttribute('role','status');
  hint.textContent=`Bitte zuerst Jugendförderung bezahlen und ${career.world.season>1?`Saison ${career.world.season} starten`:'Transfers öffnen'} bestätigen.`;
- button.before(hint);
+ button.before(hint);button.setAttribute('aria-describedby','v124-budget-hint');
  const reduced=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
  button.scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'});
  button.focus({preventScroll:true});

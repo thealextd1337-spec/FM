@@ -44,6 +44,7 @@ async function geometry(page){
      await progress.click();await page.waitForTimeout(1200);
      const after=await geometry(page);
      assert(after.focused,label+': confirmation button focused');
+     assert.equal(await page.locator('[data-v124-budget]').getAttribute('aria-describedby'),'v124-budget-hint',label+': hint described');assert.equal(await page.locator('#v124-budget-hint').count(),1);
      assert.equal(after.hintCount,1,label+': exactly one hint');assert.equal(after.hintRole,'status');assert.equal(after.hintText.trim(),hints[language][season],label+': hint text');
      assert(after.rect.top>=0&&after.rect.bottom<=after.viewport.height,label+': button inside viewport '+JSON.stringify(after.rect));
      assert(after.hintRect.top>=0&&after.hintRect.bottom<=after.rect.top+1,label+': hint visible above button');

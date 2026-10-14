@@ -1178,6 +1178,7 @@ Aufstellung gültig · Änderungen werden automatisch gespeichert.	Valid lineup 
 Wähle Formation und Spielidee. Änderungen sind sofort auf dem Spielfeld sichtbar.	Choose a formation and playing style. Changes appear on the pitch immediately.
 Wähle Formation und Spielidee. Die Änderung gilt sofort.	Choose a formation and playing style. The change takes effect immediately.
 Ein Klick markiert nur ein Trikot. Zum Verschieben oder Wechseln Spieler ziehen oder mit der Tastatur Alt + Pfeiltasten nutzen.	A click only selects a shirt. To move or substitute players, drag them or use Alt + arrow keys on the keyboard.
+Ein Klick markiert nur ein Trikot. Zum Wechseln Ersatzspieler auf ein Trikot ziehen oder mit der Tastatur „Wählen“ nutzen; Positionen per Ziehen oder Alt + Pfeiltasten ändern. Wechsel erfolgen bei der nächsten Unterbrechung.	A click only selects a shirt. To substitute, drag a reserve onto a shirt or use “Select” with the keyboard; change positions by dragging or with Alt + arrow keys. Substitutions are made at the next stoppage.
 Spielpause	Match paused
 Taktikänderungen gelten sofort. Wechsel erfolgen bei der nächsten Unterbrechung.	Tactical changes take effect immediately. Substitutions happen at the next stoppage.
 Spiel fortsetzen	Resume match
