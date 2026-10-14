@@ -1,0 +1,17 @@
+evalmachine.<anonymous>:3
+ const penaltyBall=v182PenaltyFrameBall(current);if(penaltyBall)return penaltyBall;
+                   ^
+
+ReferenceError: v182PenaltyFrameBall is not defined
+    at Object.v99BallView (evalmachine.<anonymous>:3:20)
+    at F:\Neuer Ordner (2)\ChatGPT\Fussballmanager\work\release-r132\work\test-keeper-picture-v118.cjs:11:117
+    at check (F:\Neuer Ordner (2)\ChatGPT\Fussballmanager\work\release-r132\work\test-keeper-picture-v118.cjs:4:25)
+    at Object.<anonymous> (F:\Neuer Ordner (2)\ChatGPT\Fussballmanager\work\release-r132\work\test-keeper-picture-v118.cjs:11:1)
+    at Module._compile (node:internal/modules/cjs/loader:1872:14)
+    at Object..js (node:internal/modules/cjs/loader:2003:10)
+    at Module.load (node:internal/modules/cjs/loader:1594:32)
+    at Module._load (node:internal/modules/cjs/loader:1396:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+
+Node.js v24.19.0

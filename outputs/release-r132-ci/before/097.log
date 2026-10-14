@@ -1,0 +1,12 @@
+PASS numeric candidate survives JSON and materializes without saved functions
+PASS continuous positive field/keeper stamina factors preserve all references
+PASS controlled normal field workload reproduces 70/80/60 and half-time references
+PASS observed quiet/intense load changes cost; no automatic normal action quota
+PASS keeper normal reference includes actual jump/dive costs inside 40
+PASS overlapping active minutes/actions deduplicate causes and partial delivery
+PASS save/restore and repeated delivery preserve cost and recovery exactly
+PASS explicit linear fatigue curves preserve approved maxima and base skill exemptions
+PASS raw bounded form matches existing half-point impact without fatigue-derived form loss
+PASS materialization is deterministic, isolates mutable restore input and rejects invalid parameters
+PASS UMD browser export has no DOM/clock/random dependency and matches Node
+11 player load candidate v158 groups passed

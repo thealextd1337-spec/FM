@@ -1,0 +1,22 @@
+{
+  "root": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\release-r132\\work\\release-tmp-base",
+  "node": "C:\\Users\\alex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "python": "C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "timestamp": "2026-10-14T10:11:32.388816",
+  "results": [
+    {
+      "index": 104,
+      "command": "node work/test-keeper-picture-v118.cjs outputs/3d-quality/iteration-119/keeper-legacy",
+      "exit": 0,
+      "seconds": 0.087,
+      "log": "104.log"
+    },
+    {
+      "index": 106,
+      "command": "node work/test-3d-contacts-v119.cjs",
+      "exit": 0,
+      "seconds": 0.08,
+      "log": "106.log"
+    }
+  ]
+}

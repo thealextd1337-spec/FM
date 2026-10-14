@@ -1,0 +1,8 @@
+PASS New squads have six regular starters, three rotation players and two backups
+PASS Promise bands and legacy save reads retain stored numbers
+PASS Six-field-player worlds use seven regular starters and one backup
+PASS Weighted credits, current expectation and midseason target use native promises
+PASS Existing form consequence occurs once and remains capped
+PASS Depth warns about missing direct backup and too many promised starters
+PASS AI rotates similar players gently, protects quality and saved lineups
+PASS Accepted transfers and renewals establish the selected role through real contracts

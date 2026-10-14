@@ -1,0 +1,14 @@
+{
+  "scope": "272 controlled actual production goal-tail projections; no match reachability/frequency or Unity mesh/device claim",
+  "cases": 272,
+  "slowContinued": 64,
+  "randomDraws": 0,
+  "worstPauseBannerJump": 8.82534862967077e-8,
+  "worstRestNetPenetration": -0.00024945820248056805,
+  "hashes": {
+    "dist/world-pitch3d-v98.js": "affe1b20e96826f30c09da9601ae310c507c0219528f34fbdb2dde1b75257668",
+    "dist/world-unity-v151.js": "6bf98c94c8881c35d9d3f5afb4b3d55097164e7969fbbb1b176d034b58b7812f",
+    "dist/world-pitch-actions-v99.js": "3e2b515b920e75ba717842de2d470ba30f4701d2b2168ea13a7061ffd607f01f"
+  },
+  "output": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\release-r132\\outputs\\lowpoly-live-rollout-20261013\\goal-tail-controlled.json"
+}

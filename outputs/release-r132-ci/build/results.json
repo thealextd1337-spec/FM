@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-10-14T10:25:08.980637",
+  "testFixCommit": "febe053c45ac896d6a359be39c8b8282d8bccf47",
+  "node": "v24.19.0",
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "results": [
+    {
+      "command": "node work/build.cjs",
+      "exit": 0,
+      "seconds": 37.023,
+      "log": "001.log"
+    },
+    {
+      "command": "node work/ui-redesign/shared/verify-build.cjs",
+      "exit": 0,
+      "seconds": 2.689,
+      "log": "002.log"
+    }
+  ],
+  "hashes": {
+    "dist/index.html": "290443a21c313c87a6358eed1aff2141512e5fc49e549bc205f3c35178e34691",
+    "outputs/index.html": "91ac4f5882772da9e7daaac425f43663953de4672a45f912828c0084931dd8b7",
+    "outputs/Doppel-6-Fussballmanager.html": "91ac4f5882772da9e7daaac425f43663953de4672a45f912828c0084931dd8b7",
+    ".github/workflows/deploy.yml": "3c451d36e76f3749a201c20778b9e9fafcfffe8f0b17a78c63f90e929ea7f2c6"
+  },
+  "versions": {
+    "dist/index.html": [
+      "PROTOTYP 131"
+    ],
+    "outputs/index.html": [
+      "PROTOTYP 131"
+    ],
+    "outputs/Doppel-6-Fussballmanager.html": [
+      "PROTOTYP 131"
+    ]
+  },
+  "distChanges": []
+}

@@ -1,0 +1,15 @@
+{
+  "root": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\release-r132",
+  "node": "C:\\Users\\alex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "python": "C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "timestamp": "2026-10-14T10:15:09.752281",
+  "results": [
+    {
+      "index": 114,
+      "command": "node work/audit-world-balance-v68.cjs",
+      "exit": 1,
+      "seconds": 84.446,
+      "log": "114.log"
+    }
+  ]
+}

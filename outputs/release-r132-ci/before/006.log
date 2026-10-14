@@ -1,0 +1,18 @@
+PASS inactive2D uses native callbacks only
+PASS public visible Unity gets same frame fallback
+PASS sameorigin Unity iframe inherits scope
+PASS one callback when native wins
+PASS one callback when fallback wins
+PASS cancel both race paths
+PASS callbacks share a frame timestamp
+PASS nested requests wait for next frame
+PASS render cost does not add a fresh 16ms wait
+PASS one callback can cancel another pending callback
+PASS hidden pauses and visible resumes
+PASS pagehide suspends queue and pageshow resumes exactlyonce
+PASS callback exception does not prevent other callbacks
+PASS 15.625ms timer coalescing preserves over50 real callback FPS
+PASS leaving3D keeps pending native callback and removes timer
+PASS crossorigin iframe cannot inherit3D scope
+PASS iframe runtime embeds exactlythe same scheduler
+{"checks":17,"passed":17}

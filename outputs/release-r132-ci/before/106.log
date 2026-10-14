@@ -1,0 +1,17 @@
+evalmachine.<anonymous>:33
+const v182BaseOwnedBall=v123OwnedBall;
+                        ^
+
+ReferenceError: v123OwnedBall is not defined
+    at evalmachine.<anonymous>:33:25
+    at Script.runInContext (node:vm:149:12)
+    at Object.runInContext (node:vm:301:6)
+    at Object.<anonymous> (F:\Neuer Ordner (2)\ChatGPT\Fussballmanager\work\release-r132\work\test-3d-contacts-v119.cjs:6:4)
+    at Module._compile (node:internal/modules/cjs/loader:1872:14)
+    at Object..js (node:internal/modules/cjs/loader:2003:10)
+    at Module.load (node:internal/modules/cjs/loader:1594:32)
+    at Module._load (node:internal/modules/cjs/loader:1396:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+
+Node.js v24.19.0
