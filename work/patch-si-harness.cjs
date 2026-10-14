@@ -98,7 +98,9 @@ variants['si-full42-b03soft']=[...variants['si-full42'],...variants.b03soft];
 // worse shots relative to the best pass, weak passers need wider lanes.
 variants.skillgate=[['world-offensive-quality-v157.js',"shot>=passValue*.7&&random()<Math.min(.95,shot*2.2+","shot>=passValue*(.5+ability(p,'dec')*.02)&&random()<Math.min(.95,shot*2.2+"],
  ['world-offensive-quality-v157.js',"v157Lane(m,p,o.target,rivals,p.tacticalRole==='playmaker'||ability(p,'pas')>=14?1.0:1.4)","v157Lane(m,p,o.target,rivals,clamp(1.4-(ability(p,'pas')-10)*.05-(p.tacticalRole==='playmaker'?.2:0),.9,1.7))"]];
-variants['si-max42-skill']=[...variants['si-max42'],...variants.skillgate];`);
+variants['si-max42-skill']=[...variants['si-max42'],...variants.skillgate];
+// norisk: the maximal package without the blanket risk lever (risk alone cost shots, goals and favourite wins).
+variants['si-max42-norisk']=variants['si-max42'].filter(r=>!variants.risk.some(x=>x[1]===r[1]));`);
 rep(`const frozen=Object.fromEntries(['game.js','world-offensive-quality-v157.js','world-football-flow-v159.js','pitch-v55.js','pitch-v56.js','set-pieces-v50.js','world-physical-v65.js'].map(`,
 `const frozen=Object.fromEntries(['game.js','world-offensive-quality-v157.js','world-football-flow-v159.js','pitch-v55.js','pitch-v56.js','pitch-v57.js','set-pieces-v50.js','world-physical-v65.js','match-shot-choice-v159.js','player-ball-events-v111.js','world-space-passes-v150.js','world-ball-motion-v110.js'].map(`);
 rep(`const statKeys=['shots','onTarget','goals','passes','passComplete','duels','duelsWon','tackleAttempts','tacklesWon','slideAttempts','slideWon','fouls','interceptions','saves','faced','headers','volleys','shotGoals','nonShotGoals','savesCaught','savesParried','shotsInterrupted'];`,

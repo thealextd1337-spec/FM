@@ -144,6 +144,8 @@ variants['si-full42-b03soft']=[...variants['si-full42'],...variants.b03soft];
 variants.skillgate=[['world-offensive-quality-v157.js',"shot>=passValue*.7&&random()<Math.min(.95,shot*2.2+","shot>=passValue*(.5+ability(p,'dec')*.02)&&random()<Math.min(.95,shot*2.2+"],
  ['world-offensive-quality-v157.js',"v157Lane(m,p,o.target,rivals,p.tacticalRole==='playmaker'||ability(p,'pas')>=14?1.0:1.4)","v157Lane(m,p,o.target,rivals,clamp(1.4-(ability(p,'pas')-10)*.05-(p.tacticalRole==='playmaker'?.2:0),.9,1.7))"]];
 variants['si-max42-skill']=[...variants['si-max42'],...variants.skillgate];
+// norisk: the maximal package without the blanket risk lever (risk alone cost shots, goals and favourite wins).
+variants['si-max42-norisk']=variants['si-max42'].filter(r=>!variants.risk.some(x=>x[1]===r[1]));
 // Setup-only variant: remove the B03 pursuit marker right after creation (pre-B03 defence).
 const setupVariants={'speed45-full-c160-nob03':{deletePursuit:true},'no-b03':{deletePursuit:true},'no-b03-b12':{deletePursuit:true,deleteLoose:true}};
 const replacements=variants[variantName]||(setupVariants[variantName]?[]:null);

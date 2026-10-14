@@ -14,12 +14,14 @@ Zeilenangaben beziehen sich auf `dist/` in `e4e531c0`. Alle Metriken sind Szenen
 2. **Die Optionen sehen nur den aktuellen Tick.** Schussqualität (`v157ShotQuality`) ist ein Geometriefilter mit harter 22-m-Grenze ohne Fähigkeitsfenster; Passwert ist „Raumgewinn minus Länge“; Dribbling existiert nur für die Rolle „Dribbler“ bei exakt einem Gegner. Antizipation (wo wird der Raum in einer Sekunde sein), Teamkoordination (Doppelpass, Hinterlaufen, Boxbesetzung) und Persönlichkeit (Risikofreude eines Spielmachers, Schussfreude eines Torjägers) sind nicht modelliert; Rollen wirken nur über Laufziele.
 3. **Freilaufen ist auf drei Spieler begrenzt.** `v159Offers` plant je Ballbesitz einen (Standardfeld) oder zwei (großes Feld) Tiefenläufer und einen Unterstützer; alle übrigen Mitspieler „erholen“ sich in ihre Formationszone. Mit fünf Feldspielern laufen damit zwei bis drei Spieler überhaupt nicht an.
 4. **Vier Überlagerungen entscheiden doppelt oder sind tot.** `v152PrepareAttack` plant Läufe, die `v159Offers` sofort überschreibt; `action` in `pitch-v55.js` enthält hinter `v157Decide` einen kompletten zweiten Entscheidungsbaum, der für neue Partien nie erreicht wird; Zweikämpfe werden pro Tick (`v182ContactCheck`) und pro Entscheidung (`v56MaybeChallenge`) ausgelöst; Druck wird teils in Metern, teils in normalisierten Einheiten gemessen und skaliert damit mit der Feldgröße.
-5. **Dauer und Dynamik hängen an versteckten Einheiten.** Entscheidungstakte stehen teils in Uhreinheiten (`.75`, `.55`), teils in Echtzeit (`.24*MATCH_SPEED`); Freistöße dauern nicht wegen der Formation, sondern weil die zwei foulgesperrten Spieler 2,7 s stehen und danach ihre Laufzeit in die Wartezeit eingeht (gemessen 8,7 s je Freistoß).
+5. **Dauer und Dynamik hängen an versteckten Einheiten.** Entscheidungstakte stehen teils in Uhreinheiten (`.75`, `.55`), teils in Echtzeit (`.24*MATCH_SPEED`); Freistöße dauern nicht wegen der Formation, sondern weil die zwei foulgesperrten Spieler 2,7 s stehen und danach ihre Laufzeit in die Wartezeit eingeht (gemessen 8,5 s je Freistoß, mit Teleport 2,8 s).
 6. **Großes Feld:** Formationsanker, Abwehrlinie, Druck- und Foulradien sind normalisiert (skalieren um 20 %), Pass-, Lauf- und Schussreichweiten stehen in Metern. Deshalb sind Mitspieler weiter weg als die Passoptionen reichen, die Zone wird seltener erreicht (3,05 statt 4,05 Schüsse) und Druck wirkt stärker. Ein zweiter Tiefenläufer gibt es nur dort.
 
 **Zielbild in Kürze (Abschnitt 4).** Ein einheitliches Bewertungsmodell je Ballführer-Option (Schuss-xG, Passwert mit Risiko und Empfängerfreiheit, Dribbling-/Tragewert) mit Rollen- und Persönlichkeitsgewichten; ein Freilaufmodell für alle Mitspieler mit Boxbesetzung und koordinierten Mustern; ein Torwartmodell mit echter Fähigkeitswirkung; Standards mit Teleport und fester Wartezeit; ein Uhrvertrag je Partie in Echtzeit; Marker-gebunden für neue Partien, deterministisch und restore-fähig, mit Entscheidungsprotokoll für Erklärbarkeit.
 
-**Beste gemessene Kombination.** Siehe Abschnitt 5.3 (wird aus der Messreihe `outputs/si-r132/` ergänzt).
+**Beste gemessene Kombination** (Abschnitt 5.3, 192 gepaarte Partien, beide Feldgrößen): Entscheidungsmodell + Freilaufen/Boxbesetzung + Flanken + Ballführer 1,6× + Torwartmodell + Teleport + Uhr 0,42, ohne pauschales Spielmacher-Risiko (`si-max42-norisk`): **4,18 min, 7,5 Schüsse (2,6 aufs Tor), 1,64 Tore, 21 % 0:0, Favoriten 66 %**, 11 % Fernschüsse von Schützen mit Abschluss ≈14, 2,3 Abpraller, 0,27 Ecken, 1,5 Flanken, Freistoß 2,9 statt 8,5 s; großes Feld 6,9 Schüsse / 1,6 Tore / 67 %. Mit Uhr 0,40 (`si-full40`) 4,37 min und 90 % der Partien im Fenster 4–6 min. Die Schussmenge bleibt unter 10; die Lücke liegt bei Abprallerverwertung und Passdrehung (5.3).
+
+**Was die Hebel einzeln zeigen** (5.4): Ballführer-Tempo mit kurzer Passdrehung ist der stärkste Einzelhebel für Tore (+0,32); Uhr mit Teleport der stärkste für Dauer und Stärke (Favoriten 55 %); das Schuss-Optionsmodell und das Spielmacher-Risiko schaden allein (Fernschüsse ohne Alternativen, Varianz zugunsten des Außenseiters) und tragen nur im Verbund; Torwartreichweite nach Torwartspiel senkt Tore um 0,16 und macht Torwartstärke erstmals messbar; Abpraller und Ecken folgen den Schüssen aufs Tor, nicht eigenen Schwellen.
 
 ## 2. Architekturkarte
 
@@ -173,11 +175,11 @@ Je Entscheidung werden alle Optionen mit demselben Maß bewertet: **erwarteter T
 | Option | Nutzen | Risiko | Fähigkeiten/Persönlichkeit |
 | --- | --- | --- | --- |
 | Schuss | xG(d, Winkel, Blocker, Torwartposition) · Qualität; Distanzfenster `16 m + 0,7 m·fin` (fin 8: 21,6 m; fin 14: 25,8 m; fin 18: 28,6 m) | Ballverlust nach Fehlschuss (Abstoß) | `fin`, `tec`; Torjäger/Stoßstürmer +Gewicht; Ruhe (geplant) senkt Druckmalus |
-| Pass (Boden/hoch/Raum) | Empfängerwert = xG-Potenzial am Zielpunkt in 1 s (Antizipation) + Raumgewinn | Abfangwahrscheinlichkeit aus Linienabstand, Flugzeit, Gegnertempo; Empfängerdruck | `pas`, `pos`; **Spielmacher**: Risikoschwelle −30 %, Lane 1,0 m statt 1,4 m, 26 m Reichweite; Abräumer/Verteidiger: Sicherheitsbonus für Rückpass |
+| Pass (Boden/hoch/Raum) | Empfängerwert = xG-Potenzial am Zielpunkt in 1 s (Antizipation) + Raumgewinn | Abfangwahrscheinlichkeit aus Linienabstand, Flugzeit, Gegnertempo, Passspiel des Gebers; Empfängerdruck | `pas`, `pos`; **Spielmacher**: höheres Gewicht auf Empfängerwert und Reichweite 26 m, aber keine pauschal engere Linie (gemessen schädlich, 5.4); Abräumer/Verteidiger: Sicherheitsbonus für Rückpass |
 | Dribbling/Tragen | Positionsgewinn in 1 s entlang des freien Korridors (Grundlinie für Flügel, Tormitte für Stürmer) | Zweikampfwahrscheinlichkeit des nächsten Gegners | `tec`, `spd`; Dribbler +Gewicht; Ballführer-Tempo 1,45–1,6× |
 | Halten/Abschirmen | kleiner Grundwert, steigt wenn alle Optionen riskant sind | Druck | Zielspieler +Gewicht |
 
-Entscheidung: beste Option, bei Nutzenabstand <0,05 gewichteter Zufall (eine Ziehung). Takt 0,25 s Echtzeit für alle Ballführer, Annahmefenster bleibt. Ergebnis wird als `decisionTrace` (Option, Nutzenwerte, Grund) in einen flüchtigen Ringpuffer geschrieben — Erklärbarkeit für Tests, Spielbericht („nach Doppelpass“) und spätere UI.
+Entscheidung: beste Option, bei Nutzenabstand <0,05 gewichteter Zufall (eine Ziehung). Takt 0,25 s Echtzeit für alle Ballführer, Annahmefenster bleibt. **Risiko ist kein pauschaler Rollenbonus**: Die Messung zeigt, dass engere Passlinien und häufigere Raumpässe für alle Spielmacher allein Schüsse, Tore und Favoritensiege kosten (Abschnitt 5.4). Risiko wird deshalb als Teil des Nutzens bewertet (Pass nur, wenn Empfängerwert × Ankunftswahrscheinlichkeit den sicheren Pass schlägt), mit der Fähigkeit des Passgebers in der Ankunftswahrscheinlichkeit und mit Spielstand/Restzeit als Gewicht (Rückstand erhöht die Risikobereitschaft). **Entscheidungsqualität hängt an Fähigkeiten**: Schwache Spieler bewerten Optionen mit Rauschen (Antizipation/Entscheidungen bzw. bis zu deren Einführung Stellungsspiel/Passspiel), starke Spieler nahe am wahren Nutzen. So wird Stärke sichtbar, ohne Ausführungsfehler weiter zu vergrößern. Ergebnis wird als `decisionTrace` (Option, Nutzenwerte, Grund) in einen flüchtigen Ringpuffer geschrieben — Erklärbarkeit für Tests, Spielbericht („nach Doppelpass“) und spätere UI.
 
 ### 4.2 Freilaufmodell ohne Ball
 
@@ -210,7 +212,7 @@ Freistoß/Abseits: Spieler außer Opfer/Täter werden in die Formation gesetzt (
 
 ### 4.8 Uhr- und Dauermodell all-inclusive
 
-Neue Partien erhalten `match.clockRate` (Echtzeit-Sekunden je Uhreinheit) in `v65CreateMatch`; alle Takte in Echtzeit (W6 bereinigen); Budget: Laufzeit ≈ 75/Rate + Unterbrechungen (≈ 0,45–0,5 → 4,5–5 min mit Teleport, Messung Abschnitt 5). Keine adaptive Uhr (Determinismus), aber eine Nachspielzeit aus tatsächlichen Unterbrechungen wie heute. Eine Spielminute darf länger dauern (Nutzerentscheid), die 90-Minuten-Anzeige bleibt.
+Neue Partien erhalten `match.clockRate` (Echtzeit-Sekunden je Uhreinheit) in `v65CreateMatch`; alle Takte in Echtzeit (W6 bereinigen); Budget: Echtzeit ≈ 83 Uhreinheiten/Rate + ≈55 s Stillstand mit Teleport (gemessen: 0,42 → 4,2 min, 0,40 → 4,4 min mit 90 % der Partien in 4–6 min; für 5 min ≈0,34; Abschnitt 5.5). Keine adaptive Uhr (Determinismus), aber eine Nachspielzeit aus tatsächlichen Unterbrechungen wie heute. Eine Spielminute darf länger dauern (Nutzerentscheid), die 90-Minuten-Anzeige bleibt.
 
 ### 4.9 Rahmenbedingungen
 
@@ -246,6 +248,10 @@ Jede Variante spielt dieselben 192 Begegnungen wie die Basis (96 Vereine × 2 Fe
 | **si-fullXX** | si-attack-gk + speedXX + teleport + rebound |
 | si-full50-c160 / -b03soft | si-full50 mit Ballführer 1,6× bzw. mit b03soft |
 | si-max42 | si-full42 mit Ballführer 1,6× und b03soft |
+| si-max42-skill | si-max42 mit Fähigkeitsrauschen in der Entscheidung: Schuss gegen Pass mit Schwelle `.5+.02·dec`, Linienbreite `1,4−.05·(pas−10)` m |
+| si-max42-norisk | si-max42 ohne die risk-Ersetzungen (Linie 1,4 m, Reichweite 20/25 m, Raumpass wie Basis) |
+| si-full40 | si-attack-gk + speed40 + teleport + rebound |
+| si-full42-b03soft | si-full42 + b03soft |
 | si-full45-scale | si-full45 mit großfeld-skalierter Passreichweite, Raumpassreichweite und Laufvorlauf (×`v150Scale().x/48,53`) |
 
 ### 5.2 Pakete
@@ -289,11 +295,54 @@ Lesart:
 
 ### 5.3 Beste gemessene Kombination
 
-<!-- BEST -->
+Die Nutzerziele (4–6 min, 10–16 Schüsse, 2–3 Tore, ≈65 % Favoriten) erreicht am ehesten **si-max42-norisk**: Entscheidungsmodell (Schussfenster nach Abschluss, Querpass, Stürmer prüfen ein Fenster vor dem Tragen), Freilaufen aller Mitspieler mit Boxbesetzung, zwei Tiefenläufer, frühe Flanke mit Grundlinienlauf, Ballführer 1,6×, kurze Passdrehung, Torwartreichweite nach Torwartspiel, geringere Schussstreuung, Abprallrichtung, B03-Kontaktfenster 400 ms, Freistoß-Teleport und Uhrrate 0,42 — **ohne** pauschales Spielmacher-Risiko.
+
+| Kennzahl | Ziel | Basis R132 | si-max42-norisk | si-full40 (Uhr 0,40, mit Risiko) |
+| --- | --- | ---: | ---: | ---: |
+| Dauer all-inclusive | 4–6 min | 2,68 min (0 %) | 4,18 min (65 % im Fenster, 3,5–5,1) | 4,37 min (90 %, 3,5–5,8) |
+| Schüsse beider Teams | 10–16 | 3,68 (0 %) | 7,49 (18 % im Fenster) | 7,52 (19 %) |
+| aufs Tor | höher | 1,13 (30 %) | 2,64 (34 %) | 2,68 (35 %) |
+| Tore | 2–3 | 0,76 (18 % im Fenster, 52 % 0:0) | 1,64 (36 %, 21 % 0:0) | 1,66 (34 %, 20 % 0:0) |
+| Favoriten ≥1 Punkt | ≈65 % | 37 % | **66 %** (≥2: 69 %) | 62 % (≥2: 69 %) |
+| Tordifferenz je Stärkepunkt | sichtbar | 0,15 | 0,38 | 0,40 |
+| Fernschüsse >22 m | gute Schützen | 1 % | 11 % (Schützen Abschluss ≈14,3) | 13 % |
+| Abpraller (freie Bälle aus Schüssen) | mehr | 1,06 | 2,29 | 2,41 |
+| Ecken | mehr | 0,11 | 0,27 | 0,30 |
+| Flanken | mehr | 0,17 | 1,52 | 1,35 |
+| Fouls / Freistoßdauer | zügiger | 3,9 / 8,45 s | 5,9 / 2,89 s | 6,0 / 2,84 s |
+| Standardfeld: Schüsse / Tore / Favoriten | | 4,07 / 0,77 / 29 % | 8,04 / 1,67 / 66 % | 8,03 / 1,61 / 60 % |
+| Großes Feld: Schüsse / Tore / Favoriten | | 3,29 / 0,74 / 43 % | 6,94 / 1,60 / 67 % | 7,00 / 1,71 / 64 % |
+
+Beide Pakete liegen bei Dauer, Toren, Stärke, Fern­schüssen, Flanken, Abprallern und Freistoßtempo im oder am Zielbereich; **die Schussmenge bleibt mit 7,5 unter 10**. Die fehlenden Schüsse kommen nicht aus weiteren Schwellen (das drückt die Qualität, 5.4), sondern aus zwei noch nicht prototypisierten Quellen: (1) Abpraller werden kaum verwertet (2,3 freie Bälle aus Schüssen, 0,04 Abprallerschüsse — Jäger und Direktabschluss nach Parade, SI-3), (2) die Passdrehung bleibt der häufigste Zustand vor der Zone (10 Aufrufe je Partie bei 18–22 m — Körperstellung als Teil der Optionsbewertung, SI-1). Mit Uhrrate 0,40 statt 0,42 steigt die Dauer auf 4,4 min (90 % im Fenster) bei gleichen Ereigniszahlen; für ein Ziel von 5 min wäre ≈0,34 nötig (5.5).
+
+Favoritenquoten streuen bei 134 Partien um ±8 Punkte: si-full42 (mit Risiko) 54 %, si-max42 54 %, si-max42-norisk 66 %, si-full40 62 %. Robust ist der Befund, dass alle Uhr-/Teleport-Pakete 50–66 % erreichen (Basis 37 %) und dass das Entfernen des pauschalen Risikohebels die Quote nicht senkt, sondern hebt (5.4, risk allein 25 %).
 
 ### 5.4 Einzelhebel (gepaart gegen die Basis)
 
-<!-- LEVERS -->
+Jeder Hebel einzeln auf der Basis (Uhr 0,78), 192 Partien, gepaarte Differenz (±95 %). Favoritensiege bei ≥1 Punkt Stärkeabstand (134 Partien, ±8 Punkte Streuung).
+
+| Hebel | Min. | Schüsse | aufs Tor | Tore | Flanken | Raumpässe | Fouls | 0:0 | aufs Tor % | Tor/aufs Tor % | ≤14 m % | >22 m % | Fav. ≥1 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Basis | 2,68 | 3,68 | 1,13 | 0,76 | 0,17 | 4,33 | 3,92 | 52 % | 30 | 62 | 26 | 1 | 37 % |
+| si-move (Ballführer 1,45×, Drehung 0,55 rad) | 2,72 | 4,08 (+0,40 ±0,31) | 1,37 (+0,24) | **1,07 (+0,32 ±0,20)** | 0,17 | 4,15 | 3,77 | 33 % | 33 | 75 | 37 | 1 | 43 % |
+| decide (Optionsmodell Schuss) | 2,66 | 4,03 (+0,34 ±0,26) | 1,10 (−0,03) | 0,67 (−0,08 ±0,16) | 0,15 | 4,02 | 3,92 | 51 % | 27 | 58 | 13 | 15 | 31 % |
+| risk (Spielmacher-Risiko, Raumpässe) | 2,69 | 3,42 (−0,26 ±0,28) | 0,93 (−0,20) | 0,67 (−0,09 ±0,17) | 0,11 | 5,41 (+1,07) | 4,09 | 54 % | 26 | 65 | 25 | 0 | **25 %** |
+| offers (Freilaufen aller, Boxbesetzung) | 2,72 | 3,60 (−0,08) | 1,12 (−0,01) | 0,84 (+0,08 ±0,15) | 0,14 | 4,22 | 4,01 | 42 % | 30 | 68 | 31 | 1 | 45 % |
+| cross (Flanke früh, Grundlinienlauf) | 2,72 | 3,41 (−0,28 ±0,21) | 0,98 (−0,14) | 0,69 (−0,07 ±0,13) | **0,57 (+0,41 ±0,11)** | 4,14 | 4,13 | 52 % | 28 | 61 | 27 | 2 | 36 % |
+| gk (Torwartreichweite nach `gk`) | 2,63 | 3,45 (−0,23 ±0,16) | 1,07 (−0,06) | 0,60 (−0,16 ±0,11) | 0,17 | 4,22 | 3,87 | 55 % | 29 | **49** | 30 | 1 | 34 % |
+| teleport (Freistoß gesetzt) | **2,28 (−0,40 ±0,05)** | 3,51 (−0,17) | 1,04 (−0,08) | 0,80 (+0,05) | 0,16 | 4,21 | 4,04 | 48 % | 29 | 73 | 29 | 1 | 39 % |
+| rebound (Abprallrichtung, Paraden) | 2,68 | 3,69 (+0,01) | 1,10 (−0,02) | 0,73 (−0,03) | 0,18 | 4,40 | 3,88 | 52 % | 29 | 62 | 27 | 1 | 37 % |
+| speed50 + teleport (nur Uhr und Standards) | 3,52 (+0,83) | 5,40 (+1,72 ±0,32) | 1,77 (+0,64) | 1,23 (+0,47 ±0,20) | 0,17 | 5,74 | 5,89 | 28 % | 32 | 66 | 31 | 0 | **55 %** |
+| runners2 (zwei Tiefenläufer bei fünf Spielern) | 2,72 | 3,79 (+0,10 ±0,20) | 1,28 (+0,16 ±0,14) | 0,86 (+0,10 ±0,11) | 0,15 | 4,29 | 4,04 | 45 % | 33 | 63 | 27 | 2 | 39 % |
+
+Lesart:
+- **Verlässliche Einzelhebel** sind das Ballführer-Tempo mit kürzerer Passdrehung (+0,32 Tore, 75 % Tor je Schuss aufs Tor, 37 % Nahschüsse) und die Uhr mit Teleport (alle Ereignisse ×1,5, Favoriten 55 %). Beide verändern keine Entscheidung, sondern Zeit und Raum.
+- **Der Teleport allein verkürzt die Partie um 24 s** (8,45 → 2,84 s je Freistoß bei vier Freistößen), ohne Schüsse oder Tore zu verändern; in den Paketen wird er durch die Uhrrate überkompensiert und hält den Stillstand trotz doppelter Torzahl konstant.
+- **Das Schuss-Optionsmodell allein** verschiebt Abschlüsse von ≤14 m (26 → 13 %) nach >22 m (1 → 15 %) und kostet Tore; erst mit Freilaufen und Boxbesetzung (si-brain: +0,24 Tore) hat es bessere Alternativen zum Fernschuss. Ein Schussmodell braucht die Passalternativen im selben Maß — die isolierte Schwelle ist der Fehler der P01-Variante „attack“ in neuer Form.
+- **Pauschales Spielmacher-Risiko** verliert Bälle (Schüsse −0,26) und drückt den Favoriten auf 25 %: Risiko ist Varianz, und Varianz nützt dem Außenseiter. Risiko muss als Nutzen-Risiko-Term mit Fähigkeitsgewicht und Spielstand bewertet werden (Zielbild 4.1); die Nachserie prüft das Maximalpaket ohne diesen Hebel (5.7).
+- **Freilaufen** (offers) wirkt leise positiv (Tore +0,08, 0:0 52 → 42 %, Nahschüsse 31 %), die **Flanke** liefert 0,57 Flanken je Partie, kostet aber Schüsse, weil 80 % der Flanken nicht ankommen (Flankenfehler W12, Luftduell) und der Grundlinienlauf Abschlüsse verdrängt. Flanken brauchen das Ecken-Fehlermodell (B10) und eine Boxbesetzung mit zwei Spielern.
+- **Torwartmodell**: −0,16 Tore, Tor je Schuss aufs Tor 62 → 49 %, gehaltene Schüsse 11 → 15 %. Das ist der gewünschte Effekt (Torwartspiel wirkt), muss aber durch mehr Schüsse gegenfinanziert werden.
+- **Abprallerhebel allein** ist wirkungslos (+0,02 Ecken): Ohne Schüsse aufs Tor gibt es nichts, was abprallt.
 
 ### 5.5 Dauer-Modell all-inclusive
 
@@ -322,7 +371,20 @@ Der Teleport senkt die Freistoßdauer von 8,45 auf 2,84 s (≈ 3,8 s Foulszene o
 
 ### 5.7 Nachserie
 
-<!-- EXTRA -->
+| Variante | Min. | Schüsse | aufs Tor | Tore | Abpraller | Ecken | Flanken | Raumpässe | Fouls | 0:0 | 10–16 Schüsse | Fav. ≥1 | Fav. ≥2 | Tordiff./Pkt. |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| si-full42 (Referenz) | 4,18 | 6,72 | 2,36 | 1,51 | 2,02 | 0,25 | 1,23 | 7,42 | 6,21 | 26 % | 11 % | 54 % | 57 % | 0,26 |
+| si-max42 (+ Ballführer 1,6×, b03soft) | 4,15 | 7,52 (+0,80) | 2,64 | 1,52 | 2,17 | 0,28 | 1,50 | 7,12 | 5,86 | 24 % | 21 % | 54 % | 57 % | 0,29 |
+| si-max42-skill (+ Fähigkeitsrauschen in Schuss-/Passwahl) | 4,16 | 7,41 | 2,80 | 1,63 | 2,06 | 0,27 | 1,47 | 7,10 | 5,57 | 24 % | 18 % | 51 % | 52 % | 0,25 |
+| **si-max42-norisk** (ohne Risikohebel) | 4,18 | 7,49 | 2,64 | **1,64** | 2,29 | 0,27 | 1,52 | 5,79 | 5,91 | 21 % | 18 % | **66 %** | **69 %** | **0,38** |
+| si-full40 (Uhr 0,40) | **4,37** | 7,52 | 2,68 | 1,66 | 2,41 | 0,30 | 1,35 | 7,94 | 6,04 | 20 % | 19 % | 62 % | 69 % | 0,40 |
+<!-- EXTRA2 -->
+
+Lesart:
+- **Ballführer 1,6× statt 1,45×** bringt +0,8 Schüsse und +0,3 aufs Tor bei gleichen Toren und weniger Fouls; zusammen mit dem weicheren B03-Kontaktfenster erreichen 21 % der Partien 10–16 Schüsse (Standardfeld 32 %).
+- **Fähigkeitsrauschen in der Entscheidung** (schwache Spieler akzeptieren schlechtere Schüsse, schwache Passgeber brauchen breitere Linien) hebt Tore (+0,11) und Trefferquote (37 % aufs Tor), nicht aber die Favoritenquote (51 %). Die Stärke wird also nicht durch Rauschen bei den Schwachen sichtbar, sondern dadurch, dass die Starken ihre Chancen bekommen — sprich: über Ereignismenge und Ballbesitz im letzten Drittel, nicht über zusätzliche Fehler.
+- **Ohne pauschales Risiko** sinken Raumpässe von 7,1 auf 5,8 je Partie, Tore und Favoritensiege steigen. Das bestätigt 5.4: Risiko gehört in die Nutzenrechnung, nicht in einen Rollenbonus.
+- **Uhr 0,40** liefert 4,4 min mit 90 % der Partien im Zielfenster (Spanne 3,5–5,8) und ändert die Ereigniszahlen je Partie nicht; die Uhr ist damit vom Spielbild entkoppelt und kann als eigener Vertrag kalibriert werden.
 
 ## 6. Großes Feld und sechs Feldspieler
 
@@ -336,7 +398,27 @@ Der Teleport senkt die Freistoßdauer von 8,45 auf 2,84 s (≈ 3,8 s Foulszene o
 
 Folgen: (1) Mitspieler stehen 20 % weiter auseinander, die Passfilter nicht → weniger gültige Optionen, längeres Halten, mehr Fehlpässe (Passquote 84,6 % statt 88 %). (2) Die 22-m-Zone ist absolut gleich groß, der Weg dorthin 20 % länger bei gleichem Tempo → 3,05 statt 4,05 Schüsse (P01 2.9). (3) Druck- und Foulradien sind größer → Fouls dennoch seltener (3,5 statt 4,4), weil Spieler seltener in Kontakt kommen. (4) **Formationen**: die 6er-Grundordnungen (`v160SixFormations`, `world-match-v64.js:5`) belegen die Rasterzellen `[25,26,27,28,29,32]`/`[15..19,22]`/`[5..9,2]` (`:137`); der sechste Spieler landet je nach Reihe auf einer Randzelle (32 = Reihe 7 Mitte, 22 = Reihe 5 Mitte, 2 = Reihe 1 Mitte), nicht auf einer gleichmäßigen Verteilung — bei 2–2–2 stehen beide Angreifer auf 6/8, bei 1–2–3 ein Stürmer auf Zelle 9 (ganz rechts). Rollen bleiben zonenbezogen (`D6TacticTransitions`), die KI-Formationswechsel bei Rückstand/Führung nutzen 1–2–3/3–2–1 (`world-match-v64.js:276`). (5) **Zweiter Tiefenläufer nur hier** (`:207`), Unterstützer wie Standard; das zusätzliche Angebot wird durch die größeren Abstände aufgezehrt.
 
-Bewertung: Formationen und Rollen funktionieren auf dem großen Feld, aber die Raumaufteilung nicht: Ein Feld von 1,44-facher Fläche mit 1,2-fach Spielern braucht entweder meter-skalierte Reichweiten (Passlänge ×1,1, Angebotsraster ×1,2, Zone bleibt) oder normalisierte Druckradien in Metern. Das Zielbild (Abschnitt 4) definiert alle Radien in Metern und skaliert nur Angebotsraster und Passreichweite mit `v150Scale`. Ob das große Feld eigene Parameter (z. B. Uhrrate) braucht, zeigt die Messung je Feldgröße in Abschnitt 5.
+**Messung je Feldgröße** (192 Partien je Variante, 96 je Größe):
+
+| Kennzahl | Basis Standard | Basis groß | si-full42 Standard | si-full42 groß | si-max42 Standard | si-max42 groß |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Minuten | 2,71 | 2,66 | 4,25 | 4,11 | 4,21 | 4,09 |
+| Schüsse | 4,07 | 3,29 | 7,48 | 5,96 | 8,52 | 6,51 |
+| aufs Tor | 1,19 | 1,06 | 2,79 | 1,93 | 3,18 | 2,10 |
+| Tore | 0,77 | 0,74 | 1,73 | 1,28 | 1,80 | 1,23 |
+| 10–16 Schüsse | 0 % | 0 % | 18 % | 4 % | 32 % | 9 % |
+| 2–3 Tore | 19 % | 18 % | 50 % | 35 % | 36 % | 35 % |
+| Pässe je Partie / Quote | 55,7 / 88 % | 52,1 / 85 % | – | – | – | – |
+| Raumpässe | 3,8 | 4,9 | 6,7 | 8,1 | 6,5 | 7,8 |
+| Fouls | 4,4 | 3,5 | 6,8 | 5,7 | 6,1 | 5,6 |
+| Favoriten ≥1 (N 65 / 69) | 29 % | 43 % | 51 % | 57 % | 60 % | 48 % |
+| Tordifferenz je Stärkepunkt | 0,07 | 0,23 | 0,27 | 0,26 | 0,38 | 0,20 |
+
+Das große Feld liegt in allen Paketen 20–25 % unter dem Standardfeld bei Schüssen und Toren, die Dauer ist gleich; Raumpässe sind dort häufiger (mehr Platz, aber weitere Wege). Die Favoritenquote streut mit 69 Partien um ±10 Punkte; die Tordifferenz je Stärkepunkt ist auf dem großen Feld in den Paketen nicht höher als in der Basis — Stärke wird dort nicht sichtbarer, weil die zusätzlichen Ereignisse fehlen.
+
+<!-- SCALE -->
+
+Bewertung: Formationen und Rollen funktionieren auf dem großen Feld, aber die Raumaufteilung nicht: Ein Feld von 1,44-facher Fläche mit 1,2-fach Spielern braucht entweder meter-skalierte Reichweiten (Passlänge ×1,2, Angebotsraster ×1,2, Zone bleibt) oder normalisierte Druckradien in Metern. Das Zielbild (Abschnitt 4) definiert alle Radien in Metern und skaliert Angebotsraster, Pass- und Laufreichweiten mit `v150Scale`. Für gleiche Kennzahlen braucht das große Feld entweder diese Skalierung oder eigene Parameter (etwa Ballführer 1,6× und Uhrrate 0,40) — Abschnitt 5.7 misst die Skalierung.
 
 ## 7. Umsetzungsplan in Paketen
 
@@ -344,11 +426,11 @@ Jedes Paket: eigener Marker in `v65CreateMatch`, nur neue Partien; Prüfung mit 
 
 | Paket | Inhalt | Abhängigkeit | Risiko | Tests/Marker |
 | --- | --- | --- | --- | --- |
-| **SI-0 Uhrvertrag** | `match.clockRate` je neuer Partie; alle Takte in Echtzeit (W6); Teleport-Freistoß mit fester Wartezeit (4.7); P02-Lastprüfung | keine | gemischte Einheiten übersehen (68 `MATCH_SPEED`-Stellen) | `clockRevision=183`; Dauertest all-inclusive im Browser (Wanduhr) und Node |
-| **SI-1 Ballführer-Optionsmodell** | 4.1 inkl. Schussfenster nach `fin`, Passrisiko nach Rolle, Dribbling-/Tragewert, Querpass; toter Baum W1/W3 entfernen; `decisionTrace` | SI-0 | Verschiebung zu Distanzschüssen (P01 „attack“), Animationen B02 | `intelligenceRevision=184`; Schusshistogramm, Torquote je Schuss |
-| **SI-2 Freilaufen und Muster** | 4.2, 4.3 (Doppelpass, Hinterlaufen, Flügel/Flanke/Box, Konter); zwei Läufer auch bei fünf Spielern; Flankenfehler wie Ecken | SI-1 | Abseitshäufung, Formationsauflösung; Unity-Laufclips | `intelligenceRevision=185`; Flanken/Boxbesetzung je Partie, Abseits je Partie |
-| **SI-3 Torwart und Abpraller** | 4.5, 4.6; Parade-/Fangentscheidung; Paradenanimation P03 | SI-1 | P03 offen; Keeper-Masse/Clips | `keeperRevision=186`; Tor/aufs Tor, Paraden, Ecken je Partie |
-| **SI-4 Verteidigung und Radien** | 4.4; Radien in Metern (W4); ein Kontaktweg (W5); Pressingtempo als Parameter | SI-1 | B03-Abnahme offen; Foulquote | `pursuitRevision=187`; Fouls, Zweikampfquote |
+| **SI-0 Uhrvertrag** | `match.clockRate` je neuer Partie (gemessen: 0,42 → 4,2 min, 0,40 → 4,4 min mit 90 % der Partien in 4–6 min; Faustformel 83/Rate + 55 s); alle Takte in Echtzeit (W6); Teleport-Freistoß ohne Gesperrte in der Wartezeit (4.7, 8,45 → 2,84 s); P02-Lastprüfung | keine | gemischte Einheiten übersehen (68 `MATCH_SPEED`-Stellen); Teleport sichtbar (Frage 5) | `clockRevision=183`; Dauertest all-inclusive im Browser (Wanduhr) und Node; gepaart ≥192 |
+| **SI-1 Ballführer-Optionsmodell** | 4.1 inkl. Schussfenster nach `fin`, Passrisiko als Nutzenterm mit Fähigkeitsrauschen (kein pauschaler Rollenbonus), Dribbling-/Tragewert, Querpass; toter Baum W1/W3 entfernen; `decisionTrace` | SI-0 | Verschiebung zu Distanzschüssen (decide allein: Tore −0,08) und Varianz zulasten des Favoriten (risk allein: 25 % Favoritensiege) — nur im Verbund und mit Fähigkeitsgewicht einführen; Animationen B02 | `intelligenceRevision=184`; Schusshistogramm, Torquote je Schuss, Favoritenquote |
+| **SI-2 Freilaufen und Muster** | 4.2, 4.3 (Doppelpass, Hinterlaufen, Flügel/Flanke/Box, Konter); zwei Läufer auch bei fünf Spielern; Ballführer 1,6× mit kurzer Passdrehung (gemessen +0,32 Tore allein, +0,8 Schüsse gegenüber 1,45×); Flankenfehler wie Ecken (heute 80 % Fehlflanken) | SI-1 | Abseitshäufung, Formationsauflösung; Unity-Laufclips bei höherem Tempo (B02/B05) | `intelligenceRevision=185`; Flanken/Boxbesetzung je Partie, Flankenquote, Abseits je Partie |
+| **SI-3 Torwart und Abpraller** | 4.5, 4.6; Parade-/Fangentscheidung; **Abprallerverwertung**: Jäger starten vor dem Aufprall, Direktabschluss nach Parade/Block, Verteidiger klären statt aufnehmen (heute 2,3 freie Bälle aus Schüssen, aber nur 0,04 Abprallerschüsse) — der größte verbleibende Hebel für 10+ Schüsse; Paradenanimation P03 | SI-1 | P03 offen; Keeper-Masse/Clips | `keeperRevision=186`; Tor/aufs Tor, Paraden, Abprallerschüsse, Ecken je Partie |
+| **SI-4 Verteidigung und Radien** | 4.4; Radien in Metern (W4); ein Kontaktweg (W5); Pressingtempo als Parameter (gemessen: Kontaktfenster 400 ms und 1,45× ändern Schüsse/Tore nicht, senken Fouls um 0,5 — keine pauschale Entschärfung nötig) | SI-1 | B03-Abnahme offen; Foulquote (5,9–6,2 je Partie bei Uhr 0,42, davon viele aus der kontaktlosen Foulprobe) | `pursuitRevision=187`; Fouls, Zweikampfquote |
 | **SI-5 Großes Feld** | meter-skalierte Angebote/Passreichweite; Rasterverteilung für sechs Spieler | SI-2, SI-4 | Formationsumbau in UI | Messung je Feldgröße, Ziel gleiche Kennzahlen |
 | **SI-6 P02-Angleich** | kompakte Simulation an die neuen physischen Kennzahlen (Abschnitt 7.1) | SI-0…SI-4 gemessen | Schema der Compact-Parameter (`shotBalanceRevision`) | neue `compactBalance`-Kennung, 1.700-Partien-Matrix wie v178 |
 
@@ -372,7 +454,9 @@ Die kompakte Simulation (`v64Step`, `world-match-v64.js:285-313`; `v155CompactAc
 5. **Teleport sichtbar**: Alle außer Opfer/Täter werden gesetzt; soll ein kurzes Einblenden (0,3 s) die Teleportation kaschieren?
 6. **Direkter Freistoß**: Soll die 65-%-Regel durch Schützenbezug ersetzt werden (weniger, aber bessere Freistoßschüsse)?
 7. **Entscheidungsprotokoll**: nur Tests/Debug oder auch als Spielberichtstext („nach Flanke von …“)?
-8. **Reihenfolge**: SI-0 und SI-1 zuerst (größter Hebel), oder SI-0 mit Teleport allein als schnelle Zwischenversion?
+8. **Reihenfolge**: SI-0 und SI-1 zuerst (größter Hebel), oder SI-0 mit Teleport und Ballführer-Tempo allein als schnelle Zwischenversion (gemessen: Uhr 0,50 + Teleport ergibt 3,5 min, 5,4 Schüsse, 1,2 Tore, 55 % Favoriten ohne jede Entscheidungsänderung)?
+9. **Schusslücke**: 7,5 statt 10–16 Schüsse bei bereits 1,6 Toren. Sollen zusätzliche Schüsse vor allem aus Abprallern und Standards kommen (Torquote je Schuss sinkt, Tore bleiben 2–3), oder ist 7–9 Schüsse bei 2–3 Toren als Kleinfeldbild akzeptabel?
+10. **Großes Feld**: eigene Parameter (Ballführer 1,6×, Uhrrate) oder meter-skalierte Reichweiten (5.7)?
 
 ## 9. Messmethode und Reproduktion
 
@@ -382,7 +466,8 @@ Harness `work/measure-si-r132.cjs` (aus `work/measure-p01-r132.cjs` durch `work/
 $node='C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe'
 & $node work/patch-si-harness.cjs                    # erzeugt work/measure-si-r132.cjs
 & $node work/run-si-series-r132.cjs --set=all        # 19 Varianten, Ports 4262-4264
-& $node work/table-si-r132.cjs si-full45 si-full50 si-attack si-brain   # Tabellen (beide Feldgrößen)
+& $node work/run-si-series-r132.cjs --set=extra --ports=4265,4266   # Nachserie (6 Varianten)
+& $node work/table-si-r132.cjs si-max42-norisk si-full40 si-full42 si-brain   # Tabellen (beide Feldgrößen)
 & $node work/table-si-r132.cjs --size=large si-full45 si-full50         # je Feldgröße
 ```
 
