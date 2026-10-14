@@ -1,0 +1,508 @@
+{
+ "pass": true,
+ "checks": [
+  "Fresh constructor marks penalty182/setPiece182; restore of an unmarked match does not; session copies marker",
+  "Every high-corner probe reached an actual corner kick",
+  "Same draw count for old and new corner landings",
+  "New corners: rare real outs, weaker takers more often, landing normally at least 1 m inside",
+  "No corner exits next to the flag: out balls cross a far boundary"
+ ],
+ "failures": [],
+ "table": {
+  "old": {
+   "all": {
+    "n": 2200,
+    "exit": 0.291,
+    "exitEdges": {
+     "right": 130,
+     "top": 184,
+     "left": 130,
+     "bottom": 196
+    },
+    "meanError": 9.31,
+    "insideBelow1m": 0.022,
+    "first": {
+     "attack": 581,
+     "defence": 635,
+     "out:right": 251,
+     "keeper": 54,
+     "out:top": 192,
+     "goal:undefined": 40,
+     "out:left": 251,
+     "out:bottom": 196
+    },
+    "variants": {
+     "near": 712,
+     "central": 752,
+     "far": 736
+    }
+   },
+   "byLevel": {
+    "6": {
+     "n": 800,
+     "exit": 0.265,
+     "exitEdges": {
+      "right": 42,
+      "top": 60,
+      "left": 42,
+      "bottom": 68
+     },
+     "meanError": 10.05,
+     "insideBelow1m": 0.04,
+     "first": {
+      "attack": 203,
+      "defence": 208,
+      "out:right": 111,
+      "keeper": 22,
+      "out:top": 68,
+      "goal:undefined": 14,
+      "out:left": 106,
+      "out:bottom": 68
+     },
+     "variants": {
+      "near": 264,
+      "central": 264,
+      "far": 272
+     }
+    },
+    "12": {
+     "n": 800,
+     "exit": 0.275,
+     "exitEdges": {
+      "right": 44,
+      "top": 64,
+      "left": 44,
+      "bottom": 68
+     },
+     "meanError": 8.94,
+     "insideBelow1m": 0.02,
+     "first": {
+      "attack": 209,
+      "defence": 240,
+      "out:right": 86,
+      "keeper": 20,
+      "out:top": 64,
+      "goal:undefined": 22,
+      "out:left": 91,
+      "out:bottom": 68
+     },
+     "variants": {
+      "near": 264,
+      "central": 264,
+      "far": 272
+     }
+    },
+    "18": {
+     "n": 600,
+     "exit": 0.347,
+     "exitEdges": {
+      "top": 60,
+      "right": 44,
+      "left": 44,
+      "bottom": 60
+     },
+     "meanError": 8.82,
+     "insideBelow1m": 0,
+     "first": {
+      "defence": 187,
+      "out:top": 60,
+      "out:right": 54,
+      "attack": 169,
+      "goal:undefined": 4,
+      "out:left": 54,
+      "keeper": 12,
+      "out:bottom": 60
+     },
+     "variants": {
+      "central": 224,
+      "far": 192,
+      "near": 184
+     }
+    }
+   },
+   "byCorner": {
+    "team0-left": {
+     "n": 550,
+     "exit": 0.287,
+     "exitEdges": {
+      "right": 66,
+      "top": 92
+     },
+     "meanError": 9.26,
+     "insideBelow1m": 0.025,
+     "first": {
+      "attack": 158,
+      "defence": 146,
+      "out:right": 136,
+      "keeper": 8,
+      "out:top": 96,
+      "goal:undefined": 6
+     },
+     "variants": {
+      "near": 178,
+      "central": 188,
+      "far": 184
+     }
+    },
+    "team0-right": {
+     "n": 550,
+     "exit": 0.287,
+     "exitEdges": {
+      "left": 66,
+      "top": 92
+     },
+     "meanError": 9.26,
+     "insideBelow1m": 0.025,
+     "first": {
+      "defence": 153,
+      "out:left": 128,
+      "attack": 147,
+      "out:top": 96,
+      "keeper": 12,
+      "goal:undefined": 14
+     },
+     "variants": {
+      "near": 178,
+      "central": 188,
+      "far": 184
+     }
+    },
+    "team1-left": {
+     "n": 550,
+     "exit": 0.295,
+     "exitEdges": {
+      "bottom": 98,
+      "right": 64
+     },
+     "meanError": 9.37,
+     "insideBelow1m": 0.018,
+     "first": {
+      "defence": 160,
+      "out:bottom": 98,
+      "out:right": 115,
+      "attack": 159,
+      "goal:undefined": 8,
+      "keeper": 10
+     },
+     "variants": {
+      "near": 178,
+      "central": 188,
+      "far": 184
+     }
+    },
+    "team1-right": {
+     "n": 550,
+     "exit": 0.295,
+     "exitEdges": {
+      "bottom": 98,
+      "left": 64
+     },
+     "meanError": 9.37,
+     "insideBelow1m": 0.018,
+     "first": {
+      "defence": 176,
+      "out:bottom": 98,
+      "out:left": 123,
+      "attack": 117,
+      "keeper": 24,
+      "goal:undefined": 12
+     },
+     "variants": {
+      "near": 178,
+      "central": 188,
+      "far": 184
+     }
+    }
+   },
+   "byHalf": {
+    "1": {
+     "n": 1100,
+     "exit": 0.291,
+     "exitEdges": {
+      "right": 65,
+      "top": 92,
+      "left": 65,
+      "bottom": 98
+     },
+     "meanError": 9.31,
+     "insideBelow1m": 0.022,
+     "first": {
+      "attack": 296,
+      "defence": 312,
+      "out:right": 126,
+      "keeper": 27,
+      "out:top": 96,
+      "goal:undefined": 20,
+      "out:left": 125,
+      "out:bottom": 98
+     },
+     "variants": {
+      "near": 356,
+      "central": 376,
+      "far": 368
+     }
+    },
+    "2": {
+     "n": 1100,
+     "exit": 0.291,
+     "exitEdges": {
+      "right": 65,
+      "top": 92,
+      "left": 65,
+      "bottom": 98
+     },
+     "meanError": 9.31,
+     "insideBelow1m": 0.022,
+     "first": {
+      "attack": 285,
+      "defence": 323,
+      "out:right": 125,
+      "keeper": 27,
+      "out:top": 96,
+      "goal:undefined": 20,
+      "out:left": 126,
+      "out:bottom": 98
+     },
+     "variants": {
+      "near": 356,
+      "central": 376,
+      "far": 368
+     }
+    }
+   }
+  },
+  "new": {
+   "all": {
+    "n": 2200,
+    "exit": 0.011,
+    "exitEdges": {
+     "right": 12,
+     "left": 12
+    },
+    "meanError": 3.33,
+    "insideBelow1m": 0,
+    "first": {
+     "out:right": 196,
+     "defence": 737,
+     "attack": 790,
+     "keeper": 161,
+     "goal:undefined": 123,
+     "out:left": 191,
+     "out:bottom": 2
+    },
+    "variants": {
+     "near": 712,
+     "central": 752,
+     "far": 736
+    }
+   },
+   "byLevel": {
+    "6": {
+     "n": 800,
+     "exit": 0.02,
+     "exitEdges": {
+      "right": 8,
+      "left": 8
+     },
+     "meanError": 4.85,
+     "insideBelow1m": 0,
+     "first": {
+      "out:right": 94,
+      "defence": 238,
+      "attack": 283,
+      "keeper": 46,
+      "goal:undefined": 41,
+      "out:left": 96,
+      "out:bottom": 2
+     },
+     "variants": {
+      "near": 264,
+      "central": 264,
+      "far": 272
+     }
+    },
+    "12": {
+     "n": 800,
+     "exit": 0.01,
+     "exitEdges": {
+      "right": 4,
+      "left": 4
+     },
+     "meanError": 3.23,
+     "insideBelow1m": 0,
+     "first": {
+      "out:right": 66,
+      "defence": 281,
+      "attack": 276,
+      "keeper": 65,
+      "goal:undefined": 51,
+      "out:left": 61
+     },
+     "variants": {
+      "near": 264,
+      "central": 264,
+      "far": 272
+     }
+    },
+    "18": {
+     "n": 600,
+     "exit": 0,
+     "exitEdges": {},
+     "meanError": 1.44,
+     "insideBelow1m": 0,
+     "first": {
+      "attack": 231,
+      "defence": 218,
+      "out:right": 36,
+      "goal:undefined": 31,
+      "keeper": 50,
+      "out:left": 34
+     },
+     "variants": {
+      "central": 224,
+      "far": 192,
+      "near": 184
+     }
+    }
+   },
+   "byCorner": {
+    "team0-left": {
+     "n": 550,
+     "exit": 0.011,
+     "exitEdges": {
+      "right": 6
+     },
+     "meanError": 3.33,
+     "insideBelow1m": 0,
+     "first": {
+      "out:right": 104,
+      "defence": 174,
+      "attack": 208,
+      "keeper": 38,
+      "goal:undefined": 26
+     },
+     "variants": {
+      "near": 178,
+      "central": 188,
+      "far": 184
+     }
+    },
+    "team0-right": {
+     "n": 550,
+     "exit": 0.011,
+     "exitEdges": {
+      "left": 6
+     },
+     "meanError": 3.33,
+     "insideBelow1m": 0,
+     "first": {
+      "out:left": 94,
+      "defence": 211,
+      "attack": 157,
+      "keeper": 42,
+      "goal:undefined": 46
+     },
+     "variants": {
+      "near": 178,
+      "central": 188,
+      "far": 184
+     }
+    },
+    "team1-left": {
+     "n": 550,
+     "exit": 0.011,
+     "exitEdges": {
+      "right": 6
+     },
+     "meanError": 3.33,
+     "insideBelow1m": 0,
+     "first": {
+      "out:right": 92,
+      "attack": 223,
+      "defence": 175,
+      "out:bottom": 2,
+      "keeper": 39,
+      "goal:undefined": 19
+     },
+     "variants": {
+      "near": 178,
+      "central": 188,
+      "far": 184
+     }
+    },
+    "team1-right": {
+     "n": 550,
+     "exit": 0.011,
+     "exitEdges": {
+      "left": 6
+     },
+     "meanError": 3.33,
+     "insideBelow1m": 0,
+     "first": {
+      "out:left": 97,
+      "defence": 177,
+      "attack": 202,
+      "keeper": 42,
+      "goal:undefined": 32
+     },
+     "variants": {
+      "near": 178,
+      "central": 188,
+      "far": 184
+     }
+    }
+   },
+   "byHalf": {
+    "1": {
+     "n": 1100,
+     "exit": 0.011,
+     "exitEdges": {
+      "right": 6,
+      "left": 6
+     },
+     "meanError": 3.33,
+     "insideBelow1m": 0,
+     "first": {
+      "out:right": 98,
+      "defence": 363,
+      "attack": 403,
+      "keeper": 81,
+      "goal:undefined": 61,
+      "out:left": 93,
+      "out:bottom": 1
+     },
+     "variants": {
+      "near": 356,
+      "central": 376,
+      "far": 368
+     }
+    },
+    "2": {
+     "n": 1100,
+     "exit": 0.011,
+     "exitEdges": {
+      "right": 6,
+      "left": 6
+     },
+     "meanError": 3.33,
+     "insideBelow1m": 0,
+     "first": {
+      "out:right": 98,
+      "defence": 374,
+      "attack": 387,
+      "keeper": 80,
+      "goal:undefined": 62,
+      "out:left": 98,
+      "out:bottom": 1
+     },
+     "variants": {
+      "near": 356,
+      "central": 376,
+      "far": 368
+     }
+    }
+   }
+  }
+ },
+ "seeds": 100
+}
