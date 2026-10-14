@@ -108,6 +108,7 @@ function v50Restart(type,team,spot,description){
  const taker=v50BestTaker(team,type,spot);
  m.owner=null;m.flight=null;m.rebound=null;m.lastPass=null;m.next=Infinity;
  m.ball={...spot};m.setPiece={type,team,spot,taker,phase:'waiting',wait:type==='penalty'?2.5:type==='corner'?2:type==='offside'?v50OffsideFreezeSeconds+1.1:1.8};
+ if(type==='freeKick'&&m.attackFlow?.motionRevision===182)m.setPiece.plan=v182FreeKickPlan(m,m.setPiece);
  if(typeof v119FreeKickWall==='function'&&typeof v65WorldActive!=='undefined'&&v65WorldActive&&v119PaceActive(m)){
   const wall=v119FreeKickWall(m,m.setPiece);if(wall)m.setPiece.wall=wall;
  }
@@ -272,6 +273,17 @@ function v50TakeCorner(setPiece){
    note(`${receiver.name} erreicht die Flanke.`,'shot');
   }
  });
+}
+// r132 (B04): a new match (attackFlow.motionRevision 182) decides its free kick when the set piece is created: the same
+// single random draw for the direct attempt, only earlier, and the pass receiver from the positions at that moment. The
+// decision is a native fact the display may show during the wait; older matches decide at execution as before (the
+// production execution is v50TakeFreeKick of pitch-v55.js, which reads the plan).
+function v182FreeKickPlan(m,setPiece){
+ const team=setPiece.team,taker=setPiece.taker,goalDistance=team===0?setPiece.spot.y:1-setPiece.spot.y;
+ const direct=goalDistance<.38&&setPiece.spot.x>.18&&setPiece.spot.x<.82&&random()<.65;
+ const allies=v50Outfield(team).filter(player=>player!==taker);
+ const target=direct?null:[...allies].sort((a,b)=>(team===0?a.y-b.y:b.y-a.y)||distance(a,taker)-distance(b,taker))[0]||null;
+ return {direct,target};
 }
 function v50TakeFreeKick(setPiece){
  const m=match,taker=setPiece.taker,team=setPiece.team;
