@@ -15,6 +15,7 @@ function v56StandingTackle(tackler,victim){
  const m=match,info=v56ApproachInfo(tackler,victim);
  const world=typeof v65WorldActive!=='undefined'&&v65WorldActive;
  if(info.behind||info.ball>(world?30.4:39)||info.body>(world?40:43))return false;
+ if(typeof v182ChallengeAttempt==='function'&&!v182ChallengeAttempt(m))return false;
  if(typeof v158Contact==='function')v158Contact(m,tackler,victim);
  if(world&&typeof v102Pose==='function')v102Pose(m,tackler,'tackle',m.ball,m.ball);
  tackler.stats.duels++;victim.stats.duels++;tackler.stats.tackleAttempts=(tackler.stats.tackleAttempts||0)+1;
@@ -28,6 +29,7 @@ function v56StartSlide(tackler,victim){
  const m=match,ball={...m.ball},forward=v56Forward(victim),behind=v56ApproachInfo(tackler,victim).behind;
  const world=typeof v65WorldActive!=='undefined'&&v65WorldActive;
  if(world&&v122Metres(tackler,ball)>2.6)return false;
+ if(typeof v182ChallengeAttempt==='function'&&!v182ChallengeAttempt(m))return false;
  tackler.stats.slideAttempts++;tackler.stats.duels++;victim.stats.duels++;tackler.stats.tackleAttempts=(tackler.stats.tackleAttempts||0)+1;
  // A small boot follow-through in metres; the legacy normalized lead put the
  // landing point metres beyond the ball and could make a frontal slide miss it.
@@ -48,7 +50,7 @@ function v56AdvanceSlide(delta){
  tackler.y=slide.from.y+(slide.target.y-slide.from.y)*eased;
  tackler.tx=tackler.x;tackler.ty=tackler.y;
  const ballGap=v56Contact(tackler,m.ball),bodyGap=v56Contact(tackler,victim);
- if(bodyGap<27&&(ballGap>23||slide.behind)){
+ if(bodyGap<27&&(ballGap>23||slide.behind||typeof v182Behind==='function'&&v182Behind(tackler,victim)===true)){
   m.slide=null;tackler.recoverUntil=m.elapsed+.58;
   v50Foul(victim,tackler);return;
  }

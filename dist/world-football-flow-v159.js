@@ -81,7 +81,7 @@ function v182AirTarget(m,p,r){
  const air=v124AirBalls.get(m),runners=v132AirChasers.get(m)?.runners;if(air?.rebound!==r||!runners)return false;
  const seconds=clamp((air.vh+Math.sqrt(air.vh*air.vh+19.6*Math.max(0,air.height-.29)))/9.8,0,1.5),landing={x:clamp(r.x+r.vx*MATCH_SPEED*seconds,v55Field.left,v55Field.right),y:clamp(r.y+r.vy*MATCH_SPEED*seconds,v55Field.top,v55Field.bottom)};
  const chase=r.chase||(r.chase={pids:[null,null],at:-Infinity});
- if(!Array.isArray(chase.support))chase.support=[0,1].map(team=>m.people.filter(q=>q.t===team&&!q.keeper&&!q.slideActive&&!runners.includes(q)&&v122Metres(q,landing)<20).sort((a,b)=>v122Metres(a,landing)/(3+ability(a,'spd')*.14)-ability(a,'pos')*.01-(v122Metres(b,landing)/(3+ability(b,'spd')*.14)-ability(b,'pos')*.01)||a.n-b.n)[0]?.pid||null);
+ if(!Array.isArray(chase.support)||chase.support.some(id=>id&&runners.some(q=>q.pid===id)))chase.support=[0,1].map(team=>m.people.filter(q=>q.t===team&&!q.keeper&&!q.slideActive&&!runners.includes(q)&&v122Metres(q,landing)<20).sort((a,b)=>v122Metres(a,landing)/(3+ability(a,'spd')*.14)-ability(a,'pos')*.01-(v122Metres(b,landing)/(3+ability(b,'spd')*.14)-ability(b,'pos')*.01)||a.n-b.n)[0]?.pid||null);
  if(!chase.support.includes(p.pid))return false;
  const s=v150Scale(),point=v159Point({x:landing.x,y:landing.y+(p.t===0?1:-1)*3.5/s.y},s,.5);p.tx=point.x;p.ty=point.y;return true;
 }
@@ -93,7 +93,7 @@ function v182LooseTarget(m,p){
  const chase=v182LooseChasers(m,r);if(!chase.pids.includes(p.pid))return v182CoverTarget(m,p,r,chase);
  const point=v182Intercept(p,r).point;p.tx=point.x;p.ty=point.y;return true;
 }
-function v182LooseChasing(m,p){const r=v182LooseBall(m);return Boolean(r&&(r.chase?.pids?.includes(p.pid)||v182Airborne(m,r)&&r.chase?.support?.includes(p.pid)));}
+function v182LooseChasing(m,p){const r=v182LooseBall(m);return Boolean(r&&(r.chase?.pids?.includes(p.pid)||v182Airborne(m,r)&&(r.chase?.airPids?.includes(p.pid)||r.chase?.support?.includes(p.pid))));}
 // Defensive pursuit in matches created with pursuitRevision 182. A defender
 // reads the carrier's observed velocity and notices a clear cut only after a
 // skill-based reaction; a presser runs to a goal-side point (alongside first,
@@ -104,13 +104,16 @@ function v182PursuitActive(m){return Boolean(v162Active(m)&&m.attackFlow.pursuit
 const v182PursuitFollow=new WeakMap();
 function v182PursuitRead(m,p,owner,ready){
  const reads=m.attackFlow.pursuitReads||(m.attackFlow.pursuitReads={}),now=v152Seconds(m),body=v157Body(owner);let seen=reads[p.pid],changed=false;
- if(!seen||seen.owner!==owner.pid||now-seen.at>.3)seen=reads[p.pid]={owner:owner.pid,vx:body.vx,vy:body.vy,turnAt:null,at:now};
- const speed=Math.hypot(body.vx,body.vy),known=Math.hypot(seen.vx,seen.vy),turn=speed>1.5&&known>1.5?Math.abs(v157Angle(Math.atan2(seen.vx,seen.vy),Math.atan2(body.vx,body.vy))):0;
- if(turn>.6){
+ if(!seen||seen.owner!==owner.pid||now-seen.at>.3)seen=reads[p.pid]={owner:owner.pid,vx:body.vx,vy:body.vy,turnAt:null,at:now,referenceAt:now,referenceX:body.vx,referenceY:body.vy};
+ // Keep a reference across the naturally smoothed body turn, while tracking
+ // minor motion normally. A cut of at least 20 degrees starts a reaction window.
+ if(seen.referenceAt==null){seen.referenceAt=now;seen.referenceX=seen.vx;seen.referenceY=seen.vy;}
+ const speed=Math.hypot(body.vx,body.vy),known=Math.hypot(seen.referenceX,seen.referenceY),turn=speed>1.5&&known>1.5?Math.abs(v157Angle(Math.atan2(seen.referenceX,seen.referenceY),Math.atan2(body.vx,body.vy))):0;
+ if(turn>.35){
   if(seen.turnAt==null)seen.turnAt=now;
   const reaction=clamp(.3-(ability(p,'pos')-1)*.01+(typeof v158ReactionLoss==='function'?v158ReactionLoss(p):0),.1,.32);
-  if(now-seen.turnAt>=reaction){seen.vx=body.vx;seen.vy=body.vy;seen.turnAt=null;changed=true;}
- }else{seen.vx=body.vx;seen.vy=body.vy;seen.turnAt=null;}
+  if(now-seen.turnAt>=reaction){seen.vx=body.vx;seen.vy=body.vy;seen.turnAt=null;seen.referenceAt=now;seen.referenceX=body.vx;seen.referenceY=body.vy;changed=true;}
+  }else{seen.vx=body.vx;seen.vy=body.vy;seen.turnAt=null;if(now-seen.referenceAt>=.5||speed<=1.5){seen.referenceAt=now;seen.referenceX=body.vx;seen.referenceY=body.vy;}}
  seen.at=now;
  const s=v150Scale(),goal={x:.5,y:p.t===0?v55Field.bottom:v55Field.top},depth=q=>Math.abs(q.y-goal.y)*s.y,gx=(goal.x-owner.x)*s.x,gy=(goal.y-owner.y)*s.y,toward=(body.vx*gx+body.vy*gy)/(Math.hypot(gx,gy)||1);
  const beaten=ready.filter(q=>depth(owner)<=depth(q)+1&&v122Metres(q,owner)<20).sort((a,b)=>v122Metres(a,owner)-v122Metres(b,owner)||a.n-b.n)[0];
@@ -140,9 +143,19 @@ function v182Behind(tackler,victim){
 }
 // A defender who can keep pace accompanies rather than sliding in from behind.
 function v182Accompany(m,p,victim){if(!v182PursuitActive(m))return false;const body=v157Body(victim);return v182ChasePace(p)>=Math.hypot(body.vx,body.vy)-.2;}
+// Claim only an actual eligible challenge, shared by action and contact paths.
+// Plain match data preserves the lock over a checkpoint at the same native tick.
+function v182ChallengeAttempt(m){
+ if(!v182PursuitActive(m))return true;
+ const clock=v102Clock(m);if(m.attackFlow.challengeAt===clock)return false;
+ m.attackFlow.challengeAt=clock;return true;
+}
 // Per-tick contact window: a defender reaching standing range in front of or
 // beside the carrier challenges now, not only at the carrier's next decision.
 function v182ContactCheck(m){
+ // A failed challenge buys the carrier a brief contact window. Normal action
+ // decisions keep their cadence; only additional per-tick checks wait 250 ms.
+ if(v182PursuitActive(m)&&m.attackFlow.challengeAt!=null&&v102Clock(m)-m.attackFlow.challengeAt<.25)return false;
  const owner=m.owner;if(!v182PursuitActive(m)||!owner||owner.keeper||m.flight||m.slide||m.setPiece||m.kickoff||m.throwIn||m.finished||v121PositioningPaused(m)||m.elapsed>=m.next)return false;
  const standing=m.people.filter(q=>q.t!==owner.t&&!q.keeper&&!q.slideActive&&(q.recoverUntil||0)<=m.elapsed).filter(q=>{const info=v56ApproachInfo(q,owner);return !info.behind&&info.ball<30.4&&info.body<40;}).sort((a,b)=>v56Contact(a,m.ball)-v56Contact(b,m.ball)||a.n-b.n)[0];
  return standing?v56StandingTackle(standing,owner):false;
@@ -301,8 +314,8 @@ function v159DefensiveTarget(m,p){
  const flight=m.flight,owner=m.owner;if(!flight&&!owner)return false;
  const flow=m.attackFlow,now=v152Seconds(m),s=v150Scale(),reads=flow.defenseReads||(flow.defenseReads={}),prior=reads[p.pid],awareness=ability(p,'pos');
  const revised=v119PaceActive(m),ready=m.people.filter(q=>q.t===p.t&&!q.keeper&&!q.slideActive&&(!revised||(q.recoverUntil||0)<=m.elapsed)).sort((a,b)=>v122Metres(a,owner||m.ball)-v122Metres(b,owner||m.ball)||a.n-b.n);
- const localPressure=revised&&!flight&&owner&&!owner.keeper&&(p.recoverUntil||0)<=m.elapsed&&ready.slice(0,2).includes(p)&&v122Metres(p,owner)<=6;
- const threat=revised&&v119DefensiveThreat(m,p.t,ready),urgent=Boolean(threat&&threat.chasers.includes(p));
+ const localPressure=revised&&!flight&&owner&&!owner.keeper&&(p.recoverUntil||0)<=m.elapsed&&ready.slice(0,v182PursuitActive(m)?1:2).includes(p)&&v122Metres(p,owner)<=6;
+ const threat=revised&&v119DefensiveThreat(m,p.t,ready),urgent=Boolean(threat&&threat.chasers.includes(p)&&(!v182PursuitActive(m)||flight||ready[0]===p));
  const pursuit=!flight&&owner&&!owner.keeper&&v182PursuitActive(m)?v182PursuitRead(m,p,owner,ready):null;
  // Read public ball motion on a bounded, skill-based cadence. No future action,
  // chosen outcome or hidden rival intention is available to this defender.

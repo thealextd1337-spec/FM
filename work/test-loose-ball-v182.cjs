@@ -38,6 +38,10 @@ for(const team of [0,1])for(const size of ['standard','large'])check(`Both direc
  const pick=m=>runs[m].filter(r=>r.team===team&&r.size===size);assert(share(pick(true),'misalignedTicks','closeMovingTicks')<share(pick(false),'misalignedTicks','closeMovingTicks')/5);
 });
 check('v182 planners draw no random numbers',()=>{for(const kind of ['rolling','air'])assert(h.call('Native182.plannerDraws',{type:'loose',config:{kind,team:1,size:'large',seed:2,marker:true}})>0);});
+for(const tick of [20,21,22])check(`Air JSON checkpoint before first landing at tick ${tick}`,()=>{
+ const scene={type:'loose',config:{kind:'air',team:1,size:'large',seed:2,marker:true}};
+ assert.equal(h.call('Native182.continuation',scene,tick),h.call('Native182.continuation',scene,-1));
+});
 for(const kind of ['static','rolling','rebound'])check(`Actual JSON checkpoint continues identically ${kind}`,()=>{
  const scene={type:'loose',config:{kind,team:1,size:'large',seed:1,marker:true}};
  assert.equal(h.call('Native182.continuation',scene,8),h.call('Native182.continuation',scene,-1));
