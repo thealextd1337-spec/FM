@@ -130,20 +130,42 @@ function v119SimulateShootout(career,fixture){
  kick(0,homeWins);kick(1,!homeWins);
  return {score,kicks,conditioned:true};
 }
+// Results created from release 132 on use the played shootout format: three
+// kickers each with an early decision, then pairs. Saved results stay as they are.
+function v182SimulateShootout(career,fixture){
+ const squads=[v119ShootoutSquad(career,fixture,0),v119ShootoutSquad(career,fixture,1)],keepers=squads.map(players=>players.find(player=>player.keeper));
+ const random=v61Random(`${career.world.seed}:${fixture.id}:penalties`),score=[0,0],taken=[0,0],kicks=[];
+ const shooter=side=>squads[side][taken[side]%squads[side].length];
+ const book=(side,player,result)=>{taken[side]++;score[side]+=Number(result.goal);kicks.push({side,pid:player.pid,goal:result.goal,outcome:result.outcome,...result.frame?{frame:result.frame}:{}});};
+ for(let pair=0;pair<v182ShootoutPairs;pair++)for(const side of [0,1]){
+  const player=shooter(side);book(side,player,v182PenaltyOutcome(player,keepers[1-side],random));
+  const winner=v182ShootoutWinner(score,taken);if(winner!==null)return {score,kicks,conditioned:false,penaltyRevision:182};
+ }
+ // Same bound and deciding pair as the played shootout (v182NextKick).
+ const homeWins=v182DecidingHome(v182PenaltyGoalChance(shooter(0),keepers[1]),v182PenaltyGoalChance(shooter(1),keepers[0]),random);
+ book(0,shooter(0),v182DecidingKick(homeWins,random));book(1,shooter(1),v182DecidingKick(!homeWins,random));
+ return {score,kicks,conditioned:true,penaltyRevision:182};
+}
+function v182ResolveShootout(career,fixture,created){
+ const result=fixture.result;if(!created){result.penalties=v119SimulateShootout(career,fixture).score;return}
+ result.penalties=v182SimulateShootout(career,fixture).score;result.penaltyRevision=182;
+}
 function v62ResolveSingle(career,fixture){
+ const created=!fixture.result;
  fixture.result=fixture.result||v62Score(career,fixture);
  const result=fixture.result;
  if(result.homeGoals!==result.awayGoals)result.winnerId=result.homeGoals>result.awayGoals?fixture.homeId:fixture.awayId;
- else{if(!result.penalties)result.penalties=v119SimulateShootout(career,fixture).score;result.winnerId=result.penalties[0]>result.penalties[1]?fixture.homeId:fixture.awayId}
+ else{if(!result.penalties)v182ResolveShootout(career,fixture,created);result.winnerId=result.penalties[0]>result.penalties[1]?fixture.homeId:fixture.awayId}
 }
 function v62IsLeagueFixture(competition,fixture){return competition.type==='league'||competition.type==='europe'&&competition.format!=='horizon'&&fixture.round.startsWith('R');}
 function v62ResolveLeague(career,fixture){fixture.result=fixture.result||v62Score(career,fixture)}
 function v62ResolveSecondLeg(career,fixture,competition){
+ const created=!fixture.result;
  fixture.result=fixture.result||v62Score(career,fixture);
  const first=competition.fixtures.find(item=>item.pair===fixture.pair&&item.round===fixture.round&&item.leg===1);
  const homeTotal=fixture.result.homeGoals+first.result.awayGoals,awayTotal=fixture.result.awayGoals+first.result.homeGoals;
  fixture.result.aggregate=[homeTotal,awayTotal];
- if(homeTotal===awayTotal&&!fixture.result.penalties)fixture.result.penalties=v119SimulateShootout(career,fixture).score;
+ if(homeTotal===awayTotal&&!fixture.result.penalties)v182ResolveShootout(career,fixture,created);
  fixture.result.winnerId=homeTotal>awayTotal?fixture.homeId:awayTotal>homeTotal?fixture.awayId:fixture.result.penalties[0]>fixture.result.penalties[1]?fixture.homeId:fixture.awayId;
 }
 function v62CupProgress(career,competition,day){

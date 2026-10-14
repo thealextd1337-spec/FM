@@ -1,0 +1,2245 @@
+{
+  "pass": true,
+  "checks": [
+    "v182ShootoutWinner: early decision within three kickers, then pairs",
+    "Played and compact shootouts end early at 2:0 after two pairs",
+    "Played and compact shootouts end early at 3:1 after the home third kick",
+    "After 3:3 the shootout continues pair by pair (sudden death) and rotates shooters",
+    "Both paths apply identical rules to identical draws (500 seeded shootouts)",
+    "Unmarked played session keeps the former rule (no early end at 2:0 after two pairs)",
+    "Compact resolver: only a result created now uses 182 and is marked; saved results keep their path",
+    "Compact 182 shootout is deterministic and survives JSON continuation",
+    "Outcome consistency: four draws, save only on the guessed side, woodwork only on misses",
+    "In-match penalty: marker selects 182 (four draws), unmarked keeps the former path",
+    "Seven shooters: marked preview and kick agree on the seventh, unmarked preview keeps the former rotation",
+    "Both new paths share the bound: after 103 tied pairs one conditioned deciding pair",
+    "Deciding pair resumes from the recorded home kick without transient state or a second winner draw",
+    "Woodwork picture: contact at the post/crossbar of the drawn goal, then a visible rebound",
+    "English: outcome texts, punctuation-free list variants and dynamic report texts via the actual translator",
+    "Woodwork reaches the shared THREE/Unity picture, mirrors both ends, and leaves native state and RNG untouched",
+    "Calibration: middle band about three quarters, moderate 15–20 point band spread, keeper-shooters do not collapse",
+    "Real squads: shootout conversion rises to a plausible level, weak bands stay well above collapse"
+  ],
+  "grid": [
+    {
+      "fresh": 100,
+      "shooter": "1–7",
+      "keeper": "1–7",
+      "oldGoal": 0.34,
+      "newGoal": 0.735,
+      "old": {
+        "inMatch": {
+          "goal": 0.34,
+          "save": 0.297,
+          "wide": 0.182,
+          "high": 0.182,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.34,
+          "save": 0.165,
+          "wide": 0.247,
+          "high": 0.247,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.735,
+        "save": 0.131,
+        "wide": 0.054,
+        "high": 0.045,
+        "post": 0.021,
+        "bar": 0.014
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "1–7",
+      "keeper": "8–10",
+      "oldGoal": 0.25,
+      "newGoal": 0.689,
+      "old": {
+        "inMatch": {
+          "goal": 0.25,
+          "save": 0.338,
+          "wide": 0.206,
+          "high": 0.206,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.25,
+          "save": 0.3,
+          "wide": 0.225,
+          "high": 0.225,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.689,
+        "save": 0.177,
+        "wide": 0.054,
+        "high": 0.045,
+        "post": 0.021,
+        "bar": 0.014
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "1–7",
+      "keeper": "11–13",
+      "oldGoal": 0.25,
+      "newGoal": 0.659,
+      "old": {
+        "inMatch": {
+          "goal": 0.25,
+          "save": 0.338,
+          "wide": 0.206,
+          "high": 0.206,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.25,
+          "save": 0.367,
+          "wide": 0.191,
+          "high": 0.191,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.659,
+        "save": 0.207,
+        "wide": 0.054,
+        "high": 0.045,
+        "post": 0.021,
+        "bar": 0.014
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "1–7",
+      "keeper": "14–16",
+      "oldGoal": 0.25,
+      "newGoal": 0.626,
+      "old": {
+        "inMatch": {
+          "goal": 0.25,
+          "save": 0.338,
+          "wide": 0.206,
+          "high": 0.206,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.25,
+          "save": 0.435,
+          "wide": 0.157,
+          "high": 0.157,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.626,
+        "save": 0.24,
+        "wide": 0.054,
+        "high": 0.045,
+        "post": 0.021,
+        "bar": 0.014
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "1–7",
+      "keeper": "17–20",
+      "oldGoal": 0.25,
+      "newGoal": 0.585,
+      "old": {
+        "inMatch": {
+          "goal": 0.25,
+          "save": 0.338,
+          "wide": 0.206,
+          "high": 0.206,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.25,
+          "save": 0.514,
+          "wide": 0.118,
+          "high": 0.118,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.585,
+        "save": 0.281,
+        "wide": 0.054,
+        "high": 0.045,
+        "post": 0.021,
+        "bar": 0.014
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "8–10",
+      "keeper": "1–7",
+      "oldGoal": 0.54,
+      "newGoal": 0.794,
+      "old": {
+        "inMatch": {
+          "goal": 0.54,
+          "save": 0.207,
+          "wide": 0.127,
+          "high": 0.127,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.54,
+          "save": 0.104,
+          "wide": 0.178,
+          "high": 0.178,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.794,
+        "save": 0.109,
+        "wide": 0.037,
+        "high": 0.035,
+        "post": 0.015,
+        "bar": 0.01
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "8–10",
+      "keeper": "8–10",
+      "oldGoal": 0.44,
+      "newGoal": 0.746,
+      "old": {
+        "inMatch": {
+          "goal": 0.44,
+          "save": 0.252,
+          "wide": 0.154,
+          "high": 0.154,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.44,
+          "save": 0.21,
+          "wide": 0.175,
+          "high": 0.175,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.746,
+        "save": 0.156,
+        "wide": 0.037,
+        "high": 0.035,
+        "post": 0.015,
+        "bar": 0.01
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "8–10",
+      "keeper": "11–13",
+      "oldGoal": 0.38,
+      "newGoal": 0.715,
+      "old": {
+        "inMatch": {
+          "goal": 0.38,
+          "save": 0.279,
+          "wide": 0.171,
+          "high": 0.171,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.38,
+          "save": 0.288,
+          "wide": 0.166,
+          "high": 0.166,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.715,
+        "save": 0.188,
+        "wide": 0.037,
+        "high": 0.035,
+        "post": 0.015,
+        "bar": 0.01
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "8–10",
+      "keeper": "14–16",
+      "oldGoal": 0.32,
+      "newGoal": 0.682,
+      "old": {
+        "inMatch": {
+          "goal": 0.32,
+          "save": 0.306,
+          "wide": 0.187,
+          "high": 0.187,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.32,
+          "save": 0.377,
+          "wide": 0.151,
+          "high": 0.151,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.682,
+        "save": 0.22,
+        "wide": 0.037,
+        "high": 0.035,
+        "post": 0.015,
+        "bar": 0.01
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "8–10",
+      "keeper": "17–20",
+      "oldGoal": 0.25,
+      "newGoal": 0.645,
+      "old": {
+        "inMatch": {
+          "goal": 0.25,
+          "save": 0.338,
+          "wide": 0.206,
+          "high": 0.206,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.25,
+          "save": 0.495,
+          "wide": 0.128,
+          "high": 0.128,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.645,
+        "save": 0.257,
+        "wide": 0.037,
+        "high": 0.035,
+        "post": 0.015,
+        "bar": 0.01
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "11–13",
+      "keeper": "1–7",
+      "oldGoal": 0.66,
+      "newGoal": 0.832,
+      "old": {
+        "inMatch": {
+          "goal": 0.66,
+          "save": 0.153,
+          "wide": 0.093,
+          "high": 0.093,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.66,
+          "save": 0.071,
+          "wide": 0.134,
+          "high": 0.134,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.832,
+        "save": 0.093,
+        "wide": 0.029,
+        "high": 0.026,
+        "post": 0.011,
+        "bar": 0.008
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "11–13",
+      "keeper": "8–10",
+      "oldGoal": 0.56,
+      "newGoal": 0.786,
+      "old": {
+        "inMatch": {
+          "goal": 0.56,
+          "save": 0.198,
+          "wide": 0.121,
+          "high": 0.121,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.56,
+          "save": 0.158,
+          "wide": 0.141,
+          "high": 0.141,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.786,
+        "save": 0.139,
+        "wide": 0.029,
+        "high": 0.026,
+        "post": 0.011,
+        "bar": 0.008
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "11–13",
+      "keeper": "11–13",
+      "oldGoal": 0.5,
+      "newGoal": 0.752,
+      "old": {
+        "inMatch": {
+          "goal": 0.5,
+          "save": 0.225,
+          "wide": 0.138,
+          "high": 0.138,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.5,
+          "save": 0.225,
+          "wide": 0.138,
+          "high": 0.138,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.752,
+        "save": 0.174,
+        "wide": 0.029,
+        "high": 0.026,
+        "post": 0.011,
+        "bar": 0.008
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "11–13",
+      "keeper": "14–16",
+      "oldGoal": 0.44,
+      "newGoal": 0.719,
+      "old": {
+        "inMatch": {
+          "goal": 0.44,
+          "save": 0.252,
+          "wide": 0.154,
+          "high": 0.154,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.44,
+          "save": 0.302,
+          "wide": 0.129,
+          "high": 0.129,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.719,
+        "save": 0.207,
+        "wide": 0.029,
+        "high": 0.026,
+        "post": 0.011,
+        "bar": 0.008
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "11–13",
+      "keeper": "17–20",
+      "oldGoal": 0.37,
+      "newGoal": 0.684,
+      "old": {
+        "inMatch": {
+          "goal": 0.37,
+          "save": 0.284,
+          "wide": 0.173,
+          "high": 0.173,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.37,
+          "save": 0.406,
+          "wide": 0.112,
+          "high": 0.112,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.684,
+        "save": 0.241,
+        "wide": 0.029,
+        "high": 0.026,
+        "post": 0.011,
+        "bar": 0.008
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "14–16",
+      "keeper": "1–7",
+      "oldGoal": 0.78,
+      "newGoal": 0.867,
+      "old": {
+        "inMatch": {
+          "goal": 0.78,
+          "save": 0.099,
+          "wide": 0.06,
+          "high": 0.06,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.78,
+          "save": 0.044,
+          "wide": 0.088,
+          "high": 0.088,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.867,
+        "save": 0.078,
+        "wide": 0.022,
+        "high": 0.019,
+        "post": 0.009,
+        "bar": 0.006
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "14–16",
+      "keeper": "8–10",
+      "oldGoal": 0.68,
+      "newGoal": 0.82,
+      "old": {
+        "inMatch": {
+          "goal": 0.68,
+          "save": 0.144,
+          "wide": 0.088,
+          "high": 0.088,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.68,
+          "save": 0.11,
+          "wide": 0.105,
+          "high": 0.105,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.82,
+        "save": 0.124,
+        "wide": 0.022,
+        "high": 0.019,
+        "post": 0.009,
+        "bar": 0.006
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "14–16",
+      "keeper": "11–13",
+      "oldGoal": 0.62,
+      "newGoal": 0.787,
+      "old": {
+        "inMatch": {
+          "goal": 0.62,
+          "save": 0.171,
+          "wide": 0.105,
+          "high": 0.105,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.62,
+          "save": 0.165,
+          "wide": 0.107,
+          "high": 0.107,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.787,
+        "save": 0.158,
+        "wide": 0.022,
+        "high": 0.019,
+        "post": 0.009,
+        "bar": 0.006
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "14–16",
+      "keeper": "14–16",
+      "oldGoal": 0.56,
+      "newGoal": 0.754,
+      "old": {
+        "inMatch": {
+          "goal": 0.56,
+          "save": 0.198,
+          "wide": 0.121,
+          "high": 0.121,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.56,
+          "save": 0.231,
+          "wide": 0.105,
+          "high": 0.105,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.754,
+        "save": 0.19,
+        "wide": 0.022,
+        "high": 0.019,
+        "post": 0.009,
+        "bar": 0.006
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "14–16",
+      "keeper": "17–20",
+      "oldGoal": 0.49,
+      "newGoal": 0.717,
+      "old": {
+        "inMatch": {
+          "goal": 0.49,
+          "save": 0.23,
+          "wide": 0.14,
+          "high": 0.14,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.49,
+          "save": 0.321,
+          "wide": 0.094,
+          "high": 0.094,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.717,
+        "save": 0.227,
+        "wide": 0.022,
+        "high": 0.019,
+        "post": 0.009,
+        "bar": 0.006
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "17–20",
+      "keeper": "1–7",
+      "oldGoal": 0.9,
+      "newGoal": 0.9,
+      "old": {
+        "inMatch": {
+          "goal": 0.9,
+          "save": 0.045,
+          "wide": 0.027,
+          "high": 0.027,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.9,
+          "save": 0.02,
+          "wide": 0.04,
+          "high": 0.04,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.9,
+        "save": 0.069,
+        "wide": 0.012,
+        "high": 0.012,
+        "post": 0.004,
+        "bar": 0.004
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "17–20",
+      "keeper": "8–10",
+      "oldGoal": 0.82,
+      "newGoal": 0.865,
+      "old": {
+        "inMatch": {
+          "goal": 0.82,
+          "save": 0.081,
+          "wide": 0.049,
+          "high": 0.049,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.82,
+          "save": 0.059,
+          "wide": 0.061,
+          "high": 0.061,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.865,
+        "save": 0.103,
+        "wide": 0.012,
+        "high": 0.012,
+        "post": 0.004,
+        "bar": 0.004
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "17–20",
+      "keeper": "11–13",
+      "oldGoal": 0.76,
+      "newGoal": 0.829,
+      "old": {
+        "inMatch": {
+          "goal": 0.76,
+          "save": 0.108,
+          "wide": 0.066,
+          "high": 0.066,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.76,
+          "save": 0.1,
+          "wide": 0.07,
+          "high": 0.07,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.829,
+        "save": 0.139,
+        "wide": 0.012,
+        "high": 0.012,
+        "post": 0.004,
+        "bar": 0.004
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "17–20",
+      "keeper": "14–16",
+      "oldGoal": 0.7,
+      "newGoal": 0.797,
+      "old": {
+        "inMatch": {
+          "goal": 0.7,
+          "save": 0.135,
+          "wide": 0.083,
+          "high": 0.083,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.7,
+          "save": 0.152,
+          "wide": 0.074,
+          "high": 0.074,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.797,
+        "save": 0.172,
+        "wide": 0.012,
+        "high": 0.012,
+        "post": 0.004,
+        "bar": 0.004
+      }
+    },
+    {
+      "fresh": 100,
+      "shooter": "17–20",
+      "keeper": "17–20",
+      "oldGoal": 0.63,
+      "newGoal": 0.758,
+      "old": {
+        "inMatch": {
+          "goal": 0.63,
+          "save": 0.167,
+          "wide": 0.102,
+          "high": 0.102,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.63,
+          "save": 0.227,
+          "wide": 0.072,
+          "high": 0.072,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.758,
+        "save": 0.211,
+        "wide": 0.012,
+        "high": 0.012,
+        "post": 0.004,
+        "bar": 0.004
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "1–7",
+      "keeper": "1–7",
+      "oldGoal": 0.298,
+      "newGoal": 0.72,
+      "old": {
+        "inMatch": {
+          "goal": 0.298,
+          "save": 0.316,
+          "wide": 0.193,
+          "high": 0.193,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.298,
+          "save": 0.175,
+          "wide": 0.263,
+          "high": 0.263,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.72,
+        "save": 0.13,
+        "wide": 0.06,
+        "high": 0.052,
+        "post": 0.023,
+        "bar": 0.015
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "1–7",
+      "keeper": "8–10",
+      "oldGoal": 0.25,
+      "newGoal": 0.675,
+      "old": {
+        "inMatch": {
+          "goal": 0.25,
+          "save": 0.338,
+          "wide": 0.206,
+          "high": 0.206,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.25,
+          "save": 0.3,
+          "wide": 0.225,
+          "high": 0.225,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.675,
+        "save": 0.175,
+        "wide": 0.06,
+        "high": 0.052,
+        "post": 0.023,
+        "bar": 0.015
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "1–7",
+      "keeper": "11–13",
+      "oldGoal": 0.25,
+      "newGoal": 0.645,
+      "old": {
+        "inMatch": {
+          "goal": 0.25,
+          "save": 0.338,
+          "wide": 0.206,
+          "high": 0.206,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.25,
+          "save": 0.367,
+          "wide": 0.191,
+          "high": 0.191,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.645,
+        "save": 0.205,
+        "wide": 0.06,
+        "high": 0.052,
+        "post": 0.023,
+        "bar": 0.015
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "1–7",
+      "keeper": "14–16",
+      "oldGoal": 0.25,
+      "newGoal": 0.612,
+      "old": {
+        "inMatch": {
+          "goal": 0.25,
+          "save": 0.338,
+          "wide": 0.206,
+          "high": 0.206,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.25,
+          "save": 0.435,
+          "wide": 0.157,
+          "high": 0.157,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.612,
+        "save": 0.238,
+        "wide": 0.06,
+        "high": 0.052,
+        "post": 0.023,
+        "bar": 0.015
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "1–7",
+      "keeper": "17–20",
+      "oldGoal": 0.25,
+      "newGoal": 0.572,
+      "old": {
+        "inMatch": {
+          "goal": 0.25,
+          "save": 0.338,
+          "wide": 0.206,
+          "high": 0.206,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.25,
+          "save": 0.514,
+          "wide": 0.118,
+          "high": 0.118,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.572,
+        "save": 0.277,
+        "wide": 0.06,
+        "high": 0.052,
+        "post": 0.023,
+        "bar": 0.015
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "8–10",
+      "keeper": "1–7",
+      "oldGoal": 0.498,
+      "newGoal": 0.776,
+      "old": {
+        "inMatch": {
+          "goal": 0.498,
+          "save": 0.226,
+          "wide": 0.138,
+          "high": 0.138,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.498,
+          "save": 0.113,
+          "wide": 0.195,
+          "high": 0.195,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.776,
+        "save": 0.107,
+        "wide": 0.046,
+        "high": 0.041,
+        "post": 0.018,
+        "bar": 0.012
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "8–10",
+      "keeper": "8–10",
+      "oldGoal": 0.398,
+      "newGoal": 0.731,
+      "old": {
+        "inMatch": {
+          "goal": 0.398,
+          "save": 0.271,
+          "wide": 0.166,
+          "high": 0.166,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.398,
+          "save": 0.226,
+          "wide": 0.188,
+          "high": 0.188,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.731,
+        "save": 0.153,
+        "wide": 0.046,
+        "high": 0.041,
+        "post": 0.018,
+        "bar": 0.012
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "8–10",
+      "keeper": "11–13",
+      "oldGoal": 0.338,
+      "newGoal": 0.699,
+      "old": {
+        "inMatch": {
+          "goal": 0.338,
+          "save": 0.298,
+          "wide": 0.182,
+          "high": 0.182,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.338,
+          "save": 0.308,
+          "wide": 0.177,
+          "high": 0.177,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.699,
+        "save": 0.184,
+        "wide": 0.046,
+        "high": 0.041,
+        "post": 0.018,
+        "bar": 0.012
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "8–10",
+      "keeper": "14–16",
+      "oldGoal": 0.278,
+      "newGoal": 0.668,
+      "old": {
+        "inMatch": {
+          "goal": 0.278,
+          "save": 0.325,
+          "wide": 0.199,
+          "high": 0.199,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.278,
+          "save": 0.401,
+          "wide": 0.161,
+          "high": 0.161,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.668,
+        "save": 0.216,
+        "wide": 0.046,
+        "high": 0.041,
+        "post": 0.018,
+        "bar": 0.012
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "8–10",
+      "keeper": "17–20",
+      "oldGoal": 0.25,
+      "newGoal": 0.631,
+      "old": {
+        "inMatch": {
+          "goal": 0.25,
+          "save": 0.338,
+          "wide": 0.206,
+          "high": 0.206,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.25,
+          "save": 0.495,
+          "wide": 0.128,
+          "high": 0.128,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.631,
+        "save": 0.252,
+        "wide": 0.046,
+        "high": 0.041,
+        "post": 0.018,
+        "bar": 0.012
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "11–13",
+      "keeper": "1–7",
+      "oldGoal": 0.618,
+      "newGoal": 0.815,
+      "old": {
+        "inMatch": {
+          "goal": 0.618,
+          "save": 0.172,
+          "wide": 0.105,
+          "high": 0.105,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.618,
+          "save": 0.08,
+          "wide": 0.151,
+          "high": 0.151,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.815,
+        "save": 0.091,
+        "wide": 0.036,
+        "high": 0.033,
+        "post": 0.015,
+        "bar": 0.01
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "11–13",
+      "keeper": "8–10",
+      "oldGoal": 0.518,
+      "newGoal": 0.77,
+      "old": {
+        "inMatch": {
+          "goal": 0.518,
+          "save": 0.217,
+          "wide": 0.133,
+          "high": 0.133,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.518,
+          "save": 0.174,
+          "wide": 0.154,
+          "high": 0.154,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.77,
+        "save": 0.136,
+        "wide": 0.036,
+        "high": 0.033,
+        "post": 0.015,
+        "bar": 0.01
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "11–13",
+      "keeper": "11–13",
+      "oldGoal": 0.458,
+      "newGoal": 0.736,
+      "old": {
+        "inMatch": {
+          "goal": 0.458,
+          "save": 0.244,
+          "wide": 0.149,
+          "high": 0.149,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.458,
+          "save": 0.244,
+          "wide": 0.149,
+          "high": 0.149,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.736,
+        "save": 0.17,
+        "wide": 0.036,
+        "high": 0.033,
+        "post": 0.015,
+        "bar": 0.01
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "11–13",
+      "keeper": "14–16",
+      "oldGoal": 0.398,
+      "newGoal": 0.704,
+      "old": {
+        "inMatch": {
+          "goal": 0.398,
+          "save": 0.271,
+          "wide": 0.166,
+          "high": 0.166,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.398,
+          "save": 0.325,
+          "wide": 0.138,
+          "high": 0.138,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.704,
+        "save": 0.202,
+        "wide": 0.036,
+        "high": 0.033,
+        "post": 0.015,
+        "bar": 0.01
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "11–13",
+      "keeper": "17–20",
+      "oldGoal": 0.328,
+      "newGoal": 0.669,
+      "old": {
+        "inMatch": {
+          "goal": 0.328,
+          "save": 0.302,
+          "wide": 0.185,
+          "high": 0.185,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.328,
+          "save": 0.433,
+          "wide": 0.119,
+          "high": 0.119,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.669,
+        "save": 0.237,
+        "wide": 0.036,
+        "high": 0.033,
+        "post": 0.015,
+        "bar": 0.01
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "14–16",
+      "keeper": "1–7",
+      "oldGoal": 0.738,
+      "newGoal": 0.852,
+      "old": {
+        "inMatch": {
+          "goal": 0.738,
+          "save": 0.118,
+          "wide": 0.072,
+          "high": 0.072,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.738,
+          "save": 0.052,
+          "wide": 0.105,
+          "high": 0.105,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.852,
+        "save": 0.076,
+        "wide": 0.029,
+        "high": 0.025,
+        "post": 0.011,
+        "bar": 0.007
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "14–16",
+      "keeper": "8–10",
+      "oldGoal": 0.638,
+      "newGoal": 0.805,
+      "old": {
+        "inMatch": {
+          "goal": 0.638,
+          "save": 0.163,
+          "wide": 0.1,
+          "high": 0.1,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.638,
+          "save": 0.125,
+          "wide": 0.119,
+          "high": 0.119,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.805,
+        "save": 0.123,
+        "wide": 0.029,
+        "high": 0.025,
+        "post": 0.011,
+        "bar": 0.007
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "14–16",
+      "keeper": "11–13",
+      "oldGoal": 0.578,
+      "newGoal": 0.772,
+      "old": {
+        "inMatch": {
+          "goal": 0.578,
+          "save": 0.19,
+          "wide": 0.116,
+          "high": 0.116,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.578,
+          "save": 0.184,
+          "wide": 0.119,
+          "high": 0.119,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.772,
+        "save": 0.156,
+        "wide": 0.029,
+        "high": 0.025,
+        "post": 0.011,
+        "bar": 0.007
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "14–16",
+      "keeper": "14–16",
+      "oldGoal": 0.518,
+      "newGoal": 0.741,
+      "old": {
+        "inMatch": {
+          "goal": 0.518,
+          "save": 0.217,
+          "wide": 0.133,
+          "high": 0.133,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.518,
+          "save": 0.253,
+          "wide": 0.114,
+          "high": 0.114,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.741,
+        "save": 0.187,
+        "wide": 0.029,
+        "high": 0.025,
+        "post": 0.011,
+        "bar": 0.007
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "14–16",
+      "keeper": "17–20",
+      "oldGoal": 0.448,
+      "newGoal": 0.705,
+      "old": {
+        "inMatch": {
+          "goal": 0.448,
+          "save": 0.248,
+          "wide": 0.152,
+          "high": 0.152,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.448,
+          "save": 0.348,
+          "wide": 0.102,
+          "high": 0.102,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.705,
+        "save": 0.224,
+        "wide": 0.029,
+        "high": 0.025,
+        "post": 0.011,
+        "bar": 0.007
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "17–20",
+      "keeper": "1–7",
+      "oldGoal": 0.878,
+      "newGoal": 0.883,
+      "old": {
+        "inMatch": {
+          "goal": 0.878,
+          "save": 0.055,
+          "wide": 0.034,
+          "high": 0.034,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.878,
+          "save": 0.024,
+          "wide": 0.049,
+          "high": 0.049,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.883,
+        "save": 0.067,
+        "wide": 0.02,
+        "high": 0.017,
+        "post": 0.007,
+        "bar": 0.005
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "17–20",
+      "keeper": "8–10",
+      "oldGoal": 0.778,
+      "newGoal": 0.849,
+      "old": {
+        "inMatch": {
+          "goal": 0.778,
+          "save": 0.1,
+          "wide": 0.061,
+          "high": 0.061,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.778,
+          "save": 0.073,
+          "wide": 0.075,
+          "high": 0.075,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.849,
+        "save": 0.101,
+        "wide": 0.02,
+        "high": 0.017,
+        "post": 0.007,
+        "bar": 0.005
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "17–20",
+      "keeper": "11–13",
+      "oldGoal": 0.718,
+      "newGoal": 0.814,
+      "old": {
+        "inMatch": {
+          "goal": 0.718,
+          "save": 0.127,
+          "wide": 0.078,
+          "high": 0.078,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.718,
+          "save": 0.118,
+          "wide": 0.082,
+          "high": 0.082,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.814,
+        "save": 0.136,
+        "wide": 0.02,
+        "high": 0.017,
+        "post": 0.007,
+        "bar": 0.005
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "17–20",
+      "keeper": "14–16",
+      "oldGoal": 0.658,
+      "newGoal": 0.783,
+      "old": {
+        "inMatch": {
+          "goal": 0.658,
+          "save": 0.154,
+          "wide": 0.094,
+          "high": 0.094,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.658,
+          "save": 0.174,
+          "wide": 0.084,
+          "high": 0.084,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.783,
+        "save": 0.168,
+        "wide": 0.02,
+        "high": 0.017,
+        "post": 0.007,
+        "bar": 0.005
+      }
+    },
+    {
+      "fresh": 65,
+      "shooter": "17–20",
+      "keeper": "17–20",
+      "oldGoal": 0.588,
+      "newGoal": 0.745,
+      "old": {
+        "inMatch": {
+          "goal": 0.588,
+          "save": 0.185,
+          "wide": 0.113,
+          "high": 0.113,
+          "post": 0,
+          "bar": 0
+        },
+        "played": {
+          "goal": 0.588,
+          "save": 0.252,
+          "wide": 0.08,
+          "high": 0.08,
+          "post": 0,
+          "bar": 0
+        }
+      },
+      "new": {
+        "goal": 0.745,
+        "save": 0.205,
+        "wide": 0.02,
+        "high": 0.017,
+        "post": 0.007,
+        "bar": 0.005
+      }
+    }
+  ],
+  "sweeps": {
+    "fin": [
+      {
+        "band": "1–7",
+        "old": 0.3,
+        "new": 0.6984715555200001
+      },
+      {
+        "band": "8–10",
+        "old": 0.425,
+        "new": 0.73432245312
+      },
+      {
+        "band": "11–13",
+        "old": 0.5,
+        "new": 0.7562614320000001
+      },
+      {
+        "band": "14–16",
+        "old": 0.575,
+        "new": 0.7785217411199999
+      },
+      {
+        "band": "17–20",
+        "old": 0.6625,
+        "new": 0.80489822748
+      }
+    ],
+    "calm": [
+      {
+        "band": "1–7",
+        "old": 0.38,
+        "new": 0.71748095712
+      },
+      {
+        "band": "8–10",
+        "old": 0.455,
+        "new": 0.7415997427200001
+      },
+      {
+        "band": "11–13",
+        "old": 0.5,
+        "new": 0.7562614320000001
+      },
+      {
+        "band": "14–16",
+        "old": 0.545,
+        "new": 0.77106593472
+      },
+      {
+        "band": "17–20",
+        "old": 0.5975,
+        "new": 0.78851835488
+      }
+    ],
+    "gk": [
+      {
+        "band": "1–7",
+        "old": 0.62,
+        "new": 0.8117408246400001
+      },
+      {
+        "band": "8–10",
+        "old": 0.545,
+        "new": 0.77780205684
+      },
+      {
+        "band": "11–13",
+        "old": 0.5,
+        "new": 0.7562614320000001
+      },
+      {
+        "band": "14–16",
+        "old": 0.455,
+        "new": 0.7338377840400001
+      },
+      {
+        "band": "17–20",
+        "old": 0.40249999999999997,
+        "new": 0.7065608183100001
+      }
+    ],
+    "kcalm": [
+      {
+        "band": "1–7",
+        "old": 0.54,
+        "new": 0.78080720544
+      },
+      {
+        "band": "8–10",
+        "old": 0.515,
+        "new": 0.76560125364
+      },
+      {
+        "band": "11–13",
+        "old": 0.5,
+        "new": 0.7562614320000001
+      },
+      {
+        "band": "14–16",
+        "old": 0.485,
+        "new": 0.74675942244
+      },
+      {
+        "band": "17–20",
+        "old": 0.4675,
+        "new": 0.73546875711
+      }
+    ]
+  },
+  "real": {
+    "compact": {
+      "old": {
+        "11–13": {
+          "goal": 0.427,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 1177
+        },
+        "14–16": {
+          "goal": 0.468,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 444
+        },
+        "17–20": {
+          "goal": 0.633,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 120
+        },
+        "1–7": {
+          "goal": 0.276,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 4879
+        },
+        "8–10": {
+          "goal": 0.373,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 1394
+        }
+      },
+      "new": {
+        "11–13": {
+          "goal": 0.745,
+          "save": 0.178,
+          "wide": 0.03,
+          "high": 0.027,
+          "post": 0.009,
+          "bar": 0.012,
+          "kicks": 979
+        },
+        "14–16": {
+          "goal": 0.714,
+          "save": 0.187,
+          "wide": 0.034,
+          "high": 0.036,
+          "post": 0.015,
+          "bar": 0.015,
+          "kicks": 412
+        },
+        "17–20": {
+          "goal": 0.767,
+          "save": 0.147,
+          "wide": 0.034,
+          "high": 0.017,
+          "post": 0.026,
+          "bar": 0.009,
+          "kicks": 116
+        },
+        "1–7": {
+          "goal": 0.709,
+          "save": 0.156,
+          "wide": 0.053,
+          "high": 0.046,
+          "post": 0.024,
+          "bar": 0.013,
+          "kicks": 3189
+        },
+        "8–10": {
+          "goal": 0.72,
+          "save": 0.175,
+          "wide": 0.033,
+          "high": 0.038,
+          "post": 0.02,
+          "bar": 0.015,
+          "kicks": 1012
+        }
+      }
+    },
+    "played": {
+      "old": {
+        "11–13": {
+          "goal": 0.467,
+          "save": 0.246,
+          "wide": 0.129,
+          "high": 0.157,
+          "post": 0,
+          "bar": 0,
+          "kicks": 1012
+        },
+        "14–16": {
+          "goal": 0.537,
+          "save": 0.234,
+          "wide": 0.116,
+          "high": 0.113,
+          "post": 0,
+          "bar": 0,
+          "kicks": 397
+        },
+        "17–20": {
+          "goal": 0.688,
+          "save": 0.156,
+          "wide": 0.101,
+          "high": 0.055,
+          "post": 0,
+          "bar": 0,
+          "kicks": 109
+        },
+        "1–7": {
+          "goal": 0.275,
+          "save": 0.241,
+          "wide": 0.238,
+          "high": 0.246,
+          "post": 0,
+          "bar": 0,
+          "kicks": 3361
+        },
+        "8–10": {
+          "goal": 0.325,
+          "save": 0.317,
+          "wide": 0.168,
+          "high": 0.189,
+          "post": 0,
+          "bar": 0,
+          "kicks": 993
+        }
+      },
+      "new": {
+        "11–13": {
+          "goal": 0.752,
+          "save": 0.163,
+          "wide": 0.031,
+          "high": 0.03,
+          "post": 0.014,
+          "bar": 0.011,
+          "kicks": 978
+        },
+        "14–16": {
+          "goal": 0.778,
+          "save": 0.183,
+          "wide": 0.016,
+          "high": 0.016,
+          "post": 0.003,
+          "bar": 0.005,
+          "kicks": 387
+        },
+        "17–20": {
+          "goal": 0.811,
+          "save": 0.135,
+          "wide": 0.009,
+          "high": 0.027,
+          "post": 0.009,
+          "bar": 0.009,
+          "kicks": 111
+        },
+        "1–7": {
+          "goal": 0.712,
+          "save": 0.153,
+          "wide": 0.051,
+          "high": 0.044,
+          "post": 0.027,
+          "bar": 0.013,
+          "kicks": 3120
+        },
+        "8–10": {
+          "goal": 0.723,
+          "save": 0.173,
+          "wide": 0.049,
+          "high": 0.033,
+          "post": 0.011,
+          "bar": 0.01,
+          "kicks": 969
+        }
+      }
+    },
+    "inMatch": {
+      "old": {
+        "11–13": {
+          "goal": 0.511,
+          "save": 0.209,
+          "wide": 0.125,
+          "high": 0.156,
+          "post": 0,
+          "bar": 0,
+          "kicks": 8600
+        },
+        "14–16": {
+          "goal": 0.571,
+          "save": 0.175,
+          "wide": 0.116,
+          "high": 0.138,
+          "post": 0,
+          "bar": 0,
+          "kicks": 6400
+        },
+        "17–20": {
+          "goal": 0.659,
+          "save": 0.145,
+          "wide": 0.093,
+          "high": 0.103,
+          "post": 0,
+          "bar": 0,
+          "kicks": 2400
+        },
+        "1–7": {
+          "goal": 0.388,
+          "save": 0.277,
+          "wide": 0.142,
+          "high": 0.193,
+          "post": 0,
+          "bar": 0,
+          "kicks": 17200
+        },
+        "8–10": {
+          "goal": 0.441,
+          "save": 0.246,
+          "wide": 0.137,
+          "high": 0.176,
+          "post": 0,
+          "bar": 0,
+          "kicks": 3800
+        }
+      },
+      "new": {
+        "11–13": {
+          "goal": 0.753,
+          "save": 0.163,
+          "wide": 0.022,
+          "high": 0.031,
+          "post": 0.018,
+          "bar": 0.013,
+          "kicks": 8600
+        },
+        "14–16": {
+          "goal": 0.757,
+          "save": 0.179,
+          "wide": 0.016,
+          "high": 0.026,
+          "post": 0.013,
+          "bar": 0.009,
+          "kicks": 6400
+        },
+        "17–20": {
+          "goal": 0.794,
+          "save": 0.164,
+          "wide": 0.009,
+          "high": 0.02,
+          "post": 0.008,
+          "bar": 0.005,
+          "kicks": 2400
+        },
+        "1–7": {
+          "goal": 0.727,
+          "save": 0.144,
+          "wide": 0.039,
+          "high": 0.045,
+          "post": 0.027,
+          "bar": 0.019,
+          "kicks": 17200
+        },
+        "8–10": {
+          "goal": 0.743,
+          "save": 0.151,
+          "wide": 0.03,
+          "high": 0.037,
+          "post": 0.023,
+          "bar": 0.016,
+          "kicks": 3800
+        }
+      }
+    },
+    "order": {
+      "old": {
+        "1": {
+          "goal": 0.397,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 1536
+        },
+        "2": {
+          "goal": 0.358,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 1536
+        },
+        "3": {
+          "goal": 0.315,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 1536
+        },
+        "4": {
+          "goal": 0.285,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 1450
+        },
+        "5": {
+          "goal": 0.29,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 996
+        },
+        "6": {
+          "goal": 0.319,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 960
+        }
+      },
+      "new": {
+        "1": {
+          "goal": 0.743,
+          "save": 0.154,
+          "wide": 0.038,
+          "high": 0.032,
+          "post": 0.02,
+          "bar": 0.013,
+          "kicks": 1536
+        },
+        "2": {
+          "goal": 0.709,
+          "save": 0.167,
+          "wide": 0.044,
+          "high": 0.048,
+          "post": 0.016,
+          "bar": 0.016,
+          "kicks": 1536
+        },
+        "3": {
+          "goal": 0.711,
+          "save": 0.171,
+          "wide": 0.049,
+          "high": 0.04,
+          "post": 0.02,
+          "bar": 0.009,
+          "kicks": 1204
+        },
+        "4": {
+          "goal": 0.73,
+          "save": 0.157,
+          "wide": 0.036,
+          "high": 0.04,
+          "post": 0.024,
+          "bar": 0.013,
+          "kicks": 548
+        },
+        "5": {
+          "goal": 0.685,
+          "save": 0.176,
+          "wide": 0.054,
+          "high": 0.04,
+          "post": 0.026,
+          "bar": 0.02,
+          "kicks": 352
+        },
+        "6": {
+          "goal": 0.705,
+          "save": 0.177,
+          "wide": 0.045,
+          "high": 0.041,
+          "post": 0.023,
+          "bar": 0.009,
+          "kicks": 532
+        }
+      }
+    },
+    "team": {
+      "old": [
+        {
+          "goal": 0.337,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 4122
+        },
+        {
+          "goal": 0.324,
+          "save": 0,
+          "wide": 0,
+          "high": 0,
+          "post": 0,
+          "bar": 0,
+          "kicks": 3892
+        }
+      ],
+      "new": [
+        {
+          "goal": 0.721,
+          "save": 0.164,
+          "wide": 0.042,
+          "high": 0.041,
+          "post": 0.021,
+          "bar": 0.012,
+          "kicks": 2950
+        },
+        {
+          "goal": 0.716,
+          "save": 0.166,
+          "wide": 0.045,
+          "high": 0.038,
+          "post": 0.019,
+          "bar": 0.015,
+          "kicks": 2758
+        }
+      ]
+    },
+    "shootouts": {
+      "old": {
+        "n": 768,
+        "kicks": 8014,
+        "early": 359
+      },
+      "new": {
+        "n": 768,
+        "kicks": 5708,
+        "early": 262
+      }
+    }
+  },
+  "clubs": 192,
+  "pairs": 96
+}

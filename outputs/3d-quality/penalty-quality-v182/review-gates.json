@@ -1,0 +1,101 @@
+{
+ "pass": true,
+ "node": "v18.14.2",
+ "baseline": "34acd4af",
+ "suites": [
+  {
+   "suite": "test-v55.cjs",
+   "exitCode": 0,
+   "output": "PASS: cup bracket, ten league rounds, separate cup statistics, winner award, single prize, penalty order\nPASS: native 1–20 squads, new saves, assigned positions, touchline stop and running throw-in\nPASS: complete v55 match and career progression\nPASS: clear goal chance continues past full time and ends after possession changes\nPASS: direct free-kick goal is labeled in the match log"
+  },
+  {
+   "suite": "test-v50.cjs",
+   "exitCode": 0,
+   "output": "PASS: cup bracket, ten league rounds, separate cup statistics, winner award, single prize, penalty order\nPASS: fouls, free kicks, corners, blocked shots, automatic penalty, halftime and full-time"
+  },
+  {
+   "suite": "test-v42.cjs",
+   "exitCode": 0,
+   "output": "PASS: cup bracket, ten league rounds, separate cup statistics, winner award, single prize, penalty order\nPASS: post-match penalty choice, persisted kicks, demo isolation, unique shooters and distinct shot outcomes"
+  },
+  {
+   "suite": "test-shootout-quality-v119.cjs",
+   "exitCode": 0,
+   "output": "{\"pass\":true,\"checks\":12,\"metrics\":{\"weakShooter\":{\"goals\":1613,\"kicks\":5189,\"rate\":0.3108498747350164,\"wins\":301},\"strongShooter\":{\"goals\":3091,\"kicks\":5074,\"rate\":0.6091840756799369,\"wins\":738},\"weakKeeper\":{\"goals\":2795,\"kicks\":5157,\"rate\":0.5419817723482645,\"wins\":633},\"strongKeeper\":{\"goals\":1950,\"kicks\":5243,\"rate\":0.3719244707228686,\"wins\":385}}}"
+  },
+  {
+   "suite": "run-native130-tests.cjs",
+   "exitCode": 0,
+   "output": "{\"pass\":true,\"node\":\"v24.19.0\",\"suites\":[{\"pass\":true,\"suite\":\"keeper-chase-v130\",\"checks\":34,\"cases\":[\"Fresh constructor retains keeper180 and pace119; restore does not mark old match\",\"Ordinary keeper formation/body movement is independent of chase marker\",\"Actual grounded pickup improves ordinary/0/standard\",\"Actual grounded pickup improves ordinary/0/large\",\"Actual grounded pickup improves ordinary/1/standard\",\"Actual grounded pickup improves ordinary/1/large\",\"Actual grounded pickup improves space/0/standard\",\"Actual grounded pickup improves space/0/large\",\"Actual grounded pickup improves space/1/standard\",\"Actual grounded pickup improves space/1/large\",\"Unmarked ordinary pace retains historical actual travel at fresh/tired values\",\"Speed skill and actual P02 limiter affect marked chase travel\",\"Movement/pickup lock ordinary/air\",\"Movement/pickup lock ordinary/air-metadata\",\"Movement/pickup lock ordinary/held\",\"Movement/pickup lock ordinary/restart\",\"Movement/pickup lock ordinary/slide\",\"Movement/pickup lock ordinary/recovery\",\"Movement/pickup lock space/air\",\"Movement/pickup lock space/air-metadata\",\"Movement/pickup lock space/held\",\"Movement/pickup lock space/restart\",\"Movement/pickup lock space/slide\",\"Movement/pickup lock space/recovery\",\"Null/absent rebound does not disable real space-flight interception 0/false\",\"Null/absent rebound does not disable real space-flight interception 0/true\",\"Null/absent rebound does not disable real space-flight interception 1/false\",\"Null/absent rebound does not disable real space-flight interception 1/true\",\"Physical hand-area/foot pickup 0/false\",\"Physical hand-area/foot pickup 0/true\",\"Physical hand-area/foot pickup 1/false\",\"Physical hand-area/foot pickup 1/true\",\"Actual JSON/body/native-clock/P02/RNG continuation ordinary\",\"Actual JSON/body/native-clock/P02/RNG continuation space\"],\"measurements\":[{\"kind\":\"ordinary\",\"team\":0,\"size\":\"standard\",\"before\":1.4500000000000002,\"after\":0.75},{\"kind\":\"ordinary\",\"team\":0,\"size\":\"large\",\"before\":1.4500000000000002,\"after\":0.75},{\"kind\":\"ordinary\",\"team\":1,\"size\":\"standard\",\"before\":1.4500000000000002,\"after\":0.75},{\"kind\":\"ordinary\",\"team\":1,\"size\":\"large\",\"before\":1.4500000000000002,\"after\":0.75},{\"kind\":\"space\",\"team\":0,\"size\":\"standard\",\"before\":1.6500000000000001,\"after\":1.25},{\"kind\":\"space\",\"team\":0,\"size\":\"large\",\"before\":1.6500000000000001,\"after\":1.25},{\"kind\":\"space\",\"team\":1,\"size\":\"standard\",\"before\":1.6500000000000001,\"after\":1.25},{\"kind\":\"space\",\"team\":1,\"size\":\"large\",\"before\":1.6500000000000001,\"after\":1.25}],\"scope\":\"Controlled actual native steps and current dist; no full-match or balance claim.\"},{\"pass\":true,\"suite\":\"restart-facing-v130\",\"checks\":22,\"cases\":[\"Observed real restart travel 0/standard/turnedfalse\",\"Observed real restart travel 0/standard/turnedtrue\",\"Observed real restart travel 0/large/turnedfalse\",\"Observed real restart travel 0/large/turnedtrue\",\"Observed real restart travel 1/standard/turnedfalse\",\"Observed real restart travel 1/standard/turnedtrue\",\"Observed real restart travel 1/large/turnedfalse\",\"Observed real restart travel 1/large/turnedtrue\",\"Seek/time discontinuity cannot reuse restart travel\",\"New restart identity has no stale first-step motion\",\"Actual JSON restore creates no saved observation/movement fields\",\"User pause cannot retain last-step travel\",\"Keepers, slides and legacy matches retain their own projection\",\"Slow executed pass retains target-aligned native body false\",\"Slow executed pass retains target-aligned native body true\",\"Fast actual travel keeps its existing selector\",\"Old pictures without measured speed do not manufacture a new facing\",\"Body inconsistent with executed target retains the old selector\",\"Pass-ready placeholder keeps native pivot facing\",\"Explicit action and goalkeeper focus stay authoritative\",\"Intentional defensive backpedal is not replaced\",\"Stored replay/seek frame depends on sampled facts, not a current body\"],\"scope\":\"Real native restart-step/view projection and production bridge; no full-match or visual/hardware acceptance claim.\"}]}"
+  },
+  {
+   "suite": "ui-redesign/shared/verify-build.cjs",
+   "exitCode": 0,
+   "output": "PASS 26 exact embedded assets, matching offline copies and version. F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\fix-r132-engine-a\\outputs\\ui-redesign\\I00\\build-2026-10-14T07-36-50-023Z"
+  }
+ ],
+ "additional": [
+  {
+   "suite": "test-penalty-quality-v182.cjs",
+   "exitCode": 0,
+   "checks": 18
+  },
+  {
+   "suite": "test-corner-quality-v182.cjs",
+   "exitCode": 0,
+   "seeds": 25,
+   "report": "review-corner-25.json"
+  },
+  {
+   "suite": "build.cjs",
+   "exitCode": 0
+  },
+  {
+   "suite": "legacy function byte comparison",
+   "exitCode": 0,
+   "functions": [
+    "v42NextKick",
+    "v50TakePenalty",
+    "v119SimulateShootout"
+   ]
+  }
+ ],
+ "lineEndings": {
+  "i18n-v75.js": {
+   "originalUnchangedLinesVerified": 1803
+  },
+  "penalties-v42.js": {
+   "originalUnchangedLinesVerified": 101
+  },
+  "set-pieces-v50.js": {
+   "originalUnchangedLinesVerified": 434
+  },
+  "world-competition-v62.js": {
+   "originalUnchangedLinesVerified": 390
+  },
+  "world-pitch-actions-v99.js": {
+   "originalUnchangedLinesVerified": 267
+  },
+  "world-pitch3d-v98.js": {
+   "originalUnchangedLinesVerified": 511
+  }
+ },
+ "hashes": {
+  "dist/i18n-v75.js": "231d70179d4137060a443857d3387868aec6a185d673e1bb6e67c4a60b69ae04",
+  "dist/penalties-v42.js": "8565237c472ce838b43d8efc98307cb529b2d1800f98266b237dca8762368162",
+  "dist/set-pieces-v50.js": "344d3a5fde2842c958b458f3e0e41b9c4d4511480a3b098ab356bfede1790c0c",
+  "dist/world-competition-v62.js": "2be1f471513afb7d7b4e4d384516506b2e3761b888377301a1355e34d12a23eb",
+  "dist/world-pitch-actions-v99.js": "52781fe16dd9f233712889d62bb12f5a1ed8d14ed0610add69dc8e6c48f82e9d",
+  "dist/world-pitch3d-v98.js": "4ea8b02aea40c1bd4f0ee1f309d4eda9a183b9519fcdd678954249ec21468d35"
+ },
+ "build": {
+  "affectedScriptsVerified": 6,
+  "existingBuildTransforms": [
+   "CRLF to LF",
+   "PNG data URLs",
+   "existing PROTOTYP 131 substitution"
+  ],
+  "offlineCopiesEqual": true,
+  "sha256": "d3be2f4b2761eba5f36efa661db75eea07e00af83a7c8a424e5bed5ea771404f"
+ }
+}

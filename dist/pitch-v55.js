@@ -307,13 +307,27 @@ function v122PlanAir(flight,passer,end){
  v122AerialPlans.set(flight,{contenders,pursuers,end:{...end}});
  if(typeof v102Flights!=='undefined'){const meta=v102Flights.get(flight);if(meta)meta.endHeight=2.65;}
 }
+// Marked corners use their own execution error instead of the flat cross
+// variants: metres from passing and technique plus pressure. The ball normally
+// lands at least a metre inside; only a large over-hit can leave the field.
+function v182CornerLanding(passer,from,intended,land,[drawX,drawY,variant],pressure){
+ const s=v160PitchScale(),skill=ability(passer,'pas')*.65+ability(passer,'tec')*.35,spread=.8+(20-skill)*.2+pressure*.6,large=clamp(.02+(20-skill)*.007+pressure*.02,.02,.16);
+ let x=intended.x+(drawX-.5)*2*spread/s.x,y=intended.y+(drawY-.5)*2*spread/s.y,free=false;
+ if(variant<large){
+  const share=variant/large,dx=(intended.x-from.x)*s.x,dy=(intended.y-from.y)*s.y,length=Math.hypot(dx,dy)||1;
+  if(share<.6){const extra=(5+share*20)*(1+(20-skill)*.08);x=intended.x+dx/length*extra/s.x;y=intended.y+dy/length*extra/s.y;free=x<v55Field.left||x>v55Field.right||y<v55Field.top||y>v55Field.bottom;}
+  else{const reach=.35+(share-.6)*.75;x=from.x+(intended.x-from.x)*reach;y=from.y+(intended.y-from.y)*reach;}
+ }
+ if(!free){x=clamp(x,v55Field.left+1/s.x,v55Field.right-1/s.x);y=clamp(y,v55Field.top+1/s.y,v55Field.bottom-1/s.y);}
+ land.x=x;land.y=y;
+}
 function v55HighPass(passer,receiver,{cross=false,exempt=false,corner=false}={}){
  if(typeof v157QueueTurn==='function'&&v157QueueTurn(match,passer,receiver,'high',{cross,exempt,corner}))return;
  if(typeof v155AttemptPass==='function')v155AttemptPass(match,passer,receiver);
  if(typeof v65WorldActive!=='undefined'&&v65WorldActive&&v122Metres(passer,receiver)<7)return v55GroundPass(passer,receiver,'pass',exempt);
  const m=match,snapshot=v55OffsideSnapshot(passer,exempt),from={x:m.ball.x,y:m.ball.y},pressure=m.people.filter(player=>player.t!==passer.t&&!player.keeper&&distance(player,passer)<.15).length;
- const skill=ability(passer,'pas'),error=(20-skill)*.007+pressure*.024,intended={x:receiver.x,y:receiver.y},land={x:receiver.x+(random()-.5)*error*2,y:receiver.y+(random()-.5)*error*2};
- const variant=random();if(cross&&variant<.19)land.y+=passer.t===0?.15:-.15;else if(cross&&variant<.38)land.y+=passer.t===0?-.16:.16;else if(cross&&variant<.50)land.x=passer.x<.5?1.04:-.04;else if(!cross&&variant<.09)land.x=receiver.x<.5?-.04:1.04;
+ const skill=ability(passer,'pas'),error=(20-skill)*.007+pressure*.024,intended={x:receiver.x,y:receiver.y},drawX=random(),drawY=random(),land={x:receiver.x+(drawX-.5)*error*2,y:receiver.y+(drawY-.5)*error*2};
+ const variant=random();if(corner&&m.attackFlow?.setPieceRevision===182)v182CornerLanding(passer,from,intended,land,[drawX,drawY,variant],pressure);else if(cross&&variant<.19)land.y+=passer.t===0?.15:-.15;else if(cross&&variant<.38)land.y+=passer.t===0?-.16:.16;else if(cross&&variant<.50)land.x=passer.x<.5?1.04:-.04;else if(!cross&&variant<.09)land.x=receiver.x<.5?-.04:1.04;
  passer.stats.passes++;passer.stats.highPasses++;if(cross)passer.stats.crosses++;m.lastTouch=passer.t;
  const forward=passer.t===0?passer.y-land.y:land.y-passer.y;if(forward>.12)passer.stats.progressive++;
  const exit=v55Exit(from,land),end=exit?v55BoundaryStop(exit):land,duration=clamp(distance(from,end)*1.25,.55,1.05);
