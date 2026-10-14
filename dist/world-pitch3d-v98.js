@@ -166,6 +166,7 @@ v98Style.textContent=`
 .v100-penalty-award p{margin:0;color:#eaf4ef;font-size:clamp(13px,2vw,18px);font-weight:700;line-height:1.5;text-align:left}
 .v65-world-match #v50-penalty-scene .v42-ball{width:20.16px;height:20.16px;font-size:20.16px;right:auto;line-height:20.16px;text-align:center}
 .v65-world-match #v50-penalty-scene .v42-ball.wide{animation:none!important}
+.v65-world-match #v50-penalty-scene .v42-goal-scene .v42-ball:is(.post,.bar){animation:none!important}
 @media(pointer:coarse){.v98-view-controls{width:44px;height:44px}.v98-view-controls #v100-pitch-toggle{width:44px;height:44px}.v98-view-controls button,.v98-view-controls select{min-height:44px}#v100-pitch-panel{top:50px}}
 body.v98-pitch3d #match-area .v42-pitch-stage{width:min(100%,840px);aspect-ratio:16/9;padding:0;overflow:hidden;background:#718b6d}
 body.v98-pitch3d #match-area #canvas{visibility:hidden;pointer-events:none}
@@ -499,9 +500,10 @@ v50PenaltyVisual=function(setPiece,last){
  return result;
 };
 function v100SyncPenaltyBall(){
- if(!v65WorldActive||match?.setPiece?.phase!=='result'||match.setPiece.outcome!=='wide')return;
- const ball=$('#v50-penalty-scene .v42-ball.wide'),scene=$('#v50-penalty-scene .v42-goal-scene');if(!ball||!scene)return;
- const rect=scene.getBoundingClientRect(),point=v100PenaltyWidePoint((2.15-match.setPiece.wait)/.9,match.setPiece.shotSide,rect.width,rect.height);
+ if(!v65WorldActive||match?.setPiece?.phase!=='result')return;
+ const frame=match.penaltyRevision===182&&match.setPiece.frame;if(match.setPiece.outcome!=='wide'&&!frame)return;
+ const ball=$(`#v50-penalty-scene .v42-ball.${frame||'wide'}`),scene=$('#v50-penalty-scene .v42-goal-scene');if(!ball||!scene)return;
+ const rect=scene.getBoundingClientRect(),progress=(2.15-match.setPiece.wait)/.9,point=frame?v182PenaltyFramePoint(progress,match.setPiece.shotSide,frame,rect.width,rect.height):v100PenaltyWidePoint(progress,match.setPiece.shotSide,rect.width,rect.height);
  ball.style.left=`${point.left}px`;ball.style.bottom=`${point.bottom}px`;ball.style.transform=`translateX(-50%) scale(${point.scale})`;
 }
 const v100PreviousDraw=draw;

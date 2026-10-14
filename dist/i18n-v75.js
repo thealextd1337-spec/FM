@@ -670,6 +670,19 @@ Vorlagen	Assists
 Zu-null-Spiele	Clean sheets
 Gegentore	Goals conceded
 Elfmeter	Penalty
+Tor!	Goal!
+Gehalten!	Saved!
+Gehalten	Saved
+Vorbei!	Wide!
+Vorbei	Wide
+Drüber!	Over!
+Drüber	Over
+Pfosten!	Post!
+Pfosten	Post
+Latte!	Crossbar!
+Latte	Crossbar
+Kein Tor.	No goal.
+Kein Tor	No goal
 Verwarnung	Warning
 Sieg	Win
 Niederlage	Defeat
@@ -1486,6 +1499,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(.+) hält den Abschluss fest\.$/,(_,name)=>`${name} holds on to the shot.`],
   [/^(.+) setzt den Ball vorbei\.$/,(_,name)=>`${name} puts the ball wide.`],
   [/^(.+) setzt den Ball vorbei\. Abstoß(?: für (.+))?\.$/,(_,name,club)=>`${name} puts the ball wide. Goal kick${club?` for ${club}`:''}.`],
+  [/^(.+) schießt den Elfmeter (über das Tor|vorbei|an den Pfosten|an die Latte)(\.?) Abstoß(\.?)$/,(_,name,where,stop,end)=>`${name} ${{'über das Tor':'puts the penalty over the bar',vorbei:'puts the penalty wide','an den Pfosten':'hits the post with the penalty','an die Latte':'hits the crossbar with the penalty'}[where]}${stop} Goal kick${end}`],
+  [/^(.+): (Tor!?|Gehalten!?|Vorbei!?|Drüber!?|Pfosten!?|Latte!?|Kein Tor\.?)$/,(_,name,outcome)=>`${name}: ${translate(outcome)}`],
   [/^Kurzer Abstoß: (.+) auf (.+)\.$/,(_,name,target)=>`Short goal kick: ${name} to ${target}.`],
   [/^Eckball für (.+) nach (.+)\.$/,(_,club,cause)=>`Corner for ${club} after ${translate(cause)}.`],
   [/^(.+) foult (.+)\. (Elfmeter|Freistoß) für (.+)\.$/,(_,offender,victim,type,club)=>`${offender} fouls ${victim}. ${type==='Elfmeter'?'Penalty':'Free kick'} for ${club}.`],

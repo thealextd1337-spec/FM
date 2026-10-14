@@ -31,10 +31,20 @@ function v182ShootoutWinner(score,taken,rounds=3){
  if(taken[0]<=rounds&&taken[1]<=rounds){if(score[0]>score[1]+rounds-taken[1])return 0;if(score[1]>score[0]+rounds-taken[0])return 1;return null}
  return taken[0]===taken[1]&&score[0]!==score[1]?(score[0]>score[1]?0:1):null;
 }
+// Both new paths bound a pathological run: after 103 tied pairs one deciding
+// pair is drawn from the same per-kick law, conditioned on different outcomes.
+const v182ShootoutPairs=103;
+function v182DecidingHome(home,away,draw){const homeOnly=home*(1-away),awayOnly=(1-home)*away;return draw()<homeOnly/(homeOnly+awayOnly)}
+function v182DecidingKick(goal,draw){const shotSide=draw()<.5?-1:1;return{goal,outcome:goal?'goal':'save',shotSide,diveSide:goal?-shotSide:shotSide}}
+// Marked sessions rotate through every actual shooter (also seven or more).
+function v182Taken(session){const taken=[0,0];for(const kick of session.kicks)taken[kick.side]++;return taken}
+function v182Shooter(session,side,taken=v182Taken(session)){const order=side===0?session.order:session.opponentOrder,roster=side===0?session.own:session.opponent;return roster.find(item=>item.n===order[taken[side]%order.length])}
 function v182NextKick(session){
- const side=session.kicks.length%2,taken=[0,0];for(const kick of session.kicks)taken[kick.side]++;
- const order=side===0?session.order:session.opponentOrder,roster=side===0?session.own:session.opponent,other=side===0?session.opponent:session.own,player=roster.find(item=>item.n===order[taken[side]%order.length]),keeper=other.find(item=>item.keeper);
- const result=v182PenaltyOutcome(player,keeper,Math.random);taken[side]++;
+ const side=session.kicks.length%2,taken=v182Taken(session),other=side===0?session.opponent:session.own,player=v182Shooter(session,side,taken),keeper=other.find(item=>item.keeper);
+ let result;
+ if(taken[side]<v182ShootoutPairs)result=v182PenaltyOutcome(player,keeper,Math.random);
+ else{const goal=side===0?v182DecidingHome(v182PenaltyGoalChance(player,keeper),v182PenaltyGoalChance(v182Shooter(session,1,taken),session.own.find(item=>item.keeper)),Math.random):!session.kicks[session.kicks.length-1].goal;result=v182DecidingKick(goal,Math.random)}
+ taken[side]++;
  session.score[side]+=Number(result.goal);session.last={side,name:player.name,number:player.n,goal:result.goal,outcome:result.outcome,...result.frame?{frame:result.frame}:{},shotSide:result.shotSide,diveSide:result.diveSide,score:[...session.score]};session.kicks.push(session.last);
  const winner=v182ShootoutWinner(session.score,taken);if(winner!==null){session.winner=winner;session.phase='done';if(session.mode==='career')v42SettleCareer(session)}v42Save();v42RenderScreen();
 }
@@ -59,7 +69,7 @@ const v42DemoCard=document.createElement('section');v42DemoCard.className='panel
 startScreen.querySelector('.menu-layout').insertAdjacentElement('afterend',v42DemoCard);
 $('#v42-demo-start').onclick=()=>{const own=$('#v42-own-team').value,opp=$('#v42-opp-team').value;if(own===opp){$('#v42-demo-status').textContent='Wähle zwei unterschiedliche Mannschaften.';return}$('#v42-demo-status').textContent='';const first=v42Teams.find(team=>team.id===own),second=v42Teams.find(team=>team.id===opp),ours=v42DemoRoster(first),theirs=v42DemoRoster(second);v42Session={mode:'demo',ownName:first.name,opponentName:second.name,ownColour:v42Colour(own),opponentColour:v42Colour(opp),own:ours,opponent:theirs,order:v42Sorted(ours).map(player=>player.n),opponentOrder:v42Sorted(theirs).map(player=>player.n),score:[0,0],kicks:[],phase:'choose',ownId:own,opponentId:opp};v42RenderScreen(true)};
 
-function v42UpcomingShooter(session){if(session.phase!=='shooting')return null;const side=session.kicks.length%2,order=side===0?session.order:session.opponentOrder,roster=side===0?session.own:session.opponent;return{side,player:roster.find(item=>item.n===order[Math.floor(session.kicks.length/2)%6])}}
+function v42UpcomingShooter(session){if(session.phase!=='shooting')return null;if(session.penaltyRevision===182){const side=session.kicks.length%2;return{side,player:v182Shooter(session,side)}}const side=session.kicks.length%2,order=side===0?session.order:session.opponentOrder,roster=side===0?session.own:session.opponent;return{side,player:roster.find(item=>item.n===order[Math.floor(session.kicks.length/2)%6])}}
 function v42OutcomeText(kick){return kick.frame==='post'?'Pfosten!':kick.frame==='bar'?'Latte!':kick.outcome==='save'?'Gehalten!':kick.outcome==='wide'?'Vorbei!':kick.outcome==='high'?'Drüber!':kick.goal?'Tor!':'Kein Tor.'}
 function v42Shirt(player,colour){return`<svg viewBox="0 0 80 85" role="img" aria-label="Trikot Nummer ${player.n}"><path d="M18 11 29 4h22l11 7 14 14-10 15-9-5v43H23V35l-9 5L4 25z" fill="${escapeHTML(colour.main)}" stroke="${escapeHTML(colour.trim)}" stroke-width="4" stroke-linejoin="round"/><text x="40" y="51" fill="${textColor(colour.main)}" font-family="Arial,sans-serif" font-weight="800" font-size="27" text-anchor="middle">${player.n}</text></svg>`}
 function v42FanBlock(session,side){
@@ -109,3 +119,10 @@ v42RenderScreen=function(openDialog=false){
  }
  return result;
 };
+// Woodwork (marked penalties only): the ball strikes the post or crossbar and
+// rebounds. The booked result stays the miss; only the picture follows frame.
+v42Style.textContent+=`.v42-goal-scene .v42-ball:is(.post,.bar){width:27px;height:27px;right:auto;text-align:center}`;
+v42Style.textContent+=`@keyframes v182BallPost{55%{left:calc(50% + var(--frame-side,1)*(min(36%,180px) - 4px));bottom:calc(100% - 155px);transform:translateX(-50%) scale(.6)}100%{left:calc(50% + var(--frame-side,1)*(min(36%,180px) + 34px));bottom:44px;transform:translateX(-50%) scale(.85)}}@keyframes v182BallBar{55%{left:calc(50% + var(--frame-side,1)*64px);bottom:calc(100% - 98px);transform:translateX(-50%) scale(.55)}100%{left:calc(50% + var(--frame-side,1)*90px);bottom:calc(100% - 40px);transform:translateX(-50%) scale(.45)}}.v42-goal-scene .v42-ball.post,#v50-penalty-scene .v42-goal-scene .v42-ball.post{animation:v182BallPost .9s ease-out both}.v42-goal-scene .v42-ball.bar,#v50-penalty-scene .v42-goal-scene .v42-ball.bar{animation:v182BallBar .9s ease-out both}@media(prefers-reduced-motion:reduce){.v42-goal-scene .v42-ball.post,#v50-penalty-scene .v42-goal-scene .v42-ball.post{animation:none;left:calc(50% + var(--frame-side,1)*(min(36%,180px) - 4px));bottom:calc(100% - 155px);transform:translateX(-50%) scale(.6)}.v42-goal-scene .v42-ball.bar,#v50-penalty-scene .v42-goal-scene .v42-ball.bar{animation:none;left:calc(50% + var(--frame-side,1)*64px);bottom:calc(100% - 98px);transform:translateX(-50%) scale(.55)}}`;
+function v182FrameScene(scene,ball,last){if(!last?.frame||!scene)return;scene.classList.add(last.frame);scene.style.setProperty('--frame-side',String(last.shotSide));ball?.classList.add(last.frame)}
+const v182BaseFrameRender=v42RenderScreen;
+v42RenderScreen=function(openDialog=false){const result=v182BaseFrameRender(openDialog);if(v42Session?.penaltyRevision===182&&v42Session.last?.frame)v182FrameScene(v42Screen.querySelector('.v42-goal-scene'),v42Screen.querySelector('.v42-ball'),v42Session.last);return result};

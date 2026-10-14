@@ -126,6 +126,24 @@ function v100ShotOutcome(flight,goal){
   if(Math.abs(cross-k.x)*sx<1.6&&release.endHeight<2.4){let side=Math.sign(release.target.x-k.x)||((release.shooter.n%2)?1:-1),x=(k.x+side*1.65/sx-start.x*(1-q))/Math.max(.1,q);if(x<.405||x>.595){side=-side;x=(k.x+side*1.65/sx-start.x*(1-q))/Math.max(.1,q);}release.displayTarget.x=Math.max(.405,Math.min(.595,x));release.target.x=flight.target.x=release.displayTarget.x;}
  }
 }
+// Marked woodwork penalties: contact at the post/crossbar, then a visible rebound.
+function v182PenaltyFramePoint(progress,side,frame,width,height){
+ const q=Math.max(0,Math.min(1,progress)),post=Math.min(width*.36,180),start={left:width/2,bottom:26,scale:1};
+ const contact=frame==='post'?{left:width/2+side*(post-4),bottom:height-155,scale:.6}:{left:width/2+side*64,bottom:height-98,scale:.55},after=frame==='post'?{left:width/2+side*(post+34),bottom:44,scale:.85}:{left:width/2+side*90,bottom:height-40,scale:.45};
+ const [a,b,t]=q<=.55?[start,contact,q/.55]:[contact,after,(q-.55)/.45];
+ return {left:a.left+(b.left-a.left)*t,bottom:a.bottom+(b.bottom-a.bottom)*t,scale:a.scale+(b.scale-a.scale)*t};
+}
+// Same native penalty clock for the shared THREE/Unity picture. Geometry and
+// frame affect presentation only; the booked miss and random stream stay native.
+function v182PenaltyFrameBall(current){
+ const piece=current.setPiece;if(current.penaltyRevision!==182||piece?.type!=='penalty'||piece.phase!=='result'||!['post','bar'].includes(piece.frame))return null;
+ const q=Math.max(0,Math.min(1,(2.15-piece.wait)/.9)),side=piece.shotSide,direction=piece.team===0?-1:1,line=piece.team===0?v55Field.top:v55Field.bottom;
+ const sx=v160PitchWidth(current)/(v55Field.right-v55Field.left),sy=v160PitchLength(current)/(v55Field.bottom-v55Field.top),width=current.geometry?.goalWidth||.2*sx,height=current.geometry?.goalHeight||width/3,radius=.1764;
+ const start={...(piece.spot||current.ball),elevation:.29},contact={x:.5+side*(piece.frame==='post'?width/2-radius:width*.18)/sx,y:line-direction*radius/sy,elevation:piece.frame==='post'?Math.min(1.1,height/2):height-radius};
+ const after={x:contact.x+side*(piece.frame==='post'?2:.4)/sx,y:line+direction*1.8/sy,elevation:piece.frame==='post'?.29:height+1};
+ const [a,b,t]=q<=.55?[start,contact,q/.55]:[contact,after,(q-.55)/.45];
+ return {x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t,elevation:a.elevation+(b.elevation-a.elevation)*t};
+}
 function v100PenaltyWidePoint(progress,side,width,height){
  const q=Math.max(0,Math.min(1,progress)),goalWidth=Math.min(width*.72,360);
  return {left:width/2+side*(goalWidth/2+24)*q/.65,bottom:26+(height-195)*q/.65+8*Math.sin(Math.PI*q),scale:1-.55*q};
@@ -198,6 +216,7 @@ step=function(delta,realDelta){
 };
 function v99BallView(current){
  if(current.finished)return null;
+ const penaltyBall=v182PenaltyFrameBall(current);if(penaltyBall)return penaltyBall;
  const state=v99Actions.get(current),release=current.flight&&v99Flights.get(current.flight);
  if(current.postBanner?.kind==='goal'&&state?.goalTravel)return v101GoalBall(state.goalTravel,typeof v83GoalSceneDuration==='number'?v83GoalSceneDuration:4.05);
  if(current.goalScene&&(current.goalPause>0||current.postBanner?.kind==='goal')){

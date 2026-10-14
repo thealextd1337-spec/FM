@@ -137,13 +137,13 @@ function v182SimulateShootout(career,fixture){
  const random=v61Random(`${career.world.seed}:${fixture.id}:penalties`),score=[0,0],taken=[0,0],kicks=[];
  const shooter=side=>squads[side][taken[side]%squads[side].length];
  const book=(side,player,result)=>{taken[side]++;score[side]+=Number(result.goal);kicks.push({side,pid:player.pid,goal:result.goal,outcome:result.outcome,...result.frame?{frame:result.frame}:{}});};
- for(let pair=0;pair<103;pair++)for(const side of [0,1]){
+ for(let pair=0;pair<v182ShootoutPairs;pair++)for(const side of [0,1]){
   const player=shooter(side);book(side,player,v182PenaltyOutcome(player,keepers[1-side],random));
   const winner=v182ShootoutWinner(score,taken);if(winner!==null)return {score,kicks,conditioned:false,penaltyRevision:182};
  }
- // Same bounded symmetric deciding pair as the former compact shootout.
- const home=v182PenaltyGoalChance(shooter(0),keepers[1]),away=v182PenaltyGoalChance(shooter(1),keepers[0]),homeOnly=home*(1-away),awayOnly=(1-home)*away,homeWins=random()<homeOnly/(homeOnly+awayOnly);
- book(0,shooter(0),{goal:homeWins,outcome:homeWins?'goal':'save'});book(1,shooter(1),{goal:!homeWins,outcome:homeWins?'save':'goal'});
+ // Same bound and deciding pair as the played shootout (v182NextKick).
+ const homeWins=v182DecidingHome(v182PenaltyGoalChance(shooter(0),keepers[1]),v182PenaltyGoalChance(shooter(1),keepers[0]),random);
+ book(0,shooter(0),v182DecidingKick(homeWins,random));book(1,shooter(1),v182DecidingKick(!homeWins,random));
  return {score,kicks,conditioned:true,penaltyRevision:182};
 }
 function v182ResolveShootout(career,fixture,created){

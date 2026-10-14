@@ -308,7 +308,7 @@ function v50PenaltyVisual(setPiece,last){
   own:[v42Player(setPiece.taker)],opponent:[v42Player(v50Keeper(defender))],order:[setPiece.taker.n],opponentOrder:[v50Keeper(defender).n],
   score:[0,0],kicks:[],phase:last?'done':'shooting',last};
  scene.innerHTML=v42SceneHTML(session)+(!last&&typeof v55RefereeAsset==='function'?`<img class="v78-penalty-referee" src="${v55RefereeAsset('penalty')}" alt="Schiedsrichter zeigt auf den Elfmeterpunkt">`:'');
- if(last){const goal=scene.querySelector('.v42-goal-scene');goal?.classList.add(last.outcome);goal?.style.setProperty('--miss-x',`${last.shotSide*41}%`);scene.querySelector('.v42-ball')?.classList.add(last.outcome)}
+ if(last){const goal=scene.querySelector('.v42-goal-scene');goal?.classList.add(last.outcome);goal?.style.setProperty('--miss-x',`${last.shotSide*41}%`);scene.querySelector('.v42-ball')?.classList.add(last.outcome);if(last.frame&&match?.penaltyRevision===182&&typeof v182FrameScene==='function')v182FrameScene(goal,scene.querySelector('.v42-ball'),last)}
 }
 function v50TakePenalty(setPiece){
  const keeper=v50Keeper(1-setPiece.team),shooter=setPiece.taker;

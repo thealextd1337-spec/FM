@@ -107,6 +107,90 @@ check('In-match penalty: marker selects 182 (four draws), unmarked keeps the for
   const b=inMatch(false,shooter,keeper,s);seed(s);const goal=lcg()<g.v42PenaltyChance(g.v42Player({...shooter}),g.v42Player({keeper:true,...keeper}));assert.equal(b.outcome==='goal',goal);assert(!('frame'in b));}
 });
 
+// ---------- Review round 1: preview, bound, woodwork picture, English texts ----------
+evaluate(slice('penalties-v42.js','function v42UpcomingShooter(','function v42OutcomeText('));
+evaluate(slice('set-pieces-v50.js','function v50FinishPenalty(','const v50BaseKickoff=').replace(/^function v50FinishPenalty/,'globalThis.v50FinishPenalty=function'));
+evaluate(slice('world-pitch-actions-v99.js','function v182PenaltyFramePoint(','function v100PenaltyWidePoint('));
+const squadOf=(prefix,size)=>squad(prefix,{size}).map((p,i)=>({...p,keeper:i===size-1,fin:i===size-1?3:12-i*.1}));
+check('Seven shooters: marked preview and kick agree on the seventh, unmarked preview keeps the former rotation',()=>{
+ const unmarked=playedSession(squadOf('h',7),squadOf('a',7),false);
+ // The 13th kick (home, seventh shooter) is announced and then taken by the same player.
+ const s=playedSession(squadOf('h',7),squadOf('a',7));const saved=Math.random;Math.random=scripted(kicks(Array(13).fill(1)));
+ try{g.v42Session=s;for(let i=0;i<12;i++)g.v42NextKick();const announced=g.v42UpcomingShooter(s).player.n;g.v42NextKick();assert.equal(s.kicks.at(-1).number,announced);assert.equal(announced,s.order[6]);assert.equal(new Set(s.kicks.filter(k=>k.side===0).map(k=>k.number)).size,7,'all seven own players shot once');}finally{Math.random=saved;}
+ const old={...unmarked,kicks:Array.from({length:12},(_,i)=>({side:i%2,number:1,goal:true}))};assert.equal(g.v42UpcomingShooter(old).player.n,old.order[0],'former sessions keep the %6 announcement');
+});
+check('Both new paths share the bound: after 103 tied pairs one conditioned deciding pair',()=>{
+ for(const homeDraw of [0,.999]){
+  const pattern=kicks(Array(206).fill(1)).concat([homeDraw,.2,.7]);
+  const s=playShootout(playedSession(squad('h'),squad('a')),scripted(pattern)),c=compactWith(scripted(pattern),squad('h'),squad('a'));
+  assert.equal(s.kicks.length,208);assert.equal(c.kicks.length,208);assert.equal(c.conditioned,true);
+  assert.deepEqual(s.score,c.score);assert.deepEqual(s.kicks.map(k=>[k.goal,k.outcome].join()),c.kicks.map(k=>[k.goal,k.outcome].join()));
+  assert.equal(s.winner,homeDraw===0?0:1);assert.equal(Math.abs(s.score[0]-s.score[1]),1);
+  const last=s.kicks.slice(-2);for(const k of last){if(k.outcome==='save')assert.equal(k.diveSide,k.shotSide);else assert.equal(k.diveSide,-k.shotSide);}
+ }
+});
+check('Deciding pair resumes from the recorded home kick without transient state or a second winner draw',()=>{
+ for(const homeDraw of [0,.999]){
+  const s=playedSession(squad('h'),squad('a')),saved=Math.random;Math.random=scripted(kicks(Array(206).fill(1)).concat([homeDraw,.2]));
+  try{g.v42Session=s;for(let i=0;i<207;i++)g.v42NextKick();}finally{Math.random=saved;}
+  assert.equal(s.phase,'shooting');assert(!('decidingHome'in s));
+  const restored=JSON.parse(JSON.stringify(s)),before=s.kicks.at(-1).goal;playShootout(restored,scripted([.7]));
+  assert.equal(restored.kicks.length,208);assert.equal(restored.kicks.at(-1).goal,!before);assert.equal(restored.winner,homeDraw===0?0:1);
+ }
+});
+check('Woodwork picture: contact at the post/crossbar of the drawn goal, then a visible rebound',()=>{
+ for(const [w,h] of [[570,300],[360,260],[700,310]])for(const side of [-1,1]){
+  const post=Math.min(w*.36,180),edge=w/2+side*post,at=q=>g.v182PenaltyFramePoint(q,side,'post',w,h),bar=q=>g.v182PenaltyFramePoint(q,side,'bar',w,h);
+  assert(Math.abs(at(.55).left-edge)<=5,'post contact on the post');assert(at(.55).bottom>h-205&&at(.55).bottom<h-79-20,'post contact between ground and crossbar');
+  assert(side*(at(1).left-edge)>20&&at(1).bottom<at(.55).bottom,'post rebound away from goal and down');
+  assert(Math.abs(bar(.55).left-(w/2+side*64))<1&&bar(.55).bottom>h-79-35&&bar(.55).bottom<h-79,'crossbar contact under the bar');
+  assert(bar(1).bottom>bar(.55).bottom,'crossbar rebound goes up');
+  assert.deepEqual(at(0),{left:w/2,bottom:26,scale:1});
+ }
+ const css=read('penalties-v42.js'),world=read('world-pitch3d-v98.js'),v50=read('set-pieces-v50.js');
+ for(const text of ['@keyframes v182BallPost','@keyframes v182BallBar','#v50-penalty-scene .v42-goal-scene .v42-ball.post','#v50-penalty-scene .v42-goal-scene .v42-ball.bar','v182FrameScene(v42Screen.querySelector('])assert(css.includes(text),text);
+ assert(world.includes('v182PenaltyFramePoint(progress,match.setPiece.shotSide,frame'));assert(world.includes(':is(.post,.bar){animation:none!important}'));
+ assert(v50.includes('if(last.frame&&match?.penaltyRevision===182&&typeof v182FrameScene===\'function\')v182FrameScene('));
+});
+check('English: outcome texts, punctuation-free list variants and dynamic report texts via the actual translator',()=>{
+ const vm=require('node:vm'),src=read('i18n-v75.js'),tctx=vm.createContext({});vm.runInContext(src.slice(src.indexOf('const labels='),src.indexOf("let language='de'"))+';globalThis.translate=translate',tctx);const t=tctx.translate;
+ const expected={'goal':'Goal!','save':'Saved!','wide':'Wide!','high':'Over!','post':'Post!','bar':'Crossbar!'};
+ for(const [kind,english] of Object.entries(expected)){
+  const kick=kind==='post'?{outcome:'wide',frame:'post'}:kind==='bar'?{outcome:'high',frame:'bar'}:{outcome:kind,goal:kind==='goal'};const text=g.v42OutcomeText(kick);
+  assert.equal(t(text),english);assert.equal(t(text.replace(/[!.]/g,'')),english.replace(/[!.]/g,''));assert.equal(t(`Lea Kurz: ${text}`),`Lea Kurz: ${english}`);assert.equal(t(`Lea Kurz: ${text.replace(/[!.]/g,'')}`),`Lea Kurz: ${english.replace(/[!.]/g,'')}`);
+ }
+ assert.equal(t('Kein Tor.'),'No goal.');
+ // Actual end-of-penalty report texts from v50FinishPenalty for every miss kind.
+ const said=[];Object.assign(g,{v50ClearPenaltyScene:()=>{},hideOverlay:()=>{},v50GoalKick:(k,text)=>said.push(text),v50Goal:()=>{},v50Deflect:()=>{}});
+ for(const [outcome,frame] of [['wide',null],['high',null],['wide','post'],['high','bar']]){
+  g.match={setPiece:{},shots:[0,0]};const shooter={name:'Mila Berg',t:0,stats:{shots:0,onTarget:0}},keeper={name:'K',keeper:true,stats:{faced:0,saves:0}};g.v50Keeper=()=>keeper;
+  g.v50FinishPenalty({team:0,taker:shooter,outcome,...frame?{frame}:{}});
+ }
+ assert.deepEqual(said,['Mila Berg schießt den Elfmeter vorbei. Abstoß.','Mila Berg schießt den Elfmeter über das Tor. Abstoß.','Mila Berg schießt den Elfmeter an den Pfosten. Abstoß.','Mila Berg schießt den Elfmeter an die Latte. Abstoß.']);
+ assert.deepEqual(said.map(t),['Mila Berg puts the penalty wide. Goal kick.','Mila Berg puts the penalty over the bar. Goal kick.','Mila Berg hits the post with the penalty. Goal kick.','Mila Berg hits the crossbar with the penalty. Goal kick.']);
+ assert.deepEqual(said.map(s=>t(s.replace(/\./g,''))),said.map(t).map(s=>s.replace(/\./g,'')));
+});
+
+check('Woodwork reaches the shared THREE/Unity picture, mirrors both ends, and leaves native state and RNG untouched',()=>{
+ evaluate(slice('world-pitch-actions-v99.js','function v99BallView(','function v99PlayerAction('));
+ evaluate(slice('world-pitch3d-v98.js','function v98PitchPoint(','// Unity-only pose projection.'));
+ evaluate(slice('world-pitch3d-v98.js','function v98PitchFrame(','function v98HomeSponsor('));
+ Object.assign(g,{v99Actions:new WeakMap(),v99Flights:new WeakMap(),v115OffsideBalls:new WeakMap(),v119VisibleGoalView:()=>null,v119VisibleShotBall:()=>null,v55Field:{left:28/600,right:572/600,top:26/740,bottom:714/740},v160PitchWidth:m=>m.geometry.width,v160PitchLength:m=>m.geometry.length,v102Clock:()=>0});
+ const saved=Math.random;Math.random=()=>{throw Error('picture consumed native randomness')};
+ try{for(const geometry of [{width:44,length:68,goalWidth:9.705882352941176,goalHeight:3.2352941176470584},{width:32,length:48,goalWidth:7.32,goalHeight:2.44}])for(const team of [0,1])for(const shotSide of [-1,1])for(const frame of ['post','bar'])for(const turned of [false,true]){
+  const line=team===0?g.v55Field.top:g.v55Field.bottom,direction=team===0?-1:1;
+  const m={penaltyRevision:182,geometry,people:[],ball:{x:.5,y:line-direction*.12},setPiece:{type:'penalty',phase:'result',frame,team,shotSide,spot:{x:.5,y:line-direction*.12},wait:2.15-.9*.55},halftimeBreakDone:turned};
+  const before=JSON.stringify(m),p=g.v99BallView(m);assert(p,'marked woodwork has a visible ball');
+  const sx=geometry.width/(g.v55Field.right-g.v55Field.left),sy=geometry.length/(g.v55Field.bottom-g.v55Field.top),radius=.1764;
+  assert(Math.abs((p.y-line)*sy+direction*radius)<1e-8,'contact at front face of goal');
+  if(frame==='post')assert(Math.abs((p.x-.5)*sx-shotSide*(geometry.goalWidth/2-radius))<1e-8,'post contact');
+  else assert(Math.abs(p.elevation-(geometry.goalHeight-radius))<1e-8,'crossbar contact');
+  const projected=g.v98PitchFrame(m).ball,expected=g.v98PitchPoint(p,turned);assert(Math.abs(projected.x-expected.x)<1e-8);assert(Math.abs(projected.z-expected.z)<1e-8);assert.equal(projected.height,p.elevation);assert.equal(JSON.stringify(m),before);
+  m.setPiece.wait=1.25;const rebound=g.v99BallView(m);assert(direction*(rebound.y-line)>0,'miss rebounds behind goal');assert(frame==='post'?shotSide*(rebound.x-.5)*sx>geometry.goalWidth/2:rebound.elevation>geometry.goalHeight,'rebound clears the frame');
+  delete m.penaltyRevision;assert.equal(g.v99BallView(m),null,'old picture remains unchanged even with an unrelated frame field');
+ }}finally{Math.random=saved;}
+});
+
 // ---------- Measurement ----------
 const N=20000,bands=[['1–7',4],['8–10',9],['11–13',12],['14–16',15],['17–20',18.5]];
 function newDist(shooter,keeper,n=N,s0=1){const out={goal:0,save:0,wide:0,high:0,post:0,bar:0};seed(s0);for(let i=0;i<n;i++){const r=g.v182PenaltyOutcome(shooter,keeper,lcg);if(r.frame)out[r.frame]++;else out[r.outcome]++;}for(const k in out)out[k]/=n;return out;}
