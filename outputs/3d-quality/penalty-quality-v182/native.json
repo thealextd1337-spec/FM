@@ -11,6 +11,12 @@
     "Compact 182 shootout is deterministic and survives JSON continuation",
     "Outcome consistency: four draws, save only on the guessed side, woodwork only on misses",
     "In-match penalty: marker selects 182 (four draws), unmarked keeps the former path",
+    "Seven shooters: marked preview and kick agree on the seventh, unmarked preview keeps the former rotation",
+    "Both new paths share the bound: after 103 tied pairs one conditioned deciding pair",
+    "Deciding pair resumes from the recorded home kick without transient state or a second winner draw",
+    "Woodwork picture: contact at the post/crossbar of the drawn goal, then a visible rebound",
+    "English: outcome texts, punctuation-free list variants and dynamic report texts via the actual translator",
+    "Woodwork reaches the shared THREE/Unity picture, mirrors both ends, and leaves native state and RNG untouched",
     "Calibration: middle band about three quarters, moderate 15–20 point band spread, keeper-shooters do not collapse",
     "Real squads: shootout conversion rises to a plausible level, weak bands stay well above collapse"
   ],
