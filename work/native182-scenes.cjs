@@ -39,7 +39,7 @@ function inContext(){
  // ----- B12: loose balls -----
  const formation=[['d1','def',15,-7],['d2','def',15,7],['m1','mid',28,-9],['m2','mid',28,9],['a1','att',40,0]];
  function looseScene({kind='rolling',team=0,size='standard',seed=1,marker=false,spd=12}){
-  seedRandom(15000+seed);
+  seedRandom(15000+seed);script=null;events=null;
   const geometry=v160WorldGeometry({world:{matchConfig:{version:1,fieldSize:size,fieldPlayers:5}}}),s={x:geometry.width/(v55Field.right-v55Field.left),y:geometry.length/(v55Field.bottom-v55Field.top)},L=geometry.length,W=geometry.width,j=jitter(seed*31+(kind.length*7)+team*3+(size==='large'?1:0));
   // The attacking team is `team`; its ball sits at a seed-dependent depth.
   const ballDepth=[34,44,52,24,40,56][seed%6]*L/68,ballLateral=[0,-10,8,-4,13,-12][seed%6]*W/44;
@@ -102,6 +102,68 @@ function inContext(){
   }
   return out;
  }
+ // ----- B03: defensive pursuit of a breaking carrier -----
+ // The carrier follows a scripted run (straight or a cut); everything else,
+ // including every defender decision, contact check, duel and foul, is native.
+ let script=null,events=null;
+ const baseCarrier=v159CarrierTarget,baseAction=action,baseStanding=v56StandingTackle,baseSlide=v56StartSlide,baseFoul=v50Foul;
+ v159CarrierTarget=function(m,p){if(!script||p!==m.owner||p.pid!==script.carrier)return baseCarrier(m,p);const s=v150Scale(),t=v102Clock(m)-script.start,dir=t>=script.cutAt?script.after:script.before;p.tx=p.x+dir.x*2/s.x;p.ty=p.y+dir.y*2/s.y;return true;};
+ action=function(){if(!script)return baseAction();const m=match;if(v56MaybeChallenge(m.owner))return;m.next=m.elapsed+.24*MATCH_SPEED;};
+ const record=(kind,tackler,victim)=>{if(!events)return;const s=v150Scale(),f=victim.offenseMotion,len=Math.hypot(f?.vx||0,f?.vy||0),fw=len>.3?{x:f.vx/len,y:f.vy/len}:{x:Math.sin(f?.heading||0),y:Math.cos(f?.heading||0)},rel={x:(tackler.x-victim.x)*s.x,y:(tackler.y-victim.y)*s.y};events.push({kind,tackler:tackler.pid,at:v102Clock(match),along:rel.x*fw.x+rel.y*fw.y,behindFlag:kind==='slide'?Boolean(match.slide?.behind):null});};
+ v56StandingTackle=function(tackler,victim){const info=events&&v56ApproachInfo(tackler,victim),eligible=info&&!info.behind&&info.ball<=30.4&&info.body<=40,r=baseStanding(tackler,victim);if(events)record(eligible?'standing':'standing-none',tackler,victim);return r;};
+ v56StartSlide=function(tackler,victim){const r=baseSlide(tackler,victim);if(r!==false)record('slide',tackler,victim);return r;};
+ v50Foul=function(victim,offender){const slide=match.slide||null,behind=events&&slide?.tackler===offender?slide.behind:null,r=baseFoul(victim,offender);if(events&&r!==false){record('foul',offender,victim);events[events.length-1].behindFlag=behind;}return r;};
+ const offsets={behind1:[-1,0],behind3:[-3,0],behind5:[-5,0],sideL2:[0,-2],sideR2:[0,2],sideL4:[0,-4],sideR4:[0,4],diagL3:[-2.1,-2.1],diagR3:[-2.1,2.1],front6:[6,0],frontR5:[5,2.5]};
+ function pursuitScenes(marker){const list=[];
+  for(const offset of Object.keys(offsets))for(const path of [0,30,60,90])for(const quality of [8,12,18])for(const attack of [8,12,18])for(const team of [0,1])for(const size of ['standard','large'])
+   if(size==='standard'||(quality===12&&attack===12))list.push({id:`${offset}:${path}:${quality}:${attack}:${team}:${size}`,offset,path,quality,attack,team,size,marker});
+  return list;}
+ function pursuitScene({offset='behind3',path=0,quality=12,attack=12,team=0,size='standard',marker=false,lateral=0}){
+  seedRandom(23000+path*7+quality*3+attack+team*11+(size==='large'?5:0)+Object.keys(offsets).indexOf(offset)*13);
+  const geometry=v160WorldGeometry({world:{matchConfig:{version:1,fieldSize:size,fieldPlayers:5}}}),s={x:geometry.width/(v55Field.right-v55Field.left),y:geometry.length/(v55Field.bottom-v55Field.top)},d=team,a=1-d;
+  // Frame of the defending team: depth from its goal line, lateral across.
+  const carrierPos=at(d,32,lateral,s),[back,side]=offsets[offset],defPos=at(d,32-back,lateral+side,s);
+  const carrier=person('carrier',a,carrierPos.x,carrierPos.y,'att',{n:9,spd:attack,tec:12,pos:12,fin:12});
+  const defender=person('defender',d,defPos.x,defPos.y,'def',{n:4,spd:quality,pos:quality,tak:12});const anchor=at(d,15,side<0?-7:7,s);defender.bx=anchor.x;defender.by=anchor.y;defender.initialBy=anchor.y;
+  const far=person('cover',d,...Object.values(at(d,46,-12,s)),'mid',{n:6});const support=person('support',a,...Object.values(at(d,44,12,s)),'mid',{n:8});
+  const keepers=[person('keeper-d',d,...Object.values(at(d,3,0,s)),'gk',{n:1},true),person('keeper-a',a,...Object.values(at(d,64,0,s)),'gk',{n:1},true)];
+  const people=d===0?[keepers[0],defender,far,keepers[1],carrier,support]:[keepers[1],carrier,support,keepers[0],defender,far];
+  for(const q of [carrier,support]){const base=q===carrier?at(d,26,lateral,s):at(d,36,12,s);q.bx=base.x;q.by=base.y;q.initialBy=base.y;}
+  install({people,size,ball:carrierPos,lastTouch:a,markers:marker?{looseBallRevision:182,pursuitRevision:182}:{}});
+  const toward=d===0?1:-1,fw={x:0,y:toward},rot=deg=>{const r=deg*Math.PI/180;return {x:fw.x*Math.cos(r)+fw.y*Math.sin(r),y:-fw.x*Math.sin(r)+fw.y*Math.cos(r)};};
+  // Momentum of an actual break: carrier at dribbling pace, defender recovering.
+  v157Body(carrier).vx=0;v157Body(carrier).vy=toward*5.5;v157Body(carrier).heading=Math.atan2(0,toward);
+  v157Body(defender).vx=0;v157Body(defender).vy=back>0?-toward*3:toward*(back<0?4.5:2.5);v157Body(defender).heading=Math.atan2(0,toward);
+  carrier.motionX=0;carrier.motionY=toward*.01;defender.motionX=0;defender.motionY=toward*.01;
+  match.owner=carrier;match.ball={...carrierPos};match.next=match.elapsed+.24*MATCH_SPEED;
+  script={carrier:'carrier',start:v102Clock(match),cutAt:.7,before:fw,after:rot(-path)};events=[];
+  return {s,carrier,defender,d};
+ }
+ function pursuitRun(config){
+  const {s,carrier,defender,d}=pursuitScene(config),goal={x:.5,y:goalY(d)},rows=[],start=v102Clock(match);let end='timeout';
+  const depth=p=>Math.abs(p.y-goal.y)*s.y,lineGap=(p,c)=>{const gx=(goal.x-c.x)*s.x,gy=(goal.y-c.y)*s.y,g=Math.hypot(gx,gy)||1;return Math.abs(((p.x-c.x)*s.x)*gy-((p.y-c.y)*s.y)*gx)/g;};
+  for(let i=0;i<80;i++){
+   if(match.owner!==carrier){end=match.setPiece?'foul':match.owner?.t===d?'won':match.rebound?'loose':'other';break;}
+   if(depth(carrier)<12){end='escaped';break;}
+   advance();
+   const gap=v122MetresIn(defender,carrier,s),goalSide=depth(defender)<depth(carrier)-.3&&lineGap(defender,carrier)<2,cv=carrier.offenseMotion,cs=Math.hypot(cv.vx,cv.vy),alongRun=cs>.5?((defender.x-carrier.x)*s.x*cv.vx+(defender.y-carrier.y)*s.y*cv.vy)/cs:0;
+   rows.push({t:v102Clock(match)-start,gap,goalSide,alongRun,recovering:(defender.recoverUntil||0)>match.elapsed||defender.slideActive,dSpeed:Math.hypot(defender.offenseMotion.vx,defender.offenseMotion.vy),cSpeed:Math.hypot(carrier.offenseMotion.vx,carrier.offenseMotion.vy)});
+  }
+  if(end==='timeout'&&match.owner!==carrier)end=match.setPiece?'foul':match.owner?.t===d?'won':match.rebound?'loose':'other';
+  const out={end,rows,events:events.slice(),draws};script=null;events=null;return out;
+ }
+ function pursuitMetrics(run){
+  const goalSideAt=run.rows.find(r=>r.goalSide)?.t??null,attempts=run.events.filter(e=>e.tackler==='defender'&&['standing','slide'].includes(e.kind));
+  // Vorbeilaufen: within 1.2 m without any challenge, then the carrier is past him
+  // (more than 0.5 m behind along the carrier's actual run) although he was not before.
+  let passBy=0,passByRecovering=0,closeNoCheck=0,inside=false,checked=false,recovering=false,episodeStart=0,startAlong=0;
+  for(const r of run.rows){
+   if(r.gap<1.2){if(!inside){inside=true;checked=false;recovering=false;episodeStart=r.t-.05;startAlong=r.alongRun;}if(r.recovering)recovering=true;if(attempts.some(e=>e.at>episodeStart-1e-9&&e.at<=r.t+1e-9))checked=true;}
+   else if(inside){inside=false;if(!checked&&!r.goalSide)closeNoCheck++;if(!checked&&startAlong>=-.5&&r.alongRun<-.5){if(recovering)passByRecovering++;else passBy++;}}
+  }
+  const fouls=run.events.filter(e=>e.kind==='foul'&&e.tackler==='defender');
+  return {end:run.end,goalSideAt,passBy,passByRecovering,closeNoCheck,foulsFront:fouls.filter(e=>!(e.behindFlag||e.along<-.5)).length,standing:attempts.filter(e=>e.kind==='standing').length,slides:attempts.filter(e=>e.kind==='slide').length,slidesBehind:attempts.filter(e=>e.kind==='slide'&&e.behindFlag).length,fouls:fouls.length,foulsBehind:fouls.filter(e=>e.behindFlag||e.along<-.5).length,minGap:Math.min(...run.rows.map(r=>r.gap),99),seconds:run.rows.at(-1)?.t||0};
+ }
  // JSON checkpoint during a scene; the continuation must equal the uninterrupted run.
  function checkpoint(){if(!v65Snapshot(active))throw Error('Snapshot failed');active.state.physicalSnapshot=JSON.parse(JSON.stringify(active.state.physicalSnapshot));match=null;if(!v65Restore(active))throw Error('Restore failed');}
  function continuation(scene,at,total=60){
@@ -114,20 +176,20 @@ function inContext(){
   const random=Math.random;
   for(let i=0;i<ticks&&!match.setPiece;i++){
    Math.random=()=>{throw Error('v182 planner drew a random number');};
-   for(const p of match.people){if(typeof v182LooseTarget==='function'&&!p.keeper){v182LooseTarget(match,p);calls++;}if(typeof v182PursuitTarget==='function'&&!p.keeper){v182PursuitTarget(match,p);calls++;}}
+   for(const p of match.people){if(typeof v182LooseTarget==='function'&&!p.keeper){v182LooseTarget(match,p);calls++;}if(typeof v182PursuitActive==='function'&&v182PursuitActive(match)&&!p.keeper){v159DefensiveTarget(match,p);calls++;}}
    Math.random=random;advance();
   }
   return calls;}
  // Unmarked scene list for the base/current byte comparison.
  function oldScenes(){const list=[];
   for(const kind of ['static','rolling','diagonal','rebound','air'])for(const team of [0,1])for(const size of ['standard','large'])for(const seed of [0,3,4])list.push({id:`loose:${kind}:${team}:${size}:${seed}`,type:'loose',config:{kind,team,size,seed,marker:false}});
-  if(typeof pursuitScene==='function')for(const scene of pursuitScenes(false))list.push({id:'pursuit:'+scene.id,type:'pursuit',config:scene});
+  pursuitScenes(false).forEach((scene,i)=>{if(i%9===0)list.push({id:'pursuit:'+scene.id,type:'pursuit',config:scene});});
   return list;}
  function oldDigest(scene){
   if(scene.type==='loose'){looseScene(scene.config);for(let i=0;i<70;i++)advance();}
-  else{pursuitScene(scene.config);for(let i=0;i<70&&!match.setPiece&&!match.finished;i++)advance();}
+  else{pursuitScene(scene.config);for(let i=0;i<70&&!match.setPiece&&!match.finished;i++)advance();script=null;events=null;}
   return digest();}
- globalThis.Native182={seedRandom,person,install,at,advance,digest,checkpoint,continuation,plannerDraws,looseScene,looseRun,looseMetrics,oldScenes,oldDigest,rng:()=>({value:rng,draws}),context:()=>active};
+ globalThis.Native182={seedRandom,person,install,at,advance,digest,checkpoint,continuation,plannerDraws,looseScene,looseRun,looseMetrics,pursuitScenes,pursuitScene,pursuitRun,pursuitMetrics,oldScenes,oldDigest,rng:()=>({value:rng,draws}),context:()=>active};
 }
 function create(options){const h=harness(options);h.run('('+inContext.toString()+')()','native182-scenes');return h;}
 module.exports={create,inContext};

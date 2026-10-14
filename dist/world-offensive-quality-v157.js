@@ -58,7 +58,8 @@ function v157Move(m,p,dt){
  const quick=v162Active(m)&&!p.keeper,revised=quick&&v119PaceActive(m),angularRate=(3.5+ability(p,'tec')*.055)*(revised?1.32:quick?1.22:1)/Math.sqrt(mass)/(1+speed*.055);
  body.heading+=clamp(v157Angle(body.heading,heading),-angularRate*dt,angularRate*dt);
  const factor=v108MoveFactor(m,p,p.tx-p.x,p.ty-p.y),brake=10.5*(revised?1.25:quick?1.18:1)/mass,baseAccel=(6.2+ability(p,'spd')*.08)*(revised?1.40:quick?1.24:1)/mass,accel=typeof v158Movement==='function'?v158Movement(p,1,baseAccel).acceleration:baseAccel;
- const desired=pivot?0:Math.min(v157Pace(m,p)*factor,Math.sqrt(2*brake*Math.max(0,d-.05)));
+ const follow=typeof v182Follow==='function'?v182Follow(m,p,dx,dy,d):0;
+ const desired=pivot?0:Math.min(v157Pace(m,p)*factor,Math.sqrt(2*brake*Math.max(0,d-.05))+follow);
  // Forward runners follow the body through a curve; defensive backpedalling
  // can retain its observed focus and its existing reduced speed.
  const alignment=focus?1:Math.max(0,Math.cos(v157Angle(body.heading,heading))),pace=desired*alignment;
