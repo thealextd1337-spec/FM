@@ -8,8 +8,8 @@ function v72ListedPlayers(career){
  return v72Market(career).saleListings.filter(item=>item.status==='active'&&item.sellerId!==career.manager.managedClubId&&v72CanCommitSale(career,item.sellerId,item.pid)).map(listing=>({listing,club:v66Club(career,listing.sellerId),player:v66Player(career,listing.pid)})).filter(item=>item.club&&item.player&&item.club.roster.some(player=>player.pid===item.player.pid)).filter(item=>v72Filter.country==='all'||item.club.countryId===v72Filter.country).filter(item=>v72Filter.line==='all'||item.player.line===v72Filter.line).filter(item=>!v72Filter.maxPrice||item.listing.ask<=Number(v72Filter.maxPrice)).filter(item=>v72Filter.willingness==='all'||v72Willingness(career,item.player.pid,career.manager.managedClubId)===v72Filter.willingness).sort((a,b)=>a.listing.ask-b.listing.ask||a.player.name.localeCompare(b.player.name,'de'));
 }
 function v72ListingsHTML(career){
- const market=v72Market(career),all=market.saleListings.filter(item=>item.status==='active'&&item.sellerId!==career.manager.managedClubId&&v72CanCommitSale(career,item.sellerId,item.pid)),entries=v72ListedPlayers(career),open=market.phase==='open';
- return`<section class="v72-sale-list" id="v72-sale-list"><div class="section-heading"><div><h3>Von Vereinen angeboten</h3><p>${all.length} Spieler stehen zum Verkauf. Die angezeigte Ablöse ist verhandelbar.</p></div><span>${entries.length} angezeigt</span></div><div class="v72-filters"><label>Land<select id="v72-country"><option value="all">Alle Länder</option>${career.world.countries.map(({id,name})=>`<option value="${id}" ${v72Filter.country===id?'selected':''}>${name}</option>`).join('')}</select></label><label>Position<select id="v72-line"><option value="all">Alle Positionen</option>${Object.entries(v61PositionNames).map(([id,name])=>`<option value="${id}" ${v72Filter.line===id?'selected':''}>${name}</option>`).join('')}</select></label><label>Verhandelbare Ablöse bis<input id="v72-max-price" type="number" min="0" step="10" value="${escapeHTML(String(v72Filter.maxPrice))}" placeholder="Alle"></label><label>Wechselbereitschaft<select id="v72-willingness"><option value="all">Alle</option>${Object.entries(v72WillingnessText).map(([key,label])=>`<option value="${key}" ${v72Filter.willingness===key?'selected':''}>${label}</option>`).join('')}</select></label></div><div class="v72-sale-grid">${entries.map(({listing,club,player})=>{const willingness=v72Willingness(career,player.pid,career.manager.managedClubId),blocked=market.decisions.some(item=>item.pid===player.pid&&item.buyerId===career.manager.managedClubId&&item.season===career.world.season&&['rejected','expired'].includes(item.status));return`<article class="v72-sale-card"><div class="v72-sale-top">${v61FlagSVG(player.nation)}<div><button type="button" data-v66-profile="${escapeHTML(player.pid)}">${escapeHTML(player.name)}</button><small>${escapeHTML(club.name)} · ${v61PositionNames[player.line]} · ${player.age} Jahre</small></div>${v72WillingnessHTML(willingness)}</div><div class="v72-sale-prices"><span>Verhandelbare Ablöse<b>${v66Credits(listing.ask)}</b></span><span>Marktwert<b>${v66Credits(v66Value(player))}</b></span></div><button type="button" class="menu-action" data-v72-open="${escapeHTML(player.pid)}" ${!open||blocked?'disabled':''}>${blocked?'Erst im nächsten Fenster':'Ablöse verhandeln'}</button></article>`}).join('')||'<p class="v66-note">Für diese Filter gibt es kein aktives Verkaufsangebot.</p>'}</div></section>`;
+ const market=v72Market(career),all=market.saleListings.filter(item=>item.status==='active'&&item.sellerId!==career.manager.managedClubId&&v72CanCommitSale(career,item.sellerId,item.pid)),entries=v72ListedPlayers(career);
+ return`<section class="v72-sale-list" id="v72-sale-list"><div class="section-heading"><div><h3>Von Vereinen angeboten</h3><p>${all.length} Spieler stehen zum Verkauf. Die angezeigte Ablöse ist verhandelbar.</p></div><span>${entries.length} angezeigt</span></div><div class="v72-filters"><label>Land<select id="v72-country"><option value="all">Alle Länder</option>${career.world.countries.map(({id,name})=>`<option value="${id}" ${v72Filter.country===id?'selected':''}>${name}</option>`).join('')}</select></label><label>Position<select id="v72-line"><option value="all">Alle Positionen</option>${Object.entries(v61PositionNames).map(([id,name])=>`<option value="${id}" ${v72Filter.line===id?'selected':''}>${name}</option>`).join('')}</select></label><label>Verhandelbare Ablöse bis<input id="v72-max-price" type="number" min="0" step="10" value="${escapeHTML(String(v72Filter.maxPrice))}" placeholder="Alle"></label><label>Wechselbereitschaft<select id="v72-willingness"><option value="all">Alle</option>${Object.entries(v72WillingnessText).map(([key,label])=>`<option value="${key}" ${v72Filter.willingness===key?'selected':''}>${label}</option>`).join('')}</select></label></div><div class="v72-sale-grid">${entries.map(({listing,club,player})=>{const willingness=v72Willingness(career,player.pid,career.manager.managedClubId),blocked=market.decisions.some(item=>item.pid===player.pid&&item.buyerId===career.manager.managedClubId&&item.season===career.world.season&&['rejected','expired'].includes(item.status));return`<article class="v72-sale-card"><div class="v72-sale-top">${v61FlagSVG(player.nation)}<div><button type="button" data-v66-profile="${escapeHTML(player.pid)}">${escapeHTML(player.name)}</button><small>${escapeHTML(club.name)} · ${v61PositionNames[player.line]} · ${player.age} Jahre</small></div>${v72WillingnessHTML(willingness)}</div><div class="v72-sale-prices"><span>Verhandelbare Ablöse<b>${v66Credits(listing.ask)}</b></span><span>Marktwert<b>${v66Credits(v66Value(player))}</b></span></div><button type="button" class="menu-action" data-v72-open="${escapeHTML(player.pid)}" ${!v72CanOffer(career,player.pid)||blocked?'disabled':''}>${blocked?'Erst im nächsten Fenster':'Ablöse verhandeln'}</button></article>`}).join('')||'<p class="v66-note">Für diese Filter gibt es kein aktives Verkaufsangebot.</p>'}</div></section>`;
 }
 function v72ProfileSaleHTML(career,pid){
  if(v66Owner(career,pid)?.id!==career.manager.managedClubId)return'';
@@ -29,7 +29,7 @@ function v72DecorateOwnProfile(career,pid){
  const html=v72ProfileSaleHTML(career,pid);if(html)target.insertAdjacentHTML('beforeend',html);
  const owner=v66Owner(career,pid),player=v66Player(career,pid);
  if(player&&owner?.id!==career.manager.managedClubId){
-  const available=career.world.market.phase==='open'||!owner&&career.world.market.phase==='closed'&&!career.world.seasonFinished;
+  const available=v72CanOffer(career,pid)||!owner&&career.world.market.phase==='closed'&&!career.world.seasonFinished;
   target.insertAdjacentHTML('beforeend',`<section class="v72-profile-offer"><h3>Transfer</h3><button type="button" class="menu-action" data-v72-profile-offer="${escapeHTML(pid)}" ${available?'':'disabled'}>Angebot für ${escapeHTML(player.name)} abgeben</button>${available?'':'<p>Ein Angebot ist erst im nächsten Transferfenster möglich.</p>'}</section>`);
  }
 }
@@ -71,12 +71,16 @@ v66OfferHTML=function(career){
  const player=v66Player(career,listing.pid),club=v66Club(career,listing.sellerId),blocked=v72Market(career).decisions.some(item=>item.pid===listing.pid&&item.buyerId===career.manager.managedClubId&&item.season===career.world.season&&['rejected','expired'].includes(item.status));
  const saleBlocked=v72SaleBlockReason(career,listing.sellerId,listing.pid);
  if(saleBlocked)return`<section class="v66-offer" id="v66-offer"><h3>Angebot für ${escapeHTML(player.name)}</h3><p role="status">${escapeHTML(saleBlocked)}</p><button type="button" class="menu-action" data-v66-profile="${escapeHTML(player.pid)}">Spielerprofil ansehen</button></section>`;
- if(listing.reason==='direct')return`<section class="v66-offer" id="v66-offer"><h3>Angebot für ${escapeHTML(player.name)}</h3><p>Aktueller Verein: ${escapeHTML(club.name)} · Richtwert ${v66Credits(listing.ask)}. Auch Spieler ohne Verkaufsliste können ein Gebot erhalten.</p><p>${v61FlagSVG(player.nation)} ${v61PositionNames[player.line]}, ${player.age} Jahre</p><button type="button" class="menu-action" data-v66-profile="${escapeHTML(player.pid)}">Spielerprofil ansehen</button><button type="button" class="primary" data-v72-open="${escapeHTML(player.pid)}" ${v72Market(career).phase==='open'&&!blocked?'':'disabled'}>Ablöse verhandeln</button><p class="v66-note">Zuerst verhandelst du die Ablöse mit dem Verein. Nach der Einigung folgen Gehalt, Laufzeit und Einsatz-Zusage mit dem Spieler.</p></section>`;
- return`<section class="v66-offer" id="v66-offer"><h3>${escapeHTML(player.name)} steht zum Verkauf</h3><p>${escapeHTML(club.name)} · Verhandelbare Ablöse ${v66Credits(listing.ask)} · Marktwert ${v66Credits(v66Value(player))}</p><button type="button" class="menu-action" data-v72-open="${escapeHTML(player.pid)}" ${v72Market(career).phase==='open'&&!blocked?'':'disabled'}>Ablöse verhandeln</button></section>`;
+ if(listing.reason==='direct')return`<section class="v66-offer" id="v66-offer"><h3>Angebot für ${escapeHTML(player.name)}</h3><p>Aktueller Verein: ${escapeHTML(club.name)} · Richtwert ${v66Credits(listing.ask)}. Auch Spieler ohne Verkaufsliste können ein Gebot erhalten.</p><p>${v61FlagSVG(player.nation)} ${v61PositionNames[player.line]}, ${player.age} Jahre</p><button type="button" class="menu-action" data-v66-profile="${escapeHTML(player.pid)}">Spielerprofil ansehen</button><button type="button" class="primary" data-v72-open="${escapeHTML(player.pid)}" ${v72CanOffer(career,player.pid)&&!blocked?'':'disabled'}>Ablöse verhandeln</button><p class="v66-note">Zuerst verhandelst du die Ablöse mit dem Verein. Nach der Einigung folgen Gehalt, Laufzeit und Einsatz-Zusage mit dem Spieler.</p></section>`;
+ return`<section class="v66-offer" id="v66-offer"><h3>${escapeHTML(player.name)} steht zum Verkauf</h3><p>${escapeHTML(club.name)} · Verhandelbare Ablöse ${v66Credits(listing.ask)} · Marktwert ${v66Credits(v66Value(player))}</p><button type="button" class="menu-action" data-v72-open="${escapeHTML(player.pid)}" ${v72CanOffer(career,player.pid)&&!blocked?'':'disabled'}>Ablöse verhandeln</button></section>`;
 };
 const v72BaseBidHTML=v66BidHTML;
 v66BidHTML=function(career,bid,kind){
- if(kind!=='outgoing'||bid.sellerId)return v72BaseBidHTML(career,bid,kind);
+ if(kind==='outgoing'&&bid.sellerId){
+  const html=v72BaseBidHTML(career,bid,kind);
+  return['pending','counter'].includes(bid.status)?html.replace(/<\/article>$/,`<div class="v66-bid-actions"><button type="button" class="menu-action" data-v72-legacy-open="${escapeHTML(bid.id)}">Angebot zurückziehen</button></div></article>`):html;
+ }
+ if(kind!=='outgoing')return v72BaseBidHTML(career,bid,kind);
  const player=v66Player(career,bid.pid),status={pending:'Spielerantwort ausstehend',counter:'Gegenforderung des Spielers',completed:'Abgeschlossen',rejected:'Abgelehnt',expired:'Abgelaufen'}[bid.status]||bid.status;
  return`<article class="v66-bid"><div><strong>${escapeHTML(player?.name||bid.pid)}</strong><span>Vereinslos · ${v66Credits(bid.annual)} Gehalt · ${bid.years} ${bid.years===1?'Saison':'Saisons'}</span><small>${status}${bid.reason?` · ${escapeHTML(bid.reason)}`:''}</small></div><button type="button" class="menu-action" data-v72-free-open="${escapeHTML(bid.pid)}">Dialog öffnen</button></article>`;
 };
@@ -112,8 +116,8 @@ function v72EnsureDialog(){
    if(button.dataset.v72Retract!==undefined){v72ConfirmRetract(career,button.dataset.v72Retract,button.dataset.v72Kind);return}
    if(button.dataset.v72RetractBack!==undefined){v72ReopenOffer(career,button.dataset.v72RetractBack,button.dataset.v72Kind);return}
    if(button.dataset.v72RetractConfirm!==undefined){
-    const id=button.dataset.v72RetractConfirm,free=button.dataset.v72Kind==='free',pid=free?v66WithdrawBid(career,id).pid:v72Cancel(career,id).pid;
-    await v64UiSave();v61RenderCareer(career);v72ReopenOffer(career,id,button.dataset.v72Kind,pid);return;
+    const id=button.dataset.v72RetractConfirm,kind=button.dataset.v72Kind,pid=kind==='deal'?v72Cancel(career,id).pid:v66WithdrawBid(career,id).pid;
+    await v64UiSave();v61RenderCareer(career);v72ReopenOffer(career,id,kind,pid);return;
    }
    if(button.dataset.v72Reopen!==undefined){v72OpenListing(career,button.dataset.v72Reopen);return}
   }catch(error){const target=v72Dialog.querySelector('.v72-dialog-error');if(target)target.textContent=error.message}
@@ -122,19 +126,21 @@ function v72EnsureDialog(){
  v72Dialog.addEventListener('cancel',event=>{if(v72DialogMode==='result')event.preventDefault()});
  return v72Dialog;
 }
-function v72DialogShell(title,body,closable=true){return`<div class="v72-dialog-head"><h2 id="v72-dialog-title">${title}</h2>${closable?'<button type="button" data-v72-close aria-label="Dialog schließen">×</button>':''}</div>${body}${closable?'<div class="v72-dialog-nav"><button type="button" class="menu-action" data-v72-close>Zur Transferübersicht</button></div>':''}<p class="v72-dialog-error" role="alert"></p>`}
+function v72Settle(dialog){dialog.querySelector('#v72-dialog-title')?.focus()}
+function v72DialogShell(title,body,closable=true){return`<div class="v72-dialog-head"><h2 id="v72-dialog-title" tabindex="-1">${title}</h2>${closable?'<button type="button" data-v72-close aria-label="Dialog schließen">×</button>':''}</div>${body}${closable?'<div class="v72-dialog-nav"><button type="button" class="menu-action" data-v72-close>Zur Transferübersicht</button></div>':''}<p class="v72-dialog-error" role="alert"></p>`}
 function v72DealProfiles(career,pid,clubId){
  const player=v66Player(career,pid),club=v66Club(career,clubId);
  return`<p class="v72-deal-profiles">${player?`<button type="button" data-v72-player-profile="${escapeHTML(pid)}" aria-label="Spielerprofil ${escapeHTML(player.name)} öffnen">${escapeHTML(player.name)}</button>`:escapeHTML(pid)} · ${club?`<button type="button" data-v72-club-profile="${escapeHTML(clubId)}" aria-label="Vereinsprofil ${escapeHTML(club.name)} öffnen">${escapeHTML(club.name)}</button>`:'Verein'}</p>`;
 }
 function v72ReopenOffer(career,id,kind,pid=null){
+ if(kind==='legacy'){v72Dialog.close();v72ShowResults();return}
  if(kind==='free'){const bid=career.world.market.pendingBids.find(item=>item.id===id);v72OpenFreeAgent(career,pid||bid?.pid)}
  else v72RenderDeal(career,id);
 }
 function v72ConfirmRetract(career,id,kind){
- const free=kind==='free',item=free?career.world.market.pendingBids.find(entry=>entry.id===id):v72Negotiation(career,id);if(!item)return;
- const agreed=!free&&['contract','contract-wait','contract-counter','ready'].includes(item.stage);
- const body=`${v72DealProfiles(career,item.pid,free?career.manager.managedClubId:item.sellerId)}<p>Dein Angebot wird zurückgezogen. Es findet kein Wechsel statt und es wird nichts bezahlt. Du kannst sofort ein neues Angebot abgeben.</p>${agreed?'<p>Die bereits vereinbarte Ablöse verfällt.</p>':''}<div class="v72-confirm-actions"><button type="button" class="menu-action" data-v72-retract-back="${escapeHTML(id)}" data-v72-kind="${free?'free':'deal'}">Zurück zur Verhandlung</button><button type="button" class="menu-action v72-confirm-danger" data-v72-retract-confirm="${escapeHTML(id)}" data-v72-kind="${free?'free':'deal'}">Angebot endgültig zurückziehen</button></div>`;
+ const bidBased=kind!=='deal',free=kind==='free',item=bidBased?career.world.market.pendingBids.find(entry=>entry.id===id):v72Negotiation(career,id);if(!item)return;
+ const agreed=!bidBased&&['contract','contract-wait','contract-counter','ready'].includes(item.stage);
+ const body=`${v72DealProfiles(career,item.pid,free?career.manager.managedClubId:item.sellerId)}<p>Dein Angebot wird zurückgezogen. Es findet kein Wechsel statt und es wird nichts bezahlt. Du kannst sofort ein neues Angebot abgeben.</p>${agreed?'<p>Die bereits vereinbarte Ablöse verfällt.</p>':''}<div class="v72-confirm-actions"><button type="button" class="menu-action" data-v72-retract-back="${escapeHTML(id)}" data-v72-kind="${kind}">Zurück zur Verhandlung</button><button type="button" class="menu-action v72-confirm-danger" data-v72-retract-confirm="${escapeHTML(id)}" data-v72-kind="${kind}">Angebot endgültig zurückziehen</button></div>`;
  v72Dialog.innerHTML=v72DialogShell('Angebot zurückziehen?',body);
  v72Dialog.querySelector('[data-v72-retract-back]')?.focus();
 }
@@ -153,7 +159,7 @@ function v72OpenFreeAgent(career,pid){
  const played=v62Fixtures(career).filter(fixture=>fixture.result).length;
  const blocked=career.world.market.decisions.some(item=>item.pid===pid&&item.buyerId===own&&item.season===career.world.season&&['rejected','expired'].includes(item.status)&&played<=item.atPlayed);
  if(bid)v72MarkReplies(career,bid.id);
- const active=bid&&['pending','counter','completed'].includes(bid.status),canOffer=!active&&!blocked&&!owner&&v66Own(career).roster.length<14&&!career.world.seasonFinished&&['open','closed'].includes(career.world.market.phase);
+ const active=bid&&['pending','counter','completed'].includes(bid.status),canOffer=!active&&!blocked&&!owner&&v66Own(career).roster.length<14&&!career.world.seasonFinished&&(['open','closed'].includes(career.world.market.phase)||v72CanOffer(career,pid));
  let action='';
  if(bid?.status==='counter')action=`<p class="v72-stage">Gegenforderung des Spielers</p><p>${escapeHTML(bid.reason)}</p><label>Neues Jahresgehalt${v72NumberField('v72-salary',bid.counter,60)}</label><button type="button" class="primary" data-v72-free-improve="${escapeHTML(bid.id)}">Vertragsangebot senden</button>${v72RetractButton(bid.id,'free')}`;
  else if(active)action=`<p class="v72-stage">${bid.status==='completed'?'Wechsel abgeschlossen':'Spielerantwort ausstehend'}</p><p>${escapeHTML(bid.reason||'Der Spieler entscheidet über den Vertrag.')}</p>${bid.status==='pending'?v72RetractButton(bid.id,'free'):''}`;
@@ -163,17 +169,17 @@ function v72OpenFreeAgent(career,pid){
   action=`${bid?.reason?`<p class="v72-last-change">${escapeHTML(bid.reason)}</p>`:''}<div class="v66-fields"><label>Jahresgehalt${v72NumberField('v72-salary',annual,60)}</label><label>Laufzeit<select id="v72-years">${[1,2,3].map(year=>`<option value="${year}" ${year===2?'selected':''}>${year} ${year===1?'Saison':'Saisons'}</option>`).join('')}</select></label><label>Einsatz-Zusage<select id="v72-promise">${v179PromiseOptionsHTML(career,3)}</select></label></div><button type="button" class="primary" data-v72-free-offer="${escapeHTML(pid)}" ${canOffer?'':'disabled'}>Vertragsangebot senden</button>${canOffer?'':`<p>${v66Own(career).roster.length>=14?'Der Kader hat bereits 14 Profis.':'Dieses Angebot ist außerhalb der Transferphase nicht möglich.'}</p>`}`;
  }
  const body=`${v72DealProfiles(career,pid,own)}<div class="v72-dialog-facts"><span>Bisheriger Verein<b>Vereinslos</b></span><span>Ablöse<b>Ablösefrei</b></span></div>${action}`;
- const dialog=v72EnsureDialog();v72DialogMode='free';v72CurrentId=bid?.id||null;dialog.innerHTML=v72DialogShell('Spielervertrag',body);if(!dialog.open)dialog.showModal();
+ const dialog=v72EnsureDialog();v72DialogMode='free';v72CurrentId=bid?.id||null;dialog.innerHTML=v72DialogShell('Spielervertrag',body);if(!dialog.open)dialog.showModal();v72Settle(dialog);
 }
 function v72OpenListing(career,pid){
  const existing=v72Market(career).negotiations.find(item=>item.pid===pid&&item.buyerId===career.manager.managedClubId&&!['completed','rejected'].includes(item.stage));
  if(existing){v72RenderDeal(career,existing.id);return}
  const listing=v72TransferTerms(career,pid),player=listing&&v66Player(career,pid),club=listing&&v66Club(career,listing.sellerId);if(!listing||!player||!club)return;
  const blocked=v72SaleBlockReason(career,club.id,pid);
- if(blocked){const dialog=v72EnsureDialog();v72DialogMode='deal';v72CurrentId=null;dialog.innerHTML=v72DialogShell('Ablöse verhandeln',`${v72DealProfiles(career,pid,club.id)}<p role="status">${escapeHTML(blocked)}</p>`);if(!dialog.open)dialog.showModal();return}
+ if(blocked){const dialog=v72EnsureDialog();v72DialogMode='deal';v72CurrentId=null;dialog.innerHTML=v72DialogShell('Ablöse verhandeln',`${v72DealProfiles(career,pid,club.id)}<p role="status">${escapeHTML(blocked)}</p>`);if(!dialog.open)dialog.showModal();v72Settle(dialog);return}
  const willingness=v72Willingness(career,pid,career.manager.managedClubId);
  const body=`${v72DealProfiles(career,pid,club.id)}<div class="v72-dialog-facts">${listing.reason==='direct'?'':`<span>Verhandelbare Ablöse<b>${v66Credits(listing.ask)}</b></span>`}<span>Marktwert<b>${v66Credits(v66Value(player))}</b></span><span>Wechselbereitschaft<b>${v72WillingnessHTML(willingness)}</b></span></div><label>Dein Ablösegebot${v72NumberField('v72-fee',listing.ask)}</label><button type="button" class="primary" data-v72-start="${escapeHTML(pid)}">Gebot abgeben</button>`;
- const dialog=v72EnsureDialog();v72DialogMode='deal';v72CurrentId=null;dialog.innerHTML=v72DialogShell('Ablöse verhandeln',body);if(!dialog.open)dialog.showModal();
+ const dialog=v72EnsureDialog();v72DialogMode='deal';v72CurrentId=null;dialog.innerHTML=v72DialogShell('Ablöse verhandeln',body);if(!dialog.open)dialog.showModal();v72Settle(dialog);
 }
 // The search action enters the same native dialog as the transfer-list action.
 function v72OpenPlayerOffer(career,pid){
@@ -193,9 +199,9 @@ function v72RenderDeal(career,id){
   action=`<p>Verein und Käufer haben ${v66Credits(item.agreedPrice)} Ablöse vereinbart. Jetzt entscheidet der Spieler über den Vertrag.</p><div class="v66-fields"><label>Jahresgehalt${v72NumberField('v72-salary',salary,60)}</label><label>Laufzeit<select id="v72-years">${[1,2,3].map(value=>`<option value="${value}" ${value===item.years?'selected':''}>${value} ${value===1?'Saison':'Saisons'}</option>`).join('')}</select></label><label>Einsatz-Zusage<select id="v72-promise">${v179PromiseOptionsHTML(career,item.promise)}</select></label></div><button type="button" class="primary" data-v72-contract="${escapeHTML(id)}">Vertragsangebot senden</button>`;
  }
  if(['refusal-wait','fee-wait','fee-counter','contract','contract-wait','contract-counter','ready'].includes(item.stage)&&['open','deadline'].includes(career.world.market.phase)&&item.buyerId===career.manager.managedClubId)action+=v72RetractButton(id,'deal');
- else if(item.stage==='rejected'&&item.buyerId===career.manager.managedClubId&&career.world.market.phase==='open'&&v72ActiveDeal(career,item.pid)===null)action+=`<button type="button" class="primary" data-v72-reopen="${escapeHTML(item.pid)}">Neues Angebot abgeben</button>`;
+ else if(item.stage==='rejected'&&item.buyerId===career.manager.managedClubId&&v72CanOffer(career,item.pid)&&v72ActiveDeal(career,item.pid)===null)action+=`<button type="button" class="primary" data-v72-reopen="${escapeHTML(item.pid)}">Neues Angebot abgeben</button>`;
  const body=`${v72DealProfiles(career,item.pid,item.sellerId)}<p class="v72-stage">${stage}</p><div class="v72-dialog-facts"><span>${item.directAsk?'Marktwert':'Öffentliche Forderung'}<b>${v66Credits(item.directAsk||v72Market(career).saleListings.find(entry=>entry.pid===item.pid)?.ask||item.price)}</b></span><span>Deine Ablöse<b>${v66Credits(item.agreedPrice??item.price)}</b></span></div><p class="v72-last-change"><small>Letzte Änderung</small>${escapeHTML(item.lastChange)}</p>${action}`;
- const dialog=v72EnsureDialog();v72DialogMode='deal';v72CurrentId=id;dialog.innerHTML=v72DialogShell('Transferverhandlung',body);if(!dialog.open)dialog.showModal();
+ const dialog=v72EnsureDialog();v72DialogMode='deal';v72CurrentId=id;dialog.innerHTML=v72DialogShell('Transferverhandlung',body);if(!dialog.open)dialog.showModal();v72Settle(dialog);
 }
 function v72RenderSellerDeal(career,id){
  const item=v72Negotiation(career,id),player=item&&v66Player(career,item.pid),buyer=item&&v66Club(career,item.buyerId);if(!item||item.sellerId!==career.manager.managedClubId)return;
@@ -204,13 +210,13 @@ function v72RenderSellerDeal(career,id){
  const canCounter=!(career.world.market.day===5&&item.sellerCountered);
  const actions=item.stage==='seller-offer'?`<div class="v72-seller-actions"><button type="button" class="primary" data-v72-seller-respond="${escapeHTML(id)}" data-v72-response="accept">Gebot annehmen</button>${canCounter?`<label>Deine Gegenforderung${v72NumberField('v72-seller-price',ask,item.price+1)}</label><button type="button" class="menu-action" data-v72-seller-respond="${escapeHTML(id)}" data-v72-response="counter">Gegenforderung senden</button>`:''}<button type="button" class="menu-action" data-v72-seller-respond="${escapeHTML(id)}" data-v72-response="reject">Gebot ablehnen</button></div>`:'';
  const body=`${v72DealProfiles(career,item.pid,item.buyerId)}<p class="v72-stage">${stage}</p><div class="v72-dialog-facts"><span>Öffentliche Forderung<b>${v66Credits(listing?.ask||item.price)}</b></span><span>Gebot dieses Käufers<b>${v66Credits(item.agreedPrice??item.price)}</b></span></div><p class="v72-last-change"><small>Letzte Änderung</small>${escapeHTML(item.lastChange)}</p>${actions}`;
- const dialog=v72EnsureDialog();v72DialogMode='deal';v72CurrentId=id;dialog.innerHTML=v72DialogShell('Kaufangebot verwalten',body);if(!dialog.open)dialog.showModal();
+ const dialog=v72EnsureDialog();v72DialogMode='deal';v72CurrentId=id;dialog.innerHTML=v72DialogShell('Kaufangebot verwalten',body);if(!dialog.open)dialog.showModal();v72Settle(dialog);
 }
 // Replies to own offers (club counter/acceptance, player counter) are announced only when they came with a market-day change and are still current.
 function v72ReplyTarget(career,result){
  const own=career.manager.managedClubId,market=v72Market(career);
  if(result.buyerId!==own||result.announce!==true)return null;
- const item=v72Negotiation(career,result.negotiationId),bid=item?null:market.pendingBids.find(entry=>entry.id===result.negotiationId&&entry.buyerId===own&&!entry.sellerId);
+ const item=v72Negotiation(career,result.negotiationId),bid=item?null:market.pendingBids.find(entry=>entry.id===result.negotiationId&&entry.buyerId===own);
  if(result.kind==='fee-agreed')return item&&item.buyerId===own&&item.stage==='contract'&&item.agreedPrice===result.price?{item}:null;
  if(result.kind==='fee-counter')return item&&item.buyerId===own&&item.stage==='fee-counter'&&item.counter===result.counter&&item.price===result.price?{item}:null;
  if(result.kind==='contract-counter'){
@@ -220,15 +226,28 @@ function v72ReplyTarget(career,result){
  return null;
 }
 function v72ReplyHTML(career,result,target){
- const subject=target.item||target.bid,player=v66Player(career,result.pid),seller=target.bid?null:v66Club(career,result.sellerId);
- const who=`<span>Spieler<b>${escapeHTML(player?.name||result.pid)}</b></span><span>${target.bid?'Bisheriger Verein':'Verein'}<b>${escapeHTML(seller?.name||'Vereinslos')}</b></span>`;
+ const subject=target.item||target.bid,player=v66Player(career,result.pid),seller=target.bid&&!target.bid.sellerId?null:v66Club(career,result.sellerId);
+ const who=`<span>Spieler<b>${escapeHTML(player?.name||result.pid)}</b></span><span>${target.bid&&!target.bid.sellerId?'Bisheriger Verein':'Verein'}<b>${escapeHTML(seller?.name||'Vereinslos')}</b></span>`;
  const act=label=>`<button type="button" class="primary" data-v72-result-open="${escapeHTML(result.id)}">${label}</button>`,later=`<button type="button" class="menu-action" data-v72-result="${escapeHTML(result.id)}">Später</button>`;
  if(result.kind==='fee-agreed')return{title:'Verein stimmt der Ablöse zu',tone:'accept',body:`<div class="v72-dialog-facts">${who}<span>Vereinbarte Ablöse<b>${v66Credits(result.price)}</b></span></div><p>Der Verein hat dein Ablöseangebot angenommen. Der Wechsel ist noch nicht vollzogen: Jetzt musst du dich mit dem Spieler über den Vertrag einigen.</p><div class="v72-confirm-actions">${act('Spielervertrag verhandeln')}${later}</div>`};
  if(result.kind==='fee-counter')return{title:'Gegenangebot des Vereins',tone:'counter',body:`<div class="v72-dialog-facts">${who}<span>Dein Gebot<b>${v66Credits(result.price)}</b></span><span>Forderung des Vereins<b>${v66Credits(result.counter)}</b></span></div><p>Der Verein nimmt dein Ablöseangebot nicht an und fordert mehr. Der Wechsel ist noch nicht vollzogen.</p><div class="v72-confirm-actions">${act('Gegenangebot bearbeiten')}${later}</div>`};
  return{title:'Gegenforderung des Spielers',tone:'counter',body:`<div class="v72-dialog-facts">${who}<span>Dein Gehaltsangebot<b>${v66Credits(subject.annual)}</b></span><span>Forderung des Spielers<b>${v66Credits(result.counter)}</b></span></div><p>Der Spieler verlangt ein höheres Jahresgehalt. Der Wechsel ist noch nicht vollzogen.</p><div class="v72-confirm-actions">${act('Vertragsforderung bearbeiten')}${later}</div>`};
 }
+function v72OpenLegacyBid(career,id){
+ const bid=career.world.market.pendingBids.find(entry=>entry.id===id&&entry.buyerId===career.manager.managedClubId&&entry.sellerId);if(!bid)return;
+ const dialog=v72EnsureDialog();v72DialogMode='deal';v72CurrentId=id;
+ v72ConfirmRetract(career,id,'legacy');if(!dialog.open)dialog.showModal();
+}
 function v72OpenReply(career,result){
  const target=v72ReplyTarget(career,result);if(!target)return;
+ if(target.bid?.sellerId){
+  // Older offers to a club keep their salary form in the transfer overview.
+  if(v72Dialog?.open)v72Dialog.close();
+  if(typeof v61SetCareerTab==='function')v61SetCareerTab('transfers');
+  const input=typeof v61WorldScreen!=='undefined'?v61WorldScreen.querySelector(`[data-v66-counter-salary="${CSS.escape(target.bid.id)}"]`):null;
+  if(input){input.scrollIntoView({block:'center'});input.focus()}
+  return;
+ }
  if(target.bid)v72OpenFreeAgent(career,target.bid.pid);else v72RenderDeal(career,target.item.id);
 }
 function v72ShowResults(){
@@ -248,7 +267,7 @@ function v72ShowResults(){
  if(target)reply=v72ReplyHTML(career,result,target);
  const route=`<div class="v72-transfer-route" aria-label="Wechsel von ${escapeHTML(seller?.name||'Vereinslos')} zu ${escapeHTML(buyer?.name||'Verein')}"><div>${seller?v61CrestSVG(seller):'<span class="v72-free-agent-mark" aria-label="Ablösefrei">Frei</span>'}<small>Von</small><strong>${escapeHTML(seller?.name||'Vereinslos')}</strong></div><span class="v72-transfer-arrow" aria-hidden="true">${result.kind==='rejected'?'×':'→'}</span><div>${buyer?v61CrestSVG(buyer):'<span class="v72-free-agent-mark">Frei</span>'}<small>Zu</small><strong>${escapeHTML(buyer?.name||'Verein')}</strong></div></div>`;
  const body=reply?`<div class="v72-reply v72-reply-${reply.tone}">${reply.body}</div>`:`${route}<div class="v72-dialog-facts"><span>Spieler<b>${escapeHTML(player?.name||result.pid)}</b></span><span>Bisheriger Verein<b>${escapeHTML(seller?.name||'Vereinslos')}</b></span><span>Zielverein<b>${escapeHTML(buyer?.name||'Verein')}</b></span><span>${result.kind==='completed'?'Gezahlte Ablöse':'Gebotene Ablöse'}<b>${result.price?v66Credits(result.price):'Ablösefrei'}</b></span></div><p>${escapeHTML(result.message)}</p><button type="button" class="primary" data-v72-result="${escapeHTML(result.id)}">Weiter</button>`;
- const dialog=v72EnsureDialog();v72DialogMode='result';v72CurrentId=null;dialog.innerHTML=v72DialogShell(reply?reply.title:title,body,false);dialog.showModal();
+ const dialog=v72EnsureDialog();v72DialogMode='result';v72CurrentId=null;dialog.innerHTML=v72DialogShell(reply?reply.title:title,body,false);dialog.showModal();v72Settle(dialog);
 }
 v61WorldScreen.addEventListener('change',event=>{
  const target=event.target;
@@ -268,6 +287,7 @@ v61WorldScreen.addEventListener('click',async event=>{
   v72OpenFreeAgent(career,pid);return;
  }
  if(button.dataset.v72Open!==undefined){v72OpenListing(v61CurrentCareer,button.dataset.v72Open);return}
+ if(button.dataset.v72LegacyOpen!==undefined){v72OpenLegacyBid(v61CurrentCareer,button.dataset.v72LegacyOpen);return}
  if(button.dataset.v72Deal!==undefined||button.dataset.v72SellerDeal!==undefined){
   const market=v72Market(v61CurrentCareer);
   if(market.day===5&&market.phase==='open'&&market.negotiations.some(item=>(item.buyerId===v61CurrentCareer.manager.managedClubId||item.sellerId===v61CurrentCareer.manager.managedClubId)&&['refusal-wait','fee-wait','seller-counter-wait','contract-wait'].includes(item.stage)&&item.answerDay<=5)){

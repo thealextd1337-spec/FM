@@ -13,6 +13,12 @@ function v72TransferTerms(career,pid){
  const seller=v66Owner(career,pid),player=v66Player(career,pid);
  return seller&&player?{pid,sellerId:seller.id,ask:v66Value(player),reason:'direct'}:null;
 }
+// A buyer's own withdrawal leaves no entry in market.decisions; it never blocks a new offer, even at the deadline.
+function v72Withdrawn(career,pid,buyerId=career.manager.managedClubId){
+ const market=v72Market(career);
+ return market.negotiations.some(item=>item.pid===pid&&item.buyerId===buyerId&&item.stage==='rejected'&&item.lastChange==='Du hast das Angebot zurückgezogen.'&&!market.decisions.some(entry=>entry.negotiationId===item.id))||market.pendingBids.some(bid=>bid.pid===pid&&bid.buyerId===buyerId&&bid.status==='rejected'&&bid.reason==='Du hast das Angebot zurückgezogen.');
+}
+function v72CanOffer(career,pid){const phase=v72Market(career).phase;return phase==='open'||phase==='deadline'&&v72Withdrawn(career,pid)}
 function v72FeeTerms(career,item){return item.directAsk?{ask:item.directAsk,reason:'direct'}:v72Listing(career,item.pid)}
 function v72ListOwn(career,pid,ask){
  const market=v72Market(career),club=v66Club(career,career.manager.managedClubId),player=club?.roster.find(item=>item.pid===pid);
@@ -114,7 +120,7 @@ function v72Reject(career,negotiation,reason,silent=false){
 function v72Floor(listing){return Math.max(10,Math.round(listing.ask*(listing.reason==='finance'?.85:.9)/10)*10)}
 function v72Start(career,pid,amount){
  const market=v72Market(career),listing=v72TransferTerms(career,pid),buyerId=career.manager.managedClubId,player=v66Player(career,pid);
- if(market.phase!=='open'||!listing||!player||listing.sellerId===buyerId||v66Owner(career,pid)?.id!==listing.sellerId)throw Error('Dieses Verkaufsangebot ist nicht mehr verfügbar.');
+ if(!v72CanOffer(career,pid)||!listing||!player||listing.sellerId===buyerId||v66Owner(career,pid)?.id!==listing.sellerId)throw Error('Dieses Verkaufsangebot ist nicht mehr verfügbar.');
  if(v66Club(career,buyerId).roster.length>=14)throw Error('Der Kader hat bereits 14 Profis.');
  amount=Number(amount);
  if(!Number.isInteger(amount)||amount<1||!v66CanAfford(career,buyerId,amount,v66Salary(player)))throw Error('Diese Ablöse ist nicht finanzierbar.');

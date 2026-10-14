@@ -22,7 +22,7 @@ vm.runInContext(progression.slice(progression.indexOf('function v167Active('),pr
 const squad=fs.readFileSync('dist/world-squad-planning-v179.js','utf8'),squadUI=fs.readFileSync('dist/world-squad-ui-v179.js','utf8');
 vm.runInContext(squad.slice(0,squad.indexOf('const v179BaseInit=')),context);
 vm.runInContext(squadUI.slice(0,squadUI.indexOf('const v179BaseDecorate=')),context);
-const dialog={open:false,innerHTML:'',showModal(){this.open=true}};
+const dialog={open:false,innerHTML:'',showModal(){this.open=true},querySelector(){return null}};
 context.testDialog=dialog;
 vm.runInContext('v72EnsureDialog=()=>v72Dialog=testDialog',context);
 const call=(name,...args)=>vm.runInContext(name,context)(...args);

@@ -51,6 +51,7 @@ const T={
    assert(await overflow(),'kein Überlauf (Annahme)');await shot('1-annahme');
    await dialog.getByRole('button',{name:text.accept}).click();
    await dialog.locator('#v72-salary').waitFor();await shot('1b-vertrag');
+   assert.equal(await page.evaluate(()=>document.activeElement?.id),'v72-dialog-title','Fokus liegt nach „Spielervertrag verhandeln“ auf der Überschrift');
    await dialog.getByRole('button',{name:text.overview}).first().click();
    // 2) Gegenangebot
    assert.equal(await title(text.titles[1]),text.titles[1]);
@@ -68,6 +69,7 @@ const T={
    assert(await overflow());await shot('4-spieler');
    await dialog.getByRole('button',{name:text.contract}).click();
    await dialog.locator('[data-v72-free-improve]').waitFor();
+   assert.equal(await page.evaluate(()=>document.activeElement?.id),'v72-dialog-title','Fokus nach „Bearbeiten“ auf der Überschrift');
    // Zurückziehen (ablösefrei): Bestätigung, Rückkehr, endgültig
    await dialog.getByRole('button',{name:text.retract}).click();
    assert.equal(await title(text.confirmTitle),text.confirmTitle);await shot('5-bestaetigung');
@@ -75,6 +77,7 @@ const T={
    await dialog.getByRole('button',{name:text.retract}).click();
    await dialog.locator('[data-v72-retract-confirm]').click();
    await dialog.locator('[data-v72-free-offer]').waitFor();
+   assert.equal(await page.evaluate(()=>document.activeElement?.id),'v72-dialog-title','Fokus nach dem Zurückziehen auf der Überschrift');
    assert((await dialog.textContent()).includes(text.reason),'Rückzugsgrund sichtbar');
    assert.equal(await dialog.locator('[data-v72-free-offer]').isDisabled(),false,'neues Angebot sofort möglich');
    await shot('6-nach-rueckzug');
@@ -88,6 +91,21 @@ const T={
    assert.equal(state.decisions,0,'keine Sperre');
    // Reload-Stand: gespeicherte Karriere liefert keine ungesehenen Popups mehr
    assert.equal(state.unseen,0);
+   await dialog.locator('[data-v72-close]').first().click();await page.waitForFunction(()=>!document.querySelector('#v72-transfer-dialog')?.open);
+   // Altes Gebot an einen Verein: Zurückziehen über den Dialog in der Transferübersicht
+   await page.evaluate(()=>{
+    const career=v61CurrentCareer,own=v66Own(career),market=career.world.market;
+    const club=career.world.clubs.find(item=>item.id!==own.id&&!item.simulationOnly&&item.roster.length===11&&item.roster.some(player=>!player.keeper&&!market.negotiations.some(entry=>entry.pid===player.pid)));
+    const player=club.roster.find(item=>!item.keeper&&!market.negotiations.some(entry=>entry.pid===item.pid));
+    window.__r132.legacy=v66MakeBid(career,own.id,player.pid,Math.round(v66Value(player)*1.3/10)*10,60,2,3).id;
+    v61CareerTab='transfers';v61RenderCareer(career);v61SetCareerTab('transfers');
+   });
+   await page.locator('[data-fl-section-tab="offers"]:visible').first().click();
+   await page.locator('[data-v72-legacy-open]').first().click();
+   assert.equal(await title(text.confirmTitle),text.confirmTitle);await shot('8-altgebot');
+   await dialog.locator('[data-v72-retract-confirm]').click();
+   await page.waitForFunction(()=>!document.querySelector('#v72-transfer-dialog')?.open);
+   assert.equal(await page.evaluate(()=>v61CurrentCareer.world.market.pendingBids.find(item=>item.id===window.__r132.legacy).status),'rejected');
    await context.close();
    console.log('OK',label);
   }

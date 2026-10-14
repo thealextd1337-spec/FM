@@ -232,7 +232,8 @@ function v66CanAfford(career,clubId,price,annual,player=null){
 function v66MakeBid(career,buyerId,pid,price,annual,years,promise=0,offerDay=null){
  const market=career.world.market,buyer=v66Club(career,buyerId),seller=v66Owner(career,pid),player=v66Player(career,pid);
  if(buyer?.simulationOnly||seller?.simulationOnly||player?.retiredSeason)throw Error('Simulationsteams und ausgeschiedene Spieler nehmen nicht am Transfermarkt teil.');
- if(!(market.phase==='open'||market.phase==='closed'&&!seller&&!career.world.seasonFinished)||!player||!buyer||seller?.id===buyerId)throw Error('Dieses Angebot ist außerhalb der Transferphase nicht möglich.');
+ const live=market.phase==='open'||market.phase==='deadline'&&!seller&&typeof v72Withdrawn==='function'&&v72Withdrawn(career,pid,buyerId);
+ if(!(live||market.phase==='closed'&&!seller&&!career.world.seasonFinished)||!player||!buyer||seller?.id===buyerId)throw Error('Dieses Angebot ist außerhalb der Transferphase nicht möglich.');
  if(buyer.roster.length>=14)throw Error('Der Kader hat bereits 14 Profis.');
  if(buyerId!==career.manager.managedClubId&&player.keeper&&buyer.roster.filter(item=>item.keeper).length>=3)throw Error('Computermannschaften dürfen höchstens drei Torhüter im Kader haben.');
  price=Number(price);annual=Number(annual);years=Number(years);promise=Number(promise);
@@ -242,19 +243,25 @@ function v66MakeBid(career,buyerId,pid,price,annual,years,promise=0,offerDay=nul
  if(market.pendingBids.some(bid=>bid.buyerId===buyerId&&bid.pid===pid&&['pending','counter'].includes(bid.status)))throw Error('Für diesen Spieler besteht bereits ein Angebot.');
  const played=v62Fixtures(career).filter(fixture=>fixture.result).length;
  if(market.decisions.some(item=>item.buyerId===buyerId&&item.pid===pid&&item.season===career.world.season&&['rejected','expired'].includes(item.status)&&(seller||played<=item.atPlayed)))throw Error(seller?'Nach einer Ablehnung ist ein neues Angebot erst nächste Saison möglich.':'Eine neue Anfrage ist erst nach einem weiteren Matchtag möglich.');
- const placedDay=market.phase==='open'?market.day:offerDay??Math.max(0,career.world.calendarCursor);
- const bid={id:`S${career.world.season}:B${market.nextBid++}`,pid,buyerId,sellerId:seller?.id||null,price,annual,years,promise,placedDay,expiresDay:market.phase==='open'?Math.min(5,market.day+1):placedDay+1,status:'pending',improved:false};
+ const placedDay=live?market.day:offerDay??Math.max(0,career.world.calendarCursor);
+ const bid={id:`S${career.world.season}:B${market.nextBid++}`,pid,buyerId,sellerId:seller?.id||null,price,annual,years,promise,placedDay,expiresDay:live?Math.min(5,market.day+1):placedDay+1,status:'pending',improved:false};
  market.pendingBids.push(bid);
- if(market.day===5&&market.phase==='open'&&buyerId===career.manager.managedClubId&&!seller){v66TryBid(career,bid);if(typeof v72ReleaseResults==='function')v72ReleaseResults(career)}
+ if(market.day===5&&live&&buyerId===career.manager.managedClubId&&!seller){v66TryBid(career,bid);if(typeof v72ReleaseResults==='function')v72ReleaseResults(career)}
  return bid;
 }
+function v66AnnounceCounters(career,bids){
+ for(const bid of bids)if(bid.status==='counter'&&bid.buyerId===career.manager.managedClubId)v66QueueLegacyResult(career,bid,'contract-counter',bid.reason,{announce:true,counter:bid.counter});
+}
 function v66ResolveFreeDecisions(career,day){
- const bids=career.world.market.pendingBids.filter(item=>item.status==='pending'&&!item.sellerId&&item.placedDay<day),groups=new Map();
+ const market=career.world.market,bids=market.pendingBids.filter(item=>item.status==='pending'&&!item.sellerId&&item.placedDay<day),groups=new Map(),known=Array.isArray(market.transferResults)?market.transferResults.length:0;
  for(const bid of bids){if(!groups.has(bid.pid))groups.set(bid.pid,[]);groups.get(bid.pid).push(bid)}
  for(const offers of groups.values()){
   offers.sort((a,b)=>v66BidAppeal(career,b)-v66BidAppeal(career,a)||a.id.localeCompare(b.id));
   for(const bid of offers)if(v66TryBid(career,bid))break;
  }
+ v66AnnounceCounters(career,bids);
+ // The market day stays at 5 while matches are played, so only answers created right now are released.
+ if(Array.isArray(market.transferResults))for(const result of market.transferResults.slice(known))result.released=true;
 }
 function v66CloseBid(career,bid,status,reason,notify=true){
  bid.status=status;bid.reason=reason||'';
@@ -355,7 +362,7 @@ function v66AiPropose(career){
  }
 }
 function v66ResolveDay(career){
- const market=career.world.market,day=market.day,groups=new Map(),own=career.manager.managedClubId,waiting=market.pendingBids.filter(item=>item.status==='pending'&&item.placedDay<=day);
+ const market=career.world.market,day=market.day,groups=new Map(),waiting=market.pendingBids.filter(item=>item.status==='pending'&&item.placedDay<=day);
  for(const bid of waiting){
   if(!groups.has(bid.pid))groups.set(bid.pid,[]);groups.get(bid.pid).push(bid);
  }
@@ -374,7 +381,7 @@ function v66ResolveDay(career){
    }
   }
  }
- for(const bid of waiting)if(bid.status==='counter'&&bid.buyerId===own&&!bid.sellerId)v66QueueLegacyResult(career,bid,'contract-counter',bid.reason,{announce:true,counter:bid.counter});
+ v66AnnounceCounters(career,waiting);
  for(const bid of market.pendingBids.filter(item=>item.status==='pending'&&item.expiresDay<=day))v66CloseBid(career,bid,'expired','Die Angebotsfrist ist abgelaufen.');
  const managed=career.manager.managedClubId;
  market.pendingBids=market.pendingBids.filter(item=>['pending','counter'].includes(item.status)||item.buyerId===managed||item.sellerId===managed);
