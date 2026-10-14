@@ -29,10 +29,10 @@ showOverlay=function(title,copy,...rest){
  const competition=v62Current(context.career).find(item=>item.id===context.fixture.competitionId);
  if(!player||!club||!competition)return result;
  $('#match-area .v42-pitch-stage').append(overlay);
- const count=v84SeasonGoals(player,context.career,context.fixture,match);
+ const count=v84SeasonGoals(player,context.career,context.fixture,match),score=v25DisplaySides(context).map(t=>match.score[t]);
  $('#overlay-title').innerHTML='<span class="v84-goal-word">TOOOOR!</span>';
- $('#overlay-copy').textContent=`${player.name}${goal.ownGoal?' (Eigentor)':''} · ${match.score[0]} : ${match.score[1]}`;
- overlay.insertAdjacentHTML('beforeend',v84BannerHTML(player,club,competition,count,match.score,goal.ownGoal));
+ $('#overlay-copy').textContent=`${player.name}${goal.ownGoal?' (Eigentor)':''} · ${score.join(' : ')}`;
+ overlay.insertAdjacentHTML('beforeend',v84BannerHTML(player,club,competition,count,score,goal.ownGoal));
  overlay.classList.add('v84-goal-banner');
  if(!overlay.querySelector('.v82-goal-sprite'))overlay.classList.add('v84-no-sprite');
  overlay.setAttribute('role','status');

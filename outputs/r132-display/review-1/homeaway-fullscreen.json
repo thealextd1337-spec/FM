@@ -1,0 +1,77 @@
+{
+  "pass": true,
+  "rows": [
+    {
+      "ownSide": 0,
+      "expected": [
+        "FC Bremen Weser",
+        "SV München Au"
+      ],
+      "names": [
+        "FC Bremen Weser",
+        "SV München Au"
+      ],
+      "tvNames": [
+        "FC Bremen Weser",
+        "SV München Au"
+      ],
+      "score": "4 : 1",
+      "tvScore": [
+        4,
+        1
+      ],
+      "colours": [
+        "#d9ab45",
+        "#24385b"
+      ],
+      "expectedColours": [
+        "#d9ab45",
+        "#24385b"
+      ],
+      "nativeScore": [
+        4,
+        1
+      ],
+      "aggregate": "(6:4)",
+      "boardAggregate": "(6:4)",
+      "tvAggregate": "(6:4)",
+      "unchanged": true
+    },
+    {
+      "ownSide": 1,
+      "expected": [
+        "FC Köln Rhein",
+        "FC Bremen Weser"
+      ],
+      "names": [
+        "FC Köln Rhein",
+        "FC Bremen Weser"
+      ],
+      "tvNames": [
+        "FC Köln Rhein",
+        "FC Bremen Weser"
+      ],
+      "score": "1 : 4",
+      "tvScore": [
+        1,
+        4
+      ],
+      "colours": [
+        "#1c3045",
+        "#d9ab45"
+      ],
+      "expectedColours": [
+        "#1c3045",
+        "#d9ab45"
+      ],
+      "nativeScore": [
+        4,
+        1
+      ],
+      "aggregate": "(3:7)",
+      "boardAggregate": "(3:7)",
+      "tvAggregate": "(3:7)",
+      "unchanged": true
+    }
+  ]
+}

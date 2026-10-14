@@ -120,7 +120,7 @@ function v65Restore(context){
  if(match.setPiece?.type==='penalty')v50PenaltyVisual(match.setPiece,null);
  else if(match.setPiece)showOverlay(match.setPiece.type==='corner'?'ECKBALL':'FREISTOSS',`${v65Club(context,match.setPiece.team).name} · ${match.setPiece.taker?.name||''}`);
  else if(match.halftimePause>0)showOverlay('HALBZEIT','Kurze Pause vor der zweiten Hälfte');
- else if(match.goalPause>0)showOverlay('TOR!',`${match.goals.at(-1)?.name||''} · ${match.score.join(' : ')}`,true);
+ else if(match.goalPause>0)showOverlay('TOR!',`${match.goals.at(-1)?.name||''} · ${v25DisplaySides(context).map(t=>match.score[t]).join(' : ')}`,true);
  else if(match.kickoff?.phase==='waiting')showOverlay(String(Math.max(1,Math.ceil(match.countdown))),`${v65Club(context,match.kickoff.t).name} hat Anstoß`);
  else if(match.postBanner?.visible)showOverlay('ANPFIFF','Gleich rollt der Ball');
  else hideOverlay();
@@ -244,6 +244,11 @@ function v65ShowCelebration(context){
  };
  v65CelebrationDialog.showModal();v58Refresh();return true;
 }
+function v65PenaltyDisplay(context,session){
+ const sides=v25DisplaySides(context),names=[session.ownName,session.opponentName],board=v42Screen.querySelector('.v42-score');
+ if(board){board.querySelectorAll('span').forEach((node,side)=>node.textContent=names[sides[side]]);board.querySelector('strong').textContent=sides.map(t=>session.score[t]).join(' : ');}
+ v42Screen.querySelectorAll('.v42-kicks article').forEach((node,index)=>{const tail=node.lastChild,kick=session.kicks[index];if(tail?.nodeType===3&&kick)tail.textContent=' \u00b7 '+sides.map(t=>kick.score[t]).join(' : ');});
+}
 function v65ShowWorldPenalties(context){
  v65WorldActive=context;v42Session=context.state.penaltySession;v61WorldScreen.hidden=true;$('#v65-quick-nav')?.remove();v42RenderScreen(v42Session.phase==='choose');v58Refresh();window.scrollTo(0,0);
 }
@@ -262,6 +267,7 @@ function v119DeferFinalWhistle(current){
  if(!current||current.finished||!current.flight&&!(current.goalPause>0))return false;
  current.fulltimePending=true;current.next=Infinity;return true;
 }
+function v65FulltimeTitle(context){const sides=v25DisplaySides(context),score=match?sides.map(t=>match.score[t]):context.state.score;return `Abpfiff \u00b7 ${v65Club(context,sides[0]).name} ${score[0]} : ${score[1]} ${v65Club(context,sides[1]).name}`;}
 function v65Finish(){
  if(v119DeferFinalWhistle(match))return;
  releaseMatchWakeLock();
@@ -282,7 +288,7 @@ function v65Finish(){
  delete state.physicalSnapshot;
  if(v65NeedsPenalties(context)){state.phase='penalties';state.penaltySession=v65PenaltySession(context);v64UiSave();v65ShowWorldPenalties(context);return}
  v65BookWorldMatch(context);
- $('#board-label').textContent='ABPFIFF';$('#match-title').textContent=`Abpfiff · ${v65Club(context,0).name} ${match.score[0]} : ${match.score[1]} ${v65Club(context,1).name}`;
+ $('#board-label').textContent='ABPFIFF';$('#match-title').textContent=v65FulltimeTitle(context);
  note('Abpfiff! Die Partie ist beendet.','major');v65RenderReport(context);v65UpdateControls(context);v58Refresh();draw();v65ShowPostMatch(context);
  if(v65PendingExit){v65PendingExit=false;v65Leave(true).catch(v65ExitError)}
 }
@@ -350,7 +356,7 @@ function v65UpdateControls(context){
  v58Button.classList.toggle('v65-resume-action',state.phase==='paused'&&v65PauseView);
  let tabs=$('#v65-pause-tabs');if(!tabs){tabs=document.createElement('nav');tabs.id='v65-pause-tabs';tabs.className='prematch-tabs v64-prematch-tabs';tabs.setAttribute('aria-label','Während der Spielpause');$('#game-screen .workspace aside').prepend(tabs)}
  let pitch=$('#v65-plan-view');if(!pitch){pitch=document.createElement('div');pitch.id='v65-plan-view';$('#match-area').before(pitch)}
- const paused=state.phase==='paused',editing=paused&&v65PauseView;tabs.hidden=!editing;pitch.hidden=!editing;$('#match-area').hidden=editing;$('#heading').textContent=paused?'Dein Spiel pausiert.':'Dein Spiel läuft.';$('#match-title').textContent=paused?'Dein Team pausiert.':'Dein Team spielt.';
+ const paused=state.phase==='paused',editing=paused&&v65PauseView;tabs.hidden=!editing;pitch.hidden=!editing;$('#match-area').hidden=editing;$('#heading').textContent=paused?'Dein Spiel pausiert.':'Dein Spiel läuft.';$('#match-title').textContent=state.phase==='finished'?v65FulltimeTitle(context):paused?'Dein Team pausiert.':'Dein Team spielt.';
  if(editing){tabs.innerHTML=`<button type="button" data-v65-tab="lineup" class="${v65PauseTab==='lineup'?'active':''}" aria-pressed="${v65PauseTab==='lineup'}">Aufstellung</button><button type="button" data-v65-tab="tactics" class="${v65PauseTab==='tactics'?'active':''}" aria-pressed="${v65PauseTab==='tactics'}">Taktik</button><button type="button" class="v65-undo" data-v65-undo ${state.pauseUndo&&state.substitutions.length===state.pauseUndo.substitutionCount?'':'disabled'}>↶ Rückgängig</button>`;pitch.innerHTML=v65PausePitch(context);pitch.querySelectorAll('.v64-bench-chip').forEach(card=>{const selectable=card.querySelector('[data-v65-bench]');if(selectable){card.draggable=true;card.dataset.v65BenchCard=selectable.dataset.v65Bench}})}
  if(editing)pitch.querySelector('.v65-pause-controls').append(tabs,panel);
  else{$('#game-screen .workspace aside').prepend(tabs);$('#match-info').insertBefore(panel,$('#match-info').querySelector('.match-stat-header'))}
@@ -488,7 +494,7 @@ v64UiRender=function(career){const context=v65Context();if(context?.state.phase=
 const v65BasePenaltySave=v42Save;
 v42Save=function(){if(v42Session?.mode==='world')return v64UiSave();return v65BasePenaltySave()};
 const v65BasePenaltyRender=v42RenderScreen;
-v42RenderScreen=function(openDialog=false){const result=v65BasePenaltyRender(openDialog),session=v42Session;if(session?.mode!=='world')return result;v61WorldScreen.hidden=true;const eyebrow=v42Screen.querySelector('.intro .eyebrow');if(eyebrow)eyebrow.textContent=session.competition==='europe'?'EUROPACUP · ELFMETERSCHIESSEN':'POKAL · ELFMETERSCHIESSEN';const exit=v42Screen.querySelector('#v42-exit');exit.textContent=session.phase==='done'?'Zum Spielbericht':'Später fortsetzen';exit.onclick=session.phase==='done'?v65SettleWorldPenalties:v65PauseWorldPenalties;if(session.phase==='shooting'){const scene=v42Screen.querySelector('.v42-goal-scene');scene.removeAttribute('aria-hidden');scene.insertAdjacentHTML('beforeend','<button type="button" class="primary v146-shoot">Schießen</button>');scene.querySelector('.v146-shoot').onclick=()=>v42Screen.querySelector('#v42-next')?.click();}if(session.phase==='choose'){const dialog=v42Screen.querySelector('#v42-order-dialog');dialog.insertAdjacentHTML('beforeend','<button type="button" class="menu-action wide" id="v65-penalty-pause">Später fortsetzen</button>');dialog.querySelector('#v65-penalty-pause').onclick=v65PauseWorldPenalties}return result};
+v42RenderScreen=function(openDialog=false){const result=v65BasePenaltyRender(openDialog),session=v42Session;if(session?.mode!=='world')return result;const context=v65Context();if(context)v65PenaltyDisplay(context,session);v61WorldScreen.hidden=true;const eyebrow=v42Screen.querySelector('.intro .eyebrow');if(eyebrow)eyebrow.textContent=session.competition==='europe'?'EUROPACUP · ELFMETERSCHIESSEN':'POKAL · ELFMETERSCHIESSEN';const exit=v42Screen.querySelector('#v42-exit');exit.textContent=session.phase==='done'?'Zum Spielbericht':'Später fortsetzen';exit.onclick=session.phase==='done'?v65SettleWorldPenalties:v65PauseWorldPenalties;if(session.phase==='shooting'){const scene=v42Screen.querySelector('.v42-goal-scene');scene.removeAttribute('aria-hidden');scene.insertAdjacentHTML('beforeend','<button type="button" class="primary v146-shoot">Schießen</button>');scene.querySelector('.v146-shoot').onclick=()=>v42Screen.querySelector('#v42-next')?.click();}if(session.phase==='choose'){const dialog=v42Screen.querySelector('#v42-order-dialog');dialog.insertAdjacentHTML('beforeend','<button type="button" class="menu-action wide" id="v65-penalty-pause">Später fortsetzen</button>');dialog.querySelector('#v65-penalty-pause').onclick=v65PauseWorldPenalties}return result};
 const v65BaseProgressState=v58State;
 v58State=function(){
  const active=v65Context();if(active?.state.phase==='finished'&&(v47Dialog.open||v47CompetitionDialog.open))return{context:v47Dialog.open?'Spielbericht':'Ergebnisse des Wettbewerbs'};

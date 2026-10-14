@@ -1,0 +1,198 @@
+{
+  "baseline": false,
+  "cases": [
+    {
+      "scenario": {
+        "native": true,
+        "fullscreen": true,
+        "language": "de",
+        "portrait": false
+      },
+      "half": {
+        "fullscreen": false,
+        "native": false,
+        "phase": "paused",
+        "running": false,
+        "half": 2,
+        "elapsed": 37.5,
+        "score": [
+          2,
+          1
+        ],
+        "tactics": true,
+        "tab": "tactics",
+        "view": "3d"
+      },
+      "resumed": {
+        "fullscreen": true,
+        "native": true,
+        "phase": "live",
+        "running": true,
+        "half": 0,
+        "elapsed": 37.5,
+        "score": [
+          2,
+          1
+        ],
+        "tactics": false,
+        "tab": "tactics",
+        "view": "3d"
+      }
+    },
+    {
+      "scenario": {
+        "native": false,
+        "fullscreen": true,
+        "language": "en",
+        "portrait": false
+      },
+      "half": {
+        "fullscreen": false,
+        "native": false,
+        "phase": "paused",
+        "running": false,
+        "half": 2,
+        "elapsed": 37.5,
+        "score": [
+          2,
+          1
+        ],
+        "tactics": true,
+        "tab": "tactics",
+        "view": "3d"
+      },
+      "resumed": {
+        "fullscreen": true,
+        "native": false,
+        "phase": "live",
+        "running": true,
+        "half": 0,
+        "elapsed": 37.5,
+        "score": [
+          2,
+          1
+        ],
+        "tactics": false,
+        "tab": "tactics",
+        "view": "3d"
+      }
+    },
+    {
+      "scenario": {
+        "native": false,
+        "fullscreen": true,
+        "language": "de",
+        "portrait": true
+      },
+      "half": {
+        "fullscreen": false,
+        "native": false,
+        "phase": "paused",
+        "running": false,
+        "half": 2,
+        "elapsed": 37.5,
+        "score": [
+          2,
+          1
+        ],
+        "tactics": true,
+        "tab": "tactics",
+        "view": "2d"
+      },
+      "resumed": {
+        "fullscreen": true,
+        "native": false,
+        "phase": "live",
+        "running": true,
+        "half": 0,
+        "elapsed": 37.5,
+        "score": [
+          2,
+          1
+        ],
+        "tactics": false,
+        "tab": "tactics",
+        "view": "2d"
+      }
+    },
+    {
+      "scenario": {
+        "native": true,
+        "fullscreen": false,
+        "language": "de",
+        "portrait": false
+      },
+      "half": {
+        "fullscreen": false,
+        "native": false,
+        "phase": "paused",
+        "running": false,
+        "half": 2,
+        "elapsed": 37.5,
+        "score": [
+          2,
+          1
+        ],
+        "tactics": true,
+        "tab": "tactics",
+        "view": "3d"
+      },
+      "resumed": {
+        "fullscreen": false,
+        "native": false,
+        "phase": "live",
+        "running": true,
+        "half": 0,
+        "elapsed": 37.5,
+        "score": [
+          2,
+          1
+        ],
+        "tactics": false,
+        "tab": "tactics",
+        "view": "3d"
+      }
+    },
+    {
+      "scenario": {
+        "native": false,
+        "fullscreen": true,
+        "exitBeforeHalf": true,
+        "language": "en",
+        "portrait": false
+      },
+      "half": {
+        "fullscreen": false,
+        "native": false,
+        "phase": "paused",
+        "running": false,
+        "half": 2,
+        "elapsed": 37.5,
+        "score": [
+          2,
+          1
+        ],
+        "tactics": true,
+        "tab": "tactics",
+        "view": "3d"
+      },
+      "resumed": {
+        "fullscreen": false,
+        "native": false,
+        "phase": "live",
+        "running": true,
+        "half": 0,
+        "elapsed": 37.5,
+        "score": [
+          2,
+          1
+        ],
+        "tactics": false,
+        "tab": "tactics",
+        "view": "3d"
+      }
+    }
+  ],
+  "cleanup": true,
+  "errors": []
+}
