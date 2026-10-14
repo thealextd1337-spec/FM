@@ -93,15 +93,23 @@ public static class FootballDuelTests {
                 actor.transform.rotation=Quaternion.Euler(0,yaw,0);float bootLow=float.MaxValue,bootHigh=float.MinValue,pelvisStep=0;float? before=null;
                 // Entered from a sprint stride with the selector's 0.3 s crossfade (the turf stand reads the skinned mesh only then).
                 animation.Sample(new FootballAnimation.Pose{clip=sprint,time=animation.StrideTime(.25,sprint),loop=true,key="r21-run-"+yaw},30+yaw-1/30.0,true);int bakes=FootballAnimation.TurfBakes;
+                float armAll=0,armSettled=0,weightSumMin=9,weightSumMax=-9;int nanPictures=0;var weightsField=typeof(FootballAnimation).GetField("weights",BindingFlags.NonPublic|BindingFlags.Instance);var mixWeights=(float[])weightsField.GetValue(animation);
                 for(int k=0;k<=96;k++){double t=k/30.0;FootballAnimation.Pose p;
                     if(t<=FootballDuelTiming.StumbleLength)p=new FootballAnimation.Pose{clip=stumble,time=t,loop=false,baseClip=idle,baseTime=20+t,baseLoop=true,actionWeight=FootballDuelTiming.OffenderStumble(t),lunge=FootballDuelTiming.OffenderLunge(t),key="foul:offender-r21-"+yaw,kind="foot",turfStand=true,fade=.3f};
                     else p=new FootballAnimation.Pose{clip=idle,time=20+t,loop=true,key="idle",kind="foot"};
                     animation.Sample(p,30+yaw+t);float boot=LowestBoot(actor.transform);bootLow=Mathf.Min(bootLow,boot);bootHigh=Mathf.Max(bootHigh,boot);
+                    // B11: arm abduction of the offender pictures (settled: the stumble at full weight) and the mixer weights of every picture.
+                    if(t<=FootballDuelTiming.StumbleLength&&animation.Weight(stumble)>=.5f){float ab=Mathf.Max(FootballAnimation.ArmAbduction(actor.transform,false),FootballAnimation.ArmAbduction(actor.transform,true));armAll=Mathf.Max(armAll,ab);if(animation.Weight(stumble)>=.99f)armSettled=Mathf.Max(armSettled,ab);}
+                    {float sum=0;bool nan=false;foreach(var w in mixWeights){sum+=w;nan|=float.IsNaN(w)||float.IsInfinity(w);}weightSumMin=Mathf.Min(weightSumMin,sum);weightSumMax=Mathf.Max(weightSumMax,sum);if(nan)nanPictures++;}
                     if(before.HasValue)pelvisStep=Mathf.Max(pelvisStep,Mathf.Abs(hips.position.y-before.Value));before=hips.position.y;}
                 measurements.Add(new Measurement{stage="offender-turf-"+yaw,leadFoot=bootLow,trailFoot=bootHigh,value=pelvisStep,contactError=FootballAnimation.TurfBakes-bakes});
                 Require(FootballAnimation.TurfBakes-bakes>0&&FootballAnimation.TurfBakes-bakes<=10,"r21 offender turf stand reads the skinned mesh only during its 0.3 s entry crossfade ("+(FootballAnimation.TurfBakes-bakes)+" pictures at 30 Hz)");
                 Require(bootLow>standBoot-.02f&&bootHigh<standBoot+.05f,"r21 offender boots stay on the turf through stumble, exit and standing at heading "+yaw+" ("+bootLow.ToString("0.000")+" .. "+bootHigh.ToString("0.000")+" m, standing "+standBoot.ToString("0.000")+" m)");
                 Require(pelvisStep<.05f,"r21 offender pelvis moves at most 5 cm per 1/30 s at heading "+yaw+" ("+pelvisStep.ToString("0.000")+" m)");
+                measurements.Add(new Measurement{stage="offender-arms-"+yaw,value=armSettled,leadFoot=armAll,trailFoot=weightSumMin,hips=weightSumMax,contactError=nanPictures});
+                Require(armSettled<=FootballAnimation.OffenderArmLimit+1,"B11 offender upper arms stay within "+FootballAnimation.OffenderArmLimit+" deg of the body at full stumble weight at heading "+yaw+" ("+armSettled.ToString("0.0")+" deg; foul_stumble_meshy alone: 55-85)");
+                Require(armAll<=60,"B11 offender upper arms stay below 60 deg once the stumble carries half the mix (the stride's own swing before that is not a stumble pose) at heading "+yaw+" ("+armAll.ToString("0.0")+" deg)");
+                Require(nanPictures==0&&weightSumMin>.99f&&weightSumMax<1.01f,"B11 offender mixer weights sum to 1 without NaN in every picture at heading "+yaw+" ("+weightSumMin.ToString("0.000")+" .. "+weightSumMax.ToString("0.000")+", nan="+nanPictures+")");
                 Require(actor.transform.position==root&&Mathf.Abs(Mathf.DeltaAngle(actor.transform.eulerAngles.y,yaw))<.001f,"r21 offender turf stand never moves the received root or heading");
             }
             actor.transform.rotation=heading;

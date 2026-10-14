@@ -520,8 +520,10 @@ v50TakeCorner=function(setPiece){const m=match,taker=setPiece.taker,team=setPiec
 v50TakeFreeKick=function(setPiece){
  const m=match,taker=setPiece.taker,team=setPiece.team,goalDistance=team===0?setPiece.spot.y:1-setPiece.spot.y;
  v50Spot(taker,setPiece.spot);m.owner=taker;m.ball={...setPiece.spot};m.offsideVisual=null;
- if(setPiece.type!=='offside'&&goalDistance<.38&&setPiece.spot.x>.18&&setPiece.spot.x<.82&&random()<.65){note(`${taker.name} versucht es direkt mit dem Freistoß.`,'restart');v55Shoot(taker,'direct-free-kick');return}
- const allies=v50Outfield(team).filter(player=>player!==taker),receiver=setPiece.type==='offside'?[...allies].sort((a,b)=>distance(a,taker)-distance(b,taker))[0]:[...allies].sort((a,b)=>(team===0?a.y-b.y:b.y-a.y)||distance(a,taker)-distance(b,taker))[0];
+ // r132 (B04): a free kick of a marked match carries its decision from its creation (set-pieces-v50.js v182FreeKickPlan).
+ const plan=setPiece.type!=='offside'?setPiece.plan:null;
+ if(setPiece.type!=='offside'&&(plan?plan.direct:goalDistance<.38&&setPiece.spot.x>.18&&setPiece.spot.x<.82&&random()<.65)){note(`${taker.name} versucht es direkt mit dem Freistoß.`,'restart');v55Shoot(taker,'direct-free-kick');return}
+ const allies=v50Outfield(team).filter(player=>player!==taker),receiver=(plan&&plan.targetPid&&allies.find(player=>player.pid===plan.targetPid))||(setPiece.type==='offside'?[...allies].sort((a,b)=>distance(a,taker)-distance(b,taker))[0]:[...allies].sort((a,b)=>(team===0?a.y-b.y:b.y-a.y)||distance(a,taker)-distance(b,taker))[0]);
  note(`${taker.name} spielt den Freistoß ${setPiece.type==='offside'?'nach Abseits kurz ':''}auf ${receiver.name}.`,'restart');
  v55GroundPass(taker,receiver,'pass',false,{restart:true});
 };

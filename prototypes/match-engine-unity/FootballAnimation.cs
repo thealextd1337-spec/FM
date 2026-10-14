@@ -293,14 +293,30 @@ public sealed class FootballAnimation {
     public float RawJump {get;private set;}
     // Editor diagnostics only (null in the player): called with the stage of
     // the composed pose (0 sampled clips, 1 motion layers, 2 inertialized, 3
-    // foot constraints, 4 final), so a measured joint step names its stage.
+    // foot constraints, 4 final; r132: 9 after the procedural action layers, 10 after the contact preparation and plant,
+    // before the contact solve), so a measured joint step names its stage.
     public Action<int> Probe;
     public float Weight(AnimationClip clip){return clip!=null&&indices.TryGetValue(clip,out var index)?weights[index]:0;}
+    // B11 diagnostics: angle (deg) between an upper arm (shoulder -> elbow bone) and the body's down axis (-root.up). A
+    // bind/T-pose holds both arms near 90; hanging or swinging arms stay far below. NaN without the bones.
+    public static float ArmAbduction(Transform actor,bool right){
+        string side=right?"Right":"Left";Transform arm=null,fore=null;
+        foreach(var t in actor.GetComponentsInChildren<Transform>()){if(t.name=="mixamorig:"+side+"Arm")arm=t;else if(t.name=="mixamorig:"+side+"ForeArm")fore=t;}
+        if(arm==null||fore==null)return float.NaN;return Vector3.Angle(fore.position-arm.position,-actor.up);
+    }
     public float GroundShift {get;private set;}
     // r21: metres the last picture's turf stand moved the pelvis down (negative: up); 0 without turfStand.
     public float TurfShift {get;private set;}
     // r21: skinned-mesh bakes made by the turf stand (cost accounting).
     public static int TurfBakes;
+    // B11 (r132): the foul offender's stumble clip (foul_stumble_meshy) holds both upper arms 55-85 degrees out from the body
+    // through its whole upright window (measured on this rig, FoulPoseDiagnostics; idle_stand_meshy: 9-16 degrees): on the
+    // standing offender this reads as a T-pose. A turf-standing offender's upper arms are kept within OffenderArmLimit of the
+    // body's down axis (FootballRig.LowerArms), weighted by the stumble clip's share of the mix, so the entry from the
+    // stride and the exit into the standing clip stay continuous. Bones only; root, heading, time and the native window stay.
+    public const float OffenderArmLimit=40;
+    // Diagnostics: degrees the last picture lowered the more raised upper arm (0 without turfStand or below the limit).
+    public float ArmLowered {get;private set;}
     // Pelvis drop of the walking support in the last sample (metres, diagnostics).
     public float SupportDrop {get;private set;}
     public const float SupportLimit=.07f;
@@ -517,6 +533,7 @@ public sealed class FootballAnimation {
         // field-11, 52.067: 3.6 m/s pelvis). A tackle keeps its full lunge at the native contact.
         float standShare=pose.turfStand?Mathf.Clamp01(weights[index]+(baseIndex>=0?weights[baseIndex]:0)):1;
         if(pose.lunge>0)rig.Lunge(pose.lunge*standShare);
+        ArmLowered=pose.turfStand?rig.LowerArms(OffenderArmLimit,FootballEnvelope.Smooth(weights[index])):0;
         // r21: foul_stumble_meshy keys its hips 0.31 rig units (0.45 m) above this rig's standing convention: over the
         // whole 2.1 s it plays at full weight the lower boot stood 0.74 m above the turf, straight legs hanging (the floating
         // offender). The constant clip offset cannot hold it (measured over the whole 11.4 s clip, whose later knees touch
@@ -537,8 +554,9 @@ public sealed class FootballAnimation {
         if(pose.turfStand&&hips!=null){float low=Mathf.Min(TurfClearance(0),TurfClearance(1)),deep=Mathf.Min(low,Mathf.Min(ground.Clearance(0),ground.Clearance(1)));
             if(standShare<1&&ground.SoleKnown){deep=Mathf.Min(deep,FootballGround.LowestVertex(root)-ground.Sole);TurfBakes++;}if(!float.IsNaN(low)&&!float.IsInfinity(low)&&!float.IsNaN(deep)){TurfShift=deep<0?deep:low*standShare;hips.position-=root.up*TurfShift;}}
         if(pose.airLift>0||pose.airCrouch>0||pose.airTuck>0||pose.airArms>0)rig.Air(pose.airLift,pose.airReach,pose.airTuck,pose.airCrouch,pose.airArms);else rig.ClearAir();
-        if(pose.loft>0||pose.volley>0)rig.FollowThrough(pose.loft,pose.volley);
+        if(pose.loft>0||pose.volley>0)rig.FollowThrough(pose.loft,pose.volley,ShownBend(1,reset));
         if(pose.throwBend>0||pose.throwRaise>0||pose.throwArch>0||pose.throwRelease>0)rig.Throw(pose.throwBend,pose.throwRaise,pose.throwArch,pose.throwRelease);
+        Probe?.Invoke(9);
         // The received contact point of a foot action is the ball centre: a ground
         // ball shows it 0.176 m high (ProbeBridge.DisplayHeight) while this rig's
         // ankle stands 0.245 m above the turf. Solved into the centre, the ankle
@@ -562,6 +580,7 @@ public sealed class FootballAnimation {
         if(pose.contact&&full)contactDrop=rig.PrepareContact(target,pose.kind);
         if(pose.plant){int stand=pose.kind=="left-foot"?1:0;bool shownKnown=finalClock>=0&&!reset&&clock-finalClock<.1;rig.Plant(stand==1,clock,shownKnown?finalAnkle[stand]:(Vector3?)null,shownKnown&&finalClear[stand]>FootballRig.PlantLand);}
         else rig.Release();
+        Probe?.Invoke(10);
         if(pose.slide>0)rig.Slide(pose.slide,pose.target,pose.leftLead);
         ReleaseWeight=0;if(!readyBall){if(readyClock>=0&&readyClock==lastClock&&!(pose.contact&&full&&footContact))ReadyAbort();readyFrom=-1;}
         if(pose.ballHeld){rig.GatherBall(pose.gatherKnown?pose.gatherFrom:(Vector3?)null,pose.gatherKnown?pose.gather:1);releaseFrom=-1;}
@@ -632,7 +651,10 @@ public sealed class FootballAnimation {
     // (a receive after an aborted passReady: 1822 deg/s thigh, R11 1377). Contact point, time and
     // reach are unchanged.
     readonly Vector3[] finalBend=new Vector3[2];
-    Vector3? ShownBend(int f,bool reset){if(reset||finalClock<0||lastClock!=finalClock||finalBend[f].sqrMagnitude<1e-6f)return null;return root.TransformDirection(finalBend[f]);}
+    // B05 (r132): a shown leg too straight for a bend (below 1 mm) keeps the rig's default knee direction (FootballRig.KneeAhead)
+    // instead of no pole: with none, the contact solve of a stretched tackle leg chose a knee plane 124 deg away and spun the
+    // shin at 9180 deg/s (native 160114 field-11, 68.867).
+    Vector3? ShownBend(int f,bool reset){if(reset||finalClock<0||lastClock!=finalClock)return null;if(finalBend[f].sqrMagnitude<1e-6f)return rig.KneeAhead();return root.TransformDirection(finalBend[f]);}
     // r18: the leg shown in the last picture (root-relative) for the least-rotation knee swivel (FootballRig.Contact).
     readonly FootballRig.ShownLeg[] finalLeg=new FootballRig.ShownLeg[2];
     FootballRig.ShownLeg Shown(int f,bool reset){if(reset||finalClock<0||lastClock!=finalClock)return default;return finalLeg[f];}
@@ -1464,6 +1486,20 @@ public sealed class FootballRig {
             var local=end.localRotation;Solve(upper,lower,end,target,bend.sqrMagnitude>1e-8f?bend.normalized:-root.forward);end.localRotation=local;
         }
     }
+    // B11: each upper arm whose abduction (angle between shoulder -> elbow and the body's down axis -root.up) exceeds limit
+    // is turned down about the shoulder on the shortest path toward hanging, by the excess times weight; the forearm and
+    // hand keep their pose on the upper arm. Returns the larger lowering (degrees). Bones only.
+    public float LowerArms(float limit,float weight){
+        weight=Mathf.Clamp01(weight);if(weight<=0||arm==null||forearm==null||leftArm==null||leftForearm==null)return 0;
+        var down=-root.up;float lowered=0;
+        for(int s=-1;s<=1;s+=2){
+            var upper=s>0?arm:leftArm;var lower=s>0?forearm:leftForearm;var dir=lower.position-upper.position;if(dir.sqrMagnitude<1e-8f)continue;
+            float abduction=Vector3.Angle(dir,down);if(abduction<=limit)continue;
+            var axis=Vector3.Cross(dir,down);if(axis.sqrMagnitude<1e-8f)axis=root.forward;
+            float by=(abduction-limit)*weight;upper.rotation=Quaternion.AngleAxis(by,axis.normalized)*upper.rotation;lowered=Mathf.Max(lowered,by);
+        }
+        return lowered;
+    }
     // A lowered pelvis bends the knees: both feet keep their world point. Moving
     // the whole leg down with the hips set the swing foot of a starting stride
     // onto the turf (measured 3-5 m/s of scraping at -1 cm in short-sprint
@@ -1536,6 +1572,8 @@ public sealed class FootballRig {
     public const float KneeToeBias=.04f;
     // Bend direction of leg f: its knee off the hip-ankle line (zero for a straight leg).
     public Vector3 KneeBend(int f){var upper=f==0?leftUpper:rightUpper;var lower=f==0?leftLower:rightLower;var foot=f==0?leftFoot:rightFoot;var line=foot.position-upper.position;return line.sqrMagnitude>1e-8f?Vector3.ProjectOnPlane(lower.position-upper.position,line.normalized):Vector3.zero;}
+    // The rig's default knee direction: ahead across the hips (the pole of a leg without a bend of its own).
+    public Vector3 KneeAhead(){var up=root.up;var ahead=Vector3.Cross(rightUpper.position-leftUpper.position,up);ahead=Vector3.ProjectOnPlane(ahead,up);if(ahead.sqrMagnitude<1e-6f)ahead=Vector3.ProjectOnPlane(root.forward,up);return ahead.normalized;}
     Vector3 KneePole(int f){
         var upper=f==0?leftUpper:rightUpper;var lower=f==0?leftLower:rightLower;var foot=f==0?leftFoot:rightFoot;var up=root.up;
         var hip=upper.position;var line=foot.position-hip;var axis=line.sqrMagnitude>1e-8f?line.normalized:up;
@@ -1676,13 +1714,22 @@ public sealed class FootballRig {
     // back. Volley: the body banks away from the kicking leg. Applied only after
     // the native contact window; an out-of-reach swing target just straightens
     // the leg (Solve never stretches a limb).
-    public void FollowThrough(float loft,float volley){
+    public void FollowThrough(float loft,float volley,Vector3? shownBend=null){
         if(hips==null)return;loft=Mathf.Clamp01(loft);volley=Mathf.Clamp01(volley);var forward=root.forward;var right=root.right;
         float leg=Vector3.Distance(rightUpper.position,rightLower.position)+Vector3.Distance(rightLower.position,rightFoot.position);
         if(spine!=null)spine.rotation=Quaternion.AngleAxis(volley*18,forward)*Quaternion.AngleAxis(-loft*10,right)*spine.rotation;
         float w=Mathf.Max(loft,volley);if(w<=0)return;bool side=volley>loft;
         var swing=rightUpper.position+forward*leg*(side?.55f:.72f)+Vector3.up*leg*(side?.38f:.28f)+right*leg*(side?.22f:.04f);
-        Blend(rightUpper,rightLower,rightFoot,swing,w*.75f,forward);
+        // B05 (r132): the knee pole of the follow-through blend is the leg's current bend plane (as LimitHands), not the root
+        // forward: with the hip -> swing line itself pointing mostly forward the forward pole nearly coincided with that
+        // line and flipped the knee for single pictures (9133 and 6156 deg/s shin in a highPass return, native 160112
+        // field-7, 27.550/27.600; 8212 in 160114 field-8). The forward pole stays the fallback for a straight leg.
+        // B05 (r132): the knee plane of the previous picture's final leg (ShownBend) first: the blend's own target plane (knee
+        // forward-up) differed from the hanging leg's plane by up to 180 deg and collapsed the knee 125 -> 54 deg within one
+        // picture (7791 deg/s shin, native 160114 field-8, 31.300). The current bend, then root forward, remain the fallbacks.
+        var line=swing-rightUpper.position;var bend=Vector3.ProjectOnPlane(rightLower.position-(rightUpper.position+rightFoot.position)*.5f,line.sqrMagnitude>1e-8f?line.normalized:forward);
+        var pole=shownBend.HasValue&&shownBend.Value.sqrMagnitude>1e-6f?shownBend.Value.normalized:bend.sqrMagnitude>1e-6f?bend.normalized:forward;
+        Blend(rightUpper,rightLower,rightFoot,swing,w*.75f,pole);
         if(leftArm!=null&&leftForearm!=null&&leftHand!=null)Blend(leftArm,leftForearm,leftHand,leftArm.position-right*.42f+forward*.18f+Vector3.up*.05f,w*.6f,-forward);
     }
     // Throw-in posture from the native phases: bend to the ball, raise it

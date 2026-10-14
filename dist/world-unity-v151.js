@@ -32,7 +32,19 @@
    const restartHeading=!p.keeper&&p.movement?.mode==='restart'&&Number.isFinite(p.person?.offenseMotion?.heading)?p.person.offenseMotion.heading:null;
    const flip=frame.turned?-1:1;
    const restartDirection=restartHeading!==null?[-Math.cos(restartHeading)*flip,0,Math.sin(restartHeading)*flip]:null;
-   const direction=a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:focusDirection&&Math.hypot(focusDirection[0],focusDirection[2])>.00001?focusDirection:settledPass?bodyDirection:restartDirection|| (travel?[travel.x-p.x,0,travel.z-p.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0]);
+   // B06 (r132): the observed travel of a running field player (bridge wrapper, display only) replaces a body velocity or
+   // body heading pointing more than 90 degrees away from it: the stride follows where the player actually goes.
+   const observed=!p.keeper&&p.movement?.mode==='run'&&p.movement.observedFacing&&[p.movement.observedFacing.x-p.x,0,p.movement.observedFacing.z-p.z];
+   const sourceDirection=travel?[travel.x-p.x,0,travel.z-p.z]:bodyDirection;
+   const staleTravel=Boolean(observed&&sourceDirection&&Math.hypot(observed[0],observed[2])>.00001&&Math.hypot(sourceDirection[0],sourceDirection[2])>.00001&&observed[0]*sourceDirection[0]+observed[2]*sourceDirection[2]<0);
+   // B04 (r132): free-kick attention of a standing player (bridge wrapper) and the preparation facing a kick turns away from.
+   const attention=!p.keeper&&p.movement?.restartAttention&&p.movement.mode!=='run'?[p.movement.restartAttention.x-p.x,0,p.movement.restartAttention.z-p.z]:null;
+   const chosen=a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:focusDirection&&Math.hypot(focusDirection[0],focusDirection[2])>.00001?focusDirection:settledPass?bodyDirection:(attention&&Math.hypot(attention[0],attention[2])>.00001?attention:null)||restartDirection||(staleTravel?observed:travel?[travel.x-p.x,0,travel.z-p.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0]);
+   // The kick after a free-kick preparation turns from the preparation facing into the chosen one over the native
+   // contact time (0.09 s of the received progress), a turn instead of a one-picture jump. Progress-based: a paused or
+   // replayed picture gives the same facing.
+   const direction=(()=>{const prep=a?.prepareWorld;if(!prep)return chosen;const age=Math.max(0,a.progress??0)*(Number.isFinite(a.duration)&&a.duration>0?a.duration:1);if(!(age<.09))return chosen;const from=[prep.x-p.x,0,prep.z-p.z],fl=Math.hypot(from[0],from[2]),cl=Math.hypot(chosen[0],chosen[2]);if(fl<.00001||cl<.00001)return chosen;
+    const t=age/.09,w=t*t*(3-2*t),a0=Math.atan2(from[2],from[0]),a1=Math.atan2(chosen[2],chosen[0]);let d=a1-a0;while(d>Math.PI)d-=2*Math.PI;while(d<=-Math.PI)d+=2*Math.PI;if(Math.abs(Math.abs(d)-Math.PI)<1e-9)d=Math.PI;if(Math.abs(d)<1e-9)return chosen;const angle=a0+w*d;return [Math.cos(angle),0,Math.sin(angle)];})();
    const keeperFacts=Object.fromEntries(['saved','parry','goal','smother','held'].filter(k=>typeof a?.[k]==='boolean').map(k=>[k,a[k]]));
    const holdingKnown=p.keeper&&a?.kind==='save'&&['saved','parry','goal'].every(k=>typeof a[k]==='boolean')&&typeof frame.ballInFlight==='boolean';
    const ballHeld=holdingKnown?{ballHeld:a.saved&&!a.parry&&!a.goal&&frame.owner===p.id&&!frame.ballInFlight&&(a.progress??0)>=1}:{};
@@ -58,7 +70,7 @@
  function scaled(frame,g){
   if(!g||g.length===legacy.length&&g.width===legacy.width)return frame;
   const sx=g.length/legacy.length,sz=g.width/legacy.width,at=p=>p&&{...p,x:p.x*sx,z:p.z*sz},post=g.goalWidth/2-.1764;
-  return {...frame,ball:at(frame.ball),offside:frame.offside?{...frame.offside,lineX:frame.offside.lineX*sx}:frame.offside,net:frame.net?{...frame.net,z:Math.max(-post,Math.min(post,frame.net.z*sz))}:frame.net,players:frame.players.map(p=>({...p,x:p.x*sx,z:p.z*sz,movement:p.movement?{...p.movement,facing:at(p.movement.facing),travelFacing:at(p.movement.travelFacing)}:p.movement,action:p.action?{...p.action,...(p.action.contactWorld?{contactWorld:at(p.action.contactWorld)}:{}),...(p.action.targetWorld?{targetWorld:at(p.action.targetWorld)}:{})}:p.action,unityAction:p.unityAction?{...p.unityAction,contactWorld:at(p.unityAction.contactWorld),facing:{x:p.unityAction.facing.x*sx,z:p.unityAction.facing.z*sz}}:p.unityAction}))};
+  return {...frame,ball:at(frame.ball),offside:frame.offside?{...frame.offside,lineX:frame.offside.lineX*sx}:frame.offside,net:frame.net?{...frame.net,z:Math.max(-post,Math.min(post,frame.net.z*sz))}:frame.net,players:frame.players.map(p=>({...p,x:p.x*sx,z:p.z*sz,movement:p.movement?{...p.movement,facing:at(p.movement.facing),travelFacing:at(p.movement.travelFacing),...(p.movement.observedFacing?{observedFacing:at(p.movement.observedFacing)}:{}),...(p.movement.restartAttention?{restartAttention:at(p.movement.restartAttention)}:{})}:p.movement,action:p.action?{...p.action,...(p.action.contactWorld?{contactWorld:at(p.action.contactWorld)}:{}),...(p.action.targetWorld?{targetWorld:at(p.action.targetWorld)}:{}),...(p.action.prepareWorld?{prepareWorld:at(p.action.prepareWorld)}:{})}:p.action,unityAction:p.unityAction?{...p.unityAction,contactWorld:at(p.unityAction.contactWorld),facing:{x:p.unityAction.facing.x*sx,z:p.unityAction.facing.z*sz}}:p.unityAction}))};
  }
  // The browser camera rules are authored for 68 x 44. On a larger pitch the
  // aim follows the same relative ball position; overview cameras also step back
@@ -129,7 +141,45 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  const localFile=location.protocol==='file:';
  const enabled=selected==='unity'||selected!=='browser'&&(Boolean(window.D6UnityMatchUrl)||localFile);
  if(!enabled)return;
- const basePitchFrame=v98PitchFrame;v98PitchFrame=function(current){const frame=basePitchFrame(current);for(const p of frame.players){const action=p.action;if(!action)continue;if(action.target){const targetWorld=v98PitchPoint(action.target,frame.turned);p.action={...action,targetWorld};}const contact=action.contact||(action.kind==='save'?action.target:null)||(['pass','shot','highPass','cross','freeKick','goalKick'].includes(action.kind)&&action.target?v101KickPoint(p.person,action.target):null);if(contact){const spot=v98PitchPoint(contact,frame.turned);p.action={...p.action,contactWorld:{...spot,height:contact.elevation??action.height??.29}};}}if(frame.celebration){const goal=current.goals?.at(-1);frame.celebration={...frame.celebration,scorer:goal&&!goal.ownGoal&&goal.pid?goal.pid:''};}if(current.goalScene&&current.goalPause>0){const view=typeof v119VisibleGoalView==='function'?v119VisibleGoalView(current):null,p=view?.contact||v83GoalPosition(current.goalScene),spot=v98PitchPoint(p,frame.turned);if(!view||view.hit==='rear')frame.net={sign:Math.sign(spot.x),z:spot.z,height:view?.height??.8,age:view?.age??current.goalScene.elapsed,bulge:view?.bulge??p.bulge,...(view?{flowing:true}:{})};}return frame;};
+ // B06 (r132): observed travel of each field player from the last completed native step (the step wrapper below records
+ // every person's displacement with the clock and the pitch mirroring; nothing is stored in the match or a checkpoint). A
+ // native position moved by something other than the body physics (a loose-ball chase: 4.7 m/s of travel while the body
+ // velocity ran 2.2 m/s 127 deg away, seed 22222 at 32.1-33.6 s) otherwise showed a stride against the actual travel.
+ // The projection depends on the match state alone: every picture of the same clock gets the same observation; a step
+ // across the halftime mirroring, a reposition (over 0.6 m within one step), a seek or a restore leaves none.
+ const basePitchFrame=v98PitchFrame;
+ const v151Steps=new WeakMap(),v151Pending=new WeakMap();
+ // The positions before the step are kept while it runs (v151Pending): a picture taken inside the step after the native
+ // advance, e.g. the goal-replay recorder (world-goal-replay-v103.js v103Record), already compares them with the advanced
+ // positions, so a replayed picture carries the same observation as the live one of that clock.
+ function v151Settle(current){const pending=v151Pending.get(current);if(!pending)return null;const after=v102Clock(current),turned=Boolean(current.halftimeBreakDone);
+  if(match!==current||!(after>pending.clockBefore)||after-pending.clockBefore>.2||turned!==pending.turnedBefore)return null;
+  const moves=new Map();for(const p of current.people){const old=pending.before.get(p);if(old)moves.set(p,{dx:p.x-old.x,dy:p.y-old.y,dt:after-pending.clockBefore});}
+  const entry={clock:after,turned,moves};v151Steps.set(current,entry);return entry;}
+ function v151WrapStep(base,thisArg,args){const current=match;if(current)v151Pending.set(current,{before:new Map(current.people.map(p=>[p,{x:p.x,y:p.y}])),clockBefore:v102Clock(current),turnedBefore:Boolean(current.halftimeBreakDone)});
+  const result=base.apply(thisArg,args);
+  if(current){if(!v151Settle(current))v151Steps.delete(current);v151Pending.delete(current);}return result;}
+ function v151Observe(current,frame){let st=v151Steps.get(current);if(!st||Math.abs(st.clock-frame.clock)>1e-9)st=v151Settle(current);if(!st||Math.abs(st.clock-frame.clock)>1e-9||st.turned!==Boolean(frame.turned))return;const s=v150Scale(current);
+  for(const p of frame.players){const person=p.person;if(!person||person.keeper||person.slideActive||!p.movement||p.movement.mode!=='run')continue;const mv=st.moves.get(person);if(!mv||!(mv.dt>0))continue;
+   const travel=Math.hypot(mv.dx*s.x,mv.dy*s.y),speed=travel/mv.dt;if(speed<1.2||travel>.6)continue;
+   if(typeof v108MovementMode==='function'&&v108MovementMode(current,person)?.mode==='backpedal')continue;
+   const facing=v98PitchPoint({x:person.x+mv.dx,y:person.y+mv.dy},frame.turned);p.movement={...p.movement,observedFacing:{x:facing.x,z:facing.z},observedSpeed:speed};}}
+ // B04 (r132): free-kick preparation from native facts only. A free kick of a new match (attackFlow.motionRevision 182)
+ // decides direct shot or pass target when the set piece is created (set-pieces-v50.js, setPiece.plan); while it waits the
+ // taker looks toward that decided target (the goal centre of a direct kick, the planned receiver of a pass). Nobody else
+ // gets an invented facing; older matches without a plan keep their projection. The kick that executes this set piece
+ // (same taker, within 0.6 s of its last waiting picture) carries the preparation facing (prepareWorld) so the contract
+ // turns it into the received target over the contact time instead of snapping. Display state only, never saved.
+ const v151Prepared=new WeakMap();
+ function v151Attention(current,frame){const piece=current.setPiece;const waiting=Boolean(piece&&piece.type==='freeKick'&&piece.plan&&piece.spot&&['waiting','fading','postBanner'].includes(piece.phase));
+  for(const p of frame.players){const person=p.person;if(!person||person.keeper)continue;
+   if(waiting){if(piece.taker!==person)continue;const plan=piece.plan;const aim=plan.direct?{x:.5,y:piece.team===0?v55Field.top:v55Field.bottom}:(()=>{const t=plan.targetPid?current.people.find(q=>q.pid===plan.targetPid):null;return t?{x:t.x,y:t.y}:null;})();if(!aim)continue;
+    const point=v98PitchPoint(aim,frame.turned);if(Math.hypot(point.x-p.x,point.z-p.z)<.05)continue;
+    v151Prepared.set(person,{piece,clock:frame.clock,direction:{x:point.x-p.x,z:point.z-p.z}});
+    if(p.movement&&p.movement.mode!=='run')p.movement={...p.movement,restartAttention:{x:point.x,z:point.z,taker:true}};}
+   else{const prep=v151Prepared.get(person);if(!prep)continue;if(current.setPiece===prep.piece||frame.clock<prep.clock||frame.clock-prep.clock>.6){v151Prepared.delete(person);continue;}
+    if(p.action&&['freeKick','shot','pass','highPass','cross'].includes(p.action.kind))p.action={...p.action,prepareWorld:{x:p.x+prep.direction.x,z:p.z+prep.direction.z}};}}}
+ v98PitchFrame=function(current){const frame=basePitchFrame(current);v151Observe(current,frame);v151Attention(current,frame);for(const p of frame.players){const action=p.action;if(!action)continue;if(action.target){const targetWorld=v98PitchPoint(action.target,frame.turned);p.action={...action,targetWorld};}const contact=action.contact||(action.kind==='save'?action.target:null)||(['pass','shot','highPass','cross','freeKick','goalKick'].includes(action.kind)&&action.target?v101KickPoint(p.person,action.target):null);if(contact){const spot=v98PitchPoint(contact,frame.turned);p.action={...p.action,contactWorld:{...spot,height:contact.elevation??action.height??.29}};}}if(frame.celebration){const goal=current.goals?.at(-1);frame.celebration={...frame.celebration,scorer:goal&&!goal.ownGoal&&goal.pid?goal.pid:''};}if(current.goalScene&&current.goalPause>0){const view=typeof v119VisibleGoalView==='function'?v119VisibleGoalView(current):null,p=view?.contact||v83GoalPosition(current.goalScene),spot=v98PitchPoint(p,frame.turned);if(!view||view.hit==='rear')frame.net={sign:Math.sign(spot.x),z:spot.z,height:view?.height??.8,age:view?.age??current.goalScene.elapsed,bulge:view?.bulge??p.bulge,...(view?{flowing:true}:{})};}return frame;};
  let shownGeometry=null,host=null,iframe=null,labels=null,message=null,ballGuide=null,current=null,session='',sequence=0,ready=false,loaded=false,loading=false,pending=null,loop=0,lastSent=-Infinity,started=0,failed=false,cameraPose=null,cameraViewKey='',lastPicture=null,loadCount=0,lastProjection=null,suspendedAt=null;
  let ballGuideEnabled=true;try{ballGuideEnabled=localStorage.getItem('d6-ball-guide')!=='off'}catch{}
  const labelMap=new Map();
@@ -276,7 +326,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  // acknowledged picture. 2D, a failure or another view never wait.
  function holdsClock(){return Boolean(match)&&!failed&&!v98Failed&&v98IsWorld()&&v98View==='3d'&&v98Orientation.matches&&(!loaded||current!==match);}
  let heldStep=null;
- const baseStep=step;step=function(...args){if(holdsClock()){heldStep=match;return;}heldStep=null;return baseStep.apply(this,args);};
+ const baseStep=step;step=function(...args){if(holdsClock()){heldStep=match;return;}heldStep=null;return v151WrapStep(baseStep,this,args);};
  const baseAfterStep=v65AfterStep;v65AfterStep=function(...args){if(heldStep&&heldStep===match)return;return baseAfterStep.apply(this,args);};
  const baseRender=v98RenderScene;
  v98RenderScene=function(captureOnly=false){
