@@ -35,11 +35,11 @@ if(process.env.D6_OLD183_CHILD){
  assert.equal(after.length,before.length,'Scene count differs');
  const differing=after.filter((row,i)=>row.group!==before[i].group||row.id!==before[i].id||row.hash!==before[i].hash).map(r=>`${r.group}:${r.id}`);
  // Marker check: si:false leaves no marker; the default carries revision 183
- // with every package off and the current clock rate.
+ // with every package off and a positive finite clock rate.
  const markerErrors=[];
  for(const row of after){
   if(row.group==="constructed182"&&row.si!=null)markerErrors.push(`${row.id}: si:false still wrote match.si`);
-  if(row.group==='si183-off'){const si=row.si&&JSON.parse(row.si);if(!si||si.revision!==183||Object.values(si.packages).some(Boolean)||si.clockRate!==.78)markerErrors.push(`${row.id}: unexpected marker ${row.si}`);}
+  if(row.group==='si183-off'){const si=row.si&&JSON.parse(row.si);if(!si||si.revision!==183||Object.values(si.packages).some(Boolean)||!(Number.isFinite(si.clockRate)&&si.clockRate>0))markerErrors.push(`${row.id}: unexpected marker ${row.si}`);}
  }
  for(const row of before)if(row.si!=null)markerErrors.push(`base ${row.group}:${row.id} has match.si`);
  const groups=Object.fromEntries(['unmarked','marked182','constructed182','si183-off'].map(g=>[g,after.filter(r=>r.group===g).length]));

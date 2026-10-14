@@ -16,8 +16,10 @@
 //   "none" = every package off, "all" = every package on; omitted = default.
 // --params: "pkg.name=value,..." (JSON values) or a JSON object per package.
 // Results: outputs/si183/<label>.json; start/end lines in outputs/si183/queue.log.
+// --traceLimit=N enlarges the transient decision trace (v183SetTraceLimit).
 // Further flags as in measure-si-r132: --clubs --offset --sizes --seedPrefix
-// --only --sequence --instrument --dt --boost --wallclock --models --settle --recycle.
+// --only --sequence --instrument --dt --boost --wallclock --models --settle --recycle;
+// diagnostic flags (models, settle, wallclock, sequence) mark the file name.
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..'),outDir=path.join(root,'outputs/si183');
 const arg=(name,fallback)=>{const hit=process.argv.find(a=>a.startsWith('--'+name+'='));return hit?hit.slice(name.length+3):fallback;};
@@ -41,7 +43,8 @@ if(arg('compare','')){
 
 const distRoot=path.resolve(root,arg('dist','.')),dist=path.join(distRoot,'dist'),distLabel=(path.relative(root,distRoot)||'.').split(path.sep).join('/');
 const clubCount=+arg('clubs','96'),sizes=arg('sizes','standard,large').split(','),workers=+arg('workers','6'),port=+arg('port','4250');
-const recycle=+arg('recycle','12'),sequence=arg('sequence','').split(',').filter(Boolean),clockMode=arg('wallclock','natural'),models=arg('models','normal'),settle=+arg('settle','1500'),only=arg('only','').split(',').filter(Boolean),seedPrefix=arg('seedPrefix','p01r132'),boostArg=arg('boost',''),instrument=arg('instrument','1')!=='0',dt=+arg('dt','0.05'),clubOffset=+arg('offset','0');
+const recycle=+arg('recycle','12'),sequence=arg('sequence','').split(',').filter(Boolean),clockMode=arg('wallclock','natural'),models=arg('models','normal'),settle=+arg('settle','1500'),only=arg('only','').split(',').filter(Boolean),seedPrefix=arg('seedPrefix','p01r132'),boostArg=arg('boost',''),instrument=arg('instrument','1')!=='0',dt=+arg('dt','0.05'),clubOffset=+arg('offset','0'),traceLimit=arg('traceLimit',null);
+assert(traceLimit===null||Number.isInteger(+traceLimit)&&+traceLimit>=1,'traceLimit: positive integer');
 assert(port>=4250&&port<=4269,'Port range 4250-4269');assert(workers>=1&&workers<=6,'At most 6 pages per lane');
 // SI constructor overrides.
 const packagesArg=arg('packages',null),paramsArg=arg('params',null),clockArg=arg('clockRate',null);
@@ -59,9 +62,9 @@ if(paramsArg!==null){
 if(clockArg!==null){si.clockRate=+clockArg;assert(Number.isFinite(si.clockRate)&&si.clockRate>0,'clockRate > 0');}
 const siOverride=Object.keys(si).length?si:null;
 const baseTree=!fs.existsSync(path.join(dist,'match-si-core-v183.js'));
-assert(!(baseTree&&siOverride),'A pre-183 base tree takes no SI overrides');
+assert(!(baseTree&&(siOverride||traceLimit)),'A pre-183 base tree takes no SI overrides');
 const label=arg('label',baseTree?'base':'si183'+(packagesArg!==null?'-'+(packagesArg||'none').replaceAll(',','+'):'')+(paramsArg!==null?'-p'+sha(JSON.stringify(si.params)).slice(0,8):'')+(clockArg!==null?'-rate'+clockArg:''));
-const out=arg('out',path.join(outDir,`${label}${boostArg?'-boost-'+boostArg.replace(/[:,]/g,'_'):''}${instrument?'':'-noinst'}${seedPrefix!=='p01r132'?'-'+seedPrefix:''}${dt!==.05?'-dt'+dt:''}.json`));
+const out=arg('out',path.join(outDir,`${label}${boostArg?'-boost-'+boostArg.replace(/[:,]/g,'_'):''}${instrument?'':'-noinst'}${seedPrefix!=='p01r132'?'-'+seedPrefix:''}${models!=='normal'?'-models-'+models:''}${settle!==1500?'-settle'+settle:''}${clockMode!=='natural'?'-wall-'+clockMode.replace(':',''):''}${sequence.length?'-seq':''}${traceLimit?'-trace'+traceLimit:''}${dt!==.05?'-dt'+dt:''}.json`));
 
 // dist hashes (all top-level and UI scripts/pages) before and after the run.
 const distFiles=()=>[...fs.readdirSync(dist).filter(f=>/\.(js|html)$/.test(f)),...fs.readdirSync(path.join(dist,'ui-flutlicht')).filter(f=>/\.js$/.test(f)).map(f=>'ui-flutlicht/'+f),...fs.readdirSync(path.join(dist,'ui-flutlicht/views')).filter(f=>/\.js$/.test(f)).map(f=>'ui-flutlicht/views/'+f)].sort();
@@ -172,7 +175,8 @@ const runMatch=async({clubId,size,seed,dt,instrument,boost,clockMode,si})=>{
    if(integrity.contextMismatchAt===null&&(v65WorldActive?.state!==state||ctx?.state!==state))integrity.contextMismatchAt=ticks;if(v65WorldActive?.state?.phase!=='live'&&!m.finished){integrity.notLiveStepTicks++;if(integrity.firstNotLiveStep===null)integrity.firstNotLiveStep={tick:ticks,phase:v65WorldActive?.state?.phase??null,statePhase:state.phase,elapsed:m.elapsed,halftimePause:m.halftimePause||0,pauseRequested:!!v65PauseRequested};}
    const cat=instrument?category():'x',e0=m.elapsed;
    const frozenProbe=m.elapsed+'|'+(m.setPiece?.wait??'-')+'|'+(m.goalPause||0)+'|'+(m.countdown||0)+'|'+(m.postBanner?.wait??'-')+'|'+(m.halftimePause||0);
-   step(dt*MATCH_SPEED,dt);
+   // Clock units per real step from the match rate (MATCH_SPEED without SI).
+   step(dt*(typeof v183Rate==='function'?v183Rate(m):MATCH_SPEED),dt);
    if(frozenProbe===m.elapsed+'|'+(m.setPiece?.wait??'-')+'|'+(m.goalPause||0)+'|'+(m.countdown||0)+'|'+(m.postBanner?.wait??'-')+'|'+(m.halftimePause||0))integrity.frozenTicks++;
    if(state.phase==='live'&&!m.finished)v65AfterStep(ctx);
    if(v65PauseRequested&&!m.flight&&!m.slide&&state.phase==='live'){v65PauseRequested=false;v65Pause();clearInterval(v65WorldFrame);}
@@ -240,14 +244,14 @@ async function openPage(browser){
  if(models==='block')await page.route('**/players/football-v130.glb',r=>r.fulfill({status:404,body:''}));
  await page.goto(`http://127.0.0.1:${port}/d/index.html?engine=2d`,{timeout:180000});
  await page.waitForFunction(()=>typeof D6Expansion?.createCareer==='function'&&typeof v65CreateMatch==='function'&&typeof v157Decide==='function',null,{timeout:180000});
- await page.evaluate(`window.__p01Install=${installObservers.toString()};`);if(settle>0)await page.waitForTimeout(settle);
+ await page.evaluate(`window.__p01Install=${installObservers.toString()};`);if(traceLimit)await page.evaluate(n=>v183SetTraceLimit(n),+traceLimit);if(settle>0)await page.waitForTimeout(settle);
  return{context,page,errors};
 }
 
 (async()=>{
  await new Promise(r=>server.listen(port,'127.0.0.1',r));queue('start');
  const browser=await chromium.launch({executablePath:'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe',headless:true,args:['--disable-gpu']});
- const report={harness:'si183-1',label,dist:distLabel,baseTree,si:siOverride,wallclock:clockMode,models,settle,sequence,boost:boostArg||null,instrument,dt,distHashes:frozen,date:new Date().toISOString(),scope:'Real expansion12 careers (D6Expansion.createCareer), production player model, first own competitive fixture via v64AdvanceToOwnMatch; native browser engine, fixed dt steps, auto-resume at half-time (no tactic pauses); SI configuration via the v65CreateMatch constructor parameter, no file copies.',matches:[],failures:[]};
+ const report={harness:'si183-1',label,dist:distLabel,baseTree,si:siOverride,traceLimit:traceLimit?+traceLimit:null,wallclock:clockMode,models,settle,sequence,boost:boostArg||null,instrument,dt,distHashes:frozen,date:new Date().toISOString(),scope:'Real expansion12 careers (D6Expansion.createCareer), production player model, first own competitive fixture via v64AdvanceToOwnMatch; native browser engine, fixed dt steps, auto-resume at half-time (no tactic pauses); SI configuration via the v65CreateMatch constructor parameter, no file copies.',matches:[],failures:[]};
  try{
   const catalog=await (async()=>{const {context,page}=await openPage(browser);const list=await page.evaluate(()=>D6Expansion.catalog().filter(c=>c.playable!==false&&!c.id.includes('-C')).map(c=>c.id));await context.close();return list;})();
   // Spread selection across countries: interleave club index within each country.

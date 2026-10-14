@@ -6,7 +6,7 @@ function v159ShotLane(m,p,from,target){
  const keeper=m.people.find(q=>q.keeper&&q.t!==p.t),sx=v150Scale(m).x,sy=v150Scale(m).y,dx=(target.x-from.x)*sx,dy=(target.y-from.y)*sy,range=Math.hypot(dx,dy);
  if(!keeper)return {target,range,margin:0,reachable:true,blocked:false,contact:target};
  const q=clamp(((keeper.x-from.x)*sx*dx+(keeper.y-from.y)*sy*dy)/Math.max(.001,range*range),0,1),contact={x:from.x+(target.x-from.x)*q,y:from.y+(target.y-from.y)*q};
- const gap=Math.hypot((keeper.x-contact.x)*sx,(keeper.y-contact.y)*sy),reaction=Math.max(.12,.28-ability(keeper,'gk')*.005),time=range*q/27,reach=(typeof v160KeeperHands!=='function'||v160KeeperHands(m,keeper,contact)?.8:0)+Math.max(0,time-reaction)*(2.6+ability(keeper,'spd')*.065),margin=gap-reach;
+ const gap=Math.hypot((keeper.x-contact.x)*sx,(keeper.y-contact.y)*sy),reaction=Math.max(.12,.28-ability(keeper,'gk')*.005),time=range*q/27,legacyReach=(typeof v160KeeperHands!=='function'||v160KeeperHands(m,keeper,contact)?.8:0)+Math.max(0,time-reaction)*(2.6+ability(keeper,'spd')*.065),reach=m.si&&typeof v183KeeperReach==='function'?v183KeeperReach(m,keeper,range*q,contact,{site:'shot-lane',reach:legacyReach,time,reaction,from,target}):legacyReach,margin=gap-reach;
  const blocked=m.people.some(r=>r.t!==p.t&&!r.keeper&&!r.slideActive&&(()=>{const lane=passLaneGeometry(r,from,target);return lane&&v122Metres(r,lane)<1.4;})());
  return {target:{...target},range,margin,reachable:margin<=0&&(typeof v160KeeperHands!=='function'||v160KeeperHands(m,keeper,contact)),blocked,contact};
 }

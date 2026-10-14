@@ -4,10 +4,12 @@
 // helpers, personality, decision trace, ledger sources and the interfaces shared
 // by the SI packages. New logic runs only for match.si.revision===183 with the
 // package switch on (v183Active); unmarked and 182 matches never reach it. No
-// helper here draws a random number except the named "clearance.lateral" draw
-// of the v183Clearance stub (today's header clearance).
-// match.si is written only by the constructor v65CreateMatch. v65Snapshot copies
-// the match flat and v65Restore clones it: match.si survives unchanged, and a
+// helper here draws a random number except two named draws that reproduce
+// today's behaviour in stubs: "clearance.lateral" (v183Clearance without a
+// caller draw or evaluate mode) and "air.finish" (v183AirFinish).
+// match.si is written only by the constructor v65CreateMatch and is deeply
+// frozen. v65Snapshot copies the match flat and v65Restore clones it: match.si
+// survives unchanged (the clone is frozen again on first access), and a
 // restored older match never gains one.
 // Load order (index.html, build.cjs, native130-harness.cjs): core, clock,
 // defence, finish, setplay, offball, options, field, then match-ball-events-v117
@@ -18,7 +20,9 @@ const V183_PACKAGES=Object.freeze(['clock','options','offball','finish','defence
 // Parameter defaults per package and the package switches of new matches. A
 // wave-1 package turns its switch on in its own module (v183EnableByDefault)
 // only when it is complete; until then every switch is off.
-const v183Registry={defaults:Object.fromEntries(V183_PACKAGES.map(pkg=>[pkg,{}])),enabled:Object.fromEntries(V183_PACKAGES.map(pkg=>[pkg,false]))};
+// strict: v183Param throws for unmarked matches (test harness); traceLimit:
+// ring buffer size of the decision trace (enlarge for measurements).
+const v183Registry={defaults:Object.fromEntries(V183_PACKAGES.map(pkg=>[pkg,{}])),enabled:Object.fromEntries(V183_PACKAGES.map(pkg=>[pkg,false])),strict:false,traceLimit:64};
 
 function v183Package(pkg){
  if(!V183_PACKAGES.includes(pkg))throw RangeError(`Unknown SI package: ${pkg}`);
@@ -41,6 +45,7 @@ function v183Plain(value,label){
  return copy(value);
 }
 function v183Kind(value){return value===null?'null':Array.isArray(value)?'array':typeof value;}
+function v183Freeze(value){if(value&&typeof value==='object'&&!Object.isFrozen(value)){for(const item of Object.values(value))v183Freeze(item);Object.freeze(value);}return value;}
 
 // ----- Marker and configuration -----
 function v183RegisterDefaults(pkg,obj){
@@ -75,18 +80,22 @@ function v183CreateSi(options){
  // Today's rate for now; SI-0 uses it, SI-K calibrates the final value.
  const clockRate=o.clockRate===undefined?MATCH_SPEED:o.clockRate;
  if(typeof clockRate!=='number'||!Number.isFinite(clockRate)||clockRate<=0)throw RangeError('SI clock rate: positive number expected');
- return {revision:V183_REVISION,clockRate,packages,params};
+ return v183Freeze({revision:V183_REVISION,clockRate,packages,params});
 }
-function v183Marked(m){return m?.si?.revision===V183_REVISION;}
+// A restored marker is a structuredClone without frozenness; freeze it again.
+function v183Marked(m){const si=m?.si;if(si?.revision!==V183_REVISION)return false;if(!Object.isFrozen(si))v183Freeze(si);return true;}
 function v183Active(m,pkg){v183Package(pkg);return Boolean(v183Marked(m)&&m.si.packages?.[pkg]===true);}
-// Key "<package>.<name>". The value stored with the match, otherwise the
-// registered default (only for a parameter added later). Treat as read-only.
+// Key "<package>.<name>". The value stored with a marked match, otherwise the
+// registered default (only for a parameter added later). Unmarked matches read
+// undefined (strict mode: an error), so a missing package gate shows up.
 function v183Param(m,key){
  const dot=typeof key==='string'?key.indexOf('.'):-1,pkg=dot>0?key.slice(0,dot):'',name=dot>0?key.slice(dot+1):'';
  if(!V183_PACKAGES.includes(pkg)||!name)throw RangeError(`SI parameter key "<package>.<name>" expected: ${key}`);
- const stored=v183Marked(m)?m.si.params?.[pkg]:null;
+ if(!v183Marked(m)){if(v183Registry.strict)throw Error(`SI parameter ${key} read for a match without marker 183`);return undefined;}
+ const stored=m.si.params?.[pkg];
  return stored&&Object.hasOwn(stored,name)?stored[name]:v183Registry.defaults[pkg][name];
 }
+function v183StrictParams(on=true){v183Registry.strict=Boolean(on);}
 
 // ----- Clock: real seconds and clock units -----
 // Without the clock package MATCH_SPEED applies: the same arithmetic as
@@ -127,16 +136,17 @@ function v183Personality(p){
 }
 
 // ----- Decision trace (transient) -----
-// Ring buffer of 64 entries per match in a WeakMap: never saved, never read by
-// decisions, empty after a restore. Entries are plain data; a person at the top
-// level is replaced by its pid.
-const v183Traces=new WeakMap(),V183_TRACE_LIMIT=64;
+// Ring buffer per match in a WeakMap (64 entries, v183SetTraceLimit for
+// measurements): never saved, never read by decisions, empty after a restore.
+// Entries are plain data; a person at the top level is replaced by its pid.
+const v183Traces=new WeakMap();
+function v183SetTraceLimit(limit){if(!Number.isInteger(limit)||limit<1||limit>100000)throw RangeError('SI trace limit: integer 1-100000 expected');v183Registry.traceLimit=limit;}
 function v183Trace(m,entry){
  if(!v183Marked(m)||v183Kind(entry)!=='object')return null;
  let trace=v183Traces.get(m);if(!trace)v183Traces.set(m,trace={sequence:0,entries:[]});
  const record={seq:++trace.sequence,at:v183Seconds(m)};
  for(const [key,value]of Object.entries(entry))if(key!=='seq'&&key!=='at')record[key]=value&&typeof value==='object'&&typeof value.pid==='string'&&Object.hasOwn(value,'t')?value.pid:value;
- trace.entries.push(Object.freeze(record));if(trace.entries.length>V183_TRACE_LIMIT)trace.entries.shift();
+ trace.entries.push(Object.freeze(record));while(trace.entries.length>v183Registry.traceLimit)trace.entries.shift();
  return record;
 }
 function v183TraceEntries(m){return [...(v183Traces.get(m)?.entries||[])];}
@@ -200,18 +210,43 @@ function v183CrossEstimate(m,p,target){
  const eligible=Boolean(point&&v115GoalDistance(p)<26&&Math.abs(p.x-.5)*s.x>9&&v115GoalDistance({...point,t:p.t})<16);
  return {arrival:eligible?.5:0,headerXg:eligible&&receiver?v157ShotQuality({...receiver,...point},m.people.filter(q=>q.t!==p.t)):0,eligible};
 }
-// SI-1 pass value. Stub: v157Lane (open lane = arrives) and today's option score.
+// SI-1 pass value. Stub: v157Lane (open lane = arrives) and today's option
+// score of v157Decide, including the return-run bonus of a confirmed one-two.
 function v183PassEstimate(m,p,q,target){
  const point=target||v157PassLead(m,p,q,m.ball)||{x:q.x,y:q.y},rivals=m.people.filter(r=>r.t!==p.t),s=v150Scale(m),dir=p.t===0?-1:1;
- const lane=v157Lane(m,p,point,rivals),gain=(point.y-p.y)*dir*s.y,value=gain*.11-v122Metres(p,point)*.028+v157ShotQuality({...q,...point},rivals)*.9;
- return {arrival:lane?1:0,value,lane};
+ const lane=v157Lane(m,p,point,rivals),gain=(point.y-p.y)*dir*s.y,combo=m.attackFlow?.combination;
+ const returnRun=Boolean(combo?.receiverId===p.pid&&combo.passerId===q.pid&&gain>2&&(!(typeof v159Active==='function'&&v159Active(m))||combo.confirmed));
+ const value=gain*.11-v122Metres(p,point)*.028+v157ShotQuality({...q,...point},rivals)*.9+(returnRun?.65:0);
+ return {arrival:lane?1:0,value,lane,returnRun};
 }
 // SI-2 offers/patterns. Stub: a read-only copy of today's attackFlow.intents
 // (v159Offers writes them in the regular cycle).
 function v183Offers(m){return Object.entries(m?.attackFlow?.intents||{}).map(([pid,intent])=>({pid,...intent}));}
-// SI-4 clearance. Stub: today's header clearance (pitch-v55.js:385), 7+0.2*air m
-// upfield and (draw "clearance.lateral" -0.5..0.5)*6 m sideways; never out.
+// SI-4 clearance (called by the SI-7 air-duel switch, pitch-v55.js:386-387).
+// Stub: today's header clearance, 7+0.2*air m upfield and (draw
+// "clearance.lateral" -0.5..0.5)*6 m sideways; never out. context.lateralDraw:
+// a draw already made by the caller; context.air: the caller's air ability;
+// context.evaluate:true: deterministic centre (no draw) for estimates. With
+// out:true an owner may return a target beyond the line.
 function v183Clearance(m,defender,point,context={}){
- const draw=Number.isFinite(context.lateralDraw)?context.lateralDraw:random(),forward=7+ability(defender,'air')*.20,lateral=(draw-.5)*6;
+ const draw=context.evaluate?.5:Number.isFinite(context.lateralDraw)?context.lateralDraw:random(),forward=7+(Number.isFinite(context.air)?context.air:ability(defender,'air'))*.20,lateral=(draw-.5)*6;
  return {target:{x:clamp(point.x+lateral*(v55Field.right-v55Field.left)/v160PitchWidth(m),.07,.93),y:clamp(point.y+(defender.t===0?-forward:forward)*(v55Field.bottom-v55Field.top)/v160PitchLength(m),.07,.93)},out:false};
+}
+// SI-2 direct finish after winning a loose ball (world-ball-motion-v110.js:76).
+// Stub: today's open-goal test; a truthy result starts the native one-touch try.
+function v183ReboundFinish(m,winner,point){return v131OpenGoal(winner,point);}
+// SI-3 keeper reach in metres, one switch at three sites (detail.site):
+// 'shot-lane' (match-shot-choice-v159.js:9), 'open-goal' (v131OpenGoal,
+// pitch-v55.js:231) and 'keeper-contact' (lateral reach, v115KeeperContact,
+// pitch-v55.js:447). range: ball travel up to the keeper's contact point as used
+// by that site; contact: that point. Stub: detail.reach, the exact legacy value.
+function v183KeeperReach(m,keeper,range,contact,detail={}){
+ return Number.isFinite(detail.reach)?detail.reach:.8+Math.max(0,range/27-(.28-ability(keeper,'gk')*.005))*(2.6+ability(keeper,'spd')*.065);
+}
+// SI-7 header/volley decision after a won air duel (pitch-v55.js:391-392):
+// 'header', 'volley' or null. Stub: today's rule with its single draw
+// "air.finish", made only within header range. SI-7 decides with v183ShotEstimate.
+function v183AirFinish(m,winner,end,detail){
+ const kind=detail.preferHeader?'header':'volley';
+ return detail.headerRange&&random()<v115DecisionChance(winner,kind,detail.pressure?.42:.62)?kind:null;
 }

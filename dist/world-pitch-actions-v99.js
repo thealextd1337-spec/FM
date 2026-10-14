@@ -22,7 +22,9 @@ v50GoalKick=function(...args){
  const result=v100BaseGoalKick(...args);
  // The existing movement step forms the build-up while the keeper waits.
  if(v65WorldActive){
-  match.next=match.elapsed+2.4*MATCH_SPEED;
+  // SI 183 switch (finish package): keeper hold in real seconds from finish.keeperHold.
+  const holdSeconds=match.si&&typeof v183Active==='function'&&v183Active(match,'finish')?v183Param(match,'finish.keeperHold')??2.4:null;
+  match.next=match.elapsed+(holdSeconds===null?2.4*MATCH_SPEED:v183ClockUnits(match,holdSeconds));
   const state=v99ActionState(match);if(!held)state.keepers.delete(args[0].pid);
   const kick={kind:'goalKick',keeper:args[0],phase:'waiting',age:0,held};
   if(hold){
@@ -32,7 +34,7 @@ v50GoalKick=function(...args){
    // at the catch position. Only a distant contact/tired keeper that cannot
    // complete placement within 2.4 seconds needs the physically required delay.
    const placement=Math.max(.28,1.6*distance/Math.max(.1,pace));
-   match.next=match.elapsed+Math.max(2.4,placement)*MATCH_SPEED;
+   match.next=match.elapsed+(holdSeconds===null?Math.max(2.4,placement)*MATCH_SPEED:v183ClockUnits(match,Math.max(holdSeconds,placement)));
    Object.assign(kick,{holdPoint:hold,kickPoint:point,holdRelease:match.next,holdPlacement:placement});
    match.ball={...hold};state.outBall=null;state.miss=null;
    const motion=typeof v102Motion!=='undefined'&&v102Motion.get(match);if(motion)motion.loose=null;

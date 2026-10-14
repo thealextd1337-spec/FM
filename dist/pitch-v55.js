@@ -228,7 +228,7 @@ function v131OpenGoal(p,point=p){
  const sx=v160PitchWidth()/(v55Field.right-v55Field.left),sy=v160PitchLength()/(v55Field.bottom-v55Field.top),goalY=p.t===0?v55Field.top:v55Field.bottom;
  const options=[.44,.5,.56].map(baseX=>{const x=v160GoalX(baseX);
   const target={x,y:goalY},dx=(target.x-point.x)*sx,dy=(target.y-point.y)*sy,range=Math.hypot(dx,dy),q=clamp(((keeper.x-point.x)*sx*dx+(keeper.y-point.y)*sy*dy)/Math.max(.001,range*range),0,1);
-  const lane={x:point.x+(target.x-point.x)*q,y:point.y+(target.y-point.y)*q},gap=v122Metres(keeper,lane),reach=.8+Math.max(0,range/27-(.28-ability(keeper,'gk')*.005))*(2.6+ability(keeper,'spd')*.065);
+  const lane={x:point.x+(target.x-point.x)*q,y:point.y+(target.y-point.y)*q},gap=v122Metres(keeper,lane),legacyReach=.8+Math.max(0,range/27-(.28-ability(keeper,'gk')*.005))*(2.6+ability(keeper,'spd')*.065),reach=match.si&&typeof v183KeeperReach==='function'?v183KeeperReach(match,keeper,range,lane,{site:'open-goal',reach:legacyReach,from:point,target}):legacyReach;
   const blocked=match.people.some(r=>r.t!==p.t&&!r.keeper&&(()=>{const g=passLaneGeometry(r,point,target);return g&&v122Metres(r,g)<1.4})());
   return{target,range,margin:gap-reach,blocked};
  }).filter(o=>o.range<=22&&!o.blocked&&o.margin>1.5).sort((a,b)=>b.margin-a.margin);
@@ -384,12 +384,13 @@ function v122ResolveAir({passer,end,snapshot,cross}){
   passer.stats.passLost++;winner.stats.interceptions++;
   const ownBox=winner.t===0?winner.y>.70:winner.y<.30;
   if(random()<clamp(.22+(ownBox?.30:0)+pressure*.18+(air-tec)*.014,.12,.90)){
-   const forward=7+air*.20,lateral=(random()-.5)*6,cleared={x:clamp(end.x+lateral*(v55Field.right-v55Field.left)/v160PitchWidth(),.07,.93),y:clamp(end.y+(winner.t===0?-forward:forward)*(v55Field.bottom-v55Field.top)/v160PitchLength(),.07,.93)};
+   const draw=random(),forward=7+air*.20,lateral=(draw-.5)*6,cleared=m.si&&typeof v183Clearance==='function'?v183Clearance(m,winner,end,{lateralDraw:draw,air,kind:'header',ownBox,pressure,passer}).target:{x:clamp(end.x+lateral*(v55Field.right-v55Field.left)/v160PitchWidth(),.07,.93),y:clamp(end.y+(winner.t===0?-forward:forward)*(v55Field.bottom-v55Field.top)/v160PitchLength(),.07,.93)};
    v102AirClear(winner,end,cleared);v50LooseBall(cleared,`${winner.name} köpft den hohen Ball weg.`);return;
   }
  }else{
   const headerRange=v115GoalDistance(winner)<=v115HeaderRange(winner),preferHeader=air>=tec||pressure>0;
-  if(headerRange&&random()<v115DecisionChance(winner,preferHeader?'header':'volley',pressure?.42:.62)){credit();m.owner=winner;m.ball={...end};v55Shoot(winner,preferHeader?'header':'volley');return}
+  const airKind=m.si&&typeof v183AirFinish==='function'?v183AirFinish(m,winner,end,{headerRange,preferHeader,pressure,passer}):headerRange&&random()<v115DecisionChance(winner,preferHeader?'header':'volley',pressure?.42:.62)?preferHeader?'header':'volley':null;
+  if(airKind){credit();m.owner=winner;m.ball={...end};v55Shoot(winner,airKind);return}
   const allies=m.people.filter(p=>p.t===winner.t&&!p.keeper&&p!==winner&&v122Metres(winner,p)<=14),offside=v55OffsideSnapshot(winner).offside;
   const next=allies.filter(p=>!offside.has(p)).sort((a,b)=>v122Metres(a,winner)-v122Metres(b,winner))[0];
   if(next&&random()<clamp(.12+ability(winner,'pas')*.014+pos*.004+(pressure?.10:0),.15,.64)){credit();m.owner=winner;m.ball={...end};v55GroundPass(winner,next,'header');return}
@@ -444,7 +445,7 @@ function v115DecisionChance(p,kind,base){if(typeof v65WorldActive==='undefined'|
 function v115FlightDuration(from,to,duration,kind){const metres=v122Metres(from,to),person=typeof v102Release!=='undefined'&&v102Release?.person,speed=kind==='header'&&person?v122HeaderSpeed(person):kind==='throw'?14:['highPass','cross'].includes(kind)?20:['shot','volley','freeKick'].includes(kind)?27:kind==='block'?18:16;return Math.max(duration,metres/speed*MATCH_SPEED);}
 function v115MissX(p,roll,kind='shot'){const side=roll<.5?-1:1,quality=(ability(p,'fin')+ability(p,kind==='header'?'air':'tec'))/40,spread=.008+(1-quality)*.030,extreme=roll<.005||roll>.995;return v160GoalX(.5+side*(.1+(extreme?.11:.007+spread*(.25+.75*Math.abs(roll-.5)*2))));}
 function v115ParryChance(shooter,keeper,kind){return clamp(.30+(20-ability(keeper,'gk'))*.013+ability(shooter,kind==='header'?'air':'fin')*.007+(v115GoalDistance(shooter)<12?.12:0),.30,.72);}
-function v115KeeperContact(keeper,shooter,parry){const p=v101KickPoint(keeper,shooter),variant=((shooter.stats.shots||0)+shooter.n)%3,side=variant===0?-1:variant===2?1:0,dx=(shooter.x-keeper.x)*v160PitchWidth()/(v55Field.right-v55Field.left),dy=(shooter.y-keeper.y)*v160PitchLength()/(v55Field.bottom-v55Field.top),length=Math.hypot(dx,dy)||1,available=.65+Math.max(0,v122Metres(keeper,shooter)/27-(.28-ability(keeper,'gk')*.005))*3,lateral=Math.min(available,(parry?1.45:1.05)+ability(keeper,'gk')*.025)*side;return {x:p.x-dy/length*lateral*(v55Field.right-v55Field.left)/v160PitchWidth(),y:p.y+dx/length*lateral*(v55Field.bottom-v55Field.top)/v160PitchLength()};}
+function v115KeeperContact(keeper,shooter,parry){const p=v101KickPoint(keeper,shooter),variant=((shooter.stats.shots||0)+shooter.n)%3,side=variant===0?-1:variant===2?1:0,dx=(shooter.x-keeper.x)*v160PitchWidth()/(v55Field.right-v55Field.left),dy=(shooter.y-keeper.y)*v160PitchLength()/(v55Field.bottom-v55Field.top),length=Math.hypot(dx,dy)||1,legacyAvailable=.65+Math.max(0,v122Metres(keeper,shooter)/27-(.28-ability(keeper,'gk')*.005))*3,available=match?.si&&typeof v183KeeperReach==='function'?v183KeeperReach(match,keeper,v122Metres(keeper,shooter),p,{site:'keeper-contact',reach:legacyAvailable,shooter,parry}):legacyAvailable,lateral=Math.min(available,(parry?1.45:1.05)+ability(keeper,'gk')*.025)*side;return {x:p.x-dy/length*lateral*(v55Field.right-v55Field.left)/v160PitchWidth(),y:p.y+dx/length*lateral*(v55Field.bottom-v55Field.top)/v160PitchLength()};}
 function v115OffsideMargin(p){const quality=(ability(p,'pos')-1)/19,timing=Math.max(0,Math.sin(match.elapsed*1.7+p.n*1.4));return .015+.017*quality-.055*(1-quality)*timing;}
 shoot=function(shooter){v55Shoot(shooter)};
 
