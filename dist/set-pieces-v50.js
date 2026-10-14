@@ -283,7 +283,8 @@ function v182FreeKickPlan(m,setPiece){
  const direct=goalDistance<.38&&setPiece.spot.x>.18&&setPiece.spot.x<.82&&random()<.65;
  const allies=v50Outfield(team).filter(player=>player!==taker);
  const target=direct?null:[...allies].sort((a,b)=>(team===0?a.y-b.y:b.y-a.y)||distance(a,taker)-distance(b,taker))[0]||null;
- return {direct,target};
+ // The receiver is kept by pid: the plan is part of the saved set piece and must survive a JSON restore.
+ return {direct,targetPid:target?target.pid:null};
 }
 function v50TakeFreeKick(setPiece){
  const m=match,taker=setPiece.taker,team=setPiece.team;

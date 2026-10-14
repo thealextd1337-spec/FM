@@ -45,5 +45,13 @@ check('A mirrored step, a reposition, a seek and a slow step carry no observatio
  h.run('step=function(...a){return v151WrapStep(v151BaseStep,this,a);};');h.call('Native130.chase',{team:0,size:'standard',turned:false});h.call('Native130.advance');assert(currentFrame().players.some(p=>p.movement?.observedFacing),'observed again after a normal step of fresh bodies');
  h.run('v102State(match).clock-=.5');assert(currentFrame().players.every(p=>p.movement?.observedFacing===undefined),'a seek leaves none');
  h.run('v102State(match).clock+=.5;for(const p of match.people){const b=v157Body(p);b.vx=.05;b.vy=.05;}');h.call('Native130.advance');assert(currentFrame().players.every(p=>p.movement?.observedFacing===undefined),'a slow step stays below 1.2 m/s');});
+// Review 2: a picture taken inside the step after the native advance (the goal-replay recorder) carries the observation.
+check('A picture recorded inside the step, before the bridge wrapper returns, carries the same observation as the live picture',()=>{
+ h.call('Native130.chase',{team:0,size:'standard',turned:false});
+ h.run('const v151Inner=v151BaseStep;step=function(...a){const r=v151Inner.apply(this,a);globalThis.v151Recorded=v98PitchFrame(match);return r;};const v151Outer=step;step=function(...a){return v151WrapStep(v151Outer,this,a);};');
+ h.call('Native130.advance');const recorded=h.evaluate('v151Recorded'),live=h.call('v98PitchFrame',h.evaluate('match'));
+ const moved=live.players.filter(p=>p.movement?.observedFacing);assert(moved.length>0,'live observation');
+ for(const p of moved){const r=recorded.players.find(q=>q.id===p.id);assert(r.movement?.observedFacing,'the recorded picture carries the observation');assert.deepEqual(r.movement.observedFacing,p.movement.observedFacing);assert.equal(r.movement.observedSpeed,p.movement.observedSpeed);}
+ h.run('step=function(...a){return v151WrapStep(v151BaseStep,this,a);};');});
 check('Actual JSON snapshot carries no observed travel fields',()=>{const context=h.call('Native130.context');assert(h.call('v65Snapshot',context));assert(!/observedFacing|observedSpeed|v151Steps|v151Travel/.test(JSON.stringify(context.state.physicalSnapshot)));});
 console.log(JSON.stringify({pass:true,suite:'observed-facing-r132',checks:checks.length,cases:checks,scope:'Production bridge projection on the real native producer; no full-match or visual acceptance claim.'}));

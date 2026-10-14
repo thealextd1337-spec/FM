@@ -148,15 +148,18 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  // The projection depends on the match state alone: every picture of the same clock gets the same observation; a step
  // across the halftime mirroring, a reposition (over 0.6 m within one step), a seek or a restore leaves none.
  const basePitchFrame=v98PitchFrame;
- const v151Steps=new WeakMap();
- function v151WrapStep(base,thisArg,args){const current=match;const before=current?new Map(current.people.map(p=>[p,{x:p.x,y:p.y}])):null,clockBefore=current?v102Clock(current):0,turnedBefore=Boolean(current?.halftimeBreakDone);
+ const v151Steps=new WeakMap(),v151Pending=new WeakMap();
+ // The positions before the step are kept while it runs (v151Pending): a picture taken inside the step after the native
+ // advance, e.g. the goal-replay recorder (world-goal-replay-v103.js v103Record), already compares them with the advanced
+ // positions, so a replayed picture carries the same observation as the live one of that clock.
+ function v151Settle(current){const pending=v151Pending.get(current);if(!pending)return null;const after=v102Clock(current),turned=Boolean(current.halftimeBreakDone);
+  if(match!==current||!(after>pending.clockBefore)||after-pending.clockBefore>.2||turned!==pending.turnedBefore)return null;
+  const moves=new Map();for(const p of current.people){const old=pending.before.get(p);if(old)moves.set(p,{dx:p.x-old.x,dy:p.y-old.y,dt:after-pending.clockBefore});}
+  const entry={clock:after,turned,moves};v151Steps.set(current,entry);return entry;}
+ function v151WrapStep(base,thisArg,args){const current=match;if(current)v151Pending.set(current,{before:new Map(current.people.map(p=>[p,{x:p.x,y:p.y}])),clockBefore:v102Clock(current),turnedBefore:Boolean(current.halftimeBreakDone)});
   const result=base.apply(thisArg,args);
-  if(!current||!before)return result;
-  const after=v102Clock(current),turned=Boolean(current.halftimeBreakDone);
-  if(match!==current||!(after>clockBefore)||after-clockBefore>.2||turned!==turnedBefore){v151Steps.delete(current);return result;}
-  const moves=new Map();for(const p of current.people){const old=before.get(p);if(old)moves.set(p,{dx:p.x-old.x,dy:p.y-old.y,dt:after-clockBefore});}
-  v151Steps.set(current,{clock:after,turned,moves});return result;}
- function v151Observe(current,frame){const st=v151Steps.get(current);if(!st||Math.abs(st.clock-frame.clock)>1e-9||st.turned!==Boolean(frame.turned))return;const s=v150Scale(current);
+  if(current){if(!v151Settle(current))v151Steps.delete(current);v151Pending.delete(current);}return result;}
+ function v151Observe(current,frame){let st=v151Steps.get(current);if(!st||Math.abs(st.clock-frame.clock)>1e-9)st=v151Settle(current);if(!st||Math.abs(st.clock-frame.clock)>1e-9||st.turned!==Boolean(frame.turned))return;const s=v150Scale(current);
   for(const p of frame.players){const person=p.person;if(!person||person.keeper||person.slideActive||!p.movement||p.movement.mode!=='run')continue;const mv=st.moves.get(person);if(!mv||!(mv.dt>0))continue;
    const travel=Math.hypot(mv.dx*s.x,mv.dy*s.y),speed=travel/mv.dt;if(speed<1.2||travel>.6)continue;
    if(typeof v108MovementMode==='function'&&v108MovementMode(current,person)?.mode==='backpedal')continue;
@@ -170,7 +173,7 @@ if(typeof window==='object'&&typeof v98RenderScene==='function') (function(){
  const v151Prepared=new WeakMap();
  function v151Attention(current,frame){const piece=current.setPiece;const waiting=Boolean(piece&&piece.type==='freeKick'&&piece.plan&&piece.spot&&['waiting','fading','postBanner'].includes(piece.phase));
   for(const p of frame.players){const person=p.person;if(!person||person.keeper)continue;
-   if(waiting){if(piece.taker!==person)continue;const plan=piece.plan;const aim=plan.direct?{x:.5,y:piece.team===0?v55Field.top:v55Field.bottom}:plan.target&&current.people.includes(plan.target)?{x:plan.target.x,y:plan.target.y}:null;if(!aim)continue;
+   if(waiting){if(piece.taker!==person)continue;const plan=piece.plan;const aim=plan.direct?{x:.5,y:piece.team===0?v55Field.top:v55Field.bottom}:(()=>{const t=plan.targetPid?current.people.find(q=>q.pid===plan.targetPid):null;return t?{x:t.x,y:t.y}:null;})();if(!aim)continue;
     const point=v98PitchPoint(aim,frame.turned);if(Math.hypot(point.x-p.x,point.z-p.z)<.05)continue;
     v151Prepared.set(person,{piece,clock:frame.clock,direction:{x:point.x-p.x,z:point.z-p.z}});
     if(p.movement&&p.movement.mode!=='run')p.movement={...p.movement,restartAttention:{x:point.x,z:point.z,taker:true}};}

@@ -110,7 +110,9 @@ public static class NaturalMotionDiagnostics {
         // r21: the R21 gates (user defects of 12.10.2026), reported apart from every set above.
         public string r21GateNote;public Check[] r21Gates;
         // r132: the native132 capture gates (every foot-action window of the fresh production-bridge captures, locked to Release 131).
-        public string r132GateNote;public Check[] r132Gates;}
+        public string r132GateNote;public Check[] r132Gates;
+        // r132 (review 2): native132 findings that fail an absolute limit, compared with their Release 131 values (report only).
+        public string r132LockNote;public Check[] r132Locks;}
     // r7: the samples behind each support-transition gate window.
     [Serializable] public class SupportSample {public string window;public int frames,moving,slowMoving,stanceFrames,supportFrames,doubleFloatSlow,soleBelow;public float speedMean,supportGlideMean,supportGlideRatio,supportGlideP90,supportGlideMax,kneePoleMean,soleMin,supportDropMax;public string supportGlideMaxAt,doubleFloatAt;}
     sealed class Sample {public float abduction=float.NaN,weightSum=float.NaN;public bool nanWeights;public double clock;public Vector3 root,facing,travel;public float speed,turfShift,turfClear=float.NaN;public Vector3[] ankle=new Vector3[2],toe=new Vector3[2],knee=new Vector3[2],thigh=new Vector3[2];public float[] ankleClear=new float[2],toeClear=new float[2],supportClear=new float[2];public Vector3 head,shoulderMid;public Vector3[] hand=new Vector3[2];public float supportDrop,solePredicted=float.NaN,groundSole=float.NaN;public Quaternion[] rot,rel,loc;public float rootYaw,strideScale;public Vector3[] ankleLocal=new Vector3[2];public Vector3 hipsRight,chestRight;public string clip,baseClip,mode,stride,action,soleBone,lockState;public float actionWeight;public Vector3 facingRaw;public int inertia;public bool contactPicture;public float rawStep,rawJump;public double phase;public float sole=float.NaN,lockOffset=-1;public bool moving;
@@ -249,13 +251,9 @@ public static class NaturalMotionDiagnostics {
         s.moving=s.travel.magnitude>.2f;
         if(sole){var groundSkin=FootballGround.GroundSkin(actor);detail=groundSkin==null?new Func<int,string>(anim.ground.VertexDetail):null;s.sole=FootballGround.VisibleLowestVertex(actor)+actor.position.y;if(groundSkin!=null)s.groundSole=FootballGround.LowestVertex(actor)+actor.position.y;s.solePredicted=Mathf.Min(anim.ground.SolePointClearance(0),anim.ground.SolePointClearance(1));if(s.sole< -.01f)s.soleBone=LowestBone(actor)+" predicted="+s.solePredicted.ToString("0.0000",Inv)+" rootY="+actor.position.y.ToString("0.0000",Inv)+" sole="+anim.ground.Sole.ToString("0.0000",Inv)+" contour="+anim.ground.SolePointCount(0)+"/"+anim.ground.SolePointCount(1)+" skins="+actor.GetComponentsInChildren<SkinnedMeshRenderer>().Length+" weights="+actor.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh.boneWeights.Length+" readable="+actor.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh.isReadable+(groundSkin!=null?" ground="+groundSkin.sharedMesh.name+" groundSole="+s.groundSole.ToString("0.0000",Inv):"");
             // r22 (Klares Low-Poly): the drawn skin against its ground skin (release mesh, same pose), the reachable contact boot on the received ball (r11 rule).
-            if(groundSkin!=null&&!skipVisible)VisibleSurfaceProbe.Current?.Picture(actor,frame.clock.ToString("0.000",Inv)+" "+s.action,s.action=="slide"?"slide":Loco(s.action)?"locomotion":"action",true,s.poseContact&&s.poseReach&&s.hasTarget&&(s.poseKind=="foot"||s.poseKind=="left-foot")?(s.poseKind=="left-foot"?0:1):-1,0,s.target);}
+            if(groundSkin!=null)VisibleSurfaceProbe.Current?.Picture(actor,frame.clock.ToString("0.000",Inv)+" "+s.action,s.action=="slide"?"slide":Loco(s.action)?"locomotion":"action",true,s.poseContact&&s.poseReach&&s.hasTarget&&(s.poseKind=="foot"||s.poseKind=="left-foot")?(s.poseKind=="left-foot"?0:1):-1,0,s.target);}
         return s;
     }
-    // r132: the native132 captures (review 1) carry the r132 joint-speed gates but no r22 visible-surface pictures: on them the
-    // drawn Low-Poly skin already exceeded the release skin by up to 2.8 mm with the Release 131 sources (5 pictures, a foul victim's
-    // fall and a stretched tackle), a surface finding outside this lane that the r22 check keeps on its own fixtures.
-    static bool skipVisible;
     // Bone carrying the lowest skinned vertex (diagnostics of a sole below the turf).
     static Func<int,string> detail;
     static string LowestBone(Transform actor){
@@ -997,7 +995,8 @@ public static class NaturalMotionDiagnostics {
         var clipFields=new List<string>();foreach(var field in typeof(ProbeBridge).GetFields(Flags))if(field.FieldType==typeof(AnimationClip)){var clip=field.GetValue(bridge) as AnimationClip;clipFields.Add(field.Name+"="+(clip!=null?clip.name:"-"));}
         var report=new Report{clipFields=string.Join(",",clipFields),gateNote=GateNote,gates=gates.ToArray(),supportGateNote=SupportGateNote,supportGates=supportGates.ToArray(),supportSamples=supportSamples.ToArray(),contactGateNote=ContactGateNote,contactGates=contactGates.ToArray(),continuityGateNote=ContinuityGateNote,continuityGates=continuityGates.ToArray(),r15GateNote=R15GateNote,r15Gates=r15Gates.ToArray(),r15SupportSamples=r15SupportSamples.ToArray(),r20GateNote=R20GateNote,r20Gates=r20Gates.ToArray(),r20SupportSamples=r20SupportSamples.ToArray(),r20Checks=r20Checks.ToArray(),r15Enforcement=R15Enforcement,label=label,sourceId=ProbeBuildIdentity.SourceId,unity=Application.unityVersion,device=SystemInfo.graphicsDeviceType.ToString(),note="Controlled cases are hand-built native-shaped 20 Hz pictures; native cases replay actual captured native pictures. Both are blended to 60 Hz by WorldViewPlayback.Blend and rendered through ProbeBridge.WorldCommand on the actual rig. Glide: horizontal world speed of the lowest sole point while it is within 3 cm of the standing sole height (supportGlide: only while it is also the lower, weight-bearing foot; a low swing foot is excluded); foot axis: undirected angle foot/travel; knee pole: knee bend direction vs foot direction; chest: shoulder line forward vs received facing. Editor evidence, not a device or GPU measurement.",cases=cases.ToArray(),determinism=checks.ToArray(),r132GateNote=R132GateNote,r132Gates=r132Gates.ToArray(),images=images.ToArray(),recordings=recordings.ToArray(),r21GateNote=R21GateNote,r21Gates=r21Gates.ToArray()};
         File.WriteAllText(Path.Combine(folder,"natural-motion.json"),JsonUtility.ToJson(report,true));
-        var visible=VisibleSurfaceProbe.Current;var visibleLine=visible?.Finish(folder,"visible-surface.json");
+        var visible=VisibleSurfaceProbe.Current;var visibleResult=visible?.Result();var visibleLine=visible?.Finish(folder,"visible-surface.json");
+        var r132Locks=R132Locks(r21Gates,visibleResult,out int visibleUnlocked);report.r132LockNote=R132LockNote;report.r132Locks=r132Locks.ToArray();File.WriteAllText(Path.Combine(folder,"natural-motion.json"),JsonUtility.ToJson(report,true));
         typeof(ProbeBridge).GetField("acceptDisplayLead",BindingFlags.Static|BindingFlags.NonPublic)?.SetValue(null,false);
         Drop();
         int failed=checks.FindAll(c=>!c.passed).Count;if(failed>0)throw new Exception(failed+" natural-motion determinism checks failed");
@@ -1028,7 +1027,10 @@ public static class NaturalMotionDiagnostics {
         var failedR132=r132Gates.FindAll(g=>!g.passed);
         if(enforce&&failedR132.Count>0)throw new Exception(failedR132.Count+" of "+r132Gates.Count+" r132 gates failed, first: "+failedR132[0].name+" = "+failedR132[0].value.ToString("0.###",Inv)+" (limit "+failedR132[0].limit.ToString("0.###",Inv)+")");
         // r22: the paired visible surface (actors with a ground skin only) is enforced the same way.
-        if(enforce&&visibleLine!=null&&visible.Failed>0)throw new Exception("visible surface: "+visibleLine);
+        // r132 (review 2): the visible-surface failures of native132 pictures listed in R132VisibleBaseline and not worse than Release 131
+        // are reported as locks; every other failure enforces as before.
+        int visibleEnforced=visible!=null?visible.Failed-(visibleResult?.failures?.Length??0)+visibleUnlocked+(visibleResult?.failures==null?0:Array.FindAll(visibleResult.failures,e=>!e.at.StartsWith("native132-")).Length):0;
+        if(enforce&&visibleLine!=null&&visibleEnforced>0)throw new Exception("visible surface: "+visibleLine);
         // r22: a scene with a replacement match mesh and its ground mesh must have measured the drawn surface in an unfiltered enforced run
         // (no ground skin on the actors would otherwise measure nothing and pass); the release scene (no ground skin) stays a no-op.
         if(enforce&&only==null){var drawnMesh=LowPolySetup.MatchMesh();var groundMesh=LowPolySetup.GroundMesh();
@@ -1041,6 +1043,7 @@ public static class NaturalMotionDiagnostics {
     // root-relative joint speed at most 1600 deg/s, or, for the 30 windows that already exceeded it with the Release 131
     // FootballAnimation (R132Baseline, measured 14.10.2026 on identical captures), at most that value: a regression lock,
     // no limit is loosened. A run without the captures has no r132 gates (like the r20 contract captures).
+    const string R132LockNote="r132 locks (review 2, report only): native132 gates and visible-surface pictures that fail their absolute limit, each against its Release 131 value on the same captures (regression comparison; the absolute gate stays red and unchanged).";
     const string R132GateNote="r132 gates (review 1): every foot-action window of the native132 captures at most 1600 deg/s root-relative joint speed, or at most its Release 131 value for the 30 windows listed in R132Baseline (regression lock, measured on the same captures with the Release 131 FootballAnimation). Windows absent from the baseline that exceed 1600 fail.";
     // Measurement tolerance of a Release 131 lock (0.5 %: float order and solver iteration jitter, e.g. 1927 against 1925 deg/s); the 1600 limit itself carries none.
     public const double LockTolerance=.005;
@@ -1086,13 +1089,30 @@ public static class NaturalMotionDiagnostics {
     const string R21GateNote="r21 gates (reported apart from all earlier sets; user defects of 12.10.2026) on the genuine native129 inputs (the R20 contract captures, byte-identical to fresh native129 captures, and further native129 captures): every foul offender window from its first foulOffender picture to 1 s after its last (exit into the following action and walk-off): the lower foot's skinned sole contour (bones without a contour) at most 0.05 m above the turf (no floating offender) and at least -0.02 m; the skinned sole (lowest vertex, every sixth picture) between -0.02 and 0.05 m; the eight bones at most 1600 deg/s (received root yaw removed) and the pelvis at most 1.5 m/s vertically. The float limits apply to the offender pictures (the walk-off is a stride with flight, under the locomotion gates). Every native field player: no run longer than 0.1 s (two received pictures) of display pictures moving at least 1.2 m/s with a Unity backward stride while the received travel is less than FootballLocomotion.BackOff (100 deg) from the received facing (the smoothed travel following a received reversal within one picture). Received reversed travel and kick facing (native/bridge facts, Root) are reported per case, never gated or corrected by Unity.";
     // Two received pictures: the smoothed received travel may follow a received reversal for at most this long.
     public const float BackHoldLimit=.1f;
-    static readonly (string name,double r131)[] R21Native132Lock={("r21 native132-160112-field-11 foul offender 52.10 -> idle pelvis vertical speed (m/s)",1.566245)};
+    // Release 131 values of the native132 gates that fail their absolute limit with the Release 131 sources (regression comparison only).
+    static readonly (string name,double r131)[] R21Native132Baseline={("r21 native132-160112-field-11 foul offender 52.10 -> idle pelvis vertical speed (m/s)",1.566245)};
+    // Release 131 visible-surface failures on the native132 captures (drawn Low-Poly skin deeper than the release skin by the
+    // excess below, 0.1-2.7 mm; a foul victim's hand, slide recoveries, stretched tackles): every native132 picture is still
+    // measured; a failure listed here that is not worse than its Release 131 excess is reported as R131-inherited, any other fails.
+    static readonly (string quantity,string at,float excess)[] R132VisibleBaseline={
+        ("body lowest m","native132-160112 11.900 foulVictim",.002726f),("boot right lowest m","native132-160112 39.400 tackle",.000118f),("body lowest m","native132-160112 53.800 foulVictim",.002726f),
+        ("body lowest m","native132-160112 63.500 slideRecovery",.001871f),("body lowest m","native132-160112 63.600 slideRecovery",.001476f),("boot left lowest m","native132-160114 33.000 tackle",.000187f),("body lowest m","native132-160114 58.600 foulVictim",.002726f)};
+    public const float VisibleLockTolerance=.0002f;
+    // r132 locks: the failed gates and visible-surface pictures of the native132 cases against their Release 131 values.
+    static List<Check> R132Locks(List<Check> r21Gates,VisibleSurfaceProbe.Snapshot visible,out int visibleUnlocked){
+        var locks=new List<Check>();visibleUnlocked=0;
+        foreach(var g in r21Gates){if(g.passed||!g.name.Contains("native132-"))continue;int k=Array.FindIndex(R21Native132Baseline,b=>b.name==g.name);double r131=k>=0?R21Native132Baseline[k].r131:double.NaN;
+            locks.Add(new Check{name=g.name+" against Release 131",value=g.value,limit=k>=0?r131*(1+LockTolerance):g.limit,passed=k>=0&&g.value<=r131*(1+LockTolerance)});}
+        if(visible?.failures!=null)foreach(var e in visible.failures){if(!e.at.StartsWith("native132-"))continue;int k=Array.FindIndex(R132VisibleBaseline,b=>b.quantity==e.quantity&&b.at==e.at);double limit=k>=0?R132VisibleBaseline[k].excess+VisibleLockTolerance:0;bool ok=k>=0&&e.excess<=limit;if(!ok)visibleUnlocked++;
+            locks.Add(new Check{name="r132 visible "+e.quantity+" "+e.at+" candidate excess over the release skin (m)"+(k>=0?" against Release 131":" (not in Release 131)"),value=e.excess,limit=limit,passed=ok});}
+        return locks;
+    }
     static List<Check> R21Gates(List<Case> cases){
         var gates=new List<Check>();
-        // r132: on the native132 captures one r21 gate already failed with the Release 131 FootballAnimation (the foul offender's
-        // pelvis vertical speed at 160112 field-11 52.10: 1.566 m/s against 1.5, the sprint stopping dead in one native picture);
-        // it is locked to that value plus LockTolerance (R21Native132Lock) instead of loosened, like the R18 lock of the r15 set.
-        void Gate(string name,double value,double limit,bool atMost=true){int k=Array.FindIndex(R21Native132Lock,l=>l.name==name);if(k>=0&&atMost)limit=Math.Max(limit,R21Native132Lock[k].r131*(1+LockTolerance));gates.Add(new Check{name=name+(k>=0?" (R131 lock)":""),value=value,limit=limit,passed=atMost?value<=limit+1e-6:value>=limit-1e-6});}
+        // r132 (review 2): the absolute r21 limits stay; the one that already failed on the native132 captures with the Release 131
+        // FootballAnimation (pelvis vertical speed 1.566 m/s at 160112 field-11 52.10) is reported red here and compared with its
+        // Release 131 value apart (R132Locks), never loosened.
+        void Gate(string name,double value,double limit,bool atMost=true){gates.Add(new Check{name=name,value=value,limit=limit,passed=atMost?value<=limit+1e-6:value>=limit-1e-6});}
         foreach(var c in cases){
             if(c.origin!="r20-native"&&c.origin!="r21-native"&&c.origin!="r21-controlled")continue;
             if(c.fouls!=null)foreach(var w in c.fouls){
@@ -1438,7 +1458,7 @@ public static class NaturalMotionDiagnostics {
         var pictures=new List<WorldFrame>();var used=new List<NativePicture>();for(int i=0;i<capture.pictures.Length&&pictures.Count<bound;i++)if(capture.pictures[i].phase=="live"){pictures.Add(ToFrame(capture.pictures[i]));used.Add(capture.pictures[i]);}else if(pictures.Count>0)break;
         InputTiming Timing(int k){if(!contract)return null;var t=new InputTiming();foreach(var np in used){var q=np.players[k];t.known.Add(q.durationKnown);if(q.actionAtKnown&&!t.events.ContainsKey(q.actionId??""))t.events[q.actionId??""]=q.actionAt;}return t;}
         config.initial=JsonUtility.FromJson<WorldFrame>(JsonUtility.ToJson(pictures[0]));config.initial.sequence=sequence=1;config.initial.phase="paused";
-        Drop();Send(new WorldCommand{kind="load",config=config});skipVisible=family=="native132";
+        Drop();Send(new WorldCommand{kind="load",config=config});
         var actors=Field<List<Transform>>("actors");var football=Field<List<FootballAnimation>>("football");var loco=Field<FootballLocomotion[]>("worldLocomotion");
         int n=actors.Count;var samples=new List<Sample>[n];var last=new Sample[n];var taps=new StageTap[n];for(int i=0;i<n;i++){samples[i]=new List<Sample>();taps[i]=new StageTap(actors[i],football[i]);}
         int frame=0;
@@ -1476,7 +1496,6 @@ public static class NaturalMotionDiagnostics {
             var normal=new List<Color32[]>();for(int i=0;i<frames.Count;i+=3)normal.Add(frames[i]);string clip=name+"-"+from.ToString("0.00",Inv)+"-"+to.ToString("0.00",Inv);
             Gif(Path.Combine(folder,clip+"-normal.gif"),normal,240,300,5);Gif(Path.Combine(folder,clip+"-slow.gif"),frames,240,300,10);recordings.Add(clip+"-normal.gif");recordings.Add(clip+"-slow.gif");
         }
-        skipVisible=false;
         if(contract){Drop();return results;}
         if(renderOn)foreach(var (name,clock) in NativeWindows){
             if(!name.StartsWith("native-"+capture.seed+"-"))continue;int who=int.Parse(name.Substring(name.LastIndexOf('-')+1));if(who>=n)continue;
