@@ -22,7 +22,7 @@ check('the package registers its parameters and is on by default in new matches;
  assert.equal(ev("v183Active(match,'field')"),true);
  const params=copy(ev('match.si.params.field'));
  for(const key of ['carrierPaceGain','runPaceGain','pressPaceGain','otherPaceGain','windowGain','anchorWidth','rowGap','pin','pinFull','defenderLine','linePlans'])assert.equal(typeof params[key],'number',key);
- assert.equal(params.carrierPaceGain,1);assert.equal(params.runPaceGain,.75);assert.equal(params.windowGain,10);
+ assert.equal(params.carrierPaceGain,1);assert.equal(params.runPaceGain,.75);assert.equal(params.windowGain,12);assert.equal(params.carrierCloseGain,.5);assert.equal(params.carrierSpeedMax,8.5);assert.equal(params.runSpeedMax,9.5);
  assert.equal(params.anchorWidth+params.rowGap+params.pin+params.defenderLine+params.linePlans,0,'shape parameters are off by default');
  h.call('Native183.run',300);
  assert.equal(ev("Object.keys(match.attackFlow).filter(k=>/field/i.test(k)).length"),0,'no field state in attackFlow');
@@ -54,7 +54,7 @@ check('field on changes the large pitch; the shape parameters change it again',(
  assert.notEqual(on,off);assert.notEqual(shape,on);
 });
 check('the wrapped functions hand marked matches with the package off and unmarked matches to the previous functions',()=>{
- const probe=`(()=>{const p=match.people.find(q=>!q.keeper&&q.t===0),c=p.cell;return {anchor:team({...p,cell:c},0,match),bases:[v55DefenderY(0,0),v55DefenderY(1,1)],pace:[v183PaceFactor(match,p,'carrier',{factor:1.28}),v183PaceFactor(match,p,'support',{factor:1.35}),v183PaceFactor(match,p,'base',{})],window:match.si?v183Param(match,'options.windowBase'):null};})()`;
+ const probe=`(()=>{const p=match.people.find(q=>!q.keeper&&q.t===0),c=p.cell;return {anchor:team({...p,cell:c},0,match),bases:[v55DefenderY(0,0),v55DefenderY(1,1)],pace:[v183PaceFactor(match,p,'carrier',{factor:1.28}),v183PaceFactor(match,p,'support',{factor:1.35}),v183PaceFactor(match,p,'base',{})],window:match.si?v183OptWindowBase(match):null};})()`;
  h.call('Native183.constructed',{size:'large',si:{packages:ALL_OFF}});const off=copy(ev(probe));
  h.call('Native183.constructed',{size:'large',si:false});const legacy=copy(ev(probe));
  assert.deepEqual(off.anchor,legacy.anchor);assert.deepEqual(off.bases,legacy.bases);assert.deepEqual(off.pace,legacy.pace);
@@ -81,17 +81,43 @@ check('pace: carrier and own runs scale with the pitch length, other purposes ke
  // Pressing: the factor of SI-4 is scaled by pressPaceGain only.
  h.call('Native183.constructed',{size:'large',roles:true,si:{packages:{...ALL_OFF,defence:true,field:true},params:{field:{pressPaceGain:2}}}});live();
  const press=copy(ev("(()=>{const p=match.people.find(q=>!q.keeper&&q.t===0),d={read:{nextAt:1e9,purpose:'press'},now:0};return {reason:v183PaceReason(match,p,d),factor:v183PaceFactor(match,p,'purposeful',d)};})()"));
- assert.equal(press.reason,'press');close(press.factor,1.58*(1+2*.2),1e-12,'press pace with its gain');
+ assert.equal(press.reason,'press');
+ // Run ceiling.
+ h.call('Native183.constructed',{size:'large',roles:true,si:{packages:{...ALL_OFF,offball:true,field:true},params:{field:{runSpeedMax:9}}}});live();
+ const runCap=copy(ev("(()=>{const p=match.people.find(q=>!q.keeper&&q.t===v123PossessionTeam(match)&&q!==match.owner),now=v183Seconds(match);p.spd=18;match.attackFlow.intents[p.pid]={x:p.x,y:p.y,type:'depth',team:p.t,at:now,until:now+5};const f=v183PaceFactor(match,p,'purposeful',{intent:match.attackFlow.intents[p.pid],now});delete match.attackFlow.intents[p.pid];return {speed:f*(3+ability(p,'spd')*.14),unscaled:1.58*(3+ability(p,'spd')*.14)};})()"));
+ assert(runCap.speed<=9+1e-9,'run ceiling '+runCap.speed);assert(runCap.speed>=runCap.unscaled-1e-9);close(press.factor,1.58*(1+2*.2),1e-12,'press pace with its gain');
+ // Duel pace (rival inside the close radius) follows carrierCloseGain (0: the standard value); ceilings are absolute m/s.
+ const duel=params=>{h.call('Native183.constructed',{size:'large',roles:true,si:{packages:{...ALL_OFF,offball:true,field:true},params:{field:params}}});live();
+  return copy(ev(`(()=>{const o=match.owner,s=v150Scale(),r=match.people.find(q=>q.t!==o.t&&!q.keeper);r.x=o.x;r.y=o.y-(o.t===0?1:-1)*1.5/s.y;const f=v183PaceFactor(match,o,'carrier',{}),tec=.78+ability(o,'tec')*.009,base=3+ability(o,'spd')*.14;
+   o.spd=18;const hi=v183PaceFactor(match,o,'carrier',{}),hiBase=3+ability(o,'spd')*.14;r.y=o.y-(o.t===0?1:-1)*8/s.y;const open=v183PaceFactor(match,o,'carrier',{}),openUnscaled=1.5*tec;return {duel:f,duelUnscaled:1.28*tec,hiSpeed:hi*hiBase,openSpeed:open*hiBase,openUnscaled,base};})()`));};
+ const d0=duel({carrierCloseGain:0});close(d0.duel,d0.duelUnscaled,1e-12,'carrierCloseGain 0 keeps the duel pace of the standard pitch');
+ const dd=duel({});close(dd.duel,dd.duelUnscaled*1.1,1e-12,'default close gain 0.5: duel pace x1.1');assert(dd.duel*dd.base<1.58*dd.base,'the duel pace stays below the pressing pace 1.58');
+ const d1=duel({carrierCloseGain:1});close(d1.duel,d1.duelUnscaled*1.2,1e-12,'with a close gain the duel pace scales');
+ const cap=duel({carrierSpeedMax:8.5});assert(cap.openSpeed<=8.5+1e-9,'open carrier at spd 18 stays below the ceiling: '+cap.openSpeed);assert(cap.hiSpeed<=8.5+1e-9);
+ const low=duel({carrierSpeedMax:3});assert(low.openSpeed>=1.5*(3+18*.14)*(.78)-1e-9,'a ceiling never lowers the pace below the unscaled one');
  measurements.pace={carrierOff:+off.carrier.toFixed(3),carrierOn:+on.carrier.toFixed(3),carrierCloseRival:off.near,runOff:+off.run.toFixed(3),runOn:+on.run.toFixed(3)};
 });
-check('shooter window of SI-1: options.windowBase grows with the pitch length, stored parameters stay untouched',()=>{
+check('shooter window of SI-1: the switch v183OptWindowBase grows with the pitch length; v183Param keeps returning the stored value; the effective window is traced',()=>{
  h.call('Native183.constructed',{size:'large',roles:true});
- assert.equal(ev("v183Param(match,'options.windowBase')"),16+10*(81.6/68-1));assert.equal(ev('match.si.params.options.windowBase'),16);
+ assert.equal(ev("v183OptWindowBase(match)"),16+12*(81.6/68-1));assert.equal(ev('match.si.params.options.windowBase'),16);
+ assert.equal(ev("v183Param(match,'options.windowBase')"),16,'SI-F contract: v183Param returns the stored value');
+ assert.equal(ev("v183OptParams(match).windowBase"),ev('v183OptWindowBase(match)'),'SI-1 reads the window through the switch');
  assert.equal(ev("v183Param(match,'options.windowFin')"),.55,'other options keys untouched');
- h.call('Native183.constructed',{size:'standard',roles:true});assert.equal(ev("v183Param(match,'options.windowBase')"),16);
- h.call('Native183.constructed',{size:'large',roles:true,si:{params:{field:{windowGain:0}}}});assert.equal(ev("v183Param(match,'options.windowBase')"),16);
- h.call('Native183.constructed',{size:'large',roles:true,si:false});assert.equal(ev("(()=>{v183StrictParams(false);const v=v183Param(match,'options.windowBase');v183StrictParams(true);return v;})()"),undefined,'unmarked matches read nothing');
- assert.throws(()=>{h.call('Native183.constructed',{size:'large',si:false});ev("v183Param(match,'options.windowBase')");},/without marker 183/);
+ h.call('Native183.constructed',{size:'standard',roles:true});assert.equal(ev("v183OptWindowBase(match)"),16);
+ h.call('Native183.constructed',{size:'large',roles:true,si:{params:{field:{windowGain:0}}}});assert.equal(ev("v183OptWindowBase(match)"),16);
+ h.call('Native183.constructed',{size:'large',roles:true,si:{packages:{field:false}}});assert.equal(ev("v183OptWindowBase(match)"),16);
+ h.call('Native183.constructed',{size:'large',roles:true,si:false});assert.equal(ev("(()=>{v183StrictParams(false);const v=v183OptWindowBase(match);v183StrictParams(true);return v;})()"),undefined,'unmarked matches read nothing');
+ assert.throws(()=>{h.call('Native183.constructed',{size:'large',si:false});ev("v183OptWindowBase(match)");},/without marker 183/);
+ // The decision trace carries the effective window (large: 18 m + 0.55 * finishing).
+ h.call('Native183.constructed',{size:'large',roles:true,si:{packages:{...ALL_OFF,options:true,field:true}}});ev('v183SetTraceLimit(2000)');
+ let entries=[];for(let i=0;i<40&&!entries.some(e=>e.type==='options'&&e.window!==undefined);i++){h.call('Native183.run',100);entries=copy(ev('v183TraceEntries(match)'));}
+ const withWindow=entries.filter(e=>e.type==='options'&&e.window!==undefined);assert(withWindow.length>0,'options trace entries carry the window');
+ const pids=new Map(copy(ev("match.people.map(p=>[p.pid,ability(p,'fin')])")));
+ for(const e of withWindow.slice(0,50))if(pids.has(e.pid))close(e.window,18.4+.55*pids.get(e.pid),.1+.55*.5,'traced window '+e.pid);
+ h.call('Native183.constructed',{size:'standard',roles:true,si:{packages:{...ALL_OFF,options:true,field:true}}});ev('v183SetTraceLimit(2000)');
+ for(let i=0;i<40&&!copy(ev("v183TraceEntries(match).some(e=>e.type==='options')"));i++)h.call('Native183.run',100);
+ const std=copy(ev('v183TraceEntries(match)')).filter(e=>e.type==='options'&&e.window!==undefined),sp=new Map(copy(ev("match.people.map(p=>[p.pid,ability(p,'fin')])")));
+ assert(std.length>0);for(const e of std.slice(0,50))if(sp.has(e.pid))close(e.window,16+.55*sp.get(e.pid),.1+.55*.5,'standard traced window');
 });
 
 // ----- shape parameters in metres (off by default) -----
@@ -141,7 +167,7 @@ check('line base and line plans: pinned to the standard distance from the own go
 check('the package draws no random number and writes no state (pure functions)',()=>{
  h.call('Native183.constructed',{size:'large',roles:true,si:{params:SHAPE}});h.call('Native183.run',120);
  const r=copy(ev(`(()=>{const m=match,p=m.people.find(q=>!q.keeper&&q.t===0),d0=Native182.rng().draws,before=JSON.stringify(m.attackFlow);
-  for(let i=0;i<20;i++){team({cell:i,pid:'x'},i&1,m);v55DefenderY(i&1,i%3-1);v183PaceFactor(m,p,'carrier',{});v183Param(m,'options.windowBase');}
+  for(let i=0;i<20;i++){team({cell:i,pid:'x'},i&1,m);v55DefenderY(i&1,i%3-1);v183PaceFactor(m,p,'carrier',{});v183OptWindowBase(m);}
   v121PreparePositioning(m);
   return {draws:Native182.rng().draws-d0,same:JSON.stringify(m.attackFlow)===before};})()`));
  assert.deepEqual(r,{draws:0,same:true});
@@ -166,6 +192,16 @@ check('default grid cells: lines of one to three keep their cells; four to six p
  for(const f of six){const parts=f.split('–').map(Number);assert(parts.every(n=>n<=3),f);}
  measurements.cells=Object.fromEntries(['def','mid','att'].map(line=>[line,{4:cells[line][4],5:cells[line][5],6:cells[line][6]}]));
 });
+check('a line of four with five field players on the standard pitch (4–1–0): symmetric cells, distinct, in their band; only without stored cells',()=>{
+ // matchConfig allows any line counts, also with five field players (zero lines): 4–1–0 puts four players in the defence.
+ h.call('Native183.constructed',{size:'standard',roles:true});
+ const r=copy(ev(`(()=>{const ctx=Native183.context();v64SetFormation(ctx.career,ctx.fixture,ctx.state,0,'4–1–0','test');
+  const field=v64Active(ctx.state,0).filter(pid=>ctx.state.roles[pid]!=='gk'),cells=v64EnsureCells(ctx.state,0),by=role=>field.filter(pid=>ctx.state.roles[pid]===role).map(pid=>cells[pid]).sort((a,b)=>a-b);
+  const stored=Object.fromEntries(field.map(pid=>[pid,cells[pid]]));v64EnsureCells(ctx.state,0);
+  return {def:by('def'),mid:by('mid'),att:by('att'),stillStored:field.every(pid=>cells[pid]===stored[pid])};})()`));
+ assert.deepEqual(r.def,[25,26,28,29]);assert.deepEqual(r.mid,[17]);assert.deepEqual(r.att,[]);assert.equal(r.stillStored,true,'stored cells are never overwritten');
+ measurements.fourInOneLine=r;
+});
 check('real six-player lineups: every preset formation resolves to distinct symmetric cells (ensure and reset)',()=>{
  h.call('Native183.constructed',{size:'large',roles:true});
  const result=copy(ev(`(()=>{const ctx=Native183.context(),out=[];
@@ -183,18 +219,19 @@ check('restore on the large pitch: marker, anchors, targets and the continuation
  let saved=false,before=null;
  for(let i=0;i<4000&&!saved;i++){
   h.call('Native183.advance');
-  before=copy(ev(`({field:match.si.params.field,on:v183Active(match,'field'),anchors:match.people.map(p=>[p.pid,p.bx,p.by]),window:v183Param(match,'options.windowBase'),pace:v183PaceFactor(match,match.people.find(q=>!q.keeper&&q.t===0),'carrier',{})})`));
+  if(ev('match.goalPause>0'))continue;
+  before=copy(ev(`({field:match.si.params.field,on:v183Active(match,'field'),anchors:match.people.map(p=>[p.pid,p.bx,p.by]),window:v183OptWindowBase(match),pace:v183PaceFactor(match,match.people.find(q=>!q.keeper&&q.t===0),'carrier',{})})`));
   saved=h.call('Native183.checkpoint');
  }
  assert(saved,'checkpoint');
- const after=copy(ev(`({field:match.si.params.field,on:v183Active(match,'field'),anchors:match.people.map(p=>[p.pid,p.bx,p.by]),window:v183Param(match,'options.windowBase'),pace:v183PaceFactor(match,match.people.find(q=>!q.keeper&&q.t===0),'carrier',{})})`));
+ const after=copy(ev(`({field:match.si.params.field,on:v183Active(match,'field'),anchors:match.people.map(p=>[p.pid,p.bx,p.by]),window:v183OptWindowBase(match),pace:v183PaceFactor(match,match.people.find(q=>!q.keeper&&q.t===0),'carrier',{})})`));
  assert.deepEqual(after.field,before.field);assert.equal(after.on,true);assert.deepEqual(after.anchors,before.anchors);assert.equal(after.window,before.window);assert.equal(after.pace,before.pace);
  const savedMatch=copy(h.call('Native183.savedMatch'));assert.deepEqual(savedMatch.si.params.field,before.field);assert.equal(Object.keys(savedMatch.attackFlow).some(k=>/field/i.test(k)),false,'the snapshot carries no package state');
  h.call('Native183.run',300);assert.equal(ev('match.people.every(p=>[p.x,p.y,p.tx,p.ty].every(Number.isFinite))'),true);
  // A 183 match saved before this package (no switch, no field parameters) stays off after the restore and plays on.
  h.call('Native183.constructed',{size:'large',roles:true,si:{packages:{field:false}}});
  ev("(()=>{const si=JSON.parse(JSON.stringify(match.si));delete si.packages.field;delete si.params.field;match.si=si;return 0;})()");
- assert.equal(ev("v183Active(match,'field')"),false);assert.equal(ev("v183Param(match,'options.windowBase')"),16);
+ assert.equal(ev("v183Active(match,'field')"),false);assert.equal(ev("v183OptWindowBase(match)"),16);
  h.call('Native183.run',200);assert.equal(ev('match.people.every(p=>[p.x,p.y,p.tx,p.ty].every(Number.isFinite))'),true);
 });
 

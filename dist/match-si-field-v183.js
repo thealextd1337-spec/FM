@@ -7,8 +7,8 @@
 // matches with the package off stay byte-identical. The shared clock rate is
 // untouched: the large pitch closes its gap through pace and shooting range
 // and, optionally, through the formation in metres, never through the clock.
-// Wrapped here (plan 8.3): v183PaceFactor (ball carrier and own runs), v183Param
-// (only the key options.windowBase of SI-1), the formation anchor weiche
+// Wrapped here (plan 8.3): v183PaceFactor (ball carrier and own runs),
+// v183OptWindowBase (the switch of SI-1's shooter window), the formation anchor weiche
 // v183FormationAnchor (game.js team()), v55DefenderY (pitch-v55.js, line base of
 // v55PrepareMovement) and v121PreparePositioning (line plans of SI-4's
 // defensive positioning; SI-4 left this function to SI-5). The module draws no
@@ -31,9 +31,16 @@
 //                pace factor 1 + gain * extra on the ball carrier, on own runs
 //                (depth/follow), on pressing and on all other purposes
 //                (support, base, intercept, contest).
-//   windowGain   metres added to the shooter window options.windowBase of SI-1
+//   carrierCloseGain  the same for a ball carrier with a rival inside SI-2's
+//                carrierCloseRadius (duel pace 1.28): 0 keeps the duel pace of the
+//                standard pitch; 0.5 gives 1.41 (the pressing pace is 1.58, so the
+//                duel pace stays below it).
+//   carrierSpeedMax / runSpeedMax  absolute ceilings (m/s) of the scaled carrier and
+//                run pace; the scaling never lowers a pace below the unscaled one;
+//                0 = no ceiling.
+//   windowGain   metres added to the shooter window of SI-1 (v183OptWindowBase)
 //                per unit of extra (the longer way to goal costs attempts
-//                from the edge of the window; 10 gives +2 m on the large pitch).
+//                from the edge of the window; 12 gives +2.4 m on the large pitch).
 //   anchorWidth  maximum lateral span (m) between the outermost grid columns of
 //                a formation (standard grid: 34.9 m); 0 = no cap.
 //   rowGap       maximum distance (m) between two grid rows (standard grid:
@@ -47,7 +54,7 @@
 //                v121PreparePositioning.
 const V183_FIELD_STANDARD=Object.freeze({length:68,width:44,columns:.72,rowStep:.125});
 v183RegisterDefaults('field',{
- carrierPaceGain:1,runPaceGain:.75,pressPaceGain:0,otherPaceGain:0,windowGain:10,
+ carrierPaceGain:1,carrierCloseGain:.5,runPaceGain:.75,pressPaceGain:0,otherPaceGain:0,carrierSpeedMax:8.5,runSpeedMax:9.5,windowGain:12,
  anchorWidth:0,rowGap:0,pin:0,pinFull:.255,defenderLine:0,linePlans:0
 });
 
@@ -113,22 +120,34 @@ v121PreparePositioning=function(current){
 // The ball carrier and the own runs cover the longer way of the large pitch with
 // proportionally more pace. SI-2 (carrier, runs) and SI-4 (pressing) return
 // their factors first; this module is the outermost wrapper and scales them.
+// A scaled pace never falls below the unscaled one and never exceeds the ceiling
+// (m/s) unless the unscaled pace already does; base speed as in v157Pace.
+function v183FieldCap(m,p,factor,scaled,key){
+ const cap=v183Param(m,'field.'+key);if(!(cap>0))return scaled;
+ return Math.max(factor,Math.min(scaled,cap/(3+ability(p,'spd')*.14)));
+}
 const v183FieldBasePace=v183PaceFactor;
 v183PaceFactor=function(m,p,purpose,detail={}){
  const factor=v183FieldBasePace.call(this,m,p,purpose,detail);
  if(!v183FieldOn(m))return factor;
+ const extra=v183FieldExtra(m);
+ if(purpose==='carrier'){
+  // SI-2 returns carrierClosePace * (0.78 + tec*0.009) with a rival inside its radius; the same expression identifies the duel pace.
+  const duel=factor===v183Param(m,'offball.carrierClosePace')*(.78+ability(p,'tec')*.009);
+  return v183FieldCap(m,p,factor,factor*(1+v183Param(m,'field.'+(duel?'carrierCloseGain':'carrierPaceGain'))*extra),'carrierSpeedMax');
+ }
  let key='otherPaceGain';
- if(purpose==='carrier')key='carrierPaceGain';
- else if(purpose==='purposeful'){const reason=v183PaceReason(m,p,detail);key=reason==='run'||reason==='follow'?'runPaceGain':reason==='press'?'pressPaceGain':'otherPaceGain';}
- return factor*(1+v183Param(m,'field.'+key)*v183FieldExtra(m));
+ if(purpose==='purposeful'){const reason=v183PaceReason(m,p,detail);key=reason==='run'||reason==='follow'?'runPaceGain':reason==='press'?'pressPaceGain':'otherPaceGain';}
+ else if(purpose!=='support'&&purpose!=='base')return factor;
+ const scaled=factor*(1+v183Param(m,'field.'+key)*extra);
+ return key==='runPaceGain'?v183FieldCap(m,p,factor,scaled,'runSpeedMax'):scaled;
 };
 
-// ----- Shooter window of SI-1 (parameter options.windowBase only) -----
-const v183FieldBaseParam=v183Param;
-v183Param=function(m,key){
- const value=v183FieldBaseParam.call(this,m,key);
- if(key!=='options.windowBase'||typeof value!=='number'||!v183FieldOn(m))return value;
- return value+v183FieldBaseParam.call(this,m,'field.windowGain')*v183FieldExtra(m);
+// ----- Shooter window of SI-1 (switch v183OptWindowBase) -----
+const v183FieldBaseWindow=v183OptWindowBase;
+v183OptWindowBase=function(m){
+ const value=v183FieldBaseWindow.call(this,m);
+ return v183FieldOn(m)?value+v183Param(m,'field.windowGain')*v183FieldExtra(m):value;
 };
 
 v183EnableByDefault('field');

@@ -134,8 +134,9 @@ function v64Active(state,side){return side===0?state.active:state.awayActive}
 function v64Bench(state,side){return side===0?state.bench:state.awayBench}
 function v64Player(career,fixture,side,pid){return v64Side(career,fixture,side).find(player=>player.pid===pid)}
 const v64GridCells={def:{1:[27],2:[26,28],3:[25,27,29]},mid:{1:[17],2:[16,18],3:[15,17,19]},att:{1:[7],2:[6,8],3:[5,7,9]}};
-// Lines of four and more (reachable with six field players after a free grid move) fill the
-// grid symmetrically about the centre column: 4 = columns 0,1,3,4; 5 = the full row; 6 = two
+// Lines of four and more fill the grid symmetrically about the centre column. They arise with
+// matchConfig (any line counts, also zero lines, on both pitch sizes: 4–1–0 with five field
+// players, or after a free grid move) and only for players without a stored cell: 4 = columns 0,1,3,4; 5 = the full row; 6 = two
 // rows of three in columns 0,2,4. The rows of a six-player line are those two outer rows of
 // its band (attack 0 and 1, midfield 2 and 4, defence 5 and 6), never one edge cell.
 for(const role of ['def','mid','att']){v64GridCells[role][0]=[];const row=role==='def'?25:role==='mid'?15:5,rows=role==='def'?[25,30]:role==='mid'?[10,20]:[0,5];v64GridCells[role][4]=[row,row+1,row+3,row+4];v64GridCells[role][5]=[row,row+1,row+2,row+3,row+4];v64GridCells[role][6]=rows.flatMap(first=>[first,first+2,first+4]);}
