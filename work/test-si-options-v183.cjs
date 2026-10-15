@@ -202,6 +202,25 @@ check('stub detection by stub:true; a real estimate with speed 0 or null is not 
  assert.equal(r.stub.stub,true,'SI-F stub (stub:true) is bridged');
  for(const o of r.real){assert.equal(o.stub,false);assert.equal(o.xg,.123,'real estimate used as it is');}
 });
+check('cross header: a real cross estimate (no stub flag) is used unscaled; only the SI-F cross stub scales by stubScale*crossConv',()=>{
+ // Header values above the receiver's holder value, so the cross gain follows the header.
+ const gain=(finish,est)=>{scene({seed:18,si:{packages:{options:true,finish}},attack:[{id:'c',goal:20,lateral:-13,line:'mid'},{id:'b',goal:9,lateral:1,line:'att',skills:{air:15}}],defend:[{id:'d1',goal:6,lateral:6,line:'def'},{id:'d2',goal:7,lateral:-5,line:'def'}]});
+  ev(`globalThis.__ce=v183CrossEstimate;v183CrossEstimate=()=>(${JSON.stringify(est)});`);
+  try{const o=options().find(x=>x.kind==='cross'&&x.ref==='b');assert(o,'cross option exists');return o.gain;}finally{ev('v183CrossEstimate=__ce');}};
+ const real=headerXg=>({arrival:.5,headerXg,eligible:true});
+ for(const finish of [true,false])close(gain(finish,real(.9))/gain(finish,real(.6)),.9/.6,`real header unscaled (finish ${finish})`);
+ close(gain(false,real(.9)),gain(true,real(.9)),'the shot stub (finish off) does not scale a real header');
+ const P=copy(ev('v183OptParams(match)')),stub=gain(true,{...real(.9),stub:true});
+ close(stub,gain(true,real(.9*P.stubScale*P.crossConv)),'stub header = headerXg*stubScale*crossConv');assert(stub<gain(true,real(.9)));
+});
+check('counter runs: an SI-2 intent with pattern counter gets counterOffer (default = offer, neutral), other runs offer',()=>{
+ const gain=(pattern,params)=>{scene({seed:21,si:{packages:{options:true},...(params?{params:{options:params}}:{})},attack:[{id:'c',goal:40,lateral:0},{id:'r',goal:20,lateral:4,line:'att'}],defend:keeperLine});
+  ev(`(()=>{const r=match.people.find(p=>p.pid==='r'),now=v152Seconds(match);match.attackFlow.intents={r:{x:r.x,y:r.y-.02,type:'depth',team:0,at:now,until:now+5,cat:'depth',pattern:${pattern?`'${pattern}'`:'null'}}};})()`);
+  return options().find(o=>o.kind==='pass'&&o.ref==='r').gain;};
+ const P=copy(ev('v183OptParams(match)'));assert.equal(P.counterOffer,P.offer,'default counterOffer = offer');
+ assert.equal(gain('counter'),gain(null),'default: a counter run is valued like any run');
+ close(gain('counter',{counterOffer:.6})/gain(null,{counterOffer:.6}),1.6/(1+P.offer),'counterOffer applies to counter runs only');
+});
 check('flight seconds use the match rate: clock package on (rate 0.42) and off (MATCH_SPEED); a real pass takes them',()=>{
  for(const [si,rate]of [[{packages:{options:true,clock:true},clockRate:.42},.42],[{packages:{options:true,clock:false}},null]]){
   scene({seed:16,si,attack:[{id:'c',goal:40,lateral:0},{id:'r',goal:28,lateral:6,line:'att'}],defend:keeperLine});

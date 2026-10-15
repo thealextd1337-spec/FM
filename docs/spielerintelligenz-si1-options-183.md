@@ -35,18 +35,18 @@ Für `v183Active(m,'options')` ersetzt eine Bewertung die feste Reihenfolge von 
   | Passspiel Direkt | Vorwärtspässe bis +25 % bei 15 m Raumgewinn (`direct`) |
   | Pressing, Aggressivität, Abwehrlinie | Verteidigung, außerhalb des Optionsmodells unverändert wirksam |
 
-- **Angebote**: Mitspieler mit gültigem Tiefen- oder Nachrücklauf aus `v183Offers` (SI-2, bis dahin Stub) erhalten einen Zuschlag `offer` auf den Empfängerwert; ein bestätigter Doppelpass-Rückweg +0,03.
+- **Angebote**: Mitspieler mit gültigem Tiefen- oder Nachrücklauf aus `v183Offers` (SI-2, bis dahin Stub) erhalten einen Zuschlag `offer` auf den Empfängerwert; ein bestätigter Doppelpass-Rückweg +0,03. Läufe eines Konterfensters (SI-2: `pattern:'counter'` am Lauf) erhalten stattdessen `counterOffer`. Der Wert ist per Vorgabe gleich `offer` (0,3) und damit ohne eigene Wirkung; er ist ein Hebel für SI-K.
 - **Bewertungsrauschen nach `dec`**: Wahl per Softmax über die Optionen im Rauschband, Temperatur `0,15·(20−dec)/10` des besten Nutzens (mindestens 0,006). `dec` 20 wählt ohne Rauschen; fehlendes `dec` gilt als 10. Über die SI-F-Persönlichkeitsformel hinaus wirkt `dec` nur hier.
 - **Bindung**: Die zuletzt gewählte Option desselben Spielers erhält +8 % des besten Nutzens, solange ihre Absicht gilt (kein Wechsel zwischen fast gleichwertigen Zielen). Nach einem Tragen gilt der Zuschlag nur gegenüber den anderen Trage-Richtungen (Richtung bleibt stabil, Tragen klebt nicht gegenüber Pässen); Halten erhält keinen.
 - **Takt**: Nach Tragen/Halten entscheidet der Ballführer nach 0,25 s Echtzeit (`v183ClockUnits`), während einer Drehung alle 0,08 s. Die Annahmevorbereitung (`v159ReceivePlan`) und das freie Tor (`v131OpenGoal`, sofortiger Schuss) bleiben vorgeschaltet.
 
 ### SI-F-Stub-Brücke
 
-Der Stub von `v183ShotEstimate` (erkennbar an `stub:true`, seit `ef78fca6`) liefert die Schussqualität von `v157ShotQuality` mit hartem 22-m-Fenster. Er gilt nur noch, wenn das Paket `finish` ausgeschaltet ist. SI-1 liest ihn deshalb an dem Punkt derselben Schusslinie, dessen Torentfernung `Entfernung × 22 / Fenster` beträgt, und skaliert mit `stubScale` 0,6 auf die SI-3-Skala. Der Wert ist das geometrische Mittel des Verhältnisses SI-3/Stub für freie Schützen mit Abschluss 8–12 zwischen 14 und 22 m (`work/tmp-si1/xgscale.cjs`, Faktor ≈ 1,5 auf die bisherigen 0,4). Die steilere Fähigkeitsabhängigkeit der SI-3-Schätzung (Abschluss 16: das Doppelte des Stubs) bildet der Stub nicht ab. Ein Verteidiger zwischen Schütze und diesem Punkt halbiert den Wert, zwei heben ihn auf (der Stub sieht nur die Linie dahinter). Kopfballwerte aus dem Flankenstub (`v183CrossEstimate` bis SI-7) zählen `headerXg × stubScale × crossConv` = 0,6 × 0,67 ≈ 0,4, wie in den Messungen. Eine echte Schätzung (ohne `stub:true`, auch mit `speed` 0 oder `null`) wird unverändert verwendet; das Fähigkeitsfenster bleibt als Grenze.
+Der Stub von `v183ShotEstimate` (erkennbar an `stub:true`, seit `ef78fca6`) liefert die Schussqualität von `v157ShotQuality` mit hartem 22-m-Fenster. Er gilt nur noch, wenn das Paket `finish` ausgeschaltet ist. SI-1 liest ihn deshalb an dem Punkt derselben Schusslinie, dessen Torentfernung `Entfernung × 22 / Fenster` beträgt, und skaliert mit `stubScale` 0,6 auf die SI-3-Skala. Der Wert ist das geometrische Mittel des Verhältnisses SI-3/Stub für freie Schützen mit Abschluss 8–12 zwischen 14 und 22 m (`work/tmp-si1/xgscale.cjs`, Faktor ≈ 1,5 auf die bisherigen 0,4). Die steilere Fähigkeitsabhängigkeit der SI-3-Schätzung (Abschluss 16: das Doppelte des Stubs) bildet der Stub nicht ab. Ein Verteidiger zwischen Schütze und diesem Punkt halbiert den Wert, zwei heben ihn auf (der Stub sieht nur die Linie dahinter). Skaliert wird nur der Flankenstub selbst (`stub:true` an der Flankenschätzung, `v183CrossEstimate` bis SI-7): `headerXg × stubScale × crossConv` = 0,6 × 0,67 ≈ 0,4, wie in den Messungen. Eine echte Flankenschätzung (SI-7, ohne `stub`) ist eine Torwahrscheinlichkeit und geht unskaliert ein, auch wenn die Schussschätzung der Stub ist. Eine echte Schätzung (ohne `stub:true`, auch mit `speed` 0 oder `null`) wird unverändert verwendet; das Fähigkeitsfenster bleibt als Grenze.
 
 ### Eingestellt gegen die SI-3-Skala
 
-SI-3 liefert `v183ShotEstimate.xg` als Torwahrscheinlichkeit einschließlich Blockchance; die Stub-Brücke (`stubRange`, Fensterumrechnung), der Blockabschlag `laneOne` und die Körperrichtung `shotFree`/`shotTurn` wirken damit nur noch ohne `finish`. Die echte Skala ist steil: ein freier Schütze mit Abschluss 16 erreicht aus 10 m 0,80, aus 22 m 0,28 und aus 26 m 0,16. Mit den bisherigen Schwellen schoss SI-1 deshalb aus der Distanz, statt näher heranzugehen (60 % Fernschüsse, 15 % Tore je Schuss; Serie S1 unten). Geändert:
+SI-3 liefert `v183ShotEstimate.xg` als Torwahrscheinlichkeit einschließlich Blockchance; die Stub-Brücke (`stubRange`, Fensterumrechnung), der Blockabschlag `laneOne` und die Körperrichtung `shotFree`/`shotTurn` wirken damit nur noch ohne `finish`. Die echte Skala ist steil: ein freier Schütze mit Abschluss 16 erreicht aus 10 m 0,80, aus 22 m 0,28 und aus 26 m 0,16. Mit den bisherigen Schwellen schoss SI-1 deshalb aus der Distanz, statt näher heranzugehen (60 % Fernschüsse, 15 % Tore je Schuss; Serie S1 unten). Geändert (die letzten beiden Zeilen schon in der Nacharbeit der ersten Review-Runde, `549d6206`):
 
 | Parameter | vorher | jetzt | Grund |
 | --- | ---: | ---: | --- |
@@ -55,10 +55,12 @@ SI-3 liefert `v183ShotEstimate.xg` als Torwahrscheinlichkeit einschließlich Blo
 | `windowFin` | 0,7 | 0,55 | Fenster 16 + 0,55·Abschluss: Abschluss 10 bis 21,5 m, 14 bis 23,7 m, 18 bis 25,9 m |
 | `carryFactor`, `holdFactor` | 0,55 / 0,5 | 0,75 / 0,65 | Positionsanteil von Tragen und Halten; Serie S2 gegen S1: Tore je Schuss 17,4 statt 15,0 %, Favoriten 70 statt 62 % |
 | `stubScale` | 0,4 | 0,6 | Stub-Brücke auf die SI-3-Skala (oben) |
-| `crossConv` | 1 | 0,67 | hält den Kopfballwert des Flankenstubs bei 0,4 |
+| `crossConv` | 1 | 0,67 | hält den Kopfballwert des Flankenstubs bei 0,4; wirkt nur auf den Flankenstub |
 | `counter`, `threat`, `threatLength` | 1,6 / 0,3 / 16 | unverändert | `counter` 1,2 (VM) brachte weniger Schüsse ohne mehr Pässe; `threat` 0,35/20 m (Serie T2) senkte Tore und Favoritenquote |
+| `offer` | 0,15 | 0,3 | Laufangebote zählen stärker gegenüber dem Tragen (Review Runde 1: Kombinationen statt Tragen) |
+| `turnTau` | 0,7 | 1,5 | Die Drehzeit steckt seit Runde 1 in der Ankunft (nachrückende Gegner); die zusätzliche Abzinsung ist nur noch mild |
 
-Offen für SI-7 und SI-K: `crossConv` gegen eine echte `headerXg`; die Persönlichkeitsspanne `weightMin`/`weightMax`, `shootInstruction` und `switchMargin` wurden nicht verändert.
+Offen für SI-K: `stubScale` und `crossConv` betreffen nach dem SI-7-Merge nur noch Partien mit Stub; eine echte `headerXg` geht unskaliert ein (Test). Die Persönlichkeitsspanne `weightMin`/`weightMax`, `shootInstruction`, `switchMargin` und `counterOffer` wurden nicht verändert.
 
 ## `v183PassEstimate(m,p,q,target)`
 
@@ -99,7 +101,7 @@ Ohne aktives Paket der unveränderte SI-F-Stub. Mit Paket: `{seconds, arrival, v
 | `stubRange`, `stubScale` | 22 / 0,6 | Stub-Brücke (nur ohne `finish`) |
 | `threat`, `threatLength` | 0,3 / 16 | Positionswert |
 | `counter` | 1,6 | Gewicht des Gegnerwerts nach Ballverlust |
-| `recvShot`, `offer`, `oneTwo` | 1 / 0,3 / 0,03 | Empfängerwert |
+| `recvShot`, `offer`, `counterOffer`, `oneTwo` | 1 / 0,3 / 0,3 / 0,03 | Empfängerwert (`counterOffer` für Konterläufe, Vorgabe = `offer`) |
 | `passMin`, `passMax` | 2,5 / 32 | Passlängen (m) |
 | `turnRelease`, `turnSpeed`, `turnTick`, `turnCheck`, `turnTau` | 0,55 / 2,5 / 0,08 / 0,25 / 1,5 | Drehung |
 | `shotFree`, `shotTurn`, `switchMargin` | 1,2 / 0,5 / 0,15 | Körperrichtung (Stub), Schuss aus der Drehung |
@@ -137,13 +139,14 @@ Basis `si1s-base192` (`--packages=clock,finish`), SI-1 `si1s-final192` (`--packa
 | Flanken | ≥ Basis | 0,83 | 1,30 (+0,46 ±0,22) | erfüllt |
 | Pässe gegen Tragen in der Zone | Pässe deutlich darüber | Ledger 59,7 / 47,8 | Protokoll 49,2 Pässe / 12,7 Tragestrecken; Ledger 59,5 / 55,6 | als Aktionen erfüllt, je Entscheidung gleichauf |
 | Fernschussanteil (Spielzug) | 12–20 % (Plan) | 0,1 % | 24,8 % (2,91 je Partie, 13,2 % Tore) | darüber |
+| davon Abschluss ≥13 | ≥75 % (Plan) | – | 66,7 % (373 von 559) | verfehlt |
 | Raumpässe | ≤7 | 7,98 | 1,07 | erfüllt |
 | Drehzustände 18–22 m („Drehung läuft“) | −50 % | 19,5 | 2,44 (−17,1 ±2,0, −87 %) | erfüllt |
 | Rechenzeit je Bewertung (Node) | ≤0,3 ms | – | Median 0,078 ms, p90 0,123 ms | erfüllt |
 
 Weitere Kennzahlen (Basis → SI-1):
 
-- Tore 1,67 → 2,74 (+1,07 ±0,28), aufs Tor 2,94 → 6,03, Minuten 4,29 → 4,25, 0:0 24,5 → 8,3 %.
+- Tore 1,67 → 2,74 (+1,07 ±0,28; Median 2 → 2; mindestens 4 Tore in 8,9 → 28,6 %, mindestens 5 Tore in 3,1 → 16,1 % der Partien), aufs Tor 2,94 → 6,03, Minuten 4,29 → 4,25, 0:0 24,5 → 8,3 %.
 - Spielzugschüsse je Partie (Tore je Schuss): bis 14 m 1,64 (42,9 %) → 2,06 (48,0 %), 14–22 m 3,18 (19,3 %) → 6,77 (18,7 %), über 22 m 0,01 → 2,91 (13,2 %).
 - Pässe 100,5 → 103,9 (+3,4 ±1,4), abgefangen 7,8 → 5,3, Ballverluste durch Fehlpass 21,2 → 14,1, hohe Bälle 5,6 → 0,2.
 - Fouls 7,5 → 4,1, Ecken 0,66 → 1,30, direkte Freistöße 1,49 → 0,84.
@@ -152,6 +155,8 @@ Weitere Kennzahlen (Basis → SI-1):
 - Protokoll: mittlere Ankunft gewählter Bodenpässe 0,86, geschätzte Ankunft gewählter Raumpässe 0,28 (angenommen 0,42 von 1,07 je Partie); kein Rückfall eines hohen Balls.
 
 **Fernschussanteil.** SI-3 bewertet freie Fernschüsse guter Schützen hoch; das folgt der SI-3-Nutzerentscheidung „gut platzierte Fernschüsse dürfen oft treffen“. Ein Schütze mit Abschluss 16 erreicht aus 22 m frei 0,28. Gemessen treffen Fernschüsse mit Abschluss ≥14 zu 18,5 %. Der Positionswert dort beträgt 0,3·e^(−22/16) ≈ 0,08, deshalb ist der Schuss nach der Schätzung oft die beste Option. Das engere Fenster und `carryShot`/`recvShot` 1 senkten den Anteil von 60 auf 25 %. Weiter senken ließe er sich nur mit einem Fernschussabschlag gegen die eigene Schätzung oder mit einer steileren SI-3-Kurve; das entscheidet SI-K.
+
+**Fernschüsse schwacher Schützen.** 186 der 559 Fernschüsse kommen von Schützen mit Abschluss unter 13 und treffen zu 9,1 % (Abschluss ≥13: 15,3 %). 171 davon fallen aus 22–23 m, mit wirksamem Abschluss meist 11–13. Ursache ist das Fenster `16 + 0,55·Abschluss`: Es reicht ab Abschluss 10,9 über 22 m. Hebel für SI-K: `windowBase` 15 (über 22 m erst ab Abschluss 12,7) oder ein steileres `windowFin` mit niedrigerer Basis, etwa 12,5 + 0,75·Abschluss (Schwelle ebenfalls 12,7, Abschluss 18 bis 26 m).
 
 **Pässe gegen Tragen.** Im Review-Stand (erste Fassung) standen in der Zone 15 Pass- gegen 55 Trageentscheidungen. Jetzt sind es 59,5 Pass- gegen 55,6 Trageentscheidungen; die Pässe liegen damit auf Basisniveau (59,7). Je Aktion gezählt spielt der Ballführer in der Zone 49 Pässe gegen 13 Tragestrecken. Eine Tragestrecke umfasst im Mittel vier Entscheidungen, weil SI-1 beim Tragen alle 0,25 s neu bewertet.
 
@@ -195,12 +200,14 @@ Teuer ist die SI-3-Schätzung, etwa 0,07 ms je Aufruf. SI-1 ruft sie je Bewertun
 
 ## Tests
 
-Alle Läufe auf dem gemergten Stand (`3593b5e5` + diese Nacharbeit), Node 24.
+Alle Läufe auf dem gemergten Stand (`3593b5e5` + Nacharbeit), Node 24; die Nachbesserung der zweiten Review-Runde ist unten vermerkt.
 
-- `node work/test-si-options-v183.cjs` (23 Checks, `--quick` für die Entwicklung), alle bestanden:
+- `node work/test-si-options-v183.cjs` (25 Checks, `--quick` für die Entwicklung), alle bestanden:
   - Altpfad: Mit ausgeschalteten Optionen sind Konstruktorpartien digestgleich zu Regeln 182, mit allen Paketen aus wie mit nur `options:false`. Stub und durchgereichte Umhüllungen sind bitgleich.
   - Schuss: Fernschuss guter und schwacher Schützen (Fenster), Schusswert mit SI-3 und mit Stub-Brücke, Blocker.
   - Stub-Erkennung nur über `stub:true`; eine echte Schätzung mit `speed` 0 oder `null` wird nicht umgerechnet.
+  - Kopfball: Eine echte Flankenschätzung (ohne `stub`) geht unskaliert ein, auch bei Schussstub; nur der Flankenstub zählt `headerXg × stubScale × crossConv`.
+  - Konterläufe: `pattern:'counter'` erhält `counterOffer`; mit der Vorgabe (= `offer`) ist der Wert gleich dem eines anderen Laufs.
   - Flugsekunden über `v183Rate(m)`: Uhrpaket an (`clockRate` 0,42) und aus (`MATCH_SPEED`), auch für einen echten Pass.
   - Pass und Risiko: Passschätzung (Linie, `pas`, Rolle ohne Einfluss), gleiche Fähigkeit mit anderer Rolle oder anderem `dec`, Spanne, Querpass.
   - Abpraller und freies Tor; Drehung (Freigabe bei 0,55 rad, früher als die Altfreigabe bei 0,30 rad); Schuss aus der Drehung.
@@ -212,6 +219,10 @@ Alle Läufe auf dem gemergten Stand (`3593b5e5` + diese Nacharbeit), Node 24.
 - `check-old-matches-v182.cjs` (Basis `work/tmp-base182`): 158/158 bytegleich. `check-old-matches-v183.cjs` (Basis `e4e531c0`): 340/340 (unmarkiert 158, 182-markiert 158, Konstruktor ohne Marker 12, Marker 183 mit allen Paketen aus 12).
 - `check-restore-completeness-v183.cjs --port=4262 --quick` (Lane C mit Sperre): 10/10 Läufe bestanden, keine Abweichung in `attackFlow`.
 - Plan 9 Pflichtliste: alle 29 mit Exit 0, danach die erzeugten Artefakte in `outputs/` zurückgesetzt: `test-v55/56/57`, `test-breakaway`, `test-duel-streaks`, `run-native130-tests`, `test-world-match-v64`, `test-world-penalties-v65`, `test-world-goal-scene-v83`, `test-world-physical-instructions`, `test-compact-balance-v178`, `test-player-load-candidate-v158`, `test-native-career-v160`, `test-native-performance-context`, `platform/qa/test-unity-integration-v160`, `platform/qa/test-world-unity-contract`, `test-world-pitch3d-v98`, `test-3d-contacts-v119`, `test-whistle-offside-v119`, `test-keeper-picture-v119`, `platform/qa/test-world-unity-slides`, `test-corner-quality-v182`, `test-defensive-pursuit-v182`, `test-freekick-plan-r132`, `test-keeper-hold-v182`, `test-loose-ball-v182`, `test-penalty-quality-v182`, `test-review-fixes-v182`, `build`.
+- Nachbesserung der zweiten Review-Runde (Flankenskala, `counterOffer`):
+  - Tests: eigener Test 25/25 (Rechenzeit Median 0,105 ms, p90 0,206 ms, parallel zu einer SI-2-Messserie in Lane C), `test-si-core-v183` 28/28, `test-si-clock-v183` 22/22, `test-si-finish-v183` 20/20, `check-old-matches-v183` 340/340.
+  - Neutralität: Sechs markierte Konstruktorszenen (Uhr 0,42, Optionen und Abschluss an, mit Rollen, je 2.100 Ticks in drei Abschnitten) sind digestgleich zu `725135a6`, einschließlich Zufallsziehungen. Verglichen wird ohne `match.si`; die Parameter sind bis auf den neuen Schlüssel `counterOffer` gleich.
+  - Keine neue Messserie: Das Verhalten ändert sich erst mit dem SI-7-Merge (echte Flankenschätzung) oder mit einem anderen `counterOffer`.
 
 ## Restore
 
@@ -220,9 +231,9 @@ Der eigene Test speichert `attackFlow.decision` und ein laufendes `pendingTurn` 
 ## Weichenbedarf und Hinweise für die Integration
 
 - **SI-3 (gemergt):** SI-1 nutzt `v183ShotEstimate` unverändert; die Stub-Erkennung hängt an `stub:true`. Eine Schätzung kostet mit Paket etwa 0,07 ms. Je Bewertung ruft SI-1 sie für den Ballführer, je Empfänger und Flankenziel sowie einmal als Anker für die Tragepunkte auf. Für SI-K wäre ein günstigerer Bewertungsmodus der Schätzung hilfreich (Weichenwunsch an SI-3, nicht geändert). Die gemessene Fernschussquote gehört zur SI-3-Kalibrierung; SI-1 entscheidet nach der geschätzten Torwahrscheinlichkeit.
-- **SI-4:** Die Ankunftsschätzung zählt den Druck auf den Passgeber wie `v55GroundPass` im Radius `defence.passPressureRadius` (`v183Radius`, Meter), solange das Paket `defence` aktiv ist, sonst normalisiert 0,15 (W4). SI-4 muss diesen Schlüssel anmelden. Der Radius in `action` (`pitch-v55.js`, Plan `:494`) wird in markierten Partien nur vom toten Baum gelesen; SI-1 braucht dort keine Weiche.
-- **SI-7:** `headerXg` aus `v183CrossEstimate` wird auf derselben Skala wie die Schussschätzung erwartet (Torwahrscheinlichkeit); bis dahin skaliert `crossConv` den Stub. Die Flankenmenge hängt mehr an der Strafraumbesetzung (SI-2-Läufe) als an der Bewertung.
-- **SI-2:** SI-1 liest aus `v183Offers` Einträge `{pid, type, team, until}` mit Typ `depth` oder `follow`. `v183PassEstimate` ist objektiv (ohne Persönlichkeit und Angebotszuschlag) und kostet je Aufruf eine Schussschätzung des Empfängers.
+- **SI-4:** Die Ankunftsschätzung zählt den Druck auf den Passgeber wie `v55GroundPass` im Radius `defence.passPressureRadius` (`v183Radius`, Meter), solange das Paket `defence` aktiv ist, sonst normalisiert 0,15 (W4). SI-4 meldet diesen Schlüssel an (9 m). Der Raumpass-Abschlag zählt dagegen Gegner in festen 3 m um den Passgeber (`v183OptOptions`). SI-4 bringt für Entscheidungen `defence.decisionPressureRadius` (9 m) mit; beide Radien sind ein Zusammenführungspunkt für SI-K (hier nicht geändert, der Schlüssel kommt erst mit SI-4). Der Radius in `action` (`pitch-v55.js`, Plan `:494`) wird in markierten Partien nur vom toten Baum gelesen; SI-1 braucht dort keine Weiche.
+- **SI-7:** `headerXg` einer echten `v183CrossEstimate` (ohne `stub`) geht als Torwahrscheinlichkeit unskaliert ein, auf derselben Skala wie die Schussschätzung. `stubScale × crossConv` gilt nur für den Flankenstub (`stub:true`); welche Schätzung für Schüsse gilt, spielt dafür keine Rolle. Die Flankenmenge hängt mehr an der Strafraumbesetzung (SI-2-Läufe) als an der Bewertung.
+- **SI-2:** SI-1 liest aus `v183Offers` Einträge `{pid, type, team, until, pattern}` mit Typ `depth` oder `follow`. Läufe mit `pattern:'counter'` erhalten `counterOffer`; das ist der Vertrag aus dem SI-2-Kommentar (`match-si-offball-v183.js:75`). Per Vorgabe gleich `offer`, wirkt er erst, wenn SI-K den Wert ändert. `v183PassEstimate` ist objektiv (ohne Persönlichkeit und Angebotszuschlag) und kostet je Aufruf eine Schussschätzung des Empfängers.
 - **SI-0 (gemergt):** Eigene Fristen nutzen `v183Seconds`/`v183ClockUnits`, Flugsekunden `v183Rate(m)`. Fristen für Altcode (`carry`) werden über `v152Seconds` umgerechnet (linear in der verstrichenen Uhr, siehe `v183OptLegacyAfter`). Das Warten auf die Annahme läuft über die Vorgängerfunktion von `v159Decide`.
 - Halten bedeutet Abschirmen auf der Stelle. Es wird selten gewählt, kann einen Spieler im Mittelfeld ohne Anspielstation aber kurz stehen lassen, bis SI-2-Angebote wirken.
 
