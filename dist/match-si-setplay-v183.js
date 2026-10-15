@@ -253,7 +253,7 @@ v183AirFinish=function(m,winner,end,detail={}){
  const headerOk=detail.headerRange!==false&&dist<=P('finishRange'),volleyOk=dist<=P('volleyRange')&&!detail.preferHeader;
  const kind=detail.preferHeader?(headerOk?'header':null):volleyOk?'volley':headerOk?'header':null;
  if(!kind||depth<1||lateral>depth*.85+1.5)return null;
- const estimate=v183ShotEstimate(m,winner,end),xg=Number.isFinite(estimate?.xg)?estimate.xg:0,quality=(ability(winner,kind==='header'?'air':'fin')+tec)/40;
+ const estimate=v183ShotEstimate(m,winner,end,{kind}),xg=Number.isFinite(estimate?.xg)?estimate.xg:0,quality=(ability(winner,kind==='header'?'air':'fin')+tec)/40;
  const chance=clamp(clamp(P('finishBase')+(P('finishRange')-dist)*P('finishDistance')+xg*P('finishXg')-(detail.marked?P('finishMarked'):0)-(detail.pressure||0)*P('finishPressure'),P('finishMin'),P('finishMax'))*(.65+.65*quality),.05,.96);
  const roll=random(); // setplay.airFinish
  v183Trace(m,{kind:'air-finish',winner,shot:kind,dist:+dist.toFixed(1),chance:+chance.toFixed(3),xg:+xg.toFixed(3),taken:roll<chance});
@@ -295,7 +295,9 @@ v183CrossEstimate=function(m,p,target){
  const duel=arrive>1?.92:clamp(.5+(ability(who,'air')-ability(defender,'air'))*P('duelAir')+(ability(who,'pos')-ability(defender,'pos'))*P('duelPos')+(arrive-shareA)*P('duelDistance')+(v183Height(who)-v183Height(defender))*P('duelHeight'),P('duelMin'),P('duelMax'));
  const arrival=(1-block)*land*duel;
  const finish=goalT<=P('finishRange')?clamp(P('finishBase')+(P('finishRange')-goalT)*P('finishDistance'),0,P('finishMax')):0;
- const conversion=clamp(.12+(ability(who,'fin')*.5+ability(who,'air')*.5-10)*.012-(goalT-6)*.012,.04,.35);
+ // Conversion of the header: the SI-3 placement model at the landing point when
+ // it is live (goal probability, no `stub`), else a fin/air/distance formula.
+ const estimate=v183ShotEstimate(m,who,point,{kind:'header'}),conversion=estimate&&!estimate.stub&&Number.isFinite(estimate.xg)?clamp(estimate.xg,0,1):clamp(.12+(ability(who,'fin')*.5+ability(who,'air')*.5-10)*.012-(goalT-6)*.012,.04,.35);
  return {arrival,headerXg:finish*conversion,eligible:true,landing:point,receiverPid:who.pid,block,land,duel,pressure,spread:+spread.toFixed(2)};
 };
 
@@ -344,7 +346,12 @@ v182FreeKickPlan=function(m,setPiece){
  if(!v183SetplayOn(m))return v183BaseFreeKickPlan.apply(this,arguments);
  const P=key=>v183SP(m,key),team=setPiece.team,taker=setPiece.taker,s=v160PitchScale(m),fin=ability(taker,'fin'),field=v50Outfield(team),allies=field.filter(p=>p!==taker);
  const bestShooter=!field.some(p=>ability(p,'fin')>fin+1e-9);
- if(bestShooter&&v183FreeKickWindow(m,team,setPiece.spot,taker)&&random()<clamp(P('freeKickDirectBase')+(fin-10)*P('freeKickDirectFin'),.1,.9))return {direct:true,targetPid:null,kind:'direct'}; // setplay.freeKickDirect
+ // With SI-3 the direct attempt follows its recommendation (range, free angle,
+ // minimum goal probability of the placement model; no draw). Until then the
+ // window above and one draw by finishing decide.
+ const advice=typeof v183DirectFreeKick==='function'?v183DirectFreeKick(m,setPiece):null;
+ const direct=advice?Boolean(bestShooter&&advice.direct):bestShooter&&v183FreeKickWindow(m,team,setPiece.spot,taker)&&random()<clamp(P('freeKickDirectBase')+(fin-10)*P('freeKickDirectFin'),.1,.9); // setplay.freeKickDirect
+ if(direct)return {direct:true,targetPid:null,kind:'direct'};
  const {dist}=v183GoalFrame(m,team,setPiece.spot),box=allies.filter(p=>v115GoalDistance(p)<=20&&Math.abs(p.x-.5)*s.x<=12);
  if(dist>=12&&dist<=36&&box.length>=P('freeKickCrossAllies')){const target=[...box].sort((a,b)=>ability(b,'air')+ability(b,'pos')*.4-ability(a,'air')-ability(a,'pos')*.4||a.n-b.n)[0];return {direct:false,targetPid:target.pid,kind:'cross'};}
  const target=[...allies].sort((a,b)=>(team===0?a.y-b.y:b.y-a.y)||distance(a,taker)-distance(b,taker))[0]||null;
