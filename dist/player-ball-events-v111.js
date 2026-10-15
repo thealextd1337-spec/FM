@@ -7,6 +7,9 @@ v50ChaseLooseBall=function(...args){const current=match,hadLoose=Boolean(current
 const v111BaseAction=v102PlayerAction;
 v102PlayerAction=function(current,person){const foul=v113FoulAction(current,person);if(foul&&(current.attackFlow?.flowVersion===159||window.D6UserMeshyPlayer?.nativeBall))return foul;const action=v111BaseAction(current,person);if(!(current.attackFlow?.flowVersion===159||window.D6UserMeshyPlayer?.nativeBall))return action;if(action?.kind==='kickReady'){const forward=person.t===0?1-person.y:person.y;return forward>.73?action:{...action,kind:'passReady'}}return action};
 const v113Fouls=new WeakMap();
+// Foul scene hold and player lock in seconds; the clock package shortens both for marked matches.
+function v113FoulScene(current){return current.si&&typeof v183ClockParam==='function'?v183ClockParam(current,'freeKickScene',3.8):3.8}
+function v113FoulLockSeconds(current){return current.si&&typeof v183ClockParam==='function'?v183ClockParam(current,'foulLock',2.7):2.7}
 function v113FoulContact(current,victim,offender){
  if(!v65WorldActive)return;
  v113Fouls.set(current,{at:v102Clock(current),victim,offender,positions:current.people.map(p=>({p,x:p.x,y:p.y})),target:{x:victim.x,y:victim.y},sliding:Boolean(offender.slideActive)});
@@ -14,11 +17,11 @@ function v113FoulContact(current,victim,offender){
 function v113RestoreFoul(current){
  const foul=v113Fouls.get(current);if(!foul)return;
  for(const {p,x,y}of foul.positions){p.x=p.tx=x;p.y=p.ty=y;p.slideActive=false}
- foul.positions=null;foul.piece=current.setPiece;if(foul.piece)foul.piece.wait=Math.max(foul.piece.wait,3.8);
+ foul.positions=null;foul.piece=current.setPiece;if(foul.piece)foul.piece.wait=Math.max(foul.piece.wait,v113FoulScene(current));
 }
-function v113FoulLocked(current,person){const f=v113Fouls.get(current);return f&&current.setPiece===f.piece&&v102Clock(current)-f.at<2.7&&(f.victim===person||f.offender===person)}
+function v113FoulLocked(current,person){const f=v113Fouls.get(current);return f&&current.setPiece===f.piece&&v102Clock(current)-f.at<v113FoulLockSeconds(current)&&(f.victim===person||f.offender===person)}
 function v113FoulAction(current,person){
- const f=v113Fouls.get(current),age=f&&v102Clock(current)-f.at;if(!f||current.setPiece!==f.piece||age>=2.7||!['waiting','fading','postBanner'].includes(current.setPiece?.phase))return null;
+ const f=v113Fouls.get(current),age=f&&v102Clock(current)-f.at;if(!f||current.setPiece!==f.piece||age>=v113FoulLockSeconds(current)||!['waiting','fading','postBanner'].includes(current.setPiece?.phase))return null;
  if(f.victim!==person&&f.offender!==person)return null;
- return {id:'foul:'+f.at,kind:f.victim===person?'foulVictim':'foulOffender',progress:Math.max(0,age/2.7),age,sliding:f.sliding,target:f.target};
+ return {id:'foul:'+f.at,kind:f.victim===person?'foulVictim':'foulOffender',progress:Math.max(0,age/v113FoulLockSeconds(current)),age,sliding:f.sliding,target:f.target};
 }

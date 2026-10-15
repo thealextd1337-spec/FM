@@ -30,14 +30,15 @@ check('all shared interfaces exist as global functions',()=>{
 });
 
 // ----- marker and configuration -----
-check('constructor default: marker 183, positive clock rate, every package off, empty parameter sets',()=>{
+check('constructor default: marker 183, positive clock rate, packages as switched on by their modules, registered parameter sets',()=>{
  h.call('Native183.constructed',{});
  const si=copy(ev('match.si'));
  assert.deepEqual(Object.keys(si),['revision','clockRate','packages','params']);
  assert.equal(si.revision,183);assert(Number.isFinite(si.clockRate)&&si.clockRate>0,'clock rate');
- assert.deepEqual(si.packages,Object.fromEntries(PACKAGES.map(p=>[p,false])));
- assert.deepEqual(si.params,Object.fromEntries(PACKAGES.map(p=>[p,{}])));
- for(const p of PACKAGES)assert.equal(ev(`v183Active(match,'${p}')`),false,p);
+ const enabled=copy(ev('v183Registry.enabled')),defaults=copy(ev('v183Registry.defaults'));
+ assert.deepEqual(si.packages,enabled);
+ assert.deepEqual(si.params,defaults);
+ for(const p of PACKAGES)assert.equal(ev(`v183Active(match,'${p}')`),enabled[p],p);
  assert.equal(ev('v183Marked(match)'),true);
  const flow=copy(ev('match.attackFlow'));for(const key of ['keeperHoldRevision','setPieceRevision','looseBallRevision','pursuitRevision','motionRevision'])assert.equal(flow[key],182,key);
  assert.equal(ev('match.penaltyRevision'),182);
@@ -88,7 +89,7 @@ check('clock helpers: MATCH_SPEED arithmetic without the clock package, stored r
  h.call('Native183.constructed',{si:false});h.call('Native183.run',40);
  assert.equal(ev('v183Rate(match)'),ev('MATCH_SPEED'));assert.equal(ev('v183Seconds(match)'),ev('v152Seconds(match)'));
  for(const s of [.32,.75,2.7,1/3])assert.equal(ev(`v183ClockUnits(match,${s})`),ev(`${s}*MATCH_SPEED`));
- h.call('Native183.constructed',{si:{clockRate:.42}});h.call('Native183.run',40);
+ h.call('Native183.constructed',{si:{packages:{clock:false},clockRate:.42}});h.call('Native183.run',40);
  assert.equal(ev('v183Rate(match)'),ev('MATCH_SPEED'),'stored rate only with the clock package');assert.equal(ev('v183Seconds(match)'),ev('v152Seconds(match)'));
  h.call('Native183.constructed',{si:{packages:{clock:true},clockRate:.42}});h.call('Native183.run',40);
  assert.equal(ev('v183Rate(match)'),.42);assert.equal(ev('v183Seconds(match)'),ev('match.elapsed/.42'));assert.equal(ev('v183ClockUnits(match,2)'),2*.42);
@@ -188,7 +189,7 @@ check('formation anchor switch: identity stub; team() consults it only with an e
 });
 check('marker 183 with every package off replays like the 182 constructor (digest without match.si)',()=>{
  for(const scene of copy(h.call('Native183.constructedScenes')).filter((s,i)=>i%3===0)){
-  const marked=h.call('Native183.constructedDigest',scene,{withoutSi:true,segments:[200,200]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[200,200]});
+  const marked=h.call('Native183.constructedDigest',scene,{withoutSi:true,si:{packages:Object.fromEntries(PACKAGES.map(p=>[p,false]))},segments:[200,200]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[200,200]});
   assert.equal(marked,legacy,scene.id);
  }
 });

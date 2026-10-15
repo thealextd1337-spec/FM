@@ -86,15 +86,15 @@ function v158Interval(state,pid,from,to){
  const intervals=v158Pending(state,pid).intervals,last=intervals.at(-1);
  if(last&&Math.abs(last.endMinute-from)<1e-7)last.endMinute=to;else intervals.push({startMinute:from,endMinute:to});
 }
-function v158QueueAction(career,fixture,state,player,type,causeId,minute){
+function v158QueueAction(career,fixture,state,player,type,causeId,minute,units=1){
  if(!state.playerLoad?.players[player.pid])return;
  const pending=v158Pending(state,player.pid),id=`${causeId}:${player.pid}:${type}`;
- if(!pending.events.some(e=>e.id===id))pending.events.push({id,causeId,type,minute,units:1});
+ if(!pending.events.some(e=>e.id===id))pending.events.push({id,causeId,type,minute,units});
 }
 function v158LoadAction(current,player,type,causeId){
  const context=typeof v65WorldActive!=='undefined'&&v65WorldActive;
  if(!context?.state.playerLoad||current!==match)return;
- v158QueueAction(context.career,context.fixture,context.state,player,type,causeId,Math.max(0,current.elapsed*90/75));
+ v158QueueAction(context.career,context.fixture,context.state,player,type,causeId,Math.max(0,current.elapsed*90/75),type==='intense-duel'&&current.si&&typeof v183ClockLoadUnits==='function'?v183ClockLoadUnits(current):1);
 }
 function v158Contact(current,a,b){
  const context=typeof v65WorldActive!=='undefined'&&v65WorldActive;if(!context?.state.playerLoad||current!==match)return;
