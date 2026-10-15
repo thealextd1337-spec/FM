@@ -37,7 +37,7 @@ if(process.env.D6_SI1_TIMING){
    if(v183Active(m,'options')&&!p.keeper&&!m.attackFlow.pendingTurn&&!(m.attackFlow.receipt?.playerId===p.pid&&v152Seconds(m)<m.attackFlow.receipt.readyAt)&&__samples.length<${+process.env.D6_SI1_TIMING}){
     const P=v183OptParams(m);let best=Infinity;for(let b=0;b<5;b++){const t0=__now();for(let i=0;i<4;i++)v183OptCached(()=>v183OptOptions(m,p,allies,rivals,P));best=Math.min(best,(__now()-t0)/4);}__samples.push(best);}
    return base.apply(this,arguments);};`);
- for(const [club,size]of [['GER-2','standard'],['ENG-4','large'],['ESP-1','standard'],['ITA-3','large']]){h.run('running=true');h.call('Native183.constructed',{club,seed:'si1-timing',size,roles:true,si:{packages:{clock:true,options:true},clockRate:.42}});h.evaluate('(()=>{for(let n=0;n<20000&&!match.finished;n++)Native183.advance();})()');}
+ for(const [club,size]of [['GER-2','standard'],['ENG-4','large'],['ESP-1','standard'],['ITA-3','large']]){h.run('running=true');h.call('Native183.constructed',{club,seed:'si1-timing',size,roles:true,si:{packages:{clock:true,options:true,...(process.env.D6_SI1_FINISH==='0'?{finish:false}:{})},clockRate:.42}});h.evaluate('(()=>{for(let n=0;n<20000&&!match.finished;n++)Native183.advance();})()');}
  process.stdout.write(h.evaluate('JSON.stringify(__samples)'));
  return;
 }
@@ -69,7 +69,7 @@ h.run(`globalThis.SI1={
   return match;
  },
  decide(){const m=match,p=m.owner,allies=m.people.filter(q=>q.t===p.t&&q!==p&&!q.keeper),rivals=m.people.filter(q=>q.t!==p.t);const before=p.stats.shots,draws=Native182.rng().draws;v157Decide(m,p,allies,rivals);
-  const last=v183TraceEntries(m).at(-1)||null,meta=m.flight&&v102Flights.get(m.flight);
+  const last=v183TraceEntries(m).filter(e=>e.type==='options').at(-1)||null,meta=m.flight&&v102Flights.get(m.flight);
   return {kind:last?.kind??null,ref:last?.ref??null,u:last?.u??null,top:last?.top??null,drawn:last?.drawn??null,shot:p.stats.shots>before,flight:meta?.kind||null,turn:m.attackFlow.pendingTurn?{receiverId:m.attackFlow.pendingTurn.receiverId,kind:m.attackFlow.pendingTurn.kind}:null,carry:m.attackFlow.carry?{...m.attackFlow.carry}:null,decision:m.attackFlow.decision?{...m.attackFlow.decision}:null,draws:Native182.rng().draws-draws};},
  options(){const m=match,p=m.owner,allies=m.people.filter(q=>q.t===p.t&&q!==p&&!q.keeper),rivals=m.people.filter(q=>q.t!==p.t),P=v183OptParams(m);
   return v183OptCached(()=>v183OptOptions(m,p,allies,rivals,P)).list.map(o=>({kind:o.kind,ref:o.ref??null,u:o.u,gain:o.gain,loss:o.loss,arrival:o.arrival??null,xg:o.xg??null}));}
@@ -104,17 +104,21 @@ check('options off: v183PassEstimate is the SI-F stub; v157Decide/v159Decide/v15
 // ----- new path: scenes -----
 // Team 0 attacks the top goal. goal = metres to that goal, lateral = metres from the centre.
 const keeperLine=[{id:'d1',goal:9,lateral:-6,line:'def',skills:{tak:12,pos:12}},{id:'d2',goal:9,lateral:6,line:'def',skills:{tak:12,pos:12}}];
-check('long shot: a good shooter shoots from 24 m, a weak shooter (window 16+0.7*fin) does not',()=>{
+check('long shot: a good shooter shoots from 24 m, a weak shooter (window windowBase+windowFin*fin) does not',()=>{
  const spec=fin=>({seed:3,attack:[{id:'c',goal:24,lateral:0,line:'att',role:'striker',skills:{fin,tec:14}},{id:'w',goal:30,lateral:-14,line:'mid',skills:{pas:10}}],defend:[{id:'d1',goal:19,lateral:-2.6,line:'def'},{id:'d2',goal:19,lateral:2.6,line:'def'},{id:'d3',goal:27,lateral:-11,line:'mid'},{id:'d4',goal:10,lateral:5,line:'def'}]});
  scene(spec(18));const strong=options().find(o=>o.kind==='shot'),strongChoice=decide();
  scene(spec(8));const weak=options().find(o=>o.kind==='shot'),weakChoice=decide();
- assert(strong&&strong.xg>0,'shot option for fin 18 at 24 m');assert.equal(weak,undefined,'no shot option for fin 8 at 24 m (window 21.6 m)');
+ assert(strong&&strong.xg>0,'shot option for fin 18 at 24 m');assert.equal(weak,undefined,'no shot option for fin 8 at 24 m (window 20.4 m)');
  assert.equal(strongChoice.kind,'shot');assert.equal(strongChoice.shot,true);assert.notEqual(weakChoice.kind,'shot');
 });
-check('shot value rises with finishing and falls with distance; a blocker near the shooter halves it',()=>{
- const xg=(fin,goal,block)=>{scene({seed:4,attack:[{id:'c',goal,lateral:0,line:'att',skills:{fin,tec:12}}],defend:block?[{id:'b',goal:goal-2.5,lateral:.3,line:'def'}]:[]});return options().find(o=>o.kind==='shot')?.xg??0;};
- assert(xg(16,18)>xg(10,18));assert(xg(14,16)>xg(14,22));assert(xg(14,22)>0);
- const free=xg(15,23),blocked=xg(15,23,true);assert(blocked>0&&Math.abs(blocked/free-.5)<1e-9,`one blocker halves (${blocked}/${free})`);
+check('shot value rises with finishing and falls with distance; a blocker lowers it (SI-3 estimate and SI-F stub bridge)',()=>{
+ for(const finish of [true,false]){
+  const xg=(fin,goal,block)=>{scene({seed:4,si:{packages:{options:true,finish}},attack:[{id:'c',goal,lateral:0,line:'att',skills:{fin,tec:12}}],defend:block?[{id:'b',goal:goal-1.5,lateral:.3,line:'def'}]:[]});return options().find(o=>o.kind==='shot')?.xg??0;};
+  assert(xg(16,18)>xg(10,18),'finishing');assert(xg(14,16)>xg(14,22),'distance');assert(xg(14,22)>0);
+  const free=xg(15,23),blocked=xg(15,23,true);
+  // Stub bridge: a blocker before the read point (23*22/window m from goal) halves the value; SI-3: its block chance.
+  if(finish)assert(blocked<free,`blocker lowers xg (${blocked}/${free})`);else assert(blocked>0&&Math.abs(blocked/free-.5)<1e-9,`one blocker halves (${blocked}/${free})`);
+ }
 });
 check('pass estimate: arrival from pas and the lane only; free lane beats closed lane; riskWeight never enters arrival',()=>{
  const est=(pas,role,blocked)=>{scene({seed:5,attack:[{id:'c',goal:40,lateral:0,role,skills:{pas}},{id:'r',goal:26,lateral:4,line:'att'}],defend:blocked?[{id:'x',goal:33,lateral:2,line:'mid',skills:{pos:14,spd:14}}]:[]});
@@ -168,7 +172,7 @@ check('shot from the turn: a pending pass turn is replaced by a shot once the sh
  const r=copy(ev(`(()=>{const m=match,p=m.owner,q=m.people.find(x=>x.pid==='r');v183OptRecord(m,p,{kind:'pass',ref:'r',target:{x:q.x,y:q.y},u:0},v183OptParams(m));m.attackFlow.decision.checkAt=v183Seconds(m);
   const body=v157Body(p);body.heading=v183OptHeading(p,q)+Math.PI*.9;v157QueueTurn(m,p,q,'ground');const queued=Boolean(m.attackFlow.pendingTurn);
   body.heading=v183OptHeading(p,{x:.5,y:v55Field.top});const shots=p.stats.shots;v157Decide(m,p,m.people.filter(x=>x.t===0&&x!==p&&!x.keeper),m.people.filter(x=>x.t===1));
-  return {queued,shot:p.stats.shots>shots,turn:Boolean(m.attackFlow.pendingTurn),fromTurn:v183TraceEntries(m).at(-1)?.fromTurn===true,decision:m.attackFlow.decision.kind};})()`));
+  return {queued,shot:p.stats.shots>shots,turn:Boolean(m.attackFlow.pendingTurn),fromTurn:v183TraceEntries(m).filter(e=>e.type==='options').at(-1)?.fromTurn===true,decision:m.attackFlow.decision.kind};})()`));
  assert(r.queued);assert(r.shot,'shot from the turn');assert.equal(r.turn,false);assert(r.fromTurn);assert.equal(r.decision,'shot');
 });
 check('commitment: near-equal carry directions do not flip between successive decisions',()=>{
@@ -190,7 +194,7 @@ check('team tactics: focus wide raises wide passes, direct raises forward passes
 });
 const close=(a,b,msg='')=>assert(Math.abs(a-b)<1e-9,`${msg} ${a} vs ${b}`);
 check('stub detection by stub:true; a real estimate with speed 0 or null is not bridged',()=>{
- scene({seed:15,attack:[{id:'c',goal:20,lateral:0,line:'att',skills:{fin:14}}],defend:[]});
+ scene({seed:15,si:{packages:{options:true,finish:false}},attack:[{id:'c',goal:20,lateral:0,line:'att',skills:{fin:14}}],defend:[]});
  const r=copy(ev(`(()=>{const m=match,p=m.owner,P=v183OptParams(m),base=v183ShotEstimate;try{
   const stub=v183OptShot(m,p,P,p),real=[];
   for(const speed of [0,null]){v183ShotEstimate=()=>({xg:.123,aim:{x:.5,y:v55Field.top},window:true,speed});real.push(v183OptShot(m,p,P,p));}
@@ -230,12 +234,12 @@ check('a chosen high ball that is no longer available falls back to holding and 
  scene({seed:21,attack:[{id:'c',goal:40,lateral:0},{id:'r',goal:20,lateral:4,line:'att'}],defend:keeperLine});
  const r=copy(ev(`(()=>{const m=match,p=m.owner,q=m.people.find(x=>x.pid==='r'),base=v183OptChoose;v183OptChoose=function(mm,pp,list){return {choice:{kind:'high',ref:'r',q,target:{x:q.x,y:q.y},u:.01,gain:.01,loss:0},drawn:false};};
   try{v157Decide(m,p,m.people.filter(x=>x.t===0&&x!==p&&!x.keeper),m.people.filter(x=>x.t===1));}finally{v183OptChoose=base;}
-  const e=v183TraceEntries(m).at(-1);return {fallback:e.fallback,executed:e.executed,kind:e.kind,decision:m.attackFlow.decision.kind,flight:Boolean(m.flight),carry:m.attackFlow.carry&&Math.abs(m.attackFlow.carry.target.x-p.x)<1e-9};})()`));
+  const e=v183TraceEntries(m).filter(e=>e.type==='options').at(-1);return {fallback:e.fallback,executed:e.executed,kind:e.kind,decision:m.attackFlow.decision.kind,flight:Boolean(m.flight),carry:m.attackFlow.carry&&Math.abs(m.attackFlow.carry.target.x-p.x)<1e-9};})()`));
  assert.deepEqual(r,{fallback:'high',executed:'hold',kind:'high',decision:'hold',flight:false,carry:true});
 });
 check('trace entries are plain data; the decision is plain data in attackFlow',()=>{
  scene({seed:14,attack:[{id:'c',goal:30,lateral:0},{id:'r',goal:22,lateral:5,line:'att'}],defend:[{id:'x',goal:25,lateral:-3}]});decide();
- const t=copy(ev('JSON.stringify(v183TraceEntries(match).at(-1))')),d=copy(ev('JSON.stringify(match.attackFlow.decision)'));
+ const t=copy(ev("JSON.stringify(v183TraceEntries(match).filter(e=>e.type==='options').at(-1))")),d=copy(ev('JSON.stringify(match.attackFlow.decision)'));
  assert.deepEqual(JSON.parse(t).type,'options');const decision=JSON.parse(d);assert.equal(decision.playerId,'c');for(const k of ['at','until','checkAt','value'])assert(Number.isFinite(decision[k]),k);
 });
 

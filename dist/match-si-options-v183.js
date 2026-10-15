@@ -18,8 +18,8 @@
 //          two diagonals); hold = shield on the spot
 // utility = gain*turn discount - loss/risk. L is the opponent's possession value
 // at the loss point (counter weight). Body orientation is a cost of every option:
-// a pass beyond the legacy queue angle (1.05 rad) costs its turn time, a shot
-// loses value away from the heading, and a shot can replace a pending pass turn
+// a pass beyond the legacy queue angle (1.05 rad) costs its turn time, a stub
+// shot loses value away from the heading (SI-3 includes it), and a shot can replace a pending pass turn
 // ("shot from the turn", H5). A pending turn releases at turnRelease rad and
 // turnSpeed m/s.
 // Personality (v183Personality, role and mental values) only weights: shoot
@@ -30,12 +30,13 @@
 // risk weight. Beyond the SI-F personality formula, dec only sets the
 // evaluation noise: a softmax over the options whose temperature falls with dec
 // (dec 20 takes the best option without noise).
-// SI-F stub bridge: a shot estimate with speed:null is the SI-F stub
+// SI-F stub bridge: a shot estimate with stub:true is the SI-F stub
 // (v157ShotQuality, a quality up to 22 m). It is read at the point whose goal
 // distance is range*stubRange/window on the same line and scaled by stubScale,
 // so the skill window applies; a blocker between the shooter and that point
-// halves it. A real estimate (SI-3) is used as it is. Cross header values use
-// the same scale while the shot estimate is the stub.
+// halves it. A real estimate (SI-3, a goal probability) is used as it is;
+// stubScale matches the bridge to it for average finishers at 14-22 m. Header
+// values of the cross stub (until SI-7) scale by stubScale*crossConv.
 // Random draws: one named draw "options.choice", only when at least two options
 // lie inside the noise band. The executed actions keep their native draws.
 // State: attackFlow.decision (plain data: player, option, reference, target,
@@ -46,19 +47,21 @@
 v183RegisterDefaults('options',{
  cadence:.25,              // decision cadence (s, real) after carry/hold
  weightMin:.85,weightMax:1.15, // effective personality span
- windowBase:16,windowFin:.7,   // shooter window (m): 16 + 0.7*fin
- stubRange:22,stubScale:.4,    // SI-F shot stub bridge (see above)
+ windowBase:16,windowFin:.55,   // shooter window (m): 16 + 0.55*fin
+ stubRange:22,stubScale:.6,    // SI-F shot stub bridge (see above)
  threat:.3,threatLength:16,    // possession value .3*exp(-d/16), d metres to goal
  counter:1.6,              // weight of the opponent's possession value after a loss
- recvShot:.85,offer:.3,oneTwo:.03,passMin:2.5,passMax:32,
+ recvShot:1,offer:.3,oneTwo:.03,passMin:2.5,passMax:32,
  turnRelease:.55,turnSpeed:2.5,turnTick:.08,turnCheck:.25,turnTau:1.5,
  shotFree:1.2,shotTurn:.5,switchMargin:.15,
- carryHorizon:1,carryMin:2.5,carryMax:6,carryShot:.55,engage:2,carryFactor:.55,
- holdFactor:.5,crossConv:1,crossMax:30,crossWide:8,laneOne:.5,
+ carryHorizon:1,carryMin:2.5,carryMax:6,carryShot:1, // carry and receiver shots: no discount beyond space, keep and arrival
+ engage:2,carryFactor:.75,
+ holdFactor:.65,crossConv:.67,crossMax:30,crossWide:8,laneOne:.5,
  spaceCount:3,spaceBase:.15,      // space-pass arrival base (calibrated on received space passes)
  noise:.15,noiseFloor:.006,commit:.08,
  scoreRisk:.15,focus:.1,direct:.25,
  close:.5,                 // share of an opponent's run that closes the space until the ball is held
+ xgFalloff:9,              // carry endpoints: shot value falls e-fold every 9 m (from one estimate)
  shootInstruction:1.25,wingInstruction:1.25 // player instructions "Abschluss suchen", "Außenbahn & Flanken"
 });
 const V183_OPT_KEYS=Object.freeze(Object.keys(v183RegisterDefaults('options',{})));
@@ -116,9 +119,9 @@ function v183OptSpace(point,rivals,seconds,P){let near=Infinity;for(const r of r
 // Possession value of p at point after the ball got there (pass or carry):
 // position value (x posFactor) or p's shot from there (x shotFactor), both
 // reduced by the space around him.
-function v183OptHolder(m,p,P,point,rivals,shotFactor,seconds,posFactor=1){
- const space=v183OptSpace(point,rivals,seconds,P);
- return Math.max(v183OptThreat(P,point,p.t)*(.6+.4*space)*posFactor,v183OptShot(m,p,P,point).xg*shotFactor*space);
+function v183OptHolder(m,p,P,point,rivals,shotFactor,seconds,posFactor=1,xg){
+ const space=v183OptSpace(point,rivals,seconds,P),shot=shotFactor>0?(Number.isFinite(xg)?xg:v183OptShot(m,p,P,point).xg):0;
+ return Math.max(v183OptThreat(P,point,p.t)*(.6+.4*space)*posFactor,shot*shotFactor*space);
 }
 // Passes under pressure: opponents near the passer as v55GroundPass counts
 // them (SI-4 key defence.passPressureRadius in metres while defence is on,
@@ -199,12 +202,19 @@ function v183OptKeep(m,p,point,horizon,P,rivals){
 // ahead within 2.1 m sideways; 4 m forward, 3 m to either side where the lane
 // is free) is offered as two further directions with a single challenge.
 function v183OptCarries(m,p,P,ctx){
- const s=v150Scale(),dir=p.t===0?-1:1,goal=v183OptGoal(p.t),gx=(goal.x-p.x)*s.x,gy=(goal.y-p.y)*s.y,gl=Math.hypot(gx,gy)||1,ux=gx/gl,uy=gy/gl;
+ const s=v150Scale(),s0=s,dir=p.t===0?-1:1,goal=v183OptGoal(p.t),gx=(goal.x-p.x)*s.x,gy=(goal.y-p.y)*s.y,gl=Math.hypot(gx,gy)||1,ux=gx/gl,uy=gy/gl;
  const step=clamp(v157Pace(m,p)*P.carryHorizon,P.carryMin,P.carryMax),dirs=[{ref:'goal',x:ux,y:uy},{ref:'straight',x:0,y:dir}];
  for(const side of [-1,1]){const c=Math.cos(.6*side),n=Math.sin(.6*side);dirs.push({ref:side<0?'left':'right',x:ux*c-uy*n,y:ux*n+uy*c});}
- const out=[],body=v157Body(p),loss=v183OptLoss(P,p,p.t);
+ const out=[],body=v157Body(p),loss=v183OptLoss(P,p,p.t),window=P.windowBase+P.windowFin*ability(p,'fin');
+ // One shot estimate per decision for all endpoints: the carrier's own shot, or
+ // at the endpoint toward goal when he is still outside his window; other
+ // endpoints scale it by exp(-(range-range0)/xgFalloff) along the distance.
+ let anchor=ctx.shotNow&&ctx.shotNow.xg>0?{xg:ctx.shotNow.xg,range:ctx.shotNow.range}:null;
+ const shotAt=point=>{const range=v183OptGoalDistance(point,p.t);if(range>window)return 0;
+  if(!anchor){const s=v183OptShot(m,p,P,{x:p.x+ux*step/s0.x,y:p.y+uy*step/s0.y});anchor={xg:s.xg,range:s.range};}
+  return anchor.xg>0?Math.min(.95,anchor.xg*Math.exp((anchor.range-range)/P.xgFalloff)):0;};
  const push=(ref,point,d,keep)=>{
-  const value=v183OptHolder(m,p,P,point,ctx.rivals,P.carryShot,P.carryHorizon,P.carryFactor),turn=Math.max(0,Math.abs(v157Angle(body.heading,Math.atan2(d.x,d.y)))-.5)/ctx.turnRate*.5;
+  const value=v183OptHolder(m,p,P,point,ctx.rivals,P.carryShot,P.carryHorizon,P.carryFactor,shotAt(point)),turn=Math.max(0,Math.abs(v157Angle(body.heading,Math.atan2(d.x,d.y)))-.5)/ctx.turnRate*.5;
   out.push({kind:'carry',ref,target:point,dir:{x:d.x,y:d.y},keep,gain:ctx.w.dribbleWeight*keep*value*Math.exp(-turn/P.turnTau),loss:(1-keep)*loss});
  };
  for(const d of dirs){
@@ -233,7 +243,8 @@ function v183OptFocus(m,p,point,P){
  return 1+(focus==='Außen'?P.focus*wide:focus==='Mitte'?-P.focus*wide:0);
 }
 function v183OptDirect(m,p,gain,P){return m.teamDirect?.[p.t]&&gain>0?1+P.direct*Math.min(1,gain/15):1;}
-// Shot quality away from the body heading (turn and shoot).
+// Shot quality away from the body heading (turn and shoot); only for the SI-F
+// stub, a real estimate (SI-3) includes the body turn in its scatter.
 function v183OptOrient(p,P){const angle=Math.abs(v157Angle(v157Body(p).heading,v183OptHeading(p,v183OptGoal(p.t))));return angle<=P.shotFree?1:clamp(1-(angle-P.shotFree)*P.shotTurn,.25,1);}
 function v183OptShootGain(p,P,w,xg){return w.shootWeight*xg*(hasInstruction(p,'shoot')?P.shootInstruction:1);}
 function v183OptOptions(m,p,allies,rivals,P){
@@ -244,8 +255,8 @@ function v183OptOptions(m,p,allies,rivals,P){
  // A pending action during a turn: the chance to be dispossessed meanwhile.
  const delayed=(o,time)=>{const e=Math.exp(-time/P.turnTau);o.gain*=e;o.loss=e*o.loss+(1-e)*press*here;return o;};
  // Shot ("Abschluss suchen" raises the willingness like the old shot chance x1.5).
- const shot=v183OptShot(m,p,P,p);
- if(shot.xg>0){const orient=v183OptOrient(p,P);list.push({kind:'shot',ref:null,target:null,xg:shot.xg,orient,gain:v183OptShootGain(p,P,w,shot.xg*orient),loss:0});}
+ const shot=v183OptShot(m,p,P,p);ctx.shotNow=shot;
+ if(shot.xg>0){const orient=shot.stub?v183OptOrient(p,P):1;list.push({kind:'shot',ref:null,target:null,xg:shot.xg,orient,gain:v183OptShootGain(p,P,w,shot.xg*orient),loss:0});}
  // Ground passes.
  for(const q of allies){
   if(q.slideActive||offside.has(q))continue;
@@ -359,7 +370,7 @@ v157ContinueTurn=function(m,p,rivals){
   decision.checkAt=now+P.turnCheck;
   const shot=v183OptShot(m,p,P,p);
   if(shot.xg>0){
-   const w=v183OptWeights(p,P),u=v183OptShootGain(p,P,w,shot.xg*v183OptOrient(p,P));
+   const w=v183OptWeights(p,P),u=v183OptShootGain(p,P,w,shot.xg*(shot.stub?v183OptOrient(p,P):1));
    const left=v183OptTurnTime(p,target,P,v183OptTurnRate(p)),e=v183OptPass(m,p,q,turn.kind==='space'?turn.target:null,P,{rivals,offers:new Set(),pressure:v183OptPressure(m,p)},left),wait=Math.exp(-left/P.turnTau),pending=wait*e.arrival*e.receiver-(1-e.arrival)*e.loss/(w.riskWeight*v183OptScoreRisk(m,p,P));
    if(u>pending+P.switchMargin*Math.max(Math.abs(pending),P.noiseFloor)){
     delete m.attackFlow.pendingTurn;
