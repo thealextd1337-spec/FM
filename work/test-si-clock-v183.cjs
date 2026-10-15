@@ -25,8 +25,9 @@ const MATCH_SPEED=.78;
 // The foul scene (v113) is not part of the native harness list; production loads it last.
 // v65Restore of a goal scene shows the goal banner through two UI helpers the VM harness leaves out.
 const harness=()=>{const h=create({view:false});h.run(fs.readFileSync(path.join(root,'dist/player-ball-events-v111.js'),'utf8'),'player-ball-events-v111.js');h.run('var v25DisplaySides=()=>[0,1];');return h;};
-// finish: the keeper hold lines of SI-3 (world-pitch-actions-v99.js:27/37) are real time only with this switch.
-const clockSi=(rate,params={})=>({packages:{clock:true,finish:true},clockRate:rate,params});
+// Only the clock package: the keeper hold of SI-3 is real time for every marked match, and other
+// packages change the match itself, so they stay off here.
+const clockSi=(rate,params={})=>({packages:{clock:true,options:false,offball:false,finish:false,defence:false,setplay:false,field:false},clockRate:rate,params});
 const CLUBS=[{club:'GER-2',seed:'inv0'},{club:'ENG-4',seed:'inv1'},{club:'ESP-1',seed:'inv2'}];
 
 // ----- helpers and registration -----

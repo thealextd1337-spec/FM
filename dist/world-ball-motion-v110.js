@@ -66,7 +66,7 @@ v50ChaseLooseBall=function(delta,positions){
  const current=match,r=current?.rebound;
  if(v65WorldActive&&r&&!current.owner&&!current.flight&&!current.kickoff&&!current.halftimePause&&!current.finished&&Number.isFinite(r.vx)&&Number.isFinite(r.vy)){
   const air=v124AdvanceAir(current,Math.max(0,delta)/(current.si?v183Rate(current):MATCH_SPEED)),loose=v102Motion.get(current)?.loose,airborne=air?!air.settled:loose&&(!loose.drop||loose.free);
-  if(air&&!air.settled)r.delay=Math.max(r.delay,delta+.001);
+  if(air&&!air.settled)r.delay=Math.max(r.delay,delta+.001*(current.si?v183Rate(current)/MATCH_SPEED:1));
   const start={x:r.x,y:r.y},damp=airborne?1:Math.exp(-2.3*Math.max(0,delta)/(current.si?v183Rate(current):MATCH_SPEED)),travel=airborne?Math.max(0,delta):(1-damp)/(2.3/(current.si?v183Rate(current):MATCH_SPEED)),target={x:r.x+r.vx*travel,y:r.y+r.vy*travel},hit=v55Exit(start,target);
   r.vx*=damp;r.vy*=damp;
   if(hit){const contact=v55BoundaryStop(hit);current.ball={x:contact.x,y:contact.y};v55Out(hit,current.lastTouch??0,'Der freie Ball rollt über die Linie.');return}
