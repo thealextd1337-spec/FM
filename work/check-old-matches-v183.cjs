@@ -2,10 +2,11 @@
 // Unmarked and 182 matches must replay byte-identically against the published
 // R132 base e4e531c0: same native state, continuation, P02 ledger and random
 // draws per scene. New matches with marker 183 and every SI package off must
-// equal the 182 constructor result apart from the marker field match.si.
+// equal the 182 constructor result apart from the marker field match.si (the
+// packages are switched off explicitly; completed packages are on by default).
 // Groups: unmarked v182 scenes, 182-marked v182 scenes (loose ball, pursuit),
 // constructor matches without marker (si:false) and constructor matches with
-// marker 183 with every package switched off explicitly (digest without match.si).
+// the default marker 183 (all packages off, digest without match.si).
 // Usage: node work/check-old-matches-v183.cjs [baseRoot]
 // baseRoot defaults to work/tmp-base183; if missing it is created with
 // `git archive e4e531c0 dist work/test-v41.cjs`.
@@ -14,12 +15,13 @@ const BASE_COMMIT='e4e531c0';
 const sha=text=>crypto.createHash('sha256').update(text).digest('hex');
 if(process.env.D6_OLD183_CHILD){
  const {create}=require('./native183-scenes.cjs'),h=create({view:false}),current=h.call('Native183.si'),out=[];
+ const off={packages:{clock:false,options:false,offball:false,finish:false,defence:false,setplay:false,field:false}};
  if(process.env.D6_OLD183_CHILD==='current')assert(current,'SI 183 core is missing in the current tree');
  for(const scene of h.copy(h.call('Native182.oldScenes')))out.push({group:'unmarked',id:scene.id,hash:sha(h.call('Native182.oldDigest',scene))});
  for(const scene of h.copy(h.call('Native183.marked182Scenes')))out.push({group:'marked182',id:scene.id,hash:sha(h.call('Native182.oldDigest',scene))});
  for(const scene of h.copy(h.call('Native183.constructedScenes'))){
   out.push({group:'constructed182',id:scene.id,hash:sha(h.call('Native183.constructedDigest',scene,current?{si:false}:{})),si:h.evaluate('match.si===undefined?null:JSON.stringify(match.si)')});
-  out.push({group:'si183-off',id:scene.id,hash:sha(h.call('Native183.constructedDigest',scene,{withoutSi:true,si:current?{packages:Object.fromEntries(['clock','options','offball','finish','defence','setplay','field'].map(p=>[p,false]))}:undefined})),si:h.evaluate('match.si===undefined?null:JSON.stringify(match.si)')});
+  out.push({group:'si183-off',id:scene.id,hash:sha(h.call('Native183.constructedDigest',scene,current?{si:off,withoutSi:true}:{withoutSi:true})),si:h.evaluate('match.si===undefined?null:JSON.stringify(match.si)')});
  }
  process.stdout.write(JSON.stringify(out));
 }else{
