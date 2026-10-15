@@ -267,7 +267,7 @@ check('the tick check uses the same contact candidates and slide kinematics as p
  assert(v56.includes('info.ball<(world?30.4:39)&&info.body<(world?40:43)'));assert(own.includes('info.ball<30.4&&info.body<40'));
  assert(v56.includes('info.ball>=25&&info.ball<(world?83.2:100)&&info.body<105&&(info.behind||info.ball<info.body)'));assert(own.includes('info.ball>=25&&info.ball<83.2&&info.body<105&&(info.behind||info.ball<info.body)'));
  // Slide: duration .65 * MATCH_SPEED clock units, reach .25/.18 m, contact thresholds 27 (body) and 24/23 (ball).
- assert(v56.includes('delta/(world?.65*MATCH_SPEED:.52)'));assert(own.includes('(.65*MATCH_SPEED)'));
+ assert(v56.includes('delta/(world?.65*'));assert(own.includes('V183_DEF_SLIDE_SECONDS=.65'));assert(!own.includes('MATCH_SPEED'),'no clock-unit conversion in the module');
  assert(v56.includes('const lead=behind?.04:.016,reach=behind?.25:.18'));assert(own.includes('reach=behind?.25:.18'));
  assert(v56.includes('bodyGap<27&&(ballGap>23||slide.behind')&&v56.includes('if(ballGap<24){'));assert(own.includes('bodyGap<27&&(ballGap>23||behind)')&&own.includes('ballGap<24'));
 });
@@ -298,6 +298,28 @@ check('slide filter: level 2 also tries a slide that runs past from the front; l
  assert(found,'a frontal miss geometry exists');
  const tries=filter=>{scene({on:true,si:{params:{defence:{slideForecast:filter}}},defs:[{...found,line:'def'}],carrier:{vy:6}});return ev(`(()=>{const m=match,c=m.owner,t=m.people.find(x=>x.pid==='def0');m.ball={x:c.x+(t.x-c.x)*.5,y:c.y+(t.y-c.y)*.5};Math.random=()=>0;v102State(m).clock+=.1;v182ContactCheck(m);return !!m.slide;})()`);};
  assert.equal(tries(1),false);assert.equal(tries(2),true);assert.equal(tries(0),true);
+});
+
+// ----- clock package: real seconds only -----
+check('with packages.clock and clockRate .42 the slide forecast is the same as at .78 and matches the engine\'s slide speed once SI-0 is in',()=>{
+ const grid=[];for(const lateral of [3.1,2.4,1.9,.6])for(const depth of [29.4,28.6,28,30.6])for(const vy of [0,3,6])grid.push({lateral,depth,vy});
+ const outcomes=rate=>grid.map(g=>{scene({on:true,si:{packages:{clock:true,defence:true},clockRate:rate},defs:[{depth:g.depth,lateral:g.lateral,line:'def'}],carrier:{vy:g.vy}});
+  return ev(`(()=>{const m=match,c=m.owner,t=m.people.find(x=>x.pid==='def0');m.ball={x:c.x+(t.x-c.x)*.5,y:c.y+(t.y-c.y)*.5};return v183DefSlideForecast(m,t,c);})()`);});
+ const fast=outcomes(.78),slow=outcomes(.42);
+ assert.deepEqual(slow,fast,'forecast depends on real seconds only');
+ assert(new Set(fast).size>=2,'the grid covers more than one outcome');
+ // Real slide: progress per real second of the engine at both rates.
+ const progress=rate=>{scene({on:true,si:{packages:{clock:true,defence:true},clockRate:rate},defs:[{depth:27.7,lateral:.4,line:'def'}],carrier:{vy:0}});
+  return ev(`(()=>{const m=match,c=m.owner,t=m.people.find(x=>x.pid==='def0');t.tx=t.x;t.ty=t.y;m.ball={x:c.x+(t.x-c.x)*.45,y:c.y+(t.y-c.y)*.45};Math.random=()=>0;
+   v56StartSlide(t,c);if(!m.slide)return null;const slide=m.slide,rate=v183Rate(m);let seconds=0;
+   for(let i=0;i<2&&m.slide===slide;i++){step(.05*rate,.05);seconds+=.05;}
+   return m.slide===slide?slide.progress/seconds:null;})()`);};
+ const per=[progress(.78),progress(.42)];measurements.slideProgressPerRealSecond={'.78':per[0],'.42':per[1]};
+ const v56=fs.readFileSync(path.join(root,'dist/pitch-v56.js'),'latin1'),realTime=v56.includes('.65*(m.si?v183Rate(m):MATCH_SPEED)');
+ measurements.engineSlideIsRealTime=realTime;
+ // At the legacy rate both forms agree; the real-time form (SI-0) also holds at .42.
+ assert(Math.abs(per[0]-1/.65)<.05,String(per[0]));
+ if(realTime)assert(Math.abs(per[1]-1/.65)<.05,String(per[1]));
 });
 
 // ----- restore -----

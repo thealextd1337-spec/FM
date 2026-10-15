@@ -101,16 +101,19 @@ v56MaybeChallenge=function(victim){
  return v183DefTickGate?v183DefBaseMaybeChallenge(victim):false;
 };
 
-// Forecast of a slide with the kinematics of v56StartSlide/v56AdvanceSlide: the
-// tackler slides to the ball position plus a short follow-through, the carrier
-// and his ball keep their observed velocity. The first event decides: 'ball' (ball
-// gap < 24/32 m), 'foul' (body gap < 27/32 m with the ball not reached, or from
+// A slide takes .65 real seconds (pitch-v56.js:47: progress per real second is 1/.65 and
+// independent of the clock rate once SI-0 divides by .65 * rate for marked matches).
+const V183_DEF_SLIDE_SECONDS=.65;
+// Forecast of a slide with the kinematics of v56StartSlide/v56AdvanceSlide, in real
+// seconds: the tackler slides to the ball position plus a short follow-through, the
+// carrier and his ball keep their observed velocity. The first event decides: 'ball'
+// (ball gap < 24/32 m), 'foul' (body gap < 27/32 m with the ball not reached, or from
 // behind) or 'miss'.
 function v183DefSlideForecast(m,slider,victim){
  const s=v150Scale(m),body=v157Body(victim),vx=body.vx/s.x,vy=body.vy/s.y,forward=v56Forward(victim),behind=v56ApproachInfo(slider,victim).behind;
  const ball={...m.ball},reach=behind?.25:.18,from={x:slider.x,y:slider.y};
  const target={x:clamp(ball.x+forward.x*reach/s.x,.06,.94),y:clamp(ball.y+forward.y*reach/s.y,.06,.94)};
- const rate=v183Rate(m)/(.65*MATCH_SPEED),metres=(a,b)=>Math.hypot((a.x-b.x)*s.x,(a.y-b.y)*s.y)*32;
+ const rate=1/V183_DEF_SLIDE_SECONDS,metres=(a,b)=>Math.hypot((a.x-b.x)*s.x,(a.y-b.y)*s.y)*32;
  for(let t=0;t<=1;t+=.05){
   const q=Math.min(1,rate*t),eased=1-(1-q)*(1-q),tackler={x:from.x+(target.x-from.x)*eased,y:from.y+(target.y-from.y)*eased};
   const carrier={x:victim.x+vx*t,y:victim.y+vy*t},ballAt={x:ball.x+vx*t,y:ball.y+vy*t},bodyGap=metres(tackler,carrier),ballGap=metres(tackler,ballAt);
