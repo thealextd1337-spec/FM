@@ -54,7 +54,7 @@ function v154PhysicalAssignment(context,person,side){
 function v154KeeperDepthTarget(m,p){
  const f=m.flight,meta=f&&typeof v102Flights!=='undefined'&&v102Flights.get(f);
  if(m.owner||m.rebound||!f||f.team===p.t||meta?.kind!=='pass'||meta.high||v113KeeperReacting(m,p))return null;
- const observed=f.progress*f.duration/MATCH_SPEED,remaining=(1-f.progress)*f.duration/MATCH_SPEED;
+ const observed=f.progress*f.duration/(m.si?v183Rate(m):MATCH_SPEED),remaining=(1-f.progress)*f.duration/(m.si?v183Rate(m):MATCH_SPEED);
  if(!(observed>0&&remaining>0))return null;
  // Extrapolate only the ground ball already observed, never a future result or receiver.
  const vx=(m.ball.x-f.x)/observed,vy=(m.ball.y-f.y)/observed,dir=p.t===0?-1:1;
@@ -83,7 +83,7 @@ function v154TryDribble(m,p,allies,rivals){
  const options=[-3,3].map(side=>({x:p.x+side/s.x,y:p.y+dir*4/s.y})).filter(point=>point.x>=v55Field.left+1/s.x&&point.x<=v55Field.right-1/s.x&&point.y>=v55Field.top+1.4/s.y&&point.y<=v55Field.bottom-1.4/s.y&&v154DribbleLane(m,p,point));
  options.sort((a,b)=>Math.min(...rivals.map(q=>v122Metres(q,b)))-Math.min(...rivals.map(q=>v122Metres(q,a))));
  if(!options.length)return false;
- p.roleDribble={...options[0],until:m.elapsed/MATCH_SPEED+.32};m.next=m.elapsed+.32*MATCH_SPEED;
+ p.roleDribble={...options[0],until:m.elapsed/(m.si?v183Rate(m):MATCH_SPEED)+.32};m.next=m.elapsed+.32*(m.si?v183Rate(m):MATCH_SPEED);
  return true;
 }
 function v154RoleTarget(m,p,dt){
@@ -96,7 +96,7 @@ function v154RoleTarget(m,p,dt){
   return;
  }
  if(p===owner&&p.roleDribble){
-  if(p.roleDribble.until>=m.elapsed/MATCH_SPEED&&v154DribbleLane(m,p,p.roleDribble)){p.tx=p.roleDribble.x;p.ty=p.roleDribble.y;}
+  if(p.roleDribble.until>=m.elapsed/(m.si?v183Rate(m):MATCH_SPEED)&&v154DribbleLane(m,p,p.roleDribble)){p.tx=p.roleDribble.x;p.ty=p.roleDribble.y;}
   else delete p.roleDribble;
  }
  if(owner&&p!==owner&&attacking){

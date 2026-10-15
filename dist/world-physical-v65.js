@@ -433,7 +433,7 @@ function v65StartLoop(){
   const context=v65Context();if(!context||context.state.phase!=='live'||!v65WorldActive)return;
   const now=performance.now();
   const real=Math.min((now-v65LastFrame)/1000,.05);v65LastFrame=now;
-  try{step(real*MATCH_SPEED,real);if(context.state.phase==='live'&&!match.finished)v65AfterStep(context);draw();if(v65PauseRequested&&!match.flight&&!match.slide&&context.state.phase==='live'){v65PauseRequested=false;v65Pause();if(v65PendingExit){v65PendingExit=false;v65Leave(true).catch(v65ExitError)}}}
+  try{step(real*(match.si?v183Rate(match):MATCH_SPEED),real);if(context.state.phase==='live'&&!match.finished)v65AfterStep(context);draw();if(v65PauseRequested&&!match.flight&&!match.slide&&context.state.phase==='live'){v65PauseRequested=false;v65Pause();if(v65PendingExit){v65PendingExit=false;v65Leave(true).catch(v65ExitError)}}}
   catch(error){context.state.phase='paused';running=false;clearInterval(v65WorldFrame);v65Snapshot(context);v65UpdateControls(context);const target=$('#v65-error');if(target)target.textContent=error.message;return}
  };
  v65WorldFrame=setInterval(tick,40);
