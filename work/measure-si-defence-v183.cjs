@@ -47,7 +47,9 @@ const observer=String.raw` // ---- SI-4 observers (read only; no random draws) -
  wrap('v182ContactCheck',(base,self,args)=>{const d=sync();if(P.rec){const m=args[0],team=typeof v123PossessionTeam==='function'?v123PossessionTeam(m):null;if(team!=null&&D.lastPossession!==null&&team!==D.lastPossession&&m.owner&&!m.owner.keeper){const loser=D.lastPossession;d.turnovers.push({t:+v102Clock(m).toFixed(2),loser,gainer:team,loserFinal3:P.toGoal(m.ball,loser)<=v160PitchLength()/3,distLoserGoal:+P.toGoal(m.ball,loser).toFixed(1)});}if(team!=null)D.lastPossession=team;}return base.apply(self,args);});
 `;
 once(' // Decisions of the ball carrier in the attacking half: what was chosen?',observer+' // Decisions of the ball carrier in the attacking half: what was chosen?');
-once('const extras={rebounds,shotResults,','const extras={defence:window.__d183?window.__d183.take():null,rebounds,shotResults,');
+// extras literal: with the SI-0 freshness record ("fresh") or the SI-F form
+if(src.includes('extras={fresh,rebounds,shotResults,'))once('extras={fresh,rebounds,shotResults,','extras={defence:window.__d183?window.__d183.take():null,fresh,rebounds,shotResults,');
+else once('const extras={rebounds,shotResults,','const extras={defence:window.__d183?window.__d183.take():null,rebounds,shotResults,');
 once('const siOverride=Object.keys(si).length?si:null;',`for(const p of ${JSON.stringify('__OFF__')}.split(',').filter(Boolean)){si.packages=si.packages||{};si.packages[p]=false;}
 const siOverride=Object.keys(si).length?si:null;`);
 src=src.replace('__OFF__',off.join(','));

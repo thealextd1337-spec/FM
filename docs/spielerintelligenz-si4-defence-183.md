@@ -89,7 +89,7 @@ Alle Zeiten sind die native Kontaktuhr `v102Clock` (Echtzeit); die Parameter sin
 
 ## Restore (Plain-Daten)
 
-Laufzustand in `m.attackFlow.defence = {tick, poss, counter:{team,at,until}|null, cover:[pid|null,pid|null], slideAt|null}` (nur JSON-Werte, Pids statt Objekte, `null` statt unendlich). Die Leseaufzeichnung `attackFlow.defenseReads` trägt das Feld `kind`. Der Zustand liegt in `attackFlow` und wird mit `nativeContinuation` gespeichert; `v65Snapshot`/`v65Restore` blieben unverändert. Das Protokoll (`v183Trace`) ist flüchtig.
+Laufzustand in `m.attackFlow.defence = {tick, poss, counter:{team,at,until}|null, cover:[pid|null,pid|null], slideAt|null}` (nur JSON-Werte, Pids statt Objekte, `null` statt unendlich). Die Leseaufzeichnung `attackFlow.defenseReads` trägt das Feld `kind`. Der Zustand liegt in `attackFlow` und wird mit `nativeContinuation` gespeichert; `v65Snapshot`/`v65Restore` blieben unverändert. Das Protokoll (`v183Trace`) ist flüchtig. B19-Werkzeug (`work/check-restore-completeness-v183.cjs`): `--quick` 10 Szenen grün; `work/check-restore-defence-v183.cjs` prüft mit dem Werkzeug Absicherer, Gegenpressing-Fenster und Grätschenkadenz im echten Browserspiel (Standard- und Großfeld, Snapshot → JSON → Restore, tiefer Zustandsvergleich, Fortsetzung bis zum Abpfiff): 6 von 6 Szenen ausgelöst und grün. Das Paket besitzt keine modulweite WeakMap.
 
 ## Messung (192 gepaarte Partien, 96 Vereine × 2 Feldgrößen, Uhr 0,42, SI-F-Basis = `--packages=clock,-defence`, gleiche `dist`-Kopie)
 
@@ -139,9 +139,26 @@ Bewertung gegen die Kriterien:
 
 Rechenzeit: 14,3 s gegenüber 13,2 s je Partie im Browser unter Last (+8 %, ganze Engine).
 
+### Kontrolle auf dem Integrationsstand (SI-0 und SI-3 aktiv)
+
+48 gepaarte Partien (24 Vereine × 2 Feldgrößen), Uhr 0,42, Pakete `clock` und `finish` an, Stand `b28e3ab6`. Mit SI-0 (Echtzeit-Erholungszeiten) steigen die Grätschen und Fouls im Basisstand stark an; SI-4 ist dort das Gegengewicht.
+
+| Kennzahl | `defence` aus | Vorgaben (`slideForecast` 2) | `slideForecast` 0 |
+| --- | ---: | ---: | ---: |
+| Freistöße | 8,52 | 2,63 (−5,9 ±1,0) | 4,27 (−4,3 ±0,8) |
+| davon Fouls aus Grätschen / stehend | 7,1 / 1,15 | 1,23 / 1,21 | – |
+| Grätschenstarts / gewonnen | 12,8 / 2,29 | 3,6 / – | 6,5 / 1,13 |
+| Schüsse | 7,23 | 4,90 (−2,3 ±0,7) | 5,69 (−1,5 ±0,8) |
+| Tore | 2,23 | 1,48 (−0,75 ±0,5) | 1,85 (−0,38 ±0,45) |
+| Direkte Freistoßschüsse | 1,60 | 0,40 | – |
+| Ballgewinne im letzten Drittel | 0,81 | 0,58 (−0,23 ±0,35) | 0,69 (−0,13 ±0,31) |
+| Favoriten (N 34) Siege | 64,7 % | 70,6 % | – |
+
+Folgerung für SI-K: Das Foulbudget (≤ 4,5) ist mit den Vorgaben deutlich unterschritten; der Verlust an Freistoßschüssen und folgenden Angriffen kostet dort 0,75 Tore. `defence.slideForecast` = 0 erreicht 4,27 Freistöße mit nur −0,38 Toren und ist der naheliegende Ausgangspunkt der Kalibrierung (Grätschen von hinten bleiben dann Fouls nach B03, werden aber wieder gewählt). Alle Werte sind Vorgaben im Modul und per Konstruktor überschreibbar; 48 Partien lösen Differenzen unter etwa 0,4 Toren nicht auf.
+
 ## Tests
 
-- `node work/test-si-defence-v183.cjs` (28 Prüfungen): Vorgaben und Schalter, alter Pfad (Paket aus: digestgleich zum 182-Konstruktor; ohne Marker; `v50Foul` wie bisher), Radius (Ellipse vs. Meter, beide Feldgrößen), ein Kontaktweg, Kontaktfenster, Foul nur im Kontakt mit Protokoll, B03 für beide Teams, Grätschenvorhersage und -kadenz, Filterstufen, Konstantengleichlauf mit `pitch-v56.js`, Rollen (Absicherer, Zonen, Klebrigkeit), Gegenpressing (Fenster, Rollen, Passwegschneider, Auslaufen, Rückgewinn), Tempo, `v183Clearance` (Auswertung, Ziehungen, Ecke/Einwurf durch die Freiballbahn), Blockrichtung, keine Zufallsziehungen in Planern, Restore (Szene und Gesamtpartie an fünf Zeitpunkten).
+- `node work/test-si-defence-v183.cjs` (28 Prüfungen): Vorgaben und Schalter, alter Pfad (Paket aus: digestgleich zum 182-Konstruktor; ohne Marker; `v50Foul` wie bisher), Radius (Ellipse vs. Meter, beide Feldgrößen), ein Kontaktweg, Kontaktfenster, Foul nur im Kontakt mit Protokoll, B03 für beide Teams, Grätschenvorhersage und -kadenz, Filterstufen, Konstantengleichlauf mit `pitch-v56.js`, Rollen (Absicherer, Zonen, Klebrigkeit), Gegenpressing (Fenster, Rollen, Passwegschneider, Auslaufen, Rückgewinn), Tempo, `v183Clearance` (Auswertung, Ziehungen, Ecke/Einwurf durch die Freiballbahn), Blockrichtung, keine Zufallsziehungen in Planern, Restore (Szene und Gesamtpartie an fünf Zeitpunkten). Dazu `node work/check-restore-defence-v183.cjs --port=4256` (B19-Szenen, Lane B mit Lock).
 - Messwerkzeuge: `work/measure-si-defence-v183.cjs` (Hülle um `measure-si183.cjs` mit lesenden Beobachtern; ändert die Harness nicht), `work/table-si-defence-v183.cjs` (gepaarte Tabelle, Favoriten), `work/measure-si-defence-scenes-v183.cjs` (Ballverlustszenen), `work/measure-si-defence-conversions-v183.cjs` (Mechanismusraten), `work/si-defence-scenes-v183.cjs` (Szenenbau).
 
 ## Übergabe und Weichenbedarf
