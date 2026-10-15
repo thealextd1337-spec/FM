@@ -149,6 +149,22 @@ h.run(`globalThis.Setplay=(function(){
   const pass=probe.pass;probe=null;
   return {planned,restored,takerBefore,takerAfter,pass,saved:N.savedMatch()?.setPiece?.plan||null};
  }
+ // SI-3 coupling: a provisional direct plan is confirmed or revised at execution
+ // (wall in place) through v183DirectFreeKick, never at creation.
+ function freeKickAdvice({seed=1,direct}){
+  stage({on:true,seed:'fka'});clear();
+  const team=0,players=field(team),taker=players[0];for(const p of players)set(p,{fin:10});set(taker,{fin:17});
+  park([taker]);const spot=attack(team,18,2);place(taker,spot);players.slice(1,4).forEach((p,i)=>place(p,attack(team,10+i*2,-4+i*4)));
+  match.ball={...spot};match.lastTouch=1;seeded(17000+seed);
+  const calls=[];globalThis.v183DirectFreeKick=function(m,piece){calls.push({phase:m.setPiece===piece&&piece.phase==='waiting'?'waiting':'other',wait:piece.wait});return {direct,range:18,limit:24,xg:direct?.12:.02};};
+  let shots=stat(taker,'shots'),planned=null,executed=null,pass=null;
+  try{
+   v50Restart('freeKick',team,spot,'Freistoßprobe');planned=JSON.parse(JSON.stringify(match.setPiece.plan));const atCreation=calls.length;
+   probe={};let i=0;for(;i<600&&match.setPiece;i++)N.advance();for(let j=0;j<5;j++)N.advance();
+   executed=match.setPiece?null:'done';pass=probe.pass?{receiver:probe.pass.receiver,options:probe.pass.options}:null;probe=null;
+   return {planned,atCreation,calls:calls.length,shot:stat(taker,'shots')-shots,pass,notes:notes.filter(t=>t.includes('Freistoß')).slice(-2)};
+  }finally{delete globalThis.v183DirectFreeKick;probe=null;}
+ }
  function cornerRestore({seed=1,team=0}){
   stage({on:true,seed:'cr'});clear();match.lastTouch=1-team;
   seeded(16000+seed);
@@ -182,7 +198,7 @@ h.run(`globalThis.Setplay=(function(){
    return {cross:JSON.stringify({...a,trace:undefined,texts:a.texts}),digest};
   }finally{if(swap){v122PlanAir=keep.plan;v122ResolveAir=keep.resolve;v131CornerFormation=keep.formation;v182FreeKickPlan=keep.fk;v50TakeFreeKick=keep.take;v50BestTaker=keep.taker;v183AirFinish=keep.finish;v183CrossEstimate=keep.estimate;}}
  }
- return {stage,cross,duel,lonely,corner,estimate,finish,freeKickPlan,freeKickRestore,cornerRestore,secondBallRestore,legacyTwin,notes:()=>notes.slice()};
+ return {stage,cross,duel,lonely,corner,estimate,finish,freeKickPlan,freeKickRestore,freeKickAdvice,cornerRestore,secondBallRestore,legacyTwin,notes:()=>notes.slice()};
 })();`,'setplay-probe');
 
 const S=(name,...args)=>copy(h.call('Setplay.'+name,...args));
@@ -288,6 +304,12 @@ check('free-kick plan: direct only by the best shooter inside his window (one dr
  const far=S('freeKickPlan',{spotDepth:40,takerFin:17,boxAllies:3});assert.equal(far.draws,0);assert.equal(far.plan.kind,'pass');
  const cross=S('freeKickPlan',{spotDepth:28,spotLateral:8,takerFin:10,otherFin:10,boxAllies:3});assert.equal(cross.plan.kind,'cross');assert(cross.plan.targetPid);assert.equal(cross.plan.direct,false);
  assert.equal(JSON.stringify(cross.plan),JSON.stringify(JSON.parse(JSON.stringify(cross.plan))));
+});
+check('free-kick with SI-3: the direct plan is provisional at creation and confirmed or revised by v183DirectFreeKick only at execution (wall in place)',()=>{
+ const yes=S('freeKickAdvice',{seed:1,direct:true}),no=S('freeKickAdvice',{seed:1,direct:false});
+ for(const r of [yes,no]){assert.equal(r.planned.kind,'direct',JSON.stringify(r.planned));assert.equal(r.planned.provisional,true);assert.equal(r.atCreation,0,'no SI-3 call at creation');assert(r.calls>=1,'asked at execution');}
+ assert.equal(yes.shot,1,'confirmed plan shoots');assert.equal(no.shot,0,'refused plan does not shoot');
+ assert(no.pass&&no.pass.options.cross===true,'refused plan turns into the cross variant from the current positions');
 });
 check('free-kick cross restore: the plan survives the checkpoint with its taker and is executed as a cross to the planned receiver',()=>{
  const r=S('freeKickRestore',{seed:2});

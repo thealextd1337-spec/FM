@@ -341,25 +341,43 @@ v50BestTaker=function(team,type,spot){
 // otherwise a cross to the best header when enough team-mates are near the goal
 // and the spot is 12-36 m out; otherwise today's short pass to the most advanced
 // team-mate. The plan is plain data in the saved set piece.
-const v183BaseFreeKickPlan=v182FreeKickPlan;
-v182FreeKickPlan=function(m,setPiece){
- if(!v183SetplayOn(m))return v183BaseFreeKickPlan.apply(this,arguments);
- const P=key=>v183SP(m,key),team=setPiece.team,taker=setPiece.taker,s=v160PitchScale(m),fin=ability(taker,'fin'),field=v50Outfield(team),allies=field.filter(p=>p!==taker);
- const bestShooter=!field.some(p=>ability(p,'fin')>fin+1e-9);
- // With SI-3 the direct attempt follows its recommendation (range, free angle,
- // minimum goal probability of the placement model; no draw). Until then the
- // window above and one draw by finishing decide.
- const advice=typeof v183DirectFreeKick==='function'?v183DirectFreeKick(m,setPiece):null;
- const direct=advice?Boolean(bestShooter&&advice.direct):bestShooter&&v183FreeKickWindow(m,team,setPiece.spot,taker)&&random()<clamp(P('freeKickDirectBase')+(fin-10)*P('freeKickDirectFin'),.1,.9); // setplay.freeKickDirect
- if(direct)return {direct:true,targetPid:null,kind:'direct'};
+// Pass variants of a free kick: a cross to the best header when enough
+// team-mates stand near the goal and the spot is 12-36 m out, else today's
+// short pass to the most advanced team-mate. Plain data for the saved set piece.
+function v183FreeKickVariant(m,setPiece){
+ const P=key=>v183SP(m,key),team=setPiece.team,taker=setPiece.taker,s=v160PitchScale(m),allies=v50Outfield(team).filter(p=>p!==taker);
  const {dist}=v183GoalFrame(m,team,setPiece.spot),box=allies.filter(p=>v115GoalDistance(p)<=20&&Math.abs(p.x-.5)*s.x<=12);
  if(dist>=12&&dist<=36&&box.length>=P('freeKickCrossAllies')){const target=[...box].sort((a,b)=>ability(b,'air')+ability(b,'pos')*.4-ability(a,'air')-ability(a,'pos')*.4||a.n-b.n)[0];return {direct:false,targetPid:target.pid,kind:'cross'};}
  const target=[...allies].sort((a,b)=>(team===0?a.y-b.y:b.y-a.y)||distance(a,taker)-distance(b,taker))[0]||null;
  return {direct:false,targetPid:target?target.pid:null,kind:'pass'};
+}
+// Plan at creation (v50Restart, before wall and defenders are placed): the
+// direct attempt is provisional and needs the best shooter inside his window.
+// With SI-3 present it is confirmed at execution by v183DirectFreeKick once the
+// wall stands (v50TakeFreeKick below); without SI-3 one draw by finishing
+// decides here, as the base plan draws at creation too.
+const v183BaseFreeKickPlan=v182FreeKickPlan;
+v182FreeKickPlan=function(m,setPiece){
+ if(!v183SetplayOn(m))return v183BaseFreeKickPlan.apply(this,arguments);
+ const P=key=>v183SP(m,key),team=setPiece.team,taker=setPiece.taker,fin=ability(taker,'fin'),field=v50Outfield(team);
+ const bestShooter=!field.some(p=>ability(p,'fin')>fin+1e-9),window=bestShooter&&v183FreeKickWindow(m,team,setPiece.spot,taker);
+ const direct=window&&(typeof v183DirectFreeKick==='function'||random()<clamp(P('freeKickDirectBase')+(fin-10)*P('freeKickDirectFin'),.1,.9)); // setplay.freeKickDirect (only without SI-3)
+ if(direct)return {direct:true,targetPid:null,kind:'direct',provisional:typeof v183DirectFreeKick==='function'};
+ return v183FreeKickVariant(m,setPiece);
 };
+// Execution: a provisional direct plan asks v183DirectFreeKick now that the
+// wall and the defenders stand (range, free angle, goal probability incl. the
+// block); a refusal turns the plan into the cross/pass variant from the current
+// positions. The revised plan stays plain data in the set piece.
 const v183BaseTakeFreeKick=v50TakeFreeKick;
 v50TakeFreeKick=function(setPiece){
- const m=match;if(!v183SetplayOn(m)||setPiece.type==='offside'||setPiece.plan?.kind!=='cross')return v183BaseTakeFreeKick.apply(this,arguments);
+ const m=match;if(!v183SetplayOn(m)||setPiece.type==='offside')return v183BaseTakeFreeKick.apply(this,arguments);
+ if(setPiece.plan?.kind==='direct'&&typeof v183DirectFreeKick==='function'){
+  const advice=v183DirectFreeKick(m,setPiece);
+  if(advice&&!advice.direct){setPiece.plan={...v183FreeKickVariant(m,setPiece),revised:'direct'};v183Trace(m,{kind:'free-kick-revised',taker:setPiece.taker,to:setPiece.plan.kind,xg:Number.isFinite(advice.xg)?+advice.xg.toFixed(3):null});}
+  else if(advice)setPiece.plan={direct:true,targetPid:null,kind:'direct',xg:Number.isFinite(advice.xg)?+advice.xg.toFixed(3):null};
+ }
+ if(setPiece.plan?.kind!=='cross')return v183BaseTakeFreeKick.apply(this,arguments);
  const taker=setPiece.taker,team=setPiece.team,receiver=v50Outfield(team).find(p=>p!==taker&&p.pid===setPiece.plan.targetPid);
  if(!receiver)return v183BaseTakeFreeKick.apply(this,arguments);
  v50Spot(taker,setPiece.spot);m.owner=taker;m.ball={...setPiece.spot};m.offsideVisual=null;
