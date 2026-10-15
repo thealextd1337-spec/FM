@@ -41,7 +41,7 @@ function v161UnitySlide(current,person,turned){
  const target=slide?slide.target:{x:person.x+(person.motionX||0),y:person.y+(person.motionY||0)};
  const from=slide?slide.from:person,a=v98PitchPoint(from,turned),b=v98PitchPoint(target,turned);
  const remaining=Math.max(0,(person.recoverUntil||0)-current.elapsed);
- return {id:'slide:'+person.pid,kind:slide?'slide':'slideRecovery',progress:slide?Math.max(0,Math.min(1,slide.progress)):Math.max(0,Math.min(1,1-remaining/.6)),duration:slide ? .65 : .6/MATCH_SPEED,contactWorld:{...b,height:.29},facing:{x:b.x-a.x,z:b.z-a.z}};
+ return {id:'slide:'+person.pid,kind:slide?'slide':'slideRecovery',progress:slide?Math.max(0,Math.min(1,slide.progress)):Math.max(0,Math.min(1,1-remaining/(current.si?.6*(v183Rate(current)/MATCH_SPEED):.6))),duration:slide ? .65 : .6/MATCH_SPEED,contactWorld:{...b,height:.29},facing:{x:b.x-a.x,z:b.z-a.z}};
 }
 function v119TravelFacing(current,person,turned){
  const motion=person.offenseMotion,defensive=typeof v108MovementMode==='function'&&v108MovementMode(current,person);
