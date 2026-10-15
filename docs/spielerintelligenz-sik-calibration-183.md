@@ -1,6 +1,6 @@
 # Spielerintelligenz 183: SI-K Integration und Kalibrierung
 
-Stand: 15. Oktober 2026. Branch `feat/si-calibration` (Worktree `work/si-calibration`), abgezweigt von `integration/si-r133` = `ff0bbd8d` (SI-F, B19, B20, SI-0, SI-3, SI-4, SI-7, SI-2, SI-1, SI-5, U-1, B21). Auftrag: [Umsetzungsplan](spielerintelligenz-umsetzungsplan-2026-10-14.md) Abschnitt 10, Zielwerte 2.3 (Torziel 15. Oktober 2026, [Entscheidungen](entscheidungen.md)). Keine Veröffentlichung, keine Fußversion, kein WebGL-Build.
+Stand: 16. Oktober 2026. Branch `feat/si-calibration` (Worktree `work/si-calibration`), abgezweigt von `integration/si-r133` = `ff0bbd8d` (SI-F, B19, B20, SI-0, SI-3, SI-4, SI-7, SI-2, SI-1, SI-5, U-1, B21). Auftrag: [Umsetzungsplan](spielerintelligenz-umsetzungsplan-2026-10-14.md) Abschnitt 10, Zielwerte 2.3 (Torziel 15. Oktober 2026, [Entscheidungen](entscheidungen.md)). Keine Veröffentlichung, keine Fußversion, kein WebGL-Build.
 
 ## Messaufbau
 
@@ -66,3 +66,278 @@ Je Seed-Satz (beide Feldgrößen): Schüsse 13,22 / 13,03 / 12,83, Tore 2,99 / 2
 | SI-5 ohne Reserve; `windowGain` 14–15 | Reihe A: 87,8 % Schüsse, 88,6 % Tore, Zonenzeit 85,6 % (p01r132 76,8 %). | Abnahme hält; Prüfung erneut in Reihe B. |
 | Belastung v158 auf dem großen Feld | Frische Feldspieler 53,3 (groß) gegen 54,9 (Standard), Torwart 83,5 / 83,0. Kein Abbruch, keine zurückdatierten Ereignisse. | Großes Feld unauffällig. |
 | Torwart- und Feldfrische | Feldspieler 54,1 statt Produktreferenz 40 ± 5, Torwartverbrauch 16,8 statt 40; schon im SI-F-Basisstand so (SI-0). | **verschoben:** Kalibrierung des Belastungsmodells v158 gehört nicht zu den SI-Parametern (Karriere-`loadParameters`); Nutzerentscheidung oder eigenes Paket. |
+
+## Kalibrierungsrunde
+
+Drei Iterationen mit je 192 gepaarten Partien (96 Vereine × 2 Feldgrößen, Seed-Satz `p01r132`, auf Lane A und C geteilt). Die Reihenfolge folgt dem Plan:
+- (a) Platzierung und Torwart
+- (b) Persönlichkeit und Schussfenster
+- (c) Flanken
+- (d) Kontakt und Pressing
+- (e) zuletzt die Uhr
+
+Basis ist die Protokollserie von Reihe A (`sik-tr-a`/`sik-tr-c`, partieweise digestgleich mit `sik-a`). Die Kandidaten für (a) stammen aus der Offline-Auswertung des SI-3-Modells auf den protokollierten Schüssen der jeweils letzten Serie (`work/calibrate-si-k-finish-v183.cjs`). Sie traf die Messung auf ±0,6 Punkte Tore je Schuss.
+
+| Kennzahl (beide Feldgrößen) | Basis (A, p01r132) | Iteration 1 | Iteration 2 | Iteration 3 = Endwerte | Ziel |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Uhrrate | 0,42 | 0,42 | 0,42 | **0,36** | – |
+| Dauer (min) | 4,22 | 4,33 | 4,28 | 4,98 | 4,8–5,2 |
+| Schüsse | 13,22 | 13,08 | 12,98 | 15,46 | 12–16 |
+| Tore | 2,99 | 3,57 | 3,36 | 3,94 | 3–5, ≈4 |
+| Tore je Schuss | 22,2 % | 27,1 % | 25,6 % | 25,2 % | 25–32 % |
+| 0:0 / ≥7 Tore | 9,4 / 6,3 % | 4,7 / 10,9 % | 5,7 / 7,3 % | 4,2 / 15,6 % | ≤6 %; 5–15 % |
+| Favoriten ≥1 / Tordifferenz je Stärkepunkt | 72 % / 0,73 | 81 % / 0,87 | 75 % / 0,81 | 80 % / 1,01 | ≥62 %; ≥0,35 |
+| Abschlussverhältnis / Torwartabstand | 2,56 / 9,3 | 2,87 / 11,3 | 2,11 / 17,7 | 2,71 / 19,6 | ≥1,8; ≥10 |
+| Fernschussanteil / von Abschluss ≥13 / Tore Abschluss ≥14 | 33,6 / 53 / 22 % | 23,0 / 67 / 27 % | 24,4 / 66 / 20 % | 23,1 / 68 / 24 % | 12–20; ≥75; 15–25 % |
+| Kopfball-/Volleyschüsse / Ecken / Freistöße | 0,47 / 1,36 / 2,78 | 0,58 / 1,46 / 2,88 | 0,48 / 1,31 / 2,82 | 0,68 / 1,59 / 3,30 | ≥0,6; ≥1,2; ≤4,5 |
+| Abprallerschüsse ≤5 s | 0,60 | 0,55 | 0,55 | 0,68 | ≥0,3 |
+| Großes Feld / Standard: Schüsse / Tore | 88,4 / 89,8 % | 89,2 / 85,9 % | 88,7 / 78,9 % | 92,4 / 94,8 % | ≥85 % |
+| Ballführer Höchsttempo je Partie (m/s) | 7,03 | 7,30 | 7,31 | 7,32 | – |
+
+Gepaarte Differenzen (±95 %):
+- Iteration 1 gegen Basis: Tore +0,58 ±0,33, Schüsse −0,14 ±0,45, Fernschüsse −1,40 ±0,35.
+- Iteration 2 gegen 1: Tore −0,21 ±0,29.
+- Iteration 3 gegen 2: Dauer +0,71 ±0,07 min, Schüsse +2,48 ±0,46, Tore +0,57 ±0,33.
+
+**Iteration 1**
+- (a) `finish.spreadBase` 0,037 → 0,032, `spreadSkill` 0,584 → 0,5, `spreadFlat` 2,22 → 1,6, `reachBase` 1,39 → 1,2, `reachGk` 0,066 → 0,08.
+- (b) `options.windowBase`/`windowFin` 16/0,55 → 12,5/0,75: über 22 m erst ab wirksamem Abschluss 12,7 statt 10,9, Abschluss 18 reicht bis 26 m. Persönlichkeitsspanne `weightMin`/`weightMax` 0,85–1,15 → 0,8–1,2.
+- Ballführer-Laufziel `offball.carrierBrakeLead` 0,25 (siehe Klärung der offenen Punkte).
+
+Ergebnis: Tore je Schuss stiegen wie offline erwartet (26,4 % erwartet, 27,1 % gemessen). Auf dem Standardfeld kommen Fernschüsse fast nur noch von guten Schützen (94 %). Gute Fernschützen trafen mit 27 % zu oft.
+
+**Iteration 2**
+- (a) Feinjustierung: `spreadBase` 0,035, `spreadFlat` 1,3, `reachGk` 0,09 und `lateralBase` 3,67 → 3,9 (gegen Fernschüsse).
+- (d) `defence.counterWindow`/`counterWindowPress` 2/3 s → 0.
+
+Ergebnis: Fernschüsse mit Abschluss ≥14 sanken auf 20 % Tore je Schuss, der Torwartabstand stieg auf 17,7 Punkte. Das große Feld fiel auf 78,9 % der Tore des Standardfelds. Offline erwartete das Modell für beide Feldgrößen fast gleiche Tore je Schuss (26,0 gegen 26,3 %). Gemessen waren 24,2 gegen 26,8 %; das ist überwiegend Rauschen von 96 Paaren. Trotzdem kostet `lateralBase` beide Feldgrößen ≈0,9 Punkte und trifft das große Feld mit seinen häufigeren Fernschüssen stärker.
+
+**Iteration 3**
+- `lateralBase` zurück auf 3,67.
+- (e) Uhrrate 0,36 als Vorgabe (`V183_CLOCK_RATE`). Aus 4,28 min bei 0,42 folgt 4,28 · 0,42 / 0,36 ≈ 4,99 min; gemessen wurden 4,98 min.
+
+Mit der langsameren Uhr wachsen Schüsse um rund 19 % und Tore um rund 17 %, weil alle Takte in Echtzeit stehen (SI-0).
+
+**(c) Flankenerreichbarkeit** wurde nicht verstellt. Ohne Spielflanken (siehe Befund oben) hätte eine geänderte Erreichbarkeit nur Ecken betroffen, deren Ankunft das Ziel schon erfüllt (45–50 %).
+
+**(d) Kontaktfenster und Pressingtempo** bleiben bei 0,25 s und 1,58 (B03 wie veröffentlicht). Die Freistöße liegen mit 2,8–3,5 weit unter dem Budget, und weniger Pressing würde die Favoriten weiter stärken. Die Kontaktprüfung vor der Entscheidung (S4) wurde nicht übernommen: Sie verlangt eine Codeänderung, senkt den Angriffserfolg und löst kein verfehltes Ziel.
+
+Damit sind die drei Iterationen verbraucht. Was danach noch fehlt, steht unter „Offene Punkte nach SI-K“.
+
+### Parameteränderungen (Vorgaben neuer Partien)
+
+| Parameter | vorher | SI-K | Wirkung (gemessen) |
+| --- | ---: | ---: | --- |
+| Uhrrate `match.si.clockRate` (`V183_CLOCK_RATE`, Kern) | 0,78 (`MATCH_SPEED`) | **0,36** | Dauer 4,98–5,05 min; Ereignisse +17–19 % gegenüber 0,42 |
+| `finish.spreadBase` / `spreadSkill` / `spreadFlat` | 0,037 / 0,584 / 2,22 | 0,035 / 0,5 / 1,3 | aufs Tor 45 → 51 %, Tore je Schuss +4–5 Punkte; Nahbereich bleibt fähigkeitssteil (Verhältnis 2,57) |
+| `finish.reachBase` / `reachGk` | 1,39 / 0,066 | 1,2 / 0,09 | Tore je Schuss aufs Tor 48 → 53 %; Torwartabstand 14 → 17 Punkte |
+| `options.windowBase` / `windowFin` | 16 / 0,55 | 12,5 / 0,75 | Fernschüsse 4,1 → 3,4 je Partie trotz +19 % Spielzeit; Standardfeld 15 % Anteil, 93 % von Abschluss ≥13 |
+| `options.weightMin` / `weightMax` | 0,85 / 1,15 | 0,8 / 1,2 | Schüsse des oberen `shootWeight`-Drittels bei gleichem Abschluss 3,17 → 3,70 je Partie |
+| `offball.carrierBrakeLead` (neu) | – (2 m fest) | 0,25 m | Ballführer-Höchsttempo +0,25 m/s (groß +0,41); Ergebnisse im Rauschen |
+| `defence.counterWindow` / `counterWindowPress` | 2 / 3 s | 0 / 0 | Gegenpressing-Fenster aus (SI-4-Szenen ohne Rückgewinn-Vorteil); Mechanismus per Parameter erhalten |
+
+Alle übrigen Vorgaben bleiben. Das gilt nach der Ballführer-Korrektur auch für `carrierPace` 1,5 und die SI-5-Gains (`carrierPaceGain` 1, `carrierCloseGain` 0,5, `runPaceGain` 0,75, `windowGain` 12).
+
+Einziger neuer Schlüssel ist `offball.carrierBrakeLead`. Gespeicherte 183-Partien ohne diesen Schlüssel lesen die Vorgabe 0,25. Weil Kennung 183 noch nicht veröffentlicht ist, gibt es keine Nutzerspielstände mit 183. Gespeicherte 183-Partien behalten ihre gespeicherten Werte einschließlich `clockRate`; `match.si` wird beim Laden nie ergänzt.
+
+## Abnahmereihe B (Endwerte, Uhr 0,36 per Vorgabe)
+
+576 Partien wie Reihe A, ohne Überschreibungen (`sik-b`, `sik-b-si183b`, `sik-b-si183c`). 0 Ausfälle, 0 Engine-Fehler, keine Pausenticks, `dist` unverändert. Zielspalte: ✓ erfüllt, ✗ verfehlt.
+
+| Kennzahl | Reihe A | Reihe B beide | Standard | groß | Ziel | |
+| --- | ---: | ---: | ---: | ---: | --- | --- |
+| Dauer (min) / 4–6 min / kürzeste | 4,19 / 62 % / 3,09 | **5,05** / 96 % / 3,72 | 5,08 / 97 % / 4,08 | 5,02 / 95 % / 3,72 | 4,8–5,2; ≥85 %; ≥3,7 | ✓ |
+| Schüsse / Anteil 10–18 | 13,03 / 85 % | **15,13** / 80 % | 15,92 / 77 % | 14,33 / 83 % | 12–16; ≥45 % | ✓ |
+| aufs Tor | 45 % | 51 % | 52 % | 50 % | ≥38 % | ✓ |
+| Tore (Standardabweichung) | 2,87 (2,07) | **4,16** (2,49) | 4,45 (2,52) | 3,86 (2,42) | 3–5, ≈4 | ✓ |
+| Tore je Schuss | 21,7 % | **27,1 %** | 27,5 % | 26,6 % | 25–32 % | ✓ |
+| 0:0 | 10,2 % | **4,3 %** | 3,5 % | 5,2 % | ≤6 % | ✓ |
+| Partien mit ≥7 Toren / höchste Torzahl | 4,5 % / 13 | **17,2 %** / 14 | 19,8 % / 14 | 14,6 % / 13 | 5–15 % | ✗ (knapp) |
+| Anteil 3–5 Tore | 41 % | 44 % | 47 % | 42 % | – | |
+| Favoriten ≥1 Punkt (N) / ≥2 | 74 % / 81 % | **81 %** (405) / 90 % | 82 % / 91 % | 81 % / 89 % | ≥62 %, groß ≥60 % | ✓ |
+| Tordifferenz je Stärkepunkt | 0,71 | 1,03 | 1,06 | 1,00 | ≥0,35 | ✓ |
+| Abschluss ≥14 / 10–14 / <10 (Tore je Spielzugschuss) | 36 / 18 / 13 % | 41 / 23 / 16 % | 42 / 23 / 17 % | 41 / 24 / 15 % | – | |
+| Verhältnis Abschluss ≥14 / <10 | 2,68 | **2,57** | 2,48 | 2,66 | ≥1,8 | ✓ |
+| Torwart 10–14 / ≥14 (Tore je Schuss aufs Tor) | 52 / 38 % | 58 / 41 % | 58 / 40 % | 57 / 42 % | – | |
+| Torwartabstand | 14,1 | **17,1** | 18,2 | 15,9 | ≥10 Punkte | ✓ |
+| Fernschüsse: Anteil / von Abschluss ≥13 | 31,8 % / 53 % | **23,0 %** / 65 % | 15,0 % / 93 % | 31,7 % / 51 % | 12–20 %; ≥75 % | ✗ (Standard ✓, groß ✗) |
+| Fernschüsse Abschluss ≥14: Tore je Schuss (aufs Tor) | 19 % | **24 %** (53 %) | 26 % | 23 % | 15–25 % | ✓ |
+| Flanken gesamt / aus dem Spiel | 1,33 / 0 | 1,58 / **0** | 1,71 / 0 | 1,45 / 0 | Spiel ≥2,0 | ✗ |
+| angekommen (fast nur Ecken) | 45 % | 46 % | 44 % | 48 % | ≥45 % | ✓ |
+| Kopfball-/Volleyschüsse (Tore je Schuss) | 0,51 (32 %) | **0,64** (38 %) | 0,67 | 0,61 | ≥0,6 | ✓ |
+| Ecken / Schüsse ≤10 s danach | 1,35 / 0,06 | **1,63** / 0,08 | 1,76 | 1,50 | 1,2–3,0 | ✓ |
+| Abprallergewinn der Angreifer ≤3 s | 26 % | 26 % | 24 % | 27 % | ≥35 % | ✗ |
+| Abprallerschüsse ≤5 s (Kette) | 0,60 (p01r132) | **0,64** | 0,67 | 0,61 | ≥0,3 | ✓ |
+| Fouls / Freistöße / Elfmeter | 2,77 / 2,87 / 0,03 | 3,39 / **3,51** / 0,02 | 3,93 / 3,96 | 2,85 / 3,06 | Freistöße ≤4,5 | ✓ |
+| Großes Feld / Standard: Schüsse / Tore / Zonenzeit | 87,8 / 88,6 / 85,6 % | **90,0 / 86,9** / 84,3 % | | | ≥85 % | ✓ (gepoolt) |
+| Frische Feldspieler / Kondition 9–11 / Torwart (Verbrauch) | 54,1 / 51,3 / 83,2 (16,8) | 54,2 / 51,5 / 82,1 (17,9) | 55,1 | 53,2 | Feld 40 ± 5 | ✗ (vorbestehend) |
+| Rechenzeit je Tick Median / p95 (ms), je Partie (s) | 3,13 / 3,99 / 16,0 | 2,94 / 4,75 / 19,0 | 2,80 | 3,08 | – | 18 Seiten parallel |
+
+Gepaart gegen Reihe A (576 Paare, ±95 %):
+- Dauer +0,86 ±0,04 min, Schüsse +2,10 ±0,26, Tore +1,28 ±0,20.
+- Fernschüsse −0,67 ±0,21, Ecken +0,28 ±0,16, Kopfball-/Volleyschüsse +0,13 ±0,09, Freistöße +0,64 ±0,20.
+- Ballführer-Höchsttempo +0,25 ±0,05 m/s, Frische +0,07 ±0,23.
+
+Je Seed-Satz (p01r132 / si183b / si183c, beide Feldgrößen):
+
+| Kennzahl | p01r132 | si183b | si183c |
+| --- | ---: | ---: | ---: |
+| Dauer (min) | 4,98 | 5,08 | 5,09 |
+| Schüsse | 15,46 | 14,95 | 14,96 |
+| Tore | 3,94 | 4,22 | 4,31 |
+| Tore je Schuss | 25,2 % | 27,8 % | 28,4 % |
+| ≥7 Tore | 15,6 % | 18,8 % | 17,2 % |
+| Favoriten | 80 % | 81 % | 82 % |
+| Großes Feld / Standard: Schüsse / Tore / Zonenzeit | 92,4 / 94,8 / 93,6 % | 87,0 / 83,7 / 83,0 % | 90,6 / 83,2 / 77,7 % |
+
+Gepoolt liegt das Torverhältnis über 85 %, in zwei der drei Seed-Sätze knapp darunter.
+
+**Torverteilung** (Anteil der Partien):
+
+| Tore | beide | Standard | groß |
+| --- | ---: | ---: | ---: |
+| 0 | 4,3 % | 3,5 % | 5,2 % |
+| 1 | 9,7 % | 8,3 % | 11,1 % |
+| 2 | 14,2 % | 10,8 % | 17,7 % |
+| 3 | 15,5 % | 15,3 % | 15,6 % |
+| 4 | 14,9 % | 17,0 % | 12,8 % |
+| 5 | 13,7 % | 14,2 % | 13,2 % |
+| 6 | 10,4 % | 11,1 % | 9,7 % |
+| 7 | 7,3 % | 9,0 % | 5,6 % |
+| 8 | 4,5 % | 3,5 % | 5,6 % |
+| 9 | 3,1 % | 3,8 % | 2,4 % |
+| 10–14 | 2,3 % | 3,4 % | 0,9 % |
+
+Die Streuung bleibt breit (Standardabweichung 2,49 bei einem Mittel von 4,16); Partien mit 7 oder mehr Toren, etwa 4:3, machen 17 % aus. Viele Tore fallen in ungleichen Partien: Bei ≥3 Punkten Stärkeabstand sind es 6,2 Tore (Standard) bzw. 5,6 Tore (groß).
+
+**Schussquellen** (je Partie, Tore je Schuss):
+
+| Quelle | je Partie | Tore je Schuss |
+| --- | ---: | ---: |
+| Spielzug ≤22 m | 8,88 | 29 % |
+| Fernschuss | 3,23 | 17 % |
+| Folge eines Freistoßes ≤10 s | 1,52 | 26 % |
+| Kopfball/Volley | 0,64 | 38 % |
+| Abpraller ≤5 s (ohne die als Kopfball, Ecken- oder Freistoßfolge gezählten) | 0,55 | 39 % |
+| direkter Freistoß | 0,20 | 24 % |
+| Folge einer Ecke | 0,08 | 44 % |
+| Elfmeter | 0,02 | – |
+
+**Fähigkeitsabstufung**
+- Abschluss: 16 / 23 / 41 % Tore je Spielzugschuss (<10 / 10–14 / ≥14), Verhältnis 2,57.
+- Torwart: Tore je Schuss aufs Tor 56 % (gk <10), 58 % (10–14), 41 % (≥14).
+- Luftspiel: Kopfball-/Volleytore je Schuss 27 / 35 / 49 % (<10 / 10–14 / ≥14, n 48 / 223 / 99).
+- Fernschüsse über 22 m: Abschluss 10–14 trifft zu 11 %, Abschluss ≥14 zu 24 % (53 % aufs Tor). Ein Fernschuss wird vor allem dann zum Tor, wenn er genau in die Ecke geht.
+
+**Persönlichkeit**
+- Schüsse je Spieler und Partie nach Rolle: Stoßstürmer 3,27, Torjäger 3,19 (davon Fernschüsse 1,08), Box-to-Box 1,74, Zielspieler 1,12, Dribbler 0,81, Spielmacher 0,54, Verteidigerrollen 0,18–0,36.
+- Bei gleichem Abschluss (11–14, im Mittel 12,1–12,4) schießen Spieler mit hohem `shootWeight` (1,03) 3,70-mal je Partie, mit mittlerem (0,86) 1,18-mal und mit niedrigem (0,72) 1,10-mal. Fernschüsse: 0,98 gegen 0,15.
+- Die Gewichte entstehen aus Rolle, Ruhe und Entscheidungen; Rolle und Position sind dabei nicht getrennt.
+- Unter Druck (Gegner ≤2,5 m) treffen Spieler mit Ruhe ≥12 zu 33 %, mit Ruhe <10 zu 13 %. Im Modell dämpft Ruhe nur den Druckanteil der Streuung; der gemessene Unterschied enthält auch Abschluss und Rolle.
+
+**Belastung v158**
+- Frische nach Abpfiff unverändert gegenüber Reihe A (+0,07 ±0,23): Feldspieler 54,2 (Standard 55,1, groß 53,2), Torwarte 82,1 (Verbrauch 17,9 statt 16,8).
+- Die längere Echtzeit ändert die Feldspieler nicht, weil SI-0 das Zweikampfgewicht mit Rate/0,78 skaliert. Torwarte verbrauchen etwas mehr, weil es mehr Paraden gibt.
+- Kein Abbruch beim Abpfiff in 576 Partien (B21).
+
+### Je Stärkeabstand und Feldgröße (Übergabe an SI-6/P02)
+
+Reihe B; Stärkeabstand = Unterschied des mittleren `ovr` beider Teams.
+
+| Feld | Abstand | Partien | Sieg Favorit | Remis | Tore | Tordifferenz Favorit | Schüsse |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Standard | <1 | 89 | 43 % | 25 % | 3,84 | 0,38 | 16,10 |
+| Standard | 1–2 | 62 | 61 % | 19 % | 3,47 | 1,08 | 14,81 |
+| Standard | 2–3 | 50 | 82 % | 10 % | 3,76 | 2,36 | 15,08 |
+| Standard | ≥3 | 87 | 97 % | 3 % | 6,16 | 4,78 | 17,01 |
+| groß | <1 | 82 | 46 % | 27 % | 2,83 | 0,41 | 14,16 |
+| groß | 1–2 | 69 | 64 % | 26 % | 3,06 | 1,14 | 13,80 |
+| groß | 2–3 | 48 | 73 % | 17 % | 3,50 | 2,00 | 13,77 |
+| groß | ≥3 | 89 | 98 % | 1 % | 5,64 | 4,47 | 15,21 |
+
+Rohdaten je Partie liegen in `outputs/si183/sik-b*.json` (gitignoriert). `work/table-si-calibration-v183.cjs sik-b,sik-b-si183b,sik-b-si183c --strength --json` erzeugt die Tabelle neu.
+
+## Wanduhr (10 Browserpartien)
+
+`work/measure-wallclock-si183.cjs` spielt echte Partien im Browser auf der Produktionsschleife (`v65StartLoop`: `setInterval` 40 ms, Schritte auf 50 ms gedeckelt) mit der vorhandenen Unity-WebGL-Ansicht (`outputs/platform/unity-web`, kein neuer Build).
+- Die Partien sind all-inclusive gemessen: Torszenen, Torwiederholungen, Banner und Wiederanstöße zählen mit.
+- Es gibt keine Taktikpausen: Die Halbzeitpause wird sofort fortgesetzt.
+- Die Partien laufen im Querformat 900 × 430; nur dann startet Unity (`v98Orientation`).
+- Die Vereine wechseln, Standard- und Großfeld abwechselnd.
+- Neben der Wanduhr wird die Summe der tatsächlich gerechneten Echtzeitschritte erfasst. Diese Summe zählt auch die Node-Harness; die Differenz zur Wanduhr ist durch Ruckler verlorene Zeit.
+- Unity war in allen Partien bereit. `dist` und der Unity-Build waren vor und nach dem Lauf hashgleich.
+
+| Lauf | Partien | Wanduhr Mittel (min) | Spanne | gerechnete Zeit (min) | Bemerkung |
+| --- | ---: | ---: | --- | ---: | --- |
+| Software-Rendering (SwiftShader), headless, 2 Seiten parallel | 10 | 5,97 | 4,80–7,37 | – (vor der Erweiterung um die gerechnete Zeit) | Hauptthread blockiert bis 10 s; Zeitverlust durch die 50-ms-Deckelung |
+| GPU (ANGLE/D3D11), headless, 1 Seite | 10 | 6,13 | 4,83–6,77 | 5,88 | Ruckler kosten 7–55 s je Partie (Mittel 15 s); Hauptthread bis 15 s blockiert |
+| Node-Harness, Reihe B (ohne Torwiederholungen) | 576 | 5,05 | 3,72–7,0 | 5,05 | Harness schaltet `v103CanReplay` ab |
+| Reihe B hochgerechnet mit Torwiederholung (3,35 Uhreinheiten / 0,72 ≈ 4,65 s je Tor außer Elfmeter) | 576 | 5,37 | 3,72–7,63 | – | 81 % in 4–6 min |
+
+Die Browserpartien beginnen mit dem ersten Pflichtspiel eines Spitzenvereins und sind deshalb oft ungleich: im Mittel 6,3 Tore (GPU) bzw. 6,4 Tore (Software), etwa 7:0 und 8:0. Ihre Dauer wird deshalb gegen die Node-Regression bei gleicher Torzahl verglichen. Reihe B wächst um 0,18 min je Tor, bei 6,3 Toren sind das 5,44 min. Mit 6,3 Torwiederholungen à 4,65 s ergeben sich 5,92 min; gerechnet wurden 5,88 min, als Wanduhr 6,13 min.
+
+**Befund:** Die Torwiederholung im echten Spiel kostet je Tor etwa 4,7 s. Die Node-Messung enthält sie nicht. All-inclusive liegt eine durchschnittliche Partie (4,16 Tore) deshalb bei ≈5,4 min statt 5,05 min, auf dem Messrechner mit Rucklern bei ≈5,6 min. Das bleibt im Nutzerfenster 4–6 min, aber über dem Ziel 4,8–5,2 min, und nur 81 % statt ≥85 % der Partien liegen im Fenster. Die Dauer ist praktisch proportional zu 1/Rate (SI-0, Iteration 3). Für 5,0 min einschließlich Wiederholungen wäre die Uhrrate **≈0,385–0,39**; die Ereignisse sänken dabei um ≈7 % (≈14 Schüsse, ≈3,9 Tore). Die drei Iterationen sind verbraucht, deshalb bleibt die Vorgabe 0,36. Siehe Nutzerentscheidung unten.
+
+## Offene Punkte nach SI-K
+
+| Punkt | Stand | Einordnung |
+| --- | --- | --- |
+| Ballführertempo-Bremse | Laufziel hinter dem Bremsweg; Höchsttempo +0,25 m/s, großes Feld bis 7,8 m/s | **behoben** |
+| Messdefinition angekommene Flanken / Raumpässe / Abprallerschüsse | Motorzähler `crossComplete`; Raumpässe echt; Abprallerschüsse über die Ledger-Kette | **behoben** (Messung) bzw. **geklärt** |
+| Kopfball-xG gegen Ausführung | SI-3 trifft die Ausführung; die Flankenschätzung unterschätzt Ankunft und Kopfballwert | **geklärt**, Teil von B22 |
+| Uhrrate all-inclusive | Node 5,05 min; mit Torwiederholungen ≈5,4 min, 81 % im Fenster | **Nutzerentscheidung nötig:** Rate ≈0,385–0,39 (zählen Torwiederholungen zur Spieldauer, was „all-inclusive“ nahelegt?), danach Reihe B wiederholen |
+| Spielflanken ≥2,0 | 0 je Partie (B22) | **Nutzerentscheidung/Folgepaket nötig** (Flanke in den Raum) |
+| Fernschussanteil 12–20 %, ≥75 % von Abschluss ≥13 | Standardfeld 15 % / 93 % ✓; großes Feld 31,7 % / 51 % ✗ | **Nutzerentscheidung nötig:** Auf dem großen Feld entstehen Schüsse weiter vom Tor. Ohne die schwachen Fernschüsse (Schussfenster wie Standard) fiele das große Feld auf ≈78 % der Schüsse des Standardfelds. Ziel „großes Feld ≥85 %“ und Fernschussziel widersprechen sich mit den heutigen Hebeln. Alternativ gilt das Fernschussziel nur für das Standardfeld. |
+| Partien mit ≥7 Toren 5–15 % | 17,2 % (Standard 19,8 %, groß 14,6 %) | **knapp verfehlt.** Viele Tore fallen in ungleichen Partien (≥3 Punkte Abstand: 6,2 bzw. 5,6 Tore). Eine Rate von 0,385 senkt die Tore um ≈7 % und brächte den Anteil in die Nähe von 15 %. |
+| Favoriten „rund 65 %“ | 81 % (Ziel ≥62 % erfüllt) | **erfüllt**, aber deutlich über 65 %. Die Fähigkeitssteilheit (Platzierung, Torwart, Optionswahl) wirkt stark; ein Senken wäre eine eigene Nutzerentscheidung. |
+| Abprallergewinn ≥35 % | 26 % | **verschoben.** Abprallerschüsse erfüllt (0,64); der Gewinn hängt an Paradenrichtung und torseitig stehenden Verteidigern, kein Kalibrierhebel ohne Nebenwirkung. |
+| `counterWindow` (SI-4) | 0 (aus) | **entschieden** |
+| Radius 3 m gegen 9 m | getrennt, unterschiedliche Größen | **entschieden** |
+| Kontaktprüfreihenfolge S4 | nicht übernommen | **verschoben** (kein verfehltes Ziel, senkt den Angriffserfolg) |
+| SI-5 ohne Reserve | gepoolt 90,0 % Schüsse / 86,9 % Tore; Seed-Sätze si183b/si183c 83–84 % der Tore | **erfüllt gepoolt, knapp.** Reserve `windowGain` 14–15 nicht genutzt, weil sie die schwachen Fernschüsse des großen Felds erhöht |
+| Belastung v158, großes Feld | unauffällig, kein Abbruch | **erledigt** |
+| Torwart- und Feldfrische | Feld 54 statt 40 ± 5, Torwartverbrauch 18 statt 40 | **verschoben** (Belastungsmodell, nicht SI) |
+| SI-2-Boxszene | Mit den SI-K-Werten wählt der Stoßstürmer in der Testszene knapp den Tiefenlauf statt des zweiten Boxpunkts (9,55 gegen 9,45; vorher 9,23 gegen 9,26). Der Test hält die Szene auf ihrem Entwurfsstand (Rate 0,78, SI-3-Werte vor SI-K). | **eingeordnet**, ohne Messwirkung (Boxbesetzung im Spiel nicht gemessen, weil es keine Spielflanken gibt) |
+
+## Prüfungen
+
+Node 24 (`C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe`), Stand `15d23adf` (Endwerte):
+
+- **SI-Pakettests:** alle grün.
+  - `node work/test-si-core-v183.cjs` (28)
+  - `test-si-clock-v183` (22; die Vorgaberate ist jetzt 0,36)
+  - `test-si-finish-v183` (20)
+  - `test-si-defence-v183` (30; neu: Vorgabe `counterWindow` 0 öffnet kein Fenster. Die Mechanismusszenen setzen 2/3 s ausdrücklich.)
+  - `test-si-setplay-v183` (18)
+  - `test-si-offball-v183` (17; neu: Laufziel hinter dem Bremsweg, `carrierBrakeLead` 0 und Paket aus behalten 2 m. Die Boxszene hält ihren Entwurfsstand.)
+  - `test-si-options-v183` (25; Spanne aus `weightMin`/`weightMax`)
+  - `test-si-field-v183` (14; Fenster aus den registrierten Vorgaben)
+- **Altpartien:**
+  - `node work/check-old-matches-v183.cjs`: grün, 340 Szenen bytegleich gegen `e4e531c0`.
+  - `node work/check-old-matches-v182.cjs work/tmp-sik/base182` (Basis per `git archive e4e531c0 dist work/test-v41.cjs`): grün, 158 Szenen.
+- **Restore:** `node work/check-restore-completeness-v183.cjs --port=4262 --quick` auf Lane C: grün, 10 Läufe.
+- **Workflow-Block „Spieltests ausführen“** aus `.github/workflows/deploy.yml`: 117 Befehle (115 Node, 2 Python), alle Exit 0. Lauf über `work/tmp-sik/run-deploy-tests.cjs` (gitignoriert), einzeln protokolliert.
+- **Artefakte zurückgesetzt:** `git checkout -- outputs docs/spieler-nutzer-rig`.
+- **Rot:** keine.
+
+## Reproduktion
+
+```powershell
+$node='C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe'
+# Reihe A (Stand ff0bbd8d, Uhr 0,42 per Override), je Lane ein Seed-Satz
+& $node work/measure-si-calibration-v183.cjs --clockRate=0.42 --clubs=96 --workers=6 --port=4250 --label=sik-a
+& $node work/measure-si-calibration-v183.cjs --clockRate=0.42 --clubs=96 --workers=6 --port=4256 --seedPrefix=si183b --label=sik-a
+& $node work/measure-si-calibration-v183.cjs --clockRate=0.42 --clubs=96 --workers=6 --port=4262 --seedPrefix=si183c --label=sik-a
+# Reihe B (Endwerte, keine Overrides)
+& $node work/measure-si-calibration-v183.cjs --clubs=96 --workers=6 --port=4250 --label=sik-b
+# … --seedPrefix=si183b / si183c wie oben
+& $node work/table-si-calibration-v183.cjs sik-b,sik-b-si183b,sik-b-si183c sik-a,sik-a-si183b,sik-a-si183c --strength
+# Protokollserie und Offline-Auswertung (a)
+& $node work/measure-si-calibration-v183.cjs --clockRate=0.42 --clubs=48 --traceLimit=40000 --port=4250 --label=sik-tr-a
+& $node work/measure-si-calibration-v183.cjs --clockRate=0.42 --clubs=48 --offset=48 --traceLimit=40000 --port=4262 --label=sik-tr-c
+& $node work/calibrate-si-k-finish-v183.cjs sik-tr-a-trace40000,sik-tr-c-trace40000 '--params={"reachBase":1.2}'
+# Wanduhr
+& $node work/measure-wallclock-si183.cjs --matches=10 --parallel=1 --port=4251 --gpu
+```
+
+Die Harness hängt bei einem Seed-Satz außer `p01r132` dessen Namen und bei `--traceLimit` die Grenze an den Dateinamen an. Die Tabellen dieser Doku nutzen die umbenannten Dateien (`sik-a-si183b.json`, `it1-a.json` usw.). Ausgeführt wurde alles über einen Lane-Wrapper (Sperre und `queue.log` der Integration). Die Iterationen liefen mit `--dist=work/tmp-sik/dev` (Kopie mit der Ballführer-Korrektur) und `--params`. Reihe B lief auf dem Worktree-`dist` ohne Overrides.
