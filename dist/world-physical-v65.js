@@ -68,9 +68,9 @@ function v119RestoreDefensiveMovement(saved,find){
 function v160SnapshotContinuation(m){
  const sample=v121PositioningSamples.get(m),control=v123GroundControls.get(m),challenge=v115KeeperChallenges.get(m),air=v124AirBalls.get(m),restart=m.setPiece||m.kickoff,targets=restart&&v114RestartMoves.get(restart),motion=v102Motion.get(m);
  const {person,...ground}=control||{}, {keeper,attacker,...keeperState}=challenge||{}, {rebound,...airState}=air||{}, {owner,...loose}=motion?.loose||{};
- const actionLocks=typeof v119SnapshotActionLocks==='function'?v119SnapshotActionLocks(m):null,defensiveMovement=v119SnapshotDefensiveMovement(m);
+ const actionLocks=typeof v119SnapshotActionLocks==='function'?v119SnapshotActionLocks(m):null,defensiveMovement=v119SnapshotDefensiveMovement(m),foul=v183SnapshotFoul(m);
  if(control&&!Number.isFinite(ground.at))ground.at=null;
- return {version:1,...(defensiveMovement.length?{defensiveMovement}:{}),...(actionLocks?{actionLocks}:{}),...(sample?{positioning:{at:sample.at,positions:[...sample.positions].map(([p,point])=>[p.pid,point])}}:{}),...(control?{ground:{...ground,personPid:person.pid}}:{}),...(challenge?{keeper:{...keeperState,keeperPid:keeper.pid,attackerPid:attacker?.pid||null}}:{}),...(air&&rebound===m.rebound?{air:airState}:{}),...(targets?{restart:[...targets].map(([p,point])=>[p.pid,point])}:{}),...(motion?.loose?{loose:{...loose,ownerPid:owner?.pid||null}}:{}),defensiveThreat:v123DefensiveThreats.get(m)??null};
+ return {version:1,...(defensiveMovement.length?{defensiveMovement}:{}),...(actionLocks?{actionLocks}:{}),...(foul?{foul}:{}),...(sample?{positioning:{at:sample.at,positions:[...sample.positions].map(([p,point])=>[p.pid,point])}}:{}),...(control?{ground:{...ground,personPid:person.pid}}:{}),...(challenge?{keeper:{...keeperState,keeperPid:keeper.pid,attackerPid:attacker?.pid||null}}:{}),...(air&&rebound===m.rebound?{air:airState}:{}),...(targets?{restart:[...targets].map(([p,point])=>[p.pid,point])}:{}),...(motion?.loose?{loose:{...loose,ownerPid:owner?.pid||null}}:{}),defensiveThreat:v123DefensiveThreats.get(m)??null};
 }
 function v160RestoreContinuation(m,find){
  const saved=m.nativeContinuation;if(saved?.version!==1)return;
@@ -83,7 +83,48 @@ function v160RestoreContinuation(m,find){
  if(saved.defensiveThreat!==null)v123DefensiveThreats.set(m,saved.defensiveThreat);
  if(saved.defensiveMovement)v119RestoreDefensiveMovement(saved.defensiveMovement,find);
  if(saved.actionLocks&&typeof v119RestoreActionLocks==='function')v119RestoreActionLocks(m,saved.actionLocks,find);
+ if(saved.foul)v183RestoreFoul(m,saved.foul,find);
  delete m.nativeContinuation;
+}
+// B19 (release 133): matches with the set-piece marker 182 (every match since release 132) keep what the checkpoint can
+// hold; older matches restore exactly as before. Restore never adds a marker.
+function v183RestoreScope(m){return (m?.attackFlow?.setPieceRevision||0)>=182}
+// JSON turns Infinity, -Infinity and NaN into null (match.next is Infinity while a restart waits). Remember where they
+// were and put them back. Paths without such values add nothing.
+function v183RestoreNonFinite(root){
+ const found=[],walk=(value,path)=>{
+  if(typeof value==='number'){if(!Number.isFinite(value))found.push([path,String(value)]);return}
+  if(!value||typeof value!=='object'||path.length>12)return;
+  if(Array.isArray(value))value.forEach((item,index)=>walk(item,[...path,index]));
+  else for(const key of Object.keys(value))walk(value[key],[...path,key]);
+ };
+ walk(root,[]);return found;
+}
+function v183RestoreNonFiniteApply(root,found){
+ if(!Array.isArray(found))return;
+ for(const [path,text] of found){let node=root;for(const key of path.slice(0,-1))node=node?.[key];if(node&&typeof node==='object')node[path.at(-1)]=Number(text)}
+}
+// The foul context locks the fouled and the fouling player for a short window of the contact clock and slows the approach
+// of every player while the free kick or penalty is prepared (pitch-v57). It is bound to the current set piece for its
+// whole duration, so it is saved by player IDs and re-bound to the restored set piece.
+function v183SnapshotFoul(m){
+ const foul=v183RestoreScope(m)&&typeof v113Fouls!=='undefined'&&v113Fouls.get(m);
+ if(!foul||!m.setPiece||foul.piece!==m.setPiece||!foul.victim?.pid||!foul.offender?.pid)return null;
+ return {at:foul.at,victimPid:foul.victim.pid,offenderPid:foul.offender.pid,target:{...foul.target},sliding:Boolean(foul.sliding)};
+}
+function v183RestoreFoul(m,saved,find){
+ const victim=find(saved.victimPid),offender=find(saved.offenderPid);
+ if(m.setPiece&&victim&&offender&&typeof v113Fouls!=='undefined')v113Fouls.set(m,{at:saved.at,victim,offender,positions:null,target:{...saved.target},sliding:saved.sliding,piece:m.setPiece});
+}
+// v150 keeps a pending space pass as plain data in match.spacePassIntent and rebuilds its plan (v150RestoreIntent), but only
+// while the ball is still loose. If the ball was taken in the saved tick, the live plan was still pending and the next
+// v150Prepare closes it (lost pass, ledger result). Bring that plan back so the restored match does the same.
+function v183RestoreSpacePass(m){
+ const saved=m.spacePassIntent;
+ if(!v183RestoreScope(m)||saved?.version!==150||m.flight||(m.rebound&&!m.owner)||typeof v150SpacePasses==='undefined'||v150SpacePasses.get(m))return;
+ const people=new Map([...m.people,...(m.exitedPeople||[])].map(p=>[p.pid,p])),passer=people.get(saved.passerPid);if(!passer)return;
+ const snapshot={lineY:saved.lineY,ball:{...saved.ball},offside:new Set(saved.offsidePids.map(id=>people.get(id)).filter(Boolean)),positions:new Map(saved.positions.map(([id,point])=>[people.get(id),{...point}]).filter(([p])=>p))};
+ v150SpacePasses.set(m,{passer,runner:people.get(saved.runnerPid)||null,from:{...saved.from},intended:{...saved.intended},snapshot,age:saved.age,rebound:m.rebound,flight:null,targets:new Map(),settled:false,eventId:saved.eventId});
 }
 function v65Snapshot(context){
  if(!match||match.flight||match.slide)return false;
@@ -99,6 +140,8 @@ function v65Snapshot(context){
  if(plain.setPiece)plain.setPiece={...plain.setPiece,takerPid:plain.setPiece.taker?.pid,taker:undefined};
  if(plain.throwIn)plain.throwIn={...plain.throwIn,takerPid:plain.throwIn.taker?.pid,taker:undefined};
  if(plain.kickoff)plain.kickoff={...plain.kickoff,kickerPid:plain.kickoff.kicker?.pid,supportPid:plain.kickoff.support?.pid,kicker:undefined,support:undefined};
+ if(v183RestoreScope(plain)&&plain.whistleAttackCarrier){plain.whistleAttackCarrierPid=plain.whistleAttackCarrier.pid;delete plain.whistleAttackCarrier}
+ if(v183RestoreScope(plain)){const lost=v183RestoreNonFinite(plain);if(lost.length)plain.nonFinite=lost}
  context.state.physicalSnapshot={match:plain,log:$('#log').innerHTML,event:$('#event').textContent};
  const saved=v64UiSave();if(saved===false)return false;v65LastSaved=performance.now();return true;
 }
@@ -107,10 +150,13 @@ function v65Restore(context){
  // Restoring must not turn the stored ID snapshot into the mutable live match.
  // Otherwise an intervening save loses restart IDs before the next snapshot.
  match=structuredClone(saved.match);match.flight=null;match.slide=null;
+ if(match.nonFinite){v183RestoreNonFiniteApply(match,match.nonFinite);delete match.nonFinite}
  if(match.attackFlow?.flowVersion===159&&Number.isFinite(match.nativeContactClock)&&typeof v102State==='function')v102State(match).clock=match.nativeContactClock;
  const find=pid=>match.people.find(person=>person.pid===pid)||match.exitedPeople?.find(person=>person.pid===pid);
  v160RestoreContinuation(match,find);
  if(match.breakawayCarrierPid!==undefined){match.breakawayCarrier=find(match.breakawayCarrierPid)||null;delete match.breakawayCarrierPid;}
+ // Like owner: bind by pid; a snapshot saved before release 133 holds a detached copy of the player instead of the id.
+ if(match.whistleAttackCarrierPid!==undefined||v183RestoreScope(match)&&match.whistleAttackCarrier){match.whistleAttackCarrier=find(match.whistleAttackCarrierPid||match.whistleAttackCarrier?.pid)||null;delete match.whistleAttackCarrierPid}
  // A snapshot already saved after the former in-place restore can contain the
  // player object instead of its ID. Bind its existing pid; never regenerate it.
  match.owner=find(match.ownerPid||match.owner?.pid)||null;delete match.ownerPid;
@@ -118,6 +164,7 @@ function v65Restore(context){
  if(match.setPiece){match.setPiece.taker=find(match.setPiece.takerPid||match.setPiece.taker?.pid);delete match.setPiece.takerPid}
  if(match.throwIn){match.throwIn.taker=find(match.throwIn.takerPid||match.throwIn.taker?.pid);delete match.throwIn.takerPid}
  if(match.kickoff){match.kickoff.kicker=find(match.kickoff.kickerPid||match.kickoff.kicker?.pid);match.kickoff.support=find(match.kickoff.supportPid||match.kickoff.support?.pid);delete match.kickoff.kickerPid;delete match.kickoff.supportPid}
+ v183RestoreSpacePass(match);
  $('#log').innerHTML=saved.log||'';$('#event').textContent=saved.event||'';
  if(match.setPiece?.type==='penalty')v50PenaltyVisual(match.setPiece,null);
  else if(match.setPiece)showOverlay(match.setPiece.type==='corner'?'ECKBALL':'FREISTOSS',`${v65Club(context,match.setPiece.team).name} · ${match.setPiece.taker?.name||''}`);
