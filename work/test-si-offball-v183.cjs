@@ -50,7 +50,7 @@ check('the package is on by default in new matches and registers its parameters'
  assert.equal(ev("v183Active(match,'offball')"),true);
  const params=copy(ev('match.si.params.offball'));
  for(const key of ['carrierPace','runPace','offerCycle','depthRunners','boxRange','counterSeconds','followers','reboundFinishRange','profiles'])assert(Object.hasOwn(params,key),key);
- assert.equal(params.carrierPace,1.6);assert.equal(params.depthRunners,2);
+ assert.equal(params.carrierPace,1.5);assert.equal(params.carrierClosePace,1.28);assert.equal(params.depthRunners,2);
  assert.equal(ev("Object.isFrozen(match.si.params.offball.profiles.poacher)"),true);
 });
 
@@ -200,8 +200,8 @@ check('rebound finish: a loose ball from a shot within 18 m starts the one-touch
  assert.equal(r.off.value,null,'package off: open-goal rule only');assert.equal(r.off.tagged,false);
  measurements.rebound=r;
 });
-check('pace: carrier 1.6x (0.78+tec*0.009), situational close factor, run pace for own runs, support and legacy unchanged',()=>{
- const r=copy(ev(`(()=>{const people=${boxPeople};for(const p of people)p.role=1;const m=Si2Scene({seed:8,people,owner:people.find(p=>p.pid==='b20'),params:{carrierClosePace:1.4}});Native182.advance();
+check('pace: carrier parameter (0.78+tec*0.009), duel pace within the close radius, run pace for own runs, support and legacy unchanged',()=>{
+ const r=copy(ev(`(()=>{const people=${boxPeople};for(const p of people)p.role=1;const m=Si2Scene({seed:8,people,owner:people.find(p=>p.pid==='b20')});Native182.advance();
   const o=m.owner,base=3+ability(o,'spd')*.14,expect=f=>v158Movement(o,base*f,1).maxSpeed,rival=Si2Find('m11'),s=v150Scale(m);
   const far=v157Pace(m,o);rival.x=o.x;rival.y=o.y-2/s.y;const near=v157Pace(m,o);rival.y=o.y-6/s.y;
   const runner=Si2Find('p10'),rb=3+ability(runner,'spd')*.14,now=v183Seconds(m);
@@ -209,8 +209,8 @@ check('pace: carrier 1.6x (0.78+tec*0.009), situational close factor, run pace f
   m.attackFlow.intents[runner.pid]={x:runner.x,y:runner.y,type:'support',team:0,at:now,until:now+5};const support=v157Pace(m,runner);
   delete m.attackFlow.intents[runner.pid];const plain=v157Pace(m,runner);
   const si=m.si;delete m.si;const legacy=v157Pace(m,o);m.si=si;
-  return {far,near,expectFar:expect(1.6*(.78+ability(o,'tec')*.009)),expectNear:expect(1.4*(.78+ability(o,'tec')*.009)),run,expectRun:v158Movement(runner,rb*1.58,1).maxSpeed,support,expectSupport:v158Movement(runner,rb*1.35,1).maxSpeed,plain,expectPlain:v158Movement(runner,rb*1.15,1).maxSpeed,legacy,expectLegacy:expect(1.28*(.78+ability(o,'tec')*.009))};})()`));
- close(r.far,r.expectFar,1e-9,'carrier far');close(r.near,r.expectNear,1e-9,'carrier close');close(r.run,r.expectRun,1e-9,'run');close(r.support,r.expectSupport,1e-9,'support');close(r.plain,r.expectPlain,1e-9,'base');close(r.legacy,r.expectLegacy,1e-9,'legacy');
+  return {far,near,expectFar:expect(v183Param(m,'offball.carrierPace')*(.78+ability(o,'tec')*.009)),expectNear:expect(v183Param(m,'offball.carrierClosePace')*(.78+ability(o,'tec')*.009)),carrierPace:v183Param(m,'offball.carrierPace'),closePace:v183Param(m,'offball.carrierClosePace'),run,expectRun:v158Movement(runner,rb*1.58,1).maxSpeed,support,expectSupport:v158Movement(runner,rb*1.35,1).maxSpeed,plain,expectPlain:v158Movement(runner,rb*1.15,1).maxSpeed,legacy,expectLegacy:expect(1.28*(.78+ability(o,'tec')*.009))};})()`));
+ assert(r.closePace<r.carrierPace,'duel pace below the open pace');close(r.far,r.expectFar,1e-9,'carrier far');close(r.near,r.expectNear,1e-9,'carrier close');assert(r.near<r.far,'close rule lowers the pace');close(r.run,r.expectRun,1e-9,'run');close(r.support,r.expectSupport,1e-9,'support');close(r.plain,r.expectPlain,1e-9,'base');close(r.legacy,r.expectLegacy,1e-9,'legacy');
  measurements.pace={carrier:+r.far.toFixed(2),carrierClose:+r.near.toFixed(2),runner:+r.run.toFixed(2),support:+r.support.toFixed(2),base:+r.plain.toFixed(2),legacyCarrier:+r.legacy.toFixed(2)};
 });
 
@@ -271,7 +271,7 @@ check('B02: speed, acceleration, braking and direction changes of the native bod
   const t90=k.directions.map(x=>x.t90);assert(Math.max(...t90)-Math.min(...t90)<=.1,'isotropic acceleration in eight directions');
   for(const turn of k.turns)assert(turn.seconds!==null&&turn.seconds<=2.5,`${kind} turn ${turn.deltaDeg}° within 2.5 s`);
  }
- assert(r.carrier.pace>r.support.pace,'carrier faster than a support runner');
+ assert(r.runner.pace>r.carrier.pace&&r.carrier.pace>0,'own runs faster than the carrier');
  measurements.b02=r;
 });
 

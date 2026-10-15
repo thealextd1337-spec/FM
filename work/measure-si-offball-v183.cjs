@@ -6,12 +6,25 @@
 // pattern counts, ledger sources and carrier/runner speeds. The observers only
 // read state and wrap functions; they never call Math.random. Results carry the
 // standard per-match record plus `extras.offball`.
-// Usage: node work/measure-si-offball-v183.cjs --packages=clock,offball --clockRate=0.42 --clubs=24 --workers=6 --port=4262 --label=si2-smoke
-//        node work/measure-si-offball-v183.cjs --dist=work/tmp-sif-base --packages=clock --clockRate=0.42 --label=si2-base
+// --packages: as in measure-si183 (comma list switched on, "none", "all") plus
+// "-pkg" to switch a package off and "default" as a no-op, so a package that is
+// on by default can be switched off: --packages=default,-offball. Packages not
+// named keep the constructor default (v183CreateSi).
+// Usage: node work/measure-si-offball-v183.cjs --clockRate=0.42 --clubs=24 --workers=6 --port=4262 --label=si2-on
+//        node work/measure-si-offball-v183.cjs --packages=default,-offball --clockRate=0.42 --clubs=24 --workers=6 --port=4262 --label=si2-off
 // Paired evaluation: node work/table-si-offball-v183.cjs <baseLabel> <label>
 const fs=require('node:fs'),path=require('node:path'),Module=require('node:module');
 const file=path.join(__dirname,'measure-si183.cjs');let text=fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n');
 const rep=(a,b)=>{const n=text.split(a).length-1;if(n!==1)throw Error(`expected one match, got ${n}: ${a.slice(0,90)}`);text=text.replace(a,b);};
+
+// 0) Package switches: "-pkg" switches a package off, "default" is a no-op
+// (packages not named keep the constructor default from v183CreateSi).
+rep(` const list=packagesArg==='none'?[]:packagesArg==='all'?PACKAGES:packagesArg.split(',').filter(Boolean);
+ for(const p of list)assert(PACKAGES.includes(p),'Unknown SI package '+p);
+ si.packages=packagesArg==='none'||packagesArg==='all'?Object.fromEntries(PACKAGES.map(p=>[p,list.includes(p)])):Object.fromEntries(list.map(p=>[p,true]));`,
+` const items=packagesArg==='none'?[]:packagesArg==='all'?PACKAGES:packagesArg.split(',').filter(Boolean).filter(p=>p!=='default');
+ const list=items.map(p=>p.replace(/^-/,''));for(const p of list)assert(PACKAGES.includes(p),'Unknown SI package '+p);
+ si.packages=packagesArg==='none'||packagesArg==='all'?Object.fromEntries(PACKAGES.map(p=>[p,list.includes(p)])):Object.fromEntries(items.map(p=>[p.replace(/^-/,''),!p.startsWith('-')]));`);
 
 // 1) Function wraps inside installObservers (page context).
 rep(`wrap('v50GoalKick',(base,self,args)=>{`,

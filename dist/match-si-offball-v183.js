@@ -43,7 +43,7 @@ const V183_OFFBALL_PROFILES=Object.freeze({
  def:{depth:.4,box:.3,edge:.8,wide:.7,byline:.2,overlap:.3,support:1.3,hold:1.1}
 });
 v183RegisterDefaults('offball',{
- carrierPace:1.6,carrierClosePace:1.6,carrierCloseRadius:2.5,runPace:1.58,
+ carrierPace:1.5,carrierClosePace:1.28,carrierCloseRadius:2.5,runPace:1.58,
  offerCycle:1.05,crowdDelay:.45,crowdRadius:1.1,reachRadius:.65,recoverySeconds:.55,turnoverGap:2.5,
  depthRunners:2,leadBase:6.5,leadDeep:8,leadPos:.07,
  boxRange:30,wideBall:6,boxNear:[4,6],boxSpot:[0,11],boxFar:[-4,7],boxEdge:[0,18],boxTaken:2,boxGapWidth:12,boxGapRange:20,boxGapMin:5,boxWideBonus:3,
@@ -194,7 +194,7 @@ function v183OffballOffers(m,owner,allies,rivals){
  const goal={x:.5,y:owner.t===0?v55Field.top:v55Field.bottom},ballRange=v115GoalDistance(owner),wide=Math.abs(owner.x-.5)*s.x>P('wideBall'),ballSide=owner.x<.5?-1:1;
  const plans=v121PositioningPlans.get(m),occupied=Object.values(flow.intents).map(i=>({x:i.x,y:i.y})),state=v183OffballState(m),lastCats=state.lastCats||{};
  const candidates=allies.filter(p=>p.role>=0&&!flow.intents[p.pid]&&!v115RestartLocked(m,p)&&!p.interceptTarget&&((p.assignedLine||p.line)!=='def'||p.role>0));
- const counterRunners=counter?[...candidates].filter(p=>!v159Cover(p)).sort((a,b)=>ability(b,'spd')-ability(a,'spd')||a.n-b.n).slice(0,P('counterRunners')):[];
+ const counterRunners=counter?[...candidates].filter(p=>!(v159Cover(p)||(p.assignedLine||p.line)==='def')).sort((a,b)=>ability(b,'spd')-ability(a,'spd')||a.n-b.n).slice(0,P('counterRunners')):[];
  candidates.sort((a,b)=>(counterRunners.includes(b)?8:0)+(hasInstruction(b,'deep')?4:0)+((b.assignedLine||b.line)==='att'?2:0)+b.role*.4-((counterRunners.includes(a)?8:0)+(hasInstruction(a,'deep')?4:0)+((a.assignedLine||a.line)==='att'?2:0)+a.role*.4)||a.n-b.n);
  let ahead=0;const boxTaken=[];
  for(const p of candidates){
@@ -291,10 +291,12 @@ v183ReboundFinish=function(m,winner,point){
 };
 
 // ----- Pace (switch v157Pace, world-offensive-quality-v157.js:42) -----
-// Carrier: carrierPace, or carrierClosePace while a rival stands within
-// carrierCloseRadius (situational choice, B02 native part); both times
-// (0.78+tec*0.009) as before. Own runs (intent depth/follow): runPace.
-// Pressing, support and base factors stay with the previous function (SI-4).
+// Carrier: carrierPace (1.5), or carrierClosePace (1.28, the previous duel
+// pace) while a rival stands within carrierCloseRadius (situational choice,
+// B02 native part); both times (0.78+tec*0.009) as before. Own runs (intent
+// depth/follow): runPace. Pressing, support and base factors stay with the
+// previous function (SI-4). Load order: this module is the outermost wrapper
+// of v183PaceFactor and returns for carrier/run before SI-4 sees the call.
 const v183OffballBasePace=v183PaceFactor;
 v183PaceFactor=function(m,p,purpose,detail={}){
  if(!v183OffballOn(m))return v183OffballBasePace.call(this,m,p,purpose,detail);
