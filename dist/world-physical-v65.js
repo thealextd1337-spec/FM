@@ -17,10 +17,10 @@ function v65LineupPositions(context,physical){
  for(const pid of active)if(context.state.roles[pid]!=='gk')positions.set(pid,cells[pid]);
  return positions;
 }
-function v65PhysicalPlayer(context,physical,pid){
+function v65PhysicalPlayer(context,physical,pid,m=match){
  const side=v65Side(physical,context.ownSide),source=v64Player(context.career,context.fixture,side,pid),role=context.state.roles[pid],positions=v65LineupPositions(context,physical);
  const copy={...source,cell:positions.get(pid),assignedLine:role,role:v64Orientation(context.state,pid),instructions:v64PlayerInstructions(context.state,pid),matchEntryElapsed:0};
- const person=source.keeper?goalkeeper(copy,physical):team(copy,physical);
+ const person=source.keeper?goalkeeper(copy,physical):team(copy,physical,m);
  if(typeof v154PhysicalAssignment==='function')v154PhysicalAssignment(context,person,side);
  person.initialBy=person.by;person.motionX=0;person.motionY=physical===0?-1:1;person.recoverUntil=0;
  return person;
@@ -35,7 +35,7 @@ function v65ApplyTactics(context){
  for(const physical of [0,1]){
   const positions=v65LineupPositions(context,physical),side=v65Side(physical,context.ownSide);
   for(const person of match.people.filter(item=>item.t===physical&&!item.keeper)){
-   const cell=positions.get(person.pid),role=context.state.roles[person.pid],point=team({...person,cell},physical);
+   const cell=positions.get(person.pid),role=context.state.roles[person.pid],point=team({...person,cell},physical,match);
    if(typeof v154PhysicalAssignment==='function')v154PhysicalAssignment(context,person,side);
    person.cell=cell;person.assignedLine=role;person.role=v64Orientation(context.state,person.pid);person.instructions=v64PlayerInstructions(context.state,person.pid);person.bx=point.bx;person.by=point.by;person.initialBy=point.by;
   }
@@ -45,11 +45,13 @@ function v65ApplyTactics(context){
  $('#live-plan').textContent=`${own.formation} · ${pressLabel} Pressing · ${passLabel} Passspiel · Angriffsfokus: ${own.focus||'Variabel'} · Abwehrlinie: ${own.defense} · Zweikämpfe: ${own.aggression}`;
  $('#match-plan').textContent=own.formation;
 }
-function v65CreateMatch(context){
- const people=[];
- for(const physical of [0,1])for(const pid of v64Active(context.state,v65Side(physical,context.ownSide)))people.push(v65PhysicalPlayer(context,physical,pid));
+// options.si (harness only): {packages,params,clockRate} overrides or false for
+// a match without marker 183. Only this constructor writes match.si.
+function v65CreateMatch(context,options){
+ const geometry=v160WorldGeometry(context.career),si=typeof v183CreateSi==='function'?v183CreateSi(options?.si):null,people=[];
+ for(const physical of [0,1])for(const pid of v64Active(context.state,v65Side(physical,context.ownSide)))people.push(v65PhysicalPlayer(context,physical,pid,{geometry,si}));
  const own=v65Club(context,0),opponent=v65Club(context,1),kits=v61SelectMatchKits(own,opponent,context.ownSide===0);
- match={people,geometry:v160WorldGeometry(context.career),exitedPeople:[],attackFlow:{version:152,qualityVersion:157,flowVersion:159,paceVersion:162,paceRevision:119,keeperChaseRevision:180,keeperHoldRevision:182,setPieceRevision:182,looseBallRevision:182,pursuitRevision:182,motionRevision:182,intents:{},ownerPid:null,team:null},penaltyRevision:182,refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:opponent.name,kits};
+ match={people,geometry,exitedPeople:[],attackFlow:{version:152,qualityVersion:157,flowVersion:159,paceVersion:162,paceRevision:119,keeperChaseRevision:180,keeperHoldRevision:182,setPieceRevision:182,looseBallRevision:182,pursuitRevision:182,motionRevision:182,intents:{},ownerPid:null,team:null},penaltyRevision:182,refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:opponent.name,kits,...(si?{si}:{})};
  for(const pose of ['raised','far','middle','penalty'])v55RefereeImage(v55RefereeAsset(pose));
  v65ApplyTactics(context);kickoff(0);note('Bereit zum Anpfiff.','restart');
 }
@@ -102,9 +104,9 @@ function v183RestoreNonFiniteApply(root,found){
  if(!Array.isArray(found))return;
  for(const [path,text] of found){let node=root;for(const key of path.slice(0,-1))node=node?.[key];if(node&&typeof node==='object')node[path.at(-1)]=Number(text)}
 }
-// The foul context locks the fouled and the fouling player for 2.7 s of contact clock and slows the approach of every
-// player while the free kick or penalty is prepared (pitch-v57). It is bound to the current set piece for its whole
-// duration, so it is saved by player IDs and re-bound to the restored set piece.
+// The foul context locks the fouled and the fouling player for a short window of the contact clock and slows the approach
+// of every player while the free kick or penalty is prepared (pitch-v57). It is bound to the current set piece for its
+// whole duration, so it is saved by player IDs and re-bound to the restored set piece.
 function v183SnapshotFoul(m){
  const foul=v183RestoreScope(m)&&typeof v113Fouls!=='undefined'&&v113Fouls.get(m);
  if(!foul||!m.setPiece||foul.piece!==m.setPiece||!foul.victim?.pid||!foul.offender?.pid)return null;
@@ -153,7 +155,8 @@ function v65Restore(context){
  const find=pid=>match.people.find(person=>person.pid===pid)||match.exitedPeople?.find(person=>person.pid===pid);
  v160RestoreContinuation(match,find);
  if(match.breakawayCarrierPid!==undefined){match.breakawayCarrier=find(match.breakawayCarrierPid)||null;delete match.breakawayCarrierPid;}
- if(match.whistleAttackCarrierPid!==undefined){match.whistleAttackCarrier=find(match.whistleAttackCarrierPid)||null;delete match.whistleAttackCarrierPid}
+ // Like owner: bind by pid; a snapshot saved before release 133 holds a detached copy of the player instead of the id.
+ if(match.whistleAttackCarrierPid!==undefined||v183RestoreScope(match)&&match.whistleAttackCarrier){match.whistleAttackCarrier=find(match.whistleAttackCarrierPid||match.whistleAttackCarrier?.pid)||null;delete match.whistleAttackCarrierPid}
  // A snapshot already saved after the former in-place restore can contain the
  // player object instead of its ID. Bind its existing pid; never regenerate it.
  match.owner=find(match.ownerPid||match.owner?.pid)||null;delete match.ownerPid;

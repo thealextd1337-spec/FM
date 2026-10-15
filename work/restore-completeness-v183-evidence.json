@@ -1,18 +1,25 @@
 {
  "tool": "work/check-restore-completeness-v183.cjs",
- "distSha": "ce58dfed8af3f27eeeaa871559bcac9383adaad5",
- "base": "7bd0d228 (dist/world-physical-v65.js vor B19)",
+ "dist": "155d06c202008579f99a1ef4e82b0ca870ba90f9",
+ "stand": "Merge von integration/si-r133 (ef78fca6) in fix/si-b19; Vergleichsstand für Altpartien: 7bd0d228",
+ "einordnung3540_3676": "Die frühere Messung 3.540 gegenüber 3.676 Ticks liegt nicht im Repository. Auf dem Ausgangsstand 7bd0d228 zeigt dasselbe Zwillingsverfahren (Restore gegen ununterbrochene Partie) Verlaufsunterschiede von rund 50 Ticks: Restore in der Freistoßvorbereitung 631 gegenüber 681 Ticks, bei offenem Raumpass 1.758 gegenüber 1.699. Ursache sind Verlust (1) match.next/Infinity→null, (2) Foulkontext v113Fouls und (3) offener Raumpass-Plan nach Ballaufnahme, nicht Zufallszustand oder Timer. Nach der Korrektur ist die Fortsetzung in allen geprüften Szenen und Ketten bitgleich zur ununterbrochenen Partie.",
+ "r132Stand": "Szenen r132-stand-*: Snapshot ohne nonFinite und nativeContinuation.foul (wie mit Release 132 gespeichert). Freistoß-Vorbereitung: Fortsetzung läuft fehlerfrei zu Ende, weicht aber wie bisher vom ununterbrochenen Verlauf ab (kein Fehler, keine Umrechnung; ab dem nächsten Snapshot korrigiert). Offener, bereits genommener Raumpass: v183RestoreSpacePass schließt ihn so ab wie der nächste Live-Tick, Zwilling bitgleich.",
+ "flakyHinweis": "Bei den Vergleichsläufen für Altpartien wich unter hoher paralleler Last zweimal ein Ausgangsstandlauf nur in der Kontaktuhr ab (Verlauf identisch); 56 Wiederholungen unter Last und drei Einzelwiederholungen waren identisch. Das Werkzeug wiederholt eine abweichende Szene einmal und weist die Wiederholung aus (baseCompare.firstAttemptDiffered).",
  "runs": {
   "sameTab": {
    "pass": true,
-   "runs": 48,
+   "runs": 52,
    "failed": [],
-   "checkpoints": 48,
-   "twinIdentical": true,
-   "twinRuns": 48,
+   "checkpoints": 52,
+   "twinRuns": 52,
+   "twinIdentical": false,
+   "twinDifferences": [
+    "r132-stand-freistoss/standard: erster Unterschied Tick 1",
+    "r132-stand-freistoss/large: erster Unterschied Tick 1"
+   ],
    "acceptedReasons": [
     "Vor dem ersten Pass fehlt das Feld; Restore bindet es als null (gleichbedeutend, es wird nur gelesen).",
-    "v65Snapshot hält den Ursprung der nativen Kontaktuhr als Feld fest; v65Restore setzt sie in v102State(match).clock. Die Uhr selbst wird getrennt verglichen (clo",
+    "v65Snapshot hält den Ursprung der nativen Kontaktuhr als Feld fest; v65Restore setzt sie in v102State(match).clock. Die Uhr selbst wird getrennt verglichen (clock).",
     "v102Motion: Posen und Posenzähler sind Darstellung (v102: „never to a saved match“); Uhr und lose Flugbahn sind gespeichert.",
     "ui v103Replays: Aufzeichnung der Tor-Wiederholung (Anzeige).",
     "derived v121PositioningPlans: Stellungsplan wird in v121PreparePositioning im nächsten Takt neu berechnet (fehlt der Eintrag, wird er gebaut).",
@@ -24,7 +31,7 @@
     "derived v132AirChasers: Läufer zum Luftball werden im Takt neu gewählt; die Zuteilung steht in rebound.chase (gespeichert).",
     "ui v115OffsideBalls: Ballbahn zum Abseitspunkt (Darstellung); m.ball und setPiece sind gespeichert.",
     "v99Actions: Ballbahn-Reste nach Schuss/Tor (Darstellung, v132ClearVisualTails löscht sie ohnehin); Torwart-/Einwurf-/Abstoßzustand ist gespeichert.",
-    "v99Actions: Flugbezogene Reste im Torwart-/Abstoßzustand: Das Flugobjekt gibt es nach einem Restore nie (match.flight===null); sein Rückruf done und der Ledger-",
+    "v99Actions: Flugbezogene Reste im Torwart-/Abstoßzustand: Das Flugobjekt gibt es nach einem Restore nie (match.flight===null); sein Rückruf done und der Ledger-Verweis sh",
     "ui v114KickoffBalls: Ballbahn zum Anstoßpunkt (Darstellung); m.ball und kickoff sind gespeichert."
    ],
    "scenes": [
@@ -36,7 +43,7 @@
      "pass": true,
      "time": 0,
      "tick": 0,
-     "snapshotBytes": 33859,
+     "snapshotBytes": 34115,
      "twin": true
     },
     {
@@ -47,7 +54,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 54000,
+     "snapshotBytes": 54256,
      "twin": true
     },
     {
@@ -58,7 +65,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 54000,
+     "snapshotBytes": 54256,
      "twin": true
     },
     {
@@ -69,7 +76,7 @@
      "pass": true,
      "time": 37.291800000000755,
      "tick": 1103,
-     "snapshotBytes": 65937,
+     "snapshotBytes": 66193,
      "twin": true
     },
     {
@@ -80,7 +87,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 54000,
+     "snapshotBytes": 54256,
      "twin": true
     },
     {
@@ -91,7 +98,7 @@
      "pass": true,
      "time": 37.291800000000755,
      "tick": 0,
-     "snapshotBytes": 65808,
+     "snapshotBytes": 66064,
      "twin": true
     },
     {
@@ -102,7 +109,7 @@
      "pass": true,
      "time": 26.130000000000297,
      "tick": 743,
-     "snapshotBytes": 59768,
+     "snapshotBytes": 60024,
      "twin": true
     },
     {
@@ -113,7 +120,7 @@
      "pass": true,
      "time": 26.130000000000297,
      "tick": 743,
-     "snapshotBytes": 59768,
+     "snapshotBytes": 60024,
      "twin": true
     },
     {
@@ -124,7 +131,7 @@
      "pass": true,
      "time": 68.72580000000194,
      "tick": 1943,
-     "snapshotBytes": 79701,
+     "snapshotBytes": 79957,
      "twin": true
     },
     {
@@ -135,7 +142,7 @@
      "pass": true,
      "time": 68.72580000000194,
      "tick": 1943,
-     "snapshotBytes": 79701,
+     "snapshotBytes": 79957,
      "twin": true
     },
     {
@@ -146,7 +153,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 55046,
+     "snapshotBytes": 55302,
      "twin": true
     },
     {
@@ -157,7 +164,7 @@
      "pass": true,
      "time": 7.292999999999981,
      "tick": 260,
-     "snapshotBytes": 51420,
+     "snapshotBytes": 51676,
      "twin": true
     },
     {
@@ -168,7 +175,7 @@
      "pass": true,
      "time": 27.105000000000334,
      "tick": 768,
-     "snapshotBytes": 59494,
+     "snapshotBytes": 59750,
      "twin": true
     },
     {
@@ -179,7 +186,7 @@
      "pass": true,
      "time": 38.77380000000081,
      "tick": 1141,
-     "snapshotBytes": 64159,
+     "snapshotBytes": 64415,
      "twin": true
     },
     {
@@ -190,7 +197,7 @@
      "pass": true,
      "time": 39.20280000000083,
      "tick": 1152,
-     "snapshotBytes": 64646,
+     "snapshotBytes": 64902,
      "twin": true
     },
     {
@@ -201,7 +208,7 @@
      "pass": true,
      "time": 14.234999999999928,
      "tick": 727,
-     "snapshotBytes": 58011,
+     "snapshotBytes": 58267,
      "twin": true
     },
     {
@@ -212,7 +219,7 @@
      "pass": true,
      "time": 14.234999999999928,
      "tick": 829,
-     "snapshotBytes": 57800,
+     "snapshotBytes": 58056,
      "twin": true
     },
     {
@@ -223,7 +230,7 @@
      "pass": true,
      "time": 21.255000000000113,
      "tick": 618,
-     "snapshotBytes": 58092,
+     "snapshotBytes": 58348,
      "twin": true
     },
     {
@@ -234,7 +241,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 1,
-     "snapshotBytes": 57159,
+     "snapshotBytes": 57415,
      "twin": true
     },
     {
@@ -245,7 +252,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 221,
-     "snapshotBytes": 57424,
+     "snapshotBytes": 57680,
      "twin": true
     },
     {
@@ -256,7 +263,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 54463,
+     "snapshotBytes": 54719,
      "twin": true
     },
     {
@@ -267,7 +274,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 121,
-     "snapshotBytes": 54625,
+     "snapshotBytes": 54881,
      "twin": true
     },
     {
@@ -278,7 +285,29 @@
      "pass": true,
      "time": 78.90480000000233,
      "tick": 2573,
-     "snapshotBytes": 85136,
+     "snapshotBytes": 85392,
+     "twin": true
+    },
+    {
+     "id": "r132-stand-freistoss",
+     "size": "standard",
+     "markers": "new",
+     "seed": 0,
+     "pass": true,
+     "time": 68.72580000000194,
+     "tick": 1943,
+     "snapshotBytes": 79957,
+     "twin": false
+    },
+    {
+     "id": "r132-stand-raumpass",
+     "size": "standard",
+     "markers": "new",
+     "seed": 0,
+     "pass": true,
+     "time": 37.291800000000755,
+     "tick": 0,
+     "snapshotBytes": 66064,
      "twin": true
     },
     {
@@ -289,7 +318,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 54386,
+     "snapshotBytes": 54475,
      "twin": true
     },
     {
@@ -300,7 +329,7 @@
      "pass": true,
      "time": 0,
      "tick": 0,
-     "snapshotBytes": 39265,
+     "snapshotBytes": 39521,
      "twin": true
     },
     {
@@ -311,7 +340,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 65585,
+     "snapshotBytes": 65841,
      "twin": true
     },
     {
@@ -322,7 +351,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 65585,
+     "snapshotBytes": 65841,
      "twin": true
     },
     {
@@ -333,7 +362,7 @@
      "pass": true,
      "time": 64.70100000000176,
      "tick": 2223,
-     "snapshotBytes": 88603,
+     "snapshotBytes": 88859,
      "twin": true
     },
     {
@@ -344,7 +373,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 65585,
+     "snapshotBytes": 65841,
      "twin": true
     },
     {
@@ -355,7 +384,7 @@
      "pass": true,
      "time": 64.70100000000176,
      "tick": 0,
-     "snapshotBytes": 88471,
+     "snapshotBytes": 88727,
      "twin": true
     },
     {
@@ -366,7 +395,7 @@
      "pass": true,
      "time": 18.252,
      "tick": 755,
-     "snapshotBytes": 66559,
+     "snapshotBytes": 66815,
      "twin": true
     },
     {
@@ -377,7 +406,7 @@
      "pass": true,
      "time": 32.33100000000053,
      "tick": 1116,
-     "snapshotBytes": 71074,
+     "snapshotBytes": 71330,
      "twin": true
     },
     {
@@ -388,7 +417,7 @@
      "pass": true,
      "time": 15.989999999999915,
      "tick": 484,
-     "snapshotBytes": 65539,
+     "snapshotBytes": 65795,
      "twin": true
     },
     {
@@ -399,7 +428,7 @@
      "pass": true,
      "time": 15.989999999999915,
      "tick": 484,
-     "snapshotBytes": 65539,
+     "snapshotBytes": 65795,
      "twin": true
     },
     {
@@ -410,7 +439,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 66763,
+     "snapshotBytes": 67017,
      "twin": true
     },
     {
@@ -421,7 +450,7 @@
      "pass": true,
      "time": 5.849999999999992,
      "tick": 455,
-     "snapshotBytes": 59793,
+     "snapshotBytes": 60049,
      "twin": true
     },
     {
@@ -432,7 +461,7 @@
      "pass": true,
      "time": 72.77400000000206,
      "tick": 2430,
-     "snapshotBytes": 89280,
+     "snapshotBytes": 89536,
      "twin": true
     },
     {
@@ -443,7 +472,7 @@
      "pass": true,
      "time": 42.43200000000091,
      "tick": 1408,
-     "snapshotBytes": 67520,
+     "snapshotBytes": 67776,
      "twin": true
     },
     {
@@ -454,7 +483,7 @@
      "pass": true,
      "time": 41.691000000000884,
      "tick": 1356,
-     "snapshotBytes": 72899,
+     "snapshotBytes": 73155,
      "twin": true
     },
     {
@@ -465,7 +494,7 @@
      "pass": true,
      "time": 57.44700000000148,
      "tick": 1793,
-     "snapshotBytes": 84519,
+     "snapshotBytes": 84775,
      "twin": true
     },
     {
@@ -476,7 +505,7 @@
      "pass": true,
      "time": 57.44700000000148,
      "tick": 1895,
-     "snapshotBytes": 85496,
+     "snapshotBytes": 85752,
      "twin": true
     },
     {
@@ -487,7 +516,7 @@
      "pass": true,
      "time": 6.161999999999989,
      "tick": 231,
-     "snapshotBytes": 60266,
+     "snapshotBytes": 60522,
      "twin": true
     },
     {
@@ -498,7 +527,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 1,
-     "snapshotBytes": 68821,
+     "snapshotBytes": 69077,
      "twin": true
     },
     {
@@ -509,7 +538,7 @@
      "pass": true,
      "time": 15.989999999999915,
      "tick": 309,
-     "snapshotBytes": 69200,
+     "snapshotBytes": 69456,
      "twin": true
     },
     {
@@ -520,7 +549,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 66172,
+     "snapshotBytes": 66428,
      "twin": true
     },
     {
@@ -531,7 +560,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 121,
-     "snapshotBytes": 66333,
+     "snapshotBytes": 66589,
      "twin": true
     },
     {
@@ -542,7 +571,29 @@
      "pass": true,
      "time": 80.52798000000205,
      "tick": 2710,
-     "snapshotBytes": 92840,
+     "snapshotBytes": 93096,
+     "twin": true
+    },
+    {
+     "id": "r132-stand-freistoss",
+     "size": "large",
+     "markers": "new",
+     "seed": 0,
+     "pass": true,
+     "time": 15.989999999999915,
+     "tick": 484,
+     "snapshotBytes": 65795,
+     "twin": false
+    },
+    {
+     "id": "r132-stand-raumpass",
+     "size": "large",
+     "markers": "new",
+     "seed": 0,
+     "pass": true,
+     "time": 64.70100000000176,
+     "tick": 0,
+     "snapshotBytes": 88727,
      "twin": true
     },
     {
@@ -553,21 +604,22 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 65971,
+     "snapshotBytes": 66060,
      "twin": true
     }
    ]
   },
   "reload": {
    "pass": true,
-   "runs": 48,
+   "runs": 52,
    "failed": [],
-   "checkpoints": 48,
+   "checkpoints": 52,
+   "twinRuns": 52,
    "twinIdentical": true,
-   "twinRuns": 48,
+   "twinDifferences": [],
    "acceptedReasons": [
     "Vor dem ersten Pass fehlt das Feld; Restore bindet es als null (gleichbedeutend, es wird nur gelesen).",
-    "v65Snapshot hält den Ursprung der nativen Kontaktuhr als Feld fest; v65Restore setzt sie in v102State(match).clock. Die Uhr selbst wird getrennt verglichen (clo",
+    "v65Snapshot hält den Ursprung der nativen Kontaktuhr als Feld fest; v65Restore setzt sie in v102State(match).clock. Die Uhr selbst wird getrennt verglichen (clock).",
     "Beim Laden einer gespeicherten Partie setzt die App eine laufende Partie auf pausiert (world-match-ui-v64.js:83); nur im Neustart-Modus (--reload) sichtbar.",
     "v102Motion: Posen und Posenzähler sind Darstellung (v102: „never to a saved match“); Uhr und lose Flugbahn sind gespeichert.",
     "ui v103Replays: Aufzeichnung der Tor-Wiederholung (Anzeige).",
@@ -580,7 +632,7 @@
     "derived v132AirChasers: Läufer zum Luftball werden im Takt neu gewählt; die Zuteilung steht in rebound.chase (gespeichert).",
     "ui v115OffsideBalls: Ballbahn zum Abseitspunkt (Darstellung); m.ball und setPiece sind gespeichert.",
     "v99Actions: Ballbahn-Reste nach Schuss/Tor (Darstellung, v132ClearVisualTails löscht sie ohnehin); Torwart-/Einwurf-/Abstoßzustand ist gespeichert.",
-    "v99Actions: Flugbezogene Reste im Torwart-/Abstoßzustand: Das Flugobjekt gibt es nach einem Restore nie (match.flight===null); sein Rückruf done und der Ledger-",
+    "v99Actions: Flugbezogene Reste im Torwart-/Abstoßzustand: Das Flugobjekt gibt es nach einem Restore nie (match.flight===null); sein Rückruf done und der Ledger-Verweis sh",
     "ui v114KickoffBalls: Ballbahn zum Anstoßpunkt (Darstellung); m.ball und kickoff sind gespeichert."
    ],
    "scenes": [
@@ -592,7 +644,7 @@
      "pass": true,
      "time": 0,
      "tick": 0,
-     "snapshotBytes": 33859,
+     "snapshotBytes": 34115,
      "twin": true
     },
     {
@@ -603,7 +655,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 54000,
+     "snapshotBytes": 54256,
      "twin": true
     },
     {
@@ -614,7 +666,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 54000,
+     "snapshotBytes": 54256,
      "twin": true
     },
     {
@@ -625,7 +677,7 @@
      "pass": true,
      "time": 37.291800000000755,
      "tick": 1103,
-     "snapshotBytes": 65937,
+     "snapshotBytes": 66193,
      "twin": true
     },
     {
@@ -636,7 +688,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 54000,
+     "snapshotBytes": 54256,
      "twin": true
     },
     {
@@ -647,7 +699,7 @@
      "pass": true,
      "time": 37.291800000000755,
      "tick": 0,
-     "snapshotBytes": 65808,
+     "snapshotBytes": 66064,
      "twin": true
     },
     {
@@ -658,7 +710,7 @@
      "pass": true,
      "time": 26.130000000000297,
      "tick": 743,
-     "snapshotBytes": 59768,
+     "snapshotBytes": 60024,
      "twin": true
     },
     {
@@ -669,7 +721,7 @@
      "pass": true,
      "time": 26.130000000000297,
      "tick": 743,
-     "snapshotBytes": 59768,
+     "snapshotBytes": 60024,
      "twin": true
     },
     {
@@ -680,7 +732,7 @@
      "pass": true,
      "time": 68.72580000000194,
      "tick": 1943,
-     "snapshotBytes": 79701,
+     "snapshotBytes": 79957,
      "twin": true
     },
     {
@@ -691,7 +743,7 @@
      "pass": true,
      "time": 68.72580000000194,
      "tick": 1943,
-     "snapshotBytes": 79701,
+     "snapshotBytes": 79957,
      "twin": true
     },
     {
@@ -702,7 +754,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 55046,
+     "snapshotBytes": 55302,
      "twin": true
     },
     {
@@ -713,7 +765,7 @@
      "pass": true,
      "time": 7.292999999999981,
      "tick": 260,
-     "snapshotBytes": 51420,
+     "snapshotBytes": 51676,
      "twin": true
     },
     {
@@ -724,7 +776,7 @@
      "pass": true,
      "time": 27.105000000000334,
      "tick": 768,
-     "snapshotBytes": 59494,
+     "snapshotBytes": 59750,
      "twin": true
     },
     {
@@ -735,7 +787,7 @@
      "pass": true,
      "time": 38.77380000000081,
      "tick": 1141,
-     "snapshotBytes": 64159,
+     "snapshotBytes": 64415,
      "twin": true
     },
     {
@@ -746,7 +798,7 @@
      "pass": true,
      "time": 39.20280000000083,
      "tick": 1152,
-     "snapshotBytes": 64646,
+     "snapshotBytes": 64902,
      "twin": true
     },
     {
@@ -757,7 +809,7 @@
      "pass": true,
      "time": 14.234999999999928,
      "tick": 727,
-     "snapshotBytes": 58011,
+     "snapshotBytes": 58267,
      "twin": true
     },
     {
@@ -768,7 +820,7 @@
      "pass": true,
      "time": 14.234999999999928,
      "tick": 829,
-     "snapshotBytes": 57800,
+     "snapshotBytes": 58056,
      "twin": true
     },
     {
@@ -779,7 +831,7 @@
      "pass": true,
      "time": 21.255000000000113,
      "tick": 618,
-     "snapshotBytes": 58092,
+     "snapshotBytes": 58348,
      "twin": true
     },
     {
@@ -790,7 +842,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 1,
-     "snapshotBytes": 57159,
+     "snapshotBytes": 57415,
      "twin": true
     },
     {
@@ -801,7 +853,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 221,
-     "snapshotBytes": 57424,
+     "snapshotBytes": 57680,
      "twin": true
     },
     {
@@ -812,7 +864,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 54463,
+     "snapshotBytes": 54719,
      "twin": true
     },
     {
@@ -823,7 +875,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 121,
-     "snapshotBytes": 54625,
+     "snapshotBytes": 54881,
      "twin": true
     },
     {
@@ -834,7 +886,29 @@
      "pass": true,
      "time": 78.90480000000233,
      "tick": 2573,
-     "snapshotBytes": 85136,
+     "snapshotBytes": 85392,
+     "twin": true
+    },
+    {
+     "id": "r132-stand-freistoss",
+     "size": "standard",
+     "markers": "new",
+     "seed": 0,
+     "pass": true,
+     "time": 68.72580000000194,
+     "tick": 1943,
+     "snapshotBytes": 79957,
+     "twin": true
+    },
+    {
+     "id": "r132-stand-raumpass",
+     "size": "standard",
+     "markers": "new",
+     "seed": 0,
+     "pass": true,
+     "time": 37.291800000000755,
+     "tick": 0,
+     "snapshotBytes": 66064,
      "twin": true
     },
     {
@@ -845,7 +919,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 54386,
+     "snapshotBytes": 54475,
      "twin": true
     },
     {
@@ -856,7 +930,7 @@
      "pass": true,
      "time": 0,
      "tick": 0,
-     "snapshotBytes": 39265,
+     "snapshotBytes": 39521,
      "twin": true
     },
     {
@@ -867,7 +941,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 65585,
+     "snapshotBytes": 65841,
      "twin": true
     },
     {
@@ -878,7 +952,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 65585,
+     "snapshotBytes": 65841,
      "twin": true
     },
     {
@@ -889,7 +963,7 @@
      "pass": true,
      "time": 64.70100000000176,
      "tick": 2223,
-     "snapshotBytes": 88603,
+     "snapshotBytes": 88859,
      "twin": true
     },
     {
@@ -900,7 +974,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 432,
-     "snapshotBytes": 65585,
+     "snapshotBytes": 65841,
      "twin": true
     },
     {
@@ -911,7 +985,7 @@
      "pass": true,
      "time": 64.70100000000176,
      "tick": 0,
-     "snapshotBytes": 88471,
+     "snapshotBytes": 88727,
      "twin": true
     },
     {
@@ -922,7 +996,7 @@
      "pass": true,
      "time": 18.252,
      "tick": 755,
-     "snapshotBytes": 66559,
+     "snapshotBytes": 66815,
      "twin": true
     },
     {
@@ -933,7 +1007,7 @@
      "pass": true,
      "time": 32.33100000000053,
      "tick": 1116,
-     "snapshotBytes": 71074,
+     "snapshotBytes": 71330,
      "twin": true
     },
     {
@@ -944,7 +1018,7 @@
      "pass": true,
      "time": 15.989999999999915,
      "tick": 484,
-     "snapshotBytes": 65539,
+     "snapshotBytes": 65795,
      "twin": true
     },
     {
@@ -955,7 +1029,7 @@
      "pass": true,
      "time": 15.989999999999915,
      "tick": 484,
-     "snapshotBytes": 65539,
+     "snapshotBytes": 65795,
      "twin": true
     },
     {
@@ -966,7 +1040,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 66763,
+     "snapshotBytes": 67019,
      "twin": true
     },
     {
@@ -977,7 +1051,7 @@
      "pass": true,
      "time": 5.849999999999992,
      "tick": 455,
-     "snapshotBytes": 59793,
+     "snapshotBytes": 60049,
      "twin": true
     },
     {
@@ -988,7 +1062,7 @@
      "pass": true,
      "time": 72.77400000000206,
      "tick": 2430,
-     "snapshotBytes": 89280,
+     "snapshotBytes": 89536,
      "twin": true
     },
     {
@@ -999,7 +1073,7 @@
      "pass": true,
      "time": 42.43200000000091,
      "tick": 1408,
-     "snapshotBytes": 67520,
+     "snapshotBytes": 67776,
      "twin": true
     },
     {
@@ -1010,7 +1084,7 @@
      "pass": true,
      "time": 41.691000000000884,
      "tick": 1356,
-     "snapshotBytes": 72899,
+     "snapshotBytes": 73155,
      "twin": true
     },
     {
@@ -1021,7 +1095,7 @@
      "pass": true,
      "time": 57.44700000000148,
      "tick": 1793,
-     "snapshotBytes": 84519,
+     "snapshotBytes": 84775,
      "twin": true
     },
     {
@@ -1032,7 +1106,7 @@
      "pass": true,
      "time": 57.44700000000148,
      "tick": 1895,
-     "snapshotBytes": 85496,
+     "snapshotBytes": 85752,
      "twin": true
     },
     {
@@ -1043,7 +1117,7 @@
      "pass": true,
      "time": 6.161999999999989,
      "tick": 231,
-     "snapshotBytes": 60266,
+     "snapshotBytes": 60522,
      "twin": true
     },
     {
@@ -1054,7 +1128,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 1,
-     "snapshotBytes": 68821,
+     "snapshotBytes": 69077,
      "twin": true
     },
     {
@@ -1065,7 +1139,7 @@
      "pass": true,
      "time": 15.989999999999915,
      "tick": 309,
-     "snapshotBytes": 69200,
+     "snapshotBytes": 69456,
      "twin": true
     },
     {
@@ -1076,7 +1150,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 66172,
+     "snapshotBytes": 66428,
      "twin": true
     },
     {
@@ -1087,7 +1161,7 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 121,
-     "snapshotBytes": 66333,
+     "snapshotBytes": 66589,
      "twin": true
     },
     {
@@ -1098,7 +1172,29 @@
      "pass": true,
      "time": 80.52798000000205,
      "tick": 2710,
-     "snapshotBytes": 92840,
+     "snapshotBytes": 93096,
+     "twin": true
+    },
+    {
+     "id": "r132-stand-freistoss",
+     "size": "large",
+     "markers": "new",
+     "seed": 0,
+     "pass": true,
+     "time": 15.989999999999915,
+     "tick": 484,
+     "snapshotBytes": 65795,
+     "twin": true
+    },
+    {
+     "id": "r132-stand-raumpass",
+     "size": "large",
+     "markers": "new",
+     "seed": 0,
+     "pass": true,
+     "time": 64.70100000000176,
+     "tick": 0,
+     "snapshotBytes": 88727,
      "twin": true
     },
     {
@@ -1109,18 +1205,19 @@
      "pass": true,
      "time": 14.00099999999993,
      "tick": 0,
-     "snapshotBytes": 65971,
+     "snapshotBytes": 66060,
      "twin": true
     }
    ]
   },
   "oldMatchesAgainstBase": {
    "pass": true,
-   "runs": 46,
+   "runs": 50,
    "failed": [],
-   "checkpoints": 46,
-   "twinIdentical": true,
+   "checkpoints": 50,
    "twinRuns": 0,
+   "twinIdentical": true,
+   "twinDifferences": [],
    "acceptedReasons": [],
    "scenes": [
     {
@@ -1366,6 +1463,28 @@
      "baseCompare": true
     },
     {
+     "id": "r132-stand-freistoss",
+     "size": "standard",
+     "markers": "none",
+     "seed": 0,
+     "pass": true,
+     "time": 45.24000000000102,
+     "tick": 1267,
+     "snapshotBytes": 62271,
+     "baseCompare": true
+    },
+    {
+     "id": "r132-stand-raumpass",
+     "size": "standard",
+     "markers": "none",
+     "seed": 1,
+     "pass": true,
+     "time": 5.108999999999997,
+     "tick": 0,
+     "snapshotBytes": 51248,
+     "baseCompare": true
+    },
+    {
      "id": "paketzustand",
      "size": "standard",
      "markers": "none",
@@ -1373,7 +1492,7 @@
      "pass": true,
      "time": 14.312999999999928,
      "tick": 0,
-     "snapshotBytes": 53927,
+     "snapshotBytes": 53804,
      "baseCompare": true
     },
     {
@@ -1619,6 +1738,28 @@
      "baseCompare": true
     },
     {
+     "id": "r132-stand-freistoss",
+     "size": "large",
+     "markers": "none",
+     "seed": 0,
+     "pass": true,
+     "time": 43.13166000000069,
+     "tick": 1363,
+     "snapshotBytes": 69790,
+     "baseCompare": true
+    },
+    {
+     "id": "r132-stand-raumpass",
+     "size": "large",
+     "markers": "none",
+     "seed": 0,
+     "pass": true,
+     "time": 5.381999999999995,
+     "tick": 0,
+     "snapshotBytes": 59995,
+     "baseCompare": true
+    },
+    {
      "id": "paketzustand",
      "size": "large",
      "markers": "none",
@@ -1626,258 +1767,160 @@
      "pass": true,
      "time": 15.753659999999979,
      "tick": 0,
-     "snapshotBytes": 62833,
+     "snapshotBytes": 62710,
      "baseCompare": true
     }
    ]
   },
-  "sweepDense200": {
+  "sweeps": {
    "pass": true,
-   "runs": 2,
+   "runs": 8,
    "failed": [],
-   "checkpoints": 907,
+   "checkpoints": 1951,
+   "twinRuns": 8,
    "twinIdentical": true,
-   "twinRuns": 2,
+   "twinDifferences": [],
    "acceptedReasons": [
     "Vor dem ersten Pass fehlt das Feld; Restore bindet es als null (gleichbedeutend, es wird nur gelesen).",
-    "v65Snapshot hält den Ursprung der nativen Kontaktuhr als Feld fest; v65Restore setzt sie in v102State(match).clock. Die Uhr selbst wird getrennt verglichen (clo",
+    "v65Snapshot hält den Ursprung der nativen Kontaktuhr als Feld fest; v65Restore setzt sie in v102State(match).clock. Die Uhr selbst wird getrennt verglichen (clock).",
     "ui v103Replays: Aufzeichnung der Tor-Wiederholung (Anzeige).",
     "derived v121PositioningPlans: Stellungsplan wird in v121PreparePositioning im nächsten Takt neu berechnet (fehlt der Eintrag, wird er gebaut).",
     "derived v158AbilityCache: Zwischenspeicher der effektiven Fähigkeiten je Spieler.",
     "ui v181PositioningSteps: Schrittrichtungen der 3D-Darstellung.",
     "v102Motion: Posen und Posenzähler sind Darstellung (v102: „never to a saved match“); Uhr und lose Flugbahn sind gespeichert.",
     "derived v182PursuitFollow: Nachsetz-Messung gilt nur im selben Tick (clock-Gleichheit), nie über einen Speicherpunkt hinweg.",
-    "mirrored v150SpacePasses: Raumpass-Plan wird aus match.spacePassIntent in v150RestoreIntent neu aufgebaut.",
+    "v99Actions: Ballbahn-Reste nach Schuss/Tor (Darstellung, v132ClearVisualTails löscht sie ohnehin); Torwart-/Einwurf-/Abstoßzustand ist gespeichert.",
     "derived v132AirChasers: Läufer zum Luftball werden im Takt neu gewählt; die Zuteilung steht in rebound.chase (gespeichert).",
-    "v99Actions: Flugbezogene Reste im Torwart-/Abstoßzustand: Das Flugobjekt gibt es nach einem Restore nie (match.flight===null); sein Rückruf done und der Ledger-",
-    "v99Actions: Ballbahn-Reste nach Schuss/Tor (Darstellung, v132ClearVisualTails löscht sie ohnehin); Torwart-/Einwurf-/Abstoßzustand ist gespeichert."
+    "v99Actions: Flugbezogene Reste im Torwart-/Abstoßzustand: Das Flugobjekt gibt es nach einem Restore nie (match.flight===null); sein Rückruf done und der Ledger-Verweis sh",
+    "mirrored v150SpacePasses: Raumpass-Plan wird aus match.spacePassIntent in v150RestoreIntent neu aufgebaut.",
+    "ui v114KickoffBalls: Ballbahn zum Anstoßpunkt (Darstellung); m.ball und kickoff sind gespeichert.",
+    "ui v115OffsideBalls: Ballbahn zum Abseitspunkt (Darstellung); m.ball und setPiece sind gespeichert."
    ],
    "scenes": [
     {
      "id": "sweep",
      "size": "standard",
      "markers": "new",
-     "seed": 200,
+     "seed": 300,
      "pass": true,
      "twin": true,
-     "checkpoints": 457
+     "checkpoints": 234
     },
     {
      "id": "sweep",
      "size": "standard",
      "markers": "new",
-     "seed": 201,
+     "seed": 301,
      "pass": true,
      "twin": true,
-     "checkpoints": 450
+     "checkpoints": 236
+    },
+    {
+     "id": "sweep",
+     "size": "standard",
+     "markers": "new",
+     "seed": 302,
+     "pass": true,
+     "twin": true,
+     "checkpoints": 286
+    },
+    {
+     "id": "sweep",
+     "size": "standard",
+     "markers": "new",
+     "seed": 303,
+     "pass": true,
+     "twin": true,
+     "checkpoints": 182
+    },
+    {
+     "id": "sweep",
+     "size": "large",
+     "markers": "new",
+     "seed": 300,
+     "pass": true,
+     "twin": true,
+     "checkpoints": 203
+    },
+    {
+     "id": "sweep",
+     "size": "large",
+     "markers": "new",
+     "seed": 301,
+     "pass": true,
+     "twin": true,
+     "checkpoints": 281
+    },
+    {
+     "id": "sweep",
+     "size": "large",
+     "markers": "new",
+     "seed": 302,
+     "pass": true,
+     "twin": true,
+     "checkpoints": 249
+    },
+    {
+     "id": "sweep",
+     "size": "large",
+     "markers": "new",
+     "seed": 303,
+     "pass": true,
+     "twin": true,
+     "checkpoints": 280
     }
    ]
+  }
+ },
+ "vorMerge": {
+  "sameTab": {
+   "pass": true,
+   "runs": 48,
+   "checkpoints": 48,
+   "twinRuns": 48,
+   "twinIdentical": true
+  },
+  "reload": {
+   "pass": true,
+   "runs": 48,
+   "checkpoints": 48,
+   "twinRuns": 48,
+   "twinIdentical": true
+  },
+  "oldMatchesAgainstBase": {
+   "pass": true,
+   "runs": 46,
+   "checkpoints": 46,
+   "twinRuns": 0,
+   "twinIdentical": true
+  },
+  "sweepDense200": {
+   "pass": true,
+   "runs": 2,
+   "checkpoints": 907,
+   "twinRuns": 2,
+   "twinIdentical": true
   },
   "sweepStandard": {
    "pass": true,
    "runs": 4,
-   "failed": [],
    "checkpoints": 2125,
-   "twinIdentical": true,
    "twinRuns": 4,
-   "acceptedReasons": [
-    "Vor dem ersten Pass fehlt das Feld; Restore bindet es als null (gleichbedeutend, es wird nur gelesen).",
-    "v65Snapshot hält den Ursprung der nativen Kontaktuhr als Feld fest; v65Restore setzt sie in v102State(match).clock. Die Uhr selbst wird getrennt verglichen (clo",
-    "ui v103Replays: Aufzeichnung der Tor-Wiederholung (Anzeige).",
-    "derived v121PositioningPlans: Stellungsplan wird in v121PreparePositioning im nächsten Takt neu berechnet (fehlt der Eintrag, wird er gebaut).",
-    "derived v158AbilityCache: Zwischenspeicher der effektiven Fähigkeiten je Spieler.",
-    "ui v181PositioningSteps: Schrittrichtungen der 3D-Darstellung.",
-    "v102Motion: Posen und Posenzähler sind Darstellung (v102: „never to a saved match“); Uhr und lose Flugbahn sind gespeichert.",
-    "derived v182PursuitFollow: Nachsetz-Messung gilt nur im selben Tick (clock-Gleichheit), nie über einen Speicherpunkt hinweg.",
-    "ui v115OffsideBalls: Ballbahn zum Abseitspunkt (Darstellung); m.ball und setPiece sind gespeichert.",
-    "v99Actions: Ballbahn-Reste nach Schuss/Tor (Darstellung, v132ClearVisualTails löscht sie ohnehin); Torwart-/Einwurf-/Abstoßzustand ist gespeichert.",
-    "v99Actions: Flugbezogene Reste im Torwart-/Abstoßzustand: Das Flugobjekt gibt es nach einem Restore nie (match.flight===null); sein Rückruf done und der Ledger-",
-    "ui v114KickoffBalls: Ballbahn zum Anstoßpunkt (Darstellung); m.ball und kickoff sind gespeichert.",
-    "mirrored v150SpacePasses: Raumpass-Plan wird aus match.spacePassIntent in v150RestoreIntent neu aufgebaut.",
-    "derived v132AirChasers: Läufer zum Luftball werden im Takt neu gewählt; die Zuteilung steht in rebound.chase (gespeichert).",
-    "ui v109CornerBalls: Ballbahn der Eckballvorbereitung (Darstellung); m.ball und setPiece sind gespeichert."
-   ],
-   "scenes": [
-    {
-     "id": "sweep",
-     "size": "standard",
-     "markers": "new",
-     "seed": 202,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 582
-    },
-    {
-     "id": "sweep",
-     "size": "standard",
-     "markers": "new",
-     "seed": 203,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 471
-    },
-    {
-     "id": "sweep",
-     "size": "standard",
-     "markers": "new",
-     "seed": 204,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 515
-    },
-    {
-     "id": "sweep",
-     "size": "standard",
-     "markers": "new",
-     "seed": 205,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 557
-    }
-   ]
+   "twinIdentical": true
   },
   "sweepLarge": {
    "pass": true,
    "runs": 4,
-   "failed": [],
    "checkpoints": 2125,
-   "twinIdentical": true,
    "twinRuns": 4,
-   "acceptedReasons": [
-    "Vor dem ersten Pass fehlt das Feld; Restore bindet es als null (gleichbedeutend, es wird nur gelesen).",
-    "v65Snapshot hält den Ursprung der nativen Kontaktuhr als Feld fest; v65Restore setzt sie in v102State(match).clock. Die Uhr selbst wird getrennt verglichen (clo",
-    "ui v103Replays: Aufzeichnung der Tor-Wiederholung (Anzeige).",
-    "derived v121PositioningPlans: Stellungsplan wird in v121PreparePositioning im nächsten Takt neu berechnet (fehlt der Eintrag, wird er gebaut).",
-    "derived v158AbilityCache: Zwischenspeicher der effektiven Fähigkeiten je Spieler.",
-    "ui v181PositioningSteps: Schrittrichtungen der 3D-Darstellung.",
-    "v102Motion: Posen und Posenzähler sind Darstellung (v102: „never to a saved match“); Uhr und lose Flugbahn sind gespeichert.",
-    "derived v182PursuitFollow: Nachsetz-Messung gilt nur im selben Tick (clock-Gleichheit), nie über einen Speicherpunkt hinweg.",
-    "mirrored v150SpacePasses: Raumpass-Plan wird aus match.spacePassIntent in v150RestoreIntent neu aufgebaut.",
-    "v99Actions: Ballbahn-Reste nach Schuss/Tor (Darstellung, v132ClearVisualTails löscht sie ohnehin); Torwart-/Einwurf-/Abstoßzustand ist gespeichert.",
-    "v102Motion: Eine lose Kopfball-Flugbahn ohne Spieler im Besitz wird beim Restore mit owner:null gebunden (vorher fehlt das Feld); beide werden nur gelesen.",
-    "derived v132AirChasers: Läufer zum Luftball werden im Takt neu gewählt; die Zuteilung steht in rebound.chase (gespeichert).",
-    "v99Actions: Flugbezogene Reste im Torwart-/Abstoßzustand: Das Flugobjekt gibt es nach einem Restore nie (match.flight===null); sein Rückruf done und der Ledger-",
-    "ui v114KickoffBalls: Ballbahn zum Anstoßpunkt (Darstellung); m.ball und kickoff sind gespeichert.",
-    "ui v109CornerBalls: Ballbahn der Eckballvorbereitung (Darstellung); m.ball und setPiece sind gespeichert."
-   ],
-   "scenes": [
-    {
-     "id": "sweep",
-     "size": "large",
-     "markers": "new",
-     "seed": 202,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 660
-    },
-    {
-     "id": "sweep",
-     "size": "large",
-     "markers": "new",
-     "seed": 203,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 467
-    },
-    {
-     "id": "sweep",
-     "size": "large",
-     "markers": "new",
-     "seed": 204,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 574
-    },
-    {
-     "id": "sweep",
-     "size": "large",
-     "markers": "new",
-     "seed": 205,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 424
-    }
-   ]
+   "twinIdentical": true
   },
   "sweepMixed": {
    "pass": true,
    "runs": 6,
-   "failed": [],
    "checkpoints": 2342,
-   "twinIdentical": true,
    "twinRuns": 6,
-   "acceptedReasons": [
-    "Vor dem ersten Pass fehlt das Feld; Restore bindet es als null (gleichbedeutend, es wird nur gelesen).",
-    "v65Snapshot hält den Ursprung der nativen Kontaktuhr als Feld fest; v65Restore setzt sie in v102State(match).clock. Die Uhr selbst wird getrennt verglichen (clo",
-    "ui v103Replays: Aufzeichnung der Tor-Wiederholung (Anzeige).",
-    "derived v121PositioningPlans: Stellungsplan wird in v121PreparePositioning im nächsten Takt neu berechnet (fehlt der Eintrag, wird er gebaut).",
-    "derived v158AbilityCache: Zwischenspeicher der effektiven Fähigkeiten je Spieler.",
-    "ui v181PositioningSteps: Schrittrichtungen der 3D-Darstellung.",
-    "v102Motion: Posen und Posenzähler sind Darstellung (v102: „never to a saved match“); Uhr und lose Flugbahn sind gespeichert.",
-    "derived v182PursuitFollow: Nachsetz-Messung gilt nur im selben Tick (clock-Gleichheit), nie über einen Speicherpunkt hinweg.",
-    "mirrored v150SpacePasses: Raumpass-Plan wird aus match.spacePassIntent in v150RestoreIntent neu aufgebaut.",
-    "v99Actions: Ballbahn-Reste nach Schuss/Tor (Darstellung, v132ClearVisualTails löscht sie ohnehin); Torwart-/Einwurf-/Abstoßzustand ist gespeichert.",
-    "v99Actions: Flugbezogene Reste im Torwart-/Abstoßzustand: Das Flugobjekt gibt es nach einem Restore nie (match.flight===null); sein Rückruf done und der Ledger-",
-    "ui v114KickoffBalls: Ballbahn zum Anstoßpunkt (Darstellung); m.ball und kickoff sind gespeichert.",
-    "v102Motion: Eine lose Kopfball-Flugbahn ohne Spieler im Besitz wird beim Restore mit owner:null gebunden (vorher fehlt das Feld); beide werden nur gelesen.",
-    "derived v132AirChasers: Läufer zum Luftball werden im Takt neu gewählt; die Zuteilung steht in rebound.chase (gespeichert)."
-   ],
-   "scenes": [
-    {
-     "id": "sweep",
-     "size": "standard",
-     "markers": "new",
-     "seed": 210,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 344
-    },
-    {
-     "id": "sweep",
-     "size": "standard",
-     "markers": "new",
-     "seed": 211,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 358
-    },
-    {
-     "id": "sweep",
-     "size": "standard",
-     "markers": "new",
-     "seed": 212,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 489
-    },
-    {
-     "id": "sweep",
-     "size": "large",
-     "markers": "new",
-     "seed": 210,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 469
-    },
-    {
-     "id": "sweep",
-     "size": "large",
-     "markers": "new",
-     "seed": 211,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 356
-    },
-    {
-     "id": "sweep",
-     "size": "large",
-     "markers": "new",
-     "seed": 212,
-     "pass": true,
-     "twin": true,
-     "checkpoints": 326
-    }
-   ]
+   "twinIdentical": true
   }
  }
 }

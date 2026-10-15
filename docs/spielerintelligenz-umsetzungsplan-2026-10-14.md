@@ -223,7 +223,11 @@ SI-F trägt alle sieben Module auf einmal als leere Stubs in `dist/index.html` (
 | `v183Trace(m,entry)`, `v183LedgerSource(event,tag)` | SI-F | alle | — |
 | `v183Radius(m,metres)` | SI-F | SI-4, SI-5 | normalisierte Altwerte |
 | `v183PaceFactor(m,p,purpose)` (Weiche in `v157Pace`, `world-offensive-quality-v157.js:42`) | SI-F (Weiche), Faktoren als Parameter: Ballführer SI-2, Pressing SI-4 | SI-2, SI-4 | 1,28 / 1,58 / 1,35 / 1,15 |
-| `v183Clearance(m,defender,point,context) → {target, out}` | SI-4 | SI-7 (Luftduell), SI-3 (Block) | heutige Klärung (`pitch-v55.js:383-389`) |
+| `v183Clearance(m,defender,point,context) → {target, out}`; Auswertungsmodus `context.evaluate:true` = deterministische Mitte ohne Zufallsziehung | SI-4 | SI-7 (Luftduell), SI-3 (Block) | heutige Klärung (`pitch-v55.js:383-389`) |
+| `v183ReboundFinish(m,winner,point)` (Weiche `world-ball-motion-v110.js:76`) | SI-2 | — | `v131OpenGoal` |
+| `v183KeeperReach(m,keeper,range,contact,detail)` (Weiche `match-shot-choice-v159.js:9`, `pitch-v55.js:231` in `v131OpenGoal`, `:447` in `v115KeeperContact`) | SI-3 | SI-1 (über `v183ShotEstimate`) | Altwert der Stelle (`detail.reach`) |
+| `v183AirFinish(m,winner,end,detail)` (Kopfball-/Volleyentscheidung `pitch-v55.js:391-392`); Klärzweig `:386-387` ruft `v183Clearance` | SI-7 (Entscheidung mit `v183ShotEstimate`) | — | heutige Regel |
+| Parameter `finish.keeperHold` (Weiche `world-pitch-actions-v99.js:25` und `:35`) | SI-3 | — | 2,4 s |
 | `v183RegisterDefaults(pkg, obj)` | SI-F | alle | — |
 
 ## 7. Pakete
@@ -408,8 +412,9 @@ Je Funktion gibt es höchstens einen U-Eigentümer. Neue Logik liegt immer im ei
 | `world-football-flow-v159.js:97-162, 311-361` Verteidigung | — | O (Takte) | — | — | — | U | — | R | — |
 | `world-football-flow-v159.js:280-292` Keeperziel | — | — | — | — | U | — | — | — | — |
 | `world-football-flow-v159.js:40-71` freie Bälle (B12) | — | O (Takte) | — | U (`v182LooseChasers`, Nachsetzen) | R | — | — | — | — |
-| `pitch-v55.js:402-434` `v55Shoot`, `:446-447` Parade | — | O (Takte) | — | — | U | — | — | — | — |
-| `pitch-v55.js:313-400` Flanke/Ecke/Luftduell | — | O (Takte) | — | — | — | R (`v183Clearance`) | U | — | — |
+| `pitch-v55.js:402-434` `v55Shoot`, `:446-447` Parade (Reichweite `:447` über `v183KeeperReach`) | O (Weiche `:447`) | O (Takte) | — | — | U | — | — | — | — |
+| `pitch-v55.js:225-235` `v131OpenGoal` (Reichweite `:231` über `v183KeeperReach`), `match-shot-choice-v159.js:9` | O (Weichen) | — | R | R (`v183ReboundFinish`) | U (`v183KeeperReach`, `v131OpenGoal`) | — | — | — | — |
+| `pitch-v55.js:313-400` Flanke/Ecke/Luftduell (Weichen `:386-392`: `v183Clearance`, `v183AirFinish`) | O (Weichen) | O (Takte) | — | — | — | R (`v183Clearance`) | U | — | — |
 | `pitch-v55.js:188-221` Bodenpass | — | O (Takt `:217`) | R | — | — | O (Druckradius `:192`) | — | — | — |
 | `pitch-v55.js:72` `v55PrepareMovement` | — | — | — | — | — | — | — | U | — |
 | `match-shot-choice-v159.js` | — | — | R | — | O | — | — | — | — |
@@ -419,7 +424,8 @@ Je Funktion gibt es höchstens einen U-Eigentümer. Neue Logik liegt immer im ei
 | `set-pieces-v50.js:213-225` Block-Abpraller | — | O (Flugzeit `:221`) | — | — | — | O (Richtung `:215`) | — | — | — |
 | `pitch-v57.js:16-51`, `player-ball-events-v111.js:17-23` | — | O | — | — | — | — | — | — | — |
 | `world-ball-motion-v110.js:21-25` Parade | — | O (Flugzeit `:25`) | — | — | U | — | — | — | — |
-| `world-ball-motion-v110.js:40-80` freie Bälle, Direktabschluss `:76` | — | O (Zeiten) | — | U (Direktabschluss nach Abpraller) | — | — | — | — | — |
+| `world-ball-motion-v110.js:40-80` freie Bälle, Direktabschluss `:76` | O (Weiche `:76`) | O (Zeiten) | — | U (Direktabschluss über `v183ReboundFinish`) | — | — | — | — | — |
+| `world-pitch-actions-v99.js:25, 35` Torwart-Haltezeit | O (Weiche) | — (lässt diese Zeilen aus) | — | — | U (Parameter `finish.keeperHold`) | — | — | — | — |
 | `world-space-passes-v150.js`, `world-player-roles-v154.js` | — | O (Takte) | R (Passoption) | U (Laufziele) | — | — | — | — | — |
 | `world-backpedal-v108.js:8-43` Positionierung | — | O (Takte) | — | — | — | U | — | R | — |
 | `world-backpedal-v108.js:58-68` Läufer | — | — | — | U | — | — | — | R | — |
@@ -477,27 +483,31 @@ Nach jedem Merge laufen die Pflichtprüfungen (Abschnitt 9) und eine gepaarte 19
 
 ## 11. Modelle und Reviews
 
+Nutzerentscheidung 14. Oktober 2026: Claude arbeitet primär (Claude-Max-Plan 20x aktiv). Umsetzung und Reviews laufen mit Claude-Modellen; Review immer durch ein anderes Modell als die Umsetzung. Codex (GPT-6.1-Sol) bleibt nur Ausweichweg, falls ein Claude-Nutzungslimit eine Welle blockiert.
+
 | Paket | Umsetzung | Review (anderes Modell) | Begründung |
 | --- | --- | --- | --- |
-| SI-F Fundament | Claude Opus 5.5 | Codex GPT-6.1-Sol | Querschnitt aus Schnittstellen, Marker, Harness und Restore-Regeln; Opus kennt die Analyse; Review prüft die Codegenauigkeit |
-| B19 Restore-Vollständigkeit | Codex GPT-6.1-Sol | Claude Opus 5.5 | systematischer Zustandsabgleich mit wenigen Läufen |
-| B20 Altchecks | Claude Sonnet 5.5 | GPT-6-Sol | abgegrenzte Einzelanalysen, kein Produktcode ohne Befund |
-| SI-0 Uhr/Stillstand | Codex GPT-6.1-Sol | Claude Sonnet 5.5 | 68 Stellen mechanisch, aber fehleranfällig; zweite Instanz prüft jede Einordnung einzeln |
-| SI-1 Optionsmodell | Claude Fable 5.1 | Codex GPT-6.1-Sol | schwierigstes Design (Nutzen-Risiko, Persönlichkeit, Körperstellung, Rauschen) mit starker Kalibrierkopplung |
-| SI-2 Freilaufen/Muster/Tempo | Claude Opus 5.5 | GPT-6-Sol | Koordination mehrerer Spieler, Abseits, Formation; B02-Bezug |
-| SI-3 Abschluss/Torwart | Codex GPT-6.1-Sol | Claude Fable 5.1 | geometrisch-numerisches Modell mit Kalibrierung; Review prüft gegen Nutzerentscheidung Platzierung |
-| SI-4 Verteidigung | GPT-6-Sol | Claude Opus 5.5 | klar begrenzter Umbau; Review mit B03-Kenntnis |
-| SI-7 Flanken/Ecken/Kopfball | Claude Sonnet 5.5 | Codex GPT-6.1-Sol | baut auf dem vorhandenen B10-Muster auf |
+| SI-F Fundament | Claude Opus 5.5 | Claude Fable 5.1 | Querschnitt aus Schnittstellen, Marker, Harness und Restore-Regeln |
+| B19 Restore-Vollständigkeit | Claude Sonnet 5.5 | Claude Opus 5.5 | systematischer Zustandsabgleich mit wenigen Läufen |
+| B20 Altchecks | Claude Sonnet 5.5 | Claude Fable 5.1 | abgegrenzte Einzelanalysen, kein Produktcode ohne Befund |
+| SI-0 Uhr/Stillstand | Claude Sonnet 5.5 | Claude Opus 5.5 | viele Stellen mechanisch, aber fehleranfällig; Review prüft jede Einordnung |
+| SI-1 Optionsmodell | Claude Opus 5.5 | Claude Fable 5.1 | schwierigstes Design mit starker Kalibrierkopplung |
+| SI-2 Freilaufen/Muster/Tempo | Claude Fable 5.1 | Claude Opus 5.5 | Fable kennt Analyse und Prototypen; B02-Bezug |
+| SI-3 Abschluss/Torwart | Claude Opus 5.5 | Claude Fable 5.1 | geometrisch-numerisches Modell; Review gegen Nutzerentscheidung Platzierung |
+| SI-4 Verteidigung | Claude Sonnet 5.5 | Claude Opus 5.5 | klar begrenzter Umbau; Review mit B03-Kenntnis |
+| SI-7 Flanken/Ecken/Kopfball | Claude Fable 5.1 | Claude Sonnet 5.5 | baut auf dem B10-Muster auf |
 | SI-5 Großes Feld | Claude Sonnet 5.5 | Claude Opus 5.5 | Geometrie- und Formationsarbeit nach festen Kriterien |
-| U-1 Unity | Codex GPT-6.1-Sol | Claude Sonnet 5.5 | C#/Unity-CLI, Offline-Typprüfung, Bewegungsmessung |
+| U-1 Unity (B02/B05) | Claude Opus 5.5 | Claude Sonnet 5.5 | Animation ausdrücklich durch Opus (Nutzerwunsch Release 132) |
 | SI-K Integration/Kalibrierung | Claude Opus 5.5 | Claude Fable 5.1 | paketübergreifende Abwägung, Messreihen, Endwerte |
-| SI-6 P02 | GPT-6-Sol | Claude Opus 5.5 | statistische Angleichung nach festen Zielwerten |
+| SI-6 P02 | Claude Sonnet 5.5 | Claude Opus 5.5 | statistische Angleichung nach festen Zielwerten |
 
 Review-Runden je Paket: (1) Entwurfsreview der Moduldatei, der Umhüllungen und Weichen vor der ersten Messung; (2) Abschlussreview mit Messbericht, Prüfbelegen und Diff gegen `integration/si-r133`. Jede Runde ist ein eigener Auftrag mit Originalauftrag, früheren Befunden und offenen Einwänden.
 
 ## 12. Aufwand und Risiken
 
-**Aufwand (Agenten-Arbeitstage, Richtwerte):** SI-F 1–1,5; B19 0,5–1; B20 1; SI-0 1,5–2; SI-1 3–4; SI-2 3; SI-3 2–3; SI-4 2; SI-7 2–3; SI-5 1,5–2; U-1 2–3; SI-K 2–3; SI-6 2. Summe ≈ 24–30 Agententage, mit den Wellen ≈ 10–13 Kalendertage. Messrechenzeit: ≈10 min je 192-Partien-Serie und Lane, Abnahmereihe A/B je ≈1 h auf drei Lanes.
+**Aufwand (Agenten-Arbeitstage, Richtwerte):** SI-F 1–1,5; B19 0,5–1; B20 1; SI-0 1,5–2; SI-1 3–4; SI-2 3; SI-3 2–3; SI-4 2; SI-7 2–3; SI-5 1,5–2; U-1 2–3; SI-K 2–3; SI-6 2. Summe ≈ 24–30 Agententage. Messrechenzeit: ≈10 min je 192-Partien-Serie und Lane, Abnahmereihe A/B je ≈1 h auf drei Lanes.
+
+**Kalenderdauer neu berechnet (14. Oktober 2026, Claude primär, Max-Plan 20x):** Die Agententage sind eine Arbeitsmenge, keine Wanduhrzeit. Release 132 hat sieben parallele Pakete samt Reviews in rund 1–1,5 Tagen Wanduhrzeit geschafft, gebremst vor allem durch Claude-Nutzungslimits. Mit 20x entfällt diese Bremse weitgehend; Engpässe sind dann die drei Messlanen, die seriellen Merges mit je einer 192-Partien-Serie und die Kalibrierrunden. Richtwerte bei Durchlauf rund um die Uhr: Welle 0 ≈ 0,5 Tag; Welle 1 ≈ 1,5–2 Tage (sechs Pakete teilen drei Lanes, danach sechs serielle Merges à ≈ 30–45 min); Welle 2 ≈ 0,5–1 Tag (Unity langsamer); Welle 3 ≈ 0,5–1 Tag (2–4 Kalibrierrunden à ≈ 1 h Messung); Welle 4 ≈ 0,5 Tag. Summe ≈ **4–6 Kalendertage** bis zum abnahmefähigen Integrationsstand, zuzüglich Nutzerabnahme und Veröffentlichung. Nicht eingerechnet: Wartezeit auf Nutzerentscheidungen, Wochenlimit des Max-Plans, Zusatzrunden, falls die Kalibrierung die Ziele verfehlt.
 
 | Risiko | Wirkung | Gegenmaßnahme |
 | --- | --- | --- |
