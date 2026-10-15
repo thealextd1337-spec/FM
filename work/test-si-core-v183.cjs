@@ -95,7 +95,7 @@ check('clock helpers: MATCH_SPEED arithmetic without the clock package, stored r
  h.call('Native183.constructed',{si:false});h.call('Native183.run',40);
  assert.equal(ev('v183Rate(match)'),ev('MATCH_SPEED'));assert.equal(ev('v183Seconds(match)'),ev('v152Seconds(match)'));
  for(const s of [.32,.75,2.7,1/3])assert.equal(ev(`v183ClockUnits(match,${s})`),ev(`${s}*MATCH_SPEED`));
- h.call('Native183.constructed',{si:{clockRate:.42}});h.call('Native183.run',40);
+ h.call('Native183.constructed',{si:{packages:{clock:false},clockRate:.42}});h.call('Native183.run',40);
  assert.equal(ev('v183Rate(match)'),ev('MATCH_SPEED'),'stored rate only with the clock package');assert.equal(ev('v183Seconds(match)'),ev('v152Seconds(match)'));
  h.call('Native183.constructed',{si:{packages:{clock:true},clockRate:.42}});h.call('Native183.run',40);
  assert.equal(ev('v183Rate(match)'),.42);assert.equal(ev('v183Seconds(match)'),ev('match.elapsed/.42'));assert.equal(ev('v183ClockUnits(match,2)'),2*.42);
