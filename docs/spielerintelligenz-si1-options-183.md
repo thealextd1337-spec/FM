@@ -42,7 +42,28 @@ Für `v183Active(m,'options')` ersetzt eine Bewertung die feste Reihenfolge von 
 
 ### SI-F-Stub-Brücke
 
-Der Stub von `v183ShotEstimate` (erkennbar an `stub:true`, seit `ef78fca6`) liefert die Schussqualität von `v157ShotQuality` mit hartem 22-m-Fenster. SI-1 liest ihn deshalb an dem Punkt derselben Schusslinie, dessen Torentfernung `Entfernung × 22 / Fenster` beträgt, und skaliert mit 0,4 auf eine Torwahrscheinlichkeit. Ein Verteidiger zwischen Schütze und diesem Punkt halbiert den Wert, zwei heben ihn auf (der Stub sieht nur die Linie dahinter). Kopfballwerte aus `v183CrossEstimate` erhalten dieselbe Skalierung, solange die Flankenschätzung oder die Schussschätzung der Stub ist. Eine echte Schätzung (ohne `stub:true`, auch mit `speed` 0 oder `null`) wird unverändert verwendet; das Fähigkeitsfenster bleibt als Grenze. Nach dem Rebase auf SI-3/SI-7 sind `stubScale` und die Gewichte gegen die echten Schätzungen nachzumessen (SI-K).
+Der Stub von `v183ShotEstimate` (erkennbar an `stub:true`, seit `ef78fca6`) liefert die Schussqualität von `v157ShotQuality` mit hartem 22-m-Fenster. SI-1 liest ihn deshalb an dem Punkt derselben Schusslinie, dessen Torentfernung `Entfernung × 22 / Fenster` beträgt, und skaliert mit 0,4 auf eine Torwahrscheinlichkeit. Ein Verteidiger zwischen Schütze und diesem Punkt halbiert den Wert, zwei heben ihn auf (der Stub sieht nur die Linie dahinter). Kopfballwerte aus `v183CrossEstimate` erhalten dieselbe Skalierung, solange die Flankenschätzung oder die Schussschätzung der Stub ist. Eine echte Schätzung (ohne `stub:true`, auch mit `speed` 0 oder `null`) wird unverändert verwendet; das Fähigkeitsfenster bleibt als Grenze.
+
+### Neu einzustellen beim Rebase auf SI-3/SI-7
+
+SI-3 liefert `v183ShotEstimate.xg` als Torwahrscheinlichkeit einschließlich Blockchance, statt des Güteindexes des Stubs. Mit der echten Schätzung entfallen automatisch:
+
+- die Stub-Brücke: `stubRange`, `stubScale` und die Fensterumrechnung der Entfernung;
+- der Blockabschlag `laneOne` (die Blockchance steckt dann in `xg`).
+
+Gegen die echte xG-Skala neu einzustellen sind alle Schwellen, die Schuss- oder Kopfballwerte mit Positions-, Pass- oder Tragewerten vergleichen:
+
+| Stelle | Parameter / Code | Wirkung |
+| --- | --- | --- |
+| Schuss gegen Alternativen | `shootInstruction`, Persönlichkeitsspanne `weightMin`/`weightMax`, Körperrichtung `shotFree`/`shotTurn` | Schussmenge, Fernschussanteil |
+| Fähigkeitsfenster | `windowBase`/`windowFin` (bleibt als Schnitt) | Fernschüsse schwacher Schützen |
+| Empfänger mit Schussmöglichkeit | `recvShot` (`v183OptHolder`) | Querpass gegen eigenen Schuss |
+| Heranlaufen und Schießen | `carryShot` | Nah- gegen Fernschüsse |
+| Positionswert gegen xG | `threat`, `threatLength`, `counter` | Verhältnis von Ballbesitz und Abschluss |
+| Schuss aus der Drehung | `switchMargin` | Abbruch einer Drehung |
+| Kopfball nach Flanke | `crossConv` (SI-7 `headerXg`) | Flankenwahl |
+
+Danach misst SI-K die Gewichte gegen die echten Schätzungen nach.
 
 ## `v183PassEstimate(m,p,q,target)`
 

@@ -82,8 +82,9 @@ const options=()=>copy(h.call('SI1.options'));
 check('options off: constructor matches digest-equal to rules 182 (marker field aside)',()=>{
  const scenes=copy(h.call('Native183.constructedScenes')).slice(0,quick?4:12);
  for(const s of scenes){
-  const legacy=h.call('Native183.constructedDigest',s,{si:false}),off=h.call('Native183.constructedDigest',s,{si:{packages:allOff},withoutSi:true}),optionsOff=h.call('Native183.constructedDigest',s,{si:{packages:{options:false}},withoutSi:true});
-  assert.equal(off,legacy,s.id+': all packages off');assert.equal(optionsOff,legacy,s.id+': options off (constructor default of the others)');
+  // Other packages may be on by default (SI-0 clock): switch all off explicitly.
+  const legacy=h.call('Native183.constructedDigest',s,{si:false}),off=h.call('Native183.constructedDigest',s,{si:{packages:allOff},withoutSi:true});
+  assert.equal(off,legacy,s.id+': all packages off');
  }
 });
 check('options off: v183PassEstimate is the SI-F stub; v157Decide/v159Decide/v157ContinueTurn pass through',()=>{
