@@ -33,7 +33,8 @@
 //   setplay.airFinish                                 header/volley decision
 //   setplay.layOff, setplay.control                   lay-off pass, ball control
 //   setplay.cornerVariant                             corner variant
-//   setplay.freeKickDirect                            direct free kick (shooter only)
+//   setplay.freeKickDirect                            direct free kick (shooter only,
+//     only without the finish package; with it v183DirectFreeKick decides at execution)
 // Plain state: setPiece.plan {direct,targetPid,kind} (saved with the set piece),
 // setPiece.cornerBackPid, attackFlow.setplay.secondBall (H8 trigger for SI-2).
 // The aerial plan is transient per flight (no snapshot during a flight).
@@ -63,15 +64,20 @@ v183RegisterDefaults('setplay',{
  crossSpread:.9,crossSpreadSkill:.2,crossSpreadPressure:.5,crossLarge:.03,crossLargeSkill:.008,crossLargePressure:.02,crossLargeMax:.2,
  // Flight speed of crosses and corners (m/s) and the minimum real flight time.
  crossSpeed:20,cornerSpeed:16,flightMin:.7,
- // Pressure radius on the crosser (m); cross block by a close rival: radius (m),
- // chance base, per tak point, bound, share that goes out for a corner when the
- // block happens within blockCornerDepth metres of the goal line.
- pressureRadius:3,blockRadius:1.8,blockBase:.12,blockTak:.012,blockMax:.4,blockCorner:.45,blockCornerDepth:20,
+ // Pressure radius on the crosser (m) for the cross error and the estimates;
+ // cornerPressureRadius keeps the B10 corner error model at its legacy input
+ // (normalised .15 is about 7.3 m across and 11 m along the pitch, so 9 m;
+ // joint SI-K value with SI-4). Cross block by a close rival: radius (m), chance
+ // base, per tak point, bound, share that goes out for a corner when the block
+ // happens within blockCornerDepth metres of the goal line.
+ pressureRadius:3,cornerPressureRadius:9,blockRadius:1.8,blockBase:.12,blockTak:.012,blockMax:.4,blockCorner:.45,blockCornerDepth:20,
  // Corner formation: depth of the back-space player (m).
  cornerBack:17,
- // Free kick: direct only by the best shooter within range (m) + per fin point
- // and a free angle; chance base + per fin point above 10. A cross variant needs
- // this many team-mates near the goal.
+ // Free kick without the finish package: direct only by the best shooter within
+ // range (m) + per fin point and a free angle; chance base + per fin point above
+ // 10. With the finish package the SI-3 window finish.fkRangeBase/fkRangeFin and
+ // v183DirectFreeKick decide instead. A cross variant needs this many team-mates
+ // near the goal.
  freeKickRange:14,freeKickRangeFin:.6,freeKickDirectBase:.35,freeKickDirectFin:.04,freeKickCrossAllies:2,
  // Real seconds a controlled high ball settles before the next action.
  settle:.7
@@ -147,12 +153,16 @@ v55HighPass=function(passer,receiver,options={}){
  try{return v102Scoped(passer,cross?'cross':'highPass',()=>{if(v102Release&&corner)v102Release.contact={...m.ball};return v183HighPass(m,passer,receiver,options);});}
  finally{v99Release=previous;}
 };
-function v183HighPass(m,passer,receiver,{cross=false,exempt=false,corner=false}){
+// options.restart (free-kick cross): the queued turn must be kicked even with a
+// rival near the taker or a doubtful receiver (v157ContinueTurn), as for the
+// ground pass of a free kick. Corners keep the legacy pressure radius of the
+// B10 error model (cornerPressureRadius); crosses use pressureRadius.
+function v183HighPass(m,passer,receiver,{cross=false,exempt=false,corner=false,restart=false}){
  const P=key=>v183SP(m,key);
- if(typeof v157QueueTurn==='function'&&v157QueueTurn(m,passer,receiver,'high',{cross,exempt,corner}))return;
+ if(typeof v157QueueTurn==='function'&&v157QueueTurn(m,passer,receiver,'high',{cross,exempt,corner,restart}))return;
  if(typeof v155AttemptPass==='function')v155AttemptPass(m,passer,receiver);
  if(v122Metres(passer,receiver)<7)return v55GroundPass(passer,receiver,'pass',exempt);
- const snapshot=v55OffsideSnapshot(passer,exempt),from={x:m.ball.x,y:m.ball.y},within=v183Radius(m,'setplay.pressureRadius',.15),pressure=m.people.filter(q=>q.t!==passer.t&&!q.keeper&&within(q,passer)).length;
+ const snapshot=v55OffsideSnapshot(passer,exempt),from={x:m.ball.x,y:m.ball.y},within=v183Radius(m,corner?'setplay.cornerPressureRadius':'setplay.pressureRadius',.15),pressure=m.people.filter(q=>q.t!==passer.t&&!q.keeper&&within(q,passer)).length;
  const intended={x:receiver.x,y:receiver.y},drawX=random(),drawY=random(),variant=random(),land={...intended}; // setplay.landX, setplay.landY, setplay.landVariant
  if(corner&&m.attackFlow?.setPieceRevision===182)v182CornerLanding(passer,from,intended,land,[drawX,drawY,variant],pressure);else v183CrossLanding(m,passer,from,intended,land,[drawX,drawY,variant],pressure);
  passer.stats.passes++;passer.stats.highPasses++;if(cross)passer.stats.crosses++;m.lastTouch=passer.t;
@@ -330,54 +340,68 @@ v131CornerFormation=function(current,piece){
 };
 
 // ----- Free-kick variants (wraps v182FreeKickPlan, v50TakeFreeKick, v50BestTaker) -----
+// Shooter quality as SI-3 rates a direct free kick (v183FinishSkill, else the
+// same .7 fin + .3 tec); the direct window reads the SI-3 limits while the
+// finish package is on, else the setplay parameters.
+function v183ShooterSkill(p){return typeof v183FinishSkill==='function'?v183FinishSkill(p,'direct-free-kick'):ability(p,'fin')*.7+ability(p,'tec')*.3;}
+function v183DirectLimit(m,shooter){
+ const fin=ability(shooter,'fin');
+ return v183Active(m,'finish')?v183Param(m,'finish.fkRangeBase')+v183Param(m,'finish.fkRangeFin')*fin:v183SP(m,'freeKickRange')+v183SP(m,'freeKickRangeFin')*fin;
+}
 function v183FreeKickWindow(m,team,spot,shooter){
  const {depth,lateral,dist}=v183GoalFrame(m,team,spot);
- return depth>=6&&lateral<=depth*.85+1&&dist<=v183SP(m,'freeKickRange')+v183SP(m,'freeKickRangeFin')*ability(shooter,'fin');
+ return depth>=6&&lateral<=depth*.85+1&&dist<=v183DirectLimit(m,shooter);
 }
-// The best shooter of the team takes a free kick inside his direct range (he
-// may be moved there: a visible relocation is accepted for set pieces).
-const v183BaseBestTaker=v50BestTaker;
-v50BestTaker=function(team,type,spot){
- const m=match;if(!v183SetplayOn(m)||type!=='freeKick')return v183BaseBestTaker.apply(this,arguments);
- const shooter=[...v50Outfield(team)].sort((a,b)=>ability(b,'fin')-ability(a,'fin')||a.n-b.n)[0];
- return shooter&&v183FreeKickWindow(m,team,spot,shooter)?shooter:v183BaseBestTaker.apply(this,arguments);
-};
-// Plan: direct only by the best shooter inside his window (one draw by fin);
-// otherwise a cross to the best header when enough team-mates are near the goal
-// and the spot is 12-36 m out; otherwise today's short pass to the most advanced
-// team-mate. The plan is plain data in the saved set piece.
-// Pass variants of a free kick: a cross to the best header when enough
-// team-mates stand near the goal and the spot is 12-36 m out, else today's
-// short pass to the most advanced team-mate. Plain data for the saved set piece.
+// Cross variant applies when the spot is 12-36 m out and enough team-mates
+// (excluding the taker) stand within 20 m of goal and 12 m of the centre.
+function v183FreeKickBox(m,team,spot,taker){
+ const s=v160PitchScale(m),allies=v50Outfield(team).filter(p=>p!==taker),{dist}=v183GoalFrame(m,team,spot),box=allies.filter(p=>v115GoalDistance(p)<=20&&Math.abs(p.x-.5)*s.x<=12);
+ return dist>=12&&dist<=36&&box.length>=v183SP(m,'freeKickCrossAllies')?box:null;
+}
+// Pass variants of a free kick: a cross to the best header of the box, else
+// today's short pass to the most advanced team-mate. Plain data for the saved set piece.
 function v183FreeKickVariant(m,setPiece){
- const P=key=>v183SP(m,key),team=setPiece.team,taker=setPiece.taker,s=v160PitchScale(m),allies=v50Outfield(team).filter(p=>p!==taker);
- const {dist}=v183GoalFrame(m,team,setPiece.spot),box=allies.filter(p=>v115GoalDistance(p)<=20&&Math.abs(p.x-.5)*s.x<=12);
- if(dist>=12&&dist<=36&&box.length>=P('freeKickCrossAllies')){const target=[...box].sort((a,b)=>ability(b,'air')+ability(b,'pos')*.4-ability(a,'air')-ability(a,'pos')*.4||a.n-b.n)[0];return {direct:false,targetPid:target.pid,kind:'cross'};}
+ const team=setPiece.team,taker=setPiece.taker,allies=v50Outfield(team).filter(p=>p!==taker),box=v183FreeKickBox(m,team,setPiece.spot,taker);
+ if(box){const target=[...box].sort((a,b)=>ability(b,'air')+ability(b,'pos')*.4-ability(a,'air')-ability(a,'pos')*.4||a.n-b.n)[0];return {direct:false,targetPid:target.pid,kind:'cross'};}
  const target=[...allies].sort((a,b)=>(team===0?a.y-b.y:b.y-a.y)||distance(a,taker)-distance(b,taker))[0]||null;
  return {direct:false,targetPid:target?target.pid:null,kind:'pass'};
 }
+// One owner of "best shooter": the free kick inside the shooter's window is
+// taken by the best shooter (SI-3 rating); a free kick that will be crossed by
+// the best crosser (passing/technique, as corners); otherwise today's taker.
+// A visible relocation of the taker is accepted for set pieces.
+const v183BaseBestTaker=v50BestTaker;
+v50BestTaker=function(team,type,spot){
+ const m=match;if(!v183SetplayOn(m)||type!=='freeKick')return v183BaseBestTaker.apply(this,arguments);
+ const field=v50Outfield(team),shooter=[...field].sort((a,b)=>v183ShooterSkill(b)-v183ShooterSkill(a)||a.n-b.n)[0];
+ if(shooter&&v183FreeKickWindow(m,team,spot,shooter))return shooter;
+ const crosser=[...field].sort((a,b)=>ability(b,'pas')*.6+ability(b,'tec')*.4-ability(a,'pas')*.6-ability(a,'tec')*.4||a.n-b.n)[0];
+ if(crosser&&v183FreeKickBox(m,team,spot,crosser))return crosser;
+ return v183BaseBestTaker.apply(this,arguments);
+};
 // Plan at creation (v50Restart, before wall and defenders are placed): the
-// direct attempt is provisional and needs the best shooter inside his window.
-// With SI-3 present it is confirmed at execution by v183DirectFreeKick once the
-// wall stands (v50TakeFreeKick below); without SI-3 one draw by finishing
-// decides here, as the base plan draws at creation too.
+// direct attempt needs the best shooter inside his window. With the finish
+// package it is provisional and confirmed at execution by v183DirectFreeKick
+// once the wall stands (v50TakeFreeKick below); without it one draw by
+// finishing decides here, as the base plan draws at creation too.
 const v183BaseFreeKickPlan=v182FreeKickPlan;
 v182FreeKickPlan=function(m,setPiece){
  if(!v183SetplayOn(m))return v183BaseFreeKickPlan.apply(this,arguments);
- const P=key=>v183SP(m,key),team=setPiece.team,taker=setPiece.taker,fin=ability(taker,'fin'),field=v50Outfield(team);
- const bestShooter=!field.some(p=>ability(p,'fin')>fin+1e-9),window=bestShooter&&v183FreeKickWindow(m,team,setPiece.spot,taker);
- const direct=window&&(typeof v183DirectFreeKick==='function'||random()<clamp(P('freeKickDirectBase')+(fin-10)*P('freeKickDirectFin'),.1,.9)); // setplay.freeKickDirect (only without SI-3)
- if(direct)return {direct:true,targetPid:null,kind:'direct',provisional:typeof v183DirectFreeKick==='function'};
+ const P=key=>v183SP(m,key),team=setPiece.team,taker=setPiece.taker,field=v50Outfield(team),skill=v183ShooterSkill(taker);
+ const bestShooter=!field.some(p=>v183ShooterSkill(p)>skill+1e-9),window=bestShooter&&v183FreeKickWindow(m,team,setPiece.spot,taker),advised=v183Active(m,'finish')&&typeof v183DirectFreeKick==='function';
+ const direct=window&&(advised||random()<clamp(P('freeKickDirectBase')+(ability(taker,'fin')-10)*P('freeKickDirectFin'),.1,.9)); // setplay.freeKickDirect (only without the finish package)
+ if(direct)return {direct:true,targetPid:null,kind:'direct',provisional:advised};
  return v183FreeKickVariant(m,setPiece);
 };
 // Execution: a provisional direct plan asks v183DirectFreeKick now that the
 // wall and the defenders stand (range, free angle, goal probability incl. the
 // block); a refusal turns the plan into the cross/pass variant from the current
-// positions. The revised plan stays plain data in the set piece.
+// positions. The revised plan stays plain data in the set piece. The cross is
+// kicked as a restart (the queued turn cannot be cancelled by a close rival).
 const v183BaseTakeFreeKick=v50TakeFreeKick;
 v50TakeFreeKick=function(setPiece){
  const m=match;if(!v183SetplayOn(m)||setPiece.type==='offside')return v183BaseTakeFreeKick.apply(this,arguments);
- if(setPiece.plan?.kind==='direct'&&typeof v183DirectFreeKick==='function'){
+ if(setPiece.plan?.kind==='direct'&&v183Active(m,'finish')&&typeof v183DirectFreeKick==='function'){
   const advice=v183DirectFreeKick(m,setPiece);
   if(advice&&!advice.direct){setPiece.plan={...v183FreeKickVariant(m,setPiece),revised:'direct'};v183Trace(m,{kind:'free-kick-revised',taker:setPiece.taker,to:setPiece.plan.kind,xg:Number.isFinite(advice.xg)?+advice.xg.toFixed(3):null});}
   else if(advice)setPiece.plan={direct:true,targetPid:null,kind:'direct',xg:Number.isFinite(advice.xg)?+advice.xg.toFixed(3):null};
@@ -387,7 +411,7 @@ v50TakeFreeKick=function(setPiece){
  if(!receiver)return v183BaseTakeFreeKick.apply(this,arguments);
  v50Spot(taker,setPiece.spot);m.owner=taker;m.ball={...setPiece.spot};m.offsideVisual=null;
  note(`${taker.name} flankt den Freistoß in den Strafraum auf ${receiver.name}.`,'restart');
- v55HighPass(taker,receiver,{cross:true,exempt:false});
+ v55HighPass(taker,receiver,{cross:true,exempt:false,restart:true});
 };
 
 // Package complete: new matches start with the setplay package on.

@@ -22,8 +22,9 @@ h.run(`globalThis.Setplay=(function(){
  const baseHigh=v55HighPass;v55HighPass=function(passer,receiver,options){if(probe&&!probe.pass){probe.pass={passer:passer.pid,receiver:receiver.pid,options:{...options},intended:{x:receiver.x,y:receiver.y},from:{...match.ball},drawsBefore:R.rng().draws};probe.inHigh=true;}try{return baseHigh.apply(this,arguments);}finally{if(probe?.inHigh){probe.inHigh=false;probe.pass.drawsAfter=R.rng().draws;}}};
  const baseExit=v55Exit;v55Exit=function(from,to){const hit=baseExit(from,to);if(probe?.inHigh&&!probe.land){probe.land={...to};probe.exit=hit?{edge:hit.edge}:null;}return hit;};
  const baseOut=v55Out;v55Out=function(hit,lastTouch,description){if(probe&&!probe.first)probe.first={kind:'out',edge:hit.edge,lastTouch};return baseOut.apply(this,arguments);};
- function stage({on=true,size='standard',seed='sp',club='GER-2',clockRate}={}){
-  const si={packages:{setplay:on,...(clockRate?{clock:true}:{})},...(clockRate?{clockRate}:{})};
+ // packages: further switches (e.g. {defence:false} to isolate SI-7 from SI-4's clearance draws).
+ function stage({on=true,size='standard',seed='sp',club='GER-2',clockRate,packages={}}={}){
+  const si={packages:{setplay:on,...(clockRate?{clock:true}:{}),...packages},...(clockRate?{clockRate}:{})};
   N.constructed({club,seed,size,roles:true,si});
   for(let i=0;i<800&&(match.kickoff||match.setPiece||match.postBanner||match.goalPause>0||match.countdown>0);i++)N.advance();
   match.firstHalfEnd=5000;match.fullTimeEnd=10000;match.halftime=false;
@@ -76,7 +77,8 @@ h.run(`globalThis.Setplay=(function(){
  }
  // ----- defender alone at the landing point: clearance draws -----
  function lonely({seed}){
-  stage({on:true,seed:'lonely'});clear();
+  // defence off: SI-4's clearance draws its own target (clearance.out); SI-7 alone hands over the lateral draw.
+  stage({on:true,seed:'lonely',packages:{defence:false}});clear();
   const team=0,D=field(1)[0],passer=field(0)[0],end=attack(team,10,0);
   park([D,passer]);place(passer,attack(team,24,14));place(D,end);
   match.owner=null;match.ball={...end};match.lastTouch=team;
@@ -86,7 +88,8 @@ h.run(`globalThis.Setplay=(function(){
  }
  // ----- corner probe (B10 follow-up): first event after a high corner -----
  function corner({on,team,right,level,seed,size='standard'}){
-  stage({on,size,seed:'corner'+(seed%3)});clear();
+  // defence off: the B10 follow-up measures SI-7's reach, not SI-4's clearances into touch.
+  stage({on,size,seed:'corner'+(seed%3),packages:{defence:false}});clear();
   for(const p of field(team))set(p,{pas:level,tec:level});
   match.lastTouch=1-team;match.teamFocus=[null,null];match.cornerVariants??=[null,null];
   seeded(15432+seed*7919+team*17+(right?3:0)+level);probe={};
@@ -132,7 +135,7 @@ h.run(`globalThis.Setplay=(function(){
   seeded(13000+seed);const d0=R.rng().draws,plan=v182FreeKickPlan(match,match.setPiece),draws=R.rng().draws-d0;
   const best=v50BestTaker(team,'freeKick',spot);
   match.setPiece=null;
-  return {plan,draws,bestTaker:best.pid,takerPid:taker.pid,bestFin:ability(best,'fin'),window:v183FreeKickWindow(match,team,spot,best)};
+  return {plan,draws,bestTaker:best.pid,takerPid:taker.pid,bestFin:ability(best,'fin'),window:v183FreeKickWindow(match,team,spot,best),bestShooterPid:[...players].sort((a,b)=>v183ShooterSkill(b)-v183ShooterSkill(a))[0].pid,advised:v183Active(match,'finish')&&typeof v183DirectFreeKick==='function'};
  }
  function freeKickRestore({seed=1}){
   stage({on:true,seed:'fkr'});clear();
@@ -165,6 +168,25 @@ h.run(`globalThis.Setplay=(function(){
    executed=match.setPiece?null:'done';pass=probe.pass?{receiver:probe.pass.receiver,options:probe.pass.options}:null;probe=null;
    return {planned,atCreation,calls:calls.length,shot:stat(taker,'shots')-shots,pass,notes:notes.filter(t=>t.includes('Freistoß')).slice(-2)};
   }finally{if(original)globalThis.v183DirectFreeKick=original;else delete globalThis.v183DirectFreeKick;probe=null;}
+ }
+ // Free-kick cross with rivals close to taker and receiver: the restart must be
+ // kicked (no cancelled turn) and the actual flight must happen; the taker is the
+ // best crosser (pas/tec), not the best shooter.
+ function freeKickCross({seed=1,near=true}){
+  stage({on:true,seed:'fkc'});clear();
+  const team=0,players=field(team),rivals=field(1);
+  players.forEach((p,i)=>set(p,{fin:10,pas:10,tec:10}));set(players[2],{fin:18,tec:12});set(players[4],{pas:18,tec:16});
+  park([]);const spot=attack(team,26,7);
+  players.slice(0,3).forEach((p,i)=>place(p,attack(team,9+i*2,-4+i*4)));place(players[3],attack(team,30,-10));place(players[4],attack(team,27,8));
+  if(near){place(rivals[0],attack(team,24.5,6.2));place(rivals[1],attack(team,8.2,-3));}
+  match.ball={...spot};match.lastTouch=1;seeded(18000+seed);
+  const crossesBefore=players.reduce((n,p)=>n+stat(p,'crosses'),0);
+  probe={};v50Restart('freeKick',team,spot,'Freistoßflanke');
+  const taker=match.setPiece.taker,plan=JSON.parse(JSON.stringify(match.setPiece.plan));
+  let i=0,flight=null;for(;i<900&&!flight;i++){N.advance();if(match.flight&&probe.pass)flight={target:{...match.flight.target},duration:match.flight.duration,team:match.flight.team};}
+  for(let j=0;j<400&&match.flight;j++)N.advance();
+  const out={takerPid:taker.pid,bestPasser:[...players].sort((a,b)=>ability(b,'pas')*.6+ability(b,'tec')*.4-ability(a,'pas')*.6-ability(a,'tec')*.4)[0].pid,bestShooter:[...players].sort((a,b)=>v183ShooterSkill(b)-v183ShooterSkill(a))[0].pid,plan,pass:probe.pass?{receiver:probe.pass.receiver,options:probe.pass.options}:null,flight,crosses:players.reduce((n,p)=>n+stat(p,'crosses'),0)-crossesBefore,pendingTurn:Boolean(match.attackFlow.pendingTurn),air:v183TraceEntries(match).filter(e=>e.kind==='air').length,notes:notes.filter(t=>t.includes('Freistoß')||t.includes('Flanke')).slice(-3)};
+  probe=null;return out;
  }
  function cornerRestore({seed=1,team=0}){
   stage({on:true,seed:'cr'});clear();match.lastTouch=1-team;
@@ -199,7 +221,7 @@ h.run(`globalThis.Setplay=(function(){
    return {cross:JSON.stringify({...a,trace:undefined,texts:a.texts}),digest};
   }finally{if(swap){v122PlanAir=keep.plan;v122ResolveAir=keep.resolve;v131CornerFormation=keep.formation;v182FreeKickPlan=keep.fk;v50TakeFreeKick=keep.take;v50BestTaker=keep.taker;v183AirFinish=keep.finish;v183CrossEstimate=keep.estimate;}}
  }
- return {stage,cross,duel,lonely,corner,estimate,finish,freeKickPlan,freeKickRestore,freeKickAdvice,cornerRestore,secondBallRestore,legacyTwin,notes:()=>notes.slice()};
+ return {stage,cross,duel,lonely,corner,estimate,finish,freeKickPlan,freeKickRestore,freeKickAdvice,freeKickCross,cornerRestore,secondBallRestore,legacyTwin,notes:()=>notes.slice()};
 })();`,'setplay-probe');
 
 const S=(name,...args)=>copy(h.call('Setplay.'+name,...args));
@@ -290,12 +312,14 @@ check('corners are taken in both paths; marked corners carry the target and a ba
  for(const r of high(cornerRows.on)){assert.equal(r.receiver,r.targetPid,'corner goes to its target');assert(r.backPid,'back-space player named');}
  assert(cornerRows.on.some(r=>r.variant==='short')||true);
 });
-check('B10 follow-up: unreached high corners rolling into touch at most 6 % on the new path and fewer than on the old path',()=>{
- const on=high(cornerRows.on),off=high(cornerRows.off),rateOn=share(on,rolledOut),rateOff=share(off,rolledOut);
+check('B10 follow-up: unreached landing points of high corners at most 6 % on the new path (defence off), fewer than on the old path; rolling into touch rarer too',()=>{
+ const on=high(cornerRows.on),off=high(cornerRows.off),unreachedOn=share(on,r=>r.unreached),unreachedOff=share(off,r=>r.unreached),rateOn=share(on,rolledOut),rateOff=share(off,rolledOut);
  assert(on.length>=cornerRows.on.length*.5);
- assert(rateOn<=.06,`rolled out ${rateOn} (${on.filter(rolledOut).length}/${on.length}) vs old ${rateOff}`);
- assert(rateOn<=rateOff,`new ${rateOn} not below old ${rateOff}`);
- assert(share(on,r=>r.unreached)<share(off,r=>r.unreached)||share(on,r=>r.unreached)<=.08,`unreached ${share(on,r=>r.unreached)} vs old ${share(off,r=>r.unreached)}`);
+ // The B10 measure is the unreached landing point (SI-7's reach); balls rolling into touch also count
+ // clearances once SI-4 is on, so that share is only compared with defence off (as staged here).
+ assert(unreachedOn<=.06,`unreached ${unreachedOn} (${on.filter(r=>r.unreached).length}/${on.length}) vs old ${unreachedOff}`);
+ assert(unreachedOn<unreachedOff,`unreached ${unreachedOn} not below old ${unreachedOff}`);
+ assert(rateOn<=.06&&rateOn<=rateOff,`rolled out ${rateOn} (${on.filter(rolledOut).length}/${on.length}) vs old ${rateOff}`);
 });
 check('corner formation restore: variant, target and back-space player survive the JSON checkpoint and the corner goes to the target',()=>{
  for(const team of [0,1]){const r=S('cornerRestore',{seed:team+1,team});assert.deepEqual(r.after,r.before);assert(r.before.back&&r.savedBack===r.before.back&&r.savedTarget===r.before.target,JSON.stringify(r));assert(r.backDepth>14&&r.backDepth<20,`back depth ${r.backDepth}`);assert(r.pass&&r.pass.options.corner&&r.pass.receiver===r.before.target,'corner executed to the restored target');}
@@ -303,10 +327,9 @@ check('corner formation restore: variant, target and back-space player survive t
 
 // ----- free kicks -----
 check('free-kick plan: direct only by the best shooter inside his window (one draw), cross with team-mates near goal, otherwise pass; plain data',()=>{
- // With SI-3 present the plan is provisional without a draw (confirmed at execution); without it one draw decides.
- const si3=ev("typeof v183DirectFreeKick==='function'");
- let direct=0;for(let seed=0;seed<30;seed++){const r=S('freeKickPlan',{spotDepth:18,takerFin:17,otherFin:10,seed});assert.equal(r.draws,si3?0:1,si3?'no draw with SI-3':'one draw inside the window');assert(['direct','pass','cross'].includes(r.plan.kind));if(r.plan.direct){direct++;assert.equal(Boolean(r.plan.provisional),si3,'provisional only with SI-3');}assert.equal(r.bestTaker,r.takerPid,'best shooter takes it');assert(r.window);}
- assert(direct>=10,`direct share ${direct/30}`);if(si3)assert.equal(direct,30,'with SI-3 every plan inside the window is provisionally direct');
+ // With the finish package (SI-3) the plan is provisional without a draw (confirmed at execution); without it one draw decides.
+ let direct=0,si3=null;for(let seed=0;seed<30;seed++){const r=S('freeKickPlan',{spotDepth:18,takerFin:17,otherFin:10,seed});si3=r.advised;assert.equal(r.draws,si3?0:1,si3?'no draw with the finish package':'one draw inside the window');assert(['direct','pass','cross'].includes(r.plan.kind));if(r.plan.direct){direct++;assert.equal(Boolean(r.plan.provisional),si3,'provisional only with the finish package');}assert.equal(r.bestTaker,r.takerPid,'best shooter takes it');assert.equal(r.bestTaker,r.bestShooterPid,'taker is the best shooter by the SI-3 rating');assert(r.window);}
+ assert(direct>=10,`direct share ${direct/30}`);if(si3)assert.equal(direct,30,'with the finish package every plan inside the window is provisionally direct');
  const notBest=S('freeKickPlan',{spotDepth:18,takerFin:10,otherFin:16});assert.equal(notBest.draws,0);assert.equal(notBest.plan.direct,false);assert.notEqual(notBest.bestTaker,notBest.takerPid,'the better shooter is the taker');
  const far=S('freeKickPlan',{spotDepth:40,takerFin:17,boxAllies:3});assert.equal(far.draws,0);assert.equal(far.plan.kind,'pass');
  const cross=S('freeKickPlan',{spotDepth:28,spotLateral:8,takerFin:10,otherFin:10,boxAllies:3});assert.equal(cross.plan.kind,'cross');assert(cross.plan.targetPid);assert.equal(cross.plan.direct,false);
@@ -317,6 +340,13 @@ check('free-kick with SI-3: the direct plan is provisional at creation and confi
  for(const r of [yes,no]){assert.equal(r.planned.kind,'direct',JSON.stringify(r.planned));assert.equal(r.planned.provisional,true);assert.equal(r.atCreation,0,'no SI-3 call at creation');assert(r.calls>=1,'asked at execution');}
  assert.equal(yes.shot,1,'confirmed plan shoots');assert.equal(no.shot,0,'refused plan does not shoot');
  assert(no.pass&&no.pass.options.cross===true,'refused plan turns into the cross variant from the current positions');
+});
+check('free-kick cross with rivals near taker and receiver: the restart is kicked (no cancelled turn), the ball actually flies, the best crosser takes it',()=>{
+ for(const near of [true,false])for(const seed of [1,2,3]){const r=S('freeKickCross',{seed,near});
+  assert.equal(r.plan.kind,'cross',JSON.stringify(r.plan));assert.equal(r.takerPid,r.bestPasser,'best crosser takes the cross free kick');assert.notEqual(r.takerPid,r.bestShooter,'not the best shooter');
+  assert(r.pass&&r.pass.options.cross&&r.pass.options.restart===true,'cross kicked as a restart: '+JSON.stringify(r.pass));
+  assert(r.flight&&r.flight.team===0,`the cross flies (near rival ${near}): ${JSON.stringify({flight:r.flight,pendingTurn:r.pendingTurn,notes:r.notes})}`);
+  assert.equal(r.crosses,1,'one cross counted');assert.equal(r.pendingTurn,false,'no turn left pending');assert(r.air>=1,'the flight was resolved in the air');}
 });
 check('free-kick cross restore: the plan survives the checkpoint with its taker and is executed as a cross to the planned receiver',()=>{
  const r=S('freeKickRestore',{seed:2});
