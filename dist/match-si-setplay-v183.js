@@ -19,7 +19,9 @@
 // running-jump share from his approach speed, instead of 0.65 m. Contenders of
 // both teams run to the landing point during the flight; the duel weighs air,
 // positioning, the remaining share of reach, approach speed and height.
-// Timing uses real seconds through v183ClockUnits/v183Seconds.
+// Timing is planned in real seconds: waits through v183ClockUnits/v183Seconds,
+// fly() durations in the legacy measure (seconds x MATCH_SPEED) that the SI-0
+// flight rule (v115FlightDuration) converts to the match rate.
 //
 // Random draws of the active path (named, in order of occurrence):
 //   setplay.landX, setplay.landY, setplay.landVariant  cross/corner landing error
@@ -128,7 +130,7 @@ function v183BlockCross(m,passer,blocker,from,land){
  v183Trace(m,{kind:'cross-block',passer,blocker,corner:cornerOut});
  // The deflection flies without a release, like v50Deflect after a shot block.
  const previous=v102Release;v102Release=null;
- try{fly(target,v183ClockUnits(m,Math.max(.25,v122Metres(point,target)/14)),()=>{if(cornerOut){v50Corner(passer.t,target.x,`Block von ${blocker.name}`);return;}v50LooseBall(target,`Der Ball liegt nach dem Block von ${blocker.name} frei.`);});}
+ try{fly(target,Math.max(.25,v122Metres(point,target)/14)*MATCH_SPEED,()=>{if(cornerOut){v50Corner(passer.t,target.x,`Block von ${blocker.name}`);return;}v50LooseBall(target,`Der Ball liegt nach dem Block von ${blocker.name} frei.`);});}
  finally{v102Release=previous;}
 }
 // The outer wrappers of v55HighPass (pitch-v56, world-pitch-actions-v99,
@@ -156,7 +158,9 @@ function v183HighPass(m,passer,receiver,{cross=false,exempt=false,corner=false})
  const forward=passer.t===0?passer.y-land.y:land.y-passer.y;if(forward>.12)passer.stats.progressive++;
  const blocker=cross&&!corner?v183CrossBlocker(m,passer,land):null;
  if(blocker&&random()<v183BlockChance(m,blocker))return v183BlockCross(m,passer,blocker,from,land); // setplay.block
- const exit=v55Exit(from,land),end=exit?v55BoundaryStop(exit):land,seconds=Math.max(P('flightMin'),v122Metres(from,end)/(corner?P('cornerSpeed'):P('crossSpeed'))),duration=v183ClockUnits(m,seconds);
+ // fly() takes its duration in the legacy measure (seconds x MATCH_SPEED); the
+ // SI-0 flight rule converts it to the match rate so the real time stays.
+ const exit=v55Exit(from,land),end=exit?v55BoundaryStop(exit):land,seconds=Math.max(P('flightMin'),v122Metres(from,end)/(corner?P('cornerSpeed'):P('crossSpeed'))),duration=seconds*MATCH_SPEED;
  const label=corner?'Ecke':cross?'Flanke':'hohen Ball';note(`${passer.name} spielt ${corner?'die Ecke':cross?'eine Flanke':'einen hohen Ball'} auf ${receiver.name}.`,corner?'restart':'shot');
  for(const player of m.people)player.interceptTarget=null;
  fly(end,duration,()=>{for(const player of m.people)player.interceptTarget=null;if(cross&&v122Metres(intended,land)>4){const delta=passer.t===0?land.y-intended.y:intended.y-land.y;note(`Die Flanke von ${passer.name} gerät ${delta>.055?'zu kurz':'zu weit'}.`,'duel')}if(exit){passer.stats.passLost++;v55Out(exit,passer.t,`${label} von ${passer.name} gerät ins Aus.`);return}v55ResolveAir({passer,receiver,end,snapshot,cross})});
@@ -224,7 +228,7 @@ v122ResolveAir=function({passer,end,snapshot,cross}){
     // SI-4 may clear beyond the line: the header flies to the boundary and the
     // restart follows (corner or throw-in for the attacking side).
     const stop=v55BoundaryStop(exit),previous=v102Release;m.owner=winner;m.ball={...end};v102Release={person:winner,kind:'header',contact:{...end},height:2.65};
-    try{fly(stop,v183ClockUnits(m,Math.max(.35,v122Metres(end,stop)/v122HeaderSpeed(winner))),()=>v55Out(exit,winner.t,`${winner.name} köpft den Ball ins Aus.`));}finally{v102Release=previous;}
+    try{fly(stop,Math.max(.35,v122Metres(end,stop)/v122HeaderSpeed(winner))*MATCH_SPEED,()=>v55Out(exit,winner.t,`${winner.name} köpft den Ball ins Aus.`));}finally{v102Release=previous;}
     return;
    }
    v102AirClear(winner,end,target);v50LooseBall(target,`${winner.name} köpft den hohen Ball weg.`);return;

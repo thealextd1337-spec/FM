@@ -39,8 +39,8 @@ h.run(`globalThis.Setplay=(function(){
  const stat=(p,k)=>p.stats[k]||0;
  function set(p,values){for(const [k,v]of Object.entries(values))p[k]=v;}
  // ----- cross scene: wing cross to a receiver near the penalty spot with a marker -----
- function cross({on,seed,size='standard',receiverAir=12,defenderAir=12,gap=1.2,crosserPas=12,blockerAhead=false,receiverDepth=9,crosserDepth=20,level}={}){
-  stage({on,size,seed:'cross'+(seed%4)});clear();
+ function cross({on,seed,size='standard',receiverAir=12,defenderAir=12,gap=1.2,crosserPas=12,blockerAhead=false,receiverDepth=9,crosserDepth=20,level,clockRate}={}){
+  stage({on,size,seed:'cross'+(seed%4),clockRate});clear();
   const team=0,players=field(team),rivals=field(1);
   const crosser=players[0],receiver=players[1],defender=rivals[0],blocker=rivals[1];
   set(crosser,{pas:crosserPas,tec:crosserPas,fin:10,air:10});set(receiver,{air:receiverAir,pos:12,tec:12,fin:12,pas:12});set(defender,{air:defenderAir,pos:12,tec:12,tak:12});set(blocker,{tak:14,pos:12});
@@ -207,7 +207,9 @@ const mean=list=>list.reduce((a,b)=>a+b,0)/Math.max(1,list.length);
 // ----- old path -----
 check('marked match with setplay off replays like the 182 constructor (digest without match.si)',()=>{
  for(const scene of copy(h.call('Native183.constructedScenes')).filter((s,i)=>i%4===1)){
-  const off=h.call('Native183.constructedDigest',scene,{si:{packages:{setplay:false}},withoutSi:true,segments:[250,250]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[250,250]});
+  // Every package off: other packages (clock since SI-0) are on by default and change the replay on their own.
+  const allOff=Object.fromEntries(['clock','options','offball','finish','defence','setplay','field'].map(p=>[p,false]));
+  const off=h.call('Native183.constructedDigest',scene,{si:{packages:allOff},withoutSi:true,segments:[250,250]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[250,250]});
   assert.equal(off,legacy,scene.id);
  }
 });
@@ -233,6 +235,8 @@ check('new path: crosses reach a team-mate more often and produce header/volley 
 });
 check('new path: flight time is real seconds (at least max(0.7 s, metres/20)) and ledger source "cross" is set',()=>{
  for(const r of crossRows.on.filter(r=>!r.blocked&&r.duration!==null)){assert(r.duration/r.rate>=Math.max(.7,(r.metres||0)/20)-1e-6,`duration ${r.duration/r.rate} s for ${r.metres} m`);}
+ // SI-0 contract: fly() durations in the legacy measure, real seconds equal at another clock rate.
+ for(const seed of [1,2]){const slow=S('cross',{on:true,seed,clockRate:.5}),fast=S('cross',{on:true,seed,clockRate:.78});if(slow.blocked||fast.blocked||slow.duration===null||fast.duration===null)continue;assert.equal(slow.rate,.5);assert(Math.abs(slow.duration/slow.rate-fast.duration/fast.rate)<1e-4*(fast.duration/fast.rate),`real flight time ${slow.duration/slow.rate} vs ${fast.duration/fast.rate}`);}
  const tagged=ev(`(()=>{Setplay.stage({on:true,seed:'tag'});const events=match.ballAccounting.events;return JSON.stringify(events.filter(e=>e.sources?.includes('cross')).length)})()`);
  assert(Number.isFinite(JSON.parse(tagged)));
  const r=S('cross',{on:true,seed:2});const sources=copy(ev("(match.ballAccounting?.events||[]).filter(e=>e.kind==='cross').map(e=>e.sources||[])"));
