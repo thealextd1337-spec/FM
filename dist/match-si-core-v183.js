@@ -200,7 +200,7 @@ function v183FormationAnchor(m,p,t,point){return point;}
 // SI-3 shot value. Stub: v157ShotQuality at point `from` (default: the player).
 function v183ShotEstimate(m,p,from=p){
  const shooter=from===p?p:{...p,x:from.x,y:from.y},xg=v157ShotQuality(shooter,m.people.filter(q=>q.t!==p.t));
- return {xg,aim:{x:.5,y:p.t===0?v55Field.top:v55Field.bottom},window:xg>0,speed:null};
+ return {xg,aim:{x:.5,y:p.t===0?v55Field.top:v55Field.bottom},window:xg>0,speed:null,stub:true};
 }
 // SI-7 cross value. Stub: today's cross condition (<26 m from goal, >9 m wide,
 // target <16 m from goal) and the blanket error variants (50 %). target: a
@@ -208,7 +208,7 @@ function v183ShotEstimate(m,p,from=p){
 function v183CrossEstimate(m,p,target){
  const receiver=target&&typeof target.pid==='string'?target:null,point=target?{x:target.x,y:target.y}:null,s=v150Scale(m);
  const eligible=Boolean(point&&v115GoalDistance(p)<26&&Math.abs(p.x-.5)*s.x>9&&v115GoalDistance({...point,t:p.t})<16);
- return {arrival:eligible?.5:0,headerXg:eligible&&receiver?v157ShotQuality({...receiver,...point},m.people.filter(q=>q.t!==p.t)):0,eligible};
+ return {arrival:eligible?.5:0,headerXg:eligible&&receiver?v157ShotQuality({...receiver,...point},m.people.filter(q=>q.t!==p.t)):0,eligible,stub:true};
 }
 // SI-1 pass value. Stub: v157Lane (open lane = arrives) and today's option
 // score of v157Decide, including the return-run bonus of a confirmed one-two.
@@ -217,7 +217,7 @@ function v183PassEstimate(m,p,q,target){
  const lane=v157Lane(m,p,point,rivals),gain=(point.y-p.y)*dir*s.y,combo=m.attackFlow?.combination;
  const returnRun=Boolean(combo?.receiverId===p.pid&&combo.passerId===q.pid&&gain>2&&(!(typeof v159Active==='function'&&v159Active(m))||combo.confirmed));
  const value=gain*.11-v122Metres(p,point)*.028+v157ShotQuality({...q,...point},rivals)*.9+(returnRun?.65:0);
- return {arrival:lane?1:0,value,lane,returnRun};
+ return {arrival:lane?1:0,value,lane,returnRun,stub:true};
 }
 // SI-2 offers/patterns. Stub: a read-only copy of today's attackFlow.intents
 // (v159Offers writes them in the regular cycle).
