@@ -15,8 +15,8 @@ v50GoalKick=function(...args){
  const hold=revised?(args[2]?.held&&caught?{...challenge.contact,elevation:challenge.pickup?.29:.35}:release?.onTarget?v101ShotPoint(release,v131KeeperContactProgress(release)):{...current.ball,elevation:.29}):null;
  let outgoing=null;
  if(v65WorldActive&&!revised&&(incoming&&!release?.onTarget||rolling&&Number.isFinite(rolling.vx))){
-  const end=incoming?v109FlightPoint(incoming,1):{...current.ball,elevation:v99BallView(current)?.elevation??.29},before=incoming?v109FlightPoint(incoming,.98):null,seconds=incoming?incoming.duration/MATCH_SPEED*.02:1;
-  outgoing={start:end,at:v102Clock(current),velocity:before?{x:(end.x-before.x)/seconds,y:(end.y-before.y)/seconds,height:(end.elevation-before.elevation)/seconds}:{x:rolling.vx*MATCH_SPEED,y:rolling.vy*MATCH_SPEED,height:0}};
+  const end=incoming?v109FlightPoint(incoming,1):{...current.ball,elevation:v99BallView(current)?.elevation??.29},before=incoming?v109FlightPoint(incoming,.98):null,seconds=incoming?incoming.duration/(current.si?v183Rate(current):MATCH_SPEED)*.02:1;
+  outgoing={start:end,at:v102Clock(current),velocity:before?{x:(end.x-before.x)/seconds,y:(end.y-before.y)/seconds,height:(end.elevation-before.elevation)/seconds}:{x:rolling.vx*(current.si?v183Rate(current):MATCH_SPEED),y:rolling.vy*(current.si?v183Rate(current):MATCH_SPEED),height:0}};
   const speed=Math.hypot(outgoing.velocity.x*v160PitchWidth()/(v55Field.right-v55Field.left),outgoing.velocity.y*v160PitchLength()/(v55Field.bottom-v55Field.top));if(speed>18){outgoing.velocity.x*=18/speed;outgoing.velocity.y*=18/speed}
  }
  const result=v100BaseGoalKick(...args);
@@ -102,7 +102,7 @@ function v119RestoreActionLocks(current,saved,find){
  for(const key of ['kicks','keepers','throws'])if(Array.isArray(saved[key]))for(const [id,record]of saved[key]){if(!find(id))continue;const pose=structuredClone(record);for(const k of ['keeper','shooter','taker'])if(pose[k+'Pid']){pose[k]=find(pose[k+'Pid']);delete pose[k+'Pid'];}state[key].set(id,pose);}
 }
 function v101KeeperWaiting(current,person){return current.owner===person&&!current.flight&&v99Actions.get(current)?.kicks.get(person.pid)?.phase==='waiting'}
-function v182KeeperPlacement(current,kick){return clamp(1-(kick.holdRelease-current.elapsed)/MATCH_SPEED/kick.holdPlacement,0,1);}
+function v182KeeperPlacement(current,kick){return clamp(1-(kick.holdRelease-current.elapsed)/(current.si?v183Rate(current):MATCH_SPEED)/kick.holdPlacement,0,1);}
 function v182KeeperHold(current){
  if(!v65WorldActive||current.attackFlow?.keeperHoldRevision!==182||!current.owner?.keeper||current.flight||v121PositioningPaused(current))return null;
  const kick=v99Actions.get(current)?.kicks.get(current.owner.pid);if(kick?.phase!=='waiting'||!kick.held||!kick.holdPoint)return null;
@@ -112,7 +112,7 @@ function v182KeeperHold(current){
 const v182BaseOwnedBall=v123OwnedBall;
 v123OwnedBall=function(current){return v182KeeperHold(current)||v182BaseOwnedBall(current);};
 function v131KeeperContactProgress(release){const start=release.visualStart||release.flight;return release.goal?clamp((release.keeperStart.y-start.y)/(release.target.y-start.y),0,1):1;}
-function v131KeeperSetting(current,person){const release=current.flight&&v99Flights.get(current.flight);if(release?.keeper!==person||!release.onTarget||release.blocked)return false;const seconds=current.flight.duration/MATCH_SPEED,remaining=(v131KeeperContactProgress(release)-current.flight.progress)*seconds;return remaining>.30;}
+function v131KeeperSetting(current,person){const release=current.flight&&v99Flights.get(current.flight);if(release?.keeper!==person||!release.onTarget||release.blocked)return false;const seconds=current.flight.duration/(current.si?v183Rate(current):MATCH_SPEED),remaining=(v131KeeperContactProgress(release)-current.flight.progress)*seconds;return remaining>.30;}
 function v113KeeperReacting(current,person){const release=current.flight&&v99Flights.get(current.flight),recover=v99Actions.get(current)?.keepers.get(person.pid);return release?.keeper===person&&release.onTarget&&!release.blocked&&!v131KeeperSetting(current,person)||recover?.completed&&recover.age<1.55;}
 function v115RestartLocked(current,person){const pose=v99Actions.get(current)?.throws.get(person.pid);return Boolean(pose&&(!pose.completed||pose.age<.32)||current.kickoff&&current.kickoff.kicker===person);}
 function v101KickTarget(current,keeper){return (v65WorldActive&&typeof v123KeeperOutlet==='function'&&v123KeeperOutlet(keeper,current)?.person)||current.people.filter(p=>p.t===keeper.t&&!p.keeper&&p.assignedLine==='def').sort((a,b)=>Math.hypot(a.x-keeper.x,a.y-keeper.y)-Math.hypot(b.x-keeper.x,b.y-keeper.y))[0]||{x:keeper.x,y:keeper.y+(keeper.t===0?-.1:.1)}}
@@ -140,7 +140,7 @@ function v101ShotDuration(from,to,duration,kind='shot'){
  return Math.max(.14,metres/(kind==='header'?14:27)*MATCH_SPEED);
 }
 function v101ShotPoint(release,q){
- const flight=release.flight,start=release.visualStart||flight,seconds=flight.duration/MATCH_SPEED,time=q*seconds;
+ const flight=release.flight,start=release.visualStart||flight,seconds=flight.duration/(typeof match!=='undefined'&&match?.si?v183Rate(match):MATCH_SPEED),time=q*seconds;
  const end=release.over?{x:.5+(release.shooter.n%2?-.045:.045),y:release.target.y}:release.displayTarget||release.target;
  const velocityHeight=(release.endHeight-release.startHeight)/seconds+4.9*seconds;
  return {x:start.x+(end.x-start.x)*q,y:start.y+(end.y-start.y)*q,elevation:Math.max(.29,release.startHeight+velocityHeight*time-4.9*time*time),vx:(end.x-start.x)/seconds,vy:(end.y-start.y)/seconds,vh:velocityHeight-9.8*time};
@@ -293,7 +293,7 @@ function v99BallView(current){
   if(age<1.15)return {x:outgoing.start.x+outgoing.velocity.x*age,y:outgoing.start.y+outgoing.velocity.y*age,elevation:Math.max(.29,outgoing.start.elevation+outgoing.velocity.height*age-4.9*age*age),opacity:Math.max(0,Math.min(1,(1.1-age)/.45))};
   if(age<1.5&&current.owner?.keeper)return {...v101KickPoint(current.owner,v101KickTarget(current,current.owner)),elevation:.29,opacity:Math.max(0,Math.min(1,(age-1.15)/.35))};
  }
- if(state?.miss){const pose=state.miss,time=pose.age,seconds=pose.flight.duration/(typeof MATCH_SPEED==='number'?MATCH_SPEED:.78);
+ if(state?.miss){const pose=state.miss,time=pose.age,seconds=pose.flight.duration/(current.si?v183Rate(current):typeof MATCH_SPEED==='number'?MATCH_SPEED:.78);
   if(time>=1.15&&current.owner?.keeper)return {...v101KickPoint(current.owner,v101KickTarget(current,current.owner)),elevation:.29,opacity:Math.max(0,Math.min(1,(time-1.15)/.35))};
   const startY=pose.flight.y,velocityY=(pose.target.y-startY)/seconds;
   // Continue the incoming forward/upward velocity instead of reflecting at the bar.
@@ -327,14 +327,14 @@ function v99PlayerAction(current,person){
  if(throwPose)return {kind:'throw',progress:throwPose.completed?1:Math.min(1,(current.flight?.progress||0)*4),holding:false,target:throwPose.target};
  const kick=state?.kicks.get(person.pid),keeper=state?.keepers.get(person.pid);
  if(kick&&(kick.phase==='follow'||v101KeeperWaiting(current,person))&&(!keeper||keeper.completed&&keeper.age>=(native?1.55:.95))){
-  const progress=kick.phase==='waiting'?holding?v182KeeperPlacement(current,kick):Math.max(0,Math.min(1,1-(current.next-current.elapsed)/MATCH_SPEED/.28)):Math.min(1,kick.age/.45);
+  const progress=kick.phase==='waiting'?holding?v182KeeperPlacement(current,kick):Math.max(0,Math.min(1,1-(current.next-current.elapsed)/(current.si?v183Rate(current):MATCH_SPEED)/.28)):Math.min(1,kick.age/.45);
   return {kind:'goalKick',phase:kick.phase,held:Boolean(kick.held),progress,target:kick.target||v101KickTarget(current,person),...(holding?{holding:progress<=.55}:current.attackFlow?.keeperHoldRevision===182&&kick.held&&kick.phase==='follow'?{holding:false}:{})};
  }
  if(!keeper)return null;
  if(v131KeeperSetting(current,person))return null;
  const q=v131KeeperContactProgress(keeper),contact=v101ShotPoint(keeper,q),from=keeper.diveAt??(current.flight?.progress||0);
  return {kind:'save',progress:keeper.completed?1:clamp(((current.flight?.progress||0)-from)/Math.max(.1,q-from),0,1),recovery:keeper.completed?Math.min(1,keeper.age/(native?1.55:.95)):0,
-  target:{x:contact.x,y:contact.y},origin:keeper.keeperStart,height:contact.elevation,available:keeper.flight.duration/MATCH_SPEED,saved:keeper.saved,parry:Boolean(keeper.parry),goal:Boolean(keeper.goal),...(holding?{holding:true}:{})};
+  target:{x:contact.x,y:contact.y},origin:keeper.keeperStart,height:contact.elevation,available:keeper.flight.duration/(current.si?v183Rate(current):MATCH_SPEED),saved:keeper.saved,parry:Boolean(keeper.parry),goal:Boolean(keeper.goal),...(holding?{holding:true}:{})};
 }
 
 // Keep the goal view visible before resolving a regular world-match penalty.
