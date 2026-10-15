@@ -52,8 +52,9 @@ v183RegisterDefaults('setplay',{
  // within 2 m, per air-tec point; bounds.
  clearBase:.5,clearBox:.3,clearPressure:.14,clearAirTec:.012,clearMin:.25,clearMax:.95,
  // Header/volley finish: ranges (m), base chance, per metre closer, marked and
- // pressure penalties, weight of the shot estimate, bounds before skill scaling.
- finishRange:12,volleyRange:14,finishBase:.5,finishDistance:.035,finishMarked:.18,finishPressure:.07,finishXg:.5,finishMin:.1,finishMax:.95,
+ // pressure penalties, weight of the shot estimate (SI-3 xg is a goal
+ // probability, headers from 8-11 m rate about .02-.08), bounds before skill scaling.
+ finishRange:12,volleyRange:14,finishBase:.6,finishDistance:.035,finishMarked:.15,finishPressure:.05,finishXg:2,finishMin:.1,finishMax:.95,
  // Lay-off (header pass) after a won header without finish; control of the won
  // ball: base and penalty per reach share.
  layOffBase:.12,layOffPas:.014,layOffMin:.15,layOffMax:.64,controlBase:.25,controlDistance:.25,
