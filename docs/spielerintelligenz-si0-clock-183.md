@@ -137,6 +137,10 @@ Der Review-Befund S1 (Torschützenmannschaft darf beim Vorlauf nicht gleiten, so
 
 Bei Rate 0,42 kostet der Jubel ebenfalls 2,06 s je Tor gegen den vollen Vorlauf (93 Tore, 46 von 48 Partien mit identischem Spiel); die Dauer liegt dort bei 4,31 statt 4,25 min (48 Partien). Die 192er-Werte oben bleiben bis auf die Anstoßzeit gültig: Dauer +2,3 s je Partie bei Rate 0,78 und +3,8 s bei 0,42 (mehr Tore).
 
+## Uhr beim verschobenen Abpfiff (B21)
+
+Wartet der Schlusspfiff auf einen Ball in der Luft (`match.fulltimePending`), stellt der Altschritt in `dist/finance-v15.js:82` `match.elapsed` während der Landung auf `fullTimeEnd − 1` und danach wieder auf `fullTimeEnd − 0,001`. Das ist alte Logik und gilt mit und ohne SI-0 in Takteinheiten, also immer 1,2 virtuelle Minuten. Wer `match.elapsed` als Ereigniszeit liest, liegt in diesem Fenster zu früh. Für das Belastungsmodell datiert jetzt `v158ActionMinute` (`dist/world-player-load-v158.js`) auf die gespielte Uhr (Bugliste B21). SI-0 war nicht die Ursache und ist unverändert. Neue Zeitleser im Abpfiffpfad brauchen dieselbe Regel.
+
 ## Weichenbedarf in fremdem Besitz
 
 - **Torwart-Haltezeit (SI-3, `world-pitch-actions-v99.js:27/:37`).** Der Altzweig `2.4*MATCH_SPEED` bzw. `Math.max(2.4,placement)*MATCH_SPEED` bleibt Uhreinheiten. Mit Paket `clock` und einer Rate ungleich 0,78 verlängert er die Haltezeit auf `2,4·0,78/Rate` Sekunden, solange das Paket `finish` aus ist (bei 0,42 4,5 s). Mit eingeschaltetem `finish` (auch als leeres Modul) gilt `v183ClockUnits` und die Zeit ist echt 2,4 s. Alle Messungen und Echtzeittests dieses Pakets laufen deshalb mit `packages=clock,finish`. Vorschlag für SI-3: den Altzweig durch `v183ClockUnits(match,2.4)` bzw. `v183ClockUnits(match,Math.max(2.4,placement))` ersetzen; für unmarkierte und Partien ohne Uhrpaket ist das bitgleich (`seconds*MATCH_SPEED`).
