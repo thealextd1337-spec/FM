@@ -20,10 +20,11 @@ public partial class ProbeBridge {
     // Played to 0.8 s, the visible countdown ran its fastest swing (1008 deg/s authored at
     // 0.72 s) 2.67x fast before the contact: 2454 deg/s at the foot.
     const double PassReadyEnd=.70,ShotReadyEnd=ShotContact;
-    // Native foul windows last 2.7 s: measured fall (hips reach the ground near
+    // Native foul windows are authored over 2.7 s: measured fall (hips reach the ground near
     // 1.0 s of foul_fall_meshy) followed by the measured rise window of
-    // keeper_rise_meshy (hips 0.37 m -> 1.30 m between 4.4 s and 6.3 s).
-    const double FoulWindow=2.7,FoulFall=1.6,RiseFrom=4.4,RiseLength=1.9;
+    // keeper_rise_meshy (hips 0.37 m -> 1.30 m between 4.4 s and 6.3 s). A foul action with a
+    // known lock time (183: 1.8 s) is shown over that time (FootballDuelTiming.VictimTime/OffenderTime).
+    const double FoulWindow=FootballDuelTiming.FoulWindow,FoulFall=FootballDuelTiming.FoulFall,RiseFrom=4.4,RiseLength=1.9;
     // r21: crossfade seconds from the stride into the foul offender pose.
     const float OffenderEntry=.3f;
     AnimationClip[] FootballClips(){return new[]{idleClip,runClip,keeperClip,keeperActionClip,shotClip,passClip,receiveClip,keeperHighClip,keeperDiveClip,keeperRiseClip,walkClip,fastRunClip,sprintClip,backClip,brakeClip,turnLeftClip,turnRightClip,jogClip,fastBackClip,turnIdleLeftClip,turnIdleRightClip,turnWalkLeftClip,turnWalkRightClip,celebrateArmsClip,celebrateFistClip,celebrateVictoryClip,foulFallClip,foulStumbleClip,keeperShuffleClip,readyClip,backRunClip};}
@@ -97,7 +98,7 @@ public partial class ProbeBridge {
         // Cadence follows the measured stride of the clip that shows this speed band.
         var preview=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack);double cycleOffset=i*.09;
         bool previewStride=locomotion.StrideMode!="idle"&&locomotion.StrideMode!="side"&&preview!=null;
-        locomotion.Sample(V(p.position),V(p.facing),f.clock,f.owner==p.id,identity.keeper,p.freshness,football[i].StrideLength(preview),football[i].Heading(preview),cycleOffset,previewStride?1f/Mathf.Max(.2f,preview.length):0);
+        locomotion.Sample(V(p.position),V(p.facing),f.clock,f.owner==p.id,identity.keeper,p.freshness,football[i].StrideLength(preview),football[i].Heading(preview),cycleOffset,previewStride?1f/Mathf.Max(.2f,preview.length):0,f.siRevision>=183);
         // A start from rest enters the new stride at its support foot's measured mid-stance.
         if(locomotion.Started){var first=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack);if(first!=null&&locomotion.StrideMode!="side"&&locomotion.StrideMode!="idle")locomotion.AlignStart(football[i].MidStance(first,!locomotion.StartRightSwings),cycleOffset);}
         pose.clip=LocomotionClip(locomotion,carrying,identity.keeper);
@@ -150,7 +151,7 @@ public partial class ProbeBridge {
         }
         else if(p.action=="kickReady"){pose.clip=shotClip;readyPhase=ReadyPhase(p,f,i,progress);pose.time=ReadyClipTime(readyPhase,ShotReadyEnd,i);pose.loop=false;pose.ready=true;pose.plant=runSpeeds[i]<.4;readyReach=ReadyReach(ref pose,p,f,i,readyPhase);}
         else if(p.action=="foulVictim"&&foulFallClip!=null&&keeperRiseClip!=null){
-            double foul=progress*FoulWindow;
+            double foul=FootballDuelTiming.VictimTime(FootballDuelTiming.FoulAge(progress,p.duration,p.durationKnown),FootballDuelTiming.Window(p.duration,p.durationKnown));
             if(foul<FoulFall){pose.clip=foulFallClip;pose.time=foul*1.15;}else{pose.clip=keeperRiseClip;pose.time=RiseFrom+(foul-FoulFall)/(FoulWindow-FoulFall)*RiseLength;}
             pose.loop=false;pose.baseClip=null;
         }
@@ -171,9 +172,10 @@ public partial class ProbeBridge {
         }
         else if(p.action=="foulOffender"){
             // The challenge lunge fades while the upright stumble plays; the body
-            // settles into its standing pose by the end of the 2.7 s window.
-            double foul=progress*FoulWindow;var stand=identity.keeper?keeperClip:idleClip;
-            if(foulStumbleClip!=null){pose.clip=foulStumbleClip;pose.time=Math.Min(foul,FootballDuelTiming.StumbleLength);pose.loop=false;pose.baseClip=stand;pose.baseTime=f.clock+i*.09;pose.baseLoop=true;pose.actionWeight=FootballDuelTiming.OffenderStumble(foul);}
+            // settles into its standing pose by the end of the window (2.7 s, or the
+            // known lock time: the stumble keeps its pace and is shortened).
+            double window=FootballDuelTiming.Window(p.duration,p.durationKnown),foul=FootballDuelTiming.FoulAge(progress,p.duration,p.durationKnown);var stand=identity.keeper?keeperClip:idleClip;
+            if(foulStumbleClip!=null){pose.clip=foulStumbleClip;pose.time=Math.Min(foul,FootballDuelTiming.StumbleLength);pose.loop=false;pose.baseClip=stand;pose.baseTime=f.clock+i*.09;pose.baseLoop=true;pose.actionWeight=FootballDuelTiming.OffenderStumble(FootballDuelTiming.OffenderTime(foul,window));}
             else{pose.clip=stand;pose.time=f.clock+i*.09;pose.loop=true;pose.baseClip=null;}
             pose.lunge=FootballDuelTiming.OffenderLunge(foul);
             // r21: the stumble clip floats 0.74 m on this rig; the offender stands on the turf (FootballAnimation.TurfShift).

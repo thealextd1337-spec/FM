@@ -30,7 +30,8 @@ namespace Doppel6.Probe {
 // Optional celebration fields describe an already booked native goal scene;
 // older pictures omit them and remain valid (celebrating=false).
 // ballInFlight: optional native flight fact (omitted = unknown).
-[Serializable] public class WorldFrame {public string schema,session,phase,owner,celebrationScorer;public int sequence,celebrationTeam;public double clock,elapsed,ballOpacity,celebrationTime;public bool turned,replay,netActive,celebrating,ballInFlight;public int[] score;public double[] ball;public WorldCamera camera;public WorldPose[] players;public WorldNet net;
+// siRevision (U-1, 183): 183 for pictures of a match with the SI marker; older pictures omit it (0) and keep their presentation.
+[Serializable] public class WorldFrame {public string schema,session,phase,owner,celebrationScorer;public int sequence,celebrationTeam,siRevision;public double clock,elapsed,ballOpacity,celebrationTime;public bool turned,replay,netActive,celebrating,ballInFlight;public int[] score;public double[] ball;public WorldCamera camera;public WorldPose[] players;public WorldNet net;
     public WorldOffside offside;
     [NonSerialized] public bool ballInFlightKnown,offsideKnown;}
 // quality: "standard" or "reduced"; older pages omit it (decided by platform).

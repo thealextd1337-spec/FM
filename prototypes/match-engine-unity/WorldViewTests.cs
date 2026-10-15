@@ -29,6 +29,19 @@ public static class WorldViewTests {
         Require(ReferenceEquals(playback.Sample(3),paused)&&ReferenceEquals(playback.Sample(30),paused),"paused match freezes without interpolation drift");
         var restart=JsonUtility.FromJson<WorldFrame>(JsonUtility.ToJson(next));restart.players[0].position[0]+=20;
         Require(WorldViewPlayback.Cut(next,restart),"restart snaps instead of flying players across the pitch");
+        // U-1 (183): free-kick teleports (SI-0 sets the free-kick formation at the foul and moves the foul pair at the end
+        // of the lock; captured 160114 large: 27.9 m and 9.07 m in one 0.05 s picture). Over 10 m the picture cuts; a shorter
+        // placement is shown within the received interval (at most 0.1 s) and its stride does not run the jump.
+        {var kick=JsonUtility.FromJson<WorldFrame>(JsonUtility.ToJson(next));kick.clock+=.05;kick.sequence++;kick.players[0].position[0]+=27.9;kick.players[1].position[2]+=9.07;
+         var buffer=new WorldViewPlayback();buffer.Receive(next,5);buffer.Receive(kick,6);
+         Require(WorldViewPlayback.Cut(next,kick)&&ReferenceEquals(buffer.Sample(6),kick),"u1 a free-kick teleport over 10 m cuts to the new picture at once");
+         var near=JsonUtility.FromJson<WorldFrame>(JsonUtility.ToJson(next));near.clock+=.05;near.sequence++;near.players[1].position[2]+=9.07;
+         var blend=new WorldViewPlayback();blend.Receive(next,5);blend.Receive(near,6);var shown=blend.Sample(6.025);
+         Require(!WorldViewPlayback.Cut(next,near)&&Math.Abs(shown.players[1].position[2]-next.players[1].position[2]-4.535)<1e-6&&ReferenceEquals(blend.Sample(6.051),near),"u1 a 9.07 m placement is shown within its 0.05 s picture (at most 0.1 s), never extrapolated");
+         var slow=JsonUtility.FromJson<WorldFrame>(JsonUtility.ToJson(near));slow.clock=next.clock+.3;var late=new WorldViewPlayback();late.Receive(next,5);late.Receive(slow,6);Require(late.Sample(6.099)!=slow&&ReferenceEquals(late.Sample(6.101),slow),"u1 a placement after a longer native gap is shown within at most 0.1 s");
+         var loco=new FootballLocomotion();var at=new Vector3(0,0,0);for(int k=0;k<8;k++){at+=Vector3.right*.25f;loco.Sample(at,Vector3.right,10+k*.05,false,false);}
+         bool running=loco.Speed>4&&loco.StrideMode!="idle";loco.Sample(at+Vector3.forward*9.07f,Vector3.right,10.4,false,false);
+         Require(running&&loco.Speed==0&&loco.StrideMode=="idle"&&loco.Mode=="idle","u1 the stride resets at a placement instead of running 181 m/s or braking on the spot");}
         var seek=JsonUtility.FromJson<WorldFrame>(JsonUtility.ToJson(next));seek.replay=true;seek.phase="replay";seek.clock=0;
         Require(WorldViewPlayback.Cut(next,seek),"backwards replay seek snaps coherently");
         first.players[0].action="pass";first.players[0].actionId="first-pass";first.players[0].progress=.8;next.players[0].action="pass";next.players[0].actionId="second-pass";next.players[0].progress=.1;

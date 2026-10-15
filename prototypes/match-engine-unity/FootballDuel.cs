@@ -27,6 +27,29 @@ public static class FootballDuelTiming {
     // from OffenderSettle the body settles back into the standing pose.
     public static float OffenderLunge(double seconds){return 1-Smooth(seconds/.45);}
     public static float OffenderStumble(double seconds){return 1-Smooth((seconds-OffenderSettle)/(StumbleLength-OffenderSettle));}
+    // Foul windows (183, U-1). The foul poses are authored over the 2.7 s native foul window. With the clock package
+    // (SI-0) the native foul lock is 1.8 s and the foul action carries it (duration, durationKnown); the received progress
+    // then counts age/1.8. Without a known duration (older matches, a 2.7 s lock) the window stays FoulWindow and every
+    // function below returns its 2.7 s value exactly.
+    public const double FoulWindow=2.7;
+    // Victim timeline (authored seconds, FootballPresentation): fall on foul_fall_meshy until FoulFall, rise on
+    // keeper_rise_meshy over the rest.
+    public const double FoulFall=1.6;
+    public static double FoulAge(double progress,double duration,bool durationKnown){return Window(duration,durationKnown)*Math.Clamp(progress,0,1);}
+    public static double Window(double duration,bool durationKnown){return durationKnown&&duration>0&&!double.IsInfinity(duration)?duration:FoulWindow;}
+    // Authored victim seconds at a received age: the whole fall, lying and rise scaled into the window, as three.js plays
+    // it (player-user-ball-actions-v111.js: age x 2.7 / duration). Measured on the 183 captures (160114 large, two 1.8 s
+    // fouls): shortening only the lying (fall and rise at 1.21x) raised the victim's root-relative joint speed from 2309 to
+    // 2770 deg/s and its pelvis from 4.48 to 4.74 m/s, because foul_fall_meshy keeps moving after the hips reach the turf.
+    public static double VictimTime(double age,double window){return window==FoulWindow?age:Math.Min(FoulWindow,age*FoulWindow/window);}
+    // Offender: the stumble clip and the lunge keep received seconds (FootballPresentation); only the settle into the
+    // standing pose is placed at the end of the window (its authored StumbleLength-OffenderSettle = 0.6 s), so the
+    // upright stumble is shortened instead of played fast (the same 183 captures: offender pelvis 0.94 -> 0.77 and
+    // 1.364 -> 1.369 m/s, joints 878/499 -> 878/498 deg/s). The returned seconds drive OffenderStumble.
+    public static double OffenderTime(double age,double window){
+        if(window==FoulWindow)return age;
+        double settle=StumbleLength-OffenderSettle;return window>=settle?age+StumbleLength-window:age*StumbleLength/window;
+    }
     // Lead leg: the side of the actual contact; straight ahead uses the squad
     // number, so the choice never changes between paused or replayed pictures.
     public static bool LeftLead(Vector3 localTarget,int number){return Mathf.Abs(localTarget.x)>.12f?localTarget.x<0:number%2==0;}

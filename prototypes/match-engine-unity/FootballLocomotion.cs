@@ -68,9 +68,20 @@ public sealed class FootballLocomotion {
     // Side step: signed cycles along the received right axis and its weight.
     public double SidePhase {get;private set;}
     public float SideWeight {get;private set;}
-    // Share of each foot's fore-aft excursion shown (stride warping, <=1).
+    // Share of each foot's fore-aft excursion shown (stride warping, at most
+    // MaxStrideStretch on the top-speed stride above its authored pace, else <=1).
     public float StrideScale {get;private set;}=1;
     public const double MinCadenceShare=.7;
+    // U-1 (183, B02): above the authored pace of the fastest forward clip (running,
+    // 7.4 m/s at 4.7 m per cycle) the native own runs reach 8.15 m/s. Played with the
+    // authored step only, that was a 1.10x (up to 1.17x) faster playback. The top-speed
+    // stride (sprint band on running; no faster clip exists) now lengthens its step by the
+    // square root of that ratio (cadence and step share it, as a faster runner does both),
+    // at most MaxStrideStretch; the cycle still follows the received travel, so the planted
+    // foot keeps the ground speed. Slower bands keep their step: a faster clip takes over.
+    // Only pictures of a match with the SI marker (Sample: topStretch); older matches keep
+    // their presentation (the stretch shifts the shared stride cycle of every later picture).
+    public const float MaxStrideStretch=1.08f;
     // Playback rate of brake_meshy from its measured entry (authored joint speed
     // up to 1140 deg/s; 1.8x reached 2000 deg/s).
     public const double BrakeRate=1.35;
@@ -133,7 +144,7 @@ public sealed class FootballLocomotion {
     // the actor's constant cycle offset, so a start or a turn knows its foot.
     // naturalCadence: authored cycles per second of that clip (1/length); a
     // slow stride keeps at least MinCadenceShare of it and shortens its steps.
-    public void Sample(Vector3 point,Vector3 facing,double nativeClock,bool carrying,bool keeper,double freshness=-1,float strideLength=0,float clipHeading=0,double cycleOffset=0,float naturalCadence=0){
+    public void Sample(Vector3 point,Vector3 facing,double nativeClock,bool carrying,bool keeper,double freshness=-1,float strideLength=0,float clipHeading=0,double cycleOffset=0,float naturalCadence=0,bool topStretch=false){
         if(clock>=0&&nativeClock==clock)return;
         double dt=nativeClock-clock;
         var travel=point-position;travel.y=0;
@@ -281,9 +292,11 @@ public sealed class FootballLocomotion {
         // posture to the authored cadence (at 0.7 a backward sprint stopping from
         // 5.6 m/s swung its left foot through the air for 0.6 s, slow motion).
         if(strideLength>.3f&&natural>0)cadence=Math.Max(cadence,(MinCadenceShare+(1-MinCadenceShare)*BrakeWeight)*natural);
+        bool stretch=topStretch&&strideLength>.3f&&natural>0&&Gait==Family.Forward&&StrideMode=="sprint"&&FastStride&&cadence>natural;
+        if(stretch)cadence/=Math.Min(MaxStrideStretch,Math.Sqrt(cadence/natural));
         cadence=Math.Clamp(cadence,.25,2.4);
         // At rest the scale returns to the authored pose while the stride fades out.
-        float scaleTarget=actual<.2f?Mathf.MoveTowards(StrideScale,1,(float)dt/.35f):strideLength>.3f?Mathf.Clamp(cadenceSpeed/(float)(cadence*length),.2f,1):1;
+        float scaleTarget=actual<.2f?Mathf.MoveTowards(StrideScale,1,(float)dt/.35f):strideLength>.3f?Mathf.Clamp(cadenceSpeed/(float)(cadence*length),.2f,stretch?MaxStrideStretch:1):1;
         if(!blended&&fade<1){float q=fade*fade*(3-2*fade);scaleTarget=Mathf.Lerp(warpFromScale,scaleTarget,q);}
         StrideScale=scaleTarget;
         if(actual>=.2)StridePhase+=dt*cadence;

@@ -28,6 +28,16 @@ public static class FootballLocomotionTests {
         motion.Sample(p+Vector3.forward*20,f,2.1,false,false);Require(motion.Mode=="idle","Checkpoint cut is not shown as a twenty-metre sprint");
         var stride=new FootballLocomotion();stride.Sample(Vector3.zero,f,0,true,false);stride.Sample(new Vector3(0,0,.4f),f,.1,true,false);var prior=stride.StridePhase;stride.Sample(new Vector3(.3f,0,.4f),Vector3.right,.2,true,false);Require(stride.StridePhase>prior,"Turn pose does not reset the underlying carrier stride");prior=stride.StridePhase;stride.Sample(new Vector3(.3f,2,.4f),Vector3.right,.3,true,false);Require(stride.Speed==0&&stride.StridePhase==prior,"Height adjustment cannot fabricate a football stride");
         Vector3 Facing(float degrees)=>Quaternion.AngleAxis(degrees,Vector3.up)*Vector3.forward;
+        // U-1 (183, B02): the top-speed stride (running: 4.7 m per cycle of 0.635 s, 7.4 m/s) lengthens its step above its
+        // authored pace instead of only playing faster; the cycle still follows the received travel (no glide); a carrier
+        // at the free carrier pace (7.06 m/s, run band) and every slower band keep their authored step.
+        {FootballLocomotion Run(float speed,bool carrying,bool marked=true){var m=new FootballLocomotion();var at=Vector3.zero;for(int k=0;k<=60;k++){m.Sample(at,Vector3.forward,20+k*.05,carrying,false,-1,4.7f,0,0,1/.635f,marked);at+=Vector3.forward*speed*.05f;}return m;}
+         var runner=Run(8.15f,false);double natural=1/.635,expected=Math.Sqrt(8.15/4.7/natural);
+         Require(runner.StrideMode=="sprint"&&runner.FastStride&&Math.Abs(runner.StrideScale-expected)<.01,"u1 an 8.15 m/s own run lengthens the top-speed step by "+expected.ToString("0.000")+" ("+runner.StrideScale.ToString("0.000")+")");
+         var fastest=Run(11f,false);Require(Math.Abs(fastest.StrideScale-FootballLocomotion.MaxStrideStretch)<1e-4,"u1 the step stretch is bounded by MaxStrideStretch");
+         var carrier=Run(7.06f,true);Require(carrier.StrideMode=="run"&&Math.Abs(carrier.StrideScale-1)<1e-3,"u1 a 7.06 m/s carrier keeps the authored step (below the clip's pace)");
+         var legacy=Run(8.15f,false,false);Require(legacy.StrideMode=="sprint"&&legacy.StrideScale==1,"u1 a picture without the SI marker keeps the authored top-speed step (older matches unchanged)");
+         var cruise=Run(7.2f,false);Require(Math.Abs(cruise.StrideScale-1)<1e-3,"u1 below the authored pace the top-speed step is not stretched");}
         foreach(int frequency in new[]{30,60,120}){
             foreach(int direction in new[]{-1,1}){
                 var pivot=new FootballLocomotion();pivot.Sample(Vector3.zero,f,20,true,false);string expected=direction<0?"turn-left":"turn-right";bool seen=false;

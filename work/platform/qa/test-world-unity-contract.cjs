@@ -26,5 +26,8 @@ assert(Math.abs(wide.ball.x-3*1.2)<1e-9&&Math.abs(wide.ball.z+2*1.2)<1e-9&&wide.
 // A booked goal scene carries its celebration; older frames omit it.
 assert(!Object.hasOwn(pic,'celebrating'));const goalPic=C.picture({...frame,celebration:{id:1,team:1,time:1.5,scorer:'real-player'}},'s',6,{position:{x:0,z:40,height:24},target:{x:0,z:0},fov:42},'live',score);
 assert.equal(goalPic.celebrating,true);assert.equal(goalPic.celebrationTeam,1);assert.equal(goalPic.celebrationScorer,'real-player');assert.equal(goalPic.celebrationTime,1.5);
+// U-1 (183): pictures of a match with the SI marker carry siRevision 183; older frames omit it and are otherwise identical.
+assert(!Object.hasOwn(pic,'siRevision'));const siPic=C.picture({...frame,siRevision:183},'s',6,{position:{x:0,z:40,height:24},target:{x:0,z:0},fov:42},'live',score);const plainPic=C.picture(frame,'s',6,{position:{x:0,z:40,height:24},target:{x:0,z:0},fov:42},'live',score);
+assert.equal(siPic.siRevision,183);const {siRevision,...rest}=siPic;assert.deepEqual(rest,plainPic);assert(!Object.hasOwn(C.picture({...frame,siRevision:182},'s',6,{position:{x:0,z:40,height:24},target:{x:0,z:0},fov:42},'live',score),'siRevision'));
 fs.mkdirSync('outputs/platform/world-unity',{recursive:true});fs.writeFileSync('outputs/platform/world-unity/contract-fixture.json',JSON.stringify(fixture,null,2));
 console.log('Whitelisted identities, kit colors, camera/ball projection, optional geometry, celebration and read-only frame passed.');
