@@ -492,6 +492,8 @@ Offene Punkte für SI-5 und SI-K:
 - Torziel 15. Oktober 2026 (3–5 Tore): Das Standardfeld liegt mit 3,16 Toren am unteren Rand, das große Feld mit 2,46 darunter. SI-K hebt die Tore über Torquote je Schuss (a) und Schussmenge (b), ohne die breite Streuung zu verlieren (4:3 soll vorkommen).
 - Die Zahl der Raumpässe sinkt von 7,9 auf 0,6; zu klären ist, ob das an der Absichtszählung von SI-1 liegt oder echt ist.
 - Bei angekommenen Flanken liegt die Messhülle bei 3 %, die SI-7-Szenen bei 36 %. Die Definition muss vor SI-K abgeglichen werden.
+- Ballführertempo wird im Spiel gedeckelt. In echten Partien erreicht der Ballführer höchstens etwa 7,1 m/s, auf beiden Feldgrößen, obwohl `v157Pace` mit SI-2/SI-5 bis 8,5 m/s liefert. Ursache ist die Bremswegbegrenzung in `world-offensive-quality-v157.js:64` (`Math.sqrt(2*brake*(d-.05))+follow`) bei einem Laufziel etwa 2 m voraus (U-1-Review vom 15. Oktober). SI-K klärt, wo das Laufziel des Ballführers gesetzt wird. Erst danach werden `carrierPace` und die SI-5-Gains bewertet.
+- SI-5-Abnahme ohne Reserve: Das große Feld erreicht 88 % der Schüsse und 89 % der Tore des Standardfelds. Abnahmereihe A prüft das Verhältnis ausdrücklich; Reserve ist `field.windowGain` 14–15.
 
 ## 9. Tests
 
