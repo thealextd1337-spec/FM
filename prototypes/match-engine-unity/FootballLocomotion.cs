@@ -35,11 +35,15 @@ public sealed class FootballLocomotion {
     public bool FastStride {get;private set;}
     public const float FastRunOn=4.2f,FastRunOff=3.8f,FastBackOn=2.3f,FastBackOff=2f,TopSprintOn=6.6f,TopSprintOff=6.2f;
     // U-1 (183, SI-5): a ball carrier in the run band shows running (7.4 m/s, 4.7 m per cycle)
-    // only above TopSprintOn and keeps run_fast4 (6.3 m/s, 4.2 m) below it, the bridge band of
-    // a run without the ball: from run_fast6 (3.0 m/s) straight to running at 4.2 m/s the
-    // stride length jumped 2.5 -> 4.7 m and a fast start (spd/tec 18, large pitch) reached
-    // 1609 deg/s at the left foot. Only with the SI marker (Sample: topStretch); without it a
-    // carrier keeps running from FastRunOn on (CarrierTop stays true).
+    // only above TopSprintOn and keeps run_fast4 (6.3 m/s, 4.2 m) below it. A run without the
+    // ball uses run_fast4 only up to the sprint band (about 5 m/s) and then sprint_forward; a
+    // carrier never enters the sprint band and stays on run_fast4 up to 6.6 m/s. From run_fast6
+    // (3.0 m/s) straight to running at 4.2 m/s the stride length jumped 2.5 -> 4.7 m and a fast
+    // start (spd/tec 18, large pitch) reached 1609 deg/s at the left foot. Only with the SI
+    // marker (Sample: topStretch); without it a carrier keeps running from FastRunOn on
+    // (CarrierTop stays true). Keepers are no carriers here (the presentation excludes them).
+    // CarrierTop follows the carrier only: a ball loss clears it, so a carrier regaining the ball
+    // between TopSprintOff and TopSprintOn shows run_fast4 again (FootballLocomotionTests).
     public bool CarrierTop {get;private set;}=true;
     // Backward only: the fastest measured backward stride (back_right) above FastestBackOn.
     public bool FastestBack {get;private set;}
@@ -226,7 +230,7 @@ public sealed class FootballLocomotion {
         // 1622 deg/s.
         FastestBack=StrideMode=="back"&&(FastestBack?strideSpeed>FastestBackOff:strideSpeed>FastestBackOn);
         FastStride=StrideMode=="run"?(FastStride?strideSpeed>FastRunOff:strideSpeed>FastRunOn):StrideMode=="back"?(FastStride?strideSpeed>FastBackOff:strideSpeed>FastBackOn):StrideMode=="sprint"?(FastStride?cadenceSpeed>TopSprintOff:cadenceSpeed>TopSprintOn):false;
-        CarrierTop=!topStretch||carrying&&StrideMode=="run"&&FastStride&&(CarrierTop?cadenceSpeed>TopSprintOff:cadenceSpeed>TopSprintOn);
+        CarrierTop=!topStretch||carrying&&!keeper&&StrideMode=="run"&&FastStride&&(CarrierTop?cadenceSpeed>TopSprintOff:cadenceSpeed>TopSprintOn);
         Mode=nativeClock<brakeUntil?"brake":nativeClock<turnUntil?turn:StrideMode;
         if(Mode=="brake")lastBrake="brake";else if(nativeClock-brakeUntil>=EpisodeRejoin)lastBrake=null;
         float posture=Mode=="brake"?(float)Math.Sin(Math.PI*Math.Clamp((nativeClock-brakeAt)/Math.Max(.2,brakeUntil-brakeAt),0,1)):0;BrakeWeight=Mathf.MoveTowards(BrakeWeight,posture,(float)(dt/BrakePostureTime));
@@ -304,7 +308,7 @@ public sealed class FootballLocomotion {
         // posture to the authored cadence (at 0.7 a backward sprint stopping from
         // 5.6 m/s swung its left foot through the air for 0.6 s, slow motion).
         if(strideLength>.3f&&natural>0)cadence=Math.Max(cadence,(MinCadenceShare+(1-MinCadenceShare)*BrakeWeight)*natural);
-        bool carried=carrying&&StrideMode=="run"&&FastStride&&CarrierTop,stretch=topStretch&&strideLength>.3f&&natural>0&&Gait==Family.Forward&&(StrideMode=="sprint"&&FastStride||carried)&&cadence>natural;
+        bool carried=carrying&&!keeper&&StrideMode=="run"&&FastStride&&CarrierTop,stretch=topStretch&&strideLength>.3f&&natural>0&&Gait==Family.Forward&&(StrideMode=="sprint"&&FastStride||carried)&&cadence>natural;
         float stretchMax=carried?MaxCarrierStretch:MaxStrideStretch;
         if(stretch)cadence/=Math.Min(stretchMax,Math.Sqrt(cadence/natural));
         cadence=Math.Clamp(cadence,.25,2.4);
