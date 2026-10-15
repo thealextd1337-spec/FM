@@ -177,9 +177,9 @@ check('counter-pressing: further willing players cut the lane from the carrier t
   return {kind:m.attackFlow.defenseReads.def1.kind,dx:Math.abs((cutter.tx-expected.x)*s.x),dy:Math.abs((cutter.ty-expected.y)*s.y),press:m.attackFlow.defenseReads.def0.kind};})()`));
  assert.equal(r.kind,'counter');assert.equal(r.press,'counter');assert(r.dx<.6&&r.dy<.6,JSON.stringify(r));
 });
-check('pace: pressing and the safety defender use the stored factors; other purposes keep the previous owner',()=>{
+check('pace: pressing and the safety defender use the stored factors; other purposes keep the previous owner (SI-2 off, it owns carrier pace)',()=>{
  const r=copy(ev(`(()=>{
-  NativeDef.build({on:true,si:{params:{defence:{pressPace:1.3,coverPace:1.2}}}});const m=match,p=m.people.find(x=>x.pid==='def0'),now=v152Seconds(m),read=kind=>({nextAt:now+1,purpose:kind==='cover'?'cover':'press',kind});
+  NativeDef.build({on:true,si:{packages:{offball:false},params:{defence:{pressPace:1.3,coverPace:1.2}}}});const m=match,p=m.people.find(x=>x.pid==='def0'),now=v152Seconds(m),read=kind=>({nextAt:now+1,purpose:kind==='cover'?'cover':'press',kind});
   m.attackFlow.defenseReads={def0:read('press')};const press=v183PaceFactor(m,p,'purposeful',{factor:1.58,read:m.attackFlow.defenseReads.def0,now});
   m.attackFlow.defenseReads={def0:read('cover')};const cover=v183PaceFactor(m,p,'base',{factor:1.15,read:m.attackFlow.defenseReads.def0,now});
   const carrier=v183PaceFactor(m,p,'carrier',{factor:1.4}),support=v183PaceFactor(m,p,'support',{factor:1.35}),expired=v183PaceFactor(m,p,'base',{factor:1.15,read:{nextAt:now-1,kind:'cover'},now});
