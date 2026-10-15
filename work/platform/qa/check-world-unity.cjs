@@ -6,7 +6,7 @@ const freshnessCandidate=process.argv.includes('--freshness');
 const roleCandidate=process.argv.includes('--roles')||freshnessCandidate;
 const offenseCandidate=process.argv.includes('--offense');
 const out=process.env.D6_QA_OUTPUT?path.resolve(process.env.D6_QA_OUTPUT):freshnessCandidate?path.resolve('outputs/platform/freshness-v158/unity-world'):offenseCandidate?path.resolve('outputs/platform/offensive-quality',roleCandidate?'unity-roles':'unity-normal'):path.resolve('outputs/platform/world-unity',roleCandidate?'roles-wave4':'');fs.mkdirSync(out,{recursive:true});
-const server=createServer();const port=4361,url=`http://127.0.0.1:${port}/source/index.html`;
+const server=createServer();const port=Number(process.env.D6_QA_PORT||4361),url=`http://127.0.0.1:${port}/source/index.html`;
 const httpBuild=process.argv.includes('--http-build');
 const sourceHashes=Object.fromEntries(['dist/world-unity-v151.js','dist/world-offensive-quality-v157.js','dist/pitch-v56.js','dist/world-pitch3d-v98.js','dist/pitch-motion-v102.js','dist/unity-match/runtime.js','dist/game.js','dist/pitch-v55.js','dist/world-match-v64.js','dist/world-physical-v65.js','dist/world-player-roles-v154.js','dist/world-player-performance-v155.js','outputs/index.html'].map(file=>[file,require('node:crypto').createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 if(freshnessCandidate)for(const file of ['dist/player-load-candidate-v158.js','dist/world-player-load-v158.js','dist/player-freshness.js','dist/player-effective-abilities.js','dist/player-status-v51.js'])sourceHashes[file]=require('node:crypto').createHash('sha256').update(fs.readFileSync(file)).digest('hex');
@@ -145,7 +145,7 @@ async function fullMatch(page,engine){
   }
   const native=await fullMatch(page,'browser');console.log('Reference match complete');
   const unity=await fullMatch(page,'unity');console.log('Unity match complete');
-  fs.writeFileSync(path.join(out,'parity-raw.json'),JSON.stringify({native,unity},null,2));assert(JSON.stringify(unity)===JSON.stringify(native),'Full match parity differs; inspect parity-raw.json');report.parity={ticks:unity.ticks,half:unity.half,score:unity.score,minute:unity.minute,recordPlayers:unity.record.players.length};check('Full match, halftime, events, stats, career records and finances are identical',unity.half&&unity.minute>=90);
+  fs.writeFileSync(path.join(out,'parity-raw.json'),JSON.stringify({native,unity},null,2));assert(JSON.stringify(unity)===JSON.stringify(native),'Full match parity differs; inspect parity-raw.json');report.parity={ticks:unity.ticks,half:unity.half,score:unity.score,minute:unity.minute,fouls:Object.values(unity.stats||{}).reduce((sum,p)=>sum+(p.fouls||0),0),recordPlayers:unity.record.players.length};check('Full match, halftime, events, stats, career records and finances are identical',unity.half&&unity.minute>=90);
   if(roleCandidate)check('Unity parity also includes actual role events, routine and learning bookings',unity.performance.events.length>0&&unity.history.some(p=>p.playerModel.roleModel.processedFixtures.length>0&&p.playerModel.development.processedAppearances.length>0));
   await page.waitForTimeout(200);await page.screenshot({path:path.join(out,'full-time.png')});
   await prepare(page,'unity','away');await waitPicture(page);check('Away fixture keeps physical team and real home/away identities',await page.evaluate(()=>v65Context().ownSide===1&&D6UnityMatch.lastAck.ids.every(id=>match.people.some(p=>p.pid===id))));

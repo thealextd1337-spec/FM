@@ -1390,8 +1390,9 @@ public sealed class FootballRig {
     // path and the foot turns part of the way, instead of swivelling thighs.
     // scale (stride warping) shortens each foot's fore-aft excursion when the
     // stride is played at a minimum cadence below its authored speed.
+    // scale: shown share of each foot's fore-aft excursion (FootballLocomotion.StrideScale; above 1 the lengthened top-speed step, U-1).
     public void Directional(float pelvisYaw,float legYaw,float weight,float scale=1){
-        weight=Mathf.Clamp01(weight);scale=Mathf.Clamp(scale,.2f,1);if(weight<=0&&scale>.999f||hips==null)return;
+        weight=Mathf.Clamp01(weight);scale=Mathf.Clamp(scale,.2f,FootballLocomotion.MaxStrideStretch);bool unscaled=scale>.999f&&scale<1.001f;if(weight<=0&&unscaled||hips==null)return;
         float p=pelvisYaw*weight,r=legYaw*weight;var up=root.up;
         if(Mathf.Abs(p)>=.01f){
             hips.rotation=Quaternion.AngleAxis(p,up)*hips.rotation;
@@ -1401,7 +1402,7 @@ public sealed class FootballRig {
             if(arm!=null)arm.rotation=Quaternion.AngleAxis(p*.3f,up)*arm.rotation;
             if(leftArm!=null)leftArm.rotation=Quaternion.AngleAxis(p*.3f,up)*leftArm.rotation;
         }
-        if(Mathf.Abs(r)<.01f&&scale>.999f)return;
+        if(Mathf.Abs(r)<.01f&&unscaled)return;
         var forward=Vector3.ProjectOnPlane(Quaternion.AngleAxis(p,up)*root.forward,up).normalized;var right=Vector3.Cross(up,forward);var path=Quaternion.AngleAxis(r,up)*forward;
         for(int f=0;f<2;f++){
             var upper=f==0?leftUpper:rightUpper;var lower=f==0?leftLower:rightLower;var foot=f==0?leftFoot:rightFoot;

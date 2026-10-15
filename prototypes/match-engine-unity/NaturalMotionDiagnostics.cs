@@ -42,11 +42,25 @@ public static class NaturalMotionDiagnostics {
         public Countdown[] countdowns;
         // r21: foul offender windows, backward presentation (field players) and kick facing of a native player.
         public FoulWindow[] fouls;public Reversal reversal;public KickFacing[] kicks;
+        // U-1 (183): foul victim windows (fall, lying, rise) of a native player, report only (Victims).
+        public FoulWindow[] victims;
         // r132 (B02): stride band statistics of a native player over its moving pictures.
-        public Bands bands;}
+        public Bands bands;
+        // U-1 (183, B02): the shown stride clips, their playback rate and stride scale (GaitOf).
+        public Gait gait;}
     // r132 (B02): changes of the Unity stride band (walk/run/sprint/back/side/idle) over the moving pictures of a native player, per
     // minute of moving time; dwell of the walking band (mean seconds, share under 0.25 s) and of all bands.
     [Serializable] public class Bands {public int changes,shortDwells,walkDwells,walkShort;public float movingSeconds,changesPerMinute,walkDwellMean,dwellMean;}
+    // U-1 (183, B02): presentation of a native tempo. sequence: every change of the pose clip (clip@clock, the base stride
+    // under a turn or brake clip in brackets); clipChanges: their number while moving. rateMean/rateMax: playback rate of the
+    // stride clip over the cruise window (clip seconds per second, 1 = the authored pace; the cycle follows the received
+    // travel through the clip's measured stride length); scaleMean/scaleMin: the shown share of the authored fore-aft foot
+    // excursion (FootballLocomotion.StrideScale: at most 1, up to MaxStrideStretch on the top-speed stride above its authored pace); speedMax: the largest received speed.
+    [Serializable] public class Gait {public int clipChanges;public string sequence;public float rateMean,rateMax,scaleMean,scaleMin=9,speedMax;}
+    // U-1 (183): the native body paths (work/capture-native-body-u1-v183.cjs), parallel arrays per run.
+    [Serializable] class BodyRun {public float delta;public float[] t,x,z,hx,hz,v;}
+    [Serializable] class BodyKind {public string name,kind;public float spd,tec,massKg;public BodyRun[] runs;}
+    [Serializable] class BodyFile {public string source;public BodyKind[] kinds;}
     // r21: one foul offender window of a native player: from its first received foulOffender picture to OffenderAfter after
     // its last one (the exit into the following action and the walk-off). floatMax: the largest lower-foot support clearance
     // (the lower foot's skinned sole contour above the turf, bones without a contour: both soles in the air, the floating offender);
@@ -112,7 +126,9 @@ public static class NaturalMotionDiagnostics {
         // r132: the native132 capture gates (every foot-action window of the fresh production-bridge captures, locked to Release 131).
         public string r132GateNote;public Check[] r132Gates;
         // r132 (review 2): native132 findings that fail an absolute limit, compared with their Release 131 values (report only).
-        public string r132LockNote;public Check[] r132Locks;}
+        public string r132LockNote;public Check[] r132Locks;
+        // U-1 (183, B02): the native-body gates (U1Gates), reported apart from every set above.
+        public string u1GateNote;public Check[] u1Gates;}
     // r7: the samples behind each support-transition gate window.
     [Serializable] public class SupportSample {public string window;public int frames,moving,slowMoving,stanceFrames,supportFrames,doubleFloatSlow,soleBelow;public float speedMean,supportGlideMean,supportGlideRatio,supportGlideP90,supportGlideMax,kneePoleMean,soleMin,supportDropMax;public string supportGlideMaxAt,doubleFloatAt;}
     sealed class Sample {public float abduction=float.NaN,weightSum=float.NaN;public bool nanWeights;public double clock;public Vector3 root,facing,travel;public float speed,turfShift,turfClear=float.NaN;public Vector3[] ankle=new Vector3[2],toe=new Vector3[2],knee=new Vector3[2],thigh=new Vector3[2];public float[] ankleClear=new float[2],toeClear=new float[2],supportClear=new float[2];public Vector3 head,shoulderMid;public Vector3[] hand=new Vector3[2];public float supportDrop,solePredicted=float.NaN,groundSole=float.NaN;public Quaternion[] rot,rel,loc;public float rootYaw,strideScale;public Vector3[] ankleLocal=new Vector3[2];public Vector3 hipsRight,chestRight;public string clip,baseClip,mode,stride,action,soleBone,lockState;public float actionWeight;public Vector3 facingRaw;public int inertia;public bool contactPicture;public float rawStep,rawJump;public double phase;public float sole=float.NaN,lockOffset=-1;public bool moving;
@@ -434,6 +450,21 @@ public static class NaturalMotionDiagnostics {
     }
     // ---- r21 measurements (reported in natural-motion.json; gated by R21Gates) ----
     public const float OffenderAfter=1f,ReverseSpeed=1.2f,KickExit=.3f;
+    // U-1 (183): every foul victim window of a native player, from its first to its last received foulVictim picture (the
+    // whole fall, lying and rise; a 183 lock of 1.8 s or the 2.7 s window): the eight bones with the received root yaw removed
+    // and the pelvis vertical speed, as Fouls measures the offender. Report only.
+    static FoulWindow[] Victims(List<WorldFrame> pictures,int i,List<Sample> all){
+        var list=new List<FoulWindow>();
+        for(int k=0;k<pictures.Count;k++){
+            if(pictures[k].players[i].action!="foulVictim"||k>0&&pictures[k-1].players[i].action=="foulVictim")continue;
+            int e=k;while(e<pictures.Count&&pictures[e].players[i].action=="foulVictim")e++;
+            var w=new FoulWindow{start=(float)pictures[k].clock,end=(float)pictures[e-1].clock,exit=e<pictures.Count?(float)pictures[e].clock:-1,exitTo=e<pictures.Count?pictures[e].players[i].action:"(end of replay)"};
+            for(int n=1;n<all.Count;n++){var x=all[n];if(x.clock<w.start-1e-6||x.clock>w.end+1e-6||x.action!="foulVictim")continue;w.frames++;var p=all[n-1];double dt=x.clock-p.clock;if(dt<=0||dt>.04||p.action!="foulVictim")continue;string at=x.clock.ToString("0.000",Inv)+" "+x.clip;
+                for(int b=0;b<8;b++){float v=Quaternion.Angle(x.rel[b],p.rel[b])/(float)dt;if(v>w.jointRootMax){w.jointRootMax=v;w.jointRootAt=Bones[b]+" "+at;}}
+                float pr=Mathf.Abs((x.thigh[0].y+x.thigh[1].y-p.thigh[0].y-p.thigh[1].y)*.5f)/(float)dt;if(pr>w.pelvisRateMax){w.pelvisRateMax=pr;w.pelvisAt=at;}}
+            list.Add(w);k=e;}
+        return list.ToArray();
+    }
     static FoulWindow[] Fouls(List<WorldFrame> pictures,int i,List<Sample> all){
         var list=new List<FoulWindow>();
         for(int k=0;k<pictures.Count;k++){
@@ -739,6 +770,10 @@ public static class NaturalMotionDiagnostics {
             }
             if(render){sheet.Apply();var name="directions-"+band+".png";File.WriteAllBytes(Path.Combine(folder,name),sheet.EncodeToPNG());images.Add(name);UnityEngine.Object.DestroyImmediate(sheet);}
         }
+        // 1b. U-1 (183, B02): the native body of the SI-2 tempi as identical input (NativeBody): the run folder's own
+        // native183-body/body-183.json, else the versioned fixture (BodyFixture), so every D6Cli.Tests run carries the u1 gates.
+        var bodyFile=Path.Combine(repository,outputFolder??EvidenceFolder,"native183-body","body-183.json");if(!File.Exists(bodyFile))bodyFile=Path.Combine(repository,BodyFixture);
+        if(File.Exists(bodyFile))cases.AddRange(NativeBody(baseConfig,subject,File.ReadAllText(bodyFile),dirNames));
         // 2. Steady curves at 3.5 m/s: facing follows the tangent.
         foreach(float rate in new[]{90f,150f,250f}){if(!Want("curve-"+rate+"@60Hz"))continue;
             var path=new List<(double,Vector3,Vector3)>();var p=Vector3.zero;float heading=0;
@@ -991,9 +1026,9 @@ public static class NaturalMotionDiagnostics {
         // folder's native132, family native132, origin r21-native (R21Gates incl. the B11 foul gates; foot actions measured).
         var r132Folder=Path.Combine(repository,outputFolder??EvidenceFolder,"native132");
         foreach(var file in Directory.Exists(r132Folder)&&Want("native132")?Directory.GetFiles(r132Folder,"motion-*.json"):new string[0]){if(file.EndsWith(".meta.json"))continue;cases.AddRange(Native(file,true,"native132"));}
-        var gates=Gates(cases);var supportSamples=new List<SupportSample>();var supportGates=SupportGates(cases,supportSamples);var contactGates=ContactGates(cases);var continuityGates=ContinuityGates(cases);var r15SupportSamples=new List<SupportSample>();var r15Gates=R15Gates(cases,r15SupportSamples);var r20SupportSamples=new List<SupportSample>();var r20Gates=R20Gates(cases,r20SupportSamples);var r21Gates=R21Gates(cases);var r132Gates=R132Gates(cases);r20Checks.Add(new Check{name="every display picture of the run is accepted by the bridge (rejected pictures)",passed=rejected==0,value=rejected});
+        var gates=Gates(cases);var supportSamples=new List<SupportSample>();var supportGates=SupportGates(cases,supportSamples);var contactGates=ContactGates(cases);var continuityGates=ContinuityGates(cases);var r15SupportSamples=new List<SupportSample>();var r15Gates=R15Gates(cases,r15SupportSamples);var r20SupportSamples=new List<SupportSample>();var r20Gates=R20Gates(cases,r20SupportSamples);var r21Gates=R21Gates(cases);var r132Gates=R132Gates(cases);var u1Gates=U1Gates(cases);r20Checks.Add(new Check{name="every display picture of the run is accepted by the bridge (rejected pictures)",passed=rejected==0,value=rejected});
         var clipFields=new List<string>();foreach(var field in typeof(ProbeBridge).GetFields(Flags))if(field.FieldType==typeof(AnimationClip)){var clip=field.GetValue(bridge) as AnimationClip;clipFields.Add(field.Name+"="+(clip!=null?clip.name:"-"));}
-        var report=new Report{clipFields=string.Join(",",clipFields),gateNote=GateNote,gates=gates.ToArray(),supportGateNote=SupportGateNote,supportGates=supportGates.ToArray(),supportSamples=supportSamples.ToArray(),contactGateNote=ContactGateNote,contactGates=contactGates.ToArray(),continuityGateNote=ContinuityGateNote,continuityGates=continuityGates.ToArray(),r15GateNote=R15GateNote,r15Gates=r15Gates.ToArray(),r15SupportSamples=r15SupportSamples.ToArray(),r20GateNote=R20GateNote,r20Gates=r20Gates.ToArray(),r20SupportSamples=r20SupportSamples.ToArray(),r20Checks=r20Checks.ToArray(),r15Enforcement=R15Enforcement,label=label,sourceId=ProbeBuildIdentity.SourceId,unity=Application.unityVersion,device=SystemInfo.graphicsDeviceType.ToString(),note="Controlled cases are hand-built native-shaped 20 Hz pictures; native cases replay actual captured native pictures. Both are blended to 60 Hz by WorldViewPlayback.Blend and rendered through ProbeBridge.WorldCommand on the actual rig. Glide: horizontal world speed of the lowest sole point while it is within 3 cm of the standing sole height (supportGlide: only while it is also the lower, weight-bearing foot; a low swing foot is excluded); foot axis: undirected angle foot/travel; knee pole: knee bend direction vs foot direction; chest: shoulder line forward vs received facing. Editor evidence, not a device or GPU measurement.",cases=cases.ToArray(),determinism=checks.ToArray(),r132GateNote=R132GateNote,r132Gates=r132Gates.ToArray(),images=images.ToArray(),recordings=recordings.ToArray(),r21GateNote=R21GateNote,r21Gates=r21Gates.ToArray()};
+        var report=new Report{clipFields=string.Join(",",clipFields),gateNote=GateNote,gates=gates.ToArray(),supportGateNote=SupportGateNote,supportGates=supportGates.ToArray(),supportSamples=supportSamples.ToArray(),contactGateNote=ContactGateNote,contactGates=contactGates.ToArray(),continuityGateNote=ContinuityGateNote,continuityGates=continuityGates.ToArray(),r15GateNote=R15GateNote,r15Gates=r15Gates.ToArray(),r15SupportSamples=r15SupportSamples.ToArray(),r20GateNote=R20GateNote,r20Gates=r20Gates.ToArray(),r20SupportSamples=r20SupportSamples.ToArray(),r20Checks=r20Checks.ToArray(),r15Enforcement=R15Enforcement,label=label,sourceId=ProbeBuildIdentity.SourceId,unity=Application.unityVersion,device=SystemInfo.graphicsDeviceType.ToString(),note="Controlled cases are hand-built native-shaped 20 Hz pictures; native cases replay actual captured native pictures. Both are blended to 60 Hz by WorldViewPlayback.Blend and rendered through ProbeBridge.WorldCommand on the actual rig. Glide: horizontal world speed of the lowest sole point while it is within 3 cm of the standing sole height (supportGlide: only while it is also the lower, weight-bearing foot; a low swing foot is excluded); foot axis: undirected angle foot/travel; knee pole: knee bend direction vs foot direction; chest: shoulder line forward vs received facing. Editor evidence, not a device or GPU measurement.",cases=cases.ToArray(),determinism=checks.ToArray(),r132GateNote=R132GateNote,r132Gates=r132Gates.ToArray(),u1GateNote=U1GateNote,u1Gates=u1Gates.ToArray(),images=images.ToArray(),recordings=recordings.ToArray(),r21GateNote=R21GateNote,r21Gates=r21Gates.ToArray()};
         File.WriteAllText(Path.Combine(folder,"natural-motion.json"),JsonUtility.ToJson(report,true));
         var visible=VisibleSurfaceProbe.Current;var visibleResult=visible?.Result();var visibleLine=visible?.Finish(folder,"visible-surface.json");
         var r132Locks=R132Locks(r21Gates,visibleResult,out int visibleUnlocked);report.r132LockNote=R132LockNote;report.r132Locks=r132Locks.ToArray();File.WriteAllText(Path.Combine(folder,"natural-motion.json"),JsonUtility.ToJson(report,true));
@@ -1026,6 +1061,9 @@ public static class NaturalMotionDiagnostics {
         // r132: the native132 capture gates (Release 131 regression lock) are enforced the same way.
         var failedR132=r132Gates.FindAll(g=>!g.passed);
         if(enforce&&failedR132.Count>0)throw new Exception(failedR132.Count+" of "+r132Gates.Count+" r132 gates failed, first: "+failedR132[0].name+" = "+failedR132[0].value.ToString("0.###",Inv)+" (limit "+failedR132[0].limit.ToString("0.###",Inv)+")");
+        // U-1 (183): the native-body gates are enforced the same way.
+        var failedU1=u1Gates.FindAll(g=>!g.passed);
+        if(enforce&&failedU1.Count>0)throw new Exception(failedU1.Count+" of "+u1Gates.Count+" u1 gates failed, first: "+failedU1[0].name+" = "+failedU1[0].value.ToString("0.###",Inv)+" (limit "+failedU1[0].limit.ToString("0.###",Inv)+")");
         // r22: the paired visible surface (actors with a ground skin only) is enforced the same way.
         // r132 (review 2): the visible-surface failures of native132 pictures listed in R132VisibleBaseline and not worse than Release 131
         // are reported as locks; every other failure enforces as before.
@@ -1035,7 +1073,66 @@ public static class NaturalMotionDiagnostics {
         // (no ground skin on the actors would otherwise measure nothing and pass); the release scene (no ground skin) stays a no-op.
         if(enforce&&only==null){var drawnMesh=LowPolySetup.MatchMesh();var groundMesh=LowPolySetup.GroundMesh();
             if(groundMesh!=null&&drawnMesh!=UnityEditor.AssetDatabase.LoadAssetAtPath<Mesh>(LowPolySetup.Original)&&(visible==null||visible.Pictures==0))throw new Exception("visible surface: replacement match mesh "+drawnMesh.name+" with ground mesh "+groundMesh.name+" but no picture was measured (the actors carry no ground skin)");}
-        return "cases="+cases.Count+" checks="+checks.Count+" gates="+(gates.Count-failedGates.Count)+"/"+gates.Count+" failed="+failedGates.Count+" supportGates="+(supportGates.Count-failedSupport.Count)+"/"+supportGates.Count+" supportFailed="+failedSupport.Count+" contactGates="+(contactGates.Count-failedContact.Count)+"/"+contactGates.Count+" contactFailed="+failedContact.Count+" continuityGates="+(continuityGates.Count-failedContinuity.Count)+"/"+continuityGates.Count+" continuityFailed="+failedContinuity.Count+" r15Gates="+(r15Gates.Count-failedR15.Count)+"/"+r15Gates.Count+" r15Failed="+failedR15.Count+" r15BeyondR18="+r15Regressions.Count+" r20Gates="+(r20Gates.Count-failedR20.Count)+"/"+r20Gates.Count+" r20Failed="+failedR20.Count+" r20Checks="+(r20Checks.Count-failedR20Checks.Count)+"/"+r20Checks.Count+" r21Gates="+(r21Gates.Count-failedR21.Count)+"/"+r21Gates.Count+" r21Failed="+failedR21.Count+" r132Gates="+(r132Gates.Count-failedR132.Count)+"/"+r132Gates.Count+" r132Failed="+failedR132.Count+(only!=null?" filter="+only:"")+" images="+images.Count+" recordings="+recordings.Count+(visibleLine!=null?" "+visibleLine:"");
+        return "cases="+cases.Count+" checks="+checks.Count+" gates="+(gates.Count-failedGates.Count)+"/"+gates.Count+" failed="+failedGates.Count+" supportGates="+(supportGates.Count-failedSupport.Count)+"/"+supportGates.Count+" supportFailed="+failedSupport.Count+" contactGates="+(contactGates.Count-failedContact.Count)+"/"+contactGates.Count+" contactFailed="+failedContact.Count+" continuityGates="+(continuityGates.Count-failedContinuity.Count)+"/"+continuityGates.Count+" continuityFailed="+failedContinuity.Count+" r15Gates="+(r15Gates.Count-failedR15.Count)+"/"+r15Gates.Count+" r15Failed="+failedR15.Count+" r15BeyondR18="+r15Regressions.Count+" r20Gates="+(r20Gates.Count-failedR20.Count)+"/"+r20Gates.Count+" r20Failed="+failedR20.Count+" r20Checks="+(r20Checks.Count-failedR20Checks.Count)+"/"+r20Checks.Count+" r21Gates="+(r21Gates.Count-failedR21.Count)+"/"+r21Gates.Count+" r21Failed="+failedR21.Count+" r132Gates="+(r132Gates.Count-failedR132.Count)+"/"+r132Gates.Count+" r132Failed="+failedR132.Count+" u1Gates="+(u1Gates.Count-failedU1.Count)+"/"+u1Gates.Count+" u1Failed="+failedU1.Count+(only!=null?" filter="+only:"")+" images="+images.Count+" recordings="+recordings.Count+(visibleLine!=null?" "+visibleLine:"");
+    }
+    // ---- U-1 (183, B02): native body tempi --------------------------------
+    // The native body of the SI-2 tempi as identical input (work/capture-native-body-u1-v183.cjs: v157Move every native
+    // 0.05 s step; spd 14, tec 14, 74 kg): free carrier 1.50x (7.06 m/s), carrier with an opponent kept within 2.5 m (1.28x,
+    // 6.03 m/s) and an own run (1.58x, 8.15 m/s), each from rest through the run, a change of direction by 0, +-45, +-90,
+    // +-135 or 180 degrees and the stop at its braking distance; the body heading is the received facing (the bridge sends
+    // the travel facing of a running player); the pictures carry the SI marker (siRevision 183) of a new match. Then the same straight speed profile in the eight body-relative directions of
+    // section 1 under a fixed facing: a stress set, since the native body turns before it runs and travel far off the
+    // facing stays short at these speeds. Windows: start 0.5-1.4 s, cruise from 1.4 s to the change of direction (2.2 s) or
+    // the stop (3.2 s), stop = change of direction and stop to the end. Origin "si183", gated by U1Gates.
+    // Versioned native body paths (work/capture-native-body-u1-v183.cjs, 95 KB); outside outputs/, never written by a test.
+    public const string BodyFixture="prototypes/match-engine-unity/fixtures/native183-body/body-183.json";
+    static List<Case> NativeBody(WorldConfig config,int subject,string json,string[] dirNames){
+        var cases=new List<Case>();var file=JsonUtility.FromJson<BodyFile>(json);
+        // Native metres (x across, z along the initial heading) onto the pitch: the run along +X; a positive native turn
+        // (toward +x) is a positive body-relative angle (Facing: toward -Z), as the direction names of section 1.
+        Vector3 Map(float x,float z)=>new Vector3(z,0,-x);
+        foreach(var k in file.kinds){
+            bool carry=k.kind!="runner";var straight=Array.Find(k.runs,r=>r.delta==0);
+            foreach(var r in k.runs){
+                string name="body-"+k.name+"-"+(r.delta==0?"straight":"turn"+(r.delta>0?"+":"")+r.delta.ToString("0",Inv));if(!Want(name+"@60Hz"))continue;
+                var path=new List<(double t,Vector3 p,Vector3 f)>();for(int i=0;i<r.t.Length;i++)path.Add((r.t[i],Map(r.x[i],r.z[i]),Map(r.hx[i],r.hz[i]).normalized));
+                float top=0;foreach(var v in r.v)top=Mathf.Max(top,v);
+                var pics=Pictures(config,subject,path,new Vector3(-12,0,0),owner:carry);foreach(var w in pics)w.siRevision=183;var run=Play(config,pics,subject,true);
+                var c=Measured(name,"native-body","si183",run,r.delta,top,0,(Frame60(.5),Frame60(1.4),Frame60(r.delta==0?3.2:2.2),run.samples.Count),"native body "+k.name+" (spd "+k.spd+", tec "+k.tec+", "+k.massKg+" kg): rest, start, run, "+(r.delta==0?"straight on":"change of direction by "+r.delta+" deg")+", stop at the braking distance; stop window = "+(r.delta==0?"stop":"change of direction and stop"));
+                c.bands=BandStats(run.samples);c.gait=GaitOf(run.samples,Frame60(1.4),Frame60(r.delta==0?3.2:2.2));cases.Add(c);
+            }
+            if(straight==null)continue;
+            for(int d=0;d<8;d++){
+                float travel=d*45;if(travel>180)travel-=360;string name="body-"+k.name+"-rel-"+dirNames[d];if(!Want(name+"@60Hz"))continue;
+                // The straight run's distance profile along a body-relative direction under the fixed facing +X.
+                var path=new List<(double t,Vector3 p,Vector3 f)>();float top=0;
+                for(int i=0;i<straight.t.Length;i++){path.Add((straight.t[i],Facing(travel)*straight.z[i],Facing(0)));top=Mathf.Max(top,straight.v[i]);}
+                var pics=Pictures(config,subject,path,new Vector3(-4,0,0)-Facing(travel)*10f,owner:carry);foreach(var w in pics)w.siRevision=183;var run=Play(config,pics,subject,true);
+                var c=Measured(name,"native-body-relative","si183",run,travel,top,0,(Frame60(.5),Frame60(1.4),Frame60(3.2),run.samples.Count),"native body "+k.name+" straight speed profile at "+travel+" deg to a fixed facing (stress set)");
+                c.bands=BandStats(run.samples);c.gait=GaitOf(run.samples,Frame60(1.4),Frame60(3.2));cases.Add(c);
+            }
+        }
+        return cases;
+    }
+    static Gait GaitOf(List<Sample> all,int from,int to){
+        var g=new Gait();var seq=new System.Text.StringBuilder();string last=null;double rateSum=0,scaleSum=0;int rates=0,scales=0;
+        for(int i=0;i<all.Count;i++){var s=all[i];g.speedMax=Mathf.Max(g.speedMax,s.travel.magnitude);
+            string shown=s.clip+(s.baseClip!=null&&s.baseClip!=s.clip?"["+s.baseClip+"]":"");
+            if(shown!=last){if(last!=null&&(s.moving||all[i-1].moving))g.clipChanges++;if(seq.Length<1200)seq.Append((seq.Length>0?" ":"")+shown+"@"+s.clock.ToString("0.00",Inv));last=shown;}
+            if(i<=Math.Max(1,from)-1||i>=to||i==0)continue;var p=all[i-1];double dt=s.clock-p.clock;if(dt<=0||dt>.04||!s.moving||s.mode!=s.stride||p.clip!=s.clip)continue;
+            double rate=(s.poseTime-p.poseTime)/dt;if(rate<0)continue;rateSum+=rate;rates++;g.rateMax=Mathf.Max(g.rateMax,(float)rate);scaleSum+=s.strideScale;scales++;g.scaleMin=Mathf.Min(g.scaleMin,s.strideScale);}
+        g.sequence=seq.ToString();g.rateMean=rates>0?(float)(rateSum/rates):0;g.scaleMean=scales>0?(float)(scaleSum/scales):0;if(scales==0)g.scaleMin=0;return g;
+    }
+    const string U1GateNote="u1 gates (183, B02; reported apart from all earlier sets): the native-body cases (origin si183, NativeBody) under the limits of the controlled fixtures: per start/cruise/stop window no sole below the turf, joint speed at most 1600 deg/s and thigh step at most 25 deg per 1/60 s; over the whole case and every detected transition the same with the received root removed; over the cruise of the straight and turn runs a support glide at most 0.25 m/s and 15 % of the speed (feet do not slide). The relative stress set is gated by the window and transition limits only (no glide gate: travel far off the facing).";
+    static List<Check> U1Gates(List<Case> cases){
+        var gates=new List<Check>();void Gate(string name,double value,double limit){gates.Add(new Check{name=name,value=value,limit=limit,passed=value<=limit+1e-6});}
+        foreach(var c in cases){if(c.origin!="si183")continue;string id="u1 "+c.name+"@"+c.rate+"Hz";
+            foreach(var w in new[]{c.start,c.cruise,c.stop}){if(w==null||w.frames==0)continue;string n=id+"/"+w.name;Gate(n+" sole below turf frames",w.soleBelow,0);Gate(n+" joint speed deg/s",w.jointSpeedMax,JointSpeedLimit);Gate(n+" thigh step deg per 1/60 s",w.thighStepMax*c.rate/60f,ThighStepLimit);}
+            var all=new List<Window>{c.whole};if(c.transitions!=null)all.AddRange(c.transitions);
+            foreach(var w in all){if(w==null||w.frames==0)continue;string n=id+"/"+w.name;Gate(n+" root-relative joint speed deg/s",w.jointSpeedRootMax,JointSpeedLimit);Gate(n+" root-relative thigh step deg per 1/60 s",w.thighStepRootMax*c.rate/60f,ThighStepLimit);Gate(n+" sole below turf frames",w.soleBelow,0);}
+            var r=c.cruise;if(c.group!="native-body"||r==null||r.supportFrames==0||r.speedMean<=.5f)continue;
+            Gate(id+"/cruise support glide share of speed",r.supportGlideRatio,GlideRatioLimit);Gate(id+"/cruise support glide m/s",r.supportGlideMean,GlideLimit);}
+        return gates;
     }
     // ---- r132 gates (review 1, item 5) --------------------------------------
     // Every foot-action window (approach, entry, contact, return) of every native132 case (the fresh captures of the
@@ -1409,7 +1506,7 @@ public static class NaturalMotionDiagnostics {
     [Serializable] class NativePose {public string id,action,actionId;public double[] position,facing,contactPoint;public double progress,duration,freshness=-1;public bool moving;
         // r20: the optional native timing of the R20 bridge (Root contract captures); absent in the historical captures.
         public double actionAt=-1;public bool actionAtKnown,durationKnown;}
-    [Serializable] class NativePicture {public double clock;public string phase,owner;public bool ballInFlight,turned;public double[] ball;public NativePose[] players;}
+    [Serializable] class NativePicture {public double clock;public int siRevision;public string phase,owner;public bool ballInFlight,turned;public double[] ball;public NativePose[] players;}
     [Serializable] class NativeCapture {public int seed,fieldPlayers;public string fieldSize;public string[] keepers;public NativePicture[] pictures;}
     // r8: optional per-picture mixer dump of one native player (iteration
     // evidence only; never part of a gate): -d6dump <seed>-<player>@<from>-<to>
@@ -1444,7 +1541,7 @@ public static class NaturalMotionDiagnostics {
         bool large=capture.fieldSize=="large";config.geometry.length=large?81.6:68;config.geometry.width=large?52.8:44;config.geometry.fieldPlayers=capture.fieldPlayers;
         config.session="native-motion-"+capture.seed;config.quality="standard";
         WorldFrame ToFrame(NativePicture n){
-            var f=JsonUtility.FromJson<WorldFrame>(JsonUtility.ToJson(config.initial));f.session=config.session;f.clock=n.clock;f.phase="live";f.owner=string.IsNullOrEmpty(n.owner)?"":n.owner;f.ball=n.ball;f.ballInFlight=n.ballInFlight;f.turned=n.turned;f.ballOpacity=1;
+            var f=JsonUtility.FromJson<WorldFrame>(JsonUtility.ToJson(config.initial));f.session=config.session;f.clock=n.clock;f.siRevision=n.siRevision;f.phase="live";f.owner=string.IsNullOrEmpty(n.owner)?"":n.owner;f.ball=n.ball;f.ballInFlight=n.ballInFlight;f.turned=n.turned;f.ballOpacity=1;
             f.players=Array.ConvertAll(n.players,q=>new WorldPose{id=q.id,position=q.position,facing=q.facing,moving=q.moving,action=q.action,actionId=q.actionId,progress=q.progress,duration=q.duration>0?q.duration:1,contactPoint=q.contactPoint!=null&&q.contactPoint.Length==3?q.contactPoint:null,freshness=q.freshness,number=0});
             // r20: the received native timing, only where the capture states it.
             for(int k=0;k<n.players.Length;k++){var q=n.players[k];if(q.actionAtKnown){Set(f.players[k],"actionAt",q.actionAt);Set(f.players[k],"actionAtKnown",true);}if(q.durationKnown)Set(f.players[k],"durationKnown",true);}
@@ -1479,7 +1576,7 @@ public static class NaturalMotionDiagnostics {
             NativeTrace((contract?"c":"")+capture.seed+"-"+i,all);
             var whole=Summarise("whole",all,0,all.Count);
             // cruise = locomotion-only pictures (idle/run actions) of the same player.
-            results.Add(new Case{name=prefix+capture.seed+"-"+role+"-"+i,group="native-player",origin=family!=null?"r21-native":contract?"r20-native":"native",note=Path.GetFileName(file)+"; cruise window = locomotion-only pictures",whole=whole,cruise=Summarise("locomotion",all,0,all.Count,true),transitions=Transitions(all,true),clips=new string[0],footActions=FootActions(all,Timing(i)),readyAborts=ReadyAborts(all),countdowns=Countdowns(pictures,i,all,Timing(i)).ToArray(),fouls=Fouls(pictures,i,all),bands=BandStats(all),reversal=isKeeper?null:Reversals(all),kicks=KickFacings(pictures,i,all)});
+            results.Add(new Case{name=prefix+capture.seed+"-"+role+"-"+i,group="native-player",origin=family!=null?"r21-native":contract?"r20-native":"native",note=Path.GetFileName(file)+"; cruise window = locomotion-only pictures",whole=whole,cruise=Summarise("locomotion",all,0,all.Count,true),transitions=Transitions(all,true),clips=new string[0],footActions=FootActions(all,Timing(i)),readyAborts=ReadyAborts(all),countdowns=Countdowns(pictures,i,all,Timing(i)).ToArray(),fouls=Fouls(pictures,i,all),victims=Victims(pictures,i,all),bands=BandStats(all),reversal=isKeeper?null:Reversals(all),kicks=KickFacings(pictures,i,all)});
         }
         if(renderOn&&Want("recordings")&&contract)foreach(var (name,from,to) in ContractFocus){
             if(!name.StartsWith(prefix+capture.seed+"-"))continue;int who=int.Parse(name.Substring(name.LastIndexOf('-')+1));if(who>=n)continue;

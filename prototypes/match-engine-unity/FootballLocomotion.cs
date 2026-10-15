@@ -34,6 +34,13 @@ public sealed class FootballLocomotion {
     // top-speed stride (running, 7.4 m/s, 4.7 m per cycle) lengthens the step.
     public bool FastStride {get;private set;}
     public const float FastRunOn=4.2f,FastRunOff=3.8f,FastBackOn=2.3f,FastBackOff=2f,TopSprintOn=6.6f,TopSprintOff=6.2f;
+    // U-1 (183, SI-5): a ball carrier in the run band shows running (7.4 m/s, 4.7 m per cycle)
+    // only above TopSprintOn and keeps run_fast4 (6.3 m/s, 4.2 m) below it, the bridge band of
+    // a run without the ball: from run_fast6 (3.0 m/s) straight to running at 4.2 m/s the
+    // stride length jumped 2.5 -> 4.7 m and a fast start (spd/tec 18, large pitch) reached
+    // 1609 deg/s at the left foot. Only with the SI marker (Sample: topStretch); without it a
+    // carrier keeps running from FastRunOn on (CarrierTop stays true).
+    public bool CarrierTop {get;private set;}=true;
     // Backward only: the fastest measured backward stride (back_right) above FastestBackOn.
     public bool FastestBack {get;private set;}
     public const float FastestBackOn=3.5f,FastestBackOff=3.2f;
@@ -68,9 +75,24 @@ public sealed class FootballLocomotion {
     // Side step: signed cycles along the received right axis and its weight.
     public double SidePhase {get;private set;}
     public float SideWeight {get;private set;}
-    // Share of each foot's fore-aft excursion shown (stride warping, <=1).
+    // Share of each foot's fore-aft excursion shown (stride warping, at most
+    // MaxStrideStretch on the top-speed stride above its authored pace, else <=1).
     public float StrideScale {get;private set;}=1;
     public const double MinCadenceShare=.7;
+    // U-1 (183, B02): above the authored pace of the fastest forward clip (running,
+    // 7.4 m/s at 4.7 m per cycle) the native own runs reach 8.15 m/s. Played with the
+    // authored step only, that was a 1.10x (up to 1.17x) faster playback. The top-speed
+    // stride (sprint band on running; no faster clip exists) now lengthens its step by the
+    // square root of that ratio (cadence and step share it, as a faster runner does both),
+    // at most MaxStrideStretch; the cycle still follows the received travel, so the planted
+    // foot keeps the ground speed. Slower bands keep their step: a faster clip takes over.
+    // Only pictures of a match with the SI marker (Sample: topStretch); older matches keep
+    // their presentation (the stretch shifts the shared stride cycle of every later picture).
+    // A ball carrier never enters the sprint band; on the large pitch (SI-5) it runs up to
+    // 8.5 m/s on running in its run band. Above the authored pace its step lengthens the same
+    // way, bounded by MaxCarrierStretch (a dribbling stride stays shorter; the cadence takes
+    // the rest).
+    public const float MaxStrideStretch=1.08f,MaxCarrierStretch=1.05f;
     // Playback rate of brake_meshy from its measured entry (authored joint speed
     // up to 1140 deg/s; 1.8x reached 2000 deg/s).
     public const double BrakeRate=1.35;
@@ -133,7 +155,7 @@ public sealed class FootballLocomotion {
     // the actor's constant cycle offset, so a start or a turn knows its foot.
     // naturalCadence: authored cycles per second of that clip (1/length); a
     // slow stride keeps at least MinCadenceShare of it and shortens its steps.
-    public void Sample(Vector3 point,Vector3 facing,double nativeClock,bool carrying,bool keeper,double freshness=-1,float strideLength=0,float clipHeading=0,double cycleOffset=0,float naturalCadence=0){
+    public void Sample(Vector3 point,Vector3 facing,double nativeClock,bool carrying,bool keeper,double freshness=-1,float strideLength=0,float clipHeading=0,double cycleOffset=0,float naturalCadence=0,bool topStretch=false){
         if(clock>=0&&nativeClock==clock)return;
         double dt=nativeClock-clock;
         var travel=point-position;travel.y=0;
@@ -142,7 +164,7 @@ public sealed class FootballLocomotion {
         // stride: it reset the stride instead of starting a 136 m/s sprint, a
         // turn and a brake_meshy stop on a standing body (measured 2045 deg/s).
         if(clock<0||dt<0||dt>1||travel.magnitude>7||travel.magnitude>RepositionStep&&travel.magnitude>RepositionSpeed*dt){
-            position=point;forward=facing;clock=nativeClock;Speed=strideSpeed=cadenceSpeed=slowTurnAngle=Acceleration=ForwardLean=TurnLean=0;RecoveryLean=Recovery(freshness,carrying,keeper);Phase=StridePhase=nativeClock;Mode=StrideMode="idle";MotionWeight=1;Lateral=StrideYaw=0;brakeUntil=turnUntil=0;FastStride=FastestBack=false;
+            position=point;forward=facing;clock=nativeClock;Speed=strideSpeed=cadenceSpeed=slowTurnAngle=Acceleration=ForwardLean=TurnLean=0;RecoveryLean=Recovery(freshness,carrying,keeper);Phase=StridePhase=nativeClock;Mode=StrideMode="idle";MotionWeight=1;Lateral=StrideYaw=0;brakeUntil=turnUntil=0;FastStride=FastestBack=false;CarrierTop=!topStretch;
             cutAt=-1;velocity=Vector3.zero;TravelAngle=DirectionWeight=PelvisYaw=LegYaw=SideWeight=SupportWeight=0;SidePhase=0;Gait=Family.Forward;turnLatch=false;calm=0;idleFor=1;StoppedFor=1;wasMoving=false;Started=false;brakeRight=turnRight=false;lastBrake=lastTurn=null;BrakeWeight=0;lastMode=null;warpLength=warpFromLength=warpFromNatural=warpNatural=0;warpAt=-1;warpFromScale=StrideScale=1;return;
         }
         float actual=travel.magnitude/(float)Math.Max(.0001,dt);
@@ -204,6 +226,7 @@ public sealed class FootballLocomotion {
         // 1622 deg/s.
         FastestBack=StrideMode=="back"&&(FastestBack?strideSpeed>FastestBackOff:strideSpeed>FastestBackOn);
         FastStride=StrideMode=="run"?(FastStride?strideSpeed>FastRunOff:strideSpeed>FastRunOn):StrideMode=="back"?(FastStride?strideSpeed>FastBackOff:strideSpeed>FastBackOn):StrideMode=="sprint"?(FastStride?cadenceSpeed>TopSprintOff:cadenceSpeed>TopSprintOn):false;
+        CarrierTop=!topStretch||carrying&&StrideMode=="run"&&FastStride&&(CarrierTop?cadenceSpeed>TopSprintOff:cadenceSpeed>TopSprintOn);
         Mode=nativeClock<brakeUntil?"brake":nativeClock<turnUntil?turn:StrideMode;
         if(Mode=="brake")lastBrake="brake";else if(nativeClock-brakeUntil>=EpisodeRejoin)lastBrake=null;
         float posture=Mode=="brake"?(float)Math.Sin(Math.PI*Math.Clamp((nativeClock-brakeAt)/Math.Max(.2,brakeUntil-brakeAt),0,1)):0;BrakeWeight=Mathf.MoveTowards(BrakeWeight,posture,(float)(dt/BrakePostureTime));
@@ -281,9 +304,12 @@ public sealed class FootballLocomotion {
         // posture to the authored cadence (at 0.7 a backward sprint stopping from
         // 5.6 m/s swung its left foot through the air for 0.6 s, slow motion).
         if(strideLength>.3f&&natural>0)cadence=Math.Max(cadence,(MinCadenceShare+(1-MinCadenceShare)*BrakeWeight)*natural);
+        bool carried=carrying&&StrideMode=="run"&&FastStride&&CarrierTop,stretch=topStretch&&strideLength>.3f&&natural>0&&Gait==Family.Forward&&(StrideMode=="sprint"&&FastStride||carried)&&cadence>natural;
+        float stretchMax=carried?MaxCarrierStretch:MaxStrideStretch;
+        if(stretch)cadence/=Math.Min(stretchMax,Math.Sqrt(cadence/natural));
         cadence=Math.Clamp(cadence,.25,2.4);
         // At rest the scale returns to the authored pose while the stride fades out.
-        float scaleTarget=actual<.2f?Mathf.MoveTowards(StrideScale,1,(float)dt/.35f):strideLength>.3f?Mathf.Clamp(cadenceSpeed/(float)(cadence*length),.2f,1):1;
+        float scaleTarget=actual<.2f?Mathf.MoveTowards(StrideScale,1,(float)dt/.35f):strideLength>.3f?Mathf.Clamp(cadenceSpeed/(float)(cadence*length),.2f,stretch?stretchMax:1):1;
         if(!blended&&fade<1){float q=fade*fade*(3-2*fade);scaleTarget=Mathf.Lerp(warpFromScale,scaleTarget,q);}
         StrideScale=scaleTarget;
         if(actual>=.2)StridePhase+=dt*cadence;
