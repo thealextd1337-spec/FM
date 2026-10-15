@@ -64,7 +64,7 @@ fly=function(target,duration,done){
  });
  const flight=current.flight;if(!flight)return result;
  if(keeperKick&&high){const kick=v99Actions.get(current)?.kicks.get(release.person.pid);if(kick){kick.phase='follow';kick.age=0;kick.target={...target};}}
- meta.duration=flight.duration/MATCH_SPEED;
+ meta.duration=flight.duration/(current.si?v183Rate(current):MATCH_SPEED);
  meta.flight=flight;v102Flights.set(flight,meta);
  const shot=v99Flights.get(flight);
  if(shot?.kind==='shot'){shot.visualStart=start;shot.startHeight=startHeight;meta.shot=true;}
@@ -100,7 +100,7 @@ function v102PlayerAction(current,person){
  const state=v102Motion.get(current),pose=state?.poses.get(person.pid);
  if(pose){const progress=Math.max(0,Math.min(1,(state.clock-pose.at)/pose.duration));return {...pose,progress}}
  const flight=current.flight,meta=flight&&v102Flights.get(flight);
- const plan=typeof v122AerialPlans!=='undefined'&&v122AerialPlans.get(flight),remaining=flight?(1-flight.progress)*flight.duration/MATCH_SPEED:Infinity;
+ const plan=typeof v122AerialPlans!=='undefined'&&v122AerialPlans.get(flight),remaining=flight?(1-flight.progress)*flight.duration/(current.si?v183Rate(current):MATCH_SPEED):Infinity;
  const ground=v127GroundReceivers.get(flight);
  if(meta?.kind==='pass'&&ground?.receiver===person&&!ground.offside&&remaining<.25){const choice=v127DirectOptions(person,meta.target,meta.start);if(choice?.kind)return {id:'direct-ready',kind:choice.kind==='pass'?'passReady':'kickReady',direct:true,target:choice.target,contact:meta.target,progress:clamp(1-remaining/.25,0,1)};}
  if(meta?.high&&!person.keeper&&(plan?plan.contenders.includes(person)&&v122Metres(person,meta.target)<=.65:Math.hypot(person.x-meta.target.x,person.y-meta.target.y)<.055)&&(plan?remaining<.30:flight.progress>.65)){

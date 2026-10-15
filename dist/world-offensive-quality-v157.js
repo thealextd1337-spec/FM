@@ -156,7 +156,7 @@ function v157QueueTurn(m,p,q,kind='ground',options={}){
  const body=v157Body(p),s=v150Scale(),target=Math.atan2((q.x-p.x)*s.x,(q.y-p.y)*s.y);
  if(Math.abs(v157Angle(body.heading,target))<=1.05)return false;
  m.attackFlow.pendingTurn={playerId:p.pid,receiverId:q.pid||options.runnerId||null,target:{x:q.x,y:q.y},kind,options:{...options},until:v152Seconds(m)+2.2};
- m.next=m.elapsed+.04*MATCH_SPEED;return true;
+ m.next=m.elapsed+.04*(m.si?v183Rate(m):MATCH_SPEED);return true;
 }
 function v157ContinueTurn(m,p,rivals){
  const turn=m.attackFlow.pendingTurn;if(!turn)return false;
@@ -166,7 +166,7 @@ function v157ContinueTurn(m,p,rivals){
  const lane=q&&(v162Active(m)&&turn.kind==='high'?rivals.every(r=>v122Metres(r,target)>(r.keeper?4:2.8)):v157Lane(m,p,target,rivals,1.2));
  if(turn.playerId!==p.pid||!q||!turn.options?.restart&&(q.slideActive||v55OffsideSnapshot(p).offside.has(q)||!lane)){delete m.attackFlow.pendingTurn;return false;}
  const angle=Math.atan2((target.x-p.x)*s.x,(target.y-p.y)*s.y);
- if(Math.abs(v157Angle(body.heading,angle))>.30||Math.hypot(body.vx,body.vy)>1.2){m.next=m.elapsed+.04*MATCH_SPEED;return true;}
+ if(Math.abs(v157Angle(body.heading,angle))>.30||Math.hypot(body.vx,body.vy)>1.2){m.next=m.elapsed+.04*(m.si?v183Rate(m):MATCH_SPEED);return true;}
  delete m.attackFlow.pendingTurn;m.attackFlow.releaseGuard=p.pid;
  try{if(turn.kind==='high')v55HighPass(p,q,turn.options);else if(turn.kind==='space')v150SpacePass(p,{target:turn.target,runner:q});else v55GroundPass(p,q,'pass',turn.options.exempt,turn.options);}finally{delete m.attackFlow.releaseGuard;}
  return true;
@@ -216,10 +216,10 @@ function v157Decide(m,p,allies,rivals){
  if(v150TrySpacePass(p,allies,rivals))return true;
  if(v154TryDribble(m,p,allies,rivals))return true;
  const near=rivals.filter(q=>!q.keeper&&v122Metres(p,q)<3.5),progress=p.t===0?1-p.y:p.y;
- if(!near.length&&v55HasClearRun(p,rivals,progress)){m.breakawayCarrier=p;m.next=m.elapsed+.24*MATCH_SPEED;return true;}
+ if(!near.length&&v55HasClearRun(p,rivals,progress)){m.breakawayCarrier=p;m.next=m.elapsed+.24*(m.si?v183Rate(m):MATCH_SPEED);return true;}
  const support=options[0];if(support&&near.length){v55GroundPass(p,support.q);return true;}
  const box=allies.filter(q=>!offside.has(q)&&v115GoalDistance(q)<16);
  if(range<26&&Math.abs(p.x-.5)*s.x>9&&box.length&&random()<v115DecisionChance(p,'cross',.55)){const q=box.sort((a,b)=>ability(b,'air')-ability(a,'air'))[0];v55HighPass(p,q,{cross:true});return true;}
  // Keep carrying to create a new angle rather than always recycling sideways.
- m.next=m.elapsed+.28*MATCH_SPEED;return true;
+ m.next=m.elapsed+.28*(m.si?v183Rate(m):MATCH_SPEED);return true;
 }
