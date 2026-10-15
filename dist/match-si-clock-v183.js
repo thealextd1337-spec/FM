@@ -32,6 +32,12 @@
 //  - After a goal the players walk towards the kickoff formation during the goal
 //    scene and the following banner (kickoffAdvance); the fixed two-second
 //    countdown of the kickoff then drops, only the remaining walk is waited for.
+//    The team that kicks off walks at once. The scoring team celebrates where it
+//    stands and starts kickoffWalkLead seconds before the end of the goal scene
+//    (the views celebrate only while a player stands still; the three.js
+//    celebration follows that rule too). A lead of 1.5 s keeps the kickoff at least
+//    2 s shorter than without the advance; with 0 s the farthest scorer limits
+//    the gain to about 1 s.
 //  - Weight of an intense duel in the freshness model (v158): the event count
 //    follows real time, the 90 virtual minutes do not, so the weight scales with
 //    rate / MATCH_SPEED and a full match keeps its freshness reference.
@@ -39,7 +45,7 @@
 // No random draws. State: only the stored rate and plain fields of the existing
 // restart objects (setPiece.wait, countdown); the advance is stateless and
 // recomputed from player positions each tick, so a restore needs nothing.
-v183RegisterDefaults('clock',{teleport:true,freeKickScene:2.2,foulLock:1.8,kickoffAdvance:true});
+v183RegisterDefaults('clock',{teleport:true,freeKickScene:2.2,foulLock:1.8,kickoffAdvance:true,kickoffWalkLead:1.5});
 
 // Package parameter for matches running the clock package, else the legacy value.
 function v183ClockParam(m,key,legacy){return v183Active(m,'clock')?v183Param(m,'clock.'+key):legacy;}
@@ -63,12 +69,22 @@ function v183ClockKickoffTargets(m){
  const kicker=[...field].sort((a,b)=>att(a)-att(b)||centre(a)-centre(b))[0],support=field.filter(p=>p!==kicker).sort((a,b)=>centre(a)-centre(b))[0];
  if(kicker)targets.set(kicker,{x:.5,y:.5+(team===0?1:-1)*.65*(v55Field.bottom-v55Field.top)/v160PitchLength()});
  if(support)targets.set(support,{x:.5,y:team===0?.60:.40});
+ // The kickoff keeps a clearance between the players (v119SpaceKickoff); the real rule runs on a copy.
+ if(kicker&&support&&typeof v119SpaceKickoff==='function'){
+  const copies=new Map(m.people.map(p=>[p,{x:targets.get(p).x,y:targets.get(p).y,tx:0,ty:0,t:p.t,keeper:p.keeper}]));
+  v119SpaceKickoff({people:[...copies.values()],kickoff:{t:team,kicker:copies.get(kicker),support:copies.get(support)}});
+  for(const [p,copy]of copies)targets.set(p,{x:copy.x,y:copy.y});
+ }
  return targets;
 }
 function v183ClockKickoffAdvance(m,realDelta){
  if(typeof v65WorldActive==='undefined'||!v65WorldActive||m.pendingKickoff==null||m.finished||!(m.goalPause>0||m.postBanner?.kind==='goal'))return;
- const width=v160PitchWidth()/(v55Field.right-v55Field.left),length=v160PitchLength()/(v55Field.bottom-v55Field.top);
+ // The scoring team celebrates where it stands (the views celebrate only while a player stands still)
+ // and starts to walk kickoffWalkLead seconds before the end of the goal scene; the team that kicks
+ // off walks at once.
+ const celebrating=m.goalPause>v183ClockParam(m,'kickoffWalkLead',0)?1-m.pendingKickoff:null,width=v160PitchWidth()/(v55Field.right-v55Field.left),length=v160PitchLength()/(v55Field.bottom-v55Field.top);
  for(const [p,target]of v183ClockKickoffTargets(m)){
+  if(p.t===celebrating)continue;
   const dx=target.x-p.x,dy=target.y-p.y,d=Math.hypot(dx*width,dy*length);
   if(d<.001)continue;
   const q=Math.min(1,6*Math.max(0,realDelta)/d);

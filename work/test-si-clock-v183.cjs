@@ -20,7 +20,7 @@ const {create}=require('./native183-scenes.cjs'),{root}=require('./native130-har
 const checks=[],timing=[];const check=(name,fn)=>{if(process.env.D6_CHECK&&!name.includes(process.env.D6_CHECK))return;const t0=Date.now();fn();checks.push(name);timing.push(Math.round((Date.now()-t0)/1000));if(process.env.D6_VERBOSE)console.error(timing.at(-1)+' s  '+name);};
 const PACKAGES=['clock','options','offball','finish','defence','setplay','field'];
 const OFF=Object.fromEntries(PACKAGES.map(p=>[p,false]));
-const LEGACY_PARAMS={clock:{teleport:false,freeKickScene:3.8,foulLock:2.7,kickoffAdvance:false}};
+const LEGACY_PARAMS={clock:{teleport:false,freeKickScene:3.8,foulLock:2.7,kickoffAdvance:false,kickoffWalkLead:0}};
 const MATCH_SPEED=.78;
 // The foul scene (v113) is not part of the native harness list; production loads it last.
 // v65Restore of a goal scene shows the goal banner through two UI helpers the VM harness leaves out.
@@ -58,11 +58,11 @@ check('a match of the 182 rate with the clock package behaves as without it (flo
  assert.equal(JSON.parse(ev0(FLIGHT)).floor,.32);
 });
 check('registered parameters: defaults, types, stored with the match; the clock switch is on for new matches',()=>{
- assert.deepEqual(copy0(ev0('v183Registry.defaults.clock')),{teleport:true,freeKickScene:2.2,foulLock:1.8,kickoffAdvance:true});
+ assert.deepEqual(copy0(ev0('v183Registry.defaults.clock')),{teleport:true,freeKickScene:2.2,foulLock:1.8,kickoffAdvance:true,kickoffWalkLead:1.5});
  assert.equal(ev0('v183Registry.enabled.clock'),true);
  h0.call('Native183.constructed',{});
  assert.equal(ev0("v183Active(match,'clock')"),true);assert.equal(ev0('match.si.clockRate'),MATCH_SPEED,'the default rate stays the 182 rate until SI-K');
- assert.deepEqual(copy0(ev0('match.si.params.clock')),{teleport:true,freeKickScene:2.2,foulLock:1.8,kickoffAdvance:true});
+ assert.deepEqual(copy0(ev0('match.si.params.clock')),{teleport:true,freeKickScene:2.2,foulLock:1.8,kickoffAdvance:true,kickoffWalkLead:1.5});
  assert.throws(()=>h0.call('Native183.constructed',{si:{params:{clock:{foulLock:'1.8'}}}}),/number expected/);
  assert.throws(()=>h0.call('Native183.constructed',{si:{params:{clock:{teleport:1}}}}),/boolean expected/);
  assert.throws(()=>h0.call('Native183.constructed',{si:{params:{clock:{unknown:1}}}}),/Unknown SI parameter/);
@@ -115,13 +115,15 @@ const DUMP=`(()=>{const m=match,seen=new WeakSet(),out={};
  walk(m,'m',0);m.people.forEach((q,i)=>{for(const k of ['x','y','tx','ty','recoverUntil'])if(typeof q[k]==='number')out['p'+i+'.'+k]=q[k]});
  out.clock=v102Clock(m);out.owner=m.owner?m.owner.pid:null;
  return JSON.stringify({out,facts:{shots:m.shots,score:m.score,setPieces:m.setPieceStats,fouls:m.people.reduce((n,p)=>n+(p.stats.fouls||0),0),throwIn:!!m.throwIn,kickoffs:m.kickoff?1:0}})})()`;
-function invariance({club,seed},rateA,rateB,{params={},dt=.0437,limit=36}={}){
+// forced: [{tick, code}] run in both matches before that step (set pieces that open play rarely produces).
+function invariance({club,seed},rateA,rateB,{params={},dt=.0437,limit=36,forced=[]}={}){
  const mk=rate=>{const h=harness();h.call('Native183.constructed',{club,seed,size:'standard',roles:true,si:clockSi(rate,params)});
   // Fatigue depends on the virtual minute by design; neutralise it so the comparison is about real time.
   h.evaluate('match.people.forEach(p=>{p.sta=100})');return h;};
- const A=mk(rateA),B=mk(rateB),ratio=rateB/rateA,events={shots:0,fouls:0,goals:0,corners:0,freeKicks:0,throwIns:0};
+ const A=mk(rateA),B=mk(rateB),ratio=rateB/rateA,events={shots:0,fouls:0,goals:0,corners:0,freeKicks:0,penalties:0};
  let ticks=0;
  for(;ticks<12000;ticks++){
+  for(const item of forced)if(item.tick===ticks){A.evaluate(item.code);B.evaluate(item.code);}
   A.call('Native183.advance',dt);B.call('Native183.advance',dt);
   const da=JSON.parse(A.evaluate(DUMP)),db=JSON.parse(B.evaluate(DUMP));
   if(da.out['m.elapsed']>=limit||db.out['m.elapsed']>=limit)break;
@@ -134,7 +136,7 @@ function invariance({club,seed},rateA,rateB,{params={},dt=.0437,limit=36}={}){
   }
   assert.deepEqual(da.facts,db.facts,`facts at ${((ticks+1)*dt).toFixed(2)} s`);
   events.shots=da.facts.shots[0]+da.facts.shots[1];events.fouls=da.facts.fouls;events.goals=da.facts.score[0]+da.facts.score[1];
-  events.corners=da.facts.setPieces.corners[0]+da.facts.setPieces.corners[1];events.freeKicks=da.facts.setPieces.freeKicks[0]+da.facts.setPieces.freeKicks[1];
+  events.corners=da.facts.setPieces.corners[0]+da.facts.setPieces.corners[1];events.freeKicks=da.facts.setPieces.freeKicks[0]+da.facts.setPieces.freeKicks[1];events.penalties=da.facts.setPieces.penalties[0]+da.facts.setPieces.penalties[1];
  }
  return {seconds:ticks*dt,events};
 }
@@ -151,6 +153,16 @@ check('real-time invariance: rates .39 and .195 (a whole half, 2 min of play) an
 });
 check('the invariance windows contain shots, fouls and free kicks (the comparison is not vacuous)',()=>{
  assert(covered.shots>=4,JSON.stringify(covered));assert(covered.fouls+covered.freeKicks>=1,JSON.stringify(covered));
+});
+
+check('real-time invariance with a forced corner and a forced penalty (rates .78 and .39)',()=>{
+ const corner=`v50Corner(0,.2,'Test')`;
+ const penalty=`(()=>{const m=match,v=m.people.filter(p=>!p.keeper&&p.t===0)[0],o=m.people.filter(p=>!p.keeper&&p.t===1)[0];v.x=.5;v.y=.12;o.x=.504;o.y=.124;m.owner=v;m.flight=null;m.rebound=null;v50Foul(v,o)})()`;
+ for(const cfg of CLUBS.slice(0,2)){
+  const r=invariance(cfg,.78,.39,{forced:[{tick:200,code:corner},{tick:520,code:penalty}]});
+  assert(r.seconds>35,`window ${r.seconds}`);
+  assert(r.events.corners>=1&&r.events.penalties>=1,`forced set pieces happened: ${JSON.stringify(r.events)}`);
+ }
 });
 
 // ----- stoppages -----
@@ -189,30 +201,76 @@ check('free kick: everybody but the two players involved is placed at once; thos
  // After the lock the two players have been placed.
  assert([...locked].some(i=>r.metres(r.before[i],r.lockedAt2[i])>1),'locked players placed after the lock');
 });
-function kickoffAfterGoal(si,{club='GER-2'}={}){
- const h=harness();h.call('Native183.constructed',{club,seed:'ko',size:'standard',roles:true,si});warm(h);h.evaluate(GOAL);
- const dist=()=>h.evaluate(`(()=>{const m=match,t=m.pendingKickoff;if(t==null)return null;let s=0,n=0;for(const p of m.people){if(p.keeper)continue;s+=v122Metres(p,{x:p.bx,y:p.t===0?Math.max(p.by,.56):Math.min(p.by,.44)});n++}return s/n})()`);
- const start=dist();let ticks=0,phase='',marks={},countdown=null,mid=null;
+check('foul event: the animation duration equals the lock (1.8 s) and is absent in 182 matches; three.js plays the whole animation in it',()=>{
+ const probe=(si,ticks)=>{const h=harness();h.call('Native183.constructed',{club:'GER-2',seed:'fk',size:'standard',roles:true,si});warm(h);h.evaluate(SCRIPT);
+  for(let i=0;i<ticks;i++)h.call('Native183.advance',.05);
+  return JSON.parse(h.evaluate(`(()=>{const f=v113Fouls.get(match);return JSON.stringify({victim:v113FoulAction(match,f.victim),offender:v113FoulAction(match,f.offender)})})()`));};
+ const clock=probe(clockSi(.5),35);   // 1.75 s: still inside the 1.8 s lock
+ for(const side of ['victim','offender']){assert.equal(clock[side].duration,1.8,side);assert(clock[side].progress>.9&&clock[side].progress<1,`${side} progress ${clock[side].progress}`);}
+ for(const si of [false,clockSi(.5,LEGACY_PARAMS)]){
+  const old=probe(si,35);
+  for(const side of ['victim','offender'])assert.deepEqual(Object.keys(old[side]),['id','kind','progress','age','sliding','target'],'182 event format unchanged');
+  assert(old.victim.progress<.7,'2.7 s lock in 182');
+ }
+ // The three.js scaling (dist/player-user-ball-actions-v111.js) is evaluated from its source.
+ const source=fs.readFileSync(path.join(root,'dist/player-user-ball-actions-v111.js'),'utf8'),expression=/const foulAge=([^;]+);/.exec(source)?.[1];
+ assert(expression,'foulAge expression');
+ const foulAge=new Function('a',`return ${expression}`);
+ assert.equal(foulAge({kind:'foulVictim',age:1.8,duration:1.8}),2.7,'the whole animation within the lock');
+ assert.equal(foulAge({kind:'foulOffender',age:.9,duration:1.8}),1.35);
+ assert.equal(foulAge({kind:'foulVictim',age:1.8}),1.8,'without duration the 182 animation time is unchanged');
+ assert.equal(foulAge({kind:'tackle',age:.3,duration:.5}),.3,'other actions keep their age');
+ assert(/celebrating=goal&&goal\.team===v\.team&&speed<\.6/.test(fs.readFileSync(path.join(root,'dist/player-user-motion-v108.js'),'utf8')),'walking players stop celebrating (as in Unity)');
+});
+// Goal scored by the most advanced player of team 0 with the field players where open play left them.
+const GOAL_NATURAL=`(()=>{const m=match,s=m.people.filter(p=>!p.keeper&&p.t===0).sort((a,b)=>a.y-b.y)[0],k=m.people.find(p=>p.keeper&&p.t===1);m.owner=s;m.flight=null;m.setPiece=null;m.rebound=null;m.kickoff=null;v50Goal(s,k,false,null)})()`;
+const KICKOFF_CONFIGS=[{club:'GER-2',size:'large',warm:700},{club:'ESP-1',size:'standard',warm:600},{club:'ENG-4',size:'standard',warm:500}];
+function kickoffAfterGoal(si,{club='GER-2',size='standard',warm:warmTicks=300,goal=GOAL_NATURAL}={}){
+ const h=harness();h.call('Native183.constructed',{club,seed:'ko5',size,roles:true,si});
+ h.evaluate('match.people.forEach(p=>{p.sta=100})');   // fatigue follows the virtual minute by design; keep the starting position equal at every rate
+ warm(h,warmTicks);h.evaluate(goal);
+ // mean distance of the field players of one team to their base position of the kickoff formation
+ const dist=team=>h.evaluate(`(()=>{const m=match;let s=0,n=0;for(const p of m.people){if(p.keeper||p.t!==${team})continue;s+=v122Metres(p,{x:p.bx,y:p.t===0?Math.max(p.by,.56):Math.min(p.by,.44)});n++}return s/n})()`);
+ // team 0 scored, team 1 kicks off
+ const start=[dist(0),dist(1)];let ticks=0,phase='',marks={},countdown=null,at2=null,at4=null;
  const cat=()=>h.evaluate(`(()=>{const m=match;return m.goalPause>0?'goalPause':m.postBanner?('banner:'+m.postBanner.kind):m.kickoff?('kickoff:'+m.kickoff.phase):'play'})()`);
- for(;ticks<700;ticks++){
+ for(;ticks<800;ticks++){
   h.call('Native183.advance',.05);const c=cat();
-  if(ticks===59)mid=dist();            // 3.0 s into the goal scene
+  if(ticks===39)at2=[dist(0),dist(1)];   // 2.0 s into the goal scene
+  if(ticks===79)at4=[dist(0),dist(1)];   // 4.0 s
   if(c!==phase){marks[c]=(ticks+1)*.05;phase=c;if(c==='kickoff:waiting')countdown=h.evaluate('match.countdown');}
   if(c==='kickoff:rolling')break;
  }
- return {seconds:(ticks+1)*.05,marks,start,mid,countdown};
+ return {seconds:+((ticks+1)*.05).toFixed(2),marks,start,at2,at4,countdown};
 }
-check('kickoff after a goal: at least 2 s shorter, the formation walk starts with the goal scene',()=>{
- for(const club of ['GER-2','ENG-4']){
-  const legacy=kickoffAfterGoal(false,{club}),flat=kickoffAfterGoal(clockSi(.78,LEGACY_PARAMS),{club});
-  assert.equal(flat.seconds,legacy.seconds,club+': the 182 parameters keep the 182 time');
-  for(const rate of [.78,.42,.36]){
-   const r=kickoffAfterGoal(clockSi(rate),{club});
-   assert(legacy.seconds-r.seconds>=2-1e-9,`${club} ${rate}: ${legacy.seconds} -> ${r.seconds}`);
-   assert(r.countdown<=.5,`${club} ${rate}: residual countdown ${r.countdown}`);
-   assert(r.mid<r.start*.5,`${club} ${rate}: walk during the goal scene ${r.start} -> ${r.mid}`);
-   assert.equal(r.seconds,kickoffAfterGoal(clockSi(.78),{club}).seconds,`${club}: independent of the rate`);
+check('kickoff after a goal: at least 2 s shorter; the scoring team celebrates first, the kicking-off team walks at once',()=>{
+ for(const cfg of KICKOFF_CONFIGS){
+  const tag=`${cfg.club} ${cfg.size}`,legacy=kickoffAfterGoal(false,cfg),flat=kickoffAfterGoal(clockSi(.78,LEGACY_PARAMS),cfg);
+  assert.equal(flat.seconds,legacy.seconds,tag+': the 182 parameters keep the 182 time');
+  const reference=kickoffAfterGoal(clockSi(.78),cfg);
+  // Rates in power-of-two ratios replay the play before the goal identically (see the invariance checks).
+  for(const rate of [.78,.39,.195]){
+   const r=rate===.78?reference:kickoffAfterGoal(clockSi(rate),cfg);
+   // Same starting position (play before the goal is identical): only the advance is switched off.
+   const without=kickoffAfterGoal(clockSi(rate,{clock:{kickoffAdvance:false}}),cfg);
+   assert(without.seconds-r.seconds>=2-1e-9,`${tag} ${rate}: ${without.seconds} -> ${r.seconds}`);
+   assert.equal(r.seconds,reference.seconds,`${tag}: independent of the rate`);
+   // Scoring team (0): untouched while the goal scene celebrates (lead 1.5 s of 4.05 s), walking afterwards.
+   assert.equal(r.at2[0],r.start[0],`${tag} ${rate}: scoring team stays during the celebration`);
+   assert(r.at4[0]<r.start[0]*.9,`${tag} ${rate}: scoring team walks at the end of the goal scene ${r.start[0]} -> ${r.at4[0]}`);
+   // Kicking-off team (1) walks at once.
+   assert(r.at2[1]<r.start[1]*.8,`${tag} ${rate}: the kicking-off team walks from the start ${r.start[1]} -> ${r.at2[1]}`);
   }
+ }
+});
+check('kickoff advance: the walk targets are the real kickoff formation (residual walk <= 0.2 s)',()=>{
+ // Everybody arrives (one long step of the advance), then the actual kickoff places the formation.
+ for(const size of ['standard','large'])for(const team of [0,1]){
+  const h=harness();h.call('Native183.constructed',{club:'ENG-4',seed:'ko6',size,roles:true,si:clockSi(.42)});warm(h,500);
+  h.evaluate(GOAL_NATURAL);
+  if(team===1)h.evaluate('(()=>{const m=match;m.pendingKickoff=1-m.pendingKickoff})()');   // the other side kicks off
+  const countdown=h.evaluate(`(()=>{const m=match;m.goalPause=1;v183ClockKickoffAdvance(m,30);const next=m.pendingKickoff;m.goalScene=null;m.goalPause=0;m.postBanner=null;kickoff(next);m.pendingKickoff=null;return m.countdown})()`);
+  assert(countdown<=.2+1e-9,`${size} team ${team}: residual walk ${countdown} s`);
  }
 });
 check('clock package off: free kick and kickoff times are the 182 ones whatever the stored rate',()=>{

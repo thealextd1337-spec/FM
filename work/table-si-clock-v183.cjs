@@ -35,6 +35,9 @@ const metrics={
  'Anstoß+Torszene (s je Partie)':{f:r=>sumTime(r,/^(anstoss|torszene)/),d:2},
  'Frische bei Abpfiff, Feldspieler (Mittel)':{f:r=>{const f=(r.extras.fresh||[]).filter(x=>!x[1]);return f.length?f.reduce((s,x)=>s+x[3],0)/f.length:NaN;},d:2},
  'Frische bei Abpfiff, Kondition 9–11':{f:r=>{const f=(r.extras.fresh||[]).filter(x=>!x[1]&&x[0]>=9&&x[0]<=11);return f.length?f.reduce((s,x)=>s+x[3],0)/f.length:NaN;},d:2},
+ // Goalkeeper events (dive, jump) have a fixed weight in the freshness model: their number grows with real time, not with the rate-neutral field-player weights.
+ 'Frische bei Abpfiff, Torwart (Mittel)':{f:r=>{const f=(r.extras.fresh||[]).filter(x=>x[1]);return f.length?f.reduce((s,x)=>s+x[3],0)/f.length:NaN;},d:2},
+ 'Verbrauch Torwart (Start − Ende)':{f:r=>{const f=(r.extras.fresh||[]).filter(x=>x[1]);return f.length?f.reduce((s,x)=>s+x[2]-x[3],0)/f.length:NaN;},d:2},
  'Stillstand je Minute laufender Uhr (s)':{f:(r,run)=>(r.realSeconds-r.elapsed/rateOf(run))/(r.elapsed/rateOf(run)/60),d:1},
  'Schüsse je Echtminute':{f:r=>total(r,'shots')/(r.realSeconds/60),d:3},
  'Tore je Echtminute':{f:r=>(r.score[0]+r.score[1])/(r.realSeconds/60),d:3},

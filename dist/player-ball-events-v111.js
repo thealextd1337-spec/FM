@@ -23,5 +23,5 @@ function v113FoulLocked(current,person){const f=v113Fouls.get(current);return f&
 function v113FoulAction(current,person){
  const f=v113Fouls.get(current),age=f&&v102Clock(current)-f.at;if(!f||current.setPiece!==f.piece||age>=v113FoulLockSeconds(current)||!['waiting','fading','postBanner'].includes(current.setPiece?.phase))return null;
  if(f.victim!==person&&f.offender!==person)return null;
- return {id:'foul:'+f.at,kind:f.victim===person?'foulVictim':'foulOffender',progress:Math.max(0,age/v113FoulLockSeconds(current)),age,sliding:f.sliding,target:f.target};
+ return {id:'foul:'+f.at,kind:f.victim===person?'foulVictim':'foulOffender',progress:Math.max(0,age/v113FoulLockSeconds(current)),age,...(v113FoulLockSeconds(current)!==2.7?{duration:v113FoulLockSeconds(current)}:{}),sliding:f.sliding,target:f.target};
 }
