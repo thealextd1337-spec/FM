@@ -175,7 +175,7 @@ function v50LooseBall(point,text){
  if(world&&(!clearance||clearance.drop)){const edge=point.x<v55Field.left?'left':point.x>v55Field.right?'right':point.y<v55Field.top?'top':point.y>v55Field.bottom?'bottom':null;if(edge){v55Out({edge,...point},match.lastTouch??0,text);return}}
  const m=match;m.owner=null;m.flight=null;m.lastPass=null;m.next=Infinity;
  m.ball=world?{x:point.x,y:point.y}:{x:clamp(point.x,.07,.93),y:clamp(point.y,.065,.935)};
- m.rebound={x:m.ball.x,y:m.ball.y,delay:.16};
+ m.rebound={x:m.ball.x,y:m.ball.y,delay:(m.si?.16*(v183Rate(m)/MATCH_SPEED):.16)};
  note(text,'duel');
 }
 function v50ChaseLooseBall(delta,positions){
@@ -188,17 +188,17 @@ function v50ChaseLooseBall(delta,positions){
   // Matches marked 182 move field chasers with their native body in the step.
   if(world&&!player.keeper&&typeof v182LooseActive==='function'&&v182LooseActive(m))continue;
   const start=positions.get(player),dx=r.x-start.x,dy=r.y-start.y,d=Math.hypot(dx,dy);
-  if(world){const metres=Math.hypot(dx*width,dy*length),pace=player.keeper?(typeof v180KeeperChaseActive==='function'&&v180KeeperChaseActive(m)?v180KeeperGroundPace(m,player):2.6+ability(player,'spd')*.065):3+ability(player,'spd')*.14,portion=Math.min(1,pace*Math.max(0,delta)/MATCH_SPEED/Math.max(.00001,metres));player.x=start.x+dx*portion;player.y=start.y+dy*portion}
+  if(world){const metres=Math.hypot(dx*width,dy*length),pace=player.keeper?(typeof v180KeeperChaseActive==='function'&&v180KeeperChaseActive(m)?v180KeeperGroundPace(m,player):2.6+ability(player,'spd')*.065):3+ability(player,'spd')*.14,portion=Math.min(1,pace*Math.max(0,delta)/(m.si?v183Rate(m):MATCH_SPEED)/Math.max(.00001,metres));player.x=start.x+dx*portion;player.y=start.y+dy*portion}
   else if(d>.014){const speed=(player.keeper?.17:.07+ability(player,'spd')*PLAYER_SPEED_FACTOR)*delta,portion=Math.min(1,speed/d);player.x=start.x+dx*portion;player.y=start.y+dy*portion}
  }
  const winner=candidates.find(player=>gap(player)<(world?.8:.026));
- if(winner){const contact={x:r.x,y:r.y},held=world&&winner.keeper&&(m.geometry?v160KeeperHands(m,winner,contact):Math.abs(contact.y-(winner.t===0?v55Field.bottom:v55Field.top))*length<=14&&Math.abs(contact.x-.5)*width<=12);m.rebound=null;if(held){v115KeeperChallenges.set(m,{keeper:winner,attacker:null,start:{x:winner.x,y:winner.y},end:{x:winner.x,y:winner.y},contact,at:v102Clock(m),duration:.55,caught:true,checked:true,pickup:true});v50GoalKick(winner,`${winner.name} sichert den freien Ball.`,{held:true})}else{m.owner=winner;m.ball={x:winner.x,y:winner.y};m.next=m.elapsed+.55;note(`${winner.name} nimmt den freien Ball auf.`,'duel')}}
+ if(winner){const contact={x:r.x,y:r.y},held=world&&winner.keeper&&(m.geometry?v160KeeperHands(m,winner,contact):Math.abs(contact.y-(winner.t===0?v55Field.bottom:v55Field.top))*length<=14&&Math.abs(contact.x-.5)*width<=12);m.rebound=null;if(held){v115KeeperChallenges.set(m,{keeper:winner,attacker:null,start:{x:winner.x,y:winner.y},end:{x:winner.x,y:winner.y},contact,at:v102Clock(m),duration:.55,caught:true,checked:true,pickup:true});v50GoalKick(winner,`${winner.name} sichert den freien Ball.`,{held:true})}else{m.owner=winner;m.ball={x:winner.x,y:winner.y};m.next=m.elapsed+(m.si?.55*(v183Rate(m)/MATCH_SPEED):.55);note(`${winner.name} nimmt den freien Ball auf.`,'duel')}}
 }
 
 function v50Goal(scorer,keeper,penalty=false,source=null){
  const m=match;
  scorer.stats.goals++;
- if(m.lastPass?.receiver===scorer&&m.lastPass.passer!==scorer&&m.elapsed-m.lastPass.at<5)m.lastPass.passer.stats.assists++;
+ if(m.lastPass?.receiver===scorer&&m.lastPass.passer!==scorer&&m.elapsed-m.lastPass.at<(m.si?5*(v183Rate(m)/MATCH_SPEED):5))m.lastPass.passer.stats.assists++;
  m.lastPass=null;keeper.stats.conceded++;m.score[scorer.t]++;
  const ownGoal=source==='own-goal';
  m.goals.push({team:scorer.t,pid:scorer.pid||null,name:scorer.name,minute:Math.max(1,displayMatchMinute(m.elapsed)),penalty,source,...(ownGoal?{ownGoal:true,ownGoalPid:scorer.ownGoalPid||null}:{})});
@@ -207,7 +207,7 @@ function v50Goal(scorer,keeper,penalty=false,source=null){
  showOverlay(penalty?'ELFMETERTOR!':'TOR!',`${scorer.name}${ownGoal?' (Eigentor)':''} · ${m.score[0]} : ${m.score[1]}`,true);
 }
 function v50GoalKick(keeper,text){
- match.owner=keeper;match.ball={x:keeper.x,y:keeper.y};match.lastPass=null;match.next=match.elapsed+.75;
+ match.owner=keeper;match.ball={x:keeper.x,y:keeper.y};match.lastPass=null;match.next=match.elapsed+(match.si?.75*(v183Rate(match)/MATCH_SPEED):.75);
  note(text,'restart');
 }
 function v50Deflect(point,team,defender,description){
@@ -268,10 +268,10 @@ function v50TakeCorner(setPiece){
   const defenders=v50Outfield(1-team).sort((a,b)=>distance(a,target)-distance(b,target));
   const defender=defenders[0],contest=defender&&distance(defender,target)<.15;
   if(contest&&random()<clamp(.34+(ability(defender,'pos')-ability(receiver,'pos'))*.006,.18,.62)){
-   m.owner=defender;m.lastPass=null;m.next=m.elapsed+.5;
+   m.owner=defender;m.lastPass=null;m.next=m.elapsed+(m.si?.5*(v183Rate(m)/MATCH_SPEED):.5);
    note(`${defender.name} klärt die Ecke.`,'duel');
   }else{
-   taker.stats.passComplete++;m.owner=receiver;m.lastPass={passer:taker,receiver,at:m.elapsed};m.next=m.elapsed+.25;
+   taker.stats.passComplete++;m.owner=receiver;m.lastPass={passer:taker,receiver,at:m.elapsed};m.next=m.elapsed+(m.si?.25*(v183Rate(m)/MATCH_SPEED):.25);
    note(`${receiver.name} erreicht die Flanke.`,'shot');
   }
  });
@@ -304,8 +304,8 @@ function v50TakeFreeKick(setPiece){
  note(`${taker.name} spielt den Freistoß auf ${target.name}.`,'restart');
  fly(target,clamp(distance(taker,target)*1.5,.3,.8),()=>{
   const defender=v50Outfield(1-team).find(player=>distance(player,target)<.065);
-  if(defender&&random()<.4){taker.stats.passLost++;defender.stats.interceptions++;m.owner=defender;m.lastPass=null;m.next=m.elapsed+.6;note(`${defender.name} fängt den Freistoß ab.`,'duel')}
-  else{taker.stats.passComplete++;m.owner=target;m.lastPass={passer:taker,receiver:target,at:m.elapsed};m.next=m.elapsed+.75}
+  if(defender&&random()<.4){taker.stats.passLost++;defender.stats.interceptions++;m.owner=defender;m.lastPass=null;m.next=m.elapsed+(m.si?.6*(v183Rate(m)/MATCH_SPEED):.6);note(`${defender.name} fängt den Freistoß ab.`,'duel')}
+  else{taker.stats.passComplete++;m.owner=target;m.lastPass={passer:taker,receiver:target,at:m.elapsed};m.next=m.elapsed+(m.si?.75*(v183Rate(m)/MATCH_SPEED):.75)}
  });
 }
 
@@ -384,12 +384,12 @@ kickoff=function(team){
  const travel=moving&&m.pendingKickoff!=null&&v99Actions.get(m)?.goalTravel,source=moving?(travel?v101GoalBall(travel,v83GoalSceneDuration):v99BallView(m)||m.ball):null;
  if(m){m.setPiece=null;m.rebound=null;v50ClearPenaltyScene()}const result=v50BaseKickoff(team);
  if(typeof v65WorldActive!=='undefined'&&v65WorldActive){const kicker=m.kickoff.kicker,side=team===0?1:-1;kicker.y=.5+side*.65*(v55Field.bottom-v55Field.top)/v160PitchLength();kicker.ty=kicker.y;v119SpaceKickoff(m);}
- if(positions){m.countdown=Math.max(m.countdown,v114RememberRestart(m,m.kickoff,positions));v114KickoffBalls.set(m,{kickoff:m.kickoff,start:{...source,elevation:source.elevation??.29},at:v102Clock(m)})}
+ if(positions){const walk=v114RememberRestart(m,m.kickoff,positions);m.countdown=m.si&&typeof v183ClockParam==='function'&&v183ClockParam(m,'kickoffAdvance',false)===true&&m.pendingKickoff!=null?walk:Math.max(m.countdown,walk);v114KickoffBalls.set(m,{kickoff:m.kickoff,start:{...source,elevation:source.elevation??.29},at:v102Clock(m)})}
  return result;
 };
 const v50BaseHalftime=beginHalftimeBreak;
 beginHalftimeBreak=function(){
- if(!match?.halftimeBreakDone&&typeof v65WorldActive!=='undefined'&&v65WorldActive&&(match.halftimeExtension||0)<20*MATCH_SPEED&&(v15ClearChance(match)||v131DangerousFlight(match)!==null)){match.halftimePending=true;match.halftimeAttackTeam=match.owner?.t??v131DangerousFlight(match);return;}
+ if(!match?.halftimeBreakDone&&typeof v65WorldActive!=='undefined'&&v65WorldActive&&(match.halftimeExtension||0)<20*(match.si?v183Rate(match):MATCH_SPEED)&&(v15ClearChance(match)||v131DangerousFlight(match)!==null)){match.halftimePending=true;match.halftimeAttackTeam=match.owner?.t??v131DangerousFlight(match);return;}
  // A released ball must settle through its existing native callback even
  // when the attacking-extension cap has expired. Never infer its outcome.
  if(!match?.halftimeBreakDone&&typeof v65WorldActive!=='undefined'&&v65WorldActive&&(match.flight||match.goalPause>0)){match.halftimePending=true;match.next=Infinity;return;}

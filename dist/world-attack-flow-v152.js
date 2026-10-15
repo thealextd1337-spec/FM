@@ -3,7 +3,7 @@
 // New physical matches share one offensive flow in 2D and Unity. Intents are
 // plain checkpoint data; choosing an offer never consumes random numbers.
 function v152Active(m){return Boolean(v65WorldActive&&m?.attackFlow?.version===152);}
-function v152Seconds(m){return m.elapsed/MATCH_SPEED;}
+function v152Seconds(m){return m.elapsed/(m.si?v183Rate(m):MATCH_SPEED);}
 function v152PrepareAttack(m){
  if(!v152Active(m))return;
  const flow=m.attackFlow,now=v152Seconds(m);
@@ -18,7 +18,7 @@ function v152PrepareAttack(m){
   // Reconsider quickly after receiving or winning the ball, but retain the
   // native first-touch window. No skipped preparation or artificial possession.
   flow.decisionOwner=owner.pid;flow.decisionAt=now+.20+(20-ability(owner,'tec'))*.007;
-  if(Number.isFinite(m.next))m.next=Math.min(m.next,flow.decisionAt*MATCH_SPEED);
+  if(Number.isFinite(m.next))m.next=Math.min(m.next,flow.decisionAt*(m.si?v183Rate(m):MATCH_SPEED));
  }
  if(typeof v159Offers==='function'&&v159Offers(m,owner,allies,rivals))return;
  if(flow.plannedOwner===owner.pid&&now<(flow.reconsiderAt||0))return;

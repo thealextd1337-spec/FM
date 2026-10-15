@@ -97,7 +97,7 @@ function finishActivePlay(){match.fulltimePending=true;match.next=Infinity;match
   if(v15ClearChance(match)||danger!==null){
    match.whistleAttackCarrier=match.owner;
    match.whistleAttackTeam=match.owner?.t??danger;
-   match.whistleAttackLimit=deadline+20*MATCH_SPEED;
+   match.whistleAttackLimit=deadline+20*(match.si?v183Rate(match):MATCH_SPEED);
    match.whistleAttackUntil=deadline+4*75/90;
    match.fullTimeEnd=match.whistleAttackUntil;
   }else finishActivePlay();
