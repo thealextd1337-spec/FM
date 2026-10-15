@@ -29,12 +29,13 @@ public partial class ProbeBridge {
     const float OffenderEntry=.3f;
     AnimationClip[] FootballClips(){return new[]{idleClip,runClip,keeperClip,keeperActionClip,shotClip,passClip,receiveClip,keeperHighClip,keeperDiveClip,keeperRiseClip,walkClip,fastRunClip,sprintClip,backClip,brakeClip,turnLeftClip,turnRightClip,jogClip,fastBackClip,turnIdleLeftClip,turnIdleRightClip,turnWalkLeftClip,turnWalkRightClip,celebrateArmsClip,celebrateFistClip,celebrateVictoryClip,foulFallClip,foulStumbleClip,keeperShuffleClip,readyClip,backRunClip};}
     // The clip whose measured stride matches the observed speed band.
-    AnimationClip StrideClip(string mode,bool carrying,bool keeper,bool fast,bool fastest=false){
+    // carrierTop (FootballLocomotion.CarrierTop): a carrier's fast run band shows running, else run_fast4 like a run without the ball.
+    AnimationClip StrideClip(string mode,bool carrying,bool keeper,bool fast,bool fastest=false,bool carrierTop=true){
         if(mode=="walk")return walkClip;if(mode=="sprint")return fast&&runClip!=null?runClip:sprintClip;
         if(mode=="back")return fastest&&backRunClip!=null?backRunClip:fast&&fastBackClip!=null?fastBackClip:backClip;
         // A lateral side step stands on the ready stance; its legs are procedural.
         if(mode=="side")return keeper?keeperClip:readyClip??idleClip;
-        if(mode=="run")return !fast&&jogClip!=null?jogClip:carrying?runClip:fastRunClip;
+        if(mode=="run")return !fast&&jogClip!=null?jogClip:carrying&&carrierTop?runClip:fastRunClip;
         return keeper?keeperClip:idleClip;
     }
     AnimationClip LocomotionClip(FootballLocomotion m,bool carrying,bool keeper){
@@ -42,15 +43,15 @@ public partial class ProbeBridge {
         // its own stride under the braking posture (brake_meshy's planted feet
         // slid 2-8 m/s under a backward sprint's travel; FootballLocomotion.BrakeForward).
         if(m.Mode=="brake"&&m.BrakeFrom>=FootballLocomotion.BrakeClipSpeed&&m.BrakeMoving&&m.BrakeForward)return brakeClip;
-        if(m.Mode=="brake")return StrideClip(m.StrideMode,carrying,keeper,m.FastStride,m.FastestBack);
-        if(m.Mode.StartsWith("turn-")&&m.Speed>=FootballLocomotion.TurnClipSpeed)return StrideClip(m.StrideMode,carrying,keeper,m.FastStride,m.FastestBack);
+        if(m.Mode=="brake")return StrideClip(m.StrideMode,carrying,keeper,m.FastStride,m.FastestBack,m.CarrierTop);
+        if(m.Mode.StartsWith("turn-")&&m.Speed>=FootballLocomotion.TurnClipSpeed)return StrideClip(m.StrideMode,carrying,keeper,m.FastStride,m.FastestBack,m.CarrierTop);
         if(m.Mode.StartsWith("turn-")){
             bool left=m.Mode=="turn-left";
             // A stationary pivot, a walking and a running turn use their own clips.
             var clip=m.Speed<.2f?(left?turnIdleLeftClip:turnIdleRightClip):m.StrideSpeed<2?(left?turnWalkLeftClip:turnWalkRightClip):null;
             return clip??(left?turnLeftClip:turnRightClip);
         }
-        return StrideClip(m.StrideMode,carrying,keeper,m.FastStride,m.FastestBack);
+        return StrideClip(m.StrideMode,carrying,keeper,m.FastStride,m.FastestBack,m.CarrierTop);
     }
     // A turn or brake begins on the foot the stride already stands on: the
     // measured clip time near the tuned entry where that foot is planted.
@@ -96,13 +97,13 @@ public partial class ProbeBridge {
         var locomotion=worldLocomotion[i];
         bool carrying=f.owner==p.id&&!identity.keeper;
         // Cadence follows the measured stride of the clip that shows this speed band.
-        var preview=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack);double cycleOffset=i*.09;
+        var preview=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack,locomotion.CarrierTop);double cycleOffset=i*.09;
         bool previewStride=locomotion.StrideMode!="idle"&&locomotion.StrideMode!="side"&&preview!=null;
         locomotion.Sample(V(p.position),V(p.facing),f.clock,f.owner==p.id,identity.keeper,p.freshness,football[i].StrideLength(preview),football[i].Heading(preview),cycleOffset,previewStride?1f/Mathf.Max(.2f,preview.length):0,f.siRevision>=183);
         // A start from rest enters the new stride at its support foot's measured mid-stance.
-        if(locomotion.Started){var first=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack);if(first!=null&&locomotion.StrideMode!="side"&&locomotion.StrideMode!="idle")locomotion.AlignStart(football[i].MidStance(first,!locomotion.StartRightSwings),cycleOffset);}
+        if(locomotion.Started){var first=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack,locomotion.CarrierTop);if(first!=null&&locomotion.StrideMode!="side"&&locomotion.StrideMode!="idle")locomotion.AlignStart(football[i].MidStance(first,!locomotion.StartRightSwings),cycleOffset);}
         pose.clip=LocomotionClip(locomotion,carrying,identity.keeper);
-        bool turnOrBrake=pose.clip==brakeClip&&locomotion.Mode=="brake"||locomotion.Mode.StartsWith("turn-")&&pose.clip!=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack);
+        bool turnOrBrake=pose.clip==brakeClip&&locomotion.Mode=="brake"||locomotion.Mode.StartsWith("turn-")&&pose.clip!=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack,locomotion.CarrierTop);
         // Idle and the side-step stance loop on native time; strides on the shared footfall cycle.
         bool stance=locomotion.StrideMode=="idle"||locomotion.StrideMode=="side";
         pose.time=stance&&!turnOrBrake?f.clock+cycleOffset:turnOrBrake?TransitionTime(pose.clip,locomotion,football[i]):football[i].StrideTime(locomotion.StridePhase+cycleOffset,pose.clip);
@@ -111,7 +112,7 @@ public partial class ProbeBridge {
         // travel on this rig, far below a keeper's native side steps; keepers
         // and slow lateral field players use the procedural side step instead
         // (FootballRig.SideStep on the ready stance), never a rotated forward clip.
-        var strideClip=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack);double strideTime=stance?f.clock+cycleOffset:football[i].StrideTime(locomotion.StridePhase+cycleOffset,strideClip);bool strideLoop=true;
+        var strideClip=StrideClip(locomotion.StrideMode,carrying,identity.keeper,locomotion.FastStride,locomotion.FastestBack,locomotion.CarrierTop);double strideTime=stance?f.clock+cycleOffset:football[i].StrideTime(locomotion.StridePhase+cycleOffset,strideClip);bool strideLoop=true;
         bool locomotionAction=string.IsNullOrEmpty(p.action)||p.action=="idle"||p.action=="run"||p.action=="running";
         if(locomotionAction&&pose.clip!=strideClip&&locomotion.Speed>.2f){pose.baseClip=strideClip;pose.baseTime=strideTime;pose.baseLoop=true;pose.actionWeight=locomotion.MotionWeight;}
         // A native goal-kick follow-through counts its progress over 0.45 s; the

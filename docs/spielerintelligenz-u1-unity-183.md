@@ -1,6 +1,6 @@
 # Spielerintelligenz 183: U-1 Unity-Bewegung (B02/B05)
 
-Stand: 15. Oktober 2026. Branch `feat/si-unity` auf `integration/si-r133` (`972d6201`). Begleitpaket U-1 aus dem [Umsetzungsplan](spielerintelligenz-umsetzungsplan-2026-10-14.md) (Begleitpakete, 8.3–8.6, 9, Risiken). Übernommen aus [SI-0](spielerintelligenz-si0-clock-183.md) (Foulsperre 1,8 s, Teleportbilder), [SI-2](spielerintelligenz-si2-offball-183.md) (Tempi), [SI-4](spielerintelligenz-si4-defence-183.md) (Grätschen/Fouls, B03 unverändert), [SI-3](spielerintelligenz-si3-finish-183.md) und [SI-7](spielerintelligenz-si7-setplay-183.md) (Paraden, Kopfbälle, Ecken: keine neuen Clips). Geändert sind nur `prototypes/match-engine-unity/`, die Darstellungsprojektion in `dist/world-unity-v151.js` und Messwerkzeuge in `work/`. Spiellogik, Spielstände und UI-Texte sind unberührt.
+Stand: 15. Oktober 2026. Branch `feat/si-unity` auf `integration/si-r133` (`972d6201`; SI-5-Runde nach dem Merge von `e479f640`, Abschnitt „Großes Feld (SI-5)“). Begleitpaket U-1 aus dem [Umsetzungsplan](spielerintelligenz-umsetzungsplan-2026-10-14.md) (Begleitpakete, 8.3–8.6, 9, Risiken). Übernommen aus [SI-0](spielerintelligenz-si0-clock-183.md) (Foulsperre 1,8 s, Teleportbilder), [SI-2](spielerintelligenz-si2-offball-183.md) (Tempi), [SI-4](spielerintelligenz-si4-defence-183.md) (Grätschen/Fouls, B03 unverändert), [SI-3](spielerintelligenz-si3-finish-183.md) und [SI-7](spielerintelligenz-si7-setplay-183.md) (Paraden, Kopfbälle, Ecken: keine neuen Clips). Geändert sind nur `prototypes/match-engine-unity/`, die Darstellungsprojektion in `dist/world-unity-v151.js` und Messwerkzeuge in `work/`. Spiellogik, Spielstände und UI-Texte sind unberührt.
 
 ## Änderungen
 
@@ -8,10 +8,10 @@ Stand: 15. Oktober 2026. Branch `feat/si-unity` auf `integration/si-r133` (`972d
 | --- | --- | --- |
 | Projektion `dist/world-unity-v151.js` | Bilder einer Partie mit SI-Marker (`match.si.revision` 183, alle neuen Partien) tragen `siRevision: 183` (Rahmenfeld, gesetzt in der vorhandenen `v98PitchFrame`-Hülle). | Bilder ohne Marker unverändert (Feld fehlt). |
 | Vertrag `WorldViewContract.cs`, `WorldViewPlayback.cs` | `WorldFrame.siRevision` (fehlend = 0); `Blend` reicht es durch. | – |
-| Laufzyklus `FootballLocomotion.cs`, `FootballAnimation.cs` | **B02:** Oberhalb des Autorentempos des schnellsten Vorwärtsclips (`running`, 7,4 m/s, 4,7 m je Zyklus) verlängert der Höchsttempo-Schritt (Sprintband) seine Schrittlänge um die Wurzel des Tempoverhältnisses, höchstens `MaxStrideStretch` 1,08; die Kadenz trägt den Rest. Der Zyklus folgt weiter dem empfangenen Weg, der Standfuß behält die Bodengeschwindigkeit. Langsamere Bänder behalten ihren Schritt (dort übernimmt ein schnellerer Clip). `Directional` erlaubt Skalen bis 1,08. | Nur bei `siRevision` ≥ 183. Ohne Marker bitgleich (die Streckung verschiebt den gemeinsamen Schrittzyklus aller späteren Bilder; ohne Bindung änderten sich 195 der 368 R132-Fußaktionsfenster der alten Aufnahmen, fünf über ihre R131-Sperre). |
+| Laufzyklus `FootballLocomotion.cs`, `FootballAnimation.cs` | **B02:** Oberhalb des Autorentempos des schnellsten Vorwärtsclips (`running`, 7,4 m/s, 4,7 m je Zyklus) verlängert der Höchsttempo-Schritt (Sprintband) seine Schrittlänge um die Wurzel des Tempoverhältnisses, höchstens `MaxStrideStretch` 1,08; die Kadenz trägt den Rest. Der Zyklus folgt weiter dem empfangenen Weg, der Standfuß behält die Bodengeschwindigkeit. Langsamere Bänder behalten ihren Schritt (dort übernimmt ein schnellerer Clip). `Directional` erlaubt Skalen bis 1,08. **SI-5-Runde:** Ballführer (Band `run`) erhalten oberhalb 7,4 m/s dieselbe Streckung mit eigenem Höchstwert `MaxCarrierStretch` 1,05 und zeigen `running` erst ab 6,6 m/s (Hysterese 6,2 m/s, `CarrierTop`), darunter `run_fast4` wie ein Lauf ohne Ball. | Nur bei `siRevision` ≥ 183 (Streckung und Ballführer-Zwischenband). Ohne Marker bitgleich (die Streckung verschiebt den gemeinsamen Schrittzyklus aller späteren Bilder; ohne Bindung änderten sich 195 der 368 R132-Fußaktionsfenster der alten Aufnahmen, fünf über ihre R131-Sperre). |
 | Foulfenster `FootballDuel.cs`, `FootballPresentation.cs` | Das Fenster ist die Dauer der Foulaktion, wenn sie bekannt ist (`durationKnown`, SI-0: 1,8 s), sonst 2,7 s. **Opfer: keine Änderung der Darstellung.** Schon vorher ergab `progress · 2,7` mit `progress = age / 1,8` eine gleichmäßige Stauchung wie three.js (`age · 2,7 / duration`); U-1 liest die Dauer jetzt ausdrücklich, die Werte sind vor und nach U-1 identisch. **Täter (die einzige sichtbare Änderung):** Stolperclip und Ausfallschritt in Echtzeit, das Absetzen in den Stand (0,6 s) am Ende des Fensters; der Stolperteil wird gekürzt statt beschleunigt. | Ohne `durationKnown` (und bei bekannten 2,7 s) bitgleich `progress · 2,7`. |
-| Diagnose `NaturalMotionDiagnostics.cs` | Neue Fallgruppe „native-body“ (identische Eingabe: nativer Körperverlauf aus der versionierten Fixtur `prototypes/match-engine-unity/fixtures/native183-body/body-183.json`, 95 KB, oder einer gleichnamigen Datei im Laufordner), Ganganalyse (`Gait`: Clipfolge, Wiedergaberate, Schrittskala), Opferfenster (`Victims`, nur Bericht), U-1-Grenzwerte (`U1Gates`), Marker aus nativen Aufnahmen. | Bestehende Fälle und Grenzwerte unverändert. |
-| Tests | `FootballDuelTests` (+8: Foulfenster 1,8 s, Altpfad bitgleich), `FootballLocomotionTests` (+5: Streckung, Grenze, Ballführer und Altbild ohne Streckung), `WorldViewTests` (+4: Teleport-Neustart). | – |
+| Diagnose `NaturalMotionDiagnostics.cs` | Neue Fallgruppe „native-body“ (identische Eingabe: nativer Körperverlauf aus der versionierten Fixtur `prototypes/match-engine-unity/fixtures/native183-body/body-183.json`, 258 KB mit den Großfeld-Fällen, oder einer gleichnamigen Datei im Laufordner), Ganganalyse (`Gait`: Clipfolge, Wiedergaberate, Schrittskala), Opferfenster (`Victims`, nur Bericht), U-1-Grenzwerte (`U1Gates`), Marker aus nativen Aufnahmen. | Bestehende Fälle und Grenzwerte unverändert. |
+| Tests | `FootballDuelTests` (+8: Foulfenster 1,8 s, Altpfad bitgleich), `FootballLocomotionTests` (+8: Streckung, Grenze, Ballführer und Altbild ohne Streckung; SI-5: Ballführer 8,5 m/s, Ballführer ohne Marker, Ballführer-Zwischenband), `WorldViewTests` (+4: Teleport-Neustart). | – |
 | Werkzeuge `work/` | `capture-native-body-u1-v183.cjs` (nativer Körper als Eingabe; schreibt standardmäßig die Fixtur, bytegleich reproduzierbar), `summarize-u1-body-v183.cjs` (Tabelle), `check-unity-freekick-u1-v183.cjs` (Freistoß im echten Unity-WebGL), `capture-native-motion-r132.cjs` (Marker `si` in der Meta, `siRevision` je Bild), `platform/qa/check-world-unity.cjs` (Port über `D6_QA_PORT`, Foulzahl der Paritätspartie im Bericht), `platform/qa/test-world-unity-contract.cjs` (Marker nur mit SI, sonst bitgleiches Bild). | – |
 
 Keine Weiche in der Engine nötig; die Brücke reichte `duration`/`durationKnown` der Foulaktion bereits durch.
@@ -50,7 +50,7 @@ Darstellung je Richtung (Lauf `final-si`, alt = vor U-1, neu = mit U-1; ohne Ang
 | Läufer 1,58× ±135° | 20 | 6 | 1,10 / 1,05 | 1,05 | 0,000 | 0,040, 0,069 → 0,000 | 1100 / 1133 → 1148 / 1441, 1446 → 1278, 1287 |
 | Läufer 1,58× 180° | 23 | 9 | 1,10 / 1,05 | 1,05 | 0,000 | 0,000 → 0,009 | 1100 / 1133 → 1148 / 1305 → 1183 |
 
-Die Ballführerfälle sind vor und nach U-1 identisch (unter 7,4 m/s greift die Streckung nicht). Beim Läufer verschiebt die Streckung die Schrittphase, deshalb ändern sich auch die Haltfenster in beide Richtungen; das Haltgleiten des geraden Läufers steigt von 0,001 auf 0,080 m/s (unter der Lauf-Grenze von 0,25 m/s, die für Haltfenster nicht gilt), seine Lauf-Gelenkspitze von 1.295 auf 1.383 °/s.
+Die Ballführerzeilen zeigen den Stand der ersten U-1-Runde; seit der SI-5-Runde zeigen Ballführer unter 6,6 m/s `run_fast4` und haben andere Start- und Haltwerte (Abschnitt „Großes Feld (SI-5)“). In der ersten Runde waren die Ballführerfälle vor und nach U-1 identisch (unter 7,4 m/s griff die Streckung nicht). Beim Läufer verschiebt die Streckung die Schrittphase, deshalb ändern sich auch die Haltfenster in beide Richtungen; das Haltgleiten des geraden Läufers steigt von 0,001 auf 0,080 m/s (unter der Lauf-Grenze von 0,25 m/s, die für Haltfenster nicht gilt), seine Lauf-Gelenkspitze von 1.295 auf 1.383 °/s.
 
 Belastungsprobe (feste Blickrichtung, acht Richtungen, keine Gleitgrenze, weil Rückwärts- und Seitlauf mit 7–8 m/s in Partien praktisch nicht vorkommen): Ballführer unverändert; Läufer vorwärts und seitlich Rate 1,10 → 1,05 bei Schrittskala 1,05; `body-run158-rel-right` (seitlich rechts) Haltgleiten 0,009 → 0,565 m/s, `rel-left` 0,095 → 0,025 m/s; rückwärts (±135°, 180°) bei allen drei Tempi `back_right` mit gedeckelter Kadenz, Rate 1,44, Laufgleiten bis 0,10 m/s (Läufer rückwärts-links, unverändert), Gelenke ≤ 1.410 °/s. Alle 873 U-1-Grenzwerte (Sohle, Gelenk, Oberschenkelschritt je Fenster und Übergang, Stützgleiten im Lauf der Körperfälle) bestehen vor und nach U-1; sie laufen jetzt in jedem `D6Cli.Tests`-Lauf mit (Fixtur).
 
@@ -58,12 +58,58 @@ Einordnung:
 
 - **Kein Rutschen bei 1,50×:** Laufgleiten 0,000 m/s in allen acht Richtungen; der Ballführer spielt `running` mit 0,95 seines Autorentempos bei voller Schrittlänge. In den Haltfenstern bleiben kleine Werte bis 0,058 m/s (unverändert gegenüber vorher).
 - **Kein bloßes Beschleunigen:** Der eigene Lauf (8,15 m/s) lief vor U-1 mit 1,10-facher (Spitze 1,17-facher) Wiedergabe bei gedeckeltem Schritt; jetzt 1,05-fache Kadenz und 1,05-facher Schritt, ohne Gleiten. Kniepol und Sohle bleiben im Rahmen (Lauf gerade: Kniepol im Mittel 11,0 → 9,4°, Sohle ≥ 1,7 cm).
-- **Clipwechsel beim Antritt:** `idle → walking → run_fast6 → running` (Ballführer, 0,62/0,85/1,07 s) bzw. zusätzlich `sprint_forward` vor `running` (Läufer, Wechsel bei 0,62/0,85/1,07/1,25 s). Jeder Wechsel ist phasengleich und blendet 0,12 s; die höchste Gelenkgeschwindigkeit des Starts ist 1.553 °/s (Ballführer, `running`-Eintritt bei 5,7 m/s) unter der Grenze. Der Gehclip steht beim harten Antritt rund 0,23 s; eine Haltezeit für das Gehband wurde in Release 132 wegen Nebenwirkungen zurückgenommen und ist hier nicht wieder eingeführt.
+- **Clipwechsel beim Antritt:** `idle → walking → run_fast6 → running` (Ballführer bis zur SI-5-Runde, 0,62/0,85/1,07 s; seither mit `run_fast4` vor `running`) bzw. zusätzlich `sprint_forward` vor `running` (Läufer, Wechsel bei 0,62/0,85/1,07/1,25 s). Jeder Wechsel ist phasengleich und blendet 0,12 s; die höchste Gelenkgeschwindigkeit des Starts ist 1.553 °/s (Ballführer, `running`-Eintritt bei 5,7 m/s) unter der Grenze. Der Gehclip steht beim harten Antritt rund 0,23 s; eine Haltezeit für das Gehband wurde in Release 132 wegen Nebenwirkungen zurückgenommen und ist hier nicht wieder eingeführt.
 - **Bremsen:** `brake_meshy` über dem abklingenden Schrittband (`running → sprint_forward → run_fast4 → run_fast6 → walking`), danach Stand. Der native Körper überläuft das Ziel um rund 0,2 m und dreht danach um; Unity zeigt dafür `turn_idle`/`turn_walk` (natives Verhalten der Anlaufregel, nicht kaschiert).
 - **Richtungswechsel:** 180° beim Läufer: Abbremsen, kurz `back_left`/`back_walk` (der Körper dreht langsamer als er abbremst), dann neuer Antritt. Alle Fenster unter 1.600 °/s.
-- **Offen: Ballführer über 7,4 m/s.** Die Streckung gilt nur für das Sprintband, das ein Ballführer nie erreicht (`run`-Band). Ein Ballführer mit hohem spd/tec über 7,4 m/s spielt `running` deshalb mit Rate über 1 ohne Streckung. In den SI-Aufnahmen erreichen Ballführer höchstens 7,10 m/s; unkritisch, aber notiert.
+- **Ballführer über 7,4 m/s: erledigt in der SI-5-Runde** (siehe „Großes Feld (SI-5)“): Ballführerstreckung bis 1,05, Rate 1,13–1,15 → 1,08–1,09.
 
 **Echte Partien.** Auf den SI-Aufnahmen (Seeds 160112 Standard/5 und 160114 Groß/6, alle Pakete außer `field`, Uhr 0,78) laufen freie Spieler bis 8,40 m/s, Ballführer bis 7,10 m/s (16 % der Ballführerbilder über 6,5 m/s im großen Feld). Bandwechsel je Bewegungsminute: 68,9 (alte Aufnahmen) bzw. 74,4 (SI-Aufnahmen); kurze Verweildauern unter 0,25 s: 605 bzw. 474. Diese Größen sind Kennzahlen, keine Grenzwerte.
+
+## Großes Feld (SI-5)
+
+Mit dem Merge von SI-5 (`integration/si-r133` `e479f640`, [SI-5](spielerintelligenz-si5-field-183.md)) laufen auf dem großen Feld Ballführer (frei ×1,20 bis `carrierSpeedMax` 8,5 m/s, Nahbereich 1,41×) und eigene Läufe (×1,15 bis `runSpeedMax` 9,5 m/s) schneller. Ballführer bleiben im Band `run` und spielten `running` dort ohne Streckung mit Rate 1,13–1,15.
+
+**Änderungen (nur mit Marker `siRevision` 183):**
+- Ballführerstreckung oberhalb 7,4 m/s mit eigenem Höchstwert `MaxCarrierStretch` 1,05 (Läufe 1,08).
+- Ballführer-Zwischenband: `running` erst ab 6,6 m/s (Hysterese 6,2), darunter `run_fast4` (6,3 m/s, 4,2 m je Zyklus) wie ein Lauf ohne Ball. Ohne dieses Band wechselte ein Ballführer bei 4,2 m/s von `run_fast6` (3,0 m/s, 2,5 m) direkt auf `running` (7,4 m/s, 4,7 m). Mit den Großfeld-Eingaben überschritt das schon im unveränderten Code die Grenze: Start des Ballführers mit spd/tec 18 1.609 °/s, 180°-Wende im Nahbereich 1.643 °/s (36 von 2.318 U-1-Grenzwerten rot). Mit dem Band sind alle 2.318 grün.
+
+**Höchstwert bestimmt per Messung** (Lauffenster, gerader Lauf; 1,05 gegen 1,08): Bei 1,08 stellt sich die Streckung ungedeckelt auf 1,07 ein (Rate 1,06–1,07 statt 1,08–1,09). Die Spitzen von Kniepol und Fußachse beim Dribbeln steigen dabei aber von 42/61° auf 57/72° (spd/tec 16/18), der Oberschenkelschritt von 14,2/15,4 auf 16,9/16,3° je 1/60 s; die Gelenkspitzen schwanken phasenbedingt in beide Richtungen. Gewählt ist **1,05**: etwas höhere Kadenz beim Dribbeln, kürzerer Schritt.
+
+**Native Körperverläufe** (`v157Move` mit `field`, großes Feld; der schnellste Spieler des Großfeld-Kaders hat spd/tec 16, zusätzlich spd/tec 18 an den Obergrenzen):
+
+| Modus | Tempo | 90 % nach | Halt (Ziel in Bremsdistanz) |
+| --- | ---: | ---: | --- |
+| Ballführer frei (spd/tec 16) | 8,40 m/s | 0,75 s | 0,70 s / 2,49 m |
+| Ballführer frei (spd/tec 18, Obergrenze) | 8,50 m/s | 0,75 s | 0,70 s / 2,56 m |
+| Ballführer im Nahbereich 1,41× (16) | 6,57 m/s | 0,60 s | 0,55 s / 1,49 m |
+| Eigener Lauf (16) | 9,27 m/s | 0,85 s | 0,75 s / 3,06 m |
+| Eigener Lauf (18, Obergrenze) | 9,50 m/s | 0,85 s | 0,75 s / 3,21 m |
+
+Darstellung vorher → nachher (gleiche Größen wie in der B02-Tabelle; Gleiten im Lauffenster in allen Fällen 0,000 m/s):
+
+| Fall | Tempo | Clipwechsel | Rate | Schrittskala | Gleiten Halt | Gelenk Start / Lauf / Halt °/s |
+| --- | ---: | --- | --- | ---: | --- | --- |
+| Großfeld-Ballführer (16) gerade | 8,40 | 9 → 11 | 1,13 → 1,08 | 1,05 | 0,000 → 0,000 | 1536 / 1301 / 1026 → 1070 / 1436 / 907 |
+| … ±45° | 8,40 | 9 → 11 | 1,13 → 1,08 | 1,05 | ≤ 0,095 → ≤ 0,009 | 1536 / 1301 / 1303–1316 → 1070 / 1195 / 1208–1243 |
+| … ±90° | 8,40 | 11 → 15 | 1,13 → 1,08 | 1,05 | ≤ 0,007 → ≤ 0,010 | 1536 / 1301 / 1172–1190 → 1070 / 1195 / 1121 |
+| … ±135° | 8,40 | 13 → 17 | 1,13 → 1,08 | 1,05 | 0,000 → ≤ 0,002 | 1536 / 1301 / 1201 → 1070 / 1195 / 1241–1261 |
+| … 180° | 8,40 | 17 → 21 | 1,13 → 1,08 | 1,05 | 0,012 → 0,007 | 1536 / 1301 / 1302 → 1070 / 1195 / 1338 |
+| Großfeld-Ballführer (18) gerade | 8,50 | 9 → 11 | 1,15 → 1,09 | 1,05 | 0,000 → 0,010 | **1609** / 1300 / 1067 → 1085 / 1417 / 973 |
+| … ±45° … 180° | 8,50 | 9–17 → 11–21 | 1,15 → 1,09 | 1,05 | ≤ 0,019 → ≤ 0,019 | **1609** / 1289 / 1097–1369 → 1085 / 1417 / 1137–1433 |
+| Großfeld-Nahbereich 1,41× gerade | 6,57 | 9 → 9 | 0,89 → 1,04 (`run_fast4`) | 1,00 | 0,001 → 0,024 | 1536 / 1144 / 1002 → 966 / 1178 / 999 |
+| … ±45° … 180° | 6,57 | 9–15 → 9–15 | 0,89 → 1,04 | 1,00 | ≤ 0,022 → ≤ 0,002 | 1536 / 1144 / 1166–**1643** → 966 / 1174 / 1160–1291 |
+| Großfeld-Läufer (16) gerade / Wenden | 9,27 | 13–24 (gleich) | 1,15–1,16 (gleich) | 1,08 | ≤ 0,03 (gleich) | 1032 / 1251–1256 / 1045–1255 (gleich) |
+| Großfeld-Läufer (18) gerade / Wenden | 9,50 | 13–21 (gleich) | 1,18 (gleich) | 1,08 | ≤ 0,05 (gleich) | 1140 / 1321 / 1063–1305 (gleich) |
+| Standard-Ballführer 1,50× (7,06) | 7,06 | 9–15 → 11–19 | 0,95 → 0,95 | 1,00 | ≤ 0,058 → ≤ 0,025 | 1553 / 1140 / 1034–1250 → 991 / 1134 / 975–1243 |
+| Standard-Nahbereich 1,28× (6,03) | 6,03 | 9–15 (gleich) | 0,81 → 0,96 (`run_fast4`) | 1,00 | ≤ 0,003 → ≤ 0,033 | 1553 / 900–1017 / 730–1204 → 972 / 1065–1088 / 905–1232 |
+
+Das Zwischenband wirkt auch auf dem Standardfeld (gleicher Marker): Die Startspitze der Ballführer sinkt dort von 1.553 auf 972–991 °/s, und Ballführer unter 6,6 m/s zeigen `run_fast4` mit Rate 0,96 statt `running` mit 0,81. Die Haltfenster ändern sich phasenbedingt in beide Richtungen. Belastungsprobe (feste Blickrichtung) und Läuferfälle ohne Ball sind unverändert. Alle 2.318 U-1-Grenzwerte sind grün und laufen über die Fixtur in jedem `D6Cli.Tests`-Lauf mit.
+
+**Neu bewertet, offen:** Großfeld-Läufer mit 9,27–9,50 m/s erreichen die Schrittgrenze 1,08 und laufen mit Rate 1,15–1,18 (ohne U-1 1,25). Ein höherer Höchstwert ist nicht gemessen; nach den Ballführerwerten steigen dann Kniepol und Fußachse.
+
+**Echte Großfeld-Partie (Hinweis an SI-5/SI-K).** Neu aufgenommen: 160114 Groß/6 mit allen Paketen einschließlich `field` (Lane A, `work/u1/si3/native132`, 74 s, 1:1). Freie Spieler laufen bis 9,10 m/s (ohne `field` 8,40). Ballführer erreichen dagegen höchstens **7,10 m/s**, genau wie ohne `field`: 34 Bilder desselben Spielers (GER-2:10, spd 16,3 / tec 12,8) liegen auf diesem Plateau. `v157Pace` liefert für ihn in derselben Partie 8,5 m/s (`field` an, extra 0,2; `v158Movement` begrenzt nicht). Die SI-5-Ballführerwerte kommen in dieser Partie also nicht im Bild an. Das Plateau entspricht 5,92 m/s im 68×44-Bildmaß × 1,2. Die Ursache liegt außerhalb der Darstellung und ist nicht untersucht; die Unity-Seite deckt Ballführer bis 8,5 m/s über die Körperfälle ab.
+
+**B05 auf der Feld-Aufnahme** (dieselbe Aufnahme vor/nach der SI-5-Runde): 49 Fußaktionen, davon 9 mit einem Fenster über 1.600 °/s (vorher 9); 65 von 196 Fenstern ändern sich durch die Phasenverschiebung (Rauschen). Höchste Werte: Tackle Feld 2, 69,30 s 6.110 → 4.021 °/s; Pass Feld 5, 3,65 s 3.601 (Anstoß, unverändert); Pass Feld 6, 72,35 s 3.356 (unverändert). r21 12/12.
 
 ## Foulfenster (SI-0, 1,8 s)
 
@@ -115,13 +161,17 @@ Unity-Kopie `G:/unity/Doppel6-Fix-R132` (6000.6.4f1), nach jedem Sync mit `diff`
 | --- | --- |
 | `D6Cli.Tests` (alle Suiten, Natural-Motion-Gates erzwungen) | grün. NaturalMotionGates 2.020/2.020, Stütz 675/675, Kontakt 285/285, Kontinuität 20/20, r15 341/342 (der bekannte R18-Lock, nicht darüber; wie Release 132), r20 642/642, r21 11/11. DuelTests 57 (Release 132: 49), WorldViewTests und LocomotionTests mit den neuen U-1-Prüfungen, U-1 873/873 aus der Fixtur (Korrekturrunde). |
 | `D6Cli.NaturalMotion` alte Aufnahmen (`native132`, `-d6pictures 1600`) | r132 368/368; r21 54/55 (rot: Becken 1,566 m/s, unverändert); Sichtfläche 7 Abweichungen wie vor U-1; alle Messgrößen bitgleich zum Stand vor U-1. |
-| `D6Cli.NaturalMotion` SI-Aufnahmen und Körperfälle | U-1 873/873; r21 44/44; r132 420/456 (36 Fenster über 1.600 °/s ohne R131-Sperre: Bericht, keine Sperre für neue Aufnahmen); Sichtfläche 2 Opferbilder (siehe Foulfenster). |
+| SI-5-Runde: `D6Cli.Tests` | grün; NaturalMotionGates 235 Fälle, **U-1 2.318/2.318** (alle Körperfälle beider Feldgrößen aus der Fixtur), übrige Werte unverändert (2.020/2.020, 675, 285, 20, r15 341/342 wie Release 132, 642, r21 11/11); DuelTests 57. |
+| SI-5-Runde: alte Aufnahmen (`native132`) | r132 368/368, r21 54/55 (Becken 1,566 m/s), alle Messgrößen bitgleich zum Stand vor U-1. |
+| SI-5-Runde: Feld-Aufnahme 160114 und Körperfälle | U-1 2.318/2.318, r21 12/12, r132 185/196 (11 Fenster über 1.600 °/s ohne R131-Sperre, Bericht). |
+| SI-5-Runde: `check-old-matches-v183` / `-v182` (Basisbaum `e4e531c0`), Vertragstest | grün (340 / 158 Szenen) |
+| `D6Cli.NaturalMotion` SI-Aufnahmen und Körperfälle (vor der SI-5-Runde) | U-1 873/873; r21 44/44; r132 420/456 (36 Fenster über 1.600 °/s ohne R131-Sperre: Bericht, keine Sperre für neue Aufnahmen); Sichtfläche 2 Opferbilder (siehe Foulfenster). |
 | `work/check-unity-freekick-u1-v183.cjs` (Lane B) | 5/5 |
 | `work/platform/qa/check-world-unity.cjs` (Lane B) | 21/21 |
 | `check-old-matches-v183.cjs` | grün, 340 Szenen |
 | `check-old-matches-v182.cjs work/tmp-base182` (Basisbaum `e4e531c0`) | grün, 158 Szenen |
 | `node work/build.cjs` | grün (Artefakte zurückgesetzt) |
-| Workflow-Block „Spieltests ausführen“ (114 Befehle, Node 24, auf dem Endstand) | 114/114 grün (41 min); danach `git checkout -- outputs docs/spieler-nutzer-rig` |
+| Workflow-Block „Spieltests ausführen“ (114 Befehle, Node 24) | vor der SI-5-Runde 114/114 grün (41 min); SI-5-Runde (nach dem Merge von `e479f640`) 114/114 grün (39 min); danach jeweils `git checkout -- outputs docs/spieler-nutzer-rig` |
 
 ## Reproduktion
 
@@ -141,4 +191,5 @@ $N work/check-unity-freekick-u1-v183.cjs --port 4259 --out work/u1/freekick
 
 - **Neuer WebGL-Build:** für diese Prüfung nicht nötig (alle Darstellungsmessungen im Unity-Editor auf identischen Eingaben; die WebGL-Aufzeichnung nutzt den vorhandenen Build, dessen Schnitt-/Überblendungslogik unverändert ist). Für die Auslieferung der U-1-Änderungen (Foulfenster, Schrittstreckung) braucht die Integration bzw. Veröffentlichung einen neuen Build mit Unity-Metadaten und Digestprüfungen; der vorhandene Build ignoriert `siRevision` und zeigt neue Partien wie bisher.
 - **SI-2/SI-K:** Nahbereichstempo des Ballführers gemessen 6,03 m/s (spd/tec 14, = 7,06 · 1,28 / 1,50); Ursache der 5,80 m/s der SI-2-Tabelle unklar.
+- **SI-5/SI-K:** Ballführer erreichen in der echten Großfeld-Partie nur 7,10 m/s (Plateau, mit und ohne `field`), obwohl `v157Pace` 8,5 m/s liefert; Ursache prüfen (Abschnitt „Großes Feld (SI-5)“).
 - **SI-K/Animation:** offene B05-Punkte oben; eine Tackle-Überblendung aus dem Sprint und eine Swivel-Bindung der Kontaktlösung wären die nächsten Hebel.

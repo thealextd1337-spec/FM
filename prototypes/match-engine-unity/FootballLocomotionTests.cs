@@ -36,6 +36,11 @@ public static class FootballLocomotionTests {
          Require(runner.StrideMode=="sprint"&&runner.FastStride&&Math.Abs(runner.StrideScale-expected)<.01,"u1 an 8.15 m/s own run lengthens the top-speed step by "+expected.ToString("0.000")+" ("+runner.StrideScale.ToString("0.000")+")");
          var fastest=Run(11f,false);Require(Math.Abs(fastest.StrideScale-FootballLocomotion.MaxStrideStretch)<1e-4,"u1 the step stretch is bounded by MaxStrideStretch");
          var carrier=Run(7.06f,true);Require(carrier.StrideMode=="run"&&Math.Abs(carrier.StrideScale-1)<1e-3,"u1 a 7.06 m/s carrier keeps the authored step (below the clip's pace)");
+         // SI-5: a large-pitch carrier at 8.5 m/s stays in the run band; its step lengthens up to MaxCarrierStretch.
+         var fastCarrier=Run(8.5f,true);double carrierExpected=Math.Min(FootballLocomotion.MaxCarrierStretch,Math.Sqrt(8.5/4.7/natural));
+         Require(fastCarrier.StrideMode=="run"&&Math.Abs(fastCarrier.StrideScale-carrierExpected)<.01,"u1 an 8.5 m/s carrier lengthens its step by "+carrierExpected.ToString("0.000")+" ("+fastCarrier.StrideScale.ToString("0.000")+")");
+         Require(!Run(5.5f,true).CarrierTop&&Run(5.5f,true,false).CarrierTop&&Run(7.06f,true).CarrierTop,"u1 a marked carrier shows running only above 6.6 m/s (run_fast4 below); without the marker from 4.2 m/s as before");
+         var legacyCarrier=Run(8.5f,true,false);Require(legacyCarrier.StrideScale==1,"u1 a carrier picture without the SI marker keeps the authored step");
          var legacy=Run(8.15f,false,false);Require(legacy.StrideMode=="sprint"&&legacy.StrideScale==1,"u1 a picture without the SI marker keeps the authored top-speed step (older matches unchanged)");
          var cruise=Run(7.2f,false);Require(Math.Abs(cruise.StrideScale-1)<1e-3,"u1 below the authored pace the top-speed step is not stretched");}
         foreach(int frequency in new[]{30,60,120}){
