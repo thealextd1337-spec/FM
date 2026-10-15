@@ -466,6 +466,33 @@ Außerhalb der Matrix gilt:
 
 Nach jedem Merge laufen die Pflichtprüfungen (Abschnitt 9) und eine gepaarte 192-Partien-Serie gegen den vorigen Integrationsstand. Fällt eine Kennzahl außerhalb der Rauschprobe (±0,12 Tore, ±8 Punkte Favoriten), wird vor dem nächsten Merge geklärt.
 
+### 8.6 Integrationsstand Welle 1 (15. Oktober 2026)
+
+`integration/si-r133` enthält SI-F, B20, B19, SI-0, SI-3, SI-4, SI-7, SI-2 und SI-1. Die Merges von SI-4, SI-7, SI-2 und SI-1 liefen konfliktfrei. Nach jedem dieser Merges waren grün: die SI-Tests, `check-old-matches-v183` (340 Szenen), `check-old-matches-v182` gegen R132 `e4e531c0` (158 Szenen) und `check-restore-completeness-v183 --quick`. Eine einzige Testanpassung war nötig: Die Tempo-Prüfung in `test-si-defence-v183` schaltet SI-2 jetzt ab, weil SI-2 das Ballführertempo besitzt.
+
+Statt einer Serie je Merge lief eine gepaarte Gesamtserie, weil jedes Paket bereits eigene Serien hatte: `int-w1-base` (nur Uhr) gegen `int-w1-all` (alle Pakete). Beide mit Uhr 0,42, 96 Vereine × 2 Feldgrößen, `work/measure-si-offball-v183.cjs`, ohne Ausfälle.
+
+| Kennzahl (Mittel beider Feldgrößen) | nur Uhr | alle Pakete | Ziel (2.3) |
+| --- | ---: | ---: | --- |
+| Dauer | 4,23 min | 4,17 min | 4,8–5,2 (Uhrrate in SI-K) |
+| Schüsse / aufs Tor | 6,8 / 34 % | 12,1 / 48 % | 10–13 / ≥38 % ✓ |
+| Tore / je Schuss | 1,64 / 24 % | 2,81 / 23 % | 2,2–2,8 / 17–23 % (Rand) |
+| 0:0 | 22 % | 15 % | ≤12 % ✗ |
+| Favoriten ≥1 Punkt (N 134) | 50 % | 68 % | ≥62 % ✓ |
+| Tordifferenz je Stärkepunkt | 0,25 | 0,75 | ≥0,35 ✓ |
+| Flanken / Ecken | 0,36 / 0,21 | 1,35 / 1,36 | ≥2,0 ✗ / ≥1,2 ✓ |
+| angekommene Flanken (Messhülle) | 16 % | 3 % | ≥45 % ✗ (Messdefinition prüfen) |
+| Fouls / Freistöße | 7,5 / 7,8 | 2,6 / 2,7 | ≤4,5 ✓ |
+| Abprallerschüsse | 0,05 | 0,22 | ≥0,3 ✗ |
+| Großes Feld: Schüsse / Tore vom Standardfeld | 73 % / 67 % | 73 % / 78 % | ≥85 % ✗ → SI-5 |
+
+Offene Punkte für SI-5 und SI-K:
+
+- Das große Feld liegt mit 10,2 Schüssen und 2,46 Toren gegen 14,0 und 3,16 auf dem Standardfeld unter der Zielgrenze. Das ist Aufgabe von SI-5.
+- Das Standardfeld liegt mit 3,16 Toren über dem Zielband. Das gehört zu SI-K, Hebel (a)/(b).
+- Die Zahl der Raumpässe sinkt von 7,9 auf 0,6; zu klären ist, ob das an der Absichtszählung von SI-1 liegt oder echt ist.
+- Bei angekommenen Flanken liegt die Messhülle bei 3 %, die SI-7-Szenen bei 36 %. Die Definition muss vor SI-K abgeglichen werden.
+
 ## 9. Tests
 
 **Pflicht für jedes Paket vor Merge** (aus `.github/workflows/deploy.yml` „Spieltests ausführen“, matchrelevanter Ausschnitt): `test-v55.cjs`, `test-v56.cjs`, `test-v57.cjs`, `test-breakaway.cjs`, `test-duel-streaks.cjs`, `run-native130-tests.cjs`, `test-world-match-v64.cjs`, `test-world-penalties-v65.cjs`, `test-world-goal-scene-v83.cjs`, `test-world-physical-instructions.cjs`, `test-compact-balance-v178.cjs`, `test-player-load-candidate-v158.cjs`, `test-native-career-v160.cjs`, `test-native-performance-context.cjs`, `platform/qa/test-unity-integration-v160.cjs`, `platform/qa/test-world-unity-contract.cjs`, `test-world-pitch3d-v98.cjs`, `test-3d-contacts-v119.cjs`, `test-whistle-offside-v119.cjs`, `test-keeper-picture-v119.cjs`, `platform/qa/test-world-unity-slides.cjs`; dazu die Release-132-Gates `test-corner-quality-v182.cjs`, `test-defensive-pursuit-v182.cjs`, `test-freekick-plan-r132.cjs`, `test-keeper-hold-v182.cjs`, `test-loose-ball-v182.cjs`, `test-penalty-quality-v182.cjs`, `test-review-fixes-v182.cjs`, `check-old-matches-v182.cjs`; neu `check-old-matches-v183.cjs` und `node work/build.cjs`.
