@@ -9,8 +9,10 @@ window.D6UserBallActions={create({visual:v,state,mesh,skeleton,locomotion,action
   if(person.slideActive&&!person.keeper)return null;
   if(!person.keeper&&(v.locomotion?.slide||0)>.02&&['passReady','kickReady','receive','control'].includes(a.kind))return null;
   const target=a.target&&v98PitchPoint(a.target,frame.turned),origin=a.origin?v98PitchPoint(a.origin,frame.turned):person,lateral=target?(target.x-origin.x)*Math.cos(v.root.rotation.y)-(target.z-origin.z)*Math.sin(v.root.rotation.y):0,side=Math.sign(lateral)||1;
-  if(a.kind==='foulVictim')return a.age<1.25?{clip:'foul_fall_meshy',time:Math.min(2.2666,a.age/.8*2.2666),mode:'foul_fall',weight:1,foul:true}:{clip:'keeper_rise_meshy',time:1.9+(6.8-1.9)*smooth((a.age-1.25)/1.45),mode:'foul_rise',weight:1,foul:true};
-  if(a.kind==='foulOffender')return {clip:'foul_stumble_meshy',time:Math.min(2.7,a.age),mode:'foul_stumble',weight:1,foul:true};
+  // The 2.7 s foul animation is played in the lock time the event carries (a.duration, shorter with the clock package).
+  const foulAge=(a.kind==='foulVictim'||a.kind==='foulOffender')&&a.duration>0?a.age*2.7/a.duration:a.age;
+  if(a.kind==='foulVictim')return foulAge<1.25?{clip:'foul_fall_meshy',time:Math.min(2.2666,foulAge/.8*2.2666),mode:'foul_fall',weight:1,foul:true}:{clip:'keeper_rise_meshy',time:1.9+(6.8-1.9)*smooth((foulAge-1.25)/1.45),mode:'foul_rise',weight:1,foul:true};
+  if(a.kind==='foulOffender')return {clip:'foul_stumble_meshy',time:Math.min(2.7,foulAge),mode:'foul_stumble',weight:1,foul:true};
   if(a.kind==='tackle')return {clip:'shot_meshy',time:.40+.42*p,mode:'tackle_meshy',weight:.72,foot:p};
   if(a.kind==='throw'){const pickup=a.holding&&a.pickup<.85;return {clip:pickup?'keeper_low_meshy':'idle_stand_meshy',time:pickup?1.42+1.13*smooth(a.pickup):0,mode:pickup?'throw_pickup':a.holding?'throw_hold':'throw_release',weight:1,throw:true};}
   if(['shot','freeKick','pass','cross','highPass','kickReady','passReady'].includes(a.kind)){

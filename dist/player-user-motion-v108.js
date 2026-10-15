@@ -17,7 +17,7 @@ window.D6UserLocomotion={create(v,mesh,skeleton,calibration){
   state.previous={x:person.x,z:person.z};state.turned=frame.turned;
   if(teleport){release();state.transition=null;state.cooldown=.3;state.previousSpeed=0;idleHeading=null}
   const receiving=person.action?.kind==='receive'||person.action?.kind==='control'&&frame.ball.height<=1.1;
-  const speed=delta&&!teleport?clamp(distance/delta,0,8):live?state.previousSpeed:0,m=v.locomotion||{idle:1,walk:0,run:0,turn:0,acceleration:0},filtered=v.runSpeed||0,goal=frame.celebration,celebrating=goal&&goal.team===v.team,special=person.action&&!receiving||person.slideActive||m.slide>.02,direction=distance>.0001?Math.atan2(dx,dz):state.direction||0,angularSpeed=delta&&state.direction!==undefined?angle(state.direction,direction)/delta:0;
+  const speed=delta&&!teleport?clamp(distance/delta,0,8):live?state.previousSpeed:0,m=v.locomotion||{idle:1,walk:0,run:0,turn:0,acceleration:0},filtered=v.runSpeed||0,goal=frame.celebration,celebrating=goal&&goal.team===v.team&&speed<.6,special=person.action&&!receiving||person.slideActive||m.slide>.02,direction=distance>.0001?Math.atan2(dx,dz):state.direction||0,angularSpeed=delta&&state.direction!==undefined?angle(state.direction,direction)/delta:0;
   const carrying=frame.owner!=null&&frame.owner===person.id&&frame.carrying!==false&&!frame.ballInFlight&&!person.keeper&&!special&&!celebrating;
   const backward=!carrying&&person.movement?.mode==='backpedal';if(backward!==Boolean(state.backward)&&delta){release();state.transition=null;state.cooldown=.25;if(backward&&speed<1.1)start('back_step_meshy')}state.backward=backward;
   if(carrying){

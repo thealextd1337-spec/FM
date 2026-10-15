@@ -73,7 +73,7 @@ function v150Receive(m,plan,p,point){
  if(p.keeper&&v150KeeperArea(p,point)){
   v115KeeperChallenges.set(m,{keeper:p,attacker:null,start:{x:p.x,y:p.y},end:{x:p.x,y:p.y},contact:{...point},at:v102Clock(m),duration:.55,caught:true,checked:true,pickup:true});
   v50GoalKick(p,`${p.name} sichert den freien Ball.`,{held:true});
- }else{m.owner=p;m.next=m.elapsed+.75;if(!p.keeper&&!v127TryOneTouch(p,point,plan.from))v123Receive(p,point);}
+ }else{m.owner=p;m.next=m.elapsed+(m.si?.75*(v183Rate(m)/MATCH_SPEED):.75);if(!p.keeper&&!v127TryOneTouch(p,point,plan.from))v123Receive(p,point);}
 }
 function v150Arrive(m,plan){
  if(plan.contact){v150Receive(m,plan,plan.contact.person,plan.contact.point);return;}
@@ -98,14 +98,14 @@ function v150Prepare(m,seconds){
  if(v121PositioningPaused(m)||m.owner||!active){v150Lose(m,plan,'interrupted');return;}
  plan.age+=Math.max(0,seconds);plan.before=new Map(m.people.map(p=>[p,{x:p.x,y:p.y}]));plan.targets=new Map();
  if(m.spacePassIntent)m.spacePassIntent.age=plan.age;
- const flight=m.flight,r=m.rebound,remaining=flight?Math.max(0,(1-flight.progress)*flight.duration/MATCH_SPEED):1;
+ const flight=m.flight,r=m.rebound,remaining=flight?Math.max(0,(1-flight.progress)*flight.duration/(m.si?v183Rate(m):MATCH_SPEED)):1;
  for(const team of [0,1]){
   const choices=[];
   for(const p of m.people){
    if(p.t!==team||p.slideActive||p===plan.passer&&plan.age<.25||p.keeper&&r&&r===plan.rebound&&typeof v180KeeperChaseActive==='function'&&v180KeeperChaseActive(m)&&!v180KeeperGroundEligible(m,p))continue;
    let best=null;
    for(let i=1;i<=12;i++){
-    const time=remaining*i/12,point=flight?{x:m.ball.x+(flight.target.x-m.ball.x)*i/12,y:m.ball.y+(flight.target.y-m.ball.y)*i/12}:{x:r.x+(r.vx||0)*MATCH_SPEED*(1-Math.exp(-2.3*time))/2.3,y:r.y+(r.vy||0)*MATCH_SPEED*(1-Math.exp(-2.3*time))/2.3};
+    const time=remaining*i/12,point=flight?{x:m.ball.x+(flight.target.x-m.ball.x)*i/12,y:m.ball.y+(flight.target.y-m.ball.y)*i/12}:{x:r.x+(r.vx||0)*(m.si?v183Rate(m):MATCH_SPEED)*(1-Math.exp(-2.3*time))/2.3,y:r.y+(r.vy||0)*(m.si?v183Rate(m):MATCH_SPEED)*(1-Math.exp(-2.3*time))/2.3};
     // Keepers may reach this ball with their feet outside their hand area.
     const delay=Math.max(0,v150Delay(p)-plan.age),arrival=delay+Math.max(0,v122Metres(p,point)-.8)/v150Pace(p),cost=Math.max(time,arrival)+(arrival>time?.25:0);
     if(!best||cost<best.cost)best={point,cost};
@@ -141,7 +141,7 @@ const v150BaseChase=v50ChaseLooseBall;
 v50ChaseLooseBall=function(delta,positions){
  const m=match,plan=v150SpacePasses.get(m),r=m?.rebound;
  if(!plan||r!==plan.rebound)return v150BaseChase(delta,positions);
- const from={x:r.x,y:r.y},seconds=Math.max(0,delta)/MATCH_SPEED,damp=Math.exp(-2.3*seconds),travel=(1-damp)/(2.3/MATCH_SPEED),to={x:r.x+(r.vx||0)*travel,y:r.y+(r.vy||0)*travel},exit=v55Exit(from,to);
+ const from={x:r.x,y:r.y},seconds=Math.max(0,delta)/(m.si?v183Rate(m):MATCH_SPEED),damp=Math.exp(-2.3*seconds),travel=(1-damp)/(2.3/(m.si?v183Rate(m):MATCH_SPEED)),to={x:r.x+(r.vx||0)*travel,y:r.y+(r.vy||0)*travel},exit=v55Exit(from,to);
  const end=exit?{x:exit.x,y:exit.y}:to,contact=v150Contact(m,plan,from,end);
  if(contact){v150Receive(m,plan,contact.person,contact.point);return;}
  if(exit){v150Lose(m,plan,'out');m.rebound=null;m.ball=end;v55Out(exit,m.lastTouch,'Der freie Ball rollt über die Linie.');return;}
