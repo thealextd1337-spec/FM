@@ -252,3 +252,7 @@ git archive b28e3ab6 dist | tar -x -C work/tmp-si1/base-si3     # SI-3-Basisbaum
 `work/tmp-si1/` ist gitignoriert; die Hilfswerkzeuge dort sind nicht eingecheckt, weil der Auftrag nur Modul, Test und Doku umfasst. `measure-si1x.cjs` ist die Kopie von `work/measure-si183.cjs` mit der Zusammenfassung des SI-1-Protokolls (`work/tmp-si1/make-si1x.cjs` baut sie neu). Die 96 gemeinsamen Partien von U1 (`measure-si183.cjs`) und der Endserie (Kopie, Protokollgrenze 20.000) sind bis auf eine zustandsgleich (`stateDigestSha`, alle Ergebnisse gleich). Die eine Abweichung kommt vom Kopfballwert 0,6 × 0,67 = 0,402 statt 0,4; Kopie und Protokoll ändern die Partien also nicht. Varianten S1–U2 laufen mit `--clubs=48` und den Overrides aus der Variantentabelle. Fernschüsse, Drehzustände, Zonen und Favoriten stammen aus den gespeicherten Partiedaten, abgegrenzt wie oben unter Definitionen.
 
 Rohdaten liegen in `outputs/si183/` (gitignoriert).
+
+## Weiche für SI-5 (Schussfenster)
+
+`v183OptWindowBase(m)` liefert den gespeicherten `options.windowBase` und wird in `v183OptParams` gelesen, also in jeder Fensterberechnung (Schuss, Tragen). SI-5 (`match-si-field-v183.js`) umhüllt nur diese Funktion und addiert auf dem großen Feld `windowGain` · (Feldlänge/68 − 1). Das wirksame Fenster steht als `window` in den `options`-Einträgen des Entscheidungsprotokolls; `v183Param(m,'options.windowBase')` liefert weiter den gespeicherten Wert. Siehe [SI-5](spielerintelligenz-si5-field-183.md).

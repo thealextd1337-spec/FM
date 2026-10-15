@@ -69,7 +69,11 @@ const V183_OPT_KEYS=Object.freeze(Object.keys(v183RegisterDefaults('options',{})
 // Neutral values of the SI-F personality formula (role 1, mental values 10).
 const V183_OPT_NEUTRAL=Object.freeze({shootWeight:.85,riskWeight:.9,dribbleWeight:.9,holdWeight:.95});
 
-function v183OptParams(m){const P={};for(const key of V183_OPT_KEYS)P[key]=v183Param(m,'options.'+key);return P;}
+// Effective base of the shooter window (m): the stored windowBase. A switch for SI-5
+// (large pitch), which wraps this function; every read of the window goes through it.
+function v183OptWindowBase(m){return v183Param(m,'options.windowBase');}
+function v183OptWindow(m,p){return v183OptWindowBase(m)+v183Param(m,'options.windowFin')*ability(p,'fin');}
+function v183OptParams(m){const P={};for(const key of V183_OPT_KEYS)P[key]=v183Param(m,'options.'+key);P.windowBase=v183OptWindowBase(m);return P;}
 function v183OptWeights(p,P){const raw=v183Personality(p),w={};for(const [key,neutral]of Object.entries(V183_OPT_NEUTRAL))w[key]=clamp(raw[key]/neutral,P.weightMin,P.weightMax);return w;}
 // Real seconds into the v152Seconds deadlines read by older code (carry,
 // turns), without assuming how that clock relates to the match rate. Only
@@ -337,7 +341,7 @@ function v183OptExecute(m,p,o,allies,rivals,P){
 }
 function v183OptTrace(m,p,o,list,drawn,range,fallback){
  const top=[...list].sort((a,b)=>b.u-a.u).slice(0,3).map(x=>({kind:x.kind,ref:x.ref??null,u:+x.u.toFixed(5)}));
- v183Trace(m,{type:'options',pid:p.pid,kind:o.kind,ref:o.ref??null,u:+o.u.toFixed(5),arrival:Number.isFinite(o.arrival)?+o.arrival.toFixed(4):null,range:+range.toFixed(1),n:list.length,drawn,top,...(fallback?{fallback,executed:'hold'}:{})});
+ v183Trace(m,{type:'options',pid:p.pid,kind:o.kind,ref:o.ref??null,u:+o.u.toFixed(5),arrival:Number.isFinite(o.arrival)?+o.arrival.toFixed(4):null,range:+range.toFixed(1),n:list.length,window:+v183OptWindow(m,p).toFixed(1),drawn,top,...(fallback?{fallback,executed:'hold'}:{})});
 }
 // Abilities, pace and reaction delays are fixed during one evaluation: read
 // each once per person and key. The originals are restored before any action
@@ -376,7 +380,7 @@ v157ContinueTurn=function(m,p,rivals){
    if(u>pending+P.switchMargin*Math.max(Math.abs(pending),P.noiseFloor)){
     delete m.attackFlow.pendingTurn;
     Object.assign(decision,{kind:'shot',ref:null,target:null,at:now,until:now+P.cadence+.15,value:u});
-    v183Trace(m,{type:'options',pid:p.pid,kind:'shot',ref:null,u:+u.toFixed(5),fromTurn:true,pending:+pending.toFixed(5)});
+    v183Trace(m,{type:'options',pid:p.pid,kind:'shot',ref:null,u:+u.toFixed(5),window:+v183OptWindow(m,p).toFixed(1),fromTurn:true,pending:+pending.toFixed(5)});
     v55Shoot(p);return true;
    }
   }

@@ -63,10 +63,10 @@ Spalte „heute“ = `si-max42-norisk` (beste gemessene Kombination, Analyse 5.3
 | Kennzahl | Ziel (Mittel, beide Feldgrößen) | Grenze |
 | --- | --- | --- |
 | Dauer all-inclusive | 4,8–5,2 min | ≥85 % der Partien in 4–6 min, keine unter 3,7 min |
-| Schüsse beider Teams | 10–13 | ≥45 % der Partien in 10–16 |
+| Schüsse beider Teams | 12–16 (vorläufig, Torziel 15. Oktober) | ≥45 % der Partien in 10–18 |
 | aufs Tor | ≥38 % der Schüsse | — |
-| Tore | 2,2–2,8 | 0:0 ≤12 %, >5 Tore ≤8 % |
-| Tore je Schuss | 17–23 % | — |
+| Tore | 3–5, Mittel ≈4 (Nutzerentscheidung 15. Oktober 2026, ersetzt 2,2–2,8) | 0:0 ≤6 %; Partien mit ≥7 Toren (z. B. 4:3) 5–15 % |
+| Tore je Schuss | 25–32 % (vorläufig, aus Torziel und Schusszahl abgeleitet; SI-K legt fest) | — |
 | Favoriten ≥1 Punkt | ≥62 % (576 Partien) | Tordifferenz je Stärkepunkt ≥0,35 |
 | Abschluss ≥14 gegen <10, Tore je Schuss | Verhältnis ≥1,8 | — |
 | Torwart ≥14 gegen 10–14, Tore je Schuss aufs Tor | ≥10 Punkte Abstand | — |
@@ -475,9 +475,9 @@ Statt einer Serie je Merge lief eine gepaarte Gesamtserie, weil jedes Paket bere
 | Kennzahl (Mittel beider Feldgrößen) | nur Uhr | alle Pakete | Ziel (2.3) |
 | --- | ---: | ---: | --- |
 | Dauer | 4,23 min | 4,17 min | 4,8–5,2 (Uhrrate in SI-K) |
-| Schüsse / aufs Tor | 6,8 / 34 % | 12,1 / 48 % | 10–13 / ≥38 % ✓ |
-| Tore / je Schuss | 1,64 / 24 % | 2,81 / 23 % | 2,2–2,8 / 17–23 % (Rand) |
-| 0:0 | 22 % | 15 % | ≤12 % ✗ |
+| Schüsse / aufs Tor | 6,8 / 34 % | 12,1 / 48 % | 12–16 / ≥38 % ✓ |
+| Tore / je Schuss | 1,64 / 24 % | 2,81 / 23 % | 3–5 / 25–32 % ✗ (seit Torziel 15. Oktober) |
+| 0:0 | 22 % | 15 % | ≤6 % ✗ |
 | Favoriten ≥1 Punkt (N 134) | 50 % | 68 % | ≥62 % ✓ |
 | Tordifferenz je Stärkepunkt | 0,25 | 0,75 | ≥0,35 ✓ |
 | Flanken / Ecken | 0,36 / 0,21 | 1,35 / 1,36 | ≥2,0 ✗ / ≥1,2 ✓ |
@@ -489,7 +489,7 @@ Statt einer Serie je Merge lief eine gepaarte Gesamtserie, weil jedes Paket bere
 Offene Punkte für SI-5 und SI-K:
 
 - Das große Feld liegt mit 10,2 Schüssen und 2,46 Toren gegen 14,0 und 3,16 auf dem Standardfeld unter der Zielgrenze. Das ist Aufgabe von SI-5.
-- Das Standardfeld liegt mit 3,16 Toren über dem Zielband. Das gehört zu SI-K, Hebel (a)/(b).
+- Torziel 15. Oktober 2026 (3–5 Tore): Das Standardfeld liegt mit 3,16 Toren am unteren Rand, das große Feld mit 2,46 darunter. SI-K hebt die Tore über Torquote je Schuss (a) und Schussmenge (b), ohne die breite Streuung zu verlieren (4:3 soll vorkommen).
 - Die Zahl der Raumpässe sinkt von 7,9 auf 0,6; zu klären ist, ob das an der Absichtszählung von SI-1 liegt oder echt ist.
 - Bei angekommenen Flanken liegt die Messhülle bei 3 %, die SI-7-Szenen bei 36 %. Die Definition muss vor SI-K abgeglichen werden.
 
