@@ -212,7 +212,7 @@ function v50GoalKick(keeper,text){
 }
 function v50Deflect(point,team,defender,description){
  const goalLine=team===0?.035:.965,forward=team===0?-1:1;
- const endY=point.y+forward*(random()-.3)*.3;
+ const aim=match.si&&typeof v183BlockAim==='function'?v183BlockAim(match,defender):{bias:.3,spread:.3},endY=point.y+forward*(random()-aim.bias)*aim.spread;
  const crossed=team===0?endY<=goalLine:endY>=goalLine;
  let endX=clamp(point.x+(random()-.5)*.4,.05,.95);
  if(crossed&&endX>.37&&endX<.63)endX=endX<.5?.37:.63;
