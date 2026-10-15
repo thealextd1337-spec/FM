@@ -40,6 +40,36 @@ public static class FootballLocomotionTests {
          var fastCarrier=Run(8.5f,true);double carrierExpected=Math.Min(FootballLocomotion.MaxCarrierStretch,Math.Sqrt(8.5/4.7/natural));
          Require(fastCarrier.StrideMode=="run"&&Math.Abs(fastCarrier.StrideScale-carrierExpected)<.01,"u1 an 8.5 m/s carrier lengthens its step by "+carrierExpected.ToString("0.000")+" ("+fastCarrier.StrideScale.ToString("0.000")+")");
          Require(!Run(5.5f,true).CarrierTop&&Run(5.5f,true,false).CarrierTop&&Run(7.06f,true).CarrierTop,"u1 a marked carrier shows running only above 6.6 m/s (run_fast4 below); without the marker from 4.2 m/s as before");
+         // Delta review of 513dc31b: the carrier bridge band's hysteresis, ball changes and keepers, with the actual
+         // presentation clip choice (ProbeBridge.StrideClip, carrying = owner and not keeper as WorldFootballPose passes it).
+         {var host=new GameObject("D6 u1 stride clips");
+          try{var bridge=host.AddComponent<ProbeBridge>();AnimationClip Named(string n)=>new AnimationClip{name=n};
+           bridge.walkClip=Named("walking");bridge.jogClip=Named("run_fast6");bridge.fastRunClip=Named("run_fast4");bridge.sprintClip=Named("sprint_forward");bridge.runClip=Named("running");bridge.idleClip=Named("idle");bridge.keeperClip=Named("keeper");bridge.backClip=Named("back");
+           var strideClip=typeof(ProbeBridge).GetMethod("StrideClip",System.Reflection.BindingFlags.NonPublic|System.Reflection.BindingFlags.Instance);
+           string Clip(FootballLocomotion m,bool carrying)=>((AnimationClip)strideClip.Invoke(bridge,new object[]{m.StrideMode,carrying,false,m.FastStride,m.FastestBack,m.CarrierTop})).name;
+           // Speed profile (m/s per 0.05 s step) and ball per step; returns the shown clip and CarrierTop per step.
+           (string clip,bool top)[] Profile(float[] speed,bool[] carry){var m=new FootballLocomotion();var at=Vector3.zero;var shown=new (string,bool)[speed.Length];
+            for(int k=0;k<speed.Length;k++){m.Sample(at,Vector3.forward,40+k*.05,carry[k],false,-1,4.7f,0,0,1/.635f,true);shown[k]=(Clip(m,carry[k]),m.CarrierTop);at+=Vector3.forward*speed[k]*.05f;}return shown;}
+           float[] Steps(params (float v,int n)[] parts){var list=new List<float>();float last=parts[0].v;foreach(var (v,n) in parts){for(int k=1;k<=n;k++)list.Add(last+(v-last)*k/n);last=v;}return list.ToArray();}
+           bool[] All(int n,bool value){var b=new bool[n];for(int k=0;k<n;k++)b[k]=value;return b;}
+           // Hysteresis: 6.0 -> 7.0 -> 6.4 -> 6.1 m/s (each held 1.5 s): off, on, on, off.
+           var ramp=Steps((6f,30),(7f,10),(7f,30),(6.4f,6),(6.4f,30),(6.1f,3),(6.1f,30));var r=Profile(ramp,All(ramp.Length,true));
+           bool OffOnOnOff=!r[29].top&&r[69].top&&r[105].top&&!r[138].top&&r[29].clip=="run_fast4"&&r[69].clip=="running"&&r[105].clip=="running"&&r[138].clip=="run_fast4";
+           Require(OffOnOnOff,"u1 carrier bridge band hysteresis: 6.0 / 7.0 / 6.4 / 6.1 m/s show run_fast4 / running / running / run_fast4 (on above 6.6, off below 6.2)");
+           // A ball change at 7.0 m/s keeps the clip: running with the ball (run band) and without it (sprint band).
+           var seven=Steps((7f,20),(7f,80));var swap=new bool[seven.Length];for(int k=0;k<swap.Length;k++)swap[k]=k<30||(k/10)%2==1;var s7=Profile(seven,swap);bool steady=true;for(int k=25;k<s7.Length;k++)steady&=s7[k].clip=="running";
+           Require(steady,"u1 a ball change at 7.0 m/s shows no clip change (running with and without the ball)");
+           // At 6.5 m/s (between 6.2 and 6.6) the documented behaviour: from below the carrier shows run_fast4, a ball loss shows
+           // running (sprint band), regaining the ball shows run_fast4 again; from above the carrier keeps running until the ball is
+           // lost, and a regained ball shows run_fast4 (CarrierTop follows the carrier only).
+           var below=Steps((6f,30),(6.5f,10),(6.5f,40),(6.5f,40),(6.5f,40));var bc=new bool[below.Length];for(int k=0;k<bc.Length;k++)bc[k]=k<80||k>=120;var b65=Profile(below,bc);
+           Require(b65[79].clip=="run_fast4"&&b65[119].clip=="running"&&b65[159].clip=="run_fast4","u1 6.5 m/s from below: carrier run_fast4, ball lost running, ball regained run_fast4");
+           var above=Steps((7f,30),(6.5f,10),(6.5f,40),(6.5f,40),(6.5f,40));var a65=Profile(above,bc);
+           Require(a65[79].clip=="running"&&a65[119].clip=="running"&&a65[159].clip=="run_fast4","u1 6.5 m/s from above: carrier running, ball lost running, ball regained run_fast4");
+          }finally{UnityEngine.Object.DestroyImmediate(host);}}
+         // Keepers are no carriers for the bridge band and the stride stretch (marked pictures), as the presentation excludes them.
+         {var k=new FootballLocomotion();var at=Vector3.zero;for(int n=0;n<=60;n++){k.Sample(at,Vector3.forward,60+n*.05,true,true,-1,4.7f,0,0,1/.635f,true);at+=Vector3.forward*8.5f*.05f;}
+          Require(k.StrideMode=="run"&&!k.CarrierTop&&Math.Abs(k.StrideScale-1)<1e-3,"u1 a keeper with the ball at 8.5 m/s gets neither the carrier band nor the carrier stretch");}
          var legacyCarrier=Run(8.5f,true,false);Require(legacyCarrier.StrideScale==1,"u1 a carrier picture without the SI marker keeps the authored step");
          var legacy=Run(8.15f,false,false);Require(legacy.StrideMode=="sprint"&&legacy.StrideScale==1,"u1 a picture without the SI marker keeps the authored top-speed step (older matches unchanged)");
          var cruise=Run(7.2f,false);Require(Math.Abs(cruise.StrideScale-1)<1e-3,"u1 below the authored pace the top-speed step is not stretched");}
