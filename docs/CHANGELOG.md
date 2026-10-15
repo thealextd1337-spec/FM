@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- Spielerintelligenz 183, Paket SI-7 (nur neue Partien mit aktivem Paket `setplay`): Luftbälle werden über Reichweite aus Luftspiel, Körpergröße und Anlauf erreicht statt in 0,65 m; Anwärter beider Teams laufen zum Landepunkt. Flankenfehler folgen dem fähigkeitsabhängigen B10-Muster, nahe Gegner blocken Flanken (Ecke oder freier Ball), Kopfball-/Volleyabschluss nach gewonnenem Luftduell, Eckformation mit Rückraumspieler, Freistöße mit Schützenbezug und Flankenvariante. Unerreichte hohe Ecken rollen seltener ins Seitenaus (15 % → 3,8 % in der Eckenprobe). Schnittstelle `v183CrossEstimate` für SI-1/SI-2.
+
 ## 14. Oktober 2026 – Release 132
 
 - B03/B12: Verteidiger verfolgen Durchbrüche und Richtungswechsel verlässlicher; freie Boden-/Luftbälle und Abpraller erhalten getrennte Hauptjäger und Unterstützung. Gespeicherte Reaktions-/Kontaktfenster verhindern Mehrfachversuche im selben Tick. Grätschen von hinten mit Körperkontakt bleiben Foul.
