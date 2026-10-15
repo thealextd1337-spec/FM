@@ -43,7 +43,7 @@ const V183_OFFBALL_PROFILES=Object.freeze({
  def:{depth:.4,box:.3,edge:.8,wide:.7,byline:.2,overlap:.3,support:1.3,hold:1.1}
 });
 v183RegisterDefaults('offball',{
- carrierPace:1.5,carrierClosePace:1.28,carrierCloseRadius:2.5,runPace:1.58,
+ carrierPace:1.5,carrierClosePace:1.28,carrierCloseRadius:2.5,carrierBrakeLead:.25,runPace:1.58,
  offerCycle:1.05,crowdDelay:.45,crowdRadius:1.1,reachRadius:.65,recoverySeconds:.55,turnoverGap:2.5,
  depthRunners:2,leadBase:6.5,leadDeep:8,leadPos:.07,
  boxRange:30,wideBall:6,boxNear:[4,6],boxSpot:[0,11],boxFar:[-4,7],boxEdge:[0,18],boxTaken:2,boxGapWidth:12,boxGapRange:20,boxGapMin:5,boxWideBonus:3,
@@ -306,6 +306,26 @@ v183PaceFactor=function(m,p,purpose,detail={}){
  }
  if(purpose==='purposeful'){const reason=v183PaceReason(m,p,detail);if(reason==='run'||reason==='follow')return v183Param(m,'offball.runPace');}
  return v183OffballBasePace.call(this,m,p,purpose,detail);
+};
+
+// ----- Carrier target beyond the braking distance (SI-K) -----
+// v159CarrierTarget puts the carry target 2 m ahead of the carrier, and
+// v157Move caps the wanted speed at sqrt(2*brake*(d-0.05)): about 7.1 m/s for
+// that distance, so carrier paces above it (fast carriers, SI-5 on the large
+// pitch) never showed. With carrierBrakeLead > 0 the carry target lies that
+// many metres beyond the braking distance of the carrier's wanted pace, never
+// closer than before. The first-touch branch (receipt, 1.4 m) is unchanged;
+// 0 keeps the legacy 2 m. Reads state only; no random draw.
+const v183OffballBaseCarrierTarget=v159CarrierTarget;
+v159CarrierTarget=function(m,p){
+ const value=v183OffballBaseCarrierTarget.apply(this,arguments);
+ if(!value||!v183OffballOn(m))return value;
+ const margin=v183Param(m,'offball.carrierBrakeLead'),receipt=m.attackFlow.receipt,now=v152Seconds(m);
+ if(!(margin>0)||receipt?.playerId===p.pid&&now>=receipt.at&&now<=receipt.until)return value;
+ const s=v150Scale(),dx=(p.tx-p.x)*s.x,dy=(p.ty-p.y)*s.y,gap=Math.hypot(dx,dy);if(!gap)return value;
+ const mass=(p.offenseMotion||v157InitialBody(p)).massKg/74,quick=v162Active(m)&&!p.keeper,brake=10.5*(quick&&v119PaceActive(m)?1.25:quick?1.18:1)/mass,pace=v157Pace(m,p);
+ const lead=Math.max(gap,pace*pace/(2*brake)+.05+margin);
+ p.tx=p.x+dx/gap*lead/s.x;p.ty=p.y+dy/gap*lead/s.y;return value;
 };
 
 v183EnableByDefault('offball');

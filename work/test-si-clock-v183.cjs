@@ -62,7 +62,7 @@ check('registered parameters: defaults, types, stored with the match; the clock 
  assert.deepEqual(copy0(ev0('v183Registry.defaults.clock')),{teleport:true,freeKickScene:2.2,foulLock:1.8,kickoffAdvance:true,kickoffWalkLead:1.5});
  assert.equal(ev0('v183Registry.enabled.clock'),true);
  h0.call('Native183.constructed',{});
- assert.equal(ev0("v183Active(match,'clock')"),true);assert.equal(ev0('match.si.clockRate'),MATCH_SPEED,'the default rate stays the 182 rate until SI-K');
+ assert.equal(ev0("v183Active(match,'clock')"),true);assert.equal(ev0('match.si.clockRate'),.36,'SI-K default rate of new matches');assert.equal(ev0('V183_CLOCK_RATE'),.36);
  assert.deepEqual(copy0(ev0('match.si.params.clock')),{teleport:true,freeKickScene:2.2,foulLock:1.8,kickoffAdvance:true,kickoffWalkLead:1.5});
  assert.throws(()=>h0.call('Native183.constructed',{si:{params:{clock:{foulLock:'1.8'}}}}),/number expected/);
  assert.throws(()=>h0.call('Native183.constructed',{si:{params:{clock:{teleport:1}}}}),/boolean expected/);

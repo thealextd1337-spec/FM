@@ -15,10 +15,10 @@ const close=(a,b,eps,msg)=>assert(Math.abs(a-b)<=eps,`${msg}: ${a} vs ${b}`);
 // Built scenes: Native182.install with the 182 markers plus a frozen SI marker.
 // Positions in metres: depth from the own goal line, lateral seen from the team.
 h.run(`
-function Si2Scene({size='standard',seed=1,params={},packages={offball:true},people,ball,owner=null,lastTouch=0}){
+function Si2Scene({size='standard',seed=1,params={},packages={offball:true},people,ball,owner=null,lastTouch=0,siParams={},clockRate}){
  Native182.seedRandom(90000+seed);
  const m=Native182.install({people,size,ball:ball||{x:.5,y:.5},lastTouch,markers:{keeperHoldRevision:182,setPieceRevision:182,looseBallRevision:182,pursuitRevision:182,motionRevision:182}});
- m.si=v183CreateSi({packages,params:{offball:params}});m.penaltyRevision=182;
+ m.si=v183CreateSi({packages,params:{...siParams,offball:params},...(clockRate?{clockRate}:{})});m.penaltyRevision=182;
  if(owner){m.owner=owner;m.ball={x:owner.x,y:owner.y};m.lastTouch=owner.t;}
  m.next=Infinity;return m;
 }
@@ -131,7 +131,8 @@ const boxPeople=`[${[
  person('k1',1,2,0,'gk',{n:1},true),person('d11',1,13,-7,'def',{spd:12}),person('d21',1,13,7,'def',{spd:12}),person('m11',1,26,-8,'mid',{spd:13}),person('m21',1,26,8,'mid',{spd:13}),person('a11',1,45,0,'att',{spd:14})].join(',')}]`;
 check('box occupation: a wide ball near the goal fills at least two box points (near post on the ball side, spot, far post)',()=>{
  ev(`(()=>{const people=${boxPeople};for(const p of people)p.role=p.line==='def'?0:1;const roles={b20:'box-to-box',m20:'striker',p10:'poacher',w10:'winger'};for(const p of people)if(roles[p.pid])p.tacticalRole=roles[p.pid];
-  const m=Si2Scene({seed:3,people,owner:people.find(p=>p.pid==='w10')});Native182.advance();})()`);
+  // SI-K: the scene keeps its design point (rate 0.78, SI-3 values before SI-K); there the striker's near-post box point beat his depth run by 0.03 and the calibrated values flip it.
+  const m=Si2Scene({seed:3,people,owner:people.find(p=>p.pid==='w10'),clockRate:MATCH_SPEED,siParams:{finish:{spreadBase:.037,spreadSkill:.584,spreadFlat:2.22,reachBase:1.39,reachGk:.066}}});Native182.advance();})()`);
  const r=copy(ev(`(()=>{const m=match,s=v150Scale(m),intents=Si2Intents(),goal={x:.5,y:v55Field.top};
   const box=Object.entries(intents).filter(([,i])=>i.cat==='box').map(([pid,i])=>({pid,lateral:+((i.x-.5)*s.x).toFixed(1),depth:+((i.y-goal.y)*s.y).toFixed(1),type:i.type,limit:v121PositioningPlans.get(m)?.get(Si2Find(pid))?.limit!=null?+((v121PositioningPlans.get(m).get(Si2Find(pid)).limit-goal.y)*s.y).toFixed(1):null}));
   const p=Si2Find('m20'),owner=m.owner,rivals=m.people.filter(q=>q.t!==0&&!q.keeper),P=k=>v183Param(m,'offball.'+k),plans=v121PositioningPlans.get(m);
@@ -212,6 +213,20 @@ check('pace: carrier parameter (0.78+tec*0.009), duel pace within the close radi
   return {far,near,expectFar:expect(v183Param(m,'offball.carrierPace')*(.78+ability(o,'tec')*.009)),expectNear:expect(v183Param(m,'offball.carrierClosePace')*(.78+ability(o,'tec')*.009)),carrierPace:v183Param(m,'offball.carrierPace'),closePace:v183Param(m,'offball.carrierClosePace'),run,expectRun:v158Movement(runner,rb*1.58,1).maxSpeed,support,expectSupport:v158Movement(runner,rb*1.35,1).maxSpeed,plain,expectPlain:v158Movement(runner,rb*1.15,1).maxSpeed,legacy,expectLegacy:expect(1.28*(.78+ability(o,'tec')*.009))};})()`));
  assert(r.closePace<r.carrierPace,'duel pace below the open pace');close(r.far,r.expectFar,1e-9,'carrier far');close(r.near,r.expectNear,1e-9,'carrier close');assert(r.near<r.far,'close rule lowers the pace');close(r.run,r.expectRun,1e-9,'run');close(r.support,r.expectSupport,1e-9,'support');close(r.plain,r.expectPlain,1e-9,'base');close(r.legacy,r.expectLegacy,1e-9,'legacy');
  measurements.pace={carrier:+r.far.toFixed(2),carrierClose:+r.near.toFixed(2),runner:+r.run.toFixed(2),support:+r.support.toFixed(2),base:+r.plain.toFixed(2),legacyCarrier:+r.legacy.toFixed(2)};
+});
+
+check('carrier target (SI-K): a running carry puts the target beyond the braking distance of the wanted pace; carrierBrakeLead 0 keeps the legacy 2 m; the package off keeps 2 m',()=>{
+ const lead=(params,packages)=>copy(ev(`(()=>{const people=${boxPeople};const m=Si2Scene({seed:8,people,owner:people.find(p=>p.pid==='b20'),params:${JSON.stringify(params)},packages:${JSON.stringify(packages)}});
+  const o=m.owner,s=v150Scale(m),goal=o.t===0?v55Field.top:v55Field.bottom;delete m.attackFlow.receipt;delete m.attackFlow.pendingTurn;
+  m.attackFlow.carry={playerId:o.pid,target:{x:o.x,y:o.y+(goal-o.y)*.3},until:v152Seconds(m)+1};
+  const before=JSON.stringify(m.attackFlow.carry),ok=v159CarrierTarget(m,o),d=Math.hypot((o.tx-o.x)*s.x,(o.ty-o.y)*s.y);
+  const mass=(o.offenseMotion||v157InitialBody(o)).massKg/74,brake=10.5*1.25/mass,pace=v157Pace(m,o);
+  return {ok,d,need:pace*pace/(2*brake)+.05,pace,brake,unchanged:JSON.stringify(m.attackFlow.carry)===before};})()`));
+ const on=lead({},{offball:true}),legacy=lead({carrierBrakeLead:0},{offball:true}),off=lead({},{offball:false});
+ assert(on.ok&&on.unchanged,'carry kept, nothing written besides the target');
+ close(on.d,Math.max(2,on.need+.25),1e-6,'target beyond the braking distance plus 0.25 m');assert(on.d>2&&Math.sqrt(2*on.brake*(on.d-.05))>=on.pace,'braking cap no longer limits the wanted pace');
+ close(legacy.d,2,1e-6,'carrierBrakeLead 0: legacy 2 m');close(off.d,2,1e-6,'package off: legacy 2 m');
+ measurements.carrierLead={metres:+on.d.toFixed(2),pace:+on.pace.toFixed(2)};
 });
 
 // ----- restore during a running intent -----

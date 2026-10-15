@@ -137,9 +137,9 @@ check('risk: same skills, playmaker vs stopper; utility differs only in the loss
  assert(Math.abs((pp.gain-pp.u)*wPlay.riskWeight-(sp.gain-sp.u)*wStop.riskWeight)<1e-12,'loss/risk is the only difference');
  // Same role, other mental value: dec raises the risk weight slightly (SI-F formula).
  const poacher=run('poacher',20).find(o=>o.kind==='pass'&&o.ref==='r'),low=run('poacher',4).find(o=>o.kind==='pass'&&o.ref==='r');assert(low.u<poacher.u,'dec raises the risk weight');assert.equal(low.gain,poacher.gain);
- // Effective span clamps the raw SI-F weights to 0.85-1.15 (relative to the neutral player).
+ // Effective span clamps the raw SI-F weights to weightMin-weightMax (relative to the neutral player; SI-K 0.8-1.2).
  const span=copy(ev("['poacher','stopper','playmaker','winger'].map(r=>v183OptWeights({tacticalRole:r,calm:20,dec:20},v183OptParams(match)))"));
- for(const w of span)for(const v of Object.values(w))assert(v>=.85-1e-12&&v<=1.15+1e-12);
+ const lim=copy(ev("[v183Param(match,'options.weightMin'),v183Param(match,'options.weightMax')]"));assert.deepEqual(lim,[.8,1.2]);for(const w of span)for(const v of Object.values(w))assert(v>=lim[0]-1e-12&&v<=lim[1]+1e-12);
 });
 check('square pass: a free team-mate in a clearly better position is preferred to a covered shot',()=>{
  scene({seed:7,attack:[{id:'c',goal:16,lateral:-10,line:'att',skills:{fin:10}},{id:'r',goal:9.5,lateral:1,line:'att',skills:{fin:14,tec:14}}],defend:[{id:'b',goal:14.6,lateral:-9.2,line:'def'},{id:'d',goal:8,lateral:7,line:'def'}]});

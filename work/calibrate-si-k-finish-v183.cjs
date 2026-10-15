@@ -37,6 +37,6 @@ for(const v of variants){
  const perOn=l=>{const on=l.reduce((a,s)=>a+s.on,0),go=l.reduce((a,s)=>a+s.xg,0);return on?go/on:NaN;};
  const far=open.filter(s=>s.range>22);
  rows.push({params:JSON.stringify(v),n:ev.length,goalPerShot:pc(mean(ev.map(s=>s.xg))),actual:pc(mean(shots.map(s=>s.goal?1:0))),onTarget:pc(mean(ev.map(s=>s.on))),
-  ratio:(high.p/low.p).toFixed(2),keeperGap:pc(perOn(gkMid)-perOn(gkHigh)),longHigh:pc(g(band(far,14,99)).p),longAll:pc(g(far).p),near:pc(g(open.filter(s=>s.range<=14)).p),header:pc(g(ev.filter(s=>s.kind==='header')).p),headerActual:pc(mean(shots.filter(s=>s.kind==='header').map(s=>s.goal?1:0)))});
+  ratio:(high.p/low.p).toFixed(2),keeperGap:pc(perOn(gkMid)-perOn(gkHigh)),longHigh:pc(g(band(far,14,99)).p),longAll:pc(g(far).p),near:pc(g(open.filter(s=>s.range<=14)).p),standard:pc(g(ev.filter(s=>s.size==='standard')).p),large:pc(g(ev.filter(s=>s.size==='large')).p),header:pc(g(ev.filter(s=>s.kind==='header')).p),headerActual:pc(mean(shots.filter(s=>s.kind==='header').map(s=>s.goal?1:0)))});
 }
 console.table(rows);

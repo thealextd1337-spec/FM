@@ -56,12 +56,13 @@
 
 const V183_FINISH_KEYS=Object.freeze(Object.keys(v183RegisterDefaults('finish',{
  keeperHold:1.6,
- spreadBase:.037,spreadSkill:.584,spreadPower:1.61,spreadFlat:2.22,spreadFlatV:1,verticalRatio:1.2,
+ spreadBase:.035,spreadSkill:.5,spreadPower:1.61,spreadFlat:1.3,spreadFlatV:1,verticalRatio:1.2, // SI-K: spread .037/.584/2.22 -> .035/.5/1.3
  pressureRadius:2.5,pressureGain:.38,calmDamp:.05,bodyGain:.5,
  headerSpread:1.3,volleySpread:1.2,oneTouchSpread:1.1,fkSpread:1,
  aimTemp:.036,
  speedBase:21,speedFin:.4,speedTec:.2,headerBase:11,headerAir:.3,volleySpeed:1.03,fkSpeed:.92,
- reachBase:1.39,reachGk:.066,noHandsReach:.35,reactionBase:.168,reactionGk:.015,reactionMin:.06,
+ reachBase:1.2,reachGk:.09, // SI-K: 1.39/.066 -> 1.2/.09
+ noHandsReach:.35,reactionBase:.168,reactionGk:.015,reactionMin:.06,
  lateralBase:3.67,lateralSpd:.065,lateralGk:.098,handsHeight:1,upBase:1.49,upGk:.01,jumpMax:.55,jumpSpeed:2.2,down:1,
  parryBase:.55,parrySpeed:.02,parryStretch:.35,parryHigh:.1,parryGk:.015,parryMin:.15,parryMax:.9,
  outBase:.4,outPost:.45,outStretch:.2,outGk:.015,postZone:1.8,parryNear:3.5,parryFar:8,parryAngle:.45,parryAngleGk:.03,

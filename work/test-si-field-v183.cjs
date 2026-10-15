@@ -14,6 +14,8 @@ const PACKAGES=['clock','options','offball','finish','defence','setplay','field'
 const FIELD_ONLY={...ALL_OFF,field:true};
 const SHAPE={field:{anchorWidth:35,rowGap:9.2,pin:1,defenderLine:1,linePlans:1}};
 const live=()=>{for(let i=0;i<3000;i++){h.call('Native183.advance');if(ev('Boolean(match.owner&&!match.owner.keeper&&!match.flight&&!v121PositioningPaused(match))'))return;}throw Error('no live ball');};
+// SI-1 window defaults as registered (SI-K: 12.5 + 0.75*fin).
+const OPT=copy(ev('v183Registry.defaults.options')),WB=OPT.windowBase,WF=OPT.windowFin;
 const close=(a,b,eps,msg)=>assert(Math.abs(a-b)<=eps,`${msg}: ${a} vs ${b}`);
 
 // ----- registration and switch -----
@@ -58,7 +60,7 @@ check('the wrapped functions hand marked matches with the package off and unmark
  h.call('Native183.constructed',{size:'large',si:{packages:ALL_OFF}});const off=copy(ev(probe));
  h.call('Native183.constructed',{size:'large',si:false});const legacy=copy(ev(probe));
  assert.deepEqual(off.anchor,legacy.anchor);assert.deepEqual(off.bases,legacy.bases);assert.deepEqual(off.pace,legacy.pace);
- assert.equal(off.window,16,'SI-1 window unchanged with the package off');
+ assert.equal(off.window,WB,'SI-1 window unchanged with the package off');
 });
 
 // ----- pace and shooter window -----
@@ -99,25 +101,25 @@ check('pace: carrier and own runs scale with the pitch length, other purposes ke
 });
 check('shooter window of SI-1: the switch v183OptWindowBase grows with the pitch length; v183Param keeps returning the stored value; the effective window is traced',()=>{
  h.call('Native183.constructed',{size:'large',roles:true});
- assert.equal(ev("v183OptWindowBase(match)"),16+12*(81.6/68-1));assert.equal(ev('match.si.params.options.windowBase'),16);
- assert.equal(ev("v183Param(match,'options.windowBase')"),16,'SI-F contract: v183Param returns the stored value');
+ assert.equal(ev("v183OptWindowBase(match)"),WB+12*(81.6/68-1));assert.equal(ev('match.si.params.options.windowBase'),WB);
+ assert.equal(ev("v183Param(match,'options.windowBase')"),WB,'SI-F contract: v183Param returns the stored value');
  assert.equal(ev("v183OptParams(match).windowBase"),ev('v183OptWindowBase(match)'),'SI-1 reads the window through the switch');
- assert.equal(ev("v183Param(match,'options.windowFin')"),.55,'other options keys untouched');
- h.call('Native183.constructed',{size:'standard',roles:true});assert.equal(ev("v183OptWindowBase(match)"),16);
- h.call('Native183.constructed',{size:'large',roles:true,si:{params:{field:{windowGain:0}}}});assert.equal(ev("v183OptWindowBase(match)"),16);
- h.call('Native183.constructed',{size:'large',roles:true,si:{packages:{field:false}}});assert.equal(ev("v183OptWindowBase(match)"),16);
+ assert.equal(ev("v183Param(match,'options.windowFin')"),WF,'other options keys untouched');
+ h.call('Native183.constructed',{size:'standard',roles:true});assert.equal(ev("v183OptWindowBase(match)"),WB);
+ h.call('Native183.constructed',{size:'large',roles:true,si:{params:{field:{windowGain:0}}}});assert.equal(ev("v183OptWindowBase(match)"),WB);
+ h.call('Native183.constructed',{size:'large',roles:true,si:{packages:{field:false}}});assert.equal(ev("v183OptWindowBase(match)"),WB);
  h.call('Native183.constructed',{size:'large',roles:true,si:false});assert.equal(ev("(()=>{v183StrictParams(false);const v=v183OptWindowBase(match);v183StrictParams(true);return v;})()"),undefined,'unmarked matches read nothing');
  assert.throws(()=>{h.call('Native183.constructed',{size:'large',si:false});ev("v183OptWindowBase(match)");},/without marker 183/);
- // The decision trace carries the effective window (large: 18 m + 0.55 * finishing).
+ // The decision trace carries the effective window (large: windowBase + 2.4 m + windowFin * finishing).
  h.call('Native183.constructed',{size:'large',roles:true,si:{packages:{...ALL_OFF,options:true,field:true}}});ev('v183SetTraceLimit(2000)');
  let entries=[];for(let i=0;i<40&&!entries.some(e=>e.type==='options'&&e.window!==undefined);i++){h.call('Native183.run',100);entries=copy(ev('v183TraceEntries(match)'));}
  const withWindow=entries.filter(e=>e.type==='options'&&e.window!==undefined);assert(withWindow.length>0,'options trace entries carry the window');
  const pids=new Map(copy(ev("match.people.map(p=>[p.pid,ability(p,'fin')])")));
- for(const e of withWindow.slice(0,50))if(pids.has(e.pid))close(e.window,18.4+.55*pids.get(e.pid),.1+.55*.5,'traced window '+e.pid);
+ for(const e of withWindow.slice(0,50))if(pids.has(e.pid))close(e.window,WB+2.4+WF*pids.get(e.pid),.1+WF*.5,'traced window '+e.pid);
  h.call('Native183.constructed',{size:'standard',roles:true,si:{packages:{...ALL_OFF,options:true,field:true}}});ev('v183SetTraceLimit(2000)');
  for(let i=0;i<40&&!copy(ev("v183TraceEntries(match).some(e=>e.type==='options')"));i++)h.call('Native183.run',100);
  const std=copy(ev('v183TraceEntries(match)')).filter(e=>e.type==='options'&&e.window!==undefined),sp=new Map(copy(ev("match.people.map(p=>[p.pid,ability(p,'fin')])")));
- assert(std.length>0);for(const e of std.slice(0,50))if(sp.has(e.pid))close(e.window,16+.55*sp.get(e.pid),.1+.55*.5,'standard traced window');
+ assert(std.length>0);for(const e of std.slice(0,50))if(sp.has(e.pid))close(e.window,WB+WF*sp.get(e.pid),.1+WF*.5,'standard traced window');
 });
 
 // ----- shape parameters in metres (off by default) -----
@@ -231,7 +233,7 @@ check('restore on the large pitch: marker, anchors, targets and the continuation
  // A 183 match saved before this package (no switch, no field parameters) stays off after the restore and plays on.
  h.call('Native183.constructed',{size:'large',roles:true,si:{packages:{field:false}}});
  ev("(()=>{const si=JSON.parse(JSON.stringify(match.si));delete si.packages.field;delete si.params.field;match.si=si;return 0;})()");
- assert.equal(ev("v183Active(match,'field')"),false);assert.equal(ev("v183OptWindowBase(match)"),16);
+ assert.equal(ev("v183Active(match,'field')"),false);assert.equal(ev("v183OptWindowBase(match)"),WB);
  h.call('Native183.run',200);assert.equal(ev('match.people.every(p=>[p.x,p.y,p.tx,p.ty].every(Number.isFinite))'),true);
 });
 

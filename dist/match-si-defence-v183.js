@@ -58,7 +58,8 @@ v183RegisterDefaults('defence',{
  // players stand on the lane from a near team-mate of the carrier to the carrier,
  // counterLane of the way from the team-mate; counterContactWindow: contact window in s
  // for duels with the carrier while the window is open (at most contactWindow).
- counterWindow:2,counterWindowPress:3,counterZone:24,counterRange:14,counterPressers:2,counterWide:1.4,counterCutters:1,counterLane:.35,counterContactWindow:.15,
+ counterWindow:0,counterWindowPress:0, // SI-K: 2/3 s -> 0 (window off; no gain in the SI-4 scenes)
+ counterZone:24,counterRange:14,counterPressers:2,counterWide:1.4,counterCutters:1,counterLane:.35,counterContactWindow:.15,
  // Clearance under pressure (v183Clearance): chance that a header clearance goes
  // out = clearOutBase + clearOutPressure*pressing rivals + clearOutBox in the own
  // box, damped by calm, capped at clearOutMax. Block (kind 'block' of v183Clearance,
