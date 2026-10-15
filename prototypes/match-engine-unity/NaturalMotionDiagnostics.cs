@@ -770,8 +770,9 @@ public static class NaturalMotionDiagnostics {
             }
             if(render){sheet.Apply();var name="directions-"+band+".png";File.WriteAllBytes(Path.Combine(folder,name),sheet.EncodeToPNG());images.Add(name);UnityEngine.Object.DestroyImmediate(sheet);}
         }
-        // 1b. U-1 (183, B02): the native body of the SI-2 tempi as identical input (NativeBody).
-        var bodyFile=Path.Combine(repository,outputFolder??EvidenceFolder,"native183-body","body-183.json");
+        // 1b. U-1 (183, B02): the native body of the SI-2 tempi as identical input (NativeBody): the run folder's own
+        // native183-body/body-183.json, else the versioned fixture (BodyFixture), so every D6Cli.Tests run carries the u1 gates.
+        var bodyFile=Path.Combine(repository,outputFolder??EvidenceFolder,"native183-body","body-183.json");if(!File.Exists(bodyFile))bodyFile=Path.Combine(repository,BodyFixture);
         if(File.Exists(bodyFile))cases.AddRange(NativeBody(baseConfig,subject,File.ReadAllText(bodyFile),dirNames));
         // 2. Steady curves at 3.5 m/s: facing follows the tangent.
         foreach(float rate in new[]{90f,150f,250f}){if(!Want("curve-"+rate+"@60Hz"))continue;
@@ -1083,6 +1084,8 @@ public static class NaturalMotionDiagnostics {
     // section 1 under a fixed facing: a stress set, since the native body turns before it runs and travel far off the
     // facing stays short at these speeds. Windows: start 0.5-1.4 s, cruise from 1.4 s to the change of direction (2.2 s) or
     // the stop (3.2 s), stop = change of direction and stop to the end. Origin "si183", gated by U1Gates.
+    // Versioned native body paths (work/capture-native-body-u1-v183.cjs, 95 KB); outside outputs/, never written by a test.
+    public const string BodyFixture="prototypes/match-engine-unity/fixtures/native183-body/body-183.json";
     static List<Case> NativeBody(WorldConfig config,int subject,string json,string[] dirNames){
         var cases=new List<Case>();var file=JsonUtility.FromJson<BodyFile>(json);
         // Native metres (x across, z along the initial heading) onto the pitch: the run along +X; a positive native turn

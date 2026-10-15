@@ -10,14 +10,16 @@
 // Samples per run as parallel arrays (JsonUtility): t (s), x/z (m from the start; z along the initial heading),
 // hx/hz (body heading as a unit vector in the same axes) and v (body speed, m/s).
 // Observation only: the match is restored afterwards and nothing is written into dist.
-//   node work/capture-native-body-u1-v183.cjs [--out work/u1/si/native183-body]
+//   node work/capture-native-body-u1-v183.cjs [--out prototypes/match-engine-unity/fixtures/native183-body]
+// The default output is the versioned fixture that D6Cli.Tests reads (NaturalMotionDiagnostics.BodyFixture); regenerate it
+// only together with a deliberate change of the native body or of the SI-2 tempi.
 const fs=require('node:fs'),path=require('node:path'),{create}=require('./native183-scenes.cjs');
 const arg=(name,fallback)=>{const i=process.argv.indexOf(name);return i>=0?process.argv[i+1]:fallback;};
-const out=path.resolve(arg('--out','work/u1/si/native183-body'));
+const out=path.resolve(arg('--out','prototypes/match-engine-unity/fixtures/native183-body'));
 const h=create({view:false}),ev=text=>h.evaluate(text),copy=value=>h.copy(value);
 const kinds=[{name:'carrier150',kind:'carrier',pace:1.5},{name:'carrier128',kind:'close',pace:null},{name:'run158',kind:'runner',pace:null}];
 const deltas=[0,45,-45,90,-90,135,-135,180];
-const result={source:'v157Move (dist/world-offensive-quality-v157.js) through native183-scenes.cjs, dt 0.05 s',created:new Date().toISOString(),kinds:[]};
+const result={source:'v157Move (dist/world-offensive-quality-v157.js) through native183-scenes.cjs, dt 0.05 s',kinds:[]};
 for(const k of kinds){
  h.call('Native183.constructed',{club:'GER-2',seed:'si2b02',size:'standard',roles:true,si:{packages:{offball:true,clock:true},clockRate:.42,...(k.pace?{params:{offball:{carrierPace:k.pace}}}:{})}});
  let live=false;for(let i=0;i<800&&!live;i++){h.call('Native183.advance');live=ev('Boolean(match.owner&&!match.owner.keeper&&!v121PositioningPaused(match)&&!match.flight)');}
