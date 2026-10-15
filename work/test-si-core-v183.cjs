@@ -165,10 +165,10 @@ check('ledger sources: additive tags on marked ledgers only, by match, flight or
 
 // ----- switches -----
 check('radius predicate: exact legacy normalised test unless a marked match supplies metres',()=>{
- const g=fresh(),gev=text=>g.evaluate(text);gev("v183RegisterDefaults('defence',{pressRadius:2.5})");
- for(const si of [false,undefined,{packages:{defence:true}}]){
+ const g=fresh(),gev=text=>g.evaluate(text);gev("v183RegisterDefaults('defence',{testPressRadius:2.5})");
+ for(const si of [false,{packages:{defence:false}},{packages:{defence:true}}]){
   g.call('Native183.constructed',{si});g.call('Native183.run',30);
-  const r=g.copy(gev(`(()=>{const ps=match.people,out=[];for(const a of ps)for(const b of ps){out.push([v183Radius(match,undefined,.15)(a,b),distance(a,b)<.15,v183Radius(match,'defence.pressRadius',.15)(a,b),v122Metres(a,b)<2.5,v183Radius(match,4,.15)(a,b),v122Metres(a,b)<4]);}return out;})()`));
+  const r=g.copy(gev(`(()=>{const ps=match.people,out=[];for(const a of ps)for(const b of ps){out.push([v183Radius(match,undefined,.15)(a,b),distance(a,b)<.15,v183Radius(match,'defence.testPressRadius',.15)(a,b),v122Metres(a,b)<2.5,v183Radius(match,4,.15)(a,b),v122Metres(a,b)<4]);}return out;})()`));
   for(const [legacy,expected,keyed,metric,metres,metric4]of r){
    assert.equal(legacy,expected);
    assert.equal(keyed,si&&si.packages?.defence?metric:expected,'parameter key only with the active package');
