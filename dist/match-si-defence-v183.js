@@ -16,8 +16,9 @@
 // What this package changes in a marked match:
 //   - one contact path: duels open from the per-tick check only (v182ContactCheck);
 //     the decision path (action -> v56MaybeChallenge) no longer opens duels. A
-//     slide is considered at the slide cadence and only if a forecast of the real
-//     slide (kinematics of v56StartSlide/v56AdvanceSlide) reaches the ball first;
+//     slide is considered at the slide cadence (a slide from behind stays possible: B03);
+//     the optional forecast filter (slideForecast 1/2, default 0) uses the kinematics of
+//     v56StartSlide/v56AdvanceSlide;
 //   - fouls arise only from contact events (standing tackle, slide; traced). The
 //     contactless foul probe of set-pieces-v50.js:160 is not reachable in the
 //     production load order (pitch-v55.js:492 replaces action) and stays off;
@@ -34,14 +35,17 @@
 v183RegisterDefaults('defence',{
  // Pressure radii in metres: area-equivalent circles of the former normalised
  // ellipse (.15 = 7.3 x 11.0 m on the 44 x 68 m pitch, 20 % more on the large one).
- // pass: pitch-v55.js:192 (this package); cross: :328 (SI-7); shot: :403 (SI-3);
- // decision: :494 (SI-1).
+ // pass: pitch-v55.js:192 (this package; SI-1 mirrors it in its arrival estimate).
+ // cross, shot and decision have no consumer yet: SI-7 uses setplay.pressureRadius
+ // (3 m), SI-3 finish.pressureRadius (2.5 m) and pitch-v55.js:494 is still the
+ // normalised .15; SI-K fixes the common metre values for all sites.
  passPressureRadius:9,crossPressureRadius:9,shotPressureRadius:9,decisionPressureRadius:9,
  // Contact: seconds locked after a challenge (B03 today .25), seconds between two
- // slide decisions, forecast filter for slides (0 off; 1 only slides that reach the
- // ball first; 2 also slides that miss but are not from behind), scale of the foul
- // chance of a standing tackle.
- contactWindow:.25,slideInterval:.5,slideForecast:2,standingFoulScale:1,
+ // slide decisions, forecast filter for slides (0 off: every slide candidate may slide,
+ // also from behind, B03 as released; 1 only slides that reach the ball first; 2 also
+ // slides that miss but are not from behind. 1 and 2 are all-knowing binary filters
+ // kept for tests and SI-K), scale of the foul chance of a standing tackle.
+ contactWindow:.25,slideInterval:.5,slideForecast:0,standingFoulScale:1,
  // Pace factors (B03 pressing today 1.58; safety defender: support factor 1.35).
  pressPace:1.58,coverPace:1.35,
  // Safety defender: carrier closer than coverZone m to the own goal, safety
@@ -57,7 +61,8 @@ v183RegisterDefaults('defence',{
  counterWindow:2,counterWindowPress:3,counterZone:24,counterRange:14,counterPressers:2,counterWide:1.4,counterCutters:1,counterLane:.35,counterContactWindow:.15,
  // Clearance under pressure (v183Clearance): chance that a header clearance goes
  // out = clearOutBase + clearOutPressure*pressing rivals + clearOutBox in the own
- // box, damped by calm, capped at clearOutMax. Block: base chance and box bonus.
+ // box, damped by calm, capped at clearOutMax. Block (kind 'block' of v183Clearance,
+ // reserved: no caller yet, SI-7 has its own v183BlockCross): base chance and box bonus.
  clearOutBase:.08,clearOutPressure:.12,clearOutBox:.12,clearOutMax:.5,clearCalm:.025,blockOutBase:.35,blockOutBox:.15,
  // Direction of a block deflection (draw offset, spread, gain per point of 'pos').
  blockBias:.2,blockSpread:.3,blockSkill:.004
@@ -109,16 +114,26 @@ const V183_DEF_SLIDE_SECONDS=.65;
 // seconds: the tackler slides to the ball position plus a short follow-through, the
 // carrier and his ball keep their observed velocity. The first event decides: 'ball'
 // (ball gap < 24/32 m), 'foul' (body gap < 27/32 m with the ball not reached, or from
-// behind) or 'miss'.
+// behind: the flag of the start or, at each step, the metres test of v182Behind) or
+// 'miss'. The loop ends with the slide (.65 s plus one step).
+// Direction of the carrier's run as v182Behind takes it (observed velocity, else his last
+// motion, else towards the opponent's goal).
+function v183DefRunDirection(m,victim){
+ const s=v150Scale(m),body=v157Body(victim),speed=Math.hypot(body.vx,body.vy);
+ if(speed>.5)return {x:body.vx/speed,y:body.vy/speed};
+ const mx=(victim.motionX||0)*s.x,my=(victim.motionY||0)*s.y,l=Math.hypot(mx,my);
+ return l>1e-6?{x:mx/l,y:my/l}:{x:0,y:victim.t===0?-1:1};
+}
+function v183DefBehindAt(m,run,tackler,carrier){const s=v150Scale(m);return (tackler.x-carrier.x)*s.x*run.x+(tackler.y-carrier.y)*s.y*run.y<-.5;}
 function v183DefSlideForecast(m,slider,victim){
- const s=v150Scale(m),body=v157Body(victim),vx=body.vx/s.x,vy=body.vy/s.y,forward=v56Forward(victim),behind=v56ApproachInfo(slider,victim).behind;
+ const s=v150Scale(m),body=v157Body(victim),vx=body.vx/s.x,vy=body.vy/s.y,forward=v56Forward(victim),behind=v56ApproachInfo(slider,victim).behind,run=v183DefRunDirection(m,victim);
  const ball={...m.ball},reach=behind?.25:.18,from={x:slider.x,y:slider.y};
  const target={x:clamp(ball.x+forward.x*reach/s.x,.06,.94),y:clamp(ball.y+forward.y*reach/s.y,.06,.94)};
  const rate=1/V183_DEF_SLIDE_SECONDS,metres=(a,b)=>Math.hypot((a.x-b.x)*s.x,(a.y-b.y)*s.y)*32;
- for(let t=0;t<=1;t+=.05){
+ for(let t=0;t<=V183_DEF_SLIDE_SECONDS+.05;t+=.05){
   const q=Math.min(1,rate*t),eased=1-(1-q)*(1-q),tackler={x:from.x+(target.x-from.x)*eased,y:from.y+(target.y-from.y)*eased};
   const carrier={x:victim.x+vx*t,y:victim.y+vy*t},ballAt={x:ball.x+vx*t,y:ball.y+vy*t},bodyGap=metres(tackler,carrier),ballGap=metres(tackler,ballAt);
-  if(bodyGap<27&&(ballGap>23||behind))return 'foul';
+  if(bodyGap<27&&(ballGap>23||behind||v183DefBehindAt(m,run,tackler,carrier)))return 'foul';
   if(ballGap<24)return 'ball';
  }
  return 'miss';
@@ -233,7 +248,7 @@ v159DefensiveTarget=function(m,p){
 // to the previous owner of the function.
 const v183DefBasePaceFactor=v183PaceFactor;
 v183PaceFactor=function(m,p,purpose,detail={}){
- if(v183Active(m,'defence')){
+ if(v183DefOn(m)){
   const read=detail.read;
   if(read&&detail.now!==undefined&&read.nextAt>=detail.now&&read.kind==='cover')return v183Param(m,'defence.coverPace');
   if(purpose==='purposeful'&&v183PaceReason(m,p,detail)==='press')return v183Param(m,'defence.pressPace');
@@ -242,7 +257,7 @@ v183PaceFactor=function(m,p,purpose,detail={}){
 };
 
 // ----- Clearance under pressure and block direction -----
-// context.kind 'header' (default, air duel) or 'block'; context.evaluate: the
+// context.kind 'header' (default, air duel) or 'block' (reserved, no caller yet); context.evaluate: the
 // deterministic centre and the chance of going out (outChance), no draw.
 const v183DefBaseClearance=v183Clearance;
 v183Clearance=function(m,defender,point,context={}){

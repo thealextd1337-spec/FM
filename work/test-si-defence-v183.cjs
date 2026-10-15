@@ -273,10 +273,10 @@ check('the tick check uses the same contact candidates and slide kinematics as p
  // Slide: duration .65 * MATCH_SPEED clock units, reach .25/.18 m, contact thresholds 27 (body) and 24/23 (ball).
  assert(v56.includes('delta/(world?.65*'));assert(own.includes('V183_DEF_SLIDE_SECONDS=.65'));assert(!own.includes('MATCH_SPEED'),'no clock-unit conversion in the module');
  assert(v56.includes('const lead=behind?.04:.016,reach=behind?.25:.18'));assert(own.includes('reach=behind?.25:.18'));
- assert(v56.includes('bodyGap<27&&(ballGap>23||slide.behind')&&v56.includes('if(ballGap<24){'));assert(own.includes('bodyGap<27&&(ballGap>23||behind)')&&own.includes('ballGap<24'));
+ assert(v56.includes('bodyGap<27&&(ballGap>23||slide.behind')&&v56.includes('if(ballGap<24){'));assert(own.includes('bodyGap<27&&(ballGap>23||behind||v183DefBehindAt(m,run,tackler,carrier))')&&own.includes('ballGap<24'));
 });
-check('slides are considered at the slide cadence only; a forecast that misses skips the slide, a good one starts it',()=>{
- const run=(carrier,slider,shift,steps)=>{scene({on:true,defs:[slider],carrier});return copy(ev(`(()=>{const m=match,c=m.owner,t=m.people.find(x=>x.pid==='def0');m.ball={x:c.x+(t.x-c.x)*${shift},y:c.y+(t.y-c.y)*${shift}};Math.random=()=>0;
+check('slides are considered at the slide cadence only; with forecast level 2 a miss skips the slide, a good one starts it',()=>{
+ const run=(carrier,slider,shift,steps)=>{scene({on:true,si:{params:{defence:{slideForecast:2}}},defs:[slider],carrier});return copy(ev(`(()=>{const m=match,c=m.owner,t=m.people.find(x=>x.pid==='def0');m.ball={x:c.x+(t.x-c.x)*${shift},y:c.y+(t.y-c.y)*${shift}};Math.random=()=>0;
   const out=[];for(const dt of ${JSON.stringify(steps)}){v102State(m).clock+=dt;v182ContactCheck(m);out.push({skipped:v183TraceEntries(m).filter(e=>e.type==='slide-skipped').length,slide:!!m.slide,slideAt:m.attackFlow.defence?.slideAt??null});}return out;})()`));};
  // Carrier running past at speed: skipped; two more checks inside the interval add nothing; after the interval one more.
  const miss=run({vy:6},{depth:30.6,lateral:1.9,line:'def'},.5,[.1,.1,.1,.6]);
@@ -284,12 +284,25 @@ check('slides are considered at the slide cadence only; a forecast that misses s
  // Standing carrier, ball on the slider's side: forecast 'ball' -> the base slide chance decides (draw 0 starts it).
  const good=run({vy:0},{depth:28.4,lateral:.4,line:'def'},.45,[.1]);
  assert.equal(good[0].slide,true);assert(Number.isFinite(good[0].slideAt));
- // Forecast off: the slide is tried even if it runs past.
+ // Forecast off (the default): the slide is tried even if it runs past.
+ assert.equal(copy(ev('v183Registry.defaults.defence.slideForecast')),0);
  scene({on:true,si:{params:{defence:{slideForecast:0}}},defs:[{depth:30.6,lateral:1.9,line:'def'}],carrier:{vy:6}});
  const free=ev(`(()=>{const m=match,c=m.owner,t=m.people.find(x=>x.pid==='def0');m.ball={x:c.x+(t.x-c.x)*.5,y:c.y+(t.y-c.y)*.5};Math.random=()=>0;v102State(m).clock+=.1;v182ContactCheck(m);return !!m.slide;})()`);
  assert.equal(free,true);
 });
 
+check('forecast: the per-step "from behind" test is the metres test of v182Behind (fast, slow and standing carriers)',()=>{
+ const r=copy(ev(`(()=>{
+  let bad=0,n=0;
+  for(const vy of [0,.2,.45,.6,2,6])for(const dx of [-1.5,-.6,-.3,0,.4,1.2])for(const dy of [-2,-.8,-.4,0,.4,2]){
+   NativeDef.build({on:true,defs:[{depth:28,lateral:1,line:'def'}],carrier:{vy,vx:vy?0:0}});
+   const m=match,c=m.owner,t=m.people.find(x=>x.pid==='def0'),s=v150Scale(m);c.motionX=vy?0:.01;c.motionY=vy?vy/s.y*.05:0;
+   t.x=c.x+dx/s.x;t.y=c.y+dy/s.y;n++;
+   if(v183DefBehindAt(m,v183DefRunDirection(m,c),t,c)!==v182Behind(t,c))bad++;
+  }
+  return {bad,n};})()`));
+ assert.equal(r.bad,0);assert(r.n>=200);
+});
 check('slide filter: level 2 also tries a slide that runs past from the front; level 1 and a slide from behind never do',()=>{
  // Find a frontal geometry whose forecast is a plain miss.
  let found=null;
