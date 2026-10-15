@@ -30,11 +30,13 @@ check('defaults are plain JSON, the switch is on by default and stored with each
 });
 
 // ----- old path: package off or no marker -----
-check('package off: v50Foul outside a contact still awards a foul (legacy); package on refuses it',()=>{
+check('v50Foul keeps its own contact gate; with the package every awarded foul is traced, outside the contact functions with contact:false',()=>{
  const foul=on=>{scene({on,defs:[{depth:29.25,lateral:.3}],carrier:{vy:4}});return copy(ev(`(()=>{const m=match,v=m.owner,o=m.people.find(x=>x.pid==='def0'),result=v50Foul(v,o);return {result,fouls:m.setPieceStats.fouls.slice(),sp:m.setPiece?.type||null,trace:v183TraceEntries(m).map(e=>e.type)};})()`));};
  const legacy=foul(false),marked=foul(true);
  assert.equal(legacy.sp,'freeKick');assert.equal(legacy.fouls[0]+legacy.fouls[1],1);
- assert.equal(marked.result,false);assert.equal(marked.fouls[0]+marked.fouls[1],0);assert.equal(marked.sp,null);assert(marked.trace.includes('foul-refused'));
+ assert.equal(marked.sp,'freeKick');assert.equal(marked.fouls[0]+marked.fouls[1],1);assert(marked.trace.includes('foul'),'traced');assert(!marked.trace.includes('foul-refused'));
+ // Beyond body contact (43/32 m) no foul is awarded, with or without the package.
+ for(const on of [false,true]){scene({on,defs:[{depth:26,lateral:3}],carrier:{vy:4}});assert.equal(copy(ev(`(()=>{const m=match;v50Foul(m.owner,m.people.find(x=>x.pid==='def0'));return m.setPiece?.type||null;})()`)),null);}
  // No marker at all (rules 182): the wrapper is inert.
  scene({on:null,defs:[{depth:29.25,lateral:.3}],carrier:{vy:4}});
  assert.equal(copy(ev("(()=>{const m=match;v50Foul(m.owner,m.people.find(x=>x.pid==='def0'));return m.setPiece?.type||null;})()")),'freeKick');

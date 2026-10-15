@@ -18,7 +18,7 @@
 //     the decision path (action -> v56MaybeChallenge) no longer opens duels. A
 //     slide is considered at the slide cadence and only if a forecast of the real
 //     slide (kinematics of v56StartSlide/v56AdvanceSlide) reaches the ball first;
-//   - a foul is awarded only inside a contact event (standing tackle, slide). The
+//   - fouls arise only from contact events (standing tackle, slide; traced). The
 //     contactless foul probe of set-pieces-v50.js:160 is not reachable in the
 //     production load order (pitch-v55.js:492 replaces action) and stays off;
 //   - roles: presser (nearest, existing B03 logic), safety defender (second
@@ -74,9 +74,11 @@ function v183DefReady(m,team,from){
  return m.people.filter(q=>q.t===team&&!q.keeper&&!q.slideActive&&(q.recoverUntil||0)<=m.elapsed).sort((a,b)=>v122Metres(a,from)-v122Metres(b,from)||a.n-b.n);
 }
 
-// ----- Contact: one path, a foul only inside a contact event -----
-// The flag is raised while the actual contact functions run. v50Foul outside of it
-// (any other caller) is refused for marked matches; the decision path is closed.
+// ----- Contact: one path, fouls only with contact -----
+// The flag is raised while the actual contact functions run (the only production callers
+// of v50Foul). v50Foul itself awards a foul only within 43/32 m of body contact; every
+// awarded foul is traced with its gap and whether it came from a contact function. The
+// decision path is closed.
 let v183DefContactOpen=0,v183DefTickGate=false;
 function v183DefContact(fn){v183DefContactOpen++;try{return fn();}finally{v183DefContactOpen--;}}
 const v183DefBaseStandingTackle=v56StandingTackle;
@@ -86,9 +88,8 @@ v56AdvanceSlide=function(delta){return v183DefOn(match)?v183DefContact(()=>v183D
 const v183DefBaseFoul=v50Foul;
 v50Foul=function(victim,offender){
  const m=match;if(!v183DefOn(m))return v183DefBaseFoul(victim,offender);
- if(!v183DefContactOpen){v183Trace(m,{type:'foul-refused',victim:victim.pid,offender:offender.pid});return false;}
  const fouls=m.setPieceStats.fouls[0]+m.setPieceStats.fouls[1],gap=v56Contact(victim,offender),result=v183DefBaseFoul(victim,offender);
- if(m.setPieceStats.fouls[0]+m.setPieceStats.fouls[1]>fouls)v183Trace(m,{type:'foul',victim:victim.pid,offender:offender.pid,gap:+gap.toFixed(1),slide:Boolean(offender.slideActive)});
+ if(m.setPieceStats.fouls[0]+m.setPieceStats.fouls[1]>fouls)v183Trace(m,{type:'foul',victim:victim.pid,offender:offender.pid,gap:+gap.toFixed(1),slide:Boolean(offender.slideActive),contact:v183DefContactOpen>0});
  return result;
 };
 const v183DefBaseFoulChance=v50FoulChance;
