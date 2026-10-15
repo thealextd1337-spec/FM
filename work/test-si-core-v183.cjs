@@ -9,6 +9,10 @@ const checks=[];const check=(name,fn)=>{fn();checks.push(name);};
 const fresh=()=>create({view:false});
 const SI_FILES=['match-si-core-v183.js','match-si-clock-v183.js','match-si-defence-v183.js','match-si-finish-v183.js','match-si-setplay-v183.js','match-si-offball-v183.js','match-si-options-v183.js','match-si-field-v183.js'];
 const PACKAGES=['clock','options','offball','finish','defence','setplay','field'];
+// Packages switched on for new matches by their own module on completion
+// (v183EnableByDefault). Stub and switch checks below turn every package off.
+const ENABLED=(()=>{const g=create({view:false});return PACKAGES.filter(p=>g.evaluate(`v183CreateSi(undefined).packages['${p}']`)===true);})();
+const OFF={packages:Object.fromEntries(PACKAGES.map(p=>[p,false]))};
 
 // ----- load and build lists -----
 check('index.html loads core then the seven packages between football flow v159 and ball events v117',()=>{
@@ -30,14 +34,14 @@ check('all shared interfaces exist as global functions',()=>{
 });
 
 // ----- marker and configuration -----
-check('constructor default: marker 183, positive clock rate, every package off, empty parameter sets',()=>{
+check('constructor default: marker 183, positive clock rate, only completed packages on, registered parameter sets',()=>{
  h.call('Native183.constructed',{});
  const si=copy(ev('match.si'));
  assert.deepEqual(Object.keys(si),['revision','clockRate','packages','params']);
  assert.equal(si.revision,183);assert(Number.isFinite(si.clockRate)&&si.clockRate>0,'clock rate');
- assert.deepEqual(si.packages,Object.fromEntries(PACKAGES.map(p=>[p,false])));
- assert.deepEqual(si.params,Object.fromEntries(PACKAGES.map(p=>[p,{}])));
- for(const p of PACKAGES)assert.equal(ev(`v183Active(match,'${p}')`),false,p);
+ assert.deepEqual(si.packages,Object.fromEntries(PACKAGES.map(p=>[p,ENABLED.includes(p)])));
+ assert.deepEqual(si.params,Object.fromEntries(PACKAGES.map(p=>[p,copy(ev(`v183RegisterDefaults('${p}',{})`))])));
+ for(const p of PACKAGES)assert.equal(ev(`v183Active(match,'${p}')`),ENABLED.includes(p),p);
  assert.equal(ev('v183Marked(match)'),true);
  const flow=copy(ev('match.attackFlow'));for(const key of ['keeperHoldRevision','setPieceRevision','looseBallRevision','pursuitRevision','motionRevision'])assert.equal(flow[key],182,key);
  assert.equal(ev('match.penaltyRevision'),182);
@@ -48,7 +52,7 @@ check('constructor option si:false creates a match without marker 183 (rules 182
  for(const p of PACKAGES)assert.equal(ev(`v183Active(match,'${p}')`),false);
 });
 check('harness overrides: package switches and clock rate are stored; invalid overrides are rejected',()=>{
- h.call('Native183.constructed',{si:{packages:{finish:true,clock:true},clockRate:.42}});
+ h.call('Native183.constructed',{si:{packages:{...OFF.packages,finish:true,clock:true},clockRate:.42}});
  assert.equal(ev("v183Active(match,'finish')"),true);assert.equal(ev("v183Active(match,'clock')"),true);assert.equal(ev("v183Active(match,'options')"),false);
  assert.equal(ev('match.si.clockRate'),.42);
  for(const [options,pattern]of [[{packages:{finesse:true}},/Unknown SI package/],[{packages:{finish:1}},/boolean expected/],[{params:{finish:{spread:1}}},/Unknown SI parameter/],[{clockRate:0},/positive number/],[{clockRate:'0.4'},/positive number/],[{speed:1},/Unknown SI option/]])
@@ -57,14 +61,16 @@ check('harness overrides: package switches and clock rate are stored; invalid ov
 });
 check('registered defaults are copied into new matches; overrides keep their type; double registration is rejected',()=>{
  const g=fresh(),gev=text=>g.evaluate(text);
- assert.deepEqual(g.copy(gev("v183RegisterDefaults('finish',{spread:.5,mode:'near',zones:[1,2]})")),{spread:.5,mode:'near',zones:[1,2]});
- assert.deepEqual(g.copy(gev("v183RegisterDefaults('finish',{spread:.5})")),{spread:.5,mode:'near',zones:[1,2]},'same value may be repeated');
+ // Only the test keys: the package module may already have registered its own.
+ const pick=o=>({spread:o.spread,mode:o.mode,zones:o.zones});
+ assert.deepEqual(pick(g.copy(gev("v183RegisterDefaults('finish',{spread:.5,mode:'near',zones:[1,2]})"))),{spread:.5,mode:'near',zones:[1,2]});
+ assert.deepEqual(pick(g.copy(gev("v183RegisterDefaults('finish',{spread:.5})"))),{spread:.5,mode:'near',zones:[1,2]},'same value may be repeated');
  assert.throws(()=>gev("v183RegisterDefaults('finish',{spread:.6})"),/registered twice/);
  assert.throws(()=>gev("v183RegisterDefaults('finish',{bad:()=>1})"),/plain JSON/);
  assert.throws(()=>gev("v183RegisterDefaults('finish',{bad:NaN})"),/non-finite/);
  assert.throws(()=>gev("v183RegisterDefaults('kicks',{a:1})"),/Unknown SI package/);
  g.call('Native183.constructed',{si:{params:{finish:{spread:.7}}}});
- assert.deepEqual(g.copy(gev('match.si.params.finish')),{spread:.7,mode:'near',zones:[1,2]});
+ assert.deepEqual(pick(g.copy(gev('match.si.params.finish'))),{spread:.7,mode:'near',zones:[1,2]});
  assert.equal(gev("v183Param(match,'finish.spread')"),.7);assert.equal(gev("v183Param(match,'finish.mode')"),'near');
  assert.equal(gev("match.si.params.finish.zones===v183Param(match,'finish.zones')"),true);
  assert.throws(()=>g.call('Native183.constructed',{si:{params:{finish:{spread:'0.7'}}}}),/number expected/);
@@ -78,8 +84,9 @@ check('registered defaults are copied into new matches; overrides keep their typ
  g.call('Native183.constructed',{si:false});
  assert.throws(()=>gev("v183Param(match,'finish.spread')"),/without marker 183/);
  gev('v183StrictParams(false)');assert.equal(gev("v183Param(match,'finish.spread')"),undefined);gev('v183StrictParams(true)');
+ const before=g.copy(gev('v183CreateSi(undefined).packages'));
  gev("v183EnableByDefault('setplay')");g.call('Native183.constructed',{});
- assert.equal(gev("v183Active(match,'setplay')"),true);assert.equal(gev("v183Active(match,'finish')"),false);
+ assert.equal(gev("v183Active(match,'setplay')"),true);assert.deepEqual(g.copy(gev('match.si.packages')),{...before,setplay:true},'other switches keep their default');
  g.call('Native183.constructed',{si:{packages:{setplay:false}}});assert.equal(gev("v183Active(match,'setplay')"),false);
 });
 
@@ -128,7 +135,7 @@ for(const value of Object.values(mentalExamples))for(const k of Object.keys(valu
 check('decision trace: marked matches only, plain records, ring buffer of 64, never saved',()=>{
  h.call('Native183.constructed',{si:false});
  assert.equal(ev("v183Trace(match,{kind:'shot'})"),null);assert.equal(ev('v183TraceEntries(match).length'),0);
- h.call('Native183.constructed',{});h.call('Native183.run',10);
+ h.call('Native183.constructed',{si:OFF});h.call('Native183.run',10);
  const first=copy(ev("v183Trace(match,{kind:'pass',player:match.people[1],target:{x:.5,y:.4},seq:99})"));
  assert.equal(first.seq,1);assert.equal(first.at,ev('v183Seconds(match)'));assert.equal(first.player,ev('match.people[1].pid'));assert.deepEqual(first.target,{x:.5,y:.4});
  ev("for(let i=0;i<69;i++)v183Trace(match,{kind:'tick',i})");
@@ -141,7 +148,7 @@ check('decision trace: marked matches only, plain records, ring buffer of 64, ne
 
 // ----- ledger sources -----
 check('ledger sources: additive tags on marked ledgers only, by match, flight or event',()=>{
- h.call('Native183.constructed',{});h.call('Native183.run',80);
+ h.call('Native183.constructed',{si:OFF});h.call('Native183.run',80);
  assert(ev('match.ballAccounting.events.length')>0,'kickoff created ledger events');
  const id=ev('match.ballEventId');
  assert.equal(ev("v183LedgerSource(match,'cross')?.id"),id);assert.equal(ev("v183LedgerSource(match,'cross')?.id"),id);
@@ -170,7 +177,7 @@ check('radius predicate: exact legacy normalised test unless a marked match supp
  }
 });
 check('pace switch: v183PaceFactor returns the exact legacy factor; reasons refine purposeful',()=>{
- h.call('Native183.constructed',{});h.call('Native183.run',60);
+ h.call('Native183.constructed',{si:OFF});h.call('Native183.run',60);
  assert.equal(ev("v183PaceFactor(match,match.people[1],'support',{factor:1.35})"),1.35);
  assert.equal(ev("v183PaceFactor(match,match.people[1],'base',{})"),1.15);assert.equal(ev("v183PaceFactor(match,match.people[1],'purposeful')"),1.58);
  assert.equal(ev("v183PaceFactor(match,match.people[1],'carrier')"),ev("1.28*(.78+ability(match.people[1],'tec')*.009)"));
@@ -188,14 +195,14 @@ check('formation anchor switch: identity stub; team() consults it only with an e
 });
 check('marker 183 with every package off replays like the 182 constructor (digest without match.si)',()=>{
  for(const scene of copy(h.call('Native183.constructedScenes')).filter((s,i)=>i%3===0)){
-  const marked=h.call('Native183.constructedDigest',scene,{withoutSi:true,segments:[200,200]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[200,200]});
+  const marked=h.call('Native183.constructedDigest',scene,{si:OFF,withoutSi:true,segments:[200,200]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[200,200]});
   assert.equal(marked,legacy,scene.id);
  }
 });
 
 // ----- stubs -----
 check('stubs deliver today\'s values and draw no random number (clearance: one named draw)',()=>{
- h.call('Native183.constructed',{});h.call('Native183.run',120);
+ h.call('Native183.constructed',{si:OFF});h.call('Native183.run',120);
  const r=copy(ev(`(()=>{const m=match,p=m.people.find(q=>!q.keeper&&q.t===0),q=m.people.find(x=>!x.keeper&&x.t===0&&x!==p),rivals=m.people.filter(x=>x.t!==p.t),d0=Native182.rng().draws;
   const shot=v183ShotEstimate(m,p),moved=v183ShotEstimate(m,p,{x:.5,y:v55Field.top+.08}),pass=v183PassEstimate(m,p,q),pass2=v183PassEstimate(m,p,q,{x:q.x,y:q.y}),cross=v183CrossEstimate(m,p,q),offers=v183Offers(m),clear=v183Clearance(m,q,{x:.5,y:.2},{lateralDraw:.75}),d1=Native182.rng().draws;
   const clear2=v183Clearance(m,q,{x:.5,y:.2}),d2=Native182.rng().draws;
@@ -212,7 +219,7 @@ check('stubs deliver today\'s values and draw no random number (clearance: one n
 });
 
 check('new switches return today\'s values: rebound finish, keeper reach at three sites',()=>{
- h.call('Native183.constructed',{});h.call('Native183.run',200);
+ h.call('Native183.constructed',{si:OFF});h.call('Native183.run',200);
  const r=copy(ev(`(()=>{const m=match,p=m.people.find(q=>!q.keeper&&q.t===0),keeper=m.people.find(q=>q.keeper&&q.t===1),si=m.si,flow=m.attackFlow.flowVersion,goal={x:.5,y:v55Field.top},sites={};
   const base=v183KeeperReach;v183KeeperReach=function(mm,k,range,contact,detail){sites[detail.site]=(sites[detail.site]||0)+1;return base.apply(this,arguments)};
   const run=()=>[[.5,.06],[.42,.1],[.6,.15],[.47,.24]].map(([x,dy])=>{const point={x,y:v55Field.top+dy},shooter={...p,x,y:point.y};
@@ -223,7 +230,7 @@ check('new switches return today\'s values: rebound finish, keeper reach at thre
  for(const site of ['shot-lane','open-goal','keeper-contact'])assert(r.sites[site]>0,`site ${site} reached`);
 });
 check('air finish stub: same decision and draws as the legacy rule (one draw only within header range)',()=>{
- h.call('Native183.constructed',{});h.call('Native183.run',100);
+ h.call('Native183.constructed',{si:OFF});h.call('Native183.run',100);
  const rows=copy(ev(`(()=>{const w=match.people.find(q=>!q.keeper&&q.t===0),end={x:w.x,y:w.y},out=[];
   for(const [headerRange,preferHeader,pressure,seed]of [[true,true,0,777],[true,false,1,778],[false,true,0,779],[true,true,1,780]]){
    Native182.seedRandom(seed);const a=v183AirFinish(match,w,end,{headerRange,preferHeader,pressure}),da=Native182.rng().draws;
@@ -234,19 +241,19 @@ check('air finish stub: same decision and draws as the legacy rule (one draw onl
  assert.deepEqual(rows.map(x=>x.da),[1,1,0,1]);
 });
 check('clearance: evaluate mode is the deterministic centre without a draw; caller draw and air reproduce today',()=>{
- h.call('Native183.constructed',{});h.call('Native183.run',100);
+ h.call('Native183.constructed',{si:OFF});h.call('Native183.run',100);
  const r=copy(ev(`(()=>{const d=match.people.find(q=>!q.keeper&&q.t===1),pt={x:.4,y:.8},d0=Native182.rng().draws,a=v183Clearance(match,d,pt,{evaluate:true,lateralDraw:.9}),d1=Native182.rng().draws,b=v183Clearance(match,d,pt,{lateralDraw:.5});
   const c=v183Clearance(match,d,pt,{lateralDraw:.3,air:ability(d,'air')}),e=v183Clearance(match,d,pt,{lateralDraw:.3});return {evaluate:JSON.stringify(a)===JSON.stringify(b),draws:d1-d0,air:JSON.stringify(c)===JSON.stringify(e)};})()`));
  assert.deepEqual(r,{evaluate:true,draws:0,air:true});
 });
 check('pass estimate stub includes the return-run bonus of a confirmed one-two',()=>{
- h.call('Native183.constructed',{});h.call('Native183.run',100);
+ h.call('Native183.constructed',{si:OFF});h.call('Native183.run',100);
  const r=copy(ev(`(()=>{const m=match,p=m.people.find(q=>!q.keeper&&q.t===0),q=m.people.find(x=>!x.keeper&&x.t===0&&x!==p),s=v150Scale(m),target={x:p.x,y:p.y-6/s.y},before=m.attackFlow.combination;
   try{m.attackFlow.combination=null;const plain=v183PassEstimate(m,p,q,target);m.attackFlow.combination={receiverId:p.pid,passerId:q.pid,confirmed:true};const one=v183PassEstimate(m,p,q,target);return {plain,one};}finally{m.attackFlow.combination=before;}})()`));
  assert.equal(r.plain.returnRun,false);assert.equal(r.one.returnRun,true);close(r.one.value-r.plain.value,.65,'return-run bonus');
 });
 check('decision trace limit can be enlarged for measurements and trims back',()=>{
- h.call('Native183.constructed',{});h.call('Native183.run',10);
+ h.call('Native183.constructed',{si:OFF});h.call('Native183.run',10);
  ev("v183SetTraceLimit(128);for(let i=0;i<200;i++)v183Trace(match,{i})");assert.equal(ev('v183TraceEntries(match).length'),128);
  ev("v183SetTraceLimit(64);v183Trace(match,{i:200})");assert.equal(ev('v183TraceEntries(match).length'),64);assert.equal(ev('v183TraceEntries(match).at(-1).i'),200);
  assert.throws(()=>ev('v183SetTraceLimit(0)'),/integer/);
@@ -256,11 +263,11 @@ check('keeper hold: legacy 2.4 s without the finish package, parameter finish.ke
  const g=fresh(),gev=text=>g.evaluate(text),hold=(si,held)=>{g.call('Native183.constructed',{si});g.call('Native183.run',120);return g.copy(gev(`(()=>{const k=v50Keeper(0);match.rebound=null;match.flight=null;v50GoalKick(k,'hold fixture',{held:${held}});const kick=v99ActionState(match).kicks.get(k.pid);return {gap:match.next-match.elapsed,rate:v183Rate(match),placement:kick.holdPlacement??0};})()`));};
  for(const held of [false,true]){
   const expect=(seconds,r)=>close(r.gap,Math.max(seconds,r.placement)*r.rate,`hold ${seconds} s, held ${held}`);
-  expect(2.4,hold(undefined,held));expect(2.4,hold(false,held));
-  expect(2.4,hold({packages:{finish:true}},held));
+  expect(2.4,hold({packages:{finish:false}},held));expect(2.4,hold(false,held));
+  expect(gev("v183RegisterDefaults('finish',{}).keeperHold??2.4"),hold({packages:{finish:true}},held));
  }
- gev("v183RegisterDefaults('finish',{keeperHold:1.6})");
- for(const held of [false,true]){const r=hold({packages:{finish:true}},held);close(r.gap,Math.max(1.6,r.placement)*r.rate,`finish.keeperHold, held ${held}`);}
+ if(gev("v183RegisterDefaults('finish',{}).keeperHold")===undefined)gev("v183RegisterDefaults('finish',{keeperHold:2.4})");
+ for(const held of [false,true]){const r=hold({packages:{finish:true},params:{finish:{keeperHold:1.6}}},held);close(r.gap,Math.max(1.6,r.placement)*r.rate,`finish.keeperHold, held ${held}`);}
  const legacy=hold({packages:{finish:false}},true);close(legacy.gap,Math.max(2.4,legacy.placement)*legacy.rate,'parameter only with the finish package');
 });
 check('match.si is deeply frozen at construction and again after a restore',()=>{
