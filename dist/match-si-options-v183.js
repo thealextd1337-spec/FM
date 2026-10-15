@@ -50,14 +50,16 @@ v183RegisterDefaults('options',{
  stubRange:22,stubScale:.4,    // SI-F shot stub bridge (see above)
  threat:.3,threatLength:16,    // possession value .3*exp(-d/16), d metres to goal
  counter:1.6,              // weight of the opponent's possession value after a loss
- recvShot:.85,offer:.15,oneTwo:.03,passMin:2.5,passMax:32,
- turnRelease:.55,turnSpeed:2.5,turnTick:.08,turnCheck:.25,turnTau:.7,
+ recvShot:.85,offer:.3,oneTwo:.03,passMin:2.5,passMax:32,
+ turnRelease:.55,turnSpeed:2.5,turnTick:.08,turnCheck:.25,turnTau:1.5,
  shotFree:1.2,shotTurn:.5,switchMargin:.15,
- carryHorizon:1,carryMin:2.5,carryMax:6,carryShot:.4,engage:2,
- holdFactor:.9,crossConv:.6,crossMax:30,crossWide:8,laneOne:.5,
- spaceCount:3,
+ carryHorizon:1,carryMin:2.5,carryMax:6,carryShot:.55,engage:2,carryFactor:.55,
+ holdFactor:.5,crossConv:1,crossMax:30,crossWide:8,laneOne:.5,
+ spaceCount:3,spaceBase:.15,      // space-pass arrival base (calibrated on received space passes)
  noise:.15,noiseFloor:.006,commit:.08,
- scoreRisk:.15,focus:.1,direct:.25
+ scoreRisk:.15,focus:.1,direct:.25,
+ close:.5,                 // share of an opponent's run that closes the space until the ball is held
+ shootInstruction:1.25,wingInstruction:1.25 // player instructions "Abschluss suchen", "Außenbahn & Flanken"
 });
 const V183_OPT_KEYS=Object.freeze(Object.keys(v183RegisterDefaults('options',{})));
 // Neutral values of the SI-F personality formula (role 1, mental values 10).
@@ -66,7 +68,9 @@ const V183_OPT_NEUTRAL=Object.freeze({shootWeight:.85,riskWeight:.9,dribbleWeigh
 function v183OptParams(m){const P={};for(const key of V183_OPT_KEYS)P[key]=v183Param(m,'options.'+key);return P;}
 function v183OptWeights(p,P){const raw=v183Personality(p),w={};for(const [key,neutral]of Object.entries(V183_OPT_NEUTRAL))w[key]=clamp(raw[key]/neutral,P.weightMin,P.weightMax);return w;}
 // Real seconds into the v152Seconds deadlines read by older code (carry,
-// turns), without assuming how that clock relates to the match rate.
+// turns), without assuming how that clock relates to the match rate. Only
+// assumes that v152Seconds is linear in m.elapsed (elapsed/MATCH_SPEED today;
+// elapsed/rate if SI-0 changes it): one clock unit is v152Seconds({elapsed:1}).
 function v183OptLegacyAfter(m,seconds){return v152Seconds(m)+seconds*v183Rate(m)*v152Seconds({elapsed:1,si:m.si});}
 function v183OptGoal(t){return {x:.5,y:t===0?v55Field.top:v55Field.bottom};}
 function v183OptGoalDistance(point,t){return v115GoalDistance({x:point.x,y:point.y,t});}
@@ -95,15 +99,31 @@ function v183OptShot(m,p,P,from=p){
  const range=v183OptGoalDistance(from,p.t),window=P.windowBase+P.windowFin*ability(p,'fin');
  if(range>window)return {xg:0,range,window,stub:null};
  const est=v183ShotEstimate(m,p,from);
- if(est.speed!==null)return {xg:Math.max(0,est.xg||0),range,window,stub:false};
+ if(est.stub!==true)return {xg:Math.max(0,est.xg||0),range,window,stub:false};
  const goal=v183OptGoal(p.t),f=clamp(P.stubRange/window,.5,1.5),virtual={x:goal.x+(from.x-goal.x)*f,y:goal.y+(from.y-goal.y)*f};
  let near=0;
  if(f<1)for(const r of m.people){if(r.t===p.t||r.keeper||r.slideActive)continue;const lane=passLaneGeometry(r,from,virtual);if(lane&&v122Metres(r,lane)<1.4)near++;}
  const quality=f===1?est.xg:v183ShotEstimate(m,p,virtual).xg;
  return {xg:Math.max(0,quality||0)*P.stubScale*(near===0?1:near===1?P.laneOne:0),range,window,stub:true};
 }
-// Whether the active shot estimate is the SI-F stub (speed:null).
-function v183OptStubEstimate(m,p){return v183ShotEstimate(m,p,p).speed===null;}
+// Whether the active shot estimate is the SI-F stub (stub:true).
+function v183OptStubEstimate(m,p){return v183ShotEstimate(m,p,p).stub===true;}
+// Space around a point when the new holder has the ball there after `seconds`
+// (pass flight or carry horizon): the nearest outfield opponent, who closes in
+// with close x his pace after his reaction; 0.25 (marked) to 1 (free). The
+// same discount applies to a receiver, a carry endpoint and holding.
+function v183OptSpace(point,rivals,seconds,P){let near=Infinity;for(const r of rivals){if(r.keeper||r.slideActive)continue;const run=(3+ability(r,'spd')*.14)*Math.max(0,seconds-clamp(.3-(ability(r,'pos')-1)*.01,.1,.32))*P.close;near=Math.min(near,Math.max(0,v122Metres(r,point)-run));}return clamp((near-1.2)/4,.25,1);}
+// Possession value of p at point after the ball got there (pass or carry):
+// position value (x posFactor) or p's shot from there (x shotFactor), both
+// reduced by the space around him.
+function v183OptHolder(m,p,P,point,rivals,shotFactor,seconds,posFactor=1){
+ const space=v183OptSpace(point,rivals,seconds,P);
+ return Math.max(v183OptThreat(P,point,p.t)*(.6+.4*space)*posFactor,v183OptShot(m,p,P,point).xg*shotFactor*space);
+}
+// Passes under pressure: opponents near the passer as v55GroundPass counts
+// them (SI-4 key defence.passPressureRadius in metres while defence is on,
+// otherwise the normalised .15 of today, W4).
+function v183OptPressure(m,p){const near=v183Radius(m,'defence.passPressureRadius',.15);return m.people.filter(r=>r.t!==p.t&&!r.keeper&&near(r,p)).length;}
 
 // ----- Pass estimate (SI-1 owns v183PassEstimate) -----
 // arrival: probability that the ground pass reaches q and is controlled,
@@ -115,33 +135,35 @@ function v183OptStubEstimate(m,p){return v183ShotEstimate(m,p,p).speed===null;}
 // +oneTwo for a confirmed return run). loss: opponent value at the loss point.
 // value = arrival*receiver - (1-arrival)*loss (objective, before risk weight).
 // lane: today's open-lane test (v157Lane), returnRun as in the stub.
-function v183OptPass(m,p,q,target,P,ctx){
+function v183OptPass(m,p,q,target,P,ctx,delay=0){
+ // Flight seconds: clock units of v115FlightDuration through the match rate (SI-0).
  const from=m.ball,point=target||v157PassLead(m,p,q,from)||{x:q.x,y:q.y},s=v150Scale(),dir=p.t===0?-1:1,pas=ability(p,'pas');
- const rivals=ctx?.rivals||m.people.filter(r=>r.t!==p.t),duration=clamp(distance(from,point)*1.5,.32,.9),seconds=v115FlightDuration(from,point,duration,'pass')/MATCH_SPEED;
+ const rivals=ctx?.rivals||m.people.filter(r=>r.t!==p.t),duration=clamp(distance(from,point)*1.5,.32,.9),seconds=v115FlightDuration(from,point,duration,'pass')/v183Rate(m);
  const lanes=[];
  for(const r of rivals){
   if(r.keeper||r.slideActive)continue;
   const g=passLaneGeometry(r,from,point);if(!g)continue;
-  const gap=v122Metres(r,g),margin=(3+ability(r,'spd')*.14)*seconds*g.t-Math.max(0,gap-.8),weight=clamp((margin+.6)/1.2,0,1)*clamp((3.4-gap)/.8,0,1);
+  const gap=v122Metres(r,g),margin=(3+ability(r,'spd')*.14)*(seconds*g.t+delay*P.close)-Math.max(0,gap-.8),weight=clamp((margin+.6)/1.2,0,1)*clamp((3.4-gap)/.8,0,1);
   if(weight>0)lanes.push({t:g.t,weight,chance:clamp(.11+ability(r,'pos')*.016+ability(r,'spd')*.004-pas*.011,.05,.55)});
  }
  lanes.sort((a,b)=>a.t-b.t);
  let intercept=0,clear=1;for(const lane of lanes){intercept+=clear*lane.weight*lane.chance;clear*=1-lane.weight;}
- // Execution error (uniform square, metres) against the receiver's reach. The
- // pressure count mirrors v55GroundPass (normalised .15, W4; SI-4 owns that radius).
- const pressure=m.people.filter(r=>r.t!==p.t&&!r.keeper&&distance(r,p)<.15).length,accuracy=clamp((20-pas)*.003+pressure*.015,.005,.1),error=accuracy*s.x*clamp(v122Metres(from,point)/30,.12,1.25);
+ // Execution error (uniform square, metres) against the receiver's reach.
+ const pressure=ctx?ctx.pressure:v183OptPressure(m,p),accuracy=clamp((20-pas)*.003+pressure*.015,.005,.1),error=accuracy*s.x*clamp(v122Metres(from,point)/30,.12,1.25);
  const reach=.8+(3+ability(q,'spd')*.14)*1.2*Math.max(0,seconds-.15)*.75,root=Math.SQRT2*error;
  const reached=reach>=root?1:reach<=error?Math.PI*reach*reach/(4*error*error):Math.PI/4+(1-Math.PI/4)*(reach-error)/(root-error);
- let near=Infinity,crowd=0;for(const r of rivals){if(r.keeper)continue;const d=v122Metres(r,point);near=Math.min(near,d);if(d<2.5)crowd++;}
+ // Opponents close in on the target during a turn and the flight.
+ let crowd=0;for(const r of rivals)if(!r.keeper&&!r.slideActive&&v122Metres(r,point)-(3+ability(r,'spd')*.14)*Math.max(0,seconds+delay-.3)*P.close<2.5)crowd++;
  const tec=ability(q,'tec'),failure=clamp(.015+(20-tec)*.006+crowd*(.025+(20-tec)*.002),.015,.30),arrival=clamp((1-intercept)*reached*(1-.6*failure),0,1);
  const gain=(point.y-p.y)*dir*s.y,combo=m.attackFlow?.combination;
  const returnRun=Boolean(combo?.receiverId===p.pid&&combo.passerId===q.pid&&gain>2&&combo.confirmed);
- const space=clamp((near-1.2)/4,.25,1),shot=v183OptShot(m,q,P,point).xg*P.recvShot*space;
- let receiver=Math.max(v183OptThreat(P,point,q.t)*(.6+.4*space),shot);
+ let receiver=v183OptHolder(m,q,P,point,rivals,P.recvShot,seconds+delay);
  if(ctx?.offers?.has(q.pid))receiver*=1+P.offer;
  if(returnRun)receiver+=P.oneTwo;
- const loss=v183OptLoss(P,{x:(from.x+point.x)/2,y:(from.y+point.y)/2},p.t);
- return {arrival,value:arrival*receiver-(1-arrival)*loss,receiver,loss,intercept,lane:v157Lane(m,p,point,rivals),returnRun,target:{x:point.x,y:point.y},gain};
+ const loss=v183OptLoss(P,{x:(from.x+point.x)/2,y:(from.y+point.y)/2},p.t),out={seconds,arrival,value:arrival*receiver-(1-arrival)*loss,receiver,loss,intercept,returnRun,target:{x:point.x,y:point.y},gain};
+ // Today's open-lane test only for outside callers (the evaluation does not use it).
+ if(!ctx)out.lane=v157Lane(m,p,point,rivals);
+ return out;
 }
 const v183OptPassStub=v183PassEstimate;
 v183PassEstimate=function(m,p,q,target){
@@ -168,20 +190,40 @@ function v183OptKeep(m,p,point,horizon,P,rivals){
  }
  return keep;
 }
+// Carry endpoints are valued like a pass target (v183OptHolder: space
+// discount, shot factor carryShot), so a run into a marked area is worth no
+// more than a pass there; the run itself costs the keep probability. The
+// positional part is reduced by carryFactor (the defence reorganises while the
+// ball is carried); approaching to shoot keeps carryShot.
+// Dribbler role: the take-on of v154TryDribble (exactly one opponent 2.3-6 m
+// ahead within 2.1 m sideways; 4 m forward, 3 m to either side where the lane
+// is free) is offered as two further directions with a single challenge.
 function v183OptCarries(m,p,P,ctx){
  const s=v150Scale(),dir=p.t===0?-1:1,goal=v183OptGoal(p.t),gx=(goal.x-p.x)*s.x,gy=(goal.y-p.y)*s.y,gl=Math.hypot(gx,gy)||1,ux=gx/gl,uy=gy/gl;
  const step=clamp(v157Pace(m,p)*P.carryHorizon,P.carryMin,P.carryMax),dirs=[{ref:'goal',x:ux,y:uy},{ref:'straight',x:0,y:dir}];
  for(const side of [-1,1]){const c=Math.cos(.6*side),n=Math.sin(.6*side);dirs.push({ref:side<0?'left':'right',x:ux*c-uy*n,y:ux*n+uy*c});}
- const out=[],body=v157Body(p);
+ const out=[],body=v157Body(p),loss=v183OptLoss(P,p,p.t);
+ const push=(ref,point,d,keep)=>{
+  const value=v183OptHolder(m,p,P,point,ctx.rivals,P.carryShot,P.carryHorizon,P.carryFactor),turn=Math.max(0,Math.abs(v157Angle(body.heading,Math.atan2(d.x,d.y)))-.5)/ctx.turnRate*.5;
+  out.push({kind:'carry',ref,target:point,dir:{x:d.x,y:d.y},keep,gain:ctx.w.dribbleWeight*keep*value*Math.exp(-turn/P.turnTau),loss:(1-keep)*loss});
+ };
  for(const d of dirs){
   const point={x:p.x+d.x*step/s.x,y:p.y+d.y*step/s.y};
-  if(!v183OptInside(point,s,1.4))continue;
-  const keep=v183OptKeep(m,p,point,P.carryHorizon,P,ctx.rivals),value=Math.max(v183OptThreat(P,point,p.t),v183OptShot(m,p,P,point).xg*P.carryShot);
-  const turn=Math.max(0,Math.abs(v157Angle(body.heading,Math.atan2(d.x,d.y)))-.5)/ctx.turnRate*.5;
-  out.push({kind:'carry',ref:d.ref,target:point,dir:{x:d.x,y:d.y},keep,gain:ctx.w.dribbleWeight*keep*value*Math.exp(-turn/P.turnTau),loss:(1-keep)*v183OptLoss(P,p,p.t)});
+  if(v183OptInside(point,s,1.4))push(d.ref,point,d,v183OptKeep(m,p,point,P.carryHorizon,P,ctx.rivals));
  }
- const keep=v183OptKeep(m,p,p,.5,P,ctx.rivals);
- out.push({kind:'hold',ref:null,target:{x:p.x,y:p.y},keep,gain:ctx.w.holdWeight*keep*v183OptThreat(P,p,p.t)*P.holdFactor,loss:(1-keep)*v183OptLoss(P,p,p.t)});
+ if(p.tacticalRole==='dribbler'){
+  const near=ctx.rivals.filter(r=>!r.keeper&&v122Metres(p,r)<6),r=near[0];
+  if(near.length===1&&v122Metres(p,r)>=2.3&&(r.y-p.y)*dir>0&&Math.abs(r.x-p.x)*s.x<=2.1){
+   const tec=ability(p,'tec'),chance=clamp(.18+(ability(r,'tak')-tec)*.022+(ability(r,'pos')-ability(p,'spd'))*.006+(m.aggression?.[r.t]??0)*.04,.08,.55);
+   for(const side of [-3,3]){
+    const point={x:p.x+side/s.x,y:p.y+dir*4/s.y};
+    if(!v183OptInside(point,s,1.4)||!v154DribbleLane(m,p,point))continue;
+    const len=Math.hypot(side,4);push(side<0?'beat-left':'beat-right',point,{x:side/len,y:dir*4/len},1-chance);
+   }
+  }
+ }
+ const keep=v183OptKeep(m,p,p,.5,P,ctx.rivals),space=v183OptSpace(p,ctx.rivals,.5,P);
+ out.push({kind:'hold',ref:null,target:{x:p.x,y:p.y},keep,gain:ctx.w.holdWeight*keep*v183OptThreat(P,p,p.t)*(.6+.4*space)*P.holdFactor,loss:(1-keep)*loss});
  return out;
 }
 
@@ -191,30 +233,33 @@ function v183OptFocus(m,p,point,P){
  return 1+(focus==='Außen'?P.focus*wide:focus==='Mitte'?-P.focus*wide:0);
 }
 function v183OptDirect(m,p,gain,P){return m.teamDirect?.[p.t]&&gain>0?1+P.direct*Math.min(1,gain/15):1;}
+// Shot quality away from the body heading (turn and shoot).
+function v183OptOrient(p,P){const angle=Math.abs(v157Angle(v157Body(p).heading,v183OptHeading(p,v183OptGoal(p.t))));return angle<=P.shotFree?1:clamp(1-(angle-P.shotFree)*P.shotTurn,.25,1);}
+function v183OptShootGain(p,P,w,xg){return w.shootWeight*xg*(hasInstruction(p,'shoot')?P.shootInstruction:1);}
 function v183OptOptions(m,p,allies,rivals,P){
  const s=v150Scale(),w=v183OptWeights(p,P),risk=w.riskWeight*v183OptScoreRisk(m,p,P),now=v152Seconds(m),flow=m.attackFlow,body=v157Body(p);
  const offside=v55OffsideSnapshot(p).offside,offers=new Set(v183Offers(m).filter(o=>o.team===p.t&&o.until>=now&&['depth','follow'].includes(o.type)).map(o=>o.pid));
- const ctx={P,w,risk,rivals,offers,turnRate:v183OptTurnRate(p)},list=[],range=v183OptGoalDistance(p,p.t);
+ const ctx={P,w,risk,rivals,offers,turnRate:v183OptTurnRate(p),pressure:v183OptPressure(m,p)},list=[],range=v183OptGoalDistance(p,p.t);
  const press=1-v183OptKeep(m,p,p,.5,P,rivals),here=v183OptLoss(P,p,p.t);
  // A pending action during a turn: the chance to be dispossessed meanwhile.
  const delayed=(o,time)=>{const e=Math.exp(-time/P.turnTau);o.gain*=e;o.loss=e*o.loss+(1-e)*press*here;return o;};
- // Shot.
+ // Shot ("Abschluss suchen" raises the willingness like the old shot chance x1.5).
  const shot=v183OptShot(m,p,P,p);
- if(shot.xg>0){const angle=Math.abs(v157Angle(body.heading,v183OptHeading(p,v183OptGoal(p.t)))),orient=angle<=P.shotFree?1:clamp(1-(angle-P.shotFree)*P.shotTurn,.25,1);list.push({kind:'shot',ref:null,target:null,xg:shot.xg,orient,gain:w.shootWeight*shot.xg*orient,loss:0});}
+ if(shot.xg>0){const orient=v183OptOrient(p,P);list.push({kind:'shot',ref:null,target:null,xg:shot.xg,orient,gain:v183OptShootGain(p,P,w,shot.xg*orient),loss:0});}
  // Ground passes.
  for(const q of allies){
   if(q.slideActive||offside.has(q))continue;
   const target=v157PassLead(m,p,q,m.ball);if(!target||!v183OptInside(target,s,0))continue;
   const metres=v122Metres(p,target);if(metres<P.passMin||metres>P.passMax)continue;
-  const e=v183OptPass(m,p,q,target,P,ctx),factor=v183OptFocus(m,p,target,P)*v183OptDirect(m,p,e.gain,P);
-  list.push(delayed({kind:'pass',ref:q.pid,q,target,arrival:e.arrival,gain:e.arrival*e.receiver*factor,loss:(1-e.arrival)*e.loss},v183OptTurnTime(p,target,P,ctx.turnRate)));
+  const turn=v183OptTurnTime(p,target,P,ctx.turnRate),e=v183OptPass(m,p,q,target,P,ctx,turn),factor=v183OptFocus(m,p,target,P)*v183OptDirect(m,p,e.gain,P);
+  list.push(delayed({kind:'pass',ref:q.pid,q,target,arrival:e.arrival,gain:e.arrival*e.receiver*factor,loss:(1-e.arrival)*e.loss},turn));
  }
  // Space passes into a runner's path (v150 targets, reachable runners only).
  if(!m.flight&&!m.rebound&&P.spaceCount>0){
   const pressure=rivals.filter(r=>!r.keeper&&v122Metres(r,p)<3).length;
   for(const o of v150Candidates(p,allies,rivals).slice(0,P.spaceCount)){
-   const metres=v122Metres(m.ball,o.target),arrival=clamp(.35+.6*Math.min(1,o.margin)-.004*(20-ability(p,'pas'))*metres-.05*pressure,.05,.85);
-   const receiver=Math.max(v183OptThreat(P,o.target,p.t),v183OptShot(m,o.runner,P,o.target).xg*P.recvShot)*(offers.has(o.runner.pid)?1+P.offer:1),gain=(o.target.y-p.y)*(p.t===0?-1:1)*s.y;
+   const metres=v122Metres(m.ball,o.target),arrival=clamp(P.spaceBase+.6*Math.min(1,o.margin)-.004*(20-ability(p,'pas'))*metres-.05*pressure,.05,.85);
+   const receiver=v183OptHolder(m,o.runner,P,o.target,rivals,P.recvShot,metres/16)*(offers.has(o.runner.pid)?1+P.offer:1),gain=(o.target.y-p.y)*(p.t===0?-1:1)*s.y;
    list.push(delayed({kind:'space',ref:o.runner.pid,q:o.runner,option:o,target:o.target,arrival,gain:arrival*receiver*v183OptFocus(m,p,o.target,P)*v183OptDirect(m,p,gain,P),loss:(1-arrival)*v183OptLoss(P,o.target,p.t)},v183OptTurnTime(p,o.target,P,ctx.turnRate)));
   }
  }
@@ -227,8 +272,11 @@ function v183OptOptions(m,p,allies,rivals,P){
    if(q.slideActive||offside.has(q)||v183OptGoalDistance(q,p.t)>=16)continue;
    const c=v183CrossEstimate(m,p,q);if(!c.eligible||!(c.arrival>0))continue;
    ctx.stub??=shot.stub??v183OptStubEstimate(m,p);
-   const header=Math.max(0,c.headerXg||0)*(ctx.stub?P.stubScale:1)*P.crossConv;
-   list.push(delayed({kind:'cross',ref:q.pid,q,target:{x:q.x,y:q.y},arrival:c.arrival,gain:c.arrival*header*v183OptFocus(m,p,q,P),loss:(1-c.arrival)*v183OptLoss(P,q,p.t)},v183OptTurnTime(p,q,P,ctx.turnRate)));
+   // A cross is a pass in the air: the receiver holds the ball in the box
+   // (holder value after a 1 s flight) or heads at goal. A stub cross or shot
+   // estimate behind it gives the header on the quality scale.
+   const header=Math.max(0,c.headerXg||0)*(c.stub===true||ctx.stub?P.stubScale:1)*P.crossConv,receiver=Math.max(v183OptHolder(m,q,P,{x:q.x,y:q.y},rivals,0,1),header);
+   list.push(delayed({kind:'cross',ref:q.pid,q,target:{x:q.x,y:q.y},arrival:c.arrival,gain:c.arrival*receiver*v183OptFocus(m,p,q,P)*(hasInstruction(p,'wing')?P.wingInstruction:1),loss:(1-c.arrival)*v183OptLoss(P,q,p.t)},v183OptTurnTime(p,q,P,ctx.turnRate)));
   }
  }
  // Carry, dribble, hold.
@@ -244,7 +292,10 @@ function v183OptChoose(m,p,list,P){
  const decision=m.attackFlow.decision,now=v183Seconds(m);
  let best=-Infinity;for(const o of list)best=Math.max(best,o.u);
  const scale=Math.max(Math.abs(best),P.noiseFloor);
- if(decision?.playerId===p.pid&&decision.until>=now){const kept=list.find(o=>o.kind===decision.kind&&o.ref===decision.ref);if(kept){kept.u+=P.commit*scale;best=Math.max(best,kept.u);}}
+ // Commitment: the previous target keeps a bonus; after a carry only its
+ // direction does, against the other directions (no carry stickiness); holding
+ // gets none.
+ if(decision?.playerId===p.pid&&decision.until>=now){const kept=list.find(o=>o.kind===decision.kind&&o.ref===decision.ref);if(kept&&kept.kind!=='hold'){const bonus=P.commit*scale;if(kept.kind==='carry'){for(const o of list)if(o.kind!=='carry')o.u+=bonus;}kept.u+=bonus;best=-Infinity;for(const o of list)best=Math.max(best,o.u);}}
  const dec=Number.isFinite(p.dec)?clamp(p.dec,1,20):10,temperature=P.noise*clamp((20-dec)/10,0,1.9)*scale,band=list.filter(o=>o.u>=best-4*temperature).sort((a,b)=>b.u-a.u);
  if(band.length<2||!(temperature>0))return {choice:band[0],drawn:false};
  const weights=band.map(o=>Math.exp((o.u-best)/temperature)),total=weights.reduce((a,b)=>a+b,0);
@@ -256,23 +307,25 @@ function v183OptRecord(m,p,o,P){
  const now=v183Seconds(m);
  m.attackFlow.decision={playerId:p.pid,kind:o.kind,ref:o.ref??null,target:o.target?{x:o.target.x,y:o.target.y}:null,at:now,until:now+P.cadence+.15,checkAt:now+P.turnCheck,value:o.u};
 }
+// Returns null, or 'high' when a chosen high ball is not available any more
+// (v162TryHighPass declines) and the carrier holds instead.
 function v183OptExecute(m,p,o,allies,rivals,P){
- if(o.kind==='shot'){v55Shoot(p);return true;}
- if(o.kind==='pass'){v55GroundPass(p,o.q);return true;}
- if(o.kind==='space'){v150SpacePass(p,o.option);return true;}
- if(o.kind==='cross'){v55HighPass(p,o.q,{cross:true});return true;}
- if(o.kind==='high'&&v162TryHighPass(m,p,allies,rivals))return true;
+ if(o.kind==='shot'){v55Shoot(p);return null;}
+ if(o.kind==='pass'){v55GroundPass(p,o.q);return null;}
+ if(o.kind==='space'){v150SpacePass(p,o.option);return null;}
+ if(o.kind==='cross'){v55HighPass(p,o.q,{cross:true});return null;}
+ if(o.kind==='high'&&v162TryHighPass(m,p,allies,rivals))return null;
  const flow=m.attackFlow,s=v150Scale(),hold=o.kind!=='carry';
  // Keep the corridor target a few metres ahead so the native carrier target follows it.
  const target=hold?{x:p.x,y:p.y}:{x:clamp(p.x+o.dir.x*8/s.x,v55Field.left+1/s.x,v55Field.right-1/s.x),y:clamp(p.y+o.dir.y*8/s.y,v55Field.top+1/s.y,v55Field.bottom-1/s.y)};
  flow.carry={playerId:p.pid,target,until:v183OptLegacyAfter(m,P.cadence+.1)};
  if(!hold&&o.ref==='goal'&&v55HasClearRun(p,rivals,p.t===0?1-p.y:p.y))m.breakawayCarrier=p;
  m.next=m.elapsed+v183ClockUnits(m,P.cadence);
- return true;
+ return o.kind==='high'?'high':null;
 }
-function v183OptTrace(m,p,o,list,drawn,range){
+function v183OptTrace(m,p,o,list,drawn,range,fallback){
  const top=[...list].sort((a,b)=>b.u-a.u).slice(0,3).map(x=>({kind:x.kind,ref:x.ref??null,u:+x.u.toFixed(5)}));
- v183Trace(m,{type:'options',pid:p.pid,kind:o.kind,ref:o.ref??null,u:+o.u.toFixed(5),arrival:Number.isFinite(o.arrival)?+o.arrival.toFixed(4):null,range:+range.toFixed(1),n:list.length,drawn,top});
+ v183Trace(m,{type:'options',pid:p.pid,kind:o.kind,ref:o.ref??null,u:+o.u.toFixed(5),arrival:Number.isFinite(o.arrival)?+o.arrival.toFixed(4):null,range:+range.toFixed(1),n:list.length,drawn,top,...(fallback?{fallback,executed:'hold'}:{})});
 }
 // Abilities, pace and reaction delays are fixed during one evaluation: read
 // each once per person and key. The originals are restored before any action
@@ -285,8 +338,11 @@ function v183OptCached(run){
 }
 function v183OptDecide(m,p,allies,rivals){
  const P=v183OptParams(m),{list,range,choice,drawn}=v183OptCached(()=>{const r=v183OptOptions(m,p,allies,rivals,P);return {...r,...v183OptChoose(m,p,r.list,P)};});
- v183OptRecord(m,p,choice,P);v183OptTrace(m,p,choice,list,drawn,range);
- return v183OptExecute(m,p,choice,allies,rivals,P);
+ v183OptRecord(m,p,choice,P);
+ const fallback=v183OptExecute(m,p,choice,allies,rivals,P);
+ if(fallback)m.attackFlow.decision.kind='hold';
+ v183OptTrace(m,p,choice,list,drawn,range,fallback);
+ return true;
 }
 
 // ----- Pending turn: release earlier, or shoot from the turn -----
@@ -303,8 +359,8 @@ v157ContinueTurn=function(m,p,rivals){
   decision.checkAt=now+P.turnCheck;
   const shot=v183OptShot(m,p,P,p);
   if(shot.xg>0){
-   const w=v183OptWeights(p,P),angle=Math.abs(v157Angle(body.heading,v183OptHeading(p,v183OptGoal(p.t)))),orient=angle<=P.shotFree?1:clamp(1-(angle-P.shotFree)*P.shotTurn,.25,1),u=w.shootWeight*shot.xg*orient;
-   const e=v183OptPass(m,p,q,turn.kind==='space'?turn.target:null,P,{rivals,offers:new Set()}),wait=Math.exp(-v183OptTurnTime(p,target,P,v183OptTurnRate(p))/P.turnTau),pending=wait*e.arrival*e.receiver-(1-e.arrival)*e.loss/(w.riskWeight*v183OptScoreRisk(m,p,P));
+   const w=v183OptWeights(p,P),u=v183OptShootGain(p,P,w,shot.xg*v183OptOrient(p,P));
+   const left=v183OptTurnTime(p,target,P,v183OptTurnRate(p)),e=v183OptPass(m,p,q,turn.kind==='space'?turn.target:null,P,{rivals,offers:new Set(),pressure:v183OptPressure(m,p)},left),wait=Math.exp(-left/P.turnTau),pending=wait*e.arrival*e.receiver-(1-e.arrival)*e.loss/(w.riskWeight*v183OptScoreRisk(m,p,P));
    if(u>pending+P.switchMargin*Math.max(Math.abs(pending),P.noiseFloor)){
     delete m.attackFlow.pendingTurn;
     Object.assign(decision,{kind:'shot',ref:null,target:null,at:now,until:now+P.cadence+.15,value:u});

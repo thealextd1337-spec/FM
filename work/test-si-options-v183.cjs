@@ -3,7 +3,9 @@
 // Old path: with the options package off the wrapped functions run unchanged
 // (constructor matches digest-equal to rules 182, stub estimate unchanged).
 // New path: native scenes for the long shot of a good shooter, the shot from a
-// pending turn, the turn release, risk/personality (same skills, other role or
+// pending turn, the turn release, stub detection, flight seconds at rate 0.42,
+// player instructions, the dribbler take-on, symmetric carry/pass values, the
+// high-ball fallback, risk/personality (same skills, other role or
 // mental values and vice versa), free and closed passing lanes, a square pass,
 // a won rebound, commitment between near-equal options and the dec noise; full
 // constructor matches on both pitch sizes; restore of the decision and of a
@@ -12,7 +14,7 @@
 const assert=require('node:assert/strict'),path=require('node:path'),cp=require('node:child_process');
 
 // Child mode: time one evaluation in Node's main context (per match state the
-// fastest of three blocks of five evaluations, so machine load does not count). The VM sandbox of the
+// fastest of five blocks of four evaluations, so machine load does not count). The VM sandbox of the
 // harness makes every global lookup slow (the legacy decision costs about
 // eight times its main-context time there), so the scripts run in an ordinary
 // global object here: makeContext's sandbox values are copied onto globalThis
@@ -33,7 +35,7 @@ if(process.env.D6_SI1_TIMING){
  h.run(`finishMatch=function(){match.finished=true;running=false;match.flight=null;};globalThis.__samples=[];
   const base=v157Decide;v157Decide=function(m,p,allies,rivals){
    if(v183Active(m,'options')&&!p.keeper&&!m.attackFlow.pendingTurn&&!(m.attackFlow.receipt?.playerId===p.pid&&v152Seconds(m)<m.attackFlow.receipt.readyAt)&&__samples.length<${+process.env.D6_SI1_TIMING}){
-    const P=v183OptParams(m);let best=Infinity;for(let b=0;b<3;b++){const t0=__now();for(let i=0;i<5;i++)v183OptCached(()=>v183OptOptions(m,p,allies,rivals,P));best=Math.min(best,(__now()-t0)/5);}__samples.push(best);}
+    const P=v183OptParams(m);let best=Infinity;for(let b=0;b<5;b++){const t0=__now();for(let i=0;i<4;i++)v183OptCached(()=>v183OptOptions(m,p,allies,rivals,P));best=Math.min(best,(__now()-t0)/4);}__samples.push(best);}
    return base.apply(this,arguments);};`);
  for(const [club,size]of [['GER-2','standard'],['ENG-4','large'],['ESP-1','standard'],['ITA-3','large']]){h.run('running=true');h.call('Native183.constructed',{club,seed:'si1-timing',size,roles:true,si:{packages:{clock:true,options:true},clockRate:.42}});h.evaluate('(()=>{for(let n=0;n<20000&&!match.finished;n++)Native183.advance();})()');}
  process.stdout.write(h.evaluate('JSON.stringify(__samples)'));
@@ -185,6 +187,51 @@ check('team tactics: focus wide raises wide passes, direct raises forward passes
  const base=val('Variabel',0),wide=val('Außen',0),centre=val('Mitte',0),direct=val('Variabel',1);
  assert(wide.wide>base.wide&&centre.wide<base.wide);assert(direct.fwd>base.fwd);
 });
+const close=(a,b,msg='')=>assert(Math.abs(a-b)<1e-9,`${msg} ${a} vs ${b}`);
+check('stub detection by stub:true; a real estimate with speed 0 or null is not bridged',()=>{
+ scene({seed:15,attack:[{id:'c',goal:20,lateral:0,line:'att',skills:{fin:14}}],defend:[]});
+ const r=copy(ev(`(()=>{const m=match,p=m.owner,P=v183OptParams(m),base=v183ShotEstimate;try{
+  const stub=v183OptShot(m,p,P,p),real=[];
+  for(const speed of [0,null]){v183ShotEstimate=()=>({xg:.123,aim:{x:.5,y:v55Field.top},window:true,speed});real.push(v183OptShot(m,p,P,p));}
+  return {stub,real};}finally{v183ShotEstimate=base;}})()`));
+ assert.equal(r.stub.stub,true,'SI-F stub (stub:true) is bridged');
+ for(const o of r.real){assert.equal(o.stub,false);assert.equal(o.xg,.123,'real estimate used as it is');}
+});
+check('flight seconds use the match rate: clock package on (rate 0.42) and off (MATCH_SPEED); a real pass takes them',()=>{
+ for(const [si,rate]of [[{packages:{options:true,clock:true},clockRate:.42},.42],[{packages:{options:true,clock:false}},null]]){
+  scene({seed:16,si,attack:[{id:'c',goal:40,lateral:0},{id:'r',goal:28,lateral:6,line:'att'}],defend:keeperLine});
+  const r=copy(ev(`(()=>{const m=match,p=m.owner,q=m.people.find(x=>x.pid==='r'),target=v157PassLead(m,p,q,m.ball),e=v183PassEstimate(m,p,q,target),duration=clamp(distance(m.ball,target)*1.5,.32,.9);
+   const out={seconds:e.seconds,units:v115FlightDuration(m.ball,target,duration,'pass'),rate:v183Rate(m),speed:MATCH_SPEED};
+   v157Body(p).heading=v183OptHeading(p,target);v55GroundPass(p,q);let ticks=0;while(m.flight&&ticks<200){Native183.advance();ticks++;}out.real=ticks*.05;return out;})()`));
+  const expected=rate??r.speed;assert.equal(r.rate,expected);close(r.seconds,r.units/expected,'seconds');
+  assert(Math.abs(r.real-r.seconds)<=.15,`real flight ${r.real} s vs estimate ${r.seconds} s`);
+ }
+});
+check('player instructions: "Abschluss suchen" raises the shot gain, "Außenbahn & Flanken" the cross gain',()=>{
+ const shot=list=>{scene({seed:17,attack:[{id:'c',goal:18,lateral:0,line:'att',skills:{fin:14}}],defend:[]});ev(`match.owner.instructions=${JSON.stringify(list)}`);return options().find(o=>o.kind==='shot').gain;};
+ close(shot(['shoot'])/shot([]),copy(ev("v183OptParams(match).shootInstruction")),'shoot');
+ const cross=list=>{scene({seed:18,attack:[{id:'c',goal:20,lateral:-13,line:'mid'},{id:'b',goal:9,lateral:1,line:'att',skills:{air:15}}],defend:[{id:'d1',goal:6,lateral:6,line:'def'},{id:'d2',goal:7,lateral:-5,line:'def'}]});ev(`match.owner.instructions=${JSON.stringify(list)}`);return options().find(o=>o.kind==='cross'&&o.ref==='b');};
+ const plain=cross([]),wing=cross(['wing']);assert(plain&&wing,'cross option exists');close(wing.gain/plain.gain,copy(ev("v183OptParams(match).wingInstruction")),'wing');
+ // The shot from a turn uses the same shot gain.
+ assert.equal(copy(ev("v183OptShootGain({instructions:['shoot']},v183OptParams(match),{shootWeight:1},.2)")),.2*copy(ev("v183OptParams(match).shootInstruction")));
+});
+check('dribbler role: the take-on of v154TryDribble is offered as beat-left/right; other roles do not get it',()=>{
+ const run=role=>{scene({seed:19,attack:[{id:'c',goal:30,lateral:0,role,skills:{tec:16,spd:14}}],defend:[{id:'x',goal:26,lateral:.5,line:'def',skills:{tak:10}},...keeperLine]});return options().filter(o=>o.kind==='carry'&&String(o.ref).startsWith('beat'));};
+ const beat=run('dribbler');assert(beat.length>=1,'take-on offered');assert.equal(run('striker').length,0);
+});
+check('carry endpoint and pass target are valued alike (same space discount, closing opponents)',()=>{
+ scene({seed:20,attack:[{id:'c',goal:30,lateral:0},{id:'r',goal:30,lateral:8}],defend:[{id:'x',goal:24,lateral:1.5,line:'def'},...keeperLine]});
+ const r=copy(ev(`(()=>{const m=match,P=v183OptParams(m),c=m.owner,q=m.people.find(x=>x.pid==='r'),rivals=m.people.filter(x=>x.t===1),s=v150Scale(),point={x:.5,y:c.y-6/s.y},unmarked=rivals.filter(x=>x.pid!=='x');
+  return {carrier:v183OptHolder(m,c,P,point,rivals,P.carryShot,1),receiver:v183OptHolder(m,q,P,point,rivals,P.carryShot,1),marked:v183OptHolder(m,c,P,point,rivals,P.carryShot,.5),free:v183OptHolder(m,c,P,point,unmarked,P.carryShot,.5),later:v183OptHolder(m,c,P,point,rivals,P.carryShot,1.5)};})()`));
+ close(r.carrier,r.receiver,'same holder value');assert(r.marked<r.free,'a defender near the endpoint lowers its value');assert(r.later<=r.marked,'opponents close in over time');
+});
+check('a chosen high ball that is no longer available falls back to holding and is marked in the trace',()=>{
+ scene({seed:21,attack:[{id:'c',goal:40,lateral:0},{id:'r',goal:20,lateral:4,line:'att'}],defend:keeperLine});
+ const r=copy(ev(`(()=>{const m=match,p=m.owner,q=m.people.find(x=>x.pid==='r'),base=v183OptChoose;v183OptChoose=function(mm,pp,list){return {choice:{kind:'high',ref:'r',q,target:{x:q.x,y:q.y},u:.01,gain:.01,loss:0},drawn:false};};
+  try{v157Decide(m,p,m.people.filter(x=>x.t===0&&x!==p&&!x.keeper),m.people.filter(x=>x.t===1));}finally{v183OptChoose=base;}
+  const e=v183TraceEntries(m).at(-1);return {fallback:e.fallback,executed:e.executed,kind:e.kind,decision:m.attackFlow.decision.kind,flight:Boolean(m.flight),carry:m.attackFlow.carry&&Math.abs(m.attackFlow.carry.target.x-p.x)<1e-9};})()`));
+ assert.deepEqual(r,{fallback:'high',executed:'hold',kind:'high',decision:'hold',flight:false,carry:true});
+});
 check('trace entries are plain data; the decision is plain data in attackFlow',()=>{
  scene({seed:14,attack:[{id:'c',goal:30,lateral:0},{id:'r',goal:22,lateral:5,line:'att'}],defend:[{id:'x',goal:25,lateral:-3}]});decide();
  const t=copy(ev('JSON.stringify(v183TraceEntries(match).at(-1))')),d=copy(ev('JSON.stringify(match.attackFlow.decision)'));
@@ -224,13 +271,14 @@ check('restore: attackFlow.decision and a pending turn survive JSON checkpoints 
 });
 
 // ----- timing -----
-check('timing: one evaluation <= 0.3 ms in Node (mean and median over real match states; p90 reported)',()=>{
+check('timing: one evaluation <= 0.3 ms in Node (median and p90 over real match states; mean reported)',()=>{
  const r=cp.spawnSync(process.execPath,[__filename],{cwd:path.resolve(__dirname,'..'),env:{...process.env,D6_SI1_TIMING:quick?'200':'600'},encoding:'utf8',maxBuffer:1<<24});
  if(r.status!==0)throw Error(r.stderr||r.stdout);
- const s=JSON.parse(r.stdout).sort((a,b)=>a-b),mean=s.reduce((a,b)=>a+b,0)/s.length,p90=s[Math.floor(s.length*.9)];
- console.log(`     n=${s.length} mean=${mean.toFixed(4)} ms median=${s[s.length>>1].toFixed(4)} ms p90=${p90.toFixed(4)} ms`);
- // p90 depends on machine load (other measurement lanes); mean and median carry the budget.
- assert(mean<=.3,`mean ${mean}`);assert(s[s.length>>1]<=.3,`median ${s[s.length>>1]}`);
+ const s=JSON.parse(r.stdout).sort((a,b)=>a-b),mean=s.reduce((a,b)=>a+b,0)/s.length,median=s[s.length>>1],p90=s[Math.floor(s.length*.9)];
+ console.log(`     n=${s.length} median=${median.toFixed(4)} ms p90=${p90.toFixed(4)} ms mean=${mean.toFixed(4)} ms`);
+ // Per state the fastest block counts, so preemption by other processes does
+ // not enter; the mean is only reported (single slow states pull it up).
+ assert(median<=.3,`median ${median}`);assert(p90<=.3,`p90 ${p90}`);
 });
 
 console.log(failures?`${failures} check(s) failed`:'all checks passed');

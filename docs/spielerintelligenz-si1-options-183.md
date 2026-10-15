@@ -13,34 +13,47 @@ Für `v183Active(m,'options')` ersetzt eine Bewertung die feste Reihenfolge von 
 | Raumpass | Kandidaten aus `v150Candidates` (drei beste), Ankunft aus Zeitvorsprung, `pas` und Länge | wie Pass, am Zielpunkt |
 | Hoher Ball | Option aus `v162HighOption` (über eine Mittelfeldsperre) | wie Pass |
 | Flanke | Ankunft × Kopfballwert aus `v183CrossEstimate` | wie Pass, im Strafraum |
-| Tragen | Behaltwahrscheinlichkeit × Wert 1 s voraus (Positionswert oder 0,4 × Schuss von dort); Richtungen: Tormitte, geradeaus, zwei Diagonalen (±34°) | (1 − Behalten) × Gegnerwert am Ort |
-| Halten | Behalten × Positionswert × 0,9 (Abschirmen auf der Stelle) | wie Tragen |
+| Tragen | Behaltwahrscheinlichkeit × Haltewert 1 s voraus × `carryFactor`; Richtungen: Tormitte, geradeaus, zwei Diagonalen (±34°), für die Rolle Dribbler zusätzlich das Umspielen aus `v154TryDribble` | (1 − Behalten) × Gegnerwert am Ort |
+| Halten | Behalten × Haltewert am Ort × `holdFactor` (Abschirmen auf der Stelle) | wie Tragen |
 
 - **Nutzen** = Gewinn × Körperstellungsabschlag − Verlust / Risiko. Positionswert `0,3·e^(−d/16)` (d = Meter zum Tor, flacher Winkel bis zur Hälfte); der Gegnerwert nach Ballverlust zählt mit Gewicht 1,6 (Konter).
-- **Ankunft** (`v183PassEstimate`) spiegelt die native Ausführung (`v55GroundPass`): erster Abfangkandidat auf der Linie (geglättet über 0,6 m bzw. 0,8 m) mit seiner Abfangchance, Passfehler aus `pas` und Druck gegen die Reichweite des Empfängers, Fehlannahme aus `tec` und Gegnern in 2,5 m. Sie hängt nur an Fähigkeiten und Geometrie.
-- **Behalten** beim Tragen: Jeder Gegner, der die Laufstrecke in 1 s erreicht (Reaktion nach `pos` wie B03), greift zweimal mit der heutigen Standtackling-Chance an (`engage 2`, die Kontaktprüfung erlaubt bis zu vier Versuche je Sekunde); von hinten halb so oft (B03 bleibt). Der Torwart greift nur im Strafraum an.
-- **Körperstellung**: Ein Pass außerhalb des bisherigen Warteschlangenwinkels (1,05 rad, `v157QueueTurn`) kostet die Drehzeit bis 0,55 rad und 2,5 m/s, der Gewinn wird mit `e^(−t/0,7 s)` abgezinst und der Verlust in dieser Zeit eingerechnet. Eine laufende Drehung wird bei 0,55 rad und 2,5 m/s ausgelöst (bisher 0,30 rad und 1,2 m/s). Alle 0,25 s prüft der Ballführer während der Drehung den Schuss gegen den wartenden Pass und schießt, wenn der Schuss um 15 % besser ist (**Schuss aus der Drehung**).
+- **Haltewert (symmetrisch für Pass und Tragen):** Wert des Ballbesitzes eines Spielers an einem Punkt, sobald er den Ball dort hat = max(Positionswert × (0,6 + 0,4·Raum), eigener Schuss × Faktor × Raum). Raum = nächster Feldgegner, der bis dahin (Flugzeit bzw. 1 s Tragen bzw. 0,5 s Halten) mit der Hälfte seines Tempos nachrückt (`close`); 0,25 (gedeckt) bis 1 (frei). Empfänger, Tragezielpunkt und Halten werden damit gleich bewertet; ein Lauf in gedeckten Raum ist nicht mehr wert als ein Pass dorthin.
+- **Ankunft** (`v183PassEstimate`) spiegelt die native Ausführung (`v55GroundPass`): erster Abfangkandidat auf der Linie (geglättet über 0,6 m bzw. 0,8 m) mit seiner Abfangchance, Passfehler aus `pas` und Druck gegen die Reichweite des Empfängers, Fehlannahme aus `tec` und Gegnern in 2,5 m. Muss sich der Passgeber erst drehen, rücken die Gegner in dieser Zeit nach (Abfangreichweite und Gegner am Ziel). Sie hängt nur an Fähigkeiten und Geometrie. Flugsekunden = Uhreinheiten aus `v115FlightDuration` / `v183Rate(m)`.
+- **Behalten** beim Tragen: Jeder Gegner, der die Laufstrecke in 1 s erreicht (Reaktion nach `pos` wie B03), greift zweimal mit der heutigen Standtackling-Chance an (`engage 2`, die Kontaktprüfung erlaubt bis zu vier Versuche je Sekunde); von hinten halb so oft (B03 bleibt). Der Torwart greift nur im Strafraum an. Das Umspielen der Dribbler-Rolle zählt einen Angriff des einen Gegners.
+- **Körperstellung**: Ein Pass außerhalb des bisherigen Warteschlangenwinkels (1,05 rad, `v157QueueTurn`) kostet die Drehzeit bis 0,55 rad und 2,5 m/s. Diese Zeit geht in die Ankunft ein (siehe oben); der Gewinn wird zusätzlich mild mit `e^(−t/1,5 s)` abgezinst und der Verlust in dieser Zeit eingerechnet. Eine laufende Drehung wird bei 0,55 rad und 2,5 m/s ausgelöst (bisher 0,30 rad und 1,2 m/s). Alle 0,25 s prüft der Ballführer während der Drehung den Schuss gegen den wartenden Pass und schießt, wenn der Schuss um 15 % besser ist (**Schuss aus der Drehung**).
 - **Persönlichkeit** (`v183Personality`, Rolle und `calm`/`dec`): `shootWeight` gewichtet nur den Schussgewinn, `dribbleWeight` den Tragegewinn, `holdWeight` den Haltegewinn, `riskWeight` nur den Verlustterm. Linienbreite und Ankunft bleiben unberührt. Bis zur ersten 192er-Serie gelten die Gewichte relativ zum neutralen Spieler und auf 0,85–1,15 begrenzt (die Rohwerte aus `v183Personality` bleiben unverändert).
 - **Spielstand/Restzeit**: Rückstand erhöht, Führung senkt das Risikogewicht bis ±15 % zum Spielende (quadratisch mit der Spielzeit).
-- **Taktik aus dem toten Baum**: Angriffsfokus „Außen“/„Mitte“ gewichtet breite bzw. zentrale Ziele (±10 %), „Direkt“ Vorwärtspässe (bis +25 % bei 15 m Raumgewinn).
-- **Angebote**: Mitspieler mit gültigem Tiefen- oder Nachrücklauf aus `v183Offers` (SI-2, bis dahin Stub) erhalten +15 % Empfängerwert; ein bestätigter Doppelpass-Rückweg +0,03.
+- **Spieleranweisungen und Teamtaktik** (`docs/product.md`: gleiche Wirkung für Mensch und KI):
+
+  | Anweisung / Taktik | Wirkung |
+  | --- | --- |
+  | Abschluss suchen (Anweisung bzw. Rolle Torjäger/Stoßstürmer) | Schussgewinn × `shootInstruction` (1,25), auch beim Schuss aus der Drehung; im Altpfad Schusschance × 1,5 |
+  | Außenbahn & Flanken | Flankengewinn × `wingInstruction` (1,25); Laufweg außen (Rollenziel) unverändert |
+  | Tiefenlauf | Läuferauswahl in den Angeboten (`v159Offers`, SI-2) → Angebotszuschlag auf den Empfängerwert; Tiefenlauf-Bonus der Raumpass-Kandidaten (`v150Candidates`) und Passvorhalt der Ausführung unverändert |
+  | Anspielbar bleiben | Unterstützungsangebot (`v159Offers`) und Ausschluss als Raumpass-Läufer unverändert |
+  | Angriffsfokus Außen/Mitte | Pass-, Raumpass- und Flankenziele ±10 % (`focus`) |
+  | Passspiel Direkt | Vorwärtspässe bis +25 % bei 15 m Raumgewinn (`direct`) |
+  | Pressing, Aggressivität, Abwehrlinie | Verteidigung, außerhalb des Optionsmodells unverändert wirksam |
+
+- **Angebote**: Mitspieler mit gültigem Tiefen- oder Nachrücklauf aus `v183Offers` (SI-2, bis dahin Stub) erhalten einen Zuschlag `offer` auf den Empfängerwert; ein bestätigter Doppelpass-Rückweg +0,03.
 - **Bewertungsrauschen nach `dec`**: Wahl per Softmax über die Optionen im Rauschband, Temperatur `0,15·(20−dec)/10` des besten Nutzens (mindestens 0,006). `dec` 20 wählt ohne Rauschen; fehlendes `dec` gilt als 10. Über die SI-F-Persönlichkeitsformel hinaus wirkt `dec` nur hier.
-- **Bindung**: Die zuletzt gewählte Option desselben Spielers erhält +8 % des besten Nutzens, solange ihre Absicht gilt (kein Wechsel zwischen fast gleichwertigen Zielen).
+- **Bindung**: Die zuletzt gewählte Option desselben Spielers erhält +8 % des besten Nutzens, solange ihre Absicht gilt (kein Wechsel zwischen fast gleichwertigen Zielen). Nach einem Tragen gilt der Zuschlag nur gegenüber den anderen Trage-Richtungen (Richtung bleibt stabil, Tragen klebt nicht gegenüber Pässen); Halten erhält keinen.
 - **Takt**: Nach Tragen/Halten entscheidet der Ballführer nach 0,25 s Echtzeit (`v183ClockUnits`), während einer Drehung alle 0,08 s. Die Annahmevorbereitung (`v159ReceivePlan`) und das freie Tor (`v131OpenGoal`, sofortiger Schuss) bleiben vorgeschaltet.
 
 ### SI-F-Stub-Brücke
 
-Der Stub von `v183ShotEstimate` (erkennbar an `speed:null`) liefert die Schussqualität von `v157ShotQuality` mit hartem 22-m-Fenster. SI-1 liest ihn deshalb an dem Punkt derselben Schusslinie, dessen Torentfernung `Entfernung × 22 / Fenster` beträgt, und skaliert mit 0,4 auf eine Torwahrscheinlichkeit. Ein Verteidiger zwischen Schütze und diesem Punkt halbiert den Wert, zwei heben ihn auf (der Stub sieht nur die Linie dahinter). Kopfballwerte aus `v183CrossEstimate` erhalten dieselbe Skalierung, solange die Schussschätzung der Stub ist. Eine echte Schätzung (SI-3, `speed` gesetzt) wird unverändert verwendet; das Fähigkeitsfenster bleibt als Grenze. Nach dem Rebase auf SI-3/SI-7 sind `stubScale` und die Gewichte gegen die echten Schätzungen nachzumessen (SI-K).
+Der Stub von `v183ShotEstimate` (erkennbar an `stub:true`, seit `ef78fca6`) liefert die Schussqualität von `v157ShotQuality` mit hartem 22-m-Fenster. SI-1 liest ihn deshalb an dem Punkt derselben Schusslinie, dessen Torentfernung `Entfernung × 22 / Fenster` beträgt, und skaliert mit 0,4 auf eine Torwahrscheinlichkeit. Ein Verteidiger zwischen Schütze und diesem Punkt halbiert den Wert, zwei heben ihn auf (der Stub sieht nur die Linie dahinter). Kopfballwerte aus `v183CrossEstimate` erhalten dieselbe Skalierung, solange die Flankenschätzung oder die Schussschätzung der Stub ist. Eine echte Schätzung (ohne `stub:true`, auch mit `speed` 0 oder `null`) wird unverändert verwendet; das Fähigkeitsfenster bleibt als Grenze. Nach dem Rebase auf SI-3/SI-7 sind `stubScale` und die Gewichte gegen die echten Schätzungen nachzumessen (SI-K).
 
 ## `v183PassEstimate(m,p,q,target)`
 
-Ohne aktives Paket der unveränderte SI-F-Stub. Mit Paket: `{arrival, value, receiver, loss, intercept, lane, returnRun, target, gain}`.
+Ohne aktives Paket der unveränderte SI-F-Stub. Mit Paket: `{seconds, arrival, value, receiver, loss, intercept, lane, returnRun, target, gain}`; `seconds` = Flugzeit in Echtsekunden (Uhreinheiten / `v183Rate(m)`).
 
 - `arrival` (0–1): Wahrscheinlichkeit, dass der Bodenpass auf `target` (Standard: Laufvorhalt `v157PassLead`) ankommt und kontrolliert wird; siehe Modell.
 - `receiver`: Wert des Ballbesitzes von `q` am Ziel (Positionswert oder sein Schuss dort, je nach Raum um ihn; +`oneTwo` bei bestätigtem Rückweg).
 - `loss`: Gegnerwert × 1,6 an der Mitte der Passlinie.
 - `value = arrival·receiver − (1−arrival)·loss` – objektiv, ohne Persönlichkeit und ohne Angebotszuschlag. SI-2 und SI-7 erhalten damit eine vergleichbare Passbewertung; das Risikogewicht des Passgebers wendet nur SI-1 an.
-- `lane` ist der bisherige Test `v157Lane`, `intercept` die Abfangwahrscheinlichkeit, `gain` der Raumgewinn in Metern.
+- `lane` ist der bisherige Test `v157Lane` (nur für Aufrufer von außen; die Bewertung braucht ihn nicht), `intercept` die Abfangwahrscheinlichkeit, `gain` der Raumgewinn in Metern.
+- Druck auf den Passgeber wie in `v55GroundPass`: Gegner im Radius `defence.passPressureRadius` (Meter, SI-4) bei aktivem Paket `defence`, sonst normalisiert 0,15 (W4). In der Bewertung einmal je Entscheidung vorberechnet.
 
 ## Umhüllungen und toter Entscheidungsbaum
 
@@ -57,6 +70,7 @@ Ohne aktives Paket der unveränderte SI-F-Stub. Mit Paket: `{arrival, value, rec
 - `attackFlow.decision = {playerId, kind, ref, target, at, until, checkAt, value}` (Plain-Daten, Zeiten in `v183Seconds`): Bindung und nächste Schussprüfung während einer Drehung. Gespeichert und wiederhergestellt mit der Partie; Restore ergänzt nichts.
 - Tragen/Halten nutzen das bestehende `attackFlow.carry` (Fristen auf `v152Seconds`, Umrechnung ohne Annahme über diese Uhr), Drehungen das bestehende `pendingTurn`.
 - Keine WeakMap, kein Modulzustand; das Protokoll (`v183Trace`, Typ `options`: Option, Bezug, Nutzen, Ankunft, Entfernung, Anzahl, Ziehung, drei beste) ist flüchtig.
+- Rückfall: Ist ein gewählter hoher Ball bei der Ausführung nicht mehr verfügbar (`v162TryHighPass` lehnt ab), hält der Spieler; das Protokoll trägt `fallback:'high', executed:'hold'`, die Entscheidung wird als Halten gespeichert.
 - Zufall: genau eine benannte Ziehung `options.choice`, nur wenn mindestens zwei Optionen im Rauschband liegen. Ausgeführte Aktionen behalten ihre eigenen Ziehungen. Unmarkierte und 182-Partien erhalten keine zusätzliche Ziehung.
 
 ## Parameter (`options.*`, gespeichert in neuen Partien)
