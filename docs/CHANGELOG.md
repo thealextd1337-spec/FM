@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- B19 (Restore-Vollständigkeit, Welle 0): Gespeicherte und wieder geöffnete Partien mit Kennung 182 behalten `Infinity`-Werte (etwa `match.next`), den Foulkontext der Freistoß-/Elfmetervorbereitung, den offenen Raumpass-Plan und den Spieler des Schlusspfiff-Angriffs; der Restore ergänzt keinen Marker, Altpartien bleiben unverändert. Das Prüfwerkzeug `work/check-restore-completeness-v183.cjs` vergleicht den Laufzustand vor Snapshot und nach Restore tief (einschließlich Paketzustand in `attackFlow`/`match.si` und aller modulweiten WeakMaps) und setzt die Partie bis zum Abpfiff fort. Die Fortsetzung ist in den geprüften Fällen bitgleich zur ununterbrochenen Partie; gefordert ist das laut Nutzerentscheidung nicht.
+
 ## 14. Oktober 2026 – Release 132
 
 - B03/B12: Verteidiger verfolgen Durchbrüche und Richtungswechsel verlässlicher; freie Boden-/Luftbälle und Abpraller erhalten getrennte Hauptjäger und Unterstützung. Gespeicherte Reaktions-/Kontaktfenster verhindern Mehrfachversuche im selben Tick. Grätschen von hinten mit Körperkontakt bleiben Foul.
