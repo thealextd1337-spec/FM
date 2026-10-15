@@ -91,10 +91,19 @@ function v158QueueAction(career,fixture,state,player,type,causeId,minute,units=1
  const pending=v158Pending(state,player.pid),id=`${causeId}:${player.pid}:${type}`;
  if(!pending.events.some(e=>e.id===id))pending.events.push({id,causeId,type,minute,units});
 }
+// Virtual minute of a native action. While the final whistle waits for a flight
+// (finance-v15 step), match.elapsed is set back by one clock unit so the ball can
+// land; the played clock stands at fullTimeEnd-.001 then. An action of that
+// landing (air duel, keeper dive) belongs there, not 1.2 minutes earlier, where
+// a late substitute had not yet played.
+function v158ActionMinute(current){
+ const elapsed=current.fulltimePending?Math.max(current.elapsed,(current.fullTimeEnd||75)-.001):current.elapsed;
+ return Math.max(0,elapsed*90/75);
+}
 function v158LoadAction(current,player,type,causeId){
  const context=typeof v65WorldActive!=='undefined'&&v65WorldActive;
  if(!context?.state.playerLoad||current!==match)return;
- v158QueueAction(context.career,context.fixture,context.state,player,type,causeId,Math.max(0,current.elapsed*90/75),type==='intense-duel'&&current.si&&typeof v183ClockLoadUnits==='function'?v183ClockLoadUnits(current):1);
+ v158QueueAction(context.career,context.fixture,context.state,player,type,causeId,v158ActionMinute(current),type==='intense-duel'&&current.si&&typeof v183ClockLoadUnits==='function'?v183ClockLoadUnits(current):1);
 }
 function v158Contact(current,a,b){
  const context=typeof v65WorldActive!=='undefined'&&v65WorldActive;if(!context?.state.playerLoad||current!==match)return;
