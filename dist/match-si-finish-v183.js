@@ -233,6 +233,10 @@ v183KeeperReach=function(m,keeper,range,contact,detail={}){
 // Direct free-kick recommendation for SI-7 (v182FreeKickPlan): shoot when the
 // spot lies within fkRangeBase + fkRangeFin*fin metres, the angle is open and
 // the estimate reaches fkMinXg. null without the finish package.
+// Timing: the estimate reads the current defender positions. Call it once the
+// wall stands (at the execution, or with the wall targets in place); called when
+// the set piece is created, the wall is not yet in the lane, so xg is too high
+// and the block is ignored.
 function v183DirectFreeKick(m,setPiece){
  if(!v183FinishLive(m)||!setPiece?.taker||!setPiece.spot)return null;
  const P=v183FinishParams(m),taker=setPiece.taker,spot=setPiece.spot,S=v183FinishFrame(m,taker.t,spot),range=Math.hypot(S.lat,S.depth),limit=P.fkRangeBase+P.fkRangeFin*ability(taker,'fin');
@@ -245,6 +249,7 @@ function v183FinishShoot(shooter,kind){
  const m=match,P=v183FinishParams(m),team=shooter.t,rivals=m.people.filter(player=>player.t!==team),keeper=rivals.find(player=>player.keeper);
  const oneTouch=v127OneTouchRelease?.person===shooter,from={x:m.ball.x,y:m.ball.y};
  shooter.stats.shots++;m.shots[team]++;if(kind==='header')shooter.stats.headers++;if(kind==='volley')shooter.stats.volleys++;
+ v183FinishParries.delete(m);
  const sit=v183FinishSituation(m,shooter,from,kind,{oneTouch}),plan=v183FinishPlan(P,sit);
  const u1=random(),u2=random(),u3=random(),shot=v183FinishExecute(P,sit,plan,u1,u2,u3),line=team===0?v55Field.top:v55Field.bottom;
  // Misses keep the native display range of the legacy path (x within .3-.7).
@@ -252,8 +257,10 @@ function v183FinishShoot(shooter,kind){
  const blocker=v183FinishBlocker(m,shooter,goalPoint);
  const label=kind==='header'?'köpft aufs Tor':kind==='volley'?'schießt direkt volley':oneTouch?'schießt direkt':'schießt';
  note(`${shooter.name} ${label}!`,'shot');
- v183Trace(m,{type:'finish.shot',shooter,kind,range:+sit.range.toFixed(2),xg:+plan.xg.toFixed(4),on:+plan.on.toFixed(4),aimLat:+shot.aim.lat.toFixed(2),aimH:shot.aim.h,lat:+shot.lat.toFixed(2),h:+shot.h.toFixed(2),onTarget:shot.onTarget,over:shot.over,wide:shot.wide,goal:shot.goal,stretch:shot.reach&&Number.isFinite(shot.reach.stretch)?+shot.reach.stretch.toFixed(3):null,sx:+plan.spread.x.toFixed(2),sh:+plan.spread.h.toFixed(2),sit});
- if(blocker&&random()<v183FinishBlockChance(blocker)){
+ const blocked=Boolean(blocker&&random()<v183FinishBlockChance(blocker));
+ // Trace after the block decision: onTarget/goal are the actual outcome; a block stops both.
+ v183Trace(m,{type:'finish.shot',shooter,kind,range:+sit.range.toFixed(2),xg:+plan.xg.toFixed(4),on:+plan.on.toFixed(4),aimLat:+shot.aim.lat.toFixed(2),aimH:shot.aim.h,lat:+shot.lat.toFixed(2),h:+shot.h.toFixed(2),blocked,onTarget:!blocked&&shot.onTarget,over:!blocked&&shot.over,wide:!blocked&&shot.wide,goal:!blocked&&shot.goal,stretch:shot.reach&&Number.isFinite(shot.reach.stretch)?+shot.reach.stretch.toFixed(3):null,sx:+plan.spread.x.toFixed(2),sh:+plan.spread.h.toFixed(2),sit});
+ if(blocked){
   const point={x:blocker.geometry.x,y:blocker.geometry.y},launch=()=>fly(point,clamp(distance(shooter,point)*1.2,.17,.45),()=>{if(v122Metres(blocker.player,point)>.8){blocker.player.interceptTarget=null;v50LooseBall(point,`${blocker.player.name} erreicht den Abschluss nicht.`);return}v50Deflect(point,team,blocker.player,`Block von ${blocker.player.name}`)});if(typeof v110BlockFlight==='function')v110BlockFlight(blocker.player,point,launch);else launch();return;
  }
  const onTarget=shot.onTarget,goal=shot.goal,reachable=Boolean(onTarget&&shot.reach.reachable);
@@ -293,8 +300,9 @@ v55Shoot=function(shooter,kind='shot',...args){
 const v183FinishBaseDeflect=v115KeeperDeflect;
 v115KeeperDeflect=function(point,team,keeper,description){
  const m=match,plan=v183FinishLive(m)?v183FinishParries.get(m):null,incoming=typeof v109IncomingFlight!=='undefined'&&v109IncomingFlight?.current===m?v109IncomingFlight.flight:null;
+ // A plan belongs to exactly one shot flight: consumed here, and dropped as stale on a mismatch.
+ if(plan)v183FinishParries.delete(m);
  if(!plan||plan.keeperPid!==keeper.pid||plan.flight!==incoming)return v183FinishBaseDeflect.call(this,point,team,keeper,description);
- v183FinishParries.delete(m);
  const P=v183FinishParams(m),goal=v183FinishGoal(m),s=v150Scale(m),line=team===0?v55Field.top:v55Field.bottom,away=team===0?1:-1;
  v123DefensiveThreats.set(m,team);
  const nearPost=clamp((Math.abs(plan.lat)-(goal.half-P.postZone))/P.postZone,0,1),gk=plan.gk-10;

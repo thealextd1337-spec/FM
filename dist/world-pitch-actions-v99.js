@@ -23,7 +23,7 @@ v50GoalKick=function(...args){
  // The existing movement step forms the build-up while the keeper waits.
  if(v65WorldActive){
   // SI 183 switch: a marked match holds in real seconds (v183ClockUnits), 2.4 s or
-  // finish.keeperHold with the finish package; unmarked matches keep 2.4*MATCH_SPEED.
+  // finish.keeperHold with the finish package; unmarked matches keep the legacy clock units.
   const holdSeconds=match.si&&typeof v183Marked==='function'&&v183Marked(match)?v183Active(match,'finish')?v183Param(match,'finish.keeperHold')??2.4:2.4:null;
   match.next=match.elapsed+(holdSeconds===null?2.4*MATCH_SPEED:v183ClockUnits(match,holdSeconds));
   const state=v99ActionState(match);if(!held)state.keepers.delete(args[0].pid);

@@ -131,7 +131,7 @@ check('live shots: named draws, statistics, display data and outcome follow the 
    v55Shoot(p);const d1=SI3.draws(),trace=v183TraceEntries(m).filter(e=>e.type==='finish.shot').at(-1),release=m.flight&&v99Flights.get(m.flight),flight=m.flight?{target:m.flight.target}:null;
    const display=release?{endHeight:release.endHeight,over:release.over,blocked:release.blocked}:null;SI3.untilLanded();
    return {draws:d1-d0,trace,display,flight,shots:p.stats.shots-before.shots,on:p.stats.onTarget-before.on,faced:k.stats.faced-before.faced,goals:m.score[0]-before.score,saves:k.stats.saves-before.saves};})()`));
-  assert.equal(r.shots,1);assert(r.trace&&r.trace.kind==='shot','trace entry');
+  assert.equal(r.shots,1);assert(r.trace&&r.trace.kind==='shot','trace entry');assert.equal(r.trace.blocked,false,'no blocker in the scene');
   // aim, lateral, height, then the catch draw for a reachable ball (no blocker in these scenes).
   assert.equal(r.draws,3+(r.trace.onTarget&&!r.trace.goal?1:0),`draws seed ${seed}`);
   assert.equal(r.on,r.trace.onTarget?1:0);assert.equal(r.goals,r.trace.goal?1:0);assert.equal(r.faced,r.trace.onTarget&&!r.trace.goal?1:0);
@@ -143,6 +143,38 @@ check('live shots: named draws, statistics, display data and outcome follow the 
  }
  for(const [k,n]of Object.entries(outcomes))assert(n>0,`outcome ${k} occurs`);
  examples.liveOutcomes=outcomes;
+});
+check('live headers and volleys run through the new path (kind, start height, speed, statistics, ledger kind)',()=>{
+ const seen={header:{goal:0,save:0,miss:0},volley:{goal:0,save:0,miss:0}};
+ for(const kind of ['header','volley'])for(let seed=1;seed<=24;seed++){
+  live(ON,{ticks:60});h.call('Native182.seedRandom',Math.imul(seed+(kind==='header'?500:700),2654435761)>>>0);
+  const ids=copy(h.call('SI3.shotScene',{lat:(seed%3-1)*1.5,depth:kind==='header'?5+seed%4:7+seed%8,fin:7+seed%10,gk:8+seed%9}));
+  const r=copy(ev(`(()=>{const m=match,p=SI3.person('${ids.p}'),k=SI3.person('${ids.k}');p.air=14;
+   const before={shots:p.stats.shots,headers:p.stats.headers,volleys:p.stats.volleys,on:p.stats.onTarget,score:m.score[0],saves:k.stats.saves},d0=SI3.draws();
+   v55Shoot(p,'${kind}');const d1=SI3.draws(),trace=v183TraceEntries(m).filter(e=>e.type==='finish.shot').at(-1),event=m.flight&&v117Flights.get(m.flight),P=SI3.params();
+   const expectedSpeed='${kind}'==='header'?P.headerBase+P.headerAir*ability(p,'air'):(P.speedBase+P.speedFin*ability(p,'fin')+P.speedTec*ability(p,'tec'))*P.volleySpeed;
+   SI3.untilLanded();
+   return {draws:d1-d0,trace:{kind:trace.kind,h0:trace.sit.h0,speed:trace.sit.speed,onTarget:trace.onTarget,goal:trace.goal,blocked:trace.blocked},expectedSpeed,eventKind:event?.kind??null,shots:p.stats.shots-before.shots,headers:p.stats.headers-before.headers,volleys:p.stats.volleys-before.volleys,on:p.stats.onTarget-before.on,goals:m.score[0]-before.score,saves:k.stats.saves-before.saves};})()`));
+  assert.equal(r.trace.kind,kind);assert.equal(r.trace.h0,kind==='header'?1.9:.7);assert(Math.abs(r.trace.speed-r.expectedSpeed)<1e-9,'speed');
+  assert.equal(r.eventKind,kind,'ledger kind from the v102 scope');assert.equal(r.shots,1);assert.equal(r.headers,kind==='header'?1:0);assert.equal(r.volleys,kind==='volley'?1:0);
+  assert.equal(r.trace.blocked,false);assert.equal(r.draws,3+(r.trace.onTarget&&!r.trace.goal?1:0),`draws ${kind} seed ${seed}`);
+  assert.equal(r.on,r.trace.onTarget?1:0);assert.equal(r.goals,r.trace.goal?1:0);assert.equal(r.saves,r.trace.onTarget&&!r.trace.goal?1:0);
+  seen[kind][r.trace.goal?'goal':r.trace.onTarget?'save':'miss']++;
+ }
+ for(const kind of ['header','volley'])assert(seen[kind].goal>0&&seen[kind].save+seen[kind].miss>0,`${kind} outcomes ${JSON.stringify(seen[kind])}`);
+ examples.airShots=seen;
+});
+check('a blocked shot is traced as blocked, never as goal',()=>{
+ let blocked=0;
+ for(let seed=1;seed<=30&&!blocked;seed++){
+  live(ON,{ticks:60});h.call('Native182.seedRandom',Math.imul(seed+900,2654435761)>>>0);
+  const ids=copy(h.call('SI3.shotScene',{depth:16,lat:0,keep:true}));
+  // One defender stands in the lane five metres in front of the shooter.
+  const r=copy(ev(`(()=>{const m=match,p=SI3.person('${ids.p}'),s=v150Scale(m),d=m.people.find(q=>q.t===1&&!q.keeper);d.x=p.x;d.y=p.y-5/s.y;d.tx=d.x;d.ty=d.y;d.tak=20;
+   v55Shoot(p);const t=v183TraceEntries(m).filter(e=>e.type==='finish.shot').at(-1);return {blocked:t.blocked,goal:t.goal,onTarget:t.onTarget,on:p.stats.onTarget};})()`));
+  if(r.blocked){blocked++;assert.equal(r.goal,false);assert.equal(r.onTarget,false);assert.equal(r.on,0);}
+ }
+ assert(blocked>0,'a block occurs within 30 seeds');
 });
 check('a header beyond heading range keeps the legacy header pass (no shot)',()=>{
  live(ON,{ticks:60});h.call('SI3.shotScene',{depth:22,lat:0});
@@ -164,6 +196,16 @@ check('keeper reach at the three sites follows the keeper model and grows with g
  for(const site of ['shot-lane','open-goal','keeper-contact']){assert(r[site][0]<r[site][1]&&r[site][1]<r[site][2],site);assert(!r[site].includes(.123),site);}
  assert(Math.abs(r.value-r.formula)<1e-9);
  examples.keeperReach14m=r['keeper-contact'];
+});
+check('parry plans never stay behind: a new shot clears them, a mismatching deflection drops them',()=>{
+ live(ON,{ticks:60});
+ const r=copy(ev(`(()=>{const m=match,k=m.people.find(q=>q.t===1&&q.keeper),s=v150Scale(m),point={x:.5,y:v55Field.top+2/s.y},out={};
+  v183FinishParries.set(m,{flight:{},keeperPid:k.pid,lat:0,stretch:.5,speed:27,gk:12});Native182.seedRandom(5);v115KeeperDeflect(point,0,k,'Parade');
+  out.afterMismatch=v183FinishParries.has(m);out.legacyDraws=SI3.draws();m.flight=null;
+  v183FinishParries.set(m,{flight:{},keeperPid:k.pid,lat:0,stretch:.5,speed:27,gk:12});SI3.shotScene({depth:30,lat:0,fin:6});const p=m.owner;Native182.seedRandom(9);v55Shoot(p);
+  out.afterShot=v183FinishParries.has(m)?v183FinishParries.get(m).flight===m.flight:null;return out;})()`));
+ assert.equal(r.afterMismatch,false);assert.equal(r.legacyDraws,2,'legacy deflection on a mismatch');
+ assert(r.afterShot===null||r.afterShot===true,'only the plan of the current shot flight remains');
 });
 check('parries: near-post saves go round the post more often; in-field parries land away from the keeper',()=>{
  live(ON,{ticks:60});
