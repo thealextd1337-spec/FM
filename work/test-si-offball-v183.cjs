@@ -74,7 +74,7 @@ const runNew=(size,ticks)=>{
   }
   const state=m.attackFlow.offball,plainState=JSON.stringify(JSON.parse(JSON.stringify(state)))===JSON.stringify(state);
   const sources={};for(const e of m.ballAccounting.events)for(const s of e.sources||[])sources[s]=(sources[s]||0)+1;
-  return {errors,plainErrors:plainErrors.length,teamErrors:teamErrors.length,limitErrors:limitErrors.length,limitDetail:limitErrors.slice(0,4),cycles,cats,types,maxIntents,offsides,seconds:+v152Seconds(m).toFixed(1),movedMean:moved.length?+(moved.reduce((a,b)=>a+b,0)/moved.length).toFixed(2):null,movedN:moved.length,zoneMean:zone.length?+(zone.reduce((a,b)=>a+b,0)/zone.length).toFixed(2):null,zoneMax:zone.length?+Math.max(...zone).toFixed(2):null,plainState,sources,trace:v183TraceEntries(m).filter(e=>e.kind==='pattern').length};})()`));
+  return {errors,plainErrors:plainErrors.length,teamErrors:teamErrors.length,limitErrors:limitErrors.length,limitDetail:limitErrors.slice(0,4),cycles,cats,types,maxIntents,offsides,seconds:+v183Seconds(m).toFixed(1),movedMean:moved.length?+(moved.reduce((a,b)=>a+b,0)/moved.length).toFixed(2):null,movedN:moved.length,zoneMean:zone.length?+(zone.reduce((a,b)=>a+b,0)/zone.length).toFixed(2):null,zoneMax:zone.length?+Math.max(...zone).toFixed(2):null,plainState,sources,trace:v183TraceEntries(m).filter(e=>e.kind==='pattern').length};})()`));
 };
 for(const size of ['standard','large'])check(`new path ${size}: offers for several team-mates, plain intents of the possession team, offside limit kept, formation leash`,()=>{
  const r=runNew(size,3200);measurements['new-'+size]=r;
@@ -106,7 +106,7 @@ check('counter: a live turnover in the own half opens a three-second window with
  ev(`Si2Size='standard';(()=>{const people=${standardPeople};for(const p of people){p.role=p.line==='def'?0:1;p.tacticalRole=p.line==='att'?'striker':p.line==='mid'?'box-to-box':'cover-defender';}
   const m=Si2Scene({seed:1,people,owner:people.find(p=>p.pid==='a11')});for(let i=0;i<12;i++)Native182.advance();
   const d=Si2Find('d10');m.owner=d;m.ball={x:d.x,y:d.y};m.lastTouch=0;m.next=Infinity;Native182.advance();})()`);
- const r=copy(ev(`(()=>{const m=match,state=m.attackFlow.offball,now=v152Seconds(m),intents=Si2Intents(),runners=Object.entries(intents).filter(([,i])=>i.pattern==='counter');
+ const r=copy(ev(`(()=>{const m=match,state=m.attackFlow.offball,now=v183Seconds(m),intents=Si2Intents(),runners=Object.entries(intents).filter(([,i])=>i.pattern==='counter');
   const s=v150Scale(m),owner=m.owner,ahead=runners.map(([pid,i])=>({pid,ahead:+((owner.y-i.y)*s.y).toFixed(1),type:i.type,limit:v121PositioningPlans.get(m)?.get(Si2Find(pid))?.limit,y:i.y,pace:v183PaceFactor(m,Si2Find(pid),'purposeful',{intent:i,now}),speed:ability(Si2Find(pid),'spd')}));
   return {counterTeam:state.counterTeam,open:state.counterUntil>now,runners:ahead,trace:v183TraceEntries(m).filter(e=>e.kind==='pattern'&&e.pattern==='counter').length,possessionTeam:state.team};})()`));
  assert.equal(r.counterTeam,0);assert(r.open);assert.equal(r.possessionTeam,0);
@@ -116,7 +116,7 @@ check('counter: a live turnover in the own half opens a three-second window with
  measurements.counter=r;
  // Ball loss: the opponent owns the ball, our intents vanish, the window is not reported for them.
  ev(`(()=>{const m=match,q=Si2Find('m11');m.owner=q;m.ball={x:q.x,y:q.y};m.lastTouch=1;m.next=Infinity;Native182.advance();})()`);
- const after=copy(ev(`(()=>{const m=match,intents=Si2Intents();return {teams:[...new Set(Object.values(intents).map(i=>i.team))],state:m.attackFlow.offball.team,counterTeam:m.attackFlow.offball.counterTeam,counterNow:v183OffballPossession(m,m.owner,v152Seconds(m))};})()`));
+ const after=copy(ev(`(()=>{const m=match,intents=Si2Intents();return {teams:[...new Set(Object.values(intents).map(i=>i.team))],state:m.attackFlow.offball.team,counterTeam:m.attackFlow.offball.counterTeam,counterNow:v183OffballPossession(m,m.owner,v183Seconds(m))};})()`));
  assert.deepEqual(after.teams.filter(t=>t===0),[]);assert.equal(after.state,1);assert.equal(after.counterNow,false,'no counter for the other team');
 });
 check('counter does not open after a restart gap (keeper hold, set piece): turnoverGap',()=>{
@@ -160,7 +160,7 @@ check('follow-up: during an own shot, the team-mate with the highest follow weig
   const at=Native182.at(0,52,0,s0);shooter.x=at.x;shooter.y=at.y;shooter.fin=16;const p=people.find(q=>q.pid==='p10');const pa=Native182.at(0,48,7,s0);p.x=pa.x;p.y=pa.y;p.ant=16;
   const m=Si2Scene({seed:5,people,owner:shooter});v157Body(shooter).heading=Math.PI;Native182.advance();v55Shoot(shooter);})()`);
  assert.equal(ev('Boolean(match.flight)'),true,'shot in flight');
- const r=copy(ev(`(()=>{const m=match,out={ticks:0,assigned:null,state:null,shooterIntent:false};for(let i=0;i<14&&m.flight;i++){Native182.advance();out.ticks++;const it=m.attackFlow.intents['p10'];if(it&&it.pattern==='follow'&&out.assigned===null){const s=v150Scale(m);out.assigned={tick:out.ticks,depth:+((it.y-v55Field.top)*s.y).toFixed(1),lateral:+((it.x-.5)*s.x).toFixed(1),type:it.type,pace:v183PaceFactor(m,Si2Find('p10'),'purposeful',{intent:it,now:v152Seconds(m)})};}
+ const r=copy(ev(`(()=>{const m=match,out={ticks:0,assigned:null,state:null,shooterIntent:false};for(let i=0;i<14&&m.flight;i++){Native182.advance();out.ticks++;const it=m.attackFlow.intents['p10'];if(it&&it.pattern==='follow'&&out.assigned===null){const s=v150Scale(m);out.assigned={tick:out.ticks,depth:+((it.y-v55Field.top)*s.y).toFixed(1),lateral:+((it.x-.5)*s.x).toFixed(1),type:it.type,pace:v183PaceFactor(m,Si2Find('p10'),'purposeful',{intent:it,now:v183Seconds(m)})};}
   if(m.attackFlow.intents['w10']?.pattern==='follow')out.shooterIntent=true;}
   out.state=JSON.parse(JSON.stringify(m.attackFlow.offball.follow));return out;})()`));
  assert(r.assigned,'follower assigned: '+JSON.stringify(r));assert(r.assigned.depth>=5&&r.assigned.depth<=9,'rebound zone depth '+r.assigned.depth);
@@ -177,7 +177,7 @@ check('one-two: after the pass the passer\'s follow run is pointed past the riva
   v55GroundPass(passer,receiver);const out={flight:Boolean(m.flight),received:false,intent:null,combo:null,ticks:0,presserY:presser.y,passerY:passer.y};
   for(let i=0;i<60;i++){Native182.advance();out.ticks++;if(m.owner===receiver){out.received=true;Native182.advance();Native182.advance();break;}if(m.owner&&m.owner!==receiver)break;}
   const it=m.attackFlow.intents[passer.pid];out.intent=it?{type:it.type,pattern:it.pattern||null,aheadOfPresser:+((presser.y-it.y)*s.y).toFixed(1),aheadOfPasser:+((passer.y-it.y)*s.y).toFixed(1)}:null;
-  const c=m.attackFlow.combination;out.combo=c?{passer:c.passerId,receiver:c.receiverId,confirmed:!!c.confirmed,releaseAt:c.releaseAt,now:v152Seconds(m)}:null;out.owner=m.owner?.pid||null;out.offerOwner=m.attackFlow.offerOwner;out.trace=v183TraceEntries(m).filter(e=>e.kind==='pattern').map(e=>e.pattern);
+  const c=m.attackFlow.combination;out.combo=c?{passer:c.passerId,receiver:c.receiverId,confirmed:!!c.confirmed,releaseAt:c.releaseAt,now:v183Seconds(m)}:null;out.owner=m.owner?.pid||null;out.offerOwner=m.attackFlow.offerOwner;out.trace=v183TraceEntries(m).filter(e=>e.kind==='pattern').map(e=>e.pattern);
   out.sources=m.ballAccounting.events.filter(e=>(e.sources||[]).includes('one-two')).length;return out;})()`));
  assert(r.flight,'pass released');assert(r.received,'receiver controls the ball: '+JSON.stringify(r));
  assert(r.intent,'passer keeps a follow intent');assert.equal(r.intent.type,'follow');assert.equal(r.intent.pattern,'one-two','one-two pattern: '+JSON.stringify(r));
@@ -204,7 +204,7 @@ check('pace: carrier 1.6x (0.78+tec*0.009), situational close factor, run pace f
  const r=copy(ev(`(()=>{const people=${boxPeople};for(const p of people)p.role=1;const m=Si2Scene({seed:8,people,owner:people.find(p=>p.pid==='b20'),params:{carrierClosePace:1.4}});Native182.advance();
   const o=m.owner,base=3+ability(o,'spd')*.14,expect=f=>v158Movement(o,base*f,1).maxSpeed,rival=Si2Find('m11'),s=v150Scale(m);
   const far=v157Pace(m,o);rival.x=o.x;rival.y=o.y-2/s.y;const near=v157Pace(m,o);rival.y=o.y-6/s.y;
-  const runner=Si2Find('p10'),rb=3+ability(runner,'spd')*.14,now=v152Seconds(m);
+  const runner=Si2Find('p10'),rb=3+ability(runner,'spd')*.14,now=v183Seconds(m);
   m.attackFlow.intents[runner.pid]={x:runner.x,y:runner.y,type:'depth',team:0,at:now,until:now+5};const run=v157Pace(m,runner);
   m.attackFlow.intents[runner.pid]={x:runner.x,y:runner.y,type:'support',team:0,at:now,until:now+5};const support=v157Pace(m,runner);
   delete m.attackFlow.intents[runner.pid];const plain=v157Pace(m,runner);
@@ -220,7 +220,7 @@ check('restore during running intents keeps intents, SI-2 state and recovery win
  let saved=false,before=null;
  for(let i=0;i<4000&&!saved;i++){
   h.call('Native183.advance');
-  const ready=ev("Boolean(match.owner&&!match.owner.keeper&&!match.flight&&!match.slide&&Object.values(match.attackFlow.intents).some(i=>i.type==='depth'&&i.until>v152Seconds(match)+.4))");
+  const ready=ev("Boolean(match.owner&&!match.owner.keeper&&!match.flight&&!match.slide&&Object.values(match.attackFlow.intents).some(i=>i.type==='depth'&&i.until>v183Seconds(match)+.4))");
   if(!ready)continue;
   before=copy(ev('({intents:match.attackFlow.intents,offball:match.attackFlow.offball,recovery:match.attackFlow.paceRecovery||null,offerOwner:match.attackFlow.offerOwner,offerUntil:match.attackFlow.offerUntil,targets:Object.fromEntries(match.people.map(p=>[p.pid,[p.tx,p.ty]]))})'));
   saved=h.call('Native183.checkpoint');
@@ -233,7 +233,7 @@ check('restore during running intents keeps intents, SI-2 state and recovery win
  const savedMatch=copy(h.call('Native183.savedMatch'));assert.deepEqual(savedMatch.attackFlow.intents,before.intents,'snapshot carries the intents');assert.deepEqual(savedMatch.attackFlow.offball,before.offball);
  // One step after the restore the same intents still steer their runners.
  h.call('Native183.advance');
- const steer=copy(ev(`(()=>{const m=match,now=v152Seconds(m),out=[];for(const [pid,i]of Object.entries(m.attackFlow.intents)){if(i.type!=='depth'||i.until<now)continue;const p=m.people.find(q=>q.pid===pid);if(!p||p.slideActive||p===m.owner)continue;out.push({pid,toward:v122Metres({x:p.tx,y:p.ty},i)<=v122Metres({x:p.x,y:p.y},i)+.01});}return out;})()`));
+ const steer=copy(ev(`(()=>{const m=match,now=v183Seconds(m),out=[];for(const [pid,i]of Object.entries(m.attackFlow.intents)){if(i.type!=='depth'||i.until<now)continue;const p=m.people.find(q=>q.pid===pid);if(!p||p.slideActive||p===m.owner)continue;out.push({pid,toward:v122Metres({x:p.tx,y:p.ty},i)<=v122Metres({x:p.x,y:p.y},i)+.01});}return out;})()`));
  assert(steer.length>0&&steer.every(s=>s.toward),'targets move toward the saved intents: '+JSON.stringify(steer));
  h.call('Native183.run',300);assert.equal(ev('match.people.every(p=>[p.x,p.y,p.tx,p.ty].every(Number.isFinite))'),true);
  measurements.restore={intents:Object.keys(before.intents).length,pids:Object.keys(before.intents)};
