@@ -95,7 +95,7 @@ check('clock helpers: MATCH_SPEED arithmetic without the clock package, stored r
  h.call('Native183.constructed',{si:false});h.call('Native183.run',40);
  assert.equal(ev('v183Rate(match)'),ev('MATCH_SPEED'));assert.equal(ev('v183Seconds(match)'),ev('v152Seconds(match)'));
  for(const s of [.32,.75,2.7,1/3])assert.equal(ev(`v183ClockUnits(match,${s})`),ev(`${s}*MATCH_SPEED`));
- h.call('Native183.constructed',{si:{clockRate:.42}});h.call('Native183.run',40);
+ h.call('Native183.constructed',{si:{packages:{clock:false},clockRate:.42}});h.call('Native183.run',40);
  assert.equal(ev('v183Rate(match)'),ev('MATCH_SPEED'),'stored rate only with the clock package');assert.equal(ev('v183Seconds(match)'),ev('v152Seconds(match)'));
  h.call('Native183.constructed',{si:{packages:{clock:true},clockRate:.42}});h.call('Native183.run',40);
  assert.equal(ev('v183Rate(match)'),.42);assert.equal(ev('v183Seconds(match)'),ev('match.elapsed/.42'));assert.equal(ev('v183ClockUnits(match,2)'),2*.42);
@@ -165,10 +165,10 @@ check('ledger sources: additive tags on marked ledgers only, by match, flight or
 
 // ----- switches -----
 check('radius predicate: exact legacy normalised test unless a marked match supplies metres',()=>{
- const g=fresh(),gev=text=>g.evaluate(text);gev("v183RegisterDefaults('defence',{pressRadius:2.5})");
- for(const si of [false,undefined,{packages:{defence:true}}]){
+ const g=fresh(),gev=text=>g.evaluate(text);gev("v183RegisterDefaults('defence',{testPressRadius:2.5})");
+ for(const si of [false,{packages:{defence:false}},{packages:{defence:true}}]){
   g.call('Native183.constructed',{si});g.call('Native183.run',30);
-  const r=g.copy(gev(`(()=>{const ps=match.people,out=[];for(const a of ps)for(const b of ps){out.push([v183Radius(match,undefined,.15)(a,b),distance(a,b)<.15,v183Radius(match,'defence.pressRadius',.15)(a,b),v122Metres(a,b)<2.5,v183Radius(match,4,.15)(a,b),v122Metres(a,b)<4]);}return out;})()`));
+  const r=g.copy(gev(`(()=>{const ps=match.people,out=[];for(const a of ps)for(const b of ps){out.push([v183Radius(match,undefined,.15)(a,b),distance(a,b)<.15,v183Radius(match,'defence.testPressRadius',.15)(a,b),v122Metres(a,b)<2.5,v183Radius(match,4,.15)(a,b),v122Metres(a,b)<4]);}return out;})()`));
   for(const [legacy,expected,keyed,metric,metres,metric4]of r){
    assert.equal(legacy,expected);
    assert.equal(keyed,si&&si.packages?.defence?metric:expected,'parameter key only with the active package');
