@@ -5,13 +5,15 @@
 // 3 s, fouls and challenges per condition. Gives effect sizes with a 95 % interval that
 // the 192-match series cannot resolve (about 2.6 such turnovers per match).
 // Usage: node work/measure-si-defence-scenes-v183.cjs [--reps=400] [--size=standard|large]
-//        [--variant=name:key=value,key=value ...]   (extra conditions on top of off/windows-off/default)
+//        [--variant=name:key=value,key=value ...]   (extra conditions on top of off/windows-off/default;
+//        --skipBase runs only the given variants)
 const assert=require('node:assert/strict');
 const {create}=require('./native183-scenes.cjs'),{source}=require('./si-defence-scenes-v183.cjs');
 const arg=(name,fallback)=>{const hit=process.argv.find(a=>a.startsWith('--'+name+'='));return hit?hit.slice(name.length+3):fallback;};
 const reps=+arg('reps','400'),size=arg('size','standard');
 const h=create({view:false});h.run(source,'native-defence-scenes');
 const variants=[{name:'package-off',cfg:{on:false}},{name:'windows-off',cfg:{on:true,si:{params:{defence:{counterWindow:0,counterWindowPress:0}}}}},{name:'default',cfg:{on:true}}];
+if(process.argv.includes('--skipBase'))variants.length=0;
 for(const raw of process.argv.filter(a=>a.startsWith('--variant=')).map(a=>a.slice(10))){const [name,rest]=raw.split(':'),defence={};for(const item of (rest||'').split(',').filter(Boolean)){const [k,v]=item.split('=');defence[k]=+v;}variants.push({name,cfg:{on:true,si:{params:{defence}}}});}
 // Deterministic jitter, independent of the engine's random stream.
 const jitter=seed=>{let s=(seed*2654435761)>>>0||7;return ()=>{s=(Math.imul(s,22695477)+1)>>>0;return s/4294967296;};};
