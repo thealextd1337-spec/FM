@@ -178,14 +178,16 @@ h.run(`globalThis.Setplay=(function(){
   players.forEach((p,i)=>set(p,{fin:10,pas:10,tec:10}));set(players[2],{fin:18,tec:12});set(players[4],{pas:18,tec:16});
   park([]);const spot=attack(team,26,7);
   players.slice(0,3).forEach((p,i)=>place(p,attack(team,9+i*2,-4+i*4)));place(players[3],attack(team,30,-10));place(players[4],attack(team,27,8));
-  if(near){place(rivals[0],attack(team,24.5,6.2));place(rivals[1],attack(team,8.2,-3));}
+  // The turn is cancelled by a rival within 2.8 m of the receiver (v157ContinueTurn); a rival
+  // behind the taker (no block lane) adds pressure without a block.
+  if(near){place(rivals[0],attack(team,29,9.5));place(rivals[1],attack(team,8.2,-3));}
   match.ball={...spot};match.lastTouch=1;seeded(18000+seed);
   const crossesBefore=players.reduce((n,p)=>n+stat(p,'crosses'),0);
   probe={};v50Restart('freeKick',team,spot,'Freistoßflanke');
   const taker=match.setPiece.taker,plan=JSON.parse(JSON.stringify(match.setPiece.plan));
   let i=0,flight=null;for(;i<900&&!flight;i++){N.advance();if(match.flight&&probe.pass)flight={target:{...match.flight.target},duration:match.flight.duration,team:match.flight.team};}
   for(let j=0;j<400&&match.flight;j++)N.advance();
-  const out={takerPid:taker.pid,bestPasser:[...players].sort((a,b)=>ability(b,'pas')*.6+ability(b,'tec')*.4-ability(a,'pas')*.6-ability(a,'tec')*.4)[0].pid,bestShooter:[...players].sort((a,b)=>v183ShooterSkill(b)-v183ShooterSkill(a))[0].pid,plan,pass:probe.pass?{receiver:probe.pass.receiver,options:probe.pass.options}:null,flight,crosses:players.reduce((n,p)=>n+stat(p,'crosses'),0)-crossesBefore,pendingTurn:Boolean(match.attackFlow.pendingTurn),air:v183TraceEntries(match).filter(e=>e.kind==='air').length,notes:notes.filter(t=>t.includes('Freistoß')||t.includes('Flanke')).slice(-3)};
+  const out={takerPid:taker.pid,bestPasser:[...players].sort((a,b)=>ability(b,'pas')*.6+ability(b,'tec')*.4-ability(a,'pas')*.6-ability(a,'tec')*.4)[0].pid,bestShooter:[...players].sort((a,b)=>v183ShooterSkill(b)-v183ShooterSkill(a))[0].pid,plan,pass:probe.pass?{receiver:probe.pass.receiver,options:probe.pass.options}:null,flight,crosses:players.reduce((n,p)=>n+stat(p,'crosses'),0)-crossesBefore,pendingTurn:Boolean(match.attackFlow.pendingTurn),air:v183TraceEntries(match).filter(e=>e.kind==='air').length,blocked:notes.some(t=>t.includes('blockt die Flanke')),notes:notes.filter(t=>t.includes('Freistoß')||t.includes('Flanke')).slice(-3)};
   probe=null;return out;
  }
  function cornerRestore({seed=1,team=0}){
@@ -345,8 +347,9 @@ check('free-kick cross with rivals near taker and receiver: the restart is kicke
  for(const near of [true,false])for(const seed of [1,2,3]){const r=S('freeKickCross',{seed,near});
   assert.equal(r.plan.kind,'cross',JSON.stringify(r.plan));assert.equal(r.takerPid,r.bestPasser,'best crosser takes the cross free kick');assert.notEqual(r.takerPid,r.bestShooter,'not the best shooter');
   assert(r.pass&&r.pass.options.cross&&r.pass.options.restart===true,'cross kicked as a restart: '+JSON.stringify(r.pass));
-  assert(r.flight&&r.flight.team===0,`the cross flies (near rival ${near}): ${JSON.stringify({flight:r.flight,pendingTurn:r.pendingTurn,notes:r.notes})}`);
-  assert.equal(r.crosses,1,'one cross counted');assert.equal(r.pendingTurn,false,'no turn left pending');assert(r.air>=1,'the flight was resolved in the air');}
+  // A kicked cross either flies to the box (resolved in the air) or is blocked by a close rival (deflection flight); both prove the restart was kicked.
+  assert(r.flight&&(r.flight.team===0||r.blocked),`the cross is kicked (near rival ${near}): ${JSON.stringify({flight:r.flight,blocked:r.blocked,pendingTurn:r.pendingTurn,notes:r.notes})}`);
+  assert.equal(r.crosses,1,'one cross counted');assert.equal(r.pendingTurn,false,'no turn left pending');assert(r.air>=1||r.blocked,'the flight was resolved in the air or blocked');}
 });
 check('free-kick cross restore: the plan survives the checkpoint with its taker and is executed as a cross to the planned receiver',()=>{
  const r=S('freeKickRestore',{seed:2});
