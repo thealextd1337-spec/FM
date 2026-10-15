@@ -27,11 +27,11 @@ const rate=(list,pred=isGoal)=>({n:list.length,pct:pct(list.filter(pred).length,
 // free-kick follow-up, rebound (<=5 s after a loose ball from a shot of the same team), counter, long shot, other open play.
 const source=s=>s.penalty?'penalty':s.kind==='direct-free-kick'?'direct-free-kick':s.kind==='header'||s.kind==='volley'?'header-volley':s.restart?.type==='corner'&&s.restart.ago<=10&&s.restart.team===s.team?'corner':s.restart?.type==='freeKick'&&s.restart.ago<=10&&s.restart.team===s.team?'free-kick-follow':(s.rebound?s.rebound.ago<=5:s.lastLoose&&s.lastLoose.team===s.team&&s.lastLoose.ago<=5)?'rebound':(s.sources||[]).includes('counter')?'counter':s.range>22?'long':'open';
 const SOURCES=['open','long','header-volley','rebound','corner','free-kick-follow','counter','direct-free-kick','penalty'];
-const fav=(rows,gap,hi=99)=>{const g=rows.filter(r=>{const d=Math.abs(r.teams[0].ovr-r.teams[1].ovr);return d>=gap&&d<hi;});const res=g.map(r=>{const s=r.teams[0].ovr>r.teams[1].ovr?0:1;return Math.sign(r.score[s]-r.score[1-s]);});return{n:g.length,win:pct(res.filter(x=>x>0).length,g.length),draw:pct(res.filter(x=>x===0).length,g.length),goals:mean(g.map(goalsOf)),diff:mean(g.map(r=>{const s=r.teams[0].ovr>r.teams[1].ovr?0:1;return r.score[s]-r.score[1-s];})),shots:mean(g.map(r=>total(r,'shots')))};};
+const fav=(rows,gap,hi=99)=>{const g=rows.filter(r=>{const d=Math.abs(r.teams[0].ovr-r.teams[1].ovr);return d>=gap&&d<hi;});const res=g.map(r=>{const s=r.teams[0].ovr>r.teams[1].ovr?0:1;return Math.sign(r.score[s]-r.score[1-s]);});return{n:g.length,win:pct(res.filter(x=>x>0).length,g.length),draw:pct(res.filter(x=>x===0).length,g.length),loss:pct(res.filter(x=>x<0).length,g.length),goals:mean(g.map(goalsOf)),diff:mean(g.map(r=>{const s=r.teams[0].ovr>r.teams[1].ovr?0:1;return r.score[s]-r.score[1-s];})),shots:mean(g.map(r=>total(r,'shots')))};};
 const slope=rows=>{const xs=[],ys=[];for(const r of rows)for(const i of [0,1]){xs.push(r.teams[i].ovr-r.teams[1-i].ovr);ys.push(r.teams[i].score-r.teams[1-i].score);}const mx=mean(xs),my=mean(ys);let a=0,b=0;for(let i=0;i<xs.length;i++){a+=(xs[i]-mx)*(ys[i]-my);b+=(xs[i]-mx)**2;}return b?a/b:NaN;};
 const crossesOf=r=>r.extras.sik.crosses,openCross=c=>!c.corner&&!c.restart;
 const perMatch={
- minutes:r=>r.realSeconds/60,shots:r=>total(r,'shots'),onTarget:r=>total(r,'onTarget'),goals:goalsOf,saves:r=>total(r,'saves'),
+ minutes:r=>r.realSeconds/60,replaySeconds:r=>Number.isFinite(r.extras.sik.replaySeconds)?r.extras.sik.replaySeconds:NaN,minutesAll:r=>Number.isFinite(r.extras.sik.replaySeconds)?(r.realSeconds+r.extras.sik.replaySeconds)/60:NaN,shots:r=>total(r,'shots'),onTarget:r=>total(r,'onTarget'),goals:goalsOf,saves:r=>total(r,'saves'),
  crossesAll:r=>total(r,'crosses'),crossesOpen:r=>crossesOf(r).filter(openCross).length,crossArrived:r=>total(r,'crossComplete'),crossArrivedOpen:r=>crossesOf(r).filter(c=>openCross(c)&&c.won).length,
  headerVolleyShots:r=>r.rec.shots.filter(s=>s.kind==='header'||s.kind==='volley').length,headerVolleyGoals:r=>r.rec.shots.filter(s=>(s.kind==='header'||s.kind==='volley')&&isGoal(s)).length,
  corners:r=>r.extras.corners,cornerShots10:r=>r.rec.shots.filter(s=>source(s)==='corner').length,freeKicks:r=>r.extras.freeKicks,fouls:r=>total(r,'fouls'),penalties:r=>r.extras.penalties,
@@ -46,7 +46,7 @@ const perMatch={
 function summary(rows){
  const shots=rows.flatMap(r=>r.rec.shots),play=shots.filter(open),stats={};
  for(const [k,f]of Object.entries(perMatch))stats[k]=mean(rows.map(f).filter(Number.isFinite));
- const goals=rows.map(goalsOf),minutes=rows.map(r=>r.realSeconds/60),shotN=rows.map(r=>total(r,'shots'));
+ const goals=rows.map(goalsOf),minutes=rows.map(r=>r.realSeconds/60),minutesAll=rows.map(perMatch.minutesAll).filter(Number.isFinite),shotN=rows.map(r=>total(r,'shots'));
  const hist={};for(const g of goals)hist[g]=(hist[g]||0)+1;
  const band=(list,lo,hi)=>list.filter(s=>fin(s)>=lo&&fin(s)<hi);
  const far=play.filter(s=>s.range>22),onTarget=shots.filter(onT);
@@ -55,6 +55,7 @@ function summary(rows){
  const ticks=rows.map(r=>r.computeMs/r.ticks).sort((a,b)=>a-b);
  return{n:rows.length,perMatch:stats,
   minutes:{mean:mean(minutes),in46:pct(minutes.filter(x=>x>=4&&x<=6).length,rows.length),min:Math.min(...minutes),max:Math.max(...minutes),below37:minutes.filter(x=>x<3.7).length},
+  minutesAll:minutesAll.length===rows.length?{mean:mean(minutesAll),in46:pct(minutesAll.filter(x=>x>=4&&x<=6).length,rows.length),min:Math.min(...minutesAll),max:Math.max(...minutesAll),below37:minutesAll.filter(x=>x<3.7).length,replayPerGoal:mean(rows.flatMap(r=>r.extras.sik.replays))}:null,
   shotsBand:pct(shotN.filter(x=>x>=10&&x<=18).length,rows.length),onTargetPct:pct(onTarget.length,shots.length),goalsPerShot:pct(shots.filter(isGoal).length,shots.length),goalsPerOnTarget:pct(shots.filter(isGoal).length,onTarget.length),
   goals:{mean:mean(goals),sd:sd(goals),nil:pct(goals.filter(g=>g===0).length,rows.length),b35:pct(goals.filter(g=>g>=3&&g<=5).length,rows.length),ge7:pct(goals.filter(g=>g>=7).length,rows.length),max:Math.max(...goals),hist},
   favourites:fav(rows,1),favourites2:fav(rows,2),slope:slope(rows),
@@ -98,19 +99,22 @@ const G=result.groups,cols=['all','standard','large'],line=(name,fn,target='')=>
 console.log(`Lauf ${runs[0]}${base?' gegen '+runs[1]:''}: ${cur.matches.length} Partien, Ausfälle ${cur.failures}, unbrauchbar ${cur.unusable}, Pausenticks ${cur.notLive}, dist unverändert ${cur.distUnchanged}\n`);
 console.log('| Kennzahl | beide | Standard | groß | Ziel |\n| --- | ---: | ---: | ---: | --- |');
 line('Partien',s=>s.n);
-line('Dauer (min) / 4–6 min / min',s=>`${f(s.minutes.mean)} / ${p(s.minutes.in46)} / ${f(s.minutes.min)}`,'4,8–5,2; ≥85 %; ≥3,7');
+line('Dauer ohne Wiederholungen (min) / 4–6 min / min',s=>`${f(s.minutes.mean)} / ${p(s.minutes.in46)} / ${f(s.minutes.min)}`,'–');
+line('Dauer all-inclusive mit Torwiederholungen (min) / 4–6 min / min / max',s=>s.minutesAll?`${f(s.minutesAll.mean)} / ${p(s.minutesAll.in46)} / ${f(s.minutesAll.min)} / ${f(s.minutesAll.max)}`:'–','4,8–5,2; ≥85 %; ≥3,7');
+line('Torwiederholung je Tor (s) / je Partie (s)',s=>s.minutesAll?`${f(s.minutesAll.replayPerGoal)} / ${f(s.perMatch.replaySeconds,1)}`:'–','');
 line('Schüsse / Anteil 10–18',s=>`${f(s.perMatch.shots)} / ${p(s.shotsBand)}`,'12–16; ≥45 %');
 line('aufs Tor',s=>p(s.onTargetPct),'≥38 %');
 line('Tore (Streuung)',s=>`${f(s.goals.mean)} (${f(s.goals.sd)})`,'3–5, ≈4');
 line('Tore je Schuss / je Schuss aufs Tor',s=>`${p(s.goalsPerShot,1)} / ${p(s.goalsPerOnTarget)}`,'25–32 %');
 line('0:0 / 3–5 Tore / ≥7 Tore / max',s=>`${p(s.goals.nil,1)} / ${p(s.goals.b35)} / ${p(s.goals.ge7,1)} / ${s.goals.max}`,'≤6 %; –; 5–15 %');
 line('Favoriten ≥1 (N) / ≥2',s=>`${p(s.favourites.win)} (${s.favourites.n}) / ${p(s.favourites2.win)}`,'≥62 % (groß ≥60 %)');
+line('Favorit ≥1 Punkt: Sieg / Remis / Niederlage',s=>`${p(s.favourites.win)} / ${p(s.favourites.draw)} / ${p(s.favourites.loss)}`,'Sieg rund 65 %');
 line('Tordiff. je Stärkepunkt',s=>f(s.slope),'≥0,35');
 line('Abschluss <10 / 10–14 / ≥14 (Spielzug)',s=>`${g(s.finishing.low)} / ${g(s.finishing.mid)} / ${g(s.finishing.high)}`,'');
 line('Verhältnis Abschluss ≥14/<10',s=>f(s.finishing.ratio),'≥1,8');
 line('Torwart 10–14 / ≥14 (Tore je Schuss aufs Tor)',s=>`${g(s.keeper.mid)} / ${g(s.keeper.high)}`,'');
 line('Torwartabstand (Punkte)',s=>f(s.keeper.mid.pct-s.keeper.high.pct,1),'≥10');
-line('Fernschüsse Anteil / von Abschluss ≥13',s=>`${p(s.long.share,1)} / ${p(s.long.fin13)}`,'12–20 %; ≥75 %');
+line('Fernschüsse Anteil / von Abschluss ≥13',s=>`${p(s.long.share,1)} / ${p(s.long.fin13)}`,'Standard 12–20 %; ≥75 % (groß: Information, Entscheidung 16.10.)');
 line('Fernschüsse Abschluss ≥14: Tore (aufs Tor)',s=>`${g(s.long.high)} (${p(s.long.highOnTarget.pct)})`,'15–25 %');
 line('Luftspiel <10 / 10–14 / ≥14: Kopf-/Volley-Tore je Schuss',s=>`${g(s.aerial.low)} / ${g(s.aerial.mid)} / ${g(s.aerial.high)}`,'');
 line('Flanken gesamt / Spiel',s=>`${f(s.perMatch.crossesAll)} / ${f(s.perMatch.crossesOpen)}`,'Spiel ≥2,0');
@@ -137,5 +141,5 @@ P.shootTerciles.forEach((t,i)=>console.log(`| ${['unten','Mitte','oben'][i]} | $
 console.log(`\nUnter Druck (Gegner ≤2,5 m), Tore je Spielzugschuss: Ruhe <10 ${g(P.calmPressed.low)}, Ruhe ≥12 ${g(P.calmPressed.high)}`);
 const R=result.ratio;console.log(`\nGroß/Standard gesamt: Schüsse ${p(R.pooled.shots*100,1)}, Tore ${p(R.pooled.goals*100,1)}, Zone ${p(R.pooled.zone22*100,1)}; je Seed-Satz: ${Object.entries(R.bySeed).map(([k,v])=>`${k} ${p(v.shots*100,1)}/${p(v.goals*100,1)}/${p(v.zone22*100,1)}`).join(', ')}`);
 if(base){console.log(`\nGepaart gegen ${runs[1]} (Differenz ±95 %):\n\n| Kennzahl | beide | Standard | groß |\n| --- | ---: | ---: | ---: |`);
- for(const k of ['minutes','shots','onTarget','goals','crossesOpen','crossArrived','headerVolleyShots','corners','reboundShots','freeKicks','fouls','longShots','carrierSpeed','carrierMax','zone22','freshField','msPerTick'])console.log(`| ${k} (${result.paired.all.pairs} Paare) | ${cols.map(c=>{const v=result.paired[c][k];return `${v.delta>=0?'+':''}${f(v.delta)} ±${f(v.ci)}`;}).join(' | ')} |`);}
-if(withStrength){console.log('\nJe Stärkeabstand (SI-6):\n\n| Feld | Abstand | N | Sieg Favorit | Remis | Tore | Tordiff. Favorit | Schüsse |\n| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |');for(const [sz,l]of Object.entries(result.strength))for(const b of l)console.log(`| ${sz} | ${b.gap} | ${b.n} | ${p(b.win)} | ${p(b.draw)} | ${f(b.goals)} | ${f(b.diff)} | ${f(b.shots)} |`);}
+ for(const k of ['minutes','minutesAll','shots','onTarget','goals','crossesOpen','crossArrived','headerVolleyShots','corners','reboundShots','freeKicks','fouls','longShots','carrierSpeed','carrierMax','zone22','freshField','msPerTick'])console.log(`| ${k} (${result.paired.all.pairs} Paare) | ${cols.map(c=>{const v=result.paired[c][k];return `${v.delta>=0?'+':''}${f(v.delta)} ±${f(v.ci)}`;}).join(' | ')} |`);}
+if(withStrength){console.log('\nJe Stärkeabstand (SI-6):\n\n| Feld | Abstand | N | Sieg Favorit | Remis | Niederlage | Tore | Tordiff. Favorit | Schüsse |\n| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |');for(const [sz,l]of Object.entries(result.strength))for(const b of l)console.log(`| ${sz} | ${b.gap} | ${b.n} | ${p(b.win)} | ${p(b.draw)} | ${p(b.loss)} | ${f(b.goals)} | ${f(b.diff)} | ${f(b.shots)} |`);}
