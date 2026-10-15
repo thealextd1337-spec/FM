@@ -11,7 +11,9 @@
 // previous behaviour. v183Offers keeps the foundation stub: a read-only copy
 // of attackFlow.intents, whose entries now carry `cat`, `pattern` and `value`.
 // Every run state is plain data in attackFlow.intents and attackFlow.offball
-// and therefore part of each checkpoint; nothing lives in a WeakMap. This
+// and therefore part of each checkpoint; nothing lives in a WeakMap. Timestamps
+// use v152Seconds like the intents and the combination they are compared with
+// (SI-0 binds that function to the stored rate). This
 // module draws no random number: choosing an offer or a pattern never consumes
 // one. The only random effect is indirect: v183ReboundFinish lets the existing
 // native one-touch try (with its own draw) start after more loose balls, in
@@ -57,6 +59,8 @@ v183RegisterDefaults('offball',{
  profiles:V183_OFFBALL_PROFILES
 });
 
+// Clock units per intent second, derived from v152Seconds (MATCH_SPEED today, the stored rate once SI-0 binds it).
+function v183OffballClockUnits(m){const seconds=v152Seconds(m);return seconds>0?m.elapsed/seconds:MATCH_SPEED;}
 function v183OffballOn(m){return typeof v183Active==='function'&&v183Active(m,'offball');}
 function v183OffballState(m){const flow=m.attackFlow;return flow.offball||(flow.offball={team:null,since:null,lastAt:null,counterTeam:null,counterUntil:null,oneTwoAt:null,follow:null});}
 function v183OffballProfile(m,p){
@@ -112,7 +116,7 @@ function v183OffballOneTwo(m,owner,rivals,now){
 // combination; the one-two point is restored per tick from plain state.
 function v183OffballOneTwoKeep(m,p){
  const flow=m.attackFlow,o=flow.offball?.oneTwo,combo=flow.combination,intent=flow.intents[p.pid];
- if(!o||o.passerId!==p.pid||!combo||combo.passerId!==p.pid||combo.releaseAt!==o.releaseAt||v183Seconds(m)>o.until||!intent||intent.type!=='follow'||intent.pattern==='one-two')return;
+ if(!o||o.passerId!==p.pid||!combo||combo.passerId!==p.pid||combo.releaseAt!==o.releaseAt||v152Seconds(m)>o.until||!intent||intent.type!=='follow'||intent.pattern==='one-two')return;
  flow.intents[p.pid]={...intent,x:o.x,y:o.y,until:Math.max(intent.until,o.until),cat:'one-two',pattern:'one-two'};
 }
 
@@ -171,7 +175,7 @@ function v183OffballValue(m,p,c,ctx){
  return {...c,x:point.x,y:point.y,raw:{x:c.x,y:c.y},value,clamped};
 }
 function v183OffballOffers(m,owner,allies,rivals){
- const flow=m.attackFlow,now=v183Seconds(m),s=v150Scale(m),dir=owner.t===0?-1:1,P=key=>v183Param(m,'offball.'+key);
+ const flow=m.attackFlow,now=v152Seconds(m),s=v150Scale(m),dir=owner.t===0?-1:1,P=key=>v183Param(m,'offball.'+key);
  const counter=v183OffballPossession(m,owner,now);
  const valid=flow.offerOwner===owner.pid&&flow.offerUntil>now;
  if(valid){
@@ -230,14 +234,14 @@ function v183OffballFollow(m,p){
  const meta=typeof v102Flights!=='undefined'?v102Flights.get(f):null,visual=typeof v99Flights!=='undefined'?v99Flights.get(f):null;
  if(!(meta?.shot||visual?.kind==='shot'))return false;
  const shooter=meta?.person||visual?.shooter;if(shooter===p)return false;
- const flow=m.attackFlow,state=v183OffballState(m),now=v183Seconds(m),P=key=>v183Param(m,'offball.'+key),eventId=m.ballEventId??null;
+ const flow=m.attackFlow,state=v183OffballState(m),now=v152Seconds(m),P=key=>v183Param(m,'offball.'+key),eventId=m.ballEventId??null;
  if(!state.follow||state.follow.eventId!==eventId||state.follow.team!==p.t){
   const s=v150Scale(m),dir=p.t===0?-1:1,goal={x:.5,y:p.t===0?v55Field.top:v55Field.bottom},keeper=m.people.find(q=>q.keeper&&q.t!==p.t),contactX=f.target?.x??goal.x,side=contactX>=(keeper?.x??.5)?1:-1;
   const a=v159Point({x:contactX+side*P('followSide')/s.x,y:goal.y-dir*P('followDepth')/s.y},s),b=v159Point({x:.5-side*(P('followSide')-.5)/s.x,y:goal.y-dir*(P('followDepth')+1)/s.y},s);
   const ranked=m.people.filter(q=>q.t===p.t&&!q.keeper&&!q.slideActive&&q!==shooter&&q.role>=0&&!v159Cover(q)&&v115GoalDistance(q)<P('followRange'))
    .map(q=>({q,score:v183Personality(q).followWeight/(1+Math.min(v122Metres(q,a),v122Metres(q,b))/10)})).sort((x,y)=>y.score-x.score||x.q.n-y.q.n).slice(0,P('followers')).map(x=>x.q);
   const first=ranked.sort((x,y)=>v122Metres(x,a)-v122Metres(y,a)||x.n-y.n);
-  state.follow={eventId,team:p.t,releaseAt:now-f.progress*f.duration/v183Rate(m),pids:first.map(q=>q.pid),points:first.map((q,i)=>i===0?{x:a.x,y:a.y}:{x:b.x,y:b.y})};
+  state.follow={eventId,team:p.t,releaseAt:now-f.progress*f.duration/v183OffballClockUnits(m),pids:first.map(q=>q.pid),points:first.map((q,i)=>i===0?{x:a.x,y:a.y}:{x:b.x,y:b.y})};
   if(first.length)v183OffballPattern(m,'follow',{shooter,followers:first.map(q=>q.pid)});
  }
  const index=state.follow.pids.indexOf(p.pid);if(index<0)return false;
@@ -247,13 +251,22 @@ function v183OffballFollow(m,p){
  flow.intents[p.pid]={x:point.x,y:point.y,type:'depth',team:p.t,at:now,until:now+P('followSeconds'),cat:'follow',pattern:'follow'};
  p.tx=point.x;p.ty=point.y;return true;
 }
+// Offers stay onside: a stored offer point (hold, box, run) is pulled back to
+// the predicted offside limit every tick, also while the ball is in flight to
+// a team-mate, so an idle runner never waits in an offside position. Follow-up
+// runs after a shot are exempt (no offside after a parry).
+function v183OffballKeepOnside(m,p){
+ const intent=m.attackFlow.intents[p.pid];if(!intent||intent.pattern==='follow'||intent.team!==p.t)return;
+ const limit=v121PositioningPlans.get(m)?.get(p)?.limit;if(limit==null)return;
+ if(p.t===0?intent.y<limit:intent.y>limit)m.attackFlow.intents[p.pid]={...intent,y:limit};
+}
 // Hooked into v121RunnerTarget (called for every player each tick, before
 // v157Target applies intents), so a follower with a still valid offer intent is
 // re-pointed as well. v162RecoverTarget keeps the previous zone behaviour.
 const v183OffballBaseRunner=v121RunnerTarget;
 v121RunnerTarget=function(current,person){
  const value=v183OffballBaseRunner.call(this,current,person);
- if(v183OffballOn(current)&&v162Active(current)){v183OffballOneTwoKeep(current,person);v183OffballFollow(current,person);}
+ if(v183OffballOn(current)&&v162Active(current)){v183OffballOneTwoKeep(current,person);v183OffballKeepOnside(current,person);v183OffballFollow(current,person);}
  return value;
 };
 
