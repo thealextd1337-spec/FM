@@ -39,9 +39,11 @@ check('package off: v50Foul outside a contact still awards a foul (legacy); pack
  scene({on:null,defs:[{depth:29.25,lateral:.3}],carrier:{vy:4}});
  assert.equal(copy(ev("(()=>{const m=match;v50Foul(m.owner,m.people.find(x=>x.pid==='def0'));return m.setPiece?.type||null;})()")),'freeKick');
 });
+// Packages of other owners may be on by default (SI-0 clock etc.): the legacy comparison switches every package off.
+const allOff=Object.fromEntries(copy(ev('[...V183_PACKAGES]')).map(p=>[p,false]));
 check('package off replays a constructed match exactly like the 182 constructor (digest without match.si)',()=>{
  for(const scene of copy(h.call('Native183.constructedScenes')).filter((s,i)=>i%4===1)){
-  const off=h.call('Native183.constructedDigest',scene,{si:{packages:{defence:false}},withoutSi:true,segments:[250,250]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[250,250]});
+  const off=h.call('Native183.constructedDigest',scene,{si:{packages:allOff},withoutSi:true,segments:[250,250]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[250,250]});
   assert.equal(off,legacy,scene.id);
  }
 });
