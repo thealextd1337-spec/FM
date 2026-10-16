@@ -132,7 +132,7 @@ function v66Book(career,clubId,id,amount,label){
 // A world with the 183 stamp plays at about four goals per match: it asks for the goal count that a club of its squad class reaches in
 // about every second season of 14 league matches (50-60 % of the club seasons of work/measure-sponsor-goals-v183.cjs, docs/spielerintelligenz-neue-spielstaende-183.md),
 // scaled to the number of league matches. The cup goal for cup-only clubs stays at 4 regular goals: those clubs rarely play more than one cup match.
-const v66SponsorGoals183=Object.freeze([12,12,14,19,32,44]);
+const v66SponsorGoals183=Object.freeze([11,11,13,19,32,44]);
 function v66SponsorGoalTarget(career,club){
  const squad=club.policy.startingSquad;
  if(typeof v183WorldSi!=='function'||!v183WorldSi(career))return 11+squad;

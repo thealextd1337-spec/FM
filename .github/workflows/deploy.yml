@@ -39,6 +39,7 @@ jobs:
           node work/test-start-rosters-v177.cjs --worlds=60
           node work/test-compact-balance-v178.cjs
           node work/test-compact-balance-v183.cjs
+          node work/test-si-newworld-v183.cjs
           node work/test-native-performance-context.cjs
           node work/test-youth-legacy-v176.cjs
           node work/test-progress-v58.cjs

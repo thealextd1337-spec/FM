@@ -131,6 +131,8 @@ Neue Vorschauwelten verwenden Schema 15 / Modell 11 mit `rules.variant: expansio
 
 Für künftige Änderungen an Spielregeln, Statistiken oder Datenformaten gelten neue Berechnungen ab ihrer Einführung für neue Ereignisse. Für bereits gespeicherte Partien und Saisons keine neue rückwirkende Berechnung, Umrechnung oder zusätzliche Kompatibilitätsvariante nur für Altstände einführen. Fehlende alte Werte werden als nicht erfasst behandelt. Die Expansion auf sechs Länder darf bisherige Spielstände inkompatibel machen.
 
+Spielerintelligenz 183 gilt nur für neue Vereinswelten: `v61CreateCareer` schreibt `world.siRevision` 183, Laden, Speichern und Import fügen es nie hinzu. Ohne Stempel erzeugen neue Partien kein `match.si`, kompakte Kennung 178, bisherige Standardzellen und das alte Sponsorziel. Neue Prüfstände legen Karrieren über die Anlagefunktionen an (Stempel automatisch); Altstandvergleiche entfernen das Feld ausdrücklich. [Regel, Entscheidungspunkte und Sponsorzahlen](spielerintelligenz-neue-spielstaende-183.md).
+
 Für die Expansion auf sechs Länder müssen bisherige Spielstände nicht kompatibel bleiben. Die neue Vereinswelt verwendet ein eigenes, dauerhaft gekennzeichnetes Datenformat; alte Partien und Trainerhistorien werden nicht nachberechnet. Vorhandene Browserdaten werden beim Anlegen einer neuen Welt nicht automatisch gelöscht. Der Entwurf steht in [KI-Vereine und Trainer](ki-vereine-trainer-entwurf.md).
 
 ## Code, Prüfung und Veröffentlichung

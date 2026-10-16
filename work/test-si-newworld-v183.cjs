@@ -15,7 +15,9 @@ const names=['v155Initialize','v178CompactShotChance','v155CompactActions','v64S
 globalThis.v183Current=Object.fromEntries(names.map(name=>[name,h.evaluate(name)]));
 const useFrozen=()=>h.evaluate(frozenSource),useCurrent=()=>h.evaluate(names.map(name=>`${name}=v183Current.${name};`).join(''));
 // A career of release 132: the same world without the stamp (the generation is unchanged by the rollout).
-function career(seed,{stamp=true,options}={}){const c=h.call('v167CreateCareer','AUT-5',seed,'QA',options);if(!stamp)delete c.world.siRevision;return c;}
+// The offers of the first season are made at creation, so they are made again without the stamp.
+function unstamp(c){delete c.world.siRevision;for(const club of c.world.clubs)club.sponsors=h.call('v66MakeSponsors',c,club);return c;}
+function career(seed,{stamp=true,options}={}){const c=h.call('v167CreateCareer','AUT-5',seed,'QA',options);if(!stamp)unstamp(c);return c;}
 function initial(seed,{stamp=true,options}={}){
  const c=career(seed,{stamp,options}),day=Math.min(...c.world.competitions.filter(x=>x.type==='league').flatMap(x=>x.fixtures.map(f=>f.day))),f={id:'QA:SIW:'+seed,competitionId:'QA-START-LEAGUE',homeId:'GER-1',awayId:'GER-6',day,neutral:false,result:null};globalThis.v61CurrentCareer=c;
  return{c,f,s:h.call('v64MakeState',c,f)};
@@ -155,7 +157,7 @@ check('sponsor: later seasons of both worlds follow the same rule (formula by st
  }
 });
 check('sponsor: the schema-14 world (6 teams per league, 10 matches) scales the new goal level with its matches',()=>{
- const old=h.call('v61CreateCareer','GER-2','siw-sp-v61'),stamped=h.call('v61CreateCareer','GER-2','siw-sp-v61');delete old.world.siRevision;
+ const old=unstamp(h.call('v61CreateCareer','GER-2','siw-sp-v61')),stamped=h.call('v61CreateCareer','GER-2','siw-sp-v61');
  const club=old.world.clubs.find(x=>x.leagueId&&x.policy.startingSquad===3);assert(club);
  const oldTarget=h.call('v66MakeSponsors',old,club)[2].goals.find(g=>g.kind==='goals').target,newTarget=h.call('v66MakeSponsors',stamped,stamped.world.clubs.find(x=>x.id===club.id))[2].goals.find(g=>g.kind==='goals').target;
  assert.equal(oldTarget,14);assert(newTarget>oldTarget);
