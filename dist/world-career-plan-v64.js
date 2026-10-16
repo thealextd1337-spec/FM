@@ -5,7 +5,7 @@ let v64CareerPlanTab='lineup',v64CareerSelectedSlot=1,v64CareerPresetName='',v64
 function v64CareerClub(career){return career.world.clubs.find(club=>club.id===career.manager.managedClubId)}
 function v64CareerPlanDefault(career){
  const club=v64CareerClub(career),coach=career.world.coaches.find(item=>item.id===club.coachId),tactics=v64CoachTactics(coach,career);
- const side=v64BuildSide(club,tactics.formation),state={active:side.starters,roles:side.roles,cells:{}};
+ const side=v64BuildSide(club,tactics.formation),state={active:side.starters,roles:side.roles,cells:{},...(v183WorldSi(career)?{siGrid:true}:{})};
  v64EnsureCells(state,0);
  return{starters:side.starters,bench:side.bench,roles:side.roles,cells:state.cells,orientation:{},instructions:{},tactics};
 }
@@ -28,7 +28,7 @@ function v64CareerPlanNormalize(career,saved){
  const cells={},occupied=new Set();
  for(const pid of starters){const cell=source.cells?.[pid];if(roles[pid]!=='gk'&&Number.isInteger(cell)&&cell>=0&&cell<35&&v64GridRole(cell)===roles[pid]&&!occupied.has(cell)){cells[pid]=cell;occupied.add(cell)}}
  for(const role of ['def','mid','att']){
-  const ids=starters.filter(pid=>roles[pid]===role),defaultsForRole=v64GridCells[role][ids.length];
+  const ids=starters.filter(pid=>roles[pid]===role),defaultsForRole=v64GridDefaults({siGrid:v183WorldSi(career)},role,ids.length);
   for(const pid of ids)if(!Number.isInteger(cells[pid])){const cell=defaultsForRole.find(value=>!occupied.has(value))??Array.from({length:35},(_,index)=>index).find(value=>v64GridRole(value)===role&&!occupied.has(value));cells[pid]=cell;occupied.add(cell)}
  }
  const orientation={},instructions={};

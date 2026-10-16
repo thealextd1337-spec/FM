@@ -9,6 +9,10 @@ function v160MatchConfig(options={fieldSize:'standard',fieldPlayers:5}){
  return {version:1,fieldSize:options.fieldSize,fieldPlayers:options.fieldPlayers};
 }
 function v160WorldConfig(career){return career?.world?.matchConfig||{fieldSize:'standard',fieldPlayers:5};}
+// Player intelligence 183 (docs/spielerintelligenz-neue-spielstaende-183.md) applies only to worlds created after the rollout:
+// v61CreateCareer writes world.siRevision once; loading, saving and importing never add it. Without the stamp every new match,
+// compact and played out, keeps the release-132 rules (compact marker 178, no match.si, asymmetric grid cells).
+function v183WorldSi(career){return career?.world?.siRevision===183;}
 function v160WorldGeometry(career){const scale=v160WorldConfig(career).fieldSize==='large'?1.2:1;return {version:1,length:68*scale,width:44*scale,goalWidth:44*.2/(544/600),goalHeight:44*.2/(544/600)/3,penaltyDepth:68*(.18-26/740)/(688/740),penaltyWidth:44*.5/(544/600),ballRadius:.1764};}
 function v160Formations(career){return v160WorldConfig(career).fieldPlayers===6?v160SixFormations:v64Formations;}
 function v160FormationValid(career,value){const parts=typeof value==='string'?value.split('–').map(Number):[];return career?.world?.matchConfig?parts.length===3&&parts.every(n=>Number.isInteger(n)&&n>=0)&&parts.reduce((a,b)=>a+b,0)===v160WorldConfig(career).fieldPlayers:v64Formations.includes(value);}
@@ -102,7 +106,7 @@ function v64MakeState(career,fixture){
   const player=career.world.clubs.flatMap(club=>club.roster).find(item=>item.pid===pid);
   fresh[pid]=player.fresh;minutes[pid]=0;stats[pid]={goals:0,assists:0,shots:0};
  }
- const state={fixtureId:fixture.id,minute:0,firstHalfEnd:45,fullTimeEnd:90,stoppages:[0,0],addedMinutes:[0,0],score:[0,0],active:[...plan.home.starters],awayActive:[...plan.away.starters],bench:[...plan.home.bench],awayBench:[...plan.away.bench],roles:{...plan.home.roles,...plan.away.roles},orientation:{},instructions:{},tactics:[{...plan.home.tactics},{...plan.away.tactics}],tacticChanges:[],pending:[[],[]],substitutions:[],exited:[],events:[],fresh,minutes,stats,phase:'prematch',lastAiCheck:[-1,-1],lastAiChange:[-20,-20]};
+ const state={...(v183WorldSi(career)?{siGrid:true}:{}),fixtureId:fixture.id,minute:0,firstHalfEnd:45,fullTimeEnd:90,stoppages:[0,0],addedMinutes:[0,0],score:[0,0],active:[...plan.home.starters],awayActive:[...plan.away.starters],bench:[...plan.home.bench],awayBench:[...plan.away.bench],roles:{...plan.home.roles,...plan.away.roles},orientation:{},instructions:{},tactics:[{...plan.home.tactics},{...plan.away.tactics}],tacticChanges:[],pending:[[],[]],substitutions:[],exited:[],events:[],fresh,minutes,stats,phase:'prematch',lastAiCheck:[-1,-1],lastAiChange:[-20,-20]};
  for(const side of [0,1])v64RefreshAiInstructions(career,fixture,state,side);
  if(typeof v64ApplyCareerPlan==='function')v64ApplyCareerPlan(career,fixture,state);
  if(career.world.matchConfig)state.geometry=v160WorldGeometry(career);
@@ -134,18 +138,23 @@ function v64Active(state,side){return side===0?state.active:state.awayActive}
 function v64Bench(state,side){return side===0?state.bench:state.awayBench}
 function v64Player(career,fixture,side,pid){return v64Side(career,fixture,side).find(player=>player.pid===pid)}
 const v64GridCells={def:{1:[27],2:[26,28],3:[25,27,29]},mid:{1:[17],2:[16,18],3:[15,17,19]},att:{1:[7],2:[6,8],3:[5,7,9]}};
+// Release 132 defaults of the lines of four and more (first cells of the band); worlds without the 183 stamp keep them.
+const v64GridCellsRelease132={def:{1:[27],2:[26,28],3:[25,27,29]},mid:{1:[17],2:[16,18],3:[15,17,19]},att:{1:[7],2:[6,8],3:[5,7,9]}};
+for(const role of ['def','mid','att']){v64GridCellsRelease132[role][0]=[];for(const count of [4,5,6])v64GridCellsRelease132[role][count]=[...(role==='def'?[25,26,27,28,29,32]:role==='mid'?[15,16,17,18,19,22]:[5,6,7,8,9,2])].slice(0,count);}
 // Lines of four and more fill the grid symmetrically about the centre column. They arise with
 // matchConfig (any line counts, also zero lines, on both pitch sizes: 4–1–0 with five field
 // players, or after a free grid move) and only for players without a stored cell: 4 = columns 0,1,3,4; 5 = the full row; 6 = two
 // rows of three in columns 0,2,4. The rows of a six-player line are those two outer rows of
 // its band (attack 0 and 1, midfield 2 and 4, defence 5 and 6), never one edge cell.
 for(const role of ['def','mid','att']){v64GridCells[role][0]=[];const row=role==='def'?25:role==='mid'?15:5,rows=role==='def'?[25,30]:role==='mid'?[10,20]:[0,5];v64GridCells[role][4]=[row,row+1,row+3,row+4];v64GridCells[role][5]=[row,row+1,row+2,row+3,row+4];v64GridCells[role][6]=rows.flatMap(first=>[first,first+2,first+4]);}
+// state.siGrid is written by v64MakeState (and the career plan) for a world with the 183 stamp only.
+function v64GridDefaults(state,role,count){return(state.siGrid?v64GridCells:v64GridCellsRelease132)[role][count];}
 function v64GridRole(cell){return cell<10?'att':cell<25?'mid':'def'}
 function v64EnsureCells(state,side){
  state.cells ||= {};
  const active=v64Active(state,side);
  for(const role of ['def','mid','att']){
-  const ids=active.filter(pid=>state.roles[pid]===role),defaults=v64GridCells[role][ids.length]||[];
+  const ids=active.filter(pid=>state.roles[pid]===role),defaults=v64GridDefaults(state,role,ids.length)||[];
   ids.forEach((pid,index)=>{if(!Number.isInteger(state.cells[pid]))state.cells[pid]=defaults[index]});
  }
  return state.cells;
@@ -153,7 +162,7 @@ function v64EnsureCells(state,side){
 function v64ResetCells(state,side){
  const cells=v64EnsureCells(state,side),active=v64Active(state,side);
  for(const role of ['def','mid','att']){
-  const ids=active.filter(pid=>state.roles[pid]===role),defaults=v64GridCells[role][ids.length]||[];
+  const ids=active.filter(pid=>state.roles[pid]===role),defaults=v64GridDefaults(state,role,ids.length)||[];
   ids.forEach((pid,index)=>cells[pid]=defaults[index]);
  }
 }

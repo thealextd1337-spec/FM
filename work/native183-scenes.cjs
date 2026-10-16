@@ -14,13 +14,16 @@ function inContext(){
  // calm/ant/dec, so v183Personality uses its fallback 10 for them.
  const roleCycle=['poacher','playmaker','winger','ball-winner','stopper','striker','box-to-box','dribbler','cover-defender','target-player','ball-playing-defender'];
  function assignRoles(m){let i=0;for(const p of m.people){if(p.keeper)continue;p.tacticalRole=roleCycle[i++%roleCycle.length];p.positionRoutine=.6;}}
- // config: {club,seed,size,roles,si}. si: undefined = constructor default,
+ // config: {club,seed,size,roles,si,stamp}. si: undefined = constructor default,
  // false = no marker 183, object = {packages,params,clockRate} overrides.
+ // stamp:false removes the 183 world stamp (a career of release 132): the
+ // constructor default then writes no marker (work/test-si-newworld-v183.cjs).
  // The large pitch uses six field players as in production careers.
- function constructed({club='GER-2',seed='si183',size='standard',roles=false,si}={}){
+ function constructed({club='GER-2',seed='si183',size='standard',roles=false,si,stamp=true}={}){
   let h=0;for(const ch of `${club}:${seed}:${size}`)h=(Math.imul(h,31)+ch.charCodeAt(0))>>>0;
   N.seedRandom(h||1);
   const career=v61CreateCareer(club,`native183-${seed}`);career.world.matchConfig={version:1,fieldSize:size,fieldPlayers:size==='large'?6:5};
+  if(!stamp)delete career.world.siRevision;
   const fixture=v62Fixtures(career).find(f=>f.homeId===club||f.awayId===club);
   v64PrepareFixture(career,fixture);const state=v64MakeState(career,fixture);career.world.activeMatch={fixtureId:fixture.id,state};
   v61CurrentCareer=career;active={career,fixture,state,ownSide:fixture.homeId===club?0:1};v65WorldActive=active;state.phase='live';

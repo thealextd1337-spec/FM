@@ -144,6 +144,7 @@ function v61ValidateCareer(career){
  const countries=expansion?v161Countries.map(c=>[c.id,c.name]):v61Countries,clubCount=expansion?192:48;
  if(career.manager.name!==undefined&&!v61ValidManagerName(career.manager.name))return false;
  if(career.world.matchConfig!==undefined){try{v160MatchConfig(career.world.matchConfig)}catch{return false}}
+ if(career.world.siRevision!==undefined&&career.world.siRevision!==183)return false;
  const clubs=career.world.clubs;
  if(!Array.isArray(clubs)||clubs.length!==clubCount||new Set(clubs.map(club=>club.id)).size!==clubCount)return false;
  if(!Array.isArray(career.world.countries)||career.world.countries.length!==countries.length||new Set(career.world.countries.map(c=>c.id)).size!==countries.length||!countries.every(([id])=>career.world.countries.some(c=>c.id===id)))return false;
@@ -174,7 +175,7 @@ function v61CreateCareer(clubId,seed=crypto.randomUUID(),managerName=null,player
  const name=managerName===null?null:v61ManagerName(managerName);
  if(name!==null&&!v61ValidManagerName(name))throw Error('Der Managername muss 2 bis 32 Zeichen enthalten.');
  const now=new Date().toISOString();
- const career={schema:expansion?15:14,modelVersion:expansion?11:10,id:crypto.randomUUID(),created:now,updated:now,phase:'world-matches',manager:{id:crypto.randomUUID(),...(name===null?{}:{name}),managedClubId:clubId,stationHistory:[{clubId,fromSeason:1}]},world:{season:1,calendarCursor:null,seed,matchConfig:v160MatchConfig(matchOptions),...(foundation?{playerFoundation:foundation}:{}),...(expansion?{...(worldOptions.progressionVersion===167?{progressionVersion:167}:{}),rules:v161Rules(),opening:JSON.parse(JSON.stringify(v161Opening))}:{}),countries:(expansion?v161Countries.map(c=>[c.id,c.name]):v61Countries).map(([id,name])=>({id,name,leagueId:`${id}-LEAGUE`,cupId:`${id}-CUP`})),clubs:catalog.map(entry=>expansion?v161ClubRecord(entry,seed,foundation):v61ClubRecord(entry,seed,foundation)),coaches:[],contracts:[],competitions:[],transfers:[],market:{freePlayers:[],pendingBids:[]},eventLog:{processedEventIds:[],visibleNews:[]}}};
+ const career={schema:expansion?15:14,modelVersion:expansion?11:10,id:crypto.randomUUID(),created:now,updated:now,phase:'world-matches',manager:{id:crypto.randomUUID(),...(name===null?{}:{name}),managedClubId:clubId,stationHistory:[{clubId,fromSeason:1}]},world:{season:1,calendarCursor:null,seed,matchConfig:v160MatchConfig(matchOptions),siRevision:183,...(foundation?{playerFoundation:foundation}:{}),...(expansion?{...(worldOptions.progressionVersion===167?{progressionVersion:167}:{}),rules:v161Rules(),opening:JSON.parse(JSON.stringify(v161Opening))}:{}),countries:(expansion?v161Countries.map(c=>[c.id,c.name]):v61Countries).map(([id,name])=>({id,name,leagueId:`${id}-LEAGUE`,cupId:`${id}-CUP`})),clubs:catalog.map(entry=>expansion?v161ClubRecord(entry,seed,foundation):v61ClubRecord(entry,seed,foundation)),coaches:[],contracts:[],competitions:[],transfers:[],market:{freePlayers:[],pendingBids:[]},eventLog:{processedEventIds:[],visibleNews:[]}}};
  if(expansion)career.world.calendarCursor=0;else v62PrepareSeason(career);
  v63Init(career);
  if(typeof v66Init==='function')v66Init(career);

@@ -132,7 +132,9 @@ function v183CompactActions(career,fixture,state,side,random){
 }
 function v155Initialize(career,state){
  if(!v154Active(career)||state.playerPerformance)return;
- state.playerPerformance={version:155,shotBalanceRevision:183,compactBalance:v183CompactSnapshot(career),parameters:career.world.playerFoundation.ratings,events:[],phases:{},sequence:0};
+ // Marker 183 only in a world with the 183 stamp; every other world keeps the release-132 marker 178.
+ const revised=typeof v183WorldSi==='function'&&v183WorldSi(career);
+ state.playerPerformance={version:155,shotBalanceRevision:revised?183:178,compactBalance:revised?v183CompactSnapshot(career):{...v178CompactBalance},parameters:career.world.playerFoundation.ratings,events:[],phases:{},sequence:0};
  v155SyncPhases(state);
 }
 function v155SyncPhases(state){
