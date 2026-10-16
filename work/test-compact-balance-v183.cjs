@@ -74,6 +74,22 @@ function finish(x,until=Infinity){globalThis.v61CurrentCareer=x.c;while(x.s.phas
  checks.push('shot result levers: finishing, keeper (gk) and gap act on the intended step');
 }
 
+// 3c. Within a team the own finishing deviation counts only with the share finSelf (played-out best finishers convert
+// hardly better than their team-mates); the expected shooter of the team keeps the full cross-team lever.
+{
+ const x=initial('si6-self',183),B=x.s.playerPerformance.compactBalance,team=h.call('v183CompactTeams',x.c,x.f,x.s)[0];
+ assert(B.levers.finSelf>0&&B.levers.finSelf<1,'stored within-team share');
+ for(const source of ['open','long','header-volley']){
+  const weight=h.call('v183ShooterWeight',B,source,team,x.s),total=team.ids.reduce((n,pid)=>n+weight(pid),0);
+  const centre=team.ids.reduce((n,pid)=>n+weight(pid)*team.skills[pid].fin,0)/total,adjusted=pid=>h.call('v183ShooterFinishing',B,source,team,x.s,pid,team.skills[pid].fin);
+  assert(Math.abs(team.ids.reduce((n,pid)=>n+weight(pid)*adjusted(pid),0)/total-centre)<1e-9,'expected shooter keeps his finishing ('+source+')');
+  const best=team.ids.reduce((a,b)=>team.skills[b].fin>team.skills[a].fin?b:a);
+  assert(Math.abs(adjusted(best)-(centre+B.levers.finSelf*(team.skills[best].fin-centre)))<1e-9,'own deviation shrinks with finSelf ('+source+')');
+ }
+ assert.equal(h.call('v183ShooterFinishing',{...B,levers:{...B.levers,finSelf:1}},'open',team,x.s,team.ids[0],12.3),12.3,'share 1 keeps the finishing');
+ checks.push('within-team finishing share: expected shooter unchanged, own deviation counts with finSelf');
+}
+
 // 4. Home bonus on played matches: only side 0 on a non-neutral pitch asks for it (spy on the rate function).
 {
  globalThis.v183Spy=[];h.evaluate('globalThis.v183RateOriginal=v183ShotRate;v183ShotRate=function(B,own,other,home,deep){v183Spy.push(home);return v183RateOriginal(B,own,other,home,deep);};');

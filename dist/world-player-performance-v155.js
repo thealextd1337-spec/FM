@@ -12,7 +12,7 @@ function v178CompactShotChance(fixture,state,side){
 // No score, win rate or result is forced. The snapshot is stored with the match.
 const v183CompactBalance=Object.freeze({
  version:183,matchMinutes:97.7,homeShotFactor:1.03,gapKnee:5.5,gapOver:.15,gapFade:.5,shotOver:.1,
- levers:Object.freeze({onFin:.196,goalFin:.173,goalGk:-.148,onGap:.06}),
+ levers:Object.freeze({onFin:.196,goalFin:.173,goalGk:-.148,onGap:.06,finSelf:.3}),
  assisted:Object.freeze({open:.8,long:.15,'header-volley':.9,rebound:0,corner:.9,'free-kick-follow':.6,'direct-free-kick':0}),
  groups:Object.freeze({open:'open',long:'long','header-volley':'head',rebound:'rebound',corner:'head','free-kick-follow':'fk','direct-free-kick':'dfk'}),
  shooters:Object.freeze({
@@ -53,10 +53,22 @@ function v183CompactTeams(career,fixture,state){
 function v183CompactStats(state){
  return state.compactStats||=Object.fromEntries([...['shots','onTarget','corners','crosses','fouls','freeKicks'].map(k=>[k,[0,0]]),['sources',{}],['sourceGoals',{}]]);
 }
-function v183PickShooter(balance,source,team,state,random){
+function v183ShooterWeight(balance,source,team,state){
  const g=balance.shooters[balance.groups[source]];
  const slope=balance.slopes?.[balance.groups[source]]??g.slope;
- return v64PickAttacker(team.ids,pid=>(g.roles[state.roleAssignments?.[pid]?.roleId]??g.fallback)*Math.exp(slope*(team.skills[pid][g.skill]-10)),random);
+ return pid=>(g.roles[state.roleAssignments?.[pid]?.roleId]??g.fallback)*Math.exp(slope*(team.skills[pid][g.skill]-10));
+}
+function v183PickShooter(balance,source,team,state,random){
+ return v64PickAttacker(team.ids,v183ShooterWeight(balance,source,team,state),random);
+}
+// Finishing of the shooter relative to the expected shooter of his team for this source (same weights as the pick).
+// The finishing levers were fitted across teams; within a team the played-out best finisher converts hardly better
+// than his team-mates (SI-K2 open play: 28 % against 29 %), so the own deviation counts only with the share finSelf.
+function v183ShooterFinishing(balance,source,team,state,pid,finishing){
+ const share=balance.levers.finSelf??1;if(share===1)return finishing;
+ const weight=v183ShooterWeight(balance,source,team,state);let sum=0,centre=0;
+ for(const id of team.ids){const w=weight(id);sum+=w;centre+=w*team.skills[id].fin;}
+ return sum>0?finishing-(1-share)*(team.skills[pid].fin-centre/sum):finishing;
 }
 // Expected shots of a team in a match: strength gap in outfield skill points, small relative home bonus
 // (never on a neutral pitch) and the measured effect of a deep defensive line of the opponent.
@@ -108,7 +120,7 @@ function v183CompactActions(career,fixture,state,side,random){
  state.stats[scorer].shots++;stats.shots[side]++;(stats.sources[source]||=[0,0])[side]++;
  if(source==='header-volley'||source==='corner')stats.crosses[side]++;
  const finishing=state.playerLoad?v158Ability(q,'fin',state,false):q.fin,keeper=rivals.find(pid=>state.roles[pid]==='gk'),k=v64Player(career,fixture,1-side,keeper),keeping=state.playerLoad?v158Ability(k,'gk',state,false):k.gk;
- const odds=v183ShotOdds(B,source,finishing,keeping,mine.ovr-other.ovr),pOn=odds.onTarget,pGoal=odds.goal,onTarget=random()<pOn;
+ const odds=v183ShotOdds(B,source,v183ShooterFinishing(B,source,mine,state,scorer,finishing),keeping,mine.ovr-other.ovr),pOn=odds.onTarget,pGoal=odds.goal,onTarget=random()<pOn;
  if(state.playerLoad){const height=.29+random()*2.3,lateral=(random()-.5)*5.5;v158CompactKeeper(career,fixture,state,1-side,keeper,`${fixture.id}:compact-shot:${scorer}:${state.stats[scorer].shots}`,onTarget,height,Math.abs(lateral));}
  const goal=onTarget&&random()<pGoal;
  if(onTarget)stats.onTarget[side]++;

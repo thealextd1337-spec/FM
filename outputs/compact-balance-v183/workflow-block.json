@@ -11,47 +11,47 @@
   {
    "command": "node work/test-lowpoly-goal-tail.cjs",
    "ok": true,
-   "seconds": 0.3
+   "seconds": 0.5
   },
   {
    "command": "node work/platform/qa/test-presentation-v131.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-tactics-roster-v130.cjs",
    "ok": true,
-   "seconds": 8.6
+   "seconds": 15.1
   },
   {
    "command": "node work/run-native130-tests.cjs",
    "ok": true,
-   "seconds": 0.6
+   "seconds": 1
   },
   {
    "command": "node work/test-view-frame-scheduler-v130.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-squad-planning-v179.cjs",
    "ok": true,
-   "seconds": 3.2
+   "seconds": 4.2
   },
   {
    "command": "node work/test-start-rosters-v177.cjs --worlds=60",
    "ok": true,
-   "seconds": 90.2
+   "seconds": 156.7
   },
   {
    "command": "node work/test-compact-balance-v178.cjs",
    "ok": true,
-   "seconds": 6.1
+   "seconds": 10
   },
   {
    "command": "node work/test-compact-balance-v183.cjs",
    "ok": true,
-   "seconds": 19.6
+   "seconds": 32.2
   },
   {
    "command": "node work/test-native-performance-context.cjs",
@@ -61,87 +61,87 @@
   {
    "command": "node work/test-youth-legacy-v176.cjs",
    "ok": true,
-   "seconds": 5.9
+   "seconds": 9.7
   },
   {
    "command": "node work/test-progress-v58.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-live-player-v59.cjs",
    "ok": true,
-   "seconds": 0.2
+   "seconds": 0.4
   },
   {
    "command": "node work/test-progress-menu.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-transfer-confirmations.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-transfer-deadline-dialog.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-tactics-replacement.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-quick-lineup-cells.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-v24.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-mobile-drag-scroll.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-v20-wake-lifecycle.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-v31.cjs",
    "ok": true,
-   "seconds": 1.5
+   "seconds": 2.2
   },
   {
    "command": "node work/test-v41.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-v42.cjs",
    "ok": true,
-   "seconds": 0.2
+   "seconds": 0.3
   },
   {
    "command": "node work/test-v44.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-v45.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-v47.cjs",
    "ok": true,
-   "seconds": 0.2
+   "seconds": 0.3
   },
   {
    "command": "node work/test-statistics-menu.cjs",
@@ -151,32 +151,32 @@
   {
    "command": "node work/test-player-seasons.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-v49.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-v50.cjs",
    "ok": true,
-   "seconds": 0.4
+   "seconds": 0.6
   },
   {
    "command": "node work/test-v50-balance.cjs",
    "ok": true,
-   "seconds": 21.8
+   "seconds": 34.2
   },
   {
    "command": "node work/test-v51.cjs",
    "ok": true,
-   "seconds": 0.5
+   "seconds": 0.7
   },
   {
    "command": "node work/test-v52.cjs",
    "ok": true,
-   "seconds": 0.2
+   "seconds": 0.3
   },
   {
    "command": "node work/test-v53.cjs",
@@ -186,22 +186,22 @@
   {
    "command": "node work/test-v54.cjs",
    "ok": true,
-   "seconds": 45.3
+   "seconds": 52
   },
   {
    "command": "node work/test-v55.cjs",
    "ok": true,
-   "seconds": 0.5
+   "seconds": 0.7
   },
   {
    "command": "node work/test-ai-season-stats.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-ai-career-v60.cjs",
    "ok": true,
-   "seconds": 0.8
+   "seconds": 1
   },
   {
    "command": "node work/test-breakaway.cjs",
@@ -211,77 +211,77 @@
   {
    "command": "node work/test-v56.cjs",
    "ok": true,
-   "seconds": 5.6
+   "seconds": 7.9
   },
   {
    "command": "node work/test-duel-streaks.cjs",
    "ok": true,
-   "seconds": 0.5
+   "seconds": 0.7
   },
   {
    "command": "node work/test-v57.cjs",
    "ok": true,
-   "seconds": 0.6
+   "seconds": 0.8
   },
   {
    "command": "node work/test-world-foundation-v61.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-world-local-start.cjs",
    "ok": true,
-   "seconds": 0.9
+   "seconds": 1.1
   },
   {
    "command": "node work/test-world-competition-v62.cjs",
    "ok": true,
-   "seconds": 11.7
+   "seconds": 16
   },
   {
    "command": "node work/test-world-coaches-v63.cjs",
    "ok": true,
-   "seconds": 1.4
+   "seconds": 1.9
   },
   {
    "command": "node work/test-world-match-v64.cjs",
    "ok": true,
-   "seconds": 0.4
+   "seconds": 0.6
   },
   {
    "command": "node work/test-world-penalties-v65.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-world-victory-popup.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-world-nationalities-v79.cjs",
    "ok": true,
-   "seconds": 2.7
+   "seconds": 3.5
   },
   {
    "command": "node work/test-world-market-nationalities-v79.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-world-kits-v81.cjs",
    "ok": true,
-   "seconds": 2.2
+   "seconds": 2.9
   },
   {
    "command": "node work/test-world-direct-transfer.cjs",
    "ok": true,
-   "seconds": 0.2
+   "seconds": 0.3
   },
   {
    "command": "node work/test-world-navigation.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-world-swap-banner.cjs",
@@ -291,22 +291,22 @@
   {
    "command": "node work/test-world-goal-scene-v83.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-world-goal-banner-v84.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-i18n-v75.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-world-live-ranks.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-world-grid-v71.cjs",
@@ -316,7 +316,7 @@
   {
    "command": "node work/test-world-player-instructions.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-world-physical-instructions.cjs",
@@ -326,52 +326,52 @@
   {
    "command": "node work/test-world-career-plan.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-world-economy-v66.cjs",
    "ok": true,
-   "seconds": 8.4
+   "seconds": 11.4
   },
   {
    "command": "node work/test-world-sponsors-v97.cjs",
    "ok": true,
-   "seconds": 0.2
+   "seconds": 0.4
   },
   {
    "command": "node work/test-world-career-events.cjs",
    "ok": true,
-   "seconds": 2
+   "seconds": 2.7
   },
   {
    "command": "node work/test-world-playable-rosters.cjs",
    "ok": true,
-   "seconds": 0.4
+   "seconds": 0.5
   },
   {
    "command": "node work/test-world-transfer-list-v72.cjs",
    "ok": true,
-   "seconds": 0.6
+   "seconds": 0.7
   },
   {
    "command": "node work/test-world-human-sale-v73.cjs",
    "ok": true,
-   "seconds": 0.4
+   "seconds": 0.6
   },
   {
    "command": "node work/test-world-youth-manager-v67.cjs",
    "ok": true,
-   "seconds": 5
+   "seconds": 5.7
   },
   {
    "command": "node work/test-finance-close-v130.cjs",
    "ok": true,
-   "seconds": 1.5
+   "seconds": 2
   },
   {
    "command": "node work/test-world-payments-v124.cjs",
    "ok": true,
-   "seconds": 3.3
+   "seconds": 4.3
   },
   {
    "command": "node work/test-3d-documentation-v134.cjs",
@@ -381,132 +381,132 @@
   {
    "command": "node work/test-mobile-performance-v135.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-world-storage-v67.cjs",
    "ok": true,
-   "seconds": 0.2
+   "seconds": 0.3
   },
   {
    "command": "node work/test-world-storage-startup.cjs",
    "ok": true,
-   "seconds": 5.5
+   "seconds": 7.7
   },
   {
    "command": "node work/test-world-storage-recovery.cjs",
    "ok": true,
-   "seconds": 0.9
+   "seconds": 1.3
   },
   {
    "command": "node work/test-expansion-assets-v161.cjs",
    "ok": true,
-   "seconds": 1.1
+   "seconds": 0.7
   },
   {
    "command": "node work/test-world-expansion-v161.cjs",
    "ok": true,
-   "seconds": 13.8
+   "seconds": 19.7
   },
   {
    "command": "node work/test-world-expansion-domestic-v164.cjs",
    "ok": true,
-   "seconds": 6.8
+   "seconds": 9.6
   },
   {
    "command": "node work/test-world-expansion-crown-v165.cjs",
    "ok": true,
-   "seconds": 8.7
+   "seconds": 12.2
   },
   {
    "command": "node work/test-world-expansion-horizon-v166.cjs",
    "ok": true,
-   "seconds": 163
+   "seconds": 235.8
   },
   {
    "command": "node work/test-world-expansion-active-validation-v166.cjs",
    "ok": true,
-   "seconds": 10.5
+   "seconds": 15.5
   },
   {
    "command": "node work/test-world-expansion-rules-v167.cjs",
    "ok": true,
-   "seconds": 6.2
+   "seconds": 8.8
   },
   {
    "command": "node work/test-world-expansion-contracts-v168.cjs",
    "ok": true,
-   "seconds": 14.1
+   "seconds": 20.5
   },
   {
    "command": "node work/test-world-expansion-stories-v170.cjs",
    "ok": true,
-   "seconds": 15.2
+   "seconds": 21.9
   },
   {
    "command": "node work/test-world-expansion-presentation-v172.cjs",
    "ok": true,
-   "seconds": 12.9
+   "seconds": 19.1
   },
   {
    "command": "node work/test-world-expansion-flutlicht-v175.cjs",
    "ok": true,
-   "seconds": 5.1
+   "seconds": 7.9
   },
   {
    "command": "node work/platform/qa/test-android-3d-acceptance.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-world-save-management-v70.cjs",
    "ok": true,
-   "seconds": 1.1
+   "seconds": 1.5
   },
   {
    "command": "node work/test-world-views-v68.cjs",
    "ok": true,
-   "seconds": 0.4
+   "seconds": 0.6
   },
   {
    "command": "node work/test-world-honours-v74.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-match-presentation-v74.cjs",
    "ok": true,
-   "seconds": 0.1
+   "seconds": 0.2
   },
   {
    "command": "node work/test-player-ui-projection.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-player-aging.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-player-load-candidate-v158.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-v158-final-whistle-load.cjs",
    "ok": true,
-   "seconds": 8.4
+   "seconds": 12.5
   },
   {
    "command": "node work/test-si-crossing-v183.cjs",
    "ok": true,
-   "seconds": 29.9
+   "seconds": 42.7
   },
   {
    "command": "node work/test-native-career-v160.cjs",
    "ok": true,
-   "seconds": 326.9
+   "seconds": 263.6
   },
   {
    "command": "node work/platform/qa/test-unity-integration-v160.cjs",
@@ -551,7 +551,7 @@
   {
    "command": "node work/test-whistle-offside-v119.cjs",
    "ok": true,
-   "seconds": 0
+   "seconds": 0.1
   },
   {
    "command": "node work/test-shootout-quality-v119.cjs",
@@ -571,22 +571,22 @@
   {
    "command": "DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
    "ok": true,
-   "seconds": 16.6
+   "seconds": 19.9
   },
   {
    "command": "DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
    "ok": true,
-   "seconds": 17.9
+   "seconds": 18
   },
   {
    "command": "DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs",
    "ok": true,
-   "seconds": 13.3
+   "seconds": 13.4
   },
   {
    "command": "node work/audit-world-balance-v68.cjs",
    "ok": true,
-   "seconds": 152.4
+   "seconds": 87
   },
   {
    "command": "python3 work/test_deploy_ftps.py",
