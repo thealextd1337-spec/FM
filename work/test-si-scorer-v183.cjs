@@ -52,42 +52,6 @@ check('parameters registered with the defaults of the Torjäger round',()=>{
  for(const [key,value]of Object.entries(DEFAULTS))assert.equal(ev(`v183Param(match,${JSON.stringify(key)})`),value,key);
 });
 
-check('perceived finishing: mateFin 0 values two receivers that differ only in finishing alike, 1 prefers the better finisher',()=>{
- const gains=params=>{scene(pair(params));const list=options(),a=list.find(o=>o.kind==='pass'&&o.ref==='a'),b=list.find(o=>o.kind==='pass'&&o.ref==='b');return {a:a.gain,b:b.gain,arrA:a.arrival,arrB:b.arrival};};
- const own=gains({'options.mateFin':1}),mean=gains({'options.mateFin':0}),part=gains({'options.mateFin':.5});
- assert.equal(own.arrA,own.arrB,'arrival does not depend on finishing');
- assert(own.a>own.b*1.15,`own finishing: the 16 is worth clearly more (${own.a} vs ${own.b})`);
- assert(Math.abs(mean.a-mean.b)<=1e-9*Math.max(mean.a,mean.b)+1e-12,`team mean: equal (${mean.a} vs ${mean.b})`);
- assert(part.a>part.b&&part.a<own.a&&part.b>own.b,'0.5 lies between');
-});
-
-check('perceived finishing: the carrier values his own shot with selfFin (team mean at 0); the stored ability is untouched',()=>{
- const shot=params=>{scene({seed:4,si:si(params),attack:[{id:'c',goal:15,lateral:2,line:'att',role:'striker',skills:{fin:17,tec:12}},{id:'m',goal:30,lateral:-8,line:'mid',skills:{fin:7}},{id:'d',goal:40,lateral:6,line:'def',skills:{fin:6}}],defend:[{id:'x',goal:9,lateral:8,line:'def'}]});return options().find(o=>o.kind==='shot').xg;};
- const own=shot({'options.selfFin':1}),mean=shot({'options.selfFin':0});
- assert(own>mean*1.1,`a 17 among 7/6 values his shot above the team mean (${own} vs ${mean})`);
- // Direct: the estimate inside v183OptPerceived equals the estimate of a player with the team-mean finishing.
- const r=copy(ev(`(()=>{const m=match,c=SC.by('c'),mates=m.people.filter(x=>x.t===0&&!x.keeper),mean=mates.reduce((a,x)=>a+ability(x,'fin'),0)/mates.length;
-  const inside=v183OptPerceived(m,c,0,()=>ability(c,'fin')),half=v183OptPerceived(m,c,.5,()=>ability(c,'fin')),after=ability(c,'fin');
-  let thrown=false;try{v183OptPerceived(m,c,0,()=>{throw Error('x');});}catch{thrown=true;}
-  return {inside,half,mean,after,own:c.fin,thrown,restored:ability(c,'fin'),other:v183OptPerceived(m,c,0,()=>ability(SC.by('m'),'fin')),otherOwn:ability(SC.by('m'),'fin')};})()`));
- assert(Math.abs(r.inside-r.mean)<1e-12,'share 0 = team mean');assert(Math.abs(r.half-(r.mean+.5*(r.after-r.mean)))<1e-12,'share .5');
- assert.equal(r.after,r.restored);assert(r.thrown);assert.equal(r.other,r.otherOwn,'only the perceived player changes');
-});
-
-check('perceived finishing: no random draw and no match state written in an evaluation',()=>{
- scene(pair({'options.mateFin':0,'options.selfFin':0,'offball.xgFin':0}));
- const before=copy(ev('({draws:Native182.rng().draws,flow:JSON.stringify(match.attackFlow),si:JSON.stringify(match.si)})'));options();
- const after=copy(ev('({draws:Native182.rng().draws,flow:JSON.stringify(match.attackFlow),si:JSON.stringify(match.si)})'));
- assert.deepEqual(after,before);
-});
-
-check('SI-2 offers: a runner\'s shot value uses xgFin (team mean at 0, own finishing at 1)',()=>{
- scene(pair({'offball.xgFin':1}));
- const r=copy(ev(`(()=>{const m=match,a=SC.by('a'),pt={x:a.x,y:a.y};return {own:v183OffballXg(m,a,pt,1),mean:v183OffballXg(m,a,pt,0),est:v183ShotEstimate(m,a,pt).xg,
-  meanEst:v183OptPerceived(m,a,0,()=>v183ShotEstimate(m,a,pt).xg)};})()`));
- assert.equal(r.own,r.est);assert.equal(r.mean,r.meanEst);assert(r.own>r.mean,'the 16 is valued below his own finishing at 0');
-});
-
 check('lead intensity: 0 when level or behind; min(lead,leadCap)/leadCap times leadEarly..1 over the clock',()=>{
  const at=(score,elapsed,t=0)=>{scene(pair({'options.leadCap':3,'options.leadEarly':.5},{score,elapsed}));ev('match.fullTimeEnd=80');return ev(`v183LeadIntensity(match,${t})`);};
  assert.equal(at([0,0],40),0);assert.equal(at([1,2],40),0);assert.equal(at([2,1],40,1),0);
@@ -96,27 +60,33 @@ check('lead intensity: 0 when level or behind; min(lead,leadCap)/leadCap times l
 });
 
 // Explicit score-state parameters for the mechanics checks (independent of the defaults).
-const STATE={'options.leadShoot':.4,'options.leadRisk':.3,'options.trailShoot':.2,'options.trailRisk':.25,'options.levelRisk':.3,'offball.leadPace':.2,'offball.trailPace':.1,'offball.levelPace':.15};
-check('score state: shoot and risk weights scale with lead, trail and level intensity; all zero = personality weights',()=>{
+const STATE={'options.leadCap':2,'options.leadEarly':.5,'options.leadShoot':.4,'options.leadRisk':.3,'options.levelRisk':.3,'offball.leadPace':.2,'offball.levelPace':.15,'offball.leashLead':4};
+const near=(a,b,msg)=>assert(Math.abs(a-b)<1e-12,`${msg}: ${a} vs ${b}`);
+check('score state: shoot and risk weights fall with the lead intensity, the risk weight late in a level game; neutral without parameters',()=>{
  const w=(score,elapsed,params=STATE)=>{scene(pair(params,{score,elapsed}));ev('match.fullTimeEnd=80');return copy(ev(`(()=>{const P=v183OptParams(match),c=SC.by('c');return {state:v183OptStateWeights(match,c,P),base:v183OptWeights(c,P),s:v183ScoreState(match,0)};})()`));};
- const lead=w([3,0],80),behind=w([0,2],80),level=w([1,1],60),early=w([0,0],0);
- assert.deepEqual(lead.s,{lead:1,trail:0,level:0});assert.equal(behind.s.lead,0);assert(Math.abs(behind.s.trail-2/3)<1e-12);assert(Math.abs(level.s.level-.5625)<1e-12);
- const near=(a,b,msg)=>assert(Math.abs(a-b)<1e-12,`${msg}: ${a} vs ${b}`);
+ const lead=w([2,0],80),one=w([1,0],40),behind=w([0,2],80),level=w([1,1],60),early=w([0,0],0);
+ assert.deepEqual(lead.s,{lead:1,level:0});near(one.s.lead,.5*.75,'one goal at half time');assert.deepEqual(behind.s,{lead:0,level:0});near(level.s.level,.5625,'level at 60 of 80');
  near(lead.state.shootWeight,lead.base.shootWeight*(1-.4),'leader shoots less');near(lead.state.riskWeight,lead.base.riskWeight*(1-.3),'leader risks less');
- near(behind.state.shootWeight,behind.base.shootWeight*(1+.2*2/3),'trailer shoots more');near(behind.state.riskWeight,behind.base.riskWeight*(1+.25*2/3),'trailer risks more');
+ assert.deepEqual(behind.state,behind.base,'trailing team unchanged');
  near(level.state.shootWeight,level.base.shootWeight,'level: shoot unchanged');near(level.state.riskWeight,level.base.riskWeight*(1-.3*.5625),'level late: cautious');
  assert.deepEqual(early.state,early.base,'level at kick-off: no effect');
- const off=w([3,0],80,{});assert.deepEqual(off.state,off.base,'neutral without parameters');
- // The shot option of the leading carrier loses exactly that share of its gain.
+ const off=w([2,0],80,{});assert.deepEqual(off.state,off.base,'neutral without parameters');
  const gain=score=>{scene({seed:5,si:si(STATE),score,elapsed:20,attack:[{id:'c',goal:16,lateral:1,line:'att',role:'striker',skills:{fin:14}}],defend:[{id:'x',goal:8,lateral:7,line:'def'}]});ev('match.fullTimeEnd=80');return {g:options().find(o=>o.kind==='shot').gain,s:copy(ev('v183ScoreState(match,0)'))};};
- const g3=gain([3,0]),g0=gain([0,0]);near(g3.g,g0.g*(1-.4*g3.s.lead),'shot gain of the leader');
+ const g2=gain([2,0]),g0=gain([0,0]);assert(g2.s.lead>0);near(g2.g,g0.g*(1-.4*g2.s.lead),'shot gain of the leader');
 });
 
-check('score state: SI-2 carrier and run pace by leadPace, trailPace and levelPace; the opponent of a leader is the trailer',()=>{
+check('score state: SI-2 carrier and run pace by leadPace and levelPace; the trailing team keeps its pace',()=>{
  const pace=(score,elapsed=80,params=STATE)=>{scene(pair(params,{score,elapsed}));ev('match.fullTimeEnd=80');return copy(ev(`(()=>{const c=SC.by('c'),x=SC.by('x');return {carrier:v183PaceFactor(match,c,'carrier'),rival:v183PaceFactor(match,x,'carrier')};})()`));};
- const lead=pace([3,0]),level=pace([1,1]),base=pace([0,0],80,{}),start=pace([0,0],0);
- assert(Math.abs(lead.carrier-base.carrier*(1-.2))<1e-12,'leading carrier slower');assert(Math.abs(lead.rival-base.rival*(1+.1))<1e-12,'trailing carrier faster');
- assert(Math.abs(level.carrier-base.carrier*(1-.15))<1e-12,'level at full time slower');assert.equal(start.carrier,base.carrier,'level at kick-off unchanged');
+ const lead=pace([2,0]),level=pace([1,1]),base=pace([0,0],80,{}),start=pace([0,0],0);
+ near(lead.carrier,base.carrier*(1-.2),'leading carrier slower');assert.equal(lead.rival,base.rival,'trailing carrier unchanged');
+ near(level.carrier,base.carrier*(1-.15),'level at full time slower');assert.equal(start.carrier,base.carrier,'level at kick-off unchanged');
+});
+
+check('score state: SI-2 zone leash of a leading team shrinks by leashLead x lead intensity',()=>{
+ const shift=(score,params)=>{scene(pair(params,{score,elapsed:80}));ev('match.fullTimeEnd=80');return copy(ev('[v183OffballLeashShift(match,0),v183OffballLeashShift(match,1)]'));};
+ assert.deepEqual(shift([2,0],STATE),[-4,0]);assert.deepEqual(shift([1,1],STATE),[0,0]);assert.deepEqual(shift([2,0],{}),[0,0]);
+ const val=score=>{scene(pair(STATE,{score,elapsed:80}));ev('match.fullTimeEnd=80');return ev(`(()=>{const m=match,q=SC.by('c'),z=v162Zone(m,q),s=v150Scale(),pt={x:z.x,y:z.y+(q.t===0?-1:1)*20/s.y},ctx={owner:SC.by('a'),rivals:m.people.filter(r=>r.t!==q.t),s,dir:q.t===0?-1:1,occupied:[],zone:z,profile:v183OffballProfile(m,q),limit:null,lastCats:{},leashShift:v183OffballLeashShift(m,q.t),P:k=>v183Param(m,'offball.'+k)};return v183OffballValue(m,q,{x:pt.x,y:pt.y,cat:'depth'},ctx).value;})()`);};
+ assert(val([2,0])<val([0,0]),'a far run costs the leader more');
 });
 
 check('keeper during an opposing high ball: keeperShift for a corner, keeperShiftOpen for every other flight',()=>{

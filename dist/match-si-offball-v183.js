@@ -62,11 +62,10 @@ v183RegisterDefaults('offball',{
  crossRunRange:36,crossRunWide:7,crossRunDeep:30,crossRunners:2,crossRunBonus:6,
  zoneLeash:12,zoneLeashAtt:16,wZone:.25,
  // Torjaeger round: carrier and run pace of a leading team times
- // 1-leadPace*lead, of a trailing team times 1+trailPace*trail, while level
- // times 1-levelPace*level (intensities of SI-1 v183ScoreState). The zone
- // leash of every offer grows by leashTrail m x trail intensity (numbers
- // forward) and shrinks by leashLead m x lead intensity (hold the shape).
- leadPace:0,trailPace:0,levelPace:0,leashLead:0,leashTrail:0,
+ // 1-leadPace*lead, while level times 1-levelPace*level (intensities of SI-1
+ // v183ScoreState); the zone leash of a leading team's offers shrinks by
+ // leashLead m x lead intensity (hold the shape).
+ leadPace:0,levelPace:0,leashLead:0,
  wSpace:1,spaceCap:10,wLane:1.5,laneClearance:1.25,wProgress:.12,wRun:.08,wCrowd:1.5,crowdGap:5,crowdGapBox:3,wXg:3,xgRange:24,ownerNear:5,wOwnerNear:.6,ownerFar:26,wOwnerFar:.4,wOffside:.15,holdCost:.8,holdAgain:1,
  profiles:V183_OFFBALL_PROFILES
 });
@@ -342,15 +341,15 @@ v183ReboundFinish=function(m,winner,point){
 // of v183PaceFactor and returns for carrier/run before SI-4 sees the call.
 // Score state (Torjaeger round): carrier and run pace (see leadPace).
 function v183OffballLeadPace(m,p){
- const a=v183Param(m,'offball.leadPace'),b=v183Param(m,'offball.trailPace'),c=v183Param(m,'offball.levelPace');
- if(!(a>0||b>0||c>0)||typeof v183ScoreState!=='function')return 1;
- const s=v183ScoreState(m,p.t);return clamp((1-a*s.lead)*(1+b*s.trail)*(1-c*s.level),.5,1.5);
+ const a=v183Param(m,'offball.leadPace'),c=v183Param(m,'offball.levelPace');
+ if(!(a>0||c>0)||typeof v183ScoreState!=='function')return 1;
+ const s=v183ScoreState(m,p.t);return clamp((1-a*s.lead)*(1-c*s.level),.5,1);
 }
 // Score state (Torjaeger round): metres added to the zone leash of team t's offers.
 function v183OffballLeashShift(m,t){
- const a=v183Param(m,'offball.leashLead'),b=v183Param(m,'offball.leashTrail');
- if(!(a>0||b>0)||typeof v183ScoreState!=='function')return 0;
- const s=v183ScoreState(m,t);return b*s.trail-a*s.lead;
+ const a=v183Param(m,'offball.leashLead');
+ if(!(a>0)||typeof v183ScoreState!=='function')return 0;
+ return -a*v183ScoreState(m,t).lead;
 }
 const v183OffballBasePace=v183PaceFactor;
 v183PaceFactor=function(m,p,purpose,detail={}){

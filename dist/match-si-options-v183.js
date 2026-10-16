@@ -78,15 +78,14 @@ v183RegisterDefaults('options',{
  // (the carrier drives on, unlike a turn on the spot); crossSpaceGain scales the
  // option value.
  crossSpace:3,crossSpots:[[4,6],[0,11],[-4,7]],crossRunnerRange:28,crossRunnerWide:14,crossRunnerBack:2,crossLead:2,crossLeadSlack:3,crossLeadTau:3,crossKickMin:.2,crossSpaceGain:1,
- // Score state (Torjäger round). A leading team manages its lead, a trailing
- // team pushes: intensity min(|goal difference|,leadCap)/leadCap, times
- // leadEarly at kick-off rising linearly to 1 at full time. It scales the
- // shoot weight by 1-leadShoot*lead or 1+trailShoot*trail and the risk weight
- // by 1-leadRisk*lead or 1+trailRisk*trail. While the score is level, both
- // teams turn cautious late: level intensity = (elapsed/full time)^2, risk
- // weight times 1-levelRisk*level. SI-2 scales carrier and run pace with
- // offball.leadPace, trailPace and levelPace.
- leadShoot:0,leadRisk:0,trailShoot:0,trailRisk:0,levelRisk:0,leadCap:3,leadEarly:.5
+ // Score state (Torjäger round). A leading team manages its lead: intensity
+ // min(lead,leadCap)/leadCap, times leadEarly at kick-off rising linearly to 1
+ // at full time; shoot weight times 1-leadShoot*lead, risk weight times
+ // 1-leadRisk*lead. While the score is level both teams turn cautious late:
+ // level intensity (elapsed/full time)^2, risk weight times 1-levelRisk*level.
+ // SI-2 scales carrier and run pace (offball.leadPace, levelPace) and the zone
+ // leash (offball.leashLead).
+ leadShoot:0,leadRisk:0,levelRisk:0,leadCap:3,leadEarly:.5
 });
 const V183_OPT_KEYS=Object.freeze(Object.keys(v183RegisterDefaults('options',{})));
 // Neutral values of the SI-F personality formula (role 1, mental values 10).
@@ -98,21 +97,20 @@ function v183OptWindowBase(m){return v183Param(m,'options.windowBase');}
 function v183OptWindow(m,p){return v183OptWindowBase(m)+v183Param(m,'options.windowFin')*ability(p,'fin');}
 function v183OptParams(m){const P={};for(const key of V183_OPT_KEYS)P[key]=v183Param(m,'options.'+key);P.windowBase=v183OptWindowBase(m);return P;}
 function v183OptWeights(p,P){const raw=v183Personality(p),w={};for(const [key,neutral]of Object.entries(V183_OPT_NEUTRAL))w[key]=clamp(raw[key]/neutral,P.weightMin,P.weightMax);return w;}
-// Score state of team t: lead and trail intensity (see leadCap/leadEarly) and
-// the level intensity (late^2 while level); at most one of them is positive.
-// Read from the score and the clock only (no state); SI-2 uses it for pace.
+// Score state of team t: lead intensity (see leadCap/leadEarly, 0 when level
+// or behind) and level intensity (late^2 while level). Read from the score and
+// the clock only (no state); SI-2 uses it for pace and zone leash.
 function v183ScoreState(m,t){
  const diff=(m.score?.[t]??0)-(m.score?.[1-t]??0),cap=v183Param(m,'options.leadCap'),late=clamp(m.elapsed/(m.fullTimeEnd||75),0,1);
- if(diff===0)return {lead:0,trail:0,level:late*late};
- if(!(cap>0))return {lead:0,trail:0,level:0};
- const early=v183Param(m,'options.leadEarly'),k=Math.min(Math.abs(diff),cap)/cap*(early+(1-early)*late);
- return diff>0?{lead:k,trail:0,level:0}:{lead:0,trail:k,level:0};
+ if(diff===0)return {lead:0,level:late*late};
+ if(!(diff>0)||!(cap>0))return {lead:0,level:0};
+ return {lead:Math.min(diff,cap)/cap*(v183Param(m,'options.leadEarly')+(1-v183Param(m,'options.leadEarly'))*late),level:0};
 }
 function v183LeadIntensity(m,t){return v183ScoreState(m,t).lead;}
 // Personality weights with the score state of p's team (shoot and risk).
 function v183OptStateWeights(m,p,P){
- const w=v183OptWeights(p,P),state=P.leadShoot>0||P.leadRisk>0||P.trailShoot>0||P.trailRisk>0||P.levelRisk>0?v183ScoreState(m,p.t):null;
- if(state){w.shootWeight*=Math.max(0,1-P.leadShoot*state.lead)*(1+P.trailShoot*state.trail);w.riskWeight*=Math.max(.05,(1-P.leadRisk*state.lead)*(1-P.levelRisk*state.level))*(1+P.trailRisk*state.trail);}
+ const w=v183OptWeights(p,P),state=P.leadShoot>0||P.leadRisk>0||P.levelRisk>0?v183ScoreState(m,p.t):null;
+ if(state){w.shootWeight*=Math.max(0,1-P.leadShoot*state.lead);w.riskWeight*=Math.max(.05,(1-P.leadRisk*state.lead)*(1-P.levelRisk*state.level));}
  return w;
 }
 // Real seconds into the v152Seconds deadlines read by older code (carry,
