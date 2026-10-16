@@ -232,14 +232,14 @@ check('full constructor matches: crosses into space occur, their state is plain 
 });
 
 // ----- SI-K2 (calibration round 2): keeper, marker, estimate, offside snapshot -----
-check('SI-K2 keeper: during a cross into space he steps onto the landing-goal line (keeperShift 1), part of the way at the default share, not with keeperShift 0; pure target, both sizes',()=>{
+check('SI-K2 keeper: during a cross into space he steps onto the landing-goal line (keeperShiftOpen 1, the default since the Torjäger round), part of the way at .4, not with 0; pure target, both sizes',()=>{
  for(const size of ['standard','large']){let on=0,part=0,off=0,n=0;
   for(let seed=0;seed<6;seed++)for(const spot of ['spot','near']){
-   const a=call('keeperFlight',{seed,size,spot,params:{setplay:{keeperShift:1}}}),d=call('keeperFlight',{seed,size,spot}),b=call('keeperFlight',{seed,size,spot,params:{setplay:{keeperShift:0}}});
+   const a=call('keeperFlight',{seed,size,spot}),d=call('keeperFlight',{seed,size,spot,params:{setplay:{keeperShiftOpen:.4}}}),b=call('keeperFlight',{seed,size,spot,params:{setplay:{keeperShiftOpen:0}}});
    assert.ok(a.flight&&b.flight&&d.flight,'flights');assert.ok(a.pure&&d.pure,'no draw, same target twice');on+=a.off;part+=d.off;off+=b.off;n++;}
-  console.log(`     ${size}: keeper offset at the landing ${(on/n).toFixed(2)} m (share 1) / ${(part/n).toFixed(2)} m (default) / ${(off/n).toFixed(2)} m (0)`);
+  console.log(`     ${size}: keeper offset at the landing ${(on/n).toFixed(2)} m (share 1, default) / ${(part/n).toFixed(2)} m (.4) / ${(off/n).toFixed(2)} m (0)`);
   assert.ok(on/n<.6,size+' keeper on the line: mean offset '+(on/n).toFixed(2));assert.ok(off/n>on/n+.5,size+' offset without the shift '+(off/n).toFixed(2)+' vs '+(on/n).toFixed(2));
-  assert.ok(part/n<off/n&&part/n>on/n,size+' default share between: '+(part/n).toFixed(2));}
+  assert.ok(part/n<off/n&&part/n>on/n,size+' share .4 between: '+(part/n).toFixed(2));}
 });
 check('SI-K2 spaceSpread: the landing error of a cross into space scales with setplay.spaceSpread (estimate and execution)',()=>{
  for(const size of ['standard','large']){const e=call('spreadEstimate',{size});assert.ok(Math.abs(e.narrow/e.wide-.6)<.02,JSON.stringify(e));assert.ok(e.landNarrow>=e.landWide,JSON.stringify(e));}

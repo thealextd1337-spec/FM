@@ -65,7 +65,7 @@ v183RegisterDefaults('offball',{
  // 1-leadPace*lead, while level times 1-levelPace*level (intensities of SI-1
  // v183ScoreState); the zone leash of a leading team's offers shrinks by
  // leashLead m x lead intensity (hold the shape).
- leadPace:.25,levelPace:.25,leashLead:4,
+ leadPace:.25,levelPace:.3,leashLead:4,
  wSpace:1,spaceCap:10,wLane:1.5,laneClearance:1.25,wProgress:.12,wRun:.08,wCrowd:1.5,crowdGap:5,crowdGapBox:3,wXg:3,xgRange:24,ownerNear:5,wOwnerNear:.6,ownerFar:26,wOwnerFar:.4,wOffside:.15,holdCost:.8,holdAgain:1,
  profiles:V183_OFFBALL_PROFILES
 });

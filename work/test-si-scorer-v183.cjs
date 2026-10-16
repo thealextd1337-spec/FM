@@ -39,7 +39,7 @@ h.run(`globalThis.SC={
 };`,'scorer-scenes');
 const scene=spec=>h.call('SC.build',spec);
 const options=()=>copy(h.call('SC.options'));
-const DEFAULTS={'options.leadShoot':.5,'options.leadRisk':.5,'options.levelRisk':.6,'options.leadCap':2,'options.leadEarly':.5,'offball.leadPace':.25,'offball.levelPace':.25,'offball.leashLead':4,'offball.zoneLeash':15,'setplay.keeperShift':.4,'setplay.keeperShiftOpen':1,'finish.spreadBase':.024,'finish.volleySpread':2.4};
+const DEFAULTS={'options.leadShoot':.5,'options.leadRisk':.5,'options.levelRisk':.65,'options.leadCap':2,'options.leadEarly':.5,'offball.leadPace':.25,'offball.levelPace':.3,'offball.leashLead':4,'offball.zoneLeash':15,'setplay.keeperShift':.4,'setplay.keeperShiftOpen':1,'finish.spreadBase':.035,'finish.spreadSkill':.44,'finish.volleySpread':1.6};
 const si=(flat={})=>{const params={};for(const [k,v]of Object.entries(flat)){const [pkg,name]=k.split('.');(params[pkg]??={})[name]=v;}return {packages:{options:true,finish:true,offball:true,setplay:true},params};};
 // Two receivers mirrored about the carrier's line, equal except finishing.
 const pair=(params,extra={})=>({seed:3,si:si(params),attack:[{id:'c',goal:30,lateral:0,line:'mid',role:'box-to-box',skills:{pas:13,fin:10,tec:11}},{id:'a',goal:15,lateral:-6,line:'att',role:'striker',skills:{fin:16,tec:11,spd:11}},{id:'b',goal:15,lateral:6,line:'att',role:'striker',skills:{fin:8,tec:11,spd:11}}],defend:[{id:'x',goal:13,lateral:-12,line:'def'},{id:'y',goal:13,lateral:12,line:'def'}],...extra});

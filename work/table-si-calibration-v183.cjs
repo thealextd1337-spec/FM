@@ -66,7 +66,7 @@ function summary(rows){
   crossArrivedPct:pct(stats.crossArrived*rows.length,stats.crossesAll*rows.length),crossArrivedOpenPct:pct(stats.crossArrivedOpen,stats.crossesOpen),crossLedgerReceivedPct:pct(rows.reduce((s,r)=>s+r.extras.crossComplete,0),rows.reduce((s,r)=>s+r.extras.offball.crosses.length,0)),
   reboundWinPct:pct(stats.reboundWins,stats.rebounds),
   sources:src,personality:personality(rows,shots),scorers:scorers(rows),draws:draws(rows),favFit:favFit(rows),leagueTop:leagueTop(rows),
-  airOpenFree:(()=>{const l=shots.filter(s=>(s.kind==='header'||s.kind==='volley')&&s.n25===0&&!(s.restart?.type==='corner'&&s.restart.ago<=10&&s.restart.team===s.team)&&!(s.restart?.type==='freeKick'&&s.restart.ago<=10&&s.restart.team===s.team));return{n:l.length,perShot:pct(l.filter(isGoal).length,l.length),perOnTarget:pct(l.filter(isGoal).length,l.filter(onT).length)};})(),
+  airOpenFree:(()=>{const l=shots.filter(s=>(s.kind==='header'||s.kind==='volley')&&s.n25===0&&!(s.restart?.type==='corner'&&s.restart.ago<=10&&s.restart.team===s.team)&&!(s.restart?.type==='freeKick'&&s.restart.ago<=10&&s.restart.team===s.team));return{n:l.length,perShot:pct(l.filter(isGoal).length,l.length),perOnTarget:pct(l.filter(isGoal).length,l.filter(onT).length),goalShare:pct(l.filter(isGoal).length,shots.filter(isGoal).length)};})(),
   airCorner:(()=>{const l=shots.filter(s=>(s.kind==='header'||s.kind==='volley')&&s.restart?.type==='corner'&&s.restart.ago<=10&&s.restart.team===s.team);return{n:l.length,perShot:pct(l.filter(isGoal).length,l.length),perOnTarget:pct(l.filter(isGoal).length,l.filter(onT).length)};})(),
   ticks:{median:ticks[Math.floor(ticks.length/2)],p95:ticks[Math.floor(ticks.length*.95)]}};
 }
@@ -180,6 +180,7 @@ line('Flanken gesamt / Spiel',s=>`${f(s.perMatch.crossesAll)} / ${f(s.perMatch.c
 line('angekommen gesamt / Spiel (Messhülle alt)',s=>`${p(s.crossArrivedPct)} / ${p(s.crossArrivedOpenPct)} (${p(s.crossLedgerReceivedPct)})`,'≥45 %');
 line('Kopf-/Volleyschüsse (Tore)',s=>`${f(s.perMatch.headerVolleyShots)} (${f(s.perMatch.headerVolleyGoals)})`,'≥0,6');
 line('Luft unbedrängt Spielzug: Tore je Schuss / je Schuss aufs Tor (N)',s=>`${p(s.airOpenFree.perShot)} / ${p(s.airOpenFree.perOnTarget)} (${s.airOpenFree.n})`,'je Schuss aufs Tor 45–60 %');
+line('Luft unbedrängt Spielzug: Anteil an allen Toren',s=>p(s.airOpenFree.goalShare,1),'≤5–6 % (Nutzer 16.10.)');
 line('Luft nach Ecke: Tore je Schuss / je Schuss aufs Tor (N)',s=>`${p(s.airCorner.perShot)} / ${p(s.airCorner.perOnTarget)} (${s.airCorner.n})`,'je Schuss rund 29 %');
 line('Ecken / Schüsse ≤10 s danach',s=>`${f(s.perMatch.corners)} / ${f(s.perMatch.cornerShots10)}`,'1,2–3,0');
 line('Abpraller / Gewinn / Schüsse ≤5 s (Kette; nur direkte Eltern)',s=>`${f(s.perMatch.rebounds)} / ${p(s.reboundWinPct)} / ${f(s.perMatch.reboundShots)} (${f(s.perMatch.reboundShotsDirect)})`,'–; ≥35 %; ≥0,3');
