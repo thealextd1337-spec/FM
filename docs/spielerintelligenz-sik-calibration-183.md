@@ -506,7 +506,8 @@ Node 24 (`C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies
 
 **Workflow-Block „Spieltests ausführen“** aus `.github/workflows/deploy.yml`:
 - Auf `15d23adf` (Endwerte mit Uhr 0,36) liefen alle 117 Befehle (115 Node, 2 Python) mit Exit 0, über `work/tmp-sik/run-deploy-tests.cjs` (gitignoriert).
-- Seitdem haben sich nur die Vorgaberate, Tests, Messwerkzeuge und Doku geändert. Laut Auftrag gibt es deshalb keinen erneuten Lauf.
+- Seitdem haben sich nur die Vorgaberate, Tests, Messwerkzeuge und Doku geändert. Laut Auftrag gab es deshalb keinen erneuten Lauf.
+- Review-Lauf auf `d7857cd5` (Uhr 0,385, alle 117 Befehle): 116 grün, einer rot: `work/test-v158-final-whistle-load.cjs` (Prüfung „ordinary play“ verlangt mindestens 4 Lastaktionen in 900 Ticks; die SI-Vorgabeszene lieferte bei Uhr 0,385 nur 3). Die Abdeckungswache war ratenabhängig, nicht der B21-Mechanismus: Fenster auf 1800 Ticks verlängert (7 bzw. 27 Aktionen), die vier Prüfungen sind grün.
 
 **Artefakte zurückgesetzt:** `git checkout -- outputs docs/spieler-nutzer-rig`.
 
