@@ -516,6 +516,8 @@ Offene Punkte für SI-5 und SI-K:
 
 **Stand SI-K (16. Oktober 2026, `feat/si-calibration`):** Reihen A und B, drei Iterationen, Endwerte und offene Punkte in der [SI-K-Doku](spielerintelligenz-sik-calibration-183.md). Maßgeblich ist Reihe B2 (Uhr 0,385): 5,02 min all-inclusive einschließlich Torwiederholungen, 14,2 Schüsse, 3,84 Tore, Favorit gewinnt 78 %. Spielflanken übernimmt das Zusatzpaket „Flanke in den Raum“ (B22); der Fernschussanteil gilt nur für das Standardfeld (Entscheidungen 16. Oktober 2026).
 
+**Stand SI-K2 (16. Oktober 2026, `feat/si-calibration-2`):** Nachkalibrierung nach B22 mit Torwart und Bewacher bei Flanken, Favoritenquote nach Variante A („Favoritenquote 16. Oktober 2026“): 65 % (Standard) / 64 % (groß) Siege bei 1–2 Punkten, ≥90 % ab 3 Punkten. Die Zielwerte aus 2.3 gelten weiter; für die Favoriten gilt statt „≥62 % über alle Favoritenspiele“ die Entscheidung je Stärkeabstand. Abnahmereihe K2 in der [SI-K2-Doku](spielerintelligenz-sik2-calibration-183.md).
+
 ## 11. Modelle und Reviews
 
 Nutzerentscheidung 14. Oktober 2026: Claude arbeitet primär (Claude-Max-Plan 20x aktiv). Umsetzung und Reviews laufen mit Claude-Modellen; Review immer durch ein anderes Modell als die Umsetzung. Codex (GPT-6.1-Sol) bleibt nur Ausweichweg, falls ein Claude-Nutzungslimit eine Welle blockiert.

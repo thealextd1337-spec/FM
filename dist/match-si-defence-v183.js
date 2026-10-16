@@ -66,7 +66,13 @@ v183RegisterDefaults('defence',{
  // reserved: no caller yet, SI-7 has its own v183BlockCross): base chance and box bonus.
  clearOutBase:.08,clearOutPressure:.12,clearOutBox:.12,clearOutMax:.5,clearCalm:.025,blockOutBase:.35,blockOutBox:.15,
  // Direction of a block deflection (draw offset, spread, gain per point of 'pos').
- blockBias:.2,blockSpread:.3,blockSkill:.004
+ blockBias:.2,blockSpread:.3,blockSkill:.004,
+ // Marker of a signalled cross runner (SI-K2, cross into space B22): crossMark
+ // 0 = off; reaction to the run in s (crossMarkReaction, minus crossMarkPos per
+ // pos point above 10, .1-.8 s); he shadows the runner crossMarkGap m on the
+ // side of the spot (pressing pace); negative: that far behind him on his path
+ // (SI-K2: -1 keeps the open-play arrival of B22, 0 cost 8 points of it).
+ crossMark:1,crossMarkReaction:.4,crossMarkPos:.02,crossMarkGap:-1
 });
 
 // Counter-pressing willingness by tactical role (0 = never presses). A design
@@ -209,6 +215,33 @@ function v183DefAssign(m,p,target,kind){
  reads[p.pid]={team:v123PossessionTeam(m),at:now,nextAt:now+.2,ball:{x:m.ball.x,y:m.ball.y},target,purpose:kind==='cover'?'cover':'press',kind};
  p.tx=target.x;p.ty=target.y;return true;
 }
+// Marker of a signalled cross runner (SI-K2). SI-1 publishes the run of a cross
+// into space in attackFlow.crossRun from the decision on (the runner starts
+// toward the spot, SI-2). Without a reaction the defenders kept their zone
+// targets, so 43 % of these crosses landed with no defender in the duel and
+// headers without a rival within 2.5 m scored 68 %. Now one defender per signal
+// follows the visible run: the nearest ready outfield player to the runner except
+// the presser of the crosser, chosen once per signal (plain record
+// attackFlow.defence.mark {runnerId,at,markerId}). After his reaction he stands
+// crossMarkGap m from the runner toward the spot (in the air: toward the landing
+// point of the aerial plan); a contender of the aerial plan runs to the ball as
+// before (interceptTarget). No draw.
+function v183DefCrossMark(m,p){
+ const run=m.attackFlow.crossRun;
+ if(!run||!(v183Param(m,'defence.crossMark')>0))return false;
+ const now=v183Seconds(m),runner=m.people.find(q=>q.pid===run.runnerId);
+ if(now>run.until||!runner||runner.t===p.t||runner.slideActive)return false;
+ const state=v183DefFlow(m);
+ if(state.mark?.runnerId!==run.runnerId||state.mark.at!==run.at){
+  const crosser=m.people.find(q=>q.pid===run.crosserId),presser=crosser?v183DefReady(m,p.t,crosser)[0]:null,marker=v183DefReady(m,p.t,runner).find(q=>q!==presser);
+  state.mark={runnerId:run.runnerId,at:run.at,markerId:marker?marker.pid:null};
+ }
+ if(state.mark.markerId!==p.pid)return false;
+ const reaction=clamp(v183Param(m,'defence.crossMarkReaction')-(ability(p,'pos')-10)*v183Param(m,'defence.crossMarkPos'),.1,.8);
+ if(now-run.at<reaction)return false;
+ const plan=run.kicked&&m.flight&&typeof v122AerialPlans!=='undefined'?v122AerialPlans.get(m.flight):null,spot=plan?.end||{x:run.x,y:run.y},gap=v122Metres(runner,spot),share=gap>1e-6?Math.min(1,v183Param(m,'defence.crossMarkGap')/gap):1;
+ return v183DefAssign(m,p,{x:runner.x+(spot.x-runner.x)*share,y:runner.y+(spot.y-runner.y)*share},'mark');
+}
 function v183DefTarget(m,p){
  const owner=m.owner;
  if(!owner||owner.keeper||m.flight||!v182PursuitActive(m)||owner.t===p.t)return false;
@@ -241,7 +274,7 @@ function v183DefTarget(m,p){
 const v183DefBaseDefensiveTarget=v159DefensiveTarget;
 v159DefensiveTarget=function(m,p){
  if(!v183DefOn(m)||p.keeper||p.slideActive||v121PositioningPaused(m))return v183DefBaseDefensiveTarget(m,p);
- return v183DefTarget(m,p)||v183DefBaseDefensiveTarget(m,p);
+ return v183DefCrossMark(m,p)||v183DefTarget(m,p)||v183DefBaseDefensiveTarget(m,p);
 };
 
 // Pace of pressing and covering through the SI-F weiche of v157Pace: pressing

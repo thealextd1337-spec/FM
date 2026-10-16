@@ -137,6 +137,8 @@ Node 24 (`C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies
 
 ## Risiken und offene Punkte
 
+**Nachtrag:** Kopfballtorquote, Optionsschätzung, Rechenzeit und Favoriten sind in der [Kalibrierungsrunde SI-K2](spielerintelligenz-sik2-calibration-183.md) behandelt (Kopf-/Volleyschüsse 41 % Tore je Schuss, Favorit 65/64 % bei 1–2 Punkten).
+
 - **Kopfballtorquote 54 %** (B2 35 %, SI-7-Kriterium 18–28 %): Raumflanken landen an Pfosten und Elfmeterpunkt (6–11 m), wo das SI-3-Modell Kopfbälle hoch bewertet. Die Gesamttore bleiben im Band, weil die Schüsse sinken. Hebel ohne Modelländerung: tiefere Boxpunkte (`crossSpots`), `crossSpaceGain`; mit Modelländerung: Kopfballstreuung/Torwart in SI-3. Gehört zur Kalibrierungsrunde.
 - **Favoriten 85 %** (B2 78 %): siehe oben; der SI-K-Hebel `options.noise` wirkt auch auf die Flankenwahl.
 - **Großes Feld 1,94 Spielflanken**, Ankunft 43 %: längere Wege; `crossRunRange`/`crossLead` könnten auf dem großen Feld über SI-5 skaliert werden (nicht umgesetzt).

@@ -277,7 +277,7 @@ function v183OptSpaceCrosses(m,p,allies,rivals,P,ctx,offside,delayed){
    // Wait the runner needs before the kick so the spot comes within his cover (capped by crossLead).
    let lead=0;
    if(maxLead>0&&planning){const flight=Math.max(flightMin,v122Metres(p,spot)/speed),pace=v183AirPace(m,q),needed=v122Metres(q,spot)+P.crossLeadSlack-v183RunCover(m,q,spot,flight,reaction)-v183AirReach(m,q,pace);if(needed>0)lead=Math.min(maxLead,needed/pace);}
-   const c=v183CrossEstimate(m,p,spot,{runner:q,space:true,lead});if(!c.eligible||!(c.arrival>0))continue;
+   const c=v183CrossEstimate(m,p,spot,{runner:q,space:true,lead,offside});if(!c.eligible||!(c.arrival>0))continue;
    // The estimate may land short of the spot, where the runner can be at the landing (adapted).
    const point=c.landing&&Number.isFinite(c.landing.x)?{x:c.landing.x,y:c.landing.y}:spot;
    const raw=Math.max(0,c.headerXg||0),header=c.stub===true?raw*P.stubScale*P.crossConv:raw,seconds=Number.isFinite(c.flight)?c.flight:1;
@@ -300,14 +300,20 @@ function v183OptCrossRun(m,p,P){
  if(run.kicked){if(now>run.until)delete flow.crossRun;return false;}
  if(run.crosserId!==p.pid||now>run.until){delete flow.crossRun;return false;}
  if(now<run.kickAt-1e-9){m.next=Math.min(m.next,m.elapsed+v183ClockUnits(m,Math.max(P.turnTick,run.kickAt-now)));return true;}
- const q=m.people.find(x=>x.pid===run.runnerId);
- if(!q||q.slideActive||q.t!==p.t||v55OffsideSnapshot(p).offside.has(q)){delete flow.crossRun;v183Trace(m,{kind:'cross-run',crosser:p,runner:q||null,abort:q?'offside':'runner'});return false;}
+ const q=m.people.find(x=>x.pid===run.runnerId),offside=v55OffsideSnapshot(p).offside;
+ if(!q||q.slideActive||q.t!==p.t||offside.has(q)){delete flow.crossRun;v183Trace(m,{kind:'cross-run',crosser:p,runner:q||null,abort:q?'offside':'runner'});return false;}
  // The spot may have moved out of reach or into a block: re-estimate, land where the runner can be.
- const c=v183CrossEstimate(m,p,{x:run.x,y:run.y},{runner:q,space:true}),point=c.landing&&Number.isFinite(c.landing.x)?c.landing:{x:run.x,y:run.y};
+ const c=v183CrossEstimate(m,p,{x:run.x,y:run.y},{runner:q,space:true,offside}),point=c.landing&&Number.isFinite(c.landing.x)?c.landing:{x:run.x,y:run.y};
  if(!c.eligible||!(c.arrival>=P.crossKickMin)){delete flow.crossRun;v183Trace(m,{kind:'cross-run',crosser:p,runner:q,abort:'arrival',arrival:+(c.arrival||0).toFixed(3)});return false;}
  run.x=point.x;run.y=point.y;
- v183Trace(m,{kind:'cross-run',crosser:p,runner:q,kick:true,arrival:+c.arrival.toFixed(3),adapted:c.adapted===true});
- v55HighPass(p,q,{cross:true,space:{x:point.x,y:point.y}});return true;
+ const before=p.stats.crosses||0;
+ v55HighPass(p,q,{cross:true,space:{x:point.x,y:point.y}});
+ // Traced after the attempt (SI-K2): kicked (also when blocked at the foot),
+ // queued behind a body turn (the kick follows from v157ContinueTurn) or
+ // declined by v55HighPass (no cross: a short ball becomes a ground pass).
+ const kicked=(p.stats.crosses||0)>before,queued=!kicked&&flow.pendingTurn?.playerId===p.pid;
+ v183Trace(m,{kind:'cross-run',crosser:p,runner:q,kick:kicked,...(queued?{queued:true}:{}),...(!kicked&&!queued?{abort:'declined'}:{}),arrival:+c.arrival.toFixed(3),adapted:c.adapted===true});
+ return true;
 }
 
 // ----- Evaluation -----
@@ -354,7 +360,7 @@ function v183OptOptions(m,p,allies,rivals,P){
  if(range<P.crossMax&&Math.abs(p.x-.5)*s.x>P.crossWide){
   for(const q of allies){
    if(q.slideActive||offside.has(q)||v183OptGoalDistance(q,p.t)>=16)continue;
-   const c=v183CrossEstimate(m,p,q);if(!c.eligible||!(c.arrival>0))continue;
+   const c=v183CrossEstimate(m,p,q,{offside});if(!c.eligible||!(c.arrival>0))continue;
    // A cross is a pass in the air: the receiver holds the ball in the box
    // (holder value after a 1 s flight) or heads at goal. The SI-F cross stub
    // (stub:true) gives the header on the quality scale of v157ShotQuality:

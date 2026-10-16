@@ -182,8 +182,11 @@ function v183OffballOffers(m,owner,allies,rivals){
  const flow=m.attackFlow,now=v183Seconds(m),s=v150Scale(m),dir=owner.t===0?-1:1,P=key=>v183Param(m,'offball.'+key);
  const counter=v183OffballPossession(m,owner,now),state0=v183OffballState(m);
  const crossZone=v115GoalDistance(owner)<P('crossRunRange')&&(Math.abs(owner.x-.5)*s.x>P('crossRunWide')||v115GoalDistance(owner)<P('crossRunDeep'));
- // Entering the cross zone starts a new cycle at once (box runners below).
- const entered=crossZone&&state0.crossZoneOwner!==owner.pid;if(entered)state0.crossZoneOwner=owner.pid;else if(!crossZone&&state0.crossZoneOwner===owner.pid)state0.crossZoneOwner=null;
+ // Entering the cross zone starts a new cycle at once (box runners below). The
+ // mark is cleared whenever the ball owner is outside the zone, also after a pass
+ // from the marked carrier (SI-K2: before, only the same owner leaving cleared it,
+ // so a carrier who got the ball back in the zone started no new cycle).
+ const entered=crossZone&&state0.crossZoneOwner!==owner.pid;if(entered)state0.crossZoneOwner=owner.pid;else if(!crossZone&&state0.crossZoneOwner!=null)state0.crossZoneOwner=null;
  const valid=flow.offerOwner===owner.pid&&flow.offerUntil>now&&!entered;
  if(valid){
   const offers=Object.entries(flow.intents).filter(([,i])=>i.type!=='follow');

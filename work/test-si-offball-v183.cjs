@@ -129,9 +129,33 @@ check('counter does not open after a restart gap (keeper hold, set piece): turno
 const boxPeople=`[${[
  person('k0',0,3,0,'gk',{n:1},true),person('d10',0,20,-6,'def',{spd:12}),person('m20',0,44,-8,'mid',{spd:14,pos:13}),person('b20',0,40,2,'mid',{spd:15,pos:14}),person('p10',0,50,0,'att',{spd:16,pos:15}),person('w10',0,48,12,'att',{spd:17}),
  person('k1',1,2,0,'gk',{n:1},true),person('d11',1,13,-7,'def',{spd:12}),person('d21',1,13,7,'def',{spd:12}),person('m11',1,26,-8,'mid',{spd:13}),person('m21',1,26,8,'mid',{spd:13}),person('a11',1,45,0,'att',{spd:14})].join(',')}]`;
+const boxScene=(params={})=>{
+ ev(`(()=>{const people=${boxPeople};for(const p of people)p.role=p.line==='def'?0:1;const roles={b20:'box-to-box',m20:'striker',p10:'poacher',w10:'winger'};for(const p of people)if(roles[p.pid])p.tacticalRole=roles[p.pid];
+  const m=Si2Scene({seed:3,people,params:${JSON.stringify(params)},owner:people.find(p=>p.pid==='w10')});Native182.advance();})()`);
+ return copy(ev(`(()=>{const m=match,s=v150Scale(m),intents=Si2Intents(),goal={x:.5,y:v55Field.top},trace=v183TraceEntries(m).filter(e=>e.kind==='pattern'&&e.pattern==='box');
+  return {box:Object.entries(intents).filter(([,i])=>i.cat==='box').map(([pid,i])=>({pid,lateral:+((i.x-.5)*s.x).toFixed(1),depth:+((i.y-goal.y)*s.y).toFixed(1)})),runners:trace.length?trace.at(-1).crossRunners:[],cats:Object.fromEntries(Object.entries(intents).map(([pid,i])=>[pid,i.cat]))};})()`));
+};
+check('box occupation without the cross-runner bonus (SI-K2): the box offers alone still fill a box point, the cross runners are the striker roles',()=>{
+ // B22 review: the scene below passes with two box points only because of crossRunBonus; this variant pins the plain box offers.
+ const plain=boxScene({crossRunBonus:0}),bonus=boxScene({});
+ assert.deepEqual([...plain.runners].sort(),[...bonus.runners].sort(),'same cross runners with and without the bonus');
+ assert(bonus.runners.length===2&&bonus.runners.every(pid=>/:(p10|m20)$|^(p10|m20)$/.test(pid)),'cross runners poacher and striker: '+JSON.stringify(bonus.runners));
+ assert(plain.box.length>=1,'plain box offers: '+JSON.stringify(plain));
+ assert(bonus.box.length>plain.box.length||bonus.box.length>=2,'the bonus adds box runs: '+JSON.stringify({plain:plain.box,bonus:bonus.box}));
+ assert(bonus.box.every(b=>bonus.runners.includes(b.pid)),'box points held by the cross runners: '+JSON.stringify(bonus));
+ measurements.boxPlain={plain,bonus};
+});
+check('cross zone mark (SI-K2): cleared when any owner is outside the zone, so the carrier who gets the ball back in the zone starts a new cycle',()=>{
+ ev(`(()=>{const people=${boxPeople};for(const p of people)p.role=p.line==='def'?0:1;const roles={b20:'box-to-box',m20:'striker',p10:'poacher',w10:'winger'};for(const p of people)if(roles[p.pid])p.tacticalRole=roles[p.pid];
+  Si2Scene({seed:5,people,owner:people.find(p=>p.pid==='w10')});Native182.advance();})()`);
+ const step=pid=>copy(ev(`(()=>{const m=match,q=Si2Find('${pid}');m.owner=q;m.ball={x:q.x,y:q.y};m.lastTouch=0;m.next=Infinity;Native182.advance();return {mark:m.attackFlow.offball.crossZoneOwner??null,owner:m.attackFlow.offerOwner,until:m.attackFlow.offerUntil,now:v183Seconds(m)};})()`));
+ const first=copy(ev('match.attackFlow.offball.crossZoneOwner'));assert.equal(first,'w10','wide carrier in the zone marks it');
+ const out=step('d10');assert.equal(out.mark,null,'pass back to a defender outside the zone clears the mark: '+JSON.stringify(out));
+ const back=step('w10');assert.equal(back.mark,'w10');assert.equal(back.owner,'w10');assert.ok(back.until>back.now,'new offer cycle for the returning carrier');
+});
 check('box occupation: a wide ball near the goal fills at least two box points (near post on the ball side, spot, far post)',()=>{
  ev(`(()=>{const people=${boxPeople};for(const p of people)p.role=p.line==='def'?0:1;const roles={b20:'box-to-box',m20:'striker',p10:'poacher',w10:'winger'};for(const p of people)if(roles[p.pid])p.tacticalRole=roles[p.pid];
-  // B22: at the calibrated defaults the cross runners of the wide ball (crossRunBonus) fill the box points; the SI-K design pin (rate 0.78, SI-3 values before SI-K) is no longer needed.
+  // B22: at the calibrated defaults the cross runners of the wide ball (crossRunBonus) fill the box points; the SI-K design pin (rate 0.78, SI-3 values before SI-K) is no longer needed. The variant above checks the scene without the bonus.
   const m=Si2Scene({seed:3,people,owner:people.find(p=>p.pid==='w10')});Native182.advance();})()`);
  const r=copy(ev(`(()=>{const m=match,s=v150Scale(m),intents=Si2Intents(),goal={x:.5,y:v55Field.top};
   const box=Object.entries(intents).filter(([,i])=>i.cat==='box').map(([pid,i])=>({pid,lateral:+((i.x-.5)*s.x).toFixed(1),depth:+((i.y-goal.y)*s.y).toFixed(1),type:i.type,limit:v121PositioningPlans.get(m)?.get(Si2Find(pid))?.limit!=null?+((v121PositioningPlans.get(m).get(Si2Find(pid)).limit-goal.y)*s.y).toFixed(1):null}));

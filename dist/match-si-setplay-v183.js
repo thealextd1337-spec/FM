@@ -87,7 +87,19 @@ v183RegisterDefaults('setplay',{
  // (s; he knows the ball is coming); spaceSlackMax: spare running distance that
  // widens the landing reach (m, cap); spaceLandGrid: samples per axis of the
  // error square for the landing share.
- spaceCrossSpeed:14,spaceReaction:.1,spaceSlackMax:2.5,spaceLandGrid:9
+ spaceCrossSpeed:14,spaceReaction:.1,spaceSlackMax:2.5,spaceLandGrid:9,
+ // Uniform landing spread of a cross into space relative to a cross onto a
+ // player (the floated ball to a fixed spot; execution and estimate, SI-K2).
+ spaceSpread:.6,
+ // Keeper during a high ball of the opponents (SI-K2): after reading the flight
+ // (keeperRead s, minus keeperReadGk per gk point above 10) he steps onto the line
+ // from the landing point to the goal centre, keeperStand m off his line plus
+ // keeperStandDepth per metre the landing point lies inside 16 m (at most
+ // keeperStandMax); keeperShift is the share of that move (0 = previous target;
+ // SI-K2: 1 put him on the line, corner headers fell from 36 to 20 % goals per
+ // shot; .4 leaves him about 2 m off and air finishes near 40 %).
+ // Only for landing points within keeperShiftRange m of the goal.
+ keeperShift:.4,keeperRead:.25,keeperReadGk:.01,keeperStand:1.2,keeperStandDepth:.06,keeperStandMax:2,keeperShiftRange:20
 });
 
 const v183SetplayOn=m=>typeof v183Active==='function'&&v183Active(m,'setplay');
@@ -126,8 +138,8 @@ function v183RunCover(m,p,point,seconds,reaction){
 // the B10 corner model: uniform spread from passing/technique and pressure, a
 // small share of large errors (over-hit beyond the target, possibly out, or an
 // under-hit that drops short). Corners keep v182CornerLanding unchanged.
-function v183CrossLanding(m,passer,from,intended,land,[drawX,drawY,variant],pressure){
- const P=key=>v183SP(m,key),s=v160PitchScale(m),skill=ability(passer,'pas')*.6+ability(passer,'tec')*.4,spread=P('crossSpread')+(20-skill)*P('crossSpreadSkill')+pressure*P('crossSpreadPressure'),large=clamp(P('crossLarge')+(20-skill)*P('crossLargeSkill')+pressure*P('crossLargePressure'),P('crossLarge'),P('crossLargeMax'));
+function v183CrossLanding(m,passer,from,intended,land,[drawX,drawY,variant],pressure,scale=1){
+ const P=key=>v183SP(m,key),s=v160PitchScale(m),skill=ability(passer,'pas')*.6+ability(passer,'tec')*.4,spread=(P('crossSpread')+(20-skill)*P('crossSpreadSkill')+pressure*P('crossSpreadPressure'))*scale,large=clamp(P('crossLarge')+(20-skill)*P('crossLargeSkill')+pressure*P('crossLargePressure'),P('crossLarge'),P('crossLargeMax'));
  let x=intended.x+(drawX-.5)*2*spread/s.x,y=intended.y+(drawY-.5)*2*spread/s.y,free=false;
  if(variant<large){
   const share=variant/large,dx=(intended.x-from.x)*s.x,dy=(intended.y-from.y)*s.y,length=Math.hypot(dx,dy)||1;
@@ -192,7 +204,7 @@ function v183HighPass(m,passer,receiver,{cross=false,exempt=false,corner=false,r
  if(v122Metres(passer,point||receiver)<7)return v55GroundPass(passer,receiver,'pass',exempt);
  const snapshot=v55OffsideSnapshot(passer,exempt),from={x:m.ball.x,y:m.ball.y},within=v183Radius(m,corner?'setplay.cornerPressureRadius':'setplay.pressureRadius',.15),pressure=m.people.filter(q=>q.t!==passer.t&&!q.keeper&&within(q,passer)).length;
  const intended=point||{x:receiver.x,y:receiver.y},drawX=random(),drawY=random(),variant=random(),land={...intended}; // setplay.landX, setplay.landY, setplay.landVariant
- if(corner&&m.attackFlow?.setPieceRevision===182)v182CornerLanding(passer,from,intended,land,[drawX,drawY,variant],pressure);else v183CrossLanding(m,passer,from,intended,land,[drawX,drawY,variant],pressure);
+ if(corner&&m.attackFlow?.setPieceRevision===182)v182CornerLanding(passer,from,intended,land,[drawX,drawY,variant],pressure);else v183CrossLanding(m,passer,from,intended,land,[drawX,drawY,variant],pressure,point?P('spaceSpread'):1);
  passer.stats.passes++;passer.stats.highPasses++;if(cross)passer.stats.crosses++;m.lastTouch=passer.t;
  const forward=passer.t===0?passer.y-land.y:land.y-passer.y;if(forward>.12)passer.stats.progressive++;
  const blocker=cross&&!corner?v183CrossBlocker(m,passer,land):null;
@@ -235,6 +247,37 @@ v122PlanAir=function(flight,passer,end){
  }
  v122AerialPlans.set(flight,{contenders,pursuers,end:{...end}});
  if(typeof v102Flights!=='undefined'){const meta=v102Flights.get(flight);if(meta)meta.endHeight=2.65;}
+};
+
+// ----- Keeper during the flight of a high ball (wraps v115KeeperTarget, SI-K2) -----
+// Without this the keeper keeps the formation target of game.js (30 % of the
+// ball's lateral offset on his base line) while a cross, corner or high ball of
+// the opponents flies, so a header or volley at the landing point meets a goal
+// whose keeper stands about 3 m off the shot line. After reading the flight he
+// now steps onto the line from the landing point (the public flight target of
+// the aerial plan, as the contenders run to it) to the goal centre. He moves at
+// his native pace; whether he arrives depends on the flight time and his speed.
+// Transient: read from the flight and its aerial plan, no state, no draw.
+function v183KeeperFlightTarget(m,person){
+ const flight=m.flight;
+ if(!person.keeper||!flight?.aerial||flight.team===person.t||m.kickoff||m.setPiece||m.throwIn||m.goalPause>0||m.postBanner||m.halftimePause||m.finished)return null;
+ const P=key=>v183SP(m,key),shift=clamp(P('keeperShift'),0,1),plan=v122AerialPlans.get(flight);
+ if(!(shift>0)||!plan?.end)return null;
+ const s=v160PitchScale(m),goalY=person.t===0?v55Field.bottom:v55Field.top,end=plan.end,depth=Math.abs(end.y-goalY)*s.y,lateral=(end.x-.5)*s.x;
+ if(Math.hypot(depth,lateral)>P('keeperShiftRange'))return null;
+ const seconds=flight.progress*flight.duration/v183Rate(m),read=Math.max(0,P('keeperRead')-P('keeperReadGk')*(ability(person,'gk')-10));
+ if(seconds<read)return null;
+ const stand=Math.min(P('keeperStandMax'),P('keeperStand')+Math.max(0,16-depth)*P('keeperStandDepth')),along=depth>stand?stand/depth:1,half=(m.geometry?.goalWidth||44*.2/(v55Field.right-v55Field.left))/2;
+ const x=.5+clamp(lateral*along,-half,half)/s.x,y=goalY+(person.t===0?-1:1)*Math.min(stand,depth)/s.y;
+ return {x:person.tx+(x-person.tx)*shift,y:person.ty+(y-person.ty)*shift};
+}
+const v183BaseKeeperTarget=v115KeeperTarget;
+v115KeeperTarget=function(current,person){
+ const value=v183BaseKeeperTarget.apply(this,arguments);
+ if(!v183SetplayOn(current))return value;
+ const target=v183KeeperFlightTarget(current,person);
+ if(target){person.tx=target.x;person.ty=target.y;}
+ return value;
 };
 
 // ----- Air duel at landing (wraps v122ResolveAir) -----
@@ -333,7 +376,11 @@ v183AirFinish=function(m,winner,end,detail={}){
 // spot beyond cover + half his reach is moved back along his path to that
 // distance (landing in the result) when the moved point still qualifies.
 // detail.lead: real seconds the runner gets before the kick (signal); they add to
-// his running time, not to the defender's or the flight.
+// his running time and to the nearest defender's (who sees the run start), not
+// to the flight (SI-K2: before, only the runner moved during the wait, so 98 %
+// of the options took the uncontested duel value .92).
+// detail.offside: the crosser's offside set (v55OffsideSnapshot(p).offside) when
+// the caller already has it (one snapshot per option evaluation); same result.
 const v183BaseCrossEstimate=v183CrossEstimate;
 v183CrossEstimate=function(m,p,target,detail={}){
  if(!v183SetplayOn(m))return v183BaseCrossEstimate.apply(this,arguments);
@@ -345,9 +392,9 @@ v183CrossEstimate=function(m,p,target,detail={}){
  if(!qualifies())return none;
  const who=receiver||m.people.filter(q=>q.t===p.t&&!q.keeper&&q!==p&&!q.slideActive).sort((a,b)=>v122Metres(a,point)-v122Metres(b,point)||a.n-b.n)[0]||null;
  if(!who)return {...none,eligible:true};
- if(v55OffsideSnapshot(p).offside.has(who))return {...none,eligible:true,receiverPid:who.pid,offside:true};
+ if((typeof detail.offside?.has==='function'?detail.offside:v55OffsideSnapshot(p).offside).has(who))return {...none,eligible:true,receiverPid:who.pid,offside:true};
  const rivals=m.people.filter(q=>q.t!==p.t&&!q.keeper&&!q.slideActive),within=v183Radius(m,'setplay.pressureRadius',.15),pressure=rivals.filter(q=>within(q,p)).length;
- const skill=ability(p,'pas')*.6+ability(p,'tec')*.4,spread=P('crossSpread')+(20-skill)*P('crossSpreadSkill')+pressure*P('crossSpreadPressure'),large=clamp(P('crossLarge')+(20-skill)*P('crossLargeSkill')+pressure*P('crossLargePressure'),P('crossLarge'),P('crossLargeMax'));
+ const skill=ability(p,'pas')*.6+ability(p,'tec')*.4,spread=(P('crossSpread')+(20-skill)*P('crossSpreadSkill')+pressure*P('crossSpreadPressure'))*(space?P('spaceSpread'):1),large=clamp(P('crossLarge')+(20-skill)*P('crossLargeSkill')+pressure*P('crossLargePressure'),P('crossLarge'),P('crossLargeMax'));
  const lead=space&&Number.isFinite(detail.lead)?Math.max(0,detail.lead):0;
  let flight=Math.max(P('flightMin'),length/(space?P('spaceCrossSpeed'):P('crossSpeed'))),gapA=v122Metres(who,point),cover=space?v183RunCover(m,who,point,flight+lead,P('spaceReaction')):0,adapted=false;
  const approachA=space?(gapA>1?v183AirPace(m,who):v183AirRun(who,point)):2,reachA=v183AirReach(m,who,approachA);
@@ -371,9 +418,10 @@ v183CrossEstimate=function(m,p,target,detail={}){
  }else land=(1-large)*Math.min(1,Math.PI*reachA*reachA/(4*spread*spread));
  const blocker=v183CrossBlocker(m,p,point),block=blocker?v183BlockChance(m,blocker):0;
  const defender=[...rivals].sort((a,b)=>v122Metres(a,point)-v122Metres(b,point)||a.n-b.n)[0];
- // Remaining reach share of the defender at landing after running during the flight.
- const gapD=defender?v122Metres(defender,point):Infinity,runD=defender?Math.max(0,flight-.3)*(3+ability(defender,'spd')*.14):0,arrive=defender?Math.max(0,gapD-runD)/v183AirReach(m,defender,2):Infinity;
- const shareA=space?Math.min(1,Math.max(0,gapA-cover)/reachA):Math.min(1,gapA/reachA*.5),approachD=space&&defender?(gapD>1?Math.min(gapD,runD)/Math.max(.3,flight-.3):0):approachA;
+ // Remaining reach share of the defender at landing after running during the
+ // flight and the wait before the kick (lead: he sees the runner start, SI-K2).
+ const gapD=defender?v122Metres(defender,point):Infinity,runD=defender?Math.max(0,flight+lead-.3)*(3+ability(defender,'spd')*.14):0,arrive=defender?Math.max(0,gapD-runD)/v183AirReach(m,defender,2):Infinity;
+ const shareA=space?Math.min(1,Math.max(0,gapA-cover)/reachA):Math.min(1,gapA/reachA*.5),approachD=space&&defender?(gapD>1?Math.min(gapD,runD)/Math.max(.3,flight+lead-.3):0):approachA;
  const duel=arrive>1?.92:clamp(.5+(ability(who,'air')-ability(defender,'air'))*P('duelAir')+(ability(who,'pos')-ability(defender,'pos'))*P('duelPos')+(arrive-shareA)*P('duelDistance')+(approachA-approachD)*P('duelRun')+(v183Height(who)-v183Height(defender))*P('duelHeight'),P('duelMin'),P('duelMax'));
  const arrival=(1-block)*land*duel;
  const finish=goalT<=P('finishRange')?clamp(P('finishBase')+(P('finishRange')-goalT)*P('finishDistance'),0,P('finishMax')):0;
