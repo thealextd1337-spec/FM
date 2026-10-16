@@ -33,12 +33,17 @@ if(process.env.D6_SI1_TIMING){
  for(const k of ['addEventListener','scrollTo','setInterval','clearInterval','location'])if(sandbox[k]!==undefined)Object.defineProperty(globalThis,k,{value:sandbox[k],writable:true,configurable:true});
  globalThis.window=globalThis;globalThis.__now=()=>performance.now();
  h.run(`finishMatch=function(){match.finished=true;running=false;match.flight=null;};globalThis.__samples=[];
+  globalThis.__zone=[];
   const base=v157Decide;v157Decide=function(m,p,allies,rivals){
-   if(v183Active(m,'options')&&!p.keeper&&!m.attackFlow.pendingTurn&&!(m.attackFlow.receipt?.playerId===p.pid&&v152Seconds(m)<m.attackFlow.receipt.readyAt)&&__samples.length<${+process.env.D6_SI1_TIMING}){
-    const P=v183OptParams(m);let best=Infinity;for(let b=0;b<5;b++){const t0=__now();for(let i=0;i<4;i++)v183OptCached(()=>v183OptOptions(m,p,allies,rivals,P));best=Math.min(best,(__now()-t0)/4);}__samples.push(best);}
+   const ready=v183Active(m,'options')&&!p.keeper&&!m.attackFlow.pendingTurn&&!(m.attackFlow.receipt?.playerId===p.pid&&v152Seconds(m)<m.attackFlow.receipt.readyAt);
+   // Cross zone of SI-1 (range < crossMax, wider than crossWide): crosses into space are valued here (SI-K2 sample).
+   const zone=ready&&v115GoalDistance(p)<v183Param(m,'options.crossMax')&&Math.abs(p.x-.5)*v150Scale().x>v183Param(m,'options.crossWide');
+   const time=()=>{const P=v183OptParams(m);let best=Infinity;for(let b=0;b<5;b++){const t0=__now();for(let i=0;i<4;i++)v183OptCached(()=>v183OptOptions(m,p,allies,rivals,P));best=Math.min(best,(__now()-t0)/4);}return best;};
+   if(ready&&__samples.length<${+process.env.D6_SI1_TIMING}){const t=time();__samples.push(t);if(zone&&__zone.length<${Math.ceil(+process.env.D6_SI1_TIMING/4)})__zone.push(t);}
+   else if(zone&&__zone.length<${Math.ceil(+process.env.D6_SI1_TIMING/4)})__zone.push(time());
    return base.apply(this,arguments);};`);
  for(const [club,size]of [['GER-2','standard'],['ENG-4','large'],['ESP-1','standard'],['ITA-3','large']]){h.run('running=true');h.call('Native183.constructed',{club,seed:'si1-timing',size,roles:true,si:{packages:{clock:true,options:true,...(process.env.D6_SI1_FINISH==='0'?{finish:false}:{})},clockRate:.42}});h.evaluate('(()=>{for(let n=0;n<20000&&!match.finished;n++)Native183.advance();})()');}
- process.stdout.write(h.evaluate('JSON.stringify(__samples)'));
+ process.stdout.write(h.evaluate('JSON.stringify({all:__samples,zone:__zone})'));
  return;
 }
 
@@ -298,8 +303,12 @@ check('restore: attackFlow.decision and a pending turn survive JSON checkpoints 
 check('timing: one evaluation <= 0.3 ms in Node (median and p90 over real match states; mean reported)',()=>{
  const r=cp.spawnSync(process.execPath,[__filename],{cwd:path.resolve(__dirname,'..'),env:{...process.env,D6_SI1_TIMING:quick?'200':'600'},encoding:'utf8',maxBuffer:1<<24});
  if(r.status!==0)throw Error(r.stderr||r.stdout);
- const s=JSON.parse(r.stdout).sort((a,b)=>a-b),mean=s.reduce((a,b)=>a+b,0)/s.length,median=s[s.length>>1],p90=s[Math.floor(s.length*.9)];
+ const out=JSON.parse(r.stdout),s=out.all.sort((a,b)=>a-b),mean=s.reduce((a,b)=>a+b,0)/s.length,median=s[s.length>>1],p90=s[Math.floor(s.length*.9)];
  console.log(`     n=${s.length} median=${median.toFixed(4)} ms p90=${p90.toFixed(4)} ms mean=${mean.toFixed(4)} ms`);
+ // Cross zone (SI-K2): crosses into space add one estimate per runner and spot; reported, bounded loosely.
+ const z=out.zone.sort((a,b)=>a-b),zm=z[z.length>>1],z90=z[Math.floor(z.length*.9)];
+ console.log(`     cross zone n=${z.length} median=${zm?.toFixed(4)} ms p90=${z90?.toFixed(4)} ms`);
+ assert(z.length>=10,'cross-zone samples '+z.length);assert(zm<=1,`cross-zone median ${zm}`);
  // Per state the fastest block counts, so preemption by other processes does
  // not enter; the mean is only reported (single slow states pull it up).
  assert(median<=.3,`median ${median}`);assert(p90<=.3,`p90 ${p90}`);
