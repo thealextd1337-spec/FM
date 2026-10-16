@@ -129,10 +129,10 @@ Damit sind die drei Iterationen verbraucht. Was danach noch fehlt, steht unter �
 | Parameter | vorher | SI-K | Wirkung (gemessen) |
 | --- | ---: | ---: | --- |
 | Uhrrate `match.si.clockRate` (`V183_CLOCK_RATE`, Kern) | 0,78 (`MATCH_SPEED`) | **0,385** (Zwischenstand 0,36) | all-inclusive mit Torwiederholungen 5,02 min, 90 % in 4–6 min (B2); ohne Wiederholungen 4,73 min |
-| `finish.spreadBase` / `spreadSkill` / `spreadFlat` | 0,037 / 0,584 / 2,22 | 0,035 / 0,5 / 1,3 | aufs Tor 45 → 51 %, Tore je Schuss +4–5 Punkte; Nahbereich bleibt fähigkeitssteil (Verhältnis 2,57) |
-| `finish.reachBase` / `reachGk` | 1,39 / 0,066 | 1,2 / 0,09 | Tore je Schuss aufs Tor 48 → 53 %; Torwartabstand 14 → 17 Punkte |
-| `options.windowBase` / `windowFin` | 16 / 0,55 | 12,5 / 0,75 | Fernschüsse 4,1 → 3,4 je Partie trotz +19 % Spielzeit; Standardfeld 15 % Anteil, 93 % von Abschluss ≥13 |
-| `options.weightMin` / `weightMax` | 0,85 / 1,15 | 0,8 / 1,2 | Schüsse des oberen `shootWeight`-Drittels bei gleichem Abschluss 3,17 → 3,70 je Partie |
+| `finish.spreadBase` / `spreadSkill` / `spreadFlat` | 0,037 / 0,584 / 2,22 | 0,035 / 0,5 / 1,3 | aufs Tor 45 → 51 %, Tore je Schuss 21,7 → 26,7 % (+5 Punkte); Nahbereich bleibt fähigkeitssteil (Verhältnis 2,14, in Reihe B 2,57) |
+| `finish.reachBase` / `reachGk` | 1,39 / 0,066 | 1,2 / 0,09 | Tore je Schuss aufs Tor 48 → 53 %; Torwartabstand 14,1 → 14,3 Punkte (Reihe B 17,1; Schwankung zwischen den Serien) |
+| `options.windowBase` / `windowFin` | 16 / 0,55 | 12,5 / 0,75 | Fernschüsse 4,1 → 3,2 je Partie trotz +9 % Schüsse insgesamt; Standardfeld 13,6 % Anteil, 92 % von Abschluss ≥13 |
+| `options.weightMin` / `weightMax` | 0,85 / 1,15 | 0,8 / 1,2 | Schüsse des oberen `shootWeight`-Drittels bei gleichem Abschluss 3,17 → 3,40 je Partie (Reihe B 3,70) |
 | `offball.carrierBrakeLead` (neu) | – (2 m fest) | 0,25 m | Ballführer-Höchsttempo +0,25 m/s (groß +0,41); Ergebnisse im Rauschen |
 | `defence.counterWindow` / `counterWindowPress` | 2 / 3 s | 0 / 0 | Gegenpressing-Fenster aus (SI-4-Szenen ohne Rückgewinn-Vorteil); Mechanismus per Parameter erhalten |
 
@@ -506,7 +506,8 @@ Node 24 (`C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies
 
 **Workflow-Block „Spieltests ausführen“** aus `.github/workflows/deploy.yml`:
 - Auf `15d23adf` (Endwerte mit Uhr 0,36) liefen alle 117 Befehle (115 Node, 2 Python) mit Exit 0, über `work/tmp-sik/run-deploy-tests.cjs` (gitignoriert).
-- Seitdem haben sich nur die Vorgaberate, Tests, Messwerkzeuge und Doku geändert. Laut Auftrag gibt es deshalb keinen erneuten Lauf.
+- Seitdem haben sich nur die Vorgaberate, Tests, Messwerkzeuge und Doku geändert. Laut Auftrag gab es deshalb keinen erneuten Lauf.
+- Review-Lauf auf `d7857cd5` (Uhr 0,385, alle 117 Befehle): 116 grün, einer rot: `work/test-v158-final-whistle-load.cjs` (Prüfung „ordinary play“ verlangt mindestens 4 Lastaktionen in 900 Ticks; die SI-Vorgabeszene lieferte bei Uhr 0,385 nur 3). Die Abdeckungswache war ratenabhängig, nicht der B21-Mechanismus: Fenster auf 1800 Ticks verlängert (7 bzw. 27 Aktionen), die vier Prüfungen sind grün.
 
 **Artefakte zurückgesetzt:** `git checkout -- outputs docs/spieler-nutzer-rig`.
 

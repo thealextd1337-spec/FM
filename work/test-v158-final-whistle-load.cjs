@@ -96,7 +96,8 @@ function inContext(){
   return JSON.stringify(result);
  }
  // Ordinary play: dating outside the deferred whistle is the legacy expression, bit for bit.
- function ordinary({club,seed,size,si,ticks=900}){
+ // 1800 ticks: the SI default scene queued only 3 actions in 900 ticks at clock rate .385 (guard below needs >= 4).
+ function ordinary({club,seed,size,si,ticks=1800}){
   constructed({club,seed,size,si});
   const log=observe();try{Native183.run(ticks);}finally{log.restore();}
   return JSON.stringify(log.seen.map(e=>({type:e.type,pending:e.pending,same:e.minute===Math.max(0,e.elapsed*90/75)})));
