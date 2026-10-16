@@ -64,8 +64,8 @@ h.run(`globalThis.Crossing=(function(){
   return {draws:R.rng().draws-d0,top:list.slice(0,5).map(o=>({kind:o.kind,ref:o.ref,space:Boolean(o.space),u:+o.u.toFixed(4)})),space:list.filter(o=>o.kind==='cross'&&o.space).map(o=>({ref:o.ref,runner:o.ref===S.runner.pid,arrival:+o.arrival.toFixed(3),header:+o.header.toFixed(4),u:+o.u.toFixed(4),atSpot:spots.some(sp=>v122Metres(sp,o.target)<.01),rank:list.indexOf(o)})),n:list.length};
  }
  // Kick a cross into space at the penalty spot; observe flight, runner and landing.
- function kick({seed=0,size='standard',runnerBeyond=0,markerGap=1.5,spot='spot'}={}){
-  const S=build({seed,size,runnerBeyond,markerGap}),m=match,team=S.team,runner=S.runner,crosser=S.crosser,s=v160PitchScale(m),point=spot==='near'?S.near:S.spot;
+ function kick({seed=0,size='standard',runnerBeyond=0,markerGap=1.5,spot='spot',params={}}={}){
+  const S=build({seed,size,runnerBeyond,markerGap,params}),m=match,team=S.team,runner=S.runner,crosser=S.crosser,s=v160PitchScale(m),point=spot==='near'?S.near:S.spot;
   const line=v55OffsideLine(team,m.ball),before={crosses:stat(crosser,'crosses'),complete:stat(crosser,'crossComplete'),shots:stat(runner,'shots'),headers:stat(runner,'headers'),volleys:stat(runner,'volleys'),goals:m.goals.length,fk:m.setPieceStats.freeKicks[1-team]};
   seeded(9000+seed);const d0=R.rng().draws;
   v55HighPass(crosser,runner,{cross:true,space:{x:point.x,y:point.y}});
@@ -144,6 +144,10 @@ h.run(`globalThis.Crossing=(function(){
   const S=build({seed,size,markerGap:-4}),m=match,d=lead=>v183CrossEstimate(m,S.crosser,S.spot,{runner:S.runner,space:true,lead});
   return {zero:d(0).duel,wait:d(1.5).duel,arrival0:d(0).arrival,arrival15:d(1.5).arrival};
  }
+ function spreadEstimate({seed=0,size='standard'}={}){
+  const est=v=>{const S=build({seed,size,params:{setplay:{spaceSpread:v}}});return v183CrossEstimate(match,S.crosser,S.spot,{runner:S.runner,space:true});};
+  const a=est(.6),b=est(1);return {narrow:a.spread,wide:b.spread,landNarrow:a.land,landWide:b.land};
+ }
  function sharedOffside({seed=0,size='standard'}={}){
   const S=build({seed,size}),m=match,P=v183OptParams(m),allies=m.people.filter(p=>p.t===S.team&&!p.keeper&&p!==S.crosser),rivals=m.people.filter(p=>p.t!==S.team&&!p.keeper);
   const run=()=>v183OptCached(()=>v183OptOptions(m,S.crosser,allies,rivals,P)).list.map(o=>[o.kind,o.ref,o.u]);
@@ -152,7 +156,7 @@ h.run(`globalThis.Crossing=(function(){
    try{const B=run();return {same:JSON.stringify(A)===JSON.stringify(B),shared,separate:calls,crosses:A.filter(x=>x[0]==='cross').length};}finally{v183CrossEstimate=est;}}
   finally{v55OffsideSnapshot=base;}
  }
- return {params,estimates,options,kick,signal,play,blocked,keeperFlight,leadEstimate,sharedOffside};
+ return {params,estimates,options,kick,signal,play,blocked,keeperFlight,leadEstimate,sharedOffside,spreadEstimate};
 })();`);
 const call=(fn,arg)=>copy(ev(`Crossing.${fn}(${JSON.stringify(arg||{})})`));
 
@@ -228,22 +232,31 @@ check('full constructor matches: crosses into space occur, their state is plain 
 });
 
 // ----- SI-K2 (calibration round 2): keeper, marker, estimate, offside snapshot -----
-check('SI-K2 keeper: during a cross into space he steps onto the landing-goal line (keeperShift), not with keeperShift 0; pure target, both sizes',()=>{
- for(const size of ['standard','large']){let on=0,off=0,n=0;
+check('SI-K2 keeper: during a cross into space he steps onto the landing-goal line (keeperShift 1), part of the way at the default share, not with keeperShift 0; pure target, both sizes',()=>{
+ for(const size of ['standard','large']){let on=0,part=0,off=0,n=0;
   for(let seed=0;seed<6;seed++)for(const spot of ['spot','near']){
-   const a=call('keeperFlight',{seed,size,spot}),b=call('keeperFlight',{seed,size,spot,params:{setplay:{keeperShift:0}}});
-   assert.ok(a.flight&&b.flight,'flights');assert.ok(a.pure,'no draw, same target twice');on+=a.off;off+=b.off;n++;}
-  assert.ok(on/n<.6,size+' keeper on the line: mean offset '+(on/n).toFixed(2));assert.ok(off/n>on/n+.5,size+' offset without the shift '+(off/n).toFixed(2)+' vs '+(on/n).toFixed(2));}
+   const a=call('keeperFlight',{seed,size,spot,params:{setplay:{keeperShift:1}}}),d=call('keeperFlight',{seed,size,spot}),b=call('keeperFlight',{seed,size,spot,params:{setplay:{keeperShift:0}}});
+   assert.ok(a.flight&&b.flight&&d.flight,'flights');assert.ok(a.pure&&d.pure,'no draw, same target twice');on+=a.off;part+=d.off;off+=b.off;n++;}
+  console.log(`     ${size}: keeper offset at the landing ${(on/n).toFixed(2)} m (share 1) / ${(part/n).toFixed(2)} m (default) / ${(off/n).toFixed(2)} m (0)`);
+  assert.ok(on/n<.6,size+' keeper on the line: mean offset '+(on/n).toFixed(2));assert.ok(off/n>on/n+.5,size+' offset without the shift '+(off/n).toFixed(2)+' vs '+(on/n).toFixed(2));
+  assert.ok(part/n<off/n&&part/n>on/n,size+' default share between: '+(part/n).toFixed(2));}
+});
+check('SI-K2 spaceSpread: the landing error of a cross into space scales with setplay.spaceSpread (estimate and execution)',()=>{
+ for(const size of ['standard','large']){const e=call('spreadEstimate',{size});assert.ok(Math.abs(e.narrow/e.wide-.6)<.02,JSON.stringify(e));assert.ok(e.landNarrow>=e.landWide,JSON.stringify(e));}
+ let narrow=0,wide=0;for(let seed=0;seed<6;seed++){narrow+=call('kick',{seed,params:{setplay:{spaceSpread:.6}}}).error;wide+=call('kick',{seed,params:{setplay:{spaceSpread:1}}}).error;}
+ assert.ok(narrow<wide,`mean landing error ${(narrow/6).toFixed(2)} vs ${(wide/6).toFixed(2)} m`);
 });
 check('SI-K2 marker: a signalled run gets one marker (plain record), who is closer to the landing than without crossMark',()=>{
  // The defender starts 3 m behind the runner (upfield), so only a reaction to the run brings him back into the duel.
- let withMark=0,without=0,n=0;
+ let withMark=0,without=0,n=0,defaults=0;
  for(const size of ['standard','large'])for(let seed=0;seed<5;seed++){
-  const a=call('keeperFlight',{seed,size,lead:1.5,markerGap:-3}),b=call('keeperFlight',{seed,size,lead:1.5,markerGap:-3,params:{defence:{crossMark:0}}});
+  // Mechanism at crossMarkGap 0 (level with the runner); the default -1 trails him by a metre (arrival trade-off, SI-K2 doc) and is checked for the record and his tracking only.
+  const a=call('keeperFlight',{seed,size,lead:1.5,markerGap:-3,params:{defence:{crossMarkGap:0}}}),b=call('keeperFlight',{seed,size,lead:1.5,markerGap:-3,params:{defence:{crossMark:0}}}),d=call('keeperFlight',{seed,size,lead:1.5,markerGap:-3});
+  if(d.flight){defaults++;assert.ok(d.mark&&d.mark.markerId&&d.plain&&d.kickGap<=3,'default marker '+JSON.stringify({mark:d.mark,gap:d.kickGap}));}
   if(!a.flight||!b.flight)continue;
   assert.ok(a.mark&&a.mark.markerId&&a.mark.runnerId,'mark record '+JSON.stringify(a.mark));assert.ok(a.plain,'plain mark');assert.equal(b.mark,null,'no mark with crossMark 0');
   assert.ok(a.kickGap<=3,'marker near the runner at the kick: '+a.kickGap);withMark+=a.nearest;without+=b.nearest;n++;}
- console.log(`     nearest defender at the landing ${(withMark/n).toFixed(2)} m (crossMark 0: ${(without/n).toFixed(2)} m), n=${n}`);assert.ok(n>=6,"flights "+n);assert.ok(withMark/n<without/n,'nearest defender at the landing '+(withMark/n).toFixed(2)+' vs '+(without/n).toFixed(2));
+ console.log(`     nearest defender at the landing ${(withMark/n).toFixed(2)} m (crossMark 0: ${(without/n).toFixed(2)} m), n=${n}`);assert.ok(n>=6&&defaults>=5,"flights "+n+" default flights "+defaults);assert.ok(withMark/n<without/n,'nearest defender at the landing '+(withMark/n).toFixed(2)+' vs '+(without/n).toFixed(2));
 });
 check('SI-K2 estimate: the nearest defender moves during the wait (lead) as well, so the duel value falls below the uncontested .92',()=>{
  for(const size of ['standard','large']){const e=call('leadEstimate',{size});assert.ok(e.wait<e.zero||e.wait<.92,JSON.stringify(e));assert.ok(e.wait<.92,'duel with lead '+e.wait);}

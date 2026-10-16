@@ -70,8 +70,9 @@ v183RegisterDefaults('defence',{
  // Marker of a signalled cross runner (SI-K2, cross into space B22): crossMark
  // 0 = off; reaction to the run in s (crossMarkReaction, minus crossMarkPos per
  // pos point above 10, .1-.8 s); he shadows the runner crossMarkGap m on the
- // side of the spot (pressing pace).
- crossMark:1,crossMarkReaction:.4,crossMarkPos:.02,crossMarkGap:1
+ // side of the spot (pressing pace); negative: that far behind him on his path
+ // (SI-K2: -1 keeps the open-play arrival of B22, 0 cost 8 points of it).
+ crossMark:1,crossMarkReaction:.4,crossMarkPos:.02,crossMarkGap:-1
 });
 
 // Counter-pressing willingness by tactical role (0 = never presses). A design

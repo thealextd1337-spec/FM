@@ -88,13 +88,18 @@ v183RegisterDefaults('setplay',{
  // widens the landing reach (m, cap); spaceLandGrid: samples per axis of the
  // error square for the landing share.
  spaceCrossSpeed:14,spaceReaction:.1,spaceSlackMax:2.5,spaceLandGrid:9,
+ // Uniform landing spread of a cross into space relative to a cross onto a
+ // player (the floated ball to a fixed spot; execution and estimate, SI-K2).
+ spaceSpread:.6,
  // Keeper during a high ball of the opponents (SI-K2): after reading the flight
  // (keeperRead s, minus keeperReadGk per gk point above 10) he steps onto the line
  // from the landing point to the goal centre, keeperStand m off his line plus
  // keeperStandDepth per metre the landing point lies inside 16 m (at most
- // keeperStandMax); keeperShift is the share of that move (0 = previous target).
+ // keeperStandMax); keeperShift is the share of that move (0 = previous target;
+ // SI-K2: 1 put him on the line, corner headers fell from 36 to 20 % goals per
+ // shot; .4 leaves him about 2 m off and air finishes near 40 %).
  // Only for landing points within keeperShiftRange m of the goal.
- keeperShift:1,keeperRead:.25,keeperReadGk:.01,keeperStand:1.2,keeperStandDepth:.06,keeperStandMax:2,keeperShiftRange:20
+ keeperShift:.4,keeperRead:.25,keeperReadGk:.01,keeperStand:1.2,keeperStandDepth:.06,keeperStandMax:2,keeperShiftRange:20
 });
 
 const v183SetplayOn=m=>typeof v183Active==='function'&&v183Active(m,'setplay');
@@ -133,8 +138,8 @@ function v183RunCover(m,p,point,seconds,reaction){
 // the B10 corner model: uniform spread from passing/technique and pressure, a
 // small share of large errors (over-hit beyond the target, possibly out, or an
 // under-hit that drops short). Corners keep v182CornerLanding unchanged.
-function v183CrossLanding(m,passer,from,intended,land,[drawX,drawY,variant],pressure){
- const P=key=>v183SP(m,key),s=v160PitchScale(m),skill=ability(passer,'pas')*.6+ability(passer,'tec')*.4,spread=P('crossSpread')+(20-skill)*P('crossSpreadSkill')+pressure*P('crossSpreadPressure'),large=clamp(P('crossLarge')+(20-skill)*P('crossLargeSkill')+pressure*P('crossLargePressure'),P('crossLarge'),P('crossLargeMax'));
+function v183CrossLanding(m,passer,from,intended,land,[drawX,drawY,variant],pressure,scale=1){
+ const P=key=>v183SP(m,key),s=v160PitchScale(m),skill=ability(passer,'pas')*.6+ability(passer,'tec')*.4,spread=(P('crossSpread')+(20-skill)*P('crossSpreadSkill')+pressure*P('crossSpreadPressure'))*scale,large=clamp(P('crossLarge')+(20-skill)*P('crossLargeSkill')+pressure*P('crossLargePressure'),P('crossLarge'),P('crossLargeMax'));
  let x=intended.x+(drawX-.5)*2*spread/s.x,y=intended.y+(drawY-.5)*2*spread/s.y,free=false;
  if(variant<large){
   const share=variant/large,dx=(intended.x-from.x)*s.x,dy=(intended.y-from.y)*s.y,length=Math.hypot(dx,dy)||1;
@@ -199,7 +204,7 @@ function v183HighPass(m,passer,receiver,{cross=false,exempt=false,corner=false,r
  if(v122Metres(passer,point||receiver)<7)return v55GroundPass(passer,receiver,'pass',exempt);
  const snapshot=v55OffsideSnapshot(passer,exempt),from={x:m.ball.x,y:m.ball.y},within=v183Radius(m,corner?'setplay.cornerPressureRadius':'setplay.pressureRadius',.15),pressure=m.people.filter(q=>q.t!==passer.t&&!q.keeper&&within(q,passer)).length;
  const intended=point||{x:receiver.x,y:receiver.y},drawX=random(),drawY=random(),variant=random(),land={...intended}; // setplay.landX, setplay.landY, setplay.landVariant
- if(corner&&m.attackFlow?.setPieceRevision===182)v182CornerLanding(passer,from,intended,land,[drawX,drawY,variant],pressure);else v183CrossLanding(m,passer,from,intended,land,[drawX,drawY,variant],pressure);
+ if(corner&&m.attackFlow?.setPieceRevision===182)v182CornerLanding(passer,from,intended,land,[drawX,drawY,variant],pressure);else v183CrossLanding(m,passer,from,intended,land,[drawX,drawY,variant],pressure,point?P('spaceSpread'):1);
  passer.stats.passes++;passer.stats.highPasses++;if(cross)passer.stats.crosses++;m.lastTouch=passer.t;
  const forward=passer.t===0?passer.y-land.y:land.y-passer.y;if(forward>.12)passer.stats.progressive++;
  const blocker=cross&&!corner?v183CrossBlocker(m,passer,land):null;
@@ -389,7 +394,7 @@ v183CrossEstimate=function(m,p,target,detail={}){
  if(!who)return {...none,eligible:true};
  if((typeof detail.offside?.has==='function'?detail.offside:v55OffsideSnapshot(p).offside).has(who))return {...none,eligible:true,receiverPid:who.pid,offside:true};
  const rivals=m.people.filter(q=>q.t!==p.t&&!q.keeper&&!q.slideActive),within=v183Radius(m,'setplay.pressureRadius',.15),pressure=rivals.filter(q=>within(q,p)).length;
- const skill=ability(p,'pas')*.6+ability(p,'tec')*.4,spread=P('crossSpread')+(20-skill)*P('crossSpreadSkill')+pressure*P('crossSpreadPressure'),large=clamp(P('crossLarge')+(20-skill)*P('crossLargeSkill')+pressure*P('crossLargePressure'),P('crossLarge'),P('crossLargeMax'));
+ const skill=ability(p,'pas')*.6+ability(p,'tec')*.4,spread=(P('crossSpread')+(20-skill)*P('crossSpreadSkill')+pressure*P('crossSpreadPressure'))*(space?P('spaceSpread'):1),large=clamp(P('crossLarge')+(20-skill)*P('crossLargeSkill')+pressure*P('crossLargePressure'),P('crossLarge'),P('crossLargeMax'));
  const lead=space&&Number.isFinite(detail.lead)?Math.max(0,detail.lead):0;
  let flight=Math.max(P('flightMin'),length/(space?P('spaceCrossSpeed'):P('crossSpeed'))),gapA=v122Metres(who,point),cover=space?v183RunCover(m,who,point,flight+lead,P('spaceReaction')):0,adapted=false;
  const approachA=space?(gapA>1?v183AirPace(m,who):v183AirRun(who,point)):2,reachA=v183AirReach(m,who,approachA);
