@@ -65,7 +65,9 @@ function summary(rows){
   aerial:{low:rate(heads.filter(s=>air(s)<10)),mid:rate(heads.filter(s=>air(s)>=10&&air(s)<14)),high:rate(heads.filter(s=>air(s)>=14)),shareHigh:pct(heads.filter(s=>air(s)>=14).length,heads.length)},
   crossArrivedPct:pct(stats.crossArrived*rows.length,stats.crossesAll*rows.length),crossArrivedOpenPct:pct(stats.crossArrivedOpen,stats.crossesOpen),crossLedgerReceivedPct:pct(rows.reduce((s,r)=>s+r.extras.crossComplete,0),rows.reduce((s,r)=>s+r.extras.offball.crosses.length,0)),
   reboundWinPct:pct(stats.reboundWins,stats.rebounds),
-  sources:src,personality:personality(rows,shots),
+  sources:src,personality:personality(rows,shots),scorers:scorers(rows),draws:draws(rows),favFit:favFit(rows),leagueTop:leagueTop(rows),
+  airOpenFree:(()=>{const l=shots.filter(s=>(s.kind==='header'||s.kind==='volley')&&s.n25===0&&!(s.restart?.type==='corner'&&s.restart.ago<=10&&s.restart.team===s.team)&&!(s.restart?.type==='freeKick'&&s.restart.ago<=10&&s.restart.team===s.team));return{n:l.length,perShot:pct(l.filter(isGoal).length,l.length),perOnTarget:pct(l.filter(isGoal).length,l.filter(onT).length)};})(),
+  airCorner:(()=>{const l=shots.filter(s=>(s.kind==='header'||s.kind==='volley')&&s.restart?.type==='corner'&&s.restart.ago<=10&&s.restart.team===s.team);return{n:l.length,perShot:pct(l.filter(isGoal).length,l.length),perOnTarget:pct(l.filter(isGoal).length,l.filter(onT).length)};})(),
   ticks:{median:ticks[Math.floor(ticks.length/2)],p95:ticks[Math.floor(ticks.length*.95)]}};
 }
 // Personality: field players with similar finishing, by role and by shoot weight (role x calm/dec).
@@ -79,6 +81,61 @@ function personality(rows,shots){
  // Calm under pressure: goals per open-play shot with >=1 rival within 2.5 m, calm <10 vs >=12.
  const pressed=shots.filter(s=>open(s)&&s.n25>=1&&s.skills?.calm!=null),lowCalm=rate(pressed.filter(s=>s.skills.calm<10)),highCalm=rate(pressed.filter(s=>s.skills.calm>=12));
  return{byRole:roleRows,shootTerciles:terc,calmPressed:{low:lowCalm,high:highCalm}};
+}
+// Goal spread (Torjäger round, definitions of the SI-6 review): per team and
+// match the field players who played (extras.sik.players); best finisher =
+// highest stored fin; shares are pooled (sum of the best finisher's goals /
+// sum of team goals from player stats); H = unbiased Herfindahl of a team's
+// goals (teams with >=2 goals); top scorer = most goals of one player.
+// Groups by the team's own gap (ovr - opponent ovr).
+function scorers(rows){
+ const groups={all:()=>true,'fav>=3':g=>g>=3,'fav1-2':g=>g>=1&&g<2,'|gap|<1':g=>Math.abs(g)<1},out={};
+ for(const [name,pred]of Object.entries(groups)){
+  const a={teams:0,shots:0,goals:0,bestShots:0,bestGoals:0,topGoals:0,brace:0,hat:0,hG:[]};
+  for(const r of rows)for(const t of [0,1]){
+   if(!pred(r.teams[t].ovr-r.teams[1-t].ovr))continue;
+   const ps=r.extras.sik.players.filter(p=>p.t===t&&!p.keeper);if(!ps.length)continue;
+   const N=ps.reduce((s,p)=>s+p.shots,0),G=ps.reduce((s,p)=>s+p.goals,0),best=ps.reduce((b,p)=>p.fin>b.fin?p:b,ps[0]),top=Math.max(...ps.map(p=>p.goals));
+   a.teams++;a.shots+=N;a.goals+=G;a.bestShots+=best.shots;a.bestGoals+=best.goals;a.topGoals+=top;if(top>=2)a.brace++;if(top>=3)a.hat++;
+   if(G>=2)a.hG.push(ps.reduce((s,p)=>s+p.goals*(p.goals-1),0)/(G*(G-1)));
+  }
+  out[name]={teams:a.teams,goals:a.goals/a.teams,bestShotShare:pct(a.bestShots,a.shots),bestGoalShare:pct(a.bestGoals,a.goals),topScorerShare:pct(a.topGoals,a.goals),topScorerGoals:a.topGoals/a.teams,brace:pct(a.brace,a.teams),hat:pct(a.hat,a.teams),H:mean(a.hG)};
+ }
+ return out;
+}
+// Draws overall and by gap class (favourite = higher mean ovr).
+function draws(rows){const d=l=>pct(l.filter(r=>r.score[0]===r.score[1]).length,l.length),gap=r=>Math.abs(r.teams[0].ovr-r.teams[1].ovr);
+ return{all:d(rows),close:d(rows.filter(r=>gap(r)<1)),gap12:d(rows.filter(r=>gap(r)>=1&&gap(r)<2)),gap23:d(rows.filter(r=>gap(r)>=2&&gap(r)<3)),gap3:d(rows.filter(r=>gap(r)>=3))};}
+// Logistic fit of P(favourite wins) on the gap; value at 1.5 and 4 points with
+// a bootstrap 95 % interval (300 draws, fixed LCG), as SI-K2.
+function favFit(rows){
+ const pts=rows.map(r=>{const f=r.teams[0].ovr>r.teams[1].ovr?0:1;return [Math.abs(r.teams[0].ovr-r.teams[1].ovr),r.score[f]>r.score[1-f]?1:0];});if(pts.length<20)return null;
+ const fit=list=>{let a=0,b=0;for(let it=0;it<50;it++){let ga=0,gb=0,haa=0,hab=0,hbb=0;for(const [x,y]of list){const q=1/(1+Math.exp(-(a+b*x))),w=q*(1-q);ga+=y-q;gb+=(y-q)*x;haa+=w;hab+=w*x;hbb+=w*x*x;}const det=haa*hbb-hab*hab;if(!det)break;a+=(hbb*ga-hab*gb)/det;b+=(haa*gb-hab*ga)/det;}return [a,b];};
+ const at=([a,b],x)=>100/(1+Math.exp(-(a+b*x)));let seed=12345;const rnd=()=>(seed=(Math.imul(seed,1103515245)+12345)>>>0)/4294967296;
+ const f=fit(pts),b15=[],b4=[];for(let k=0;k<300;k++){const s=pts.map(()=>pts[Math.floor(rnd()*pts.length)]),g=fit(s);b15.push(at(g,1.5));b4.push(at(g,4));}
+ b15.sort((x,y)=>x-y);b4.sort((x,y)=>x-y);return{at15:at(f,1.5),ci15:[b15[7],b15[292]],at4:at(f,4),ci4:[b4[7],b4[292]],n:pts.length};
+}
+// League top scorer estimate per pitch size: the series clubs form their
+// leagues (country prefix of the club id, ovr of the own team record). A
+// season is a double round robin; for each fixture of a club the goals of its
+// three best finishers come from a team-match of the series with a similar gap
+// (one of the 15 nearest by |gap - g|). League top scorer = most goals of one
+// such player; mean over leagues and 200 seasons, and the season maximum over
+// all leagues (mean). An estimate: club-specific finishers are not kept.
+function leagueTop(rows){
+ const own=new Map();for(const r of rows){const t=r.teams.find(x=>x.own);if(t)own.set(t.clubId,t.ovr);}
+ const leagues={};for(const [id,ovr]of own)(leagues[id.split('-')[0]]??=[]).push({id,ovr});
+ const pool=[];for(const r of rows)for(const t of [0,1]){const ps=r.extras.sik.players.filter(p=>p.t===t&&!p.keeper).sort((a,b)=>b.fin-a.fin);if(ps.length)pool.push({gap:r.teams[t].ovr-r.teams[1-t].ovr,goals:[0,1,2].map(i=>ps[i]?.goals||0)});}
+ if(pool.length<30)return null;pool.sort((a,b)=>a.gap-b.gap);
+ const near=g=>{let lo=0,hi=pool.length;while(lo<hi){const mid=(lo+hi)>>1;if(pool[mid].gap<g)lo=mid+1;else hi=mid;}let a=lo,b=lo;while(b-a<15){if(a>0&&(b>=pool.length||g-pool[a-1].gap<=pool[b].gap-g))a--;else b++;}return [a,b];};
+ const cache=new Map();let seed=987654;const rnd=()=>(seed=(Math.imul(seed,1103515245)+12345)>>>0)/4294967296;
+ const tops=[],maxima=[];
+ for(let s=0;s<200;s++){let seasonMax=0;
+  for(const clubs of Object.values(leagues)){if(clubs.length<4)continue;let top=0;
+   for(const c of clubs){const tally=[0,0,0];for(const o of clubs){if(o===c)continue;const g=c.ovr-o.ovr,key=g.toFixed(3);let w=cache.get(key);if(!w)cache.set(key,w=near(g));for(let leg=0;leg<2;leg++){const rec=pool[w[0]+Math.floor(rnd()*(w[1]-w[0]))];for(let i=0;i<3;i++)tally[i]+=rec.goals[i];}}top=Math.max(top,...tally);}
+   tops.push(top);seasonMax=Math.max(seasonMax,top);}
+  maxima.push(seasonMax);}
+ return{matches:2*(Math.max(...Object.values(leagues).map(l=>l.length))-1),leagues:Object.keys(leagues).length,mean:mean(tops),seasonMax:mean(maxima)};
 }
 function paired(A,B){
  const key=r=>r.seed0+'|'+r.clubId+'|'+r.size,mapB=new Map(B.map(r=>[key(r),r])),pairs=A.filter(r=>mapB.has(key(r))).map(r=>[r,mapB.get(key(r))]),out={pairs:pairs.length};
@@ -109,6 +166,8 @@ line('Tore je Schuss / je Schuss aufs Tor',s=>`${p(s.goalsPerShot,1)} / ${p(s.go
 line('0:0 / 3–5 Tore / ≥7 Tore / max',s=>`${p(s.goals.nil,1)} / ${p(s.goals.b35)} / ${p(s.goals.ge7,1)} / ${s.goals.max}`,'≤6 %; –; 5–15 %');
 line('Favoriten ≥1 (N) / ≥2',s=>`${p(s.favourites.win)} (${s.favourites.n}) / ${p(s.favourites2.win)}`,'≥62 % (groß ≥60 %)');
 line('Favorit ≥1 Punkt: Sieg / Remis / Niederlage',s=>`${p(s.favourites.win)} / ${p(s.favourites.draw)} / ${p(s.favourites.loss)}`,'Sieg rund 65 %');
+line('Favorit geglättet bei 1,5 / 4 Punkten [95 %]',s=>s.favFit?`${p(s.favFit.at15)} [${f(s.favFit.ci15[0],0)}–${f(s.favFit.ci15[1],0)}] / ${p(s.favFit.at4)} [${f(s.favFit.ci4[0],0)}–${f(s.favFit.ci4[1],0)}]`:'–','rund 65 % (60–70) / ≥90 %');
+line('Remis gesamt / Abstand <1 / 1–2 / 2–3 / ≥3',s=>`${p(s.draws.all,1)} / ${p(s.draws.close)} / ${p(s.draws.gap12)} / ${p(s.draws.gap23)} / ${p(s.draws.gap3)}`,'≥20 %; eng 25–30 %');
 line('Tordiff. je Stärkepunkt',s=>f(s.slope),'≥0,35');
 line('Abschluss <10 / 10–14 / ≥14 (Spielzug)',s=>`${g(s.finishing.low)} / ${g(s.finishing.mid)} / ${g(s.finishing.high)}`,'');
 line('Verhältnis Abschluss ≥14/<10',s=>f(s.finishing.ratio),'≥1,8');
@@ -120,6 +179,8 @@ line('Luftspiel <10 / 10–14 / ≥14: Kopf-/Volley-Tore je Schuss',s=>`${g(s.ae
 line('Flanken gesamt / Spiel',s=>`${f(s.perMatch.crossesAll)} / ${f(s.perMatch.crossesOpen)}`,'Spiel ≥2,0');
 line('angekommen gesamt / Spiel (Messhülle alt)',s=>`${p(s.crossArrivedPct)} / ${p(s.crossArrivedOpenPct)} (${p(s.crossLedgerReceivedPct)})`,'≥45 %');
 line('Kopf-/Volleyschüsse (Tore)',s=>`${f(s.perMatch.headerVolleyShots)} (${f(s.perMatch.headerVolleyGoals)})`,'≥0,6');
+line('Luft unbedrängt Spielzug: Tore je Schuss / je Schuss aufs Tor (N)',s=>`${p(s.airOpenFree.perShot)} / ${p(s.airOpenFree.perOnTarget)} (${s.airOpenFree.n})`,'je Schuss aufs Tor 45–60 %');
+line('Luft nach Ecke: Tore je Schuss / je Schuss aufs Tor (N)',s=>`${p(s.airCorner.perShot)} / ${p(s.airCorner.perOnTarget)} (${s.airCorner.n})`,'je Schuss rund 29 %');
 line('Ecken / Schüsse ≤10 s danach',s=>`${f(s.perMatch.corners)} / ${f(s.perMatch.cornerShots10)}`,'1,2–3,0');
 line('Abpraller / Gewinn / Schüsse ≤5 s (Kette; nur direkte Eltern)',s=>`${f(s.perMatch.rebounds)} / ${p(s.reboundWinPct)} / ${f(s.perMatch.reboundShots)} (${f(s.perMatch.reboundShotsDirect)})`,'–; ≥35 %; ≥0,3');
 line('Fouls / Freistöße / Elfmeter',s=>`${f(s.perMatch.fouls)} / ${f(s.perMatch.freeKicks)} / ${f(s.perMatch.penalties)}`,'≤4,5 Freistöße');
@@ -129,6 +190,9 @@ line('Ballführer Tempo Mittel / Max (m/s)',s=>`${f(s.perMatch.carrierSpeed)} / 
 line('Zone ≤22 m (s je Team)',s=>f(s.perMatch.zone22),'groß ≥2,7');
 line('Frische Feld / Kondition 9–11 / Torwart (Verbrauch)',s=>`${f(s.perMatch.freshField,1)} / ${f(s.perMatch.freshField911,1)} / ${f(s.perMatch.freshKeeper,1)} (${f(s.perMatch.keeperUse,1)})`,'Feld 40 ± 5 (Produktreferenz)');
 line('Rechenzeit je Tick Median / p95 (ms) / je Partie (s)',s=>`${f(s.ticks.median,3)} / ${f(s.ticks.p95,3)} / ${f(s.perMatch.computeS,1)}`,'');
+console.log('\nTorschützen (Mannschaft je Partie; bester Abschlussspieler = höchster Abschluss der eingesetzten Feldspieler):\n\n| Gruppe | Feld | Teams | Tore | Toranteil bester Abschluss | Schussanteil bester Abschluss | Toranteil bester Torschütze | Tore bester Torschütze | ≥2 Tore eines Spielers | ≥3 Tore | H Tore |\n| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |');
+for(const k of ['all','fav>=3','fav1-2','|gap|<1'])for(const c of cols){const v=G[c].scorers[k];console.log(`| ${k} | ${c} | ${v.teams} | ${f(v.goals)} | ${p(v.bestGoalShare,1)} | ${p(v.bestShotShare,1)} | ${p(v.topScorerShare,1)} | ${f(v.topScorerGoals)} | ${p(v.brace)} | ${p(v.hat)} | ${f(v.H,3)} |`);}
+console.log(`\nLigatorschützenkönig (Schätzung aus der Reihe, ${G.standard.leagueTop?.matches??'–'} Ligaspiele): Standard ${f(G.standard.leagueTop?.mean,1)} (Saisonmaximum ${f(G.standard.leagueTop?.seasonMax,1)}), groß ${f(G.large.leagueTop?.mean,1)} (${f(G.large.leagueTop?.seasonMax,1)}); Ziel rund 14–20`);
 console.log('\nSchussquellen (je Partie, Tore je Schuss):\n\n| Quelle | beide | Standard | groß |\n| --- | ---: | ---: | ---: |');
 for(const k of SOURCES)console.log(`| ${k} | ${cols.map(c=>`${f(G[c].sources[k].perMatch)} (${p(G[c].sources[k].goalsPerShot)})`).join(' | ')} |`);
 console.log('\nTorverteilung (Anteil der Partien):\n\n| Tore | '+cols.join(' | ')+' |\n| --- | ---: | ---: | ---: |');

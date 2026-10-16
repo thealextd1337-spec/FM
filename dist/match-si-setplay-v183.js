@@ -99,7 +99,11 @@ v183RegisterDefaults('setplay',{
  // SI-K2: 1 put him on the line, corner headers fell from 36 to 20 % goals per
  // shot; .4 leaves him about 2 m off and air finishes near 40 %).
  // Only for landing points within keeperShiftRange m of the goal.
- keeperShift:.4,keeperRead:.25,keeperReadGk:.01,keeperStand:1.2,keeperStandDepth:.06,keeperStandMax:2,keeperShiftRange:20
+ keeperShift:.4,keeperRead:.25,keeperReadGk:.01,keeperStand:1.2,keeperStandDepth:.06,keeperStandMax:2,keeperShiftRange:20,
+ // Torjäger round: keeperShift holds for corners (crowded six-yard box); every
+ // other high ball of the opponents (open-play and free-kick crosses, crosses
+ // into space, high balls) uses keeperShiftOpen.
+ keeperShiftOpen:.4
 });
 
 const v183SetplayOn=m=>typeof v183Active==='function'&&v183Active(m,'setplay');
@@ -261,8 +265,11 @@ v122PlanAir=function(flight,passer,end){
 function v183KeeperFlightTarget(m,person){
  const flight=m.flight;
  if(!person.keeper||!flight?.aerial||flight.team===person.t||m.kickoff||m.setPiece||m.throwIn||m.goalPause>0||m.postBanner||m.halftimePause||m.finished)return null;
- const P=key=>v183SP(m,key),shift=clamp(P('keeperShift'),0,1),plan=v122AerialPlans.get(flight);
- if(!(shift>0)||!plan?.end)return null;
+ const P=key=>v183SP(m,key),plan=v122AerialPlans.get(flight);
+ if(!plan?.end)return null;
+ // A corner: the flight ends where the latest secondBall record of kind corner (plain data, written at the kick) lands.
+ const last=m.attackFlow?.setplay?.secondBall,corner=last?.kind==='corner'&&last.x===plan.end.x&&last.y===plan.end.y,shift=clamp(P(corner?'keeperShift':'keeperShiftOpen'),0,1);
+ if(!(shift>0))return null;
  const s=v160PitchScale(m),goalY=person.t===0?v55Field.bottom:v55Field.top,end=plan.end,depth=Math.abs(end.y-goalY)*s.y,lateral=(end.x-.5)*s.x;
  if(Math.hypot(depth,lateral)>P('keeperShiftRange'))return null;
  const seconds=flight.progress*flight.duration/v183Rate(m),read=Math.max(0,P('keeperRead')-P('keeperReadGk')*(ability(person,'gk')-10));
