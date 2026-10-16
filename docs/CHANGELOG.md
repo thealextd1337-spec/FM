@@ -2,6 +2,17 @@
 
 ## Noch nicht veröffentlicht
 
+- Spielerintelligenz 183, Torjäger-Runde (Nutzerentscheidung „Torjäger, Sponsorziel und Altstände 16. Oktober 2026“, zuerst im ausgespielten Spiel). Nur neue Partien mit Kennung 183; Partien ohne Marker und mit Kennung 182 bleiben bytegleich, keine Spielstandumrechnung.
+  - Spielstand: Ein führendes Team verwaltet die Führung. Schuss- und Risikogewicht, Tempo und Zonenleine sinken mit Führung und Spielzeit (`options.lead*`, `offball.leadPace`, `offball.leashLead`). Bei Gleichstand werden beide Teams spät vorsichtiger (`options.levelRisk`, `offball.levelPace`). Das Mittelfeld rückt weiter nach (`offball.zoneLeash` 15 m).
+  - Torwart: Bei hohen Bällen außer Ecken (Spiel- und Freistoßflanken, Raumflanken) steht er auf der Linie Landepunkt–Tor (`setplay.keeperShiftOpen` 1); Ecken bleiben bei 0,4. Volleys nach Flanken streuen stärker (`finish.volleySpread` 1,6). Die Grundstreuung aller Schüsse sinkt leicht (`finish.spreadBase` 0,028) und gleicht den Torverlust zum Teil aus.
+  - SI-5 erkennt das Zweikampftempo des Ballführers auch mit dem neuen Tempofaktor.
+  - Ergebnis (Referenzreihe `sb-f`, 576 Partien, gegen SI-K2):
+    - Remis 20,5 % statt 16,3 % (enge Duelle 35 %).
+    - Favorit bei 1,5 Punkten geglättet 60 % statt 64 % (Standard 56 %, groß 64 %), ab 3 Punkten 94/97 %.
+    - Tore 3,53 statt 3,86, Partien mit mindestens 7 Toren 10,6 % statt 13,5 %, 0:0 6,6 %.
+    - Unbedrängte Luftabschlüsse aus dem Spiel 5,1 % aller Tore statt 7,1 %. Dauer 4,97 min, Spielflanken 2,70.
+  - Die Torjägerkonzentration bleibt; mit fünf Feldspielern ist sie räumlich bedingt (Nutzersteuerung: weiches Ziel). Gemessene, aber wirkungslose Hebel wurden entfernt.
+  - Neuer Test `work/test-si-scorer-v183.cjs` im Workflow-Block. Die Tabelle `work/table-si-calibration-v183.cjs` zeigt jetzt auch Torschützen, Remis, die geglättete Favoritenquote und den Luftanteil. [Torjäger-Runde](spielerintelligenz-torjaeger-183.md).
 - Spielerintelligenz 183, Paket SI-6 (P02): Die kompakte Simulation neuer Partien folgt dem ausgespielten Spiel. Neue Kennung `shotBalanceRevision` 183 mit gespeichertem Parametersatz je Feldgröße, gesetzt nur in `v155Initialize` neuer Matchzustände; Kennung 178, 119 und unmarkierte Partien bleiben bytegleich, keine Spielstandumrechnung.
   - Erwartete Schüsse je Mannschaft aus dem Stärkeabstand (Mittel der acht Feldfähigkeiten) mit kleinem Heimaufschlag (3 %, nie neutral); je Schuss Quelle (Spielzug, Fernschuss, Kopfball, Abpraller, Ecke, Freistoß), Schütze nach Rolle und Fähigkeit, Ergebnis aus Abschluss und Torwart (`gk`-Hebel). Ecken, Flanken, Fouls und Freistöße als Mannschaftsstatistik (`record.teamStats`); Hintergrundlaufen gleicht die Belastung an.
   - Gegen die physische Reihe SI-K2 (567 gleiche Fixtures, 9072 kompakte Partien): Schüsse -0,9 % / -1,0 %, Tore -3,7 % / -1,5 % (Standard / groß), Favoritensieg 69 % (65 %) bzw. 65 % (63 %) bei 1–2 Punkten und 94 % (94 %) bzw. 90 % (91 %) ab 3 Punkten (kompakt, physisch in Klammern), Remis schwacher Teams -0,2 Punkte, Frischeverbrauch je Linie auf ±0,6 Punkte.
