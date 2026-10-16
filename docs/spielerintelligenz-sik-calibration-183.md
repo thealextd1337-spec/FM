@@ -255,6 +255,8 @@ Die Streuung bleibt breit (Standardabweichung 2,26); 4:3 und höher kommt in 12,
 
 ### Favoriten: Siegquote und Hebel (nicht verstellt)
 
+**Nachtrag:** Die Nutzerentscheidung „Favoritenquote 16. Oktober 2026“ (Variante A: rund 65 % bei 1–2 Punkten Abstand, beide Feldgrößen) ist in der [Kalibrierungsrunde SI-K2](spielerintelligenz-sik2-calibration-183.md) umgesetzt. Dort sind auch die Hebel gepaart gemessen; das Entscheidungsrauschen wurde verworfen. Der Abschnitt hier beschreibt den Stand B2.
+
 Die Siegquote des Favoriten (≥1 Punkt Stärkeabstand) liegt bei 78 % (Standard 81 %, groß 76 %), also deutlich über dem Wunsch „rund 65 %“, aber über der Abnahmegrenze 62 %. Remis 14 %, Niederlagen 8 %. Je Stärkeabstand (Tabelle unten): bei 1–2 Punkten 66 % (Standard) bzw. 57 % (groß), bei ≥3 Punkten 92–94 %.
 
 Die Hebel und was sie mitbewegen (nach Wirkung geordnet; keiner wurde verstellt):
