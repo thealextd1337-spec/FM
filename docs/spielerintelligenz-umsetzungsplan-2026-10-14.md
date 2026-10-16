@@ -331,6 +331,10 @@ Für alle Pakete gilt dasselbe Marker-Gating: Neue Logik wirkt nur, wenn `v183Ac
 - **Abhängigkeit:** nach Merge von SI-2 und SI-4, weil es deren Läufer-, Angebots- und Positionierungsparameter skaliert.
 - **UI:** Formationsanzeige zeigt die neuen Zellen nur für neue Partien; Taktikansicht prüfen (`test-tactics-roster-v130.cjs`).
 
+### Zusatzpaket „Flanke in den Raum“ (B22, nach SI-K, Nutzerentscheidung 16. Oktober 2026)
+
+- Umgesetzt auf `feat/si-crossing` in den besitzenden Paketen SI-1, SI-2 und SI-7 ohne neue Paketkennung (Schlüssel `cross*`/`space*`); Raumflanke auf Boxpunkte, Startsignal `attackFlow.crossRun`, Abseits beim Abspiel, Schätzung mit Laufweg. Abnahme gepaart gegen B2: 2,71 Spielflanken, 46 % angekommen, 1,34 Kopfball-/Volleyschüsse; Zielwerte 2.3 gehalten, Favoriten steigen auf 85 %. Eigener Test `work/test-si-crossing-v183.cjs`. Einzelheiten in [Flanken](spielerintelligenz-flanken-183.md).
+
 ### SI-6 P02: kompakte Simulation an das ausgespielte Spiel (nach SI-K)
 
 - **Ziel:** Analyse 7.1; Kennzahlen aus der Abnahmereihe SI-K übernehmen.
