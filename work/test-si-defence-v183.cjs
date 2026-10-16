@@ -139,7 +139,9 @@ check('the package off leaves every defensive target to the previous function (s
 // ----- counter-pressing -----
 const COUNTER={carrier:{depth:54,lateral:0,vy:2},defs:[{depth:52.2,lateral:1.5,line:'att'},{depth:50.5,lateral:-6,line:'mid'},{depth:41,lateral:10,line:'def'}],atts:[{depth:30,lateral:5}]};
 // A turnover: team 0 (the defending frame d=0) had the ball, then the carrier of team 1 has it.
-const turnover=(cfg,after=``)=>{scene({...COUNTER,...cfg});return copy(ev(`(()=>{const m=match,carrier=m.owner,mine=m.people.find(x=>x.pid==='def0'),probe=m.people.find(x=>x.pid==='att0'),out={};
+// SI-K switched the window off by default (counterWindow 0); the mechanism scenes set the former 2/3 s explicitly.
+const withWindow=cfg=>({...cfg,si:{...(cfg.si||{}),params:{...(cfg.si?.params||{}),defence:{counterWindow:2,counterWindowPress:3,...(cfg.si?.params?.defence||{})}}}});
+const turnover=(cfg,after=``)=>{scene(withWindow({...COUNTER,...cfg}));return copy(ev(`(()=>{const m=match,carrier=m.owner,mine=m.people.find(x=>x.pid==='def0'),probe=m.people.find(x=>x.pid==='att0'),out={};
   m.owner=mine;m.ball={x:mine.x,y:mine.y};v102State(m).clock+=.05;v159DefensiveTarget(m,probe);out.before=m.attackFlow.defence?.poss??null;
   m.owner=carrier;m.ball={x:carrier.x,y:carrier.y};v102State(m).clock+=.05;
   const loop=()=>{v159DefensiveTarget(m,probe);for(const p of m.people.filter(x=>x.pid.startsWith('def')))v159DefensiveTarget(m,p);};loop();
@@ -168,8 +170,15 @@ check('counter-pressing: window length follows early pressing, regaining or time
  assert.equal(refused.def0.kind,null);assert.equal(refused.def1.kind,'counter');assert.equal(refused.def2.kind,'counter');
  const onePresser=turnover({on:true,si:{params:{defence:{counterPressers:1,counterCutters:0}}}});assert.equal(onePresser.def0.kind,'counter');assert.equal(onePresser.def1.kind,null);
 });
+check('counter-pressing (SI-K default): counterWindow 0 opens no window',()=>{
+ const r=copy(ev(`(()=>{NativeDef.build(${JSON.stringify({...COUNTER,on:true})});const m=match;return {window:v183Param(m,'defence.counterWindow'),press:v183Param(m,'defence.counterWindowPress')};})()`));
+ assert.deepEqual(r,{window:0,press:0});
+
+ const off=(()=>{scene({...COUNTER,on:true});return copy(ev(`(()=>{const m=match,carrier=m.owner,mine=m.people.find(x=>x.pid==='def0'),probe=m.people.find(x=>x.pid==='att0');m.owner=mine;m.ball={x:mine.x,y:mine.y};v102State(m).clock+=.05;v159DefensiveTarget(m,probe);m.owner=carrier;m.ball={x:carrier.x,y:carrier.y};v102State(m).clock+=.05;for(const p of m.people)v159DefensiveTarget(m,p);v102State(m).clock+=.05;for(const p of m.people)v159DefensiveTarget(m,p);const c=m.attackFlow.defence?.counter;return {active:Boolean(c&&c.until>v102Clock(m)),kinds:m.people.filter(x=>x.pid.startsWith('def')).map(p=>m.attackFlow.defenseReads?.[p.pid]?.kind||null)};})()`));})();
+ assert.equal(off.active,false);assert(!off.kinds.includes('counter'),JSON.stringify(off.kinds));
+});
 check('counter-pressing: further willing players cut the lane from the carrier to his nearest team-mate',()=>{
- scene({...COUNTER,on:true,si:{params:{defence:{counterPressers:1,counterCutters:1}}}});
+ scene(withWindow({...COUNTER,on:true,si:{params:{defence:{counterPressers:1,counterCutters:1}}}}));
  const r=copy(ev(`(()=>{const m=match,carrier=m.owner,mine=m.people.find(x=>x.pid==='def0'),probe=m.people.find(x=>x.pid==='att0'),cutter=m.people.find(x=>x.pid==='def1');
   m.owner=mine;m.ball={x:mine.x,y:mine.y};v102State(m).clock+=.05;v159DefensiveTarget(m,probe);m.owner=carrier;m.ball={x:carrier.x,y:carrier.y};v102State(m).clock+=.05;
   for(const p of m.people.filter(x=>x.pid.startsWith('def')))v159DefensiveTarget(m,p);
@@ -341,7 +350,7 @@ check('with packages.clock and clockRate .42 the slide forecast is the same as a
 
 // ----- restore -----
 check('restore: counter window, roles and cadence are plain data and survive a JSON checkpoint',()=>{
- scene({...COUNTER,on:true});
+ scene(withWindow({...COUNTER,on:true}));
  const r=copy(ev(`(()=>{
   const m0=match,carrier=m0.owner,mine=m0.people.find(x=>x.pid==='def0'),probe=m0.people.find(x=>x.pid==='att0'),kinds=m=>Object.fromEntries(m.people.filter(x=>x.pid.startsWith('def')).map(p=>[p.pid,(v159DefensiveTarget(m,p),m.attackFlow.defenseReads?.[p.pid]?.kind||null)]));
   m0.owner=mine;m0.ball={x:mine.x,y:mine.y};v102State(m0).clock+=.05;v159DefensiveTarget(m0,probe);

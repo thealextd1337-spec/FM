@@ -510,6 +510,8 @@ Offene Punkte für SI-5 und SI-K:
 3. **Abnahmereihe B:** Wiederholung von A mit den Endwerten. Zusätzlich 10 Browserpartien mit Unity-Ansicht für die echte Wanduhr (all-inclusive, ohne Taktikpausen), getrennt von Node-Zeit, sowie `check-old-matches-v183.cjs`. Mobile Geräte bleiben P06 (Android ausgeklammert).
 4. **SI-6:** übernimmt die Kennzahlen aus Reihe B je Stärkeabstand und Feldgröße (Analyse 7.1).
 
+**Stand SI-K (16. Oktober 2026, `feat/si-calibration`):** Reihen A und B, drei Iterationen, Endwerte und offene Punkte in der [SI-K-Doku](spielerintelligenz-sik-calibration-183.md). Maßgeblich ist Reihe B2 (Uhr 0,385): 5,02 min all-inclusive einschließlich Torwiederholungen, 14,2 Schüsse, 3,84 Tore, Favorit gewinnt 78 %. Spielflanken übernimmt das Zusatzpaket „Flanke in den Raum“ (B22); der Fernschussanteil gilt nur für das Standardfeld (Entscheidungen 16. Oktober 2026).
+
 ## 11. Modelle und Reviews
 
 Nutzerentscheidung 14. Oktober 2026: Claude arbeitet primär (Claude-Max-Plan 20x aktiv). Umsetzung und Reviews laufen mit Claude-Modellen; Review immer durch ein anderes Modell als die Umsetzung. Codex (GPT-6.1-Sol) bleibt nur Ausweichweg, falls ein Claude-Nutzungslimit eine Welle blockiert.

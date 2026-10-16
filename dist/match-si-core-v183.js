@@ -16,6 +16,10 @@
 // so the ledger wraps the package logic.
 
 const V183_REVISION=183;
+// Clock rate of new marked matches (clock units per real second, one rate for both
+// pitch sizes). SI-K: 0.385 for about 5 minutes all-inclusive, goal replays included
+// (P01 goals 14 October 2026); stored in match.si.clockRate.
+const V183_CLOCK_RATE=.385;
 const V183_PACKAGES=Object.freeze(['clock','options','offball','finish','defence','setplay','field']);
 // Parameter defaults per package and the package switches of new matches. A
 // wave-1 package turns its switch on in its own module (v183EnableByDefault)
@@ -78,7 +82,7 @@ function v183CreateSi(options){
   }
  }
  // Today's rate for now; SI-0 uses it, SI-K calibrates the final value.
- const clockRate=o.clockRate===undefined?MATCH_SPEED:o.clockRate;
+ const clockRate=o.clockRate===undefined?V183_CLOCK_RATE:o.clockRate;
  if(typeof clockRate!=='number'||!Number.isFinite(clockRate)||clockRate<=0)throw RangeError('SI clock rate: positive number expected');
  return v183Freeze({revision:V183_REVISION,clockRate,packages,params});
 }

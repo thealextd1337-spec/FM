@@ -46,8 +46,8 @@
 
 v183RegisterDefaults('options',{
  cadence:.25,              // decision cadence (s, real) after carry/hold
- weightMin:.85,weightMax:1.15, // effective personality span
- windowBase:16,windowFin:.55,   // shooter window (m): 16 + 0.55*fin
+ weightMin:.8,weightMax:1.2, // effective personality span (SI-K: .85-1.15 -> .8-1.2)
+ windowBase:12.5,windowFin:.75, // shooter window (m): 12.5 + 0.75*fin (SI-K: 16 + 0.55*fin; beyond 22 m from fin 12.7)
  stubRange:22,stubScale:.6,    // SI-F shot stub bridge (see above)
  threat:.3,threatLength:16,    // possession value .3*exp(-d/16), d metres to goal
  counter:1.6,              // weight of the opponent's possession value after a loss
