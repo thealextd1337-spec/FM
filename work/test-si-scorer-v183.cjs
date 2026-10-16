@@ -45,7 +45,7 @@ const options=()=>copy(h.call('SC.options'));
 const DEFAULTS={'options.mateFin':.3,'options.selfFin':.5,'options.leadShoot':.5,'options.leadRisk':.5,'options.leadCap':3,'options.leadEarly':.5,'offball.xgFin':.3,'offball.leadPace':.25,'setplay.keeperShift':.4,'setplay.keeperShiftOpen':1,'finish.volleySpread':1.6};
 const si=(flat={})=>{const params={};for(const [k,v]of Object.entries(flat)){const [pkg,name]=k.split('.');(params[pkg]??={})[name]=v;}return {packages:{options:true,finish:true,offball:true,setplay:true},params};};
 // Two receivers mirrored about the carrier's line, equal except finishing.
-const pair=(params,extra={})=>({seed:3,si:si(params),attack:[{id:'c',goal:30,lateral:0,line:'mid',role:'box-to-box',skills:{pas:13,fin:10,tec:11}},{id:'a',goal:15,lateral:-6,line:'att',role:'striker',skills:{fin:16,tec:11,spd:11}},{id:'b',goal:15,lateral:6,line:'att',role:'striker',skills:{fin:8,tec:11,spd:11}}],defend:[{id:'x',goal:24,lateral:-11,line:'mid'},{id:'y',goal:24,lateral:11,line:'mid'}],...extra});
+const pair=(params,extra={})=>({seed:3,si:si(params),attack:[{id:'c',goal:30,lateral:0,line:'mid',role:'box-to-box',skills:{pas:13,fin:10,tec:11}},{id:'a',goal:15,lateral:-6,line:'att',role:'striker',skills:{fin:16,tec:11,spd:11}},{id:'b',goal:15,lateral:6,line:'att',role:'striker',skills:{fin:8,tec:11,spd:11}}],defend:[{id:'x',goal:13,lateral:-12,line:'def'},{id:'y',goal:13,lateral:12,line:'def'}],...extra});
 
 check('parameters registered with the defaults of the Torjäger round',()=>{
  scene(pair({}));
@@ -89,39 +89,44 @@ check('SI-2 offers: a runner\'s shot value uses xgFin (team mean at 0, own finis
 });
 
 check('lead intensity: 0 when level or behind; min(lead,leadCap)/leadCap times leadEarly..1 over the clock',()=>{
- const at=(score,elapsed,t=0)=>{scene(pair({},{score,elapsed}));ev('match.fullTimeEnd=80');return ev(`v183LeadIntensity(match,${t})`);};
+ const at=(score,elapsed,t=0)=>{scene(pair({'options.leadCap':3,'options.leadEarly':.5},{score,elapsed}));ev('match.fullTimeEnd=80');return ev(`v183LeadIntensity(match,${t})`);};
  assert.equal(at([0,0],40),0);assert.equal(at([1,2],40),0);assert.equal(at([2,1],40,1),0);
  assert(Math.abs(at([1,0],0)-1/3*.5)<1e-12,'one goal at kick-off');assert(Math.abs(at([2,0],40)-2/3*.75)<1e-12,'two goals at half time');
  assert(Math.abs(at([6,0],80)-1)<1e-12,'capped at leadCap, full at full time');assert(Math.abs(at([0,3],80,1)-1)<1e-12,'team 1');
 });
 
-check('lead management: shoot and risk weights of a leading team fall by leadShoot/leadRisk x intensity; trailing and level teams unchanged',()=>{
- const w=(score,params={})=>{scene(pair(params,{score,elapsed:80}));ev('match.fullTimeEnd=80');return copy(ev(`(()=>{const P=v183OptParams(match),c=SC.by('c');return {state:v183OptStateWeights(match,c,P),base:v183OptWeights(c,P),lead:v183LeadIntensity(match,0)};})()`));};
- const lead=w([3,0]),level=w([1,1]),behind=w([0,2]);
- assert.equal(lead.lead,1);assert(Math.abs(lead.state.shootWeight-lead.base.shootWeight*(1-DEFAULTS['options.leadShoot']))<1e-12);
- assert(Math.abs(lead.state.riskWeight-lead.base.riskWeight*(1-DEFAULTS['options.leadRisk']))<1e-12);
- assert.deepEqual(level.state,level.base);assert.deepEqual(behind.state,behind.base);
- const off=w([3,0],{'options.leadShoot':0,'options.leadRisk':0});assert.deepEqual(off.state,off.base);
+// Explicit score-state parameters for the mechanics checks (independent of the defaults).
+const STATE={'options.leadShoot':.4,'options.leadRisk':.3,'options.trailShoot':.2,'options.trailRisk':.25,'options.levelRisk':.3,'offball.leadPace':.2,'offball.trailPace':.1,'offball.levelPace':.15};
+check('score state: shoot and risk weights scale with lead, trail and level intensity; all zero = personality weights',()=>{
+ const w=(score,elapsed,params=STATE)=>{scene(pair(params,{score,elapsed}));ev('match.fullTimeEnd=80');return copy(ev(`(()=>{const P=v183OptParams(match),c=SC.by('c');return {state:v183OptStateWeights(match,c,P),base:v183OptWeights(c,P),s:v183ScoreState(match,0)};})()`));};
+ const lead=w([3,0],80),behind=w([0,2],80),level=w([1,1],60),early=w([0,0],0);
+ assert.deepEqual(lead.s,{lead:1,trail:0,level:0});assert.equal(behind.s.lead,0);assert(Math.abs(behind.s.trail-2/3)<1e-12);assert(Math.abs(level.s.level-.5625)<1e-12);
+ const near=(a,b,msg)=>assert(Math.abs(a-b)<1e-12,`${msg}: ${a} vs ${b}`);
+ near(lead.state.shootWeight,lead.base.shootWeight*(1-.4),'leader shoots less');near(lead.state.riskWeight,lead.base.riskWeight*(1-.3),'leader risks less');
+ near(behind.state.shootWeight,behind.base.shootWeight*(1+.2*2/3),'trailer shoots more');near(behind.state.riskWeight,behind.base.riskWeight*(1+.25*2/3),'trailer risks more');
+ near(level.state.shootWeight,level.base.shootWeight,'level: shoot unchanged');near(level.state.riskWeight,level.base.riskWeight*(1-.3*.5625),'level late: cautious');
+ assert.deepEqual(early.state,early.base,'level at kick-off: no effect');
+ const off=w([3,0],80,{});assert.deepEqual(off.state,off.base,'neutral without parameters');
  // The shot option of the leading carrier loses exactly that share of its gain.
- const gain=score=>{scene({seed:5,si:si(),score,elapsed:80,attack:[{id:'c',goal:16,lateral:1,line:'att',role:'striker',skills:{fin:14}}],defend:[{id:'x',goal:8,lateral:7,line:'def'}]});ev('match.fullTimeEnd=80');return options().find(o=>o.kind==='shot').gain;};
- assert(Math.abs(gain([3,0])-gain([0,0])*(1-DEFAULTS['options.leadShoot']))<1e-12);
+ const gain=score=>{scene({seed:5,si:si(STATE),score,elapsed:20,attack:[{id:'c',goal:16,lateral:1,line:'att',role:'striker',skills:{fin:14}}],defend:[{id:'x',goal:8,lateral:7,line:'def'}]});ev('match.fullTimeEnd=80');return {g:options().find(o=>o.kind==='shot').gain,s:copy(ev('v183ScoreState(match,0)'))};};
+ const g3=gain([3,0]),g0=gain([0,0]);near(g3.g,g0.g*(1-.4*g3.s.lead),'shot gain of the leader');
 });
 
-check('lead management: SI-2 carrier and run pace of a leading team fall by leadPace x intensity',()=>{
- const pace=score=>{scene(pair({},{score,elapsed:80}));ev('match.fullTimeEnd=80');return copy(ev(`(()=>{const c=SC.by('c'),x=SC.by('x');return {carrier:v183PaceFactor(match,c,'carrier'),rival:v183PaceFactor(match,x,'carrier')};})()`));};
- const lead=pace([3,0]),level=pace([0,0]);
- assert(Math.abs(lead.carrier-level.carrier*(1-DEFAULTS['offball.leadPace']))<1e-12,'leading carrier slower');
- assert.equal(lead.rival,level.rival,'the trailing team keeps its pace');
+check('score state: SI-2 carrier and run pace by leadPace, trailPace and levelPace; the opponent of a leader is the trailer',()=>{
+ const pace=(score,elapsed=80,params=STATE)=>{scene(pair(params,{score,elapsed}));ev('match.fullTimeEnd=80');return copy(ev(`(()=>{const c=SC.by('c'),x=SC.by('x');return {carrier:v183PaceFactor(match,c,'carrier'),rival:v183PaceFactor(match,x,'carrier')};})()`));};
+ const lead=pace([3,0]),level=pace([1,1]),base=pace([0,0],80,{}),start=pace([0,0],0);
+ assert(Math.abs(lead.carrier-base.carrier*(1-.2))<1e-12,'leading carrier slower');assert(Math.abs(lead.rival-base.rival*(1+.1))<1e-12,'trailing carrier faster');
+ assert(Math.abs(level.carrier-base.carrier*(1-.15))<1e-12,'level at full time slower');assert.equal(start.carrier,base.carrier,'level at kick-off unchanged');
 });
 
 check('keeper during an opposing high ball: keeperShift for a corner, keeperShiftOpen for every other flight',()=>{
- const run=kind=>{scene(pair({}));return copy(ev(`(()=>{const m=match,k=m.people.find(p=>p.keeper&&p.t===1),s=v160PitchScale(m),end={x:.5+5/s.x,y:v55Field.top+7/s.y};
+ const run=kind=>{scene(pair({'setplay.keeperShift':.4,'setplay.keeperShiftOpen':1}));return copy(ev(`(()=>{const m=match,k=m.people.find(p=>p.keeper&&p.t===1),s=v160PitchScale(m),end={x:.5+5/s.x,y:v55Field.top+7/s.y};
   k.tx=.5;k.ty=v55Field.top+.6/s.y;const flight={aerial:true,team:0,progress:.6,duration:1.2};m.flight=flight;v122AerialPlans.set(flight,{contenders:[],pursuers:[],end});
   m.attackFlow.setplay={secondBall:{team:0,at:0,x:end.x,y:end.y,kind:${JSON.stringify(kind)}}};
   const t=v183KeeperFlightTarget(m,k);m.flight=null;return {x:(t.x-.5)*s.x,stale:(()=>{m.flight=flight;m.attackFlow.setplay.secondBall={team:0,at:0,x:end.x+.01,y:end.y,kind:'corner'};const u=v183KeeperFlightTarget(m,k);m.flight=null;return (u.x-.5)*s.x;})()};})()`));};
  const corner=run('corner'),cross=run('cross');
  assert(cross.x>corner.x+.1,`the keeper steps further across on an open-play cross (${cross.x.toFixed(2)} vs corner ${corner.x.toFixed(2)} m)`);
- assert(Math.abs(corner.x/cross.x-DEFAULTS['setplay.keeperShift']/DEFAULTS['setplay.keeperShiftOpen'])<1e-9,'shares as configured (start target at the centre)');
+ assert(Math.abs(corner.x/cross.x-.4/1)<1e-9,'shares as configured (start target at the centre)');
  assert.equal(cross.stale,cross.x,'a corner record of another flight counts as open play');
 });
 
