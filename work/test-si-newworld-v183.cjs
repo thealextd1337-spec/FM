@@ -128,15 +128,16 @@ check('sponsor: the league goal of a world of release 132 stays 11 + squad (scal
  }
 });
 const LEAGUE_GAMES=14;
-check('sponsor: a new world raises the league and the cup goal to the new goal level for every club',()=>{
+const GOALS_183=[null,11,13,19,32,44];
+check('sponsor: a new world asks for the goal count of its squad class (14 matches); the cup goal stays',()=>{
  const old=career('siw-sp-new',{stamp:false}),fresh=career('siw-sp-new');
  for(const [index,club] of fresh.world.clubs.entries()){
   const goal=club.sponsors[2].goals.find(g=>g.kind==='goals'),oldGoal=old.world.clubs[index].sponsors[2].goals.find(g=>g.kind==='goals');
   assert.equal(club.id,old.world.clubs[index].id);
   if(club.leagueId){
-   assert(goal.target>oldGoal.target,`${club.id}: league goal ${goal.target} above ${oldGoal.target}`);assert.equal(goal.label,`Liga: mindestens ${goal.target} Tore`);
+   assert.equal(goal.target,GOALS_183[club.policy.startingSquad],club.id);if(club.policy.startingSquad>=4)assert(goal.target>oldGoal.target,`${club.id}: league goal ${goal.target} above ${oldGoal.target}`);assert.equal(goal.label,`Liga: mindestens ${goal.target} Tore`);
    assert.equal(goal.target,h.call('v66SponsorGoalTarget',fresh,club),'one formula');
-  }else{assert(goal.target>oldGoal.target&&goal.target>4,club.id);assert.equal(goal.label,`Nationaler Pokal: mindestens ${goal.target} reguläre Tore`);}
+  }else{assert.equal(goal.target,4,club.id);assert.equal(goal.target,oldGoal.target);assert.equal(goal.label,'Nationaler Pokal: mindestens 4 reguläre Tore');}
   assert.equal(goal.bonus,oldGoal.bonus,'bonus unchanged');
  }
  // monotone in the squad strength
@@ -158,9 +159,9 @@ check('sponsor: later seasons of both worlds follow the same rule (formula by st
 });
 check('sponsor: the schema-14 world (6 teams per league, 10 matches) scales the new goal level with its matches',()=>{
  const old=unstamp(h.call('v61CreateCareer','GER-2','siw-sp-v61')),stamped=h.call('v61CreateCareer','GER-2','siw-sp-v61');
- const club=old.world.clubs.find(x=>x.leagueId&&x.policy.startingSquad===3);assert(club);
+ const club=old.world.clubs.find(x=>x.leagueId&&x.policy.startingSquad===5);assert(club);
  const oldTarget=h.call('v66MakeSponsors',old,club)[2].goals.find(g=>g.kind==='goals').target,newTarget=h.call('v66MakeSponsors',stamped,stamped.world.clubs.find(x=>x.id===club.id))[2].goals.find(g=>g.kind==='goals').target;
- assert.equal(oldTarget,14);assert(newTarget>oldTarget);
+ assert.equal(oldTarget,16);assert.equal(newTarget,Math.round(GOALS_183[5]*10/14),'scaled to the 10 matches of a six-team league');
 });
 
 // ----- 5. save games: storage, export and import (browser-free localStorage path) -----
