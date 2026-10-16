@@ -1,16 +1,13 @@
 'use strict';
-// Torjäger round of player intelligence 183 (goal spread, score state, air
-// finishes of open play). Runs the actual dist modules in the native VM
-// harness. Checks: parameters registered with their defaults; perceived
-// finishing (SI-1 v183OptPerceived) pulls a team-mate's finishing toward the
-// team mean in pass values (mateFin) and the carrier's own shot (selfFin),
-// restores the ability function (also after an error) and draws nothing;
-// two receivers who differ only in finishing are valued alike at mateFin 0;
-// SI-2 offer values use the same rule (xgFin); the lead intensity of a
-// leading team (score, cap, clock) and its effect on shoot and risk weights
-// (SI-1) and on carrier/run pace (SI-2); the keeper shift during an opposing
-// high ball: keeperShift for corners, keeperShiftOpen otherwise (SI-7); no
-// new match state; full constructor matches on both pitch sizes.
+// Torjäger round of player intelligence 183 (score state, air finishes of
+// open play, finishing level). Runs the actual dist modules in the native VM
+// harness. Checks: parameters registered with their defaults; the score state
+// of a team (lead intensity from score, cap and clock; level intensity late in
+// a level game); its effect on shoot and risk weights (SI-1), on carrier/run
+// pace and on the zone leash of a leading team (SI-2), neutral without
+// parameters; the keeper shift during an opposing high ball: keeperShift for
+// corners, keeperShiftOpen otherwise (SI-7); no new match state; full
+// constructor matches on both pitch sizes.
 // Usage: node work/test-si-scorer-v183.cjs
 const assert=require('node:assert/strict');
 const {create}=require('./native183-scenes.cjs');
@@ -42,7 +39,7 @@ h.run(`globalThis.SC={
 };`,'scorer-scenes');
 const scene=spec=>h.call('SC.build',spec);
 const options=()=>copy(h.call('SC.options'));
-const DEFAULTS={'options.mateFin':.3,'options.selfFin':.5,'options.leadShoot':.5,'options.leadRisk':.5,'options.leadCap':3,'options.leadEarly':.5,'offball.xgFin':.3,'offball.leadPace':.25,'setplay.keeperShift':.4,'setplay.keeperShiftOpen':1,'finish.volleySpread':1.6};
+const DEFAULTS={'options.leadShoot':.5,'options.leadRisk':.5,'options.levelRisk':.6,'options.leadCap':2,'options.leadEarly':.5,'offball.leadPace':.25,'offball.levelPace':.25,'offball.leashLead':4,'offball.zoneLeash':15,'setplay.keeperShift':.4,'setplay.keeperShiftOpen':1,'finish.spreadBase':.024,'finish.volleySpread':2.4};
 const si=(flat={})=>{const params={};for(const [k,v]of Object.entries(flat)){const [pkg,name]=k.split('.');(params[pkg]??={})[name]=v;}return {packages:{options:true,finish:true,offball:true,setplay:true},params};};
 // Two receivers mirrored about the carrier's line, equal except finishing.
 const pair=(params,extra={})=>({seed:3,si:si(params),attack:[{id:'c',goal:30,lateral:0,line:'mid',role:'box-to-box',skills:{pas:13,fin:10,tec:11}},{id:'a',goal:15,lateral:-6,line:'att',role:'striker',skills:{fin:16,tec:11,spd:11}},{id:'b',goal:15,lateral:6,line:'att',role:'striker',skills:{fin:8,tec:11,spd:11}}],defend:[{id:'x',goal:13,lateral:-12,line:'def'},{id:'y',goal:13,lateral:12,line:'def'}],...extra});
@@ -61,6 +58,7 @@ check('lead intensity: 0 when level or behind; min(lead,leadCap)/leadCap times l
 
 // Explicit score-state parameters for the mechanics checks (independent of the defaults).
 const STATE={'options.leadCap':2,'options.leadEarly':.5,'options.leadShoot':.4,'options.leadRisk':.3,'options.levelRisk':.3,'offball.leadPace':.2,'offball.levelPace':.15,'offball.leashLead':4};
+const OFF={'options.leadShoot':0,'options.leadRisk':0,'options.levelRisk':0,'offball.leadPace':0,'offball.levelPace':0,'offball.leashLead':0};
 const near=(a,b,msg)=>assert(Math.abs(a-b)<1e-12,`${msg}: ${a} vs ${b}`);
 check('score state: shoot and risk weights fall with the lead intensity, the risk weight late in a level game; neutral without parameters',()=>{
  const w=(score,elapsed,params=STATE)=>{scene(pair(params,{score,elapsed}));ev('match.fullTimeEnd=80');return copy(ev(`(()=>{const P=v183OptParams(match),c=SC.by('c');return {state:v183OptStateWeights(match,c,P),base:v183OptWeights(c,P),s:v183ScoreState(match,0)};})()`));};
@@ -70,21 +68,21 @@ check('score state: shoot and risk weights fall with the lead intensity, the ris
  assert.deepEqual(behind.state,behind.base,'trailing team unchanged');
  near(level.state.shootWeight,level.base.shootWeight,'level: shoot unchanged');near(level.state.riskWeight,level.base.riskWeight*(1-.3*.5625),'level late: cautious');
  assert.deepEqual(early.state,early.base,'level at kick-off: no effect');
- const off=w([2,0],80,{});assert.deepEqual(off.state,off.base,'neutral without parameters');
+ const off=w([2,0],80,OFF);assert.deepEqual(off.state,off.base,'neutral without parameters');
  const gain=score=>{scene({seed:5,si:si(STATE),score,elapsed:20,attack:[{id:'c',goal:16,lateral:1,line:'att',role:'striker',skills:{fin:14}}],defend:[{id:'x',goal:8,lateral:7,line:'def'}]});ev('match.fullTimeEnd=80');return {g:options().find(o=>o.kind==='shot').gain,s:copy(ev('v183ScoreState(match,0)'))};};
  const g2=gain([2,0]),g0=gain([0,0]);assert(g2.s.lead>0);near(g2.g,g0.g*(1-.4*g2.s.lead),'shot gain of the leader');
 });
 
 check('score state: SI-2 carrier and run pace by leadPace and levelPace; the trailing team keeps its pace',()=>{
  const pace=(score,elapsed=80,params=STATE)=>{scene(pair(params,{score,elapsed}));ev('match.fullTimeEnd=80');return copy(ev(`(()=>{const c=SC.by('c'),x=SC.by('x');return {carrier:v183PaceFactor(match,c,'carrier'),rival:v183PaceFactor(match,x,'carrier')};})()`));};
- const lead=pace([2,0]),level=pace([1,1]),base=pace([0,0],80,{}),start=pace([0,0],0);
+ const lead=pace([2,0]),level=pace([1,1]),base=pace([0,0],80,OFF),start=pace([0,0],0);
  near(lead.carrier,base.carrier*(1-.2),'leading carrier slower');assert.equal(lead.rival,base.rival,'trailing carrier unchanged');
  near(level.carrier,base.carrier*(1-.15),'level at full time slower');assert.equal(start.carrier,base.carrier,'level at kick-off unchanged');
 });
 
 check('score state: SI-2 zone leash of a leading team shrinks by leashLead x lead intensity',()=>{
  const shift=(score,params)=>{scene(pair(params,{score,elapsed:80}));ev('match.fullTimeEnd=80');return copy(ev('[v183OffballLeashShift(match,0),v183OffballLeashShift(match,1)]'));};
- assert.deepEqual(shift([2,0],STATE),[-4,0]);assert.deepEqual(shift([1,1],STATE),[0,0]);assert.deepEqual(shift([2,0],{}),[0,0]);
+ assert.deepEqual(shift([2,0],STATE),[-4,0]);assert.deepEqual(shift([1,1],STATE),[0,0]);assert.deepEqual(shift([2,0],OFF),[0,0]);
  const val=score=>{scene(pair(STATE,{score,elapsed:80}));ev('match.fullTimeEnd=80');return ev(`(()=>{const m=match,q=SC.by('c'),z=v162Zone(m,q),s=v150Scale(),pt={x:z.x,y:z.y+(q.t===0?-1:1)*20/s.y},ctx={owner:SC.by('a'),rivals:m.people.filter(r=>r.t!==q.t),s,dir:q.t===0?-1:1,occupied:[],zone:z,profile:v183OffballProfile(m,q),limit:null,lastCats:{},leashShift:v183OffballLeashShift(m,q.t),P:k=>v183Param(m,'offball.'+k)};return v183OffballValue(m,q,{x:pt.x,y:pt.y,cat:'depth'},ctx).value;})()`);};
  assert(val([2,0])<val([0,0]),'a far run costs the leader more');
 });

@@ -85,7 +85,7 @@ v183RegisterDefaults('options',{
  // level intensity (elapsed/full time)^2, risk weight times 1-levelRisk*level.
  // SI-2 scales carrier and run pace (offball.leadPace, levelPace) and the zone
  // leash (offball.leashLead).
- leadShoot:0,leadRisk:0,levelRisk:0,leadCap:3,leadEarly:.5
+ leadShoot:.5,leadRisk:.5,levelRisk:.6,leadCap:2,leadEarly:.5
 });
 const V183_OPT_KEYS=Object.freeze(Object.keys(v183RegisterDefaults('options',{})));
 // Neutral values of the SI-F personality formula (role 1, mental values 10).

@@ -103,7 +103,7 @@ v183RegisterDefaults('setplay',{
  // Torjäger round: keeperShift holds for corners (crowded six-yard box); every
  // other high ball of the opponents (open-play and free-kick crosses, crosses
  // into space, high balls) uses keeperShiftOpen.
- keeperShiftOpen:.4
+ keeperShiftOpen:1
 });
 
 const v183SetplayOn=m=>typeof v183Active==='function'&&v183Active(m,'setplay');

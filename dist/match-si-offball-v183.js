@@ -60,12 +60,12 @@ v183RegisterDefaults('offball',{
  // box profile and air) run to the box points (bonus crossRunBonus); a plain
  // follow run of theirs is released, a one-two is kept.
  crossRunRange:36,crossRunWide:7,crossRunDeep:30,crossRunners:2,crossRunBonus:6,
- zoneLeash:12,zoneLeashAtt:16,wZone:.25,
+ zoneLeash:15,zoneLeashAtt:16,wZone:.25, // Torjaeger round: zoneLeash 12 -> 15 (midfield joins the attack)
  // Torjaeger round: carrier and run pace of a leading team times
  // 1-leadPace*lead, while level times 1-levelPace*level (intensities of SI-1
  // v183ScoreState); the zone leash of a leading team's offers shrinks by
  // leashLead m x lead intensity (hold the shape).
- leadPace:0,levelPace:0,leashLead:0,
+ leadPace:.25,levelPace:.25,leashLead:4,
  wSpace:1,spaceCap:10,wLane:1.5,laneClearance:1.25,wProgress:.12,wRun:.08,wCrowd:1.5,crowdGap:5,crowdGapBox:3,wXg:3,xgRange:24,ownerNear:5,wOwnerNear:.6,ownerFar:26,wOwnerFar:.4,wOffside:.15,holdCost:.8,holdAgain:1,
  profiles:V183_OFFBALL_PROFILES
 });
