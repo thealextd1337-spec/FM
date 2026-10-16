@@ -61,12 +61,12 @@ v183RegisterDefaults('offball',{
  // follow run of theirs is released, a one-two is kept.
  crossRunRange:36,crossRunWide:7,crossRunDeep:30,crossRunners:2,crossRunBonus:6,
  zoneLeash:12,zoneLeashAtt:16,wZone:.25,
- // Torjaeger round: xgFin = share of the runner's finishing deviation from his
- // team's mean in the shot value of an offer (1 = own finishing, as SI-1
- // mateFin); carrier and run pace of a leading team times 1-leadPace*lead, of
- // a trailing team times 1+trailPace*trail, while level times
- // 1-levelPace*level (intensities of SI-1 v183ScoreState).
- xgFin:1,leadPace:0,trailPace:0,levelPace:0,
+ // Torjaeger round: carrier and run pace of a leading team times
+ // 1-leadPace*lead, of a trailing team times 1+trailPace*trail, while level
+ // times 1-levelPace*level (intensities of SI-1 v183ScoreState). The zone
+ // leash of every offer grows by leashTrail m x trail intensity (numbers
+ // forward) and shrinks by leashLead m x lead intensity (hold the shape).
+ leadPace:0,trailPace:0,levelPace:0,leashLead:0,leashTrail:0,
  wSpace:1,spaceCap:10,wLane:1.5,laneClearance:1.25,wProgress:.12,wRun:.08,wCrowd:1.5,crowdGap:5,crowdGapBox:3,wXg:3,xgRange:24,ownerNear:5,wOwnerNear:.6,ownerFar:26,wOwnerFar:.4,wOffside:.15,holdCost:.8,holdAgain:1,
  profiles:V183_OFFBALL_PROFILES
 });
@@ -168,15 +168,13 @@ function v183OffballCandidates(m,p,ctx){
  push('hold',{x:p.x,y:p.y});
  return out;
 }
-// Shot value of runner p at point with perceived finishing (SI-1 v183OptPerceived).
-function v183OffballXg(m,p,point,share){return share===1||typeof v183OptPerceived!=='function'?v183ShotEstimate(m,p,point).xg:v183OptPerceived(m,p,share,()=>v183ShotEstimate(m,p,point).xg);}
 function v183OffballValue(m,p,c,ctx){
  const {owner,rivals,s,dir,occupied,zone,profile,limit,P}=ctx,point={x:c.x,y:c.y};
  let clamped=0;
  if(limit!=null){const over=(p.t===0?limit-point.y:point.y-limit)*s.y;if(over>0){clamped=over;point.y=limit;}}
  const space=Math.min(P('spaceCap'),...rivals.map(r=>v122Metres(r,point))),lane=v157Lane(m,owner,point,rivals,P('laneClearance')),progress=(point.y-p.y)*dir*s.y,run=v122Metres(p,point);
- const xg=v115GoalDistance({...point,t:p.t})<P('xgRange')?v183OffballXg(m,p,point,P('xgFin')):0;
- const crowdGap=c.cat==='box'?P('crowdGapBox'):P('crowdGap'),crowd=occupied.reduce((n,o)=>n+Math.max(0,crowdGap-v122Metres(o,point)),0),zoneGap=Math.max(0,v122Metres(zone,point)-((p.assignedLine||p.line)==='att'?P('zoneLeashAtt'):P('zoneLeash')));
+ const xg=v115GoalDistance({...point,t:p.t})<P('xgRange')?v183ShotEstimate(m,p,point).xg:0;
+ const crowdGap=c.cat==='box'?P('crowdGapBox'):P('crowdGap'),crowd=occupied.reduce((n,o)=>n+Math.max(0,crowdGap-v122Metres(o,point)),0),zoneGap=Math.max(0,v122Metres(zone,point)-Math.max(0,((p.assignedLine||p.line)==='att'?P('zoneLeashAtt'):P('zoneLeash'))+(ctx.leashShift||0)));
  const od=v122Metres(owner,point),ownerCost=(od<P('ownerNear')?(P('ownerNear')-od)*P('wOwnerNear'):0)+(od>P('ownerFar')?(od-P('ownerFar'))*P('wOwnerFar'):0);
  const weight=profile[c.cat]??1,gain=P('wSpace')*space+(lane?P('wLane'):0)+P('wProgress')*Math.max(0,progress)+P('wXg')*xg;
  const again=c.cat==='hold'?P('holdCost')+(ctx.lastCats?.[p.pid]==='hold'?P('holdAgain'):0):0;
@@ -219,10 +217,10 @@ function v183OffballOffers(m,owner,allies,rivals){
  const candidates=allies.filter(p=>p.role>=0&&!flow.intents[p.pid]&&!v115RestartLocked(m,p)&&!p.interceptTarget&&((p.assignedLine||p.line)!=='def'||p.role>0));
  const counterRunners=counter?[...candidates].filter(p=>!(v159Cover(p)||(p.assignedLine||p.line)==='def')).sort((a,b)=>ability(b,'spd')-ability(a,'spd')||a.n-b.n).slice(0,P('counterRunners')):[];
  candidates.sort((a,b)=>(counterRunners.includes(b)?8:0)+(crossRunners.includes(b)?6:0)+(hasInstruction(b,'deep')?4:0)+((b.assignedLine||b.line)==='att'?2:0)+b.role*.4-((counterRunners.includes(a)?8:0)+(crossRunners.includes(a)?6:0)+(hasInstruction(a,'deep')?4:0)+((a.assignedLine||a.line)==='att'?2:0)+a.role*.4)||a.n-b.n);
- let ahead=0;const boxTaken=[];
+ let ahead=0;const boxTaken=[],leashShift=v183OffballLeashShift(m,owner.t);
  for(const p of candidates){
   const cover=v159Cover(p)||(p.assignedLine||p.line)==='def',recovering=recovery[p.pid]>now,profile=v183OffballProfile(m,p),zone=v162Zone(m,p),limit=plans?.get(p)?.limit;
-  const ctx={owner,rivals,s,dir,goal,ballSide,ballRange,wide,counter:counterRunners.includes(p),crossRunner:crossRunners.includes(p),recovering,cover,occupied,zone,profile,limit,lastCats,P};
+  const ctx={owner,rivals,s,dir,goal,ballSide,ballRange,wide,counter:counterRunners.includes(p),crossRunner:crossRunners.includes(p),recovering,cover,occupied,zone,profile,limit,lastCats,leashShift,P};
   const options=v183OffballCandidates(m,p,ctx).filter(c=>!(c.cat==='depth'&&ahead>=P('depthRunners'))&&!(c.cat==='box'&&boxTaken.some(b=>v122Metres(b,c)<P('boxTaken')))).map(c=>v183OffballValue(m,p,c,ctx)).sort((a,b)=>b.value-a.value||V183_OFFBALL_CATEGORIES.indexOf(a.cat)-V183_OFFBALL_CATEGORIES.indexOf(b.cat));
   const best=options[0];if(!best)continue;
   const type=cover||p.tacticalRole==='target-player'||['support','hold','edge'].includes(best.cat)?'support':'depth';
@@ -347,6 +345,12 @@ function v183OffballLeadPace(m,p){
  const a=v183Param(m,'offball.leadPace'),b=v183Param(m,'offball.trailPace'),c=v183Param(m,'offball.levelPace');
  if(!(a>0||b>0||c>0)||typeof v183ScoreState!=='function')return 1;
  const s=v183ScoreState(m,p.t);return clamp((1-a*s.lead)*(1+b*s.trail)*(1-c*s.level),.5,1.5);
+}
+// Score state (Torjaeger round): metres added to the zone leash of team t's offers.
+function v183OffballLeashShift(m,t){
+ const a=v183Param(m,'offball.leashLead'),b=v183Param(m,'offball.leashTrail');
+ if(!(a>0||b>0)||typeof v183ScoreState!=='function')return 0;
+ const s=v183ScoreState(m,t);return b*s.trail-a*s.lead;
 }
 const v183OffballBasePace=v183PaceFactor;
 v183PaceFactor=function(m,p,purpose,detail={}){

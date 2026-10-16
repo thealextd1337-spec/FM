@@ -78,15 +78,6 @@ v183RegisterDefaults('options',{
  // (the carrier drives on, unlike a turn on the spot); crossSpaceGain scales the
  // option value.
  crossSpace:3,crossSpots:[[4,6],[0,11],[-4,7]],crossRunnerRange:28,crossRunnerWide:14,crossRunnerBack:2,crossLead:2,crossLeadSlack:3,crossLeadTau:3,crossKickMin:.2,crossSpaceGain:1,
- // Goal spread (Torjäger round): share of a player's finishing deviation from
- // the mean finishing of his team's outfield players that enters a shot value
- // of a team-mate's option (mateFin: pass, space pass, cross to him) and of
- // his own shot (selfFin); 1 = his own finishing, 0 = the team mean. The
- // shooter window keeps his own finishing.
- mateFin:1,selfFin:1,
- // roleShoot: exponent on the role factor of the shoot weight (SI-F role
- // table: poacher 1.25 ... defenders .7); 1 = table, 0 = no role difference.
- roleShoot:1,
  // Score state (Torjäger round). A leading team manages its lead, a trailing
  // team pushes: intensity min(|goal difference|,leadCap)/leadCap, times
  // leadEarly at kick-off rising linearly to 1 at full time. It scales the
@@ -121,19 +112,8 @@ function v183LeadIntensity(m,t){return v183ScoreState(m,t).lead;}
 // Personality weights with the score state of p's team (shoot and risk).
 function v183OptStateWeights(m,p,P){
  const w=v183OptWeights(p,P),state=P.leadShoot>0||P.leadRisk>0||P.trailShoot>0||P.trailRisk>0||P.levelRisk>0?v183ScoreState(m,p.t):null;
- if(P.roleShoot!==1){const role=v183RoleWeight(p,'shoot');w.shootWeight=clamp(v183Personality(p).shootWeight*Math.pow(role,P.roleShoot-1)/V183_OPT_NEUTRAL.shootWeight,P.weightMin,P.weightMax);}
  if(state){w.shootWeight*=Math.max(0,1-P.leadShoot*state.lead)*(1+P.trailShoot*state.trail);w.riskWeight*=Math.max(.05,(1-P.leadRisk*state.lead)*(1-P.levelRisk*state.level))*(1+P.trailRisk*state.trail);}
  return w;
-}
-// Perceived finishing: run() with ability(q,'fin') pulled toward the mean of
-// q's team outfield players on the pitch (mean+share*(fin-mean)). share 1
-// runs unchanged. Restores the previous ability function (also on errors).
-function v183OptPerceived(m,q,share,run){
- if(share===1||!q)return run();
- const base=ability,mates=m.people.filter(x=>x.t===q.t&&!x.keeper);if(!mates.length)return run();
- const mean=mates.reduce((a,x)=>a+base(x,'fin'),0)/mates.length,value=mean+share*(base(q,'fin')-mean);
- ability=function(p,key){return p===q&&key==='fin'?value:base.apply(this,arguments);};
- try{return run();}finally{ability=base;}
 }
 // Real seconds into the v152Seconds deadlines read by older code (carry,
 // turns), without assuming how that clock relates to the match rate. Only
@@ -166,10 +146,6 @@ function v183OptInside(point,s,margin){return point.x>=v55Field.left+margin/s.x&
 function v183OptShot(m,p,P,from=p){
  const range=v183OptGoalDistance(from,p.t),window=P.windowBase+P.windowFin*ability(p,'fin');
  if(range>window)return {xg:0,range,window,stub:null};
- // The carrier values his own shot with selfFin, a team-mate's with mateFin.
- return v183OptPerceived(m,p,p===m.owner?P.selfFin:P.mateFin,()=>v183OptShotValue(m,p,P,from,range,window));
-}
-function v183OptShotValue(m,p,P,from,range,window){
  const est=v183ShotEstimate(m,p,from);
  if(est.stub!==true)return {xg:Math.max(0,est.xg||0),range,window,stub:false};
  const goal=v183OptGoal(p.t),f=clamp(P.stubRange/window,.5,1.5),virtual={x:goal.x+(from.x-goal.x)*f,y:goal.y+(from.y-goal.y)*f};
@@ -327,7 +303,7 @@ function v183OptSpaceCrosses(m,p,allies,rivals,P,ctx,offside,delayed){
    // Wait the runner needs before the kick so the spot comes within his cover (capped by crossLead).
    let lead=0;
    if(maxLead>0&&planning){const flight=Math.max(flightMin,v122Metres(p,spot)/speed),pace=v183AirPace(m,q),needed=v122Metres(q,spot)+P.crossLeadSlack-v183RunCover(m,q,spot,flight,reaction)-v183AirReach(m,q,pace);if(needed>0)lead=Math.min(maxLead,needed/pace);}
-   const c=v183OptPerceived(m,q,P.mateFin,()=>v183CrossEstimate(m,p,spot,{runner:q,space:true,lead,offside}));if(!c.eligible||!(c.arrival>0))continue;
+   const c=v183CrossEstimate(m,p,spot,{runner:q,space:true,lead,offside});if(!c.eligible||!(c.arrival>0))continue;
    // The estimate may land short of the spot, where the runner can be at the landing (adapted).
    const point=c.landing&&Number.isFinite(c.landing.x)?{x:c.landing.x,y:c.landing.y}:spot;
    const raw=Math.max(0,c.headerXg||0),header=c.stub===true?raw*P.stubScale*P.crossConv:raw,seconds=Number.isFinite(c.flight)?c.flight:1;
@@ -410,7 +386,7 @@ function v183OptOptions(m,p,allies,rivals,P){
  if(range<P.crossMax&&Math.abs(p.x-.5)*s.x>P.crossWide){
   for(const q of allies){
    if(q.slideActive||offside.has(q)||v183OptGoalDistance(q,p.t)>=16)continue;
-   const c=v183OptPerceived(m,q,P.mateFin,()=>v183CrossEstimate(m,p,q,{offside}));if(!c.eligible||!(c.arrival>0))continue;
+   const c=v183CrossEstimate(m,p,q,{offside});if(!c.eligible||!(c.arrival>0))continue;
    // A cross is a pass in the air: the receiver holds the ball in the box
    // (holder value after a 1 s flight) or heads at goal. The SI-F cross stub
    // (stub:true) gives the header on the quality scale of v157ShotQuality:
