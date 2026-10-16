@@ -53,7 +53,9 @@ rep(\`crossProbe:window.__crossProbe?{...window.__crossProbe}:null,\`,
     const tr=typeof v183TraceEntries==='function'?v183TraceEntries(m):[],opts=tr.filter(e=>e.type==='options'),chosen={},crossTop=opts.filter(e=>(e.top||[]).some(x=>x.kind==='cross'));for(const e of opts)chosen[e.kind]=(chosen[e.kind]||0)+1;
     const finish=tr.filter(e=>e.type==='finish.shot').map(e=>[e.kind,e.range,e.xg,e.on,e.goal?1:0,e.onTarget?1:0,e.blocked?1:0,e.shooter]);
     return{crosses,players,replays:R.sik.replays,replaySeconds:+R.sik.replays.reduce((a,b)=>a+b,0).toFixed(2),ce:R.sik.ce,zone:R.sik.zone,trace:{entries:tr.length,first:tr[0]?.seq??null,options:opts.length,chosen,crossTop:crossTop.length,crossGap:crossTop.map(e=>{const c=e.top.find(x=>x.kind==='cross');return +(e.top[0].u-c.u).toFixed(4);}),finish},
-     finishTrace:tr.filter(e=>e.type==='finish.shot'||e.type==='finish.parry')};})():null,\`);
+     finishTrace:tr.filter(e=>e.type==='finish.shot'||e.type==='finish.parry'),
+     // B22: cross, aerial duel and signal entries of the transient trace (read-only), for the cross-into-space evaluation.
+     air:tr.filter(e=>['cross','cross-block','cross-run','air','air-finish'].includes(e.kind)).map(({seq,...e})=>e)};})():null,\`);
 `;
 outer=outer.replace(marker,patches.split('\\`').join('`')+'\n'+marker);
 // The offball wrapper compiles measure-si183.cjs with __dirname = work/; keep its module identity.

@@ -54,6 +54,12 @@ v183RegisterDefaults('offball',{
  counterSeconds:3,counterLead:14,counterRunners:2,counterBonus:2,
  followers:2,followDepth:7,followSide:3.5,followRange:24,followReaction:.35,followReactionAnt:.015,followSeconds:2.5,
  reboundFinishRange:18,
+ // Cross runners (B22): with the ball within crossRunRange of goal and wide
+ // (crossRunWide m from the centre) or within crossRunDeep, a new offer cycle
+ // starts at once and up to crossRunners team-mates without a cover duty (best
+ // box profile and air) run to the box points (bonus crossRunBonus); a plain
+ // follow run of theirs is released, a one-two is kept.
+ crossRunRange:36,crossRunWide:7,crossRunDeep:30,crossRunners:2,crossRunBonus:6,
  zoneLeash:12,zoneLeashAtt:16,wZone:.25,
  wSpace:1,spaceCap:10,wLane:1.5,laneClearance:1.25,wProgress:.12,wRun:.08,wCrowd:1.5,crowdGap:5,crowdGapBox:3,wXg:3,xgRange:24,ownerNear:5,wOwnerNear:.6,ownerFar:26,wOwnerFar:.4,wOffside:.15,holdCost:.8,holdAgain:1,
  profiles:V183_OFFBALL_PROFILES
@@ -78,7 +84,7 @@ function v183OffballPossession(m,owner,now){
  const state=v183OffballState(m),P=key=>v183Param(m,'offball.'+key);
  if(state.team!==owner.t){
   const previous=state.team,live=previous===1-owner.t&&Number.isFinite(state.lastAt)&&now-state.lastAt<=P('turnoverGap');
-  state.team=owner.t;state.since=now;
+  state.team=owner.t;state.since=now;delete m.attackFlow.crossRun;
   const s=v150Scale(m),ownGoal=owner.t===0?v55Field.bottom:v55Field.top,depth=Math.abs(owner.y-ownGoal)*s.y;
   if(live&&depth<v160PitchLength(m)*.5){state.counterTeam=owner.t;state.counterUntil=now+P('counterSeconds');v183LedgerSource(m,'counter');v183OffballPattern(m,'counter',{team:owner.t,owner});}
  }
@@ -166,7 +172,7 @@ function v183OffballValue(m,p,c,ctx){
  const od=v122Metres(owner,point),ownerCost=(od<P('ownerNear')?(P('ownerNear')-od)*P('wOwnerNear'):0)+(od>P('ownerFar')?(od-P('ownerFar'))*P('wOwnerFar'):0);
  const weight=profile[c.cat]??1,gain=P('wSpace')*space+(lane?P('wLane'):0)+P('wProgress')*Math.max(0,progress)+P('wXg')*xg;
  const again=c.cat==='hold'?P('holdCost')+(ctx.lastCats?.[p.pid]==='hold'?P('holdAgain'):0):0;
- const bonus=(c.pattern==='counter'?P('counterBonus'):0)+(c.cat==='box'&&ctx.wide?P('boxWideBonus'):0);
+ const bonus=(c.pattern==='counter'?P('counterBonus'):0)+(c.cat==='box'&&ctx.wide?P('boxWideBonus'):0)+(c.cat==='box'&&ctx.crossRunner?P('crossRunBonus'):0);
  // Cover players (defensive line, ball-winner, ball-playing defender) never leave their formation zone by more than the leash.
  const leash=ctx.cover&&zoneGap>0&&c.cat!=='hold'?1e3:0;
  const value=weight*gain+P('wProgress')*Math.min(0,progress)-P('wRun')*run-P('wCrowd')*crowd-P('wZone')*zoneGap-ownerCost-P('wOffside')*clamped-again-leash+bonus;
@@ -174,8 +180,11 @@ function v183OffballValue(m,p,c,ctx){
 }
 function v183OffballOffers(m,owner,allies,rivals){
  const flow=m.attackFlow,now=v183Seconds(m),s=v150Scale(m),dir=owner.t===0?-1:1,P=key=>v183Param(m,'offball.'+key);
- const counter=v183OffballPossession(m,owner,now);
- const valid=flow.offerOwner===owner.pid&&flow.offerUntil>now;
+ const counter=v183OffballPossession(m,owner,now),state0=v183OffballState(m);
+ const crossZone=v115GoalDistance(owner)<P('crossRunRange')&&(Math.abs(owner.x-.5)*s.x>P('crossRunWide')||v115GoalDistance(owner)<P('crossRunDeep'));
+ // Entering the cross zone starts a new cycle at once (box runners below).
+ const entered=crossZone&&state0.crossZoneOwner!==owner.pid;if(entered)state0.crossZoneOwner=owner.pid;else if(!crossZone&&state0.crossZoneOwner===owner.pid)state0.crossZoneOwner=null;
+ const valid=flow.offerOwner===owner.pid&&flow.offerUntil>now&&!entered;
  if(valid){
   const offers=Object.entries(flow.intents).filter(([,i])=>i.type!=='follow');
   const crowded=offers.some(([pid,i])=>now>(i.at||0)+P('crowdDelay')&&rivals.some(r=>v122Metres(r,i)<P('crowdRadius'))&&v122Metres(m.people.find(p=>p.pid===pid)||i,i)>1.5);
@@ -189,17 +198,20 @@ function v183OffballOffers(m,owner,allies,rivals){
  for(const id of Object.keys(recovery))if(recovery[id]<=now||!m.people.some(p=>p.pid===id))delete recovery[id];
  for(const id of flow.paceOffers||[])if(id!==owner.pid&&flow.intents[id]?.type==='depth')recovery[id]=now+P('recoverySeconds');
  flow.offerOwner=owner.pid;flow.offerUntil=now+P('offerCycle');
- flow.intents=Object.fromEntries(Object.entries(flow.intents).filter(([pid,i])=>(i.type==='follow'||i.pattern==='follow')&&i.until>now&&m.people.some(p=>p.pid===pid&&!p.slideActive)));
+ flow.intents=Object.fromEntries(Object.entries(flow.intents).filter(([pid,i])=>(i.type==='follow'||i.pattern==='follow'||i.pattern==='cross-run')&&i.until>now&&m.people.some(p=>p.pid===pid&&!p.slideActive)));
  v183OffballOneTwo(m,owner,rivals,now);
  const goal={x:.5,y:owner.t===0?v55Field.top:v55Field.bottom},ballRange=v115GoalDistance(owner),wide=Math.abs(owner.x-.5)*s.x>P('wideBall'),ballSide=owner.x<.5?-1:1;
  const plans=v121PositioningPlans.get(m),occupied=Object.values(flow.intents).map(i=>({x:i.x,y:i.y})),state=v183OffballState(m),lastCats=state.lastCats||{};
+ // Cross runners: released from a plain follow run, chosen by box profile and air.
+ const crossRunners=crossZone?allies.filter(p=>p.role>=0&&!v115RestartLocked(m,p)&&!p.interceptTarget&&!(v159Cover(p)||(p.assignedLine||p.line)==='def')&&(!flow.intents[p.pid]||flow.intents[p.pid].type==='follow'&&flow.intents[p.pid].pattern!=='one-two'&&flow.intents[p.pid].pattern!=='cross-run')).sort((a,b)=>v183OffballProfile(m,b).box*(1+ability(b,'air')*.05)-v115GoalDistance(b)*.02-(v183OffballProfile(m,a).box*(1+ability(a,'air')*.05)-v115GoalDistance(a)*.02)||a.n-b.n).slice(0,P('crossRunners')):[];
+ for(const p of crossRunners)delete flow.intents[p.pid];
  const candidates=allies.filter(p=>p.role>=0&&!flow.intents[p.pid]&&!v115RestartLocked(m,p)&&!p.interceptTarget&&((p.assignedLine||p.line)!=='def'||p.role>0));
  const counterRunners=counter?[...candidates].filter(p=>!(v159Cover(p)||(p.assignedLine||p.line)==='def')).sort((a,b)=>ability(b,'spd')-ability(a,'spd')||a.n-b.n).slice(0,P('counterRunners')):[];
- candidates.sort((a,b)=>(counterRunners.includes(b)?8:0)+(hasInstruction(b,'deep')?4:0)+((b.assignedLine||b.line)==='att'?2:0)+b.role*.4-((counterRunners.includes(a)?8:0)+(hasInstruction(a,'deep')?4:0)+((a.assignedLine||a.line)==='att'?2:0)+a.role*.4)||a.n-b.n);
+ candidates.sort((a,b)=>(counterRunners.includes(b)?8:0)+(crossRunners.includes(b)?6:0)+(hasInstruction(b,'deep')?4:0)+((b.assignedLine||b.line)==='att'?2:0)+b.role*.4-((counterRunners.includes(a)?8:0)+(crossRunners.includes(a)?6:0)+(hasInstruction(a,'deep')?4:0)+((a.assignedLine||a.line)==='att'?2:0)+a.role*.4)||a.n-b.n);
  let ahead=0;const boxTaken=[];
  for(const p of candidates){
   const cover=v159Cover(p)||(p.assignedLine||p.line)==='def',recovering=recovery[p.pid]>now,profile=v183OffballProfile(m,p),zone=v162Zone(m,p),limit=plans?.get(p)?.limit;
-  const ctx={owner,rivals,s,dir,goal,ballSide,ballRange,wide,counter:counterRunners.includes(p),recovering,cover,occupied,zone,profile,limit,lastCats,P};
+  const ctx={owner,rivals,s,dir,goal,ballSide,ballRange,wide,counter:counterRunners.includes(p),crossRunner:crossRunners.includes(p),recovering,cover,occupied,zone,profile,limit,lastCats,P};
   const options=v183OffballCandidates(m,p,ctx).filter(c=>!(c.cat==='depth'&&ahead>=P('depthRunners'))&&!(c.cat==='box'&&boxTaken.some(b=>v122Metres(b,c)<P('boxTaken')))).map(c=>v183OffballValue(m,p,c,ctx)).sort((a,b)=>b.value-a.value||V183_OFFBALL_CATEGORIES.indexOf(a.cat)-V183_OFFBALL_CATEGORIES.indexOf(b.cat));
   const best=options[0];if(!best)continue;
   const type=cover||p.tacticalRole==='target-player'||['support','hold','edge'].includes(best.cat)?'support':'depth';
@@ -207,7 +219,7 @@ function v183OffballOffers(m,owner,allies,rivals){
   occupied.push({x:best.x,y:best.y});if(best.cat==='depth')ahead++;if(best.cat==='box')boxTaken.push(best.raw);
   if(best.pattern==='overlap')v183OffballPattern(m,'overlap',{runner:p,owner});
  }
- if(boxTaken.length)v183OffballPattern(m,'box',{owner,count:boxTaken.length,wide});
+ if(boxTaken.length)v183OffballPattern(m,'box',{owner,count:boxTaken.length,wide,crossRunners:crossRunners.map(p=>p.pid)});
  state.lastCats=Object.fromEntries(Object.entries(flow.intents).map(([pid,i])=>[pid,i.cat||i.type]));
  flow.paceOffers=Object.entries(flow.intents).filter(([,i])=>i.type!=='follow').map(([id])=>id);
  v183Trace(m,{kind:'offers',owner,count:Object.keys(flow.intents).length,cats:Object.values(flow.intents).map(i=>i.cat||i.type),counter});
@@ -249,12 +261,34 @@ function v183OffballFollow(m,p){
  flow.intents[p.pid]={x:point.x,y:point.y,type:'depth',team:p.t,at:now,until:now+P('followSeconds'),cat:'follow',pattern:'follow'};
  p.tx=point.x;p.ty=point.y;return true;
 }
+// ----- Cross into space (B22): the signalled runner -----
+// SI-1 writes attackFlow.crossRun {crosserId,runnerId,x,y,at,kickAt,until,
+// kicked} when the carrier commits to a cross into space (SI-7 completes it at
+// the kick and removes it at the landing). From the signal on, the runner's
+// intent points at the space spot (pattern 'cross-run', run pace) every tick
+// while the crosser still holds the ball or the cross is in the air. Until the
+// kick the onside clamp below holds him at the line; during the flight it is
+// released, because the offside snapshot of the kick already governs him and
+// the aerial plan sends him to the spot. Plain data only, no random draw.
+function v183OffballCrossRun(m,p){
+ const flow=m.attackFlow,run=flow.crossRun;if(!run||run.runnerId!==p.pid||p.keeper||p.slideActive||p.role<0)return;
+ const now=v183Seconds(m);if(now>run.until)return;
+ const crosser=m.people.find(q=>q.pid===run.crosserId);
+ if(!crosser||crosser.t!==p.t||!(run.kicked?m.flight&&m.flight.team===p.t:m.owner===crosser))return;
+ const intent=flow.intents[p.pid];
+ if(intent?.pattern==='cross-run'&&intent.x===run.x&&intent.y===run.y&&intent.until>=run.until)return;
+ const type=p.tacticalRole==='target-player'?'support':'depth';
+ flow.intents[p.pid]={x:run.x,y:run.y,type,team:p.t,at:now,until:run.until,cat:'box',pattern:'cross-run'};
+ if(!run.signalled){run.signalled=true;v183OffballPattern(m,'cross-run',{crosser,runner:p,lead:+Math.max(0,run.kickAt-run.at).toFixed(2),kicked:Boolean(run.kicked)});}
+}
 // Offers stay onside: a stored offer point (hold, box, run) is pulled back to
 // the predicted offside limit every tick, also while the ball is in flight to
 // a team-mate, so an idle runner never waits in an offside position. Follow-up
-// runs after a shot are exempt (no offside after a parry).
+// runs after a shot are exempt (no offside after a parry), and the signalled
+// runner of a cross into space while that cross is in the air (B22).
 function v183OffballKeepOnside(m,p){
  const intent=m.attackFlow.intents[p.pid];if(!intent||intent.pattern==='follow'||intent.team!==p.t)return;
+ if(intent.pattern==='cross-run'&&m.flight&&m.attackFlow.crossRun?.kicked&&m.attackFlow.crossRun.runnerId===p.pid)return;
  const limit=v121PositioningPlans.get(m)?.get(p)?.limit;if(limit==null)return;
  if(p.t===0?intent.y<limit:intent.y>limit)m.attackFlow.intents[p.pid]={...intent,y:limit};
 }
@@ -264,7 +298,7 @@ function v183OffballKeepOnside(m,p){
 const v183OffballBaseRunner=v121RunnerTarget;
 v121RunnerTarget=function(current,person){
  const value=v183OffballBaseRunner.call(this,current,person);
- if(v183OffballOn(current)&&v162Active(current)){v183OffballOneTwoKeep(current,person);v183OffballKeepOnside(current,person);v183OffballFollow(current,person);}
+ if(v183OffballOn(current)&&v162Active(current)){v183OffballOneTwoKeep(current,person);v183OffballCrossRun(current,person);v183OffballKeepOnside(current,person);v183OffballFollow(current,person);}
  return value;
 };
 

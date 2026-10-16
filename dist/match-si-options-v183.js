@@ -63,7 +63,21 @@ v183RegisterDefaults('options',{
  scoreRisk:.15,focus:.1,direct:.25,
  close:.5,                 // share of an opponent's run that closes the space until the ball is held
  xgFalloff:9,              // carry endpoints: shot value falls e-fold every 9 m (from one estimate)
- shootInstruction:1.25,wingInstruction:1.25 // player instructions "Abschluss suchen", "Außenbahn & Flanken"
+ shootInstruction:1.25,wingInstruction:1.25, // player instructions "Abschluss suchen", "Außenbahn & Flanken"
+ // Cross into space (B22): box spots [lateral on the ball side, depth] in
+ // metres a runner is sent to (near post, penalty spot, far post); crossSpace
+ // spots are considered per runner (0 = no crosses into space). Runners within
+ // crossRunnerRange of goal and crossRunnerWide of the centre, not offside;
+ // the spot is never farther from goal than the runner plus crossRunnerBack.
+ // crossLead: longest wait (real seconds) between the signal to the runner and
+ // the kick; the option takes the wait the runner needs to make the spot
+ // reachable with crossLeadSlack metres to spare (the carrier drives on toward
+ // the byline meanwhile). At kickAt
+ // the cross needs an arrival of at least crossKickMin, else the carrier
+ // decides anew. The wait discounts the gain e-fold every crossLeadTau seconds
+ // (the carrier drives on, unlike a turn on the spot); crossSpaceGain scales the
+ // option value.
+ crossSpace:3,crossSpots:[[4,6],[0,11],[-4,7]],crossRunnerRange:28,crossRunnerWide:14,crossRunnerBack:2,crossLead:2,crossLeadSlack:3,crossLeadTau:3,crossKickMin:.2,crossSpaceGain:1
 });
 const V183_OPT_KEYS=Object.freeze(Object.keys(v183RegisterDefaults('options',{})));
 // Neutral values of the SI-F personality formula (role 1, mental values 10).
@@ -241,6 +255,61 @@ function v183OptCarries(m,p,P,ctx){
  return out;
 }
 
+// ----- Cross into space (B22) -----
+// A floated cross to a box spot (crossSpots on the ball side) that a team-mate
+// reaches during the flight; the estimate of SI-7 (detail.space with the
+// runner) values the landing with his running path, the finish and the header
+// at the spot. One option per runner (his best spot by gain-loss), valued like
+// a cross: arrival x max(holder value at the spot, header value), delayed by
+// the turn and crossLead. Needs the setplay package (space execution and
+// estimate); with the package off no option is made.
+function v183OptSpaceCrosses(m,p,allies,rivals,P,ctx,offside,delayed){
+ const out=[];
+ if(!(P.crossSpace>0)||m.flight||m.rebound||!v183Active(m,'setplay'))return out;
+ const s=v150Scale(),goal=v183OptGoal(p.t),side=p.x<.5?-1:1,dir=p.t===0?1:-1,wing=hasInstruction(p,'wing')?P.wingInstruction:1;
+ const spots=P.crossSpots.slice(0,Math.floor(P.crossSpace)).map(([lateral,depth])=>({x:goal.x+side*lateral/s.x,y:goal.y+dir*depth/s.y}));
+ const maxLead=Math.max(0,P.crossLead),flightMin=v183Param(m,'setplay.flightMin'),speed=v183Param(m,'setplay.spaceCrossSpeed'),reaction=v183Param(m,'setplay.spaceReaction'),planning=typeof v183RunCover==='function'&&typeof v183AirPace==='function'&&typeof v183AirReach==='function';
+ for(const q of allies){
+  if(q.slideActive||q.keeper||offside.has(q)||v183OptGoalDistance(q,p.t)>P.crossRunnerRange||Math.abs(q.x-.5)*s.x>P.crossRunnerWide)continue;
+  const limit=v183OptGoalDistance(q,p.t)+P.crossRunnerBack;let best=null;
+  for(const spot of spots){
+   if(v183OptGoalDistance(spot,p.t)>limit||!v183OptInside(spot,s,0))continue;
+   // Wait the runner needs before the kick so the spot comes within his cover (capped by crossLead).
+   let lead=0;
+   if(maxLead>0&&planning){const flight=Math.max(flightMin,v122Metres(p,spot)/speed),pace=v183AirPace(m,q),needed=v122Metres(q,spot)+P.crossLeadSlack-v183RunCover(m,q,spot,flight,reaction)-v183AirReach(m,q,pace);if(needed>0)lead=Math.min(maxLead,needed/pace);}
+   const c=v183CrossEstimate(m,p,spot,{runner:q,space:true,lead});if(!c.eligible||!(c.arrival>0))continue;
+   // The estimate may land short of the spot, where the runner can be at the landing (adapted).
+   const point=c.landing&&Number.isFinite(c.landing.x)?{x:c.landing.x,y:c.landing.y}:spot;
+   const raw=Math.max(0,c.headerXg||0),header=c.stub===true?raw*P.stubScale*P.crossConv:raw,seconds=Number.isFinite(c.flight)?c.flight:1;
+   const receiver=Math.max(v183OptHolder(m,q,P,point,rivals,0,seconds),header);
+   const o={kind:'cross',ref:q.pid,q,target:point,space:true,adapted:c.adapted===true,lead,arrival:c.arrival,header,est:{land:+(c.land||0).toFixed(3),duel:+(c.duel||0).toFixed(3),block:+(c.block||0).toFixed(3),cover:c.cover,gap:c.gap,reachable:c.reachable,flight:c.flight},gain:P.crossSpaceGain*c.arrival*receiver*v183OptFocus(m,p,point,P)*wing,loss:(1-c.arrival)*v183OptLoss(P,point,p.t)};
+   delayed(o,v183OptTurnTime(p,o.target,P,ctx.turnRate));o.gain*=Math.exp(-lead/P.crossLeadTau);
+   if(!best||o.gain-o.loss>best.gain-best.loss)best=o;
+  }
+  if(best)out.push(best);
+ }
+ return out;
+}
+// Signal before the kick (crossLead > 0): attackFlow.crossRun is written at the
+// decision, the carrier keeps the ball in his heading and kicks at kickAt when
+// the runner is still legal (SI-2 points the runner at the spot meanwhile).
+// Returns true while this branch handles the carrier's decision.
+function v183OptCrossRun(m,p,P){
+ const flow=m.attackFlow,run=flow.crossRun;if(!run)return false;
+ const now=v183Seconds(m);
+ if(run.kicked){if(now>run.until)delete flow.crossRun;return false;}
+ if(run.crosserId!==p.pid||now>run.until){delete flow.crossRun;return false;}
+ if(now<run.kickAt-1e-9){m.next=Math.min(m.next,m.elapsed+v183ClockUnits(m,Math.max(P.turnTick,run.kickAt-now)));return true;}
+ const q=m.people.find(x=>x.pid===run.runnerId);
+ if(!q||q.slideActive||q.t!==p.t||v55OffsideSnapshot(p).offside.has(q)){delete flow.crossRun;v183Trace(m,{kind:'cross-run',crosser:p,runner:q||null,abort:q?'offside':'runner'});return false;}
+ // The spot may have moved out of reach or into a block: re-estimate, land where the runner can be.
+ const c=v183CrossEstimate(m,p,{x:run.x,y:run.y},{runner:q,space:true}),point=c.landing&&Number.isFinite(c.landing.x)?c.landing:{x:run.x,y:run.y};
+ if(!c.eligible||!(c.arrival>=P.crossKickMin)){delete flow.crossRun;v183Trace(m,{kind:'cross-run',crosser:p,runner:q,abort:'arrival',arrival:+(c.arrival||0).toFixed(3)});return false;}
+ run.x=point.x;run.y=point.y;
+ v183Trace(m,{kind:'cross-run',crosser:p,runner:q,kick:true,arrival:+c.arrival.toFixed(3),adapted:c.adapted===true});
+ v55HighPass(p,q,{cross:true,space:{x:point.x,y:point.y}});return true;
+}
+
 // ----- Evaluation -----
 function v183OptFocus(m,p,point,P){
  const focus=m.teamFocus?.[p.t]||'Variabel',wide=clamp(Math.abs(point.x-.5)*2,0,1)*2-.5;
@@ -294,6 +363,7 @@ function v183OptOptions(m,p,allies,rivals,P){
    const raw=Math.max(0,c.headerXg||0),header=c.stub===true?raw*P.stubScale*P.crossConv:raw,receiver=Math.max(v183OptHolder(m,q,P,{x:q.x,y:q.y},rivals,0,1),header);
    list.push(delayed({kind:'cross',ref:q.pid,q,target:{x:q.x,y:q.y},arrival:c.arrival,gain:c.arrival*receiver*v183OptFocus(m,p,q,P)*(hasInstruction(p,'wing')?P.wingInstruction:1),loss:(1-c.arrival)*v183OptLoss(P,q,p.t)},v183OptTurnTime(p,q,P,ctx.turnRate)));
   }
+  list.push(...v183OptSpaceCrosses(m,p,allies,rivals,P,ctx,offside,delayed));
  }
  // Carry, dribble, hold.
  list.push(...v183OptCarries(m,p,P,ctx));
@@ -329,6 +399,14 @@ function v183OptExecute(m,p,o,allies,rivals,P){
  if(o.kind==='shot'){v55Shoot(p);return null;}
  if(o.kind==='pass'){v55GroundPass(p,o.q);return null;}
  if(o.kind==='space'){v150SpacePass(p,o.option);return null;}
+ if(o.kind==='cross'&&o.space){
+  const now=v183Seconds(m),lead=Math.max(0,Number.isFinite(o.lead)?o.lead:P.crossLead),s=v150Scale();
+  m.attackFlow.crossRun={crosserId:p.pid,runnerId:o.q.pid,x:o.target.x,y:o.target.y,at:now,kickAt:now+lead,until:now+lead+2.5,kicked:false};
+  if(!(lead>0)){v55HighPass(p,o.q,{cross:true,space:{x:o.target.x,y:o.target.y}});return null;}
+  // Signal first: the carrier drives on toward the byline until kickAt (v183OptCrossRun kicks).
+  const dir=p.t===0?-1:1,target={x:p.x,y:clamp(p.y+dir*4/s.y,v55Field.top+1.5/s.y,v55Field.bottom-1.5/s.y)};
+  m.attackFlow.carry={playerId:p.pid,target,until:v183OptLegacyAfter(m,lead+.1)};m.next=m.elapsed+v183ClockUnits(m,lead);return null;
+ }
  if(o.kind==='cross'){v55HighPass(p,o.q,{cross:true});return null;}
  if(o.kind==='high'&&v162TryHighPass(m,p,allies,rivals))return null;
  const flow=m.attackFlow,s=v150Scale(),hold=o.kind!=='carry';
@@ -341,7 +419,7 @@ function v183OptExecute(m,p,o,allies,rivals,P){
 }
 function v183OptTrace(m,p,o,list,drawn,range,fallback){
  const top=[...list].sort((a,b)=>b.u-a.u).slice(0,3).map(x=>({kind:x.kind,ref:x.ref??null,u:+x.u.toFixed(5)}));
- v183Trace(m,{type:'options',pid:p.pid,kind:o.kind,ref:o.ref??null,u:+o.u.toFixed(5),arrival:Number.isFinite(o.arrival)?+o.arrival.toFixed(4):null,range:+range.toFixed(1),n:list.length,window:+v183OptWindow(m,p).toFixed(1),drawn,top,...(fallback?{fallback,executed:'hold'}:{})});
+ v183Trace(m,{type:'options',pid:p.pid,kind:o.kind,ref:o.ref??null,u:+o.u.toFixed(5),arrival:Number.isFinite(o.arrival)?+o.arrival.toFixed(4):null,range:+range.toFixed(1),n:list.length,window:+v183OptWindow(m,p).toFixed(1),drawn,top,...(o.space?{space:true,adapted:o.adapted===true,lead:+(o.lead||0).toFixed(2),header:+(o.header||0).toFixed(4),est:o.est}:{}),...(fallback?{fallback,executed:'hold'}:{})});
 }
 // Abilities, pace and reaction delays are fixed during one evaluation: read
 // each once per person and key. The originals are restored before any action
@@ -367,7 +445,7 @@ v157ContinueTurn=function(m,p,rivals){
  const turn=m.attackFlow?.pendingTurn;
  if(!turn||!v183Active(m,'options')||turn.options?.restart)return v183OptBaseTurn(m,p,rivals);
  const q=m.people.find(x=>x.pid===turn.receiverId),target=turn.kind==='space'?turn.target:q,body=v157Body(p);
- const lane=q&&(turn.kind==='high'?rivals.every(r=>v122Metres(r,target)>(r.keeper?4:2.8)):v157Lane(m,p,target,rivals,1.2));
+ const lane=q&&(turn.kind==='high'?Boolean(turn.options?.space)||rivals.every(r=>v122Metres(r,target)>(r.keeper?4:2.8)):v157Lane(m,p,target,rivals,1.2));
  if(turn.playerId!==p.pid||!q||q.slideActive||v55OffsideSnapshot(p).offside.has(q)||!lane){delete m.attackFlow.pendingTurn;return false;}
  const P=v183OptParams(m),now=v183Seconds(m),decision=m.attackFlow.decision;
  // Shot from the turn: re-check the shot against the pending pass every turnCheck seconds.
@@ -406,6 +484,7 @@ v157Decide=function(m,p,allies,rivals){
  if(v159Decide(m,p))return true;
  if(v157ContinueTurn(m,p,rivals))return true;
  if(v131OpenGoal(p)){v55Shoot(p);return true;}
+ if(m.attackFlow.crossRun&&v183OptCrossRun(m,p,v183OptParams(m)))return true;
  return v183OptDecide(m,p,allies,rivals);
 };
 
