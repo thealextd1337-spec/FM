@@ -18,7 +18,8 @@ h.run(`
 function Si2Scene({size='standard',seed=1,params={},packages={offball:true},people,ball,owner=null,lastTouch=0,siParams={},clockRate}){
  Native182.seedRandom(90000+seed);
  const m=Native182.install({people,size,ball:ball||{x:.5,y:.5},lastTouch,markers:{keeperHoldRevision:182,setPieceRevision:182,looseBallRevision:182,pursuitRevision:182,motionRevision:182}});
- m.si=v183CreateSi({packages,params:{...siParams,offball:params},...(clockRate?{clockRate}:{})});m.penaltyRevision=182;
+ // Score-state pace of the Torjäger round off: these scenes check the SI-2 pace itself (test-si-scorer-v183 covers it).
+ m.si=v183CreateSi({packages,params:{...siParams,offball:{leadPace:0,levelPace:0,...params}},...(clockRate?{clockRate}:{})});m.penaltyRevision=182;
  if(owner){m.owner=owner;m.ball={x:owner.x,y:owner.y};m.lastTouch=owner.t;}
  m.next=Infinity;return m;
 }
@@ -107,11 +108,11 @@ check('counter: a live turnover in the own half opens a three-second window with
   const m=Si2Scene({seed:1,people,owner:people.find(p=>p.pid==='a11')});for(let i=0;i<12;i++)Native182.advance();
   const d=Si2Find('d10');m.owner=d;m.ball={x:d.x,y:d.y};m.lastTouch=0;m.next=Infinity;Native182.advance();})()`);
  const r=copy(ev(`(()=>{const m=match,state=m.attackFlow.offball,now=v183Seconds(m),intents=Si2Intents(),runners=Object.entries(intents).filter(([,i])=>i.pattern==='counter');
-  const s=v150Scale(m),owner=m.owner,ahead=runners.map(([pid,i])=>({pid,ahead:+((owner.y-i.y)*s.y).toFixed(1),type:i.type,limit:v121PositioningPlans.get(m)?.get(Si2Find(pid))?.limit,y:i.y,pace:v183PaceFactor(m,Si2Find(pid),'purposeful',{intent:i,now}),speed:ability(Si2Find(pid),'spd')}));
+  const s=v150Scale(m),owner=m.owner,ahead=runners.map(([pid,i])=>({pid,ahead:+((owner.y-i.y)*s.y).toFixed(1),type:i.type,limit:v121PositioningPlans.get(m)?.get(Si2Find(pid))?.limit,y:i.y,pace:v183PaceFactor(m,Si2Find(pid),'purposeful',{intent:i,now}),state:v183OffballLeadPace(m,Si2Find(pid)),speed:ability(Si2Find(pid),'spd')}));
   return {counterTeam:state.counterTeam,open:state.counterUntil>now,runners:ahead,trace:v183TraceEntries(m).filter(e=>e.kind==='pattern'&&e.pattern==='counter').length,possessionTeam:state.team};})()`));
  assert.equal(r.counterTeam,0);assert(r.open);assert.equal(r.possessionTeam,0);
  assert.equal(r.runners.length,2,'two counter runners: '+JSON.stringify(r.runners));
- for(const run of r.runners){assert.equal(run.type,'depth');assert.equal(run.pace,1.58,'run pace');assert(run.ahead>=6||run.limit!=null&&Math.abs(run.y-run.limit)<1e-9,'runs deep or waits at the offside limit: '+JSON.stringify(run));}
+ for(const run of r.runners){assert.equal(run.type,'depth');assert.equal(run.pace,1.58*run.state,'run pace (times the score-state factor of the Torjäger round)');assert(run.state>.99,'level early: factor near 1');assert(run.ahead>=6||run.limit!=null&&Math.abs(run.y-run.limit)<1e-9,'runs deep or waits at the offside limit: '+JSON.stringify(run));}
  assert.equal(r.trace,1);
  measurements.counter=r;
  // Ball loss: the opponent owns the ball, our intents vanish, the window is not reported for them.
