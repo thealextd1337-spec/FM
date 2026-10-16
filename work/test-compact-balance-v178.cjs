@@ -10,8 +10,9 @@ const oldSource=fs.readFileSync('outputs/compact-balance-v178/baseline-v155.js',
 globalThis.v178ReferenceAction=oldAction;globalThis.v178CurrentAction=current;
 function initial(seed,revision){
  const c=h.call('v167CreateCareer','AUT-5',seed,'QA'),snapshot=JSON.stringify(c),day=Math.min(...c.world.competitions.filter(c=>c.type==='league').flatMap(c=>c.fixtures.map(f=>f.day))),f={id:'QA:REGRESSION:'+seed,competitionId:'QA-START-LEAGUE',homeId:'GER-1',awayId:'GER-6',day,neutral:false,result:null};globalThis.v61CurrentCareer=c;
- const s=h.call('v64MakeState',c,f);assert.equal(s.playerPerformance.shotBalanceRevision,178);
- assert.deepEqual(s.playerPerformance.compactBalance,h.evaluate('({...v178CompactBalance})'));
+ const s=h.call('v64MakeState',c,f);assert.equal(s.playerPerformance.shotBalanceRevision,183,'new matches carry the SI-6 marker');
+ // The frozen identifier: this test keeps the 178 rules alive as they were written by the v178 constructor.
+ s.playerPerformance.shotBalanceRevision=178;s.playerPerformance.compactBalance=h.evaluate('({...v178CompactBalance})');
  if(revision!==178){delete s.playerPerformance.compactBalance;if(revision===119)s.playerPerformance.shotBalanceRevision=119;else delete s.playerPerformance.shotBalanceRevision;}
  return{c,f,s,snapshot};
 }

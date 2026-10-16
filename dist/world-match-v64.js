@@ -298,7 +298,9 @@ function v64Step(career,fixture,state){
  if(state.playerPerformance)v155SyncPhases(state);
  let goal=false,stoppage=state.minute===45;
  for(const side of [0,1]){
-  const random=v61Random(`${career.world.seed}:${fixture.id}:minute:${state.minute}:side:${side}`),strength=v64TeamStrength(career,fixture,state,side),opponent=v64TeamStrength(career,fixture,state,1-side),ownTactics=state.tactics[side],otherTactics=state.tactics[1-side];
+  const random=v61Random(`${career.world.seed}:${fixture.id}:minute:${state.minute}:side:${side}`);
+  if(state.playerPerformance?.shotBalanceRevision===183){if(v155CompactActions(career,fixture,state,side,random)){goal=true;stoppage=true;}if(random()<.16)stoppage=true;continue;}
+  const strength=v64TeamStrength(career,fixture,state,side),opponent=v64TeamStrength(career,fixture,state,1-side),ownTactics=state.tactics[side],otherTactics=state.tactics[1-side];
   const lineEffect=(ownTactics.defense==='Hoch'?.0015:ownTactics.defense==='Tief'?-.001:0)+(otherTactics.defense==='Tief'?-.002:otherTactics.defense==='Hoch'?(ownTactics.passing==='Direkt'?.003:.001):0);
   const riskEffect=otherTactics.aggression==='Aggressiv'?.001:0;
   const chance=Math.max(.003,Math.min(.045,.014+(strength-opponent)*.002+(side===0&&!fixture.neutral ? .002 : 0)+lineEffect+riskEffect));
@@ -321,6 +323,7 @@ function v64FinishFixture(career,fixture,state){
  if(fixture.matchRecord)return fixture.matchRecord;
  if(state.playerLoad)v158PersistMatch(career,fixture,state);
  const record={score:[...state.score],starters:{home:[...fixture.plan.home.starters],away:[...fixture.plan.away.starters]},tacticChanges:state.tacticChanges,substitutions:state.substitutions,events:state.events,players:[]};
+ if(state.compactStats)record.teamStats=structuredClone(state.compactStats);
  if(state.postMatchReport?.ballAccounting)record.ballAccounting=structuredClone(state.postMatchReport.ballAccounting);
  for(const side of [0,1])for(const player of v64Side(career,fixture,side)){
   const minutes=state.minutes[player.pid]||0;if(!minutes)continue;

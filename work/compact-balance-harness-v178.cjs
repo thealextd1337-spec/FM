@@ -16,8 +16,11 @@ function suite(){
   const c=JSON.parse(snapshot);globalThis.v61CurrentCareer=c;
   const f={id:descriptor.fixtureId||descriptor.id,competitionId:'QA-START-LEAGUE',day:options.day,homeId:descriptor.homeId,awayId:descriptor.awayId,neutral:options.neutral??descriptor.neutral??false,result:null};
   const s=h.call('v64MakeState',c,f);
+  // New matches carry marker 183 since SI-6; the v178 reproduction restores the frozen 178 marker and parameters.
+  const downgrade=()=>{s.playerPerformance.shotBalanceRevision=178;s.playerPerformance.compactBalance=h.evaluate('({...v178CompactBalance})');};
   if(balance===null){s.playerPerformance.shotBalanceRevision=119;delete s.playerPerformance.compactBalance;}
-  else if(balance)s.playerPerformance.compactBalance={version:178,...balance};
+  else if(balance){downgrade();s.playerPerformance.compactBalance={version:178,...balance};}
+  else if(options.revision===178)downgrade();
   assert(s.roleAssignments&&s.playerLoad&&s.playerPerformance);assert(f.plan.home.coachId&&f.plan.away.coachId);assert(Object.values(s.fresh).every(x=>x===100));
   observation=options.observe?[]:null;let ticks=0,checkpoint=null;
   while(s.phase!=='finished'&&ticks++<110){h.call('v64Step',c,f,s);if(options.checkpoint&&s.minute===27)checkpoint=JSON.stringify({career:c,fixture:f,state:s});}

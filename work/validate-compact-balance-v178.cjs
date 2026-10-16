@@ -7,7 +7,7 @@ for(let round=1;round<=5;round++){
  const fixtures=[...a.matches.filter(m=>m.round===round),...b.matches.filter(m=>m.round===round).map(m=>({...m,suite:'top-bottom',aId:m.topId,bId:m.bottomId,aHome:m.homeId===m.topId,aGoals:m.topGoals,bGoals:m.bottomGoals,aShots:m.topShots,bShots:m.bottomShots}))],seed=fixtures[0].seed,c=h.call('v167CreateCareer','AUT-5',seed,'Startkaderanalyse'),snapshot=JSON.stringify(c),initial=sha(snapshot),day=Math.min(...c.world.competitions.filter(c=>c.type==='league').flatMap(c=>c.fixtures.map(f=>f.day)));
  assert(h.call('v61ValidateCareer',c));h.call('v177CheckInitialRosters',c);
  for(const d of fixtures){
-  const r=h.play(snapshot,d,undefined,{day}),aa=d.aHome?r.home:r.away,bb=d.aHome?r.away:r.home;
+  const r=h.play(snapshot,d,undefined,{day,revision:178}),aa=d.aHome?r.home:r.away,bb=d.aHome?r.away:r.home;
   assert.equal(r.state.playerPerformance.shotBalanceRevision,178);assert.deepEqual(r.state.playerPerformance.compactBalance,h.evaluate('({...v178CompactBalance})'));
   rows.push({series:d.suite,round,seed,fixtureId:d.fixtureId||d.id,homeId:d.homeId,awayId:d.awayId,aId:d.aId,bId:d.bId,aHome:d.aHome,neutral:d.neutral||false,a:aa,b:bb,eventHash:r.eventHash});
   baselines.push({series:d.suite,round,a:{goals:d.aGoals,shots:d.aShots,onTarget:d.aOnTarget||0},b:{goals:d.bGoals,shots:d.bShots,onTarget:d.bOnTarget||0}});

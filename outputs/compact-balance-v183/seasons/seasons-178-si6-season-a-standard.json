@@ -1,0 +1,170 @@
+{
+ "marker": "178",
+ "seed": "si6-season-a",
+ "club": "AUT-5",
+ "size": "standard",
+ "seasons": [
+  {
+   "season": 1,
+   "seconds": 91.914,
+   "fixtures": 991,
+   "leagueFixtures": 672,
+   "goalsPerMatch": 1.3693239152371341,
+   "leagueGoalsPerMatch": 1.3883928571428572,
+   "goalsSd": 1.1480450872007053,
+   "zeroZero": 0.2522704339051463,
+   "homeWin": 0.2976791120080727,
+   "draw": 0.3773965691220989,
+   "tableSpreadMean": 15.75,
+   "championPoints": 26.833333333333332,
+   "lastPoints": 11.083333333333334,
+   "topScorerMax": 10,
+   "topScorerLeagueMean": 5.75,
+   "topScorerLeagueMax": 10,
+   "topScorerMean": 4.076923076923077,
+   "topAssistMax": 6,
+   "topAssistLeagueMean": 5,
+   "topAssistMean": 3.6923076923076925,
+   "teamStatsMean": null,
+   "gaps": {
+    "0-1": {
+     "n": 197,
+     "fav": 0.3604060913705584,
+     "draw": 0.3604060913705584,
+     "goals": 1.3705583756345177
+    },
+    "1-2": {
+     "n": 175,
+     "fav": 0.37714285714285717,
+     "draw": 0.34285714285714286,
+     "goals": 1.4514285714285715
+    },
+    "2-3": {
+     "n": 115,
+     "fav": 0.4608695652173913,
+     "draw": 0.34782608695652173,
+     "goals": 1.4695652173913043
+    },
+    ">=3": {
+     "n": 185,
+     "fav": 0.43783783783783786,
+     "draw": 0.3837837837837838,
+     "goals": 1.2972972972972974
+    }
+   },
+   "freshMean": 98.89730693650219,
+   "ratingMean": 8.018112208242878,
+   "ratingSd": 0.6890588650076509,
+   "ratingAbove8": 0.5515953613313241,
+   "ratingBelow5": 0
+  },
+  {
+   "season": 2,
+   "seconds": 91.367,
+   "fixtures": 991,
+   "leagueFixtures": 672,
+   "goalsPerMatch": 1.3794147325933401,
+   "leagueGoalsPerMatch": 1.3943452380952381,
+   "goalsSd": 1.1948289512614838,
+   "zeroZero": 0.25630676084762866,
+   "homeWin": 0.3229061553985873,
+   "draw": 0.37436932391523714,
+   "tableSpreadMean": 16.833333333333332,
+   "championPoints": 27,
+   "lastPoints": 10.166666666666666,
+   "topScorerMax": 7,
+   "topScorerLeagueMean": 5.25,
+   "topScorerLeagueMax": 7,
+   "topScorerMean": 4.115384615384615,
+   "topAssistMax": 12,
+   "topAssistLeagueMean": 6.416666666666667,
+   "topAssistMean": 4.6923076923076925,
+   "teamStatsMean": null,
+   "gaps": {
+    "0-1": {
+     "n": 226,
+     "fav": 0.3141592920353982,
+     "draw": 0.40707964601769914,
+     "goals": 1.3495575221238938
+    },
+    "1-2": {
+     "n": 148,
+     "fav": 0.38513513513513514,
+     "draw": 0.3310810810810811,
+     "goals": 1.4054054054054055
+    },
+    "2-3": {
+     "n": 135,
+     "fav": 0.4,
+     "draw": 0.4148148148148148,
+     "goals": 1.325925925925926
+    },
+    ">=3": {
+     "n": 163,
+     "fav": 0.44171779141104295,
+     "draw": 0.3312883435582822,
+     "goals": 1.5030674846625767
+    }
+   },
+   "freshMean": 98.94316025244495,
+   "ratingMean": 8.01189539306699,
+   "ratingSd": 0.6906561760781267,
+   "ratingAbove8": 0.5449027542096332,
+   "ratingBelow5": 0
+  },
+  {
+   "season": 3,
+   "seconds": 93.248,
+   "fixtures": 991,
+   "leagueFixtures": 672,
+   "goalsPerMatch": 1.4076690211907164,
+   "leagueGoalsPerMatch": 1.3824404761904763,
+   "goalsSd": 1.2190829950943598,
+   "zeroZero": 0.2532795156407669,
+   "homeWin": 0.28557013118062563,
+   "draw": 0.3905146316851665,
+   "tableSpreadMean": 15.833333333333334,
+   "championPoints": 26.75,
+   "lastPoints": 10.916666666666666,
+   "topScorerMax": 8,
+   "topScorerLeagueMean": 6,
+   "topScorerLeagueMax": 8,
+   "topScorerMean": 4.423076923076923,
+   "topAssistMax": 8,
+   "topAssistLeagueMean": 5.75,
+   "topAssistMean": 4.384615384615385,
+   "teamStatsMean": null,
+   "gaps": {
+    "0-1": {
+     "n": 235,
+     "fav": 0.2978723404255319,
+     "draw": 0.4085106382978723,
+     "goals": 1.3446808510638297
+    },
+    "1-2": {
+     "n": 158,
+     "fav": 0.31645569620253167,
+     "draw": 0.43037974683544306,
+     "goals": 1.2721518987341771
+    },
+    "2-3": {
+     "n": 125,
+     "fav": 0.344,
+     "draw": 0.392,
+     "goals": 1.4
+    },
+    ">=3": {
+     "n": 142,
+     "fav": 0.4507042253521127,
+     "draw": 0.3380281690140845,
+     "goals": 1.528169014084507
+    }
+   },
+   "freshMean": 99.07913585326139,
+   "ratingMean": 8.023605786465959,
+   "ratingSd": 0.6892580533531423,
+   "ratingAbove8": 0.5487836777399948,
+   "ratingBelow5": 0
+  }
+ ]
+}
