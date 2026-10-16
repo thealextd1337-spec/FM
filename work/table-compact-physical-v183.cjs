@@ -38,6 +38,7 @@ function logistic(rows){const xs=[],ys=[];for(const r of rows){const d=Math.abs(
  let a=0,b=.5;for(let it=0;it<60;it++){let g0=0,g1=0,h00=0,h01=0,h11=0;for(let i=0;i<xs.length;i++){const z=a+b*xs[i],q=1/(1+Math.exp(-z)),w=q*(1-q);g0+=ys[i]-q;g1+=(ys[i]-q)*xs[i];h00+=w;h01+=w*xs[i];h11+=w*xs[i]*xs[i];}const det=h00*h11-h01*h01;a+=(h11*g0-h01*g1)/det;b+=(-h01*g0+h00*g1)/det;}
  return gap=>1/(1+Math.exp(-(a+b*gap)));}
 const summary=rows=>({n:rows.length,shots:mean(rows.map(r=>r.shots[0]+r.shots[1])),on:mean(rows.map(r=>r.on[0]+r.on[1])),goals:mean(rows.map(r=>r.score[0]+r.score[1])),goalSd:sd(rows.map(r=>r.score[0]+r.score[1])),nil:rows.filter(r=>r.score[0]+r.score[1]===0).length/rows.length,ge7:rows.filter(r=>r.score[0]+r.score[1]>=7).length/rows.length,corners:mean(rows.map(r=>r.corners[0]+r.corners[1])),crosses:mean(rows.map(r=>r.crosses[0]+r.crosses[1])),fouls:mean(rows.map(r=>r.fouls[0]+r.fouls[1])),freeKicks:mean(rows.map(r=>r.freeKicks[0]+r.freeKicks[1]))});
+const weak=rows=>{const g=rows.filter(r=>Math.max(r.ovr[0],r.ovr[1])<10.5);return{n:g.length,draw:g.filter(r=>r.score[0]===r.score[1]).length/g.length,goals:mean(g.map(r=>r.score[0]+r.score[1]))};};
 const bands=[[0,1],[1,2],[2,3],[3,99]],result={label,K,fixtures:jobs.length,matches:compRows.length,series,sizes:{}};
 console.log(`Lauf ${label}: ${jobs.length} Fixtures (${physical.length-jobs.length} wegen abweichender Stärke ausgelassen), je ${K} Wiederholungen = ${compRows.length} kompakte Partien\n`);
 for(const size of ['standard','large']){
@@ -51,6 +52,8 @@ for(const size of ['standard','large']){
  console.log('\n| Abstand | Partien phys / komp | Sieg Favorit phys → komp | Remis phys → komp | Niederlage phys → komp | Tore phys → komp | Schüsse Favorit/Außenseiter phys → komp | Tore Favorit/Außenseiter phys → komp |\n| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |');
  for(const b of out.bands)console.log(`| ${b.gap} | ${b.phys.n} / ${b.comp.n} | ${p(b.phys.win)} → ${p(b.comp.win)} (${pt(b.comp.win-b.phys.win)}) | ${p(b.phys.draw)} → ${p(b.comp.draw)} (${pt(b.comp.draw-b.phys.draw)}) | ${p(b.phys.loss)} → ${p(b.comp.loss)} | ${f(b.phys.goals)} → ${f(b.comp.goals)} | ${f(b.phys.favShots,1)}/${f(b.phys.dogShots,1)} → ${f(b.comp.favShots,1)}/${f(b.comp.dogShots,1)} | ${f(b.phys.favGoals)}/${f(b.phys.dogGoals)} → ${f(b.comp.favGoals)}/${f(b.comp.dogGoals)} |`);
  console.log(`\nGeglättet (logistische Anpassung): Favorit bei 1,5 Punkten ${p(out.smooth.phys.g15)} → ${p(out.smooth.comp.g15)} (${pt(out.smooth.comp.g15-out.smooth.phys.g15)}), bei 4 Punkten ${p(out.smooth.phys.g4)} → ${p(out.smooth.comp.g4)} (${pt(out.smooth.comp.g4-out.smooth.phys.g4)})`);
+ const wa=weak(A),wb=weak(B);out.weak={phys:wa,comp:wb};console.log(`
+Schwache Teams (beide Mannschaften unter 10,5 Punkten): Partien ${wa.n} / ${wb.n}, Remis ${p(wa.draw)} → ${p(wb.draw)} (${pt(wb.draw-wa.draw)}), Tore ${f(wa.goals)} → ${f(wb.goals)}`);
  // sources
  const compSource={},physSource={};let nA=0,nB=0;
  for(const s of physShots.filter(s=>s.size===size)){(physSource[s.src]??={n:0,g:0,fin:0,air:0});const e=physSource[s.src];e.n++;e.g+=s.goal?1:0;e.fin+=s.fin??0;e.air+=s.air??10;}
@@ -78,4 +81,9 @@ for(const size of ['standard','large']){
  for(const [lo,hi] of [[0,8],[8,10],[10,12],[12,14],[14,21]])console.log(`| Ausdauer ${lo}–${hi} | ${f(mean(pf.filter(x=>x.sta>=lo&&x.sta<hi).map(x=>x.used)),1)} | ${f(mean(cf.filter(x=>x.sta>=lo&&x.sta<hi).map(x=>x.used)),1)} |`);
  console.log('');
 }
+{const wa=weak(physRows),wb=weak(compRows),sa=summary(physRows),sb=summary(compRows);result.both={weak:{phys:wa,comp:wb},summary:{phys:sa,comp:sb}};
+console.log(`### Beide Feldgrößen
+
+Schüsse ${f(sa.shots)} → ${f(sb.shots)} (${rel(sb.shots,sa.shots)}), Tore ${f(sa.goals)} → ${f(sb.goals)} (${rel(sb.goals,sa.goals)}); schwache Teams (beide unter 10,5 Punkten): Partien ${wa.n} / ${wb.n}, Remis ${p(wa.draw)} → ${p(wb.draw)} (${pt(wb.draw-wa.draw)}), Tore ${f(wa.goals)} → ${f(wb.goals)}
+`);}
 if(args.includes('--json'))fs.writeFileSync(`outputs/si6/table-${label}.json`,JSON.stringify(result,null,1));

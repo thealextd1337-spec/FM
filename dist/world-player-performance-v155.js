@@ -11,7 +11,7 @@ function v178CompactShotChance(fixture,state,side){
 // has a source, a shooter weighted by role and skill and a result from finishing and keeper.
 // No score, win rate or result is forced. The snapshot is stored with the match.
 const v183CompactBalance=Object.freeze({
- version:183,matchMinutes:97.7,homeShotFactor:1.03,
+ version:183,matchMinutes:97.7,homeShotFactor:1.03,gapKnee:5.5,gapOver:.15,gapFade:.5,shotOver:.1,
  levers:Object.freeze({onFin:.196,goalFin:.173,goalGk:-.148,onGap:.06}),
  assisted:Object.freeze({open:.8,long:.15,'header-volley':.9,rebound:0,corner:.9,'free-kick-follow':.6,'direct-free-kick':0}),
  groups:Object.freeze({open:'open',long:'long','header-volley':'head',rebound:'rebound',corner:'head','free-kick-follow':'fk','direct-free-kick':'dfk'}),
@@ -24,8 +24,8 @@ const v183CompactBalance=Object.freeze({
  dfk:Object.freeze({skill:'fin',slope:.9,fallback:1,roles:Object.freeze({})})
  }),
  sizes:Object.freeze({
- standard:Object.freeze({shotBase:5.754,shotSlope:.1293,deepDefenceShots:1.41,mix:Object.freeze([Object.freeze(['open',7.573]),Object.freeze(['long',1.788]),Object.freeze(['header-volley',1.604]),Object.freeze(['rebound',.465]),Object.freeze(['corner',.122]),Object.freeze(['free-kick-follow',1.549]),Object.freeze(['direct-free-kick',.285])]),on:Object.freeze({open:-.34,long:-.937,'header-volley':.218,rebound:-.082,corner:.218,'free-kick-follow':-.383,'direct-free-kick':-1.075}),goal:Object.freeze({open:.095,long:-.832,'header-volley':1.063,rebound:1.136,corner:1.063,'free-kick-follow':.086,'direct-free-kick':-1.136}),corners:.845,crossExtra:1.6,fouls:1.97,freeKickExtra:.03,slopes:Object.freeze({long:1.6}),load:Object.freeze({background:Object.freeze({def:.174,mid:.266,att:.15,gk:.026})})}),
- large:Object.freeze({shotBase:5.656,shotSlope:.1001,deepDefenceShots:1.37,mix:Object.freeze([Object.freeze(['open',6.122]),Object.freeze(['long',3.792]),Object.freeze(['header-volley',1.177]),Object.freeze(['rebound',.444]),Object.freeze(['corner',.031]),Object.freeze(['free-kick-follow',1.031]),Object.freeze(['direct-free-kick',.153])]),on:Object.freeze({open:-.228,long:-.871,'header-volley':-.019,rebound:.114,corner:-.019,'free-kick-follow':-.274,'direct-free-kick':-1.301}),goal:Object.freeze({open:.506,long:-.886,'header-volley':1.072,rebound:.742,corner:1.072,'free-kick-follow':.325,'direct-free-kick':-.705}),corners:.7,crossExtra:1,fouls:1.4,freeKickExtra:.095,slopes:Object.freeze({long:.8}),load:Object.freeze({background:Object.freeze({def:.195,mid:.281,att:.174,gk:.026})})})
+ standard:Object.freeze({shotBase:5.754,shotSlope:.1293,deepDefenceShots:1.41,shotKnee:11.5,mix:Object.freeze([Object.freeze(['open',7.573]),Object.freeze(['long',1.788]),Object.freeze(['header-volley',1.604]),Object.freeze(['rebound',.465]),Object.freeze(['corner',.122]),Object.freeze(['free-kick-follow',1.549]),Object.freeze(['direct-free-kick',.285])]),on:Object.freeze({open:-.34,long:-.937,'header-volley':.218,rebound:-.082,corner:.218,'free-kick-follow':-.383,'direct-free-kick':-1.075}),goal:Object.freeze({open:.095,long:-.832,'header-volley':.983,rebound:1.136,corner:.983,'free-kick-follow':-.064,'direct-free-kick':-1.136}),corners:.845,crossExtra:1.6,fouls:1.97,freeKickExtra:.03,slopes:Object.freeze({long:2.4}),load:Object.freeze({background:Object.freeze({def:.176,mid:.272,att:.152,gk:.026})})}),
+ large:Object.freeze({shotBase:5.656,shotSlope:.1001,deepDefenceShots:1.37,shotKnee:10,mix:Object.freeze([Object.freeze(['open',6.122]),Object.freeze(['long',3.792]),Object.freeze(['header-volley',1.177]),Object.freeze(['rebound',.444]),Object.freeze(['corner',.031]),Object.freeze(['free-kick-follow',1.031]),Object.freeze(['direct-free-kick',.153])]),on:Object.freeze({open:-.228,long:-.871,'header-volley':-.019,rebound:.114,corner:-.019,'free-kick-follow':-.274,'direct-free-kick':-1.301}),goal:Object.freeze({open:.506,long:-.886,'header-volley':1.072,rebound:.742,corner:1.072,'free-kick-follow':.225,'direct-free-kick':-.705}),corners:.7,crossExtra:1,fouls:1.4,freeKickExtra:.095,slopes:Object.freeze({long:.8}),load:Object.freeze({background:Object.freeze({def:.198,mid:.287,att:.176,gk:.026})})})
  })
 });
 function v183CompactSnapshot(career){
@@ -33,6 +33,10 @@ function v183CompactSnapshot(career){
  return structuredClone({...shared,...sizes[size],fieldSize:size});
 }
 function v183Sigmoid(x){return 1/(1+Math.exp(-x));}
+// The played-out reference measured strength gaps up to about 6 points (13 matches above 5, 4 above 6). Beyond the knee the
+// effect grows only with the factor gapOver (the reference plateaus at about 11.7 shots of the favourite), so the widest gaps of the
+// start worlds stay inside the shot corridor.
+function v183Gap(B,gap){const size=Math.abs(gap);return Math.sign(gap)*(size<=B.gapKnee?size:B.gapKnee+(size-B.gapKnee)*B.gapOver);}
 // Strength gap input of the shot model: mean of the eight outfield skills of the active outfield players
 // (same definition as the `ovr` of the played-out reference, from the stored skills). Fatigue and form act
 // through the effective finishing, passing and keeper values of the single actions.
@@ -57,10 +61,20 @@ function v183PickShooter(balance,source,team,state,random){
 // Expected shots of a team in a match: strength gap in outfield skill points, small relative home bonus
 // (never on a neutral pitch) and the measured effect of a deep defensive line of the opponent.
 function v183ShotRate(B,own,other,home,deepOpponent){
- return B.shotBase*Math.exp(B.shotSlope*(own-other))*(home?B.homeShotFactor:1)*(deepOpponent?B.deepDefenceShots:1);
+ const rate=B.shotBase*Math.exp(B.shotSlope*v183Gap(B,own-other))*(home?B.homeShotFactor:1)*(deepOpponent?B.deepDefenceShots:1);
+ // The favourite's shots plateau in the reference (about 11.7 at 4-7 points, about 10 on the large pitch). Only for gaps beyond the knee
+ // (fading in over `gapFade` points) and only above the plateau height `shotKnee` the excess counts with the factor `shotOver`.
+ const fade=Math.min(1,Math.max(0,(Math.abs(own-other)-B.gapKnee)/B.gapFade));
+ return rate>B.shotKnee&&fade>0?rate+(B.shotKnee+(rate-B.shotKnee)*B.shotOver-rate)*fade:rate;
+}
+// Chance of a shot to hit the goal frame and, if it does, to score: shooter finishing, opposing keeper and strength gap
+// (the played-out levers of the K2 series: 0,196 / 0,173 per finishing point, -0,148 per keeper point).
+function v183ShotOdds(B,source,finishing,keeping,gap){
+ const L=B.levers;
+ return{onTarget:v183Sigmoid(B.on[source]+L.onFin*(finishing-10)+L.onGap*v183Gap(B,gap)),goal:v183Sigmoid(B.goal[source]+L.goalFin*(finishing-10)+L.goalGk*(keeping-10))};
 }
 function v183CompactActions(career,fixture,state,side,random){
- const B=state.playerPerformance.compactBalance,L=B.levers,teams=v183CompactTeams(career,fixture,state),mine=teams[side],other=teams[1-side],stats=v183CompactStats(state);
+ const B=state.playerPerformance.compactBalance,teams=v183CompactTeams(career,fixture,state),mine=teams[side],other=teams[1-side],stats=v183CompactStats(state);
  const attackers=v64Active(state,side).filter(pid=>state.roles[pid]!=='gk'),rivals=v64Active(state,1-side),defenders=rivals.filter(pid=>state.roles[pid]!=='gk');
  const lambda=v183ShotRate(B,mine.ovr,other.ovr,side===0&&!fixture.neutral,state.tactics[1-side]?.defense==='Tief');
  // Statistics of the other kinds of events (corners, crosses, fouls) run on their own draws.
@@ -94,9 +108,9 @@ function v183CompactActions(career,fixture,state,side,random){
  state.stats[scorer].shots++;stats.shots[side]++;(stats.sources[source]||=[0,0])[side]++;
  if(source==='header-volley'||source==='corner')stats.crosses[side]++;
  const finishing=state.playerLoad?v158Ability(q,'fin',state,false):q.fin,keeper=rivals.find(pid=>state.roles[pid]==='gk'),k=v64Player(career,fixture,1-side,keeper),keeping=state.playerLoad?v158Ability(k,'gk',state,false):k.gk;
- const pOn=v183Sigmoid(B.on[source]+L.onFin*(finishing-10)+L.onGap*(mine.ovr-other.ovr)),onTarget=random()<pOn;
+ const odds=v183ShotOdds(B,source,finishing,keeping,mine.ovr-other.ovr),pOn=odds.onTarget,pGoal=odds.goal,onTarget=random()<pOn;
  if(state.playerLoad){const height=.29+random()*2.3,lateral=(random()-.5)*5.5;v158CompactKeeper(career,fixture,state,1-side,keeper,`${fixture.id}:compact-shot:${scorer}:${state.stats[scorer].shots}`,onTarget,height,Math.abs(lateral));}
- const pGoal=v183Sigmoid(B.goal[source]+L.goalFin*(finishing-10)+L.goalGk*(keeping-10)),goal=onTarget&&random()<pGoal;
+ const goal=onTarget&&random()<pGoal;
  if(onTarget)stats.onTarget[side]++;
  v155Event(state,scorer,'shot',onTarget,{difficulty:clamp(1-pOn*pGoal*1.5,.15,.9),usefulness:onTarget?1:.25,pressure:receiverPressure});
  if(onTarget&&!goal)v155Event(state,keeper,'save',true,{usefulness:1});

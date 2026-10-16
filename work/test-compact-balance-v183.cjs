@@ -53,7 +53,25 @@ function finish(x,until=Infinity){globalThis.v61CurrentCareer=x.c;while(x.s.phas
  assert.equal(rate(0,false,false),B.shotBase);assert.equal(rate(0,true,false),B.shotBase*B.homeShotFactor);assert.equal(B.homeShotFactor,1.03);
  assert(rate(1,false,false)>rate(0,false,false)&&rate(0,false,false)>rate(-1,false,false),'shots rise with the strength gap');
  assert.equal(rate(0,false,true),B.shotBase*B.deepDefenceShots);
+ assert(Math.abs(rate(B.gapKnee,false,false)-B.shotBase*Math.exp(B.shotSlope*B.gapKnee))<1e-9,'unchanged up to the knee');
+ assert(rate(B.gapKnee+3,false,false)<B.shotBase*Math.exp(B.shotSlope*(B.gapKnee+3)),'beyond the knee the gap acts only with the factor gapOver');
+ assert(Math.abs(rate(5,false,true)-B.shotBase*Math.exp(B.shotSlope*5)*B.deepDefenceShots)<1e-9,'no plateau below the gap knee, also with the deep line');
+ const wide=B.shotBase*Math.exp(B.shotSlope*(B.gapKnee+(9-B.gapKnee)*B.gapOver))*B.homeShotFactor*B.deepDefenceShots;
+ assert(wide>B.shotKnee&&rate(9,true,true)<wide&&rate(9,true,true)>B.shotKnee,'plateau of the favourite shots at the widest gaps');
+ assert(Math.abs(rate(9,true,true)-(B.shotKnee+(wide-B.shotKnee)*B.shotOver))<1e-9,'full plateau beyond the fade');
+ {const gap=B.gapKnee+B.gapFade/2,free=B.shotBase*Math.exp(B.shotSlope*(B.gapKnee+B.gapFade/2*B.gapOver))*B.homeShotFactor*B.deepDefenceShots,full=B.shotKnee+(free-B.shotKnee)*B.shotOver,half=rate(gap,true,true);assert(free>B.shotKnee&&half<free&&half>full&&Math.abs(half-(free+full)/2)<1e-9,'the plateau fades in over gapFade points beyond the knee');}
  checks.push('shot rate: strength gap, 3 % home bonus only for the home side, deep defensive line of the opponent');
+}
+
+// 3b. Levers of the shot result: finishing raises, the keeper lowers the chance (played-out reference levers).
+{
+ const B=h.call('v183CompactSnapshot',create('si6-odds')),odds=(fin,gk,gap=0,source='open')=>h.call('v183ShotOdds',B,source,fin,gk,gap);
+ assert(odds(14,12).onTarget>odds(10,12).onTarget&&odds(14,12).goal>odds(10,12).goal,'finishing');
+ assert(odds(12,16).goal<odds(12,12).goal&&odds(12,16).onTarget===odds(12,12).onTarget,'the keeper only acts on the goal chance');
+ assert(odds(12,12,3).onTarget>odds(12,12,0).onTarget&&odds(12,12,3).goal===odds(12,12,0).goal,'strength gap only acts on the frame chance');
+ const drop=odds(12.5,12).goal-odds(12.5,16.5).goal;assert(drop>.10&&drop<.20,'keeper 12 against 16.5 points: about 14 points of goals per shot on target ('+drop.toFixed(3)+')');
+ assert(odds(13,13,0,'header-volley').goal>odds(13,13,0,'long').goal,'sources differ');
+ checks.push('shot result levers: finishing, keeper (gk) and gap act on the intended step');
 }
 
 // 4. Home bonus on played matches: only side 0 on a non-neutral pitch asks for it (spy on the rate function).

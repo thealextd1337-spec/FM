@@ -14,8 +14,8 @@ const career=call('v167CreateCareer',club,seed,'QA',{fieldSize:size,fieldPlayers
 const own=career.world.clubs.find(c=>c.id===career.manager.managedClubId);call('v66ChooseSponsor',career,own.id,own.sponsors[0].id);call('v124SetYouthBudget',career,0);
 const result={marker,seed,club,size,seasons:[]};
 function prepareManaged(){
- const c=career.world.clubs.find(x=>x.id===career.manager.managedClubId);
- for(let guard=0;career.world.market?.phase==='open'&&guard<40;guard++){
+ const c=career.world.clubs.find(x=>x.id===career.manager.managedClubId);if(!c.sponsorId&&c.sponsors?.length)call('v66ChooseSponsor',career,c.id,c.sponsors[0].id);if(career.world.market?.phase==='budget')call('v124SetYouthBudget',career,0);
+ for(let guard=0;['open','deadline'].includes(career.world.market?.phase)&&guard<60;guard++){
   while(c.roster.length<10&&c.youthPool.length){try{call('v67Promote',career,c.id,c.youthPool[0].pid);}catch{break;}}
   const pending=career.world.market.pendingBids.filter(x=>x.buyerId===c.id&&x.status==='pending'),ids=new Set(pending.map(x=>x.pid)),keeperPending=()=>[...ids].some(pid=>call('v66Player',career,pid)?.keeper);
   const missing=Math.max(0,10-c.roster.length-pending.length,!c.roster.some(x=>x.keeper)&&!keeperPending()?1:0);
@@ -27,6 +27,7 @@ prepareManaged();
 for(let season=1;season<=seasons;season++){
  const t0=Date.now();
  if(season>1)prepareManaged();
+ if(career.world.market?.phase!=='closed')throw Error('market not closed before season '+season+': '+career.world.market?.phase);
  let guard=0;while(!career.world.seasonFinished&&guard++<2000)call('v62AdvanceDay',career);
  assert(career.world.seasonFinished,'season finished');
  const fixtures=call('v62Fixtures',career).filter(f=>f.result&&f.matchRecord);
@@ -44,7 +45,7 @@ for(let season=1;season<=seasons;season++){
  const league=rows.filter(r=>r.league),band=(lo,hi)=>{const g=gaps.filter(x=>x.gap>=lo&&x.gap<hi);return{n:g.length,fav:g.filter(x=>x.favWin).length/Math.max(1,g.length),draw:g.filter(x=>x.draw).length/Math.max(1,g.length),goals:mean(g.map(x=>x.goals))};};
  const players=career.world.clubs.flatMap(c=>c.roster),fresh=players.map(p=>p.fresh).filter(Number.isFinite);
  result.seasons.push({season,seconds:(Date.now()-t0)/1000,fixtures:rows.length,leagueFixtures:league.length,goalsPerMatch:mean(rows.map(r=>r.goals)),leagueGoalsPerMatch:mean(league.map(r=>r.goals)),goalsSd:sd(rows.map(r=>r.goals)),zeroZero:rows.filter(r=>r.goals===0).length/rows.length,homeWin:rows.filter(r=>r.home).length/rows.length,draw:rows.filter(r=>r.draw).length/rows.length,
-  tableSpreadMean:mean(tables.map(t=>t.spread)),championPoints:mean(tables.map(t=>t.champion)),lastPoints:mean(tables.map(t=>t.last)),topScorerMax:Math.max(...Object.values(top(scorers))),topScorerMean:mean(Object.values(top(scorers))),topAssistMax:Math.max(...Object.values(top(assisters))),topAssistMean:mean(Object.values(top(assisters))),
+  tableSpreadMean:mean(tables.map(t=>t.spread)),championPoints:mean(tables.map(t=>t.champion)),lastPoints:mean(tables.map(t=>t.last)),topScorerMax:Math.max(...Object.values(top(scorers))),topScorerLeagueMean:mean(Object.entries(top(scorers)).filter(([id])=>leagues.some(l=>l.id===id)).map(([,v])=>v)),topScorerLeagueMax:Math.max(...Object.entries(top(scorers)).filter(([id])=>leagues.some(l=>l.id===id)).map(([,v])=>v)),topScorerMean:mean(Object.values(top(scorers))),topAssistMax:Math.max(...Object.values(top(assisters))),topAssistLeagueMean:mean(Object.entries(top(assisters)).filter(([id])=>leagues.some(l=>l.id===id)).map(([,v])=>v)),topAssistMean:mean(Object.values(top(assisters))),
   teamStatsMean:marker==='183'?Object.fromEntries(['shots','onTarget','corners','crosses','fouls','freeKicks'].map(k=>[k,mean(rows.filter(r=>r.stats).map(r=>r.stats[k][0]+r.stats[k][1]))])):null,gaps:{'0-1':band(0,1),'1-2':band(1,2),'2-3':band(2,3),'>=3':band(3,99)},freshMean:mean(fresh),ratingMean:mean(ratings),ratingSd:sd(ratings),ratingAbove8:ratings.filter(x=>x>=8).length/Math.max(1,ratings.length),ratingBelow5:ratings.filter(x=>x<5).length/Math.max(1,ratings.length)});
  console.log(JSON.stringify({marker,seed,size,season,...result.seasons.at(-1),gaps:undefined}));
  if(season<seasons){if(career.world.transition?.choice===null)call('v67ChooseOffer',career);call('v62NextSeason',career);}

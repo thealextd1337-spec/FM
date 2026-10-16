@@ -222,9 +222,14 @@ function v158CompactContact(career,fixture,state,side,pid,random){
 }
 // P02 / SI-6 (marker 183): running work of the players without an event of their own (positioning, covering, pressing).
 // Units per minute and line come from the stored compact parameters; they are calibrated on the freshness use of the played-out reference.
+// The units are collected per player and booked every fifth minute (one load event instead of five keeps the ledger short).
 function v183CompactBackground(state,side){
  const load=state.playerLoad,units=state.playerPerformance?.compactBalance?.load?.background;if(!load||!units)return;
- for(const pid of v64Active(state,side)){const amount=units[state.roles[pid]]||0;if(amount>0)v158Pending(state,pid).running.sprint+=amount;}
+ const collected=load.background||={},book=state.minute%5===0;
+ for(const pid of v64Active(state,side)){
+  const amount=(collected[pid]||0)+(units[state.roles[pid]]||0);
+  if(book&&amount>0){v158Pending(state,pid).running.sprint+=amount;collected[pid]=0;}else collected[pid]=amount;
+ }
 }
 function v158CompactMinute(career,fixture,state){
  if(!state.playerLoad)return;

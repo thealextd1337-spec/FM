@@ -342,6 +342,7 @@ Für alle Pakete gilt dasselbe Marker-Gating: Neue Logik wirkt nur, wenn `v183Ac
 - **Dateien:** `world-player-performance-v155.js:4, 91-121`, `world-match-v64.js:285-313`, `world-player-load-v158.js:188-213`.
 - **Messkriterien:** je Stärkeabstand und Feldgröße Abweichung zur physischen Abnahmereihe ≤10 % bei Schüssen/Toren, ≤5 Punkte bei Favoritenquote; 1.700-Fixture-Matrix wie v178; Remis schwacher Teams gegen physisch ±5 Punkte.
 - **Tests:** `test-compact-balance-v178.cjs` (alte Kennung eingefroren), neu `test-compact-balance-v183.cjs`, `validate-compact-balance-v178.cjs`-Muster, `audit-world-balance-v68.cjs`, `DOPPEL_SEASONS=10`-Läufe aus dem Workflow.
+- **Umgesetzt (16. Oktober 2026, `feat/si-compact`):** Kennung `shotBalanceRevision` 183, Modell, Parameter je Feldgröße, Tabellen kompakt gegen physisch, 1.700-Matrix und Saisonebene in [SI-6](spielerintelligenz-si6-kompakt-183.md). Abweichung vom Plan: `audit-world-balance-v68.cjs` und die `DOPPEL_SEASONS=10`-Läufe laden weder Spielermodell noch Leistungsadapter und berühren die Kennung 183 nicht; die Saisonebene misst `work/measure-compact-seasons-v183.cjs`. Das ausgespielte Spiel schreibt keine Vorlagen, für die Vorlagenverteilung gibt es keinen Vergleichswert.
 
 ### Begleitpakete
 
