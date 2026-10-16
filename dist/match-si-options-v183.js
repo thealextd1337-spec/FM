@@ -77,7 +77,7 @@ v183RegisterDefaults('options',{
  // decides anew. The wait discounts the gain e-fold every crossLeadTau seconds
  // (the carrier drives on, unlike a turn on the spot); crossSpaceGain scales the
  // option value.
- crossSpace:3,crossSpots:[[4,6],[0,11],[-4,7]],crossRunnerRange:28,crossRunnerWide:14,crossRunnerBack:2,crossLead:1.5,crossLeadSlack:1.5,crossLeadTau:3,crossKickMin:.12,crossSpaceGain:1
+ crossSpace:3,crossSpots:[[4,6],[0,11],[-4,7]],crossRunnerRange:28,crossRunnerWide:14,crossRunnerBack:2,crossLead:2,crossLeadSlack:3,crossLeadTau:3,crossKickMin:.2,crossSpaceGain:1
 });
 const V183_OPT_KEYS=Object.freeze(Object.keys(v183RegisterDefaults('options',{})));
 // Neutral values of the SI-F personality formula (role 1, mental values 10).

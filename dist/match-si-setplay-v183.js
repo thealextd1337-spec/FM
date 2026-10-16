@@ -83,11 +83,11 @@ v183RegisterDefaults('setplay',{
  settle:.7,
  // Cross into space (B22): a floated cross to a box spot that a runner reaches
  // during the flight. spaceCrossSpeed: flight speed (m/s, slower than a driven
- // cross so the runner arrives); spaceReaction: reaction of the signalled runner
+ // cross so the runner arrives; series V5); spaceReaction: reaction of the signalled runner
  // (s; he knows the ball is coming); spaceSlackMax: spare running distance that
  // widens the landing reach (m, cap); spaceLandGrid: samples per axis of the
  // error square for the landing share.
- spaceCrossSpeed:16,spaceReaction:.1,spaceSlackMax:2.5,spaceLandGrid:9
+ spaceCrossSpeed:14,spaceReaction:.1,spaceSlackMax:2.5,spaceLandGrid:9
 });
 
 const v183SetplayOn=m=>typeof v183Active==='function'&&v183Active(m,'setplay');

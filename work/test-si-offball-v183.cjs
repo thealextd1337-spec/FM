@@ -131,8 +131,8 @@ const boxPeople=`[${[
  person('k1',1,2,0,'gk',{n:1},true),person('d11',1,13,-7,'def',{spd:12}),person('d21',1,13,7,'def',{spd:12}),person('m11',1,26,-8,'mid',{spd:13}),person('m21',1,26,8,'mid',{spd:13}),person('a11',1,45,0,'att',{spd:14})].join(',')}]`;
 check('box occupation: a wide ball near the goal fills at least two box points (near post on the ball side, spot, far post)',()=>{
  ev(`(()=>{const people=${boxPeople};for(const p of people)p.role=p.line==='def'?0:1;const roles={b20:'box-to-box',m20:'striker',p10:'poacher',w10:'winger'};for(const p of people)if(roles[p.pid])p.tacticalRole=roles[p.pid];
-  // SI-K: the scene keeps its design point (rate 0.78, SI-3 values before SI-K); there the striker's near-post box point beat his depth run by 0.03 and the calibrated values flip it.
-  const m=Si2Scene({seed:3,people,owner:people.find(p=>p.pid==='w10'),clockRate:MATCH_SPEED,siParams:{finish:{spreadBase:.037,spreadSkill:.584,spreadFlat:2.22,reachBase:1.39,reachGk:.066}}});Native182.advance();})()`);
+  // B22: at the calibrated defaults the cross runners of the wide ball (crossRunBonus) fill the box points; the SI-K design pin (rate 0.78, SI-3 values before SI-K) is no longer needed.
+  const m=Si2Scene({seed:3,people,owner:people.find(p=>p.pid==='w10')});Native182.advance();})()`);
  const r=copy(ev(`(()=>{const m=match,s=v150Scale(m),intents=Si2Intents(),goal={x:.5,y:v55Field.top};
   const box=Object.entries(intents).filter(([,i])=>i.cat==='box').map(([pid,i])=>({pid,lateral:+((i.x-.5)*s.x).toFixed(1),depth:+((i.y-goal.y)*s.y).toFixed(1),type:i.type,limit:v121PositioningPlans.get(m)?.get(Si2Find(pid))?.limit!=null?+((v121PositioningPlans.get(m).get(Si2Find(pid)).limit-goal.y)*s.y).toFixed(1):null}));
   const p=Si2Find('m20'),owner=m.owner,rivals=m.people.filter(q=>q.t!==0&&!q.keeper),P=k=>v183Param(m,'offball.'+k),plans=v121PositioningPlans.get(m);

@@ -121,7 +121,7 @@ check('parameters: the add-on registers its keys in options and setplay and stor
  ev('Crossing.estimates({})');const si=call('params').si;
  for(const key of ['crossSpace','crossSpots','crossRunnerRange','crossRunnerWide','crossRunnerBack','crossLead','crossSpaceGain'])assert.ok(Object.hasOwn(si.params.options,key),'options.'+key);
  for(const key of ['spaceCrossSpeed','spaceReaction','spaceSlackMax'])assert.ok(Object.hasOwn(si.params.setplay,key),'setplay.'+key);
- assert.equal(si.params.options.crossLead,1.5);assert.equal(si.params.options.crossLeadTau,3);assert.equal(si.params.setplay.spaceCrossSpeed,16);assert.deepEqual(si.params.options.crossSpots,[[4,6],[0,11],[-4,7]]);
+ assert.equal(si.params.options.crossLead,2);assert.equal(si.params.options.crossLeadTau,3);assert.equal(si.params.setplay.spaceCrossSpeed,14);assert.deepEqual(si.params.options.crossSpots,[[4,6],[0,11],[-4,7]]);
 });
 check('estimate: a runner\'s path raises the arrival above the standing receiver; a spot beyond his cover is unreachable; the point estimate without a runner is unchanged in kind',()=>{
  for(const size of ['standard','large']){const e=call('estimates',{size});
