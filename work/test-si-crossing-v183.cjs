@@ -113,7 +113,18 @@ h.run(`globalThis.Crossing=(function(){
   const crosses=m.people.reduce((n,p)=>n+(p.stats.crosses||0),0),tr=v183TraceEntries(m).filter(e=>e.kind==='cross'&&e.space).length;
   return {runs,plain,crosses,spaceCrosses:tr,ticks:ticks};
  }
- return {params,estimates,options,kick,signal,play};
+ // A blocked cross into space ends its signal: the crosser regaining the ball
+ // must not kick again from the stale record (forced block next to the crosser).
+ function blocked({seed=0}={}){
+  const S=build({seed}),m=match,team=S.team,crosser=S.crosser,runner=S.runner,s=v160PitchScale(m),blocker=field(1-team).find(p=>![S.marker].includes(p)&&Math.abs(depthOf(team,p.y))>30)||field(1-team)[4];
+  const dx=(S.spot.x-crosser.x)*s.x,dy=(S.spot.y-crosser.y)*s.y,d=Math.hypot(dx,dy);place(blocker,{x:crosser.x+dx/d*1.2/s.x,y:crosser.y+dy/d*1.2/s.y});
+  {const body=v157Body(crosser);body.heading=Math.atan2(dx,dy);}
+  m.attackFlow.crossRun={crosserId:crosser.pid,runnerId:runner.pid,x:S.spot.x,y:S.spot.y,at:v183Seconds(m),kickAt:v183Seconds(m),until:v183Seconds(m)+2.5,kicked:false};
+  const chance=v183BlockChance;v183BlockChance=()=>1;let trace;
+  try{seeded(9200+seed);v55HighPass(crosser,runner,{cross:true,space:{x:S.spot.x,y:S.spot.y}});trace=v183TraceEntries(m).filter(e=>e.kind==='cross-block').length;}finally{v183BlockChance=chance;}
+  return {blocks:trace,run:m.attackFlow.crossRun||null,pending:Boolean(m.attackFlow.pendingTurn)};
+ }
+ return {params,estimates,options,kick,signal,play,blocked};
 })();`);
 const call=(fn,arg)=>copy(ev(`Crossing.${fn}(${JSON.stringify(arg||{})})`));
 
@@ -178,6 +189,9 @@ check('signal aborted: a runner offside at kickAt gets no cross; the carrier dec
 check('restore during the signal keeps attackFlow.crossRun as plain data and the match kicks after the restore',()=>{
  const sg=call('signal',{seed:4,lead:.6,restore:true});
  assert.ok(sg.restored,'checkpoint taken');assert.deepEqual(sg.saved,sg.run0);assert.ok(sg.kickedAt!==null&&sg.flight,'kicked after restore '+JSON.stringify({k:sg.kickedAt,f:sg.flight}));
+});
+check('a blocked cross into space removes attackFlow.crossRun (no re-kick from a stale signal)',()=>{
+ for(const seed of [0,1]){const b=call('blocked',{seed});assert.equal(b.pending,false,'no queued turn');assert.ok(b.blocks>=1,'blocked: '+JSON.stringify(b));assert.equal(b.run,null,'crossRun after the block');}
 });
 check('full constructor matches: crosses into space occur, their state is plain JSON (both sizes)',()=>{
  for(const size of ['standard','large']){const r=call('play',{size});assert.ok(r.plain,'plain');assert.ok(r.spaceCrosses>=1,size+' space crosses '+r.spaceCrosses);assert.ok(r.runs>=1,'signals '+r.runs);}

@@ -196,7 +196,7 @@ function v183HighPass(m,passer,receiver,{cross=false,exempt=false,corner=false,r
  passer.stats.passes++;passer.stats.highPasses++;if(cross)passer.stats.crosses++;m.lastTouch=passer.t;
  const forward=passer.t===0?passer.y-land.y:land.y-passer.y;if(forward>.12)passer.stats.progressive++;
  const blocker=cross&&!corner?v183CrossBlocker(m,passer,land):null;
- if(blocker&&random()<v183BlockChance(m,blocker))return v183BlockCross(m,passer,blocker,from,land); // setplay.block
+ if(blocker&&random()<v183BlockChance(m,blocker)){if(point&&m.attackFlow.crossRun?.crosserId===passer.pid)delete m.attackFlow.crossRun;return v183BlockCross(m,passer,blocker,from,land);} // setplay.block
  // fly() takes its duration in the legacy measure (seconds x MATCH_SPEED); the
  // SI-0 flight rule converts it to the match rate so the real time stays.
  const exit=v55Exit(from,land),end=exit?v55BoundaryStop(exit):land,seconds=Math.max(P('flightMin'),v122Metres(from,end)/(corner?P('cornerSpeed'):point?P('spaceCrossSpeed'):P('crossSpeed'))),duration=seconds*MATCH_SPEED;

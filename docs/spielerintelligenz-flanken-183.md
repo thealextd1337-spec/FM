@@ -15,14 +15,14 @@ Keine neue Paketkennung: Die Änderungen liegen in den besitzenden Paketen SI-1 
 
 ### SI-7: Ausführung und Schätzung
 
-- `v55HighPass(passer, receiver, {cross:true, space:{x,y}})`: Der Ball zielt auf den Raumpunkt statt auf den Empfänger, geflogen mit `spaceCrossSpeed` (16 m/s wie Ecken statt 20 m/s), damit der Läufer ankommt. Abseits wird wie bei jedem hohen Ball mit der Momentaufnahme **beim Abspiel** beurteilt (`v55OffsideSnapshot`); der Läufer darf die Box erst danach betreten. Fehlerstreuung, Block, Luftduell, Kopfball/Volley, Ablage und Annahme bleiben die SI-7-Modelle.
+- `v55HighPass(passer, receiver, {cross:true, space:{x,y}})`: Der Ball zielt auf den Raumpunkt statt auf den Empfänger, geflogen mit `spaceCrossSpeed` (14 m/s; Ecken 16, Flanken 20 m/s), damit der Läufer ankommt. Abseits wird wie bei jedem hohen Ball mit der Momentaufnahme **beim Abspiel** beurteilt (`v55OffsideSnapshot`); der Läufer darf die Box erst danach betreten. Fehlerstreuung, Block, Luftduell, Kopfball/Volley, Ablage und Annahme bleiben die SI-7-Modelle.
 - Plain-Signal `attackFlow.crossRun = {crosserId, runnerId, x, y, at, kickAt, until, kicked}`: SI-1 schreibt es bei der Entscheidung, SI-7 setzt `kicked` beim Abspiel und entfernt es bei der Landung. Im Luftplan ist der signalisierte Läufer der erste Anwärter seines Teams (er hat die Flanke vor dem Abspiel gelesen).
 - `v183CrossEstimate(m, p, point, {runner, space:true, lead, adapt})`: Laufmodell `v183RunCover` (aktuelle Annäherungsgeschwindigkeit, native Beschleunigung `(6,2+0,08·spd)·1,4`, Planungstempo `(3+0,14·spd)·approachPace`, Reaktion `spaceReaction` 0,1 s). Landeanteil = Anteil des Fehlerquadrats um den Punkt innerhalb der Scheibe „Laufstrecke + Reichweite“ um den Läufer (Raster `spaceLandGrid` 9×9), mal `(1−große Fehler)`. Duell mit Restanteil und Annäherungstempo beider Seiten. Ein Punkt jenseits der Laufstrecke wird standardmäßig auf den Laufweg zurückgezogen (`landing` im Ergebnis, bis zu sechs Schritte, weil ein näherer Punkt den Flug verkürzt). `lead` zählt zur Laufzeit des Läufers, nicht zum Flug und nicht zum Verteidiger. Schätzungen ohne `space` sind unverändert.
 
 ### SI-1: Option und Startsignal
 
 - Je Mitspieler (nicht abseits, ≤`crossRunnerRange` 28 m vor dem Tor, ≤`crossRunnerWide` 14 m seitlich) und je Boxpunkt `crossSpots` (naher Pfosten 4/6, Elfmeterpunkt 0/11, zweiter Pfosten −4/7 m, ballseitig) eine Option `cross` mit `space:true`; behalten wird je Läufer der beste Punkt. Wert = Ankunft × max(Besitzwert am Punkt, Kopfballwert) × Fokus × Flügelanweisung, Verlust wie bei Flanken; `crossSpaceGain` 1.
-- **Wartezeit (Startsignal):** Liegt der Punkt jenseits der Laufstrecke des Läufers im Flug, nimmt die Option die Wartezeit, die ihn mit `crossLeadSlack` 1,5 m Reserve hinbringt, höchstens `crossLead` 1,5 s. Die Wartezeit mindert den Gewinn e-fach je `crossLeadTau` 3 s (der Ballführer treibt weiter, anders als eine Drehung auf der Stelle; `delayed()` behält den Dreh- und Pressanteil). Bei Ausführung mit Wartezeit: Signal schreiben, Ballführer trägt 4 m Richtung Grundlinie, Entscheidung ruht bis `kickAt`; dann prüft `v183OptCrossRun` Abseits und Läufer, schätzt neu (Landepunkt angepasst) und flankt nur bei Ankunft ≥`crossKickMin` 0,12, sonst entscheidet der Ballführer neu (Protokoll `cross-run` mit `abort`).
+- **Wartezeit (Startsignal):** Liegt der Punkt jenseits der Laufstrecke des Läufers im Flug, nimmt die Option die Wartezeit, die ihn mit `crossLeadSlack` 3 m Reserve hinbringt, höchstens `crossLead` 2 s. Die Wartezeit mindert den Gewinn e-fach je `crossLeadTau` 3 s (der Ballführer treibt weiter, anders als eine Drehung auf der Stelle; `delayed()` behält den Dreh- und Pressanteil). Bei Ausführung mit Wartezeit: Signal schreiben, Ballführer trägt 4 m Richtung Grundlinie, Entscheidung ruht bis `kickAt`; dann prüft `v183OptCrossRun` Abseits und Läufer, schätzt neu (Landepunkt angepasst) und flankt nur bei Ankunft ≥`crossKickMin` 0,2, sonst entscheidet der Ballführer neu (Protokoll `cross-run` mit `abort`).
 - Ohne Wartezeit flankt die Option sofort. Eine eingereihte Drehung (`v157QueueTurn`) wird bei Raumflanken nicht durch einen Gegner am Punkt abgebrochen (der Block und das Duell entscheiden), Abseits bricht sie weiterhin ab. Nur mit aktivem Paket `setplay`; `crossSpace` 0 schaltet die Option ab.
 
 ### SI-2: Flankenläufer und Klammer
@@ -35,15 +35,15 @@ Keine neue Paketkennung: Die Änderungen liegen in den besitzenden Paketen SI-1 
 
 | Paket | Schlüssel | Wert | Bedeutung |
 | --- | --- | ---: | --- |
-| setplay | `spaceCrossSpeed` | 16 | Fluggeschwindigkeit der Raumflanke (m/s) |
+| setplay | `spaceCrossSpeed` | 14 | Fluggeschwindigkeit der Raumflanke (m/s) |
 | setplay | `spaceReaction` | 0,1 | Reaktion des signalisierten Läufers (s) |
 | setplay | `spaceSlackMax` | 2,5 | Reserve-Laufstrecke für den Duellanteil (m, Deckel) |
 | setplay | `spaceLandGrid` | 9 | Raster je Achse für den Landeanteil |
 | options | `crossSpace` | 3 | Boxpunkte je Läufer (0 = aus) |
 | options | `crossSpots` | [[4,6],[0,11],[−4,7]] | Boxpunkte [seitlich ballseitig, Tiefe] m |
 | options | `crossRunnerRange` / `crossRunnerWide` / `crossRunnerBack` | 28 / 14 / 2 | Läufer: Torabstand, Breite, Punkt höchstens 2 m weiter vom Tor als der Läufer |
-| options | `crossLead` / `crossLeadSlack` / `crossLeadTau` | 1,5 / 1,5 / 3 | längste Wartezeit (s), Reserve (m), Abzinsung der Wartezeit (s) |
-| options | `crossKickMin` | 0,12 | Mindestankunft beim Abspiel nach Wartezeit |
+| options | `crossLead` / `crossLeadSlack` / `crossLeadTau` | 2 / 3 / 3 | längste Wartezeit (s), Reserve (m), Abzinsung der Wartezeit (s) |
+| options | `crossKickMin` | 0,2 | Mindestankunft beim Abspiel nach Wartezeit |
 | options | `crossSpaceGain` | 1 | Gewichtung des Optionswerts |
 | offball | `crossRunRange` / `crossRunWide` / `crossRunDeep` | 36 / 7 / 30 | Zone der Flankenläufer (m) |
 | offball | `crossRunners` / `crossRunBonus` | 2 / 6 | Anzahl und Bonus der Flankenläufer |
@@ -128,7 +128,7 @@ Ausgang der 2,48 Raumflanken je Partie (Protokoll, 576 Partien): Läufer gewinnt
 
 Node 24 (`C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe`), Stand des Abschlusscommits.
 
-- **Mechanismustest** `node work/test-si-crossing-v183.cjs` (10 Prüfungen, Standard und großes Feld): Parameter registriert; keine Raumflanke mit `crossSpace` 0 oder Paket `setplay` aus; Schätzung mit Laufweg über dem stehenden Empfänger, unerreichbarer Punkt 0 bzw. zurückgezogen; Optionsliste mit Raumflanke je Läufer auf einen Boxpunkt; Ausführung (Flug zum Punkt, Läufer erster Anwärter, betritt die Box erst nach dem Abspiel, `crossRun` nur während des Flugs, Ledger `cross`); Abseits beim Abspiel wird gepfiffen; Signal mit Wartezeit (Klammer bis zum Abspiel, gelöst im Flug, Abbruch bei Abseits am `kickAt`); Restore des Signals als JSON; volle Konstruktorpartien mit Raumflanken und Plain-Zustand. Im Workflow-Block „Spieltests ausführen“ eingetragen.
+- **Mechanismustest** `node work/test-si-crossing-v183.cjs` (11 Prüfungen, Standard und großes Feld): Parameter registriert; keine Raumflanke mit `crossSpace` 0 oder Paket `setplay` aus; Schätzung mit Laufweg über dem stehenden Empfänger, unerreichbarer Punkt 0 bzw. zurückgezogen; Optionsliste mit Raumflanke je Läufer auf einen Boxpunkt; Ausführung (Flug zum Punkt, Läufer erster Anwärter, betritt die Box erst nach dem Abspiel, `crossRun` nur während des Flugs, Ledger `cross`); Abseits beim Abspiel wird gepfiffen; Signal mit Wartezeit (Klammer bis zum Abspiel, gelöst im Flug, Abbruch bei Abseits am `kickAt`); Restore des Signals als JSON; eine geblockte Raumflanke löscht das Signal (Review); volle Konstruktorpartien mit Raumflanken und Plain-Zustand. Im Workflow-Block „Spieltests ausführen“ eingetragen.
 - **SI-Pakettests** `work/test-si-*-v183.cjs`: alle grün (core, clock, defence, finish, setplay, offball, options, field). Die SI-2-Boxszene prüft die Boxbesetzung jetzt an den kalibrierten Vorgaben statt am SI-K-Entwurfsstand (Hinweis des SI-K-Reviews); zwei Boxpunkte werden besetzt.
 - **Altpartien:** `node work/check-old-matches-v183.cjs` grün (bytegleich gegen `e4e531c0`); `node work/check-old-matches-v182.cjs <Basis>` grün (Basis per `git archive e4e531c0 dist work/test-v41.cjs`).
 - **Restore:** `node work/check-restore-completeness-v183.cjs --port=4262 --quick` auf Lane C grün, 10 Läufe; `attackFlow.crossRun`, `offball.crossZoneOwner` und die `cross-run`-Angebote sind Plain-Data, keine neue WeakMap.
