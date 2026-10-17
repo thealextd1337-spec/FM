@@ -236,7 +236,7 @@ Neu in `test-si-scorer-v183` (im Workflow-Block):
 - Wirkung auf Schuss- und Risikogewicht (SI-1) sowie auf Tempo und Zonenleine des Führenden (SI-2); neutral ohne Parameter.
 - Torwartziel bei Ecken (`keeperShift`) und sonst (`keeperShiftOpen`), auch mit einem fremden Eckendatensatz.
 - Keine neuen Zustandsschlüssel; ganze Konstruktorpartien auf beiden Feldgrößen.
-- Regression (Review): Ein führender Ballführer im Zweikampf auf dem großen Feld erhält in SI-5 den Zweikampfaufschlag (), nicht den offenen (); gegen den Stand vor der Korrektur schlägt die Prüfung fehl (Tempo 1,007 statt 0,839).
+- Regression (Review): Ein führender Ballführer im Zweikampf auf dem großen Feld erhält in SI-5 den Zweikampfaufschlag (`carrierCloseGain`), nicht den offenen (`carrierPaceGain`); gegen den Stand vor der Korrektur schlägt die Prüfung fehl (Tempo 1,007 statt 0,839).
 
 Angepasste Tests:
 - `test-si-crossing`: Die SI-K2-Torwartprüfung nutzt `keeperShiftOpen` (1 / 0,4 / 0). Die Bewacherszene läuft ohne Spielstandstempo; mit ihm kommen nur 5 von 10 Flanken, der Effekt bleibt (1,16 gegen 2,20 m).
