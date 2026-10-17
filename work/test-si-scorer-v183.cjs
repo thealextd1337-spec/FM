@@ -98,6 +98,24 @@ check('keeper during an opposing high ball: keeperShift for a corner, keeperShif
  assert.equal(cross.stale,cross.x,'a corner record of another flight counts as open play');
 });
 
+check('SI-5 duel recognition with the score-state factor: a leading carrier in a duel on the large pitch gets carrierCloseGain, not carrierPaceGain',()=>{
+ // Regression for dist/match-si-field-v183.js:137 (Torjäger round): SI-5 identifies the SI-2 duel pace by equality with
+ // carrierClosePace*(.78+tec*.009)*v183OffballLeadPace; without the state factor there a leading carrier got the open gain.
+ const run=params=>{h.call('Native183.constructed',{size:'large',roles:true,si:{params}});
+  for(let i=0;i<3000;i++){h.call('Native183.advance');if(ev('Boolean(match.owner&&!match.owner.keeper&&!match.flight&&!v121PositioningPaused(match))'))break;}
+  return copy(ev(`(()=>{const m=match,o=m.owner,s=v150Scale(),r=m.people.find(q=>q.t!==o.t&&!q.keeper);if(!o||o.keeper)throw Error('no live carrier');
+   m.score=[0,0];m.score[o.t]=2;m.fullTimeEnd=80;m.elapsed=72;r.x=o.x;r.y=o.y-(o.t===0?1:-1)*1.5/s.y;
+   const state=v183OffballLeadPace(m,o),f0=v183Param(m,'offball.carrierClosePace')*(.78+ability(o,'tec')*.009)*state,extra=v183FieldExtra(m);
+   const duel=v183PaceFactor(m,o,'carrier',{}),expected=v183FieldCap(m,o,f0,f0*(1+v183Param(m,'field.carrierCloseGain')*extra),'carrierSpeedMax'),wrong=v183FieldCap(m,o,f0,f0*(1+v183Param(m,'field.carrierPaceGain')*extra),'carrierSpeedMax');
+   r.y=o.y-(o.t===0?1:-1)*8/s.y;const open=v183PaceFactor(m,o,'carrier',{});
+   return {state,extra,duel,expected,wrong,open,f0};})()`));};
+ const r=run({field:{carrierCloseGain:0}});
+ assert(r.state<.9&&r.state>=.5,'the lead slows the carrier: '+r.state);assert(r.extra>0,'large pitch extra '+r.extra);assert(r.wrong>r.expected+1e-6,'the two gains differ');
+ near(r.duel,r.f0,'carrierCloseGain 0 leaves the duel pace of a leading carrier unscaled (SI-5 recognised the duel)');
+ assert(r.open>r.duel*1.05,'the open carrier gets the pace gain: '+JSON.stringify(r));
+ const d=run({});assert(d.wrong>d.expected+1e-6,'the two gains differ (defaults)');near(d.duel,d.expected,'default close gain on the state-scaled duel pace');
+});
+
 check('full constructor matches with the defaults (both pitch sizes) finish without errors; no new attackFlow keys',()=>{
  for(const size of ['standard','large']){
   h.call('Native183.constructed',{club:'GER-2',seed:'scorer-'+size,size,roles:true});
