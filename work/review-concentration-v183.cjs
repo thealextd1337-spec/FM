@@ -1,11 +1,11 @@
 'use strict';
-// Review SI-6: per-player concentration of shots and goals, compact (marker 183) against the physical K2 series.
+// Review SI-6: per-player concentration of shots and goals, compact (marker 183) against the physical series (default sb2-f, --series=k2-f-... for the SI-6 reference).
 // Usage: node work/review-concentration-v183.cjs --shard=0 --shards=4 --k=4 [--label=x] [--set=path=value,...]
 const fs=require('node:fs'),path=require('node:path');process.chdir(path.resolve(__dirname,'..'));
 const {harness}=require('./youth-native-harness-v176.cjs');
 const arg=(name,fallback)=>{const hit=process.argv.find(a=>a.startsWith('--'+name+'='));return hit?hit.slice(name.length+3):fallback;};
 const shard=+arg('shard',0),shards=+arg('shards',1),K=+arg('k',4),label=arg('label','conc'),sets=arg('set','').split(',').filter(Boolean);
-const series=['k2-f-trace40000','k2-f-si183b-trace40000','k2-f-si183c-trace40000'];
+const series=arg('series','sb2-f-trace40000,sb2-f-si183b-trace40000,sb2-f-si183c-trace40000').split(',');
 const KEYS=['spd','tec','pas','fin','tak','pos','air','sta'];
 const physical=series.flatMap(name=>JSON.parse(fs.readFileSync(`outputs/si183/${name}.json`,'utf8')).matches.filter(r=>r.finished&&!r.engineError&&!r.stall&&r.rec&&r.extras?.sik));
 const h=harness();

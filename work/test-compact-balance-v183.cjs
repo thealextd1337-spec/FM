@@ -90,6 +90,20 @@ function finish(x,until=Infinity){globalThis.v61CurrentCareer=x.c;while(x.s.phas
  checks.push('within-team finishing share: expected shooter unchanged, own deviation counts with finSelf');
 }
 
+// 3d. Score state (leader manages the lead, trailing side pushes, late caution while level): relative change of the expected shots from the
+// score difference of the side; matches without the block in their stored snapshot behave as before (factor 1).
+{
+ const B=h.call('v183CompactSnapshot',create('si6-state')),S=B.scoreState,factor=(a,b,minute,side=0,balance=B)=>h.call('v183ScoreFactor',balance,{score:[a,b],minute},side);
+ assert(S.lead1<0&&S.lead2<=S.lead1+1e-9||S.lead2<0,'the leader shoots less');assert(S.trail1>0&&S.trail2>0,'the trailing side shoots more');
+ assert.equal(factor(1,0,30),1+S.lead1);assert.equal(factor(0,1,30),1+S.trail1);assert.equal(factor(2,0,30),1+S.lead2);assert.equal(factor(0,3,30),1+S.trail2);
+ assert.equal(factor(1,0,30,1),1+S.trail1,'the factor follows the side asked for');assert.equal(factor(2,1,80,1),1+S.trail1);
+ assert.equal(factor(0,0,10),1+S.level*0,'level early: no change');
+ const late={...B,scoreState:{...S,level:-.2,levelFrom:.5}};
+ assert.equal(factor(1,1,45,0,late),1,'level before levelFrom');assert(Math.abs(factor(1,1,90,0,late)-.8)<1e-9,'level at the end: full term');assert(Math.abs(factor(0,0,67.5,0,late)-.9)<1e-9,'level term grows linearly');
+ const old={...B};delete old.scoreState;assert.equal(factor(3,0,80,0,old),1,'snapshots without the block: no score state');
+ checks.push('score state: leader/trailer/level factors, side-aware, absent block neutral');
+}
+
 // 4. Home bonus on played matches: only side 0 on a non-neutral pitch asks for it (spy on the rate function).
 {
  globalThis.v183Spy=[];h.evaluate('globalThis.v183RateOriginal=v183ShotRate;v183ShotRate=function(B,own,other,home,deep){v183Spy.push(home);return v183RateOriginal(B,own,other,home,deep);};');
@@ -157,7 +171,7 @@ for(const revision of [178,119,undefined]){
  assert(roles.length>=11);
  for(const group of ['open','long','head','rebound','fk'])for(const role of roles)assert(constants.shooters[group].roles[role]>0,`${group} weight for ${role}`);
  for(const source of Object.keys(constants.sizes.standard.on))assert(constants.groups[source]&&Number.isFinite(constants.sizes.standard.goal[source])&&Number.isFinite(constants.sizes.large.on[source]));
- const total=name=>constants.sizes[name].mix.reduce((n,[,rate])=>n+rate,0);assert(Math.abs(total('standard')-13.4)<.1&&Math.abs(total('large')-12.8)<.1,'source mix sums to the reference shots');
+ const total=name=>constants.sizes[name].mix.reduce((n,[,rate])=>n+rate,0);assert(Math.abs(total('standard')-12.26)<.1&&Math.abs(total('large')-11.47)<.1,'source mix sums to the reference shots (sb2-f)');
  checks.push('role and source tables are complete');
 }
 
