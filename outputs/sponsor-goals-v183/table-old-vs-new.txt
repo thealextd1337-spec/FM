@@ -1,0 +1,16 @@
+rows old/new 1152 5760
+
+== league: matches per club old 14.0 new 14.0; goals old 10.08 new 26.48
+squad 1: n old 66 new 330 | old goals mean 7.5 median 7 target 17 hit 0.0% | new goals mean 11.5 median 11 p25 8 p75 14 | equal-hit target 40 (hit 0.0%)
+squad 2: n old 102 new 510 | old goals mean 8.1 median 8 target 19 hit 0.0% | new goals mean 14.3 median 13 p25 11 p75 17 | equal-hit target 50 (hit 0.0%)
+squad 3: n old 162 new 810 | old goals mean 9.9 median 10 target 20 hit 0.0% | new goals mean 20.6 median 20 p25 16 p75 24 | equal-hit target 54 (hit 0.0%)
+squad 4: n old 114 new 570 | old goals mean 11.4 median 11 target 21 hit 1.8% | new goals mean 34.1 median 30 p25 25 p75 38 | equal-hit target 76 (hit 1.8%)
+squad 5: n old 132 new 660 | old goals mean 12.0 median 12 target 23 hit 0.0% | new goals mean 44.1 median 42 p25 33 p75 53 | equal-hit target 91 (hit 0.0%)
+overall old hit 0.3%
+
+== cup: matches per club old 1.5 new 1.2; goals old 0.60 new 0.43
+squad 1: n old 198 new 990 | old goals mean 0.6 median 0 target 4 hit 1.5% | new goals mean 0.4 median 0 p25 0 p75 1 | equal-hit target 3 (hit 1.9%)
+squad 2: n old 276 new 1380 | old goals mean 0.6 median 0 target 4 hit 1.1% | new goals mean 0.4 median 0 p25 0 p75 1 | equal-hit target 4 (hit 1.0%)
+squad 3: n old 96 new 480 | old goals mean 0.5 median 0 target 4 hit 1.0% | new goals mean 0.6 median 0 p25 0 p75 1 | equal-hit target 5 (hit 0.8%)
+squad 4: n old 6 new 30 | old goals mean 0.3 median 0 target 4 hit 0.0% | new goals mean 0.4 median 0 p25 0 p75 1 | equal-hit target 4 (hit 0.0%)
+overall old hit 1.2%

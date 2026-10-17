@@ -1,0 +1,4 @@
+{"world":"new","seed":"sp-c","size":"large","season":1,"seconds":143.663,"leagueGoalsPerClub":26.09375}
+{"world":"new","seed":"sp-c","size":"large","season":2,"seconds":169.754,"leagueGoalsPerClub":26.677083333333332}
+{"world":"new","seed":"sp-c","size":"large","season":3,"seconds":157.643,"leagueGoalsPerClub":25.864583333333332}
+done outputs/sponsor-goals-v183/goals-new-sp-c-large.json
