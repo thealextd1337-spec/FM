@@ -129,10 +129,11 @@ function v66Book(career,clubId,id,amount,label){
  return true;
 }
 // Sponsor goal "Liga: mindestens N Tore". A world of release 132 keeps 11 + squad (the 12-country world scales it to 14 matches in v168).
-// A world with the 183 stamp plays at about four goals per match: it asks for the goal count that a club of its squad class reaches in
-// about every second season of 14 league matches (50-60 % of the club seasons of work/measure-sponsor-goals-v183.cjs, docs/spielerintelligenz-neue-spielstaende-183.md),
-// scaled to the number of league matches. The cup goal for cup-only clubs stays at 4 regular goals: those clubs rarely play more than one cup match.
-const v66SponsorGoals183=Object.freeze([11,11,13,19,32,44]);
+// A world with the 183 stamp plays at about 3.5 goals per match (compact simulation re-fitted to the series sb2-f): it asks for the goal count that a club of
+// its squad class reaches in about 35-40 % of its seasons of 14 league matches (hit rates of the standard pitch, the only pitch of new worlds, from
+// work/measure-sponsor-goals-v183.cjs with 7 seeds, docs/spielerintelligenz-neue-spielstaende-183.md), scaled to the number of league matches.
+// The cup goal for cup-only clubs stays at 4 regular goals: those clubs rarely play more than one cup match.
+const v66SponsorGoals183=Object.freeze([13,13,16,23,34,48]);
 function v66SponsorGoalTarget(career,club){
  const squad=club.policy.startingSquad;
  if(typeof v183WorldSi!=='function'||!v183WorldSi(career))return 11+squad;
