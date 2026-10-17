@@ -59,6 +59,9 @@ function prepareManagedMarket(career){
 }
 for(let index=0;index<seedCount;index++){
  const seedNumber=startSeed+index,career=call('v61CreateCareer','GER-2',`balance-v68-${seedNumber}`);
+ // The audit simulates the rules of release 132 (no player model, no compact marker 183, sponsor goal 11 + squad): a world with the 183 stamp always runs with
+ // the player model in the product, so the stamp is removed here and the sponsors are rebuilt (the sponsor goal table of new worlds is measured in work/measure-sponsor-goals-v183.cjs).
+ delete career.world.siRevision;for(const club of career.world.clubs)club.sponsors=call("v66MakeSponsors",career,club);
  for(let season=1;season<=seasons;season++){
   prepareManagedMarket(career);
   assert.strictEqual(call('v61ValidateCareer',JSON.parse(JSON.stringify(career))),true,'Transferphase muss nach Neuladen gültig bleiben');

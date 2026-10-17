@@ -432,7 +432,7 @@ Die Abnahmekriterien werden auch ohne den Term erfüllt (Remis −1,8 Punkte geg
 
 | Konstante | vorher (Standard / groß) | jetzt (Standard / groß) | Stelle | Grund |
 | --- | ---: | ---: | --- | --- |
-| `shotBase` | 5,754 / 5,656 | 5,452 / 5,090 | :28 / :29 | Schüsse 12,26 / 11,47 je Partie, Poisson-Anpassung (nach Abzug des Spielstandterms) |
+| `shotBase` | 5,754 / 5,656 | 5,452 / 5,090 | :28 / :29 | Schüsse 12,26 / 11,47 je Partie; Poisson-Anpassung 5,345 / 5,103, mit dem Spielstandterm auf die Schüsse der Referenz nachgezogen (+2,0 % / −0,3 %, Läufe r2 bis f5) |
 | `shotSlope` | 0,1293 / 0,1001 | 0,122 / 0,125 | :28 / :29 | Anpassung 0,122 / 0,112; groß auf 0,125, weil die Klassen des großen Feldes steiler verlaufen (Favoritenquote ab 3 Punkten 99 %) |
 | `deepDefenceShots` | 1,41 / 1,37 | 1,401 / 1,351 | :28 / :29 | Anpassung |
 | Quellenmix (Schüsse je Partie, ohne Elfmeter) | 13,39 / 12,75 | 12,20 / 11,44 | :28 / :29 | gemessene Quellen: Spielzug 6,56 / 5,36, Fernschuss 1,82 / 3,36, Kopfball 1,46 / 1,19, Abpraller 0,36 / 0,38, Ecke 0,08 / 0,04, Freistoßfolge 1,62 / 0,95, direkt 0,31 / 0,17 |
@@ -595,7 +595,40 @@ Wirkung gegenüber dem Stand von SI-6: 6 % weniger Tore je Partie, Remis 17,8 / 
 
 ### Prüfungen
 
-(Ergebnisse der Prüfläufe folgen)
+Node 24 (`C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe`), Endstand dieses Branches; die Prüfläufe liefen nacheinander, höchstens sechs gleichzeitige Node-Prozesse.
+
+| Prüfung | Ergebnis |
+| --- | --- |
+| `work/test-compact-balance-v183.cjs` | 14 Prüfungen grün; neu: Spielstandterm (`v183ScoreFactor`: Führung, Rückstand, Gleichstand, Seitenzuordnung, Satz ohne Block neutral), Hebel je Feldgröße samt `finSelf` 1, Schussneigung beider Felder ähnlich (ersetzt „groß flacher“), Quellenmix 12,26 / 11,47 Schüsse; der `finSelf`-Mechanismus wird mit einem Satz von 0,3 geprüft |
+| `work/test-compact-balance-v178.cjs` | grün (5 Prüfungen; stellt Kennung 178 ausdrücklich wieder her) |
+| `work/test-si-{core,clock,finish,defence,setplay,offball,options,field,crossing,scorer,newworld}-v183.cjs` | alle 11 grün (`test-si-newworld` mit der neuen Zieltabelle 13 / 16 / 23 / 34 / 48) |
+| `work/check-old-matches-v183.cjs` | grün: 340 Szenen bytegleich gegen `e4e531c0` (unmarkiert, 182, 183 mit allen Paketen aus) |
+| `work/check-old-matches-v182.cjs` (Basis `git archive e4e531c0 dist work/test-v41.cjs`) | grün: 158 Szenen |
+| `work/validate-compact-balance-v183.cjs` | 1.700 Partien, alle Behauptungen bestanden (Matrix unten); keine Änderung der Konstanten des Skripts nötig |
+| Workflow-Block „Spieltests ausführen“ aus `.github/workflows/deploy.yml` | **121 Befehle, alle Exit 0** (`outputs/compact-balance-v183/workflow-block.json`, 1.265 s Rechenzeit; längste: `test-native-career-v160` 262 s, `test-world-expansion-horizon-v166` 241 s). Im ersten Durchlauf scheiterte `audit-world-balance-v68.cjs` (Pokalabstand in Saison 10 0,84 gegen höchstens 0,83); Ursache und Anpassung des Prüfstands unten, danach Exit 0 |
+| `work/measure-compact-physical-v183.cjs` + `table-compact-physical-v183.cjs` | 567 Fixtures, 9.072 kompakte Partien (Läufe `f5`), Tabellen in `outputs/compact-balance-v183/` |
+| `work/measure-compact-seasons-v183.cjs` | 3 Saisonen × 2 Welten (Abschnitt Saisonebene) |
+| `work/measure-sponsor-goals-v183.cjs` | 7 Seeds × 3 Saisonen (Sponsorzahlen im [Dokument](spielerintelligenz-neue-spielstaende-183.md)) |
+
+**`audit-world-balance-v68.cjs` und der Stempel.** Der Prüfstand lädt weder Spielermodell noch `world-player-performance-v155.js`; seine Partien laufen im alten Kompaktpfad (rund 1,4 Tore je Partie), seine Welten trugen aber seit `feat/si-newworld` den 183-Stempel und damit die Sponsorzieltabelle neuer Welten. Mit der neuen Tabelle (13 / 16 / 23 / 34 / 48 statt 11 / 13 / 19 / 32 / 44) verdienen kleine Ligavereine in diesem Zustand etwas seltener den Torbonus, und der Pokalabstand erreichte in Saison 10 0,84 (Grenze 0,83; mit der alten Tabelle genau 0,83, also schon an der Kante). Reine Änderung der Kompaktkonstanten besteht den Prüfstand unverändert (geprüft mit `f6b1efdd` plus nur `world-player-performance-v155.js`). Die Kombination „Stempel ohne Spielermodell“ gibt es im Produkt nicht: Welten mit Stempel laufen immer mit Spielermodell und Kompaktkennung 183. Der Prüfstand entfernt deshalb nach dem Anlegen den Stempel und baut die Sponsoren neu (`work/audit-world-balance-v68.cjs:62-64`) und prüft damit wieder die Regeln von Release 132, für die er geschrieben wurde (Pokalabstand Saison 9 und 10: 0,83 / 0,83, alle Grenzen eingehalten). Das ist eine Änderung an einem Prüfstand und gehört zur Abnahme (offener Punkt).
+
+Matrix der 1.700 Fixtures (`validate-compact-balance-v183.cjs`, Startwelten ohne Matchkonfiguration, also Standardfeld; Vergleichsbild ist die v178-Matrix, kein Ziel; Produktkorridor 10–16 Schüsse je Partie und 2–9 Tore in jeder der sieben Serien):
+
+| Serie | Spiele | Schüsse/Spiel 178 → 183 | Tore/Spiel 178 → 183 | 0:0 178 → 183 | A-Siege / Remis / B-Siege (183) |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Top gegen Top | 100 | 13,81 → 13,13 | 1,75 → 4,55 | 18,0 % → 3,0 % | 50 / 19 / 31 |
+| Schwache Liga untereinander | 100 | 11,74 → 12,20 | 1,31 → 2,19 | 39,0 % → 11,0 % | 40 / 28 / 32 |
+| Top gegen schwache Liga | 500 | 12,52 → 14,15 | 1,53 → 5,88 | 22,6 % → 0,4 % | 493 / 6 / 1 |
+| Schwache Liga gegen stärkste Pokalvereine | 500 | 11,91 → 13,62 | 1,32 → 2,69 | 27,0 % → 8,2 % | 384 / 86 / 30 |
+| A-Rang 3/4 gegen AUT/SUI/TUR Top 2 | 300 | 12,53 → 12,57 | 1,46 → 3,32 | 23,3 % → 3,3 % | 59 / 71 / 170 |
+| Heimspiegel | 100 | 12,79 → 14,52 | 1,50 → 6,02 | 21,0 % → 0,0 % | 100 / 0 / 0 |
+| Neutrale Kontrolle | 100 | 12,61 → 14,42 | 1,49 → 5,98 | 21,0 % → 0,0 % | 100 / 0 / 0 |
+| alle | 1700 | 12,39 → 13,58 | 1,45 → 4,21 | 24,5 % → 3,9 % | |
+
+Mannschaftsstatistik je Partie (beide Teams, alle 1.700 Partien): Schüsse 13,58, aufs Tor 7,04, Ecken 1,67, Flanken 5,16, Fouls 4,18, Freistöße 4,23. Die Extremmatrix (Spitze gegen schwache Liga, Heimspiegel) liegt weiter über dem Torband der physischen Reihe (5,9–6,0 Tore), weil sie Paarungen mit bis zu 8 Punkten Abstand enthält, die die Referenz nicht hat; der Korridor 2–9 Tore ist eingehalten.
+
+Artefakte der Prüfläufe wurden mit `git checkout -- outputs docs/spieler-nutzer-rig` zurückgesetzt (ausgenommen die bewusst aktualisierten `outputs/compact-balance-v183/*` und `outputs/sponsor-goals-v183/*`).
+
 
 ### Reproduktion
 

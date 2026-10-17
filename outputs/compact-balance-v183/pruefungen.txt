@@ -1,6 +1,7 @@
-test-compact-balance-v183 13 PASS (nach Review)
+test-compact-balance-v183 14 PASS (Spielstandterm, Hebel je Feld, finSelf 1)
 test-compact-balance-v178 5 PASS
-test-si-*-v183 9 Tests exit 0
+test-si-{core,clock,finish,defence,setplay,offball,options,field,crossing,scorer,newworld}-v183 11 Dateien exit 0
 check-old-matches-v183 pass 340 scenes
+check-old-matches-v182 pass 158 scenes (Basis e4e531c0)
 validate-compact-balance-v183 1700 games passed
-workflow block 119 commands, 0 failed
+workflow block 121 commands, 0 failed (audit-world-balance-v68 nach Anpassung des Prüfstands, siehe docs/spielerintelligenz-si6-kompakt-183.md)
