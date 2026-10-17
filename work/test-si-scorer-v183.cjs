@@ -134,6 +134,21 @@ check('SI-5 duel recognition by marker: independent of the pace values (carrierP
  near(r.duel,r.closeGain,'a carrier with a rival close gets carrierCloseGain');near(r.open,r.paceGain,'an open carrier gets carrierPaceGain although open and duel pace are equal');near(r.bare,r.paceGain,'call without detail object');
 });
 
+check('SI-5 without SI-2: the carrier always takes carrierCloseGain, independent of the score state (fallback of the marker)',()=>{
+ // Review 17 Oct: with the old equality a leading carrier or a late level score fell to carrierPaceGain here (state factor
+ // in the compared expression although SI-2 was off); the fallback restores the behaviour before the Torjäger round.
+ const ALL_OFF={clock:false,options:false,offball:false,finish:false,defence:false,setplay:false,field:false};
+ h.call('Native183.constructed',{size:'large',roles:true,si:{packages:{...ALL_OFF,field:true}}});
+ for(let i=0;i<3000;i++){h.call('Native183.advance');if(ev('Boolean(match.owner&&!match.owner.keeper&&!match.flight&&!v121PositioningPaused(match))'))break;}
+ const r=copy(ev(`(()=>{const m=match,o=m.owner,res={};if(!o||o.keeper)throw Error('no live carrier');
+  for(const [name,score,elapsed] of [['trail',[0,1],60],['lead',[1,0],30],['level-late',[0,0],60]]){
+   m.score=o.t===0?score:[score[1],score[0]];m.elapsed=elapsed;
+   const f0=1.28*(.78+ability(o,'tec')*.009),extra=v183FieldExtra(m),gain=k=>v183FieldCap(m,o,f0,f0*(1+v183Param(m,'field.'+k)*extra),'carrierSpeedMax');
+   res[name]={factor:v183PaceFactor(m,o,'carrier',{factor:f0}),close:gain('carrierCloseGain'),open:gain('carrierPaceGain')};}
+  return res;})()`));
+ for(const [name,v] of Object.entries(r)){assert(v.open>v.close+1e-6,name+': gains differ');near(v.factor,v.close,name+': carrierCloseGain without SI-2');}
+});
+
 check('full constructor matches with the defaults (both pitch sizes) finish without errors; no new attackFlow keys',()=>{
  for(const size of ['standard','large']){
   h.call('Native183.constructed',{club:'GER-2',seed:'scorer-'+size,size,roles:true});
