@@ -13,6 +13,7 @@ function v178CompactShotChance(fixture,state,side){
 const v183CompactBalance=Object.freeze({
  version:183,matchMinutes:97.7,homeShotFactor:1.03,gapKnee:5.5,gapOver:.15,gapFade:.5,shotOver:.1,
  levers:Object.freeze({onFin:.196,goalFin:.173,goalGk:-.148,onGap:.06,finSelf:.3}),
+ scoreState:Object.freeze({lead1:0,lead2:0,trail1:0,trail2:0,level:0,levelFrom:.5}),
  assisted:Object.freeze({open:.8,long:.15,'header-volley':.9,rebound:0,corner:.9,'free-kick-follow':.6,'direct-free-kick':0}),
  groups:Object.freeze({open:'open',long:'long','header-volley':'head',rebound:'rebound',corner:'head','free-kick-follow':'fk','direct-free-kick':'dfk'}),
  shooters:Object.freeze({
@@ -24,8 +25,8 @@ const v183CompactBalance=Object.freeze({
  dfk:Object.freeze({skill:'fin',slope:.9,fallback:1,roles:Object.freeze({})})
  }),
  sizes:Object.freeze({
- standard:Object.freeze({shotBase:5.754,shotSlope:.1293,deepDefenceShots:1.41,shotKnee:11.5,mix:Object.freeze([Object.freeze(['open',7.573]),Object.freeze(['long',1.788]),Object.freeze(['header-volley',1.604]),Object.freeze(['rebound',.465]),Object.freeze(['corner',.122]),Object.freeze(['free-kick-follow',1.549]),Object.freeze(['direct-free-kick',.285])]),on:Object.freeze({open:-.34,long:-.937,'header-volley':.218,rebound:-.082,corner:.218,'free-kick-follow':-.383,'direct-free-kick':-1.075}),goal:Object.freeze({open:.095,long:-.832,'header-volley':.983,rebound:1.136,corner:.983,'free-kick-follow':-.064,'direct-free-kick':-1.136}),corners:.845,crossExtra:1.6,fouls:1.97,freeKickExtra:.03,slopes:Object.freeze({long:2.4}),load:Object.freeze({background:Object.freeze({def:.176,mid:.272,att:.152,gk:.026})})}),
- large:Object.freeze({shotBase:5.656,shotSlope:.1001,deepDefenceShots:1.37,shotKnee:10,mix:Object.freeze([Object.freeze(['open',6.122]),Object.freeze(['long',3.792]),Object.freeze(['header-volley',1.177]),Object.freeze(['rebound',.444]),Object.freeze(['corner',.031]),Object.freeze(['free-kick-follow',1.031]),Object.freeze(['direct-free-kick',.153])]),on:Object.freeze({open:-.228,long:-.871,'header-volley':-.019,rebound:.114,corner:-.019,'free-kick-follow':-.274,'direct-free-kick':-1.301}),goal:Object.freeze({open:.506,long:-.886,'header-volley':1.072,rebound:.742,corner:1.072,'free-kick-follow':.225,'direct-free-kick':-.705}),corners:.7,crossExtra:1,fouls:1.4,freeKickExtra:.095,slopes:Object.freeze({long:.8}),load:Object.freeze({background:Object.freeze({def:.198,mid:.287,att:.176,gk:.026})})})
+ standard:Object.freeze({shotBase:5.345,shotSlope:.122,deepDefenceShots:1.401,shotKnee:11.5,mix:Object.freeze([Object.freeze(['open',6.556]),Object.freeze(['long',1.823]),Object.freeze(['header-volley',1.462]),Object.freeze(['rebound',.361]),Object.freeze(['corner',.076]),Object.freeze(['free-kick-follow',1.615]),Object.freeze(['direct-free-kick',.306])]),on:Object.freeze({open:-.415,long:-1.016,'header-volley':-.117,rebound:-.292,corner:-.117,'free-kick-follow':-.292,'direct-free-kick':-.341}),goal:Object.freeze({open:.071,long:-.673,'header-volley':.587,rebound:.944,corner:.587,'free-kick-follow':.245,'direct-free-kick':-.361}),corners:.79,crossExtra:1.71,fouls:2.05,freeKickExtra:.03,slopes:Object.freeze({long:2.4}),load:Object.freeze({background:Object.freeze({def:.176,mid:.272,att:.152,gk:.026})})}),
+ large:Object.freeze({shotBase:5.103,shotSlope:.1124,deepDefenceShots:1.351,shotKnee:10,mix:Object.freeze([Object.freeze(['open',5.358]),Object.freeze(['long',3.361]),Object.freeze(['header-volley',1.188]),Object.freeze(['rebound',.375]),Object.freeze(['corner',.042]),Object.freeze(['free-kick-follow',.948]),Object.freeze(['direct-free-kick',.167])]),on:Object.freeze({open:-.178,long:-.78,'header-volley':-.099,rebound:-.119,corner:-.099,'free-kick-follow':-.25,'direct-free-kick':-1.063}),goal:Object.freeze({open:.379,long:-.965,'header-volley':.727,rebound:.913,corner:.727,'free-kick-follow':.379,'direct-free-kick':-.632}),corners:.675,crossExtra:1,fouls:1.38,freeKickExtra:.115,slopes:Object.freeze({long:.8}),load:Object.freeze({background:Object.freeze({def:.198,mid:.287,att:.176,gk:.026})})})
  })
 });
 function v183CompactSnapshot(career){
@@ -70,6 +71,15 @@ function v183ShooterFinishing(balance,source,team,state,pid,finishing){
  for(const id of team.ids){const w=weight(id);sum+=w;centre+=w*team.skills[id].fin;}
  return sum>0?finishing-(1-share)*(team.skills[pid].fin-centre/sum):finishing;
 }
+// Score state of the played-out match (leader manages the lead, trailing team pushes, late caution while level): relative change of the
+// expected shots from the score difference of the team; the level term grows linearly from `levelFrom` (share of the 90 minutes) to the end.
+function v183ScoreFactor(B,state,side){
+ const S=B.scoreState;if(!S)return 1;
+ const diff=state.score[side]-state.score[1-side];
+ if(diff>0)return 1+(diff>1?S.lead2:S.lead1);
+ if(diff<0)return 1+(diff<-1?S.trail2:S.trail1);
+ return 1+S.level*Math.min(1,Math.max(0,(state.minute/90-S.levelFrom)/(1-S.levelFrom)));
+}
 // Expected shots of a team in a match: strength gap in outfield skill points, small relative home bonus
 // (never on a neutral pitch) and the measured effect of a deep defensive line of the opponent.
 function v183ShotRate(B,own,other,home,deepOpponent){
@@ -88,7 +98,7 @@ function v183ShotOdds(B,source,finishing,keeping,gap){
 function v183CompactActions(career,fixture,state,side,random){
  const B=state.playerPerformance.compactBalance,teams=v183CompactTeams(career,fixture,state),mine=teams[side],other=teams[1-side],stats=v183CompactStats(state);
  const attackers=v64Active(state,side).filter(pid=>state.roles[pid]!=='gk'),rivals=v64Active(state,1-side),defenders=rivals.filter(pid=>state.roles[pid]!=='gk');
- const lambda=v183ShotRate(B,mine.ovr,other.ovr,side===0&&!fixture.neutral,state.tactics[1-side]?.defense==='Tief');
+ const lambda=v183ShotRate(B,mine.ovr,other.ovr,side===0&&!fixture.neutral,state.tactics[1-side]?.defense==='Tief')*v183ScoreFactor(B,state,side);
  // Statistics of the other kinds of events (corners, crosses, fouls) run on their own draws.
  if(random()<B.corners/B.matchMinutes)stats.corners[side]++;
  if(random()<B.crossExtra/B.matchMinutes)stats.crosses[side]++;
