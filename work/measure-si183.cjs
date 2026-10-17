@@ -127,7 +127,7 @@ const installObservers=()=>{
   return value;});
 };
 
-const runMatch=async({clubId,size,seed,dt,instrument,boost,clockMode,si})=>{
+const runMatch=async({clubId,size,seed,dt,instrument,boost,clockMode,si,players})=>{
  // Optional control of performance.now (wall clock) to test snapshot neutrality:
  // natural = real clock, never = frozen, every = +1000 ms per call, ms:<n> = <n> ms wall time per native step.
  const realNow=performance.now.bind(performance),originalNow=performance.now;let fakeNow=realNow(),tickCounter=0;
@@ -139,7 +139,7 @@ const runMatch=async({clubId,size,seed,dt,instrument,boost,clockMode,si})=>{
  const integrity={envStart:null,envEnd:null,frozenTicks:0,contextMismatchAt:null,notLiveStepTicks:0,firstNotLiveStep:null,setupYield:null,randomSwappedAt:null,matchSwappedAt:null,hiddenTicks:0,dialogsAtStart:null,dialogsAtEnd:null,hiddenAtStart:document.hidden};Date.now=()=>1791540000000;
  const t0=realNow();
  try{
-  const c=D6Expansion.createCareer(clubId,seed,'P01 Analyse',{fieldSize:size,fieldPlayers:size==='standard'?5:6});
+  const c=D6Expansion.createCareer(clubId,seed,'P01 Analyse',{fieldSize:size,fieldPlayers:players==='swap'?(size==='standard'?6:5):(size==='standard'?5:6)});
   const own=v66Own(c);v66ChooseSponsor(c,own.id,own.sponsors[0].id);v124SetYouthBudget(c,0);
   // Synchronous on purpose: an await would let pending page promises consume the seeded stream.
   for(let i=0;i<40&&['open','deadline'].includes(c.world.market?.phase);i++)v66NextMarketDay(c);
@@ -265,7 +265,7 @@ async function openPage(browser){
   const worker=async(w)=>{let ctx=await openPage(browser),used=0;
    while(next<jobs.length){const job=jobs[next++];
     if(used>=recycle){await ctx.context.close();ctx=await openPage(browser);used=0;}
-    try{const row=await ctx.page.evaluate(runMatch,{...job,dt,instrument,boost,clockMode,si:siOverride});row.errors=ctx.errors.splice(0);row.digestSha=sha(row.digest);row.stateDigestSha=sha(row.stateDigest);delete row.digest;delete row.stateDigest;report.matches.push(row);used++;
+    try{const row=await ctx.page.evaluate(runMatch,{...job,dt,instrument,boost,clockMode,si:siOverride,players:arg('players','')});row.errors=ctx.errors.splice(0);row.digestSha=sha(row.digest);row.stateDigestSha=sha(row.stateDigest);delete row.digest;delete row.stateDigest;report.matches.push(row);used++;
      done++;console.log(`${row.engineError?'ENGINEERROR ':''}${row.stall?'STALL ':''}${done}/${jobs.length} w${w} ${job.size} ${job.clubId} ${row.score.join(':')} ${(row.realSeconds/60).toFixed(2)}min shots=${row.teams[0].stats.shots+row.teams[1].stats.shots} sim=${row.computeMs}ms`);}
     catch(e){report.failures.push({...job,error:String(e.message||e).slice(0,500)});console.log('FAIL',job.clubId,job.size,String(e.message||e).slice(0,200));await ctx.context.close().catch(()=>{});ctx=await openPage(browser);used=0;}
    }
