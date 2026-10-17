@@ -4,6 +4,8 @@ Stand: 16. Oktober 2026. Branch `feat/si-scorer` (Worktree `work/si-scorer`), ab
 
 Nur Partien mit Marker 183. Partien ohne Marker und mit Kennung 182 sind bytegleich (Prüfungen unten). Keine Veröffentlichung, keine Fußversion.
 
+**Endstufe 17. Oktober 2026:** Die Gleichstandsvorsicht ist abgeschwächt (`options.levelRisk` 0,4, `offball.levelPace` 0,15) und die neue Referenzreihe heißt `sb2-f`; siehe Abschnitt „Endstufe“ am Ende. Die Werte und Tabellen darüber beschreiben den Zwischenstand `sb-f` (0,6 / 0,25).
+
 ## Ergebnis in Kürze
 
 - **Remis:** 20,5 % statt 16,3 % (Referenzreihe, 576 Partien, beide Feldgrößen rund 20 %).
@@ -73,8 +75,8 @@ Alle Schlüssel sind Plain-Data-Parameter des gespeicherten Satzes (`match.si` e
 | --- | --- | ---: | ---: | --- |
 | options | `leadCap` / `leadEarly` | – | 2 / 0,5 | Führungsintensität: min(Führung, 2)/2, beim Anstoß halb, zum Abpfiff voll |
 | options | `leadShoot` / `leadRisk` | – | 0,5 / 0,5 | Schuss- und Risikogewicht des Führenden × (1 − Wert × Intensität) |
-| options | `levelRisk` | – | 0,6 | Risikogewicht bei Gleichstand × (1 − 0,6 × (Zeit/Spieldauer)²) |
-| offball | `leadPace` / `levelPace` | – | 0,25 / 0,25 | Tempo von Ballführer und Läufern (Führung bzw. später Gleichstand) |
+| options | `levelRisk` | – | 0,6 (17.10.: 0,4) | Risikogewicht bei Gleichstand × (1 − 0,6 × (Zeit/Spieldauer)²) |
+| offball | `leadPace` / `levelPace` | – | 0,25 / 0,25 (17.10.: `levelPace` 0,15) | Tempo von Ballführer und Läufern (Führung bzw. später Gleichstand) |
 | offball | `leashLead` | – | 4 m | Zonenleine der Angebote des Führenden kürzer (Form halten) |
 | offball | `zoneLeash` | 12 m | 15 m | Grundleine außer Sturm: Mittelfeld rückt nach |
 | setplay | `keeperShiftOpen` | (`keeperShift` 0,4) | 1 | Torwart bei hohen Bällen außer Ecken ganz auf die Linie Landepunkt–Tor |
@@ -106,7 +108,7 @@ Alle Schlüssel sind Plain-Data-Parameter des gespeicherten Satzes (`match.si` e
 - `spreadBase` 0,035 → 0,028 gleicht den Torverlust durch die Spielstandsvorsicht aus.
 - `volleySpread` 1,2 → 1,6: Volleys nach Flanken streuen stärker.
 
-**Zusammenspiel SI-2/SI-5 (`dist/match-si-field-v183.js:137`):** SI-5 erkennt das Zweikampftempo des Ballführers an der exakten Gleichheit mit dem SI-2-Ausdruck. Der Spielstandsfaktor wird dort mitgerechnet. Ohne das bekam ein Ballführer im Zweikampf auf dem großen Feld bei Führung oder spätem Gleichstand den offenen Tempoaufschlag (Versuch 3).
+**Zusammenspiel SI-2/SI-5 (`dist/match-si-field-v183.js:137`; seit der Endstufe über den Marker `detail.v183Duel` statt der Gleichheit, Abschnitt „Endstufe“):** SI-5 erkannte das Zweikampftempo des Ballführers an der exakten Gleichheit mit dem SI-2-Ausdruck. Der Spielstandsfaktor wird dort mitgerechnet. Ohne das bekam ein Ballführer im Zweikampf auf dem großen Feld bei Führung oder spätem Gleichstand den offenen Tempoaufschlag (Versuch 3).
 
 ### Verworfen (gemessen, ohne Wirkung oder mit Nebenwirkung)
 
@@ -261,7 +263,7 @@ Angepasste Tests:
   - Eine einzelne 576er-Reihe schwankt hier um ±4 Punkte (gleiche Konfiguration: 64 % in Versuch 1, 56–60 % in den späteren).
   - Stärkere Gleichstandsvorsicht (v1: `levelRisk` 0,8) brachte 25 % Remis, aber 51 % Favoritenquote.
   - Wer die Favoritenquote voll halten will, senkt `options.levelRisk`/`offball.levelPace`: bei 0,4/0,15 (G1) Remis rund 16–18 %, Favorit rund 65 %.
-  - Entscheidung des Nutzers nötig: 20 % Remis mit Favorit rund 60 % oder etwa 18 % Remis mit rund 64 %.
+  - Entscheidung des Nutzers nötig: 20 % Remis mit Favorit rund 60 % oder etwa 18 % Remis mit rund 64 %. **Entschieden am 17. Oktober: 0,4 / 0,15** (Abschnitt „Endstufe“: 17,7 % Remis, Favorit 64 %, Standardfeld 65 %).
 - **Enge Duelle 35 % Remis** (Wunsch 25–30 %). Die Gleichstandsvorsicht wirkt am stärksten, wo Gleichstand am häufigsten ist. Eine Stärkung nur für ungleiche Duelle widerspräche dem Ziel, Favoriten nicht zu schwächen.
 - **Tore 3,53** (Standard 3,67, groß 3,40), 0:0 6,6 % (groß 7,6 %), knapp über ≤6 %. Mehr Ausgleich über `spreadBase` hebt Fernschüsse guter Schützen (Versuch 1: 28 %) und Kopfbälle nach Ecken (36 %).
 - **Kantersiege nur wenig seltener.** Die Ausgleichshebung hebt die Führungsrate wieder an. Der Favorit ab 3 Punkten schießt 5,0 Tore je Partie, sein bester Torschütze 3,03 (Standard) bzw. 2,69 (groß).
@@ -280,4 +282,77 @@ $node='C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/no
 & $node work/measure-si-calibration-v183.cjs --clubs=96 --workers=6 --port=4262 --traceLimit=40000 --seedPrefix=si183b --label=sb-f
 & $node work/measure-si-calibration-v183.cjs --clubs=96 --workers=6 --port=4250 --traceLimit=40000 --seedPrefix=si183c --label=sb-f
 & $node work/table-si-calibration-v183.cjs sb-f-trace40000,sb-f-si183b-trace40000,sb-f-si183c-trace40000 k2-f-trace40000,k2-f-si183b-trace40000,k2-f-si183c-trace40000 --strength
+```
+
+## Endstufe (Balance-Runde, 17. Oktober 2026): schwächere Gleichstandsvorsicht, Zweikampfmarker, Referenzreihe `sb2-f`
+
+Branch `feat/si-balance2` (Worktree `work/si-balance2`), abgezweigt von `integration/si-r133` = `c2cf5e25`. Nutzerentscheidung „Remis und Sponsorquote 17. Oktober 2026“ ([Entscheidungen](entscheidungen.md)): Die Favoritenquote aus Variante A (rund 65 % bei 1–2 Punkten, ab 3 Punkten rund 90 %) hat Vorrang vor mehr Remis. Nur Marker 183; Partien ohne Marker und mit Kennung 182 bleiben bytegleich (Prüfungen unten). Keine Veröffentlichung, keine Fußversion.
+
+### Änderungen
+
+| Paket | Schlüssel | Torjäger-Runde | jetzt |
+| --- | --- | ---: | ---: |
+| options | `levelRisk` (`dist/match-si-options-v183.js:89`) | 0,6 | **0,4** |
+| offball | `levelPace` (`dist/match-si-offball-v183.js:69`) | 0,25 | **0,15** |
+
+Alle anderen Hebel der Torjäger-Runde bleiben. Die Feinabstimmung innerhalb von 0,3–0,5 bzw. 0,1–0,2 war nicht nötig (siehe Ergebnis); es gab keine zweite Reihe.
+
+**Zweikampfmarker statt Gleitkommagleichheit** (Review-Empfehlung): SI-5 erkannte das Zweikampftempo des Ballführers an der exakten Gleichheit mit dem SI-2-Ausdruck (`carrierClosePace*(.78+tec*.009)*Spielstandsfaktor`, einschließlich der Multiplikationsreihenfolge). Der Spielstandsfaktor der Torjäger-Runde hatte das schon einmal gebrochen. Jetzt gilt:
+
+- SI-2 schreibt im Ballführerzweig `detail.v183Duel = close` (`dist/match-si-offball-v183.js:363`; `close` ist „Gegner im Umkreis `carrierCloseRadius`“) auf das `detail`-Objekt, das `v157Pace` (`dist/world-offensive-quality-v157.js:44`, unverändert) und der SI-5-Wrapper ohnehin durch die Kette reichen.
+- SI-5 liest den Marker (`dist/match-si-field-v183.js:137`: `v183Active(m,'offball') ? detail.v183Duel===true : true`). Ohne SI-2 gilt wie bisher das alte Ballführertempo 1,28 als Zweikampftempo (zuvor erfüllte es die Gleichheit immer).
+- Nur Plain Data am Aufrufargument, kein Match-Zustand, keine Ziehung, keine WeakMap. `v183OffballLeadPace` wird in SI-5 nicht mehr aufgerufen.
+- **Verhaltensgleich:** 6 vollständige Partien (5× großes Feld, 1× Standardfeld, je 9.000 Ticks) mit altem und neuem `match-si-field-v183.js` liefern denselben `Native183.digest`-Hash und dieselbe Zahl `Native182.rng().draws`. Neue Prüfung in `work/test-si-scorer-v183.cjs` („SI-5 duel recognition by marker“): Bei `carrierPace == carrierClosePace` (die Gleichheit erkannte dort jeden Ballführer als Zweikampf) erhält der freie Ballführer `carrierPaceGain`, der bedrängte `carrierCloseGain`; ein veralteter Marker im übergebenen Objekt wird überschrieben; ein Aufruf ohne Objekt funktioniert. Gegen den Stand davor schlägt die Prüfung fehl. Die vorhandene Regression („leading carrier in a duel“) bleibt grün.
+
+### Ergebnis (Referenzreihe `sb2-f`, 576 Partien, Endvorgaben)
+
+96 Vereine × 2 Feldgrößen × 3 Seed-Sätze (`p01r132`, `si183b`, `si183c`), Vorgaben ohne Überschreibungen, `dist`-Kopie des Stands `f145790c`, Protokollgrenze 40.000. Läufe `sb2-f-trace40000`, `sb2-f-si183b-trace40000`, `sb2-f-si183c-trace40000` in `outputs/si183/` (gitignoriert); 0 Ausfälle, keine Pausenticks, `dist` unverändert. **Diese Reihe ist die Grundlage für die Kompaktangleichung (SI-6) und die Sponsortabelle.** Vergleich `sb-f` → `sb2-f`:
+
+| Kennzahl | beide | Standard | groß | Ziel |
+| --- | --- | --- | --- | --- |
+| Remis gesamt | 20,5 % → **17,7 %** | 20,1 % → **16,3 %** | 20,8 % → **19,1 %** | rund 17–18 % |
+| Remis Abstand <1 | 35 % → **29 %** | 34 % → **21 %** | 37 % → **37 %** | 25–30 % |
+| Favorit 1,5 Punkte geglättet [95 %] | 60 % → **64 % [59–68]** | 56 % → **65 % [59–71]** | 64 % → **63 % [56–69]** | rund 65 % (60–70) |
+| Favorit 4 Punkte geglättet [95 %] | 95 % → **94 % [90–96]** | 95 % → **90 % [86–95]** | 95 % → **97 % [94–98]** | ≥ rund 90 % |
+| Favorit Klasse 1–2 / ≥3: Sieg | – | 65 / 94 % → **68 / 93 %** | 58 / 97 % → **55 / 99 %** | 65 % / ≥ 90 % |
+| Tore (Streuung) | 3,53 → **3,46** | 3,67 → **3,60** | 3,40 → **3,32** | 3–5, ≈3,5–4 |
+| 0:0 | 6,6 % → **5,6 %** | 5,6 % → **4,2 %** | 7,6 % → **6,9 %** | ≤ rund 6 % |
+| Partien mit ≥7 Toren | 10,6 % → **9,7 %** | 11,8 % → **11,8 %** | 9,4 % → **7,6 %** | – |
+| Dauer all-inclusive (min) / Anteil 4–6 min | 4,97 / 88 % → **4,94 / 89 %** | 5,01 / 89 % → **4,99 / 89 %** | 4,93 / 87 % → **4,90 / 88 %** | 4–6 min, ≥85 % |
+| Fernschüsse: Anteil | 23,9 % → **24,1 %** | 16,5 % → **17,0 %** | 31,6 % → **31,5 %** | Standard 12–20 % |
+| Spielflanken je Partie | 2,70 → **2,68** | 3,53 → **3,43** | 1,88 → **1,92** | Standard ≥2 |
+| Unbedrängte Luftabschlüsse aus dem Spiel: Anteil an allen Toren | 5,1 % → **5,7 %** | 6,2 % → **6,6 %** | 3,9 % → **4,9 %** | rund 4–7 % (Nutzer) |
+| Ligatorschützenkönig (Schätzung, 14 Spiele) | – | 30,7 → **30,2** | 26,3 → **26,2** | weich |
+| Großes Feld / Standard: Schüsse, Tore | 95,3 / 92,4 % → **93,3 / 92,2 %** | | | ≥85 % |
+| Schüsse je Partie | 12,00 → **11,86** | 12,28 → **12,26** | 11,71 → **11,45** | 12–16 |
+
+Gepaart gegen `sb-f` (576 Paare, ±95 %): Tore −0,08 ±0,19, Schüsse −0,14 ±0,28, Spielflanken −0,03 ±0,17, Fernschüsse −0,01 ±0,17, Minuten −0,03 ±0,06; die Hebel verschieben also die Spielstruktur nicht messbar, nur den Ausgang enger Spiele.
+
+Bewertung:
+- Die Favoritenquote auf dem Standardfeld (dem einzigen Feld neuer Karrieren) liegt bei 1,5 Punkten geglättet bei 65 % und damit mitten im Ziel; eine Feinabstimmung von `levelRisk`/`levelPace` war nicht nötig, es gab keine zweite Reihe.
+- Remis 17,7 % (Standard 16,3 %, groß 19,1 %), wie vor der Messung vorhergesagt (16–18 %). Der Standardwert liegt damit wieder auf dem Niveau von SI-K2 (15,3 %), das Großfeld darüber. Die Remisquote enger Duelle sinkt auf dem Standardfeld auf 21 %, auf dem großen Feld bleibt sie bei 37 %.
+- Die Klasse ab 3 Punkten bleibt bei 93 % (Standard) bzw. 99 % (groß). Die geglättete Quote bei 4 Punkten liegt auf dem Standardfeld mit 90 % [86–95] an der Zielgrenze (Referenz 95 %, K2 93 %); die Klasse selbst hat 93 % bei 87 Partien. Eine einzelne 576er-Reihe schwankt hier um mehrere Punkte.
+- Die Torjägerwerte sind gegen `sb-f` unverändert (Toranteil des besten Abschlussspielers 63,1 % Standard / 51,7 % groß, Tore des besten Schützen 1,37 / 1,20 je Partie); weiches Ziel, siehe Risiken oben.
+- Halteziele: alle gehalten (Tore, Dauer, Fernschüsse, Spielflanken, Großfeldanteil, Luftanteil, 0:0). Die kürzeste Partie (3,34 min) ist unverändert vorbestehend.
+
+### Prüfungen
+
+Node 24, Stand `f145790c` plus Dokumentation, nach den Messreihen ohne aktive Lane.
+
+- **SI-Pakettests** `work/test-si-*-v183.cjs`: alle 11 Dateien grün (clock 22, core 28, crossing, defence, field, finish, newworld, offball, options, scorer 9 [neu: Zweikampfmarker], setplay).
+- Angepasst: `DEFAULTS` in `test-si-scorer-v183.cjs` (0,4 / 0,15); die Regressionsnotiz verweist auf den Marker.
+- **Altpartien:** `node work/check-old-matches-v183.cjs` grün, 340 Szenen bytegleich gegen `e4e531c0` (unmarkiert, 182, 183 mit allen Paketen aus); `node work/check-old-matches-v182.cjs` (Basis per `git archive e4e531c0 dist work/test-v41.cjs`) grün, 158 Szenen.
+- **Restore:** `node work/check-restore-completeness-v183.cjs --port=4262 --quick` auf Lane C grün, 10 Läufe. Der Marker liegt nur auf dem flüchtigen Aufrufargument; kein neuer Zustand, keine WeakMap.
+- **Workflow-Block „Spieltests ausführen“** aus `.github/workflows/deploy.yml`: WORKFLOWPLATZHALTER
+- **Last:** höchstens zwei Lanes (A 4250–4255, C 4262–4267) mit je 6 Seiten, angemeldet in `work/si-integration/outputs/si183/` (Sperrverzeichnis und `queue.log`). Artefakte zurückgesetzt: `git checkout -- outputs docs/spieler-nutzer-rig`.
+
+### Reproduktion
+
+```powershell
+$node='C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe'
+git archive HEAD dist | tar -x -C work/tmp-sb2/snap   # eingefrorene dist-Kopie
+& $node work/measure-si-calibration-v183.cjs --clubs=96 --workers=6 --port=4250 --traceLimit=40000 --label=sb2-f --dist=work/tmp-sb2/snap
+& $node work/measure-si-calibration-v183.cjs --clubs=96 --workers=6 --port=4262 --traceLimit=40000 --seedPrefix=si183b --label=sb2-f --dist=work/tmp-sb2/snap
+& $node work/measure-si-calibration-v183.cjs --clubs=96 --workers=6 --port=4250 --traceLimit=40000 --seedPrefix=si183c --label=sb2-f --dist=work/tmp-sb2/snap
+& $node work/table-si-calibration-v183.cjs sb2-f-trace40000,sb2-f-si183b-trace40000,sb2-f-si183c-trace40000 sb-f-trace40000,sb-f-si183b-trace40000,sb-f-si183c-trace40000 --strength
 ```
