@@ -132,9 +132,9 @@ v183PaceFactor=function(m,p,purpose,detail={}){
  if(!v183FieldOn(m))return factor;
  const extra=v183FieldExtra(m);
  if(purpose==='carrier'){
-  // SI-2 returns carrierClosePace * (0.78 + tec*0.009) * score-state factor (Torjäger round, 1 without
-  // a lead or a late level score) with a rival inside its radius; the same expression identifies the duel pace.
-  const duel=factor===v183Param(m,'offball.carrierClosePace')*(.78+ability(p,'tec')*.009)*(typeof v183OffballLeadPace==='function'?v183OffballLeadPace(m,p):1);
+  // SI-2 marks a duel (rival inside its radius) on the shared detail object (detail.v183Duel). Without
+  // SI-2 the previous carrier pace 1.28 is the duel pace, as before the marker existed.
+  const duel=v183Active(m,'offball')?detail.v183Duel===true:true;
   return v183FieldCap(m,p,factor,factor*(1+v183Param(m,'field.'+(duel?'carrierCloseGain':'carrierPaceGain'))*extra),'carrierSpeedMax');
  }
  let key='otherPaceGain';

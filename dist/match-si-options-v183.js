@@ -82,10 +82,11 @@ v183RegisterDefaults('options',{
  // min(lead,leadCap)/leadCap, times leadEarly at kick-off rising linearly to 1
  // at full time; shoot weight times 1-leadShoot*lead, risk weight times
  // 1-leadRisk*lead. While the score is level both teams turn cautious late:
- // level intensity (elapsed/full time)^2, risk weight times 1-levelRisk*level.
+ // level intensity (elapsed/full time)^2, risk weight times 1-levelRisk*level
+ // (levelRisk .6 -> .4 in the balance round: the favourite rate has priority over draws).
  // SI-2 scales carrier and run pace (offball.leadPace, levelPace) and the zone
  // leash (offball.leashLead).
- leadShoot:.5,leadRisk:.5,levelRisk:.6,leadCap:2,leadEarly:.5
+ leadShoot:.5,leadRisk:.5,levelRisk:.4,leadCap:2,leadEarly:.5
 });
 const V183_OPT_KEYS=Object.freeze(Object.keys(v183RegisterDefaults('options',{})));
 // Neutral values of the SI-F personality formula (role 1, mental values 10).

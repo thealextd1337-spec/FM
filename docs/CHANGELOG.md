@@ -2,6 +2,11 @@
 
 ## Noch nicht veröffentlicht
 
+- Spielerintelligenz 183, Balance-Runde (Nutzerentscheidung „Remis und Sponsorquote 17. Oktober 2026“): Die Vorsicht bei Gleichstand ist schwächer (`options.levelRisk` 0,6 → 0,4, `offball.levelPace` 0,25 → 0,15), die Favoritenquote aus Variante A hat Vorrang vor mehr Remis. Nur neue Partien mit Kennung 183; Partien ohne Marker und mit Kennung 182 bleiben bytegleich, keine Spielstandumrechnung.
+  - Zweikampftempo: SI-2 markiert den Zweikampf des Ballführers auf dem durchgereichten `detail`-Objekt (`detail.v183Duel`), SI-5 liest den Marker statt das Tempo auf Gleitkommagleichheit zu vergleichen. Verhalten gleich (identische Partie-Hashes alt/neu), neue Regressionsprüfung in `work/test-si-scorer-v183.cjs`.
+  - Ergebnis (Referenzreihe `sb2-f`, 576 Partien, gegen `sb-f`): Remis 17,7 % statt 20,5 % (Standard 16,3 %); Favorit bei 1,5 Punkten geglättet 64 % statt 60 % (Standardfeld 65 % statt 56 %), ab 3 Punkten 94 %; Tore 3,46 statt 3,53, 0:0 5,6 %, Dauer 4,94 min, Spielflanken 2,68, unbedrängte Luftabschlüsse 5,7 % aller Tore. Die Reihe ist die Grundlage für die Kompaktangleichung und die Sponsortabelle.
+  - Dokumentation: `docs/spielerintelligenz-torjaeger-183.md`, Abschnitt „Endstufe“.
+
 - Spielerintelligenz 183, Torjäger-Runde (Nutzerentscheidung „Torjäger, Sponsorziel und Altstände 16. Oktober 2026“, zuerst im ausgespielten Spiel). Nur neue Partien mit Kennung 183; Partien ohne Marker und mit Kennung 182 bleiben bytegleich, keine Spielstandumrechnung.
   - Spielstand: Ein führendes Team verwaltet die Führung. Schuss- und Risikogewicht, Tempo und Zonenleine sinken mit Führung und Spielzeit (`options.lead*`, `offball.leadPace`, `offball.leashLead`). Bei Gleichstand werden beide Teams spät vorsichtiger (`options.levelRisk`, `offball.levelPace`). Das Mittelfeld rückt weiter nach (`offball.zoneLeash` 15 m).
   - Torwart: Bei hohen Bällen außer Ecken (Spiel- und Freistoßflanken, Raumflanken) steht er auf der Linie Landepunkt–Tor (`setplay.keeperShiftOpen` 1); Ecken bleiben bei 0,4. Volleys nach Flanken streuen stärker (`finish.volleySpread` 1,6). Die Grundstreuung aller Schüsse sinkt leicht (`finish.spreadBase` 0,028) und gleicht den Torverlust zum Teil aus.

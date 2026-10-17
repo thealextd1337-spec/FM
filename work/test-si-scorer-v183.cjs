@@ -39,7 +39,7 @@ h.run(`globalThis.SC={
 };`,'scorer-scenes');
 const scene=spec=>h.call('SC.build',spec);
 const options=()=>copy(h.call('SC.options'));
-const DEFAULTS={'options.leadShoot':.5,'options.leadRisk':.5,'options.levelRisk':.6,'options.leadCap':2,'options.leadEarly':.5,'offball.leadPace':.25,'offball.levelPace':.25,'offball.leashLead':4,'offball.zoneLeash':15,'setplay.keeperShift':.4,'setplay.keeperShiftOpen':1,'finish.spreadBase':.028,'finish.spreadSkill':.5,'finish.volleySpread':1.6};
+const DEFAULTS={'options.leadShoot':.5,'options.leadRisk':.5,'options.levelRisk':.4,'options.leadCap':2,'options.leadEarly':.5,'offball.leadPace':.25,'offball.levelPace':.15,'offball.leashLead':4,'offball.zoneLeash':15,'setplay.keeperShift':.4,'setplay.keeperShiftOpen':1,'finish.spreadBase':.028,'finish.spreadSkill':.5,'finish.volleySpread':1.6};
 const si=(flat={})=>{const params={};for(const [k,v]of Object.entries(flat)){const [pkg,name]=k.split('.');(params[pkg]??={})[name]=v;}return {packages:{options:true,finish:true,offball:true,setplay:true},params};};
 // Two receivers mirrored about the carrier's line, equal except finishing.
 const pair=(params,extra={})=>({seed:3,si:si(params),attack:[{id:'c',goal:30,lateral:0,line:'mid',role:'box-to-box',skills:{pas:13,fin:10,tec:11}},{id:'a',goal:15,lateral:-6,line:'att',role:'striker',skills:{fin:16,tec:11,spd:11}},{id:'b',goal:15,lateral:6,line:'att',role:'striker',skills:{fin:8,tec:11,spd:11}}],defend:[{id:'x',goal:13,lateral:-12,line:'def'},{id:'y',goal:13,lateral:12,line:'def'}],...extra});
@@ -99,8 +99,9 @@ check('keeper during an opposing high ball: keeperShift for a corner, keeperShif
 });
 
 check('SI-5 duel recognition with the score-state factor: a leading carrier in a duel on the large pitch gets carrierCloseGain, not carrierPaceGain',()=>{
- // Regression for dist/match-si-field-v183.js:137 (Torjäger round): SI-5 identifies the SI-2 duel pace by equality with
+ // Regression for dist/match-si-field-v183.js:137 (Torjäger round): SI-5 used to identify the SI-2 duel pace by equality with
  // carrierClosePace*(.78+tec*.009)*v183OffballLeadPace; without the state factor there a leading carrier got the open gain.
+ // Since the balance round SI-2 marks the duel (detail.v183Duel) and SI-5 reads the marker (next check).
  const run=params=>{h.call('Native183.constructed',{size:'large',roles:true,si:{params}});
   for(let i=0;i<3000;i++){h.call('Native183.advance');if(ev('Boolean(match.owner&&!match.owner.keeper&&!match.flight&&!v121PositioningPaused(match))'))break;}
   return copy(ev(`(()=>{const m=match,o=m.owner,s=v150Scale(),r=m.people.find(q=>q.t!==o.t&&!q.keeper);if(!o||o.keeper)throw Error('no live carrier');
@@ -114,6 +115,23 @@ check('SI-5 duel recognition with the score-state factor: a leading carrier in a
  near(r.duel,r.f0,'carrierCloseGain 0 leaves the duel pace of a leading carrier unscaled (SI-5 recognised the duel)');
  assert(r.open>r.duel*1.05,'the open carrier gets the pace gain: '+JSON.stringify(r));
  const d=run({});assert(d.wrong>d.expected+1e-6,'the two gains differ (defaults)');near(d.duel,d.expected,'default close gain on the state-scaled duel pace');
+});
+
+check('SI-5 duel recognition by marker: independent of the pace values (carrierPace equal to carrierClosePace) and of the call detail',()=>{
+ // With equal open and duel pace the old float equality called every carrier a duel; the marker does not.
+ const run=params=>{h.call('Native183.constructed',{size:'large',roles:true,si:{params}});
+  for(let i=0;i<3000;i++){h.call('Native183.advance');if(ev('Boolean(match.owner&&!match.owner.keeper&&!match.flight&&!v121PositioningPaused(match))'))break;}
+  return copy(ev(`(()=>{const m=match,o=m.owner,s=v150Scale(),r=m.people.find(q=>q.t!==o.t&&!q.keeper);if(!o||o.keeper)throw Error('no live carrier');
+   m.score=[0,0];const tec=.78+ability(o,'tec')*.009,f0=v183Param(m,'offball.carrierClosePace')*tec,extra=v183FieldExtra(m);
+   const gain=k=>v183FieldCap(m,o,f0,f0*(1+v183Param(m,'field.'+k)*extra),'carrierSpeedMax');
+   r.x=o.x;r.y=o.y-(o.t===0?1:-1)*1.5/s.y;const d1={},duel=v183PaceFactor(m,o,'carrier',d1);
+   r.y=o.y-(o.t===0?1:-1)*8/s.y;const d2={v183Duel:true},open=v183PaceFactor(m,o,'carrier',d2);
+   const bare=v183PaceFactor(m,o,'carrier');
+   return {duel,open,bare,markers:[d1.v183Duel,d2.v183Duel],closeGain:gain('carrierCloseGain'),paceGain:gain('carrierPaceGain'),f0};})()`));};
+ const r=run({offball:{carrierPace:1.28,carrierClosePace:1.28,leadPace:0,levelPace:0}});
+ assert.deepEqual(r.markers,[true,false],'SI-2 writes the marker on the call detail (stale marker overwritten)');
+ assert(r.paceGain>r.closeGain+1e-6,'the two gains differ');
+ near(r.duel,r.closeGain,'a carrier with a rival close gets carrierCloseGain');near(r.open,r.paceGain,'an open carrier gets carrierPaceGain although open and duel pace are equal');near(r.bare,r.paceGain,'call without detail object');
 });
 
 check('full constructor matches with the defaults (both pitch sizes) finish without errors; no new attackFlow keys',()=>{

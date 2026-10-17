@@ -65,7 +65,8 @@ v183RegisterDefaults('offball',{
  // 1-leadPace*lead, while level times 1-levelPace*level (intensities of SI-1
  // v183ScoreState); the zone leash of a leading team's offers shrinks by
  // leashLead m x lead intensity (hold the shape).
- leadPace:.25,levelPace:.25,leashLead:4,
+ // Balance round: levelPace .25 -> .15 (weaker late caution while level).
+ leadPace:.25,levelPace:.15,leashLead:4,
  wSpace:1,spaceCap:10,wLane:1.5,laneClearance:1.25,wProgress:.12,wRun:.08,wCrowd:1.5,crowdGap:5,crowdGapBox:3,wXg:3,xgRange:24,ownerNear:5,wOwnerNear:.6,ownerFar:26,wOwnerFar:.4,wOffside:.15,holdCost:.8,holdAgain:1,
  profiles:V183_OFFBALL_PROFILES
 });
@@ -340,6 +341,9 @@ v183ReboundFinish=function(m,winner,point){
 // previous function (SI-4). Load order: this module is the outermost wrapper
 // of v183PaceFactor and returns for carrier/run before SI-4 sees the call.
 // Score state (Torjaeger round): carrier and run pace (see leadPace).
+// Duel marker (balance round): the carrier branch writes detail.v183Duel (true while a rival is inside
+// carrierCloseRadius) on the detail object of the caller; SI-5 reads it instead of comparing the returned
+// pace with this expression. Transient plain data on the call's argument, no match state.
 function v183OffballLeadPace(m,p){
  const a=v183Param(m,'offball.leadPace'),c=v183Param(m,'offball.levelPace');
  if(!(a>0||c>0)||typeof v183ScoreState!=='function')return 1;
@@ -356,6 +360,7 @@ v183PaceFactor=function(m,p,purpose,detail={}){
  if(!v183OffballOn(m))return v183OffballBasePace.call(this,m,p,purpose,detail);
  if(purpose==='carrier'){
   const radius=v183Param(m,'offball.carrierCloseRadius'),close=m.people.some(q=>q.t!==p.t&&!q.keeper&&!q.slideActive&&v122Metres(q,p)<radius);
+  detail.v183Duel=close;
   return v183Param(m,close?'offball.carrierClosePace':'offball.carrierPace')*(.78+ability(p,'tec')*.009)*v183OffballLeadPace(m,p);
  }
  if(purpose==='purposeful'){const reason=v183PaceReason(m,p,detail);if(reason==='run'||reason==='follow')return v183Param(m,'offball.runPace')*v183OffballLeadPace(m,p);}
