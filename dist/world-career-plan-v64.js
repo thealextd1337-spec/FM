@@ -5,7 +5,7 @@ let v64CareerPlanTab='lineup',v64CareerSelectedSlot=1,v64CareerPresetName='',v64
 function v64CareerClub(career){return career.world.clubs.find(club=>club.id===career.manager.managedClubId)}
 function v64CareerPlanDefault(career){
  const club=v64CareerClub(career),coach=career.world.coaches.find(item=>item.id===club.coachId),tactics=v64CoachTactics(coach,career);
- const side=v64BuildSide(club,tactics.formation),state={active:side.starters,roles:side.roles,cells:{}};
+ const side=v64BuildSide(club,tactics.formation),state={active:side.starters,roles:side.roles,cells:{},...(v183WorldSi(career)?{siGrid:true}:{})};
  v64EnsureCells(state,0);
  return{starters:side.starters,bench:side.bench,roles:side.roles,cells:state.cells,orientation:{},instructions:{},tactics};
 }
@@ -28,7 +28,7 @@ function v64CareerPlanNormalize(career,saved){
  const cells={},occupied=new Set();
  for(const pid of starters){const cell=source.cells?.[pid];if(roles[pid]!=='gk'&&Number.isInteger(cell)&&cell>=0&&cell<35&&v64GridRole(cell)===roles[pid]&&!occupied.has(cell)){cells[pid]=cell;occupied.add(cell)}}
  for(const role of ['def','mid','att']){
-  const ids=starters.filter(pid=>roles[pid]===role),defaultsForRole=v64GridCells[role][ids.length];
+  const ids=starters.filter(pid=>roles[pid]===role),defaultsForRole=v64GridDefaults({siGrid:v183WorldSi(career)},role,ids.length);
   for(const pid of ids)if(!Number.isInteger(cells[pid])){const cell=defaultsForRole.find(value=>!occupied.has(value))??Array.from({length:35},(_,index)=>index).find(value=>v64GridRole(value)===role&&!occupied.has(value));cells[pid]=cell;occupied.add(cell)}
  }
  const orientation={},instructions={};
@@ -38,7 +38,7 @@ function v64CareerPlanNormalize(career,saved){
 function v64CareerPlanContext(career){
  const club=v64CareerClub(career),plan=v64CareerPlanNormalize(career,career.manager.matchPlan),side={clubId:club.id,starters:[...plan.starters],bench:[...plan.bench],roles:{...plan.roles},tactics:{...plan.tactics}};
  const fixture={id:'career-plan',homeId:club.id,awayId:club.id,plan:{home:side,away:{clubId:club.id,starters:[],bench:[],roles:{},tactics:{}}}};
- const state={phase:'prematch',minute:0,active:[...plan.starters],awayActive:[],bench:[...plan.bench],awayBench:[],roles:{...plan.roles},cells:{...plan.cells},orientation:{...plan.orientation},instructions:structuredClone(plan.instructions),tactics:[{...plan.tactics},{}],tacticChanges:[],fresh:{},minutes:{},stats:{}};
+ const state={...(v183WorldSi(career)?{siGrid:true}:{}),phase:'prematch',minute:0,active:[...plan.starters],awayActive:[],bench:[...plan.bench],awayBench:[],roles:{...plan.roles},cells:{...plan.cells},orientation:{...plan.orientation},instructions:structuredClone(plan.instructions),tactics:[{...plan.tactics},{}],tacticChanges:[],fresh:{},minutes:{},stats:{}};
  for(const player of club.roster){state.fresh[player.pid]=player.fresh;state.minutes[player.pid]=0;state.stats[player.pid]={goals:0,assists:0,shots:0}}
  if(typeof v154Initialize==='function')v154Initialize(career,fixture,state,plan.roleAssignments);if(plan.roleMoveSequence)state.roleMoveSequence=plan.roleMoveSequence;
  return{fixture,state};

@@ -6,6 +6,7 @@ Stand: 14. Oktober 2026. Release 132 ist im Worktree `work/release-r132` lokal v
 - [Entwicklung](development.md): Quellstand, Git-Übergabe, Prüfungen, Build und Veröffentlichung.
 - [Bugliste](Bugliste.md): bekannte Fehler und offene Prüfungen; kein automatischer Arbeitsauftrag.
 - [Entscheidungen](entscheidungen.md): aktueller Umfang, zurückgestellte Ideen und verworfene Fortsetzungen.
+- [Spielerintelligenz 183 nur für neue Spielstände](spielerintelligenz-neue-spielstaende-183.md): Stempel `world.siRevision`, Entscheidungspunkte, Sponsorziel.
 - [Release 132](release-132.md): Umfang, lokale Prüfungen und offene Grenzen vor der Integration.
 - [Release 131](release-131.md): damalige Veröffentlichung und Nachweise.
 - [Archivindex](history/README.md): frühere Dokumentation und inaktive Auftragspläne.

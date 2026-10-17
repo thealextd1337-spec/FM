@@ -41,6 +41,8 @@ for (const club of career.world.clubs) {
 }
 
 // Unabhängig erfasster Fingerabdruck des bisherigen Finanzmodells: 48 Vereine, drei Saisonstände.
+// Eine Welt ohne Spielerintelligenz-Stempel (bestehender Spielstand) behält Ziele und Beträge; die Ziele neuer Welten prüft test-si-newworld-v183.cjs.
+delete career.world.siRevision;
 const finances = [1, 2, 7].map(season => {
   career.world.season = season;
   return career.world.clubs.map(club => call('v66MakeSponsors', career, club).map(offer => ({

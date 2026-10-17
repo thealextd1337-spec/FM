@@ -46,9 +46,12 @@ function v65ApplyTactics(context){
  $('#match-plan').textContent=own.formation;
 }
 // options.si (harness only): {packages,params,clockRate} overrides or false for
-// a match without marker 183. Only this constructor writes match.si.
+// a match without marker 183. Only this constructor writes match.si, and only for
+// a world with the 183 stamp (v183WorldSi); worlds of release 132 keep the matches
+// without marker. An explicit harness override is the only way around the stamp.
 function v65CreateMatch(context,options){
- const geometry=v160WorldGeometry(context.career),si=typeof v183CreateSi==='function'?v183CreateSi(options?.si):null,people=[];
+ const marked=options?.si!==undefined||typeof v183WorldSi==='function'&&v183WorldSi(context.career);
+ const geometry=v160WorldGeometry(context.career),si=typeof v183CreateSi==='function'&&marked?v183CreateSi(options?.si):null,people=[];
  for(const physical of [0,1])for(const pid of v64Active(context.state,v65Side(physical,context.ownSide)))people.push(v65PhysicalPlayer(context,physical,pid,{geometry,si}));
  const own=v65Club(context,0),opponent=v65Club(context,1),kits=v61SelectMatchKits(own,opponent,context.ownSide===0);
  match={people,geometry,exitedPeople:[],attackFlow:{version:152,qualityVersion:157,flowVersion:159,paceVersion:162,paceRevision:119,keeperChaseRevision:180,keeperHoldRevision:182,setPieceRevision:182,looseBallRevision:182,pursuitRevision:182,motionRevision:182,intents:{},ownerPid:null,team:null},penaltyRevision:182,refereeVariant:Math.floor(Math.random()*3),elapsed:0,score:[0,0],shots:[0,0],possession:[0,0],owner:null,flight:null,halftime:false,finished:false,kickoff:null,countdown:0,goalPause:0,pendingKickoff:null,overlayTTL:0,goals:[],aggression:[0,0],setPieceStats:{corners:[0,0],fouls:[0,0],freeKicks:[0,0],penalties:[0,0]},defenseLines:[0,0],throwIn:null,offsideVisual:null,lastTouch:null,slide:null,rebound:null,opponentName:opponent.name,kits,...(si?{si}:{})};
