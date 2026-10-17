@@ -29,7 +29,7 @@ function finish(x,until=Infinity){globalThis.v61CurrentCareer=x.c;while(x.s.phas
  const standard=h.call('v183CompactSnapshot',create('si6-size-a')),large=h.call('v183CompactSnapshot',create('si6-size-b',LARGE)),constants=h.evaluate('v183CompactBalance');
  assert.equal(standard.fieldSize,'standard');assert.equal(large.fieldSize,'large');assert.equal(standard.version,183);
  assert.equal(standard.shotBase,constants.sizes.standard.shotBase);assert.equal(large.shotBase,constants.sizes.large.shotBase);
- assert(large.shotSlope<standard.shotSlope,'large pitch: weaker strength gap effect (reference series)');
+ assert(Math.abs(large.shotSlope-standard.shotSlope)<.02,'both pitches: the strength gap acts on the shots with a similar slope (series sb2-f: 0.122 / 0.125; the large pitch has its own finishing levers)');assert(large.levers.goalFin>standard.levers.goalFin&&large.levers.finSelf===1&&standard.levers.finSelf===1,'per-pitch levers: finishing counts more on the large pitch');
  assert.deepEqual(h.call('v183CompactSnapshot',{}),standard,'no match configuration (older careers) counts as standard pitch');
  assert(Object.isFrozen(constants)&&Object.isFrozen(constants.sizes.standard),'constants are frozen');
  standard.shotBase=99;assert.notEqual(h.evaluate('v183CompactBalance.sizes.standard.shotBase'),99,'snapshot is a copy');
@@ -77,8 +77,10 @@ function finish(x,until=Infinity){globalThis.v61CurrentCareer=x.c;while(x.s.phas
 // 3c. Within a team the own finishing deviation counts only with the share finSelf (played-out best finishers convert
 // hardly better than their team-mates); the expected shooter of the team keeps the full cross-team lever.
 {
- const x=initial('si6-self',183),B=x.s.playerPerformance.compactBalance,team=h.call('v183CompactTeams',x.c,x.f,x.s)[0];
- assert(B.levers.finSelf>0&&B.levers.finSelf<1,'stored within-team share');
+ const x=initial('si6-self',183),stored=x.s.playerPerformance.compactBalance,team=h.call('v183CompactTeams',x.c,x.f,x.s)[0];
+ assert.equal(stored.levers.finSelf,1,'fitted set (sb2-f): the best finisher of a team converts better again, no within-team shrink');
+ // The mechanism stays for stored snapshots of 0.3 (SI-K2 fit) and for later fits.
+ const B={...stored,levers:{...stored.levers,finSelf:.3}};
  for(const source of ['open','long','header-volley']){
   const weight=h.call('v183ShooterWeight',B,source,team,x.s),total=team.ids.reduce((n,pid)=>n+weight(pid),0);
   const centre=team.ids.reduce((n,pid)=>n+weight(pid)*team.skills[pid].fin,0)/total,adjusted=pid=>h.call('v183ShooterFinishing',B,source,team,x.s,pid,team.skills[pid].fin);
@@ -88,6 +90,20 @@ function finish(x,until=Infinity){globalThis.v61CurrentCareer=x.c;while(x.s.phas
  }
  assert.equal(h.call('v183ShooterFinishing',{...B,levers:{...B.levers,finSelf:1}},'open',team,x.s,team.ids[0],12.3),12.3,'share 1 keeps the finishing');
  checks.push('within-team finishing share: expected shooter unchanged, own deviation counts with finSelf');
+}
+
+// 3d. Score state (leader manages the lead, trailing side pushes, late caution while level): relative change of the expected shots from the
+// score difference of the side; matches without the block in their stored snapshot behave as before (factor 1).
+{
+ const B=h.call('v183CompactSnapshot',create('si6-state')),S=B.scoreState,factor=(a,b,minute,side=0,balance=B)=>h.call('v183ScoreFactor',balance,{score:[a,b],minute},side);
+ assert(S.lead1<0&&S.lead2<0,'the leader shoots less');assert(S.trail1>0&&S.trail2>0,'the trailing side shoots more');
+ assert.equal(factor(1,0,30),1+S.lead1);assert.equal(factor(0,1,30),1+S.trail1);assert.equal(factor(2,0,30),1+S.lead2);assert.equal(factor(0,3,30),1+S.trail2);
+ assert.equal(factor(1,0,30,1),1+S.trail1,'the factor follows the side asked for');assert.equal(factor(2,1,80,1),1+S.trail1);
+ assert.equal(factor(0,0,10),1+S.level*0,'level early: no change');
+ const late={...B,scoreState:{...S,level:-.2,levelFrom:.5}};
+ assert.equal(factor(1,1,45,0,late),1,'level before levelFrom');assert(Math.abs(factor(1,1,90,0,late)-.8)<1e-9,'level at the end: full term');assert(Math.abs(factor(0,0,67.5,0,late)-.9)<1e-9,'level term grows linearly');
+ const old={...B};delete old.scoreState;assert.equal(factor(3,0,80,0,old),1,'snapshots without the block: no score state');
+ checks.push('score state: leader/trailer/level factors, side-aware, absent block neutral');
 }
 
 // 4. Home bonus on played matches: only side 0 on a non-neutral pitch asks for it (spy on the rate function).
@@ -157,7 +173,7 @@ for(const revision of [178,119,undefined]){
  assert(roles.length>=11);
  for(const group of ['open','long','head','rebound','fk'])for(const role of roles)assert(constants.shooters[group].roles[role]>0,`${group} weight for ${role}`);
  for(const source of Object.keys(constants.sizes.standard.on))assert(constants.groups[source]&&Number.isFinite(constants.sizes.standard.goal[source])&&Number.isFinite(constants.sizes.large.on[source]));
- const total=name=>constants.sizes[name].mix.reduce((n,[,rate])=>n+rate,0);assert(Math.abs(total('standard')-13.4)<.1&&Math.abs(total('large')-12.8)<.1,'source mix sums to the reference shots');
+ const total=name=>constants.sizes[name].mix.reduce((n,[,rate])=>n+rate,0);assert(Math.abs(total('standard')-12.26)<.1&&Math.abs(total('large')-11.47)<.1,'source mix sums to the reference shots (sb2-f)');
  checks.push('role and source tables are complete');
 }
 

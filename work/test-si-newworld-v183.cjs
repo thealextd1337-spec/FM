@@ -140,7 +140,7 @@ check('sponsor: the league goal of a world of release 132 stays 11 + squad (scal
  }
 });
 const LEAGUE_GAMES=14;
-const GOALS_183=[null,11,13,19,32,44];
+const GOALS_183=[null,13,16,23,34,48];
 check('sponsor: a new world asks for the goal count of its squad class (14 matches); the cup goal stays',()=>{
  const old=career('siw-sp-new',{stamp:false}),fresh=career('siw-sp-new');
  for(const [index,club] of fresh.world.clubs.entries()){

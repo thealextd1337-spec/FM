@@ -2,6 +2,8 @@
 
 Stand: 16. Oktober 2026. Branch `feat/si-compact` (Worktree `work/si-compact`), abgezweigt von `integration/si-r133` = `a95fe8d2` (alle SI-Pakete, B22 und die Schlusskalibrierung SI-K2). Auftrag: Paket SI-6 des [Umsetzungsplans](spielerintelligenz-umsetzungsplan-2026-10-14.md) (Abschnitt „SI-6 P02“), Analyse 7.1 der [Spielerintelligenz-Analyse](spielerintelligenz-analyse-2026-10-14.md). Keine Veröffentlichung, keine Fußversion, kein WebGL-Build, kein Push; den Merge übernimmt die Integration.
 
+**Neuanpassung 17. Oktober 2026 (Branch `feat/si-compact2`):** Die Parameter- und Ergebnistabellen bis zum Review beschreiben den Stand von SI-6 gegen die Reihe SI-K2. Der aktuelle Parametersatz und die aktuellen Zahlen gegen die Endstufe `sb2-f` stehen im Abschnitt „Neuanpassung an sb2-f“ (Konstanten, Kriterien, Saisonebene, Prüfungen).
+
 Gilt nur für neue Partien (Kennung `shotBalanceRevision` 183). Bestehende Spielstände, laufende Partien und Partien mit Kennung 178, 119 oder ohne Kennung bleiben bytegleich; es gibt keine Umrechnung gespeicherter Ergebnisse. Die alte Sechserliga ist unberührt. Fähigkeiten bleiben Farbstufen, die Oberfläche zeigt keine neuen Zahlen.
 
 ## Ergebnis in Kürze
@@ -34,7 +36,7 @@ Gilt nur für neue Partien (Kennung `shotBalanceRevision` 183). Bestehende Spiel
 
 Was bewusst gleich bleibt: kleiner relativer Heimaufschlag (1,03, neutral keiner), der Nachspielzeitwurf, KI-Wechsel und -Taktik, Noten (`D6MatchRatings`), Entwicklung und Buchung sowie alle Welt- und Pokalregeln (Pokalvereine mindestens 10 % schwächer, strenge Ligaspitzen, seltene Elite). Kein Ergebnis wird gesetzt: Tore und Siege folgen ausschließlich aus Schussmenge, Abschluss und Torwart.
 
-### Parameter (Vorgaben neuer Partien, Standardfeld / großes Feld)
+### Parameter (Vorgaben neuer Partien, Standardfeld / großes Feld; Stand SI-6, aktuell siehe „Neuanpassung an sb2-f“)
 
 | Schlüssel | Standardfeld | großes Feld | Bedeutung |
 | --- | ---: | ---: | --- |
@@ -381,14 +383,282 @@ Anlass: Torschützenkönig der Ligen 33 Tore in 14 Spielen (höchster Wert 57). 
 - **Warum der Torschützenkönig hoch bleibt:** Die Konzentration stammt aus dem ausgespielten Spiel. Mit fünf oder sechs Feldspielern und einem Mittelstürmer erzielt der beste Abschlussspieler physisch 57 % (Standard) bzw. 47 % (groß) der Tore seiner Mannschaft; als Favorit ab 3 Punkten schießt der beste Torschütze einer Mannschaft im Mittel 2,9 Tore je Partie, in 53 % dieser Partien gelingen einem Spieler mindestens drei Tore. Über 14 Ligaspiele eines Spitzenvereins ergibt das 30–40 Tore. Ein niedrigerer Wert setzt eine Entscheidung zum ausgespielten Spiel voraus (Schützenwahl oder Torquote der Favoriten); die Kompaktsimulation folgt ihm.
 - **Vorlagen:** 0,67–0,69 Vorlagen je Tor, Vorlagenkönig der Ligen 10–12. Ohne physischen Vergleichswert plausibel; unverändert.
 
+## Neuanpassung an sb2-f (17. Oktober 2026)
+
+Branch `feat/si-compact2` (Worktree `work/si-compact2`), abgezweigt von `integration/si-r133` = `f6b1efdd` (alle SI-Wellen, Torjäger-Runde, Endstufe der Gleichstandsvorsicht, Neue-Welt-Stempel). Anlass: Das ausgespielte Spiel hat sich seit SI-K2 geändert (Spielstandeffekte, schwächere Gleichstandsvorsicht nach der Nutzerentscheidung „Remis und Sponsorquote 17. Oktober 2026“); die Kompaktsimulation war noch auf SI-K2 angepasst. Kennung bleibt 183 (unveröffentlicht, der Parametersatz neuer Partien darf sich ändern); Kennung 178, 119 und unmarkierte Partien sind weiter bytegleich (`test-compact-balance-v178`, `check-old-matches-v183`, Test gegen den eingefrorenen Controller).
+
+### Referenz und Methode
+
+- **Referenz:** `sb2-f` (Endvorgaben, 576 vollständige physische Partien, 96 Vereine × 2 Feldgrößen × 3 Seed-Sätze; `outputs/si183/sb2-f-trace40000.json`, `-si183b-` und `-si183c-`, gitignoriert). Gegenüber SI-K2 (`k2-f`): Tore 3,46 statt 3,86 (Standard 3,60, groß 3,32), Remis 17,6 % statt 16,3 % (Standard 16,2 %, enge Duelle 21,6 %), Favorit bei 1,5 Punkten geglättet 64 % (Standard 65 %), ab 3 Punkten 93 % (Standard) und 99 % (groß), Schüsse 12,26 / 11,47 je Partie statt 13,40 / 12,77.
+- **Dieselben 567 Fixtures** wie in SI-6 (`work/measure-compact-physical-v183.cjs`, 9 mit abweichender KI-Elf ausgelassen), 16 Wiederholungen = 9.072 kompakte Partien je Lauf, Auswertung `work/table-compact-physical-v183.cjs <label> --series=sb2-f-trace40000,sb2-f-si183b-trace40000,sb2-f-si183c-trace40000`.
+- **Werkzeuge (neu):** `work/fit-compact-physical-v183.cjs` (Poisson-Anpassung der Schüsse je Mannschaft mit Plateau und Heimaufschlag, Schussquellen, Logit-Anpassung von „aufs Tor“ und „Tor“ je Quelle; gibt einen Vorschlag aus, schreibt nichts nach `dist`); `measure-compact-physical-v183.cjs --variants="name:pfad=wert,…;name2:…"` (mehrere Parametervarianten je Fixture mit einmaligem Weltaufbau und gleichen Wiederholungsseeds, `--size=large`, `groß/pfad=wert` für nur eine Feldgröße); `review-concentration-v183.cjs --series=…`. Ein Lauf mit 6 Prozessen und 16 Wiederholungen dauert rund 9 Minuten, eine Variante mit 8 Wiederholungen rund 3 Minuten.
+- **Vorgehen:** (1) Regression auf den physischen Schüssen (Vorschlag für `shotBase`, `shotSlope`, `deepDefenceShots`, Quellenmix, Achsenabschnitte), (2) Wiederholung der Fixtures, (3) Achsenabschnitte je Quelle und Klasse nachziehen, (4) Prüfung, ob der Spielstand im Kompaktmodell gebraucht wird, (5) Hebel je Feldgröße, (6) Konzentration der Torschützen.
+
+### Befund vor der Neuanpassung
+
+Die Kompaktsimulation von SI-6 gegen die neue Referenz (gleiche Fixtures, unveränderter Stand `f6b1efdd`):
+
+| Kriterium | Standard | groß | beide |
+| --- | ---: | ---: | ---: |
+| Schüsse je Partie (≤ 10 %) | +8,3 % | **+10,3 %** | +9,2 % |
+| Tore je Partie (≤ 10 %) | +7,9 % | +9,2 % | +8,5 % |
+| Remis schwacher Teams (± 5 Punkte) | +6,4 P. (n = 46) | −12,8 P. (n = 72) | −5,3 P. (n = 118) |
+| Remis insgesamt | 14,1 % statt 16,2 % | 15,8 % statt 19,1 % | 15,0 % statt 17,6 % |
+| Partien mit Torabstand ≥ 3 | 41,2 % statt 32,4 % | 34,7 % statt 32,5 % | 37,9 % statt 32,5 % |
+
+Die Kompaktsimulation spielte also zu viele Schüsse und Tore und zu einseitige Partien; die Remisquote lag 2,6 Punkte unter der Referenz.
+
+### Muss die Kompaktsimulation den Spielstand kennen?
+
+Ja, in kleiner Form. Das ausgespielte Spiel führt Spielstandeffekte: Gegenüber dem Erwartungswert aus der Stärke schießt der Führende rund 10–13 % weniger (mittleres Verhältnis der Schüsse zur Modellrate aus dem Stärkeabstand: Führung mit einem Tor 0,90 (Standard) / 0,93 (groß), mit zwei und mehr Toren 0,87 / 0,83), die zurückliegende Mannschaft rund 12 % mehr (Rückstand um ein Tor 1,13 / 1,10, um zwei und mehr 1,12 / 1,15), bei Gleichstand fallen die Schüsse im letzten Sechstel auf 0,75 (Gesamtmittel bei Gleichstand 1,04). Auswertung: Schüsse je Zeiteinheit gegen die stärkebasierte Modellrate (nicht gegen die eigene Rate der Partie, um die Auswahl durch die Tore zu vermeiden). Die reine Neuanpassung der bestehenden Hebel (alle Achsenabschnitte neu, kein Spielstand) reicht für die Abnahmekriterien; der Term verbessert nur die Verteilung der Ergebnisse (Kontrolle unten).
+
+Gewählt ist ein Term in `v183ScoreFactor` (`dist/world-player-performance-v155.js:78`, `scoreState` im gespeicherten Parametersatz): Faktor auf die erwarteten Schüsse der Mannschaft nach der Tordifferenz: Führung −10 % (bei einem wie bei zwei Toren), Rückstand +10 %; der Gleichstandsterm (`level`, `levelFrom`) ist vorhanden, steht aber auf 0, weil er Remis über das Ziel hebt und auf dem großen Feld den Favoriten kostet. Gespeicherte Parametersätze ohne den Block bleiben wirkungslos (Faktor 1).
+
+### Kontrolle: derselbe Satz ohne Spielstandterm
+
+Gleiche Fixtures und Wiederholungsseeds, 8 Wiederholungen (4.536 Partien je Variante). Die Variante ohne Term läuft mit `shotBase` × 0,955, damit die Tore gleich bleiben (bei gleicher Basis fallen die Tore mit dem Term um rund 4,5 % niedriger aus).
+
+| Kennzahl | physisch | ohne Term | mit Term (Stand) |
+| --- | ---: | ---: | ---: |
+| Tore je Partie (Standard / groß / beide) | 3,60 / 3,32 / 3,46 | 3,59 / 3,30 / 3,44 | 3,63 / 3,35 / 3,49 |
+| Remis (Standard / groß / beide) | 16,2 / 19,1 / 17,6 % | 14,9 / 16,6 / 15,8 % | 16,4 / 17,9 / 17,2 % |
+| Torabstand 1 (beide) | 28,9 % | 29,0 % | 29,7 % |
+| Torabstand ≥ 3 (Standard / groß / beide) | 32,4 / 32,5 / 32,5 % | 36,0 / 34,2 / 35,1 % | 33,4 / 32,5 / 33,0 % |
+| Torabstand ≥ 4 (beide) | 19,8 % | 21,8 % | 19,4 % |
+
+Die Abnahmekriterien werden auch ohne den Term erfüllt (Remis −1,8 Punkte gegen ±3 erlaubt). Er bringt aber die Remisquote (+1,4 Punkte) und die Kantersiege (Torabstand ≥ 3: −2,1 Punkte) an das ausgespielte Spiel heran; deshalb bleibt er (zwei Zahlen und ein Faktor in `v183CompactActions`). Der Gleichstandsterm `level` (−0,3 bis zum Ende, ab Spielhälfte linear) hob die Remisquote um weitere 2,8 Punkte (zu viel) und senkte die geglättete Favoritenquote des großen Feldes bei 4 Punkten auf 87 % (physisch 96 %); verworfen.
+
+### Geänderte Konstanten (`dist/world-player-performance-v155.js`)
+
+| Konstante | vorher (Standard / groß) | jetzt (Standard / groß) | Stelle | Grund |
+| --- | ---: | ---: | --- | --- |
+| `shotBase` | 5,754 / 5,656 | 5,452 / 5,090 | :28 / :29 | Schüsse 12,26 / 11,47 je Partie; Poisson-Anpassung 5,345 / 5,103, mit dem Spielstandterm auf die Schüsse der Referenz nachgezogen (+2,0 % / −0,3 %, Läufe r2 bis f5) |
+| `shotSlope` | 0,1293 / 0,1001 | 0,122 / 0,125 | :28 / :29 | Anpassung 0,122 / 0,112; groß auf 0,125, weil die Klassen des großen Feldes steiler verlaufen (Favoritenquote ab 3 Punkten 99 %) |
+| `deepDefenceShots` | 1,41 / 1,37 | 1,401 / 1,351 | :28 / :29 | Anpassung |
+| Quellenmix (Schüsse je Partie, ohne Elfmeter) | 13,39 / 12,75 | 12,20 / 11,44 | :28 / :29 | gemessene Quellen: Spielzug 6,56 / 5,36, Fernschuss 1,82 / 3,36, Kopfball 1,46 / 1,19, Abpraller 0,36 / 0,38, Ecke 0,08 / 0,04, Freistoßfolge 1,62 / 0,95, direkt 0,31 / 0,17 |
+| `on` und `goal` je Quelle (Logit) | siehe Tabelle oben | Standard: `on` Spielzug −0,295, Fernschuss −0,896, Kopfball/Ecke 0,003, Abpraller −0,172, Freistoßfolge −0,172, direkt −0,221; `goal` 0,081 / −0,213 / 0,597 / 0,954 / 0,597 / 0,255 / −0,351. Groß: `on` −0,148 / −0,75 / −0,069 / −0,089 / −0,069 / −0,22 / −1,033; `goal` 0,189 / −1,155 / 0,537 / 0,723 / 0,537 / 0,189 / −0,822 | :28 / :29 | Achsenabschnitte der Logit-Anpassung bei den gespeicherten Hebeln, danach per Wiederholung auf Tore je Schuss und aufs Tor je Schuss je Quelle nachgezogen (Fernschüsse im Standardfeld +0,45, weil die kompakten Schützen im Mittel 1,7 Abschlusspunkte unter den physischen Fernschützen liegen); Ecke wie Kopfball (zu wenige Ecken für eine eigene Anpassung) |
+| `levers.onGap` | 0,06 | 0,03 / 0,06 | :15 / :29 | Standard: die Anpassung ergibt 0,047, flacher bringt die geglättete Favoritenquote auf −0,4 / +0,6 Punkte; groß behält 0,06 (steilere Klassen) |
+| `levers` des großen Feldes | gemeinsam: 0,196 / 0,173 / −0,148 | `onFin` 0,21, `goalFin` 0,24, `goalGk` −0,14 | :29 | Anpassung auf dem großen Feld: Abschluss 0,20 / 0,22, Torwart −0,09 bis −0,13 |
+| `levers.finSelf` | 0,3 | 1 | :15 / :29 | Konzentration der Torschützen (unten); der Mechanismus bleibt für gespeicherte Sätze |
+| `scoreState` | – | Führung −0,1, Rückstand +0,1, Gleichstand 0 | :16, :78, :103 | s. o. |
+| `corners`, `crossExtra`, `fouls`, `freeKickExtra` | 0,845 / 1,6 / 1,97 / 0,03 (groß 0,7 / 1 / 1,4 / 0,095) | 0,79 / 1,71 / 2,05 / 0,03 (groß 0,675 / 1,0 / 1,38 / 0,115) | :28 / :29 | Mannschaftsstatistik der Referenz |
+
+Unverändert: `matchMinutes`, `homeShotFactor`, `gapKnee`/`gapOver`/`gapFade`, `shotKnee`/`shotOver` (Plateau 11,5 / 10 Schüsse reichen weiter: Favoritenschüsse ab 3 Punkten −4,9 % / −3,0 %), Schützenrollen und -steigungen, Vorlagenanteile, Hintergrundlaufen (Frischeverbrauch je Linie ±0,4 Punkte).
+
+### Ergebnis: kompakt gegen sb2-f
+
+Vollständige Tabellen (Standard und groß, 9.072 Partien, Läufe `f5`): [kompakt gegen sb2-f](../outputs/compact-balance-v183/kompakt-gegen-physisch-sb2.md) (`.json`), der Stand vor der Neuanpassung: [vorher](../outputs/compact-balance-v183/kompakt-gegen-physisch-sb2-vor-neuanpassung.md).
+
+Gegen die Referenz, vorher (Stand `f6b1efdd`) → nachher, je Feldgröße und Stärkeabstand (✓ = Grenze des Plans eingehalten: Schüsse und Tore ±10 %, Favoritensieg ±5 Punkte):
+
+| Feld | Abstand | physische Partien | Schüsse vorher → nachher | Tore vorher → nachher | Sieg Favorit vorher → nachher | Remis vorher → nachher |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Standard | 0-1 | 88 | +5,9 % → -0,0 % ✓ | +1,3 % → -0,6 % ✓ | -1,4 P. → -2,9 P. ✓ | +0,9 P. → +3,4 P. |
+| Standard | 1-2 | 62 | +12,9 % → +5,8 % ✓ | +0,1 % → -2,8 % ✓ | +1,6 P. → -1,2 P. ✓ | -5,9 P. → -3,3 P. |
+| Standard | 2-3 | 48 | +13,3 % → +4,8 % ✓ | +11,2 % → +3,6 % ✓ | +11,1 P. → +7,3 P. ✗ | -3,6 P. → -0,1 P. |
+| Standard | >=3 | 86 | +5,0 % → -4,9 % ✓ | +15,3 % → +2,1 % ✓ | +1,1 P. → -2,0 P. ✓ | -1,4 P. → +1,2 P. |
+| groß | 0-1 | 81 | +10,8 % → -0,2 % ✓ | +23,2 % → +9,1 % ✓ | +6,8 P. → +5,2 P. ✗ | -13,9 P. → -9,1 P. |
+| groß | 1-2 | 68 | +11,9 % → +0,6 % ✓ | +25,0 % → +14,1 % ✗ | +8,7 P. → +8,1 P. ✗ | -10,5 P. → -7,5 P. |
+| groß | 2-3 | 47 | +14,2 % → +2,4 % ✓ | +9,1 % → -4,0 % ✓ | -3,7 P. → -4,3 P. ✓ | +5,3 P. → +8,9 P. |
+| groß | >=3 | 87 | +6,7 % → -3,0 % ✓ | -4,0 % → -8,0 % ✓ | -8,7 P. → -6,7 P. ✗ | +7,6 P. → +6,4 P. |
+
+Kriterien und Kennzahlen insgesamt:
+
+| Kriterium | Standard vorher → nachher | groß vorher → nachher | beide vorher → nachher |
+| --- | ---: | ---: | ---: |
+| Schüsse je Partie | +8,3 % → +0,3 % | +10,3 % → -0,5 % | +9,2 % → -0,1 % |
+| Tore je Partie | +7,9 % → +0,6 % | +9,2 % → +0,3 % | +8,5 % → +0,5 % |
+| aufs Tor je Partie | +8,9 % → +0,2 % | +6,1 % → -0,0 % | – |
+| 0:0 (Anteil, Punkte) | -0,2 P. → +0,0 P. | -2,8 P. → -1,7 P. | – |
+| Favorit bei 1,5 Punkten geglättet | +3,2 P. → -0,4 P. | +0,3 P. → +0,2 P. | – |
+| Favorit bei 4 Punkten geglättet | +3,4 P. → +0,6 P. | -5,8 P. → -4,1 P. | – |
+| Remis schwacher Teams | +6,4 P. → +6,1 P. (n=46) | -12,8 P. → -7,1 P. (n=72) | -5,3 P. → -2,0 P. (n=118) |
+| Tore je Schuss | -0,1 P. → +0,1 P. | -0,3 P. → +0,2 P. | -0,2 P. → +0,2 P. |
+| Ecken | +7,1 % → +0,4 % | +5,0 % → +1,1 % | – |
+| Flanken | -1,3 % → +0,5 % | -2,2 % → -0,9 % | – |
+| Fouls | -3,7 % → +0,3 % | +1,3 % → -0,1 % | – |
+| Freistöße | -2,9 % → +1,1 % | -0,5 % → -0,5 % | – |
+
+
+Standardfeld, Klassen nachher (physisch / kompakt):
+
+| Abstand | Partien phys / komp | Sieg Favorit phys → komp | Remis phys → komp | Niederlage phys → komp | Tore phys → komp | Schüsse Favorit/Außenseiter phys → komp | Tore Favorit/Außenseiter phys → komp |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0-1 | 88 / 1408 | 51 % → 48 % (-2,9 P.) | 22 % → 25 % (+3,4 P.) | 27 % → 27 % | 3,08 → 3,06 | 6,4/5,4 → 6,2/5,6 | 1,75/1,33 → 1,75/1,31 |
+| 1-2 | 62 / 992 | 68 % → 67 % (-1,2 P.) | 23 % → 19 % (-3,3 P.) | 10 % → 14 % | 3,29 → 3,20 | 7,3/4,3 → 7,3/4,9 | 2,37/0,92 → 2,20/0,99 |
+| 2-3 | 48 / 768 | 69 % → 76 % (+7,3 P.) | 17 % → 17 % (-0,1 P.) | 15 % → 7 % | 3,21 → 3,32 | 7,7/4,1 → 7,9/4,5 | 2,40/0,81 → 2,54/0,79 |
+| >=3 | 86 / 1376 | 93 % → 91 % (-2,0 P.) | 6 % → 7 % (+1,2 P.) | 1 % → 2 % | 4,57 → 4,66 | 9,9/3,7 → 9,1/3,7 | 4,01/0,56 → 4,07/0,59 |
+
+Großes Feld, Klassen nachher:
+
+| Abstand | Partien phys / komp | Sieg Favorit phys → komp | Remis phys → komp | Niederlage phys → komp | Tore phys → komp | Schüsse Favorit/Außenseiter phys → komp | Tore Favorit/Außenseiter phys → komp |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0-1 | 81 / 1296 | 40 % → 45 % (+5,2 P.) | 37 % → 28 % (-9,1 P.) | 23 % → 27 % | 2,44 → 2,67 | 6,0/5,0 → 5,8/5,2 | 1,40/1,05 → 1,50/1,16 |
+| 1-2 | 68 / 1088 | 56 % → 64 % (+8,1 P.) | 29 % → 22 % (-7,5 P.) | 15 % → 14 % | 2,57 → 2,94 | 6,8/4,4 → 6,6/4,6 | 1,68/0,90 → 2,02/0,92 |
+| 2-3 | 47 / 752 | 81 % → 77 % (-4,3 P.) | 9 % → 17 % (+8,9 P.) | 11 % → 6 % | 3,11 → 2,98 | 7,2/3,9 → 7,1/4,2 | 2,43/0,68 → 2,35/0,63 |
+| >=3 | 87 / 1392 | 99 % → 92 % (-6,7 P.) | 0 % → 6 % (+6,4 P.) | 1 % → 1 % | 4,83 → 4,44 | 8,8/3,5 → 8,5/3,5 | 4,25/0,57 → 3,94/0,50 |
+
+Schussquellen nachher, Standardfeld:
+
+| Schussquelle | je Partie phys | je Partie komp | Tore je Schuss phys | Tore je Schuss komp | Schützenwert Abschluss phys | Abschluss komp |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| open | 6,57 | 6,55 | 28 % | 29 % | 12,49 | 12,38 |
+| long | 1,80 | 1,87 | 25 % | 24 % | 15,21 | 13,47 |
+| header-volley | 1,46 | 1,51 | 31 % | 34 % | 11,18 | 11,31 |
+| rebound | 0,36 | 0,35 | 42 % | 43 % | 12,96 | 12,80 |
+| corner | 0,08 | 0,08 | 36 % | 34 % | 12,04 | 11,38 |
+| free-kick-follow | 1,62 | 1,63 | 30 % | 32 % | 12,24 | 12,40 |
+| direct-free-kick | 0,31 | 0,31 | 26 % | 27 % | 13,52 | 13,14 |
+
+Großes Feld:
+
+| Schussquelle | je Partie phys | je Partie komp | Tore je Schuss phys | Tore je Schuss komp | Schützenwert Abschluss phys | Abschluss komp |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| open | 5,36 | 5,31 | 35 % | 34 % | 12,38 | 12,17 |
+| long | 3,38 | 3,38 | 15 % | 17 % | 13,29 | 13,06 |
+| header-volley | 1,18 | 1,18 | 36 % | 34 % | 11,41 | 11,29 |
+| rebound | 0,37 | 0,38 | 45 % | 42 % | 12,77 | 12,46 |
+| corner | 0,04 | 0,04 | 45 % | 33 % | 12,96 | 11,20 |
+| free-kick-follow | 0,95 | 0,94 | 29 % | 34 % | 11,46 | 12,22 |
+| direct-free-kick | 0,17 | 0,17 | 21 % | 20 % | 14,24 | 13,10 |
+
+Zusammengefasst (Favoritensieg, Punkte Abweichung kompakt gegen physisch): Standard 0–3 Punkte 60,6 → 60,7 %, 1–3 Punkte 68,2 → 70,7 %, ab 2 Punkte 84,3 → 85,7 %, alle 70,4 → 69,9 %; groß 0–2 Punkte 47,0 → 53,5 %, 1–3 Punkte 66,1 → 69,1 %, ab 2 Punkte 92,5 → 86,7 %, alle 68,6 → 69,2 %.
+
+### Kriterien (Plan SI-6, neu gegen sb2-f)
+
+- **Erfüllt:**
+  - Schüsse (−0,1 % beide, +0,3 % / −0,5 %) und Tore (+0,5 %, +0,6 % / +0,3 %) insgesamt und je Feld, Schüsse je Klasse alle, Tore je Klasse bis auf die Klasse 1–2 Punkte auf dem großen Feld (+14,1 %).
+  - Favorit bei 1,5 Punkten geglättet −0,4 (Standard) / +0,2 (groß) Punkte, bei 4 Punkten +0,6 / −4,1 Punkte (groß mit 0,9 Punkten Reserve).
+  - Remis insgesamt 17,5 % gegen 17,6 % (Standard 16,9 gegen 16,2, groß 18,1 gegen 19,1; erlaubt ±3 Punkte), Remis schwacher Teams in beiden Feldern −2,0 Punkte (118 Partien).
+  - Schussquellen: Schüsse je Partie ±0,07, Tore je Schuss ±3 Punkte (Ausnahme: Spielzug-Fernschüsse und Ecken, siehe unten); Torwarthebel: 12 gegen 16,5 Punkte Torwart senkt die Tore je Schuss aufs Tor um 16,5 Punkte (Standard, Spielzug; physisch rund 15 Punkte bei 14,6 Punkten Abstand), großes Feld 15,5 Punkte.
+  - Nicht gebrochen: Heimaufschlag, Plateau der Favoritenschüsse, Rollenanteile (Tore je Rolle ±3 Punkte: im Standardfeld Mittelstürmer 19,9 → 22,7 %, Spielmacher 8,8 → 6,3 %), Hintergrundlaufen: Frischeverbrauch je Linie ±0,4 Punkte, je Ausdauerklasse ±0,8 Punkte (SI-6: ±0,6; die Klassen 0–8 und 14–21 waren schon vor der Anpassung um −0,7 und +0,8 Punkte verschoben, die Referenz hat sich dort geändert).
+- **Nicht erfüllt, mit Einordnung:**
+  - Favoritensieg je Klasse (±5 Punkte): Standard 2–3 Punkte +7,3 (48 physische Partien); groß 0–1 Punkte +5,2 (81), 1–2 Punkte +8,1 (68), ab 3 Punkten −6,7 (87). Remis schwacher Teams je Feld: Standard +6,1 (46 Partien), groß −7,1 (72), gegenläufig und zusammen −2,0.
+  - **Paarweise Prüfung (Review 17. Oktober 2026):** je Fixture physisches Ergebnis gegen die kompakte Siegwahrscheinlichkeit aus den 16 Wiederholungen, Bootstrap über die Fixtures der Klasse. Standardfeld: Klasse 2–3 Punkte z = 1,26, 95-%-Intervall der Abweichung −2,3 bis +18,9 Punkte; die vier Standardklassen zusammen χ² = 2,45 bei 4 Freiheitsgraden (verträglich mit Zufall), Nachbarklassen zusammen 1–3 Punkte +2,5, 2–4 Punkte +1,5. Die Abweichung der Standardklasse 2–3 ist damit nicht von Streuung zu unterscheiden. Großes Feld ab 3 Punkten dagegen z = −2,47, Intervall −9,3 bis −3,2 Punkte (physisch 86 von 87 Siegen): Dort bleibt die Kompaktpartie wirklich unter dem ausgespielten Spiel (6 % Remis gegen 0 %), ebenso 2–4 Punkte zusammen −7,4 (Intervall −14,6 bis −1,1). Das betrifft nur das große Feld, das neue Welten nicht verwenden; alle acht Klassen zusammen χ² = 12,2 bei 8 Freiheitsgraden.
+  - **Die Klassen sind klein und die physische Form ist nicht logistisch:** 47–88 Partien je Klasse bedeuten bei Siegquoten um 50–80 % ein 95-%-Intervall von ±11–14 Punkten (bei 99 % physisch, großes Feld ab 3 Punkten, deutlich enger). Standard: 51 / 68 / 69 / 93 % (die Klasse 2–3 liegt unter dem Verlauf der Nachbarn, in SI-K2 waren es 79 %); groß: 40 / 56 / 81 / 99 % (K2: 42 / 63 / 72 / 91 %). Der kompakte Verlauf ist glatt (45 / 64 / 77 / 92 %). Mehrere Klassen zusammen liegen auf dem Standardfeld innerhalb von 2,5 Punkten (Tabelle oben), auf dem großen Feld bei +6,5 (0–2 Punkte), +3,0 (1–3), −5,8 (ab 2).
+  - **Versuche, das große Feld steiler zu machen** (zu viel für die mittleren Klassen, zu wenig für die oberste): stärkere Abschlusshebel (0,26 / 0,22 / −0,15; ab 3 Punkten −5,8 Punkte, 1–2 Punkte +8,2), Torwahrscheinlichkeit mit Stärkeabstand (`goalGap` 0,04–0,10: geglättet bei 1,5 Punkten +2,6 bis +4,7, bei 4 Punkten −2,9 bis −1,6, Klasse 1–2 Punkte +9 bis +11), steilere Schussneigung (0,14: +2,7 / −2,6). Gewählt ist der Kompromiss oben (Schussneigung 0,125, Hebel 0,21 / 0,24 / −0,14).
+  - **Tore je Schuss bei Spielzug-Fernschüssen** (Standardfeld): 24 % gegen 25 %; die kompakten Fernschützen haben im Mittel 13,5 gegen 15,2 Abschlusspunkte, der Achsenabschnitt (+0,45 gegenüber der reinen Anpassung) gleicht das aus. Ecken: 0,08 / 0,04 Schüsse je Partie, zu wenige Ereignisse für eine eigene Anpassung (Kopfballwerte übernommen).
+- **Remis schwacher Teams:** physisch 17 % (46 Partien) und 33 % (72) bei Toren 2,41 / 1,88; kompakt 2,66 / 2,35 Tore. Die schwachen Mannschaften des großen Feldes treffen im ausgespielten Spiel deutlich seltener als der Stärkeabstand und die Fähigkeiten erwarten lassen (K2: 2,67 Tore bei denselben Fixtures). Die Referenz hat dort 72 Partien, der Unterschied zu K2 beträgt grob geschätzt drei Standardfehler; ein Modellfehler der Kompaktsimulation ist nicht belegt.
+
+### Torschützen und Konzentration
+
+Die Verteilung der Tore auf die Spieler einer Mannschaft (`work/review-concentration-v183.cjs --series=sb2-f-…`, 8 Wiederholungen je Fixture, bester Abschlussspieler = höchster Abschluss der eingesetzten Feldspieler, H = unverzerrter Herfindahl-Index der Tore einer Mannschaft mit mindestens zwei Toren):
+
+| Kennzahl (Mannschaft je Partie), Standard / groß | physisch sb2-f | kompakt mit `finSelf` 0,3 (SI-6) | kompakt `finSelf` 1 (Stand) |
+| --- | ---: | ---: | ---: |
+| Toranteil des besten Abschlussspielers | 63,3 % / 52,1 % | 59,3 % / 46,3 % | 63,3 % / 51,6 % |
+| Schussanteil des besten Abschlussspielers | 58,6 % / 49,9 % | 57,1 % / 47,1 % | 57,0 % / 47,1 % |
+| H der Tore | 0,524 / 0,448 | 0,476 / 0,368 | 0,526 / 0,419 |
+| Tore des besten Torschützen | 1,37 / 1,21 | 1,31 / 1,10 | 1,35 / 1,15 |
+| Zwei Tore eines Spielers | 34,5 % / 30,4 % | 32,5 % / 26,1 % | 34,1 % / 27,9 % |
+| Drei Tore eines Spielers | 15,0 % / 12,0 % | 13,6 % / 10,1 % | 14,6 % / 11,2 % |
+| Favorit ab 3 Punkten (beide Felder): Tore des besten Schützen / mindestens drei Tore | 2,79 / 46,8 % | 2,57 / 42,2 % | 2,63 / 43,7 % |
+
+- **Befund:** Im ausgespielten Spiel der Endstufe trifft der beste Abschlussspieler wieder besser als seine Mitspieler (63 % der Mannschaftstore aus 59 % der Schüsse; im SI-6-Review der Reihe K2 waren es 57,3 % der Tore bei 58,0 % der Schüsse und 28 % gegen 29 % Torquote im Spielzug). Mit dem damaligen Anteil `finSelf` 0,3 lag der kompakte Wert 4,0 / 5,8 Punkte darunter. Die Ursache liegt im ausgespielten Spiel (Torjäger-Runde: Torwartposition bei Flanken, Streuung) und wurde nicht weiter untersucht.
+- **Änderung:** `levers.finSelf` 1 (kein Abschlussschrumpf innerhalb der Mannschaft, `v183ShooterFinishing` gibt den Wert unverändert zurück). Die Tore stiegen dadurch um rund 1 %; die Achsenabschnitte der Torwahrscheinlichkeit wurden um −0,03 / −0,01 (Standard / groß) nachgezogen. Der Mechanismus bleibt für gespeicherte Sätze mit 0,3.
+- **Gegenprobe auf Spielerebene (Review 17. Oktober 2026):** Logit-Steigung „Tor je Schuss“ über den Abschlusswert relativ zum schussgewichteten Mannschaftsmittel, je Schuss innerhalb der Mannschaft (physisch `extras.sik.players`, kompakt `outputs/review-si6/sb2f5-*`): physisch 0,084 (Standard, 95-%-Bootstrap 0,05–0,18, 456 Mannschaftspartien) und 0,087 (groß, 0,05–0,14); kompakt mit `finSelf` 1 0,155 / 0,127, mit 0,3 0,040 / −0,003. `finSelf` 1 liegt innerhalb der physischen Intervalle, aber über dem Punktschätzer (der entspräche etwa `finSelf` 0,5). Der Toranteil des besten Abschlussspielers trifft die Referenz, weil sein Schussanteil kompakt 1,6 / 2,8 Punkte niedriger liegt und die etwas steilere Verwertung das ausgleicht. Für die sichtbaren Kennzahlen (Torschützen, Doppel- und Dreifachtorschützen) ist der Stand passend; eine genauere Trennung von Schussauswahl und Verwertung bräuchte eine größere Referenzreihe.
+- Ligatorschützenkönig nach der Neuanpassung (Saisonebene unten): 30,1 Tore (Standard) / 28,4 (groß) in 14 Spielen, höchster Wert einer Saison 46 / 39. Das ist das Niveau der Referenz (Schätzung aus der Reihe: 30 / 26 Tore) und weiterhin ein Verhalten des ausgespielten Spiels mit fünf Feldspielern (weiches Ziel der Torjäger-Runde); die Kompaktsimulation folgt ihm.
+- Rollenanteile Standardfeld (Tore, physisch → kompakt): Stürmer 35,2 → 35,8 %, Mittelstürmer (Poacher) 19,9 → 22,7 %, Box-to-box 12,9 → 13,0 %, Spielmacher 8,8 → 6,3 %, Zielspieler 6,6 → 6,6 % (vollständige Tabelle in der Auswertungsdatei).
+
+### Saisonebene
+
+`work/measure-compact-seasons-v183.cjs --marker=183` (drei Saisons der neuen Vereinswelt, 12 Länder, 991 Partien je Saison, der Manager spielt nicht aus, dieselben Welten wie in SI-6: `si6-season-a` Standard, `si6-season-b` groß, Verein AUT-5). Die Werte der Kennung 178 und der Kennung 183 vor der Neuanpassung (SI-6, Referenz K2) stammen aus den archivierten Läufen `outputs/compact-balance-v183/seasons/`; die neuen Läufe `seasons-183-sb2-*.json` liefen parallel zu anderen Messungen (Rechenzeit nicht vergleichbar).
+
+| Kennzahl (Mittel der Saisonen) | Standard 178 | Standard 183 SI-6 | **Standard 183 jetzt** | groß 178 | groß 183 SI-6 | **groß 183 jetzt** |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Tore je Partie (alle Wettbewerbe) | 1,39 | 4,03 | **3,78** | 1,42 | 3,96 | **3,70** |
+| Tore je Ligaspiel | 1,39 | 3,94 | **3,72** | 1,43 | 3,87 | **3,60** |
+| Streuung der Tore | 1,19 | 2,41 | **2,22** | 1,22 | 2,30 | **2,27** |
+| 0:0 | 25,4 % | 3,5 % | **4,0 %** | 25,8 % | 3,2 % | **4,2 %** |
+| Heimsiege | 30,2 % | 43,2 % | **41,2 %** | 31,8 % | 43,1 % | **42,2 %** |
+| Remis | 38,1 % | 14,3 % | **17,8 %** | 39,1 % | 16,1 % | **18,2 %** |
+| Punktspanne Tabelle (Erster − Letzter, Mittel der zwölf Ligen) | 16,1 | 32,1 | **30,6** | 16,0 | 29,7 | **30,7** |
+| Punkte des Meisters | 26,9 | 37,1 | **36,2** | 26,7 | 35,6 | **35,5** |
+| Punkte des Letzten | 10,7 | 5,0 | **5,6** | 10,7 | 5,9 | **4,8** |
+| Torschützenkönig der Ligen (Mittel der zwölf Ligen) | 5,7 | 32,2 | **30,1** | 5,5 | 27,0 | **28,4** |
+| Torschützenkönig der Ligen (höchster Wert je Saison, Mittel) | 8 | 50 | **46** | 8 | 37 | **39** |
+| Torschützenkönig aller Wettbewerbe (Mittel) | 4,2 | 21,3 | **20,0** | 3,9 | 18,2 | **18,8** |
+| Vorlagenkönig der Ligen (Mittel) | 5,7 | 12,0 | **10,4** | 5,2 | 10,1 | **9,8** |
+| Note Mittel (Einsätze ab 20 min) | 8,02 | 8,05 | **8,04** | 7,96 | 7,96 | **7,95** |
+| Frische aller Spieler am Saisonende | 99,0 | 98,6 | **98,6** | 98,7 | 98,2 | **98,2** |
+
+Favoritensieg und Remis der Ligaspiele je Stärkeabstand (Mittel der Startelf wie in der physischen Reihe), Kennung 183 jetzt:
+
+| Abstand | Standard: Ligaspiele | Favorit | Remis | groß: Ligaspiele | Favorit | Remis |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0-1 | 661 | 43 % | 26 % | 594 | 44 % | 27 % |
+| 1-2 | 469 | 60 % | 21 % | 519 | 60 % | 23 % |
+| 2-3 | 343 | 73 % | 19 % | 353 | 77 % | 14 % |
+| ≥ 3 | 531 | 92 % | 7 % | 536 | 91 % | 7 % |
+
+Mannschaftsstatistik je Partie (Saison 1): Standard Schüsse 12,37, aufs Tor 7,02, Ecken 1,62, Flanken 4,98, Fouls 4,04, Freistöße 4,09; groß Schüsse 12,10, aufs Tor 6,99, Ecken 1,32, Flanken 3,34, Fouls 2,74, Freistöße 2,98.
+
+Wirkung gegenüber dem Stand von SI-6: 6 % weniger Tore je Partie, Remis 17,8 / 18,2 % statt 14,3 / 16,1 %, Punktspanne 30,6 / 30,7 statt 32,1 / 29,7 Punkte, Meister 36 Punkte, Letzter 5–6, Torschützenkönig im Mittel 30 / 28 Tore. Die Liga bleibt eine Spitzenliga (siehe Risiken); sie ist etwas weniger einseitig.
+
+### Prüfungen
+
+Node 24 (`C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe`), Endstand dieses Branches; die Prüfläufe liefen nacheinander, höchstens sechs gleichzeitige Node-Prozesse.
+
+| Prüfung | Ergebnis |
+| --- | --- |
+| `work/test-compact-balance-v183.cjs` | 14 Prüfungen grün; neu: Spielstandterm (`v183ScoreFactor`: Führung, Rückstand, Gleichstand, Seitenzuordnung, Satz ohne Block neutral), Hebel je Feldgröße samt `finSelf` 1, Schussneigung beider Felder ähnlich (ersetzt „groß flacher“), Quellenmix 12,26 / 11,47 Schüsse; der `finSelf`-Mechanismus wird mit einem Satz von 0,3 geprüft |
+| `work/test-compact-balance-v178.cjs` | grün (5 Prüfungen; stellt Kennung 178 ausdrücklich wieder her) |
+| `work/test-si-{core,clock,finish,defence,setplay,offball,options,field,crossing,scorer,newworld}-v183.cjs` | alle 11 grün (`test-si-newworld` mit der neuen Zieltabelle 13 / 16 / 23 / 34 / 48) |
+| `work/check-old-matches-v183.cjs` | grün: 340 Szenen bytegleich gegen `e4e531c0` (unmarkiert, 182, 183 mit allen Paketen aus) |
+| `work/check-old-matches-v182.cjs` (Basis `git archive e4e531c0 dist work/test-v41.cjs`) | grün: 158 Szenen |
+| `work/validate-compact-balance-v183.cjs` | 1.700 Partien, alle Behauptungen bestanden (Matrix unten); keine Änderung der Konstanten des Skripts nötig |
+| Workflow-Block „Spieltests ausführen“ aus `.github/workflows/deploy.yml` | **121 Befehle, alle Exit 0** (`outputs/compact-balance-v183/workflow-block.json`, 1.265 s Rechenzeit; längste: `test-native-career-v160` 262 s, `test-world-expansion-horizon-v166` 241 s). Im ersten Durchlauf scheiterte `audit-world-balance-v68.cjs` (Pokalabstand in Saison 10 0,84 gegen höchstens 0,83); Ursache und Anpassung des Prüfstands unten, danach Exit 0 |
+| `work/measure-compact-physical-v183.cjs` + `table-compact-physical-v183.cjs` | 567 Fixtures, 9.072 kompakte Partien (Läufe `f5`), Tabellen in `outputs/compact-balance-v183/` |
+| `work/measure-compact-seasons-v183.cjs` | 3 Saisonen × 2 Welten (Abschnitt Saisonebene) |
+| `work/test-si-newworld-seasons-v183.cjs` (neu im Review) | grün, 2 Saisons, 208 s; Messlauf 3 Seeds × 10 Saisons (unten beim Prüfstand) |
+| `work/measure-sponsor-goals-v183.cjs` | 7 Seeds × 3 Saisonen (Sponsorzahlen im [Dokument](spielerintelligenz-neue-spielstaende-183.md)) |
+
+**`audit-world-balance-v68.cjs` und der Stempel.** Der Prüfstand lädt weder Spielermodell noch `world-player-performance-v155.js`; seine Partien laufen im alten Kompaktpfad (rund 1,4 Tore je Partie), seine Welten trugen aber seit `feat/si-newworld` den 183-Stempel und damit die Sponsorzieltabelle neuer Welten. Mit der neuen Tabelle (13 / 16 / 23 / 34 / 48 statt 11 / 13 / 19 / 32 / 44) verdienen kleine Ligavereine in diesem Zustand etwas seltener den Torbonus, und der Pokalabstand erreichte in Saison 10 0,84 (Grenze 0,83; mit der alten Tabelle genau 0,83, also schon an der Kante). Reine Änderung der Kompaktkonstanten besteht den Prüfstand unverändert (geprüft mit `f6b1efdd` plus nur `world-player-performance-v155.js`). Die Kombination „Stempel ohne Spielermodell“ gibt es im Produkt nicht: Welten mit Stempel laufen immer mit Spielermodell und Kompaktkennung 183. Der Prüfstand entfernt deshalb nach dem Anlegen den Stempel und baut die Sponsoren neu (`work/audit-world-balance-v68.cjs:62-64`) und prüft damit wieder die Regeln von Release 132, für die er geschrieben wurde (Pokalabstand Saison 9 und 10: 0,83 / 0,83, alle Grenzen eingehalten). Das ist eine Änderung an einem Prüfstand und gehört zur Abnahme (offener Punkt).
+
+**Ersatzprüfung für neue Welten (Review 17. Oktober 2026).** Weil der Prüfstand damit keine Welt mit Stempel mehr über mehrere Saisons führt, prüft `work/test-si-newworld-seasons-v183.cjs` (Workflow-Block, rund 3,5 Minuten) die Konfiguration neuer Karrieren: 12-Länder-Welt mit Stempel, Spielermodell, Standardfeld mit 5 Feldspielern, zwei Saisons; Ligaspiele mit Kennung 183, Sponsorziel gleich Tabelle und Beschriftung, Korridore Tore 3–4,6 je Ligaspiel, Remis 10–27 %, Sponsortrefferquote 15–65 % je Saison und 22–55 % gepoolt, Pokalabstand mindestens 10 %, kein KI-Verein im Minus, Gültigkeit nach Neuladen. Messlauf zur Festlegung (3 Seeds × 10 Saisons, `DOPPEL_SI_PROBE=1`): Tore 3,47–4,08 je Ligaspiel (fallend von rund 4,0 auf 3,7), Remis 15,8–22,2 %, Sponsortrefferquote 29–52 % je Saison, über 10 Saisons 40,6 / 42,3 / 40,7 % (Saisons 7–10 im Mittel rund 44 %), niedrigster KI-Kontostand 1.070–4.555, Median der KI-Kontostände 3.500 → 10.700–11.300. Gegenprobe ohne Stempel (Release-132-Regeln, Kennung 178, 2 Seeds × 4 Saisons): Pokalabstand 0,37 → 0,40 und KI-Kontostände 3.500 → 6.250–6.500 wie mit Stempel (0,37 → 0,39–0,41, 6.600–6.900); die Wirtschaft der KI-Vereine wird durch Stempel und neue Sponsortabelle also nicht lockerer. Der Pokalabstand dieser Welt (reine Simulationsvereine im Pokal) wächst über 10 Saisons von 0,37 auf 0,58, in Welten mit und ohne Stempel gleich.
+
+Matrix der 1.700 Fixtures (`validate-compact-balance-v183.cjs`, Startwelten ohne Matchkonfiguration, also Standardfeld; Vergleichsbild ist die v178-Matrix, kein Ziel; Produktkorridor 10–16 Schüsse je Partie und 2–9 Tore in jeder der sieben Serien):
+
+| Serie | Spiele | Schüsse/Spiel 178 → 183 | Tore/Spiel 178 → 183 | 0:0 178 → 183 | A-Siege / Remis / B-Siege (183) |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Top gegen Top | 100 | 13,81 → 13,13 | 1,75 → 4,55 | 18,0 % → 3,0 % | 50 / 19 / 31 |
+| Schwache Liga untereinander | 100 | 11,74 → 12,20 | 1,31 → 2,19 | 39,0 % → 11,0 % | 40 / 28 / 32 |
+| Top gegen schwache Liga | 500 | 12,52 → 14,15 | 1,53 → 5,88 | 22,6 % → 0,4 % | 493 / 6 / 1 |
+| Schwache Liga gegen stärkste Pokalvereine | 500 | 11,91 → 13,62 | 1,32 → 2,69 | 27,0 % → 8,2 % | 384 / 86 / 30 |
+| A-Rang 3/4 gegen AUT/SUI/TUR Top 2 | 300 | 12,53 → 12,57 | 1,46 → 3,32 | 23,3 % → 3,3 % | 59 / 71 / 170 |
+| Heimspiegel | 100 | 12,79 → 14,52 | 1,50 → 6,02 | 21,0 % → 0,0 % | 100 / 0 / 0 |
+| Neutrale Kontrolle | 100 | 12,61 → 14,42 | 1,49 → 5,98 | 21,0 % → 0,0 % | 100 / 0 / 0 |
+| alle | 1700 | 12,39 → 13,58 | 1,45 → 4,21 | 24,5 % → 3,9 % | |
+
+Mannschaftsstatistik je Partie (beide Teams, alle 1.700 Partien): Schüsse 13,58, aufs Tor 7,04, Ecken 1,67, Flanken 5,16, Fouls 4,18, Freistöße 4,23. Die Extremmatrix (Spitze gegen schwache Liga, Heimspiegel) liegt weiter über dem Torband der physischen Reihe (5,9–6,0 Tore), weil sie Paarungen mit bis zu 8 Punkten Abstand enthält, die die Referenz nicht hat; der Korridor 2–9 Tore ist eingehalten.
+
+Artefakte der Prüfläufe wurden mit `git checkout -- outputs docs/spieler-nutzer-rig` zurückgesetzt (ausgenommen die bewusst aktualisierten `outputs/compact-balance-v183/*` und `outputs/sponsor-goals-v183/*`).
+
+
+### Reproduktion
+
+```powershell
+$node='C:/Users/alex/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe'
+$ser='sb2-f-trace40000,sb2-f-si183b-trace40000,sb2-f-si183c-trace40000'
+& $node work/fit-compact-physical-v183.cjs $ser sb2            # Regression, Vorschlag
+0..5 | ForEach-Object { Start-Process $node "work/measure-compact-physical-v183.cjs --shard=$_ --shards=6 --k=16 --label=f5 --series=$ser" }
+& $node work/table-compact-physical-v183.cjs f5 --series=$ser --json
+# Varianten: --variants="a:scoreState.lead1=-.1,shotBase=*1.02;b:levers.onGap=.025" (Weltaufbau einmal je Fixture)
+0..5 | ForEach-Object { Start-Process $node "work/review-concentration-v183.cjs --shard=$_ --shards=6 --k=8 --label=sb2" }
+& $node work/review-concentration-table-v183.cjs --label=sb2 --shards=6
+```
+
 ## Risiken und offene Punkte
 
+- **Neuanpassung sb2-f (17. Oktober 2026):** Die Kompaktsimulation hängt an einer einzelnen 576er-Referenzreihe; die Favoritenquote einer Klasse schwankt zwischen gleichwertigen Reihen um bis zu 20 Punkte (SI-K2 gegen sb2-f: Standard 2–3 Punkte 79 → 69 %, groß ab 3 Punkten 91 → 99 %). Vier von acht Klassen liegen deshalb über den fünf Punkten (Abschnitt „Kriterien“), die geglätteten Werte und alle Gesamtwerte nicht. Ändert sich das ausgespielte Spiel noch einmal, ist ein Lauf mit `work/measure-compact-physical-v183.cjs` fällig; ein Parameterwechsel betrifft nur neue Partien, laufende behalten ihren gespeicherten Satz.
+- **Schwache Teams im großen Feld:** Das ausgespielte Spiel erzielt dort 1,88 Tore (72 Partien), die Kompaktpartie 2,35. Die Remisquote dieser Gruppe liegt −7,1 Punkte, auf dem Standardfeld +6,1 (46 Partien), zusammen −2,0. Nicht weiter nachgezogen, weil die Reihe zu klein ist und neue Welten das Standardfeld verwenden.
+- **Spielstandterm:** Er kennt nur Führung, Rückstand und (auf 0 gestellt) späten Gleichstand und wirkt auf die Schussmenge. Zeit der Führung, Torwartwechsel oder Spielerverletzungen kennt die Kompaktpartie nicht.
 - **Die Liga wird zur Spitzenliga der stärksten Vereine (größte sichtbare Folge).** Mit dem Torniveau und den Favoritenquoten der physischen Reihe wächst die Punktspanne der Ligen von rund 16 auf rund 30 Punkte (14 Spiele je Verein: Meister 37 statt 27 Punkte, Letzter 5–6 statt 11), der Torschützenkönig einer Liga von im Mittel 6 auf 27–32 Tore (höchster Wert einer Saison 56), Vorlagenkönige von 5–6 auf 10–12, Heimsiege von 30 % auf 42 %, Remis von 38 % auf 15 %. Das ist keine Vorgabe, sondern die Antwort der Kompaktpartie auf den Stärkeabstand der Weltvereine (Startkader mit strengen Ligaspitzen und seltenen Elite-Spielern); die physische Reihe liefert dort 94 % Favoritensiege und 5,5 Tore. Wer das Tabellenbild weicher will, muss die Favoritenquote im ausgespielten Spiel ändern und die Kompaktpartie danach neu anpassen (Entscheidung „Favoritenquote 16. Oktober 2026“ nennt Siege von rund 90 % und mehr ab 3 Punkten).
-- **Tore je Partie in der Welt steigen auf rund das Dreifache** (1,4 mit Kennung 178, rund 4,0 mit 183). Das folgt dem Torziel 3–5 (Nutzerentscheidung 15. Oktober 2026) und der physischen Reihe, ändert aber Torschützenlisten, Tordifferenzen, Torquoten je Spieler und die 0:0-Quote (25 % auf 3,5 %) sichtbar. Bereits laufende Saisons behalten ihre Ergebnisse; neue Partien einer bestehenden Welt folgen der neuen Kennung, so dass eine laufende Saison zwei Torniveaus mischt. Eine Umrechnung wäre eine Spielstandmigration und ist nicht Teil des Auftrags.
-- **Sponsorziel „mindestens N Tore“** (`dist/world-economy-v66.js:138`, Liga ab `11 + startingSquad`, Pokal 4 reguläre Tore) wird mit dem höheren Torniveau von beiden Seiten leichter erreicht. Die Schwelle wurde für 1,4 Tore je Partie gewählt und nicht angefasst. Angepasst in `feat/si-newworld` (nur neue Spielstände, nach Kaderstufe 11 / 13 / 19 / 32 / 44; [Dokument](spielerintelligenz-neue-spielstaende-183.md)).
+- **Tore je Partie in der Welt steigen auf rund das Zweieinhalbfache** (1,4 mit Kennung 178, 3,8 mit 183 nach der Neuanpassung, 4,0 vorher). Das folgt dem Torziel 3–5 (Nutzerentscheidung 15. Oktober 2026) und der physischen Reihe, ändert aber Torschützenlisten, Tordifferenzen, Torquoten je Spieler und die 0:0-Quote (25 % auf 3,5 %) sichtbar. Bereits laufende Saisons behalten ihre Ergebnisse; neue Partien einer bestehenden Welt folgen der neuen Kennung, so dass eine laufende Saison zwei Torniveaus mischt. Eine Umrechnung wäre eine Spielstandmigration und ist nicht Teil des Auftrags.
+- **Sponsorziel „mindestens N Tore“** (`dist/world-economy-v66.js:136`, Liga ab `11 + startingSquad`, Pokal 4 reguläre Tore) wird mit dem höheren Torniveau von beiden Seiten leichter erreicht. Die Schwelle wurde für 1,4 Tore je Partie gewählt und nicht angefasst. Angepasst in `feat/si-newworld` (nur neue Spielstände) und am 17. Oktober 2026 nach der Neuanpassung neu gemessen: nach Kaderstufe 13 / 16 / 23 / 34 / 48 Tore, Trefferquote 36–39 % auf dem Standardfeld ([Dokument](spielerintelligenz-neue-spielstaende-183.md)).
 - **Abstand über der Messreihe:** Die physische Reihe enthält nur 22 Partien mit mehr als 5,5 und 9 mit mehr als 6 Punkten Abstand. Darüber wirkt der Abstand nur noch mit dem Faktor 0,15 und die Favoritenschüsse laufen in ein Plateau (`gapKnee` 5,5, `gapOver` 0,15, `shotKnee` 11,5 bzw. 10, `shotOver` 0,1), damit die Schüsse im Korridor von 10–16 bleiben. Die Tore der extremsten Paarungen (Spitzenklub gegen letzten Klub aller 96, kommt in der Liga nicht vor) liegen dort bei rund 6,7 je Partie und entstehen aus den Abschluss- und Torwartwerten, nicht aus einer Vorgabe. Eine neue physische Reihe mit größeren Abständen würde diesen Teil belegen.
-- **Fernschüsse im Standardfeld:** Die physischen Fernschützen haben im Mittel 15,2 Abschlusspunkte, kompakt 13,5, weil jede Mannschaft nur fünf Feldspieler hat und das Auswahlgewicht die besten nicht schärfer trennen kann. Tore je Fernschuss 18 % statt 23 % (rund 0,1 Tore je Partie, im Gesamtmittel durch Freistoßfolgen und Kopfbälle ausgeglichen, die 1–2 Punkte darüber liegen). Großes Feld: 15 % gegen 15 %.
-- **Klassen mit wenigen physischen Partien:** Standard 1–2 Punkte (+4,8 Punkte Favoritensieg, 62 Partien) und großes Feld 2–3 Punkte (+4,8 Punkte, 47 Partien) liegen knapp unter der Grenze von 5 Punkten; das 95-%-Intervall der physischen Klassen ist rund ±12 Punkte breit, die geglättete Anpassung weicht um höchstens 3,0 Punkte ab. Tore je Klasse: Standard 0–1 −9,1 % und groß ab 3 −9,6 % liegen knapp innerhalb der 10 %; ein Aufschlag auf die Torbasis (+0,05 / +0,02) hob die Gesamttore auf −1,7 % / −0,7 %, schob aber den Favoritensieg Standard 1–2 auf +5,3 Punkte und wurde verworfen. Ein Hebel für eine einzelne Klasse würde die benachbarten Klassen verschieben und wurde nicht eingeführt. Remis schwacher Teams im Standardfeld allein: −4,5 Punkte gegen 46 physische Partien (28 % gegen 24 %); beide Felder zusammen −0,2 Punkte (118 Partien).
+- **Fernschüsse im Standardfeld (Stand SI-6 gegen K2; gegen sb2-f jetzt 24 % gegen 25 % Tore je Fernschuss, Abschnitt „Kriterien“):** Die physischen Fernschützen haben im Mittel 15,2 Abschlusspunkte, kompakt 13,5, weil jede Mannschaft nur fünf Feldspieler hat und das Auswahlgewicht die besten nicht schärfer trennen kann. Tore je Fernschuss 18 % statt 23 % (rund 0,1 Tore je Partie, im Gesamtmittel durch Freistoßfolgen und Kopfbälle ausgeglichen, die 1–2 Punkte darüber liegen). Großes Feld: 15 % gegen 15 %.
+- **Klassen mit wenigen physischen Partien (Stand SI-6 gegen K2; gegen sb2-f siehe Abschnitt „Kriterien“):** Standard 1–2 Punkte (+4,8 Punkte Favoritensieg, 62 Partien) und großes Feld 2–3 Punkte (+4,8 Punkte, 47 Partien) liegen knapp unter der Grenze von 5 Punkten; das 95-%-Intervall der physischen Klassen ist rund ±12 Punkte breit, die geglättete Anpassung weicht um höchstens 3,0 Punkte ab. Tore je Klasse: Standard 0–1 −9,1 % und groß ab 3 −9,6 % liegen knapp innerhalb der 10 %; ein Aufschlag auf die Torbasis (+0,05 / +0,02) hob die Gesamttore auf −1,7 % / −0,7 %, schob aber den Favoritensieg Standard 1–2 auf +5,3 Punkte und wurde verworfen. Ein Hebel für eine einzelne Klasse würde die benachbarten Klassen verschieben und wurde nicht eingeführt. Remis schwacher Teams im Standardfeld allein: −4,5 Punkte gegen 46 physische Partien (28 % gegen 24 %); beide Felder zusammen −0,2 Punkte (118 Partien).
 - **Keine physischen Vorlagen:** Das ausgespielte Spiel schreibt keine Vorlagen (`assistPid: null`). Die Vorlagenverteilung der Kompaktpartien (rund 0,65–0,7 Vorlagen je Tor, Geber Spielmacher, Flügel, Zielspieler doppelt gewichtet) hat deshalb keinen Vergleichswert und folgt den bisherigen Rollengewichten.
 - **Müdigkeit und Form wirken nicht auf die Schussmenge,** sondern über die wirksamen Abschluss-, Pass- und Torwartwerte der einzelnen Aktionen. Die physische Reihe startet alle Spieler frisch; ein Einfluss auf die Schusszahl ließ sich dort nicht messen und wird nicht erfunden.
 - **Spielstile:** Gemessen und übernommen ist nur die tiefe Abwehrlinie des Gegners (+41 % Schüsse für den Gegner im Standardfeld, +37 % im großen, 180 physische Mannschaftspartien, Konterstil Abwartend/Direkt/Tief). Pressing- und Aggressionsstile ließen sich in der Reihe nicht von der Mannschaftsstärke trennen (die Trainerstile liegen als feste Bündel vor) und bleiben ohne Wirkung auf die Schussmenge; die KI-Formationswechsel in der Partie wirken wie bisher nur über die Aufstellung.

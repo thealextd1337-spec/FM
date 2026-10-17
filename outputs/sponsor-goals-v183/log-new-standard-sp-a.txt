@@ -1,0 +1,4 @@
+{"world":"new","seed":"sp-a","size":"standard","season":1,"seconds":149.004,"leagueGoalsPerClub":27.947916666666668}
+{"world":"new","seed":"sp-a","size":"standard","season":2,"seconds":159.644,"leagueGoalsPerClub":26.364583333333332}
+{"world":"new","seed":"sp-a","size":"standard","season":3,"seconds":151.805,"leagueGoalsPerClub":27.583333333333332}
+done outputs/sponsor-goals-v183/goals-new-sp-a-standard.json
