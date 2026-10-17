@@ -77,7 +77,15 @@ v183RegisterDefaults('options',{
  // decides anew. The wait discounts the gain e-fold every crossLeadTau seconds
  // (the carrier drives on, unlike a turn on the spot); crossSpaceGain scales the
  // option value.
- crossSpace:3,crossSpots:[[4,6],[0,11],[-4,7]],crossRunnerRange:28,crossRunnerWide:14,crossRunnerBack:2,crossLead:2,crossLeadSlack:3,crossLeadTau:3,crossKickMin:.2,crossSpaceGain:1
+ crossSpace:3,crossSpots:[[4,6],[0,11],[-4,7]],crossRunnerRange:28,crossRunnerWide:14,crossRunnerBack:2,crossLead:2,crossLeadSlack:3,crossLeadTau:3,crossKickMin:.2,crossSpaceGain:1,
+ // Score state (Torjäger round). A leading team manages its lead: intensity
+ // min(lead,leadCap)/leadCap, times leadEarly at kick-off rising linearly to 1
+ // at full time; shoot weight times 1-leadShoot*lead, risk weight times
+ // 1-leadRisk*lead. While the score is level both teams turn cautious late:
+ // level intensity (elapsed/full time)^2, risk weight times 1-levelRisk*level.
+ // SI-2 scales carrier and run pace (offball.leadPace, levelPace) and the zone
+ // leash (offball.leashLead).
+ leadShoot:.5,leadRisk:.5,levelRisk:.6,leadCap:2,leadEarly:.5
 });
 const V183_OPT_KEYS=Object.freeze(Object.keys(v183RegisterDefaults('options',{})));
 // Neutral values of the SI-F personality formula (role 1, mental values 10).
@@ -89,6 +97,22 @@ function v183OptWindowBase(m){return v183Param(m,'options.windowBase');}
 function v183OptWindow(m,p){return v183OptWindowBase(m)+v183Param(m,'options.windowFin')*ability(p,'fin');}
 function v183OptParams(m){const P={};for(const key of V183_OPT_KEYS)P[key]=v183Param(m,'options.'+key);P.windowBase=v183OptWindowBase(m);return P;}
 function v183OptWeights(p,P){const raw=v183Personality(p),w={};for(const [key,neutral]of Object.entries(V183_OPT_NEUTRAL))w[key]=clamp(raw[key]/neutral,P.weightMin,P.weightMax);return w;}
+// Score state of team t: lead intensity (see leadCap/leadEarly, 0 when level
+// or behind) and level intensity (late^2 while level). Read from the score and
+// the clock only (no state); SI-2 uses it for pace and zone leash.
+function v183ScoreState(m,t){
+ const diff=(m.score?.[t]??0)-(m.score?.[1-t]??0),cap=v183Param(m,'options.leadCap'),late=clamp(m.elapsed/(m.fullTimeEnd||75),0,1);
+ if(diff===0)return {lead:0,level:late*late};
+ if(!(diff>0)||!(cap>0))return {lead:0,level:0};
+ return {lead:Math.min(diff,cap)/cap*(v183Param(m,'options.leadEarly')+(1-v183Param(m,'options.leadEarly'))*late),level:0};
+}
+function v183LeadIntensity(m,t){return v183ScoreState(m,t).lead;}
+// Personality weights with the score state of p's team (shoot and risk).
+function v183OptStateWeights(m,p,P){
+ const w=v183OptWeights(p,P),state=P.leadShoot>0||P.leadRisk>0||P.levelRisk>0?v183ScoreState(m,p.t):null;
+ if(state){w.shootWeight*=Math.max(0,1-P.leadShoot*state.lead);w.riskWeight*=Math.max(.05,(1-P.leadRisk*state.lead)*(1-P.levelRisk*state.level));}
+ return w;
+}
 // Real seconds into the v152Seconds deadlines read by older code (carry,
 // turns), without assuming how that clock relates to the match rate. Only
 // assumes that v152Seconds is linear in m.elapsed (elapsed/MATCH_SPEED today;
@@ -327,7 +351,7 @@ function v183OptDirect(m,p,gain,P){return m.teamDirect?.[p.t]&&gain>0?1+P.direct
 function v183OptOrient(p,P){const angle=Math.abs(v157Angle(v157Body(p).heading,v183OptHeading(p,v183OptGoal(p.t))));return angle<=P.shotFree?1:clamp(1-(angle-P.shotFree)*P.shotTurn,.25,1);}
 function v183OptShootGain(p,P,w,xg){return w.shootWeight*xg*(hasInstruction(p,'shoot')?P.shootInstruction:1);}
 function v183OptOptions(m,p,allies,rivals,P){
- const s=v150Scale(),w=v183OptWeights(p,P),risk=w.riskWeight*v183OptScoreRisk(m,p,P),now=v152Seconds(m),flow=m.attackFlow,body=v157Body(p);
+ const s=v150Scale(),w=v183OptStateWeights(m,p,P),risk=w.riskWeight*v183OptScoreRisk(m,p,P),now=v152Seconds(m),flow=m.attackFlow,body=v157Body(p);
  const offside=v55OffsideSnapshot(p).offside,offers=new Map(v183Offers(m).filter(o=>o.team===p.t&&o.until>=now&&['depth','follow'].includes(o.type)).map(o=>[o.pid,o.pattern==='counter'?P.counterOffer:P.offer]));
  const ctx={P,w,risk,rivals,offers,turnRate:v183OptTurnRate(p),pressure:v183OptPressure(m,p)},list=[],range=v183OptGoalDistance(p,p.t);
  const press=1-v183OptKeep(m,p,p,.5,P,rivals),here=v183OptLoss(P,p,p.t);
@@ -459,7 +483,7 @@ v157ContinueTurn=function(m,p,rivals){
   decision.checkAt=now+P.turnCheck;
   const shot=v183OptShot(m,p,P,p);
   if(shot.xg>0){
-   const w=v183OptWeights(p,P),u=v183OptShootGain(p,P,w,shot.xg*(shot.stub?v183OptOrient(p,P):1));
+   const w=v183OptStateWeights(m,p,P),u=v183OptShootGain(p,P,w,shot.xg*(shot.stub?v183OptOrient(p,P):1));
    const left=v183OptTurnTime(p,target,P,v183OptTurnRate(p)),e=v183OptPass(m,p,q,turn.kind==='space'?turn.target:null,P,{rivals,offers:new Map(),pressure:v183OptPressure(m,p)},left),wait=Math.exp(-left/P.turnTau),pending=wait*e.arrival*e.receiver-(1-e.arrival)*e.loss/(w.riskWeight*v183OptScoreRisk(m,p,P));
    if(u>pending+P.switchMargin*Math.max(Math.abs(pending),P.noiseFloor)){
     delete m.attackFlow.pendingTurn;

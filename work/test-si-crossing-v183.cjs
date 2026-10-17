@@ -232,26 +232,29 @@ check('full constructor matches: crosses into space occur, their state is plain 
 });
 
 // ----- SI-K2 (calibration round 2): keeper, marker, estimate, offside snapshot -----
-check('SI-K2 keeper: during a cross into space he steps onto the landing-goal line (keeperShift 1), part of the way at the default share, not with keeperShift 0; pure target, both sizes',()=>{
+check('SI-K2 keeper: during a cross into space he steps onto the landing-goal line (keeperShiftOpen 1, the default since the Torjäger round), part of the way at .4, not with 0; pure target, both sizes',()=>{
  for(const size of ['standard','large']){let on=0,part=0,off=0,n=0;
   for(let seed=0;seed<6;seed++)for(const spot of ['spot','near']){
-   const a=call('keeperFlight',{seed,size,spot,params:{setplay:{keeperShift:1}}}),d=call('keeperFlight',{seed,size,spot}),b=call('keeperFlight',{seed,size,spot,params:{setplay:{keeperShift:0}}});
+   const a=call('keeperFlight',{seed,size,spot}),d=call('keeperFlight',{seed,size,spot,params:{setplay:{keeperShiftOpen:.4}}}),b=call('keeperFlight',{seed,size,spot,params:{setplay:{keeperShiftOpen:0}}});
    assert.ok(a.flight&&b.flight&&d.flight,'flights');assert.ok(a.pure&&d.pure,'no draw, same target twice');on+=a.off;part+=d.off;off+=b.off;n++;}
-  console.log(`     ${size}: keeper offset at the landing ${(on/n).toFixed(2)} m (share 1) / ${(part/n).toFixed(2)} m (default) / ${(off/n).toFixed(2)} m (0)`);
+  console.log(`     ${size}: keeper offset at the landing ${(on/n).toFixed(2)} m (share 1, default) / ${(part/n).toFixed(2)} m (.4) / ${(off/n).toFixed(2)} m (0)`);
   assert.ok(on/n<.6,size+' keeper on the line: mean offset '+(on/n).toFixed(2));assert.ok(off/n>on/n+.5,size+' offset without the shift '+(off/n).toFixed(2)+' vs '+(on/n).toFixed(2));
-  assert.ok(part/n<off/n&&part/n>on/n,size+' default share between: '+(part/n).toFixed(2));}
+  assert.ok(part/n<off/n&&part/n>on/n,size+' share .4 between: '+(part/n).toFixed(2));}
 });
 check('SI-K2 spaceSpread: the landing error of a cross into space scales with setplay.spaceSpread (estimate and execution)',()=>{
  for(const size of ['standard','large']){const e=call('spreadEstimate',{size});assert.ok(Math.abs(e.narrow/e.wide-.6)<.02,JSON.stringify(e));assert.ok(e.landNarrow>=e.landWide,JSON.stringify(e));}
  let narrow=0,wide=0;for(let seed=0;seed<6;seed++){narrow+=call('kick',{seed,params:{setplay:{spaceSpread:.6}}}).error;wide+=call('kick',{seed,params:{setplay:{spaceSpread:1}}}).error;}
  assert.ok(narrow<wide,`mean landing error ${(narrow/6).toFixed(2)} vs ${(wide/6).toFixed(2)} m`);
 });
+// Score-state pace of the Torjäger round off in the marker scenes: the 1.5 s wait is sensitive to tiny pace changes (with it
+// 5 of 10 scenes still kick, nearest defender 1.16 vs 2.20 m); test-si-scorer-v183 covers the state factor.
+const NO_STATE={leadPace:0,levelPace:0,leashLead:0};
 check('SI-K2 marker: a signalled run gets one marker (plain record), who is closer to the landing than without crossMark',()=>{
  // The defender starts 3 m behind the runner (upfield), so only a reaction to the run brings him back into the duel.
  let withMark=0,without=0,n=0,defaults=0;
  for(const size of ['standard','large'])for(let seed=0;seed<5;seed++){
   // Mechanism at crossMarkGap 0 (level with the runner); the default -1 trails him by a metre (arrival trade-off, SI-K2 doc) and is checked for the record and his tracking only.
-  const a=call('keeperFlight',{seed,size,lead:1.5,markerGap:-3,params:{defence:{crossMarkGap:0}}}),b=call('keeperFlight',{seed,size,lead:1.5,markerGap:-3,params:{defence:{crossMark:0}}}),d=call('keeperFlight',{seed,size,lead:1.5,markerGap:-3});
+  const a=call('keeperFlight',{seed,size,lead:1.5,markerGap:-3,params:{defence:{crossMarkGap:0},offball:NO_STATE}}),b=call('keeperFlight',{seed,size,lead:1.5,markerGap:-3,params:{defence:{crossMark:0},offball:NO_STATE}}),d=call('keeperFlight',{seed,size,lead:1.5,markerGap:-3,params:{offball:NO_STATE}});
   if(d.flight){defaults++;assert.ok(d.mark&&d.mark.markerId&&d.plain&&d.kickGap<=3,'default marker '+JSON.stringify({mark:d.mark,gap:d.kickGap}));}
   if(!a.flight||!b.flight)continue;
   assert.ok(a.mark&&a.mark.markerId&&a.mark.runnerId,'mark record '+JSON.stringify(a.mark));assert.ok(a.plain,'plain mark');assert.equal(b.mark,null,'no mark with crossMark 0');

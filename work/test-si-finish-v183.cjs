@@ -98,7 +98,9 @@ check('shot value: a probability, deterministic, keeper gradation, steep skill e
  assert(r.calmPressed[1].spread<r.calmPressed[0].spread&&r.calmPressed[1].xg>r.calmPressed[0].xg,'calm damps pressure');
  assert.equal(r.calmFree[0],r.calmFree[1],'calm has no effect without pressure');
  assert(r.dec[1]>=r.dec[0],'better decisions choose better aims');assert.equal(r.decSpread[0],r.decSpread[1],'decisions never change the execution');
- for(const x of r.long)assert(x>=.1&&x<=.3,`long shot by a good finisher: ${x}`);
+ // Ideal situation (keeper .3 m off the line). Upper bound .4 since the Torjäger round (spreadBase .028: fin 15/17 give .22/.40);
+ // the live target (long shots of finishers >=14: 15-25 % goals per shot) holds at 24 % in the reference series sb-f.
+ for(const x of r.long)assert(x>=.1&&x<=.4,`long shot by a good finisher: ${x}`);
  Object.assign(examples,{xgAt10m:r.base,gk6to18:r.gk,skill7to16:r.skill,longFin15and17:r.long});
 });
 check('placement decides: unreachable corner = goal, reachable centre = save, over the bar and wide = miss',()=>{

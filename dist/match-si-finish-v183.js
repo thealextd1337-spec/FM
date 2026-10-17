@@ -56,9 +56,10 @@
 
 const V183_FINISH_KEYS=Object.freeze(Object.keys(v183RegisterDefaults('finish',{
  keeperHold:1.6,
- spreadBase:.035,spreadSkill:.5,spreadPower:1.61,spreadFlat:1.3,spreadFlatV:1,verticalRatio:1.2, // SI-K: spread .037/.584/2.22 -> .035/.5/1.3
+ spreadBase:.028,spreadSkill:.5,spreadPower:1.61,spreadFlat:1.3,spreadFlatV:1,verticalRatio:1.2, // SI-K: spread .037/.584/2.22 -> .035/.5/1.3; Torjaeger round: spreadBase .035 -> .028 (offsets the score-state goal loss)
  pressureRadius:2.5,pressureGain:.38,calmDamp:.05,bodyGain:.5,
- headerSpread:1.3,volleySpread:1.2,oneTouchSpread:1.1,fkSpread:1,
+ headerSpread:1.3,volleySpread:1.6, // Torjaeger round: volleySpread 1.2 -> 1.6 (cross volleys, with setplay.keeperShiftOpen)
+ oneTouchSpread:1.1,fkSpread:1,
  aimTemp:.036,
  speedBase:21,speedFin:.4,speedTec:.2,headerBase:11,headerAir:.3,volleySpeed:1.03,fkSpeed:.92,
  reachBase:1.2,reachGk:.09, // SI-K: 1.39/.066 -> 1.2/.09

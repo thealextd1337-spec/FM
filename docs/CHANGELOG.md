@@ -2,6 +2,17 @@
 
 ## Noch nicht veröffentlicht
 
+- Spielerintelligenz 183, Torjäger-Runde (Nutzerentscheidung „Torjäger, Sponsorziel und Altstände 16. Oktober 2026“, zuerst im ausgespielten Spiel). Nur neue Partien mit Kennung 183; Partien ohne Marker und mit Kennung 182 bleiben bytegleich, keine Spielstandumrechnung.
+  - Spielstand: Ein führendes Team verwaltet die Führung. Schuss- und Risikogewicht, Tempo und Zonenleine sinken mit Führung und Spielzeit (`options.lead*`, `offball.leadPace`, `offball.leashLead`). Bei Gleichstand werden beide Teams spät vorsichtiger (`options.levelRisk`, `offball.levelPace`). Das Mittelfeld rückt weiter nach (`offball.zoneLeash` 15 m).
+  - Torwart: Bei hohen Bällen außer Ecken (Spiel- und Freistoßflanken, Raumflanken) steht er auf der Linie Landepunkt–Tor (`setplay.keeperShiftOpen` 1); Ecken bleiben bei 0,4. Volleys nach Flanken streuen stärker (`finish.volleySpread` 1,6). Die Grundstreuung aller Schüsse sinkt leicht (`finish.spreadBase` 0,028) und gleicht den Torverlust zum Teil aus.
+  - SI-5 erkennt das Zweikampftempo des Ballführers auch mit dem neuen Tempofaktor.
+  - Ergebnis (Referenzreihe `sb-f`, 576 Partien, gegen SI-K2):
+    - Remis 20,5 % statt 16,3 % (enge Duelle 35 %).
+    - Favorit bei 1,5 Punkten geglättet 60 % statt 64 % (Standard 56 %, groß 64 %), ab 3 Punkten 94/97 %.
+    - Tore 3,53 statt 3,86, Partien mit mindestens 7 Toren 10,6 % statt 13,5 %, 0:0 6,6 %.
+    - Unbedrängte Luftabschlüsse aus dem Spiel 5,1 % aller Tore statt 7,1 %. Dauer 4,97 min, Spielflanken 2,70.
+  - Die Torjägerkonzentration bleibt; mit fünf Feldspielern ist sie räumlich bedingt (Nutzersteuerung: weiches Ziel). Gemessene, aber wirkungslose Hebel wurden entfernt.
+  - Neuer Test `work/test-si-scorer-v183.cjs` im Workflow-Block. Die Tabelle `work/table-si-calibration-v183.cjs` zeigt jetzt auch Torschützen, Remis, die geglättete Favoritenquote und den Luftanteil. [Torjäger-Runde](spielerintelligenz-torjaeger-183.md).
 - Spielerintelligenz 183 nur für neue Spielstände (Nutzerentscheidung 16. Oktober 2026, Branch `feat/si-newworld`). `v61CreateCareer` schreibt beim Anlegen einer Vereinswelt einmalig `world.siRevision` 183 (alle Anlagewege: v61, v161, v164–v167); Laden, Speichern, Import, Export und Saisonwechsel setzen es nie. `v61ValidateCareer` erlaubt das Feld fehlend oder 183.
   - Alle Orte, die für neue Partien Kennung 183 wählten, hängen am Stempel (`v183WorldSi`): `v65CreateMatch` schreibt `match.si` nur dann, `v155Initialize` Kennung 183 nur dann (sonst 178 mit den v178-Parametern), die symmetrischen Standardzellen der Linien mit vier und mehr Spielern (SI-5) über `v64GridDefaults` und `state.siGrid`. Bestehende Vereinswelten behalten das Verhalten von Release 132 vollständig, auch für nach dem Update neu entstehende Partien; gespeicherte Partien behalten ihre Kennung. Keine Migration.
   - Sponsorziel „Liga: mindestens N Tore“ in neuen Welten: Kaderstufe 1–5 = 11 / 13 / 19 / 32 / 44 Tore bei 14 Spielen (Trefferquote 53–62 %, gesamt 56,8 % von 864 Vereinssaisons; altes Ziel mit Kennung 178 nur 0,3 %). Ältere Welten behalten `11 + startingSquad`. Das Pokalziel (4 reguläre Tore, nur Vereine ohne Liga) bleibt in beiden Welten. Messung `work/measure-sponsor-goals-v183.cjs`, `fit-sponsor-goals-v183.cjs`, `table-sponsor-goals-v183.cjs`; [Begründung und Zahlen](spielerintelligenz-neue-spielstaende-183.md).
