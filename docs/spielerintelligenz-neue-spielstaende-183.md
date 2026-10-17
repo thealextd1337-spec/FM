@@ -47,7 +47,7 @@ Ausgangslage: Ein Verein spielt 14 Ligaspiele. Mit Kennung 178 erzielt ein Ligav
 
 **Zielvorgabe (Nutzerentscheidung 17. Oktober 2026, [Entscheidungen](entscheidungen.md)):** Ein Verein seiner Kaderstufe soll das Ziel in rund 35–40 % der Saisons erreichen („schaffbar, aber nicht selbstverständlich“, die Wirtschaft bleibt knapp). Gemessen wird auf dem **Standardfeld**, weil neue Vereinswelten immer das Standardfeld verwenden (Nutzerentscheidung 12. Oktober 2026); das große Feld ist mitgemessen.
 
-Neues Ziel für Welten mit Stempel (`v66SponsorGoals183` in `dist/world-economy-v66.js:134`, ausgewertet mit `work/fit-sponsor-goals-v183.cjs`, Rohdaten `work/measure-sponsor-goals-v183.cjs`, Kompaktsimulation nach der Neuanpassung an `sb2-f`, Abschnitt „Neuanpassung an sb2-f“ in [SI-6 kompakt](spielerintelligenz-si6-kompakt-183.md)):
+Neues Ziel für Welten mit Stempel (`v66SponsorGoals183` in `dist/world-economy-v66.js:136`, ausgewertet mit `work/fit-sponsor-goals-v183.cjs`, Rohdaten `work/measure-sponsor-goals-v183.cjs`, Kompaktsimulation nach der Neuanpassung an `sb2-f`, Abschnitt „Neuanpassung an sb2-f“ in [SI-6 kompakt](spielerintelligenz-si6-kompakt-183.md)):
 
 | Kaderstufe `startingSquad` | 1 | 2 | 3 | 4 | 5 |
 | --- | ---: | ---: | ---: | ---: | ---: |
