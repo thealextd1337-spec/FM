@@ -94,7 +94,7 @@ function finish(x,until=Infinity){globalThis.v61CurrentCareer=x.c;while(x.s.phas
 // score difference of the side; matches without the block in their stored snapshot behave as before (factor 1).
 {
  const B=h.call('v183CompactSnapshot',create('si6-state')),S=B.scoreState,factor=(a,b,minute,side=0,balance=B)=>h.call('v183ScoreFactor',balance,{score:[a,b],minute},side);
- assert(S.lead1<0&&S.lead2<=S.lead1+1e-9||S.lead2<0,'the leader shoots less');assert(S.trail1>0&&S.trail2>0,'the trailing side shoots more');
+ assert(S.lead1<0&&S.lead2<0,'the leader shoots less');assert(S.trail1>0&&S.trail2>0,'the trailing side shoots more');
  assert.equal(factor(1,0,30),1+S.lead1);assert.equal(factor(0,1,30),1+S.trail1);assert.equal(factor(2,0,30),1+S.lead2);assert.equal(factor(0,3,30),1+S.trail2);
  assert.equal(factor(1,0,30,1),1+S.trail1,'the factor follows the side asked for');assert.equal(factor(2,1,80,1),1+S.trail1);
  assert.equal(factor(0,0,10),1+S.level*0,'level early: no change');
