@@ -29,7 +29,7 @@ function finish(x,until=Infinity){globalThis.v61CurrentCareer=x.c;while(x.s.phas
  const standard=h.call('v183CompactSnapshot',create('si6-size-a')),large=h.call('v183CompactSnapshot',create('si6-size-b',LARGE)),constants=h.evaluate('v183CompactBalance');
  assert.equal(standard.fieldSize,'standard');assert.equal(large.fieldSize,'large');assert.equal(standard.version,183);
  assert.equal(standard.shotBase,constants.sizes.standard.shotBase);assert.equal(large.shotBase,constants.sizes.large.shotBase);
- assert(large.shotSlope<standard.shotSlope,'large pitch: weaker strength gap effect (reference series)');
+ assert(Math.abs(large.shotSlope-standard.shotSlope)<.02,'both pitches: the strength gap acts on the shots with a similar slope (series sb2-f: 0.122 / 0.125; the large pitch has its own finishing levers)');assert(large.levers.goalFin>standard.levers.goalFin&&large.levers.finSelf===1&&standard.levers.finSelf===1,'per-pitch levers: finishing counts more on the large pitch');
  assert.deepEqual(h.call('v183CompactSnapshot',{}),standard,'no match configuration (older careers) counts as standard pitch');
  assert(Object.isFrozen(constants)&&Object.isFrozen(constants.sizes.standard),'constants are frozen');
  standard.shotBase=99;assert.notEqual(h.evaluate('v183CompactBalance.sizes.standard.shotBase'),99,'snapshot is a copy');
@@ -77,8 +77,10 @@ function finish(x,until=Infinity){globalThis.v61CurrentCareer=x.c;while(x.s.phas
 // 3c. Within a team the own finishing deviation counts only with the share finSelf (played-out best finishers convert
 // hardly better than their team-mates); the expected shooter of the team keeps the full cross-team lever.
 {
- const x=initial('si6-self',183),B=x.s.playerPerformance.compactBalance,team=h.call('v183CompactTeams',x.c,x.f,x.s)[0];
- assert(B.levers.finSelf>0&&B.levers.finSelf<1,'stored within-team share');
+ const x=initial('si6-self',183),stored=x.s.playerPerformance.compactBalance,team=h.call('v183CompactTeams',x.c,x.f,x.s)[0];
+ assert.equal(stored.levers.finSelf,1,'fitted set (sb2-f): the best finisher of a team converts better again, no within-team shrink');
+ // The mechanism stays for stored snapshots of 0.3 (SI-K2 fit) and for later fits.
+ const B={...stored,levers:{...stored.levers,finSelf:.3}};
  for(const source of ['open','long','header-volley']){
   const weight=h.call('v183ShooterWeight',B,source,team,x.s),total=team.ids.reduce((n,pid)=>n+weight(pid),0);
   const centre=team.ids.reduce((n,pid)=>n+weight(pid)*team.skills[pid].fin,0)/total,adjusted=pid=>h.call('v183ShooterFinishing',B,source,team,x.s,pid,team.skills[pid].fin);
