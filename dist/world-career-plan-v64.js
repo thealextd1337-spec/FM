@@ -38,7 +38,7 @@ function v64CareerPlanNormalize(career,saved){
 function v64CareerPlanContext(career){
  const club=v64CareerClub(career),plan=v64CareerPlanNormalize(career,career.manager.matchPlan),side={clubId:club.id,starters:[...plan.starters],bench:[...plan.bench],roles:{...plan.roles},tactics:{...plan.tactics}};
  const fixture={id:'career-plan',homeId:club.id,awayId:club.id,plan:{home:side,away:{clubId:club.id,starters:[],bench:[],roles:{},tactics:{}}}};
- const state={phase:'prematch',minute:0,active:[...plan.starters],awayActive:[],bench:[...plan.bench],awayBench:[],roles:{...plan.roles},cells:{...plan.cells},orientation:{...plan.orientation},instructions:structuredClone(plan.instructions),tactics:[{...plan.tactics},{}],tacticChanges:[],fresh:{},minutes:{},stats:{}};
+ const state={...(v183WorldSi(career)?{siGrid:true}:{}),phase:'prematch',minute:0,active:[...plan.starters],awayActive:[],bench:[...plan.bench],awayBench:[],roles:{...plan.roles},cells:{...plan.cells},orientation:{...plan.orientation},instructions:structuredClone(plan.instructions),tactics:[{...plan.tactics},{}],tacticChanges:[],fresh:{},minutes:{},stats:{}};
  for(const player of club.roster){state.fresh[player.pid]=player.fresh;state.minutes[player.pid]=0;state.stats[player.pid]={goals:0,assists:0,shots:0}}
  if(typeof v154Initialize==='function')v154Initialize(career,fixture,state,plan.roleAssignments);if(plan.roleMoveSequence)state.roleMoveSequence=plan.roleMoveSequence;
  return{fixture,state};

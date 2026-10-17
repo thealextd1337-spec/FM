@@ -114,6 +114,18 @@ check('grid defaults: the match state of a new world carries the flag, a state o
  const fresh=initial('siw-gridstate',{options:LARGE}),old=initial('siw-gridstate-old',{stamp:false,options:LARGE});
  assert.equal(fresh.s.siGrid,true);assert.equal(Object.hasOwn(old.s,'siGrid'),false);
 });
+check('grid defaults: the career plan editor (formation change outside a match) follows the stamp',()=>{
+ for(const [stamp,expect] of [[true,[0,2,4,5,7,9]],[false,[5,6,7,8,9,2]]]){
+  const c=career('siw-gridplan-'+stamp,{stamp,options:LARGE});globalThis.v61CurrentCareer=c;
+  // The editor functions of world-career-plan-v64.js (before its UI part), scoped so that v64ApplyCareerPlan stays out of the other checks.
+  const plan=fs.readFileSync('dist/world-career-plan-v64.js','utf8'),context=h.evaluate('(()=>{'+plan.slice(0,plan.indexOf('let v140MatchPresetName'))+';return v64CareerPlanContext;})()');
+  const {state}=context(c);
+  assert.equal(Object.hasOwn(state,'siGrid'),stamp,'editor state flag');
+  const ids=state.active.slice(0,6);for(const pid of ids){state.roles[pid]='att';delete state.cells[pid];}
+  state.active=ids;h.call('v64ResetCells',state,0);
+  assert.deepEqual(ids.map(pid=>state.cells[pid]),expect,'v64ResetCells in the editor');
+ }
+});
 
 // ----- 4. sponsor goal -----
 check('sponsor: the league goal of a world of release 132 stays 11 + squad (scaled to 14 matches in the 12-country world)',()=>{
