@@ -7,18 +7,20 @@
 //          [--set=path=value,...] [--limit=N] [--series=k2-f-trace40000,...]
 //   --set   changes values of the stored compact snapshot per replica, e.g. --set=shotBase=*1.02,levers.onFin=+0.01
 //   --variants=name:path=v,path=v;name2:path=v   several parameter variants per fixture (world built once, same replica seeds); files <label>_<name>-<shard>of<shards>.json
+//   a set item may be prefixed with a pitch size: large/levers.goalFin=.22 changes only matches of that pitch
+//   --size=standard|large plays only the fixtures of that pitch
 //   --revision=178 plays the same fixtures with the frozen marker 178 (comparison)
 // Output: outputs/si6/<label>-<shard>of<shards>.json; evaluate with work/table-compact-physical-v183.cjs.
 const fs=require('node:fs'),path=require('node:path');process.chdir(path.resolve(__dirname,'..'));
 const {harness}=require('./youth-native-harness-v176.cjs');
 const arg=(name,fallback)=>{const hit=process.argv.find(a=>a.startsWith('--'+name+'='));return hit?hit.slice(name.length+3):fallback;};
-const shard=+arg('shard',0),shards=+arg('shards',1),K=+arg('k',8),label=arg('label','c'),limit=+arg('limit',0),sets=arg('set','').split(',').filter(Boolean),revision=arg('revision','183');
+const shard=+arg('shard',0),shards=+arg('shards',1),K=+arg('k',8),label=arg('label','c'),limit=+arg('limit',0),sets=arg('set','').split(',').filter(Boolean),revision=arg('revision','183'),onlySize=arg('size','');
 const variantArg=arg('variants','').split(';').filter(Boolean).map(v=>{const [name,rest]=v.split(':');return{name,sets:[...sets,...(rest||'').split(',').filter(Boolean)]};});
 const variants=variantArg.length?variantArg:[{name:'',sets}];
 const series=arg('series','k2-f-trace40000,k2-f-si183b-trace40000,k2-f-si183c-trace40000').split(',');
 const KEYS=['spd','tec','pas','fin','tak','pos','air','sta'];
 const physical=series.flatMap(name=>JSON.parse(fs.readFileSync(`outputs/si183/${name}.json`,'utf8')).matches.filter(r=>r.finished&&!r.engineError&&!r.stall&&r.rec&&r.extras?.sik));
-const jobs=physical.map((r,index)=>({index,seed:r.seed,size:r.size,clubId:r.clubId,teams:r.teams.map(t=>({clubId:t.clubId,ovr:t.ovr}))})).filter((job,n)=>n%shards===shard);
+const jobs=physical.map((r,index)=>({index,seed:r.seed,size:r.size,clubId:r.clubId,teams:r.teams.map(t=>({clubId:t.clubId,ovr:t.ovr}))})).filter(job=>!onlySize||job.size===onlySize).filter((job,n)=>n%shards===shard);
 const h=harness();
 const setPath=(object,keyPath,value)=>{const parts=keyPath.split('.');let o=object;for(const key of parts.slice(0,-1))o=o[key];const last=parts.at(-1);o[last]=value.startsWith('*')?o[last]*Number(value.slice(1)):value.startsWith('+')?o[last]+Number(value.slice(1)):Number(value);};
 const outs=variants.map(v=>({label:v.name?`${label}_${v.name}`:label,K,sets:v.sets,revision,series,jobs:[]}));
@@ -37,7 +39,7 @@ for(const job of (limit?jobs.slice(0,limit):jobs)){
  for(let k=0;k<K;k++){
   const replica={...fixture,id:fixture.id+':r'+k,result:null},state=h.call('v64MakeState',career,replica);
   if(revision==='178'){state.playerPerformance.shotBalanceRevision=178;state.playerPerformance.compactBalance=h.evaluate('({...v178CompactBalance})');}
-  else for(const item of variant.sets){const [keyPath,value]=item.split('=');setPath(state.playerPerformance.compactBalance,keyPath,value);}
+  else for(const raw of variant.sets){const slash=raw.indexOf('/'),tag=slash>0&&!raw.slice(0,slash).includes('=')?raw.slice(0,slash):null;if(tag&&tag!==job.size)continue;const item=tag?raw.slice(slash+1):raw,[keyPath,value]=item.split('=');setPath(state.playerPerformance.compactBalance,keyPath,value);}
   for(let guard=0;state.phase!=='finished'&&guard<130;guard++)h.call('v64Step',career,replica,state);
   const roleOf=pid=>state.roleAssignments?.[pid]?.roleId||state.playerPerformance.phases[pid]?.at(-1)?.roleId||null;
   const goals=state.events.filter(e=>e.type==='goal').map(e=>({side:e.side,scorer:roleOf(e.scorerPid),assist:e.assistPid?roleOf(e.assistPid):null,minute:e.minute,source:e.source||null}));
