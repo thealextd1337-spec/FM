@@ -343,7 +343,7 @@ Node 24, Stand `f145790c` plus Dokumentation, nach den Messreihen ohne aktive La
 - Angepasst: `DEFAULTS` in `test-si-scorer-v183.cjs` (0,4 / 0,15); die Regressionsnotiz verweist auf den Marker.
 - **Altpartien:** `node work/check-old-matches-v183.cjs` grün, 340 Szenen bytegleich gegen `e4e531c0` (unmarkiert, 182, 183 mit allen Paketen aus); `node work/check-old-matches-v182.cjs` (Basis per `git archive e4e531c0 dist work/test-v41.cjs`) grün, 158 Szenen.
 - **Restore:** `node work/check-restore-completeness-v183.cjs --port=4262 --quick` auf Lane C grün, 10 Läufe. Der Marker liegt nur auf dem flüchtigen Aufrufargument; kein neuer Zustand, keine WeakMap.
-- **Workflow-Block „Spieltests ausführen“** aus `.github/workflows/deploy.yml`: WORKFLOWPLATZHALTER
+- **Workflow-Block „Spieltests ausführen“** aus `.github/workflows/deploy.yml`: alle 121 Befehle mit Exit 0 (Node 24 für `node`, Python 3.13 für `python3`), einschließlich `node work/test-si-scorer-v183.cjs` mit der neuen Markerprüfung.
 - **Last:** höchstens zwei Lanes (A 4250–4255, C 4262–4267) mit je 6 Seiten, angemeldet in `work/si-integration/outputs/si183/` (Sperrverzeichnis und `queue.log`). Artefakte zurückgesetzt: `git checkout -- outputs docs/spieler-nutzer-rig`.
 
 ### Reproduktion
