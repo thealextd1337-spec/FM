@@ -148,6 +148,7 @@ jobs:
           DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs
           DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs
           node work/audit-world-balance-v68.cjs
+          node work/test-si-newworld-seasons-v183.cjs
           python3 work/test_deploy_ftps.py
           python3 work/test_deploy_unity_assets.py
 
