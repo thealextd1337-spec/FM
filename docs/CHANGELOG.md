@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- Quellenanzeige der Releasekennung korrigiert: `v58Refresh` liest nun die Kennung aus dem HTML-Dokument, statt die vorbereitete 132 zur Laufzeit mit 130 zu ueberschreiben. Der vorhandene Versionscheck prueft jetzt auch den tatsaechlichen Footer-Refresh; Browser-Quelle zeigt 132. Keine neue Veroeffentlichung.
+
 - B20: Die Matchpause zeigt Aufstellung und Bedienung bei 667/844 Pixeln Querformat nebeneinander; schmale Hochformate bleiben gestapelt. Der CSS-Breakpoint war trotz Querformat bis 900 Pixeln einspaltig. Vorheriger Fehler bei 844 Pixeln reproduziert; danach bestehen alle vier Groessen 1632/844/667/390 in DE/EN einschliesslich Rollen, Ausrichtung, Teamtaktik, Undo und erneutem Oeffnen. Produkttext nennt die tatsaechliche Rollen-/Ausrichtungsbedienung.
 
 - B24 (Root-B22): Der generische Entscheidungszeitpunkt physischer Ballfuehrer erzeugt keine erfundene Schussvorbereitung mehr. Vorher erschienen im festen nativen Test 228 von 276 Ballfuehrerbildern als wiederholter Schussansatz; nachher 0, ebenso auf dem grossen Feld. Tatsaechliche Pass-/Schussaktionen und Standards bleiben sichtbar; keine Matchregel oder Spielstandaenderung. Sichtbare Dribbelabnahme bleibt erforderlich.

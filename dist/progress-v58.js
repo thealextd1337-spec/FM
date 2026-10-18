@@ -99,8 +99,9 @@ function v58PlaceButton(){
  slot.append(v58Button);
 }
 function v58Refresh(){
- document.querySelectorAll('footer span:first-child').forEach(label=>label.textContent='Doppel 6 / PROTOTYP 130');
- const menuFooter=startScreen.querySelector('footer');if(menuFooter)menuFooter.textContent='Doppel 6 / PROTOTYP 130';
+ const release=document.documentElement?.getAttribute?.('data-d6-release')||'130',versionLabel='Doppel 6 / PROTOTYP '+release;
+ document.querySelectorAll('footer span:first-child').forEach(label=>label.textContent=versionLabel);
+ const menuFooter=startScreen.querySelector('footer');if(menuFooter)menuFooter.textContent=versionLabel;
  const state=v58State();
  v58Bar.hidden=!state;
  document.body.classList.toggle('v58-active',Boolean(state));
