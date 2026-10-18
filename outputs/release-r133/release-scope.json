@@ -1,0 +1,16 @@
+{
+  "basis": "086275ef9bdb107c6b583e606504db64f1c5633d",
+  "basisFiles": 2154,
+  "changed": [
+    "dist/index.html",
+    "dist/world-3d-documentation-data-v134.js",
+    "dist/unity-match/runtime.js",
+    "work/build.cjs",
+    "outputs/index.html",
+    "outputs/Doppel-6-Fussballmanager.html"
+  ],
+  "unexpectedChanges": [],
+  "htmlEqual": true,
+  "htmlBytes": 96184788,
+  "htmlSha256": "cad9c1eb92382c2294f420ca99ba7ce3ad848cf6d9cee1a7b4658242a7a4f810"
+}

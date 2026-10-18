@@ -1,6 +1,6 @@
 # Entwicklung und Veröffentlichung
 
-Aktueller Fehlerarbeitsstand vom 18. Oktober 2026: Clientkorrekturen auf Basis des fertigen SI-Gesamtstands `56170c04`, erarbeitet in `work/fix-client-r133` auf `fix/client-r133` und auf `work/si-integration` / `integration/si-r133` übernommen. Die fünf neuen Meldungen heißen kollisionsfrei B23–B27. Nachgewiesene Ursachen sind korrigiert; Pausenlayout B20 ebenfalls. Der Nutzer bestätigt 2D als betroffene Ansicht von B27. Nutzerabnahme, B05 und die ausdrücklich genannten Grenzen bleiben offen. [Änderungen und Nachweise](client-fixes-r133.md). Keine Veröffentlichung in diesem Auftrag.
+Aktueller Veröffentlichungsstand vom 18. Oktober 2026: Release 133 in `work/release-r133`, Branch `release/r133`, auf dem vollständig geprüften SI-/Clientstand `086275ef`. Die Veröffentlichung ist vom Nutzer beauftragt und erfolgt über `main` und den Produktionsworkflow. Quelle ist `dist/`; Footer, Build, Runtime-Cache, Unity-Produktmetadaten und Hilfedaten tragen 133. [Releasebericht und Prüfungen](release-133.md). B05 und konkrete Nutzerabnahmen bleiben offen; Bestandsspielstände werden nicht umgerechnet.
 
 ## Aktueller Arbeitsstand und Abschluss
 

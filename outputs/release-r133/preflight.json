@@ -1,0 +1,80 @@
+[
+  {
+    "command": "node work/test-release-version.cjs",
+    "exit": 0,
+    "seconds": 0.073,
+    "log": "preflight-01.log"
+  },
+  {
+    "command": "node work/test-client-ball-r133.cjs",
+    "exit": 0,
+    "seconds": 0.047,
+    "log": "preflight-02.log"
+  },
+  {
+    "command": "node work/test-client-miss-r133.cjs",
+    "exit": 0,
+    "seconds": 0.053,
+    "log": "preflight-03.log"
+  },
+  {
+    "command": "node work/test-client-markers-r133.cjs",
+    "exit": 0,
+    "seconds": 0.055,
+    "log": "preflight-04.log"
+  },
+  {
+    "command": "node work/test-client-keeper-r133.cjs",
+    "exit": 0,
+    "seconds": 0.047,
+    "log": "preflight-05.log"
+  },
+  {
+    "command": "node work/test-client-dribble-r133.cjs",
+    "exit": 0,
+    "seconds": 1.959,
+    "log": "preflight-06.log"
+  },
+  {
+    "command": "node work/ui-redesign/shared/verify-build.cjs",
+    "exit": 0,
+    "seconds": 1.428,
+    "log": "preflight-07.log"
+  },
+  {
+    "command": "node work/platform/qa/verify-unity-manifest-114.cjs",
+    "exit": 0,
+    "seconds": 0.95,
+    "log": "preflight-08.log"
+  },
+  {
+    "command": "node work/test-club-crests.cjs",
+    "exit": 0,
+    "seconds": 0.307,
+    "log": "preflight-09.log"
+  },
+  {
+    "command": "node work/test-expansion-crests.cjs",
+    "exit": 0,
+    "seconds": 7.5,
+    "log": "preflight-10.log"
+  },
+  {
+    "command": "node work/test-completed-crests.cjs",
+    "exit": 0,
+    "seconds": 4.214,
+    "log": "preflight-11.log"
+  },
+  {
+    "command": "node work/test-expansion-sponsors.cjs",
+    "exit": 0,
+    "seconds": 2.969,
+    "log": "preflight-12.log"
+  },
+  {
+    "command": "node work/test-no-player-images.cjs",
+    "exit": 0,
+    "seconds": 0.28,
+    "log": "preflight-13.log"
+  }
+]

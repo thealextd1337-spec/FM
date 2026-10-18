@@ -12,6 +12,7 @@ from test_deploy_unity_assets import FakeFTP
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--source-id', default='787a9cd134a8f784a53bcf89b23e27140b40b00a1e93ca534d3c47d59ff10eb3')
+parser.add_argument('--release', type=int, default=132)
 parser.add_argument('--output', type=Path, default=Path('outputs/release-r132-final'))
 args = parser.parse_args()
 
@@ -24,7 +25,7 @@ def offline_http(request, **_kwargs):
 files = deploy.publication_files()  # Real manifest sizes and SHA-256 checked here.
 manifest = json.loads((deploy.UNITY / 'probe-build.json').read_text(encoding='utf-8'))
 assert manifest['sourceId'] == args.source_id
-assert "productVersion:'132'" in (deploy.RUNTIME / 'runtime.js').read_text(encoding='utf-8')
+assert f"productVersion:'{args.release}'" in (deploy.RUNTIME / 'runtime.js').read_text(encoding='utf-8')
 secrets = dict(W4Y_FTP_HOST='ftp.test', W4Y_FTP_USER='offline',
                W4Y_FTP_PASSWORD='offline', W4Y_FTP_REMOTE_DIR='/site')
 with mock.patch.dict(os.environ, secrets, clear=True), \

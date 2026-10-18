@@ -2,6 +2,10 @@
 
 ## Noch nicht veröffentlicht
 
+## Release 133 — 18. Oktober 2026
+
+- Gesamten SI-Integrationsstand einschließlich Clientkorrekturen für die Veröffentlichung zusammengeführt. Fußversion, Unity-Laufzeitmetadaten, Laufzeitcache und 3D-Hilfedaten tragen 133; Quelle und Einzeldatei-Build sind versionsgleich. Unity-Payload aus den bereits geprüften Quellen `7ce6f77f...`. Bestehende Welten, Partien und Ergebnisse werden nicht umgerechnet. [Veröffentlichungsbericht](release-133.md).
+
 - Clientkorrekturen vom 18. Oktober auf dem SI-Gesamtstand abschließend geprüft: 127 Produktionsbefehle ohne Fehler, 21 echte Unity-Browserchecks, 340 unveränderte Altszenen und zehn Fortsetzungsprüfungen. Quellen, Build und Unity-Paket bleiben während des Gesamtlaufs hashgleich. Die Positionsmeldung betrifft laut Nutzer 2D. B05 bleibt offen; keine Veröffentlichung. [Bericht](client-fixes-r133.md), [Nachweise](../outputs/client-r133/README.md).
 
 - Den lokalen Unity-WebGL-Client aus den integrierten U-1-Quellen neu gebaut, Quellenkennung `7ce6f77f...`, 58 Manifest-/Quellen-/Dateipruefungen gruen. Die unveraenderten Animationsquellen bestehen die vollstaendige Unity-Suite einschliesslich 2.318 U-1-Grenzen. B05-Experimente mit einer oder zwei neuen Grenzverletzungen wurden verworfen; keine gelockerten Pruefgrenzen. Quelle, Einzeldatei-Build und lokales Unity-Paket sind gemeinsam pruefbar; dies ist keine Veroeffentlichung.

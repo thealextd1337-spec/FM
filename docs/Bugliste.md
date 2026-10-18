@@ -1,6 +1,6 @@
 # Bugliste
 
-Stand: 18. Oktober 2026. Fehlerarbeitsstand `fix/client-r133`, Basis `56170c04`; die lokale Demo auf Port 4290 gehört laut Nutzerübergabe zu dieser integrierten Basis. Root-Meldungen B21–B25 vom 17. Oktober werden hier kollisionsfrei als B23–B27 geführt (Torwertung, Dribbling, Torwart, freier 2D-Ball, enge Spieler). Frühere B21/B22 bleiben erhalten.
+Stand: 18. Oktober 2026. Release 133 veröffentlicht den geprüften SI-/Clientstand gemäß Nutzerauftrag; [Veröffentlichungsbericht](release-133.md). Technische Korrekturen ersetzen keine konkrete Nutzerabnahme. Fehlerarbeitsstand `fix/client-r133`, Basis `56170c04`; die lokale Demo auf Port 4290 gehört laut Nutzerübergabe zu dieser integrierten Basis. Root-Meldungen B21–B25 vom 17. Oktober werden hier kollisionsfrei als B23–B27 geführt (Torwertung, Dribbling, Torwart, freier 2D-Ball, enge Spieler). Frühere B21/B22 bleiben erhalten.
 
 Historischer Releasehinweis vom 14. Oktober 2026: Release 132 ist lokal auf `release/r132` vorbereitet; Push, Deployment und Live-Abnahme übernimmt die Integration. Technisch behobene Meldungen bleiben bis zur konkreten Nutzerabnahme gekennzeichnet. Backlogeinträge starten keinen Folgeauftrag. Physische Android-Abnahmen bleiben getrennt von Browserprüfungen.
 
