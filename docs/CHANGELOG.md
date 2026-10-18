@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- Der Unity-Browserpruefstand liefert den grossen Einzeldatei-Build im HTTP-Modus jetzt direkt ueber seinen Testserver. Die vorherige DevTools-Uebertragung brach reproduzierbar an der 100-MiB-Grenze ab; Produkt- und Testbedingungen bleiben erhalten. Torwarttests pruefen nun die tatsaechliche seitliche Reichweite statt der fehlerhaften Drehung zum Kontakt; der Altschuss-Hoehenschutz bleibt unveraendert, eine eigene SI-Hoehenassertion kommt hinzu.
+
 - Quellenanzeige der Releasekennung korrigiert: `v58Refresh` liest nun die Kennung aus dem HTML-Dokument, statt die vorbereitete 132 zur Laufzeit mit 130 zu ueberschreiben. Der vorhandene Versionscheck prueft jetzt auch den tatsaechlichen Footer-Refresh; Browser-Quelle zeigt 132. Keine neue Veroeffentlichung.
 
 - B20: Die Matchpause zeigt Aufstellung und Bedienung bei 667/844 Pixeln Querformat nebeneinander; schmale Hochformate bleiben gestapelt. Der CSS-Breakpoint war trotz Querformat bis 900 Pixeln einspaltig. Vorheriger Fehler bei 844 Pixeln reproduziert; danach bestehen alle vier Groessen 1632/844/667/390 in DE/EN einschliesslich Rollen, Ausrichtung, Teamtaktik, Undo und erneutem Oeffnen. Produkttext nennt die tatsaechliche Rollen-/Ausrichtungsbedienung.
@@ -12,7 +14,7 @@
 
 - B27 (Root-B25), 2D-Teil: Koerpermarker physischer Vereinsweltspieler werden nicht mehr kuenstlich um 50 Pixel auseinandergeschoben. Nahe und kreuzende Spieler bleiben auf ihren tatsaechlichen Positionen; Hitbereiche folgen ihnen. Sechserliga behaelt ihre bisherige Markertrennung. `test-client-markers-r133` prueft zehn enge Gruppen und den unveraenderten Altpfad. Ansichtsmodus der urspruenglichen Meldung und Nutzerabnahme bleiben offen.
 
-- B23 (Root-B21): Echte Schuesse ueber die Latte behalten in 3D ihre Hoehe; SI-Fehlschuesse verwenden auch seitlich die gemessene Hoehe. Die alte Begrenzung auf 1,35 m liess einen hohen Fehlschuss im Tor erscheinen. Regelentscheidung und Statistik unveraendert. `test-client-miss-r133` prueft 16 Projektionen; 272 Tornetz-Projektionen bestehen. Die urspruenglichen Screenshots sind ohne Spielstand noch nicht exakt reproduziert; Nutzerabnahme offen.
+- B23 (Root-B21): SI-Fehlschuesse behalten in 3D ihre berechnete Hoehe, ueber der Latte wie seitlich; alte dekorative Fehlvarianten bleiben unveraendert. Die alte Begrenzung auf 1,35 m liess einen hohen Fehlschuss im Tor erscheinen. Regelentscheidung und Statistik unveraendert. `test-client-miss-r133` prueft 16 Projektionen; 272 Tornetz-Projektionen bestehen. Die urspruenglichen Screenshots sind ohne Spielstand noch nicht exakt reproduziert; Nutzerabnahme offen.
 
 - B26 (urspruenglich Root-B24): Freie Rollbaelle und sichtbare Eckballphasen verwenden in der zweiten Halbzeit dieselbe Drehung wie das restliche 2D-Feld. Die Simulation bleibt unveraendert. Regression `node work/test-client-ball-r133.cjs`: vorher falsche Seite, nachher acht Projektionen beider Halbzeiten mit unveraenderten nativen Daten.
 

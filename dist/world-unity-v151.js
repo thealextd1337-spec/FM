@@ -43,7 +43,7 @@
    // A save stays square to the goal. Facing the contact itself made its
    // lateral component zero, so Unity classified every wide save as upright.
    const saveDirection=p.keeper&&a?.kind==='save'?[(p.team===0?1:-1)*flip,0,0]:null;
-   const chosen=saveDirection||(a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:focusDirection&&Math.hypot(focusDirection[0],focusDirection[2])>.00001?focusDirection:settledPass?bodyDirection:(attention&&Math.hypot(attention[0],attention[2])>.00001?attention:null)||restartDirection||(staleTravel?observed:travel?[travel.x-p.x,0,travel.z-p.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0]));
+   const chosen=a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:saveDirection||(focusDirection&&Math.hypot(focusDirection[0],focusDirection[2])>.00001?focusDirection:settledPass?bodyDirection:(attention&&Math.hypot(attention[0],attention[2])>.00001?attention:null)||restartDirection||(staleTravel?observed:travel?[travel.x-p.x,0,travel.z-p.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0]));
    // The kick after a free-kick preparation turns from the preparation facing into the chosen one over the native
    // contact time (0.09 s of the received progress), a turn instead of a one-picture jump. Progress-based: a paused or
    // replayed picture gives the same facing.

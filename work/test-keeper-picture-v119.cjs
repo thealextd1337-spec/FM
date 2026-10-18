@@ -9,7 +9,7 @@ for(const turned of [false,true])for(const scale of [1,1.2]){
  const f=frame(turned),s=C.scaled(f,{length:68*scale,width:44*scale,goalWidth:7.32});
  check('Goal-kick target beats stale heading '+turned+'/'+scale,()=>{s.players[0].action={kind:'goalKick',phase:'waiting',targetWorld:{x:8*scale,z:9*scale}};const d=picture(s).players[0].facing;assert(d[0]>0&&d[2]>0)});
  check('Ordinary keeper watches ball '+turned+'/'+scale,()=>{s.players[0].action={kind:'idle'};const d=picture(s).players[0].facing;assert(d[0]>0&&d[2]>0)});
- check('Save watches existing contact '+turned+'/'+scale,()=>{const d=picture(C.scaled(f,{length:68*scale,width:44*scale,goalWidth:7.32})).players[0].facing;assert(d[0]>0&&d[2]>0)});
+ check('Save keeps goal-facing and the actual lateral contact '+turned+'/'+scale,()=>{const p=picture(C.scaled(frame(turned),{length:68*scale,width:44*scale,goalWidth:7.32})).players[0];assert.deepEqual(p.facing,[turned?-1:1,0,0]);assert(Math.abs(Math.abs(p.contactPoint[2]-p.position[2])-scale)<1e-12)});
 }
 check('Scaling preserves actual outlet and input',()=>{const f=frame(),before=JSON.stringify(f);f.players[0].action.targetWorld={x:6,z:8};const input=JSON.stringify(f),s=C.scaled(f,{length:81.6,width:52.8,goalWidth:7.32});assert(Math.abs(s.players[0].action.targetWorld.x-7.2)<1e-9);assert(Math.abs(s.players[0].action.targetWorld.z-9.6)<1e-9);assert.equal(JSON.stringify(f),input);assert(before!==input)});
 check('Completed confirmed owner catch explicitly anchors visible ball',()=>{const f=frame(),before=JSON.stringify(f);assert.equal(picture(f).players[0].ballHeld,true);assert.equal(JSON.stringify(f),before);assert.deepEqual(picture(f),picture(JSON.parse(before)))});

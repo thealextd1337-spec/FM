@@ -59,10 +59,10 @@ function v119VisibleShotBall(current){
  if(typeof v159ShotActive!=='function'||!v159ShotActive(current))return null;
  const flying=current.flight&&v99Flights.get(current.flight),miss=!current.flight&&v99Actions.get(current)?.miss,pose=flying||miss;
  if(!pose||pose.kind!=='shot'||pose.onTarget!==false||pose.blocked||!Number.isFinite(pose.endHeight)||!pose.flight||miss&&miss.age>=1.15)return null;
- // A true over-bar miss must keep its height. SI supplies measured heights
- // for wide misses too; lowering either can show a booked miss inside the net.
- // Only the legacy lateral-miss presentation still needs the old height cap.
- const view={...pose,over:false,endHeight:pose.over||current.si?.revision>=183?pose.endHeight:Math.min(pose.endHeight,1.35)},q=flying?Math.max(0,Math.min(1,current.flight.progress)):1,end=v101ShotPoint(view,q);
+ // SI supplies actual shot heights, including over-bar and wide misses.
+ // The legacy "over" flag is only a decorative variant of a lateral miss;
+ // keep its existing cap, but never lower a height computed by the SI model.
+ const view={...pose,over:false,endHeight:current.si?.revision>=183?pose.endHeight:Math.min(pose.endHeight,1.35)},q=flying?Math.max(0,Math.min(1,current.flight.progress)):1,end=v101ShotPoint(view,q);
  if(flying)return end;
  const time=Math.max(0,miss.age);
  return {x:end.x+end.vx*time,y:end.y+end.vy*time,elevation:Math.max(.29,end.elevation+end.vh*time-4.9*time*time),opacity:Math.max(0,Math.min(1,(1.1-time)/.45))};
