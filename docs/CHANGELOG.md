@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- B24 (Root-B22): Der generische Entscheidungszeitpunkt physischer Ballfuehrer erzeugt keine erfundene Schussvorbereitung mehr. Vorher erschienen im festen nativen Test 228 von 276 Ballfuehrerbildern als wiederholter Schussansatz; nachher 0, ebenso auf dem grossen Feld. Tatsaechliche Pass-/Schussaktionen und Standards bleiben sichtbar; keine Matchregel oder Spielstandaenderung. Sichtbare Dribbelabnahme bleibt erforderlich.
+
 - B25 (Root-B23): Unity-Torhueter bleiben bei einer Parade zur Torachse ausgerichtet. Die vorherige Drehung direkt auf den Kontaktpunkt machte dessen seitliche Entfernung null und verhinderte die Auswahl von Hechtspruengen. 16 Vertragsfaelle beider Teams/Halbzeiten und der vorhandene Unity-Vertrag bestehen; native Reichweite, Ergebnis und Fang-/Abprallerentscheidung bleiben unveraendert.
 
 - B27 (Root-B25), 2D-Teil: Koerpermarker physischer Vereinsweltspieler werden nicht mehr kuenstlich um 50 Pixel auseinandergeschoben. Nahe und kreuzende Spieler bleiben auf ihren tatsaechlichen Positionen; Hitbereiche folgen ihnen. Sechserliga behaelt ihre bisherige Markertrennung. `test-client-markers-r133` prueft zehn enge Gruppen und den unveraenderten Altpfad. Ansichtsmodus der urspruenglichen Meldung und Nutzerabnahme bleiben offen.
