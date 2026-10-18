@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- Den lokalen Unity-WebGL-Client aus den integrierten U-1-Quellen neu gebaut, Quellenkennung `7ce6f77f...`, 58 Manifest-/Quellen-/Dateipruefungen gruen. Die unveraenderten Animationsquellen bestehen die vollstaendige Unity-Suite einschliesslich 2.318 U-1-Grenzen. B05-Experimente mit einer oder zwei neuen Grenzverletzungen wurden verworfen; keine gelockerten Pruefgrenzen. Quelle, Einzeldatei-Build und lokales Unity-Paket sind gemeinsam pruefbar; dies ist keine Veroeffentlichung.
+
 - Der Unity-Browserpruefstand liefert den grossen Einzeldatei-Build im HTTP-Modus jetzt direkt ueber seinen Testserver. Die vorherige DevTools-Uebertragung brach reproduzierbar an der 100-MiB-Grenze ab; Produkt- und Testbedingungen bleiben erhalten. Torwarttests pruefen nun die tatsaechliche seitliche Reichweite statt der fehlerhaften Drehung zum Kontakt; der Altschuss-Hoehenschutz bleibt unveraendert, eine eigene SI-Hoehenassertion kommt hinzu.
 
 - Quellenanzeige der Releasekennung korrigiert: `v58Refresh` liest nun die Kennung aus dem HTML-Dokument, statt die vorbereitete 132 zur Laufzeit mit 130 zu ueberschreiben. Der vorhandene Versionscheck prueft jetzt auch den tatsaechlichen Footer-Refresh; Browser-Quelle zeigt 132. Keine neue Veroeffentlichung.
