@@ -1,6 +1,8 @@
 # Entwicklungsdokumentation
 
-Stand: 14. Oktober 2026. Release 132 ist im Worktree `work/release-r132` lokal vorbereitet; Hauptcheckout/Live bleiben bis zur Integration auf Release 131. Aktueller Nutzerauftrag und geprüfter Checkout bestimmen die Arbeit.
+Aktueller Fehlerarbeitsstand vom 18. Oktober 2026: Clientkorrekturen auf Basis des fertigen SI-Gesamtstands `56170c04`, erarbeitet in `work/fix-client-r133` auf `fix/client-r133` und auf `work/si-integration` / `integration/si-r133` übernommen. Die fünf neuen Meldungen heißen kollisionsfrei B23–B27. Nachgewiesene Ursachen sind korrigiert; Pausenlayout B20 ebenfalls. Der Nutzer bestätigt 2D als betroffene Ansicht von B27. Nutzerabnahme, B05 und die ausdrücklich genannten Grenzen bleiben offen. [Änderungen und Nachweise](client-fixes-r133.md). Keine Veröffentlichung in diesem Auftrag.
+
+Historischer Release-132-Hinweis vom 14. Oktober 2026: Release 132 ist im Worktree `work/release-r132` lokal vorbereitet; Hauptcheckout/Live bleiben bis zur Integration auf Release 131. Aktueller Nutzerauftrag und geprüfter Checkout bestimmen die Arbeit.
 
 - [Produktregeln](product.md): geltende Spielregeln und ausdrücklich gekennzeichnete offene Wünsche.
 - [Entwicklung](development.md): Quellstand, Git-Übergabe, Prüfungen, Build und Veröffentlichung.

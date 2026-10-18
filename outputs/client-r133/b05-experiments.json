@@ -1,0 +1,46 @@
+{
+  "decision": "Both experiments rejected; production renderer restored to 56170c04, B05 remains open. No relaxed limits.",
+  "results": [
+    {
+      "variant": "baseline",
+      "r132Checks": 368,
+      "r132Failed": 0,
+      "r21Failed": 1,
+      "violations": []
+    },
+    {
+      "variant": "contact-blend",
+      "r132Checks": 368,
+      "r132Failed": 1,
+      "r21Failed": 1,
+      "violations": [
+        {
+          "name": "r132 native132-160112-field-8/tackle 7.800 entry root-relative joint speed deg/s (R131 lock)",
+          "passed": false,
+          "value": 2310.480224609375,
+          "limit": 2252.205
+        }
+      ]
+    },
+    {
+      "variant": "coherent-knee",
+      "r132Checks": 368,
+      "r132Failed": 2,
+      "r21Failed": 1,
+      "violations": [
+        {
+          "name": "r132 native132-160112-field-8/tackle 7.800 contact root-relative joint speed deg/s (R131 lock)",
+          "passed": false,
+          "value": 8553.69921875,
+          "limit": 8009.749401855468
+        },
+        {
+          "name": "r132 native132-160114-field-11/tackle 68.850 contact root-relative joint speed deg/s (R131 lock)",
+          "passed": false,
+          "value": 9236.1142578125,
+          "limit": 9226.10119628906
+        }
+      ]
+    }
+  ]
+}

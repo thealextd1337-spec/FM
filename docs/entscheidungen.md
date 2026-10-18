@@ -1,10 +1,10 @@
 # Entscheidungen und aktueller Umfang
 
-Stand: 14. Oktober 2026. Maßgeblich sind aktueller Nutzerauftrag und tatsächlich geprüfter Checkout. Diese Liste hält Entscheidungen, historische Ideen und Grenzen auseinander; Backlogeinträge starten keine Arbeit.
+Stand: 18. Oktober 2026. Maßgeblich sind aktueller Nutzerauftrag und tatsächlich geprüfter Checkout. Diese Liste hält Entscheidungen, historische Ideen und Grenzen auseinander; Backlogeinträge starten keine Arbeit.
 
 | Thema | Geltender Stand und Referenz |
 | --- | --- |
-| Aktuelle Quelle | Release 132 im Worktree `work/release-r132`, Branch `release/r132`, integriert auf `3085ab55`; `dist/` ist Quelle. [Entwicklung](development.md), [Releasebericht 132](release-132.md). Veröffentlichung beauftragt; Push auf main, Deployment und Live-Abnahme übernimmt die Integration. Hauptcheckout/Live-Stand 131 wird hier nicht verändert. |
+| Aktuelle Quelle | SI-Gesamtstand `56170c04` ist laut Nutzeruebergabe fertig gemergt und insgesamt geprueft (Demo Port 4290). Clientkorrekturen vom 18. Oktober sind auf `integration/si-r133` in `work/si-integration` übernommen (Arbeitsbranch `fix/client-r133`); `dist/` ist Quelle. [Clientbericht](client-fixes-r133.md). Nutzerabnahmen und B05 bleiben offen; dieser Auftrag veroeffentlicht nichts. |
 | Low-Poly | In Release 131 integriert: Tag/Nacht, fünf feste Stadionvorlagen für alle 96 Ligavereine, tatsächliche Vereinsidentität und Tornetz. [Produktregeln](product.md#low-poly-darstellung-seit-release-131), [Stadionzuordnung](stadionerweiterung-plan.md). |
 | Nighttime als alternative Stilidee | Getrennte Nighttime-/Low-Poly-Anleitungen vom 12. Oktober 2026 sind historische Vorschläge. Nighttime ist als alternative Idee erhalten und nicht verworfen; seine bloße Erwähnung beauftragt keine Umsetzung. Historische Quellen im [früheren Index](history/index-before-cleanup-20261013-links.md). Nighttime-Stilidee und integrierte Nachtspiele sind unterschiedliche Aussagen. |
 | Licht-/Stadionfortsetzungen | Der Nutzer hat die fehlerhaften Fortsetzungen in `work/lowpoly-live-lighting` und `work/lowpoly-live-stadiums` verworfen und ihre Entfernung beauftragt. Die gesicherten Rohfassungen dokumentieren Herkunft; sie werden nicht weitergeführt oder in Release 131 übernommen. Die Bereinigung ändert den Release-131-Produktcode nicht. |

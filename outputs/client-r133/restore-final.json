@@ -1,0 +1,437 @@
+{
+  "sourceRoot": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\fix-client-r133",
+  "sizes": [
+    "standard"
+  ],
+  "markerModes": [
+    "new"
+  ],
+  "pass": true,
+  "scenes": [
+    {
+      "id": "offenes-spiel",
+      "size": "standard",
+      "markers": "new",
+      "seed": 0,
+      "pass": true,
+      "fired": true,
+      "checkpoint": {
+        "time": 15.188249999999918,
+        "snapshotBytes": 66563,
+        "tick": 862
+      },
+      "failures": [],
+      "accepted": 10,
+      "continuation": {
+        "finished": true,
+        "ticks": 4571,
+        "score": [
+          2,
+          0
+        ],
+        "goals": 2,
+        "shots": 8,
+        "draws": 783
+      }
+    },
+    {
+      "id": "absichten",
+      "size": "standard",
+      "markers": "new",
+      "seed": 0,
+      "pass": true,
+      "fired": true,
+      "checkpoint": {
+        "time": 15.207499999999918,
+        "snapshotBytes": 67443,
+        "tick": 863
+      },
+      "failures": [],
+      "accepted": 10,
+      "continuation": {
+        "finished": true,
+        "ticks": 4570,
+        "score": [
+          2,
+          0
+        ],
+        "goals": 2,
+        "shots": 8,
+        "draws": 783
+      }
+    },
+    {
+      "id": "raumpass-aufgenommen",
+      "size": "standard",
+      "markers": "new",
+      "seed": 1,
+      "pass": true,
+      "fired": true,
+      "checkpoint": {
+        "time": 6.333250000000051,
+        "snapshotBytes": 66143,
+        "tick": 0
+      },
+      "failures": [],
+      "accepted": 19,
+      "continuation": {
+        "finished": true,
+        "ticks": 5916,
+        "score": [
+          4,
+          4
+        ],
+        "goals": 8,
+        "shots": 15,
+        "draws": 594
+      }
+    },
+    {
+      "id": "freistoss",
+      "size": "standard",
+      "markers": "new",
+      "seed": 0,
+      "pass": true,
+      "fired": true,
+      "checkpoint": {
+        "time": 21.601194999999777,
+        "snapshotBytes": 72550,
+        "tick": 1215
+      },
+      "failures": [],
+      "accepted": 8,
+      "continuation": {
+        "finished": true,
+        "ticks": 4218,
+        "score": [
+          2,
+          0
+        ],
+        "goals": 2,
+        "shots": 8,
+        "draws": 783
+      }
+    },
+    {
+      "id": "ecke",
+      "size": "standard",
+      "markers": "new",
+      "seed": 0,
+      "pass": true,
+      "fired": true,
+      "checkpoint": {
+        "time": 15.188249999999918,
+        "snapshotBytes": 67742,
+        "tick": 0
+      },
+      "failures": [],
+      "accepted": 11,
+      "continuation": {
+        "finished": true,
+        "ticks": 4738,
+        "score": [
+          1,
+          1
+        ],
+        "goals": 2,
+        "shots": 11,
+        "draws": 775
+      }
+    },
+    {
+      "id": "halbzeitpause",
+      "size": "standard",
+      "markers": "new",
+      "seed": 0,
+      "pass": true,
+      "fired": true,
+      "checkpoint": {
+        "time": 41.713594999999216,
+        "snapshotBytes": 85890,
+        "tick": 2726
+      },
+      "failures": [],
+      "accepted": 10,
+      "continuation": {
+        "finished": true,
+        "ticks": 2707,
+        "score": [
+          2,
+          0
+        ],
+        "goals": 2,
+        "shots": 8,
+        "draws": 783
+      }
+    },
+    {
+      "id": "torpause",
+      "size": "standard",
+      "markers": "new",
+      "seed": 0,
+      "pass": true,
+      "fired": true,
+      "checkpoint": {
+        "time": 29.27809499999951,
+        "snapshotBytes": 78428,
+        "tick": 1890
+      },
+      "failures": [],
+      "accepted": 17,
+      "continuation": {
+        "finished": true,
+        "ticks": 3543,
+        "score": [
+          2,
+          0
+        ],
+        "goals": 2,
+        "shots": 8,
+        "draws": 783
+      }
+    },
+    {
+      "id": "wechsel",
+      "size": "standard",
+      "markers": "new",
+      "seed": 0,
+      "pass": true,
+      "fired": true,
+      "checkpoint": {
+        "time": 15.188249999999918,
+        "snapshotBytes": 69663,
+        "tick": 1
+      },
+      "failures": [],
+      "accepted": 10,
+      "continuation": {
+        "finished": true,
+        "ticks": 4197,
+        "score": [
+          0,
+          0
+        ],
+        "goals": 0,
+        "shots": 6,
+        "draws": 680
+      }
+    },
+    {
+      "id": "elfmeter",
+      "size": "standard",
+      "markers": "new",
+      "seed": 0,
+      "pass": true,
+      "fired": true,
+      "checkpoint": {
+        "time": 15.188249999999918,
+        "snapshotBytes": 67150,
+        "tick": 0
+      },
+      "failures": [],
+      "accepted": 10,
+      "continuation": {
+        "finished": true,
+        "ticks": 5074,
+        "score": [
+          2,
+          2
+        ],
+        "goals": 4,
+        "shots": 9,
+        "draws": 851
+      }
+    },
+    {
+      "id": "paketzustand",
+      "size": "standard",
+      "markers": "new",
+      "seed": 0,
+      "pass": true,
+      "fired": true,
+      "checkpoint": {
+        "time": 15.188249999999918,
+        "snapshotBytes": 66782,
+        "tick": 0
+      },
+      "failures": [],
+      "accepted": 10,
+      "continuation": {
+        "finished": true,
+        "ticks": 4571,
+        "score": [
+          2,
+          0
+        ],
+        "goals": 2,
+        "shots": 8,
+        "draws": 783
+      }
+    }
+  ],
+  "acceptedReasons": [
+    {
+      "reason": "v65Snapshot h\u00c3\u00a4lt den Ursprung der nativen Kontaktuhr als Feld fest; v65Restore setzt sie in v102State(match).clock. Die Uhr selbst wird getrennt verglichen (clock).",
+      "scenes": [
+        "offenes-spiel",
+        "absichten",
+        "raumpass-aufgenommen",
+        "freistoss",
+        "ecke",
+        "halbzeitpause",
+        "torpause",
+        "wechsel",
+        "elfmeter",
+        "paketzustand"
+      ]
+    },
+    {
+      "reason": "v102Motion: Posen und Posenz\u00c3\u00a4hler sind Darstellung (v102: \u00e2\u20ac\u017enever to a saved match\u00e2\u20ac\u0153); Uhr und lose Flugbahn sind gespeichert.",
+      "scenes": [
+        "offenes-spiel",
+        "absichten",
+        "raumpass-aufgenommen",
+        "freistoss",
+        "ecke",
+        "halbzeitpause",
+        "torpause",
+        "wechsel",
+        "elfmeter",
+        "paketzustand"
+      ]
+    },
+    {
+      "reason": "ui v103Replays: Aufzeichnung der Tor-Wiederholung (Anzeige).",
+      "scenes": [
+        "offenes-spiel",
+        "absichten",
+        "raumpass-aufgenommen",
+        "freistoss",
+        "ecke",
+        "halbzeitpause",
+        "torpause",
+        "wechsel",
+        "elfmeter",
+        "paketzustand"
+      ]
+    },
+    {
+      "reason": "derived v121PositioningPlans: Stellungsplan wird in v121PreparePositioning im n\u00c3\u00a4chsten Takt neu berechnet (fehlt der Eintrag, wird er gebaut).",
+      "scenes": [
+        "offenes-spiel",
+        "absichten",
+        "raumpass-aufgenommen",
+        "freistoss",
+        "ecke",
+        "halbzeitpause",
+        "torpause",
+        "wechsel",
+        "elfmeter",
+        "paketzustand"
+      ]
+    },
+    {
+      "reason": "derived v158AbilityCache: Zwischenspeicher der effektiven F\u00c3\u00a4higkeiten je Spieler.",
+      "scenes": [
+        "offenes-spiel",
+        "absichten",
+        "raumpass-aufgenommen",
+        "freistoss",
+        "ecke",
+        "halbzeitpause",
+        "torpause",
+        "wechsel",
+        "elfmeter",
+        "paketzustand"
+      ]
+    },
+    {
+      "reason": "ui v181PositioningSteps: Schrittrichtungen der 3D-Darstellung.",
+      "scenes": [
+        "offenes-spiel",
+        "absichten",
+        "raumpass-aufgenommen",
+        "ecke",
+        "wechsel",
+        "elfmeter",
+        "paketzustand"
+      ]
+    },
+    {
+      "reason": "derived v182PursuitFollow: Nachsetz-Messung gilt nur im selben Tick (clock-Gleichheit), nie \u00c3\u00bcber einen Speicherpunkt hinweg.",
+      "scenes": [
+        "offenes-spiel",
+        "absichten",
+        "raumpass-aufgenommen",
+        "freistoss",
+        "ecke",
+        "halbzeitpause",
+        "torpause",
+        "wechsel",
+        "elfmeter",
+        "paketzustand"
+      ]
+    },
+    {
+      "reason": "derived v183FinishParamCache: SI-3: abgeleiteter Parameter-Cache, Schl\u00c3\u00bcssel match.si; nach einem Restore (neues, eingefrorenes si) leer und wird neu gef\u00c3\u00bcllt.",
+      "scenes": [
+        "offenes-spiel",
+        "absichten",
+        "raumpass-aufgenommen",
+        "freistoss",
+        "ecke",
+        "halbzeitpause",
+        "torpause",
+        "wechsel",
+        "elfmeter",
+        "paketzustand"
+      ]
+    },
+    {
+      "reason": "derived v183Traces: SI-F-Entscheidungsprotokoll (match-si-core-v183.js): fl\u00c3\u00bcchtig, nie gespeichert und nie von Entscheidungen gelesen; nach einem Restore leer.",
+      "scenes": [
+        "offenes-spiel",
+        "absichten",
+        "raumpass-aufgenommen",
+        "freistoss",
+        "ecke",
+        "halbzeitpause",
+        "torpause",
+        "wechsel",
+        "elfmeter",
+        "paketzustand"
+      ]
+    },
+    {
+      "reason": "Vor dem ersten Pass fehlt das Feld; Restore bindet es als null (gleichbedeutend, es wird nur gelesen).",
+      "scenes": [
+        "raumpass-aufgenommen"
+      ]
+    },
+    {
+      "reason": "mirrored v150SpacePasses: Raumpass-Plan wird aus match.spacePassIntent in v150RestoreIntent neu aufgebaut.",
+      "scenes": [
+        "raumpass-aufgenommen"
+      ]
+    },
+    {
+      "reason": "ui v109CornerBalls: Ballbahn der Eckballvorbereitung (Darstellung); m.ball und setPiece sind gespeichert.",
+      "scenes": [
+        "ecke",
+        "torpause"
+      ]
+    },
+    {
+      "reason": "v99Actions: Ballbahn-Reste nach Schuss/Tor (Darstellung, v132ClearVisualTails l\u00c3\u00b6scht sie ohnehin); Torwart-/Einwurf-/Absto\u00c3\u0178zustand ist gespeichert.",
+      "scenes": [
+        "torpause"
+      ]
+    },
+    {
+      "reason": "v99Actions: Flugbezogene Reste im Torwart-/Absto\u00c3\u0178zustand: Das Flugobjekt gibt es nach einem Restore nie (match.flight===null); sein R\u00c3\u00bcckruf done und der Ledger-Verweis shotMotion sind nicht speicherbar, launched gilt nur f\u00c3\u00bcr den laufenden Flug.",
+      "scenes": [
+        "torpause"
+      ]
+    }
+  ]
+}

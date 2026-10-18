@@ -1,0 +1,2 @@
+[D6Cli] WebBuild preflight: match mesh WorldPlayerLowPoly-v4, ground WorldPlayer (9725 vertices, 28 bind poses), both saved scene dependencies
+[D6Cli] OK Succeeded 92307910 bytes, 315,2s, 0 errors, 3 warnings -> F:/Neuer Ordner (2)/ChatGPT/Fussballmanager/work/fix-client-r133\outputs/platform/unity-web

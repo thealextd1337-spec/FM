@@ -1,0 +1,1025 @@
+{
+  "root": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\fix-client-r133",
+  "node": "C:\\Users\\alex\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "python": "C:\\Users\\alex\\AppData\\Local\\Programs\\Python\\Python313\\python.exe",
+  "timestamp": "2026-10-18T14:41:35.531975",
+  "results": [
+    {
+      "index": 1,
+      "command": "node work/test-release-version.cjs",
+      "exit": 0,
+      "seconds": 0.037,
+      "log": "001.log",
+      "logSha256": "ed159fd64d48f002b71dd46b655bc00a47c3d04d22bb75943bf5550d3e05729f"
+    },
+    {
+      "index": 2,
+      "command": "node work/test-client-ball-r133.cjs",
+      "exit": 0,
+      "seconds": 0.034,
+      "log": "002.log",
+      "logSha256": "aa497c3a2917b00f4696a6ed2e6db65e92152d5359272d027fb5fb9e219e1d20"
+    },
+    {
+      "index": 3,
+      "command": "node work/test-client-miss-r133.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "003.log",
+      "logSha256": "63c29c68e9758b566b8001d8fadbff2993b3fa0e03fa0ecd90e1fe9b4f5c1144"
+    },
+    {
+      "index": 4,
+      "command": "node work/test-client-markers-r133.cjs",
+      "exit": 0,
+      "seconds": 0.034,
+      "log": "004.log",
+      "logSha256": "ab5c1ef2d7f9d25319c5b323765b171f6e670d7768049ab8096a2093db77a57f"
+    },
+    {
+      "index": 5,
+      "command": "node work/test-client-keeper-r133.cjs",
+      "exit": 0,
+      "seconds": 0.034,
+      "log": "005.log",
+      "logSha256": "06e1e1c6c2e1ea107890fb97eb6409e91d94adfc53452c2c64e3bc932c9db3d8"
+    },
+    {
+      "index": 6,
+      "command": "node work/test-client-dribble-r133.cjs",
+      "exit": 0,
+      "seconds": 1.387,
+      "log": "006.log",
+      "logSha256": "a1083c2480596a44e019a89235c34c9932606a578e83c0286aa8d412eb628f6e"
+    },
+    {
+      "index": 7,
+      "command": "node work/test-lowpoly-goal-tail.cjs",
+      "exit": 0,
+      "seconds": 0.327,
+      "log": "007.log",
+      "logSha256": "5556d6c4350edb9c8abe0089a8494e554d6652b8572bc3f85cb0cd8309fa00a3"
+    },
+    {
+      "index": 8,
+      "command": "node work/platform/qa/test-presentation-v131.cjs",
+      "exit": 0,
+      "seconds": 0.039,
+      "log": "008.log",
+      "logSha256": "7b36d043de1bb154605918c0b952f21c659837ee13c09f56f873fd864d7658db"
+    },
+    {
+      "index": 9,
+      "command": "node work/test-tactics-roster-v130.cjs",
+      "exit": 0,
+      "seconds": 10.07,
+      "log": "009.log",
+      "logSha256": "282036856b0f94cdff72f8f78d907778abc06d4f3af36ce135a486a2d031b8ff"
+    },
+    {
+      "index": 10,
+      "command": "node work/run-native130-tests.cjs",
+      "exit": 0,
+      "seconds": 0.747,
+      "log": "010.log",
+      "logSha256": "072f5e77af2b7dfa9c4126339ab4e82cca740759f83a4c43c09f98bca4705b6a"
+    },
+    {
+      "index": 11,
+      "command": "node work/test-view-frame-scheduler-v130.cjs",
+      "exit": 0,
+      "seconds": 0.052,
+      "log": "011.log",
+      "logSha256": "7f91d0f0a49b4a0a4d7adc47a5d25b92b744d4ff064fa77a877a8c9478f7b22f"
+    },
+    {
+      "index": 12,
+      "command": "node work/test-squad-planning-v179.cjs",
+      "exit": 0,
+      "seconds": 3.893,
+      "log": "012.log",
+      "logSha256": "25d0ddac1eb8e95c1e6a9d67aedb404f5a3a6607f7d1e3d9434842cf4f3dd793"
+    },
+    {
+      "index": 13,
+      "command": "node work/test-start-rosters-v177.cjs --worlds=60",
+      "exit": 0,
+      "seconds": 116.259,
+      "log": "013.log",
+      "logSha256": "6352725e93ef8521a0e4719e228cd0cb6809d31115b41059df461a56f033bc63"
+    },
+    {
+      "index": 14,
+      "command": "node work/test-compact-balance-v178.cjs",
+      "exit": 0,
+      "seconds": 6.355,
+      "log": "014.log",
+      "logSha256": "846adbf1f949313793e1bf622965433fe439db54d63520ef0e3d171f82a31ad2"
+    },
+    {
+      "index": 15,
+      "command": "node work/test-compact-balance-v183.cjs",
+      "exit": 0,
+      "seconds": 21.931,
+      "log": "015.log",
+      "logSha256": "188f8b45328977493ac5c9e99ca71593ab33acb6a99e1a0bef734c5b9255942d"
+    },
+    {
+      "index": 16,
+      "command": "node work/test-si-newworld-v183.cjs",
+      "exit": 0,
+      "seconds": 57.329,
+      "log": "016.log",
+      "logSha256": "fd478f23de87b1cd8a5b63243842cf36f153634286adb7275613643d8211a624"
+    },
+    {
+      "index": 17,
+      "command": "node work/test-native-performance-context.cjs",
+      "exit": 0,
+      "seconds": 0.053,
+      "log": "017.log",
+      "logSha256": "e74fb346baf5dee774bc604bc9161b1676de22a94ea496a0a33ccd8dc7775956"
+    },
+    {
+      "index": 18,
+      "command": "node work/test-youth-legacy-v176.cjs",
+      "exit": 0,
+      "seconds": 5.903,
+      "log": "018.log",
+      "logSha256": "3bf6eee40d9226105b698e76063b267e6394cf2b880604015259713a13d5bbd1"
+    },
+    {
+      "index": 19,
+      "command": "node work/test-progress-v58.cjs",
+      "exit": 0,
+      "seconds": 0.036,
+      "log": "019.log",
+      "logSha256": "5647a422fadeaceab53da6b03e8c029f4d083b8dc803acfc74b66f695f9d2339"
+    },
+    {
+      "index": 20,
+      "command": "node work/test-live-player-v59.cjs",
+      "exit": 0,
+      "seconds": 0.172,
+      "log": "020.log",
+      "logSha256": "017269f74a73aae8d6a57cc61e27b4731bea3fa13623546a5937d97d32a7b9b2"
+    },
+    {
+      "index": 21,
+      "command": "node work/test-progress-menu.cjs",
+      "exit": 0,
+      "seconds": 0.036,
+      "log": "021.log",
+      "logSha256": "c3ee68d26e05598075c24b6ba4ffc1ecd8298736168ec58c3a9cb06e2731610f"
+    },
+    {
+      "index": 22,
+      "command": "node work/test-transfer-confirmations.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "022.log",
+      "logSha256": "aae5f32199e2de4201a07415458b32e09a5db1fe28af402814bde3a325acbf9b"
+    },
+    {
+      "index": 23,
+      "command": "node work/test-transfer-deadline-dialog.cjs",
+      "exit": 0,
+      "seconds": 0.032,
+      "log": "023.log",
+      "logSha256": "04ba231394cf38a3934cc61223311037a142f87ce85ec0dd65896146f0c3801e"
+    },
+    {
+      "index": 24,
+      "command": "node work/test-tactics-replacement.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "024.log",
+      "logSha256": "dcfd714b3674d91f1aff96eb3784b9b1e382a4544d60f6bafadb71925390b9d9"
+    },
+    {
+      "index": 25,
+      "command": "node work/test-quick-lineup-cells.cjs",
+      "exit": 0,
+      "seconds": 0.034,
+      "log": "025.log",
+      "logSha256": "c39b04ab3339c765ae200f5f12d063c35c78c4c262940f956f7ef624ab8c14fc"
+    },
+    {
+      "index": 26,
+      "command": "node work/test-v24.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "026.log",
+      "logSha256": "716f5f0c746d177362576c357d1c309a6de31f9bc4fe05bd35fb962dab539252"
+    },
+    {
+      "index": 27,
+      "command": "node work/test-mobile-drag-scroll.cjs",
+      "exit": 0,
+      "seconds": 0.137,
+      "log": "027.log",
+      "logSha256": "fd951c1abe355c9325012fd6dba1509d78e1b35bb1ed6e3ffb7201187d6d21d4"
+    },
+    {
+      "index": 28,
+      "command": "node work/test-v20-wake-lifecycle.cjs",
+      "exit": 0,
+      "seconds": 0.039,
+      "log": "028.log",
+      "logSha256": "5c0a3600cba560bc942721b8dc4c528c84926d9d4d5cb880b44053f9e61306b5"
+    },
+    {
+      "index": 29,
+      "command": "node work/test-v31.cjs",
+      "exit": 0,
+      "seconds": 1.542,
+      "log": "029.log",
+      "logSha256": "302d58b8ec72b7de85179db7af619934215101750bbeafda9b779e4444a945a9"
+    },
+    {
+      "index": 30,
+      "command": "node work/test-v41.cjs",
+      "exit": 0,
+      "seconds": 0.129,
+      "log": "030.log",
+      "logSha256": "52ff11ab81dd2ffb8912cd4beefba9e1896b906a0a91b54069cfedd881c0f639"
+    },
+    {
+      "index": 31,
+      "command": "node work/test-v42.cjs",
+      "exit": 0,
+      "seconds": 0.196,
+      "log": "031.log",
+      "logSha256": "e2b12f2a0be3c33fc19e82e709d4dcc50a175cd8a478320f5ad879fc0777b226"
+    },
+    {
+      "index": 32,
+      "command": "node work/test-v44.cjs",
+      "exit": 0,
+      "seconds": 0.145,
+      "log": "032.log",
+      "logSha256": "29d1031d84f7cfcc19462c6ba05cfcf48fe6afac0c1f3cc9a0cec7c0dc05db01"
+    },
+    {
+      "index": 33,
+      "command": "node work/test-v45.cjs",
+      "exit": 0,
+      "seconds": 0.147,
+      "log": "033.log",
+      "logSha256": "47fee914176d5cfe9b8cbd9c2dad424aa0f207cd54e2dd1b240d52205fd479d7"
+    },
+    {
+      "index": 34,
+      "command": "node work/test-v47.cjs",
+      "exit": 0,
+      "seconds": 0.176,
+      "log": "034.log",
+      "logSha256": "6a73dcf8435e23632d3b6916d34dc1bdbe2f3f91792600071c2e7d0196c21757"
+    },
+    {
+      "index": 35,
+      "command": "node work/test-statistics-menu.cjs",
+      "exit": 0,
+      "seconds": 0.162,
+      "log": "035.log",
+      "logSha256": "399e9499d911e8e61ef7294458d2afd63862141711ae0ca94ce27f5167886693"
+    },
+    {
+      "index": 36,
+      "command": "node work/test-player-seasons.cjs",
+      "exit": 0,
+      "seconds": 0.144,
+      "log": "036.log",
+      "logSha256": "a802f87f37a258d6bf6245f7211a435cd8f7315ae8672f7531fb595706281abb"
+    },
+    {
+      "index": 37,
+      "command": "node work/test-v49.cjs",
+      "exit": 0,
+      "seconds": 0.138,
+      "log": "037.log",
+      "logSha256": "bec5d103bfc260aa64a5eec9fd0820d89b0583ced337b01d3bfdf28f489df46f"
+    },
+    {
+      "index": 38,
+      "command": "node work/test-v50.cjs",
+      "exit": 0,
+      "seconds": 0.412,
+      "log": "038.log",
+      "logSha256": "17002e57609102bdb866c43bdab6dd60911e3c79ed80911eeae4cc5131e7cf1b"
+    },
+    {
+      "index": 39,
+      "command": "node work/test-v50-balance.cjs",
+      "exit": 0,
+      "seconds": 22.946,
+      "log": "039.log",
+      "logSha256": "882a04bb199b02b9390e2bbaf5372016ababb508965479027d4ff6f4f59c0370"
+    },
+    {
+      "index": 40,
+      "command": "node work/test-v51.cjs",
+      "exit": 0,
+      "seconds": 0.521,
+      "log": "040.log",
+      "logSha256": "41221665535bbac5d145fc59acf10ee9399162cc1d6baf56b7d4d35df3a6bd77"
+    },
+    {
+      "index": 41,
+      "command": "node work/test-v52.cjs",
+      "exit": 0,
+      "seconds": 0.188,
+      "log": "041.log",
+      "logSha256": "0f3f534300800814a7fc63c32f76a99c58b86b4e76a00e2ad6b25a4e1d52dac4"
+    },
+    {
+      "index": 42,
+      "command": "node work/test-v53.cjs",
+      "exit": 0,
+      "seconds": 0.175,
+      "log": "042.log",
+      "logSha256": "69dc5941c96762e00e7fe384f42615c1758886b0aad7a3447bae4d44f41ceb2b"
+    },
+    {
+      "index": 43,
+      "command": "node work/test-v54.cjs",
+      "exit": 0,
+      "seconds": 40.776,
+      "log": "043.log",
+      "logSha256": "ffda327c7f3ab6de83660ee8e3c29822acc5731759b902dcc0f22ecd7182084c"
+    },
+    {
+      "index": 44,
+      "command": "node work/test-v55.cjs",
+      "exit": 0,
+      "seconds": 0.552,
+      "log": "044.log",
+      "logSha256": "d58c6d42780a3feb88123530f4a7905a87e03241afd35576ede47d8d0319c8f0"
+    },
+    {
+      "index": 45,
+      "command": "node work/test-ai-season-stats.cjs",
+      "exit": 0,
+      "seconds": 0.153,
+      "log": "045.log",
+      "logSha256": "b864ad20f44af087265b809ad5692bb0292471b0e984cbea1d011c24254f60ed"
+    },
+    {
+      "index": 46,
+      "command": "node work/test-ai-career-v60.cjs",
+      "exit": 0,
+      "seconds": 0.791,
+      "log": "046.log",
+      "logSha256": "4ac76b84a31a2049bba95ea2f039ca897f846f8c4e16fcedc346bc561222b79a"
+    },
+    {
+      "index": 47,
+      "command": "node work/test-breakaway.cjs",
+      "exit": 0,
+      "seconds": 0.163,
+      "log": "047.log",
+      "logSha256": "44332b09e9bd13f2581873d3b11b80e514da32b7a411a2cfef1ed3b286d5e21b"
+    },
+    {
+      "index": 48,
+      "command": "node work/test-v56.cjs",
+      "exit": 0,
+      "seconds": 5.746,
+      "log": "048.log",
+      "logSha256": "9763355ab79470e8d7a451a6101540603da533bf37420b05e23114baf8c115dd"
+    },
+    {
+      "index": 49,
+      "command": "node work/test-duel-streaks.cjs",
+      "exit": 0,
+      "seconds": 0.529,
+      "log": "049.log",
+      "logSha256": "e403c423c066447f32df35b1b2a011fff263b43a46c19b0f853d54374bf5967b"
+    },
+    {
+      "index": 50,
+      "command": "node work/test-v57.cjs",
+      "exit": 0,
+      "seconds": 0.569,
+      "log": "050.log",
+      "logSha256": "0a7f51294cefa5c03bbcd275aa9c3731573ea4374b1930d4e962168026156066"
+    },
+    {
+      "index": 51,
+      "command": "node work/test-world-foundation-v61.cjs",
+      "exit": 0,
+      "seconds": 0.122,
+      "log": "051.log",
+      "logSha256": "935b0aa8943cc3332b1fc30b59e099e0fb72956718cd092870473b8ab2fb6eaf"
+    },
+    {
+      "index": 52,
+      "command": "node work/test-world-local-start.cjs",
+      "exit": 0,
+      "seconds": 0.939,
+      "log": "052.log",
+      "logSha256": "57857072ead86e5cdec641fda94537a523a2852b3ae01f8610c19a10876b73aa"
+    },
+    {
+      "index": 53,
+      "command": "node work/test-world-competition-v62.cjs",
+      "exit": 0,
+      "seconds": 11.95,
+      "log": "053.log",
+      "logSha256": "17c0b34c1b96e35d32893118d5a3427ce4f4fabd5bede31a46b47fb421c10ef2"
+    },
+    {
+      "index": 54,
+      "command": "node work/test-world-coaches-v63.cjs",
+      "exit": 0,
+      "seconds": 1.566,
+      "log": "054.log",
+      "logSha256": "d72a814ec1ca4af252c48e8432a9cb366705ad9c0b1f7bae11ba403b1454affa"
+    },
+    {
+      "index": 55,
+      "command": "node work/test-world-match-v64.cjs",
+      "exit": 0,
+      "seconds": 0.39,
+      "log": "055.log",
+      "logSha256": "285ea0b7459f85094391ca67036a677d4f4b65045fcdbc6ad3781e7588250f79"
+    },
+    {
+      "index": 56,
+      "command": "node work/test-world-penalties-v65.cjs",
+      "exit": 0,
+      "seconds": 0.038,
+      "log": "056.log",
+      "logSha256": "b33f0fd4901abe3951940098a9cc3f9915327ca296a7c1372f4026412329540e"
+    },
+    {
+      "index": 57,
+      "command": "node work/test-world-victory-popup.cjs",
+      "exit": 0,
+      "seconds": 0.036,
+      "log": "057.log",
+      "logSha256": "721041980969b28cdc4bfca37bbc92ed51a9d7188169c3da43ece08ffae66e24"
+    },
+    {
+      "index": 58,
+      "command": "node work/test-world-nationalities-v79.cjs",
+      "exit": 0,
+      "seconds": 2.838,
+      "log": "058.log",
+      "logSha256": "0190c2f72ef333b01bd12214ca5bc2c9a38213f4cd3521b88c875e221dd7269d"
+    },
+    {
+      "index": 59,
+      "command": "node work/test-world-market-nationalities-v79.cjs",
+      "exit": 0,
+      "seconds": 0.132,
+      "log": "059.log",
+      "logSha256": "3fd82b2546845f7363ce4f6e8d75fa13c9c9f5c374965a4e0722286d049ed057"
+    },
+    {
+      "index": 60,
+      "command": "node work/test-world-kits-v81.cjs",
+      "exit": 0,
+      "seconds": 2.196,
+      "log": "060.log",
+      "logSha256": "0076c0b871d55b281da4cc12ad1bdca38bc371b3dbbdc6ef5d80fcb71db50c6a"
+    },
+    {
+      "index": 61,
+      "command": "node work/test-world-direct-transfer.cjs",
+      "exit": 0,
+      "seconds": 0.188,
+      "log": "061.log",
+      "logSha256": "a923562ffc78bf75768183a221c567447b30a9291f2ea130c43f9d6cb69bae53"
+    },
+    {
+      "index": 62,
+      "command": "node work/test-world-navigation.cjs",
+      "exit": 0,
+      "seconds": 0.036,
+      "log": "062.log",
+      "logSha256": "537c46f0ed88c41eb92677a09e8e53a024980f385e610ceb46a95c728e36d098"
+    },
+    {
+      "index": 63,
+      "command": "node work/test-world-swap-banner.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "063.log",
+      "logSha256": "2e16c8cd9b8b2c3e89549820c30cbb2ba010d87d610c8460cb7f67192ee5c5f0"
+    },
+    {
+      "index": 64,
+      "command": "node work/test-world-goal-scene-v83.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "064.log",
+      "logSha256": "9f7996e4b6afcf52819afbb6dd2218a775510228763912c09024739c2f8fca2f"
+    },
+    {
+      "index": 65,
+      "command": "node work/test-world-goal-banner-v84.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "065.log",
+      "logSha256": "2bdb0a72ecc344c2870af3e7f2ae267b3207d795be5fd2a0074286cad98ce38e"
+    },
+    {
+      "index": 66,
+      "command": "node work/test-i18n-v75.cjs",
+      "exit": 0,
+      "seconds": 0.045,
+      "log": "066.log",
+      "logSha256": "5e2c8d5696d22cf53082a812a0720e1a1117d95b184f7c4628ab74929aac2482"
+    },
+    {
+      "index": 67,
+      "command": "node work/test-world-live-ranks.cjs",
+      "exit": 0,
+      "seconds": 0.033,
+      "log": "067.log",
+      "logSha256": "7e0b45c24cdb12d3b8ef996a0296b57173f31bf0169d7ebaac4a3361e26ca1f4"
+    },
+    {
+      "index": 68,
+      "command": "node work/test-world-grid-v71.cjs",
+      "exit": 0,
+      "seconds": 0.11,
+      "log": "068.log",
+      "logSha256": "cbe8bf15eaac2aa9b3a5cfe697c7c1d77862edb60b3e28aa6358225434003354"
+    },
+    {
+      "index": 69,
+      "command": "node work/test-world-player-instructions.cjs",
+      "exit": 0,
+      "seconds": 0.116,
+      "log": "069.log",
+      "logSha256": "2b87e519a21549927e1ff030640026e5458b3a67af817d34a9a236b8c6a6e776"
+    },
+    {
+      "index": 70,
+      "command": "node work/test-world-physical-instructions.cjs",
+      "exit": 0,
+      "seconds": 0.155,
+      "log": "070.log",
+      "logSha256": "ad68861220d58244c357176ededd3888ed05694d0af0069fa9a0276a9a0b4546"
+    },
+    {
+      "index": 71,
+      "command": "node work/test-world-career-plan.cjs",
+      "exit": 0,
+      "seconds": 0.148,
+      "log": "071.log",
+      "logSha256": "a30d9586c439048380cbc6da80cb5e85d9d432ea61a1352681dd82bc907fba30"
+    },
+    {
+      "index": 72,
+      "command": "node work/test-world-economy-v66.cjs",
+      "exit": 0,
+      "seconds": 8.952,
+      "log": "072.log",
+      "logSha256": "9316b980c1f3e9c8296e65de07ac480ede975847460ef6593504a9bdf6240d57"
+    },
+    {
+      "index": 73,
+      "command": "node work/test-world-sponsors-v97.cjs",
+      "exit": 0,
+      "seconds": 0.278,
+      "log": "073.log",
+      "logSha256": "674c4399cd30ec1ba0e48b94417722197a0947c2aaeee98e91871319ae1de3a9"
+    },
+    {
+      "index": 74,
+      "command": "node work/test-world-career-events.cjs",
+      "exit": 0,
+      "seconds": 2.356,
+      "log": "074.log",
+      "logSha256": "104178ad644df87b5506dcee08e5c2423eaccfa6ca271533b46180895e244164"
+    },
+    {
+      "index": 75,
+      "command": "node work/test-world-playable-rosters.cjs",
+      "exit": 0,
+      "seconds": 0.48,
+      "log": "075.log",
+      "logSha256": "e0153d1ee1624e74cd5fb69c9a9da44dc1c36b9f7643108a0d133ca12d775604"
+    },
+    {
+      "index": 76,
+      "command": "node work/test-world-transfer-list-v72.cjs",
+      "exit": 0,
+      "seconds": 0.744,
+      "log": "076.log",
+      "logSha256": "13a34e47e0d6ffa117ce72cad428e640209d302ce8d4b2339bef86c9430b6630"
+    },
+    {
+      "index": 77,
+      "command": "node work/test-world-human-sale-v73.cjs",
+      "exit": 0,
+      "seconds": 0.602,
+      "log": "077.log",
+      "logSha256": "5e04c2189c0f6de67a5d5e76d9025c89ec0f607ab7a93adb28022c0be97252e3"
+    },
+    {
+      "index": 78,
+      "command": "node work/test-world-youth-manager-v67.cjs",
+      "exit": 0,
+      "seconds": 6.939,
+      "log": "078.log",
+      "logSha256": "69c3987a06baee0119e5936eedf1e99f81bb7aa12376b94932f78f6666a1a542"
+    },
+    {
+      "index": 79,
+      "command": "node work/test-finance-close-v130.cjs",
+      "exit": 0,
+      "seconds": 2.434,
+      "log": "079.log",
+      "logSha256": "e15070353728a7101b9899486c3c4cffa35c6cf8be686acee8db6a01eea1ba83"
+    },
+    {
+      "index": 80,
+      "command": "node work/test-world-payments-v124.cjs",
+      "exit": 0,
+      "seconds": 4.792,
+      "log": "080.log",
+      "logSha256": "3f07cc02ec936c1b2b69a43ea0b38872af592c059722a7c5797a24e94713e971"
+    },
+    {
+      "index": 81,
+      "command": "node work/test-3d-documentation-v134.cjs",
+      "exit": 0,
+      "seconds": 0.082,
+      "log": "081.log",
+      "logSha256": "1158854dec1639b6ec20c192ca775c37d35e8f526d8ed82852f2e1de8d5950a3"
+    },
+    {
+      "index": 82,
+      "command": "node work/test-mobile-performance-v135.cjs",
+      "exit": 0,
+      "seconds": 0.052,
+      "log": "082.log",
+      "logSha256": "9a7b9638c36e22ea7488bfdceb83ad38e260360845c2d43dc21de4e4730ceef0"
+    },
+    {
+      "index": 83,
+      "command": "node work/test-world-storage-v67.cjs",
+      "exit": 0,
+      "seconds": 0.255,
+      "log": "083.log",
+      "logSha256": "dd7115a321179f891ff0306416e17d94e4f8ac2839fa448e7a95497883e86b20"
+    },
+    {
+      "index": 84,
+      "command": "node work/test-world-storage-startup.cjs",
+      "exit": 0,
+      "seconds": 7.403,
+      "log": "084.log",
+      "logSha256": "85fca2aaa5b1f206fc6883dd4795ed5cd7276e4609dd4144079fccabcadb4b2f"
+    },
+    {
+      "index": 85,
+      "command": "node work/test-world-storage-recovery.cjs",
+      "exit": 0,
+      "seconds": 1.144,
+      "log": "085.log",
+      "logSha256": "16ed4b9422af6b5caeb42e4acf5740239d006705a685acf25340b932aa60386e"
+    },
+    {
+      "index": 86,
+      "command": "node work/test-expansion-assets-v161.cjs",
+      "exit": 0,
+      "seconds": 0.589,
+      "log": "086.log",
+      "logSha256": "638c1d95b4a29fd1a7ba348f90e4272a25cc5317030b0306fb4f2a8eb9fa8b94"
+    },
+    {
+      "index": 87,
+      "command": "node work/test-world-expansion-v161.cjs",
+      "exit": 0,
+      "seconds": 19.925,
+      "log": "087.log",
+      "logSha256": "5578c00552f7120c3a966c474f7108e87f3049b9dd768c0b3fd81339a0ffd96c"
+    },
+    {
+      "index": 88,
+      "command": "node work/test-world-expansion-domestic-v164.cjs",
+      "exit": 0,
+      "seconds": 18.054,
+      "log": "088.log",
+      "logSha256": "e6c374196f035aef15087e2ba488191fa77f84c15784f58f739dadb4cee7db2c"
+    },
+    {
+      "index": 89,
+      "command": "node work/test-world-expansion-crown-v165.cjs",
+      "exit": 0,
+      "seconds": 21.866,
+      "log": "089.log",
+      "logSha256": "0396657d3c3e9b1a6f4761ad3ecf836ceb3960d9298796b005407f804b01553d"
+    },
+    {
+      "index": 90,
+      "command": "node work/test-world-expansion-horizon-v166.cjs",
+      "exit": 0,
+      "seconds": 174.603,
+      "log": "090.log",
+      "logSha256": "746e5c53f7619412c2dca71635b2f49fe63f1d1657185b9c0d6646cd6f58bb4a"
+    },
+    {
+      "index": 91,
+      "command": "node work/test-world-expansion-active-validation-v166.cjs",
+      "exit": 0,
+      "seconds": 11.505,
+      "log": "091.log",
+      "logSha256": "d745ef002adbe5ce30432f42dcfce68c3a46f331419bf3bc3a55e984d024d586"
+    },
+    {
+      "index": 92,
+      "command": "node work/test-world-expansion-rules-v167.cjs",
+      "exit": 0,
+      "seconds": 6.871,
+      "log": "092.log",
+      "logSha256": "b2d51b9449f2364fddc55b13373e842ca03087005057177d1b000d91fa957b9b"
+    },
+    {
+      "index": 93,
+      "command": "node work/test-world-expansion-contracts-v168.cjs",
+      "exit": 0,
+      "seconds": 14.678,
+      "log": "093.log",
+      "logSha256": "248aebe60aa55af4de6258f5229f30621b931be8f32b1758697474833d29aa15"
+    },
+    {
+      "index": 94,
+      "command": "node work/test-world-expansion-stories-v170.cjs",
+      "exit": 0,
+      "seconds": 16.218,
+      "log": "094.log",
+      "logSha256": "adab11a96c6cd0b823a277ac44cbe1918d4e378a0569adc2d6189a987978c48f"
+    },
+    {
+      "index": 95,
+      "command": "node work/test-world-expansion-presentation-v172.cjs",
+      "exit": 0,
+      "seconds": 15.032,
+      "log": "095.log",
+      "logSha256": "abc7a78460bc2a5aa7ec40f56929fca6a093d7073aa8cff6e2e8c73bab7c830e"
+    },
+    {
+      "index": 96,
+      "command": "node work/test-world-expansion-flutlicht-v175.cjs",
+      "exit": 0,
+      "seconds": 7.258,
+      "log": "096.log",
+      "logSha256": "64403abf5e9a1dc4fc18e1507d37387adaddeca45effc27831788f4fe1dadcdd"
+    },
+    {
+      "index": 97,
+      "command": "node work/platform/qa/test-android-3d-acceptance.cjs",
+      "exit": 0,
+      "seconds": 0.105,
+      "log": "097.log",
+      "logSha256": "1dfd74005bb03030114b2e1f6d4d7450e1deb9cdfa031a18ea4c175c4719a3ab"
+    },
+    {
+      "index": 98,
+      "command": "node work/test-world-save-management-v70.cjs",
+      "exit": 0,
+      "seconds": 1.465,
+      "log": "098.log",
+      "logSha256": "6ee2a963843b78a9c49f9d31c825475f9fe8a213e725b07cda99df0b6b94c17d"
+    },
+    {
+      "index": 99,
+      "command": "node work/test-world-views-v68.cjs",
+      "exit": 0,
+      "seconds": 0.45,
+      "log": "099.log",
+      "logSha256": "1da00ac99c3ae73d105a276d6661393b560be4bd43c0fb6e8b6d0b619323e25e"
+    },
+    {
+      "index": 100,
+      "command": "node work/test-world-honours-v74.cjs",
+      "exit": 0,
+      "seconds": 0.145,
+      "log": "100.log",
+      "logSha256": "c55c599d123ebfb84710572b143139bd21acd6d187c13eff06f4b3781c903f3f"
+    },
+    {
+      "index": 101,
+      "command": "node work/test-match-presentation-v74.cjs",
+      "exit": 0,
+      "seconds": 0.154,
+      "log": "101.log",
+      "logSha256": "8a0095d58ac3a5a0bec7266d2f6cc53e33cbbe2e10a0fee77bd272ab8eb3607c"
+    },
+    {
+      "index": 102,
+      "command": "node work/test-player-ui-projection.cjs",
+      "exit": 0,
+      "seconds": 0.046,
+      "log": "102.log",
+      "logSha256": "b89c87ca6f6f0bd3e59274e57cfdbea44deac974188bcc5d2b4ebf8948ea3dc9"
+    },
+    {
+      "index": 103,
+      "command": "node work/test-player-aging.cjs",
+      "exit": 0,
+      "seconds": 0.043,
+      "log": "103.log",
+      "logSha256": "52772547abb336548bf003b318eaf79af75f60788733f4e573bfa24127a1357e"
+    },
+    {
+      "index": 104,
+      "command": "node work/test-player-load-candidate-v158.cjs",
+      "exit": 0,
+      "seconds": 0.069,
+      "log": "104.log",
+      "logSha256": "3dac95dffcfb27d4a60c8a600be63270a82f7c5b1895336f95dce4582b688fe4"
+    },
+    {
+      "index": 105,
+      "command": "node work/test-v158-final-whistle-load.cjs",
+      "exit": 0,
+      "seconds": 12.451,
+      "log": "105.log",
+      "logSha256": "5a663b28a7a206f401e7fc8b8454c3838b63975a50ba13e25491d518a1474666"
+    },
+    {
+      "index": 106,
+      "command": "node work/test-si-crossing-v183.cjs",
+      "exit": 0,
+      "seconds": 59.287,
+      "log": "106.log",
+      "logSha256": "261abc668a93114b7b419c4af8c88aa701d474ff34f129f20cc442d8448a1b9c"
+    },
+    {
+      "index": 107,
+      "command": "node work/test-si-scorer-v183.cjs",
+      "exit": 0,
+      "seconds": 51.22,
+      "log": "107.log",
+      "logSha256": "8ae9c3deaf3e1f1dd6d47d14b3df556baadd05c5dcf145f39d133086f3c817b5"
+    },
+    {
+      "index": 108,
+      "command": "node work/test-native-career-v160.cjs",
+      "exit": 0,
+      "seconds": 275.945,
+      "log": "108.log",
+      "logSha256": "9a0c18a1819c821ea5ee42fa3fc911d51f0060239cb62e7767abe9bf5c167ea9"
+    },
+    {
+      "index": 109,
+      "command": "node work/platform/qa/test-unity-integration-v160.cjs",
+      "exit": 0,
+      "seconds": 0.038,
+      "log": "109.log",
+      "logSha256": "1946deb253a9e46bffc7518c7f89d8ac250ad23bd318a6d9766d52ffb2b7cdf9"
+    },
+    {
+      "index": 110,
+      "command": "node work/platform/qa/test-world-unity-contract.cjs",
+      "exit": 0,
+      "seconds": 0.036,
+      "log": "110.log",
+      "logSha256": "e9b3ae28b8d871e5c6ad21cd10311a7eda0ea4341f3add8cf1bd073ce729d295"
+    },
+    {
+      "index": 111,
+      "command": "node work/test-world-pitch3d-v98.cjs",
+      "exit": 0,
+      "seconds": 0.037,
+      "log": "111.log",
+      "logSha256": "351cae60947ad00e60017087ca2b2c0ff5fa9c00733f1bb62a2ff8d8c70184cb"
+    },
+    {
+      "index": 112,
+      "command": "node work/test-unity-label-layout.cjs outputs/3d-quality/iteration-119/label-layout",
+      "exit": 0,
+      "seconds": 0.05,
+      "log": "112.log",
+      "logSha256": "fbee73c5f5ab4df558db8f7aab46a2e2a210df2385d321a532d0a1fa1f006af2"
+    },
+    {
+      "index": 113,
+      "command": "node work/test-unity-3d-quality-v117.cjs outputs/3d-quality/iteration-119/guide-legacy",
+      "exit": 0,
+      "seconds": 0.035,
+      "log": "113.log",
+      "logSha256": "85fda87172bd3ee302db0c27dd0c94a0fa3f1dbf29b8b2f7242064f117dc4703"
+    },
+    {
+      "index": 114,
+      "command": "node work/test-keeper-picture-v118.cjs outputs/3d-quality/iteration-119/keeper-legacy",
+      "exit": 0,
+      "seconds": 0.038,
+      "log": "114.log",
+      "logSha256": "067d78a89406981aa4b0280dd73f1f894717a27d120493356f5722083d9d351a"
+    },
+    {
+      "index": 115,
+      "command": "node work/test-keeper-picture-v119.cjs",
+      "exit": 0,
+      "seconds": 0.038,
+      "log": "115.log",
+      "logSha256": "949a3b6066c75d1c0685c95dc6b3bdfdf03f4b66b593bb4c322fb9a46d48be80"
+    },
+    {
+      "index": 116,
+      "command": "node work/test-3d-contacts-v119.cjs",
+      "exit": 0,
+      "seconds": 0.04,
+      "log": "116.log",
+      "logSha256": "5779d8229b0928259d06eeceee5e6bc846da686e92fba65450f8f711e9b71425"
+    },
+    {
+      "index": 117,
+      "command": "node work/test-whistle-offside-v119.cjs",
+      "exit": 0,
+      "seconds": 0.047,
+      "log": "117.log",
+      "logSha256": "8c3cd10da2437cac04e2cb5d4ad31e0ed06d28ab8685ce188a692a34e20b9d0d"
+    },
+    {
+      "index": 118,
+      "command": "node work/test-shootout-quality-v119.cjs",
+      "exit": 0,
+      "seconds": 0.428,
+      "log": "118.log",
+      "logSha256": "e4a460e4dad49701f23d49cfea32c2bb7cde6497c671b7a4a6bec303bf85781d"
+    },
+    {
+      "index": 119,
+      "command": "node work/test-trophy-art-v119.cjs",
+      "exit": 0,
+      "seconds": 0.04,
+      "log": "119.log",
+      "logSha256": "f10e02e3334b7092f69084adeba75d2d4669c8e59dbcd463377062f9765b5fa2"
+    },
+    {
+      "index": 120,
+      "command": "node work/platform/qa/test-world-unity-slides.cjs",
+      "exit": 0,
+      "seconds": 0.035,
+      "log": "120.log",
+      "logSha256": "51956acde0de398b20f0d741cfb9ce59ce8b2f1e26e7db74beef75277a653d30"
+    },
+    {
+      "index": 121,
+      "command": "DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+      "exit": 0,
+      "seconds": 16.891,
+      "log": "121.log",
+      "logSha256": "241fdfa06cad4649e2bb8d6f0e943e3bf63e5bc097e16a8949684bf870548be7"
+    },
+    {
+      "index": 122,
+      "command": "DOPPEL_SALES=1 DOPPEL_SEASONS=10 node work/test-world-economy-v66.cjs",
+      "exit": 0,
+      "seconds": 16.814,
+      "log": "122.log",
+      "logSha256": "dc9529569e27f3360bed3d3ea2c73490be634f0bd18990db86297028f63e77e8"
+    },
+    {
+      "index": 123,
+      "command": "DOPPEL_SEASONS=10 node work/test-world-youth-manager-v67.cjs",
+      "exit": 0,
+      "seconds": 13.132,
+      "log": "123.log",
+      "logSha256": "004a32e69273b50beea3249a6e219cb246d77e442ead5d025de8147269e83091"
+    },
+    {
+      "index": 124,
+      "command": "node work/audit-world-balance-v68.cjs",
+      "exit": 0,
+      "seconds": 82.562,
+      "log": "124.log",
+      "logSha256": "84e7829ed4c38c5309d16faaf49708e8eb0e68bba01767e0f4f5aebb648d58a6"
+    },
+    {
+      "index": 125,
+      "command": "node work/test-si-newworld-seasons-v183.cjs",
+      "exit": 0,
+      "seconds": 196.295,
+      "log": "125.log",
+      "logSha256": "92e3f74fe84261ec75808e98ebc5c34193d525540da1f6d4413d74a69aa14a89"
+    },
+    {
+      "index": 126,
+      "command": "python3 work/test_deploy_ftps.py",
+      "exit": 0,
+      "seconds": 0.169,
+      "log": "126.log",
+      "logSha256": "24a473ad3576f3f9425b58b01c70bf371098cfeebd9ae73c698f45f5aa715e22"
+    },
+    {
+      "index": 127,
+      "command": "python3 work/test_deploy_unity_assets.py",
+      "exit": 0,
+      "seconds": 0.199,
+      "log": "127.log",
+      "logSha256": "909b2d1620ea91bcf1a2fa395b3146ab0f295da5aaa7b95313e30954506d2aa9"
+    }
+  ],
+  "note": "Final full run on frozen product source, build and Unity payload: 127 commands, zero failures."
+}

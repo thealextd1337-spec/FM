@@ -1,0 +1,50 @@
+{
+  "gates": {
+    "total": 2020,
+    "passed": 2020,
+    "failed": []
+  },
+  "supportGates": {
+    "total": 675,
+    "passed": 675,
+    "failed": []
+  },
+  "contactGates": {
+    "total": 285,
+    "passed": 285,
+    "failed": []
+  },
+  "continuityGates": {
+    "total": 20,
+    "passed": 20,
+    "failed": []
+  },
+  "r15Gates": {
+    "total": 342,
+    "passed": 341,
+    "failed": [
+      {
+        "name": "r15/plant-edge@120Hz/receive 11.158 entry root-relative joint speed deg/s",
+        "passed": false,
+        "value": 2102.81884765625,
+        "limit": 1600.0
+      }
+    ]
+  },
+  "r20Gates": {
+    "total": 642,
+    "passed": 642,
+    "failed": []
+  },
+  "r21Gates": {
+    "total": 11,
+    "passed": 11,
+    "failed": []
+  },
+  "u1Gates": {
+    "total": 2318,
+    "passed": 2318,
+    "failed": []
+  },
+  "note": "Full D6Cli.Tests passed; the existing r15 failure stays within its R18 lock. This does not close absolute B05 findings."
+}

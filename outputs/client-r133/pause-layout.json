@@ -1,0 +1,436 @@
+{
+  "rows": [
+    {
+      "viewport": {
+        "width": 1632,
+        "height": 956
+      },
+      "initial": {
+        "field": {
+          "x": 215,
+          "y": 521.1875,
+          "width": 673.140625,
+          "height": 545.78125,
+          "right": 888.140625,
+          "bottom": 1066.96875
+        },
+        "side": {
+          "x": 912.140625,
+          "y": 521.1875,
+          "width": 504.859375,
+          "height": 759.328125,
+          "right": 1417,
+          "bottom": 1280.515625
+        },
+        "panel": {
+          "x": 912.140625,
+          "y": 603.1875,
+          "width": 504.859375,
+          "height": 504.328125,
+          "right": 1417,
+          "bottom": 1107.515625
+        },
+        "outside": [],
+        "pageOverflow": false,
+        "overflow": false,
+        "controlOverflow": false,
+        "tabs": 1,
+        "panels": 1
+      },
+      "tacticGeometry": {
+        "field": {
+          "x": 215,
+          "y": 412.1875,
+          "width": 673.140625,
+          "height": 545.78125,
+          "right": 888.140625,
+          "bottom": 957.96875
+        },
+        "side": {
+          "x": 912.140625,
+          "y": 412.1875,
+          "width": 504.859375,
+          "height": 1134.6875,
+          "right": 1417,
+          "bottom": 1546.875
+        },
+        "panel": {
+          "x": 912.140625,
+          "y": 494.1875,
+          "width": 504.859375,
+          "height": 879.6875,
+          "right": 1417,
+          "bottom": 1373.875
+        },
+        "outside": [],
+        "pageOverflow": false,
+        "overflow": false,
+        "controlOverflow": false,
+        "tabs": 1,
+        "panels": 1
+      },
+      "orientation": true,
+      "roleSelection": true,
+      "undo": true,
+      "tactics": true,
+      "language": true,
+      "pauseTimeUnchanged": true,
+      "reopened": true
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "initial": {
+        "field": {
+          "x": 43,
+          "y": 521.1875,
+          "width": 426.28125,
+          "height": 345.625,
+          "right": 469.28125,
+          "bottom": 866.8125
+        },
+        "side": {
+          "x": 481.28125,
+          "y": 521.1875,
+          "width": 319.71875,
+          "height": 886.796875,
+          "right": 801,
+          "bottom": 1407.984375
+        },
+        "panel": {
+          "x": 481.28125,
+          "y": 603.1875,
+          "width": 319.71875,
+          "height": 631.796875,
+          "right": 801,
+          "bottom": 1234.984375
+        },
+        "outside": [
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 511.28125,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 610.09375,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 511.28125,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 511.28125,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 511.28125,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          }
+        ],
+        "pageOverflow": false,
+        "overflow": false,
+        "controlOverflow": false,
+        "tabs": 1,
+        "panels": 1
+      },
+      "tacticGeometry": {
+        "field": {
+          "x": 43,
+          "y": 342.1875,
+          "width": 426.28125,
+          "height": 345.625,
+          "right": 469.28125,
+          "bottom": 687.8125
+        },
+        "side": {
+          "x": 481.28125,
+          "y": 342.1875,
+          "width": 319.71875,
+          "height": 1177.1875,
+          "right": 801,
+          "bottom": 1519.375
+        },
+        "panel": {
+          "x": 481.28125,
+          "y": 424.1875,
+          "width": 319.71875,
+          "height": 922.1875,
+          "right": 801,
+          "bottom": 1346.375
+        },
+        "outside": [],
+        "pageOverflow": false,
+        "overflow": false,
+        "controlOverflow": false,
+        "tabs": 1,
+        "panels": 1
+      },
+      "orientation": true,
+      "roleSelection": true,
+      "undo": true,
+      "tactics": true,
+      "language": true,
+      "pauseTimeUnchanged": true,
+      "reopened": true
+    },
+    {
+      "viewport": {
+        "width": 667,
+        "height": 375
+      },
+      "initial": {
+        "field": {
+          "x": 43,
+          "y": 540.40625,
+          "width": 325.140625,
+          "height": 263.625,
+          "right": 368.140625,
+          "bottom": 804.03125
+        },
+        "side": {
+          "x": 380.140625,
+          "y": 540.40625,
+          "width": 243.859375,
+          "height": 997.765625,
+          "right": 624,
+          "bottom": 1538.171875
+        },
+        "panel": {
+          "x": 380.140625,
+          "y": 540.40625,
+          "width": 243.859375,
+          "height": 737.171875,
+          "right": 624,
+          "bottom": 1277.578125
+        },
+        "outside": [
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 410.140625,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 410.140625,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 410.140625,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 410.140625,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 410.140625,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          }
+        ],
+        "pageOverflow": false,
+        "overflow": false,
+        "controlOverflow": false,
+        "tabs": 1,
+        "panels": 1
+      },
+      "tacticGeometry": {
+        "field": {
+          "x": 43,
+          "y": -846.59375,
+          "width": 325.140625,
+          "height": 263.625,
+          "right": 368.140625,
+          "bottom": -582.96875
+        },
+        "side": {
+          "x": 380.140625,
+          "y": -846.59375,
+          "width": 243.859375,
+          "height": 1249.28125,
+          "right": 624,
+          "bottom": 402.6875
+        },
+        "panel": {
+          "x": 380.140625,
+          "y": -846.59375,
+          "width": 243.859375,
+          "height": 988.6875,
+          "right": 624,
+          "bottom": 142.09375
+        },
+        "outside": [],
+        "pageOverflow": false,
+        "overflow": false,
+        "controlOverflow": false,
+        "tabs": 1,
+        "panels": 1
+      },
+      "orientation": true,
+      "roleSelection": true,
+      "undo": true,
+      "tactics": true,
+      "language": true,
+      "pauseTimeUnchanged": true,
+      "reopened": true
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "initial": {
+        "field": {
+          "x": 23,
+          "y": 571.40625,
+          "width": 344,
+          "height": 424.265625,
+          "right": 367,
+          "bottom": 995.671875
+        },
+        "side": {
+          "x": 23,
+          "y": 1019.671875,
+          "width": 344,
+          "height": 854.609375,
+          "right": 367,
+          "bottom": 1874.28125
+        },
+        "panel": {
+          "x": 23,
+          "y": 1019.671875,
+          "width": 344,
+          "height": 599.609375,
+          "right": 367,
+          "bottom": 1619.28125
+        },
+        "outside": [
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 52,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 150.8125,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 52,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 185.625,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          },
+          {
+            "tag": "SPAN",
+            "id": "",
+            "classes": "d6-role-sr-only",
+            "right": 52,
+            "scrollWidth": 349,
+            "text": "Markierte Fähigkeiten sind für diese Rolle wichtig."
+          }
+        ],
+        "pageOverflow": false,
+        "overflow": false,
+        "controlOverflow": false,
+        "tabs": 1,
+        "panels": 1
+      },
+      "tacticGeometry": {
+        "field": {
+          "x": 23,
+          "y": -1677.59375,
+          "width": 344,
+          "height": 424.265625,
+          "right": 367,
+          "bottom": -1253.328125
+        },
+        "side": {
+          "x": 23,
+          "y": -496.1875,
+          "width": 344,
+          "height": 1130.1875,
+          "right": 367,
+          "bottom": 634
+        },
+        "panel": {
+          "x": 23,
+          "y": -496.1875,
+          "width": 344,
+          "height": 875.1875,
+          "right": 367,
+          "bottom": 379
+        },
+        "outside": [],
+        "pageOverflow": false,
+        "overflow": false,
+        "controlOverflow": false,
+        "tabs": 1,
+        "panels": 1
+      },
+      "orientation": true,
+      "roleSelection": true,
+      "undo": true,
+      "tactics": true,
+      "language": true,
+      "pauseTimeUnchanged": true,
+      "reopened": true
+    }
+  ],
+  "errors": []
+}

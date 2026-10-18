@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- Clientkorrekturen vom 18. Oktober auf dem SI-Gesamtstand abschließend geprüft: 127 Produktionsbefehle ohne Fehler, 21 echte Unity-Browserchecks, 340 unveränderte Altszenen und zehn Fortsetzungsprüfungen. Quellen, Build und Unity-Paket bleiben während des Gesamtlaufs hashgleich. Die Positionsmeldung betrifft laut Nutzer 2D. B05 bleibt offen; keine Veröffentlichung. [Bericht](client-fixes-r133.md), [Nachweise](../outputs/client-r133/README.md).
+
 - Den lokalen Unity-WebGL-Client aus den integrierten U-1-Quellen neu gebaut, Quellenkennung `7ce6f77f...`, 58 Manifest-/Quellen-/Dateipruefungen gruen. Die unveraenderten Animationsquellen bestehen die vollstaendige Unity-Suite einschliesslich 2.318 U-1-Grenzen. B05-Experimente mit einer oder zwei neuen Grenzverletzungen wurden verworfen; keine gelockerten Pruefgrenzen. Quelle, Einzeldatei-Build und lokales Unity-Paket sind gemeinsam pruefbar; dies ist keine Veroeffentlichung.
 
 - Der Unity-Browserpruefstand liefert den grossen Einzeldatei-Build im HTTP-Modus jetzt direkt ueber seinen Testserver. Die vorherige DevTools-Uebertragung brach reproduzierbar an der 100-MiB-Grenze ab; Produkt- und Testbedingungen bleiben erhalten. Torwarttests pruefen nun die tatsaechliche seitliche Reichweite statt der fehlerhaften Drehung zum Kontakt; der Altschuss-Hoehenschutz bleibt unveraendert, eine eigene SI-Hoehenassertion kommt hinzu.
@@ -14,7 +16,7 @@
 
 - B25 (Root-B23): Unity-Torhueter bleiben bei einer Parade zur Torachse ausgerichtet. Die vorherige Drehung direkt auf den Kontaktpunkt machte dessen seitliche Entfernung null und verhinderte die Auswahl von Hechtspruengen. 16 Vertragsfaelle beider Teams/Halbzeiten und der vorhandene Unity-Vertrag bestehen; native Reichweite, Ergebnis und Fang-/Abprallerentscheidung bleiben unveraendert.
 
-- B27 (Root-B25), 2D-Teil: Koerpermarker physischer Vereinsweltspieler werden nicht mehr kuenstlich um 50 Pixel auseinandergeschoben. Nahe und kreuzende Spieler bleiben auf ihren tatsaechlichen Positionen; Hitbereiche folgen ihnen. Sechserliga behaelt ihre bisherige Markertrennung. `test-client-markers-r133` prueft zehn enge Gruppen und den unveraenderten Altpfad. Ansichtsmodus der urspruenglichen Meldung und Nutzerabnahme bleiben offen.
+- B27 (Root-B25), 2D-Teil: Koerpermarker physischer Vereinsweltspieler werden nicht mehr kuenstlich um 50 Pixel auseinandergeschoben. Nahe und kreuzende Spieler bleiben auf ihren tatsaechlichen Positionen; Hitbereiche folgen ihnen. Sechserliga behaelt ihre bisherige Markertrennung. `test-client-markers-r133` prueft zehn enge Gruppen und den unveraenderten Altpfad. Der Nutzer bestaetigt 2D als betroffene Ansicht; konkrete visuelle Nutzerabnahme bleibt offen.
 
 - B23 (Root-B21): SI-Fehlschuesse behalten in 3D ihre berechnete Hoehe, ueber der Latte wie seitlich; alte dekorative Fehlvarianten bleiben unveraendert. Die alte Begrenzung auf 1,35 m liess einen hohen Fehlschuss im Tor erscheinen. Regelentscheidung und Statistik unveraendert. `test-client-miss-r133` prueft 16 Projektionen; 272 Tornetz-Projektionen bestehen. Die urspruenglichen Screenshots sind ohne Spielstand noch nicht exakt reproduziert; Nutzerabnahme offen.
 

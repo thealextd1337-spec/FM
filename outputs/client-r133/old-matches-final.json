@@ -1,0 +1,15 @@
+{
+  "pass": true,
+  "scenes": 340,
+  "groups": {
+    "unmarked": 158,
+    "marked182": 158,
+    "constructed182": 12,
+    "si183-off": 12
+  },
+  "differing": [],
+  "markerErrors": [],
+  "base": "F:\\Neuer Ordner (2)\\ChatGPT\\Fussballmanager\\work\\fix-client-r133\\work\\tmp-base183",
+  "baseCommit": "e4e531c0",
+  "scope": "Native VM scenes on base vs. current dist: unmarked and 182-marked v182 scenes, constructor matches without marker and with marker 183 (all packages off, digest without match.si); full digests incl. continuation, P02 load and RNG draws."
+}

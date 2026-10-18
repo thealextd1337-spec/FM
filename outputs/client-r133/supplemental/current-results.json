@@ -1,0 +1,62 @@
+[
+  {
+    "command": "work/ui-redesign/shared/verify-build.cjs",
+    "exit": 0,
+    "seconds": 1.527,
+    "log": "01.log"
+  },
+  {
+    "command": "work/test-club-crests.cjs",
+    "exit": 0,
+    "seconds": 0.313,
+    "log": "02.log"
+  },
+  {
+    "command": "work/test-expansion-crests.cjs",
+    "exit": 0,
+    "seconds": 8.738,
+    "log": "03.log"
+  },
+  {
+    "command": "work/test-completed-crests.cjs",
+    "exit": 0,
+    "seconds": 6.755,
+    "log": "04.log"
+  },
+  {
+    "command": "work/test-expansion-sponsors.cjs",
+    "exit": 0,
+    "seconds": 5.535,
+    "log": "05.log"
+  },
+  {
+    "command": "work/test-no-player-images.cjs",
+    "exit": 0,
+    "seconds": 0.407,
+    "log": "06.log"
+  },
+  {
+    "command": "work/platform/qa/verify-unity-manifest-114.cjs outputs/client-r133/unity-manifest-final.json",
+    "exit": 0,
+    "seconds": 0.875,
+    "log": "07.log"
+  },
+  {
+    "command": "work/check-release-r132-publication.py",
+    "exit": 1,
+    "seconds": 0.347,
+    "log": "08.log"
+  },
+  {
+    "command": "work/test-release-version.cjs",
+    "exit": 0,
+    "seconds": 0.039,
+    "log": "09.log"
+  },
+  {
+    "command": "work/check-release-r132-publication.py --source-id 7ce6f77fa77d4689e6f9befd4e27ae9bbdfab3ade2dc380d8f000abc9c72c3fe --output outputs/client-r133/publication-dry-run",
+    "exit": 0,
+    "log": "08-current-payload.log",
+    "note": "Historical default intentionally pins the old payload; explicit current source pin passed."
+  }
+]
