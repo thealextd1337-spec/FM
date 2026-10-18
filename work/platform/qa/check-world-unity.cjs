@@ -8,6 +8,16 @@ const offenseCandidate=process.argv.includes('--offense');
 const out=process.env.D6_QA_OUTPUT?path.resolve(process.env.D6_QA_OUTPUT):freshnessCandidate?path.resolve('outputs/platform/freshness-v158/unity-world'):offenseCandidate?path.resolve('outputs/platform/offensive-quality',roleCandidate?'unity-roles':'unity-normal'):path.resolve('outputs/platform/world-unity',roleCandidate?'roles-wave4':'');fs.mkdirSync(out,{recursive:true});
 const server=createServer();const port=Number(process.env.D6_QA_PORT||4361),url=`http://127.0.0.1:${port}/source/index.html`;
 const httpBuild=process.argv.includes('--http-build');
+if(httpBuild){
+ // Serve the large real document over HTTP. route.fulfill serializes it as
+ // base64 through DevTools; the embedded model exceeds its 100 MiB pipe cap.
+ const sourceHandler=server.listeners('request')[0];server.removeAllListeners('request');
+ server.on('request',(req,res)=>{
+  if(new URL(req.url,'http://localhost').pathname!=='/built/index.html')return sourceHandler(req,res);
+  res.setHeader('Content-Type','text/html; charset=utf-8');res.setHeader('Cache-Control','no-store');
+  res.end(fs.readFileSync('outputs/index.html','utf8').replace('<head>',`<head><base href="http://127.0.0.1:${port}/source/">`));
+ });
+}
 const sourceHashes=Object.fromEntries(['dist/world-unity-v151.js','dist/world-offensive-quality-v157.js','dist/pitch-v56.js','dist/world-pitch3d-v98.js','dist/pitch-motion-v102.js','dist/unity-match/runtime.js','dist/game.js','dist/pitch-v55.js','dist/world-match-v64.js','dist/world-physical-v65.js','dist/world-player-roles-v154.js','dist/world-player-performance-v155.js','outputs/index.html'].map(file=>[file,require('node:crypto').createHash('sha256').update(fs.readFileSync(file)).digest('hex')]));
 if(freshnessCandidate)for(const file of ['dist/player-load-candidate-v158.js','dist/world-player-load-v158.js','dist/player-freshness.js','dist/player-effective-abilities.js','dist/player-status-v51.js'])sourceHashes[file]=require('node:crypto').createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 if(freshnessCandidate){const file='outputs/platform/unity-web/probe-build.json',manifest=JSON.parse(fs.readFileSync(file));for(const input of [file,...manifest.files.map(item=>'outputs/platform/unity-web/Build/'+item.file)])sourceHashes[input]=require('node:crypto').createHash('sha256').update(fs.readFileSync(input)).digest('hex');}
@@ -152,11 +162,11 @@ async function fullMatch(page,engine){
   await page.evaluate(()=>{v98View='2d';draw();});check('2D remains usable while retaining the Unity session',await page.locator('#d6-unity-host').isHidden());await page.evaluate(()=>{v98View='3d';draw();});await waitPicture(page);
   check('Return to Unity restores the same fixture',await page.evaluate(()=>D6UnityMatch.active));
   await page.evaluate(async()=>{await v65Leave(true);});check('Leaving a match removes the renderer and stream',await page.locator('#d6-unity-host').count()===0);
+  await page.close();
   const failurePage=await browser.newPage({viewport:{width:1440,height:950}});await failurePage.route('**/unity/probe-build.json',route=>route.fulfill({status:404,body:'Not available'}));await prepare(failurePage);await failurePage.waitForFunction(()=>v98View==='2d'&&D6UnityMatch.lastError);
   check('Missing Unity build falls back to a playable 2D match',await failurePage.evaluate(()=>match.people.length===12&&!D6UnityMatch.active&&v65Context().state.phase==='paused'));await failurePage.close();
   const filePage=await browser.newPage({viewport:{width:1440,height:950}});filePage.on('pageerror',e=>report.errors.push(e.message));
   await filePage.addInitScript(runtime=>{window.D6UnityMatchUrl=runtime;},`http://127.0.0.1:${port}/source/unity-match/runtime.html`);
-  if(httpBuild)await filePage.route('**/built/index.html?*',route=>route.fulfill({contentType:'text/html',body:fs.readFileSync('outputs/index.html','utf8').replace('<head>',`<head><base href="http://127.0.0.1:${port}/source/">`)}));
   const offline=httpBuild?`http://127.0.0.1:${port}/built/index.html`:require('node:url').pathToFileURL(path.resolve('outputs/index.html')).href;
   const offlineFixture=await prepare(filePage,'unity','home',offline);await waitPicture(filePage);
   check(httpBuild?'Built HTML streams its actual match to Unity over local HTTP':'Locally opened offline build streams its actual match to Unity',await filePage.evaluate(({id,protocol})=>location.protocol===protocol&&D6UnityMatch.session.startsWith(id+':')&&D6UnityMatch.lastAck.ids.every(pid=>match.people.some(p=>p.pid===pid)),{id:offlineFixture.fixtureId,protocol:report.builtDocumentProtocol}));
