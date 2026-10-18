@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- B20: Die Matchpause zeigt Aufstellung und Bedienung bei 667/844 Pixeln Querformat nebeneinander; schmale Hochformate bleiben gestapelt. Der CSS-Breakpoint war trotz Querformat bis 900 Pixeln einspaltig. Vorheriger Fehler bei 844 Pixeln reproduziert; danach bestehen alle vier Groessen 1632/844/667/390 in DE/EN einschliesslich Rollen, Ausrichtung, Teamtaktik, Undo und erneutem Oeffnen. Produkttext nennt die tatsaechliche Rollen-/Ausrichtungsbedienung.
+
 - B24 (Root-B22): Der generische Entscheidungszeitpunkt physischer Ballfuehrer erzeugt keine erfundene Schussvorbereitung mehr. Vorher erschienen im festen nativen Test 228 von 276 Ballfuehrerbildern als wiederholter Schussansatz; nachher 0, ebenso auf dem grossen Feld. Tatsaechliche Pass-/Schussaktionen und Standards bleiben sichtbar; keine Matchregel oder Spielstandaenderung. Sichtbare Dribbelabnahme bleibt erforderlich.
 
 - B25 (Root-B23): Unity-Torhueter bleiben bei einer Parade zur Torachse ausgerichtet. Die vorherige Drehung direkt auf den Kontaktpunkt machte dessen seitliche Entfernung null und verhinderte die Auswahl von Hechtspruengen. 16 Vertragsfaelle beider Teams/Halbzeiten und der vorhandene Unity-Vertrag bestehen; native Reichweite, Ergebnis und Fang-/Abprallerentscheidung bleiben unveraendert.
