@@ -19,7 +19,7 @@
    // The generic pass countdown carries the opposing goal as a placeholder,
    // while the native body turns toward the actual receiver. It is no aim.
    const aimedKick=['freeKick','shot','volley','kickReady','passReady'].includes(a?.kind)&&!(a?.kind==='passReady'&&a?.id==='kick-ready');
-   const focus=p.keeper?(a?.kind==='goalKick'?a.targetWorld:a?.kind==='save'?a.contactWorld:frame.ball):aimedKick?a.targetWorld:null;
+   const focus=p.keeper?(a?.kind==='goalKick'?a.targetWorld:a?.kind==='save'?null:frame.ball):aimedKick?a.targetWorld:null;
    const focusDirection=focus&&[focus.x-p.x,0,focus.z-p.z];
    const travel=p.movement?.travelFacing;
    // A released foot pass can leave a small velocity in the old direction.
@@ -40,7 +40,10 @@
    const staleTravel=Boolean(observed&&sourceDirection&&Math.hypot(observed[0],observed[2])>.00001&&Math.hypot(sourceDirection[0],sourceDirection[2])>.00001&&observed[0]*sourceDirection[0]+observed[2]*sourceDirection[2]<0);
    // B04 (r132): free-kick attention of a standing player (bridge wrapper) and the preparation facing a kick turns away from.
    const attention=!p.keeper&&p.movement?.restartAttention&&p.movement.mode!=='run'?[p.movement.restartAttention.x-p.x,0,p.movement.restartAttention.z-p.z]:null;
-   const chosen=a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:focusDirection&&Math.hypot(focusDirection[0],focusDirection[2])>.00001?focusDirection:settledPass?bodyDirection:(attention&&Math.hypot(attention[0],attention[2])>.00001?attention:null)||restartDirection||(staleTravel?observed:travel?[travel.x-p.x,0,travel.z-p.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0]);
+   // A save stays square to the goal. Facing the contact itself made its
+   // lateral component zero, so Unity classified every wide save as upright.
+   const saveDirection=p.keeper&&a?.kind==='save'?[(p.team===0?1:-1)*flip,0,0]:null;
+   const chosen=saveDirection||(a?.facing&&Math.hypot(a.facing.x,a.facing.z)>.00001?[a.facing.x,0,a.facing.z]:focusDirection&&Math.hypot(focusDirection[0],focusDirection[2])>.00001?focusDirection:settledPass?bodyDirection:(attention&&Math.hypot(attention[0],attention[2])>.00001?attention:null)||restartDirection||(staleTravel?observed:travel?[travel.x-p.x,0,travel.z-p.z]:p.movement?.facing?[p.movement.facing.x-p.x,0,p.movement.facing.z-p.z]:[(p.team===0?1:-1)*(frame.turned?-1:1),0,0]));
    // The kick after a free-kick preparation turns from the preparation facing into the chosen one over the native
    // contact time (0.09 s of the received progress), a turn instead of a one-picture jump. Progress-based: a paused or
    // replayed picture gives the same facing.
