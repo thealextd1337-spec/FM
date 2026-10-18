@@ -30,6 +30,11 @@ jobs:
       - name: Spieltests ausführen
         run: |
           node work/test-release-version.cjs
+          node work/test-client-ball-r133.cjs
+          node work/test-client-miss-r133.cjs
+          node work/test-client-markers-r133.cjs
+          node work/test-client-keeper-r133.cjs
+          node work/test-client-dribble-r133.cjs
           node work/test-lowpoly-goal-tail.cjs
           node work/platform/qa/test-presentation-v131.cjs
           node work/test-tactics-roster-v130.cjs
