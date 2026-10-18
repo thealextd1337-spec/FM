@@ -58,6 +58,9 @@ draw=function(){v44OriginalDraw();if(!match?.people?.length)return;const ctx=$('
 // Separate markers only while drawing. Match positions and calculations stay intact.
 function v44VisualPositions(people){
  const points=people.map(player=>({x:player.x*600,y:player.y*740}));
+ // Physical-world bodies and contacts already have real positions. Separating
+ // their markers by 50 px made crossing players swap sides in the 2D picture.
+ if(document.body.classList.contains('v65-world-match'))return points;
  for(let pass=0;pass<24;pass++){
   let changed=false;
   for(let i=0;i<points.length;i++)for(let j=i+1;j<points.length;j++){
