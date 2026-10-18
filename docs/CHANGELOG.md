@@ -2,6 +2,8 @@
 
 ## Noch nicht veröffentlicht
 
+- B23 (Root-B21): Echte Schuesse ueber die Latte behalten in 3D ihre Hoehe; SI-Fehlschuesse verwenden auch seitlich die gemessene Hoehe. Die alte Begrenzung auf 1,35 m liess einen hohen Fehlschuss im Tor erscheinen. Regelentscheidung und Statistik unveraendert. `test-client-miss-r133` prueft 16 Projektionen; 272 Tornetz-Projektionen bestehen. Die urspruenglichen Screenshots sind ohne Spielstand noch nicht exakt reproduziert; Nutzerabnahme offen.
+
 - B26 (urspruenglich Root-B24): Freie Rollbaelle und sichtbare Eckballphasen verwenden in der zweiten Halbzeit dieselbe Drehung wie das restliche 2D-Feld. Die Simulation bleibt unveraendert. Regression `node work/test-client-ball-r133.cjs`: vorher falsche Seite, nachher acht Projektionen beider Halbzeiten mit unveraenderten nativen Daten.
 
 - Spielerintelligenz 183, Kompakt-Neuanpassung und Sponsortabelle (Nutzerentscheidung „Remis und Sponsorquote 17. Oktober 2026“, Branch `feat/si-compact2`). Nur neue Partien mit Kennung 183 und neu angelegte Welten; Kennung 178, 119, unmarkierte Partien und Altwelten bleiben bytegleich beziehungsweise unverändert, keine Spielstandumrechnung.
