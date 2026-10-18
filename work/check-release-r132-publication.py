@@ -1,5 +1,6 @@
 """Exercise publication of the REAL frozen release package entirely offline."""
 import hashlib
+import argparse
 import io
 import json
 import os
@@ -9,6 +10,11 @@ from unittest import mock
 import deploy_unity_assets as deploy
 from test_deploy_unity_assets import FakeFTP
 
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--source-id', default='787a9cd134a8f784a53bcf89b23e27140b40b00a1e93ca534d3c47d59ff10eb3')
+parser.add_argument('--output', type=Path, default=Path('outputs/release-r132-final'))
+args = parser.parse_args()
+
 requests = []
 def offline_http(request, **_kwargs):
     relative = request.full_url.split('.at/', 1)[1].split('?', 1)[0]
@@ -17,7 +23,7 @@ def offline_http(request, **_kwargs):
 
 files = deploy.publication_files()  # Real manifest sizes and SHA-256 checked here.
 manifest = json.loads((deploy.UNITY / 'probe-build.json').read_text(encoding='utf-8'))
-assert manifest['sourceId'] == '787a9cd134a8f784a53bcf89b23e27140b40b00a1e93ca534d3c47d59ff10eb3'
+assert manifest['sourceId'] == args.source_id
 assert "productVersion:'132'" in (deploy.RUNTIME / 'runtime.js').read_text(encoding='utf-8')
 secrets = dict(W4Y_FTP_HOST='ftp.test', W4Y_FTP_USER='offline',
                W4Y_FTP_PASSWORD='offline', W4Y_FTP_REMOTE_DIR='/site')
@@ -37,7 +43,7 @@ for source, target in files:
     assert content == FakeFTP.instance.files['/site/' + target]
     rows.append(dict(source=str(source), target=target, bytes=len(content),
                      sha256=hashlib.sha256(content).hexdigest()))
-out = Path('outputs/release-r132-final')
+out = args.output
 out.mkdir(parents=True, exist_ok=True)
 (out / 'publication-dry-run.json').write_text(json.dumps(dict(
     status='passed', network=False, sourceId=manifest['sourceId'],
