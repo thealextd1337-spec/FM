@@ -1,10 +1,12 @@
 # Offene Themen für das physische Match und die 3D-Darstellung
 
-Stand: 5. Oktober 2026. Balleffet bleibt geplant; Raumpässe sind lokal in v150 umgesetzt und geprüft, noch nicht veröffentlicht. Die Regeln gelten für die gemeinsame physische Vereinswelt-Simulation in 2D und 3D.
+Stand: 21. Oktober 2026. Balleffet Stufe 1 (Seiteneffet) ist lokal in `dist/match-ball-physics-v184.js` umgesetzt und geprüft, noch nicht veröffentlicht; Raumpässe sind lokal in v150 umgesetzt und geprüft, noch nicht veröffentlicht. Die Regeln gelten für die gemeinsame physische Vereinswelt-Simulation in 2D und 3D.
 
 ## Balleffet
 
-Schüsse, Flanken und geeignete Pässe sollen gezielt angeschnitten werden können. Seitlicher Drall krümmt die Flugbahn; Topspin und Rückwärtsdrall können später auch Flug und Aufspringen beeinflussen. Eine sichtbare Drehung des Ballmodells allein genügt dafür nicht.
+**Stufe 1 umgesetzt (21. Oktober 2026, lokal, Kennung `attackFlow.ballRevision` 184, nur neue Partien in Welten mit Stempel 183):** Platzierte Schüsse, direkte Freistöße, Flanken und hohe Bälle erhalten einen Seiteneffet. Die Richtung folgt der Situation (Schuss: Bogen vom Torwart weg; Flanke und hoher Ball: vom nächsten Gegner weg, sonst zum Tor), die Stärke begrenzt die Technik, die Ausführung bestimmt Abschluss beziehungsweise Passspiel. Die Physik (Schwerkraft, Luftwiderstand, Magnus-Kraft, Aufspringen mit Reibung und Drallkopplung, Pfosten und Latte) formt nur die Bahn: Zielpunkt, Flugdauer und das vorab entschiedene Ergebnis bleiben. Flug, Darstellung in 2D/3D, Rückschau, Abfangwege zum fallenden Ball und die Übergabe in den freien Ball verwenden dieselbe Bahntabelle; gerade Bodenpässe und ihre Passwegprüfungen bleiben unverändert. Keine neue Zufallsziehung. Offen (Stufe 2): Top-/Rückwärtsdrall mit Wirkung auf Flug und Aufspringen, Effet auf Bodenpässe, Häufigkeit und Erfolg nach Spielerqualität. Prüfung: `node work/test-ball-physics-v184.cjs`.
+
+Ursprüngliche Anforderung: Schüsse, Flanken und geeignete Pässe sollen gezielt angeschnitten werden können. Seitlicher Drall krümmt die Flugbahn; Topspin und Rückwärtsdrall können später auch Flug und Aufspringen beeinflussen. Eine sichtbare Drehung des Ballmodells allein genügt dafür nicht.
 
 - Technik beeinflusst die kontrollierte Drallerzeugung; Abschluss bestimmt die Schussausführung, Passspiel die Ausführung von Pässen und Flanken. Starker Effet darf nicht automatisch mehr Präzision oder höhere Torwahrscheinlichkeit bedeuten.
 - Fuß, Körperstellung, tatsächlicher Kontakt, Tempo, Distanz und Gegnerdruck begrenzen, welcher Drall sinnvoll ausführbar ist. Taktik und Situation bestimmen, wann er versucht wird. Gute Spieler setzen ihn häufiger passend ein; schwache Spieler können ihn ebenfalls versuchen und ungenauer ausführen.
