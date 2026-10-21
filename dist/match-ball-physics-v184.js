@@ -37,9 +37,9 @@ const V184=Object.freeze({
  frameRadius:.06,       // post and crossbar
  spinShot:50,spinCross:40,   // rad/s at top technique and execution
  rest:.29,              // resting elevation = ball centre height (engine convention)
- missBand:.08           // a miss hits post or bar only within this distance of the frame axis; a nearer miss clears it
+ missBand:.03           // a miss hits post or bar only within this distance of the frame axis (dead-centre hits); a nearer miss clears it. Series 21 Oct 2026: .08 gave 3.3 % of shots and +.29 goals per match from the live rebounds
 });
-const v184Tables=new WeakMap(),v184Launches=new WeakMap();
+const v184Tables=new WeakMap(),v184Launches=new WeakMap(),v184Paths=new WeakMap();
 let v184Projecting=false,v184Handover=null,v184WoodworkPending=null;
 function v184Active(m){return m?.attackFlow?.ballRevision===V184_REVISION;}
 function v184Rate(m){return typeof v183Rate==='function'?v183Rate(m):.78;}
@@ -259,7 +259,9 @@ v50GoalKick=function(keeper,...args){
 function v184AfterWoodwork(m,flight,table){
  const shooter=table.shot.shooter,frame=table.woodwork.frame,end=v184Legacy(m,table.endState),point={x:end.x,y:end.y};
  const actions=v99Actions.get(m);if(actions?.miss?.flight===flight)actions.miss=null;   // no miss pose behind the goal, the ball is in play
- if(typeof v117Event==='function'&&typeof v117Ledger==='function'&&v117Ledger(m)){const parent=typeof v117Origin==='function'?v117Origin(m):null,event=v117Event(m,'woodwork',shooter,parent?.id??null);event.frame=frame;event.result='rebound';}
+ // Ledger: a 'woodwork' event under the shot and the frame on the shot event itself; the loose ball
+ // stays parented to the shot, so rebound chains (loose ball from a shot) keep their meaning.
+ if(typeof v117Event==='function'&&typeof v117Ledger==='function'&&v117Ledger(m)){const parent=typeof v117Origin==='function'?v117Origin(m):null,event=v117Event(m,'woodwork',shooter,parent?.id??null);event.frame=frame;event.result='rebound';if(parent)parent.woodwork=frame;}
  m.lastTouch=shooter.t;
  v184Handover={point,state:table.endState,spin:table.endSpin};
  try{v50LooseBall(point,`Aluminium! ${shooter.name} trifft ${frame==='bar'?'die Latte':'den Pfosten'}.`);}finally{v184Handover=null;}
@@ -304,16 +306,26 @@ v124AdvanceAir=function(current,seconds){
  else{r.vx=tx/(dt*rate);r.vy=ty/(dt*rate);}
  return a;
 };
+// Predictors of one airborne free ball share one integration per tick: the path
+// sampled every .05 s up to 6 s (the intercept search of v182 asks for exactly
+// these times) and the first ground contact. Keyed by the air state, rebuilt
+// when the state changes (once per tick).
+function v184Path(m,r,a){
+ const sig=[r.x,r.y,a.height,a.vh,a.vxm,a.vym,a.spin?.[0],a.spin?.[1],a.spin?.[2]].join(',');
+ let path=v184Paths.get(a);if(path&&path.sig===sig)return path;
+ const o={frame:v184Frame(m)},st=v184AirState(m,a,r),pts=[v184Legacy(m,st)];
+ for(let i=1;i<=120;i++){v184Advance(st,.05,o);pts.push(v184Legacy(m,st));}
+ const land=v184AirState(m,a,r);let landing;
+ if(land.z<=1e-9&&land.vz<=1e-9)landing={...v184Legacy(m,land),seconds:0};
+ else{let t=0;while(t<3&&!(land.impacts>0||land.settled)){v184Advance(land,V184.dt,o);t+=V184.dt;}landing={...v184Legacy(m,land),seconds:land.t};}
+ path={sig,pts,landing};v184Paths.set(a,path);return path;
+}
 function v184FreeBallAt(m,r,a,seconds){
- const st=v184AirState(m,a,r);v184Advance(st,seconds,{frame:v184Frame(m)});return v184Legacy(m,st);
+ const pts=v184Path(m,r,a).pts,t=Math.max(0,Math.min(6,seconds)),i=Math.min(pts.length-2,Math.floor(t/.05+1e-9)),f=Math.max(0,Math.min(1,(t-i*.05)/.05)),p=pts[i],q=pts[i+1];
+ return {x:p.x+(q.x-p.x)*f,y:p.y+(q.y-p.y)*f,elevation:p.elevation+(q.elevation-p.elevation)*f};
 }
 // First ground contact of an airborne free ball: point (legacy) and seconds.
-function v184Landing(m,r,a){
- const st=v184AirState(m,a,r);if(st.z<=1e-9&&st.vz<=1e-9)return {...v184Legacy(m,st),seconds:0};
- const o={frame:v184Frame(m)};let t=0;
- while(t<3&&!(st.impacts>0||st.settled)){v184Advance(st,V184.dt,o);t+=V184.dt;}
- return {...v184Legacy(m,st),seconds:st.t};
-}
+function v184Landing(m,r,a){return v184Path(m,r,a).landing;}
 const v184BaseBallAt=v182BallAt;
 v182BallAt=function(r,seconds){
  const m=typeof match!=='undefined'?match:null,a=m&&v184Active(m)&&m.rebound===r?v124AirBalls.get(m):null;
