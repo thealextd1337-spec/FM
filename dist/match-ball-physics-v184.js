@@ -30,7 +30,8 @@ const V184=Object.freeze({
  drag:.0133,            // rho*Cd*A/(2m): 1.2*.25*pi*.11^2/(2*.43)
  magnus:.0045,          // acceleration per (rad/s * m/s) of omega x v
  spinDecay:.1,          // 1/s in the air
- groundRestitution:.5,frameRestitution:.62,friction:.45,
+ groundRestitution:.42,frameRestitution:.62,friction:.45,
+ bounceSlip:.18,        // cap of the tangential loss per bounce as share of the tangential speed (release-133 factor .82 of v124)
  settle:.9,             // vertical speed after a bounce below which the ball stays down (v124 rule)
  roll:2.3,              // ground damping 1/s (release-133 loose-ball model)
  stop:.05,              // rolling speed below which the ball rests
@@ -68,12 +69,15 @@ function v184FrameHit(st,frame,h){
  return first;
 }
 function v184Bounce(st){
- // ground contact: restitution, Coulomb friction with the slip of the contact point (sphere, I=2/5 m r^2)
+ // ground contact: restitution, Coulomb friction with the slip of the contact point (sphere, I=2/5 m r^2).
+ // The loss is capped at the calibrated share of the tangential speed instead of the 2/7 rolling
+ // threshold: with physical (lower) landing speeds the sphere rule checked lofted balls up so hard that
+ // second balls stayed in the box (+0.27 goals per match in the series of 21 Oct 2026).
  const e=V184.groundRestitution,R=V184.radius,vn=st.vz;
  st.z=0;
  let vzNext=-e*vn;
  const ux=st.vx-R*st.wy,uy=st.vy+R*st.wx,u=Math.hypot(ux,uy);
- if(u>1e-9){const limit=Math.min(V184.friction*(1+e)*Math.abs(vn),2*u/7),dx=ux/u,dy=uy/u;st.vx-=limit*dx;st.vy-=limit*dy;const dw=5*limit/(2*R);st.wx-=dw*dy;st.wy+=dw*dx;}
+ if(u>1e-9){const limit=Math.min(V184.friction*(1+e)*Math.abs(vn),2*u/7,V184.bounceSlip*Math.hypot(st.vx,st.vy)),dx=ux/u,dy=uy/u;st.vx-=limit*dx;st.vy-=limit*dy;const dw=5*limit/(2*R);st.wx-=dw*dy;st.wy+=dw*dx;}
  st.impacts=(st.impacts||0)+1;
  if(vzNext<V184.settle){vzNext=0;st.settled=true;}
  st.vz=vzNext;

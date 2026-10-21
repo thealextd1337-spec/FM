@@ -65,13 +65,13 @@ check('side spin curves sideways only: bulge on the expected side, single curvat
  }
  for(let i=0;i<=plain.n;i++)assert(Math.abs(lateral(c.start,c.end,{x:plain.pos[3*i],y:plain.pos[3*i+1]}))<1e-9,'no spin: straight');
 });
-check('a bounce loses energy, keeps restitution .5 and turns sliding into forward spin',()=>{
+check('a bounce loses energy, keeps the ground restitution and turns sliding into forward spin',()=>{
  const st=stateOf({x:0,y:0,z:1.5},{vx:4,vy:0,vz:-3},[0,0,0]);
  let before=null;
  while(st.impacts===0){before=copyState(st);advance(st,V184.dt,{});}
  const vzBefore=-Math.sqrt(9+2*V184.g*1.5);
- assert(st.vz>-vzBefore*.47&&st.vz<-vzBefore*.5+1e-9,'vertical restitution '+st.vz/-vzBefore);
- assert(st.vx<4&&st.vx>2,'friction reduces the horizontal speed: '+st.vx);
+ const e=V184.groundRestitution;assert(st.vz>-vzBefore*(e-.03)&&st.vz<-vzBefore*e+1e-9,'vertical restitution '+st.vz/-vzBefore);
+ assert(st.vx<before.vx&&st.vx>=before.vx*(1-V184.bounceSlip)-.01,'friction takes at most the calibrated share of the pre-impact speed: '+st.vx+' from '+before.vx);
  assert(st.wy>0,'forward spin after sliding');
  const ke=s=>s.vx*s.vx+s.vy*s.vy+s.vz*s.vz;
  assert(ke(st)<ke(before)*.6,'energy lost');
