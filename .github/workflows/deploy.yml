@@ -136,6 +136,7 @@ jobs:
           node work/test-v158-final-whistle-load.cjs
           node work/test-si-crossing-v183.cjs
           node work/test-si-scorer-v183.cjs
+          node work/test-ball-physics-v184.cjs
           node work/test-native-career-v160.cjs
           node work/platform/qa/test-unity-integration-v160.cjs
           node work/platform/qa/test-world-unity-contract.cjs

@@ -92,6 +92,8 @@ const WEAKMAPS={
  v122AerialPlans:{kind:'flight',note:'Luftduellplan je Flug; kein Flug im Snapshot.'},
  v110Blocks:{kind:'flight',note:'Block-Absicht je Flug; kein Flug im Snapshot.'},
  v99Flights:{kind:'flight',note:'Schussfreigabe je Flug; kein Flug im Snapshot.'},
+ v184Tables:{kind:'flight',note:'Ballphysik 184: Bahntabelle je Flug, aus Start, Ziel und Dauer neu berechenbar; kein Flug im Snapshot.'},
+ v184Launches:{kind:'flight',note:'Ballphysik 184: Abgabeinfo je Flug (Person, Art, Aluminiumband); kein Flug im Snapshot.'},
  v103Replays:{kind:'ui',note:'Aufzeichnung der Tor-Wiederholung (Anzeige).'},
  v158ParameterCache:{kind:'derived',note:'Zwischenspeicher der Belastungsparameter.'},
  v158AbilityCache:{kind:'derived',note:'Zwischenspeicher der effektiven Fähigkeiten je Spieler.'},

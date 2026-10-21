@@ -15,15 +15,17 @@ const ENABLED=(()=>{const g=create({view:false});return PACKAGES.filter(p=>g.eva
 const OFF={packages:Object.fromEntries(PACKAGES.map(p=>[p,false]))};
 
 // ----- load and build lists -----
-check('index.html loads core then the seven packages between football flow v159 and ball events v117',()=>{
+// Ball physics 184 (match-ball-physics-v184.js) loads after the packages and before the ledger v117, so the
+// ledger wraps the loose ball of a woodwork rebound.
+check('index.html loads core then the seven packages between football flow v159 and ball physics 184 / ball events v117',()=>{
  const html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8'),scripts=[...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map(m=>m[1]),at=scripts.indexOf('world-football-flow-v159.js');
- assert.deepEqual(scripts.slice(at+1,at+10),[...SI_FILES,'match-ball-events-v117.js']);
+ assert.deepEqual(scripts.slice(at+1,at+11),[...SI_FILES,'match-ball-physics-v184.js','match-ball-events-v117.js']);
  for(const file of SI_FILES)assert(fs.existsSync(path.join(root,'dist',file)),file);
 });
 check('build.cjs and the native130 harness list carry the same eight modules in load order',()=>{
  for(const file of ['work/build.cjs','work/native130-harness.cjs']){
   const text=fs.readFileSync(path.join(root,file),'utf8');
-  assert(text.includes(`'world-football-flow-v159.js',${SI_FILES.map(f=>`'${f}'`).join(',')},'match-ball-events-v117.js'`),file);
+  assert(text.includes(`'world-football-flow-v159.js',${SI_FILES.map(f=>`'${f}'`).join(',')},'match-ball-physics-v184.js','match-ball-events-v117.js'`),file);
  }
 });
 const h=fresh();
@@ -193,9 +195,10 @@ check('formation anchor switch: identity stub; team() consults it only with an e
   return {calls,same:[withNull,old,marked].every(q=>q.x===plain.x&&q.y===plain.y&&q.bx===plain.bx&&q.by===plain.by)};}finally{v183FormationAnchor=base;}})()`));
  assert.deepEqual(r,{calls:1,same:true});
 });
+// ball:false: the ball-physics marker 184 is a separate new-match feature (work/test-ball-physics-v184.cjs).
 check('marker 183 with every package off replays like the 182 constructor (digest without match.si)',()=>{
  for(const scene of copy(h.call('Native183.constructedScenes')).filter((s,i)=>i%3===0)){
-  const marked=h.call('Native183.constructedDigest',scene,{si:OFF,withoutSi:true,segments:[200,200]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[200,200]});
+  const marked=h.call('Native183.constructedDigest',scene,{si:OFF,ball:false,withoutSi:true,segments:[200,200]}),legacy=h.call('Native183.constructedDigest',scene,{si:false,segments:[200,200]});
   assert.equal(marked,legacy,scene.id);
  }
 });
