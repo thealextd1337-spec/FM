@@ -1529,6 +1529,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^(.+) foult (.+)\. (Elfmeter|Freistoß) für (.+)\.$/,(_,offender,victim,type,club)=>`${offender} fouls ${victim}. ${type==='Elfmeter'?'Penalty':'Free kick'} for ${club}.`],
   [/^Parade von (.+)$/,(_,name)=>`a save by ${name}`],
   [/^Block von (.+)$/,(_,name)=>`a block by ${name}`],
+  [/^Aluminium! (.+) trifft (den Pfosten|die Latte)\.$/,(_,name,frame)=>`Woodwork! ${name} hits the ${frame==='die Latte'?'crossbar':'post'}.`],
+  [/^Aluminium! (.+) trifft (den Pfosten|die Latte)\. Abstoß für (.+)\.$/,(_,name,frame,club)=>`Woodwork! ${name} hits the ${frame==='die Latte'?'crossbar':'post'}. Goal kick for ${club}.`],
   [/^Der Ball liegt nach (.+) frei\.$/,(_,cause)=>`The ball is loose after ${translate(cause)}.`],
   [/^(.+) erreicht den Ball nicht mehr\.$/,(_,name)=>`${name} cannot reach the ball.`],
   [/^(.+) erreicht den Pass nicht\.$/,(_,name)=>`${name} cannot reach the pass.`],
