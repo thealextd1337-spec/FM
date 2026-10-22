@@ -235,7 +235,9 @@ function v65AfterStep(context){
  }
  const halftime=state.minute>=45&&match.halftimePause>0&&!state.halftimeAiDone;
  if(halftime){if(state.playerLoad)v158RecoverMatch(context.career,context.fixture,state,'halftime');state.halftimeAiDone=true;state.events.push({minute:state.minute,type:'halftime'})}
- if(goal||halftime||state.minute>0&&state.minute!==45&&state.minute%15===0)for(const side of [0,1])v64AiAdjust(context.career,context.fixture,state,side,goal?'Tor':halftime?'Halbzeit':'Reguläre Prüfung');
+ // AI coach 185 (world-ai-coach-v185.js) only for states marked by v64MakeState; all others keep v64AiAdjust.
+ if(state.aiCoachRevision===185)v185AfterStep(context,goal,halftime);
+ else if(goal||halftime||state.minute>0&&state.minute!==45&&state.minute%15===0)for(const side of [0,1])v64AiAdjust(context.career,context.fixture,state,side,goal?'Tor':halftime?'Halbzeit':'Reguläre Prüfung');
  v65ApplyTactics(context);
  if(v65Stopped()&&state.pending.some(items=>items.length)){
   const changes=v64ExecutePending(context.career,context.fixture,state,match.halftimePause>0?'Halbzeit':'Spielunterbrechung');

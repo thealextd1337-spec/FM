@@ -35,6 +35,12 @@ assert.equal(translate('Antoine Bernard foult Diego Gómez. Freistoß für Paris
 assert.equal(translate('Kurzer Abstoß: Adrien Richard auf Antoine Bernard.'),'Short goal kick: Adrien Richard to Antoine Bernard.');
 assert.equal(translate('↑ Eingewechselt 76′ · 22 Min.'),'↑ Came on 76′ · 22 min');
 assert.equal(translate('Wechsel: Louis Moreau geht, Mathis Petit kommt.'),'Substitution: Louis Moreau goes off, Mathis Petit comes on.');
+assert.equal(translate('Faro Sul FC stellt um: 3–1–1, frühes Pressing (unter Druck).'),'Faro Sul FC changes: 3–1–1, high pressing (under pressure).');
+assert.equal(translate('Faro Sul FC stellt um: 1–2–2, direktes Passspiel, hohe Abwehrlinie (Rückstand aufholen).'),'Faro Sul FC changes: 1–2–2, direct passing, high defensive line (chasing the game).');
+assert.equal(translate('Faro Sul FC stellt um: abwartendes Pressing, vorsichtige Zweikämpfe (Führung sichern).'),'Faro Sul FC changes: cautious pressing, careful tackling (protecting the lead).');
+assert.equal(translate('Faro Sul FC stellt um: 2–2–1, ausgewogenes Pressing (Lage beruhigt).'),'Faro Sul FC changes: 2–2–1, balanced pressing (situation settled).');
+assert.equal(translate('Faro Sul FC wechselt: Mathis Petit für Louis Moreau (schwache Leistung).'),'Faro Sul FC substitution: Mathis Petit for Louis Moreau (poor performance).');
+assert.equal(translate('Umstellungen des Gegners'),'Opponent changes');
 assert.equal(translate('Halbzeitpfiff. Kurze Pause vor der zweiten Hälfte.'),'Half-time whistle. A short break before the second half.');
 assert.equal(translate('Form der letzten fünf Spiele: Sieg'),'Form in the last five matches: Win');
 assert.equal(translate('Sieg 3:1 gegen Milano Ferro FC'),'Win 3:1 vs Milano Ferro FC');

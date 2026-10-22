@@ -809,6 +809,7 @@ Turnierbaum	Tournament bracket
 Zur Vereinszentrale	Back to club centre
 Spielende · Noten von 1 bis 10 · T = Tore · V = Vorlagen	Full-time · Ratings from 1 to 10 · G = Goals · A = Assists
 Teamstatistik	Team statistics
+Umstellungen des Gegners	Opponent changes
 SIEGER	WINNER
 Aufs Tor	On target
 Gewonnene Zweikämpfe	Duels won
@@ -1539,6 +1540,8 @@ Regionaler Pokalverein mit erfahrenem Trainer und engem Etat.	A regional cup clu
   [/^Der hohe Ball von (.+) springt frei auf\.$/,(_,name)=>`${name}'s high ball bounces loose.`],
   [/^(.+) verspringt die Annahme des hohen Balls\.$/,(_,name)=>`${name} miscontrols the high ball.`],
   [/^Nachspielzeit: \+(\d+) Minuten\.$/,(_,minutes)=>`Stoppage time: +${minutes} minutes.`],
+  [/^(.+) stellt um: (.+) \((Rückstand aufholen|unter Druck|Führung sichern|Lage beruhigt|Kräfte schonen)\)\.$/,(_,club,parts,why)=>`${club} changes: ${parts.split(', ').map(part=>({'frühes Pressing':'high pressing','abwartendes Pressing':'cautious pressing','ausgewogenes Pressing':'balanced pressing','direktes Passspiel':'direct passing','kurzes Passspiel':'short passing','variables Passspiel':'mixed passing','hohe Abwehrlinie':'high defensive line','tiefe Abwehrlinie':'deep defensive line','normale Abwehrlinie':'normal defensive line','harte Zweikämpfe':'hard tackling','vorsichtige Zweikämpfe':'careful tackling','normale Zweikämpfe':'normal tackling'})[part]||part).join(', ')} (${{'Rückstand aufholen':'chasing the game','unter Druck':'under pressure','Führung sichern':'protecting the lead','Lage beruhigt':'situation settled','Kräfte schonen':'saving energy'}[why]}).`],
+  [/^(.+) wechselt: (.+) für (.+) \((schwache Leistung|müde)\)\.$/,(_,club,incoming,out,why)=>`${club} substitution: ${incoming} for ${out} (${why==='müde'?'tired':'poor performance'}).`],
   [/^Wechsel: (.+) geht, (.+) kommt\.$/,(_,out,incoming)=>`Substitution: ${out} goes off, ${incoming} comes on.`],
   [/^Form der letzten fünf Spiele: (.+)$/,(_,results)=>`Form in the last five matches: ${results.split(', ').map(translate).join(', ')}`],
   [/^(.+) nimmt den freien Ball auf\.$/,(_,name)=>`${name} collects the loose ball.`],
