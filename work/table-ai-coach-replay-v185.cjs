@@ -1,7 +1,8 @@
 'use strict';
 // AI coach 185: table of a replay (outputs/ai-coach-v185/<label>.json, work/replay-ai-coach-v185.cjs), off (v64AiAdjust)
 // against on (marker 185), paired per job. Subsets: league (a + b), a (similar strength), b-fav (AI favourite),
-// b-out (AI outsider), c (cup, AI = cup club; separate). Per subset: goals, shots, draws, favourite wins at a gap of
+// b-out (AI outsider), c (cup, AI = cup club; separate), p (the 192 browser fixtures of bp-h / bp-hl; their off runs are
+// compared with the browser series bp-h + bp-hl, their on runs with aic-b, as a fidelity check of the replay). Per subset: goals, shots, draws, favourite wins at a gap of
 // >= 1 / >= 3 skill points (actual starters), AI points after trailing at state minute 60, AI tactic changes and
 // substitutions per match, share of tactic changes reverted within 10 minutes (flip-flops) and, for the league,
 // the reaction by coach stage (Gegneranpassung 1-5).
@@ -44,12 +45,15 @@ function stages(rows){
   out[q]={matches:s.length,changes:mean(s.map(changeMinutes)),pressure:mean(s.map(r=>r.log.filter(e=>e.kind==='tactics'&&(e.why==='pressure'||e.why==='protect')).length)),trailDelay:[mean(delays),delays.length],firstPressureMinute:mean(s.map(r=>r.log.find(e=>e.why==='pressure')?.minute).filter(Number.isFinite)),reasons:tactics.reduce((m,e)=>(m[e.why]=(m[e.why]||0)+1,m),{})};}
  return out;
 }
-const league=x=>x.set!=='c';
-const out={label,pairs:pairs.length,sets:{league:subset(league),a:subset(x=>x.set==='a'),'b-fav':subset(x=>x.set==='b-fav'),'b-out':subset(x=>x.set==='b-out'),c:subset(x=>x.set==='c')},
+const league=x=>['a','b-fav','b-out'].includes(x.set);
+const out={label,pairs:pairs.length,sets:{league:subset(league),a:subset(x=>x.set==='a'),'b-fav':subset(x=>x.set==='b-fav'),'b-out':subset(x=>x.set==='b-out'),c:subset(x=>x.set==='c'),p:subset(x=>x.set==='p')},named:pairs.filter(p=>p.on.set==='p'&&p.on.kind!=='p').map(p=>({id:p.on.id,kind:p.on.kind,ai:ai(p.on).clubId,ovr:[user(p.on).ovr,ai(p.on).ovr],off:[user(p.off).score,ai(p.off).score],on:[user(p.on).score,ai(p.on).score],log:p.on.log.map(e=>e.minute+' '+(e.kind==='sub'?'Wechsel ':'')+e.why)})),
  sizes:{standard:subset(x=>league(x)&&x.size==='standard'),large:subset(x=>league(x)&&x.size==='large')},stages:stages(pairs.map(p=>p.on).filter(league)),stagesOff:stages(pairs.map(p=>p.off).filter(league))};
+// Browser reference for set p (same fixtures): bp-h + bp-hl (without marker) and aic-b (with marker).
+const browser=(...labels)=>{const dir=[path.resolve(__dirname,'..','outputs/si183'),path.resolve(__dirname,'..','..','ball-physics','outputs/si183')];const rows=labels.flatMap(l=>{const file=dir.map(d=>path.join(d,l+'.json')).find(fs.existsSync);return file?JSON.parse(fs.readFileSync(file,'utf8')).matches.filter(m=>m.finished):[];});if(!rows.length)return null;const g=rows.map(m=>m.score[0]+m.score[1]),sh=rows.map(m=>m.teams[0].stats.shots+m.teams[1].stats.shots),d=rows.map(m=>m.score[0]===m.score[1]?1:0);return{n:rows.length,goals:[mean(g),se(g)],shots:[mean(sh),se(sh)],draws:[100*mean(d),100*se(d)]};};
+out.browser={off:browser('bp-h-trace40000','bp-hl-trace40000'),on:browser('aic-b-trace40000')};
 if(process.argv.includes('--json')){console.log(JSON.stringify(out,null,1));process.exit(0);}
 const f=(v,d=2)=>Number.isFinite(v)?v.toFixed(d):'–',pm=(v,d=2)=>`${f(v[0],d)} ± ${f(v[1],d)}${v[2]!==undefined?` (n ${v[2]})`:''}`;
-const names={league:'Liga gesamt (a + b)',a:'(a) ähnliche Stärke',['b-fav']:'(b) KI Favorit',['b-out']:'(b) KI Außenseiter',c:'(c) Pokal, KI = Pokalverein (getrennt)'};
+const names={league:'Liga gesamt (a + b)',a:'(a) ähnliche Stärke',['b-fav']:'(b) KI Favorit',['b-out']:'(b) KI Außenseiter',c:'(c) Pokal, KI = Pokalverein (getrennt)',p:'(p) die 192 Browser-Fixtures (bp-h/bp-hl, Treueprüfung)'};
 for(const [key,s] of [...Object.entries(out.sets),['Standardfeld (Liga)',out.sizes.standard],['großes Feld (Liga)',out.sizes.large]]){
  console.log(`\n### ${names[key]||key}\n\n| Kennzahl | ohne 185 | mit 185 | gepaart |\n| --- | ---: | ---: | ---: |\n| Partien | ${s.off.n} | ${s.on.n} | |`);
  console.log(`| Tore | ${pm(s.off.goals)} | ${pm(s.on.goals)} | ${pm(s.paired.goals)} |\n| Schüsse | ${pm(s.off.shots)} | ${pm(s.on.shots)} | ${pm(s.paired.shots)} |\n| Remis % | ${pm(s.off.draws,1)} | ${pm(s.on.draws,1)} | |`);
@@ -59,3 +63,18 @@ for(const [key,s] of [...Object.entries(out.sets),['Standardfeld (Liga)',out.siz
 }
 console.log('\n### Reaktion nach Trainerstufe (Liga, mit 185)\n\n| Stufe | Partien | Umstellungen je Partie | Druck-/Sicherungsantworten je Partie | erste Druckreaktion (Minute) | Rückstand → erste Umstellung (min, n) | Gründe |\n| --- | ---: | ---: | ---: | ---: | ---: | --- |');
 for(const [q,s] of Object.entries(out.stages))console.log(`| ${q} | ${s.matches} | ${f(s.changes)} | ${f(s.pressure)} | ${f(s.firstPressureMinute,1)} | ${f(s.trailDelay[0],1)} (${s.trailDelay[1]}) | ${JSON.stringify(s.reasons)} |`);
+if(out.browser.off)console.log(`
+### Treue: Replay (p) gegen Browser auf denselben Fixtures
+
+| Kennzahl | Replay ohne 185 | Browser ohne 185 (bp-h/bp-hl) | Replay mit 185 | Browser mit 185 (aic-b) |
+| --- | ---: | ---: | ---: | ---: |
+| Partien | ${out.sets.p.off.n} | ${out.browser.off.n} | ${out.sets.p.on.n} | ${out.browser.on?.n??'–'} |
+| Tore | ${pm(out.sets.p.off.goals)} | ${pm(out.browser.off.goals)} | ${pm(out.sets.p.on.goals)} | ${out.browser.on?pm(out.browser.on.goals):'–'} |
+| Schüsse | ${pm(out.sets.p.off.shots)} | ${pm(out.browser.off.shots)} | ${pm(out.sets.p.on.shots)} | ${out.browser.on?pm(out.browser.on.shots):'–'} |
+| Remis % | ${pm(out.sets.p.off.draws,1)} | ${pm(out.browser.off.draws,1)} | ${pm(out.sets.p.on.draws,1)} | ${out.browser.on?pm(out.browser.on.draws,1):'–'} |`);
+console.log(`
+### Benannte Ligapaarungen (Review, Standardfeld, eigener Verein – KI)
+
+| Paarung | Art | Stärke eigen/KI | ohne 185 | mit 185 | KI-Entscheidungen mit 185 |
+| --- | --- | ---: | ---: | ---: | --- |`);
+for(const n of out.named)console.log(`| ${n.id.split(':')[2]} – ${n.ai} | ${n.kind} | ${n.ovr.join(' / ')} | ${n.off.join(':')} | ${n.on.join(':')} | ${n.log.join(', ')||'–'} |`);
